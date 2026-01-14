@@ -1,0 +1,538 @@
+"""Repository parser - reads markdown files and extracts structured data."""
+
+import re
+from datetime import datetime
+from pathlib import Path
+
+from .config import settings
+from .models import (
+    Column,
+    DataFile,
+    Discovery,
+    IdeaStatus,
+    Notebook,
+    PerformanceTip,
+    Pitfall,
+    Priority,
+    Project,
+    ProjectStatus,
+    RepositoryData,
+    ResearchIdea,
+    Table,
+    Visualization,
+)
+
+
+def slugify(text: str) -> str:
+    """Convert text to a URL-friendly slug."""
+    text = text.lower().strip()
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"[\s_]+", "-", text)
+    return text
+
+
+class RepositoryParser:
+    """Parse git repository file system into structured data."""
+
+    def __init__(self, repo_path: Path | None = None):
+        """Initialize parser with repository path."""
+        self.repo_path = repo_path or settings.repo_dir
+
+    def parse_all(self) -> RepositoryData:
+        """Parse entire repository into structured data."""
+        projects = self.parse_projects()
+        discoveries = self.parse_discoveries()
+        tables = self.parse_schema()
+        pitfalls = self.parse_pitfalls()
+        performance_tips = self.parse_performance()
+        research_ideas = self.parse_research_ideas()
+
+        # Compute stats
+        total_notebooks = sum(len(p.notebooks) for p in projects)
+        total_visualizations = sum(len(p.visualizations) for p in projects)
+        total_data_files = sum(len(p.data_files) for p in projects)
+
+        return RepositoryData(
+            projects=projects,
+            discoveries=discoveries,
+            tables=tables,
+            pitfalls=pitfalls,
+            performance_tips=performance_tips,
+            research_ideas=research_ideas,
+            total_notebooks=total_notebooks,
+            total_visualizations=total_visualizations,
+            total_data_files=total_data_files,
+            last_updated=datetime.now(),
+        )
+
+    def parse_projects(self) -> list[Project]:
+        """Parse all projects from projects/ directory."""
+        projects = []
+        projects_dir = self.repo_path / "projects"
+
+        if not projects_dir.exists():
+            return projects
+
+        for project_dir in projects_dir.iterdir():
+            if not project_dir.is_dir() or project_dir.name.startswith("."):
+                continue
+
+            project = self._parse_project_dir(project_dir)
+            if project:
+                projects.append(project)
+
+        return sorted(projects, key=lambda p: p.updated_date or datetime.min, reverse=True)
+
+    def _parse_project_dir(self, project_dir: Path) -> Project | None:
+        """Parse single project directory."""
+        readme_path = project_dir / "README.md"
+        if not readme_path.exists():
+            return None
+
+        readme_content = readme_path.read_text()
+
+        # Extract title from first H1
+        title_match = re.search(r"^#\s+(.+)$", readme_content, re.MULTILINE)
+        title = title_match.group(1) if title_match else project_dir.name
+
+        # Extract sections
+        research_question = self._extract_section(readme_content, "Research Question")
+        hypothesis = self._extract_section(readme_content, "Hypothesis")
+        approach = self._extract_section(readme_content, "Approach")
+        findings = self._extract_section(readme_content, "Key Findings")
+
+        # Determine status from findings
+        status = ProjectStatus.IN_PROGRESS
+        if findings and "to be filled" not in findings.lower():
+            status = ProjectStatus.COMPLETED
+
+        # Parse notebooks
+        notebooks = self._parse_notebooks(project_dir)
+
+        # Parse visualizations and data files
+        visualizations, data_files = self._parse_data_dir(project_dir)
+
+        # Get file modification times as proxy for dates
+        created_date = datetime.fromtimestamp(readme_path.stat().st_ctime)
+        updated_date = datetime.fromtimestamp(readme_path.stat().st_mtime)
+
+        return Project(
+            id=project_dir.name,
+            title=title,
+            research_question=research_question or "",
+            status=status,
+            hypothesis=hypothesis,
+            approach=approach,
+            findings=findings,
+            notebooks=notebooks,
+            visualizations=visualizations,
+            data_files=data_files,
+            created_date=created_date,
+            updated_date=updated_date,
+            raw_readme=readme_content,
+        )
+
+    def _extract_section(self, content: str, section_name: str) -> str | None:
+        """Extract content between a section header and the next header."""
+        # Match ## Section Name or ### Section Name
+        pattern = rf"^##?\s*{re.escape(section_name)}\s*$\n(.*?)(?=^##|\Z)"
+        match = re.search(pattern, content, re.MULTILINE | re.DOTALL)
+        if match:
+            return match.group(1).strip()
+        return None
+
+    def _parse_notebooks(self, project_dir: Path) -> list[Notebook]:
+        """Parse notebooks from project/notebooks/ directory."""
+        notebooks = []
+        notebooks_dir = project_dir / "notebooks"
+
+        if not notebooks_dir.exists():
+            return notebooks
+
+        for notebook_path in notebooks_dir.glob("*.ipynb"):
+            notebooks.append(
+                Notebook(
+                    filename=notebook_path.name,
+                    path=str(notebook_path.relative_to(self.repo_path)),
+                    title=notebook_path.stem.replace("_", " ").title(),
+                )
+            )
+
+        return sorted(notebooks, key=lambda n: n.filename)
+
+    def _parse_data_dir(self, project_dir: Path) -> tuple[list[Visualization], list[DataFile]]:
+        """Parse visualizations and data files from project/data/ directory."""
+        visualizations = []
+        data_files = []
+        data_dir = project_dir / "data"
+
+        if not data_dir.exists():
+            return visualizations, data_files
+
+        for file_path in data_dir.iterdir():
+            if file_path.name.startswith("."):
+                continue
+
+            size_bytes = file_path.stat().st_size
+
+            if file_path.suffix.lower() in (".png", ".jpg", ".jpeg", ".svg", ".gif"):
+                visualizations.append(
+                    Visualization(
+                        filename=file_path.name,
+                        path=str(file_path.relative_to(self.repo_path)),
+                        title=file_path.stem.replace("_", " ").title(),
+                        size_bytes=size_bytes,
+                    )
+                )
+            elif file_path.suffix.lower() in (".csv", ".tsv", ".json", ".parquet"):
+                data_files.append(
+                    DataFile(
+                        filename=file_path.name,
+                        path=str(file_path.relative_to(self.repo_path)),
+                        size_bytes=size_bytes,
+                    )
+                )
+
+        return (
+            sorted(visualizations, key=lambda v: v.filename),
+            sorted(data_files, key=lambda d: d.filename),
+        )
+
+    def parse_discoveries(self) -> list[Discovery]:
+        """Parse discoveries from docs/discoveries.md."""
+        discoveries = []
+        discoveries_path = self.repo_path / "docs" / "discoveries.md"
+
+        if not discoveries_path.exists():
+            return discoveries
+
+        content = discoveries_path.read_text()
+
+        # Split by ### headers (discovery entries)
+        sections = re.split(r"\n###\s+", content)
+
+        current_date = None
+
+        for section in sections[1:]:  # Skip intro
+            if not section.strip():
+                continue
+
+            # Check if this is a date header (## 2026-01)
+            date_match = re.match(r"^##\s+(\d{4}-\d{2})", section)
+            if date_match:
+                current_date = datetime.strptime(date_match.group(1), "%Y-%m")
+                continue
+
+            lines = section.split("\n")
+            title_line = lines[0].strip()
+
+            # Parse [project_tag] from title
+            match = re.match(r"\[(\w+)\]\s+(.+)", title_line)
+            if match:
+                project_tag = match.group(1)
+                title = match.group(2)
+                content_text = "\n".join(lines[1:]).strip()
+
+                # Skip template section
+                if "Brief title" in title or "Description of what was discovered" in content_text:
+                    continue
+
+                discovery = Discovery(
+                    id=slugify(title),
+                    title=title,
+                    project_tag=project_tag,
+                    content=content_text,
+                    date=current_date,
+                    related_projects=[project_tag],
+                )
+                discoveries.append(discovery)
+
+        return discoveries
+
+    def parse_schema(self) -> list[Table]:
+        """Parse tables from docs/schema.md."""
+        tables = []
+        schema_path = self.repo_path / "docs" / "schema.md"
+
+        if not schema_path.exists():
+            return tables
+
+        content = schema_path.read_text()
+
+        # Find the Table Summary section to get row counts
+        row_counts = {}
+        summary_match = re.search(
+            r"## Table Summary\n\n\|.*\|.*\|\n\|[-\s|]+\|\n(.*?)\n\n",
+            content,
+            re.DOTALL,
+        )
+        if summary_match:
+            for line in summary_match.group(1).split("\n"):
+                cols = [c.strip() for c in line.split("|") if c.strip()]
+                if len(cols) >= 2:
+                    table_name = cols[0].strip("`")
+                    try:
+                        row_count = int(cols[1].replace(",", ""))
+                        row_counts[table_name] = row_count
+                    except ValueError:
+                        pass
+
+        # Parse individual table schemas
+        table_sections = re.split(r"\n###\s+\d+\.\s+", content)
+
+        for section in table_sections[1:]:  # Skip intro
+            lines = section.split("\n")
+            if not lines:
+                continue
+
+            # First line contains table name in backticks
+            name_match = re.match(r"`(\w+)`", lines[0])
+            if not name_match:
+                continue
+
+            table_name = name_match.group(1)
+
+            # Get description (first paragraph after name)
+            description = ""
+            for i, line in enumerate(lines[1:], 1):
+                if line.strip() and not line.startswith("|") and not line.startswith("-"):
+                    description = line.strip()
+                    break
+
+            # Parse columns from markdown table
+            columns = []
+            in_table = False
+            for line in lines:
+                if line.startswith("| Column"):
+                    in_table = True
+                    continue
+                if in_table and line.startswith("|"):
+                    if line.startswith("|--") or line.startswith("| --"):
+                        continue
+                    cols = [c.strip() for c in line.split("|") if c.strip()]
+                    if len(cols) >= 3:
+                        col_name = cols[0].strip("`")
+                        col_type = cols[1]
+                        col_desc = cols[2] if len(cols) > 2 else ""
+
+                        is_pk = "Primary Key" in col_desc
+                        is_fk = "FK" in col_desc or "→" in col_desc
+
+                        columns.append(
+                            Column(
+                                name=col_name,
+                                data_type=col_type,
+                                description=col_desc,
+                                is_primary_key=is_pk,
+                                is_foreign_key=is_fk,
+                            )
+                        )
+                elif in_table and not line.startswith("|"):
+                    in_table = False
+
+            tables.append(
+                Table(
+                    name=table_name,
+                    description=description,
+                    row_count=row_counts.get(table_name, 0),
+                    columns=columns,
+                )
+            )
+
+        return tables
+
+    def parse_pitfalls(self) -> list[Pitfall]:
+        """Parse pitfalls from docs/pitfalls.md."""
+        pitfalls = []
+        pitfalls_path = self.repo_path / "docs" / "pitfalls.md"
+
+        if not pitfalls_path.exists():
+            return pitfalls
+
+        content = pitfalls_path.read_text()
+
+        # Split by ## headers (categories)
+        category_sections = re.split(r"\n##\s+", content)
+
+        for cat_section in category_sections[1:]:  # Skip intro
+            lines = cat_section.split("\n")
+            category = lines[0].strip()
+
+            # Skip non-category sections
+            if category.lower() in ("overview", "purpose"):
+                continue
+
+            # Split by ### headers (individual pitfalls)
+            pitfall_sections = re.split(r"\n###\s+", cat_section)
+
+            for pitfall_section in pitfall_sections[1:]:
+                pitfall_lines = pitfall_section.split("\n")
+                title = pitfall_lines[0].strip()
+
+                # Get content as problem description
+                problem = "\n".join(pitfall_lines[1:]).strip()
+
+                # Try to extract code example
+                code_match = re.search(r"```sql\n(.*?)```", problem, re.DOTALL)
+                code_example = code_match.group(1).strip() if code_match else None
+
+                pitfalls.append(
+                    Pitfall(
+                        id=slugify(title),
+                        title=title,
+                        category=category,
+                        problem=problem,
+                        solution="",  # Could parse if there's a structured format
+                        code_example=code_example,
+                    )
+                )
+
+        return pitfalls
+
+    def parse_performance(self) -> list[PerformanceTip]:
+        """Parse performance tips from docs/performance.md."""
+        tips = []
+        perf_path = self.repo_path / "docs" / "performance.md"
+
+        if not perf_path.exists():
+            return tips
+
+        content = perf_path.read_text()
+
+        # Split by ### headers
+        sections = re.split(r"\n###\s+", content)
+
+        for section in sections[1:]:
+            lines = section.split("\n")
+            if not lines:
+                continue
+
+            title = lines[0].strip()
+            description = "\n".join(lines[1:]).strip()
+
+            # Try to extract code example
+            code_match = re.search(r"```(?:sql|python)\n(.*?)```", description, re.DOTALL)
+            code_example = code_match.group(1).strip() if code_match else None
+
+            tips.append(
+                PerformanceTip(
+                    id=slugify(title),
+                    title=title,
+                    description=description,
+                    code_example=code_example,
+                )
+            )
+
+        return tips
+
+    def parse_research_ideas(self) -> list[ResearchIdea]:
+        """Parse research ideas from docs/research_ideas.md."""
+        ideas = []
+        ideas_path = self.repo_path / "docs" / "research_ideas.md"
+
+        if not ideas_path.exists():
+            return ideas
+
+        content = ideas_path.read_text()
+
+        # Determine priority from section headers
+        current_priority = Priority.MEDIUM
+
+        # Split by ### headers (individual ideas)
+        sections = re.split(r"\n###\s+", content)
+
+        for section in sections[1:]:
+            # Check if this looks like a priority section header (## High Priority Ideas)
+            if section.startswith("## "):
+                if "High Priority" in section:
+                    current_priority = Priority.HIGH
+                elif "Medium Priority" in section:
+                    current_priority = Priority.MEDIUM
+                elif "Low Priority" in section:
+                    current_priority = Priority.LOW
+                continue
+
+            lines = section.split("\n")
+            if not lines:
+                continue
+
+            title_line = lines[0].strip()
+
+            # Parse [source_tag] Title
+            match = re.match(r"\[([^\]]+)\]\s+(.+)", title_line)
+            if not match:
+                continue
+
+            source_tag = match.group(1)
+            title = match.group(2)
+            section_content = "\n".join(lines[1:])
+
+            # Extract structured fields
+            status_match = re.search(r"\*\*Status\*\*:\s*(\w+)", section_content)
+            priority_match = re.search(r"\*\*Priority\*\*:\s*(\w+)", section_content)
+            effort_match = re.search(r"\*\*Effort\*\*:\s*(.+?)(?:\n|$)", section_content)
+            research_q_match = re.search(
+                r"\*\*Research Question\*\*:\s*(.+?)(?=\n\n|\*\*|\Z)",
+                section_content,
+                re.DOTALL,
+            )
+            hypothesis_match = re.search(
+                r"\*\*Hypothesis\*\*:\s*(.+?)(?=\n\n|\*\*|\Z)",
+                section_content,
+                re.DOTALL,
+            )
+            approach_match = re.search(
+                r"\*\*Approach\*\*:\s*(.+?)(?=\n\n|\*\*|\Z)",
+                section_content,
+                re.DOTALL,
+            )
+            impact_match = re.search(r"\*\*Impact\*\*:\s*(.+?)(?:\n|$)", section_content)
+
+            # Parse status
+            status = IdeaStatus.PROPOSED
+            if status_match:
+                status_str = status_match.group(1).upper()
+                if status_str == "IN_PROGRESS":
+                    status = IdeaStatus.IN_PROGRESS
+                elif status_str == "COMPLETED":
+                    status = IdeaStatus.COMPLETED
+
+            # Parse priority
+            priority = current_priority
+            if priority_match:
+                priority_str = priority_match.group(1).upper()
+                if priority_str == "HIGH":
+                    priority = Priority.HIGH
+                elif priority_str == "MEDIUM":
+                    priority = Priority.MEDIUM
+                elif priority_str == "LOW":
+                    priority = Priority.LOW
+
+            ideas.append(
+                ResearchIdea(
+                    id=slugify(title),
+                    title=title,
+                    research_question=research_q_match.group(1).strip() if research_q_match else "",
+                    status=status,
+                    priority=priority,
+                    hypothesis=hypothesis_match.group(1).strip() if hypothesis_match else None,
+                    approach=approach_match.group(1).strip() if approach_match else None,
+                    effort=effort_match.group(1).strip() if effort_match else None,
+                    impact=impact_match.group(1).strip() if impact_match else None,
+                    cross_project_tags=[source_tag],
+                )
+            )
+
+        return ideas
+
+
+# Singleton instance
+_parser: RepositoryParser | None = None
+
+
+def get_parser() -> RepositoryParser:
+    """Get or create parser singleton."""
+    global _parser
+    if _parser is None:
+        _parser = RepositoryParser()
+    return _parser

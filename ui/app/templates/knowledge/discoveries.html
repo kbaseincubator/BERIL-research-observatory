@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Discoveries - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Discoveries</h1>
+    <p class="page-description">
+        A timeline of research findings and insights discovered during analysis projects.
+    </p>
+</div>
+
+<div class="timeline">
+    {% for discovery in discoveries %}
+    <article class="card" id="{{ discovery.id }}" style="margin-bottom: var(--space-6);">
+        <div class="card-header">
+            <span class="badge badge-project">[{{ discovery.project_tag }}]</span>
+            {% if discovery.date %}
+            <span class="text-muted text-small">{{ discovery.date.strftime('%B %Y') }}</span>
+            {% endif %}
+        </div>
+
+        <h3 class="card-title" style="margin-top: var(--space-3);">{{ discovery.title }}</h3>
+
+        <div class="card-content">
+            <p style="white-space: pre-wrap;">{{ discovery.content }}</p>
+        </div>
+    </article>
+    {% else %}
+    <p class="text-muted">No discoveries recorded yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Error - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header text-center">
+    <h1 class="page-title">Something went wrong</h1>
+    <p class="page-description">{{ error }}</p>
+    <a href="/" class="btn btn-primary mt-8">Return Home</a>
+</div>
+{% endblock %}

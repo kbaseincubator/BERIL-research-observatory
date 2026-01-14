@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Query Pitfalls - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Query Pitfalls & Gotchas</h1>
+    <p class="page-description">
+        Common issues to avoid when querying the pangenome database.
+        Learn from the mistakes others have made!
+    </p>
+</div>
+
+{% set categories = pitfalls|groupby('category') %}
+
+{% for category, category_pitfalls in categories %}
+<section class="section">
+    <h2>{{ category }}</h2>
+
+    {% for pitfall in category_pitfalls %}
+    <article class="card" id="{{ pitfall.id }}" style="margin-bottom: var(--space-4);">
+        <h3 class="card-title">{{ pitfall.title }}</h3>
+        <div class="card-content">
+            <p style="white-space: pre-wrap;">{{ pitfall.problem }}</p>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<p class="text-muted">No pitfalls documented yet. That's either very good or very bad!</p>
+{% endfor %}
+{% endblock %}

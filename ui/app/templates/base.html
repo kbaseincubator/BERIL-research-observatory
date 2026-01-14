@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ app_name }}{% endblock %}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', path='css/main.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <span class="logo-icon">&#9670;</span>
+                <span class="logo-text">Pangenome Observatory</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="/projects" class="{% if request.url.path.startswith('/projects') %}active{% endif %}">Projects</a></li>
+                <li><a href="/data" class="{% if request.url.path.startswith('/data') %}active{% endif %}">Data</a></li>
+                <li class="nav-dropdown">
+                    <a href="/knowledge/discoveries" class="{% if request.url.path.startswith('/knowledge') %}active{% endif %}">Knowledge</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/knowledge/discoveries">Discoveries</a></li>
+                        <li><a href="/knowledge/pitfalls">Pitfalls</a></li>
+                        <li><a href="/knowledge/ideas">Research Ideas</a></li>
+                    </ul>
+                </li>
+                <li><a href="/about" class="{% if request.url.path == '/about' %}active{% endif %}">About</a></li>
+            </ul>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>Pangenome Research Observatory</h4>
+                <p class="footer-description">Exploring microbial diversity at scale using the KBase BERDL data lakehouse.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Stats</h4>
+                <ul class="footer-stats">
+                    <li><span class="stat-value">{{ total_genomes }}</span> genomes</li>
+                    <li><span class="stat-value">{{ total_species }}</span> species</li>
+                    <li><span class="stat-value">{{ total_genes }}</span> genes</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="https://hub.berdl.kbase.us">BERDL JupyterHub</a></li>
+                    <li><a href="/data/schema">Schema Browser</a></li>
+                    <li><a href="/knowledge/pitfalls">Query Pitfalls</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 KBase. Built with the BERDL data lakehouse.</p>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle')?.addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

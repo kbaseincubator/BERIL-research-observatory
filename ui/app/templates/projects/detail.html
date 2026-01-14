@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} - {{ app_name }}{% endblock %}
+
+{% block content %}
+<!-- Breadcrumb -->
+<nav class="mb-8">
+    <a href="/projects" class="text-muted">Projects</a>
+    <span class="text-muted"> / </span>
+    <span>{{ project.title }}</span>
+</nav>
+
+<div class="page-header">
+    <div class="flex items-center gap-4 mb-4">
+        <h1 class="page-title" style="margin-bottom: 0;">{{ project.title }}</h1>
+        {% if project.status.value == "Completed" %}
+        <span class="badge badge-completed">{{ project.status.value }}</span>
+        {% elif project.status.value == "In Progress" %}
+        <span class="badge badge-in-progress">{{ project.status.value }}</span>
+        {% else %}
+        <span class="badge badge-proposed">{{ project.status.value }}</span>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Research Question -->
+<section class="section">
+    <h2>Research Question</h2>
+    <p class="page-description">{{ project.research_question }}</p>
+</section>
+
+<!-- Hypothesis -->
+{% if project.hypothesis %}
+<section class="section">
+    <h2>Hypothesis</h2>
+    <div class="card">
+        <p>{{ project.hypothesis }}</p>
+    </div>
+</section>
+{% endif %}
+
+<!-- Approach -->
+{% if project.approach %}
+<section class="section">
+    <h2>Approach</h2>
+    <div class="card">
+        <p>{{ project.approach }}</p>
+    </div>
+</section>
+{% endif %}
+
+<!-- Key Findings -->
+{% if project.findings and 'to be filled' not in project.findings.lower() %}
+<section class="section">
+    <h2>Key Findings</h2>
+    <div class="card" style="border-left: 4px solid var(--accent-primary);">
+        <p>{{ project.findings }}</p>
+    </div>
+</section>
+{% endif %}
+
+<!-- Visualizations -->
+{% if project.visualizations %}
+<section class="section">
+    <h2>Visualizations</h2>
+    <div class="grid grid-3">
+        {% for viz in project.visualizations %}
+        <div class="card" style="padding: var(--space-3);">
+            <img
+                src="/project-assets/{{ project.id }}/data/{{ viz.filename }}"
+                alt="{{ viz.title }}"
+                style="width: 100%; height: auto; border-radius: var(--radius-sm);"
+                loading="lazy"
+            >
+            <p class="text-small text-muted mt-4" style="margin-bottom: 0;">{{ viz.title }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Notebooks -->
+{% if project.notebooks %}
+<section class="section">
+    <h2>Notebooks</h2>
+    <div class="grid grid-2">
+        {% for notebook in project.notebooks %}
+        <div class="card">
+            <code>{{ notebook.filename }}</code>
+            {% if notebook.title %}
+            <p class="text-muted text-small mt-4">{{ notebook.title }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Data Files -->
+{% if project.data_files %}
+<section class="section">
+    <h2>Data Files</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Filename</th>
+                <th>Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in project.data_files %}
+            <tr>
+                <td><code>{{ file.filename }}</code></td>
+                <td>{{ "%.1f"|format(file.size_bytes / 1024) }} KB</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}Research Ideas - {{ app_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .kanban {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-6);
+    }
+
+    .kanban-column {
+        background: var(--surface-raised);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-lg);
+        padding: var(--space-4);
+    }
+
+    .kanban-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--space-4);
+        padding-bottom: var(--space-3);
+        border-bottom: 1px solid var(--surface-border);
+    }
+
+    .kanban-count {
+        background: var(--surface-overlay);
+        padding: var(--space-1) var(--space-2);
+        border-radius: var(--radius-sm);
+        font-size: 0.75rem;
+        color: var(--text-tertiary);
+    }
+
+    .idea-card {
+        background: var(--surface-overlay);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-4);
+        margin-bottom: var(--space-3);
+    }
+
+    .idea-card:last-child {
+        margin-bottom: 0;
+    }
+
+    .idea-title {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        margin-bottom: var(--space-2);
+    }
+
+    .idea-question {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        margin-bottom: var(--space-3);
+    }
+
+    .idea-meta {
+        display: flex;
+        gap: var(--space-2);
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 1024px) {
+        .kanban {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Research Ideas</h1>
+    <p class="page-description">
+        Track proposed, in-progress, and completed research directions.
+        {{ idea_count }} ideas waiting to be explored.
+    </p>
+</div>
+
+<div class="kanban">
+    <!-- Proposed Column -->
+    <div class="kanban-column">
+        <div class="kanban-header">
+            <h3 style="margin: 0;">Proposed</h3>
+            <span class="kanban-count">{{ proposed_ideas|length }}</span>
+        </div>
+
+        {% for idea in proposed_ideas %}
+        <div class="idea-card" id="{{ idea.id }}">
+            <div class="idea-title">{{ idea.title }}</div>
+            <div class="idea-question">{{ idea.research_question[:100] }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
+            <div class="idea-meta">
+                {% if idea.priority.value == "HIGH" %}
+                <span class="badge badge-high">High</span>
+                {% elif idea.priority.value == "MEDIUM" %}
+                <span class="badge badge-medium">Medium</span>
+                {% else %}
+                <span class="badge badge-low">Low</span>
+                {% endif %}
+                {% if idea.effort %}
+                <span class="badge badge-proposed">{{ idea.effort }}</span>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <p class="text-muted text-small">No proposed ideas</p>
+        {% endfor %}
+    </div>
+
+    <!-- In Progress Column -->
+    <div class="kanban-column">
+        <div class="kanban-header">
+            <h3 style="margin: 0;">In Progress</h3>
+            <span class="kanban-count">{{ in_progress_ideas|length }}</span>
+        </div>
+
+        {% for idea in in_progress_ideas %}
+        <div class="idea-card" id="{{ idea.id }}">
+            <div class="idea-title">{{ idea.title }}</div>
+            <div class="idea-question">{{ idea.research_question[:100] }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
+            <div class="idea-meta">
+                {% if idea.priority.value == "HIGH" %}
+                <span class="badge badge-high">High</span>
+                {% elif idea.priority.value == "MEDIUM" %}
+                <span class="badge badge-medium">Medium</span>
+                {% else %}
+                <span class="badge badge-low">Low</span>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <p class="text-muted text-small">No ideas in progress</p>
+        {% endfor %}
+    </div>
+
+    <!-- Completed Column -->
+    <div class="kanban-column">
+        <div class="kanban-header">
+            <h3 style="margin: 0;">Completed</h3>
+            <span class="kanban-count">{{ completed_ideas|length }}</span>
+        </div>
+
+        {% for idea in completed_ideas %}
+        <div class="idea-card" id="{{ idea.id }}">
+            <div class="idea-title">{{ idea.title }}</div>
+            <div class="idea-question">{{ idea.research_question[:100] }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
+        </div>
+        {% else %}
+        <p class="text-muted text-small">No completed ideas yet</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

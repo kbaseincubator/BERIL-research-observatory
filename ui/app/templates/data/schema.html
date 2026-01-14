@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}Schema Browser - {{ app_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .schema-layout {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: var(--space-6);
+    }
+
+    .table-list {
+        position: sticky;
+        top: calc(var(--header-height) + var(--space-6));
+        max-height: calc(100vh - var(--header-height) - var(--space-12));
+        overflow-y: auto;
+    }
+
+    .table-list-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-3) var(--space-4);
+        border-radius: var(--radius-sm);
+        color: var(--text-secondary);
+        transition: all 0.15s ease;
+    }
+
+    .table-list-item:hover {
+        background: var(--surface-overlay);
+        color: var(--text-primary);
+    }
+
+    .table-list-item.active {
+        background: var(--accent-primary-bg);
+        color: var(--accent-primary);
+    }
+
+    .table-row-count {
+        font-size: 0.75rem;
+        color: var(--text-tertiary);
+    }
+
+    .size-huge { color: var(--priority-high); }
+    .size-large { color: var(--priority-medium); }
+    .size-medium { color: var(--text-secondary); }
+
+    @media (max-width: 768px) {
+        .schema-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .table-list {
+            position: static;
+            max-height: none;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Schema Browser</h1>
+    <p class="page-description">
+        Explore the structure of the <code>kbase_ke_pangenome</code> database.
+    </p>
+</div>
+
+<div class="schema-layout">
+    <!-- Table List Sidebar -->
+    <aside class="card table-list">
+        <h4 style="margin-bottom: var(--space-4);">Tables</h4>
+        <nav>
+            {% for table in tables %}
+            <a href="/data/schema?table={{ table.name }}"
+               class="table-list-item {% if selected_table and selected_table.name == table.name %}active{% endif %}">
+                <code>{{ table.name }}</code>
+                <span class="table-row-count
+                    {% if table.row_count >= 1000000000 %}size-huge
+                    {% elif table.row_count >= 100000000 %}size-large
+                    {% else %}size-medium{% endif %}">
+                    {% if table.row_count >= 1000000000 %}
+                        {{ "%.1f"|format(table.row_count / 1000000000) }}B
+                    {% elif table.row_count >= 1000000 %}
+                        {{ "%.1f"|format(table.row_count / 1000000) }}M
+                    {% elif table.row_count >= 1000 %}
+                        {{ "%.1f"|format(table.row_count / 1000) }}K
+                    {% else %}
+                        {{ table.row_count }}
+                    {% endif %}
+                </span>
+            </a>
+            {% endfor %}
+        </nav>
+    </aside>
+
+    <!-- Table Detail -->
+    <main>
+        {% if selected_table %}
+        <div class="card">
+            <h2><code>{{ selected_table.name }}</code></h2>
+            <p>{{ selected_table.description }}</p>
+
+            <div class="flex gap-4 mt-4 mb-8">
+                <span class="badge badge-project">{{ "{:,}".format(selected_table.row_count) }} rows</span>
+                <span class="badge badge-proposed">{{ selected_table.columns|length }} columns</span>
+            </div>
+
+            {% if selected_table.known_limitations %}
+            <div class="card" style="background: var(--priority-medium-bg); border-color: var(--priority-medium);">
+                <h4 style="color: var(--priority-medium);">Known Limitations</h4>
+                <ul>
+                    {% for limitation in selected_table.known_limitations %}
+                    <li>{{ limitation }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            <h3 class="mt-8">Columns</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Column</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for column in selected_table.columns %}
+                    <tr>
+                        <td>
+                            <code>{{ column.name }}</code>
+                            {% if column.is_primary_key %}
+                            <span class="badge badge-completed" style="margin-left: var(--space-2);">PK</span>
+                            {% endif %}
+                            {% if column.is_foreign_key %}
+                            <span class="badge badge-in-progress" style="margin-left: var(--space-2);">FK</span>
+                            {% endif %}
+                        </td>
+                        <td><code class="text-muted">{{ column.data_type }}</code></td>
+                        <td class="text-muted">{{ column.description }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="card text-center">
+            <p class="text-muted">Select a table from the list to view its schema.</p>
+        </div>
+        {% endif %}
+    </main>
+</div>
+{% endblock %}

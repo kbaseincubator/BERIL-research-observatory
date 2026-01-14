@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Data Catalog - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Data Catalog</h1>
+    <p class="page-description">
+        The KBase BERDL data lakehouse contains pangenome data for {{ total_genomes }} genomes
+        across {{ total_species }} microbial species derived from GTDB r214.
+    </p>
+</div>
+
+<!-- Database Overview -->
+<section class="section">
+    <h2>Database Overview</h2>
+    <div class="card">
+        <p><strong>Database:</strong> <code>kbase_ke_pangenome</code></p>
+        <p><strong>Location:</strong> On-prem Delta Lakehouse (BERDL - Berkeley Research Data Lake)</p>
+        <p><strong>Access:</strong> Spark SQL via REST API or JupyterHub</p>
+
+        <h4 class="mt-8">What's in the data?</h4>
+        <ul>
+            <li>Species-level pangenomes computed with motupan (90% AAI clustering)</li>
+            <li>Pairwise ANI between genomes (~421M pairs)</li>
+            <li>Functional annotations via eggNOG v6</li>
+            <li>Metabolic pathway predictions via GapMind</li>
+            <li>Environmental embeddings from AlphaEarth</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Scale Stats -->
+<section class="section">
+    <h2>Scale</h2>
+    <div class="grid grid-4">
+        <div class="stat-card">
+            <div class="stat-value">{{ total_genomes }}</div>
+            <div class="stat-label">genomes</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ total_species }}</div>
+            <div class="stat-label">species</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ total_genes }}</div>
+            <div class="stat-label">genes</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">{{ tables|length }}</div>
+            <div class="stat-label">tables</div>
+        </div>
+    </div>
+</section>
+
+<!-- Table Summary -->
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Tables</h2>
+        <a href="/data/schema" class="btn btn-primary">Browse Schema</a>
+    </div>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Table</th>
+                <th>Row Count</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for table in tables %}
+            <tr>
+                <td>
+                    <a href="/data/schema?table={{ table.name }}">
+                        <code>{{ table.name }}</code>
+                    </a>
+                </td>
+                <td>{{ "{:,}".format(table.row_count) }}</td>
+                <td class="text-muted">{{ table.description[:80] }}{% if table.description|length > 80 %}...{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<!-- Quick Links -->
+<section class="section">
+    <h2>Resources</h2>
+    <div class="grid grid-3">
+        <a href="/data/schema" class="card">
+            <h4>Schema Browser</h4>
+            <p class="text-muted text-small">Explore tables, columns, and relationships</p>
+        </a>
+        <a href="/knowledge/pitfalls" class="card">
+            <h4>Query Pitfalls</h4>
+            <p class="text-muted text-small">Common mistakes and how to avoid them</p>
+        </a>
+        <a href="https://hub.berdl.kbase.us" class="card" target="_blank">
+            <h4>JupyterHub</h4>
+            <p class="text-muted text-small">Run Spark queries directly</p>
+        </a>
+    </div>
+</section>
+{% endblock %}

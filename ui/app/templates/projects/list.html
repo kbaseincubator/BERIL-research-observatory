@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Research Projects</h1>
+    <p class="page-description">
+        Browse all analysis projects exploring the pangenome database.
+        Each project addresses a specific research question using the BERDL data lakehouse.
+    </p>
+</div>
+
+<div class="grid grid-2">
+    {% for project in projects %}
+    <article class="card">
+        <div class="card-header">
+            <h3 class="card-title">
+                <a href="/projects/{{ project.id }}">{{ project.title }}</a>
+            </h3>
+            {% if project.status.value == "Completed" %}
+            <span class="badge badge-completed">{{ project.status.value }}</span>
+            {% elif project.status.value == "In Progress" %}
+            <span class="badge badge-in-progress">{{ project.status.value }}</span>
+            {% else %}
+            <span class="badge badge-proposed">{{ project.status.value }}</span>
+            {% endif %}
+        </div>
+
+        <div class="card-content">
+            <h4>Research Question</h4>
+            <p>{{ project.research_question }}</p>
+
+            {% if project.findings and 'to be filled' not in project.findings.lower() %}
+            <h4>Key Findings</h4>
+            <p>{{ project.findings[:300] }}{% if project.findings|length > 300 %}...{% endif %}</p>
+            {% endif %}
+        </div>
+
+        <div class="card-footer">
+            <div class="card-meta">
+                {% if project.notebooks %}
+                <span>{{ project.notebooks|length }} notebook{% if project.notebooks|length != 1 %}s{% endif %}</span>
+                {% endif %}
+                {% if project.visualizations %}
+                <span>{{ project.visualizations|length }} figure{% if project.visualizations|length != 1 %}s{% endif %}</span>
+                {% endif %}
+                {% if project.data_files %}
+                <span>{{ project.data_files|length }} data file{% if project.data_files|length != 1 %}s{% endif %}</span>
+                {% endif %}
+            </div>
+            <a href="/projects/{{ project.id }}" class="btn btn-primary">View Project</a>
+        </div>
+    </article>
+    {% else %}
+    <p class="text-muted">No projects found.</p>
+    {% endfor %}
+</div>
+{% endblock %}

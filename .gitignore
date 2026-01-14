@@ -53,3 +53,9 @@ projects/*/data/**/*.csv
 projects/*/data/**/*.npy
 projects/*/data/**/*.pkl
 !projects/*/data/.gitkeep
+
+# UI application
+ui/data/cache.json
+ui/data/indexdir/
+.venv/
+venv/
