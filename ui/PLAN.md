@@ -650,40 +650,77 @@ class SearchService:
 
 ## Frontend Design
 
-### Academic Theme Styling
+### Design Direction: "Research Observatory"
+
+**Concept:** A dark-themed interface that positions the user as a researcher peering into a vast dataset. The UI recedes into the background while data and discoveries take center stage with high contrast. Think: mission control for genomic exploration.
+
+**What makes it memorable:** The contrast between the dark, minimal chrome and the vibrant data visualizations. When you see a heatmap or gene distribution chart, it should feel like looking at a star field through a telescope.
+
+**Tone:** Refined, precise, serious—but not cold. The interface respects the user's expertise and doesn't oversimplify. Generous whitespace (or rather, "darkspace") lets the science breathe.
+
+**Key principles:**
+- **Navigation stays predictable:** Header, sidebar, and wayfinding use conventional patterns. Users never hunt for how to get around.
+- **Content areas get creative:** Within the predictable frame, content layouts can use asymmetry, overlapping elements, and unexpected compositions.
+- **Data is the hero:** The UI is a stage; the research findings are the performance.
+
+---
+
+### Typography
+
+**Display/Headlines:** [Newsreader](https://fonts.google.com/specimen/Newsreader) — A contemporary serif with editorial gravitas. Designed for long-form reading but distinctive enough for headlines. Has optical sizing for crisp rendering at all scales.
+
+**Body/UI:** [DM Sans](https://fonts.google.com/specimen/DM+Sans) — A geometric sans-serif with subtle warmth. Clean enough for UI elements, readable for body text. Pairs well with Newsreader's curves.
+
+**Code/Data:** [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) — Purpose-built for code readability with ligatures for common operators. Slightly wider than typical monospace fonts, improving scanability for SQL and data tables.
+
+---
+
+### Color System (Dark Theme)
 
 ```css
 /* static/css/main.css */
 
 :root {
   /* Typography */
-  --font-serif: 'IBM Plex Serif', Georgia, serif;
-  --font-sans: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
-  /* Colors - Academic palette */
-  --gray-50: #fafafa;
-  --gray-100: #f5f5f5;
-  --gray-200: #eeeeee;
-  --gray-300: #e0e0e0;
-  --gray-700: #616161;
-  --gray-900: #212121;
+  /* Surface colors - Dark theme */
+  --surface-base: #0d1117;        /* GitHub-dark inspired base */
+  --surface-raised: #161b22;      /* Cards, panels */
+  --surface-overlay: #21262d;     /* Dropdowns, modals */
+  --surface-border: #30363d;      /* Subtle borders */
 
-  --primary: #00897b;     /* Teal - scientific, trustworthy */
-  --secondary: #5e35b1;   /* Deep purple - academic */
-  --accent: #ff6f00;      /* Orange - highlights */
+  /* Text colors */
+  --text-primary: #e6edf3;        /* Primary text - high contrast */
+  --text-secondary: #8b949e;      /* Secondary, muted text */
+  --text-tertiary: #6e7681;       /* Timestamps, metadata */
+  --text-link: #58a6ff;           /* Links */
 
-  /* Status colors */
-  --status-completed: #388e3c;
-  --status-in-progress: #1976d2;
-  --status-proposed: #757575;
+  /* Accent - Cyan/Electric Blue (scientific precision) */
+  --accent-primary: #39d4e6;      /* Primary accent - vibrant cyan */
+  --accent-primary-muted: #1a6b75; /* Hover states, backgrounds */
+  --accent-secondary: #f0883e;    /* Secondary accent - warm amber for highlights */
+
+  /* Data visualization palette */
+  --viz-core: #39d4e6;            /* Core genes - cyan */
+  --viz-auxiliary: #a371f7;       /* Auxiliary genes - purple */
+  --viz-novel: #f0883e;           /* Novel genes - amber */
+  --viz-positive: #3fb950;        /* Enrichment, success */
+  --viz-negative: #f85149;        /* Depletion, errors */
+
+  /* Status colors (adjusted for dark theme) */
+  --status-completed: #3fb950;
+  --status-in-progress: #58a6ff;
+  --status-proposed: #8b949e;
 
   /* Priority colors */
-  --priority-high: #d32f2f;
-  --priority-medium: #f57c00;
-  --priority-low: #388e3c;
+  --priority-high: #f85149;
+  --priority-medium: #f0883e;
+  --priority-low: #3fb950;
 
-  /* Spacing */
+  /* Spacing scale */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -692,46 +729,191 @@ class SearchService:
   --space-8: 32px;
   --space-12: 48px;
   --space-16: 64px;
-}
 
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+```
+
+---
+
+### Visual Texture & Depth
+
+**Background treatment:**
+- Base layer uses subtle radial gradient from `--surface-base` to slightly darker at edges (vignette effect)
+- Optional: Very subtle dot grid pattern at 2-3% opacity for "graph paper" scientific feel
+- Cards and panels use `--surface-raised` with 1px `--surface-border` borders
+
+**Depth through shadow (minimal, not dramatic):**
+```css
+--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+--shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+--shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+```
+
+**Data visualization glow:**
+- Charts and key statistics can use subtle glow effects with accent colors
+- `box-shadow: 0 0 20px rgba(57, 212, 230, 0.15)` for highlighted data
+
+---
+
+### Layout Philosophy
+
+**Navigation chrome (predictable):**
+- Fixed header with logo, main nav, search
+- Sidebar for hierarchical navigation (schema browser, project list)
+- Breadcrumbs for deep pages
+- Standard patterns users expect
+
+**Content areas (creative within reason):**
+- **Home page hero:** Large typography with asymmetric layout, overlapping stat cards
+- **Project cards:** Can break the grid occasionally for featured/latest project
+- **Discovery timeline:** Vertical timeline with alternating left/right content
+- **Schema browser:** Split view, but column details can use creative data presentation
+- **Research ideas:** Kanban columns with visual density variation by priority
+
+**Example: Home page hero composition**
+```
+┌─────────────────────────────────────────────────────┐
+│  [LOGO]  Projects   Data   Knowledge   About   [🔍] │  ← Predictable nav
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│     PANGENOME                     ┌───────────┐    │
+│     RESEARCH              ┌───────┤ 293K      │    │  ← Overlapping
+│     OBSERVATORY          │ 27K   │ genomes   │    │    stat cards
+│                          │species└───────────┘    │
+│     Exploring microbial  └────────────┐           │
+│     diversity at scale               │ 1B+ genes │
+│                                      └───────────┘│
+│     [Browse Projects]  [Explore Data]              │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+---
+
+### Component Styling
+
+```css
 body {
-  font-family: var(--font-serif);
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--gray-900);
-  background: var(--gray-50);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: var(--surface-base);
   margin: 0;
   padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-sans);
-  font-weight: 600;
-  line-height: 1.3;
-  margin-top: var(--space-8);
-  margin-bottom: var(--space-4);
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
-h1 { font-size: 2.5rem; }
+h4, h5, h6 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 { font-size: 3rem; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.5rem; }
 
+/* Cards */
+.card {
+  background: var(--surface-raised);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.card:hover {
+  border-color: var(--accent-primary-muted);
+}
+
+/* Code blocks */
 code {
   font-family: var(--font-mono);
-  font-size: 0.9em;
-  background: var(--gray-100);
+  font-size: 0.875em;
+  background: var(--surface-overlay);
+  color: var(--accent-primary);
   padding: 2px 6px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  background: var(--surface-overlay);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  overflow-x: auto;
 }
 
 pre code {
-  display: block;
-  padding: var(--space-4);
-  background: var(--gray-900);
-  color: #f8f8f2;
-  overflow-x: auto;
+  background: none;
+  padding: 0;
+  color: var(--text-primary);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--accent-primary);
+  color: var(--surface-base);
+  font-family: var(--font-body);
+  font-weight: 600;
+  padding: var(--space-3) var(--space-6);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: #4de0f0;  /* Lighter cyan */
+}
+
+/* Status badges */
+.badge {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+.badge-completed {
+  background: rgba(63, 185, 80, 0.15);
+  color: var(--status-completed);
+}
+
+.badge-in-progress {
+  background: rgba(88, 166, 255, 0.15);
+  color: var(--status-in-progress);
 }
 ```
+
+---
+
+### Animation Strategy (Future Enhancement)
+
+Animations are intentionally deferred to a later phase. For a scientific audience, motion can feel performative or distracting if not executed with restraint.
+
+**Potential future additions (post-MVP, with A/B testing):**
+- Subtle fade-in for page content (150-200ms)
+- Staggered reveal for card grids
+- Smooth scroll-linked progress indicators
+- Hover state transitions (already included in MVP: 150ms ease)
+
+**MVP includes only:**
+- Basic CSS transitions on hover states (color, border, shadow changes)
+- No page transitions, no scroll animations, no loading sequences
 
 ---
 
