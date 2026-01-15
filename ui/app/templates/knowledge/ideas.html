@@ -92,7 +92,7 @@
         {% for idea in proposed_ideas %}
         <div class="idea-card" id="{{ idea.id }}">
             <div class="idea-title">{{ idea.title }}</div>
-            <div class="idea-question">{{ idea.research_question[:100] }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
+            <div class="idea-question">{{ idea.research_question[:100] | markdown_inline }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
             <div class="idea-meta">
                 {% if idea.priority.value == "HIGH" %}
                 <span class="badge badge-high">High</span>
@@ -121,7 +121,7 @@
         {% for idea in in_progress_ideas %}
         <div class="idea-card" id="{{ idea.id }}">
             <div class="idea-title">{{ idea.title }}</div>
-            <div class="idea-question">{{ idea.research_question[:100] }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
+            <div class="idea-question">{{ idea.research_question[:100] | markdown_inline }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
             <div class="idea-meta">
                 {% if idea.priority.value == "HIGH" %}
                 <span class="badge badge-high">High</span>
@@ -147,7 +147,7 @@
         {% for idea in completed_ideas %}
         <div class="idea-card" id="{{ idea.id }}">
             <div class="idea-title">{{ idea.title }}</div>
-            <div class="idea-question">{{ idea.research_question[:100] }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
+            <div class="idea-question">{{ idea.research_question[:100] | markdown_inline }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
         </div>
         {% else %}
         <p class="text-muted text-small">No completed ideas yet</p>

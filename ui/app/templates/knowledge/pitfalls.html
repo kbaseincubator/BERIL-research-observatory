@@ -6,7 +6,7 @@
 <div class="page-header">
     <h1 class="page-title">Query Pitfalls & Gotchas</h1>
     <p class="page-description">
-        Common issues to avoid when querying the pangenome database.
+        Common issues to avoid when querying BERDL collections.
         Learn from the mistakes others have made!
     </p>
 </div>
@@ -20,8 +20,8 @@
     {% for pitfall in category_pitfalls %}
     <article class="card" id="{{ pitfall.id }}" style="margin-bottom: var(--space-4);">
         <h3 class="card-title">{{ pitfall.title }}</h3>
-        <div class="card-content">
-            <p style="white-space: pre-wrap;">{{ pitfall.problem }}</p>
+        <div class="card-content markdown-content">
+            {{ pitfall.problem | markdown }}
         </div>
     </article>
     {% endfor %}

@@ -25,8 +25,8 @@
 
         <h3 class="card-title" style="margin-top: var(--space-3);">{{ discovery.title }}</h3>
 
-        <div class="card-content">
-            <p style="white-space: pre-wrap;">{{ discovery.content }}</p>
+        <div class="card-content markdown-content">
+            {{ discovery.content | markdown }}
         </div>
     </article>
     {% else %}

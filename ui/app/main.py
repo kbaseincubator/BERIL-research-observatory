@@ -32,6 +32,41 @@ app.mount(
 templates = Jinja2Templates(directory=settings.templates_dir)
 
 
+# Add custom Jinja2 filters
+import markdown
+from markupsafe import Markup
+
+
+def markdown_filter(text: str) -> Markup:
+    """Convert markdown text to HTML."""
+    if not text:
+        return Markup("")
+    # Convert markdown to HTML
+    html = markdown.markdown(
+        text,
+        extensions=["fenced_code", "tables", "nl2br"],
+    )
+    return Markup(html)
+
+
+def markdown_inline_filter(text: str) -> Markup:
+    """Convert markdown text to inline HTML (strips outer <p> tags)."""
+    if not text:
+        return Markup("")
+    html = markdown.markdown(text, extensions=["fenced_code"])
+    # Strip outer <p> tags for inline use
+    if html.startswith("<p>") and html.endswith("</p>"):
+        html = html[3:-4]
+    return Markup(html)
+
+
+# Register filters
+templates.env.filters["markdown"] = markdown_filter
+templates.env.filters["md"] = markdown_filter  # Alias
+templates.env.filters["markdown_inline"] = markdown_inline_filter
+templates.env.filters["mdi"] = markdown_inline_filter  # Alias
+
+
 # Add custom template globals
 @app.on_event("startup")
 async def startup_event():

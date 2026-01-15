@@ -36,11 +36,11 @@
 
         <div class="card-content">
             <h4>Research Question</h4>
-            <p>{{ project.research_question }}</p>
+            <div class="markdown-content">{{ project.research_question | markdown }}</div>
 
             {% if project.findings and 'to be filled' not in project.findings.lower() %}
             <h4>Key Findings</h4>
-            <p>{{ project.findings[:300] }}{% if project.findings|length > 300 %}...{% endif %}</p>
+            <div class="markdown-content">{{ project.findings[:300] | markdown }}{% if project.findings|length > 300 %}...{% endif %}</div>
             {% endif %}
         </div>
 

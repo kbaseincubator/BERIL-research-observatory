@@ -32,15 +32,15 @@
 <!-- Research Question -->
 <section class="section">
     <h2>Research Question</h2>
-    <p class="page-description">{{ project.research_question }}</p>
+    <div class="page-description markdown-content">{{ project.research_question | markdown }}</div>
 </section>
 
 <!-- Hypothesis -->
 {% if project.hypothesis %}
 <section class="section">
     <h2>Hypothesis</h2>
-    <div class="card">
-        <p>{{ project.hypothesis }}</p>
+    <div class="card markdown-content">
+        {{ project.hypothesis | markdown }}
     </div>
 </section>
 {% endif %}
@@ -49,8 +49,8 @@
 {% if project.approach %}
 <section class="section">
     <h2>Approach</h2>
-    <div class="card">
-        <p>{{ project.approach }}</p>
+    <div class="card markdown-content">
+        {{ project.approach | markdown }}
     </div>
 </section>
 {% endif %}
@@ -59,8 +59,8 @@
 {% if project.findings and 'to be filled' not in project.findings.lower() %}
 <section class="section">
     <h2>Key Findings</h2>
-    <div class="card" style="border-left: 4px solid var(--accent-primary);">
-        <p>{{ project.findings }}</p>
+    <div class="card markdown-content" style="border-left: 4px solid var(--accent-primary);">
+        {{ project.findings | markdown }}
     </div>
 </section>
 {% endif %}

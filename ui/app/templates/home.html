@@ -121,7 +121,7 @@
                 <a href="/knowledge/discoveries#{{ discovery.id }}">{{ discovery.title }}</a>
             </h3>
             <div class="card-content">
-                <p>{{ discovery.content[:200] }}{% if discovery.content|length > 200 %}...{% endif %}</p>
+                <p>{{ discovery.content[:200] | markdown_inline }}{% if discovery.content|length > 200 %}...{% endif %}</p>
             </div>
             {% if discovery.date %}
             <div class="card-footer">
@@ -158,7 +158,7 @@
                 {% endif %}
             </div>
             <div class="card-content">
-                <p>{{ project.research_question[:150] }}{% if project.research_question|length > 150 %}...{% endif %}</p>
+                <p>{{ project.research_question[:150] | markdown_inline }}{% if project.research_question|length > 150 %}...{% endif %}</p>
             </div>
             <div class="card-footer">
                 <div class="card-meta">
