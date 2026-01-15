@@ -4,8 +4,13 @@ import re
 from datetime import datetime
 from pathlib import Path
 
+import yaml
+
 from .config import settings
 from .models import (
+    Collection,
+    CollectionCategory,
+    CollectionTable,
     Column,
     DataFile,
     Discovery,
@@ -18,6 +23,7 @@ from .models import (
     ProjectStatus,
     RepositoryData,
     ResearchIdea,
+    SampleQuery,
     Table,
     Visualization,
 )
@@ -46,6 +52,7 @@ class RepositoryParser:
         pitfalls = self.parse_pitfalls()
         performance_tips = self.parse_performance()
         research_ideas = self.parse_research_ideas()
+        collections = self.parse_collections()
 
         # Compute stats
         total_notebooks = sum(len(p.notebooks) for p in projects)
@@ -59,6 +66,7 @@ class RepositoryParser:
             pitfalls=pitfalls,
             performance_tips=performance_tips,
             research_ideas=research_ideas,
+            collections=collections,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -524,6 +532,67 @@ class RepositoryParser:
             )
 
         return ideas
+
+    def parse_collections(self) -> list[Collection]:
+        """Parse collections from config/collections.yaml."""
+        collections = []
+        config_path = settings.ui_dir / "config" / "collections.yaml"
+
+        if not config_path.exists():
+            return collections
+
+        with open(config_path, "r") as f:
+            data = yaml.safe_load(f)
+
+        if not data or "collections" not in data:
+            return collections
+
+        for coll_data in data["collections"]:
+            # Parse category
+            category_str = coll_data.get("category", "primary")
+            try:
+                category = CollectionCategory(category_str)
+            except ValueError:
+                category = CollectionCategory.PRIMARY
+
+            # Parse key tables
+            key_tables = []
+            for table_data in coll_data.get("key_tables", []):
+                key_tables.append(
+                    CollectionTable(
+                        name=table_data.get("name", ""),
+                        description=table_data.get("description", ""),
+                        row_count=table_data.get("row_count"),
+                    )
+                )
+
+            # Parse sample queries
+            sample_queries = []
+            for query_data in coll_data.get("sample_queries", []):
+                sample_queries.append(
+                    SampleQuery(
+                        title=query_data.get("title", ""),
+                        query=query_data.get("query", ""),
+                    )
+                )
+
+            collection = Collection(
+                id=coll_data.get("id", ""),
+                name=coll_data.get("name", ""),
+                category=category,
+                icon=coll_data.get("icon", "&#128194;"),
+                description=coll_data.get("description", "").strip(),
+                philosophy=coll_data.get("philosophy", "").strip(),
+                data_sources=coll_data.get("data_sources", []),
+                scale_stats=coll_data.get("scale_stats", {}),
+                key_tables=key_tables,
+                sample_queries=sample_queries,
+                related_collections=coll_data.get("related_collections", []),
+                sub_collections=coll_data.get("sub_collections", []),
+            )
+            collections.append(collection)
+
+        return collections
 
 
 # Singleton instance

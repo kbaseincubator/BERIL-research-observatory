@@ -6,8 +6,8 @@
 <div class="page-header">
     <h1 class="page-title">Research Projects</h1>
     <p class="page-description">
-        Browse all analysis projects exploring the pangenome database.
-        Each project addresses a specific research question using the BERDL data lakehouse.
+        Browse all analysis projects exploring BERDL data collections.
+        Each project addresses a specific research question using the KBase Data Lakehouse.
     </p>
 </div>
 
@@ -25,6 +25,13 @@
             {% else %}
             <span class="badge badge-proposed">{{ project.status.value }}</span>
             {% endif %}
+        </div>
+
+        <!-- Collection Badge -->
+        <div style="margin-bottom: var(--space-4);">
+            <a href="/collections/kbase_ke_pangenome" class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6; text-decoration: none;">
+                Pangenome
+            </a>
         </div>
 
         <div class="card-content">

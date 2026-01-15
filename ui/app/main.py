@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from .config import settings
+from .models import CollectionCategory
 from .parser import get_parser
 
 # Create FastAPI app
@@ -58,6 +59,7 @@ def get_base_context(request: Request) -> dict:
         "project_count": len(repo_data.projects),
         "discovery_count": len(repo_data.discoveries),
         "idea_count": len(repo_data.research_ideas),
+        "collection_count": len(repo_data.collections),
     }
 
 
@@ -160,7 +162,10 @@ async def collections_overview(request: Request):
     """Collections overview page - browse all BERDL collections."""
     repo_data = get_repo_data(request)
     context = get_base_context(request)
-    context["tables"] = repo_data.tables
+    context["collections"] = repo_data.collections
+    context["primary_collections"] = repo_data.get_collections_by_category(CollectionCategory.PRIMARY)
+    context["domain_collections"] = repo_data.get_collections_by_category(CollectionCategory.DOMAIN)
+    context["reference_collections"] = repo_data.get_collections_by_category(CollectionCategory.REFERENCE)
     return templates.TemplateResponse("collections/overview.html", context)
 
 
@@ -169,8 +174,23 @@ async def collection_detail(request: Request, collection_id: str):
     """Collection detail page with schema browser."""
     repo_data = get_repo_data(request)
     context = get_base_context(request)
+
+    # Find the collection
+    collection = repo_data.get_collection(collection_id)
+    if not collection:
+        context["error"] = f"Collection '{collection_id}' not found"
+        return templates.TemplateResponse("error.html", context, status_code=404)
+
+    context["collection"] = collection
     context["collection_id"] = collection_id
+
+    # Get related collections as full objects
+    related = [repo_data.get_collection(cid) for cid in collection.related_collections]
+    context["related_collections"] = [c for c in related if c is not None]
+
+    # For pangenome, also pass the schema tables
     context["tables"] = repo_data.tables
+
     return templates.TemplateResponse("collections/detail.html", context)
 
 

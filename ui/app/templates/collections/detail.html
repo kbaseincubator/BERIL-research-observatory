@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ collection_id }} - Collections - {{ app_name }}{% endblock %}
+{% block title %}{{ collection.name }} - Collections - {{ app_name }}{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -130,7 +130,7 @@
         background: var(--surface-overlay);
         border-radius: var(--radius-md);
         padding: var(--space-4);
-        margin-top: var(--space-6);
+        margin-top: var(--space-4);
     }
 
     .sample-query h4 {
@@ -145,6 +145,22 @@
         font-size: 0.8125rem;
         line-height: 1.5;
         overflow-x: auto;
+        white-space: pre-wrap;
+    }
+
+    .data-source-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+        margin-top: var(--space-3);
+    }
+
+    .data-source-tag {
+        background: var(--surface-overlay);
+        padding: var(--space-1) var(--space-3);
+        border-radius: var(--radius-sm);
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
     }
 </style>
 {% endblock %}
@@ -154,81 +170,97 @@
 <nav class="mb-8">
     <a href="/collections" class="text-muted">Collections</a>
     <span class="text-muted"> / </span>
-    <span>{{ collection_id }}</span>
+    <span>{{ collection.name }}</span>
 </nav>
 
-{% if collection_id == "kbase_ke_pangenome" %}
-<!-- Pangenome Collection -->
+<!-- Collection Header -->
 <div class="collection-header">
-    <span class="collection-icon">&#129516;</span>
+    <span class="collection-icon">{{ collection.icon | safe }}</span>
     <div class="collection-info">
-        <h1 class="page-title" style="margin-bottom: var(--space-2);">Pangenome Collection</h1>
-        <p class="collection-id">{{ collection_id }}</p>
+        <h1 class="page-title" style="margin-bottom: var(--space-2);">{{ collection.name }}</h1>
+        <p class="collection-id">{{ collection.id }}</p>
     </div>
+    {% if collection.category.value == "primary" %}
     <span class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6;">Primary</span>
+    {% elif collection.category.value == "domain" %}
+    <span class="badge" style="background: rgba(163, 113, 247, 0.15); color: #a371f7;">Domain</span>
+    {% else %}
+    <span class="badge" style="background: rgba(139, 148, 158, 0.15); color: #8b949e;">Reference</span>
+    {% endif %}
 </div>
 
+<!-- Philosophy -->
+{% if collection.philosophy %}
 <section class="section">
     <div class="card" style="border-left: 4px solid var(--accent-primary);">
         <h3 style="margin-bottom: var(--space-4);">Philosophy</h3>
-        <p>
-            The Pangenome Collection enables <strong>comparative genomics at scale</strong>. Built on GTDB r214,
-            it provides species-level pangenome analysis for 293,059 genomes across 27,690 microbial species.
-        </p>
-        <p style="margin-top: var(--space-4);">
-            <strong>Key questions this collection answers:</strong>
-        </p>
-        <ul style="margin-top: var(--space-2);">
-            <li>What genes are core vs accessory in a given species?</li>
-            <li>How do functional annotations distribute across pangenome partitions?</li>
-            <li>What is the ANI structure within and between species?</li>
-            <li>How does genome composition relate to environmental context?</li>
-        </ul>
+        <p>{{ collection.philosophy }}</p>
+        {% if collection.data_sources %}
+        <div class="data-source-list">
+            <span class="text-small text-muted">Data sources:</span>
+            {% for source in collection.data_sources %}
+            <span class="data-source-tag">{{ source }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 </section>
+{% endif %}
 
+<!-- Scale Stats -->
+{% if collection.scale_stats %}
 <section class="section">
     <h2>Scale</h2>
     <div class="grid grid-4">
+        {% for key, value in collection.scale_stats.items() %}
         <div class="card" style="text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">293,059</div>
-            <div class="text-muted text-small">genomes</div>
+            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">
+                {% if value is number %}{{ "{:,}".format(value) }}{% else %}{{ value }}{% endif %}
+            </div>
+            <div class="text-muted text-small">{{ key }}</div>
         </div>
-        <div class="card" style="text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">27,690</div>
-            <div class="text-muted text-small">species</div>
-        </div>
-        <div class="card" style="text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">1B+</div>
-            <div class="text-muted text-small">genes</div>
-        </div>
-        <div class="card" style="text-align: center;">
-            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent-primary);">14</div>
-            <div class="text-muted text-small">tables</div>
-        </div>
+        {% endfor %}
     </div>
 </section>
+{% endif %}
 
+<!-- Key Tables / Schema Browser -->
+{% if collection.key_tables or tables %}
 <section class="section">
     <h2>Schema Browser</h2>
 
     <div class="schema-layout">
         <div class="table-list">
-            <h3>Tables ({{ tables|length }})</h3>
-            {% for table in tables %}
-            <a href="?table={{ table.name }}" class="table-list-item {% if request.query_params.get('table') == table.name %}active{% endif %}">
-                <span>{{ table.name }}</span>
-                {% if table.row_count %}
-                <span class="table-row-count">{{ "{:,}".format(table.row_count) }}</span>
-                {% endif %}
-            </a>
+            <h3>Tables ({% if collection.key_tables %}{{ collection.key_tables|length }}{% else %}{{ tables|length }}{% endif %})</h3>
+
+            {% if collection.id == "kbase_ke_pangenome" and tables %}
+                {# For pangenome, use the detailed schema from docs/schema.md #}
+                {% for table in tables %}
+                <a href="?table={{ table.name }}" class="table-list-item {% if request.query_params.get('table') == table.name %}active{% endif %}">
+                    <span>{{ table.name }}</span>
+                    {% if table.row_count %}
+                    <span class="table-row-count">{{ "{:,}".format(table.row_count) }}</span>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            {% elif collection.key_tables %}
+                {# For other collections, use key_tables from YAML #}
+                {% for table in collection.key_tables %}
+                <div class="table-list-item">
+                    <span>{{ table.name }}</span>
+                    {% if table.row_count %}
+                    <span class="table-row-count">{{ "{:,}".format(table.row_count) }}</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
             {% else %}
             <p class="text-muted text-small">No tables documented yet.</p>
-            {% endfor %}
+            {% endif %}
         </div>
 
         <div class="schema-content">
-            {% if request.query_params.get('table') %}
+            {% if collection.id == "kbase_ke_pangenome" and request.query_params.get('table') %}
+                {# Detailed schema view for pangenome #}
                 {% set selected_table = tables | selectattr('name', 'equalto', request.query_params.get('table')) | first %}
                 {% if selected_table %}
                 <h3 style="margin-bottom: var(--space-4);">
@@ -256,7 +288,7 @@
                         {% for col in selected_table.columns %}
                         <tr>
                             <td><code>{{ col.name }}</code></td>
-                            <td class="column-type">{{ col.type }}</td>
+                            <td class="column-type">{{ col.data_type }}</td>
                             <td class="text-secondary">{{ col.description or '—' }}</td>
                         </tr>
                         {% endfor %}
@@ -265,6 +297,27 @@
                 {% else %}
                 <p class="text-muted">Table not found.</p>
                 {% endif %}
+            {% elif collection.key_tables %}
+                {# Show key tables list for other collections #}
+                <h3 style="margin-bottom: var(--space-4);">Key Tables</h3>
+                <table class="column-table">
+                    <thead>
+                        <tr>
+                            <th>Table</th>
+                            <th>Description</th>
+                            <th>Rows</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for table in collection.key_tables %}
+                        <tr>
+                            <td><code>{{ table.name }}</code></td>
+                            <td class="text-secondary">{{ table.description }}</td>
+                            <td class="text-muted">{% if table.row_count %}{{ "{:,}".format(table.row_count) }}{% else %}—{% endif %}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             {% else %}
             <div style="text-align: center; padding: var(--space-12);">
                 <p class="text-muted">Select a table from the left to view its schema.</p>
@@ -273,81 +326,63 @@
         </div>
     </div>
 </section>
+{% endif %}
 
+<!-- Sample Queries -->
+{% if collection.sample_queries %}
 <section class="section">
     <h2>Sample Queries</h2>
-
+    {% for query in collection.sample_queries %}
     <div class="sample-query">
-        <h4>Get species with most genomes</h4>
-        <pre><code>SELECT
-  s.GTDB_species,
-  p.no_genomes,
-  p.no_core,
-  p.no_aux_genome,
-  s.mean_intra_species_ANI
-FROM kbase_ke_pangenome.pangenome p
-JOIN kbase_ke_pangenome.gtdb_species_clade s
-  ON p.gtdb_species_clade_id = s.gtdb_species_clade_id
-ORDER BY p.no_genomes DESC
-LIMIT 20</code></pre>
+        <h4>{{ query.title }}</h4>
+        <pre><code>{{ query.query }}</code></pre>
     </div>
+    {% endfor %}
+</section>
+{% endif %}
 
-    <div class="sample-query">
-        <h4>Get functional annotations for a species</h4>
-        <pre><code>SELECT
-  e.COG_category,
-  e.Description,
-  COUNT(*) as gene_count
-FROM kbase_ke_pangenome.gene g
-JOIN kbase_ke_pangenome.eggnog_mapper_annotations e
-  ON g.gene_id = e.gene_id
-WHERE g.gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
-GROUP BY e.COG_category, e.Description
-ORDER BY gene_count DESC
-LIMIT 20</code></pre>
+<!-- Sub-collections (for grouped collections like phagefoundry) -->
+{% if collection.sub_collections %}
+<section class="section">
+    <h2>Sub-Collections</h2>
+    <div class="grid grid-2">
+        {% for sub_id in collection.sub_collections %}
+        <div class="card">
+            <code>{{ sub_id }}</code>
+        </div>
+        {% endfor %}
     </div>
 </section>
+{% endif %}
 
+<!-- Related Collections -->
+{% if related_collections %}
 <section class="section">
     <h2>Related Collections</h2>
     <div class="grid grid-3">
-        <a href="/collections/kescience_fitnessbrowser" class="card">
-            <h4>Fitness Browser</h4>
-            <p class="text-muted text-small">Link pangenome data with gene fitness experiments</p>
+        {% for rel in related_collections %}
+        <a href="/collections/{{ rel.id }}" class="card">
+            <div class="flex items-center gap-4">
+                <span style="font-size: 1.25rem;">{{ rel.icon | safe }}</span>
+                <div>
+                    <h4 style="margin-bottom: 0;">{{ rel.name }}</h4>
+                    <p class="text-muted text-small" style="margin-top: var(--space-1);">{{ rel.description[:80] }}...</p>
+                </div>
+            </div>
         </a>
-        <a href="/collections/kbase_msd_biochemistry" class="card">
-            <h4>ModelSEED Biochemistry</h4>
-            <p class="text-muted text-small">Map gene functions to metabolic reactions</p>
-        </a>
-        <a href="/collections/kbase_genomes" class="card">
-            <h4>KBase Genomes</h4>
-            <p class="text-muted text-small">Access original genome sequences and features</p>
-        </a>
+        {% endfor %}
     </div>
 </section>
-
-{% else %}
-<!-- Generic Collection Page (placeholder for other collections) -->
-<div class="collection-header">
-    <span class="collection-icon">&#128194;</span>
-    <div class="collection-info">
-        <h1 class="page-title" style="margin-bottom: var(--space-2);">{{ collection_id }}</h1>
-        <p class="collection-id">{{ collection_id }}</p>
-    </div>
-</div>
-
-<section class="section">
-    <div class="card" style="border-left: 4px solid var(--accent-secondary);">
-        <h3 style="margin-bottom: var(--space-4);">Coming Soon</h3>
-        <p>
-            Detailed documentation for the <code>{{ collection_id }}</code> collection is being developed.
-            In the meantime, you can explore this collection directly via the BERDL JupyterHub.
-        </p>
-        <p style="margin-top: var(--space-4);">
-            <a href="https://hub.berdl.kbase.us" class="btn btn-secondary" target="_blank">Access JupyterHub</a>
-        </p>
-    </div>
-</section>
-
 {% endif %}
+
+<!-- Call to Action -->
+<section class="section">
+    <div class="card" style="text-align: center; padding: var(--space-8);">
+        <h3 style="margin-bottom: var(--space-4);">Start Exploring</h3>
+        <p class="text-secondary" style="margin-bottom: var(--space-6);">
+            Access the full {{ collection.name }} data through BERDL JupyterHub.
+        </p>
+        <a href="https://hub.berdl.kbase.us" class="btn btn-primary" target="_blank">Open JupyterHub</a>
+    </div>
+</section>
 {% endblock %}

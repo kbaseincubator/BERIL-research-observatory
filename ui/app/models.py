@@ -1,4 +1,4 @@
-"""Data models for the Pangenome Research Observatory."""
+"""Data models for the BERIL Research Observatory."""
 
 from dataclasses import dataclass, field
 from datetime import datetime
@@ -28,6 +28,49 @@ class Priority(str, Enum):
     HIGH = "HIGH"
     MEDIUM = "MEDIUM"
     LOW = "LOW"
+
+
+class CollectionCategory(str, Enum):
+    """Collection category types."""
+
+    PRIMARY = "primary"
+    DOMAIN = "domain"
+    REFERENCE = "reference"
+
+
+@dataclass
+class SampleQuery:
+    """A sample SQL query for a collection."""
+
+    title: str
+    query: str
+
+
+@dataclass
+class CollectionTable:
+    """A table within a collection."""
+
+    name: str
+    description: str
+    row_count: int | None = None
+
+
+@dataclass
+class Collection:
+    """A BERDL data collection."""
+
+    id: str
+    name: str
+    category: CollectionCategory
+    icon: str
+    description: str
+    philosophy: str = ""
+    data_sources: list[str] = field(default_factory=list)
+    scale_stats: dict[str, Any] = field(default_factory=dict)
+    key_tables: list[CollectionTable] = field(default_factory=list)
+    sample_queries: list[SampleQuery] = field(default_factory=list)
+    related_collections: list[str] = field(default_factory=list)
+    sub_collections: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -174,9 +217,18 @@ class RepositoryData:
     pitfalls: list[Pitfall] = field(default_factory=list)
     performance_tips: list[PerformanceTip] = field(default_factory=list)
     research_ideas: list[ResearchIdea] = field(default_factory=list)
+    collections: list[Collection] = field(default_factory=list)
 
     # Computed stats
     total_notebooks: int = 0
     total_visualizations: int = 0
     total_data_files: int = 0
     last_updated: datetime | None = None
+
+    def get_collection(self, collection_id: str) -> Collection | None:
+        """Get a collection by ID."""
+        return next((c for c in self.collections if c.id == collection_id), None)
+
+    def get_collections_by_category(self, category: CollectionCategory) -> list[Collection]:
+        """Get all collections in a category."""
+        return [c for c in self.collections if c.category == category]

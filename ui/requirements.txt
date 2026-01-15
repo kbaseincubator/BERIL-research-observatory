@@ -1,4 +1,4 @@
-# Pangenome Research Observatory - Dependencies
+# BERIL Research Observatory - Dependencies
 
 # Web framework
 fastapi==0.109.0
@@ -28,6 +28,7 @@ pillow==10.2.0
 python-dotenv==1.0.0
 pydantic==2.5.3
 pydantic-settings==2.1.0
+pyyaml==6.0.1  # YAML parsing for collections config
 
 # Development
 httpx==0.26.0  # For testing

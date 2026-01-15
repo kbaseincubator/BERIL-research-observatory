@@ -1,0 +1,366 @@
+# BERIL Collections Configuration
+# Defines metadata for BERDL collections shown in the Research Observatory
+
+collections:
+  # Primary Research Collections
+  - id: kbase_ke_pangenome
+    name: Pangenome Collection
+    category: primary
+    icon: "&#129516;"  # DNA emoji
+    description: >
+      Pangenome data for 293,059 genomes across 27,690 microbial species
+      derived from GTDB r214. Includes core/accessory gene classification,
+      functional annotations, and ANI relationships.
+    philosophy: >
+      Enable comparative genomics at scale. Understand core vs accessory
+      genome content, functional distributions, and evolutionary patterns
+      across bacterial and archaeal species. Answer questions about what
+      makes species unique and what they share.
+    data_sources:
+      - GTDB r214
+      - eggNOG v6
+      - GapMind
+      - AlphaEarth
+    scale_stats:
+      genomes: 293059
+      species: 27690
+      genes: "1B+"
+      tables: 14
+    key_tables:
+      - name: genome
+        description: Core genome metadata and identifiers
+        row_count: 293059
+      - name: pangenome
+        description: Per-species pangenome statistics
+        row_count: 27690
+      - name: gene_cluster
+        description: Gene family classifications (core/accessory/singleton)
+        row_count: null
+      - name: gene
+        description: Individual gene records
+        row_count: null
+      - name: eggnog_mapper_annotations
+        description: Functional annotations (COG, GO, KEGG, EC, PFAM)
+        row_count: null
+      - name: gapmind_pathways
+        description: Metabolic pathway predictions
+        row_count: null
+      - name: genome_ani
+        description: Pairwise ANI values between genomes
+        row_count: 421000000
+      - name: gtdb_metadata
+        description: CheckM quality, assembly stats, GC%
+        row_count: 293059
+      - name: gtdb_species_clade
+        description: Species taxonomy and ANI statistics
+        row_count: 27690
+      - name: gtdb_taxonomy_r214v1
+        description: Full GTDB taxonomy
+        row_count: null
+    sample_queries:
+      - title: Get species with most genomes
+        query: |
+          SELECT
+            s.GTDB_species,
+            p.no_genomes,
+            p.no_core,
+            p.no_aux_genome,
+            s.mean_intra_species_ANI
+          FROM kbase_ke_pangenome.pangenome p
+          JOIN kbase_ke_pangenome.gtdb_species_clade s
+            ON p.gtdb_species_clade_id = s.gtdb_species_clade_id
+          ORDER BY p.no_genomes DESC
+          LIMIT 20
+      - title: Get functional annotations for a species
+        query: |
+          SELECT
+            e.COG_category,
+            e.Description,
+            COUNT(*) as gene_count
+          FROM kbase_ke_pangenome.gene g
+          JOIN kbase_ke_pangenome.eggnog_mapper_annotations e
+            ON g.gene_id = e.gene_id
+          WHERE g.gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
+          GROUP BY e.COG_category, e.Description
+          ORDER BY gene_count DESC
+          LIMIT 20
+      - title: Get genomes for a species with quality metrics
+        query: |
+          SELECT
+            g.genome_id,
+            g.ncbi_biosample_id,
+            m.checkm_completeness,
+            m.checkm_contamination,
+            m.genome_size,
+            m.gc_percentage
+          FROM kbase_ke_pangenome.genome g
+          LEFT JOIN kbase_ke_pangenome.gtdb_metadata m
+            ON g.genome_id = m.accession
+          WHERE g.gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
+          LIMIT 100
+    related_collections:
+      - kescience_fitnessbrowser
+      - kbase_msd_biochemistry
+      - kbase_genomes
+
+  - id: kescience_fitnessbrowser
+    name: Fitness Browser
+    category: primary
+    icon: "&#128202;"  # Chart emoji
+    description: >
+      Gene fitness data from transposon mutant experiments across 40+
+      bacterial organisms. Identify essential genes and condition-specific
+      fitness effects.
+    philosophy: >
+      Connect genotype to phenotype through systematic mutagenesis. Understand
+      which genes are essential for growth, which provide advantages under
+      specific conditions, and how genetic background affects fitness.
+    data_sources:
+      - RB-TnSeq experiments
+      - KEGG
+      - MetaCyc
+      - SEED
+    scale_stats:
+      organisms: "40+"
+      experiments: "1000+"
+      tables: "90+"
+    key_tables:
+      - name: gene
+        description: Gene definitions and annotations
+        row_count: null
+      - name: experiment
+        description: Experimental conditions and metadata
+        row_count: null
+      - name: fitness
+        description: Gene fitness scores per experiment
+        row_count: null
+      - name: organism
+        description: Organism metadata
+        row_count: null
+    sample_queries:
+      - title: Get organisms in the fitness browser
+        query: |
+          SELECT *
+          FROM kescience_fitnessbrowser.organism
+          LIMIT 20
+      - title: Get fitness scores for a gene
+        query: |
+          SELECT
+            e.condition,
+            f.fitness,
+            f.t_score
+          FROM kescience_fitnessbrowser.fitness f
+          JOIN kescience_fitnessbrowser.experiment e
+            ON f.experiment_id = e.experiment_id
+          WHERE f.gene_id = 'YOUR_GENE_ID'
+          ORDER BY ABS(f.fitness) DESC
+          LIMIT 20
+    related_collections:
+      - kbase_ke_pangenome
+      - kbase_phenotype
+
+  - id: kbase_genomes
+    name: KBase Genomes
+    category: primary
+    icon: "&#128172;"  # Speech bubble (placeholder)
+    description: >
+      Structural genomics data including contigs, features, and protein
+      sequences from the KBase genome repository.
+    philosophy: >
+      Provide foundational genome sequence data. Access raw sequences,
+      structural annotations, and protein products for detailed analysis.
+    data_sources:
+      - KBase genome repository
+      - NCBI
+      - JGI
+    scale_stats:
+      tables: 16
+    key_tables:
+      - name: genome
+        description: Genome metadata
+        row_count: null
+      - name: contig
+        description: Contig sequences
+        row_count: null
+      - name: feature
+        description: Genomic features (genes, CDS, etc.)
+        row_count: null
+      - name: protein
+        description: Protein sequences
+        row_count: null
+    sample_queries:
+      - title: Get genome metadata
+        query: |
+          SELECT *
+          FROM kbase_genomes.genome
+          LIMIT 20
+    related_collections:
+      - kbase_ke_pangenome
+
+  - id: kbase_msd_biochemistry
+    name: ModelSEED Biochemistry
+    category: primary
+    icon: "&#9879;"  # Alembic emoji
+    description: >
+      Biochemistry reference data for metabolic modeling. Reactions,
+      compounds, and pathway mappings from ModelSEED.
+    philosophy: >
+      Enable metabolic modeling and pathway analysis. Map genes to reactions,
+      understand metabolic capabilities, and support flux balance analysis.
+    data_sources:
+      - ModelSEED
+      - KEGG
+      - MetaCyc
+    scale_stats:
+      tables: 4
+    key_tables:
+      - name: reaction
+        description: Biochemical reactions
+        row_count: null
+      - name: compound
+        description: Chemical compounds and metabolites
+        row_count: null
+      - name: pathway
+        description: Metabolic pathways
+        row_count: null
+    sample_queries:
+      - title: Get reactions
+        query: |
+          SELECT *
+          FROM kbase_msd_biochemistry.reaction
+          LIMIT 20
+    related_collections:
+      - kbase_ke_pangenome
+      - kescience_fitnessbrowser
+
+  - id: kbase_phenotype
+    name: Phenotype Collection
+    category: primary
+    icon: "&#127793;"  # Seedling emoji
+    description: >
+      Experimental phenotype data including growth conditions, measurements,
+      and phenotypic outcomes.
+    philosophy: >
+      Capture experimental observations. Link genotypes to measured phenotypes
+      under defined conditions for validation and discovery.
+    data_sources:
+      - KBase phenotype data
+    scale_stats:
+      tables: 7
+    key_tables:
+      - name: phenotype
+        description: Phenotype measurements
+        row_count: null
+      - name: condition
+        description: Experimental conditions
+        row_count: null
+      - name: media
+        description: Growth media definitions
+        row_count: null
+    sample_queries:
+      - title: Get phenotype data
+        query: |
+          SELECT *
+          FROM kbase_phenotype.phenotype
+          LIMIT 20
+    related_collections:
+      - kescience_fitnessbrowser
+
+  # Domain-Specific Collections
+  - id: phagefoundry
+    name: PhageFoundry Browsers
+    category: domain
+    icon: "&#129440;"  # Microbe emoji
+    description: >
+      Phage genome browsers for specific bacterial hosts including Klebsiella,
+      P. aeruginosa, Acinetobacter, and P. viridiflava.
+    philosophy: >
+      Support phage therapy research. Catalog phage genomes, understand
+      host-phage interactions, and identify therapeutic candidates.
+    data_sources:
+      - PhageFoundry
+    scale_stats:
+      browsers: 4
+      hosts:
+        - Klebsiella
+        - P. aeruginosa
+        - Acinetobacter
+        - P. viridiflava
+    sub_collections:
+      - phagefoundry_klebsiella
+      - phagefoundry_paeruginosa
+      - phagefoundry_acinetobacter
+      - phagefoundry_pviridiflava
+    sample_queries:
+      - title: Get phage genomes (Klebsiella example)
+        query: |
+          SELECT *
+          FROM phagefoundry_klebsiella.phage
+          LIMIT 20
+    related_collections: []
+
+  - id: enigma_coral
+    name: ENIGMA Coral
+    category: domain
+    icon: "&#129712;"  # Coral emoji
+    description: >
+      ENIGMA project coral microbiome data. Taxonomic and functional profiles
+      of coral-associated microbial communities.
+    philosophy: >
+      Understand coral microbiome ecology. Study microbial community
+      composition, functional potential, and environmental associations
+      in coral ecosystems.
+    data_sources:
+      - ENIGMA project
+    scale_stats:
+      samples: null
+    sample_queries:
+      - title: Get coral microbiome samples
+        query: |
+          SELECT *
+          FROM enigma_coral.sample
+          LIMIT 20
+    related_collections: []
+
+  # Reference Collections
+  - id: kbase_uniref
+    name: UniRef Clusters
+    category: reference
+    icon: "&#128196;"  # Page emoji
+    description: >
+      Protein sequence clusters at 50%, 90%, and 100% identity thresholds
+      from UniRef.
+    philosophy: >
+      Reduce redundancy in protein searches. Group related proteins for
+      faster homology searches and functional inference.
+    sub_collections:
+      - kbase_uniref50
+      - kbase_uniref90
+      - kbase_uniref100
+    related_collections: []
+
+  - id: kbase_uniprot
+    name: UniProt Annotations
+    category: reference
+    icon: "&#128196;"  # Page emoji
+    description: >
+      UniProt protein annotations for bacterial and archaeal proteins.
+    philosophy: >
+      Provide high-quality protein functional annotations. Access curated
+      protein information for functional interpretation.
+    sub_collections:
+      - kbase_uniprot_bacteria
+      - kbase_uniprot_archaea
+    related_collections: []
+
+  - id: kbase_ontology_source
+    name: Ontologies
+    category: reference
+    icon: "&#128196;"  # Page emoji
+    description: >
+      Ontology reference data including GO, KEGG, EC numbers, and other
+      controlled vocabularies.
+    philosophy: >
+      Standardize functional descriptions. Use controlled vocabularies for
+      consistent annotation and cross-database integration.
+    related_collections: []
