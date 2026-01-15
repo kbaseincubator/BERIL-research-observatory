@@ -1,652 +1,545 @@
-# Collaborative Research UI for BERDL Data Lakehouse Platform
+# BERIL Research Observatory
 
 ## Vision
 
-Build a web application that showcases the KBase BERDL data lakehouse and collaborative research findings, starting with the pangenome analysis prototype. The platform enables contributors, collaborators, and the public to discover what's been analyzed, understand the data sources, and explore shared knowledge.
+**BERIL** is an AI integration layer for the **KBase BER Data Lakehouse (BERDL)** that creates resources, skills, and plugins to facilitate agent or co-scientist analysis of BERDL data. Through the BERIL Research Observatory, users can:
+
+1. **Analyze BERDL data** using AI-assisted workflows and documented patterns
+2. **Analyze their own data** in the context of BERDL reference collections
+3. **Share discoveries**, lessons learned, pitfalls, and data products
+4. **Explore multiple collections** across the data lakehouse
+5. **Contribute** to a growing knowledge base with proper attribution
+
+The platform is **collection-agnostic** - it supports multiple BERDL databases and encourages cross-collection analysis.
 
 ---
 
-## Architecture Overview
+## BERDL Collections
 
-**Type:** Web application with FastAPI backend + Jinja2 templates + vanilla JS frontend
-**Deployment:** Docker container with Nginx reverse proxy
-**Data Source:** Git repository file system (read-only, no database migration)
-**Update Strategy:** CI/CD pipeline rebuilds cache on git push
+The KBase BERDL Data Lakehouse contains multiple collections. BERIL will showcase these:
+
+### Primary Research Collections
+
+| Collection ID | Name | Scale | Key Use Cases |
+|---------------|------|-------|---------------|
+| `kbase_ke_pangenome` | Pangenome Collection | 293K genomes, 27K species, 1B+ genes | Comparative genomics, functional analysis, evolution, ecological adaptation |
+| `kescience_fitnessbrowser` | Fitness Browser | 40+ organisms, 90+ tables | Essential genes, gene fitness, condition-specific phenotypes |
+| `kbase_genomes` | Genomes Collection | 16 tables | Structural genomics, contigs, features, proteins |
+| `kbase_msd_biochemistry` | ModelSEED Biochemistry | 4 tables | Metabolic modeling, reactions, compounds |
+| `kbase_phenotype` | Phenotype Collection | 7 tables | Experimental phenotypes, conditions, measurements |
+
+### Domain-Specific Collections
+
+| Collection ID | Name | Description |
+|---------------|------|-------------|
+| `phagefoundry_*` | PhageFoundry Browsers | Phage genome browsers for specific hosts (Klebsiella, P. aeruginosa, Acinetobacter, P. viridiflava) |
+| `enigma_coral` | ENIGMA Coral | ENIGMA project coral microbiome data |
+| `planetmicrobe_planetmicrobe` | Planet Microbe | Ocean microbiome sampling and taxonomy |
+
+### Reference Collections
+
+| Collection ID | Name | Description |
+|---------------|------|-------------|
+| `kbase_uniref50/90/100` | UniRef Clusters | Protein sequence clusters at various identity thresholds |
+| `kbase_uniprot_bacteria/archaea` | UniProt | UniProt protein annotations for bacteria and archaea |
+| `kbase_ontology_source` | Ontologies | Ontology reference data |
 
 ---
 
 ## Information Architecture
 
-### 1. Home Page - Research Dashboard
-**Purpose:** Entry point showing platform overview and latest activity
+### Site Map
 
-**Components:**
-- **Hero stats**: Database scale (293K genomes, 27K species, 1B+ genes), 3 active projects, 12 discoveries, 25+ research ideas
-- **Featured discoveries**: Latest 3 findings with project tags and statistics
-- **Active projects grid**: 3 project cards with thumbnails, research questions, status
-- **Quick links**: Browse Projects, Explore Data, View Knowledge Base, Research Ideas
+```
+BERIL Research Observatory
+│
+├── Home                         /
+│   ├── Hero: What is BERIL?
+│   ├── Featured Collections
+│   ├── Latest Discoveries
+│   └── Active Research
+│
+├── Collections                  /collections
+│   ├── Collections Overview     /collections
+│   ├── Collection Detail        /collections/{id}
+│   │   ├── Overview & Philosophy
+│   │   ├── Schema Browser
+│   │   ├── Query Patterns
+│   │   └── Related Collections
+│   └── Cross-Collection Guide   /collections/cross-analysis
+│
+├── Projects                     /projects
+│   ├── Projects List            /projects
+│   ├── Project Detail           /projects/{id}
+│   └── Notebook Viewer          /projects/{id}/notebooks/{name}
+│
+├── Knowledge                    /knowledge
+│   ├── Discoveries              /knowledge/discoveries
+│   ├── Pitfalls                 /knowledge/pitfalls
+│   ├── Research Ideas           /knowledge/ideas
+│   └── Performance Guide        /knowledge/performance
+│
+├── Community                    /community
+│   ├── Contributors             /community/contributors
+│   ├── How to Contribute        /community/contribute
+│   └── Attribution Policy       /community/attribution
+│
+└── About                        /about
+    ├── What is BERIL?           /about
+    ├── What is BERDL?           /about/berdl
+    ├── AI Integration           /about/ai
+    └── Getting Started          /about/getting-started
+```
 
 ---
 
-### 2. Projects Section
+## Page Specifications
 
-#### 2.1 Projects List (`/projects`)
-**Purpose:** Browse all analysis projects
+### 1. Home Page (`/`)
 
-**Components:**
-- **Project cards** with:
-  - Title, status badge (Completed, In Progress)
-  - Research question (truncated to 150 chars)
-  - Key findings preview
-  - 4 visualization thumbnails
-  - Metadata: # notebooks, # figures, last updated date
-  - "View Project" button
-- **Filters**: Status, phylum, data source
+**Purpose:** Introduce BERIL and provide entry points to all major sections.
 
-#### 2.2 Project Detail (`/projects/{project_id}`)
-**Purpose:** Deep dive into specific analysis
+**Hero Section:**
+```
+BERIL
+Research Observatory
+
+AI-powered exploration of the KBase Data Lakehouse.
+Discover research findings, explore collection schemas,
+and contribute to shared scientific knowledge.
+
+[Explore Collections]  [Browse Projects]  [View Discoveries]
+```
+
+**Sections:**
+1. **What is BERIL?** - Brief explanation (2-3 sentences)
+2. **Featured Collections** - Cards for 4-5 primary collections with stats
+3. **Latest Discoveries** - 3 discovery cards with collection tags and attribution
+4. **Active Research** - 3 project cards with collection badges
+5. **Quick Stats** - Total collections, discoveries, projects, contributors
+
+---
+
+### 2. Collections Section
+
+#### 2.1 Collections Overview (`/collections`)
+
+**Purpose:** Browse all available BERDL collections.
+
+**Layout:**
+- **Primary Collections** grid (large cards)
+- **Domain-Specific Collections** grid (medium cards)
+- **Reference Collections** list (compact)
+
+**Collection Card:**
+```
+┌─────────────────────────────────┐
+│  [Icon]  Pangenome Collection   │
+│  kbase_ke_pangenome             │
+├─────────────────────────────────┤
+│  293,059 genomes                │
+│  27,690 species                 │
+│  14 tables                      │
+├─────────────────────────────────┤
+│  Comparative genomics,          │
+│  functional analysis...         │
+├─────────────────────────────────┤
+│  [Explore Schema] [View Docs]   │
+└─────────────────────────────────┘
+```
+
+#### 2.2 Collection Detail (`/collections/{collection_id}`)
+
+**Purpose:** Deep dive into a specific collection.
 
 **Sections:**
 1. **Overview**
-   - Research question
-   - Hypothesis
-   - Status and metadata (contributors, dates, data sources)
+   - Collection name, ID, description
+   - Philosophy: Why this collection exists, what questions it answers
+   - Data sources and provenance
+   - Scale statistics
 
-2. **Findings**
-   - Key results with statistics
-   - Biological interpretation
-   - Links to related discoveries
+2. **Schema Browser**
+   - Left sidebar: Searchable table list with row counts
+   - Main content: Table details (columns, types, relationships)
+   - Sample queries with syntax highlighting
+   - Foreign key relationship diagram
 
-3. **Methodology**
-   - Approach summary
-   - Data sources (BERDL tables used)
-   - Notebooks list with links
+3. **Query Patterns**
+   - Collection-specific query patterns
+   - Performance tips for this collection
+   - Common joins and aggregations
 
-4. **Visualizations**
-   - Gallery view with lightbox
-   - Each viz shows: title, description, file size
+4. **Related Collections**
+   - Collections that can be joined/combined
+   - Cross-collection analysis examples
 
-5. **Data Products**
-   - Table of CSV/data files with:
-     - Filename, description, size, download link
-     - Sample rows (first 5)
-
-6. **Related Research**
-   - Cross-project dependencies
-   - Research ideas that build on this work
-
-**Example:** `/projects/cog_analysis`
-- Shows: Universal functional partitioning findings
-- Stats: 32 species, 9 phyla, 357,623 genes analyzed
-- Visualizations: 9 PNG files (heatmaps, enrichment plots)
-- Data: `cog_enrichment_summary.csv`, `sampled_species_for_cog_analysis.csv`
+5. **Projects Using This Collection**
+   - List of projects that use this collection
+   - Discoveries from this collection
 
 ---
 
-### 3. Data Catalog Section
+### 3. Projects Section
 
-#### 3.1 Database Overview (`/data`)
-**Purpose:** Introduce the BERDL kbase_ke_pangenome data lakehouse
+#### 3.1 Projects List (`/projects`)
 
-**Components:**
-- **Database description**: What is this data? (GTDB r214, 27K species, pangenome workflow)
-- **Data workflow diagram**: Genome selection → ANI → Gene clustering → Annotation
-- **Scale indicators**: 293,059 genomes, 421M ANI pairs, 100M gene families
-- **Access methods**: Spark SQL, REST API, JupyterHub
-- **Known limitations**: Embedding coverage 28.4%, sparse env metadata, missing tables
+**Purpose:** Browse all analysis projects.
 
-#### 3.2 Schema Browser (`/data/schema`)
-**Purpose:** Explore database tables and columns
+**Changes from current:**
+- Add **Collection badges** to each project card
+- Add **Filter by collection** dropdown
+- Show **cross-collection** projects prominently
 
-**Layout:**
-- **Left sidebar**: Searchable table list
-  - Each table shows: name, row count
-  - Size categories: HUGE (1B+), LARGE (100M+), Medium, Small
-  - Highlighting for selected table
+#### 3.2 Project Detail (`/projects/{project_id}`)
 
-- **Main content**: Table detail view
-  - Table name, description
-  - Stats: row count, column count
-  - Known limitations (warning alerts for sparsity)
-  - Columns table: name, type, description, PK/FK indicators
-  - Sample queries (syntax-highlighted SQL)
-  - Foreign key relationships diagram
+**Purpose:** Deep dive into specific analysis.
 
-**Example:** `/data/schema?table=gene_cluster`
-- Shows: 132M rows, 11 columns
-- Limitation: "Gene clusters are species-specific - cannot compare across species"
-- FK: `gtdb_species_clade_id` → `gtdb_species_clade`
-
-#### 3.3 Query Patterns (`/data/patterns`)
-**Purpose:** Teach efficient querying
-
-**Sections:**
-- **Query patterns by use case**:
-  - Per-species iteration (for >100 species)
-  - IN clause for 10-100 species (5x faster example)
-  - Chunked genome queries
-  - Pagination with ORDER BY
-
-- **Table-specific strategies**:
-  - genome_ani: Always filter by species
-  - gene: Never full-scan
-  - eggnog_mapper_annotations: Joins to gene_cluster_id
-
-- **Batch size recommendations table**
-
-- **Anti-patterns to avoid**:
-  - Large IN clauses (>10K items)
-  - Cross-species gene JOINs
-  - Collecting before filtering
+**Changes from current:**
+- Add **Collections Used** section with badges
+- Add **Contributors** section with attribution
+- Link to relevant collection schemas
 
 ---
 
-### 4. Knowledge Base Section
+### 4. Knowledge Section
 
-#### 4.1 Discoveries Timeline (`/knowledge/discoveries`)
-**Purpose:** Chronicle research findings in chronological order
+**Key principle:** Knowledge spans all collections. Entries are tagged with relevant collection(s).
 
-**Components:**
-- **Timeline view** with:
-  - Date markers (2026-01, 2025-12, etc.)
-  - Discovery cards showing:
-    - Title (e.g., "Universal functional partitioning in bacterial pangenomes")
-    - Project tag badge ([cog_analysis], [ecotype_analysis])
-    - Content (markdown rendered)
-    - Statistics chips (e.g., "L enrichment: +10.88%", "100% consistency")
-  - Filter by project tag
-  - Search discoveries
+#### 4.1 Discoveries (`/knowledge/discoveries`)
 
-**Example discovery:**
-```
-[cog_analysis] Universal functional partitioning
-Date: 2026-01-13
-- Core genes enriched in: J (-4.65%), F (-2.09%), H (-2.06%)
-- Novel genes enriched in: L (+10.88%), V (+2.83%)
-- Analyzed: 32 species, 9 phyla, 357,623 genes
-Interpretation: HGT is primary innovation mechanism
+**Changes:**
+- Add **Collection filter** (show discoveries for specific collection)
+- Add **Contributor attribution** to each discovery
+- Group by date with collection badges
+
+**Discovery Entry Format:**
+```markdown
+### [collection_tag] Discovery Title
+**Contributor:** Name (Affiliation) | **Date:** 2026-01-14
+
+Discovery content...
 ```
 
-#### 4.2 Pitfalls & Gotchas (`/knowledge/pitfalls`)
-**Purpose:** Document common issues to avoid
+#### 4.2 Pitfalls (`/knowledge/pitfalls`)
 
-**Categories:**
-- SQL Syntax Issues
-- Data Sparsity Issues
-- Foreign Key Gotchas
-- Data Interpretation Issues
-- Pandas-Specific Issues
+**Changes:**
+- Add **Collection filter** (some pitfalls are collection-specific, some are general)
+- Tag each pitfall with applicable collection(s) or "General BERDL"
 
-**Each pitfall shows:**
-- Problem description
-- Why it happens
-- Solution with code example
-- Which project discovered it
+#### 4.3 Research Ideas (`/knowledge/ideas`)
 
-#### 4.3 Performance Guide (`/knowledge/performance`)
-**Purpose:** Query optimization strategies
-
-**Sections:**
-- Table size reference
-- Query patterns with benchmarks
-- Batch size recommendations
-- Anti-patterns
-
-#### 4.4 Research Ideas Board (`/knowledge/ideas`)
-**Purpose:** Track proposed, in-progress, and completed research
-
-**Kanban layout:**
-- 3 columns: Proposed | In Progress | Completed
-- Each idea card shows:
-  - Title
-  - Research question (truncated)
-  - Priority badge (HIGH, MEDIUM, LOW)
-  - Effort estimate
-  - Impact estimate
-  - Dependencies indicator
-  - Cross-project tags
-
-**Interactive features:**
-- Filter by priority, effort, project tag
-- Click card to expand details:
-  - Full research question
-  - Hypothesis
-  - Approach
-  - Dependencies list
-  - Next steps
-
-**Dependency graph visualization** (D3.js):
-- Nodes: Projects (green), Research ideas (blue)
-- Links: Dependencies
-- Hoverable for details
+**Changes:**
+- Add **Collection tags** to each idea
+- Highlight **cross-collection** ideas
+- Show dependencies on other collections
 
 ---
 
-### 5. About Section
+### 5. Community Section (New)
 
-#### 5.1 About the Project (`/about`)
+#### 5.1 Contributors (`/community/contributors`)
+
+**Purpose:** Recognize people who contribute discoveries, projects, and improvements.
+
 **Content:**
-- Project purpose: Dual goals (Science + Knowledge capture)
-- Team profiles (once multiple contributors exist)
-- Data workflow overview
-- How to contribute
-- Contact information
+- List of contributors with:
+  - Name, affiliation (optional)
+  - ORCID, GitHub (optional)
+  - Number of discoveries, projects, pitfalls contributed
+  - Link to their contributions
 
-#### 5.2 Getting Started (`/about/getting-started`)
+#### 5.2 How to Contribute (`/community/contribute`)
+
+**Purpose:** Guide for adding discoveries, projects, and pitfalls.
+
+**Content:**
+- How to add a discovery
+- How to add a project
+- How to document a pitfall
+- Attribution format
+- Git workflow
+
+#### 5.3 Attribution Policy (`/community/attribution`)
+
+**Purpose:** Explain how credit works.
+
+**Content:**
+- How contributors are credited
+- Co-authorship on discoveries
+- Citation guidelines
+
+---
+
+### 6. About Section
+
+#### 6.1 What is BERIL? (`/about`)
+
+**Content:**
+- BERIL as AI integration layer
+- Goals: facilitate analysis, share knowledge, enable collaboration
+- Relationship to KBase and BERDL
+
+#### 6.2 What is BERDL? (`/about/berdl`)
+
+**Content:**
+- Berkeley Research Data Lake
+- Delta Lakehouse architecture
+- Available collections
+- Access methods (Spark SQL, REST API, JupyterHub)
+
+#### 6.3 AI Integration (`/about/ai`)
+
+**Content:**
+- Skills, plugins, agents
+- MCP integration
+- How to use BERIL with AI assistants
+- Available tools and capabilities
+
+#### 6.4 Getting Started (`/about/getting-started`)
+
 **Content:**
 - BERDL access setup (auth token, JupyterHub)
-- Repository structure tour
+- Repository structure
 - Starting a new project
-- Documentation workflow
-- JupyterHub workflow guide
+- Using the schema browser
+- JupyterHub workflow
 
 ---
 
-## Data Model
+## Data Model Updates
 
-### Core Entities
+### New Models
 
 ```python
-# app/models.py
+@dataclass
+class Collection:
+    """A BERDL data collection."""
+    id: str                      # "kbase_ke_pangenome"
+    name: str                    # "Pangenome Collection"
+    description: str
+    philosophy: str              # Why this collection exists
+    category: str                # "primary", "domain", "reference"
+    scale_stats: dict            # {genomes: 293059, species: 27000, ...}
+    table_count: int
+    data_sources: list[str]      # ["GTDB r214", "eggNOG v6", ...]
+    related_collections: list[str]
+    icon: str                    # Icon identifier or emoji
+
+@dataclass
+class Contributor:
+    """A person who contributes to BERIL."""
+    id: str                      # Slug from name
+    name: str
+    affiliation: str | None
+    orcid: str | None
+    github: str | None
+    discoveries: list[str]       # Discovery IDs
+    projects: list[str]          # Project IDs
+```
+
+### Updated Models
+
+```python
+@dataclass
+class Discovery:
+    # Existing fields...
+    collections: list[str]       # NEW: Collection IDs this applies to
+    contributors: list[str]      # NEW: Contributor IDs
 
 @dataclass
 class Project:
-    id: str                          # e.g., "cog_analysis"
-    title: str
-    research_question: str
-    hypothesis: Optional[str]
-    approach: str
-    status: str                      # "Completed", "In Progress", "Proposed"
-    findings: str
-    notebooks: List[Notebook]
-    visualizations: List[Visualization]
-    data_files: List[DataFile]
-    created_date: datetime
-    updated_date: datetime
-    contributors: List[str]
-    related_discoveries: List[str]   # Discovery IDs
-    related_ideas: List[str]         # Research idea IDs
+    # Existing fields...
+    collections: list[str]       # NEW: Collection IDs used
 
 @dataclass
-class Discovery:
-    id: str
-    title: str
-    content: str                     # Markdown
-    project_tag: str                 # e.g., "[cog_analysis]"
-    date: datetime
-    statistics: Dict[str, Any]       # Parsed from content
-    related_projects: List[str]
-
-@dataclass
-class Table:
-    name: str
-    description: str
-    row_count: int
-    columns: List[Column]
-    known_limitations: List[str]
-    sample_queries: List[str]
-    foreign_keys: List[ForeignKey]
+class Pitfall:
+    # Existing fields...
+    collection: str | None       # NEW: Specific collection or None for general
 
 @dataclass
 class ResearchIdea:
-    id: str
-    title: str
-    research_question: str
-    status: str                      # "PROPOSED", "IN_PROGRESS", "COMPLETED"
-    priority: str                    # "HIGH", "MEDIUM", "LOW"
-    effort: str                      # e.g., "Low (1 week)"
-    impact: str                      # e.g., "High"
-    dependencies: List[str]          # Project/idea IDs
-    next_steps: List[str]
-    cross_project_tags: List[str]
+    # Existing fields...
+    collections: list[str]       # NEW: Collection IDs involved
 ```
 
 ---
 
-## Backend Architecture
+## Collections Configuration
 
-### FastAPI Application Structure
+Collections will be defined in a configuration file: `ui/config/collections.yaml`
 
-**Location:** `ui/` subdirectory within the research repository
+```yaml
+collections:
+  - id: kbase_ke_pangenome
+    name: Pangenome Collection
+    category: primary
+    description: >
+      Pangenome data for 293,059 genomes across 27,690 microbial species
+      derived from GTDB r214.
+    philosophy: >
+      Enable comparative genomics at scale. Understand core vs accessory
+      genome content, functional distributions, and evolutionary patterns
+      across bacterial and archaeal species.
+    data_sources:
+      - GTDB r214
+      - eggNOG v6
+      - GapMind
+      - AlphaEarth
+    scale_stats:
+      genomes: 293059
+      species: 27690
+      genes: "1B+"
+      tables: 14
+    related_collections:
+      - kbase_genomes
+      - kbase_msd_biochemistry
+    icon: "🧬"
 
-```
-ke-pangenome-science/              # Existing research repo (root)
-├── projects/                      # Research projects (existing)
-├── docs/                          # Knowledge docs (existing)
-├── data/                          # Shared data (existing)
-├── exploratory/                   # Exploratory work (existing)
-├── PROJECT.md                     # Main docs (existing)
-├── .gitignore                     # Existing
-└── ui/                            # NEW: Web UI application
-    ├── app/
-    │   ├── __init__.py
-    │   ├── main.py                # FastAPI app entry point
-    │   ├── config.py              # Configuration (repo path = "../")
-    │   ├── models.py              # Data models
-    │   ├── parser.py              # Repository parser (reads from ../)
-    │   ├── search.py              # Whoosh search service
-    │   ├── cache.py               # Caching layer
-    │   ├── routes/
-    │   │   ├── __init__.py
-    │   │   ├── home.py           # Home page
-    │   │   ├── projects.py       # Projects routes
-    │   │   ├── data.py           # Data catalog routes
-    │   │   ├── knowledge.py      # Knowledge base routes
-    │   │   └── about.py          # About/docs routes
-    │   ├── templates/
-    │   │   ├── base.html         # Base template with nav
-    │   │   ├── home.html
-    │   │   ├── projects/
-    │   │   │   ├── list.html
-    │   │   │   └── detail.html
-    │   │   ├── data/
-    │   │   │   ├── overview.html
-    │   │   │   ├── schema.html
-    │   │   │   └── patterns.html
-    │   │   ├── knowledge/
-    │   │   │   ├── discoveries.html
-    │   │   │   ├── pitfalls.html
-    │   │   │   ├── performance.html
-    │   │   │   └── ideas.html
-    │   │   └── about/
-    │   │       ├── about.html
-    │   │       └── getting-started.html
-    │   └── static/
-    │       ├── css/
-    │       │   ├── main.css      # Core styles
-    │       │   ├── components.css # Reusable components
-    │       │   └── pages.css     # Page-specific styles
-    │       ├── js/
-    │       │   ├── search.js
-    │       │   ├── dependency-graph.js  # D3.js visualization
-    │       │   └── lightbox.js   # PhotoSwipe integration
-    │       └── images/
-    │           └── logo.svg
-    ├── data/                      # UI-specific data (cache, search index)
-    │   ├── cache.json            # Parsed repository cache
-    │   └── indexdir/             # Whoosh search index
-    ├── requirements.txt
-    ├── Dockerfile
-    ├── docker-compose.yml
-    └── README.md                  # UI setup and deployment guide
-```
+  - id: kescience_fitnessbrowser
+    name: Fitness Browser
+    category: primary
+    description: >
+      Gene fitness data from transposon mutant experiments across 40+
+      bacterial organisms.
+    philosophy: >
+      Identify essential genes and condition-specific fitness effects.
+      Connect genotype to phenotype through systematic mutagenesis.
+    data_sources:
+      - RB-TnSeq experiments
+      - KEGG
+      - MetaCyc
+      - SEED
+    scale_stats:
+      organisms: 40
+      experiments: 1000+
+      tables: 90
+    related_collections:
+      - kbase_ke_pangenome
+      - kbase_msd_biochemistry
+    icon: "📊"
 
-**Key Points:**
-- UI code lives in `ui/` subdirectory of research repo
-- Parser reads content from parent directory: `../projects/`, `../docs/`, `../data/`
-- Static assets (visualizations) served directly from `../projects/*/data/`
-- UI-specific data (cache, search index) stays in `ui/data/`
-
-### Repository Parser (`app/parser.py`)
-
-```python
-class RepositoryParser:
-    """Parse git repository file system into structured data"""
-
-    def __init__(self, repo_path: str = ".."):
-        """
-        Initialize parser.
-
-        Args:
-            repo_path: Path to repository root. Default "../" since UI code
-                      lives in ui/ subdirectory of the research repo.
-        """
-        self.repo_path = Path(repo_path).resolve()
-
-    def parse_all(self) -> Dict[str, Any]:
-        """Parse entire repository"""
-        return {
-            'projects': self.parse_projects(),
-            'discoveries': self.parse_discoveries(),
-            'tables': self.parse_schema(),
-            'pitfalls': self.parse_pitfalls(),
-            'performance_tips': self.parse_performance(),
-            'research_ideas': self.parse_ideas(),
-            'stats': self.calculate_stats()
-        }
-
-    def parse_projects(self) -> List[Project]:
-        """Parse all projects from projects/ directory"""
-        projects = []
-        projects_dir = self.repo_path / 'projects'
-
-        for project_dir in projects_dir.iterdir():
-            if not project_dir.is_dir():
-                continue
-
-            project = self._parse_project_dir(project_dir)
-            projects.append(project)
-
-        return projects
-
-    def _parse_project_dir(self, project_dir: Path) -> Project:
-        """Parse single project directory"""
-        readme_path = project_dir / 'README.md'
-        readme_content = readme_path.read_text()
-
-        # Extract sections using regex or markdown parser
-        research_question = self._extract_section(readme_content, 'Research Question')
-        hypothesis = self._extract_section(readme_content, 'Hypothesis')
-        findings = self._extract_section(readme_content, 'Key Findings')
-
-        # Parse notebooks
-        notebooks = self._parse_notebooks(project_dir / 'notebooks')
-
-        # Parse visualizations
-        visualizations = self._parse_visualizations(project_dir / 'data')
-
-        # Get git metadata
-        created_date = self._get_first_commit_date(project_dir)
-        updated_date = self._get_last_commit_date(project_dir)
-
-        return Project(
-            id=project_dir.name,
-            title=self._extract_title(readme_content),
-            research_question=research_question,
-            hypothesis=hypothesis,
-            findings=findings,
-            notebooks=notebooks,
-            visualizations=visualizations,
-            created_date=created_date,
-            updated_date=updated_date,
-            # ... other fields
-        )
-
-    def parse_discoveries(self) -> List[Discovery]:
-        """Parse discoveries from docs/discoveries.md"""
-        discoveries_path = self.repo_path / 'docs' / 'discoveries.md'
-        content = discoveries_path.read_text()
-
-        # Split by ### headers
-        sections = re.split(r'\n### ', content)
-        discoveries = []
-
-        for section in sections[1:]:  # Skip intro
-            # Extract title, project tag, date, content
-            lines = section.split('\n')
-            title_line = lines[0]
-
-            # Parse [project_tag] from title
-            match = re.match(r'\[(\w+)\] (.+)', title_line)
-            if match:
-                project_tag = match.group(1)
-                title = match.group(2)
-
-                discovery = Discovery(
-                    id=self._generate_id(title),
-                    title=title,
-                    project_tag=project_tag,
-                    content='\n'.join(lines[1:]),
-                    # ... parse statistics from content
-                )
-                discoveries.append(discovery)
-
-        return discoveries
-
-    def parse_schema(self) -> List[Table]:
-        """Parse tables from docs/schema.md"""
-        schema_path = self.repo_path / 'docs' / 'schema.md'
-        content = schema_path.read_text()
-
-        # Parse markdown tables and sections
-        # Extract table names, row counts, column definitions
-        # Build Table objects with Column children
-
-        return tables
-
-    def parse_ideas(self) -> List[ResearchIdea]:
-        """Parse research ideas from docs/research_ideas.md"""
-        ideas_path = self.repo_path / 'docs' / 'research_ideas.md'
-        content = ideas_path.read_text()
-
-        # Parse markdown headers and extract:
-        # - Status from section (High Priority / Medium Priority / etc.)
-        # - Title, research question, hypothesis
-        # - Dependencies, next steps
-
-        return ideas
-```
-
-### Caching Strategy
-
-```python
-# app/cache.py
-
-class RepositoryCache:
-    """Cache parsed repository data with invalidation"""
-
-    def __init__(self, repo_path: str, cache_path: str):
-        self.repo_path = Path(repo_path)
-        self.cache_path = Path(cache_path)
-        self.parser = RepositoryParser(repo_path)
-        self._cache = None
-        self._last_modified = None
-
-    def get_data(self) -> Dict[str, Any]:
-        """Get cached data or rebuild if stale"""
-        current_modified = self._get_repo_last_modified()
-
-        if self._cache is None or current_modified > self._last_modified:
-            # Cache miss or stale - rebuild
-            self._cache = self.parser.parse_all()
-            self._last_modified = current_modified
-            self._save_cache()
-
-        return self._cache
-
-    def _get_repo_last_modified(self) -> datetime:
-        """Get latest modification time from git"""
-        # Use GitPython to get last commit timestamp
-        repo = git.Repo(self.repo_path)
-        return datetime.fromtimestamp(repo.head.commit.committed_date)
-
-    def _save_cache(self):
-        """Persist cache to disk"""
-        with open(self.cache_path, 'w') as f:
-            json.dump(self._cache, f, default=str)
-
-    def invalidate(self):
-        """Force cache rebuild on next request"""
-        self._cache = None
-        if self.cache_path.exists():
-            self.cache_path.unlink()
-```
-
-### Search Service
-
-```python
-# app/search.py
-
-from whoosh.index import create_in, open_dir
-from whoosh.fields import Schema, TEXT, ID, KEYWORD
-from whoosh.qparser import MultifieldParser
-
-class SearchService:
-    """Full-text search using Whoosh"""
-
-    schema = Schema(
-        id=ID(stored=True),
-        type=ID(stored=True),          # "project", "discovery", "idea", "pitfall"
-        title=TEXT(stored=True),
-        content=TEXT(stored=True),
-        project_tag=KEYWORD(stored=True),
-        url=ID(stored=True)
-    )
-
-    def __init__(self, index_dir: str, cache: RepositoryCache):
-        self.index_dir = Path(index_dir)
-        self.cache = cache
-        self.index = None
-
-    def build_index(self):
-        """Build search index from cached data"""
-        if not self.index_dir.exists():
-            self.index_dir.mkdir(parents=True)
-
-        # Create or open index
-        self.index = create_in(self.index_dir, self.schema)
-
-        writer = self.index.writer()
-        data = self.cache.get_data()
-
-        # Index projects
-        for project in data['projects']:
-            writer.add_document(
-                id=project.id,
-                type='project',
-                title=project.title,
-                content=f"{project.research_question} {project.findings}",
-                url=f"/projects/{project.id}"
-            )
-
-        # Index discoveries
-        for discovery in data['discoveries']:
-            writer.add_document(
-                id=discovery.id,
-                type='discovery',
-                title=discovery.title,
-                content=discovery.content,
-                project_tag=discovery.project_tag,
-                url=f"/knowledge/discoveries#{discovery.id}"
-            )
-
-        # Index research ideas
-        for idea in data['research_ideas']:
-            writer.add_document(
-                id=idea.id,
-                type='idea',
-                title=idea.title,
-                content=idea.research_question,
-                url=f"/knowledge/ideas#{idea.id}"
-            )
-
-        writer.commit()
-
-    def search(self, query_str: str, limit: int = 20) -> List[Dict[str, Any]]:
-        """Search across all indexed content"""
-        if not self.index:
-            self.index = open_dir(self.index_dir)
-
-        parser = MultifieldParser(['title', 'content'], schema=self.schema)
-        query = parser.parse(query_str)
-
-        with self.index.searcher() as searcher:
-            results = searcher.search(query, limit=limit)
-
-            return [
-                {
-                    'id': hit['id'],
-                    'type': hit['type'],
-                    'title': hit['title'],
-                    'snippet': hit.highlights('content', top=1),
-                    'project_tag': hit.get('project_tag'),
-                    'url': hit['url']
-                }
-                for hit in results
-            ]
+  # ... more collections
 ```
 
 ---
+
+## Markdown Format Updates
+
+### Discovery Attribution Format
+
+```markdown
+### [kbase_ke_pangenome] Universal functional partitioning in bacterial pangenomes
+**Contributor:** Jane Smith (LBNL) | **ORCID:** 0000-0001-2345-6789
+
+Analysis of 32 species across 9 phyla reveals...
+```
+
+### Project Collections Format
+
+In project README.md, add a `## Collections` section:
+
+```markdown
+## Collections Used
+
+- **kbase_ke_pangenome**: Gene clusters, functional annotations
+- **kbase_msd_biochemistry**: Reaction mappings
+
+## Contributors
+
+- Jane Smith (LBNL) - Analysis design, notebooks
+- John Doe (JGI) - Data extraction
+```
+
+---
+
+## Implementation Phases
+
+### Phase 1: BERIL Rebranding (1 week)
+- Update all templates with BERIL branding
+- Update home page messaging and hero
+- Rename "Data" to "Collections"
+- Update navigation
+- Update About section
+
+### Phase 2: Multi-Collection Architecture (2 weeks)
+- Create collections.yaml configuration
+- Add Collection model and parser
+- Create collections overview page
+- Create collection detail pages with schema browsers
+- Add collection badges to projects and discoveries
+- Add collection filters to knowledge pages
+
+### Phase 3: Attribution System (1 week)
+- Add Contributor model
+- Parse contributors from markdown
+- Create community/contributors page
+- Add attribution to discovery and project templates
+- Create "How to Contribute" guide
+
+### Phase 4: Cross-Collection Features (1 week)
+- Add cross-collection analysis guide
+- Highlight cross-collection projects
+- Add related collections to collection detail
+- Create cross-collection research ideas section
+
+---
+
+## File Changes Required
+
+### New Files
+- `ui/config/collections.yaml` - Collection definitions
+- `ui/app/templates/collections/` - Collection templates
+  - `overview.html` - Collections grid
+  - `detail.html` - Collection detail with schema
+- `ui/app/templates/community/` - Community templates
+  - `contributors.html` - Contributors list
+  - `contribute.html` - How to contribute guide
+  - `attribution.html` - Attribution policy
+
+### Modified Files
+- `ui/app/main.py` - New routes for collections, community
+- `ui/app/models.py` - Add Collection, Contributor models
+- `ui/app/parser.py` - Parse collections, contributors, collection tags
+- `ui/app/templates/base.html` - Update nav, branding
+- `ui/app/templates/home.html` - Complete redesign for BERIL
+- `ui/app/templates/projects/*.html` - Add collection badges
+- `ui/app/templates/knowledge/*.html` - Add collection filters
+- `ui/app/static/css/main.css` - Collection-specific styling
+
+### Renamed/Removed
+- `ui/app/templates/data/` → Merge into `collections/`
+
+---
+
+## Success Metrics
+
+1. **All 8+ collections browsable** with schemas and documentation
+2. **Cross-collection relationships** clearly shown
+3. **Every discovery and project** tagged with collections used
+4. **Contributors recognized** on community page
+5. **New contributor onboarding** documented in /community/contribute
+6. **Collection filters** work on all knowledge pages
+7. **Collection-specific pitfalls** distinguished from general ones
+
+---
+
+## Questions to Resolve
+
+1. **Schema for non-pangenome collections**: Need to document schemas for fitness browser, biochemistry, etc.
+2. **Collection philosophy**: Need input on the "why" for each collection
+3. **Initial contributors**: Who should be listed as initial contributors?
+4. **Cross-collection examples**: What are good examples of cross-collection analysis to highlight?
+
+---
+
+## Frontend Design (Unchanged)
+
+The "Research Observatory" dark theme design system from the previous plan remains in effect. See the "Frontend Design" section below for typography, colors, and styling details.
+
+---
+
+<!-- Previous frontend design content follows -->
 
 ## Frontend Design
 
@@ -669,7 +562,7 @@ class SearchService:
 
 **Display/Headlines:** [Newsreader](https://fonts.google.com/specimen/Newsreader) — A contemporary serif with editorial gravitas. Designed for long-form reading but distinctive enough for headlines. Has optical sizing for crisp rendering at all scales.
 
-**Body/UI:** [DM Sans](https://fonts.google.com/specimen/DM+Sans) — A geometric sans-serif with subtle warmth. Clean enough for UI elements, readable for body text. Pairs well with Newsreader's curves.
+**Body/UI:** [DM Sans](https://fonts.google.com/specimen/DM Sans) — A geometric sans-serif with subtle warmth. Clean enough for UI elements, readable for body text. Pairs well with Newsreader's curves.
 
 **Code/Data:** [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) — Purpose-built for code readability with ligatures for common operators. Slightly wider than typical monospace fonts, improving scanability for SQL and data tables.
 
@@ -739,163 +632,40 @@ class SearchService:
 
 ---
 
-### Visual Texture & Depth
-
-**Background treatment:**
-- Base layer uses subtle radial gradient from `--surface-base` to slightly darker at edges (vignette effect)
-- Optional: Very subtle dot grid pattern at 2-3% opacity for "graph paper" scientific feel
-- Cards and panels use `--surface-raised` with 1px `--surface-border` borders
-
-**Depth through shadow (minimal, not dramatic):**
-```css
---shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
---shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
---shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
-```
-
-**Data visualization glow:**
-- Charts and key statistics can use subtle glow effects with accent colors
-- `box-shadow: 0 0 20px rgba(57, 212, 230, 0.15)` for highlighted data
-
----
-
-### Layout Philosophy
-
-**Navigation chrome (predictable):**
-- Fixed header with logo, main nav, search
-- Sidebar for hierarchical navigation (schema browser, project list)
-- Breadcrumbs for deep pages
-- Standard patterns users expect
-
-**Content areas (creative within reason):**
-- **Home page hero:** Large typography with asymmetric layout, overlapping stat cards
-- **Project cards:** Can break the grid occasionally for featured/latest project
-- **Discovery timeline:** Vertical timeline with alternating left/right content
-- **Schema browser:** Split view, but column details can use creative data presentation
-- **Research ideas:** Kanban columns with visual density variation by priority
-
-**Example: Home page hero composition**
-```
-┌─────────────────────────────────────────────────────┐
-│  [LOGO]  Projects   Data   Knowledge   About   [🔍] │  ← Predictable nav
-├─────────────────────────────────────────────────────┤
-│                                                     │
-│     PANGENOME                     ┌───────────┐    │
-│     RESEARCH              ┌───────┤ 293K      │    │  ← Overlapping
-│     OBSERVATORY          │ 27K   │ genomes   │    │    stat cards
-│                          │species└───────────┘    │
-│     Exploring microbial  └────────────┐           │
-│     diversity at scale               │ 1B+ genes │
-│                                      └───────────┘│
-│     [Browse Projects]  [Explore Data]              │
-│                                                     │
-└─────────────────────────────────────────────────────┘
-```
-
----
-
-### Component Styling
+### Collection-Specific Styling (New)
 
 ```css
-body {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-primary);
-  background: var(--surface-base);
-  margin: 0;
-  padding: 0;
-}
+/* Collection category colors */
+--collection-primary: #39d4e6;     /* Primary research collections */
+--collection-domain: #a371f7;      /* Domain-specific collections */
+--collection-reference: #8b949e;   /* Reference collections */
 
-h1, h2, h3 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--text-primary);
-  letter-spacing: -0.02em;
-}
-
-h4, h5, h6 {
-  font-family: var(--font-body);
-  font-weight: 600;
-  line-height: 1.3;
-}
-
-h1 { font-size: 3rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-
-/* Cards */
-.card {
-  background: var(--surface-raised);
-  border: 1px solid var(--surface-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-}
-
-.card:hover {
-  border-color: var(--accent-primary-muted);
-}
-
-/* Code blocks */
-code {
-  font-family: var(--font-mono);
-  font-size: 0.875em;
-  background: var(--surface-overlay);
-  color: var(--accent-primary);
-  padding: 2px 6px;
-  border-radius: var(--radius-sm);
-}
-
-pre {
-  background: var(--surface-overlay);
-  border: 1px solid var(--surface-border);
-  border-radius: var(--radius-md);
-  padding: var(--space-4);
-  overflow-x: auto;
-}
-
-pre code {
-  background: none;
-  padding: 0;
-  color: var(--text-primary);
-}
-
-/* Buttons */
-.btn-primary {
-  background: var(--accent-primary);
-  color: var(--surface-base);
-  font-family: var(--font-body);
-  font-weight: 600;
-  padding: var(--space-3) var(--space-6);
-  border: none;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background: #4de0f0;  /* Lighter cyan */
-}
-
-/* Status badges */
-.badge {
-  font-family: var(--font-body);
+/* Collection badges */
+.collection-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
   font-size: 0.75rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
+  background: var(--accent-primary-bg);
+  color: var(--accent-primary);
 }
 
-.badge-completed {
-  background: rgba(63, 185, 80, 0.15);
-  color: var(--status-completed);
+.collection-badge.primary {
+  background: rgba(57, 212, 230, 0.15);
+  color: #39d4e6;
 }
 
-.badge-in-progress {
-  background: rgba(88, 166, 255, 0.15);
-  color: var(--status-in-progress);
+.collection-badge.domain {
+  background: rgba(163, 113, 247, 0.15);
+  color: #a371f7;
+}
+
+.collection-badge.reference {
+  background: rgba(139, 148, 158, 0.15);
+  color: #8b949e;
 }
 ```
 
@@ -914,210 +684,3 @@ Animations are intentionally deferred to a later phase. For a scientific audienc
 **MVP includes only:**
 - Basic CSS transitions on hover states (color, border, shadow changes)
 - No page transitions, no scroll animations, no loading sequences
-
----
-
-## Implementation Roadmap
-
-### Phase 1: MVP (2-3 weeks)
-
-**Week 1:**
-- Set up FastAPI project structure
-- Implement RepositoryParser for projects, discoveries, schema
-- Build basic caching mechanism
-- Create base template with navigation
-
-**Week 2:**
-- Build routes for Home, Projects List, Project Detail
-- Implement Data Catalog overview and schema browser
-- Add markdown rendering with syntax highlighting
-- Create project card and discovery timeline components
-
-**Week 3:**
-- Complete Knowledge Base pages (discoveries, pitfalls, performance)
-- Add search functionality (Whoosh integration)
-- Responsive CSS styling (mobile-first)
-- Static asset serving for visualizations
-
-**Deliverable:** Functional read-only platform with all content browsable
-
-### Phase 2: Enhanced Discovery (1-2 weeks)
-
-**Week 4:**
-- Research ideas Kanban board
-- Dependency graph visualization (D3.js)
-- Image lightbox for visualizations
-- Advanced search with filters
-
-**Week 5:**
-- Cross-reference links between content
-- Project timeline view
-- Contributor attribution
-- Print-friendly layouts
-
-**Deliverable:** Rich discovery experience with interconnected content
-
-### Phase 3: Production Deployment (1 week)
-
-**Week 6:**
-- Docker containerization
-- Nginx reverse proxy configuration
-- CI/CD pipeline setup
-- SSL/HTTPS configuration
-- Performance optimization (thumbnails, lazy loading, compression)
-
-**Deliverable:** Production-ready deployment with automatic updates
-
----
-
-## Success Metrics
-
-**Technical:**
-- All 3 projects browsable with complete metadata
-- 12 discoveries displayed in timeline
-- 14 database tables with schemas accessible
-- Search returns results in <500ms
-- Pages load in <2 seconds
-- Mobile responsive (works on tablets/phones)
-
-**User Experience:**
-- New visitors can understand "what's been analyzed" in <1 minute
-- Contributors can find their discoveries easily
-- Data engineers can access schema and query patterns
-- Research ideas are discoverable and filterable
-
-**Extensibility:**
-- Adding new project requires only README + notebook files (no code changes)
-- Adding new BERDL data store requires only config change
-- Cache invalidation works automatically on git push
-
----
-
-## Technology Stack
-
-**Backend:**
-- FastAPI 0.109.0 (web framework)
-- Uvicorn (ASGI server)
-- Jinja2 (templates)
-- python-markdown (markdown → HTML)
-- Whoosh 2.7.4 (search)
-- GitPython 3.1.40 (git metadata)
-- Pillow 10.2.0 (thumbnails)
-
-**Frontend:**
-- Vanilla JavaScript (no framework)
-- D3.js v7 (dependency graphs)
-- PhotoSwipe 5 (image lightbox)
-- Prism.js (code highlighting)
-- Feather Icons (SVG icons)
-- IBM Plex fonts (Serif, Sans, Mono)
-
-**Infrastructure:**
-- Docker + Docker Compose
-- Nginx (reverse proxy, static files)
-- GitHub Actions or GitLab CI (CI/CD)
-
----
-
-## Critical Implementation Files
-
-**To Read:**
-- `/Users/paramvirdehal/KBase/ke-pangenome-science/docs/schema.md` - Database schema source
-- `/Users/paramvirdehal/KBase/ke-pangenome-science/docs/discoveries.md` - Discoveries timeline content
-- `/Users/paramvirdehal/KBase/ke-pangenome-science/docs/research_ideas.md` - Research ideas board content
-- `/Users/paramvirdehal/KBase/ke-pangenome-science/projects/cog_analysis/README.md` - Project structure template
-- `/Users/paramvirdehal/KBase/ke-pangenome-science/DIRECTORY_STRUCTURE.md` - Repository organization guide
-
-**To Create:**
-- `ui/app/main.py` - FastAPI application entry
-- `ui/app/parser.py` - Repository file system parser (reads from `../`)
-- `ui/app/cache.py` - Caching layer
-- `ui/app/search.py` - Whoosh search service
-- `ui/app/routes/` - Route handlers (projects, data, knowledge, about)
-- `ui/app/templates/` - Jinja2 HTML templates
-- `ui/app/static/` - CSS, JavaScript, images
-- `ui/Dockerfile` - Container definition
-- `ui/docker-compose.yml` - Service orchestration
-- `ui/README.md` - UI setup and deployment instructions
-
-**To Update:**
-- `.gitignore` - Add `ui/data/cache.json`, `ui/data/indexdir/` to ignore generated UI data
-
----
-
-## Verification Plan
-
-**End-to-End Testing:**
-
-1. **Browse Projects:**
-   - Navigate to /projects
-   - See 3 project cards (cog_analysis, ecotype_analysis, pangenome_openness)
-   - Click "View Project" on cog_analysis
-   - Verify research question, findings, 9 visualizations displayed
-   - Click visualization thumbnail → lightbox opens full-size image
-
-2. **Explore Data Catalog:**
-   - Navigate to /data
-   - See database overview with 293,059 genomes stat
-   - Click "Browse Schema"
-   - Search for "gene_cluster" table
-   - Verify 132M rows shown, columns table populated
-   - See known limitation warning about species-specific clusters
-
-3. **Search Functionality:**
-   - Enter "mobile elements" in search box
-   - See COG analysis project and L enrichment discovery
-   - Click discovery result → jump to discoveries timeline
-
-4. **Knowledge Base:**
-   - Navigate to /knowledge/discoveries
-   - See timeline with 12 discoveries
-   - Filter by "[cog_analysis]" tag → see 2 discoveries
-   - Navigate to /knowledge/ideas
-   - See Kanban board with 25+ ideas across columns
-   - Click HIGH priority idea → expand details
-
-5. **Mobile Responsive:**
-   - Open site on 375px width device
-   - Verify navigation collapses to hamburger menu
-   - Verify project cards stack vertically
-   - Verify schema browser sidebar converts to accordion
-
-**Performance Testing:**
-- Home page loads in <2s (check network waterfall)
-- Search responds in <500ms (measure via browser DevTools)
-- Visualization gallery loads progressively (lazy loading works)
-- Cache invalidation works (modify discoveries.md, rebuild, see update)
-
----
-
-## Future Enhancements (Post-MVP)
-
-**Phase 4: Query Builder** (if demand exists)
-- Simple SQL query constructor
-- Preview first 100 rows
-- Download results as CSV
-- Query history
-
-**Phase 5: User Authentication** (for contributors)
-- Login via GitHub OAuth
-- Track individual contributions
-- Notification when others cite your work
-- Personal dashboard
-
-**Phase 6: Computational Notebooks** (integration)
-- Render Jupyter notebooks inline (nbconvert)
-- Link to JupyterHub "Run This Notebook"
-- Version comparison for notebook diffs
-
-**Phase 7: Multi-Store Federation**
-- Add metagenome data store
-- Add metabolomics data store
-- Unified search across stores
-- Cross-store research ideas
-
----
-
-## Questions for User Before Implementation
-
-None - ready to proceed with implementation based on current requirements.
