@@ -167,6 +167,28 @@ LIMIT 5
 
 ---
 
+## JupyterHub Environment Issues
+
+### Don't Import `get_spark_session()` in JupyterHub
+
+**Problem**: On BERDL JupyterHub, the Spark session is pre-loaded in the kernel. Attempting to import and call `get_spark_session()` will fail with import errors.
+
+```python
+# WRONG: This will fail on BERDL JupyterHub
+from get_spark_session import get_spark_session
+spark = get_spark_session()
+
+# RIGHT: Spark is already initialized in the kernel
+# Just use it directly:
+df = spark.sql("SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10").toPandas()
+```
+
+**Why?**: The `get_spark_session()` function is designed for local development. JupyterHub kernels automatically initialize Spark as a global variable. The import will fail because the module doesn't exist in the JupyterHub environment.
+
+**Solution**: Remove any `from get_spark_session import...` lines. The `spark` object is ready to use immediately.
+
+---
+
 ## Pandas-Specific Issues
 
 ### NaN Handling When Mapping to Dictionaries
