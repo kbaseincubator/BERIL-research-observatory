@@ -36,7 +36,11 @@ Access is available via Spark SQL, REST API, or JupyterHub.
 2. **Get your auth token** from the BERDL JupyterHub:
    - Go to [https://hub.berdl.kbase.us](https://hub.berdl.kbase.us)
    - Log in with your KBase credentials
-   - Access the token from the JupyterHub environment or request one from your administrator
+   - Access the token from the JupyterHub environment or request one from your administrator. For example, you can get the token from a Jupyter notebook like this:
+     ```python
+     import os
+     print(os.environ.get('KBASE_AUTH_TOKEN'))
+     ```
 3. **Create your `.env` file** in the project root:
    ```bash
    KB_AUTH_TOKEN="your-token-here"
