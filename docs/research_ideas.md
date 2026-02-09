@@ -13,6 +13,46 @@
 
 ## High Priority Ideas
 
+### [pangenome_pathway_geography] Pangenome Openness, Metabolic Pathways, and Biogeography
+**Status**: IN_PROGRESS
+**Priority**: HIGH
+**Effort**: Medium (3-4 weeks)
+
+**Research Question**: Do pangenome characteristics (open vs. closed) correlate with metabolic pathway diversity and biogeographic distribution patterns?
+
+**Approach**:
+- Extract pangenome stats (27,690 species from `pangenome` table)
+- Aggregate gapmind pathway data to species level (305M rows → species summaries)
+- Calculate biogeographic metrics from AlphaEarth embeddings (83K genomes, 28% coverage)
+- Test three hypotheses:
+  1. Open pangenomes → greater pathway diversity
+  2. Wider geographic distribution → more diverse metabolic capabilities
+  3. Open pangenomes → broader biogeographic ranges
+
+**Hypotheses**:
+- Species with high accessory/core gene ratios have more metabolic pathways (ecological generalists)
+- Species with larger AlphaEarth embedding distances have more pathways (niche breadth)
+- Pangenome openness enables geographic dispersal through metabolic flexibility
+
+**Impact**: High - integrates genomic, functional, and ecological dimensions of microbial diversity
+
+**Dependencies**:
+- AlphaEarth embeddings coverage (only 28% of genomes)
+- Gapmind pathway data quality and completeness
+- Need to control for genome count as covariate
+
+**Progress**:
+- ✅ Project structure created: `projects/pangenome_pathway_geography/`
+- ✅ Data extraction notebook: `01_data_extraction.ipynb`
+- ✅ Analysis notebook: `02_comparative_analysis.ipynb`
+- ⏳ Next: Run notebooks on BERDL JupyterHub to extract data
+- ⏳ Next: Perform correlation and regression analyses
+- ⏳ Next: Generate visualizations and interpret patterns
+
+**Location**: `projects/pangenome_pathway_geography/`
+
+---
+
 ### [cog_analysis] Ecotype Functional Differentiation
 **Status**: PROPOSED
 **Priority**: HIGH
