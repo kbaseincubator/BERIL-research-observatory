@@ -4,13 +4,13 @@
 
 **Do pangenome characteristics (open vs. closed) correlate with metabolic pathway diversity and biogeographic distribution patterns?**
 
-### Hypotheses
+### Hypotheses (REVISED)
 
-1. **Pangenome-Pathway Hypothesis**: Species with open pangenomes (higher accessory/core ratio) have greater metabolic pathway diversity, reflecting adaptation to varied ecological niches.
+1. **Pangenome-Pathway Hypothesis**: Species with open pangenomes (higher accessory/core ratio) have MORE VARIABLE pathway completeness across genomes (intra-species heterogeneity), enabling niche-specific metabolic strategies.
 
-2. **Geography-Pathway Hypothesis**: Species with broader biogeographic distributions (larger AlphaEarth embedding distances) have more diverse metabolic capabilities.
+2. **Niche Breadth-Pathway Hypothesis**: Species with broader ecological niches (larger AlphaEarth embedding diversity) have higher mean pathway completeness, reflecting metabolic versatility needed for diverse environments.
 
-3. **Pangenome-Geography Hypothesis**: Open pangenome species are more widely distributed geographically due to greater metabolic flexibility.
+3. **Pangenome-Niche Hypothesis**: Open pangenome species exhibit broader ecological niche breadth (measured via AlphaEarth embedding distances), not just geographic distribution.
 
 ## Data Sources
 
@@ -24,20 +24,27 @@
 
 ### 2. Metabolic Pathways (`kbase_ke_pangenome.gapmind_pathways`)
 - **Scale**: 305M rows (genome-level pathway predictions)
+- **Important**: GapMind has exactly **80 pathways** total; each genome-pathway pair has MULTIPLE rows (different steps)
 - **Key Fields**:
   - `genome_id`: Genome identifier
-  - `pathway`: Metabolic pathway name
+  - `pathway`: Metabolic pathway name (80 distinct pathways)
   - `metabolic_category`: Functional category (aa, cofactor, etc.)
-  - `score_category`: present / partial / not_present
+  - `score_category`: `complete`, `likely_complete`, `steps_missing_low`, `steps_missing_medium`, `not_present`
   - `clade_name`: Species identifier (links to pangenome table)
+- **Analysis Strategy**: Take BEST score for each genome-pathway pair, then aggregate to species
 
 ### 3. AlphaEarth Embeddings (`kbase_ke_pangenome.alphaearth_embeddings_all_years`)
 - **Scale**: 83,287 genomes (28% coverage of total 293K genomes)
+- **Key Concept**: AlphaEarth embeddings capture **ECOLOGICAL** context, not just geography
 - **Key Fields**:
   - `genome_id`: Genome identifier
-  - `cleaned_lat`, `cleaned_lon`: Geographic coordinates
-  - `A00` - `A63`: 64-dimensional embedding vectors
+  - `cleaned_lat`, `cleaned_lon`: Geographic coordinates (supplementary)
+  - `A00` - `A63`: 64-dimensional embedding vectors (PRIMARY METRIC)
   - `species`: Species identifier
+- **Niche Breadth Metrics**:
+  - Mean embedding distance (pairwise Euclidean)
+  - Embedding variance across dimensions
+  - Niche breadth score: `mean_distance × (1 + variance)`
 
 ## Analysis Pipeline
 
@@ -107,11 +114,11 @@
 - Phylogenetic trees: Mapping pangenome and pathway traits
 
 ### Notebooks
-- `01_data_extraction.ipynb` - Query BERDL and extract data
-- `02_pangenome_metrics.ipynb` - Calculate pangenome openness metrics
-- `03_pathway_diversity.ipynb` - Aggregate pathway data
-- `04_biogeography_analysis.ipynb` - AlphaEarth distance calculations
-- `05_integrated_analysis.ipynb` - Combined statistical analysis and visualization
+- `01_data_extraction_REVISED.ipynb` - Query BERDL with CORRECTED pathway aggregation
+- `02_comparative_analysis_REVISED.ipynb` - Statistical analysis with REVISED hypotheses
+- `CORRECTIONS.md` - Documentation of issues and fixes
+
+**Note**: Original notebooks deprecated due to incorrect pathway counting (see CORRECTIONS.md)
 
 ## Related Work
 
