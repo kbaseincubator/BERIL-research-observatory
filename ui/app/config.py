@@ -56,7 +56,7 @@ class Settings(BaseSettings):
     total_genes: str = "1B+"
 
     class Config:
-        env_prefix = "PRO_"  # Pangenome Research Observatory
+        env_prefix = "PRO_"  # BERIL Research Observatory
 
 
 settings = Settings()

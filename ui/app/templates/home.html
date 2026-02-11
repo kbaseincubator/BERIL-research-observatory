@@ -26,8 +26,8 @@
             <div class="stat-label">collections</div>
         </div>
         <div class="stat-card">
-            <div class="stat-value">{{ total_genomes }}</div>
-            <div class="stat-label">genomes</div>
+            <div class="stat-value">{{ project_count }}</div>
+            <div class="stat-label">projects</div>
         </div>
         <div class="stat-card">
             <div class="stat-value">{{ discovery_count }}</div>
@@ -57,50 +57,26 @@
     </div>
 
     <div class="grid grid-3">
-        <a href="/collections/kbase_ke_pangenome" class="card">
+        {% for coll in primary_collections %}
+        <a href="/collections/{{ coll.id }}" class="card">
             <div class="card-header">
-                <span style="font-size: 1.5rem;">&#129516;</span>
+                <span style="font-size: 1.5rem;">{{ coll.icon | safe }}</span>
                 <span class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6;">Primary</span>
             </div>
-            <h3 class="card-title" style="color: var(--text-primary);">Pangenome Collection</h3>
-            <p class="text-muted text-small" style="font-family: var(--font-mono);">kbase_ke_pangenome</p>
+            <h3 class="card-title" style="color: var(--text-primary);">{{ coll.name }}</h3>
+            <p class="text-muted text-small" style="font-family: var(--font-mono);">{{ coll.id }}</p>
             <div class="card-content">
-                <p class="text-small">293,059 genomes across 27,690 microbial species. Core/accessory gene classification, functional annotations, ANI relationships.</p>
+                <p class="text-small">{{ coll.description[:200] }}{% if coll.description|length > 200 %}...{% endif %}</p>
             </div>
             <div class="card-footer">
-                <span class="text-small text-muted">14 tables</span>
+                {% if coll.scale_stats.tables %}
+                <span class="text-small text-muted">{{ coll.scale_stats.tables }} tables</span>
+                {% elif coll.key_tables %}
+                <span class="text-small text-muted">{{ coll.key_tables|length }} tables</span>
+                {% endif %}
             </div>
         </a>
-
-        <a href="/collections/kescience_fitnessbrowser" class="card">
-            <div class="card-header">
-                <span style="font-size: 1.5rem;">&#128202;</span>
-                <span class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6;">Primary</span>
-            </div>
-            <h3 class="card-title" style="color: var(--text-primary);">Fitness Browser</h3>
-            <p class="text-muted text-small" style="font-family: var(--font-mono);">kescience_fitnessbrowser</p>
-            <div class="card-content">
-                <p class="text-small">Gene fitness data from transposon mutant experiments across 40+ bacterial organisms. Essential genes and condition-specific phenotypes.</p>
-            </div>
-            <div class="card-footer">
-                <span class="text-small text-muted">90+ tables</span>
-            </div>
-        </a>
-
-        <a href="/collections/kbase_msd_biochemistry" class="card">
-            <div class="card-header">
-                <span style="font-size: 1.5rem;">&#9879;</span>
-                <span class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6;">Primary</span>
-            </div>
-            <h3 class="card-title" style="color: var(--text-primary);">ModelSEED Biochemistry</h3>
-            <p class="text-muted text-small" style="font-family: var(--font-mono);">kbase_msd_biochemistry</p>
-            <div class="card-content">
-                <p class="text-small">Biochemistry reference data for metabolic modeling. Reactions, compounds, and pathway mappings.</p>
-            </div>
-            <div class="card-footer">
-                <span class="text-small text-muted">4 tables</span>
-            </div>
-        </a>
+        {% endfor %}
     </div>
 </section>
 
@@ -115,7 +91,7 @@
         {% for discovery in discoveries %}
         <article class="card">
             <div class="card-header">
-                <span class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6;">Pangenome</span>
+                <span class="badge badge-project">{{ discovery.project_tag | replace('_', ' ') | title }}</span>
             </div>
             <h3 class="card-title">
                 <a href="/knowledge/discoveries#{{ discovery.id }}">{{ discovery.title }}</a>

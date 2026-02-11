@@ -169,37 +169,40 @@ class RepositoryParser:
         return sorted(notebooks, key=lambda n: n.filename)
 
     def _parse_data_dir(self, project_dir: Path) -> tuple[list[Visualization], list[DataFile]]:
-        """Parse visualizations and data files from project/data/ directory."""
+        """Parse visualizations and data files from project data/ and figures/ directories."""
         visualizations = []
         data_files = []
-        data_dir = project_dir / "data"
 
-        if not data_dir.exists():
-            return visualizations, data_files
+        # Scan both data/ and figures/ directories
+        dirs_to_scan = [project_dir / "data", project_dir / "figures"]
 
-        for file_path in data_dir.iterdir():
-            if file_path.name.startswith("."):
+        for scan_dir in dirs_to_scan:
+            if not scan_dir.exists():
                 continue
 
-            size_bytes = file_path.stat().st_size
+            for file_path in scan_dir.iterdir():
+                if file_path.name.startswith("."):
+                    continue
 
-            if file_path.suffix.lower() in (".png", ".jpg", ".jpeg", ".svg", ".gif"):
-                visualizations.append(
-                    Visualization(
-                        filename=file_path.name,
-                        path=str(file_path.relative_to(self.repo_path)),
-                        title=file_path.stem.replace("_", " ").title(),
-                        size_bytes=size_bytes,
+                size_bytes = file_path.stat().st_size
+
+                if file_path.suffix.lower() in (".png", ".jpg", ".jpeg", ".svg", ".gif"):
+                    visualizations.append(
+                        Visualization(
+                            filename=file_path.name,
+                            path=str(file_path.relative_to(self.repo_path)),
+                            title=file_path.stem.replace("_", " ").title(),
+                            size_bytes=size_bytes,
+                        )
                     )
-                )
-            elif file_path.suffix.lower() in (".csv", ".tsv", ".json", ".parquet"):
-                data_files.append(
-                    DataFile(
-                        filename=file_path.name,
-                        path=str(file_path.relative_to(self.repo_path)),
-                        size_bytes=size_bytes,
+                elif file_path.suffix.lower() in (".csv", ".tsv", ".json", ".parquet"):
+                    data_files.append(
+                        DataFile(
+                            filename=file_path.name,
+                            path=str(file_path.relative_to(self.repo_path)),
+                            size_bytes=size_bytes,
+                        )
                     )
-                )
 
         return (
             sorted(visualizations, key=lambda v: v.filename),
@@ -258,9 +261,9 @@ class RepositoryParser:
         return discoveries
 
     def parse_schema(self) -> list[Table]:
-        """Parse tables from docs/schema.md."""
+        """Parse tables from docs/schemas/pangenome.md (formerly docs/schema.md)."""
         tables = []
-        schema_path = self.repo_path / "docs" / "schema.md"
+        schema_path = self.repo_path / "docs" / "schemas" / "pangenome.md"
 
         if not schema_path.exists():
             return tables
@@ -270,12 +273,19 @@ class RepositoryParser:
         # Find the Table Summary section to get row counts
         row_counts = {}
         summary_match = re.search(
-            r"## Table Summary\n\n\|.*\|.*\|\n\|[-\s|]+\|\n(.*?)\n\n",
+            r"## Table Summary\s*\n\n(.*?)(?:\n\n---|\n---)",
             content,
             re.DOTALL,
         )
         if summary_match:
             for line in summary_match.group(1).split("\n"):
+                if not line.strip() or not line.startswith("|"):
+                    continue
+                # Skip header and separator rows
+                if "Table" in line and "Row Count" in line:
+                    continue
+                if re.match(r"^\|[-\s|]+\|$", line):
+                    continue
                 cols = [c.strip() for c in line.split("|") if c.strip()]
                 if len(cols) >= 2:
                     table_name = cols[0].strip("`")

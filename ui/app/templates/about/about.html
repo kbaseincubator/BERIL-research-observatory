@@ -34,11 +34,12 @@
     <h2>What is BERDL?</h2>
     <div class="card">
         <p>
-            The <strong>KBase BER Data Lakehouse (BERDL)</strong> is a Delta Lakehouse containing
-            curated scientific datasets for computational biology research. It provides:
+            The <strong>KBase BER Data Lakehouse (BERDL)</strong> is a Delta Lakehouse hosting
+            <strong>35 databases across 9 tenants</strong> of curated scientific datasets for
+            computational biology research. It provides:
         </p>
         <ul style="margin-top: var(--space-4);">
-            <li><strong>Multiple data collections</strong> including pangenomes, fitness data, biochemistry, and more</li>
+            <li><strong>Multiple data collections</strong> including pangenomes, mutant fitness data, biochemistry, multi-omics, marine ecology, phage research, and more</li>
             <li><strong>Spark SQL access</strong> for large-scale queries</li>
             <li><strong>JupyterHub integration</strong> for interactive analysis</li>
             <li><strong>REST API</strong> for programmatic access</li>
@@ -50,41 +51,23 @@
 </section>
 
 <section class="section">
-    <h2>Featured Collections</h2>
+    <h2>Primary Collections</h2>
     <div class="grid grid-2">
-        <div class="card">
-            <h4>Pangenome Collection</h4>
-            <p class="text-muted text-small" style="font-family: var(--font-mono);">kbase_ke_pangenome</p>
+        {% for coll in primary_collections %}
+        <a href="/collections/{{ coll.id }}" class="card" style="text-decoration: none;">
+            <div class="flex items-center gap-4" style="margin-bottom: var(--space-2);">
+                <span style="font-size: 1.25rem;">{{ coll.icon | safe }}</span>
+                <h4 style="margin-bottom: 0; color: var(--text-primary);">{{ coll.name }}</h4>
+            </div>
+            <p class="text-muted text-small" style="font-family: var(--font-mono);">{{ coll.id }}</p>
             <p style="margin-top: var(--space-2);">
-                Pangenome data for 293,059 genomes across 27,690 microbial species derived from GTDB r214.
-                Includes core/accessory gene classification, functional annotations (eggNOG), and ANI relationships.
+                {{ coll.description[:200] }}{% if coll.description|length > 200 %}...{% endif %}
             </p>
-        </div>
-        <div class="card">
-            <h4>Fitness Browser</h4>
-            <p class="text-muted text-small" style="font-family: var(--font-mono);">kescience_fitnessbrowser</p>
-            <p style="margin-top: var(--space-2);">
-                Gene fitness data from transposon mutant experiments across 40+ bacterial organisms.
-                Identify essential genes and condition-specific phenotypes.
-            </p>
-        </div>
-        <div class="card">
-            <h4>ModelSEED Biochemistry</h4>
-            <p class="text-muted text-small" style="font-family: var(--font-mono);">kbase_msd_biochemistry</p>
-            <p style="margin-top: var(--space-2);">
-                Biochemistry reference data for metabolic modeling. Reactions, compounds, and pathway mappings.
-            </p>
-        </div>
-        <div class="card">
-            <h4>KBase Genomes</h4>
-            <p class="text-muted text-small" style="font-family: var(--font-mono);">kbase_genomes</p>
-            <p style="margin-top: var(--space-2);">
-                Structural genomics data including contigs, features, and protein sequences.
-            </p>
-        </div>
+        </a>
+        {% endfor %}
     </div>
     <p style="margin-top: var(--space-4);">
-        <a href="/collections" class="btn btn-primary">Explore All Collections</a>
+        <a href="/collections" class="btn btn-primary">Explore All {{ collection_count }} Collections</a>
     </p>
 </section>
 

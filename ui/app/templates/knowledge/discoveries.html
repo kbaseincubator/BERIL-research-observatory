@@ -14,10 +14,7 @@
     {% for discovery in discoveries %}
     <article class="card" id="{{ discovery.id }}" style="margin-bottom: var(--space-6);">
         <div class="card-header">
-            <a href="/collections/kbase_ke_pangenome" class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6; text-decoration: none;">
-                Pangenome
-            </a>
-            <span class="badge badge-project">[{{ discovery.project_tag }}]</span>
+            <span class="badge badge-project">{{ discovery.project_tag | replace('_', ' ') | title }}</span>
             {% if discovery.date %}
             <span class="text-muted text-small">{{ discovery.date.strftime('%B %Y') }}</span>
             {% endif %}

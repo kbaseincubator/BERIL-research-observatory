@@ -110,6 +110,7 @@ async def home(request: Request):
             "discoveries": repo_data.discoveries[:3],  # Latest 3 discoveries
             "total_notebooks": repo_data.total_notebooks,
             "total_visualizations": repo_data.total_visualizations,
+            "primary_collections": repo_data.get_collections_by_category(CollectionCategory.PRIMARY)[:3],
         }
     )
     return templates.TemplateResponse("home.html", context)
@@ -280,7 +281,9 @@ async def research_ideas(request: Request):
 @app.get("/about", response_class=HTMLResponse)
 async def about(request: Request):
     """About page."""
+    repo_data = get_repo_data(request)
     context = get_base_context(request)
+    context["primary_collections"] = repo_data.get_collections_by_category(CollectionCategory.PRIMARY)
     return templates.TemplateResponse("about/about.html", context)
 
 

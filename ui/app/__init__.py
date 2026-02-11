@@ -1,1 +1,1 @@
-# Pangenome Research Observatory UI
+# BERIL Research Observatory

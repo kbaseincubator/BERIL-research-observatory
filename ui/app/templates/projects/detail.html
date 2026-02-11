@@ -22,10 +22,10 @@
         {% endif %}
     </div>
     <div style="margin-top: var(--space-2);">
-        <span class="text-muted text-small">Collection:</span>
-        <a href="/collections/kbase_ke_pangenome" class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6; text-decoration: none; margin-left: var(--space-2);">
-            Pangenome
-        </a>
+        <span class="text-muted text-small">Project:</span>
+        <span class="badge badge-project" style="margin-left: var(--space-2);">
+            {{ project.id | replace('_', ' ') | title }}
+        </span>
     </div>
 </div>
 
@@ -73,7 +73,7 @@
         {% for viz in project.visualizations %}
         <div class="card" style="padding: var(--space-3);">
             <img
-                src="/project-assets/{{ project.id }}/data/{{ viz.filename }}"
+                src="/project-assets/{{ viz.path | replace('projects/', '', 1) }}"
                 alt="{{ viz.title }}"
                 style="width: 100%; height: auto; border-radius: var(--radius-sm);"
                 loading="lazy"
