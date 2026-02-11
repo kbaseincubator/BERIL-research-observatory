@@ -1,11 +1,59 @@
 # BERDL Database: Common Pitfalls & Gotchas
 
-**Database**: `kbase_ke_pangenome`
-**Purpose**: Quick reference for avoiding common issues when querying the pangenome database.
+**Purpose**: Quick reference for avoiding common issues when querying BERDL databases.
+
+See [collections.md](collections.md) for the full database inventory and [schemas/](schemas/) for per-collection documentation.
 
 ---
 
-## SQL Syntax Issues
+## General BERDL Pitfalls
+
+### REST API Reliability
+
+The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can experience issues:
+
+| Error | Meaning | Solution |
+|-------|---------|----------|
+| 504 Gateway Timeout | Query took too long | Simplify query, add filters, use direct Spark |
+| 524 Origin Timeout | Server didn't respond | Retry after a few seconds |
+| 503 "cannot schedule new futures after shutdown" | Spark executor restarting | Wait 30s, retry |
+| Empty response | Query failed silently | Check query syntax |
+
+**Rule of thumb**: Use the REST API for simple queries (<1M rows). Use direct Spark SQL on JupyterHub for anything complex.
+
+### Schema Introspection Timeouts
+
+The `/schema` API endpoint frequently times out for large tables. Use `DESCRIBE database.table` via the `/query` endpoint instead for more reliable schema introspection.
+
+### Auth Token Variable Name
+
+The `.env` file uses `KBASE_AUTH_TOKEN` (not `KB_AUTH_TOKEN`):
+```bash
+# CORRECT
+AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
+
+# WRONG (legacy docs may reference this)
+AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
+```
+
+### String-Typed Numeric Columns
+
+Many databases store numeric values as strings. Always cast before comparisons:
+```sql
+-- WRONG: String comparison
+WHERE fit < -2
+
+-- CORRECT: Cast to numeric
+WHERE CAST(fit AS FLOAT) < -2
+```
+
+This affects: `kescience_fitnessbrowser` (all columns), `kbase_genomes` (coordinates, lengths), and others.
+
+---
+
+## Pangenome (`kbase_ke_pangenome`) Pitfalls
+
+### SQL Syntax Issues
 
 ### The `--` Non-Issue in Species IDs
 
@@ -253,33 +301,21 @@ for col in numeric_cols:
 
 ---
 
-## Missing Tables
+## Pangenome: Missing Tables
 
-These tables are mentioned in project documentation but **do not exist** in the database:
+These tables were previously missing but some have been added:
 
-| Table | Mentioned Purpose | Status |
+| Table | Mentioned Purpose | Status (2026-02-11) |
 |-------|-------------------|--------|
-| `phylogenetic_tree` | Species trees from core genes | NOT FOUND |
-| `phylogentic_tree_distance_pairs` | Pairwise phylo distances | NOT FOUND |
+| `phylogenetic_tree` | Species trees from core genes | **NOW AVAILABLE** |
+| `phylogenetic_tree_distance_pairs` | Pairwise phylo distances | **NOW AVAILABLE** |
 | `pangenome_build_protocol` | Build parameters | NOT FOUND (but `protocol_id` column exists) |
 | `genomad_mobile_elements` | Plasmid/virus annotations | NOT FOUND |
 | `IMG_env` | IMG environment metadata | NOT FOUND |
 
 ---
 
-## API vs Direct Spark
-
-### REST API Issues
-
-The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can fail with:
-
-| Error | Meaning | Solution |
-|-------|---------|----------|
-| 504 Gateway Timeout | Query took too long | Simplify query, add filters |
-| 503 "cannot schedule new futures after shutdown" | Spark executor restarting | Wait 30s, retry |
-| Empty response | Query failed silently | Check query syntax |
-
-### When to Use Direct Spark
+## Pangenome: API vs Direct Spark
 
 Use direct `spark.sql()` on the cluster when:
 - Query involves >1M rows
@@ -287,57 +323,56 @@ Use direct `spark.sql()` on the cluster when:
 - Aggregations on billion-row tables
 - REST API keeps timing out
 
-```python
-# On BERDL JupyterHub
-result = spark.sql("""
-    SELECT genome_id, COUNT(*) as n_genes
-    FROM kbase_ke_pangenome.gene
-    WHERE genome_id IN (...)
-    GROUP BY genome_id
-""").toPandas()
-
-# IMPORTANT: Numeric columns may come back as strings
-# Convert them explicitly
-numeric_cols = ['n_genes', 'no_genomes', 'no_core']
-for col in numeric_cols:
-    if col in result.columns:
-        result[col] = pd.to_numeric(result[col], errors='coerce')
-```
-
 ### [cog_analysis] Multi-table joins can be slow for large species
 
 **Problem**: Joining gene → gene_genecluster_junction → gene_cluster → eggnog_mapper_annotations can be slow for species with >500 genomes.
 
-**Example with large species** (S. pneumoniae, 843 genomes):
-```sql
-SELECT gc.is_core, ann.COG_category, COUNT(*)
-FROM gene g
-JOIN gene_genecluster_junction j ON g.gene_id = j.gene_id
-JOIN gene_cluster gc ON j.gene_cluster_id = gc.gene_cluster_id
-LEFT JOIN eggnog_mapper_annotations ann ON g.gene_id = ann.query_name
-WHERE gc.gtdb_species_clade_id = 's__Streptococcus_pneumoniae--RS_GCF_001457635.1'
-GROUP BY gc.is_core, ann.COG_category
--- May timeout via REST API
-```
-
 **Solutions**:
 1. **Use direct Spark**: Run on JupyterHub with `spark.sql()` instead of REST API
 2. **Separate queries per gene class**: Break into smaller queries
-```python
-for is_core in [0, 1]:
-    query = f"""
-        SELECT ann.COG_category, COUNT(*) as gene_count
-        FROM gene_cluster gc
-        JOIN gene_genecluster_junction j ON gc.gene_cluster_id = j.gene_cluster_id
-        JOIN eggnog_mapper_annotations ann ON j.gene_id = ann.query_name
-        WHERE gc.gtdb_species_clade_id = '{species_id}'
-          AND gc.is_core = {is_core}
-        GROUP BY ann.COG_category
-    """
-```
 3. **Select smaller species**: Use species with 100-300 genomes for faster queries
 
 **Performance tip**: Always use exact equality (`WHERE id = 'value'`) rather than `LIKE` patterns for best performance.
+
+---
+
+## Fitness Browser (`kescience_fitnessbrowser`) Pitfalls
+
+### All Columns Are Strings
+
+Every column in the fitness browser is stored as a string. Always cast before numeric comparisons:
+
+```sql
+-- WRONG
+WHERE fit < -2
+
+-- CORRECT
+WHERE CAST(fit AS FLOAT) < -2
+```
+
+### orgId is Case-Sensitive
+
+Use exact case: `WHERE orgId = 'Keio'` (not `'keio'`).
+
+### genefitness Table is Large (27M rows)
+
+Always filter by `orgId` at minimum.
+
+### Per-Organism Convenience Tables
+
+The `fitbyexp_*` tables have non-standard schemas (experiment names as columns). Use for single-organism lookups only.
+
+---
+
+## Genomes (`kbase_genomes`) Pitfalls
+
+### UUID-Based Identifiers
+
+All primary keys are CDM UUIDs. Use the `name` table to map between external gene IDs and CDM UUIDs.
+
+### Billion-Row Junction Tables
+
+Most junction tables have ~1 billion rows. Never query without filters.
 
 ---
 
@@ -346,8 +381,10 @@ for is_core in [0, 1]:
 Before running a query, verify:
 
 - [ ] Using exact equality instead of LIKE patterns for performance
-- [ ] Large tables have appropriate filters (genome_id, species_id)
-- [ ] JOIN keys are correct (gene_cluster_id for annotations)
-- [ ] You're not comparing gene clusters across species
-- [ ] Expected tables actually exist (check schema doc)
-- [ ] Data coverage is sufficient for your analysis (especially embeddings)
+- [ ] Large tables have appropriate filters (genome_id, species_id, orgId)
+- [ ] JOIN keys are correct (gene_cluster_id for pangenome annotations, locusId for fitness)
+- [ ] Numeric comparisons use CAST for string-typed databases
+- [ ] You're not comparing gene clusters across species (pangenome)
+- [ ] Expected tables actually exist (check [schemas/](schemas/))
+- [ ] Data coverage is sufficient for your analysis
+- [ ] Using REST API only for simple queries; Spark SQL for complex ones

@@ -1,8 +1,10 @@
-# Pangenome Science Project
+# BERIL Research Observatory
 
 ## Purpose
 
-Use the `kbase_ke_pangenome` database to pursue scientific questions in microbial genomics and ecology, while building shared documentation that accelerates future work.
+Use the **BERDL Data Lakehouse** to pursue scientific questions across microbial genomics, ecology, metabolic modeling, and multi-omics analysis, while building shared documentation that accelerates future work.
+
+BERDL hosts **35 databases across 9 tenants** including pangenome data for 293K microbial genomes, mutant fitness data for 48 organisms, ModelSEED biochemistry, multi-omics from NMDC, and more. See [docs/collections.md](docs/collections.md) for the full inventory.
 
 ## Dual Goals
 
@@ -18,7 +20,7 @@ When working on any science project, update `docs/` when you discover:
 | Query pitfall or gotcha | `docs/pitfalls.md` |
 | Performance issue or strategy | `docs/performance.md` |
 | Data limitation or coverage gap | `docs/pitfalls.md` |
-| Useful insight about data structure | `docs/schema.md` |
+| Useful insight about data structure | `docs/schemas/{collection}.md` |
 | Any other learning worth sharing | `docs/discoveries.md` |
 | Research idea or future direction | `docs/research_ideas.md` |
 
@@ -32,12 +34,13 @@ Discovered that only 83K/293K genomes have embeddings...
 
 | File | Purpose |
 |------|---------|
+| `docs/collections.md` | Overview of all BERDL databases and tenants |
+| `docs/schemas/` | Per-collection schema documentation |
 | `docs/overview.md` | Project goals, data workflow, scientific context |
-| `docs/schema.md` | Table schemas, columns, relationships, row counts |
 | `docs/pitfalls.md` | SQL gotchas, data sparsity, common errors |
 | `docs/performance.md` | Query strategies for large tables |
 | `docs/discoveries.md` | Running log of insights (low-friction capture) |
-| `docs/research_ideas.md` | Future research directions, project ideas, cross-project opportunities |
+| `docs/research_ideas.md` | Future research directions, project ideas |
 
 ## Project Structure
 
@@ -50,6 +53,9 @@ Current projects:
 - `projects/ecotype_analysis/` - Environment vs phylogeny effects on gene content
 - `projects/pangenome_openness/` - Open vs closed pangenome patterns
 - `projects/cog_analysis/` - COG functional category distributions across core/aux/novel genes
+- `projects/pangenome_pathway_geography/` - Pangenome openness, metabolic pathways, and biogeography
+- `projects/resistance_hotspots/` - Antibiotic resistance hotspot analysis
+- `projects/conservation_vs_fitness/` - Gene conservation vs fitness browser data
 
 ## Data Organization
 
@@ -60,15 +66,10 @@ Current projects:
 
 **Rule of thumb**: If another project might need it, put it in top-level `data/`. If it's clearly for one question, keep it in the project.
 
-Examples:
-- All pangenome stats (27K species) → `data/pangenome_summary.csv`
-- ANI pairs for 224 target species → `data/ecotypes_expanded/` (reused by multiple projects)
-- Jaccard matrix for 172 species with embeddings → `projects/ecotype_analysis/data/` (specific to that analysis)
-
 ## Database Access
 
-- **Database**: `kbase_ke_pangenome` on BERDL Delta Lakehouse
-- **Auth**: Token in `.env` file (KB_AUTH_TOKEN)
+- **Databases**: 35 databases across BERDL (see [docs/collections.md](docs/collections.md))
+- **Auth**: Token in `.env` file (KBASE_AUTH_TOKEN)
 - **API**: `https://hub.berdl.kbase.us/apis/mcp/`
 - **Direct Spark**: Use JupyterHub for complex queries
 
@@ -84,9 +85,9 @@ from get_spark_session import get_spark_session
 spark = get_spark_session()
 ```
 
-Then query with:
+Then query any database with:
 ```python
-df = spark.sql("SELECT ... FROM kbase_ke_pangenome.table").toPandas()
+df = spark.sql("SELECT ... FROM database_name.table").toPandas()
 ```
 
 **Benefits vs REST API**:
@@ -113,17 +114,17 @@ df = spark.sql("SELECT ... FROM kbase_ke_pangenome.table").toPandas()
    - Navigate to: `https://hub.berdl.kbase.us`
    - Authenticate with MFA
    - Upload notebook via Upload button (drag & drop)
-   - Place in appropriate directory (e.g., `~/workspace/projects/cog_analysis/`)
+   - Place in appropriate directory
 
 3. **Run analysis**
    - Open notebook in JupyterHub
    - Verify Spark session initializes: `spark = get_spark_session()`
-   - Kernel → Restart & Run All (or run cells interactively)
+   - Kernel -> Restart & Run All (or run cells interactively)
    - Monitor progress (typical runtime: 5-30 minutes for multi-species analyses)
 
 4. **Download results**
    - Select output files in JupyterHub file browser (notebooks, CSVs, PNGs)
-   - Right-click → Download (or use Download button)
+   - Right-click -> Download (or use Download button)
    - Place in local `projects/*/data/` directory
    - Commit visualizations and small data files to git
 
@@ -132,23 +133,6 @@ df = spark.sql("SELECT ... FROM kbase_ke_pangenome.table").toPandas()
 - No completion notifications (must monitor manually)
 - File transfer is manual (acceptable for files <1GB)
 
-**Alternative for large files (>1GB):**
-- Use KBase login node as staging area:
-  ```bash
-  # In JupyterHub terminal
-  scp large_file.csv username@kbase-login-node:~/staging/
-
-  # On local machine
-  scp username@kbase-login-node:~/staging/large_file.csv ./
-  ```
-
-**Git-based alternative (for small files):**
-- Clone this repo in JupyterHub: `git clone <repo-url>`
-- Pull latest notebooks: `git pull`
-- After analysis, commit results: `git add notebooks/ data/` && `git commit` && `git push`
-- Pull on local machine: `git pull`
-- Note: Large data files are gitignored - use manual download for those
-
 ## Key Reminders
 
 1. Use exact equality for species IDs (e.g., `WHERE id = 's__Species--RS_GCF_123'`). The `--` inside quotes is fine.
@@ -156,3 +140,4 @@ df = spark.sql("SELECT ... FROM kbase_ke_pangenome.table").toPandas()
 3. AlphaEarth embeddings only cover 28% of genomes.
 4. Gene clusters are species-specific. Can't compare across species.
 5. Update docs when you learn something worth sharing!
+6. Check [docs/collections.md](docs/collections.md) for the full database inventory.
