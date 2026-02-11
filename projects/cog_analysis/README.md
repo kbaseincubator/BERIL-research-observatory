@@ -77,6 +77,9 @@ Execute all cells. The notebook will:
 
 _To be filled in after running the analysis_
 
+## Authors
+- **Paramvir S. Dehal** (Lawrence Berkeley National Lab) | ORCID: 0000-0001-5810-2497 | Author
+
 ## Future Directions
 
 - Analyze multiple species to identify consistent patterns

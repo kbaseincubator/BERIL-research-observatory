@@ -44,6 +44,9 @@
 
         <div class="card-footer">
             <div class="card-meta">
+                {% if project.contributors %}
+                <span>{{ project.contributors|length }} author{% if project.contributors|length != 1 %}s{% endif %}</span>
+                {% endif %}
                 {% if project.notebooks %}
                 <span>{{ project.notebooks|length }} notebook{% if project.notebooks|length != 1 %}s{% endif %}</span>
                 {% endif %}

@@ -642,7 +642,7 @@ pre code {
   margin: 0 auto;
   padding: var(--space-12) var(--space-6);
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
   gap: var(--space-8);
 }
 
@@ -792,6 +792,133 @@ pre code {
 .justify-between { justify-content: space-between; }
 .gap-2 { gap: var(--space-2); }
 .gap-4 { gap: var(--space-4); }
+
+/* ============================================
+   Markdown Content Styling
+   ============================================ */
+
+/* ============================================
+   Contributors
+   ============================================ */
+
+.contributors-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.contributor-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  background: var(--surface-raised);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+}
+
+.contributor-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.contributor-name {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.contributor-affiliation {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.contributor-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.contributor-roles {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.orcid-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--text-link);
+}
+
+.orcid-link:hover {
+  color: var(--text-link-hover);
+}
+
+.orcid-link img {
+  flex-shrink: 0;
+}
+
+/* Community page */
+.community-stats {
+  display: flex;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.community-stat {
+  background: var(--surface-raised);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  text-align: center;
+}
+
+.community-stat .stat-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--accent-primary);
+  line-height: 1;
+}
+
+.community-stat .stat-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+}
+
+.contributor-grid-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+}
+
+.contributor-grid-card:hover {
+  border-color: var(--accent-primary-muted);
+}
+
+.contributor-projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 768px) {
+  .contributor-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .community-stats {
+    flex-direction: column;
+  }
+}
 
 /* ============================================
    Markdown Content Styling
