@@ -85,6 +85,9 @@ For most bacterial species, phylogenetic history is a stronger predictor of gene
 | `ecotype_correlation_results.csv` | Correlation results for all 172 species |
 | `species_ecological_categories.csv` | Ecological categorization of species |
 
+## Authors
+- **Paramvir S. Dehal** (Lawrence Berkeley National Lab) | ORCID: 0000-0001-5810-2497 | Author
+
 ## Future Directions
 
 1. **Subset by gene function**: Test whether specific COG categories (e.g., V-Defense, L-Mobile) show stronger environment effects

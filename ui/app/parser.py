@@ -12,6 +12,7 @@ from .models import (
     CollectionCategory,
     CollectionTable,
     Column,
+    Contributor,
     DataFile,
     Discovery,
     IdeaStatus,
@@ -54,6 +55,9 @@ class RepositoryParser:
         research_ideas = self.parse_research_ideas()
         collections = self.parse_collections()
 
+        # Aggregate unique contributors across all projects
+        contributors = self._aggregate_contributors(projects)
+
         # Compute stats
         total_notebooks = sum(len(p.notebooks) for p in projects)
         total_visualizations = sum(len(p.visualizations) for p in projects)
@@ -67,11 +71,45 @@ class RepositoryParser:
             performance_tips=performance_tips,
             research_ideas=research_ideas,
             collections=collections,
+            contributors=contributors,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
             last_updated=datetime.now(),
         )
+
+    def _aggregate_contributors(self, projects: list[Project]) -> list[Contributor]:
+        """Merge contributors across projects by lowercased name."""
+        merged: dict[str, Contributor] = {}
+
+        for project in projects:
+            for contrib in project.contributors:
+                key = contrib.name.lower()
+                if key in merged:
+                    existing = merged[key]
+                    # Union project_ids
+                    for pid in contrib.project_ids:
+                        if pid not in existing.project_ids:
+                            existing.project_ids.append(pid)
+                    # Union roles
+                    for role in contrib.roles:
+                        if role not in existing.roles:
+                            existing.roles.append(role)
+                    # Take first non-null affiliation/orcid
+                    if not existing.affiliation and contrib.affiliation:
+                        existing.affiliation = contrib.affiliation
+                    if not existing.orcid and contrib.orcid:
+                        existing.orcid = contrib.orcid
+                else:
+                    merged[key] = Contributor(
+                        name=contrib.name,
+                        affiliation=contrib.affiliation,
+                        orcid=contrib.orcid,
+                        roles=list(contrib.roles),
+                        project_ids=list(contrib.project_ids),
+                    )
+
+        return sorted(merged.values(), key=lambda c: c.name.lower())
 
     def parse_projects(self) -> list[Project]:
         """Parse all projects from projects/ directory."""
@@ -120,6 +158,9 @@ class RepositoryParser:
         # Parse visualizations and data files
         visualizations, data_files = self._parse_data_dir(project_dir)
 
+        # Parse contributors
+        contributors = self._parse_contributors(readme_content, project_dir.name)
+
         # Get file modification times as proxy for dates
         created_date = datetime.fromtimestamp(readme_path.stat().st_ctime)
         updated_date = datetime.fromtimestamp(readme_path.stat().st_mtime)
@@ -137,8 +178,54 @@ class RepositoryParser:
             data_files=data_files,
             created_date=created_date,
             updated_date=updated_date,
+            contributors=contributors,
             raw_readme=readme_content,
         )
+
+    def _parse_contributors(self, readme_content: str, project_id: str) -> list[Contributor]:
+        """Parse contributors from ## Authors or ## Contributors section."""
+        section = self._extract_section(readme_content, "Authors")
+        if section is None:
+            section = self._extract_section(readme_content, "Contributors")
+        if not section:
+            return []
+
+        contributors = []
+        for line in section.split("\n"):
+            line = line.strip()
+            # Match lines like: - **Name** (Affiliation) | ORCID: 0000-... | role text
+            match = re.match(r"^-\s+\*\*(.+?)\*\*(?:\s*\(([^)]+)\))?(.*)", line)
+            if not match:
+                continue
+
+            name = match.group(1).strip()
+            affiliation = match.group(2).strip() if match.group(2) else None
+            rest = match.group(3).strip()
+
+            orcid = None
+            roles = []
+
+            if rest:
+                # Split by pipe and parse segments
+                segments = [s.strip() for s in rest.split("|") if s.strip()]
+                for segment in segments:
+                    orcid_match = re.match(r"ORCID:\s*([\d-]+)", segment)
+                    if orcid_match:
+                        orcid = orcid_match.group(1)
+                    else:
+                        roles.append(segment)
+
+            contributors.append(
+                Contributor(
+                    name=name,
+                    affiliation=affiliation,
+                    orcid=orcid,
+                    roles=roles,
+                    project_ids=[project_id],
+                )
+            )
+
+        return contributors
 
     def _extract_section(self, content: str, section_name: str) -> str | None:
         """Extract content between a section header and the next header."""

@@ -95,6 +95,7 @@ def get_base_context(request: Request) -> dict:
         "discovery_count": len(repo_data.discoveries),
         "idea_count": len(repo_data.research_ideas),
         "collection_count": len(repo_data.collections),
+        "contributor_count": len(repo_data.contributors),
     }
 
 
@@ -276,6 +277,16 @@ async def research_ideas(request: Request):
     context["completed_ideas"] = [i for i in ideas if i.status.value == "COMPLETED"]
 
     return templates.TemplateResponse("knowledge/ideas.html", context)
+
+
+@app.get("/community/contributors", response_class=HTMLResponse)
+async def community_contributors(request: Request):
+    """Community contributors page."""
+    repo_data = get_repo_data(request)
+    context = get_base_context(request)
+    context["contributors"] = repo_data.contributors
+    context["total_orcids"] = sum(1 for c in repo_data.contributors if c.orcid)
+    return templates.TemplateResponse("community/contributors.html", context)
 
 
 @app.get("/about", response_class=HTMLResponse)

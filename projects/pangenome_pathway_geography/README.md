@@ -120,6 +120,9 @@
 
 **Note**: Original notebooks deprecated due to incorrect pathway counting (see CORRECTIONS.md)
 
+## Authors
+- **Your Name Here** | Your role
+
 ## Related Work
 
 This project builds on:

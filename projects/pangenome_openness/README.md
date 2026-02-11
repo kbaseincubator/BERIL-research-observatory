@@ -81,6 +81,9 @@ This project builds on:
 - **ecotype_analysis**: Uses the environment vs phylogeny effect sizes computed there
 - **cog_analysis**: The functional partitioning findings may explain why openness alone doesn't predict adaptation patterns
 
+## Authors
+- **Paramvir S. Dehal** (Lawrence Berkeley National Lab) | ORCID: 0000-0001-5810-2497 | Author
+
 ## Future Directions
 
 1. **Stratify by gene function**: Do open pangenomes show environment effects specifically in L (mobile) or V (defense) categories?

@@ -148,6 +148,9 @@ closedness = 1 - openness
 - **BERDL**: KBase BER Data Lakehouse - Delta Lakehouse implementation
 - **GTDB r214**: Genome Taxonomy Database version used for pangenome species
 
+## Authors
+- **Your Name Here** | Your role
+
 ## Related Projects
 
 - `pangenome_openness/` - Existing analysis of open vs. closed pangenome patterns
