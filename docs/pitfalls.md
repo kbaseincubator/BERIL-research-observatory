@@ -169,23 +169,40 @@ LIMIT 5
 
 ## JupyterHub Environment Issues
 
-### Don't Import `get_spark_session()` in JupyterHub
+### Using `get_spark_session()` on BERDL JupyterHub
 
-**Problem**: On BERDL JupyterHub, the Spark session is pre-loaded in the kernel. Attempting to import and call `get_spark_session()` will fail with import errors.
+`get_spark_session()` is a **built-in function** injected into the JupyterHub notebook kernel. No import is needed:
 
 ```python
-# WRONG: This will fail on BERDL JupyterHub
-from get_spark_session import get_spark_session
+# CORRECT: Call directly, no import
 spark = get_spark_session()
-
-# RIGHT: Spark is already initialized in the kernel
-# Just use it directly:
 df = spark.sql("SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10").toPandas()
+
+# WRONG: Don't try to import it — the module doesn't exist as a file
+from get_spark_session import get_spark_session  # ImportError!
 ```
 
-**Why?**: The `get_spark_session()` function is designed for local development. JupyterHub kernels automatically initialize Spark as a global variable. The import will fail because the module doesn't exist in the JupyterHub environment.
+**Note**: This function is only available inside JupyterHub notebook kernels. It does NOT work from the command line (`python3 -c "..."`) or from `jupyter nbconvert --execute`. For CLI execution, notebooks must be run via `jupyter nbconvert` which spawns a kernel that has `get_spark_session()` available.
 
-**Solution**: Remove any `from get_spark_session import...` lines. The `spark` object is ready to use immediately.
+### Don't Kill Java Processes
+
+**[conservation_vs_fitness]** The Spark Connect service runs as a Java process on port 15002. Killing Java processes (e.g., when cleaning up stale notebook processes) will take down Spark Connect, and `get_spark_session()` will fail with `RETRIES_EXCEEDED` / `Connection refused`.
+
+**Recovery**: Log out of JupyterHub and start a new session. Then run `get_spark_session()` from a notebook to restart the Spark Connect daemon. You cannot restart it from the CLI.
+
+### Running Notebooks from CLI
+
+Notebooks can be executed headlessly via `jupyter nbconvert`:
+
+```bash
+jupyter nbconvert --to notebook --execute notebook.ipynb \
+  --output notebook_executed.ipynb \
+  --ExecutePreprocessor.timeout=7200
+```
+
+The kernel spawned by nbconvert has `get_spark_session()` available. However, long-running notebooks may time out — set `--ExecutePreprocessor.timeout` appropriately.
+
+**Tip**: For long pipelines, design notebooks with checkpointing (save intermediate files, skip steps that already have output). This allows re-running after interruptions without repeating completed work.
 
 ---
 
