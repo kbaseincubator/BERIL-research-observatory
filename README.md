@@ -12,13 +12,19 @@ Through the BERIL Research Observatory, users can:
 
 ## What is BERDL?
 
-The **KBase BER Data Lakehouse (BERDL)** is a Delta Lakehouse containing curated scientific datasets for computational biology research. It includes:
+The **KBase BER Data Lakehouse (BERDL)** is a Delta Lakehouse containing curated scientific datasets for computational biology research. It hosts **35 databases across 9 tenants**:
 
-- **Pangenome Collection** (`kbase_ke_pangenome`): 293,059 genomes across 27,690 microbial species derived from GTDB r214
-- **Fitness Browser** (`kescience_fitnessbrowser`): Gene fitness data from transposon mutant experiments across 40+ bacterial organisms
-- **ModelSEED Biochemistry** (`kbase_msd_biochemistry`): Metabolic modeling reference data
-- **KBase Genomes** (`kbase_genomes`): Structural genomics data including contigs, features, and proteins
-- And more collections covering phenotypes, phage data, and reference databases
+| Tenant | Databases | Highlights |
+|--------|-----------|------------|
+| **KBase** | 10 | Pangenome (293K genomes), Genomes (253M proteins), Biochemistry, Phenotype, UniProt/UniRef |
+| **KE Science** | 1 | Fitness Browser (48 organisms, 27M fitness measurements) |
+| **ENIGMA** | 1 | Environmental microbiology (7K genomes, communities, strains) |
+| **NMDC** | 2 | Multi-omics analysis, harmonized BioSamples |
+| **PhageFoundry** | 5 | Species-specific genome browsers for phage research |
+| **PlanetMicrobe** | 2 | Marine microbial ecology |
+| **PROTECT** | 1 | Pathogen genome browser |
+
+See [docs/collections.md](docs/collections.md) for the full inventory with schema links.
 
 Access is available via Spark SQL, REST API, or JupyterHub.
 
@@ -43,15 +49,15 @@ Access is available via Spark SQL, REST API, or JupyterHub.
      ```
 3. **Create your `.env` file** in the project root:
    ```bash
-   KB_AUTH_TOKEN="your-token-here"
+   KBASE_AUTH_TOKEN="your-token-here"
    ```
 
 ### Installation
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/kbase/ke-pangenome-science.git
-   cd ke-pangenome-science
+   git clone https://github.com/kbaseincubator/BERIL-research-observatory.git
+   cd BERIL-research-observatory
    ```
 
 2. **Set up the UI application** (optional, for browsing the observatory):
@@ -66,7 +72,7 @@ Access is available via Spark SQL, REST API, or JupyterHub.
    ```bash
    # In the project root
    cp .env.example .env
-   # Edit .env with your KB_AUTH_TOKEN
+   # Edit .env with your KBASE_AUTH_TOKEN
    ```
 
 ### Running the Observatory UI
@@ -82,40 +88,59 @@ Then open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
 ## Project Structure
 
 ```
-ke-pangenome-science/
-├── docs/                   # Shared knowledge base
-│   ├── overview.md         # Project goals & data workflow
-│   ├── schema.md           # Database table schemas
-│   ├── pitfalls.md         # SQL gotchas & common errors
-│   ├── discoveries.md      # Running log of insights
-│   └── research_ideas.md   # Future research directions
+BERIL-research-observatory/
+├── docs/                       # Shared knowledge base
+│   ├── collections.md          # Overview of all BERDL databases & tenants
+│   ├── schemas/                # Per-collection schema documentation
+│   │   ├── pangenome.md        # kbase_ke_pangenome (293K genomes)
+│   │   ├── fitnessbrowser.md   # kescience_fitnessbrowser (48 organisms)
+│   │   ├── genomes.md          # kbase_genomes (proteins, features)
+│   │   ├── biochemistry.md     # kbase_msd_biochemistry (reactions)
+│   │   ├── phenotype.md        # kbase_phenotype
+│   │   ├── uniprot.md          # kbase_uniprot
+│   │   ├── uniref.md           # kbase_uniref50/90/100
+│   │   ├── enigma.md           # enigma_coral
+│   │   ├── nmdc.md             # nmdc_arkin, nmdc_ncbi_biosamples
+│   │   ├── phagefoundry.md     # phagefoundry_* (4 genome browsers)
+│   │   ├── planetmicrobe.md    # planetmicrobe_*
+│   │   └── protect.md          # protect_genomedepot
+│   ├── overview.md             # Scientific context & data workflow
+│   ├── pitfalls.md             # SQL gotchas & common errors
+│   ├── performance.md          # Query optimization strategies
+│   ├── discoveries.md          # Running log of insights
+│   └── research_ideas.md       # Future research directions
 │
-├── data/                   # Shared data extracts
-│   ├── core_ogs_parts/     # Core orthologous groups
-│   └── ecotypes/           # Ecotype clustering data
+├── data/                       # Shared data extracts
 │
-├── projects/               # Individual research projects
-│   ├── cog_analysis/       # COG functional categories analysis
-│   ├── ecotype_analysis/   # Environment vs phylogeny effects
-│   └── pangenome_openness/ # Open vs closed pangenome patterns
+├── projects/                   # Individual research projects
+│   ├── cog_analysis/           # COG functional categories analysis
+│   ├── ecotype_analysis/       # Environment vs phylogeny effects
+│   ├── pangenome_openness/     # Open vs closed pangenome patterns
+│   ├── pangenome_pathway_geography/  # Pathways & biogeography
+│   ├── pangenome_pathway_ecology/    # Pathway ecology
+│   ├── resistance_hotspots/    # Antibiotic resistance analysis
+│   └── conservation_vs_fitness/  # Gene conservation vs fitness
 │
-├── exploratory/            # Ad-hoc analysis & prototypes
+├── exploratory/                # Ad-hoc analysis & prototypes
 │
-├── ui/                     # BERIL Research Observatory web app
-│   ├── app/                # FastAPI application
-│   ├── config/             # Collections and configuration
-│   └── content/            # Content files (discoveries, pitfalls)
+├── ui/                         # BERIL Research Observatory web app
+│   ├── app/                    # FastAPI application
+│   ├── config/                 # Collections and configuration
+│   └── content/                # Content files (discoveries, pitfalls)
 │
-└── .claude/                # Claude Code AI integration
+└── .claude/                    # Claude Code AI integration
     └── skills/
-        └── berdl/          # BERDL query skill for AI assistants
+        ├── berdl/              # BERDL query skill
+        ├── berdl-discover/     # Database discovery skill
+        └── hypothesis/         # Research hypothesis skill
 ```
 
 ### Key Directories
 
 | Directory | Purpose |
 |-----------|---------|
-| `docs/` | Shared knowledge base - document SQL pitfalls, performance strategies, discoveries |
+| `docs/` | Shared knowledge base - collection schemas, SQL pitfalls, performance strategies, discoveries |
+| `docs/schemas/` | Per-collection schema documentation for all BERDL databases |
 | `data/` | Shared data extracts reusable across projects |
 | `projects/` | Complete research projects with notebooks, data, and figures |
 | `exploratory/` | Scratch space for ad-hoc analysis and prototypes |
@@ -129,6 +154,9 @@ Access the BERDL JupyterHub at [https://hub.berdl.kbase.us](https://hub.berdl.kb
 
 ```python
 # In a JupyterHub notebook
+spark = get_spark_session()
+
+# Query any database in the lakehouse
 df = spark.sql("""
     SELECT s.GTDB_species, p.no_genomes, p.no_core
     FROM kbase_ke_pangenome.pangenome p
@@ -136,8 +164,13 @@ df = spark.sql("""
       ON p.gtdb_species_clade_id = s.gtdb_species_clade_id
     ORDER BY p.no_genomes DESC
     LIMIT 10
-""")
-df.show()
+""").toPandas()
+
+# Query fitness browser data
+fitness = spark.sql("""
+    SELECT orgId, genus, species, strain
+    FROM kescience_fitnessbrowser.organism
+""").toPandas()
 ```
 
 ### Via REST API
@@ -146,9 +179,16 @@ Query BERDL directly using the REST API:
 
 ```bash
 # Set your auth token
-AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
+AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
 
-# Execute a query
+# List all databases
+curl -s -X POST \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"use_hms": true, "filter_by_namespace": true}' \
+  https://hub.berdl.kbase.us/apis/mcp/delta/databases/list
+
+# Execute a query against any database
 curl -s -X POST \
   -H "Authorization: Bearer $AUTH_TOKEN" \
   -H "Content-Type: application/json" \
@@ -178,33 +218,51 @@ When you learn something valuable:
 
 1. Add it to `docs/discoveries.md` with the project tag
 2. Document SQL pitfalls in `docs/pitfalls.md`
-3. Share research ideas in `docs/research_ideas.md`
+3. Update schema docs in `docs/schemas/{collection}.md`
+4. Share research ideas in `docs/research_ideas.md`
+
+### Adding a New Database
+
+Use the `/berdl-discover` skill to introspect a new database:
+
+1. Run `/berdl-discover` to generate schema documentation
+2. Create `docs/schemas/{name}.md` with the generated output
+3. Add the database to `docs/collections.md`
+4. Optionally create a skill module in `.claude/skills/berdl/modules/{name}.md`
 
 ### Using AI Assistants
 
-This repository includes a BERDL skill for AI assistants (Claude Code, etc.) that enables:
+This repository includes BERDL skills for AI assistants (Claude Code, etc.) that enable:
 
 - Schema exploration and query generation
-- Understanding of table relationships
-- Common query patterns for pangenome analysis
+- Database discovery and documentation
+- Research hypothesis generation
+- Common query patterns across all collections
 
 See `.claude/skills/berdl/SKILL.md` for details.
 
 ## Key Data Collections
 
+For the full inventory of 35 databases, see [docs/collections.md](docs/collections.md).
+
 | Collection | Database ID | Scale | Use Cases |
 |------------|-------------|-------|-----------|
-| Pangenome | `kbase_ke_pangenome` | 293K genomes, 27K species | Comparative genomics, functional analysis |
-| Fitness Browser | `kescience_fitnessbrowser` | 40+ organisms | Essential genes, fitness effects |
-| Genomes | `kbase_genomes` | 16 tables | Structural genomics |
-| Biochemistry | `kbase_msd_biochemistry` | 4 tables | Metabolic modeling |
+| Pangenome | `kbase_ke_pangenome` | 293K genomes, 27K species, 1B genes | Comparative genomics, functional analysis |
+| Fitness Browser | `kescience_fitnessbrowser` | 48 organisms, 27M fitness scores | Essential genes, gene function, stress response |
+| Genomes | `kbase_genomes` | 293K genomes, 253M proteins | Protein sequences, structural genomics |
+| Biochemistry | `kbase_msd_biochemistry` | 56K reactions, 46K molecules | Metabolic modeling, thermodynamics |
+| Phenotype | `kbase_phenotype` | 182K conditions | Growth phenotypes |
+| ENIGMA | `enigma_coral` | 7K genomes, 596 sites | Environmental microbiology |
+| NMDC | `nmdc_arkin` | 48 studies, multi-omics | Microbiome analysis |
+| PhageFoundry | `phagefoundry_*` | 4 species | Phage-host interactions |
 
 ## Resources
 
 - **BERDL JupyterHub**: [https://hub.berdl.kbase.us](https://hub.berdl.kbase.us)
 - **KBase**: [https://www.kbase.us](https://www.kbase.us)
-- **Schema Documentation**: See `docs/schema.md`
-- **Query Pitfalls**: See `docs/pitfalls.md`
+- **Collections Overview**: See [docs/collections.md](docs/collections.md)
+- **Schema Documentation**: See [docs/schemas/](docs/schemas/)
+- **Query Pitfalls**: See [docs/pitfalls.md](docs/pitfalls.md)
 
 ## License
 

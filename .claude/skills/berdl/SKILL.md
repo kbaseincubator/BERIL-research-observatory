@@ -14,6 +14,10 @@ Query the KBase BERDL Data Lakehouse containing pangenome and biochemistry data.
 |----------|--------|-------------|
 | `kbase_ke_pangenome` | [pangenome.md](modules/pangenome.md) | 293K genomes, 27K species pangenomes |
 | `kbase_msd_biochemistry` | [biochemistry.md](modules/biochemistry.md) | ModelSEED reactions and compounds |
+| `kescience_fitnessbrowser` | See [docs/schemas/fitnessbrowser.md](../../../docs/schemas/fitnessbrowser.md) | 48 organisms, 27M fitness measurements |
+| `kbase_genomes` | See [docs/schemas/genomes.md](../../../docs/schemas/genomes.md) | 293K genomes, 253M protein sequences |
+
+For the full inventory of 35 databases across 9 tenants, see [docs/collections.md](../../../docs/collections.md).
 
 **Read the appropriate module** for database-specific tables, schemas, and query patterns.
 

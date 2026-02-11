@@ -1,11 +1,12 @@
 # BERDL Database: Performance & Scale Guide
 
-**Database**: `kbase_ke_pangenome`
-**Purpose**: Strategies for efficiently querying billion-row tables.
+**Purpose**: Strategies for efficiently querying BERDL databases, especially billion-row tables.
+
+The guidance below is primarily based on experience with `kbase_ke_pangenome` but applies to any large BERDL database. See [collections.md](collections.md) for the full database inventory.
 
 ---
 
-## Table Size Reference
+## Pangenome Table Size Reference
 
 | Table | Rows | Size Category | Default Query Strategy |
 |-------|------|---------------|----------------------|
@@ -351,6 +352,36 @@ core_only = spark.sql("""
 
 ---
 
+## Other Large Databases
+
+### Fitness Browser (`kescience_fitnessbrowser`)
+
+| Table | Rows | Strategy |
+|-------|------|----------|
+| `genefitness` | 27,410,721 | Filter by `orgId` |
+| `cofit` | 13,656,145 | Filter by `orgId` and `locusId` |
+| `ortholog` | millions | Filter by `orgId1` or `orgId2` |
+| `genedomain` | millions | Filter by `orgId` |
+
+### Genomes (`kbase_genomes`)
+
+| Table | Rows | Strategy |
+|-------|------|----------|
+| `feature` | 1,011,650,903 | Filter by genome via junction tables |
+| `encoded_feature` | 1,011,650,903 | Filter by genome via junction tables |
+| `name` | 1,046,526,298 | Filter by `name` or `entity_id` |
+| `protein` | 253,173,194 | Filter by `protein_id` |
+| All junction tables | ~1B each | Always filter by one entity |
+
+### Biochemistry (`kbase_msd_biochemistry`)
+
+| Table | Rows | Strategy |
+|-------|------|----------|
+| `reaction_similarity` | 671M+ | Always filter by `reaction_id` |
+| Other tables | <100K | Safe to scan |
+
+---
+
 ## Performance Checklist
 
 Before running a query:
@@ -358,7 +389,8 @@ Before running a query:
 - [ ] Is the target table >10M rows? If yes, add filters
 - [ ] Am I using `LIMIT` for exploration queries?
 - [ ] Am I aggregating in Spark before collecting?
-- [ ] Am I iterating per-species for cross-species analysis?
+- [ ] Am I iterating per-species/per-organism for cross-entity analysis?
 - [ ] Am I using pagination for large result sets?
 - [ ] For REST API: Is expected result <1M rows?
 - [ ] For REST API: Is query simple (no complex JOINs)?
+- [ ] Am I casting string columns to numeric types where needed?
