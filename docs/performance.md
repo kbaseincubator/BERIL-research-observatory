@@ -6,6 +6,42 @@ The guidance below is primarily based on experience with `kbase_ke_pangenome` bu
 
 ---
 
+## PySpark-First Development
+
+**Avoid calling `.toPandas()` on intermediate or large results.** It pulls all data from the Spark cluster to the driver node, which is slow and can cause out-of-memory errors.
+
+Instead, keep data as Spark DataFrames and use PySpark operations for filtering, joins, and aggregations. Only convert to pandas for final small results (plotting, CSV export, etc.).
+
+```python
+# BAD: Pull everything to driver, then filter in pandas
+df = spark.sql("SELECT * FROM kbase_ke_pangenome.gene_cluster").toPandas()
+core = df[df['is_core'] == 1]
+
+# GOOD: Filter in Spark, only collect the small result
+core = spark.sql("""
+    SELECT * FROM kbase_ke_pangenome.gene_cluster
+    WHERE is_core = 1
+    AND gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
+""")
+# Work with the Spark DataFrame...
+summary = core.groupBy("gtdb_species_clade_id").count()
+# Only convert to pandas at the end for plotting
+summary.toPandas().plot(kind='bar')
+```
+
+**When `.toPandas()` is appropriate:**
+- Final aggregated results (hundreds/thousands of rows)
+- Data needed for matplotlib/seaborn plotting
+- Small lookup tables (e.g., `pangenome` at 27K rows)
+- Exporting to CSV
+
+**When to stay in Spark:**
+- Filtering, joining, or aggregating large tables
+- Any intermediate step in a multi-step pipeline
+- Data that will be written back to parquet
+
+---
+
 ## Pangenome Table Size Reference
 
 | Table | Rows | Size Category | Default Query Strategy |
@@ -57,7 +93,7 @@ WHERE gc.gtdb_species_clade_id IN ('{species_in_clause}')
 GROUP BY gc.gtdb_species_clade_id, gc.is_core, ann.COG_category
 """
 
-result_df = spark.sql(query).toPandas()
+result_df = spark.sql(query)  # Keep as Spark DataFrame; call .toPandas() only for final plotting
 ```
 
 **Performance**: For 32 species analyzing COG distributions:
@@ -81,11 +117,11 @@ For very large species or >100 species total, iterate:
 
 ```python
 # Get target species list
-target_species = spark.sql("""
+target_species = [row.gtdb_species_clade_id for row in spark.sql("""
     SELECT gtdb_species_clade_id
     FROM kbase_ke_pangenome.pangenome
     WHERE no_genomes >= 50
-""").toPandas()['gtdb_species_clade_id'].tolist()
+""").collect()]
 
 # Process one species at a time
 results = []
@@ -99,10 +135,12 @@ for species_id in target_species:
         JOIN kbase_ke_pangenome.genome gm ON g.genome_id = gm.genome_id
         WHERE gm.gtdb_species_clade_id LIKE '{species_prefix}%'
         GROUP BY genome_id
-    """).toPandas()
+    """)
 
-    df['species'] = species_id
-    results.append(df)
+    # .toPandas() is fine here since we already aggregated to a small result per species
+    pdf = df.toPandas()
+    pdf['species'] = species_id
+    results.append(pdf)
 
 final = pd.concat(results)
 ```
@@ -126,11 +164,15 @@ for chunk in chunk_list(genome_ids, CHUNK_SIZE):
     result = spark.sql(f"""
         SELECT * FROM kbase_ke_pangenome.gene
         WHERE genome_id IN ({genome_list})
-    """).toPandas()
+    """)
 
     all_results.append(result)
 
-final = pd.concat(all_results)
+# Union Spark DataFrames instead of concatenating pandas frames
+from functools import reduce
+final = reduce(lambda a, b: a.union(b), all_results)
+# Only convert to pandas if you need local processing
+# final_pd = final.toPandas()
 ```
 
 ### Pattern 3: Pagination for Large Results
@@ -153,10 +195,10 @@ LIMIT 10000 OFFSET 10000
 
 ### Pattern 4: Aggregation Before Collection
 
-Aggregate in Spark before collecting to pandas:
+Do all filtering, joins, and aggregations in Spark. Only call `.toPandas()` on the final, small result:
 
 ```python
-# GOOD: Aggregate in Spark, collect summary
+# GOOD: Aggregate in Spark, collect small summary
 summary = spark.sql("""
     SELECT
         gtdb_species_clade_id,
@@ -164,7 +206,10 @@ summary = spark.sql("""
         SUM(CASE WHEN is_core = 1 THEN 1 ELSE 0 END) as n_core
     FROM kbase_ke_pangenome.gene_cluster
     GROUP BY gtdb_species_clade_id
-""").toPandas()
+""")
+
+# Convert to pandas only for plotting or export (27K rows — fine)
+summary_pd = summary.toPandas()
 
 # BAD: Collect all 132M rows then aggregate in pandas
 # all_clusters = spark.sql("SELECT * FROM gene_cluster").toPandas()  # DON'T DO THIS
@@ -192,20 +237,21 @@ ANI is stored as directional pairs within species. Always filter by species:
 
 ```python
 # Get genomes for target species first
-genomes = spark.sql("""
+genomes = [row.genome_id for row in spark.sql("""
     SELECT genome_id FROM kbase_ke_pangenome.genome
     WHERE gtdb_species_clade_id LIKE 's__Klebsiella_pneumoniae%'
-""").toPandas()['genome_id'].tolist()
+""").collect()]
 
 genome_list = ','.join([f"'{g}'" for g in genomes])
 
-# Query ANI only for those genomes
+# Query ANI only for those genomes — keep as Spark DataFrame
 ani = spark.sql(f"""
     SELECT genome1_id, genome2_id, ANI, AF
     FROM kbase_ke_pangenome.genome_ani
     WHERE genome1_id IN ({genome_list})
       AND genome2_id IN ({genome_list})
-""").toPandas()
+""")
+# .toPandas() only if species is small enough for local analysis
 ```
 
 ### `gene` and `gene_genecluster_junction` (1B+ rows)
@@ -339,15 +385,17 @@ query = """
 ### 3. Collecting Before Filtering
 
 ```python
-# BAD: Collect all, filter in pandas
+# BAD: Collect all 132M rows, filter in pandas
 df = spark.sql("SELECT * FROM kbase_ke_pangenome.gene_cluster").toPandas()
 core_only = df[df['is_core'] == 1]
 
-# GOOD: Filter in Spark, then collect
+# GOOD: Filter in Spark, keep as Spark DataFrame
 core_only = spark.sql("""
     SELECT * FROM kbase_ke_pangenome.gene_cluster
     WHERE is_core = 1
-""").toPandas()
+    AND gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
+""")
+# Only .toPandas() if the result is small enough for local processing
 ```
 
 ---
@@ -388,6 +436,8 @@ Before running a query:
 
 - [ ] Is the target table >10M rows? If yes, add filters
 - [ ] Am I using `LIMIT` for exploration queries?
+- [ ] Am I keeping data as Spark DataFrames until the final step?
+- [ ] Am I only calling `.toPandas()` on small, aggregated results?
 - [ ] Am I aggregating in Spark before collecting?
 - [ ] Am I iterating per-species/per-organism for cross-entity analysis?
 - [ ] Am I using pagination for large result sets?

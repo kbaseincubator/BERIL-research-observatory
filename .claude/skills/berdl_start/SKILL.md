@@ -148,3 +148,4 @@ Regardless of path chosen, surface these early:
 5. **Auth token** — stored in `.env` as `KBASE_AUTH_TOKEN` (not `KB_AUTH_TOKEN`).
 6. **String-typed numeric columns** — Many databases store numbers as strings. Always CAST before comparisons.
 7. **Gene clusters are species-specific** — Cannot compare cluster IDs across species. Use COG/KEGG/PFAM for cross-species comparisons.
+8. **Avoid unnecessary `.toPandas()`** — `.toPandas()` pulls all data to the driver node and can be very slow or cause OOM errors. Use PySpark DataFrame operations for filtering, joins, and aggregations. Only convert to pandas for final small results (plotting, CSV export).

@@ -86,9 +86,14 @@ from get_spark_session import get_spark_session
 spark = get_spark_session()
 ```
 
-Then query any database with:
+Then query any database — **keep data as Spark DataFrames** and use PySpark operations:
 ```python
-df = spark.sql("SELECT ... FROM database_name.table").toPandas()
+# Preferred: work with Spark DataFrames
+df = spark.sql("SELECT ... FROM database_name.table")
+df_filtered = df.filter(df.no_genomes >= 50).groupBy("phylum").count()
+
+# Only convert to pandas for final small results (plotting, export)
+plot_df = df_filtered.toPandas()
 ```
 
 **Benefits vs REST API**:
@@ -96,6 +101,8 @@ df = spark.sql("SELECT ... FROM database_name.table").toPandas()
 - Better performance on large joins
 - Full Spark SQL functionality
 - Can handle species with >500 genomes
+
+**Important**: Avoid calling `.toPandas()` on large intermediate results. It pulls all data to the driver node and can be very slow or cause out-of-memory errors. Do filtering, joins, and aggregations in Spark first.
 
 ### JupyterHub Workflow
 
