@@ -149,7 +149,7 @@ closedness = 1 - openness
 - **GTDB r214**: Genome Taxonomy Database version used for pangenome species
 
 ## Authors
-- **Christopher Neely** | ORCID: 0000-0002-2620-8948 | Author
+- **William J. Riehl** | ORCID: 0000-0002-3405-2744 | Author
 
 ## Related Projects
 
