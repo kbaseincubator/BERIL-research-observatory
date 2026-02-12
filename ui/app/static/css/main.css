@@ -205,6 +205,17 @@ a:hover {
   color: var(--accent-primary);
 }
 
+.logo-kbase {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
+
+.logo-separator {
+  color: var(--text-tertiary);
+  font-weight: 300;
+}
+
 .logo-icon {
   color: var(--accent-primary);
   font-size: 1.5rem;
