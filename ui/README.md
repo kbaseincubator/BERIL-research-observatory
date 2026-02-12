@@ -114,7 +114,11 @@ services:
 
 ### Building for SPIN:
 ```bash
-docker build -t registry.nersc.gov/kbase/beril-observatory:latest-amd64 --platform linux/amd64 --push
+docker build \
+  -t registry.nersc.gov/kbase/beril-observatory:latest \
+  --platform linux/amd64 \
+  --push \
+  .
 ```
 You must be logged in to NERSC to push.
 ```bash
