@@ -188,6 +188,7 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
         # Convert to HTML
         html_exporter = HTMLExporter()
         html_exporter.template_name = "classic"
+        html_exporter.theme = "dark"
         html_exporter.exclude_input_prompt = False
         html_exporter.exclude_output_prompt = False
 
