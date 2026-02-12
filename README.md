@@ -262,6 +262,7 @@ For the full inventory of 35 databases, see [docs/collections.md](docs/collectio
 
 ## Resources
 
+- **BERIL Observatory UI**: [http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/)
 - **BERDL JupyterHub**: [https://hub.berdl.kbase.us](https://hub.berdl.kbase.us)
 - **KBase**: [https://www.kbase.us](https://www.kbase.us)
 - **Collections Overview**: See [docs/collections.md](docs/collections.md)
