@@ -121,6 +121,39 @@
 
 ---
 
+### [fitness_modules] Pan-bacterial Fitness Modules via ICA
+**Status**: IN_PROGRESS
+**Priority**: HIGH
+**Effort**: Medium (3-4 weeks)
+
+**Research Question**: Can robust ICA decomposition of RB-TnSeq fitness compendia reveal conserved functional modules across bacteria, and can module context predict gene function better than cofitness alone?
+
+**Approach**:
+- Decompose gene-fitness matrices into independent components (modules) via robust ICA (100× FastICA + DBSCAN clustering)
+- Annotate modules with KEGG, SEED, and domain enrichments
+- Align modules across organisms using BBH ortholog fingerprints → module families
+- Predict function for hypothetical proteins using module and family context
+- Benchmark against cofitness voting, ortholog transfer, and domain-only baselines
+
+**Hypotheses**:
+- ICA modules capture biologically coherent gene groups (operons, regulons, pathways)
+- Conserved module families exist across phylogenetically diverse bacteria
+- Module-based predictions outperform single-method baselines for unannotated genes
+
+**Impact**: High — upgrades Fitness Browser from edge-based to module-based analysis; creates pan-bacterial regulon catalog
+
+**Progress**:
+- ✅ Project structure created: `projects/fitness_modules/`
+- ✅ 7 analysis notebooks (01-07) scaffolded
+- ✅ Reusable ICA pipeline: `src/ica_pipeline.py`
+- ⏳ Next: Run NB 01-02 on JupyterHub to select pilots and extract matrices
+- ⏳ Next: Run NB 03 locally for ICA decomposition
+- ⏳ Next: Run NB 04-07 for annotation, alignment, prediction, benchmarking
+
+**Location**: `projects/fitness_modules/`
+
+---
+
 ### [pangenome_openness + cog_analysis] Openness vs Functional Composition
 **Status**: PROPOSED
 **Priority**: HIGH
