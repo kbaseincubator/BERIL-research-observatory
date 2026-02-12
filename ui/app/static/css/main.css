@@ -105,7 +105,7 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   color: var(--text-primary);
-  background: var(--surface-base);
+  background: var(--surface-base) !important;
   margin: 0;
   padding: 0;
   min-height: 100vh;
