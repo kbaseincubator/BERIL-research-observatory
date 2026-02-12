@@ -181,6 +181,7 @@ class Project:
     contributors: list[Contributor] = field(default_factory=list)
     related_discoveries: list[str] = field(default_factory=list)
     related_ideas: list[str] = field(default_factory=list)
+    related_collections: list[str] = field(default_factory=list)
     raw_readme: str = ""
     review: Review | None = None
 

@@ -42,6 +42,14 @@ def slugify(text: str) -> str:
 class RepositoryParser:
     """Parse git repository file system into structured data."""
 
+    # Collection IDs to scan for in README text
+    _COLLECTION_IDS = [
+        "kbase_ke_pangenome", "kescience_fitnessbrowser", "kbase_msd_biochemistry",
+        "kbase_genomes", "enigma_coral", "kbase_phenotype", "nmdc_arkin",
+        "phagefoundry", "planetmicrobe", "protect_genomedepot",
+        "kbase_uniprot", "kbase_uniref",
+    ]
+
     def __init__(self, repo_path: Path | None = None):
         """Initialize parser with repository path."""
         self.repo_path = repo_path or settings.repo_dir
@@ -171,6 +179,9 @@ class RepositoryParser:
         # Parse review
         review = self._parse_review(project_dir)
 
+        # Extract collection references from README
+        related_collections = self._extract_collection_refs(readme_content)
+
         return Project(
             id=project_dir.name,
             title=title,
@@ -185,9 +196,14 @@ class RepositoryParser:
             created_date=created_date,
             updated_date=updated_date,
             contributors=contributors,
+            related_collections=related_collections,
             raw_readme=readme_content,
             review=review,
         )
+
+    def _extract_collection_refs(self, readme_content: str) -> list[str]:
+        """Extract BERDL collection IDs mentioned in README text."""
+        return [cid for cid in self._COLLECTION_IDS if cid in readme_content]
 
     def _parse_contributors(self, readme_content: str, project_id: str) -> list[Contributor]:
         """Parse contributors from ## Authors or ## Contributors section."""

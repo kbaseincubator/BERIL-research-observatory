@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Performance Tips - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Performance & Scale Guide</h1>
+    <p class="page-description">
+        Tips and query patterns for working efficiently with BERDL collections at scale.
+        Apply these on the <a href="https://hub.berdl.kbase.us">BERDL JupyterHub</a>.
+    </p>
+</div>
+
+{% for tip in tips %}
+<article class="card" id="{{ tip.id }}" style="margin-bottom: var(--space-4);">
+    <h3 class="card-title">{{ tip.title }}</h3>
+    <div class="card-content markdown-content">
+        {{ tip.description | markdown }}
+    </div>
+</article>
+{% else %}
+<p class="text-muted">No performance tips documented yet.</p>
+{% endfor %}
+{% endblock %}
