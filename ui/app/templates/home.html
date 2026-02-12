@@ -95,7 +95,7 @@
         {% for discovery in discoveries %}
         <article class="card">
             <div class="card-header">
-                <span class="badge badge-project">{{ discovery.project_tag | replace('_', ' ') | title }}</span>
+                <a href="/projects/{{ discovery.project_tag }}" class="badge badge-project">{{ discovery.project_tag | replace('_', ' ') | title }}</a>
             </div>
             <h3 class="card-title">
                 <a href="/knowledge/discoveries#{{ discovery.id }}">{{ discovery.title }}</a>

@@ -279,6 +279,15 @@ async def pitfalls_list(request: Request):
     return templates.TemplateResponse("knowledge/pitfalls.html", context)
 
 
+@app.get("/knowledge/performance", response_class=HTMLResponse)
+async def performance_tips(request: Request):
+    """Performance tips and query patterns page."""
+    repo_data = get_repo_data(request)
+    context = get_base_context(request)
+    context["tips"] = repo_data.performance_tips
+    return templates.TemplateResponse("knowledge/performance.html", context)
+
+
 @app.get("/knowledge/ideas", response_class=HTMLResponse)
 async def research_ideas(request: Request):
     """Research ideas board page."""

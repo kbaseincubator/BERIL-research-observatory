@@ -95,6 +95,21 @@
 </section>
 {% endif %}
 
+<!-- Data Collections -->
+{% if project.related_collections %}
+<section class="section">
+    <h2>Data Collections</h2>
+    <div class="grid grid-3">
+        {% for coll_id in project.related_collections %}
+        <a href="/collections/{{ coll_id }}" class="card" style="text-decoration: none;">
+            <code style="color: var(--text-primary);">{{ coll_id }}</code>
+            <p class="text-small mt-4" style="margin-bottom: 0; color: var(--text-link);">View collection &rarr;</p>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
 <!-- Review -->
 {% if project.review %}
 <section class="section">

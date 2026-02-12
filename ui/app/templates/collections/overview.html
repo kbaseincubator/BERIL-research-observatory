@@ -85,8 +85,8 @@
             </thead>
             <tbody>
                 {% for coll in reference_collections %}
-                <tr>
-                    <td><strong>{{ coll.name }}</strong></td>
+                <tr onclick="window.location='/collections/{{ coll.id }}'" style="cursor: pointer;">
+                    <td><a href="/collections/{{ coll.id }}" style="text-decoration: none; color: inherit;"><strong>{{ coll.name }}</strong></a></td>
                     <td><code>{{ coll.id }}</code></td>
                     <td>{{ coll.description[:100] }}{% if coll.description|length > 100 %}...{% endif %}</td>
                 </tr>
