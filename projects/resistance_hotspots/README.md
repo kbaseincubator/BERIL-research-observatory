@@ -165,7 +165,7 @@ resistance_hotspots/
 - PATRIC: https://www.patricbrc.org/
 
 ## Authors
-- **Your Name Here** | Your role
+- **William J. Riehl** | ORCID: 0000-0002-3405-2744 | Author
 
 ## Notes
 
