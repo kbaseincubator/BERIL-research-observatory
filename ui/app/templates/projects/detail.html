@@ -95,6 +95,30 @@
 </section>
 {% endif %}
 
+<!-- Discoveries -->
+{% if project_discoveries %}
+<section class="section">
+    <h2>Discoveries</h2>
+    {% for discovery in project_discoveries %}
+    <div class="card" style="margin-bottom: var(--space-4);">
+        <div class="card-header">
+            <h4 class="card-title" style="margin: 0;">
+                <a href="/knowledge/discoveries#{{ discovery.id }}">{{ discovery.title }}</a>
+            </h4>
+            {% if discovery.date %}
+            <span class="text-muted text-small">{{ discovery.date.strftime('%B %Y') }}</span>
+            {% endif %}
+        </div>
+        <div class="card-content markdown-content text-small">
+            {{ discovery.content[:300] | markdown }}{% if discovery.content|length > 300 %}
+            <a href="/knowledge/discoveries#{{ discovery.id }}" class="text-small">Read more &rarr;</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endif %}
+
 <!-- Data Collections -->
 {% if project.related_collections %}
 <section class="section">

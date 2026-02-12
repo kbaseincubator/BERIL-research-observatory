@@ -142,6 +142,12 @@ async def project_detail(request: Request, project_id: str):
         return templates.TemplateResponse("error.html", context, status_code=404)
 
     context["project"] = project
+
+    # Find discoveries from this project
+    context["project_discoveries"] = [
+        d for d in repo_data.discoveries if d.project_tag == project_id
+    ]
+
     return templates.TemplateResponse("projects/detail.html", context)
 
 
@@ -240,6 +246,11 @@ async def collection_detail(request: Request, collection_id: str):
 
     # Pass collection-specific schema tables (if any schema doc exists)
     context["tables"] = repo_data.get_tables_for_collection(collection_id)
+
+    # Find projects that reference this collection
+    context["related_projects"] = [
+        p for p in repo_data.projects if collection_id in p.related_collections
+    ]
 
     return templates.TemplateResponse("collections/detail.html", context)
 

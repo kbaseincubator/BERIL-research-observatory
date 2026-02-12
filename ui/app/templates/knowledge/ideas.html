@@ -104,6 +104,9 @@
                 {% if idea.effort %}
                 <span class="badge badge-proposed">{{ idea.effort }}</span>
                 {% endif %}
+                {% for tag in idea.cross_project_tags %}
+                <a href="/projects/{{ tag }}" class="badge badge-project">{{ tag | replace('_', ' ') | title }}</a>
+                {% endfor %}
             </div>
         </div>
         {% else %}
@@ -130,6 +133,9 @@
                 {% else %}
                 <span class="badge badge-low">Low</span>
                 {% endif %}
+                {% for tag in idea.cross_project_tags %}
+                <a href="/projects/{{ tag }}" class="badge badge-project">{{ tag | replace('_', ' ') | title }}</a>
+                {% endfor %}
             </div>
         </div>
         {% else %}
@@ -148,6 +154,13 @@
         <div class="idea-card" id="{{ idea.id }}">
             <div class="idea-title">{{ idea.title }}</div>
             <div class="idea-question">{{ idea.research_question[:100] | markdown_inline }}{% if idea.research_question|length > 100 %}...{% endif %}</div>
+            {% if idea.cross_project_tags %}
+            <div class="idea-meta">
+                {% for tag in idea.cross_project_tags %}
+                <a href="/projects/{{ tag }}" class="badge badge-project">{{ tag | replace('_', ' ') | title }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
         {% else %}
         <p class="text-muted text-small">No completed ideas yet</p>

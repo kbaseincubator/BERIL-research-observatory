@@ -347,9 +347,10 @@
     <h2>Sub-Collections</h2>
     <div class="grid grid-2">
         {% for sub_id in collection.sub_collections %}
-        <div class="card">
-            <code>{{ sub_id }}</code>
-        </div>
+        <a href="/collections/{{ sub_id }}" class="card" style="text-decoration: none;">
+            <code style="color: var(--text-primary);">{{ sub_id }}</code>
+            <p class="text-small mt-4" style="margin-bottom: 0; color: var(--text-link);">View collection &rarr;</p>
+        </a>
         {% endfor %}
     </div>
 </section>
@@ -369,6 +370,21 @@
                     <p class="text-muted text-small" style="margin-top: var(--space-1);">{{ rel.description[:80] }}...</p>
                 </div>
             </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Related Projects -->
+{% if related_projects %}
+<section class="section">
+    <h2>Projects Using This Collection</h2>
+    <div class="grid grid-2">
+        {% for proj in related_projects %}
+        <a href="/projects/{{ proj.id }}" class="card" style="text-decoration: none;">
+            <h4 style="margin-bottom: var(--space-2); color: var(--text-primary);">{{ proj.title }}</h4>
+            <p class="text-muted text-small" style="margin-bottom: 0;">{{ proj.research_question[:120] }}{% if proj.research_question|length > 120 %}...{% endif %}</p>
         </a>
         {% endfor %}
     </div>
