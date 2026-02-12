@@ -47,7 +47,7 @@ class Settings(BaseSettings):
         return self.cache_dir / "indexdir"
 
     # App settings
-    app_name: str = "BERIL Research Observatory"
+    app_name: str = "KBase / BERIL Research Observatory"
     app_description: str = "AI-powered exploration of the KBase Data Lakehouse"
     debug: bool = False
 
