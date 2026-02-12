@@ -66,3 +66,65 @@ To add new dependencies, update `pyproject.toml` and run:
 ```bash
 uv sync
 ```
+
+## Docker Deployment
+
+The Dockerfile is located at the repository root since the UI needs access to the entire repository (projects, docs, data directories).
+
+### Build the Docker Image
+
+From the repository root:
+
+```bash
+docker build -t beril-observatory-ui .
+```
+
+### Run the Container
+
+```bash
+docker run -p 8000:8000 beril-observatory-ui
+```
+
+The UI will be available at [http://localhost:8000](http://localhost:8000)
+
+### Run with Environment Variables
+
+If you need to pass environment variables (like auth tokens):
+
+```bash
+docker run -p 8000:8000 --env-file .env beril-observatory-ui
+```
+
+### Docker Compose
+
+For production deployment with docker-compose (from repository root):
+
+```yaml
+version: '3.8'
+services:
+  ui:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: unless-stopped
+```
+
+
+### Building for SPIN:
+```bash
+docker build -t registry.nersc.gov/kbase/beril-observatory:latest-amd64 --platform linux/amd64 --push
+```
+You must be logged in to NERSC to push.
+```bash
+docker login registry.nersc.gov
+``` 
+Use your NERSC username and password (no MFA)
+
+### Deploying on SPIN
+* Push a new image
+* Login to SPIN at https://rancher2.nersc.spin.gov
+* Go to Development -> Workflows -> Deployments
+* In the `knowledge-engine` namespace, go to `beril-observatory`
+* Hit the 3 dots menu on the far right, and select redeploy.
