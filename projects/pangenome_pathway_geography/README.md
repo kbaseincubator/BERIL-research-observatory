@@ -121,7 +121,7 @@
 **Note**: Original notebooks deprecated due to incorrect pathway counting (see CORRECTIONS.md)
 
 ## Authors
-- **William J. Riehl** | ORCID: 0000-0002-3405-2744 | Author
+- **Christopher Neely** | ORCID: 0000-0002-2620-8948 | Author
 
 ## Related Work
 
