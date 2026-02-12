@@ -56,6 +56,7 @@ Current projects:
 - `projects/pangenome_pathway_geography/` - Pangenome openness, metabolic pathways, and biogeography
 - `projects/resistance_hotspots/` - Antibiotic resistance hotspot analysis
 - `projects/conservation_vs_fitness/` - Gene conservation vs fitness browser data
+- `projects/fitness_modules/` - Pan-bacterial fitness modules via ICA decomposition
 
 ## Data Organization
 
