@@ -7,26 +7,10 @@ from pathlib import Path
 import yaml
 
 from .config import settings
-from .models import (
-    Collection,
-    CollectionCategory,
-    CollectionTable,
-    Column,
-    DataFile,
-    Discovery,
-    IdeaStatus,
-    Notebook,
-    PerformanceTip,
-    Pitfall,
-    Priority,
-    Project,
-    ProjectStatus,
-    RepositoryData,
-    ResearchIdea,
-    SampleQuery,
-    Table,
-    Visualization,
-)
+from .models import (Collection, CollectionCategory, CollectionTable, Column,
+                     DataFile, Discovery, IdeaStatus, Notebook, PerformanceTip,
+                     Pitfall, Priority, Project, ProjectStatus, RepositoryData,
+                     ResearchIdea, SampleQuery, Table, Visualization)
 
 
 def slugify(text: str) -> str:
@@ -89,7 +73,9 @@ class RepositoryParser:
             if project:
                 projects.append(project)
 
-        return sorted(projects, key=lambda p: p.updated_date or datetime.min, reverse=True)
+        return sorted(
+            projects, key=lambda p: p.updated_date or datetime.min, reverse=True
+        )
 
     def _parse_project_dir(self, project_dir: Path) -> Project | None:
         """Parse single project directory."""
@@ -168,7 +154,9 @@ class RepositoryParser:
 
         return sorted(notebooks, key=lambda n: n.filename)
 
-    def _parse_data_dir(self, project_dir: Path) -> tuple[list[Visualization], list[DataFile]]:
+    def _parse_data_dir(
+        self, project_dir: Path
+    ) -> tuple[list[Visualization], list[DataFile]]:
         """Parse visualizations and data files from project/data/ directory."""
         visualizations = []
         data_files = []
@@ -242,7 +230,10 @@ class RepositoryParser:
                 content_text = "\n".join(lines[1:]).strip()
 
                 # Skip template section
-                if "Brief title" in title or "Description of what was discovered" in content_text:
+                if (
+                    "Brief title" in title
+                    or "Description of what was discovered" in content_text
+                ):
                     continue
 
                 discovery = Discovery(
@@ -303,7 +294,11 @@ class RepositoryParser:
             # Get description (first paragraph after name)
             description = ""
             for i, line in enumerate(lines[1:], 1):
-                if line.strip() and not line.startswith("|") and not line.startswith("-"):
+                if (
+                    line.strip()
+                    and not line.startswith("|")
+                    and not line.startswith("-")
+                ):
                     description = line.strip()
                     break
 
@@ -419,7 +414,9 @@ class RepositoryParser:
             description = "\n".join(lines[1:]).strip()
 
             # Try to extract code example
-            code_match = re.search(r"```(?:sql|python)\n(.*?)```", description, re.DOTALL)
+            code_match = re.search(
+                r"```(?:sql|python)\n(.*?)```", description, re.DOTALL
+            )
             code_example = code_match.group(1).strip() if code_match else None
 
             tips.append(
@@ -478,7 +475,9 @@ class RepositoryParser:
             # Extract structured fields
             status_match = re.search(r"\*\*Status\*\*:\s*(\w+)", section_content)
             priority_match = re.search(r"\*\*Priority\*\*:\s*(\w+)", section_content)
-            effort_match = re.search(r"\*\*Effort\*\*:\s*(.+?)(?:\n|$)", section_content)
+            effort_match = re.search(
+                r"\*\*Effort\*\*:\s*(.+?)(?:\n|$)", section_content
+            )
             research_q_match = re.search(
                 r"\*\*Research Question\*\*:\s*(.+?)(?=\n\n|\*\*|\Z)",
                 section_content,
@@ -494,7 +493,9 @@ class RepositoryParser:
                 section_content,
                 re.DOTALL,
             )
-            impact_match = re.search(r"\*\*Impact\*\*:\s*(.+?)(?:\n|$)", section_content)
+            impact_match = re.search(
+                r"\*\*Impact\*\*:\s*(.+?)(?:\n|$)", section_content
+            )
 
             # Parse status
             status = IdeaStatus.PROPOSED
@@ -520,11 +521,17 @@ class RepositoryParser:
                 ResearchIdea(
                     id=slugify(title),
                     title=title,
-                    research_question=research_q_match.group(1).strip() if research_q_match else "",
+                    research_question=research_q_match.group(1).strip()
+                    if research_q_match
+                    else "",
                     status=status,
                     priority=priority,
-                    hypothesis=hypothesis_match.group(1).strip() if hypothesis_match else None,
-                    approach=approach_match.group(1).strip() if approach_match else None,
+                    hypothesis=hypothesis_match.group(1).strip()
+                    if hypothesis_match
+                    else None,
+                    approach=approach_match.group(1).strip()
+                    if approach_match
+                    else None,
                     effort=effort_match.group(1).strip() if effort_match else None,
                     impact=impact_match.group(1).strip() if impact_match else None,
                     cross_project_tags=[source_tag],
