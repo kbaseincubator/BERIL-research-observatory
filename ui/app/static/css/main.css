@@ -1019,6 +1019,58 @@ pre code {
   margin-top: 0;
 }
 
+/* ============================================
+   Review Styles
+   ============================================ */
+
+.review-banner {
+  display: flex;
+  align-items: center;
+  background: var(--surface-overlay);
+  border-left: 4px solid var(--accent-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.review-ai-label {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--accent-secondary-bg);
+  color: var(--accent-secondary);
+}
+
+.review-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--surface-border);
+  border-left: 4px solid var(--accent-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.review-card:hover {
+  border-color: var(--surface-border-light);
+  border-left-color: var(--accent-secondary);
+}
+
+.badge-reviewed {
+  background: var(--status-completed-bg);
+  color: var(--status-completed);
+}
+
+.badge-needs-re-review {
+  background: var(--accent-secondary-bg);
+  color: var(--accent-secondary);
+}
+
 .markdown-content table {
   border-collapse: collapse;
   width: 100%;

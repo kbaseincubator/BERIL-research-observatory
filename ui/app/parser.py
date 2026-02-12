@@ -24,6 +24,7 @@ from .models import (
     ProjectStatus,
     RepositoryData,
     ResearchIdea,
+    Review,
     SampleQuery,
     Table,
     Visualization,
@@ -165,6 +166,9 @@ class RepositoryParser:
         created_date = datetime.fromtimestamp(readme_path.stat().st_ctime)
         updated_date = datetime.fromtimestamp(readme_path.stat().st_mtime)
 
+        # Parse review
+        review = self._parse_review(project_dir)
+
         return Project(
             id=project_dir.name,
             title=title,
@@ -180,6 +184,7 @@ class RepositoryParser:
             updated_date=updated_date,
             contributors=contributors,
             raw_readme=readme_content,
+            review=review,
         )
 
     def _parse_contributors(self, readme_content: str, project_id: str) -> list[Contributor]:
@@ -226,6 +231,64 @@ class RepositoryParser:
             )
 
         return contributors
+
+    def _parse_review(self, project_dir: Path) -> Review | None:
+        """Parse REVIEW.md from a project directory."""
+        review_path = project_dir / "REVIEW.md"
+        if not review_path.exists():
+            return None
+
+        raw_content = review_path.read_text()
+
+        # Parse YAML frontmatter
+        reviewer = "BERIL Automated Review"
+        date = None
+        project_id = project_dir.name
+
+        frontmatter_match = re.match(r"^---\s*\n(.*?)\n---\s*\n", raw_content, re.DOTALL)
+        body = raw_content
+        if frontmatter_match:
+            frontmatter_text = frontmatter_match.group(1)
+            body = raw_content[frontmatter_match.end():]
+
+            try:
+                frontmatter = yaml.safe_load(frontmatter_text)
+                if isinstance(frontmatter, dict):
+                    reviewer = frontmatter.get("reviewer", reviewer)
+                    project_id = frontmatter.get("project", project_id)
+                    date_val = frontmatter.get("date")
+                    if isinstance(date_val, datetime):
+                        date = date_val
+                    elif date_val:
+                        try:
+                            date = datetime.strptime(str(date_val), "%Y-%m-%d")
+                        except ValueError:
+                            pass
+            except yaml.YAMLError:
+                pass
+
+        # Fall back to file mtime if no date in frontmatter
+        if date is None:
+            date = datetime.fromtimestamp(review_path.stat().st_mtime)
+
+        # Extract sections from body
+        summary = self._extract_section(body, "Summary")
+        methodology = self._extract_section(body, "Methodology")
+        code_quality = self._extract_section(body, "Code Quality")
+        findings_assessment = self._extract_section(body, "Findings Assessment")
+        suggestions = self._extract_section(body, "Suggestions")
+
+        return Review(
+            reviewer=reviewer,
+            date=date,
+            project_id=project_id,
+            summary=summary,
+            methodology=methodology,
+            code_quality=code_quality,
+            findings_assessment=findings_assessment,
+            suggestions=suggestions,
+            raw_content=raw_content,
+        )
 
     def _extract_section(self, content: str, section_name: str) -> str | None:
         """Extract content between a section header and the next header."""
