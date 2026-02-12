@@ -27,11 +27,9 @@
             {% endif %}
         </div>
 
-        <!-- Collection Badge -->
+        <!-- Project ID Badge -->
         <div style="margin-bottom: var(--space-4);">
-            <a href="/collections/kbase_ke_pangenome" class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6; text-decoration: none;">
-                Pangenome
-            </a>
+            <span class="badge badge-project">{{ project.id | replace('_', ' ') | title }}</span>
         </div>
 
         <div class="card-content">
@@ -46,6 +44,9 @@
 
         <div class="card-footer">
             <div class="card-meta">
+                {% if project.contributors %}
+                <span>{{ project.contributors|length }} author{% if project.contributors|length != 1 %}s{% endif %}</span>
+                {% endif %}
                 {% if project.notebooks %}
                 <span>{{ project.notebooks|length }} notebook{% if project.notebooks|length != 1 %}s{% endif %}</span>
                 {% endif %}

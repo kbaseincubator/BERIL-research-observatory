@@ -22,10 +22,10 @@
         {% endif %}
     </div>
     <div style="margin-top: var(--space-2);">
-        <span class="text-muted text-small">Collection:</span>
-        <a href="/collections/kbase_ke_pangenome" class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6; text-decoration: none; margin-left: var(--space-2);">
-            Pangenome
-        </a>
+        <span class="text-muted text-small">Project:</span>
+        <span class="badge badge-project" style="margin-left: var(--space-2);">
+            {{ project.id | replace('_', ' ') | title }}
+        </span>
     </div>
 </div>
 
@@ -65,6 +65,36 @@
 </section>
 {% endif %}
 
+<!-- Authors -->
+{% if project.contributors %}
+<section class="section">
+    <h2>Authors</h2>
+    <div class="contributors-list">
+        {% for contributor in project.contributors %}
+        <div class="contributor-card">
+            <div class="contributor-info">
+                <span class="contributor-name">{{ contributor.name }}</span>
+                {% if contributor.affiliation %}
+                <span class="contributor-affiliation">({{ contributor.affiliation }})</span>
+                {% endif %}
+            </div>
+            <div class="contributor-meta">
+                {% if contributor.orcid %}
+                <a href="{{ contributor.orcid_url }}" target="_blank" rel="noopener" class="orcid-link">
+                    <img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" alt="ORCID" width="16" height="16">
+                    {{ contributor.orcid }}
+                </a>
+                {% endif %}
+                {% if contributor.roles %}
+                <span class="contributor-roles">{{ contributor.roles | join(', ') }}</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
 <!-- Visualizations -->
 {% if project.visualizations %}
 <section class="section">
@@ -73,7 +103,7 @@
         {% for viz in project.visualizations %}
         <div class="card" style="padding: var(--space-3);">
             <img
-                src="/project-assets/{{ project.id }}/data/{{ viz.filename }}"
+                src="/project-assets/{{ viz.path | replace('projects/', '', 1) }}"
                 alt="{{ viz.title }}"
                 style="width: 100%; height: auto; border-radius: var(--radius-sm);"
                 loading="lazy"

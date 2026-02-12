@@ -300,25 +300,217 @@ collections:
     related_collections: []
 
   - id: enigma_coral
-    name: ENIGMA Coral
+    name: ENIGMA CORAL
     category: domain
     icon: "&#129712;"  # Coral emoji
     description: >
-      ENIGMA project coral microbiome data. Taxonomic and functional profiles
-      of coral-associated microbial communities.
+      Environmental microbiology data from the ENIGMA SFA project. Includes
+      samples, genomes, communities, and strains for studying microbial
+      ecology at contaminated sites.
     philosophy: >
-      Understand coral microbiome ecology. Study microbial community
+      Understand environmental microbial ecology. Study microbial community
       composition, functional potential, and environmental associations
-      in coral ecosystems.
+      across contaminated and reference sites.
     data_sources:
-      - ENIGMA project
+      - ENIGMA SFA
     scale_stats:
-      samples: null
+      taxa: 3000
+      genomes: 7000
+      tables: 45
+    key_tables:
+      - name: sample
+        description: Environmental samples
+        row_count: null
+      - name: genome
+        description: Microbial genomes
+        row_count: null
+      - name: community
+        description: Microbial community profiles
+        row_count: null
+      - name: strain
+        description: Strain information
+        row_count: null
     sample_queries:
-      - title: Get coral microbiome samples
+      - title: Get ENIGMA samples
         query: |
           SELECT *
           FROM enigma_coral.sample
+          LIMIT 20
+    related_collections: []
+
+  - id: nmdc_arkin
+    name: NMDC Multi-omics
+    category: domain
+    icon: "&#128300;"  # Microscope emoji
+    description: >
+      Multi-omics analysis data from the National Microbiome Data
+      Collaborative. Includes functional annotations, embeddings,
+      metabolomics, proteomics, lipidomics, and microbial trait data
+      for integrated microbiome analysis.
+    philosophy: >
+      Enable integrated microbiome analysis across multiple omics layers.
+      Combine metabolomics, proteomics, and metagenomics with standardized
+      annotations and embeddings for comprehensive sample characterization.
+    data_sources:
+      - NMDC
+      - COG
+      - KEGG
+      - MetaCyc
+      - GO
+    scale_stats:
+      studies: 48
+      metabolomics_records: "3M+"
+      lipidomics_records: "1.4M+"
+      tables: "60+"
+    key_tables:
+      - name: annotation_terms_unified
+        description: Unified annotation terms (COG, EC, GO, KEGG, MetaCyc)
+        row_count: 67353
+      - name: metabolomics_gold
+        description: Metabolomics measurements
+        row_count: 3129061
+      - name: lipidomics_gold
+        description: Lipidomics measurements
+        row_count: 1395867
+      - name: embeddings_v1
+        description: 256-dimensional sample embeddings
+        row_count: 5316
+      - name: trait_features
+        description: Microbial trait profiles (90+ traits)
+        row_count: null
+      - name: study_table
+        description: Study definitions
+        row_count: 48
+    sample_queries:
+      - title: Get NMDC studies
+        query: |
+          SELECT *
+          FROM nmdc_arkin.study_table
+      - title: Get metabolomics data
+        query: |
+          SELECT *
+          FROM nmdc_arkin.metabolomics_gold
+          LIMIT 20
+    related_collections:
+      - kbase_ke_pangenome
+
+  - id: nmdc_ncbi_biosamples
+    name: NMDC BioSamples
+    category: domain
+    icon: "&#128300;"  # Microscope emoji
+    description: >
+      Harmonized NCBI BioSample metadata from the National Microbiome Data
+      Collaborative. Standardized attributes, environmental triads, and
+      dimensional statistics for biosample integration.
+    philosophy: >
+      Standardize biosample metadata for cross-study comparisons. Enable
+      sample discovery and integration across microbiome studies.
+    data_sources:
+      - NCBI BioSample
+      - NMDC
+    scale_stats:
+      tables: 17
+    key_tables:
+      - name: biosamples_flattened
+        description: Flattened biosample records
+        row_count: null
+      - name: env_triads_flattened
+        description: Environmental triads (broad/local/medium)
+        row_count: null
+      - name: biosamples_attributes
+        description: Biosample attributes
+        row_count: null
+    sample_queries:
+      - title: Get biosamples
+        query: |
+          SELECT *
+          FROM nmdc_ncbi_biosamples.biosamples_flattened
+          LIMIT 20
+    related_collections:
+      - nmdc_arkin
+
+  - id: planetmicrobe
+    name: PlanetMicrobe
+    category: domain
+    icon: "&#127754;"  # Ocean wave emoji
+    description: >
+      Marine microbial ecology data including oceanographic sampling
+      campaigns, environmental samples, sequencing experiments, and
+      taxonomic/functional profiles from metagenomic and amplicon studies.
+    philosophy: >
+      Catalog marine microbial diversity. Connect oceanographic sampling
+      with microbial community composition and function for global-scale
+      marine ecology research.
+    data_sources:
+      - PlanetMicrobe
+    scale_stats:
+      samples: 2371
+      experiments: 5946
+      sampling_events: 1151
+      tables: 30
+    sub_collections:
+      - planetmicrobe_planetmicrobe
+      - planetmicrobe_planetmicrobe_raw
+    key_tables:
+      - name: sample
+        description: Environmental samples
+        row_count: 2371
+      - name: experiment
+        description: Sequencing experiments
+        row_count: 5946
+      - name: sampling_event
+        description: Sampling events with coordinates
+        row_count: 1151
+      - name: campaign
+        description: Oceanographic campaigns/cruises
+        row_count: null
+    sample_queries:
+      - title: Get marine samples
+        query: |
+          SELECT *
+          FROM planetmicrobe_planetmicrobe.sample
+          LIMIT 20
+      - title: Get sampling events
+        query: |
+          SELECT *
+          FROM planetmicrobe_planetmicrobe.sampling_event
+          LIMIT 20
+    related_collections: []
+
+  - id: protect_genomedepot
+    name: PROTECT Pathogen Browser
+    category: domain
+    icon: "&#129440;"  # Microbe emoji
+    description: >
+      Pathogen genome browser using the GenomeDepot format. Contains genome,
+      gene, annotation, strain, sample, and taxon data for pathogen
+      surveillance and research.
+    philosophy: >
+      Support pathogen surveillance research. Catalog pathogen genomes,
+      track strain variation, and enable comparative genomic analysis
+      for public health applications.
+    data_sources:
+      - PROTECT
+    scale_stats:
+      tables: 6
+    key_tables:
+      - name: browser_genome
+        description: Pathogen genome records
+        row_count: null
+      - name: browser_gene_sampled
+        description: Sampled gene records
+        row_count: null
+      - name: browser_strain
+        description: Strain information
+        row_count: null
+      - name: browser_taxon
+        description: Taxonomic information
+        row_count: null
+    sample_queries:
+      - title: Get pathogen genomes
+        query: |
+          SELECT *
+          FROM protect_genomedepot.browser_genome
           LIMIT 20
     related_collections: []
 

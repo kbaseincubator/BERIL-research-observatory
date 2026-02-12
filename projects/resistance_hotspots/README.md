@@ -164,9 +164,8 @@ resistance_hotspots/
 - GTDB: https://gtdb.ecogenomic.org/
 - PATRIC: https://www.patricbrc.org/
 
-## Contributors
-
-- Initial project design: BERIL Research Observatory
+## Authors
+- **Your Name Here** | Your role
 
 ## Notes
 

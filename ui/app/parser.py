@@ -7,10 +7,27 @@ from pathlib import Path
 import yaml
 
 from .config import settings
-from .models import (Collection, CollectionCategory, CollectionTable, Column,
-                     DataFile, Discovery, IdeaStatus, Notebook, PerformanceTip,
-                     Pitfall, Priority, Project, ProjectStatus, RepositoryData,
-                     ResearchIdea, SampleQuery, Table, Visualization)
+from .models import (
+    Collection,
+    CollectionCategory,
+    CollectionTable,
+    Column,
+    Contributor,
+    DataFile,
+    Discovery,
+    IdeaStatus,
+    Notebook,
+    PerformanceTip,
+    Pitfall,
+    Priority,
+    Project,
+    ProjectStatus,
+    RepositoryData,
+    ResearchIdea,
+    SampleQuery,
+    Table,
+    Visualization,
+)
 
 
 def slugify(text: str) -> str:
@@ -38,6 +55,9 @@ class RepositoryParser:
         research_ideas = self.parse_research_ideas()
         collections = self.parse_collections()
 
+        # Aggregate unique contributors across all projects
+        contributors = self._aggregate_contributors(projects)
+
         # Compute stats
         total_notebooks = sum(len(p.notebooks) for p in projects)
         total_visualizations = sum(len(p.visualizations) for p in projects)
@@ -51,11 +71,45 @@ class RepositoryParser:
             performance_tips=performance_tips,
             research_ideas=research_ideas,
             collections=collections,
+            contributors=contributors,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
             last_updated=datetime.now(),
         )
+
+    def _aggregate_contributors(self, projects: list[Project]) -> list[Contributor]:
+        """Merge contributors across projects by lowercased name."""
+        merged: dict[str, Contributor] = {}
+
+        for project in projects:
+            for contrib in project.contributors:
+                key = contrib.name.lower()
+                if key in merged:
+                    existing = merged[key]
+                    # Union project_ids
+                    for pid in contrib.project_ids:
+                        if pid not in existing.project_ids:
+                            existing.project_ids.append(pid)
+                    # Union roles
+                    for role in contrib.roles:
+                        if role not in existing.roles:
+                            existing.roles.append(role)
+                    # Take first non-null affiliation/orcid
+                    if not existing.affiliation and contrib.affiliation:
+                        existing.affiliation = contrib.affiliation
+                    if not existing.orcid and contrib.orcid:
+                        existing.orcid = contrib.orcid
+                else:
+                    merged[key] = Contributor(
+                        name=contrib.name,
+                        affiliation=contrib.affiliation,
+                        orcid=contrib.orcid,
+                        roles=list(contrib.roles),
+                        project_ids=list(contrib.project_ids),
+                    )
+
+        return sorted(merged.values(), key=lambda c: c.name.lower())
 
     def parse_projects(self) -> list[Project]:
         """Parse all projects from projects/ directory."""
@@ -106,6 +160,9 @@ class RepositoryParser:
         # Parse visualizations and data files
         visualizations, data_files = self._parse_data_dir(project_dir)
 
+        # Parse contributors
+        contributors = self._parse_contributors(readme_content, project_dir.name)
+
         # Get file modification times as proxy for dates
         created_date = datetime.fromtimestamp(readme_path.stat().st_ctime)
         updated_date = datetime.fromtimestamp(readme_path.stat().st_mtime)
@@ -123,8 +180,54 @@ class RepositoryParser:
             data_files=data_files,
             created_date=created_date,
             updated_date=updated_date,
+            contributors=contributors,
             raw_readme=readme_content,
         )
+
+    def _parse_contributors(self, readme_content: str, project_id: str) -> list[Contributor]:
+        """Parse contributors from ## Authors or ## Contributors section."""
+        section = self._extract_section(readme_content, "Authors")
+        if section is None:
+            section = self._extract_section(readme_content, "Contributors")
+        if not section:
+            return []
+
+        contributors = []
+        for line in section.split("\n"):
+            line = line.strip()
+            # Match lines like: - **Name** (Affiliation) | ORCID: 0000-... | role text
+            match = re.match(r"^-\s+\*\*(.+?)\*\*(?:\s*\(([^)]+)\))?(.*)", line)
+            if not match:
+                continue
+
+            name = match.group(1).strip()
+            affiliation = match.group(2).strip() if match.group(2) else None
+            rest = match.group(3).strip()
+
+            orcid = None
+            roles = []
+
+            if rest:
+                # Split by pipe and parse segments
+                segments = [s.strip() for s in rest.split("|") if s.strip()]
+                for segment in segments:
+                    orcid_match = re.match(r"ORCID:\s*([\d-]+)", segment)
+                    if orcid_match:
+                        orcid = orcid_match.group(1)
+                    else:
+                        roles.append(segment)
+
+            contributors.append(
+                Contributor(
+                    name=name,
+                    affiliation=affiliation,
+                    orcid=orcid,
+                    roles=roles,
+                    project_ids=[project_id],
+                )
+            )
+
+        return contributors
 
     def _extract_section(self, content: str, section_name: str) -> str | None:
         """Extract content between a section header and the next header."""
@@ -154,40 +257,41 @@ class RepositoryParser:
 
         return sorted(notebooks, key=lambda n: n.filename)
 
-    def _parse_data_dir(
-        self, project_dir: Path
-    ) -> tuple[list[Visualization], list[DataFile]]:
-        """Parse visualizations and data files from project/data/ directory."""
+    def _parse_data_dir(self, project_dir: Path) -> tuple[list[Visualization], list[DataFile]]:
+        """Parse visualizations and data files from project data/ and figures/ directories."""
         visualizations = []
         data_files = []
-        data_dir = project_dir / "data"
 
-        if not data_dir.exists():
-            return visualizations, data_files
+        # Scan both data/ and figures/ directories
+        dirs_to_scan = [project_dir / "data", project_dir / "figures"]
 
-        for file_path in data_dir.iterdir():
-            if file_path.name.startswith("."):
+        for scan_dir in dirs_to_scan:
+            if not scan_dir.exists():
                 continue
 
-            size_bytes = file_path.stat().st_size
+            for file_path in scan_dir.iterdir():
+                if file_path.name.startswith("."):
+                    continue
 
-            if file_path.suffix.lower() in (".png", ".jpg", ".jpeg", ".svg", ".gif"):
-                visualizations.append(
-                    Visualization(
-                        filename=file_path.name,
-                        path=str(file_path.relative_to(self.repo_path)),
-                        title=file_path.stem.replace("_", " ").title(),
-                        size_bytes=size_bytes,
+                size_bytes = file_path.stat().st_size
+
+                if file_path.suffix.lower() in (".png", ".jpg", ".jpeg", ".svg", ".gif"):
+                    visualizations.append(
+                        Visualization(
+                            filename=file_path.name,
+                            path=str(file_path.relative_to(self.repo_path)),
+                            title=file_path.stem.replace("_", " ").title(),
+                            size_bytes=size_bytes,
+                        )
                     )
-                )
-            elif file_path.suffix.lower() in (".csv", ".tsv", ".json", ".parquet"):
-                data_files.append(
-                    DataFile(
-                        filename=file_path.name,
-                        path=str(file_path.relative_to(self.repo_path)),
-                        size_bytes=size_bytes,
+                elif file_path.suffix.lower() in (".csv", ".tsv", ".json", ".parquet"):
+                    data_files.append(
+                        DataFile(
+                            filename=file_path.name,
+                            path=str(file_path.relative_to(self.repo_path)),
+                            size_bytes=size_bytes,
+                        )
                     )
-                )
 
         return (
             sorted(visualizations, key=lambda v: v.filename),
@@ -249,9 +353,9 @@ class RepositoryParser:
         return discoveries
 
     def parse_schema(self) -> list[Table]:
-        """Parse tables from docs/schema.md."""
+        """Parse tables from docs/schemas/pangenome.md (formerly docs/schema.md)."""
         tables = []
-        schema_path = self.repo_path / "docs" / "schema.md"
+        schema_path = self.repo_path / "docs" / "schemas" / "pangenome.md"
 
         if not schema_path.exists():
             return tables
@@ -261,12 +365,19 @@ class RepositoryParser:
         # Find the Table Summary section to get row counts
         row_counts = {}
         summary_match = re.search(
-            r"## Table Summary\n\n\|.*\|.*\|\n\|[-\s|]+\|\n(.*?)\n\n",
+            r"## Table Summary\s*\n\n(.*?)(?:\n\n---|\n---)",
             content,
             re.DOTALL,
         )
         if summary_match:
             for line in summary_match.group(1).split("\n"):
+                if not line.strip() or not line.startswith("|"):
+                    continue
+                # Skip header and separator rows
+                if "Table" in line and "Row Count" in line:
+                    continue
+                if re.match(r"^\|[-\s|]+\|$", line):
+                    continue
                 cols = [c.strip() for c in line.split("|") if c.strip()]
                 if len(cols) >= 2:
                     table_name = cols[0].strip("`")

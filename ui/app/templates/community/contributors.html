@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Contributors - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Community Contributors</h1>
+    <p class="page-description">
+        Researchers and analysts contributing to BERDL exploration projects.
+    </p>
+</div>
+
+<!-- Stats -->
+<div class="community-stats">
+    <div class="community-stat">
+        <div class="stat-value">{{ contributors|length }}</div>
+        <div class="stat-label">contributors</div>
+    </div>
+    <div class="community-stat">
+        <div class="stat-value">{{ project_count }}</div>
+        <div class="stat-label">projects</div>
+    </div>
+    <div class="community-stat">
+        <div class="stat-value">{{ total_orcids }}</div>
+        <div class="stat-label">ORCID profiles</div>
+    </div>
+</div>
+
+{% if contributors %}
+<div class="grid grid-2">
+    {% for contributor in contributors %}
+    <div class="contributor-grid-card">
+        <div class="contributor-info" style="margin-bottom: var(--space-3);">
+            <span class="contributor-name" style="font-size: 1.125rem;">{{ contributor.name }}</span>
+            {% if contributor.affiliation %}
+            <span class="contributor-affiliation">({{ contributor.affiliation }})</span>
+            {% endif %}
+        </div>
+
+        {% if contributor.orcid %}
+        <div style="margin-bottom: var(--space-3);">
+            <a href="{{ contributor.orcid_url }}" target="_blank" rel="noopener" class="orcid-link">
+                <img src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" alt="ORCID" width="16" height="16">
+                {{ contributor.orcid }}
+            </a>
+        </div>
+        {% endif %}
+
+        {% if contributor.roles %}
+        <p class="text-muted text-small" style="margin-bottom: var(--space-3);">{{ contributor.roles | join(', ') }}</p>
+        {% endif %}
+
+        <div class="contributor-projects">
+            {% for pid in contributor.project_ids %}
+            <a href="/projects/{{ pid }}" class="badge badge-project">{{ pid | replace('_', ' ') | title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="card" style="text-align: center; padding: var(--space-12);">
+    <p class="text-muted" style="font-size: 1.125rem; margin-bottom: var(--space-4);">No contributors yet.</p>
+    <p class="text-muted text-small">Add an <code>## Authors</code> section to a project README to get started.</p>
+</div>
+{% endif %}
+{% endblock %}

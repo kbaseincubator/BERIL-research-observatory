@@ -1,10 +1,43 @@
 """Data models for the BERIL Research Observatory."""
 
+import re
+from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
 from typing import Any
 
 from dataclasses import dataclass, field
+
+
+def _slugify_name(name: str) -> str:
+    """Slugify a contributor name for use as an ID."""
+    text = name.lower().strip()
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"[\s_]+", "-", text)
+    return text
+
+
+@dataclass
+class Contributor:
+    """A project contributor with optional ORCID and affiliation."""
+
+    name: str
+    affiliation: str | None = None
+    orcid: str | None = None
+    roles: list[str] = field(default_factory=list)
+    project_ids: list[str] = field(default_factory=list)
+
+    @property
+    def id(self) -> str:
+        """Slugified name for use as an identifier."""
+        return _slugify_name(self.name)
+
+    @property
+    def orcid_url(self) -> str | None:
+        """Full ORCID URL."""
+        if self.orcid:
+            return f"https://orcid.org/{self.orcid}"
+        return None
 
 
 class ProjectStatus(str, Enum):
@@ -122,7 +155,7 @@ class Project:
     data_files: list[DataFile] = field(default_factory=list)
     created_date: datetime | None = None
     updated_date: datetime | None = None
-    contributors: list[str] = field(default_factory=list)
+    contributors: list[Contributor] = field(default_factory=list)
     related_discoveries: list[str] = field(default_factory=list)
     related_ideas: list[str] = field(default_factory=list)
     raw_readme: str = ""
@@ -221,6 +254,7 @@ class RepositoryData:
     performance_tips: list[PerformanceTip] = field(default_factory=list)
     research_ideas: list[ResearchIdea] = field(default_factory=list)
     collections: list[Collection] = field(default_factory=list)
+    contributors: list[Contributor] = field(default_factory=list)
 
     # Computed stats
     total_notebooks: int = 0
@@ -237,3 +271,7 @@ class RepositoryData:
     ) -> list[Collection]:
         """Get all collections in a category."""
         return [c for c in self.collections if c.category == category]
+
+    def get_contributor(self, contributor_id: str) -> Contributor | None:
+        """Get a contributor by ID."""
+        return next((c for c in self.contributors if c.id == contributor_id), None)
