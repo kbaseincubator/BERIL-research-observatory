@@ -142,6 +142,8 @@ def robust_ica(X, n_components, n_runs=100, eps=0.15, min_samples=50,
     # (sign of ICA components is arbitrary)
     cos_sim = np.abs(cosine_similarity(all_components))
     cos_dist = 1 - cos_sim
+    # Clip to [0, 1] to avoid floating-point negative values
+    np.clip(cos_dist, 0, 1, out=cos_dist)
 
     # Cluster with DBSCAN using cosine distance
     clustering = DBSCAN(eps=eps, min_samples=min_samples, metric="precomputed")
