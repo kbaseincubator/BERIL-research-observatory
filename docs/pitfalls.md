@@ -224,7 +224,7 @@ LIMIT 5
 ```python
 # CORRECT: Call directly, no import
 spark = get_spark_session()
-df = spark.sql("SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10").toPandas()
+df = spark.sql("SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10")
 
 # WRONG: Don't try to import it — the module doesn't exist as a file
 from get_spark_session import get_spark_session  # ImportError!
@@ -255,6 +255,30 @@ The kernel spawned by nbconvert has `get_spark_session()` available. However, lo
 ---
 
 ## Pandas-Specific Issues
+
+### Unnecessary `.toPandas()` Calls
+
+**`.toPandas()` pulls all data from the Spark cluster to the driver node.** This is slow for large results and can cause out-of-memory errors. Do filtering, joins, and aggregations in Spark first.
+
+```python
+# BAD: Pull 132M rows to driver, then filter locally
+df = spark.sql("SELECT * FROM kbase_ke_pangenome.gene_cluster").toPandas()
+core = df[df['is_core'] == 1]
+
+# GOOD: Keep as Spark DataFrame, filter in Spark
+df = spark.sql("""
+    SELECT * FROM kbase_ke_pangenome.gene_cluster
+    WHERE is_core = 1
+    AND gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
+""")
+
+# Only convert to pandas for small, final results (plotting, export)
+summary = df.groupBy("gtdb_species_clade_id").count().toPandas()
+```
+
+**Rule of thumb**: Use PySpark DataFrame operations for all intermediate steps. Only call `.toPandas()` when you need the data locally (matplotlib plots, CSV export, or results that are a few thousand rows).
+
+See [performance.md](performance.md) for detailed PySpark-first patterns.
 
 ### NaN Handling When Mapping to Dictionaries
 

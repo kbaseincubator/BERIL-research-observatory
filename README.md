@@ -156,7 +156,7 @@ Access the BERDL JupyterHub at [https://hub.berdl.kbase.us](https://hub.berdl.kb
 # In a JupyterHub notebook
 spark = get_spark_session()
 
-# Query any database in the lakehouse
+# Query any database — results are Spark DataFrames
 df = spark.sql("""
     SELECT s.GTDB_species, p.no_genomes, p.no_core
     FROM kbase_ke_pangenome.pangenome p
@@ -164,13 +164,17 @@ df = spark.sql("""
       ON p.gtdb_species_clade_id = s.gtdb_species_clade_id
     ORDER BY p.no_genomes DESC
     LIMIT 10
-""").toPandas()
+""")
+
+# Use PySpark operations for filtering, aggregation, joins
+# Only convert to pandas for final small results (plotting, export)
+df.toPandas()  # Fine here — LIMIT 10
 
 # Query fitness browser data
 fitness = spark.sql("""
     SELECT orgId, genus, species, strain
     FROM kescience_fitnessbrowser.organism
-""").toPandas()
+""")  # Small table — .toPandas() OK when needed
 ```
 
 ### Via REST API

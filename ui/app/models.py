@@ -282,7 +282,7 @@ class RepositoryData:
 
     projects: list[Project] = field(default_factory=list)
     discoveries: list[Discovery] = field(default_factory=list)
-    tables: list[Table] = field(default_factory=list)
+    tables: dict[str, list[Table]] = field(default_factory=dict)
     pitfalls: list[Pitfall] = field(default_factory=list)
     performance_tips: list[PerformanceTip] = field(default_factory=list)
     research_ideas: list[ResearchIdea] = field(default_factory=list)
@@ -294,6 +294,18 @@ class RepositoryData:
     total_visualizations: int = 0
     total_data_files: int = 0
     last_updated: datetime | None = None
+
+    def get_tables_for_collection(self, collection_id: str) -> list[Table]:
+        """Get schema tables for a collection by ID, checking sub_collections."""
+        if collection_id in self.tables:
+            return self.tables[collection_id]
+        # Check if any sub_collection has tables
+        collection = self.get_collection(collection_id)
+        if collection:
+            for sub_id in collection.sub_collections:
+                if sub_id in self.tables:
+                    return self.tables[sub_id]
+        return []
 
     def get_collection(self, collection_id: str) -> Collection | None:
         """Get a collection by ID."""
