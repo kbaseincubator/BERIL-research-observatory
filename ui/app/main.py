@@ -2,6 +2,12 @@
 
 from pathlib import Path
 
+import nbformat
+from markupsafe import Markup
+from nbconvert import HTMLExporter
+
+# Add custom Jinja2 filters
+import markdown
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -32,9 +38,6 @@ app.mount(
 templates = Jinja2Templates(directory=settings.templates_dir)
 
 
-# Add custom Jinja2 filters
-import markdown
-from markupsafe import Markup
 
 
 def markdown_filter(text: str) -> Markup:
@@ -142,11 +145,11 @@ async def project_detail(request: Request, project_id: str):
     return templates.TemplateResponse("projects/detail.html", context)
 
 
-@app.get("/projects/{project_id}/notebooks/{notebook_name}", response_class=HTMLResponse)
+@app.get(
+    "/projects/{project_id}/notebooks/{notebook_name}", response_class=HTMLResponse
+)
 async def notebook_viewer(request: Request, project_id: str, notebook_name: str):
     """Render a Jupyter notebook as HTML."""
-    import nbformat
-    from nbconvert import HTMLExporter
 
     repo_data = get_repo_data(request)
     context = get_base_context(request)
@@ -160,7 +163,9 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
     # Find notebook
     notebook = next((n for n in project.notebooks if n.filename == notebook_name), None)
     if not notebook:
-        context["error"] = f"Notebook '{notebook_name}' not found in project '{project_id}'"
+        context["error"] = (
+            f"Notebook '{notebook_name}' not found in project '{project_id}'"
+        )
         return templates.TemplateResponse("error.html", context, status_code=404)
 
     # Load and convert notebook
@@ -182,11 +187,13 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
 
         (body, resources) = html_exporter.from_notebook_node(nb)
 
-        context.update({
-            "project": project,
-            "notebook": notebook,
-            "notebook_html": body,
-        })
+        context.update(
+            {
+                "project": project,
+                "notebook": notebook,
+                "notebook_html": body,
+            }
+        )
         return templates.TemplateResponse("projects/notebook.html", context)
 
     except Exception as e:
@@ -200,9 +207,15 @@ async def collections_overview(request: Request):
     repo_data = get_repo_data(request)
     context = get_base_context(request)
     context["collections"] = repo_data.collections
-    context["primary_collections"] = repo_data.get_collections_by_category(CollectionCategory.PRIMARY)
-    context["domain_collections"] = repo_data.get_collections_by_category(CollectionCategory.DOMAIN)
-    context["reference_collections"] = repo_data.get_collections_by_category(CollectionCategory.REFERENCE)
+    context["primary_collections"] = repo_data.get_collections_by_category(
+        CollectionCategory.PRIMARY
+    )
+    context["domain_collections"] = repo_data.get_collections_by_category(
+        CollectionCategory.DOMAIN
+    )
+    context["reference_collections"] = repo_data.get_collections_by_category(
+        CollectionCategory.REFERENCE
+    )
     return templates.TemplateResponse("collections/overview.html", context)
 
 
@@ -236,6 +249,7 @@ async def collection_detail(request: Request, collection_id: str):
 async def data_redirect(request: Request):
     """Redirect legacy /data to /collections."""
     from fastapi.responses import RedirectResponse
+
     return RedirectResponse(url="/collections", status_code=301)
 
 
@@ -243,6 +257,7 @@ async def data_redirect(request: Request):
 async def schema_redirect(request: Request):
     """Redirect legacy /data/schema to /collections/kbase_ke_pangenome."""
     from fastapi.responses import RedirectResponse
+
     return RedirectResponse(url="/collections/kbase_ke_pangenome", status_code=301)
 
 

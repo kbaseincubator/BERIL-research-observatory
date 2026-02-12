@@ -6,6 +6,8 @@ from datetime import datetime
 from enum import Enum
 from typing import Any
 
+from dataclasses import dataclass, field
+
 
 def _slugify_name(name: str) -> str:
     """Slugify a contributor name for use as an ID."""
@@ -227,7 +229,9 @@ class Table:
     columns: list[Column] = field(default_factory=list)
     known_limitations: list[str] = field(default_factory=list)
     sample_queries: list[str] = field(default_factory=list)
-    foreign_keys: list[tuple[str, str]] = field(default_factory=list)  # (column, target_table)
+    foreign_keys: list[tuple[str, str]] = field(
+        default_factory=list
+    )  # (column, target_table)
 
 
 @dataclass
@@ -295,7 +299,9 @@ class RepositoryData:
         """Get a collection by ID."""
         return next((c for c in self.collections if c.id == collection_id), None)
 
-    def get_collections_by_category(self, category: CollectionCategory) -> list[Collection]:
+    def get_collections_by_category(
+        self, category: CollectionCategory
+    ) -> list[Collection]:
         """Get all collections in a category."""
         return [c for c in self.collections if c.category == category]
 
