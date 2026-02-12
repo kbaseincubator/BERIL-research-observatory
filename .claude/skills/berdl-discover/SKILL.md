@@ -180,3 +180,7 @@ Claude:
 - **Database not found**: List available databases and confirm spelling
 - **Timeout on large tables**: Skip row counts for tables > 100M rows, note in pitfalls
 - **Schema unavailable**: Mark table as "schema pending" and note in output
+
+## Pitfall Detection
+
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.

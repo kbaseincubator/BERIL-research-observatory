@@ -140,3 +140,7 @@ LIMIT 1000 OFFSET 1000  -- Second page
 ## Adding New Databases
 
 Use the `/berdl-discover` skill to introspect new databases and generate module files.
+
+## Pitfall Detection
+
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.

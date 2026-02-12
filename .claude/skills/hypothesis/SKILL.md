@@ -246,3 +246,7 @@ When a user describes their research interest:
 | Quality metrics | `gtdb_metadata` | `checkm_completeness`, `checkm_contamination` |
 | Environment | `sample`, `ncbi_env` | Environmental attributes |
 | Biochemistry | `reaction`, `molecule` | `deltag`, `reversibility`, `is_transport` |
+
+## Pitfall Detection
+
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.

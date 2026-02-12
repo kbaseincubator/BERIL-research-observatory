@@ -79,3 +79,7 @@ After the reviewer subprocess completes:
 - The reviewer prompt is stored at `.claude/reviewer/SYSTEM_PROMPT.md` and is not controlled by the author
 - Each `/submit` produces a fresh review, replacing any existing `REVIEW.md`
 - To address review feedback, update the project and run `/submit` again
+
+## Pitfall Detection
+
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.
