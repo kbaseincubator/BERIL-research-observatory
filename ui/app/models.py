@@ -38,6 +38,14 @@ class Contributor:
         return None
 
 
+class ReviewStatus(str, Enum):
+    """Review status values."""
+
+    REVIEWED = "Reviewed"
+    NEEDS_RE_REVIEW = "Needs Re-review"
+    NOT_REVIEWED = "Not Reviewed"
+
+
 class ProjectStatus(str, Enum):
     """Project status values."""
 
@@ -106,6 +114,21 @@ class Collection:
 
 
 @dataclass
+class Review:
+    """An automated review of a project."""
+
+    reviewer: str
+    date: datetime | None = None
+    project_id: str = ""
+    summary: str | None = None
+    methodology: str | None = None
+    code_quality: str | None = None
+    findings_assessment: str | None = None
+    suggestions: str | None = None
+    raw_content: str = ""
+
+
+@dataclass
 class Notebook:
     """A Jupyter notebook in a project."""
 
@@ -157,6 +180,16 @@ class Project:
     related_discoveries: list[str] = field(default_factory=list)
     related_ideas: list[str] = field(default_factory=list)
     raw_readme: str = ""
+    review: Review | None = None
+
+    @property
+    def review_status(self) -> ReviewStatus:
+        """Determine review status based on review existence and staleness."""
+        if self.review is None:
+            return ReviewStatus.NOT_REVIEWED
+        if self.review.date and self.updated_date and self.updated_date > self.review.date:
+            return ReviewStatus.NEEDS_RE_REVIEW
+        return ReviewStatus.REVIEWED
 
 
 @dataclass

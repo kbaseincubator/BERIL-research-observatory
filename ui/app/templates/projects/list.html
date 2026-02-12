@@ -25,6 +25,11 @@
             {% else %}
             <span class="badge badge-proposed">{{ project.status.value }}</span>
             {% endif %}
+            {% if project.review_status.value == "Reviewed" %}
+            <span class="badge badge-reviewed">{{ project.review_status.value }}</span>
+            {% elif project.review_status.value == "Needs Re-review" %}
+            <span class="badge badge-needs-re-review">{{ project.review_status.value }}</span>
+            {% endif %}
         </div>
 
         <!-- Project ID Badge -->
