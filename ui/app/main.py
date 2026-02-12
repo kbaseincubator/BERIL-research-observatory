@@ -238,8 +238,8 @@ async def collection_detail(request: Request, collection_id: str):
     related = [repo_data.get_collection(cid) for cid in collection.related_collections]
     context["related_collections"] = [c for c in related if c is not None]
 
-    # For pangenome, also pass the schema tables
-    context["tables"] = repo_data.tables
+    # Pass collection-specific schema tables (if any schema doc exists)
+    context["tables"] = repo_data.get_tables_for_collection(collection_id)
 
     return templates.TemplateResponse("collections/detail.html", context)
 

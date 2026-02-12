@@ -415,43 +415,96 @@ class RepositoryParser:
 
         return discoveries
 
-    def parse_schema(self) -> list[Table]:
-        """Parse tables from docs/schemas/pangenome.md (formerly docs/schema.md)."""
-        tables = []
-        schema_path = self.repo_path / "docs" / "schemas" / "pangenome.md"
+    def parse_schema(self) -> dict[str, list[Table]]:
+        """Parse tables from all docs/schemas/*.md files.
 
-        if not schema_path.exists():
-            return tables
+        Returns a dict keyed by database/collection ID mapping to parsed tables.
+        Each schema doc is keyed by its database ID (from the **Database** line)
+        and also by the filename stem. Multi-database docs store under each
+        listed database ID plus the filename stem.
+        """
+        all_tables: dict[str, list[Table]] = {}
+        schemas_dir = self.repo_path / "docs" / "schemas"
 
-        content = schema_path.read_text()
+        if not schemas_dir.exists():
+            return all_tables
 
-        # Find the Table Summary section to get row counts
-        row_counts = {}
+        for schema_file in sorted(schemas_dir.glob("*.md")):
+            content = schema_file.read_text()
+            filename_key = schema_file.stem
+
+            # Extract database ID(s)
+            db_ids: list[str] = []
+            singular = re.search(r"\*\*Database\*\*:\s*`([^`]+)`", content)
+            if singular:
+                db_ids = [singular.group(1)]
+            else:
+                # Multi-database: extract all backtick IDs from the Databases section
+                plural_match = re.search(
+                    r"\*\*Databases?\*\*:?\s*(.*?)(?:\n\*\*|\n---)",
+                    content,
+                    re.DOTALL,
+                )
+                if plural_match:
+                    db_ids = re.findall(r"`([^`]+)`", plural_match.group(1))
+
+            # Parse row counts from Table Summary
+            row_counts = self._parse_row_counts(content)
+
+            # Parse individual table schemas
+            tables = self._parse_table_sections(content, row_counts)
+
+            if not tables:
+                continue
+
+            # Store under filename stem (always)
+            all_tables[filename_key] = tables
+
+            # Also store under each extracted database ID
+            for db_id in db_ids:
+                if db_id != filename_key:
+                    all_tables[db_id] = tables
+
+        return all_tables
+
+    def _parse_row_counts(self, content: str) -> dict[str, int]:
+        """Extract row counts from the Table Summary section."""
+        row_counts: dict[str, int] = {}
         summary_match = re.search(
-            r"## Table Summary\s*\n\n(.*?)(?:\n\n---|\n---)",
+            r"## Table Summary\s*\n(.*?)(?:\n---|\n## )",
             content,
             re.DOTALL,
         )
-        if summary_match:
-            for line in summary_match.group(1).split("\n"):
-                if not line.strip() or not line.startswith("|"):
-                    continue
-                # Skip header and separator rows
-                if "Table" in line and "Row Count" in line:
-                    continue
-                if re.match(r"^\|[-\s|]+\|$", line):
-                    continue
-                cols = [c.strip() for c in line.split("|") if c.strip()]
-                if len(cols) >= 2:
-                    table_name = cols[0].strip("`")
-                    try:
-                        row_count = int(cols[1].replace(",", ""))
-                        row_counts[table_name] = row_count
-                    except ValueError:
-                        pass
+        if not summary_match:
+            return row_counts
 
-        # Parse individual table schemas
-        table_sections = re.split(r"\n###\s+\d+\.\s+", content)
+        for line in summary_match.group(1).split("\n"):
+            if not line.strip() or not line.startswith("|"):
+                continue
+            # Skip header and separator rows
+            if "Table" in line and ("Row Count" in line or "Description" in line):
+                continue
+            if re.match(r"^\|[-\s|]+\|$", line):
+                continue
+            cols = [c.strip() for c in line.split("|") if c.strip()]
+            if len(cols) >= 2:
+                table_name = cols[0].strip("`")
+                try:
+                    row_count = int(cols[1].replace(",", ""))
+                    row_counts[table_name] = row_count
+                except ValueError:
+                    pass
+
+        return row_counts
+
+    def _parse_table_sections(
+        self, content: str, row_counts: dict[str, int]
+    ) -> list[Table]:
+        """Parse individual table schemas from ### headings."""
+        tables: list[Table] = []
+
+        # Match both numbered (### 1. `genome`) and unnumbered (### `organism`)
+        table_sections = re.split(r"\n###\s+(?:\d+\.\s+)?", content)
 
         for section in table_sections[1:]:  # Skip intro
             lines = section.split("\n")
@@ -467,7 +520,7 @@ class RepositoryParser:
 
             # Get description (first paragraph after name)
             description = ""
-            for i, line in enumerate(lines[1:], 1):
+            for line in lines[1:]:
                 if (
                     line.strip()
                     and not line.startswith("|")

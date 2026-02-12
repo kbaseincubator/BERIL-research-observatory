@@ -231,10 +231,10 @@
 
     <div class="schema-layout">
         <div class="table-list">
-            <h3>Tables ({% if collection.key_tables %}{{ collection.key_tables|length }}{% else %}{{ tables|length }}{% endif %})</h3>
+            <h3>Tables ({% if tables %}{{ tables|length }}{% elif collection.key_tables %}{{ collection.key_tables|length }}{% else %}0{% endif %})</h3>
 
-            {% if collection.id == "kbase_ke_pangenome" and tables %}
-                {# For pangenome, use the detailed schema from docs/schema.md #}
+            {% if tables %}
+                {# Use the detailed schema from docs/schemas/ #}
                 {% for table in tables %}
                 <a href="?table={{ table.name }}" class="table-list-item {% if request.query_params.get('table') == table.name %}active{% endif %}">
                     <span>{{ table.name }}</span>
@@ -259,8 +259,8 @@
         </div>
 
         <div class="schema-content">
-            {% if collection.id == "kbase_ke_pangenome" and request.query_params.get('table') %}
-                {# Detailed schema view for pangenome #}
+            {% if tables and request.query_params.get('table') %}
+                {# Detailed schema view #}
                 {% set selected_table = tables | selectattr('name', 'equalto', request.query_params.get('table')) | first %}
                 {% if selected_table %}
                 <h3 style="margin-bottom: var(--space-4);">
