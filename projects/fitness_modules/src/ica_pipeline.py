@@ -217,25 +217,29 @@ def compute_gene_weights(X, modules):
     return weights
 
 
-def threshold_membership(weights, alpha=0.05):
-    """Determine module membership via D'Agostino K² normality test.
+def threshold_membership(weights, min_weight=0.3, max_members=50):
+    """Determine module membership via absolute weight threshold.
 
-    For each module's weight distribution, genes with weights that deviate
-    significantly from normal are considered module members.
+    Genes with |weight| above a threshold are module members. Uses an
+    adaptive approach: start at min_weight and increase if too many genes
+    pass the threshold.
 
     Parameters
     ----------
     weights : np.ndarray, shape (n_genes, n_modules)
-        Gene-module weight matrix.
-    alpha : float
-        Significance threshold for outlier detection.
+        Gene-module weight matrix (Pearson r with module profile).
+    min_weight : float
+        Minimum |weight| to be considered a module member.
+    max_members : int
+        Maximum number of genes per module. If more genes exceed
+        min_weight, only the top max_members by |weight| are kept.
 
     Returns
     -------
     membership : np.ndarray, shape (n_genes, n_modules)
         Binary membership matrix (1 = member, 0 = not).
     thresholds : np.ndarray, shape (n_modules,)
-        Weight threshold used for each module.
+        Effective weight threshold used for each module.
     """
     n_genes, n_modules = weights.shape
     membership = np.zeros_like(weights, dtype=int)
@@ -243,33 +247,25 @@ def threshold_membership(weights, alpha=0.05):
 
     for j in range(n_modules):
         w = weights[:, j]
-        # Use robust statistics (MAD-based z-score)
-        median_w = np.median(w)
-        mad = np.median(np.abs(w - median_w))
-        if mad == 0:
-            mad = np.std(w)
-        if mad == 0:
+        abs_w = np.abs(w)
+
+        # Genes above minimum weight threshold
+        candidates = abs_w >= min_weight
+
+        if candidates.sum() == 0:
+            # No genes pass threshold — skip this module
+            thresholds[j] = min_weight
             continue
 
-        # Modified z-scores
-        modified_z = 0.6745 * (w - median_w) / mad
-
-        # Genes with |modified_z| > threshold are members
-        # Use D'Agostino K² to find where distribution departs from normal
-        # As a practical threshold, use |modified_z| > 3.5 (common outlier rule)
-        # But also check: if distribution is clearly non-normal, lower threshold
-        try:
-            k2_stat, k2_p = stats.normaltest(w)
-            if k2_p < alpha:
-                # Distribution is non-normal; use 2.5 as more sensitive threshold
-                z_thresh = 2.5
-            else:
-                z_thresh = 3.5
-        except Exception:
-            z_thresh = 3.5
-
-        thresholds[j] = z_thresh
-        membership[:, j] = (np.abs(modified_z) > z_thresh).astype(int)
+        if candidates.sum() <= max_members:
+            # Few enough candidates — use all of them
+            membership[:, j] = candidates.astype(int)
+            thresholds[j] = min_weight
+        else:
+            # Too many candidates — take only top max_members by |weight|
+            top_indices = np.argsort(abs_w)[-max_members:]
+            membership[top_indices, j] = 1
+            thresholds[j] = abs_w[top_indices[0]]  # effective threshold
 
     return membership, thresholds
 
