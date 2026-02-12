@@ -1,0 +1,56 @@
+# Python
+__pycache__
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info
+dist
+build
+
+# Virtual environments
+.venv
+venv
+env
+ui/.venv
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Git
+.git
+.gitignore
+.github
+
+# Documentation (except docs/)
+*.md
+!README.md
+!docs/**/*.md
+!projects/**/README.md
+
+# uv cache
+.uv
+uv.lock
+ui/uv.lock
+
+# Development
+.env
+.env.local
+*.env.local
+
+# Cache and temporary files
+ui/data/cache.json
+ui/data/indexdir/
+
+# Jupyter checkpoints
+.ipynb_checkpoints
+
+# Claude
+.claude
