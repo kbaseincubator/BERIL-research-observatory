@@ -35,6 +35,76 @@ from .models import (
 )
 
 REPOSITORY_DATA_FILE = "data.pkl.gz"
+TIMESTAMP_FILE = "timestamp.json"
+
+
+def load_repository_data(data_source_url: str | None = None) -> RepositoryData:
+    """
+    Load repository data from either external URL or local parsing.
+
+    Args:
+        data_source_url: Optional URL to load data from. If None or loading fails,
+                        falls back to parsing local files.
+
+    Returns:
+        RepositoryData object with all parsed repository information.
+    """
+    if data_source_url:
+        try:
+            return load_external_data(data_source_url)
+        except Exception as e:
+            # Fall through to local parsing
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.warning(f"Failed to load from URL {data_source_url}: {e}")
+            logger.warning("Falling back to local file parsing")
+
+    # Parse from local files
+    parser = get_parser()
+    return parser.parse_all()
+
+
+def check_for_updates(data_source_url: str, current_last_updated: datetime) -> bool:
+    """
+    Check if remote data has been updated since the current data.
+
+    Args:
+        data_source_url: Base URL where timestamp.json is located
+        current_last_updated: The last_updated timestamp of currently loaded data
+
+    Returns:
+        True if remote data is newer, False otherwise
+    """
+    import json
+
+    # Ensure URL ends with a slash
+    if not data_source_url.endswith("/"):
+        data_source_url = data_source_url + "/"
+
+    # Construct URL to timestamp file
+    timestamp_url = data_source_url + TIMESTAMP_FILE
+
+    try:
+        # Fetch timestamp metadata
+        response = httpx.get(timestamp_url, follow_redirects=True, timeout=5.0)
+        response.raise_for_status()
+
+        timestamp_data = response.json()
+        remote_timestamp_str = timestamp_data.get("timestamp")
+
+        if not remote_timestamp_str:
+            return False
+
+        # Parse the remote timestamp
+        from datetime import datetime as dt
+        remote_timestamp = dt.fromisoformat(remote_timestamp_str)
+
+        # Compare timestamps
+        return remote_timestamp > current_last_updated
+
+    except Exception:
+        # If we can't check for updates, assume no update needed
+        return False
 
 
 def load_external_data(url: str) -> RepositoryData:

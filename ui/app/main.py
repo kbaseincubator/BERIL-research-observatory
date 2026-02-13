@@ -1,5 +1,7 @@
 """BERIL Research Observatory - FastAPI Application."""
 
+import hashlib
+import hmac
 import logging
 from contextlib import asynccontextmanager
 
@@ -9,13 +11,13 @@ from nbconvert import HTMLExporter
 
 # Add custom Jinja2 filters
 import markdown
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Request, Header, HTTPException
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from .config import settings
-from .dataloader import get_parser, load_external_data
+from .dataloader import load_repository_data
 from .models import CollectionCategory
 
 logger = logging.getLogger(__name__)
@@ -25,26 +27,9 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Initialize app on startup."""
-    # Try to pull from external source
-    # 1. Look at source, if present, load it.
-    # 1a. If not present, parse files on disk.
-    # 2. source will have data.pkl.zip and timestamp.json files. pull data.pkl.zip
-    # 3. Import the data.pkl.zip as app.state.repo_data
-    logging.warning("Loading repository data")
-    logging.error(settings.model_dump())
-    try:
-        if settings.data_source_url is not None:
-            logging.warning(f"Loading from URL {settings.data_source_url}")
-            app.state.repo_data = load_external_data(settings.data_source_url)
-            logging.warning("Done loading data")
-        else:
-            raise ValueError("Data source URL not found")
-    except Exception as e:
-        logging.warning(str(e))
-        logging.warning("Loading data from local files")
-        # Parse repository data
-        parser = get_parser()
-        app.state.repo_data = parser.parse_all()
+    logger.info("Loading repository data")
+    app.state.repo_data = load_repository_data(settings.data_source_url)
+    logger.info(f"Repository data loaded. Last updated: {app.state.repo_data.last_updated}")
     yield
 
 
@@ -55,6 +40,8 @@ app = FastAPI(
     debug=settings.debug,
     lifespan=lifespan,
 )
+
+
 
 # Mount static files
 app.mount("/static", StaticFiles(directory=settings.static_dir), name="static")
@@ -120,6 +107,7 @@ def get_base_context(request: Request) -> dict:
         "idea_count": len(repo_data.research_ideas),
         "collection_count": len(repo_data.collections),
         "contributor_count": len(repo_data.contributors),
+        "last_updated": repo_data.last_updated,
     }
 
 
@@ -357,6 +345,57 @@ async def about(request: Request):
         CollectionCategory.PRIMARY
     )
     return templates.TemplateResponse("about/about.html", context)
+
+
+# Webhook endpoint for data cache updates
+@app.post("/api/webhook/data-update")
+async def data_update_webhook(request: Request, x_webhook_signature: str = Header(None)):
+    """
+    Webhook endpoint to receive data cache update notifications.
+
+    Expected to be called by GitHub Actions after building new cache.
+    Validates signature and reloads data from the remote source.
+    """
+    # Read the request body
+    body = await request.body()
+
+    # Verify webhook signature if secret is configured
+    if settings.webhook_secret:
+        if not x_webhook_signature:
+            logger.warning("Webhook request missing signature")
+            raise HTTPException(status_code=401, detail="Missing webhook signature")
+
+        # Compute expected signature
+        expected_signature = hmac.new(
+            settings.webhook_secret.encode(),
+            body,
+            hashlib.sha256
+        ).hexdigest()
+
+        if not hmac.compare_digest(x_webhook_signature, expected_signature):
+            logger.warning("Webhook signature validation failed")
+            raise HTTPException(status_code=401, detail="Invalid webhook signature")
+
+    logger.info("Received data update webhook notification")
+
+    # Reload data from remote source
+    if settings.data_source_url:
+        try:
+            logger.info(f"Reloading data from {settings.data_source_url}")
+            request.app.state.repo_data = load_repository_data(settings.data_source_url)
+            logger.info(f"Data reloaded successfully. New last_updated: {request.app.state.repo_data.last_updated}")
+
+            return JSONResponse({
+                "status": "success",
+                "message": "Data reloaded successfully",
+                "last_updated": request.app.state.repo_data.last_updated.isoformat() if request.app.state.repo_data.last_updated else None
+            })
+        except Exception as e:
+            logger.error(f"Failed to reload data: {e}")
+            raise HTTPException(status_code=500, detail=f"Failed to reload data: {str(e)}")
+    else:
+        logger.warning("Webhook received but no data_source_url configured")
+        raise HTTPException(status_code=400, detail="No data source URL configured")
 
 
 # Health check
