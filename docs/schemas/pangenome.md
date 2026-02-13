@@ -4,8 +4,8 @@
 **Location**: On-prem Delta Lakehouse (BERDL - KBase BER Data Lakehouse)
 **Access**: Spark SQL via REST API at `https://hub.berdl.kbase.us/apis/mcp/`
 **Tenant**: KBase
-**Last Updated**: 2026-02-11
-**Verified**: Direct Spark SQL queries on cluster (2026-01-07)
+**Last Updated**: 2026-02-13
+**Verified**: Direct Spark SQL queries on cluster (2026-02-13)
 
 ---
 
@@ -13,10 +13,12 @@
 
 This database contains pangenome data for **293,059 genomes** across **27,690 microbial species** derived from GTDB r214. The data includes:
 - Species-level pangenomes computed with motupan (90% AAI clustering)
+- **Cluster representative sequences** (protein and nucleotide) stored directly in `gene_cluster`
 - Pairwise ANI between genomes (~421M pairs)
 - Functional annotations via eggNOG v6
 - Metabolic pathway predictions via GapMind
 - Environmental embeddings from AlphaEarth
+- **Phylogenetic trees** (Newick) and pairwise branch distances for 330 species
 
 ---
 
@@ -30,7 +32,7 @@ This database contains pangenome data for **293,059 genomes** across **27,690 mi
 | `gtdb_metadata` | 293,059 | CheckM quality, assembly stats, GC% |
 | `gtdb_taxonomy_r214v1` | 293,059 | GTDB taxonomy hierarchy |
 | `gene` | 1,011,650,903 | Individual gene records |
-| `gene_cluster` | 132,531,501 | Gene family classifications |
+| `gene_cluster` | 132,531,501 | Gene family classifications with representative sequences |
 | `gene_genecluster_junction` | 1,011,650,762 | Gene-to-cluster memberships |
 | `eggnog_mapper_annotations` | 93,558,330 | Functional annotations (COG, GO, KEGG, EC, PFAM) |
 | `genome_ani` | 421,218,641 | Pairwise ANI values between genomes |
@@ -38,6 +40,8 @@ This database contains pangenome data for **293,059 genomes** across **27,690 mi
 | `ncbi_env` | 4,124,801 | NCBI environment metadata (key-value format) |
 | `alphaearth_embeddings_all_years` | 83,287 | Environmental embeddings (64-dim) |
 | `gapmind_pathways` | 305,471,280 | Metabolic pathway predictions |
+| `phylogenetic_tree` | 330 | Newick-format species phylogenies |
+| `phylogenetic_tree_distance_pairs` | 22,570,755 | Pairwise phylogenetic branch distances |
 
 ---
 
@@ -184,7 +188,7 @@ Individual gene records linking genes to genomes.
 
 ### 7. `gene_cluster`
 
-Gene family classifications with core/accessory/singleton status.
+Gene family classifications with core/accessory/singleton status and representative sequences.
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -193,9 +197,16 @@ Gene family classifications with core/accessory/singleton status.
 | `is_core` | boolean | True if present in ≥95% of genomes |
 | `is_auxiliary` | boolean | True if present in <95% and >1 genome |
 | `is_singleton` | boolean | True if present in exactly 1 genome |
+| `is_cluster_rep` | boolean | True if this entry is the cluster representative sequence |
 | `likelihood` | float | Assignment confidence from motupan |
+| `faa_header` | string | Protein FASTA header for the cluster representative |
+| `faa_sequence` | string | Protein sequence (amino acid) of the cluster representative |
+| `fna_header` | string | Nucleotide FASTA header for the cluster representative |
+| `fna_sequence` | string | Nucleotide sequence (DNA) of the cluster representative |
 
 **Important**: Core, auxiliary, and singleton are mutually exclusive categories.
+
+**New (2026-02-13)**: Cluster representative sequences (`faa_sequence`, `fna_sequence`) are now available directly in this table, eliminating the need to extract sequences from external FASTA files. The `is_cluster_rep` flag identifies representative entries.
 
 ---
 
@@ -356,6 +367,35 @@ score_simplified: 1
 
 ---
 
+### 15. `phylogenetic_tree`
+
+Newick-format phylogenetic trees per species clade, built from single-copy core genes.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `gtdb_species_clade_id` | string | FK → `gtdb_species_clade` |
+| `phylogenetic_tree_id` | string | **Primary Key**. Tree identifier |
+| `tree_newick` | string | Full phylogenetic tree in Newick format |
+
+**Row Count**: 330 (subset of species with sufficient genomes for tree building)
+
+---
+
+### 16. `phylogenetic_tree_distance_pairs`
+
+Pairwise branch distances extracted from species phylogenetic trees.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `phylogenetic_tree_id` | string | FK → `phylogenetic_tree.phylogenetic_tree_id` |
+| `genome1_id` | string | FK → `genome.genome_id` |
+| `genome2_id` | string | FK → `genome.genome_id` |
+| `branch_distance` | double | Phylogenetic branch distance between the two genomes |
+
+**Row Count**: 22,570,755
+
+---
+
 ## Key Relationships (Entity-Relationship)
 
 ```
@@ -377,8 +417,11 @@ gtdb_species_clade (27,690)
     │            │
     │            └── N:N → genome_ani (genome1_id, genome2_id)
     │
-    └── 1:N → gene_cluster (gtdb_species_clade_id)
-                 └── 1:1 → eggnog_mapper_annotations (query_name)
+    ├── 1:N → gene_cluster (gtdb_species_clade_id)
+    │            └── 1:1 → eggnog_mapper_annotations (query_name)
+    │
+    └── 0:1 → phylogenetic_tree (gtdb_species_clade_id)  [330 species]
+                 └── 1:N → phylogenetic_tree_distance_pairs (phylogenetic_tree_id)
 ```
 
 ---
@@ -552,16 +595,15 @@ WHERE g.gtdb_species_clade_id LIKE 's__Prochlorococcus%'
 
 ---
 
-## Recently Added Tables
+## Recently Added / Updated
 
-*Confirmed present as of 2026-02-11 (previously listed as missing)*
+*Confirmed via direct Spark SQL on cluster (2026-02-13)*
 
 | Table Name | Description | Status |
 |------------|-------------|--------|
-| `phylogenetic_tree` | Species phylogenies from single-copy core genes | **NOW AVAILABLE** |
-| `phylogenetic_tree_distance_pairs` | Pairwise phylogenetic distances | **NOW AVAILABLE** |
-
-These tables were not present in the January 2026 verification but are now accessible. Schema details are pending verification.
+| `phylogenetic_tree` | 330 Newick trees from single-copy core genes | **AVAILABLE** — schema documented above |
+| `phylogenetic_tree_distance_pairs` | 22.6M pairwise branch distances | **AVAILABLE** — schema documented above |
+| `gene_cluster` (updated) | Now includes `is_cluster_rep`, `faa_header`, `faa_sequence`, `fna_header`, `fna_sequence` | **UPDATED** — representative sequences inline |
 
 ## Missing Tables (Mentioned in Project Docs but Not Present)
 
@@ -591,5 +633,6 @@ The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can experience 504 Gatewa
 
 ## Changelog
 
+- **2026-02-13**: Re-verified full schema (16 tables). Documented 5 new `gene_cluster` columns (`is_cluster_rep`, `faa_header`, `faa_sequence`, `fna_header`, `fna_sequence`) — cluster representative sequences now available inline. Documented `phylogenetic_tree` (330 rows) and `phylogenetic_tree_distance_pairs` (22.6M rows) schemas.
 - **2026-01-07**: Full verification via direct Spark SQL on cluster. Added gapmind_pathways schema, gene cluster category distribution, genes per genome statistics, identified 12 specific orphan pangenomes.
 - **2026-01-06**: Initial documentation based on REST API queries and local data extracts.
