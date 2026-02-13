@@ -56,3 +56,31 @@ jobs:
           git add data_cache/data.pkl.gz data_cache/timestamp.json
           git diff --staged --quiet || git commit -m "Update data cache from main@${GITHUB_SHA::7} [skip ci]"
           git push origin data-cache
+
+      - name: Notify application webhook
+        if: env.WEBHOOK_URL != ''
+        env:
+          WEBHOOK_URL: ${{ secrets.DATA_UPDATE_WEBHOOK_URL }}
+          WEBHOOK_SECRET: ${{ secrets.DATA_UPDATE_WEBHOOK_SECRET }}
+        run: |
+          # Compute HMAC signature
+          TIMESTAMP=$(date -u +%s)
+          PAYLOAD="{\"timestamp\":\"$TIMESTAMP\",\"event\":\"data-cache-updated\",\"commit\":\"${GITHUB_SHA::7}\"}"
+
+          if [ -n "$WEBHOOK_SECRET" ]; then
+            SIGNATURE=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" | sed 's/^.* //')
+            curl -X POST "$WEBHOOK_URL" \
+              -H "Content-Type: application/json" \
+              -H "X-Webhook-Signature: $SIGNATURE" \
+              -d "$PAYLOAD" \
+              --max-time 10 \
+              --retry 3 \
+              --retry-delay 5 || echo "Webhook notification failed (non-fatal)"
+          else
+            curl -X POST "$WEBHOOK_URL" \
+              -H "Content-Type: application/json" \
+              -d "$PAYLOAD" \
+              --max-time 10 \
+              --retry 3 \
+              --retry-delay 5 || echo "Webhook notification failed (non-fatal)"
+          fi
