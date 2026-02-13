@@ -106,6 +106,21 @@ Several table schemas differ from the documented schema:
 
 `from berdl_notebook_utils.setup_spark_session import get_spark_session` works from regular Python scripts on JupyterHub — not just notebook kernels. This enables running full analysis pipelines from the command line without `jupyter nbconvert`. The auto-import in `/configs/ipython_startup/00-notebookutils.py` only affects notebook kernels.
 
+### [fitness_modules] Pan-bacterial module families exist across diverse phyla
+
+Cross-organism module alignment using BBH ortholog fingerprints revealed 156 module families spanning 2+ organisms. The largest family spans 21 of 32 organisms across Proteobacteria, Bacteroidetes, Firmicutes, and Archaea — evidence of deeply conserved fitness regulons. 28 families span 5+ organisms.
+
+This required using orthologs from ALL organisms in the analysis — an initial run using only 5-organism orthologs found just 27 families with no family spanning more than 4 organisms. The ortholog graph density is critical.
+
+### [fitness_modules] Ortholog scope dramatically affects cross-organism analysis
+
+Using BBH pairs from 5 organisms (10K pairs, 1,861 OGs) vs all 32 organisms (1.15M pairs, 13,402 OGs) produced radically different results:
+- Module families: 27 → 156 (6x)
+- Families spanning 5+ orgs: 0 → 28
+- Family-backed predictions: 31 (4%) → 493 (56%)
+
+Lesson: always extract orthologs for ALL organisms in the analysis, not just a pilot subset. The ortholog graph is not additive — adding organisms creates new transitive connections.
+
 ---
 
 ## Template

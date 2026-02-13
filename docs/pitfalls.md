@@ -425,6 +425,14 @@ Also: `kgroupec` uses column `ecnum` (not `ec`).
 
 **[fitness_modules]** When computing pairwise cosine distance (`1 - |cosine_similarity|`) for DBSCAN clustering, tiny negative values can appear due to floating-point precision. DBSCAN with `metric="precomputed"` rejects negative distances. Fix: `np.clip(cos_dist, 0, 1, out=cos_dist)` before clustering.
 
+### Ortholog Scope Must Match Analysis Scope
+
+**[fitness_modules]** When building cross-organism ortholog groups, always extract BBH pairs for ALL organisms in the analysis — not just a pilot subset. Using 5-organism orthologs for a 32-organism analysis produced 6x fewer module families and missed all families spanning 5+ organisms. The ortholog graph gains transitive connections from each new organism, so partial extraction severely underestimates cross-organism conservation.
+
+### D'Agostino K² is Wrong for ICA Membership Thresholding
+
+**[fitness_modules]** ICA weight distributions are intentionally non-Gaussian (heavy-tailed), so the D'Agostino K² normality test always rejects normality, causing it to use a permissive z-threshold (2.5) that lets 100-280 genes into each module. Use absolute weight thresholds instead (|Pearson r| ≥ 0.3 with module profile, max 50 genes). This is the single most impactful parameter in the pipeline.
+
 ---
 
 ## Genomes (`kbase_genomes`) Pitfalls

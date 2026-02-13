@@ -408,8 +408,26 @@ core_only = spark.sql("""
 |-------|------|----------|
 | `genefitness` | 27,410,721 | Filter by `orgId` |
 | `cofit` | 13,656,145 | Filter by `orgId` and `locusId` |
-| `ortholog` | millions | Filter by `orgId1` or `orgId2` |
+| `ortholog` | ~1.15M (32 orgs) | Filter by `orgId1` and/or `orgId2` via IN clause |
 | `genedomain` | millions | Filter by `orgId` |
+
+### ICA Pipeline Performance (`fitness_modules`)
+
+**[fitness_modules]** Robust ICA runtime scales with genes × experiments × components × runs:
+
+| Organism | Genes | Experiments | Components | Runs | Time |
+|----------|-------|-------------|------------|------|------|
+| DvH | 2,741 | 757 | 80 | 50 | 82 min |
+| Putida | 4,778 | 300 | 80 | 30 | 78 min |
+| Methanococcus_S2 | 1,244 | 371 | 80 | 50 | 13 min |
+| SynE | 1,899 | 129 | 41 | 30 | 3 min |
+| Kang | 2,003 | 108 | 40 | 30 | 5 min |
+
+**Key performance factors:**
+- **Component/experiment ratio**: Keep ≤ 40%. Higher ratios cause FastICA convergence failures, and each failed run hits `max_iter` (very slow). SB2B (68 comp / 190 exps = 36%) took 25 min; dropping to 40% cap would have been fine.
+- **Pairwise cosine matrix**: Size = (n_runs × n_components)². At 50 runs × 80 components = 4000 vectors → 16M entries, manageable. At 100 runs × 100 components = 10,000 vectors → 100M entries, very slow.
+- **Practical limit**: Cap at 80 components, 30-50 runs. Total time for 32 organisms: ~4-5 hours.
+- **Ortholog extraction**: 1.15M BBH pairs for 32 organisms takes ~2 minutes via Spark. The graph construction (networkx connected components) takes ~30 seconds.
 
 ### Genomes (`kbase_genomes`)
 
