@@ -7,6 +7,7 @@ from datetime import datetime
 from pathlib import Path
 
 import yaml
+
 import httpx
 
 from .config import settings
@@ -34,6 +35,7 @@ from .models import (
 )
 
 REPOSITORY_DATA_FILE = "data.pkl.gz"
+
 
 def load_external_data(url: str) -> RepositoryData:
     """
@@ -68,7 +70,6 @@ def load_external_data(url: str) -> RepositoryData:
     return repository_data
 
 
-
 def slugify(text: str) -> str:
     """Convert text to a URL-friendly slug."""
     text = text.lower().strip()
@@ -82,10 +83,18 @@ class RepositoryParser:
 
     # Collection IDs to scan for in README text
     _COLLECTION_IDS = [
-        "kbase_ke_pangenome", "kescience_fitnessbrowser", "kbase_msd_biochemistry",
-        "kbase_genomes", "enigma_coral", "kbase_phenotype", "nmdc_arkin",
-        "phagefoundry", "planetmicrobe", "protect_genomedepot",
-        "kbase_uniprot", "kbase_uniref",
+        "kbase_ke_pangenome",
+        "kescience_fitnessbrowser",
+        "kbase_msd_biochemistry",
+        "kbase_genomes",
+        "enigma_coral",
+        "kbase_phenotype",
+        "nmdc_arkin",
+        "phagefoundry",
+        "planetmicrobe",
+        "protect_genomedepot",
+        "kbase_uniprot",
+        "kbase_uniref",
     ]
 
     def __init__(self, repo_path: Path | None = None):
@@ -243,7 +252,9 @@ class RepositoryParser:
         """Extract BERDL collection IDs mentioned in README text."""
         return [cid for cid in self._COLLECTION_IDS if cid in readme_content]
 
-    def _parse_contributors(self, readme_content: str, project_id: str) -> list[Contributor]:
+    def _parse_contributors(
+        self, readme_content: str, project_id: str
+    ) -> list[Contributor]:
         """Parse contributors from ## Authors or ## Contributors section."""
         section = self._extract_section(readme_content, "Authors")
         if section is None:
@@ -301,11 +312,13 @@ class RepositoryParser:
         date = None
         project_id = project_dir.name
 
-        frontmatter_match = re.match(r"^---\s*\n(.*?)\n---\s*\n", raw_content, re.DOTALL)
+        frontmatter_match = re.match(
+            r"^---\s*\n(.*?)\n---\s*\n", raw_content, re.DOTALL
+        )
         body = raw_content
         if frontmatter_match:
             frontmatter_text = frontmatter_match.group(1)
-            body = raw_content[frontmatter_match.end():]
+            body = raw_content[frontmatter_match.end() :]
 
             try:
                 frontmatter = yaml.safe_load(frontmatter_text)
@@ -374,7 +387,9 @@ class RepositoryParser:
 
         return sorted(notebooks, key=lambda n: n.filename)
 
-    def _parse_data_dir(self, project_dir: Path) -> tuple[list[Visualization], list[DataFile]]:
+    def _parse_data_dir(
+        self, project_dir: Path
+    ) -> tuple[list[Visualization], list[DataFile]]:
         """Parse visualizations and data files from project data/ and figures/ directories."""
         visualizations = []
         data_files = []
@@ -392,7 +407,13 @@ class RepositoryParser:
 
                 size_bytes = file_path.stat().st_size
 
-                if file_path.suffix.lower() in (".png", ".jpg", ".jpeg", ".svg", ".gif"):
+                if file_path.suffix.lower() in (
+                    ".png",
+                    ".jpg",
+                    ".jpeg",
+                    ".svg",
+                    ".gif",
+                ):
                     visualizations.append(
                         Visualization(
                             filename=file_path.name,

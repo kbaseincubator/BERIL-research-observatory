@@ -1,10 +1,11 @@
 """Data models for the BERIL Research Observatory."""
 
 import re
-from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
 from typing import Any
+
+from dataclasses import dataclass, field
 
 
 def _slugify_name(name: str) -> str:
@@ -196,8 +197,16 @@ class Project:
             return ReviewStatus.NOT_REVIEWED
         if self.review.date and self.updated_date:
             # Normalize both to date objects for same-day comparison
-            r_date = self.review.date.date() if isinstance(self.review.date, datetime) else self.review.date
-            u_date = self.updated_date.date() if isinstance(self.updated_date, datetime) else self.updated_date
+            r_date = (
+                self.review.date.date()
+                if isinstance(self.review.date, datetime)
+                else self.review.date
+            )
+            u_date = (
+                self.updated_date.date()
+                if isinstance(self.updated_date, datetime)
+                else self.updated_date
+            )
             if u_date > r_date:
                 return ReviewStatus.NEEDS_RE_REVIEW
         return ReviewStatus.REVIEWED

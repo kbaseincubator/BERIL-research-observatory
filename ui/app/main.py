@@ -1,5 +1,6 @@
 """BERIL Research Observatory - FastAPI Application."""
 
+import logging
 from contextlib import asynccontextmanager
 
 import nbformat
@@ -14,12 +15,11 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from .config import settings
-from .models import CollectionCategory
 from .dataloader import get_parser, load_external_data
-
-import logging
+from .models import CollectionCategory
 
 logger = logging.getLogger(__name__)
+
 
 # Add custom template globals
 @asynccontextmanager
@@ -46,6 +46,7 @@ async def lifespan(app: FastAPI):
         parser = get_parser()
         app.state.repo_data = parser.parse_all()
     yield
+
 
 # Create FastAPI app
 app = FastAPI(
@@ -99,9 +100,6 @@ templates.env.filters["markdown_inline"] = markdown_inline_filter
 templates.env.filters["mdi"] = markdown_inline_filter  # Alias
 
 
-
-
-
 def get_repo_data(request: Request):
     """Get repository data from app state."""
     return request.app.state.repo_data
@@ -137,7 +135,9 @@ async def home(request: Request):
             "discoveries": repo_data.discoveries[:3],  # Latest 3 discoveries
             "total_notebooks": repo_data.total_notebooks,
             "total_visualizations": repo_data.total_visualizations,
-            "primary_collections": repo_data.get_collections_by_category(CollectionCategory.PRIMARY)[:3],
+            "primary_collections": repo_data.get_collections_by_category(
+                CollectionCategory.PRIMARY
+            )[:3],
         }
     )
     return templates.TemplateResponse("home.html", context)
@@ -353,7 +353,9 @@ async def about(request: Request):
     """About page."""
     repo_data = get_repo_data(request)
     context = get_base_context(request)
-    context["primary_collections"] = repo_data.get_collections_by_category(CollectionCategory.PRIMARY)
+    context["primary_collections"] = repo_data.get_collections_by_category(
+        CollectionCategory.PRIMARY
+    )
     return templates.TemplateResponse("about/about.html", context)
 
 
