@@ -82,8 +82,7 @@ projects/fitness_modules/
 3. 6,691 function predictions for hypothetical proteins (2,455 family-backed, 4,236 module-only)
 4. Formal benchmarking against cofitness/ortholog/domain baselines (NB07, `src/run_benchmark.py`)
 
-**Remaining**:
-5. Resolve TIGRFam/PFam domain IDs to human-readable function descriptions in predictions
+5. Resolved PFam/TIGRFam/KEGG IDs to human-readable descriptions in predictions (84% resolved)
 
 ## Results
 
