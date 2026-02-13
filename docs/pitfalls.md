@@ -433,6 +433,10 @@ Also: `kgroupec` uses column `ecnum` (not `ec`).
 
 **[fitness_modules]** ICA weight distributions are intentionally non-Gaussian (heavy-tailed), so the D'Agostino K² normality test always rejects normality, causing it to use a permissive z-threshold (2.5) that lets 100-280 genes into each module. Use absolute weight thresholds instead (|Pearson r| ≥ 0.3 with module profile, max 50 genes). This is the single most impactful parameter in the pipeline.
 
+### Enrichment min_annotated Must Match Annotation Granularity
+
+**[fitness_modules]** Using `min_annotated=3` with KEGG KOs (~1.2 genes per KO) results in only 8% of modules getting any enrichment — almost no KEGG term has 3+ genes in a single 5-50 gene module. Lower to `min_annotated=2` (still valid with FDR correction) and include PFam domains (814 terms with 2+ genes) alongside TIGRFam (88 terms). This increases module annotation from 8% to 80%.
+
 ---
 
 ## Genomes (`kbase_genomes`) Pitfalls

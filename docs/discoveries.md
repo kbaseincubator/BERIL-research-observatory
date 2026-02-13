@@ -81,14 +81,14 @@ Multi-function genes with composite COG assignments (e.g., "LV" = mobile+defense
 
 ### [fitness_modules] ICA reliably decomposes fitness data into biologically coherent modules
 
-Robust ICA (30-50 FastICA runs + DBSCAN clustering) consistently finds 17-52 stable modules per organism across 32 bacteria. Within-module gene pairs show 17-138x higher correlation than random pairs, and 93.2% of modules have elevated cofitness vs genome-wide background. This validates ICA as a principled decomposition method for RB-TnSeq data.
+Robust ICA (30-50 FastICA runs + DBSCAN clustering) consistently finds 17-52 stable modules per organism across 32 bacteria. 94.2% of modules show significantly elevated within-module cofitness (Mann-Whitney U, p < 0.05; mean |r| = 0.34 vs background 0.12). Genomic adjacency enrichment averages 22.7× across organisms, confirming modules capture operon-like co-regulated gene groups.
 
 ### [fitness_modules] Membership thresholding is the critical parameter, not ICA itself
 
 The initial D'Agostino K² normality-based thresholding gave 100-280 genes per module — biologically meaningless. The ICA components themselves were fine; the problem was deciding which genes "belong" to each module. Switching to an absolute weight threshold (|Pearson r| ≥ 0.3 with module profile, max 50 genes) reduced modules to 5-50 genes and dramatically improved all validation metrics:
-- Cofitness enrichment: 59% → 93.2%
-- Within-module correlation: 0.047 → 0.387 (DvH)
-- Predictions: 2,423 low-quality → 878 high-quality
+- Cofitness enrichment: 59% → 94.2%
+- Within-module |r|: 0.047 → 0.34 (mean across 32 organisms)
+- Modules became biologically coherent (22.7× genomic adjacency enrichment)
 
 ### [fitness_modules] Organisms with <200 experiments still produce valid modules
 
@@ -120,6 +120,23 @@ Using BBH pairs from 5 organisms (10K pairs, 1,861 OGs) vs all 32 organisms (1.1
 - Family-backed predictions: 31 (4%) → 493 (56%)
 
 Lesson: always extract orthologs for ALL organisms in the analysis, not just a pilot subset. The ortholog graph is not additive — adding organisms creates new transitive connections.
+
+### [fitness_modules] PFam domains are essential for module enrichment — KEGG KOs are too fine-grained
+
+The initial enrichment pipeline (KEGG + SEED + TIGRFam, min_annotated=3) annotated only 8.2% of modules (92/1,116). Root cause: KEGG KO groups average ~1.2 genes per term, so modules with 5-50 members almost never have 3+ genes sharing the same KO. Adding PFam domains (which have 814 terms with 2+ genes vs TIGRFam's 88) and lowering the overlap threshold to 2 increased annotation to 79.7% (890/1,116). PFam is the dominant annotation source — it provides domain-level functional labels that match module granularity.
+
+Impact on downstream analysis:
+- Predictions: 878 → 6,691 (7.6×), now covering all 32 organisms
+- Annotated families: 32 → 145 out of 156 (93%)
+- Three organisms (Caulo, Methanococcus_S2, Korea) went from 0 enrichments to 24-29 enriched modules
+
+### [fitness_modules] Module-ICA is complementary to sequence-based methods, not competitive
+
+Held-out KO prediction benchmark across 32 organisms showed ortholog transfer dominates at gene-level function prediction (95.8% precision, 91.2% coverage), while Module-ICA has <1% precision at the KO level. This is expected and informative, not a failure: modules capture **process-level co-regulation** (validated by 94.2% cofitness enrichment and 22.7× adjacency enrichment), not specific molecular function. An ABC transporter module correctly groups binding, permease, and ATPase subunits — but each has a different KO. The right framing for module-based predictions is "involved in [biological process]" not "has function [specific KO]."
+
+### [fitness_modules] Enrichment min_annotated threshold must match annotation granularity
+
+The min_annotated parameter (minimum overlapping genes to test for enrichment) must be calibrated to the annotation database's granularity. For gene-specific annotations (KEGG KOs: ~1 gene/term), min_annotated=3 eliminates nearly all tests. For domain-level annotations (PFam: many genes share domains), min_annotated=2 works well with FDR correction. Fisher's exact test handles small counts correctly — the statistical validity comes from FDR correction across all tests, not from requiring large overlaps per test.
 
 ---
 
