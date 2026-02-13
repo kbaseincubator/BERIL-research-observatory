@@ -87,7 +87,11 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 KBase. Built with the BERDL data lakehouse.</p>
+            <p>&copy; 2026 KBase. Built with the BERDL data lakehouse.
+            {% if last_updated %}
+                <span class="footer-updated">Last updated: {{ last_updated.strftime('%Y-%m-%d %H:%M UTC') }}</span>
+            {% endif %}
+            </p>
         </div>
     </footer>
 
