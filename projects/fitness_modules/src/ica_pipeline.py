@@ -4,16 +4,16 @@ Robust ICA pipeline for decomposing gene-fitness matrices into stable modules.
 Follows Borchert et al. (2019) approach:
 1. Run FastICA many times with different random seeds
 2. Collect all component vectors
-3. Cluster by cosine similarity (DBSCAN) to find stable components
-4. Compute gene weights (correlation with module profile)
-5. Threshold membership via D'Agostino K² normality test
+3. Cluster by |cosine similarity| (DBSCAN) to find stable components
+4. Compute gene weights (Pearson r of gene profile vs module profile)
+5. Threshold membership via absolute weight cutoff (|r| >= 0.3, max 50 genes)
 
 Usage:
     from src.ica_pipeline import robust_ica, compute_gene_weights, threshold_membership
 
-    modules = robust_ica(X, n_components=50, n_runs=100)
+    modules = robust_ica(X, n_components=50, n_runs=30)
     weights = compute_gene_weights(X, modules)
-    membership = threshold_membership(weights)
+    membership = threshold_membership(weights, min_weight=0.3, max_members=50)
 """
 
 import numpy as np
