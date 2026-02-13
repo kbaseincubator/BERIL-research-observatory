@@ -51,6 +51,10 @@ data/               # Shared data extracts reusable across projects
 | `/berdl` | Query BERDL databases via REST API or Spark SQL |
 | `/berdl-discover` | Explore and document a new BERDL database |
 | `/hypothesis` | Generate testable research questions from BERDL data |
+| `/research-plan` | Refine a hypothesis with literature review, data feasibility checks, and a structured plan |
+| `/notebook` | Generate Jupyter notebooks from a research plan with PySpark boilerplate |
+| `/literature-review` | Search PubMed, Europe PMC, and other sources for relevant biological literature |
+| `/synthesize` | Read analysis outputs, compare against literature, and draft findings |
 | `/submit` | Submit a project for automated review |
 
 ### Existing Projects
@@ -77,8 +81,9 @@ Ask the user which of these they want to do:
 
 1. **Start a new research project**
 2. **Explore BERDL data**
-3. **Continue an existing project**
-4. **Understand the system**
+3. **Review published literature**
+4. **Continue an existing project**
+5. **Understand the system**
 
 Then follow the appropriate path below.
 
@@ -94,14 +99,13 @@ Read these files:
 Then:
 - Summarize the high-priority research ideas that are still PROPOSED
 - Mention cross-project integration opportunities
-- Suggest using `/hypothesis` to develop a research question
-- Once the user has a question, help them create the project structure:
-  ```
-  projects/<name>/
-    README.md      # Question, hypothesis, approach
-    notebooks/     # Analysis notebooks
-    data/          # Output data
-  ```
+- Present the full research workflow:
+  1. `/hypothesis` — generate a testable research question
+  2. `/research-plan` — refine with literature review, check data feasibility, produce a structured plan
+  3. `/notebook` — generate analysis notebooks from the plan
+  4. Run notebooks on BERDL JupyterHub
+  5. `/synthesize` — interpret results, compare against literature, draft findings
+  6. `/submit` — pre-submission checks and automated review
 
 ### Path 2: Explore BERDL Data
 
@@ -116,7 +120,20 @@ Then:
 - Suggest using `/berdl-discover` if they want to explore a database not yet documented in `docs/schemas/`
 - Warn about the key pitfalls (see Critical Pitfalls below)
 
-### Path 3: Continue an Existing Project
+### Path 3: Review Published Literature
+
+Suggest using `/literature-review` to search biological databases. This is useful for:
+- Checking what's already known about an organism or pathway before querying BERDL
+- Finding published pangenome analyses to compare against BERDL data
+- Supporting a hypothesis with existing citations
+- Discovering methods and approaches used in similar studies
+
+**MCP setup check**: The `pubmed-search` MCP server is configured in `.claude/settings.json`. It runs via `uvx pubmed-search-mcp`. If it's not working:
+1. Ensure `uv` is installed: `curl -LsSf https://astral.sh/uv/install.sh | sh`
+2. Optionally add `NCBI_EMAIL` and `NCBI_API_KEY` to `.env` for faster PubMed access (3→10 requests/sec)
+3. The skill falls back to WebSearch if the MCP server is unavailable
+
+### Path 4: Continue an Existing Project
 
 Steps:
 1. Run `ls projects/` and list all projects for the user to choose from
@@ -125,7 +142,7 @@ Steps:
 4. Summarize where the project stands: what's done, what's next
 5. Suggest using `/submit` when the project is ready for review
 
-### Path 4: Understand the System
+### Path 5: Understand the System
 
 Read these files:
 - `PROJECT.md` — high-level goals and structure

@@ -36,6 +36,8 @@ Run these checks against the project directory and print a checklist summary:
 **Advisory checks** (warn but allow submission):
 - Discoveries documented in `docs/discoveries.md` — search for `[{project_id}]` tag
 - Pitfalls documented in `docs/pitfalls.md` — search for the project name or id
+- Research plan documented — check if `projects/{project_id}/research_plan.md` exists (created by `/research-plan`)
+- References documented — check if `projects/{project_id}/references.md` exists (created by `/literature-review`)
 - Project files committed to git — run `git status --porcelain projects/{project_id}/` and warn if there are uncommitted or untracked changes
 - **Notebook outputs**: Check that notebooks have saved outputs (not just empty code cells). For each `.ipynb` in `notebooks/`, parse the JSON and count code cells with non-empty `outputs` arrays. Warn if any notebook has 0 cells with outputs.
 - **Figures**: Check that `figures/` directory exists and contains at least one PNG file. Warn if empty or missing.
@@ -51,6 +53,8 @@ Pre-submission checklist for: {project_id}
   FAIL  Authors section missing or empty
   WARN  No discoveries documented
   PASS  Pitfalls documented
+  WARN  No research plan documented
+  WARN  No references documented
   WARN  Uncommitted changes in project directory
 ```
 
@@ -83,3 +87,7 @@ After the reviewer subprocess completes:
 - The reviewer prompt is stored at `.claude/reviewer/SYSTEM_PROMPT.md` and is not controlled by the author
 - Each `/submit` produces a fresh review, replacing any existing `REVIEW.md`
 - To address review feedback, update the project and run `/submit` again
+
+## Pitfall Detection
+
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.

@@ -17,16 +17,19 @@ Query the KBase BERDL Data Lakehouse containing pangenome and biochemistry data.
 | `kescience_fitnessbrowser` | See [docs/schemas/fitnessbrowser.md](../../../docs/schemas/fitnessbrowser.md) | 48 organisms, 27M fitness measurements |
 | `kbase_genomes` | See [docs/schemas/genomes.md](../../../docs/schemas/genomes.md) | 293K genomes, 253M protein sequences |
 
+**Cross-database patterns**: [cross-database.md](modules/cross-database.md) — joining pangenome ↔ biochemistry ↔ fitness ↔ NCBI
+
 For the full inventory of 35 databases across 9 tenants, see [docs/collections.md](../../../docs/collections.md).
 
 **Read the appropriate module** for database-specific tables, schemas, and query patterns.
+**Read [query-patterns.md](modules/query-patterns.md)** before writing any SQL — it contains mandatory safety rules and performance guidance.
 
 ## Authentication
 
 All API requests require the token from `.env`:
 
 ```bash
-AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
+AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
 ```
 
 ## API Endpoints
@@ -125,18 +128,52 @@ LIMIT 1000 OFFSET 1000  -- Second page
 ## Instructions for Claude
 
 1. **Read auth token** from `.env` first
-2. **Read the appropriate module** for the target database
-3. **Start with schema exploration** if unfamiliar with table structure
-4. **Use appropriate endpoint**: `/sample` for inspection, `/count` for counts, `/query` for SQL
-5. **Handle pagination** for large result sets
-6. **Include ORDER BY** in queries for consistent pagination
+2. **Read [query-patterns.md](modules/query-patterns.md)** — contains mandatory validation checklist and performance tiers
+3. **Read the appropriate module** for the target database (pangenome, biochemistry, etc.)
+4. **Read [cross-database.md](modules/cross-database.md)** if the query spans multiple databases
+5. **Start with schema exploration** if unfamiliar with table structure
+6. **Check row counts** with `/count` endpoint before querying large tables
+7. **Use appropriate endpoint**: `/sample` for inspection, `/count` for counts, `/query` for SQL
+8. **Run the validation checklist** from query-patterns.md before executing any SQL query
+9. **Handle pagination** for large result sets
+10. **Include ORDER BY** in queries for consistent pagination
+
+### Query Validation (mandatory)
+
+Before executing any query, verify against the checklist in [query-patterns.md](modules/query-patterns.md):
+- Partitioned column filter present?
+- Large tables guarded?
+- Results bounded?
+- Types cast correctly?
+- Species IDs quoted?
+- Annotation NULLs filtered?
+- ORDER BY for pagination?
+- Correct JOIN keys?
+
+### Performance Tiers
+
+| Expected Result Size | Strategy |
+|---|---|
+| < 100K rows | REST API, `.toPandas()` OK |
+| 100K – 10M rows | Filter + aggregate in SQL first |
+| > 10M rows | PySpark on JupyterHub only |
 
 ## Error Handling
 
-- **"cannot schedule new futures after shutdown"**: Retry the query
-- **Timeout**: Use pagination with smaller limits
-- **Auth errors**: Validate token exists in `.env`
+| Error | Meaning | Solution |
+|---|---|---|
+| 504 Gateway Timeout | Query took too long | Simplify query, add filters, switch to JupyterHub |
+| 524 Origin Timeout | Server didn't respond | Retry after a few seconds |
+| 503 "cannot schedule new futures" | Spark executor restarting | Wait 30s, retry |
+| Empty response | Query failed silently | Check query syntax, verify table exists |
+| Auth errors | Invalid or expired token | Validate `KBASE_AUTH_TOKEN` in `.env` |
+
+**Rule of thumb**: If the REST API fails twice, switch to JupyterHub with `spark.sql()`.
 
 ## Adding New Databases
 
 Use the `/berdl-discover` skill to introspect new databases and generate module files.
+
+## Pitfall Detection
+
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.
