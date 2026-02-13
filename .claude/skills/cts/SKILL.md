@@ -30,6 +30,7 @@ CTS runs containerized bioinformatics tools on remote compute clusters (HTCondor
 
 CTS is a **prototype service**. Current limitations:
 - **Only `kbase` cluster** is active (NERSC connections blocked by ANL networking issue)
+- **`kbase` cluster requires KBase staff role** — check with `tscli.whoami()` (Python) or ask a CTS admin to grant access
 - **Only CheckM2** (`ghcr.io/kbasetest/cdm_checkm2:0.3.0`) is currently approved as an image
 - New images require admin approval (see Container Requirements below)
 
@@ -128,10 +129,10 @@ The Python client is available in JupyterHub kernels via a helper function:
 ```python
 tscli = get_task_service_client()
 
-# Discovery
+# Discovery (print results directly to inspect structure)
 tscli.get_images()          # List approved images
 tscli.get_sites()           # Available clusters
-tscli.whoami()              # User info + allowed S3 paths
+tscli.whoami()              # User info, roles, and allowed S3 paths
 
 # Job submission
 tscli.submit_job(...)       # Submit a job (returns Job object)
@@ -204,7 +205,7 @@ Annotated JSON for `POST /jobs`:
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `cluster` | Yes | Compute cluster. Currently only `"kbase"` is active |
+| `cluster` | Yes | Compute cluster. Currently only `"kbase"` is active. **Requires KBase staff role** (check `whoami()` or ask admin) |
 | `image` | Yes | Docker image (must be pre-approved, check `GET /images`) |
 | `params.args` | Yes | Array of strings and special objects. `{"type": "input_files", "input_files_format": "space_separated_list"}` is replaced with the actual input file paths at runtime |
 | `params.input_mount_point` | No | Default `/input_files`. Where input files are mounted in the container |
@@ -300,7 +301,8 @@ For requesting new image approvals:
 | Job state `error` | Container failed | Check exit codes and stderr logs |
 | Non-zero exit code | Tool-specific failure | Read stderr: `GET /jobs/{id}/log/{n}/stderr` |
 | `"At least one container exited with a non-zero error code"` | One or more containers failed | Check each container's exit code and logs individually |
-| Auth error | Invalid/expired token | Refresh `KBASE_AUTH_TOKEN` in `.env` |
+| Auth error (invalid token) | Invalid/expired token | Refresh `KBASE_AUTH_TOKEN` in `.env` |
+| `"you must be a KBase staff member"` | Account lacks required role for cluster | Ask CTS admin to grant staff role |
 | Image not found | Image not approved | Run `GET /images` to see approved images |
 | S3 file rejected | Missing CRC64NVME checksum | Re-upload with `mc cp --checksum crc64nvme` |
 
