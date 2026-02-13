@@ -76,10 +76,18 @@
       "Bash(claude --version:*)",
       "Bash(.venv/bin/python3:*)",
       "Skill(submit)",
+      "Skill(cts)",
       "WebFetch(domain:www.kbase.us)",
       "WebFetch(domain:narrative.kbase.us)",
       "Bash(ls:*)",
-      "Bash(git pull:*)"
+      "Bash(git pull:*)",
+      "Bash(python:*)",
+      "WebFetch(domain:cborg.lbl.gov)",
+      "WebFetch(domain:docs.nersc.gov)",
+      "WebFetch(domain:registry.nersc.gov)",
+      "Bash(git -C /Users/paramvirdehal/KBase/ke-pangenome-science pull)",
+      "WebFetch(domain:berdl.kbase.us)",
+      "WebFetch(domain:raw.githubusercontent.com)"
     ]
   },
   "statusLine": {

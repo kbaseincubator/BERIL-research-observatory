@@ -32,6 +32,7 @@ You can enter the pipeline at any stage. For example, if you already have a rese
 | `/literature-review` | Search PubMed, Europe PMC, CORE, OpenAlex | Research topic or question | Literature summary, `references.md` |
 | `/berdl` | Query BERDL databases via REST API | SQL query or natural-language question | Query results, schema info, data samples |
 | `/berdl-discover` | Explore and document a new BERDL database | Database name | Module file in `.claude/skills/berdl/modules/`, documentation |
+| `/cts` | Submit batch compute jobs to CTS | Image name, S3 input files | Job ID, S3 output files, auto-imported Delta tables |
 | `/pitfall-capture` | Document errors and data surprises | Error context (invoked automatically) | Entry in [pitfalls.md](pitfalls.md) |
 
 ---
@@ -125,6 +126,25 @@ This is the only manual step. Upload the generated notebooks to the BERDL Jupyte
 5. Download figures into `projects/{id}/figures/`
 
 **Tip**: The generated notebooks include safety patterns from [pitfalls.md](pitfalls.md) (LIMIT clauses, CAST operations, retry logic). If you encounter new issues, use `/pitfall-capture` to document them for future projects.
+
+---
+
+### Batch Compute with CTS
+
+Some workloads -- DIAMOND searches, CheckM2 genome quality checks, ICA decomposition -- are too compute-intensive for interactive notebook execution. The **CDM Task Service (CTS)** runs containerized bioinformatics tools on remote compute clusters, handling data staging and multi-container parallelism.
+
+Use `/cts` instead of JupyterHub when:
+- The tool is a containerized command-line program (not a Spark/Python analysis)
+- You need to process many files in parallel (e.g., quality-check hundreds of genomes)
+- The job will run for more than ~30 minutes
+
+```
+/notebook --> JupyterHub (interactive analysis via PySpark)
+     OR
+/cts     --> CTS remote compute (batch jobs via containerized tools)
+```
+
+Both paths feed back into the research workflow: JupyterHub results are saved as CSVs and figures, while CTS results are auto-imported into Delta tables queryable via Spark SQL. Either way, use `/synthesize` to interpret the results.
 
 ---
 
