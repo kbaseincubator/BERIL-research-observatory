@@ -224,6 +224,13 @@ When a user describes their research interest:
    - Reference `projects/` directory for examples
    - Suggest building on existing work
 
+6. **Suggest literature review**
+   - After generating hypotheses, suggest: "Use `/literature-review` to check whether this hypothesis has been explored in published research"
+   - Literature review can reveal: prior results, established methods, confounders identified by others, and gaps that BERDL could uniquely fill
+
+7. **Suggest research plan**
+   - After presenting hypotheses and literature review suggestion, also suggest: "Use `/research-plan` to refine this hypothesis with a literature review, check data feasibility, and create a structured plan for your analysis"
+
 ---
 
 ## Data Limitations to Consider
@@ -246,3 +253,7 @@ When a user describes their research interest:
 | Quality metrics | `gtdb_metadata` | `checkm_completeness`, `checkm_contamination` |
 | Environment | `sample`, `ncbi_env` | Environmental attributes |
 | Biochemistry | `reaction`, `molecule` | `deltag`, `reversibility`, `is_transport` |
+
+## Pitfall Detection
+
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.
