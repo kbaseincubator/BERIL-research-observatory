@@ -19,10 +19,10 @@ This approach follows Borchert et al. (2019) who applied ICA to *P. putida* fitn
 1. **Explore & select** — Surveyed all 48 organisms; selected 32 with ≥100 experiments
 2. **Extract matrices** — Built gene × experiment fitness matrices from Spark (2,531-6,384 genes × 104-757 experiments)
 3. **Robust ICA** — 30-50× FastICA runs → DBSCAN clustering → stable modules (5-50 genes each)
-4. **Annotate modules** — KEGG, SEED, TIGRFam enrichment (Fisher exact + BH FDR); map to conditions
+4. **Annotate modules** — KEGG, SEED, TIGRFam, PFam enrichment (Fisher exact + BH FDR); map to conditions
 5. **Cross-organism alignment** — 1.15M BBH pairs → 13,402 ortholog groups → module family fingerprints → 156 families
-6. **Predict function** — Module + family context → 878 function predictions for hypothetical proteins
-7. **Validate** — Within-module cofitness (93.2% enriched) and gene correlation (17-138× above random)
+6. **Predict function** — Module + family context → 6,691 function predictions for hypothetical proteins
+7. **Validate** — Within-module cofitness (94.2% enriched) and genomic adjacency (22.7× enrichment)
 
 ## Key Methods
 
