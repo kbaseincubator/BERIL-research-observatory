@@ -224,6 +224,10 @@ When a user describes their research interest:
    - Reference `projects/` directory for examples
    - Suggest building on existing work
 
+6. **Suggest literature review**
+   - After generating hypotheses, suggest: "Use `/literature-review` to check whether this hypothesis has been explored in published research"
+   - Literature review can reveal: prior results, established methods, confounders identified by others, and gaps that BERDL could uniquely fill
+
 ---
 
 ## Data Limitations to Consider
