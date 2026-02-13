@@ -87,7 +87,7 @@ projects/fitness_modules/
 ## Results
 
 ### ICA Decomposition (32 organisms)
-- **1,077 stable modules** across 32 organisms (all with ≥100 experiments)
+- **1,116 stable modules** across 32 organisms (all with ≥100 experiments)
 - Module sizes: median 7-50 genes per module (biologically correct range)
 - **93.2%** of modules show elevated within-module cofitness vs genome-wide background
 - Within-module gene correlation: 17-138x above random pairs
