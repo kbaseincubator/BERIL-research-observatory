@@ -1,10 +1,13 @@
 """Repository parser - reads markdown files and extracts structured data."""
 
+import gzip
+import pickle
 import re
 from datetime import datetime
 from pathlib import Path
 
 import yaml
+import httpx
 
 from .config import settings
 from .models import (
@@ -29,6 +32,41 @@ from .models import (
     Table,
     Visualization,
 )
+
+REPOSITORY_DATA_FILE = "data.pkl.gz"
+
+def load_external_data(url: str) -> RepositoryData:
+    """
+    This loads an external pickle file from url/REPOSITORY_DATA_FILE.
+    This gets returned as RepositoryData.
+    Possible failures:
+    HTTPError - if the url doesn't exist, or is inaccessible
+    ValueError - if the url is invalid
+    UnpicklingError - if the file is not a pickle file
+    """
+    # Ensure URL ends with a slash
+    if not url.endswith("/"):
+        url = url + "/"
+
+    # Construct full URL to the data file
+    full_url = url + REPOSITORY_DATA_FILE
+
+    # Fetch the file from the URL
+    response = httpx.get(full_url, follow_redirects=True)
+    response.raise_for_status()  # Raises HTTPError for bad status codes
+
+    # Decompress the gzipped content
+    decompressed_data = gzip.decompress(response.content)
+
+    # Unpickle the data
+    repository_data = pickle.loads(decompressed_data)
+
+    # Validate that we got a RepositoryData object
+    if not isinstance(repository_data, RepositoryData):
+        raise ValueError(f"Expected RepositoryData object, got {type(repository_data)}")
+
+    return repository_data
+
 
 
 def slugify(text: str) -> str:

@@ -1,0 +1,52 @@
+name: Build Data Cache
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  build-cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        run: |
+          cd ui
+          uv sync
+
+      - name: Build data cache
+        run: |
+          cd ui
+          uv run python ../scripts/build_data_cache.py
+
+      - name: Commit and push to data-cache branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Create or checkout data-cache branch
+          git fetch origin data-cache:data-cache || git branch data-cache
+          git checkout data-cache
+
+          # Copy data files from main
+          git checkout main -- data_cache/data.pkl.gz data_cache/timestamp.json
+
+          # Commit and push
+          git add data_cache/data.pkl.gz data_cache/timestamp.json
+          git diff --staged --quiet || git commit -m "Update data cache from main@${GITHUB_SHA::7} [skip ci]"
+          git push origin data-cache

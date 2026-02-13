@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     app_dir: Path = Path(__file__).parent
     ui_dir: Path = app_dir.parent
     repo_dir: Path = ui_dir.parent  # The research repository root
+    data_source_url: str | None = None
 
     # Derived paths
     @property

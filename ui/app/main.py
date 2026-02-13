@@ -15,7 +15,7 @@ from fastapi.templating import Jinja2Templates
 
 from .config import settings
 from .models import CollectionCategory
-from .parser import get_parser
+from .dataloader import get_parser, load_external_data
 
 import logging
 
@@ -25,9 +25,26 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Initialize app on startup."""
-    # Parse repository data
-    parser = get_parser()
-    app.state.repo_data = parser.parse_all()
+    # Try to pull from external source
+    # 1. Look at source, if present, load it.
+    # 1a. If not present, parse files on disk.
+    # 2. source will have data.pkl.zip and timestamp.json files. pull data.pkl.zip
+    # 3. Import the data.pkl.zip as app.state.repo_data
+    logging.warning("Loading repository data")
+    logging.error(settings.model_dump())
+    try:
+        if settings.data_source_url is not None:
+            logging.warning(f"Loading from URL {settings.data_source_url}")
+            app.state.repo_data = load_external_data(settings.data_source_url)
+            logging.warning("Done loading data")
+        else:
+            raise ValueError("Data source URL not found")
+    except Exception as e:
+        logging.warning(str(e))
+        logging.warning("Loading data from local files")
+        # Parse repository data
+        parser = get_parser()
+        app.state.repo_data = parser.parse_all()
     yield
 
 # Create FastAPI app
