@@ -39,12 +39,18 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Create or checkout data-cache branch
+          # Fetch the data-cache branch
           git fetch origin data-cache:data-cache || git branch data-cache
+
+          # Move generated files to a temp location
+          mv data_cache /tmp/data_cache_temp
+
+          # Switch to data-cache branch
           git checkout data-cache
 
-          # Copy data files from main
-          git checkout main -- data_cache/data.pkl.gz data_cache/timestamp.json
+          # Move the generated files back
+          rm -rf data_cache
+          mv /tmp/data_cache_temp data_cache
 
           # Commit and push
           git add data_cache/data.pkl.gz data_cache/timestamp.json
