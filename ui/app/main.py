@@ -1,6 +1,6 @@
 """BERIL Research Observatory - FastAPI Application."""
 
-from pathlib import Path
+from contextlib import asynccontextmanager
 
 import nbformat
 from markupsafe import Markup
@@ -17,11 +17,25 @@ from .config import settings
 from .models import CollectionCategory
 from .parser import get_parser
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+# Add custom template globals
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Initialize app on startup."""
+    # Parse repository data
+    parser = get_parser()
+    app.state.repo_data = parser.parse_all()
+    yield
+
 # Create FastAPI app
 app = FastAPI(
     title=settings.app_name,
     description=settings.app_description,
     debug=settings.debug,
+    lifespan=lifespan,
 )
 
 # Mount static files
@@ -36,8 +50,6 @@ app.mount(
 
 # Configure templates
 templates = Jinja2Templates(directory=settings.templates_dir)
-
-
 
 
 def markdown_filter(text: str) -> Markup:
@@ -70,13 +82,7 @@ templates.env.filters["markdown_inline"] = markdown_inline_filter
 templates.env.filters["mdi"] = markdown_inline_filter  # Alias
 
 
-# Add custom template globals
-@app.on_event("startup")
-async def startup_event():
-    """Initialize app on startup."""
-    # Parse repository data
-    parser = get_parser()
-    app.state.repo_data = parser.parse_all()
+
 
 
 def get_repo_data(request: Request):
