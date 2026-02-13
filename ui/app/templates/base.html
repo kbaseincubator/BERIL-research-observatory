@@ -91,6 +91,12 @@
         </div>
     </footer>
 
+    <!-- Lightbox overlay -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button class="lightbox-close" aria-label="Close">&times;</button>
+        <img src="" alt="Full size image">
+    </div>
+
     {% block extra_js %}{% endblock %}
 
     <script>
@@ -99,6 +105,34 @@
             document.querySelector('.nav-links').classList.toggle('active');
             this.classList.toggle('active');
         });
+
+        // Lightbox
+        (function() {
+            var overlay = document.getElementById('lightbox');
+            var overlayImg = overlay.querySelector('img');
+            var targets = document.querySelectorAll('.grid .card img, .notebook-container img');
+
+            targets.forEach(function(img) {
+                img.classList.add('lightbox-trigger');
+                img.addEventListener('click', function() {
+                    overlayImg.src = this.src;
+                    overlayImg.alt = this.alt || 'Full size image';
+                    overlay.classList.add('active');
+                });
+            });
+
+            overlay.querySelector('.lightbox-close').addEventListener('click', function() {
+                overlay.classList.remove('active');
+            });
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) overlay.classList.remove('active');
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') overlay.classList.remove('active');
+            });
+        })();
     </script>
 </body>
 </html>
