@@ -82,13 +82,12 @@ projects/fitness_modules/
 
 **Completed**:
 1. Stable fitness modules (5-50 genes each) for 32 organisms with biological labels
-2. 27 cross-organism module families (currently from 5-organism ortholog set — needs expansion to all 32)
-3. 878 function predictions for hypothetical proteins with confidence scores
+2. 156 cross-organism module families (28 spanning 5+ organisms, 7 spanning 10+)
+3. 878 function predictions for hypothetical proteins (493 family-backed, 385 module-only)
 
 **Remaining**:
-4. Extend cross-organism alignment to all 32 organisms (currently uses BBH pairs from 5 pilots only)
-5. Formal benchmarking: precision/recall comparison of module-based vs cofitness/ortholog/domain baselines (NB07 has validation metrics but not the full held-out benchmark)
-6. Resolve TIGRFam IDs to human-readable function descriptions in predictions
+4. Formal benchmarking: precision/recall comparison of module-based vs cofitness/ortholog/domain baselines (NB07 has validation metrics but not the full held-out benchmark)
+5. Resolve TIGRFam IDs to human-readable function descriptions in predictions
 
 ## Results
 
@@ -99,12 +98,15 @@ projects/fitness_modules/
 - Within-module gene correlation: 17-138x above random pairs
 
 ### Cross-Organism Alignment
-- 27 module families spanning 2+ organisms via BBH ortholog fingerprints
-- 3 annotated families with consensus functional labels
+- **1.15M BBH pairs** across 32 organisms → **13,402 ortholog groups**
+- **156 module families** spanning 2+ organisms (28 spanning 5+, 7 spanning 10+, 1 spanning 21)
+- 32 annotated families with consensus functional labels
+- Largest family spans 21 organisms — a pan-bacterial fitness module
 
 ### Function Prediction
 - **878 function predictions** for hypothetical proteins across 29 organisms
-- 36 unique predicted functions
+- **493 family-backed** (56%) — supported by cross-organism conservation
+- 385 module-only predictions
 - Predictions backed by module enrichment (KEGG, SEED, TIGRFam)
 
 ### Key Finding
