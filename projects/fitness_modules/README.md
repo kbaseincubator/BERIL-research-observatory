@@ -78,12 +78,17 @@ projects/fitness_modules/
 └── figures/
 ```
 
-## Expected Outcomes
+## Status & Next Steps
 
-1. **Stable fitness modules** (5-50 genes each) for pilot organisms with biological labels
-2. **Conserved module families** shared across 3+ organisms — the pan-bacterial fitness regulon catalog
-3. **Function predictions** for hypothetical proteins with confidence scores
-4. **Benchmark showing** module-based predictions outperform cofitness voting alone
+**Completed**:
+1. Stable fitness modules (5-50 genes each) for 32 organisms with biological labels
+2. 27 cross-organism module families (currently from 5-organism ortholog set — needs expansion to all 32)
+3. 878 function predictions for hypothetical proteins with confidence scores
+
+**Remaining**:
+4. Extend cross-organism alignment to all 32 organisms (currently uses BBH pairs from 5 pilots only)
+5. Formal benchmarking: precision/recall comparison of module-based vs cofitness/ortholog/domain baselines (NB07 has validation metrics but not the full held-out benchmark)
+6. Resolve TIGRFam IDs to human-readable function descriptions in predictions
 
 ## Results
 
