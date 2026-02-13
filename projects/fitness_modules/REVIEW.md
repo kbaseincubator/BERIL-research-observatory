@@ -8,84 +8,97 @@ project: fitness_modules
 
 ## Summary
 
-This project applies robust ICA to decompose RB-TnSeq fitness data from 32 organisms in the Fitness Browser into 1,117 stable functional modules, aligns them across organisms via ortholog fingerprints into 156 cross-organism families, and generates 878 function predictions for unannotated genes. Since the prior review, the authors have addressed the most critical issues: the NB04 KEGG SQL was corrected to use the proper join path through `besthitkegg`, the stale D'Agostino K-squared references in `src/ica_pipeline.py` were removed, the SEED annotation query was simplified to avoid the broken `seedclass` join, and the cross-organism alignment was expanded from 5 to all 32 organisms. The project is now substantially more complete, with consistent data artifacts across all 32 organisms (matrices, modules, annotations, predictions, and families). The main remaining gaps are the unexecuted formal benchmark (NB07) and a minor module count discrepancy in the README.
+This is a mature, well-executed project that applies robust ICA to decompose RB-TnSeq fitness compendia from 32 organisms into 1,116 stable functional modules, aligns them across species via ortholog fingerprints into 156 cross-organism families, and generates 878 function predictions for hypothetical proteins. The full pipeline — from data exploration through formal benchmarking — is complete, with a standalone benchmark script (`src/run_benchmark.py`) that evaluates four prediction methods across all 32 organisms. The project demonstrates exceptional scientific honesty: the near-zero KO-level precision of module-ICA predictions is clearly explained as a granularity mismatch (modules capture process-level co-regulation, not gene-level molecular function), and the appropriate validation metrics (94.2% cofitness enrichment, 22.7× genomic adjacency enrichment) are used instead. The main areas for improvement are documenting the hyperparameter split between pilot and scale-up organisms, resolving the remaining TIGRFam ID-to-description mapping, and adding a few missing figures.
 
 ## Methodology
 
-**Approach**: The Borchert et al. (2019) robust ICA methodology remains sound and well-implemented. The pipeline in `src/ica_pipeline.py` correctly handles ICA sign ambiguity via absolute cosine similarity, aligns component signs within DBSCAN clusters before averaging centroids, and clips the distance matrix to avoid floating-point artifacts. The Marchenko-Pastur eigenvalue threshold for component selection is appropriate. The module docstring (line 5) now correctly describes the actual methodology: "Threshold membership via absolute weight cutoff (|r| >= 0.3, max 50 genes)."
+**Research question**: Clearly stated and testable — "Can we decompose RB-TnSeq fitness compendia into latent functional modules via robust ICA, align them across organisms using orthology, and use module context to predict gene function?" The three sub-goals (decomposition, alignment, prediction) map directly to notebooks 03-06, with NB07 providing formal evaluation.
 
-**Reproducibility**: Improved since the prior review. All 32 JSON parameter files in `data/modules/` record exact hyperparameters per organism, providing a reproducibility record. The NB03 source code now shows `N_RUNS = 30` and `MIN_SAMPLES = 15`, which matches the parameters actually used for the second batch of organisms. There is still an acknowledged split in hyperparameters: 12 organisms used `n_runs=50, min_samples=25` (DvH, Btheta, Caulo, psRCH2, Methanococcus_S2, Putida, Phaeo, Marino, pseudo3_N2E3, Koxy, Cola, WCS417) while the remaining 20 used `n_runs=30, min_samples=15`. The NB03 source code reflects the second configuration. The rationale is still not documented, though it plausibly represents the initial pilot configuration (50 runs) vs. the scaled-up configuration (30 runs for efficiency). All runs achieved 100% convergence.
+**Approach**: The methodology is sound and well-grounded in published literature (Borchert et al. 2019). The pipeline follows a rigorous sequence: Marchenko-Pastur eigenvalue thresholding for dimensionality → 30-50× FastICA restarts with DBSCAN stability filtering → Fisher exact enrichment with BH FDR correction → ortholog-group fingerprinting via connected components → hierarchical clustering into families → confidence-scored predictions. Each step is well-motivated with documented parameter choices.
 
-**Data source clarity**: Good. The README clearly lists all BERDL tables, the SQL in NB01-NB04 is readable, and the Spark/local separation in NB04 and NB05 is cleanly handled. The `pilot_organisms.csv` file was expanded from the original 5 to 32 organisms, though the variable name `pilot_ids` persists throughout the notebook code -- a cosmetic issue that does not affect correctness.
+**Data sources**: Clearly identified in the README with a table mapping each `kescience_fitnessbrowser` table to its analytical purpose. The SQL queries use the correct join paths throughout (e.g., `besthitkegg → keggmember → kgroupdesc` for KEGG annotations), correctly applying lessons from documented pitfalls.
+
+**Reproducibility**: Strong overall. The `src/ica_pipeline.py` module and `src/run_benchmark.py` script are self-contained and runnable from the command line. All 32 organisms have corresponding JSON parameter files recording exact hyperparameters. Notebooks use file-existence caching for re-execution. One gap: the `pilot_organisms.csv` was expanded from 5 to 32 organisms during the project, but the notebooks still reference `pilot_ids` as a variable name. The scale-up process itself is not documented in the notebooks — a reader would need to infer that `pilot_organisms.csv` was updated between runs.
 
 ## Code Quality
 
-**SQL correctness -- prior issues resolved**:
-1. The NB04 KEGG query (cell 4) now correctly joins through `besthitkegg` (`bk.keggOrg = km.keggOrg AND bk.keggId = km.keggId`) rather than the previously incorrect `km.locusId`/`km.orgId` path. The column name `ke.ecnum` is also correct per the schema.
-2. The NB04 SEED query (cell 4) now directly selects `locusId, seed_desc` from `seedannotation` without the broken `seedclass` join.
-3. The NB04 enrichment code (cell 7) correctly groups SEED annotations by `seed_desc` to build the annotation map.
+**SQL correctness**: All queries are correct and address known pitfalls:
+- String-to-numeric casting is consistently applied (`CAST(fit AS FLOAT)`, `CAST(cor12 AS FLOAT)`) per the pitfall about all fitness browser columns being strings (NB01 cell-9, NB02 cells 4, 6, 8).
+- The KEGG join path in NB04 cell-4 correctly goes through `besthitkegg` with the proper join keys (`bk.keggOrg = km.keggOrg AND bk.keggId = km.keggId`), matching the documented pitfall about `keggmember` lacking `orgId`/`locusId`.
+- SEED annotations use `seedannotation.seed_desc` directly (NB04 cell-4), correctly avoiding the `seedclass` table which only has EC numbers.
+- The `ecnum` column name is correctly used for `kgroupec` (NB04 cell-4).
 
-**Statistical methods**: Generally solid.
-- Fisher exact test with BH FDR correction for enrichment analysis is appropriate (NB04 cell 6).
-- The within-module cofitness validation (NB07 cell 19) uses gene-pair correlation distributions, which is the right validation metric.
-- The genomic adjacency validation (NB07 cell 21) checks operon proximity, a biologically motivated validation.
-- The confidence score in NB06 (`gene_weight * -log10(FDR) * (1 + cross_org_bonus)`) is reasonable but remains ad hoc and uncalibrated. There is no evaluation of whether higher confidence scores actually correlate with prediction accuracy.
+**Statistical methods**: Appropriate throughout:
+- Fisher exact test with BH FDR correction for module enrichment (NB04 cell-6) — standard and correct.
+- Mann-Whitney U test for within-module cofitness validation (`run_benchmark.py` lines 613-623) — appropriate non-parametric test for comparing correlation distributions.
+- The confidence score in NB06 (`|gene_weight| × -log10(FDR) × (1 + cross_org_bonus)`) is reasonable as a ranking heuristic, though it remains uncalibrated.
 
-**Pipeline code (`src/ica_pipeline.py`)**: Well-structured with clean separation of concerns across five functions: `standardize_matrix`, `select_n_components`, `robust_ica`, `compute_gene_weights`, and `threshold_membership`. The Pearson correlation computation in `compute_gene_weights` (lines 200-215) is implemented efficiently via normalized dot products. The `threshold_membership` function (line 220) correctly implements the adaptive threshold: keep all genes above `min_weight` unless more than `max_members` pass, in which case take the top `max_members`.
+**ICA pipeline (`src/ica_pipeline.py`)**: Clean, well-documented, and technically correct:
+- Cosine distance clipping (`np.clip(cos_dist, 0, 1, out=cos_dist)`, line 146) correctly addresses the floating-point pitfall documented in `docs/pitfalls.md`.
+- Component sign alignment within DBSCAN clusters (lines 159-161) is properly handled via dot-product with a reference vector before averaging.
+- Zero-variance genes are handled in `standardize_matrix` (`stds[stds == 0] = 1`).
+- The `threshold_membership` function correctly implements the adaptive approach: keep all genes above `min_weight`, cap at `max_members` by taking highest `|weight|`.
 
-**Module cap saturation**: 336 out of 1,116 modules with members (30.1%) hit the `max_members=50` cap. For organisms like Keio, 22 of 38 modules are capped. This suggests the cap is binding frequently, and the effective threshold is being raised well above 0.3 for many modules (e.g., Keio M006 has effective threshold 0.42, Putida M011 has 0.51). This is not necessarily wrong -- it is working as designed to keep modules focused -- but the high cap rate merits discussion. Module membership is being truncated for nearly a third of modules.
+**Benchmark script (`src/run_benchmark.py`)**: Comprehensive and well-structured:
+- Proper train/test separation (20% holdout, `random_state=42`) prevents data leakage.
+- Four methods evaluated at two levels (strict KO match and neighborhood set overlap).
+- Vectorized correlation matrix computation is efficient.
+- Both cofitness validation (Section 2) and genomic adjacency validation (Section 3) are included.
+- Output files (`benchmark_results.csv`, `cofitness_validation.csv`, `adjacency_validation.csv`) are saved for reproducibility.
 
-**Notebook organization**: Clean and logical. The 7-notebook sequence follows a clear analytical progression. Each notebook has section headers, prints summaries, and uses file-existence caching. The Part 1 (Spark) / Part 2 (local) separation in NB04 and NB05 is practical.
+**Potential issues**:
+1. **NB03 cell-8** displays a summary table referencing column `n_components`, but the saved JSON params use key `n_components_used`. This would raise a `KeyError` on re-execution. Minor, since the summary is for display only.
+2. **NB02 cell-8**: The `extract_fitness_matrix_fitbyexp` function treats `fitbyexp_*` tables as pre-pivoted wide format, but the documented pitfall notes these tables are actually long format (`expName, locusId, fit, t`). The function would likely fail or return incorrect results, causing the fallback to `extract_fitness_matrix_genefitness` to execute — which is correct. The dead code path is misleading but harmless.
+3. **Cofitness validation**: The per-module Mann-Whitney U test uses p < 0.05 without multiple-testing correction across ~1,116 modules. Given that 94.2% pass, FDR correction would likely not change the conclusion materially, but it would be methodologically cleaner.
+
+**Notebook organization**: Excellent. The 7-notebook sequence follows a clear analytical progression. Each notebook has markdown section headers, prints progress summaries, and uses file-existence caching. The Part 1 (Spark) / Part 2 (local) separation in NB04 and NB05 is practical for the cluster environment.
+
+**Pitfall awareness**: Outstanding. The project has contributed 7 fitness-browser-specific pitfalls to `docs/pitfalls.md` (all marked `[fitness_modules]`), including the `fitbyexp_*` long-format discovery, the KEGG join path, the `seedclass` schema issue, the cosine distance clipping fix, the D'Agostino K² thresholding failure, the ortholog scope requirement, and the ICA component ratio cap.
 
 ## Findings Assessment
 
-**Supported conclusions**:
-- The README claims "1,077 stable modules" but the 32 JSON params files sum to 1,117 (`n_stable_modules`) with 1,116 having members. This is a data/README mismatch that should be corrected.
-- The 156 cross-organism module families spanning 2+ organisms is verified by `family_annotations.csv` (156 data rows). The breakdown (28 spanning 5+ organisms, 7 spanning 10+, 1 spanning 21) matches the data.
-- The 878 function predictions across 29 organisms is verified by `all_predictions_summary.csv` (878 data rows, 29 unique orgIds). The split of 493 family-backed and 385 module-only also matches.
-- The 32 annotated families with consensus functional labels is verified (32 rows in `family_annotations.csv` with `consensus_term != 'unannotated'`).
-- The cross-organism alignment now uses all 32 organisms (1,148,966 BBH pairs, 13,402 ortholog groups), resolving the prior review's finding that it was limited to 5 pilots.
+**Conclusions well-supported by data**:
+- **1,116 stable modules** across 32 organisms — verified by data files (192 module files across 32 organisms, corresponding JSON params).
+- **94.2% cofitness enrichment** — validated by `cofitness_validation.csv` and `cofitness_validation_summary.csv` with per-module Mann-Whitney U statistics.
+- **22.7× genomic adjacency enrichment** — validated by `adjacency_validation.csv` with per-organism enrichment calculations.
+- **878 function predictions** across 29 organisms — verified by 29 per-organism prediction files and `all_predictions_summary.csv` (493 family-backed, 385 module-only).
+- **156 cross-organism families** (28 spanning 5+ organisms, 7 spanning 10+, 1 spanning 21) — verified by `module_families.csv` and `family_annotations.csv`.
+- **Ortholog transfer at 95.8% precision** — produced by `run_benchmark.py` and saved in `benchmark_results.csv`.
+- **Module-ICA at <1% strict KO precision** — correctly explained as a granularity mismatch, not a pipeline failure.
 
-**Partially supported conclusions**:
-- The 93.2% within-module cofitness enrichment claim appears in the README but no `benchmark_results.csv` file exists in the data directory. The NB07 validation code (cells 19-21) would generate this data when executed, but there is no output file to verify the exact number. The claim may be from a prior execution whose output was not persisted.
+**Limitations well-acknowledged**:
+- The KO-level precision limitation is explicitly discussed (README, NB07 cell-6 markdown) with a clear explanation of why modules capture process-level co-regulation rather than specific molecular function.
+- The D'Agostino K² thresholding failure and its resolution are documented (README Key Findings #1).
+- The complementary nature of module-ICA vs. sequence-based methods is stated as a conclusion.
+- TIGRFam ID resolution is listed as remaining work.
 
-**Remaining gaps**:
-- NB07 (benchmarking) has not been fully executed. No `benchmark_results.csv` file exists. The held-out precision/coverage comparison between Module-ICA, Cofitness, Ortholog, and Domain baselines has not been produced. The README correctly lists this as a remaining step ("Formal benchmarking: precision/recall comparison").
-- Predictions use raw TIGRFam IDs (e.g., "TIGR02532", "TIGR03506") and KEGG group IDs (e.g., "K01952") as functional labels. The `genedomain` table's `domainName` and `definition` columns are extracted in NB04 but not propagated to prediction outputs. The README lists TIGRFam ID resolution as a remaining step.
+**Limitations not discussed**:
+- The NaN imputation with 0.0 for missing fitness values (NB02 cell-9, up to 50% missing allowed) could bias ICA toward weaker modules for genes with sparse fitness data. No sensitivity analysis is provided.
+- About 30% of modules hit the `max_members=50` cap (visible from the JSON params files), meaning their effective threshold was raised above 0.3. This design trade-off is not discussed.
+- The two hyperparameter regimes (50 runs/25 min_samples for initial organisms vs. 30 runs/15 min_samples for later organisms) are not documented or justified.
 
-**Limitations acknowledged in README**:
-- The benchmarking gap is clearly stated in the "Remaining" section.
-- The TIGRFam ID resolution issue is listed.
-
-**Limitations not acknowledged**:
-- The 30.1% module cap saturation rate is not discussed. For organisms with many small-genome / high-experiment-count ratios, the fixed cap may be too aggressive.
-- The NaN imputation with 0.0 for missing fitness values (NB02 cell 9) is not discussed as a potential bias source.
-- No `requirements.txt` or `environment.yml` is provided.
+**Visualizations**: Three benchmark figures exist (`benchmark_strict.png`, `benchmark_neighborhood.png`, `benchmark_comparison.png`) — properly labeled with error bars. The PCA eigenvalue plot and module size distribution referenced in NB03 are not present in `figures/`, likely lost during the scale-up to 32 organisms.
 
 ## Suggestions
 
-1. **Correct the module count in the README** from 1,077 to 1,117 (or 1,116 if counting only modules with members). The 32 JSON params files sum to 1,117 `n_stable_modules`, not 1,077.
+1. **[Important] Document the ICA hyperparameter split.** Some organisms were run with `n_runs=50, min_samples=25` while others used `n_runs=30, min_samples=15`. Add a note in the README or NB03 explaining whether this reflects a pilot-vs-production split or was tuned per organism, and whether the different settings affect module quality comparably.
 
-2. **Execute NB07 (benchmarking)** to produce the held-out precision/coverage comparison. The notebook code is well-structured and ready to run. Consider pre-computing per-organism correlation matrices once (and caching to disk) to make the cofitness baseline tractable, since the current on-the-fly computation in `cofit_predict` is O(n * m) per test gene.
+2. **[Important] Complete TIGRFam ID resolution.** The `genedomain` extraction in NB04 already captures `domainName` and `definition` columns, and KEGG queries capture `kgroup_desc`. Propagating these human-readable descriptions through NB06 to `all_predictions_summary.csv` would substantially improve prediction usability. This is listed as remaining work in the README.
 
-3. **Document the ICA hyperparameter split** between `n_runs=50, min_samples=25` (12 organisms) and `n_runs=30, min_samples=15` (20 organisms). A brief note in the README explaining whether this was pilot-vs-production or tuned per organism would improve transparency.
+3. **[Moderate] Fix the NB03 cell-8 params key.** The summary display references `n_components` but the JSON uses `n_components_used`. Change the display column to match the actual key to avoid a `KeyError` on re-execution.
 
-4. **Add a `requirements.txt`** to the project directory. The notebooks depend on `scikit-learn`, `scipy`, `statsmodels`, `networkx`, `matplotlib`, and `pandas`. The inline `pip install` in NB03 cell 1 is fragile and non-declarative.
+4. **[Moderate] Re-generate missing NB03 figures.** The `pca_eigenvalues.png` and `module_size_distribution.png` files referenced in NB03 cells 4 and 9 are not present in `figures/`. These are useful for understanding dimensionality selection and module size distributions across all 32 organisms.
 
-5. **Discuss the 30.1% module cap saturation**. Nearly a third of modules hit the `max_members=50` ceiling, meaning their effective membership threshold was raised above 0.3. Consider whether an organism-scaled cap (e.g., 1-2% of total genes) would be more appropriate, or simply acknowledge this as a known trade-off.
+5. **[Moderate] Apply FDR correction to cofitness validation.** The 94.2% enrichment uses per-module p < 0.05 across ~1,116 modules. Applying BH correction (as already done for Fisher enrichments in NB04) would be methodologically consistent. The result is likely robust given the high pass rate, but correction would preempt reviewer concerns.
 
-6. **Resolve TIGRFam/KEGG IDs to human-readable labels** in the prediction output. The NB04 domain extraction already captures `domainName` and `definition` columns, and the KEGG query captures `kgroup_desc`. Propagating these through NB06 to `all_predictions_summary.csv` would substantially improve interpretability.
+6. **[Nice-to-have] Rename `pilot_organisms.csv` to `selected_organisms.csv`.** Now that the file contains all 32 organisms, the "pilot" naming is misleading. Similarly, renaming `pilot_ids` to `org_ids` in notebook code would reduce cognitive overhead.
 
-7. **Rename `pilot_organisms.csv`** to `selected_organisms.csv` (or similar) now that it contains all 32 organisms. The variable names `pilot_ids` in the notebook code are misleading since the project has moved well past the pilot phase. This is a cosmetic issue but reduces cognitive overhead for new readers.
+7. **[Nice-to-have] Add a `requirements.txt` or `environment.yml`.** The project depends on `scikit-learn`, `scipy`, `statsmodels`, `networkx`, `matplotlib`, and `pandas`. The inline `pip install` in NB03 cell-1 is fragile. A declarative dependency file would improve reproducibility.
 
-8. **Persist the within-module cofitness validation output** from NB07 cells 19-21. The 93.2% enrichment claim in the README has no backing data file. Even if the notebook was previously run interactively, saving the validation statistics to a CSV (e.g., `data/predictions/cofitness_validation.csv`) would make the claim verifiable.
-
-9. **Add a `docs/` directory** with the pitfalls, discoveries, and performance documentation. The README references these types of insights (e.g., the D'Agostino vs. absolute threshold methodology change, the SEED schema issues) but they are currently only captured in the README itself and the prior REVIEW.md. Structured documentation would help future contributors.
-
-10. **Consider sensitivity analysis for NaN imputation**. The current approach fills missing fitness values with 0.0 (NB02 cell 9), which assumes phenotypic neutrality for untested conditions. For genes with high missing-data fractions (up to 50% is allowed), this could bias ICA decomposition toward weaker, noisier modules. A brief comparison with row-mean imputation or a stricter missing-data cutoff (e.g., 20%) would strengthen confidence in the decomposition quality.
+8. **[Nice-to-have] Discuss the `max_members=50` cap saturation.** Since roughly 30% of modules hit this cap, acknowledging this as a design trade-off (focused modules vs. potential information loss) would strengthen the methods section. Consider whether an organism-scaled cap (e.g., 1-2% of genes) might be more appropriate for larger genomes.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
 - **Date**: 2026-02-13
-- **Scope**: README.md, 7 notebooks, 32 ICA params JSON files, 1 source module (`ica_pipeline.py`), 32 fitness matrices, 32 module profile/weight/membership file sets, 32 annotation file sets, 29 prediction files, 2 module family files, 1 prior REVIEW.md
+- **Scope**: README.md, 7 notebooks, 2 source files (`src/ica_pipeline.py`, `src/run_benchmark.py`), ~485 data files across 6 subdirectories (`matrices/`, `modules/`, `annotations/`, `orthologs/`, `module_families/`, `predictions/`), 3 figures
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.
