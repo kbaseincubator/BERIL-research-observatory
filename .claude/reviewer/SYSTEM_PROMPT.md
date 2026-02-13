@@ -36,6 +36,13 @@ Provide a one-paragraph overall assessment of the project. What does it do well?
 - Are data sources clearly identified?
 - Could someone reproduce this analysis?
 
+### Reproducibility
+- **Notebook outputs**: Do notebooks have saved outputs (text, tables, figures), or are they empty code-only files? A notebook without outputs forces the reader to re-run everything to see results. Check the `outputs` arrays in notebook cells — empty outputs across all cells is a significant gap.
+- **Figures**: Does the `figures/` directory contain key visualizations? Are there figures for each major analysis stage (exploration, results, validation)? A project with only 1-2 figures for 5+ notebooks likely has gaps.
+- **Dependencies**: Is there a `requirements.txt` or equivalent?
+- **Reproduction guide**: Does the README include a `## Reproduction` section explaining how to run the pipeline, what needs Spark vs runs locally, and expected runtimes?
+- **Spark/local separation**: For notebooks that need Spark, is this clearly documented? Can downstream notebooks run locally from cached data?
+
 ### Code Quality
 - Are SQL queries correct and efficient?
 - Are statistical methods appropriate?

@@ -45,9 +45,57 @@ Discovered that only 83K/293K genomes have embeddings...
 ## Project Structure
 
 Each science project in `projects/` should have:
-- `README.md`: Question being addressed, approach, key findings
-- `notebooks/`: Analysis notebooks
+- `README.md`: Question being addressed, approach, key findings, reproduction instructions
+- `notebooks/`: Analysis notebooks **with saved outputs** (see Reproducibility below)
 - `data/`: Extracted/processed data (gitignore large files)
+- `figures/`: Key visualizations saved as PNG files
+- `requirements.txt`: Python dependencies
+- `src/`: Reusable scripts (if applicable)
+
+## Reproducibility Standards
+
+Projects must be **followable by both humans and agents** without re-running anything. A reader cloning the repo should be able to understand the full analysis — data, methods, results, and conclusions — from the committed files alone.
+
+### Notebook Outputs
+
+**Notebooks must be committed with saved outputs.** A notebook with only source code and no outputs is not useful to a reader. After running analysis:
+
+```bash
+# Execute notebook and save outputs in place
+jupyter nbconvert --to notebook --execute --inplace notebooks/my_analysis.ipynb
+```
+
+This embeds text output, tables, and inline figures directly in the `.ipynb` file.
+
+**Spark-dependent notebooks** (NB01-02 pattern) that require JupyterHub cannot be re-executed locally. For these:
+- Add a note in the header: "Requires BERDL JupyterHub"
+- Document what outputs they produce
+- Ensure downstream notebooks can run locally from cached data
+
+### Figures
+
+**Every notebook that produces visual results should save figures to `figures/`.** Inline notebook figures are good for the notebook reader, but standalone PNGs are needed for:
+- README documentation
+- Review assessment
+- Quick project browsing without opening notebooks
+
+Recommended figures per analysis stage:
+- **Data exploration**: distributions, coverage summaries
+- **Method output**: result size distributions, parameter selection plots
+- **Validation**: comparison charts, enrichment plots
+- **Summary**: key findings visualization
+
+### Dependencies
+
+Include a `requirements.txt` listing Python packages needed to run the notebooks locally. This allows reproduction without guessing dependencies.
+
+### README Reproduction Section
+
+Include a `## Reproduction` section in README.md that explains:
+- Prerequisites (Python version, packages, BERDL access if needed)
+- Step-by-step instructions to run the pipeline
+- Which notebooks need Spark vs run locally
+- Expected runtime for compute-intensive steps
 
 Current projects:
 - `projects/ecotype_analysis/` - Environment vs phylogeny effects on gene content

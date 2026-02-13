@@ -37,6 +37,10 @@ Run these checks against the project directory and print a checklist summary:
 - Discoveries documented in `docs/discoveries.md` — search for `[{project_id}]` tag
 - Pitfalls documented in `docs/pitfalls.md` — search for the project name or id
 - Project files committed to git — run `git status --porcelain projects/{project_id}/` and warn if there are uncommitted or untracked changes
+- **Notebook outputs**: Check that notebooks have saved outputs (not just empty code cells). For each `.ipynb` in `notebooks/`, parse the JSON and count code cells with non-empty `outputs` arrays. Warn if any notebook has 0 cells with outputs.
+- **Figures**: Check that `figures/` directory exists and contains at least one PNG file. Warn if empty or missing.
+- **Dependencies**: Check that `requirements.txt` exists in the project directory. Warn if missing.
+- **Reproduction guide**: Check that README.md contains a `## Reproduction` section. Warn if missing.
 
 Print the checklist as:
 ```
