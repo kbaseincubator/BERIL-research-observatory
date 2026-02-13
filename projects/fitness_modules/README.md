@@ -16,19 +16,13 @@ This approach follows Borchert et al. (2019) who applied ICA to *P. putida* fitn
 
 ## Approach
 
-### Phase 1: Pilot (5 data-rich organisms)
-
-1. **Explore & select** — Survey all 48 organisms; pick ~5 by data richness (experiment count, gene count, ortholog connectivity)
-2. **Extract matrices** — Build gene × experiment fitness matrices from Spark
-3. **Robust ICA** — 100× FastICA runs → DBSCAN clustering → stable modules
-4. **Annotate modules** — KEGG, SEED, domain enrichment; map to conditions
-5. **Cross-organism alignment** — BBH ortholog groups → module family fingerprints
-6. **Predict function** — Module + family context → function for hypothetical proteins
-7. **Benchmark** — Compare to cofitness voting, ortholog transfer, domain-only baselines
-
-### Phase 2: Scale to all 48 organisms
-
-Extend pipeline after validating on pilot set.
+1. **Explore & select** — Surveyed all 48 organisms; selected 32 with ≥100 experiments
+2. **Extract matrices** — Built gene × experiment fitness matrices from Spark (2,531-6,384 genes × 104-757 experiments)
+3. **Robust ICA** — 30-50× FastICA runs → DBSCAN clustering → stable modules (5-50 genes each)
+4. **Annotate modules** — KEGG, SEED, TIGRFam enrichment (Fisher exact + BH FDR); map to conditions
+5. **Cross-organism alignment** — 1.15M BBH pairs → 13,402 ortholog groups → module family fingerprints → 156 families
+6. **Predict function** — Module + family context → 878 function predictions for hypothetical proteins
+7. **Validate** — Within-module cofitness (93.2% enriched) and gene correlation (17-138× above random)
 
 ## Key Methods
 
@@ -47,10 +41,11 @@ All from `kescience_fitnessbrowser` on BERDL:
 | `gene` | Gene coordinates, descriptions |
 | `experiment` | Condition metadata, QC metrics |
 | `genefitness` | Fitness scores (27M rows) |
-| `fitbyexp_*` | Pre-pivoted fitness matrices |
-| `ortholog` | BBH pairs for cross-organism alignment |
-| `cofit` | Baseline comparison |
-| `keggmember`, `seedannotation`, `genedomain` | Functional annotations for enrichment |
+| `ortholog` | BBH pairs for cross-organism alignment (1.15M for 32 organisms) |
+| `cofit` | Cofitness validation baseline |
+| `besthitkegg` → `keggmember` → `kgroupdesc` | KEGG functional annotations |
+| `seedannotation` | SEED functional descriptions |
+| `genedomain` | TIGRFam/PFam domain annotations |
 | `specificphenotype` | Condition-gene associations |
 
 ## Project Structure
@@ -92,7 +87,7 @@ projects/fitness_modules/
 ## Results
 
 ### ICA Decomposition (32 organisms)
-- **1,077 stable modules** across 32 organisms (all with ≥100 experiments)
+- **1,116 stable modules** across 32 organisms (all with ≥100 experiments)
 - Module sizes: median 7-50 genes per module (biologically correct range)
 - **93.2%** of modules show elevated within-module cofitness vs genome-wide background
 - Within-module gene correlation: 17-138x above random pairs
