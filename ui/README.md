@@ -35,6 +35,25 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
    # Or on Windows: .venv\Scripts\activate
    ```
 
+## Configuration
+
+The application uses environment variables with the `BERIL_` prefix (BERIL Research Observatory). Configure the following variables:
+
+### Required Configuration
+
+- `BERIL_DATA_SOURCE_URL`: URL to load cached repository data from (points to the `data-cache` branch)
+  ```bash
+  export BERIL_DATA_SOURCE_URL="https://raw.githubusercontent.com/your-org/repo/data-cache/data_cache"
+  ```
+
+### Optional Configuration
+
+- `BERIL_WEBHOOK_SECRET`: Secret for validating webhook requests from GitHub Actions
+  ```bash
+  # Generate a secure random secret
+  export BERIL_WEBHOOK_SECRET=$(python -c "import secrets; print(secrets.token_hex(32))")
+  ```
+
 ## Running the Application
 
 Start the development server:
@@ -50,7 +69,66 @@ The UI will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000)
 - **Projects**: Browse and explore research projects with rendered Jupyter notebooks
 - **Data Collections**: View available BERDL data collections and their schemas
 - **Knowledge Base**: Access shared discoveries, pitfalls, and research ideas
-- **Search**: Full-text search across projects and documentation
+- **Automatic Updates**: Webhook-based data refresh when repository content changes
+
+## Data Cache & Webhook Setup
+
+The application can load pre-built repository data from a remote source and automatically update when notified via webhook.
+
+### GitHub Actions Setup
+
+1. **Add GitHub Secrets** in your repository settings (`Settings` → `Secrets and variables` → `Actions`):
+
+   - `DATA_UPDATE_WEBHOOK_URL`: Your application's webhook endpoint
+     ```
+     https://your-app.com/api/webhook/data-update
+     ```
+
+   - `DATA_UPDATE_WEBHOOK_SECRET`: Shared secret for request signing (use the same value as `BERIL_WEBHOOK_SECRET`)
+     ```bash
+     # Generate and use the same secret for both GitHub and your app
+     python -c "import secrets; print(secrets.token_hex(32))"
+     ```
+
+2. **Configure Environment Variables** on your application server:
+   ```bash
+   export BERIL_DATA_SOURCE_URL="https://raw.githubusercontent.com/your-org/repo/data-cache/data_cache"
+   export BERIL_WEBHOOK_SECRET="<same-secret-from-github>"
+   ```
+
+### How It Works
+
+1. When code is merged to `main`, GitHub Actions:
+   - Parses all repository data (projects, docs, schemas)
+   - Creates a compressed pickle file (`data.pkl.gz`) and metadata (`timestamp.json`)
+   - Pushes these files to the `data-cache` branch
+   - Sends a signed webhook request to your application
+
+2. The application receives the webhook:
+   - Validates the HMAC-SHA256 signature
+   - Reloads data from `BERIL_DATA_SOURCE_URL`
+   - Updates the "Last updated" timestamp in the footer
+
+### Manual Data Reload
+
+You can manually trigger a data reload by sending a POST request to the webhook endpoint:
+
+```bash
+# Without signature (if BERIL_WEBHOOK_SECRET is not set)
+curl -X POST https://your-app.com/api/webhook/data-update \
+  -H "Content-Type: application/json" \
+  -d '{"event":"manual-reload"}'
+
+# With signature (if BERIL_WEBHOOK_SECRET is set)
+PAYLOAD='{"event":"manual-reload"}'
+SECRET="your-webhook-secret"
+SIGNATURE=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$SECRET" | sed 's/^.* //')
+
+curl -X POST https://your-app.com/api/webhook/data-update \
+  -H "Content-Type: application/json" \
+  -H "X-Webhook-Signature: $SIGNATURE" \
+  -d "$PAYLOAD"
+```
 
 ## Development
 

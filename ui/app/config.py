@@ -14,6 +14,9 @@ class Settings(BaseSettings):
     repo_dir: Path = ui_dir.parent  # The research repository root
     data_source_url: str | None = None
 
+    # Webhook configuration
+    webhook_secret: str | None = None
+
     # Derived paths
     @property
     def projects_dir(self) -> Path:
@@ -58,7 +61,7 @@ class Settings(BaseSettings):
     total_genes: str = "1B+"
 
     class Config:
-        env_prefix = "PRO_"  # BERIL Research Observatory
+        env_prefix = "BERIL_"  # BERIL Research Observatory
 
 
 settings = Settings()
