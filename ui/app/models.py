@@ -187,11 +187,21 @@ class Project:
 
     @property
     def review_status(self) -> ReviewStatus:
-        """Determine review status based on review existence and staleness."""
+        """Determine review status based on review existence and staleness.
+
+        Compares at date granularity (not datetime) because the review
+        frontmatter only records YYYY-MM-DD, while updated_date comes from
+        filesystem mtime with full timestamp precision. Without this, any
+        project modified on the same day as its review shows "Needs Re-review".
+        """
         if self.review is None:
             return ReviewStatus.NOT_REVIEWED
-        if self.review.date and self.updated_date and self.updated_date > self.review.date:
-            return ReviewStatus.NEEDS_RE_REVIEW
+        if self.review.date and self.updated_date:
+            # Normalize both to date objects for same-day comparison
+            r_date = self.review.date.date() if isinstance(self.review.date, datetime) else self.review.date
+            u_date = self.updated_date.date() if isinstance(self.updated_date, datetime) else self.updated_date
+            if u_date > r_date:
+                return ReviewStatus.NEEDS_RE_REVIEW
         return ReviewStatus.REVIEWED
 
 
