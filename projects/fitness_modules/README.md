@@ -62,7 +62,8 @@ projects/fitness_modules/
 │   ├── 06_function_prediction.ipynb    # Predict function for unannotated genes
 │   └── 07_benchmarking.ipynb           # Evaluate vs baselines
 ├── src/
-│   └── ica_pipeline.py                 # Reusable FastICA + DBSCAN stability code
+│   ├── ica_pipeline.py                 # Reusable FastICA + DBSCAN stability code
+│   └── run_benchmark.py                # NB07 benchmark (4 methods, cofitness/adjacency validation)
 ├── data/
 │   ├── matrices/       # Per-organism fitness matrices
 │   ├── modules/        # ICA module definitions + weights
@@ -79,9 +80,9 @@ projects/fitness_modules/
 1. Stable fitness modules (5-50 genes each) for 32 organisms with biological labels
 2. 156 cross-organism module families (28 spanning 5+ organisms, 7 spanning 10+)
 3. 878 function predictions for hypothetical proteins (493 family-backed, 385 module-only)
+4. Formal benchmarking against cofitness/ortholog/domain baselines (NB07, `src/run_benchmark.py`)
 
 **Remaining**:
-4. Formal benchmarking: precision/recall comparison of module-based vs cofitness/ortholog/domain baselines (NB07 has validation metrics but not the full held-out benchmark)
 5. Resolve TIGRFam IDs to human-readable function descriptions in predictions
 
 ## Results
@@ -89,8 +90,22 @@ projects/fitness_modules/
 ### ICA Decomposition (32 organisms)
 - **1,116 stable modules** across 32 organisms (all with ≥100 experiments)
 - Module sizes: median 7-50 genes per module (biologically correct range)
-- **93.2%** of modules show elevated within-module cofitness vs genome-wide background
-- Within-module gene correlation: 17-138x above random pairs
+- **94.2%** of modules show significantly elevated within-module cofitness (Mann-Whitney U, p < 0.05)
+- Within-module mean |r| = 0.34 vs background |r| = 0.12 (2.8× enrichment)
+- **22.7× genomic adjacency enrichment** — module genes are co-located in operons
+
+### Benchmarking (NB07)
+
+Held-out evaluation: 20% of KEGG-annotated genes withheld, 4 methods predict KO groups.
+
+| Method | Precision (strict) | Coverage | F1 |
+|--------|-------------------|----------|-----|
+| **Ortholog transfer** | 95.8% | 91.2% | 0.934 |
+| Domain-based | 29.1% | 66.6% | 0.401 |
+| Module-ICA | <1% | 23.3% | — |
+| Cofitness voting | <1% | 73.0% | — |
+
+Module-ICA and cofitness show near-zero strict KO precision because KEGG KO groups are gene-level assignments (~1.2 genes per unique KO). A module with 20 annotated members typically has 20 different KOs. Modules capture **process-level co-regulation** (validated by 94.2% cofitness enrichment and 22.7× adjacency enrichment), not specific molecular function. The 878 function predictions should be interpreted as biological process context, not exact KO assignments.
 
 ### Cross-Organism Alignment
 - **1.15M BBH pairs** across 32 organisms → **13,402 ortholog groups**
@@ -104,8 +119,9 @@ projects/fitness_modules/
 - 385 module-only predictions
 - Predictions backed by module enrichment (KEGG, SEED, TIGRFam)
 
-### Key Finding
-The strict membership threshold (|weight| ≥ 0.3, max 50 genes) was critical. The initial D'Agostino K² approach gave 100-280 genes per module with weak cofitness signal (59% enriched, 1-17x correlation). After switching to absolute weight thresholds, modules became biologically coherent (93% enriched, 17-138x correlation).
+### Key Findings
+1. The strict membership threshold (|weight| ≥ 0.3, max 50 genes) was critical. The initial D'Agostino K² approach gave 100-280 genes per module with weak cofitness signal (59% enriched, 1-17x correlation). After switching to absolute weight thresholds, modules became biologically coherent (94% enriched, 2.8× correlation enrichment).
+2. Module-ICA is **complementary** to sequence-based methods: it excels at identifying co-regulated gene groups (biological process modules) but should not be used for predicting specific molecular functions, where ortholog transfer is far superior.
 
 ## Authors
 
