@@ -123,6 +123,33 @@ Module-ICA and cofitness show near-zero strict KO precision because KEGG KO grou
 1. The strict membership threshold (|weight| ≥ 0.3, max 50 genes) was critical. The initial D'Agostino K² approach gave 100-280 genes per module with weak cofitness signal (59% enriched, 1-17x correlation). After switching to absolute weight thresholds, modules became biologically coherent (94% enriched, 2.8× correlation enrichment).
 2. Module-ICA is **complementary** to sequence-based methods: it excels at identifying co-regulated gene groups (biological process modules) but should not be used for predicting specific molecular functions, where ortholog transfer is far superior.
 
+## Reproduction
+
+**Prerequisites:**
+- Python 3.10+
+- `pip install -r requirements.txt`
+- BERDL JupyterHub access (for NB01-02 only)
+
+**Running the pipeline:**
+
+1. **NB01-02** (JupyterHub): Extract data from Spark into `data/`. These notebooks require `get_spark_session()` which is only available on the BERDL JupyterHub. They produce cached CSV files in `data/matrices/`, `data/annotations/`, and `data/orthologs/`.
+
+2. **NB03-07** (local): Run locally using cached data files. All notebooks check for existing output files and skip recomputation. To re-run from scratch, delete the cached files in `data/modules/`, `data/module_families/`, and `data/predictions/`.
+
+```bash
+cd projects/fitness_modules
+pip install -r requirements.txt
+jupyter nbconvert --to notebook --execute --inplace notebooks/03_ica_modules.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/04_module_annotation.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/05_cross_organism_alignment.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/06_function_prediction.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/07_benchmarking.ipynb
+```
+
+The benchmark can also be run standalone: `python src/run_benchmark.py`
+
+**Note**: NB03 ICA computation takes 30-80 min per organism (30-50 FastICA runs each). With all 32 organisms cached, NB03 runs in ~1 min (PCA + summary only). NB05 ortholog fingerprinting takes ~1 min.
+
 ## Authors
 
 - **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) — Lawrence Berkeley National Laboratory
