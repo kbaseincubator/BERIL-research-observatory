@@ -15,7 +15,7 @@ Core KBase scientific data collections.
 
 | Database | Short Name | Tables | Scale | Schema Doc | Description |
 |----------|-----------|--------|-------|------------|-------------|
-| `kbase_ke_pangenome` | Pangenome | 16 | 293K genomes, 1B genes | [pangenome.md](schemas/pangenome.md) | Species-level pangenomes from GTDB r214 with functional annotations, ANI, pathway predictions, and environmental embeddings |
+| `kbase_ke_pangenome` | Pangenome | 16 | 293K genomes, 1B genes | [pangenome.md](schemas/pangenome.md) | Species-level pangenomes from GTDB r214 with functional annotations, ANI, pathway predictions, environmental embeddings, cluster representative sequences, and phylogenetic trees |
 | `kbase_genomes` | Genomes | 16 | 293K genomes, 253M proteins | [genomes.md](schemas/genomes.md) | Structural genomics data (contigs, features, protein sequences) in CDM format |
 | `kbase_msd_biochemistry` | Biochemistry | 5 | 56K reactions, 46K molecules | [biochemistry.md](schemas/biochemistry.md) | ModelSEED biochemical reactions, compounds, and stoichiometry for metabolic modeling |
 | `kbase_phenotype` | Phenotype | 7 | 4 experiments, 182K conditions | [phenotype.md](schemas/phenotype.md) | Experimental phenotype data (growth conditions and measurements) |
@@ -115,7 +115,7 @@ kbase_ke_pangenome ←→ kbase_genomes
 
 ### Key Linking Strategies
 
-1. **Pangenome ↔ Genomes**: The `kbase_genomes.name` table maps CDM UUIDs to the gene IDs used in `kbase_ke_pangenome.gene`. This enables retrieving protein sequences for pangenome genes.
+1. **Pangenome ↔ Genomes**: The `kbase_genomes.name` table maps CDM UUIDs to the gene IDs used in `kbase_ke_pangenome.gene`. Cluster representative protein and nucleotide sequences are also available directly in `gene_cluster.faa_sequence` / `fna_sequence`.
 
 2. **Pangenome ↔ Biochemistry**: Functional annotations in `eggnog_mapper_annotations` (EC numbers, KEGG IDs) can be matched to `kbase_msd_biochemistry.reaction` entries.
 
