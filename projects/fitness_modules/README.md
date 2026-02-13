@@ -32,8 +32,8 @@ Extend pipeline after validating on pilot set.
 
 ## Key Methods
 
-- **Robust ICA**: FastICA with 100 random restarts; components clustered by cosine similarity (DBSCAN eps~0.15) to identify stable modules
-- **Module membership**: D'Agostino K² normality test on gene-weight distribution; outlier genes = members
+- **Robust ICA**: FastICA with 30-50 random restarts, 32-80 components (capped at 40% of experiments); components clustered by |cosine similarity| (DBSCAN eps=0.15) to identify stable modules
+- **Module membership**: Absolute weight threshold (|Pearson r| ≥ 0.3 with module profile, max 50 genes per module)
 - **Cross-organism matching**: Convert modules to ortholog-group fingerprints; cosine similarity → hierarchical clustering into families
 - **Function prediction**: Module enrichment label × |gene weight| × cross-organism consistency
 
@@ -84,6 +84,30 @@ projects/fitness_modules/
 2. **Conserved module families** shared across 3+ organisms — the pan-bacterial fitness regulon catalog
 3. **Function predictions** for hypothetical proteins with confidence scores
 4. **Benchmark showing** module-based predictions outperform cofitness voting alone
+
+## Results
+
+### ICA Decomposition (32 organisms)
+- **1,077 stable modules** across 32 organisms (all with ≥100 experiments)
+- Module sizes: median 7-50 genes per module (biologically correct range)
+- **93.2%** of modules show elevated within-module cofitness vs genome-wide background
+- Within-module gene correlation: 17-138x above random pairs
+
+### Cross-Organism Alignment
+- 27 module families spanning 2+ organisms via BBH ortholog fingerprints
+- 3 annotated families with consensus functional labels
+
+### Function Prediction
+- **878 function predictions** for hypothetical proteins across 29 organisms
+- 36 unique predicted functions
+- Predictions backed by module enrichment (KEGG, SEED, TIGRFam)
+
+### Key Finding
+The strict membership threshold (|weight| ≥ 0.3, max 50 genes) was critical. The initial D'Agostino K² approach gave 100-280 genes per module with weak cofitness signal (59% enriched, 1-17x correlation). After switching to absolute weight thresholds, modules became biologically coherent (93% enriched, 17-138x correlation).
+
+## Authors
+
+- **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) — Lawrence Berkeley National Laboratory
 
 ## References
 

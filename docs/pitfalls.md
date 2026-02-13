@@ -230,7 +230,15 @@ df = spark.sql("SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10")
 from get_spark_session import get_spark_session  # ImportError!
 ```
 
-**Note**: This function is only available inside JupyterHub notebook kernels. It does NOT work from the command line (`python3 -c "..."`) or from `jupyter nbconvert --execute`. For CLI execution, notebooks must be run via `jupyter nbconvert` which spawns a kernel that has `get_spark_session()` available.
+**Note**: The bare `get_spark_session()` (no import) only works inside notebook kernels. However, **[fitness_modules]** discovered that the underlying module IS importable from CLI:
+
+```python
+# WORKS from CLI (python3 scripts, not just notebooks)
+from berdl_notebook_utils.setup_spark_session import get_spark_session
+spark = get_spark_session()
+```
+
+This is injected by `/configs/ipython_startup/00-notebookutils.py` in notebooks, but the module itself is a regular Python package. This enables running full Spark analysis pipelines from the command line without `jupyter nbconvert`.
 
 ### Don't Kill Java Processes
 
@@ -384,7 +392,38 @@ Always filter by `orgId` at minimum.
 
 ### Per-Organism Convenience Tables
 
-The `fitbyexp_*` tables have non-standard schemas (experiment names as columns). Use for single-organism lookups only.
+**[fitness_modules]** The `fitbyexp_*` tables are **long format** (columns: `expName, locusId, fit, t`), NOT pre-pivoted wide tables as the schema docs suggest. They're equivalent to a per-organism slice of `genefitness`. Use `genefitness` directly with an `orgId` filter instead.
+
+### KEGG Annotation Join Path
+
+**[fitness_modules]** `keggmember` does NOT have `orgId` or `locusId` columns. It has `keggOrg, keggId, kgroup`. To link genes to KEGG groups:
+
+```sql
+-- CORRECT: Join through besthitkegg
+SELECT bk.locusId, km.kgroup, kd.desc
+FROM kescience_fitnessbrowser.besthitkegg bk
+JOIN kescience_fitnessbrowser.keggmember km
+    ON bk.keggOrg = km.keggOrg AND bk.keggId = km.keggId
+LEFT JOIN kescience_fitnessbrowser.kgroupdesc kd ON km.kgroup = kd.kgroup
+WHERE bk.orgId = 'DvH'
+
+-- WRONG: keggmember has no orgId column
+SELECT * FROM kescience_fitnessbrowser.keggmember WHERE orgId = 'DvH'
+```
+
+Also: `kgroupec` uses column `ecnum` (not `ec`).
+
+### seedclass Has No Subsystem Hierarchy
+
+**[fitness_modules]** `seedclass` has columns `orgId, locusId, type, num` — it stores EC numbers, NOT SEED subsystem categories. Use `seedannotation` (columns: `orgId, locusId, seed_desc`) for functional descriptions.
+
+### ICA Component Ratio Affects Performance
+
+**[fitness_modules]** When running FastICA on fitness matrices, keep `n_components` ≤ 40% of `n_experiments`. Higher ratios cause frequent convergence failures, and each failed run hits `max_iter` (very slow). For an organism with 150 experiments, use at most 60 components.
+
+### Cosine Distance Floating-Point Issue
+
+**[fitness_modules]** When computing pairwise cosine distance (`1 - |cosine_similarity|`) for DBSCAN clustering, tiny negative values can appear due to floating-point precision. DBSCAN with `metric="precomputed"` rejects negative distances. Fix: `np.clip(cos_dist, 0, 1, out=cos_dist)` before clustering.
 
 ---
 

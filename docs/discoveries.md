@@ -77,6 +77,35 @@ Multi-function genes with composite COG assignments (e.g., "LV" = mobile+defense
 - Suggests functional modules like "mobile defense islands"
 - Should not be filtered out as noise - they represent genuine multi-functional genes
 
+## 2026-02
+
+### [fitness_modules] ICA reliably decomposes fitness data into biologically coherent modules
+
+Robust ICA (30-50 FastICA runs + DBSCAN clustering) consistently finds 17-52 stable modules per organism across 32 bacteria. Within-module gene pairs show 17-138x higher correlation than random pairs, and 93.2% of modules have elevated cofitness vs genome-wide background. This validates ICA as a principled decomposition method for RB-TnSeq data.
+
+### [fitness_modules] Membership thresholding is the critical parameter, not ICA itself
+
+The initial D'Agostino K² normality-based thresholding gave 100-280 genes per module — biologically meaningless. The ICA components themselves were fine; the problem was deciding which genes "belong" to each module. Switching to an absolute weight threshold (|Pearson r| ≥ 0.3 with module profile, max 50 genes) reduced modules to 5-50 genes and dramatically improved all validation metrics:
+- Cofitness enrichment: 59% → 93.2%
+- Within-module correlation: 0.047 → 0.387 (DvH)
+- Predictions: 2,423 low-quality → 878 high-quality
+
+### [fitness_modules] Organisms with <200 experiments still produce valid modules
+
+Caulo (198 experiments) showed the weakest signal in the pilot (2.9x correlation enrichment vs 31x for DvH), but organisms down to 104 experiments (Ponti) still produced stable modules. The key is capping components at 40% of experiments — higher ratios cause FastICA convergence failures and extreme slowness.
+
+### [fitness_modules] Fitness Browser schema documentation has inaccuracies
+
+Several table schemas differ from the documented schema:
+- `keggmember` uses `keggOrg`/`keggId` (not `orgId`/`locusId`) — must join through `besthitkegg`
+- `kgroupec` uses `ecnum` (not `ec`)
+- `seedclass` has `orgId, locusId, type, num` (not subsystem/category hierarchy)
+- `fitbyexp_*` tables are long format (not pre-pivoted as documented)
+
+### [fitness_modules] Spark is accessible from CLI via berdl_notebook_utils
+
+`from berdl_notebook_utils.setup_spark_session import get_spark_session` works from regular Python scripts on JupyterHub — not just notebook kernels. This enables running full analysis pipelines from the command line without `jupyter nbconvert`. The auto-import in `/configs/ipython_startup/00-notebookutils.py` only affects notebook kernels.
+
 ---
 
 ## Template
