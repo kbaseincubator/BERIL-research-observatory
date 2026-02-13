@@ -228,6 +228,9 @@ When a user describes their research interest:
    - After generating hypotheses, suggest: "Use `/literature-review` to check whether this hypothesis has been explored in published research"
    - Literature review can reveal: prior results, established methods, confounders identified by others, and gaps that BERDL could uniquely fill
 
+7. **Suggest research plan**
+   - After presenting hypotheses and literature review suggestion, also suggest: "Use `/research-plan` to refine this hypothesis with a literature review, check data feasibility, and create a structured plan for your analysis"
+
 ---
 
 ## Data Limitations to Consider

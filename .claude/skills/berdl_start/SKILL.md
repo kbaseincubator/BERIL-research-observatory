@@ -51,7 +51,10 @@ data/               # Shared data extracts reusable across projects
 | `/berdl` | Query BERDL databases via REST API or Spark SQL |
 | `/berdl-discover` | Explore and document a new BERDL database |
 | `/hypothesis` | Generate testable research questions from BERDL data |
+| `/research-plan` | Refine a hypothesis with literature review, data feasibility checks, and a structured plan |
+| `/notebook` | Generate Jupyter notebooks from a research plan with PySpark boilerplate |
 | `/literature-review` | Search PubMed, Europe PMC, and other sources for relevant biological literature |
+| `/synthesize` | Read analysis outputs, compare against literature, and draft findings |
 | `/submit` | Submit a project for automated review |
 
 ### Existing Projects
@@ -92,15 +95,13 @@ Read these files:
 Then:
 - Summarize the high-priority research ideas that are still PROPOSED
 - Mention cross-project integration opportunities
-- Suggest using `/hypothesis` to develop a research question
-- Suggest using `/literature-review` to check existing research on the topic
-- Once the user has a question, help them create the project structure:
-  ```
-  projects/<name>/
-    README.md      # Question, hypothesis, approach
-    notebooks/     # Analysis notebooks
-    data/          # Output data
-  ```
+- Present the full research workflow:
+  1. `/hypothesis` — generate a testable research question
+  2. `/research-plan` — refine with literature review, check data feasibility, produce a structured plan
+  3. `/notebook` — generate analysis notebooks from the plan
+  4. Run notebooks on BERDL JupyterHub
+  5. `/synthesize` — interpret results, compare against literature, draft findings
+  6. `/submit` — pre-submission checks and automated review
 
 ### Path 2: Explore BERDL Data
 
