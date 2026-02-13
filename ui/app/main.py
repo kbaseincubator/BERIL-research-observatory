@@ -1,6 +1,7 @@
 """BERIL Research Observatory - FastAPI Application."""
 
-from pathlib import Path
+import logging
+from contextlib import asynccontextmanager
 
 import nbformat
 from markupsafe import Markup
@@ -14,14 +15,45 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from .config import settings
+from .dataloader import get_parser, load_external_data
 from .models import CollectionCategory
-from .parser import get_parser
+
+logger = logging.getLogger(__name__)
+
+
+# Add custom template globals
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Initialize app on startup."""
+    # Try to pull from external source
+    # 1. Look at source, if present, load it.
+    # 1a. If not present, parse files on disk.
+    # 2. source will have data.pkl.zip and timestamp.json files. pull data.pkl.zip
+    # 3. Import the data.pkl.zip as app.state.repo_data
+    logging.warning("Loading repository data")
+    logging.error(settings.model_dump())
+    try:
+        if settings.data_source_url is not None:
+            logging.warning(f"Loading from URL {settings.data_source_url}")
+            app.state.repo_data = load_external_data(settings.data_source_url)
+            logging.warning("Done loading data")
+        else:
+            raise ValueError("Data source URL not found")
+    except Exception as e:
+        logging.warning(str(e))
+        logging.warning("Loading data from local files")
+        # Parse repository data
+        parser = get_parser()
+        app.state.repo_data = parser.parse_all()
+    yield
+
 
 # Create FastAPI app
 app = FastAPI(
     title=settings.app_name,
     description=settings.app_description,
     debug=settings.debug,
+    lifespan=lifespan,
 )
 
 # Mount static files
@@ -36,8 +68,6 @@ app.mount(
 
 # Configure templates
 templates = Jinja2Templates(directory=settings.templates_dir)
-
-
 
 
 def markdown_filter(text: str) -> Markup:
@@ -68,15 +98,6 @@ templates.env.filters["markdown"] = markdown_filter
 templates.env.filters["md"] = markdown_filter  # Alias
 templates.env.filters["markdown_inline"] = markdown_inline_filter
 templates.env.filters["mdi"] = markdown_inline_filter  # Alias
-
-
-# Add custom template globals
-@app.on_event("startup")
-async def startup_event():
-    """Initialize app on startup."""
-    # Parse repository data
-    parser = get_parser()
-    app.state.repo_data = parser.parse_all()
 
 
 def get_repo_data(request: Request):
@@ -114,7 +135,9 @@ async def home(request: Request):
             "discoveries": repo_data.discoveries[:3],  # Latest 3 discoveries
             "total_notebooks": repo_data.total_notebooks,
             "total_visualizations": repo_data.total_visualizations,
-            "primary_collections": repo_data.get_collections_by_category(CollectionCategory.PRIMARY)[:3],
+            "primary_collections": repo_data.get_collections_by_category(
+                CollectionCategory.PRIMARY
+            )[:3],
         }
     )
     return templates.TemplateResponse("home.html", context)
@@ -330,7 +353,9 @@ async def about(request: Request):
     """About page."""
     repo_data = get_repo_data(request)
     context = get_base_context(request)
-    context["primary_collections"] = repo_data.get_collections_by_category(CollectionCategory.PRIMARY)
+    context["primary_collections"] = repo_data.get_collections_by_category(
+        CollectionCategory.PRIMARY
+    )
     return templates.TemplateResponse("about/about.html", context)
 
 
