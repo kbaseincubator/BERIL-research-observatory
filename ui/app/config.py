@@ -61,7 +61,7 @@ class Settings(BaseSettings):
     total_genes: str = "1B+"
 
     class Config:
-        env_prefix = "BERIL"  # BERIL Research Observatory
+        env_prefix = "BERIL_"  # BERIL Research Observatory
 
 
 settings = Settings()
