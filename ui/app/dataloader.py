@@ -38,30 +38,70 @@ REPOSITORY_DATA_FILE = "data.pkl.gz"
 TIMESTAMP_FILE = "timestamp.json"
 
 
-def load_repository_data(data_source_url: str | None = None) -> RepositoryData:
+def load_repository_data(source_path: Path | str | None = None) -> RepositoryData:
     """
-    Load repository data from either external URL or local parsing.
+    Load repository data from a file path, URL, or local parsing.
 
     Args:
-        data_source_url: Optional URL to load data from. If None or loading fails,
-                        falls back to parsing local files.
+        source_path: Optional file path or URL to load data from.
+                    If Path: loads from local pickle file
+                    If str (URL): loads from HTTP
+                    If None: parses from local repository files
 
     Returns:
         RepositoryData object with all parsed repository information.
     """
-    if data_source_url:
+    if source_path:
         try:
-            return load_external_data(data_source_url)
+            if isinstance(source_path, Path):
+                # Load from local file
+                return load_local_pickle(source_path)
+            else:
+                # Load from URL
+                return load_external_data(source_path)
         except Exception as e:
             # Fall through to local parsing
             import logging
             logger = logging.getLogger(__name__)
-            logger.warning(f"Failed to load from URL {data_source_url}: {e}")
+            logger.warning(f"Failed to load from {source_path}: {e}")
             logger.warning("Falling back to local file parsing")
 
     # Parse from local files
     parser = get_parser()
     return parser.parse_all()
+
+
+def load_local_pickle(file_path: Path) -> RepositoryData:
+    """
+    Load repository data from a local gzipped pickle file.
+
+    Args:
+        file_path: Path to the .pkl.gz file
+
+    Returns:
+        RepositoryData object
+
+    Raises:
+        FileNotFoundError: If file doesn't exist
+        pickle.UnpicklingError: If file is not a valid pickle
+    """
+    import logging
+    logger = logging.getLogger(__name__)
+
+    logger.info(f"Loading data from local file: {file_path}")
+
+    if not file_path.exists():
+        raise FileNotFoundError(f"Data file not found: {file_path}")
+
+    with gzip.open(file_path, "rb") as f:
+        repository_data = pickle.load(f)
+
+    # Validate that we got a RepositoryData object
+    if not isinstance(repository_data, RepositoryData):
+        raise ValueError(f"Expected RepositoryData object, got {type(repository_data)}")
+
+    logger.info(f"Loaded data with last_updated: {repository_data.last_updated}")
+    return repository_data
 
 
 def check_for_updates(data_source_url: str, current_last_updated: datetime) -> bool:
