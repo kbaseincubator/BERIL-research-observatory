@@ -39,7 +39,7 @@ The Fitness Browser provides mutant fitness data for ~221K genes across 48 bacte
 | `kbase_ke_pangenome` | `pangenome` | Clade size, core/auxiliary/singleton counts |
 | External | `fit.genomics.lbl.gov/cgi_data/aaseqs` | FB protein sequences |
 
-## Results
+## Key Findings
 
 ### Link Table (Phase 1)
 
