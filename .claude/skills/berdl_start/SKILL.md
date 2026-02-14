@@ -56,6 +56,7 @@ data/               # Shared data extracts reusable across projects
 | `/literature-review` | Search PubMed, Europe PMC, and other sources for relevant biological literature |
 | `/synthesize` | Read analysis outputs, compare against literature, and draft findings |
 | `/submit` | Submit a project for automated review |
+| `/cts` | Submit compute-intensive jobs (CheckM2, DIAMOND, etc.) to remote compute via CTS |
 
 ### Existing Projects
 

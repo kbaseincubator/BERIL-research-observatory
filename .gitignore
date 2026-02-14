@@ -33,6 +33,9 @@ Thumbs.db
 *.swp
 *.swo
 
+# Claude Code local settings (per-user)
+.claude/settings.local.json
+
 # Tree files (large)
 *.tree
 
