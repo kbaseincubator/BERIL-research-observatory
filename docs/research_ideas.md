@@ -333,6 +333,38 @@
 
 ---
 
+### [conservation_vs_fitness] Cross-Organism Essential Gene Families
+**Status**: PROPOSED
+**Priority**: MEDIUM
+
+**Research Question**: Using FB's `ortholog` table, identify essential gene families conserved across multiple species. Are there universally essential families? Species-unique essentials?
+
+**Approach**: Link essential genes across organisms via BBH orthologs, cluster into families, compare to pangenome conservation. Universally essential families should be universally core.
+
+### [fitness_effects_conservation] The 5,526 "Costly + Dispensable" Genes
+**Status**: PROPOSED
+**Priority**: HIGH
+
+**Research Question**: Genes that are burdensome in the lab AND not conserved in the pangenome are candidates for ongoing gene loss. What are they? Are they recently acquired genes that haven't been lost yet, or genes on the way out?
+
+**Approach**: Characterize the 5,526 costly+dispensable genes: functional categories, organism distribution, whether they're on plasmids or mobile elements, comparison to the 28,017 costly+conserved genes.
+
+### [core_gene_tradeoffs] Environmental Context of Core Gene Trade-offs
+**Status**: PROPOSED
+**Priority**: MEDIUM
+
+**Research Question**: Can we connect the lab-measured trade-offs to natural environment data? Do organisms from more variable environments have more trade-off genes in their core genome?
+
+**Approach**: Link to AlphaEarth embedding diversity (from ecotype_analysis) — do species with broader environmental niches show more core gene trade-offs?
+
+### [module_conservation] The 48 Accessory Modules
+**Status**: PROPOSED
+**Priority**: LOW
+
+**Research Question**: What are the 48 co-regulated gene modules that are <50% core? Are they mobile elements, niche-specific operons, or recently acquired functional units?
+
+**Approach**: Characterize the 48 accessory modules by function (SEED/KEGG), genomic context (near mobile elements?), and organism distribution.
+
 ### [NEW] Plasmid vs Chromosomal Gene Functional Profiles
 **Status**: PROPOSED
 **Priority**: LOW
@@ -348,7 +380,21 @@
 
 ## Completed Ideas
 
-_Move completed projects here with links to results_
+### [conservation_vs_fitness] Essential Gene Conservation Analysis
+**Status**: COMPLETED
+**Results**: Essential genes are 86.1% core vs 81.2% for non-essential (OR=1.56, 18/33 significant after BH-FDR). Essential-core genes are 41.9% enzymes; essential-unmapped are 44.7% hypothetical. See `projects/conservation_vs_fitness/`.
+
+### [fitness_effects_conservation] Quantitative Fitness Effects vs Conservation
+**Status**: COMPLETED
+**Results**: 16pp gradient from essential (82% core) to neutral (66%). Core genes are MORE likely to be burdens (OR=0.77). Condition-specific genes are more core (OR=1.78). See `projects/fitness_effects_conservation/`.
+
+### [module_conservation] Fitness Modules × Pangenome Conservation
+**Status**: COMPLETED
+**Results**: Module genes are 86% core vs 81.5% baseline (OR=1.46, p=1.6e-87). 59% of modules are >90% core. Family breadth doesn't predict conservation (ceiling effect). See `projects/module_conservation/`.
+
+### [core_gene_tradeoffs] Core Gene Paradox — Why Are Core Genes More Burdensome?
+**Status**: COMPLETED
+**Results**: Trade-off genes (both sick AND beneficial) are 1.29x more likely core. 28,017 genes are "costly + conserved" = natural selection signature. Lab reveals cost; pangenome reveals selection pressure. See `projects/core_gene_tradeoffs/`.
 
 ---
 
@@ -383,6 +429,16 @@ _Capture half-baked ideas here for future refinement_
 ### cog_analysis × pangenome_openness
 - **Openness vs functional composition** (HIGH PRIORITY)
 - Open pangenomes = more HGT = more L enrichment?
+
+### conservation_vs_fitness × fitness_modules
+- **Module-level conservation analysis** (COMPLETED in `module_conservation`)
+- Module genes are 86% core; modules are functional units of the core genome
+- Next: characterize the 48 accessory modules
+
+### fitness_effects_conservation × ecotype_analysis
+- **Trade-off genes × environmental niche breadth**
+- Do species from variable environments have more trade-off genes in their core?
+- Connect lab-measured costs to natural selection pressures
 
 ### ecotype_analysis × pangenome_openness
 - Do open pangenomes have more ecotypes?
