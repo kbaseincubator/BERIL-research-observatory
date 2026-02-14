@@ -1,0 +1,4 @@
+# Large data files - regenerate with src/extract_data.py
+all_bbh_pairs.csv
+all_essential_genes.tsv
+all_seed_annotations.tsv
