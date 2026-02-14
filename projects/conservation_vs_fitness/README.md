@@ -54,7 +54,7 @@ The Fitness Browser provides mutant fitness data for ~221K genes across 48 bacte
 - **28,399 putative essential genes** identified (18.5% of 153,143 protein-coding genes across 34 organisms; range 12.9–28.9% per organism)
 - Essential genes are **86.1% core** vs 81.2% for non-essential genes
 - **Median odds ratio 1.56** — essential genes are 1.56x more likely to be in the core genome
-- **19 of 33 organisms** show statistically significant enrichment (Fisher's exact test, p < 0.05)
+- **18 of 33 organisms** show statistically significant enrichment (Fisher's exact test, BH-FDR q < 0.05)
 - Strongest signal: *Methanococcus maripaludis* S2 (OR=5.21), *Ralstonia syzygii* PSI07 (OR=3.41), *Marinobacter adhaerens* (OR=3.08)
 
 ### Functional Profiles Differ by Conservation Category
