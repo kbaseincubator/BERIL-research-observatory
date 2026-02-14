@@ -437,6 +437,18 @@ Also: `kgroupec` uses column `ecnum` (not `ec`).
 
 **[fitness_modules]** Using `min_annotated=3` with KEGG KOs (~1.2 genes per KO) results in only 8% of modules getting any enrichment — almost no KEGG term has 3+ genes in a single 5-50 gene module. Lower to `min_annotated=2` (still valid with FDR correction) and include PFam domains (814 terms with 2+ genes) alongside TIGRFam (88 terms). This increases module annotation from 8% to 80%.
 
+### FB Locus Tag Mismatch Between Gene Table and Aaseqs Download
+
+**[conservation_vs_fitness]** The FB protein sequences at `fit.genomics.lbl.gov/cgi_data/aaseqs` use RefSeq-style locus tags for some organisms (e.g., `ABZR86_RS00005` for Dyella79), while the FB `gene` table uses the original annotation locus tags (`N515DRAFT_0001`). If you build DIAMOND databases from aaseqs and then try to join the hit locusIds back to the gene table, the join will silently produce zero matches. Check locusId overlap between datasets before analysis. Affected: Dyella79 (0% overlap). Other organisms had >94% overlap.
+
+### FB Gene Table Has No Essentiality Flag
+
+**[conservation_vs_fitness]** After checking all 45 tables in `kescience_fitnessbrowser`, there is no explicit essentiality column, insertion count, or "has fitness data" flag. The `gene.type` column encodes feature type (1=CDS, 5=pseudo, 7=rRNA, 2=tRNA), not essentiality. To identify putative essential genes, compare the `gene` table (type='1') against `genefitness` — genes absent from genefitness had no viable transposon mutants. This is an upper bound on true essentiality.
+
+### Spark LIMIT/OFFSET Pagination Is Slow
+
+**[conservation_vs_fitness]** Using `LIMIT N OFFSET M` for pagination in Spark queries causes Spark to re-scan all rows up to the offset on each query. For extracting cluster rep FASTAs across 154 clades, paginated queries (5000 rows per batch) were orders of magnitude slower than single queries per clade. Since `gene_cluster` is partitioned by `gtdb_species_clade_id`, a single `WHERE gtdb_species_clade_id = 'X'` query per clade is fast. Only paginate when the result set would exceed memory.
+
 ---
 
 ## Genomes (`kbase_genomes`) Pitfalls

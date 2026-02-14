@@ -161,8 +161,26 @@ pangenome_path = DATA_DIR / 'pangenome_metadata.tsv'
 pangenome_meta.to_csv(pangenome_path, sep='\t', index=False)
 print(f"Saved: {pangenome_path} ({len(pangenome_meta)} clades)")
 
+# ============================================================================
+# Extract SEED functional hierarchy
+# ============================================================================
+print("\n=== EXTRACTING SEED HIERARCHY ===")
+
+seed_hier_path = DATA_DIR / 'seed_hierarchy.tsv'
+if seed_hier_path.exists() and seed_hier_path.stat().st_size > 0:
+    print(f"Already cached: {seed_hier_path}")
+else:
+    seed_hier = spark.sql("""
+        SELECT DISTINCT sa.seed_desc, sr.toplevel, sr.category, sr.subsystem
+        FROM kescience_fitnessbrowser.seedannotationtoroles sa
+        JOIN kescience_fitnessbrowser.seedroles sr ON sa.seedrole = sr.seedrole
+    """).toPandas()
+    seed_hier.to_csv(seed_hier_path, sep='\t', index=False)
+    print(f"Saved: {seed_hier_path} ({len(seed_hier)} rows)")
+
 print("\n=== EXTRACTION COMPLETE ===")
 print(f"Essential genes: {output_path}")
 print(f"SEED annotations: {seed_path}")
 print(f"KEGG annotations: {kegg_path}")
 print(f"Pangenome metadata: {pangenome_path}")
+print(f"SEED hierarchy: {seed_hier_path}")

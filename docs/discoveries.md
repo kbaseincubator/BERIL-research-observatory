@@ -138,6 +138,22 @@ Held-out KO prediction benchmark across 32 organisms showed ortholog transfer do
 
 The min_annotated parameter (minimum overlapping genes to test for enrichment) must be calibrated to the annotation database's granularity. For gene-specific annotations (KEGG KOs: ~1 gene/term), min_annotated=3 eliminates nearly all tests. For domain-level annotations (PFam: many genes share domains), min_annotated=2 works well with FDR correction. Fisher's exact test handles small counts correctly — the statistical validity comes from FDR correction across all tests, not from requiring large overlaps per test.
 
+### [conservation_vs_fitness] Essential genes are modestly enriched in core pangenome clusters
+
+Across 33 diverse bacteria, putative essential genes (no transposon insertions in RB-TnSeq) are 86.1% core vs 81.2% for non-essential genes (median OR=1.56, 18/33 significant after BH-FDR). The enrichment is real but modest — most genes in well-characterized bacteria are core regardless of essentiality. The signal is strongest in organisms with larger clades (more genomes = more reliable core classification).
+
+### [conservation_vs_fitness] Essential-core genes are functionally distinct from essential-auxiliary
+
+Essential genes that map to core clusters are 41.9% enzymes and only 13.0% hypothetical — they are the well-characterized metabolic backbone (ribosomes, DNA replication, cell wall, cofactor biosynthesis). Essential-auxiliary genes (essential but not in all strains) are only 13.4% enzymes and 38.2% hypothetical. Essential-unmapped genes (strain-specific, no pangenome match) are 44.7% hypothetical — prime targets for functional discovery.
+
+### [conservation_vs_fitness] SEED functional categories distinguish essential from non-essential
+
+Essential-core genes are enriched in Protein Metabolism (+13.7 pp vs non-essential), Cofactors/Vitamins (+6.2 pp), Cell Wall (+3.9 pp). They are depleted in Carbohydrates (-7.9 pp), Amino Acids (-5.6 pp), Membrane Transport (-4.0 pp) — functions that are conditionally important rather than universally essential. This aligns with Rosconi et al. (2022) who found pan-genome composition influences essentiality in *S. pneumoniae*.
+
+### [conservation_vs_fitness] FB aaseqs download uses different locus tags than the gene table for some organisms
+
+The Fitness Browser aaseqs file (fit.genomics.lbl.gov/cgi_data/aaseqs) uses RefSeq-style locus tags (e.g., ABZR86_RS*) for some organisms, while the FB `gene` table uses the original annotation locus tags (e.g., N515DRAFT_*). This caused a complete join failure for Dyella79 (0% merge rate). Only 1 of 34 organisms was affected, but any pipeline joining aaseqs-derived data with gene table data should verify locus tag consistency.
+
 ---
 
 ## Template
