@@ -47,7 +47,7 @@ The Fitness Browser provides mutant fitness data for ~221K genes across 48 bacte
 - **177,863 gene-to-cluster links** at 100.0% median protein identity, 94.2% median gene coverage
 - 34 organisms have ≥90% coverage (used for downstream analysis)
 - 4 organisms unmatched: Cola, Kang, Magneto, SB2B (species had too few genomes in GTDB for pangenome construction)
-- Conservation breakdown: 145,821 core (82.0%), 32,042 auxiliary (18.0%), 7,574 singleton (4.3%)
+- Conservation breakdown: 145,821 core (82.0%), 32,042 auxiliary (18.0%) — of which 7,574 are singletons (singletons are a subset of auxiliary)
 
 ### Essential Genes Are Enriched in Core Clusters (Phase 2)
 
