@@ -136,13 +136,13 @@ tscli.whoami()              # User info, roles, and allowed S3 paths
 
 # Job submission
 tscli.submit_job(...)       # Submit a job (returns Job object)
-tscli.insert_files()        # Auto-split input files across containers
 
 # Job management
 tscli.list_jobs()           # List user's jobs
 job = tscli.get_job_by_id("job_id_here")
 
-# Job monitoring
+# Job object attributes and methods
+job.id                      # Job ID string
 job.get_job_status()        # Lightweight status check
 job.get_job()               # Full details including outputs
 job.get_exit_codes()        # Per-container exit codes
@@ -180,10 +180,11 @@ Annotated JSON for `POST /jobs`:
   "image": "ghcr.io/kbasetest/cdm_checkm2:0.3.0",
   "params": {
     "args": [
-      "--threads_per_container", "8",
+      "--threads", "8",
+      "--input",
       {"type": "input_files", "input_files_format": "space_separated_list"},
       "-x", "fna.gz",
-      "-o", "/output_files"
+      "--output-directory", "/output_files"
     ],
     "input_mount_point": "/input_files",
     "output_mount_point": "/output_files",

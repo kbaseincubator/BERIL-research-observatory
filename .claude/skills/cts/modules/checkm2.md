@@ -21,10 +21,11 @@ CheckM2 uses machine learning to assess the quality (completeness and contaminat
   "image": "ghcr.io/kbasetest/cdm_checkm2:0.3.0",
   "params": {
     "args": [
-      "--threads_per_container", "8",
+      "--threads", "8",
+      "--input",
       {"type": "input_files", "input_files_format": "space_separated_list"},
       "-x", "fna.gz",
-      "-o", "/output_files"
+      "--output-directory", "/output_files"
     ],
     "input_mount_point": "/input_files",
     "output_mount_point": "/output_files",
@@ -46,10 +47,11 @@ CheckM2 uses machine learning to assess the quality (completeness and contaminat
 
 | Arg | Purpose |
 |-----|---------|
-| `--threads_per_container 8` | Use 8 threads (match `cpus` value) |
+| `--threads 8` | Use 8 threads (match `cpus` value) |
+| `--input` | Required flag before the input files placeholder |
 | `{"type": "input_files", "input_files_format": "space_separated_list"}` | CTS replaces this with the actual input file paths assigned to each container |
 | `-x fna.gz` | Input file extension (adjust if using `.fna`) |
-| `-o /output_files` | Output directory (must match `output_mount_point`) |
+| `--output-directory /output_files` | Output directory (must match `output_mount_point`) |
 
 ### Multi-container pattern
 
@@ -67,10 +69,11 @@ job = tscli.submit_job(
     cluster="kbase",
     image="ghcr.io/kbasetest/cdm_checkm2:0.3.0",
     args=[
-        "--threads_per_container", "8",
+        "--threads", "8",
+        "--input",
         {"type": "input_files", "input_files_format": "space_separated_list"},
         "-x", "fna.gz",
-        "-o", "/output_files"
+        "--output-directory", "/output_files"
     ],
     input_mount_point="/input_files",
     output_mount_point="/output_files",
@@ -86,7 +89,7 @@ job = tscli.submit_job(
     runtime=3600,
 )
 
-print(f"Job ID: {job.job_id}")
+print(f"Job ID: {job.id}")
 
 # Wait for completion (blocks until done)
 job.wait_for_completion(wait_for_event_importer=True)
