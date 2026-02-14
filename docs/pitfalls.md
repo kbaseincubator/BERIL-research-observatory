@@ -449,6 +449,14 @@ Also: `kgroupec` uses column `ecnum` (not `ec`).
 
 **[conservation_vs_fitness]** Using `LIMIT N OFFSET M` for pagination in Spark queries causes Spark to re-scan all rows up to the offset on each query. For extracting cluster rep FASTAs across 154 clades, paginated queries (5000 rows per batch) were orders of magnitude slower than single queries per clade. Since `gene_cluster` is partitioned by `gtdb_species_clade_id`, a single `WHERE gtdb_species_clade_id = 'X'` query per clade is fast. Only paginate when the result set would exceed memory.
 
+### Essential Genes Are Invisible in genefitness-Only Analyses
+
+**[fitness_effects_conservation]** If you query only the `genefitness` table for fitness data, you miss ~14.3% of protein-coding genes — the essential genes that have no transposon insertions and therefore no entries in `genefitness`. These are the most functionally important genes (82% core). Any analysis of fitness vs conservation must explicitly include essential genes from the `gene` table (type='1' genes absent from `genefitness`), or acknowledge that the most extreme fitness category is missing.
+
+### Reviewer Subprocess May Write to Nested Path
+
+**[fitness_effects_conservation]** When invoking the `/submit` reviewer subprocess, if the subprocess resolves `projects/{id}/` relative to its own working directory rather than the repo root, the `REVIEW.md` file can end up at `projects/{id}/projects/{id}/REVIEW.md` instead of `projects/{id}/REVIEW.md`. Check the output path after the reviewer completes and move the file if needed.
+
 ---
 
 ## Genomes (`kbase_genomes`) Pitfalls

@@ -154,6 +154,18 @@ Essential-core genes are enriched in Protein Metabolism (+13.7 pp vs non-essenti
 
 The Fitness Browser aaseqs file (fit.genomics.lbl.gov/cgi_data/aaseqs) uses RefSeq-style locus tags (e.g., ABZR86_RS*) for some organisms, while the FB `gene` table uses the original annotation locus tags (e.g., N515DRAFT_*). This caused a complete join failure for Dyella79 (0% merge rate). Only 1 of 34 organisms was affected, but any pipeline joining aaseqs-derived data with gene table data should verify locus tag consistency.
 
+### [fitness_effects_conservation] Fitness importance and pangenome conservation form a continuous gradient
+
+Across 194,216 protein-coding genes in 43 bacteria, there is a clear 16-percentage-point gradient from essential genes (82% core) to always-neutral genes (66% core). The same pattern holds when binning by strongest negative fitness effect (min_fit < -3 → 78% core vs min_fit near 0 → 66%) and by fitness breadth (important in 20+ conditions → 79% core vs 0 conditions → 66%). This establishes that the essentiality-conservation link from `conservation_vs_fitness` is not binary but quantitative.
+
+### [fitness_effects_conservation] Core genes are MORE likely to be burdens, not less
+
+Counter to the expectation that accessory genes impose a carrying cost, core genes are more likely to show positive fitness effects when deleted (24.4% ever beneficial vs 19.9% for auxiliary; OR=0.77 for auxiliary vs core, p=5.5e-48). Core genes participate in more pathways and trade-off situations — they help in some conditions but cost in others. This challenges the "streamlining" model where accessory genes are metabolic burdens.
+
+### [fitness_effects_conservation] Condition-specific fitness genes are more core, not more accessory
+
+Genes with strong condition-specific phenotypes (from the FB `specificphenotype` table) are 77.3% core vs 70.3% for genes without specific phenotypes (OR=1.78, p=1.8e-97). This contradicts the intuition that condition-specific fitness = niche-specific genes = accessory genome. Instead, core genes are more likely to have detectable condition-specific effects because they are embedded in well-characterized, essential pathways.
+
 ---
 
 ## Template
