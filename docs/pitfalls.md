@@ -449,6 +449,10 @@ Also: `kgroupec` uses column `ecnum` (not `ec`).
 
 **[conservation_vs_fitness]** Using `LIMIT N OFFSET M` for pagination in Spark queries causes Spark to re-scan all rows up to the offset on each query. For extracting cluster rep FASTAs across 154 clades, paginated queries (5000 rows per batch) were orders of magnitude slower than single queries per clade. Since `gene_cluster` is partitioned by `gtdb_species_clade_id`, a single `WHERE gtdb_species_clade_id = 'X'` query per clade is fast. Only paginate when the result set would exceed memory.
 
+### Row-Wise Apply on Large DataFrames Is Orders of Magnitude Slower Than Merge
+
+**[core_gene_tradeoffs]** Filtering a 961K-row DataFrame with `df.apply(lambda r: (r['orgId'], r['locusId']) in some_set, axis=1)` is extremely slow because it iterates row-by-row in Python. Replace with `df.merge(keys_df, on=['orgId','locusId'], how='inner')` for the same result in seconds instead of minutes. This applies whenever you need to filter a large DataFrame to rows matching a set of key pairs.
+
 ### Column Name Collisions When Merging Family Annotations
 
 **[module_conservation]** Merging `module_families.csv` with `family_annotations.csv` on `familyId` can create duplicate column names (`n_modules_x`, `n_modules_y`) when both DataFrames have columns with the same name. Use explicit `suffixes=('_obs', '_annot')` in the merge call to avoid ambiguous column names in downstream analysis and saved TSV files.
