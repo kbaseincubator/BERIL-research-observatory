@@ -2,6 +2,9 @@
 .env
 *.env
 
+# Claude Code local settings
+.claude/settings.local.json
+
 # Large data files
 *.npy
 *.pkl
