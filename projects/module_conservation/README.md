@@ -44,6 +44,14 @@ Surprisingly, module families spanning more organisms do NOT have higher core fr
 
 0 essential genes appear in any module, confirming that ICA modules only capture genes with measurable fitness variation (non-essential genes with transposon insertions). Essential genes are invisible to ICA because they have no fitness data.
 
+## Limitations
+
+- **Ceiling effect**: The baseline core rate is already ~81.5%, limiting the maximum observable enrichment. The +4.5pp difference to 86% is statistically significant but represents a modest absolute effect.
+- **29/32 organism subset**: 3 module organisms (Cola, Kang, SB2B) lack pangenome links because their species had too few genomes in GTDB for pangenome construction.
+- **Module membership threshold**: The upstream ICA module membership uses |Pearson r| ≥ 0.3 with max 50 genes per module. This threshold affects which genes are "in" a module and could influence conservation composition.
+- **Classification thresholds are arbitrary**: The 90% and 50% cutoffs for core/mixed/accessory module classification are convenient but not biologically motivated.
+- **Essential genes excluded**: ICA requires fitness data, so essential genes (no transposon insertions) are absent from all modules. This means modules only capture the non-essential portion of the genome.
+
 ## Project Structure
 
 ```
