@@ -449,6 +449,10 @@ Also: `kgroupec` uses column `ecnum` (not `ec`).
 
 **[conservation_vs_fitness]** Using `LIMIT N OFFSET M` for pagination in Spark queries causes Spark to re-scan all rows up to the offset on each query. For extracting cluster rep FASTAs across 154 clades, paginated queries (5000 rows per batch) were orders of magnitude slower than single queries per clade. Since `gene_cluster` is partitioned by `gtdb_species_clade_id`, a single `WHERE gtdb_species_clade_id = 'X'` query per clade is fast. Only paginate when the result set would exceed memory.
 
+### Column Name Collisions When Merging Family Annotations
+
+**[module_conservation]** Merging `module_families.csv` with `family_annotations.csv` on `familyId` can create duplicate column names (`n_modules_x`, `n_modules_y`) when both DataFrames have columns with the same name. Use explicit `suffixes=('_obs', '_annot')` in the merge call to avoid ambiguous column names in downstream analysis and saved TSV files.
+
 ### Essential Genes Are Invisible in genefitness-Only Analyses
 
 **[fitness_effects_conservation]** If you query only the `genefitness` table for fitness data, you miss ~14.3% of protein-coding genes — the essential genes that have no transposon insertions and therefore no entries in `genefitness`. These are the most functionally important genes (82% core). Any analysis of fitness vs conservation must explicitly include essential genes from the `gene` table (type='1' genes absent from `genefitness`), or acknowledge that the most extreme fitness category is missing.

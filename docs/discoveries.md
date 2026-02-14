@@ -166,6 +166,18 @@ Counter to the expectation that accessory genes impose a carrying cost, core gen
 
 Genes with strong condition-specific phenotypes (from the FB `specificphenotype` table) are 77.3% core vs 70.3% for genes without specific phenotypes (OR=1.78, p=1.8e-97). This contradicts the intuition that condition-specific fitness = niche-specific genes = accessory genome. Instead, core genes are more likely to have detectable condition-specific effects because they are embedded in well-characterized, essential pathways.
 
+### [module_conservation] Fitness modules are enriched in core genome genes
+
+ICA fitness modules (co-regulated gene groups) are 86.0% core vs 81.5% baseline across 29 organisms (Fisher OR=1.46, p=1.6e-87; per-organism paired Wilcoxon p=1.0e-03, 22/29 organisms show enrichment). 59% of modules are >90% core genes. Co-regulated fitness response units are preferentially embedded in the conserved genome — the core genome is not just structurally conserved but functionally coherent at the module level.
+
+### [module_conservation] Module family breadth does NOT predict conservation
+
+Surprisingly, module families spanning more organisms do not have higher core fractions (Spearman rho=-0.01, p=0.914). The baseline core rate (~82%) is so high that there is no room for a gradient — families are nearly all core regardless of breadth. This is a ceiling effect, not evidence against the conservation-function relationship.
+
+### [module_conservation] Essential genes are absent from ICA modules
+
+0 essential genes appear in any of the 1,116 fitness modules across 32 organisms. ICA decomposes fitness variation, so genes with no fitness data (essential = no transposon insertions) are invisible to it. This means fitness modules capture only the non-essential portion of the genome's functional architecture.
+
 ---
 
 ## Template
