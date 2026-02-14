@@ -64,7 +64,20 @@ This synthesis draws on four analysis projects:
 | [module_conservation](../module_conservation/) | ICA modules vs pangenome | Module genes 86% core (OR=1.46) |
 | [core_gene_tradeoffs](../core_gene_tradeoffs/) | Anatomy of the burden paradox | Trade-offs drive the paradox (OR=1.29) |
 
-**Data pipeline**: DIAMOND blastp at ≥90% identity mapped 177,863 FB genes to pangenome clusters. Essential genes identified as protein-coding genes with no entries in `genefitness` (no viable transposon mutants). Fitness profiles computed from 27.4M fitness measurements across ~7,500 experiments.
+**Data pipeline**: DIAMOND blastp at ≥90% identity mapped 177,863 FB genes to pangenome clusters. Essential genes identified as protein-coding genes with no entries in `genefitness` (no viable transposon mutants). Fitness profiles computed from ~7,500 experiments across 48 organisms.
+
+**Note on % core**: Throughout this synthesis, % core is computed as the fraction of ALL protein-coding genes (including unmapped genes with unknown conservation) that are core. This treats unmapped genes as "not confirmed core." When restricted to mapped genes only, the percentages are higher (e.g., essential genes: 82% of all vs 86% of mapped). Individual project READMEs may use either denominator — see each project for details.
+
+## Reproduction
+
+All figures are generated locally from cached upstream data:
+
+```bash
+cd projects/conservation_fitness_synthesis
+jupyter nbconvert --execute notebooks/01_summary_figures.ipynb
+```
+
+Requires data from `conservation_vs_fitness/data/`, `fitness_effects_conservation/data/`, and `fitness_modules/data/modules/`.
 
 **Scale**: 194,216 protein-coding genes, 43 organisms, 27,690 pangenome species, 132.5M gene clusters, 1,116 ICA fitness modules.
 
