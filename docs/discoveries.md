@@ -178,6 +178,18 @@ Surprisingly, module families spanning more organisms do not have higher core fr
 
 0 essential genes appear in any of the 1,116 fitness modules across 32 organisms. ICA decomposes fitness variation, so genes with no fitness data (essential = no transposon insertions) are invisible to it. This means fitness modules capture only the non-essential portion of the genome's functional architecture.
 
+### [core_gene_tradeoffs] Trade-off genes are enriched in the core genome
+
+25,271 genes (17.8%) are true trade-offs — important (fit < -1) in some conditions, burdensome (fit > 1) in others. These are 1.29x more likely to be core (OR=1.29, p=1.2e-44). Core genes have more trade-offs because they participate in more pathways with condition-dependent costs and benefits. This explains why core genes are simultaneously more burdensome AND more essential than accessory genes.
+
+### [core_gene_tradeoffs] The burden paradox is function-specific, not universal
+
+The core-burden paradox is driven by specific functional categories: RNA Metabolism (+12.9pp), Motility/Chemotaxis (+7.8pp), Protein Metabolism (+6.2pp) all show core genes as more burdensome. But Cell Wall reverses: non-core cell wall genes are MORE burdensome (-14.1pp). The paradox is not a uniform property of the core genome but reflects the trade-off architecture of specific functional systems.
+
+### [core_gene_tradeoffs] 28,017 "costly + conserved" genes = natural selection signature
+
+Genes that are both burdensome in the lab AND core in the pangenome represent the strongest evidence for purifying selection in natural environments. They're costly to maintain, yet every strain keeps them — nature requires them in conditions not captured by the lab. By contrast, 5,526 genes are costly + dispensable (candidates for ongoing gene loss), and 21,886 are neutral + dispensable (niche-specific).
+
 ---
 
 ## Template
