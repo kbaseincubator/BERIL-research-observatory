@@ -396,6 +396,10 @@
 **Status**: COMPLETED
 **Results**: Trade-off genes (both sick AND beneficial) are 1.29x more likely core. 28,017 genes are "costly + conserved" = natural selection signature. Lab reveals cost; pangenome reveals selection pressure. See `projects/core_gene_tradeoffs/`.
 
+### [conservation_fitness_synthesis] Cross-Project Synthesis
+**Status**: COMPLETED
+**Results**: Narrative synthesis across 4 projects with 3 new summary figures. Story: fitness-conservation gradient (82% → 66%), core genes are paradoxically more burdensome, lab reveals cost while pangenome reveals selection. See `projects/conservation_fitness_synthesis/`.
+
 ---
 
 ## Ideas to Discuss / Refine

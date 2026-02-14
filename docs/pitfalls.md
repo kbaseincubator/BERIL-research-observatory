@@ -449,6 +449,10 @@ Also: `kgroupec` uses column `ecnum` (not `ec`).
 
 **[conservation_vs_fitness]** Using `LIMIT N OFFSET M` for pagination in Spark queries causes Spark to re-scan all rows up to the offset on each query. For extracting cluster rep FASTAs across 154 clades, paginated queries (5000 rows per batch) were orders of magnitude slower than single queries per clade. Since `gene_cluster` is partitioned by `gtdb_species_clade_id`, a single `WHERE gtdb_species_clade_id = 'X'` query per clade is fast. Only paginate when the result set would exceed memory.
 
+### % Core Denominator Inconsistency Across Projects
+
+**[conservation_fitness_synthesis]** When computing "% core," the denominator matters: using all genes (including unmapped) gives lower percentages (e.g., essential = 82% core) than using mapped genes only (86% core). Different projects may use different denominators. This caused a critical review issue where figures showed 86%/78% but prose said 82%/66%. Always document which denominator is used, and be consistent within a synthesis or comparison.
+
 ### Row-Wise Apply on Large DataFrames Is Orders of Magnitude Slower Than Merge
 
 **[core_gene_tradeoffs]** Filtering a 961K-row DataFrame with `df.apply(lambda r: (r['orgId'], r['locusId']) in some_set, axis=1)` is extremely slow because it iterates row-by-row in Python. Replace with `df.merge(keys_df, on=['orgId','locusId'], how='inner')` for the same result in seconds instead of minutes. This applies whenever you need to filter a large DataFrame to rows matching a set of key pairs.
