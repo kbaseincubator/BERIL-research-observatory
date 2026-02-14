@@ -45,13 +45,13 @@ The Fitness Browser provides mutant fitness data for ~221K genes across 48 bacte
 
 - **44 of 48** FB organisms mapped to pangenome species clades
 - **177,863 gene-to-cluster links** at 100.0% median protein identity, 94.2% median gene coverage
-- 34 organisms have ≥90% coverage (used for downstream analysis)
+- 34 organisms have ≥90% coverage; 33 used for downstream analysis (Dyella79 excluded due to locus tag mismatch)
 - 4 organisms unmatched: Cola, Kang, Magneto, SB2B (species had too few genomes in GTDB for pangenome construction)
 - Conservation breakdown: 145,821 core (82.0%), 32,042 auxiliary (18.0%) — of which 7,574 are singletons (singletons are a subset of auxiliary)
 
 ### Essential Genes Are Enriched in Core Clusters (Phase 2)
 
-- **28,399 putative essential genes** identified (18.5% of 153,143 protein-coding genes across 34 organisms; range 12.9–28.9% per organism)
+- **27,693 putative essential genes** identified (18.6% of 148,826 protein-coding genes across 33 organisms; range 12.9–28.9% per organism)
 - Essential genes are **86.1% core** vs 81.2% for non-essential genes
 - **Median odds ratio 1.56** — essential genes are 1.56x more likely to be in the core genome
 - **18 of 33 organisms** show statistically significant enrichment (Fisher's exact test, BH-FDR q < 0.05)
@@ -63,21 +63,21 @@ The Fitness Browser provides mutant fitness data for ~221K genes across 48 bacte
 |----------|--------:|:--------:|:--------------:|
 | Essential-core | 22,751 | **41.9%** | **13.0%** |
 | Essential-auxiliary | 3,683 | 13.4% | 38.2% |
-| Essential-unmapped | 1,965 | 18.2% | 44.7% |
+| Essential-unmapped | 1,259 | 18.2% | 44.7% |
 | Non-essential | 124,744 | 21.5% | 24.5% |
 
 **Essential-core genes** are the most enzyme-rich (41.9%) and best-annotated (87% with known function). They are enriched in Protein Metabolism (+13.7 percentage points vs non-essential), Cofactors/Vitamins (+6.2%), Cell Wall (+3.9%), and Fatty Acid biosynthesis (+3.1%). They are depleted in Carbohydrates (-7.9%), Amino Acids (-5.6%), and Membrane Transport (-4.0%) — functions that tend to be conditionally important rather than universally essential.
 
 **Essential-auxiliary genes** (3,683 genes essential for viability but not in all strains) are poorly characterized (38.2% hypothetical) and less likely to be enzymes (13.4%). Top subsystems: ribosomes, DNA replication, type 4 secretion, plasmid replication — suggesting strain-specific variants of core machinery plus mobile genetic elements.
 
-**Essential-unmapped genes** (1,965 strain-specific essentials with no pangenome cluster match) are the least characterized (44.7% hypothetical). Known functions include divergent ribosomal proteins (L34, L36, S11, S12), translation factors, transposases, and DNA-binding proteins — likely recently acquired or highly divergent variants of core functions.
+**Essential-unmapped genes** (1,259 strain-specific essentials with no pangenome cluster match) are the least characterized (44.7% hypothetical). Known functions include divergent ribosomal proteins (L34, L36, S11, S12), translation factors, transposases, and DNA-binding proteins — likely recently acquired or highly divergent variants of core functions.
 
 ## Interpretation
 
 ### Literature Context
 
 - Our finding that essential genes are enriched in core clusters aligns with the general expectation that genes required for viability are conserved across a species. However, the enrichment is modest (OR=1.56), reflecting that most genes in well-characterized bacteria are core regardless of essentiality.
-- **Rosconi et al. (2022)** studied essentiality across 36 *S. pneumoniae* strains and found that the pan-genome makes gene essentiality strain-dependent. They identified "universal essential," "core strain-specific essential," and "accessory essential" genes — directly paralleling our essential-core, essential-auxiliary, and essential-unmapped categories. Our work extends this concept across 34 diverse bacterial species.
+- **Rosconi et al. (2022)** studied essentiality across 36 *S. pneumoniae* strains and found that the pan-genome makes gene essentiality strain-dependent. They identified "universal essential," "core strain-specific essential," and "accessory essential" genes — directly paralleling our essential-core, essential-auxiliary, and essential-unmapped categories. Our work extends this concept across 33 diverse bacterial species.
 - **Hutchison et al. (2016)** designed a minimal *Mycoplasma* genome (473 genes) and found that 149 essential genes (31%) had unknown function. This parallels our finding that essential-unmapped genes are 44.7% hypothetical — essential genes remain among the least characterized.
 - **Goodall et al. (2018)** used TraDIS to define the *E. coli* K-12 essential genome and noted that gene length biases can affect essentiality calls from transposon data. Our gene length validation (NB04) addresses this concern.
 - **Price et al. (2018)** generated the Fitness Browser data used here, demonstrating genome-wide mutant fitness across 32 bacteria. Our work adds a pangenome conservation dimension to their fitness data.
@@ -88,6 +88,7 @@ The Fitness Browser provides mutant fitness data for ~221K genes across 48 bacte
 - **Pangenome coverage varies**: Clades with only 2 genomes have trivially high core fractions (a gene in both genomes = 100% = core), reducing the discriminative power of core/auxiliary classification.
 - **E. coli excluded**: The main *E. coli* clade was absent from the pangenome (too many genomes). *Keio* (E. coli BW25113) mapped to the small `s__Escherichia_coli_E` clade at only 26.1% coverage.
 - **Single growth condition for essentiality**: RB-TnSeq essentiality is defined under the specific library construction conditions. Genes essential only under stress conditions would not be captured.
+- **Dyella79 excluded** from Phase 2 due to locus tag format mismatch between FB gene table (`N515DRAFT_*`) and protein sequences (`ABZR86_RS*`), causing 0% join rate.
 - **10 organisms excluded from Phase 2** due to <90% DIAMOND coverage, reducing taxonomic breadth.
 
 ## Future Directions
@@ -143,7 +144,7 @@ projects/conservation_vs_fitness/
 1. **Data extraction** (Spark Connect): `python3 src/run_pipeline.py` (NB01+NB02 data)
 2. **DIAMOND search** (local): `src/run_diamond.sh data/organism_mapping.tsv data/fb_fastas data/species_fastas data/diamond_hits`
 3. **Link table + QC** (local): Execute `notebooks/03_build_link_table.ipynb`
-4. **Essential gene extraction** (Spark Connect): `python3 src/extract_essential_genes.py`
+4. **Essential gene extraction** (Spark Connect): `python3 src/extract_essential_genes.py` — also generates `seed_hierarchy.tsv`
 5. **Conservation analysis** (local): Execute `notebooks/04_essential_conservation.ipynb`
 
 ## Authors
