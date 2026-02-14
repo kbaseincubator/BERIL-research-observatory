@@ -41,12 +41,22 @@ The application uses environment variables with the `BERIL_` prefix (BERIL Resea
 
 ### Required Configuration
 
-- `BERIL_DATA_SOURCE_URL`: URL to load cached repository data from (points to the `data-cache` branch)
+- `BERIL_DATA_REPO_URL`: Git repository URL to clone/pull data from
   ```bash
-  export BERIL_DATA_SOURCE_URL="https://raw.githubusercontent.com/your-org/repo/data-cache/data_cache"
+  export BERIL_DATA_REPO_URL="https://github.com/kbaseincubator/BERIL-research-observatory.git"
   ```
 
 ### Optional Configuration
+
+- `BERIL_DATA_REPO_BRANCH`: Branch to checkout (defaults to `data-cache`)
+  ```bash
+  export BERIL_DATA_REPO_BRANCH="data-cache"
+  ```
+
+- `BERIL_DATA_REPO_PATH`: Local path where git repo will be cloned (defaults to `/tmp/beril-data-cache`)
+  ```bash
+  export BERIL_DATA_REPO_PATH="/tmp/beril-data-cache"
+  ```
 
 - `BERIL_WEBHOOK_SECRET`: Secret for validating webhook requests from GitHub Actions
   ```bash
@@ -73,7 +83,7 @@ The UI will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ## Data Cache & Webhook Setup
 
-The application can load pre-built repository data from a remote source and automatically update when notified via webhook.
+The application uses a git-based approach to load and automatically update repository data without restarts.
 
 ### GitHub Actions Setup
 
@@ -92,22 +102,35 @@ The application can load pre-built repository data from a remote source and auto
 
 2. **Configure Environment Variables** on your application server:
    ```bash
-   export BERIL_DATA_SOURCE_URL="https://raw.githubusercontent.com/your-org/repo/data-cache/data_cache"
+   export BERIL_DATA_REPO_URL="https://github.com/kbaseincubator/BERIL-research-observatory.git"
+   export BERIL_DATA_REPO_BRANCH="data-cache"  # Optional, defaults to "data-cache"
    export BERIL_WEBHOOK_SECRET="<same-secret-from-github>"
    ```
 
 ### How It Works
 
-1. When code is merged to `main`, GitHub Actions:
+1. **On application startup:**
+   - App clones the `data-cache` branch to `/tmp/beril-data-cache` (or configured path)
+   - If repo already exists, runs `git pull` to get latest changes
+   - Loads data from `data_cache/data.pkl.gz` in the cloned repo
+
+2. **When code is merged to `main`, GitHub Actions:**
    - Parses all repository data (projects, docs, schemas)
    - Creates a compressed pickle file (`data.pkl.gz`) and metadata (`timestamp.json`)
    - Pushes these files to the `data-cache` branch
    - Sends a signed webhook request to your application
 
-2. The application receives the webhook:
+3. **The application receives the webhook:**
    - Validates the HMAC-SHA256 signature
-   - Reloads data from `BERIL_DATA_SOURCE_URL`
+   - Runs `git pull` to fetch latest changes from the `data-cache` branch
+   - Reloads data from the updated pickle file
    - Updates the "Last updated" timestamp in the footer
+
+**Benefits:**
+- ✅ **Instant updates** - No CDN cache lag (unlike raw.githubusercontent.com)
+- ✅ **Fast** - Shallow git clone, only ~70KB of data currently
+- ✅ **No restarts needed** - Webhook triggers reload in ~1-2 seconds
+- ✅ **Free** - Uses GitHub for storage, no external infrastructure
 
 ### Manual Data Reload
 

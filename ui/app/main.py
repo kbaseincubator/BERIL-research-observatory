@@ -18,6 +18,7 @@ from fastapi.templating import Jinja2Templates
 
 from .config import settings
 from .dataloader import load_repository_data
+from .git_data_sync import ensure_repo_cloned, pull_latest
 from .models import CollectionCategory
 
 logger = logging.getLogger(__name__)
@@ -27,9 +28,31 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Initialize app on startup."""
-    logger.info("Loading repository data")
-    app.state.repo_data = load_repository_data(settings.data_source_url)
-    logger.info(f"Repository data loaded. Last updated: {app.state.repo_data.last_updated}")
+    logger.info("Initializing repository data")
+
+    # If git repo is configured, clone/pull it first
+    if settings.data_repo_url:
+        try:
+            logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
+            await ensure_repo_cloned(
+                settings.data_repo_url,
+                settings.data_repo_branch,
+                settings.data_repo_path
+            )
+
+            # Load from local git repo
+            data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
+            app.state.repo_data = load_repository_data(data_file)
+            logger.info(f"Repository data loaded from git. Last updated: {app.state.repo_data.last_updated}")
+        except Exception as e:
+            logger.error(f"Failed to load from git repo: {e}")
+            logger.info("Falling back to local parsing")
+            app.state.repo_data = load_repository_data(None)
+    else:
+        # No git repo configured, load from local parsing
+        logger.info("No git repo configured, parsing local files")
+        app.state.repo_data = load_repository_data(None)
+
     yield
 
 
@@ -378,24 +401,31 @@ async def data_update_webhook(request: Request, x_webhook_signature: str = Heade
 
     logger.info("Received data update webhook notification")
 
-    # Reload data from remote source
-    if settings.data_source_url:
+    # Pull latest changes and reload
+    if settings.data_repo_url:
         try:
-            logger.info(f"Reloading data from {settings.data_source_url}")
-            request.app.state.repo_data = load_repository_data(settings.data_source_url)
+            logger.info(f"Pulling latest changes from git repository")
+
+            # Pull latest changes
+            await pull_latest(settings.data_repo_path, settings.data_repo_branch)
+
+            # Reload from local git repo
+            data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
+            request.app.state.repo_data = load_repository_data(data_file)
+
             logger.info(f"Data reloaded successfully. New last_updated: {request.app.state.repo_data.last_updated}")
 
             return JSONResponse({
                 "status": "success",
-                "message": "Data reloaded successfully",
+                "message": "Data reloaded successfully from git",
                 "last_updated": request.app.state.repo_data.last_updated.isoformat() if request.app.state.repo_data.last_updated else None
             })
         except Exception as e:
-            logger.error(f"Failed to reload data: {e}")
+            logger.error(f"Failed to reload data from git: {e}")
             raise HTTPException(status_code=500, detail=f"Failed to reload data: {str(e)}")
     else:
-        logger.warning("Webhook received but no data_source_url configured")
-        raise HTTPException(status_code=400, detail="No data source URL configured")
+        logger.warning("Webhook received but no data_repo_url configured")
+        raise HTTPException(status_code=400, detail="No git repository configured")
 
 
 # Health check
