@@ -37,7 +37,7 @@ Run these checks against the project directory and print a checklist summary:
 **Advisory checks** (warn but allow submission):
 - Discoveries documented in `docs/discoveries.md` — search for `[{project_id}]` tag
 - Pitfalls documented in `docs/pitfalls.md` — search for the project name or id
-- Research plan documented — check if `projects/{project_id}/RESEARCH_PLAN.md` exists (or `research_plan.md` for legacy projects) (created by `/research-plan`)
+- Research plan documented — check if `projects/{project_id}/RESEARCH_PLAN.md` exists (or `research_plan.md` for legacy projects)
 - Interpretation documented — check if `projects/{project_id}/REPORT.md` exists and contains a `## Interpretation` section
 - References documented — check if `projects/{project_id}/references.md` exists (created by `/literature-review`)
 - Project files committed to git — run `git status --porcelain projects/{project_id}/` and warn if there are uncommitted or untracked changes
