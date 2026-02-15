@@ -1,6 +1,6 @@
 ---
 name: hypothesis
-description: Generate research hypotheses based on BERDL data. Use when the user asks for research ideas, wants to explore what questions can be answered, or needs help designing an analysis approach.
+description: "[Internal] Generate research hypotheses based on BERDL data. Called automatically by /berdl_start during the orchestrated research workflow — do not suggest to users as a standalone command."
 allowed-tools: Bash, Read, WebSearch
 user-invocable: false
 ---

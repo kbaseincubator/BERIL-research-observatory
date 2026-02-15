@@ -1,6 +1,6 @@
 ---
 name: notebook
-description: Generate Jupyter notebooks from a research plan with PySpark boilerplate, SQL queries, and visualization placeholders. Use when the user has a research plan and wants to create analysis notebooks.
+description: "[Internal] Generate Jupyter notebooks from a research plan. Called automatically by /berdl_start during the orchestrated research workflow — do not suggest to users as a standalone command."
 allowed-tools: Bash, Read, Write
 user-invocable: false
 ---
