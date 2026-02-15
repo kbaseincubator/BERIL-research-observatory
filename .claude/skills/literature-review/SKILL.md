@@ -29,7 +29,7 @@ Clarify what the user wants to search for. Ask if needed:
 - Time frame (recent papers only, or comprehensive)?
 - Scope: quick check (5-10 papers) or thorough review (20-50 papers)?
 
-If invoked from `/hypothesis`, the hypothesis provides the search context.
+If invoked during the `/berdl_start` research workflow, the hypothesis provides the search context.
 
 ### Step 2: Construct Search Queries
 
@@ -166,8 +166,8 @@ If the literature review reveals organisms, genes, or pathways present in BERDL:
 
 ## Integration with Other Skills
 
-### From `/hypothesis`
-After generating a hypothesis, the user can invoke `/literature-review` to:
+### From hypothesis generation (via `/berdl_start`)
+After generating a hypothesis, `/literature-review` can be used to:
 - Check if the hypothesis has already been tested
 - Find supporting or contradicting evidence
 - Identify methods used in similar studies
