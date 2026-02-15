@@ -568,6 +568,13 @@ a:hover {
   border-radius: var(--radius-lg);
   padding: var(--space-4) var(--space-6);
   box-shadow: var(--shadow-glow);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--accent-primary-muted);
 }
 
 .stat-value {
