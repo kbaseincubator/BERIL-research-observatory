@@ -50,12 +50,12 @@ data/               # Shared data extracts reusable across projects
 |-------|-------------|
 | `/berdl` | Query BERDL databases via REST API or Spark SQL |
 | `/berdl-discover` | Explore and document a new BERDL database |
-| `/hypothesis` | Generate testable research questions from BERDL data |
-| `/research-plan` | Refine a hypothesis with literature review, data feasibility checks, and a structured plan |
-| `/notebook` | Generate Jupyter notebooks from a research plan with PySpark boilerplate |
 | `/literature-review` | Search PubMed, Europe PMC, and other sources for relevant biological literature |
 | `/synthesize` | Read analysis outputs, compare against literature, and draft findings |
 | `/submit` | Submit a project for automated review |
+| `/cts` | Run batch compute jobs on the CTS cluster |
+
+> **Note**: Hypothesis generation, research planning, and notebook creation are handled automatically as part of the research workflow (Path 1 below). You don't need to invoke them separately.
 
 ### Existing Projects
 
@@ -95,23 +95,71 @@ Then follow the appropriate path below.
 
 ---
 
-### Path 1: Start a New Research Project
+### Path 1: Start a New Research Project (Orchestrated Workflow)
 
-Read these files:
-- `docs/research_ideas.md` — existing ideas and their status
-- `docs/collections.md` — what data is available
-- `projects/cog_analysis/README.md` — example of a well-structured project
+When the user wants to start a new research project, the agent drives the entire process — from ideation through review — checking in with the user at natural decision points rather than requiring manual skill invocations.
 
-Then:
-- Summarize the high-priority research ideas that are still PROPOSED
-- Mention cross-project integration opportunities
-- Present the full research workflow:
-  1. `/hypothesis` — generate a testable research question
-  2. `/research-plan` — refine with literature review, check data feasibility, produce a structured plan
-  3. `/notebook` — generate analysis notebooks from the plan
-  4. Run notebooks on BERDL JupyterHub
-  5. `/synthesize` — interpret results, compare against literature, draft findings
-  6. `/submit` — pre-submission checks and automated review
+#### Phase A: Orientation & Ideation
+
+**Required reading before anything else:**
+1. Read `PROJECT.md` — understand dual goals (science + knowledge capture), project structure requirements, reproducibility standards, JupyterHub workflow, Spark notebook patterns
+2. Read `docs/overview.md` — understand the data architecture, key tables, data generation workflow, known limitations
+3. Read `docs/collections.md` — full database inventory (35 databases, 9 tenants), what data is actually available
+4. Read `docs/pitfalls.md` and `docs/performance.md` — **critical: read these before designing any queries or analysis**
+5. Read `docs/research_ideas.md` — check for existing ideas, avoid duplicating work
+
+**Environment check (on first run or when issues arise):**
+6. Verify `.env` exists and contains `KBASE_AUTH_TOKEN` — if missing, ask the user for their KBase token
+7. Check `gh auth status` — needed for creating branches, PRs, and pushing code. If not authenticated, prompt the user to run `gh auth login`
+8. Note the user's ORCID and affiliation for the Authors section — ask once, remember for future projects
+
+**Then engage with the user:**
+9. Chat with the user about their research interest
+10. Explore BERDL data (use `/berdl` queries) to check data availability, row counts, column types
+11. Check existing projects (`ls projects/`) — read READMEs of related projects to understand what's been done
+12. Develop 2-3 testable hypotheses with H0/H1
+13. Search literature (use `/literature-review` internally) for context
+
+#### Phase B: Research Plan
+
+14. Write `RESEARCH_PLAN.md` with: Research Question, Hypothesis, Literature Context, Approach, Data Sources, Query Strategy, Analysis Plan, Expected Outcomes, Revision History (v1)
+15. Write slim `README.md` with: Title, Research Question, Status (In Progress), Overview, Quick Links, Reproduction placeholder, Authors
+16. Create project directory structure: `notebooks/`, `data/`, `figures/`
+17. **Ask user**: "Here's the research plan. Should I create a new branch and check in before starting the analysis?"
+18. If yes: create branch `projects/{project_id}`, commit README + RESEARCH_PLAN
+
+#### Phase C: Analysis (Notebooks)
+
+19. Write numbered notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, etc.) following the analysis plan
+20. Notebooks are the primary audit trail — do as much work as possible in notebooks so humans can inspect intermediate results
+21. When parallel execution or complex pipelines are needed, write scripts in `src/` but call them from notebooks
+22. **Run notebooks** — execute cells, inspect outputs, iterate
+23. As new information emerges, update `RESEARCH_PLAN.md` with a revision tag: `- **v2** ({date}): {what changed and why}`
+24. **Check in code frequently** — commit after each major milestone (plan written, notebooks created, data extracted, analysis complete)
+25. Re-read `docs/pitfalls.md` when something doesn't work as expected
+
+#### Phase D: Synthesis & Writeup
+
+26. Chat with the user about results — discuss interpretation, identify gaps, add analysis for clarity
+27. Run `/synthesize` to create `REPORT.md` with findings, interpretation, supporting evidence
+28. Commit the report
+29. Chat with user about the report — revise if needed
+
+#### Phase E: Review & Submission
+
+30. Run `/submit` to validate documentation and generate `REVIEW.md`
+31. Fix any issues flagged by the review
+32. Commit fixes
+33. Chat with user about next steps
+
+#### Throughout the Entire Workflow:
+- **Check in code often** — don't let work accumulate uncommitted
+- **Update `docs/discoveries.md`** when you find something interesting (tag with `[project_id]`)
+- **Update `docs/pitfalls.md`** when you hit a gotcha (follow pitfall-capture protocol from `.claude/skills/pitfall-capture/SKILL.md`)
+- **Update `docs/performance.md`** when you learn a query optimization
+- **Re-read `docs/pitfalls.md`** when debugging failures — the answer may already be documented
+- **Re-read `docs/performance.md`** when queries are slow — check for existing optimization patterns
+- **Follow `PROJECT.md` standards** — notebooks with saved outputs, figures as standalone PNGs, requirements.txt, Reproduction section in README
 
 ### Path 2: Explore BERDL Data
 
@@ -161,6 +209,19 @@ Then:
 - Mention the UI can be browsed at the BERDL JupyterHub
 - List the available skills and what each does
 - Point to `docs/research_ideas.md` for future directions
+
+---
+
+## Key Principles (for the agent)
+
+1. **Read the docs first** — `PROJECT.md`, `docs/overview.md`, `docs/collections.md`, `docs/pitfalls.md`, and `docs/performance.md` before designing anything. Check existing `projects/` to avoid duplicating work.
+2. **Notebooks are the audit trail** — numbered sequentially (01, 02, 03...), each self-contained with a clear purpose. Commit with saved outputs per `PROJECT.md` reproducibility standards.
+3. **Commit early and often** — after plan, after notebooks, after data extraction, after analysis, after synthesis.
+4. **Ask before branching** — always ask the user before creating a new branch.
+5. **Update the plan** — when the analysis reveals something that changes the approach, update RESEARCH_PLAN.md with a dated revision tag explaining what changed and why.
+6. **Don't stop and wait** — drive the process forward, checking in with the user at decision points rather than stopping after each step.
+7. **Document as you go** — discoveries go in `docs/discoveries.md`, pitfalls in `docs/pitfalls.md`, performance tips in `docs/performance.md` — captured in real-time, tagged with `[project_id]`.
+8. **Use Spark patterns from PROJECT.md** — `get_spark_session()`, PySpark-first, `.toPandas()` only for final small results.
 
 ---
 

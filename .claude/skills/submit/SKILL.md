@@ -62,7 +62,23 @@ Pre-submission checklist for: {project_id}
 
 Use PASS/FAIL/WARN labels. If any critical check fails (FAIL), print the failures and stop — do not invoke the reviewer.
 
-### Step 3: Invoke Reviewer
+### Step 3: Status Check
+
+Before invoking the reviewer, read the `## Status` section in `projects/{project_id}/README.md`. If the status is not "Completed" (i.e., it still says "In Progress", "Proposed", or similar), ask the user:
+
+> "The project status is currently '{current_status}'. Should I update it to 'Completed' before submitting?"
+
+If the user agrees, update the `## Status` section in README.md to "Completed" with a brief summary of findings (pull from the `## Key Findings` section of REPORT.md). For example:
+
+```
+## Status
+
+Completed — {one-line summary from Key Findings}.
+```
+
+If the user declines, proceed with the current status.
+
+### Step 4: Invoke Reviewer
 
 If all critical checks pass, invoke the reviewer subprocess:
 
@@ -76,7 +92,7 @@ claude -p \
 
 Run this command from the repository root directory.
 
-### Step 4: Verify Completion
+### Step 5: Verify Completion
 
 After the reviewer subprocess completes:
 
