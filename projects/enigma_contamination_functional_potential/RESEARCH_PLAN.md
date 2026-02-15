@@ -97,6 +97,7 @@ Prior BERIL work established that ENIGMA CORAL supports field ecology analysis a
 ## Revision History
 
 - **v1 (2026-02-15)**: Initial plan for ENIGMA contamination-functional potential project.
+- **v2 (2026-02-15)**: Added Phase C notebook scaffold (`01_enigma_extraction_qc.ipynb`, `02_taxonomy_bridge_functional_features.ipynb`, `03_contamination_functional_models.ipynb`) with extraction/QC, taxonomy bridge, and modeling workflow placeholders.
 
 ## Authors
 
