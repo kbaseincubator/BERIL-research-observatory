@@ -1,6 +1,6 @@
 # Research Workflow
 
-**Purpose**: Step-by-step guide to conducting a research project using the BERIL Research Observatory skill pipeline, from hypothesis generation through peer review.
+**Purpose**: Step-by-step guide to conducting a research project using the BERIL Research Observatory, from hypothesis generation through peer review.
 
 See [overview.md](overview.md) for the data architecture and [collections.md](collections.md) for the database inventory.
 
@@ -8,158 +8,98 @@ See [overview.md](overview.md) for the data architecture and [collections.md](co
 
 ## Overview
 
-A typical research project moves through six stages. Each stage has a dedicated skill (slash command) that handles the heavy lifting:
+The research workflow is orchestrated by `/berdl_start`. When you choose "Start a new research project", the agent drives the entire process — from ideation through review — checking in with you at natural decision points.
 
 ```
-/hypothesis  -->  /research-plan  -->  /notebook  -->  JupyterHub  -->  /synthesize  -->  /submit
-  (ideas)        (lit + feasibility)   (generate       (run the         (interpret       (automated
-                                        .ipynb)         notebooks)       results)         review)
+/berdl_start
+  ├── Orientation & Ideation    (read docs, explore data, develop hypotheses)
+  ├── Research Plan             (write RESEARCH_PLAN.md, README.md, create project)
+  ├── Analysis                  (generate & run notebooks, iterate)
+  ├── Synthesis                 (interpret results → REPORT.md via /synthesize)
+  └── Review & Submission       (validate & review via /submit)
 ```
 
-You can enter the pipeline at any stage. For example, if you already have a research plan, skip straight to `/notebook`. Supporting skills (`/literature-review`, `/berdl`, `/berdl-discover`) can be called at any point for ad-hoc exploration.
+You can also enter at any point. If you already have results, jump straight to `/synthesize`. If you have a complete project, use `/submit` for review.
 
 ---
 
 ## Skills Reference
 
+### User-Invocable Skills
+
 | Skill | Purpose | Key Inputs | Key Outputs |
 |-------|---------|------------|-------------|
-| `/hypothesis` | Generate testable research hypotheses from BERDL data | Research interest, target organism or pathway | 2-3 hypotheses with H0/H1, example SQL, relevant tables |
-| `/research-plan` | Refine a question into a structured research plan | Hypothesis, target data | `RESEARCH_PLAN.md`, project directory skeleton, `references.md` |
-| `/notebook` | Generate Jupyter notebooks from a research plan | Project ID, `RESEARCH_PLAN.md` | `.ipynb` files in `notebooks/` with PySpark boilerplate |
-| `/synthesize` | Interpret results and draft findings | Project ID, notebook outputs (CSV, figures) | `REPORT.md` with findings, literature context, limitations |
-| `/submit` | Validate documentation and request automated review | Project ID, complete project directory | Pre-submission checklist, `REVIEW.md` |
-| `/literature-review` | Search PubMed, Europe PMC, CORE, OpenAlex | Research topic or question | Literature summary, `references.md` |
+| `/berdl_start` | Orchestrate a full research project or get oriented | Research interest | Complete project (plan, notebooks, report, review) |
 | `/berdl` | Query BERDL databases via REST API | SQL query or natural-language question | Query results, schema info, data samples |
 | `/berdl-discover` | Explore and document a new BERDL database | Database name | Module file in `.claude/skills/berdl/modules/`, documentation |
-| `/pitfall-capture` | Document errors and data surprises | Error context (invoked automatically) | Entry in [pitfalls.md](pitfalls.md) |
+| `/literature-review` | Search PubMed, Europe PMC, CORE, OpenAlex | Research topic or question | Literature summary, `references.md` |
+| `/synthesize` | Interpret results and draft findings | Project ID, notebook outputs (CSV, figures) | `REPORT.md` with findings, literature context, limitations |
+| `/submit` | Validate documentation and request automated review | Project ID, complete project directory | Pre-submission checklist, `REVIEW.md` |
+| `/cts` | Run batch compute jobs on the CTS cluster | Job configuration | Compute results |
+
+### Internal Skills (used automatically by the orchestrator)
+
+| Skill | Purpose | Used During |
+|-------|---------|-------------|
+| `hypothesis` | Generate testable research hypotheses from BERDL data | Phase A: Orientation & Ideation |
+| `research-plan` | Refine a question into a structured research plan | Phase B: Research Plan |
+| `notebook` | Generate Jupyter notebooks from a research plan | Phase C: Analysis |
+| `pitfall-capture` | Document errors and data surprises | Throughout (triggered automatically) |
 
 ---
 
-## Workflow Steps
+## Orchestrated Workflow (via `/berdl_start`)
 
-### Step 1: Generate a Hypothesis (`/hypothesis`)
+### Phase A: Orientation & Ideation
 
-Start with a broad research interest. The hypothesis skill queries BERDL to check data availability and produces testable hypotheses grounded in what the lakehouse actually contains.
+The agent reads the core documentation (`PROJECT.md`, `docs/overview.md`, `docs/collections.md`, `docs/pitfalls.md`, `docs/performance.md`, `docs/research_ideas.md`), checks the environment (auth token, gh CLI), and engages with you about your research interest.
 
-**What it does**:
+**What happens**:
 - Explores relevant BERDL tables and their row counts
+- Checks existing projects to avoid duplicating work
 - Proposes 2-3 testable hypotheses with null and alternative formulations
+- Searches literature for context
 - Identifies potential confounders and data limitations
-- Suggests example SQL queries to test each hypothesis
 
-**Files produced**: None (output is conversational; copy what you need into later steps).
+### Phase B: Research Plan
 
-**Example prompt**:
-```
-/hypothesis I'm interested in whether species with open pangenomes tend to
-occupy more diverse environments than species with closed pangenomes.
-```
-
----
-
-### Step 2: Create a Research Plan (`/research-plan`)
-
-Turn a hypothesis into a structured plan. This skill runs a literature review, checks data feasibility against BERDL, and produces a comprehensive plan document.
-
-**What it does**:
-- Calls `/literature-review` internally to gather relevant papers
-- Validates that required tables and columns exist in BERDL
-- Estimates query complexity and recommends a performance tier
-- Writes the plan and scaffolds the project directory
+The agent writes a structured research plan and scaffolds the project directory.
 
 **Files produced**:
 
 | File | Description |
 |------|-------------|
-| `projects/{id}/RESEARCH_PLAN.md` | Full plan: question, lit context, query strategy, analysis plan |
-| `projects/{id}/references.md` | Citations from the literature review |
+| `projects/{id}/RESEARCH_PLAN.md` | Full plan: question, hypothesis, lit context, query strategy, analysis plan, revision history |
 | `projects/{id}/README.md` | Slim README: question, status, overview, reproduction, authors |
 | `projects/{id}/notebooks/` | Empty directory for notebooks |
 | `projects/{id}/data/` | Empty directory for output data |
 | `projects/{id}/figures/` | Empty directory for visualizations |
 
-**Example prompt**:
-```
-/research-plan My hypothesis is that pangenome openness (accessory/core gene
-ratio) correlates with metabolic pathway diversity as measured by GapMind.
-Project ID: pangenome_pathway_diversity
-```
+**Decision point**: The agent asks whether to create a branch and commit before proceeding.
 
----
+### Phase C: Analysis (Notebooks)
 
-### Step 3: Generate Notebooks (`/notebook`)
+The agent generates numbered notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, etc.) with PySpark boilerplate, SQL queries, and visualization scaffolding, then runs them.
 
-Convert the research plan into ready-to-run Jupyter notebooks with PySpark boilerplate, SQL queries, and visualization scaffolding.
-
-**What it does**:
-- Reads `RESEARCH_PLAN.md` and [pitfalls.md](pitfalls.md) for query safety rules
-- Generates notebooks with proper Spark session setup and auth
+**What happens**:
+- Notebooks follow safety rules from `docs/pitfalls.md` and query patterns
 - Includes NULL checks, row counts, and data-quality validation cells
-- Adds visualization cells using matplotlib/seaborn
+- Updates `RESEARCH_PLAN.md` with revision tags when the approach changes
+- Commits after each major milestone
 
-**Files produced**:
+### Phase D: Synthesis & Writeup
 
-| File | Description |
-|------|-------------|
-| `notebooks/01_data_exploration.ipynb` | Session setup, row counts, sample data, NULL checks |
-| `notebooks/02_analysis.ipynb` | Main analysis queries and aggregations |
-| `notebooks/03_visualization.ipynb` | Plots and figures (generated when the plan calls for it) |
-
-**Example prompt**:
-```
-/notebook pangenome_pathway_diversity
-```
-
----
-
-### Step 4: Run Notebooks on JupyterHub
-
-This is the only manual step. Upload the generated notebooks to the BERDL JupyterHub and execute them.
-
-**What to do**:
-1. Upload the `.ipynb` files from `projects/{id}/notebooks/` to JupyterHub
-2. Run each notebook in order (01, 02, 03)
-3. Review outputs and fix any query issues (check [pitfalls.md](pitfalls.md) if stuck)
-4. Download result CSVs into `projects/{id}/data/`
-5. Download figures into `projects/{id}/figures/`
-
-**Tip**: The generated notebooks include safety patterns from [pitfalls.md](pitfalls.md) (LIMIT clauses, CAST operations, retry logic). If you encounter new issues, use `/pitfall-capture` to document them for future projects.
-
----
-
-### Step 5: Synthesize Findings (`/synthesize`)
-
-Once notebooks have been run and outputs are saved locally, this skill reads the results, compares them against the literature, and drafts findings.
-
-**What it does**:
-- Reads CSV files, figures, and executed notebook cells
-- Compares results against the research plan's expected outcomes
-- Searches for additional literature to contextualize findings
-- Drafts a findings section with interpretation and limitations
+The agent discusses results with you, then runs `/synthesize` to create `REPORT.md`.
 
 **Files produced**:
 
 | File | Description |
 |------|-------------|
 | `REPORT.md` | Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References |
-| `references.md` (updated) | New citations found during synthesis |
 
-**Example prompt**:
-```
-/synthesize pangenome_pathway_diversity
-```
+### Phase E: Review & Submission
 
----
-
-### Step 6: Submit for Review (`/submit`)
-
-Run a pre-submission checklist and request an automated AI review of the project.
-
-**What it does**:
-- Checks that all required files exist (plan, notebooks, README, data)
-- Validates documentation completeness (findings, limitations, references)
-- Generates an independent review covering methodology, code quality, and findings
+The agent runs `/submit` to validate documentation and generate an automated review.
 
 **Files produced**:
 
@@ -167,94 +107,39 @@ Run a pre-submission checklist and request an automated AI review of the project
 |------|-------------|
 | `REVIEW.md` | Automated review with assessment, suggestions, and metadata |
 
-**Example prompt**:
-```
-/submit pangenome_pathway_diversity
-```
-
 ---
 
 ## Tutorial: Your First Research Project
 
-This walkthrough creates a small project investigating whether core genome size predicts pangenome openness.
-
-### 1. Generate a hypothesis
+### 1. Start the workflow
 
 ```
-/hypothesis Do species with smaller core genomes tend to have more open
-pangenomes (higher accessory-to-core ratio)?
+/berdl_start
 ```
 
-The skill responds with testable hypotheses and relevant tables (`pangenome`, `gene_cluster`, `gtdb_species_clade`). Pick the hypothesis you want to pursue.
+Choose "Start a new research project" and describe your research interest. For example:
 
-### 2. Create the research plan
+> "I'm interested in whether species with open pangenomes tend to occupy more diverse environments than species with closed pangenomes."
 
-```
-/research-plan Hypothesis: species with fewer core gene clusters have a
-higher proportion of accessory genes. Project ID: core_size_openness
-```
+### 2. The agent takes it from there
 
-Your project directory now looks like this:
+The agent will:
+- Explore BERDL data to check feasibility
+- Propose testable hypotheses
+- Search the literature for context
+- Write a research plan and ask for your approval
+- Generate and run analysis notebooks
+- Draft findings in `REPORT.md`
+- Run an automated review
 
-```
-projects/core_size_openness/
-  README.md
-  RESEARCH_PLAN.md
-  references.md
-  notebooks/
-  data/
-  figures/
-```
+You'll be consulted at key decision points (hypothesis selection, plan approval, branching, result interpretation) but you don't need to invoke separate skills.
 
-### 3. Generate notebooks
-
-```
-/notebook core_size_openness
-```
-
-The directory grows:
-
-```
-projects/core_size_openness/
-  ...
-  notebooks/
-    01_data_exploration.ipynb
-    02_analysis.ipynb
-```
-
-### 4. Run on JupyterHub
-
-Upload the notebooks. Execute them in order. Download results:
-
-```
-projects/core_size_openness/
-  ...
-  data/
-    species_pangenome_stats.csv
-  figures/
-    core_vs_accessory_scatter.png
-```
-
-### 5. Synthesize findings
-
-```
-/synthesize core_size_openness
-```
-
-The REPORT.md is created with findings, interpretation, and literature context. The README.md status is updated.
-
-### 6. Submit for review
-
-```
-/submit core_size_openness
-```
-
-The final project directory:
+### 3. Final project structure
 
 ```
 projects/core_size_openness/
   README.md          <-- project overview, status updated
-  RESEARCH_PLAN.md
+  RESEARCH_PLAN.md   <-- hypothesis, approach, revision history
   REPORT.md          <-- findings, interpretation, evidence
   REVIEW.md          <-- automated review
   references.md
@@ -269,25 +154,15 @@ projects/core_size_openness/
 
 ---
 
-## Tips and Shortcuts
-
-### Entering the workflow at different points
-
-You do not need to start at Step 1. Common entry points:
-
-- **Have a question but no hypothesis**: Start at `/hypothesis`
-- **Have a hypothesis, need a plan**: Start at `/research-plan`
-- **Have a plan, need notebooks**: Start at `/notebook {project_id}`
-- **Have results, need writeup**: Start at `/synthesize {project_id}`
-- **Have a complete project, need review**: Start at `/submit {project_id}`
-
-### Supporting skills for ad-hoc work
+## Standalone Skills for Ad-Hoc Work
 
 | Skill | When to use |
 |-------|-------------|
-| `/literature-review` | Search papers on a topic outside of the research-plan workflow |
 | `/berdl` | Run exploratory queries against BERDL without a full project |
 | `/berdl-discover` | Document a new or unfamiliar BERDL database |
+| `/literature-review` | Search papers on a topic outside of a research project |
+| `/synthesize` | Interpret results for an existing project with completed notebooks |
+| `/submit` | Validate and review a complete project |
 | `/berdl_start` | Get oriented if you are new to the system |
 
 ### When to use `/berdl` directly
@@ -300,12 +175,7 @@ Use `/berdl` for quick, ad-hoc data exploration:
 
 ### Handling errors
 
-If a query fails or returns unexpected results during any step, the `/pitfall-capture` skill activates automatically. It documents the issue in [pitfalls.md](pitfalls.md) so future projects avoid the same problem. You can also invoke it manually:
-
-```
-/pitfall-capture The genome_ANI table returns empty results when filtering
-by species clade ID without the full prefix.
-```
+When queries fail or return unexpected results, the pitfall-capture protocol activates automatically. It documents the issue in [pitfalls.md](pitfalls.md) so future projects avoid the same problem.
 
 ### Key references
 
