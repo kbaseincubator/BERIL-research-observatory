@@ -37,14 +37,7 @@ You can also enter at any point. If you already have results, jump straight to `
 | `/submit` | Validate documentation and request automated review | Project ID, complete project directory | Pre-submission checklist, `REVIEW.md` |
 | `/cts` | Run batch compute jobs on the CTS cluster | Job configuration | Compute results |
 
-### Internal Skills (used automatically by the orchestrator)
-
-| Skill | Purpose | Used During |
-|-------|---------|-------------|
-| `hypothesis` | Generate testable research hypotheses from BERDL data | Phase A: Orientation & Ideation |
-| `research-plan` | Refine a question into a structured research plan | Phase B: Research Plan |
-| `notebook` | Generate Jupyter notebooks from a research plan | Phase C: Analysis |
-| `pitfall-capture` | Document errors and data surprises | Throughout (triggered automatically) |
+Hypothesis generation, research planning, and notebook creation are handled automatically by `/berdl_start` as part of the orchestrated workflow. The `pitfall-capture` protocol runs automatically when errors or data surprises occur.
 
 ---
 
