@@ -240,6 +240,10 @@ if len(var_with_core) > 0:
     ax.scatter(var_with_core['frac_essential'], var_with_core['pct_core'],
                alpha=0.3, s=10, color='#FF9800')
     rho, p = stats.spearmanr(var_with_core['frac_essential'], var_with_core['pct_core'])
+    print(f"Penetrance vs conservation: rho={rho:.4f}, p={p:.2e}")
+    high_pen = var_with_core[var_with_core['frac_essential'] > 0.8]['pct_core'].median()
+    low_pen = var_with_core[var_with_core['frac_essential'] < 0.2]['pct_core'].median()
+    print(f"  >80% penetrance: {high_pen:.1f}% core; <20% penetrance: {low_pen:.1f}% core")
     ax.set_xlabel('Fraction of organisms where essential')
     ax.set_ylabel('% core genes in family')
     ax.set_title(f'C. Essentiality Penetrance vs Conservation\n'

@@ -32,6 +32,8 @@ Clade size vs % essential: rho=-0.132, p=3.576e-01
 Openness vs % essential: rho=0.027, p=8.488e-01
 
 === GENERATING FIGURES ===
+Penetrance vs conservation: rho=0.1233, p=1.62e-17
+  >80% penetrance: 97.1% core; <20% penetrance: 92.8% core
 Saved: figures/conservation_architecture.png
 
 ============================================================

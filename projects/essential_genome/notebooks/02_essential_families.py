@@ -23,7 +23,7 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 
 # Load data
 print("Loading data...")
-essential = pd.read_csv(DATA_DIR / 'all_essential_genes.tsv', sep='\t')
+essential = pd.read_csv(DATA_DIR / 'all_essential_genes.tsv', sep='\t', low_memory=False)
 og_df = pd.read_csv(DATA_DIR / 'all_ortholog_groups.csv')
 seed_ann = pd.read_csv(DATA_DIR / 'all_seed_annotations.tsv', sep='\t')
 
@@ -66,9 +66,11 @@ print(f"  Missing essential status: {merged['is_essential'].isna().sum():,}")
 og_keys = og_df[['orgId', 'locusId']].drop_duplicates()
 og_keys['in_og'] = True
 essential = essential.merge(og_keys, on=['orgId', 'locusId'], how='left')
-essential['in_og'] = essential['in_og'].fillna(False)
+essential['in_og'] = essential['in_og'].fillna(False).astype(bool)
 n_in_og = essential['in_og'].sum()
 n_total = len(essential)
+assert n_in_og > 30000, f"in_og merge failed: only {n_in_og} matches (expected >30K)"
+assert len(essential) == n_total, f"Merge created duplicates: {len(essential)} vs {n_total}"
 print(f"\nGenes in ortholog groups: {n_in_og:,} / {n_total:,} ({n_in_og/n_total*100:.1f}%)")
 
 ess_in_og = essential[essential['is_essential'] & essential['in_og']]
