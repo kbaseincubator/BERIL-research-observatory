@@ -405,6 +405,10 @@
 
 ## Completed Ideas
 
+### [lab_field_ecology] Lab Fitness Predicts Field Ecology at Oak Ridge
+**Status**: COMPLETED
+**Results**: 14 of 26 FB genera detected at Oak Ridge (108 sites). 5 of 11 tested genera correlate with uranium after FDR correction: *Herbaspirillum* and *Bacteroides* increase at contaminated sites, *Caulobacter*, *Sphingomonas*, and *Pedobacter* decrease. Lab metal tolerance suggestive but not significant (rho=0.50, p=0.095). First study linking Fitness Browser data with ENIGMA CORAL field ecology. See `projects/lab_field_ecology/`.
+
 ### [field_vs_lab_fitness] Field vs Lab Gene Importance in DvH
 **Status**: COMPLETED
 **Results**: Field-stress genes are significantly enriched in core genome (83.6% core, OR=1.58, FDR q=0.026) vs 76.3% baseline. Antibiotic and heavy-metal resistance genes are least conserved (73%, 71%). Fitness magnitude matters more than condition type for predicting conservation (CV-AUC 0.52-0.55). Module analysis: 21 ecological modules (0.98 core) vs 9 lab modules (0.52 core). ENIGMA CORAL contains no DvH data. See `projects/field_vs_lab_fitness/`.
