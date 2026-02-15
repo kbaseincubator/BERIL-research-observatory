@@ -178,7 +178,7 @@
 <nav class="mb-8">
     <a href="/projects" class="text-muted">Projects</a>
     <span class="text-muted"> / </span>
-    <a href="/projects/{{ project.id }}" class="text-muted">{{ project.title }}</a>
+    <a href="/projects/{{ project.id }}" class="text-muted">{{ project.title | markdown_inline }}</a>
     <span class="text-muted"> / </span>
     <span>{{ notebook.filename }}</span>
 </nav>
@@ -186,7 +186,7 @@
 <div class="page-header">
     <h1 class="page-title">{{ notebook.title or notebook.filename }}</h1>
     <p class="page-description">
-        Jupyter notebook from the <a href="/projects/{{ project.id }}">{{ project.title }}</a> project.
+        Jupyter notebook from the <a href="/projects/{{ project.id }}">{{ project.title | markdown_inline }}</a> project.
     </p>
 </div>
 
