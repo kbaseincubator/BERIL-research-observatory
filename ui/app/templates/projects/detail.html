@@ -7,12 +7,12 @@
 <nav class="mb-8">
     <a href="/projects" class="text-muted">Projects</a>
     <span class="text-muted"> / </span>
-    <span>{{ project.title }}</span>
+    <span>{{ project.title | markdown_inline }}</span>
 </nav>
 
 <div class="page-header">
     <div class="flex items-center gap-4 mb-4">
-        <h1 class="page-title" style="margin-bottom: 0;">{{ project.title }}</h1>
+        <h1 class="page-title" style="margin-bottom: 0;">{{ project.title | markdown_inline }}</h1>
         {% if project.status.value == "Completed" %}
         <span class="badge badge-completed">{{ project.status.value }}</span>
         {% elif project.status.value == "In Progress" %}

@@ -127,7 +127,7 @@
         <article class="card">
             <div class="card-header">
                 <h3 class="card-title">
-                    <a href="/projects/{{ project.id }}">{{ project.title }}</a>
+                    <a href="/projects/{{ project.id }}">{{ project.title | markdown_inline }}</a>
                 </h3>
                 {% if project.status.value == "Completed" %}
                 <span class="badge badge-completed">{{ project.status.value }}</span>
