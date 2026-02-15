@@ -47,9 +47,9 @@ projects/essential_genome/
 ├── src/
 │   └── extract_data.py                    # Spark: extract essentials + orthologs + build OGs
 ├── notebooks/
-│   ├── 02_essential_families.py           # Build and classify essential gene families
-│   ├── 03_function_prediction.py          # Predict function for hypothetical essentials
-│   └── 04_conservation_architecture.py    # Connect to pangenome conservation
+│   ├── 02_essential_families.ipynb           # Build and classify essential gene families
+│   ├── 03_function_prediction.ipynb          # Predict function for hypothetical essentials
+│   └── 04_conservation_architecture.ipynb    # Connect to pangenome conservation
 ├── data/
 │   ├── all_essential_genes.tsv            # Essential status for all 48 organisms
 │   ├── all_bbh_pairs.csv                  # BBH pairs for all 48 organisms
@@ -192,10 +192,10 @@ pip install -r requirements.txt
 # Step 1: Extract data from Spark (requires BERDL access)
 python3 src/extract_data.py
 
-# Step 2-4: Run analysis scripts (local, no Spark needed)
-python3 notebooks/02_essential_families.py
-python3 notebooks/03_function_prediction.py
-python3 notebooks/04_conservation_architecture.py
+# Step 2-4: Run analysis notebooks (local, no Spark needed)
+jupyter nbconvert --to notebook --execute --inplace notebooks/02_essential_families.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/03_function_prediction.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/04_conservation_architecture.ipynb
 ```
 
 Requires cached data from `conservation_vs_fitness` and `fitness_modules` projects (see Cross-Project Dependencies above).
