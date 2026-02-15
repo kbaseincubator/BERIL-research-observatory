@@ -6,7 +6,7 @@ Do high-contamination Oak Ridge groundwater communities show enrichment for taxa
 
 ## Status
 
-In Progress -- research plan created, data extraction and validation queries pending execution.
+Completed -- initial ENIGMA contamination-functional synthesis executed (n=108 samples). No significant association detected between contamination index and inferred stress functional potential in the first-pass genus-level model; see REPORT.md for details.
 
 ## Overview
 
