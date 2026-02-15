@@ -1,0 +1,109 @@
+sdt_sample_name	sdt_location_name	date	depth_meter	latitude_degree	longitude_degree	region
+GW384-12-17-12	GW-384	2012-12-17	10.8204	35.992922	-84.239429	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 75
+GW60-1A-60-2-4-13	GW-60-1A	2013-02-04	6.30936	35.987834	-84.248782	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 60
+GW773-35-2-4-13	GW-773	2013-02-04	15.621	35.991147	-84.246683	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 35
+GW704-5-12-17-12	GW-704	2012-12-12	74.5236	35.96353	-84.290837	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 5
+FW104-67-11-14-12	FW-104	2012-11-14	12.58062	35.97736	-84.273562	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 67
+GW123-93-11-14-12	GW-123	2012-11-14	159.1056	35.976106	-84.273314	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 93
+PTMW02-4-12-11-12	PTMW02	2012-12-11	12.10056	35.975573	-84.276332	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 4
+GW754-40-1-7-13	GW-754	2013-01-07	5.77596	35.993378	-84.241189	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 40
+GW345-51-11-27-12	GW-345	2012-11-27	6.4008	35.97508	-84.276925	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 51
+GW761-29-1-28-13	GW-761	2013-01-28	3.09372	35.989904	-84.250491	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 29
+FW109-1-7-25-12	FW-109-40	2012-07-25	11.708892	35.977374	-84.273577	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 92
+GW057-10-1-8-13	GW-057	2013-01-08	16.52016	35.957737	-84.300523	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 10
+GW621-21-12-17-12	GW-621	2012-12-17	9.95172	35.964088	-84.2909	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 21
+GW228-12-2-4-13	GW-228	2013-02-04	24.384	35.96866	-84.283453	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 12
+GW314-97-2-19-13	GW-314	2013-02-19	32.9184	35.97587976	-84.27177607	Tennessee (TN), Oak Ridge Reservation (ORR), Area none, Cluster 97
+GW084-56-11-28-12	GW-084	2012-11-28	7.71144	35.973088	-84.28314	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 56
+GW737-12-12-12	GW-737	2012-12-12	25.72512	35.97079	-84.280741	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 64
+GW086-25-12-3-12	GW-086	2012-12-03	8.26008	35.972458	-84.281497	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 25
+FW511-61-11-26-12	FW-511	2012-11-26	6.0579	35.978501	-84.272035	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 61
+GW115-2-11-26-12	GW-115	2012-11-26	14.3256	35.980507	-84.273333	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 2
+GW198-41-2-11-13	GW-198	2013-02-11	6.5532	35.994113	-84.244751	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 41
+FW104-7-26-12	FW-104	2012-07-26	12.58062	35.97736	-84.273562	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 67
+FW109-40-92-11-14-12	FW-109-40	2012-11-14	11.708892	35.977374	-84.273577	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 92
+GW929-2-11-13	GW-929	2013-02-11	7.0104	35.987452	-84.264601	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 95
+GW714-34-2-12-13	GW-714	2013-02-12	35.08248	35.949511	-84.313845	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 34
+FW106-11-13-12	FW-106	2012-11-13	12.2301	35.977298	-84.273484	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 0
+GW199-42-1-28-13	GW-199	2013-01-28	6.096	35.993718	-84.244432	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 42
+GW658-63-1-23-13	GW-658	2013-01-23	4.20624	35.991761	-84.244105	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 63
+FW410-28-46-11-13-12	FW-410-28	2012-11-13	7.804404	35.977136	-84.273957	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 46
+GW151-12-12-12	GW-151	2012-12-12	27.7368	35.993413	-84.236973	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 19
+GW098-57-1-22-13	GW-098	2013-01-22	28.31592	35.968022	-84.286314	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8; Waste Management, Cluster 57
+GW685-6-1-8-13	GW-685	2013-01-08	26.91384	35.957771	-84.300271	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 6
+FW303-11-2-20-13	FW-303	2013-02-20	5.382768	35.941139	-84.336279	Tennessee (TN), Oak Ridge Reservation (ORR), Area Background, Cluster 11
+GW533-48-11-28-12	GW-533	2012-11-28	7.58952	35.974108	-84.281393	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 48
+GW107-91-12-11-12	GW-107	2012-12-11	3.2004	35.979044	-84.269997	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 91
+GW383-12-17-12	GW-383	2012-12-17	6.27888	35.992878	-84.239422	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 76
+GW085-58-12-3-12	GW-085	2012-12-03	17.16024	35.9725	-84.281474	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 58
+GW636-32-1-28-13	GW-636	2013-01-28	30.0228	35.967252	-84.287902	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8; Waste Management, Cluster 32
+FW301-81-2-20-13	FW-301	2013-02-20	4.35864	35.941069	-84.336181	Tennessee (TN), Oak Ridge Reservation (ORR), Area Background, Cluster 81
+GW779-8-2-18-13	GW-779	2013-02-18	17.38884	35.9886503	-84.25334197	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 8
+GW105-12-11-12	GW-105	2012-12-11	4.29768	35.979239	-84.271679	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 82
+GW654-0-1-7-13	GW-654	2013-01-07	3.13944	35.962761	-84.302538	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 0
+GW694-33-12-3-12	GW-694	2012-12-03	46.6344	35.963467	-84.290954	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 33
+FW511-7-26-12	FW-511	2012-07-26	6.0579	35.978501	-84.272035	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 61
+GW101-7-26-12	GW-101	2012-07-26	4.35864	35.97732	-84.274117	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 27
+GW220-50-12-12-12	GW-220	2012-12-12	12.10056	35.993381	-84.236976	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 50
+GW223-39-1-8-13	GW-223	2013-01-08	25.908	35.991954	-84.239517	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 39
+GW122-78-11-14-12	GW-122	2012-11-14	28.0416	35.976124	-84.273278	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 78
+GW537-24-11-26-12	GW-537	2012-11-26	4.7244	35.973362	-84.280229	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 24
+GW631-98-12-11-12	GW-631	2012-12-11	3.048	35.97923	-84.2704	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 98
+GW753-79-1-7-13	GW-753	2013-01-07	19.91868	35.993391	-84.241126	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 79
+GW641-30-1-23-13	GW-641	2013-01-23	5.73024	35.965931	-84.291542	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8; Waste Management, Cluster 30
+GW385-80-2-18-13	GW-385	2013-02-18	37.70376	35.992899	-84.239425	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 80
+GW639-90-1-23-13	GW-639	2013-01-23	29.1084	35.965809	-84.291404	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8; Waste Management, Cluster 90
+GW705-9-2-21-13	GW-705	2013-02-21	72.2376	35.96372889	-84.29107919	Tennessee (TN), Oak Ridge Reservation (ORR), Area none, Cluster 9
+GW706-96-12-17-12	GW-706	2012-12-17	47.57928	35.963775	-84.291005	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 96
+FW300-59-10-19-12	FW-300	2012-10-19	4.572	35.941092	-84.336176	Tennessee (TN), Oak Ridge Reservation (ORR), Area Background, Cluster 59
+DP16D-67-11-27-12	DP16D	2012-11-27	6.015228	35.9755	-84.274678	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 67
+GW363-94-1-22-13	GW-363	2013-01-22	15.24	35.969048	-84.287521	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8; Waste Management, Cluster 94
+FW233-17-2-99-11-28-12	FW-233-17	2012-11-28	4.988052	35.975743	-84.274723	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 99
+GW765-77-1-11-13	GW-765	2013-01-11	16.33728	35.989297	-84.256997	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 77
+GW928-54-2-11-13	GW-928	2013-02-11	11.64336	35.987421	-84.264657	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 54
+FW215-84-11-27-12	FW-215	2012-11-27	4.94538	35.975715	-84.274722	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 84
+GW089-62-1-7-13	GW-089	2013-01-07	7.3152	35.965917	-84.299049	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 62
+FW301-81-10-19-12	FW-301	2012-10-19	4.35864	35.941069	-84.336181	Tennessee (TN), Oak Ridge Reservation (ORR), Area Background, Cluster 81
+GW190-22-12-11-12	GW-190	2012-12-11	5.44068	35.980705	-84.271177	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 22
+GW764-23-1-11-13	GW-764	2013-01-11	8.03148	35.989269	-84.257055	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 36
+FW106-7-25-12	FW-106	2012-07-25	12.2301	35.977298	-84.273484	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 0
+GW246-1-11-26-12	GW-246	2012-11-26	18.45564	35.977144	-84.272935	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 1
+GW803-31-1-23-13	GW-803	2013-01-23	5.54736	35.991689	-84.243755	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 31
+FW603-55-12-3-12	FW-603	2012-12-03	9.328404	35.973802	-84.278791	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 55
+GW750-28-12-12-12	GW-750	2012-12-12	20.52828	35.994376	-84.235312	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 28
+FW021-46-11-27-12	FW-021	2012-11-27	5.978652	35.977747	-84.272033	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 46
+GW683-53-2-18-13	GW-683	2013-02-18	52.24272	35.957053	-84.299249	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 53
+GW763-23-1-22-13	GW-763	2013-01-22	18.24228	35.992222	-84.240111	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 23
+GW283-43-1-29-13	GW-283	2013-01-29	3.81	35.991366	-84.244414	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 43
+GW775-88-1-29-13	GW-775	2013-01-29	16.16964	35.989595	-84.245848	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 88
+GW736-14-12-3-12	GW-736	2012-12-03	29.68752	35.970896	-84.280642	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 14
+GW056-87-1-8-13	GW-056	2013-01-08	3.99288	35.957762	-84.300532	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 87
+GW350-74-2-12-13	GW-350	2013-02-12	11.70432	35.978922	-84.268309	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East Secure, Cluster 74
+FW126-7-25-12	FW-126	2012-07-25	13.687044	35.977358	-84.273414	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 92
+TPB16-81-11-28-12	TPB16	2012-11-28	4.355592	35.975643	-84.274687	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 81
+FW109-35-61-11-14-12	FW-109-35	2012-11-14	10.209276	35.977374	-84.273577	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 61
+GW101-11-13-12	GW-101	2012-11-13	4.35864	35.97732	-84.274117	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 27
+FW021-7-26-12	FW-021	2012-07-26	5.978652	35.977747	-84.272033	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 46
+FW510-26-11-26-12	FW-510	2012-11-26	7.104888	35.978585	-84.272082	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 26
+GW804-13-2-11-13	GW-804	2013-02-11	5.6388	35.99152444	-84.24405271	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 13
+GW127-16-11-26-12	GW-127	2012-11-26	6.33984	35.976405	-84.273424	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 16
+GW715-65-2-12-13	GW-715	2013-02-12	11.61288	35.949545	-84.313801	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 65
+GW925-68-1-28-13	GW-925	2013-01-28	37.1856	35.970325	-84.287535	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8; Waste Management, Cluster 68
+FW301-7-25-12	FW-301	2012-07-25	4.35864	35.941069	-84.336181	Tennessee (TN), Oak Ridge Reservation (ORR), Area Background, Cluster 81
+GW526-15-11-27-12	GW-526	2012-11-27	30.7848	35.975102	-84.276907	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 15
+GW148-12-17-12	GW-148	2012-12-17	2.46888	35.993332	-84.238597	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 20
+FW109-2-7-25-12	FW-109-35	2012-07-25	10.209276	35.977374	-84.273577	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 61
+TPB16-7-26-12	TPB16	2012-07-26	4.355592	35.975643	-84.274687	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 81
+FW602-2-26-2-11-28-12	FW-602-26	2012-11-28	7.1628	35.974046	-84.278931	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 26
+GW066-71-2-20-13	GW-066	2013-02-20	6.64464	35.9708	-84.281617	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 71
+GW346-47-11-27-12	GW-346	2012-11-27	18.16608	35.975088	-84.276916	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 47
+GW531-83-11-28-12	GW-531	2012-11-28	9.25068	35.973944	-84.281558	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 83
+FW303-11-10-23-12	FW-303	2012-10-23	5.382768	35.941139	-84.336279	Tennessee (TN), Oak Ridge Reservation (ORR), Area Background, Cluster 11
+GW271-66-2-18-13	GW-271	2013-02-18	8.09244	35.97989558	-84.27058705	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 66
+GW125-85-2-20-13	GW-125	2013-02-20	153.0096	35.976523	-84.271975	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 85
+GW162-37-2-19-13	GW-162	2013-02-19	28.0416	35.968495	-84.296806	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8, Cluster 37
+GW247-7-11-14-12	GW-247	2012-11-14	18.56232	35.9773	-84.272726	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 7
+GW921-86-1-28-13	GW-921	2013-01-28	10.0584	35.970344	-84.287507	Tennessee (TN), Oak Ridge Reservation (ORR), Area NT3-NT8; Waste Management, Cluster 86
+GW760-18-1-29-13	GW-760	2013-01-29	16.65732	35.989975	-84.250526	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 18
+GW755-69-1-8-13	GW-755	2013-01-08	16.74876	35.994769	-84.242031	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 East, Cluster 69
+GW800-12-12-12	GW-800	2012-12-12	7.51332	35.968949	-84.28178	Tennessee (TN), Oak Ridge Reservation (ORR), Area Y-12 West, Cluster 70
