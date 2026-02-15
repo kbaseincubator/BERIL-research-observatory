@@ -106,10 +106,10 @@ This gives you an overview of BERDL, lists available skills and existing project
 
 The typical workflow looks like this:
 
-1. **Ask questions** — describe what you want to investigate and let the AI help you formulate a research question
+1. **Ask questions** — describe what you want to investigate and the agent will help formulate a research question
 2. **Explore data** — use `/berdl` to query BERDL databases with Spark SQL
-3. **Generate hypotheses** — use `/hypothesis` to develop testable research questions from the data
-4. **Write notebooks** — create Jupyter notebooks that run directly on the JupyterHub Spark cluster
+3. **Plan and analyze** — the agent develops hypotheses, writes a research plan, and generates notebooks
+4. **Run notebooks** — execute them on the JupyterHub Spark cluster
 5. **Document findings** — record discoveries, pitfalls, and insights as you go
 
 Your notebooks execute on the same Spark cluster you logged into, so queries run against the full lakehouse without any extra setup.
@@ -150,10 +150,11 @@ You can keep working on the project after submitting — submission is not a one
 
 | Skill | Description |
 |-------|-------------|
-| `/berdl_start` | Get oriented — overview of BERDL, available skills, existing projects |
+| `/berdl_start` | Get oriented and start a research project — the agent drives the full workflow |
 | `/berdl` | Query BERDL databases with Spark SQL |
 | `/berdl-discover` | Discover and document new BERDL databases |
-| `/hypothesis` | Generate testable research hypotheses from BERDL data |
+| `/literature-review` | Search PubMed, Europe PMC, and other sources for relevant literature |
+| `/synthesize` | Interpret results and draft findings |
 | `/submit` | Submit a project for automated validation and AI review |
 
 ## Resources
