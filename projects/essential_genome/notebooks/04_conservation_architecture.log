@@ -1,0 +1,47 @@
+Loading data...
+Link table: 177,863 gene-cluster links, 44 organisms
+
+=== MAPPING ESSENTIALS TO CONSERVATION ===
+Essential genes with conservation status: 173,574
+  Organisms: 43
+
+Essential genes: 85.3% core (n=31,391)
+Non-essential genes: 80.7% core (n=142,183)
+
+=== CONSERVATION BY ESSENTIALITY CLASS ===
+
+Core fraction by essentiality class:
+  universally_essential: 91.7% core (n=6,963, 5,951 essential)
+  variably_essential: 88.9% core (n=90,844, 20,757 essential)
+  never_essential: 81.7% core (n=47,140, 0 essential)
+  orphan_essential: 49.5% core (n=4,683, 4,683 essential)
+  no_og: 56.6% core (n=23,944, 0 essential)
+
+=== PER-FAMILY CONSERVATION ===
+Families with conservation data: 16,758
+  universally_essential: median 100.0% core (n=816 families)
+  variably_essential: median 96.4% core (n=4,736 families)
+  never_essential: median 100.0% core (n=11,206 families)
+
+Universally essential families:
+  100% core: 579 / 816 (71.0%)
+  ≥90% core: 670 / 816 (82.1%)
+
+=== PREDICTORS OF VARIABLE ESSENTIALITY ===
+Clade size vs % essential: rho=-0.132, p=3.576e-01
+Openness vs % essential: rho=0.027, p=8.488e-01
+
+=== GENERATING FIGURES ===
+Saved: figures/conservation_architecture.png
+
+============================================================
+SUMMARY
+============================================================
+Essential genes: 85.3% core vs non-essential: 80.7%
+Universally essential families: 579/816 are 100% core, 670/816 are ≥90% core
+Conservation by class:
+  universally_essential: 91.7% core
+  variably_essential: 88.9% core
+  never_essential: 81.7% core
+  orphan_essential: 49.5% core
+  no_og: 56.6% core

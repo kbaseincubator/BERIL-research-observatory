@@ -108,9 +108,10 @@ ess_genes['is_hypothetical'] = ess_genes['desc'].apply(
     if pd.notna(d) else True
 )
 
-ess_genes['og_id'] = ess_genes.apply(
-    lambda r: gene_to_og.get((r['orgId'], r['locusId'])), axis=1
-)
+# Use merge instead of row-wise apply (performance pitfall)
+og_lookup = og_df[['orgId', 'locusId', 'OG_id']].drop_duplicates()
+ess_genes = ess_genes.merge(og_lookup, on=['orgId', 'locusId'], how='left')
+ess_genes.rename(columns={'OG_id': 'og_id'}, inplace=True)
 
 targets = ess_genes[ess_genes['is_hypothetical'] & ess_genes['og_id'].notna()]
 print(f"Hypothetical essential genes: {ess_genes['is_hypothetical'].sum():,}")

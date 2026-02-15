@@ -1,0 +1,108 @@
+Loading data...
+
+=== BUILDING LOOKUPS ===
+Essential status lookup: 221,005 genes
+Module membership: 30,688 genes in 32 organisms
+Annotated modules: 890
+
+=== IDENTIFYING TARGETS ===
+Hypothetical essential genes: 8,297
+  With orthologs (targets): 3,912
+
+=== PREDICTING FUNCTION ===
+  Checked 1,000/3,912 genes, 304 predictions so far
+  Checked 2,000/3,912 genes, 703 predictions so far
+  Checked 3,000/3,912 genes, 987 predictions so far
+
+Total predictions: 1,382 / 3,912 targets (35.3%)
+Saved: data/essential_predictions.tsv
+  Family-backed: 1,382
+  Module-only: 0
+
+Top 25 predictions:
+organism     locusId        predicted          db     FDR         family    conf
+--------------------------------------------------------------------------------
+BFirm        BPHYT_RS31975  PF00356            PFam   6.29e-18    F511      17.9
+Burk376      H281DRAFT_03269 TIGR00254          TIGRF  9.93e-17    F691      16.5
+PS           Dsui_2865      TIGR00254          TIGRF  9.93e-17    F691      16.5
+pseudo1_N1B4 Pf1N1B4_2091   TIGR00254          TIGRF  9.93e-17    F691      16.5
+RalstoniaBSBF1503 RALBFv3_RS19825 TIGR00254          TIGRF  9.93e-17    F691      16.5
+azobra       AZOBR_RS21015  TIGR00254          TIGRF  9.93e-17    F691      16.5
+ANA3         7025431        TIGR00254          TIGRF  1.71e-13    F691      13.2
+SB2B         6937165        TIGR00254          TIGRF  1.71e-13    F691      13.2
+Smeli        SMa0193        TIGR00254          TIGRF  1.71e-13    F691      13.2
+azobra       AZOBR_RS20460  TIGR00254          TIGRF  1.71e-13    F691      13.2
+pseudo1_N1B4 Pf1N1B4_5990   TIGR00254          TIGRF  1.71e-13    F691      13.2
+BFirm        BPHYT_RS13990  TIGR00254          TIGRF  1.71e-13    F691      13.2
+Marino       GFF2114        TIGR00254          TIGRF  1.71e-13    F691      13.2
+PV4          5209158        TIGR00254          TIGRF  1.71e-13    F691      13.2
+psRCH2       GFF1633        TIGR00254          TIGRF  1.71e-13    F691      13.2
+SyringaeB728a_mexBdelta Psyr_3475      PF00460            PFam   4.78e-11    F070      11.5
+MR1          202309         PF00460            PFam   4.78e-11    F070      11.5
+WCS417       GFF1467        PF00460            PFam   5.10e-11    F070      11.5
+pseudo5_N2C3_1 AO356_09745    PF00460            PFam   5.10e-11    F070      11.5
+Miya         8500805        PF00460            PFam   4.82e-10    F070      10.5
+ANA3         7023975        PF00460            PFam   7.97e-10    F070      10.3
+BFirm        BPHYT_RS01190  PF00460            PFam   7.97e-10    F070      10.3
+azobra       AZOBR_RS26755  PF00460            PFam   7.97e-10    F070      10.3
+SyringaeB728a_mexBdelta Psyr_2112      PF00460            PFam   7.97e-10    F070      10.3
+pseudo6_N2E2 Pf6N2E2_2342   PF00460            PFam   7.97e-10    F070      10.3
+
+Predictions per organism:
+  pseudo1_N1B4: 90
+  PV4: 85
+  Smeli: 65
+  SyringaeB728a: 64
+  psRCH2: 61
+  SyringaeB728a_mexBdelta: 58
+  Burk376: 56
+  Putida: 52
+  WCS417: 51
+  BFirm: 46
+  ANA3: 37
+  MR1: 36
+  azobra: 36
+  Koxy: 35
+  Dino: 34
+  Btheta: 34
+  pseudo5_N2C3_1: 33
+  pseudo13_GW456_L13: 31
+  pseudo6_N2E2: 29
+  PS: 28
+  pseudo3_N2E3: 28
+  SB2B: 25
+  RalstoniaBSBF1503: 23
+  RalstoniaUW163: 23
+  HerbieS: 23
+  RalstoniaGMI1000: 23
+  Keio: 22
+  Cup4G11: 22
+  Magneto: 20
+  Dyella79: 20
+  Miya: 18
+  SynE: 18
+  Ponti: 17
+  Pedo557: 17
+  acidovorax_3H11: 16
+  RalstoniaPSI07: 16
+  Phaeo: 14
+  Marino: 14
+  Korea: 14
+  DvH: 13
+  Ddia6719: 9
+  Cola: 8
+  Kang: 8
+  Dda3937: 3
+  Methanococcus_JJ: 2
+  DdiaME23: 2
+  Methanococcus_S2: 2
+  Caulo: 1
+
+============================================================
+SUMMARY
+============================================================
+Essential genes: 41,059
+Hypothetical essentials: 8,297 (20.2%)
+  With orthologs: 3,912 (predictable)
+  Orphans: 4,385 (not predictable by this method)
+Predictions: 1,382 (35.3% of predictable)

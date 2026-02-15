@@ -62,10 +62,11 @@ print(f"  With essential status: {merged['is_essential'].notna().sum():,}")
 print(f"  Missing essential status: {merged['is_essential'].isna().sum():,}")
 
 # Genes NOT in any OG (no orthologs in other organisms)
-genes_in_ogs = set(zip(og_df['orgId'], og_df['locusId']))
-essential['in_og'] = essential.apply(
-    lambda r: (r['orgId'], str(r['locusId'])) in genes_in_ogs, axis=1
-)
+# Use merge instead of row-wise apply (performance pitfall)
+og_keys = og_df[['orgId', 'locusId']].drop_duplicates()
+og_keys['in_og'] = True
+essential = essential.merge(og_keys, on=['orgId', 'locusId'], how='left')
+essential['in_og'] = essential['in_og'].fillna(False)
 n_in_og = essential['in_og'].sum()
 n_total = len(essential)
 print(f"\nGenes in ortholog groups: {n_in_og:,} / {n_total:,} ({n_in_og/n_total*100:.1f}%)")
@@ -137,6 +138,11 @@ for og_id, group in merged.groupby('OG_id'):
     })
 
 families = pd.DataFrame(family_stats)
+
+# Add copy-number ratio to distinguish single-copy from multi-copy families
+families['copy_ratio'] = families['n_genes'] / families['n_organisms']
+families['is_single_copy'] = (families['copy_ratio'] <= 1.5) & (families['n_nonessential_organisms'] == 0)
+
 families.to_csv(DATA_DIR / 'essential_families.tsv', sep='\t', index=False)
 print(f"Total families classified: {len(families):,}")
 
@@ -146,6 +152,14 @@ print(f"\nFamily classification:")
 for cls, count in class_counts.items():
     pct = count / len(families) * 100
     print(f"  {cls}: {count:,} ({pct:.1f}%)")
+
+# Single-copy vs multi-copy universally essential
+univ = families[families['essentiality_class'] == 'universally_essential']
+n_sc = univ['is_single_copy'].sum()
+n_mc = len(univ) - n_sc
+print(f"\nUniversally essential families: {len(univ):,}")
+print(f"  Single-copy (strict, ratio≤1.5 & no non-ess members): {n_sc:,}")
+print(f"  Multi-copy or with paralogs: {n_mc:,}")
 
 # By organism count
 print(f"\nFamilies spanning all 48 organisms: "
@@ -374,5 +388,16 @@ for cls in class_order:
     print(f"  {cls}: {n:,}")
 print(f"\nUniversally essential spanning all 48 orgs: "
       f"{((families['essentiality_class'] == 'universally_essential') & (families['n_organisms'] == 48)).sum()}")
+print(f"\nUniversally essential (single-copy): {univ['is_single_copy'].sum():,}")
+print(f"Universally essential (multi-copy/paralog): {len(univ) - univ['is_single_copy'].sum():,}")
 print(f"\nVariably essential families: {len(var_ess):,}")
 print(f"  Median frac_essential: {var_ess['frac_essential'].median():.3f}")
+
+# Gene length statistics for essentiality
+print(f"\nGene length by essentiality:")
+ess_len = essential[essential['is_essential']]['gene_length'].median()
+noness_len = essential[~essential['is_essential']]['gene_length'].median()
+short_ess = (essential['is_essential'] & (essential['gene_length'] < 300)).sum()
+print(f"  Essential median length: {ess_len:.0f} bp")
+print(f"  Non-essential median length: {noness_len:.0f} bp")
+print(f"  Essential genes <300 bp: {short_ess:,} ({short_ess/essential['is_essential'].sum()*100:.1f}%)")

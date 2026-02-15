@@ -42,18 +42,39 @@ For uncharacterized essential genes (~44% hypothetical), we predict function by 
 ```
 projects/essential_genome/
 ├── README.md
+├── requirements.txt
+├── references.md
 ├── src/
-│   └── extract_data.py               # Spark: extract essentials + orthologs
+│   └── extract_data.py                    # Spark: extract essentials + orthologs + build OGs
 ├── notebooks/
-│   ├── 02_essential_families.ipynb    # Build and classify essential gene families
-│   ├── 03_function_prediction.ipynb   # Predict function for hypothetical essentials
-│   └── 04_conservation_architecture.ipynb  # Connect to pangenome conservation
+│   ├── 02_essential_families.py           # Build and classify essential gene families
+│   ├── 03_function_prediction.py          # Predict function for hypothetical essentials
+│   └── 04_conservation_architecture.py    # Connect to pangenome conservation
 ├── data/
-│   ├── all_essential_genes.tsv        # Essential status for all 48 organisms
-│   ├── all_bbh_pairs.csv             # BBH pairs for all 48 organisms
-│   └── all_ortholog_groups.csv       # OG assignments for all 48 organisms
+│   ├── all_essential_genes.tsv            # Essential status for all 48 organisms
+│   ├── all_bbh_pairs.csv                  # BBH pairs for all 48 organisms
+│   ├── all_ortholog_groups.csv            # OG assignments for all 48 organisms
+│   ├── essential_families.tsv             # Per-family essentiality classification
+│   ├── essential_predictions.tsv          # Function predictions for hypothetical essentials
+│   └── family_conservation.tsv            # Per-family pangenome conservation
 └── figures/
 ```
+
+### Cross-Project Dependencies
+
+This project requires cached data from two upstream projects:
+
+| File | Source Project | Description |
+|------|--------------|-------------|
+| `conservation_vs_fitness/data/fb_pangenome_link.tsv` | conservation_vs_fitness | Gene-to-cluster links with conservation status |
+| `conservation_vs_fitness/data/organism_mapping.tsv` | conservation_vs_fitness | FB orgId → pangenome species clade mapping |
+| `conservation_vs_fitness/data/pangenome_metadata.tsv` | conservation_vs_fitness | Clade size, core counts |
+| `conservation_vs_fitness/data/seed_annotations.tsv` | conservation_vs_fitness | SEED functional annotations (34 organisms) |
+| `conservation_vs_fitness/data/seed_hierarchy.tsv` | conservation_vs_fitness | SEED functional category hierarchy |
+| `fitness_modules/data/modules/*_gene_membership.csv` | fitness_modules | ICA module membership (32 organisms) |
+| `fitness_modules/data/modules/*_module_annotations.csv` | fitness_modules | Module functional enrichments |
+| `fitness_modules/data/module_families/module_families.csv` | fitness_modules | Module → family mapping |
+| `fitness_modules/data/module_families/family_annotations.csv` | fitness_modules | Family consensus annotations |
 
 ## Key Definitions
 
@@ -70,11 +91,12 @@ projects/essential_genome/
 - **2,838,750 BBH pairs** yield **17,222 ortholog groups** spanning all 48 organisms
 
 ### Essential Gene Families (NB02)
-- **859 universally essential families** (5.0%) — essential in every organism where they have members. Dominated by ribosomal proteins, tRNA synthetases, cell wall biosynthesis, and DNA replication.
+- **859 universally essential families** (5.0%) — essential in every organism where they have members. Of these, **839 are strict single-copy families** (copy ratio ≤1.5, no non-essential paralogs); 20 contain paralogs where at least one copy per organism is essential. Dominated by ribosomal proteins, tRNA synthetases, cell wall biosynthesis, and DNA replication.
 - **15 families essential in ALL 48 organisms** — the absolute core of bacterial life (rpsC, rplW, groEL, pyrG, fusA, rplK, valS, rplB, rplA, rpsJ, rplF, rpsI, rpsM, rps11, SelGGPS)
 - **4,799 variably essential families** (27.9%) — essential in some organisms, non-essential in others. Median essentiality penetrance is 33%.
 - **7,084 orphan essential genes** with no orthologs — 58.7% hypothetical, the highest-priority targets for functional discovery
 - Universally essential genes are only 8.2% hypothetical vs 58.7% for orphan essentials
+- Essential genes are shorter than non-essential (median 675 bp vs 885 bp); 17.8% of essentials are <300 bp, suggesting some false positives from transposon insertion bias
 
 ### Function Prediction for Hypothetical Essentials (NB03)
 - **8,297 hypothetical essential genes** across 48 organisms (20.2% of all essentials)
@@ -87,7 +109,7 @@ projects/essential_genome/
 - **71% of universally essential families are 100% core**; 82% are ≥90% core
 - Variably essential families are 88.9% core — between universal and never-essential
 - Orphan essentials (no orthologs) are only **49.5% core** — they are strain-specific essential functions
-- There is a significant negative correlation between essentiality penetrance and core fraction (rho=-0.123, p=1.6e-17) among variably essential families: families essential in more organisms tend to be core, but the relationship is weak
+- There is a weak positive correlation between essentiality penetrance and core fraction (rho=0.123, p=1.6e-17) among variably essential families: families essential in more organisms tend to be slightly more core (97.1% for >80% penetrance vs 92.8% for <20%)
 - Clade size does NOT predict essentiality rate (rho=-0.13, p=0.36)
 
 ## Interpretation
@@ -163,12 +185,20 @@ The conservation hierarchy — universally essential (91.7% core) > variably ess
 
 **Prerequisites**: Python 3.10+, pandas, numpy, matplotlib, scipy, networkx, scikit-learn. BERDL Spark Connect for data extraction.
 
-1. **Extract data** (Spark): `python3 src/extract_data.py`
-2. **Run NB02** (local): `jupyter nbconvert --execute notebooks/02_essential_families.ipynb`
-3. **Run NB03** (local): `jupyter nbconvert --execute notebooks/03_function_prediction.ipynb`
-4. **Run NB04** (local): `jupyter nbconvert --execute notebooks/04_conservation_architecture.ipynb`
+```bash
+cd projects/essential_genome
+pip install -r requirements.txt
 
-Requires data from `conservation_vs_fitness` (link table) and `fitness_modules` (module membership, annotations, families).
+# Step 1: Extract data from Spark (requires BERDL access)
+python3 src/extract_data.py
+
+# Step 2-4: Run analysis scripts (local, no Spark needed)
+python3 notebooks/02_essential_families.py
+python3 notebooks/03_function_prediction.py
+python3 notebooks/04_conservation_architecture.py
+```
+
+Requires cached data from `conservation_vs_fitness` and `fitness_modules` projects (see Cross-Project Dependencies above).
 
 ## Authors
 

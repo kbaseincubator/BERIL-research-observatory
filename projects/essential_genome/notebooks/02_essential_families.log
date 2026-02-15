@@ -1,0 +1,118 @@
+/home/psdehal/pangenome_science/BERIL-research-observatory/projects/essential_genome/notebooks/02_essential_families.py:26: DtypeWarning: Columns (0: gene) have mixed types. Specify dtype option on import or set low_memory=False.
+  essential = pd.read_csv(DATA_DIR / 'all_essential_genes.tsv', sep='\t')
+Loading data...
+Essential genes: 221,005 (41,059 essential)
+Ortholog groups: 17,222
+SEED annotations: 177,519
+
+=== MERGING ESSENTIALITY WITH ORTHOLOG GROUPS ===
+Merged: 179,237 gene-OG assignments
+  With essential status: 179,223
+  Missing essential status: 14
+
+Genes in ortholog groups: 179,223 / 221,005 (81.1%)
+Essential genes in OGs: 33,975 / 41,059
+Essential genes without orthologs (orphans): 41,059
+
+=== CLASSIFYING ORTHOLOG FAMILIES ===
+Total families classified: 17,222
+
+Family classification:
+  never_essential: 11,564 (67.1%)
+  variably_essential: 4,799 (27.9%)
+  universally_essential: 859 (5.0%)
+
+Universally essential families: 859
+  Single-copy (strict, ratio≤1.5 & no non-ess members): 839
+  Multi-copy or with paralogs: 20
+
+Families spanning all 48 organisms: 100
+Universally essential + all 48 organisms: 15
+
+=== FUNCTIONAL CHARACTERIZATION ===
+
+Functional profile by essentiality class:
+  universally_essential: 9,083 genes, 8.2% hypothetical
+  variably_essential: 111,732 genes, 8.3% hypothetical
+  never_essential: 58,422 genes, 23.6% hypothetical
+  orphan_essential (no orthologs): 41,059 genes, 17.9% hypothetical
+
+=== TOP UNIVERSALLY ESSENTIAL FAMILIES ===
+
+Top 30 universally essential families (by organism count):
+OG_id        n_orgs gene         description                                                 
+--------------------------------------------------------------------------------------------
+OG00546          48 rpsC         30S ribosomal protein S3
+OG01241          48 rps11        30S ribosomal protein S11 (RefSeq)
+OG01350          48 rplW         Ribosomal protein L23
+OG00632          48 rplK         LSU ribosomal protein L11p (L12e)
+OG01203          48 groEL        chaperonin, 60 kDa (TIGR)
+OG01586          48 pyrG         CTP synthase
+OG01758          48 valS         valyl-tRNA synthetase (RefSeq)
+OG01765          48 SelGGPS      geranyltranstransferase (RefSeq)
+OG01816          48 rplB         LSU ribosomal protein L2P
+OG01832          48 rplA         50S ribosomal protein L1 (NCBI)
+OG01944          48 rpsJ         ribosomal protein S10, bacterial
+OG00833          48 fusA-1       Translation elongation factor G
+OG00354          48 rplF         ribosomal protein L6 (TIGR)
+OG02779          48 rpsI         30S ribosomal protein S9
+OG02092          48 rpsM         30S ribosomal protein S13
+OG01961          47 rpsH         30S ribosomal protein S8
+OG00669          47 argS         arginine--tRNA ligase
+OG01986          47 prsA         ribose-phosphate pyrophosphokinase
+OG01736          47 ileS         isoleucyl-tRNA synthetase (TIGR)
+OG02088          47 rplN         50S ribosomal protein L14
+OG01280          46 rpsD         30S ribosomal protein S4
+OG00924          46 dnaB         replicative DNA helicase
+OG00945          46 murB         UDP-N-acetylenolpyruvoylglucosamine reductase
+OG01179          46 mrdB         peptidoglycan glycosyltransferase MrdB
+OG00989          46 murE         UDP-N-acetylmuramoylalanyl-D-glutamate--2, 6-diaminopimela
+OG01288          46 rpsS         ribosomal protein S19 (TIGR)
+OG01012          46 yjgP         FIG000988: Predicted permease
+OG01131          46 dxr          1-deoxy-D-xylulose 5-phosphate reductoisomerase
+OG00264          46 prfA         peptide chain release factor 1
+OG02531          46 mraY         phospho-N-acetylmuramoyl-pentapeptide- transferase
+
+=== VARIABLY ESSENTIAL FAMILIES: PATTERNS ===
+
+Variably essential families: 4,799
+  Spanning 2+ organisms: 4,799
+  Spanning 10+ organisms: 2,172
+  Spanning 20+ organisms: 1,439
+
+Fraction of organisms where gene is essential:
+  Mean: 0.357
+  Median: 0.333
+  >50% essential: 813
+  <10% essential: 704
+
+=== GENERATING FIGURES ===
+Saved: figures/essential_families_overview.png
+Saved: figures/essential_families_heatmap.png
+
+============================================================
+SUMMARY
+============================================================
+Total genes: 221,005
+Essential genes: 41,059 (18.6%)
+Genes in ortholog groups: 179,223
+Essential genes in OGs: 33,975
+Essential orphans (no orthologs): 41,059
+
+Ortholog families: 17,222
+  universally_essential: 859
+  variably_essential: 4,799
+  never_essential: 11,564
+
+Universally essential spanning all 48 orgs: 15
+
+Universally essential (single-copy): 839
+Universally essential (multi-copy/paralog): 20
+
+Variably essential families: 4,799
+  Median frac_essential: 0.333
+
+Gene length by essentiality:
+  Essential median length: 675 bp
+  Non-essential median length: 885 bp
+  Essential genes <300 bp: 7,288 (17.8%)
