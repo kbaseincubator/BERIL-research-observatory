@@ -100,6 +100,20 @@ After the reviewer subprocess completes:
 2. If it exists, print a success message with a brief summary
 3. If it was not created, print an error indicating the reviewer did not produce output
 
+### Step 5: Post-Review Guidance
+
+After presenting the review summary, provide next steps based on the review outcome:
+
+**If the review has no critical or important issues** (clean review):
+- Remind the user to mark the project as complete in these locations:
+  1. `projects/{project_id}/README.md` — ensure `## Status` says "Completed" with a one-line summary
+  2. `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary
+- Suggest committing all changes
+
+**If the review has critical or important issues**:
+- List the issues to address
+- Suggest re-running `/submit` after fixes
+
 ### Notes
 
 - The reviewer prompt is stored at `.claude/reviewer/SYSTEM_PROMPT.md` and is not controlled by the author
