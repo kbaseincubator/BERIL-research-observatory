@@ -32,11 +32,13 @@ Run these checks against the project directory and print a checklist summary:
 - `README.md` exists in `projects/{project_id}/`
 - `## Research Question` section is present and non-empty in README.md
 - `## Authors` section is present with at least one entry that is not a placeholder (e.g., not "Your Name")
+- `REPORT.md` exists in `projects/{project_id}/` and contains a `## Key Findings` section
 
 **Advisory checks** (warn but allow submission):
 - Discoveries documented in `docs/discoveries.md` — search for `[{project_id}]` tag
 - Pitfalls documented in `docs/pitfalls.md` — search for the project name or id
-- Research plan documented — check if `projects/{project_id}/research_plan.md` exists (created by `/research-plan`)
+- Research plan documented — check if `projects/{project_id}/RESEARCH_PLAN.md` exists (or `research_plan.md` for legacy projects) (created by `/research-plan`)
+- Interpretation documented — check if `projects/{project_id}/REPORT.md` exists and contains a `## Interpretation` section
 - References documented — check if `projects/{project_id}/references.md` exists (created by `/literature-review`)
 - Project files committed to git — run `git status --porcelain projects/{project_id}/` and warn if there are uncommitted or untracked changes
 - **Notebook outputs**: Check that notebooks have saved outputs (not just empty code cells). For each `.ipynb` in `notebooks/`, parse the JSON and count code cells with non-empty `outputs` arrays. Warn if any notebook has 0 cells with outputs.
@@ -69,7 +71,7 @@ claude -p \
   --system-prompt "$(cat .claude/reviewer/SYSTEM_PROMPT.md)" \
   --allowedTools "Read,Write" \
   --dangerously-skip-permissions \
-  "Review the project at projects/{project_id}/. Read all files in the project directory. Also read docs/pitfalls.md for known issues. Write your review to projects/{project_id}/REVIEW.md."
+  "Review the project at projects/{project_id}/. Read all files in the project directory — especially README.md, RESEARCH_PLAN.md, and REPORT.md. Also read docs/pitfalls.md for known issues. Write your review to projects/{project_id}/REVIEW.md."
 ```
 
 Run this command from the repository root directory.

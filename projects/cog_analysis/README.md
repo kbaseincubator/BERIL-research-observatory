@@ -2,58 +2,22 @@
 
 ## Research Question
 
-How do COG (Clusters of Orthologous Groups) functional category distributions differ across core, auxiliary, and novel genes in bacterial pangenomes?
+How do COG functional category distributions differ across core, auxiliary, and novel genes in bacterial pangenomes?
 
-## Hypothesis
+## Status
 
-Novel genes may have different functional profiles compared to core genes:
-- **Core genes**: Expected to be enriched in essential functions (translation, metabolism, cell processes)
-- **Auxiliary genes**: Expected to show intermediate patterns
-- **Novel genes**: May be enriched in mobile elements, defense mechanisms, or poorly characterized functions
+Completed — Universal functional partitioning discovered across 32 species and 9 phyla: novel genes enriched in mobile elements (+10.88%) and defense (+2.83%), core genes enriched in translation and metabolism.
 
-## Approach
+## Overview
 
-1. Query the `kbase_ke_pangenome` database for gene cluster information
-2. Extract COG functional category annotations from `eggnog_mapper_annotations` table
-3. Classify genes based on their gene_cluster attributes:
-   - **Core**: `is_core = 1` (present in most/all genomes)
-   - **Auxiliary**: `is_auxiliary = 1` AND `is_singleton = 0` (present in some genomes)
-   - **Singleton/Novel**: `is_singleton = 1` (present in only one genome)
-4. Compare COG category distributions across these three classes
-5. Calculate enrichment/depletion of each COG category in novel vs core genes
-6. Visualize results with heatmaps and bar plots
+This project analyzes COG (Clusters of Orthologous Groups) functional category distributions across core, auxiliary, and singleton gene classes in bacterial pangenomes. Using annotations from the `eggnog_mapper_annotations` table and gene classifications from the `gene_cluster` table in BERDL, it reveals a remarkably consistent "two-speed genome" pattern that holds universally across bacterial phyla.
 
-## Data Sources
+## Quick Links
 
-- **Database**: `kbase_ke_pangenome` on BERDL Delta Lakehouse
-- **Tables**:
-  - `gene_cluster` - Gene family classifications (core/auxiliary/singleton)
-  - `gene_genecluster_junction` - Links genes to their clusters
-  - `eggnog_mapper_annotations` - Functional annotations including COG categories
-  - `pangenome` - Per-species pangenome statistics
-  - `gtdb_species_clade` - Species taxonomy
+- [Research Plan](RESEARCH_PLAN.md) — Detailed hypothesis, approach, query strategy
+- [Report](REPORT.md) — Findings, interpretation, supporting evidence
 
-## Implementation Notes
-
-### SQL Notes
-- **Species IDs**: Species IDs contain `--` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`), but this is NOT a problem when using exact equality in WHERE clauses since the `--` is inside the quoted string
-- **Performance**: Use exact equality (`WHERE id = 'value'`) rather than `LIKE 'pattern%'` for best performance
-- **Large Species**: Species with >1000 genomes may have slower queries. Species with 100-500 genomes provide good balance of statistics and performance
-
-### Analysis Workflow
-
-The analysis is implemented in `notebooks/cog_analysis.ipynb`:
-
-1. **Species Selection**: Query for well-represented species (100-500 genomes)
-2. **Cluster Statistics**: Count gene clusters by class for the selected species
-3. **COG Queries**: Run separate queries for each gene class to get COG distributions
-4. **Data Integration**: Combine results and calculate proportions within each class
-5. **Visualization**:
-   - Heatmap showing COG proportions across gene classes
-   - Bar plots showing top enriched/depleted categories in novel genes
-6. **Statistical Summary**: Report total genes analyzed and key enrichments
-
-### Running the Analysis
+## Reproduction
 
 **Prerequisites**: Run notebooks on the BERDL JupyterHub where Spark is available.
 
@@ -73,16 +37,5 @@ Execute all cells. The notebook will:
 - Save results to `../data/cog_distributions.csv`
 - Generate visualizations in `../data/`
 
-## Key Findings
-
-_To be filled in after running the analysis_
-
 ## Authors
 - **Paramvir S. Dehal** (Lawrence Berkeley National Lab) | ORCID: 0000-0001-5810-2497 | Author
-
-## Future Directions
-
-- Analyze multiple species to identify consistent patterns
-- Compare COG distributions across different taxonomic groups
-- Investigate specific COG categories (e.g., V-Defense, L-Recombination) in detail
-- Correlate with environmental metadata to see if novel gene functions vary by habitat
