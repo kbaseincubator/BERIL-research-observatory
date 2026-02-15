@@ -259,6 +259,16 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
         return templates.TemplateResponse("error.html", context, status_code=500)
 
 
+@app.get("/projects/{project_id}/{filename:path}", response_class=HTMLResponse)
+async def project_file_redirect(request: Request, project_id: str, filename: str):
+    """Redirect markdown file links to the project detail page."""
+    from fastapi.responses import RedirectResponse
+
+    if filename.endswith(".md"):
+        return RedirectResponse(url=f"/projects/{project_id}", status_code=302)
+    raise HTTPException(status_code=404, detail="File not found")
+
+
 @app.get("/collections", response_class=HTMLResponse)
 async def collections_overview(request: Request):
     """Collections overview page - browse all BERDL collections."""
