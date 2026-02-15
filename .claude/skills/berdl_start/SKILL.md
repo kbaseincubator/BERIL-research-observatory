@@ -237,3 +237,90 @@ Regardless of path chosen, surface these early:
 6. **String-typed numeric columns** — Many databases store numbers as strings. Always CAST before comparisons.
 7. **Gene clusters are species-specific** — Cannot compare cluster IDs across species. Use COG/KEGG/PFAM for cross-species comparisons.
 8. **Avoid unnecessary `.toPandas()`** — `.toPandas()` pulls all data to the driver node and can be very slow or cause OOM errors. Use PySpark DataFrame operations for filtering, joins, and aggregations. Only convert to pandas for final small results (plotting, CSV export).
+
+---
+
+## Templates
+
+### RESEARCH_PLAN.md
+
+```markdown
+# Research Plan: {Title}
+
+## Research Question
+{Refined question after literature review}
+
+## Hypothesis
+- **H0**: {Null hypothesis}
+- **H1**: {Alternative hypothesis}
+
+## Literature Context
+{Summary of what's known, key references, identified gaps}
+
+## Query Strategy
+
+### Tables Required
+| Table | Purpose | Estimated Rows | Filter Strategy |
+|---|---|---|---|
+| {table} | {why needed} | {count} | {how to filter} |
+
+### Key Queries
+1. **{Description}**:
+\```sql
+{query}
+\```
+
+### Performance Plan
+- **Tier**: {REST API / JupyterHub}
+- **Estimated complexity**: {simple / moderate / complex}
+- **Known pitfalls**: {list from pitfalls.md}
+
+## Analysis Plan
+
+### Notebook 1: Data Exploration
+- **Goal**: {what to verify/explore}
+- **Expected output**: {CSV/figures}
+
+### Notebook 2: Main Analysis
+- **Goal**: {core analysis}
+- **Expected output**: {CSV/figures}
+
+### Notebook 3: Visualization (if needed)
+- **Goal**: {figures for findings}
+
+## Expected Outcomes
+- **If H1 supported**: {interpretation}
+- **If H0 not rejected**: {interpretation}
+- **Potential confounders**: {list}
+
+## Revision History
+- **v1** ({date}): Initial plan
+
+## Authors
+{ORCID, affiliation}
+```
+
+### README.md
+
+```markdown
+# {Title}
+
+## Research Question
+{Refined question}
+
+## Status
+In Progress — research plan created, awaiting analysis.
+
+## Overview
+{One-paragraph summary of the hypothesis and approach}
+
+## Quick Links
+- [Research Plan](RESEARCH_PLAN.md) — hypothesis, approach, query strategy
+- [Report](REPORT.md) — findings, interpretation, supporting evidence
+
+## Reproduction
+*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+
+## Authors
+{Authors}
+```
