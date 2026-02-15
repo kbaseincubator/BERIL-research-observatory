@@ -366,6 +366,22 @@ Use direct `spark.sql()` on the cluster when:
 
 **Performance tip**: Always use exact equality (`WHERE id = 'value'`) rather than `LIKE` patterns for best performance.
 
+### [cofitness_coinheritance] Phylo distance genome IDs lack GTDB prefix
+
+**Problem**: The `phylogenetic_tree_distance_pairs` table uses bare NCBI accessions (`GCA_001038305.1`, `GCF_000005845.2`) while all other pangenome tables (`genome`, `gene`, `gene_genecluster_junction`) use GTDB-prefixed IDs (`GB_GCA_001038305.1`, `RS_GCF_000005845.2`). Joining phylo distances with presence matrices produces zero matches because no IDs overlap.
+
+**Solution**: Strip the `GB_` or `RS_` prefix (first 3 characters) from GTDB genome IDs before joining with phylo distance data:
+```python
+def strip_gtdb_prefix(genome_id):
+    if genome_id.startswith(('GB_', 'RS_')):
+        return genome_id[3:]
+    return genome_id
+```
+
+After stripping, overlap is 100% for all tested species (399/399 for Koxy, 287/287 for Btheta, etc.).
+
+---
+
 ### [cofitness_coinheritance] Billion-row table joins require BROADCAST hints
 
 **Problem**: Joining `gene_genecluster_junction` (~1B rows) with `gene` (~1B rows) to build genome × cluster presence matrices takes 3-5 minutes per species, even on Spark. Neither table is partitioned by `gene_cluster_id` or `genome_id`, so every query requires a full table scan.

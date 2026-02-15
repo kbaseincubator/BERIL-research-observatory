@@ -425,6 +425,10 @@
 **Status**: COMPLETED
 **Results**: Trade-off genes (both sick AND beneficial) are 1.29x more likely core. 28,017 genes are "costly + conserved" = natural selection signature. Lab reveals cost; pangenome reveals selection pressure. See `projects/core_gene_tradeoffs/`.
 
+### [cofitness_coinheritance] Co-fitness Predicts Co-inheritance
+**Status**: COMPLETED
+**Results**: Pairwise co-fitness weakly but consistently predicts co-occurrence (delta=+0.003, 7/9 organisms positive, p=1.66e-29). ICA modules show stronger co-inheritance (delta=+0.053, 21/195 significant after FDR), with accessory modules strongest (36% significant after FDR). Prevalence ceiling limits pairwise signal. See `projects/cofitness_coinheritance/`.
+
 ### [conservation_fitness_synthesis] Cross-Project Synthesis
 **Status**: COMPLETED
 **Results**: Narrative synthesis across 4 projects with 3 new summary figures. Story: fitness-conservation gradient (82% → 66%), core genes are paradoxically more burdensome, lab reveals cost while pangenome reveals selection. See `projects/conservation_fitness_synthesis/`.
