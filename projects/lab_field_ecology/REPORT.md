@@ -6,6 +6,10 @@
 
 Of 26 unique genera represented in the Fitness Browser, 14 are detected in Oak Ridge groundwater communities via 16S amplicon sequencing. The most prevalent are *Sphingomonas* (93% of 108 sites), *Pseudomonas* (91%), and *Caulobacter* (82%). *Desulfovibrio*, the primary ENIGMA model organism, is detected at only 34% of sites at very low abundance (max 0.09% relative abundance).
 
+![FB Genus Prevalence](figures/fig_fb_genus_prevalence.png)
+
+*(Notebook: 02_genus_abundance.ipynb)*
+
 ### Genus Abundance Correlates with Uranium -- in Both Directions
 
 Of 14 FB genera detected at Oak Ridge, 11 had sufficient prevalence (>=10 sites) for correlation analysis. After BH-FDR correction, 5 show significant correlations with uranium:
@@ -20,13 +24,25 @@ Of 14 FB genera detected at Oak Ridge, 11 had sufficient prevalence (>=10 sites)
 
 *Azospirillum* (rho=+0.20, p=0.042) is marginal after FDR correction (q=0.077). *Desulfovibrio* shows no correlation (rho=0.022, p=0.82) and *Pseudomonas* shows no correlation (rho=-0.059, p=0.55) despite both being ENIGMA model organisms. Three genera (*Shewanella*, *Dechlorosoma*, *Marinobacter*) were excluded due to low prevalence (<10 sites).
 
+![Abundance vs Uranium](figures/fig_abundance_vs_uranium.png)
+
+*(Notebook: 03_fitness_vs_field.ipynb)*
+
 ### Lab Metal Tolerance Does Not Significantly Predict Field Abundance Ratio
 
 The correlation between lab-derived metal tolerance score (negative mean fitness under stress, higher = more tolerant) and the high-uranium/low-uranium field abundance ratio is suggestive but not significant (Spearman rho=0.503, p=0.095, n=12 genera). The trend is in the predicted direction -- genera with higher lab tolerance tend to have higher abundance at contaminated sites -- but statistical power is limited by the small number of genera.
 
+![Metal Tolerance Score](figures/fig_metal_tolerance_score.png)
+
+*(Notebook: 03_fitness_vs_field.ipynb)*
+
 ### Community Composition Shifts with Contamination
 
 Sites split at the median uranium concentration show distinct community compositions. The top genera at high-uranium sites differ from low-uranium sites, with rare-biosphere taxa and subsurface specialists becoming more prominent at contaminated sites.
+
+![Community by Contamination](figures/fig_community_by_contamination.png)
+
+*(Notebook: 03_fitness_vs_field.ipynb)*
 
 ## Interpretation
 
@@ -68,36 +84,49 @@ This is the first study to directly link Fitness Browser lab fitness data with E
 - Only 12 FB genera have enough data for the metal tolerance correlation, limiting statistical power
 - Confounding variables (pH, dissolved oxygen, carbon sources) are not controlled for
 
+## Data
+
+### Sources
+
+| Dataset | Description | Source |
+|---------|-------------|--------|
+| ENIGMA CORAL geochemistry | Metal concentrations per sample (108 sites) | `enigma_coral.ddt_brick0000010` via Spark |
+| ENIGMA CORAL community | ASV counts per community (868K rows) | `enigma_coral.ddt_brick0000459` via Spark |
+| ENIGMA CORAL ASV taxonomy | ASV to genus mapping (627K rows) | `enigma_coral.ddt_brick0000454` via Spark |
+| Fitness Browser fitness stats | Per-gene fitness across 43 organisms | `fitness_effects_conservation/data/fitness_stats.tsv` |
+| FB organism mapping | FB orgId to species | `conservation_vs_fitness/data/organism_mapping.tsv` |
+| FB pangenome link | Gene to core/accessory | `conservation_vs_fitness/data/fb_pangenome_link.tsv` |
+
+### Generated Data
+
+| File | Description |
+|------|-------------|
+| `data/site_geochemistry.tsv` | 108 samples x 48 molecule concentrations |
+| `data/asv_counts.tsv` | 132K non-zero ASV x community counts |
+| `data/asv_taxonomy.tsv` | 96K ASVs with genus and phylum |
+| `data/sample_metadata.tsv` | 108 samples with location and date |
+| `data/genus_abundance.tsv` | 1,391 genera x 108 samples relative abundance |
+| `data/genus_counts.tsv` | Long-format genus counts per sample |
+| `data/fb_genus_mapping.tsv` | 14 FB genera with prevalence and abundance stats |
+
 ## Supporting Evidence
 
 ### Notebooks
 
 | Notebook | Purpose |
 |----------|---------|
-| `01_extract_enigma.ipynb` | Extract geochemistry + community data from ENIGMA CORAL via Spark |
-| `02_genus_abundance.ipynb` | Build genus x site abundance matrix, identify FB genera |
-| `03_fitness_vs_field.ipynb` | Correlate lab fitness with field abundance |
+| `notebooks/01_extract_enigma.ipynb` | Extract geochemistry + community data from ENIGMA CORAL via Spark |
+| `notebooks/02_genus_abundance.ipynb` | Build genus x site abundance matrix, identify FB genera |
+| `notebooks/03_fitness_vs_field.ipynb` | Correlate lab fitness with field abundance |
 
 ### Figures
 
 | Figure | Description |
 |--------|-------------|
-| `fig_fb_genus_prevalence.png` | Prevalence and max abundance of 14 FB genera at Oak Ridge |
-| `fig_abundance_vs_uranium.png` | Scatter plots of genus abundance vs uranium for top 4 FB genera |
-| `fig_metal_tolerance_score.png` | High-U vs low-U abundance and metal tolerance correlation |
-| `fig_community_by_contamination.png` | Community composition at high vs low uranium sites |
-
-### Data Files
-
-| File | Description |
-|------|-------------|
-| `site_geochemistry.tsv` | 108 samples x 48 molecule concentrations |
-| `asv_counts.tsv` | 132K non-zero ASV x community counts |
-| `asv_taxonomy.tsv` | 96K ASVs with genus and phylum |
-| `sample_metadata.tsv` | 108 samples with location and date |
-| `genus_abundance.tsv` | 1,391 genera x 108 samples relative abundance |
-| `genus_counts.tsv` | Long-format genus counts per sample |
-| `fb_genus_mapping.tsv` | 14 FB genera with prevalence and abundance stats |
+| `figures/fig_fb_genus_prevalence.png` | Prevalence and max abundance of 14 FB genera at Oak Ridge |
+| `figures/fig_abundance_vs_uranium.png` | Scatter plots of genus abundance vs uranium for top 4 FB genera |
+| `figures/fig_metal_tolerance_score.png` | High-U vs low-U abundance and metal tolerance correlation |
+| `figures/fig_community_by_contamination.png` | Community composition at high vs low uranium sites |
 
 ## Future Directions
 
@@ -109,8 +138,14 @@ This is the first study to directly link Fitness Browser lab fitness data with E
 
 ## References
 
+- Price MN et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509. PMID: 29769716
+- Parks DH et al. (2022). "GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy." *Nucleic Acids Res* 50:D199-D207. PMID: 34520557
 - Carlson HK et al. (2019). "The selective pressures on the microbial community in a metal-contaminated aquifer." *ISME J* 13:937-949. PMID: 30523276
 - Peng M et al. (2022). "Genomic features and pervasive negative selection in Rhodanobacter strains isolated from nitrate and heavy metal contaminated aquifer." *Microbiol Spectr* 10:e0226321. PMID: 35107332
 - Michael JP et al. (2024). "Reproducible responses of geochemical and microbial successional patterns in the subsurface to carbon source amendment." *Water Res* 254:121393. PMID: 38552495
 - LaSarre B et al. (2020). "Covert cross-feeding revealed by genome-wide analysis of fitness determinants in a synthetic bacterial mutualism." *Appl Environ Microbiol* 86:e00250-20. PMID: 32332139
-- Price MN et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509. PMID: 29769716
+
+## Revision History
+
+- **v1** (2026-02): Initial report
+- **v2** (2026-02): Added inline figures, notebook provenance, Data section, Parks et al. reference

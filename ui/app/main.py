@@ -104,11 +104,20 @@ def markdown_inline_filter(text: str) -> Markup:
     return Markup(html)
 
 
+def strip_images_filter(text: str) -> str:
+    """Strip markdown image syntax from text for preview use."""
+    if not text:
+        return ""
+    import re
+    return re.sub(r"!\[[^\]]*\]\([^)]+\)", "", text)
+
+
 # Register filters
 templates.env.filters["markdown"] = markdown_filter
 templates.env.filters["md"] = markdown_filter  # Alias
 templates.env.filters["markdown_inline"] = markdown_inline_filter
 templates.env.filters["mdi"] = markdown_inline_filter  # Alias
+templates.env.filters["strip_images"] = strip_images_filter
 
 
 def get_repo_data(request: Request):
