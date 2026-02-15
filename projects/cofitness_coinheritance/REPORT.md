@@ -20,9 +20,17 @@ Across 9 organisms with co-fitness data (2.25M cofit pairs vs 22.5M prevalence-m
 
 The signal is strongest in Ddia6719 (delta=+0.093), which despite being near-clonal (ANI 99.47%) has sufficient accessory gene variation to detect co-inheritance. Korea shows a negative delta (-0.042) because 95.2% of its cofit pairs have NaN phi (both genes at 100% prevalence across 72 genomes, producing zero-variance vectors). Only ~8,000 of 166,601 pairs are computable, and the negative delta reflects statistical noise in this small effective sample rather than a biological signal.
 
+![Co-fitness vs Co-occurrence](figures/fig1_cofit_cooccurrence.png)
+
+*(Notebook: 02_cooccurrence.ipynb, 04_cross_organism.ipynb)*
+
 ### Operons Are Not a Confound
 
 Only 0.7% of cofit pairs are genomically adjacent (within 5 genes). Excluding them does not change the result pattern.
+
+![Operon Control](figures/fig2_operon_control.png)
+
+*(Notebook: 02_cooccurrence.ipynb)*
 
 ### ICA Modules Show Co-inheritance, Especially Accessory Modules
 
@@ -38,9 +46,25 @@ Accessory modules show the strongest co-inheritance signal:
 
 The accessory vs core difference trends toward significance (Mann-Whitney p=0.051).
 
+![Module Co-inheritance](figures/fig5_module_coinheritance.png)
+
+*(Notebook: 03_module_coinheritance.ipynb)*
+
 ### Co-fitness Strength Weakly Anti-correlates with Co-occurrence
 
 Stronger co-fitness scores weakly predict *lower* phi (Spearman rho=-0.109, p<1e-300 across 1.04M pairs). This likely reflects that the strongest co-fitness pairs are core genes with near-universal prevalence, leaving little variance for co-occurrence detection -- a prevalence ceiling effect.
+
+![Co-fitness Strength vs Phi](figures/fig4_cofit_strength.png)
+
+*(Notebook: 02_cooccurrence.ipynb)*
+
+### Phylogenetic Distance Stratification
+
+![Phylogenetic Control](figures/fig3_phylo_control.png)
+
+Cofit pair phi is higher among near genomes (mean=0.102) than medium genomes (mean=0.067), as expected from shared ancestry. Most species lack genomes in the "far" stratum (>0.05 branch distance), limiting the ability to fully disentangle functional coupling from phylogenetic signal.
+
+*(Notebook: 02_cooccurrence.ipynb)*
 
 ## Results
 
@@ -63,6 +87,8 @@ Stronger co-fitness scores weakly predict *lower* phi (Spearman rho=-0.109, p<1e
 | pseudo3_N2E3 | 40 | 5,513 | 507,828 | No |
 
 Ralstonia UW163 and GMI1000 have zero co-fitness data in the Fitness Browser despite being in the organism table, excluding them from the primary analysis.
+
+*(Notebook: 01_data_extraction.ipynb)*
 
 ### Pairwise Analysis
 
@@ -107,6 +133,10 @@ Among high-phi AND high-cofit pairs (top quartile of both), the most common func
 | Mobile elements | 2,716 |
 | DNA metabolism | 2,490 |
 
+![Functional Enrichment](figures/fig6_functional.png)
+
+*(Notebook: 04_cross_organism.ipynb)*
+
 ## Interpretation
 
 Pairwise co-fitness weakly but consistently predicts co-inheritance: 7 of 9 organisms show a positive delta phi, and the aggregate signal is highly significant (p=1.66e-29). However, the effect size is small (delta=+0.003 overall, +0.011 mean across organisms), indicating that lab-measured functional coupling explains only a tiny fraction of co-inheritance patterns.
@@ -138,18 +168,21 @@ The pairwise signal is attenuated by a **prevalence ceiling**: most FB genes map
 4. **Module co-transfer networks**: Build networks of which modules co-occur across species and test whether co-fitness predicts cross-module co-inheritance.
 5. **Expand to more diverse species**: Target additional organisms with >30% auxiliary genes and existing co-fitness data.
 
-## Visualizations
+## Data
 
-| Figure | Description |
-|--------|-------------|
-| `fig1_cofit_cooccurrence.png` | Phi vs prevalence curves for cofit vs random pairs, per-organism and aggregated |
-| `fig2_operon_control.png` | Adjacent vs distant cofit pairs; signal after excluding operons |
-| `fig3_phylo_control.png` | Cofit pair phi stratified by phylogenetic distance from reference strain |
-| `fig4_cofit_strength.png` | Co-fitness score vs phi coefficient scatter and binned means |
-| `fig5_module_coinheritance.png` | Module co-inheritance: phi vs null by module type, size effects |
-| `fig6_functional.png` | Functional categories enriched among high-phi high-cofit pairs |
+### Sources
 
-## Data Files
+| Dataset | Description | Source |
+|---------|-------------|--------|
+| Fitness Browser co-fitness | Top-20 co-fitness partners per gene | `cofit` table via Spark |
+| KBase pangenome | Genome x cluster presence matrices | `gene_genecluster_junction` + `gene` tables via Spark |
+| Phylogenetic distances | Pairwise genome distances | `phylogenetic_tree_distance_pairs` table via Spark |
+| FB-pangenome link table | Gene-to-cluster mapping (177K links) | `conservation_vs_fitness/data/fb_pangenome_link.tsv` |
+| ICA fitness modules | Co-regulated gene modules | `fitness_modules/data/modules/` |
+| Module conservation | Module conservation stats | `module_conservation/data/module_conservation.tsv` |
+| SEED annotations | Functional category assignments | `conservation_vs_fitness/data/seed_annotations.tsv` |
+
+### Generated Data
 
 | File | Description |
 |------|-------------|
@@ -162,3 +195,38 @@ The pairwise signal is attenuated by a **prevalence ceiling**: most FB genes map
 | `data/organism_summary.tsv` | Per-organism effect sizes and p-values |
 | `data/module_coinheritance.tsv` | Module-level co-inheritance scores |
 | `data/phylo_stratified.tsv` | Cofit pair phi stratified by phylogenetic distance |
+
+## References
+
+- Price MN et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509. PMID: 29769716
+- Parks DH et al. (2022). "GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy." *Nucleic Acids Res* 50:D199-D207. PMID: 34520557
+- Hall JPJ et al. (2021). "Gene-gene relationships in an *Escherichia coli* accessory genome are linked to function and mobility." *Microb Genom* 7:000650. PMID: 34499026
+- Whelan FJ et al. (2020). "Coinfinder: detecting significant associations and dissociations in pangenomes." *Microb Genom* 6:e000338. PMID: 32100706
+- Choudhury M et al. (2025). "Phylogroup-specific co-occurrence networks in *Pseudomonas aeruginosa*." PMID: 40304385
+
+## Supporting Evidence
+
+### Figures
+
+| Figure | Description |
+|--------|-------------|
+| `figures/fig1_cofit_cooccurrence.png` | Phi vs prevalence curves for cofit vs random pairs, per-organism and aggregated |
+| `figures/fig2_operon_control.png` | Adjacent vs distant cofit pairs; signal after excluding operons |
+| `figures/fig3_phylo_control.png` | Cofit pair phi stratified by phylogenetic distance from reference strain |
+| `figures/fig4_cofit_strength.png` | Co-fitness score vs phi coefficient scatter and binned means |
+| `figures/fig5_module_coinheritance.png` | Module co-inheritance: phi vs null by module type, size effects |
+| `figures/fig6_functional.png` | Functional categories enriched among high-phi high-cofit pairs |
+
+### Notebooks
+
+| Notebook | Purpose |
+|----------|---------|
+| `notebooks/01_data_extraction.ipynb` | Spark: genome x cluster matrices, cofit data |
+| `notebooks/02_cooccurrence.ipynb` | Local: phi computation + prevalence analysis |
+| `notebooks/03_module_coinheritance.ipynb` | Local: module-level co-inheritance |
+| `notebooks/04_cross_organism.ipynb` | Local: meta-analysis + figures |
+
+## Revision History
+
+- **v1** (2026-02): Initial report
+- **v2** (2026-02): Added inline figures, notebook provenance, Data section, References section, renamed Visualizations to Figures

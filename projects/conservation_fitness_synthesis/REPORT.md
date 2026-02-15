@@ -8,6 +8,8 @@
 
 There is a clear, quantitative gradient from essential genes (82% core) to always-neutral genes (66% core). More important genes are more conserved -- but the effect is modest. Even genes with no detectable fitness effect in any experiment are 66% core. The gradient spans 194,216 protein-coding genes across 43 diverse bacteria, from archaea (*Methanococcus*) to plant pathogens (*Ralstonia*) to gut commensals (*Bacteroides*).
 
+*(Notebook: 01_summary_figures.ipynb)*
+
 ### The Paradox
 
 A naive model predicts that core genes are "boring" housekeeping genes -- always needed, never costly. The data shows the opposite:
@@ -17,6 +19,8 @@ A naive model predicts that core genes are "boring" housekeeping genes -- always
 - **Core genes are MORE likely to be trade-offs** -- genes that are both important AND burdensome (depending on conditions) are 1.29x more likely core
 
 The conserved genome is the most *functionally active* part of the genome, not the most inert.
+
+*(Notebook: 01_summary_figures.ipynb)*
 
 ### The Resolution
 
@@ -28,6 +32,8 @@ A gene that shows positive fitness when deleted in rich media may be essential f
 
 We quantified this with a selection-signature matrix. The 28,017 genes that are simultaneously **costly in the lab AND conserved in the pangenome** are the strongest evidence for purifying selection in natural environments -- nature maintains them despite their metabolic cost. The 5,526 genes that are costly AND dispensable are candidates for ongoing gene loss.
 
+*(Notebook: 01_summary_figures.ipynb)*
+
 ### The Architecture
 
 ![Core Genome Active](figures/core_genome_active.png)
@@ -35,6 +41,8 @@ We quantified this with a selection-signature matrix. The 28,017 genes that are 
 The core genome is not just a collection of individual essential genes -- it contains coordinated functional units. ICA decomposition identified 1,116 co-regulated fitness modules across 32 organisms. These modules are enriched in core genes (86% core vs 81.5% baseline, OR=1.46, p=1.6e-87). 59% of modules are >90% core genes.
 
 The burden paradox is function-specific: motility and chemotaxis genes (+7.8pp core-burden excess), RNA metabolism (+12.9pp), and protein metabolism (+6.2pp) drive the effect. Cell wall genes reverse it -- non-core cell wall genes are MORE burdensome. This makes biological sense: flagella are energetically expensive but essential for chemotaxis in natural environments; ribosomal components are costly but required for rapid growth responses.
+
+*(Notebook: 01_summary_figures.ipynb)*
 
 ## What We Did Not Find
 
@@ -49,9 +57,25 @@ The burden paradox is function-specific: motility and chemotaxis genes (+7.8pp c
 3. **Cross-organism essential families** -- Are there universally essential gene families across all 43 organisms?
 4. **The 48 accessory modules** -- What co-regulated functions live exclusively in the flexible genome?
 
+## Data
+
+### Sources
+
+| Dataset | Description | Source |
+|---------|-------------|--------|
+| Fitness Browser | RB-TnSeq mutant fitness for ~194K genes across 43 bacteria | Price et al. (2018); upstream projects |
+| KBase pangenome | Gene cluster conservation across 27,690 species | Parks et al. (2022); upstream projects |
+| Upstream fitness stats | Per-gene fitness summary statistics | `conservation_vs_fitness/data/`, `fitness_effects_conservation/data/` |
+| ICA fitness modules | 1,116 co-regulated modules across 32 organisms | `fitness_modules/data/modules/` |
+
+### Generated Data
+
+This synthesis project does not generate new data files; all figures are produced from cached upstream data.
+
 ## References
 
-- Price MN et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509.
+- Price MN et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509. PMID: 29769716
+- Parks DH et al. (2022). "GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy." *Nucleic Acids Res* 50:D199-D207. PMID: 34520557
 - Rosconi F et al. (2022). "A bacterial pan-genome makes gene essentiality strain-dependent and evolvable." *Nat Microbiol* 7:1580-1592.
 - Hutchison CA 3rd et al. (2016). "Design and synthesis of a minimal bacterial genome." *Science* 351:aad6253.
 
@@ -67,3 +91,4 @@ The burden paradox is function-specific: motility and chemotaxis genes (+7.8pp c
 ## Revision History
 
 - **v1** (2026-02): Migrated from README.md
+- **v2** (2026-02): Added Data section, notebook provenance, Parks et al. reference

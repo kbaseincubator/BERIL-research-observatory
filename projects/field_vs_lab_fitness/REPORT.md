@@ -6,6 +6,8 @@
 
 The ENIGMA CORAL database (47 tables, `enigma_coral` on BERDL) was surveyed for complementary data. Key finding: **DvH is completely absent** from the database. The single TnSeq library is for FW300-N2E2 (*Pseudomonas*), DubSeq libraries cover *E. coli*, *P. putida*, and *B. thetaiotaomicron*. All 6,705 genomes and 15,015 genes are environmental isolates from Oak Ridge, not DvH. The database does contain 4,346 field samples with geochemistry data (uranium, metals) across 596 Oak Ridge locations, and 213,044 ASVs for community composition -- potentially useful for future analyses, but not for gene-level fitness analysis.
 
+*(Notebook: 01_enigma_discovery.ipynb)*
+
 ### Condition Classification (NB02)
 
 757 DvH experiments classified into 6 categories:
@@ -20,6 +22,10 @@ The ENIGMA CORAL database (47 tables, `enigma_coral` on BERDL) was surveyed for 
 | Lab-antibiotic | 43 | 5.7% | Antibiotics and respiratory inhibitors |
 
 Broad split: 337 field (44.5%) vs 420 lab (55.5%).
+
+![Heatmap of gene importance (fitness < -2) by condition class and conservation status](figures/fig_condition_importance_heatmap.png)
+
+*(Notebook: 02_condition_classification.ipynb)*
 
 ### Genes Important for Field Conditions Are Significantly More Conserved (NB03)
 
@@ -38,6 +44,10 @@ Of 2,725 non-essential genes with both fitness data and pangenome links, 76.3% a
 
 Field-stress (q=0.026), field-core (q=0.026), and lab-nutrient (q=0.037) genes are significantly enriched in the core genome after BH-FDR correction. Heavy-metals and lab-antibiotic genes trend below baseline but are not significant.
 
+![Core genome percentage for genes important under each condition class, with baseline](figures/fig_conservation_by_condition_class.png)
+
+*(Notebook: 03_fitness_conservation.ipynb)*
+
 ### Specificity Analysis: Lab-Specific Genes Are Surprisingly More Core
 
 | Specificity | Genes | Core % |
@@ -49,6 +59,10 @@ Field-stress (q=0.026), field-core (q=0.026), and lab-nutrient (q=0.037) genes a
 | Neutral (no strong effects) | 2,083 | 74.5% |
 
 Counter to H1, genes with fitness defects **only under lab conditions** are 96% core (n=50), slightly higher than field-specific genes at 88.5% (n=52). Both are well above the 74.5% baseline, suggesting that any fitness importance -- regardless of ecological context -- predicts conservation. The field-specific vs lab-specific comparison is not statistically significant (Fisher exact OR=0.32, p=0.27). The universal vs neutral comparison is significant (OR=1.35, p=0.033).
+
+![Scatter plot of mean field fitness vs mean lab fitness per gene, colored by core/auxiliary status](figures/fig_field_vs_lab_specificity.png)
+
+*(Notebook: 03_fitness_conservation.ipynb)*
 
 ### Fitness Effects Are Weak Predictors of Core Status
 
@@ -62,6 +76,10 @@ Logistic regression with 10-fold cross-validated AUC:
 | Full (+ gene length) | 0.645 | 0.068 |
 
 Gene length is a much stronger predictor of core status than fitness effects from either field or lab conditions. Neither fitness dimension alone is informative (CV-AUC near 0.5). Cross-validation confirms the in-sample estimates are not inflated.
+
+![ROC curves comparing field-only, lab-only, combined, and full models for predicting core genome status](figures/fig_roc_conservation_prediction.png)
+
+*(Notebook: 03_fitness_conservation.ipynb)*
 
 ### Threshold Sensitivity Analysis
 
@@ -78,6 +96,8 @@ The pattern is robust across fitness thresholds (-1 to -3):
 
 Field-stress consistently has the highest conservation across all thresholds. Heavy-metals is consistently the lowest. The lab-antibiotic dip at -2 is driven by a small sample (n=109 at -2 vs n=45 at -3).
 
+*(Notebook: 03_fitness_conservation.ipynb)*
+
 ### Module-Level Conservation Shows No Field-Lab Difference (NB04)
 
 Of 52 ICA fitness modules, the mean core fraction is 0.886 and the median is 1.000. No significant correlation exists between field condition activity and module conservation (Spearman rho=0.071, p=0.62). Using the mean core fraction (0.886) as the classification threshold, modules partition into:
@@ -90,6 +110,12 @@ Of 52 ICA fitness modules, the mean core fraction is 0.886 and the median is 1.0
 | Lab (low field + less conserved) | 9 | 0.516 |
 
 The 9 "lab" modules (mean core fraction 0.516) are notably less conserved, containing genes in the accessory genome. The 21 ecological modules contain 239 member genes, of which 52 are unannotated -- candidates for novel environmental adaptation functions.
+
+![Module core fraction vs field and lab condition activity (two-panel scatter)](figures/fig_module_conservation_vs_activity.png)
+
+![Module conservation and activity by module type classification (box + scatter)](figures/fig_ecological_vs_lab_modules.png)
+
+*(Notebook: 04_module_analysis.ipynb)*
 
 ## Interpretation
 
@@ -130,24 +156,44 @@ This is the first analysis to stratify RB-TnSeq fitness effects by ecological re
 - The field-specific and lab-specific gene sets are small (n=50-52), limiting statistical power for the key comparison
 - Field and lab fitness effects are correlated (r ~ 0.7 from the scatter plot), meaning most genes that are sick in one context are sick in the other
 
-## Visualizations
+## Data
 
-| Figure | Description |
-|--------|-------------|
-| `fig_conservation_by_condition_class.png` | Bar chart: core % for genes important (fitness < -2) in each of 6 condition classes, with all-genes baseline |
-| `fig_field_vs_lab_specificity.png` | Scatter: mean field fitness vs mean lab fitness per gene, colored by core/auxiliary status |
-| `fig_roc_conservation_prediction.png` | ROC curves comparing field-only, lab-only, combined, and full models for predicting core status |
-| `fig_condition_importance_heatmap.png` | Heatmap: % of genes with fitness < -2 by condition class and conservation status |
-| `fig_module_conservation_vs_activity.png` | Scatter (2 panels): module core fraction vs field/lab condition activity |
-| `fig_ecological_vs_lab_modules.png` | Box + scatter: module conservation and activity by module type classification |
+### Sources
 
-## Data Files
+| Collection | Description |
+|------------|-------------|
+| `kescience_fitnessbrowser` | RB-TnSeq fitness data for DvH (757 experiments, 2,741 genes) |
+| `kbase_ke_pangenome` | Pangenome gene clusters with core/auxiliary/singleton classification |
+
+### Generated Data
 
 | File | Description |
 |------|-------------|
 | `experiment_classification.csv` | 757 experiments with category and broad_category assignments |
 | `gene_fitness_conservation.csv` | 2,725 genes with per-category fitness stats, conservation, and specificity class |
 | `module_characterization.csv` | 52 ICA modules with conservation, field/lab activity, type, and top annotation |
+
+## Supporting Evidence
+
+### Notebooks
+
+| Notebook | Purpose |
+|----------|---------|
+| `01_enigma_discovery.ipynb` | Survey ENIGMA CORAL database for DvH data (Spark) |
+| `02_condition_classification.ipynb` | Classify 757 DvH experiments into 6 condition categories |
+| `03_fitness_conservation.ipynb` | Field vs lab fitness x pangenome conservation analysis, specificity, logistic regression, threshold sensitivity |
+| `04_module_analysis.ipynb` | Module-level conservation vs field/lab condition activity |
+
+### Figures
+
+| Figure | Description |
+|--------|-------------|
+| `fig_condition_importance_heatmap.png` | Heatmap: % of genes with fitness < -2 by condition class and conservation status |
+| `fig_conservation_by_condition_class.png` | Bar chart: core % for genes important (fitness < -2) in each of 6 condition classes, with all-genes baseline |
+| `fig_field_vs_lab_specificity.png` | Scatter: mean field fitness vs mean lab fitness per gene, colored by core/auxiliary status |
+| `fig_roc_conservation_prediction.png` | ROC curves comparing field-only, lab-only, combined, and full models for predicting core status |
+| `fig_module_conservation_vs_activity.png` | Scatter (2 panels): module core fraction vs field/lab condition activity |
+| `fig_ecological_vs_lab_modules.png` | Box + scatter: module conservation and activity by module type classification |
 
 ## Future Directions
 
@@ -156,3 +202,14 @@ This is the first analysis to stratify RB-TnSeq fitness effects by ecological re
 3. **ENIGMA community data integration**: Use the 213K ASVs and 4,346 field samples in ENIGMA CORAL to ask whether *Desulfovibrio* abundance at Oak Ridge sites correlates with the geochemistry conditions tested in the Fitness Browser
 4. **Accessory resistance gene characterization**: Deeper analysis of the antibiotic and heavy-metal resistance genes in the accessory genome -- are they on mobile elements? Recently acquired? Shared with co-occurring species at Oak Ridge?
 5. **Quantitative fitness scores**: Replace binary important/not-important with continuous fitness scores (e.g., mean or minimum fitness per condition class) as predictors in logistic regression
+
+## References
+
+- Price MN, Wetmore KM, Waters RJ, Calef M, Tber J, Engel A, Chol J, Arkin AP, Deutschbauer AM. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509. DOI: 10.1038/s41586-018-0124-0. PMID: 29769716
+- Trotter VV, Mirasol R, Yung M, Chandran A, Kuehl JV, Katsnelson B, De Leon KB, Wall JD, Deutschbauer AM. (2023). "Large-scale genetic characterization of the model sulfate-reducing bacterium, *Desulfovibrio vulgaris* Hildenborough." *Front Microbiol* 14:1095132. PMID: 37065130
+- Rosconi F, Rudmann E, Li J, Surujon D, Anthony J, Frank M, Jones DS, Rock C, Bhatt AS, Roditi I, van Opijnen T. (2022). "A bacterial pan-genome makes gene essentiality strain-dependent and evolvable." *Nat Microbiol* 7:1580-1592. DOI: 10.1038/s41564-022-01208-7. PMID: 36097170
+- Lee SA, Gallagher LA, Thongdee M, Stodghill BJ, Hachey SJ, Sanowar S, Cooley RB, Leung KP. (2015). "General and condition-specific essential functions of *Pseudomonas aeruginosa*." *Proc Natl Acad Sci USA* 112:5189-5194. PMID: 25848053
+- Akusobi C, Benoit BM, Cavallo K, Williams EP, Bhatt A, Rubin EJ. (2025). "Transposon-sequencing across multiple *Mycobacterium abscessus* isolates reveals significant functional genomic diversity among strains." *mBio* 16:e02488-24. PMID: 39745363
+- Shi W, Zhan T, Guo Y, Zhou A, He Z, Deng Y. (2021). "Genetic basis of chromate adaptation and the role of pre-existing genetic divergence during an experimental evolution study with *Desulfovibrio vulgaris* populations." *mSystems* 6:e00351-21. PMID: 34061571
+- Huang Z, Yu K, Fu S, Xiao Y, Wei Q, Wang D. (2022). "Genomic analysis reveals high intra-species diversity of *Shewanella algae*." *Microb Genom* 8:000786. PMID: 35143386
+- Borchert AJ, Ernst DC, Downs DM. (2019). "Modular fitness landscapes reveal parallels between independent biological systems." *Nat Ecol Evol* 3:1233-1242. DOI: 10.1038/s41559-019-0938-7

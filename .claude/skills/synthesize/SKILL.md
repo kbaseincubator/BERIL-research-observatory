@@ -98,13 +98,21 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 ## Key Findings
 
 ### {Finding 1 Title}
+
+![Description of figure](figures/relevant_figure.png)
+
 {Statistical result with specific numbers}
 
+*(Notebook: {notebook_name}.ipynb)*
+
 ### {Finding 2 Title} (if applicable)
+
 {Statistical result}
 
+*(Notebook: {notebook_name}.ipynb)*
+
 ## Results
-{Detailed results description with tables and statistics}
+{Detailed results with embedded figures and markdown tables}
 
 ## Interpretation
 {What the results mean biologically}
@@ -112,12 +120,26 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 ### Literature Context
 - {Finding} aligns with Author et al. (Year) who found {similar result} in {organism}
 - {Finding} contradicts Author et al. (Year) — possible explanation: {methodology difference}
-- Novel contribution: {what BERDL data adds that wasn't known before}
+
+### Novel Contribution
+{What BERDL data adds that wasn't known before}
 
 ### Limitations
 - {Data coverage limitations}
 - {Potential confounders}
 - {Methodological caveats}
+
+## Data
+
+### Sources
+| Collection | Tables Used | Purpose |
+|------------|-------------|---------|
+| `{collection_id}` | `{table1}`, `{table2}` | {what this data provides} |
+
+### Generated Data
+| File | Rows | Description |
+|------|------|-------------|
+| `data/{filename}.csv` | {row_count} | {what the data contains} |
 
 ## Supporting Evidence
 
@@ -131,19 +153,21 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 |--------|-------------|
 | `{filename}.png` | {what the figure shows} |
 
-### Data Files
-| File | Description |
-|------|-------------|
-| `{filename}.csv` | {what the data contains} |
-
 ## Future Directions
 1. {Suggested next step based on findings}
 2. {Follow-up analysis addressing limitations}
 3. {New questions raised by the results}
 
 ## References
-{Key citations — full list in references.md}
+- Author et al. (Year). "Title." *Journal*. PMID: {pmid}
 ```
+
+**Important guidelines for the template:**
+
+- **Inline figures**: Place `![description](figures/filename.png)` near the finding each figure supports. The UI rewrites these paths automatically for web rendering. Every figure in the project's `figures/` directory should appear inline at least once.
+- **Notebook provenance**: End each finding subsection with `*(Notebook: filename.ipynb)*` to trace results back to the analysis code.
+- **Data section**: The `## Data` section documents data lineage. `### Sources` lists BERDL collections and tables queried. `### Generated Data` lists output files with row counts.
+- **References**: Always include references, even for well-known data sources. At minimum cite the primary data sources (e.g., Price et al. 2018 for Fitness Browser, Parks et al. 2022 for GTDB r214).
 
 Also update `projects/{project_id}/README.md`:
 - Update `## Status` to reflect completion (e.g., "Complete — see [Report](REPORT.md) for findings")
