@@ -371,12 +371,8 @@
 **Approach**: Link essential genes across organisms via BBH orthologs, cluster into families, compare to pangenome conservation. Universally essential families should be universally core.
 
 ### [fitness_effects_conservation] The 5,526 "Costly + Dispensable" Genes
-**Status**: PROPOSED
-**Priority**: HIGH
-
-**Research Question**: Genes that are burdensome in the lab AND not conserved in the pangenome are candidates for ongoing gene loss. What are they? Are they recently acquired genes that haven't been lost yet, or genes on the way out?
-
-**Approach**: Characterize the 5,526 costly+dispensable genes: functional categories, organism distribution, whether they're on plasmids or mobile elements, comparison to the 28,017 costly+conserved genes.
+**Status**: COMPLETED
+**Results**: Costly+dispensable genes are mobile genetic element debris (7.45x keyword enrichment, 11.7x Phage/Transposon SEED enrichment). Poorly annotated (51% vs 75% SEED), taxonomically restricted (OG breadth 15 vs 31), shorter (615 vs 765 bp). psRCH2 is an outlier (21.5% costly+dispensable). See `projects/costly_dispensable_genes/`.
 
 ### [core_gene_tradeoffs] Environmental Context of Core Gene Trade-offs
 **Status**: PROPOSED
