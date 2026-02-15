@@ -3,6 +3,7 @@
 import gzip
 import pickle
 import re
+import subprocess
 from datetime import datetime
 from pathlib import Path
 
@@ -277,6 +278,28 @@ class RepositoryParser:
 
         return sorted(merged.values(), key=lambda c: c.name.lower())
 
+    def _get_git_dates(self, project_dir: Path) -> tuple[datetime | None, datetime | None]:
+        """Get first and last commit dates for a project directory using git log."""
+        try:
+            # Last commit date
+            result = subprocess.run(
+                ["git", "log", "-1", "--format=%aI", "--", str(project_dir)],
+                capture_output=True, text=True, cwd=self.repo_path,
+            )
+            updated = datetime.fromisoformat(result.stdout.strip()) if result.stdout.strip() else None
+
+            # First commit date
+            result = subprocess.run(
+                ["git", "log", "--reverse", "--format=%aI", "--", str(project_dir)],
+                capture_output=True, text=True, cwd=self.repo_path,
+            )
+            lines = result.stdout.strip().split("\n")
+            created = datetime.fromisoformat(lines[0]) if lines and lines[0] else None
+
+            return created, updated
+        except Exception:
+            return None, None
+
     def parse_projects(self) -> list[Project]:
         """Parse all projects from projects/ directory."""
         projects = []
@@ -378,15 +401,19 @@ class RepositoryParser:
         # Parse contributors
         contributors = self._parse_contributors(readme_content, project_dir.name)
 
-        # Get file modification times as proxy for dates
-        created_date = datetime.fromtimestamp(readme_path.stat().st_ctime)
-        # Use latest mtime across all project docs
-        mtimes = [readme_path.stat().st_mtime]
-        if has_research_plan:
-            mtimes.append(plan_path.stat().st_mtime)
-        if has_report:
-            mtimes.append(report_path.stat().st_mtime)
-        updated_date = datetime.fromtimestamp(max(mtimes))
+        # Get dates from git history (reliable in CI), fall back to filesystem
+        git_created, git_updated = self._get_git_dates(project_dir)
+        if git_created and git_updated:
+            created_date = git_created
+            updated_date = git_updated
+        else:
+            created_date = datetime.fromtimestamp(readme_path.stat().st_ctime)
+            mtimes = [readme_path.stat().st_mtime]
+            if has_research_plan:
+                mtimes.append(plan_path.stat().st_mtime)
+            if has_report:
+                mtimes.append(report_path.stat().st_mtime)
+            updated_date = datetime.fromtimestamp(max(mtimes))
 
         # Parse review
         review = self._parse_review(project_dir)

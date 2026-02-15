@@ -4,6 +4,7 @@ import hashlib
 import hmac
 import logging
 from contextlib import asynccontextmanager
+from datetime import datetime
 
 import nbformat
 from markupsafe import Markup
@@ -155,11 +156,27 @@ async def home(request: Request):
 
 
 @app.get("/projects", response_class=HTMLResponse)
-async def projects_list(request: Request):
-    """Projects list page."""
+async def projects_list(request: Request, sort: str = "recent"):
+    """Projects list page with sortable project grid."""
     repo_data = get_repo_data(request)
     context = get_base_context(request)
-    context["projects"] = repo_data.projects
+
+    projects = list(repo_data.projects)  # copy to avoid mutating cached data
+
+    if sort == "status":
+        status_order = {"Completed": 0, "In Progress": 1, "Proposed": 2}
+        projects.sort(
+            key=lambda p: (
+                status_order.get(p.status.value, 9),
+                -(p.updated_date or datetime.min).timestamp(),
+            )
+        )
+    elif sort == "alpha":
+        projects.sort(key=lambda p: p.title.lower())
+    # else: "recent" — already sorted by updated_date desc from dataloader
+
+    context["projects"] = projects
+    context["current_sort"] = sort
     return templates.TemplateResponse("projects/list.html", context)
 
 
