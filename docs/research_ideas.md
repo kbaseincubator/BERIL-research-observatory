@@ -409,6 +409,10 @@
 
 ## Completed Ideas
 
+### [field_vs_lab_fitness] Field vs Lab Gene Importance in DvH
+**Status**: COMPLETED
+**Results**: Field-stress genes are significantly enriched in core genome (83.6% core, OR=1.58, FDR q=0.026) vs 76.3% baseline. Antibiotic and heavy-metal resistance genes are least conserved (73%, 71%). Fitness magnitude matters more than condition type for predicting conservation (CV-AUC 0.52-0.55). Module analysis: 21 ecological modules (0.98 core) vs 9 lab modules (0.52 core). ENIGMA CORAL contains no DvH data. See `projects/field_vs_lab_fitness/`.
+
 ### [conservation_vs_fitness] Essential Gene Conservation Analysis
 **Status**: COMPLETED
 **Results**: Essential genes are 86.1% core vs 81.2% for non-essential (OR=1.56, 18/33 significant after BH-FDR). Essential-core genes are 41.9% enzymes; essential-unmapped are 44.7% hypothetical. See `projects/conservation_vs_fitness/`.
