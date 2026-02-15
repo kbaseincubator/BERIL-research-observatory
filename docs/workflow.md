@@ -25,9 +25,9 @@ You can enter the pipeline at any stage. For example, if you already have a rese
 | Skill | Purpose | Key Inputs | Key Outputs |
 |-------|---------|------------|-------------|
 | `/hypothesis` | Generate testable research hypotheses from BERDL data | Research interest, target organism or pathway | 2-3 hypotheses with H0/H1, example SQL, relevant tables |
-| `/research-plan` | Refine a question into a structured research plan | Hypothesis, target data | `research_plan.md`, project directory skeleton, `references.md` |
-| `/notebook` | Generate Jupyter notebooks from a research plan | Project ID, `research_plan.md` | `.ipynb` files in `notebooks/` with PySpark boilerplate |
-| `/synthesize` | Interpret results and draft findings | Project ID, notebook outputs (CSV, figures) | Updated `README.md` with findings, literature context, limitations |
+| `/research-plan` | Refine a question into a structured research plan | Hypothesis, target data | `RESEARCH_PLAN.md`, project directory skeleton, `references.md` |
+| `/notebook` | Generate Jupyter notebooks from a research plan | Project ID, `RESEARCH_PLAN.md` | `.ipynb` files in `notebooks/` with PySpark boilerplate |
+| `/synthesize` | Interpret results and draft findings | Project ID, notebook outputs (CSV, figures) | `REPORT.md` with findings, literature context, limitations |
 | `/submit` | Validate documentation and request automated review | Project ID, complete project directory | Pre-submission checklist, `REVIEW.md` |
 | `/literature-review` | Search PubMed, Europe PMC, CORE, OpenAlex | Research topic or question | Literature summary, `references.md` |
 | `/berdl` | Query BERDL databases via REST API | SQL query or natural-language question | Query results, schema info, data samples |
@@ -72,9 +72,9 @@ Turn a hypothesis into a structured plan. This skill runs a literature review, c
 
 | File | Description |
 |------|-------------|
-| `projects/{id}/research_plan.md` | Full plan: question, lit context, query strategy, analysis plan |
+| `projects/{id}/RESEARCH_PLAN.md` | Full plan: question, lit context, query strategy, analysis plan |
 | `projects/{id}/references.md` | Citations from the literature review |
-| `projects/{id}/README.md` | Skeleton README for the project |
+| `projects/{id}/README.md` | Slim README: question, status, overview, reproduction, authors |
 | `projects/{id}/notebooks/` | Empty directory for notebooks |
 | `projects/{id}/data/` | Empty directory for output data |
 | `projects/{id}/figures/` | Empty directory for visualizations |
@@ -93,7 +93,7 @@ Project ID: pangenome_pathway_diversity
 Convert the research plan into ready-to-run Jupyter notebooks with PySpark boilerplate, SQL queries, and visualization scaffolding.
 
 **What it does**:
-- Reads `research_plan.md` and [pitfalls.md](pitfalls.md) for query safety rules
+- Reads `RESEARCH_PLAN.md` and [pitfalls.md](pitfalls.md) for query safety rules
 - Generates notebooks with proper Spark session setup and auth
 - Includes NULL checks, row counts, and data-quality validation cells
 - Adds visualization cells using matplotlib/seaborn
@@ -142,7 +142,7 @@ Once notebooks have been run and outputs are saved locally, this skill reads the
 
 | File | Description |
 |------|-------------|
-| `README.md` (updated) | Key Findings, Interpretation, Literature Context, Limitations, Future Directions |
+| `REPORT.md` | Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References |
 | `references.md` (updated) | New citations found during synthesis |
 
 **Example prompt**:
@@ -198,9 +198,9 @@ Your project directory now looks like this:
 
 ```
 projects/core_size_openness/
-  research_plan.md
-  references.md
   README.md
+  RESEARCH_PLAN.md
+  references.md
   notebooks/
   data/
   figures/
@@ -241,7 +241,7 @@ projects/core_size_openness/
 /synthesize core_size_openness
 ```
 
-The README is updated with findings, interpretation, and literature context.
+The REPORT.md is created with findings, interpretation, and literature context. The README.md status is updated.
 
 ### 6. Submit for review
 
@@ -253,10 +253,11 @@ The final project directory:
 
 ```
 projects/core_size_openness/
-  research_plan.md
-  references.md
-  README.md          <-- now includes Key Findings
+  README.md          <-- project overview, status updated
+  RESEARCH_PLAN.md
+  REPORT.md          <-- findings, interpretation, evidence
   REVIEW.md          <-- automated review
+  references.md
   notebooks/
     01_data_exploration.ipynb
     02_analysis.ipynb

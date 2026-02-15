@@ -298,7 +298,15 @@ class RepositoryParser:
         )
 
     def _parse_project_dir(self, project_dir: Path) -> Project | None:
-        """Parse single project directory."""
+        """Parse single project directory.
+
+        Supports the three-file structure:
+        - README.md: project overview (title, research question, status, authors)
+        - RESEARCH_PLAN.md: hypothesis, approach, data sources, revision history
+        - REPORT.md: key findings, results, interpretation, future directions
+
+        Falls back to extracting all sections from README.md for legacy projects.
+        """
         readme_path = project_dir / "README.md"
         if not readme_path.exists():
             return None
@@ -309,16 +317,57 @@ class RepositoryParser:
         title_match = re.search(r"^#\s+(.+)$", readme_content, re.MULTILINE)
         title = title_match.group(1) if title_match else project_dir.name
 
-        # Extract sections
+        # Always extract research question and overview from README
         research_question = self._extract_section(readme_content, "Research Question")
-        hypothesis = self._extract_section(readme_content, "Hypothesis")
-        approach = self._extract_section(readme_content, "Approach")
-        findings = self._extract_section(readme_content, "Key Findings")
+        overview = self._extract_section(readme_content, "Overview")
 
-        # Determine status from findings
-        status = ProjectStatus.IN_PROGRESS
-        if findings and "to be filled" not in findings.lower():
+        # Read RESEARCH_PLAN.md if it exists (preferred source for hypothesis/approach)
+        plan_path = project_dir / "RESEARCH_PLAN.md"
+        has_research_plan = plan_path.exists()
+        research_plan_raw = None
+        revision_history = None
+
+        if has_research_plan:
+            research_plan_raw = plan_path.read_text()
+            hypothesis = self._extract_section(research_plan_raw, "Hypothesis")
+            approach = self._extract_section(research_plan_raw, "Approach")
+            revision_history = self._extract_section(research_plan_raw, "Revision History")
+        else:
+            # Fallback: extract from README (legacy projects)
+            hypothesis = self._extract_section(readme_content, "Hypothesis")
+            approach = self._extract_section(readme_content, "Approach")
+
+        # Read REPORT.md if it exists (preferred source for findings)
+        report_path = project_dir / "REPORT.md"
+        has_report = report_path.exists()
+        report_raw = None
+        results = None
+        interpretation = None
+        limitations = None
+        future_directions = None
+
+        if has_report:
+            report_raw = report_path.read_text()
+            findings = self._extract_section(report_raw, "Key Findings")
+            results = self._extract_section(report_raw, "Results")
+            interpretation = self._extract_section(report_raw, "Interpretation")
+            limitations = self._extract_section(report_raw, "Limitations")
+            future_directions = self._extract_section(report_raw, "Future Directions")
+        else:
+            # Fallback: extract from README (legacy projects)
+            findings = self._extract_section(readme_content, "Key Findings")
+
+        # Determine status
+        if findings and "to be filled" not in findings.lower() and "tbd" not in findings.lower():
             status = ProjectStatus.COMPLETED
+        elif has_research_plan:
+            status = ProjectStatus.IN_PROGRESS
+        else:
+            # Check if README has substantial content beyond a skeleton
+            if research_question and approach:
+                status = ProjectStatus.IN_PROGRESS
+            else:
+                status = ProjectStatus.PROPOSED
 
         # Parse notebooks
         notebooks = self._parse_notebooks(project_dir)
@@ -331,13 +380,24 @@ class RepositoryParser:
 
         # Get file modification times as proxy for dates
         created_date = datetime.fromtimestamp(readme_path.stat().st_ctime)
-        updated_date = datetime.fromtimestamp(readme_path.stat().st_mtime)
+        # Use latest mtime across all project docs
+        mtimes = [readme_path.stat().st_mtime]
+        if has_research_plan:
+            mtimes.append(plan_path.stat().st_mtime)
+        if has_report:
+            mtimes.append(report_path.stat().st_mtime)
+        updated_date = datetime.fromtimestamp(max(mtimes))
 
         # Parse review
         review = self._parse_review(project_dir)
 
-        # Extract collection references from README
-        related_collections = self._extract_collection_refs(readme_content)
+        # Extract collection references from all available text
+        all_text = readme_content
+        if research_plan_raw:
+            all_text += "\n" + research_plan_raw
+        if report_raw:
+            all_text += "\n" + report_raw
+        related_collections = self._extract_collection_refs(all_text)
 
         return Project(
             id=project_dir.name,
@@ -356,6 +416,16 @@ class RepositoryParser:
             related_collections=related_collections,
             raw_readme=readme_content,
             review=review,
+            has_research_plan=has_research_plan,
+            has_report=has_report,
+            research_plan_raw=research_plan_raw,
+            report_raw=report_raw,
+            overview=overview,
+            results=results,
+            interpretation=interpretation,
+            limitations=limitations,
+            future_directions=future_directions,
+            revision_history=revision_history,
         )
 
     def _extract_collection_refs(self, readme_content: str) -> list[str]:

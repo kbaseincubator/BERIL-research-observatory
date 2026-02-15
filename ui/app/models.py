@@ -183,6 +183,17 @@ class Project:
     related_collections: list[str] = field(default_factory=list)
     raw_readme: str = ""
     review: Review | None = None
+    # Three-file structure fields
+    has_research_plan: bool = False
+    has_report: bool = False
+    research_plan_raw: str | None = None
+    report_raw: str | None = None
+    overview: str | None = None
+    results: str | None = None
+    interpretation: str | None = None
+    limitations: str | None = None
+    future_directions: str | None = None
+    revision_history: str | None = None
 
     @property
     def review_status(self) -> ReviewStatus:

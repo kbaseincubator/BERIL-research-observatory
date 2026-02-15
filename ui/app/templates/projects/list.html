@@ -32,9 +32,15 @@
             {% endif %}
         </div>
 
-        <!-- Project ID Badge -->
+        <!-- Project ID and file presence badges -->
         <div style="margin-bottom: var(--space-4);">
             <span class="badge badge-project">{{ project.id | replace('_', ' ') | title }}</span>
+            {% if project.has_research_plan %}
+            <span class="badge badge-in-progress" style="margin-left: var(--space-1); font-size: 0.65rem;">Plan</span>
+            {% endif %}
+            {% if project.has_report %}
+            <span class="badge badge-completed" style="margin-left: var(--space-1); font-size: 0.65rem;">Report</span>
+            {% endif %}
         </div>
 
         <div class="card-content">
