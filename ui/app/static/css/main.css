@@ -329,6 +329,47 @@ a:hover {
 }
 
 /* ============================================
+   Sort Controls
+   ============================================ */
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.sort-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-right: var(--space-1);
+}
+
+.sort-option {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.sort-option:hover {
+  color: var(--text-primary);
+  background: var(--surface-overlay);
+  border-color: var(--surface-border);
+}
+
+.sort-option.active {
+  color: var(--accent-primary);
+  background: var(--accent-primary-bg);
+  border-color: var(--accent-primary-muted);
+}
+
+/* ============================================
    Cards
    ============================================ */
 
