@@ -190,6 +190,26 @@ The core-burden paradox is driven by specific functional categories: RNA Metabol
 
 Genes that are both burdensome in the lab AND core in the pangenome represent the strongest evidence for purifying selection in natural environments. They're costly to maintain, yet every strain keeps them — nature requires them in conditions not captured by the lab. By contrast, 5,526 genes are costly + dispensable (candidates for ongoing gene loss), and 21,886 are neutral + dispensable (niche-specific).
 
+### [essential_genome] 15 gene families are essential in ALL 48 bacteria
+
+Cross-organism essential gene analysis across 48 diverse bacteria (221,005 genes, 17,222 ortholog families) reveals 15 families that are essential in every organism: ribosomal proteins (rpsC, rplW, rplK, rplB, rplA, rplF, rps11, rpsJ, rpsI, rpsM), chaperonin (groEL), CTP synthase (pyrG), translation elongation factor G (fusA), valyl-tRNA synthetase (valS), and geranyltranstransferase (SelGGPS). These represent the irreducible essential core of bacterial life.
+
+### [essential_genome] Only 5% of ortholog families are universally essential
+
+Of 17,222 ortholog families across 48 bacteria, only 859 (5.0%) are universally essential — essential in every organism where the family has members. 4,799 families (27.9%) are variably essential (essential in some organisms, non-essential in others), and 11,564 (67.1%) are never essential. Variable essentiality (the majority of essential families) demonstrates that genomic context profoundly shapes which genes an organism requires for viability.
+
+### [essential_genome] Orphan essential genes are 58.7% hypothetical — top functional discovery targets
+
+7,084 essential genes have no orthologs in any other FB organism. Of these, 58.7% are annotated as hypothetical proteins — the least characterized yet most functionally important genes in each organism. By contrast, universally essential genes are only 8.2% hypothetical. The orphan essentials are prime candidates for novel biology.
+
+### [essential_genome] Universally essential families are overwhelmingly core in the pangenome
+
+Universally essential genes are 91.7% core vs 80.7% for non-essential genes. 71% of universally essential families are 100% core across all genomes in their species. Orphan essentials (no orthologs) are only 49.5% core — they are strain-specific essential functions that haven't been conserved across species.
+
+### [essential_genome] Module transfer predicts function for 1,382 hypothetical essential genes
+
+By finding non-essential orthologs that participate in ICA fitness modules, we generated 1,382 function predictions for hypothetical essential genes across 48 organisms. All predictions are backed by cross-organism module family conservation. This demonstrates that module context from non-essential orthologs can illuminate the function of essential genes that are invisible to fitness-based methods.
+
 ---
 
 ## Template
