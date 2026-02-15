@@ -447,12 +447,27 @@ class RepositoryParser:
             has_report=has_report,
             research_plan_raw=research_plan_raw,
             report_raw=report_raw,
-            overview=overview,
-            results=results,
-            interpretation=interpretation,
-            limitations=limitations,
-            future_directions=future_directions,
+            overview=self._rewrite_md_links(overview, project_dir.name),
+            results=self._rewrite_md_links(results, project_dir.name),
+            interpretation=self._rewrite_md_links(interpretation, project_dir.name),
+            limitations=self._rewrite_md_links(limitations, project_dir.name),
+            future_directions=self._rewrite_md_links(future_directions, project_dir.name),
             revision_history=revision_history,
+        )
+
+    @staticmethod
+    def _rewrite_md_links(content: str | None, project_id: str) -> str | None:
+        """Rewrite bare .md links to be project-relative.
+
+        Converts e.g. [Report](REPORT.md) to [Report](/projects/{id}/REPORT.md)
+        so the browser resolves them correctly regardless of trailing slash.
+        """
+        if not content:
+            return content
+        return re.sub(
+            r"\[([^\]]+)\]\(([A-Za-z0-9_.-]+\.md)\)",
+            rf"[\1](/projects/{project_id}/\2)",
+            content,
         )
 
     def _extract_collection_refs(self, readme_content: str) -> list[str]:
@@ -472,27 +487,42 @@ class RepositoryParser:
         contributors = []
         for line in section.split("\n"):
             line = line.strip()
-            # Match lines like: - **Name** (Affiliation) | ORCID: 0000-... | role text
-            match = re.match(r"^-\s+\*\*(.+?)\*\*(?:\s*\(([^)]+)\))?(.*)", line)
+            # Match lines starting with - **Name**
+            match = re.match(r"^-\s+\*\*(.+?)\*\*\s*(.*)", line)
             if not match:
                 continue
 
             name = match.group(1).strip()
-            affiliation = match.group(2).strip() if match.group(2) else None
-            rest = match.group(3).strip()
+            rest = match.group(2).strip()
 
             orcid = None
+            affiliation = None
             roles = []
 
-            if rest:
-                # Split by pipe and parse segments
-                segments = [s.strip() for s in rest.split("|") if s.strip()]
-                for segment in segments:
-                    orcid_match = re.match(r"ORCID:\s*([\d-]+)", segment)
-                    if orcid_match:
-                        orcid = orcid_match.group(1)
-                    else:
-                        roles.append(segment)
+            # Format 1: (ORCID: [id](url)) -- Affiliation
+            orcid_paren = re.match(
+                r"\(ORCID:\s*\[?([\d-]+)\]?(?:\([^)]*\))?\)\s*[-—]+\s*(.*)",
+                rest,
+            )
+            if orcid_paren:
+                orcid = orcid_paren.group(1)
+                affiliation = orcid_paren.group(2).strip() or None
+            else:
+                # Format 2: (Affiliation) | ORCID: 0000-... | role
+                paren_match = re.match(r"\(([^)]+)\)\s*(.*)", rest)
+                if paren_match:
+                    affiliation = paren_match.group(1).strip()
+                    rest = paren_match.group(2).strip()
+
+                if rest:
+                    # Split by pipe and parse segments
+                    segments = [s.strip() for s in rest.split("|") if s.strip()]
+                    for segment in segments:
+                        orcid_match = re.match(r"ORCID:\s*([\d-]+)", segment)
+                        if orcid_match:
+                            orcid = orcid_match.group(1)
+                        else:
+                            roles.append(segment)
 
             contributors.append(
                 Contributor(
@@ -567,9 +597,8 @@ class RepositoryParser:
         )
 
     def _extract_section(self, content: str, section_name: str) -> str | None:
-        """Extract content between a section header and the next header."""
-        # Match ## Section Name or ### Section Name
-        pattern = rf"^##?\s*{re.escape(section_name)}\s*$\n(.*?)(?=^##|\Z)"
+        """Extract content between a ## section header and the next ## header."""
+        pattern = rf"^## {re.escape(section_name)}\s*$\n(.*?)(?=^## (?!#)|\Z)"
         match = re.search(pattern, content, re.MULTILINE | re.DOTALL)
         if match:
             return match.group(1).strip()
@@ -653,19 +682,29 @@ class RepositoryParser:
 
         content = discoveries_path.read_text()
 
+        # Extract date headers and their positions first
+        date_positions = []
+        for m in re.finditer(r"^## (\d{4}-\d{2})\s*$", content, re.MULTILINE):
+            date_positions.append(
+                (m.start(), datetime.strptime(m.group(1), "%Y-%m"))
+            )
+
         # Split by ### headers (discovery entries)
         sections = re.split(r"\n###\s+", content)
 
+        # Track cumulative character position to map sections to dates
         current_date = None
+        pos = 0
 
         for section in sections[1:]:  # Skip intro
-            if not section.strip():
-                continue
+            # Advance past the split delimiter to find our position
+            pos = content.find(section, pos)
 
-            # Check if this is a date header (## 2026-01)
-            date_match = re.match(r"^##\s+(\d{4}-\d{2})", section)
-            if date_match:
-                current_date = datetime.strptime(date_match.group(1), "%Y-%m")
+            # Update current_date from any date headers before this position
+            while date_positions and date_positions[0][0] < pos:
+                current_date = date_positions.pop(0)[1]
+
+            if not section.strip():
                 continue
 
             lines = section.split("\n")
@@ -676,7 +715,11 @@ class RepositoryParser:
             if match:
                 project_tag = match.group(1)
                 title = match.group(2)
-                content_text = "\n".join(lines[1:]).strip()
+                # Strip any trailing ## date headers from the content
+                content_text = "\n".join(lines[1:])
+                content_text = re.sub(
+                    r"\n## \d{4}-\d{2}\s*$", "", content_text
+                ).strip()
 
                 # Skip template section
                 if (
