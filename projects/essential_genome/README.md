@@ -85,7 +85,7 @@ This project requires cached data from two upstream projects:
 
 ## Key Findings
 
-### Essential Gene Landscape (NB01)
+### Essential Gene Landscape (extract_data.py)
 - **221,005 genes** across 48 organisms, **41,059 essential** (18.6%)
 - Essentiality rate ranges from 12.2% (*Pedo557*) to 29.7% (*Magneto*)
 - **2,838,750 BBH pairs** yield **17,222 ortholog groups** spanning all 48 organisms
