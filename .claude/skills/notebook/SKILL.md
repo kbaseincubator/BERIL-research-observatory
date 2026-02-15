@@ -21,7 +21,7 @@ If no `<project_id>` argument is provided, detect from the current working direc
 
 ### Step 1: Read Research Plan
 
-1. Look for `projects/{project_id}/research_plan.md`
+1. Read `RESEARCH_PLAN.md` (or `research_plan.md` for legacy projects) in `projects/{project_id}/`
 2. Extract: tables needed, key queries, analysis steps, expected outputs, performance tier
 3. If no research plan exists, ask the user for the analysis goal and generate notebooks from that description
 
@@ -131,18 +131,22 @@ Each cell follows this structure:
 }
 ```
 
-### Step 5: Update README
+### Step 5: Update REPORT.md
 
-If `projects/{project_id}/README.md` exists, update the Notebooks table:
+If `projects/{project_id}/REPORT.md` exists, update the Supporting Evidence > Notebooks table:
 
 ```markdown
-## Notebooks
+## Supporting Evidence
+
+### Notebooks
 | Notebook | Purpose |
 |----------|---------|
 | `01_data_exploration.ipynb` | {purpose} |
 | `02_analysis.ipynb` | {purpose} |
 | `03_visualization.ipynb` | {purpose} |
 ```
+
+If `REPORT.md` does not yet exist, create it with a stub `## Supporting Evidence` section containing the notebooks table.
 
 ### Step 6: Suggest Next Steps
 
@@ -190,8 +194,8 @@ df.write.mode('overwrite').parquet('../data/large_results.parquet')
 
 ## Integration
 
-- **Reads from**: `research_plan.md`, `query-patterns.md`, `docs/pitfalls.md`
-- **Produces**: `.ipynb` files in `notebooks/`, updated README.md
+- **Reads from**: `RESEARCH_PLAN.md` (or `research_plan.md` for legacy projects), `query-patterns.md`, `docs/pitfalls.md`
+- **Produces**: `.ipynb` files in `notebooks/`, updated `REPORT.md` (Supporting Evidence > Notebooks table)
 - **User then**: Uploads to JupyterHub, runs notebooks, downloads outputs
 - **Next step**: `/synthesize` to interpret results
 

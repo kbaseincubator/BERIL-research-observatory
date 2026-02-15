@@ -1,13 +1,13 @@
 ---
 name: synthesize
-description: Read analysis outputs, compare against literature, and draft findings for a project README. Use when notebooks have been run and the user wants to interpret results and write up findings.
+description: Read analysis outputs, compare against literature, and draft findings for a project REPORT.md. Use when notebooks have been run and the user wants to interpret results and write up findings.
 allowed-tools: Bash, Read, Write, Edit, WebSearch, AskUserQuestion
 user-invocable: true
 ---
 
 # Synthesis Skill
 
-After notebooks have been run, read the outputs, compare against literature, and draft the findings/interpretation sections of the project README.
+After notebooks have been run, read the outputs, compare against literature, and draft the findings/interpretation sections in the project's `REPORT.md`. Also update `## Status` in `README.md` to reflect completion.
 
 ## Usage
 
@@ -24,11 +24,11 @@ If no `<project_id>` argument is provided, detect from the current working direc
 #### Step 1: Gather Project Context
 
 Read these project files:
-1. `projects/{project_id}/research_plan.md` — the hypothesis, expected outcomes, analysis plan
-2. `projects/{project_id}/README.md` — current state of the project
+1. `projects/{project_id}/RESEARCH_PLAN.md` — the hypothesis, expected outcomes, analysis plan (or `research_plan.md` for legacy projects)
+2. `projects/{project_id}/README.md` — current state of the project (preserve Research Question, Authors)
 3. `projects/{project_id}/references.md` — existing literature references
 
-If `research_plan.md` doesn't exist, read the README for research question and hypothesis context.
+If `RESEARCH_PLAN.md` doesn't exist, check for `research_plan.md` (legacy). If neither exists, read the README for research question and hypothesis context.
 
 #### Step 2: Read Analysis Outputs
 
@@ -90,9 +90,11 @@ For each key finding, assess:
 
 #### Step 7: Produce Synthesis
 
-Update `projects/{project_id}/README.md` with the following sections. Preserve existing sections (Research Question, Hypothesis, Approach, Data Sources, Authors) and fill in the findings sections:
+Create or update `projects/{project_id}/REPORT.md` with the following sections:
 
 ```markdown
+# Report: {Title}
+
 ## Key Findings
 
 ### {Finding 1 Title}
@@ -100,6 +102,9 @@ Update `projects/{project_id}/README.md` with the following sections. Preserve e
 
 ### {Finding 2 Title} (if applicable)
 {Statistical result}
+
+## Results
+{Detailed results description with tables and statistics}
 
 ## Interpretation
 {What the results mean biologically}
@@ -114,25 +119,35 @@ Update `projects/{project_id}/README.md` with the following sections. Preserve e
 - {Potential confounders}
 - {Methodological caveats}
 
-## Future Directions
-1. {Suggested next step based on findings}
-2. {Follow-up analysis addressing limitations}
-3. {New questions raised by the results}
-```
+## Supporting Evidence
 
-Also update these tables if data is available:
+### Notebooks
+| Notebook | Purpose |
+|----------|---------|
+| `{filename}.ipynb` | {what the notebook does} |
 
-```markdown
-## Visualizations
+### Figures
 | Figure | Description |
 |--------|-------------|
 | `{filename}.png` | {what the figure shows} |
 
-## Data Files
+### Data Files
 | File | Description |
 |------|-------------|
 | `{filename}.csv` | {what the data contains} |
+
+## Future Directions
+1. {Suggested next step based on findings}
+2. {Follow-up analysis addressing limitations}
+3. {New questions raised by the results}
+
+## References
+{Key citations — full list in references.md}
 ```
+
+Also update `projects/{project_id}/README.md`:
+- Update `## Status` to reflect completion (e.g., "Complete — see [Report](REPORT.md) for findings")
+- Preserve existing `## Research Question` and `## Authors` sections
 
 #### Step 8: Update References
 
@@ -148,17 +163,17 @@ If unexpected data patterns were found during interpretation (missing data, anom
 
 After completing the synthesis, tell the user:
 
-> "Findings drafted in `projects/{project_id}/README.md`. Next steps:
+> "Findings drafted in `projects/{project_id}/REPORT.md`. Next steps:
 > 1. Review the Key Findings and Interpretation sections
 > 2. Use `/submit` to run pre-submission checks and get an automated review
 > 3. Address any review feedback and re-submit"
 
 ## Integration
 
-- **Reads from**: `data/*.csv`, `figures/`, `notebooks/*.ipynb`, `research_plan.md`, `references.md`
+- **Reads from**: `data/*.csv`, `figures/`, `notebooks/*.ipynb`, `RESEARCH_PLAN.md`, `references.md`
 - **Calls**: `/literature-review` (for literature comparison)
-- **Produces**: Updated `README.md` (Key Findings, Interpretation, Literature Context, Limitations, Future Directions)
-- **Consumed by**: `/submit` (reviewer assesses the findings)
+- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); updated `README.md` (Status)
+- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md)
 
 ## Pitfall Detection
 
