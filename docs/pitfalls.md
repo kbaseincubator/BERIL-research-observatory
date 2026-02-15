@@ -19,7 +19,7 @@ The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can experience issues:
 | 503 "cannot schedule new futures after shutdown" | Spark executor restarting | Wait 30s, retry |
 | Empty response | Query failed silently | Check query syntax |
 
-**Rule of thumb**: Use the REST API for simple queries (<1M rows). Use direct Spark SQL on JupyterHub for anything complex.
+**Rule of thumb**: Prefer direct Spark SQL (`get_spark_session()`) over the REST API whenever possible. The REST API `/count` endpoint is particularly unreliable -- it frequently returns errors or times out for tables that Spark queries handle instantly. The REST API is acceptable for small one-off queries, but looping over many tables (e.g., getting row counts for all sdt_* tables) should use Spark directly.
 
 ### Schema Introspection Timeouts
 
@@ -366,6 +366,24 @@ Use direct `spark.sql()` on the cluster when:
 
 **Performance tip**: Always use exact equality (`WHERE id = 'value'`) rather than `LIKE` patterns for best performance.
 
+### [cofitness_coinheritance] Billion-row table joins require BROADCAST hints
+
+**Problem**: Joining `gene_genecluster_junction` (~1B rows) with `gene` (~1B rows) to build genome × cluster presence matrices takes 3-5 minutes per species, even on Spark. Neither table is partitioned by `gene_cluster_id` or `genome_id`, so every query requires a full table scan.
+
+**Profiling results** (Smeli, 241 genomes, 6K target clusters):
+- Without BROADCAST: ~300s per organism
+- With `/*+ BROADCAST(tc), BROADCAST(tg) */` on filter tables: ~274s (8% improvement)
+- Two-stage approach (filter junction first, then lookup genome_ids): ~310s (no improvement)
+- `.toPandas()` on 1-2M result rows: <2s (not the bottleneck)
+
+**Solutions**:
+1. **Use BROADCAST hints**: Register target cluster IDs and genome IDs as temp views, then use `/*+ BROADCAST(tc), BROADCAST(tg) */` in the query
+2. **Cache aggressively**: Once extracted, save matrices as TSV and skip on re-run
+3. **Set long timeouts**: `ExecutePreprocessor.timeout=3600` for `nbconvert --execute`
+4. **Budget ~5 min per organism**: 11 organisms ≈ 55 min total for matrix extraction
+
+**Root cause**: The `gene` and `gene_genecluster_junction` tables are stored as unpartitioned parquet. Adding partitioning by `genome_id` (for `gene`) or `gene_cluster_id` (for junction) would dramatically reduce scan time, but this requires rebuilding the lakehouse tables.
+
 ---
 
 ## Fitness Browser (`kescience_fitnessbrowser`) Pitfalls
@@ -501,6 +519,29 @@ not_flagged = df[~df['flag']]  # Correct boolean negation
 ```
 
 This caused an orphan essential gene count of 41,059 (total essentials) instead of 7,084 (actual orphans) — a silently incorrect result with no error message.
+
+---
+
+## Skill / Workflow Pitfalls
+
+### [cofitness_coinheritance] Don't create data/results/ subdirectory
+
+**Problem**: Computed results (phi coefficients, summary tables) were placed in `data/results/` instead of flat in `data/`. The BERIL pattern (per `PROJECT.md`) stores all data files flat in `data/`, with subdirectories only for extracted data categories (e.g., `data/cofit/`, `data/genome_cluster_matrices/`). A `data/results/` subdirectory is non-standard.
+
+**Correct pattern**: Put computed outputs directly in `data/` alongside extracted data. Examples from other projects: `data/module_conservation.tsv`, `data/fitness_stats.tsv`, `data/essential_families.tsv`.
+
+---
+
+### [cofitness_coinheritance] Synthesize skill writes findings to README instead of REPORT.md
+
+**Problem**: The `/synthesize` skill instructions say to update `README.md` with Key Findings, Interpretation, Literature Context, etc. But the observatory uses a **three-file structure**: README (concise overview with links), RESEARCH_PLAN (hypothesis/approach), REPORT (full findings/interpretation). The `essential_genome` project is the canonical example. Writing detailed findings into the README makes it too long and inconsistent with other projects.
+
+**Correct workflow**:
+1. `/synthesize` should produce **`REPORT.md`** with: Key Findings, Results, Interpretation, Literature Context, Limitations, Future Directions, Visualizations, Data Files
+2. **`README.md`** should be a concise overview with a Status line, Overview paragraph, Quick Links section (linking to RESEARCH_PLAN, REPORT, references), and project metadata (Data Sources, Structure, Reproduction, Dependencies, Authors)
+3. The README should link to REPORT.md: `See [REPORT.md](REPORT.md) for full findings and interpretation.`
+
+**Action**: Update the synthesize skill's Step 7 to target REPORT.md instead of README.md, and add a step to update the README with a Status line and Quick Links.
 
 ---
 
