@@ -2,6 +2,7 @@
 name: hypothesis
 description: Generate research hypotheses based on BERDL data. Use when the user asks for research ideas, wants to explore what questions can be answered, or needs help designing an analysis approach.
 allowed-tools: Bash, Read, WebSearch
+user-invocable: false
 ---
 
 # Research Hypothesis Generation Skill

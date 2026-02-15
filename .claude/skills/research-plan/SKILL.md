@@ -2,7 +2,7 @@
 name: research-plan
 description: Refine a research question through literature review and data feasibility checks, then produce a structured research plan. Use when the user has a hypothesis or research idea and wants to develop it into a full plan before analysis.
 allowed-tools: Bash, Read, Write, WebSearch, AskUserQuestion
-user-invocable: true
+user-invocable: false
 ---
 
 # Research Plan Skill

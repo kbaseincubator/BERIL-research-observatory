@@ -2,7 +2,7 @@
 name: notebook
 description: Generate Jupyter notebooks from a research plan with PySpark boilerplate, SQL queries, and visualization placeholders. Use when the user has a research plan and wants to create analysis notebooks.
 allowed-tools: Bash, Read, Write
-user-invocable: true
+user-invocable: false
 ---
 
 # Notebook Generation Skill
