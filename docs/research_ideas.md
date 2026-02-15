@@ -154,6 +154,34 @@
 
 ---
 
+### [NEW] Metabolic Capability vs Metabolic Dependency
+**Status**: PROPOSED
+**Priority**: HIGH
+**Effort**: Medium (requires GapMind data extraction from JupyterHub)
+
+**Research Question**: Just because a bacterium's genome encodes a complete amino acid biosynthesis or carbon utilization pathway, does the organism actually depend on it? Can we distinguish metabolic *capability* (genome predicts pathway present) from metabolic *dependency* (fitness data shows pathway genes matter)?
+
+**Approach**:
+- For the ~30 FB organisms with pangenome links, map GapMind pathway predictions to FB genes via the link table
+- For each predicted-complete pathway, aggregate fitness effects of the pathway genes
+- Classify pathways as: **active dependencies** (complete + fitness-important), **latent capabilities** (complete + fitness-neutral), or **missing** (incomplete)
+- Scale to all 27K species: study within-species pathway heterogeneity at the step level — which pathways are "core complete" vs "accessory"?
+- Identify "metabolic ecotypes" — within-species clusters defined by metabolic capability profiles
+
+**Hypotheses**:
+- Amino acid biosynthesis pathways that are "latent capabilities" (present but neutral) are candidates for future gene loss (Black Queen Hypothesis)
+- Species with more "latent capabilities" will have more open pangenomes (ongoing streamlining)
+- Within-species pathway variation defines metabolic ecotypes that correlate with environmental niche
+
+**Impact**: High — bridges the gap between genome-level metabolic prediction and experimental fitness validation. Relevant to synthetic biology (minimal media design), microbiome ecology (cross-feeding dependencies), and drug target discovery (active dependencies are targets).
+
+**Dependencies**:
+- GapMind data extraction (305M rows in `kbase_ke_pangenome.gapmind_pathways`)
+- Existing FB-pangenome link table from `conservation_vs_fitness`
+- Existing fitness data from `fitness_effects_conservation`
+
+---
+
 ### [pangenome_openness + cog_analysis] Openness vs Functional Composition
 **Status**: PROPOSED
 **Priority**: HIGH
@@ -334,8 +362,9 @@
 ---
 
 ### [conservation_vs_fitness] Cross-Organism Essential Gene Families
-**Status**: PROPOSED
+**Status**: COMPLETED
 **Priority**: MEDIUM
+**Results**: 859 universally essential families (5%), 15 families essential in all 48 organisms. 1,382 function predictions for hypothetical essentials via module transfer. Universally essential families are 91.7% core. See `projects/essential_genome/`.
 
 **Research Question**: Using FB's `ortholog` table, identify essential gene families conserved across multiple species. Are there universally essential families? Species-unique essentials?
 

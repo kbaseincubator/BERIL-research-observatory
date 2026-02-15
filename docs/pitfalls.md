@@ -483,6 +483,27 @@ Most junction tables have ~1 billion rows. Never query without filters.
 
 ---
 
+## Python / Pandas Pitfalls
+
+### [essential_genome] fillna(False) Produces Object Dtype, Breaking Boolean Operations
+
+When using `merge(..., how='left')` to create a boolean flag column, the unmatched rows get `NaN`. Calling `.fillna(False)` converts the column to `object` dtype (mixed `True`/`False`/`NaN` → mixed `True`/`False`), NOT boolean. The `~` (bitwise NOT) operator on an `object` column produces silently wrong results instead of boolean negation.
+
+```python
+# BAD: creates object dtype, ~ gives garbage
+df = left.merge(right_with_flag, how='left')
+df['flag'] = df['flag'].fillna(False)
+not_flagged = df[~df['flag']]  # WRONG — may include all rows
+
+# GOOD: cast to bool after fillna
+df['flag'] = df['flag'].fillna(False).astype(bool)
+not_flagged = df[~df['flag']]  # Correct boolean negation
+```
+
+This caused an orphan essential gene count of 41,059 (total essentials) instead of 7,084 (actual orphans) — a silently incorrect result with no error message.
+
+---
+
 ## Quick Checklist
 
 Before running a query, verify:

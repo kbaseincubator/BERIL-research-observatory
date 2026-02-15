@@ -316,7 +316,7 @@ arginine = spark.sql("""
 - No streaming for large results
 - Transient 503 errors during cluster restarts
 
-### Direct Spark SQL (JupyterHub)
+### Direct Spark SQL (Preferred)
 
 **Required for:**
 - JOINs across large tables
@@ -325,10 +325,17 @@ arginine = spark.sql("""
 - Complex window functions
 - Iterative analysis
 
+**How to get a Spark session:**
+
 ```python
-# On BERDL JupyterHub
-from pyspark.sql import SparkSession
-spark = get_spark_session()  # Cluster provides this
+from berdl_notebook_utils.setup_spark_session import get_spark_session
+spark = get_spark_session()
+```
+
+This works from **both Jupyter notebook kernels and regular Python scripts/CLI** on the JupyterHub cluster. You can run full analysis pipelines from the command line (e.g., `python3 src/extract_data.py`) without needing `jupyter nbconvert`. The auto-import in `/configs/ipython_startup/00-notebookutils.py` only affects notebook kernels, but the explicit import above works everywhere.
+
+```python
+spark = get_spark_session()
 
 # Full Spark SQL capabilities
 result = spark.sql("""
