@@ -433,7 +433,7 @@ class RepositoryParser:
             status=status,
             hypothesis=hypothesis,
             approach=approach,
-            findings=findings,
+            findings=self._rewrite_md_links(findings, project_dir.name),
             notebooks=notebooks,
             visualizations=visualizations,
             data_files=data_files,
@@ -457,18 +457,27 @@ class RepositoryParser:
 
     @staticmethod
     def _rewrite_md_links(content: str | None, project_id: str) -> str | None:
-        """Rewrite bare .md links to be project-relative.
+        """Rewrite bare .md links and image paths to be project-relative.
 
         Converts e.g. [Report](REPORT.md) to [Report](/projects/{id}/REPORT.md)
-        so the browser resolves them correctly regardless of trailing slash.
+        and ![caption](figures/foo.png) to ![caption](/project-assets/{id}/figures/foo.png)
+        so the browser resolves them correctly.
         """
         if not content:
             return content
-        return re.sub(
+        # Rewrite .md links to project-relative paths
+        content = re.sub(
             r"\[([^\]]+)\]\(([A-Za-z0-9_.-]+\.md)\)",
             rf"[\1](/projects/{project_id}/\2)",
             content,
         )
+        # Rewrite relative image paths to /project-assets/ URLs
+        content = re.sub(
+            r"!\[([^\]]*)\]\((figures/[^)]+)\)",
+            rf"![\1](/project-assets/{project_id}/\2)",
+            content,
+        )
+        return content
 
     def _extract_collection_refs(self, readme_content: str) -> list[str]:
         """Extract BERDL collection IDs mentioned in README text."""

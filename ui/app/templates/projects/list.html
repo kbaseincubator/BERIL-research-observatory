@@ -56,7 +56,7 @@
 
             {% if project.findings and 'to be filled' not in project.findings.lower() %}
             <h4>Key Findings</h4>
-            <div class="markdown-content">{{ project.findings[:300] | markdown }}{% if project.findings|length > 300 %}...{% endif %}</div>
+            <div class="markdown-content">{{ project.findings[:500] | strip_images | truncate(300) | markdown }}</div>
             {% endif %}
         </div>
 

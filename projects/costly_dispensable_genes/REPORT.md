@@ -6,6 +6,10 @@
 
 The 5,526 costly+dispensable genes are overwhelmingly associated with mobile genetic elements. They are **7.45x more likely** to contain mobile element keywords in their descriptions (transposase, integrase, phage, IS element, recombinase, prophage; OR=7.45, p=4.6e-71). SEED functional enrichment confirms this: the "Phages, Prophages, Transposable elements, Plasmids" category is 11.7x enriched (FDR=1.3e-17) and "Virulence" is 26.7x enriched (FDR=5.6e-14, though based on small counts: 21 vs 4 genes) in costly+dispensable vs costly+conserved genes.
 
+![SEED top-level category enrichment in costly+dispensable vs costly+conserved](figures/fig_seed_enrichment.png)
+
+*(Notebook: 02_functional_characterization.ipynb)*
+
 ### They Are Poorly Characterized Recent Acquisitions
 
 Costly+dispensable genes have the hallmarks of recently acquired DNA:
@@ -15,17 +19,35 @@ Costly+dispensable genes have the hallmarks of recently acquired DNA:
 - **High singleton fraction**: 24.2% are singletons (found in only 1 genome); no costly+conserved genes are singletons. Note: this is partly structural since core genes cannot be singletons by definition. Within the dispensable category, costly genes are only slightly more likely to be singletons than neutral genes (OR=1.09, p=0.02)
 - **Shorter**: Median 615 bp vs 765 bp for costly+conserved (p=4.2e-75, rank-biserial r=0.170), consistent with IS elements and gene fragments
 
+![Annotation rate (SEED, KEGG) by selection quadrant](figures/fig_annotation_rate.png)
+
+![Ortholog group breadth and orphan gene fraction by quadrant](figures/fig_ortholog_breadth.png)
+
+![Gene length distributions by quadrant](figures/fig_gene_length.png)
+
+*(Notebook: 02_functional_characterization.ipynb, 03_evolutionary_context.ipynb)*
+
 ### Core Metabolism Is Depleted
 
 14 SEED top-level categories are significantly depleted in costly+dispensable genes (FDR < 0.05), including Protein Metabolism, Respiration, Carbohydrates, Amino Acids, Cofactors/Vitamins, Motility, Stress Response, and RNA Metabolism. These core cellular functions are maintained in the costly+conserved quadrant -- genes whose lab-measured burden is offset by natural selection in the environment.
+
+*(Notebook: 02_functional_characterization.ipynb)*
 
 ### *Pseudomonas stutzeri* RCH2 Is an Outlier
 
 psRCH2 contributes 21.5% of its genes as costly+dispensable -- far above the next organism (*B. thetaiotaomicron* at 14.0%). This suggests a recent mobile element invasion or genomic expansion specific to this strain.
 
+![Costly+dispensable gene counts by organism](figures/fig_organism_distribution.png)
+
+![Stacked bar of quadrant proportions per organism](figures/fig_per_organism.png)
+
+*(Notebook: 03_evolutionary_context.ipynb)*
+
 ### Costly+Dispensable Genes Still Have Condition-Specific Effects
 
 Despite being burdensome and non-conserved, 14.1% of costly+dispensable genes have condition-specific phenotypes (vs 16.7% for costly+conserved). This is much higher than neutral+dispensable genes (2.7%), suggesting these genes are not inert -- they can affect fitness under specific conditions, which may slow their loss from the genome.
+
+*(Notebook: 01_define_quadrants.ipynb)*
 
 ## Interpretation
 
@@ -60,6 +82,21 @@ This is the first systematic characterization of genes that are simultaneously b
 - psRCH2's extreme outlier status (21.5% costly+dispensable) may reflect strain-specific genomic features rather than a general pattern
 - Ortholog group assignment uses BBH across 48 organisms; genes with orthologs outside this set would be misclassified as orphans
 - Condition-specific phenotype data is biased toward lab-testable conditions
+
+## Data
+
+### Sources
+
+| BERDL Collection | Tables Used | Purpose |
+|------------------|-------------|---------|
+| `kescience_fitnessbrowser` | `genefitness`, `gene`, `exps` | Per-gene fitness values, gene metadata, experiment descriptions |
+| `kbase_ke_pangenome` | `gene_cluster`, `gene_genecluster_junction`, `eggnog_mapper_annotations` | Pangenome gene clusters, gene-to-cluster mappings, functional annotations |
+
+### Generated Data
+
+| File | Rows | Description |
+|------|------|-------------|
+| `data/gene_quadrants.tsv` | 142,190 | Genes with fitness stats, conservation status, and quadrant assignment |
 
 ## Supporting Evidence
 
