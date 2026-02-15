@@ -95,6 +95,10 @@ WHERE orgId1 IN ({all_48_orgs}) AND orgId2 IN ({all_48_orgs})
   - 48 organisms are taxonomically biased toward culturable Proteobacteria
   - Module transfer predictions are indirect (non-essential ortholog function may diverge)
 
+## Revision History
+
+- **v1** (2026-02-15): Initial plan — designed and executed in a single session. Covered all 48 FB organisms, 3 analysis notebooks, function prediction via module transfer.
+
 ## Authors
 
 - **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) — Lawrence Berkeley National Laboratory
