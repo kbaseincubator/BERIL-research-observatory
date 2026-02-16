@@ -1,0 +1,5775 @@
+isolation_source,count
+feces,5833
+blood,4506
+sputum,3713
+stool,2663
+missing,2318
+patient,1758
+hypoxic seawater,1665
+urine,1601
+soil,1279
+permafrost active layer soil,1095
+hypersaline soda lake sediment,997
+groundwater,986
+stool sample,984
+acid mine drainage sediment,887
+infant feces,644
+freshwater,618
+root nodule,591
+rumen,469
+rectal swab,438
+Unknown,437
+Aspo HRL,435
+feces extracted directly from colon,429
+wound,386
+saliva,380
+aquifer sediment,375
+activated sludge from Hong Kong Shatin wastewater treatment plant,347
+Microcystis colony from freshwater lake,323
+fecal material,313
+water,302
+sputum or oropharyngeal,298
+gastric biopsy,285
+sponge tissue,284
+clinical sample,283
+cerebrospinal fluid,273
+skin,266
+temperate grassland biome,266
+Mouse faeces,265
+homo,258
+deep-sea hydrothermal deposit,257
+maternal feces,253
+anaerobic bioreactor effluent,250
+Olkiluoto,246
+not collected,236
+hospital,224
+Mariana trench surficial sediment,212
+Rectal swab,208
+marine water,201
+fecal sample,200
+Biopsy,196
+aquatic biome,194
+bodily fluid,185
+sediment,180
+food,176
+meadow soil,176
+seawater,175
+lung,174
+milk,171
+marine sediment,171
+nasal swab,168
+Rifle well FP-101 under high O2 conditions; 0.2 micron filter; full assembly,162
+Anaerobic digesters,159
+deep marine sediment from hydrothermal vent,157
+Rifle well FP-101 under high O2 conditions; 0.1 micron filter; full assembly,154
+Rifle well FP-101 under low O2 conditions; 0.1 micron filter; full assembly,152
+activated sludge,151
+not applicable,148
+broiler chicken gastrointestinal tract,145
+Beach sand,144
+anaerobic digester sludge from wastewater treatment plant,144
+Fankou acid mine drainage sediment Core B,142
+single cell amplified by WGA-X; seawater,139
+Rifle well FP-101 under low O2 conditions; 0.2 micron filter; full assembly,139
+feces day 0 after weanning,138
+wastewater sludge anaerobic digester phosphite (DPO) enrichment,137
+"Brackish water, Black Sea St. 307",136
+Mine wastewater,132
+Blood culture,130
+throat swab,129
+pork,128
+tissue,128
+environmental,128
+subsurface aquifer,128
+ocean water sample from Hawaii Ocean Time-series (HOT) cruises,127
+pus,125
+clinical,124
+nasopharynx,124
+liver,123
+non-axenic culture inoculated from ocean water sample,120
+Fankou acid mine drainage sediment Core A,116
+unknown,116
+biofilm from sulfidic cave,115
+fecal samples from 20 animals,114
+Full-scale anaerobic digester operated by the Champaign-Urbana Sanitary District treating a mixture of municipal and industrial waste activated sludge and municipal sewage,113
+Rifle well FP-101 under low O2 conditions; 1.2 micron filter; full assembly,112
+Rifle well FP-101 under high O2 conditions; 1.2 micron filter; full assembly,111
+river cyanobacterial mat,108
+freshwater surface (50 cm depth),106
+feces day 7 after weanning,104
+feces day 14 after weanning,104
+tracheal secretion,103
+sediments,103
+Endotracheal Aspirate,102
+clinical material,101
+blood culture,100
+Gastric tissue biopsy,99
+tracheal aspirate,98
+surface seawater,97
+bronchoalveolar lavage,95
+Missing,93
+Guaymas Basin Hydrothermal plume metagenome,91
+wound swab,90
+Partial nitritation anammox bioreactor,90
+hot spring sediment,89
+stomach,89
+surface water,88
+Cystic Fibrosis airway culture,87
+Sputamentum,87
+Pork,87
+chicken,86
+clinic,86
+river sediment,86
+meat,82
+river sediments grown in denitrifying medium in anaerobic bioreactor system,82
+ACE-degrading consortia seeded with activated sludge sampled from 6 local waste water treatment plants (WWTPs),79
+10 sea water samples from phytoplankton spring bloom collected during Heincke cruise HE327,79
+freshwater lake,78
+Poultry,78
+gill tissue; hydrothermal vent,78
+Gastric tissue,78
+Clinical patient,76
+Pus,76
+raw seawater,75
+marine hydrothermal sediment,75
+lake water,74
+hospital shower hose biofilm,74
+Nose,72
+rectal,72
+sinus,70
+estuarine open water surface layer,70
+ocular surface of healthy person,70
+10 mM sulfoquinovose-amended vegetarian human fecal microcosm,70
+Bay water,70
+swab,69
+glacier,69
+gut,68
+ectocervical mucosa,68
+clinical specimen,67
+gills,66
+anaerobic bioreactor effluent; solid retention time of 6 days,66
+feces day 21 after weanning,66
+Chesapeake Bay,65
+Dairy farm,64
+Farm workers,64
+bay water,64
+bile,63
+hot springs sediment,63
+swine,63
+fish,63
+cleanroom floor,63
+anal swab,61
+porcine fecal sample,61
+activated sludge from Aved_18-Q3-R54-62,60
+groundwater filtered through a a 3.0 um filter and then through a 0.2 um filter,60
+nasal,59
+coral surface mucus layer and tissue,58
+"anaerobic bioreactor effluent; Solids-removed thin stillage fed, 6 d SRT, 35C, pH 5.5",57
+anoxic ACE-degrading consortia enriched using acesulfame as the sole carbon source with nitrate as the electron acceptor in anaerobic condition; seeded with activated sludge sampled from Sha Tin WWTPs,57
+nasopharyngeal,57
+Skin Swab,57
+Madrid,57
+Cerebro-Spinal Fluid,57
+"pool of bioreactors CSTR01a, CSTR02a, and CSTR03a; thermophilic anaerobic digestion of cattle manure in continuous reactors for biogas production (methane)",56
+marine sponge,56
+respiratory,55
+alpine spring water,55
+kidney,54
+shrimp,53
+Subiliac Lymph Node,53
+dental plaque,53
+activated sludge from Lyne_18-Q3-R50-59,52
+fracture fluid,52
+BAL,52
+activated sludge from AalW_18-Q3-R10-53,51
+Poultry Farm,51
+bloodstream,51
+Laboratory strain,51
+Supermarket,51
+activated sludge from EsbW_18-Q3-R4-48,50
+"Brackish water, Black Sea St. 301",49
+throat,49
+anaerobic digester,49
+Chicken processing plant,49
+hospital NICU surfaces and sink samples,49
+Rifle well CD01 at time point 6 / F; 5m depth; 0.2 filter,49
+Greek mizithra cheese,48
+Rock nearby Barbacenia macrantha specimens,48
+spleen,48
+river water,48
+Rifle well CD01 at 16ft depth; 0.1 micron filter at time point D,47
+Rifle well CD01 at time point 1 / A; 5m depth; 0.2 filter,47
+pig,46
+activated sludge from Fred_18-Q3-R57-64,46
+Rifle well CD01 at 16ft depth; 0.2 micron filter at time point A,46
+groundwater filtered through a 3.0 um filter,46
+wastewater,45
+lesion swab,45
+Clinic,44
+salt crust,44
+milk sample,44
+root nodule of Trifolium repens growing with Lolium perenne in a breeding trial plot,44
+leachate from a leachate well at an active municipal landfill in Southern Ontario,43
+root nodule of Trifolium repens growing with Lolium perenne in an organic farm field,43
+environment,42
+anammox reactor,42
+Rectal Swab,42
+freshwater sediment,42
+Ammonium sulfate bioreactor,42
+Suspended Particulate Matter (SPM) from the Black Sea western gyre,42
+Rifle well CD01 at 16ft depth; 0.2 micron filter at time point C,42
+groundwater filtered on filters,42
+Rectum,41
+oropharyngeal swab,41
+Kilo Moana Hydrothermal plume 60m,41
+environmental watersal,41
+skin swab,40
+Retail table eggs,40
+skin lesion from farm animal,40
+Stromatolite,40
+eye,40
+activated sludge from Skiv_18-Q3-R9-52,40
+activated sludge from EsbE_18-Q3-R3-47,40
+bulk soil from sugarcane field,40
+Portion of Sputum,40
+periprosthetic tissue,39
+bottom of first year landfast sea ice,39
+Thiocyanate ramp bioreactor,39
+Rifle well CD01 at time point 3 / C; 5m depth; 0.2 filter,39
+gill,38
+Infection,38
+"Commercial building tap, chloraminated drinking water",38
+activated sludge from AalE_18-Q3-R2-46,38
+Rhizosphere of Barbacenia macrantha specimens,38
+pig feces,38
+Subgingival dental plaque,38
+enrichment culture of hot tap water,38
+pond water,38
+laboratory-scale deammonification bioreactor inoculated with effluent from wastewater treatment plant,37
+activated sludge from Bjer_18-Q3-R1-45,37
+Cooling tower,37
+rare earth elements-acid mine drainage (REEs-AMD) contaminated river water,37
+feces from endurance ride Fontainebleau,37
+partial-nitration anammox reactor sludge sample,36
+Respiratory specimen,36
+Bronchoalveolar lavage fluid,36
+freshwater cyanobacterial bloom,36
+hot spring,36
+pharyngeal mucosa,36
+Rifle well CD01 at 16ft depth; 0.1 micron filter at time point B,36
+Rifle well CD01 at 16ft depth; 0.2 micron filter at time point B,36
+trachea,36
+Epidemic materials,35
+brain,35
+"anaerobic bioreactor effluent: Solids-removed thin stillage fed, 6 d SRT, 35C, pH 5.5",35
+gastrointestinal tract,35
+urethral swab,35
+Oyster Pond,35
+granules from a lab-scale partial nitritation/anammox bioreactor,35
+activated sludge from Rand_18-Q3-R56-63,34
+activated sludge from Hade_18-Q3-R52-61,34
+cornea,34
+Chicken meat,34
+CSF,34
+P3 gut compartment,34
+rhizosphere soil from sugare cane field,34
+Surface seawater,33
+animal,33
+Rifle well CD01 at 16ft depth; 0.1 micron filter at time point C,33
+adult feces,32
+Incubator,32
+nasopharyngeal swab,32
+Human fecal samples,32
+hydrothermal vent,32
+nares,32
+ceacal content,32
+Raw chicken meat,32
+Hadal surficial sediment,32
+Vaginal,32
+Silage,31
+activated sludge from Hirt_18-Q3-R61-65,31
+beef,31
+activated sludge from Ega_18-Q3-R5-49,31
+Urethral,31
+coral reef seawater,31
+Tahi Moana Above plume background,31
+Microcosm inoculated with Labrador Shelf sediment and amended with petroleum hydrocarbons,31
+plaque,31
+cloacal swab,30
+laboratory-scale bioreactor denitrification and anammox communities,30
+human oral cavity,30
+respiratory tract,30
+ocean water from marine abyssalpelagic zone,30
+nasophraynx,30
+Venous Blood,29
+chicken meat,29
+granular activated carbon biofilter from drinking water treatment plant (DWTP),29
+catheter,29
+tonsil,29
+activated sludge from OdNE_18-Q3-R46-58,29
+hepatopancreas,29
+Ixodes pacificus,29
+Slaughterhouse-environment,29
+sputum from CF patient,29
+Environmental bootie,29
+Nasopharyngeal swabs,29
+deep-sea hydrothermal vent sediments from dive 4571_4 depth 0-3 cm,29
+activated sludge from Ejby_18-Q3-R6-50,28
+biopsy,28
+"sludge from two different bioreactors, each one run at a different temprature (R1 at 35 C, R2 at 25 C), artificial municipal wastewater",28
+activated sludge from Mari_18-Q3-R65-66,28
+Tuberculosis Patient,28
+ocean water,28
+deep-sea hydrothermal vent sediments from dive 4569_2 depth 12-15 cm,28
+mesenteric lymph node,28
+Enviromental,27
+anammox granular sludge freshwater column reactor,27
+beach sand,27
+activated sludge from OdNW_18-Q3-R42-56,27
+Ice-cream,27
+bioreactors innoculated with microbial mats from alkaline soda lake,27
+"anaerobic bioreactor effluent; Solids-removed thin stillage fed, 6 d SRT, 55C, pH 5.0",27
+marine benthic turfs,27
+wound swab sample,27
+marine environment,27
+partial denitrification and anammox bioreactor,26
+Lower respiratory tract,26
+equine fecal microbiome,26
+rectal swab neonate,26
+bronchoalveolar lavage fluid,26
+leachate from a composite leachate cistern at an active municipal landfill in Southern Ontario,26
+activated sludge from Damh_18-Q3-R51-60,26
+"groundwater from cold water geyser, filtered on 0.1um pore size filters",26
+activated sludge from Ribe_18-Q3-R11-54,26
+deep-sea hydrothermal vent,26
+cecum,26
+Shengli oilfield at Shandong province,26
+Rifle well CD01 at 16ft depth; 1.2 micron filter at time point A,26
+bronchoaspiration material,26
+Catheter,25
+freshwater lake Microcystis colony,25
+Hot spring water,25
+P1 gut compartment,25
+biofilm fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: molasses with increasing thiocyanate,25
+infection,25
+seawater from Yellow Sea,25
+wound/abscess,25
+Rifle well CD01 at 16ft depth; 0.2 micron filter at time point D,25
+"anaerobic bioreactor effluent; Solids-removed thin stillage fed, 1 d SRT, 35C, pH 5.5",24
+Bumble bee gut,24
+clinically healthy pig,24
+endotracheal aspirate,24
+Respiratory Sample,24
+cheese,24
+hydrothermal vent sediment,24
+Perineum swab,24
+wet market,24
+well water,24
+Ocean,24
+(MES) mesopelagic zone,24
+Water column,23
+seawater from mariculture cage of adult gilthead seabream (Sparus aurata),23
+"anaerobic bioreactor effluent; Thin stillage fed, 6 d SRT, 35C, pH 5.5",23
+Rhizosphere of Vellozia epidendroides specimens,23
+trach asp,23
+Textile industry effluent,23
+Nasopharygneal lavage,23
+salmon,23
+pig farm,23
+urethal swab,23
+cystic fibrosis patient,23
+activated sludge from EBPR Bioreactor,23
+Rectal,22
+root,22
+anaerobic digester - waste activated sludge,22
+single cell amplified by WGA-X;hydrothermal vent fluid,22
+Lomas Bayas Desert Soil Beside Boulder,22
+abscess,22
+lungs,22
+Tracheal Secretion,22
+leaf,22
+Plant,22
+Cyanide and thiocyanate bioreactor,22
+"Water column of Rimov Reservoir, Czechia",22
+Probiotic,22
+Surface of a polyethylene microplastic particle present in tank 6 of a marine aquarium containing stony-coral fragments and water maintained at 26 degree C,22
+biofilm fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: molasses with increasing thiocyanate until 250 mg/L maintanence,22
+aquarium water,22
+Neck/Axilla,22
+feces; 1 single-cell amplified by MDA combined with human gut metagenome reads,21
+vaginal,21
+hospital patient,21
+mangrove sediment,21
+Shallow soil patches nearby Vellozia epidendroides specimens,21
+anaerobic digester - thermal hydrolysis pre-treatment sludge,21
+airway culture,21
+Mid-Cayman Rise Vent Fluids,21
+intestine content,21
+lab-scale wastewater treatment bioreactor,21
+Rifle well CD01 at 16ft depth; 0.1 micron filter at time point A,21
+plant,21
+hypersaline soda lake brine,21
+Not Applicable,21
+pharyngeal swab,21
+Mariner hydrothermal plume 25m,21
+slaughterhouse,20
+"granules from the full-scale anammox reactor of Dokhaven-Sluisjesdijk wastewater treatment plant, further enriched at TU Delft in a chemostat over two months prior to sampling",20
+activated sludge from Vibo_18-Q3-R45-57,20
+nose,20
+brown biofilm from alkaline hot spring,20
+feces; 3 single-cells amplified by MDA combined with human gut metagenome reads,20
+intestine,20
+green biofilm from alkaline hot spring,20
+bronchoalveolar lavage (BAL),20
+deep sea sediment,20
+Wastewater (Primary Effluent),20
+basaltic crustal fluids,20
+Tissues,20
+Dairy,20
+Coastal seawater,20
+Airway secretion,20
+alkaline hot spring microbial mat,19
+diarrhea sample from child under the age of five,19
+freshwater lake cyanobacterial bloom; sample filtered onto 1.2 um poresize filter,19
+anammox sludge,19
+human feces,19
+nose swab,19
+bay water summer N sample 29 PSU in less than .8 micron size fraction,19
+Wastewater (Final Effluent),19
+methanogen symbiont from mussel gill epithellium,19
+autopsy,19
+bodily cavity,19
+sea water,19
+periorbital,19
+Dilute Hydrothermal Plume,19
+biofilm fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: molasses with increasing thiocyanate until 250 mg/L maintanence and no molasses,19
+fresh water,18
+Deep Tissue,18
+activated sludge from Viby_18-Q3-R106-67,18
+coal samples cultured in anaerobic conditions in minimal salts plus yeast media,18
+bone,18
+not available,18
+sewage,18
+patients,18
+rhizosphere,18
+Laboratory reference strain,18
+thiotroph symbiont from mussel gill epithellium,18
+River,18
+"antrum, stomach",18
+deeply circulating subsurface aquifer fluids,18
+saline water including plankton,18
+deep-sea hydrothermal vent sediments from dive 4569_9 depth 9-12 cm,18
+suspension,18
+air medium,17
+pork from market,17
+water from electronic waste dumpsite,17
+Pelagic sediment,17
+produced fluids from hydraulically fractured shales,17
+Skin lesion swab,17
+rectum,17
+hospital sewage,17
+Artificial municipal wastewater,17
+Bronchial aspirate,17
+supermarket,17
+rhizosphere soil,17
+surface mucus layer,17
+lymph node,17
+ZC4 (Zoo Composter number 4) at the Sao Paulo Zoo,17
+deepsea hydrothermal sulfide chimney,17
+excreted bodily substance,17
+University Hospital of Abidjan-Cocody,17
+Diarrheal patient,17
+urethra,17
+Rifle well CD01 at time point 5 / E; 5m depth; 0.2 filter,17
+Abe hydrothermal plume 200m,17
+2.8-km deep subsurface aquifer,17
+various material,17
+Oropharinx,17
+Thiocyanate stock bioreactor,17
+broncho-alveolar lavage,17
+geothermal water,17
+Tissue,16
+"anaerobic bioreactor effluent: Thin stillage fed, 6 d SRT, 35C, pH 5.5",16
+Sediment sample,16
+synovial fluid,16
+fresh river water,16
+Dahi fermented milk product,16
+Gastric biopsy,16
+library,16
+roots,16
+Tracheal secretion,16
+agricultural soil,16
+drainage fluid,16
+Diphtheritic lesion,16
+household water source,16
+"Water column of Lake Zurich, Switzerland",16
+blood sample,16
+intestinal content,16
+Tui Malila hydrothermal plume 10m,16
+3.0 m mixolimnion layer of meromictic lake,16
+sample BD02T64 sea water enriched with oil for 64 days,16
+Rifle well CD01 at time point 4 / D; 5m depth; 0.2 filter,16
+Human patient,16
+Bay warer,16
+Wound swab,16
+first pond of the CYC serial dairy industry stabilization pond system,16
+groundwater well,16
+meat environment,16
+Endotracheal aspirate,15
+leaves,15
+Wound secretion,15
+stool from neonate,15
+Urethral discharge,15
+skin of face; 6 single-cells amplified by MDA combined with human skin metagenome reads,15
+whole bodies,15
+waste water treatment plant,15
+surface coastal seawater,15
+root nodules,15
+secretion,15
+patient fluids,15
+Shore seawater,15
+WOUND/ABSCESS,15
+Food and food processing environment,15
+Rifle well CD01 at 16ft depth; 1.2 micron filter at time point C,15
+deep sea sediments associated with petroleum seepage,15
+Abattoir,15
+deep-sea hydrothermal vent sediments from dive 4569_2 depth 21-24 cm,15
+microbes were collected at JL-Dive100-S03,15
+HOE Legacy IIB net trap,15
+retail chicken,15
+colon biopsy,15
+diffuse vent DFF1,15
+(DCM) deep chlorophyll maximum layer,15
+Seaweed,15
+water samples from two horizons (5 m and 20 m) were filtered through the net (size 27-um) and then filtered through nitrocellulose filters with a pore size of 0.22 um,15
+Retail ground beef,15
+Retail pork,14
+carcass,14
+biomass on anode of bioreactor after 21 days,14
+peritoneal fluid,14
+hotspring water,14
+uterus,14
+pleural fluid,14
+chicken carcass,14
+cooked food,14
+Hydrothermal Plume,14
+rock sample from hydrothermal vent,14
+skin-AD site,14
+Thiocyanate bioreactor,14
+anaerobic digester sludge,14
+poultry,14
+bay water spring sample 30 PSU in less than .8 micron size fraction,14
+Coastal Water,14
+food processing environment,14
+Rifle well CD01 at 16ft depth; 1.2 micron filter at time point D,14
+P4 gut compartment,14
+other,14
+Hemoculture,14
+Bone/Joint,14
+sink drain,14
+Rifle well CD01 at 16ft depth; 1.2 micron filter at time point B,14
+partial-nitritation anammox (PNA) reactor; full scale (600m3) reactor for the removal of ammonium from wastewater from the potato processing industry,14
+kidney preservation fluid,14
+alkaline salt lake,14
+drinking water system-before chlorination,14
+sludge from phenol fed wastewater aerobic bioreactor,14
+lake water from Sao Paulo's Zoo,14
+environmental swab,14
+skin wound,13
+farm,13
+surface seawater inoculated into a synthetic phycosphere,13
+throat swab neonate,13
+Secretion,13
+Milk filter,13
+Fecal swab,13
+single cell amplified by MDA; surface seawater,13
+sediments from shelf,13
+Vagina,13
+nasal mucosa,13
+Anal swab,13
+biofilm fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: molasses with increasing thiocyanate and no molasses at 250 mg/L thiocyanate,13
+Not Provided,13
+estuary bay water,13
+sediment trap from marine abyssalpelagic zone,13
+Leaf Litter,13
+marine hydrothermal sulfide sediment TVG12,13
+anaerobic digester filtrate obtained from the belt filter press of the CVWRF wastewater treatment plant,13
+ear,13
+Surgical wound,13
+Perirectal,13
+iron-rich hot spring,13
+Tibet kefir,13
+Penile,13
+deep-sea hydrothermal vent sediments from dive 4484,13
+cervix,12
+patient's blood plasma,12
+feed,12
+Catheter tip,12
+anaerobic bioreactor effluent: solid retention time of 6 days,12
+duck,12
+periprosthetic tissue specimen,12
+Sewer,12
+foregut,12
+chemostat inoculated with river sediment,12
+High-Arctic meromictic Lake A,12
+coastal marine sediment,12
+artificial municipal wastewater in bioreactor,12
+Lomas Bayas Desert Soil Below Boulder,12
+ascites,12
+Dental plaque,12
+abdominal fluid,12
+pharyngeal exudates,12
+Rifle well CD01 at time point 2 / B; 5m depth; 0.2 filter,12
+coastal sea water column HE361-13 at a depth of 350m,12
+5.5 m monimolimnion layer of meromictic lake,12
+cough swab,12
+Rifle background sediment; well D04 at 16ft depth,12
+placenta,12
+sludge from a mesophilic anaerobic wastewater digester enriched on phosphite and carbon dioxide,12
+(MIX) marine epipelagic mixed layer,12
+rabbit carcass,12
+LokiAmp MDA-amplified sample from Loki's castle hydrothermal vent sediment,12
+ocean,12
+marine hydrothermal vent chimney sediment,12
+Phytoplankton seston > 100 micron diameter,12
+Lymph nodes,12
+groundwater filtered on 0.22 m filters,12
+zooplankton,12
+coastal seawater,12
+Raw-frozen dog food,11
+Advanced Water Purification Facility,11
+river,11
+water from a groundwater well adjacent to an active municipal landfill in Southern Ontario,11
+Throat Culture,11
+anammox reactor sludge,11
+Final Effluent,11
+Tap water/shower,11
+pentadecane enrichment inoculated with seawater,11
+Hospital Surface,11
+Peritoneal fluid,11
+feaces,11
+ACCM-D media,11
+oral cavity,11
+Environment,11
+CANDO+P Bioreactor,11
+Guttural pouch lavage,11
+deep-sea hydrothermal vent sediments from dive 4569_2 depth 0-3 cm,11
+drinking water system-WM,11
+rumen content from lactating cow,11
+"Soil sample from Angelo meadow plot 1, 40cm depth, 6 days after first rain event (27mm)",11
+"Switzerland: Lake Zurich, 5 m depth",11
+aborted fetus,11
+Cooked ham,11
+rabbit meat cut,11
+Gull Lake,11
+Hydrothermal vent sediment,11
+Full-scale methanogenic bioreactor treating purified terephthalic acid process wastewater,11
+spring water,11
+oil-contaminated soil,11
+lungs of cystic fibrosis patient A,11
+pulmonary,11
+homogenate,11
+Oropharynx,11
+"Soil sample from Angelo meadow plot 1, 20cm depth, 4 days after first rain event (27mm)",11
+laboratory,11
+University of Michigan Health System,11
+bay water summer D sample 29 PSU in greater than .8 micron size fraction,11
+deep-sea hydrothermal vent sediments from dive 4569_9 depth 0-3 cm,11
+Physical,11
+5.0 m chemocline layer of meromictic lake,11
+vagina,11
+household tap filter,11
+Tracheobronchial aspirate,11
+"Dept of Medical Microbiology, University Medical Center Groningen",10
+anaerobic reactor producing medium/long chain fatty acids through the fermentation of food waste,10
+drinking water,10
+Clinical Lab,10
+Procapra picticaudata,10
+vaginal secretion,10
+Genital tract,10
+"""Woody debris (""""hog fuel"""")""",10
+stream/river surface water,10
+sludge collected from the acid-phase digester of a two-phase anaerobic digestion process at the Madison Metropolitan Sewerage Disctrict Nine Springs Facility,10
+freshwater anammox upflow column Reactor,10
+Manis javanica,10
+MES reactor inoculated with Red Sea brine pool sample,10
+Microcystis colony from freshwater,10
+"enrichment culture AER3 inoculated with biofilm which develop in hydrocarbon contaminated groundwater; aerobic enrichment culture amended with 20 ppm diesel fuel/ crude oil mixture (3:2, v/v) as carbon and energy sources",10
+farm worker,10
+manure,10
+Nasal swabs,10
+Stools,10
+catheter tip,10
+envrionmental,10
+Pleural fluid,10
+Hospital_ICU,10
+activated sludge from Kalu_18-Q3-R12-55,10
+human blood,10
+Sewage,10
+Balb/C mouse gall bladder,10
+"oropharynx, sputum, or bronchoalveolar lavage",10
+"hospital, patient",10
+sediment from terrestrial hot spring,10
+Ixodes angustus,10
+mid-stream urine,10
+planktonic fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: molasses with increasing thiocyanate and no molasses at 250 mg/L thiocyanate,10
+zoo composting manure,10
+Loki non-amplified sample from Loki's castle hydrothermal vent sediment,10
+active black smoker DFF12,10
+Perchlorate-reducing enrichment,10
+cerebrospinal fluid (CSF),10
+"spleen, lymph nodes",10
+gastric antrum biopsy,10
+sediment sample from Evening Primrose shelf,10
+part of plant,10
+Conversion residue fermenting bioreactor,10
+Gastric biopsy tissue,10
+"Soil sample from Angelo meadow plot 1, 40cm depth, 2 days after first rain event (91mm)",10
+subseafloor olivine biofilm,10
+Rifle well FP-101 under low O2 conditions; 1.2 micron filter; 10% subassembly,10
+endo-cervical swab,10
+milking environment,10
+skin and soft tissue,9
+purulent sample,9
+prosthetic joint infections,9
+"enrichment culture AER2 inoculated with biofilm which develop in hydrocarbon contaminated groundwater; aerobic enrichment culture amended with 20 ppm diesel fuel/ crude oil mixture (3:2, v/v) as carbon and energy sources",9
+PCB contaminated wastewater treatment lagoon sediment microcosms,9
+Tracheal,9
+vaginal swab,9
+Black Creek Park,9
+Ground beef,9
+Wound Secretion,9
+"Upper gallery; floor level, 50-70 cm from the wall",9
+nasal carriage,9
+"ganjang, Korean traditional soy sauce",9
+wall,9
+DTA,9
+a feces sample of swine origin,9
+baby blood culture,9
+ascitic fluid,9
+forest soil,9
+joint,9
+orchard,9
+nodule,9
+petroleum-contaminated soil collected near the petroleum pumping and storage warehouse at the Henryk Arctowski Polish Antarctic Station,9
+Lab-scale methanogenic bioreactor treating purified terephthalic acid process wastewater,9
+Subacute bacterial endocarditis,9
+drinking water system-DS1,9
+endotracheal tube (ETT) or tracheostomy tube,9
+marine hydrothermal sulfide sediment TVG11,9
+Mesenteric Lymph Node,9
+vegetables,9
+"Soil sample from Angelo meadow plot 1, 40cm depth, 4 days after first rain event (27mm)",9
+Throat and nasal swab,9
+Associated Infection,9
+feces from Phil the wombat,9
+Mashed potatoes,9
+bay water spring sample 20 PSU in greater than .8 micron size fraction,9
+Expectoration,9
+Beef carcass post-hide removal,9
+marine water sample,9
+bay water summer N sample 29 PSU in greater than .8 micron size fraction,9
+drinking water system-finished water,9
+deep-sea hydrothermal vent sediments from dive 4571_4 depth 12-15 cm,9
+cyanobacterial mat on coral surface,9
+Aerobic activated sludge,9
+oxic surface sediment,9
+Rifle groundwater metagenome at time 1 / A; 0.2 micron filter,9
+first pond of the AUR serial dairy industry stabilization pond system,9
+fluid,9
+feces; 2 single-cells amplified by MDA combined with human gut metagenome reads,9
+chicken litter,8
+enrichment culture sampled from a low-nitrate anoxic artesian well,8
+skin of face; 1 single-cell amplified by MDA combined with human skin metagenome reads,8
+Infected pancreatic necrosis,8
+adult honey bee queen gut,8
+desert regolith,8
+Brine and surface sediment,8
+Ear swab,8
+Mid-vagina,8
+mangrove soil,8
+Isabela River,8
+biofilm clogging water pumps in ice machines,8
+Bronchalveolar Lavage,8
+Surveillance,8
+healthy skin,8
+hot spring water,8
+Sausage,8
+"Lower gallery with a lake; inside a wall diverticulum, 1 m above the cave floor",8
+ant gut,8
+Mycetoma Lesion,8
+hyporheic zone,8
+Freshwater Creek,8
+caecum of adult hen,8
+Anal,8
+activated sludge from Hjor_18-Q3-R7-51,8
+Blood culture medium,8
+clinical isolate,8
+mine service water,8
+Alveolar lavage fluid,8
+Pus aspirate,8
+single-cell amplified by WGA-X from cold saline spring sediment,8
+hypersaline river water,8
+marine surface water,8
+Blood sample from neonates,8
+Middle ear,8
+coral polyp,8
+planktonic fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: molasses with increasing thiocyanate,8
+Mediterranean seawater enriched with a specific particulate matter,8
+Kidney of diseased fish,8
+deep-sea sediment,8
+subgingival plaque,8
+subgingival dental plaque,8
+bay water spring sample 20 PSU in less than .8 micron size fraction,8
+Sputum sample,8
+Lake Cadagno chemocline,8
+Wound Thigh Secretion,8
+ETT,8
+"chlorinated drinking water, site 1",8
+pink berry consortia,8
+Clonal culture of Asterionella formosa BG1 isolated from Esthwaite Water,8
+hydrothermal plume,8
+cold noodles in sauce samples,8
+Bioreactor mimicking brackish/coastal conditions,8
+biofilm fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: no molasses with increasing thiocyanate,8
+anal swabs,8
+10 Gulf of Mexico water column samples before the DWH oil spill,8
+sediments from hot spring shelf,8
+drinking water system-DS2,8
+lungs of cystic fibrosis patient C,8
+"Soil sample from Angelo meadow plot 1, 40cm depth, pre rain",8
+coastal sea water column HE361-14 at a depth of 3m,8
+urine culture,8
+Single cell amplified by MDA; raw seawater,8
+pond water enriched with phosphorus and nitrogen,8
+trophosome,8
+single cell amplified by MDA; marine water,8
+single cell amplified by MDA; seawater,8
+biochar-amended oxisol soil plot 3,8
+"Soil sample from Angelo meadow plot 2, 20cm depth, 6 days after first rain event (27mm)",8
+Copepod,8
+Ground beef from beef processing plant,8
+Vidalia onion field,8
+hydrothorax,8
+"Blood,Aneurysm tissue",8
+seafood,8
+Coalvale silty clay,8
+bay water summer D sample 29 PSU in less than .8 micron size fraction,8
+seawater at sediment depth,8
+skin swab1532 from squamous cell carcinomas patient MST015,8
+Perineum,8
+pig slaughterhouse,8
+host's whole body,8
+summer tide-pools,8
+alkaline siliceous hot spring microbial mat,8
+oropharynx,8
+Boiler,7
+lymph nodes,7
+Broncho-alveolar lavage,7
+"freshwater lake, 2 m depth",7
+skin biopsy,7
+acid mine drainage,7
+drainage,7
+adult hen caecal content,7
+Restaurant,7
+Maria Elena Desert Soil Below Boulder,7
+bare soil,7
+Farm water,7
+Bronchial washing (contralateral lung; no tumour),7
+freshwater stream,7
+Bronchoscope,7
+turkey,7
+cecum matter of weanling rat after 6 hour fasting; S29,7
+air vent water in a clinic,7
+Toilette,7
+hadal trench sea water,7
+enrichment of activated sludge from Daejeon WWTP,7
+Peadiatric - nurses table,7
+skin swab1639 from squamous cell carcinomas patient MST029,7
+liquor,7
+perianal skin [UBERON:0012336],7
+Patient sputum,7
+Urine sample,7
+feces; 4 single-cells amplified by MDA combined with human gut metagenome reads,7
+vegetable,7
+Antarctica soil,7
+Abdominal abscess,7
+freshwater creek,7
+Endotracheal,7
+Rectal surveillance swabs,7
+soft tissue,7
+"Sava Riverbank, Slovenia",7
+Catheter from newborn,7
+fish viscera,7
+AOM-Mn bioreactor day 314,7
+thermophilic sediment from neutral hot spring,7
+non-acidic hot spring microbial mat,7
+freshwater reservoir from 10 m depth,7
+bacteria were purified from Symbiodinium sp. co-cultures originally isolated from Mussismilia braziliensis coral,7
+aquatic product,7
+dairy cheese,7
+Thiocyanate stock biobioreactor,7
+Rifle well CD01 at time point 2 / B; 5m depth; 0.1 filter,7
+unified soil; enrichment culture of cellulolytic microbial consortium named F1RT,7
+drinking water system-PB2,7
+coral reef sponge,7
+Bioreactor performing anaerobic oxidation of methane coupled to iron reduction,7
+chicken liver,7
+Rural River,7
+Rifle well CD01 at time point 6 / F; 5m depth; 0.1 filter,7
+Rifle well FP-101 under high O2 conditions; 0.2 micron filter; 10% subassembly,7
+Granular activated carbon,7
+Skin swab,7
+seagrass sediment,7
+Gill tissue,7
+feces from Zagget the koala,7
+Water from hot water systems,7
+koumiss,7
+bronchial,7
+Thorneside wastewater treatment plant,7
+granular sludge from mesophilic upflow sludge blanket reactor,7
+"Soil sample from Angelo meadow plot 2, 20cm depth, 2 days after second rain event (91mm)",7
+Nasobronchial lavage,7
+planktonic fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: molasses with increasing thiocyanate until 250 mg/L maintanence and no molasses,7
+bovine lymph node,7
+BHI,7
+Beef carcass after final wash,7
+Tibetan lacustrine sediment,7
+Exudate from ulcer,7
+"freshwater lake, 40-80 m depth",7
+broncoalveolar lavage,7
+"freshwater lake, 80 m depth",7
+Rifle well FP-101 under low O2 conditions; 0.2 micron filter; 10% subassembly,7
+sample BD02T18 sea water enriched with oil for 18 days,7
+Vaginal discharge,7
+rice paddy soil,7
+coastal sea water column HE361-02 at a depth of 3m,7
+continental shelf sea water microbial communities,7
+Sink,7
+"anaerobic bioreactor effluent: Solids-removed thin stillage fed, 1 d SRT, 55C, pH 5.0",7
+Main Ward,7
+turkey meat,6
+Food contact surface in food processing environment,6
+Lavabo,6
+cecum matter of weanling rat after 6 hour fasting; S27,6
+air,6
+Endotracheal tube,6
+Independently evolved isolated clone of PA01 monocultured in Synthetic Cystic Fibrosis Media for 24 days in the absence of imipenem,6
+intraoperative swabs,6
+"enrichment culture AER1 inoculated with biofilm which develop in hydrocarbon contaminated groundwater; aerobic enrichment culture amended with 20 ppm diesel fuel/ crude oil mixture (3:2, v/v) as carbon and energy sources",6
+surface water collection during the winter,6
+urine sample,6
+Abscess,6
+alternating anaerobic and microareobic bioreactor,6
+nematode community,6
+acidic soil,6
+mine tailing,6
+chicken feces,6
+human patient,6
+leaf-associated phyllosphere,6
+Synovial fluid,6
+sugarcane,6
+Blood Culture,6
+Catheter Tip,6
+Abdominal infection,6
+Independently evolved isolated clone of PA01 monocultured in 1 g/ml imipenem treated Synthetic Cystic Fibrosis Media for 24 days,6
+Ready-to-cook chicken cutlets,6
+poultry meat,6
+Independently evolved isolated clone of PA01 co-cultured with S. maltophilia in Synthetic Cystic Fibrosis Media for 24 days in the absence of imipenem,6
+Independently evolved isolated clone of PA01 co-cultured with S. maltophilia 8 g/ml treated Synthetic Cystic Fibrosis Media for 24 days,6
+coal,6
+Drain,6
+sputum culture,6
+anaerobic fermentation tank,6
+pertoneal cavity,6
+Independently evolved isolated clone of PA01 monocultured in 8 g/ml imipenem treated Synthetic Cystic Fibrosis Media for 24 days,6
+groundwater from well H41 incubated with 12C bicarbonate for 21 days,6
+marine water anammox upflow column reactor biofilm on non-woven sheet,6
+Drainage,6
+skin swab1574 from squamous cell carcinomas patient MST020,6
+secretions,6
+Independently evolved isolated clone of PA01 co-cultured with S. maltophilia 4 g/ml treated Synthetic Cystic Fibrosis Media for 24 days,6
+cow feces,6
+Independently evolved isolated clone of PA01 co-cultured with S. maltophilia 1 g/ml treated Synthetic Cystic Fibrosis Media for 24 days,6
+-,6
+skin swab1617 from squamous cell carcinomas patient MST026,6
+Laboratory Derived,6
+cecum matter of weanling rat after 6 hour fasting; S4,6
+microbial mat,6
+surgical intestinal biopsy,6
+Bronchial aspiration,6
+Independently evolved isolated clone of PA01 monocultured in 4 g/ml imipenem treated Synthetic Cystic Fibrosis Media for 24 days,6
+high vaginal swab,6
+Human blood,6
+PNG CO2 seep-seep site,6
+aspirate,6
+Lettuce,6
+"Soil sample from Angelo meadow plot 1, 20cm depth, 2 days after second rain event (91mm)",6
+Urine Culture,6
+skin swab1561 from squamous cell carcinomas patient MST018,6
+Skin lesions,6
+Zoo Composter number 3,6
+compost soil,6
+sediments washed off of a biofilm that was attached to a sub-lacustrine hydrothermal vent,6
+Wintergreen Lake,6
+Stomach biopsy,6
+whole sponge tissue,6
+unavailable,6
+Rifle well CD01 at time point 3 / C; 5m depth; 0.1 filter,6
+hot spring microbial mat,6
+biochar-amended oxisol soil plot 8,6
+mutant from a clinical S12/111 isolate,6
+permafrost soil,6
+Coastal marine water,6
+standing water,6
+Burn,6
+Moore swab,6
+indoor dust from athletic faciility gym,6
+"Sichuan, China",6
+Synechococcus culture from coastal marine water,6
+shallow marine sediment,6
+surgical wound,6
+Caecum,6
+Farm,6
+coral reef macroalgae biofilm,6
+PNG CO2 seep-control site,6
+"Tissue samples (liver, spleen, lung, heart, kidney, ovaries, gut, and skin)",6
+Rifle well FP-101 under high O2 conditions 0.1 micron filter; 10% subassembly,6
+ET secretion,6
+lungs of cystic fibrosis patient B,6
+Environment - Horticulture,6
+Oral cavity,6
+Patient sample,6
+skin swab1470 from squamous cell carcinomas patient MST012,6
+skin swab1472 from squamous cell carcinomas patient MST012,6
+deep-sea hydrothermal vent sediments from dive 4572,6
+Sulfate-methane transisition zone estuary sediments 16-26 cm,6
+sample Tc-Br; brine of Tanatar trona crystallizer,6
+Cerrado soil,6
+"chlorinated drinking water, site 3",6
+"Deciduous woodland, University campus",6
+Red Sea water column Station 91 - depth 500m,6
+Tongue,6
+indoor dust from athletic faciility office,6
+Host Tissue,6
+single cell amplified by MDA; hot spring,6
+milk filter,6
+cervicovaginal lavage,6
+control oxisol soil plot 5,6
+estuarine water,6
+Rifle well FP-101 under low O2 conditions; 0.1 micron filter,6
+Mixed salad,6
+"Yunnan, China",6
+microalgal biofuel cultivation pond,6
+bronchial aspirate,6
+soil near root of coffee,6
+twig,5
+cecum matter of weanling rat after 6 hour fasting; S26,5
+Tracheal aspiration,5
+skin swab1647 from squamous cell carcinomas patient MST030,5
+Peadiatric - mop,5
+Lower gallery with a lake; depressions in the wall,5
+surface water collection during the late summer,5
+orofaryngeal,5
+Glendhu Ridge methane seep,5
+Continental water,5
+wound secretion,5
+Unknow,5
+dust,5
+brine and surface sediment of soda-saline lake,5
+sputum samples,5
+a feces sample of chicken origin,5
+Aquatic bird feces,5
+body fluid,5
+skin swab1645 from squamous cell carcinomas patient MST030,5
+arsenic-containing biofilms,5
+hydrothermal fluid,5
+Pediatric Ward,5
+cecum matter of weanling rat after 6 hour fasting; S32,5
+Abdominal,5
+marine sediment push core 14,5
+Porites lutea and Goniastrea edwardsi coral colonies,5
+stream surface water,5
+packaged pickles,5
+Powdered infant formula,5
+cecum matter of weanling rat after 6 hour fasting; S21,5
+blue hole oxygen minimum zone seawater 60 m,5
+organs,5
+Cow with clinical mastitis,5
+ground pork,5
+oil-polluted soil,5
+compound leaves,5
+scope,5
+ocean sediment,5
+cecum matter of weanling rat after 6 hour fasting; S30,5
+Yungay Desert Soil Below Boulder,5
+Tap water/sink,5
+freshwater lake anaerobic enchiment culture with carbon source cellobiose,5
+Gorgonian coral,5
+internal organs,5
+flocculating fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: molasses with increasing thiocyanate,5
+joint of pelvis,5
+Fermented milk (Laban),5
+Ixodes auritulus,5
+Chicken fecal,5
+Perirectal swab,5
+freshwater lake Midhypolimnion,5
+warwound (surv),5
+citrus leaf,5
+hind gut digesta,5
+total DNA from escal light organ,5
+Indonesia,5
+gill tissue of clam,5
+sputum sample,5
+Ulcer,5
+Lake Untersee,5
+sputum specimen,5
+Buffalo milk,5
+Intertidal zone,5
+Secondary wastewater,5
+surface biofilm from hospital sink drain,5
+Midstream urine,5
+Red Sea water column Station 192 - depth 500m,5
+Opalinus Clay rock porewater BRC-3 borehole,5
+sewage from Environmental Centre Robert O. Picard,5
+2-km deep subsurface thermal aquifer,5
+Severe Trauma Site,5
+subsurface aquifer sediment,5
+single cell amplified by MDA; Dewar Creek hot spring,5
+hot springs,5
+wound drainage fluid,5
+deep-sea hydrothermal vent sediments from dive 4488_9 depth 4-6 cm,5
+caecal content,5
+gill from hydrothermal vent,5
+sea ice algal assemblage,5
+freshwater pond,5
+Pig farm,5
+surface sediment from the estuary of Pearl River treated with pyrene for 6 days,5
+Rifle well FP-101 under high O2 conditions; 1.2 micron filter; 10% subassembly,5
+indoor dust from athletic faciility hallway,5
+lichen thallus,5
+"Supragingival dental plaque, molar tooth",5
+Pork carcass,5
+Simulated distribution system annular reactor,5
+berry surface,5
+Lansing Lake,5
+hydrothermal sediments,5
+tongue,5
+Bovine rumen,5
+hospital room swab,5
+bovine milk,5
+microbes were collected at JL-Dive96-S01,5
+skin swab1389 from squamous cell carcinomas patient MST003,5
+Near bottom seawater,5
+ETT secretion,5
+biofilm attached to a sub-lacustrine hydrothermal vent,5
+deep-sea hydrothermal vent sediments from dive 4569_4 depth 0-3 cm,5
+Red Sea water column Station 22 - depth 500m,5
+woody crown gall,5
+methane seep sediment,5
+blood sample from neonates,5
+Red Sea water column Station 34 - depth 258m,5
+mineral soil,5
+deli meat samples,5
+Antibiotic Resistance Surveillance Program,5
+blood sample from a 69 year old man who was hospitalized in ICU,5
+wound swab from ulcer,5
+Mud of a forest creek bank,5
+Red Sea water column Station 192 - depth 10m,5
+not known,5
+Bronchial,5
+"Subgingival plaque, gingival sulcus",5
+preputial wash,5
+String method,5
+burn wound,5
+puncture fluid,5
+cold seep sediment sample 8 MPa II,5
+draining liquid of kidney transplantation recipient,5
+Red Sea water column Station 192 - depth 50m,5
+skin swab1383 from squamous cell carcinomas patient MST003,5
+joint fluid,5
+"oral cavity, infant (15 months age)",5
+Insect,5
+soil sample,5
+planktonic fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: no molasses with increasing thiocyanate,5
+running water,5
+kimchi,5
+Rifle well CD01 at time point 5 / E; 5m depth; 0.1 filter,5
+root canal,5
+Pus swab,5
+Soft tissues,5
+fermented milk product nono,5
+Diversion fluid,5
+marine ANAMMOX bioreactor,5
+seawater surrounding coral Acropora digitifera under thermal stress,5
+cecum matter of weanling rat after 6 hour fasting; S5,5
+cecum matter of weanling rat after 6 hour fasting; S35,4
+hospital surface,4
+bronchial secretion,4
+Cecum and rectal contents from Capybaras,4
+Peadiatric - occupied bed,4
+cecum matter of weanling rat after 6 hour fasting; S6,4
+spoiled uncooked beef,4
+rivulet water,4
+bronch,4
+biofilm clogging methane capture system of an active municipal landfill in Southern Ontario,4
+patient2,4
+Red-pigmented microbial biofilm developed on the inner wall of a bioreactor,4
+Peadiatric - sink,4
+hip prothesis biopsy,4
+poultry feces,4
+Surveillance swab,4
+fresh flowers,4
+rectal swab of pregnant women,4
+Pulmonary secretion,4
+annelid root tissue scrapped from turkey femur surface after nine month of incubation underwater in a fjord,4
+Fecal Swab,4
+sewage water,4
+non-axenic (unialgal) sample in BG-11 medium,4
+biofilm scrapped from cow tibia surface after nine month of incubation underwater in a fjord,4
+ventricular Assist Device,4
+estuarine sediment,4
+skin of face; 4 single-cells amplified by MDA combined with human skin metagenome reads,4
+Ready-to-cook meat,4
+phlegm,4
+Fermented vegetables,4
+Pharynx,4
+proximal right femur,4
+Foetal stomach content,4
+teat swab,4
+freshwater lake anaerobic enchiment culture with carbon source citrate,4
+adult honey bee worker gut,4
+Ear canal secretions,4
+cecum matter of weanling rat after 6 hour fasting; S19,4
+toilet,4
+aquaculture marine sediment,4
+Throat sample,4
+Sepsis,4
+liver abscess,4
+pressure ulcer swab,4
+complete digestive tract of R. prolixus; lab reared at Instituto Ren Rachou,4
+pork from retail market,4
+clinically diseased pig,4
+soil of natural resort,4
+sputum from COVID-19 patient,4
+compost,4
+Peadiatric - patient file,4
+periphyton,4
+United Kingdom,4
+chicken swab,4
+ice-free soil under anthropogenic influence from the patio of the Polish Polar Station Hornsund,4
+Skin/soft tissue,4
+ICU - door handle,4
+Metagenome from cryopeg brine bacterial community,4
+Hairmyres Hospital,4
+Carcass Rinsate,4
+ground water,4
+Ascites,4
+Pathology Lab,4
+Superficial Swab,4
+Sea water,4
+saline spring sediment,4
+sediment and water from a salsa lake of a terrestrial mud volcano,4
+umbilical cord blood,4
+anammox marine column reactor biofilm on non-woven sheet,4
+endotracheal tube swab,4
+Crown gall,4
+skin swab1649 from squamous cell carcinomas patient MST030,4
+patient in hospital,4
+water sample,4
+drinking water system-DS3,4
+fresh chicken meat,4
+perianal swab,4
+leg tissue,4
+combined biofilm from UBA (pink subaerial biofilm) and UBA BS (thick floating biofilm subdivided into strips) samples,4
+carriage,4
+Bronch wash,4
+microaeration digestion Rep1,4
+sample B1-Br-g2; brine of Lake Bitter-1,4
+coastal sea water column HE361-13 at a depth of 3m,4
+Catheter liquid,4
+Methanogenic purified terephthalic acid process wastewater treatment bioreactor,4
+Urine/Genitourinary,4
+stalactite biofilm,4
+pharynx,4
+skin swab1385 from squamous cell carcinomas patient MST003,4
+ocular,4
+single cell amplified by MDA; Acidic hot spring,4
+gravel soil,4
+diseased buffalo with haemorrhagic septicaemia,4
+ruminal content,4
+lichen,4
+Low salinity river system,4
+Middle meatus,4
+acid gruel,4
+Coastal ocean surface water,4
+salad,4
+quartz stone sublithic biofilm,4
+"human with diarrhea assosiated with seafood cunsumption, Hospital General",4
+"fish, semi-finished product",4
+enrichment from estuary sediment,4
+N/C,4
+Pernasal,4
+microbial mat from rice patty soil,4
+Amundsen Sea polynya,4
+bronchial washing,4
+rabbit meat processing plant environment,4
+acid mine drainage in low-pH Fe(II)-oxidizing bioreactor,4
+Mutton,4
+bovine udder,4
+skin swab1442 from squamous cell carcinomas patient MST008,4
+stem gall,4
+blood sample from a 51 year old man who was hospitalized in ICU,4
+adult body,4
+coastal water,4
+shower drain,4
+pea root nodules,4
+Drainage basin water,4
+NPA,4
+Westmead Hospital,4
+groin swab,4
+floral nectar,4
+marine hydrothermal chimney wall TVG10,4
+arsenic-impacted human gut samples taken from 10 individuals over 4 consecutive days,4
+Nero di Troia red wine (vintage 2007) undergoing spontaneous MLF and collected from three different vinifications performed in the same winery,4
+Eye swab,4
+enrichment on artificial chitin hydrogel particle,4
+microbial mat from hypersaline water environment,4
+cold seep sediment sample 8 MPa,4
+phyllosphere,4
+"chlorinated drinking water, site 4",4
+control oxisol soil plot 7,4
+"corpus, stomach",4
+Liver abscess puncture fluid,4
+urban runoff waters,4
+Mastitis Clinica,4
+Trachealaspirate,4
+sink tap,4
+Red Sea water column Station 192 - depth 100m,4
+clam larvae,4
+raw grated beetroot-associated outbreaks,4
+swab sample of gingival sulcus (mouth) from 5 year old male Dolphin_J,4
+Corpse,4
+Human gut,4
+Potato with the soft rot symptoms,4
+skin swab1378 from squamous cell carcinomas patient MST002,4
+wound exudate of bone fracture from a Chinese 76-year-old male,4
+blood culture from bacteremic patient,4
+Red Sea water column Station 12 - depth 47m,4
+"Guangdong, China",4
+ground turkey,4
+hospital sink drain,4
+skin swab1483 from squamous cell carcinomas patient MST013,4
+microbial mat from volcanic crater lake,4
+hypoxic fjord sediment,4
+"MAMC Hospital, New Delhi",4
+Treated sewage effluent,4
+Urines,4
+Homo sapiens,4
+Smoked Turkey,4
+Red Sea water column Station 149 - depth 500m,4
+sink,4
+Shunt fluid,4
+"Anoxic, hypersaline lake sediments",4
+Beef plant conveyer belts,4
+inner organs,4
+Human stool,4
+skin swab1556 from squamous cell carcinomas patient MST017,4
+pork trim,4
+sub-gingival plaque oral cavity,4
+central venous catheter,4
+cloacal content,4
+aquatic,4
+Rifle background sediment; well D04 at 19ft depth,4
+broiler feces,4
+"450 nm filtrate of pink subaerial biofilm microbial community collected from the base of 2m high pile of pyrite sediment over which pH 1.1, 41C acid mine drainage solution was flowing",4
+Water sample from NSHQ14 Well,4
+ground beef,4
+shallow subsurface groundwater,4
+water column of the freshwater reservoir Embalse de Amadorio in Spain,4
+"deep chlorophyll maximum in the Mediterranean off the coast of Alicante, Spain, 75m below sea surface",4
+shoreline saltwater,4
+milk product,4
+swab from patient with pharyngitis/tonsilitis,4
+Necrotic lesion of AOD affected tree,4
+combined sewer effluent,4
+pooled data from three different soil samples,4
+Kent Lake,4
+"fungal streamer biofilms collected from the 5-way site of the Richmond Mine at Iron Mountain, California. The pH of the acid mine drainage the biomass was sampled from was 0.98, and the temperature was 38C",4
+UKL13 co-culture; a single cyanobacterial colony from a depth-integrated water sample grown as a non-axenic culture,4
+drinking water system-raw water,4
+skin swab1391 from squamous cell carcinomas patient MST003,4
+seafood factory FBO1,4
+Freshwater under a salinity gradient,4
+stone fragments,4
+ROV grab from gas hydrate in Gulf of Mexico,4
+single protist cell from termite hindgut,4
+Nasopharyngeal,4
+ancient permafrost soil,4
+"Core Sample RR0603-10TC of length 255 cm taken with a corer, trigger wt. by the ship the Roger Revelle, Cruise ID RR0603",4
+bloodstream infection,4
+single cell amplified by MDA; Atlantis II deep Red Sea brine-seawater interface,4
+urine catheter,4
+ceca contents,4
+dairy goats with persistent mastitis after therapy with enrofloxacin,4
+brain abscess,4
+vaginal sample,4
+sputum lung,4
+swab sample of gingival sulcus (mouth) from 29 year old lactating female Dolphin_Z,4
+skin swab1381 from squamous cell carcinomas patient MST003,4
+Red Sea water column Station 169 - depth 100m,4
+fermented food,4
+deep-sea water,4
+non-axenic culture of diatom,4
+Continental Water,4
+muscle,4
+infected rice leaf,4
+freshwater lake anaerobic enchiment culture with carbon source acetate,4
+sediment inoculated into enrichment culture with sulfur,4
+seawater surrounding coral Acropora digitifera under normal condition,4
+UR CVS,4
+child feces,4
+Human stomach,4
+Urine Cath,4
+cuticle,4
+drainage tube,4
+Peadiatric - phone,4
+surface seafloor hadal sediment,4
+solar saltern sediment,4
+Digestive,4
+surface glacier,4
+lysogeny broth,4
+Swab from Pharynx,3
+Blood and CSF,3
+groundwater from shale-hosted aquifer,3
+Hand,3
+Urban soil,3
+contaminated soil,3
+Hot spring sediment,3
+fresh-cut fruits,3
+Japanese tripe stew,3
+Petroleum contaminated soil,3
+raw milk,3
+proximal left femur,3
+Homogenized buffalo flies,3
+ICU - bp apparatus,3
+MISSING,3
+Pleural Fluid,3
+Wastewater Effluent,3
+30 degree sequencing batch reactor activited sludge day 315,3
+Superficial wound,3
+Basa fillet,3
+tip of aspiration catheter,3
+Lysogeny broth,3
+Tracheal intubation,3
+Brine cheese,3
+Ozama River,3
+paddy plant,3
+Fish farm,3
+lung tissue,3
+human stool,3
+diarrheal patient,3
+biofilm from carbon steel corrosion coupon exposed to oil field production water,3
+hospital environment,3
+anaerobic methane-oxidizing enrichment culture from terrestrial mud volcano,3
+diaphragm,3
+post continuous fermentation,3
+tar pit sediment,3
+root and surrounding soil,3
+mangrove,3
+cecum matter of weanling rat after 6 hour fasting; S31,3
+Laboratory environment,3
+cecum matter of weanling rat after 6 hour fasting; S7,3
+enrichment culture from terrestrial mud volcano,3
+skin; prosthetic joint infection,3
+raw sewage,3
+geothermal lake,3
+environmental swabs,3
+garden soil,3
+Hepato/biliary,3
+groundwater from well H41 incubated with 12C bicarbonate for 43 days,3
+cancer patient,3
+dry sand,3
+Bloodstream,3
+hot spring sediment from GC-10 spring,3
+Peadiatric - door handle,3
+Diseased Shrimp,3
+sediment from soda lake pond DKS with sediment salt concentration 33%,3
+lakeshore surface sediment,3
+cecum matter of weanling rat after 6 hour fasting; S25,3
+estuary sediment,3
+Farm Water Source,3
+A highway near a former nuclear weapons processing plant,3
+Swab from tracheostomic tube,3
+intestinal tract,3
+chicken meat products,3
+Patient5 sputum,3
+feces from a porcine slaughterhouse,3
+anal swab sample,3
+feces from farm,3
+Clinical laboratory,3
+stem,3
+soft tissue inflammation site,3
+dead bats,3
+Venous Ductal Blood,3
+adult patient with underlying chronic lung disease,3
+Cattle Farm,3
+humified soil,3
+Secretion of sternum incision,3
+blood sample from a 64 year old man who was hospitalized in ICU,3
+tomato,3
+Urbana Champaign Sanitary District anaerobic digester sludge,3
+hydraulically fractured well fluid at Timepoint_82,3
+human faecal sample,3
+enrichment culture of acidophilic archaea inoculated from snottite biofilm from former pyrite mine,3
+seafood factory FBO7,3
+thallus,3
+Seawater sample collected from Red Sea (Saudi Arabia) at 20 m depth,3
+mucus,3
+seroperitoneum,3
+lake sediment,3
+pleural fuid,3
+Red Sea water column Station 149 - depth 25m,3
+MISC,3
+Corrosion products from a corroded pipe in an FPSO,3
+Softened Water,3
+cornea from keratitis patient,3
+Meretrix lusoria,3
+human clinical sample,3
+Lembah Pantai River,3
+neonatology unit from Hospital,3
+breast milk,3
+Diarrheal patient stool,3
+escal light organ,3
+agricultural field,3
+deep sea sediment sample 4862-08 in thermophilic enrichment culture,3
+drain fluid,3
+Red Sea water column Station 34 - depth 10m,3
+"roots, endophytic",3
+Tracheal Secretions,3
+sputum from cystic fibrosis patient,3
+macro-algae,3
+ZCTH01 thermophilic microbial consortium from compost grown on carboxymethylcellulose as a sole carbon source,3
+Pleural effusion,3
+blood sample from a 46 year old woman who was hospitalized in ICU,3
+anaerobic bioreactor,3
+Chicken product,3
+Red Sea water column Station 169 - depth 10m,3
+Bronchial secretion,3
+Nose from military trainee,3
+Head LN,3
+enrichment culture from freshwater algal bloom,3
+combined sewer,3
+Diseased olive flounder,3
+"Patients with gastritis or gastric ulcer examined with a gastroscope at People's Hospital, Bama County",3
+Red Sea water column Station 169 - depth 50m,3
+nodules,3
+Bovine urine,3
+Periodontal pocket,3
+chelonian,3
+Red Sea water column Station 169 - depth 500m,3
+foregut; single cell amplified by MDA,3
+The RAS Atlantic Salmon facility,3
+ice cream,3
+Fecal samples of patients suffering diarrhea,3
+salt lake,3
+Opalinus Clay rock BIC-A1 borehole,3
+blood from patient with pneumonia,3
+"Oral cavity, infant (2 months of age)",3
+cowhouse,3
+hydrothermal plume in the Mid-Cayman Rise,3
+wound pus,3
+sebeceous gland on nose of healthy male,3
+Blood culture from newborn,3
+Guinea fowl,3
+enrichment culture inoculated with sediment from anoxic soda lake,3
+total DNA from caruncle light organ,3
+fresh chicken carcass,3
+goat,3
+Sediments from shelf,3
+pasture soil,3
+"base of a wide chlorophyll maximum feature, near the base of the euphotic zone",3
+drainage liquid,3
+Rifle background sediment; well D04 at 13ft depth,3
+feces from healthy female,3
+methane hydrate marine sediment,3
+MSU2 Lake,3
+white microbial mat from deep sea hydrothermal sediment,3
+duodenal mucosa,3
+Red Sea water column Station 34 - depth 200m,3
+Red Sea water column Station 149 - depth 10m,3
+Apodemus sylvaticus Tissue Culture,3
+surface sediment from the estuary of Pearl River treated with pyrene for 12 days,3
+fecal matter,3
+respiratory track,3
+leg wound,3
+stream rock,3
+spring sediment,3
+Interior of surface sterilised leaf tissue,3
+Little Long Lake,3
+Turkey Cecum,3
+Agricultural soils with sugarcane crop,3
+biochar-amended oxisol soil plot 4,3
+almond drupe,3
+"leaves, endophytic",3
+Floral nectar,3
+beef liver,3
+"Lesioned lung of an infected beef cattle, Yingcheng city in Hubei province, China. In vitro subculture.",3
+Chicken Cecal Content,3
+estuary,3
+skin lesion,3
+fetus,3
+nose of healthy child,3
+Panama Canal Zone,3
+Crassostrea gigas,3
+blood sample from a 65 year old man who was hospitalized in ICU,3
+mining drainage,3
+Central venous line,3
+beetle eggs,3
+groundwater from deep subsurface site,3
+water sample collected from a newly drilled coal seam bore well (65 hours after drilling),3
+Oyster,3
+marine sediment sample collected by push cores at a deep sea vent site during cruise AT15-25 on Alvin dive 4358; sediment was oily and the sediment surface was covered with a white microbial mat,3
+Per urether catheter urine,3
+Juan De Fuca Ridge Crustal Fluid,3
+4-6 years old child with healthy oral,3
+"chlorinated drinking water, site 2",3
+infant stool,3
+chicken fecal material,3
+Palma de Mallorca,3
+cervical,3
+adult mosquito gut,3
+thermophilic sediment from acid hot spring,3
+hydraulically fractured well fluid,3
+"oral cavity, infant (13 months of age)",3
+gill tissue,3
+ear swab,3
+fecal screen,3
+bronch wash,3
+Urethral swab,3
+Environment - Horticulture Equipment,3
+Wood,3
+deep sediment,3
+"Soil sample from Angelo meadow plot 1, 20cm depth, 6 days after first rain event (27mm)",3
+sputum of patient with MDR-TB,3
+Bone tissue,3
+skin lesions of acne,3
+powdered infant formula,3
+seafood factory FBO5,3
+brackish surface water,3
+chicken caeca,3
+blood from Melioidosis patient,3
+plant leaf,3
+cecal contents of broiler chicken,3
+Rodent,3
+brine fluids,3
+freshwater reservoir from 12m and 25m depth,3
+Wound Swab,3
+flocculating fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: no molasses with increasing thiocyanate,3
+AHPND infected Litopenaeus vannamei,3
+vagina swab from a perinatal mother,3
+raw sausage,3
+Maize rhizosphere,3
+oil polluted marine water,3
+Rifle well CD01 at time point 1 / A; 5m depth; 0.1 filter,3
+"Mouse fibroblast, L929",3
+Male patient with Chronic Granulomatous Disease,3
+copepod,3
+Respiratory sample,3
+Peritoneal Fluid,3
+biofilm from deap sea brine pool,3
+blood sample from a 79 year old man who was hospitalized in ICU,3
+Baseline Lake,3
+"subgingival plaque, gingivitis",3
+Biological sample,3
+stored topsoil,3
+cephalic recording chamber,3
+seafood factory FBO2,3
+chicken meat from slaughterhouse,3
+Processing enviroment,3
+Foci,3
+Blood from newborn,3
+Vaginal swab,3
+Antrum and Corpus,3
+seawater from shallow-sea hydrothermal system,3
+Rifle well FP-101 under high O2 conditions; 0.1 micron filter,3
+surface sediment from the estuary of Pearl River treated with pyrene for 24 days,3
+pyogenic fluids of percutaneous drainage,3
+Hanford 300 Area IFRC 399-1-60 Groundwater,3
+agarose-alginate mix 40-100 m particle (artificial) late colonization,3
+Plant tissue,3
+Red Sea water column Station 108 - depth 10m,3
+stool sample from Guillain-Barre syndrome patient,3
+Red Sea water column Station 108 - depth 500m,3
+"freshwater reservoir, 30 m depth",3
+microbial mat ULC084,3
+PUS,3
+Red Sea water column Station 12 - depth 25m,3
+Unknown meat,3
+Milker's hand,3
+Patient2 sputum,3
+retail beef liver,3
+"Guaymas Basin sediment: dive 4572 depth 12-15 cm, dive 4572 depth 0-3 cm, dive 4484 depth 3-4 cm, dive 4484 depth 0-1 cm",3
+dairy goats with persistent mastitis before therapy with enrofloxacin,3
+Diseased shoots,3
+secreta,3
+sewage sludge,3
+Salad,3
+hindgut of Cryptocercus punctulatus,3
+Raw Milk,3
+Mastitis Subclinica,3
+human,3
+stool from botulism patient,3
+Middle Meatus,3
+biological material,3
+Composting distilled shochu residue,3
+Postoperative maxillary cyst,3
+cucumber,3
+Pork meat,3
+Pericardial fluid,3
+hydrocarbon,3
+chyroptera,3
+Red Sea water column Station 169 - depth 200m,3
+blood sample from a 66 year old woman who was hospitalized in ICU,3
+Malaysia,3
+Patient1 sputum,3
+Deep phlegm,3
+Kombucha multimicrobial community exposed to Mars-like environment (sample carrier at the ISS),3
+C GEN,3
+hospital wastewater,3
+Superficial Wound Swab,3
+proximal left tibia,3
+fecal sample from diarrhoea affected cattle A,3
+bubbling pool in the central crater-like structure of an active mud volcano,3
+glacial surface ice,3
+Sea ice cryoconite,3
+duodenum of female CD1 mouse,3
+cecum matter of weanling rat after 6 hour fasting; S23,3
+traumatic discharge,3
+urethral exudate,3
+deap sea cold seep sediment,3
+groundwater from well H41 incubated with 12C bicarbonate for 70 days,3
+cecum matter of weanling rat after 6 hour fasting; S9,3
+Peadiatric - unoccupied bed,3
+lagoon,3
+Ready-to-cook meat cutlets,3
+"acid mine drainage site biofilm from emergence, outflow channel, and Rose Pool",3
+microaeration digestion Rep2,3
+fecal pellet,3
+Decubitus Pressure Ulcers,3
+Placental cotyledons,3
+fungal plug from cicada Magicicada septendecim abdomen,3
+Saline water lake sediment,3
+bronchoalveolar fluid,3
+mobile phone surface,3
+Bothnian Sea site NB8 sediments 37-42 cm depth; used to inoculate methane- and iron-fed bioreactor (T0); bioreactor biomass 16 months after reactor inoculation (T1); and 29 months after reactor inoculation (T2),3
+ICU - unoccupied bed,3
+pond,3
+cutter waggon,3
+intraabdominal abscess,2
+GI,2
+Acid mine drainage site biofilm from emergence,2
+conjunctiva,2
+faecal swab,2
+deep tracheal aspirate (DTA),2
+"waste water treatment plant, post chlorination",2
+Tidal flat sediment,2
+cecum matter of weanling rat after 6 hour fasting; S11,2
+central venous catheter (CVC),2
+Abdominal ascites fluid,2
+environmental swab (scale for baby),2
+crude oil contaminated soil,2
+Ethiopian Kocho,2
+saline lake water,2
+infant intestine,2
+uterus of a mare who aborted a 7-month gestation fetus,2
+Farm water farm 5,2
+oral swab,2
+alveolar bronchial lavage,2
+Faecal,2
+inland salt marsh enrichment culture,2
+stone ruins (granite) of a fort,2
+Urine permanent catheter,2
+Umbilicus,2
+"sediment collected in IODP Expedition 375 from site U1519C, depth 253.01 mbsf",2
+cecum matter of weanling rat after 6 hour fasting; S18,2
+urine (permanent catheter),2
+secret of the respiratory tract,2
+Intraabdominal tissue,2
+Ascitic Fluid,2
+blood from neonate,2
+patient1,2
+"unknown, clinical",2
+geothermal field,2
+"sediment collected in IODP Expedition 375 from site U1519E, depth 20.83 mbsf",2
+Chicken salad,2
+Patient8 sputum,2
+bedsore,2
+mud volcano,2
+Hospital wastewater,2
+crab,2
+intertidal mangrove sediment,2
+Bedsore,2
+blood total,2
+swine excrement,2
+ascitic liquid,2
+Tracheobronchial aspirates,2
+Chancre,2
+"sediment collected in IODP Expedition 375 from site U1519E, depth 80.64 mbsf",2
+hot spring sediment from GC-01 spring,2
+subtidal marine sponge,2
+midrib of citrus leaves,2
+cecum matter of weanling rat after 6 hour fasting; S20,2
+respiratory tracks,2
+swab from purulent wound,2
+org_particles,2
+pool of 3 insecticide susceptible adult insects collected from Citrus sinensis (L.) Osbeck (navel orange),2
+3rd dilution order of 4-month-old decomposing pine tree sawdust,2
+stomach biopsy,2
+proximal right tibia,2
+Patient18 sputum,2
+plant leaves,2
+bed sheets,2
+hospital sewage water,2
+roes,2
+30 degree sequencing batch reactor activited sludge day 294,2
+Penis Swab,2
+rhizospheric soil,2
+brain tissue,2
+Gastric biopsy specimen,2
+Aquaculture pond sediment,2
+Table surface,2
+olive knot,2
+Patient3 sputum,2
+BAL (bronchoalveolar lavage),2
+mountain cabin,2
+infected leaf,2
+raw milk (vending machine),2
+conveyor,2
+plant rhizosphere,2
+Barley,2
+Bronchial Wash,2
+outpatient,2
+Chicken liver,2
+human oral cavity UC19,2
+contaminated groundwater,2
+seed,2
+Hospitalized patient,2
+pork meat,2
+6th dilution order of 4-month-old decomposing straw,2
+sediment from soda lake pond DK3 with sediment salt concentration 8.6%,2
+peritoneal cavity,2
+Gall bladder,2
+Malayan pangolin,2
+Whole Carcass,2
+"Saudi Arabia: Malaz area, Riyadh",2
+vaginal swabs,2
+Sputum-aspirate,2
+"Rhizospheric soil of mangrove plant, Aviciana marina",2
+freshwater lake anaerobic enchiment culture with carbon source leucine,2
+eggs of a tick infected in nature,2
+high bog Sima,2
+Buttocks wound,2
+Nasal discharge,2
+pus aspirate,2
+ballast water,2
+mango apical buds from mango crop farm,2
+Sesbania cannabina rhizoplane saline soil,2
+6th dilution order of 2-month-old decomposing straw,2
+acid mine drainage site biofilm from Rose Pool,2
+Peritoneal dialysis fluid,2
+algae,2
+respiratory sample,2
+intestines,2
+root rhizosphere,2
+Elanco Animal Health,2
+Untreated water,2
+human fecal sample,2
+Hospital environment,2
+HVS,2
+Peadiatric - bp apparatus,2
+trunk,2
+Peritoneal fluid culture,2
+bee hive,2
+Bronchial washing (lung tumour site),2
+Municipal wastewater sludge anaerobic digester,2
+post mortem sample,2
+alveolar lavage fluid,2
+Swab from Wound,2
+permafrost,2
+traqueal,2
+broiler,2
+Giant freshwater prawn farm,2
+"Ex-situ cultivation bioreactor using corn curb in a mixture of seawater, seawater sediment, and sea mud",2
+termite hindgut,2
+eggshell,2
+hot spring sediment from GC-06 spring,2
+surface lake water freshwater algal bloom,2
+Hydrothorax,2
+Urinary tract,2
+Dolichospermum enrichment culture inoculated with lake water from cyanobacterial bloom,2
+soil under mahogany trees,2
+well developed soil crust,2
+physical,2
+Plastic,2
+surface sediment from the estuary of Pearl River,2
+Sink drain at pizza restaurant,2
+Bay of Bengal,2
+skin swab1482 from squamous cell carcinomas patient MST013,2
+Anterior Nose,2
+CVC,2
+Fungus comb,2
+Hatchery debris from turkey commercial hatches,2
+seawater and sediment from deep-sea hydrothermal vent field,2
+pig farms,2
+soil sample line 3 80 ft from anomalous acidified pond located near a glacio-fluvial outwash plain,2
+Kulunda Steppe hypersaline lake,2
+blood sample from a 61 year old woman who was hospitalized in ICU,2
+skin secretions,2
+foods,2
+Mussel,2
+single cell amplified by MDA; marine sediment,2
+deep mesotrophic lake,2
+temporal freshwater pond,2
+Food production environment,2
+not recorded,2
+Lactose powder,2
+Hospital sewage,2
+drinking fountain drain,2
+coral mucus,2
+urban river,2
+sea-ice,2
+Poultry meat,2
+beach sand contaminated with Macondo oil,2
+Liquid sample from the EV5L dechlorinating bioreactor,2
+waste water,2
+biogas-producing acetoclastic consortium from a thermophilic anaerobic digester,2
+adult wing,2
+humic pond in Novohradske mountains,2
+Dialysis fluid,2
+Peatland at SPRUCE experiment site,2
+hexactinellid isolated at 868 m depth,2
+lumbar drain tip,2
+slaughtered pig,2
+laryngeal suction,2
+No Data,2
+benthal deposit,2
+Respiratory sample - sputum,2
+natural biofilms,2
+Tracheobronchial,2
+Thermophilic and cellulolytic compost-derived microbial consortium ZCTH02,2
+river sediments,2
+Barberry bark,2
+Patient6 sputum,2
+Bronchial Alveolar lavage,2
+"surface seawater, North Sea",2
+"Mud with water, below a pond dam",2
+SP,2
+cystic fibrosis sputum,2
+rectal smear surveillance,2
+Ceratophyllus tesquorum,2
+rhizospheric soil of plants growing naturally in the vicinity of discharge point of an industrial area,2
+periodontal pocket,2
+solar saltern,2
+1 cell amplified by MDA; sorted single cells from oil sands tailings pond,2
+olive twig showing symptoms of olive quick decline syndrome,2
+blood sample from a 60 year old man who was hospitalized in ICU,2
+deep-sea asphalt volcano Chapopote Knoll at the water depth of 2925 m,2
+Hydrothorax and Ascites,2
+Desert plant free sand dune,2
+pancreas,2
+Cold noodle,2
+Mesentery LN,2
+surface sediment from the estuary of Pearl River treated with pyrene for 30 days,2
+blood sample from a 75 year old man who was hospitalized in ICU,2
+sediment (20-25 cm) from mangrove covering field,2
+microbial mat ULC146,2
+Basil,2
+Indian agricultural soil,2
+aquaculture system,2
+Marine (Black Sea),2
+bronchoalveolar,2
+Sherman Lake,2
+"Cape Town, South Africa",2
+Red Sea water column Station 108 - depth 100m,2
+Avena fatua rhizosphere soil heavy density fraction time point 9 weeks,2
+"terrestrial hot spring (Monarch Geyser, YNP)",2
+sea water from hydrothermal vent,2
+exudate,2
+Chicken Litter,2
+Not available,2
+urethral discharge,2
+Rumen fluid,2
+seawater lake chemocline,2
+Hydrothermal vent,2
+fish drying yard,2
+Estuary,2
+blood sample from a 78 year old man who was hospitalized in ICU,2
+retail turkey,2
+Sausage from Russia,2
+intertidal zone,2
+whole DNA extracted from Rhagoletis cerasi pupa,2
+Hospital waste water,2
+marine microbial mat,2
+pigeonpea root nodule (farming soil),2
+brackish water,2
+pipe,2
+Urine culture,2
+laboratory strain,2
+Drainage samples from liver abscess,2
+tissue from ulcer,2
+liquor cerebrospinalis,2
+Red Sea water column Station 169 - depth 25m,2
+Subgingival plaque,2
+purulent abscess,2
+retail meat from Camelus dromedarius,2
+inguinal swab,2
+"Subsurface_Fluids_21-22_U1362A, Subsurface_Fluids_23-24_U1362B",2
+Pulmonary,2
+Almond orchard,2
+Cecum contents,2
+laboratory activated sludge,2
+cloacal,2
+Doenjang,2
+SPUT,2
+"Soil sample from Angelo meadow plot 1, 20cm depth, pre rain",2
+deteriorated polyurethane foam collected in a landfill,2
+unhealthy carrier,2
+rice hulls,2
+poultry carcass,2
+rapid sand filter,2
+liver meal,2
+Salami,2
+blood sample from a 63 year old man who was hospitalized in ICU,2
+tissue sample,2
+Mixed Food,2
+Environmental Meat,2
+220 cm below water surface of man-made lake,2
+Assam tea or Miang leaf,2
+blood sample from a 54 year old woman who was hospitalized in ICU,2
+autotrophic NRFeOx enrichment culture BP inoculated with freshwater sediment,2
+Seawater from the North Sea by Helgoland,2
+Hot spring_55deg.,2
+Patient4 sputum,2
+Chronically low temperature and dry polar region,2
+enrichment from wetland soil,2
+Red Sea water column Station 149 - depth 200m,2
+Clayey mud of a drained pond,2
+carbuncle,2
+animal infection,2
+tracheal secretions,2
+Floor,2
+water sample from Deepwater horizon oil spill sea surface treated with treated with naphthalene in a stable-isotope probing (SIP) experiment,2
+patient with toxic shock syndrome-1,2
+EB,2
+fetal tissue,2
+bronchial exudate,2
+surface area of a building with less than 200 occupants,2
+Knee-joint exudate,2
+feces of Macaca fuscata yakui,2
+Central Line Tip,2
+rhizospheric region of Phragmites karka from brackish water lake,2
+human oral cavity UCLA1,2
+oceanic bathypelagic zone,2
+Belgium Congo,2
+biochar-amended oxisol soil plot 1,2
+chickens,2
+costal sediment,2
+Mud of a creek bank,2
+rectal smear,2
+blood sample from a 67 year old man who was hospitalized in ICU,2
+rabbit,2
+insect gut,2
+Catheter urine,2
+Root endosphere,2
+sulfate amended sediment enrichment culture,2
+Nasophyarynx swab,2
+Bronchoscope from bronchoalveolar lavage (BAL),2
+raised bog,2
+diabetic foot ulcer,2
+Sediment with water of forest creek,2
+Microcrustacean,2
+"human with diarrhea assosiated with seafood cunsumption, Pacific Ocean Coast Northern Chile",2
+"chlorinated drinking water, site 5",2
+Nandasena,2
+soil from a swine farm,2
+Cloacal swab from turkey breeder farm,2
+blood from melioidosis patient,2
+human sample,2
+paraffin-degrading consortium; enrichment culture inoculated with marine sediment; grown with octacosane under sulfate-reducing conditions,2
+Assorted Sub Meats,2
+"Gill tissue of a wood-boring mollusc Lyrodus pedicellatus; shipworm Bankia gouldi collected from the Newport River Estuary, Beaufort North Carolina",2
+deep marine sediment,2
+tissue from diabetec foot ulcer,2
+peat bog soil,2
+nasopharynx sample from patient HS-CRS-17,2
+screening swab,2
+Sawkill stream below waste water outflow,2
+Blood cultures,2
+hindgut,2
+Red Sea water column Station 34 - depth 50m,2
+Retail chicken,2
+drinking water system-PB1,2
+bottom water,2
+Ceca,2
+"marine sediment core GS10_PC15, 223 cmbsf",2
+linuron-contaminated soil,2
+carrot field,2
+Breast milk,2
+Oxygen minimum zone,2
+heart,2
+Avena fatua rhizosphere soil heavy density fraction time point 6 weeks,2
+sputum from non-CF patient,2
+"Cave, the surface of limestone",2
+AHPND infected Penaeus japonicus,2
+Unhealthy carrier,2
+tomato field,2
+Fly,2
+decomposing wood from intermixed hardwood and conifers,2
+soil at Joker's Hill,2
+Chicago River,2
+PCB contaminated soil,2
+surface saline water,2
+Indus river sediment,2
+Uropygial gland,2
+Animal manure,2
+Pharyngeal exudate,2
+retail pork,2
+Chicken Meat,2
+blood sample from a newborn,2
+Skin-perianal,2
+surface sewater,2
+nitrite oxidizing enrichment from marine coastal surface sediments,2
+water from Lab-scale nutrients removal reactor,2
+microbial mat growing in sulfidic groundwater-fed fountain near public library,2
+biofilm from LB_RO membrane1,2
+Peripheral blood,2
+chick trachea,2
+freshwater reservoir from 13m depth,2
+Hospital Tap Water,2
+skin ulcer,2
+activated sludge from Bali wastewater treatment plant,2
+Human nasopharynx,2
+sebeceous gland on nose of healthy women,2
+Seafood environment,2
+potato,2
+hydraulically fractured well fluid at Timepoint_328,2
+Isolated from the intestines of sick birds in the farm,2
+marine hydrothermal sulfide sediment TVG13,2
+gastric content,2
+farming pond,2
+Sterile Body Site,2
+hematoma,2
+nasal sample,2
+kefir milk,2
+"chlorinated drinking water, site 6",2
+Laryngopharyngeal lymph node,2
+Dairy calf feces,2
+Hungarian Sausage,2
+University Hospital of Abidjan-Yopougon,2
+fetal abomasum,2
+sample PL-Br10; brine of Picturesque Lake,2
+nasal cavity,2
+geothermally heated soil,2
+cutaneus swab,2
+Isolates from 59.49m-59.59m section below the seafloor (cmbsf) in subseafloor sediments off Shimokita Peninsula,2
+Stool/Rectal Swab,2
+Duodenum,2
+Hydraulically fractured well fluid,2
+Rifle well FP-101 under high O2 conditions; 0.2 micron filter,2
+alginate 40-100 m particle (artificial) late colonization,2
+kidney of diseased fish,2
+ORINE,2
+Salmon processing facility,2
+Red Sea water column Station 192 - depth 25m,2
+bioreactor using biocathode as sole electron donor and carbon dioxide as sole carbon source; pH was maintained at 7.0,2
+cloacal swabs,2
+buccal mucosa of child,2
+bone tissue,2
+subgingival plate,2
+abdominal collection,2
+pupa,2
+Bones,2
+seep sediment enrichment culture,2
+Cecum,2
+pus sample,2
+oligotrophic lake microbial mat,2
+diseased red tilapia,2
+"freshwater lake, 5 m depth",2
+Mud from a seasonal creek,2
+nose lavage,2
+Parsley,2
+Cardiac lesion,2
+Salad leaves,2
+sternal wound,2
+blood sample from a 43 year old man who was hospitalized in ICU,2
+breast,2
+pelagic sediments on the east flank of the Arctic Mid-Ocean Ridge,2
+"single cell amplified by MDA; collected from the Gulf of Mexico, station 5, 1m under the surface",2
+whole body,2
+Methane-rich estuary sediments 52-54 cm,2
+Human cerebrospinal fluid,2
+blood sample from a 44 year old man who was hospitalized in ICU,2
+Red Sea water column Station 34 - depth 25m,2
+Sewage water,2
+Mint,2
+blood sample from a 71 year old man who was hospitalized in ICU,2
+"oral cavity, infant (10 months of age)",2
+Pineapple,2
+wound of lower leg,2
+co-culture originated from a tropical freshwater lake,2
+Porcelana 58 C degree phototrophic mat,2
+Abomasal fluid foetus,2
+Bone biopsy,2
+dental biofilm,2
+Rectal swap,2
+limestone,2
+scaleded sausage,2
+Grouper fish,2
+meat product,2
+frozen food,2
+Rifle well CD01 at time point 4 / D; 5m depth; 0.1 filter,2
+protected specimen brushes,2
+Lungs,2
+pyogenic fluids,2
+planktonic fraction from bioreactor innoculated with Activated Sludge Tailings Effluent Remediation (ASTER); culture conditions: molasses with increasing thiocyanate until 250 mg/L maintanence,2
+oceanic epipelagic zone,2
+Wound discharge sample,2
+Cystic Fibrosis sputum,2
+soil on farm,2
+blood sample from a 55 year old woman who was hospitalized in ICU,2
+ENVO:00000003,2
+Exudate,2
+Floor Picking trolley,2
+plant tissue,2
+degrading mangrove leaf,2
+"sediment sample collected at the water-sediment interface from the South Pacific gyre, IODP site U1369",2
+fresh water from alpine river,2
+Mushroom preparation,2
+Perianal Swab,2
+cow milk,2
+Water sample from WAB188 Well,2
+freshwater reservoir,2
+pleural space,2
+1-methylnaphthalene degrading enrichment culture,2
+Hospital effleunts,2
+Avena fatua rhizosphere soil middle density fraction time point 9 weeks,2
+quick-frozen food from supermarket,2
+Pacific plankton,2
+marine,2
+sacrum ulcer,2
+subsurface groundwater biofilm,2
+iron-rich host spring Jinata Onsen Pool 1,2
+"Chicha, maize-based fermented beverage",2
+aquarium,2
+"terrestrial hot spring (Joseph's Coat Hot Spring, YNP)",2
+Purulent absess from military trainee,2
+Milk filter (dairy cow farm),2
+Gut content,2
+stomach of patient with gastric cancer,2
+Red Sea water column Station 192 - depth 200m,2
+lesion,2
+pond rock,2
+wheat rhizosphere,2
+blood sample from septicemic neonates,2
+Wastewater treatment plant,2
+Surface water (20cm),2
+standing rain water,2
+blood sample from a 74 year old man who was hospitalized in ICU,2
+water from cave,2
+single cell amplified by MDA; Uruguay winery wastewater,2
+water sample from Deepwater horizon oil spill sea surface treated with treated with phenanthrene in a stable-isotope probing (SIP) experiment,2
+Human feces,2
+drinking water system-PR,2
+Ionian sea from 3500 m depth,2
+Healthy human skin surface,2
+bovine peripheral lymph node,2
+Stewed chicken,2
+marine brine pool,2
+alginate 40-100 m particle (artificial) mid colonization,2
+lungs (tracheal aspirate),2
+Fluid,2
+Mud of a pond bottom,2
+Blood from adult,2
+"holomictic Lake 227, 6 m and 8 m depth",2
+"marine sediment core GS08_GC12, 126 cmbsf",2
+strawberry leaf,2
+Udder,2
+vaginal discharge,2
+market,2
+sludge from N2O producing bioreactor,2
+rhizosphere of maize,2
+Tonsil scrape,2
+"sample #5133, Elevator 3A push core 47, collected at Hydrate Ridge North during Jason II dive J2-593 from an area of active seepage marked by bubble ebullition and surface expression of white microbial mat",2
+sperm,2
+blood-culture,2
+Tomato seed,2
+arctic sea water near B02 station,2
+middle ear,2
+cattle rearing farm,2
+chicken barn,2
+blood from 86 year old patient,2
+host,2
+Antarctic coastal sea-ice brine,2
+urban river water,2
+Peri-rectal,2
+wetland soil with plant cover day10_CT,2
+Marine Biofilm,2
+cold vegetables in sauce dishes samples,2
+agarose-chitosan mix 40-100 m particle (artificial) mid colonization,2
+blood sample from a 64 year old woman who was hospitalized in ICU,2
+Diseased eel,2
+Extreme high temperature habitat,2
+Hospital Environment,2
+pus from wound,2
+middle ear fluid,2
+"oral cavity, infant (15 months of age)",2
+necrotic tissue,2
+Food - Raw Cow's Milk,2
+iron-rich hot spring microbial mats,2
+skin-nares,2
+Black sea sediments,2
+leg,2
+Tonsillar swab,2
+microbial mat ULC073,2
+agarose 40-100 m particle (artificial) late colonization,2
+Bin,2
+organic chicken farm,2
+blood sample from a 49 year old man who was hospitalized in ICU,2
+oil contaminated soil collected from the Noonmati oil refinery,2
+surface water of an agricultural watershed,2
+sebaceous gland in acne affected area on forhead of male with moderate acne,2
+salt marsh,2
+lab enrichment culture in anaerobic medium,2
+S2-enrichment culture from tap water-filter-nitrite,2
+"hospital, countertop",2
+gill sample from 2 different clams,2
+carbon dioxide amended sediment enrichment culture,2
+salad kitchen drain,2
+hexachlorocyclohexane-contaminated soil,2
+Red Sea water column Station 149 - depth 100m,2
+deep-sea,2
+mincemeat,2
+"chlorinated drinking water, site 8",2
+Geothermal soil,2
+digestive tract,2
+abdominal drainage fluid,2
+plant roots,2
+purulent material,2
+Patient7 sputum,2
+ferruginous lake sediment,2
+Pressure ulcer,2
+Lake Shunet,2
+Chicken wings,2
+Hospital ward,2
+Mactra veneriformis,2
+Environmental Dairy,2
+turbid lake in tropical area,2
+Laryngeal suction,2
+Mud of a seasonal forest creek,2
+respiratory system,2
+Tomato with bacterial wilt,2
+platelet concentrate,2
+iron-rich host spring Jinata Onsen Pool 3,2
+not_blood,2
+Human oral cavity,2
+seawater from Antarctic Bottom Water,2
+Siphonaptera,2
+dilbit-coated clay beads in seawater,2
+single cell amplified by MDA; Dewar Creek Hot Spring,2
+fermented rice,2
+snake,2
+wine,2
+Laboratory generated strain,2
+acidic streamer,2
+oysters obtained from Mexico City seafood market (La Viga),2
+Human cornea,2
+urban freshwater stream,2
+Abortion secretions,2
+blood sample from a 62 year old man who was hospitalized in ICU,2
+Human faeces,2
+Placental tissue,2
+pharyngeal swab from Venezuelan patient with diphtheria,2
+large intestine,2
+Hypolimnion,2
+body,2
+Ear Swab,2
+chicken meat from supermarket,2
+Not collected,2
+soil core,2
+Sinus,2
+Landfill refuse,2
+kefir,2
+Postoperative infection,2
+Bedsores,2
+Retail chicken skin,2
+NP swab,2
+polyester fabric recovered from leaf litter,2
+Net Tow,2
+"Attic structure in St. Paul, MN",2
+fecal sample from healthy male,2
+insecticide resistant adult collected from Citrus limon (L.) Burm. (lemon),2
+siliceous digitate sinter (TIK2),2
+hot spring sediment from LGB-05 spring,2
+"Small Animal Hospital, Chulalongkorn University",2
+leaf petioles,2
+Patient16 sputum,2
+NRRL B1670-derived strain with spontaneous large deletions,2
+Mid-Stream Urine,2
+Rectal screening,2
+infant sputum,2
+Sputm,2
+raw milk products,2
+Central venous catheter tip,2
+freshwater surface biofilm,2
+Sock,2
+mobile phone,2
+Stream water,2
+pleural effusion,2
+Purulent secretion,2
+abdominal abscess,2
+Ailuropoda melanoleuca,2
+tongue oral cavity,2
+estuary water,2
+coral-associated microbial aggregates (CAMAs),2
+cecum matter of weanling rat after 6 hour fasting; S36,2
+pharyngeal swabs,2
+estuarine soil,2
+TCE/Cr reducing biocathode,2
+sickbed swab,2
+Wond,2
+tourmaline rock,2
+"farm environment, wall",2
+sanies,2
+wound infection,2
+skin swab1599 from squamous cell carcinomas patient MST023,2
+sputum-aspirate,2
+pig feed,2
+Pig-tail catheter,2
+"sediment collected in IODP Expedition 375 from site U1519C, depth 144.3 mbsf",2
+Cyanobacterial bloom,2
+kelp blade surface swab,2
+Aerial roots,2
+a nose swab sample of swine origin,2
+fermentation bed material,2
+Boiled chiken,2
+Cholera patient,2
+Femur,2
+Urban topsoil,2
+lake,2
+burn wound surface,2
+"farm environment, drinker",2
+nasal tract,2
+forest,2
+milk and other tissues,2
+Surgical Wound,2
+microbial,2
+wound on the leg,2
+Oral,2
+hot spring sediment from GC-07 spring,2
+Homalodisca vitripennis,2
+umbilicus,2
+enrichment culture derived from anaerobic digestion as an inoculum,2
+Human Stool,2
+chicken meat from retail market,2
+Endotracheal tube swab,2
+mince meat,2
+eggs of a naturally infected Ixodes ricinus tick,2
+bovine rumen in xylose fermenting enrichment culture,2
+4th dilution order of 9-month-old decomposing birch leaves,2
+UR CATH,2
+Chronic Kidney Disease,1
+Abdominal Wound,1
+Patient26 sputum,1
+former landfill for plastics,1
+"hospital-2, OP, stool #2",1
+cecum matter of weanling rat after 6 hour fasting; S33,1
+Nasogastric tube_P44_BU19,1
+a anal swab sample of swine origin,1
+Groundwater from chloroethene-contaminated soil at chemical factory,1
+left mandible and iliac artery,1
+patient16,1
+Chair in hospital room,1
+Eye Wound,1
+Sperm,1
+green sulfur bacteria endolithic enrichment culture,1
+Peach leaves,1
+Acidic soil,1
+Shek Wu Hui WWTPs_106 WWTPs influent,1
+sulfur springs,1
+freshwater lake mesocosm spiked with cow9 feces day 7,1
+Infusion stand_P63_BU16,1
+Screening,1
+Seaweed sample 1,1
+worker from swine farm,1
+Hot water spring,1
+CVC (central venous catheter),1
+Borscht with bone broth,1
+Borehole fluid,1
+Ancestral PA01,1
+lab-scale microbial electrolysis cells reactors 31 and 41,1
+Saimiri sciureus,1
+Lower gallery with a lake; water-sediments interface (waterfront),1
+Patient9 sputum,1
+wheat field,1
+Patient41 sputum,1
+gill sample from 3 different clams,1
+Tongling acid mine drainage,1
+Cooked chicken,1
+Throat swab 9,1
+sputum from COPD patient,1
+Maanshan2 acid mine drainage,1
+Tracheostomy site,1
+sediment from lake,1
+Cystic Fibrosis blood culture,1
+Foot tissue,1
+Throat swab 11,1
+Spoiled apple cider,1
+Stanley WWTPs_19 WWTPs influent,1
+Fankou acid mine drainage,1
+Ready-to-cook beef cutlets,1
+dolphin brain,1
+urine CVS,1
+cecum matter of weanling rat after 6 hour fasting; S13,1
+9 bed bar,1
+soli,1
+Aman rice field soil,1
+environmental103,1
+Sea bream,1
+Lung/Blood,1
+pulmonary fluid,1
+"right shoulder cellulitis, necropsy sample",1
+Siphon,1
+underground coal mine water,1
+nose; prosthetic joint infection,1
+bone biopsy,1
+blood culture from maile,1
+volcanic hot spring,1
+sediment and hotspring water,1
+pleural,1
+"drainage, left groin",1
+Throat swab 19,1
+"Chicken Carcass, Kampung Chicken",1
+environmental54,1
+Rice roots,1
+Stanley WWTPs_42 WWTPs effluent,1
+sputum from patient with pneumonia,1
+soil from walnut orchard,1
+intestines of sick fish,1
+benzene- degrading enrichment culture,1
+devitalized tissue,1
+Throat swab 1,1
+co-culture of Aspergillus flavus and Bombella sp. isolated from honey bee,1
+Throat swab 15,1
+decubitus swab,1
+Pleuroperitoneal Fluid,1
+meropenem treated soil,1
+urine (catheter),1
+patient with DFU,1
+"unialgal non-axenic culture, originally established from brackish water collected from Curonian Lagoon Lithuania in 2012",1
+goose faeces,1
+Hippophae rhamnoides root soil actinomycetes,1
+anus,1
+peritoneal,1
+Microcerotermes nervosus termite mound periphery,1
+commercial vaccine,1
+cecum matter of weanling rat after 6 hour fasting; S14,1
+endotracheal cannula,1
+"microaerophilic veil, freshwater sediment",1
+Loxodonta africana,1
+cecum matter of weanling rat after 6 hour fasting; S22,1
+retail cow milk,1
+sacral ulcer,1
+Lower limb swab,1
+Salad with boiled beetroot,1
+Throat swab 6,1
+chicken caeca 4,1
+soft bottom,1
+Healthy leaves of fully grown Tectona grandis,1
+polystyrene waste,1
+Hill Myna,1
+Greenhouse grown plants with black leg infection,1
+North Park Lake,1
+lung tissue and bronchoalveolar lavage fluid,1
+"waste water treatment plant, downstream",1
+pus swabs,1
+China: Guangdong,1
+Stump Wound,1
+Patient22 sputum,1
+Chicken giblets (Gallus gallus),1
+"wound, drain right lower quadrant",1
+Shatin WWTPs_21 WWTPs effluent,1
+fish gut,1
+"Peripheral Blood Culture (three separate sets, anaerobic bottles only)",1
+"Marine sediments from the Ria Formosa lagoon (Faro, Portugal)",1
+Stanley WWTPs_28 WWTPs effluent,1
+fester,1
+endotracheal tube,1
+Water for algae observation,1
+environmental187,1
+Industrial zone of Bord Elarab city,1
+diarrhea,1
+Fresh fecal sample,1
+Earthworm gut,1
+stethoscope,1
+Eye secretion,1
+2227E medium,1
+throat; endotracheal tube,1
+Raw-milk cheese,1
+human peritoneal fluid,1
+stool samples,1
+Diaphorina citri,1
+acute appendicitis,1
+Throat swab 36,1
+Fresh vegetable salad with canned vegetables and seasoned pickled mushrooms,1
+ileum,1
+root of coffee,1
+Lesion,1
+Scrotal wound,1
+Locker_P26_BU28,1
+Dongxiang wild rice,1
+rice panicle,1
+"sediment, groundwater",1
+water surface of oligotrophic pond,1
+Apple strudel,1
+Endophytes,1
+Intestinal Tract,1
+aborted donkey,1
+Swab from ear,1
+lavage,1
+C RA BJH,1
+Black-collared Starling,1
+cecum matter of weanling rat after 6 hour fasting; S1,1
+Bed controller_P22_BU23,1
+cecal content,1
+champenoux soil,1
+dolphin spleen,1
+Shek Wu Hui WWTPs_100 WWTPs influent,1
+Marine biofilms,1
+rice rhizosphere,1
+Patient42 sputum,1
+Retail market fish,1
+"Soil of the Cerrado, clay soil, Gurupi-TO, Brazil",1
+Chicken gizzard (Gallus gallus),1
+Porites lutea,1
+human oral cavity UC16,1
+genital,1
+Toe Wound,1
+ICU - sink,1
+Salmo salar liver,1
+"sediment collected in IODP Expedition 375 from site U1519E, depth 10.35 mbsf",1
+Creek sediment,1
+enrichment culture of drinking water treatment residuals inoculated with Planktothrix agardhii,1
+human oral cavity UC02,1
+sample from patient in hospital emergency room,1
+2221E medium,1
+Panthera tigris Amoyensis,1
+Irrigation well water,1
+swine feces,1
+environmental177,1
+microbial mat of salt lake,1
+China: Anhui,1
+skin fragement,1
+tibia,1
+profound head ulcers of farmed Murray cod,1
+Biofilm - potable water,1
+Throat swab 40,1
+ICU - occupied bed,1
+retail milk,1
+"sediment collected in IODP Expedition 375 from site U1519E, depth 42.77 mbsf",1
+Conjunctival secretion,1
+Automated Teller Machine,1
+sediment in spartina alterniflora,1
+Normal skin swab,1
+Oral swab,1
+Clinical lab,1
+hospital sample,1
+Salvia splendens seedlings,1
+retail fresh cilantro,1
+bal,1
+sour bean,1
+feces of food-borne disease patients,1
+Preterm neonate vaginally delivered and admitted to SNCU with respiratory distress,1
+scrambled eggs,1
+"Intertidal sediment samples from Puqian Bay,China",1
+Throat swab 3,1
+produced water,1
+left hindlimb fetlock wound,1
+sternum,1
+Eye Swab,1
+Endotracheal tube tip,1
+Rootzone of shrubs,1
+Urine (catheter),1
+intravitreal tap from 78 year old male patient,1
+Uterine,1
+green shoot,1
+Infected leaves,1
+gut intramural cavernous fistulous tract (CavFT) microlesion,1
+Protein phyto iogurt with black currant,1
+Vegetable soup,1
+stream biofilm,1
+2223E medium,1
+2226E medium,1
+shunt fluid,1
+seeds,1
+Splenic fine needle aspirate,1
+"Rhizospheric soil of mangrove plant, Rhizophora mucronata",1
+Hospital ICU,1
+salivary gland,1
+Raw beef,1
+hot underground spring,1
+clinical isolation,1
+Sternum bone,1
+earthworm cast,1
+Estuarine mud,1
+4% isobutanol tolerant sttrain was obtained after evolution experiments performed on wild type NZ9000 L. lactis strain.,1
+Shatin WWTPs_77 WWTPs influent,1
+Shek Wu Hui WWTPs_1 WWTPs effluent,1
+environmental98,1
+water dripping from a Western sword fern plant four feet above road bed,1
+Endophyte,1
+Throat swab 16,1
+Chernozemic soil,1
+conjugation assay,1
+Water sample from WAB71 Well,1
+Throat swab 8,1
+Boiled sausages,1
+red volcanic soil on cultivated land,1
+contaminated culture of Mycobacterium chubuense ATCC27278,1
+Throat swab 33,1
+cervix swab,1
+feces from Chicken intestine,1
+adult male whole insect body collected from Opuntia ficus-indica,1
+Throat swab 21,1
+Throat swab 27,1
+Baijiu distillery sewage,1
+"Sediment samples were collected from a municipal wastewater treatment outlet located in the intertidal zone of Zhanjiang Bay, China.",1
+deep sea mooring chain biofilm,1
+Human fecal sample,1
+pulmonary sample,1
+pelleted cells from reactor effluent,1
+patient8,1
+bronchio-nasal eashing,1
+Pharyngeal swab,1
+Intestine content,1
+black soot,1
+snow,1
+retail chicken meat,1
+Shek Wu Hui WWTPs_114 WWTPs influent,1
+"""Baked roll """"Ayashi""""""",1
+Inguinal/Rectal swab,1
+Trawl swab of 26-day-old poultry litter,1
+street pet,1
+Eclectus roratus feces,1
+asphalt marine sediment,1
+feces samples from horses admitted in a veterinary hospital,1
+clay soil,1
+Throat swab 29,1
+corneal ulcer,1
+pig manure,1
+Silurus asotus,1
+stomach lumen,1
+Deep throat,1
+granite found near the pulp mill site,1
+mixed forest with bamboo,1
+cerebral abscess pus,1
+trout head-kidney,1
+chicken caeca 5,1
+feces of swine,1
+tea garden soil,1
+sequencing batch reactor,1
+shallow sediments of the Salar de Huasco lagoon,1
+foot of a periwinkle,1
+fruit fly in a laboratory,1
+unk,1
+parking lot island in grocery store parking lot,1
+Pea field soil,1
+shoe sole from worker,1
+Pond sample 2,1
+main river that flows through Guiyu town,1
+perirectal swab,1
+drought soil/ flooding soil in rice field,1
+Abdominal pus,1
+water sample 5 m,1
+ICU - ventilator,1
+Stanley WWTPs_10 WWTPs influent,1
+Creamy cheese sample 1,1
+USA:Mississippi,1
+small intestine,1
+Patient57 sputum,1
+Throat swab 38,1
+Aphanizomenon enrichment culture inoculated with lake water from cyanobacterial bloom,1
+Farm water farm 3,1
+wound drainage from an ICU patient with septic shock,1
+enrichment cultures inoculated with river sediment,1
+anammox biofilm in wastewater treatment plant,1
+epithelium of nasopharynx [UBERON:0001951],1
+the leaf of flue-cured tobacco,1
+wound swab (lower limb),1
+environmental15,1
+Throat swab 24,1
+fresh water lake sediment,1
+Tomsk,1
+5 bed bar,1
+Pleural Cavity,1
+Patient48 sputum,1
+plasticized fabric sample F exposed to a harsh tropical environment for 14 months,1
+tracheostomy swab,1
+wetlands,1
+Throat swab 25,1
+respiratory culture,1
+bloodstream specimen,1
+rabbit meat,1
+tracheobronchial secretion,1
+2216E medium,1
+Electrocardiogram clip,1
+patient5,1
+enrichment culture from haloalkaline lake,1
+cheek,1
+White-lipped Deer,1
+soft tissue abscess,1
+dentin-pulp,1
+"hospital-2, ICU, urine #7",1
+fermented cabbage,1
+Throat swab 28,1
+liver abcess in cystic fibrosis patient,1
+eye secreta,1
+elbow skin biopsy from patient with disseminated infection,1
+Beef Cattle Respiratory Tract,1
+tracheostoma,1
+radish sprouts,1
+patient's blood,1
+brain biopsy,1
+water-salt lake,1
+harbor surface coastal-water,1
+Agricultural,1
+multiple lymph nodes from dolphin caught in fish net,1
+MSU1 Lake,1
+human samples,1
+soybean nodules,1
+sludge,1
+Coal cuttings from Coal bed Methane well site,1
+Water sample,1
+sediment from sea water fish tank,1
+"marine sediment; Station J, 17-20 cmbsf",1
+Neopsylla setosa,1
+Shower,1
+mosquito larval gut,1
+"blood, liver abscess",1
+neck,1
+Phyllosphere of Musa spp. AAA cv. Grand Naine. Leaf number 10,1
+Plain boiled chicken,1
+"Activated sludge in wastewater treatment, oil refinery plant",1
+"obtained by stable isotope probing of toluene degrading sulfate-reducing culture enriched from oil sands tailings of Alberta, Canada",1
+groundwater from 1.7 km deep subsurface,1
+rhizosphere of a Sorghum plant,1
+"Activated sludge was sampled from two, 4-l enhanced biological phosphorus removal (EBPR) sequencing batch reactors seeded from Thornside Wastewater Treatment Plant, Queensland",1
+biological,1
+piggery dust,1
+soil adjacent to man-made pond at water treatment facility,1
+hydrocarbon contaminated rhizosphere,1
+periapical abscess,1
+intertidal marine sponge from the beach of Dalian,1
+Soil cores containing the root system of one maize plant,1
+Oropharyngeal,1
+Butter sample from the Republic of Moldavia,1
+Water from tilapia pond,1
+Ace Lake,1
+goldfish aquarium,1
+Raw almonds,1
+blood from new born child with sepsis,1
+Rhizosphere of Ilex paraguariensis St. Hil,1
+segment 2 of single filament from GC246 mud volcano site,1
+Tracheostomy Aspirate,1
+a dead ark clam,1
+Hot spring_98deg.,1
+Monarch Geyser (MG_3); temperature 80C; pH 4.0,1
+"freshwater lake sediment grown in bioreactor fed with nitrate, ammonium and methane",1
+enzootic abortion of ewes,1
+carrot,1
+Pectoral lymph nodes,1
+blood sample from a 76 year old man who was hospitalized in ICU,1
+biofilm from MA_RO membrane6,1
+Pleural Tube,1
+soil contaminated with killed cattle,1
+Marina Sediment,1
+caecum,1
+Lactuca sativa var. capitata (red lettuce),1
+"Ayakekum salt lake - low temperature, low nutrient levels, abundant sunlight and remote geographical location; pH of the water was approximately pH 7-8",1
+venous blood,1
+coastal waters,1
+retail chicken gizzard,1
+A hexactinellid isolated at 824 m depth,1
+"pink subaerial biofilm microbial community collected from the base of 2m high pile of pyrite sediment over which pH 1.1, 41C acid mine drainage solution was flowing",1
+blood sample from a 36 year old woman who was hospitalized in ICU,1
+supermaket trout,1
+Chicken breast conveyor belt,1
+cell culture,1
+nasal pharynx,1
+field,1
+culture,1
+laparoscopic wound,1
+nail feet smear,1
+Meat from pig - fresh,1
+acid mine decant and tailings from uranium mine,1
+coastal surface water from the Northern Adriatic Sea,1
+endocervical tissue,1
+perfusion fluid,1
+Skin (Petechiae),1
+Seawater from oxygen minimum zone,1
+undefined,1
+Hot Spring water,1
+medical patient,1
+Femural surgical wound,1
+poultry carcass 3,1
+soil of landfill site,1
+single cells S2_E04 and S3_L12 amplified by MDA; Uruguay winery wastewater,1
+swab of drain,1
+collected by magnetic separation from freshwater sediment,1
+oceanic bottom sediments,1
+Andacollo gold mining area,1
+baechu kimchi,1
+"Boothbay harbor, 1m depth",1
+Parsons silt loam,1
+Ford Lake,1
+"unialgal non-axenic culture, originally established from brackish water collected from Curonian Lagoon Lithuania",1
+Floor Drain (86-448-196 2a),1
+Cerebellum abscess,1
+sauerkraut,1
+Fresh fish,1
+flowers,1
+limb,1
+Stool of child with non-specific diarrhea,1
+Beefmaster heifer,1
+trophosome of five individuals (short-fat and long-skinny morphotypes) collected from the Hulk vent in the Main Endeavour Field (-2190 m) and the Axial Volcano (-1516 m),1
+Cutaneous swab,1
+Okra,1
+hay,1
+patient blood,1
+Honey bee midgut,1
+orchids affected by bacterial soft rot,1
+North Sea (surface water),1
+Antonio Pedro University Hospital,1
+noodle salad,1
+slough from diabetec foot ulcer,1
+"Little Campbell River, British Columbia, Canada",1
+"soil sample, Enrichment culture with 4-chlorophenol and 2,4-dichlorophenol",1
+parched beans,1
+rhizomorph hyphal-tip cell-culture,1
+Fecal samples from a 12-year-old male koala named Zagget,1
+subseafloor sediment,1
+Wet market,1
+"disinfectant-free drinking water, site 2",1
+Anal fistula,1
+Skin and soft tissue,1
+Brine-fed electro-methanogenic bioreactor BR12,1
+Mid-stream Urine,1
+Denmark,1
+leaf tissue,1
+Alfalfa silage,1
+feather waste from poultry processing plant,1
+moss leaves from three boreal mosses,1
+Portugal:Lisbon,1
+"tobacco waste from Liqun Environment Protecting Paper Co., Ltd",1
+cocoon mucus of kanamycin treated earthworm,1
+Surfaces of lower molars of Sprague Dawley rat,1
+human dental abscess,1
+lungs of dead pneumonia animals,1
+Kulin Smoked,1
+clinical throat samples,1
+rhizosphere of wild rye growing in a coastal sand dune area,1
+Bean seeds,1
+the skin of squirrel,1
+tongue plaque,1
+milk from cow teat in a norwegian farm followed by infection of mouse mammary gland,1
+beef sausage sample from Turkey,1
+pepper leaf,1
+Abdominal clot,1
+raw chicken meat,1
+"marine sediment; Station J, 5-10 cmbsf, microcosm with tetrathionate",1
+Penile discharge,1
+Radish,1
+biofilm from sulfidic groundwater,1
+Man-made lake,1
+Human urine,1
+sediment (10-15 cm) from mangrove covering field,1
+intake seawater,1
+Abdominal drainage tube,1
+Bronchoalvelar lavage (BAL),1
+segment 6 of single filament from GC246 mud volcano site,1
+Saffron corm,1
+Parkland forest soil (upper A horizon),1
+drainage ditch water,1
+Cylindrospermopsis summer bloom,1
+Liver cyst,1
+duodenum biopsy,1
+biopsy of vertebra,1
+lung of a duck that died of fowl cholera,1
+stool from hospitalized pediatric patient,1
+water from CO2 storage reservoir,1
+bovine milk 2,1
+algae surface,1
+Poultry sample from Republic of Moldavia,1
+Gut,1
+Ribes nigrum leaves,1
+cervical abscess,1
+meat production plant,1
+fermented herbage,1
+blood sample from a 69 year old woman who was hospitalized in ICU,1
+Biliary drain fluid,1
+"Subgingival plaque, periodontal pocket",1
+Agr,1
+Wheat (Triticum aestivum),1
+Miniatus Grouper,1
+broiler chicken gut,1
+Trichodesmium bloom in seawater,1
+"Angelo meadow plot 1, 20cm depth, 2 days after second rain event (91mm)",1
+fetal bovine kidney,1
+"Laboratory collection, wild type strain",1
+bovine meat 3,1
+cabbage cv. WK882,1
+Red Sea water column Station 108 - depth 200m,1
+methane seep,1
+(SRF) surface water layer water column,1
+Cow's milk,1
+gill of flatfish,1
+glacier sediment,1
+feces of 51 yr old caucasian female with stage I colorectal cancer,1
+Falafel powder from Egypt,1
+bronchoscopy tissue,1
+lesions on the lower abdomen,1
+insect isolated from skin/wool of sheep,1
+Swine feces,1
+tomato rhisosphere,1
+Electronic waste sludge of dismantling workshop,1
+Dental Plaque,1
+Endotracheal Secretion,1
+coastal marine water,1
+Pleura effusion,1
+campsite water hose,1
+intra-abdominal abscess,1
+Growol (fermented cassava),1
+Fucus evanescens,1
+traditional sour milk,1
+pus of abscess,1
+drain liquid,1
+Sphagnum peat bog gray layer sample,1
+bronchial sample from a male patient with chronic obstructive pneumonia,1
+Moutai flavour Daqu,1
+Ventricular cerebrospinal fluid,1
+endotracheal,1
+pharyngeal exudate from child's pharynx,1
+soil contaminated by poppy wastes,1
+Fish part (head) sold as Asian bighead carp; Muscle,1
+nasophyrangeal,1
+Deep-sea sediment,1
+tubeworm trophosome,1
+phototrophic microbial mat,1
+cellulose fed anaerobic digester inoculated with sludge,1
+Clinical wastes,1
+"disinfectant-free drinking water, site 5",1
+crown gall,1
+Red heat in salted hides (spoiled fish),1
+bedside table,1
+TIP,1
+Eggplant plant with bacterial wilt symptoms,1
+Mennonite Sausage,1
+Celery,1
+seawater from North Atlantic Deep Water,1
+fungal mycelia of Mortierella elongata FMR23-6,1
+Host lymph node biopsy,1
+penile discharge,1
+cerebral-spinal fluid,1
+CWDANST,1
+single cell amplified by MDA; deep marine sediment,1
+Chilled goulash,1
+urinary catheter,1
+shower water,1
+Owen's River,1
+Freshwater Cyanobacterial Bloom,1
+peritoneal liquid,1
+ice-bearing permafrost,1
+Bronchial fluid,1
+Bronchia,1
+"right leg muscle, right leg fascia, central venous catheter, dialysis catheter, surface of the left leg ulcer, and left lower leg",1
+vaccine,1
+patient eye swab,1
+PCB contaminated upland soil,1
+traditional dairy,1
+Skin pustule,1
+3 cells amplified by MDA; sorted single cells from oil sands tailings pond,1
+visceral organs,1
+Laboratory derivative,1
+single cell amplified by MDA; Jinze hot spring,1
+Endotracheal tube secretions,1
+pre-capsular lymph node,1
+cucumber fermantation,1
+Honey,1
+Mud of a pig farm,1
+Antarctic seawater,1
+Skin biopsy,1
+mammary cyst biopsy,1
+rhizosphere area,1
+Floor at Door of fridge,1
+Veterinary,1
+pupae,1
+"ammonium-rich, mesophilic methanogenic a continuously stirred laboratory-scale reactor",1
+Generalized,1
+swab of staff's sole,1
+stomach content of fetus,1
+hot water systems,1
+host trophosiom tissue,1
+Starvation in Luria Bertani broth,1
+water column (SRF) surface water layer,1
+nitrate amended sediment enrichment culture,1
+catheter urine,1
+cornea of keratitis patient,1
+Tissue from foot,1
+Bream,1
+Blood and wound,1
+Packaged minced pork,1
+Baker Lake,1
+Saline lake sediment,1
+prosthetic knee,1
+pig viscera,1
+A laboratory derivative of ATCC 14028s,1
+biofilm from LA_RO membrane4,1
+"marine sediment core GS10_PC15, 163 cmbsf",1
+Pancreas,1
+Severe Trauma Site bone,1
+pharyngeal secretions,1
+blood sample from a 66 year old man who was hospitalized in ICU,1
+Lung Tissue,1
+"seafood, marine bivalve",1
+Agricultural soil sample,1
+sediment from Garga hot spring located in the valley of the river Barguzin (the Baikal region),1
+Turkey ceca,1
+soil from horse paddock,1
+blood sample from a 38 year old man who was hospitalized in ICU,1
+Aphis craccivora (cowpea aphid) on Robinia pseudoacacia (locust),1
+abdominal wound swab,1
+wastewater outflow,1
+blood sample from a 67 year old woman who was hospitalized in ICU,1
+Freshwater river sediment,1
+Closed pus,1
+vaginal fluid,1
+ulcer exudate,1
+throat swab - pharynx,1
+The waste water of the city hospital number 4,1
+Wound left foot,1
+"sample #5579, elevator 3A push core 41 containing 12 cm of sediment, collected at Hydrate Ridge North during Jason II dive J2-593 from an area of active seepage marked by bubble ebullition and surface expression of white microbial mat",1
+infected surgical wound,1
+open ocean water,1
+URT,1
+sample taken from an organic matter in an abandoned nest of a bird,1
+6-12 cm at B station,1
+"deep-subseafloor sediments retrieved at the site 1225 of the Ocean Drilling Program (ODP) 3760m below the sea surface during ODP Leg 201 (D'Hondtet al., 2004; DOI: 10.1126/science.1101155)",1
+Baechu-Kimchi,1
+biomass from a lab-scale sequencing batch reactor,1
+Shar-Burdiin hypersaline soda lake,1
+L4 methanol SIP enrichment; time point 1; heavy DNA,1
+infection site,1
+cerebral spinal fluid,1
+surface of Austrian artisanal cheeses,1
+tracheobronchial aspirate,1
+Freshwater creek,1
+gills of Trichogaster trichopterus,1
+effluent treatment plant,1
+Vaginal-rectal,1
+vegetable food,1
+pastry,1
+Deep venous catheter,1
+from the respiratory tract of Marmota himalayana,1
+"imperial geyser, near vegetative/sediment and waters edge",1
+oil-contaminated slough,1
+sump pump pipe water,1
+Ascitic fluid,1
+smoked ham water added,1
+hairtail,1
+Lung biopsy,1
+dialysis soution,1
+pristine surface coastal water,1
+traditional fermented food (gizzard shad),1
+recirculating aquaculture system with fresh water at 25C,1
+oysters (Crassostrea spp.),1
+Not applicable,1
+Meat semi-finished products,1
+Prosciutto Cotto,1
+Coarse Wurst,1
+Potatoes,1
+Isolates from 68.82m-68.92m section below the seafloor (cmbsf) in subseafloor sediments off Shimokita Peninsula,1
+commercial swine,1
+biofilm from MB_RO membrane1,1
+salt mine,1
+honeybee gut,1
+blood and joint fluid of melioidosis patient,1
+freshwater lake surface water,1
+total host DNA extraction,1
+sediment core,1
+chromate-containing wastewater,1
+"marine water, cyanobacterial mat",1
+cardiovascular puncture (CVP) tip,1
+"soil near greenhouses, ph 8.3",1
+cerebrospinal fluid from newborn,1
+Gatot (dried fermented food from cassava),1
+single cell amplfied by MDA; marine water,1
+Oral Cavity,1
+faecal sample,1
+inner root,1
+incision secretion,1
+rhizosphere soil from the California Institute of Technology Campus,1
+non-rhizosphere bulk soil near Avena fatua middle density fraction time point 6 weeks,1
+Plant Leaf,1
+Atlantic Ocean,1
+Frozen whole Tilapia,1
+Freshwater reservoir,1
+Reserve Speciale Ambohitantely,1
+purple siltstone,1
+Sewage Treatment Plant,1
+Antarctic saline pond copepod,1
+Deep sea sediments,1
+zebrafish from quarantine facility,1
+Vaginal rectal screen,1
+dairy milk,1
+sea mud,1
+Porcine tongue,1
+Hypolithon,1
+Ionic-liquid pretreated feedstock adapted compost from compost facility,1
+biofilm from LB_RO membrane2,1
+Chicken heart,1
+stillborn fetus from a slaughterhouse,1
+lizard,1
+larvae gut,1
+freshwater including sediment from Sincheon River,1
+control oxisol soil plot 2,1
+polluted sand sample from Praia da Seda beach after the Prestige tanker accident,1
+Rhizospheric soil from Cenchrus ciliaris,1
+water from a salt pit,1
+man-made lake 220 cm below water surface,1
+Stool 3,1
+A demosponge isolated at 971 m depth,1
+ankle wound,1
+nasopharyngeal aspirate,1
+active-layer soil at a depth of 1 m from soil core (Eur3),1
+Pure culture in MRS broth and glycerol (2:1),1
+head kidney,1
+"DOE Field Research Center at Oakridge, Tennessee, Area 5, Well FW507",1
+artificial saltern,1
+subgaleal pus,1
+skin of chicken,1
+Palm oil mill effluent degrading anaerobic digester,1
+flower,1
+grape skin,1
+"Lungs, pleura",1
+blood sample from a 58 year old woman who was hospitalized in ICU,1
+subcutaneous tissue biopsy,1
+blood and feces,1
+Wound exudate,1
+"""mummified remains of an ancient """"Tumat"""" puppy""",1
+resina,1
+Rhizo- sphere soil samples collected in an organic olive grove located at Mairena del Aljarafe (Sevilla),1
+marine sediments,1
+ground swine,1
+Abscesse secretion,1
+biofilm from MB_RO membrane5,1
+foot wound,1
+cloud water,1
+Blood stream of bacteremia patient,1
+Petroleum contaminated sludge,1
+"stool of a child hospitalized at icddr,b hospital in Dhaka",1
+diseased Nile tilapia,1
+carious lesion,1
+Ground pork,1
+commercial turkey ileum,1
+Abd Wound,1
+bacteremia,1
+gills from mollusc collected from dive Tiburon 548,1
+Stool 5,1
+Tomato plant endosphere,1
+cellulolytic enrichment culture from marsh water,1
+lung sample,1
+Red Sea water column Station 149 - depth 50m,1
+oropharyngeal sample,1
+Poultry feed,1
+Pericoronitis,1
+freshwater sediment of Sincheon River,1
+irrigation canal,1
+non-axenic enrichment culture inoculated with Trichodesmium trichomes collected from seawater; maintained in YBC-II_artificial_seawater; biomass sampled from culture in 2019-05 for DNA extraction,1
+Intra-abdominal drainage,1
+University Hospital of Yamoussoukro,1
+Clams,1
+oil production facility,1
+Floor press,1
+plant nodules,1
+bovine mastitis milk,1
+surgical swab,1
+South Atlantic sub-tropical gyre (station KN192-5-11),1
+bioreactor enrichment culture,1
+External lesion of a diseased snapper,1
+M OIDS,1
+adult female hemolymph and gut,1
+German Wadden Sea,1
+Bacteriophage Insensitive Mutant of strain ATCC 10386,1
+Peru,1
+Cutaneous ulcer,1
+Rectasl swab,1
+Individual compounds of essential oils,1
+water sample from river near old railway bridge,1
+Turkey meat,1
+Sheep outbreak - vaginal swab,1
+sacrum,1
+Gray water,1
+Injured eye,1
+Duck hatchery premise. Environmental sponge from inside air exhaust tunnel of hatcher room C,1
+daylily root,1
+"Oral cavity, infant (2 months age)",1
+sheep brocho-alveolar lavage,1
+bovine milk 1,1
+microbial mat sample from a shallow moated area,1
+Air sample from hospital environment,1
+biofilm from LA_RO membrane1,1
+Tracheal secretions,1
+"Mining area near to La Esperanza in Murcia, Spain",1
+parenchyma,1
+Non-disinfected roots of Brachiaria brizantha,1
+"anaerobic sediment of brackish water ditch near Jadebusen, North Sea, Germany",1
+Queso fresco,1
+microalgae culture,1
+Rhizospheric water of Mangrove Trees,1
+enrichment culture from gut homogenate,1
+MRSA isolate from 43 years old male,1
+chili cheese corn dog,1
+water with organic detritus of a forest pool,1
+single cell amplified by MDA; brine-seawater interface from Atlantis II Deep Red Sea,1
+submerged soil sample from rice field,1
+karst cave soil,1
+Ocular,1
+root of field-grown alfalfa plants,1
+"alaline, sulfidic hot spring Cone Pool 1",1
+Environmental control,1
+mitral valve,1
+Hot-spring sediments,1
+Cerebospinal fluid,1
+saltern,1
+sacral ulcer swab,1
+urinary infection,1
+Inguinal lymph node,1
+surface of lake,1
+Sputum; Early isolate from VAP patient 3,1
+food processing,1
+Coconi,1
+Semi-finished fish,1
+deep-seawater,1
+tracheal aspirate from Non-CF patient,1
+surface of Austrian artisanal cheese,1
+Harvested at the discharge of the grit chambers of the west wastewater treatment plant of Quebec City,1
+sea ice,1
+Ladder,1
+salt lake sediments,1
+intestine of snail,1
+hydroponic lettuce leaf,1
+lession,1
+polluted sand sample after the Prestige tanker accident,1
+Lake Cadagno,1
+Liver Sausage,1
+biofilm from LA_RO membrane2,1
+Florida freshwater fish farms,1
+Duck hatchery premise. Environmental sponge from top of hatcher C1 in hatcher room C,1
+filtered produced water from oil reservoir B6,1
+larva,1
+geothermal spring sediment,1
+deep-sea hydrothermal vent sediment,1
+Rifle well FP-101 under high O2,1
+Laboratory contaminant,1
+horse trough water,1
+Feta Cheese,1
+residential yard,1
+arctic wetland soil,1
+hot spring water and gravel,1
+lakeside in Campo Rupestre,1
+kitchen drain gutter floor,1
+natural oxic surface sediment,1
+beach sand samples (comprising of small lime stones) from the sea mouth of Chilika lake,1
+perianal,1
+Rifle well FP-101 under low O2 conditions; 0.1 micron filter; 10% subassembly,1
+chicken gizzard,1
+Pacific Ocean from 4004 m depth,1
+lilypad,1
+"Seachest, wood",1
+butter,1
+Broncholaveolar lavage,1
+milk from cow teat in a norwegian farm,1
+mine drainage stream,1
+Human sputum,1
+Retail chichen,1
+pleural fluid isolated form a 50-year-old man,1
+gall,1
+aqueous sample from a deep subsurface shale carbon reservoir,1
+Lake Michigan water,1
+no data,1
+Joint Aspirate,1
+Blood stream,1
+Urinary catether,1
+Stool 1,1
+Foley Catheter,1
+Secretion swab,1
+hematite amended sediment enrichment culture,1
+Antarctic Soil,1
+Antarctic marine sediment,1
+banana plantation infected with Banana Blood Disease,1
+faces,1
+Coriender and Cumin mix,1
+Antarctic saline lagoon,1
+Uretral sample,1
+Surveillance culture,1
+meat and bone meal,1
+"Jukgye, Dongnam, Cheonan, Korea",1
+yogurt,1
+Spiral shell,1
+marine sediment sample bbl-31,1
+Soil of Match works dumpyard,1
+Antarctic soil,1
+Retropharyngeal abscess,1
+sandy soil,1
+production water,1
+beach mud,1
+biofilm from MB_RO membrane3,1
+non-axenic culture originally inoculated with ocean water,1
+"the First Quanzhou Hospital, Quanzhou, Fujian, China",1
+Re-isolation from DSM 1974,1
+Tuna Kimchi Gimbap (a type of Korean food),1
+Oropharyngeal swab,1
+river mud,1
+lab-maintained culture,1
+larvae,1
+blood sample from a 42 year old man who was hospitalized in ICU,1
+enriched culture from deer feces,1
+trophosome of an individual (short-fat morphotype) collected from the Hulk vent in the Main Endeavour Field (-2190 m),1
+activated sludge from wastewater treatment plant,1
+"Ospedale S. Maria delle Grazie (Napoli, Italy)",1
+stoma swab,1
+deep-sea sediment samples,1
+lung biopsy,1
+water sample and microbial mat on an anthropogenic pipe,1
+mussel,1
+male,1
+sediment of Lagoon,1
+sugarcane bagasse,1
+Sponge bags 2,1
+biofilm from LB_RO membrane6,1
+Umbilical cord,1
+catheter swab,1
+"Antarctic soil, Upper top soil layer",1
+Swine stool,1
+"Upflow Anaerobic Sludge Blanket (UASB) biodigestor operated at 45C, used to treat sugarcane vinasse",1
+Pre-Scapular LN,1
+Deep sediment,1
+saliva from healthy adult,1
+Wrapped Turkey,1
+sponge from the Swan site of a hydrothermal vent,1
+leachate from fermenter tank of an agricultural biogas plant,1
+cellulolytic consortium obtained from decaying native forest soil,1
+water from a shrimp pond,1
+urine tube tip,1
+single cell amplified by WGA; tempeh (fermented soybean food product),1
+derived from clinical isolate ATCC 14028,1
+The running surface of an indoor track field house,1
+Diploria strigosa and Siderastrea siderea,1
+mixed salad,1
+particulate air filter from the International Space Station,1
+Brassica oleracea var. capitata,1
+gills from mollusc collected from dive Tiburon 488,1
+wetland sediment,1
+vaccine strain for haemorrhagic septicaemia,1
+Outflow 1 m downstream from hot springs,1
+skin damage,1
+chest tube,1
+Antarctic coastal attached (fast) ice and surface seawater,1
+Trachel,1
+red biofilm from hot lake,1
+blood from a febrile patient,1
+hot spring sediments,1
+liver from bovine aborted fetus,1
+ZC4 compost from a compost operation of Sao Paulo Zoo,1
+Retropharyngeal lymph node,1
+commercial canine company,1
+Hydraulic Fracturing Produced Water Storage Tank,1
+Whole fish sold as black tilapia; Muscle,1
+Tsoundzou,1
+sinus tissue,1
+bovine meat 1,1
+Lee Lake,1
+abdominal swab,1
+osteomyelitis aspirate,1
+Belgian Congo,1
+Tissue Culture,1
+detention water,1
+nose (colonization),1
+roast pork,1
+carcass swab,1
+chicken Gizzard,1
+external auditory canal,1
+laboratory culture of MM66 was used to generate MM66 mutants expressing reduced expression of vancomycin-intermediate mechanism,1
+black carp,1
+Tillamook County,1
+oil polluted seawater,1
+Myodes rufocanus,1
+blood specimen,1
+Putrid infusion of shell fish,1
+bone marrow of dead buffalo with haemorrhagic septicaemia,1
+biofilm from from a cold seep,1
+mid stream urine of a 33 year female patient with a history of genito-urinary Tuberculosis,1
+Lung tissues,1
+wound abscess,1
+swab from pus at scar,1
+healthy chicken,1
+Roast duck,1
+sputum of patient with mycobacteriosis,1
+soil flooded by seawater,1
+seawater 60 km offshore,1
+Asian swamp eel,1
+Mediterranean sea,1
+Trachea aspirate,1
+sediments of neutral hot spring,1
+Kale,1
+Lab contaminant,1
+Brazilian Cerrado,1
+ethmoid sinus,1
+Kulunda Steppe hypersaline lakes with neutral pH,1
+"Oryza sativa, rhizosphere soil",1
+Conjunctivae,1
+diseased leaf veins,1
+Brandtia sp.,1
+finger,1
+Post-intervention beef carcass,1
+gizzard,1
+Turbot,1
+polar saline lagoon,1
+nosopharyngeal aspirate,1
+"lung, right",1
+Slaughterhouse,1
+piggery manure,1
+Frozen shrimp,1
+Pigeon,1
+bacon flakes,1
+cotton rhizosphere soil,1
+squared floor,1
+Testicle,1
+Sediment of a hot spring pool,1
+soil adhering to oilseed rape's roots,1
+spinach leaf,1
+alkaline ophiolitic spring,1
+sulfidic fissure Spring - flowing,1
+bone marrow,1
+single cell amplified by MDA; Gongxiaosohe hot spring,1
+sputum samples from patient with COPD,1
+Duck Pemise. Environmental drag booties from the duck barn floor,1
+freshwater stream sediment,1
+sludge from a small creek near an electronic waste dismantling workshop,1
+scats,1
+Sacred grove,1
+Coastal eastern subtropical pacific,1
+Calf Liver,1
+Turbot fish farm,1
+water from a pond,1
+bloodstream of patient with high level daptomycin resistance,1
+Vacuum packaged sliced salted salmon product,1
+Baechu-kimchi,1
+biofilm from LA_RO membrane3,1
+Incision,1
+soil from a termitary,1
+diseased striped catfish,1
+faecal sample from a 27 year old healthy female,1
+bay water summer sample 29 PSU in less than .8 micron size fraction,1
+Damaged skin,1
+fecal sample of cattle,1
+abscesses,1
+blood; anaerobic bottle,1
+Frozen raw headless shell shrimp,1
+Ham,1
+gills of Trichogaster pectoralis,1
+"North Queensland, Australia",1
+tissue from tooth extraction,1
+Eye discharge,1
+sputum and blood,1
+aviary environment,1
+Puncture fluid,1
+gills of Hemibagrus wyckioides,1
+periodontal plaque,1
+Chicken caecum,1
+clinical specimens from dogs,1
+water of air-conditioning systems,1
+sputum from a cystic fibrosis patient,1
+ileal content,1
+"Soil, Residential Rain Drainage Channel",1
+"Decomposed wood of Fagus sylvatica, >38 years decomposition",1
+Radish shoots,1
+spring bog,1
+soldier combat wound,1
+blood bag,1
+sputum specimens,1
+Clam,1
+The second burn ward of Harbin fifth hospital,1
+Chrysomya megacephala adult collected from field of the airport,1
+wastewater treatment plant biodam,1
+Settle dust from an indoor track field house,1
+"Decomposed wood of Fagus sylvatica, <5 years decomposition",1
+Red Sea water column Station 91 - depth 100m,1
+"Periwinkle (C. roseus) plants placed in a phytoplasma infected vineyard, natuarally infected by vectors (M. fuscovaria)",1
+rotted fruit from symptomatic plant,1
+Nasal Swab from a Mare,1
+Foot Swap,1
+Prosthesis sonication,1
+produced water originating from a coalbed methane well,1
+Brine-fed electro-methanogenic bioreactor BA12,1
+steamed conch,1
+Stool sample (feces),1
+Drag swab,1
+Atlantic Forest,1
+potato tuberosphere soil,1
+Ixodes scapularis,1
+coastal sea-ice,1
+External lesion,1
+seawater from Antarctic Intermediate Water,1
+mixed forest near oak tree,1
+"granitic soil, undisturbed desert",1
+swab of ear,1
+high temperature Daqu for fermentation of Bandongjing Sesame-flavor liquor,1
+water from production well of Uzen petroleum reservoir,1
+arsenic-contaminated soil,1
+activated sludge from aeration tank for sewage treatment,1
+parotidectomy,1
+Supra pubic catheter urine,1
+Tooth root canal,1
+skin and soft tissue infection,1
+Lake Stechlin,1
+Septic tank,1
+"Pus, osteomyelitis",1
+lumbar puncture,1
+pubic bone,1
+"Anhui, China",1
+desert soil,1
+Laboratory,1
+China: Shanghai,1
+USA: Dallas Texas,1
+maize field,1
+activated sludge from Linkou wastewater treatment plant,1
+colon,1
+Soil of a dry creekbed,1
+dam water,1
+Turkey diagnostic,1
+grape,1
+mammal,1
+packaged chicken broiler leg,1
+bronchial washings,1
+Immature compost filter cake,1
+handrail,1
+Soft tissue wound,1
+soil sample line 2 60 ft from anomalous acidified pond located near a glacio-fluvial outwash plain,1
+tracheal secretions from Non-CF patient,1
+after 200 passages on culture medium (Brain Heart Infusion),1
+field soil,1
+Broncheal washing,1
+Deep subsurface fluids,1
+Runway 10 Reef (10-12 m),1
+"flowers, endophytic",1
+endotrachial aspirate from ICU patient,1
+endo-tracheal apirate (ETA),1
+feces from 52 yr old caucasian male,1
+larvae developed in green 'Suri' olives,1
+Xylem,1
+"shipworm Bankia gouldi collected from the Newport River Estuary, Beaufort North Carolina in 1979",1
+cold seep sediment sample 8 MPaI,1
+fermented pulque,1
+Nephretic drain fluid,1
+Aorta,1
+rumen fluid,1
+Chukchi Sea,1
+sick pig,1
+Sputum-lungs,1
+"terrestrial hot spring (Cistern Spring, YNP)",1
+the activated sludge from a sodium cyclamate production plant,1
+biofilm from MB_RO membrane6,1
+thermal brine,1
+fluid urethra,1
+sebaceous gland in acne affected area on cheek of male with severe acne,1
+drilled from decomposing wood,1
+carageenan 40-100 m particle (artificial) late colonization,1
+bathroom,1
+"sediment permeated by freshwater in a pond at the Anse Coco beach, La Digue Island, Republic of Seychelles",1
+Avicennia marina,1
+filtered produced water from oil reservoir A2,1
+"enrichment culture DH1 from tap water in Fudan University, urea",1
+Exudate from chicken breast purchased at a retail location,1
+segment 5 of single filament from GC246 mud volcano site,1
+decaying tree,1
+colonization device Net 2 floating at the air-water interface of the Frasassi cave system sulfidic spring,1
+top 1 cm of hot spring sediment,1
+packaged chicken,1
+segment 1 of single filament from GC246 mud volcano site,1
+droppings,1
+"seawater from hadal water (10,400-10,500 m)",1
+"Drain, entrance",1
+bood,1
+tannery wastewater,1
+milk from cattle,1
+enrichment bioreactor inoculated with the effluent of the enrichment described in Raghoebarsing et al 2006 (PMID 16612380),1
+piggery environmental water,1
+Forest soil (upper A horizon),1
+screening,1
+baked ham,1
+amphitheater springs near vegetative/sediment and waters edge,1
+Buffalo Milk,1
+blood sample from a 72 year old woman who was hospitalized in ICU,1
+White-crowned sparrow,1
+Supragingival dental plaque,1
+kitchen sink sponge,1
+Frozen whole waliking yellow fish,1
+midgut,1
+healthy skin surface,1
+Arctic Ocean sediment,1
+Endosphere,1
+Percutaneous abscess drainage,1
+Ziyang City,1
+biofilm from MA_RO membrane2,1
+bottom sediments of Lake Baikal,1
+table and wall Gap,1
+enrichment culture,1
+lamb trim,1
+cutting board,1
+slpeen,1
+sponge from the Crane site of a hydrothermal vent,1
+saline wetland,1
+root nodule of Sesbania cannabina,1
+whole blood,1
+hypersaline lake water,1
+Tanatar III soda lake,1
+midstream specimen of urine,1
+microbial mat of Manikaran Hot Spring,1
+Fetus,1
+femorotibial joint,1
+Ojo Caliente Hot Spring,1
+lechera,1
+Respiratory secretion,1
+Frozen Featherback fish meat,1
+male scorpion,1
+oil field,1
+Almond drupe,1
+"seawater incubations started in August, 2010",1
+Dropping,1
+Synovial Fluid Right ELBOW BURSA,1
+Fistula,1
+Howieson,1
+Ornithodoros hermsii tick,1
+mosquito gut,1
+brown mussels (Perna perna),1
+Garlic Smoked Sausage,1
+single-cell amplified by MDA; produced oilfield water,1
+Loropetalum,1
+14 mesial subgingival,1
+blood sample from a 45 year old man who was hospitalized in ICU,1
+peritoneal pseudomyxoma peritonei tumor,1
+sheep,1
+Fluid (Bone tissue),1
+Ornithogenic soil,1
+retail beef,1
+Hippophae rhamnoides rhizosphere,1
+symptomatic lesions of tomato plants,1
+pupenda,1
+(MIX) marine epipelagic mixed layer water column,1
+fecal swab,1
+Mediastinal fluid,1
+farmland biome,1
+water/sediment,1
+fetal abomasal content,1
+Axillary smear,1
+tomato leaf,1
+corn fermented beverage,1
+Parmesan Cheese,1
+newborn stool,1
+herring,1
+cold seep sediment sample 30 Mpa,1
+Bone fragment,1
+root nodule of Trifolium uniflorum collected on the edge of a valley,1
+urban wastewaters,1
+Cellulose-degrading anaerobic digester,1
+skin smear,1
+Foetal tissue,1
+coral sample,1
+surface of a mussel,1
+"5 liters of water from the Tucurui Power Plant Reservoir, point M5 collected 50cm beneath the lake surface, then filtered by negative pressure for posterior culture in BG-11 medium",1
+Endotracheal secretions,1
+Iso-alkane degrading methanogenic enrichment culture from Athabasca tailings sands,1
+terrestrial hot spring,1
+Flood water,1
+soil contaminated by antibiotics,1
+oil filed,1
+horse dung,1
+basaltic crust aquifer fluid,1
+Pharyngeal exudates,1
+deep-sea polychaete,1
+Pus left axilla,1
+Solanum tuberosum,1
+peribile duct tissue,1
+blood sample from a 56 year old woman who was hospitalized in ICU,1
+breast-fed lamb,1
+breast milk from a healthy woman,1
+laboratory sample,1
+patient with IBS,1
+heated water in contact with grass/sediment layer,1
+Pig-tail ureteric stent,1
+Bite Wound,1
+"free-living microorganism and particle-associated microorganism hadal water (10,400-10,500 m)",1
+soil next to an exhaust vent from an underground mine coal fire,1
+freshwater reservoir from 25 m depth,1
+Sink siphon water,1
+endoscope,1
+a sturgeon hatchery,1
+Water (artesian well),1
+Sputum; Late isolate from VAP patient 1,1
+Tidal flat sediment sample,1
+muscle tissue from wild boar carcass n.1,1
+blood; aerobic bottle,1
+salted chicken breast from poultry slaughterhouse,1
+sump pump pipe,1
+Pig intestine,1
+Solar salt,1
+Bovine Respiratory Tract,1
+Wetland water with mud,1
+Diesel-contaminated pilot plant,1
+sugarcane root from cultured field,1
+Enrichment culture (50C) from petroleum sample,1
+kabura-zushi,1
+Nakabusa hot spring,1
+fresh water lagoon,1
+H2-incubated subglacial sediment,1
+Smoked Salmon,1
+"soil, at the bottom of a wash with some plants",1
+Vaginal cavity,1
+raw meat from slaughter,1
+surface of algae,1
+Exit door handle from an indoor track field house,1
+Unidentified ascidian from marine environment,1
+biofilm from MB_RO membrane2,1
+Water with mud from a forest pond,1
+Arctic soil,1
+"surface sediment of the Jiulong River, depth 0.3 m",1
+water sample from Deepwater horizon oil spill plume (depth 1200m) treated with hexadecane in a stable-isotope probing (SIP) experiment,1
+blood sample from a 48 year old man who was hospitalized in ICU,1
+Lake Taihu water,1
+sediment from seabed,1
+retail chicken liver,1
+sample CTD7B from hydrothermal plume and surrounding marine water,1
+Nasotracheal aspiration,1
+burrowing fleas of Citellus pygmaeus,1
+drinking water faucet,1
+bioreactor treating fresh wastewater containing high content of P but low salinity,1
+Groin swab,1
+Eye-care solution,1
+biofilm from MA_RO membrane3,1
+surface sediment from the estuary of Pearl River treated with pyrene for 18 days,1
+Haihe Estuary,1
+Tomato with bacterial wilt symptoms,1
+fjord,1
+Purulent material,1
+Vaccine strain,1
+smooth type phage-resistant strain derived from K. pneumoniae K7,1
+glacier ice,1
+"Chicken, thigh",1
+pus culture,1
+contaminated soil sample obtained from a drilling mud pit,1
+sediment (13-16 cm) from intertidal mudflats,1
+Powai Lake,1
+"Rhizosphere soil, topsoil",1
+burn wounds,1
+periprosthetic liquid,1
+spleen of an aborted yak fetus,1
+"Georgia, United States",1
+mucoid sputum,1
+blood and lung culture,1
+"4514.4m, 93.44391/35.36549167",1
+marine sediment sample bbl-16,1
+"Chaguaramas, north-west Trinidad",1
+single-cell amplified by MDA; oral cavity saliva/biofilm,1
+Tejido ingle,1
+sputum of patients with cystic fibrosis,1
+Chicken gizzard,1
+Antarctic saline pond,1
+sewer,1
+frozen meat minced (stuffed cabbage),1
+heart blood of infected animal,1
+Cave wall,1
+Waterfall,1
+Alkaline pool submerged anode electrode,1
+the activated sludge of a sewage treatment plant,1
+"rhizosphere of naturally growing Equisetum plants in 1980 from Uppsala, Sweden",1
+Hemolymph,1
+Venous cateter,1
+seaweed,1
+marine soil,1
+"Decomposed wood of Abies alba, 16-38 years decomposition",1
+Hospital patients,1
+perineum,1
+subseafloor basaltic crust,1
+natural biofilm,1
+Diaphragm tissue,1
+Drag Swab,1
+clinical sample from eye infection,1
+Ground at door,1
+scraping from cave wall,1
+intestinal contents of healthy swine,1
+Garga hotspring sediments,1
+Trach aspirate,1
+Sulfonamide-contaminated sediment sample near a swine manure composting facility,1
+water from tailings from Panasqueira mine,1
+primary hospital lab,1
+right shin wound culture,1
+Patient urine,1
+Wastewater urban river with its source beginning on the industrial district,1
+blood sample from a 82 year old woman who was hospitalized in ICU,1
+(DCM) deep chlorophyll maximum layer water column,1
+Mink raising farm,1
+Periapical abscess,1
+enriched and purified from autopsy liver tissue,1
+"oral cavity, infant (12 months age)",1
+tree,1
+cave deposit,1
+open ocean plastic debris,1
+cooked vegetables,1
+superficial swab,1
+Patient14 sputum,1
+distal midgut region V4,1
+Left Flank,1
+Sheep rumen,1
+barial marine waters,1
+Fermented Alorena table olives,1
+linalool selective pressure,1
+water from pipe,1
+crude oil,1
+marsh soil,1
+mammary tissue,1
+Foodborne disease surveillance,1
+Meleagris gallopavo,1
+iron-rich hot spring biofilm,1
+Fermented milk,1
+thigh,1
+river ganga,1
+patient believed to have been infected in Guatemala,1
+Human Oral Cavity,1
+Marine fjord sediment,1
+tidal sediment,1
+nonproduct-food contact,1
+endosperm,1
+human skin,1
+"Clinical, blood",1
+attached gingivae,1
+Lake Erie water-derived,1
+colonization device Net 1 floating at the air-water interface of the Frasassi cave system sulfidic spring,1
+biofouled membrane,1
+abcess in patient,1
+citrus huanglongbing,1
+Pozzo dei Cristalli sulfidic cave stream,1
+blood sample from a 61 year old man who was hospitalized in ICU,1
+Mictlan Knoll at the water depth of 3106 m,1
+Duck hatchery premise. Environmental sponge from the inside walls of hatcher B1 in hatcher room B,1
+deep subsurface groundwater 140 m,1
+wet wall collection from an east facing slope at the Manoa Valley overlook,1
+biofilm from MA_RO membrane4,1
+Knee joint aspiration,1
+Crude-oil-contaminated intertidal sand sample,1
+blood sample from a 32 year old man who was hospitalized in ICU,1
+Pre-scapular lymph node (or superficial cervical lymph node),1
+WD,1
+chicken cutlett,1
+Green Food Dye,1
+Surgical Wound Secretion,1
+soil from geothermal hot spring,1
+milk from a bulk milk storage tank,1
+right knee,1
+Red sea sediments,1
+biofilm from LA_RO membrane5,1
+farm kitchen,1
+supra-gingival plaque oral cavity,1
+stool of a hospitalized child,1
+shallow water,1
+polar ornithogenic soil,1
+"Patient blood culture; Human wound, cranian",1
+river water (estuarine),1
+Pig nares,1
+Synovia,1
+gills from mollusc collected from dive Alvin 3133,1
+Concrete,1
+peripheral intravenous catheter tip on left arm for 7 days with standard polyurethane dressing,1
+water from pond on golf course,1
+"agricultural area planted with cereals, soil pH=8.0",1
+Sacrum,1
+aphid on Robinia pseudoacacia (locust),1
+Pannus- Joint,1
+Porcelana 66 C degree phototrophic mat,1
+Jasmine rice,1
+moist arsenopyrite (FeAsS)-containing rock taken from a mine tunnel approximately 300 m below the ground in the Granites gold mine,1
+cephalorachidian fluid,1
+Imported food,1
+Chapopote Knoll at the water depth of 2925 m,1
+Herring,1
+surface of healthy skin,1
+upper lobe fibrocavitary form of pulmonary disease,1
+Avian,1
+"Woods Hole, MA",1
+"traditional Indian fermented food, Kanjika",1
+water and sediment from Great Artesian Basin gas producing bore well (Below source),1
+Rice Root,1
+sediment from stream,1
+soil planted with ryegrass,1
+contaiminated cellulose-agar plate,1
+sweet potato,1
+blood sample from a 82 year old man who was hospitalized in ICU,1
+Root of Miscanthus x giganteus,1
+Raw Pork,1
+microbial mat ULC165,1
+Landfill,1
+municipal WWTP,1
+tissue obtained from patient with prosthetic joint infection,1
+Axilla,1
+primate facility,1
+Burn Patient,1
+reed-like leaf,1
+blood sample from a 39 year old man who was hospitalized in ICU,1
+Nasal secretion,1
+soils,1
+Turkey Breakfast sausage,1
+Lung LN,1
+swab of air inlet,1
+hydrothermal sediments grown in hydrogenotrophic sulfate-reducing enrichment at 60 degrees Celsius,1
+the pit mud of a Chinese liquor factory,1
+Distal bronchial sample,1
+isolated from plant root nodules,1
+prawns,1
+Chinese traditional food Douchi,1
+"seawater samples were obtained by a Remotely Operated Vehicle (ROV) equipped on the KEXUE vessel during the cruise of April 2014; sample derived site was high hydrostatic pressure, low temperature, darkness, and close to hydrothermal vent field.",1
+hypersaline brine,1
+Surface of a sandy sediment particle present in tank 6 of a marine aquarium containing stony-coral fragments and water maintained at 26 degree C,1
+water column (MIX) marine epipelagic mixed layer,1
+marine biofilm,1
+Hepatopancreas of EMS shrimp,1
+Stool 2,1
+"pesticide-containing biofilter, containing a biomix composed of coco chips, straw, manure and field soil",1
+deep subsurface groundwater 250 m,1
+acute pneumonia lung,1
+Diseased Labeo rohita fish,1
+belly lymph node,1
+seaweed attached to rock near shore,1
+sputum from patient with respiratory tract infection,1
+auditory canal,1
+Secreta,1
+seafood factory FBO4,1
+easy flow,1
+surgical material of patient with mycobacteriosis,1
+soil near pond at Joker's Hill,1
+biofilm from LB_RO membrane3,1
+rough type phage-resistant strain derived from Klebsiella pneumoniae K7,1
+mid-ocean ridge flank sediment,1
+Mushroom environment,1
+bovine rumen,1
+L_thumb,1
+Caatinga Biome,1
+Pig cecal mucosa,1
+peripherally inserted central catheter,1
+Jeonju-si,1
+blood sample from a 70 year old woman who was hospitalized in ICU,1
+Estaque beach,1
+Cervical Abscess,1
+fresh-cut produce processing plant,1
+Vitreous of eye,1
+soil from hexachlorocyclohexane (HCH) dumpsite,1
+penrose upper abdomen,1
+Homo sapiens blood,1
+blood sample from a 40 year old woman who was hospitalized in ICU,1
+clinical samples,1
+pus swab from leg,1
+Seawater from the Delaware coast,1
+Napier grass,1
+blood sample from a 24 year old woman who was hospitalized in ICU,1
+Childrens hosptial,1
+"Louisiana,the United States",1
+Oryza sativa root,1
+salted pork,1
+mushroom,1
+Appendix abscess,1
+egg,1
+coastal sea water,1
+marine surface coastal-water,1
+Osteomyelitis,1
+Warham Salt Marsh creek,1
+dryed meat,1
+Wound sample,1
+WC flushing,1
+jejunum,1
+Leg,1
+fried eel (fish),1
+blood isolated from a 12-year-old boy,1
+intestinal tract of the frozen mummy,1
+"urine, suprapubic aspiration",1
+Ctenophtalmus intermedius,1
+water from Rimov reservoir,1
+PT-2 sample; Antarctic (ecotone) soil,1
+Pleral fluid,1
+shallow-submarine hydrothermal vent,1
+top 1 cm of 70 C hot spring sediment,1
+Potato tuber,1
+oil contaminated tidal flat,1
+Chiken fecal,1
+fountain water,1
+orange fruit with canker citrus,1
+"Ningxia, China",1
+Femoral bone,1
+seawater from pollutted and populated shoreline,1
+salt lake sediment,1
+Sulfate-methane transition zone estuary sediments 16-26 cm,1
+cyanobacterial mat sample of Antarctic lake,1
+biomass from a lab-scale sequencing bacth reactor,1
+Chives,1
+tibia/osteomyelitis of diabetes patient,1
+Whole live fish sold as snakehead-haruan; Muscle,1
+Lumbosacral ulcer,1
+rice field,1
+Shaldon catheter,1
+pork sirloin curry,1
+sample BD02T18 sea water enriched with oil for 64 days,1
+Fox River water,1
+chives,1
+biofilm from LA_RO membrane6,1
+human oral cavity D115,1
+sediment and polymetallic sulfide from Okinawa hydrothermal vent,1
+mid stream urine,1
+Seawater from the North Pacific Ocean incubated within a mesocosm experiment with diatom exudates at 6 C for 6 days.,1
+Ground cumin seeds,1
+marketed probiotic product,1
+segment 4 of single filament from GC246 mud volcano site,1
+Pasture,1
+Marine sponge from a depth of 350 Meters near Komandorskiye Islands,1
+pesticide contaminated sandy soil from an industrial site,1
+wall biofilm from AnAOB enrichment reactor,1
+exsudates,1
+subhepatic aspirate,1
+aquifer adjacent to the Colorado River,1
+culture contaminant,1
+Fine needle aspirate,1
+purulent infected wound,1
+Highland barley wine,1
+pork sausage,1
+blood sample from a 59 year old man who was hospitalized in ICU,1
+fig,1
+symptomatic lesions,1
+Nose anterior,1
+Oryza sativa,1
+agarose-chitosan mix 40-100 m particle (artificial) late colonization,1
+Storm drain,1
+CATHETER,1
+microbial mat ULC007,1
+surgical secretion,1
+Lagoon,1
+"Pond water with small depth, with [Fe] =3,8 mg/L, oily sheens similar to an oil spill and Reddish-deposits of iron hydroxides are frequently observed in the water.",1
+throat from healthy child,1
+Pisum sativum root-nodule,1
+Ear secretions,1
+Canker on pear tree infected with Erwinia amylovora,1
+bacterial pustule of leaf,1
+hiacynth plant,1
+Cream,1
+swab (kidney) from post mortem examination,1
+"seawater at the outlet of a sandfilter in Port Shelter, Hong Kong SAR, China",1
+deep subseafloor coal bed,1
+Intercostal Tube site,1
+Burns unit surveillance,1
+Zea mays,1
+gravelly and rocky gypsiferous soil near a gypsum mine,1
+leg abcess,1
+healthy animal,1
+water statue,1
+Hot Dogs,1
+shellfish hatchery,1
+urethral fossa,1
+formation waters from coalbed methane well,1
+hydrocarbon-contaminated soil,1
+Red Sea water column Station 12 - depth 10m,1
+Hospital gel hand wash,1
+Grape must,1
+poultry carcass 2,1
+Pooled water,1
+sample from sludge,1
+bronchoalveolar wash,1
+Axilla Swab,1
+"methanogenic consortium capable of long-chain paraffin degradation (SDB culture) enriched from contaminated sediments of San Diego Bay, California; degrades n-alkanes from C25 to C50",1
+Sea Water,1
+Indian Ocean from 4000 m depth,1
+Material,1
+mediastinal swab,1
+Animal (cat),1
+patient room,1
+gastric lavage,1
+Wound fluid,1
+blood sample from a 41 year old woman who was hospitalized in ICU,1
+6-12 cm at D147 station,1
+segment 3 of single filament from GC246 mud volcano site,1
+Nasopharynx aspirate sample,1
+soil sample of Mane area of cold desert,1
+blood from patient with septicemia,1
+Scrotum,1
+contaminated mangrove sediments,1
+Sixteen Lake,1
+skin biopsy from woman,1
+condensation water of the Shenzhou-10 spacecraft,1
+Biological secretion,1
+calla lily,1
+Culture Sterile Body Site,1
+knee wound,1
+blood sample from a 55 year old man who was hospitalized in genral ward,1
+Patient17 sputum,1
+enrichment culture inoculated from microbial mat taken from cave lake water sample and incubated with methylated amine as carbon substrate,1
+sand under fuel bladder,1
+superficial sediment of polluted river,1
+marine waters,1
+sputum from 11 year old male patient with diagnosed caseous pneumonia,1
+enteritis,1
+Lab strain,1
+surface water and sediment from copper mine drainage,1
+body fluid from infection,1
+Perineal swab,1
+Queen ant,1
+field clover plant,1
+trachel,1
+head lice,1
+swamp-lake complex,1
+reservoir for drinking water supply,1
+arthritis aspirate,1
+polluted agricultural soil,1
+intertidal seawater,1
+aquifer,1
+pineapple,1
+"blood, clinical sample",1
+"Microbial mat, Hamelin Pool",1
+blood sample from patient hospitalized in intensive care unit (ICU),1
+a sand sample,1
+guano,1
+Intracerebral material,1
+stool culture,1
+fried rice or noodles samples,1
+Eggs from China,1
+subgingival fluid,1
+pus from skin abscess on forehead of 72-year-old male,1
+Pleural tissue,1
+filtered produced water from oil reservoir B9,1
+sewer water,1
+Cord blood,1
+healthy gut,1
+infant rice cereal,1
+Diabetic Foot,1
+aquaculture water,1
+hotspring,1
+blood sample from a 68 year old man who was hospitalized in ICU,1
+Enivronmental,1
+"Blood, Central line",1
+intestinal contents,1
+peach,1
+sputa,1
+lupulina,1
+bone marrow of diseased cattle with haemorrhagic septicaemia,1
+Konosirus punctatus,1
+muscle biopsy,1
+stomach content,1
+industrial bioleaching solution,1
+Sundae,1
+Pus (wound),1
+blood from silkworm suffering from septicemia,1
+carageenan 40-100 m particle (artificial) mid colonization,1
+Sludge of pond dam,1
+from a built environment,1
+blueberry-like berries,1
+blood sample from a 57 year old man who was hospitalized in ICU,1
+blood sample from a 70 year old man who was hospitalized in ICU,1
+Lake Sixteen,1
+Pig product,1
+freshwater lake sediment,1
+solar saltern surface water,1
+Anas platyrhynchos,1
+Mandibular osteomyelitis,1
+Glass slide place on reef flat in natural environment,1
+sphagnum peat from the bog Obukhovskoe (acidic wetland),1
+Sternum wound,1
+blood sample from a 54 year old man who was hospitalized in ICU,1
+Abomasum,1
+Peritoneal,1
+Pus from a wound,1
+fountain,1
+tooth,1
+Semen sample,1
+Lake Mondsee,1
+Superficial Abscess,1
+Faces,1
+gills from mollusc collected from dive TV grab,1
+Cerebral spinal fluid,1
+Haakon Mosby Mud Volcano,1
+ready to eat mixed salad leaves (obtained from discount store),1
+gills from mollusc collected from dive Tiburon 406,1
+rot potato tubers,1
+C57Bl/6 mouse at the Animal Research Facility,1
+PCB-containing river sediment,1
+Exudate from surgical wound,1
+Neck abscess,1
+groundwater contaminated with Cr(VI),1
+Winch room,1
+wound exudate,1
+perihepatic fluid,1
+heavy metal contaminated soil,1
+"Big Soda Lake, Nevada",1
+Deep sea sediment,1
+Raw bovine milk,1
+plant root rhizosphere,1
+Brain abscess fluid,1
+blood from a female with septicemia,1
+peritoneal dialysis fluid,1
+4.5% reads came from bioreactor metagenome SAMN04151528 and 95.5% came from mine drainage metagenome SAMN04151554,1
+rectal swab isolate from a 57-year-old man,1
+groundwater well (0.1 _m fraction),1
+soybean field sediment,1
+"soda lake Bitter-3, Kulunda Steppe, Altai region, Russia",1
+Bronco-alveolar lavage,1
+wetland soil,1
+Sacral swab,1
+pasteurized solution sample from a predominantly anaerobic fermentation system processing bovine manure,1
+Bovine Respiratory Track,1
+serpentinized groundwater,1
+sample taken from a temporary lake,1
+Disk sedimentation,1
+5 single cells from different organisms amplified by MDA; water and sediment from hot spring,1
+skin swab sample,1
+Haliotis diversicolor,1
+shrimp pond,1
+blood sample from a 17 year old man who was hospitalized in ICU,1
+Incision secretion,1
+water column of an alpine lake,1
+Skin wound,1
+end of the catheter,1
+Water Sample from freshwater lake,1
+short-grass prairie soil,1
+alpine reservoir,1
+Beef product,1
+Tar Pits,1
+Rifle groundwater metagenome at time 5 / E; 0.1 micron filter,1
+blood sample from a 79 year old man who was hospitalized in general ward,1
+Moutai-flavour Daqu,1
+tracheal secretion isolated from an uncertain age woman,1
+Citellophilus tesquorum,1
+throat from CF patient,1
+Shrimp meat,1
+Bronchial Secretion,1
+groundnut field,1
+crop swab,1
+Stewed meat,1
+MS7-5 sample; Antarctic (ecotone) soil,1
+gastric mucasa,1
+Duck hatchery premise. Environmental sponge from a tray wash broom,1
+protectide specimen brush,1
+ground water from potato field,1
+Microcystis non-axenic culture inoculated from freshwater pond water,1
+"Hainan, China",1
+Gabilan Creek water,1
+cultured gilthead seabream,1
+greenhouse,1
+pooled caecum metagenomic DNA from five Cobb400 and five Kadaknath chicken reared together under same contditions,1
+household compost,1
+deep sea sediment sample 4871-20 in thermophilic enrichment culture,1
+iron-rich hot spring mineral precipitates,1
+blood sample from a 50 year old woman who was hospitalized in ICU,1
+winter wheat (Triticum aestivum),1
+Intracranial infection,1
+Porcelana 48 degree celcius phototrophic mat,1
+Processed Cheese,1
+Salt mine,1
+Vegetables Preparation,1
+sputum of human,1
+Plant root,1
+seawater from the upper reaches of an estuary,1
+mucus of coral,1
+Exudate (leg),1
+soft tissue aspirate from adult,1
+imitation crab,1
+Ground swine,1
+chitin hydrogel 40-100 m particle (artificial) mid colonization,1
+light organ,1
+larvae from a hatchery,1
+grass sample,1
+pooled bronchial wash from ICU patient from Kuwait,1
+Central venous catheter,1
+Shandong China,1
+lung isolate,1
+decubitus,1
+cuticle of a termite worker,1
+the spleens of the free-living sparrow,1
+blood sample from a 68year old woman who was hospitalized in ICU,1
+65-years-old male patient,1
+terrigenous sediment of marine hydrothermal vent,1
+soil planted with tall fescue,1
+microbial mat in pond,1
+roast chicken,1
+pus sample from wound,1
+knee,1
+Soil of a forest pool bank,1
+single cell from gut of Western honey bee,1
+grasses cover soil from open highland,1
+endotracheal tube (ETT) aspirate,1
+Water sample and microbial mat on an anthropogenic pipe from caldera Uzon,1
+peritoneal abcess,1
+industrial building air scrubber surface,1
+Liquor,1
+blood sample from a 74year old man who was hospitalized in ICU,1
+"Packed-bed column with anaerobic sediment from the Rhine River near Wageningen, The Netherlands and ground anaerobic granular sludge from a sugar refinery in Centrale Suiker Maatschappij, Breda, The Netherlands",1
+single cell amplified by MDA; Jinze hot Spring,1
+Gastric lavage,1
+granulomatous lesion,1
+whole body homogenate of fruit fly from compost,1
+BRON,1
+endodontic infection,1
+blood sample from a 26 year old man who was hospitalized in ICU,1
+eyelid,1
+polar hypersaline lake,1
+Mammary gland lymph node,1
+MSU3 Lake,1
+porcine feces,1
+Lake sediments,1
+"pharynx, healthy adolescent",1
+Infant fecal sample,1
+natural ground soil near campus,1
+necrotic lesion,1
+36% salinity surface water,1
+puddle at Cedarvale Ravine,1
+Rhizosphere of wild pea growing in a coastal sand dune area.,1
+WC edge inside,1
+stream algae,1
+Cocoa powder,1
+Bacon from Turkey,1
+oceanic epipelagic zone biome,1
+Seaweed collected at a coast,1
+soil from tomato plants,1
+osteosynthesis material,1
+sptum,1
+Tibetan,1
+rice planting area,1
+greenhouse grown oilseed rape rhizosphere of Sphagnum magellanicum-treated seeds,1
+Bronchal aveolar lavage fluid mouse #1,1
+sediment collected from Xiamen offshore,1
+West Spitsbergen permafrost,1
+ear canal,1
+rabbit meat product,1
+Cerebrospinal fluid (CFS),1
+Wheat rhizospheric soil,1
+subtropical climate,1
+blood sample from a 99 year old man who was hospitalized in ICU,1
+soil contaminated with the detergent chloroethylene,1
+marine sediment from Kongsfjorden,1
+marine sediment after 17 days of incubation with protein additions,1
+Bat guano from cave soil,1
+anaerobic sludge,1
+Clinical isolate from adult patient,1
+Patient (nose),1
+FLUID,1
+Nasal Spray,1
+newborn nursery,1
+PAH-chronic contamined soil,1
+Avena fatua rhizosphere soil middle density fraction time point 6 weeks,1
+Punctate,1
+Riverside (soil beside) of the Cardener river,1
+Patient13 sputum,1
+"Oita, Japan",1
+burn patient,1
+Box,1
+Bile fluid,1
+wastewater CND number 8,1
+Sputum; Late isolate from VAP patient 4,1
+meconium,1
+granitic soil,1
+Dental implant,1
+perirectal,1
+Antarctic sea ice,1
+PCB contaminated river sediment,1
+"East Pacific Ocean Ridge, black smoker",1
+Brazillian Cerrado Forest soil,1
+chocolate milk,1
+carious dentine tooth oral cavity,1
+rumen content,1
+"water from newly drilled coal seam bore well, sample 4",1
+sample CTD10 from hydrothermal plume and surrounding marine water,1
+rhizosphere of field grown potato plants,1
+amniotic fluid,1
+marine sediment sample taken at a water depth of 50 meters,1
+muddy water from acid hot spring,1
+Patient with Meliodosis,1
+peritoneal catheter tip,1
+inflamed tissue lesion of infected patient during surgery,1
+Yak Milk,1
+Lake Tyrrell,1
+quick vinegar,1
+leaf surface,1
+Formation water coalbed methane wells,1
+Human blood culture,1
+rodent,1
+Lake Pamvotis surface sentiment,1
+Lake Michigan,1
+Ctenocephalides felis orientis homogenates,1
+montane grasslands,1
+"infant under 1 year of age, breastfeeding, had prelonged diarrhea",1
+central line catheter tip culture,1
+bullrush,1
+hybrid strain containing megaplasmid pSINMEB01 from BL225C and chromosome and pSym from strain 2011,1
+acute necrotizing ulcerative gingivitis lesion,1
+crop soil,1
+Irrigation Solution,1
+skin surface,1
+stomach content of Brucella infected aborted goat fetus,1
+Crop soil,1
+isolated from activated sludge collected at the Gold Bar wastewater treatment facility,1
+Sore swab,1
+"Clinical, wound",1
+Bronchioles,1
+Bolonha Lake,1
+rectal cultures,1
+seawater from broodstock tank,1
+Shellfish hatchery,1
+Pus leg,1
+Endocervical swab,1
+Chopped Ham,1
+poultry carcass 1,1
+Hot springs and caldera lake in caldera of Raoul Island/Rangitaahua island arc volcano,1
+biological sample,1
+CF airways,1
+mineral sediments from Lubin copper mine,1
+blood sample from a 79 year old woman who was hospitalized in intensive care unit(ICU),1
+deep water,1
+Dog with mastitis,1
+Tracheal secret.,1
+Hypersaline soda lakes sediments,1
+Coccygeal isolate,1
+environment contaminated by Homo sapiens patients,1
+Cistern Spring (CIS_19); temperature 78C; pH 4.4,1
+high Lso titer potato psyllids,1
+"originally isolated from olive trees affected by the olive quick decline syndrome (OQDS) in southern Italy, Apulia region; grown in lab in pure culture on infected periwinkle",1
+Soil below an organic waste pile,1
+Soil from ice-free area,1
+microbial mat ULC082,1
+biofilm from LB_RO membrane5,1
+"single cells S1_H12, S5_K02, and S5_K13 amplified by MDA; Uruguay winery wastewater",1
+Water in turkey house,1
+Infant Powder Formula,1
+digestive gland,1
+dichlorophenol enrichment culture inoculated with agricultural soil,1
+3 mesial subgingival,1
+Bacteraemia,1
+urinary tract infection,1
+Tissue Fragment,1
+chicken drumstick,1
+blood sample from a 77 year old man who was hospitalized in ICU,1
+Lab Strain,1
+Pus axilla,1
+gills from mollusc collected from dive Alvin 2796,1
+coastal sediment,1
+Ulu Slim Hot Spring,1
+Necrotic Tissue,1
+brain of a stranded short-finned pilot whale,1
+Bos taurus,1
+Tenderized squid roll,1
+human oral cavity D057,1
+bile duct,1
+Jejunum,1
+Bovine pre-evisceration carcass at harvest,1
+intra-abdominal abscesses,1
+deep sea water collected,1
+Red Sea water column Station 22 - depth 200m,1
+DNA amplified from hot spring microbial mat,1
+chitin hydrogel 40-100 m particle (artificial) late colonization,1
+marine sponge from Terra Nova Bay,1
+Floor of Campus transit station,1
+sheetmeat,1
+hyperalkaline spring water,1
+Zobell Marine Broth 2216,1
+solar panels,1
+"Water, lake, Lake Loosdrecht, The Netherlands",1
+sample CTD7A from hydrothermal plume and surrounding marine water,1
+stalactite dripping water,1
+Medicine ward surface,1
+"Fujian, China",1
+housed macaque gastric juice,1
+household surface,1
+right femur,1
+knee abscess,1
+moribund parabramis pekinensis,1
+mango tree,1
+"wound, pus",1
+weed growing in a vineyard,1
+Glomma River,1
+alpine lake,1
+retail meat,1
+shoulder lymph node,1
+anterior nares,1
+coral tissue,1
+Blue-green algal mat freshwater thermal spring,1
+Fresh water pond,1
+retropharyngeal swab,1
+healthy plant,1
+Biofilm from plastic sample,1
+meat products 2,1
+marine biofilm from surface of adult mussels,1
+Cerebro-spinal fluid,1
+DEEP-SEA,1
+Filtered Water Sample,1
+clinical urine culture,1
+pleural liquid,1
+piggery air,1
+Sediment from fracked well,1
+mature fine tailings from oil sands tailings pond grown in methanogenic alkane degrading enrichment culture,1
+agriculture soil,1
+Eel tank water,1
+raw fish sample from Turkey,1
+blood sample from a 59 year old woman who was hospitalized in ICU,1
+blood sample from a 46 year old man who was hospitalized in ICU,1
+single cell amplified by MDA; Atlantis II Deep Red Sea brine-seawater interface,1
+fragments of black porous stone,1
+heart blood,1
+ready to eat mixed salad leaves (obtained from supermarket),1
+"subgingival plaque, periodontal pocket",1
+patient with pneumonia,1
+cherry,1
+water(purple)/sediment(white),1
+mini bronchoalveolar lavage,1
+cloacal swab of non-flying juvenile fulmar,1
+dorsal skin,1
+ground under water statue,1
+Spring water,1
+marine solar saltern,1
+hospital patients,1
+abscess/wound,1
+ECS,1
+cuttlefish,1
+Lung sputum,1
+Vermicompost,1
+wastewater treatment plant anoxic tank floating sludge islet,1
+Drain out side,1
+Brook charr,1
+sick organs of a dead chicken,1
+hot spring filament,1
+housing complex,1
+pigeon,1
+flow cytometry enriched sample from Scripps pier surface waters,1
+"two long term enrichment bioreactors used to enrich specifically for anammox bacteria; the reactors are fed with a mineral medium containing no carbon source other than CO2 and only NO2 and NH4 as electron acceptor/donor respectively; one reactor was described in Russ et al 2014 (PMID 24750895), the other reactor was the enrichment used as the seed for the experimental reactor described in Russ et al.; the seed reactor was in turn inoculated from a previous bioreactor which was started with biomass from a sediment in the Gullmar Fjord, described in Van de Vossenberg et al 2008 (PMID 18462401); This environmental sampling was, however, over 8 years ago.",1
+Specimen,1
+puddle on farm,1
+Knee infection,1
+mature fine tailings from oil sands tailings pond grown in anaerobic alkane degrading enrichment culture,1
+trashcan,1
+postoperative wound infection,1
+reproductive tract,1
+Postoperative wound,1
+gut tissue,1
+fine sandstone,1
+top 1 cm of 85 C hot spring sediment,1
+Soil samples were collected in an old abandoned vineyard fallow parcel,1
+Red Sea water column Station 108 - depth 25m,1
+carcasses from chicken farm,1
+Rhizosphere of rape,1
+Dehydrated small chilli without stem,1
+blood sample from a 83 year old man who was hospitalized in ICU,1
+Drain water house,1
+Trichodesmium-associated heterocystous diazotroph (hetDA) enrichment; trichodesmium colony originally collected aboard the R/V Kilo Moana (KM10-13) near Station ALOHA,1
+minimium media from garden soil,1
+blood by aortic valve,1
+sebaceous gland in acne affected area on nose of male with moderate acne,1
+Industry,1
+broncho-alveolar liquid,1
+liver of male wild banded mongoose,1
+lab-scale membrane bioreactor,1
+Raw milk,1
+"Table, meat shop",1
+Abdominal Abscess,1
+frescal cheese,1
+biofilm from MA_RO membrane5,1
+Rifle well FP-101 under low O2 conditions; 1.2 micron filter,1
+primary chancre,1
+hand,1
+tea rhizoplane,1
+Chard,1
+intra-abdominal,1
+"hot spring phototrophic microbial mat, red layer",1
+paddy field,1
+caruncle light organ,1
+sediment sample,1
+hemoculture,1
+thorax drainage,1
+Manila clam,1
+Mushroom,1
+abdominal drainage,1
+Sesame leaf,1
+Human Feces,1
+grain stocked,1
+polluted soil,1
+Wound (not sterile),1
+slough from ulcer,1
+Patient10 sputum,1
+single cell of Braarudosphaera bigelowii,1
+separated from patient's sputum,1
+Orange juice,1
+"Potato tuber surface in potato research field in Lelystad, Netherlands",1
+rhizosphere soil of tall fescue (Testuca arundinacea L.) in Shengli oilfield,1
+blood sample from a 52 year old man who was hospitalized in ICU,1
+meltwater pond,1
+feces from 53 yr old caucasian female,1
+dialysate,1
+storm drain,1
+microbial mat ULC335,1
+Carrot juice,1
+CatheterUrine,1
+stool sample from Salmonellosis patient,1
+blood from non-CF patient,1
+gills from mollusc collected from dive Tiburon 351,1
+water column,1
+spleen of a wild rat,1
+Broiler Carcass,1
+Baskunchak hypersaline lake,1
+nursery plant,1
+Biogas plant,1
+Nicaragua,1
+meat ham,1
+"Chicken, ceca, Gent, Belgium",1
+high-arsenic sediment,1
+Soil contaminated with the blood from the dead animal,1
+South China Sea,1
+sputum and bronchial alveolar lavage of 50 year old woman,1
+thermally polluted industrial runoff,1
+Secretions,1
+control oxisol soil plot 6,1
+"Ileum, payer's patch",1
+"obtained by stable isotope probing of toluene-degrading methanogenic culture enriched from oil sands tailing of Alberta, Canada",1
+Euglena gracilis from city ponds,1
+Flax plant bast fibre,1
+Raw duck meat,1
+abdominal gunshot wound,1
+venipuncture tube,1
+Black rot infected cabbage leaf,1
+coastal surface seawater of the Yellow Sea,1
+anaerobic activated sludge,1
+water lily,1
+river water during mass gathering event,1
+Salt,1
+Galia Muskmelon,1
+mature fine tailings from oil sands tailings pond,1
+90 cm below water surface of man-made lake,1
+Arugula,1
+Sputum; Early isolate from VAP patient 1,1
+ejaculate,1
+bone culture,1
+seedlings,1
+peritoneal secretion,1
+respiratory secretions,1
+puncture liquid,1
+"Healthy woman, from sebeceous gland on nose",1
+Lake Neuchatel,1
+left-sided endocarditis,1
+eye swab,1
+High altitude japonica rice growing region in Yunnan Plateau,1
+necrotizing tonsils,1
+dichloromethane-fermenting enrichment culture inoculated with organochlorine-contaminated groundwater,1
+"water, most likely pond",1
+gravity hydrothermal and hypersaline sediment core sampled at the Atlantis II Deep of the Red Sea,1
+thermophilic microbial from ZC4 compost from a compost operation in the Sao Paulo Zoo (Brazil),1
+sample SPH; anode biofilm adapted to +100 mV,1
+fetal blood,1
+soil from tomato rhizosphere,1
+sediments from a salinarium in Figeria da Foz,1
+foot wound swab,1
+shower head,1
+gills from mollusc collected from dive Ventana 2338,1
+demosponge isolated at 1483 m depth,1
+"arid, high desert soil",1
+leg bone,1
+Ground Meat,1
+Fish part (slab) sold as silver carp; Muscle,1
+Pharyngeal secretion,1
+surface snow,1
+shrimp hemolymph from Caribbean coast,1
+Vet Hospital,1
+rhizosphere of rice,1
+agarose 40-100 m particle (artificial) mid colonization,1
+top 1 cm of 60 C hot spring sediment,1
+hydrothermal vent -3000 m,1
+Vaginal swab of Female,1
+seawater at a depth of 700 m,1
+Cutting Room- Wall,1
+catheter from patient in intensive care unit,1
+nonsterile tissues such as skin,1
+liver of a moribound Senegalese sole,1
+gallbladder,1
+coastal sea-ice brine,1
+Aquous sample from salinity gradient,1
+Vitreous,1
+soil from soybean field,1
+The strain was isolated from a sputum of a patient with pulmonary tuberculosis,1
+Lynpe node,1
+airway,1
+Meat RTE,1
+Foot wound,1
+drainage pipe,1
+black liquor from pulp mill stream,1
+whole body fruit fly from household kitchen,1
+water sample from urban lake,1
+salt creek water,1
+sample #7086; 6-9 cm from methane seep sediment push core,1
+Sun Yat-sen Memorial Hospital,1
+Pleural aspirate,1
+Sink drain at asian restaurant,1
+kidney stone,1
+cold seep sediment sample 15 Mpa,1
+Smoker,1
+Chinese cabbage geotjeori,1
+blood from a melioidosis patient,1
+root; nodules,1
+Sediment around river,1
+coronal/gingival,1
+Cooked white rice stored in a home refrigerator for two weeks.,1
+brackish water stream mouth,1
+C57Bl/6 mouse at an animal facility,1
+Sugarcane field,1
+Trachaeal secretion,1
+Diseased red tilapia,1
+foot,1
+patient with otitis media,1
+Waste water,1
+coastal ocean near shore,1
+Nuclear waste,1
+"gills, fins and scales pooled from 10 healthy Tilapia fish grown in aquaculture ponds",1
+Sea-food,1
+fruit spot,1
+puds swab,1
+Acid mine drainage,1
+silt mudstone,1
+blood sample from a 72 year old man who was hospitalized in ICU,1
+untreated salt marsh sediment,1
+Dairy environmental,1
+Buccal space abscess (#48),1
+cecum of a gnotobiotic male C57BL6/J mouse colonized with fecal specimens from obese and overweight postmenopausal women in Berlin Germany,1
+air in a school dining room,1
+Exsudate,1
+bone marrow of a diseased buffalo with haemorrhagic septicaemia,1
+Human body,1
+deep-sea hydrothermal vent sediments from dive 4567_28 depth 0-3 cm,1
+enrichment of ferruginous lake sediment,1
+rectal swab from female,1
+enamel chip carried in mandibular vestibule,1
+Bladder,1
+mozzarella cheese,1
+"Chinese Petroleum Corporation 77 Kaoshiung Refinery located in Kaoshiung 78 City, Taiwan",1
+"area of Zhangpu Yanchang (Fujian Province, P.R. of China)",1
+farmland soil,1
+industrial building air scrubber liquid,1
+trach aspirate,1
+drinking water system-PR1,1
+slurry,1
+Bovine meat,1
+"meju, fermented soybean paste",1
+Bushtit nest found 20 feet off the ground in a eucalyptus tree,1
+rapeseed,1
+blood from male calf,1
+the spleens of the free-living vinous-throated Parrotbill,1
+anal sample,1
+Plastic Marine Debris,1
+Endotracheal secretion,1
+Primary bloodstream infection,1
+sand,1
+Chicken fecal material,1
+natural saltern,1
+Aborted fetus,1
+soil under burning vegetal waste,1
+underside of aquatic plants in freshwater lake,1
+lower leg ulcer,1
+Sputum; Late isolate from VAP patient 2,1
+Marcellus Shale hydraulic fracturing produced water,1
+bladder catheter,1
+P5 gut compartment,1
+vaginal mucus,1
+mouth,1
+dry rock wall scrape from sinkhole in cave,1
+"Meridian Valley soil sampled at Qinling Mountains, an area in Shaanxi Province located in PR China.",1
+contaminated commercial preparation of carboxipeptidase A,1
+enrichment culture from industrial wastewater treatment plant,1
+sputum of 33 years old HIV+ female patient,1
+swab throat,1
+gills from mollusc collected from dive Ventana 2059,1
+spoiled flesh,1
+toe swab,1
+"Vapotherm, air channel",1
+20-25 cm section below the seafloor (cmbsf) in the sediment core from the bottom of the North Pacific Ocean,1
+muscle tissue from wild boar carcass n.2,1
+carapace,1
+bronchia,1
+sea-fish,1
+marine biofilm from glass surface,1
+patient with urinary tract infection,1
+enrichment culture inoculated with soil; incubated with H2/CO2 at 20 degrees celsius and monitored for methane production,1
+maiket,1
+Fleas Mesopsylla apscheronica,1
+creosote-polluted soil,1
+sediment at 5m depth,1
+Maturation tank water,1
+sputum sample of a patient,1
+abdominal drain fluid,1
+Extra fancy basil,1
+Diana-Hygieia radioactive thermal spring biofilm,1
+thin microbial layer from microbial community deposited over rocks at the edge of a thermal fumarole,1
+strawberry leaf tissue,1
+microbial mat ULC065,1
+"enrichment culture NSFW from tap water in Fudan University, filter and ammonium",1
+swine waste primary lagoon sediment,1
+bronchoalveolar specimen,1
+Humidifier basin,1
+vitreous fluid from young man,1
+chicken corn dogs,1
+tissue from surgical site infection,1
+stool material,1
+drip water from cave,1
+Shower siphon water,1
+Bone sample,1
+leaf sheath,1
+blood of infected animal,1
+Mediastinal lymph node,1
+blood sample from a 70 year old man who was hospitalized in general ward,1
+Rectal mucose,1
+Salt Mine,1
+sheep rumen,1
+Groin,1
+tree leaf,1
+dairy environment,1
+hosepipe,1
+Barbecued chicken,1
+sputum from individual with pulmonary infection,1
+Coleslaw,1
+blood sample from a 45 year old woman who was hospitalized in ICU,1
+cloacal of tropical screech owl,1
+Drainage liquid,1
+frozen dumplings,1
+Dentoalveolar abscess,1
+rope in sea water,1
+patient sample,1
+sheep faeces,1
+throat of a healthy human volunteer,1
+shallow hydrothermal vent,1
+"soil sample, near Greifswald, East Germany",1
+surgical drain surveillance,1
+sulfidic area of central Baltic Sea station 271 at 215 m water depth,1
+bacterial endosymbionts found in Trichonympha flagellates filtered from termite gut,1
+decaying forest soil,1
+ground chicken,1
+Beet,1
+horse water trough,1
+turbot,1
+surface water of an agricultural watershed.,1
+human-associated habitat,1
+isolated in suburban area,1
+disease,1
+IV catheter,1
+PAH contaminated soil,1
+sediments around fumarole in geothermal field,1
+Appendix,1
+"endoscope, BAL",1
+abomasum content of an aborted sheep's fetus,1
+30-35 cm section below the seafloor (cmbsf) in the sediment core from the bottom of the Equotrial Pacific Ocean,1
+seawater at a depth of 40 m,1
+flea,1
+Sputum smear,1
+purulent absess from military trainee,1
+soil from beneath Willow (Salix spp.),1
+Testicles,1
+Young radish kimchi,1
+Kombucha beverage,1
+Sediment from the Channel Sea by Roscoff,1
+Commercial vial,1
+Myocastor coypus,1
+soil river banks,1
+Surgical site infection,1
+100 Spring Plain (OSP_8); temperature 72C; pH 3.3,1
+Preputial scraping,1
+Cabbage with the soft rot symptoms,1
+Llayta,1
+healthy flounders,1
+hemolymph,1
+"Rectal, surveillance program",1
+noduls from roots of Medicago sativa,1
+pool of 5 Trichodesmium erythraeum enrichment cultures inoculated from ocean water,1
+Decaying Wood,1
+blood sample from a 88 year old man who was hospitalized in ICU,1
+Tooth abscess,1
+pig fecal material,1
+vietnamese human feces,1
+Red pepper grown commercial farmer's field,1
+Low respiratory tract sample,1
+puddle on street,1
+hydrothermal vent deposit,1
+sediment from marine hydrothermal vent chimney,1
+acne affected area on cheek of male with moderate acne,1
+Human Furuncles,1
+Virginia,1
+corn,1
+Mud with water of a forest wetland,1
+free-living amoeba in hospital environment biofilm,1
+The tissue of Red Sea sponge Carteriospongia foliascens,1
+Atacama Desert,1
+Umbilical wound,1
+Urinary Tract Catheters,1
+Sulfate-rich zone estuary sediments 8-12 cm,1
+deep seawater,1
+Rectal swab sample,1
+Right groin,1
+Red Sea water column Station 91 - depth 200m,1
+meat mincer swab,1
+Infant 1 DOL 23 gut,1
+microbial mat ULC041,1
+Cave permafrost,1
+coal bed methane well,1
+Brocheal washing,1
+Turmeric powder,1
+Retail Chicken,1
+Offspring from female W744 and male W776,1
+Traditional Korean kimchi,1
+filtered produced water from oil reservoir B7,1
+surface water of the southern North Sea,1
+phyllosphere material,1
+"fresh creek bank soil, topsoil",1
+Dairy products,1
+stool sample from patient with gastroenteritis,1
+Japan,1
+subcutaneous biopsy,1
+Cadmium-contaminated soil,1
+Not defined,1
+sonicate fluid,1
+malolyakovskiy mammoth's intestinal content,1
+Pinus pinaster wood chips,1
+infant stool sample,1
+"drinking water reservoir, LTER site",1
+sink faucet,1
+lung fluid,1
+Tick,1
+food remnant,1
+anaerobic marine mud,1
+Joseph's Coat Hot Spring (JCHS_4); temperature 80C; pH 6.1,1
+skin sample,1
+Eggs carried on pleopods,1
+healthy baby,1
+"deep sea hydrothermal vent system Sisters Peak, low-temperature fluids, Sample 302ROV6-8",1
+corneal scrapings,1
+"North Queensland,Australia",1
+Seeds,1
+"lake, arsenic: 0.8 mg/L, salinity: 5 ppm",1
+tuberculosis patient,1
+"enrichment culture inoculated with rumen contents from Bos taurus grown on RM02 media supplemented with sodium acetate, sodium formate, trimethylamine, methanol and yeast extract.",1
+Stuffing,1
+Brackish lake sediment,1
+sediment from a natural stream that has been contaminated with Hg from upstream sources,1
+Culture Collection,1
+pickle,1
+Lettuce farm 5,1
+"Chicken Carcass, Broiler Chicken",1
+patient15,1
+sunflower seed hulls,1
+Broncheoalveolar lavage,1
+Ventilator shelf_P101_BU22,1
+activated sludge from a lab-scale Enhance Biological Phosphorus Removal enrichment culture,1
+fecal content originally isolated from from SFB mono-associated mice; amplified using germ-free balb/c mice,1
+Preterm neonate delivered by C-section and admitted to the Sick Neonatal Care Unit,1
+endophytes,1
+cecum matter of weanling rat after 6 hour fasting; S34,1
+sediment from water near a volcanic area,1
+estuarine open water pycnocline [ENVO:01001323],1
+Ready-to-cook chicken,1
+BBA,1
+Patient11 sputum,1
+cecum matter of weanling rat after 6 hour fasting; S8,1
+small unnamed meltwater lake contaminated with bird feces,1
+Granular salmon caviar,1
+permafrost sediment,1
+"Tricuspid valve, anterior leaflet",1
+slaughter house,1
+broncho alveolar lavage fluid,1
+Seaweed sample 2,1
+mandibular lymph node,1
+UR Kidney ASP,1
+cecum matter of weanling rat after 6 hour fasting; S15,1
+feces samples from rumen acidosis,1
+cattle slurry,1
+bone tissue fragment,1
+Cervical secretion,1
+ultrasonography probe,1
+groundwater enrichment,1
+agricultural waste,1
+Phyllosphere,1
+manganese oxidizing enrichment culture inoculated with sample from rock surface coated with black slime/moss near a pond by a road on an exposed outcrop of the Reivilo Formation,1
+Rain barrel 1,1
+cold room contaminant,1
+Backyard garden soil,1
+Oil palm agricultural soil,1
+Semen,1
+Maotai Daqu,1
+ICU - patient file,1
+abdominal cavity apostem,1
+family farm small pasture with chickens and goats,1
+Bedside table_P53_BU18,1
+Stanley WWTPs_3 WWTPs influent,1
+hot spring in caldera Uzon,1
+alfalfa silage,1
+propionate fed chemostat,1
+suture swab,1
+wood fiber,1
+healthy broiler feces,1
+Stone (granite) wall remains of Lignold Casket Co.,1
+Throat swab 2,1
+Minced pork cutlet,1
+tissue from heart transplant recipient,1
+Lhasa,1
+contaminant on Erwinia tracheiphila growth plate,1
+heavy metal containmented soil,1
+"fresh produce (lettuce, lollo bionda)",1
+Drainage fluid,1
+Watery diarrhea,1
+pond from a salt lantern,1
+"aspirate, left breast",1
+4 bed right side rail,1
+environmental123,1
+Bronch Wash,1
+spinach,1
+air dust,1
+soft rotten stem,1
+Surface polluted water,1
+Submerged rice field in Hong river delta in northern Vietnam,1
+"Medical University of Silesia, Katowice, clinical centre, renal unit, patient's bed",1
+Cacatua galerita,1
+Throat swab 34,1
+oral,1
+Shek Wu Hui WWTPs_108 WWTPs influent,1
+dog with urinary tract infection,1
+environmental200,1
+oropharyngeal swabs,1
+Undressed beetroot salad with garlic,1
+intestinal contents from a porcine slaughterhouse,1
+Soil sampled from cultivated land,1
+fecal sample from chicken,1
+cielomic cavity,1
+Peanut field soil,1
+Patient61 sputum,1
+"sediment collected in IODP Expedition 375 from site U1519C, depth 110.34 mbsf",1
+Wishaw Hospital,1
+blood from immunocompromised patient,1
+a feces sample of migratory birds origin,1
+hydrothermal vent sulfide chimney,1
+intramural gut wall,1
+skin and mucous membranes,1
+oral cavity pus,1
+wild yak feces,1
+soil subsurface,1
+Cheese from alpine milk,1
+Chicken feces (Gallus gallus),1
+Dried mushrooms,1
+environmental154,1
+Fresh whole blood,1
+marine sediment 16-18 cmbsf,1
+apple,1
+environmental21,1
+30 degree sequencing batch reactor activited sludge day 215,1
+sulfide chimney,1
+tea soil,1
+arsenic contaminated garden soil,1
+stalactite biofilm from acid mine drainage,1
+Shatin WWTPs_2 WWTPs effluent,1
+Shatin WWTPs_93 WWTPs influent,1
+Panthera tigris Amoyensis facel,1
+Mahananda river,1
+Rameshwaram,1
+rocky intertidal zone,1
+table surface in Bahri Market,1
+kombucha tea,1
+cyanobacterial bloom in freshwater lake,1
+beef from market,1
+Urban freshwater pond,1
+Shatin WWTPs_79 WWTPs influent,1
+cecum matter of weanling rat after 6 hour fasting; S16,1
+beef burger,1
+environmental52,1
+Abscess sample,1
+"human, Broncho-Alveolar Lavage",1
+Hydrocarbon contaminated soil,1
+discharge of the right eye,1
+Shek Wu Hui WWTPs_72 WWTPs effluent,1
+Chinese herbal medicine,1
+Throat swab 14,1
+Shek Wu Hui WWTPs_111 WWTPs influent,1
+swab from around the abdominal drainage,1
+Ascitic Liquide,1
+Seaweed sample 3,1
+tomato plant roots,1
+Hydrothermal vent sediments,1
+chicken caeca 3,1
+Corn stem,1
+PCE-to-ethene dechlorinating culture,1
+gold mine,1
+abdominal dropsy,1
+Bronchial lavage,1
+root endosphere of Glycine max,1
+2217E medium,1
+Brachiaria reptans plant leaf source,1
+the joint pus,1
+boiled poultry meat,1
+milk from cattle farm,1
+Infected nail well,1
+radicchio,1
+S/D,1
+Piggery wastewater,1
+Sediment beside shrimp field,1
+Volcanic Lake,1
+a blood sample of swine origin,1
+vinegar fermentation sludge,1
+R_nares,1
+Intestinal contents of chicken,1
+Infected peach leaf,1
+sewage sludge biodrying material,1
+high-arsenic soil,1
+environment YYC,1
+patient14,1
+water from a porcine slaughterhouse,1
+Inner leaf tissues of Prunus dulcis,1
+bile specimen,1
+monitor panel,1
+Haor wetland water,1
+Rumen content,1
+Ankle,1
+sputim from lungs,1
+puffer fish skin,1
+deep sea of the indian ocean,1
+Patient55 sputum,1
+urine clinical sample,1
+potato plants,1
+environmental75,1
+dry salty rhizosphere soil of maize,1
+stools,1
+Tahini,1
+Stanley WWTPs_2 WWTPs effluent,1
+flower shop,1
+Chiken cutlet,1
+Buckweat porridge,1
+Shatin WWTPs_15 WWTPs effluent,1
+"isolated from infected banana fruit with green skin, the plantation is near the house",1
+diseased stem of tobacco,1
+Patient32 sputum,1
+effluent of sewage treatment plant,1
+SCOBY from Kombucha tea,1
+environmental57,1
+Throat swab 5,1
+deep sea water,1
+adrenal gland,1
+mashed potato,1
+conveyor belt,1
+sulfide chimney from Daxi hydrothermal vents,1
+gut of infected larvae,1
+ventilator,1
+large wooden beam from an 1800s New England red brick mill building,1
+near benthic marine water,1
+market chicken,1
+Abdominal wound,1
+Slit Skin,1
+Patient38 sputum,1
+"backyard farm #9, cloacal swab #18",1
+Powdered elderly milk,1
+Throat swab 22,1
+"""Salad """"Vesna"""" with radish and dressing""",1
+sample of pine resin,1
+Throat swab 23,1
+Dairy slurry UK,1
+A strain isolated from ascites of an Andrias davidianus by Shanghai Ocean University,1
+lungs from young calves,1
+Shek Wu Hui WWTPs_4 WWTPs effluent,1
+patient13,1
+soil from salt farm,1
+panda,1
+pork product,1
+Seawater from DCM layer,1
+fecal sample from diarrhoea affected cattle B,1
+Throat swab 18,1
+same blood draw as MB8764,1
+Coastal surface seawater,1
+Throat swab 35,1
+UR ILEAL LP,1
+Coffee Cup,1
+green-waste compost,1
+Rural backyard soil,1
+Taro,1
+Ethiopian Ergo,1
+Shatin WWTPs_14 WWTPs effluent,1
+2224E medium,1
+Rectal swab_P87_BU24,1
+oak leaf,1
+joint fluid from a patient with rheumotoid arthritis,1
+Multiple Abdominal Abscesses of an African Fat-tailed Gecko,1
+Duck salad without dressing,1
+Anal Swab,1
+Diapulate,1
+Frozen cod fillet,1
+300m depth water,1
+water sink scupper,1
+ETA,1
+drain,1
+Pus from malignancy,1
+freshwater lake anaerobic enchiment culture with carbon source glucose,1
+Shatin WWTPs_19 WWTPs effluent,1
+2229E medium,1
+Commercial Crop Production Field,1
+Warm roll with salmon,1
+R_cheek,1
+enrichment from vegetable soil,1
+mechanically separated meat (CMS),1
+collection,1
+Trawl swab of 27-day-old poultry litter,1
+Shek Wu Hui WWTPs_3 WWTPs effluent,1
+water sink surface,1
+salt river,1
+Throat swab 17,1
+acid mine drainage site biofilm from limestone lined channel,1
+abdominal wound,1
+dental calculus from 1945-1950 human skeletal remains maintained in natural history museum,1
+Soft tissue abscess,1
+total DNA extraction from floral tissue of an infected plant,1
+fecal swap,1
+Waste water from municipal WWTP,1
+Freshwater water sediment,1
+Sandy soil on a lake shoreline,1
+patient7,1
+patient10,1
+freshwater lake mesocosm spiked with human1 feces day 7,1
+the sputum of a pneumonia patient,1
+beach soil,1
+Food (solid beef),1
+anal fistula,1
+Zhenping ShaanXi,1
+environmental swab (area2: window bench),1
+biological soil crusts,1
+Creamy cheese sample 2,1
+Chicken tissue,1
+"Respiratory, lower",1
+waste water effluent,1
+laboratory contaminant,1
+Sewage contaminated water or Handler,1
+mouth of a honey bee,1
+Patient43 sputum,1
+bone fragment,1
+"Salad with tomato, cucumber and dressing",1
+environmental58,1
+Shatin WWTPs_94 WWTPs influent,1
+"hospital-1, ICU, urine sample #45",1
+rhizomes,1
+nasal swab from moderately born preterm neonate admitted to the sick neonatal care unit with respiratory distress,1
+cattle,1
+Intermittent pond,1
+hot spring sediment (ARC_TD2),1
+Cecum of 2 week old broiler chicken,1
+Table Olives,1
+L_index,1
+telephone of Nurse station,1
+enrichment culture from petroleum-contaminated soil,1
+boold,1
+trachea fragment,1
+Retail milk,1
+purulent-necrotic detritus,1
+Intestinal contents,1
+Toeweb,1
+Insect vector,1
+Rectal and wound swab,1
+Rectal swab_P131_BU4,1
+cecum matter of weanling rat after 6 hour fasting; S17,1
+cutter,1
+stem of potato with blackleg symptoms,1
+Throat swab 39,1
+cervical secretion,1
+hot spring sediment from LGB-01 spring,1
+deep-sea sediment from Solomon Sea near Papua New Guinea,1
+skin of the hand,1
+Andrias davidianus,1
+saline lake,1
+patient6,1
+Medicinal plant,1
+filling room drain from meat processing facility,1
+Hepatobiliary,1
+Lonar Lake sediment,1
+face wound,1
+lake water cyanobacterial bloom contaminated with bovine manure,1
+Cooked pork,1
+kimchi (fermented cabbage),1
+Throat swab 10,1
+urine from a single man with urethral purulent discharge and dysuria,1
+Maanshan acid mine drainage,1
+Nasojejunal tube_P50_BU7,1
+"serpentinite rock, water column",1
+trophosome tissue,1
+environmental141,1
+Soda lakes,1
+Cubital_fossa,1
+"hospital-2, OP, stool #6",1
+shale,1
+Cell culture,1
+Tomato plant,1
+Patient40 sputum,1
+"Head kidney, Spleen",1
+cow cheese,1
+rhizosphere of Soybean,1
+Draining sinus tract from infected LVAD patient,1
+chemocline water sample,1
+Paguma larvata,1
+tip of central venous catheter,1
+comammox bioreactor,1
+mini BAL,1
+Throat swab 20,1
+Beetroot salad with pickles and dressing,1
+Petioles,1
+Carbamazepine amended enrichment inoculated with hydrocarbon contaminated groundwater,1
+"composite plankton tow from depth to surface (0-7 meters) lake water, freshwater algal bloom",1
+sediment inoculated into enrichment culture with thiosulfate,1
+uterine discharge,1
+mangrove of Port of ironforge,1
+surface soil near the sewage outlet of the fertilizer plant,1
+Biological Sample,1
+nasal swab from a 10 day old extremely preterm born neonate suffering from respiratory distress,1
+respiratory isolate,1
+Medical waste water,1
+fetal fluids,1
+Patient29 sputum,1
+tracheal swab,1
+Amazon Forest,1
+environmental133,1
+Beef cutlets,1
+cecum matter of weanling rat after 6 hour fasting; S24,1
+indwelling device,1
+endovascular,1
+Narragansett Bay,1
+Shatin WWTPs_84 WWTPs influent,1
+Shatin WWTPs_90 WWTPs influent,1
+Left femur of elderly Sprague Dawley rat,1
+Onion,1
+several tissues,1
+China: The First Affiliated Hospital of Zhejiang University,1
+chicken processing plant,1
+petroleum contaminated soil,1
+chicken manure,1
+Aristotles Lantern,1
+"Pilaf with poultry, sunflower oil and pearl flour",1
+30 degree sequencing batch reactor activited sludge day 105,1
+"Urine, blood, lung",1
+cecum matter of weanling rat after 6 hour fasting; S3,1
+"Brazil: north of Parana's state, psciculture",1
+water tap in the ICU,1
+patient9,1
+coral surface mucus layer and tissue collected from offshore reef,1
+root nodule of alfalfa,1
+Ingluvial swab,1
+Sugarcane press mud,1
+marine benthic water,1
+Urine Kidney ASP,1
+Joint fluid,1
+river surface water,1
+Fresh water,1
+Wastewater Influent,1
+Psittacus erithacus feces,1
+Dairy Fram,1
+hot spring sediment from GC-11 spring,1
+prostatic fluid,1
+Throat swab 37,1
+minitubers,1
+"abscess, pelvic",1
+Homemade kholodets,1
+CO2 enrichment culture inoculated with terrestrial drill core sediment slurry from 54 meters,1
+Deep anoxic layer (35m depth) Cueva de la Mora,1
+tissue samples,1
+Urine Blad,1
+coastal sediment from oyster culture field,1
+foreskin swab,1
+Chest tube,1
+"Urine, cytoscopy",1
+Hip joint,1
+"""Baked roll """"Grilled perch """"""",1
+Commercial probiotic,1
+granulation tissue,1
+oil reservoir water,1
+fresh water from natural spring,1
+hot spring sediment from S-04 spring,1
+polar sea water,1
+"water surface of eutrophic pond, Goettingen, Germany",1
+"Kuala Lumpur, Malaysia",1
+French frie,1
+Urine Ileal LP,1
+throat swab of children with scarlet fever,1
+plant from greenhouse,1
+Microcerotermes nervosus termite mound core,1
+ICU - phone,1
+Throat swab 30,1
+sulfide from Tianxiu hydrothermal vents,1
+Mashed potato,1
+sewage contaminated river water,1
+uterus cytobrush,1
+Red-breasted Parakeet,1
+enriched activated sludge,1
+environmental124,1
+Bicycle in the canal,1
+Throat swab 26,1
+San Elijo coastal lagoon,1
+biliary stent,1
+food: poultry,1
+"Tricuspid valve, septal leaflet",1
+faecal swabs,1
+labial angle of a patient with cheilitis angularis,1
+Pond sample 5,1
+Patient21 sputum,1
+ENVO:00010483,1
+chancre,1
+wild boar meat,1
+2218E medium,1
+Sea cuccumber,1
+Feces of Naemorhedus caudatus,1
+Omelet,1
+Canine feces,1
+Rawalpindi,1
+patient4,1
+cow carcass,1
+Candida albicans SC5314 culture,1
+adult female whole insect body collected from Opuntia sp.,1
+fjord sediment,1
+Care for handlebars,1
+dog,1
+Throat swab 41,1
+venous duct,1
+12 bed bar,1
+"""Salad """"Originalnii"""" with dressing""",1
+FLUIDS,1
+wastewater treatment plant activated sludge,1
+Lung tissue,1
+cyanobacterial enrichment,1
+2222E medium,1
+Retailed Milk,1
+ICU - dripstand,1
+root tissue,1
+Gastric content,1
+organ,1
+Chicken faeces,1
+Surface Water (Environmental),1
+Urinary Catheter,1
+35 degree sequencing batch reactor activited sludge day 105,1
+duck feces,1
+Musca domestica,1
+Zoo wolf area soil,1
+cecum matter of weanling rat after 6 hour fasting; S28,1
+contaminant,1
+Freshwater lake sediment,1
+chicken caeca 1,1
+patient12,1
+root nodules of Mimosa pudica,1
+Patient59 sputum,1
+"""Baked roll """"Tik Tok""""""",1
+tobacco planting soil,1
+pig nasal swab,1
+surface-sterilized rice stem,1
+Contaminated soil sample CPT56DS-C from Oak Ridge Reservation Area 3,1
+Salted trout caviar,1
+Chronic skin infection,1
+Pond sample 1,1
+Stanley WWTPs_44 WWTPs effluent,1
+soil at river bank,1
+Pet fish,1
+hydrothermal vent sediment; AOM enrichment culture at 70 degrees Celsius,1
+residential yard with dogs and pecan tree,1
+Shek Wu Hui WWTPs_109 WWTPs influent,1
+prosthesis,1
+oropharyngeal swab of pharynx,1
+blood culture (peripheral),1
+food: meat,1
+Breast skin tissue,1
+Psittacus erithacus,1
+industrial waste water,1
+chain elongating bioreactor,1
+"hospital-1, ICU, urine sample #31",1
+sinus pus,1
+acid mine drainage site biofilm from limestone lined outflow channel community,1
+"commercial pork production facility, chopping board",1
+chicken caeca 2,1
+Supralittoral and intertidal zones,1
+patient YYC,1
+TCE/Cr reducing biochatode,1
+Distal femur tissue,1
+2219E medium,1
+Mango leaves,1
+manganese oxidizing enrichment culture inoculated with an iron oxide mat collected from the outflow of a rusted iron pipe surrounded by reeds along the side of a road,1
+siliceous digitate sinter (TKP2),1
+sole,1
+Wastewater from Chattogram Medical College Hospital,1
+swab from tracheostomy tube,1
+production facility,1
+pooled leaves from various weed species from community garden,1
+oxygen nozzle from reanimation room of Intensive Care Unit,1
+cave,1
+fecal sample D84 from domestic dog with diarrhoea,1
+minigarden for teak propagation,1
+seashore,1
+chronic wound,1
+sludge from wastewater treatment center,1
+Throat swab 7,1
+topsoil from arid and minimally vegetated gibber plain,1
+female subgingival plaque,1
+stool from adult,1
+wild-caught Atlantic blue crabs,1
+potash salt dump,1
+Throat swab 32,1
+activated sludge from full-scale wastewater treatment plant,1
+bacterial wilt of Tobacco plant,1
+Drainage of fluid,1
+Dog ears,1
+Household water (Environmental),1
+"Erciyes University, Faculty of Medicine",1
+PCB-contaminated soil,1
+endoscopy specimen,1
+Chicken feces,1
+stool (rectal swab),1
+environmental91,1
+"""Salad """"Nezhnost"""" with dressing""",1
+intravenous catheter,1
+earthworm gut,1
+sequencing biological reactor (SBR),1
+Shek Wu Hui WWTPs_62 WWTPs effluent,1
+sputum from old man,1
+stool from infant,1
+Necrotic pancreatic tissue,1
+Patient50 sputum,1
+R_thumb,1
+brown agar,1
+patient3,1
+School cafeteria,1
+Head Wound,1
+genital ulcer,1
+Sediments from irrigation channel,1
+External auditory canal,1
+Patient28 sputum,1
+bronchoalveolar lavage (female),1
+Soil from the surroundings of the Henryk Arctowski base,1
+Upturned soil from a suburban backyard,1
+Forest non-rhizosphere soil,1
+paper mulberry,1
+Irish Farm,1
+Cow rumen,1
+right hand palm swab,1
+cows,1
+Decubitus swab,1
+onion,1
+"cerebrospinal fluid, hospital",1
+Storm drain water,1
+dairy starter culture,1
+"hospital-2, ICU, urine #39",1
+pharynx swab,1
+Urban River,1
+Polar Fox Lagoon sediment taken using 3m corer (60 mm diameter),1
+"Intertidal sediment samples from Zhanjiang Bay, China",1
+Bread with condensed milk,1
+Patient52 sputum,1
+Vaginal Swab,1
+human-fecal,1
+Maanshan3 acid mine drainage,1
+cecal contents from Broiler chicken,1
+Neophocaena phocaenoides,1
+lagoon sediment,1
+balf,1
+Pond sample 3,1
+cervical swab,1
+Tissue samples,1
+industrial zone,1
+marine broth agar medium with sodium arsenite as selective compound,1
+cold seep sediment,1
+Chlorocebus sabaeus,1
+coastal sediment from cordgrass Spartina alterniflora,1
+Chicken carcass (Gallus gallus),1
+tendon tissue,1
+tube of Riftia pachyptila,1
+Formation water,1
+intestinal,1
+hot spring sediment from MH-01 spring,1
+ear discharge,1
+Water from glacial stream,1
+water from a container for water evaporation,1
+Black Sea sulfidic water cellulose enrichment,1
+2220E medium,1
+wild-caught male spider from wet Alnus forest,1
+purulent synovial fluid,1
+2225E medium,1
+Rabbit testicles,1
+"Little Rock, Arkansas, Unites States",1
+New born lamb presenting respiratory symptoms,1
+4 bed left side rail,1
+temperate grassland disturbed soil,1
+faece,1
+wet soil next to a mine drainage,1
+root soil,1
+Urine CVS,1
+domestic pet,1
+nasal polyp,1
+OIE Reference Laboratory for Swine Streptococcosis,1
+Wrist,1
+nozzle of water hose,1
+cecum matter of weanling rat after 6 hour fasting; S2,1
+pleural liquid sample,1
+Neoplasm,1
+venous blood of patient with cerebral hemorrhage,1
+leaf-covered soil,1
+"unialgal non-axenic culture, originally established from Lake Saaskjarvi, Finland in 1986",1
+Deep throat swab,1
+Market,1
+salted duck egg,1
+Endotracheal aspirates,1
+rock,1
+Penaeus vannamei (Whiteleg shrimp),1
+Throat swab 4,1
+surgical drain,1
+spiracle swabs,1
+patient17,1
+Trach Asp,1
+Formation water sample from Viraj GGS,1
+Rhizospheric soil samples,1
+Pond sample 4,1
+bile from holelithiasis patient,1
+Patient49 sputum,1
+cold mineral spring water,1
+mouth swab,1
+Bacterial blight infected Pomegranate leaves,1
+35 degree sequencing batch reactor activited sludge day 315,1
+urine - permanent urinary catheter,1
+End stage renal failure,1
+"""Roll """"California"""" in masago""",1
+Shatin WWTPs_74 WWTPs influent,1
+Patient58 sputum,1
+"sediment collected in IODP Expedition 375 from site U1519E, depth 61.01 mbsf",1
+Patient27 sputum,1
+"sediment collected in IODP Expedition 375 from site U1519C, depth 280.17 mbsf",1
+left hand,1
+soil from electronic waste dumpsite,1
+Throat swab 13,1
+Throat swab 31,1
+indoor air,1
+Kitchen air,1
+Bronchoalveolar fluid,1
+environmental102,1
+salt water,1
+Throat swab 12,1
+Shatin WWTPs_9 WWTPs effluent,1
+Sturnus nigricollis,1
+NICU Sink drain biofilm,1
+cecum matter of weanling rat after 6 hour fasting; S12,1
+wound abdomin,1
+Stegodyphus dumicola nest material,1
+Litopenaeus vannamei purchased at the supermarket,1
+Patient31 sputum,1
+environmental24,1
