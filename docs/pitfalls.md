@@ -593,6 +593,16 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [enigma_contamination_functional_potential] Species/strain bridge cannot be forced from genus-only ENIGMA taxonomy
+
+**Problem**: ENIGMA taxonomy in `ddt_brick0000454` currently includes `Domain` through `Genus` levels only. Attempting species-level bridge logic directly will either fail or silently reuse genus-level mappings while appearing higher resolution.
+
+**Solution**: Verify available taxonomy levels first. If species/strain labels are absent, either:
+- use an explicit species-proxy mode (unique genus->single GTDB clade) and report mapped-coverage loss, or
+- switch to data sources that support species/strain resolution (metagenomes, ASV reclassification pipeline).
+
+---
+
 ### [env_embedding_explorer] Notebooks committed without outputs are useless for review
 
 **Problem**: When analysis is prototyped as Python scripts (for debugging speed or iterative development), the notebooks get committed with empty output cells. This defeats their purpose — notebooks are the primary audit trail and methods documentation. The `/synthesize` skill reads notebook outputs to extract results, the `/submit` reviewer checks outputs to verify claims, and human readers rely on outputs to follow the analysis without re-running it. Empty notebooks fail all three use cases.

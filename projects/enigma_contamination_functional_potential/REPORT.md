@@ -24,14 +24,26 @@ After adding confounder and coverage sensitivity checks in NB03, contamination-d
 Most non-defense outcomes remained non-significant in these sensitivity tests, with one exploratory exception:
 - `strict_single_clade`, high-coverage subset (`mapped_abundance_fraction >= 0.25`), `site_stress_score`: Spearman rho = 0.2489, p = 0.0407.
 
+### Species-proxy resolution sensitivity is limited by mapped coverage
+To approximate higher taxonomic resolution despite ENIGMA taxonomy stopping at genus, NB02 added `species_proxy_unique_genus` mode (only genera mapping to exactly one GTDB species clade).
+
+- Unique-clade genera: 150 (vs 530 mapped genera total)
+- Ambiguous multi-clade genera: 380
+- Mean mapped abundance fraction in species-proxy mode: 0.031 (vs 0.343 in strict/relaxed)
+- `site_defense_score` trend is positive but not significant: rho = 0.169, Spearman p = 0.081
+- No high-coverage subset test was feasible at the existing threshold (`mapped_abundance_fraction >= 0.25`) due low retained coverage.
+
+This suggests that with current ENIGMA taxonomy granularity, stricter taxonomic resolution sharply reduces analyzable signal and does not strengthen inference yet.
+
 ![Mapping and feature coverage by mode](figures/mapping_coverage_by_mode.png)
 
 Coverage diagnostics from upstream outputs:
 - 1,392 ENIGMA genera observed
 - 530 mapped genera, 862 unmapped genera
+- Of mapped genera, 150 were unique-clade (species-proxy resolvable) and 380 were multi-clade ambiguous
 - Bridge table rows: 8,242 (many-to-many genus-to-clade expansion)
-- Functional feature rows: 3,180 (530 genera x 3 features x 2 modes)
-- Mean mapped abundance fraction: 0.343 (range 0.031 to 0.854), comparable across both mapping modes
+- Functional feature rows: 3,630 across 3 mapping modes (`strict_single_clade`, `relaxed_all_clades`, `species_proxy_unique_genus`)
+- Mean mapped abundance fraction: 0.343 in strict/relaxed modes (range 0.031 to 0.854) and 0.031 in species-proxy mode (range 0.0002 to 0.543)
 
 *(Notebook: `02_taxonomy_bridge_functional_features.ipynb`; data: `taxon_bridge.tsv`, `taxon_functional_features.tsv`)*
 
@@ -59,11 +71,12 @@ NB02 built a genus-normalized bridge to pangenome clades:
 - Mapped genera: `530`
 - Unmapped genera: `862`
 - Strict clades: `530`, relaxed clades: `7,380`
-- Functional features now computed independently for strict and relaxed mapping modes.
+- Species-proxy clades (unique genus->single clade): `150`
+- Functional features now computed independently for strict, relaxed, and species-proxy mapping modes.
 
 NB03 produced:
-- Site functional score rows: `216` (108 samples x 2 mapping modes)
-- Model result rows: `8` (4 outcomes x 2 mapping modes)
+- Site functional score rows: `324` (108 samples x 3 mapping modes)
+- Model result rows: `12` (4 outcomes x 3 mapping modes)
 - Expanded model diagnostics in `model_results.tsv`: adjusted coordinates/depth models, coverage-adjusted models, site-structure models (`location_prefix`), and high-coverage subset correlations.
 
 Overall, the contamination signal is weak in primary univariate tests but shows a mode-consistent positive association with defense potential under coverage-aware sensitivity models.
@@ -77,9 +90,10 @@ Within this ENIGMA subset, contamination gradients did not translate into a robu
 - The bridge and annotation strategy relies on GTDB taxonomy and eggNOG functional annotation conventions; broad annotation classes can dilute specific metal-stress pathway signal.
 
 ### Novel Contribution
-This project contributes a reproducible ENIGMA-to-BERDL functional inference workflow with independent strict-vs-relaxed feature construction, mapped-coverage diagnostics, and multi-tier sensitivity modeling beyond basic univariate association tests.
+This project contributes a reproducible ENIGMA-to-BERDL functional inference workflow with independent strict-vs-relaxed feature construction, mapped-coverage diagnostics, a species-proxy unique-clade sensitivity mode, and multi-tier modeling beyond basic univariate association tests.
 
 ### Limitations
+- ENIGMA taxonomy table `ddt_brick0000454` currently provides labels through `Genus` (no species/strain labels), so true species-level bridge testing is not directly possible in this dataset slice.
 - Genus-level mapping may mask strain-level adaptation.
 - 862/1,392 observed genera were unmapped to current pangenome bridge.
 - COG-fraction proxies are coarse summaries, not curated resistance pathways.
@@ -101,9 +115,9 @@ This project contributes a reproducible ENIGMA-to-BERDL functional inference wor
 | `data/community_taxon_counts.tsv` | 41,711 | Sample-community-genus abundance table |
 | `data/sample_location_metadata.tsv` | 108 | Location/depth metadata for overlapping samples |
 | `data/taxon_bridge.tsv` | 8,242 | Genus-to-GTDB species-clade bridge with mapping tier |
-| `data/taxon_functional_features.tsv` | 3,180 | Per-genus functional proxy features across two mapping modes |
-| `data/site_functional_scores.tsv` | 216 | Site-level functional scores by mapping mode |
-| `data/model_results.tsv` | 8 | Spearman/permutation, base OLS, covariate-adjusted OLS, coverage-adjusted OLS, site-structure sensitivity, and high-coverage subset stats |
+| `data/taxon_functional_features.tsv` | 3,630 | Per-genus functional proxy features across three mapping modes |
+| `data/site_functional_scores.tsv` | 324 | Site-level functional scores by mapping mode |
+| `data/model_results.tsv` | 12 | Spearman/permutation, base OLS, covariate-adjusted OLS, coverage-adjusted OLS, site-structure sensitivity, and high-coverage subset stats |
 
 ## Supporting Evidence
 
@@ -124,7 +138,7 @@ This project contributes a reproducible ENIGMA-to-BERDL functional inference wor
 ## Future Directions
 
 1. Replace COG-fraction proxies with curated metal-stress gene sets and pathway-level summaries.
-2. Increase taxonomic resolution where possible (species/strain-level bridge) and quantify incremental gains over genus-level mapping.
+2. Increase taxonomic resolution where possible (species/strain-level bridge from metagenomic or higher-resolution ENIGMA taxonomy) and quantify gains over genus and species-proxy modes.
 3. Fit adjusted models with explicit covariates (depth, location cluster, sampling date) and compositional modeling controls.
 4. Investigate unmapped genera contribution to contamination gradients and bridge expansion opportunities.
 5. Add mixed-effects or hierarchical site models (well/location-level random effects) to test whether defense associations persist under richer structure control.

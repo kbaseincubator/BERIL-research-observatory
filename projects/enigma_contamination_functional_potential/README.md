@@ -6,11 +6,13 @@ Do high-contamination Oak Ridge groundwater communities show enrichment for taxa
 
 ## Status
 
-Complete -- see [Report](REPORT.md) for rerun-synced findings from 108 overlap samples; primary univariate tests are null, but coverage-aware sensitivity models show a positive contamination-defense association.
+Complete -- see [Report](REPORT.md) for rerun-synced findings from 108 overlap samples. Primary univariate tests are null, coverage-aware sensitivity models show a positive contamination-defense association, and a new species-proxy sensitivity mode (unique genus->single GTDB clade) remains coverage-limited.
 
 ## Overview
 
 This project uses ENIGMA CORAL field data to test whether contamination gradients (uranium and co-occurring metals) are associated with shifts in inferred community functional potential. Functional potential is estimated by linking ENIGMA taxa to BERDL pangenome annotations and aggregating stress-relevant functional signals (COG defense/mobilome and related categories) at the site level. The analysis targets community-level ecological filtering rather than gene-level causality.
+
+ENIGMA taxonomy in `ddt_brick0000454` is currently available through `Genus` (no species/strain rows), so higher-resolution analysis is implemented as a species-proxy sensitivity mode using only uniquely resolved genus-to-clade mappings.
 
 ## Quick Links
 
