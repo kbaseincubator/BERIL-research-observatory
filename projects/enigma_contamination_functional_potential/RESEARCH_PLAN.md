@@ -102,6 +102,7 @@ Prior BERIL work established that ENIGMA CORAL supports field ecology analysis a
 - **v4 (2026-02-15)**: Executed NB01-NB03 end-to-end; optimized NB01 to aggregate ASV counts in Spark before collection (avoids driver OOM) and updated NB03 to use `scipy.stats.linregress` due environment-level `statsmodels` import failure.
 - **v5 (2026-02-16)**: Added strict-vs-relaxed mapping-mode sensitivity analysis and diagnostic visualizations (contamination distribution, mapping coverage); re-executed NB02-NB03 and refreshed outputs.
 - **v6 (2026-02-16)**: Added `species_proxy_unique_genus` sensitivity mode (unique genus->single GTDB clade) to approximate higher-resolution bridging under genus-only ENIGMA taxonomy; re-executed NB02-NB03 and refreshed outputs.
+- **v7 (2026-02-16)**: Addressed high-priority review rigor items in NB03: predeclared confirmatory vs exploratory analyses, added global BH-FDR q-values across all reported p-values, and added community-fraction robustness models/stratified tests from `sdt_community_name`; re-executed NB03 and refreshed outputs.
 
 ## Authors
 

@@ -240,6 +240,10 @@ When strict and relaxed mapping modes were computed independently in NB02 (inste
 
 `enigma_coral.ddt_brick0000454` currently provides taxonomy through `Genus` (no species/strain rows). A species-proxy mode (`species_proxy_unique_genus`) that keeps only unique genus->single GTDB clade mappings retained 150 genera, but mapped abundance collapsed to mean 0.031 (vs 0.343 in strict/relaxed genus modes). In this low-coverage regime, defense trend was positive (rho=0.169) but non-significant (p=0.081), indicating that true species-level gains likely require higher-resolution ENIGMA taxonomy or metagenomic mapping.
 
+### [enigma_contamination_functional_potential] Confirmatory defense tests remain null after global FDR; strongest signal remains exploratory and coverage-dependent
+
+After adding explicit confirmatory vs exploratory labels in NB03 and applying global BH-FDR across all reported p-values, confirmatory defense Spearman tests in genus-level modes remained null (p=0.546/0.483; q=0.862/0.849). The strongest surviving signal was exploratory: relaxed coverage-adjusted defense model retained q=0.046, while strict and other sensitivity signals attenuated above q<0.1. Interpretation should therefore prioritize null confirmatory evidence and frame positive results as exploratory.
+
 ---
 
 ## Template

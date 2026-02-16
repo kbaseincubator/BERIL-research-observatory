@@ -603,6 +603,14 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [enigma_contamination_functional_potential] FDR pass can silently miss p-value columns with non-standard names
+
+**Problem**: If multiple-testing correction only targets columns ending in `_p`, it will miss p-value columns named like `adj_cov_p_contamination` or `adj_frac_p_contamination`.
+
+**Solution**: Detect p-value columns by substring pattern (for example columns containing `_p` and excluding derived q-value columns) or by an explicit p-column allowlist before applying BH-FDR.
+
+---
+
 ### [env_embedding_explorer] Notebooks committed without outputs are useless for review
 
 **Problem**: When analysis is prototyped as Python scripts (for debugging speed or iterative development), the notebooks get committed with empty output cells. This defeats their purpose — notebooks are the primary audit trail and methods documentation. The `/synthesize` skill reads notebook outputs to extract results, the `/submit` reviewer checks outputs to verify claims, and human readers rely on outputs to follow the analysis without re-running it. Empty notebooks fail all three use cases.

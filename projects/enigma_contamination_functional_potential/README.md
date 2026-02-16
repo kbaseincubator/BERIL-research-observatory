@@ -6,7 +6,7 @@ Do high-contamination Oak Ridge groundwater communities show enrichment for taxa
 
 ## Status
 
-Complete -- see [Report](REPORT.md) for rerun-synced findings from 108 overlap samples. Primary univariate tests are null, coverage-aware sensitivity models show a positive contamination-defense association, and a new species-proxy sensitivity mode (unique genus->single GTDB clade) remains coverage-limited.
+Complete -- see [Report](REPORT.md) for rerun-synced findings from 108 overlap samples. Confirmatory defense tests are null, exploratory coverage-aware models show a conditional positive defense association (attenuated after global FDR), and a species-proxy sensitivity mode (unique genus->single GTDB clade) remains coverage-limited.
 
 ## Overview
 

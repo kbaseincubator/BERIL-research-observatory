@@ -13,16 +13,38 @@ Across 108 overlapping ENIGMA samples, primary univariate tests remained non-sig
 
 *(Notebook: `03_contamination_functional_models.ipynb`)*
 
-### Adjusted sensitivity analyses show a conditional defense signal
-After adding confounder and coverage sensitivity checks in NB03, contamination-defense association became significant in selected adjusted models:
+### Confirmatory analysis remains null after global multiple-testing control
+NB03 now predeclares confirmatory tests as `site_defense_score` vs contamination Spearman association in genus-level modes (`relaxed_all_clades`, `strict_single_clade`).
+
+- `relaxed_all_clades`: Spearman p = 0.546, global FDR q = 0.862
+- `strict_single_clade`: Spearman p = 0.483, global FDR q = 0.849
+
+Primary confirmatory tests therefore remain non-significant.
+
+### Exploratory adjusted models show conditional defense signal before/after FDR
+In exploratory sensitivity models, contamination-defense associations remain strongest in coverage-aware adjustments:
 - Coverage-adjusted OLS (`contamination + depth + latitude + longitude + mapped_abundance_fraction`):
-  - `relaxed_all_clades`: contamination p = 0.000398
-  - `strict_single_clade`: contamination p = 0.00354
+  - `relaxed_all_clades`: contamination p = 0.000398, global FDR q = 0.0462
+  - `strict_single_clade`: contamination p = 0.00354, global FDR q = 0.130
+- Fraction-aware adjusted model (`contamination + mapped_abundance_fraction + C(community_fraction_type)`):
+  - `relaxed_all_clades`: contamination p = 0.00144, global FDR q = 0.0838
+  - `strict_single_clade`: contamination p = 0.00548, global FDR q = 0.130
 - High-coverage subset (`mapped_abundance_fraction >= 0.25`):
   - `site_defense_score`: Spearman p = 0.0207 (relaxed), 0.00980 (strict)
+  - After global FDR: q = 0.301 (relaxed), 0.189 (strict)
 
 Most non-defense outcomes remained non-significant in these sensitivity tests, with one exploratory exception:
 - `strict_single_clade`, high-coverage subset (`mapped_abundance_fraction >= 0.25`), `site_stress_score`: Spearman rho = 0.2489, p = 0.0407.
+
+### Community-fraction robustness does not show strong within-fraction monotonic signal
+To address potential confounding from collapsing multiple community fractions, NB03 now retains `community_fraction_type` parsed from `sdt_community_name` and runs fraction-aware robustness analyses.
+
+- Fraction-aware adjusted models use `n = 212` sample-fraction rows (106 for `0.2_micron_filter`, 106 for `10_micron_filter`).
+- Within-fraction Spearman tests for defense were non-significant:
+  - `relaxed_all_clades`: p = 0.767 (`0.2` micron), p = 0.898 (`10` micron)
+  - `strict_single_clade`: p = 0.780 (`0.2` micron), p = 0.793 (`10` micron)
+
+This supports the conclusion that strong monotonic defense signal is not robustly reproducible inside individual fraction strata.
 
 ### Species-proxy resolution sensitivity is limited by mapped coverage
 To approximate higher taxonomic resolution despite ENIGMA taxonomy stopping at genus, NB02 added `species_proxy_unique_genus` mode (only genera mapping to exactly one GTDB species clade).
@@ -77,9 +99,9 @@ NB02 built a genus-normalized bridge to pangenome clades:
 NB03 produced:
 - Site functional score rows: `324` (108 samples x 3 mapping modes)
 - Model result rows: `12` (4 outcomes x 3 mapping modes)
-- Expanded model diagnostics in `model_results.tsv`: adjusted coordinates/depth models, coverage-adjusted models, site-structure models (`location_prefix`), and high-coverage subset correlations.
+- Expanded model diagnostics in `model_results.tsv`: confirmatory/exploratory labels, adjusted coordinates/depth models, coverage-adjusted models, site-structure models (`location_prefix`), fraction-aware models (`community_fraction_type`), within-fraction correlations, high-coverage subset correlations, and global BH-FDR q-values across all reported p-values.
 
-Overall, the contamination signal is weak in primary univariate tests but shows a mode-consistent positive association with defense potential under coverage-aware sensitivity models.
+Overall, the contamination signal is weak in confirmatory tests, while exploratory coverage-aware models still show a positive defense association that is attenuated after global multiple-testing control.
 
 ## Interpretation
 
@@ -97,7 +119,7 @@ This project contributes a reproducible ENIGMA-to-BERDL functional inference wor
 - Genus-level mapping may mask strain-level adaptation.
 - 862/1,392 observed genera were unmapped to current pangenome bridge.
 - COG-fraction proxies are coarse summaries, not curated resistance pathways.
-- Sensitivity-model significance is concentrated in defense and depends on coverage/covariate specification; broader effect across outcomes is not yet established.
+- Exploratory sensitivity-model significance is concentrated in defense and depends on coverage/covariate specification; broader effect across outcomes is not yet established.
 - Site structure is represented by coarse `location_prefix` effects rather than full hierarchical/random-effects modeling.
 
 ## Data
