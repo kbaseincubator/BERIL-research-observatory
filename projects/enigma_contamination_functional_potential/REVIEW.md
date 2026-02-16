@@ -7,31 +7,34 @@ project: enigma_contamination_functional_potential
 # Review: Contamination Gradient vs Functional Potential in ENIGMA Communities
 
 ## Summary
-This project is well-scoped, reproducible, and generally methodologically careful: the research question is explicit, notebook flow is coherent, outputs are saved, and conclusions in `REPORT.md` match the generated result tables and figures. The strongest findings are appropriately framed as sensitivity-model dependent rather than definitive. Main improvement areas are statistical inference rigor for multiple comparisons and clearer handling/quantification of mapping uncertainty from large unmapped genus fractions.
+This project is clear, reproducible, and technically solid: the question is testable, the notebook sequence is coherent, outputs/figures are present, and `REPORT.md` conclusions match the generated TSVs. The analysis is appropriately cautious about null primary tests and sensitivity-dependent signals. The main gaps are statistical inference control across many tests and potential confounding from collapsing multiple community fractions into one per-sample profile.
 
 ## Methodology
-The question and hypotheses are clearly stated in `README.md` and `RESEARCH_PLAN.md`, and data sources are documented with specific ENIGMA and pangenome tables. The notebook progression is logical: extraction/QC (`notebooks/01_enigma_extraction_qc.ipynb`), taxonomy bridge + feature construction (`notebooks/02_taxonomy_bridge_functional_features.ipynb`), then modeling (`notebooks/03_contamination_functional_models.ipynb`).
+The research question and hypotheses are explicit in `README.md` and `RESEARCH_PLAN.md`, with concrete source tables from `enigma_coral` and `kbase_ke_pangenome`. The execution flow is logical: extraction/QC in `notebooks/01_enigma_extraction_qc.ipynb`, taxonomy bridge + feature engineering in `notebooks/02_taxonomy_bridge_functional_features.ipynb`, then modeling in `notebooks/03_contamination_functional_models.ipynb`.
 
-Reproducibility is strong: the README has a dedicated `## Reproduction` section with execution order, Spark-vs-local guidance, dependencies, and expected artifacts. All three notebooks contain executed code with saved outputs (NB03 includes two intentionally comment-only code cells with no outputs). Data and figures expected by the README/REPORT are present and consistent with notebook logs.
+Reproducibility is strong. `README.md` includes a clear `## Reproduction` section with execution order, Spark/local separation, expected runtimes, and output artifacts. `requirements.txt` is present. All 3 notebooks have saved outputs in executed code cells; in NB03, the only code cells without outputs are intentional comment-only placeholders.
 
-Methodologically, strict-vs-relaxed mapping is now implemented independently in NB02 (strict clade selection vs all clades), and downstream mode-specific modeling in NB03 uses those separate features. The main design limitation remains biological resolution and mapping coverage: 862/1392 genera are unmapped in `data/taxon_bridge.tsv`, so inference is conditional on mapped taxa and coverage-weighted sensitivity analyses.
+Methodologically, the strict/relaxed/species-proxy mapping split in NB02 is a useful sensitivity design and is correctly propagated into NB03. A key limitation is mapping coverage: `data/taxon_bridge.tsv` shows 862 unmapped genera out of 1,392 observed genera, so inference is conditional on mapped taxa and modeled coverage.
 
 ## Code Quality
-Code quality is solid for notebook-style analysis. NB01 keeps heavy aggregation in Spark before `.toPandas()`, reducing driver-memory risk. Numeric casting is explicit where needed (consistent with ENIGMA string-typed field pitfalls). NB02 uses the documented join key (`gene_cluster.gene_cluster_id` to `eggnog_mapper_annotations.query_name`), avoiding a common BERDL pitfall. NB03 includes defensive checks for insufficient sample size/constant outcomes and records status fields in `data/model_results.tsv`.
+Notebook code is generally good quality. In `notebooks/01_enigma_extraction_qc.ipynb` (code cell 4), large aggregations stay in Spark before collecting, which aligns with `docs/pitfalls.md` guidance. Explicit casting is used where ENIGMA numeric fields may be string-typed. In `notebooks/02_taxonomy_bridge_functional_features.ipynb` (code cell 6), the annotation join uses `gene_cluster.gene_cluster_id = eggnog_mapper_annotations.query_name`, matching the documented pitfall. In `notebooks/03_contamination_functional_models.ipynb` (code cell 4), status handling for insufficient/constant cases is implemented and persisted in `data/model_results.tsv`.
 
-No clear runtime or logic bugs were found in the executed paths. One analytical quality risk is inference multiplicity: many p-values are reported across outcomes, mapping modes, and sensitivity models, but there is no explicit multiple-testing correction or pre-specified primary endpoint hierarchy in notebook outputs.
+No clear runtime bug was found in executed paths. Two quality risks remain:
+1. Inference multiplicity: many p-values are reported across outcomes, mapping modes, and sensitivity models, without explicit multiple-testing correction.
+2. Potential aggregation confounding: `notebooks/03_contamination_functional_models.ipynb` (code cell 3) collapses all community rows to sample-genus abundance, while NB01 reports 212 communities for 108 samples; combining multiple filter fractions into one profile may blur biologically distinct community strata.
 
 ## Findings Assessment
-`REPORT.md` is consistent with generated artifacts. Claims about null primary univariate associations, significant coverage-adjusted defense associations, high-coverage subset signals, and sample/row counts match `data/model_results.tsv`, `data/site_functional_scores.tsv`, and notebook outputs. Figures in `figures/` are present and aligned with report descriptions.
+`REPORT.md` is consistent with artifacts. Claims on null primary tests, coverage-adjusted defense associations, and high-coverage subset signals match values in `data/model_results.tsv` and `data/site_functional_scores.tsv`. Figure files referenced in the report are present in `figures/` and consistent with notebook outputs.
 
-Interpretation is appropriately cautious and limitations are explicitly acknowledged (genus-level abstraction, coarse COG proxies, incomplete mapping, and site-structure simplification). This is a credible and transparent presentation of conditional evidence rather than over-claiming causality.
+Interpretation is appropriately conservative and limitations are acknowledged (genus-level abstraction, coarse COG proxies, incomplete mapping, site-structure simplification). The write-up avoids causal overstatement and treats positive signals as conditional sensitivity evidence.
 
 ## Suggestions
-1. [High] Add multiple-testing control (for example Benjamini-Hochberg FDR) across the family of outcome/mode/sensitivity tests, and report both raw and adjusted p-values in `data/model_results.tsv` and `REPORT.md`.
-2. [High] Pre-specify and label confirmatory vs exploratory analyses in NB03 (for example, designate primary endpoint/model), so significance claims are less vulnerable to model-selection bias.
-3. [High] Quantify mapping uncertainty more directly: add analyses that model effect size as a function of `mapped_abundance_fraction` or report partial dependence/interaction with contamination, not only thresholded high-coverage subsets.
-4. [Medium] Add uncertainty intervals (for example bootstrap CIs) for key contamination coefficients/correlations in the report tables to complement p-values.
-5. [Medium] Extend site-structure modeling beyond `location_prefix` where feasible (for example mixed effects with location-level random intercepts) to better capture clustered sampling.
+1. [High] Add multiple-testing correction (for example BH-FDR) across outcome x mapping-mode x sensitivity analyses, and report adjusted p-values alongside raw p-values in `data/model_results.tsv` and `REPORT.md`.
+2. [High] Separate confirmatory vs exploratory models in NB03 (pre-declare primary endpoint/model) so significant sensitivity results are interpreted in a controlled inference framework.
+3. [High] Test robustness to community-fraction aggregation by re-running core analyses stratified by `sdt_community_name` type (for example filter fraction), or include fraction/community-type covariates before collapsing to sample-level.
+4. [Medium] Add effect-size uncertainty intervals (bootstrap CIs) for key contamination associations, not only p-values.
+5. [Medium] Expand site-structure handling beyond `C(location_prefix)` where feasible (for example mixed-effects location random intercepts or date-aware models).
+6. [Medium] Quantify mapping uncertainty more explicitly by modeling interaction between contamination and `mapped_abundance_fraction`, not only threshold-based high-coverage subsets.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
