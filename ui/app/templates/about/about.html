@@ -3,33 +3,175 @@
 {% block title %}About - {{ app_name }}{% endblock %}
 
 {% block content %}
+<!-- Hero -->
 <div class="page-header">
-    <h1 class="page-title">About KBase / BERIL</h1>
+    <h1 class="page-title">About the Research Observatory</h1>
     <p class="page-description">
-        AI-powered exploration of the KBase Data Lakehouse.
+        AI-assisted exploration of the KBase BER Data Lakehouse (BERDL).
     </p>
 </div>
 
+<!-- Project Lead -->
 <section class="section">
-    <h2>What is KBase / BERIL?</h2>
+    <div class="card pi-card" style="border-left: 4px solid var(--accent-primary);">
+        <div style="position: relative;">
+            <img src="https://www.kbase.us/wp-content/uploads/sites/6/2020/06/dehal-paramvir_rev@2x.png"
+                 alt="Headshot of Paramvir S. Dehal"
+                 class="pi-avatar"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="avatar-initials pi-avatar-initials" style="display:none">PD</div>
+        </div>
+        <div>
+            <h3 style="margin: 0 0 var(--space-1) 0;">Paramvir S. Dehal</h3>
+            <p class="text-muted" style="margin-bottom: var(--space-2);">
+                Project lead &amp; primary contact
+            </p>
+            <p class="text-small" style="margin-bottom: var(--space-2);">
+                PI, BERIL &bull; Scientific lead, primary developer, and maintainer of the Research Observatory
+            </p>
+            <p class="text-small" style="margin-bottom: 0;">
+                <a href="mailto:psdehal@lbl.gov">psdehal@lbl.gov</a>
+                &bull;
+                <a href="https://orcid.org/0000-0001-5810-2497" target="_blank" rel="noopener">ORCID</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- What is the Research Observatory? -->
+<section class="section">
+    <h2>What is the Research Observatory?</h2>
     <div class="card" style="border-left: 4px solid var(--accent-primary);">
         <p>
-            <strong>BERIL</strong> is an AI integration layer for the <strong>KBase BER Data Lakehouse (BERDL)</strong>.
-            It provides resources, skills, and plugins that enable AI agents and human researchers to analyze
-            BERDL data collaboratively.
+            The <strong>Research Observatory</strong> is a PI-led research interface and AI integration layer
+            for exploring the KBase BER Data Lakehouse (BERDL). It combines curated data collections,
+            AI-assisted analysis workflows, and a growing body of documented research findings.
         </p>
         <p style="margin-top: var(--space-4);">
-            Through the BERIL Research Observatory, users can:
+            Through the Research Observatory, users can:
         </p>
         <ul style="margin-top: var(--space-2);">
-            <li><strong>Explore multiple data collections</strong> across the BERDL lakehouse</li>
-            <li><strong>Analyze their own data</strong> in the context of BERDL reference collections</li>
+            <li><strong>Explore curated data collections</strong> across the BERDL lakehouse</li>
+            <li><strong>Analyze results</strong> in the context of BERDL reference collections</li>
             <li><strong>Share discoveries</strong>, lessons learned, and pitfalls with proper attribution</li>
             <li><strong>Use AI assistants</strong> with BERIL skills to accelerate analysis</li>
         </ul>
     </div>
 </section>
 
+<!-- Contributing Projects and Resources -->
+<section class="section">
+    <h2>Contributing Projects and Resources</h2>
+    <div class="grid grid-3">
+        <div class="card">
+            <h4 style="margin-top: 0;">BERIL</h4>
+            <p class="text-small">
+                The <strong>BER Intelligent Layer</strong> is the broader program providing AI integration
+                capabilities for DOE BER data resources. The Research Observatory is developed under the
+                BERIL project umbrella.
+            </p>
+        </div>
+        <div class="card">
+            <h4 style="margin-top: 0;">KBase</h4>
+            <p class="text-small">
+                The <strong>Department of Energy Systems Biology Knowledgebase</strong> provides the platform
+                ecosystem, community infrastructure, and the AI/ML team that supports this work.
+            </p>
+        </div>
+        <div class="card">
+            <h4 style="margin-top: 0;">BERDL</h4>
+            <p class="text-small">
+                The <strong>BER Data Lakehouse</strong> is the underlying data resource hosting 35+ databases
+                across 9 tenants of curated scientific datasets. Developed by the KBase team, BERDL provides
+                the data foundation for all Observatory analyses.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Research Observatory Team -->
+<section class="section">
+    <h2>Research Observatory Team</h2>
+    <div class="team-grid">
+        <div class="card team-card">
+            <div style="position: relative;">
+                <img src="https://www.kbase.us/wp-content/uploads/sites/6/2020/06/dehal-paramvir_rev@2x.png"
+                     alt="Headshot of Paramvir S. Dehal" class="team-avatar"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="avatar-initials" style="display:none">PD</div>
+            </div>
+            <div>
+                <strong>Paramvir S. Dehal</strong>
+                <p class="text-muted text-small" style="margin: 0;">Project lead; scientific direction; architecture; core implementation &amp; maintenance</p>
+            </div>
+        </div>
+        <div class="card team-card">
+            <div style="position: relative;">
+                <img src="https://berkeleybop.org/people/chris-mungall/Mungall-headshot.jpeg"
+                     alt="Headshot of Chris Mungall" class="team-avatar"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="avatar-initials" style="display:none">CM</div>
+            </div>
+            <div>
+                <strong>Chris Mungall</strong>
+                <p class="text-muted text-small" style="margin: 0;">Ontologies and metadata/data harmonization guidance</p>
+            </div>
+        </div>
+        <div class="card team-card">
+            <div style="position: relative;">
+                <img src="https://www.kbase.us/wp-content/uploads/sites/6/2020/07/riehl-bill_rev%402x.png"
+                     alt="Headshot of William J. Riehl" class="team-avatar"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="avatar-initials" style="display:none">WR</div>
+            </div>
+            <div>
+                <strong>William J. "Bill" Riehl</strong>
+                <p class="text-muted text-small" style="margin: 0;">UI engineering support</p>
+            </div>
+        </div>
+        <div class="card team-card">
+            <div style="position: relative;">
+                <img src="https://www.kbase.us/wp-content/uploads/sites/6/2024/03/kishore-dileep.jpeg"
+                     alt="Headshot of Dileep Kishore" class="team-avatar"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="avatar-initials" style="display:none">DK</div>
+            </div>
+            <div>
+                <strong>Dileep Kishore</strong>
+                <p class="text-muted text-small" style="margin: 0;">Skills development and evaluations contributions</p>
+            </div>
+        </div>
+        <div class="card team-card">
+            <div style="position: relative;">
+                <img src="https://berkeleybop.org/people/justin-reese/justin.jpg"
+                     alt="Headshot of Justin Reese" class="team-avatar"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="avatar-initials" style="display:none">JR</div>
+            </div>
+            <div>
+                <strong>Justin Reese</strong>
+                <p class="text-muted text-small" style="margin: 0;">Evaluations contributions</p>
+            </div>
+        </div>
+        <div class="card team-card">
+            <div style="position: relative;">
+                <img src="https://www.kbase.us/wp-content/uploads/sites/6/2024/03/harris_nomi.png"
+                     alt="Headshot of Nomi Harris" class="team-avatar"
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="avatar-initials" style="display:none">NH</div>
+            </div>
+            <div>
+                <strong>Nomi Harris</strong>
+                <p class="text-muted text-small" style="margin: 0;">Project management support</p>
+            </div>
+        </div>
+    </div>
+    <p class="text-muted text-small" style="margin-top: var(--space-4);">
+        Roles reflect contributions to the Research Observatory UI and associated analyses.
+    </p>
+</section>
+
+<!-- What is BERDL? -->
 <section class="section">
     <h2>What is BERDL?</h2>
     <div class="card">
@@ -50,8 +192,9 @@
     </div>
 </section>
 
+<!-- Primary BERDL Collections -->
 <section class="section">
-    <h2>Primary Collections</h2>
+    <h2>Primary BERDL Collections</h2>
     <div class="grid grid-2">
         {% for coll in primary_collections %}
         <a href="/collections/{{ coll.id }}" class="card" style="text-decoration: none;">
@@ -71,6 +214,7 @@
     </p>
 </section>
 
+<!-- AI Integration -->
 <section class="section">
     <h2>AI Integration</h2>
     <div class="card">
@@ -90,6 +234,92 @@
     </div>
 </section>
 
+<!-- How to Cite -->
+<section class="section">
+    <h2>How to Cite</h2>
+    <div class="card">
+        <p class="text-small text-muted" style="margin-bottom: var(--space-3);">
+            If you use the Research Observatory or its findings in your work, please cite:
+        </p>
+        <pre style="background: var(--surface-overlay); padding: var(--space-4); border-radius: var(--radius-md); font-size: 0.875rem; line-height: 1.6; white-space: pre-wrap;">Paramvir S. Dehal. Research Observatory (BERIL) — v0.1, 2026. Built on the KBase BER Data Lakehouse (BERDL).</pre>
+    </div>
+</section>
+
+<!-- Acknowledgements -->
+<section class="section">
+    <details>
+        <summary style="cursor: pointer; font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-4);">
+            Acknowledgements (enabling efforts)
+        </summary>
+        <div class="team-grid" style="margin-top: var(--space-4);">
+            <div class="card team-card">
+                <div style="position: relative;">
+                    <img src="https://biosciences.lbl.gov/wp-content/uploads/2015/09/ArkinAdam.jpg"
+                         alt="Headshot of Adam Arkin" class="team-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-initials" style="display:none">AA</div>
+                </div>
+                <div>
+                    <strong>Adam Arkin</strong>
+                    <p class="text-muted text-small" style="margin: 0;">Vision/leadership for BERDL (KBase)</p>
+                </div>
+            </div>
+            <div class="card team-card">
+                <div style="position: relative;">
+                    <img src="https://www.kbase.us/wp-content/uploads/sites/6/2020/06/ChrisHenryPicture.jpg"
+                         alt="Headshot of Chris Henry" class="team-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-initials" style="display:none">CH</div>
+                </div>
+                <div>
+                    <strong>Chris Henry</strong>
+                    <p class="text-muted text-small" style="margin: 0;">Driving BERDL data resources and curation</p>
+                </div>
+            </div>
+            <div class="card team-card">
+                <div style="position: relative;">
+                    <img src="https://www.kbase.us/wp-content/uploads/sites/6/2024/02/mahmud-gazi.jpg"
+                         alt="Headshot of Gazi Mahmud" class="team-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-initials" style="display:none">GM</div>
+                </div>
+                <div>
+                    <strong>Gazi Mahmud</strong>
+                    <p class="text-muted text-small" style="margin: 0;">BERDL architect</p>
+                </div>
+            </div>
+            <div class="card team-card">
+                <div style="position: relative;">
+                    <img src="https://jgi.doe.gov/sites/default/files/styles/medium/public/2024-12/Kjiersten-Fagnan-JLT.jpg.webp?itok=sdcPmWCR"
+                         alt="Headshot of Kjiersten Fagnan" class="team-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-initials" style="display:none">KF</div>
+                </div>
+                <div>
+                    <strong>Kjiersten Fagnan</strong>
+                    <p class="text-muted text-small" style="margin: 0;">BERIL co-PI</p>
+                </div>
+            </div>
+            <div class="card team-card">
+                <div style="position: relative;">
+                    <img src="https://www.pnnl.gov/sites/default/files/styles/portrait/public/media/image/Ratna_Saripalli_PNNL.jpg?h=3dd0356d&itok=E5wMIvuA"
+                         alt="Headshot of Ratna Saripalli" class="team-avatar"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                    <div class="avatar-initials" style="display:none">RS</div>
+                </div>
+                <div>
+                    <strong>Ratna Saripalli</strong>
+                    <p class="text-muted text-small" style="margin: 0;">BERIL co-PI</p>
+                </div>
+            </div>
+        </div>
+        <p class="text-muted text-small" style="margin-top: var(--space-4);">
+            This acknowledgements list recognizes enabling roles in BERDL/BERIL/KBase; the Research Observatory UI is led and maintained by Paramvir S. Dehal.
+        </p>
+    </details>
+</section>
+
+<!-- Getting Started -->
 <section class="section">
     <h2>Getting Started</h2>
     <div class="grid grid-2">
@@ -104,6 +334,9 @@
         </div>
         <div class="card">
             <h4>For Contributors</h4>
+            <p class="text-small" style="margin-bottom: var(--space-3);">
+                For Observatory contributions, please contact <a href="mailto:psdehal@lbl.gov">psdehal@lbl.gov</a>.
+            </p>
             <ol>
                 <li>Pick a <a href="/knowledge/ideas">research idea</a> or propose your own</li>
                 <li>Create a project folder in <code>projects/</code></li>
@@ -114,6 +347,7 @@
     </div>
 </section>
 
+<!-- Resources -->
 <section class="section">
     <h2>Resources</h2>
     <div class="grid grid-3">
