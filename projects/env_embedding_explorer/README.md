@@ -6,7 +6,7 @@ What do AlphaEarth environmental embeddings capture, and how do they relate to g
 
 ## Status
 
-Complete -- see [Report](REPORT.md) for findings. Notebooks pending execution on JupyterHub for saved outputs.
+Complete -- environmental samples show 3.4x stronger geographic signal in AlphaEarth embeddings than human-associated samples. See [Report](REPORT.md) for full findings.
 
 ## Overview
 
