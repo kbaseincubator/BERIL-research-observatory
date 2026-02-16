@@ -9,6 +9,14 @@ Across 108 ENIGMA samples, contamination index was not significantly associated 
 - `site_defense_score`: Spearman rho = 0.0587, p = 0.546, permutation p = 0.531
 - `site_metabolism_score`: Spearman rho = -0.00645, p = 0.947, permutation p = 0.944
 
+### Sensitivity analysis: strict vs relaxed mapping is directionally consistent
+Using two mapping modes gave similar conclusions:
+
+- `relaxed_all_clades` (aggregate all mapped clades per genus): no significant stress/defense association
+- `strict_single_clade` (one representative clade per genus): no significant stress/defense association
+
+Effect sizes shifted slightly but remained non-significant in both modes.
+
 ### Weak positive slope without statistical support
 Linear trend estimates for defense/stress scores were positive but not statistically significant:
 
@@ -16,7 +24,7 @@ Linear trend estimates for defense/stress scores were positive but not statistic
 - `site_stress_score`: beta = 0.000473, p = 0.0681
 
 ### Mobilome signal collapsed in current feature mapping
-`site_mobilome_score` was effectively zero in this run, indicating the current genus-level mapping/feature extraction did not recover a usable mobilome gradient for modeling.
+`site_mobilome_score` was explicitly flagged as `constant_feature` in both mapping modes, indicating the current genus-level mapping/feature extraction did not recover a usable mobilome gradient for modeling.
 
 ## Results
 
@@ -59,7 +67,9 @@ This result is directionally consistent with prior BERIL findings in `projects/l
 ### Figures
 | Figure | Description |
 |---|---|
-| `figures/contamination_vs_functional_score.png` | Scatter of contamination index vs site stress functional score |
+| `figures/contamination_vs_functional_score.png` | Stress score vs contamination, faceted by mapping mode |
+| `figures/contamination_index_distribution.png` | Distribution of contamination index across 108 samples |
+| `figures/mapping_coverage_by_mode.png` | Mapping and feature coverage summary for strict vs relaxed modes |
 
 ### Data Files
 | File | Description |
@@ -74,3 +84,4 @@ This result is directionally consistent with prior BERIL findings in `projects/l
 2. Replace broad COG proxies with targeted stress pathway markers (e.g., curated metal resistance signatures).
 3. Add compositional modeling and covariate controls (location/time/depth strata).
 4. Re-run with stricter and relaxed bridge confidence tiers as explicit sensitivity analyses.
+5. Replace COG-mobilome proxy with alternative mobile element signals to avoid constant-feature collapse.

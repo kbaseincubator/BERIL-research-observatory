@@ -6,7 +6,7 @@ Do high-contamination Oak Ridge groundwater communities show enrichment for taxa
 
 ## Status
 
-Completed -- initial ENIGMA contamination-functional synthesis executed (n=108 samples). No significant association detected between contamination index and inferred stress functional potential in the first-pass genus-level model; see REPORT.md for details.
+Completed -- ENIGMA contamination-functional synthesis executed (n=108 samples) with strict-vs-relaxed mapping sensitivity analysis. No significant association was detected between contamination index and inferred stress functional potential; see REPORT.md for details.
 
 ## Overview
 
@@ -47,6 +47,8 @@ jupyter nbconvert --to notebook --execute --inplace notebooks/03_contamination_f
 - `data/site_functional_scores.tsv`
 - `data/model_results.tsv`
 - `figures/contamination_vs_functional_score.png`
+- `figures/contamination_index_distribution.png`
+- `figures/mapping_coverage_by_mode.png`
 
 ## Authors
 
