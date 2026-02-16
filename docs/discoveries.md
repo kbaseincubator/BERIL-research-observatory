@@ -236,6 +236,10 @@ In the ENIGMA contamination-functional project (108 overlap samples), primary un
 
 When strict and relaxed mapping modes were computed independently in NB02 (instead of reusing strict outputs), 1,140 of 1,590 genus-feature pairs differed between modes (~71.7%), and site stress scores differed for all 108 samples. Strict-vs-relaxed sensitivity is therefore analytically meaningful and should not be approximated by copied feature tables.
 
+### [enigma_contamination_functional_potential] Species-proxy bridge is currently coverage-limited under genus-only ENIGMA taxonomy
+
+`enigma_coral.ddt_brick0000454` currently provides taxonomy through `Genus` (no species/strain rows). A species-proxy mode (`species_proxy_unique_genus`) that keeps only unique genus->single GTDB clade mappings retained 150 genera, but mapped abundance collapsed to mean 0.031 (vs 0.343 in strict/relaxed genus modes). In this low-coverage regime, defense trend was positive (rho=0.169) but non-significant (p=0.081), indicating that true species-level gains likely require higher-resolution ENIGMA taxonomy or metagenomic mapping.
+
 ---
 
 ## Template
