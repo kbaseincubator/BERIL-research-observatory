@@ -55,6 +55,11 @@ jupyter nbconvert --to notebook --execute --inplace notebooks/03_contamination_f
 - `data/contamination_index_sensitivity.tsv`
 - `data/mapped_coverage_deciles.tsv`
 - `data/model_family_sample_counts.tsv`
+- `data/confirmatory_family_summary.tsv`
+- `data/bridge_quality_summary.tsv`
+- `data/bridge_clade_count_distribution.tsv`
+- `data/bridge_top_ambiguous_genera.tsv`
+- `figures/confirmatory_defense_vs_contamination.png`
 - `figures/contamination_vs_functional_score.png`
 - `figures/contamination_index_distribution.png`
 - `figures/mapping_coverage_by_mode.png`
