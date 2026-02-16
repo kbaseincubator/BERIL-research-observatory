@@ -8,80 +8,88 @@ project: env_embedding_explorer
 
 ## Summary
 
-This is a well-executed exploratory characterization of the AlphaEarth environmental embeddings in BERDL. The project clearly defines its scope, implements a logical multi-stage pipeline (extraction, QC, harmonization, dimensionality reduction, distance analysis), and produces several genuinely useful outputs — notably the environment harmonization mapping, coordinate quality flags, and the stratified geographic-distance analysis showing 3.4x stronger signal for environmental vs human-associated samples. Documentation is excellent: the three-file structure (README, RESEARCH_PLAN, REPORT) is fully realized and internally consistent, the REPORT includes literature context and thoughtful limitations, and the notebooks are well-narrated with markdown explanations. The main gaps are a reproducibility issue with the headline finding's missing code, a minor numeric inconsistency, and the absence of statistical tests for the distance-decay relationship.
+This is a strong exploratory project that systematically characterizes the AlphaEarth environmental embeddings in BERDL. The project follows a clean two-notebook pipeline (Spark extraction then local analysis), produces 14 publication-quality figures with both static and interactive versions, and delivers four genuinely useful outputs: a merged embeddings-plus-environment dataset, a coordinate quality classification, a reusable environment harmonization mapping, and a stratified distance-decay analysis showing that environmental samples exhibit 3.65x stronger geographic signal than human-associated samples. Documentation is exemplary — the three-file structure (README, RESEARCH_PLAN, REPORT) is fully realized, the REPORT includes literature context with five cited papers, and limitations are honestly enumerated. Both notebooks are committed with saved outputs, addressing a known pitfall. The main issues are numeric inconsistencies between the REPORT prose and the actual notebook outputs, a genome count discrepancy after the UMAP merge step, and the absence of formal statistical tests for the key comparisons.
 
 ## Methodology
 
-**Research question**: Clearly stated as exploratory — "What do AlphaEarth environmental embeddings capture?" — with four specific sub-questions (E1–E4) that structure the analysis. The framing as characterization rather than hypothesis testing is appropriate and honestly communicated.
+**Research question**: Clearly framed as exploratory characterization with four specific expectations (E1-E4 in RESEARCH_PLAN.md) that map directly onto analysis sections. The honest framing as "exploratory/characterization" rather than hypothesis-driven is appropriate and well-communicated.
 
-**Approach**: Sound and well-sequenced. The pipeline moves logically from data extraction (NB01) through QC and exploration (NB02). The choice to L2-normalize embeddings before UMAP (using Euclidean as a proxy for cosine distance) is well-motivated and correctly justified. The coordinate QC heuristic (>50 genomes AND >10 species at the same location) is simple but reasonable for a first pass, and the authors explicitly acknowledge its limitations.
+**Approach**: Logically sequenced. NB01 handles Spark extraction and EAV pivoting; NB02 handles all downstream analysis locally from cached CSVs. Key methodological choices are well-justified:
+- L2-normalization before UMAP to approximate cosine distance with Euclidean (cell 22, NB02) — correctly motivated and matches the pitfall documented in `docs/pitfalls.md`.
+- Subsample-fit/full-transform UMAP (20K fit, 79K transform) — good performance optimization with cached coordinates for reproducibility.
+- Coordinate QC heuristic (>50 genomes AND >10 species) — simple, transparent, with acknowledged limitations and specific false-positive examples.
 
-**Data sources**: Clearly identified with table names, row counts, and join keys documented in both the RESEARCH_PLAN and README.
+**Data sources**: Clearly documented in README, RESEARCH_PLAN, and REPORT with table names (`alphaearth_embeddings_all_years`, `ncbi_env`), estimated row counts, and join strategies. The RESEARCH_PLAN includes a query strategy table with filter approaches — a good practice.
 
-**Reproducibility**: The Spark/local separation is clearly documented — NB01 requires JupyterHub, NB02 runs locally from cached CSVs. The README includes a step-by-step reproduction guide with prerequisites. A `requirements.txt` is provided. However, there are two reproducibility concerns:
-
-1. **Missing code for headline finding**: The stratified distance analysis (`geo_vs_embedding_by_env_group.png`) — which produces the project's headline result (3.4x vs 2.0x ratio) — has no corresponding code cell in the notebook. The figure exists on disk and appears in the notebook's final file listing, but the code that generated it is absent. This means the most important analysis cannot be reproduced from the notebook alone.
-
-2. **UMAP coordinate mismatch**: The pre-computed `umap_coords.csv` contains 79,449 rows (per the REPORT), but the notebook's merge step reports "Loaded pre-computed UMAP coordinates for 79,779 genomes" and subsequently operates on 79,779 genomes. This suggests either (a) the UMAP coordinates file was regenerated after the REPORT was written, or (b) the left join on `genome_id` created unexpected matches. The discrepancy (330 genomes) is small but should be investigated and documented.
-
-**Notebook outputs**: Both notebooks have saved outputs (text, tables, plotly figure renderings), which is excellent. The project explicitly documented the "notebooks without outputs" pitfall in `docs/pitfalls.md` and addressed it.
+**Reproducibility**:
+- Spark/local separation is clearly documented with step-by-step reproduction instructions in the README.
+- A `requirements.txt` is provided with pinned kaleido version (`kaleido==0.2.1`) per the documented pitfall.
+- Both notebooks have saved outputs (text, tables, figure renders), which is excellent — this project explicitly identified the "notebooks without outputs" issue and contributed it to `docs/pitfalls.md`.
+- Pre-computed UMAP coordinates are cached in `data/umap_coords.csv`, enabling fast re-runs of NB02 without recomputing UMAP.
 
 ## Code Quality
 
-**SQL queries** (NB01): Correct and well-structured. The EAV pivot query uses `MAX(CASE WHEN ...)` as recommended in `docs/pitfalls.md`. The biosample ID temp view approach for the join is efficient. The `SELECT *` on the AlphaEarth table is acceptable given the small table size (83K rows), which is noted in the RESEARCH_PLAN.
+**SQL queries (NB01)**: Correct and well-structured. The EAV pivot uses `MAX(CASE WHEN harmonized_name = ... THEN content END)` as recommended in `docs/pitfalls.md`. The approach of registering biosample IDs as a Spark temp view (`ae_biosamples`) for the join is efficient and avoids building a massive IN clause. The `SELECT *` on the 83K-row AlphaEarth table is acceptable given the documented small size.
 
-**Pandas operations** (NB01–NB02): Clean and idiomatic. The merge uses `how='left'` correctly to preserve all AlphaEarth genomes. Coverage flags are computed vectorially rather than with row-wise apply.
+**Pandas operations**: Clean and idiomatic throughout. Merges use appropriate join types (`how='left'` to preserve all AlphaEarth genomes). Coverage flags are computed vectorially. The environment harmonization function (cell 14) is well-organized with ordered keyword matching and proper separation of "Unknown" (missing/null) from "Other" (unmatched text).
 
-**Environment harmonization** (NB02, cell 14): The keyword-matching approach is clearly documented with category definitions and keyword lists. The ordered matching (first match wins) is a reasonable strategy. The "Other" and "Unknown" categories are properly separated (missing/null vs unmatched text), and the residual "Other" values are explicitly inspected (cell 15).
+**Distance computation (NB02, cell 32)**: Haversine distance is correctly vectorized with NumPy. Cosine distance is computed from raw embeddings (not L2-normalized), which is correct — normalization was only needed for UMAP's Euclidean proxy. The addition of `1e-10` to the denominator prevents division-by-zero.
 
-**UMAP implementation** (NB02, cell 22): Correctly handles the known pitfall about cosine metric being slow — uses L2-normalization + Euclidean as documented in `docs/pitfalls.md`. The subsample-fit/full-transform approach is a good performance optimization. Pre-computed coordinates are cached and loaded on subsequent runs, which is the recommended checkpointing pattern.
+**Pitfall awareness**: The project addresses multiple documented pitfalls: EAV pivot pattern for `ncbi_env`, NaN embedding filtering (3,838 genomes dropped), UMAP cosine metric performance (L2-norm + Euclidean), kaleido version pinning. The project also *contributed* three new pitfalls to `docs/pitfalls.md` (notebooks without outputs, geographic signal dilution, NaN embeddings), which demonstrates strong observatory citizenship.
 
-**Distance computation** (NB02, cell 32): The Haversine distance calculation is correctly vectorized with NumPy. Cosine distance is computed from raw (non-normalized) embeddings, which is correct for measuring actual cosine similarity.
+**Issues identified**:
 
-**Pitfall awareness**: The project addresses several documented pitfalls: EAV pivot for `ncbi_env`, NaN embedding filtering, UMAP cosine metric performance, kaleido version compatibility (deprecation warning visible but functional). The kaleido warning (cells 4, 5, 12, etc.) suggests kaleido 0.2.1 is installed as recommended.
+1. **Genome count discrepancy after UMAP merge**: `data/umap_coords.csv` contains 79,449 rows (verified), matching the REPORT. But NB02 cell 21 reports "Loaded pre-computed UMAP coordinates: 79,779 genomes" after the merge. The `merge(on='genome_id', how='inner')` should produce at most 79,449 rows (the smaller of the two inputs). The 79,779 count suggests either (a) the merge is actually `how='left'` in a different code version, (b) 330 genomes matched multiple UMAP rows, or (c) this is an artifact of a stale notebook output from a previous run with different data. The code shown uses `how='inner'`, so the output should be 79,449 or fewer. This inconsistency is minor but should be resolved.
 
-**Minor issues**:
-- The DBSCAN `eps=0.5` on UMAP coordinates produces 320 clusters, which the authors themselves note is "likely too fine-grained" (REPORT Limitations). This is acknowledged but not explored further.
-- The `valid_mask` in cell 21 correctly drops 3,838 NaN-embedding genomes, but the subsequent merge with `umap_coords.csv` uses a left join that brings some back (resulting in the 79,779 count), and the code does not re-filter afterward. Downstream cells operate on `df_clean` which may contain rows with UMAP coordinates but NaN embeddings if the UMAP file was generated from a different data version.
+2. **DBSCAN eps=0.5 produces 320 clusters**: The authors acknowledge this is "likely too fine-grained" in the REPORT's Limitations section. No alternative clustering was attempted, which is a missed opportunity.
+
+3. **The `df_clean` variable may contain rows without valid embeddings post-merge**: Cell 21 filters to valid embeddings, then merges with UMAP coordinates using `how='inner'`. If any genome in `umap_coords.csv` had its embeddings become NaN in a newer data version, it would be included in `df_clean` without valid embeddings. A post-merge assertion would be prudent.
 
 ## Findings Assessment
 
-**Finding 1 (3.4x geographic signal for environmental samples)**: The headline finding is compelling and well-interpreted. The explanation that hospitals worldwide have similar satellite imagery is intuitive and testable. However, the code producing this analysis is missing from the notebook, so the exact methodology (how "environmental" and "human-associated" groups were defined, whether the same 50K-pair sampling was used, etc.) cannot be verified from the notebooks alone.
+**Finding 1 (stratified geographic signal)**: This is the project's most important result — environmental samples show a much stronger distance-decay than human-associated ones. The code is present in cell 36 (defining `env_groups`, sampling pairs within each group, computing binned distance-decay per group). The explanation (hospitals worldwide have similar satellite imagery) is intuitive and plausible. However, there is a **numeric inconsistency** between the REPORT and the notebook output:
 
-**Finding 2 (monotonic distance-decay)**: Well-supported by the binned analysis (cell 34). The data table in the REPORT matches the notebook output. The interpretation about plateau above 5,000 km is reasonable. One concern: the analysis uses only "good" quality coordinates (47,551 genomes), which is appropriate, but excludes some legitimate field sites flagged as "suspicious" — this could bias the result if environmental samples are disproportionately at those sites. A sensitivity analysis including suspicious-but-legitimate sites would strengthen this finding.
+| Metric | REPORT states | Notebook output (cell 36) |
+|--------|--------------|--------------------------|
+| Environmental near (<100 km) | 0.27 | 0.245 |
+| Environmental far (>10K km) | 0.90 | 0.894 |
+| Environmental ratio | 3.4x | 3.65x |
+| Human-associated near | 0.37 | 0.369 |
+| Human-associated far | 0.75 | 0.749 |
+| Human-associated ratio | 2.0x | 2.03x |
 
-**Finding 3 (clinical sampling bias)**: Well-documented with exact counts. The observation that clinical isolates have good geographic metadata due to epidemiological tracking is a plausible mechanism.
+The README also uses the REPORT's "3.4x" figure. These should be reconciled — the notebook output (3.65x) should be treated as authoritative since it comes from executable code.
 
-**Finding 4 (coordinate QC)**: Honest and nuanced — the authors explicitly list false positives (Rifle, Saanich Inlet) and acknowledge the heuristic needs refinement. The table of specific flagged locations with context is very useful.
+**Finding 2 (monotonic distance-decay)**: Well-supported by the binned analysis in cell 34. The REPORT's data table matches the notebook output. The Spearman correlation (rho=0.2288, p<0.001) is computed and reported in cell 36, which provides a formal statistical measure for the overall relationship. The interpretation about the plateau above 5,000 km is reasonable.
 
-**Finding 5 (UMAP structure)**: The UMAP visualizations colored by environment category and phylum are informative. The cluster-environment cross-tabulation is a nice addition. The 320-cluster DBSCAN result is presented with appropriate caveats.
+**Finding 3 (clinical sampling bias)**: Well-documented with exact counts matching between notebook (cell 14) and REPORT. The 38% human-associated figure is derived from 22.2% Human clinical + 16.1% Human gut + 2.3% Human other = 40.6% — note that the REPORT rounds this to 38% using slightly different category counts (16,390 + 13,466 + 1,669 = 31,525 / 83,287 = 37.8%). The REPORT's per-category counts (e.g., "Human clinical: 16,390") don't exactly match the notebook output ("Human clinical: 18,505"). This is a second numeric inconsistency — likely the REPORT was drafted from an earlier analysis run.
 
-**Finding 6 (taxonomic structure)**: Appropriately cautious about the environment-taxonomy confound.
+**Finding 4 (coordinate QC)**: Nuanced and honest. The table of specific flagged locations with context (Rifle, Saanich Inlet, Siberian soda lakes) demonstrates domain knowledge. The acknowledgment that the heuristic needs refinement is appropriate.
 
-**Literature context**: The REPORT cites four relevant papers on distance-decay in microbial ecology and correctly frames the findings in context. The self-citation to the `ecotype_analysis` project is appropriate and the suggestion to re-run with environmental-only samples is a concrete, actionable future direction.
+**Finding 5 (UMAP clusters)**: The cluster-environment cross-tabulation (cell 40) is a nice analysis. The observation that rare environments concentrate in few clusters while common categories spread across many is well-supported by the heatmap.
 
-**Limitations**: Comprehensive and honest — seven specific limitations are listed, including coverage bias, QC heuristic false positives, harmonization long tail, UMAP parameter sensitivity, and NaN embeddings.
+**Limitations**: Seven specific limitations are listed in the REPORT, covering coverage bias, clinical bias, QC heuristic false positives, harmonization long tail, UMAP parameter sensitivity, NaN embeddings, and DBSCAN granularity. This is comprehensive and honest.
 
-**No statistical tests**: The distance-decay relationship (Finding 2) is presented descriptively (mean cosine distance by bin) without a formal statistical test (e.g., Mantel test, permutation test, or regression). While the monotonic trend is visually clear, a p-value or confidence interval would strengthen the claim, especially for the stratified comparison (3.4x vs 2.0x).
+**Missing statistical test for stratified comparison**: While the Spearman correlation is reported for the overall and per-group relationships (cell 36), there is no formal test for whether the Environmental ratio (3.65x) is significantly different from the Human-associated ratio (2.03x). A bootstrap confidence interval on the ratio, or a permutation test shuffling environment labels, would quantify the significance of this difference.
 
 ## Suggestions
 
-1. **[Critical] Add the stratified distance analysis code to the notebook**. The `geo_vs_embedding_by_env_group` figure is the project's most important result but has no source code in NB02. Either add the code as a new cell after the binned distance analysis (cell 34), or create a brief NB03 for the stratified analysis. Re-execute the notebook to capture outputs.
+1. **[Important] Reconcile numeric inconsistencies between REPORT and notebook outputs**. The REPORT states the environmental distance ratio as 3.4x (near=0.27, far=0.90), but the notebook output shows 3.65x (near=0.245, far=0.894). Similarly, per-category counts differ (e.g., Human clinical: 16,390 in REPORT vs 18,505 in notebook). Update the REPORT and README to match the current notebook outputs, which should be treated as the authoritative source.
 
-2. **[Important] Resolve the 79,449 vs 79,779 genome count discrepancy**. After the UMAP coordinate merge in cell 21, verify that `df_clean` contains exactly the expected number of valid-embedding genomes. Add a post-merge assertion: `assert df_clean['umap_x'].isna().sum() == 0` or document why the counts differ.
+2. **[Important] Investigate the 79,449 vs 79,779 genome count discrepancy**. The `data/umap_coords.csv` file has 79,449 data rows, but NB02 cell 21 reports 79,779 after the merge. Add a post-merge validation cell: `print(f'Expected: {n_valid}, got: {len(df_clean)}')` and `assert len(df_clean) == n_valid` to catch any mismatch. If the counts legitimately differ, document why.
 
-3. **[Important] Add a statistical test for the distance-decay relationship**. A Mantel test (geographic distance matrix vs embedding distance matrix) or a simple Spearman correlation on the paired distances would provide a p-value for the geographic signal. For the stratified comparison, a permutation test or bootstrap confidence intervals on the near/far ratio would quantify whether the 3.4x vs 2.0x difference is statistically significant.
+3. **[Moderate] Add a formal test for the stratified ratio difference**. The claim that environmental samples show "3.4x stronger" signal than human-associated (2.0x) is the headline finding but lacks a significance test. A bootstrap confidence interval on the near/far ratio for each group (resampling genome pairs with replacement, 1000 iterations) would quantify uncertainty and test whether the ratios are significantly different.
 
-4. **[Moderate] Expand the "Other" category**. Cell 15 identifies several easily capturable terms: "cerebrospinal fluid", "lung", "throat swab", "nasopharynx" → Human clinical; "pork", "tissue" → Food/Animal; "Aspo HRL", "Olkiluoto" → Extreme (underground); "water" → could be split by `env_broad_scale` fallback. This could reduce the "Other" category from 17% to ~10%.
+4. **[Moderate] Reduce the "Other" category**. Cell 15 shows easily capturable terms in the "Other" bucket: "water" (302 genomes), "tracheal secretion" (103), "stomach" (89), "Nose" (72), "rectal" (72), "sinus" (70), "gut" (68), and the Rifle well descriptions (730+ genomes). Adding keywords for these could reduce "Other" from 12.8% to ~8%. The Rifle well samples in particular should map to "Freshwater" or "Soil" (groundwater research site).
 
-5. **[Moderate] Try a coarser clustering**. The REPORT notes that 320 clusters is "likely too fine-grained." Running DBSCAN with `eps=1.0` or `eps=1.5`, or using HDBSCAN (which selects eps adaptively), would likely produce 20-50 clusters that map more cleanly onto environment categories and would be more interpretable.
+5. **[Moderate] Try HDBSCAN or coarser DBSCAN**. The 320-cluster result with eps=0.5 is acknowledged as too fine-grained. Running HDBSCAN (which selects density thresholds adaptively) or DBSCAN with eps=1.0-1.5 would likely produce 20-50 clusters that map more cleanly onto environment categories and would be more interpretable for downstream use.
 
-6. **[Minor] Pin kaleido version in requirements.txt**. The requirements file specifies `kaleido>=0.2.1` which could pull kaleido 1.x (requiring Chrome). Per the documented pitfall, pin to `kaleido==0.2.1` for headless compatibility.
+6. **[Minor] Add the global map figure to the REPORT**. The `global_map_by_env.png` figure (cell 30) shows the geographic distribution of genomes colored by environment category but is not referenced in the REPORT's text or Figures table. It would complement Finding 3 (sampling bias) by visualizing the spatial distribution of clinical vs environmental samples.
 
-7. **[Minor] Add the `global_map_by_env` figure to the REPORT**. The geographic map colored by environment category is generated (cell 30) and saved to `figures/`, but is not referenced in the REPORT's Figures table or embedded in any finding. It would complement Finding 3 (sampling bias) by showing the geographic distribution of the clinical vs environmental samples.
+7. **[Minor] Consider a sensitivity analysis on "suspicious" coordinates**. The distance-decay analysis (cells 32-36) uses only "good" quality coordinates (47,551 genomes), excluding 30,469 "suspicious" genomes. Since some flagged sites are legitimate (Rifle, Saanich Inlet), a sensitivity analysis including these sites would show whether the distance-decay findings are robust to the QC filter.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
 - **Date**: 2026-02-16
-- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, 2 notebooks (28 + 43 cells), 5 data files, 14 figures (PNG + HTML pairs), requirements.txt, docs/pitfalls.md
+- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, references.md, 2 notebooks (28 + 44 cells), 5 data files, 14 figures (PNG + HTML pairs), requirements.txt, docs/pitfalls.md
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.
