@@ -230,6 +230,15 @@ class Project:
 
 
 @dataclass
+class Skill:
+    """An AI co-scientist skill parsed from .claude/skills/*/SKILL.md."""
+
+    name: str
+    description: str
+    user_invocable: bool = False
+
+
+@dataclass
 class Discovery:
     """A research discovery from docs/discoveries.md."""
 
@@ -323,6 +332,7 @@ class RepositoryData:
     research_ideas: list[ResearchIdea] = field(default_factory=list)
     collections: list[Collection] = field(default_factory=list)
     contributors: list[Contributor] = field(default_factory=list)
+    skills: list[Skill] = field(default_factory=list)
 
     # Computed stats
     total_notebooks: int = 0

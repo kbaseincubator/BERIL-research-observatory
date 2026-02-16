@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}AI Co-Scientist - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">AI Co-Scientist</h1>
+    <p class="page-description">
+        A human-in-the-loop AI research workflow that plans analyses, executes them on BERDL,
+        and turns results into reusable knowledge.
+    </p>
+</div>
+
+<!-- Research Loop -->
+<section class="section">
+    <h2>How It Works</h2>
+    <p class="text-muted" style="margin-bottom: var(--space-6);">
+        The co-scientist follows a closed-loop research workflow. Each project moves through four stages,
+        and the knowledge gained compounds across projects.
+    </p>
+    <div class="grid grid-4">
+        <div class="card" style="text-align: center; border-top: 3px solid var(--accent-primary);">
+            <h3 style="margin-top: var(--space-2); color: var(--accent-primary);">Plan</h3>
+            <p class="text-small">
+                Define a research question and hypothesis. The co-scientist drafts a
+                <code>RESEARCH_PLAN.md</code> with specific analyses and expected outcomes.
+            </p>
+        </div>
+        <div class="card" style="text-align: center; border-top: 3px solid var(--accent-secondary);">
+            <h3 style="margin-top: var(--space-2); color: var(--accent-secondary);">Run</h3>
+            <p class="text-small">
+                Execute analyses as Jupyter notebooks on BERDL JupyterHub. Query collections via Spark SQL,
+                generate figures, and produce data outputs.
+            </p>
+        </div>
+        <div class="card" style="text-align: center; border-top: 3px solid #e6b450;">
+            <h3 style="margin-top: var(--space-2); color: #e6b450;">Learn</h3>
+            <p class="text-small">
+                Synthesize findings into a <code>REPORT.md</code> with literature context.
+                Capture pitfalls, performance tips, and discoveries for the shared knowledge base.
+            </p>
+        </div>
+        <div class="card" style="text-align: center; border-top: 3px solid #50e68a;">
+            <h3 style="margin-top: var(--space-2); color: #50e68a;">Reuse</h3>
+            <p class="text-small">
+                Skills, memory, and data products from each project compound.
+                The next project starts with everything the system has learned so far.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Skills -->
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Skills</h2>
+        <a href="/skills" class="btn btn-secondary">View All {{ skill_count }} Skills</a>
+    </div>
+    <p class="text-muted" style="margin-bottom: var(--space-4);">
+        Reusable tools the co-scientist invokes during research. Each skill encapsulates domain knowledge
+        and workflow patterns learned from prior projects.
+    </p>
+    <div class="grid grid-3">
+        {% for skill in skills[:6] %}
+        <div class="card">
+            <h4 style="margin-top: 0;"><code>{{ skill.name }}</code></h4>
+            <p class="text-small text-muted" style="margin-bottom: 0;">{{ skill.description[:150] }}{% if skill.description|length > 150 %}...{% endif %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Example Workflow -->
+{% if example_project %}
+<section class="section">
+    <h2>Example: {{ example_project.title | markdown_inline }}</h2>
+    <div class="card" style="border-left: 4px solid var(--accent-primary);">
+        <p><strong>Research Question:</strong> {{ example_project.research_question }}</p>
+        <div class="grid grid-4" style="margin-top: var(--space-4);">
+            <div>
+                <p class="text-small text-muted" style="margin-bottom: var(--space-1);">Plan</p>
+                <p class="text-small"><code>RESEARCH_PLAN.md</code></p>
+            </div>
+            <div>
+                <p class="text-small text-muted" style="margin-bottom: var(--space-1);">Run</p>
+                <p class="text-small">{{ example_project.notebooks|length }} notebooks, {{ example_project.visualizations|length }} figures</p>
+            </div>
+            <div>
+                <p class="text-small text-muted" style="margin-bottom: var(--space-1);">Learn</p>
+                <p class="text-small"><code>REPORT.md</code> with {{ example_project.references|length if example_project.references else 0 }} references</p>
+            </div>
+            <div>
+                <p class="text-small text-muted" style="margin-bottom: var(--space-1);">Reuse</p>
+                <p class="text-small">{{ example_project.data_files|length }} data products</p>
+            </div>
+        </div>
+        <p style="margin-top: var(--space-4); margin-bottom: 0;">
+            <a href="/projects/{{ example_project.id }}" class="btn btn-secondary">View Full Project</a>
+        </p>
+    </div>
+</section>
+{% endif %}
+
+<!-- Memory -->
+<section class="section">
+    <h2>Shared Memory</h2>
+    <p class="text-muted" style="margin-bottom: var(--space-4);">
+        Knowledge captured during research that helps future projects avoid mistakes
+        and build on prior findings.
+    </p>
+    <div class="grid grid-3">
+        <a href="/knowledge/discoveries" class="card" style="text-decoration: none;">
+            <h4 style="color: var(--text-primary); margin-top: 0;">Discoveries</h4>
+            <p class="text-small text-muted">{{ discovery_count }} curated research findings across all projects.</p>
+        </a>
+        <a href="/knowledge/pitfalls" class="card" style="text-decoration: none;">
+            <h4 style="color: var(--text-primary); margin-top: 0;">Pitfalls</h4>
+            <p class="text-small text-muted">Query gotchas, data issues, and things to watch out for.</p>
+        </a>
+        <a href="/knowledge/performance" class="card" style="text-decoration: none;">
+            <h4 style="color: var(--text-primary); margin-top: 0;">Performance</h4>
+            <p class="text-small text-muted">Query patterns and optimization tips for working at BERDL scale.</p>
+        </a>
+    </div>
+</section>
+
+<!-- Get Started -->
+<section class="section">
+    <h2>Get Started</h2>
+    <div class="card" style="text-align: center; padding: var(--space-8);">
+        <p class="text-secondary" style="margin-bottom: var(--space-6);">
+            The co-scientist runs on BERDL JupyterHub with AI assistance via Claude Code and BERIL skills.
+        </p>
+        <div class="hero-actions">
+            <a href="https://hub.berdl.kbase.us" class="btn btn-primary" target="_blank">Open BERDL JupyterHub</a>
+            <a href="/projects" class="btn btn-secondary">Browse Existing Projects</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
