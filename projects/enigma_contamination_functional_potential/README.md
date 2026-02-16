@@ -6,7 +6,7 @@ Do high-contamination Oak Ridge groundwater communities show enrichment for taxa
 
 ## Status
 
-Complete -- see [Report](REPORT.md) for rerun-synced findings from 108 overlap samples; current models show no significant contamination-functional association across four outcomes in either mapping mode.
+Complete -- see [Report](REPORT.md) for rerun-synced findings from 108 overlap samples; primary univariate tests are null, but coverage-aware sensitivity models show a positive contamination-defense association.
 
 ## Overview
 
@@ -17,7 +17,6 @@ This project uses ENIGMA CORAL field data to test whether contamination gradient
 - [Research Plan](RESEARCH_PLAN.md) -- hypothesis, query strategy, and analysis design
 - [Report](REPORT.md) -- findings, interpretation, and limitations
 - [Review](REVIEW.md) -- automated review feedback and prioritized improvements
-- [References](references.md) -- key context for ENIGMA + BERIL analyses
 
 ## Reproduction
 
@@ -37,6 +36,11 @@ jupyter nbconvert --to notebook --execute --inplace notebooks/02_taxonomy_bridge
 # Modeling/plotting (can run where the extracted TSV files are available)
 jupyter nbconvert --to notebook --execute --inplace notebooks/03_contamination_functional_models.ipynb --ExecutePreprocessor.timeout=7200
 ```
+
+### Typical runtimes
+- `01_enigma_extraction_qc.ipynb`: ~1-3 minutes
+- `02_taxonomy_bridge_functional_features.ipynb`: ~2-8 minutes (Spark load dependent)
+- `03_contamination_functional_models.ipynb`: <1 minute
 
 ### Expected outputs
 - `data/geochemistry_sample_matrix.tsv`
