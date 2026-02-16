@@ -3,21 +3,26 @@
 ## Key Findings
 
 ### H1 not supported in current genus-level model
-Across 108 overlapping ENIGMA samples, contamination index was not significantly associated with inferred stress-related functional potential in either mapping mode.
+Across 108 overlapping ENIGMA samples, primary univariate tests remained non-significant for all four outcomes in both mapping modes.
 
 ![Stress score vs contamination index by mapping mode](figures/contamination_vs_functional_score.png)
 
-- `relaxed_all_clades`, `site_stress_score`: rho = 0.0587, p = 0.546, permutation p = 0.531, beta = 0.000473, OLS p = 0.0681
-- `strict_single_clade`, `site_stress_score`: rho = 0.0682, p = 0.483, permutation p = 0.463, beta = 0.000444, OLS p = 0.127
-- `relaxed_all_clades`, `site_defense_score`: rho = 0.0587, p = 0.546, permutation p = 0.531, beta = 0.000946, OLS p = 0.0681
-- `strict_single_clade`, `site_defense_score`: rho = 0.0682, p = 0.483, permutation p = 0.463, beta = 0.000888, OLS p = 0.127
+- `relaxed_all_clades`, `site_defense_score`: rho = 0.0587, Spearman p = 0.546, permutation p = 0.531, OLS p = 0.0681
+- `strict_single_clade`, `site_defense_score`: rho = 0.0682, Spearman p = 0.483, permutation p = 0.463, OLS p = 0.127
+- `site_mobilome_score` now has non-zero variance in both modes (no longer `constant_feature`).
 
 *(Notebook: `03_contamination_functional_models.ipynb`)*
 
-### Mapping sensitivity changed magnitude, not conclusion
-The strict vs relaxed bridge sensitivity analysis showed small numeric differences but no significance shift:
-- `site_metabolism_score` remained null in both modes (`relaxed`: rho = -0.00645, p = 0.947; `strict`: rho = -0.0147, p = 0.880).
-- `site_mobilome_score` was `constant_feature` in both modes (no variance; no inferential test).
+### Adjusted sensitivity analyses show a conditional defense signal
+After adding confounder and coverage sensitivity checks in NB03, contamination-defense association became significant in selected adjusted models:
+- Coverage-adjusted OLS (`contamination + depth + latitude + longitude + mapped_abundance_fraction`):
+  - `relaxed_all_clades`: contamination p = 0.000398
+  - `strict_single_clade`: contamination p = 0.00354
+- High-coverage subset (`mapped_abundance_fraction >= 0.25`):
+  - `site_defense_score`: Spearman p = 0.0207 (relaxed), 0.00980 (strict)
+
+Most non-defense outcomes remained non-significant in these sensitivity tests, with one exploratory exception:
+- `strict_single_clade`, high-coverage subset (`mapped_abundance_fraction >= 0.25`), `site_stress_score`: Spearman rho = 0.2489, p = 0.0407.
 
 ![Mapping and feature coverage by mode](figures/mapping_coverage_by_mode.png)
 
@@ -26,6 +31,7 @@ Coverage diagnostics from upstream outputs:
 - 530 mapped genera, 862 unmapped genera
 - Bridge table rows: 8,242 (many-to-many genus-to-clade expansion)
 - Functional feature rows: 3,180 (530 genera x 3 features x 2 modes)
+- Mean mapped abundance fraction: 0.343 (range 0.031 to 0.854), comparable across both mapping modes
 
 *(Notebook: `02_taxonomy_bridge_functional_features.ipynb`; data: `taxon_bridge.tsv`, `taxon_functional_features.tsv`)*
 
@@ -53,12 +59,14 @@ NB02 built a genus-normalized bridge to pangenome clades:
 - Mapped genera: `530`
 - Unmapped genera: `862`
 - Strict clades: `530`, relaxed clades: `7,380`
+- Functional features now computed independently for strict and relaxed mapping modes.
 
 NB03 produced:
 - Site functional score rows: `216` (108 samples x 2 mapping modes)
 - Model result rows: `8` (4 outcomes x 2 mapping modes)
+- Expanded model diagnostics in `model_results.tsv`: adjusted coordinates/depth models, coverage-adjusted models, site-structure models (`location_prefix`), and high-coverage subset correlations.
 
-Overall, the modeled contamination-functional signal is weak and statistically unsupported under this feature abstraction, so H1 is not supported and H0 is not rejected.
+Overall, the contamination signal is weak in primary univariate tests but shows a mode-consistent positive association with defense potential under coverage-aware sensitivity models.
 
 ## Interpretation
 
@@ -69,13 +77,14 @@ Within this ENIGMA subset, contamination gradients did not translate into a robu
 - The bridge and annotation strategy relies on GTDB taxonomy and eggNOG functional annotation conventions; broad annotation classes can dilute specific metal-stress pathway signal.
 
 ### Novel Contribution
-This project contributes a reproducible ENIGMA-to-BERDL functional inference workflow with explicit strict-vs-relaxed mapping sensitivity, quantifying where signal is lost (notably mobilome collapse) rather than only reporting a null hypothesis test.
+This project contributes a reproducible ENIGMA-to-BERDL functional inference workflow with independent strict-vs-relaxed feature construction, mapped-coverage diagnostics, and multi-tier sensitivity modeling beyond basic univariate association tests.
 
 ### Limitations
 - Genus-level mapping may mask strain-level adaptation.
 - 862/1,392 observed genera were unmapped to current pangenome bridge.
 - COG-fraction proxies are coarse summaries, not curated resistance pathways.
-- Current models are primarily unadjusted for depth/site/time structure beyond sample overlap filtering.
+- Sensitivity-model significance is concentrated in defense and depends on coverage/covariate specification; broader effect across outcomes is not yet established.
+- Site structure is represented by coarse `location_prefix` effects rather than full hierarchical/random-effects modeling.
 
 ## Data
 
@@ -94,7 +103,7 @@ This project contributes a reproducible ENIGMA-to-BERDL functional inference wor
 | `data/taxon_bridge.tsv` | 8,242 | Genus-to-GTDB species-clade bridge with mapping tier |
 | `data/taxon_functional_features.tsv` | 3,180 | Per-genus functional proxy features across two mapping modes |
 | `data/site_functional_scores.tsv` | 216 | Site-level functional scores by mapping mode |
-| `data/model_results.tsv` | 8 | Spearman, permutation, and OLS trend outputs |
+| `data/model_results.tsv` | 8 | Spearman/permutation, base OLS, covariate-adjusted OLS, coverage-adjusted OLS, site-structure sensitivity, and high-coverage subset stats |
 
 ## Supporting Evidence
 
@@ -118,7 +127,7 @@ This project contributes a reproducible ENIGMA-to-BERDL functional inference wor
 2. Increase taxonomic resolution where possible (species/strain-level bridge) and quantify incremental gains over genus-level mapping.
 3. Fit adjusted models with explicit covariates (depth, location cluster, sampling date) and compositional modeling controls.
 4. Investigate unmapped genera contribution to contamination gradients and bridge expansion opportunities.
-5. Rework mobilome feature definition to avoid constant-feature collapse and recover variance.
+5. Add mixed-effects or hierarchical site models (well/location-level random effects) to test whether defense associations persist under richer structure control.
 
 ## References
 
