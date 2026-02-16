@@ -6,11 +6,13 @@ Do high-contamination Oak Ridge groundwater communities show enrichment for taxa
 
 ## Status
 
-Complete -- see [Report](REPORT.md) for rerun-synced findings from 108 overlap samples; primary univariate tests are null, but coverage-aware sensitivity models show a positive contamination-defense association.
+Complete -- see [Report](REPORT.md) for rerun-synced findings from 108 overlap samples. Confirmatory defense tests remain null (with bootstrap CIs and global FDR), exploratory coverage-aware models show a conditional positive defense association, contamination-index sensitivity leaves confirmatory conclusions unchanged, and species-proxy mode remains coverage-limited.
 
 ## Overview
 
 This project uses ENIGMA CORAL field data to test whether contamination gradients (uranium and co-occurring metals) are associated with shifts in inferred community functional potential. Functional potential is estimated by linking ENIGMA taxa to BERDL pangenome annotations and aggregating stress-relevant functional signals (COG defense/mobilome and related categories) at the site level. The analysis targets community-level ecological filtering rather than gene-level causality.
+
+ENIGMA taxonomy in `ddt_brick0000454` is currently available through `Genus` (no species/strain rows), so higher-resolution analysis is implemented as a species-proxy sensitivity mode using only uniquely resolved genus-to-clade mappings.
 
 ## Quick Links
 
@@ -50,6 +52,14 @@ jupyter nbconvert --to notebook --execute --inplace notebooks/03_contamination_f
 - `data/taxon_functional_features.tsv`
 - `data/site_functional_scores.tsv`
 - `data/model_results.tsv`
+- `data/contamination_index_sensitivity.tsv`
+- `data/mapped_coverage_deciles.tsv`
+- `data/model_family_sample_counts.tsv`
+- `data/confirmatory_family_summary.tsv`
+- `data/bridge_quality_summary.tsv`
+- `data/bridge_clade_count_distribution.tsv`
+- `data/bridge_top_ambiguous_genera.tsv`
+- `figures/confirmatory_defense_vs_contamination.png`
 - `figures/contamination_vs_functional_score.png`
 - `figures/contamination_index_distribution.png`
 - `figures/mapping_coverage_by_mode.png`

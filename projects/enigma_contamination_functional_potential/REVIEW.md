@@ -7,34 +7,39 @@ project: enigma_contamination_functional_potential
 # Review: Contamination Gradient vs Functional Potential in ENIGMA Communities
 
 ## Summary
-This project is well-scoped, reproducible, and generally methodologically careful: the research question is explicit, notebook flow is coherent, outputs are saved, and conclusions in `REPORT.md` match the generated result tables and figures. The strongest findings are appropriately framed as sensitivity-model dependent rather than definitive. Main improvement areas are statistical inference rigor for multiple comparisons and clearer handling/quantification of mapping uncertainty from large unmapped genus fractions.
+This project is methodologically strong and reproducible, with clear confirmatory vs exploratory framing, complete staged notebooks (`01` extraction, `02` bridge/features, `03` modeling), and all expected data/figure artifacts present. I did not find a critical implementation bug in the current code or outputs. The main remaining risk is interpretability drift where readers may still over-weight exploratory adjusted-model significance relative to the null confirmatory endpoint, plus minor notebook hygiene noise from retained comment-only code cells.
 
 ## Methodology
-The question and hypotheses are clearly stated in `README.md` and `RESEARCH_PLAN.md`, and data sources are documented with specific ENIGMA and pangenome tables. The notebook progression is logical: extraction/QC (`notebooks/01_enigma_extraction_qc.ipynb`), taxonomy bridge + feature construction (`notebooks/02_taxonomy_bridge_functional_features.ipynb`), then modeling (`notebooks/03_contamination_functional_models.ipynb`).
+The research question and hypothesis are clearly defined in `README.md` and `RESEARCH_PLAN.md`, and the approach is testable with explicit sensitivity analyses. Data provenance is clear across ENIGMA and `kbase_ke_pangenome` sources, and notebook sequencing is coherent.
 
-Reproducibility is strong: the README has a dedicated `## Reproduction` section with execution order, Spark-vs-local guidance, dependencies, and expected artifacts. All three notebooks contain executed code with saved outputs (NB03 includes two intentionally comment-only code cells with no outputs). Data and figures expected by the README/REPORT are present and consistent with notebook logs.
+Reproducibility is good:
+- `README.md` has a concrete `## Reproduction` section with Spark/local separation, execution order, and runtime expectations.
+- `requirements.txt` is present.
+- Notebooks contain saved outputs (NB01: 7/7 code cells with outputs; NB02: 6/6; NB03: 5/7, with 2 comment-only code cells).
+- Artifacts are complete and synchronized with README expectations (`data/`: 14 TSV files, `figures/`: 4 PNG files).
 
-Methodologically, strict-vs-relaxed mapping is now implemented independently in NB02 (strict clade selection vs all clades), and downstream mode-specific modeling in NB03 uses those separate features. The main design limitation remains biological resolution and mapping coverage: 862/1392 genera are unmapped in `data/taxon_bridge.tsv`, so inference is conditional on mapped taxa and coverage-weighted sensitivity analyses.
+Pitfall handling from `docs/pitfalls.md` is largely correct:
+- explicit numeric casting in extraction/modeling (`notebooks/01_enigma_extraction_qc.ipynb` cell 3, cell 4; `notebooks/03_contamination_functional_models.ipynb` cells 2-4)
+- Spark-first aggregation before collection (`notebooks/01_enigma_extraction_qc.ipynb` cell 4)
+- correct eggNOG join key (`notebooks/02_taxonomy_bridge_functional_features.ipynb` cell 7, `gc.gene_cluster_id = e.query_name`)
 
 ## Code Quality
-Code quality is solid for notebook-style analysis. NB01 keeps heavy aggregation in Spark before `.toPandas()`, reducing driver-memory risk. Numeric casting is explicit where needed (consistent with ENIGMA string-typed field pitfalls). NB02 uses the documented join key (`gene_cluster.gene_cluster_id` to `eggnog_mapper_annotations.query_name`), avoiding a common BERDL pitfall. NB03 includes defensive checks for insufficient sample size/constant outcomes and records status fields in `data/model_results.tsv`.
+Notebook organization is clear and defensive. In NB03, status labeling for insufficient/constant/invalid conditions is implemented and global BH-FDR is applied across reported p-values (`notebooks/03_contamination_functional_models.ipynb` cell 5). SQL in NB01/NB02 is consistent with documented schema usage.
 
-No clear runtime or logic bugs were found in the executed paths. One analytical quality risk is inference multiplicity: many p-values are reported across outcomes, mapping modes, and sensitivity models, but there is no explicit multiple-testing correction or pre-specified primary endpoint hierarchy in notebook outputs.
+I did not find a reproducible logic error that would invalidate current outputs. The dominant technical risk remains inferential rather than computational: genus-to-clade ambiguity is high (`data/bridge_top_ambiguous_genera.tsv`, `data/bridge_clade_count_distribution.tsv`) and species-proxy coverage is low (`data/site_functional_scores.tsv`, mapped abundance fraction near zero for many rows).
 
 ## Findings Assessment
-`REPORT.md` is consistent with generated artifacts. Claims about null primary univariate associations, significant coverage-adjusted defense associations, high-coverage subset signals, and sample/row counts match `data/model_results.tsv`, `data/site_functional_scores.tsv`, and notebook outputs. Figures in `figures/` are present and aligned with report descriptions.
+Conclusions in `REPORT.md` are supported by outputs: confirmatory defense Spearman tests are null in primary mapping modes (`data/model_results.tsv`, `data/confirmatory_family_summary.tsv`), contamination-index sensitivity remains null after FDR (`data/contamination_index_sensitivity.tsv`), and species-proxy mode is coverage-limited (`data/model_family_sample_counts.tsv`, high-coverage subset `n=1`).
 
-Interpretation is appropriately cautious and limitations are explicitly acknowledged (genus-level abstraction, coarse COG proxies, incomplete mapping, and site-structure simplification). This is a credible and transparent presentation of conditional evidence rather than over-claiming causality.
+Limitations are explicitly acknowledged and generally aligned with evidence. The principal communication risk is that statistically significant adjusted exploratory estimates in the same summary context as confirmatory results can be over-interpreted by non-technical readers.
 
 ## Suggestions
-1. [High] Add multiple-testing control (for example Benjamini-Hochberg FDR) across the family of outcome/mode/sensitivity tests, and report both raw and adjusted p-values in `data/model_results.tsv` and `REPORT.md`.
-2. [High] Pre-specify and label confirmatory vs exploratory analyses in NB03 (for example, designate primary endpoint/model), so significance claims are less vulnerable to model-selection bias.
-3. [High] Quantify mapping uncertainty more directly: add analyses that model effect size as a function of `mapped_abundance_fraction` or report partial dependence/interaction with contamination, not only thresholded high-coverage subsets.
-4. [Medium] Add uncertainty intervals (for example bootstrap CIs) for key contamination coefficients/correlations in the report tables to complement p-values.
-5. [Medium] Extend site-structure modeling beyond `location_prefix` where feasible (for example mixed effects with location-level random intercepts) to better capture clustered sampling.
+1. **[Medium]** In `REPORT.md`, further separate confirmatory and exploratory inferential statements where adjusted-model q-values are shown (for example, keep confirmatory claims tied only to predeclared Spearman endpoint rows from `data/confirmatory_family_summary.tsv`).
+2. **[Low]** Convert NB03 comment-only code cells to markdown (or remove them) to reduce execution-trace noise and avoid confusion during reruns (`notebooks/03_contamination_functional_models.ipynb`, cells 6-7).
+3. **[Low]** Add one brief sentence in `README.md` or `REPORT.md` warning that species-proxy high-coverage subset analyses are not interpretable at current sample size (`n=1` in `data/model_family_sample_counts.tsv`).
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
 - **Date**: 2026-02-16
-- **Scope**: README.md, 3 notebooks, 7 data files, 3 figures
+- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, references.md, requirements.txt, REVIEW.md, 3 notebooks, 14 data files, 4 figures, plus `docs/pitfalls.md` and `docs/schemas/enigma.md`/`docs/schemas/pangenome.md`
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.

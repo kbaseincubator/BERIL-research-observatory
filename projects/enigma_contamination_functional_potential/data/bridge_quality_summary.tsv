@@ -1,0 +1,7 @@
+metric	value
+total_observed_genera_rows	1392
+mapped_genera	530
+unmapped_genera	862
+unique_clade_genera	150
+ambiguous_multi_clade_genera	380
+max_species_clades_for_single_genus	433
