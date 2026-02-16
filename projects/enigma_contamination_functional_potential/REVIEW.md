@@ -7,29 +7,31 @@ project: enigma_contamination_functional_potential
 # Review: Contamination Gradient vs Functional Potential in ENIGMA Communities
 
 ## Summary
-This project is well organized and reproducible end-to-end, with clear research framing, complete saved notebook outputs, explicit data artifacts, and a cautious interpretation of mostly null associations. The biggest limitation is methodological: the planned strict-vs-relaxed mapping sensitivity is not independently implemented in the current rerun because relaxed-mode functional features are copied from strict mode in NB02, making downstream mode-level comparisons non-informative.
+This project is well-scoped, reproducible, and generally methodologically careful: the research question is explicit, notebook flow is coherent, outputs are saved, and conclusions in `REPORT.md` match the generated result tables and figures. The strongest findings are appropriately framed as sensitivity-model dependent rather than definitive. Main improvement areas are statistical inference rigor for multiple comparisons and clearer handling/quantification of mapping uncertainty from large unmapped genus fractions.
 
 ## Methodology
-The research question and hypotheses are clearly stated in `README.md` and `RESEARCH_PLAN.md`, and data sources are explicitly identified across ENIGMA and pangenome tables. The notebook sequence is coherent (`01` extraction/QC, `02` bridge/features, `03` modeling), and the README includes a practical reproduction section with Spark-vs-local execution guidance and dependency specification (`requirements.txt`). Model construction in `notebooks/03_contamination_functional_models.ipynb` includes both univariate tests and an adjusted OLS term set (`depth_meter`, `latitude_degree`, `longitude_degree`), which aligns with the stated need for confounder control at a basic level.
+The question and hypotheses are clearly stated in `README.md` and `RESEARCH_PLAN.md`, and data sources are documented with specific ENIGMA and pangenome tables. The notebook progression is logical: extraction/QC (`notebooks/01_enigma_extraction_qc.ipynb`), taxonomy bridge + feature construction (`notebooks/02_taxonomy_bridge_functional_features.ipynb`), then modeling (`notebooks/03_contamination_functional_models.ipynb`).
 
-The main methodology gap is that mapping-mode sensitivity cannot currently answer its intended question: `notebooks/02_taxonomy_bridge_functional_features.ipynb` explicitly sets relaxed features by copying strict features (`feats_relaxed = feats_strict.copy()`), so the two mapping modes are analytically identical in downstream outputs.
+Reproducibility is strong: the README has a dedicated `## Reproduction` section with execution order, Spark-vs-local guidance, dependencies, and expected artifacts. All three notebooks contain executed code with saved outputs (NB03 includes two intentionally comment-only code cells with no outputs). Data and figures expected by the README/REPORT are present and consistent with notebook logs.
+
+Methodologically, strict-vs-relaxed mapping is now implemented independently in NB02 (strict clade selection vs all clades), and downstream mode-specific modeling in NB03 uses those separate features. The main design limitation remains biological resolution and mapping coverage: 862/1392 genera are unmapped in `data/taxon_bridge.tsv`, so inference is conditional on mapped taxa and coverage-weighted sensitivity analyses.
 
 ## Code Quality
-Notebook code is generally clean and logically staged. In NB01, heavy aggregation is correctly kept in Spark before collection, and numeric parsing/casting is explicit for potentially string-typed values (consistent with `docs/pitfalls.md`). In NB02, the annotation join uses the documented key (`gene_cluster_id` to `query_name`), avoiding a common BERDL pitfall. In NB03, checks for low-sample and low-variance outcomes are present and prevent invalid inference paths.
+Code quality is solid for notebook-style analysis. NB01 keeps heavy aggregation in Spark before `.toPandas()`, reducing driver-memory risk. Numeric casting is explicit where needed (consistent with ENIGMA string-typed field pitfalls). NB02 uses the documented join key (`gene_cluster.gene_cluster_id` to `eggnog_mapper_annotations.query_name`), avoiding a common BERDL pitfall. NB03 includes defensive checks for insufficient sample size/constant outcomes and records status fields in `data/model_results.tsv`.
 
-No direct syntax/runtime bugs are evident in the reviewed executed paths. The principal quality risk is analytical rather than mechanical: mode-comparison logic is present, but feature construction currently bypasses true relaxed-mode computation.
+No clear runtime or logic bugs were found in the executed paths. One analytical quality risk is inference multiplicity: many p-values are reported across outcomes, mapping modes, and sensitivity models, but there is no explicit multiple-testing correction or pre-specified primary endpoint hierarchy in notebook outputs.
 
 ## Findings Assessment
-`REPORT.md` is consistent with generated outputs (`data/model_results.tsv`, `data/site_functional_scores.tsv`) and does not overstate significance. The null/weak associations are reported transparently, and key limitations are acknowledged (mapping coverage, genus-level abstraction, coarse COG proxies). Figure artifacts listed in the report are present in `figures/` and align with the described diagnostics.
+`REPORT.md` is consistent with generated artifacts. Claims about null primary univariate associations, significant coverage-adjusted defense associations, high-coverage subset signals, and sample/row counts match `data/model_results.tsv`, `data/site_functional_scores.tsv`, and notebook outputs. Figures in `figures/` are present and aligned with report descriptions.
 
-Notebooks are reproducible from an output-availability perspective: all code cells in NB01 and NB02 have saved outputs, and NB03 has outputs on substantive execution cells (with two intentionally empty comment-only code cells).
+Interpretation is appropriately cautious and limitations are explicitly acknowledged (genus-level abstraction, coarse COG proxies, incomplete mapping, and site-structure simplification). This is a credible and transparent presentation of conditional evidence rather than over-claiming causality.
 
 ## Suggestions
-1. [Critical] Implement independent relaxed-mode feature construction in `notebooks/02_taxonomy_bridge_functional_features.ipynb` instead of copying strict-mode features, then rerun NB03 so strict-vs-relaxed comparisons are meaningful.
-2. [High] Add a direct sensitivity analysis in NB03 that conditions on `mapped_abundance_fraction` (already computed) or restricts to high-coverage samples, to quantify robustness to unmapped taxa.
-3. [High] Expand adjusted modeling beyond coordinates/depth to better represent site structure (for example, clustered or categorical site effects using `sdt_location_name`/region where appropriate).
-4. [Medium] Add concise markdown rationale around key assumptions in notebooks (feature definitions, contamination index construction, handling of unmapped taxa) to make auditability stronger without reading full source code.
-5. [Medium] Add expected runtime ranges per notebook in the README reproduction section to improve planning for reruns.
+1. [High] Add multiple-testing control (for example Benjamini-Hochberg FDR) across the family of outcome/mode/sensitivity tests, and report both raw and adjusted p-values in `data/model_results.tsv` and `REPORT.md`.
+2. [High] Pre-specify and label confirmatory vs exploratory analyses in NB03 (for example, designate primary endpoint/model), so significance claims are less vulnerable to model-selection bias.
+3. [High] Quantify mapping uncertainty more directly: add analyses that model effect size as a function of `mapped_abundance_fraction` or report partial dependence/interaction with contamination, not only thresholded high-coverage subsets.
+4. [Medium] Add uncertainty intervals (for example bootstrap CIs) for key contamination coefficients/correlations in the report tables to complement p-values.
+5. [Medium] Extend site-structure modeling beyond `location_prefix` where feasible (for example mixed effects with location-level random intercepts) to better capture clustered sampling.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
