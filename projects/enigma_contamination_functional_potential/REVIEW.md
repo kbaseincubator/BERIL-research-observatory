@@ -7,30 +7,31 @@ project: enigma_contamination_functional_potential
 # Review: Contamination Gradient vs Functional Potential in ENIGMA Communities
 
 ## Summary
-This project is well-scoped, reproducible, and mostly complete: the research question is explicit, the three-notebook pipeline is coherent, outputs are saved, and conclusions are generally aligned with the observed statistics. The strongest improvement is the strict-vs-relaxed mapping sensitivity analysis, which supports a consistent null result. Main gaps are analytical depth rather than workflow quality, especially limited feature specificity (mobilome collapsing to a constant in both modes) and limited covariate handling in the final models.
+This is a clear, well-structured project with a reproducible three-notebook workflow, complete saved outputs, and appropriately cautious interpretation of mostly null associations. The strict-vs-relaxed mapping sensitivity design is a strong methodological addition and the report aligns with observed model outputs. The main weaknesses are analytical rather than operational: the final modeling does not implement the depth/site controls stated in the hypothesis, broad genus-level COG proxies reduce sensitivity, and unmapped taxa handling is not explicitly quantified in model diagnostics.
 
 ## Methodology
-The question in `README.md` and the hypothesis structure in `RESEARCH_PLAN.md` are clear and testable. Data sources are identified with concrete ENIGMA and pangenome tables, and notebook responsibilities are consistent with the plan. Reproducibility is strong: the README includes a practical `## Reproduction` section with Spark/local separation, `requirements.txt` exists, notebooks are executed with saved outputs, and expected TSV/PNG artifacts are present.
+The research question is explicit and testable in `README.md` and `RESEARCH_PLAN.md`, and data sources are concretely identified (ENIGMA `ddt_brick*` + `sdt_*`, and `kbase_ke_pangenome` tables). Notebook responsibilities match the plan (extraction/QC, taxonomy bridge/features, modeling), and reproducibility is generally strong: `requirements.txt` exists, all three notebooks are executed with saved outputs, and expected data/figure artifacts are present.
 
-The core approach (extract overlap samples, bridge taxa to pangenome clades, derive genus-level COG proxies, and test contamination association) is methodologically reasonable for a first-pass community-level inference. The main methodological limitation is that genus-aggregated functional proxies are broad, which reduces sensitivity to pathway-level ecological signals.
+One important mismatch remains: H0 in `RESEARCH_PLAN.md` is phrased as "after controlling for sampling depth and site structure," but `notebooks/03_contamination_functional_models.ipynb` (Cell 4) applies univariate Spearman/OLS against contamination index only, without depth/site covariates. The README reproduction section is otherwise good and clearly separates Spark-required vs downstream-local steps, but it does not report expected runtime ranges.
 
 ## Code Quality
-Notebook organization is logical (setup -> extraction/feature construction -> modeling/plots), and the implementation addresses known BERDL pitfalls from `docs/pitfalls.md` by using Spark for heavy table operations and explicit numeric casting in SQL. In `01_enigma_extraction_qc.ipynb`, aggregation is performed in Spark before collecting to pandas, which is the right pattern for avoiding driver-memory problems.
+Notebook organization follows a sensible sequence (setup -> extraction/feature build -> modeling/figures). The implementation follows key BERDL pitfall guidance from `docs/pitfalls.md`: Spark is used for heavy joins/aggregation (`01_enigma_extraction_qc.ipynb`, Cells 4-5), SQL numeric casting is explicit for string-like numeric fields (Cell 3 and Cell 4), and annotation joins use the documented key (`gene_cluster.gene_cluster_id` to `eggnog_mapper_annotations.query_name` in `02_taxonomy_bridge_functional_features.ipynb`, Cell 6).
 
-In `02_taxonomy_bridge_functional_features.ipynb`, joins use the documented pangenome key (`gene_cluster.gene_cluster_id` to `eggnog_mapper_annotations.query_name`), and mapping-mode bifurcation is implemented cleanly. In `03_contamination_functional_models.ipynb`, constant features are explicitly flagged (`constant_feature`) instead of forcing invalid test statistics, which is correct behavior.
+`03_contamination_functional_models.ipynb` correctly guards low-information outcomes (e.g., `constant_feature`) rather than forcing invalid tests. A key analytical risk is visible in Cell 4: taxa that fail bridge/feature mapping are effectively assigned zero functional signal via `fillna(0.0)`, which can induce contamination-dependent attenuation if mapped fractions vary by sample. This is not necessarily a coding bug, but it should be treated as a modeled assumption and diagnosed explicitly.
 
-No clear coding bugs were found in the reviewed notebook logic. Residual risk is mostly analytical: genus-name normalization/matching can introduce ambiguity and coverage loss, and broad COG-letter proxies may not reflect specific stress pathways.
+No direct runtime or syntax bugs were observed in the reviewed code paths.
 
 ## Findings Assessment
-`REPORT.md` conclusions are supported by `data/model_results.tsv`: stress/defense associations are weak and non-significant in both mapping modes, permutation tests are consistent with null, and the mobilome feature is constant in both modes. The report appropriately frames this as "H1 not supported in current resolution" rather than over-claiming absence of ecological effects.
+`REPORT.md` conclusions are supported by `data/model_results.tsv`: weak/non-significant stress and defense associations in both mapping modes, null metabolism signal, and mobilome flagged as `constant_feature`. The report appropriately avoids over-claiming and states that H1 is not supported at current resolution.
 
-Limitations are acknowledged in the report (taxonomic resolution, mapping ambiguity, proxy breadth, compositional constraints), and the figures listed in the report are present in `figures/`. Overall, interpretation is appropriately cautious and aligned with the available evidence.
+Limitations are acknowledged (taxonomic resolution, mapping coverage, coarse proxies, limited covariate adjustment), and listed figures are present in `figures/`. Interpretation is cautious and consistent with the displayed evidence.
 
 ## Suggestions
-1. Prioritize feature redesign for the mobilome/stress axis, because `site_mobilome_score` is constant in both mapping modes and cannot support inference in its current form.
-2. Add a second modeling tier with covariates already available in `sample_location_metadata.tsv` (for example depth and site/location effects) to test whether weak trends persist after adjustment.
-3. Quantify mapping uncertainty in outputs (for example per-sample mapped abundance fraction and unmapped fraction) and carry it into model diagnostics.
-4. Add a short project-tagged note in `docs/discoveries.md` capturing the robust null result across both mapping modes so this outcome is searchable for future ENIGMA hypothesis design.
+1. [Critical] Align model implementation with the stated hypothesis by adding depth/site-adjusted analyses in `notebooks/03_contamination_functional_models.ipynb` (e.g., include `depth_meter` and location/site effects from `sample_location_metadata.tsv`).
+2. [Critical] Redefine mobilome/stress features so `site_mobilome_score` has non-zero variance; the current constant feature blocks inference and weakens the stress composite.
+3. [High] Quantify and report per-sample mapped vs unmapped abundance fractions, then test whether results are robust when conditioning on mapping coverage (or restricting to high-coverage samples).
+4. [Medium] Add expected runtime guidance to `README.md` Reproduction (rough ranges for NB01-03) so reruns can be planned without trial-and-error.
+5. [Medium] Increase notebook narrative detail (currently minimal markdown context) so analytical decisions and assumptions are easier to audit directly in notebook form.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
