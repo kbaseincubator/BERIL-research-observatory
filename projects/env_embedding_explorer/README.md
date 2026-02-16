@@ -6,7 +6,7 @@ What do AlphaEarth environmental embeddings capture, and how do they relate to g
 
 ## Status
 
-In Progress -- project structure created, notebooks ready for execution on JupyterHub.
+Complete -- see [Report](REPORT.md) for findings. Notebooks pending execution on JupyterHub for saved outputs.
 
 ## Overview
 
@@ -21,7 +21,7 @@ This exploratory project asks:
 ## Quick Links
 
 - [Research Plan](RESEARCH_PLAN.md) -- questions, approach, data sources
-- [Report](REPORT.md) -- findings and interpretation (TBD)
+- [Report](REPORT.md) -- findings and interpretation
 
 ## Data Sources
 
