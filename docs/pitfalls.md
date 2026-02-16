@@ -577,6 +577,14 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [env_embedding_explorer] Notebooks committed without outputs are useless for review
+
+**Problem**: When analysis is prototyped as Python scripts (for debugging speed or iterative development), the notebooks get committed with empty output cells. This defeats their purpose — notebooks are the primary audit trail and methods documentation. The `/synthesize` skill reads notebook outputs to extract results, the `/submit` reviewer checks outputs to verify claims, and human readers rely on outputs to follow the analysis without re-running it. Empty notebooks fail all three use cases.
+
+**Solution**: Always execute notebooks before committing, even if the analysis was originally run as a script. Use `jupyter nbconvert --to notebook --execute --inplace notebook.ipynb` or run Kernel → Restart & Run All in JupyterHub. If UMAP or other expensive steps were pre-computed, design the notebook to load cached results (check for file existence before recomputing). This way the notebook runs quickly and still captures all outputs.
+
+---
+
 ### [env_embedding_explorer] AlphaEarth geographic signal is diluted by human-associated samples
 
 **Problem**: The pooled geographic distance–embedding distance curve shows a 2.0x ratio (near vs far), but this blends two distinct populations. Environmental samples show 3.4x (strong signal) while human-associated samples show only 2.0x (weak signal). Using the pooled curve underestimates the true geographic signal in the embeddings.
