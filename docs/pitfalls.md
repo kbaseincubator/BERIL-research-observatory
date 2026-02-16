@@ -593,6 +593,32 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [enigma_contamination_functional_potential] Species/strain bridge cannot be forced from genus-only ENIGMA taxonomy
+
+**Problem**: ENIGMA taxonomy in `ddt_brick0000454` currently includes `Domain` through `Genus` levels only. Attempting species-level bridge logic directly will either fail or silently reuse genus-level mappings while appearing higher resolution.
+
+**Solution**: Verify available taxonomy levels first. If species/strain labels are absent, either:
+- use an explicit species-proxy mode (unique genus->single GTDB clade) and report mapped-coverage loss, or
+- switch to data sources that support species/strain resolution (metagenomes, ASV reclassification pipeline).
+
+---
+
+### [enigma_contamination_functional_potential] FDR pass can silently miss p-value columns with non-standard names
+
+**Problem**: If multiple-testing correction only targets columns ending in `_p`, it will miss p-value columns named like `adj_cov_p_contamination` or `adj_frac_p_contamination`.
+
+**Solution**: Detect p-value columns by substring pattern (for example columns containing `_p` and excluding derived q-value columns) or by an explicit p-column allowlist before applying BH-FDR.
+
+---
+
+### [enigma_contamination_functional_potential] Bootstrap CI loops can become the runtime bottleneck in notebook models
+
+**Problem**: Adding bootstrap confidence intervals for multiple outcomes and model families can make NB03 noticeably slower if bootstrap counts are set too high.
+
+**Solution**: Use moderate bootstrap sizes (for example 250-400) with fixed seeds for reproducibility, and restrict CI estimation to key coefficients/endpoints. This keeps runtime practical while still giving uncertainty intervals for interpretation.
+
+---
+
 ### [env_embedding_explorer] Notebooks committed without outputs are useless for review
 
 **Problem**: When analysis is prototyped as Python scripts (for debugging speed or iterative development), the notebooks get committed with empty output cells. This defeats their purpose — notebooks are the primary audit trail and methods documentation. The `/synthesize` skill reads notebook outputs to extract results, the `/submit` reviewer checks outputs to verify claims, and human readers rely on outputs to follow the analysis without re-running it. Empty notebooks fail all three use cases.

@@ -1,0 +1,8 @@
+# Ecotype Environmental-Only Reanalysis
+# Python 3.10+
+
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+plotly>=5.14.0
+kaleido==0.2.1  # Pin for headless compatibility

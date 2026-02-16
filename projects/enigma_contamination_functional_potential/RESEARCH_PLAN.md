@@ -101,6 +101,9 @@ Prior BERIL work established that ENIGMA CORAL supports field ecology analysis a
 - **v3 (2026-02-15)**: Replaced placeholders with concrete extraction, taxonomy-bridge, feature engineering, and modeling code; standardized on built-in `get_spark_session()` for BERDL notebook execution.
 - **v4 (2026-02-15)**: Executed NB01-NB03 end-to-end; optimized NB01 to aggregate ASV counts in Spark before collection (avoids driver OOM) and updated NB03 to use `scipy.stats.linregress` due environment-level `statsmodels` import failure.
 - **v5 (2026-02-16)**: Added strict-vs-relaxed mapping-mode sensitivity analysis and diagnostic visualizations (contamination distribution, mapping coverage); re-executed NB02-NB03 and refreshed outputs.
+- **v6 (2026-02-16)**: Added `species_proxy_unique_genus` sensitivity mode (unique genus->single GTDB clade) to approximate higher-resolution bridging under genus-only ENIGMA taxonomy; re-executed NB02-NB03 and refreshed outputs.
+- **v7 (2026-02-16)**: Addressed high-priority review rigor items in NB03: predeclared confirmatory vs exploratory analyses, added global BH-FDR q-values across all reported p-values, and added community-fraction robustness models/stratified tests from `sdt_community_name`; re-executed NB03 and refreshed outputs.
+- **v8 (2026-02-16)**: Addressed medium-priority robustness suggestions in NB03: added bootstrap confidence intervals for key effect sizes, contamination-index variant sensitivity (`composite`, `uranium_only`, `top3_var_metals`, `pca1_metals`), mapped-coverage decile diagnostics, and explicit model-family sample-count tables; re-executed NB03 and refreshed outputs.
 
 ## Authors
 
