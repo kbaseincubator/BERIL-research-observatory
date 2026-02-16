@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Skills - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Skills</h1>
+    <p class="page-description">
+        Reusable tools the AI co-scientist invokes during research.
+        Each skill encapsulates domain knowledge and workflow patterns.
+    </p>
+</div>
+
+<div class="grid grid-2">
+    {% for skill in skills %}
+    <div class="card">
+        <div class="card-header" style="margin-bottom: var(--space-3);">
+            <h3 class="card-title" style="margin: 0;">
+                <code style="font-size: 1.1rem;">{{ skill.name }}</code>
+            </h3>
+            {% if skill.user_invocable %}
+            <span class="badge badge-completed" style="font-size: 0.65rem;">User-invocable</span>
+            {% endif %}
+        </div>
+        <p class="text-secondary" style="margin-bottom: 0;">{{ skill.description }}</p>
+    </div>
+    {% else %}
+    <p class="text-muted">No skills found.</p>
+    {% endfor %}
+</div>
+
+<section class="section" style="margin-top: var(--space-8);">
+    <div class="card" style="border-left: 4px solid var(--accent-primary);">
+        <h4 style="margin-top: 0;">How Skills Work</h4>
+        <p>
+            Skills are invoked by the AI co-scientist during research sessions using
+            slash commands (e.g., <code>/synthesize</code>, <code>/literature-review</code>).
+            Each skill reads from project files, queries BERDL data, and produces structured outputs
+            like reports, references, or data quality checks.
+        </p>
+        <p style="margin-bottom: 0;">
+            Skills are defined as markdown specifications in <code>.claude/skills/</code> and
+            are version-controlled alongside the research artifacts they produce.
+        </p>
+    </div>
+</section>
+{% endblock %}

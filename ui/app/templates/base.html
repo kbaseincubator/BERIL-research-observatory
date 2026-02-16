@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{{ app_name }}{% endblock %}</title>
 
+    <!-- OpenGraph / SEO -->
+    <meta property="og:title" content="{% block og_title %}{{ app_name }}{% endblock %}">
+    <meta property="og:description" content="An AI co-scientist and research observatory for BERDL-scale microbial discovery.">
+    <meta name="description" content="An AI co-scientist and research observatory for BERDL-scale microbial discovery.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,25 +24,30 @@
     <header class="site-header">
         <nav class="nav-container">
             <a href="/" class="logo">
-                <img src="https://avatars.githubusercontent.com/u/1263946?s=200&v=4" alt="KBase" class="logo-kbase">
-                <span class="logo-separator">/</span>
                 <span class="logo-icon">&#9670;</span>
-                <span class="logo-text">BERIL</span>
+                <span class="logo-text">Microbial Discovery Forge</span>
+                <span class="badge" style="font-size: 0.6rem; margin-left: var(--space-2); background: rgba(57, 212, 230, 0.15); color: #39d4e6;">AI Co-Scientist</span>
             </a>
 
             <ul class="nav-links">
-                <li><a href="/collections" class="{% if request.url.path.startswith('/collections') %}active{% endif %}">Collections</a></li>
-                <li><a href="/projects" class="{% if request.url.path.startswith('/projects') %}active{% endif %}">Projects</a></li>
+                <li><a href="/co-scientist" class="{% if request.url.path == '/co-scientist' %}active{% endif %}">Co-Scientist</a></li>
                 <li class="nav-dropdown">
-                    <a href="/knowledge/discoveries" class="{% if request.url.path.startswith('/knowledge') %}active{% endif %}">Knowledge</a>
+                    <a href="/projects" class="{% if request.url.path.startswith('/projects') or request.url.path.startswith('/collections') %}active{% endif %}">Observatory</a>
                     <ul class="dropdown-menu">
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/collections">Collections</a></li>
                         <li><a href="/knowledge/discoveries">Discoveries</a></li>
-                        <li><a href="/knowledge/pitfalls">Pitfalls</a></li>
-                        <li><a href="/knowledge/performance">Performance</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="/skills" class="{% if request.url.path.startswith('/skills') or request.url.path.startswith('/knowledge') %}active{% endif %}">Knowledge</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/skills">Skills</a></li>
+                        <li><a href="/knowledge/pitfalls">Memory: Pitfalls</a></li>
+                        <li><a href="/knowledge/performance">Memory: Performance</a></li>
                         <li><a href="/knowledge/ideas">Research Ideas</a></li>
                     </ul>
                 </li>
-                <li><a href="/community/contributors" class="{% if request.url.path.startswith('/community') %}active{% endif %}">Community</a></li>
                 <li><a href="/about" class="{% if request.url.path == '/about' %}active{% endif %}">About</a></li>
             </ul>
 
@@ -58,36 +68,40 @@
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-section">
-                <h4>KBase / BERIL Research Observatory</h4>
-                <p class="footer-description">AI-powered exploration of the KBase Data Lakehouse. Discover research findings, explore collection schemas, and contribute to shared scientific knowledge.</p>
+                <h4>Microbial Discovery Forge</h4>
+                <p class="footer-description">AI co-scientist and research observatory for BERDL-scale microbial discovery.</p>
+                <p class="text-small text-muted" style="margin-top: var(--space-2);">
+                    Maintained by <a href="mailto:psdehal@lbl.gov">Paramvir S. Dehal</a>
+                </p>
             </div>
             <div class="footer-section">
-                <h4>Collections</h4>
+                <h4>Observatory</h4>
                 <ul class="footer-links">
-                    <li><a href="/collections">All Collections</a></li>
-                    <li><a href="/collections/kbase_ke_pangenome">Pangenome</a></li>
-                    <li><a href="/collections/kescience_fitnessbrowser">Fitness Browser</a></li>
-                    <li><a href="/collections/nmdc_arkin">NMDC Multi-omics</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/collections">Collections</a></li>
+                    <li><a href="/knowledge/discoveries">Discoveries</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Community</h4>
+                <h4>Knowledge</h4>
                 <ul class="footer-links">
-                    <li><a href="/community/contributors">Contributors</a></li>
-                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/skills">Skills</a></li>
+                    <li><a href="/knowledge/pitfalls">Pitfalls</a></li>
+                    <li><a href="/knowledge/performance">Performance</a></li>
+                    <li><a href="/knowledge/ideas">Research Ideas</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>Resources</h4>
                 <ul class="footer-links">
                     <li><a href="https://hub.berdl.kbase.us">BERDL JupyterHub</a></li>
-                    <li><a href="/knowledge/discoveries">Discoveries</a></li>
-                    <li><a href="/knowledge/pitfalls">Pitfalls</a></li>
+                    <li><a href="/co-scientist">Co-Scientist</a></li>
+                    <li><a href="/about#citation">How to Cite</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 KBase. Built with the BERDL data lakehouse.
+            <p>Built on <a href="https://www.kbase.us/" target="_blank">BERDL (KBase)</a>.
             {% if last_updated %}
                 <span class="footer-updated">Last updated: {{ last_updated.strftime('%Y-%m-%d %H:%M UTC') }}</span>
             {% endif %}
