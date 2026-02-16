@@ -437,6 +437,10 @@
 **Status**: COMPLETED
 **Results**: Narrative synthesis across 4 projects with 3 new summary figures. Story: fitness-conservation gradient (82% → 66%), core genes are paradoxically more burdensome, lab reveals cost while pangenome reveals selection. See `projects/conservation_fitness_synthesis/`.
 
+### [env_embedding_explorer] AlphaEarth Embeddings, Geography & Environment
+**Status**: COMPLETED
+**Results**: Environmental samples show 3.4x stronger geographic signal in AlphaEarth embeddings (cosine distance 0.27 nearby vs 0.90 far) compared to 2.0x for human-associated samples (0.37 vs 0.75). 38% of the 83K genomes with embeddings are human-associated (clinical bias). 5,774 isolation_source values harmonized to 12 categories. 36% of coordinates flagged as potential institutional addresses (some are legitimate field sites like Rifle, CO). 320 UMAP clusters partially correspond to environment types. See `projects/env_embedding_explorer/`.
+
 ---
 
 ## Ideas to Discuss / Refine
