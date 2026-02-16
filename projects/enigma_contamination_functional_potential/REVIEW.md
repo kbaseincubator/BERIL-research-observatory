@@ -1,36 +1,37 @@
 ---
 reviewer: BERIL Automated Review
-date: 2026-02-15
+date: 2026-02-16
 project: enigma_contamination_functional_potential
 ---
 
 # Review: Contamination Gradient vs Functional Potential in ENIGMA Communities
 
 ## Summary
-This project is well-structured and reproducible at a practical level: the three-notebook pipeline executes end-to-end, outputs are persisted in `data/`, and the report is aligned with the observed statistical signal (no strong association). The strongest aspects are disciplined Spark-first extraction and explicit acknowledgment of mapping/aggregation limitations. The main improvements needed are documentation consistency and a small modeling robustness gap around constant-feature handling.
+This is a strong, reproducible project iteration with clear question framing, executed notebooks, committed intermediate outputs, and an explicit sensitivity analysis across mapping modes. The analysis now addresses earlier robustness gaps (constant-feature handling and README/reproduction consistency) and adds useful diagnostics. The main remaining opportunities are scientific depth rather than workflow hygiene: improving functional signal specificity and documenting project-level discoveries/pitfalls for the shared knowledge base.
 
 ## Methodology
-The research question in `projects/enigma_contamination_functional_potential/README.md` is clear and testable. The approach in `projects/enigma_contamination_functional_potential/RESEARCH_PLAN.md` is coherent: ENIGMA extraction, taxonomy bridge to pangenome, feature construction, and contamination-association testing. Data sources are identified concretely in the plan and implemented in notebooks. Reproducibility is mostly strong because executed notebook outputs are saved and derived TSV artifacts are committed.
+The research question is precise and testable in `projects/enigma_contamination_functional_potential/README.md`. The pipeline in `projects/enigma_contamination_functional_potential/RESEARCH_PLAN.md` is coherent and implemented as intended across NB01–NB03. Data source linkage from ENIGMA to pangenome annotations is explicitly documented and now includes strict-vs-relaxed mapping-mode sensitivity checks.
 
-A key methodological caveat is the genus-level bridge strategy in `projects/enigma_contamination_functional_potential/notebooks/02_taxonomy_bridge_functional_features.ipynb`, which can blur species-level functional differences; this is acknowledged in the report and is acceptable for a first-pass synthesis.
+Reproducibility is good: notebooks have outputs, key TSV products are versioned in `projects/enigma_contamination_functional_potential/data/`, and figures are available in `projects/enigma_contamination_functional_potential/figures/`. Reproduction instructions are present and actionable.
 
 ## Code Quality
-Notebook organization is logical and follows setup → extraction/transform → model/report flow. `projects/enigma_contamination_functional_potential/notebooks/01_enigma_extraction_qc.ipynb` uses Spark aggregation before collecting to pandas, which correctly avoids the driver result-size failure mode documented in BERDL pitfalls. SQL join keys for annotation linkage in `projects/enigma_contamination_functional_potential/notebooks/02_taxonomy_bridge_functional_features.ipynb` are consistent with documented pangenome join guidance.
+Notebook structure is logically staged (extract → bridge/features → model). `projects/enigma_contamination_functional_potential/notebooks/01_enigma_extraction_qc.ipynb` correctly performs heavy aggregation in Spark before collection, avoiding driver overflow. `projects/enigma_contamination_functional_potential/notebooks/03_contamination_functional_models.ipynb` now correctly labels degenerate outcomes (`constant_feature`) rather than emitting ambiguous partial statistics.
 
-One robustness issue remains in `projects/enigma_contamination_functional_potential/notebooks/03_contamination_functional_models.ipynb`: when a feature has near-zero variance (as seen for mobilome score), Spearman/linear outputs can become NaN or degenerate, and the resulting row appears with partial/blank stats in `projects/enigma_contamination_functional_potential/data/model_results.tsv`. The notebook should explicitly detect and label constant or quasi-constant outcomes before statistical testing.
+The strict/relaxed mapping-mode design in `projects/enigma_contamination_functional_potential/notebooks/02_taxonomy_bridge_functional_features.ipynb` and `projects/enigma_contamination_functional_potential/notebooks/03_contamination_functional_models.ipynb` is a meaningful methodological improvement and is implemented cleanly with explicit `mapping_mode` fields in downstream outputs.
 
 ## Findings Assessment
-Conclusions in `projects/enigma_contamination_functional_potential/REPORT.md` are appropriately conservative and supported by the reported metrics in `projects/enigma_contamination_functional_potential/data/model_results.tsv` (e.g., stress/defense rho around 0.059 with non-significant p-values). Limitations are clearly discussed, especially resolution and mapping ambiguity. The single figure in `projects/enigma_contamination_functional_potential/figures/contamination_vs_functional_score.png` supports the central conclusion but does not yet provide a fuller diagnostic view (e.g., feature distribution or mapping-confidence sensitivity visuals).
+Conclusions in `projects/enigma_contamination_functional_potential/REPORT.md` are supported by `projects/enigma_contamination_functional_potential/data/model_results.tsv`: no significant contamination-functional association under either mapping mode, with similar weak effect sizes and non-significant p-values. The report appropriately treats this as a negative/limited finding and acknowledges resolution and proxy-feature limitations.
+
+New diagnostics (`contamination_index_distribution.png`, `mapping_coverage_by_mode.png`) improve interpretability and confidence in pipeline behavior. The updated main figure (`contamination_vs_functional_score.png`) now communicates mapping-mode sensitivity directly.
 
 ## Suggestions
-1. Add explicit constant-feature guards in `projects/enigma_contamination_functional_potential/notebooks/03_contamination_functional_models.ipynb` and write sentinel labels (e.g., `status=constant_feature`) instead of emitting partial rows in `projects/enigma_contamination_functional_potential/data/model_results.tsv`.
-2. Update `projects/enigma_contamination_functional_potential/README.md` for consistency: the Quick Links line still says report is “to be generated,” and the Reproduction section remains placeholder text despite executed notebooks and committed outputs.
-3. Add a minimal `projects/enigma_contamination_functional_potential/references.md` with citations for ENIGMA context and related BERIL analyses to align with submission advisory expectations.
-4. Add at least one diagnostic figure beyond the main scatter (for example, contamination-index distribution and/or mapping coverage summary from `taxon_bridge.tsv`) to strengthen interpretability.
-5. Consider sensitivity analyses by mapping tier (strict vs relaxed bridge) and include side-by-side results in report tables to quantify mapping uncertainty impact.
+1. Add a project-tagged entry to `docs/discoveries.md` summarizing the robust null result across mapping modes and the mobilome constant-feature outcome.
+2. Add a project-tagged entry to `docs/pitfalls.md` describing the Spark driver overflow encountered during ASV collection and the Spark-side aggregation fix pattern used.
+3. Expand feature engineering beyond broad COG proxies (especially for mobilome) to avoid constant-feature collapse and improve biological sensitivity.
+4. Consider adding covariate-aware models (location/depth/date strata where available) as a follow-up analysis tier.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
-- **Date**: 2026-02-15
-- **Scope**: README.md, 3 notebooks, 7 data files, 1 figure
+- **Date**: 2026-02-16
+- **Scope**: README.md, 3 notebooks, 7 data files, 3 figures
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.
