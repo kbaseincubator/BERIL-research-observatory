@@ -1,30 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}{{ app_name }} - AI-Powered Exploration of the KBase Data Lakehouse{% endblock %}
+{% block title %}{{ app_name }} - AI Co-Scientist for Microbial Discovery{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-content">
         <h1 class="hero-title">
-            <span class="accent">KBase / BERIL</span><br>
-            Research Observatory
+            <span class="accent">Microbial Discovery</span><br>
+            Forge
         </h1>
         <p class="hero-description">
-            AI-powered exploration of the KBase Data Lakehouse. Discover research findings,
-            explore collection schemas, and contribute to shared scientific knowledge.
+            An AI co-scientist and research observatory for BERDL-scale microbial
+            discovery — powered by reusable skills, shared memory, and scalable data.
         </p>
         <div class="hero-actions">
-            <a href="/collections" class="btn btn-primary">Explore Collections</a>
-            <a href="/projects" class="btn btn-secondary">Browse Projects</a>
+            <a href="/co-scientist" class="btn btn-primary">Explore Co-Scientist</a>
+            <a href="/knowledge/discoveries" class="btn btn-secondary">Browse Discoveries</a>
+            <a href="/collections" class="btn btn-secondary">Explore Data</a>
         </div>
     </div>
 
     <div class="hero-stats">
-        <a href="/collections" class="stat-card">
-            <div class="stat-value">{{ collection_count }}</div>
-            <div class="stat-label">collections</div>
-        </a>
         <a href="/projects" class="stat-card">
             <div class="stat-value">{{ project_count }}</div>
             <div class="stat-label">projects</div>
@@ -33,30 +30,138 @@
             <div class="stat-value">{{ discovery_count }}</div>
             <div class="stat-label">discoveries</div>
         </a>
-        <a href="/community/contributors" class="stat-card">
-            <div class="stat-value">{{ contributor_count }}</div>
-            <div class="stat-label">contributors</div>
+        <a href="/skills" class="stat-card">
+            <div class="stat-value">{{ skill_count }}</div>
+            <div class="stat-label">skills</div>
+        </a>
+        <a href="/collections" class="stat-card">
+            <div class="stat-value">{{ collection_count }}</div>
+            <div class="stat-label">collections</div>
         </a>
     </div>
 </section>
 
-<!-- What is BERIL -->
+<!-- Two Experiences -->
 <section class="section">
-    <div class="card" style="border-left: 4px solid var(--accent-primary);">
-        <h2 style="margin-bottom: var(--space-4);">What is KBase / BERIL?</h2>
-        <p>
-            <strong>BERIL</strong> is an AI integration layer for the <strong>KBase BER Data Lakehouse (BERDL)</strong>.
-            It provides resources, skills, and plugins that enable AI agents and human researchers to analyze
-            BERDL data collaboratively. Through the Research Observatory, users can explore multiple data
-            collections, analyze their own data in context, and share discoveries with proper attribution.
-        </p>
+    <div class="grid grid-2">
+        <div class="card" style="border-left: 4px solid var(--accent-primary);">
+            <h2 style="margin-bottom: var(--space-4);">AI Co-Scientist</h2>
+            <p>
+                A human-in-the-loop AI research workflow that plans analyses, executes them
+                on BERDL, synthesizes findings with literature context, and captures lessons
+                learned for future projects. Each project produces reusable skills, memory,
+                and data products.
+            </p>
+            <p style="margin-top: var(--space-4);">
+                <a href="/co-scientist" class="btn btn-primary">Learn More</a>
+            </p>
+        </div>
+        <div class="card" style="border-left: 4px solid var(--accent-secondary);">
+            <h2 style="margin-bottom: var(--space-4);">Research Observatory</h2>
+            <p>
+                Explore curated data collections across the BERDL lakehouse, browse
+                completed research projects with full reports, and discover findings
+                documented with figures, citations, and reproducible notebooks.
+            </p>
+            <p style="margin-top: var(--space-4);">
+                <a href="/projects" class="btn btn-secondary">Explore Projects</a>
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Reusable Knowledge -->
+<section class="section">
+    <h2>Reusable Knowledge</h2>
+    <p class="text-muted" style="margin-bottom: var(--space-6);">
+        Knowledge compounds across projects. Each analysis adds to a growing base of
+        skills, memory, and discoveries that accelerates future research.
+    </p>
+    <div class="grid grid-3">
+        <a href="/skills" class="card" style="text-decoration: none;">
+            <h3 style="color: var(--text-primary); margin-top: 0;">Skills</h3>
+            <p class="text-small text-muted">{{ skill_count }} reusable tools for querying BERDL, searching literature, synthesizing findings, and more.</p>
+        </a>
+        <a href="/knowledge/pitfalls" class="card" style="text-decoration: none;">
+            <h3 style="color: var(--text-primary); margin-top: 0;">Memory</h3>
+            <p class="text-small text-muted">Pitfalls, performance tips, and query patterns captured from real analyses to avoid repeating mistakes.</p>
+        </a>
+        <a href="/knowledge/discoveries" class="card" style="text-decoration: none;">
+            <h3 style="color: var(--text-primary); margin-top: 0;">Discoveries</h3>
+            <p class="text-small text-muted">{{ discovery_count }} curated research findings documented with statistical evidence and biological context.</p>
+        </a>
+    </div>
+</section>
+
+<!-- Latest Discoveries -->
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Latest Discoveries</h2>
+        <a href="/knowledge/discoveries" class="btn btn-secondary">View All</a>
+    </div>
+
+    <div class="grid grid-3">
+        {% for discovery in discoveries %}
+        <article class="card">
+            <div class="card-header">
+                <a href="/projects/{{ discovery.project_tag }}" class="badge badge-project">{{ discovery.project_tag | replace('_', ' ') | title }}</a>
+            </div>
+            <h3 class="card-title">
+                <a href="/knowledge/discoveries#{{ discovery.id }}">{{ discovery.title }}</a>
+            </h3>
+            <div class="card-content">
+                <p>{{ discovery.content[:200] }}{% if discovery.content|length > 200 %}...{% endif %}</p>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Active Projects -->
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Recent Projects</h2>
+        <a href="/projects" class="btn btn-secondary">View All</a>
+    </div>
+
+    <div class="grid grid-3">
+        {% for project in projects %}
+        <article class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <a href="/projects/{{ project.id }}">{{ project.title | markdown_inline }}</a>
+                </h3>
+                {% if project.status.value == "Completed" %}
+                <span class="badge badge-completed">{{ project.status.value }}</span>
+                {% elif project.status.value == "In Progress" %}
+                <span class="badge badge-in-progress">{{ project.status.value }}</span>
+                {% else %}
+                <span class="badge badge-proposed">{{ project.status.value }}</span>
+                {% endif %}
+            </div>
+            <div class="card-content">
+                <p>{{ project.research_question[:150] }}{% if project.research_question|length > 150 %}...{% endif %}</p>
+            </div>
+            <div class="card-footer">
+                <div class="card-meta">
+                    {% if project.notebooks %}
+                    <span>{{ project.notebooks|length }} notebook{% if project.notebooks|length != 1 %}s{% endif %}</span>
+                    {% endif %}
+                    {% if project.visualizations %}
+                    <span>{{ project.visualizations|length }} figure{% if project.visualizations|length != 1 %}s{% endif %}</span>
+                    {% endif %}
+                </div>
+                <a href="/projects/{{ project.id }}" class="btn btn-secondary">View</a>
+            </div>
+        </article>
+        {% endfor %}
     </div>
 </section>
 
 <!-- Featured Collections -->
 <section class="section">
     <div class="section-header">
-        <h2 class="section-title">Featured Collections</h2>
+        <h2 class="section-title">BERDL Collections</h2>
         <a href="/collections" class="btn btn-secondary">View All</a>
     </div>
 
@@ -81,104 +186,6 @@
             </div>
         </a>
         {% endfor %}
-    </div>
-</section>
-
-<!-- Latest Discoveries -->
-<section class="section">
-    <div class="section-header">
-        <h2 class="section-title">Latest Discoveries</h2>
-        <a href="/knowledge/discoveries" class="btn btn-secondary">View All</a>
-    </div>
-
-    <div class="grid grid-3">
-        {% for discovery in discoveries %}
-        <article class="card">
-            <div class="card-header">
-                <a href="/projects/{{ discovery.project_tag }}" class="badge badge-project">{{ discovery.project_tag | replace('_', ' ') | title }}</a>
-            </div>
-            <h3 class="card-title">
-                <a href="/knowledge/discoveries#{{ discovery.id }}">{{ discovery.title }}</a>
-            </h3>
-            <div class="card-content">
-                <p>{{ discovery.content[:200] | markdown_inline }}{% if discovery.content|length > 200 %}...{% endif %}</p>
-            </div>
-            {% if discovery.date %}
-            <div class="card-footer">
-                <span class="text-muted text-small">{{ discovery.date.strftime('%B %Y') }}</span>
-            </div>
-            {% endif %}
-        </article>
-        {% else %}
-        <p class="text-muted">No discoveries yet. Start analyzing!</p>
-        {% endfor %}
-    </div>
-</section>
-
-<!-- Active Projects -->
-<section class="section">
-    <div class="section-header">
-        <h2 class="section-title">Active Projects</h2>
-        <a href="/projects" class="btn btn-secondary">View All</a>
-    </div>
-
-    <div class="grid grid-3">
-        {% for project in projects %}
-        <article class="card">
-            <div class="card-header">
-                <h3 class="card-title">
-                    <a href="/projects/{{ project.id }}">{{ project.title | markdown_inline }}</a>
-                </h3>
-                {% if project.status.value == "Completed" %}
-                <span class="badge badge-completed">{{ project.status.value }}</span>
-                {% elif project.status.value == "In Progress" %}
-                <span class="badge badge-in-progress">{{ project.status.value }}</span>
-                {% else %}
-                <span class="badge badge-proposed">{{ project.status.value }}</span>
-                {% endif %}
-            </div>
-            <div class="card-content">
-                <p>{{ project.research_question[:150] | markdown_inline }}{% if project.research_question|length > 150 %}...{% endif %}</p>
-            </div>
-            <div class="card-footer">
-                <div class="card-meta">
-                    {% if project.notebooks %}
-                    <span>{{ project.notebooks|length }} notebooks</span>
-                    {% endif %}
-                    {% if project.visualizations %}
-                    <span>{{ project.visualizations|length }} figures</span>
-                    {% endif %}
-                </div>
-                <a href="/projects/{{ project.id }}" class="btn btn-secondary">View</a>
-            </div>
-        </article>
-        {% else %}
-        <p class="text-muted">No projects yet. Start researching!</p>
-        {% endfor %}
-    </div>
-</section>
-
-<!-- Quick Links -->
-<section class="section">
-    <h2 class="section-title">Get Started</h2>
-
-    <div class="grid grid-4">
-        <a href="/collections" class="card">
-            <h4>Browse Collections</h4>
-            <p class="text-muted text-small">Explore BERDL data collections and schemas</p>
-        </a>
-        <a href="/knowledge/pitfalls" class="card">
-            <h4>Query Pitfalls</h4>
-            <p class="text-muted text-small">Common gotchas and how to avoid them</p>
-        </a>
-        <a href="/knowledge/ideas" class="card">
-            <h4>Research Ideas</h4>
-            <p class="text-muted text-small">{{ idea_count }} ideas waiting to be explored</p>
-        </a>
-        <a href="/about" class="card">
-            <h4>About KBase / BERIL</h4>
-            <p class="text-muted text-small">Learn about the platform</p>
-        </a>
     </div>
 </section>
 {% endblock %}

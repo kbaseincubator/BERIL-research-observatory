@@ -31,6 +31,7 @@ from .models import (
     ResearchIdea,
     Review,
     SampleQuery,
+    Skill,
     Table,
     Visualization,
 )
@@ -221,6 +222,7 @@ class RepositoryParser:
         performance_tips = self.parse_performance()
         research_ideas = self.parse_research_ideas()
         collections = self.parse_collections()
+        skills = self.parse_skills()
 
         # Aggregate unique contributors across all projects
         contributors = self._aggregate_contributors(projects)
@@ -239,6 +241,7 @@ class RepositoryParser:
             research_ideas=research_ideas,
             collections=collections,
             contributors=contributors,
+            skills=skills,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -1171,6 +1174,45 @@ class RepositoryParser:
             collections.append(collection)
 
         return collections
+
+    def parse_skills(self) -> list[Skill]:
+        """Parse skills from .claude/skills/*/SKILL.md frontmatter."""
+        skills = []
+        skills_dir = self.repo_path / ".claude" / "skills"
+
+        if not skills_dir.exists():
+            return skills
+
+        for skill_dir in sorted(skills_dir.iterdir()):
+            skill_file = skill_dir / "SKILL.md"
+            if not skill_file.exists():
+                continue
+
+            content = skill_file.read_text()
+
+            # Parse YAML frontmatter
+            frontmatter_match = re.match(
+                r"^---\s*\n(.*?)\n---\s*\n", content, re.DOTALL
+            )
+            if not frontmatter_match:
+                continue
+
+            try:
+                frontmatter = yaml.safe_load(frontmatter_match.group(1))
+                if not isinstance(frontmatter, dict):
+                    continue
+            except Exception:
+                continue
+
+            skills.append(
+                Skill(
+                    name=frontmatter.get("name", skill_dir.name),
+                    description=frontmatter.get("description", ""),
+                    user_invocable=frontmatter.get("user-invocable", False),
+                )
+            )
+
+        return skills
 
 
 # Singleton instance

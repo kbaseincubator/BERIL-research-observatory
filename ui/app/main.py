@@ -140,6 +140,7 @@ def get_base_context(request: Request) -> dict:
         "idea_count": len(repo_data.research_ideas),
         "collection_count": len(repo_data.collections),
         "contributor_count": len(repo_data.contributors),
+        "skill_count": len(repo_data.skills),
         "last_updated": repo_data.last_updated,
     }
 
@@ -162,6 +163,28 @@ async def home(request: Request):
         }
     )
     return templates.TemplateResponse("home.html", context)
+
+
+@app.get("/co-scientist", response_class=HTMLResponse)
+async def co_scientist(request: Request):
+    """AI Co-Scientist page."""
+    repo_data = get_repo_data(request)
+    context = get_base_context(request)
+    context["skills"] = repo_data.skills
+    # Example project for the workflow walkthrough
+    context["example_project"] = next(
+        (p for p in repo_data.projects if p.id == "costly_dispensable_genes"), None
+    )
+    return templates.TemplateResponse("co-scientist.html", context)
+
+
+@app.get("/skills", response_class=HTMLResponse)
+async def skills_page(request: Request):
+    """Skills catalog page."""
+    repo_data = get_repo_data(request)
+    context = get_base_context(request)
+    context["skills"] = repo_data.skills
+    return templates.TemplateResponse("skills.html", context)
 
 
 @app.get("/projects", response_class=HTMLResponse)

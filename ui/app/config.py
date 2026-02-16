@@ -55,8 +55,8 @@ class Settings(BaseSettings):
         return self.cache_dir / "indexdir"
 
     # App settings
-    app_name: str = "KBase / BERIL Research Observatory"
-    app_description: str = "AI-powered exploration of the KBase Data Lakehouse"
+    app_name: str = "Microbial Discovery Forge"
+    app_description: str = "AI co-scientist and research observatory for BERDL-scale microbial discovery"
     debug: bool = False
 
     # Database stats (for hero display)
