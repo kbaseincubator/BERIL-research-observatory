@@ -9,7 +9,7 @@ scipy>=1.10.0
 # Visualization
 matplotlib>=3.7.0
 plotly>=5.14.0
-kaleido>=0.2.1
+kaleido==0.2.1  # Pin to 0.2.1; v1.x requires Chrome (unavailable on headless pods)
 upsetplot>=0.9.0
 
 # Dimensionality reduction & clustering
