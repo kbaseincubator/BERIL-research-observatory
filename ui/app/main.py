@@ -418,8 +418,28 @@ async def community_contributors(request: Request):
     """Community contributors page."""
     repo_data = get_repo_data(request)
     context = get_base_context(request)
-    context["contributors"] = repo_data.contributors
-    context["total_orcids"] = sum(1 for c in repo_data.contributors if c.orcid)
+
+    # Sort by project count (most projects first)
+    contributors = sorted(
+        repo_data.contributors, key=lambda c: len(c.project_ids), reverse=True
+    )
+    context["contributors"] = contributors
+    context["total_orcids"] = sum(1 for c in contributors if c.orcid)
+
+    # Compute collections used per contributor
+    contributor_collections = {}
+    all_collections = set()
+    for contributor in contributors:
+        colls = set()
+        for pid in contributor.project_ids:
+            proj = next((p for p in repo_data.projects if p.id == pid), None)
+            if proj:
+                colls.update(proj.related_collections)
+        contributor_collections[contributor.name] = sorted(colls)
+        all_collections.update(colls)
+    context["contributor_collections"] = contributor_collections
+    context["total_collections_used"] = len(all_collections)
+
     return templates.TemplateResponse("community/contributors.html", context)
 
 
