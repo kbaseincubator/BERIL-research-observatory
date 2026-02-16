@@ -61,7 +61,13 @@ Projects must be **followable by both humans and agents** without re-running any
 
 ### Notebook Outputs
 
-**Notebooks must be committed with saved outputs.** A notebook with only source code and no outputs is not useful to a reader. After running analysis:
+**Notebooks must be committed with saved outputs.** This is a hard requirement, not a nice-to-have. Notebooks serve three critical roles in the observatory:
+
+1. **Provenance record**: The saved outputs prove what actually happened — what data was returned, what the statistics were, what the figures looked like. Without outputs, a notebook is just a script with extra formatting.
+2. **Human review**: In the UI, notebooks are rendered as a methods+results section. Reviewers (human and automated) read the outputs to verify the analysis. Empty output cells make review impossible.
+3. **Machine readability**: The `/synthesize` and `/submit` skills read notebook output cells to extract results. No outputs = no synthesis.
+
+**A notebook with only source code and no outputs should never be committed.** If analysis was prototyped as a script, the notebook must still be executed to capture outputs before committing.
 
 ```bash
 # Execute notebook and save outputs in place
