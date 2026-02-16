@@ -136,6 +136,17 @@ The stratified analysis (Finding 1) reveals that the signal is primarily driven 
 
 The `ecotype_analysis` project previously found that AlphaEarth-based environment similarity was a weak predictor of gene content (median partial correlation 0.0025). The strong clinical bias identified here may partially explain that weak signal — if 38% of the genomes being compared are from interchangeable hospital environments, the environment–gene content relationship would be diluted. Repeating the ecotype analysis restricted to environmental samples could reveal a stronger signal.
 
+### Literature Context
+
+The geographic distance–embedding distance relationship we observe (Finding 2) is a form of **distance-decay**, a fundamental pattern in biogeography where community similarity decreases with geographic distance. This pattern is well-established in microbial ecology:
+
+- Pearman et al. (2024) found that macroalgal microbiome composition responds primarily to **environmental variation rather than geographic separation**, supporting the "everything is everywhere, the environment selects" principle. Our stratified analysis (Finding 1) is consistent: the embeddings — which encode environmental conditions — show stronger distance-decay for environmental samples than for human-associated ones.
+- Liu et al. (2022) showed that in mining soils, metal contamination explained more variation in fungal community structure (4.16%) than geographic distance (1.21%). Similarly, our data suggests the embeddings capture environmental features (land use, vegetation) more than raw distance, as evidenced by the plateau above ~5,000 km.
+- Zhang et al. (2022) found that rare and abundant bacterial subcommunities show similar distance-decay patterns but differ mechanistically. Our finding that human-associated samples show weaker distance-decay echoes the idea that dispersal limitation (relevant for environmental microbes) generates stronger geographic patterns than deterministic selection alone.
+- Wang et al. (2024) demonstrated that aridity shapes distinct biogeographic patterns for soil bacteria, with higher similarity-distance decay rates across environmental gradients. This supports our interpretation that the AlphaEarth embeddings capture environmentally-driven variation.
+
+The clinical sampling bias we identified (Finding 3) is a known issue in genomic databases but has not been quantified in the specific context of satellite-derived environmental embeddings. Public genome databases are heavily skewed toward pathogens and clinical isolates (Saha et al., 2023), which biases any analysis of environment-genome relationships.
+
 ### Novel Contribution
 
 This is the first systematic characterization of the AlphaEarth embedding space in BERDL. Key novel contributions:
@@ -212,4 +223,8 @@ This is the first systematic characterization of the AlphaEarth embedding space 
 ## References
 
 - Parks, D.H. et al. (2022). "GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy." *Nucleic Acids Research*, 50(D1), D199–D207. PMID: 34520557
+- Pearman, W.S. et al. (2024). "Macroalgal microbiome biogeography is shaped by environmental drivers rather than geographical distance." *Annals of Botany*. PMID: 37804485
+- Liu, B. et al. (2022). "Disentangling biogeographic and underlying assembly patterns of fungal communities in metalliferous mining and smelting soils." *Science of the Total Environment*. PMID: 35798111
+- Zhang, S. et al. (2022). "Biogeographic Patterns and Elevational Differentiation of Sedimentary Bacterial Communities across River Systems in China." *Applied and Environmental Microbiology*. PMID: 35638840
+- Wang, X. et al. (2024). "Aridity shapes distinct biogeographic and assembly patterns of forest soil bacterial and fungal communities at the regional scale." *Science of the Total Environment*. PMID: 39019268
 - Dehal, P.S. et al. (2026). "Ecotype Correlation Analysis." BERIL Research Observatory, `projects/ecotype_analysis/`

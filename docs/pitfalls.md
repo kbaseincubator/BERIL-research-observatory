@@ -561,6 +561,22 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [submit] Codex CLI reviewer fails in sandbox with network disabled
+
+**Problem**: Running `codex exec` from a restricted sandbox can fail with DNS/connection errors to the Codex backend (for example `chatgpt.com` resolution failures) because network egress is disabled in that environment.
+
+**Solution**: Run the reviewer invocation with network-enabled permissions (outside the restricted sandbox) and confirm quickly with a minimal smoke test first, e.g. `codex exec "Reply with exactly: ok"`. If the smoke test works, rerun the full reviewer command.
+
+---
+
+### [submit] Inlining very large reviewer prompts reduces Codex CLI reliability
+
+**Problem**: Passing a long system prompt inline (for example via large shell substitutions) can make `codex exec` runs unstable or fail intermittently.
+
+**Solution**: Keep the CLI prompt compact and reference the on-disk prompt file in instructions (for example: "Read and follow `.claude/reviewer/SYSTEM_PROMPT.md`"), then write output to `projects/{id}/REVIEW.md`. This has been more reliable in BERIL submit workflows.
+
+---
+
 ### [env_embedding_explorer] AlphaEarth geographic signal is diluted by human-associated samples
 
 **Problem**: The pooled geographic distance–embedding distance curve shows a 2.0x ratio (near vs far), but this blends two distinct populations. Environmental samples show 3.4x (strong signal) while human-associated samples show only 2.0x (weak signal). Using the pooled curve underestimates the true geographic signal in the embeddings.

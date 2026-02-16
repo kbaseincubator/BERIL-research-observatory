@@ -28,6 +28,13 @@ npx @anthropic-ai/claude-code
 
 Alternatively, you can install [OpenAI Codex CLI](https://github.com/openai/codex) or another AI coding assistant that supports custom skills.
 
+### Tips for Codex Users
+
+- Start Codex from the repository root (`BERIL-research-observatory/`) so it can read `AGENTS.md` and skill files in `.claude/skills/`.
+- For long instructions, avoid huge inline prompts. Ask Codex to read prompt files from disk (for example `.claude/reviewer/SYSTEM_PROMPT.md`) instead of pasting large prompt text directly in the command.
+- If a Codex run fails with network or DNS errors in a restricted sandbox, rerun with network-enabled permissions.
+- For `/submit`-style review generation, use a compact instruction like: "Read and follow `.claude/reviewer/SYSTEM_PROMPT.md`, review `projects/{project_id}/`, and write `projects/{project_id}/REVIEW.md`."
+
 ## Step 3: Configure your API provider
 
 ### Option A: Direct Anthropic API key
