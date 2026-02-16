@@ -7,17 +7,16 @@ Across 108 overlapping ENIGMA samples, contamination index was not significantly
 
 ![Stress score vs contamination index by mapping mode](figures/contamination_vs_functional_score.png)
 
-- `relaxed_all_clades`, `site_stress_score`: rho = 0.0587, p = 0.546, permutation p = 0.531, beta = 0.000473, OLS p = 0.0681
-- `strict_single_clade`, `site_stress_score`: rho = 0.0682, p = 0.483, permutation p = 0.463, beta = 0.000444, OLS p = 0.127
-- `relaxed_all_clades`, `site_defense_score`: rho = 0.0587, p = 0.546, permutation p = 0.531, beta = 0.000946, OLS p = 0.0681
-- `strict_single_clade`, `site_defense_score`: rho = 0.0682, p = 0.483, permutation p = 0.463, beta = 0.000888, OLS p = 0.127
+- `site_defense_score`: rho = 0.0682, Spearman p = 0.483, permutation p = 0.463, OLS beta = 0.000888, OLS p = 0.127, adjusted OLS p = 0.0842
+- `site_stress_score`: rho = 0.0139, Spearman p = 0.886, permutation p = 0.870, OLS beta = 0.000690, OLS p = 0.673, adjusted OLS p = 0.550
+- `site_metabolism_score`: rho = -0.0147, Spearman p = 0.880, permutation p = 0.868, OLS beta = 0.000466, OLS p = 0.950, adjusted OLS p = 0.721
+- `site_mobilome_score`: rho = -0.00746, Spearman p = 0.939, permutation p = 0.938, OLS beta = 0.000492, OLS p = 0.857, adjusted OLS p = 0.727
+- These estimates are currently identical for `strict_single_clade` and `relaxed_all_clades` in the rerun outputs.
 
 *(Notebook: `03_contamination_functional_models.ipynb`)*
 
-### Mapping sensitivity changed magnitude, not conclusion
-The strict vs relaxed bridge sensitivity analysis showed small numeric differences but no significance shift:
-- `site_metabolism_score` remained null in both modes (`relaxed`: rho = -0.00645, p = 0.947; `strict`: rho = -0.0147, p = 0.880).
-- `site_mobilome_score` was `constant_feature` in both modes (no variance; no inferential test).
+### Mapping sensitivity unresolved in this rerun
+The bridge generation still reports distinct strict vs relaxed clade inventories (`strict`: 530 clades, `relaxed`: 7,380 clades), but NB02 currently copies strict-mode feature values into relaxed mode for runtime stability. As a result, downstream site scores and model statistics are numerically identical across mapping modes in this rerun.
 
 ![Mapping and feature coverage by mode](figures/mapping_coverage_by_mode.png)
 
@@ -26,6 +25,7 @@ Coverage diagnostics from upstream outputs:
 - 530 mapped genera, 862 unmapped genera
 - Bridge table rows: 8,242 (many-to-many genus-to-clade expansion)
 - Functional feature rows: 3,180 (530 genera x 3 features x 2 modes)
+- Mean mapped abundance fraction: 0.343 (range 0.031 to 0.854), identical across both mapping modes
 
 *(Notebook: `02_taxonomy_bridge_functional_features.ipynb`; data: `taxon_bridge.tsv`, `taxon_functional_features.tsv`)*
 
@@ -53,6 +53,7 @@ NB02 built a genus-normalized bridge to pangenome clades:
 - Mapped genera: `530`
 - Unmapped genera: `862`
 - Strict clades: `530`, relaxed clades: `7,380`
+- Current notebook implementation note: relaxed-mode functional features are copied from strict mode in this rerun, so mode-level feature and model outputs are identical.
 
 NB03 produced:
 - Site functional score rows: `216` (108 samples x 2 mapping modes)
@@ -69,13 +70,14 @@ Within this ENIGMA subset, contamination gradients did not translate into a robu
 - The bridge and annotation strategy relies on GTDB taxonomy and eggNOG functional annotation conventions; broad annotation classes can dilute specific metal-stress pathway signal.
 
 ### Novel Contribution
-This project contributes a reproducible ENIGMA-to-BERDL functional inference workflow with explicit strict-vs-relaxed mapping sensitivity, quantifying where signal is lost (notably mobilome collapse) rather than only reporting a null hypothesis test.
+This project contributes a reproducible ENIGMA-to-BERDL functional inference workflow and a transparent null-result benchmark across four functional outcomes, with full export of bridge, feature, score, and model tables.
 
 ### Limitations
 - Genus-level mapping may mask strain-level adaptation.
 - 862/1,392 observed genera were unmapped to current pangenome bridge.
 - COG-fraction proxies are coarse summaries, not curated resistance pathways.
 - Current models are primarily unadjusted for depth/site/time structure beyond sample overlap filtering.
+- Strict-vs-relaxed mapping sensitivity is not fully evaluated in this rerun because relaxed-mode feature values were copied from strict mode in NB02.
 
 ## Data
 
@@ -118,7 +120,7 @@ This project contributes a reproducible ENIGMA-to-BERDL functional inference wor
 2. Increase taxonomic resolution where possible (species/strain-level bridge) and quantify incremental gains over genus-level mapping.
 3. Fit adjusted models with explicit covariates (depth, location cluster, sampling date) and compositional modeling controls.
 4. Investigate unmapped genera contribution to contamination gradients and bridge expansion opportunities.
-5. Rework mobilome feature definition to avoid constant-feature collapse and recover variance.
+5. Re-enable independent relaxed-mode feature construction to complete the planned mapping sensitivity analysis.
 
 ## References
 

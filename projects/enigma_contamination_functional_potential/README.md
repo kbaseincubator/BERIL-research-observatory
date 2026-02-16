@@ -6,7 +6,7 @@ Do high-contamination Oak Ridge groundwater communities show enrichment for taxa
 
 ## Status
 
-Complete -- see [Report](REPORT.md) for synthesized findings from 108 overlap samples, strict-vs-relaxed mapping sensitivity, and model statistics.
+Complete -- see [Report](REPORT.md) for rerun-synced findings from 108 overlap samples; current models show no significant contamination-functional association across four outcomes in either mapping mode.
 
 ## Overview
 
