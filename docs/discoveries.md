@@ -210,6 +210,24 @@ Universally essential genes are 91.7% core vs 80.7% for non-essential genes. 71%
 
 By finding non-essential orthologs that participate in ICA fitness modules, we generated 1,382 function predictions for hypothetical essential genes across 48 organisms. All predictions are backed by cross-organism module family conservation. This demonstrates that module context from non-essential orthologs can illuminate the function of essential genes that are invisible to fitness-based methods.
 
+### [env_embedding_explorer] AlphaEarth embeddings encode geographic signal, but strength depends on sample type
+
+Environmental samples (Soil, Marine, Freshwater, Extreme, Plant) show a 3.4x ratio in embedding cosine distance between nearby (<100 km, mean=0.27) and far (>10K km, mean=0.90) genome pairs. Human-associated samples (gut, clinical) show only a 2.0x ratio (0.37 vs 0.75). Hospitals worldwide have similar satellite imagery (urban built environment), so human-associated genomes have more homogeneous embeddings regardless of geography. The pooled "All samples" curve (2.0x ratio) is dominated by the 38% human-associated fraction and substantially underestimates the true geographic signal in the embeddings.
+
+**Implication**: Any analysis using AlphaEarth embeddings as environment proxies should stratify by sample type, or at minimum exclude human-associated samples. The weak environment signal found in `ecotype_analysis` (median partial correlation 0.0025) may be partially explained by this clinical bias.
+
+### [env_embedding_explorer] 38% of AlphaEarth genomes are human-associated — strong clinical sampling bias
+
+Of 83,287 genomes with AlphaEarth embeddings, 38% are human-associated (clinical 20%, gut 16%, other 2%). Environmental categories are much smaller (soil 7%, marine 7%, freshwater 7%). This reflects NCBI's bias toward pathogen sequencing — clinical isolates have good geographic metadata from epidemiological tracking, which is why they disproportionately have embeddings.
+
+### [env_embedding_explorer] 36% of AlphaEarth coordinates may be institutional addresses, but some are legitimate field sites
+
+30,469 genomes (36.6%) cluster at coordinates with >50 genomes of >10 species. However, several flagged locations are legitimate DOE/research field sites: Rifle, CO (1,883 genomes, DOE IFRC), Saanich Inlet (1,529, oceanographic time series), Siberian soda lakes (812, extremophile campaigns). The heuristic needs refinement — checking isolation_source homogeneity at each location would better distinguish field sites from institutional addresses.
+
+### [env_embedding_explorer] 4.6% of AlphaEarth genomes have NaN embedding dimensions
+
+3,838 of 83,287 genomes have NaN in at least one of the 64 embedding dimensions. The cause is unclear — possibly missing satellite imagery at those coordinates, or coordinates that fall outside satellite coverage (polar regions, ocean). These must be filtered before any embedding-based analysis.
+
 ---
 
 ## Template

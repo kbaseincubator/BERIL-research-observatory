@@ -325,14 +325,29 @@ arginine = spark.sql("""
 - Complex window functions
 - Iterative analysis
 
-**How to get a Spark session:**
+**How to get a Spark session (BERDL JupyterHub):**
+
+Notebook kernel (preferred for notebooks):
+
+```python
+# Built-in in BERDL notebook kernels (no import needed)
+spark = get_spark_session()
+```
+
+Python scripts / CLI on JupyterHub:
 
 ```python
 from berdl_notebook_utils.setup_spark_session import get_spark_session
 spark = get_spark_session()
 ```
 
-This works from **both Jupyter notebook kernels and regular Python scripts/CLI** on the JupyterHub cluster. You can run full analysis pipelines from the command line (e.g., `python3 src/extract_data.py`) without needing `jupyter nbconvert`. The auto-import in `/configs/ipython_startup/00-notebookutils.py` only affects notebook kernels, but the explicit import above works everywhere.
+`get_spark_session()` is injected into notebook kernels by `/configs/ipython_startup/00-notebookutils.py`. The explicit `berdl_notebook_utils` import works in scripts/CLI and also works in notebooks.
+
+Do **not** use this legacy import (it fails in BERDL):
+
+```python
+from get_spark_session import get_spark_session  # ImportError
+```
 
 ```python
 spark = get_spark_session()
@@ -452,6 +467,29 @@ core_only = spark.sql("""
 |-------|------|----------|
 | `reaction_similarity` | 671M+ | Always filter by `reaction_id` |
 | Other tables | <100K | Safe to scan |
+
+### UMAP on Large Embedding Datasets
+
+**[env_embedding_explorer]** UMAP with `metric='cosine'` on 83K 64-dim vectors did not complete in >60 min on a single-CPU pod. Two optimizations brought this to ~7 min:
+
+1. **L2-normalize + euclidean**: `normalize(embeddings, norm='l2')` then `metric='euclidean'`. Equivalent topology for cosine similarity.
+2. **Subsample fit + full transform**: Fit on 20K random subsample, then `reducer.transform()` all 83K points. The transform step is fast (~18s) because it only needs the pre-computed nearest neighbor graph from the fit.
+
+```python
+from sklearn.preprocessing import normalize
+import umap
+
+emb_normed = normalize(embeddings, norm='l2')
+fit_idx = np.random.choice(len(emb_normed), 20_000, replace=False)
+
+reducer = umap.UMAP(n_neighbors=15, min_dist=0.1, metric='euclidean', random_state=42)
+reducer.fit(emb_normed[fit_idx])
+coords_2d = reducer.transform(emb_normed)  # all 83K points
+```
+
+### AlphaEarth Table is Small — Safe to Collect
+
+**[env_embedding_explorer]** The `alphaearth_embeddings_all_years` table (83K rows × 77 columns) is small enough for `.toPandas()` directly. Extraction takes ~30 seconds. No need for chunking or filtering.
 
 ---
 

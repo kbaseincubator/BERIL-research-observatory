@@ -561,6 +561,32 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [env_embedding_explorer] AlphaEarth geographic signal is diluted by human-associated samples
+
+**Problem**: The pooled geographic distance–embedding distance curve shows a 2.0x ratio (near vs far), but this blends two distinct populations. Environmental samples show 3.4x (strong signal) while human-associated samples show only 2.0x (weak signal). Using the pooled curve underestimates the true geographic signal in the embeddings.
+
+**Solution**: Always stratify AlphaEarth analyses by environment category. At minimum, compute results separately for environmental vs human-associated samples. If using embeddings as environment proxies (e.g., ecotype analysis), consider excluding human-associated samples entirely.
+
+### [env_embedding_explorer] AlphaEarth NaN embeddings — filter before analysis
+
+**Problem**: 3,838 of 83,287 genomes (4.6%) have NaN in at least one of the 64 embedding dimensions. UMAP, cosine distance, and other operations will fail or produce NaN results silently.
+
+**Solution**: Filter to `~df[EMB_COLS].isna().any(axis=1)` before any embedding-based computation. This reduces the dataset from 83,287 to 79,449 genomes.
+
+### [env_embedding_explorer] UMAP with cosine metric is extremely slow for >50K points
+
+**Problem**: Running `umap.UMAP(metric='cosine')` on 83K genomes with 64 dimensions took >60 minutes and did not complete on a single-CPU JupyterHub pod. The cosine metric requires pairwise precomputation which is O(n^2).
+
+**Solution**: L2-normalize the embeddings first, then use `metric='euclidean'`. For L2-normalized vectors, Euclidean distance is monotonically related to cosine distance (`||a-b||^2 = 2(1-cos(a,b))`), so the UMAP topology is equivalent. Additionally, fit UMAP on a 20K subsample (`reducer.fit(subsample)`) then transform the full dataset (`reducer.transform(all_data)`) — this reduced runtime from >60 min to ~7 min.
+
+### [env_embedding_explorer] kaleido v1 requires Chrome — use v0.2.1 on headless pods
+
+**Problem**: kaleido 1.x (the plotly static image export library) requires Google Chrome installed, which isn't available on headless JupyterHub pods. `fig.write_image()` fails with `ChromeNotFoundError`.
+
+**Solution**: Install kaleido 0.2.1 instead: `pip install kaleido==0.2.1`. This older version uses its own bundled Chromium and works on headless systems. The deprecation warning can be ignored.
+
+---
+
 ## Quick Checklist
 
 Before running a query, verify:
