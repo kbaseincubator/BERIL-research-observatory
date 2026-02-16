@@ -491,6 +491,22 @@ coords_2d = reducer.transform(emb_normed)  # all 83K points
 
 **[env_embedding_explorer]** The `alphaearth_embeddings_all_years` table (83K rows × 77 columns) is small enough for `.toPandas()` directly. Extraction takes ~30 seconds. No need for chunking or filtering.
 
+### Per-Species ANI Extraction is Fast; Gene Clusters are 18x Slower
+
+**[ecotype_env_reanalysis]** Extracting data for 224 species (25K genomes total) with per-species `WHERE genome_id IN (...)` queries:
+
+| Data | Table(s) | Total time | Per species | Bottleneck |
+|------|----------|-----------|-------------|------------|
+| ANI pairs | `genome_ani` (421M rows) | ~8 min | ~2s | IN clause filter on indexed column |
+| Gene clusters | `gene` × `gene_genecluster_junction` (1B × 1B) | ~120 min | ~32s | Two-table join, neither partitioned by genome_id |
+
+Gene cluster extraction is **18x slower** because it joins two billion-row unpartitioned tables. The Spark optimizer must scan both tables for each species query. Potential optimizations:
+- **Partition `gene` by `genome_id`** (requires lakehouse rebuild)
+- **Cache the join result** and filter per-species from the cached DataFrame
+- **Use BROADCAST hints** with a temp view of target genome IDs (see `cofitness_coinheritance` pitfall)
+
+**K. pneumoniae exceeded `maxResultSize`**: This species (250 genomes × ~5,500 genes) produced results exceeding Spark's 1GB `spark.driver.maxResultSize`. For very large species, chunk the genome list or increase the driver memory limit.
+
 ---
 
 ## Performance Checklist

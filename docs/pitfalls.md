@@ -619,6 +619,20 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [ecotype_env_reanalysis] Large species exceed Spark maxResultSize during gene cluster extraction
+
+**Problem**: Extracting gene-cluster memberships for *K. pneumoniae* (250 genomes × ~5,500 genes per genome) via `gene` JOIN `gene_genecluster_junction` WHERE `genome_id IN (...)` exceeds Spark's `spark.driver.maxResultSize` (1GB default). The query succeeds in Spark but fails when collecting results to the driver node.
+
+**Solution**: For species with >200 genomes, chunk the genome list into batches of 50-100 and concatenate results. Alternatively, increase `spark.driver.maxResultSize` in the Spark session config. The per-species extraction script should catch this error and continue to the next species (which it does via try/except).
+
+### [ecotype_env_reanalysis] Broken symlinks to Mac paths cause silent failures on JupyterHub
+
+**Problem**: The `ecotype_analysis/data` directory was a symlink pointing to `/Users/paramvirdehal/...` (a Mac path from local development). On JupyterHub, this path doesn't exist, so `os.makedirs(path, exist_ok=True)` throws `FileExistsError` (the symlink exists but its target doesn't). This is confusing because `exist_ok=True` is supposed to suppress the error.
+
+**Solution**: Check for broken symlinks before creating directories. If the path exists as a symlink but the target is missing, remove the symlink first: `if os.path.islink(path): os.remove(path)`. Or avoid committing symlinks to git — use relative paths in code and `.gitignore` data directories.
+
+---
+
 ### [env_embedding_explorer] Notebooks committed without outputs are useless for review
 
 **Problem**: When analysis is prototyped as Python scripts (for debugging speed or iterative development), the notebooks get committed with empty output cells. This defeats their purpose — notebooks are the primary audit trail and methods documentation. The `/synthesize` skill reads notebook outputs to extract results, the `/submit` reviewer checks outputs to verify claims, and human readers rely on outputs to follow the analysis without re-running it. Empty notebooks fail all three use cases.
