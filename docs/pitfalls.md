@@ -577,6 +577,22 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [enigma_contamination_functional_potential] Copying strict features into relaxed mode invalidates sensitivity analysis
+
+**Problem**: In NB02, setting `feats_relaxed = feats_strict.copy()` produces numerically identical strict/relaxed downstream outputs. This makes mapping-mode sensitivity conclusions invalid because the two modes are no longer independently constructed.
+
+**Solution**: Compute strict and relaxed features independently. A scalable pattern is to precompute clade-level annotation counts once on the union of clades, then aggregate those counts separately per mode.
+
+---
+
+### [enigma_contamination_functional_potential] Aggregating annotations directly at genus level in both modes can be slow
+
+**Problem**: Running separate heavy Spark joins/aggregations over `eggnog_mapper_annotations` for each mapping mode can stall notebook execution on large tables.
+
+**Solution**: Precompute per-clade annotation totals once (`total_ann`, defense, mobilome, metabolism), then derive strict/relaxed genus-level feature fractions via pandas aggregation on the precomputed clade table. This preserves mode independence while reducing duplicate Spark work.
+
+---
+
 ### [env_embedding_explorer] Notebooks committed without outputs are useless for review
 
 **Problem**: When analysis is prototyped as Python scripts (for debugging speed or iterative development), the notebooks get committed with empty output cells. This defeats their purpose — notebooks are the primary audit trail and methods documentation. The `/synthesize` skill reads notebook outputs to extract results, the `/submit` reviewer checks outputs to verify claims, and human readers rely on outputs to follow the analysis without re-running it. Empty notebooks fail all three use cases.

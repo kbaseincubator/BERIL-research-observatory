@@ -228,6 +228,14 @@ Of 83,287 genomes with AlphaEarth embeddings, 38% are human-associated (clinical
 
 3,838 of 83,287 genomes have NaN in at least one of the 64 embedding dimensions. The cause is unclear — possibly missing satellite imagery at those coordinates, or coordinates that fall outside satellite coverage (polar regions, ocean). These must be filtered before any embedding-based analysis.
 
+### [enigma_contamination_functional_potential] Primary contamination-functional tests are null, but defense signal appears in coverage-aware sensitivity models
+
+In the ENIGMA contamination-functional project (108 overlap samples), primary univariate associations were non-significant across defense, stress, metabolism, and mobilome outcomes in both mapping modes. However, after adding mapped-coverage-aware sensitivity models, contamination-defense association became significant (coverage-adjusted OLS contamination p = 3.98e-4 relaxed, 3.54e-3 strict; high-coverage subset Spearman p = 0.0207 relaxed, 0.0098 strict). This indicates the strongest signal is conditional on mapping coverage/model specification rather than broad across all outcomes.
+
+### [enigma_contamination_functional_potential] Independent strict vs relaxed feature construction materially changes mode-specific outputs
+
+When strict and relaxed mapping modes were computed independently in NB02 (instead of reusing strict outputs), 1,140 of 1,590 genus-feature pairs differed between modes (~71.7%), and site stress scores differed for all 108 samples. Strict-vs-relaxed sensitivity is therefore analytically meaningful and should not be approximated by copied feature tables.
+
 ---
 
 ## Template
