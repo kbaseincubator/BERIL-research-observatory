@@ -368,6 +368,8 @@ class RepositoryParser:
         interpretation = None
         limitations = None
         future_directions = None
+        data_section = None
+        references = None
 
         if has_report:
             report_raw = report_path.read_text()
@@ -376,6 +378,8 @@ class RepositoryParser:
             interpretation = self._extract_section(report_raw, "Interpretation")
             limitations = self._extract_section(report_raw, "Limitations")
             future_directions = self._extract_section(report_raw, "Future Directions")
+            data_section = self._extract_section(report_raw, "Data")
+            references = self._extract_section(report_raw, "References")
         else:
             # Fallback: extract from README (legacy projects)
             findings = self._extract_section(readme_content, "Key Findings")
@@ -452,6 +456,8 @@ class RepositoryParser:
             interpretation=self._rewrite_md_links(interpretation, project_dir.name),
             limitations=self._rewrite_md_links(limitations, project_dir.name),
             future_directions=self._rewrite_md_links(future_directions, project_dir.name),
+            data_section=self._rewrite_md_links(data_section, project_dir.name),
+            references=self._rewrite_md_links(references, project_dir.name),
             revision_history=revision_history,
         )
 
@@ -1157,6 +1163,10 @@ class RepositoryParser:
                 sample_queries=sample_queries,
                 related_collections=coll_data.get("related_collections", []),
                 sub_collections=coll_data.get("sub_collections", []),
+                citation=coll_data.get("citation"),
+                doi=coll_data.get("doi"),
+                website=coll_data.get("website"),
+                provider=coll_data.get("provider"),
             )
             collections.append(collection)
 

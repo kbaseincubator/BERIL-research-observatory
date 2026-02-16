@@ -7,6 +7,10 @@ collections:
     name: Pangenome Collection
     category: primary
     icon: "&#129516;"  # DNA emoji
+    provider: "KBase, DOE"
+    citation: "Arkin AP et al. (2018) KBase: The United States Department of Energy Systems Biology Knowledgebase. Nat Biotechnol 36:566-569"
+    doi: "10.1038/nbt.4163"
+    website: "https://www.kbase.us/"
     description: >
       Pangenome data for 293,059 genomes across 27,690 microbial species
       derived from GTDB r214. Includes core/accessory gene classification,
@@ -107,6 +111,10 @@ collections:
     name: Fitness Browser
     category: primary
     icon: "&#128202;"  # Chart emoji
+    provider: "Price Lab, LBNL"
+    citation: "Price MN et al. (2018) Mutant phenotypes for thousands of bacterial genes of unknown function. Nature 557:503-509"
+    doi: "10.1038/s41586-018-0124-0"
+    website: "https://fit.genomics.lbl.gov/"
     description: >
       Gene fitness data from transposon mutant experiments across 40+
       bacterial organisms. Identify essential genes and condition-specific
@@ -163,6 +171,8 @@ collections:
     name: KBase Genomes
     category: primary
     icon: "&#128172;"  # Speech bubble (placeholder)
+    provider: "KBase, DOE"
+    website: "https://www.kbase.us/"
     description: >
       Structural genomics data including contigs, features, and protein
       sequences from the KBase genome repository.
@@ -201,6 +211,8 @@ collections:
     name: ModelSEED Biochemistry
     category: primary
     icon: "&#9879;"  # Alembic emoji
+    provider: "ModelSEED / Henry Lab"
+    website: "https://modelseed.org/"
     description: >
       Biochemistry reference data for metabolic modeling. Reactions,
       compounds, and pathway mappings from ModelSEED.
@@ -303,6 +315,8 @@ collections:
     name: ENIGMA CORAL
     category: domain
     icon: "&#129712;"  # Coral emoji
+    provider: "ENIGMA SFA, LBNL"
+    website: "https://enigma.lbl.gov/"
     description: >
       Environmental microbiology data from the ENIGMA SFA project. Includes
       samples, genomes, communities, and strains for studying microbial
@@ -342,6 +356,8 @@ collections:
     name: NMDC Multi-omics
     category: domain
     icon: "&#128300;"  # Microscope emoji
+    provider: "NMDC"
+    website: "https://microbiomedata.org/"
     description: >
       Multi-omics analysis data from the National Microbiome Data
       Collaborative. Includes functional annotations, embeddings,
@@ -398,6 +414,8 @@ collections:
     name: NMDC BioSamples
     category: domain
     icon: "&#128300;"  # Microscope emoji
+    provider: "NMDC / NCBI"
+    website: "https://microbiomedata.org/"
     description: >
       Harmonized NCBI BioSample metadata from the National Microbiome Data
       Collaborative. Standardized attributes, environmental triads, and
