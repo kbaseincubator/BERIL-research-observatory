@@ -167,7 +167,9 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 - **Inline figures**: Place `![description](figures/filename.png)` near the finding each figure supports. The UI rewrites these paths automatically for web rendering. Every figure in the project's `figures/` directory should appear inline at least once.
 - **Notebook provenance**: End each finding subsection with `*(Notebook: filename.ipynb)*` to trace results back to the analysis code.
 - **Data section**: The `## Data` section documents data lineage. `### Sources` lists BERDL collections and tables queried. `### Generated Data` lists output files with row counts.
-- **References**: Always include references, even for well-known data sources. At minimum cite the primary data sources (e.g., Price et al. 2018 for Fitness Browser, Parks et al. 2022 for GTDB r214).
+- **Collection IDs**: Use the exact BERDL collection identifier (e.g., `kescience_fitnessbrowser`, `kbase_ke_pangenome`) in the Sources table. These IDs link to the collection detail pages on the Research Observatory, which include citation and attribution information for data providers.
+- **README update**: Ensure the collection IDs appear somewhere in the README.md text so the UI can auto-detect and display Data Collections links on the project page.
+- **References**: Always include references, even for well-known data sources. At minimum cite the primary data sources (e.g., Price et al. 2018 for Fitness Browser, Arkin et al. 2018 for KBase).
 
 Also update `projects/{project_id}/README.md`:
 - Update `## Status` to reflect completion (e.g., "Complete — see [Report](REPORT.md) for findings")

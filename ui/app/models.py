@@ -112,6 +112,10 @@ class Collection:
     sample_queries: list[SampleQuery] = field(default_factory=list)
     related_collections: list[str] = field(default_factory=list)
     sub_collections: list[str] = field(default_factory=list)
+    citation: str | None = None
+    doi: str | None = None
+    website: str | None = None
+    provider: str | None = None
 
 
 @dataclass
@@ -193,6 +197,8 @@ class Project:
     interpretation: str | None = None
     limitations: str | None = None
     future_directions: str | None = None
+    data_section: str | None = None
+    references: str | None = None
     revision_history: str | None = None
 
     @property

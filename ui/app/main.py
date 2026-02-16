@@ -208,6 +208,11 @@ async def project_detail(request: Request, project_id: str):
         d for d in repo_data.discoveries if d.project_tag == project_id
     ]
 
+    # Resolve collection IDs to full objects for richer display
+    context["project_collections"] = [
+        c for c in (repo_data.get_collection(cid) for cid in project.related_collections) if c
+    ]
+
     return templates.TemplateResponse("projects/detail.html", context)
 
 

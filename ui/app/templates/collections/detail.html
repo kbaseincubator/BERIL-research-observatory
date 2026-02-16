@@ -207,6 +207,27 @@
 </section>
 {% endif %}
 
+<!-- Citation & Attribution -->
+{% if collection.citation or collection.website or collection.provider %}
+<section class="section">
+    <h2>Citation & Attribution</h2>
+    <div class="card">
+        {% if collection.provider %}
+        <p style="margin-bottom: var(--space-3);"><strong>Provider:</strong> {{ collection.provider }}</p>
+        {% endif %}
+        {% if collection.citation %}
+        <p style="margin-bottom: var(--space-3);"><strong>Cite as:</strong> {{ collection.citation }}</p>
+        {% endif %}
+        {% if collection.doi %}
+        <p style="margin-bottom: var(--space-3);"><strong>DOI:</strong> <a href="https://doi.org/{{ collection.doi }}" target="_blank" rel="noopener">{{ collection.doi }}</a></p>
+        {% endif %}
+        {% if collection.website %}
+        <p style="margin-bottom: 0;"><strong>Website:</strong> <a href="{{ collection.website }}" target="_blank" rel="noopener">{{ collection.website }}</a></p>
+        {% endif %}
+    </div>
+</section>
+{% endif %}
+
 <!-- Scale Stats -->
 {% if collection.scale_stats %}
 <section class="section">

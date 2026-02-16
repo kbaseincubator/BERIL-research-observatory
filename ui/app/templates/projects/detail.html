@@ -98,6 +98,26 @@
 </section>
 {% endif %}
 
+<!-- Data (from REPORT.md) -->
+{% if project.data_section %}
+<section class="section">
+    <h2>Data</h2>
+    <div class="card markdown-content">
+        {{ project.data_section | markdown }}
+    </div>
+</section>
+{% endif %}
+
+<!-- References (from REPORT.md) -->
+{% if project.references %}
+<section class="section">
+    <h2>References</h2>
+    <div class="card markdown-content">
+        {{ project.references | markdown }}
+    </div>
+</section>
+{% endif %}
+
 <!-- Research Plan (collapsible, secondary for completed projects) -->
 {% if project.hypothesis or project.approach %}
 <section class="section">
@@ -255,7 +275,27 @@
 {% endif %}
 
 <!-- Data Collections -->
-{% if project.related_collections %}
+{% if project_collections %}
+<section class="section">
+    <h2>Data Collections</h2>
+    <div class="grid grid-3">
+        {% for coll in project_collections %}
+        <a href="/collections/{{ coll.id }}" class="card" style="text-decoration: none;">
+            <div class="flex items-center gap-4">
+                <span style="font-size: 1.25rem;">{{ coll.icon | safe }}</span>
+                <div>
+                    <h4 style="margin-bottom: 0; color: var(--text-primary);">{{ coll.name }}</h4>
+                    <p class="text-muted text-small" style="font-family: var(--font-mono); margin-bottom: 0;">{{ coll.id }}</p>
+                </div>
+            </div>
+            {% if coll.provider %}
+            <p class="text-muted text-small" style="margin-top: var(--space-2); margin-bottom: 0;">{{ coll.provider }}</p>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% elif project.related_collections %}
 <section class="section">
     <h2>Data Collections</h2>
     <div class="grid grid-3">
