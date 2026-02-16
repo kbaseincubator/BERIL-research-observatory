@@ -611,6 +611,14 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [enigma_contamination_functional_potential] Bootstrap CI loops can become the runtime bottleneck in notebook models
+
+**Problem**: Adding bootstrap confidence intervals for multiple outcomes and model families can make NB03 noticeably slower if bootstrap counts are set too high.
+
+**Solution**: Use moderate bootstrap sizes (for example 250-400) with fixed seeds for reproducibility, and restrict CI estimation to key coefficients/endpoints. This keeps runtime practical while still giving uncertainty intervals for interpretation.
+
+---
+
 ### [env_embedding_explorer] Notebooks committed without outputs are useless for review
 
 **Problem**: When analysis is prototyped as Python scripts (for debugging speed or iterative development), the notebooks get committed with empty output cells. This defeats their purpose — notebooks are the primary audit trail and methods documentation. The `/synthesize` skill reads notebook outputs to extract results, the `/submit` reviewer checks outputs to verify claims, and human readers rely on outputs to follow the analysis without re-running it. Empty notebooks fail all three use cases.

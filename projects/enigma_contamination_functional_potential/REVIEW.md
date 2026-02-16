@@ -7,50 +7,53 @@ project: enigma_contamination_functional_potential
 # Review: Contamination Gradient vs Functional Potential in ENIGMA Communities
 
 ## Summary
-This project is well-structured and reproducible, with a clear hypothesis, complete notebook-to-artifact flow, and a report that is generally consistent with generated outputs. The strongest aspects are explicit confirmatory-vs-exploratory labeling, global BH-FDR reporting across p-values, and robustness checks for mapping coverage and community fractions. The main remaining limitations are biological resolution (genus-level ENIGMA taxonomy), substantial unmapped taxa, and reliance on coarse functional proxies, which appropriately constrain causal interpretation.
+This project is strong overall: the research question is clear, the workflow from extraction to modeling is coherent, and reproducibility is substantially above baseline (saved notebook outputs, explicit run order, runtimes, and generated artifacts). The analysis is appropriately cautious in interpretation and clearly separates confirmatory from exploratory tests. The main remaining gaps are interpretability and inferential sharpness rather than implementation correctness: confirmatory visual presentation is weaker than exploratory presentation, genus-level taxonomic bridging still dominates uncertainty, and the report could make model-family multiplicity and power tradeoffs even more explicit in the main narrative.
 
 ## Methodology
-The research question is specific and testable in `README.md` and `RESEARCH_PLAN.md`, and the notebook sequence is logical: extraction/QC (`notebooks/01_enigma_extraction_qc.ipynb`), taxonomy bridge + feature engineering (`notebooks/02_taxonomy_bridge_functional_features.ipynb`), then modeling and diagnostics (`notebooks/03_contamination_functional_models.ipynb`).
+The question and hypothesis are specific and testable in `README.md` and `RESEARCH_PLAN.md`, and notebook sequencing is logical:
+- `notebooks/01_enigma_extraction_qc.ipynb`: overlap extraction and QC export
+- `notebooks/02_taxonomy_bridge_functional_features.ipynb`: taxon bridge and feature generation
+- `notebooks/03_contamination_functional_models.ipynb`: contamination index construction, modeling, sensitivity analyses, and figure generation
+
+Data sources are clearly identified (ENIGMA `ddt/sdt` tables plus pangenome taxonomy/annotation tables), and implementation aligns with known pitfalls from `docs/pitfalls.md`:
+- explicit numeric casting for string-prone fields,
+- Spark-side heavy work before local aggregation,
+- correct annotation join key (`gene_cluster.gene_cluster_id` to `eggnog_mapper_annotations.query_name`),
+- independent strict/relaxed/species-proxy feature construction.
 
 Reproducibility is strong:
-- `README.md` includes a clear `## Reproduction` section with Spark/local separation, execution order, expected runtimes, and expected outputs.
-- `requirements.txt` is present.
-- All substantive code cells in all 3 notebooks have saved outputs; the two no-output cells in NB03 are comment placeholders only.
-- Expected artifacts are present: 7 data TSVs and 3 figure PNGs.
-
-Data-source clarity is good and consistent with schema references (`docs/schemas/enigma.md`, `docs/schemas/pangenome.md`). The analysis explicitly handles known constraints from `docs/pitfalls.md` (string-to-numeric casting, Spark-first aggregation, correct `gene_cluster` to `eggnog_mapper_annotations` join key pattern).
+- `README.md` has a concrete `## Reproduction` section with Spark/local separation and expected runtimes,
+- `requirements.txt` is present,
+- all three notebooks contain saved outputs (NB03 has two no-output placeholder cells only),
+- expected artifacts exist (10 data TSVs, 3 figures).
 
 ## Code Quality
-Notebook code quality is solid overall:
-- NB01 keeps heavy aggregation in Spark before collecting to pandas, reducing driver-memory risk.
-- NB01 explicitly casts concentration/count fields to numeric types before analysis.
-- NB02 uses a defensible strict vs relaxed vs species-proxy bridge design and propagates mode labels through downstream modeling.
-- NB03 includes status handling for `insufficient_samples`/`constant_feature`, permutation testing, adjusted models, fraction-aware robustness, and global BH-FDR q-values.
+Code organization and defensive checks are good. Notebooks are structured setup -> transforms -> modeling -> exports, with explicit status handling (`insufficient_samples`, `constant_feature`) and multiple robustness layers (fraction-aware, high-coverage subset, contamination-index sensitivity, coverage deciles). Global BH-FDR is implemented across all discovered p-value columns containing `_p`, which avoids missing non-standard names.
 
-No clear executable bug was found in the current run-synced artifacts. Remaining technical risks are mainly methodological rather than coding errors:
-- Genus normalization/matching (`genus_norm`) is pragmatic but can mis-handle edge taxonomic naming variants.
-- Species-proxy mode is coverage-limited, so null/weak results there are partly power/coverage constrained.
-- Sensitivity model families are broad; although FDR is now present, interpretation should continue to emphasize the predeclared confirmatory endpoint.
+No clear executable bug was found from file inspection. Remaining technical risks are mostly methodological:
+- genus normalization via string heuristics can still collapse biologically distinct labels in edge cases,
+- species-proxy mode is coverage-limited by design (very low mapped abundance in many samples),
+- broad COG-category proxies may under-resolve pathway-specific stress biology.
 
 ## Findings Assessment
-The conclusions in `REPORT.md` are supported by the generated tables and figures:
-- Confirmatory defense tests are null after global FDR (`model_results.tsv`).
-- Exploratory positive defense associations appear in coverage-aware adjusted models and are attenuated after global FDR in stricter settings.
-- Community-fraction robustness checks do not show strong within-fraction monotonic defense signals.
-- Species-proxy mode has much lower mapped abundance coverage, limiting inferential strength.
+The report’s core conclusions are supported by generated tables and figures:
+- confirmatory defense endpoint remains null in primary genus-level modes with bootstrap CIs and FDR,
+- exploratory positive defense associations appear in coverage-aware adjusted models,
+- within-fraction monotonic checks are largely null,
+- contamination-index variant sensitivity does not reverse confirmatory conclusions,
+- species-proxy mode loses substantial coverage and does not materially strengthen inference.
 
-The write-up is appropriately cautious, acknowledges limitations clearly, and avoids over-claiming causality.
+Limitations are explicitly acknowledged and appropriately constrain interpretation. The write-up avoids over-claiming causality.
 
 ## Suggestions
-1. [High] Keep a strict separation between confirmatory and exploratory claims in `REPORT.md` by presenting confirmatory results first in a dedicated subsection/table and moving all exploratory families to a secondary section with explicit caveats.
-2. [High] Add uncertainty intervals (for example bootstrap CIs) for key effect sizes (`spearman_rho`, contamination coefficients), not just p-values/q-values, to improve interpretability of null and borderline signals.
-3. [Medium] Add a small sensitivity analysis for contamination-index construction (for example uranium-only, top-k metals, PCA-based index) to show whether conclusions are robust to index definition.
-4. [Medium] Quantify bridge uncertainty further by reporting per-sample influence diagnostics versus `mapped_abundance_fraction` (for example decile-stratified effects), beyond the current threshold-based high-coverage subset.
-5. [Medium] Add one concise notebook/report table that enumerates sample counts per modeling family (base, adjusted, fraction-aware, high-coverage) to make effective sample-size differences immediately visible.
-6. [Nice-to-have] If future ENIGMA releases provide species/strain annotations, prioritize re-running the same pipeline at higher taxonomic resolution before adding more model complexity.
+1. Prioritize confirmatory communication in the visuals: add a dedicated confirmatory figure/table (`site_defense_score` vs contamination, strict/relaxed) so the main claim is directly visualized rather than inferred from model tables.
+2. Surface multiplicity and effective sample size earlier in `REPORT.md`: move a compact model-family/sample-count summary near Key Findings to reduce risk of over-reading exploratory families.
+3. Add a brief sensitivity note on genus normalization quality (for example, top ambiguous or suspicious mappings) to quantify potential bridge misassignment risk.
+4. Extend uncertainty reporting from key coefficients to a compact per-family uncertainty summary table (effect, CI, q-value, n) for faster cross-model comparison.
+5. If/when ENIGMA species/strain resolution becomes available, rerun the same pipeline at higher taxonomic resolution before adding additional model complexity.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
 - **Date**: 2026-02-16
-- **Scope**: README.md, 3 notebooks, 7 data files, 3 figures
+- **Scope**: README.md, 3 notebooks, 10 data files, 3 figures
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.

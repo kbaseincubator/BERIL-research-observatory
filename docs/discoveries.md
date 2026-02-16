@@ -244,6 +244,10 @@ When strict and relaxed mapping modes were computed independently in NB02 (inste
 
 After adding explicit confirmatory vs exploratory labels in NB03 and applying global BH-FDR across all reported p-values, confirmatory defense Spearman tests in genus-level modes remained null (p=0.546/0.483; q=0.862/0.849). The strongest surviving signal was exploratory: relaxed coverage-adjusted defense model retained q=0.046, while strict and other sensitivity signals attenuated above q<0.1. Interpretation should therefore prioritize null confirmatory evidence and frame positive results as exploratory.
 
+### [enigma_contamination_functional_potential] Confirmatory null is robust to contamination-index choice
+
+Re-testing confirmatory defense endpoint under four index constructions (all-metals composite, uranium-only, top-3 variance metals, PCA-PC1) did not produce significant confirmatory associations after FDR correction (all q=0.546 across 8 confirmatory-variant tests). This indicates the null confirmatory result is not an artifact of one specific contamination-index formulation.
+
 ---
 
 ## Template

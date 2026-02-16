@@ -2,33 +2,24 @@
 
 ## Key Findings
 
-### H1 not supported in current genus-level model
-Across 108 overlapping ENIGMA samples, primary univariate tests remained non-significant for all four outcomes in both mapping modes.
+### Confirmatory tests remain null with confidence intervals and global FDR
+Predeclared confirmatory tests (`site_defense_score` Spearman vs contamination in genus-level modes) remained non-significant:
 
 ![Stress score vs contamination index by mapping mode](figures/contamination_vs_functional_score.png)
 
-- `relaxed_all_clades`, `site_defense_score`: rho = 0.0587, Spearman p = 0.546, permutation p = 0.531, OLS p = 0.0681
-- `strict_single_clade`, `site_defense_score`: rho = 0.0682, Spearman p = 0.483, permutation p = 0.463, OLS p = 0.127
-- `site_mobilome_score` now has non-zero variance in both modes (no longer `constant_feature`).
+- `relaxed_all_clades`: rho = 0.0587, 95% bootstrap CI [-0.128, 0.250], Spearman p = 0.546, FDR q = 0.862
+- `strict_single_clade`: rho = 0.0682, 95% bootstrap CI [-0.111, 0.253], Spearman p = 0.483, FDR q = 0.849
 
 *(Notebook: `03_contamination_functional_models.ipynb`)*
 
-### Confirmatory analysis remains null after global multiple-testing control
-NB03 now predeclares confirmatory tests as `site_defense_score` vs contamination Spearman association in genus-level modes (`relaxed_all_clades`, `strict_single_clade`).
-
-- `relaxed_all_clades`: Spearman p = 0.546, global FDR q = 0.862
-- `strict_single_clade`: Spearman p = 0.483, global FDR q = 0.849
-
-Primary confirmatory tests therefore remain non-significant.
-
-### Exploratory adjusted models show conditional defense signal before/after FDR
-In exploratory sensitivity models, contamination-defense associations remain strongest in coverage-aware adjustments:
+### Exploratory defense signal remains strongest in coverage-aware models
+Exploratory sensitivity models still show strongest positive defense associations in coverage-aware adjustments:
 - Coverage-adjusted OLS (`contamination + depth + latitude + longitude + mapped_abundance_fraction`):
-  - `relaxed_all_clades`: contamination p = 0.000398, global FDR q = 0.0462
-  - `strict_single_clade`: contamination p = 0.00354, global FDR q = 0.130
+  - `relaxed_all_clades`: beta = 0.000751, 95% bootstrap CI [0.000224, 0.001779], p = 0.000398, FDR q = 0.0462
+  - `strict_single_clade`: beta = 0.000640, 95% bootstrap CI [0.000169, 0.001538], p = 0.00354, FDR q = 0.130
 - Fraction-aware adjusted model (`contamination + mapped_abundance_fraction + C(community_fraction_type)`):
-  - `relaxed_all_clades`: contamination p = 0.00144, global FDR q = 0.0838
-  - `strict_single_clade`: contamination p = 0.00548, global FDR q = 0.130
+  - `relaxed_all_clades`: beta = 0.000607, 95% bootstrap CI [0.000213, 0.001221], p = 0.00144, FDR q = 0.0838
+  - `strict_single_clade`: beta = 0.000566, 95% bootstrap CI [0.000214, 0.001113], p = 0.00548, FDR q = 0.130
 - High-coverage subset (`mapped_abundance_fraction >= 0.25`):
   - `site_defense_score`: Spearman p = 0.0207 (relaxed), 0.00980 (strict)
   - After global FDR: q = 0.301 (relaxed), 0.189 (strict)
@@ -45,6 +36,15 @@ To address potential confounding from collapsing multiple community fractions, N
   - `strict_single_clade`: p = 0.780 (`0.2` micron), p = 0.793 (`10` micron)
 
 This supports the conclusion that strong monotonic defense signal is not robustly reproducible inside individual fraction strata.
+
+### Contamination-index sensitivity does not change confirmatory outcome
+Confirmatory endpoint was re-tested under four contamination index variants:
+- Composite all-metals (current primary index)
+- Uranium-only
+- Top-3 variance metals
+- PCA first component of metal z-scores
+
+Across both confirmatory mapping modes, all index variants remained non-significant after FDR (`q = 0.546` across the 8 confirmatory-variant tests), including uranium-only.
 
 ### Species-proxy resolution sensitivity is limited by mapped coverage
 To approximate higher taxonomic resolution despite ENIGMA taxonomy stopping at genus, NB02 added `species_proxy_unique_genus` mode (only genera mapping to exactly one GTDB species clade).
@@ -99,9 +99,13 @@ NB02 built a genus-normalized bridge to pangenome clades:
 NB03 produced:
 - Site functional score rows: `324` (108 samples x 3 mapping modes)
 - Model result rows: `12` (4 outcomes x 3 mapping modes)
-- Expanded model diagnostics in `model_results.tsv`: confirmatory/exploratory labels, adjusted coordinates/depth models, coverage-adjusted models, site-structure models (`location_prefix`), fraction-aware models (`community_fraction_type`), within-fraction correlations, high-coverage subset correlations, and global BH-FDR q-values across all reported p-values.
+- Expanded model diagnostics in `model_results.tsv`: confirmatory/exploratory labels, bootstrap CIs for key effect sizes, adjusted coordinates/depth models, coverage-adjusted models, site-structure models (`location_prefix`), fraction-aware models (`community_fraction_type`), within-fraction correlations, high-coverage subset correlations, and global BH-FDR q-values across all reported p-values.
+- Additional robustness tables:
+  - `data/contamination_index_sensitivity.tsv` (8 confirmatory variant rows)
+  - `data/mapped_coverage_deciles.tsv` (30 decile strata rows)
+  - `data/model_family_sample_counts.tsv` (96 model-family count rows)
 
-Overall, the contamination signal is weak in confirmatory tests, while exploratory coverage-aware models still show a positive defense association that is attenuated after global multiple-testing control.
+Overall, confirmatory evidence remains null and robust to index definition; exploratory coverage-aware defense associations persist with positive effect estimates, but are attenuated under global multiple-testing control.
 
 ## Interpretation
 
@@ -139,7 +143,10 @@ This project contributes a reproducible ENIGMA-to-BERDL functional inference wor
 | `data/taxon_bridge.tsv` | 8,242 | Genus-to-GTDB species-clade bridge with mapping tier |
 | `data/taxon_functional_features.tsv` | 3,630 | Per-genus functional proxy features across three mapping modes |
 | `data/site_functional_scores.tsv` | 324 | Site-level functional scores by mapping mode |
-| `data/model_results.tsv` | 12 | Spearman/permutation, base OLS, covariate-adjusted OLS, coverage-adjusted OLS, site-structure sensitivity, and high-coverage subset stats |
+| `data/model_results.tsv` | 12 | Confirmatory/exploratory labels, Spearman/permutation, adjusted model coefficients with bootstrap CIs, fraction-aware/coverage/site sensitivities, and global FDR q-values |
+| `data/contamination_index_sensitivity.tsv` | 8 | Confirmatory endpoint results across contamination index variants |
+| `data/mapped_coverage_deciles.tsv` | 30 | Defense association diagnostics by mapped-coverage decile and mapping mode |
+| `data/model_family_sample_counts.tsv` | 96 | Sample-count table for each modeling family and endpoint |
 
 ## Supporting Evidence
 
