@@ -700,6 +700,11 @@ class RepositoryParser:
 
         content = discoveries_path.read_text()
 
+        # Strip the template section at the end (## Template ...)
+        template_match = re.search(r"^## Template\b", content, re.MULTILINE)
+        if template_match:
+            content = content[: template_match.start()]
+
         # Extract date headers and their positions first
         date_positions = []
         for m in re.finditer(r"^## (\d{4}-\d{2})\s*$", content, re.MULTILINE):
