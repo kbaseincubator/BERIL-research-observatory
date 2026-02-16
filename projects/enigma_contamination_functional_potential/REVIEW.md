@@ -7,28 +7,30 @@ project: enigma_contamination_functional_potential
 # Review: Contamination Gradient vs Functional Potential in ENIGMA Communities
 
 ## Summary
-This is a strong, reproducible project iteration with clear question framing, executed notebooks, committed intermediate outputs, and an explicit sensitivity analysis across mapping modes. The analysis now addresses earlier robustness gaps (constant-feature handling and README/reproduction consistency) and adds useful diagnostics. The main remaining opportunities are scientific depth rather than workflow hygiene: improving functional signal specificity and documenting project-level discoveries/pitfalls for the shared knowledge base.
+This project is well-scoped, reproducible, and mostly complete: the research question is explicit, the three-notebook pipeline is coherent, outputs are saved, and conclusions are generally aligned with the observed statistics. The strongest improvement is the strict-vs-relaxed mapping sensitivity analysis, which supports a consistent null result. Main gaps are analytical depth rather than workflow quality, especially limited feature specificity (mobilome collapsing to a constant in both modes) and limited covariate handling in the final models.
 
 ## Methodology
-The research question is precise and testable in `projects/enigma_contamination_functional_potential/README.md`. The pipeline in `projects/enigma_contamination_functional_potential/RESEARCH_PLAN.md` is coherent and implemented as intended across NB01–NB03. Data source linkage from ENIGMA to pangenome annotations is explicitly documented and now includes strict-vs-relaxed mapping-mode sensitivity checks.
+The question in `README.md` and the hypothesis structure in `RESEARCH_PLAN.md` are clear and testable. Data sources are identified with concrete ENIGMA and pangenome tables, and notebook responsibilities are consistent with the plan. Reproducibility is strong: the README includes a practical `## Reproduction` section with Spark/local separation, `requirements.txt` exists, notebooks are executed with saved outputs, and expected TSV/PNG artifacts are present.
 
-Reproducibility is good: notebooks have outputs, key TSV products are versioned in `projects/enigma_contamination_functional_potential/data/`, and figures are available in `projects/enigma_contamination_functional_potential/figures/`. Reproduction instructions are present and actionable.
+The core approach (extract overlap samples, bridge taxa to pangenome clades, derive genus-level COG proxies, and test contamination association) is methodologically reasonable for a first-pass community-level inference. The main methodological limitation is that genus-aggregated functional proxies are broad, which reduces sensitivity to pathway-level ecological signals.
 
 ## Code Quality
-Notebook structure is logically staged (extract → bridge/features → model). `projects/enigma_contamination_functional_potential/notebooks/01_enigma_extraction_qc.ipynb` correctly performs heavy aggregation in Spark before collection, avoiding driver overflow. `projects/enigma_contamination_functional_potential/notebooks/03_contamination_functional_models.ipynb` now correctly labels degenerate outcomes (`constant_feature`) rather than emitting ambiguous partial statistics.
+Notebook organization is logical (setup -> extraction/feature construction -> modeling/plots), and the implementation addresses known BERDL pitfalls from `docs/pitfalls.md` by using Spark for heavy table operations and explicit numeric casting in SQL. In `01_enigma_extraction_qc.ipynb`, aggregation is performed in Spark before collecting to pandas, which is the right pattern for avoiding driver-memory problems.
 
-The strict/relaxed mapping-mode design in `projects/enigma_contamination_functional_potential/notebooks/02_taxonomy_bridge_functional_features.ipynb` and `projects/enigma_contamination_functional_potential/notebooks/03_contamination_functional_models.ipynb` is a meaningful methodological improvement and is implemented cleanly with explicit `mapping_mode` fields in downstream outputs.
+In `02_taxonomy_bridge_functional_features.ipynb`, joins use the documented pangenome key (`gene_cluster.gene_cluster_id` to `eggnog_mapper_annotations.query_name`), and mapping-mode bifurcation is implemented cleanly. In `03_contamination_functional_models.ipynb`, constant features are explicitly flagged (`constant_feature`) instead of forcing invalid test statistics, which is correct behavior.
+
+No clear coding bugs were found in the reviewed notebook logic. Residual risk is mostly analytical: genus-name normalization/matching can introduce ambiguity and coverage loss, and broad COG-letter proxies may not reflect specific stress pathways.
 
 ## Findings Assessment
-Conclusions in `projects/enigma_contamination_functional_potential/REPORT.md` are supported by `projects/enigma_contamination_functional_potential/data/model_results.tsv`: no significant contamination-functional association under either mapping mode, with similar weak effect sizes and non-significant p-values. The report appropriately treats this as a negative/limited finding and acknowledges resolution and proxy-feature limitations.
+`REPORT.md` conclusions are supported by `data/model_results.tsv`: stress/defense associations are weak and non-significant in both mapping modes, permutation tests are consistent with null, and the mobilome feature is constant in both modes. The report appropriately frames this as "H1 not supported in current resolution" rather than over-claiming absence of ecological effects.
 
-New diagnostics (`contamination_index_distribution.png`, `mapping_coverage_by_mode.png`) improve interpretability and confidence in pipeline behavior. The updated main figure (`contamination_vs_functional_score.png`) now communicates mapping-mode sensitivity directly.
+Limitations are acknowledged in the report (taxonomic resolution, mapping ambiguity, proxy breadth, compositional constraints), and the figures listed in the report are present in `figures/`. Overall, interpretation is appropriately cautious and aligned with the available evidence.
 
 ## Suggestions
-1. Add a project-tagged entry to `docs/discoveries.md` summarizing the robust null result across mapping modes and the mobilome constant-feature outcome.
-2. Add a project-tagged entry to `docs/pitfalls.md` describing the Spark driver overflow encountered during ASV collection and the Spark-side aggregation fix pattern used.
-3. Expand feature engineering beyond broad COG proxies (especially for mobilome) to avoid constant-feature collapse and improve biological sensitivity.
-4. Consider adding covariate-aware models (location/depth/date strata where available) as a follow-up analysis tier.
+1. Prioritize feature redesign for the mobilome/stress axis, because `site_mobilome_score` is constant in both mapping modes and cannot support inference in its current form.
+2. Add a second modeling tier with covariates already available in `sample_location_metadata.tsv` (for example depth and site/location effects) to test whether weak trends persist after adjustment.
+3. Quantify mapping uncertainty in outputs (for example per-sample mapped abundance fraction and unmapped fraction) and carry it into model diagnostics.
+4. Add a short project-tagged note in `docs/discoveries.md` capturing the robust null result across both mapping modes so this outcome is searchable for future ENIGMA hypothesis design.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
