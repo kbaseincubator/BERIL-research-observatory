@@ -667,6 +667,55 @@ This caused an orphan essential gene count of 41,059 (total essentials) instead 
 
 ---
 
+### [pangenome_pathway_geography] GapMind pathways have multiple rows per genome-pathway pair
+
+**Problem**: The initial analysis counted exactly 80 pathways for every species with 0% present because it looked for `score_category = 'present'` which doesn't exist. The root cause: GapMind has exactly 80 pathways total, and each genome-pathway pair has MULTIPLE rows (one per step/component in the pathway).
+
+**Correct approach**: Take the BEST score for each genome-pathway pair before aggregating to species level:
+
+```sql
+WITH pathway_scores AS (
+    SELECT
+        clade_name,
+        genome_id,
+        pathway,
+        CASE score_category
+            WHEN 'complete' THEN 5
+            WHEN 'likely_complete' THEN 4
+            WHEN 'steps_missing_low' THEN 3
+            WHEN 'steps_missing_medium' THEN 2
+            WHEN 'not_present' THEN 1
+            ELSE 0
+        END as score_value
+    FROM kbase_ke_pangenome.gapmind_pathways
+),
+best_scores AS (
+    SELECT
+        clade_name,
+        genome_id,
+        pathway,
+        MAX(score_value) as best_score
+    FROM pathway_scores
+    GROUP BY clade_name, genome_id, pathway
+)
+-- Then aggregate to species level
+SELECT
+    clade_name,
+    AVG(complete_pathways) as mean_complete_pathways,
+    STDDEV(complete_pathways) as std_complete_pathways
+FROM (
+    SELECT clade_name, genome_id,
+           SUM(CASE WHEN best_score >= 5 THEN 1 ELSE 0 END) as complete_pathways
+    FROM best_scores
+    GROUP BY clade_name, genome_id
+)
+GROUP BY clade_name
+```
+
+**Key insight**: GapMind score categories are: `complete`, `likely_complete`, `steps_missing_low`, `steps_missing_medium`, `not_present` (NOT a simple binary 'present' flag).
+
+---
+
 ## Quick Checklist
 
 Before running a query, verify:

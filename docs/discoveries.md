@@ -258,6 +258,34 @@ Re-testing confirmatory defense endpoint under four index constructions (all-met
 
 ---
 
+### [pangenome_pathway_geography] Ecological niche breadth strongly predicts metabolic pathway diversity
+
+Analysis of 1,872 bacterial species with complete pangenome, GapMind pathway, and AlphaEarth embedding data reveals:
+
+**H1: Pangenome openness → pathway completeness** (r=0.107, p=3.6e-6)
+- Weak but significant positive correlation
+- Open pangenomes (high accessory/core ratio) have slightly more complete pathways
+- Stronger relationship with pathway VARIABILITY (std dev): r=0.066, p=0.004
+- Suggests accessory genes enable metabolic heterogeneity within species
+
+**H2: Niche breadth → pathway completeness** (r=0.392, p=7.1e-70) — STRONGEST SIGNAL
+- Moderate positive correlation using AlphaEarth embedding diversity
+- Embedding variance (ecological diversity) has even stronger effect: r=0.412, p=1.8e-77
+- Geographic distance alone: r=0.360, p=1.8e-58 (weaker than embedding-based metrics)
+- Species with broader ecological niches require more complete metabolic toolkits
+
+**H3: Pangenome openness → niche breadth** (r=0.324, p=5.6e-47)
+- Moderate positive correlation
+- Open pangenomes correlate with broader ecological niches
+- Core fraction shows strong NEGATIVE correlation with niche breadth: r=-0.445, p=1.4e-91
+- Pangenome flexibility enables adaptation to diverse environments
+
+**Key insight**: AlphaEarth embedding diversity is a better predictor of metabolic completeness than geography alone. The embeddings capture ecological context (soil vs marine vs clinical), not just geographic distance. This explains why embedding variance (r=0.412) outperforms geographic range (r=0.360) in predicting pathway completeness.
+
+**Data coverage limitation**: Only 6.8% of species (1,872/27,690) have sufficient AlphaEarth coverage (≥5 genomes with embeddings). This is due to missing lat/lon metadata for most NCBI genomes, especially clinical isolates.
+
+---
+
 ## Template
 
 ```markdown
