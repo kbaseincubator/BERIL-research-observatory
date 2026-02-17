@@ -120,6 +120,20 @@ templates.env.filters["mdi"] = markdown_inline_filter  # Alias
 templates.env.filters["strip_images"] = strip_images_filter
 
 
+def slugify_filter(text: str) -> str:
+    """Convert text to a URL-friendly slug for anchor IDs."""
+    if not text:
+        return ""
+    import re
+    text = text.lower().strip()
+    text = re.sub(r"[^\w\s-]", "", text)
+    text = re.sub(r"[\s_]+", "-", text)
+    return text
+
+
+templates.env.filters["slugify"] = slugify_filter
+
+
 def get_repo_data(request: Request):
     """Get repository data from app state."""
     return request.app.state.repo_data
