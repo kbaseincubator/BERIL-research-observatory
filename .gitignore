@@ -63,3 +63,6 @@ ui/data/cache.json
 ui/data/indexdir/
 .venv/
 venv/
+
+.stignore
+.stfolder/

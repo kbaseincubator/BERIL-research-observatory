@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "paper-search": {
+      "command": "uvx",
+      "args": ["--from", "paper-search-mcp", "python", "-m", "paper_search_mcp.server"],
+      "env": {
+        "SEMANTIC_SCHOLAR_API_KEY": "${SEMANTIC_SCHOLAR_API_KEY:-}"
+      }
+    }
+  }
+}

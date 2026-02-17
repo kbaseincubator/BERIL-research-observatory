@@ -1,12 +1,2 @@
 {
-  "mcpServers": {
-    "pubmed-search": {
-      "command": "uvx",
-      "args": ["pubmed-search-mcp"],
-      "env": {
-        "NCBI_EMAIL": "${NCBI_EMAIL}",
-        "NCBI_API_KEY": "${NCBI_API_KEY}"
-      }
-    }
-  }
 }
