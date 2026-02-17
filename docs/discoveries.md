@@ -210,6 +210,14 @@ Universally essential genes are 91.7% core vs 80.7% for non-essential genes. 71%
 
 By finding non-essential orthologs that participate in ICA fitness modules, we generated 1,382 function predictions for hypothetical essential genes across 48 organisms. All predictions are backed by cross-organism module family conservation. This demonstrates that module context from non-essential orthologs can illuminate the function of essential genes that are invisible to fitness-based methods.
 
+### [ecotype_env_reanalysis] Clinical sampling bias does NOT explain weak environment-gene content signal
+
+The `env_embedding_explorer` project showed that human-associated samples dampen AlphaEarth geographic signal (2.0x vs 3.4x for environmental). We hypothesized this bias explained the weak environment effect in the ecotype analysis (median partial correlation 0.003). However, stratifying 213 species by dominant environment type (47% human-associated, 21% environmental) shows the opposite: human-associated species have *higher* partial correlations (median 0.084) than environmental species (0.051). Mann-Whitney p=0.83. The original conclusion — phylogeny dominates — holds regardless of sample environment. The geographic signal in embeddings and the environment-gene content relationship are distinct phenomena.
+
+### [ecotype_env_reanalysis] 47% of ecotype species are human-associated by genome-level classification
+
+Using isolation_source harmonization (12 categories from 5,774 values), 106/224 species in the ecotype analysis are majority human-associated (gut + clinical). Only 47/224 (21%) are majority environmental (Soil, Marine, Freshwater, Extreme, Plant). This is a more systematic classification than the original manual species-level categorization, and confirms the clinical bias but shows it doesn't confound the ecotype results.
+
 ### [env_embedding_explorer] AlphaEarth embeddings encode geographic signal, but strength depends on sample type
 
 Environmental samples (Soil, Marine, Freshwater, Extreme, Plant) show a 3.4x ratio in embedding cosine distance between nearby (<100 km, mean=0.27) and far (>10K km, mean=0.90) genome pairs. Human-associated samples (gut, clinical) show only a 2.0x ratio (0.37 vs 0.75). Hospitals worldwide have similar satellite imagery (urban built environment), so human-associated genomes have more homogeneous embeddings regardless of geography. The pooled "All samples" curve (2.0x ratio) is dominated by the 38% human-associated fraction and substantially underestimates the true geographic signal in the embeddings.

@@ -6,7 +6,7 @@ Does the environment effect on gene content become stronger when analysis is res
 
 ## Status
 
-In Progress
+Complete — H0 not rejected (p=0.83). Clinical bias does not explain the weak environment signal. See [Report](REPORT.md) for findings.
 
 ## Prior Work
 
