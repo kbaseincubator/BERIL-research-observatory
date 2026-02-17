@@ -1,6 +1,6 @@
-# BERIL Observatory UI
+# Microbial Discovery Forge UI
 
-Web interface for the BERIL Research Observatory, providing access to research projects, data collections, and shared knowledge from the KBase BER Data Lakehouse.
+Web interface for the Microbial Discovery Forge — an AI co-scientist and research observatory for BERDL-scale microbial discovery. Provides access to research projects, data collections, skills, and shared knowledge from the KBase BER Data Lakehouse.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ## Configuration
 
-The application uses environment variables with the `BERIL_` prefix (BERIL Research Observatory). Configure the following variables:
+The application uses environment variables with the `BERIL_` prefix. Configure the following variables:
 
 ### Required Configuration
 
@@ -76,9 +76,12 @@ The UI will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
 ## Features
 
+- **AI Co-Scientist**: Research loop methodology (Plan → Run → Learn → Reuse)
 - **Projects**: Browse and explore research projects with rendered Jupyter notebooks
 - **Data Collections**: View available BERDL data collections and their schemas
-- **Knowledge Base**: Access shared discoveries, pitfalls, and research ideas
+- **Skills**: Browse reusable AI co-scientist skills
+- **Knowledge Base**: Access shared discoveries, pitfalls, performance tips, and research ideas
+- **Community**: Contributor profiles with project and collection linkage
 - **Automatic Updates**: Webhook-based data refresh when repository content changes
 
 ## Data Cache & Webhook Setup
@@ -177,13 +180,13 @@ The Dockerfile is located at the repository root since the UI needs access to th
 From the repository root:
 
 ```bash
-docker build -t beril-observatory-ui .
+docker build -t microbial-discovery-forge .
 ```
 
 ### Run the Container
 
 ```bash
-docker run -p 8000:8000 beril-observatory-ui
+docker run -p 8000:8000 microbial-discovery-forge
 ```
 
 The UI will be available at [http://localhost:8000](http://localhost:8000)
@@ -193,7 +196,7 @@ The UI will be available at [http://localhost:8000](http://localhost:8000)
 If you need to pass environment variables (like auth tokens):
 
 ```bash
-docker run -p 8000:8000 --env-file .env beril-observatory-ui
+docker run -p 8000:8000 --env-file .env microbial-discovery-forge
 ```
 
 ### Docker Compose

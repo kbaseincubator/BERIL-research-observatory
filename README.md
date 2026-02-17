@@ -1,8 +1,8 @@
-# BERIL Research Observatory
+# Microbial Discovery Forge
 
-**BERIL** is an AI integration layer for the **KBase BER Data Lakehouse (BERDL)** that creates resources, skills, and plugins to facilitate agent or co-scientist analysis of BERDL data.
+The **Microbial Discovery Forge** is an AI co-scientist and research observatory for BERDL-scale microbial discovery. Built on the **KBase BER Data Lakehouse (BERDL)**, it combines reusable skills, shared memory, and scalable data to accelerate research.
 
-Through the BERIL Research Observatory, users can:
+Through the Microbial Discovery Forge, users can:
 
 - **Analyze BERDL data** using AI-assisted workflows and documented patterns
 - **Analyze their own data** in the context of BERDL reference collections
