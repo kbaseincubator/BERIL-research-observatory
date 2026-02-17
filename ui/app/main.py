@@ -224,6 +224,21 @@ async def project_detail(request: Request, project_id: str):
         context["error"] = f"Project '{project_id}' not found"
         return templates.TemplateResponse("error.html", context, status_code=404)
 
+    # Enrich project contributors with aggregated data (ORCID, full name)
+    from .dataloader import RepositoryParser
+    agg_by_key = {
+        RepositoryParser._contributor_key(c.name): c
+        for c in repo_data.contributors
+    }
+    for contrib in project.contributors:
+        key = RepositoryParser._contributor_key(contrib.name)
+        agg = agg_by_key.get(key)
+        if agg:
+            if not contrib.orcid and agg.orcid:
+                contrib.orcid = agg.orcid
+            if len(agg.name) > len(contrib.name):
+                contrib.name = agg.name
+
     context["project"] = project
 
     # Find discoveries from this project
