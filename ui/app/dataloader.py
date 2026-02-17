@@ -373,6 +373,13 @@ class RepositoryParser:
         future_directions = None
         data_section = None
         references = None
+        other_sections = []
+
+        _KNOWN_REPORT_SECTIONS = {
+            "Key Findings", "Results", "Interpretation", "Limitations",
+            "Future Directions", "Data", "References", "Supporting Evidence",
+            "Revision History",
+        }
 
         if has_report:
             report_raw = report_path.read_text()
@@ -383,6 +390,9 @@ class RepositoryParser:
             future_directions = self._extract_section(report_raw, "Future Directions")
             data_section = self._extract_section(report_raw, "Data")
             references = self._extract_section(report_raw, "References")
+            other_sections = self._extract_other_sections(
+                report_raw, _KNOWN_REPORT_SECTIONS
+            )
         else:
             # Fallback: extract from README (legacy projects)
             findings = self._extract_section(readme_content, "Key Findings")
@@ -461,6 +471,10 @@ class RepositoryParser:
             future_directions=self._rewrite_md_links(future_directions, project_dir.name),
             data_section=self._rewrite_md_links(data_section, project_dir.name),
             references=self._rewrite_md_links(references, project_dir.name),
+            other_sections=[
+                (name, self._rewrite_md_links(body, project_dir.name) or body)
+                for name, body in other_sections
+            ],
             revision_history=revision_history,
         )
 
@@ -621,6 +635,26 @@ class RepositoryParser:
         if match:
             return match.group(1).strip()
         return None
+
+    def _extract_other_sections(
+        self, content: str, known_sections: set[str]
+    ) -> list[tuple[str, str]]:
+        """Extract ## sections from content that aren't in the known set.
+
+        Returns a list of (section_name, section_content) tuples.
+        """
+        others = []
+        for match in re.finditer(
+            r"^## (.+?)\s*$\n(.*?)(?=^## (?!#)|\Z)",
+            content,
+            re.MULTILINE | re.DOTALL,
+        ):
+            name = match.group(1).strip()
+            if name not in known_sections:
+                body = match.group(2).strip()
+                if body:
+                    others.append((name, body))
+        return others
 
     def _parse_notebooks(self, project_dir: Path) -> list[Notebook]:
         """Parse notebooks from project/notebooks/ directory."""
