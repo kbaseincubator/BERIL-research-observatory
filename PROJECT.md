@@ -1,8 +1,8 @@
-# BERIL Research Observatory
+# Microbial Discovery Forge
 
 ## Purpose
 
-Use the **BERDL Data Lakehouse** to pursue scientific questions across microbial genomics, ecology, metabolic modeling, and multi-omics analysis, while building shared documentation that accelerates future work.
+Use the **BERDL Data Lakehouse** and the AI co-scientist to pursue scientific questions across microbial genomics, ecology, metabolic modeling, and multi-omics analysis, while building shared documentation and reusable skills that accelerate future work.
 
 BERDL hosts **35 databases across 9 tenants** including pangenome data for 293K microbial genomes, mutant fitness data for 48 organisms, ModelSEED biochemistry, multi-omics from NMDC, and more. See [docs/collections.md](docs/collections.md) for the full inventory.
 
