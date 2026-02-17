@@ -4,7 +4,11 @@
 
 ### 1. Clinical bias does NOT explain the weak environment signal (H0 not rejected)
 
+![Partial correlations by species group](figures/partial_corr_by_group.png)
+
 Environmental species (n=37, median partial correlation 0.051) do NOT show stronger environment–gene content correlations than human-associated species (n=93, median 0.084). The Mann-Whitney U test is far from significant (p=0.83, one-sided). The result is the **opposite direction** from the hypothesis: human-associated species actually show slightly higher partial correlations.
+
+![Distribution of partial correlations](figures/partial_corr_distributions.png)
 
 | Group | N species | Median partial corr | Mean partial corr |
 |-------|-----------|--------------------|--------------------|
@@ -16,9 +20,15 @@ Environmental species (n=37, median partial correlation 0.051) do NOT show stron
 
 The original ecotype analysis conclusion — that phylogeny dominates over environment in predicting gene content — holds even when stratifying by sample environment.
 
-*(Notebook: 01_environmental_only_reanalysis.ipynb — analysis run as script, notebook pending execution)*
+The continuous Spearman analysis confirms this: fraction of environmental genomes per species does not predict partial correlation strength.
+
+![Continuous analysis: fraction environmental vs partial correlation](figures/frac_env_vs_partial_corr.png)
+
+*(Notebook: 01_environmental_only_reanalysis.ipynb)*
 
 ### 2. 47% of ecotype species are human-associated, only 21% environmental
+
+![Species classification by dominant environment](figures/species_classification.png)
 
 Of 224 species selected for the ecotype analysis (>=20 genomes with AlphaEarth embeddings, >=30% coverage), 106 (47%) are majority human-associated by genome-level isolation_source classification, 47 (21%) are majority environmental (Soil, Marine, Freshwater, Extreme, Plant), and 71 (32%) are mixed/other. This confirms the strong clinical sampling bias in the AlphaEarth subset identified by the `env_embedding_explorer` project but shows it doesn't account for the weak environment signal.
 
@@ -78,7 +88,6 @@ This is the first test of whether environment-type classification at the genome 
 
 - **No downsampling**: Our extraction used all genomes with embeddings (up to 3,505 per species) rather than diversity-maximizing downsampling. This changes the distance distributions and likely explains the 27x higher overall partial correlations compared to the original analysis.
 - **30 species with NaN**: Large clinical species with narrow ANI ranges produced NaN partial correlations and were excluded, potentially biasing the human-associated group upward.
-- **No notebook with saved outputs**: The analysis was run as scripts rather than through the notebook. The notebook needs to be executed with saved outputs for full reproducibility.
 - **K. pneumoniae excluded**: This major clinical species exceeded Spark's maxResultSize during gene cluster extraction and has no correlation data.
 - **Classification by majority vote**: Species with 51% gut genomes are classified as "Human-associated" even though 49% may be environmental. A continuous measure (fraction environmental) might reveal subtler patterns.
 
