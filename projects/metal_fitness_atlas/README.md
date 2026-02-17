@@ -67,3 +67,4 @@ Notebooks must run in order (NB02 depends on NB01, etc.). Full pipeline runs in 
 
 ## Authors
 - Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
+- Adam Deutschbauer (https://orcid.org/0000-0003-2728-7622), Lawrence Berkeley National Laboratory
