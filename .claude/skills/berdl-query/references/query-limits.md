@@ -6,7 +6,7 @@ Use this table to choose between inline return and export.
 |---|---|---|
 | <= 10K rows | Interactive | Return inline JSON (bounded `LIMIT`) |
 | 10K-250K rows | Semi-interactive | Return summary + small sample, then offer export |
-| > 250K rows | Batch | Use `/berdl-export` and store output in MinIO |
+| > 250K rows | Batch | Use `scripts/export_sql.py` and store output in MinIO |
 
 ## Notes
 

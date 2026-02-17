@@ -24,7 +24,8 @@ Use this as the default query path for interactive analysis and API-like result 
    - Proxy mode: `python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"`
 3. Run the target SQL query with bounded result size:
    - `python scripts/run_sql.py --query "SELECT * FROM db.table ORDER BY id" --limit 500 --output /tmp/query_result.json`
-4. If result size is large, switch to `/berdl-export` instead of returning rows inline.
+4. If result size is large, use export mode in this same skill:
+   - `python scripts/export_sql.py --berdl-proxy --query "SELECT ..." --path "s3a://cdm-lake/users-general-warehouse/<user>/exports/<run_id>" --format parquet --mode overwrite`
 
 ## Connection and Timeout Behavior
 
@@ -43,7 +44,7 @@ Use this as the default query path for interactive analysis and API-like result 
 
 - Query actions return data to local client memory by default.
 - Results are not automatically persisted to MinIO.
-- For large outputs, explicitly export to MinIO with `/berdl-export` and retrieve with `/berdl-minio`.
+- For large outputs, explicitly export to MinIO with `scripts/export_sql.py` and retrieve with `/berdl-minio`.
 
 ## Result Size Guidance
 
@@ -56,13 +57,17 @@ Use this as the default query path for interactive analysis and API-like result 
 - `scripts/bootstrap_client.sh`: install required local packages.
 - `scripts/run_sql.py`: run bounded SQL query and emit JSON output.
   - Supports `--berdl-proxy`, `--grpc-proxy`, `--https-proxy`, `--host-template`, `--port`.
+- `scripts/export_sql.py`: run SQL and write output to MinIO/object storage.
+  - Supports `--berdl-proxy`, `--grpc-proxy`, `--https-proxy`, `--host-template`, `--port`.
+  - Supports format/mode/partition controls for large-result workflows.
 
 ## References
 
 - `references/query-limits.md`: query tiering and fallback guidance.
+- `references/export-paths.md`: recommended MinIO path conventions and format choices.
 
 ## Safety Rules
 
 1. Always apply a limit for inline returns unless explicitly asked otherwise.
 2. Prefer `ORDER BY` in paginated queries.
-3. Move to `/berdl-export` when response volume is large.
+3. Use `scripts/export_sql.py` when response volume is large.

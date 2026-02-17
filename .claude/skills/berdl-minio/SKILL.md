@@ -8,7 +8,7 @@ description: Retrieve and use BERDL MinIO credentials and transfer result artifa
 ## Overview
 
 Use this skill to work with BERDL MinIO from local tools.
-It handles credential sourcing, MinIO client setup, and object retrieval operations.
+It handles credential sourcing, MinIO client setup, and object transfer operations.
 
 ## Credential Strategy
 
@@ -23,9 +23,10 @@ Use credentials in this order:
    - If remote bootstrap is needed: `python scripts/get_minio_creds.py --bootstrap-remote --shell`
 2. Configure `mc`:
    - `bash scripts/configure_mc.sh berdl-minio https://minio.berdl.kbase.us`
-3. List/download exported files:
+3. Move files with `mc`:
    - `mc ls berdl-minio/cdm-lake/users-general-warehouse/<user>/exports/`
-   - `mc cp --recursive berdl-minio/cdm-lake/users-general-warehouse/<user>/exports/run_20260217 ./exports/run_20260217`
+   - Pull: `mc cp --recursive berdl-minio/cdm-lake/users-general-warehouse/<user>/exports/run_20260217 ./exports/run_20260217`
+   - Push: `mc cp --recursive ./local_data berdl-minio/cdm-lake/users-general-warehouse/<user>/uploads/local_data`
 
 ## Scripts
 
