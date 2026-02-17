@@ -151,28 +151,11 @@ All figures have:
 - No control for genome count as confounding variable (more genomes → better niche sampling)
 - Pathway score hierarchy (1-5) assumes linear intervals between categories, not justified
 
-**Incomplete Analysis:**
-
-The figure `phylum_stratified_analysis.png` exists but has no corresponding:
-- Notebook section showing the analysis
-- Statistical tests of phylum-specific patterns
-- Interpretation in README or notebooks
-
-This suggests either:
-1. The analysis was completed but not documented, or
-2. The figure is from an earlier version and should be removed
-
 ## Suggestions
 
 ### Critical
 
-1. **Document or remove phylum-stratified analysis**: The file `figures/phylum_stratified_analysis.png` (283 KB, Feb 17) suggests this analysis was completed. Either:
-   - Add a notebook section interpreting phylum-specific patterns, or
-   - Remove the figure to avoid confusion
-
-   If patterns differ by phylum (e.g., Proteobacteria show stronger niche→pathway signal than Firmicutes), this could be a significant biological finding.
-
-2. **Add dependencies file**: Create `requirements.txt` with specific versions:
+1. **Add dependencies file**: Create `requirements.txt` with specific versions:
    ```
    pandas>=1.5.0
    numpy>=1.23.0
@@ -185,39 +168,39 @@ This suggests either:
 
 ### High Priority
 
-3. **Integrate QUICKSTART into README**: Move the detailed reproduction guide from QUICKSTART.md into README.md's "Reproduction" section. Include:
+2. **Integrate QUICKSTART into README**: Move the detailed reproduction guide from QUICKSTART.md into README.md's "Reproduction" section. Include:
    - Which notebooks require Spark (01) vs can run locally (02)
    - Expected runtimes and resource requirements
    - Minimum data quality thresholds (≥5 genomes for niche analysis)
 
-4. **Control for genome count**: Add a supplementary analysis testing whether relationships hold when controlling for `no_genomes`:
+3. **Control for genome count**: Add a supplementary analysis testing whether relationships hold when controlling for `no_genomes`:
    - Partial correlation (scipy.stats or statsmodels)
    - Stratified analysis by genome count bins (5-10, 10-50, 50-100, >100)
    - This addresses potential sampling bias where species with more genomes have better niche coverage simply due to sampling intensity
 
-5. **Add biological interpretation of embedding variance**: The finding that embedding variance (r=0.412) is the strongest predictor deserves discussion. What does high embedding variance mean ecologically? Hypothesis: species with strains in diverse habitats (soil + marine + clinical) have high variance, requiring broad metabolic capabilities.
+4. **Add biological interpretation of embedding variance**: The finding that embedding variance (r=0.412) is the strongest predictor deserves discussion. What does high embedding variance mean ecologically? Hypothesis: species with strains in diverse habitats (soil + marine + clinical) have high variance, requiring broad metabolic capabilities.
 
 ### Medium Priority
 
-6. **Justify pathway score hierarchy**: Add a note explaining why the 1-5 scoring treats intervals as equal (steps_missing_medium → steps_missing_low = likely_complete → complete). Alternative: test sensitivity to different scoring schemes.
+5. **Justify pathway score hierarchy**: Add a note explaining why the 1-5 scoring treats intervals as equal (steps_missing_medium → steps_missing_low = likely_complete → complete). Alternative: test sensitivity to different scoring schemes.
 
-7. **Sensitivity analysis for genome threshold**: Test whether conclusions change with different minimum genome thresholds (3, 5, 10, 20) for including species in niche breadth analysis. Current choice of 5 is reasonable but not justified.
+6. **Sensitivity analysis for genome threshold**: Test whether conclusions change with different minimum genome thresholds (3, 5, 10, 20) for including species in niche breadth analysis. Current choice of 5 is reasonable but not justified.
 
-8. **Add outlier investigation**: Identify and discuss interesting cases:
+7. **Add outlier investigation**: Identify and discuss interesting cases:
    - Species with open pangenomes but few complete pathways (obligate symbionts? parasites?)
    - Species with narrow niches but high pathway diversity (generalist metabolism in specialist context?)
 
-9. **Null model comparison**: Test whether observed correlations are stronger than expected by chance (permutation test with 1000 randomizations of pathway assignments).
+8. **Null model comparison**: Test whether observed correlations are stronger than expected by chance (permutation test with 1000 randomizations of pathway assignments).
 
 ### Nice-to-Have
 
-10. **Add trend lines to scatter plots**: Include regression lines with 95% confidence intervals to visualize relationships more clearly.
+9. **Add trend lines to scatter plots**: Include regression lines with 95% confidence intervals to visualize relationships more clearly.
 
-11. **Pathway category breakdown**: Disaggregate pathway completeness by metabolic category (amino acids, cofactors, energy, etc.). Do open pangenomes have more complete pathways in specific categories?
+10. **Pathway category breakdown**: Disaggregate pathway completeness by metabolic category (amino acids, cofactors, energy, etc.). Do open pangenomes have more complete pathways in specific categories?
 
-12. **Cross-reference other projects**: README mentions this builds on `ecotype_analysis`, `pangenome_openness`, and `cog_analysis`. Add a brief "Comparison to Prior Work" section integrating findings.
+11. **Cross-reference other projects**: README mentions this builds on `ecotype_analysis`, `pangenome_openness`, and `cog_analysis`. Add a brief "Comparison to Prior Work" section integrating findings.
 
-13. **Supplementary data table**: Create a summary table listing:
+12. **Supplementary data table**: Create a summary table listing:
     - Top 10 species by each metric (pangenome openness, pathway completeness, niche breadth)
     - Representative species for each phylum in the analysis
     - This gives readers concrete examples to ground the statistical findings
