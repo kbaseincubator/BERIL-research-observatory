@@ -248,13 +248,24 @@ class RepositoryParser:
             last_updated=datetime.now(),
         )
 
+    @staticmethod
+    def _contributor_key(name: str) -> str:
+        """Normalize contributor name for deduplication.
+
+        Strips middle initials (single chars followed by period) so
+        'Paramvir S. Dehal' and 'Paramvir Dehal' merge correctly.
+        """
+        # Remove single-letter-dot patterns like "S." or "J."
+        normalized = re.sub(r"\b[A-Za-z]\.\s*", "", name)
+        return " ".join(normalized.lower().split())
+
     def _aggregate_contributors(self, projects: list[Project]) -> list[Contributor]:
-        """Merge contributors across projects by lowercased name."""
+        """Merge contributors across projects by normalized name."""
         merged: dict[str, Contributor] = {}
 
         for project in projects:
             for contrib in project.contributors:
-                key = contrib.name.lower()
+                key = self._contributor_key(contrib.name)
                 if key in merged:
                     existing = merged[key]
                     # Union project_ids
@@ -265,6 +276,9 @@ class RepositoryParser:
                     for role in contrib.roles:
                         if role not in existing.roles:
                             existing.roles.append(role)
+                    # Prefer longer name (e.g., "Paramvir S. Dehal" over "Paramvir Dehal")
+                    if len(contrib.name) > len(existing.name):
+                        existing.name = contrib.name
                     # Take first non-null affiliation/orcid
                     if not existing.affiliation and contrib.affiliation:
                         existing.affiliation = contrib.affiliation
@@ -519,9 +533,35 @@ class RepositoryParser:
         contributors = []
         for line in section.split("\n"):
             line = line.strip()
-            # Match lines starting with - **Name**
+            # Match lines starting with - **Name** (bold format)
             match = re.match(r"^-\s+\*\*(.+?)\*\*\s*(.*)", line)
             if not match:
+                # Fallback: plain format - Name, Affiliation or - Name (url)
+                plain = re.match(r"^-\s+(.+)", line)
+                if not plain:
+                    continue
+                plain_text = plain.group(1).strip()
+                # Extract ORCID URL if present
+                orcid = None
+                orcid_url_match = re.search(
+                    r"\(https://orcid\.org/([\d-]+)\)", plain_text
+                )
+                if orcid_url_match:
+                    orcid = orcid_url_match.group(1)
+                    plain_text = plain_text[: orcid_url_match.start()].strip().rstrip(",")
+                # Split by comma: first part is name, rest is affiliation
+                parts = [p.strip() for p in plain_text.split(",", 1)]
+                name = parts[0]
+                affiliation = parts[1] if len(parts) > 1 else None
+                contributors.append(
+                    Contributor(
+                        name=name,
+                        affiliation=affiliation,
+                        orcid=orcid,
+                        roles=[],
+                        project_ids=[project_id],
+                    )
+                )
                 continue
 
             name = match.group(1).strip()
