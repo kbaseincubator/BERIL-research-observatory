@@ -199,6 +199,7 @@ class Project:
     future_directions: str | None = None
     data_section: str | None = None
     references: str | None = None
+    other_sections: list[tuple[str, str]] = field(default_factory=list)
     revision_history: str | None = None
 
     @property

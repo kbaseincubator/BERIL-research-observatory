@@ -45,6 +45,33 @@
     <div class="page-description markdown-content">{{ project.research_question | markdown }}</div>
 </section>
 
+<!-- Research Plan (collapsible, always near top) -->
+{% if project.hypothesis or project.approach %}
+<section class="section">
+    <details>
+        <summary style="cursor: pointer; font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-4);">Research Plan</summary>
+        {% if project.hypothesis %}
+        <div class="card markdown-content" style="margin-bottom: var(--space-4);">
+            <h4>Hypothesis</h4>
+            {{ project.hypothesis | markdown }}
+        </div>
+        {% endif %}
+        {% if project.approach %}
+        <div class="card markdown-content" style="margin-bottom: var(--space-4);">
+            <h4>Approach</h4>
+            {{ project.approach | markdown }}
+        </div>
+        {% endif %}
+        {% if project.revision_history %}
+        <div class="card markdown-content">
+            <h4>Revision History</h4>
+            {{ project.revision_history | markdown }}
+        </div>
+        {% endif %}
+    </details>
+</section>
+{% endif %}
+
 <!-- Overview (from README) -->
 {% if project.overview %}
 <section class="section">
@@ -118,105 +145,26 @@
 </section>
 {% endif %}
 
-<!-- Research Plan (collapsible, secondary for completed projects) -->
-{% if project.hypothesis or project.approach %}
+<!-- Other Reported Sections (catchall for non-standard ## sections in REPORT.md) -->
+{% if project.other_sections %}
+{% for section_name, section_content in project.other_sections %}
 <section class="section">
-    <details>
-        <summary style="cursor: pointer; font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin-bottom: var(--space-4);">Research Plan</summary>
-        {% if project.hypothesis %}
-        <div class="card markdown-content" style="margin-bottom: var(--space-4);">
-            <h4>Hypothesis</h4>
-            {{ project.hypothesis | markdown }}
-        </div>
-        {% endif %}
-        {% if project.approach %}
-        <div class="card markdown-content" style="margin-bottom: var(--space-4);">
-            <h4>Approach</h4>
-            {{ project.approach | markdown }}
-        </div>
-        {% endif %}
-        {% if project.revision_history %}
-        <div class="card markdown-content">
-            <h4>Revision History</h4>
-            {{ project.revision_history | markdown }}
-        </div>
-        {% endif %}
-    </details>
-</section>
-{% endif %}
-
-{% elif project.has_research_plan %}
-{# === IN-PROGRESS PROJECT: Center on RESEARCH_PLAN.md === #}
-
-<!-- Hypothesis -->
-{% if project.hypothesis %}
-<section class="section">
-    <h2>Hypothesis</h2>
+    <h2>{{ section_name }}</h2>
     <div class="card markdown-content">
-        {{ project.hypothesis | markdown }}
+        {{ section_content | markdown }}
     </div>
 </section>
+{% endfor %}
 {% endif %}
 
-<!-- Approach -->
-{% if project.approach %}
-<section class="section">
-    <h2>Approach</h2>
-    <div class="card markdown-content">
-        {{ project.approach | markdown }}
-    </div>
-</section>
-{% endif %}
-
-<!-- Revision History -->
-{% if project.revision_history %}
-<section class="section">
-    <h2>Revision History</h2>
-    <div class="card markdown-content">
-        {{ project.revision_history | markdown }}
-    </div>
-</section>
-{% endif %}
-
-<!-- Partial findings if they exist -->
-{% if project.findings and 'to be filled' not in project.findings.lower() %}
+{% elif project.findings and 'to be filled' not in project.findings.lower() %}
+{# === IN-PROGRESS or PROPOSED with partial findings === #}
 <section class="section">
     <h2>Key Findings</h2>
     <div class="card markdown-content" style="border-left: 4px solid var(--accent-primary);">
         {{ project.findings | markdown }}
     </div>
 </section>
-{% endif %}
-
-{% else %}
-{# === PROPOSED/LEGACY PROJECT: Show what's available from README === #}
-
-{% if project.hypothesis %}
-<section class="section">
-    <h2>Hypothesis</h2>
-    <div class="card markdown-content">
-        {{ project.hypothesis | markdown }}
-    </div>
-</section>
-{% endif %}
-
-{% if project.approach %}
-<section class="section">
-    <h2>Approach</h2>
-    <div class="card markdown-content">
-        {{ project.approach | markdown }}
-    </div>
-</section>
-{% endif %}
-
-{% if project.findings and 'to be filled' not in project.findings.lower() %}
-<section class="section">
-    <h2>Key Findings</h2>
-    <div class="card markdown-content" style="border-left: 4px solid var(--accent-primary);">
-        {{ project.findings | markdown }}
-    </div>
-</section>
-{% endif %}
 
 {% endif %}
 
