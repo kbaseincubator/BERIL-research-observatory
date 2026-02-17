@@ -152,6 +152,17 @@
                 if (e.key === 'Escape') overlay.classList.remove('active');
             });
         })();
+
+        // Anchor links on headings
+        document.querySelectorAll('.section h2[id]').forEach(function(h2) {
+            h2.addEventListener('click', function() {
+                var url = window.location.origin + window.location.pathname + '#' + this.id;
+                window.history.replaceState(null, '', '#' + this.id);
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url);
+                }
+            });
+        });
     </script>
 </body>
 </html>
