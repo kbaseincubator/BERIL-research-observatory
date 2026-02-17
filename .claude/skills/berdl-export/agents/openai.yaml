@@ -1,0 +1,4 @@
+interface:
+  display_name: "BERDL Export"
+  short_description: "Export BERDL query outputs to MinIO paths"
+  default_prompt: "Use this skill to execute BERDL SQL remotely and persist large outputs to MinIO in parquet or delta format."
