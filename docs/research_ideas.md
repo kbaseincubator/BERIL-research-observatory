@@ -441,6 +441,10 @@
 **Status**: COMPLETED
 **Results**: Environmental samples show 3.4x stronger geographic signal in AlphaEarth embeddings (cosine distance 0.27 nearby vs 0.90 far) compared to 2.0x for human-associated samples (0.37 vs 0.75). 38% of the 83K genomes with embeddings are human-associated (clinical bias). 5,774 isolation_source values harmonized to 12 categories. 36% of coordinates flagged as potential institutional addresses (some are legitimate field sites like Rifle, CO). 320 UMAP clusters partially correspond to environment types. See `projects/env_embedding_explorer/`.
 
+### [ecotype_env_reanalysis] Ecotype Reanalysis — Environmental-Only Samples
+**Status**: COMPLETED
+**Results**: H0 not rejected (p=0.83). Environmental species (n=37, median partial corr 0.051) do NOT show stronger env-gene content correlations than human-associated species (n=93, median 0.084). 47% of ecotype species are human-associated by genome-level classification. The clinical bias does not explain the weak environment signal — phylogeny dominates regardless of sample environment. See `projects/ecotype_env_reanalysis/`.
+
 ---
 
 ## Ideas to Discuss / Refine
