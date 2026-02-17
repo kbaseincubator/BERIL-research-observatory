@@ -509,6 +509,47 @@ Gene cluster extraction is **18x slower** because it joins two billion-row unpar
 
 ---
 
+### GapMind Pathway Aggregation Performance
+
+**[pangenome_pathway_geography]** Aggregating 305M rows from `gapmind_pathways` to species-level statistics:
+
+**Runtime**: 10-15 minutes on BERDL JupyterHub with the corrected query
+
+**Key optimizations**:
+1. **Two-stage aggregation**: First aggregate genome-pathway pairs (GROUP BY genome_id, pathway), then aggregate to species level. This reduces intermediate result size.
+2. **CASE expressions for scoring**: Compute numeric scores inline rather than joining lookup tables
+3. **Single query for all species**: Process all 27,690 species in one Spark job rather than iterating per-species
+
+**Query structure**:
+```sql
+-- Stage 1: Score each pathway step, take MAX per genome-pathway (handles multiple rows)
+WITH best_scores AS (
+    SELECT clade_name, genome_id, pathway,
+           MAX(CASE score_category WHEN 'complete' THEN 5 ... END) as best_score
+    FROM gapmind_pathways
+    GROUP BY clade_name, genome_id, pathway
+),
+-- Stage 2: Count complete pathways per genome
+genome_stats AS (
+    SELECT clade_name, genome_id,
+           SUM(CASE WHEN best_score >= 5 THEN 1 ELSE 0 END) as complete_pathways
+    FROM best_scores
+    GROUP BY clade_name, genome_id
+)
+-- Stage 3: Aggregate to species level
+SELECT clade_name,
+       AVG(complete_pathways) as mean_complete,
+       STDDEV(complete_pathways) as std_complete
+FROM genome_stats
+GROUP BY clade_name
+```
+
+**Why this works**: The GROUP BY in stage 1 collapses the multiple rows per genome-pathway pair (305M rows → ~27.6M unique pairs), then stage 2 aggregates to per-genome stats (~293K rows), then stage 3 produces the final species-level output (27.7K rows). Each stage dramatically reduces data volume before the next.
+
+**Anti-pattern to avoid**: Do NOT filter to `score_category = 'present'` — this category doesn't exist in the data. Always use the score hierarchy: complete > likely_complete > steps_missing_low > steps_missing_medium > not_present.
+
+---
+
 ## Performance Checklist
 
 Before running a query:
