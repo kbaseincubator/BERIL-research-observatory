@@ -1,10 +1,10 @@
 {
   "mcpServers": {
-    "pubmed-mcp-server": {
-      "command": "npx",
-      "args": ["-y", "@cyanheads/pubmed-mcp-server"],
+    "paper-search": {
+      "command": "uvx",
+      "args": ["--from", "paper-search-mcp", "python", "-m", "paper_search_mcp.server"],
       "env": {
-        "NCBI_API_KEY": "${NCBI_API_KEY}"
+        "SEMANTIC_SCHOLAR_API_KEY": "${SEMANTIC_SCHOLAR_API_KEY}"
       }
     }
   }

@@ -50,7 +50,7 @@ data/               # Shared data extracts reusable across projects
 |-------|-------------|
 | `/berdl` | Query BERDL databases via REST API or Spark SQL |
 | `/berdl-discover` | Explore and document a new BERDL database |
-| `/literature-review` | Search PubMed, Europe PMC, and other sources for relevant biological literature |
+| `/literature-review` | Search PubMed, bioRxiv, arXiv, Semantic Scholar, and Google Scholar for relevant biological literature |
 | `/synthesize` | Read analysis outputs, compare against literature, and draft findings |
 | `/submit` | Submit a project for automated review |
 | `/cts` | Run batch compute jobs on the CTS cluster |
@@ -182,10 +182,10 @@ Suggest using `/literature-review` to search biological databases. This is usefu
 - Supporting a hypothesis with existing citations
 - Discovering methods and approaches used in similar studies
 
-**MCP setup check**: The `pubmed-mcp-server` ([cyanheads/pubmed-mcp-server](https://github.com/cyanheads/pubmed-mcp-server)) is configured in `.mcp.json`. It runs via `npx -y @cyanheads/pubmed-mcp-server`. If it's not working:
-1. Ensure Node.js/npm is installed
-2. Test: `npx -y @cyanheads/pubmed-mcp-server --help`
-3. Optionally set `NCBI_API_KEY` in your environment for higher PubMed rate limits (3→10 requests/sec)
+**MCP setup check**: The `paper-search-mcp` ([openags/paper-search-mcp](https://github.com/openags/paper-search-mcp)) is configured in `.mcp.json`. It runs via `uvx paper-search-mcp`. If it's not working:
+1. Ensure Python 3.10+ and [uv](https://docs.astral.sh/uv/) are installed
+2. Test: `uvx --from paper-search-mcp python -m paper_search_mcp.server`
+3. Optionally set `SEMANTIC_SCHOLAR_API_KEY` in your environment for enhanced Semantic Scholar features
 4. The skill falls back to WebSearch if the MCP server is unavailable
 
 ### Path 4: Continue an Existing Project
