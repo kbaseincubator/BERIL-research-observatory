@@ -182,10 +182,11 @@ Suggest using `/literature-review` to search biological databases. This is usefu
 - Supporting a hypothesis with existing citations
 - Discovering methods and approaches used in similar studies
 
-**MCP setup check**: The `pubmed-search` MCP server is configured in `.claude/settings.json`. It runs via `uvx pubmed-search-mcp`. If it's not working:
-1. Ensure `uv` is installed: `curl -LsSf https://astral.sh/uv/install.sh | sh`
-2. Optionally add `NCBI_EMAIL` and `NCBI_API_KEY` to `.env` for faster PubMed access (3→10 requests/sec)
-3. The skill falls back to WebSearch if the MCP server is unavailable
+**MCP setup check**: The `pubmed-mcp-server` ([cyanheads/pubmed-mcp-server](https://github.com/cyanheads/pubmed-mcp-server)) is configured in `.mcp.json`. It runs via `npx -y @cyanheads/pubmed-mcp-server`. If it's not working:
+1. Ensure Node.js/npm is installed
+2. Test: `npx -y @cyanheads/pubmed-mcp-server --help`
+3. Optionally set `NCBI_API_KEY` in your environment for higher PubMed rate limits (3→10 requests/sec)
+4. The skill falls back to WebSearch if the MCP server is unavailable
 
 ### Path 4: Continue an Existing Project
 
