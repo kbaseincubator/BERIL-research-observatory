@@ -23,7 +23,7 @@ This project re-examines the ecotype question by classifying species according t
 ## Quick Links
 
 - [Research Plan](RESEARCH_PLAN.md) -- hypothesis, approach, expected outcomes
-- [Report](REPORT.md) -- findings and interpretation (TBD)
+- [Report](REPORT.md) -- findings and interpretation
 
 ## Data Sources
 
