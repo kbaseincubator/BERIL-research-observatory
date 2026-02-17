@@ -1,24 +1,31 @@
 ---
 name: literature-review
-description: Search biological literature using PubMed, Europe PMC, CORE, and OpenAlex. Use when the user wants to find papers, review existing research on a topic, check what's known about an organism or pathway, or support a hypothesis with citations.
+description: Search biological literature using PubMed via the pubmed-mcp-server. Use when the user wants to find papers, review existing research on a topic, check what's known about an organism or pathway, or support a hypothesis with citations.
 allowed-tools: Bash, Read, Write, WebSearch
 user-invocable: true
 ---
 
 # Literature Review Skill
 
-Search and summarize biological literature relevant to BERDL research. Uses the pubmed-search MCP server for access to PubMed, Europe PMC (33M+ papers), CORE (200M+ open access), and OpenAlex.
+Search and summarize biological literature relevant to BERDL research. Uses the [cyanheads/pubmed-mcp-server](https://github.com/cyanheads/pubmed-mcp-server) for PubMed search, article retrieval, citation network exploration, and research planning.
 
 ## Prerequisites
 
-The `pubmed-search` MCP server must be configured in `.claude/settings.json` (already included in this repo). It runs via `uvx pubmed-search-mcp` with zero install — collaborators only need `uv`.
+The `pubmed-mcp-server` from [cyanheads/pubmed-mcp-server](https://github.com/cyanheads/pubmed-mcp-server) must be configured in `.mcp.json` (already included in this repo). It runs via `npx -y @cyanheads/pubmed-mcp-server` — collaborators only need Node.js/npm.
 
-**Optional** (for faster PubMed access): Add to `.env`:
+### Available MCP Tools
+
+- **`pubmed_search_articles`** — Search PubMed with filters and date ranges
+- **`pubmed_fetch_contents`** — Retrieve detailed article metadata
+- **`pubmed_article_connections`** — Find related articles and citations
+- **`pubmed_research_agent`** — Generate structured research plans
+- **`pubmed_generate_chart`** — Create PNG charts from publication data
+
+**Optional** (for higher PubMed rate limits): Set `NCBI_API_KEY` in your environment or `.env`:
 ```
-NCBI_EMAIL="your@email.com"
 NCBI_API_KEY="your_ncbi_api_key"
 ```
-Without these, PubMed rate limit is 3 requests/sec (vs 10/sec with key).
+Without this, PubMed rate limit is 3 requests/sec (vs 10/sec with key).
 
 ## Workflow
 
@@ -69,13 +76,12 @@ When searching for gene functions found in BERDL data, expand:
 
 ### Step 3: Execute Search
 
-Use the pubmed-search MCP tools to search. If the MCP server is not available, fall back to WebSearch.
+Use the `pubmed-mcp-server` MCP tools to search. The primary tool is `pubmed_search_articles`. Use `pubmed_fetch_contents` to get full metadata and `pubmed_article_connections` to find related/citing papers. If the MCP server is not available, fall back to WebSearch.
 
 **Search priority order**:
-1. **PubMed** — primary for biology/biomedical papers
-2. **Europe PMC** — broader coverage, includes preprints
-3. **CORE** — open access full text
-4. **OpenAlex** — citation analysis and metadata
+1. **PubMed** (via `pubmed_search_articles`) — primary for biology/biomedical papers
+2. **Related articles** (via `pubmed_article_connections`) — citation network exploration
+3. **WebSearch fallback** — if MCP server is unavailable
 
 **For each search**:
 - Start with a focused query (specific organism + specific topic)
@@ -184,12 +190,13 @@ The `references.md` file created by this skill is checked during project submiss
 
 ## Fallback: WebSearch
 
-If the pubmed-search MCP server is not available (e.g., `uvx` not installed):
+If the `pubmed-mcp-server` is not available (e.g., `npx` not installed or MCP not loading):
 
-1. Use `WebSearch` to search PubMed directly: `site:pubmed.ncbi.nlm.nih.gov [query]`
-2. Use `WebSearch` for Google Scholar: `site:scholar.google.com [query]`
-3. Use `WebFetch` to retrieve paper details from DOIs: `https://doi.org/[doi]`
-4. Note in the output that results may be less comprehensive than MCP-based search
+1. Check `.mcp.json` is configured with `"command": "npx", "args": ["-y", "@cyanheads/pubmed-mcp-server"]`
+2. Test the server: `npx -y @cyanheads/pubmed-mcp-server --help`
+3. If still unavailable, use `WebSearch` to search PubMed: `site:pubmed.ncbi.nlm.nih.gov [query]`
+4. Use `WebFetch` to retrieve paper details from DOIs: `https://doi.org/[doi]`
+5. Note in the output that results may be less comprehensive than MCP-based search
 
 ## Pitfall Detection
 
