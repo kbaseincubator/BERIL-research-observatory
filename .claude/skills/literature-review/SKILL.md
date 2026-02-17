@@ -1,24 +1,52 @@
 ---
 name: literature-review
-description: Search biological literature using PubMed, Europe PMC, CORE, and OpenAlex. Use when the user wants to find papers, review existing research on a topic, check what's known about an organism or pathway, or support a hypothesis with citations.
+description: Search biological literature using paper-search-mcp (PubMed, arXiv, bioRxiv, Semantic Scholar, Google Scholar). Use when the user wants to find papers, review existing research on a topic, check what's known about an organism or pathway, or support a hypothesis with citations.
 allowed-tools: Bash, Read, Write, WebSearch
 user-invocable: true
 ---
 
 # Literature Review Skill
 
-Search and summarize biological literature relevant to BERDL research. Uses the pubmed-search MCP server for access to PubMed, Europe PMC (33M+ papers), CORE (200M+ open access), and OpenAlex.
+Search and summarize biological literature relevant to BERDL research. Uses [openags/paper-search-mcp](https://github.com/openags/paper-search-mcp) for multi-source academic paper search across PubMed, arXiv, bioRxiv, medRxiv, Google Scholar, and Semantic Scholar.
 
 ## Prerequisites
 
-The `pubmed-search` MCP server must be configured in `.claude/settings.json` (already included in this repo). It runs via `uvx pubmed-search-mcp` with zero install — collaborators only need `uv`.
+The `paper-search-mcp` from [openags/paper-search-mcp](https://github.com/openags/paper-search-mcp) must be configured in `.mcp.json` (already included in this repo). It runs via `uvx --from paper-search-mcp python -m paper_search_mcp.server` — collaborators only need Python 3.10+ and [uv](https://docs.astral.sh/uv/).
 
-**Optional** (for faster PubMed access): Add to `.env`:
-```
-NCBI_EMAIL="your@email.com"
-NCBI_API_KEY="your_ncbi_api_key"
-```
-Without these, PubMed rate limit is 3 requests/sec (vs 10/sec with key).
+### Available MCP Tools
+
+The server provides search, download, and read tools for each supported source:
+
+**Search tools:**
+- **`search_pubmed`** — Search PubMed for biomedical literature
+- **`search_arxiv`** — Search arXiv preprints
+- **`search_biorxiv`** — Search bioRxiv preprints
+- **`search_medrxiv`** — Search medRxiv preprints
+- **`search_google_scholar`** — Search Google Scholar
+
+**Download tools:**
+- **`download_pubmed`** — Download PubMed paper PDFs
+- **`download_arxiv`** — Download arXiv paper PDFs
+- **`download_biorxiv`** — Download bioRxiv paper PDFs
+- **`download_medrxiv`** — Download medRxiv paper PDFs
+
+**Read tools** (extract text from paper PDFs):
+- **`read_pubmed_paper`** — Read PubMed paper content
+- **`read_arxiv_paper`** — Read arXiv paper content
+- **`read_biorxiv_paper`** — Read bioRxiv paper content
+- **`read_medrxiv_paper`** — Read medRxiv paper content
+
+**Optional** (for enhanced Semantic Scholar features): Set `SEMANTIC_SCHOLAR_API_KEY` in your environment or `.env`.
+
+### Supported Sources
+
+| Source | Best for |
+|---|---|
+| PubMed | Biomedical, microbiology, genomics — primary for BERDL research |
+| bioRxiv | Recent preprints in biology, genomics, microbiology |
+| arXiv | Computational biology, bioinformatics methods |
+| Google Scholar | Broad coverage, catching papers not in other databases |
+| medRxiv | Clinical/medical preprints |
 
 ## Workflow
 
@@ -69,13 +97,14 @@ When searching for gene functions found in BERDL data, expand:
 
 ### Step 3: Execute Search
 
-Use the pubmed-search MCP tools to search. If the MCP server is not available, fall back to WebSearch.
+Use the `paper-search-mcp` MCP tools to search. Start with `search_pubmed` for biomedical topics, then supplement with `search_biorxiv` for recent preprints and `search_semantic_scholar` for citation network exploration. If the MCP server is not available, fall back to WebSearch.
 
-**Search priority order**:
-1. **PubMed** — primary for biology/biomedical papers
-2. **Europe PMC** — broader coverage, includes preprints
-3. **CORE** — open access full text
-4. **OpenAlex** — citation analysis and metadata
+**Search priority order** (for biology/BERDL research):
+1. **PubMed** (via `search_pubmed`) — primary for published biomedical papers
+2. **bioRxiv** (via `search_biorxiv`) — recent preprints not yet indexed in PubMed
+3. **arXiv** (via `search_arxiv`) — computational/bioinformatics methods papers
+4. **Google Scholar** (via `search_google_scholar`) — broad fallback
+5. **WebSearch fallback** — if MCP server is unavailable
 
 **For each search**:
 - Start with a focused query (specific organism + specific topic)
@@ -138,7 +167,7 @@ Save structured references to the project directory:
 
 ## [Topic or Research Question]
 
-Searched: [date], Sources: PubMed, Europe PMC
+Searched: [date], Sources: PubMed, bioRxiv, Semantic Scholar
 Query: "[search terms used]"
 
 ### Cited References
@@ -184,12 +213,13 @@ The `references.md` file created by this skill is checked during project submiss
 
 ## Fallback: WebSearch
 
-If the pubmed-search MCP server is not available (e.g., `uvx` not installed):
+If the `paper-search-mcp` server is not available (e.g., `uv` not installed or MCP not loading):
 
-1. Use `WebSearch` to search PubMed directly: `site:pubmed.ncbi.nlm.nih.gov [query]`
-2. Use `WebSearch` for Google Scholar: `site:scholar.google.com [query]`
-3. Use `WebFetch` to retrieve paper details from DOIs: `https://doi.org/[doi]`
-4. Note in the output that results may be less comprehensive than MCP-based search
+1. Check `.mcp.json` is configured with `"command": "uvx", "args": ["--from", "paper-search-mcp", "python", "-m", "paper_search_mcp.server"]`
+2. Test: `uvx --from paper-search-mcp python -m paper_search_mcp.server` (it should start and wait for JSON-RPC input)
+3. If still unavailable, use `WebSearch` to search PubMed: `site:pubmed.ncbi.nlm.nih.gov [query]`
+4. Use `WebFetch` to retrieve paper details from DOIs: `https://doi.org/[doi]`
+5. Note in the output that results may be less comprehensive than MCP-based search
 
 ## Pitfall Detection
 
