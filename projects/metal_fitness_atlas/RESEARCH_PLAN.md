@@ -208,3 +208,4 @@ WHERE orgId = '{org}' AND expName IN ('{metal_exp_list}')
 
 ## Authors
 - Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
+- Adam Deutschbauer (https://orcid.org/0000-0003-2728-7622), Lawrence Berkeley National Laboratory
