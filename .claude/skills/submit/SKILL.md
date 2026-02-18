@@ -84,12 +84,14 @@ If the user declines, proceed with the current status.
 If all critical checks pass, invoke the reviewer subprocess:
 
 ```bash
-claude -p \
+CLAUDECODE= claude -p \
   --system-prompt "$(cat .claude/reviewer/SYSTEM_PROMPT.md)" \
   --allowedTools "Read,Write" \
   --dangerously-skip-permissions \
   "Review the project at projects/{project_id}/. Read all files in the project directory — especially README.md, RESEARCH_PLAN.md, and REPORT.md. Also read docs/pitfalls.md for known issues. Write your review to projects/{project_id}/REVIEW.md."
 ```
+
+> **Note**: The `CLAUDECODE=` prefix is required to allow launching a Claude subprocess from within Claude Code. Without it, the command fails with a "can't launch Claude inside Claude" error.
 
 Run this command from the repository root directory.
 

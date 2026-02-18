@@ -170,31 +170,42 @@ When the user wants to start a new research project, the agent drives the entire
 16. Create project directory structure: `notebooks/`, `data/`, `user_data/`, `figures/`
 17. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch."
 18. Create branch `projects/{project_id}`, switch to it, and commit README + RESEARCH_PLAN. Working on a dedicated branch from the start avoids accumulating changes on main during long-running projects. Tell the user what you're doing — if they prefer to stay on main, skip branch creation.
+19. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer subagent:
+
+    ```bash
+    CLAUDECODE= claude -p \
+      --system-prompt "$(cat .claude/reviewer/PLAN_REVIEW_PROMPT.md)" \
+      --allowedTools "Read" \
+      --dangerously-skip-permissions \
+      "Review the research plan at projects/{project_id}/. Read RESEARCH_PLAN.md and README.md. Also read docs/pitfalls.md, docs/performance.md, docs/collections.md, and PROJECT.md. Check docs/schemas/ for any tables referenced in the plan. List existing projects with ls projects/ and read their README.md files to check for overlap. Return a concise list of suggestions."
+    ```
+
+    Present the suggestions to the user. They can address them, note them for later, or skip — this is advisory, not blocking.
 
 #### Phase C: Analysis (Notebooks)
 
-19. Write numbered notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, etc.) following the analysis plan
-20. Notebooks are the primary audit trail — do as much work as possible in notebooks so humans can inspect intermediate results
-21. When parallel execution or complex pipelines are needed, write scripts in `src/` but call them from notebooks
-22. **Run notebooks** — execute cells, inspect outputs, iterate
-23. As new information emerges, update `RESEARCH_PLAN.md` with a revision tag: `- **v2** ({date}): {what changed and why}`
-24. **Check in code frequently** — commit after each major milestone (plan written, notebooks created, data extracted, analysis complete)
-25. Re-read `docs/pitfalls.md` when something doesn't work as expected
+20. Write numbered notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, etc.) following the analysis plan
+21. Notebooks are the primary audit trail — do as much work as possible in notebooks so humans can inspect intermediate results
+22. When parallel execution or complex pipelines are needed, write scripts in `src/` but call them from notebooks
+23. **Run notebooks** — execute cells, inspect outputs, iterate
+24. As new information emerges, update `RESEARCH_PLAN.md` with a revision tag: `- **v2** ({date}): {what changed and why}`
+25. **Check in code frequently** — commit after each major milestone (plan written, notebooks created, data extracted, analysis complete)
+26. Re-read `docs/pitfalls.md` when something doesn't work as expected
 
 #### Phase D: Synthesis & Writeup
 
-26. Chat with the user about results — discuss interpretation, identify gaps, add analysis for clarity
-27. Run `/synthesize` to create `REPORT.md` with findings, interpretation, supporting evidence
-28. Commit the report
-29. Chat with user about the report — revise if needed
+27. Chat with the user about results — discuss interpretation, identify gaps, add analysis for clarity
+28. Run `/synthesize` to create `REPORT.md` with findings, interpretation, supporting evidence
+29. Commit the report
+30. Chat with user about the report — revise if needed
 
 #### Phase E: Review & Submission
 
-30. Run `/submit` to validate documentation and generate `REVIEW.md`
-31. Fix any issues flagged by the review
-32. Commit fixes
-33. Upload project to the lakehouse: `python tools/lakehouse_upload.py {project_id}` (prompted by `/submit` after clean review)
-34. Chat with user about next steps
+31. Run `/submit` to validate documentation and generate `REVIEW.md`
+32. Fix any issues flagged by the review
+33. Commit fixes
+34. Upload project to the lakehouse: `python tools/lakehouse_upload.py {project_id}` (prompted by `/submit` after clean review)
+35. Chat with user about next steps
 
 #### Throughout the Entire Workflow:
 - **Check in code often** — don't let work accumulate uncommitted
@@ -277,7 +288,7 @@ Regardless of path chosen, surface these early:
 1. **Species IDs contain `--`** — This is fine inside quoted strings in SQL. Use exact equality (`WHERE id = 's__Escherichia_coli--RS_GCF_000005845.2'`), not LIKE patterns.
 2. **Large tables need filters** — Never full-scan `gene` (1B rows) or `genome_ani` (420M rows). Always filter by species or genome ID.
 3. **AlphaEarth embeddings cover only 28%** of genomes (83K/293K) — check coverage before relying on them.
-4. **Notebooks can run on JupyterHub or locally** — On JupyterHub, `get_spark_session()` is injected into kernels. Locally, use `from get_spark_session import get_spark_session` with the `.venv-berdl` environment and proxy chain running. See `.claude/skills/berdl-query/SKILL.md` for local setup.
+4. **Match Spark import to environment** — On JupyterHub notebooks: `spark = get_spark_session()` (no import). On JupyterHub CLI/scripts: `from berdl_notebook_utils.setup_spark_session import get_spark_session`. Locally: `from get_spark_session import get_spark_session` (requires `.venv-berdl` + proxy chain). See `docs/pitfalls.md` for details.
 5. **Auth token** — stored in `.env` as `KBASE_AUTH_TOKEN` (not `KB_AUTH_TOKEN`).
 6. **String-typed numeric columns** — Many databases store numbers as strings. Always CAST before comparisons.
 7. **Gene clusters are species-specific** — Cannot compare cluster IDs across species. Use COG/KEGG/PFAM for cross-species comparisons.
