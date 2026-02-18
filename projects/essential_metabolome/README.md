@@ -24,12 +24,14 @@ This project links experimental gene essentiality data (from RB-TnSeq experiment
 
 ## Data Sources
 
-| Source | Purpose | Scale |
-|--------|---------|-------|
-| `projects/essential_genome/data/` | Universally essential gene families (859 families, 48 organisms) | Precomputed |
-| `kbase_ke_pangenome.eggnog_mapper_annotations` | EC numbers for gene clusters | 93M annotations |
-| `kbase_msd_biochemistry.reaction` | Biochemical reactions | 56K reactions |
-| `kbase_msd_biochemistry.reaction_ec` | EC → reaction mappings | Small |
+| Source | Purpose | Scale | Attribution |
+|--------|---------|-------|-------------|
+| `projects/essential_genome/` (lakehouse) | Universally essential gene families (859 families, 48 organisms) | 17K ortholog groups | Dehal (2026) |
+| `kbase_ke_pangenome.eggnog_mapper_annotations` | EC numbers for gene clusters | 93M annotations | BERDL |
+| `kbase_msd_biochemistry.reaction` | Biochemical reactions | 56K reactions | ModelSEED |
+| `kbase_msd_biochemistry.reaction_ec` | EC → reaction mappings | Small | ModelSEED |
+
+**Note**: Essential gene family data is referenced from the lakehouse (`berdl-minio/.../microbialdiscoveryforge/projects/essential_genome/data/`) rather than copied locally. See `projects/essential_genome/` for the original analysis.
 
 ## Project Structure
 
