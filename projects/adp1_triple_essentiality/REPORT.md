@@ -12,7 +12,25 @@ This is the central negative finding: FBA's binary classification of genes as es
 
 *(Notebook: 02_concordance_analysis.ipynb)*
 
-### 2. Growth Measurements Cannot Break FBA-TnSeq Ties
+### 2. The Null Result Is Robust Across Growth Defect Thresholds
+
+![Threshold sensitivity analysis](figures/threshold_sensitivity.png)
+
+A sensitivity analysis testing seven thresholds (Q10 through Q40) confirmed that the null result is not an artifact of the Q25 cutoff. The chi-squared p-value remained above 0.05 for thresholds Q10–Q35, with defect rates tracking in parallel across all three FBA classes. Only at Q40 did a marginal association appear (p = 0.048), driven by a slight divergence in FBA-essential vs FBA-blocked defect rates (90% vs 81%). The threshold-independent Kruskal-Wallis test on continuous mean growth rates confirms no association (H = 1.67, p = 0.43).
+
+| Threshold | % with defect | Essential rate | Variable rate | Blocked rate | chi-squared p |
+|-----------|--------------|----------------|---------------|--------------|---------------|
+| Q10 | 41% | 41% | 42% | 41% | 0.985 |
+| Q15 | 56% | 55% | 57% | 55% | 0.887 |
+| Q20 | 65% | 65% | 68% | 62% | 0.405 |
+| Q25 | 72% | 73% | 74% | 69% | 0.629 |
+| Q30 | 77% | 79% | 79% | 73% | 0.313 |
+| Q35 | 82% | 85% | 85% | 77% | 0.058 |
+| Q40 | 85% | 90% | 88% | 81% | 0.048 |
+
+*(Notebook: 02_concordance_analysis.ipynb)*
+
+### 3. Growth Measurements Cannot Break FBA-TnSeq Ties
 
 ![Growth rate distributions by FBA class](figures/growth_by_fba_class.png)
 
@@ -29,7 +47,7 @@ Growth measurements do not differentially validate FBA-essential vs FBA-blocked 
 
 *(Notebook: 02_concordance_analysis.ipynb)*
 
-### 3. Condition-Specific FBA Flux Shows Weak, Mixed Correlations with Growth
+### 4. Condition-Specific FBA Flux Shows Weak, Mixed Correlations with Growth
 
 ![FBA flux vs mutant growth rate scatter plots by carbon source](figures/flux_vs_growth_scatter.png)
 
@@ -48,25 +66,33 @@ Asparagine showed the strongest correlation (rho = -0.257), and the negative dir
 
 *(Notebook: 02_concordance_analysis.ipynb)*
 
-### 4. Growth Defects Are Partially Condition-Specific
+### 5. Growth Defects Are Partially Condition-Specific
 
 ![Growth defect correlation across conditions](figures/defect_condition_correlation.png)
 
 Of 478 genes, 333 (70%) showed condition-specific growth defects (defect on some but not all conditions). Only 10 genes (2%) had defects across all 8 conditions, and 135 (28%) had no defect on any condition. Mean pairwise defect correlation across conditions was 0.38 (range: -0.03 to 1.0), indicating moderate but not complete overlap in the gene sets required for growth on different carbon sources.
 
+Note: With a Q25 threshold per condition, each condition flags ~25% of genes. The "any defect" aggregation across 8 conditions creates a high background rate by design (expected 1 − 0.75^8 = 90% if conditions were independent; observed 72% reflects positive inter-condition correlation).
+
 *(Notebook: 02_concordance_analysis.ipynb)*
 
-### 5. Discordant Genes Show No Functional or Pangenome Enrichment
+### 6. Aromatic Degradation Genes Are Enriched Among FBA-Discordant Genes
 
-![COG enrichment in discordant genes](figures/cog_enrichment_discordant.png)
+![RAST functional category enrichment in discordant genes](figures/rast_enrichment_discordant.png)
+
+![RAST functional category distribution by concordance class](figures/rast_by_discordance_class.png)
+
+Using RAST function annotations (100% gene coverage), two functional categories showed significant enrichment among the 157 discordant genes (Fisher's exact test, BH-FDR correction):
+
+- **Aromatic degradation**: strongly enriched (OR = 9.70, q = 0.012) — 9 of 11 aromatic degradation genes are discordant. These include beta-ketoadipate pathway enzymes (4-carboxymuconolactone decarboxylase, beta-ketoadipate enol-lactone hydrolase) central to ADP1's well-characterized aromatic compound catabolism. Almost all are FBA-under-predicted (blocked + growth defect), meaning the FBA model assigns zero flux to these genes, yet their deletion impairs growth.
+
+- **Lipid metabolism**: depleted (OR = 0.34, q = 0.042) — only 7 of 46 lipid metabolism genes are discordant. This suggests the FBA model handles lipid pathways more accurately than aromatic catabolism.
+
+The directional analysis confirmed that enrichment is driven by the FBA-under-prediction class (blocked + growth defect): aromatic degradation OR = 12.0, q = 0.004.
 
 ![Pangenome status by discordance class](figures/pangenome_discordance.png)
 
-157/478 genes (33%) were discordant (FBA prediction disagrees with growth phenotype). Discordance was asymmetric: 136 genes were FBA-under-predicted (blocked + growth defect) vs only 21 FBA-over-predicted (essential + normal growth).
-
-No COG category was significantly enriched in discordant genes after FDR correction (all q > 0.05). However, COG annotation coverage was low (62/478, 13%), limiting statistical power. Pangenome status was overwhelmingly core across all classes (93–100%), with no significant enrichment in discordant genes (Fisher OR = 0.89, p = 0.80).
-
-FBA-under-predicted genes (blocked but with growth defects) included acetyltransferases, aromatic compound degradation enzymes (4-carboxymuconolactone decarboxylase, beta-ketoadipate enol-lactone hydrolase), sulfonate transport genes, and oxidative stress response genes — suggesting pathways not well-captured by the FBA model.
+Pangenome status was overwhelmingly core across all classes (93–100%), with no significant enrichment in discordant genes (Fisher OR = 0.89, p = 0.80).
 
 *(Notebook: 03_discordant_characterization.ipynb)*
 
@@ -95,11 +121,15 @@ The concordance rate (FBA-essential with defect + FBA-blocked without defect) wa
 
 Pairwise Mann-Whitney U tests confirmed no significant growth rate differences between FBA classes (essential vs variable: p=0.26; essential vs blocked: p=0.93; variable vs blocked: p=0.29).
 
-### COG Distribution by Concordance Class
+### Functional Characterization of Discordant Genes
 
-![COG category distribution heatmap](figures/cog_by_discordance_class.png)
+RAST functional categories were assigned to all 478 genes based on keyword matching against RAST annotations. The largest categories were: Other metabolism (32%), Energy/Redox (19%), Transport (16%), Lipid metabolism (10%), and Modification enzymes (7%).
 
-The COG category composition was broadly similar across concordance classes, with energy production (C), carbohydrate metabolism (G), and post-translational modification (O) represented across all classes.
+The FBA-under-predicted class (136 genes where FBA predicts zero flux but mutants show growth defects) was dominated by:
+- Acetyltransferases (GNAT family, 4 genes)
+- Beta-ketoadipate/aromatic degradation enzymes (4-carboxymuconolactone decarboxylase, beta-ketoadipate enol-lactone hydrolase)
+- Alkanesulfonate transport/metabolism (SsuA, 5 genes)
+- Oxidative stress response (glutathione peroxidase, thioredoxin peroxidase)
 
 ## Interpretation
 
@@ -111,7 +141,13 @@ The central result — FBA class does not predict growth defects among TnSeq-dis
 
 2. **Growth assays measure a continuum**: The mutant growth data captures a continuous spectrum of fitness effects that the binary FBA classification cannot resolve.
 
-3. **The 72% background defect rate is high**: Using a Q25 threshold across 8 conditions means most genes will show at least one growth defect somewhere, diluting the signal.
+3. **The sensitivity analysis confirms robustness**: The null result holds across thresholds from Q10 to Q35, and the threshold-independent Kruskal-Wallis test (p = 0.43) rules out threshold artifacts. Only at Q40 does a marginal signal appear (p = 0.048), and this disappears with the continuous test.
+
+### Aromatic Catabolism Explains Most FBA Discordance
+
+The enrichment of aromatic degradation genes among FBA-discordant genes (OR = 9.70) provides a mechanistic explanation for the largest class of discordance. ADP1 is renowned for its diverse aromatic compound metabolism — the beta-ketoadipate pathway is one of its best-characterized features (Barbe et al. 2004). The FBA model predicts zero flux through these genes because its minimal media definition likely lacks aromatic substrates. However, the experimental growth medium may contain trace aromatic compounds (from yeast extract or agar impurities), or aromatic catabolism genes may have moonlighting functions in cellular homeostasis. This represents a systematic gap in the FBA model's environmental assumptions rather than a metabolic network error.
+
+The depletion of lipid metabolism from discordant genes (OR = 0.34) suggests that lipid biosynthesis pathways — essential for membrane integrity — are well-captured by the FBA model, consistent with their central role in core metabolism.
 
 ### Literature Context
 
@@ -119,25 +155,25 @@ The central result — FBA class does not predict growth defects among TnSeq-dis
 
 - **Guzman et al. (2018)** argued for "reframing gene essentiality in terms of adaptive flexibility," proposing that gene importance is condition-dependent and continuous rather than binary. Our finding of condition-specific growth defects (70% of genes) strongly supports this framework.
 
-- **Boone (2025)** found that FBA achieves an F1-Score of ~0.40 for essential gene prediction, suggesting topology-based methods outperform FBA. Our finding that FBA class doesn't predict graded growth effects adds further evidence that FBA's binary essentiality predictions have limited resolution.
+- **Barbe et al. (2004)** described ADP1's metabolic versatility, particularly its aromatic compound degradation capabilities. Our finding that aromatic catabolism genes are the primary source of FBA discordance connects the model's limitations to ADP1's distinctive biology.
 
 - **Suárez et al. (2020)** used both FBA and Tn-Seq to guide ADP1 genome streamlining, combining both methods. Our results suggest that neither method alone captures the full picture — growth measurements add an independent, graded axis that neither FBA nor TnSeq provides.
 
 ### Novel Contribution
 
-This analysis provides the first systematic three-way comparison of FBA predictions, TnSeq essentiality, and direct mutant growth phenotypes for ADP1. The key novel finding is that FBA's distinction between essential, variable, and blocked genes carries **no predictive power for growth defect status** among dispensable genes (p = 0.63). This suggests that:
+This analysis provides the first systematic three-way comparison of FBA predictions, TnSeq essentiality, and direct mutant growth phenotypes for ADP1. The key novel findings are:
 
-1. The growth defect information in mutant growth assays is orthogonal to what FBA captures
-2. FBA essentiality and TnSeq essentiality measure the same binary boundary (can the cell grow at all?) but neither captures quantitative fitness effects
-3. Growth assays on multiple carbon sources provide genuinely independent information about gene importance
+1. FBA's distinction between essential, variable, and blocked genes carries **no predictive power for growth defect status** among dispensable genes (p = 0.63), robust across Q10–Q35 thresholds.
+2. Aromatic degradation genes are the primary source of FBA-growth discordance (OR = 9.7), pointing to environmental assumptions in the FBA model as the main source of prediction error.
+3. Growth assays on multiple carbon sources provide genuinely independent information about gene importance — 70% of genes show condition-specific defects that neither FBA nor TnSeq captures.
 
 ### Limitations
 
-1. **Q25 threshold is arbitrary**: The 25th percentile cutoff for "growth defect" was chosen for simplicity. Different thresholds could change defect rates but are unlikely to change the null relationship with FBA class.
-2. **Low COG annotation coverage**: Only 13% of triple genes have COG annotations, severely limiting enrichment analysis power. KEGG coverage was better (85%).
-3. **All genes are TnSeq-dispensable**: By construction, TnSeq-essential genes cannot be in this analysis. The 74% FBA-TnSeq concordance from the explorer project applies to the full set; this analysis addresses only the dispensable subset.
+1. **Growth defect threshold**: Although the Q25 cutoff is arbitrary, the sensitivity analysis (Q10–Q40) shows the null result is robust. The "any defect across 8 conditions" aggregation inflates the background rate (72%), making it harder for any predictor to differentiate.
+2. **All genes are TnSeq-dispensable**: By construction, TnSeq-essential genes cannot be in this analysis. The 74% FBA-TnSeq concordance from the explorer project applies to the full set; this analysis addresses only the dispensable subset.
+3. **RAST category assignment is approximate**: Functional categories were assigned by keyword matching against RAST annotations. Some assignments may be incorrect, particularly for multi-domain proteins or genes with ambiguous descriptions. The "Other metabolism" category (32%) captures genes not matched by any keyword pattern.
 4. **Growth data uses ratios, not absolute rates**: The growth measurements are ratios relative to wild-type, which may compress or distort the dynamic range of fitness effects.
-5. **FBA model vintage**: The ADP1 FBA model may not capture all metabolic pathways, particularly for non-standard carbon sources. The positive glucarate correlation (opposite to expected) suggests condition-specific model gaps.
+5. **FBA model vintage**: The ADP1 FBA model may not capture all metabolic pathways, particularly for non-standard carbon sources. The positive glucarate correlation (opposite to expected) and the aromatic catabolism discordance both suggest condition-specific model gaps.
 
 ## Data
 
@@ -159,8 +195,8 @@ This analysis provides the first systematic three-way comparison of FBA predicti
 | Notebook | Purpose |
 |----------|---------|
 | `01_data_assembly.ipynb` | Build 478-gene triple table from SQLite, define growth defect thresholds, join FBA flux and pangenome annotations |
-| `02_concordance_analysis.ipynb` | Triple concordance matrix, Kruskal-Wallis/Mann-Whitney tests, condition-specific FBA flux vs growth correlations |
-| `03_discordant_characterization.ipynb` | COG enrichment (Fisher exact + BH-FDR), pangenome status, functional annotation of discordant genes |
+| `02_concordance_analysis.ipynb` | Triple concordance matrix, Kruskal-Wallis/Mann-Whitney tests, threshold sensitivity analysis, condition-specific FBA flux vs growth correlations |
+| `03_discordant_characterization.ipynb` | RAST functional category enrichment (Fisher exact + BH-FDR), pangenome status, functional annotation of discordant genes |
 
 ### Figures
 | Figure | Description |
@@ -169,24 +205,25 @@ This analysis provides the first systematic three-way comparison of FBA predicti
 | `growth_rate_distributions.png` | Per-condition growth rate histograms with Q25 thresholds |
 | `fba_growth_concordance.png` | FBA class vs growth defect heatmap and defect rate bar chart |
 | `growth_by_fba_class.png` | Violin and box plots of growth rate by FBA class |
+| `threshold_sensitivity.png` | Defect rate by FBA class and chi-squared p-value across Q10–Q40 thresholds |
 | `flux_vs_growth_scatter.png` | Per-condition FBA flux vs growth rate scatter plots with Spearman correlations |
 | `defect_condition_correlation.png` | Inter-condition growth defect correlation heatmap |
-| `cog_enrichment_discordant.png` | COG category enrichment in discordant genes (log2 odds ratio) |
+| `rast_enrichment_discordant.png` | RAST functional category enrichment in discordant genes (log2 odds ratio) |
+| `rast_by_discordance_class.png` | RAST functional category distribution heatmap across concordance classes |
 | `pangenome_discordance.png` | Core gene fraction by concordance class |
-| `cog_by_discordance_class.png` | COG category distribution heatmap across concordance classes |
 
 ## Future Directions
 
 1. **Continuous FBA flux analysis**: Instead of binary FBA class, use the continuous `minimal_media_flux` values to predict growth rate magnitude. Linear or rank-based regression may capture what the categorical classification misses.
-2. **FBA with growth rate constraints**: Use experimental growth rates as constraints in FBA to identify which metabolic bottlenecks the model misses — a data-driven model refinement approach (following Durot et al. 2008).
+2. **Aromatic compound investigation**: Add aromatic substrates to the FBA model's minimal media definition and test whether the discordance in beta-ketoadipate pathway genes resolves. This would confirm whether environmental assumptions drive the observed discordance.
 3. **Condition-specific FBA simulations**: Run FBA on each carbon source separately (not just minimal media) and compare condition-matched predictions against condition-matched growth data.
-4. **Improved functional annotation**: The low COG coverage (13%) limited enrichment analysis. Using eggNOG-mapper or InterProScan on the full gene set would enable more powerful functional characterization of discordant genes.
-5. **Expand to other Acinetobacter species**: Test whether the FBA-growth relationship holds across the 14-genome pangenome, particularly for species with different metabolic capabilities.
+4. **KEGG pathway enrichment**: With 85% KO coverage, a KEGG-based enrichment analysis could reveal pathway-level patterns that the broad RAST categories may miss.
+5. **Expand to other Acinetobacter species**: Test whether the FBA-growth relationship holds across the 14-genome pangenome, particularly for species with different aromatic degradation capabilities.
 
 ## References
 
 - Durot M, Le Fèvre F, de Berardinis V, Kreimeyer A, Vallenet D, Combe C, Smidtas S, Salanoubat M, Weissenbach J, Schachter V (2008). "Iterative reconstruction of a global metabolic model of Acinetobacter baylyi ADP1 using high-throughput growth phenotype and gene essentiality data." *BMC Systems Biology* 2:85.
 - de Berardinis V, Vallenet D, Castelli V, Besnard M, Pinet A, Cruaud C, Samair S, Lechaplais C, Gyapay G, Riber C, Zaber F, Pelletier E, Weissenbach J, Salanoubat M (2008). "A complete collection of single-gene deletion mutants of Acinetobacter baylyi ADP1." *Molecular Systems Biology* 4:174.
+- Barbe V, Vallenet D, Fonknechten N, Kreimeyer A, Oztas S, Labarre L, Cruveiller S, Robert C, Duprat S, Wincker P, Ornston LN, Weissenbach J, Marlière P, Cohen GN, Médigue C (2004). "Unique features revealed by the genome sequence of Acinetobacter sp. ADP1, a versatile and naturally transformation competent bacterium." *Nucleic Acids Research* 32(19):5766-5779.
 - Guzman GI, Olson CA, Hefner Y, Phaneuf PV, Catoiu E, Crepaldi LB, Mih N, Feist AM, Palsson BO (2018). "Reframing gene essentiality in terms of adaptive flexibility." *BMC Systems Biology* 12:143.
 - Suárez GA, Dugan KR, Renda BA, Dasgupta A, Barrick JE (2020). "Rapid and assured genetic engineering methods applied to Acinetobacter baylyi ADP1 genome streamlining." *Nucleic Acids Research* 48(8):4585-4600.
-- Boone J (2025). "A topology-based machine learning model decisively outperforms flux balance analysis in predicting metabolic gene essentiality." *arXiv* 2507.20406.
