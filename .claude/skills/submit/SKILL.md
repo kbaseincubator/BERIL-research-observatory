@@ -45,6 +45,7 @@ Run these checks against the project directory and print a checklist summary:
 - **Figures**: Check that `figures/` directory exists and contains at least one PNG file. Warn if empty or missing.
 - **Dependencies**: Check that `requirements.txt` exists in the project directory. Warn if missing.
 - **Reproduction guide**: Check that README.md contains a `## Reproduction` section. Warn if missing.
+- **User-provided data**: If `projects/{project_id}/user_data/` exists and contains files, print an `INFO` line noting the count and total size (e.g., `INFO  User-provided data: 3 files, 12 MB`). This is informational only — not a warning.
 
 Print the checklist as:
 ```
