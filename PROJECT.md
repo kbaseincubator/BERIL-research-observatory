@@ -133,6 +133,28 @@ Current projects:
 
 Use `/berdl` skill for BERDL queries. Read `docs/pitfalls.md` before your first query.
 
+### Local Spark Connect
+
+Run queries locally while computation happens on the remote BERDL cluster. This avoids the JupyterHub web UI for interactive work.
+
+**One-time setup:**
+```bash
+bash scripts/bootstrap_client.sh   # creates .venv-berdl with required packages
+```
+
+**Running queries:**
+```bash
+source .venv-berdl/bin/activate
+python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
+```
+
+**Prerequisites:**
+- `KBASE_AUTH_TOKEN` set in `.env`
+- A JupyterHub session active (log in and open a notebook so your Spark Connect service is running)
+- BERDL proxy chain running (SSH SOCKS tunnels on ports 1337/1338 + pproxy on port 8123). BERDL services are not directly reachable from external networks. See `.claude/skills/berdl-query/references/proxy-setup.md` for setup instructions.
+
+See the `/berdl-query` and `/berdl-minio` skills for full workflow details.
+
 ### Spark Notebooks
 
 **All analysis notebooks should use direct Spark access** on the BERDL JupyterHub for best performance.
