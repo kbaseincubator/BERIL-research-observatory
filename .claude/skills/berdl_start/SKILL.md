@@ -49,6 +49,8 @@ data/               # Shared data extracts reusable across projects
 | Skill | What it does |
 |-------|-------------|
 | `/berdl` | Query BERDL databases via REST API or Spark SQL |
+| `/berdl-query` | Run SQL queries locally with remote Spark compute (CLI tools + notebook support) |
+| `/berdl-minio` | Transfer files between BERDL MinIO and local machine |
 | `/berdl-discover` | Explore and document a new BERDL database |
 | `/literature-review` | Search PubMed, Europe PMC, and other sources for relevant biological literature |
 | `/synthesize` | Read analysis outputs, compare against literature, and draft findings |
@@ -81,6 +83,37 @@ projects/<name>/
 
 ---
 
+## Phase 1.5: Environment Detection
+
+Before routing the user, run environment detection to ensure prerequisites are met:
+
+**Run the detection script:**
+```bash
+python scripts/detect_berdl_environment.py
+```
+
+This script automatically:
+1. **Detects location**: Tests connectivity to `spark.berdl.kbase.us:443` to determine if you're on-cluster (BERDL JupyterHub) or off-cluster (local machine)
+2. **On-cluster path**:
+   - Automatically retrieves `KBASE_AUTH_TOKEN` from the environment and saves it to `.env`
+   - Confirms direct access works (no proxy needed)
+   - Reports ready status
+3. **Off-cluster path**:
+   - Checks `.env` for `KBASE_AUTH_TOKEN`
+   - Checks `.venv-berdl` exists
+   - Checks SSH tunnels on ports 1337 and 1338
+   - Checks pproxy on port 8123
+   - Provides specific next steps for anything missing
+
+**Present the output to the user** and help them resolve any issues before proceeding to Phase 2.
+
+**Common resolutions:**
+- **Missing .venv-berdl**: `bash scripts/bootstrap_client.sh`
+- **Missing KBASE_AUTH_TOKEN**: Get token from https://narrative.kbase.us/#auth2/account and add to `.env`
+- **Off-cluster without proxy**: User must start SSH tunnels (requires credentials). See `.claude/skills/berdl-query/references/proxy-setup.md` for full guide. Claude can start pproxy once tunnels are up.
+
+---
+
 ## Phase 2: Interactive Routing
 
 Ask the user which of these they want to do:
@@ -108,10 +141,9 @@ When the user wants to start a new research project, the agent drives the entire
 4. Read `docs/pitfalls.md` and `docs/performance.md` — **critical: read these before designing any queries or analysis**
 5. Read `docs/research_ideas.md` — check for existing ideas, avoid duplicating work
 
-**Environment check (on first run or when issues arise):**
-6. Verify `.env` exists and contains `KBASE_AUTH_TOKEN` — if missing, ask the user for their KBase token
-7. Check `gh auth status` — needed for creating branches, PRs, and pushing code. If not authenticated, prompt the user to run `gh auth login`
-8. Note the user's ORCID and affiliation for the Authors section — ask once, remember for future projects
+**Additional setup (Phase 1.5 should have already checked KBASE_AUTH_TOKEN and proxy):**
+6. Check `gh auth status` — needed for creating branches, PRs, and pushing code. If not authenticated, prompt the user to run `gh auth login`
+7. Note the user's ORCID and affiliation for the Authors section — ask once, remember for future projects
 
 **Then engage with the user:**
 9. Chat with the user about their research interest
@@ -232,7 +264,7 @@ Regardless of path chosen, surface these early:
 1. **Species IDs contain `--`** — This is fine inside quoted strings in SQL. Use exact equality (`WHERE id = 's__Escherichia_coli--RS_GCF_000005845.2'`), not LIKE patterns.
 2. **Large tables need filters** — Never full-scan `gene` (1B rows) or `genome_ani` (420M rows). Always filter by species or genome ID.
 3. **AlphaEarth embeddings cover only 28%** of genomes (83K/293K) — check coverage before relying on them.
-4. **Notebooks must run on BERDL JupyterHub** — `get_spark_session()` is only available in JupyterHub kernels. Develop locally, upload and run on the hub.
+4. **Notebooks can run on JupyterHub or locally** — On JupyterHub, `get_spark_session()` is injected into kernels. Locally, use `from get_spark_session import get_spark_session` with the `.venv-berdl` environment and proxy chain running. See `.claude/skills/berdl-query/SKILL.md` for local setup.
 5. **Auth token** — stored in `.env` as `KBASE_AUTH_TOKEN` (not `KB_AUTH_TOKEN`).
 6. **String-typed numeric columns** — Many databases store numbers as strings. Always CAST before comparisons.
 7. **Gene clusters are species-specific** — Cannot compare cluster IDs across species. Use COG/KEGG/PFAM for cross-species comparisons.
