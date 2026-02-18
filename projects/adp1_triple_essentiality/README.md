@@ -4,7 +4,7 @@
 Among genes that TnSeq says are dispensable in *Acinetobacter baylyi* ADP1, does FBA correctly predict which ones have growth defects? Can direct mutant growth rate measurements serve as an independent axis to evaluate where computational (FBA) and genetic (TnSeq) methods agree or disagree?
 
 ## Status
-In progress — data assembly and concordance analysis underway.
+Complete — FBA essentiality class does not predict growth defects among TnSeq-dispensable genes (chi-squared p=0.63). See [Report](REPORT.md) for findings.
 
 ## Overview
 The `acinetobacter_adp1_explorer` project found 74% concordance between FBA and TnSeq essentiality for ADP1, but never incorporated the mutant growth rate data as a third axis. This project adds mutant growth rates on 8 carbon sources as an independent experimental measure.
@@ -21,7 +21,7 @@ The `gene_phenotypes` table provides per-carbon-source FBA flux predictions, ena
 
 ## Quick Links
 - [Research Plan](RESEARCH_PLAN.md) — hypothesis, approach, analysis plan
-- [Report](REPORT.md) — findings, interpretation, supporting evidence (when complete)
+- [Report](REPORT.md) — findings, interpretation, supporting evidence
 
 ## Reproduction
 ### Prerequisites
