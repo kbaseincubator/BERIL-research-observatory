@@ -115,6 +115,16 @@ This script automatically:
 
 ---
 
+## Phase 1.7: Session Naming Reminder
+
+If the session does not already have a name, remind the user:
+
+> **Tip**: Name this session for easy identification — especially useful for long-running or remote sessions where the connection may drop. A good convention is to match the project name and git branch (e.g., `essential_metabolome`).
+
+This is a non-blocking reminder. Move on to Phase 2 regardless.
+
+---
+
 ## Phase 2: Interactive Routing
 
 Ask the user which of these they want to do:
@@ -158,8 +168,8 @@ When the user wants to start a new research project, the agent drives the entire
 14. Write `RESEARCH_PLAN.md` with: Research Question, Hypothesis, Literature Context, Approach, Data Sources, Query Strategy, Analysis Plan, Expected Outcomes, Revision History (v1)
 15. Write slim `README.md` with: Title, Research Question, Status (In Progress), Overview, Quick Links, Reproduction placeholder, Authors
 16. Create project directory structure: `notebooks/`, `data/`, `user_data/`, `figures/`
-17. **Ask user**: "Here's the research plan. Should I create a new branch and check in before starting the analysis?"
-18. If yes: create branch `projects/{project_id}`, commit README + RESEARCH_PLAN
+17. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch."
+18. Create branch `projects/{project_id}`, switch to it, and commit README + RESEARCH_PLAN. Working on a dedicated branch from the start avoids accumulating changes on main during long-running projects. Tell the user what you're doing — if they prefer to stay on main, skip branch creation.
 
 #### Phase C: Analysis (Notebooks)
 
@@ -252,7 +262,7 @@ Then:
 1. **Read the docs first** — `PROJECT.md`, `docs/overview.md`, `docs/collections.md`, `docs/pitfalls.md`, and `docs/performance.md` before designing anything. Check existing `projects/` to avoid duplicating work.
 2. **Notebooks are the audit trail** — numbered sequentially (01, 02, 03...), each self-contained with a clear purpose. Commit with saved outputs per `PROJECT.md` reproducibility standards.
 3. **Commit early and often** — after plan, after notebooks, after data extraction, after analysis, after synthesis.
-4. **Ask before branching** — always ask the user before creating a new branch.
+4. **Branch by default** — create a `projects/{project_id}` branch when starting a new project. Extended work on main causes merge difficulties and risks conflicting with other contributors. Tell the user what branch you're creating; if they explicitly prefer main, respect that.
 5. **Update the plan** — when the analysis reveals something that changes the approach, update RESEARCH_PLAN.md with a dated revision tag explaining what changed and why.
 6. **Don't stop and wait** — drive the process forward, checking in with the user at decision points rather than stopping after each step.
 7. **Document as you go** — discoveries go in `docs/discoveries.md`, pitfalls in `docs/pitfalls.md`, performance tips in `docs/performance.md` — captured in real-time, tagged with `[project_id]`.

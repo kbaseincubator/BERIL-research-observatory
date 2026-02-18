@@ -68,7 +68,7 @@ The agent writes a structured research plan and scaffolds the project directory.
 | `projects/{id}/data/` | Empty directory for output data |
 | `projects/{id}/figures/` | Empty directory for visualizations |
 
-**Decision point**: The agent asks whether to create a branch and commit before proceeding.
+**Best practices**: The agent suggests naming the session to match the project ID, creates a `projects/{id}` branch by default, and commits the initial files before proceeding. (If you prefer to stay on main, you can opt out.)
 
 ### Phase C: Analysis (Notebooks)
 
@@ -125,7 +125,7 @@ The agent will:
 - Draft findings in `REPORT.md`
 - Run an automated review
 
-You'll be consulted at key decision points (hypothesis selection, plan approval, branching, result interpretation) but you don't need to invoke separate skills.
+You'll be consulted at key decision points (hypothesis selection, plan approval, result interpretation). The agent will create a project branch and suggest a session name by default.
 
 ### 3. Final project structure
 
