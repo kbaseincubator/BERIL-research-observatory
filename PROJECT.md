@@ -127,6 +127,41 @@ Current projects:
 
 **Rule of thumb**: If another project might need it, put it in top-level `data/`. If it's clearly for one question, keep it in the project. User-provided data always goes in `user_data/` — never mix it with agent-derived outputs in `data/`.
 
+### Cross-Project Data Reuse
+
+When building on data from another project:
+
+**DO NOT copy files from other projects into your project directory.** This creates duplication and obscures attribution.
+
+**DO reference data directly from the lakehouse:**
+```python
+# CORRECT: Reference another project's data from MinIO
+# In your notebook or script
+lakehouse_path = "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/essential_genome/data/essential_families.tsv"
+df = spark.read.csv(lakehouse_path, header=True, sep="\t")
+
+# Or download temporarily (not committed to git)
+# mc cp berdl-minio/.../essential_genome/data/essential_families.tsv /tmp/
+```
+
+**DO save modified versions in your project:**
+```python
+# If you transform or filter the data, save YOUR version
+filtered_df = df[df['essentiality_class'] == 'universally_essential']
+filtered_df.to_csv('projects/your_project/data/filtered_essential_families.tsv')
+```
+
+**Attribution:**
+- In your `README.md` Data Sources section, cite the original project
+- In notebooks, add a comment when loading external project data
+- Example: `# Essential gene families from projects/essential_genome (Dehal, 2026)`
+
+**Benefits:**
+- Avoids data duplication (original project already archived to lakehouse)
+- Clear provenance (data stays with the original creator)
+- Attribution (original author gets credit)
+- Single source of truth (updates to original data propagate)
+
 ### Lakehouse Archival
 
 Project data files are gitignored (too large for git) but are archived to the `microbialdiscoveryforge` tenant on BERDL MinIO object storage. This ensures data products are:
