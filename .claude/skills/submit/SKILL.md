@@ -92,7 +92,7 @@ claude -p \
 
 Run this command from the repository root directory.
 
-### Step 5: Verify Completion
+### Step 5: Verify Review Completion
 
 After the reviewer subprocess completes:
 
@@ -100,7 +100,24 @@ After the reviewer subprocess completes:
 2. If it exists, print a success message with a brief summary
 3. If it was not created, print an error indicating the reviewer did not produce output
 
-### Step 5: Post-Review Guidance
+### Step 6: Lakehouse Upload
+
+After a successful review (no critical issues), automatically upload the project to the lakehouse:
+
+```bash
+python tools/lakehouse_upload.py {project_id}
+```
+
+This archives all project files (data, notebooks, figures, docs) to the shared `microbialdiscoveryforge` collection on BERDL MinIO at `s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/{project_id}/`.
+
+If the `berdl-minio` mc alias is not configured, set it up first:
+```bash
+mc alias set berdl-minio $MINIO_ENDPOINT_URL $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+```
+
+If the upload fails (e.g., mc not configured, network issue), print the error and continue to post-review guidance — don't block the submission.
+
+### Step 7: Post-Review Guidance
 
 After presenting the review summary, provide next steps based on the review outcome:
 

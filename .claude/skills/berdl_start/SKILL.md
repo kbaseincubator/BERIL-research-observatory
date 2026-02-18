@@ -182,7 +182,8 @@ When the user wants to start a new research project, the agent drives the entire
 30. Run `/submit` to validate documentation and generate `REVIEW.md`
 31. Fix any issues flagged by the review
 32. Commit fixes
-33. Chat with user about next steps
+33. Upload project to the lakehouse: `python tools/lakehouse_upload.py {project_id}` (prompted by `/submit` after clean review)
+34. Chat with user about next steps
 
 #### Throughout the Entire Workflow:
 - **Check in code often** — don't let work accumulate uncommitted
