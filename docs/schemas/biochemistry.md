@@ -105,14 +105,28 @@ reaction (56K)
 
 ## Linking to Pangenome Data
 
-The pangenome `eggnog_mapper_annotations` table contains functional annotations that can link genes to biochemistry:
+### ❌ CRITICAL LIMITATION: No EC → Reaction Mappings
 
-| Pangenome Column | Potential Biochemistry Link |
-|------------------|----------------------------|
-| `EC` | Match reaction abbreviations |
-| `KEGG_ko` | KEGG ortholog IDs |
-| `KEGG_Reaction` | KEGG reaction IDs |
-| `BiGG_Reaction` | BiGG reaction IDs |
+**Discovered 2026-02-17**: The biochemistry database does **NOT** contain EC number → reaction mappings.
+
+- The `reaction` table has NO `ec_numbers` column
+- The `abbreviation` field contains KEGG reaction IDs (RXNNNN format) for ~80% of reactions
+- KEGG database maps reactions to EC numbers, but that mapping is external to BERDL
+
+### Available Linkages
+
+| Pangenome Column | Biochemistry Link | Coverage | Status |
+|------------------|------------------|----------|--------|
+| `EC` | **NOT AVAILABLE** | N/A | ❌ No direct mapping in BERDL |
+| `KEGG_ko` | Via KEGG (external) | Unknown | ⚠️ Requires external data |
+| `KEGG_Reaction` | `reaction.abbreviation` | ~80% | ✅ Available (RXNNNN format) |
+| `BiGG_Reaction` | Not present | N/A | ❌ Not in ModelSEED |
+
+### Workarounds for EC-based Analysis
+
+1. **Use KEGG annotations**: eggNOG provides `KEGG_ko` column which can link to `reaction.abbreviation`
+2. **Pathway-level analysis**: Use GapMind pathway predictions instead of individual reactions
+3. **External mapping**: Download EC→KEGG→ModelSEED mapping from KEGG/BiGG databases
 
 **Note**: Direct linking requires external mapping tables. ModelSEED uses its own ID system (`seed.reaction:*`, `seed.compound:*`).
 
@@ -120,7 +134,9 @@ The pangenome `eggnog_mapper_annotations` table contains functional annotations 
 
 ## Pitfalls
 
+- **❌ NO EC MAPPINGS**: Cannot directly link eggNOG EC numbers to reactions. Use KEGG_ko or GapMind pathways instead.
 - **reaction_similarity is huge**: 671M+ rows. Always filter by reaction_id.
+- **KEGG abbreviations incomplete**: Only 80.2% of reactions have `abbreviation` field populated (44,904/56,012)
 - **ID format**: ModelSEED IDs use prefix format: `seed.reaction:rxn00001`, `seed.compound:cpd00001`
 - **deltag outliers**: Some reactions have extreme deltaG values. Filter with `deltag > -10000000`.
 - **NULL structures**: Not all molecules have SMILES or InChIKey. Use LEFT JOIN when querying structures.
@@ -129,4 +145,5 @@ The pangenome `eggnog_mapper_annotations` table contains functional annotations 
 
 ## Changelog
 
+- **2026-02-17**: [essential_metabolome] Discovered NO EC→reaction mappings exist. Added CRITICAL LIMITATION section. Verified KEGG abbreviation coverage (80.2%). Documented workarounds for EC-based analysis.
 - **2026-02-11**: Migrated from docs/schema.md (biochemistry section) and skill module.
