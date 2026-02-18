@@ -70,6 +70,21 @@ Species-specific genome browsers for phage-host interaction research. All share 
 |----------|-----------|--------|-------|------------|-------------|
 | `protect_genomedepot` | PROTECT | 6 | varies | [protect.md](schemas/protect.md) | Pathogen genome browser (GenomeDepot format) |
 
+### Microbial Discovery Forge
+
+Observatory-generated data products from BERIL research projects. Tabular data files (CSV/TSV) are stored as individual Delta tables; non-tabular files (notebooks, figures, markdown) are stored in the `project_files` table.
+
+| Database | Short Name | Tables | Scale | Schema Doc | Description |
+|----------|-----------|--------|-------|------------|-------------|
+| `microbialdiscoveryforge_observatory` | Observatory Data | dynamic | 17+ projects, 8+ GB derived data | - | Research project data products: fitness matrices, ortholog groups, conservation scores, DIAMOND hits, and more. Uploaded via `/submit` workflow. |
+
+**Key tables**:
+- `project_registry` — index of all uploaded projects with metadata and git provenance
+- `project_files` — non-tabular project files (notebooks, figures, markdown, FASTA)
+- `{project_id}__{data_file}` — individual Delta tables per project data file (e.g., `metal_fitness_atlas__metal_fitness_scores`)
+
+**Upload**: Use `tools/upload_to_lakehouse.ipynb` on JupyterHub. See [tools/lakehouse_upload.py](../tools/lakehouse_upload.py) for the upload API.
+
 ### Development/Test Databases
 
 These are demo, test, or staging databases. Not for production use.
