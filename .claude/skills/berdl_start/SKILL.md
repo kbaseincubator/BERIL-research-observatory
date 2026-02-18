@@ -192,20 +192,27 @@ When the user wants to start a new research project, the agent drives the entire
 25. **Check in code frequently** — commit after each major milestone (plan written, notebooks created, data extracted, analysis complete)
 26. Re-read `docs/pitfalls.md` when something doesn't work as expected
 
+#### Checkpoint: Results Review
+
+After notebooks are executed and committed, **pause and present the key results to the user** before moving to synthesis. This is a natural decision point — the user may want to inspect figures, question a result, or request additional analysis before the interpretation gets written.
+
+27. Summarize the key results: main statistics, notable patterns, anything unexpected
+28. Ask: "Would you like to look at the notebooks/figures before I proceed with the writeup, or should I go ahead with `/synthesize`?"
+29. If the user wants to explore first, wait. If they want changes, iterate on the notebooks before proceeding.
+
 #### Phase D: Synthesis & Writeup
 
-27. Chat with the user about results — discuss interpretation, identify gaps, add analysis for clarity
-28. Run `/synthesize` to create `REPORT.md` with findings, interpretation, supporting evidence
-29. Commit the report
-30. Chat with user about the report — revise if needed
+30. Run `/synthesize` to create `REPORT.md` with findings, interpretation, supporting evidence
+31. Commit the report
+32. Chat with user about the report — revise if needed
 
 #### Phase E: Review & Submission
 
-31. Run `/submit` to validate documentation and generate `REVIEW.md`
-32. Fix any issues flagged by the review
-33. Commit fixes
-34. Upload project to the lakehouse: `python tools/lakehouse_upload.py {project_id}` (prompted by `/submit` after clean review)
-35. Chat with user about next steps
+33. Run `/submit` to validate documentation and generate `REVIEW.md`
+34. Fix any issues flagged by the review
+35. Commit fixes
+36. Upload project to the lakehouse: `python tools/lakehouse_upload.py {project_id}` (prompted by `/submit` after clean review)
+37. Chat with user about next steps
 
 #### Throughout the Entire Workflow:
 - **Check in code often** — don't let work accumulate uncommitted
