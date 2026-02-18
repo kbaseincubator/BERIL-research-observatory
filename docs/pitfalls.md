@@ -36,6 +36,28 @@ AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
 AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
 ```
 
+### MinIO Upload Requires Proxy (Off-Cluster)
+
+**[essential_metabolome]** When uploading projects to the lakehouse via `python tools/lakehouse_upload.py`, the `mc` (MinIO client) commands will timeout if proxy environment variables are not set.
+
+**Symptom**: Upload fails with:
+```
+Get 'https://minio.berdl.kbase.us/cdm-lake/?location=': dial tcp 140.221.43.167:443: i/o timeout
+```
+
+**Root cause**: MinIO server (minio.berdl.kbase.us:443) is only reachable from within the BERDL cluster or through the proxy chain.
+
+**Solution**: Set proxy environment variables before running the upload script:
+```bash
+export https_proxy=http://127.0.0.1:8123
+export no_proxy=localhost,127.0.0.1
+python3 tools/lakehouse_upload.py <project_id>
+```
+
+**Prerequisites**: SSH tunnels (ports 1337, 1338) and pproxy (port 8123) must be running. See `.claude/skills/berdl-minio/SKILL.md` for setup details.
+
+**Note**: This applies to ALL `mc` commands when off-cluster, not just uploads. The `lakehouse_upload.py` script should be updated to set these variables automatically, but for now they must be set manually.
+
 ### String-Typed Numeric Columns
 
 Many databases store numeric values as strings. Always cast before comparisons:

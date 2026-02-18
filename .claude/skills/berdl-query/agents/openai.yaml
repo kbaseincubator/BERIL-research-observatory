@@ -1,0 +1,4 @@
+interface:
+  display_name: "BERDL Query"
+  short_description: "Run local-to-remote BERDL Spark SQL workflows"
+  default_prompt: "Use this skill to run BERDL Spark queries from a local machine with safe result-size handling and fallback to export for large outputs."

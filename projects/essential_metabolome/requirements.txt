@@ -1,0 +1,23 @@
+# Essential Metabolome Project Dependencies
+
+# Data manipulation
+pandas>=2.0.0
+numpy>=1.24.0
+
+# BERDL access
+pyspark>=3.5.0
+
+# Statistical analysis
+scipy>=1.11.0
+statsmodels>=0.14.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Network analysis
+networkx>=3.1
+# igraph>=0.10.0  # Alternative to networkx
+
+# Utilities
+tqdm>=4.65.0

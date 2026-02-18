@@ -1,0 +1,6 @@
+# Temporary downloads (reference from lakehouse instead)
+*.tmp
+tmp/
+# Generated data files
+eggnog_ec_annotations_sample.tsv
+unique_ec_numbers.tsv
