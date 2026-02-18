@@ -4,7 +4,7 @@
 What is the scope and structure of a comprehensive ADP1 database, and how do its annotations, metabolic models, and phenotype data intersect with BERDL collections (pangenome, biochemistry, fitness, PhageFoundry)?
 
 ## Status
-In Progress — exploring user-provided ADP1 database and mapping connections to BERDL.
+Completed — all 5 connection types to BERDL validated (100% genome, 91% reaction, 100% compound, 100% cluster mapping). Multi-omics exploration of essentiality, fitness, proteomics, and metabolic model complete. See [Report](REPORT.md) for findings.
 
 ## Overview
 This project explores a user-provided SQLite database (`berdl_tables.db`, 136 MB) containing comprehensive data for *Acinetobacter baylyi* ADP1 and related genomes. The database includes 15 tables spanning genome features (5,852 genes with 51 annotation columns), metabolic model reactions (17,984), gene-phenotype associations (239K), essentiality classifications, proteomics, mutant growth data, and a 14-genome pangenome (43K features).
