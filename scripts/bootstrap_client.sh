@@ -15,7 +15,9 @@ python -m pip install \
   "git+https://github.com/BERDataLakehouse/spark_connect_remote.git" \
   "git+https://github.com/BERDataLakehouse/berdl_remote.git" \
   "boto3>=1.34.0" \
-  "pproxy"
+  "pproxy" \
+  "pandas" \
+  "matplotlib"
 
 # Make scripts/ importable so notebooks can do:
 #   from get_spark_session import get_spark_session
