@@ -57,6 +57,14 @@ projects/*/data/**/*.csv
 projects/*/data/**/*.npy
 projects/*/data/**/*.pkl
 !projects/*/data/.gitkeep
+projects/*/user_data/**/*.csv
+projects/*/user_data/**/*.tsv
+projects/*/user_data/**/*.npy
+projects/*/user_data/**/*.pkl
+projects/*/user_data/**/*.sqlite
+projects/*/user_data/**/*.db
+projects/*/user_data/**/*.xlsx
+!projects/*/user_data/.gitkeep
 
 # UI application
 ui/data/cache.json
