@@ -1,0 +1,41 @@
+name: Deploy to SPIN
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Docker Image"]
+    types:
+      - completed
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  RANCHER_URL: https://rancher2.spin.nersc.gov/v3
+  RANCHER_CLI_VERSION: v2.13.2
+  RANCHER_NAMESPACE: knowledge-engine
+  DEPLOYMENT_NAME: beril-observatory
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Install Rancher CLI
+        run: |
+          wget -q https://github.com/rancher/cli/releases/download/${{ env.RANCHER_CLI_VERSION }}/rancher-linux-amd64-${{ env.RANCHER_CLI_VERSION }}.tar.gz
+          tar -xzf rancher-linux-amd64-${{ env.RANCHER_CLI_VERSION }}.tar.gz
+          sudo mv rancher-${{ env.RANCHER_CLI_VERSION }}/rancher /usr/local/bin/
+          rancher --version
+
+      - name: Login to SPIN Rancher
+        run: |
+          rancher login --token ${{ secrets.SPIN_RANCHER_API_KEY }} --context ${{ secrets.RANCHER_PROJECT_ID }} ${{ env.RANCHER_URL }}
+
+      - name: Restart deployment
+        run: |
+          rancher kubectl -n ${{ env.RANCHER_NAMESPACE }} rollout restart deploy/${{ env.DEPLOYMENT_NAME }}
+
+      - name: Verify deployment
+        run: |
+          rancher kubectl -n ${{ env.RANCHER_NAMESPACE }} rollout status deploy/${{ env.DEPLOYMENT_NAME }} --timeout=5m
