@@ -171,3 +171,68 @@ This project tests the new local BERDL workflow with both MinIO data access and 
 ## Authors
 
 Paramvir Dehal (ORCID: 0000-0001-5810-2497, Lawrence Berkeley National Lab)
+
+---
+
+## REVISION: Pivot to Pathway-Level Analysis
+
+**Date**: 2026-02-17  
+**Reason**: Biochemistry database lacks EC → reaction mappings (see `docs/schemas/biochemistry.md`)
+
+### Revised Research Question
+
+**Which metabolic pathways are universally complete across bacteria with essential genes, and what does the essential metabolic repertoire reveal about minimal cellular requirements?**
+
+### Revised Hypotheses
+
+- **H0**: No conserved set of universally complete metabolic pathways; metabolic capabilities are highly species-specific
+- **H1**: A core set of metabolic pathways (amino acid biosynthesis, central carbon metabolism) is universally complete across bacteria, representing the minimal metabolic repertoire
+
+### Revised Approach: GapMind Pathway Analysis
+
+**Data Sources**:
+
+| Source | Purpose | Scale | Strategy |
+|--------|---------|-------|----------|
+| `projects/essential_genome/data/` | 48 organisms with essential gene data | 859 universal families | Reference from lakehouse |
+| `kbase_ke_pangenome.gapmind_pathways` | Pathway completeness predictions | 305M predictions | Filter to 48 FB organisms |
+| `kbase_ke_pangenome.genome` | Genome metadata | 293K genomes | Map FB organisms to genome IDs |
+
+**GapMind Pathway Data**:
+- **80 pathways**: 18 amino acids + 62 carbon sources
+- **Score categories**: complete, likely_complete, steps_missing_low/medium, not_present
+- **Sequence scope**: aux (can import), all (make OR import), core (in all strains)
+- **Metabolic categories**: amino acids (aa), carbon sources (carbon)
+
+**Analysis Plan**:
+
+1. **Map FB organisms to genome IDs** (48 organisms from essential_genome)
+2. **Extract GapMind predictions** for those 48 genomes
+3. **Identify universally complete pathways**:
+   - Pathways that are "complete" or "likely_complete" in all 48 organisms
+   - Focus on amino acid biosynthesis (essential metabolism)
+4. **Characterize essential metabolic repertoire**:
+   - Which amino acids can all bacteria synthesize?
+   - Which carbon sources can all utilize?
+   - Core vs peripheral metabolism
+5. **Compare to minimal genomes** (JCVI-syn3.0, literature)
+
+**Expected Outcomes**:
+- Catalog of universally complete metabolic pathways
+- Minimal metabolic repertoire required for bacterial life
+- Amino acid biosynthesis capabilities (auxotrophs vs prototrophs)
+- Comparison to synthetic minimal genomes
+
+**Advantages over EC→reaction approach**:
+- Pathway-level analysis is more biologically meaningful
+- GapMind data already in BERDL (no external mappings needed)
+- Directly answers "what can bacteria do?" vs "what reactions exist?"
+- Aligns with minimal genome research (pathway completeness)
+
+---
+
+## Revision History
+
+- **v2** (2026-02-17): Pivoted from EC→reaction to GapMind pathway analysis due to missing EC mappings in biochemistry database. Focus on pathway completeness in 48 FB organisms. More biologically meaningful approach.
+- **v1** (2026-02-17): Initial plan - EC number to biochemical reaction mapping
+
