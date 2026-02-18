@@ -61,7 +61,10 @@ projects/*/data/**/*.pkl
 # UI application
 ui/data/cache.json
 ui/data/indexdir/
+
+# Python virtual environments
 .venv/
+.venv-berdl/
 venv/
 
 .stignore
