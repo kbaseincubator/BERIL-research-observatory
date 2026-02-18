@@ -445,6 +445,10 @@
 **Status**: COMPLETED
 **Results**: H0 not rejected (p=0.83). Environmental species (n=37, median partial corr 0.051) do NOT show stronger env-gene content correlations than human-associated species (n=93, median 0.084). 47% of ecotype species are human-associated by genome-level classification. The clinical bias does not explain the weak environment signal — phylogeny dominates regardless of sample environment. See `projects/ecotype_env_reanalysis/`.
 
+### [acinetobacter_adp1_explorer] ADP1 Triple Essentiality Concordance
+**Status**: COMPLETED
+**Results**: FBA essentiality class does not predict growth defects among TnSeq-dispensable genes (chi-squared p=0.63, robust across Q10–Q35 thresholds, Kruskal-Wallis p=0.43). Aromatic degradation genes are the primary source of FBA-growth discordance (OR=9.7, q=0.012), pointing to FBA model environmental assumptions as the main error source. 70% of genes show condition-specific growth defects, supporting the "adaptive flexibility" framework. See `projects/adp1_triple_essentiality/`.
+
 ---
 
 ## Ideas to Discuss / Refine
