@@ -121,18 +121,18 @@ Current projects:
 |----------|-----------------|----------|
 | `data/` | Shared extracts reusable across projects | Pangenome stats for all species, genome metadata, species lists |
 | `projects/*/data/` | Project-specific processed data | Distance matrices for specific subsets, analysis outputs |
-| `microbialdiscoveryforge_observatory` (lakehouse) | Archived project data and files | All project outputs uploaded via `/submit` |
+| `microbialdiscoveryforge` (lakehouse) | Archived project data and files | All project outputs uploaded via `/submit` |
 
 **Rule of thumb**: If another project might need it, put it in top-level `data/`. If it's clearly for one question, keep it in the project.
 
 ### Lakehouse Archival
 
-Project data files are gitignored (too large for git) but are archived to the `microbialdiscoveryforge_observatory` lakehouse collection on BERDL. This ensures data products are:
+Project data files are gitignored (too large for git) but are archived to the `microbialdiscoveryforge` tenant on BERDL MinIO object storage. This ensures data products are:
 - **Preserved** — not lost if a local machine fails
-- **Shared** — accessible to all BERDL users via Spark SQL
-- **Queryable** — tabular data (CSV/TSV) is stored as Delta tables
+- **Shared** — accessible to all BERDL users via `mc cp` or Spark
+- **Downloadable** — any user can pull project data with `mc cp --recursive berdl-minio/cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/<project>/data/ ./`
 
-**Upload workflow**: When a project passes `/submit` review, the user is prompted to upload to the lakehouse. Upload is done via `tools/upload_to_lakehouse.ipynb` on JupyterHub. See [docs/collections.md](docs/collections.md) for the `microbialdiscoveryforge_observatory` collection details.
+**Upload workflow**: When a project passes `/submit` review, run `python tools/lakehouse_upload.py <project_id>`. See [docs/collections.md](docs/collections.md) for the full collection details.
 
 ## Database Access
 

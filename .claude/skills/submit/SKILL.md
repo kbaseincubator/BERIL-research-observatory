@@ -102,32 +102,20 @@ After the reviewer subprocess completes:
 
 ### Step 6: Lakehouse Upload
 
-After a successful review (no critical issues), ask the user:
+After a successful review (no critical issues), automatically upload the project to the lakehouse:
 
-> "Would you like to upload this project to the `microbialdiscoveryforge_observatory` lakehouse? This archives all data files, notebooks, and figures to the shared BERDL collection."
-
-If the user agrees, provide instructions:
-
-1. Tell the user to upload these files to JupyterHub:
-   - `tools/lakehouse_upload.py`
-   - `tools/upload_to_lakehouse.ipynb`
-   - The entire `projects/{project_id}/` directory
-
-2. Provide the PySpark commands they can paste into any JupyterHub notebook as an alternative to the upload notebook:
-
-```python
-import sys
-sys.path.insert(0, "tools")
-from lakehouse_upload import upload_project
-from get_spark_session import get_spark_session
-
-spark = get_spark_session()
-upload_project(spark, "{project_id}", ".")
+```bash
+python tools/lakehouse_upload.py {project_id}
 ```
 
-3. Mention that the upload notebook (`tools/upload_to_lakehouse.ipynb`) has a `PROJECT_ID` parameter they can set to `"{project_id}"` before running.
+This archives all project files (data, notebooks, figures, docs) to the shared `microbialdiscoveryforge` collection on BERDL MinIO at `s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/{project_id}/`.
 
-If the user declines, skip this step and proceed to post-review guidance.
+If the `berdl-minio` mc alias is not configured, set it up first:
+```bash
+mc alias set berdl-minio $MINIO_ENDPOINT_URL $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
+```
+
+If the upload fails (e.g., mc not configured, network issue), print the error and continue to post-review guidance — don't block the submission.
 
 ### Step 7: Post-Review Guidance
 
@@ -138,7 +126,6 @@ After presenting the review summary, provide next steps based on the review outc
   1. `projects/{project_id}/README.md` — ensure `## Status` says "Completed" with a one-line summary
   2. `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary
 - Suggest committing all changes
-- If lakehouse upload was not done, remind: "Don't forget to upload to the lakehouse when you're on JupyterHub."
 
 **If the review has critical or important issues**:
 - List the issues to address

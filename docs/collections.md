@@ -72,18 +72,25 @@ Species-specific genome browsers for phage-host interaction research. All share 
 
 ### Microbial Discovery Forge
 
-Observatory-generated data products from BERIL research projects. Tabular data files (CSV/TSV) are stored as individual Delta tables; non-tabular files (notebooks, figures, markdown) are stored in the `project_files` table.
+Observatory-generated data products from BERIL research projects, stored on MinIO object storage. Project directories are mirrored as-is (data files, notebooks, figures, markdown).
 
-| Database | Short Name | Tables | Scale | Schema Doc | Description |
-|----------|-----------|--------|-------|------------|-------------|
-| `microbialdiscoveryforge_observatory` | Observatory Data | dynamic | 17+ projects, 8+ GB derived data | - | Research project data products: fitness matrices, ortholog groups, conservation scores, DIAMOND hits, and more. Uploaded via `/submit` workflow. |
+| Storage | Short Name | Scale | Description |
+|---------|-----------|-------|-------------|
+| `s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/` | Observatory Data | 22 projects, 8.5 GB, 1,244 files | Research project data products: fitness matrices, ortholog groups, conservation scores, DIAMOND hits, notebooks, figures, and docs. Uploaded via `/submit` workflow. |
 
-**Key tables**:
-- `project_registry` — index of all uploaded projects with metadata and git provenance
-- `project_files` — non-tabular project files (notebooks, figures, markdown, FASTA)
-- `{project_id}__{data_file}` — individual Delta tables per project data file (e.g., `metal_fitness_atlas__metal_fitness_scores`)
+**Access**:
+```bash
+# List projects
+mc ls berdl-minio/cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/
 
-**Upload**: Use `tools/upload_to_lakehouse.ipynb` on JupyterHub. See [tools/lakehouse_upload.py](../tools/lakehouse_upload.py) for the upload API.
+# Download a project's data
+mc cp --recursive berdl-minio/cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/<project>/data/ ./
+
+# Read from Spark
+spark.read.csv("s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/<project>/data/<file>.csv", header=True)
+```
+
+**Upload**: `python tools/lakehouse_upload.py <project_id>` — see [tools/lakehouse_upload.py](../tools/lakehouse_upload.py).
 
 ### Development/Test Databases
 
