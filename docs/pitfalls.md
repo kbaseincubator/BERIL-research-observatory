@@ -36,6 +36,28 @@ AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
 AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
 ```
 
+### MinIO Upload Requires Proxy (Off-Cluster)
+
+**[essential_metabolome]** When uploading projects to the lakehouse via `python tools/lakehouse_upload.py`, the `mc` (MinIO client) commands will timeout if proxy environment variables are not set.
+
+**Symptom**: Upload fails with:
+```
+Get 'https://minio.berdl.kbase.us/cdm-lake/?location=': dial tcp 140.221.43.167:443: i/o timeout
+```
+
+**Root cause**: MinIO server (minio.berdl.kbase.us:443) is only reachable from within the BERDL cluster or through the proxy chain.
+
+**Solution**: Set proxy environment variables before running the upload script:
+```bash
+export https_proxy=http://127.0.0.1:8123
+export no_proxy=localhost,127.0.0.1
+python3 tools/lakehouse_upload.py <project_id>
+```
+
+**Prerequisites**: SSH tunnels (ports 1337, 1338) and pproxy (port 8123) must be running. See `.claude/skills/berdl-minio/SKILL.md` for setup details.
+
+**Note**: This applies to ALL `mc` commands when off-cluster, not just uploads. The `lakehouse_upload.py` script should be updated to set these variables automatically, but for now they must be set manually.
+
 ### String-Typed Numeric Columns
 
 Many databases store numeric values as strings. Always cast before comparisons:
@@ -217,28 +239,20 @@ LIMIT 5
 
 ## JupyterHub Environment Issues
 
-### Using `get_spark_session()` on BERDL JupyterHub
+### `get_spark_session()` — Use the Right Import for Your Environment
 
-`get_spark_session()` is a **built-in function** injected into the JupyterHub notebook kernel. No import is needed:
+There are three environments with different import patterns. Using the wrong one causes `ImportError`:
 
-```python
-# CORRECT: Call directly, no import
-spark = get_spark_session()
-df = spark.sql("SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10")
+| Environment | Import | Why |
+|---|---|---|
+| **BERDL JupyterHub notebooks** | `spark = get_spark_session()` (no import) | Injected by `/configs/ipython_startup/00-notebookutils.py` |
+| **BERDL JupyterHub CLI/scripts** | `from berdl_notebook_utils.setup_spark_session import get_spark_session` | Same module, explicit import. **[fitness_modules]** discovered this works from regular Python scripts, not just notebooks. |
+| **Local machine** | `from get_spark_session import get_spark_session` | Uses `scripts/get_spark_session.py`, requires `.venv-berdl` + proxy chain |
 
-# WRONG: Don't try to import it — the module doesn't exist as a file
-from get_spark_session import get_spark_session  # ImportError!
-```
-
-**Note**: The bare `get_spark_session()` (no import) only works inside notebook kernels. However, **[fitness_modules]** discovered that the underlying module IS importable from CLI:
-
-```python
-# WORKS from CLI (python3 scripts, not just notebooks)
-from berdl_notebook_utils.setup_spark_session import get_spark_session
-spark = get_spark_session()
-```
-
-This is injected by `/configs/ipython_startup/00-notebookutils.py` in notebooks, but the module itself is a regular Python package. This enables running full Spark analysis pipelines from the command line without `jupyter nbconvert`.
+**Common mistakes**:
+- Using `from get_spark_session import get_spark_session` on the BERDL cluster → `ImportError` (that module is `scripts/get_spark_session.py`, only on local machines)
+- Using `from berdl_notebook_utils.setup_spark_session import get_spark_session` locally → `ImportError` (that package is only on the BERDL cluster)
+- Using the bare `get_spark_session()` (no import) in a CLI script on JupyterHub → `NameError` (auto-import only applies to notebook kernels)
 
 ### Don't Kill Java Processes
 

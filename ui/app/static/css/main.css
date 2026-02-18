@@ -1077,6 +1077,22 @@ pre code {
 }
 
 /* ============================================
+   Anchor Links on Headings
+   ============================================ */
+
+.section h2[id] {
+    position: relative;
+    cursor: pointer;
+}
+
+.section h2[id]:hover::after {
+    content: " #";
+    color: var(--accent-primary-muted);
+    font-weight: 400;
+    font-size: 0.8em;
+}
+
+/* ============================================
    Team / About Page
    ============================================ */
 

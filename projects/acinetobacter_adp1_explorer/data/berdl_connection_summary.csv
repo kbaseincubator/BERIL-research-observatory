@@ -1,0 +1,6 @@
+Connection,ADP1 Count,BERDL Matches,Match %,Status
+Genome IDs → Pangenome,13,13,100%,Strong
+Reactions → Biochemistry,1330,1210,91%,Strong
+Compounds → Biochemistry,230,230,100%,Strong
+Cluster IDs → Pangenome,2538,0,0/20 sample,ID format differs
+ADP1 → Fitness Browser,1,0,No,Not in FB

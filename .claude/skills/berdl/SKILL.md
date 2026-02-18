@@ -16,6 +16,7 @@ Query the KBase BERDL Data Lakehouse containing pangenome and biochemistry data.
 | `kbase_msd_biochemistry` | [biochemistry.md](modules/biochemistry.md) | ModelSEED reactions and compounds |
 | `kescience_fitnessbrowser` | See [docs/schemas/fitnessbrowser.md](../../../docs/schemas/fitnessbrowser.md) | 48 organisms, 27M fitness measurements |
 | `kbase_genomes` | See [docs/schemas/genomes.md](../../../docs/schemas/genomes.md) | 293K genomes, 253M protein sequences |
+| `microbialdiscoveryforge` (MinIO) | See [docs/collections.md](../../../docs/collections.md) | Observatory project data on MinIO object storage |
 
 **Cross-database patterns**: [cross-database.md](modules/cross-database.md) — joining pangenome ↔ biochemistry ↔ fitness ↔ NCBI
 
