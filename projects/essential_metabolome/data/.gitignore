@@ -1,2 +1,3 @@
-# Downloaded from lakehouse, don't commit to git
-essential_genome/
+# Temporary downloads (reference from lakehouse instead)
+*.tmp
+tmp/
