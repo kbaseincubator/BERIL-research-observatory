@@ -114,6 +114,7 @@ Current projects:
 - `projects/resistance_hotspots/` - Antibiotic resistance hotspot analysis
 - `projects/conservation_vs_fitness/` - Gene conservation vs fitness browser data
 - `projects/fitness_modules/` - Pan-bacterial fitness modules via ICA decomposition
+- `projects/metabolic_capability_dependency/` - Distinguishing metabolic capability from metabolic dependency using GapMind + Fitness Browser
 
 ## Data Organization
 

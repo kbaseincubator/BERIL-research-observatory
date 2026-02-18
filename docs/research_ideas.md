@@ -154,8 +154,8 @@
 
 ---
 
-### [NEW] Metabolic Capability vs Metabolic Dependency
-**Status**: PROPOSED
+### [metabolic_capability_dependency] Metabolic Capability vs Metabolic Dependency
+**Status**: IN_PROGRESS
 **Priority**: HIGH
 **Effort**: Medium (requires GapMind data extraction from JupyterHub)
 
@@ -179,6 +179,18 @@
 - GapMind data extraction (305M rows in `kbase_ke_pangenome.gapmind_pathways`)
 - Existing FB-pangenome link table from `conservation_vs_fitness`
 - Existing fitness data from `fitness_effects_conservation`
+
+**Progress**:
+- ✅ Project structure created: `projects/metabolic_capability_dependency/`
+- ✅ Research plan written with detailed hypotheses and approach
+- ✅ Five analysis notebooks scaffolded (NB01-05)
+- ✅ Utility module created: `src/pathway_utils.py`
+- ⏳ Next: Run NB01 on JupyterHub to extract GapMind pathway data
+- ⏳ Next: Extend NB01 to include gene-level mappings
+- ⏳ Next: Complete NB02-03 for pathway classification
+- ⏳ Next: Run NB04-05 for Black Queen test and ecotype analysis
+
+**Location**: `projects/metabolic_capability_dependency/`
 
 ---
 
