@@ -70,6 +70,8 @@ The agent writes a structured research plan and scaffolds the project directory.
 
 **Best practices**: The agent suggests naming the session to match the project ID, creates a `projects/{id}` branch by default, and commits the initial files before proceeding. (If you prefer to stay on main, you can opt out.)
 
+**Optional plan review**: The agent offers to run a quick review of the research plan before starting analysis. A read-only subagent checks the plan against `docs/pitfalls.md`, `docs/performance.md`, schema documentation, and project conventions. It surfaces relevant pitfalls, flags potential query issues, and checks for overlap with existing projects. The suggestions are advisory — the user can address them, note them, or skip.
+
 ### Phase C: Analysis (Notebooks)
 
 The agent generates numbered notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, etc.) with PySpark boilerplate, SQL queries, and visualization scaffolding, then runs them.

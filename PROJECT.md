@@ -206,11 +206,17 @@ See the `/berdl-query` and `/berdl-minio` skills for full workflow details.
 
 **All analysis notebooks should use direct Spark access** on the BERDL JupyterHub for best performance.
 
-**Required initialization** at the top of every notebook:
+**Required initialization** at the top of every Spark notebook:
 ```python
+# On BERDL JupyterHub — no import needed (injected into kernel)
+spark = get_spark_session()
+
+# On local machine — requires .venv-berdl + proxy chain
 from get_spark_session import get_spark_session
 spark = get_spark_session()
 ```
+
+See `docs/pitfalls.md` ("Use the Right Import for Your Environment") for the full breakdown including CLI scripts on JupyterHub.
 
 Then query any database — **keep data as Spark DataFrames** and use PySpark operations:
 ```python
