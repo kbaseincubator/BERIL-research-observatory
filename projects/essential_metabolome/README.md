@@ -6,16 +6,15 @@ Which biochemical reactions are universally essential across bacteria, and what 
 
 ## Status
 
-In Progress — research plan created, awaiting data extraction.
+Complete — pilot study analyzing 7 organisms with GapMind pathway data. See [Report](REPORT.md) for findings on amino acid biosynthesis conservation and *Desulfovibrio vulgaris* serine auxotrophy.
 
 ## Overview
 
-This project links experimental gene essentiality data (from RB-TnSeq experiments across 48 bacterial organisms) to biochemical reactions in the ModelSEED database. By mapping universally essential gene families (identified in the `essential_genome` project) to their catalyzed reactions, we identify the core set of metabolic reactions required for bacterial life. This represents the first pan-bacterial experimental characterization of essential metabolism, bridging the gap between genetic essentiality and biochemical function.
+This pilot study analyzes metabolic pathway completeness across 7 bacterial organisms with essential gene data using GapMind predictions from `kbase_ke_pangenome`. The analysis reveals **high conservation of amino acid biosynthesis pathways** (17/18 pathways present in all organisms) with one notable exception: *Desulfovibrio vulgaris* lacks serine biosynthesis, representing a potential metabolic auxotrophy.
 
-**Key innovation**: Uses the new local BERDL workflow to test:
-- MinIO data access (download existing essential gene data, upload results)
-- Spark Connect queries from local machine (EC annotations, biochemistry reactions)
-- Cross-database integration (Fitness Browser → Pangenome → Biochemistry)
+**Key finding**: Near-universal amino acid prototrophy among free-living bacteria, with organism-specific gaps reflecting ecological adaptation.
+
+**Limitation**: E. coli genomes are absent from the pangenome GapMind dataset (too many genomes for species-level analysis), limiting this to a 7-organism pilot study rather than the intended pan-bacterial survey.
 
 ## Quick Links
 

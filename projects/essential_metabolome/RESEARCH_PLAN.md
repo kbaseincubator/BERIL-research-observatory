@@ -233,6 +233,7 @@ Paramvir Dehal (ORCID: 0000-0001-5810-2497, Lawrence Berkeley National Lab)
 
 ## Revision History
 
-- **v2** (2026-02-17): Pivoted from EC→reaction to GapMind pathway analysis due to missing EC mappings in biochemistry database. Focus on pathway completeness in 48 FB organisms. More biologically meaningful approach.
+- **v3** (2026-02-17): Discovered GapMind coverage limitations. E. coli genomes absent from pangenome (too many genomes for species-level analysis). Analysis proceeds with 7 organisms with GapMind coverage: DvH, MR1, Putida, PS, Caulo, Smeli, azobra. Treating as preliminary/pilot study to characterize GapMind utility for essential metabolome analysis.
+- **v2** (2026-02-17): Pivoted from EC→reaction to GapMind pathway analysis due to missing EC mappings in biochemistry database. Focus on pathway completeness in 45 FB organisms. More biologically meaningful approach.
 - **v1** (2026-02-17): Initial plan - EC number to biochemical reaction mapping
 
