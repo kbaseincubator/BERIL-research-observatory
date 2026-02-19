@@ -107,9 +107,25 @@ Cross-species ortholog-transferred fitness data shows Complex I defects are larg
 
 ACIAD3137 (UPF0234/YitK) and ACIAD2176 (DUF2280) correlate at r > 0.98 with Complex I genes across 8 growth conditions. Both lack FBA reaction mappings and have no assigned metabolic function. Their near-perfect co-fitness with the nuo operon suggests physical or regulatory association with Complex I.
 
+### [respiratory_chain_wiring] ACIAD3522 is the most condition-specific gene in the ADP1 genome
+
+ACIAD3522 (NADH-FMN oxidoreductase) has a growth ratio of 0.013 on acetate — essentially lethal — while showing no defect on quinate (1.39) or glucose (1.39). This is the largest condition-specific effect of any single gene in the 2,034-gene growth matrix. FBA predicts zero flux through ACIAD3522 on all conditions. Its biological role is unknown but the extreme acetate specificity suggests it catalyzes an NADH-linked reaction that is uniquely required for acetate catabolism.
+
+### [respiratory_chain_wiring] NDH-2 compensation hypothesis not supported cross-species
+
+After correcting NDH-2 false positives (filtering text-matched candidates to organisms with ≤2 hits per genome), the cross-species compensation test reverses: organisms WITH validated NDH-2 show LARGER Complex I aromatic deficits (mean -0.297) than those without (-0.156, p=0.52). The initial analysis (10/14 organisms with NDH-2, apparent support for compensation) was driven by misannotated Complex I subunits leaking through the text filter in 5 organisms. This demonstrates the importance of validating text-based gene identification — a finding that looked supportive was actually an annotation artifact.
+
+### [adp1_deletion_phenotypes] 625 condition-specific genes map precisely to expected metabolic pathways
+
+31% of dispensable genes have condition-specificity scores ≥ 1.0. Top condition-specific genes for each carbon source are the enzymes biochemically predicted to be required: urease subunits for urea, protocatechuate 3,4-dioxygenase for quinate, Entner-Doudoroff enzymes for glucose, glyoxylate shunt for acetate, lactate-responsive regulator for lactate. This validates the growth matrix as a high-quality functional genomics dataset.
+
 ### [adp1_deletion_phenotypes] ADP1 phenotype landscape is a continuum, not discrete modules
 
 Hierarchical clustering of 2,034 genes by their 8-condition growth profiles produces an optimal K=3 with silhouette=0.24 — no discrete functional modules. The phenotype landscape is a gradient, with one exception: 24 genes form a tight quinate-specific module (the aromatic degradation pathway). Gene essentiality varies continuously across conditions, supporting the Guzman et al. (2018) "adaptive flexibility" framework.
+
+### [adp1_deletion_phenotypes] Missing dispensable genes are shorter, less annotated, and less conserved
+
+Of 2,593 TnSeq-dispensable genes, 272 (10.5%) lack growth data from the deletion collection. These are systematically different: shorter (813 vs 981 bp), less annotated (91% vs 100% RAST), and less conserved in the pangenome (76.5% core vs 93.3%, p=1.4e-20). Hypothetical proteins are massively enriched (q=2.4e-25). The deletion collection has a bias toward well-characterized, conserved genes.
 
 ### [fitness_modules] ICA reliably decomposes fitness data into biologically coherent modules
 
