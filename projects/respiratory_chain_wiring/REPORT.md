@@ -106,6 +106,8 @@ The FBA model predicts zero flux through NDH-2 and ACIAD3522 on all standard med
 - Cross-species comparison has only 4 organisms without NDH-2, insufficient for statistical significance
 - The NDH-2 gene search in FB organisms may miss some orthologs due to variable annotation
 - ACIAD3522 may not be a true NADH dehydrogenase in the respiratory sense — "NADH-FMN oxidoreductase" could serve other metabolic functions
+- The NDH-2 identification in NB04 uses text matching on gene descriptions, which likely produces false positives for organisms with incompletely annotated Complex I subunits (e.g., pseudo3_N2E3 with 8 "NDH-2" hits that are probably a Complex I operon). KO-based identification (K03885) would be more reliable.
+- The planned pangenome KO co-occurrence analysis (RESEARCH_PLAN Aim 2) was not performed; NDH-2/Complex I co-occurrence across Acinetobacter species remains untested. This is listed as Future Direction #3.
 
 ## Data
 
