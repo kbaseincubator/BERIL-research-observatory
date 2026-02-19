@@ -79,6 +79,18 @@ Multi-function genes with composite COG assignments (e.g., "LV" = mobile+defense
 
 ## 2026-02
 
+### [respiratory_chain_wiring] ADP1 uses qualitatively different respiratory configurations per carbon source
+
+Each of ADP1's 8 carbon sources requires a distinct set of respiratory chain components. Quinate requires only Complex I (all other components dispensable). Acetate requires Complex I + cytochrome bo3 + ACIAD3522 + more (the most demanding). Glucose requires no specific component (full redundancy). This is not a quantitative gradient — it's qualitatively different wiring per substrate class.
+
+### [respiratory_chain_wiring] NADH flux rate, not total yield, determines Complex I essentiality
+
+Quinate produces fewer NADH per carbon (0.57) than glucose (1.50), yet Complex I is more essential on quinate. The resolution: β-ketoadipate pathway products (succinyl-CoA + acetyl-CoA) enter the TCA cycle simultaneously, creating a concentrated NADH burst that exceeds NDH-2's reoxidation capacity. Glucose distributes NADH across Entner-Doudoroff + TCA steps where NDH-2 suffices.
+
+### [respiratory_chain_wiring] ADP1 has three NADH dehydrogenases with non-overlapping condition requirements
+
+Complex I (13 subunits, proton-pumping): quinate-essential, glucose-dispensable. NDH-2 (1 subunit, non-pumping): no growth data but predicted backup for glucose. ACIAD3522 (NADH-FMN oxidoreductase): acetate-lethal (0.013), quinate-fine (1.39). Each handles a different metabolic regime — division of labor in electron transport.
+
 ### [aromatic_catabolism_network] Aromatic catabolism requires 7× more support genes than pathway genes
 
 The β-ketoadipate pathway in ADP1 has 8 core genes, but 51 genes total show quinate-specific growth defects — a 7:1 support-to-pathway ratio. The support genes organize into 3 biochemically rational subsystems: Complex I (21 genes, NADH reoxidation), iron acquisition (7 genes, Fe²⁺ for ring-cleavage dioxygenase), and PQQ biosynthesis (2 genes, cofactor for quinate dehydrogenase). This quantifies a general principle: the metabolic infrastructure required to run a pathway dwarfs the pathway itself.
