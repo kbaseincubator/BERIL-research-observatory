@@ -325,29 +325,34 @@ arginine = spark.sql("""
 - Complex window functions
 - Iterative analysis
 
-**How to get a Spark session (BERDL JupyterHub):**
+**How to get a Spark session:**
 
-Notebook kernel (preferred for notebooks):
+There are three environments, each with a different import pattern:
+
+**1. BERDL JupyterHub notebooks** (no import needed):
 
 ```python
-# Built-in in BERDL notebook kernels (no import needed)
+# Built-in — injected by /configs/ipython_startup/00-notebookutils.py
 spark = get_spark_session()
 ```
 
-Python scripts / CLI on JupyterHub:
+**2. BERDL JupyterHub CLI / Python scripts** (explicit import):
 
 ```python
 from berdl_notebook_utils.setup_spark_session import get_spark_session
 spark = get_spark_session()
 ```
 
-`get_spark_session()` is injected into notebook kernels by `/configs/ipython_startup/00-notebookutils.py`. The explicit `berdl_notebook_utils` import works in scripts/CLI and also works in notebooks.
-
-Do **not** use this legacy import (it fails in BERDL):
+**3. Local machine** (requires `.venv-berdl` + proxy chain):
 
 ```python
-from get_spark_session import get_spark_session  # ImportError
+from get_spark_session import get_spark_session  # scripts/get_spark_session.py
+spark = get_spark_session()
 ```
+
+The local `scripts/get_spark_session.py` creates a remote Spark Connect session through the proxy chain. See `scripts/README.md` and `.claude/skills/berdl-query/SKILL.md` for setup.
+
+**Common mistake**: Using `from get_spark_session import get_spark_session` on the BERDL cluster (ImportError) or using `berdl_notebook_utils` locally (not installed). Match the import to the environment.
 
 ```python
 spark = get_spark_session()

@@ -36,6 +36,28 @@ AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
 AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
 ```
 
+### MinIO Upload Requires Proxy (Off-Cluster)
+
+**[essential_metabolome]** When uploading projects to the lakehouse via `python tools/lakehouse_upload.py`, the `mc` (MinIO client) commands will timeout if proxy environment variables are not set.
+
+**Symptom**: Upload fails with:
+```
+Get 'https://minio.berdl.kbase.us/cdm-lake/?location=': dial tcp 140.221.43.167:443: i/o timeout
+```
+
+**Root cause**: MinIO server (minio.berdl.kbase.us:443) is only reachable from within the BERDL cluster or through the proxy chain.
+
+**Solution**: Set proxy environment variables before running the upload script:
+```bash
+export https_proxy=http://127.0.0.1:8123
+export no_proxy=localhost,127.0.0.1
+python3 tools/lakehouse_upload.py <project_id>
+```
+
+**Prerequisites**: SSH tunnels (ports 1337, 1338) and pproxy (port 8123) must be running. See `.claude/skills/berdl-minio/SKILL.md` for setup details.
+
+**Note**: This applies to ALL `mc` commands when off-cluster, not just uploads. The `lakehouse_upload.py` script should be updated to set these variables automatically, but for now they must be set manually.
+
 ### String-Typed Numeric Columns
 
 Many databases store numeric values as strings. Always cast before comparisons:
@@ -78,6 +100,22 @@ WHERE gtdb_species_clade_id LIKE 's__Escherichia_coli%'
 | `genome_id` | `RS_GCF_XXXXXXXXX.X` or `GB_GCA_XXXXXXXXX.X` | `RS_GCF_000005845.2` |
 | `gtdb_species_clade_id` | `s__Genus_species--{representative_genome_id}` | `s__Escherichia_coli--RS_GCF_000005845.2` |
 | `gene_cluster_id` | `{contig}_{number}` or `{prefix}_mmseqsCluster_{number}` | `NZ_CP095497.1_1766` |
+
+### [metabolic_capability_dependency] `gtdb_metadata` NCBI Taxid Column Returns Boolean Strings, Not Numeric IDs
+
+**Problem**: Attempting to join `kescience_fitnessbrowser.organism` to `kbase_ke_pangenome.gtdb_metadata` via NCBI taxonomy IDs returns zero matches. The `ncbi_taxid` (or equivalent) column in `gtdb_metadata` contains the string values `"t"` / `"f"` (boolean tokens) rather than numeric taxonomy IDs.
+
+**Symptom**: A query like:
+```python
+gtdb_metadata_spark.filter(col("ncbi_taxid").isin(fb_taxids))
+```
+returns 0 rows even when the taxids should match, because the stored values are `"t"`/`"f"`, not integers.
+
+**Solution**: Inspect the column values before joining:
+```python
+spark.sql("SELECT ncbi_taxid, COUNT(*) FROM kbase_ke_pangenome.gtdb_metadata GROUP BY ncbi_taxid LIMIT 10").show()
+```
+Use an alternative join key (e.g., organism name string matching or `orgId`-based lookup) or look for a different taxonomy column. In `metabolic_capability_dependency`, the fallback was to match organisms directly by `orgId` without a clade-level link.
 
 ---
 
@@ -217,28 +255,20 @@ LIMIT 5
 
 ## JupyterHub Environment Issues
 
-### Using `get_spark_session()` on BERDL JupyterHub
+### `get_spark_session()` — Use the Right Import for Your Environment
 
-`get_spark_session()` is a **built-in function** injected into the JupyterHub notebook kernel. No import is needed:
+There are three environments with different import patterns. Using the wrong one causes `ImportError`:
 
-```python
-# CORRECT: Call directly, no import
-spark = get_spark_session()
-df = spark.sql("SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10")
+| Environment | Import | Why |
+|---|---|---|
+| **BERDL JupyterHub notebooks** | `spark = get_spark_session()` (no import) | Injected by `/configs/ipython_startup/00-notebookutils.py` |
+| **BERDL JupyterHub CLI/scripts** | `from berdl_notebook_utils.setup_spark_session import get_spark_session` | Same module, explicit import. **[fitness_modules]** discovered this works from regular Python scripts, not just notebooks. |
+| **Local machine** | `from get_spark_session import get_spark_session` | Uses `scripts/get_spark_session.py`, requires `.venv-berdl` + proxy chain |
 
-# WRONG: Don't try to import it — the module doesn't exist as a file
-from get_spark_session import get_spark_session  # ImportError!
-```
-
-**Note**: The bare `get_spark_session()` (no import) only works inside notebook kernels. However, **[fitness_modules]** discovered that the underlying module IS importable from CLI:
-
-```python
-# WORKS from CLI (python3 scripts, not just notebooks)
-from berdl_notebook_utils.setup_spark_session import get_spark_session
-spark = get_spark_session()
-```
-
-This is injected by `/configs/ipython_startup/00-notebookutils.py` in notebooks, but the module itself is a regular Python package. This enables running full Spark analysis pipelines from the command line without `jupyter nbconvert`.
+**Common mistakes**:
+- Using `from get_spark_session import get_spark_session` on the BERDL cluster → `ImportError` (that module is `scripts/get_spark_session.py`, only on local machines)
+- Using `from berdl_notebook_utils.setup_spark_session import get_spark_session` locally → `ImportError` (that package is only on the BERDL cluster)
+- Using the bare `get_spark_session()` (no import) in a CLI script on JupyterHub → `NameError` (auto-import only applies to notebook kernels)
 
 ### Don't Kill Java Processes
 
@@ -713,6 +743,45 @@ GROUP BY clade_name
 ```
 
 **Key insight**: GapMind score categories are: `complete`, `likely_complete`, `steps_missing_low`, `steps_missing_medium`, `not_present` (NOT a simple binary 'present' flag).
+
+---
+
+### [aromatic_catabolism_network] Keyword-based gene categorization is fragile — use co-fitness to validate
+
+**Problem**: Categorizing genes by keyword matching on RAST function descriptions (e.g., `if 'protocatechuate' in func.lower()`) misclassifies enzymes with non-obvious names. ACIAD1710 (4-carboxymuconolactone decarboxylase, EC 4.1.1.44) is a core pca pathway enzyme but was classified as "Other" because the keyword list checked for "muconate" but not "muconolactone."
+
+**Solution**: Use keyword-based categorization as an initial pass, then validate with co-fitness correlations. In this case, co-fitness analysis correctly recovered pcaC (r=0.978 with the Aromatic pathway). When writing keyword classifiers for gene functions, test them against known members of each category and add missing synonyms.
+
+### [aromatic_catabolism_network] NotebookEdit can create invalid cells missing 'outputs' field
+
+**Problem**: Using the `NotebookEdit` tool to replace a code cell's content can produce a cell without the required `outputs` and `execution_count` fields. `jupyter nbconvert --execute` then fails with `NotebookValidationError: 'outputs' is a required property`.
+
+**Solution**: After using `NotebookEdit` on code cells, verify the notebook JSON is valid. Fix missing fields with:
+```python
+import json
+with open('notebook.ipynb') as f:
+    nb = json.load(f)
+for cell in nb['cells']:
+    if cell['cell_type'] == 'code':
+        cell.setdefault('outputs', [])
+        cell.setdefault('execution_count', None)
+with open('notebook.ipynb', 'w') as f:
+    json.dump(nb, f, indent=1)
+```
+
+### [aromatic_catabolism_network] Claude Code 2.1.47 Bash tool swallows output when waiting on `claude` subprocess
+
+**Problem**: In Claude Code version 2.1.47, running `claude -p` as a foreground command (or backgrounded with `wait`) in the Bash tool causes ALL output to be suppressed — including `echo` statements that precede the `claude` invocation. The `claude -p` process runs and produces correct output, but the Bash tool discards it. This worked correctly in 2.1.45.
+
+**Workaround**: Launch `claude -p` in the background with file redirection, return immediately, then read the output file in a separate Bash call:
+```bash
+env -u CLAUDECODE claude -p --no-session-persistence ... > /tmp/output.txt 2>&1 &
+echo "PID=$!"
+# In a separate Bash call:
+cat /tmp/output.txt
+```
+
+Do NOT use `wait` on the PID — this triggers the same output suppression.
 
 ---
 

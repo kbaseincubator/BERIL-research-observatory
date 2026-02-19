@@ -15,7 +15,7 @@ When discovering a new database, follow these steps in order:
 ### Step 1: Authenticate
 
 ```bash
-AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
+AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
 ```
 
 ### Step 2: List All Databases
@@ -176,7 +176,7 @@ Claude:
 
 ## Error Handling
 
-- **Authentication failure**: Check `.env` file exists and contains valid `KB_AUTH_TOKEN`
+- **Authentication failure**: Check `.env` file exists and contains valid `KBASE_AUTH_TOKEN`
 - **Database not found**: List available databases and confirm spelling
 - **Timeout on large tables**: Skip row counts for tables > 100M rows, note in pitfalls
 - **Schema unavailable**: Mark table as "schema pending" and note in output

@@ -1,0 +1,9 @@
+orgId	genome_id	species_name	notes
+Keio	GCF_000005845.2	Escherichia_coli	E. coli K-12 substr. MG1655
+DvH	GCF_000195755.1	Desulfovibrio_vulgaris	Desulfovibrio vulgaris Hildenborough
+MR1	GCF_000146165.2	Shewanella_oneidensis	Shewanella oneidensis MR-1
+Putida	GCF_000007565.2	Pseudomonas_putida	Pseudomonas putida KT2440
+PS	GCF_000006765.1	Pseudomonas_aeruginosa	Pseudomonas aeruginosa PAO1
+Caulo	GCF_000022005.1	Caulobacter_vibrioides	Caulobacter crescentus CB15
+Smeli	GCF_000006965.1	Sinorhizobium_meliloti	Sinorhizobium meliloti 1021
+azobra	GCF_000011365.1	Azospirillum_brasilense	Azospirillum brasilense Sp245

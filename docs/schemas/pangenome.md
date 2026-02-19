@@ -496,7 +496,7 @@ gtdb_species_clade (27,690)
 
 ### Authentication
 ```bash
-AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
+AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
 ```
 
 ### Basic Query via API

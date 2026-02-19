@@ -79,6 +79,58 @@ Multi-function genes with composite COG assignments (e.g., "LV" = mobile+defense
 
 ## 2026-02
 
+### [respiratory_chain_wiring] ADP1 uses qualitatively different respiratory configurations per carbon source
+
+Each of ADP1's 8 carbon sources requires a distinct set of respiratory chain components. Quinate requires only Complex I (all other components dispensable). Acetate requires Complex I + cytochrome bo3 + ACIAD3522 + more (the most demanding). Glucose requires no specific component (full redundancy). This is not a quantitative gradient — it's qualitatively different wiring per substrate class.
+
+### [respiratory_chain_wiring] NADH flux rate, not total yield, determines Complex I essentiality
+
+Quinate produces fewer NADH per carbon (0.57) than glucose (1.50), yet Complex I is more essential on quinate. The resolution: β-ketoadipate pathway products (succinyl-CoA + acetyl-CoA) enter the TCA cycle simultaneously, creating a concentrated NADH burst that exceeds NDH-2's reoxidation capacity. Glucose distributes NADH across Entner-Doudoroff + TCA steps where NDH-2 suffices.
+
+### [respiratory_chain_wiring] Respiratory chain wiring is metabolic, not transcriptional
+
+Proteomics shows all three NADH dehydrogenases are expressed at similar levels under standard conditions: Complex I mean 27.6 (66th percentile), NDH-2 27.0 (59th), ACIAD3522 26.2 (48th) — all within 1.4 units of each other around the genome median (26.4). The cell doesn't switch respiratory configurations by regulating dehydrogenase expression. Instead, all three run simultaneously and the one that becomes limiting depends on the NADH flux rate from the carbon source. This is a passive, flux-based wiring system rather than an active regulatory switch.
+
+### [respiratory_chain_wiring] ADP1 has three NADH dehydrogenases with non-overlapping condition requirements
+
+Complex I (13 subunits, proton-pumping): quinate-essential, glucose-dispensable. NDH-2 (1 subunit, non-pumping): no growth data but predicted backup for glucose. ACIAD3522 (NADH-FMN oxidoreductase): acetate-lethal (0.013), quinate-fine (1.39). Each handles a different metabolic regime — division of labor in electron transport.
+
+### [aromatic_catabolism_network] Aromatic catabolism requires 7× more support genes than pathway genes
+
+The β-ketoadipate pathway in ADP1 has 8 core genes, but 51 genes total show quinate-specific growth defects — a 7:1 support-to-pathway ratio. The support genes organize into 3 biochemically rational subsystems: Complex I (21 genes, NADH reoxidation), iron acquisition (7 genes, Fe²⁺ for ring-cleavage dioxygenase), and PQQ biosynthesis (2 genes, cofactor for quinate dehydrogenase). This quantifies a general principle: the metabolic infrastructure required to run a pathway dwarfs the pathway itself.
+
+### [aromatic_catabolism_network] FBA models miss 59% of condition-specific essential genes
+
+Of the 51 quinate-specific genes, 30 (59%) have no FBA reaction mappings — PQQ biosynthesis, iron acquisition, transcriptional regulators, and respiratory chain components are invisible to the metabolic model. For Complex I specifically, FBA predicts 1.76× higher flux on aromatics but 0% essentiality, because FBA's linear programming cannot represent the threshold effect of losing a single subunit from a multi-subunit complex.
+
+### [aromatic_catabolism_network] Complex I dependency is on NADH flux, not aromatic chemistry
+
+Cross-species ortholog-transferred fitness data shows Complex I defects are largest on acetate (-1.55 vs background) and succinate (-1.39), not aromatics. ADP1's quinate-specificity likely reflects an alternative NADH dehydrogenase (NDH-2) that compensates on lower-NADH-flux substrates. The "aromatic support network" is really a "high-NADH-flux bottleneck network."
+
+### [aromatic_catabolism_network] Two DUF proteins are candidate Complex I accessory factors
+
+ACIAD3137 (UPF0234/YitK) and ACIAD2176 (DUF2280) correlate at r > 0.98 with Complex I genes across 8 growth conditions. Both lack FBA reaction mappings and have no assigned metabolic function. Their near-perfect co-fitness with the nuo operon suggests physical or regulatory association with Complex I.
+
+### [respiratory_chain_wiring] ACIAD3522 is the most condition-specific gene in the ADP1 genome
+
+ACIAD3522 (NADH-FMN oxidoreductase) has a growth ratio of 0.013 on acetate — essentially lethal — while showing no defect on quinate (1.39) or glucose (1.39). This is the largest condition-specific effect of any single gene in the 2,034-gene growth matrix. FBA predicts zero flux through ACIAD3522 on all conditions. Its biological role is unknown but the extreme acetate specificity suggests it catalyzes an NADH-linked reaction that is uniquely required for acetate catabolism.
+
+### [respiratory_chain_wiring] NDH-2 compensation hypothesis not supported cross-species
+
+After correcting NDH-2 false positives (filtering text-matched candidates to organisms with ≤2 hits per genome), the cross-species compensation test reverses: organisms WITH validated NDH-2 show LARGER Complex I aromatic deficits (mean -0.297) than those without (-0.156, p=0.52). The initial analysis (10/14 organisms with NDH-2, apparent support for compensation) was driven by misannotated Complex I subunits leaking through the text filter in 5 organisms. This demonstrates the importance of validating text-based gene identification — a finding that looked supportive was actually an annotation artifact.
+
+### [adp1_deletion_phenotypes] 625 condition-specific genes map precisely to expected metabolic pathways
+
+31% of dispensable genes have condition-specificity scores ≥ 1.0. Top condition-specific genes for each carbon source are the enzymes biochemically predicted to be required: urease subunits for urea, protocatechuate 3,4-dioxygenase for quinate, Entner-Doudoroff enzymes for glucose, glyoxylate shunt for acetate, lactate-responsive regulator for lactate. This validates the growth matrix as a high-quality functional genomics dataset.
+
+### [adp1_deletion_phenotypes] ADP1 phenotype landscape is a continuum, not discrete modules
+
+Hierarchical clustering of 2,034 genes by their 8-condition growth profiles produces an optimal K=3 with silhouette=0.24 — no discrete functional modules. The phenotype landscape is a gradient, with one exception: 24 genes form a tight quinate-specific module (the aromatic degradation pathway). Gene essentiality varies continuously across conditions, supporting the Guzman et al. (2018) "adaptive flexibility" framework.
+
+### [adp1_deletion_phenotypes] Missing dispensable genes are shorter, less annotated, and less conserved
+
+Of 2,593 TnSeq-dispensable genes, 272 (10.5%) lack growth data from the deletion collection. These are systematically different: shorter (813 vs 981 bp), less annotated (91% vs 100% RAST), and less conserved in the pangenome (76.5% core vs 93.3%, p=1.4e-20). Hypothetical proteins are massively enriched (q=2.4e-25). The deletion collection has a bias toward well-characterized, conserved genes.
+
 ### [fitness_modules] ICA reliably decomposes fitness data into biologically coherent modules
 
 Robust ICA (30-50 FastICA runs + DBSCAN clustering) consistently finds 17-52 stable modules per organism across 32 bacteria. 94.2% of modules show significantly elevated within-module cofitness (Mann-Whitney U, p < 0.05; mean |r| = 0.34 vs background 0.12). Genomic adjacency enrichment averages 22.7× across organisms, confirming modules capture operon-like co-regulated gene groups.

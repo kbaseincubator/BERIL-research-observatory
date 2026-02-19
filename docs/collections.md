@@ -70,6 +70,28 @@ Species-specific genome browsers for phage-host interaction research. All share 
 |----------|-----------|--------|-------|------------|-------------|
 | `protect_genomedepot` | PROTECT | 6 | varies | [protect.md](schemas/protect.md) | Pathogen genome browser (GenomeDepot format) |
 
+### Microbial Discovery Forge
+
+Observatory-generated data products from BERIL research projects, stored on MinIO object storage. Project directories are mirrored as-is (data files, notebooks, figures, markdown).
+
+| Storage | Short Name | Scale | Description |
+|---------|-----------|-------|-------------|
+| `s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/` | Observatory Data | 22 projects, 8.5 GB, 1,244 files | Research project data products: fitness matrices, ortholog groups, conservation scores, DIAMOND hits, notebooks, figures, and docs. Uploaded via `/submit` workflow. |
+
+**Access**:
+```bash
+# List projects
+mc ls berdl-minio/cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/
+
+# Download a project's data
+mc cp --recursive berdl-minio/cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/<project>/data/ ./
+
+# Read from Spark
+spark.read.csv("s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/<project>/data/<file>.csv", header=True)
+```
+
+**Upload**: `python tools/lakehouse_upload.py <project_id>` — see [tools/lakehouse_upload.py](../tools/lakehouse_upload.py).
+
 ### Development/Test Databases
 
 These are demo, test, or staging databases. Not for production use.

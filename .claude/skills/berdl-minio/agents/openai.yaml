@@ -1,0 +1,4 @@
+interface:
+  display_name: "BERDL MinIO"
+  short_description: "Resolve BERDL MinIO credentials and transfer files"
+  default_prompt: "Use this skill to obtain MinIO credentials from local or BERDL remote context, configure mc, and retrieve exported artifacts."
