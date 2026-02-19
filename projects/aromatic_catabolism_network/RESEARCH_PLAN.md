@@ -52,9 +52,10 @@ The analysis uses the 51 quinate-specific genes (specificity > 0.5, z-score < -1
 **Goal**: Test whether the Complex I/aromatic catabolism dependency is conserved beyond ADP1.
 
 **Methods**:
-- Query `kescience_fitnessbrowser` for experiments where organisms were grown on aromatic substrates (benzoate, 4-hydroxybenzoate, protocatechuate, quinate). Check if any of the 48 FB organisms have aromatic-condition fitness data.
-- For organisms with data: do Complex I genes show condition-specific fitness defects on aromatics?
-- Query `kbase_ke_pangenome` for co-occurrence of pca pathway genes and Complex I across Acinetobacter species
+- Query `kescience_fitnessbrowser` for experiments where organisms were grown on aromatic substrates (benzoate, 4-hydroxybenzoate, protocatechuate, quinate). Check if any of the 48 FB organisms have aromatic-condition fitness data. Note: ADP1 is NOT one of the 48 FB organisms. Survey FB experiments in NB01 as a feasibility check.
+- For organisms with data: do Complex I genes (KOs K00330–K00343) show condition-specific fitness defects on aromatics?
+- Cross-species pangenome comparison: gene cluster IDs are species-specific and cannot be compared across species. Instead, use **KO annotations** via `eggnog_mapper_annotations.KEGG_ko` (joined on `gene_cluster_id = query_name`) to identify pca pathway orthologs (K00448, K00449, K01607, K01857, K01055, K05358, K03785) and Complex I orthologs (K00330–K00343) across Acinetobacter species. Test whether genomes carrying pca pathway KOs are more likely to also carry Complex I.
+- Reference `metal_fitness_atlas` project for FB-to-pangenome organism mapping methodology
 
 ### Aim 4: Characterize the "Other" Genes
 **Goal**: Assign functions to the 24 quinate-specific genes without clear pathway assignments.
@@ -76,7 +77,8 @@ The analysis uses the 51 quinate-specific genes (specificity > 0.5, z-score < -1
 | `genome_reactions` (SQLite) | Full reaction details | varies | Filter by ADP1 |
 | `kescience_fitnessbrowser.experiment` (BERDL) | Find aromatic-condition experiments | small | Filter by condition name |
 | `kescience_fitnessbrowser.genefitness` (BERDL) | Fitness scores for aromatic conditions | 27M | Filter by orgId + condition |
-| `kbase_ke_pangenome.gene_cluster` (BERDL) | Pca gene conservation across Acinetobacter | 132M | Filter by species clade |
+| `kbase_ke_pangenome.eggnog_mapper_annotations` (BERDL) | KO annotations for cross-species comparison | 93M | Filter by KEGG_ko IN (pca KOs, nuo KOs) |
+| `kbase_ke_pangenome.gene_cluster` (BERDL) | Link KO annotations to species | 132M | Join via gene_cluster_id = query_name |
 
 ### Performance Plan
 - **Execution environment**: Local machine for SQLite analysis (NB01–03); BERDL JupyterHub for Spark queries (NB04 if needed)
@@ -110,6 +112,7 @@ The analysis uses the 51 quinate-specific genes (specificity > 0.5, z-score < -1
   - Complex I may be generally important for aerobic respiration and only appears quinate-specific because other conditions mask the defect
 
 ## Revision History
+- **v2** (2026-02-19): Addressed plan reviewer feedback — specified KO-based cross-species comparison (gene clusters are species-specific), noted ADP1 not in FB, added FB feasibility check to NB01, referenced metal_fitness_atlas methodology
 - **v1** (2026-02-19): Initial plan
 
 ## Authors
