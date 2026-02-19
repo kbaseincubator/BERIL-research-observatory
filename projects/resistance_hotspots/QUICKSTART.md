@@ -132,7 +132,7 @@ LIMIT 100
 
 ### Connection Issues
 - Verify BERDL access at https://hub.berdl.kbase.us
-- Check that `KB_AUTH_TOKEN` is set in `.env` (project root)
+- Check that `KBASE_AUTH_TOKEN` is set in `.env` (project root)
 - Ensure Spark session is active
 
 ### Data Not Found

@@ -22,22 +22,22 @@ from pathlib import Path
 
 
 def load_auth_token():
-    """Load KB_AUTH_TOKEN from .env file."""
+    """Load KBASE_AUTH_TOKEN from .env file."""
     env_path = Path(__file__).parent.parent.parent / '.env'
     if not env_path.exists():
         raise FileNotFoundError(
             f"No .env file found at {env_path}\n"
-            "Please create a .env file with KB_AUTH_TOKEN"
+            "Please create a .env file with KBASE_AUTH_TOKEN"
         )
 
     with open(env_path) as f:
         for line in f:
-            if line.startswith('KB_AUTH_TOKEN'):
-                # Extract token from KB_AUTH_TOKEN="token" or KB_AUTH_TOKEN=token
+            if line.startswith('KBASE_AUTH_TOKEN'):
+                # Extract token from KBASE_AUTH_TOKEN="token" or KBASE_AUTH_TOKEN=token
                 token = line.split('=', 1)[1].strip().strip('"').strip("'")
                 return token
 
-    raise ValueError("KB_AUTH_TOKEN not found in .env file")
+    raise ValueError("KBASE_AUTH_TOKEN not found in .env file")
 
 
 def query_berdl(endpoint, payload, auth_token):
