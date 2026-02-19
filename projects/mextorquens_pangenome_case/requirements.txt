@@ -1,0 +1,12 @@
+# M. extorquens Pangenome Case Study Dependencies
+# Python 3.11+
+
+# Core data analysis
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Visualization
+matplotlib>=3.7.0
+
+# Database/Spark (pre-installed on BERDL JupyterHub)
+# pyspark>=3.4.0

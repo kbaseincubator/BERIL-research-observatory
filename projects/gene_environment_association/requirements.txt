@@ -1,4 +1,4 @@
-# Intraspecies Environmental Variation Dependencies
+# Gene-Environment Association Dependencies
 # Python 3.11+
 
 # Core data analysis
