@@ -60,7 +60,7 @@ The conditions naturally split into two groups: "demanding" (urea, acetate, buta
 - Hierarchical clustering of the 2,034 genes by their 8-condition growth profiles (Ward's method, Euclidean distance on z-scores)
 - Determine optimal number of clusters via silhouette analysis and gap statistic
 - Alternative: NMF decomposition of the (shifted non-negative) growth matrix to find latent factors
-- Functional enrichment of each module: RAST functions (100% coverage), KO terms (57% coverage), PFAM domains (95% coverage)
+- Functional enrichment of each module: RAST functions (100% coverage), KO terms (57% coverage), PFAM domains (95% coverage). Apply Benjamini-Hochberg FDR correction (q<0.05) for multiple testing across all module × category tests. Use `pd.notna()` checks before string operations on annotation columns with partial coverage.
 - Compare modules to known ADP1 pathway structure: do modules correspond to operons, regulons, or metabolic pathways?
 
 **Expected output**: Clustered heatmap, module membership table with functional annotations, enrichment analysis per module.
@@ -87,7 +87,7 @@ The conditions naturally split into two groups: "demanding" (urea, acetate, buta
   - 370 dispensable (unexpected — should have been in the collection)
   - 310 uncertain
 - For the 370 dispensable genes without growth data: compare functional annotations (RAST, KO, PFAM) to the 2,223 dispensable genes WITH growth data
-- Test whether the missing dispensable genes are enriched for specific functions, genomic locations, or gene lengths
+- Test whether the missing dispensable genes are enriched for specific functions, genomic locations, or gene lengths. Apply Benjamini-Hochberg FDR correction for enrichment tests.
 - Check whether the 310 uncertain genes show properties intermediate between essential and dispensable
 
 **Expected output**: Functional comparison table, enrichment tests, characterization of the "missing dispensable" gene set.
@@ -98,7 +98,7 @@ The conditions naturally split into two groups: "demanding" (urea, acetate, buta
 | Table | Purpose | Estimated Rows | Filter Strategy |
 |---|---|---|---|
 | `genome_features` (SQLite) | Growth matrix, TnSeq, annotations | 5,852 | Full scan (small table) |
-| `gene_phenotypes` (SQLite) | Ortholog-transferred FB scores (secondary) | 239,584 | Filter by ADP1 genome_id |
+| `gene_phenotypes` (SQLite) | Per-condition FBA flux predictions — may be used in Aim 3 to compare condition-specific genes with FBA predictions | 239,584 | Filter by ADP1 genome_id |
 
 ### Key Queries
 1. **Growth matrix extraction**:
@@ -127,6 +127,7 @@ WHERE mutant_growth_acetate IS NOT NULL
 ```
 
 ### Performance Plan
+- **Execution environment**: Local machine (no Spark required)
 - **Tier**: Local Python (SQLite + pandas/scipy/sklearn)
 - **Estimated complexity**: Simple — all data fits in memory (<10K rows)
 - **Known pitfalls**:
@@ -149,9 +150,13 @@ WHERE mutant_growth_acetate IS NOT NULL
 - **Goal**: Cluster genes by growth profile, identify functional modules
 - **Expected output**: `data/gene_modules.csv` (gene-to-module assignments), clustered heatmap, module enrichment table, `data/module_enrichment.csv`
 
-### Notebook 4: Condition-Specific Genes and TnSeq Gap Analysis
-- **Goal**: Identify condition-specific genes, characterize TnSeq coverage gaps
-- **Expected output**: `data/condition_specific_genes.csv`, `data/tnseq_gap_analysis.csv`, annotated gene lists, functional comparison of missing vs present dispensable genes
+### Notebook 4: Condition-Specific Genes
+- **Goal**: Identify condition-specific genes, compute specificity scores, annotate per condition
+- **Expected output**: `data/condition_specific_genes.csv`, annotated gene lists per condition, pathway mapping
+
+### Notebook 5: TnSeq Coverage Gap Analysis
+- **Goal**: Characterize TnSeq coverage gaps — which dispensable genes lack growth data and why
+- **Expected output**: `data/tnseq_gap_analysis.csv`, functional comparison of missing vs present dispensable genes
 
 ## Expected Outcomes
 - **If H1 supported**: Carbon source growth profiles cluster into biochemically meaningful groups (e.g., organic acids vs sugars vs aromatic compounds). Gene modules correspond to known metabolic pathways and regulatory units. Condition-specific genes reveal the metabolic specializations of ADP1.
@@ -162,6 +167,7 @@ WHERE mutant_growth_acetate IS NOT NULL
   - Some "condition-specific" effects may reflect assay noise rather than biology
 
 ## Revision History
+- **v2** (2026-02-19): Addressed reviewer feedback — added BH-FDR correction to enrichment methods, specified execution environment, clarified gene_phenotypes table role, split NB04 into two notebooks (condition-specific genes + TnSeq gap analysis)
 - **v1** (2026-02-19): Initial plan
 
 ## Authors
