@@ -785,6 +785,47 @@ Do NOT use `wait` on the PID — this triggers the same output suppression.
 
 ---
 
+## NMDC (`nmdc_arkin`) Pitfalls
+
+### [nmdc_community_metabolic_ecology] Classifier and metabolomics tables use `file_id`, not `sample_id`
+
+**Problem**: `nmdc_arkin.metabolomics_gold`, `kraken_gold`, `centrifuge_gold`, and
+`gottcha_gold` all use `file_id` and `file_name` as their primary identifier — not
+`sample_id`. Queries with `WHERE sample_id = ...` or `COUNT(DISTINCT sample_id)` will throw
+`AnalysisException: UNRESOLVED_COLUMN` and stop notebook execution.
+
+**Solution**: Use `file_id` as the join key for all classifier and metabolomics tables.
+```sql
+-- WRONG
+SELECT COUNT(DISTINCT sample_id) FROM nmdc_arkin.metabolomics_gold
+
+-- CORRECT
+SELECT COUNT(DISTINCT file_id) FROM nmdc_arkin.metabolomics_gold
+```
+
+### [nmdc_community_metabolic_ecology] `taxonomy_features` is a wide-format matrix with numeric column names
+
+**Problem**: `nmdc_arkin.taxonomy_features` does not have a `sample_id` or `file_id` column.
+Its columns are numeric NCBI taxon IDs (e.g., `7`, `11`, `33`, `34`, ...). Attempting to
+`SELECT sample_id FROM taxonomy_features` fails immediately. The table is a pivoted matrix
+where rows are likely samples and columns are taxon abundances.
+
+**Solution**: Do not use `taxonomy_features` for tidy-format joins. Use the classifier tables
+(`kraken_gold`, `centrifuge_gold`, `gottcha_gold`) instead — they are tidy format with
+`file_id`, `rank`, `name`/`label`, and `abundance` columns. Count rows with
+`SELECT COUNT(*) FROM nmdc_arkin.taxonomy_features` to verify the row count matches the
+expected number of samples.
+
+### [nmdc_community_metabolic_ecology] Confirmed `metabolomics_gold` compound annotation columns
+
+The `metabolomics_gold` table has: `kegg` (string — KEGG compound ID), `chebi` (double —
+ChEBI ID), `name` (string — compound name), `inchi`, `inchikey`, `smiles`. Use backtick
+quoting for column names with spaces (e.g., `` `Molecular Formula` ``, `` `Area` ``).
+The `annotation_terms_unified` table is a gene-annotation lookup (COG/EC/GO/KEGG terms) and
+**cannot** be used as a metabolite compound lookup.
+
+---
+
 ## Quick Checklist
 
 Before running a query, verify:
