@@ -55,7 +55,7 @@ habitat types?
 | `centrifuge_gold` | `nmdc_arkin` | Centrifuge classifications | Unknown | Filter by sample |
 | `metabolomics_gold` | `nmdc_arkin` | Measured metabolomics per sample | 3,129,061 | Filter by sample + annotated compounds |
 | `abiotic_features` | `nmdc_arkin` | Environmental measurements (pH, temp, etc.) | ~6,365 | Full scan safe |
-| `annotation_terms_unified` | `nmdc_arkin` | Metabolite name → KEGG/ChEBI lookup | 67,353 | Filter by source |
+| `metabolomics_gold` columns | `nmdc_arkin` | Metabolite KEGG/ChEBI IDs — verify column names in NB01 (annotation_terms_unified stores gene-annotation terms, NOT compound IDs) | — | Inspect in NB01 |
 | `gtdb_species_clade` | `kbase_ke_pangenome` | GTDB taxonomy bridge | 27,690 | Full scan safe |
 | `gapmind_pathways` | `kbase_ke_pangenome` | Pathway completeness per genome | 305,471,280 | Filter by pathway + clade |
 | `pangenome` | `kbase_ke_pangenome` | Per-species aggregate stats | 27,702 | Full scan safe |
@@ -125,7 +125,7 @@ WITH best_scores AS (
                WHEN 'not_present' THEN 1
                ELSE 0 END) as best_score
     FROM kbase_ke_pangenome.gapmind_pathways
-    WHERE metabolic_category = 'aa'
+    WHERE metabolic_category = 'amino_acid'
     GROUP BY clade_name, genome_id, pathway, metabolic_category
 )
 SELECT clade_name, pathway, metabolic_category,
@@ -167,9 +167,24 @@ GROUP BY clade_name, pathway, metabolic_category
   - `data/nmdc_metabolomics_coverage.csv` — per-sample compound counts, annotation rates
   - `figures/nmdc_sample_coverage.png` — Venn diagram of sample overlap and ecosystem type
     distribution
-- **Key decisions**: Which taxonomy table (kraken_gold vs centrifuge_gold vs
+- **Key decisions**: Which taxonomy table (kraken_gold vs centrifuge_gold vs gottcha_gold vs
   taxonomy_features) provides the most species-level resolution? What fraction of metabolomics
-  compounds are annotated with KEGG/ChEBI?
+  compounds carry KEGG/ChEBI compound IDs in their own columns?
+- **Required schema verification steps (first cells of NB01)**:
+  1. `DESCRIBE nmdc_arkin.study_table` — confirm `study_id`, `ecosystem_category`,
+     `ecosystem_type` columns exist before building dependent queries
+  2. `DESCRIBE nmdc_arkin.taxonomy_features` — confirm sample ID format, abundance column
+     name, and whether values are relative abundances or raw read counts (normalization step
+     needed if raw)
+  3. `DESCRIBE nmdc_arkin.metabolomics_gold` — confirm column names for compound IDs
+     (KEGG/ChEBI); `annotation_terms_unified` is a gene-annotation table and cannot serve as
+     a metabolite compound lookup
+  4. Inspect raw `study_id` and `sample_id` values to determine whether sample IDs are
+     actually prefixed with study IDs before building LIKE joins in Query 1
+  5. Compare species-level classification rates across kraken_gold, centrifuge_gold, and
+     gottcha_gold; also check `nmdc_ncbi_biosamples.env_triads_flattened` for structured
+     `env_broad_scale / env_local_scale / env_medium` fields as a supplement for ecosystem
+     type categorization
 
 ### Notebook 02: Taxonomy Bridge — NMDC Taxa to GTDB Species (`02_taxonomy_bridge.ipynb`)
 - **Goal**: Map NMDC taxonomic classifications to GTDB species in `gtdb_species_clade`;
@@ -207,7 +222,8 @@ GROUP BY clade_name, pathway, metabolic_category
 ### Notebook 04: Metabolomics Processing (`04_metabolomics_processing.ipynb`)
 - **Goal**: Extract and normalize NMDC metabolomics data; map compounds to KEGG pathways
   (especially amino acids); merge with community pathway matrix and abiotic features
-- **Requires**: Local (from cached NB01 data)
+- **Requires**: Local (from cached NB01 data) OR Spark if metabolite KEGG mapping requires
+  joining back to BERDL
 - **Expected outputs**:
   - `data/metabolomics_matrix.csv` — per-sample normalized metabolite abundances for
     annotated compounds
@@ -216,6 +232,14 @@ GROUP BY clade_name, pathway, metabolic_category
     + abiotic features, for samples passing bridge coverage threshold
   - `figures/metabolomics_distribution.png` — per-compound abundance distributions by
     ecosystem type
+- **Metabolite lookup note**: Compound-to-KEGG mapping must come from `metabolomics_gold`
+  own columns (to be verified in NB01). `annotation_terms_unified` in `nmdc_arkin` stores
+  COG/EC/GO/KEGG gene-annotation terms, NOT metabolite compound IDs. If metabolomics_gold
+  lacks compound annotations, plan B is to filter by compound name matching (amino acid
+  names via string search).
+- **Abiotic features note**: All columns in `abiotic_features` are string-typed (e.g.,
+  `annotations_ph`, `annotations_temp_has_numeric_value`). CAST to FLOAT before any
+  numeric comparisons or correlations.
 
 ### Notebook 05: Statistical Analysis (`05_statistical_analysis.ipynb`)
 - **Goal**: Test H0, H1, H2; report correlations, partial correlations, and environment-type
