@@ -824,6 +824,32 @@ quoting for column names with spaces (e.g., `` `Molecular Formula` ``, `` `Area`
 The `annotation_terms_unified` table is a gene-annotation lookup (COG/EC/GO/KEGG terms) and
 **cannot** be used as a metabolite compound lookup.
 
+### [nmdc_community_metabolic_ecology] Classifier and metabolomics `file_id` namespaces do not overlap — must bridge through `sample_id`
+
+**Problem**: Joining `nmdc_arkin.centrifuge_gold` (or `kraken_gold`, `gottcha_gold`) directly
+to `nmdc_arkin.metabolomics_gold` on `file_id` always returns **zero rows**. The two table
+sets use non-overlapping `file_id` prefixes:
+- Classifier files: `nmdc:dobj-11-*` (metagenomics workflow outputs)
+- Metabolomics files: `nmdc:dobj-12-*` (metabolomics workflow outputs)
+
+They are different workflow output types for the same biosample and are only linkable through
+the **biosample `sample_id`** (e.g., `nmdc:bsm-11-*`).
+
+**Solution**: Find a `file_id → sample_id` bridge table in `nmdc_arkin` before attempting
+to link classifier and metabolomics data. The `abiotic_features` table uses `sample_id` as
+its primary key; scan all tables in `nmdc_arkin` with `SHOW TABLES` + `DESCRIBE` to find
+any table that has **both** `file_id` and `sample_id` columns. NB02 of
+`nmdc_community_metabolic_ecology` does this scan systematically.
+
+```python
+# Scan all nmdc_arkin tables for file_id + sample_id
+for tbl in all_tables:
+    schema = spark.sql(f'DESCRIBE nmdc_arkin.{tbl}').toPandas()
+    cols = set(schema['col_name'])
+    if 'file_id' in cols and 'sample_id' in cols:
+        print(f'Bridge candidate: {tbl}')
+```
+
 ---
 
 ## Quick Checklist

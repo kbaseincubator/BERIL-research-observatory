@@ -279,6 +279,14 @@ GROUP BY clade_name, pathway, metabolic_category
 
 - **v1** (2026-02-19): Initial plan — NMDC × Pangenome cross-database integration; community
   metabolic ecology via Black Queen hypothesis test
+- **v2** (2026-02-19): NB01 revealed that classifier tables (`centrifuge_gold`, `kraken_gold`,
+  `gottcha_gold`) and `metabolomics_gold` use non-overlapping `file_id` namespaces
+  (`nmdc:dobj-11-*` vs `nmdc:dobj-12-*`) and share **zero direct overlap by file_id**.
+  Pairing requires a `file_id → sample_id` bridge table (to be found in NB02 via full scan
+  of `nmdc_arkin`). The NB02 goal was updated to: (1) find this bridge, (2) enumerate
+  samples with both omics types, then (3) proceed with GTDB species mapping.
+  Centrifuge confirmed as best classifier (61.3% species-rank rows vs 48.9% Kraken,
+  44.1% GOTTCHA). Taxon column for centrifuge is `label` (not `name`).
 
 ## Authors
 
