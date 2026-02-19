@@ -101,6 +101,22 @@ WHERE gtdb_species_clade_id LIKE 's__Escherichia_coli%'
 | `gtdb_species_clade_id` | `s__Genus_species--{representative_genome_id}` | `s__Escherichia_coli--RS_GCF_000005845.2` |
 | `gene_cluster_id` | `{contig}_{number}` or `{prefix}_mmseqsCluster_{number}` | `NZ_CP095497.1_1766` |
 
+### [metabolic_capability_dependency] `gtdb_metadata` NCBI Taxid Column Returns Boolean Strings, Not Numeric IDs
+
+**Problem**: Attempting to join `kescience_fitnessbrowser.organism` to `kbase_ke_pangenome.gtdb_metadata` via NCBI taxonomy IDs returns zero matches. The `ncbi_taxid` (or equivalent) column in `gtdb_metadata` contains the string values `"t"` / `"f"` (boolean tokens) rather than numeric taxonomy IDs.
+
+**Symptom**: A query like:
+```python
+gtdb_metadata_spark.filter(col("ncbi_taxid").isin(fb_taxids))
+```
+returns 0 rows even when the taxids should match, because the stored values are `"t"`/`"f"`, not integers.
+
+**Solution**: Inspect the column values before joining:
+```python
+spark.sql("SELECT ncbi_taxid, COUNT(*) FROM kbase_ke_pangenome.gtdb_metadata GROUP BY ncbi_taxid LIMIT 10").show()
+```
+Use an alternative join key (e.g., organism name string matching or `orgId`-based lookup) or look for a different taxonomy column. In `metabolic_capability_dependency`, the fallback was to match organisms directly by `orgId` without a clade-level link.
+
 ---
 
 ## Data Sparsity Issues
