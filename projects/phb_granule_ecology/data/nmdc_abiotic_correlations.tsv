@@ -1,0 +1,22 @@
+abiotic_variable	n	spearman_rho	p_value
+annotations_ammonium_has_numeric_value	6365		
+annotations_ammonium_nitrogen_has_numeric_value	6365		
+annotations_calcium_has_numeric_value	6365		
+annotations_carb_nitro_ratio_has_numeric_value	6365		
+annotations_chlorophyll_has_numeric_value	6365		
+annotations_conduc_has_numeric_value	6365		
+annotations_depth_has_maximum_numeric_value	6365		
+annotations_depth_has_minimum_numeric_value	6365		
+annotations_depth_has_numeric_value	6365		
+annotations_diss_org_carb_has_numeric_value	6365		
+annotations_diss_oxygen_has_numeric_value	6365		
+annotations_magnesium_has_numeric_value	6365		
+annotations_manganese_has_numeric_value	6365		
+annotations_ph	6365		
+annotations_potassium_has_numeric_value	6365		
+annotations_samp_size_has_numeric_value	6365		
+annotations_soluble_react_phosp_has_numeric_value	6365		
+annotations_temp_has_numeric_value	6365		
+annotations_tot_nitro_content_has_numeric_value	6365		
+annotations_tot_org_carb_has_numeric_value	6365		
+annotations_tot_phosp_has_numeric_value	6365		
