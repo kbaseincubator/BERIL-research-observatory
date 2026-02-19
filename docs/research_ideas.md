@@ -453,6 +453,10 @@
 **Status**: COMPLETED
 **Results**: The 2,034×8 growth matrix reveals a phenotypic continuum (~5 independent dimensions by PCA), not discrete modules (silhouette=0.24). 625 genes (31%) are condition-specific, mapping precisely to expected metabolic pathways: urease for urea, protocatechuate degradation for quinate, Entner-Doudoroff for glucose, glyoxylate shunt for acetate. The 272 missing dispensable genes are shorter, less annotated, and less conserved (76.5% core vs 93.3%, p=1.4e-20). See `projects/adp1_deletion_phenotypes/`.
 
+### [aromatic_catabolism_network] Aromatic Catabolism Support Network in ADP1
+**Status**: COMPLETED
+**Results**: Aromatic catabolism requires a 51-gene support network organized into 4 subsystems: Complex I/NADH reoxidation (21 genes, 41%), aromatic pathway (8), iron acquisition (7), PQQ biosynthesis (2), plus regulation (6). FBA captures 1.76× higher Complex I flux on aromatics but misses the bottleneck (0% essentiality); 30/51 genes lack FBA reaction mappings. Co-fitness analysis assigns 16/23 unknown genes to subsystems, identifying two DUF proteins as candidate Complex I accessory factors (r>0.98). Cross-species data shows the dependency is on high-NADH-flux substrates generally (acetate, succinate show larger Complex I defects than aromatics), not aromatic catabolism exclusively. See `projects/aromatic_catabolism_network/`.
+
 ---
 
 ## Ideas to Discuss / Refine
