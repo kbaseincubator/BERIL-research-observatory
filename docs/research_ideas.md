@@ -457,6 +457,10 @@
 **Status**: COMPLETED
 **Results**: Aromatic catabolism requires a 51-gene support network organized into 4 subsystems: Complex I/NADH reoxidation (21 genes, 41%), aromatic pathway (8), iron acquisition (7), PQQ biosynthesis (2), plus regulation (6). FBA captures 1.76× higher Complex I flux on aromatics but misses the bottleneck (0% essentiality); 30/51 genes lack FBA reaction mappings. Co-fitness analysis assigns 16/23 unknown genes to subsystems, identifying two DUF proteins as candidate Complex I accessory factors (r>0.98). Cross-species data shows the dependency is on high-NADH-flux substrates generally (acetate, succinate show larger Complex I defects than aromatics), not aromatic catabolism exclusively. See `projects/aromatic_catabolism_network/`.
 
+### [respiratory_chain_wiring] Condition-Specific Respiratory Chain Wiring in ADP1
+**Status**: COMPLETED
+**Results**: ADP1's branched respiratory chain (62 genes, 8 subsystems) uses qualitatively different configurations per carbon source: quinate requires only Complex I, acetate requires everything, glucose requires nothing. The paradox (quinate has lower NADH yield but higher Complex I dependency) is resolved by NADH flux rate — concentrated TCA burst from ring cleavage vs distributed production. ADP1 has 3 parallel NADH dehydrogenases (Complex I, NDH-2, ACIAD3522) with non-overlapping condition requirements. Cross-species: NDH-2 presence correlates with smaller Complex I aromatic deficits (mean -0.086 vs -0.505, p=0.24). See `projects/respiratory_chain_wiring/`.
+
 ---
 
 ## Ideas to Discuss / Refine
