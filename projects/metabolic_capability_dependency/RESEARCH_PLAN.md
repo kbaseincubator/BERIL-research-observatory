@@ -32,14 +32,22 @@ Within-species pathway heterogeneity defines metabolic ecotypes. Genomes from th
 - Aggregate to genome level: count complete pathways (score ≥ 5) per genome
 - Output: `data/gapmind_genome_pathways.csv` (genome_id, pathway, best_score, is_complete)
 
-**NB02: Map Pathways to Fitness Genes** (local)
-- Load FB-pangenome link table: `projects/conservation_vs_fitness/data/fb_pangenome_link.tsv`
-- Join GapMind genes with link table to get FB `(orgId, locusId)` pairs
-- For each organism with pathway + fitness data:
-  - Extract gene-level fitness scores from `genefitness` table
-  - Compute pathway-level fitness metrics: mean |t-score|, max |t-score|, % essential genes
-  - Infer essentiality: genes in `gene` table (type='1') but NOT in `genefitness`
-- Output: `data/pathway_fitness_mappings.csv` (orgId, pathway, n_genes, n_essential, mean_abs_t)
+**NB02: Map Pathways to Fitness Genes** (JupyterHub + Spark)
+
+> **Implementation note**: The original plan used `projects/conservation_vs_fitness/data/fb_pangenome_link.tsv`
+> for gene-to-pathway mapping. This was replaced by a SEED subsystem keyword approach (see README.md).
+> An attempt to match FB organisms to GapMind clades via NCBI taxonomy IDs returned zero matches
+> because the `gtdb_metadata` taxid column contained boolean strings; organisms are matched by `orgId` directly.
+
+Actual implementation:
+- Query `kescience_fitnessbrowser.seedannotation` for all SEED role descriptions
+- Map GapMind pathway names → SEED keywords using a curated keyword dictionary (`PATHWAY_SEED_KEYWORDS`)
+- For each (organism, pathway) pair with matching SEED genes:
+  - Extract fitness scores from `genefitness`: mean/max/median |t-score|
+  - Identify essential genes: protein-coding genes (type='1' in `gene`) absent from `genefitness`
+  - Compute: n_seed_genes, n_with_fitness, n_essential, pct_essential, mean/max/median_abs_t
+- Four pathways excluded (no SEED keyword matches): phenylalanine, tyrosine, deoxyribonate, myoinositol
+- Output: `data/pathway_fitness_metrics.csv` (orgId, pathway, pathway_category, fitness metrics)
 
 ### Phase 2: Pathway Classification (NB03)
 

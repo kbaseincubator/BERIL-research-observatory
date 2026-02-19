@@ -8,21 +8,23 @@
 
 Across 1,695 pathway-organism pairs from 48 organisms, **15.8% of genomically complete pathways were classified as latent capabilities** — pathways the genome encodes but that show no detectable fitness importance under tested conditions (mean |t-score| < 1.0, < 5% essential genes). An additional 32.3% fell in an intermediate zone.
 
-Pathway category strongly predicted dependency class (χ²=144.1, df=4, p=3.7×10⁻³⁰). Carbon source utilization pathways were most likely to be latent (33.1% latent, 27.9% active), while amino acid biosynthesis pathways were predominantly active (59.0% active, 9.5% latent). "Other" category pathways fell between (19.1% latent, 53.6% active).
+Pathway category strongly predicted dependency class (χ²=163.6, df=4, p=2.5×10⁻³⁴). Carbon source utilization pathways were most likely to be latent (24.3% latent, 39.8% active), while amino acid biosynthesis pathways were predominantly active (63.5% active, 6.5% latent). "Other" category pathways were rarely latent (2.9% latent, 86.8% active).
 
-The latent fraction varied substantially across organisms (range 0–31.6%, mean 15.0%), with *Pseudomonas syringae* strains and *Klebsiella oxytoca* showing the highest proportions.
+The latent fraction varied substantially across organisms (range 0–31.6%, mean 15.0%), with *Pseudomonas syringae* strains and *Klebsiella michiganensis* showing the highest proportions.
 
 *(Notebooks: 02_map_pathways_to_fitness.ipynb, 03_classify_pathway_dependencies.ipynb)*
 
 ---
 
-### H2 Not Supported: Latent Capabilities Are Not Less Conserved Than Active Dependencies
+### H2 Mixed: Pathway-Level Conservation Undifferentiated; Pangenome Openness Correlated with Latent Rate
 
 ![Pathway conservation by dependency class](figures/nb04_conservation_boxplot.png)
 
 ![Conservation CDF by dependency class](figures/nb04_conservation_cdf.png)
 
-The Black Queen Hypothesis predicts that latent capabilities — complete but fitness-neutral pathways — should show lower genomic conservation, as they are candidates for future gene loss. **This prediction was not supported.** Conservation rates (fraction of species genomes carrying a complete pathway) were:
+The Black Queen Hypothesis (H2) was tested at two levels, with contrasting outcomes:
+
+**H2a — Pathway-level conservation (not supported).** Conservation rates (fraction of species genomes carrying a complete pathway) did not differ between latent capabilities and active dependencies:
 
 | Dependency Class | n | Mean conservation | Median |
 |---|---|---|---|
@@ -30,7 +32,11 @@ The Black Queen Hypothesis predicts that latent capabilities — complete but fi
 | Intermediate | 508 | 0.907 | 1.000 |
 | Latent capability | 248 | 0.869 | 1.000 |
 
-Latent capabilities showed slightly *higher* conservation than active dependencies (Mann-Whitney U, p = 0.94 for active > latent). The result is not statistically significant in either direction.
+Latent capabilities showed slightly *higher* mean conservation than active dependencies (Mann-Whitney U, p = 0.94 for active > latent; rank-biserial r = 0.052). H2a is not supported.
+
+**H2b — Pangenome openness (supported).** After aggregating 41 organisms to 22 unique species clades (to ensure independence — multiple Fitness Browser strains from the same clade share a single pangenome openness value), the fraction of latent capabilities per clade correlated positively with pangenome openness (Spearman ρ = 0.69, p = 0.0004, n = 22 clades). Clades with more fitness-neutral complete pathways tend to have more dynamic, less-conserved pangenomes — consistent with the Black Queen framework at the species level.
+
+![Pangenome openness vs latent capability rate](figures/nb04_openness_scatter.png)
 
 *(Notebook: 04_black_queen_test.ipynb)*
 
@@ -86,13 +92,15 @@ Pathways were classified as:
 - **Latent capability**: mean |t-score| < 1.0 AND <5% essential genes
 - **Intermediate**: between thresholds
 
+**Threshold sensitivity**: Varying the active threshold ±25% (1.5–2.5) and latent threshold ±25% (0.75–1.25), the latent fraction ranged from 4.7% to 21.1% (SD = 5.9 percentage points across 16 threshold combinations). At the default thresholds the result is 15.8%. The large intermediate zone (32.3%) means the latent fraction is moderately sensitive to threshold tightening. The qualitative conclusion — that a non-trivial fraction of complete pathways are fitness-neutral, with carbon pathways most affected — holds across the full range tested.
+
 ### Pathway Category Breakdown
 
 | Category | Active | Intermediate | Latent | Total |
 |---|---|---|---|---|
-| Amino acid biosynthesis | 627 (59.0%) | 336 (31.6%) | 101 (9.5%) | 1,064 |
-| Carbon source utilization | 91 (27.9%) | 127 (38.9%) | 108 (33.1%) | 326 |
-| Other | 163 (53.6%) | 84 (27.6%) | 58 (19.1%) | 305 |
+| Amino acid biosynthesis | 467 (63.5%) | 220 (29.9%) | 48 (6.5%) | 735 |
+| Carbon source utilization | 355 (39.8%) | 320 (35.9%) | 217 (24.3%) | 892 |
+| Other | 59 (86.8%) | 7 (10.3%) | 2 (2.9%) | 68 |
 | **Total** | **881 (51.9%)** | **547 (32.3%)** | **267 (15.8%)** | **1,695** |
 
 ![Scatter: mean |t-score| vs. % essential genes](figures/nb03_scatter.png)
@@ -101,9 +109,11 @@ Pathways were classified as:
 
 ### Pangenome Openness Context
 
-Pangenome openness data was queried for 7,334 species from `kbase_ke_pangenome.pangenome`. Among well-sampled pathogens (>2,500 genomes), *Klebsiella pneumoniae* was most open (99.05% open; 0.95% core genes), while *Mycobacterium tuberculosis* was most closed (97.4% open; 2.6% core genes). These serve as reference points for interpreting gene conservation in the Black Queen analysis.
+Pangenome openness data was queried for 7,334 species from `kbase_ke_pangenome.pangenome`. Among well-sampled pathogens (>2,500 genomes), *Klebsiella pneumoniae* was most open (99.05% open; 0.95% core genes), while *Mycobacterium tuberculosis* was most closed (97.4% open; 2.6% core genes). Among 22 species clades with fitness data and matched pangenome data (41 organisms aggregated to unique clades), latent capability rate and pangenome openness were positively correlated (Spearman ρ = 0.69, p = 0.0004).
 
-![Pangenome openness scatter](figures/nb04_openness_scatter.png)
+### Excluded Pathways
+
+Two GapMind pathways had no matching SEED subsystem role descriptions and are absent from all analyses: **deoxyribonate** and **myoinositol**. The full-name GapMind entries **phenylalanine** and **tyrosine** also lacked SEED coverage, but their 3-letter equivalents (`phe` and `tyr`) are present via abbreviation-based matching and are included. The pathway **alanine** appears in fitness metrics but was excluded from classification for all organisms due to fewer than 3 SEED-annotated genes meeting the minimum coverage threshold.
 
 ---
 
@@ -111,13 +121,15 @@ Pangenome openness data was queried for 7,334 species from `kbase_ke_pangenome.p
 
 ### H1: Latent Capabilities Are Real and Pathway-Type Dependent
 
-The 15.8% global latent fraction confirms that genomic completeness alone is an imperfect proxy for functional importance. The striking difference between carbon utilization (33.1% latent) and amino acid biosynthesis (9.5% latent) reflects the distinct selective pressures on these pathway types.
+The 15.8% global latent fraction confirms that genomic completeness alone is an imperfect proxy for functional importance. The striking difference between carbon utilization (24.3% latent) and amino acid biosynthesis (6.5% latent) reflects the distinct selective pressures on these pathway types.
 
 Amino acid biosynthesis pathways are largely essential: they supply fundamental building blocks, and organisms cannot simply scavenge all amino acids from the environment in all growth conditions tested. Carbon source utilization pathways, by contrast, are highly condition-dependent — a pathway for utilizing deoxyribose or ethanol may be encoded but never activated in a lab setting, making it appear latent even if ecologically important. This interpretation is consistent with Ramoneda et al. (2023), who found that amino acid auxotrophies are taxonomically widespread but concentrated in nutrient-rich environments (e.g., host-associated organisms), and with D'Souza et al. (2014), who showed that biosynthetic gene loss provides a ~13% fitness benefit when metabolites are available from neighbors.
 
-### H2: Conservation Does Not Differentiate Latent Capabilities — Possible Explanations
+### H2: Mixed Results — Pangenome Openness Supports the Black Queen Framework; Pathway Conservation Does Not
 
-The failure to detect lower conservation in latent capabilities likely reflects one or more methodological constraints:
+The positive correlation between per-clade latent capability rate and pangenome openness (ρ = 0.69, p = 0.0004, n = 22 clades, H2b) provides clade-level support for the Black Queen framework: bacterial clades that carry more fitness-neutral complete pathways also have more dynamic pangenomes, consistent with ongoing streamlining. However, at the pathway level, conservation rates did not distinguish latent from active pathways (H2a). This divergence suggests that the Black Queen signal operates at the level of genome dynamics and community context, rather than being detectable in per-pathway cross-genome conservation ratios.
+
+The failure to detect lower pathway-level conservation in latent capabilities likely also reflects methodological constraints:
 
 1. **Measurement granularity**: `conservation_rate` here captures whether the pathway is complete in each genome in the species clade. This is a coarse measure — it does not detect partial gene erosion (individual gene deletions within an otherwise complete pathway).
 
@@ -141,13 +153,13 @@ The most variable pathways — valine/leucine (0.60), tryptophan (0.51), lysine/
 
 - **H1 aligns with** D'Souza et al. (2014), who showed biosynthetic gene loss carries a fitness benefit when metabolites are exogenously available, suggesting many "complete" pathways in nutrient-rich environments may already be functionally neutral.
 - **H1 aligns with** Ramoneda et al. (2023), who mapped amino acid auxotrophies across >26,000 genomes using GapMind and found that auxotrophies cluster in nutrient-rich, host-associated environments — consistent with carbon-pathway latency in copiotrophic organisms.
-- **H2 contrasts with** Morris et al. (2012) (Black Queen Hypothesis), who observed gene loss in *Prochlorococcus* and *Pelagibacter* driven by selection rather than drift, suggesting the BERDL analysis may need gene-level rather than pathway-level conservation measurement to detect this signal.
-- **H2 aligns with** Schakel et al. (2025), who showed that cross-feeding-based gene loss requires spatial structuring and is not straightforwardly predicted by the fitness cost of gene retention alone, suggesting the simple conservation-rate metric may be insufficient.
+- **H2b aligns with** Morris et al. (2012) (Black Queen Hypothesis), who proposed that gene loss in *Prochlorococcus* and *Pelagibacter* is driven by selection; the positive ρ = 0.69 correlation between latent fraction and pangenome openness (across 22 independent species clades) is consistent with this clade-level dynamic.
+- **H2a (pathway-level) aligns with** Schakel et al. (2025), who showed that cross-feeding-based gene loss requires spatial structuring and is not straightforwardly predicted by the fitness cost of gene retention alone — consistent with why simple conservation-rate ratios do not discriminate latent from active pathways.
 - **H3 aligns with** Tschoeke et al. (2020) (Prochlorococcus collective) and Nowinski et al. (2023), which both describe metabolic ecotypes within marine bacterial species defined by gene content differences — consistent with the pathway-based clustering observed here.
 
 ### Novel Contribution
 
-This analysis provides, to our knowledge, the first systematic quantification of the **latent capability fraction** — complete-but-fitness-neutral pathways — across a diverse set of bacterial species using genome-wide fitness data. The finding that carbon source utilization pathways are 3.5× more likely to be latent than amino acid biosynthesis pathways is a specific, testable prediction: organisms in nutrient-rich environments should disproportionately lose carbon-pathway genes over evolutionary time, while amino acid biosynthesis genes are retained under stronger purifying selection.
+This analysis provides, to our knowledge, the first systematic quantification of the **latent capability fraction** — complete-but-fitness-neutral pathways — across a diverse set of bacterial species using genome-wide fitness data. The finding that carbon source utilization pathways are 3.7× more likely to be latent than amino acid biosynthesis pathways (24.3% vs 6.5%) is a specific, testable prediction: organisms in nutrient-rich environments should disproportionately lose carbon-pathway genes over evolutionary time, while amino acid biosynthesis genes are retained under stronger purifying selection.
 
 ### Limitations
 
@@ -156,6 +168,7 @@ This analysis provides, to our knowledge, the first systematic quantification of
 - **Conservation measurement is pathway-level, not gene-level**: cannot detect partial pathway erosion or progressive gene loss within a pathway.
 - **Ecotype analysis is observational**: the environment-cluster correlations in *Salmonella* and *Phenylobacterium* suggest causal links to ecological selection, but confounding by phylogenetic structure is possible without explicit phylogenetic correction.
 - **48-organism fitness coverage** is a small fraction of the 293,000 genomes with pathway predictions; results may not generalize to all taxonomic groups.
+- **NB02 organism-to-clade taxonomy matching failed**: an attempt to link Fitness Browser organisms to GapMind species clades via NCBI taxonomy IDs from `kbase_ke_pangenome.gtdb_metadata` returned zero matches because the relevant column contained boolean strings rather than numeric taxids. Downstream analyses therefore use organism-level fitness aggregates without an explicit clade-level linkage, which may reduce the precision of the H2a conservation comparison.
 
 ---
 
@@ -181,7 +194,7 @@ This analysis provides, to our knowledge, the first systematic quantification of
 | `data/pathway_heterogeneity.csv` | 800 | Per-(species, pathway) heterogeneity scores for 10 target species |
 | `data/metabolic_ecotypes.csv` | 12,018 | Genome cluster assignments with PCA coordinates |
 | `data/ecotype_cluster_summary.csv` | 10 | Clustering quality (silhouette, k) per species |
-| `data/pathway_cluster_signatures.csv` | — | Pathway markers distinguishing each ecotype |
+| `data/pathway_cluster_signatures.csv` | 370 | Pathway markers distinguishing each ecotype (chi-square, Bonferroni-corrected p-values, rate range per cluster) |
 
 ---
 
@@ -206,7 +219,7 @@ This analysis provides, to our knowledge, the first systematic quantification of
 | `figures/nb03_organism_overview.png` | Per-organism breakdown of active vs latent pathway counts |
 | `figures/nb04_conservation_boxplot.png` | Box plot: conservation rate by dependency class |
 | `figures/nb04_conservation_cdf.png` | CDF of conservation rates by dependency class |
-| `figures/nb04_openness_scatter.png` | Pangenome openness vs. species genome count |
+| `figures/nb04_openness_scatter.png` | Pangenome openness vs. per-clade latent capability rate (Spearman ρ=0.69, p=0.0004, n=22 clades) |
 | `figures/nb05_pathway_heterogeneity.png` | Top 30 most variable pathways across target species |
 | `figures/nb05_pca_all_species.png` | PCA of pathway profiles for all 10 target species, colored by cluster |
 | `figures/nb05_heatmap_*.png` | Clustered heatmaps (genomes × pathways) for each of the 10 target species |

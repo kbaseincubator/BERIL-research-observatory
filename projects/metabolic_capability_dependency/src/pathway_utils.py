@@ -178,22 +178,38 @@ def categorize_pathway(pathway_name: str) -> str:
     """
     pathway_lower = pathway_name.lower()
 
-    # Amino acid biosynthesis/catabolism
-    amino_acids = [
-        'arg', 'his', 'ile', 'leu', 'lys', 'met', 'phe', 'thr', 'trp', 'val',
-        'ala', 'asn', 'asp', 'cys', 'gln', 'glu', 'gly', 'pro', 'ser', 'tyr'
-    ]
-    if any(aa in pathway_lower for aa in amino_acids):
-        return 'amino_acid'
-
-    # Carbon source utilization
-    carbon_sources = [
-        'glucose', 'fructose', 'galactose', 'lactose', 'maltose', 'sucrose',
-        'arabinose', 'xylose', 'ribose', 'mannose', 'acetate', 'lactate',
-        'pyruvate', 'citrate', 'succinate', 'fumarate', 'malate'
-    ]
-    if any(carbon in pathway_lower for carbon in carbon_sources):
+    # Carbon source utilization — checked FIRST to prevent amino-acid substring
+    # false positives (e.g. 'glu' in glucose, 'ala' in galactose/malate,
+    # 'gly' in glycerol, 'pro' in propionate, 'phe' in phenylacetate).
+    # Uses exact set membership so new entries must be added explicitly.
+    carbon_sources = {
+        '2-oxoglutarate', '4-hydroxybenzoate', 'd-alanine', 'd-lactate', 'd-serine',
+        'l-lactate', 'l-malate', 'nag', 'acetate', 'arabinose', 'cellobiose',
+        'citrate', 'deoxyinosine', 'deoxyribose', 'ethanol', 'fructose', 'fucose',
+        'fumarate', 'galactose', 'galacturonate', 'gluconate', 'glucosamine',
+        'glucose', 'glucose-6-p', 'glucuronate', 'glycerol', 'lactose', 'maltose',
+        'mannitol', 'mannose', 'phenylacetate', 'propionate', 'putrescine',
+        'pyruvate', 'rhamnose', 'ribose', 'sorbitol', 'succinate', 'sucrose',
+        'thymidine', 'trehalose', 'xylitol', 'xylose',
+    }
+    if pathway_lower in carbon_sources:
         return 'carbon'
+
+    # Amino acid biosynthesis/catabolism.
+    # Three-letter codes: exact match only (the pathway name IS the code).
+    # Full names: substring match is safe because carbon sources are excluded above.
+    aa_three_letter = {
+        'ala', 'arg', 'asn', 'asp', 'cys', 'gln', 'glu', 'gly', 'his',
+        'ile', 'leu', 'lys', 'met', 'phe', 'pro', 'ser', 'thr', 'trp', 'tyr', 'val',
+    }
+    aa_full_names = [
+        'alanine', 'arginine', 'asparagine', 'aspartate', 'cysteine',
+        'glutamine', 'glutamate', 'glycine', 'histidine', 'isoleucine',
+        'leucine', 'lysine', 'methionine', 'phenylalanine', 'proline',
+        'serine', 'threonine', 'tryptophan', 'tyrosine', 'valine',
+    ]
+    if pathway_lower in aa_three_letter or any(aa in pathway_lower for aa in aa_full_names):
+        return 'amino_acid'
 
     # Cofactor biosynthesis
     cofactors = [
