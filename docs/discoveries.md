@@ -87,6 +87,10 @@ Each of ADP1's 8 carbon sources requires a distinct set of respiratory chain com
 
 Quinate produces fewer NADH per carbon (0.57) than glucose (1.50), yet Complex I is more essential on quinate. The resolution: β-ketoadipate pathway products (succinyl-CoA + acetyl-CoA) enter the TCA cycle simultaneously, creating a concentrated NADH burst that exceeds NDH-2's reoxidation capacity. Glucose distributes NADH across Entner-Doudoroff + TCA steps where NDH-2 suffices.
 
+### [respiratory_chain_wiring] Respiratory chain wiring is metabolic, not transcriptional
+
+Proteomics shows all three NADH dehydrogenases are expressed at similar levels under standard conditions: Complex I mean 27.6 (66th percentile), NDH-2 27.0 (59th), ACIAD3522 26.2 (48th) — all within 1.4 units of each other around the genome median (26.4). The cell doesn't switch respiratory configurations by regulating dehydrogenase expression. Instead, all three run simultaneously and the one that becomes limiting depends on the NADH flux rate from the carbon source. This is a passive, flux-based wiring system rather than an active regulatory switch.
+
 ### [respiratory_chain_wiring] ADP1 has three NADH dehydrogenases with non-overlapping condition requirements
 
 Complex I (13 subunits, proton-pumping): quinate-essential, glucose-dispensable. NDH-2 (1 subunit, non-pumping): no growth data but predicted backup for glucose. ACIAD3522 (NADH-FMN oxidoreductase): acetate-lethal (0.013), quinate-fine (1.39). Each handles a different metabolic regime — division of labor in electron transport.
