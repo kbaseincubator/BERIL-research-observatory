@@ -541,14 +541,30 @@ class RepositoryParser:
                 if not plain:
                     continue
                 plain_text = plain.group(1).strip()
-                # Extract ORCID URL if present
+                # Extract ORCID if present
                 orcid = None
-                orcid_url_match = re.search(
-                    r"\(https://orcid\.org/([\d-]+)\)", plain_text
+                # Full pattern: (ORCID: [id](url)) or (ORCID: id)
+                orcid_paren_match = re.search(
+                    r"\(ORCID:\s*\[?([\d-]+)\]?(?:\([^)]*\))?\)",
+                    plain_text,
                 )
-                if orcid_url_match:
-                    orcid = orcid_url_match.group(1)
-                    plain_text = plain_text[: orcid_url_match.start()].strip().rstrip(",")
+                if orcid_paren_match:
+                    orcid = orcid_paren_match.group(1)
+                    plain_text = (
+                        plain_text[: orcid_paren_match.start()]
+                        + plain_text[orcid_paren_match.end() :]
+                    ).strip().strip(",").strip()
+                else:
+                    # Bare URL fallback: (https://orcid.org/id)
+                    orcid_url_match = re.search(
+                        r"\(https://orcid\.org/([\d-]+)\)", plain_text
+                    )
+                    if orcid_url_match:
+                        orcid = orcid_url_match.group(1)
+                        plain_text = (
+                            plain_text[: orcid_url_match.start()]
+                            + plain_text[orcid_url_match.end() :]
+                        ).strip().strip(",").strip()
                 # Split by comma: first part is name, rest is affiliation
                 parts = [p.strip() for p in plain_text.split(",", 1)]
                 name = parts[0]
