@@ -1,0 +1,37 @@
+# Data files (except small summaries)
+data/*.csv
+data/*.tsv
+data/*.parquet
+!data/README.md
+
+# Large figures
+figures/*.tif
+figures/*.svg
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Environment
+.env
+.venv
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
