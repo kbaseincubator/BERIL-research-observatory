@@ -179,25 +179,29 @@ Present a structured recommendation to the user:
 {2–3 sentence summary of the alternative and why it was ranked second}
 ```
 
-### Step 11: Offer to Register the Idea
+### Step 11: Offer to Register and Start the Idea
 
 After presenting the recommendation, ask:
 
-> "Would you like me to add this to `docs/research_ideas.md` as a new PROPOSED entry? I can also draft a project directory scaffold under `projects/{suggested_id}/` with a README.md and RESEARCH_PLAN.md."
+> "Would you like me to register this in `docs/research_ideas.md` and start it as a new project?"
+
+**Rules for `research_ideas.md`:**
+- **Only append new entries.** Never edit, reformat, or modify existing sections or entries.
+- If the recommendation is largely an update or extension of an existing project or PROPOSED idea, note the relationship in the new entry's summary (e.g., "Extends `{project_id}`" or "Builds on PROPOSED idea `{idea_title}`") but do not alter the original entry.
 
 If yes:
 
-1. **Add to research_ideas.md**: Append the new entry under the appropriate priority section using the standard format matching existing entries (Status, Priority, Effort, Research Question, Approach, Hypotheses, Impact, Dependencies, Location)
-2. **Scaffold the project (optional)**: If the user confirms, create `projects/{suggested_id}/README.md` with the Research Question and Status: IN PROGRESS, and `projects/{suggested_id}/RESEARCH_PLAN.md` with the hypothesis and approach from the recommendation
+1. **Add to research_ideas.md**: Append the new entry at the bottom of the file using the standard format matching existing entries (Status: PROPOSED, Priority, Effort, Research Question, Approach, Hypotheses, Impact, Dependencies, Location). Do not modify any existing content.
+2. **Start the project**: Invoke `/berdl_start` to scaffold and begin the new project, using the confirmed research idea (title, research question, hypotheses, approach, and data sources from Step 10) as the starting context for ideation.
 
 If no, leave no files modified.
 
 ## Integration
 
 - **Reads from**: `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `projects/*/README.md`, `projects/*/REPORT.md`
-- **Calls**: `/literature-review` (Step 9, for novelty check on top candidate)
-- **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry), `projects/{id}/README.md`, `projects/{id}/RESEARCH_PLAN.md`
-- **Consumed by**: `/berdl_start` (new project path), `/literature-review`, `/synthesize`
+- **Calls**: `/literature-review` (Step 9, for novelty check on top candidate); `/berdl_start` (Step 11, if user confirms the idea)
+- **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry only — never edits existing entries)
+- **Consumed by**: `/literature-review`, `/synthesize`
 
 ## Pitfall Detection
 
