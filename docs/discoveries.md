@@ -79,6 +79,26 @@ Multi-function genes with composite COG assignments (e.g., "LV" = mobile+defense
 
 ## 2026-02
 
+### [aromatic_catabolism_network] Aromatic catabolism requires 7× more support genes than pathway genes
+
+The β-ketoadipate pathway in ADP1 has 8 core genes, but 51 genes total show quinate-specific growth defects — a 7:1 support-to-pathway ratio. The support genes organize into 3 biochemically rational subsystems: Complex I (21 genes, NADH reoxidation), iron acquisition (7 genes, Fe²⁺ for ring-cleavage dioxygenase), and PQQ biosynthesis (2 genes, cofactor for quinate dehydrogenase). This quantifies a general principle: the metabolic infrastructure required to run a pathway dwarfs the pathway itself.
+
+### [aromatic_catabolism_network] FBA models miss 59% of condition-specific essential genes
+
+Of the 51 quinate-specific genes, 30 (59%) have no FBA reaction mappings — PQQ biosynthesis, iron acquisition, transcriptional regulators, and respiratory chain components are invisible to the metabolic model. For Complex I specifically, FBA predicts 1.76× higher flux on aromatics but 0% essentiality, because FBA's linear programming cannot represent the threshold effect of losing a single subunit from a multi-subunit complex.
+
+### [aromatic_catabolism_network] Complex I dependency is on NADH flux, not aromatic chemistry
+
+Cross-species ortholog-transferred fitness data shows Complex I defects are largest on acetate (-1.55 vs background) and succinate (-1.39), not aromatics. ADP1's quinate-specificity likely reflects an alternative NADH dehydrogenase (NDH-2) that compensates on lower-NADH-flux substrates. The "aromatic support network" is really a "high-NADH-flux bottleneck network."
+
+### [aromatic_catabolism_network] Two DUF proteins are candidate Complex I accessory factors
+
+ACIAD3137 (UPF0234/YitK) and ACIAD2176 (DUF2280) correlate at r > 0.98 with Complex I genes across 8 growth conditions. Both lack FBA reaction mappings and have no assigned metabolic function. Their near-perfect co-fitness with the nuo operon suggests physical or regulatory association with Complex I.
+
+### [adp1_deletion_phenotypes] ADP1 phenotype landscape is a continuum, not discrete modules
+
+Hierarchical clustering of 2,034 genes by their 8-condition growth profiles produces an optimal K=3 with silhouette=0.24 — no discrete functional modules. The phenotype landscape is a gradient, with one exception: 24 genes form a tight quinate-specific module (the aromatic degradation pathway). Gene essentiality varies continuously across conditions, supporting the Guzman et al. (2018) "adaptive flexibility" framework.
+
 ### [fitness_modules] ICA reliably decomposes fitness data into biologically coherent modules
 
 Robust ICA (30-50 FastICA runs + DBSCAN clustering) consistently finds 17-52 stable modules per organism across 32 bacteria. 94.2% of modules show significantly elevated within-module cofitness (Mann-Whitney U, p < 0.05; mean |r| = 0.34 vs background 0.12). Genomic adjacency enrichment averages 22.7× across organisms, confirming modules capture operon-like co-regulated gene groups.

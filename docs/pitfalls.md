@@ -730,6 +730,45 @@ GROUP BY clade_name
 
 ---
 
+### [aromatic_catabolism_network] Keyword-based gene categorization is fragile — use co-fitness to validate
+
+**Problem**: Categorizing genes by keyword matching on RAST function descriptions (e.g., `if 'protocatechuate' in func.lower()`) misclassifies enzymes with non-obvious names. ACIAD1710 (4-carboxymuconolactone decarboxylase, EC 4.1.1.44) is a core pca pathway enzyme but was classified as "Other" because the keyword list checked for "muconate" but not "muconolactone."
+
+**Solution**: Use keyword-based categorization as an initial pass, then validate with co-fitness correlations. In this case, co-fitness analysis correctly recovered pcaC (r=0.978 with the Aromatic pathway). When writing keyword classifiers for gene functions, test them against known members of each category and add missing synonyms.
+
+### [aromatic_catabolism_network] NotebookEdit can create invalid cells missing 'outputs' field
+
+**Problem**: Using the `NotebookEdit` tool to replace a code cell's content can produce a cell without the required `outputs` and `execution_count` fields. `jupyter nbconvert --execute` then fails with `NotebookValidationError: 'outputs' is a required property`.
+
+**Solution**: After using `NotebookEdit` on code cells, verify the notebook JSON is valid. Fix missing fields with:
+```python
+import json
+with open('notebook.ipynb') as f:
+    nb = json.load(f)
+for cell in nb['cells']:
+    if cell['cell_type'] == 'code':
+        cell.setdefault('outputs', [])
+        cell.setdefault('execution_count', None)
+with open('notebook.ipynb', 'w') as f:
+    json.dump(nb, f, indent=1)
+```
+
+### [aromatic_catabolism_network] Claude Code 2.1.47 Bash tool swallows output when waiting on `claude` subprocess
+
+**Problem**: In Claude Code version 2.1.47, running `claude -p` as a foreground command (or backgrounded with `wait`) in the Bash tool causes ALL output to be suppressed — including `echo` statements that precede the `claude` invocation. The `claude -p` process runs and produces correct output, but the Bash tool discards it. This worked correctly in 2.1.45.
+
+**Workaround**: Launch `claude -p` in the background with file redirection, return immediately, then read the output file in a separate Bash call:
+```bash
+env -u CLAUDECODE claude -p --no-session-persistence ... > /tmp/output.txt 2>&1 &
+echo "PID=$!"
+# In a separate Bash call:
+cat /tmp/output.txt
+```
+
+Do NOT use `wait` on the PID — this triggers the same output suppression.
+
+---
+
 ## Quick Checklist
 
 Before running a query, verify:
