@@ -62,4 +62,4 @@ Notebooks 04–05 run locally from cached CSV outputs.
 
 ## Authors
 
-TBD
+- **Christopher Neely** | ORCID: 0000-0002-2620-8948 | Author
