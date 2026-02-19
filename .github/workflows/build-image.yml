@@ -4,9 +4,21 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'ui/**'
+      - 'projects/**'
+      - 'docs/**'
+      - 'Dockerfile'
+      - '.github/workflows/build-image.yml'
   pull_request:
     branches:
       - main
+    paths:
+      - 'ui/**'
+      - 'projects/**'
+      - 'docs/**'
+      - 'Dockerfile'
+      - '.github/workflows/build-image.yml'
   workflow_dispatch:
 
 env:

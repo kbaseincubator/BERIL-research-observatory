@@ -457,6 +457,22 @@
 **Status**: COMPLETED
 **Results**: H0 not rejected (p=0.83). Environmental species (n=37, median partial corr 0.051) do NOT show stronger env-gene content correlations than human-associated species (n=93, median 0.084). 47% of ecotype species are human-associated by genome-level classification. The clinical bias does not explain the weak environment signal — phylogeny dominates regardless of sample environment. See `projects/ecotype_env_reanalysis/`.
 
+### [acinetobacter_adp1_explorer] ADP1 Triple Essentiality Concordance
+**Status**: COMPLETED
+**Results**: FBA essentiality class does not predict growth defects among TnSeq-dispensable genes (chi-squared p=0.63, robust across Q10–Q35 thresholds, Kruskal-Wallis p=0.43). Aromatic degradation genes are the primary source of FBA-growth discordance (OR=9.7, q=0.012), pointing to FBA model environmental assumptions as the main error source. 70% of genes show condition-specific growth defects, supporting the "adaptive flexibility" framework. See `projects/adp1_triple_essentiality/`.
+
+### [adp1_deletion_phenotypes] ADP1 Deletion Collection Phenotype Analysis
+**Status**: COMPLETED
+**Results**: The 2,034×8 growth matrix reveals a phenotypic continuum (~5 independent dimensions by PCA), not discrete modules (silhouette=0.24). 625 genes (31%) are condition-specific, mapping precisely to expected metabolic pathways: urease for urea, protocatechuate degradation for quinate, Entner-Doudoroff for glucose, glyoxylate shunt for acetate. The 272 missing dispensable genes are shorter, less annotated, and less conserved (76.5% core vs 93.3%, p=1.4e-20). See `projects/adp1_deletion_phenotypes/`.
+
+### [aromatic_catabolism_network] Aromatic Catabolism Support Network in ADP1
+**Status**: COMPLETED
+**Results**: Aromatic catabolism requires a 51-gene support network organized into 4 subsystems: Complex I/NADH reoxidation (21 genes, 41%), aromatic pathway (8), iron acquisition (7), PQQ biosynthesis (2), plus regulation (6). FBA captures 1.76× higher Complex I flux on aromatics but misses the bottleneck (0% essentiality); 30/51 genes lack FBA reaction mappings. Co-fitness analysis assigns 16/23 unknown genes to subsystems, identifying two DUF proteins as candidate Complex I accessory factors (r>0.98). Cross-species data shows the dependency is on high-NADH-flux substrates generally (acetate, succinate show larger Complex I defects than aromatics), not aromatic catabolism exclusively. See `projects/aromatic_catabolism_network/`.
+
+### [respiratory_chain_wiring] Condition-Specific Respiratory Chain Wiring in ADP1
+**Status**: COMPLETED
+**Results**: ADP1's branched respiratory chain (62 genes, 8 subsystems) uses qualitatively different configurations per carbon source: quinate requires only Complex I, acetate requires everything, glucose requires nothing. The paradox (quinate has lower NADH yield but higher Complex I dependency) is resolved by NADH flux rate — concentrated TCA burst from ring cleavage vs distributed production. ADP1 has 3 parallel NADH dehydrogenases (Complex I, NDH-2, ACIAD3522) with non-overlapping condition requirements. Cross-species: after correcting NDH-2 false positives (filtering to 1-2 hits/organism), NDH-2 presence does NOT predict reduced Complex I aromatic deficits (p=0.52), suggesting ADP1's wiring is species-specific. See `projects/respiratory_chain_wiring/`.
+
 ---
 
 ## Ideas to Discuss / Refine
