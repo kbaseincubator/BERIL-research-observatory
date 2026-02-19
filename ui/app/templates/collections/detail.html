@@ -4,6 +4,10 @@
 
 {% block extra_css %}
 <style>
+    html {
+        scroll-behavior: auto;
+    }
+
     .collection-header {
         display: flex;
         align-items: flex-start;
@@ -248,7 +252,7 @@
 <!-- Key Tables / Schema Browser -->
 {% if collection.key_tables or tables %}
 <section class="section">
-    <h2>Schema Browser</h2>
+    <h2><a id="schema">Schema Browser</a></h2>
 
     <div class="schema-layout">
         <div class="table-list">
@@ -257,7 +261,7 @@
             {% if tables %}
                 {# Use the detailed schema from docs/schemas/ #}
                 {% for table in tables %}
-                <a href="?table={{ table.name }}" class="table-list-item {% if request.query_params.get('table') == table.name %}active{% endif %}">
+                <a href="?table={{ table.name }}#schema" class="table-list-item {% if request.query_params.get('table') == table.name %}active{% endif %}">
                     <span>{{ table.name }}</span>
                     {% if table.row_count %}
                     <span class="table-row-count">{{ "{:,}".format(table.row_count) }}</span>
