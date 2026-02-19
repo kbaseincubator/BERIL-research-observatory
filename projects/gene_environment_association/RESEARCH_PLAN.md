@@ -8,8 +8,6 @@ For species with strains isolated from diverse environments, do specific accesso
 
 - **H1 (Gene-environment associations exist)**: Accessory gene clusters are non-randomly distributed across environments -- specific genes are enriched in specific niches, reflecting ecological adaptation.
 - **H2 (Mobilome drives niche adaptation)**: Environment-associated genes are enriched for mobile genetic element functions (COG category X), consistent with horizontal gene transfer as a driver of niche adaptation (Ochman et al., 2000; Brockhurst et al., 2019).
-- **H3 (Methylobacterium MDH uniformity)**: xoxF (lanthanide-dependent MDH) is ubiquitous across *Methylobacterium* regardless of isolation environment, and B vitamin pathway completeness does not vary by environment.
-
 ## Approach
 
 ### 1. Environmental Metadata Pivot (Notebook 02)
@@ -25,12 +23,6 @@ For species with strains isolated from diverse environments, do specific accesso
 - Multiple testing correction: Benjamini-Hochberg FDR, q < 0.05
 - Functional enrichment: compare COG category distribution in significant vs background (sampled) clusters
 - Proof of concept: *S. aureus* (12,906 genomes, 133,007 accessory clusters, 5 environment categories)
-
-### 3. Methylobacterium Descriptive Analysis (Notebook 03, Section 10)
-- MDH classification using EC/KEGG priority (same as notebook 01 in `mextorquens_pangenome_case`)
-- B vitamin pathway completeness by gene name matching against curated pathway definitions
-- Genome-level crosstabs of MDH profile and B vitamin completeness by environment category
-- Descriptive only (sample sizes too small for formal testing)
 
 ## Data Sources
 
@@ -59,11 +51,11 @@ For species with strains isolated from diverse environments, do specific accesso
 
 ### Notebooks
 - `02_env_metadata_exploration.ipynb` - EAV pivot, cross-tenant NMDC join (~10 min)
-- `03_gene_environment_association.ipynb` - Species selection, statistical tests, COG enrichment, Methylobacterium descriptive analysis (~1 hour)
+- `03_gene_environment_association.ipynb` - Species selection, statistical tests, COG enrichment (~30 min)
 
 ## Related Projects
 
-- **mextorquens_pangenome_case** - *M. extorquens* B vitamin auxotrophy and xoxF/mxaF case study (uses same annotation tables but no data dependency)
+- **listeria_pangenome_case** - *L. monocytogenes* pathway completeness case study using GapMind predictions
 - **temporal_core_dynamics** - Uses same `ncbi_env` EAV pivot pattern
 
 ## Revision History

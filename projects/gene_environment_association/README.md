@@ -8,8 +8,6 @@ For species with strains isolated from diverse environments, do specific accesso
 
 1. **Environmental metadata pivot** (notebook 02): Transform the `ncbi_env` EAV table into per-genome environment categories (human_clinical, host_associated, soil, aquatic, plant_associated, food, engineered, sediment, air). Cross-tenant join with NMDC harmonized ontology labels.
 2. **Gene-environment association** (notebook 03): For species with >=10 genomes in >=2 environment categories, test each accessory gene cluster for differential prevalence (Fisher's exact / chi-squared, BH FDR correction). Functional enrichment via COG categories.
-3. **Methylobacterium descriptive analysis** (notebook 03, section 10): Genome-level MDH profile and B vitamin pathway completeness by environment. Descriptive only (sample sizes too small for formal testing).
-
 ## Key Findings
 
 ### Environmental Metadata Coverage
@@ -31,13 +29,6 @@ For species with strains isolated from diverse environments, do specific accesso
 - Top COGs: S (unknown function, 1,698), L (replication/repair, 813), M (cell wall, 505), K (transcription, 348), E (amino acid, 295)
 - **Mobilome (X) enriched** in environment-associated vs background accessory genes, consistent with horizontal gene transfer driving niche adaptation
 
-### Methylobacterium Descriptive Analysis (209 genomes)
-
-- **MDH profile x environment** (EC/KEGG-based): 176 BOTH / 31 xoxF_only / 0 mxaF_only / 2 no_MDH. Zero mxaF-only genomes reinforces the finding from `mextorquens_pangenome_case` that lanthanide-dependent xoxF is ubiquitous
-- xoxF_only genomes distributed across host_associated (16), other (6), aquatic (4), air (2), soil (2), plant_associated (1) -- no environment-specific pattern
-- **B vitamin pathway completeness remarkably uniform across environments**: B2 (65-70%), B1 (75-88%), B9 (94-100%), B12 (78-83%). Auxotrophy signals are consistent regardless of isolation source
-- **B vitamin genes by MDH profile**: BOTH (n=176) and xoxF_only (n=31) show similar completeness (~45 total B vitamin genes, 81% B12). xoxF_only has slightly lower B7 (65% vs 80%)
-
 ## Interpretation
 
 ### Literature Context
@@ -45,7 +36,6 @@ For species with strains isolated from diverse environments, do specific accesso
 - **S. aureus food enrichment** aligns with Richardson et al. (2018), who found that *S. aureus* food isolates carry distinct accessory gene repertoires compared to clinical isolates, including genes for biofilm formation and osmotic stress resistance. Weinert et al. (2012) showed *S. aureus* has undergone multiple host-switching events throughout history, suggesting host/niche adaptation is a recurring evolutionary pattern.
 - **Mobilome enrichment** is consistent with the broader understanding that horizontal gene transfer drives bacterial niche adaptation (Ochman et al., 2000). Mobile genetic elements (phages, plasmids, transposons) are major vehicles for accessory gene acquisition and can enable rapid adaptation to new environments (Koskella & Brockhurst, 2014).
 - **Pangenome-environment associations** are an emerging area. Gautreau et al. (2020) developed partitioned pangenome graphs that distinguish persistent, shell, and cloud gene families -- our framework complements this by testing individual accessory clusters for environment-specific prevalence.
-- **Methylobacterium xoxF ubiquity** is consistent with Chistoserdova & Kalyuzhnaya (2018), who noted that xoxF genes are more widespread than mxaF across methylotrophic bacteria, providing "a new outlook on the distribution of methylotrophy in the bacterial world."
 - **Environment shapes pangenomes**: Maistrenko et al. (2020) showed environmental preferences explain up to 49% of prokaryotic within-species diversity, stronger than phylogenetic inertia. This validates the approach of linking gene cluster presence/absence to environmental metadata.
 - **Pan-GWAS methods** (Brynildsrud et al., 2016; Lees et al., 2018) provide more sophisticated alternatives to our Fisher's exact approach by controlling for population structure -- a natural extension for future work.
 - **Novel contribution**: The BERDL pangenome database enables gene-environment association testing at unprecedented scale (133,007 clusters x 12,913 genomes for a single species). The EAV-to-category pivot of `ncbi_env` metadata provides a reusable environmental classification for any BERDL pangenome species.
@@ -56,7 +46,6 @@ For species with strains isolated from diverse environments, do specific accesso
 - `ncbi_env` coverage is incomplete; many genomes lack environment metadata
 - Spark Connect auth timeout (~40 min) limits single-query size; species with >10K genomes need query batching for the full multi-species analysis
 - Only one species (S. aureus) completed as proof of concept due to timeout constraints
-- Methylobacterium analysis is descriptive due to small sample sizes per environment category (82 host_associated, 14 aquatic, 10 soil, 5 plant_associated, 4 air, 1 clinical)
 - COG enrichment uses a sampled background (5,000 clusters) rather than all accessory clusters
 
 ### Future Directions
@@ -97,7 +86,7 @@ For species with strains isolated from diverse environments, do specific accesso
 | Notebook | Purpose | Runtime |
 |----------|---------|---------|
 | `02_env_metadata_exploration.ipynb` | EAV pivot, cross-tenant NMDC join, environment categorization | ~10 min |
-| `03_gene_environment_association.ipynb` | Species selection, statistical tests, COG enrichment, Methylobacterium descriptive analysis | ~1 hour (S. aureus + Methylobacterium) |
+| `03_gene_environment_association.ipynb` | Species selection, statistical tests, COG enrichment | ~30 min (S. aureus) |
 
 ## Known Issues
 
@@ -112,14 +101,13 @@ For species with strains isolated from diverse environments, do specific accesso
 
 ## Related Projects
 
-- `mextorquens_pangenome_case/` -- *M. extorquens* B vitamin auxotrophy and xoxF/mxaF case study (uses same annotation tables but no data dependency)
+- `listeria_pangenome_case/` -- *L. monocytogenes* pathway completeness case study using GapMind predictions
 - `temporal_core_dynamics/` -- Uses same `ncbi_env` EAV pivot pattern
 
 ## References
 
 - Brockhurst MA, et al. (2019). The ecology and evolution of pangenomes. *Curr Biol*, 29(20), R1094-R1103.
 - Brynildsrud O, et al. (2016). Rapid scoring of genes in microbial pan-genome-wide association studies with Scoary. *Genome Biol*, 17, 238.
-- Chistoserdova L, Kalyuzhnaya MG. (2018). Current trends in methylotrophy. *Trends Microbiol*, 26(8), 703-714.
 - Gautreau G, et al. (2020). PPanGGOLiN: depicting microbial diversity via a partitioned pangenome graph. *PLoS Comput Biol*, 16(3), e1007732.
 - Koskella B, Brockhurst MA. (2014). Bacteria-phage coevolution as a driver of ecological and evolutionary processes in microbial communities. *FEMS Microbiol Rev*, 38(5), 916-931.
 - Lees JA, et al. (2018). pyseer: a comprehensive tool for microbial pangenome-wide association studies. *Bioinformatics*, 34(24), 4310-4312.

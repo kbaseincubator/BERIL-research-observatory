@@ -37,30 +37,6 @@
 
 **Mobilome (X) is enriched** in environment-associated vs background accessory genes, consistent with horizontal gene transfer driving niche adaptation.
 
-### 4. Methylobacterium Descriptive Analysis (209 genomes)
-
-**MDH profile x environment** (EC/KEGG-based classification):
-
-| MDH Profile | Count |
-|---|---|
-| BOTH (xoxF + mxaF) | 176 |
-| xoxF_only | 31 |
-| mxaF_only | 0 |
-| no_MDH | 2 |
-
-Zero mxaF-only genomes reinforces the finding from `mextorquens_pangenome_case` that lanthanide-dependent xoxF is ubiquitous. xoxF_only genomes are distributed across host_associated (16), other (6), aquatic (4), air (2), soil (2), plant_associated (1) — no environment-specific pattern.
-
-**B vitamin pathway completeness is remarkably uniform across environments:**
-
-| Pathway | Range across environments |
-|---|---|
-| B9 (folate) | 94-100% |
-| B1 (thiamine) | 75-88% |
-| B12 (cobalamin) | 78-83% |
-| B2 (riboflavin) | 65-70% |
-
-Auxotrophy signals (B2, B1) are consistent regardless of isolation source. BOTH and xoxF_only genomes show similar B vitamin profiles (~45 total genes, 81% B12).
-
 ## Interpretation
 
 ### Literature Context
@@ -69,14 +45,11 @@ Auxotrophy signals (B2, B1) are consistent regardless of isolation source. BOTH 
 - **Mobilome enrichment** is consistent with Ochman et al. (2000) establishing HGT as a primary driver of bacterial niche adaptation, and Brockhurst et al. (2019) reviewing how environmental context shapes accessory genome content.
 - **Environment shapes pangenomes**: Maistrenko et al. (2020) showed environmental preferences explain up to 49% of prokaryotic within-species diversity — stronger than phylogenetic inertia. This validates our framework of linking gene cluster presence/absence to environmental metadata.
 - **Pan-GWAS methods** (Brynildsrud et al., 2016; Lees et al., 2018) provide more sophisticated alternatives to our Fisher's exact approach by controlling for population structure — a natural next step.
-- **Methylobacterium xoxF ubiquity** is consistent with Chistoserdova & Kalyuzhnaya (2018) noting XoxF genes are more widespread than MxaF. Our genome-level environmental analysis extends this to show no environment-specific MDH pattern across 209 genomes.
-
 ### Novel Contributions
 
 1. Reusable EAV-to-category pivot of `ncbi_env` metadata covering 292,913 genomes across 9 environment categories
 2. Gene-environment association framework tested at scale (133,007 clusters x 12,913 genomes for S. aureus)
 3. Identification of 212 species qualifying for gene-environment association testing in BERDL
-4. First genome-level MDH x environment analysis for *Methylobacterium* (209 genomes)
 
 ### Limitations
 
@@ -85,8 +58,6 @@ Auxotrophy signals (B2, B1) are consistent regardless of isolation source. BOTH 
 - Only one species (S. aureus) completed as proof of concept due to Spark Connect auth timeout (~40 min)
 - No correction for population structure (phylogenetic non-independence) in the current Fisher's exact/chi-squared approach
 - COG enrichment uses a sampled background (5,000 clusters) rather than all accessory clusters
-- Methylobacterium analysis is descriptive only — sample sizes too small for formal testing (82 host_associated, 14 aquatic, 10 soil, 5 plant_associated, 4 air, 1 clinical)
-
 ## Methods
 
 ### Environment Metadata (Notebook 02)
@@ -101,7 +72,3 @@ Auxotrophy signals (B2, B1) are consistent regardless of isolation source. BOTH 
 - Multiple testing correction: Benjamini-Hochberg FDR, q < 0.05
 - COG enrichment: compared significant vs background (sampled) clusters
 
-### Methylobacterium Descriptive Analysis (Notebook 03, Section 10)
-- MDH classification: EC/KEGG priority (same as notebook 01 in `mextorquens_pangenome_case`)
-- B vitamin pathway completeness: gene name matching against curated pathway definitions
-- Genome-level crosstabs of MDH profile and B vitamin completeness by environment category

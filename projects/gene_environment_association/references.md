@@ -30,8 +30,3 @@
 
 - **Fitzgerald JR.** (2012). Livestock-associated *Staphylococcus aureus*: origin, evolution and public health threat. *Trends Microbiol*, 20(4), 192-198. -- Reviews the emergence of livestock-adapted *S. aureus* clones and their zoonotic potential.
 
-## Methylobacterium
-
-- **Chistoserdova L, Kalyuzhnaya MG.** (2018). Current trends in methylotrophy. *Trends Microbiol*, 26(8), 703-714. -- Notes that xoxF genes are more widespread than mxaF across methylotrophic bacteria; our genome-level environmental analysis extends this to show no environment-specific MDH pattern.
-
-- **Hesse C, et al.** (2022). Comprehensive phylogenomics of *Methylobacterium* reveals four evolutionary distinct groups and underappreciated phyllosphere diversity. *Genome Biol Evol*, 14(8), evac123. -- Analyzed 189 genomes; identified 45 candidate species, mostly phyllosphere-associated.
