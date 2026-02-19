@@ -449,6 +449,10 @@
 **Status**: COMPLETED
 **Results**: FBA essentiality class does not predict growth defects among TnSeq-dispensable genes (chi-squared p=0.63, robust across Q10–Q35 thresholds, Kruskal-Wallis p=0.43). Aromatic degradation genes are the primary source of FBA-growth discordance (OR=9.7, q=0.012), pointing to FBA model environmental assumptions as the main error source. 70% of genes show condition-specific growth defects, supporting the "adaptive flexibility" framework. See `projects/adp1_triple_essentiality/`.
 
+### [adp1_deletion_phenotypes] ADP1 Deletion Collection Phenotype Analysis
+**Status**: COMPLETED
+**Results**: The 2,034×8 growth matrix reveals a phenotypic continuum (~5 independent dimensions by PCA), not discrete modules (silhouette=0.24). 625 genes (31%) are condition-specific, mapping precisely to expected metabolic pathways: urease for urea, protocatechuate degradation for quinate, Entner-Doudoroff for glucose, glyoxylate shunt for acetate. The 272 missing dispensable genes are shorter, less annotated, and less conserved (76.5% core vs 93.3%, p=1.4e-20). See `projects/adp1_deletion_phenotypes/`.
+
 ---
 
 ## Ideas to Discuss / Refine
