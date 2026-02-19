@@ -51,9 +51,9 @@ Quinate produces FEWER NADH per carbon atom (0.57) than glucose (1.50) or acetat
 
 *(Notebook: 03_stoichiometry.ipynb)*
 
-### 4. Cross-species: NDH-2 presence correlates with reduced Complex I aromatic dependency
+### 4. Cross-species: NDH-2 presence does NOT predict reduced Complex I aromatic dependency
 
-Across 14 Fitness Browser organisms with aromatic experiments, organisms WITH NDH-2 show smaller Complex I aromatic deficits (mean = -0.086) than organisms WITHOUT NDH-2 (mean = -0.505). The difference is not statistically significant (p = 0.24, n = 4 without NDH-2) but the direction supports the compensation hypothesis. *Pseudomonas putida* shows a large Complex I aromatic deficit (-0.93) despite having NDH-2, suggesting that active aromatic catabolism can overwhelm NDH-2 capacity even when present.
+After correcting for likely false positives in NDH-2 identification (filtering to organisms with 1-2 NDH-2 hits, excluding those with >2 hits that likely represent misannotated Complex I subunits), 5 of 14 organisms have validated NDH-2. Organisms WITH NDH-2 show LARGER Complex I aromatic deficits (mean = -0.297) than those WITHOUT (mean = -0.156), the opposite of the compensation prediction (p = 0.52, not significant). The NDH-2 compensation hypothesis is not supported by cross-species fitness data — NDH-2 presence does not predict whether Complex I is dispensable on aromatics. The ADP1 respiratory wiring pattern may be species-specific rather than a general rule.
 
 ![Complex I fitness: aromatic vs non-aromatic by NDH-2 status](figures/ndh2_vs_complex_I.png)
 
@@ -97,7 +97,7 @@ The FBA model predicts zero flux through NDH-2 and ACIAD3522 on all standard med
 
 3. **Three-dehydrogenase system**: ADP1's three NADH dehydrogenases (Complex I, NDH-2, ACIAD3522) with non-overlapping condition requirements demonstrate metabolic division of labor in electron transport.
 
-4. **Cross-species NDH-2 compensation trend**: Organisms with NDH-2 show smaller Complex I aromatic deficits, supporting the compensation model across species (though not statistically significant with current sample size).
+4. **Cross-species NDH-2 compensation NOT supported**: After correcting NDH-2 false positives, organisms with validated NDH-2 show LARGER Complex I aromatic deficits than those without. The compensation is likely ADP1-specific, not a general cross-species pattern.
 
 ### Limitations
 
