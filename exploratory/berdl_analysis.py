@@ -24,11 +24,11 @@ env_file = Path('.env')
 if env_file.exists():
     with open(env_file) as f:
         for line in f:
-            if line.startswith('KB_AUTH_TOKEN'):
+            if line.startswith('KBASE_AUTH_TOKEN'):
                 AUTH_TOKEN = line.split('"')[1]
                 break
 else:
-    print("ERROR: .env file not found. Please provide KB_AUTH_TOKEN")
+    print("ERROR: .env file not found. Please provide KBASE_AUTH_TOKEN")
     exit(1)
 
 HEADERS = {
