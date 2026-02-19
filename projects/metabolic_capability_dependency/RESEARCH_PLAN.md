@@ -199,6 +199,7 @@ WHERE orgId = '{org_id}'
 - **Phylogenetic non-independence**: Closely related organisms may share pathway profiles non-independently
 
 ## Revision History
+- **v2** (2026-02-18): Created all 5 analysis notebooks (01-05). NB01-02 run on JupyterHub (Spark), NB03-05 run locally. Self-contained data extraction avoids dependency on upstream project data files. Added KEGG-to-GapMind pathway mapping for gene-level linking.
 - **v1** (2026-02-17): Initial plan
 
 ## Authors
