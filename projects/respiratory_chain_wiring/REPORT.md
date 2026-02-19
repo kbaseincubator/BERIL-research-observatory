@@ -61,6 +61,14 @@ After correcting for likely false positives in NDH-2 identification (filtering t
 
 *(Notebook: 04_cross_species_respiratory.ipynb)*
 
+### 5. Proteomics: respiratory wiring is metabolic, not transcriptional
+
+All three NADH dehydrogenases are expressed at similar protein levels under standard growth conditions: Complex I mean 27.6 (66th percentile), NDH-2 27.0 (59th percentile), ACIAD3522 26.2 (48th percentile), genome median 26.4. The spread is only 1.4 units. NDH-2 is NOT repressed — it is constitutively co-expressed with Complex I. This means the condition-specific respiratory wiring operates at the metabolic level: all three dehydrogenases are present simultaneously, and which one becomes limiting depends on the NADH flux rate from the carbon source being catabolized. The cell uses a passive, flux-based wiring system rather than an active transcriptional switch.
+
+![Proteomics: NADH dehydrogenase expression vs all genes](figures/proteomics_respiratory.png)
+
+*(Notebook: 05_proteomics_expression.ipynb)*
+
 ## Results
 
 ### Respiratory Chain Inventory
@@ -136,6 +144,7 @@ The FBA model predicts zero flux through NDH-2 and ACIAD3522 on all standard med
 | `02_ndh2_indirect.ipynb` | NDH-2 characterization via FBA, genomic context, ortholog fitness |
 | `03_stoichiometry.ipynb` | NADH/ATP balance calculations, rate vs yield resolution |
 | `04_cross_species_respiratory.ipynb` | FB Spark queries: aromatic experiments, NDH-2 compensation test |
+| `05_proteomics_expression.ipynb` | Baseline protein abundance of respiratory chain components |
 
 ### Figures
 | Figure | Description |
@@ -147,6 +156,7 @@ The FBA model predicts zero flux through NDH-2 and ACIAD3522 on all standard med
 | `nadh_stoichiometry.png` | NADH yield vs Complex I requirement, reducing equivalent bar chart |
 | `wiring_matrix.png` | Summary matrix: substrate × component requirement level |
 | `ndh2_vs_complex_I.png` | Cross-species: Complex I aromatic vs non-aromatic fitness by NDH-2 status |
+| `proteomics_respiratory.png` | NADH dehydrogenase protein abundance vs genome distribution |
 
 ## Future Directions
 
