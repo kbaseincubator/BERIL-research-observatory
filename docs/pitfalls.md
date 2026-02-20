@@ -138,6 +138,52 @@ spark.sql("SELECT ncbi_taxid, COUNT(*) FROM kbase_ke_pangenome.gtdb_metadata GRO
 ```
 Use an alternative join key (e.g., organism name string matching or `orgId`-based lookup) or look for a different taxonomy column. In `metabolic_capability_dependency`, the fallback was to match organisms directly by `orgId` without a clade-level link.
 
+### [nmdc_community_metabolic_ecology] `gapmind_pathways.clade_name` = `gtdb_species_clade_id` Format, NOT `GTDB_species`
+
+**Problem**: `gapmind_pathways.clade_name` stores the full `gtdb_species_clade_id` including the representative genome accession suffix (e.g., `s__Rhizobium_phaseoli--RS_GCF_001234567.1`). It does **not** store the short `GTDB_species` name (e.g., `s__Rhizobium_phaseoli`).
+
+**Symptom**: Joining `gapmind_pathways` on a temp view populated from `gtdb_species_clade.GTDB_species` returns 0 rows because the two formats don't match.
+
+**Solution**: When filtering `gapmind_pathways` by species, use `gtdb_species_clade_id` values directly. The `taxon_bridge.tsv` produced by NB02 already stores `gtdb_species_clade_id` — use those directly as the clade filter without a round-trip through `gtdb_species_clade.GTDB_species`.
+
+```python
+# WRONG — uses GTDB_species format (s__Genus_species) which doesn't match clade_name
+gtdb_meta = spark.sql("SELECT GTDB_species FROM kbase_ke_pangenome.gtdb_species_clade").toPandas()
+clade_names_df = pd.DataFrame({'clade_name': gtdb_meta['GTDB_species'].tolist()})
+
+# CORRECT — use gtdb_species_clade_id directly (matches clade_name in gapmind_pathways)
+clade_names_df = pd.DataFrame({'clade_name': mapped_clade_ids})  # from taxon_bridge
+```
+
+### [nmdc_community_metabolic_ecology] `gapmind_pathways.metabolic_category` Values Are `'aa'` and `'carbon'`, Not `'amino_acid'`
+
+**Problem**: Filter code using `metabolic_category == 'amino_acid'` returns 0 rows. The actual stored values are `'aa'` (amino acid pathways) and `'carbon'` (carbon source pathways).
+
+```python
+# WRONG
+aa_mask = df['metabolic_category'] == 'amino_acid'  # always False
+
+# CORRECT
+aa_mask = df['metabolic_category'] == 'aa'
+```
+
+### [nmdc_community_metabolic_ecology] Spark Connect Temp Views Lost After Long-Running Cell
+
+**Problem**: A Spark temp view registered in cell N may be silently destroyed if the Spark Connect server reconnects during cell N (e.g., triggered by an expensive 305M-row full-table scan). Subsequent cells that JOIN against the temp view return 0 rows with no error.
+
+**Symptom**: Row count queries like `SELECT COUNT(*) FROM table JOIN temp_view ON ...` return 0 unexpectedly.
+
+**Solution**: Re-register the temp view immediately before any cell that uses it in a JOIN. The Python variable holding the data persists in the kernel even when the Spark server reconnects.
+
+```python
+# At the top of any cell that JOINs against a temp view:
+spark.createDataFrame(
+    pd.DataFrame({'clade_name': mapped_clade_names})
+).createOrReplaceTempView('mapped_clade_names_tmp')
+```
+
+**Prevention**: Avoid expensive full-table scans in cells between temp view registration and temp view use. Use `LIMIT` or `TABLESAMPLE` for schema verification queries rather than full `GROUP BY` counts on large tables.
+
 ---
 
 ## Data Sparsity Issues
