@@ -369,6 +369,28 @@ a:hover {
   border-color: var(--accent-primary-muted);
 }
 
+.search-input {
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--surface-border);
+  background: var(--surface-raised);
+  color: var(--text-primary);
+  min-width: 200px;
+  transition: border-color 0.15s ease;
+}
+
+.search-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-primary-muted);
+}
+
 /* ============================================
    Cards
    ============================================ */
