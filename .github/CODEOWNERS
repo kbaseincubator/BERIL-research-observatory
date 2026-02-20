@@ -1,0 +1,31 @@
+# CODEOWNERS
+#
+# Owners listed here are required reviewers when their paths are modified in a PR.
+# Paths with no entry require no review and can be merged without approval.
+#
+# GitHub docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# UI application code
+/ui/                    @kbaseincubator/beril-maintainers
+
+# Container definition
+/Dockerfile             @kbaseincubator/beril-maintainers
+
+# CI/CD workflows
+/.github/workflows/     @kbaseincubator/beril-maintainers
+
+# Scripts that support building/running the app
+/scripts/               @kbaseincubator/beril-maintainers
+
+# Claude skills files
+/.claude/               @kbaseincubator/beril-maintainers
+
+# --- Paths below require no review ---
+# Research projects, data, docs, and exploratory notebooks are
+# intentionally unowned so contributors can merge without approval.
+#
+# /projects/
+# /data/
+# /docs/
+# /exploratory/
+# /tools/
