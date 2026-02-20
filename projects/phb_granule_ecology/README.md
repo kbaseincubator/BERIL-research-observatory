@@ -6,7 +6,7 @@ How are polyhydroxybutyrate (PHB) granule-forming pathways distributed across ba
 
 ## Status
 
-Complete — see [Report](REPORT.md) for findings. H1a (environmental enrichment) and H1b (niche breadth) supported; H1c (NMDC cross-validation) supported; H1d (subclade selection) partially supported.
+Complete — see [Report](REPORT.md) for findings. H1a (environmental enrichment) supported; H1b (niche breadth) confounded by genome size; H1c (NMDC cross-validation) supported; H1d (subclade selection) partially supported.
 
 ## Overview
 

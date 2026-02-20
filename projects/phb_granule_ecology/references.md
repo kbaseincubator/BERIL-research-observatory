@@ -37,6 +37,15 @@
 - Viljakainen VR, Hug LA (2021). "The phylogenetic and global distribution of bacterial polyhydroxyalkanoate bioplastic-degrading genes." *Environmental Microbiology*, 23(3):1717-1731. PMID: 33496062
 - Mason-Jones K, Breidenbach A, Dyckmans J, et al. (2023). "Intracellular carbon storage by microorganisms is an overlooked pathway of biomass growth." *Nature Communications*, 14:2240. PMID: 37076457
 
+## Genome Size, Streamlining, and Ecological Strategy
+
+- Konstantinidis KT, Tiedje JM (2004). "Trends between Gene Content and Genome Size in Prokaryotic Species with Larger Genomes." *Proceedings of the National Academy of Sciences*, 101(9):3160-3165. PMID: 14973198. DOI: 10.1073/pnas.0308653100
+- Giovannoni SJ, Tripp HJ, Givan S, et al. (2005). "Genome Streamlining in a Cosmopolitan Oceanic Bacterium." *Science*, 309(5738):1242-1245. PMID: 16109880. DOI: 10.1126/science.1114057
+- Vieira-Silva S, Rocha EPC (2010). "The Systemic Imprint of Growth and Its Uses in Ecological (Meta)Genomics." *PLoS Genetics*, 6(1):e1000808. PMID: 20090831. DOI: 10.1371/journal.pgen.1000808
+- Barberán A, Ramirez KS, Leff JW, et al. (2014). "Why are some microbes more ubiquitous than others? Predicting the habitat breadth of soil bacteria." *Ecology Letters*, 17(7):794-802. PMID: 24751288. DOI: 10.1111/ele.12282
+- Giovannoni SJ, Cameron Thrash J, Temperton B (2014). "Implications of Streamlining Theory for Microbial Ecology." *The ISME Journal*, 8(8):1553-1565. PMID: 24739623. DOI: 10.1038/ismej.2014.60
+- Bentkowski P, Van Oosterhout C, Mock T (2015). "A Model of Genome Size Evolution for Prokaryotes in Stable and Fluctuating Environments." *Genome Biology and Evolution*, 7(8):2344-2351. PMID: 26224705. DOI: 10.1093/gbe/evv148
+
 ## Pangenome and Trait Evolution
 
 - Mendler K, Chen H, Parks DH, Hug LA, Doxey AC (2019). "AnnoTree: visualization and exploration of a functionally annotated microbial tree of life." *Nucleic Acids Research*, 47(9):4442-4448. PMID: 31081040
