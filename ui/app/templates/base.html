@@ -153,6 +153,17 @@
             });
         })();
 
+        // Collapsible sections
+        document.querySelectorAll('.collapse-toggle').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var section = this.closest('.section').querySelector('.collapsible-section');
+                if (section) {
+                    section.classList.toggle('collapsed');
+                    this.classList.toggle('collapsed');
+                }
+            });
+        });
+
         // Anchor links on headings
         document.querySelectorAll('.section h2[id]').forEach(function(h2) {
             h2.addEventListener('click', function() {
