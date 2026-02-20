@@ -6,7 +6,7 @@ How are polyhydroxybutyrate (PHB) granule-forming pathways distributed across ba
 
 ## Status
 
-In Progress — research plan created, awaiting analysis.
+Complete — see [Report](REPORT.md) for findings. H1a (environmental enrichment) and H1b (niche breadth) supported; H1c (NMDC cross-validation) supported; H1d (subclade selection) partially supported.
 
 ## Overview
 
@@ -26,7 +26,22 @@ PHB is one of the most widely distributed carbon storage strategies in bacteria,
 
 ## Reproduction
 
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+**Prerequisites**: BERDL JupyterHub access with valid `KBASE_AUTH_TOKEN`.
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run notebooks in order (requires Spark session on JupyterHub)
+cd projects/phb_granule_ecology/notebooks
+papermill 01_phb_gene_discovery.ipynb 01_phb_gene_discovery.ipynb -k python3
+papermill 02_phylogenetic_mapping.ipynb 02_phylogenetic_mapping.ipynb -k python3
+papermill 03_environmental_correlation.ipynb 03_environmental_correlation.ipynb -k python3
+papermill 04_nmdc_metagenomic_analysis.ipynb 04_nmdc_metagenomic_analysis.ipynb -k python3
+papermill 05_subclade_enrichment.ipynb 05_subclade_enrichment.ipynb -k python3
+```
+
+NB01b (`01b_fix_remaining_cells.ipynb`) is a patch notebook that completes cells from NB01 that errored on first run; it does not need to be re-run if NB01 completes successfully.
 
 ## Authors
 
