@@ -219,6 +219,13 @@ async def projects_list(request: Request, sort: str = "recent"):
         )
     elif sort == "alpha":
         projects.sort(key=lambda p: p.title.lower())
+    elif sort == "author":
+        projects.sort(
+            key=lambda p: (
+                p.contributors[0].name.split()[-1].lower() if p.contributors else "zzz",
+                p.title.lower(),
+            )
+        )
     # else: "recent" — already sorted by updated_date desc from dataloader
 
     context["projects"] = projects
