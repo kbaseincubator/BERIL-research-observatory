@@ -26,7 +26,14 @@ The core workflow is:
 3. **Submit the job** — the script runs in a container on a compute node
 4. **Retrieve results** from MinIO
 
-The generic ubuntu image (`ghcr.io/kbasetest/cts_ubuntu_test:0.1.0`) runs your script as the entrypoint, so the script can do anything: install Python packages, download references, run pipelines, etc.
+The generic ubuntu image (`ghcr.io/kbasetest/cts_ubuntu_test:0.1.0`) runs your script as the entrypoint. The image is a minimal Ubuntu — **Python, pip, and other tools are NOT pre-installed**. Your script should install what it needs:
+
+```bash
+#!/bin/bash
+apt-get update -qq && apt-get install -y -qq python3 python3-pip > /dev/null
+pip install biopython pandas
+# ... your analysis ...
+```
 
 ## Preconditions
 
@@ -62,7 +69,8 @@ The Python client is more convenient for notebook workflows.
 #!/bin/bash
 # my-analysis.sh — runs on the compute node
 
-# Install dependencies if needed
+# Install dependencies (minimal ubuntu image — nothing pre-installed)
+apt-get update -qq && apt-get install -y -qq python3 python3-pip > /dev/null 2>&1
 pip install biopython pandas
 
 # $1 = output directory
