@@ -204,4 +204,4 @@ WHERE ne.harmonized_name IN ('isolation_source', 'env_broad_scale',
 - **v1** (2026-02-20): Initial plan
 
 ## Authors
-- Paramvir Dehal (ORCID: 0000-0002-4999-2931), U.C. Berkeley / Lawrence Berkeley National Laboratory
+- Adam Arkin (ORCID: 0000-0002-4999-2931), U.C. Berkeley / Lawrence Berkeley National Laboratory
