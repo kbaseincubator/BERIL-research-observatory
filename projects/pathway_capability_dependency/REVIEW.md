@@ -1,7 +1,7 @@
 ---
 reviewer: BERIL Automated Review
 date: 2026-02-19
-project: metabolic_capability_dependency
+project: pathway_capability_dependency
 ---
 
 # Review: Metabolic Capability vs Dependency
@@ -36,7 +36,7 @@ SELECT name as expName, orgId,
   CASE WHEN LOWER(Condition_1) LIKE '%carbon%'
        OR LOWER(Group) LIKE '%carbon%'
 ```
-But `docs/pitfalls.md` (tagged `[metabolic_capability_dependency]`) explicitly states: the table is `experiment` (not `exps`), columns are `expName` (not `name`), `expGroup` (not `Group`), and `condition_1` (not `Condition_1`). The fact that `fb_fitness_by_condition_type.csv` exists (58 MB) means the extraction succeeded — but the code in the notebook would not reproduce the result as written. The executed code lives in `run_nb01_remaining.py` or `run_nb01_final.py`, not the notebook.
+But `docs/pitfalls.md` (tagged `[pathway_capability_dependency]`) explicitly states: the table is `experiment` (not `exps`), columns are `expName` (not `name`), `expGroup` (not `Group`), and `condition_1` (not `Condition_1`). The fact that `fb_fitness_by_condition_type.csv` exists (58 MB) means the extraction succeeded — but the code in the notebook would not reproduce the result as written. The executed code lives in `run_nb01_remaining.py` or `run_nb01_final.py`, not the notebook.
 
 **NB01 — `.toPandas()` on core pathway status (potential OOM).** Cell 7 uses `.toPandas()` to extract `gapmind_core_pathway_status.csv`. The resulting file is 1.5 GB. The RESEARCH_PLAN performance plan explicitly warns: "the species pathway summary (~23M rows) must NOT be collected to driver," and recommends Spark `.write.csv()` for large extracts. The `gapmind_core_pathway_status` table covers 293K genomes × 80 pathways × multiple scopes — it likely exceeds the same OOM threshold. If this succeeded, it was fragile. The notebook should use `.write.csv()` with a partitioned write, consistent with the approach used for `species_pathway_summary`.
 

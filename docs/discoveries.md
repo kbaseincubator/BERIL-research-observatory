@@ -340,7 +340,7 @@ Analysis of 1,872 bacterial species with complete pangenome, GapMind pathway, an
 
 ## 2026-02
 
-### [metabolic_capability_dependency] Pathway completeness ≠ metabolic dependency
+### [pathway_capability_dependency] Pathway completeness ≠ metabolic dependency
 
 Four-category classification of 7 FB organisms × 23 GapMind pathways reveals:
 - 35.4% Active Dependencies (complete + fitness-important)
@@ -350,7 +350,7 @@ Four-category classification of 7 FB organisms × 23 GapMind pathways reveals:
 
 Key insight: ALL Latent Capabilities become fitness-important under condition-specific analysis (nitrogen limitation, stress, carbon source shifts). This validates the core_gene_tradeoffs finding that lab fitness underestimates natural selection on metabolic genes.
 
-### [metabolic_capability_dependency] Variable pathways strongly predict pangenome openness
+### [pathway_capability_dependency] Variable pathways strongly predict pangenome openness
 
 Pan-bacterial analysis (2,810 species, ≥10 genomes each):
 - Spearman(variable pathways, openness): rho=0.327, p=7.2e-71
@@ -360,11 +360,11 @@ Pan-bacterial analysis (2,810 species, ≥10 genomes each):
 
 This is much stronger than the pangenome_openness project's null result for environmental/phylogenetic predictors of openness. Metabolic pathway variability is a genuine predictor.
 
-### [metabolic_capability_dependency] FB-native KEGG annotations bypass pangenome link table
+### [pathway_capability_dependency] FB-native KEGG annotations bypass pangenome link table
 
 The Fitness Browser's own KEGG tables (`besthitkegg` + `keggmember` + `kgroupec`) provide direct gene-to-KEGG KO-to-EC-to-pathway mapping for all 48 FB organisms. This is much simpler than the DIAMOND blastp pipeline used by conservation_vs_fitness to build a link table, and covers more organisms. The chain: besthitkegg → keggmember → kgroupec → keggconf → GapMind pathway.
 
-### [metabolic_capability_dependency] Metabolic ecotypes: median 4 per species
+### [pathway_capability_dependency] Metabolic ecotypes: median 4 per species
 
 Hierarchical clustering of 225 species (≥50 genomes, ≥3 variable pathways) by GapMind pathway profiles:
 - Median 4 metabolic ecotypes per species, max 8

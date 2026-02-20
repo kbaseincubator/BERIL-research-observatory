@@ -463,11 +463,11 @@ Also: `kgroupec` uses column `ecnum` (not `ec`).
 
 ### Experiment Table Is Named `experiment`, Not `exps`
 
-**[metabolic_capability_dependency]** The experiments table in `kescience_fitnessbrowser` is called `experiment` (not `exps`). Column names: `expName` (not `name`), `expGroup` (not `Group`), `condition_1` (not `Condition_1`). The `expGroup` column provides clean condition categories ("carbon source", "nitrogen source", "stress", "pH", "temperature", etc.) — use this for condition-type classification instead of pattern matching on `condition_1`.
+**[pathway_capability_dependency]** The experiments table in `kescience_fitnessbrowser` is called `experiment` (not `exps`). Column names: `expName` (not `name`), `expGroup` (not `Group`), `condition_1` (not `Condition_1`). The `expGroup` column provides clean condition categories ("carbon source", "nitrogen source", "stress", "pH", "temperature", etc.) — use this for condition-type classification instead of pattern matching on `condition_1`.
 
 ### seedannotationtoroles Joins on `seed_desc`, Not `orgId`/`locusId`
 
-**[metabolic_capability_dependency]** The `seedannotationtoroles` table has columns `seed_desc` and `seedrole` only — no `orgId` or `locusId`. Join chain: `seedannotation` (orgId, locusId, seed_desc) → `seedannotationtoroles` (seed_desc → seedrole) → `seedroles` (seedrole → toplevel, category, subsystem). The `seedroles` table columns are `toplevel`, `category`, `subsystem`, `seedrole` — not `seed_role`, `seed_subsystem`, or `seedroleId`.
+**[pathway_capability_dependency]** The `seedannotationtoroles` table has columns `seed_desc` and `seedrole` only — no `orgId` or `locusId`. Join chain: `seedannotation` (orgId, locusId, seed_desc) → `seedannotationtoroles` (seed_desc → seedrole) → `seedroles` (seedrole → toplevel, category, subsystem). The `seedroles` table columns are `toplevel`, `category`, `subsystem`, `seedrole` — not `seed_role`, `seed_subsystem`, or `seedroleId`.
 
 ### seedclass Has No Subsystem Hierarchy
 

@@ -41,7 +41,7 @@ This project builds on an extensive upstream analytical pipeline:
 ## Project Structure
 
 ```
-metabolic_capability_dependency/
+pathway_capability_dependency/
   README.md
   RESEARCH_PLAN.md
   REPORT.md
