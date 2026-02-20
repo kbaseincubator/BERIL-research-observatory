@@ -202,12 +202,17 @@ async def skills_page(request: Request):
 
 
 @app.get("/projects", response_class=HTMLResponse)
-async def projects_list(request: Request, sort: str = "recent"):
+async def projects_list(request: Request, sort: str = "recent", dir: str = ""):
     """Projects list page with sortable project grid."""
     repo_data = get_repo_data(request)
     context = get_base_context(request)
 
     projects = list(repo_data.projects)  # copy to avoid mutating cached data
+
+    # Default directions: recent=desc, others=asc
+    default_dir = "desc" if sort == "recent" else "asc"
+    sort_dir = dir if dir in ("asc", "desc") else default_dir
+    reverse = sort_dir == "desc"
 
     if sort == "status":
         status_order = {"Completed": 0, "In Progress": 1, "Proposed": 2}
@@ -215,14 +220,26 @@ async def projects_list(request: Request, sort: str = "recent"):
             key=lambda p: (
                 status_order.get(p.status.value, 9),
                 -(p.updated_date or datetime.min).timestamp(),
-            )
+            ),
+            reverse=reverse,
         )
     elif sort == "alpha":
-        projects.sort(key=lambda p: p.title.lower())
-    # else: "recent" — already sorted by updated_date desc from dataloader
+        projects.sort(key=lambda p: p.title.lower(), reverse=reverse)
+    elif sort == "author":
+        projects.sort(
+            key=lambda p: (
+                p.contributors[0].name.split()[-1].lower() if p.contributors else "zzz",
+                p.title.lower(),
+            ),
+            reverse=reverse,
+        )
+    elif reverse:
+        # "recent" is already desc from dataloader; reverse if asc requested
+        projects.reverse()
 
     context["projects"] = projects
     context["current_sort"] = sort
+    context["sort_dir"] = sort_dir
     return templates.TemplateResponse("projects/list.html", context)
 
 

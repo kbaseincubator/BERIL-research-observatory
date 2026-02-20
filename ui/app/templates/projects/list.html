@@ -13,9 +13,10 @@
 
 <div class="sort-controls">
     <span class="sort-label">Sort by:</span>
-    <a href="?sort=recent" class="sort-option {% if current_sort == 'recent' %}active{% endif %}">Recent Activity</a>
-    <a href="?sort=status" class="sort-option {% if current_sort == 'status' %}active{% endif %}">Status</a>
-    <a href="?sort=alpha" class="sort-option {% if current_sort == 'alpha' %}active{% endif %}">Alphabetical</a>
+    {% for key, label in [('recent', 'Recent Activity'), ('status', 'Status'), ('alpha', 'Alphabetical'), ('author', 'Author')] %}
+    <a href="?sort={{ key }}{% if current_sort == key %}&dir={{ 'asc' if sort_dir == 'desc' else 'desc' }}{% endif %}"
+       class="sort-option {% if current_sort == key %}active{% endif %}">{{ label }}{% if current_sort == key %} <span class="sort-arrow">{% if sort_dir == 'desc' %}&#9660;{% else %}&#9650;{% endif %}</span>{% endif %}</a>
+    {% endfor %}
     <input type="text" id="project-search" class="search-input" placeholder="Search projects..." aria-label="Search projects">
 </div>
 
@@ -23,7 +24,7 @@
 
 <div class="grid grid-2" id="project-grid">
     {% for project in projects %}
-    <article class="card" data-search-text="{{ project.title | lower }} {{ project.id | replace('_', ' ') }} {{ project.research_question | lower }} {{ (project.findings or '')[:500] | lower }} {{ project.status.value | lower }}">
+    <article class="card" data-search-text="{{ project.title | lower }} {{ project.id | replace('_', ' ') }} {{ project.research_question | lower }} {{ (project.findings or '')[:500] | lower }} {{ project.status.value | lower }} {% for c in project.contributors %}{{ c.name | lower }} {% endfor %}">
         <div class="card-header">
             <h3 class="card-title">
                 <a href="/projects/{{ project.id }}">{{ project.title | markdown_inline }}</a>
@@ -53,6 +54,12 @@
             {% endif %}
         </div>
 
+        {% if project.contributors %}
+        <div class="card-authors text-small text-muted" style="margin-bottom: var(--space-4);">
+            {% for contributor in project.contributors %}{{ contributor.name }}{% if not loop.last %}, {% endif %}{% endfor %}
+        </div>
+        {% endif %}
+
         <div class="card-content">
             <h4>Research Question</h4>
             <div class="markdown-content">{{ project.research_question | markdown }}</div>
@@ -65,9 +72,6 @@
 
         <div class="card-footer">
             <div class="card-meta">
-                {% if project.contributors %}
-                <span>{{ project.contributors|length }} author{% if project.contributors|length != 1 %}s{% endif %}</span>
-                {% endif %}
                 {% if project.notebooks %}
                 <span>{{ project.notebooks|length }} notebook{% if project.notebooks|length != 1 %}s{% endif %}</span>
                 {% endif %}
