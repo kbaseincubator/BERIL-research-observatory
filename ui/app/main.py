@@ -282,6 +282,11 @@ async def project_detail(request: Request, project_id: str):
         c for c in (repo_data.get_collection(cid) for cid in project.related_collections) if c
     ]
 
+    # Resolve used_by IDs to full Project objects
+    context["used_by_projects"] = [
+        p for p in repo_data.projects if p.id in project.used_by
+    ]
+
     return templates.TemplateResponse("projects/detail.html", context)
 
 

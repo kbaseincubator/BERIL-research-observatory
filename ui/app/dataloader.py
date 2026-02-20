@@ -19,6 +19,7 @@ from .models import (
     Column,
     Contributor,
     DataFile,
+    DerivedDataRef,
     Discovery,
     IdeaStatus,
     Notebook,
@@ -333,6 +334,18 @@ class RepositoryParser:
             if project:
                 projects.append(project)
 
+        # Compute reverse mapping: which projects use each project's data
+        project_ids = {p.id for p in projects}
+        for project in projects:
+            for ref in project.derived_from:
+                if ref.source_project in project_ids:
+                    # Find the source project and add this project to its used_by
+                    for src in projects:
+                        if src.id == ref.source_project:
+                            if project.id not in src.used_by:
+                                src.used_by.append(project.id)
+                            break
+
         return sorted(
             projects, key=lambda p: p.updated_date or datetime.min, reverse=True
         )
@@ -426,6 +439,9 @@ class RepositoryParser:
         # Parse notebooks
         notebooks = self._parse_notebooks(project_dir)
 
+        # Scan notebooks for cross-project data dependencies
+        derived_from = self._scan_notebook_data_deps(project_dir)
+
         # Parse visualizations and data files
         visualizations, data_files = self._parse_data_dir(project_dir)
 
@@ -490,6 +506,7 @@ class RepositoryParser:
                 for name, body in other_sections
             ],
             revision_history=revision_history,
+            derived_from=derived_from,
         )
 
     @staticmethod
@@ -711,6 +728,67 @@ class RepositoryParser:
                 if body:
                     others.append((name, body))
         return others
+
+    def _scan_notebook_data_deps(
+        self, project_dir: Path
+    ) -> list[DerivedDataRef]:
+        """Scan notebook code cells for cross-project data references.
+
+        Detects patterns like:
+        - ../../other_project/data/file.tsv
+        - .parent / 'other_project' / 'data'
+        - projects/other_project/data/file.tsv
+        """
+        notebooks_dir = project_dir / "notebooks"
+        if not notebooks_dir.exists():
+            return []
+
+        project_id = project_dir.name
+        # source_project -> set of filenames
+        deps: dict[str, set[str]] = {}
+
+        patterns = [
+            # ../../project/data/file or ../../project/data (dir-only)
+            re.compile(
+                r"\.\./\.\./([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
+            ),
+            # .parent / 'project' / 'data' / 'file' (Path objects)
+            re.compile(
+                r"\.parent\s*/\s*['\"]([a-z_]+)['\"]\s*/\s*['\"](?:data|user_data)['\"]"
+                r"(?:\s*/\s*['\"]([^'\"]+)['\"])?"
+            ),
+            # projects/project/data/file (absolute-ish paths)
+            re.compile(
+                r"projects/([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
+            ),
+        ]
+
+        import json
+
+        for nb_path in notebooks_dir.glob("*.ipynb"):
+            try:
+                nb_data = json.loads(nb_path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                continue
+
+            for cell in nb_data.get("cells", []):
+                if cell.get("cell_type") != "code":
+                    continue
+                source = "".join(cell.get("source", []))
+                for pattern in patterns:
+                    for match in pattern.finditer(source):
+                        src_project = match.group(1)
+                        if src_project == project_id:
+                            continue
+                        filename = match.group(2) if match.lastindex >= 2 and match.group(2) else None
+                        deps.setdefault(src_project, set())
+                        if filename:
+                            deps[src_project].add(filename)
+
+        return [
+            DerivedDataRef(source_project=sp, files=sorted(files))
+            for sp, files in sorted(deps.items())
+        ]
 
     def _parse_notebooks(self, project_dir: Path) -> list[Notebook]:
         """Parse notebooks from project/notebooks/ directory."""

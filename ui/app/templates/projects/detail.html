@@ -247,6 +247,49 @@
 </section>
 {% endif %}
 
+<!-- Derived Data (cross-project data dependencies) -->
+{% if project.derived_from %}
+<section class="section">
+    <h2 id="derived-data">Derived Data</h2>
+    <p class="text-muted text-small" style="margin-bottom: var(--space-4);">
+        This project builds on processed data from other projects.
+    </p>
+    <div class="grid grid-3">
+        {% for ref in project.derived_from %}
+        <a href="/projects/{{ ref.source_project }}" class="card" style="text-decoration: none;">
+            <div>
+                <h4 style="margin-bottom: var(--space-1); color: var(--text-primary);">{{ ref.source_project | replace('_', ' ') | title }}</h4>
+                {% if ref.files %}
+                <div class="text-small text-muted" style="font-family: var(--font-mono);">
+                    {% for f in ref.files[:3] %}{{ f }}{% if not loop.last %}, {% endif %}{% endfor %}{% if ref.files|length > 3 %} +{{ ref.files|length - 3 }} more{% endif %}
+                </div>
+                {% endif %}
+            </div>
+            <p class="text-small mt-4" style="margin-bottom: 0; color: var(--text-link);">View source project &rarr;</p>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Used By (downstream projects) -->
+{% if used_by_projects %}
+<section class="section">
+    <h2 id="used-by">Used By</h2>
+    <p class="text-muted text-small" style="margin-bottom: var(--space-4);">
+        Data from this project is used by other projects.
+    </p>
+    <div class="grid grid-3">
+        {% for p in used_by_projects %}
+        <a href="/projects/{{ p.id }}" class="card" style="text-decoration: none;">
+            <h4 style="margin-bottom: 0; color: var(--text-primary);">{{ p.title | markdown_inline }}</h4>
+            <p class="text-small mt-4" style="margin-bottom: 0; color: var(--text-link);">View project &rarr;</p>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
 <!-- Review -->
 {% if project.review %}
 <section class="section">
