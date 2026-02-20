@@ -369,6 +369,11 @@ a:hover {
   border-color: var(--accent-primary-muted);
 }
 
+.sort-arrow {
+  font-size: 0.6em;
+  margin-left: 2px;
+}
+
 .search-input {
   margin-left: auto;
   font-family: var(--font-body);

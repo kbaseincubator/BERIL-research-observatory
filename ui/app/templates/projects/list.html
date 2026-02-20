@@ -13,10 +13,10 @@
 
 <div class="sort-controls">
     <span class="sort-label">Sort by:</span>
-    <a href="?sort=recent" class="sort-option {% if current_sort == 'recent' %}active{% endif %}">Recent Activity</a>
-    <a href="?sort=status" class="sort-option {% if current_sort == 'status' %}active{% endif %}">Status</a>
-    <a href="?sort=alpha" class="sort-option {% if current_sort == 'alpha' %}active{% endif %}">Alphabetical</a>
-    <a href="?sort=author" class="sort-option {% if current_sort == 'author' %}active{% endif %}">Author</a>
+    {% for key, label in [('recent', 'Recent Activity'), ('status', 'Status'), ('alpha', 'Alphabetical'), ('author', 'Author')] %}
+    <a href="?sort={{ key }}{% if current_sort == key %}&dir={{ 'asc' if sort_dir == 'desc' else 'desc' }}{% endif %}"
+       class="sort-option {% if current_sort == key %}active{% endif %}">{{ label }}{% if current_sort == key %} <span class="sort-arrow">{{ '&#9660;' if sort_dir == 'desc' else '&#9650;' }}</span>{% endif %}</a>
+    {% endfor %}
     <input type="text" id="project-search" class="search-input" placeholder="Search projects..." aria-label="Search projects">
 </div>
 
