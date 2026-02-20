@@ -850,6 +850,42 @@ for tbl in all_tables:
         print(f'Bridge candidate: {tbl}')
 ```
 
+The bridge table is `nmdc_arkin.omics_files_table` (385,562 rows, confirmed). It has
+`file_id`, `sample_id`, `study_id`, `workflow_type`, and `file_type` columns.
+
+### [nmdc_community_metabolic_ecology] `spark.createDataFrame(pandas_df)` fails with `ChunkedArray` error after `.toPandas()` on Spark Connect
+
+**Problem**: When a pandas DataFrame is produced by calling `.toPandas()` on a Spark Connect
+DataFrame, its columns are backed by PyArrow `ChunkedArray` objects. Passing this DataFrame
+back to `spark.createDataFrame()` raises:
+
+```
+TypeError: Cannot convert pyarrow.lib.ChunkedArray to pyarrow.lib.Array
+```
+
+This prevents the common pattern of "pull data to pandas, filter it, register as a Spark temp view."
+
+**Solution**: Avoid the pandas→Spark roundtrip entirely. Instead, keep all filtering and joining
+in Spark SQL using subqueries and the original table name. For bridge joins, use the full table
+name directly in SQL rather than materializing the bridge to a temp view:
+
+```python
+# WRONG — fails with ChunkedArray error
+bridge_df = spark.sql("SELECT file_id, sample_id FROM nmdc_arkin.omics_files_table").toPandas()
+bridge_spark = spark.createDataFrame(bridge_df)  # TypeError
+
+# CORRECT — join using the table name directly in SQL
+clf_samples = spark.sql("""
+    SELECT DISTINCT b.sample_id
+    FROM (SELECT DISTINCT file_id FROM nmdc_arkin.centrifuge_gold) c
+    JOIN nmdc_arkin.omics_files_table b ON c.file_id = b.file_id
+""").toPandas()
+```
+
+If you must convert pandas back to Spark (small DataFrames only), convert columns to native
+Python lists first: `df[col] = df[col].tolist()` for each column before calling
+`spark.createDataFrame(df)`.
+
 ---
 
 ## Quick Checklist
