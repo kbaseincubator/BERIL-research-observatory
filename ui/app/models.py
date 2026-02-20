@@ -134,6 +134,14 @@ class Review:
 
 
 @dataclass
+class DerivedDataRef:
+    """A reference to data from another project used as input."""
+
+    source_project: str  # project ID (e.g. "essential_genome")
+    files: list[str] = field(default_factory=list)  # specific files used
+
+
+@dataclass
 class Notebook:
     """A Jupyter notebook in a project."""
 
@@ -201,6 +209,9 @@ class Project:
     references: str | None = None
     other_sections: list[tuple[str, str]] = field(default_factory=list)
     revision_history: str | None = None
+    # Cross-project data provenance
+    derived_from: list[DerivedDataRef] = field(default_factory=list)
+    used_by: list[str] = field(default_factory=list)  # project IDs
 
     @property
     def review_status(self) -> ReviewStatus:
