@@ -15,7 +15,7 @@
     <span class="sort-label">Sort by:</span>
     {% for key, label in [('recent', 'Recent Activity'), ('status', 'Status'), ('alpha', 'Alphabetical'), ('author', 'Author')] %}
     <a href="?sort={{ key }}{% if current_sort == key %}&dir={{ 'asc' if sort_dir == 'desc' else 'desc' }}{% endif %}"
-       class="sort-option {% if current_sort == key %}active{% endif %}">{{ label }}{% if current_sort == key %} <span class="sort-arrow">{{ '&#9660;' if sort_dir == 'desc' else '&#9650;' }}</span>{% endif %}</a>
+       class="sort-option {% if current_sort == key %}active{% endif %}">{{ label }}{% if current_sort == key %} <span class="sort-arrow">{% if sort_dir == 'desc' %}&#9660;{% else %}&#9650;{% endif %}</span>{% endif %}</a>
     {% endfor %}
     <input type="text" id="project-search" class="search-input" placeholder="Search projects..." aria-label="Search projects">
 </div>
