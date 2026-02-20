@@ -48,7 +48,7 @@ Chi-squared test for PHB presence x environmental variability category: **chi2 =
 
 *(Notebook: 03_environmental_correlation.ipynb)*
 
-### Finding 3: PHB+ species occupy broader environmental niches (H1b supported)
+### Finding 3: PHB-niche breadth association is largely explained by genome size (H1b qualified)
 
 ![Box plots showing AlphaEarth embedding variance for phaC+ vs phaC- species, with phaC+ species showing significantly higher environmental breadth (p=1.88e-06)](figures/embedding_variance_phb.png)
 
@@ -58,7 +58,22 @@ Using AlphaEarth environmental embeddings (64-dimensional vectors capturing envi
 - **PHB- species** (phaC absent): median embedding variance = **0.2472** (n = 1,477)
 - Mann-Whitney U = 446,546, **p = 1.88 x 10^-6**
 
-This supports H1b: species carrying PHB pathways occupy significantly broader environmental niches, as measured by the variance of their AlphaEarth environmental embeddings. The effect is consistent across pathway completeness categories — species with complete pathways and those with synthase-only both show elevated embedding variance compared to precursors-only and absent categories.
+However, PHB+ species also have substantially larger genomes (median 4.34 Mbp vs 2.44 Mbp for PHB-, rank-biserial r = -0.592, p ~ 0), and genome size itself correlates with niche breadth (rho = 0.302, p = 1.5e-43). After controlling for genome size via partial Spearman correlation, **the PHB-niche breadth association largely disappears**: partial rho = **-0.047** (p = 0.037), a **56.3% reduction** in effect size with a sign reversal compared to the raw correlation (rho = 0.106, p = 1.77e-06).
+
+![Genome size confound analysis: size distributions (left), size vs niche breadth colored by PHB status (center), and PHB enrichment by environment within genome size quartiles (right)](figures/genome_size_confound.png)
+
+This means H1b (niche breadth) is substantially confounded by genome size and cannot be interpreted as independent evidence for the feast/famine hypothesis. Larger genomes encode more metabolic pathways generally, and PHB is one of many pathways enriched in larger-genome species.
+
+Critically, however, **the PHB-environment association (H1a) holds robustly within all four genome size quartiles**:
+
+| Genome size quartile | Range (Mbp) | High var % phaC+ | Low var % phaC+ | Fold enrichment | p-value |
+|---------------------|-------------|-------------------|-----------------|-----------------|---------|
+| Q1 (smallest) | 0.4 – 1.8 | 10.7% | 2.5% | 4.4x | 1.18 x 10^-11 |
+| Q2 | 1.8 – 2.5 | 18.5% | 4.0% | 4.6x | 3.25 x 10^-47 |
+| Q3 | 2.5 – 3.7 | 34.3% | 10.9% | 3.1x | 4.17 x 10^-70 |
+| Q4 (largest) | 3.7 – 14.0 | 50.9% | 37.4% | 1.4x | 3.21 x 10^-14 |
+
+Even among the smallest genomes (Q1, 0.4–1.8 Mbp), species from high-variability environments are 4.4x more likely to carry phaC than those from low-variability environments. This demonstrates that the environmental enrichment signal is independent of genome size.
 
 *(Notebook: 03_environmental_correlation.ipynb)*
 
@@ -164,6 +179,10 @@ Environment metadata was available for 293,050 genomes spanning all 27,690 speci
 
 AlphaEarth embeddings provided an independent measure of environmental breadth for 2,008 species with sufficient genome coverage (minimum 5 genomes per species with embeddings). The embedding variance captures within-species variation in environmental context, serving as a proxy for niche breadth. The significant difference between PHB+ and PHB- species (Mann-Whitney p = 1.88e-06) held even after restricting to phyla with both PHB+ and PHB- representatives.
 
+### Genome Size Confound (NB03, Part 3)
+
+Genome size data from `gtdb_metadata` revealed that PHB+ species have substantially larger genomes (median 4.34 Mbp vs 2.44 Mbp, rank-biserial r = -0.592). Since genome size correlates with both metabolic pathway repertoire and niche breadth (rho = 0.302, p = 1.5e-43), we tested whether the PHB-niche breadth association (H1b) survives after controlling for genome size. Partial Spearman correlation reduced the effect from rho = 0.106 (p = 1.77e-06) to rho = -0.047 (p = 0.037) — a 56.3% reduction with sign reversal, indicating that genome size is the primary driver of the apparent niche breadth association. However, genome size-stratified analysis of the environmental enrichment (H1a) showed that PHB remains enriched in high-variability environments across all four genome size quartiles (fold enrichment 1.4–4.6x, all p < 1e-11), confirming that environmental selection for PHB operates independently of genome size.
+
 ### Subclade Enrichment and HGT (NB05)
 
 Within-phylum analysis revealed that PHB enrichment is not uniform even within PHB-rich phyla. Within Pseudomonadota (60.9% overall), order-level prevalence ranges from 100% (Azospirillales, Rhodospirillales) to 0% (Campylobacterales is a separate phylum, but within Pseudomonadota several orders have <10%). The family-level Fisher's exact tests (248 families with >=10 species) identified substantial heterogeneity: 41 enriched and 62 depleted families after Bonferroni correction.
@@ -177,9 +196,11 @@ The HGT analysis leveraged core/accessory classification from the pangenome: a g
 The classical feast/famine hypothesis (Dawes & Senior 1973) proposes that PHB is most advantageous under temporal carbon fluctuation. Our data provide the first pan-bacterial genomic test of this hypothesis across 27,690 species and strongly support it:
 
 1. **Environment type**: PHB prevalence follows a clear gradient from high-variability (plant 44%, soil 43.6%, wastewater 34.5%) to low-variability (marine 18.7%, clinical 7.4%, animal 3.3%) environments
-2. **Niche breadth**: PHB+ species occupy significantly broader environmental niches (AlphaEarth embedding variance p = 1.88e-06)
+2. **Niche breadth (confounded)**: PHB+ species appear to occupy broader environmental niches (raw p = 1.88e-06), but this association is largely explained by genome size (partial rho = -0.047 after controlling for genome size). Genome size, not PHB specifically, is the primary correlate of niche breadth
 3. **Subclade patterns**: Enriched families skew toward freshwater/wastewater environments; depleted families skew toward marine/host-associated
 4. **NMDC cross-validation**: Inferred PHB capacity correlates negatively with sample depth (rho = -0.12, p = 1.1e-21) and positively with temperature (rho = 0.09, p = 1.9e-12), consistent with higher PHB prevalence in shallower, warmer environments with more dynamic carbon cycling
+
+The genome size confound analysis (Finding 3) adds important nuance: while PHB+ species nominally occupy broader niches, this is largely an artefact of their larger genomes. Larger genomes encode more metabolic pathways generally, and niche breadth (as measured by AlphaEarth embedding variance) scales with genome size (rho = 0.302). After partialling out genome size, the PHB-niche breadth association effectively disappears. However, the environmental enrichment (H1a) — the more direct test of the feast/famine hypothesis — is robust to genome size stratification, holding across all four genome size quartiles with 1.4–4.6x enrichment. This means the feast/famine hypothesis is supported by environmental selection patterns independent of the general tendency for larger genomes to carry more pathways.
 
 These results extend the feast/famine framework from experimental observations in individual species (e.g., *Cupriavidus necator* competition experiments) to a tree-of-life-scale pattern, providing genomic evidence that environmental variability has been a major selective driver of PHB pathway maintenance and acquisition.
 
@@ -197,13 +218,17 @@ These results extend the feast/famine framework from experimental observations i
 - **Han et al. (2010)** identified PHA synthase diversity in haloarchaea. Our finding that Halobacteriota carry 34.4% phaC prevalence quantifies the scale of archaeal PHA capacity.
 - **Mendler et al. (2019, AnnoTree)** and **Szabo et al. (2023)** provided the methodological framework for GTDB-based functional trait mapping and pangenome core/accessory analysis, respectively. Our study applies these approaches to a specific metabolic pathway.
 
+### Genome Size Confound in Context
+
+The genome size confound we identified is well-established in the comparative genomics literature. Genome size is a fundamental ecological variable that scales linearly with metabolic enzyme count (r > 0.9; Vieira-Silva & Rocha 2010) and predicts habitat breadth in soil bacteria (Barberán et al. 2014). Fluctuating environments select for larger genomes because organisms need diverse metabolic capabilities to survive unpredictable conditions (Bentkowski et al. 2015), while stable oligotrophic environments select for streamlined genomes that shed "optional" pathways including PHB, glycogen, and polyphosphate storage (Giovannoni et al. 2005, 2014). This creates a causal chain — environment variability → genome size → metabolic pathway count → PHB presence — where PHB presence is partially a downstream consequence of genome size rather than an independent adaptation. Our finding that the PHB-niche breadth association collapses after controlling for genome size (partial rho = -0.047 vs raw rho = 0.106) is consistent with this framework. However, the persistence of PHB enrichment in variable environments within all genome size quartiles (1.4–4.6x, all p < 1e-11) indicates that environmental selection for PHB operates above and beyond the general genome size effect, supporting the feast/famine hypothesis as a specific selective force rather than a mere consequence of metabolic versatility.
+
 ### Novel Contribution
 
 This study provides the **first comprehensive pangenome-scale survey of PHB pathway distribution across the bacterial tree of life**, integrating phylogenetic distribution, environmental ecology, niche breadth, and HGT dynamics in a single framework covering 27,690 species from the BERDL pangenome. Prior work has been either qualitative, limited to individual clades, focused on degradation rather than synthesis, or confined to single-species HGT case studies. Key novel contributions include:
 
 1. **Quantitative prevalence**: 21.9% of all bacterial species carry phaC — the first precise estimate across the full tree
 2. **Environmental gradient**: A >10-fold difference in PHB prevalence between the most (plant, 44%) and least (animal, 3.3%) favorable environments, providing genomic evidence for the feast/famine hypothesis at evolutionary timescales
-3. **Niche breadth**: PHB+ species occupy significantly broader environmental niches (p = 1.88e-06), extending the feast/famine hypothesis from temporal to spatial environmental heterogeneity
+3. **Genome size confound**: The PHB-niche breadth association (H1b) is largely explained by genome size — PHB+ species have 1.9 Mbp larger genomes on average. However, the environmental enrichment (H1a) holds within all genome size quartiles, demonstrating that feast/famine selection operates independently of genome size
 4. **HGT at scale**: 311 putative phaC acquisition events identified with elevated accessory rates (60.1%), the first systematic pan-bacterial quantification of ongoing phaC horizontal transfer
 
 ### Limitations
@@ -213,7 +238,7 @@ This study provides the **first comprehensive pangenome-scale survey of PHB path
 3. **Environment metadata sparsity**: 34.9% of species have "other_unknown" as primary environment. The environmental enrichment results may underestimate the true signal.
 4. **AlphaEarth coverage bias**: Only 28% of genomes (83K/293K) have AlphaEarth embeddings, potentially skewing the niche breadth analysis toward better-sampled lineages. The 2,008 species analyzed represent 7.2% of total species diversity.
 5. **phaA/phaB pleiotropism**: These genes participate in general metabolism beyond PHB. The "precursors_only" category (46.5% of species) likely overestimates partial PHB capability.
-6. **Phylogenetic confounding**: PHB presence correlates with phylogeny, and some environment-PHB associations may reflect phylogenetic rather than ecological signal. Phylogenetically controlled analyses (e.g., phylogenetic logistic regression) would strengthen the environmental correlation findings.
+6. **Phylogenetic and genome size confounding**: PHB presence correlates with phylogeny and genome size (PHB+ median 4.34 Mbp vs PHB- median 2.44 Mbp). The H1b niche breadth association is largely an artefact of genome size (56.3% effect reduction after controlling). While the H1a environmental enrichment is robust to genome size stratification, phylogenetically controlled analyses (e.g., phylogenetic logistic regression) would further strengthen the findings by accounting for shared ancestry.
 7. **Multiple selective pressures**: PHB serves functions beyond carbon storage (stress resistance, redox balance, cryoprotection). The feast/famine hypothesis is supported but is not necessarily the sole driver.
 8. **Genome quality**: The BERDL pangenome includes both complete genomes and MAGs, which may have variable gene detection rates.
 
@@ -234,7 +259,8 @@ This study provides the **first comprehensive pangenome-scale survey of PHB path
 | `data/phb_by_taxonomy.tsv` | 27,690 | All species with taxonomy and PHB status merged |
 | `data/phb_by_order.tsv` | 1,058 | PHB prevalence aggregated by taxonomic order |
 | `data/species_environment.tsv` | 27,690 | Species with primary environment classification and PHB status |
-| `data/phb_embedding_analysis.tsv` | 2,008 | Species with AlphaEarth embedding variance and PHB status |
+| `data/phb_embedding_analysis.tsv` | 2,008 | Species with AlphaEarth embedding variance, genome size, and PHB status |
+| `data/species_genome_size.tsv` | 27,690 | Species-level genome size (Mbp), protein count, and PHB status |
 | `data/subclade_enrichment.tsv` | 248 | Family-level Fisher's exact test results (enriched/depleted/ns) |
 | `data/phaC_class_distribution.tsv` | 6,067 | phaC-carrying species with attempted PHA synthase class (all "other_pfam") |
 | `data/nmdc_phb_prevalence.tsv` | 6,365 | NMDC sample PHB inference scores (mean=201.5, median=137.7, 87.2% median coverage) |
@@ -249,7 +275,7 @@ This study provides the **first comprehensive pangenome-scale survey of PHB path
 | `01_phb_gene_discovery.ipynb` | Identify PHB gene clusters from eggNOG annotations; explore NMDC schema |
 | `01b_fix_remaining_cells.ipynb` | Complete NB01 cells that errored on first run (NMDC metabolomics, env metadata) |
 | `02_phylogenetic_mapping.ipynb` | Map PHB pathway completeness across GTDB taxonomy; calculate prevalence by phylum/order |
-| `03_environmental_correlation.ipynb` | Correlate PHB with environment type and AlphaEarth embedding variance |
+| `03_environmental_correlation.ipynb` | Correlate PHB with environment type, AlphaEarth embedding variance, and genome size confound analysis |
 | `04_nmdc_metagenomic_analysis.ipynb` | NMDC metagenomic cross-validation: two-tier taxonomy mapping, PHB inference scores, abiotic correlations |
 | `05_subclade_enrichment.ipynb` | Family-level enrichment tests, HGT signal analysis, NMDC cross-validation, PHA synthase class (Pfam naming issue) |
 
@@ -261,6 +287,7 @@ This study provides the **first comprehensive pangenome-scale survey of PHB path
 | `phb_core_vs_accessory.png` | Stacked bar chart of phaC core vs accessory status by phylum |
 | `phb_by_environment.png` | PHB prevalence by environment type, color-coded by expected variability |
 | `embedding_variance_phb.png` | Box plots of AlphaEarth embedding variance for PHB+ vs PHB- species |
+| `genome_size_confound.png` | Three-panel analysis: genome size distributions (PHB+ vs PHB-), genome size vs niche breadth, PHB enrichment by environment within genome size quartiles |
 | `phb_enrichment_heatmap.png` | PHB prevalence by order within six major phyla |
 | `nmdc_phb_by_environment.png` | NMDC PHB inference score distribution and pangenome matching coverage |
 | `nmdc_phb_vs_abiotic.png` | PHB score vs top abiotic correlates (depth, temperature, max depth, min depth) |
@@ -282,18 +309,24 @@ This study provides the **first comprehensive pangenome-scale survey of PHB path
 - Catone MV, Ruiz JA, Castellanos M, et al. (2014). "High polyhydroxybutyrate production in Pseudomonas extremaustralis is associated with differential expression of horizontally acquired and core genome polyhydroxyalkanoate synthase genes." *PLOS ONE*, 9(6):e98873.
 - Dawes EA, Senior PJ (1973). "The role and regulation of energy reserve polymers in micro-organisms." *Advances in Microbial Physiology*, 10:135-266.
 - Gibbons SM, et al. (2021). "Metabolic flexibility allows bacterial habitat generalists to become dominant in a frequently disturbed ecosystem." *The ISME Journal*, 15:2986-2999. PMID: 33941890
+- Giovannoni SJ, Tripp HJ, Givan S, et al. (2005). "Genome Streamlining in a Cosmopolitan Oceanic Bacterium." *Science*, 309(5738):1242-1245. PMID: 16109880
+- Giovannoni SJ, Cameron Thrash J, Temperton B (2014). "Implications of Streamlining Theory for Microbial Ecology." *The ISME Journal*, 8(8):1553-1565. PMID: 24739623
 - Han J, Lu Q, Zhou L, et al. (2010). "Wide distribution among halophilic archaea of a novel polyhydroxyalkanoate synthase subtype with homology to bacterial Type III synthases." *Applied and Environmental Microbiology*, 76(23):7811-7819. PMC: PMC2988587
 - Kadouri D, Jurkevitch E, Okon Y, Castro-Sowinski S (2005). "Ecological and agricultural significance of bacterial polyhydroxyalkanoates." *Critical Reviews in Microbiology*, 31(2):55-67.
 - Kalia VC, Lal S, Cheema S (2007). "Insight in to the phylogeny of polyhydroxyalkanoate biosynthesis: horizontal gene transfer." *Gene*, 389(1):19-26.
+- Konstantinidis KT, Tiedje JM (2004). "Trends between Gene Content and Genome Size in Prokaryotic Species with Larger Genomes." *Proceedings of the National Academy of Sciences*, 101(9):3160-3165. PMID: 14973198
 - Mason-Jones K, Breidenbach A, Dyckmans J, et al. (2023). "Intracellular carbon storage by microorganisms is an overlooked pathway of biomass growth." *Nature Communications*, 14:2240. PMID: 37076457
 - Mendler K, Chen H, Parks DH, Hug LA, Doxey AC (2019). "AnnoTree: visualization and exploration of a functionally annotated microbial tree of life." *Nucleic Acids Research*, 47(9):4442-4448. PMID: 31081040
 - Mezzolla V, D'Urso OF, Poltronieri P (2018). "Role of PhaC Type I and Type II Enzymes during PHA Biosynthesis." *Polymers*, 10(8):910.
 - Muller-Santos M, Koskimaki JJ, Hungria M, et al. (2021). "The protective role of PHB and its degradation products against stress situations in bacteria." *FEMS Microbiology Reviews*, 45(5):fuaa058. PMID: 33118006
 - Obruca S, Sedlacek P, Koller M, et al. (2018). "Involvement of polyhydroxyalkanoates in stress resistance of microbial cells: Biotechnological consequences and applications." *Biotechnology Advances*, 36(3):856-870. PMID: 29248684
 - Obruca S, Sedlacek P, Slaninova E, et al. (2020). "Novel unexpected functions of PHA granules." *Applied Microbiology and Biotechnology*, 104:4795-4810.
+- Barberán A, Ramirez KS, Leff JW, et al. (2014). "Why are some microbes more ubiquitous than others? Predicting the habitat breadth of soil bacteria." *Ecology Letters*, 17(7):794-802. PMID: 24751288
+- Bentkowski P, Van Oosterhout C, Mock T (2015). "A Model of Genome Size Evolution for Prokaryotes in Stable and Fluctuating Environments." *Genome Biology and Evolution*, 7(8):2344-2351. PMID: 26224705
 - Parks DH, Chuvochina M, Rinke C, et al. (2022). "GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy." *Nucleic Acids Research*, 50(D1):D199-D207.
 - Pieja AJ, Rostkowski KH, Criddle CS (2011). "Distribution and Selection of Poly-3-Hydroxybutyrate Production Capacity in Methanotrophic Proteobacteria." *Microbial Ecology*, 62:564-573.
 - Rehm BHA (2003). "Polyester synthases: natural catalysts for plastics." *Biochemical Journal*, 376(1):15-33.
 - Rehm BHA, Steinbuchel A (1999). "Biochemical and genetic analysis of PHA synthases and other proteins required for PHA synthesis." *International Journal of Biological Macromolecules*, 25(1-3):3-19. PMID: 10416645
 - Szabo RE, et al. (2023). "Reconstruction of the last bacterial common ancestor from 183 pangenomes reveals a versatile ancient core genome." *Genome Biology*, 24:183. PMC: PMC10411014
+- Vieira-Silva S, Rocha EPC (2010). "The Systemic Imprint of Growth and Its Uses in Ecological (Meta)Genomics." *PLoS Genetics*, 6(1):e1000808. PMID: 20090831
 - Viljakainen VR, Hug LA (2021). "The phylogenetic and global distribution of bacterial polyhydroxyalkanoate bioplastic-degrading genes." *Environmental Microbiology*, 23(3):1717-1731. PMID: 33496062
