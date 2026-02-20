@@ -242,6 +242,16 @@ class Project:
 
 
 @dataclass
+class ResearchArea:
+    """An auto-detected cluster of thematically related projects."""
+
+    id: str
+    name: str
+    project_ids: list[str] = field(default_factory=list)
+    top_terms: list[str] = field(default_factory=list)
+
+
+@dataclass
 class Skill:
     """An AI co-scientist skill parsed from .claude/skills/*/SKILL.md."""
 
@@ -345,6 +355,7 @@ class RepositoryData:
     collections: list[Collection] = field(default_factory=list)
     contributors: list[Contributor] = field(default_factory=list)
     skills: list[Skill] = field(default_factory=list)
+    research_areas: list[ResearchArea] = field(default_factory=list)
 
     # Computed stats
     total_notebooks: int = 0

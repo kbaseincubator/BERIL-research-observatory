@@ -29,6 +29,7 @@ from .models import (
     Project,
     ProjectStatus,
     RepositoryData,
+    ResearchArea,
     ResearchIdea,
     Review,
     SampleQuery,
@@ -228,6 +229,9 @@ class RepositoryParser:
         # Aggregate unique contributors across all projects
         contributors = self._aggregate_contributors(projects)
 
+        # Auto-cluster projects into research areas
+        research_areas = self._cluster_research_areas(projects)
+
         # Compute stats
         total_notebooks = sum(len(p.notebooks) for p in projects)
         total_visualizations = sum(len(p.visualizations) for p in projects)
@@ -243,6 +247,7 @@ class RepositoryParser:
             collections=collections,
             contributors=contributors,
             skills=skills,
+            research_areas=research_areas,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -295,6 +300,129 @@ class RepositoryParser:
                     )
 
         return sorted(merged.values(), key=lambda c: c.name.lower())
+
+    @staticmethod
+    def _cluster_research_areas(projects: list[Project]) -> list[ResearchArea]:
+        """Auto-cluster projects into thematic research areas.
+
+        Uses text similarity (title + research question), data provenance,
+        and shared collections as signals. Agglomerative clustering with
+        average linkage.
+        """
+        from collections import Counter
+        from math import sqrt
+
+        _STOP = {
+            "the", "a", "an", "and", "or", "but", "in", "on", "at", "to",
+            "for", "of", "with", "by", "from", "is", "are", "was", "were",
+            "be", "been", "have", "has", "do", "does", "did", "will", "would",
+            "could", "should", "may", "can", "this", "that", "these", "those",
+            "it", "its", "we", "our", "how", "what", "which", "where", "when",
+            "who", "than", "more", "most", "between", "across", "each", "per",
+            "using", "used", "based", "whether", "not", "no", "into", "also",
+            "both", "all", "show", "results", "data", "analysis", "gene",
+            "genes", "genome", "genomes", "species", "bacterial", "bacteria",
+            "pangenome", "pangenomes", "fitness",
+        }
+
+        def _terms(text: str | None) -> Counter:
+            if not text:
+                return Counter()
+            words = re.findall(r"[a-z]{4,}", text.lower())
+            return Counter(w for w in words if w not in _STOP)
+
+        def _cosine(a: Counter, b: Counter) -> float:
+            keys = set(a) | set(b)
+            dot = sum(a.get(k, 0) * b.get(k, 0) for k in keys)
+            mag_a = sqrt(sum(v ** 2 for v in a.values()))
+            mag_b = sqrt(sum(v ** 2 for v in b.values()))
+            if mag_a == 0 or mag_b == 0:
+                return 0.0
+            return dot / (mag_a * mag_b)
+
+        if not projects:
+            return []
+
+        pids = [p.id for p in projects]
+        features = {}
+        dep_sets = {}
+        for p in projects:
+            features[p.id] = _terms(p.title) + _terms(p.research_question)
+            dep_sets[p.id] = {r.source_project for r in p.derived_from}
+
+        # Pairwise similarity with data dep boost
+        sims: dict[tuple[str, str], float] = {}
+        for i in range(len(pids)):
+            for j in range(i + 1, len(pids)):
+                a, b = pids[i], pids[j]
+                s = _cosine(features[a], features[b])
+                if b in dep_sets[a] or a in dep_sets[b]:
+                    s += 0.3
+                if dep_sets[a] & dep_sets[b]:
+                    s += 0.15
+                sims[(a, b)] = s
+                sims[(b, a)] = s
+
+        # Agglomerative clustering (average linkage)
+        clusters: dict[str, list[str]] = {pid: [pid] for pid in pids}
+        THRESHOLD = 0.25
+
+        while True:
+            best_sim = 0.0
+            best_pair = None
+            ckeys = list(clusters.keys())
+            for i in range(len(ckeys)):
+                for j in range(i + 1, len(ckeys)):
+                    total = sum(
+                        sims.get((a, b), 0.0)
+                        for a in clusters[ckeys[i]]
+                        for b in clusters[ckeys[j]]
+                    )
+                    count = len(clusters[ckeys[i]]) * len(clusters[ckeys[j]])
+                    avg = total / count if count else 0.0
+                    if avg > best_sim:
+                        best_sim = avg
+                        best_pair = (ckeys[i], ckeys[j])
+            if best_sim < THRESHOLD or best_pair is None:
+                break
+            a, b = best_pair
+            clusters[a].extend(clusters[b])
+            del clusters[b]
+
+        # Build ResearchArea objects
+        areas = []
+        singletons = []
+        for members in clusters.values():
+            # Auto-name from top distinctive terms
+            combined = Counter()
+            for pid in members:
+                combined += features[pid]
+            top = [t for t, _ in combined.most_common(3)]
+            name = " & ".join(w.title() for w in top[:2]) if top else "Misc"
+
+            if len(members) == 1:
+                singletons.extend(members)
+            else:
+                areas.append(ResearchArea(
+                    id=slugify(name),
+                    name=name,
+                    project_ids=sorted(members),
+                    top_terms=[t for t, _ in combined.most_common(5)],
+                ))
+
+        # Sort by cluster size descending
+        areas.sort(key=lambda a: len(a.project_ids), reverse=True)
+
+        # Group singletons under "Independent Studies"
+        if singletons:
+            areas.append(ResearchArea(
+                id="independent-studies",
+                name="Independent Studies",
+                project_ids=sorted(singletons),
+                top_terms=[],
+            ))
+
+        return areas
 
     def _get_git_dates(self, project_dir: Path) -> tuple[datetime | None, datetime | None]:
         """Get first and last commit dates for a project directory using git log."""

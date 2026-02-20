@@ -243,6 +243,25 @@ async def projects_list(request: Request, sort: str = "recent", dir: str = ""):
     return templates.TemplateResponse("projects/list.html", context)
 
 
+@app.get("/research-areas", response_class=HTMLResponse)
+async def research_areas(request: Request):
+    """Research areas page - auto-clustered project groups."""
+    repo_data = get_repo_data(request)
+    context = get_base_context(request)
+
+    # Resolve project IDs to full objects for each area
+    project_map = {p.id: p for p in repo_data.projects}
+    areas_with_projects = []
+    for area in repo_data.research_areas:
+        areas_with_projects.append({
+            "area": area,
+            "projects": [project_map[pid] for pid in area.project_ids if pid in project_map],
+        })
+
+    context["areas"] = areas_with_projects
+    return templates.TemplateResponse("research-areas.html", context)
+
+
 @app.get("/projects/{project_id}", response_class=HTMLResponse)
 async def project_detail(request: Request, project_id: str):
     """Project detail page."""
