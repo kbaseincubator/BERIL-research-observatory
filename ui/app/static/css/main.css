@@ -1303,3 +1303,38 @@ pre code {
 .lightbox-trigger {
   cursor: pointer;
 }
+
+/* Collapsible section toggle */
+.collapse-toggle {
+  background: none;
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  line-height: 1;
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.2s ease;
+}
+
+.collapse-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--surface-border-light);
+}
+
+.collapse-toggle.collapsed {
+  transform: rotate(180deg);
+}
+
+.collapsible-section.collapsed > *:not(h3):not(h4):not(h5) {
+  display: none;
+}
+
+.collapsible-section.collapsed > h3,
+.collapsible-section.collapsed > h4,
+.collapsible-section.collapsed > h5 {
+  margin-bottom: var(--space-1);
+  padding-bottom: var(--space-1);
+  border-bottom: 1px solid var(--surface-border);
+  cursor: default;
+}

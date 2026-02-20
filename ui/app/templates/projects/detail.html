@@ -102,8 +102,11 @@
 
 <!-- Key Findings (from REPORT.md) -->
 <section class="section">
-    <h2 id="key-findings">Key Findings</h2>
-    <div class="card markdown-content" style="border-left: 4px solid var(--accent-primary);">
+    <div class="flex items-center gap-4">
+        <h2 id="key-findings" style="margin-bottom: 0;">Key Findings</h2>
+        <button class="collapse-toggle" aria-label="Collapse findings" title="Toggle details">&#9650;</button>
+    </div>
+    <div class="card markdown-content collapsible-section" style="border-left: 4px solid var(--accent-primary); margin-top: var(--space-4);">
         {{ project.findings | markdown }}
     </div>
 </section>
@@ -173,8 +176,11 @@
 {% elif project.findings and 'to be filled' not in project.findings.lower() %}
 {# === IN-PROGRESS or PROPOSED with partial findings === #}
 <section class="section">
-    <h2 id="key-findings">Key Findings</h2>
-    <div class="card markdown-content" style="border-left: 4px solid var(--accent-primary);">
+    <div class="flex items-center gap-4">
+        <h2 id="key-findings" style="margin-bottom: 0;">Key Findings</h2>
+        <button class="collapse-toggle" aria-label="Collapse findings" title="Toggle details">&#9650;</button>
+    </div>
+    <div class="card markdown-content collapsible-section" style="border-left: 4px solid var(--accent-primary); margin-top: var(--space-4);">
         {{ project.findings | markdown }}
     </div>
 </section>
