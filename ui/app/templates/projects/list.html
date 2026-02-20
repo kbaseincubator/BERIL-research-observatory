@@ -16,11 +16,14 @@
     <a href="?sort=recent" class="sort-option {% if current_sort == 'recent' %}active{% endif %}">Recent Activity</a>
     <a href="?sort=status" class="sort-option {% if current_sort == 'status' %}active{% endif %}">Status</a>
     <a href="?sort=alpha" class="sort-option {% if current_sort == 'alpha' %}active{% endif %}">Alphabetical</a>
+    <input type="text" id="project-search" class="search-input" placeholder="Search projects..." aria-label="Search projects">
 </div>
 
-<div class="grid grid-2">
+<p id="no-search-results" class="text-muted" style="display: none;">No projects match your search.</p>
+
+<div class="grid grid-2" id="project-grid">
     {% for project in projects %}
-    <article class="card">
+    <article class="card" data-search-text="{{ project.title | lower }} {{ project.id | replace('_', ' ') }} {{ project.research_question | lower }} {{ (project.findings or '')[:500] | lower }} {{ project.status.value | lower }}">
         <div class="card-header">
             <h3 class="card-title">
                 <a href="/projects/{{ project.id }}">{{ project.title | markdown_inline }}</a>
@@ -85,4 +88,33 @@
     <p class="text-muted">No projects found.</p>
     {% endfor %}
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function() {
+    var input = document.getElementById('project-search');
+    var grid = document.getElementById('project-grid');
+    var noResults = document.getElementById('no-search-results');
+    if (!input || !grid) return;
+
+    var cards = grid.querySelectorAll('.card[data-search-text]');
+
+    input.addEventListener('input', function() {
+        var query = this.value.toLowerCase().trim();
+        var visible = 0;
+
+        cards.forEach(function(card) {
+            if (!query || card.getAttribute('data-search-text').indexOf(query) !== -1) {
+                card.style.display = '';
+                visible++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        noResults.style.display = visible === 0 && query ? '' : 'none';
+    });
+})();
+</script>
 {% endblock %}
