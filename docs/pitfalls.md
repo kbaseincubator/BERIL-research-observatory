@@ -71,6 +71,22 @@ WHERE CAST(fit AS FLOAT) < -2
 
 This affects: `kescience_fitnessbrowser` (all columns), `kbase_genomes` (coordinates, lengths), and others.
 
+### [nmdc_community_metabolic_ecology] Spark DECIMAL Columns Return `decimal.Decimal` in Pandas, Not `float`
+
+**Problem**: Spark SQL `DECIMAL` columns (e.g., `abundance` in `nmdc_arkin.centrifuge_gold`) are returned as Python `decimal.Decimal` objects when collected via `.toPandas()`. Arithmetic with `float` values (e.g., from `AVG()` aggregates) raises `TypeError: unsupported operand type(s) for *: 'float' and 'decimal.Decimal'`.
+
+**Solution**: `CAST(col AS DOUBLE)` in the SQL query, or `.astype(float)` on the pandas column after collection:
+
+```python
+# Option 1: Cast in SQL (preferred — avoids the type in the DataFrame entirely)
+spark.sql("SELECT CAST(abundance AS DOUBLE) AS abundance FROM ...")
+
+# Option 2: Cast after .toPandas()
+df['abundance'] = df['abundance'].astype(float)
+```
+
+Observed in `[nmdc_community_metabolic_ecology]` NB03 cell-15 with `centrifuge_gold.abundance`.
+
 ### `SELECT DISTINCT col, COUNT(*) ...` Without GROUP BY Fails in Spark Strict Mode
 
 Spark Connect's SQL analyzer rejects `SELECT DISTINCT` combined with an aggregate function when no `GROUP BY` is present (`MISSING_GROUP_BY`, SQLSTATE 42803). This is a strict standard-SQL interpretation that differs from some other databases (e.g., DuckDB, SQLite) which accept this syntax.
