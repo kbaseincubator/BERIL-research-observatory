@@ -85,7 +85,19 @@ spark.sql("SELECT CAST(abundance AS DOUBLE) AS abundance FROM ...")
 df['abundance'] = df['abundance'].astype(float)
 ```
 
-Observed in `[nmdc_community_metabolic_ecology]` NB03 cell-15 with `centrifuge_gold.abundance`.
+**Second manifestation**: `AVG(CASE WHEN condition THEN 1.0 ELSE 0.0 END)` also returns `DECIMAL` because Spark treats the literal `1.0` as `DECIMAL(2,1)`, not `DOUBLE`. Use `CAST(AVG(...) AS DOUBLE)` on aggregated columns too:
+
+```sql
+-- WRONG — frac_complete arrives as decimal.Decimal
+AVG(CASE WHEN best_score >= 5 THEN 1.0 ELSE 0.0 END) AS frac_complete
+
+-- CORRECT
+CAST(AVG(CASE WHEN best_score >= 5 THEN 1.0 ELSE 0.0 END) AS DOUBLE) AS frac_complete
+```
+
+**Rule of thumb**: Any `AVG()` over integers or decimal literals in Spark SQL should be wrapped in `CAST(... AS DOUBLE)`. Add `.astype(float)` after `.toPandas()` as a defensive safety net.
+
+Observed in `[nmdc_community_metabolic_ecology]` NB03: `centrifuge_gold.abundance` (cell-15) and `gapmind_pathways` AVG aggregates (cell-11/18).
 
 ### `SELECT DISTINCT col, COUNT(*) ...` Without GROUP BY Fails in Spark Strict Mode
 
