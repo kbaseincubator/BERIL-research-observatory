@@ -71,6 +71,27 @@ WHERE CAST(fit AS FLOAT) < -2
 
 This affects: `kescience_fitnessbrowser` (all columns), `kbase_genomes` (coordinates, lengths), and others.
 
+### `SELECT DISTINCT col, COUNT(*) ...` Without GROUP BY Fails in Spark Strict Mode
+
+Spark Connect's SQL analyzer rejects `SELECT DISTINCT` combined with an aggregate function when no `GROUP BY` is present (`MISSING_GROUP_BY`, SQLSTATE 42803). This is a strict standard-SQL interpretation that differs from some other databases (e.g., DuckDB, SQLite) which accept this syntax.
+
+```sql
+-- WRONG — AnalysisException: MISSING_GROUP_BY
+SELECT DISTINCT score_category, COUNT(*) as n
+FROM kbase_ke_pangenome.gapmind_pathways
+LIMIT 20
+
+-- CORRECT — GROUP BY only; DISTINCT is redundant when GROUP BY is present
+SELECT score_category, COUNT(*) as n
+FROM kbase_ke_pangenome.gapmind_pathways
+GROUP BY score_category
+ORDER BY n DESC
+```
+
+**Rule**: Never combine `DISTINCT` with aggregate functions. Use `GROUP BY` exclusively for grouped aggregations. `SELECT DISTINCT col, COUNT(*)` is always wrong — replace with `GROUP BY col`.
+
+Observed in `[nmdc_community_metabolic_ecology]` NB03 cell-9 when checking `score_category` value distribution in `gapmind_pathways`.
+
 ---
 
 ## Pangenome (`kbase_ke_pangenome`) Pitfalls
