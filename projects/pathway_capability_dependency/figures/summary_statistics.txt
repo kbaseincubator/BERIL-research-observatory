@@ -1,0 +1,45 @@
+=== Metabolic Capability vs Dependency: Summary Statistics ===
+Analysis date: 2026-02-19
+
+--- Tier 1: Fitness-Validated Classification (NB02) ---
+FB organisms analyzed: 7
+GapMind pathways analyzed: 23
+Total classifications: 161
+Mapping approach: FB-native KEGG (besthitkegg → keggmember → EC → KEGG map)
+  Active Dependency: 57 (35.4%)
+  Latent Capability: 66 (41.0%)
+  Incomplete but Important: 24 (14.9%)
+  Missing: 14 (8.7%)
+
+Key finding: 35.4% Active Dependencies — pathways complete AND fitness-important
+Key finding: Condition-type analysis reveals ALL Latent Capabilities become
+  important under specific conditions (N, stress, C limitation)
+  → supports core_gene_tradeoffs: "costly in lab but conserved in nature"
+
+--- Tier 2: Pan-Bacterial Pathway Conservation (NB03) ---
+Species analyzed: 2,810
+H1b: Variable pathways vs openness: rho=0.327, p=7.2e-71
+Partial Spearman (ctrl n_genomes): rho=0.530, p=2.83e-203
+Key finding: Species with more variable pathways have more open pangenomes
+Key finding: Amino acid biosynthesis shows largest accessory dependence gap
+
+Top accessory-dependent pathways:
+  leu: gap=0.146 (all=0.614, core=0.468)
+  val: gap=0.146 (all=0.614, core=0.468)
+  arg: gap=0.141 (all=0.613, core=0.472)
+  lys: gap=0.140 (all=0.804, core=0.664)
+  thr: gap=0.140 (all=0.803, core=0.663)
+
+--- Metabolic Ecotypes (NB04) ---
+Species with ecotypes: 225
+Median ecotypes per species: 4
+Max ecotypes: 8
+Ecotypes vs openness: rho=0.262, p=6.8e-05
+Key finding: More metabolic ecotypes → more open pangenomes
+
+--- Cross-Project Context ---
+  metal_fitness_atlas: 87.4% metal-fitness genes are core (OR=2.08)
+  conservation_fitness_synthesis: 16pp fitness-conservation gradient
+  ecotype_analysis: phylogeny dominates gene content (60.5% of species)
+  pangenome_openness: null result for openness vs env/phylo
+  core_gene_tradeoffs: 28,017 genes costly in lab but conserved in nature

@@ -338,6 +338,39 @@ Analysis of 1,872 bacterial species with complete pangenome, GapMind pathway, an
 
 ---
 
+## 2026-02
+
+### [pathway_capability_dependency] Pathway completeness ≠ metabolic dependency
+
+Four-category classification of 7 FB organisms × 23 GapMind pathways reveals:
+- 35.4% Active Dependencies (complete + fitness-important)
+- 41.0% Latent Capabilities (complete but fitness-neutral in rich media)
+- 14.9% Incomplete but Important
+- 8.7% Missing
+
+Key insight: ALL Latent Capabilities become fitness-important under condition-specific analysis (nitrogen limitation, stress, carbon source shifts). This validates the core_gene_tradeoffs finding that lab fitness underestimates natural selection on metabolic genes.
+
+### [pathway_capability_dependency] Variable pathways strongly predict pangenome openness
+
+Pan-bacterial analysis (2,810 species, ≥10 genomes each):
+- Spearman(variable pathways, openness): rho=0.327, p=7.2e-71
+- Partial Spearman controlling for genome count: rho=0.530, p=2.83e-203
+- Signal holds across 18/21 phylogenetic groups tested
+- Amino acid biosynthesis pathways (leu, val, arg, lys, thr) show largest accessory dependence gap (~0.14)
+
+This is much stronger than the pangenome_openness project's null result for environmental/phylogenetic predictors of openness. Metabolic pathway variability is a genuine predictor.
+
+### [pathway_capability_dependency] FB-native KEGG annotations bypass pangenome link table
+
+The Fitness Browser's own KEGG tables (`besthitkegg` + `keggmember` + `kgroupec`) provide direct gene-to-KEGG KO-to-EC-to-pathway mapping for all 48 FB organisms. This is much simpler than the DIAMOND blastp pipeline used by conservation_vs_fitness to build a link table, and covers more organisms. The chain: besthitkegg → keggmember → kgroupec → keggconf → GapMind pathway.
+
+### [pathway_capability_dependency] Metabolic ecotypes: median 4 per species
+
+Hierarchical clustering of 225 species (≥50 genomes, ≥3 variable pathways) by GapMind pathway profiles:
+- Median 4 metabolic ecotypes per species, max 8
+- More ecotypes correlate with pangenome openness (partial rho=0.322, p=8.0e-07)
+- Top ecotyped species: *Alistipes onderdonkii* (8), *Barnesiella intestinihominis* (8)
+
 ## Template
 
 ```markdown
