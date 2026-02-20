@@ -11,8 +11,8 @@
 # Container definition
 /Dockerfile             @kbaseincubator/beril-maintainers
 
-# CI/CD workflows
-/.github/workflows/     @kbaseincubator/beril-maintainers
+# All GitHub configuration including workflows and CODEOWNERS itself
+/.github/               @kbaseincubator/beril-maintainers
 
 # Scripts that support building/running the app
 /scripts/               @kbaseincubator/beril-maintainers
