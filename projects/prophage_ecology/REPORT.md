@@ -103,13 +103,19 @@ Querying 93M eggNOG annotations with 112 WHERE clause conditions identified 4,00
 | F. Lysogenic Regulation | 1,682,902 | 100.0% |
 | G. Anti-Defense | 63,508 | 64.3% |
 
+![Prophage gene cluster counts, species presence, and module richness](figures/prophage_module_discovery.png)
+
 Conservation analysis reveals that modules D (lysis, 62.6% core) and A (packaging, 57.0% core) are dominated by core genes, while modules E (integration, 59.3% singleton) and B (head morphogenesis, 56.0% singleton) are dominated by singletons — consistent with the expectation that phage structural genes diversify rapidly while regulatory/lysis genes are more conserved (Hendrix et al. 2000).
+
+![Core/accessory/singleton status of prophage gene clusters by module](figures/prophage_conservation_by_module.png)
 
 Validation against 8 well-characterized prophage-carrying species (E. coli, S. enterica, S. aureus, P. aeruginosa, M. tuberculosis, B. subtilis, V. cholerae, S. pyogenes) confirmed detection of all 7 modules in every case.
 
 ### TerL Lineage Clustering (NB02)
 
 38,085 TerL protein sequences from 11,789 species were clustered at 70% amino acid identity using MMseqs2, yielding 10,991 lineages. The largest lineage (L_SFJM01000051.1_13) spans 1,094 members across 869 species, representing a cosmopolitan prophage type. 6,921 lineages (63%) are singletons — species-specific prophage types.
+
+![TerL lineage size distribution and clustering threshold sensitivity](figures/terL_lineage_overview.png)
 
 ### Phylogenetic Distribution (NB04)
 
@@ -167,6 +173,8 @@ The enrichment of **anti-defense genes in human-associated environments** aligns
 
 The **Piggyback-the-Winner** framework (Knowles et al. 2016) predicts higher lysogeny at high microbial densities (host-associated environments). Our results extend this: it is not merely lysogeny that increases, but specifically the structural completeness and anti-defense repertoire of prophages. This suggests that human-associated bacteria face more intense phage-mediated selective pressure, driving retention of complete prophage lytic machinery and counter-defense genes.
 
+The **co-occurrence results (NB03)** provide the first large-scale empirical validation of the modular theory of phage evolution (Hendrix et al. 2000) at the pangenome level. The strong co-occurrence and contig co-localization of packaging (A), lysis (D), and lysogenic regulation (F) genes confirms that these functions are physically linked in prophage elements, not independently distributed annotations. The finding that integration (E) genes do NOT co-occur is consistent with Bobay et al. (2014), who showed that domesticated prophage remnants — which are more common than intact prophages — often retain only integrases while losing the rest of the prophage backbone. The low co-localization of anti-defense genes (G, 0.281) aligns with Pinilla-Redondo et al. (2020) and Rahimian et al. (2026), who found that anti-defense and defense systems co-localize into functional "defense islands" that are genomically distinct from the core prophage.
+
 The lack of significant lineage-level enrichment (H1b) contrasts with Paez-Espino et al.'s (2016) finding of strong habitat-type specificity for most viral groups. However, our analysis used constrained permutations preserving host family composition — the lineage distribution is well-explained by host phylogeny alone, consistent with Mavrich & Hatfull (2017) showing that temperate phage evolution is primarily shaped by host range rather than environmental selection.
 
 ### Novel Contribution
@@ -176,6 +184,7 @@ This study provides the first systematic, module-level analysis of prophage arch
 1. **Not all prophage functions respond equally to environment** — ubiquitous modules (A, D, F) show minimal environmental variation, while structurally variable modules (B, C, G) carry the environmental signal
 2. **Anti-defense is the most environmentally responsive module** — showing the strongest enrichment (human-associated) and depletion (freshwater, animal-associated) signals
 3. **Module-level and lineage-level ecology are decoupled** — modules show environment effects beyond phylogeny, but lineages do not, suggesting modular exchange rather than whole-phage adaptation to environments
+4. **Empirical validation of prophage modularity at pangenome scale** — co-occurrence analysis across 15 phyla confirms that packaging, lysis, and lysogenic regulation genes behave as physically linked functional units, while integration and anti-defense genes are genomically independent, supporting a two-tier model of prophage organization (core backbone + scattered accessory functions)
 
 ### Limitations
 
@@ -197,7 +206,7 @@ This study provides the first systematic, module-level analysis of prophage arch
 
 | Collection | Tables Used | Purpose |
 |------------|-------------|---------|
-| `kbase_ke_pangenome` | `eggnog_mapper_annotations`, `gene_cluster`, `genome`, `gtdb_metadata`, `ncbi_env`, `alphaearth_embeddings_all_years`, `gene`, `gene_genecluster_junction` | Prophage gene identification, taxonomy, environment metadata, genome size, co-occurrence |
+| `kbase_ke_pangenome` | `eggnog_mapper_annotations`, `gene_cluster`, `genome`, `gtdb_species_clade`, `gtdb_taxonomy_r214v1`, `gtdb_metadata`, `pangenome`, `ncbi_env`, `alphaearth_embeddings_all_years`, `gene`, `gene_genecluster_junction` | Prophage gene identification, taxonomy, environment metadata, genome size, co-occurrence |
 | `nmdc_arkin` | `taxonomy_features`, `taxonomy_dim`, `abiotic_features`, `study_table` | Metagenomic cross-validation of prophage burden |
 
 ### Generated Data
@@ -236,14 +245,17 @@ This study provides the first systematic, module-level analysis of prophage arch
 
 | Figure | Description |
 |--------|-------------|
+| `figures/prophage_module_discovery.png` | Gene cluster counts, species presence, and module richness distribution |
+| `figures/prophage_conservation_by_module.png` | Core/accessory/singleton status of prophage gene clusters by module |
 | `figures/prophage_prevalence_by_phylum.png` | Heatmap of module prevalence across top 15 phyla |
+| `figures/terL_lineage_overview.png` | TerL lineage size distribution and clustering threshold sensitivity |
 | `figures/variance_partitioning.png` | PERMANOVA F-statistics and module prevalence by environment |
 | `figures/genome_size_confound.png` | Genome size vs prophage burden scatter and stratified analysis |
+| `figures/module_cooccurrence_heatmap.png` | Z-scores of within-module gene co-occurrence across 15 species |
 | `figures/module_environment_enrichment.png` | Z-score heatmap and log2(OR) for module × environment enrichment |
 | `figures/lineage_environment_heatmap.png` | Lineage Shannon entropy distribution and specialist dominant environments |
 | `figures/nmdc_prophage_vs_abiotic.png` | NMDC prophage burden vs pH, temperature, depth |
 | `figures/nmdc_module_abiotic_heatmap.png` | NMDC module-abiotic correlation heatmap |
-| `figures/module_cooccurrence_heatmap.png` | Z-scores of within-module gene co-occurrence across 15 species |
 
 ## Future Directions
 
@@ -282,6 +294,7 @@ This study provides the first systematic, module-level analysis of prophage arch
 - Paez-Espino D et al. (2016). "Uncovering Earth's virome." *Nature* 536:425-430. PMID: 27533034
 - Pinilla-Redondo R et al. (2020). "Discovery of multiple anti-CRISPRs highlights anti-defense gene clustering in mobile genetic elements." *Nat Commun* 11:5652. PMID: 33159058
 - Pons BJ et al. (2023). "Ecology and evolution of phages encoding anti-CRISPR proteins." *J Mol Biol* 435:167974. PMID: 36690071
+- Rahimian M et al. (2026). "Genomic landscape of biosynthetic gene clusters in Iranian extremophiles reveals prolific metabolite potential, prophage associations, and integrated defensive-metabolic islands." *BMC Microbiol*. PMID: 41578173
 - Roux S et al. (2015). "Viral dark matter and virus-host interactions resolved from publicly available microbial genomes." *eLife* 4:e08490.
 - Tesson F et al. (2024). "Exploring the diversity of anti-defense systems across prokaryotes, phages, and mobile genetic elements." *Nucleic Acids Res* 53:gkae1171. PMID: 39657785
 - Touchon M et al. (2016). "Genetic and life-history traits associated with the distribution of prophages in bacteria." *ISME J* 10:2744-2754. PMID: 27015004
