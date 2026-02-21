@@ -75,17 +75,18 @@ upload/ingest cells to exclude specific tables if needed).
 
 ### Step 4: Generate, configure, and run the ingest notebook
 
-Copy the reference template to `local/` named after the dataset:
+Copy the reference template into the source directory, named after the dataset:
 
 ```bash
-cp .claude/skills/berdl-ingest/references/ingest.ipynb local/<dataset>_ingest.ipynb
+cp .claude/skills/berdl-ingest/references/ingest.ipynb <DATA_DIR>/<dataset>_ingest.ipynb
 ```
 
 Edit the configuration cell (cell id `b0000003`) in the copied notebook, replacing the
-`{PLACEHOLDER}` values:
+`{PLACEHOLDER}` values. Use the **absolute path** for `DATA_DIR` — relative paths will
+not resolve correctly when `nbconvert` executes the notebook:
 
 ```python
-DATA_DIR = Path("<source directory>")
+DATA_DIR = Path("/absolute/path/to/<source directory>")
 TENANT   = "<chosen tenant>"
 DATASET  = "<chosen dataset>"   # or None to use DATA_DIR.name
 BUCKET   = "cdm-lake"
@@ -98,7 +99,7 @@ Execute the notebook:
 source .venv-berdl/bin/activate
 jupyter nbconvert --to notebook --execute --inplace \
     --ExecutePreprocessor.timeout=600 \
-    local/<dataset>_ingest.ipynb
+    <DATA_DIR>/<dataset>_ingest.ipynb
 ```
 
 The notebook auto-detects format, parses schema from the `.sql` file, exports SQLite to TSV
@@ -123,9 +124,8 @@ check the quarantine path in the ingest report.
 
 ## References
 
-- `references/ingest.ipynb`: notebook template — copied to `local/<dataset>_ingest.ipynb` and configured for each ingest job.
+- `references/ingest.ipynb`: notebook template — copied into `<DATA_DIR>/` and configured for each ingest job.
 - `berdl-query/references/proxy-setup.md`: SSH tunnel and pproxy setup for off-cluster access.
-- `local/README.md`: explains the `berdl_notebook_utils` stub pattern and MinIO proxy workaround required for local execution.
 
 ## Error Handling
 
