@@ -6,7 +6,7 @@ How are prophage gene modules and terminase-defined prophage lineages distribute
 
 ## Status
 
-Complete — see [Report](REPORT.md) for findings. NB03 (module co-occurrence validation) still executing.
+Complete — see [Report](REPORT.md) for findings.
 
 ## Overview
 

@@ -162,7 +162,8 @@ WHERE ne.harmonized_name IN ('isolation_source', 'env_broad_scale',
 - **Expected output**: `data/terL_lineages.tsv`, `data/lineage_summary.tsv`, `figures/terL_lineage_tree.png`
 
 ### Notebook 3: Module Co-occurrence Validation (JupyterHub)
-- **Goal**: Test whether module genes co-occur more than random in ~50 representative species
+- **Goal**: Test whether module genes co-occur more than random in ~15 representative species (v2: reduced from 50)
+- **Design**: 15 species across phyla, max 300 genomes/species (sampled), 200 null permutations, vectorized Jaccard via scipy.pdist
 - **Expected output**: `data/module_cooccurrence_stats.tsv`, `data/contig_colocation.tsv`, `figures/module_cooccurrence_heatmap.png`
 
 ### Notebook 4: Phylogenetic Distribution & Variance Partitioning (local)
@@ -202,6 +203,7 @@ WHERE ne.harmonized_name IN ('isolation_source', 'env_broad_scale',
 
 ## Revision History
 - **v1** (2026-02-20): Initial plan
+- **v2** (2026-02-21): NB03 redesign — reduced from 50 to 15 species, capped genomes at 300/species, added BROADCAST hints for both genome and cluster temp views, replaced O(n²) Python Jaccard with scipy.pdist, reduced null permutations from 500 to 200. Original approach was intractable (K. pneumoniae alone stalled the notebook due to 1B×1B row join repeated per species).
 
 ## Authors
 - Adam Arkin (ORCID: 0000-0002-4999-2931), U.C. Berkeley / Lawrence Berkeley National Laboratory

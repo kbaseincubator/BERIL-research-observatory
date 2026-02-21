@@ -8,6 +8,21 @@ See [collections.md](collections.md) for the full database inventory and [schema
 
 ## General BERDL Pitfalls
 
+### PySpark Cannot Infer numpy `str_` Types
+
+**[prophage_ecology]** `np.random.choice()` on a list of Python strings returns numpy `str_` objects. PySpark's `createDataFrame()` cannot infer schema for `str_`, raising `PySparkTypeError: [CANNOT_INFER_TYPE_FOR_FIELD]`.
+
+**Fix**: Always cast to native Python `str` before creating DataFrames:
+```python
+# WRONG: numpy str_ types
+genome_ids = list(np.random.choice(all_genome_ids, 300, replace=False))
+spark.createDataFrame([(g,) for g in genome_ids], ['genome_id'])  # FAILS
+
+# CORRECT: explicit str() cast
+genome_ids = [str(g) for g in np.random.choice(all_genome_ids, 300, replace=False)]
+spark.createDataFrame([(g,) for g in genome_ids], ['genome_id'])  # OK
+```
+
 ### REST API Reliability
 
 The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can experience issues:
@@ -74,6 +89,27 @@ This affects: `kescience_fitnessbrowser` (all columns), `kbase_genomes` (coordin
 ---
 
 ## Pangenome (`kbase_ke_pangenome`) Pitfalls
+
+### Taxonomy Join: Use `genome_id`, NOT `gtdb_taxonomy_id`
+
+**[prophage_ecology]** The `genome` and `gtdb_taxonomy_r214v1` tables both have a `gtdb_taxonomy_id` column, but they store **different levels of the taxonomy string**:
+
+- `genome.gtdb_taxonomy_id`: truncated at genus level (e.g., `d__Bacteria;p__Bacillota;...;g__Staphylococcus`)
+- `gtdb_taxonomy_r214v1.gtdb_taxonomy_id`: includes species (e.g., `d__Bacteria;p__Bacillota;...;s__Staphylococcus aureus`)
+
+Joining on `gtdb_taxonomy_id` returns **zero rows**. Always join on `genome_id`:
+
+```sql
+-- CORRECT: join on genome_id
+SELECT g.gtdb_species_clade_id, t.phylum, t.family
+FROM kbase_ke_pangenome.genome g
+JOIN kbase_ke_pangenome.gtdb_taxonomy_r214v1 t ON g.genome_id = t.genome_id
+
+-- WRONG: returns 0 rows because taxonomy depth differs
+SELECT g.gtdb_species_clade_id, t.phylum, t.family
+FROM kbase_ke_pangenome.genome g
+JOIN kbase_ke_pangenome.gtdb_taxonomy_r214v1 t ON g.gtdb_taxonomy_id = t.gtdb_taxonomy_id
+```
 
 ### SQL Syntax Issues
 
