@@ -126,7 +126,21 @@ Genus-level prophage burden scores derived from the pangenome were applied to 6,
 
 ### Module Co-occurrence Validation (NB03)
 
-*Analysis in progress.* NB03 is testing H1c (whether genes within defined modules co-occur more than random) across 50 phylogenetically diverse species using genome-level presence/absence matrices from billion-row Spark joins. This computationally intensive analysis (~50 species × 7 modules × 500 permutations each) is still executing. Results will be added upon completion.
+Testing H1c across 15 phylogenetically stratified species (one per phylum, max 300 genomes each, 200 null permutations) reveals that 44/95 module-species tests (46.3%) show significantly higher within-module gene co-occurrence than expected by chance (z > 1.96, one-tailed). Mean contig co-localization across all tests is 0.769.
+
+| Module | Significant / Tested | Mean Z-score | Mean Co-localization | Interpretation |
+|--------|---------------------|--------------|---------------------|----------------|
+| A. Packaging | 11/15 | 3.40 | 0.986 | Strong co-occurrence; genes cluster on same contig |
+| B. Head Morphogenesis | 1/6 | -0.44 | 0.474 | Weak; sparse across species |
+| C. Tail | 5/12 | 1.43 | 0.752 | Moderate co-occurrence |
+| D. Lysis | 13/15 | 4.45 | 0.901 | Strongest co-occurrence of any module |
+| E. Integration | 1/15 | -1.93 | 0.420 | NOT co-occurring — expected for integrases |
+| F. Lysogenic Regulation | 10/15 | 2.16 | 1.000 | Significant; perfect contig co-localization |
+| G. Anti-Defense | 3/11 | 1.50 | 0.281 | Weak co-occurrence; scattered genomic placement |
+
+The three core modules (A, D, F) show strong co-occurrence and high contig co-localization, consistent with their role as physically linked prophage functional units. Integration (E) genes explicitly do NOT co-occur — this is biologically expected, as integrases are distributed at different genomic insertion sites and many are domesticated remnants. Anti-defense (G) genes show low co-localization (0.281), consistent with their known tendency to cluster in "defense islands" (Pinilla-Redondo et al. 2020) separately from the core prophage backbone.
+
+![Module co-occurrence heatmap](figures/module_cooccurrence_heatmap.png)
 
 ## Interpretation
 
@@ -138,7 +152,7 @@ Genus-level prophage burden scores derived from the pangenome were applied to 6,
 
 **H1b (TerL lineages show environment-specific enrichment): NOT SUPPORTED at the individual lineage level.** No individual lineage passed FDR correction. However, the specialist/generalist classification (325 vs 499) demonstrates that lineage-level niche breadth varies substantially, even if no single lineage's enrichment exceeds the constrained null model.
 
-**H1c (module genes co-occur): PENDING** (NB03 still executing).
+**H1c (module genes co-occur): PARTIALLY SUPPORTED.** Core prophage modules (packaging, lysis, lysogenic regulation) show strong within-module gene co-occurrence and contig co-localization across 15 diverse species. Lysis is the strongest (13/15 species significant, z=4.45). However, integration genes do NOT co-occur (z=-1.93), and anti-defense genes show weak co-occurrence (3/11), reflecting their distinct genomic organization. The module definitions are validated for the core prophage backbone (A, D, F) but less so for accessory functions (E, G).
 
 **H1d (NMDC prophage burden correlates with abiotic variables): SUPPORTED.** 57 significant module-abiotic correlations (FDR < 0.05), with pH and temperature as the strongest predictors. Cross-validation with pangenome results confirms concordance for modules B, C, and G.
 
@@ -173,7 +187,7 @@ This study provides the first systematic, module-level analysis of prophage arch
 
 4. **NMDC inference is indirect**: Taxonomy-based prophage burden inference assumes genus-level conservation of prophage content, which may not hold for recently acquired or lost prophages. This approach was validated for the PHB granule ecology project but has not been independently validated for prophage genes.
 
-5. **Module co-occurrence (NB03) pending**: The validation that our operationally defined modules actually co-occur as functional units within genomes is still computing. Without this, the module definitions rest on annotation logic rather than empirical co-occurrence evidence.
+5. **Module co-occurrence scope**: NB03 tested 15 species (one per phylum), which provides broad phylogenetic coverage but limited within-phylum replication. Head morphogenesis (B) was testable in only 6 species due to sparsity. The 200-permutation null model provides adequate but not exhaustive precision for z-score estimation.
 
 6. **AlphaEarth embeddings**: Only 28% of genomes have environmental embeddings, creating a biased subsample toward clinically and environmentally well-sampled lineages.
 
@@ -202,6 +216,8 @@ This study provides the first systematic, module-level analysis of prophage arch
 | `data/nmdc_module_by_environment.tsv` | 105 | Module × abiotic variable correlations |
 | `data/enriched_modules.tsv` | 70 | Module × environment enrichment with null model z-scores |
 | `data/enriched_lineages.tsv` | 500 | Lineage × environment enrichment results |
+| `data/module_cooccurrence_stats.tsv` | 95 | Per-species per-module co-occurrence z-scores and p-values |
+| `data/contig_colocation.tsv` | 95 | Per-species per-module contig co-localization fractions |
 
 ## Supporting Evidence
 
@@ -211,7 +227,7 @@ This study provides the first systematic, module-level analysis of prophage arch
 |----------|---------|
 | `01_prophage_gene_discovery.ipynb` | Identify prophage gene clusters via eggNOG; classify into 7 modules; extract TerL sequences |
 | `02_terL_lineage_clustering.ipynb` | Cluster TerL at 70% AAI with MMseqs2; threshold sensitivity analysis |
-| `03_module_cooccurrence.ipynb` | Test module gene co-occurrence vs random in 50 species (in progress) |
+| `03_module_cooccurrence.ipynb` | Test module gene co-occurrence vs random in 15 stratified species; contig co-localization |
 | `04_phylogenetic_distribution.ipynb` | PERMANOVA variance partitioning; environment classification; genome size confound |
 | `05_nmdc_environmental_analysis.ipynb` | NMDC taxonomy-inferred prophage burden vs abiotic variables |
 | `06_enriched_modules_lineages.ipynb` | Constrained permutation null models; lineage specialist/generalist classification |
@@ -227,6 +243,7 @@ This study provides the first systematic, module-level analysis of prophage arch
 | `figures/lineage_environment_heatmap.png` | Lineage Shannon entropy distribution and specialist dominant environments |
 | `figures/nmdc_prophage_vs_abiotic.png` | NMDC prophage burden vs pH, temperature, depth |
 | `figures/nmdc_module_abiotic_heatmap.png` | NMDC module-abiotic correlation heatmap |
+| `figures/module_cooccurrence_heatmap.png` | Z-scores of within-module gene co-occurrence across 15 species |
 
 ## Future Directions
 
@@ -234,7 +251,7 @@ This study provides the first systematic, module-level analysis of prophage arch
 
 2. **Partial PERMANOVA**: Implement sequential/partial PERMANOVA to formally quantify the unique variance explained by environment after controlling for phylogeny and genome size simultaneously, rather than testing each predictor independently.
 
-3. **Module co-occurrence completion**: Once NB03 completes, integrate co-occurrence and contig co-localization results to validate or refine module definitions.
+3. **Module definition refinement**: NB03 results suggest integration (E) and anti-defense (G) behave differently from core prophage modules — consider splitting the analysis into "core prophage backbone" (A, D, F) vs "accessory functions" (B, C, E, G) in future work.
 
 4. **Anti-defense island analysis**: Investigate whether anti-defense genes (Module G) co-localize with defense system genes in the same genomes, testing the "arms race" hypothesis at the genomic level.
 
