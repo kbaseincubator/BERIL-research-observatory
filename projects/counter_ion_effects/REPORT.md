@@ -8,6 +8,8 @@
 
 Across 19 organisms and 14 metals (86 organism × metal pairs), 4,304 of 10,821 metal-important gene records (39.8%) are also important under NaCl stress. This substantial overlap exists for every metal tested — from 9.2% for molybdenum to 57.6% for manganese — indicating that a large fraction of the "metal fitness" signal reflects general cellular vulnerability shared between metal and osmotic/ionic stress.
 
+**Sensitivity to outliers**: *Synechococcus elongatus* (SynE) is a dramatic outlier at 88.6% shared-stress (565/638 genes), driven by its 12 NaCl dose-response experiments spanning 0.5–250 mM — far more than any other organism (1–6 NaCl experiments). The `n_sick >= 1` threshold is much easier to satisfy with 12 experiments. Excluding SynE, the overall overlap drops modestly from 39.8% to 36.7% (3,739/10,183), confirming that the finding is not driven by this outlier. The next-highest organisms (Korea 58.6%, Phaeo 56.4%, Pedo557 53.0%) have typical NaCl experiment counts.
+
 *(Notebook: 02_metal_nacl_overlap.ipynb)*
 
 ### 2. Counter Ions Are NOT the Primary Driver of the Overlap
@@ -102,9 +104,10 @@ Zinc (sulfate, **zero chloride**) ranks 4th in NaCl overlap, above 10 of 14 meta
 | Aluminum | 0.897 | 0.866 | 0.799 | +0.099 | +0.068 | weaker |
 | Chromium | 0.710 | 0.723 | 0.654 | +0.056 | **+0.069** | **stronger** |
 | Uranium | 0.685 | 0.694 | 0.654 | +0.031 | +0.040 | slightly stronger |
-| Cadmium | 0.522 | 0.422 | 0.530 | -0.008 | -0.108 | reversed (n=92) |
+| Cadmium | 0.522 | 0.422 | 0.530 | -0.008 | -0.108 | reversed (n=92, 1 org) |
+| Iron | 0.778 | 1.000 | 0.818 | -0.040 | +0.182 | reversed but n=9, 1 org |
 
-7 of 14 metals show **stronger** core enrichment after correction. Only Cadmium reverses, but with n=92 genes from a single organism.
+7 of 14 metals show **stronger** core enrichment after correction. Cadmium and Iron have very low gene counts (n=92 and n=9 respectively, each from a single organism) and should be interpreted with caution — their corrected deltas are statistically unreliable. Manganese (n=30, 1 org) is also low-powered but its result (100% core) is robust by ceiling effect.
 
 ### Hypothesis Outcomes
 

@@ -8,74 +8,78 @@ project: counter_ion_effects
 
 ## Summary
 
-This is an excellent, well-executed project that asks a critical methodological question: does the chloride delivered by metal chloride salts confound genome-wide fitness measurements in the Fitness Browser? The analysis is thorough, covering 5 notebooks across 25 organisms and 14 metals, and reaches a clear, well-supported conclusion — counter ions are NOT the primary confound, and the ~40% metal–NaCl gene overlap reflects shared stress biology. The use of zinc sulfate (zero chloride) as a natural control is particularly compelling. Documentation is strong: the README, RESEARCH_PLAN, and REPORT are detailed and well-structured. The main issues are several numerical discrepancies between notebook outputs and the REPORT text, and the functional annotation finding in the REPORT is reversed relative to what the notebook actually shows.
+This is a well-conceived and thoroughly executed project that addresses a genuinely important methodological question: does chloride delivered by metal chloride salts confound genome-wide fitness measurements in the Fitness Browser? The analysis spans 5 notebooks, 25 organisms, and 14 metals, reaching a clear, well-supported conclusion — counter ions are NOT the primary confound, and the ~40% metal–NaCl gene overlap reflects shared stress biology rather than methodological artifact. The use of zinc sulfate as a zero-chloride natural control is the strongest piece of evidence and is elegantly presented. Documentation is excellent across the README, RESEARCH_PLAN, and REPORT, with all key numerical claims now matching notebook outputs. The main areas for improvement are: (1) the NaCl-importance threshold is not adjusted for experiment count, which makes SynE a dramatic outlier that warrants discussion; (2) the RESEARCH_PLAN still describes a threshold ("fit < -1, |t| > 4") that differs from the implementation; and (3) the conservation analysis in NB04 silently loses 2 organisms relative to the overlap analysis.
 
 ## Methodology
 
-**Research question**: Clearly stated, testable, and scientifically important. The four sub-hypotheses (H1a–d) have explicit, quantitative predictions.
+**Research question**: Clearly stated, scientifically important, and testable. The four sub-hypotheses (H1a–d) have explicit, quantitative predictions — a model for how to structure hypothesis-driven data analysis. The honest acknowledgment that H1d was dropped (with rationale in the RESEARCH_PLAN revision history) is good practice.
 
-**Approach**: Sound and well-designed. The strategy of comparing metal-important gene sets with NaCl-important gene sets is straightforward and appropriate. The use of zinc sulfate as a zero-chloride control is a natural experiment that makes the dose-response test (H1b) particularly convincing. Statistical methods (Fisher exact test, Spearman correlation, Mann-Whitney U) are appropriate for the data types.
+**Approach**: The strategy of comparing metal-important gene sets with NaCl-important gene sets is sound and appropriate. Three independent lines of evidence converge on the same conclusion (zinc sulfate control, no Cl⁻ dose-response, psRCH2 comparison), making the argument robust. Statistical methods (Fisher exact test, Spearman correlation, Mann-Whitney U) are appropriate for the data types.
 
-**Data sources**: Clearly identified in both the README and RESEARCH_PLAN. Dependencies on prior project cached data (fitness_modules, metal_fitness_atlas, conservation_vs_fitness) are documented with specific file paths.
+**Data sources**: Clearly identified in both the README and RESEARCH_PLAN, including cross-project dependencies (metal_fitness_atlas, fitness_modules, conservation_vs_fitness, essential_genome). The project runs entirely locally from cached data — no Spark needed — which is well-documented in the Reproduction section.
 
-**Reproducibility**: Strong. The README includes a complete `## Reproduction` section with step-by-step commands. All notebooks run locally (no Spark required) and are documented to complete in under 1 minute. A `requirements.txt` is provided with appropriate dependency versions.
+**Reproducibility**: Strong. The README provides step-by-step `nbconvert` commands, documents that no Spark is required, and estimates runtime at under 1 minute. A `requirements.txt` with appropriate package versions is provided. Each notebook declares its inputs and outputs in the header markdown cell.
 
-**Hypothesis testing**: H1a was supported (39.8% overlap), H1b was rejected (zinc sulfate ranks 4th despite zero Cl⁻), H1c was rejected (core enrichment is robust), and H1d was dropped. The honest reporting of dropped analyses (NB06, NB07) in the RESEARCH_PLAN revision history is good practice.
-
-**One methodological note**: The RESEARCH_PLAN (Notebook 1) specifies NaCl-importance as "fit < -1, |t| > 4", but the cached fitness matrices lack t-scores. The actual implementation in NB01 (cell 6) uses `mean_fit < -1 OR n_sick >= 1`, which is a more permissive threshold. This substitution is reasonable given the data available, but should be documented.
+**Threshold concern**: The NaCl-importance threshold (`mean_fit < -1 OR n_sick >= 1`) is not adjusted for the number of NaCl experiments per organism. This creates a systematic bias: organisms with more NaCl experiments are more likely to have any given gene classified as NaCl-important (because `n_sick >= 1` is easier to satisfy with 12 experiments than with 1). SynE has 12 NaCl dose-response experiments (0.5–250 mM) and consequently flags 620 genes (32.6%) as NaCl-important — 3× higher than the next organism (psRCH2, 10.5%). In the overlap analysis, SynE shows 88.6% shared-stress — an extreme outlier. The REPORT doesn't discuss this organism-level variability or whether the overall 39.8% overlap changes meaningfully if SynE is excluded or the threshold is made consistent.
 
 ## Code Quality
 
-**Notebook organization**: All 5 notebooks follow a clean structure: markdown header with inputs/outputs → setup → analysis → visualization → summary. Each notebook builds on the previous one's outputs, with clear data flow.
+**Notebook organization**: All 5 notebooks follow a clean, consistent structure: markdown header with inputs/outputs, imports and paths, numbered analysis sections, visualizations, and a summary. Data flows clearly from NB01 → NB02 → NB03 → NB04, with NB05 as a standalone comparison. Each notebook saves intermediate outputs for downstream use.
 
-**Pandas operations**: Clean and efficient. No unnecessary loops over large DataFrames. The use of set operations for gene overlap computation (cell 3 of NB02) is appropriate. Groupby aggregations are well-structured.
+**Pandas operations**: Clean and efficient throughout. Set operations for gene overlap (NB02 cell 3), groupby aggregations for per-metal summaries, and proper use of merge operations. No unnecessary row-wise iteration on large DataFrames.
 
-**Statistical methods**: Appropriate throughout. Fisher exact tests for enrichment, Spearman correlation for the dose-response test (appropriate given the non-linear relationship), Mann-Whitney for group comparisons.
+**Statistical methods**: Appropriate. Fisher exact tests for enrichment, Spearman for the non-linear dose-response test, Mann-Whitney for group comparisons. P-values are reported alongside effect sizes.
 
-**Pitfall awareness**: The project correctly handles the Fitness Browser "all columns are strings" pitfall by using pre-cast cached matrices from the fitness_modules project. No Spark is needed, avoiding the REST API reliability and `.toPandas()` pitfalls. The `docs/pitfalls.md` entry about essential genes being invisible in genefitness-only analyses is relevant — the REPORT's limitations section correctly notes that "~14.3% of protein-coding genes (putative essentials) lack transposon insertions" and are excluded.
+**Pitfall awareness**: The project elegantly avoids the most common BERDL pitfalls by using pre-cast cached fitness matrices from the fitness_modules project, eliminating Spark entirely. This sidesteps the REST API reliability issues, `.toPandas()` memory concerns, and the "all columns are strings" casting problem documented in `docs/pitfalls.md`. The essential genes invisibility pitfall is correctly acknowledged in the REPORT's limitations section.
 
-**Potential issue in NB01 cell 9**: The `classify_counter_ion` function handles cadmium chloride but `conc` may be NaN, leading to `cl_conc = valence * NaN = NaN`. The NB01 output confirms this (Cadmium: min_cl=NaN, max_cl=NaN). This is handled gracefully downstream (NaN propagation), but an explicit note would help.
+**Specific code notes**:
 
-**NB03 cell 6**: The SEED annotation file is loaded from `ESSENTIAL / 'all_seed_annotations.tsv'`, depending on the essential_genome project's data directory. This cross-project dependency is not listed in the README Data Sources section.
+- NB01 cell 9: The `classify_counter_ion` function produces `NaN` for cadmium's Cl⁻ concentration (because `conc` is NaN). This propagates correctly through downstream analysis but an explicit comment would aid readability.
+
+- NB02 cell 3: The Fisher exact test contingency table sets `d = max(0, total_genes - |metal ∪ nacl|)`. The `max(0, ...)` guard is defensive coding — good practice even though `d` should always be non-negative.
+
+- NB04 cell 4: The merge with conservation data drops from 10,821 classified gene records (19 organisms) to 8,924 (17 organisms). Two organisms lack FB-pangenome links in the `conservation_vs_fitness` data, but this is not logged or discussed. The REPORT's conservation tables silently reflect 17 organisms without noting the discrepancy with the 19-organism overlap analysis.
 
 ## Findings Assessment
 
-**Conclusions are well-supported**: The three lines of evidence for "shared stress biology, not counter ion contamination" (zinc sulfate control, no Cl⁻ dose-response, psRCH2 comparison) are independently compelling and collectively convincing.
+**Conclusions are well-supported**: The central claim — counter ions are NOT the primary confound — rests on three independent lines of evidence, each compelling on its own:
 
-**Limitations are thorough**: The REPORT acknowledges NaCl ≠ pure Cl⁻, threshold sensitivity, essential gene exclusion, single-organism metals, psRCH2 confound, and lack of formal functional enrichment testing.
+1. Zinc sulfate (0 mM Cl⁻) showing the highest DvH NaCl correlation (r=0.715) and 4th-highest gene overlap (44.6%)
+2. No significant Spearman correlation between Cl⁻ concentration and overlap (rho=-0.122, p=0.338)
+3. psRCH2 CuSO₄ correlating more with NaCl (r=0.450) than CuCl₂ (r=0.212)
 
-**However, there are numerical discrepancies between notebook outputs and the REPORT:**
+**Numerical accuracy**: All key numbers in the REPORT now match their source notebook outputs: 39.8% overall overlap (NB02 cell 4), DvH gene classification of 73 shared-stress / 422 metal-specific (NB03 cell 4), SEED annotation rates of 78.1% / 90.5% (NB03 cell 6), per-metal corrected conservation deltas (NB04 cell 6), and psRCH2 correlation values (NB05 cell 2). This is a significant improvement over the previous review's findings.
 
-1. **DvH gene classification counts (REPORT Finding #5 vs NB03 cell 4)**: The REPORT states "For DvH, 495 unique metal-important genes split into 105 shared-stress (21.2%) and 390 metal-specific (78.8%)." NB03 cell 4 output shows 73 shared-stress and 422 metal-specific. The "105" in the REPORT appears to be the total NaCl-important gene count for DvH (from NB01), not the intersection with metal-important genes.
+**Limitations are thorough**: The REPORT acknowledges NaCl ≠ pure Cl⁻, threshold sensitivity, essential gene exclusion, single-organism metals, the psRCH2 aerobic/anaerobic confound, and the lack of formal functional enrichment testing. These are the correct limitations to flag.
 
-2. **Functional annotation direction is reversed (REPORT Finding #5 vs NB03 cell 6)**: The REPORT states "shared-stress genes are more functionally annotated (71% have SEED annotations) than metal-specific genes (62%)." NB03 cell 6 output shows the opposite: shared_stress = 78.1% annotated, metal_specific = 90.5% annotated. The direction is reversed and the percentages don't match.
+**Gaps**:
 
-3. **Organism count (REPORT Finding #1)**: The REPORT states "Across 25 organisms and 14 metals" for the overlap analysis. NB02 cell 3 output shows 19 organisms and 14 metals (86 organism × metal pairs). The 25 figure is the number of organisms with NaCl experiments (NB01), but only 19 have metal-important genes in the atlas dataset and contribute to the overlap analysis. The REPORT's "Scale of the Analysis" table correctly lists 86 organism × metal pairs but says "Testable organisms: 25" which is inconsistent.
+- **SynE outlier not discussed**: SynE's 88.6% shared-stress rate is a dramatic outlier driven by its 12 NaCl dose-response experiments (vs 1–6 for most organisms). The per-metal and overall statistics include SynE without flagging its unusual behavior. A sensitivity analysis excluding SynE (or using a consistent threshold like requiring n_sick >= 2) would strengthen confidence in the 39.8% figure.
 
-These are reporting errors rather than analytical errors — the notebooks themselves appear to produce correct results. But they undermine confidence in the REPORT's accuracy and should be corrected.
+- **Iron statistical power**: Iron has only 9 metal-important genes (6 after correction), yet appears in the REPORT's corrected conservation table with a corrected delta of +0.182 (100% core). This is statistically meaningless but isn't flagged the way Cadmium (n=92) is. Both should carry caveats.
 
-**Dropped analyses**: H1d (anion-specific signatures) and Notebooks 6–7 were dropped. This is documented in the RESEARCH_PLAN revision history, which is good practice. The rationale is sound — the main findings from NB01–05 clearly resolve the research question.
+- **Conservation analysis organism loss**: NB04 retains 17 of 19 organisms due to missing pangenome links. The REPORT doesn't document which 2 organisms were lost or whether this affects the overall conclusions.
+
+**RESEARCH_PLAN threshold discrepancy**: The RESEARCH_PLAN (Notebook 1 method, line 121) specifies NaCl-importance as "fit < -1, |t| > 4", but the implementation uses "mean_fit < -1 OR n_sick >= 1" because cached matrices lack t-scores. The REPORT correctly documents the actual threshold in the Limitations section, but the RESEARCH_PLAN was not updated to reflect the change.
 
 ## Suggestions
 
-1. **[Critical] Fix the DvH gene classification numbers in the REPORT**: Finding #5 reports "105 shared-stress (21.2%) and 390 metal-specific (78.8%)" but the notebook output shows 73 shared-stress and 422 metal-specific. Update the REPORT to match the notebook output.
+1. **[Important] Discuss SynE's outlier behavior**: SynE has 12 NaCl dose-response experiments spanning 0.5–250 mM, resulting in 32.6% of genes flagged as NaCl-important (vs ~2–11% for other organisms). Its 88.6% shared-stress rate could inflate the overall 39.8% overlap. Either (a) report the overall overlap with and without SynE, or (b) use a threshold that accounts for experiment count (e.g., requiring n_sick >= 2 or mean_fit < -1 without the n_sick alternative). Even a brief note acknowledging the organism-level variability would help.
 
-2. **[Critical] Fix the reversed annotation enrichment in the REPORT**: Finding #5 says shared-stress genes are more annotated (71%) than metal-specific (62%), but NB03 shows the opposite (78.1% vs 90.5%). Correct the direction and percentages. Consider whether the biological interpretation ("consistent with shared-stress genes being core cellular machinery") needs revision.
+2. **[Important] Flag Iron alongside Cadmium for low statistical power**: The corrected conservation table shows Iron jumping from delta -0.040 to +0.182 based on 6 genes. Add a parenthetical caveat similar to the Cadmium note: "(n=9, 1 organism)".
 
-3. **[Important] Correct the organism count in the REPORT**: Change "Across 25 organisms" in Finding #1 to "Across 19 organisms" (or clarify that 25 organisms have NaCl data while 19 contribute to the overlap analysis). Similarly update the "Testable organisms" row in the Scale table.
+3. **[Minor] Document the 2 organisms lost in NB04**: Note in the REPORT or NB04 which organisms lack FB-pangenome links, and confirm that the per-metal results aren't materially affected. A one-line log statement in NB04 cell 4 showing which organisms are dropped would also help reproducibility.
 
-4. **[Minor] Document the threshold substitution**: Note in NB01 that the NaCl-importance threshold was simplified from the RESEARCH_PLAN's "fit < -1, |t| > 4" to "mean_fit < -1 or n_sick ≥ 1" because the cached matrices lack t-scores.
+4. **[Minor] Update the RESEARCH_PLAN threshold**: Change the NB01 method from "fit < -1, |t| > 4" to "mean_fit < -1 or n_sick >= 1" to match the implementation. The revision history already documents analysis changes — this would be a minor addition.
 
-5. **[Minor] Add essential_genome dependency to README**: The Data Sources section lists dependencies on metal_fitness_atlas, fitness_modules, and conservation_vs_fitness, but NB03 also reads SEED annotations from the essential_genome project (`all_seed_annotations.tsv`). Add this to the Data Sources list.
+5. **[Nice-to-have] Add a threshold sensitivity analysis**: The REPORT's limitations correctly note threshold dependence. A brief check with stricter (mean_fit < -2) and more permissive (mean_fit < -0.5) thresholds — even as a single summary sentence — would demonstrate robustness and address the SynE concern simultaneously.
 
-6. **[Nice-to-have] Visualize the functional enrichment comparison**: NB03's annotation comparison (shared-stress vs metal-specific genes) is presented only as text output. A simple bar chart or word cloud of the top functional categories in each class would strengthen Finding #5.
+6. **[Nice-to-have] Visualize functional enrichment**: NB03's annotation comparison (shared-stress 78.1% vs metal-specific 90.5%) is text-only. A simple bar chart of the top SEED categories in each class would make Finding #5 more accessible and strengthen the biological interpretation.
 
-7. **[Nice-to-have] Add a sensitivity analysis on the NaCl-importance threshold**: The REPORT's limitations note that the 39.8% overlap depends on the threshold. A brief test with stricter (fit < -2) and more permissive (fit < -0.5) thresholds would demonstrate robustness.
-
-8. **[Nice-to-have] Add NB03 formal enrichment testing**: The REPORT's limitations acknowledge the absence of hypergeometric/Fisher exact tests for functional category enrichment between shared-stress and metal-specific gene classes. Even a simple Fisher test for a few key COG categories would strengthen the functional interpretation.
+7. **[Nice-to-have] Add formal enrichment testing for gene classes**: The REPORT acknowledges the absence of hypergeometric tests for functional categories. Even a simple Fisher test for a few key categories (cell envelope, ion transport, DNA repair) would add statistical rigor to the gene classification narrative.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
 - **Date**: 2026-02-22
-- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, 5 notebooks, 11 data files, 7 figures, requirements.txt
+- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, previous REVIEW.md, 5 notebooks, 9 data files, 7 figures, requirements.txt, docs/pitfalls.md
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.
