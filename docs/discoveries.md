@@ -371,6 +371,22 @@ Hierarchical clustering of 225 species (≥50 genomes, ≥3 variable pathways) b
 - More ecotypes correlate with pangenome openness (partial rho=0.322, p=8.0e-07)
 - Top ecotyped species: *Alistipes onderdonkii* (8), *Barnesiella intestinihominis* (8)
 
+### [counter_ion_effects] Counter ions in metal salts are NOT the primary confound in RB-TnSeq metal fitness data
+
+39.8% of metal-important genes are also NaCl-important across 19 organisms and 14 metals, but this overlap reflects shared stress biology (cell envelope, ion homeostasis, DNA repair) rather than chloride counter ion contamination. The definitive evidence: zinc sulfate (0 mM Cl⁻) shows 44.6% NaCl overlap and the highest DvH profile correlation (r=0.715) — higher than most chloride-delivered metals.
+
+### [counter_ion_effects] Metal Fitness Atlas core enrichment is robust to shared-stress correction
+
+After removing the ~40% of metal-important genes that overlap with NaCl stress, the core genome enrichment persists for 12 of 14 metals. Essential metals (Mo, W, Se, Hg) actually show stronger enrichment after correction (e.g., Mo delta +0.132 → +0.145). The original atlas conclusion (OR=2.08) is not an artifact.
+
+### [counter_ion_effects] DvH metal-NaCl correlation hierarchy reveals a general-to-specific toxicity gradient
+
+Whole-genome fitness correlation with NaCl: Zn (r=0.72) > Mn (0.55) > Cu (0.53) > Co (0.50) > Hg (0.48) > Ni (0.45) > Al (0.42) > Mo (0.40) > U (0.35) > Se (0.34) > Cr (0.32) > W (0.30) > Fe (0.09). Metals that broadly displace cofactors share more genes with ionic stress; metals targeting specific pathways (Mo/W for molybdopterin, Fe for iron-sulfur clusters) are distinct from general stress.
+
+### [counter_ion_effects] SynE is an outlier in NaCl overlap due to dose-response experiment design
+
+*Synechococcus elongatus* has 12 NaCl dose-response experiments (0.5–250 mM), far more than any other organism (1–6). This makes the `n_sick >= 1` threshold much easier to satisfy, producing an 88.6% shared-stress rate. Excluding SynE, overall overlap drops from 39.8% to 36.7%. Analyses using NaCl fitness data should account for experiment count when setting importance thresholds.
+
 ## Template
 
 ```markdown
