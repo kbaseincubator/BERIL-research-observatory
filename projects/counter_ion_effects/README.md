@@ -19,6 +19,7 @@ The Fitness Browser's 559 metal experiments predominantly use chloride salts. At
 - `projects/fitness_modules/data/matrices/` — cached full fitness matrices
 - `projects/fitness_modules/data/annotations/` — experiment metadata
 - `projects/conservation_vs_fitness/data/fb_pangenome_link.tsv` — FB-to-pangenome gene mapping
+- `projects/essential_genome/data/all_seed_annotations.tsv` — SEED functional annotations
 
 ## Reproduction
 

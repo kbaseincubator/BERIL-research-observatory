@@ -6,7 +6,7 @@
 
 ![Heatmap of metal-NaCl gene overlap by organism and metal](figures/nacl_metal_overlap_heatmap.png)
 
-Across 25 organisms and 14 metals, 4,304 of 10,821 metal-important gene records (39.8%) are also important under NaCl stress. This substantial overlap exists for every metal tested — from 9.2% for molybdenum to 57.6% for manganese — indicating that a large fraction of the "metal fitness" signal reflects general cellular vulnerability shared between metal and osmotic/ionic stress.
+Across 19 organisms and 14 metals (86 organism × metal pairs), 4,304 of 10,821 metal-important gene records (39.8%) are also important under NaCl stress. This substantial overlap exists for every metal tested — from 9.2% for molybdenum to 57.6% for manganese — indicating that a large fraction of the "metal fitness" signal reflects general cellular vulnerability shared between metal and osmotic/ionic stress.
 
 *(Notebook: 02_metal_nacl_overlap.ipynb)*
 
@@ -40,7 +40,7 @@ After removing the ~40% shared-stress genes and restricting to metal-specific ge
 
 ![Per-metal gene classification: shared-stress vs metal-specific](figures/gene_classification_by_metal.png)
 
-Across all organisms, 6,517 of 10,821 metal-important gene records (60.2%) are classified as metal-specific (important for metals but not NaCl). For DvH, 495 unique metal-important genes split into 105 shared-stress (21.2%) and 390 metal-specific (78.8%). Shared-stress genes tend to be important across more metals (broad vulnerability), while metal-specific genes are more narrowly distributed. In DvH, shared-stress genes are more functionally annotated (71% have SEED annotations) than metal-specific genes (62%), consistent with shared-stress genes being core cellular machinery while metal-specific genes include more uncharacterized functions.
+Across all organisms, 6,517 of 10,821 metal-important gene records (60.2%) are classified as metal-specific (important for metals but not NaCl). For DvH, 495 unique metal-important genes split into 73 shared-stress (14.7%) and 422 metal-specific (85.3%). Shared-stress genes tend to be important across more metals (mean 4.1 metals per gene vs 2.5 for metal-specific), consistent with broad cellular vulnerability. In DvH, metal-specific genes are more functionally annotated (90.5% have SEED annotations) than shared-stress genes (78.1%), suggesting that the metal-specific set includes well-characterized metal homeostasis functions (Ni/Fe-hydrogenase, nitrogenase regulators, metal transporters) while shared-stress genes include more uncharacterized general stress proteins.
 
 *(Notebook: 03_profile_decomposition.ipynb)*
 
@@ -63,7 +63,7 @@ psRCH2 is the only organism tested with the same metal (copper) as both CuCl₂ 
 | Metal-important gene records tested | 10,821 |
 | Organism × metal pairs analyzed | 86 |
 | Metals covered | 14 |
-| Testable organisms (both NaCl + metal data) | 25 |
+| Organisms in overlap analysis | 19 (of 25 with NaCl data) |
 
 ### Per-Metal NaCl Overlap
 
