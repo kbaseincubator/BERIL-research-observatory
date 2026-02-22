@@ -56,6 +56,11 @@ data/**/*.pkl
 projects/*/data/**/*.csv
 projects/*/data/**/*.npy
 projects/*/data/**/*.pkl
+projects/*/data/**/*.fasta
+projects/*/data/**/*.fna
+projects/*/data/**/*.faa
+projects/*/data/**/*.fa
+projects/*/data/**/*.tsv
 !projects/*/data/.gitkeep
 projects/*/user_data/**/*.csv
 projects/*/user_data/**/*.tsv
