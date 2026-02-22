@@ -42,3 +42,4 @@ Notebooks must run in order. Full pipeline runs in under 1 minute.
 
 ## Authors
 - Paramvir Dehal (https://orcid.org/0000-0002-3495-1240), Lawrence Berkeley National Laboratory, US Department of Energy
+- Aindrila Mukhopadhyay (https://orcid.org/0000-0002-6513-7425), Lawrence Berkeley National Laboratory, US Department of Energy

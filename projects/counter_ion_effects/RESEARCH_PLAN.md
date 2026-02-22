@@ -204,3 +204,4 @@ A key motivating observation: the chloride delivered by metal chloride salts can
 
 ## Authors
 - Paramvir Dehal (https://orcid.org/0000-0002-3495-1240), Lawrence Berkeley National Laboratory, US Department of Energy
+- Aindrila Mukhopadhyay (https://orcid.org/0000-0002-6513-7425), Lawrence Berkeley National Laboratory, US Department of Energy
