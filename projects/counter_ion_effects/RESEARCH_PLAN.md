@@ -199,6 +199,7 @@ A key motivating observation: the chloride delivered by metal chloride salts can
 6. Pal C et al. (2014). "BacMet: antibacterial biocide and metal resistance genes database." *Nucleic Acids Res* 42:D617-D624. PMID: 24304895.
 
 ## Revision History
+- **v2** (2026-02-22): Analysis complete. H1b (dose-dependent chloride confounding) rejected — zinc sulfate (0 mM Cl⁻) shows higher NaCl overlap than most chloride metals. The ~40% overlap reflects shared stress biology, not counter ion contamination. H1c result: core enrichment is robust after correction (essential metals show STRONGER enrichment). Dropped NB06 (anion signatures) and NB07 (summary) as the main findings are clear from NB01-05.
 - **v1** (2026-02-22): Initial plan
 
 ## Authors
