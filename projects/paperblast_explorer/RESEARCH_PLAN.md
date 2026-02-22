@@ -28,10 +28,18 @@ This is a data characterization project, not a hypothesis-driven analysis. The g
 ### Notebook 2: Coverage Skew Analysis
 - Organism concentration: cumulative coverage curves (top N organisms = X% of literature)
 - Gene concentration: papers-per-gene distribution, top 50 genes
-- Lorenz inequality curves for organisms and genes
+- Lorenz inequality curves and Gini coefficients for organisms and genes
 - Bacterial focus: top microbes by literature coverage
 - SwissProt coverage analysis
 - Top 50 tables for organisms and genes
+
+### Notebook 3: Sequence Clustering Analysis
+*Added after initial plan — motivated by exploring sequence diversity in the collection.*
+- Extract all 815,571 unique protein sequences from `uniq` table
+- Cluster with MMseqs2 at 90%, 50%, and 30% identity via CTS remote compute
+- Analyze cluster size distributions, identify largest protein families
+- Cross-reference clustering with literature coverage to identify "dark" protein families
+- Quantify sequence space reduction at each identity threshold
 
 ## Expected Outcomes
 - Reference document characterizing PaperBLAST scale, currency, and biases
@@ -39,6 +47,7 @@ This is a data characterization project, not a hypothesis-driven analysis. The g
 - Understanding of cross-collection linkage potential (PaperBLAST ↔ Fitness Browser ↔ pangenome)
 
 ## Revision History
+- **v2** (2026-02-22): Added Notebook 3 (sequence clustering) to plan
 - **v1** (2026-02-22): Initial plan and analysis complete
 
 ## Authors
