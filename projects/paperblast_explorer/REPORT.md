@@ -46,7 +46,7 @@ MMseqs2 clustering of 815,571 PaperBLAST protein sequences at three identity thr
 
 ![Literature coverage landscape of protein families](figures/literature_coverage_landscape.png)
 
-At 50% identity, **9.2% of protein families** (31,653) have **zero papers** across all members, and **46.1%** (159,046) have exactly 1 paper. Only **4.3%** of families (14,873) have more than 20 papers. 5,218 multi-member families — representing 14,534 sequences — have no literature whatsoever. These are the "dark" protein families.
+At 50% identity, **9.2% of protein families** (31,653) have **zero papers** across all members, and **46.1%** (159,046) have exactly 1 paper. Only **4.3%** of families (14,904) have 20 or more papers. 5,218 multi-member families — representing 14,534 sequences — have no literature whatsoever. These are the "dark" protein families.
 
 *(Notebook: 03_sequence_clustering.ipynb)*
 
