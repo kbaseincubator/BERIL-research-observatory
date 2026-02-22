@@ -473,6 +473,10 @@
 **Status**: COMPLETED
 **Results**: ADP1's branched respiratory chain (62 genes, 8 subsystems) uses qualitatively different configurations per carbon source: quinate requires only Complex I, acetate requires everything, glucose requires nothing. The paradox (quinate has lower NADH yield but higher Complex I dependency) is resolved by NADH flux rate — concentrated TCA burst from ring cleavage vs distributed production. ADP1 has 3 parallel NADH dehydrogenases (Complex I, NDH-2, ACIAD3522) with non-overlapping condition requirements. Cross-species: after correcting NDH-2 false positives (filtering to 1-2 hits/organism), NDH-2 presence does NOT predict reduced Complex I aromatic deficits (p=0.52), suggesting ADP1's wiring is species-specific. See `projects/respiratory_chain_wiring/`.
 
+### [counter_ion_effects] Counter Ion Effects on Metal Fitness Measurements
+**Status**: COMPLETED
+**Results**: Counter ions (chloride, sulfate, acetate) are NOT the primary confound in Fitness Browser metal experiments. 39.8% of metal-important genes overlap with NaCl stress across 19 organisms and 14 metals, but this reflects shared stress biology, not counter ion contamination. Key evidence: ZnSO₄ (0 mM Cl⁻) shows 44.6% NaCl overlap — higher than most chloride metals. The Metal Fitness Atlas core enrichment is fully robust after removing shared-stress genes (7/14 metals show stronger enrichment). DvH metal-NaCl correlation hierarchy (Zn r=0.72 → Fe r=0.09) follows toxicity mechanism, not Cl⁻ dose. See `projects/counter_ion_effects/`.
+
 ---
 
 ## Ideas to Discuss / Refine
