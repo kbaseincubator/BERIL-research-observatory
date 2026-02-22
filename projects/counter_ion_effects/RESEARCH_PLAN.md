@@ -101,13 +101,12 @@ A key motivating observation: the chloride delivered by metal chloride salts can
 
 | Table | Purpose | Estimated Rows | Filter Strategy |
 |---|---|---|---|
-| `kescience_fitnessbrowser.genefitness` | NaCl fitness scores | 27M total; ~500K NaCl-relevant | Filter by orgId + expName |
-| `kescience_fitnessbrowser.expcondition` | Identify NaCl experiments | ~7.5K | Filter by condition_1 for Sodium Chloride |
+| `kescience_fitnessbrowser.experiment` | Identify NaCl experiments | ~7.5K | Filter by condition_1 for Sodium Chloride |
 
-Most analysis will use cached fitness matrices from `fitness_modules/data/matrices/`, avoiding Spark queries entirely.
+**Note**: All analysis uses cached fitness matrices from `fitness_modules/data/matrices/` and experiment annotations from `fitness_modules/data/annotations/`. No Spark queries are needed — the cached matrices already contain NaCl experiment columns alongside metal experiment columns.
 
 ### Performance Plan
-- **Tier**: Fully local — all data from cached CSVs
+- **Tier**: Fully local — all data from cached CSVs (no Spark required)
 - **Estimated complexity**: Low (pandas operations on matrices of ~3K genes × ~200 experiments)
 - **Known pitfalls**: All FB columns are strings (CAST required); fitness matrices are pre-cast to float
 
