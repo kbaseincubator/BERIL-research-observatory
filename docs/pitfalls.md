@@ -791,6 +791,12 @@ cat /tmp/output.txt
 
 Do NOT use `wait` on the PID — this triggers the same output suppression.
 
+### [counter_ion_effects] NaCl-importance thresholds are sensitive to experiment count
+
+**Problem**: Using `n_sick >= 1` (at least one NaCl experiment with fit < -1) as an NaCl-importance threshold is biased by the number of NaCl experiments per organism. *Synechococcus elongatus* (SynE) has 12 NaCl dose-response experiments (0.5–250 mM) and flags 32.6% of genes as NaCl-important — 3× higher than the next organism. This inflates cross-condition overlap statistics (SynE shows 88.6% metal–NaCl shared-stress).
+
+**Solution**: When comparing gene-level importance across conditions with unequal experiment counts, either (a) require `n_sick >= 2` or use `mean_fit < threshold` instead of `n_sick >= 1`, or (b) report results with and without outlier organisms as a sensitivity check. Excluding SynE, overall metal–NaCl overlap drops from 39.8% to 36.7% — modest but worth documenting.
+
 ---
 
 ## Quick Checklist
