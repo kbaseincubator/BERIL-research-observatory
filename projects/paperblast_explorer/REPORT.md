@@ -22,7 +22,7 @@ The distribution of papers per gene is extremely skewed. Of 841K genes with any 
 
 ![Lorenz inequality curves for organisms and genes](figures/lorenz_curves.png)
 
-Lorenz curves quantify the inequality. For organisms, the curve shows near-total concentration: 1% of organisms receive the vast majority of the literature. For genes, the curve is also far from the line of equality. This mirrors wealth-inequality patterns in economics — a small fraction of biological entities receive nearly all research attention.
+Lorenz curves quantify the inequality. For organisms, the Gini coefficient is **0.967** (where 1.0 is perfect inequality), indicating near-total concentration. For genes, the Gini is **0.669** — still very high. This mirrors wealth-inequality patterns in economics — a small fraction of biological entities receive nearly all research attention.
 
 *(Notebook: 02_coverage_skew.ipynb)*
 
