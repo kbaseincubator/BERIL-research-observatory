@@ -6,7 +6,7 @@ Which bacterial species are the best candidates for ecotype analysis? Can we ide
 
 ## Status
 
-In Progress — research plan created, data extraction pending.
+Complete — see [Report](REPORT.md) for findings. Analysis produced top 50 ecotype candidate species scored across phylogenetic substructure, environmental diversity, and pangenome openness using `kbase_ke_pangenome` and `nmdc_ncbi_biosamples`.
 
 ## Overview
 
@@ -31,12 +31,12 @@ Two new BERDL data elements not used in prior ecotype work:
 
 ```
 notebooks/
-  01_data_extraction.ipynb         — Extract phylo stats + biosample map (JupyterHub)
-  02_env_diversity_scoring.ipynb   — ENVO linkage + entropy scoring (local)
-  03_composite_scoring.ipynb       — Merge, z-score, rank candidates (local)
-  04_retrospective_validation.ipynb — Validate vs prior ecotype_analysis results (local)
-data/                              — Generated CSVs
-figures/                           — Candidate ranking plots, score distributions
+  01_data_extraction.ipynb           — Extract phylo stats + biosample map (JupyterHub)
+  01b_env_extraction_continuation.py — Env diversity continuation script (local Spark)
+  02_composite_scoring.ipynb         — Merge, z-score, rank candidates; H1 + H3 (local)
+  03_retrospective_validation.ipynb  — Validate vs prior ecotype_analysis results; H2 (local)
+data/                                — Generated CSVs (8 files, 94K+ rows)
+figures/                             — Candidate ranking plots, score distributions (4 figures)
 ```
 
 ## Reproduction
