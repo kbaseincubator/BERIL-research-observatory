@@ -1,0 +1,2052 @@
+gtdb_species_clade_id,env_broad_scale,n_genomes_in_env
+s__Enterococcus_faecalis--RS_GCF_000392875.1,biome,9
+s__Blautia_A_massiliensis--RS_GCF_001487165.1,terrestrial biome,4
+s__Bacillus_velezensis--RS_GCF_001461825.1,biome,12
+s__Fimenecus_sp000432435--GB_GCA_000432435.1,anthropogenic terrestrial biome,6
+s__Bacteroides_ovatus--RS_GCF_001314995.1,human-associated habitat,2
+s__Pediococcus_pentosaceus--RS_GCF_001437285.1,watercourse,2
+s__Corynebacterium_pseudotuberculosis--RS_GCF_002155265.1,air conditioning unit,1
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,farm,3
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,cropland biome,1
+s__Streptococcus_anginosus--RS_GCF_900636475.1,,30
+s__Streptococcus_equi--GB_GCA_900637675.1,,3
+s__Odoribacter_splanchnicus--RS_GCF_000190535.1,terrestrial biome,3
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,temperate broadleaf forest,1
+s__Streptococcus_agalactiae--RS_GCF_000186445.1,terrestrial biome,1
+s__Gemmiger_qucibialis--GB_GCA_004000625.1,feces,1
+s__Xylella_fastidiosa--RS_GCF_011801475.1,biome,1
+s__Aeromonas_hydrophila--RS_GCF_000014805.1,fresh water,1
+s__Streptococcus_pyogenes--RS_GCF_002055535.1,,17
+s__Porphyromonas_gingivalis--RS_GCF_000010505.1,,4
+s__Streptococcus_agalactiae--RS_GCF_000186445.1,Homo sapiens,1
+s__Bifidobacterium_longum--RS_GCF_000196555.1,anthropogenic terrestrial biome,15
+s__Serratia_ureilytica--RS_GCF_013375155.1,soil,1
+s__Lactobacillus_jensenii--RS_GCF_001436455.1,terrestrial biome,2
+s__Helicobacter_pylori_BU--RS_GCF_900120335.1,Homo sapiens,1
+s__Klebsiella_variicola--RS_GCF_000828055.2,hospital,1
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,steppe,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,mediterranean biome,1
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,unidentified,1
+s__Bacillus_A_paranthracis--RS_GCF_001883995.1,Homo sapiens,1
+s__Vibrio_vulnificus--RS_GCF_002224265.1,,34
+s__Klebsiella_quasipneumoniae--RS_GCF_020525925.1,,81
+s__Bacillus_safensis--RS_GCF_000691165.1,sea water,1
+s__Staphylococcus_hominis--RS_GCF_002901845.1,feces,1
+s__Lactococcus_lactis--RS_GCF_900099625.1,dairy food product,5
+s__Pseudomonas_E_fulva--RS_GCF_000730565.1,fresh water,2
+s__Staphylococcus_hominis--RS_GCF_002901845.1,Homo sapiens,6
+s__Pasteurella_multocida--RS_GCF_900187275.1,village biome,1
+s__Prevotella_copri_B--RS_GCF_009494135.1,watercourse,6
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,freshwater biome,12
+s__Staphylococcus_capitis--RS_GCF_002902325.1,alpine,1
+s__Thomasclavelia_ramosa--RS_GCF_014131695.1,terrestrial biome,3
+s__Bacillus_A_thuringiensis--RS_GCF_002119445.1,village,1
+s__Staphylococcus_warneri--RS_GCF_900636385.1,table,1
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,sea water,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,,58
+s__Staphylococcus_capitis--RS_GCF_002902325.1,,8
+s__Klebsiella_quasipneumoniae--RS_GCF_020525925.1,human-associated habitat,2
+s__Listeria_monocytogenes--RS_GCF_900187225.1,vagina,1
+s__Bacillus_licheniformis--RS_GCF_000011645.1,Bos taurus,1
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,agricultural ecosystem,1
+s__Dickeya_dianthicola--RS_GCF_000365305.1,liquid water,1
+s__Serratia_marcescens--RS_GCF_017299535.1,university campus,1
+s__Bacteroides_fragilis--RS_GCF_000025985.1,feces,1
+s__Bacillus_A_anthracis--RS_GCF_000742895.1,,42
+s__Campylobacter_D_jejuni--RS_GCF_001457695.1,,16
+s__Bifidobacterium_pseudocatenulatum--RS_GCF_001025215.1,,42
+s__Priestia_megaterium--RS_GCF_000832985.1,,12
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,terrestrial biome,10
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,animal-associated environment,2
+s__Neisseria_meningitidis--RS_GCF_900638555.1,terrestrial biome,1
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,environmental system,3
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,biome,1
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,spring,1
+s__Citrobacter_freundii--RS_GCF_011064845.1,freshwater biome,10
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,terrestrial biome,3
+s__Prevotella_sp015074785--RS_GCF_015074785.1,watercourse,13
+s__Agathobacter_rectalis--GB_GCA_000020605.1,feces,3
+s__Yersinia_enterocolitica--RS_GCF_901472495.1,human-associated habitat,1
+s__Acinetobacter_nosocomialis--RS_GCF_000368085.1,human-associated habitat,1
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,food material,3
+s__Bacillus_subtilis--RS_GCF_000009045.1,ocean,1
+s__Staphylococcus_hominis--RS_GCF_002901845.1,urban biome,1
+s__Bacillus_altitudinis--RS_GCF_000691145.1,soil,2
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,,77
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,,23
+s__Serratia_ureilytica--RS_GCF_013375155.1,,3
+s__Streptococcus_anginosus--RS_GCF_900636475.1,feces,1
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,biome,4
+s__Mycoplasmopsis_bovis--RS_GCF_000183385.1,agricultural ecosystem,23
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,Homo sapiens,1
+s__Bacillus_safensis--RS_GCF_000691165.1,field,1
+s__Klebsiella_ornithinolytica--RS_GCF_001598295.1,terrestrial biome,1
+s__Mannheimia_haemolytica--RS_GCF_004342115.1,livestock-associated habitat,5
+s__Mammaliicoccus_sciuri--RS_GCF_002901825.1,Bos,3
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,dairy food product,3
+s__Bacillus_subtilis--RS_GCF_000009045.1,polar biome,1
+s__Acinetobacter_soli--RS_GCF_000760595.1,liquid water,1
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,19650 - chicken fresh meat (efsa foodex2),1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,food material,20
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,marine biome,1
+s__Enterobacter_cloacae--RS_GCF_000025565.1,,5
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,farmyard manure,6
+s__Clostridium_butyricum--RS_GCF_006742065.1,feces,3
+s__Sarcina_perfringens--RS_GCF_000013285.1,feces,4
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,Homo sapiens,3
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,area of cropland,1
+s__Bifidobacterium_infantis--RS_GCF_000269965.1,feces,3
+s__Bacillus_licheniformis--RS_GCF_000011645.1,alimentary part of gastrointestinal system,1
+s__Streptococcus_sp001556435--RS_GCF_009738225.1,human-associated habitat,2
+s__Bacillus_A_tropicus--RS_GCF_001884035.1,farm,1
+s__Staphylococcus_warneri--RS_GCF_900636385.1,intestine,1
+s__Bacillus_A_thuringiensis--RS_GCF_002119445.1,activated sludge,1
+s__Porphyromonas_gingivalis--RS_GCF_000010505.1,terrestrial biome,1
+s__Priestia_megaterium--RS_GCF_000832985.1,agricultural soil,1
+s__Faecalibacterium_longum--RS_GCF_020687245.1,,39
+s__Mycoplasmoides_pneumoniae--RS_GCF_001272835.1,,64
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,,6
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,,14
+s__Yersinia_enterocolitica--RS_GCF_901472495.1,,2
+s__Pseudomonas_E_cerasi--RS_GCF_900074915.1,farm,19
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,liquid water,2
+s__Faecalibacillus_intestinalis--RS_GCF_003024685.1,feces,2
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,skin environment,4
+s__Bacteroides_fragilis--RS_GCF_000025985.1,polar biome,1
+s__Corynebacterium_pseudotuberculosis--RS_GCF_002155265.1,farm,1
+s__Klebsiella_ornithinolytica--RS_GCF_001598295.1,waste water,1
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,19650 - chicken fresh meat (efsa foodex2),1
+s__Bacillus_velezensis--RS_GCF_001461825.1,rumen,1
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,watercourse,1
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,biome,1
+s__Lactococcus_lactis--RS_GCF_900099625.1,,31
+s__Brucella_melitensis--RS_GCF_000007125.1,vertebrate animal,6
+s__Rhizobium_leguminosarum_L--RS_GCF_000009265.1,root,13
+s__Bacteroides_uniformis--GB_GCA_025147485.1,human-associated habitat,17
+s__Francisella_tularensis--RS_GCF_000008985.1,lymph,1
+s__Bacillus_A_tropicus--RS_GCF_001884035.1,field soil,1
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,intestine,1
+s__Pseudomonas_E_cerasi--RS_GCF_900074915.1,orchard,1
+s__Flavonifractor_plautii--RS_GCF_000239295.1,feces,1
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,microcosm,1
+s__Parabacteroides_merdae--GB_GCA_025151215.1,terrestrial biome,5
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,watercourse,3
+s__Xanthomonas_arboricola--RS_GCF_001013475.1,hazelnut,2
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,table,1
+s__Bacteroides_fragilis_A--RS_GCF_002849695.1,watercourse,1
+s__Weissella_confusa--GB_GCA_001436895.1,human-associated habitat,2
+s__Micrococcus_luteus--RS_GCF_000023205.1,groundwater,1
+s__Bacillus_A_thuringiensis--RS_GCF_002119445.1,saline marsh,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,human-associated habitat,1
+s__Weissella_cibaria--RS_GCF_000193635.1,food material,4
+s__Clostridioides_difficile--RS_GCF_001077535.1,terrestrial biome,5
+s__Aeromonas_dhakensis--RS_GCF_000820305.1,constructed swimming pool,1
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,fresh water,3
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,Homo sapiens,7
+s__Serratia_ureilytica--RS_GCF_013375155.1,biome,1
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,feces,2
+s__Staphylococcus_capitis--RS_GCF_002902325.1,human-associated habitat,1
+s__Pasteurella_multocida--RS_GCF_900187275.1,buffalo,1
+s__Lactobacillus_gasseri--RS_GCF_000014425.1,,15
+s__Aeromonas_dhakensis--RS_GCF_000820305.1,terrestrial biome,1
+s__Sphingomonas_koreensis--RS_GCF_002797435.1,environmental system,55
+s__Staphylococcus_xylosus--RS_GCF_002732165.1,human-associated habitat,2
+s__Blautia_A_wexlerae--GB_GCA_025148125.1,fecal environment,2
+s__Enterobacter_roggenkampii--RS_GCF_001729805.1,liquid water,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,Homo sapiens,1
+s__Staphylococcus_hominis--RS_GCF_002901845.1,farm,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,,131
+s__Priestia_megaterium--RS_GCF_000832985.1,coral reef,1
+s__Lactococcus_lactis--RS_GCF_900099625.1,human-associated habitat,2
+s__Curtobacterium_flaccumfaciens--RS_GCF_013359815.1,agricultural field,15
+s__Lactococcus_lactis--RS_GCF_900099625.1,bioreactor,3
+s__Fusicatenibacter_saccharivorans--RS_GCF_015557635.1,terrestrial biome,4
+s__Acinetobacter_sp002018365--RS_GCF_002018365.1,terrestrial biome,5
+s__Bacteroides_fragilis--RS_GCF_000025985.1,digestive system,2
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,liquid water,1
+s__Pseudomonas_E_monteilii--RS_GCF_000730605.1,environmental system,1
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,dairy food product,2
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,food processing building,1
+s__Staphylococcus_warneri--RS_GCF_900636385.1,watercourse,1
+s__Glaesserella_parasuis--RS_GCF_002015085.1,undersea feature,1
+s__Streptococcus_uberis--RS_GCF_900475595.1,,21
+s__Erwinia_amylovora--RS_GCF_017161565.1,,5
+s__Neisseria_meningitidis--RS_GCF_900638555.1,,4
+s__Xanthomonas_oryzae--RS_GCF_004136375.1,rice field,3
+s__Aggregatibacter_actinomycetemcomitans--RS_GCF_000372365.1,periodontitis,1
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,temperate broadleaf forest biome,1
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,biome,1
+s__Streptococcus_sp001556435--RS_GCF_009738225.1,biofilm,2
+s__Citrobacter_werkmanii--GB_GCA_000759755.1,Homo sapiens,1
+s__Burkholderia_contaminans--RS_GCF_000987075.1,oil contaminated soil,1
+s__Pseudomonas_E_tremae--RS_GCF_001401155.1,,7
+s__Enterococcus_B_durans--RS_GCF_001544215.1,,1
+s__Burkholderia_cepacia--RS_GCF_001411495.1,,4
+s__Stenotrophomonas_sepilia--RS_GCF_003244875.1,,1
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,biome,38
+s__Yersinia_pestis--RS_GCF_900460465.1,terrestrial biome,59
+s__Bacillus_A_toyonensis--RS_GCF_000496285.1,garden,1
+s__Methanosarcina_mazei--RS_GCF_000970205.1,sludge,3
+s__Staphylococcus_ureilyticus--RS_GCF_002902235.1,biome,1
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,intestine,1
+s__Pediococcus_pentosaceus--RS_GCF_001437285.1,milk,1
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,anthropogenic terrestrial biome,3
+s__Leclercia_adecarboxylata--GB_GCA_901472455.1,watercourse,1
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,terrestrial biome,2
+s__Vibrio_vulnificus--RS_GCF_002224265.1,brackish water,3
+s__Prevotella_copri_B--RS_GCF_009494135.1,feces,1
+s__Klebsiella_variicola--RS_GCF_000828055.2,woodland area,1
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,,7
+s__Lactobacillus_gasseri--RS_GCF_000014425.1,watercourse,1
+s__Stenotrophomonas_maltophilia--RS_GCF_900186865.1,liquid water,4
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,building,1
+s__Leptospira_interrogans--RS_GCF_900156205.1,,3
+s__Pseudomonas_E_amygdali--RS_GCF_002699855.1,mediterranean biome,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,food material,6
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,river water,20
+s__Streptococcus_dysgalactiae--RS_GCF_900459225.1,human-associated habitat,1
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,digestive system,1
+s__Shewanella_algae--RS_GCF_009183365.2,saline marsh,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,environmental system determined by an organism,1
+s__Curtobacterium_flaccumfaciens--RS_GCF_013359815.1,,24
+s__Bifidobacterium_bifidum--RS_GCF_001025135.1,,50
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,,13
+s__Pseudomonas_E_asiatica--RS_GCF_009932335.1,,3
+s__Citrobacter_freundii--RS_GCF_011064845.1,sewage,21
+s__Ligilactobacillus_ruminis--RS_GCF_900113455.1,watercourse,2
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,alimentary part of gastrointestinal system,1
+s__Staphylococcus_hominis--RS_GCF_002901845.1,skin environment,3
+s__Aeromonas_caviae--RS_GCF_000819785.1,hospital,2
+s__Bacillus_velezensis--RS_GCF_001461825.1,agricultural soil,2
+s__Faecalibacillus_intestinalis--RS_GCF_003024685.1,terrestrial biome,4
+s__Vibrio_cyclitrophicus--GB_GCA_024347435.1,biofilm,1
+s__Clostridium_F_botulinum--RS_GCF_001276985.1,feces,1
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,feces,1
+s__Pectobacterium_brasiliense--RS_GCF_000754695.1,agricultural field,2
+s__Enterococcus_B_durans--RS_GCF_001544215.1,food material,1
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,alpine,1
+s__Enterobacter_kobei--RS_GCF_001729765.1,freshwater biome,1
+s__Mammaliicoccus_sciuri--RS_GCF_002901825.1,environmental system determined by an organism,1
+s__Gemmiger_formicilis--RS_GCF_900167555.1,,9
+s__Mediterraneibacter_faecis--GB_GCA_001312505.1,,34
+s__Prochlorococcus_A_sp000635495--GB_GCA_000635495.1,ocean biome,6
+s__Rhizobium_laguerreae--RS_GCF_002008165.1,mountain,2
+s__Bacteroides_ovatus--RS_GCF_001314995.1,biome,1
+s__Clostridium_butyricum--RS_GCF_006742065.1,biome,1
+s__Rhizobium_leguminosarum--RS_GCF_002008365.1,root,2
+s__Bacillus_velezensis--RS_GCF_001461825.1,forested area,1
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,habitat,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,anthropogenic terrestrial biome,1
+s__Borreliella_garinii--RS_GCF_001922545.1,terrestrial biome,51
+s__Rhodococcus_equi--RS_GCF_002094305.1,terrestrial biome,1
+s__Listeria_monocytogenes_B--RS_GCF_000307025.1,tissue paper,6
+s__Klebsiella_grimontii--RS_GCF_900200035.1,freshwater biome,9
+s__Staphylococcus_warneri--RS_GCF_900636385.1,human-associated habitat,1
+s__Faecalibacterium_duncaniae--RS_GCF_010509575.1,human-associated habitat,5
+s__Bacillus_A_anthracis--RS_GCF_000742895.1,lake,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,ocean,1
+s__Pseudomonas_E_monteilii--RS_GCF_000730605.1,sewage,1
+s__Rhizobium_leguminosarum--RS_GCF_002008365.1,field,1
+s__Pseudomonas_E_monteilii--RS_GCF_000730605.1,sandy desert,1
+s__Enterobacter_cloacae--RS_GCF_000025565.1,nest of ant,1
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,biome,1
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,food product,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,dairy food product,6
+s__Curtobacterium_flaccumfaciens--RS_GCF_013359815.1,saline lake,4
+s__Akkermansia_sp004167605--RS_GCF_004167605.1,human-associated habitat,1
+s__Listeria_monocytogenes--RS_GCF_900187225.1,vertebrate animal,1
+s__Lactobacillus_gasseri--RS_GCF_000014425.1,feces,2
+s__Klebsiella_aerogenes--RS_GCF_000215745.1,biome,1
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,fecal environment,1
+s__Bacillus_pumilus--RS_GCF_900186955.1,biome,75
+s__Acinetobacter_pittii--RS_GCF_000369045.1,biome,20
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,digestive system,6
+s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1,Homo sapiens,17
+s__Ligilactobacillus_ruminis--RS_GCF_900113455.1,terrestrial biome,3
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,feces,2
+s__Listeria_monocytogenes_B--RS_GCF_000307025.1,vertebrate animal,1
+s__Phocaeicola_dorei--RS_GCF_013009555.1,forest biome,1
+s__Enterobacter_roggenkampii--RS_GCF_001729805.1,woodland area,1
+s__Bacteroides_fragilis_A--RS_GCF_002849695.1,habitat,1
+s__Prevotella_copri_A--RS_GCF_002224675.1,terrestrial biome,2
+s__Bacillus_A_mycoides--RS_GCF_000832605.1,soil,1
+s__Bacillus_A_cereus--RS_GCF_000007825.1,forested area,1
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,waste water,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,,15
+s__Staphylococcus_haemolyticus--RS_GCF_006094395.1,biome,6
+s__Cutibacterium_acnes--RS_GCF_003030305.1,Homo sapiens,1
+s__Mediterraneibacter_faecis--GB_GCA_001312505.1,biome,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,marsh,1
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,food material,2
+s__Pediococcus_pentosaceus--RS_GCF_001437285.1,food material,3
+s__Vibrio_cholerae--RS_GCF_000621645.1,human-associated habitat,1
+s__Pasteurella_multocida--RS_GCF_900187275.1,vertebrate animal,1
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,watercourse,3
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,Homo sapiens,11
+s__Bifidobacterium_bifidum--RS_GCF_001025135.1,human-associated habitat,3
+s__Xanthomonas_campestris--RS_GCF_000007145.1,plant-associated habitat,1
+s__Bacillus_A_thuringiensis--RS_GCF_002119445.1,intestine environment,1
+s__Brucella_melitensis--RS_GCF_000007125.1,sandy desert,1
+s__Dickeya_dianthicola--RS_GCF_000365305.1,field,4
+s__Enterobacter_cloacae_M--RS_GCF_002208095.1,sewage,3
+s__Rhizobium_leguminosarum_L--RS_GCF_000009265.1,forest biome,1
+s__Klebsiella_grimontii--RS_GCF_900200035.1,soil,2
+s__Bacillus_altitudinis--RS_GCF_000691145.1,fresh water,1
+s__Pediococcus_pentosaceus--RS_GCF_001437285.1,terrestrial biome,1
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,Homo sapiens,1
+s__Aggregatibacter_actinomycetemcomitans--RS_GCF_000372365.1,subgingival dental plaque,1
+s__Burkholderia_vietnamiensis--RS_GCF_000959445.1,rice field,3
+s__Bacillus_velezensis--RS_GCF_001461825.1,vegetable,1
+s__Faecalibacterium_prausnitzii--RS_GCF_003324185.1,Homo sapiens,8
+s__Pantoea_agglomerans--RS_GCF_001598475.1,soil,2
+s__Xylella_fastidiosa--RS_GCF_011801475.1,vineyard,2
+s__Acinetobacter_radioresistens--RS_GCF_006757745.1,human-associated habitat,1
+s__Aeromonas_caviae--RS_GCF_000819785.1,liquid water,1
+s__Fimenecus_sp000432435--GB_GCA_000432435.1,Homo sapiens,26
+s__Agrobacterium_pusense--RS_GCF_900102105.1,,7
+s__Sulfitobacter_mediterraneus--RS_GCF_003054325.1,,3
+s__Staphylococcus_lugdunensis--RS_GCF_002901705.1,,1
+s__Staphylococcus_pseudintermedius--RS_GCF_001792775.2,,3
+s__Bacteroides_ovatus--RS_GCF_001314995.1,watercourse,28
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,feces,2
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,human-associated habitat,3
+s__Leclercia_adecarboxylata--GB_GCA_901472455.1,sludge,2
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,human-associated habitat,2
+s__Helicobacter_pylori_C--RS_GCF_000277405.1,human-associated habitat,1
+s__Enterobacter_cloacae--RS_GCF_000025565.1,terrestrial biome,1
+s__Pantoea_agglomerans--RS_GCF_001598475.1,subpolar coniferous forest biome,1
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,human-associated habitat,1
+s__Alistipes_putredinis--RS_GCF_000154465.1,human-associated habitat,26
+s__Bacillus_A_cereus--RS_GCF_000007825.1,sandy desert,1
+s__Bacteroides_fragilis--RS_GCF_000025985.1,habitat,1
+s__Wolbachia_pipientis--RS_GCF_021378375.1,terrestrial biome,1
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,terrestrial biome,3
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,milk,2
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,terrestrial biome,2
+s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1,environmental system determined by an organism,1
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,Chondrichthyes,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,field soil,1
+s__Haemophilus_influenzae--RS_GCF_001457655.1,,26
+s__Vibrio_cholerae--RS_GCF_000621645.1,coast,90
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,biome,1
+s__Clostridium_AQ_innocuum--RS_GCF_012317185.1,terrestrial biome,4
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,soil,1
+s__Phocaeicola_dorei--RS_GCF_013009555.1,habitat,1
+s__Latilactobacillus_sakei--RS_GCF_002370355.1,day,1
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,alimentary part of gastrointestinal system,1
+s__Campylobacter_D_coli--RS_GCF_000254135.1,village biome,1
+s__Bifidobacterium_breve--RS_GCF_001025175.1,feces,2
+s__Fimenecus_sp000432435--GB_GCA_000432435.1,microcosm,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,woodland area,1
+s__Bacillus_altitudinis--RS_GCF_000691145.1,rice field,1
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,watercourse,1
+s__Enterococcus_B_hirae--RS_GCF_000271405.2,agricultural process,10
+s__Phascolarctobacterium_faecium--RS_GCF_003269275.1,forest biome,1
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,soil,3
+s__Pantoea_agglomerans--RS_GCF_001598475.1,temperate woodland biome,16
+s__Streptococcus_agalactiae--RS_GCF_000186445.1,human-associated habitat,1
+s__Achromobacter_xylosoxidans--RS_GCF_001457475.1,human-associated habitat,1
+s__Phocaeicola_dorei--RS_GCF_013009555.1,biome,24
+s__Pseudomonas_E_tremae--RS_GCF_001401155.1,mangrove swamp,2
+s__Staphylococcus_capitis--RS_GCF_002902325.1,terrestrial biome,2
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,human-associated habitat,3
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,sewage,5
+s__Bacillus_subtilis--RS_GCF_000009045.1,Homo sapiens,1
+s__Pectobacterium_brasiliense--RS_GCF_000754695.1,field,1
+s__Parabacteroides_merdae--GB_GCA_025151215.1,digestive system,1
+s__Priestia_megaterium--RS_GCF_000832985.1,watercourse,1
+s__Staphylococcus_capitis--RS_GCF_002902325.1,hospital,1
+s__Acinetobacter_junii--RS_GCF_000368765.1,,34
+s__Bacteroides_caccae--RS_GCF_002222615.2,biome,28
+s__Porphyromonas_gingivalis--RS_GCF_000010505.1,gingiva,12
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,feces,1
+s__Staphylococcus_xylosus--RS_GCF_002732165.1,environmental system determined by an organism,1
+s__Streptococcus_salivarius--RS_GCF_000785515.1,watercourse,2
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,feces,1
+s__Alistipes_putredinis--RS_GCF_000154465.1,Homo sapiens,3
+s__Pediococcus_pentosaceus--RS_GCF_001437285.1,dairy food product,1
+s__Citrobacter_B_koseri--GB_GCA_900446925.1,companion animal,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,plant root food product,2
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,feces,2
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,forest biome,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,Drosophila melanogaster,1
+s__Bacteroides_fragilis_A--RS_GCF_002849695.1,terrestrial biome,7
+s__Acinetobacter_pittii--RS_GCF_000369045.1,Homo sapiens,10
+s__Parabacteroides_merdae--GB_GCA_025151215.1,feces,2
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,feces,1
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,terrestrial biome,2
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,biome,4
+s__Bifidobacterium_pseudocatenulatum--RS_GCF_001025215.1,terrestrial biome,4
+s__Bifidobacterium_longum--RS_GCF_000196555.1,,106
+s__Clostridium_beijerinckii--RS_GCF_018223745.1,,178
+s__Dickeya_dianthicola--RS_GCF_000365305.1,,24
+s__Bifidobacterium_infantis--RS_GCF_000269965.1,,41
+s__Escherichia_marmotae--RS_GCF_002900365.1,companion animal,3
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,agricultural process,2
+s__Pseudomonas_E_fulva--RS_GCF_000730565.1,Homo sapiens,2
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,grassland biome,7
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,habitat,1
+s__Mycobacterium_intracellulare--RS_GCF_000277125.1,Homo sapiens,1
+s__Bacillus_A_thuringiensis--RS_GCF_002119445.1,alpine,1
+s__Lactococcus_lactis--RS_GCF_900099625.1,watercourse,1
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,food material,2
+s__Weissella_confusa--GB_GCA_001436895.1,milk,1
+s__Klebsiella_variicola--RS_GCF_000828055.2,feces,1
+s__Bacteroides_fragilis--RS_GCF_000025985.1,zoological garden,12
+s__Ruminococcus_D_bicirculans--RS_GCF_000723465.1,watercourse,1
+s__Odoribacter_splanchnicus--RS_GCF_000190535.1,habitat,1
+s__Pectobacterium_brasiliense--RS_GCF_000754695.1,plain,1
+s__Weissella_confusa--GB_GCA_001436895.1,terrestrial biome,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,greenhouse,1
+s__Enterococcus_E_cecorum--RS_GCF_000407565.1,habitat,1
+s__Pantoea_agglomerans--RS_GCF_001598475.1,field,1
+s__Legionella_pneumophila--RS_GCF_000008485.1,,7
+s__Clostridium_F_sporogenes--RS_GCF_001020205.1,,1
+s__Vibrio_splendidus--GB_GCA_024347615.1,marine biome,1
+s__Pediococcus_pentosaceus--RS_GCF_001437285.1,bioreactor,3
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,environmental system,2
+s__Wolbachia_pipientis--RS_GCF_021378375.1,mangrove swamp,1
+s__Staphylococcus_hominis--RS_GCF_002901845.1,agricultural field,1
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,subpolar coniferous forest biome,1
+s__Priestia_megaterium--RS_GCF_000832985.1,root,2
+s__Enterococcus_faecalis--RS_GCF_000392875.1,agricultural process,1
+s__Mycobacterium_abscessus--RS_GCF_000069185.1,unidentified,1
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,biome,1
+s__Klebsiella_aerogenes--RS_GCF_000215745.1,soil,1
+s__Pantoea_ananatis--RS_GCF_000710035.2,river,1
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,,16
+s__Sulfitobacter_mediterraneus--RS_GCF_003054325.1,estuarine biome,47
+s__Sinorhizobium_meliloti--RS_GCF_017876815.1,soil,1
+s__Phascolarctobacterium_faecium--RS_GCF_003269275.1,feces,1
+s__Streptococcus_salivarius--RS_GCF_000785515.1,terrestrial biome,4
+s__Faecalibacterium_longum--RS_GCF_020687245.1,anthropogenic terrestrial biome,3
+s__Bacillus_A_cereus--RS_GCF_000007825.1,skin environment,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,animal-associated environment,1
+s__Bacillus_altitudinis--RS_GCF_000691145.1,,15
+s__Klebsiella_ornithinolytica--RS_GCF_001598295.1,,7
+s__Clostridioides_difficile--RS_GCF_001077535.1,city,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,biofilm,1
+s__Lactococcus_cremoris--RS_GCF_001591705.1,farm,1
+s__Streptococcus_iniae--RS_GCF_003674745.1,fish farm,1
+s__Enterobacter_cloacae_M--RS_GCF_002208095.1,sludge,1
+s__Faecalibacterium_duncaniae--RS_GCF_010509575.1,biome,1
+s__Mycobacterium_avium--RS_GCF_009741445.1,human-associated habitat,1
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,,12
+s__Bacteroides_fragilis--RS_GCF_000025985.1,,66
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,biome,9
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,biome,1
+s__Yersinia_enterocolitica--RS_GCF_901472495.1,alimentary part of gastrointestinal system,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,bovine milk,1
+s__Bacteroides_stercoris--GB_GCA_025147325.1,feces,1
+s__Vibrio_parahaemolyticus--RS_GCF_900460535.1,watercourse,2
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,mangrove swamp,1
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,,15
+s__Bordetella_pertussis--RS_GCF_000306945.1,,8
+s__Ralstonia_pseudosolanacearum--RS_GCF_024925465.1,,5
+s__Pseudomonas_E_asiatica--RS_GCF_009932335.1,agricultural field,9
+s__Aliivibrio_fischeri--RS_GCF_023983475.1,lagoon,1
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,feces,3
+s__Bacillus_velezensis--RS_GCF_001461825.1,ocean,1
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,environmental system determined by an organism,1
+s__Mannheimia_haemolytica--RS_GCF_004342115.1,terrestrial biome,1
+s__Escherichia_fergusonii--RS_GCF_000026225.1,human-associated habitat,1
+s__Piscirickettsia_salmonis--RS_GCF_000297215.2,,4
+s__Listeria_monocytogenes--RS_GCF_900187225.1,food material,4
+s__Fusicatenibacter_saccharivorans--RS_GCF_015557635.1,microcosm,1
+s__Acinetobacter_nosocomialis--RS_GCF_000368085.1,liquid water,1
+s__Brucella_melitensis--RS_GCF_000007125.1,tissue paper,6
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,watercourse,2
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,microcosm,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,biome,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,biome,2
+s__Aeromonas_caviae--RS_GCF_000819785.1,bioreactor,1
+s__Burkholderia_cenocepacia--RS_GCF_900446215.1,nest of ant,1
+s__Acinetobacter_radioresistens--RS_GCF_006757745.1,,5
+s__Pseudomonas_E_viridiflava--RS_GCF_001642795.1,,5
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,river,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,soil,19
+s__Bifidobacterium_bifidum--RS_GCF_001025135.1,biome,23
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,hospital,1
+s__Prevotella_copri_A--RS_GCF_002224675.1,Homo sapiens,2
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,bioreactor,6
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,deep marine sediment,1
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,farm,2
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,anthropogenic terrestrial biome,2
+s__Bacillus_velezensis--RS_GCF_001461825.1,desert biome,2
+s__Bacillus_A_cereus--RS_GCF_000007825.1,soil,1
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,unidentified,1
+s__Bacteroides_fragilis_A--RS_GCF_002849695.1,human-associated habitat,2
+s__Enterobacter_cloacae_M--RS_GCF_002208095.1,feces,1
+s__Bacillus_A_paranthracis--RS_GCF_001883995.1,,4
+s__Serratia_nevei--RS_GCF_008364245.1,sludge,3
+s__Rhizobium_leguminosarum--RS_GCF_002008365.1,rhizosphere,1
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,freshwater environment,5
+s__Weissella_confusa--GB_GCA_001436895.1,Apis mellifera,1
+s__Gemmiger_formicilis--RS_GCF_900167555.1,terrestrial biome,4
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,habitat,1
+s__Xanthomonas_campestris--RS_GCF_000007145.1,human-associated habitat,1
+s__Enterococcus_D_casseliflavus--RS_GCF_001544095.1,feces,1
+s__Vibrio_campbellii--RS_GCF_002163755.1,,4
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,watercourse,15
+s__Burkholderia_orbicola--RS_GCF_014211915.1,cropland biome,4
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,feces,1
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,spring,1
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,intestine,1
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,animal house,1
+s__Ruminococcus_E_sp900317315--GB_GCA_900317315.1,watercourse,1
+s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1,,80
+s__Bacteroides_caccae--RS_GCF_002222615.2,,27
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,,11
+s__Leclercia_adecarboxylata--GB_GCA_901472455.1,,1
+s__Klebsiella_ornithinolytica--RS_GCF_001598295.1,river,1
+s__Enterobacter_kobei--RS_GCF_001729765.1,environmental system,2
+s__Faecalibacterium_duncaniae--RS_GCF_010509575.1,feces,4
+s__Bacteroides_fragilis_A--RS_GCF_002849695.1,Homo sapiens,2
+s__Ruminococcus_B_gnavus--RS_GCF_008121495.1,human-associated habitat,2
+s__Acinetobacter_junii--RS_GCF_000368765.1,Homo sapiens,1
+s__Pectobacterium_brasiliense--RS_GCF_000754695.1,undersea feature,1
+s__Priestia_megaterium--RS_GCF_000832985.1,forested area,1
+s__Pseudomonas_E_syringae--RS_GCF_000507185.2,,23
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,farm,2
+s__Phocaeicola_dorei--RS_GCF_013009555.1,terrestrial biome,9
+s__Eggerthella_lenta--RS_GCF_000024265.1,human-associated habitat,2
+s__Pediococcus_acidilactici--RS_GCF_000146325.1,food material for animals,1
+s__Bifidobacterium_breve--RS_GCF_001025175.1,human-associated habitat,2
+s__Enterococcus_faecalis--RS_GCF_000392875.1,environmental system determined by an organism,1
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,digestive system,1
+s__Clostridioides_difficile--RS_GCF_001077535.1,dense settlement biome,54
+s__Rhizobium_laguerreae--RS_GCF_002008165.1,root nodule,24
+s__Bifidobacterium_breve--RS_GCF_001025175.1,watercourse,2
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,soil,1
+s__Lactococcus_lactis--RS_GCF_900099625.1,intestine,1
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,,123
+s__Cutibacterium_acnes--RS_GCF_003030305.1,,19
+s__Mycobacterium_marinum--RS_GCF_003391395.1,,30
+s__Providencia_rettgeri_D--RS_GCF_013255915.1,,5
+s__Bifidobacterium_pseudocatenulatum--RS_GCF_001025215.1,biome,35
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,Apis mellifera,1
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,human-associated habitat,16
+s__Blautia_A_wexlerae--GB_GCA_025148125.1,anthropogenic terrestrial biome,13
+s__Staphylococcus_saprophyticus--RS_GCF_000010125.1,human-associated habitat,1
+s__Agathobacter_rectalis--GB_GCA_000020605.1,watercourse,5
+s__Pasteurella_multocida--RS_GCF_900187275.1,farm,4
+s__Klebsiella_quasipneumoniae--RS_GCF_020525925.1,liquid water,1
+s__Bacteroides_ovatus--RS_GCF_001314995.1,habitat,1
+s__Acinetobacter_nosocomialis--RS_GCF_000368085.1,terrestrial biome,1
+s__Enterobacter_bugandensis--RS_GCF_900324475.1,terrestrial biome,1
+s__Clostridium_AQ_innocuum--RS_GCF_012317185.1,,28
+s__Faecalibacterium_duncaniae--RS_GCF_010509575.1,,13
+s__Dorea_formicigenerans--GB_GCA_025150245.1,,29
+s__Bifidobacterium_longum--RS_GCF_000196555.1,unidentified,17
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,terrestrial biome,4
+s__Clostridium_AQ_innocuum--RS_GCF_012317185.1,feces,2
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,biome,2
+s__Xanthomonas_oryzae--RS_GCF_004136375.1,terrestrial biome,1
+s__Morganella_morganii--RS_GCF_019243775.1,human-associated habitat,2
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,freshwater biome,1
+s__Clostridium_beijerinckii--RS_GCF_018223745.1,bioreactor,3
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,Homo sapiens,2
+s__Enterococcus_faecalis--RS_GCF_000392875.1,unidentified,2
+s__Xanthomonas_euvesicatoria--RS_GCF_020880415.1,Embryophyta,1
+s__Xanthomonas_campestris--RS_GCF_000007145.1,field,2
+s__Mediterraneibacter_faecis--GB_GCA_001312505.1,feces,3
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,companion animal,2
+s__Priestia_megaterium--RS_GCF_000832985.1,arid biome,1
+s__Latilactobacillus_sakei--RS_GCF_002370355.1,food material,6
+s__Priestia_megaterium--RS_GCF_000832985.1,leaf,1
+s__Bacteroides_fragilis--RS_GCF_000025985.1,biome,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,citrus fruit food product,1
+s__Mammaliicoccus_sciuri--RS_GCF_002901825.1,human-associated habitat,1
+s__Listeria_monocytogenes_C--RS_GCF_013282665.1,,1
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,hillside,1
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,terrestrial biome,6
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,milk,2
+s__Pediococcus_acidilactici--RS_GCF_000146325.1,bioreactor,2
+s__Bacillus_A_cereus--RS_GCF_000007825.1,watercourse,1
+s__Priestia_megaterium--RS_GCF_000832985.1,estuarine biome,1
+s__Mycobacterium_avium--RS_GCF_009741445.1,,48
+s__Pseudomonas_E_monteilii--RS_GCF_000730605.1,,18
+s__Staphylococcus_capitis--RS_GCF_002902325.1,biome,10
+s__Streptococcus_pseudopneumoniae--RS_GCF_002087075.1,terrestrial biome,2
+s__Yersinia_ruckeri--RS_GCF_000754815.1,fish farm,7
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,farm,1
+s__Rhizobium_leguminosarum--RS_GCF_002008365.1,forest biome,3
+s__Pantoea_ananatis--RS_GCF_000710035.2,Embryophyta,3
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,food processing building,1
+s__Flavonifractor_plautii--RS_GCF_000239295.1,intestine environment,1
+s__Lactococcus_cremoris--RS_GCF_001591705.1,food material,1
+s__Bacillus_A_cereus--RS_GCF_000007825.1,temperate woodland biome,1
+s__Enterobacter_kobei--RS_GCF_001729765.1,,17
+s__Methanosarcina_mazei--RS_GCF_000970205.1,estuary,56
+s__Sarcina_perfringens--RS_GCF_000013285.1,human-associated habitat,2
+s__Porphyromonas_gingivalis--RS_GCF_000010505.1,anatomical cavity,2
+s__Clostridium_butyricum--RS_GCF_006742065.1,watercourse,1
+s__Bacteroides_uniformis--GB_GCA_025147485.1,fecal environment,1
+s__Dickeya_dianthicola--RS_GCF_000365305.1,river water,1
+s__Corynebacterium_pseudotuberculosis--RS_GCF_002155265.1,mediterranean,1
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,fecal environment,1
+s__Enterobacter_cloacae_M--RS_GCF_002208095.1,human-associated habitat,1
+s__Rhizobium_laguerreae--RS_GCF_002008165.1,root,1
+s__Aggregatibacter_actinomycetemcomitans--RS_GCF_000372365.1,,1
+s__Bacillus_A_wiedmannii--RS_GCF_001583695.1,,7
+s__Rhizobium_ruizarguesonis--RS_GCF_012349115.1,terrestrial biome,7
+s__Rhizobium_leguminosarum--RS_GCF_002008365.1,plant-associated habitat,2
+s__Bacillus_velezensis--RS_GCF_001461825.1,agricultural ecosystem,1
+s__Pantoea_ananatis--RS_GCF_000710035.2,tropical biome,1
+s__Clostridioides_difficile--RS_GCF_001077535.1,human-associated habitat,1
+s__Lactococcus_cremoris--RS_GCF_001591705.1,watercourse,1
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,digestive system,1
+s__Enterococcus_E_cecorum--RS_GCF_000407565.1,biome,1
+s__Morganella_morganii--RS_GCF_019243775.1,,13
+s__Burkholderia_contaminans--RS_GCF_000987075.1,,3
+s__Agathobacter_faecis--RS_GCF_001406815.1,human-associated habitat,8
+s__Citrobacter_braakii--RS_GCF_002075345.1,sewage,24
+s__Pelagibacter_sp003209915--GB_GCA_003209915.1,marine biome,5
+s__Aeromonas_caviae--RS_GCF_000819785.1,human-associated habitat,2
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,brewery,2
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,plain,1
+s__Yersinia_ruckeri--RS_GCF_000754815.1,,5
+s__Rhodococcus_equi--RS_GCF_002094305.1,sputum,1
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,biome,40
+s__Legionella_pneumophila--RS_GCF_000008485.1,freshwater biome,5
+s__Citrobacter_freundii--RS_GCF_011064845.1,wastewater treatment plant,1
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,silage,1
+s__Cronobacter_sakazakii--RS_GCF_000982825.1,Homo sapiens,1
+s__Pantoea_ananatis--RS_GCF_000710035.2,biome,2
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,feces,1
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,rice field,1
+s__Enterobacter_ludwigii--RS_GCF_001750725.1,terrestrial habitat,1
+s__Gemmiger_formicilis--RS_GCF_900167555.1,watercourse,3
+s__Bacillus_safensis--RS_GCF_000691165.1,coast,1
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,plant matter,1
+s__Staphylococcus_haemolyticus--RS_GCF_006094395.1,Homo sapiens,2
+s__Blautia_A_massiliensis--RS_GCF_001487165.1,anthropogenic terrestrial biome,3
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,facility,1
+s__Bacillus_A_paranthracis--RS_GCF_001883995.1,food (fermented),1
+s__Prevotella_sp015074785--RS_GCF_015074785.1,terrestrial biome,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,undersea feature,1
+s__Pseudomonas_E_asiatica--RS_GCF_009932335.1,subtropical,1
+s__Stenotrophomonas_sepilia--RS_GCF_003244875.1,agricultural soil,1
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,terrestrial biome,2
+s__Bacillus_paralicheniformis--RS_GCF_001042485.2,,38
+s__Prevotella_sp015074785--RS_GCF_015074785.1,,10
+s__Bacillus_safensis--RS_GCF_000691165.1,,15
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,,3
+s__Pediococcus_acidilactici--RS_GCF_000146325.1,Homo sapiens,1
+s__Bacillus_pumilus--RS_GCF_900186955.1,sea water,1
+s__Vibrio_cyclitrophicus--GB_GCA_024347435.1,coastal sea water,1
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,sea water,1
+s__Acinetobacter_nosocomialis--RS_GCF_000368085.1,river bank,1
+s__Bacillus_A_wiedmannii--RS_GCF_001583695.1,soil,1
+s__Helicobacter_pylori_C--RS_GCF_000277405.1,terrestrial biome,1
+s__Aeromonas_caviae--RS_GCF_000819785.1,freshwater biome,1
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,food material for animals,1
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,,17
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,cultivated habitat,1
+s__Faecalibacterium_prausnitzii--RS_GCF_003324185.1,watercourse,1
+s__Prevotella_copri_B--RS_GCF_009494135.1,human-associated habitat,17
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,vertebrate animal,15
+s__Klebsiella_aerogenes--RS_GCF_000215745.1,Homo sapiens,4
+s__Citrobacter_braakii--RS_GCF_002075345.1,bioreactor,2
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,liquid water,3
+s__Aeromonas_veronii--RS_GCF_000820225.1,aquatic biome,1
+s__Corynebacterium_glutamicum--RS_GCF_000011325.1,livestock-associated habitat,1
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,soil,1
+s__Blautia_A_massiliensis--RS_GCF_001487165.1,,22
+s__Acinetobacter_soli--RS_GCF_000760595.1,,21
+s__Oenococcus_oeni--RS_GCF_000372485.1,,23
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,food material,4
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,dairy food product,2
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,Homo sapiens,8
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,anthropogenic terrestrial biome,1
+s__Bifidobacterium_breve--RS_GCF_001025175.1,Homo sapiens,3
+s__Clostridium_butyricum--RS_GCF_006742065.1,Homo sapiens,1
+s__Ligilactobacillus_ruminis--RS_GCF_900113455.1,digestive system,1
+s__Aeromonas_hydrophila--RS_GCF_000014805.1,liquid water,1
+s__Faecalibacterium_prausnitzii--RS_GCF_003324185.1,terrestrial biome,2
+s__Sarcina_perfringens--RS_GCF_000013285.1,biome,1
+s__Pasteurella_multocida--RS_GCF_900187275.1,plateau,1
+s__Acinetobacter_soli--RS_GCF_000760595.1,forested area,1
+s__Pseudomonas_E_alloputida--RS_GCF_021282585.1,bioreactor,1
+s__Vibrio_alginolyticus--RS_GCF_000354175.2,biome,1
+s__Enterobacter_roggenkampii--RS_GCF_001729805.1,,15
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,zoological garden,39
+s__Pantoea_agglomerans--RS_GCF_001598475.1,arid,1
+s__Vibrio_campbellii--RS_GCF_002163755.1,ocean biome,6
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,digestive system,2
+s__Pseudomonas_E_avellanae--RS_GCF_000444135.1,mangrove swamp,1
+s__Staphylococcus_xylosus--RS_GCF_002732165.1,food material,1
+s__Proteus_mirabilis--RS_GCF_000160755.1,watercourse,1
+s__Klebsiella_variicola--RS_GCF_000828055.2,biome,1
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,,49
+s__Enterobacter_cloacae--RS_GCF_000025565.1,oil contaminated soil,1
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,bioreactor,1
+s__Ruminococcus_B_gnavus--RS_GCF_008121495.1,watercourse,2
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,human-associated habitat,4
+s__Pseudomonas_E_fulva--RS_GCF_000730565.1,environmental system,3
+s__Bifidobacterium_pseudocatenulatum--RS_GCF_001025215.1,feces,1
+s__Xanthomonas_arboricola--RS_GCF_001013475.1,walnut (raw),2
+s__Bacillus_licheniformis--RS_GCF_000011645.1,coral reef,1
+s__Staphylococcus_pseudintermedius--RS_GCF_001792775.2,biome,1
+s__Rhizobium_ruizarguesonis--RS_GCF_012349115.1,root nodule,1
+s__Streptococcus_anginosus--RS_GCF_900636475.1,human-associated habitat,3
+s__Enterobacter_cloacae_M--RS_GCF_002208095.1,freshwater biome,1
+s__Klebsiella_grimontii--RS_GCF_900200035.1,watercourse,1
+s__Agathobacter_faecis--RS_GCF_001406815.1,feces,1
+s__Lactococcus_lactis--RS_GCF_900099625.1,feces,1
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,microcosm,1
+s__Klebsiella_aerogenes--RS_GCF_000215745.1,,11
+s__Serratia_marcescens_K--RS_GCF_002220655.1,,3
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,anthropogenic terrestrial biome,3
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,bioreactor,9
+s__Escherichia_albertii--RS_GCF_000759775.1,habitat,1
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,Homo sapiens,2
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,watercourse,3
+s__Campylobacter_D_jejuni--RS_GCF_001457695.1,village biome,1
+s__Dorea_formicigenerans--GB_GCA_025150245.1,terrestrial biome,5
+s__Pseudomonas_E_alloputida--RS_GCF_021282585.1,delta,2
+s__Bifidobacterium_longum--RS_GCF_000196555.1,food material,1
+s__Agathobacter_faecis--RS_GCF_001406815.1,fecal environment,1
+s__Blautia_A_massiliensis--RS_GCF_001487165.1,biome,4
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,biome,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,river bank,7
+s__Bariatricus_comes--GB_GCA_025149785.1,terrestrial biome,2
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,human-associated habitat,1
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,digestive system,1
+s__Klebsiella_grimontii--RS_GCF_900200035.1,,14
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,watercourse,3
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,Homo sapiens,3
+s__Bacillus_subtilis--RS_GCF_000009045.1,agricultural process,4
+s__Bifidobacterium_pseudocatenulatum--RS_GCF_001025215.1,Homo sapiens,1
+s__Citrobacter_werkmanii--GB_GCA_000759755.1,terrestrial biome,1
+s__Gemmiger_qucibialis--GB_GCA_004000625.1,anthropogenic terrestrial biome,10
+s__Bacillus_subtilis--RS_GCF_000009045.1,sandy desert,7
+s__Enterococcus_B_hirae--RS_GCF_000271405.2,feces,1
+s__Ruminococcus_B_gnavus--RS_GCF_008121495.1,terrestrial biome,4
+s__Corynebacterium_glutamicum--RS_GCF_000011325.1,biome,1
+s__Bacillus_licheniformis--RS_GCF_000011645.1,city,1
+s__Staphylococcus_xylosus--RS_GCF_002732165.1,watercourse,1
+s__Bacillus_A_toyonensis--RS_GCF_000496285.1,tropical forest,1
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,intestine,1
+s__Weissella_confusa--GB_GCA_001436895.1,food material,26
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,feces,1
+s__Klebsiella_aerogenes--RS_GCF_000215745.1,terrestrial biome,1
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,human-associated habitat,2
+s__Lactobacillus_gasseri--RS_GCF_000014425.1,human-associated habitat,3
+s__Campylobacter_D_coli--RS_GCF_000254135.1,terrestrial biome,1
+s__Citrobacter_freundii--RS_GCF_011064845.1,liquid water,2
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,chicken,2
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,watercourse,2
+s__Staphylococcus_warneri--RS_GCF_900636385.1,,5
+s__Enterococcus_E_cecorum--RS_GCF_000407565.1,,7
+s__Francisella_tularensis--RS_GCF_000008985.1,,2
+s__Vibrio_diabolicus--GB_GCA_001048675.1,biome,5
+s__Staphylococcus_xylosus--RS_GCF_002732165.1,Bos,3
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,day,1
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,feces,1
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,,13
+s__Streptococcus_dysgalactiae--RS_GCF_900459225.1,,11
+s__Staphylococcus_hominis--RS_GCF_002901845.1,,12
+s__Faecalibacterium_prausnitzii--RS_GCF_003324185.1,biome,18
+s__Riemerella_anatipestifer--RS_GCF_000252855.1,farm,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,alimentary part of gastrointestinal system,3
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,field,1
+s__Serratia_marcescens--RS_GCF_017299535.1,Homo sapiens,1
+s__Staphylococcus_haemolyticus--RS_GCF_006094395.1,,106
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,biome,6
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,skin of body,8
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,plain,2
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,environmental system,2
+s__Streptococcus_suis--RS_GCF_000294495.1,temperate,1
+s__Staphylococcus_haemolyticus--RS_GCF_006094395.1,Sepsis,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,vineyard,1
+s__Leclercia_adecarboxylata--GB_GCA_901472455.1,field,1
+s__Streptococcus_gordonii--RS_GCF_001553855.1,Homo sapiens,1
+s__Burkholderia_cepacia--RS_GCF_001411495.1,liquid water,1
+s__Faecalibacillus_intestinalis--RS_GCF_003024685.1,human-associated habitat,6
+s__Listeria_monocytogenes_B--RS_GCF_000307025.1,human-associated habitat,1
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,digestive system,1
+s__Klebsiella_quasipneumoniae--RS_GCF_020525925.1,biome,9
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,animal-associated environment,1
+s__Bacillus_altitudinis--RS_GCF_000691145.1,hot spring,1
+s__Enterobacter_kobei--RS_GCF_001729765.1,biome,1
+s__Escherichia_marmotae--RS_GCF_002900365.1,human-associated habitat,1
+s__Clostridium_butyricum--RS_GCF_006742065.1,alimentary part of gastrointestinal system,1
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,marine sediment,1
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,animal-associated environment,1
+s__Listeria_monocytogenes--RS_GCF_900187225.1,blood,1
+s__Bacillus_licheniformis--RS_GCF_000011645.1,human-associated habitat,1
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,,12
+s__Enterobacter_ludwigii--RS_GCF_001750725.1,,7
+s__Burkholderia_gladioli--RS_GCF_000959725.1,,7
+s__Serratia_marcescens--RS_GCF_017299535.1,temperate,1
+s__Enterobacter_roggenkampii--RS_GCF_001729805.1,river water,1
+s__Aeromonas_veronii--RS_GCF_000820225.1,freshwater biome,1
+s__Staphylococcus_xylosus--RS_GCF_002732165.1,animal-associated environment,1
+s__Burkholderia_vietnamiensis--RS_GCF_000959445.1,liquid water,1
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,field,1
+s__Pantoea_agglomerans--RS_GCF_001598475.1,biome,2
+s__Vibrio_crassostreae--GB_GCA_024347415.1,,65
+s__Xanthomonas_arboricola--RS_GCF_001013475.1,,41
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,bioreactor,17
+s__Staphylococcus_hominis--RS_GCF_002901845.1,Bos,1
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,terrestrial biome,2
+s__Bacillus_velezensis--RS_GCF_001461825.1,feces,2
+s__Listeria_monocytogenes_B--RS_GCF_000307025.1,food material,2
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,digestive system,2
+s__Bacillus_subtilis--RS_GCF_000009045.1,contaminated soil,1
+s__Aeromonas_veronii--RS_GCF_000820225.1,liquid water,1
+s__Odoribacter_splanchnicus--RS_GCF_000190535.1,microcosm,1
+s__Acinetobacter_ursingii--RS_GCF_000368825.1,,36
+s__Sarcina_perfringens--RS_GCF_000013285.1,,8
+s__Serratia_marcescens--RS_GCF_017299535.1,,4
+s__Acinetobacter_soli--RS_GCF_000760595.1,biome,28
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,terrestrial biome,2
+s__Pseudomonas_E_cerasi--RS_GCF_900074915.1,leaf,1
+s__Enterobacter_cloacae--RS_GCF_000025565.1,sewage,1
+s__Citrobacter_braakii--RS_GCF_002075345.1,waste water,2
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,food product,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,pickled cucumber,1
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,environment associated with an animal part or small animal,1
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,,181
+s__Coxiella_burnetii--RS_GCF_005280755.1,,2
+s__Klebsiella_terrigena--RS_GCF_006539725.1,,8
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,hospital,47
+s__Aeromonas_caviae--RS_GCF_000819785.1,waste water,4
+s__Odoribacter_splanchnicus--RS_GCF_000190535.1,human-associated habitat,29
+s__Bacillus_velezensis--RS_GCF_001461825.1,sea,2
+s__Enterococcus_B_durans--RS_GCF_001544215.1,terrestrial biome,2
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,food product,2
+s__Klebsiella_quasipneumoniae--RS_GCF_020525925.1,freshwater biome,1
+s__Bacillus_paralicheniformis--RS_GCF_001042485.2,national geopolitical entity,1
+s__Streptococcus_mutans--RS_GCF_006739205.1,Homo sapiens,1
+s__Bacteroides_uniformis--GB_GCA_025147485.1,,94
+s__Clostridium_butyricum--RS_GCF_006742065.1,,10
+s__Pediococcus_pentosaceus--RS_GCF_001437285.1,,46
+s__Chlamydia_trachomatis--RS_GCF_000012125.1,,1
+s__Pantoea_agglomerans--RS_GCF_001598475.1,temperate coniferous forest biome,7
+s__Enterococcus_E_cecorum--RS_GCF_000407565.1,19650 - chicken fresh meat (efsa foodex2),1
+s__Dorea_formicigenerans--GB_GCA_025150245.1,human-associated habitat,2
+s__Klebsiella_variicola--RS_GCF_000828055.2,terrestrial biome,1
+s__Pediococcus_acidilactici--RS_GCF_000146325.1,food material,2
+s__Mycoplasmopsis_bovis--RS_GCF_000183385.1,human-associated habitat,1
+s__Weissella_cibaria--RS_GCF_000193635.1,terrestrial biome,4
+s__Lactococcus_lactis--RS_GCF_900099625.1,area designated as a nature reserve,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,food product,1
+s__Bifidobacterium_breve--RS_GCF_001025175.1,,92
+s__Vibrio_diabolicus--GB_GCA_001048675.1,,9
+s__Enterobacter_ludwigii--RS_GCF_001750725.1,sewage,5
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,human-associated habitat,3
+s__Campylobacter_D_coli--RS_GCF_000254135.1,biome,1
+s__Staphylococcus_chromogenes--RS_GCF_002901945.1,Bos,4
+s__Wolbachia_pipientis--RS_GCF_021378375.1,,828
+s__Enterococcus_D_casseliflavus--RS_GCF_001544095.1,,6
+s__Ruminococcus_E_sp900317315--GB_GCA_900317315.1,Bos taurus,89
+s__Oenococcus_oeni--RS_GCF_000372485.1,wine,132
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,watercourse,2
+s__Streptococcus_anginosus--RS_GCF_900636475.1,watercourse,1
+s__Clostridioides_difficile--RS_GCF_001077535.1,watercourse,3
+s__Agathobacter_rectalis--GB_GCA_000020605.1,bioreactor,3
+s__Enterococcus_B_hirae--RS_GCF_000271405.2,terrestrial biome,3
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,habitat,1
+s__Streptococcus_gordonii--RS_GCF_001553855.1,feces,1
+s__Bacillus_A_toyonensis--RS_GCF_000496285.1,sediment,1
+s__Prevotella_sp015074785--RS_GCF_015074785.1,Homo sapiens,1
+s__Mesorhizobium_sp002294985--RS_GCF_002294985.1,,1
+s__Burkholderia_multivorans--RS_GCF_000959525.1,,1
+s__Campylobacter_D_jejuni--RS_GCF_001457695.1,digestive system,1
+s__Bacillus_A_pseudomycoides--RS_GCF_000161455.1,area of developed space,1
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,human-associated habitat,7
+s__Bacillus_velezensis--RS_GCF_001461825.1,liquid water,1
+s__Clostridium_butyricum--RS_GCF_006742065.1,human-associated habitat,2
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,human-associated habitat,2
+s__Aeromonas_caviae--RS_GCF_000819785.1,,95
+s__Vibrio_fluvialis--RS_GCF_900460245.1,,2
+s__Bifidobacterium_infantis--RS_GCF_000269965.1,biome,1
+s__Streptococcus_pyogenes--RS_GCF_002055535.1,Homo sapiens,2
+s__Borreliella_burgdorferi--RS_GCF_000008685.2,forested area,1
+s__Acinetobacter_radioresistens--RS_GCF_006757745.1,forest biome,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,animal-associated environment,1
+s__Lactobacillus_gasseri--RS_GCF_000014425.1,food material,1
+s__Enterobacter_asburiae_B--RS_GCF_007035645.1,bioreactor,1
+s__Xanthomonas_euvesicatoria--RS_GCF_020880415.1,,3
+s__Yersinia_pestis--RS_GCF_900460465.1,,1
+s__Ligilactobacillus_ruminis--RS_GCF_900113455.1,Metazoa,1
+s__Priestia_megaterium--RS_GCF_000832985.1,intestine,1
+s__Pectobacterium_brasiliense--RS_GCF_000754695.1,cropland biome,3
+s__Pseudomonas_E_asiatica--RS_GCF_009932335.1,human-associated habitat,1
+s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1,animal-associated environment,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,field,4
+s__Enterococcus_D_gallinarum--RS_GCF_001544275.1,feces,2
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,cheese food product,2
+s__Pediococcus_pentosaceus--RS_GCF_001437285.1,human-associated habitat,1
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,steppe,1
+s__Bacillus_A_toyonensis--RS_GCF_000496285.1,soil,1
+s__Bacteroides_stercoris--GB_GCA_025147325.1,,16
+s__Bacteroides_stercoris--GB_GCA_025147325.1,biome,21
+s__Bacillus_velezensis--RS_GCF_001461825.1,Bacteria,1
+s__Agathobacter_faecis--RS_GCF_001406815.1,digestive system,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,field soil,2
+s__Odoribacter_splanchnicus--RS_GCF_000190535.1,watercourse,1
+s__Eggerthella_lenta--RS_GCF_000024265.1,feces,1
+s__Bifidobacterium_infantis--RS_GCF_000269965.1,human-associated habitat,1
+s__Faecalibacterium_prausnitzii--RS_GCF_003324185.1,,11
+s__Proteus_mirabilis--RS_GCF_000160755.1,,16
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,,31
+s__Rhizobium_leguminosarum--RS_GCF_002008365.1,,19
+s__Burkholderia_contaminans--RS_GCF_000987075.1,habitat,1
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,field,1
+s__Streptococcus_salivarius--RS_GCF_000785515.1,human-associated habitat,9
+s__Streptococcus_anginosus--RS_GCF_900636475.1,terrestrial biome,2
+s__Mannheimia_haemolytica--RS_GCF_004342115.1,,12
+s__Bacillus_velezensis--RS_GCF_001461825.1,farm,1
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,Homo sapiens,6
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,watercourse,4
+s__Lactobacillus_helveticus--RS_GCF_000160855.1,terrestrial biome,2
+s__Mycoplasmoides_pneumoniae--RS_GCF_001272835.1,Homo sapiens,2
+s__Cutibacterium_acnes--RS_GCF_003030305.1,permafrost,1
+s__Pseudomonas_E_cerasi--RS_GCF_900074915.1,biome,1
+s__Leclercia_adecarboxylata--GB_GCA_901472455.1,liquid water,1
+s__Pseudomonas_E_cerasi--RS_GCF_900074915.1,,7
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,,5
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,sea,4
+s__Bifidobacterium_pseudocatenulatum--RS_GCF_001025215.1,anthropogenic terrestrial biome,3
+s__Fusicatenibacter_saccharivorans--RS_GCF_015557635.1,human-associated habitat,9
+s__Klebsiella_aerogenes--RS_GCF_000215745.1,human-associated habitat,2
+s__Rhizobium_leguminosarum--RS_GCF_002008365.1,agricultural soil,1
+s__Mycobacterium_marinum--RS_GCF_003391395.1,human-associated habitat,2
+s__Agathobacter_faecis--RS_GCF_001406815.1,terrestrial biome,4
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,soil,1
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,urban biome,1
+s__Rhizobium_leguminosarum_L--RS_GCF_000009265.1,,14
+s__Streptococcus_salivarius--RS_GCF_000785515.1,feces,8
+s__Bacillus_licheniformis--RS_GCF_000011645.1,lake,1
+s__Weissella_confusa--GB_GCA_001436895.1,Homo sapiens,6
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,unidentified,14
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,food material,5
+s__Aeromonas_dhakensis--RS_GCF_000820305.1,woodland area,3
+s__Bifidobacterium_longum--RS_GCF_000196555.1,feces,9
+s__Bacillus_safensis--RS_GCF_000691165.1,root,1
+s__Rhizobium_leguminosarum--RS_GCF_002008365.1,root nodule,10
+s__Burkholderia_contaminans--RS_GCF_000987075.1,alpine,4
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,freshwater biome,1
+s__Bacillus_licheniformis--RS_GCF_000011645.1,spring,1
+s__Citrobacter_freundii--RS_GCF_011064845.1,anthropogenic terrestrial biome,2
+s__Staphylococcus_saprophyticus--RS_GCF_000010125.1,,2
+s__Mycobacterium_chelonae--RS_GCF_001632805.1,,1
+s__Fusicatenibacter_saccharivorans--RS_GCF_015557635.1,watercourse,1
+s__Vibrio_diabolicus--GB_GCA_001048675.1,estuarine biome,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,field,1
+s__Bacillus_A_thuringiensis--RS_GCF_002119445.1,sediment,1
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,Homo sapiens,1
+s__Burkholderia_vietnamiensis--RS_GCF_000959445.1,paddy field,1
+s__Campylobacter_D_coli--RS_GCF_000254135.1,human-associated habitat,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,biome,12
+s__Enterobacter_roggenkampii--RS_GCF_001729805.1,freshwater biome,2
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,human-associated habitat,1
+s__Enterobacter_bugandensis--RS_GCF_900324475.1,biome,5
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,Sepsis,1
+s__Campylobacter_D_jejuni--RS_GCF_001457695.1,Homo sapiens,1
+s__Pantoea_agglomerans--RS_GCF_001598475.1,agricultural field,1
+s__Ruminococcus_B_gnavus--RS_GCF_008121495.1,fecal environment,3
+s__Vibrio_parahaemolyticus--RS_GCF_900460535.1,environmental system,4
+s__Enterobacter_cloacae--RS_GCF_000025565.1,biome,3
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,feces,2
+s__Acinetobacter_sp002018365--RS_GCF_002018365.1,tropical forest,1
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,human-associated habitat,2
+s__Enterococcus_D_casseliflavus--RS_GCF_001544095.1,human-associated habitat,2
+s__Vibrio_parahaemolyticus--RS_GCF_900460535.1,human-associated habitat,1
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,sludge,1
+s__Stenotrophomonas_maltophilia_F--RS_GCF_000284595.1,biome,1
+s__Lactobacillus_helveticus--RS_GCF_000160855.1,,79
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,habitat,46
+s__Bacillus_A_mycoides--RS_GCF_000832605.1,subpolar coniferous forest biome,9
+s__Sarcina_perfringens--RS_GCF_000013285.1,terrestrial biome,4
+s__Proteus_mirabilis--RS_GCF_000160755.1,companion animal,1
+s__Vibrio_fluvialis--RS_GCF_900460245.1,freshwater biome,1
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,anthropogenic terrestrial biome,17
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,dairy food product,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,terrestrial biome,2
+s__Serratia_nevei--RS_GCF_008364245.1,biome,1
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,alimentary part of gastrointestinal system,1
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,Homo sapiens,2
+s__Salinibacter_ruber--RS_GCF_000013045.1,,85
+s__Phocaeicola_dorei--RS_GCF_013009555.1,digestive system,1
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,rhizosphere,1
+s__Bacillus_paralicheniformis--RS_GCF_001042485.2,biome,7
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,dairy food product,5
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,Homo sapiens,4
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,terrestrial biome,1
+s__Pantoea_agglomerans--RS_GCF_001598475.1,mediterranean biome,1
+s__Lactococcus_cremoris--RS_GCF_001591705.1,feces,1
+s__Mycobacterium_intracellulare--RS_GCF_000277125.1,,31
+s__Weissella_cibaria--RS_GCF_000193635.1,,14
+s__Acinetobacter_soli--RS_GCF_000760595.1,planetary landmass,1
+s__Streptococcus_salivarius--RS_GCF_000785515.1,biome,16
+s__Odoribacter_splanchnicus--RS_GCF_000190535.1,biome,9
+s__Lactococcus_lactis--RS_GCF_900099625.1,alimentary part of gastrointestinal system,1
+s__Leptospira_interrogans--RS_GCF_900156205.1,national geopolitical entity,3
+s__Phocaeicola_dorei--RS_GCF_013009555.1,alimentary part of gastrointestinal system,1
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,soil,1
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,root,2
+s__Agrobacterium_fabacearum--RS_GCF_009649785.1,root,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,habitat,1
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,,41
+s__Staphylococcus_capitis--RS_GCF_002902325.1,skin environment,3
+s__Aeromonas_veronii--RS_GCF_000820225.1,human-associated habitat,4
+s__Staphylococcus_warneri--RS_GCF_900636385.1,meromictic lake,1
+s__Klebsiella_grimontii--RS_GCF_900200035.1,feces,1
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,intestine,2
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,cell culture,1
+s__Shewanella_algae--RS_GCF_009183365.2,finfish farming process,1
+s__Streptococcus_suis_P--GB_GCA_002831545.1,,2
+s__Lactobacillus_iners--RS_GCF_000160875.1,terrestrial biome,9
+s__Enterococcus_faecalis--RS_GCF_000392875.1,watercourse,6
+s__Streptococcus_anginosus--RS_GCF_900636475.1,vagina,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,feces,1
+s__Lactobacillus_helveticus--RS_GCF_000160855.1,fermented beverage,1
+s__Helicobacter_pylori_BU--RS_GCF_900120335.1,,1
+s__Clostridioides_difficile--RS_GCF_001077535.1,mediterranean,3
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,garden,2
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,marsh,1
+s__Enterobacter_cloacae--RS_GCF_000025565.1,mangrove swamp,1
+s__Lactobacillus_helveticus--RS_GCF_000160855.1,food product,1
+s__Phascolarctobacterium_faecium--RS_GCF_003269275.1,habitat,1
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,alluvial plain,1
+s__Campylobacter_D_jejuni--RS_GCF_001457695.1,farm,16
+s__Bacillus_A_anthracis--RS_GCF_000742895.1,biome,3
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,soil,3
+s__Cutibacterium_acnes--RS_GCF_003030305.1,feces,1
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,habitat,1
+s__Acinetobacter_radioresistens--RS_GCF_006757745.1,farm,1
+s__Bifidobacterium_breve--RS_GCF_001025175.1,food material,2
+s__Bacillus_altitudinis--RS_GCF_000691145.1,mangrove biome,2
+s__Ligilactobacillus_ruminis--RS_GCF_900113455.1,human-associated habitat,2
+s__Xylella_fastidiosa--RS_GCF_011801475.1,mediterranean,1
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,subpolar biome,1
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,terrestrial biome,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,marine biome,1
+s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1,digestive system,1
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,food material for animals,1
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,terrestrial biome,4
+s__Borreliella_burgdorferi--RS_GCF_000008685.2,terrestrial biome,2
+s__Corynebacterium_pseudotuberculosis--RS_GCF_002155265.1,forested area,1
+s__Bacteroides_ovatus--RS_GCF_001314995.1,feces,4
+s__Faecalibacterium_longum--RS_GCF_020687245.1,human-associated habitat,3
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,agricultural process,1
+s__Xanthomonas_A_translucens--RS_GCF_000331775.1,Poa trivialis,1
+s__Ruminococcus_D_bicirculans--RS_GCF_000723465.1,anthropogenic terrestrial biome,1
+s__Pantoea_agglomerans--RS_GCF_001598475.1,sandy desert,1
+s__Clostridium_F_sporogenes--RS_GCF_001020205.1,unidentified,1
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,,169
+s__Vibrio_splendidus--GB_GCA_024347615.1,coastal sea water,3
+s__Parabacteroides_merdae--GB_GCA_025151215.1,biome,25
+s__Stenotrophomonas_maltophilia--RS_GCF_900186865.1,biome,2
+s__Clostridium_AQ_innocuum--RS_GCF_012317185.1,intestine environment,1
+s__Ligilactobacillus_ruminis--RS_GCF_900113455.1,feces,1
+s__Acinetobacter_seifertii--RS_GCF_000368065.1,biome,1
+s__Bacteroides_fragilis_A--RS_GCF_002849695.1,biome,1
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,freshwater environment,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,well,1
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,19650 - chicken fresh meat (efsa foodex2),1
+s__Xanthomonas_cissicola--RS_GCF_008801575.1,crop,2
+s__Bacillus_velezensis--RS_GCF_001461825.1,tropical savanna biome,1
+s__Alistipes_putredinis--RS_GCF_000154465.1,microcosm,1
+s__Bifidobacterium_bifidum--RS_GCF_001025135.1,anthropogenic terrestrial biome,2
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,microcosm,1
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,ecosystem,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,,27
+s__Enterococcus_B_durans--RS_GCF_001544215.1,biome,67
+s__Enterococcus_faecalis--RS_GCF_000392875.1,environmental system,33
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,human-associated habitat,3
+s__Enterobacter_cloacae--RS_GCF_000025565.1,human-associated habitat,2
+s__Bacillus_licheniformis--RS_GCF_000011645.1,biome,5
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,feces,2
+s__Bacillus_subtilis--RS_GCF_000009045.1,watercourse,1
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,lake,2
+s__Streptococcus_pyogenes--RS_GCF_002055535.1,urban biome,1
+s__Fimenecus_sp000432435--GB_GCA_000432435.1,human-associated habitat,1
+s__Porphyromonas_gingivalis--RS_GCF_000010505.1,human-associated habitat,1
+s__Enterococcus_B_durans--RS_GCF_001544215.1,human-associated habitat,1
+s__Enterococcus_B_durans--RS_GCF_001544215.1,agricultural process,1
+s__Lactococcus_cremoris--RS_GCF_001591705.1,,13
+s__Shewanella_algae--RS_GCF_009183365.2,,23
+s__Pantoea_agglomerans--RS_GCF_001598475.1,area of developed open space,3
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,terrestrial biome,5
+s__Agathobacter_rectalis--GB_GCA_000020605.1,human-associated habitat,30
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,agricultural field,3
+s__Xanthomonas_A_translucens--RS_GCF_000331775.1,field,2
+s__Bacteroides_uniformis--GB_GCA_025147485.1,habitat,1
+s__Fimenecus_sp000432435--GB_GCA_000432435.1,feces,1
+s__Listeria_monocytogenes_B--RS_GCF_000307025.1,environmental system,2
+s__Xanthomonas_campestris--RS_GCF_000007145.1,plant-associated environment,1
+s__Faecalibacterium_longum--RS_GCF_020687245.1,feces,7
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,habitat,29
+s__Pseudomonas_E_alloputida--RS_GCF_021282585.1,farm,1
+s__Akkermansia_sp004167605--RS_GCF_004167605.1,biome,67
+s__Klebsiella_aerogenes--RS_GCF_000215745.1,sewage,2
+s__Pediococcus_acidilactici--RS_GCF_000146325.1,terrestrial biome,13
+s__Bacillus_A_nitratireducens--RS_GCF_001884135.1,agricultural field,1
+s__Staphylococcus_argenteus--RS_GCF_000236925.1,human-associated habitat,2
+s__Lactobacillus_gasseri--RS_GCF_000014425.1,Homo sapiens,1
+s__Serratia_marcescens_K--RS_GCF_002220655.1,feces,1
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,biome,40
+s__Bacillus_velezensis--RS_GCF_001461825.1,food material,4
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,environmental system,3
+s__Escherichia_marmotae--RS_GCF_002900365.1,freshwater biome,6
+s__Pseudomonas_E_avellanae--RS_GCF_000444135.1,field,2
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,plain,1
+s__Mesomycoplasma_hyorhinis--RS_GCF_000383515.1,,1
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,human-associated habitat,21
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,watercourse,2
+s__Klebsiella_variicola--RS_GCF_000828055.2,freshwater biome,1
+s__Escherichia_marmotae--RS_GCF_002900365.1,farmyard manure,2
+s__Bacillus_subtilis--RS_GCF_000009045.1,karst cave,1
+s__Streptococcus_gordonii--RS_GCF_001553855.1,anatomical cavity,3
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,bioreactor,1
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,rhizosphere,1
+s__Streptococcus_agalactiae--RS_GCF_000186445.1,feces,1
+s__Aeromonas_veronii--RS_GCF_000820225.1,,6
+s__Citrobacter_werkmanii--GB_GCA_000759755.1,,3
+s__Pasteurella_multocida--RS_GCF_900187275.1,,5
+s__Latilactobacillus_sakei--RS_GCF_002370355.1,Salmo salar,3
+s__Staphylococcus_hominis--RS_GCF_002901845.1,terrestrial biome,2
+s__Weissella_cibaria--RS_GCF_000193635.1,human-associated habitat,2
+s__Bacillus_velezensis--RS_GCF_001461825.1,broiler,2
+s__Morganella_morganii--RS_GCF_019243775.1,feces,1
+s__Burkholderia_cepacia--RS_GCF_001411495.1,rhizosphere,1
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,rice kernel food product,1
+s__Bacillus_A_cereus--RS_GCF_000007825.1,lake,1
+s__Acinetobacter_sp002018365--RS_GCF_002018365.1,,2
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,bioreactor,6
+s__Aeromonas_veronii--RS_GCF_000820225.1,terrestrial biome,3
+s__Enterococcus_D_gallinarum--RS_GCF_001544275.1,agricultural process,1
+s__Enterobacter_roggenkampii--RS_GCF_001729805.1,biome,3
+s__Fusicatenibacter_saccharivorans--RS_GCF_015557635.1,anthropogenic terrestrial biome,7
+s__Bacillus_A_anthracis--RS_GCF_000742895.1,unidentified,10
+s__Enterococcus_D_gallinarum--RS_GCF_001544275.1,biome,1
+s__Bacillus_A_mycoides--RS_GCF_000832605.1,milk,1
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,fermented beverage,2
+s__Parabacteroides_merdae--GB_GCA_025151215.1,,32
+s__Flavonifractor_plautii--RS_GCF_000239295.1,,22
+s__Pseudomonas_E_fulva--RS_GCF_000730565.1,,10
+s__Stenotrophomonas_maltophilia--RS_GCF_900186865.1,,5
+s__Ruminococcus_D_bicirculans--RS_GCF_000723465.1,,6
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,Homo sapiens,37
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,human-associated habitat,2
+s__Burkholderia_cenocepacia--RS_GCF_900446215.1,urine,1
+s__Acinetobacter_pittii--RS_GCF_000369045.1,terrestrial biome,1
+s__Citrobacter_B_koseri--GB_GCA_900446925.1,human-associated habitat,4
+s__Campylobacter_D_jejuni--RS_GCF_001457695.1,habitat,1
+s__Staphylococcus_hominis--RS_GCF_002901845.1,alpine,1
+s__Streptococcus_salivarius--RS_GCF_000785515.1,,11
+s__Aliivibrio_fischeri--RS_GCF_023983475.1,,3
+s__Elizabethkingia_anophelis--RS_GCF_002023665.2,,1
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,terrestrial biome,5
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,watercourse,7
+s__Lactobacillus_helveticus--RS_GCF_000160855.1,agricultural ecosystem,5
+s__Blautia_A_massiliensis--RS_GCF_001487165.1,digestive system,1
+s__Mammaliicoccus_sciuri--RS_GCF_002901825.1,watercourse,1
+s__Enterococcus_D_gallinarum--RS_GCF_001544275.1,,10
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,,8
+s__Enterococcus_D_gallinarum--RS_GCF_001544275.1,terrestrial biome,2
+s__Bacillus_velezensis--RS_GCF_001461825.1,Populus,1
+s__Weissella_confusa--GB_GCA_001436895.1,feces,1
+s__Burkholderia_cenocepacia--RS_GCF_900446215.1,,3
+s__Priestia_megaterium--RS_GCF_000832985.1,rice field,1
+s__Staphylococcus_saprophyticus--RS_GCF_000010125.1,biome,29
+s__Xylella_fastidiosa--RS_GCF_011801475.1,plantation,4
+s__Faecalibacterium_longum--RS_GCF_020687245.1,terrestrial biome,4
+s__Bacillus_subtilis--RS_GCF_000009045.1,mountain,1
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,alimentary part of gastrointestinal system,1
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,feces,2
+s__Staphylococcus_haemolyticus--RS_GCF_006094395.1,hospital,3
+s__Klebsiella_quasipneumoniae--RS_GCF_020525925.1,forest biome,1
+s__Methanosarcina_mazei--RS_GCF_000970205.1,garden,1
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,human-associated habitat,4
+s__Acinetobacter_ursingii--RS_GCF_000368825.1,human-associated habitat,2
+s__Lactobacillus_jensenii--RS_GCF_001436455.1,feces,1
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,habitat,1
+s__Blautia_A_wexlerae--GB_GCA_025148125.1,,71
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,feces,4
+s__Pantoea_ananatis--RS_GCF_000710035.2,leaf,1
+s__Bacillus_altitudinis--RS_GCF_000691145.1,seaweed,1
+s__Acinetobacter_junii--RS_GCF_000368765.1,terrestrial biome,1
+s__Xylella_fastidiosa--RS_GCF_011801475.1,California,1
+s__Acinetobacter_pittii--RS_GCF_000369045.1,human-associated habitat,1
+s__Haemophilus_influenzae_D--RS_GCF_900475755.1,,2
+s__Blautia_A_wexlerae--GB_GCA_025148125.1,biome,18
+s__Bifidobacterium_breve--RS_GCF_001025175.1,unidentified,4
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,farm,5
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,human-associated habitat,2
+s__Bacteroides_fragilis--RS_GCF_000025985.1,Homo sapiens,1
+s__Citrobacter_freundii--RS_GCF_011064845.1,,63
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,farmyard manure,1
+s__Sphingomonas_koreensis--RS_GCF_002797435.1,Homo sapiens,13
+s__Alistipes_putredinis--RS_GCF_000154465.1,terrestrial biome,2
+s__Citrobacter_braakii--RS_GCF_002075345.1,human-associated habitat,1
+s__Ruminococcus_D_bicirculans--RS_GCF_000723465.1,Homo sapiens,8
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,biofilm,1
+s__Flavobacterium_psychrophilum--RS_GCF_002217405.1,fresh water,1
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,,14
+s__Staphylococcus_xylosus--RS_GCF_002732165.1,,4
+s__Latilactobacillus_sakei--RS_GCF_002370355.1,,6
+s__Aeromonas_dhakensis--RS_GCF_000820305.1,,2
+s__Streptococcus_salivarius--RS_GCF_000785515.1,Homo sapiens,7
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,biome,1
+s__Priestia_megaterium--RS_GCF_000832985.1,area of developed space,1
+s__Enterobacter_bugandensis--RS_GCF_900324475.1,,7
+s__Bacteroides_uniformis--GB_GCA_025147485.1,feces,3
+s__Aliarcobacter_butzleri--RS_GCF_900187115.1,hospital,2
+s__Vibrio_anguillarum--RS_GCF_001989995.2,water column,1
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,freshwater biome,4
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,paddy field,1
+s__Citrobacter_braakii--RS_GCF_002075345.1,terrestrial biome,1
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,urine,5
+s__Bacteroides_uniformis--GB_GCA_025147485.1,Homo sapiens,5
+s__Bacillus_subtilis--RS_GCF_000009045.1,wastewater treatment plant,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,beach,1
+s__Lactococcus_lactis--RS_GCF_900099625.1,animal-associated environment,1
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,apiary,1
+s__Bacillus_safensis--RS_GCF_000691165.1,marsh,1
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,human-associated habitat,1
+s__Bacillus_licheniformis--RS_GCF_000011645.1,,90
+s__Bacillus_A_cereus--RS_GCF_000007825.1,,21
+s__Acinetobacter_nosocomialis--RS_GCF_000368085.1,,61
+s__Bacillus_A_toyonensis--RS_GCF_000496285.1,,6
+s__Campylobacter_D_coli--RS_GCF_000254135.1,,3
+s__Bacteroides_uniformis--GB_GCA_025147485.1,biome,87
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,human-associated habitat,21
+s__Bacteroides_fragilis--RS_GCF_000025985.1,forest biome,1
+s__Faecalibacillus_intestinalis--RS_GCF_003024685.1,biome,1
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,food material,1
+s__Lactococcus_cremoris--RS_GCF_001591705.1,agricultural ecosystem,3
+s__Agathobacter_rectalis--GB_GCA_000020605.1,terrestrial biome,4
+s__Lactococcus_cremoris--RS_GCF_001591705.1,bioreactor,1
+s__Streptococcus_salivarius--RS_GCF_000785515.1,city,1
+s__Eggerthella_lenta--RS_GCF_000024265.1,,18
+s__Bacillus_A_anthracis--RS_GCF_000742895.1,soil,1
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,facility,6
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,environmental system determined by an organism,2
+s__Flavonifractor_plautii--RS_GCF_000239295.1,biome,5
+s__Bacillus_A_anthracis--RS_GCF_000742895.1,mud volcano,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,planetary landmass,1
+s__Bacillus_A_cereus--RS_GCF_000007825.1,undersea feature,1
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,arid biome,1
+s__Ligilactobacillus_ruminis--RS_GCF_900113455.1,,15
+s__Bacteroides_fragilis--RS_GCF_000025985.1,human-associated habitat,13
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,soil,10
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,watercourse,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,tidal mudflat,1
+s__Akkermansia_sp004167605--RS_GCF_004167605.1,watercourse,1
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,sewage,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,plant-associated environment,1
+s__Helicobacter_pylori_BU--RS_GCF_900120335.1,terrestrial biome,1
+s__Enterobacter_asburiae_B--RS_GCF_007035645.1,sewage,2
+s__Prochlorococcus_A_sp000635495--GB_GCA_000635495.1,,64
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,biome,9
+s__Prevotella_copri_A--RS_GCF_002224675.1,watercourse,5
+s__Bacillus_A_tropicus--RS_GCF_001884035.1,sediment,1
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,farmyard manure,2
+s__Enterococcus_B_hirae--RS_GCF_000271405.2,human-associated habitat,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,fermented soybean product,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,tropical savanna biome,1
+s__Serratia_nematodiphila--RS_GCF_000738675.1,,29
+s__Faecalibacterium_duncaniae--RS_GCF_010509575.1,terrestrial biome,5
+s__Blautia_A_wexlerae--GB_GCA_025148125.1,watercourse,16
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,human-associated habitat,5
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,hospital,1
+s__Lactococcus_lactis--RS_GCF_900099625.1,milk,1
+s__Citrobacter_freundii--RS_GCF_011064845.1,sediment,1
+s__Staphylococcus_lugdunensis--RS_GCF_002901705.1,habitat,1
+s__Xanthomonas_oryzae--RS_GCF_004136375.1,tropical biome,1
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,alimentary part of gastrointestinal system,1
+s__Acinetobacter_junii--RS_GCF_000368765.1,sludge,1
+s__Corynebacterium_glutamicum--RS_GCF_000011325.1,sandy desert,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,,48
+s__Vibrio_cholerae--RS_GCF_000621645.1,,25
+s__Lactobacillus_iners--RS_GCF_000160875.1,human-associated habitat,1
+s__Staphylococcus_argenteus--RS_GCF_000236925.1,Homo sapiens,1
+s__Staphylococcus_warneri--RS_GCF_900636385.1,biome,2
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,biome,1
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,food material,1
+s__Mediterraneibacter_faecis--GB_GCA_001312505.1,watercourse,2
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,broiler,2
+s__Acinetobacter_pittii--RS_GCF_000369045.1,feces,1
+s__Bacteroides_fragilis--RS_GCF_000025985.1,watercourse,3
+s__Bacillus_paralicheniformis--RS_GCF_001042485.2,lake,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,19650 - chicken fresh meat (efsa foodex2),1
+s__Corynebacterium_pseudotuberculosis--RS_GCF_002155265.1,tropical,1
+s__Parabacteroides_merdae--GB_GCA_025151215.1,alimentary part of gastrointestinal system,1
+s__Staphylococcus_simulans--RS_GCF_002902285.1,human-associated habitat,1
+s__Staphylococcus_ureilyticus--RS_GCF_002902235.1,,1
+s__Citrobacter_werkmanii--GB_GCA_000759755.1,feces,1
+s__Staphylococcus_hominis--RS_GCF_002901845.1,zone of skin,46
+s__Ralstonia_solanacearum--RS_GCF_002251695.1,tropical,6
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,sewage,25
+s__Faecalibacterium_longum--RS_GCF_020687245.1,watercourse,6
+s__Mediterraneibacter_faecis--GB_GCA_001312505.1,terrestrial biome,4
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,hot spring,1
+s__Xanthomonas_cissicola--RS_GCF_008801575.1,subtropical biome,3
+s__Bacillus_licheniformis--RS_GCF_000011645.1,hot spring,4
+s__Lactobacillus_gasseri--RS_GCF_000014425.1,terrestrial biome,3
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,finfish farming process,1
+s__Enterobacter_asburiae_B--RS_GCF_007035645.1,freshwater biome,1
+s__Serratia_nematodiphila--RS_GCF_000738675.1,biome,1
+s__Staphylococcus_warneri--RS_GCF_900636385.1,feces,1
+s__Bacillus_licheniformis--RS_GCF_000011645.1,mangrove swamp,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,intestine,1
+s__Bifidobacterium_infantis--RS_GCF_000269965.1,unidentified,1
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,,67
+s__Glaesserella_parasuis--RS_GCF_002015085.1,,1
+s__Aeromonas_hydrophila--RS_GCF_000014805.1,woodland area,25
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,dairy food product,3
+s__Bacillus_A_cereus--RS_GCF_000007825.1,biome,5
+s__Bacillus_A_cereus--RS_GCF_000007825.1,field soil,2
+s__Faecalibacterium_duncaniae--RS_GCF_010509575.1,watercourse,8
+s__Alistipes_putredinis--RS_GCF_000154465.1,watercourse,2
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,terrestrial biome,1
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,digestive system,1
+s__Bacillus_A_tropicus--RS_GCF_001884035.1,agricultural ecosystem,1
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,Bacteria,1
+s__Campylobacter_D_jejuni--RS_GCF_001457695.1,human-associated habitat,2
+s__Prevotella_copri_A--RS_GCF_002224675.1,human-associated habitat,2
+s__Burkholderia_cepacia--RS_GCF_001411495.1,habitat,1
+s__Cutibacterium_acnes--RS_GCF_003030305.1,human-associated habitat,2
+s__Citrobacter_braakii--RS_GCF_002075345.1,food material,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,livestock-associated habitat,1
+s__Xanthomonas_arboricola--RS_GCF_001013475.1,biome,1
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,lentic water body,1
+s__Proteus_mirabilis--RS_GCF_000160755.1,biome,6
+s__Rhizobium_leguminosarum_L--RS_GCF_000009265.1,root nodule,5
+s__Gemmiger_qucibialis--GB_GCA_004000625.1,microcosm,1
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,biome,3
+s__Cutibacterium_acnes--RS_GCF_003030305.1,fresh water,8
+s__Parabacteroides_merdae--GB_GCA_025151215.1,microcosm,1
+s__Acinetobacter_pittii--RS_GCF_000369045.1,freshwater biome,1
+s__Priestia_megaterium--RS_GCF_000832985.1,terrestrial biome,1
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,,133
+s__Achromobacter_xylosoxidans--RS_GCF_001457475.1,,4
+s__Streptococcus_salivarius--RS_GCF_000785515.1,anatomical cavity,3
+s__Enterococcus_B_durans--RS_GCF_001544215.1,watercourse,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,terrestrial biome,1
+s__Pseudomonas_E_asiatica--RS_GCF_009932335.1,hospital,6
+s__Alistipes_putredinis--RS_GCF_000154465.1,feces,2
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,farm,1
+s__Bacillus_A_mycoides--RS_GCF_000832605.1,biome,1
+s__Klebsiella_aerogenes--RS_GCF_000215745.1,nest of ant,1
+s__Xylella_fastidiosa--RS_GCF_011801475.1,garden,1
+s__Fusicatenibacter_saccharivorans--RS_GCF_015557635.1,,38
+s__Pseudomonas_E_fulva--RS_GCF_000730565.1,biome,44
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,human-associated habitat,1
+s__Phascolarctobacterium_faecium--RS_GCF_003269275.1,human-associated habitat,30
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,China,1
+s__Bacteroides_ovatus--RS_GCF_001314995.1,terrestrial biome,9
+s__Listeria_monocytogenes--RS_GCF_900187225.1,Homo sapiens,1
+s__Serratia_marcescens--RS_GCF_017299535.1,hospital,2
+s__Bacillus_A_cereus--RS_GCF_000007825.1,coast,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,mine,1
+s__Bacillus_altitudinis--RS_GCF_000691145.1,sea,3
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,food material,2
+s__Bacillus_velezensis--RS_GCF_001461825.1,watercourse,1
+s__Faecalibacterium_prausnitzii--RS_GCF_003324185.1,fecal environment,1
+s__Klebsiella_quasipneumoniae--RS_GCF_020525925.1,field,1
+s__Agathobacter_rectalis--GB_GCA_000020605.1,,75
+s__Staphylococcus_argenteus--RS_GCF_000236925.1,,40
+s__Listeria_monocytogenes_B--RS_GCF_000307025.1,,4
+s__Enterococcus_B_hirae--RS_GCF_000271405.2,,8
+s__Bacillus_subtilis--RS_GCF_000009045.1,chicken,1
+s__Ligilactobacillus_ruminis--RS_GCF_900113455.1,biome,29
+s__Bacteroides_ovatus--RS_GCF_001314995.1,intestine,1
+s__Ralstonia_solanacearum--RS_GCF_002251695.1,agricultural field,7
+s__Bacillus_A_anthracis--RS_GCF_000742895.1,groundwater,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,fecal environment,1
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,watercourse,4
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,Homo sapiens,1
+s__Bacillus_licheniformis--RS_GCF_000011645.1,national geopolitical entity,1
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,hospital,1
+s__Staphylococcus_saprophyticus--RS_GCF_000010125.1,freshwater biome,1
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,,21
+s__Alistipes_putredinis--RS_GCF_000154465.1,,24
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,human-associated habitat,5
+s__Cutibacterium_acnes--RS_GCF_003030305.1,osteomyelitis,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,human-associated habitat,1
+s__Bacillus_A_toyonensis--RS_GCF_000496285.1,village,3
+s__Serratia_nevei--RS_GCF_008364245.1,,47
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,,7
+s__Rhodococcus_equi--RS_GCF_002094305.1,,18
+s__Sarcina_perfringens--RS_GCF_000013285.1,freshwater biome,3
+s__Phascolarctobacterium_faecium--RS_GCF_003269275.1,terrestrial biome,2
+s__Staphylococcus_haemolyticus--RS_GCF_006094395.1,zone of skin,13
+s__Xanthomonas_cissicola--RS_GCF_008801575.1,field,3
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,digestive system,1
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,habitat,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,feces,1
+s__Burkholderia_cepacia--RS_GCF_001411495.1,field,1
+s__Burkholderia_contaminans--RS_GCF_000987075.1,soil,1
+s__Acinetobacter_junii--RS_GCF_000368765.1,human-associated habitat,1
+s__Serratia_ureilytica--RS_GCF_013375155.1,spring,1
+s__Streptococcus_suis--RS_GCF_000294495.1,,11
+s__Gemmiger_qucibialis--GB_GCA_004000625.1,Homo sapiens,7
+s__Campylobacter_D_jejuni--RS_GCF_001457695.1,digestive tract,4
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,Homo sapiens,1
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,habitat,1
+s__Citrobacter_braakii--RS_GCF_002075345.1,,10
+s__Gemmiger_qucibialis--GB_GCA_004000625.1,,11
+s__Brucella_melitensis--RS_GCF_000007125.1,,60
+s__Agathobacter_rectalis--GB_GCA_000020605.1,Homo sapiens,13
+s__Bifidobacterium_infantis--RS_GCF_000269965.1,watercourse,4
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,anthropogenic terrestrial biome,2
+s__Piscirickettsia_salmonis--RS_GCF_000297215.2,sea water,12
+s__Bacillus_subtilis--RS_GCF_000009045.1,broiler,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,planetary landmass,2
+s__Pseudomonas_E_asiatica--RS_GCF_009932335.1,marsh,6
+s__Bifidobacterium_longum--RS_GCF_000196555.1,Homo sapiens,6
+s__Shewanella_algae--RS_GCF_009183365.2,blood,2
+s__Ruminococcus_D_bicirculans--RS_GCF_000723465.1,terrestrial biome,1
+s__Phascolarctobacterium_faecium--RS_GCF_003269275.1,digestive system,1
+s__Methanosarcina_mazei--RS_GCF_000970205.1,,10
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,marine biome,4
+s__Micrococcus_luteus--RS_GCF_000023205.1,marine biome,3
+s__Burkholderia_gladioli--RS_GCF_000959725.1,field,1
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,microcosm,1
+s__Pseudomonas_E_alloputida--RS_GCF_021282585.1,unidentified,1
+s__Lactococcus_lactis--RS_GCF_900099625.1,environmental system determined by an organism,1
+s__Prevotella_copri_B--RS_GCF_009494135.1,,11
+s__Agrobacterium_tumefaciens--RS_GCF_001541315.1,,29
+s__Rhizobium_rhizogenes--RS_GCF_000696095.1,,3
+s__Mammaliicoccus_sciuri--RS_GCF_002901825.1,,1
+s__Piscirickettsia_salmonis--RS_GCF_000297215.2,marine biome,1
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,beer,7
+s__Agathobacter_faecis--RS_GCF_001406815.1,biome,2
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,alimentary part of gastrointestinal system,1
+s__Bacteroides_uniformis--GB_GCA_025147485.1,alimentary part of gastrointestinal system,1
+s__Acinetobacter_pittii--RS_GCF_000369045.1,,18
+s__Bacillus_A_thuringiensis--RS_GCF_002119445.1,,7
+s__Streptococcus_sp001556435--RS_GCF_009738225.1,biome,19
+s__Streptococcus_gordonii--RS_GCF_001553855.1,human-associated habitat,2
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,anthropogenic terrestrial biome,18
+s__Legionella_pneumophila--RS_GCF_000008485.1,river,1
+s__Acinetobacter_radioresistens--RS_GCF_006757745.1,soil,2
+s__Vibrio_anguillarum--RS_GCF_001989995.2,freshwater biome,1
+s__Acinetobacter_nosocomialis--RS_GCF_000368085.1,cave,1
+s__Staphylococcus_xylosus--RS_GCF_002732165.1,field,1
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,alimentary part of gastrointestinal system,1
+s__Fimenecus_sp000432435--GB_GCA_000432435.1,,23
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,,11
+s__Chlamydia_trachomatis--RS_GCF_000012125.1,Homo sapiens,17
+s__Faecalibacterium_prausnitzii--RS_GCF_003324185.1,human-associated habitat,13
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,dairy food product,2
+s__Gemmiger_formicilis--RS_GCF_900167555.1,microcosm,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,feces,1
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,human-associated habitat,3
+s__Helicobacter_pylori--RS_GCF_900478295.1,Homo sapiens,1
+s__Pseudomonas_E_syringae--RS_GCF_000507185.2,garden,1
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,alimentary part of gastrointestinal system,1
+s__Rickettsia_rickettsii--RS_GCF_001951015.1,,37
+s__Streptococcus_iniae--RS_GCF_003674745.1,Bacteria,2
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,human-associated habitat,11
+s__Bifidobacterium_pseudocatenulatum--RS_GCF_001025215.1,unidentified,2
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,garden,2
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,sludge,4
+s__Bifidobacterium_bifidum--RS_GCF_001025135.1,feces,2
+s__Bacillus_licheniformis--RS_GCF_000011645.1,agricultural process,1
+s__Mycobacterium_chelonae--RS_GCF_001632805.1,fresh water,13
+s__Flavonifractor_plautii--RS_GCF_000239295.1,watercourse,3
+s__Prevotella_copri_A--RS_GCF_002224675.1,digestive system,1
+s__Aeromonas_dhakensis--RS_GCF_000820305.1,hospital,1
+s__Ligilactobacillus_salivarius--RS_GCF_001435955.1,terrestrial biome,3
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,cheese food product,2
+s__Citrobacter_portucalensis--RS_GCF_002042885.1,watercourse,1
+s__Acinetobacter_radioresistens--RS_GCF_006757745.1,terrestrial biome,1
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,biome,3
+s__Clostridioides_difficile--RS_GCF_001077535.1,feces,4
+s__Listeria_innocua--RS_GCF_024721565.1,human-associated habitat,1
+s__Bacteroides_stercoris--GB_GCA_025147325.1,terrestrial biome,3
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,Hyacinthus orientalis,1
+s__Clostridioides_difficile--RS_GCF_001077535.1,,295
+s__Klebsiella_variicola--RS_GCF_000828055.2,,49
+s__Bacteroides_fragilis_A--RS_GCF_002849695.1,,18
+s__Bacillus_subtilis--RS_GCF_000009045.1,meadow ecosystem,1
+s__Borreliella_garinii--RS_GCF_001922545.1,forested area,1
+s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1,feces,2
+s__Agathobacter_rectalis--GB_GCA_000020605.1,alimentary part of gastrointestinal system,1
+s__Staphylococcus_haemolyticus--RS_GCF_006094395.1,Bos,3
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,intestine,3
+s__Clostridium_beijerinckii--RS_GCF_018223745.1,populated place,1
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,environmental system determined by an organism,1
+s__Bacillus_A_mycoides--RS_GCF_000832605.1,,5
+s__Citrobacter_freundii--RS_GCF_011064845.1,waste water,3
+s__Bacillus_subtilis--RS_GCF_000009045.1,arid,1
+s__Enterococcus_E_cecorum--RS_GCF_000407565.1,digestive system,1
+s__Prochlorococcus_A_sp000635495--GB_GCA_000635495.1,ocean,1
+s__Bifidobacterium_breve--RS_GCF_001025175.1,bioreactor,2
+s__Bacillus_safensis--RS_GCF_000691165.1,arid biome,1
+s__Bacillus_altitudinis--RS_GCF_000691145.1,liquid water,1
+s__Staphylococcus_simulans--RS_GCF_002902285.1,terrestrial biome,1
+s__Enterobacter_ludwigii--RS_GCF_001750725.1,freshwater biome,2
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,table,1
+s__Vibrio_parahaemolyticus--RS_GCF_900460535.1,,11
+s__Aeromonas_salmonicida--RS_GCF_001643305.1,,5
+s__Acinetobacter_indicus--RS_GCF_000488255.1,,3
+s__Bifidobacterium_longum--RS_GCF_000196555.1,watercourse,14
+s__Xanthomonas_hortorum--RS_GCF_002939985.1,field,10
+s__Agathobacter_rectalis--GB_GCA_000020605.1,biome,12
+s__Enterobacter_roggenkampii--RS_GCF_001729805.1,human-associated habitat,3
+s__Lactococcus_lactis--RS_GCF_900099625.1,agricultural ecosystem,3
+s__Xanthomonas_euvesicatoria--RS_GCF_020880415.1,biome,8
+s__Priestia_megaterium--RS_GCF_000832985.1,soil,2
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,hospital,2
+s__Citrobacter_werkmanii--GB_GCA_000759755.1,wastewater treatment plant,2
+s__Legionella_pneumophila--RS_GCF_000008485.1,industrial building,2
+s__Phocaeicola_dorei--RS_GCF_013009555.1,feces,1
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,mangrove swamp,1
+s__Agathobacter_rectalis--GB_GCA_000020605.1,fecal environment,1
+s__Stenotrophomonas_maltophilia_F--RS_GCF_000284595.1,watercourse,1
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,intestine environment,1
+s__Weissella_confusa--GB_GCA_001436895.1,watercourse,1
+s__Pseudomonas_E_amygdali--RS_GCF_002699855.1,,11
+s__Citrobacter_B_koseri--GB_GCA_900446925.1,,4
+s__Moraxella_catarrhalis--RS_GCF_001632285.1,Homo sapiens,7
+s__Bacteroides_fragilis--RS_GCF_000025985.1,terrestrial biome,14
+s__Bacillus_subtilis--RS_GCF_000009045.1,forested area,2
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,fermented beverage,5
+s__Staphylococcus_lugdunensis--RS_GCF_002901705.1,terrestrial biome,2
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,digestive system,1
+s__Bacteroides_fragilis--RS_GCF_000025985.1,garden,1
+s__Bacillus_paralicheniformis--RS_GCF_001042485.2,watercourse,1
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,feces,1
+s__Bacillus_licheniformis--RS_GCF_000011645.1,soil,1
+s__Brucella_melitensis--RS_GCF_000007125.1,plain,1
+s__Mediterraneibacter_faecis--GB_GCA_001312505.1,digestive system,1
+s__Borreliella_burgdorferi--RS_GCF_000008685.2,,64
+s__Burkholderia_contaminans--RS_GCF_000987075.1,air vent,7
+s__Dorea_formicigenerans--GB_GCA_025150245.1,watercourse,3
+s__Bacillus_A_thuringiensis--RS_GCF_002119445.1,lake,2
+s__Bacillus_paralicheniformis--RS_GCF_001042485.2,human-associated habitat,1
+s__Stenotrophomonas_sepilia--RS_GCF_003244875.1,human-associated habitat,1
+s__Flavonifractor_plautii--RS_GCF_000239295.1,human-associated habitat,2
+s__Stenotrophomonas_maltophilia--RS_GCF_900186865.1,dry soil,1
+s__Ruminococcus_B_gnavus--RS_GCF_008121495.1,anthropogenic terrestrial biome,2
+s__Pseudomonas_E_syringae--RS_GCF_000507185.2,biome,1
+s__Pelagibacter_sp003209915--GB_GCA_003209915.1,,74
+s__Escherichia_fergusonii--RS_GCF_000026225.1,,8
+s__Staphylococcus_chromogenes--RS_GCF_002901945.1,,2
+s__Staphylococcus_lugdunensis--RS_GCF_002901705.1,zone of skin,23
+s__Ruminococcus_D_bicirculans--RS_GCF_000723465.1,feces,7
+s__Campylobacter_D_coli--RS_GCF_000254135.1,habitat,1
+s__Bifidobacterium_breve--RS_GCF_001025175.1,terrestrial biome,4
+s__Agrobacterium_pusense--RS_GCF_900102105.1,hospital,1
+s__Corynebacterium_pseudotuberculosis--RS_GCF_002155265.1,,32
+s__Blautia_A_massiliensis--RS_GCF_001487165.1,watercourse,5
+s__Streptococcus_sp001556435--RS_GCF_009738225.1,feces,10
+s__Gemmiger_formicilis--RS_GCF_900167555.1,human-associated habitat,14
+s__Francisella_tularensis--RS_GCF_000008985.1,wild animal,2
+s__Bacillus_subtilis--RS_GCF_000009045.1,factory,1
+s__Enterococcus_B_durans--RS_GCF_001544215.1,steppe,1
+s__Serratia_marcescens_K--RS_GCF_002220655.1,Argentina <ray-finned fishes>,1
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,undersea feature,1
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,agricultural ecosystem,1
+s__Xanthomonas_cissicola--RS_GCF_008801575.1,,25
+s__Staphylococcus_capitis--RS_GCF_002902325.1,Homo sapiens,10
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,human-associated habitat,2
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,terrestrial biome,5
+s__Phocaeicola_dorei--RS_GCF_013009555.1,human-associated habitat,10
+s__Bacillus_altitudinis--RS_GCF_000691145.1,mangrove biome soil,1
+s__Ralstonia_solanacearum--RS_GCF_002251695.1,greenhouse,2
+s__Stenotrophomonas_maltophilia--RS_GCF_900186865.1,feces,1
+s__Enterobacter_kobei--RS_GCF_001729765.1,feces,1
+s__Vibrio_alginolyticus--RS_GCF_000354175.2,barramundi,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,terrestrial biome,55
+s__Eggerthella_lenta--RS_GCF_000024265.1,Homo sapiens,10
+s__Citrobacter_freundii--RS_GCF_011064845.1,sludge,2
+s__Bacillus_A_cereus--RS_GCF_000007825.1,China,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,watercourse,4
+s__Bifidobacterium_pseudocatenulatum--RS_GCF_001025215.1,human-associated habitat,2
+s__Enterobacter_asburiae_B--RS_GCF_007035645.1,human-associated habitat,1
+s__Aeromonas_hydrophila--RS_GCF_000014805.1,unidentified,4
+s__Staphylococcus_warneri--RS_GCF_900636385.1,Homo sapiens,2
+s__Bifidobacterium_breve--RS_GCF_001025175.1,food product,1
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,intestine,1
+s__Klebsiella_quasipneumoniae--RS_GCF_020525925.1,sewage,1
+s__Bacillus_paralicheniformis--RS_GCF_001042485.2,valley,1
+s__Acinetobacter_nosocomialis--RS_GCF_000368085.1,estuarine biome,1
+s__Rhodococcus_qingshengii--RS_GCF_023221595.1,,12
+s__Xylella_fastidiosa--RS_GCF_011801475.1,,4
+s__Phascolarctobacterium_faecium--RS_GCF_003269275.1,biome,18
+s__Bacteroides_stercoris--GB_GCA_025147325.1,human-associated habitat,5
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,paddy field,4
+s__Blautia_A_wexlerae--GB_GCA_025148125.1,terrestrial biome,4
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,farm,4
+s__Serratia_nematodiphila--RS_GCF_000738675.1,contaminated soil,1
+s__Enterobacter_ludwigii--RS_GCF_001750725.1,human-associated habitat,3
+s__Pseudomonas_E_alloputida--RS_GCF_021282585.1,freshwater environment,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,,120
+s__Phascolarctobacterium_faecium--RS_GCF_003269275.1,,17
+s__Aeromonas_hydrophila--RS_GCF_000014805.1,waste water,3
+s__Citrobacter_werkmanii--GB_GCA_000759755.1,hospital,17
+s__Bacteroides_uniformis--GB_GCA_025147485.1,microcosm,1
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,human-associated habitat,2
+s__Aeromonas_veronii--RS_GCF_000820225.1,lake,3
+s__Enterococcus_B_durans--RS_GCF_001544215.1,feces,1
+s__Streptococcus_gordonii--RS_GCF_001553855.1,,5
+s__Bacillus_altitudinis--RS_GCF_000691145.1,biome,5
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,terrestrial biome,3
+s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1,watercourse,19
+s__Eggerthella_lenta--RS_GCF_000024265.1,biome,4
+s__Enterobacter_roggenkampii--RS_GCF_001729805.1,sludge,1
+s__Curtobacterium_flaccumfaciens--RS_GCF_013359815.1,scrubland area,4
+s__Bifidobacterium_longum--RS_GCF_000196555.1,alimentary part of gastrointestinal system,1
+s__Acinetobacter_nosocomialis--RS_GCF_000368085.1,Homo sapiens,6
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,maize field,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,mediterranean biome,2
+s__Pseudomonas_E_alloputida--RS_GCF_021282585.1,biome,1
+s__Enterococcus_D_casseliflavus--RS_GCF_001544095.1,terrestrial biome,1
+s__Burkholderia_cepacia--RS_GCF_001411495.1,root,1
+s__Fimenecus_sp000432435--GB_GCA_000432435.1,terrestrial biome,3
+s__Corynebacterium_glutamicum--RS_GCF_000011325.1,farm,1
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,terrestrial biome,5
+s__Clostridium_AQ_innocuum--RS_GCF_012317185.1,digestive system,1
+s__Streptococcus_thermophilus--RS_GCF_010120595.1,terrestrial biome,1
+s__Brucella_melitensis--RS_GCF_000007125.1,tropical,1
+s__Xanthomonas_A_translucens--RS_GCF_000331775.1,,6
+s__Pantoea_agglomerans--RS_GCF_001598475.1,,13
+s__Pantoea_ananatis--RS_GCF_000710035.2,,16
+s__Cutibacterium_acnes--RS_GCF_003030305.1,terrestrial biome,73
+s__Listeria_monocytogenes--RS_GCF_900187225.1,tissue paper,5
+s__Citrobacter_freundii--RS_GCF_011064845.1,feces,2
+s__Klebsiella_grimontii--RS_GCF_900200035.1,sewage,7
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,unidentified,53
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,kefir,2
+s__Enterococcus_faecalis--RS_GCF_000392875.1,human-associated habitat,2
+s__Xanthomonas_oryzae--RS_GCF_004136375.1,river valley,8
+s__Parabacteroides_merdae--GB_GCA_025151215.1,habitat,1
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,soil,2
+s__Sphingomonas_koreensis--RS_GCF_002797435.1,liquid water,2
+s__Enterobacter_kobei--RS_GCF_001729765.1,liquid water,2
+s__Serratia_nematodiphila--RS_GCF_000738675.1,soil,1
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,field soil,1
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,marsh,1
+s__Bacillus_licheniformis--RS_GCF_000011645.1,mud,1
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,seamount,2
+s__Acinetobacter_indicus--RS_GCF_000488255.1,soil,1
+s__Sinorhizobium_meliloti--RS_GCF_017876815.1,agricultural process,1
+s__Enterococcus_faecalis--RS_GCF_000392875.1,facility,47
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,food material,5
+s__Phocaeicola_dorei--RS_GCF_013009555.1,watercourse,15
+s__Bacillus_velezensis--RS_GCF_001461825.1,forest biome,1
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,agricultural field,9
+s__Proteus_mirabilis--RS_GCF_000160755.1,human-associated habitat,2
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,environmental system determined by an organism,1
+s__Serratia_ureilytica--RS_GCF_013375155.1,peat soil,1
+s__Mediterraneibacter_faecis--GB_GCA_001312505.1,human-associated habitat,2
+s__Providencia_rettgeri_D--RS_GCF_013255915.1,human-associated habitat,2
+s__Klebsiella_ornithinolytica--RS_GCF_001598295.1,sewage,1
+s__Aeromonas_hydrophila--RS_GCF_000014805.1,,15
+s__Proteus_mirabilis--RS_GCF_000160755.1,hospital,6
+s__Enterobacter_cloacae--RS_GCF_000025565.1,marsh,4
+s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1,terrestrial biome,5
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,Homo sapiens,13
+s__Aeromonas_veronii--RS_GCF_000820225.1,woodland area,3
+s__Phascolarctobacterium_faecium--RS_GCF_003269275.1,anthropogenic terrestrial biome,1
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,forest biome,2
+s__Leuconostoc_mesenteroides--RS_GCF_000014445.1,sea,2
+s__Acinetobacter_ursingii--RS_GCF_000368825.1,Homo sapiens,3
+s__Citrobacter_freundii--RS_GCF_011064845.1,human-associated habitat,5
+s__Bacillus_A_cereus--RS_GCF_000007825.1,field,1
+s__Alistipes_onderdonkii--GB_GCA_025145285.1,feces,2
+s__Bariatricus_comes--GB_GCA_025149785.1,,30
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,hospital,1
+s__Aliarcobacter_butzleri--RS_GCF_900187115.1,terrestrial biome,2
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,Homo sapiens,1
+s__Curtobacterium_flaccumfaciens--RS_GCF_013359815.1,sandy desert,1
+s__Bacillus_A_anthracis--RS_GCF_000742895.1,vertebrate animal,3
+s__Proteus_mirabilis--RS_GCF_000160755.1,terrestrial biome,4
+s__Escherichia_albertii--RS_GCF_000759775.1,companion animal,4
+s__Bacillus_paralicheniformis--RS_GCF_001042485.2,sea water,1
+s__Bacteroides_caccae--RS_GCF_002222615.2,human-associated habitat,3
+s__Neisseria_gonorrhoeae--RS_GCF_003315235.1,human-associated habitat,1
+s__Streptococcus_sp001556435--RS_GCF_009738225.1,,1
+s__Pseudomonas_E_monteilii--RS_GCF_000730605.1,Homo sapiens,3
+s__Pasteurella_multocida--RS_GCF_900187275.1,livestock-associated habitat,14
+s__Streptococcus_suis--RS_GCF_000294495.1,Homo sapiens,20
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,cheese food product,2
+s__Bacillus_A_paranthracis--RS_GCF_001883995.1,marine environment,1
+s__Staphylococcus_hominis--RS_GCF_002901845.1,human-associated habitat,1
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,Mus musculus,1
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,liquid water,1
+s__Limosilactobacillus_fermentum--RS_GCF_013394085.1,sea,1
+s__Priestia_megaterium--RS_GCF_000832985.1,field,1
+s__Enterococcus_D_casseliflavus--RS_GCF_001544095.1,agricultural process,1
+s__Odoribacter_splanchnicus--RS_GCF_000190535.1,,14
+s__Burkholderia_mallei--RS_GCF_000011705.1,,2
+s__Vibrio_splendidus--GB_GCA_024347615.1,tissue paper,3
+s__Xylella_fastidiosa--RS_GCF_011801475.1,field,6
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,biome,1
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,agricultural soil,1
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,field soil,1
+s__Pseudomonas_E_paracarnis--RS_GCF_904063055.1,Homo sapiens,7
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,feces,1
+s__Bacteroides_caccae--RS_GCF_002222615.2,feces,1
+s__Campylobacter_D_jejuni--RS_GCF_001457695.1,biome,1
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,Homo sapiens,1
+s__Serratia_nematodiphila--RS_GCF_000738675.1,temperate,1
+s__Bacteroides_uniformis--GB_GCA_025147485.1,watercourse,27
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,zone of skin,62
+s__Achromobacter_xylosoxidans--RS_GCF_001457475.1,terrestrial biome,1
+s__Helicobacter_pylori_C--RS_GCF_000277405.1,Homo sapiens,2
+s__Pseudomonas_E_alloputida--RS_GCF_021282585.1,soil,6
+s__Pseudomonas_E_asiatica--RS_GCF_009932335.1,tropical,5
+s__Bacillus_A_wiedmannii--RS_GCF_001583695.1,human-associated habitat,1
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,microcosm,1
+s__Escherichia_albertii--RS_GCF_000759775.1,,68
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,,35
+s__Mycobacterium_abscessus--RS_GCF_000069185.1,,2
+s__Rhizobium_leguminosarum--RS_GCF_002008365.1,terrestrial biome,11
+s__Streptococcus_sp001556435--RS_GCF_009738225.1,Homo sapiens,12
+s__Agathobacter_rectalis--GB_GCA_000020605.1,microcosm,1
+s__Bacteroides_caccae--RS_GCF_002222615.2,terrestrial biome,4
+s__Cutibacterium_acnes--RS_GCF_003030305.1,intestine environment,1
+s__Thomasclavelia_ramosa--RS_GCF_014131695.1,watercourse,3
+s__Bacillus_subtilis--RS_GCF_000009045.1,scrubland area,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,industrial building,1
+s__Pseudomonas_E_fulva--RS_GCF_000730565.1,human-associated habitat,2
+s__Pseudomonas_E_viridiflava--RS_GCF_001642795.1,agricultural ecosystem,1
+s__Weissella_confusa--GB_GCA_001436895.1,,32
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,,23
+s__Bacillus_A_nitratireducens--RS_GCF_001884135.1,,1
+s__Blautia_A_wexlerae--GB_GCA_025148125.1,feces,4
+s__Bacillus_velezensis--RS_GCF_001461825.1,soil,5
+s__Pediococcus_acidilactici--RS_GCF_000146325.1,human-associated habitat,2
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,digestive system,1
+s__Aeromonas_caviae--RS_GCF_000819785.1,sludge,2
+s__Acinetobacter_seifertii--RS_GCF_000368065.1,,17
+s__Mycoplasmopsis_bovis--RS_GCF_000183385.1,beef,35
+s__Bifidobacterium_infantis--RS_GCF_000269965.1,food material,1
+s__Enterococcus_B_hirae--RS_GCF_000271405.2,watercourse,1
+s__Mediterraneibacter_faecis--GB_GCA_001312505.1,fecal environment,1
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,intestine environment,1
+s__Bacillus_A_pseudomycoides--RS_GCF_000161455.1,agricultural field,1
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,human-associated habitat,1
+s__Streptococcus_suis--RS_GCF_000294495.1,multicellular organism,49
+s__Eggerthella_lenta--RS_GCF_000024265.1,terrestrial biome,4
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,field,2
+s__Blautia_A_massiliensis--RS_GCF_001487165.1,fecal environment,3
+s__Streptococcus_mutans--RS_GCF_006739205.1,dental plaque,1
+s__Corynebacterium_glutamicum--RS_GCF_000011325.1,human-associated habitat,1
+s__Pectobacterium_brasiliense--RS_GCF_000754695.1,,7
+s__Rhizobium_leguminosarum_L--RS_GCF_000009265.1,terrestrial biome,32
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,field soil,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,farm,1
+s__Phocaeicola_dorei--RS_GCF_013009555.1,Homo sapiens,2
+s__Aeromonas_hydrophila--RS_GCF_000014805.1,human-associated habitat,1
+s__Pseudomonas_E_monteilii--RS_GCF_000730605.1,aquatic biome,1
+s__Bifidobacterium_bifidum--RS_GCF_001025135.1,unidentified,2
+s__Serratia_nematodiphila--RS_GCF_000738675.1,peat soil,2
+s__Shewanella_algae--RS_GCF_009183365.2,feces,6
+s__Citrobacter_braakii--RS_GCF_002075345.1,freshwater biome,10
+s__Limosilactobacillus_reuteri--RS_GCF_000016825.1,digestive system,12
+s__Bifidobacterium_longum--RS_GCF_000196555.1,terrestrial biome,10
+s__Blautia_A_wexlerae--GB_GCA_025148125.1,human-associated habitat,16
+s__Faecalibacterium_duncaniae--RS_GCF_010509575.1,alimentary part of gastrointestinal system,1
+s__Pediococcus_acidilactici--RS_GCF_000146325.1,,124
+s__Vibrio_alginolyticus--RS_GCF_000354175.2,,9
+s__Burkholderia_vietnamiensis--RS_GCF_000959445.1,,5
+s__Sinorhizobium_meliloti--RS_GCF_017876815.1,,11
+s__Faecalibacillus_intestinalis--RS_GCF_003024685.1,,9
+s__Bacteroides_caccae--RS_GCF_002222615.2,watercourse,4
+s__Bacillus_A_wiedmannii--RS_GCF_001583695.1,groundwater,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,milk,7
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,waste water,2
+s__Flavonifractor_plautii--RS_GCF_000239295.1,terrestrial biome,5
+s__Lacticaseibacillus_paracasei--RS_GCF_000829035.1,Homo sapiens,2
+s__Bacillus_A_anthracis--RS_GCF_000742895.1,steppe soil,2
+s__Klebsiella_aerogenes--RS_GCF_000215745.1,feces,2
+s__Sarcina_perfringens--RS_GCF_000013285.1,watercourse,2
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,facility,2
+s__Bacteroides_ovatus--RS_GCF_001314995.1,,36
+s__Phocaeicola_dorei--RS_GCF_013009555.1,,28
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,terrestrial biome,47
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,field soil,1
+s__Streptococcus_dysgalactiae--RS_GCF_900459225.1,sea,1
+s__Burkholderia_cepacia--RS_GCF_001411495.1,rice field,1
+s__Bariatricus_comes--GB_GCA_025149785.1,human-associated habitat,1
+s__Vibrio_vulnificus--RS_GCF_002224265.1,human-associated habitat,1
+s__Levilactobacillus_brevis--RS_GCF_001433855.1,terrestrial biome,1
+s__Aliarcobacter_butzleri--RS_GCF_900187115.1,,2
+s__Yersinia_ruckeri--RS_GCF_000754815.1,sea water,22
+s__Lactobacillus_crispatus--RS_GCF_018987235.1,19650 - chicken fresh meat (efsa foodex2),2
+s__Bacillus_subtilis--RS_GCF_000009045.1,rhizosphere,2
+s__Fusicatenibacter_saccharivorans--RS_GCF_015557635.1,fecal environment,2
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,terrestrial biome,2
+s__Klebsiella_grimontii--RS_GCF_900200035.1,human-associated habitat,1
+s__Pseudomonas_E_chlororaphis_F--RS_GCF_003850345.1,freshwater environment,2
+s__Burkholderia_mallei--RS_GCF_000011705.1,farm,1
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,biome,1
+s__Mammaliicoccus_sciuri--RS_GCF_002901825.1,animal-associated environment,1
+s__Aeromonas_caviae--RS_GCF_000819785.1,wastewater treatment plant,1
+s__Listeria_monocytogenes--RS_GCF_900187225.1,human-associated habitat,1
+s__Helicobacter_pylori_C--RS_GCF_000277405.1,,119
+s__Ruminococcus_B_gnavus--RS_GCF_008121495.1,,56
+s__Xanthomonas_hortorum--RS_GCF_002939985.1,,2
+s__Acinetobacter_ursingii--RS_GCF_000368825.1,marsh,1
+s__Lactiplantibacillus_plantarum--RS_GCF_014131735.1,human-associated habitat,2
+s__Leclercia_adecarboxylata--GB_GCA_901472455.1,livestock-associated habitat,1
+s__Staphylococcus_saprophyticus--RS_GCF_000010125.1,habitat,1
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,forest soil,1
+s__Prevotella_copri_B--RS_GCF_009494135.1,microcosm,1
+s__Enterobacter_ludwigii--RS_GCF_001750725.1,biome,1
+s__Xanthomonas_phaseoli--GB_GCA_022749655.1,crop,1
+s__Latilactobacillus_sakei--RS_GCF_002370355.1,human-associated habitat,1
+s__Pseudomonas_E_alloputida--RS_GCF_021282585.1,,10
+s__Vibrio_splendidus--GB_GCA_024347615.1,,41
+s__Enterobacter_asburiae_B--RS_GCF_007035645.1,,21
+s__Klebsiella_oxytoca--RS_GCF_001598695.1,sewage,1
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,anaerobic bioreactor,1
+s__Thomasclavelia_ramosa--RS_GCF_014131695.1,,78
+s__Escherichia_fergusonii--RS_GCF_000026225.1,farmyard manure,51
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,human-associated habitat,16
+s__Gemmiger_qucibialis--GB_GCA_004000625.1,human-associated habitat,31
+s__Erwinia_amylovora--RS_GCF_017161565.1,asian pear,2
+s__Lactobacillus_helveticus--RS_GCF_000160855.1,human-associated habitat,2
+s__Citrobacter_braakii--RS_GCF_002075345.1,hindgut,1
+s__Bariatricus_comes--GB_GCA_025149785.1,feces,1
+s__Mycoplasmopsis_bovis--RS_GCF_000183385.1,,2
+s__Bacteroides_thetaiotaomicron--RS_GCF_000011065.1,human-associated habitat,7
+s__Agathobacter_faecis--RS_GCF_001406815.1,Bos taurus,2
+s__Bariatricus_comes--GB_GCA_025149785.1,watercourse,4
+s__Clostridium_F_botulinum--RS_GCF_001276985.1,human-associated habitat,1
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,habitat,1
+s__Bacillus_velezensis--RS_GCF_001461825.1,digestive system,1
+s__Burkholderia_cepacia--RS_GCF_001411495.1,soil,1
+s__Bacillus_A_bombysepticus--RS_GCF_006384875.1,terrestrial biome,1
+s__Enterobacter_cloacae_M--RS_GCF_002208095.1,biome,2
+s__Thomasclavelia_ramosa--RS_GCF_014131695.1,feces,1
+s__Latilactobacillus_sakei--RS_GCF_002370355.1,sea,1
+s__Prevotella_copri_A--RS_GCF_002224675.1,,80
+s__Lactobacillus_helveticus--RS_GCF_000160855.1,dairy food product,1
+s__Blautia_A_massiliensis--RS_GCF_001487165.1,feces,2
+s__Bacillus_A_cereus--RS_GCF_000007825.1,woodland area,1
+s__Staphylococcus_haemolyticus--RS_GCF_006094395.1,watercourse,1
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,farm,1
+s__Lactobacillus_jensenii--RS_GCF_001436455.1,,56
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,,28
+s__Xanthomonas_cissicola--RS_GCF_008801575.1,orchard,6
+s__Klebsiella_ornithinolytica--RS_GCF_001598295.1,human-associated habitat,2
+s__Staphylococcus_warneri--RS_GCF_900636385.1,zone of skin,13
+s__Bacillus_A_paranthracis--RS_GCF_001883995.1,marsh,1
+s__Bifidobacterium_animalis--RS_GCF_000260715.1,biome,4
+s__Ruminococcus_B_gnavus--RS_GCF_008121495.1,feces,2
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,marine sponge reef biome,1
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,,114
+s__Helicobacter_pylori--RS_GCF_900478295.1,,7
+s__Bacillus_subtilis--RS_GCF_000009045.1,biome,13
+s__Bacillus_subtilis--RS_GCF_000009045.1,tropical,1
+s__Providencia_rettgeri_D--RS_GCF_013255915.1,hospital,4
+s__Cutibacterium_acnes--RS_GCF_003030305.1,watercourse,1
+s__Clostridium_AQ_innocuum--RS_GCF_012317185.1,biome,12
+s__Aeromonas_veronii--RS_GCF_000820225.1,freshwater lake,1
+s__Ralstonia_pseudosolanacearum--RS_GCF_024925465.1,agricultural field,1
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,Bos taurus,1
+s__Vibrio_cholerae--RS_GCF_000621645.1,freshwater biome,1
+s__Clostridium_AQ_innocuum--RS_GCF_012317185.1,human-associated habitat,2
+s__Odoribacter_splanchnicus--RS_GCF_000190535.1,feces,1
+s__Sphingomonas_koreensis--RS_GCF_002797435.1,,2
+s__Enterobacter_cloacae_M--RS_GCF_002208095.1,,24
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,terrestrial biome,11
+s__Stenotrophomonas_sepilia--RS_GCF_003244875.1,liquid water,1
+s__Prevotella_copri_B--RS_GCF_009494135.1,Homo sapiens,3
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,Homo sapiens,4
+s__Shewanella_algae--RS_GCF_009183365.2,sputum,4
+s__Priestia_megaterium--RS_GCF_000832985.1,biome,4
+s__Dorea_formicigenerans--GB_GCA_025150245.1,fecal environment,2
+s__Xanthomonas_oryzae--RS_GCF_004136375.1,vegetated area,1
+s__Pseudomonas_E_viridiflava--RS_GCF_001642795.1,plant-associated habitat,1
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,feces,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,urban biome,2
+s__Citrobacter_braakii--RS_GCF_002075345.1,farmyard manure,2
+s__Stutzerimonas_stutzeri--RS_GCF_000219605.1,hydrothermal vent,2
+s__Pseudomonas_E_amygdali--RS_GCF_002699855.1,cropland biome,1
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,Apis mellifera,1
+s__Corynebacterium_pseudotuberculosis--RS_GCF_002155265.1,woodland area,15
+s__Mediterraneibacter_faecis--GB_GCA_001312505.1,anthropogenic terrestrial biome,4
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,forest biome,1
+s__Staphylococcus_hominis--RS_GCF_002901845.1,biome,18
+s__Bacillus_velezensis--RS_GCF_001461825.1,garden soil,1
+s__Acinetobacter_nosocomialis--RS_GCF_000368085.1,biome,1
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,environmental system,2
+s__Klebsiella_quasipneumoniae--RS_GCF_020525925.1,diarrhea,1
+s__Agathobacter_faecis--RS_GCF_001406815.1,Homo sapiens,1
+s__Serratia_marcescens_K--RS_GCF_002220655.1,hospital,1
+s__Bifidobacterium_globosum--RS_GCF_000741295.1,biome,1
+s__Gemmiger_qucibialis--GB_GCA_004000625.1,watercourse,2
+s__Bacillus_licheniformis--RS_GCF_000011645.1,alpine,1
+s__Burkholderia_contaminans--RS_GCF_000987075.1,space station,1
+s__Acinetobacter_ursingii--RS_GCF_000368825.1,hospital,1
+s__Enterobacter_asburiae_B--RS_GCF_007035645.1,feces,1
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,,35
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,feces,5
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,biome,67
+s__Gemmiger_qucibialis--GB_GCA_004000625.1,terrestrial biome,4
+s__Bacillus_velezensis--RS_GCF_001461825.1,rhizosphere,1
+s__Klebsiella_variicola--RS_GCF_000828055.2,human-associated habitat,2
+s__Enterococcus_D_gallinarum--RS_GCF_001544275.1,alimentary part of gastrointestinal system,2
+s__Aliarcobacter_butzleri--RS_GCF_900187115.1,human-associated habitat,1
+s__Ralstonia_pseudosolanacearum--RS_GCF_024925465.1,soil,1
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,bodily fluid,1
+s__Bifidobacterium_pseudocatenulatum--RS_GCF_001025215.1,watercourse,10
+s__Ruminococcus_E_bromii_B--RS_GCF_002834235.1,feces,2
+s__Campylobacter_D_coli--RS_GCF_000254135.1,chicken,1
+s__Streptomyces_albidoflavus--RS_GCF_000719955.1,watercourse,1
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,terrestrial biome,2
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,unidentified,1
+s__Agathobacter_faecis--RS_GCF_001406815.1,,14
+s__Pasteurella_multocida--RS_GCF_900187275.1,rural area,45
+s__Bifidobacterium_adolescentis--RS_GCF_000010425.1,anthropogenic terrestrial biome,18
+s__Ruminococcus_D_bicirculans--RS_GCF_000723465.1,human-associated habitat,27
+s__Bifidobacterium_bifidum--RS_GCF_001025135.1,terrestrial biome,7
+s__Enterococcus_B_hirae--RS_GCF_000271405.2,food material,1
+s__Bacteroides_caccae--RS_GCF_002222615.2,habitat,1
+s__Pseudomonas_E_alloputida--RS_GCF_021282585.1,Homo sapiens,7
+s__Streptococcus_mutans--RS_GCF_006739205.1,human-associated habitat,3
+s__Agrobacterium_fabacearum--RS_GCF_009649785.1,mangrove swamp,1
+s__Leptospira_interrogans--RS_GCF_900156205.1,dog,1
+s__Enterobacter_kobei--RS_GCF_001729765.1,human-associated habitat,2
+s__Porphyromonas_gingivalis--RS_GCF_000010505.1,Homo sapiens,2
+s__Lactococcus_lactis--RS_GCF_900099625.1,terrestrial biome,1
+s__Pectobacterium_versatile_A--RS_GCF_020166435.1,09570 - potatoes and similar- (efsa foodex2),1
+s__Xanthomonas_campestris--RS_GCF_000007145.1,,5
+s__Bifidobacterium_infantis--RS_GCF_000269965.1,terrestrial biome,21
+s__Thomasclavelia_ramosa--RS_GCF_014131695.1,human-associated habitat,2
+s__Lactobacillus_johnsonii--RS_GCF_000159355.1,yogurt food product,1
+s__Gemmiger_formicilis--RS_GCF_900167555.1,anthropogenic terrestrial biome,14
+s__Bacillus_A_thuringiensis--RS_GCF_002119445.1,field,1
+s__Erwinia_amylovora--RS_GCF_017161565.1,apple (whole or pieces),5
+s__Enterobacter_cloacae_M--RS_GCF_002208095.1,waste water,1
+s__Yersinia_pestis--RS_GCF_900460465.1,human-associated habitat,1
+s__Akkermansia_sp004167605--RS_GCF_004167605.1,feces,1
+s__Haemophilus_influenzae_E--RS_GCF_019703545.1,,6
+s__Corynebacterium_glutamicum--RS_GCF_000011325.1,,8
+s__Stenotrophomonas_maltophilia_F--RS_GCF_000284595.1,,2
+s__Cutibacterium_acnes--RS_GCF_003030305.1,hospital,1
+s__Burkholderia_orbicola--RS_GCF_014211915.1,liquid water,1
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,human-associated habitat,2
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,watercourse,1
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,unidentified,2
+s__Xanthomonas_campestris--RS_GCF_000007145.1,savanna,1
+s__Klebsiella_michiganensis--RS_GCF_002925905.1,anthropogenic terrestrial biome,1
+s__Serratia_ureilytica--RS_GCF_013375155.1,terrestrial biome,1
+s__Streptococcus_agalactiae--RS_GCF_000186445.1,,11
+s__Leptospira_borgpetersenii--RS_GCF_003046425.1,,4
+s__Enterococcus_B_hirae--RS_GCF_000271405.2,biome,87
+s__Parabacteroides_merdae--GB_GCA_025151215.1,human-associated habitat,14
+s__Serratia_nevei--RS_GCF_008364245.1,waste water,2
+s__Enterobacter_kobei--RS_GCF_001729765.1,anthropogenic terrestrial biome,2
+s__Parabacteroides_distasonis--RS_GCF_000012845.1,digestive tract environment,2
+s__Bacteroides_uniformis--GB_GCA_025147485.1,terrestrial biome,9
+s__Pseudomonas_E_fulva--RS_GCF_000730565.1,rice field,1
+s__Vibrio_parahaemolyticus--RS_GCF_900460535.1,biome,1
+s__Micrococcus_luteus--RS_GCF_000023205.1,rhizosphere,1
+s__Flavobacterium_psychrophilum--RS_GCF_002217405.1,,11
+s__Agrobacterium_fabacearum--RS_GCF_009649785.1,,7
+s__Treponema_pallidum--RS_GCF_000410535.2,,1
+s__Staphylococcus_pseudintermedius--RS_GCF_001792775.2,dog,16
+s__Bacillus_A_cereus--RS_GCF_000007825.1,Homo sapiens,2
+s__Aeromonas_hydrophila--RS_GCF_000014805.1,Bacteria,1
+s__Enterococcus_B_hirae--RS_GCF_000271405.2,fecal environment,1
+s__Weissella_cibaria--RS_GCF_000193635.1,biome,1
+s__Acinetobacter_soli--RS_GCF_000760595.1,human-associated habitat,1
+s__Bacillus_A_paranthracis--RS_GCF_001883995.1,biome,1
+s__Priestia_megaterium--RS_GCF_000832985.1,agricultural field,1
+s__Citrobacter_freundii--RS_GCF_011064845.1,watercourse,1
+s__Bacteroides_ovatus--RS_GCF_001314995.1,zoological garden,3
+s__Pseudomonas_E_protegens--RS_GCF_000397205.1,peatland,1
+s__Vibrio_vulnificus--RS_GCF_002224265.1,aquaculture farm,3
+s__Bacillus_velezensis--RS_GCF_001461825.1,lake,1
+s__Neisseria_gonorrhoeae--RS_GCF_003315235.1,,70
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,terrestrial biome,10
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,terrestrial biome,7
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,fecal environment,2
+s__Enterococcus_D_gallinarum--RS_GCF_001544275.1,human-associated habitat,2
+s__Enterococcus_D_gallinarum--RS_GCF_001544275.1,watercourse,4
+s__Bifidobacterium_longum--RS_GCF_000196555.1,human-associated habitat,4
+s__Staphylococcus_capitis--RS_GCF_002902325.1,zone of skin,11
+s__Bacillus_subtilis--RS_GCF_000009045.1,coral reef,1
+s__Escherichia_albertii--RS_GCF_000759775.1,human-associated habitat,1
+s__Anaerostipes_hadrus--RS_GCF_000332875.2,feces,2
+s__Staphylococcus_capitis--RS_GCF_002902325.1,urban biome,1
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,,7
+s__Enterococcus_B_lactis--RS_GCF_015751045.1,China,1
+s__Gemmiger_formicilis--RS_GCF_900167555.1,feces,6
+s__Bacillus_A_paranthracis--RS_GCF_001883995.1,spring,1
+s__Blautia_A_massiliensis--RS_GCF_001487165.1,human-associated habitat,9
+s__Citrobacter_freundii--RS_GCF_011064845.1,marsh,1
+s__Eggerthella_lenta--RS_GCF_000024265.1,anthropogenic terrestrial biome,1
+s__Pseudomonas_E_avellanae--RS_GCF_000444135.1,agricultural ecosystem,1
+s__Pseudomonas_E_syringae_M--RS_GCF_009176725.1,,54
+s__Escherichia_marmotae--RS_GCF_002900365.1,,8
+s__Phocaeicola_vulgatus--RS_GCF_000012825.1,watercourse,42
+s__Bacillus_velezensis--RS_GCF_001461825.1,chicken,2
+s__Lactobacillus_delbrueckii--RS_GCF_001433875.1,dairy food product,2
+s__Agathobacter_faecis--RS_GCF_001406815.1,watercourse,1
+s__Bacteroides_uniformis--GB_GCA_025147485.1,forest biome,1
+s__Mycoplasmopsis_bovis--RS_GCF_000183385.1,calf meat food product,29
+s__Agathobacter_rectalis--GB_GCA_000020605.1,anthropogenic terrestrial biome,4
+s__Citrobacter_freundii--RS_GCF_011064845.1,farmyard manure,2
+s__Bacillus_safensis--RS_GCF_000691165.1,biome,6
+s__Streptococcus_suis_W--RS_GCF_902702775.1,digestive system,1
+s__Legionella_pneumophila--RS_GCF_000008485.1,wastewater treatment plant,1
+s__Bacillus_altitudinis--RS_GCF_000691145.1,leaf,1
+s__Bacillus_subtilis--RS_GCF_000009045.1,terrestrial biome,1
+s__Vibrio_cyclitrophicus--GB_GCA_024347435.1,,52
+s__Limosilactobacillus_reuteri_E--RS_GCF_013694365.1,,25
+s__Xanthomonas_euvesicatoria--RS_GCF_020880415.1,field,8
+s__Pseudomonas_E_asiatica--RS_GCF_009932335.1,Homo sapiens,1
+s__Haemophilus_influenzae--RS_GCF_001457655.1,Homo sapiens,3
+s__Parabacteroides_merdae--GB_GCA_025151215.1,watercourse,2
+s__Pediococcus_pentosaceus--RS_GCF_001437285.1,kimchi,1
+s__Corynebacterium_glutamicum--RS_GCF_000011325.1,soil,4
+s__Listeria_monocytogenes_B--RS_GCF_000307025.1,dense settlement biome,1
+s__Pseudomonas_E_asiatica--RS_GCF_009932335.1,soil,2
+s__Enterobacter_hormaechei_A--RS_GCF_001729745.1,glacier,1
+s__Bacillus_altitudinis--RS_GCF_000691145.1,sediment,2
+s__Aeromonas_caviae--RS_GCF_000819785.1,Homo sapiens,3
+s__Lactobacillus_iners--RS_GCF_000160875.1,,109
+s__Xanthomonas_oryzae--RS_GCF_004136375.1,,5
+s__Bacillus_pumilus--RS_GCF_900186955.1,,4
+s__Streptococcus_mutans--RS_GCF_006739205.1,,2
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,Homo sapiens,50
+s__Staphylococcus_epidermidis--RS_GCF_006742205.1,Bos,4
+s__Streptococcus_sp001556435--RS_GCF_009738225.1,watercourse,1
+s__Citrobacter_braakii--RS_GCF_002075345.1,feces,1
+s__Lacticaseibacillus_rhamnosus--RS_GCF_900636965.1,milk,1
+s__Clostridium_beijerinckii--RS_GCF_018223745.1,biome,11
+s__Lactococcus_lactis--RS_GCF_900099625.1,food material,3
+s__Bacillus_velezensis--RS_GCF_001461825.1,agricultural field,2
+s__Enterobacter_roggenkampii--RS_GCF_001729805.1,sewage,10
+s__Pediococcus_acidilactici--RS_GCF_000146325.1,feces,1
+s__Proteus_mirabilis--RS_GCF_000160755.1,feces,2
+s__Sinorhizobium_meliloti--RS_GCF_017876815.1,grassland biome,1
+s__Bacillus_safensis--RS_GCF_000691165.1,sediment,1
+s__Faecalibacterium_longum--RS_GCF_020687245.1,microcosm,1
+s__Pseudomonas_E_syringae--RS_GCF_000507185.2,estuarine biome,1
+s__Streptococcus_pyogenes--RS_GCF_002055535.1,terrestrial biome,1
+s__Bacteroides_xylanisolvens--RS_GCF_000210075.1,animal-associated environment,1
+s__Akkermansia_muciniphila--RS_GCF_000020225.1,,47
+s__Pseudomonas_E_avellanae--RS_GCF_000444135.1,,16
+s__Bacillus_A_paranthracis--RS_GCF_001883995.1,human-associated habitat,1
+s__Enterococcus_B_faecium--RS_GCF_001544255.1,Homo sapiens,4
+s__Bacteroides_stercoris--GB_GCA_025147325.1,watercourse,5
+s__Fusicatenibacter_saccharivorans--RS_GCF_015557635.1,feces,2
+s__Bacillus_licheniformis--RS_GCF_000011645.1,terrestrial biome,1
+s__Bacillus_A_thuringiensis_S--RS_GCF_000021305.1,village,1
+s__Xanthomonas_A_translucens--RS_GCF_000331775.1,Bacteria,1
+s__Staphylococcus_warneri--RS_GCF_900636385.1,alpine,1
+s__Yersinia_ruckeri--RS_GCF_000754815.1,fresh water,38
+s__Staphylococcus_saprophyticus--RS_GCF_000010125.1,skin environment,1
+s__Helicobacter_pylori_BU--RS_GCF_900120335.1,human-associated habitat,1
+s__Helicobacter_pylori--RS_GCF_900478295.1,watercourse,4
+s__Bacteroides_ovatus--RS_GCF_001314995.1,forest biome,1
+s__Agrobacterium_tumefaciens--RS_GCF_001541315.1,agricultural ecosystem,1
+s__Vibrio_lentus--RS_GCF_014878155.1,,88
+s__Rhizobium_laguerreae--RS_GCF_002008165.1,,5

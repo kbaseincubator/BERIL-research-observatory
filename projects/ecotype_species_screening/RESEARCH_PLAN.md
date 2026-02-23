@@ -161,6 +161,7 @@ Note: Genome IDs in `phylogenetic_tree_distance_pairs` are bare accessions witho
 ## Revision History
 
 - **v1** (2026-02-21): Initial plan
+- **v2** (2026-02-22): Data extraction complete; two implementation issues resolved. (1) `spark.createDataFrame()` fails via Spark Connect 4.0.1 due to missing server-side config key — replaced with SQL subqueries using `WHERE ... IN (SELECT ... FROM phylogenetic_tree)`. (2) `nmdc_ncbi_biosamples.env_triads_flattened` is EAV format — `env_broad_scale` is a value in the `attribute` column, not a column name; use `WHERE t.attribute = 'env_broad_scale'` and reference `t.label` for ENVO terms. Analysis produced three key findings: H1 supported with unexpected direction (r = -0.171, p = 0.003 — phylo substructure negatively correlated with env diversity, suggesting ecologically specialized species have more phylogenetic spread while generalists span many environments with less). H2 partially supported — composite score predicts prior partial-correlation ecotype signal (rho = 0.277, p = 0.010) but branch CV alone does not. H3 not supported — top candidates are not depleted from prior analysis. Top 10 new candidates include *Bifidobacterium animalis*, *Erwinia amylovora*, *Staphylococcus epidermidis*, *Francisella tularensis*, and *Listeria monocytogenes B*.
 
 ## Authors
 

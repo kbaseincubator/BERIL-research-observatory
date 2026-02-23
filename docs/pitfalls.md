@@ -791,6 +791,55 @@ cat /tmp/output.txt
 
 Do NOT use `wait` on the PID — this triggers the same output suppression.
 
+### [ecotype_species_screening] `nmdc_ncbi_biosamples.env_triads_flattened` is EAV format — no `env_broad_scale` column
+
+**Problem**: Queries using `e.env_broad_scale`, `e.env_local_scale`, or `e.env_medium` against `env_triads_flattened` fail with `UNRESOLVED_COLUMN`. The table is Entity-Attribute-Value: `attribute` holds the field name as a string value, and `label` holds the ENVO term.
+
+**Schema**:
+```
+accession | attribute       | instance | raw_original | raw_component | id           | label              | prefix | source
+SAMN...   | env_broad_scale | 0        | soil         | soil          | ENVO:00001998| soil               | ENVO   | OAK
+```
+
+**Correct pattern** (filter on `attribute`, reference `label`):
+```sql
+-- Distinct env_broad_scale categories per species
+SELECT gtdb_species_clade_id, t.label AS env_broad_label, COUNT(DISTINCT genome_id) AS n
+FROM kbase_ke_pangenome.genome g
+JOIN kbase_ke_pangenome.sample s ON g.genome_id = s.genome_id
+JOIN nmdc_ncbi_biosamples.env_triads_flattened t ON s.ncbi_biosample_accession_id = t.accession
+WHERE t.attribute = 'env_broad_scale'
+GROUP BY gtdb_species_clade_id, t.label
+```
+
+**Pivoting multiple attributes** in one query — use conditional COUNT:
+```sql
+COUNT(DISTINCT CASE WHEN t.attribute = 'env_broad_scale' THEN t.label END) AS n_distinct_env_broad,
+COUNT(DISTINCT CASE WHEN t.attribute = 'env_local_scale' THEN t.label END) AS n_distinct_env_local,
+COUNT(DISTINCT CASE WHEN t.attribute = 'env_medium'      THEN t.label END) AS n_distinct_env_medium
+```
+
+**Alternative**: `biosamples_flattened` has wide-format columns (`env_broad_scale`, `env_local_scale`, `env_medium`) but values are raw NCBI strings like `soil [ENVO:00001998]`, not normalized ENVO labels.
+
+---
+
+### [ecotype_species_screening] `spark.createDataFrame()` fails via Spark Connect (version mismatch)
+
+**Problem**: Calling `spark.createDataFrame(pandas_df)` via Spark Connect raises `SparkConnectGrpcException` with `[SQL_CONF_NOT_FOUND] The SQL config "spark.sql.session.localRelationChunkSizeRows" cannot be found`. This is a PySpark client/server version mismatch (local client is PySpark 4.0.1; server Spark version is older).
+
+**Workaround**: Never push local Pandas DataFrames to Spark as filter sets. Use SQL subqueries instead:
+```python
+# WRONG
+spark_df = spark.createDataFrame(local_pd[['id']])
+result = spark.sql("SELECT ...").join(spark_df, on='id')
+
+# CORRECT
+result = spark.sql("""
+    SELECT ...
+    WHERE id IN (SELECT id FROM some_already_existing_table)
+""")
+```
+
 ---
 
 ## Quick Checklist
