@@ -417,6 +417,10 @@
 
 ## Completed Ideas
 
+### [ecotype_species_screening] Ecotype Candidate Species Screening
+**Status**: COMPLETED
+**Results**: 338 GTDB species with phylogenetic tree data scored across three dimensions: phylogenetic substructure (branch distance CV), environmental diversity (Shannon entropy of env_broad_scale), and pangenome openness (singleton fraction). Equal-weight composite z-score identifies *Prochlorococcus* A sp000635495 (rank 1) and *Akkermansia* sp004167605 (rank 2) as top candidates; *S. warneri* (rank 7) has the strongest known prior ecotype signal (r_partial=0.42). H1: phylo substructure and env diversity are negatively correlated (r=−0.171, p=0.003), opposite to the stated hypothesis — consistent with a specialist/generalist trade-off. H2: composite score positively predicts prior ecotype signal (rho=0.277, p=0.010, N=85); composite outperforms branch CV alone (rho=0.153, p=0.130). H3: prior species selection was not biased against high-scorers (Fisher OR=1.45, p=0.937). See `projects/ecotype_species_screening/`.
+
 ### [lab_field_ecology] Lab Fitness Predicts Field Ecology at Oak Ridge
 **Status**: COMPLETED
 **Results**: 14 of 26 FB genera detected at Oak Ridge (108 sites). 5 of 11 tested genera correlate with uranium after FDR correction: *Herbaspirillum* and *Bacteroides* increase at contaminated sites, *Caulobacter*, *Sphingomonas*, and *Pedobacter* decrease. Lab metal tolerance suggestive but not significant (rho=0.50, p=0.095). First study linking Fitness Browser data with ENIGMA CORAL field ecology. See `projects/lab_field_ecology/`.
