@@ -21,10 +21,13 @@
 - Von Meijenfeldt FAB, Hogeweg P, et al. (2023). "A social niche breadth score reveals niche range strategies of generalists and specialists." *Nat Ecol Evol* 7:768–781.
   URL: https://www.nature.com/articles/s41559-023-02027-7
 
+- Dewar AE, Hao C, Belcher LJ, Ghoul M, et al. (2024). "Bacterial lifestyles shapes pangenomes." *PNAS* 121(14):e2320170121.
+  DOI: 10.1073/pnas.2320170121
+
 ## Prochlorococcus Ecotypes (Validation)
 
 - Kettler GC, Martiny AC, et al. (2007). "Patterns and implications of gene gain and loss in the evolution of Prochlorococcus." *PLoS Genet* 3(12):e231. PMID: 18159947
-  DOI: 10.1128/AEM.02545-17
+  DOI: 10.1371/journal.pgen.0030231
 
 - Larkin AA, Blinebry SK, Howes C, Lin Y, et al. (2016). "Niche partitioning and biogeography of high light adapted Prochlorococcus across taxonomic ranks in the North Pacific." *ISME J* 10:1555–1567. PMID: 26800235
   DOI: 10.1038/ismej.2015.244

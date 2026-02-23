@@ -14,13 +14,15 @@
 
 Across 292 species with ENVO annotations, phylogenetic substructure (CV of pairwise branch distances) was **significantly negatively correlated** with environmental diversity (Shannon entropy of env_broad_scale): Pearson r = −0.171, p = 0.003.
 
-This unexpected direction reveals two ecologically distinct candidate profiles: (1) *phylogenetic specialists* — species with high branch distance variance but narrow environmental span (e.g., *Prochlorococcus* A sp000635495, *Erwinia amylovora*, *Francisella tularensis*) and (2) *environmental generalists* — species spanning many ENVO categories but with lower phylogenetic CV (e.g., *Bacillus velezensis*, *Stutzerimonas stutzeri*, *Priestia megaterium*). **H1 is supported**, though the negative direction means the two dimensions independently and non-redundantly capture distinct aspects of ecotype potential.
+This direction is opposite to the positive correlation stated in H1 (which predicted species with high phylogenetic substructure would have higher environmental diversity). **H0 is rejected, but the observed direction contradicts H1.** The two dimensions instead reveal two ecologically distinct candidate profiles: (1) *phylogenetic specialists* — species with high branch distance variance but narrow environmental span (e.g., *Prochlorococcus* A sp000635495, *Erwinia amylovora*, *Francisella tularensis*) and (2) *environmental generalists* — species spanning many ENVO categories but with lower phylogenetic CV (e.g., *Bacillus velezensis*, *Stutzerimonas stutzeri*, *Priestia megaterium*). The negative correlation means the two dimensions independently and non-redundantly capture distinct aspects of ecotype potential, strengthening the case for combining both in the composite score.
 
 *(Notebook: 02_composite_scoring.ipynb, Cell 5)*
 
 ### Finding 2: Composite Score Predicts Prior Ecotype Signal; Branch CV Alone Does Not
 
 ![Left: CV of branch distances vs r_ani_jaccard from prior ecotype_analysis (rho=0.15, p=0.130, N=99). Right: Composite score vs r_ani_jaccard (rho=-0.37, p<0.001). High composite score species have gene content less coupled to ANI phylogeny.](figures/h2_retrospective_validation.png)
+
+![Composite score vs r_partial_emb_jaccard (environment–gene content partial correlation controlling for phylogeny), the key ecotype signal metric from prior work. Spearman rho=0.277, p=0.010, N=70.](figures/h2_composite_vs_rpartial.png)
 
 Among the 99 species present in both datasets:
 
@@ -79,7 +81,7 @@ All 338 species with single-copy core gene phylogenetic trees in `kbase_ke_pange
 | Dimension | Mean ± SD | Range |
 |-----------|-----------|-------|
 | CV of branch distances | 0.562 ± 0.452 | 0.12 – 5.84 |
-| env_broad_scale entropy (nats) | 1.447 ± 0.952 | 0 – 3.62 |
+| env_broad_scale entropy (bits, log2) | 1.447 ± 0.952 | 0 – 3.62 |
 | Singleton gene cluster fraction | 0.479 ± 0.087 | 0.027 – 0.691 |
 
 The CV distribution is right-skewed, with *Prochlorococcus* A sp000635495 (CV = 5.84) as a strong outlier reflecting the extreme depth of its HL/LL ecotype divergence. The env_broad_entropy dimension has the widest relative variation across species after z-scoring.
@@ -211,6 +213,7 @@ Among species not previously analyzed, the highest-priority candidates are:
 | `scoring_overview.png` | Score distributions (composite, CV, entropy), top 50 candidate bar chart |
 | `dimension_correlations.png` | Pairwise Spearman correlation matrix for scoring dimensions and covariates |
 | `h2_retrospective_validation.png` | CV and composite score vs r_ani_jaccard from prior work (N=99 overlap species) |
+| `h2_composite_vs_rpartial.png` | Composite score vs r_partial_emb_jaccard (partial ecotype signal metric, N=70) |
 
 ---
 
@@ -228,7 +231,8 @@ Among species not previously analyzed, the highest-priority candidates are:
 
 - Cohan FM. (2002). "What are bacterial species?" *Annu Rev Microbiol* 56:457–487.
 - Cohan FM, Koeppel AF. (2008). "The origins of ecological diversity in prokaryotes." *Curr Biol* 18(21):R1024–1034.
-- Kettler GC, Martiny AC, et al. (2007). "Patterns and implications of gene gain and loss in the evolution of Prochlorococcus." *PLoS Genet* 3(12):e231. PMID: 18159947
+- Dewar AE, Hao C, Belcher LJ, Ghoul M, et al. (2024). "Bacterial lifestyles shapes pangenomes." *PNAS* 121(14):e2320170121. DOI: 10.1073/pnas.2320170121
+- Kettler GC, Martiny AC, et al. (2007). "Patterns and implications of gene gain and loss in the evolution of Prochlorococcus." *PLoS Genet* 3(12):e231. PMID: 18159947. DOI: 10.1371/journal.pgen.0030231
 - Larkin AA, Blinebry SK, et al. (2016). "Niche partitioning and biogeography of high light adapted Prochlorococcus across taxonomic ranks in the North Pacific." *ISME J* 10:1555–1567. PMID: 26800235
 - Maistrenko OM, Mende DR, et al. (2020). "Disentangling the impact of environmental and phylogenetic constraints on prokaryotic within-species diversity." *ISME J* 14:1247–1261. PMID: 32047279
 - Von Meijenfeldt FAB, Hogeweg P, et al. (2023). "A social niche breadth score reveals niche range strategies of generalists and specialists." *Nat Ecol Evol* 7:768–781.
