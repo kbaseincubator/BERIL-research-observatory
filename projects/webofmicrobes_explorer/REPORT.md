@@ -33,37 +33,47 @@ The two Pseudomonas direct matches are ENIGMA groundwater isolates with rich FB 
 
 *(Notebook: 01_database_overview.ipynb, 02_cross_collection_links.ipynb)*
 
-### 3. WoM Metabolite Production Overlaps with FB Carbon Source Experiments
+### 3. 19 WoM-Produced Metabolites Are Tested as FB Carbon/Nitrogen Sources
 
-For `pseudo3_N2E3`, 109 WoM-metabolite ↔ FB-condition name overlaps were found. Key direct matches where WoM detects metabolite production and FB tests the same compound as a carbon source:
+![ENIGMA isolate metabolite profiles in R2A medium](figures/enigma_metabolite_heatmap.png)
 
-| WoM Metabolite | FB Condition | Type |
-|---------------|-------------|------|
-| alanine | L-Alanine, D-Alanine | carbon source |
-| arginine | L-Arginine | nitrogen source |
-| glycine | Glycine | carbon source |
-| lactate | Sodium D-Lactate | carbon source |
-| proline | L-Proline | carbon source |
-| phenylalanine | L-Phenylalanine | carbon source |
-| tryptophan | L-Tryptophan | carbon source |
-| trehalose | D-Trehalose dihydrate | carbon source |
-| thymine | Thymine | carbon source |
-| adenine | Adenine hydrochloride | carbon source |
+For `pseudo3_N2E3`, curated matching identified **19 metabolites** that the organism produces (WoM) and that the Fitness Browser tests as carbon or nitrogen sources:
 
-This means we can ask: "Pseudomonas FW300-N2E3 produces lactate (WoM). Which genes are important for lactate utilization (FB)?" — directly connecting metabolite output to gene function.
+| WoM Metabolite | Action | FB Condition | FB Type |
+|---------------|--------|-------------|---------|
+| alanine | I | L-Alanine, D-Alanine | carbon/nitrogen |
+| arginine | I | L-Arginine | nitrogen source |
+| glycine | I | Glycine | nitrogen source |
+| lactate | E | Sodium D-Lactate | carbon source |
+| proline | I | L-Proline | carbon source |
+| phenylalanine | I | L-Phenylalanine | carbon source |
+| tryptophan | I | L-Tryptophan | nitrogen source |
+| valine | E | L-Valine | carbon source |
+| lysine | E | L-Lysine | nitrogen source |
+| threonine | I | L-Threonine | nitrogen source |
+| trehalose | I | D-Trehalose dihydrate | carbon source |
+| adenine | I | Adenine hydrochloride | nitrogen source |
+| adenosine | I | Adenosine | nitrogen source |
+| inosine | I | Inosine | nitrogen source |
+| thymine | E | Thymine | nitrogen source |
+| malate | I | L-Malic acid | carbon source |
+| nicotinamide | I | Nicotinamide | — |
+| carnitine | E | Carnitine hydrochloride | — |
+
+This enables the question: "Pseudomonas FW300-N2E3 produces lactate de novo (WoM action=E). Which genes are fitness-important for lactate utilization (FB)?" — directly connecting metabolite output to gene function. Of the 19 matches, 5 are de novo products (E) and 14 are amplified metabolites (I).
 
 *(Notebook: 02_cross_collection_links.ipynb)*
 
-### 4. 68.5% of Identified WoM Metabolites Map to ModelSEED Molecules
+### 4. 26.8% of WoM Metabolites Have Definitive ModelSEED Links (68.5% with Ambiguous Formula Matches)
 
-| Match Type | WoM Compounds | Percentage |
-|-----------|---------------|------------|
-| Exact name match | 69 | 26.8% |
-| Formula-only match | 107 | 41.6% |
-| **Total matched** | **176** | **68.5%** |
-| Unmatched | 81 | 31.5% |
+| Match Type | WoM Compounds | Confidence | Percentage |
+|-----------|---------------|-----------|------------|
+| Exact name match | 69 | **High** — 1:1 mapping | 26.8% |
+| Formula-only match | 107 | **Low** — 1:8.4 avg expansion (107 WoM → 900 MS molecules) | 41.6% |
+| **Total with any link** | **176** | Mixed | **68.5%** |
+| Unmatched | 81 | — | 31.5% |
 
-Of 257 identified (non-unknown) WoM compounds, 176 have at least one ModelSEED molecule link. This enables reaction-level annotation for the majority of WoM metabolites.
+Of 257 identified (non-unknown) WoM compounds, **69 (26.8%) have definitive ModelSEED links** by exact name match. An additional 107 match by molecular formula alone, but formula matches are inherently ambiguous — each WoM formula maps to an average of 8.4 ModelSEED molecules (e.g., C5H11NO2 matches valine, norvaline, betaine, 5-aminopentanoate, and others). Formula matches provide candidate sets for manual curation, not definitive identifications.
 
 *(Notebook: 02_cross_collection_links.ipynb)*
 
@@ -118,7 +128,7 @@ The 2018 WoM snapshot contains 37 organisms across 5 ENIGMA-funded projects:
 
 **WoM ↔ Fitness Browser**: Strong for 3 organisms. The two Pseudomonas strains have >5,000 genes and >100 experiments each, with FB conditions that directly test metabolites WoM detects as produced. E. coli Keio is the same strain but WoM data is thin (12 observations, sulfur focus only).
 
-**WoM ↔ ModelSEED**: Good. 68.5% of identified metabolites link to ModelSEED molecules, enabling reaction-level and pathway-level annotation.
+**WoM ↔ ModelSEED**: Moderate. 26.8% of identified metabolites have definitive name-based links to ModelSEED molecules (high confidence). An additional 41.6% match by formula only (ambiguous, ~8:1 expansion ratio). Combined, 68.5% have at least one candidate link.
 
 **WoM ↔ GapMind**: Blocked by naming convention mismatch. GapMind pathway names (internal IDs) don't contain simple metabolite names. A proper lookup table mapping GapMind pathways to substrate/product metabolites is needed.
 
@@ -130,7 +140,8 @@ The 2018 WoM snapshot contains 37 organisms across 5 ENIGMA-funded projects:
 
 **H1 is partially supported.** Cross-collection links are real and actionable:
 - 3 organisms have direct WoM ↔ FB connections with substantial fitness data
-- 68.5% of identified metabolites link to ModelSEED reactions
+- 19 metabolites that N2E3 produces are tested as FB carbon/nitrogen sources
+- 26.8% of identified metabolites have definitive ModelSEED links (68.5% with ambiguous formula matches)
 - All genera have pangenome representation
 
 However, the **absence of consumption data** is a fundamental limitation. The 2018 WoM snapshot records only what organisms produce, not what they consume. This prevents testing the most interesting question — whether consumed metabolites predict gene essentiality. The data is also small (37 organisms, 5 projects) and from a single laboratory.
@@ -147,7 +158,7 @@ However, the **absence of consumption data** is a fundamental limitation. The 20
 This project provides the first characterization of WoM data within a multi-collection lakehouse context. Key novel findings:
 
 1. **Action encoding clarification**: The E/I distinction (emerged vs increased) was not prominently documented and required data exploration to decode. This is critical for correct biological interpretation.
-2. **Cross-collection link assessment**: Quantified that 68.5% of WoM metabolites connect to ModelSEED and 3 organisms directly bridge to FB fitness data — demonstrating that metabolite-to-gene integration is technically feasible.
+2. **Cross-collection link assessment**: Quantified that 26.8% of WoM metabolites have definitive ModelSEED links, 19 metabolites bridge directly to FB carbon/nitrogen source experiments, and 3 organisms span both collections — demonstrating that metabolite-to-gene integration is technically feasible.
 3. **Metabolic novelty rate**: The 15–32% range of de novo production across ENIGMA isolates is a new phenotypic measure enabled by the E/I distinction.
 
 ### Limitations
@@ -186,6 +197,11 @@ This project provides the first characterization of WoM data within a multi-coll
 |----------|---------|
 | `01_database_overview.ipynb` | Inventory of WoM contents, organism categorization, FB strain matching, action encoding analysis |
 | `02_cross_collection_links.ipynb` | ModelSEED compound matching, GapMind pathway mapping, pangenome species search, FB condition overlap |
+
+### Figures
+| Figure | Description |
+|--------|-------------|
+| `enigma_metabolite_heatmap.png` | Heatmap of 10 ENIGMA isolate metabolite profiles in R2A medium, showing Increased (blue) vs Emerged (red) actions |
 
 ## Future Directions
 

@@ -22,16 +22,18 @@ Web of Microbes (WoM; Kosina et al. 2018, BMC Microbiology) is a curated exometa
 
 ## Reproduction
 
-Notebooks must be run on the BERDL JupyterHub (requires `berdl_notebook_utils` for Spark access).
+Both notebooks require an active Spark session on the BERDL JupyterHub (`berdl_notebook_utils` for Spark/MinIO access). NB01 queries `kescience_webofmicrobes` and `kescience_fitnessbrowser`. NB02 additionally queries `kbase_msd_biochemistry` and `kbase_ke_pangenome`.
 
 ```
-NB01 (database overview & FB overlap)
-  └─► data/*.csv (organism profiles, metabolite summaries)
-       └─► NB02 (cross-collection linking: GapMind, ModelSEED)
-            └─► figures/ (metabolite heatmaps, overlap diagrams)
+NB01 (database overview, FB overlap, heatmap)
+  └─► data/*.csv + figures/enigma_metabolite_heatmap.png
+       └─► NB02 (cross-collection linking: ModelSEED, GapMind, pangenome)
+            └─► data/modelseed_*.csv
 ```
 
 **Prerequisites**: Active Spark session on BERDL JupyterHub.
+
+**Note**: The RESEARCH_PLAN described a third notebook (NB03: Metabolite Interaction Profiles) which was deferred. The absence of consumption data in this 2018 WoM snapshot made organism-comparison heatmaps less informative than planned — the data only records production, so cross-feeding analysis is not possible with this version.
 
 ## Authors
 Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
