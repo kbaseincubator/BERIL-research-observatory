@@ -1,0 +1,65 @@
+{
+  "tenant": "kescience",
+  "dataset": "bacdive",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/bacdive/",
+    "silver_base": "s3a://cdm-lake/tenant-sql-warehouse/kescience/kescience_bacdive.db"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "strain",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/bacdive/strain.tsv",
+      "schema_sql": "bacdive_id INT, dsm_number STRING, description STRING, ncbi_taxid STRING, ncbi_taxid_match_level STRING, species_name STRING, strain_designation STRING, type_strain STRING, keywords STRING, doi STRING"
+    },
+    {
+      "name": "taxonomy",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/bacdive/taxonomy.tsv",
+      "schema_sql": "bacdive_id INT, domain STRING, phylum STRING, tax_class STRING, tax_order STRING, family STRING, genus STRING, species STRING, full_name STRING"
+    },
+    {
+      "name": "culture_condition",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/bacdive/culture_condition.tsv",
+      "schema_sql": "bacdive_id INT, medium_name STRING, growth STRING, medium_link STRING, temperature STRING, record_type STRING"
+    },
+    {
+      "name": "isolation",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/bacdive/isolation.tsv",
+      "schema_sql": "bacdive_id INT, sample_type STRING, country STRING, continent STRING, geographic_location STRING, cat1 STRING, cat2 STRING, cat3 STRING"
+    },
+    {
+      "name": "physiology",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/bacdive/physiology.tsv",
+      "schema_sql": "bacdive_id INT, gram_stain STRING, cell_shape STRING, motility STRING, oxygen_tolerance STRING, murein_type STRING, predicted_gram STRING, predicted_motility STRING, predicted_oxygen STRING"
+    },
+    {
+      "name": "metabolite_utilization",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/bacdive/metabolite_utilization.tsv",
+      "schema_sql": "bacdive_id INT, compound_name STRING, chebi_id STRING, utilization STRING"
+    },
+    {
+      "name": "sequence_info",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/bacdive/sequence_info.tsv",
+      "schema_sql": "bacdive_id INT, accession_type STRING, accession STRING, database STRING, assembly_level STRING, description STRING"
+    },
+    {
+      "name": "enzyme",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/bacdive/enzyme.tsv",
+      "schema_sql": "bacdive_id INT, enzyme_name STRING, ec_number STRING, activity STRING"
+    }
+  ]
+}
