@@ -389,6 +389,18 @@ Whole-genome fitness correlation with NaCl: Zn (r=0.72) > Mn (0.55) > Cu (0.53) 
 
 ## Template
 
+### [webofmicrobes_explorer] WoM action 'E' encodes de novo metabolite production, distinct from 'I' (increased)
+
+The Web of Microbes database uses a 4-action encoding system. For organisms, 'E' (Emerged) means the metabolite was absent from the control medium and now detected — genuine de novo biosynthesis. 'I' (Increased) means the metabolite was present in the control and its level went up. E and I are mutually exclusive (0 overlap across 10,744 observations). For the control ("The Environment"), 'D' means Detected in medium and 'N' means Not detected. Critically, there is NO "Decreased" (consumption) action for any organism in the 2018 WoM snapshot — all 742 'D' observations belong to the control. This means the database records only production, not consumption.
+
+### [webofmicrobes_explorer] WoM ENIGMA isolates have direct Fitness Browser strain matches
+
+Two WoM organisms are exact strain matches to FB organisms: Pseudomonas sp. FW300-N2E3 = `pseudo3_N2E3` (5,854 genes, 211 experiments) and Pseudomonas sp. GW456-L13 = `pseudo13_GW456_L13` (5,243 genes, 106 experiments). E. coli BW25113 = `Keio` is also the same strain. These enable direct metabolite-to-gene-fitness linking. The FB conditions for these organisms include carbon source experiments (L-alanine, L-proline, sodium D-lactate, etc.) that test the same metabolites WoM detects as produced — 109 metabolite-condition name overlaps.
+
+### [webofmicrobes_explorer] 68.5% of identified WoM metabolites link to ModelSEED molecules
+
+Of 257 identified (non-unknown) WoM compounds, 69 match ModelSEED molecules by exact name and 107 by formula, totaling 176 (68.5%). This enables reaction-level annotation for the majority of WoM metabolites.
+
 ```markdown
 ### [project_name] Brief title
 
