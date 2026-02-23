@@ -22,7 +22,7 @@ This direction is opposite to the positive correlation stated in H1 (which predi
 
 ![Left: CV of branch distances vs r_ani_jaccard from prior ecotype_analysis (rho=0.15, p=0.130, N=99). Right: Composite score vs r_ani_jaccard (rho=-0.37, p<0.001). High composite score species have gene content less coupled to ANI phylogeny.](figures/h2_retrospective_validation.png)
 
-![Composite score vs r_partial_emb_jaccard (environment–gene content partial correlation controlling for phylogeny), the key ecotype signal metric from prior work. Spearman rho=0.277, p=0.010, N=70.](figures/h2_composite_vs_rpartial.png)
+![Composite score vs r_partial_emb_jaccard (environment–gene content partial correlation controlling for phylogeny), the key ecotype signal metric from prior work. Spearman rho=0.277, p=0.010, N=85.](figures/h2_composite_vs_rpartial.png)
 
 Among the 99 species present in both datasets:
 
@@ -106,7 +106,7 @@ Pairwise Spearman correlations among the three dimensions are weak (all |rho| < 
 |-----------|--------------|---------|
 | Branch CV vs r_ani_jaccard (N=99) | 0.153 | 0.130 |
 | Composite vs r_ani_jaccard (N=99) | −0.37 | < 0.001 |
-| Composite vs r_partial_emb_jaccard (N=99) | 0.277 | 0.010 |
+| Composite vs r_partial_emb_jaccard (N=85) | 0.277 | 0.010 |
 
 **Conclusion**: H0 not rejected for branch CV alone. The composite score predicts the partial-correlation ecotype signal (r_partial, the key metric from prior work), validating multi-dimension screening. The negative association with r_ani_jaccard reflects that top composite candidates have gene content less determined by clonal inheritance.
 
