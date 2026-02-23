@@ -4,7 +4,7 @@
 What does the `kescience_webofmicrobes` exometabolomics collection contain, which organisms overlap with the Fitness Browser, and how well do metabolite uptake/release profiles connect to pangenome-predicted metabolic capabilities?
 
 ## Status
-In Progress — data ingested, awaiting exploratory analysis.
+Complete — see [Report](REPORT.md) for findings.
 
 ## Overview
 Web of Microbes (WoM; Kosina et al. 2018, BMC Microbiology) is a curated exometabolomics database from the Northen lab at LBNL. It records which metabolites microorganisms consume (decrease) or produce (increase) when grown in defined environments. This project characterizes the BERDL-hosted copy (2018 archived snapshot): scale, organism coverage, metabolite composition, Fitness Browser overlap, and cross-collection linking potential to the pangenome and ModelSEED biochemistry.
