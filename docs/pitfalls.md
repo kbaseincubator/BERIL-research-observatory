@@ -328,6 +328,39 @@ There are three environments with different import patterns. Using the wrong one
 
 **Recovery**: Log out of JupyterHub and start a new session. Then run `get_spark_session()` from a notebook to restart the Spark Connect daemon. You cannot restart it from the CLI.
 
+### Spark Connect Sidecar Startup Race (Off-Cluster Access)
+
+**Context**: Off-cluster access via `scripts/get_spark_session.py` + proxy chain.
+
+**Problem**: After restarting the JupyterHub kernel, the Python kernel becomes ready almost immediately, but the Spark Connect gRPC sidecar (the Java process on port 15002) takes an additional 20–60 seconds to start and register with the BERDL gateway. During this window, any connection attempt from outside the cluster fails with:
+
+```
+SparkConnectGrpcException: FAILED_PRECONDITION
+  "Spark Connect server at jupyter-<username>.jupyterhub-prod.svc.cluster.local:15002
+   is not reachable. Please ensure you have logged in to BERDL JupyterHub and your
+   notebook's Spark Connect service is running."
+```
+
+This is misleading — the session *is* running, the sidecar just hasn't finished starting. The error looks identical to a "not logged in" error, so it's easy to mistake for an authentication problem and keep resetting the kernel unnecessarily.
+
+**Solution**: After restarting the kernel, wait ~30–60 seconds before attempting off-cluster connections, or poll with retries:
+
+```bash
+source .venv-berdl/bin/activate
+for i in $(seq 1 10); do
+    echo "Attempt $i at $(date +%H:%M:%S)..."
+    result=$(python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok" 2>&1)
+    if echo "$result" | grep -q '"ok"'; then
+        echo "Connected!"
+        break
+    fi
+    echo "  Not ready — retrying in 20s"
+    sleep 20
+done
+```
+
+**Do not** reset the kernel repeatedly — this just restarts the race. One reset is enough; then wait and retry from the local side.
+
 ### Running Notebooks from CLI
 
 Notebooks can be executed headlessly via `jupyter nbconvert`:
