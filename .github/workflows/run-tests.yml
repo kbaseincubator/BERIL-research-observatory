@@ -27,9 +27,9 @@ jobs:
           uv sync --all-extras
 
       - name: Run tests
-        env:
-          PYTHONPATH: ${{github.workspace}}
-        run: uv run pytest
+        run: |
+          cd ui
+          uv run pytest
 
       - name: Send to Codecov
         uses: codecov/codecov-action@v5
