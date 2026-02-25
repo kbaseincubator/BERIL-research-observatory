@@ -6,7 +6,7 @@ Which genes of unknown function across 48 bacteria have strong fitness phenotype
 
 ## Status
 
-In Progress — research plan created (v2), awaiting analysis.
+Complete — all 5 notebooks executed, 100 prioritized candidates produced. See [Report](REPORT.md) for findings.
 
 ## Overview
 
@@ -29,7 +29,15 @@ This project explicitly builds on completed projects:
 
 ## Reproduction
 
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+**Prerequisites**: BERDL JupyterHub access with `get_spark_session()` available (NB01–NB04 require Spark). NB05 runs locally on pandas only.
+
+**Dependencies**: `numpy`, `pandas`, `matplotlib`, `seaborn`, `scipy`, `statsmodels`, `scikit-learn`, `umap-learn`
+
+**Steps**:
+1. Ensure prior project data exists: `conservation_vs_fitness/data/fb_pangenome_link.tsv`, `fitness_modules/data/modules/`, `essential_genome/data/`
+2. Execute notebooks in order: `jupyter nbconvert --to notebook --execute --inplace notebooks/01_integration_census.ipynb`
+3. Repeat for NB02 through NB05 (NB05 does not require Spark)
+4. All intermediate data is saved to `data/`; figures to `figures/`
 
 ## Authors
 
