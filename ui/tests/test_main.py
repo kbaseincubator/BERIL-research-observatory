@@ -158,9 +158,18 @@ class TestGetBaseContext:
         request.app.state.repo_data = repository_data
         context = get_base_context(request)
         expected_keys = [
-            "request", "app_name", "total_genomes", "total_species", "total_genes",
-            "project_count", "discovery_count", "idea_count", "collection_count",
-            "contributor_count", "skill_count", "last_updated",
+            "request",
+            "app_name",
+            "total_genomes",
+            "total_species",
+            "total_genes",
+            "project_count",
+            "discovery_count",
+            "idea_count",
+            "collection_count",
+            "contributor_count",
+            "skill_count",
+            "last_updated",
         ]
         for key in expected_keys:
             assert key in context, f"Missing key: {key}"
@@ -391,9 +400,7 @@ class TestWebhookEndpoint:
     def test_valid_signature_triggers_reload(self, client, repository_data):
         secret = "mysecret"
         body = b"{}"
-        expected_sig = hmac.new(
-            secret.encode(), body, hashlib.sha256
-        ).hexdigest()
+        expected_sig = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
 
         with (
             patch("app.main.settings") as mock_settings,
@@ -424,23 +431,25 @@ class TestPlotlyPreprocessor:
         import nbformat
         from app.main import PlotlyPreprocessor
 
-        cell = nbformat.from_dict({
-            "cell_type": "code",
-            "source": "",
-            "metadata": {},
-            "outputs": [
-                {
-                    "output_type": "display_data",
-                    "metadata": {},
-                    "data": {
-                        "application/vnd.plotly.v1+json": {
-                            "data": [],
-                            "layout": {},
-                        }
-                    },
-                }
-            ],
-        })
+        cell = nbformat.from_dict(
+            {
+                "cell_type": "code",
+                "source": "",
+                "metadata": {},
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "metadata": {},
+                        "data": {
+                            "application/vnd.plotly.v1+json": {
+                                "data": [],
+                                "layout": {},
+                            }
+                        },
+                    }
+                ],
+            }
+        )
 
         preprocessor = PlotlyPreprocessor()
         result_cell, resources = preprocessor.preprocess_cell(cell, {}, 0)
@@ -456,18 +465,20 @@ class TestPlotlyPreprocessor:
         import nbformat
         from app.main import PlotlyPreprocessor
 
-        cell = nbformat.from_dict({
-            "cell_type": "code",
-            "source": "",
-            "metadata": {},
-            "outputs": [
-                {
-                    "output_type": "stream",
-                    "name": "stdout",
-                    "text": "hello\n",
-                }
-            ],
-        })
+        cell = nbformat.from_dict(
+            {
+                "cell_type": "code",
+                "source": "",
+                "metadata": {},
+                "outputs": [
+                    {
+                        "output_type": "stream",
+                        "name": "stdout",
+                        "text": "hello\n",
+                    }
+                ],
+            }
+        )
 
         preprocessor = PlotlyPreprocessor()
         result_cell, resources = preprocessor.preprocess_cell(cell, {}, 0)
@@ -479,12 +490,14 @@ class TestPlotlyPreprocessor:
         import nbformat
         from app.main import PlotlyPreprocessor
 
-        cell = nbformat.from_dict({
-            "cell_type": "code",
-            "source": "",
-            "metadata": {},
-            "outputs": [],
-        })
+        cell = nbformat.from_dict(
+            {
+                "cell_type": "code",
+                "source": "",
+                "metadata": {},
+                "outputs": [],
+            }
+        )
 
         preprocessor = PlotlyPreprocessor()
         _, resources = preprocessor.preprocess_cell(cell, {}, 0)

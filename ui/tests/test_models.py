@@ -349,7 +349,9 @@ class TestEnums:
 
 class TestDataclassDefaults:
     def test_notebook(self):
-        n = Notebook(filename="analysis.ipynb", path="projects/p/notebooks/analysis.ipynb")
+        n = Notebook(
+            filename="analysis.ipynb", path="projects/p/notebooks/analysis.ipynb"
+        )
         assert n.title is None
         assert n.description is None
 
@@ -375,7 +377,9 @@ class TestDataclassDefaults:
         assert "COUNT" in sq.query
 
     def test_column_defaults(self):
-        col = Column(name="genome_id", data_type="STRING", description="Genome identifier")
+        col = Column(
+            name="genome_id", data_type="STRING", description="Genome identifier"
+        )
         assert col.is_primary_key is False
         assert col.is_foreign_key is False
         assert col.foreign_key_table is None
@@ -400,14 +404,14 @@ class TestDataclassDefaults:
         assert p.code_example is None
 
     def test_performance_tip_defaults(self):
-        tip = PerformanceTip(id="use-index", title="Use Index", description="Always index FKs")
+        tip = PerformanceTip(
+            id="use-index", title="Use Index", description="Always index FKs"
+        )
         assert tip.table_name is None
         assert tip.code_example is None
 
     def test_research_idea_defaults(self):
-        idea = ResearchIdea(
-            id="my-idea", title="My Idea", research_question="Can we?"
-        )
+        idea = ResearchIdea(id="my-idea", title="My Idea", research_question="Can we?")
         assert idea.status == IdeaStatus.PROPOSED
         assert idea.priority == Priority.MEDIUM
         assert idea.hypothesis is None
