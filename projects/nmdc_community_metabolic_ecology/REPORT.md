@@ -6,26 +6,20 @@
 
 ![H1 BQH correlation barplot](figures/h1_bqh_barplot.png)
 
-Across 12 testable amino acid biosynthesis pathways, **10 of 12 (83%) showed negative
+Across 13 testable amino acid biosynthesis pathways, **11 of 13 (85%) showed negative
 Spearman correlations** between community pathway completeness and ambient amino acid
 metabolite intensity — the direction predicted by the Black Queen Hypothesis (BQH).
 Two pathways reached significance after Benjamini-Hochberg FDR correction (q < 0.05):
-**leucine biosynthesis** (r = −0.326, q = 0.045, n = 69) and **arginine biosynthesis**
-(r = −0.297, q = 0.045, n = 80). Methionine biosynthesis showed the largest effect
-(r = −0.496) but was limited by sample size (n = 18, q = 0.108). A binomial sign test
-confirmed that the majority-negative direction is significantly non-random (p = 0.019),
+**leucine biosynthesis** (r = −0.390, q = 0.022, n = 62) and **arginine biosynthesis**
+(r = −0.297, q = 0.049, n = 80). Methionine biosynthesis showed the largest effect
+(r = −0.496) but was limited by sample size (n = 18, q = 0.117). A binomial sign test
+confirmed that the majority-negative direction is significantly non-random (p = 0.011),
 indicating a weak but consistent community-scale BQH signal.
 
 One outlier was tyrosine (r = +0.419, ns), whose anti-BQH direction may reflect
 alternative tyrosine sources (e.g., phenylalanine hydroxylation) complicating the
-biosynthesis-vs-availability relationship.
-
-**Note on leucine result**: A string-matching bug in NB04 caused three isoleucine
-compounds ("Alloisoleucine, DL-", "N-[(+)-Jasmonoyl]-(L)-isoleucine",
-"N-[...]-L-isoleucine") to be misassigned to the `leu` pathway, slightly inflating
-n=69 for leucine. The bug has been corrected (first-match-wins in NB04 cell-14).
-The corrected run is expected to reduce leucine sample count by ~3 and add isoleucine
-as a testable pathway. Results above reflect the pre-fix run.
+biosynthesis-vs-availability relationship. Isoleucine biosynthesis (r = −0.057, n = 18,
+q = 0.823) is testable as the 13th pathway but shows no BQH signal at this sample size.
 
 *(Notebook: 05_statistical_analysis.ipynb)*
 
@@ -98,18 +92,19 @@ The `frac_likely_complete` metric is computed in NB03 for sensitivity comparison
 
 | Pathway | n | Spearman r | p | q (BH) | FDR sig? |
 |---|---|---|---|---|---|
-| met | 18 | −0.496 | 0.036 | 0.108 | — |
-| leu | 69 | −0.326 | 0.006 | 0.045 | **Yes** |
-| arg | 80 | −0.297 | 0.007 | 0.045 | **Yes** |
-| trp | 44 | −0.294 | 0.052 | 0.126 | — |
-| thr | 23 | −0.271 | 0.211 | 0.363 | — |
-| phe | 88 | −0.159 | 0.140 | 0.280 | — |
-| val | 54 | −0.151 | 0.274 | 0.412 | — |
-| ser | 59 | −0.061 | 0.645 | 0.704 | — |
-| asn | 73 | −0.061 | 0.610 | 0.704 | — |
-| chorismate | 65 | −0.038 | 0.765 | 0.765 | — |
-| gly | 114 | +0.081 | 0.389 | 0.518 | — |
-| tyr | 26 | +0.419 | 0.033 | 0.108 | — |
+| met | 18 | −0.496 | 0.036 | 0.117 | — |
+| leu | 62 | −0.390 | 0.002 | 0.022 | **Yes** |
+| arg | 80 | −0.297 | 0.007 | 0.049 | **Yes** |
+| trp | 44 | −0.294 | 0.052 | 0.136 | — |
+| thr | 23 | −0.271 | 0.211 | 0.393 | — |
+| phe | 88 | −0.159 | 0.140 | 0.303 | — |
+| val | 54 | −0.151 | 0.275 | 0.446 | — |
+| ser | 59 | −0.061 | 0.645 | 0.762 | — |
+| asn | 73 | −0.061 | 0.610 | 0.762 | — |
+| ile | 18 | −0.057 | 0.823 | 0.823 | — |
+| chorismate | 65 | −0.038 | 0.765 | 0.823 | — |
+| gly | 114 | +0.081 | 0.389 | 0.562 | — |
+| tyr | 26 | +0.419 | 0.033 | 0.117 | — |
 | gln | 4 | — | — | — | *skipped* |
 | pro | 9 | — | — | — | *skipped* |
 
@@ -139,19 +134,22 @@ substantially higher predicted carbon metabolic diversity than Freshwater commun
 
 ### H1: Black Queen Signal
 
-The results provide **weak but statistically consistent support** for community-scale
-Black Queen dynamics in environmental soil microbiomes. The finding that 10 of 12
-tested pathways trend in the BQH-predicted direction (p = 0.019 binomial test) is
-notable given the noise inherent in cross-study metabolomics data: different NMDC
-studies use different LC-MS protocols, ionisation modes, and normalisation conventions,
-all of which add variance that would attenuate true correlations.
+The results provide **weak but consistent support** for community-scale Black Queen
+dynamics in environmental soil microbiomes. The finding that 11 of 13 tested pathways
+trend in the BQH-predicted direction (p = 0.011 binomial test) is notable given the
+noise inherent in cross-study metabolomics data: different NMDC studies use different
+LC-MS protocols, ionisation modes, and normalisation conventions, all of which add
+variance that would attenuate true correlations.
 
 The two FDR-significant pathways — leucine and arginine — are both energetically
 expensive to synthesise (leucine: 37 ATP equivalents; arginine: 26 ATP equivalents),
 consistent with the BQH prediction that costly functions are most likely to be lost
 when environmental supply is reliable. Methionine shows the largest effect size
-(r = −0.50) but is underpowered (n = 18); a larger metabolomics dataset would likely
-reach significance for this pathway.
+(r = −0.50) but is underpowered (n = 18, q = 0.117); a larger metabolomics dataset
+would likely reach significance for this pathway. The leucine signal was strengthened
+by the isoleucine/leucine compound-mapping bug fix (r −0.326 → −0.390, q 0.045 →
+0.022): three isoleucine compounds that had been misassigned to leucine had near-zero
+completeness-vs-metabolite correlation, diluting the true leucine signal.
 
 The tyrosine outlier (r = +0.42) merits caution: tyrosine can be produced from
 phenylalanine via non-biosynthetic hydroxylation, so communities with high
@@ -241,10 +239,11 @@ ecosystem chemistry beyond taxonomic composition alone.
 
 - **Compound identification**: Metabolite-to-pathway matching relied on string-based
   compound name matching. A substring collision bug (isoleucine compounds matching the
-  "leucine" pattern) was identified by automated review and corrected in NB04 cell-14;
-  results should be re-run to include isoleucine (`ile`) as a testable pathway and
-  obtain accurate leucine counts. KEGG compound IDs in the NMDC data are sparsely
-  populated (2% annotation rate), limiting KEGG-based matching.
+  "leucine" pattern) was identified by automated review and corrected in NB04 cell-14
+  using first-match-wins; results reflect the corrected run. Isoleucine is now included
+  as a 13th testable pathway (r = −0.057, ns). KEGG compound IDs in the NMDC data are
+  sparsely populated (2% annotation rate), limiting KEGG-based matching; cysteine,
+  histidine, and lysine remain untestable due to absent compound detections.
 
 - **Chorismate metabolomics proxy**: Shikimic acid and 3-dehydroshikimic acid are used
   as metabolomics proxies for chorismate pathway activity. These are *upstream*
