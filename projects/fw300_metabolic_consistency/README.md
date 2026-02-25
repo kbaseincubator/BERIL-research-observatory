@@ -4,7 +4,7 @@
 For *Pseudomonas fluorescens* FW300-N2E3 (ENIGMA groundwater isolate), how consistent are exometabolomic outputs (Web of Microbes), genome-wide gene fitness (Fitness Browser), species-level utilization phenotypes (BacDive), and computational pathway predictions (GapMind)?
 
 ## Status
-In Progress — research plan created, awaiting analysis.
+Complete — three-notebook analysis finished. See [Report](REPORT.md) for findings. Key result: 94% mean concordance across databases, with tryptophan overflow metabolism as the strongest biologically meaningful discordance.
 
 ## Overview
 FW300-N2E3 is one of very few organisms with data in all four major BERDL metabolic databases: Web of Microbes (58 metabolites produced on R2A), Fitness Browser (211 RB-TnSeq experiments including 82 carbon sources), BacDive (83 compounds tested for P. fluorescens), and the KE pangenome (GapMind pathways, eggNOG annotations). No published study has directly integrated exometabolomics with fitness data. This project triangulates across these databases to test whether they paint a coherent metabolic picture or reveal informative discordances (e.g., overflow metabolism, strain-vs-species differences, prediction gaps).
