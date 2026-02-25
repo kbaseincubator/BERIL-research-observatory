@@ -82,3 +82,9 @@ venv/
 
 .stignore
 .stfolder/
+
+# Python test results
+.coverage
+htmlcov/
+.pytest_cache/
+.ruff_cache/
