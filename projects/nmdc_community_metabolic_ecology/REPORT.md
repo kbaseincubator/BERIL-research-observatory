@@ -20,6 +20,13 @@ One outlier was tyrosine (r = +0.419, ns), whose anti-BQH direction may reflect
 alternative tyrosine sources (e.g., phenylalanine hydroxylation) complicating the
 biosynthesis-vs-availability relationship.
 
+**Note on leucine result**: A string-matching bug in NB04 caused three isoleucine
+compounds ("Alloisoleucine, DL-", "N-[(+)-Jasmonoyl]-(L)-isoleucine",
+"N-[...]-L-isoleucine") to be misassigned to the `leu` pathway, slightly inflating
+n=69 for leucine. The bug has been corrected (first-match-wins in NB04 cell-14).
+The corrected run is expected to reduce leucine sample count by ~3 and add isoleucine
+as a testable pathway. Results above reflect the pre-fix run.
+
 *(Notebook: 05_statistical_analysis.ipynb)*
 
 ---
@@ -80,6 +87,14 @@ the 30% QC threshold), with 92% of samples mapping ≥85% of community abundance
 GTDB pangenome species.
 
 ### H1: Black Queen Hypothesis
+
+Community pathway completeness was computed using the binary `frac_complete` metric
+(fraction of taxa in the community whose GapMind score ≥ 5, i.e., "complete" with no
+missing steps). This threshold was chosen over `frac_likely_complete` (score ≥ 4)
+because a score of 5 reflects GapMind's unambiguous "complete" call — the taxon
+possesses all required pathway steps — which maps directly onto the BQH prediction that
+taxa without a complete pathway are the ones expected to depend on environmental supply.
+The `frac_likely_complete` metric is computed in NB03 for sensitivity comparisons.
 
 | Pathway | n | Spearman r | p | q (BH) | FDR sig? |
 |---|---|---|---|---|---|
@@ -225,9 +240,23 @@ ecosystem chemistry beyond taxonomic composition alone.
   correlates more strongly with metabolite pools.
 
 - **Compound identification**: Metabolite-to-pathway matching relied on string-based
-  compound name matching (e.g., "leucine" → `leu` pathway). Unmatched compounds (e.g.,
-  isoleucine, lysine, cysteine, histidine) were excluded; KEGG compound IDs in the
-  NMDC data are sparsely populated.
+  compound name matching. A substring collision bug (isoleucine compounds matching the
+  "leucine" pattern) was identified by automated review and corrected in NB04 cell-14;
+  results should be re-run to include isoleucine (`ile`) as a testable pathway and
+  obtain accurate leucine counts. KEGG compound IDs in the NMDC data are sparsely
+  populated (2% annotation rate), limiting KEGG-based matching.
+
+- **Chorismate metabolomics proxy**: Shikimic acid and 3-dehydroshikimic acid are used
+  as metabolomics proxies for chorismate pathway activity. These are *upstream*
+  intermediates, not chorismate itself; their ambient concentrations reflect precursor
+  availability rather than chorismate pool size. The chorismate BQH correlation
+  (r = −0.038) should be interpreted cautiously.
+
+- **Genus-proxy-ambiguous taxon assignment**: For ~1,352 Centrifuge taxa that match
+  multiple GTDB clades (same genus, multiple species), one representative clade was
+  selected by alphabetical tiebreaking on `gtdb_species_clade_id`. This is now
+  documented in NB03 cell-17. The sensitivity of community completeness scores to this
+  choice is bounded: genus_proxy_ambiguous taxa account for ~6.5% of mapped abundance.
 
 - **Sample size imbalance**: Glutamine (n = 4) and proline (n = 9) could not be tested
   due to insufficient metabolomics coverage. These pathways would be informative
@@ -281,7 +310,7 @@ ecosystem chemistry beyond taxonomic composition alone.
 
 | Figure | Description |
 |---|---|
-| `figures/nmdc_sample_coverage.png` | Venn-style sample overlap by omics type and ecosystem |
+| `figures/nmdc_sample_coverage.png` | Sample overlap figure — **note**: generated before the `omics_files_table` bridge was discovered (NB01); shows 0 overlap. Superseded by `bridge_quality_distribution.png` from NB02 which reflects the correct 220-sample cohort. |
 | `figures/bridge_quality_distribution.png` | Distribution of GTDB bridge coverage across 220 samples |
 | `figures/pathway_completeness_heatmap.png` | Mean community pathway completeness by pathway × ecosystem type |
 | `figures/metabolomics_distribution.png` | Compound intensity distributions across samples |

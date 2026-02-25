@@ -290,4 +290,4 @@ GROUP BY clade_name, pathway, metabolic_category
 
 ## Authors
 
-TBD
+- **Christopher Neely** | ORCID: 0000-0002-2620-8948 | Author

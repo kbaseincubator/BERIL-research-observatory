@@ -61,7 +61,31 @@ alone.
 
 ## Reproduction
 
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+### Prerequisites
+
+- Python ≥ 3.10 with packages from `requirements.txt`:
+  ```
+  pip install -r requirements.txt
+  ```
+- **NB01–NB04**: BERDL JupyterHub with `get_spark_session()` injected into the kernel
+- **NB05**: Runs locally — no Spark required (reads cached CSVs from `data/`)
+
+### Step-by-step
+
+1. **NB01** `01_nmdc_exploration.ipynb` — Run on JupyterHub. ~5 min.
+   Produces: `data/nmdc_sample_inventory.csv`, `data/nmdc_taxonomy_coverage.csv`
+
+2. **NB02** `02_taxonomy_bridge.ipynb` — Run on JupyterHub. ~10 min.
+   Produces: `data/taxon_bridge.tsv`, `data/bridge_quality.csv`, `data/nmdc_sample_inventory.csv` (updated with 221-sample bridge)
+
+3. **NB03** `03_pathway_completeness.ipynb` — Run on JupyterHub. ~15–20 min (160M-row GapMind aggregation).
+   Produces: `data/species_pathway_completeness.csv`, `data/community_pathway_matrix.csv`, `figures/pathway_completeness_heatmap.png`
+
+4. **NB04** `04_metabolomics_processing.ipynb` — Run on JupyterHub or locally. ~5 min.
+   Produces: `data/metabolomics_matrix.csv`, `data/amino_acid_metabolites.csv`, `data/analysis_ready_matrix.csv`
+
+5. **NB05** `05_statistical_analysis.ipynb` — Run locally. ~1 min.
+   Produces: `data/h1_bqh_correlations.csv`, `data/h2_pca_scores.csv`, `data/h2_pca_loadings.csv`, all `figures/`
 
 Notebooks 01–03 require BERDL JupyterHub access (`get_spark_session()`).
 Notebooks 04–05 run locally from cached CSV outputs.
