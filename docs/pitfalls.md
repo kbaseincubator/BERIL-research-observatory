@@ -981,6 +981,34 @@ If you must convert pandas back to Spark (small DataFrames only), convert column
 Python lists first: `df[col] = df[col].tolist()` for each column before calling
 `spark.createDataFrame(df)`.
 
+### [nmdc_community_metabolic_ecology] `abiotic_features` Column Names Use `_has_numeric_value` Suffix; No `water_content` Column
+
+**Problem**: Most numeric columns in `nmdc_arkin.abiotic_features` use a `_has_numeric_value` suffix (e.g., `annotations_tot_org_carb_has_numeric_value`), but two columns do not: `annotations_ph` (no suffix) and depth/temp which do have the suffix. Using the bare name without the suffix raises `UNRESOLVED_COLUMN`.
+
+Additionally, `annotations_water_content` does not exist. Use `annotations_diss_org_carb_has_numeric_value` and `annotations_conduc_has_numeric_value` instead.
+
+**Columns are already `double` type** — no `CAST` needed, but harmless if included.
+
+**All-zero values mean missing**: the table stores `0.0` for unmeasured variables rather than `NULL`. Replace zeros with `NaN` before analysis:
+```python
+for col in abiotic_num_cols:
+    abiotic[col] = abiotic[col].replace(0.0, np.nan)
+```
+
+**Correct column reference**:
+```sql
+-- WRONG
+a.annotations_tot_org_carb, a.annotations_tot_nitro_content, a.annotations_water_content
+
+-- CORRECT
+a.annotations_tot_org_carb_has_numeric_value,
+a.annotations_tot_nitro_content_has_numeric_value,
+a.annotations_diss_org_carb_has_numeric_value,   -- dissolved organic carbon proxy
+a.annotations_conduc_has_numeric_value            -- conductance (replaces water_content)
+```
+
+Full column list: `sample_id`, `annotations_ph`, `annotations_temp_has_numeric_value`, `annotations_depth_has_numeric_value`, `annotations_depth_has_maximum_numeric_value`, `annotations_depth_has_minimum_numeric_value`, `annotations_tot_org_carb_has_numeric_value`, `annotations_tot_nitro_content_has_numeric_value`, `annotations_diss_org_carb_has_numeric_value`, `annotations_conduc_has_numeric_value`, `annotations_diss_oxygen_has_numeric_value`, `annotations_ammonium_has_numeric_value`, `annotations_tot_phosp_has_numeric_value`, `annotations_soluble_react_phosp_has_numeric_value`, `annotations_carb_nitro_ratio_has_numeric_value`, `annotations_chlorophyll_has_numeric_value`, `annotations_calcium_has_numeric_value`, `annotations_magnesium_has_numeric_value`, `annotations_potassium_has_numeric_value`, `annotations_manganese_has_numeric_value`, `annotations_samp_size_has_numeric_value`.
+
 ---
 
 ## Quick Checklist
