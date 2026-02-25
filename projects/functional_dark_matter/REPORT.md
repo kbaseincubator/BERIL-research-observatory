@@ -28,7 +28,18 @@ Stress conditions (metals, oxidative, osmotic) dominate among dark genes with st
 
 ### Finding 3: GapMind identifies 1,256 organism-pathway pairs where dark genes may fill metabolic gaps
 
-Across 44 FB-linked species, GapMind pathway analysis identified 1,256 organism-pathway pairs with nearly-complete metabolic pathways (score: `steps_missing_low`) where dark genes with strong fitness effects could potentially encode the missing enzymatic steps. The most frequently gapped pathways involve carbon source utilization (fucose, rhamnose, sorbitol, myoinositol) and amino acid biosynthesis.
+Across 44 FB-linked species, GapMind pathway analysis identified 1,256 organism-pathway pairs with nearly-complete metabolic pathways (score: `steps_missing_low`) where dark genes with strong fitness effects could potentially encode the missing enzymatic steps. The most frequently gapped pathways are carbon source utilization pathways:
+
+| Pathway | Category | Organisms with gaps | Example organisms |
+|---------|----------|--------------------:|-------------------|
+| Fucose utilization | carbon | 32 | Marinobacter, *P. stutzeri* RCH2, *D. vulgaris* |
+| Rhamnose utilization | carbon | 31 | Marinobacter, *P. putida*, Phaeo |
+| Sorbitol utilization | carbon | 30 | *D. desulfuricans*, *D. vulgaris*, Miyama |
+| Myoinositol utilization | carbon | 28 | *P. putida*, *P. syringae*, WCS417 |
+| Gluconate utilization | carbon | 26 | Marinobacter, *D. desulfuricans* |
+| Asparagine biosynthesis | amino acid | 24 | across diverse phyla |
+
+The organisms with the most gapped pathways — Marinobacter (49), *D. desulfuricans* ME-23 (45), *P. stutzeri* (45) — are also those with the largest dark gene complements and most specific fitness phenotypes, suggesting that their "missing steps" may be encoded by functionally dark genes.
 
 ![GapMind gap-filling candidates](figures/fig05_gapmind_gaps.png)
 
@@ -36,7 +47,21 @@ Across 44 FB-linked species, GapMind pathway analysis identified 1,256 organism-
 
 ### Finding 4: Cross-organism fitness concordance identifies 65 ortholog groups with conserved dark gene phenotypes
 
-Of dark gene ortholog groups present in 3+ FB organisms, 65 show measurable fitness concordance — meaning orthologs of the same unknown gene produce fitness effects under the same condition classes across different bacterial species. The strongest concordance is in motility-related genes, suggesting conserved but unannotated components of the bacterial chemotaxis/flagellar machinery.
+Of dark gene ortholog groups present in 3+ FB organisms, 65 show measurable fitness concordance — meaning orthologs of the same unknown gene produce fitness effects under the same condition classes across different bacterial species. The top concordant groups span carbon utilization, stress response, and motility:
+
+| Ortholog group | Condition | Organisms | Concordance | Domains | Notes |
+|----------------|-----------|----------:|------------:|---------|-------|
+| OG11386 | carbon source | 8 | 1.00 | DUF5064 | In *P. putida*, *P. syringae*, *P. stutzeri* RCH2 |
+| OG15006 | carbon source | 7 | 1.00 | — | In *Ralstonia* spp. |
+| OG05812 | stress | 8 | 1.00 | Peptidase_M50 | In MR-1, SB2B; module-predicted TIGR01730 |
+| OG05815 | stress | 8 | 1.00 | ParE_toxin | In *S. meliloti* |
+| OG14628 | carbon source | 5 | 1.00 | — | In *Ralstonia* spp., strong concordance |
+| OG12530 | carbon source | 4 | 1.00 | DUF2844 | In *B. thailandensis*, *Burkholderia* sp. 376 |
+| OG03384 | stress | 6 | 1.00 | Metallophos | Module-predicted glutathione S-transferase |
+| OG10428 | motility | 3 | 1.00 | ThiS | In *S. meliloti*; max |fit| = 2.2 |
+| OG10455 | motility | 3 | 1.00 | MS_channel | In *S. meliloti*; mechanosensitive channel domains |
+
+The strongest concordance is in carbon source genes (spanning 3–8 organisms) and motility genes (3 organisms each), suggesting conserved but unannotated components of carbohydrate metabolism and chemotaxis machinery respectively. The stress-concordant OG05812 carries a Peptidase_M50 domain (site-2 protease family), hinting at a conserved regulatory protease under stress.
 
 ![Cross-organism concordance](figures/fig06_concordance.png)
 
@@ -52,7 +77,22 @@ Phylogenetic breadth analysis of dark gene clusters reveals a range of conservat
 
 ### Finding 6: Within-species biogeographic analysis reveals 10 dark gene clusters with significant environmental enrichment
 
-Among 151 accessory dark gene clusters testable via carrier vs. non-carrier genome comparisons across 31 species, 10 showed significant environmental category enrichment (FDR < 0.05) and 1 showed significant AlphaEarth embedding divergence. Notable findings include a DUF796 protein in *P. syringae* enriched in genomes from stress-associated environments, and *P. putida* dark genes with carriers enriched in human-associated environments.
+Among 151 accessory dark gene clusters testable via carrier vs. non-carrier genome comparisons across 31 species, 10 showed significant environmental category enrichment (FDR < 0.05) and 1 showed significant AlphaEarth embedding divergence. The 10 significant clusters are:
+
+| Organism | Locus | Condition | |fit| | Carrier env | Odds ratio | FDR | Breadth | Module prediction |
+|----------|-------|-----------|------:|-------------|----------:|----:|---------|-------------------|
+| *P. putida* | PP_0025 | stress | 4.8 | human_clinical | 27.5 | 7e-6 | — | PF13193 |
+| *P. putida* | PP_3434 | nitrogen | 3.1 | human_clinical | 28.6 | 7e-6 | — | — |
+| *P. putida* | PP_0642 | nitrogen | 2.8 | human_clinical | 11.6 | 0.001 | universal | — |
+| *P. putida* | PP_3105 | stress | 3.7 | human_assoc | inf | 0.004 | — | — |
+| *B. thetaiotaomicron* | 354052 | stress | 2.4 | human_assoc | 0.17 | 0.005 | universal | — |
+| *P. syringae* B728a | Psyr_0167 | in planta | 4.6 | plant_assoc | 11.9 | 0.005 | universal | — |
+| *B. thetaiotaomicron* | 350920 | stress | 2.2 | human_assoc | 0.37 | 0.031 | universal | — |
+| *P. putida* N2C3 | AO356_11255 | nitrogen | 3.4 | freshwater | inf | 0.031 | universal | D-Ala-D-Ala carboxypeptidase |
+| *K. oxytoca* | BWI76_RS15640 | carbon | 2.1 | human_assoc | 0.14 | 0.031 | universal | Phage tail tape-measure |
+| *P. syringae* B728a | Psyr_2830 | stress | 3.4 | plant_assoc | 10.9 | 0.031 | universal | — |
+
+Two patterns emerge: (1) *P. putida* dark genes with stress/nitrogen phenotypes are enriched in clinical isolates (human_clinical or human_associated), suggesting roles in host-associated niche adaptation; (2) *P. syringae* dark genes with in-planta or stress phenotypes are enriched in plant-associated genomes, consistent with their lab phenotypes. The *P. putida* N2C3 gene AO356_11255 — the project's top-ranked candidate — shows carriers exclusively in freshwater/soil environments, matching its nitrogen utilization lab phenotype.
 
 ![Environmental distribution of carrier species](figures/fig08_env_distribution.png)
 
@@ -62,15 +102,35 @@ Among 151 accessory dark gene clusters testable via carrier vs. non-carrier geno
 
 *(Notebook: 03_biogeographic_analysis.ipynb)*
 
-### Finding 7: Lab-field concordance rate of 61.7% — carrier environments match lab fitness conditions above chance
+### Finding 7: Lab-field concordance rate of 61.7%, with NMDC validation confirming 4/4 pre-registered abiotic predictions
 
-Pre-registered mapping of FB experiment condition classes to expected environmental categories showed 29/47 (61.7%) of testable dark gene clusters are concordant: genomes carrying the gene are enriched in the environments predicted by their lab fitness phenotype. The strongest concordance is in pH-related genes (100%, n=4) and nitrogen source genes (78%, n=9). Six clusters reached FDR < 0.2 significance, including *P. putida* N2C3 genes enriched in soil/freshwater environments matching their carbon and nitrogen utilization phenotypes.
+Pre-registered mapping of FB experiment condition classes to expected environmental categories showed 29/47 (61.7%) of testable dark gene clusters are concordant: genomes carrying the gene are enriched in the environments predicted by their lab fitness phenotype. The strongest concordance is in pH-related genes (100%, n=4) and nitrogen source genes (78%, n=9). Six clusters reached FDR < 0.2 significance:
+
+| Organism | Locus | Condition | |fit| | Expected environments | Carrier % | Non-carrier % | OR | FDR |
+|----------|-------|-----------|------:|----------------------|----------:|--------------:|---:|----:|
+| *K. oxytoca* | BWI76_RS15525 | carbon | 2.3 | soil, freshwater, plant | 14.3% | 2.5% | 6.6 | 0.069 |
+| *K. oxytoca* | BWI76_RS15535 | carbon | 2.2 | soil, freshwater, plant | 14.3% | 2.5% | 6.6 | 0.069 |
+| *P. putida* N2C3 | AO356_12450 | carbon | 2.1 | soil, freshwater, plant | 62.5% | 0% | inf | 0.093 |
+| *P. putida* N2C3 | AO356_11255 | nitrogen | 3.4 | soil, freshwater, wastewater | 80.0% | 8.3% | 44.0 | 0.093 |
+| *P. putida* N2C3 | AO356_25185 | anaerobic | 2.7 | soil, freshwater, animal | 55.6% | 0% | inf | 0.178 |
+| *P. putida* N2C3 | AO356_24150 | nitrogen | 3.0 | soil, freshwater, wastewater | 55.6% | 0% | inf | 0.178 |
+
+The *P. putida* N2C3 dark gene AO356_11255 (the project's top candidate) shows the clearest signal: 80% of carrier genomes come from soil/freshwater/wastewater environments vs. only 8.3% of non-carriers (OR = 44, FDR = 0.093), matching its lab phenotype of strong nitrogen utilization fitness.
 
 ![Lab-field concordance matrix](figures/fig11_concordance_matrix.png)
 
-![NMDC correlation results](figures/fig12_nmdc_correlations.png)
+**NMDC independent validation** further corroborates the lab-field link. Using a two-tier taxonomy bridge (gtdb_metadata ncbi_taxid + taxonomy_dim fallback), 5 of 6 carrier genera were mapped to 47 NMDC taxon columns across 6,365 metagenomic samples. Genus-level dark gene carrier abundance was computed as a weighted sum (taxon abundance x number of dark gene clusters per genus), then correlated with 15 NMDC abiotic measurements. Of 105 total Spearman correlation tests, **76 were significant at FDR < 0.05**. Critically, all 4 testable pre-registered predictions were confirmed:
 
-The NMDC independent validation was limited by a species ID format mismatch in the genus-level taxonomy bridge, yielding no matched genera. This is a technical limitation rather than a biological null result.
+| Condition class | Abiotic variable | rho | n | FDR | Direction |
+|-----------------|-----------------|----:|--:|----:|-----------|
+| nitrogen source | total nitrogen content | +0.109 | 1,231 | 2.3e-4 | Positive (expected) |
+| nitrogen source | ammonium nitrogen | +0.231 | 1,230 | 8.0e-16 | Positive (expected) |
+| pH | pH | +0.157 | 4,366 | 7.4e-25 | Positive (expected) |
+| anaerobic | dissolved oxygen | -0.298 | 272 | 1.5e-6 | Negative (expected) |
+
+Taxa carrying dark genes with nitrogen-source lab phenotypes are more abundant in NMDC samples with higher nitrogen availability; pH-phenotype carriers track with sample pH; and anaerobic-phenotype carriers are enriched in low-oxygen samples. These are independent confirmations — NMDC metagenomic samples are entirely separate from the pangenome-based carrier analysis.
+
+![NMDC correlation results](figures/fig12_nmdc_correlations.png)
 
 *(Notebook: 04_lab_field_concordance.ipynb)*
 
@@ -78,13 +138,38 @@ The NMDC independent validation was limited by a species ID format mismatch in t
 
 Multi-dimensional scoring across 6 evidence axes (fitness importance, cross-organism conservation, functional inference quality, pangenome distribution, biogeographic signal, experimental tractability) ranked 17,344 dark genes. The top 100 candidates (score range: 0.556–0.650) come from 23 organisms, with Shewanella MR-1 (25 candidates), *P. putida* N2C3 (18), and Marinobacter (9) most represented. 86% of top candidates have high-confidence functional hypotheses supported by 3+ evidence types, and 89/100 have module-based function predictions.
 
+The top 20 candidates with their evidence profiles:
+
+| Rank | Organism | Locus | |fit| | Condition | Module prediction | Domains | Core? | Score |
+|-----:|----------|-------|------:|-----------|-------------------|---------|:-----:|------:|
+| 1 | *P. putida* N2C3 | AO356_11255 | 3.4 | nitrogen | D-Ala-D-Ala carboxypeptidase | EamA | acc | 0.650 |
+| 2 | Shewanella MR-1 | 202463 | 6.4 | stress | PF01145 | YGGT | core | 0.633 |
+| 3 | Shewanella MR-1 | 199738 | 5.5 | nitrogen | K03306 | Gcw_chp, TIGR02001 | core | 0.633 |
+| 4 | Shewanella MR-1 | 203545 | 4.0 | nitrogen | K03306 | DUF4124 | core | 0.629 |
+| 5 | Shewanella MR-1 | 202450 | 3.9 | nitrogen | K03306 | Gly_transporter | core | 0.628 |
+| 6 | *P. putida* N2C3 | AO356_18320 | 3.8 | motility | PF00460 | MotY_N, OmpA | core | 0.624 |
+| 7 | *P. fluorescens* N1B4 | Pf1N1B4_3696 | 3.7 | pH | PF00361 | DUF3108 | core | 0.622 |
+| 8 | *P. putida* N2C3 | AO356_15270 | 5.6 | carbon | PF02589 | LrgB | core | 0.620 |
+| 9 | Shewanella MR-1 | 203247 | 4.6 | stress | PF01145 | GBBH-like_N | core | 0.620 |
+| 10 | Shewanella MR-1 | 201124 | 5.0 | nitrogen | PF01144 | HgmA_N, HgmA_C | core | 0.620 |
+| 11 | Marinobacter | GFF2506 | 3.4 | stress | ArnT/PqaB | AsmA_2, DUF3971 | core | 0.613 |
+| 12 | Marinobacter | GFF1827 | 3.7 | stress | PF01145 | Bax1-I | core | 0.611 |
+| 13 | Shewanella MR-1 | 201731 | 4.0 | motility | TIGR00254 | ZapC | core | 0.609 |
+| 14 | Marinobacter | GFF1367 | 5.7 | stress | PF00270 | IMS | core | 0.608 |
+| 15 | Shewanella MR-1 | 202474 | 7.1 | carbon | PF00460 | YggL_50S_bp | core | 0.608 |
+| 16 | *P. putida* N2C3 | AO356_17245 | 3.6 | stress | K00763 | Biotin_lipoyl, HlyD | core | 0.606 |
+| 17 | *P. putida* N2C3 | AO356_08210 | 4.0 | stress | K03808 | DUF3426, zinc_ribbon | core | 0.605 |
+| 18 | *P. putida* | PP_0765 | 4.1 | carbon | PF00196 | DUF1302 | acc | 0.603 |
+| 19 | Shewanella MR-1 | 203720 | 4.5 | nitrogen | — | Ser_hydrolase | core | 0.605 |
+| 20 | Shewanella MR-1 | 203026 | 3.5 | carbon | — | AFG1_ATPase | core | 0.602 |
+
+Several patterns emerge in the top candidates: (1) MR-1 genes 199738, 203545, and 202450 all carry K03306 module predictions with different domain architectures, suggesting paralogous members of a conserved nitrogen-responsive system; (2) MR-1 genes 202463 and 203247 both predict PF01145 under stress, pointing to a stress-responsive membrane protein family (YGGT/GBBH-like); (3) the top candidate AO356_11255 is the only accessory gene in the top 10, with the strongest biogeographic signal (lab-field OR = 44, NMDC nitrogen correlation).
+
 ![Score component distributions](figures/fig13_score_components.png)
 
 ![Top 20 candidate dossiers](figures/fig14_top20_dossiers.png)
 
 ![Organism distribution of top candidates](figures/fig15_organism_distribution.png)
-
-The top-ranked candidate is *P. putida* N2C3 AO356_11255 (score: 0.650), a hypothetical protein with strong nitrogen source fitness (|fit| = 3.36), module-predicted D-alanyl-D-alanine carboxypeptidase function, an EamA domain, accessory pangenome status, and lab-field concordant biogeographic signal. The second-ranked candidate is Shewanella MR-1 gene 202463 (score: 0.632), a conserved hypothetical with extreme stress fitness (|fit| = 6.36), a YGGT domain, core pangenome status, and 6 specific phenotypes across stress conditions.
 
 *(Notebook: 05_prioritization_dossiers.ipynb)*
 
@@ -118,6 +203,8 @@ The top-ranked candidate is *P. putida* N2C3 AO356_11255 (score: 0.650), a hypot
 | AlphaEarth embedding divergence (FDR < 0.05) | 67 | 1 | 1.5% |
 | Lab-field concordance (directional) | 47 | 29 concordant | 61.7% |
 | Lab-field concordance (FDR < 0.2) | 47 | 6 significant | 12.8% |
+| NMDC abiotic correlations (FDR < 0.05) | 105 | 76 | 72.4% |
+| NMDC pre-registered predictions confirmed | 4 | 4 | 100% |
 
 ### Prioritization Summary
 
@@ -143,7 +230,7 @@ The top-ranked candidate is *P. putida* N2C3 AO356_11255 (score: 0.650), a hypot
 
 - **H1c (Cross-organism concordance)**: Supported for the 65 testable ortholog groups. Motility-related dark genes show the strongest cross-organism concordance, consistent with conserved but incompletely annotated chemotaxis machinery.
 
-- **H1d (Biogeographic pattern)**: Supported at modest effect size. 10/137 clusters show significant environmental enrichment, and the overall concordance rate (61.7%) exceeds the 50% chance level. The strongest signals are in *Pseudomonas* species with well-characterized environmental diversity.
+- **H1d (Biogeographic pattern)**: Supported. 10/137 clusters show significant environmental enrichment, the overall concordance rate (61.7%) exceeds the 50% chance level, and NMDC independent validation confirmed all 4 testable pre-registered predictions (nitrogen~nitrogen, pH~pH, anaerobic~dissolved oxygen). The strongest within-species signals are in *Pseudomonas* and *P. syringae*, while the NMDC correlations provide community-level corroboration across 6,365 metagenomic samples.
 
 - **H1e (Pathway integration)**: Supported in principle. GapMind identifies 1,256 organism-pathway pairs where dark genes could fill gaps, though direct gene-to-step matching requires deeper enzymatic characterization.
 
@@ -163,7 +250,7 @@ This project contributes:
 
 2. **Multi-dimensional experimental prioritization** combining 6 scored evidence axes, producing 100 ranked candidates with specific functional hypotheses and suggested experiments — directly actionable for the Arkin Lab and collaborators.
 
-3. **Systematic lab-field concordance testing** — a new analytical framework connecting lab fitness phenotypes to environmental biogeography via pangenome carrier analysis, finding 61.7% concordance across 47 testable clusters.
+3. **Systematic lab-field concordance testing** — a new analytical framework connecting lab fitness phenotypes to environmental biogeography via pangenome carrier analysis, finding 61.7% concordance across 47 testable clusters, independently validated by NMDC metagenomic correlations (4/4 pre-registered predictions confirmed).
 
 4. **Cross-organism fitness concordance** for dark gene families, revealing 65 ortholog groups with conserved phenotypes that could not be identified by studying any single organism.
 
@@ -171,7 +258,7 @@ This project contributes:
 
 1. **Environmental metadata sparsity**: AlphaEarth embeddings cover only 28% of genomes (83K/293K), and NCBI isolation source metadata is inconsistent, limiting the power of biogeographic tests.
 
-2. **NMDC genus-level resolution**: The NMDC validation was blocked by a species ID format mismatch (GTDB clade IDs with `--RS_GCF_*` suffix vs. taxonomy table species names). Even if resolved, NMDC validation operates at genus level, which may miss species-specific dark gene signals.
+2. **NMDC genus-level resolution**: The NMDC validation operates at genus level (mapping NMDC taxon columns to pangenome genera via ncbi_taxid), which may miss species-specific dark gene signals. Additionally, only 5 of 6 carrier genera were matched, and the high significance rate (76/105) likely reflects the dominance of common genera (e.g., *Pseudomonas*, *Klebsiella*) in both datasets.
 
 3. **Annotation bias**: Some "hypothetical" genes may have annotations in databases not checked (UniProt, InterPro, recent NCBI updates). The dark gene count (57,011) likely overestimates the true number of functionally uncharacterized genes.
 
@@ -189,7 +276,7 @@ This project contributes:
 |------------|-------------|---------|
 | `kescience_fitnessbrowser` | `gene`, `genefitness`, `specificphenotype`, `experiment`, `cofit`, `ortholog`, `genedomain`, `seedannotation`, `organism`, `specog` | Fitness phenotypes, gene descriptions, co-fitness, orthologs, domains |
 | `kbase_ke_pangenome` | `gene_cluster`, `gene`, `gene_genecluster_junction`, `genome`, `eggnog_mapper_annotations`, `gtdb_species_clade`, `gtdb_taxonomy_r214v1`, `gtdb_metadata`, `ncbi_env`, `alphaearth_embeddings_all_years`, `gapmind_pathways` | Pangenome conservation, phylogenetic breadth, environmental metadata, pathway analysis |
-| `nmdc_arkin` | `taxonomy_features`, `abiotic_features`, `taxonomy_dim` | Independent environmental validation (limited by genus-matching issue) |
+| `nmdc_arkin` | `taxonomy_features`, `abiotic_features`, `taxonomy_dim` | Independent environmental validation via genus-level taxonomy bridge |
 
 ### Generated Data
 
@@ -205,7 +292,7 @@ This project contributes:
 | `data/carrier_genome_map.tsv` | 8,139 | Gene cluster to carrier genome mapping |
 | `data/carrier_noncarrier_tests.tsv` | 151 | Within-species carrier vs non-carrier test results |
 | `data/lab_field_concordance.tsv` | 47 | Pre-registered lab-field concordance test results |
-| `data/nmdc_validation.tsv` | 15 | NMDC abiotic correlation tests (limited by genus mismatch) |
+| `data/nmdc_validation.tsv` | 105 | NMDC abiotic correlation tests (7 score types x 15 abiotic variables) |
 | `data/scoring_all_dark.tsv` | 17,344 | Full scoring for all strong/essential dark genes |
 | `data/prioritized_candidates.tsv` | 100 | Top 100 ranked candidates with hypotheses and experiments |
 
@@ -218,7 +305,7 @@ This project contributes:
 | `01_integration_census.ipynb` | Build unified dark gene table from all prior projects + Fitness Browser queries |
 | `02_gapmind_concordance_phylo.ipynb` | GapMind gap-filling, cross-organism concordance, phylogenetic breadth |
 | `03_biogeographic_analysis.ipynb` | Environmental distribution of carriers, within-species tests |
-| `04_lab_field_concordance.ipynb` | Pre-registered lab-field concordance, NMDC validation attempt |
+| `04_lab_field_concordance.ipynb` | Pre-registered lab-field concordance, NMDC independent validation |
 | `05_prioritization_dossiers.ipynb` | Multi-dimensional scoring, ranking, candidate dossiers |
 
 ### Figures
@@ -243,13 +330,13 @@ This project contributes:
 
 ## Future Directions
 
-1. **Fix NMDC genus mapping** — resolve the GTDB species clade ID format mismatch to enable independent environmental validation at genus level. This requires stripping the `--RS_GCF_*` suffix from clade IDs before joining to the taxonomy table.
+1. **Experimental validation of top candidates** — the top 5 candidates (4 in MR-1, 1 in *P. putida* N2C3) are immediately testable via RB-TnSeq under their predicted condition classes. Specific targets: AO356_11255 (D-alanyl-D-alanine carboxypeptidase prediction, EamA domain — test under nitrogen limitation); MR-1 202463 (YGGT domain — test under multiple stress conditions); MR-1 199738/203545/202450 (K03306 paralog family — test under nitrogen limitation and compare single/double mutants).
 
-2. **Experimental validation of top candidates** — the top 5 candidates (3 in MR-1, 1 in *P. putida* N2C3) are immediately testable via RB-TnSeq under their predicted condition classes. The module-predicted functions (D-alanyl-D-alanine carboxypeptidase, YGGT domain protein, K03306) provide specific biochemical assays.
+2. **Expand to additional organisms** — 4 FB organisms lacked pangenome links. As BERDL coverage expands, re-running the pipeline on new species could identify additional candidates.
 
-3. **Expand to additional organisms** — 4 FB organisms lacked pangenome links. As BERDL coverage expands, re-running the pipeline on new species could identify additional candidates.
+3. **Protein structure prediction** — for the top 100 candidates, AlphaFold2 structure predictions could provide additional functional clues, particularly for DUF-containing proteins where domain-level annotation is insufficient.
 
-4. **Protein structure prediction** — for the top 100 candidates, AlphaFold2 structure predictions could provide additional functional clues, particularly for DUF-containing proteins where domain-level annotation is insufficient.
+4. **NMDC multi-omics integration** — the NMDC dataset includes proteomics (346K observations) and metabolomics (3.1M observations) that were not used here. Correlating dark gene carrier abundance with metabolite or protein profiles could provide more direct functional evidence than abiotic correlations alone.
 
 5. **Community resource** — publish the prioritized candidate list as a community resource for bacterial functional genomics, enabling other labs to target specific organisms or condition classes matching their expertise.
 
