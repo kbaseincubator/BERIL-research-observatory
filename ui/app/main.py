@@ -6,9 +6,13 @@ import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
 
+import json
+import uuid
+
 import nbformat
 from markupsafe import Markup
 from nbconvert import HTMLExporter
+from nbconvert.preprocessors import Preprocessor
 
 # Add custom Jinja2 filters
 import markdown
@@ -23,6 +27,50 @@ from .git_data_sync import ensure_repo_cloned, pull_latest
 from .models import CollectionCategory
 
 logger = logging.getLogger(__name__)
+
+PLOTLY_CDN = (
+    '<script src="https://cdn.plot.ly/plotly-3.4.0.min.js"'
+    ' charset="utf-8"></script>'
+)
+
+
+class PlotlyPreprocessor(Preprocessor):
+    """Convert application/vnd.plotly.v1+json outputs to rendered HTML."""
+
+    def preprocess_cell(self, cell, resources, cell_index):
+        new_outputs = []
+        needs_plotly = resources.get("needs_plotly", False)
+        for output in cell.get("outputs", []):
+            plotly_json = output.get("data", {}).get(
+                "application/vnd.plotly.v1+json"
+            )
+            if plotly_json is not None:
+                div_id = f"plotly-{uuid.uuid4().hex}"
+                fig_json = json.dumps(plotly_json)
+                html = (
+                    f'<div id="{div_id}" style="width:100%;min-height:400px;"></div>'
+                    f"<script>"
+                    f"(function(){{"
+                    f"  var fig = {fig_json};"
+                    f'  Plotly.newPlot("{div_id}", fig.data, fig.layout, fig.config || {{}});'
+                    f"}})();"
+                    f"</script>"
+                )
+                output = nbformat.from_dict(
+                    {
+                        "output_type": output["output_type"],
+                        "metadata": output.get("metadata", {}),
+                        "data": {
+                            "text/html": html,
+                            "text/plain": "[Plotly figure]",
+                        },
+                    }
+                )
+                needs_plotly = True
+            new_outputs.append(output)
+        cell["outputs"] = new_outputs
+        resources["needs_plotly"] = needs_plotly
+        return cell, resources
 
 
 # Add custom template globals
@@ -343,6 +391,10 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
         with open(notebook_path, "r", encoding="utf-8") as f:
             nb = nbformat.read(f, as_version=4)
 
+        # Convert plotly outputs to renderable HTML before exporting
+        preprocessor = PlotlyPreprocessor()
+        nb, nb_resources = preprocessor.preprocess(nb, {})
+
         # Convert to HTML
         html_exporter = HTMLExporter()
         html_exporter.template_name = "classic"
@@ -351,6 +403,10 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
         html_exporter.exclude_output_prompt = False
 
         (body, resources) = html_exporter.from_notebook_node(nb)
+
+        # Prepend Plotly CDN script if any plotly figures were found
+        if nb_resources.get("needs_plotly"):
+            body = PLOTLY_CDN + body
 
         context.update(
             {
