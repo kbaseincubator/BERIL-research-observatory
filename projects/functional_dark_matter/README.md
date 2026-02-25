@@ -2,17 +2,17 @@
 
 ## Research Question
 
-Which genes of unknown function across 48 bacteria have strong fitness phenotypes, and can cross-organism conservation, co-regulation modules, pangenome distribution, and biogeographic patterns characterize their likely functions and prioritize them for experimental follow-up?
+Which genes of unknown function across 48 bacteria have strong fitness phenotypes, and can biogeographic patterns, pathway gap analysis, and cross-organism fitness concordance — combined with existing function predictions and conservation data — prioritize them for experimental follow-up?
 
 ## Status
 
-In Progress — research plan created, awaiting analysis.
+In Progress — research plan created (v2), awaiting analysis.
 
 ## Overview
 
-Nearly one in four bacterial genes lacks functional annotation ("hypothetical protein"), yet many of these have experimentally measured fitness effects in the Fitness Browser's 27M measurements across 7,552 conditions. This project systematically catalogs ~3,700 "dark matter" genes with strong fitness phenotypes, applies five layers of computational inference (module membership, co-fitness, domain structure, conservation patterns, biogeographic distribution), and produces a prioritized candidate list for experimental characterization.
+Nearly one in four bacterial genes lacks functional annotation ("hypothetical protein"), yet many have experimentally measured fitness effects in the Fitness Browser's 27M measurements across 7,552 conditions. Previous observatory projects have already: predicted function for 6,691 hypothetical proteins via ICA modules (`fitness_modules`), identified 1,382 hypothetical essentials (`essential_genome`), and linked 177,863 FB genes to pangenome conservation status (`conservation_vs_fitness`).
 
-The approach integrates data across five BERDL collections: pangenome (293K genomes), Fitness Browser (48 organisms), NMDC multi-omics (6,365 environmental samples), ENIGMA CORAL (Oak Ridge ecology), and KBase Genomes (protein sequences). Environmental analysis uses AlphaEarth satellite embeddings and NMDC abiotic measurements to test whether dark gene carriers come from environments matching the lab conditions where the genes show fitness effects.
+This project builds on those foundations with genuinely new analyses: (1) GapMind pathway gap-filling to find dark genes encoding missing enzymatic steps, (2) cross-organism fitness concordance testing whether orthologs of the same dark gene show the same phenotypes, (3) biogeographic analysis using AlphaEarth satellite embeddings and NCBI metadata to test whether carrier environments match lab fitness conditions, and (4) integrated experimental prioritization producing a ranked candidate list.
 
 ## Quick Links
 
@@ -21,10 +21,11 @@ The approach integrates data across five BERDL collections: pangenome (293K geno
 
 ## Data Sources
 
-This project builds on several completed projects:
-- [`conservation_vs_fitness`](../conservation_vs_fitness/) — FB-pangenome link table (177,863 gene-cluster mappings)
-- [`fitness_modules`](../fitness_modules/) — ICA fitness modules (1,116 modules, 32 organisms)
-- [`essential_genome`](../essential_genome/) — Essential gene families (17,222 ortholog groups)
+This project explicitly builds on completed projects:
+- [`conservation_vs_fitness`](../conservation_vs_fitness/) — FB-pangenome link table (177,863 gene-cluster mappings, 44 organisms)
+- [`fitness_modules`](../fitness_modules/) — ICA fitness modules (1,116 modules, 32 organisms, 6,691 function predictions)
+- [`essential_genome`](../essential_genome/) — Essential gene families (17,222 ortholog groups, 1,382 predictions)
+- [`module_conservation`](../module_conservation/) — Module conservation patterns (86% core, 48 accessory modules)
 
 ## Reproduction
 

@@ -2,7 +2,28 @@
 
 ## Research Question
 
-Across 48 bacteria with genome-wide fitness data, which genes of unknown function have strong, reproducible fitness phenotypes, and can we use cross-organism conservation, co-regulation modules, pangenome distribution, and biogeographic patterns to characterize their likely functions and prioritize them for experimental follow-up?
+Across 48 bacteria with genome-wide fitness data, which genes of unknown function have strong, reproducible fitness phenotypes, and can we use biogeographic patterns, pathway gap analysis, and cross-organism fitness concordance — building on existing function predictions, conservation analyses, and ICA modules — to further characterize their likely functions and prioritize them for experimental follow-up?
+
+## Relationship to Prior Work
+
+This project explicitly builds on four completed observatory projects rather than re-deriving their results:
+
+| Prior Project | What It Produced | How This Project Uses It |
+|---|---|---|
+| `fitness_modules` | 1,116 ICA modules across 32 organisms; **6,691 function predictions** for hypothetical proteins | Loaded directly — module membership and predictions are input, not re-derived |
+| `essential_genome` | 17,222 ortholog families; 859 universally essential families; **1,382 function predictions** for hypothetical essentials; 7,084 orphan essential genes (58.7% hypothetical) | Essential genes are a separate dark matter class; existing predictions loaded |
+| `conservation_vs_fitness` | 177,863 gene-to-cluster links (44 organisms, 94.2% median coverage); conservation classification | FB-pangenome link table is the backbone for pangenome queries |
+| `module_conservation` | Module genes are 86% core; 48 accessory modules identified | Conservation patterns are input context |
+
+**What this project adds that is genuinely new:**
+1. **Unified dark gene catalog** integrating all prior data products into one table
+2. **GapMind pathway gap-filling** — do dark genes fill missing steps in nearly-complete metabolic pathways?
+3. **Cross-organism fitness concordance** — do orthologs of the same dark gene show concordant phenotypes across organisms?
+4. **Pangenome-wide phylogenetic distribution** — how widespread is each dark gene family across all 27,690 species (beyond the 48 FB organisms)?
+5. **Biogeographic analysis** — within-species carrier vs non-carrier environmental comparisons using AlphaEarth and NCBI metadata
+6. **Lab-field concordance** — do genes important under metal stress in the lab appear in genomes from contaminated sites?
+7. **NMDC independent environmental validation** — supplementary community-level corroboration
+8. **Integrated experimental prioritization** — ranked candidate list combining all evidence layers
 
 ## Hypothesis
 
@@ -11,15 +32,17 @@ Across 48 bacteria with genome-wide fitness data, which genes of unknown functio
 
 ### Sub-hypotheses
 
-- **H1a (Functional coherence)**: Dark genes with strong fitness effects are enriched in ICA fitness modules alongside annotated genes, enabling guilt-by-association function prediction.
+- **H1a (Functional coherence)**: Dark genes with strong fitness effects are enriched in ICA fitness modules alongside annotated genes, enabling guilt-by-association function prediction. *(Partially addressed by `fitness_modules` — this project quantifies coverage and tests on the full dark gene set.)*
 - **H1b (Conservation signal)**: Dark genes important under stress conditions are more likely to be accessory (environment-specific) than dark genes important for carbon/nitrogen metabolism (which should be more core).
-- **H1c (Cross-organism conservation)**: Dark gene families with orthologs in multiple FB organisms show concordant fitness phenotypes across organisms (same condition classes cause fitness defects).
+- **H1c (Cross-organism concordance)**: Dark gene families with orthologs in multiple FB organisms show concordant fitness phenotypes across organisms (same condition classes cause fitness defects). The pre-computed `specog` table provides per-OG condition-level fitness summaries.
 - **H1d (Biogeographic pattern)**: For accessory dark genes, genomes carrying the gene come from environments that match the lab conditions where the gene shows fitness effects (e.g., genes important under metal stress are enriched in genomes from contaminated sites).
-- **H1e (Pathway integration)**: Some dark genes fill "steps_missing" gaps in otherwise-complete GapMind pathways, suggesting they encode novel enzymes for known metabolic functions.
+- **H1e (Pathway integration)**: Some dark genes fill "steps_missing" gaps in otherwise-complete GapMind pathways, suggesting they encode novel enzymes for known metabolic functions. GapMind `score_category` uses a four-level hierarchy: `likely_complete` > `steps_missing_low` > `steps_missing_medium` > `not_present`; multiple rows per genome-pathway pair must be aggregated (MAX score) before interpreting gaps.
 
 ## Literature Context
 
-The "hypothetical protein" problem is one of microbiology's persistent gaps: ~25-40% of genes in typical bacterial genomes lack functional annotation despite decades of sequencing. The Fitness Browser (Price et al., 2018, Nature) provides genome-wide mutant fitness data for 48 bacteria under thousands of conditions — an unparalleled experimental resource for assigning function to unknown genes. Previous work has used cofitness (Bitbol & Bhatt, 2020) and ICA decomposition (Sastry et al., 2019, iModulon) to infer gene function from fitness data, but no systematic cross-organism census of "dark matter with fitness evidence" has been attempted at the scale enabled by BERDL's integrated pangenome, fitness, and environmental data.
+The "hypothetical protein" problem is one of microbiology's persistent gaps: ~25-40% of genes in typical bacterial genomes lack functional annotation despite decades of sequencing. The Fitness Browser (Price et al., 2018, Nature) provides genome-wide mutant fitness data for 48 bacteria under thousands of conditions — an unparalleled experimental resource for assigning function to unknown genes.
+
+Previous work in this observatory used ICA decomposition to build fitness modules and predict function for 6,691 hypothetical proteins (`fitness_modules`), identified 859 universally essential gene families with 1,382 predictions for hypothetical essentials (`essential_genome`), and established gene-level links between Fitness Browser organisms and the BERDL pangenome (`conservation_vs_fitness`). What has NOT been attempted is: (a) a unified analysis combining all these evidence layers, (b) biogeographic analysis of dark gene carriers using environmental metadata, or (c) an experimentally actionable prioritization of candidates for characterization.
 
 Key references:
 - Price et al. (2018) Nature 557:503–509 — Fitness Browser source data
@@ -31,80 +54,126 @@ Key references:
 
 ## Approach
 
-### Phase 1: Dark Matter Census (NB01-NB02)
+### Phase 1: Integration & Census (NB01)
 
-**Goal**: Catalog all genes of unknown function with strong fitness phenotypes across 48 FB organisms.
+**Goal**: Build a unified dark gene table by loading and merging all existing data products, then characterizing the full dark gene landscape.
 
-1. Extract all FB genes with their descriptions and annotations
-2. Classify annotation status:
-   - **Hypothetical**: desc contains "hypothetical protein" or is empty
+**What is loaded (not re-derived):**
+1. All FB genes (`gene` table, 228K) — classify annotation status:
+   - **Hypothetical**: desc contains "hypothetical protein" or is empty/null
    - **DUF**: desc contains "DUF" (domain of unknown function)
    - **Uncharacterized**: desc contains "uncharacterized" or "unknown"
-   - **Partial**: has domain hits (PFam/TIGRFam) but no full functional annotation
-   - **Annotated**: has a clear functional description (control group)
-3. For dark genes, extract fitness profiles: conditions where |fit| > 1 and |t| > 3
-4. Identify "high-value dark genes": those with specific phenotypes (from `specificphenotype` table)
-5. Integrate with existing data products:
-   - `fb_pangenome_link.tsv` for conservation status
-   - Fitness module membership (from `fitness_modules` project)
-   - Essential gene families (from `essential_genome` project)
+   - **Partial**: has domain hits (PFam/TIGRFam in `genedomain`) but no full functional annotation
+   - **Annotated**: clear functional description (control group)
+2. **Essential gene classification** from `essential_genome`: load orphan essentials (7,084 genes, 58.7% hypothetical) as a separate dark matter class. These have zero rows in `genefitness` (no viable mutants) and would be missed by fitness-effect filters alone.
+3. **Fitness phenotype summary** per dark gene: from `specificphenotype` (38K entries) and `genefitness` (conditions where |fit| > 1 and |t| > 3, with CAST to float)
+4. **Condition-class characterization**: join `genefitness` → `experiment` to tag each fitness effect with its experiment group (stress, carbon source, nitrogen source, etc.) — this is the foundation for lab-field concordance in NB04
+5. **Pangenome conservation** from `fb_pangenome_link.tsv` (177,863 links): core/accessory/singleton status per gene
+6. **Module membership** from `fitness_modules` project: which ICA module each gene belongs to, and the module's existing function prediction (6,691 predictions)
+7. **Ortholog families** from `essential_genome` project: 17,222 ortholog groups, essentiality classification
+8. **Co-fitness top partners** from `cofit` table: for dark genes NOT in any ICA module, load top 5 co-fitness partners with their annotations — provides functional context for the ~40% of dark genes outside modules
+9. **Domain annotations** from `genedomain`: PFam, TIGRFam, CDD hits that provide partial structural clues even for "hypothetical" genes
 
-### Phase 2: Functional Inference (NB03)
+**Output**: `data/dark_genes_integrated.tsv` — unified table (~54K dark genes, ~3,700 with strong fitness effects, plus ~4,100 hypothetical essentials) with all cross-references.
 
-**Goal**: Use co-regulation, domain structure, and pathway context to generate function hypotheses.
+### Phase 2: New Inference Layers (NB02)
 
-1. **Module guilt-by-association**: For dark genes in ICA modules, annotate the module's top functional enrichments (SEED, KEGG). If a dark gene is in a module dominated by "iron transport" genes, it's likely involved in iron transport.
-2. **Co-fitness network**: For dark genes not in modules, find top co-fitness partners. What annotated genes do they correlate with?
-3. **Domain-based inference**: From `genedomain` table, extract PFam/TIGRFam/CDD hits for dark genes. Partial domain annotation (e.g., "membrane protein" or "ATPase domain") constrains function even without full annotation.
-4. **GapMind pathway gaps**: For species with incomplete but nearly-complete GapMind pathways, check if dark genes map to the missing steps.
-5. **Cross-organism concordance**: For dark gene ortholog families, do they show the same condition-class phenotypes across organisms? Concordant phenotypes strengthen functional inference.
+**Goal**: Apply inference methods not covered by prior projects.
 
-### Phase 3: Conservation & Phylogenetic Distribution (NB04)
+1. **GapMind pathway gap-filling**:
+   - For the ~44 FB-linked species, query `gapmind_pathways` filtered by those species' genome IDs (not a full 305M-row scan)
+   - Aggregate multiple rows per genome-pathway pair using MAX score (per the `score_category` hierarchy: `likely_complete` > `steps_missing_low` > `steps_missing_medium` > `not_present`)
+   - Use two-stage aggregation: genome-pathway → species-pathway
+   - Identify pathways scored as `steps_missing_low` (nearly complete) and check if dark genes from those species could fill the missing enzymatic steps
+   - Match via EC numbers, KEGG reactions, or PFAM domains between dark gene annotations and missing pathway steps
 
-**Goal**: Characterize the evolutionary context of each dark gene family.
+2. **Cross-organism fitness concordance**:
+   - For dark gene ortholog families (from `essential_genome` ortholog groups) present in 3+ FB organisms, build a "family fitness fingerprint": condition-class × organism matrix of fitness effects
+   - Use the pre-computed `specog` table (specific phenotypes by ortholog group) which already has `minFit`/`maxFit`/`minT`/`maxT` per OG × condition — avoids re-querying 27M genefitness rows
+   - Test concordance: do orthologs of the same dark gene show fitness effects under the same condition classes?
+   - Concordant families get higher confidence for functional inference
 
-1. **Pangenome conservation**: Via `fb_pangenome_link.tsv`, classify each dark gene as core, accessory, or singleton. Compare conservation patterns between condition classes (stress vs carbon vs nitrogen).
-2. **Pangenome-wide distribution**: For dark gene families, use eggNOG orthologous groups or PFAM domains to find related clusters across all 27,690 species. How phylogenetically widespread is each family?
-3. **Conservation vs fitness correlation**: Do dark genes with stronger fitness effects have higher or lower conservation? Previous projects found a U-shaped relationship: essential genes are core, but burdensome genes are also core.
-4. **Ortholog family fitness profiles**: For dark gene families with orthologs in 3+ FB organisms, generate a "family fitness fingerprint" — conditions × organisms matrix of fitness effects.
+3. **Pangenome-wide phylogenetic distribution**:
+   - For dark gene families, extract eggNOG OG identifiers from `eggnog_mapper_annotations` (via `fb_pangenome_link` → `gene_cluster_id` → `query_name`)
+   - Create a temp view of target OG IDs and JOIN against `eggnog_mapper_annotations` to find all clusters across 27,690 species sharing the same OG
+   - Map to taxonomy via `gene_cluster.gtdb_species_clade_id` → `gtdb_species_clade` → `gtdb_taxonomy_r214v1`
+   - Compute phylogenetic breadth: number of phyla, orders, families, species carrying each dark gene family
+   - Classify as: clade-restricted (one phylum) vs widespread (3+ phyla)
 
-### Phase 4: Biogeographic Analysis (NB05)
+**Output**: `data/gapmind_gap_candidates.tsv`, `data/concordance_scores.tsv`, `data/phylogenetic_breadth.tsv`
 
-**Goal**: Determine whether the environmental distribution of dark gene carriers matches the lab conditions where they show fitness effects.
+### Phase 3: Biogeographic Analysis (NB03)
 
-1. **Geographic distribution**: For each dark gene family, extract the genomes (across all pangenome species) that carry related clusters. Map their AlphaEarth embeddings, NCBI lat/lon, and isolation sources.
-2. **Environmental characterization**: Cluster carrier genomes by:
-   - AlphaEarth embedding space (64-dim satellite environmental features)
-   - NCBI isolation source categories (harmonized from `ncbi_env`)
-   - Geographic region
-3. **Within-species carrier vs non-carrier test**: For accessory dark genes, compare the environmental metadata of genomes with vs without the gene within the same species. This is the strongest test because it controls for phylogeny.
-4. **Lab-field concordance**: Map FB experiment groups to environmental categories:
-   - Metal stress experiments → contaminated site metadata
-   - Carbon source experiments → carbon-rich environment metadata
-   - Osmotic/salt stress → marine/saline environments
-   - Temperature stress → extreme environments
-5. **NMDC independent validation**: For taxa carrying dark genes:
-   - Check if they're enriched in NMDC samples with matching abiotic conditions
-   - Use NMDC trait profiles to assess community-level functional context
-   - Report concordance as "independently corroborated" (supplementary, not primary)
+**Goal**: Determine whether the environmental distribution of dark gene carriers shows non-random patterns, and whether those patterns match lab fitness conditions.
 
-### Phase 5: Prioritization & Synthesis (NB06)
+1. **Geographic distribution of carriers**:
+   - For each dark gene family (from NB02 phylogenetic distribution), identify all pangenome species carrying related clusters
+   - For genomes in those species, extract:
+     - AlphaEarth embeddings (83K genomes, 28% coverage — safe to collect via `.toPandas()`)
+     - NCBI isolation source categories from `ncbi_env` (EAV format — pivot by `harmonized_name` for key attributes)
+     - Geographic coordinates from `gtdb_metadata.ncbi_lat_lon`
+
+2. **Within-species carrier vs non-carrier test** (strongest test — controls for phylogeny):
+   - For accessory dark genes, within each species that has the gene in some but not all genomes:
+     - Compare AlphaEarth embedding distributions between carriers and non-carriers
+     - Compare NCBI isolation source category frequencies
+     - Use permutation tests or Mann-Whitney U for significance
+   - Report N genomes with metadata / N total for every comparison
+
+3. **Environmental characterization summary**:
+   - Cluster carrier genomes by AlphaEarth embedding space (UMAP + HDBSCAN)
+   - Summarize NCBI isolation source categories per dark gene family
+   - Flag dark gene families with strong environmental signals
+
+**Output**: `data/biogeographic_profiles.tsv`, `data/carrier_noncarrier_tests.tsv`
+
+### Phase 4: Lab-Field Concordance & NMDC Validation (NB04)
+
+**Goal**: Test whether dark genes' lab fitness conditions match the environmental contexts where they appear in nature.
+
+1. **Pre-registered condition-environment mapping** (define BEFORE looking at biogeographic data):
+
+   | FB Experiment Group | Environmental Category | NCBI/AlphaEarth Signal |
+   |---|---|---|
+   | Metal stress (Cr, Ni, Zn, U, Cu) | Contaminated sites | ncbi_env "contaminated", lat/lon near industrial sites |
+   | Carbon source utilization | Carbon-rich environments | ncbi_env "soil", "sediment", DOC-rich |
+   | Nitrogen source | Nitrogen-variable environments | ncbi_env "agricultural", nitrogen-related |
+   | Osmotic/salt stress | Marine/saline | ncbi_env "marine", "saline", "brackish" |
+   | Temperature stress | Extreme thermal | ncbi_env "hot spring", "permafrost" |
+   | pH stress | pH-extreme environments | ncbi_env "acidic", "alkaline" |
+   | Oxidative stress | Oxic/anoxic transitions | ncbi_env "sediment", redox gradients |
+
+2. **Concordance test**: For each dark gene family with both (a) condition-specific fitness effects and (b) environmental metadata for carriers:
+   - Is the carrier environmental profile enriched for the predicted environment category?
+   - Fisher's exact test per family, BH-FDR correction across all families
+
+3. **NMDC independent validation** (supplementary — community-level, not gene-level):
+   - For taxa carrying dark genes, check abundance in NMDC `taxonomy_features` (6,365 samples, 3,493 taxa — CLR-transformed wide matrix; resolve taxon IDs via `taxonomy_dim`/`taxstring_lookup`)
+   - Correlate with NMDC `abiotic_features` (22 environmental measurements per sample)
+   - Use NMDC `trait_features` (92 community-level functional traits) for functional context
+   - Frame as "consistent with" or "independently corroborated by" — never causal
+   - Report concordance rate and note genus-level resolution limitation
+
+**Output**: `data/lab_field_concordance.tsv`, `data/nmdc_validation.tsv`
+
+### Phase 5: Prioritization & Synthesis (NB05)
 
 **Goal**: Produce a ranked candidate list for experimental characterization.
 
 Scoring dimensions (each 0-1, weighted):
-1. **Fitness importance** (0.25): max |fitness| across conditions, number of specific phenotypes
-2. **Cross-organism conservation** (0.20): number of FB organisms with ortholog, concordance of fitness phenotypes
-3. **Functional inference quality** (0.20): module membership, co-fitness with annotated genes, domain clues
-4. **Pangenome distribution** (0.15): breadth across species, core vs accessory
-5. **Biogeographic signal** (0.10): strength of environmental pattern, lab-field concordance
-6. **Experimental tractability** (0.10): in genetically tractable organism, not essential (can knock out)
+1. **Fitness importance** (0.25): max |fitness| across conditions, number of specific phenotypes, essentiality status
+2. **Cross-organism conservation** (0.20): number of FB organisms with ortholog, fitness concordance score from NB02
+3. **Functional inference quality** (0.20): module membership with prediction, co-fitness with annotated genes, domain clues, GapMind gap-filling evidence
+4. **Pangenome distribution** (0.15): phylogenetic breadth (from NB02), core vs accessory classification
+5. **Biogeographic signal** (0.10): strength of environmental pattern (from NB03), lab-field concordance score (from NB04)
+6. **Experimental tractability** (0.10): in genetically tractable FB organism, not essential (can knock out), has characterized co-fitness partners
 
 Output: Top 50-100 candidates with:
 - Gene IDs across all organisms carrying orthologs
-- Best functional hypothesis with evidence
-- Suggested experimental approach
+- Best functional hypothesis with evidence type and confidence
+- Suggested experimental approach (which organism, which conditions)
 - Environmental context summary
+- All prior project cross-references (module ID, ortholog family, conservation class)
 
 ## Data Sources
 
@@ -115,105 +184,122 @@ Output: Top 50-100 candidates with:
 | `gene` | fitnessbrowser | Gene descriptions, coordinates | 228K | Full scan (small) |
 | `genefitness` | fitnessbrowser | Fitness scores | 27M | Filter by orgId |
 | `specificphenotype` | fitnessbrowser | Strong condition-specific effects | 38K | Full scan |
+| `specog` | fitnessbrowser | Per-OG condition fitness summaries | varies | Filter by ogId |
 | `experiment` | fitnessbrowser | Condition metadata | 7.5K | Full scan |
 | `cofit` | fitnessbrowser | Co-fitness partners | 13.6M | Filter by orgId + locusId |
 | `ortholog` | fitnessbrowser | Cross-organism BBH | ~1.2M | Filter by orgId |
 | `genedomain` | fitnessbrowser | Domain annotations | millions | Filter by orgId |
 | `seedannotation` | fitnessbrowser | SEED functional annotations | 177K | Filter by orgId |
 | `organism` | fitnessbrowser | Organism metadata | 48 | Full scan |
-| `gene_cluster` | pangenome | Core/accessory/singleton | 132M | Filter by species |
-| `eggnog_mapper_annotations` | pangenome | Functional annotations | 93M | Filter by query_name |
-| `genome` | pangenome | Genome-species mapping | 293K | Full scan |
-| `gtdb_taxonomy_r214v1` | pangenome | Taxonomy hierarchy | 293K | Full scan |
-| `ncbi_env` | pangenome | Environmental metadata | 4.1M | Filter by accession |
-| `alphaearth_embeddings_all_years` | pangenome | Environmental embeddings | 83K | Full scan |
-| `gapmind_pathways` | pangenome | Pathway predictions | 305M | Filter by genome_id |
-| `taxonomy_features` | nmdc_arkin | Community taxonomy profiles | 6.4K samples | Full scan |
+| `gene_cluster` | pangenome | Core/accessory/singleton | 132M | Filter by species via temp view |
+| `eggnog_mapper_annotations` | pangenome | Functional annotations (eggNOG OGs) | 93M | Filter by query_name via temp view of target OGs |
+| `genome` | pangenome | Genome-species mapping | 293K | Full scan (small) |
+| `gtdb_species_clade` | pangenome | Species taxonomy | 27.7K | Full scan (small) |
+| `gtdb_taxonomy_r214v1` | pangenome | Taxonomy hierarchy | 293K | Full scan (small) |
+| `gtdb_metadata` | pangenome | Lat/lon, isolation source | 293K | Full scan (small) |
+| `ncbi_env` | pangenome | Environmental metadata (EAV) | 4.1M | Filter by accession |
+| `alphaearth_embeddings_all_years` | pangenome | Environmental embeddings | 83K | Full scan (small) |
+| `gapmind_pathways` | pangenome | Pathway predictions | 305M | Filter by genome_id for FB-linked species |
+| `taxonomy_features` | nmdc_arkin | Community taxonomy profiles | 6.4K samples | Full scan (wide: 3,493 cols) |
+| `taxonomy_dim` | nmdc_arkin | Taxon ID resolution | varies | Full scan |
 | `abiotic_features` | nmdc_arkin | Environmental measurements | 6.4K samples | Full scan |
 | `trait_features` | nmdc_arkin | Community trait scores | 6.4K samples | Full scan |
 
-### Existing Data Products
+### Existing Data Products (loaded, not re-derived)
 
 | Source Project | File | What It Provides |
 |---|---|---|
-| `conservation_vs_fitness` | `data/fb_pangenome_link.tsv` | 177,863 gene-to-cluster links (44 organisms) |
+| `conservation_vs_fitness` | `data/fb_pangenome_link.tsv` | 177,863 gene-to-cluster links (44 organisms, 94.2% median coverage) |
 | `conservation_vs_fitness` | `data/organism_mapping.tsv` | FB orgId → GTDB species clade mapping |
-| `fitness_modules` | module membership files | 1,116 ICA modules across 32 organisms |
-| `essential_genome` | ortholog families | 17,222 ortholog groups, essentiality classification |
+| `fitness_modules` | module membership TSVs | 1,116 ICA modules across 32 organisms |
+| `fitness_modules` | function predictions | 6,691 predictions for hypothetical proteins (guilt-by-association) |
+| `essential_genome` | ortholog families | 17,222 ortholog groups, essentiality classification, 1,382 function predictions |
 
 ## Query Strategy
+
+### Spark Session
+
+On BERDL JupyterHub notebooks (no import needed — injected by kernel):
+```python
+spark = get_spark_session()
+```
 
 ### Performance Plan
 - **Tier**: Direct Spark on BERDL JupyterHub (required for large joins)
 - **Estimated complexity**: Moderate-High (multi-table joins across FB + pangenome)
 - **Known pitfalls**:
-  - FB values are all strings — CAST before numeric comparisons
-  - Gene cluster IDs are species-specific — cannot compare across species
-  - AlphaEarth covers only 28% of genomes
-  - `ncbi_env` is EAV format — pivot before use
-  - Large IN clauses with species IDs containing `--` — use temp views
+  - FB values are all strings — CAST to FLOAT/INT before numeric comparisons
+  - Gene cluster IDs are species-specific — cannot compare across species; use eggNOG OGs for cross-species
+  - Essential genes have zero rows in `genefitness` — must load separately from `essential_genome`
+  - AlphaEarth covers only 28% of genomes — report coverage with every claim
+  - `ncbi_env` is EAV format — pivot by `harmonized_name` before use
+  - `gapmind_pathways` has multiple rows per genome-pathway pair — aggregate with MAX score before interpreting
+  - Large IN clauses with species IDs containing `--` — use temp views and JOINs instead
+  - Billion-row table joins — use BROADCAST hints for small lookup tables (per `cofitness_coinheritance` pitfall)
+  - PySpark cannot infer numpy `str_` types — cast to native Python `str` before `createDataFrame()`
+  - Singletons are a subset of auxiliary in pangenome schema (`is_auxiliary` and `is_singleton` can both be true)
 
 ### Key Queries
 
-1. **Dark gene census** (NB01): Join `gene` + `genefitness` + `specificphenotype` + `genedomain` per organism
-2. **Module integration** (NB02): Load fitness_modules outputs, match to dark gene list
-3. **Pangenome conservation** (NB04): Join dark genes via `fb_pangenome_link` → `gene_cluster` → species distribution
-4. **Biogeographic extraction** (NB05): For carrier species, join `genome` → `alphaearth_embeddings` + `ncbi_env`
-5. **NMDC validation** (NB05): Match carrier taxa to NMDC `taxonomy_features` + `abiotic_features`
+1. **NB01 — Census integration**: Load FB `gene` + `specificphenotype` + `genedomain` + `experiment` (all small-medium). Load `cofit` filtered per organism for non-module dark genes (top 5 partners). Merge with existing TSVs from prior projects.
+2. **NB02 — GapMind gaps**: Filter `gapmind_pathways` by genome IDs from FB-linked species (temp view JOIN, not full scan). Two-stage aggregation: MAX score per genome-pathway, then species-level summary.
+3. **NB02 — Phylogenetic breadth**: Extract eggNOG OG IDs for dark gene clusters → temp view → JOIN `eggnog_mapper_annotations` (93M) filtered by those OGs → map to taxonomy.
+4. **NB03 — Biogeographic extraction**: For carrier species from NB02, JOIN `genome` → `alphaearth_embeddings` + `ncbi_env` + `gtdb_metadata`.
+5. **NB04 — NMDC validation**: Load NMDC `taxonomy_features` (wide, 6.4K rows) + `abiotic_features` + `trait_features` locally. Resolve taxon IDs via `taxonomy_dim`. Match to carrier taxa by genus.
 
 ## Analysis Plan
 
-### Notebook 1: Dark Matter Census
-- **Goal**: Catalog all dark genes with fitness evidence
-- **Expected output**: `data/dark_gene_census.tsv` — ~54K dark genes with annotation status, fitness summary, conservation class, essentiality, module membership
-- **Key figures**: Annotation status breakdown, fitness effect distributions, organism-level dark fraction
+### Notebook 1: Integration & Dark Matter Census
+- **Goal**: Build unified dark gene table from existing data products + FB queries
+- **Expected output**: `data/dark_genes_integrated.tsv` — ~54K dark genes (23.6% of 228K), of which ~3,700 have strong fitness effects (|fit|>2, |t|>4) plus ~4,100 hypothetical essentials. Each gene annotated with: annotation class, fitness summary, condition-class profile, conservation status, module membership + prediction, ortholog family, essentiality, top co-fitness partners, domain hits.
+- **Key figures**: (1) Annotation status breakdown by organism, (2) fitness effect distribution for dark vs annotated genes, (3) coverage Venn diagram (has pangenome link × in module × has ortholog × is essential), (4) condition-class distribution for dark genes with strong phenotypes
 
-### Notebook 2: Data Integration
-- **Goal**: Merge FB data with pangenome links, modules, and essential gene data
-- **Expected output**: `data/dark_genes_integrated.tsv` — enriched dark gene table with all cross-references
-- **Key figures**: Coverage Venn diagram (linked × in-module × essential × has-ortholog)
+### Notebook 2: GapMind Gaps, Cross-Organism Concordance & Phylogenetic Distribution
+- **Goal**: Apply three new inference layers not covered by prior projects
+- **Expected output**: `data/gapmind_gap_candidates.tsv` (dark genes filling pathway gaps), `data/concordance_scores.tsv` (family-level fitness concordance), `data/phylogenetic_breadth.tsv` (per-family taxonomic distribution)
+- **Key figures**: (1) GapMind gap-filling examples, (2) concordance heatmap for top dark gene families, (3) phylogenetic breadth distribution (clade-restricted vs widespread)
 
-### Notebook 3: Functional Inference
-- **Goal**: Generate function hypotheses for dark genes via modules, co-fitness, domains, and pathway gaps
-- **Expected output**: `data/function_predictions.tsv` — predicted functions with evidence type and confidence
-- **Key figures**: Evidence source breakdown, prediction confidence distribution
+### Notebook 3: Biogeographic Analysis
+- **Goal**: Environmental distribution of dark gene carriers, within-species carrier vs non-carrier comparisons
+- **Expected output**: `data/biogeographic_profiles.tsv`, `data/carrier_noncarrier_tests.tsv`
+- **Key figures**: (1) AlphaEarth UMAP colored by carrier status for top dark gene families, (2) geographic maps of carriers, (3) NCBI isolation source breakdown, (4) within-species test results summary
 
-### Notebook 4: Conservation & Phylogenetic Distribution
-- **Goal**: Map dark gene families across the pangenome tree of life
-- **Expected output**: `data/dark_gene_phylodist.tsv` — phylogenetic breadth per family
-- **Key figures**: Phylogenetic heatmap, conservation vs fitness scatter, condition-class × conservation patterns
+### Notebook 4: Lab-Field Concordance & NMDC Validation
+- **Goal**: Test whether lab fitness conditions predict field environmental distribution; supplementary NMDC validation
+- **Expected output**: `data/lab_field_concordance.tsv`, `data/nmdc_validation.tsv`
+- **Key figures**: (1) Lab-field concordance matrix (condition-class × environmental category), (2) concordance rate across dark gene families, (3) NMDC abiotic correlation plots for carrier taxa
 
-### Notebook 5: Biogeographic Analysis
-- **Goal**: Environmental distribution of dark gene carriers and lab-field concordance
-- **Expected output**: `data/biogeographic_profiles.tsv` — environmental metadata per dark gene family
-- **Key figures**: AlphaEarth embedding PCA by carrier status, geographic maps, lab-field concordance matrix, NMDC validation plots
-
-### Notebook 6: Prioritization & Synthesis
-- **Goal**: Score and rank candidates for experimental characterization
-- **Expected output**: `data/prioritized_candidates.tsv` — top 100 ranked candidates with full evidence dossiers
-- **Key figures**: Score component breakdown, top-20 candidate summary cards
+### Notebook 5: Prioritization & Candidate Dossiers
+- **Goal**: Score, rank, and produce experimental prioritization
+- **Expected output**: `data/prioritized_candidates.tsv` — top 100 ranked candidates with full evidence
+- **Key figures**: (1) Score component breakdown, (2) top-20 candidate summary cards, (3) organism distribution of top candidates, (4) recommended experiments by condition class
 
 ## Expected Outcomes
 
-- **If H1 supported**: A ranked catalog of experimentally validated but functionally unknown gene families, each with functional hypotheses, conservation context, and environmental distribution — directly actionable for targeted characterization experiments.
+- **If H1 supported**: A ranked catalog of experimentally validated but functionally unknown gene families, each with functional hypotheses, conservation context, and environmental distribution — directly actionable for targeted characterization experiments. The biogeographic analysis would reveal whether environmental selection pressures explain the maintenance of specific dark gene families.
 - **If H0 not rejected**: Dark matter genes are truly random — their fitness phenotypes don't correlate with conservation, co-regulation, or environment. This would suggest these genes serve organism-specific, condition-specific roles with no generalizable biology. Even this is informative: it would mean gene function prediction requires organism-specific experimental approaches rather than comparative inference.
+- **Mixed outcome (most likely)**: Some dark gene families show strong coherence (concordant phenotypes, environmental patterns, pathway integration) while others remain cryptic. The prioritized list would focus on the coherent families, while the cryptic ones highlight the limits of computational inference.
 - **Potential confounders**:
-  - Annotation bias: some "hypothetical" genes may have annotations in other databases not checked
+  - Annotation bias: some "hypothetical" genes may have annotations in databases not checked (UniProt, InterPro)
   - Fitness noise: weak fitness effects may not replicate across experiments
   - Environmental metadata sparsity: AlphaEarth covers only 28%, NCBI env metadata is inconsistent
   - Taxonomy bridge limitations for NMDC validation (genus-level, not species)
+  - GapMind pathway coverage limited to amino acid biosynthesis and carbon utilization — not all metabolic functions
 
 ## Integrity Safeguards
 
-1. **Coverage reporting**: Every claim states N with data / N total
-2. **Within-species comparisons** for biogeographic tests (controls for phylogeny)
-3. **Multiple testing correction**: BH-FDR for all genome-wide tests
-4. **Pre-registered condition-environment mapping** before looking at biogeographic data
-5. **Null results reported honestly**: no environmental pattern is as informative as a positive pattern
-6. **Independent validation**: NMDC data serves as held-out confirmation, not discovery
+1. **Acknowledge prior work explicitly**: Module predictions and conservation analyses are loaded from prior projects, not re-derived
+2. **Coverage reporting**: Every claim states N with data / N total
+3. **Within-species comparisons** for biogeographic tests (controls for phylogeny)
+4. **Multiple testing correction**: BH-FDR for all genome-wide tests
+5. **Pre-registered condition-environment mapping** defined before looking at biogeographic data
+6. **Null results reported honestly**: no environmental pattern is as informative as a positive pattern
+7. **Independent validation**: NMDC data serves as held-out confirmation, not discovery
+8. **GapMind aggregation**: MAX score per genome-pathway pair before interpreting completeness; use four-level score hierarchy
 
 ## Revision History
-- **v1** (2025-02-25): Initial plan
+- **v1** (2026-02-25): Initial plan
+- **v2** (2026-02-25): Restructured to build explicitly on prior projects (`fitness_modules`, `essential_genome`, `conservation_vs_fitness`, `module_conservation`). Reduced from 6 to 5 notebooks by consolidating census + integration. Incorporated plan review feedback: essential genes as separate dark class, GapMind score hierarchy, `specog` table for concordance, concrete pangenome-wide query strategy, Spark session pattern.
 
 ## Authors
 - Adam Arkin (ORCID: 0000-0002-4999-2931), U.C. Berkeley / Lawrence Berkeley National Laboratory
