@@ -307,6 +307,8 @@ async def project_detail(request: Request, project_id: str):
         context["project_collections"] = [
             c for c in (repo_data.get_collection(cid) for cid in project.related_collections) if c
         ]
+    # Build id->collection mapping for O(1) template lookups
+    context["collection_map"] = {c.id: c for c in context["project_collections"]}
 
     # Resolve used_by IDs to full Project objects
     context["used_by_projects"] = [

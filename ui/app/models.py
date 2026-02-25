@@ -245,7 +245,12 @@ class Provenance:
     @property
     def collection_ids(self) -> list[str]:
         """Get all unique collection IDs from data sources."""
-        return list(dict.fromkeys(ds.collection for ds in self.data_sources))
+        ids: list[str] = []
+        for ds in self.data_sources:
+            cid = (ds.collection or "").strip()
+            if cid:
+                ids.append(cid)
+        return list(dict.fromkeys(ids))
 
 
 @dataclass

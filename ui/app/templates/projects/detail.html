@@ -172,7 +172,7 @@
             <li style="margin-bottom: var(--space-3); padding-left: var(--space-4); border-left: 2px solid var(--border-color);">
                 <div>
                     <strong>{{ ref.short_citation }}</strong>
-                    {% if ref.title %}<span class="text-muted"> — {{ ref.title }}</span>{% endif %}
+                    {% if ref.title and ref.title != ref.short_citation %}<span class="text-muted"> — {{ ref.title }}</span>{% endif %}
                 </div>
                 <div class="text-small text-muted" style="margin-top: var(--space-1);">
                     {% if ref.journal %}<em>{{ ref.journal }}</em>{% endif %}
@@ -253,19 +253,18 @@
 {% endif %}
 
 <!-- Data Collections -->
-{% if project.provenance and project.provenance.data_sources and project_collections %}
+{% if project.provenance and project.provenance.data_sources %}
 <section class="section">
     <h2 id="data-collections">Data Collections</h2>
     <div class="grid grid-3">
         {% for ds in project.provenance.data_sources %}
-        {% set ns = namespace(coll=None) %}
-        {% for c in project_collections %}{% if c.id == ds.collection %}{% set ns.coll = c %}{% endif %}{% endfor %}
+        {% set coll = collection_map.get(ds.collection) if collection_map is defined else None %}
         <a href="/collections/{{ ds.collection }}" class="card" style="text-decoration: none;">
-            {% if ns.coll %}
+            {% if coll %}
             <div class="flex items-center gap-4">
-                <span style="font-size: 1.25rem;">{{ ns.coll.icon | safe }}</span>
+                <span style="font-size: 1.25rem;">{{ coll.icon | safe }}</span>
                 <div>
-                    <h4 style="margin-bottom: 0; color: var(--text-primary);">{{ ns.coll.name }}</h4>
+                    <h4 style="margin-bottom: 0; color: var(--text-primary);">{{ coll.name }}</h4>
                     <p class="text-muted text-small" style="font-family: var(--font-mono); margin-bottom: 0;">{{ ds.collection }}</p>
                 </div>
             </div>

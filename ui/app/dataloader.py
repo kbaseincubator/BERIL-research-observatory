@@ -948,8 +948,8 @@ class RepositoryParser:
             return None
 
         try:
-            data = yaml.safe_load(prov_path.read_text())
-        except (yaml.YAMLError, OSError):
+            data = yaml.safe_load(prov_path.read_text(encoding="utf-8"))
+        except (yaml.YAMLError, OSError, UnicodeDecodeError):
             return None
 
         if not isinstance(data, dict):
@@ -959,12 +959,27 @@ class RepositoryParser:
         for r in data.get("references", []):
             if not isinstance(r, dict):
                 continue
+            # Normalize authors to list[str]
+            authors_raw = r.get("authors", [])
+            if isinstance(authors_raw, str):
+                authors = [authors_raw]
+            elif isinstance(authors_raw, list):
+                authors = [str(a) for a in authors_raw]
+            else:
+                authors = [str(authors_raw)] if authors_raw else []
+            # Coerce year to int
+            year = r.get("year")
+            if year is not None:
+                try:
+                    year = int(year)
+                except (TypeError, ValueError):
+                    pass
             references.append(Reference(
                 id=r.get("id", ""),
                 type=r.get("type", "supporting"),
                 title=r.get("title", ""),
-                authors=r.get("authors", []),
-                year=r.get("year"),
+                authors=authors,
+                year=year,
                 journal=r.get("journal"),
                 volume=str(r["volume"]) if r.get("volume") is not None else None,
                 pages=str(r["pages"]) if r.get("pages") is not None else None,
@@ -977,9 +992,20 @@ class RepositoryParser:
         for ds in data.get("data_sources", []):
             if not isinstance(ds, dict):
                 continue
+            collection = ds.get("collection")
+            if not collection:
+                continue
+            # Normalize tables to list[str]
+            tables_raw = ds.get("tables", [])
+            if isinstance(tables_raw, str):
+                tables = [tables_raw]
+            elif isinstance(tables_raw, list):
+                tables = [str(t) for t in tables_raw]
+            else:
+                tables = []
             data_sources.append(DataSourceRef(
-                collection=ds.get("collection", ""),
-                tables=ds.get("tables", []),
+                collection=collection,
+                tables=tables,
                 purpose=ds.get("purpose"),
                 reference=ds.get("reference"),
             ))
@@ -988,12 +1014,31 @@ class RepositoryParser:
         for dep in data.get("cross_project_deps", []):
             if not isinstance(dep, dict):
                 continue
+            project = dep.get("project")
+            if not project:
+                continue
+            # Normalize files to list[str]
+            files_raw = dep.get("files", [])
+            if isinstance(files_raw, str):
+                files = [files_raw]
+            elif isinstance(files_raw, list):
+                files = [str(f) for f in files_raw]
+            else:
+                files = [str(files_raw)] if files_raw else []
             cross_project_deps.append(CrossProjectDep(
-                project=dep.get("project", ""),
+                project=project,
                 relationship=dep.get("relationship", "data_input"),
-                files=dep.get("files", []),
+                files=files,
                 description=dep.get("description"),
             ))
+
+        def _to_str_list(val: object) -> list[str]:
+            """Normalize a YAML value to list[str]."""
+            if isinstance(val, str):
+                return [val]
+            if isinstance(val, list):
+                return [str(v) for v in val]
+            return [str(val)] if val else []
 
         findings = []
         for f in data.get("findings", []):
@@ -1004,9 +1049,9 @@ class RepositoryParser:
                 id=f.get("id", ""),
                 title=f.get("title", ""),
                 notebook=f.get("notebook"),
-                figures=f.get("figures", []),
-                data_files=f.get("data_files", []),
-                references=f.get("references", []),
+                figures=_to_str_list(f.get("figures", [])),
+                data_files=_to_str_list(f.get("data_files", [])),
+                references=_to_str_list(f.get("references", [])),
                 statistics={str(k): str(v) for k, v in stats.items()} if isinstance(stats, dict) else {},
             ))
 
