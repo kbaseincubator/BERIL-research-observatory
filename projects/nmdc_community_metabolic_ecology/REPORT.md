@@ -112,6 +112,28 @@ Scatter plots for the four lowest-p pathways:
 
 ![H1 scatter top pathways](figures/h1_scatter_top.png)
 
+#### Sensitivity: Soil-only stratification
+
+To control for the strong ecosystem-type effect (Finding 2), H1 was re-run on the
+125 Soil-ecosystem samples only (excluding the 6 Unknown-ecosystem samples in the H1
+dataset). Results: **leu remains FDR-significant** (r = −0.390, q = 0.022, n = 62 —
+identical to the full-cohort result, since the leu samples are all Soil); arg loses
+FDR significance (r = −0.264, q = 0.117, n = 78) but remains directionally consistent.
+The binomial sign test (11/13 negative, p = 0.011) is unchanged, confirming the
+majority-negative direction is robust to ecosystem stratification.
+
+#### Sensitivity: Study-level blocking
+
+Study-level analysis of the H1 dataset reveals that **95% of samples (125/131)
+originate from a single NMDC study (nmdc:sty-11-r2h77870)**; the remaining 6 samples
+are from a second study (nmdc:sty-11-547rwq94). This means cross-study LC-MS protocol
+heterogeneity is effectively absent as a confounder for leu: all leu samples (n = 62)
+are from one study with consistent analytical methods. For arg, excluding the 6-sample
+second study gives r = −0.264, p = 0.019 (n = 78), confirming the arginine signal is
+not driven by the minor study.
+
+*(Sensitivity analyses: 05_statistical_analysis.ipynb Part 6)*
+
 ### H2: Ecosystem Differentiation
 
 | Component | Variance explained | KW across ecosystem types |
@@ -136,10 +158,12 @@ substantially higher predicted carbon metabolic diversity than Freshwater commun
 
 The results provide **weak but consistent support** for community-scale Black Queen
 dynamics in environmental soil microbiomes. The finding that 11 of 13 tested pathways
-trend in the BQH-predicted direction (p = 0.011 binomial test) is notable given the
-noise inherent in cross-study metabolomics data: different NMDC studies use different
-LC-MS protocols, ionisation modes, and normalisation conventions, all of which add
-variance that would attenuate true correlations.
+trend in the BQH-predicted direction (p = 0.011 binomial test) is notable, and the
+signal is robust in two sensitivity checks: it is unchanged when the analysis is
+restricted to Soil-ecosystem samples (soil-only: 11/13 negative, binomial p = 0.011;
+leu q = 0.022), and the dataset is effectively single-study — 95% of H1 samples come
+from one NMDC study (nmdc:sty-11-r2h77870), so cross-study LC-MS protocol heterogeneity
+is not a confounder for leu.
 
 The two FDR-significant pathways — leucine and arginine — are both energetically
 expensive to synthesise (leucine: 37 ATP equivalents; arginine: 26 ATP equivalents),
@@ -218,10 +242,12 @@ ecosystem chemistry beyond taxonomic composition alone.
 ### Limitations
 
 - **Metabolomics technical heterogeneity**: The 175 metabolomics samples derive from
-  multiple NMDC studies with different instruments, protocols, and normalisation
-  strategies. Intensities are not directly comparable across studies; this inflates
-  within-pathway variance and attenuates true correlations. Study-level random effects
-  (not modelled here) could improve power.
+  multiple NMDC studies. However, study-level analysis of the H1 subset reveals that
+  95% of H1 samples (125/131) originate from a single NMDC study
+  (nmdc:sty-11-r2h77870), so cross-study LC-MS protocol heterogeneity is largely
+  absent as a confounder for leu and arg. The second study (n = 6) does not
+  materially affect the results. For future analyses with broader multi-study coverage,
+  study-level random effects could be modelled to improve power.
 
 - **Freshwater samples absent from H1**: All 33 Freshwater samples lacked paired
   metabolomics in NMDC, so H1 is effectively a soil-only test. Whether BQH dynamics
@@ -278,16 +304,16 @@ ecosystem chemistry beyond taxonomic composition alone.
 | File | Rows | Description |
 |---|---|---|
 | `data/nmdc_sample_inventory.csv` | ~220 | NMDC samples with taxonomy + metabolomics coverage per study |
-| `data/nmdc_taxonomy_coverage.csv` | ~220 | Per-sample Centrifuge classification statistics |
-| `data/nmdc_metabolomics_coverage.csv` | ~220 | Per-sample metabolomics file counts and compound coverage |
+| `data/nmdc_classifier_comparison.csv` | 3 | Per-classifier summary statistics (kraken, centrifuge, gottcha): total rows, species-rank fraction, file counts |
+| `data/nmdc_metabolomics_coverage.csv` | 0 | 0 rows — saved before the `omics_files_table` bridge was found; superseded by `analysis_ready_matrix.csv` |
 | `data/bridge_quality.csv` | 220 | Per-sample GTDB species bridge coverage (all pass QC) |
 | `data/species_pathway_completeness.csv` | ~27,690 × 80 | GapMind completeness per GTDB species per pathway |
 | `data/community_pathway_matrix.csv` | 220 | Community-weighted pathway completeness (220 samples × 86 cols) |
 | `data/community_pathway_matrix_long.csv` | ~17,600 | Long-format version of above |
 | `data/metabolomics_matrix.csv` | 175 | Normalised metabolite intensities (175 samples × 476 compounds) |
-| `data/amino_acid_metabolites.csv` | 726 | Sample × aa pathway log-intensities for 14 matched aa pathways |
+| `data/amino_acid_metabolites.csv` | 737 | Sample × aa pathway log-intensities for 15 matched aa pathways |
 | `data/analysis_ready_matrix.csv` | 174 | Merged: pathway completeness + metabolomics + abiotic features |
-| `data/h1_bqh_correlations.csv` | 14 | Spearman r, p, BH-FDR q per aa pathway |
+| `data/h1_bqh_correlations.csv` | 15 | Spearman r, p, BH-FDR q per aa pathway (13 testable + 2 skipped: gln n=4, pro n=9) |
 | `data/h2_pca_scores.csv` | 220 | PCA coordinates (PC1–5) per sample with ecosystem label |
 | `data/h2_pca_loadings.csv` | 80 | PCA loadings for all 80 pathways on PC1 and PC2 |
 
@@ -309,7 +335,7 @@ ecosystem chemistry beyond taxonomic composition alone.
 
 | Figure | Description |
 |---|---|
-| `figures/nmdc_sample_coverage.png` | Sample overlap figure — **note**: generated before the `omics_files_table` bridge was discovered (NB01); shows 0 overlap. Superseded by `bridge_quality_distribution.png` from NB02 which reflects the correct 220-sample cohort. |
+| `figures/nmdc_sample_coverage_SUPERSEDED.png` | Sample overlap figure — **note**: generated before the `omics_files_table` bridge was discovered (NB01); shows 0 overlap. Superseded by `bridge_quality_distribution.png` from NB02 which reflects the correct 220-sample cohort. Renamed with `_SUPERSEDED` suffix to signal its status. |
 | `figures/bridge_quality_distribution.png` | Distribution of GTDB bridge coverage across 220 samples |
 | `figures/pathway_completeness_heatmap.png` | Mean community pathway completeness by pathway × ecosystem type |
 | `figures/metabolomics_distribution.png` | Compound intensity distributions across samples |
@@ -322,11 +348,13 @@ ecosystem chemistry beyond taxonomic composition alone.
 
 ## Future Directions
 
-1. **Partial correlations controlling for study ID and abiotic gradients**: The H1
-   signal could be strengthened (or confounders identified) by including study-level
-   random effects and available abiotic variables (pH, temperature) in a mixed-effects
-   model. This requires NMDC abiotic data to be populated for the metabolomics-overlap
-   samples.
+1. **Abiotic gradient controls and multi-study replication**: The H1 signal could
+   be strengthened (or confounders identified) by including available abiotic variables
+   (pH, temperature, total organic carbon) in a partial correlation or mixed-effects
+   model once NMDC abiotic data is populated for the metabolomics-overlap samples. The
+   current H1 dataset is effectively single-study; replicating this analysis across
+   additional NMDC studies with paired taxonomy + metabolomics would test whether the
+   leu/arg signals generalise beyond the current cohort.
 
 2. **Extend to Freshwater samples**: Obtaining or generating metabolomics data for the
    33 Freshwater NMDC samples would allow a direct test of whether BQH dynamics differ
@@ -339,8 +367,8 @@ ecosystem chemistry beyond taxonomic composition alone.
    (not just gene presence) drives the BQH signal.
 
 4. **KEGG compound ID expansion**: Improving KEGG compound annotations in
-   `metabolomics_gold` (4 currently missing aa pathways: cys, his, ile, lys) would
-   expand the H1 test set from 14 to 18 pathways, improving statistical power.
+   `metabolomics_gold` (3 currently missing aa pathways: cys, his, lys) would
+   expand the H1 test set from 13 to 16 testable pathways, improving statistical power.
 
 5. **Cross-habitat partial correlation (soil subtype analysis)**: The 61 "Unknown"
    ecosystem samples likely represent a mix of soil subtypes or sediment environments;

@@ -162,11 +162,12 @@ GROUP BY clade_name, pathway, metabolic_category
 - **Expected outputs**:
   - `data/nmdc_sample_inventory.csv` — samples with taxonomy + metabolomics, study metadata,
     ecosystem type
-  - `data/nmdc_taxonomy_coverage.csv` — per-sample taxonomic classification stats (# taxa,
-    classification depth, top taxa)
+  - `data/nmdc_classifier_comparison.csv` — per-classifier summary statistics (3 rows: kraken,
+    centrifuge, gottcha); species-rank fraction and file counts per classifier
   - `data/nmdc_metabolomics_coverage.csv` — per-sample compound counts, annotation rates
-  - `figures/nmdc_sample_coverage.png` — Venn diagram of sample overlap and ecosystem type
-    distribution
+  - `figures/nmdc_sample_coverage_SUPERSEDED.png` — Venn diagram of sample overlap and ecosystem
+    type distribution (generated before `omics_files_table` bridge; shows 0 overlap; superseded
+    by `bridge_quality_distribution.png`)
 - **Key decisions**: Which taxonomy table (kraken_gold vs centrifuge_gold vs gottcha_gold vs
   taxonomy_features) provides the most species-level resolution? What fraction of metabolomics
   compounds carry KEGG/ChEBI compound IDs in their own columns?

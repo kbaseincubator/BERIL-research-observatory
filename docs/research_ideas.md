@@ -417,6 +417,10 @@
 
 ## Completed Ideas
 
+### [nmdc_community_metabolic_ecology] Community Metabolic Ecology via NMDC × Pangenome Integration
+**Status**: COMPLETED
+**Results**: Weak but consistent Black Queen signal detected in community metabolomics: 11/13 (85%) amino acid biosynthesis pathways trend in BQH-predicted direction (binomial p=0.011). Leucine (r=−0.390, q=0.022, n=62) and arginine (r=−0.297, q=0.049, n=80) biosynthesis are FDR-significant. Community metabolic potential separates strongly by ecosystem type (PC1=49.4% variance; Soil vs. Freshwater Mann-Whitney p<0.0001); 17/18 aa pathways significantly differentiated across ecosystem types. First BERDL integration of NMDC multi-omics with GapMind pangenome pathway completeness across 220 samples. See `projects/nmdc_community_metabolic_ecology/`.
+
 ### [lab_field_ecology] Lab Fitness Predicts Field Ecology at Oak Ridge
 **Status**: COMPLETED
 **Results**: 14 of 26 FB genera detected at Oak Ridge (108 sites). 5 of 11 tested genera correlate with uranium after FDR correction: *Herbaspirillum* and *Bacteroides* increase at contaminated sites, *Caulobacter*, *Sphingomonas*, and *Pedobacter* decrease. Lab metal tolerance suggestive but not significant (rho=0.50, p=0.095). First study linking Fitness Browser data with ENIGMA CORAL field ecology. See `projects/lab_field_ecology/`.
@@ -533,31 +537,3 @@ _Capture half-baked ideas here for future refinement_
 
 ---
 
-### [nmdc_community_metabolic_ecology] Community Metabolic Ecology via NMDC × Pangenome Integration
-**Status**: PROPOSED
-**Priority**: HIGH
-**Effort**: Medium (3–4 weeks)
-
-**Research Question**: Do the GapMind-predicted pathway completeness profiles of community resident taxa predict or correlate with observed metabolomics profiles in NMDC environmental samples across diverse habitat types?
-
-**Approach**:
-- NB01: NMDC schema exploration — characterize sample coverage, taxonomic classification methods, compound identification rates, study-level metadata; identify samples with both taxonomic profiles AND metabolomics data
-- NB02: Taxonomy bridge — map NMDC taxa (Kraken/Centrifuge/GOTTCHA) to GTDB species in `gtdb_species_clade`; compute bridge quality metrics per sample
-- NB03: Community pathway completeness — compute community-weighted GapMind pathway completeness per sample per pathway (weighted by taxon relative abundance); output sample × pathway completeness matrix
-- NB04: Metabolomics processing — extract annotated compounds (KEGG/ChEBI IDs), normalize per sample, merge with pathway matrix and abiotic features
-- NB05: Statistical analysis — Spearman + partial correlations controlling for study ID and environment type, BH-FDR correction, Black Queen signal test in amino acid pathways, environment-type clustering
-
-**Hypotheses**:
-- H1: Communities with higher community-weighted completeness for amino acid biosynthesis will show lower detected amino acid concentrations in metabolomics (Black Queen dynamics at community scale)
-- H2: Community metabolic potential clusters by environment type (soil vs sediment vs marine) more strongly than taxonomic composition alone
-- H0: Community pathway completeness does not significantly correlate with metabolomics profiles after controlling for environment type and study identity
-
-**Impact**: High — first BERDL project to integrate NMDC multi-omics data; tests whether GapMind-predicted metabolic potential is ecologically informative at community scale; opens NMDC as an active data source for the observatory
-
-**Dependencies**:
-- Extends `essential_metabolome` (pilot AA prototrophy → community-scale test) and `pangenome_pathway_geography` (niche breadth → pathway completeness; now test inverse direction)
-- Taxonomy bridge methodology from `enigma_contamination_functional_potential`
-- GapMind query patterns from `metabolic_capability_dependency`
-- NMDC taxonomy classification quality (Kraken/Centrifuge to species level) — verify in NB01 before committing
-
-**Location**: `projects/nmdc_community_metabolic_ecology/`

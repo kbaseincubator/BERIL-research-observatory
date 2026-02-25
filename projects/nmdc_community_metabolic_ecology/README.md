@@ -73,7 +73,7 @@ alone.
 ### Step-by-step
 
 1. **NB01** `01_nmdc_exploration.ipynb` — Run on JupyterHub. ~5 min.
-   Produces: `data/nmdc_sample_inventory.csv`, `data/nmdc_taxonomy_coverage.csv`
+   Produces: `data/nmdc_sample_inventory.csv`, `data/nmdc_classifier_comparison.csv`
 
 2. **NB02** `02_taxonomy_bridge.ipynb` — Run on JupyterHub. ~10 min.
    Produces: `data/taxon_bridge.tsv`, `data/bridge_quality.csv`, `data/nmdc_sample_inventory.csv` (updated with 221-sample bridge)
