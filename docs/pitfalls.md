@@ -71,6 +71,58 @@ WHERE CAST(fit AS FLOAT) < -2
 
 This affects: `kescience_fitnessbrowser` (all columns), `kbase_genomes` (coordinates, lengths), and others.
 
+### Non-UTF-8 Bytes in SQLite TEXT Columns
+
+**[kescience_paperblast]** When exporting a SQLite database to TSV using `sqlite3.connect()` and iterating the cursor, Python's `sqlite3` module defaults to strict UTF-8 decoding for TEXT columns. If the database contains non-UTF-8 byte sequences, this raises `OperationalError: Could not decode to UTF-8 column 'comment' with text '...'` during cursor iteration, before any data cleaning (e.g., `_clean()`) is invoked.
+
+```python
+# WRONG: Strict UTF-8 decoding will fail on non-UTF-8 bytes
+conn = sqlite3.connect(db_path)
+cur = conn.cursor()
+cur.execute("SELECT * FROM table_with_bad_bytes")
+for row in cur:  # OperationalError raised here
+    process(row)
+
+# CORRECT: Permissive UTF-8 with replacement characters
+conn = sqlite3.connect(db_path)
+conn.text_factory = lambda b: b.decode('utf-8', errors='replace')  # Set this first
+cur = conn.cursor()
+cur.execute("SELECT * FROM table_with_bad_bytes")
+for row in cur:  # Succeeds; invalid bytes become U+FFFD
+    process(row)
+```
+
+**Solution**: Set `text_factory` immediately after connecting, before executing any queries.
+
+### SQL `/* ... */` Comments in CREATE TABLE Body Parsed as Column Definitions
+
+**[kescience_paperblast]** The `parse_sql_schema()` function in the ingest pipeline uses regex to extract column definitions from `CREATE TABLE` statements. If the table body begins with an inline comment (e.g., `/* geneId is actually a fully specified protein id like YP_006960813.1 */`), the parser treats `/*` as a column name instead of skipping it. This produces an invalid schema string like `/* STRING, geneId STRING, ...`, and the ingest pipeline silently skips the entire table with no error message or quarantine entry.
+
+```python
+# WRONG: Parser treats /* as a column name
+def parse_sql_schema(sql_path):
+    for line in m.group(2).splitlines():
+        line = line.strip().rstrip(",")
+        if not line:
+            continue
+        tokens = re.split(r'\s+', line, maxsplit=2)
+        col_name = tokens[0]  # BUG: May be "/*" if line starts with comment
+        # ...
+
+# CORRECT: Strip comments before tokenizing
+def parse_sql_schema(sql_path):
+    for line in m.group(2).splitlines():
+        line = re.sub(r'/\*.*?\*/', '', line).strip()  # strip /* ... */ comments
+        line = re.sub(r'--.*$', '', line).strip()       # strip -- comments
+        if not line:
+            continue
+        tokens = re.split(r'\s+', line, maxsplit=2)
+        col_name = re.sub(r'[`"\[\]]', '', tokens[0])
+        # ...
+```
+
+**Solution**: Add comment-stripping regex at the top of the per-line loop in `parse_sql_schema` to remove both `/* ... */` and `--` style comments before splitting tokens.
+
 ---
 
 ## Pangenome (`kbase_ke_pangenome`) Pitfalls
@@ -275,6 +327,39 @@ There are three environments with different import patterns. Using the wrong one
 **[conservation_vs_fitness]** The Spark Connect service runs as a Java process on port 15002. Killing Java processes (e.g., when cleaning up stale notebook processes) will take down Spark Connect, and `get_spark_session()` will fail with `RETRIES_EXCEEDED` / `Connection refused`.
 
 **Recovery**: Log out of JupyterHub and start a new session. Then run `get_spark_session()` from a notebook to restart the Spark Connect daemon. You cannot restart it from the CLI.
+
+### Spark Connect Sidecar Startup Race (Off-Cluster Access)
+
+**Context**: Off-cluster access via `scripts/get_spark_session.py` + proxy chain.
+
+**Problem**: After restarting the JupyterHub kernel, the Python kernel becomes ready almost immediately, but the Spark Connect gRPC sidecar (the Java process on port 15002) takes an additional 20–60 seconds to start and register with the BERDL gateway. During this window, any connection attempt from outside the cluster fails with:
+
+```
+SparkConnectGrpcException: FAILED_PRECONDITION
+  "Spark Connect server at jupyter-<username>.jupyterhub-prod.svc.cluster.local:15002
+   is not reachable. Please ensure you have logged in to BERDL JupyterHub and your
+   notebook's Spark Connect service is running."
+```
+
+This is misleading — the session *is* running, the sidecar just hasn't finished starting. The error looks identical to a "not logged in" error, so it's easy to mistake for an authentication problem and keep resetting the kernel unnecessarily.
+
+**Solution**: After restarting the kernel, wait ~30–60 seconds before attempting off-cluster connections, or poll with retries:
+
+```bash
+source .venv-berdl/bin/activate
+for i in $(seq 1 10); do
+    echo "Attempt $i at $(date +%H:%M:%S)..."
+    result=$(python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok" 2>&1)
+    if echo "$result" | grep -q '"ok"'; then
+        echo "Connected!"
+        break
+    fi
+    echo "  Not ready — retrying in 20s"
+    sleep 20
+done
+```
+
+**Do not** reset the kernel repeatedly — this just restarts the race. One reset is enough; then wait and retry from the local side.
 
 ### Running Notebooks from CLI
 
