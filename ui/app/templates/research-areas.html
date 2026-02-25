@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Research Areas - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Research Areas</h1>
+    <p class="page-description">
+        Projects automatically grouped by shared research themes, data dependencies, and collections.
+    </p>
+</div>
+
+{% for item in areas %}
+<section class="section">
+    <div class="flex items-center gap-4" style="flex-wrap: wrap; margin-bottom: var(--space-4);">
+        <h2 id="{{ item.area.id }}" style="margin-bottom: 0;">{{ item.area.name }}</h2>
+        <span class="text-muted text-small">{{ item.projects|length }} project{% if item.projects|length != 1 %}s{% endif %}</span>
+        {% if item.area.top_terms %}
+        <div style="display: flex; gap: var(--space-1); flex-wrap: wrap;">
+            {% for term in item.area.top_terms %}
+            <span class="badge" style="font-size: 0.65rem; background: var(--surface-overlay); color: var(--text-secondary);">{{ term }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="grid grid-3">
+        {% for project in item.projects %}
+        <a href="/projects/{{ project.id }}" class="card" style="text-decoration: none;">
+            <div>
+                <h4 style="margin-bottom: var(--space-2); color: var(--text-primary);">{{ project.title | markdown_inline }}</h4>
+                {% if project.status.value == "Completed" %}
+                <span class="badge badge-completed" style="font-size: 0.65rem;">{{ project.status.value }}</span>
+                {% elif project.status.value == "In Progress" %}
+                <span class="badge badge-in-progress" style="font-size: 0.65rem;">{{ project.status.value }}</span>
+                {% else %}
+                <span class="badge badge-proposed" style="font-size: 0.65rem;">{{ project.status.value }}</span>
+                {% endif %}
+            </div>
+            {% if project.research_question %}
+            <p class="text-small text-muted" style="margin-top: var(--space-2); margin-bottom: 0;">{{ project.research_question[:150] }}{% if project.research_question|length > 150 %}...{% endif %}</p>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endfor %}
+{% endblock %}

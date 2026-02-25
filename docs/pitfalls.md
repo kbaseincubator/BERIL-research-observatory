@@ -572,6 +572,14 @@ SELECT * FROM kescience_fitnessbrowser.keggmember WHERE orgId = 'DvH'
 
 Also: `kgroupec` uses column `ecnum` (not `ec`).
 
+### Experiment Table Is Named `experiment`, Not `exps`
+
+**[pathway_capability_dependency]** The experiments table in `kescience_fitnessbrowser` is called `experiment` (not `exps`). Column names: `expName` (not `name`), `expGroup` (not `Group`), `condition_1` (not `Condition_1`). The `expGroup` column provides clean condition categories ("carbon source", "nitrogen source", "stress", "pH", "temperature", etc.) — use this for condition-type classification instead of pattern matching on `condition_1`.
+
+### seedannotationtoroles Joins on `seed_desc`, Not `orgId`/`locusId`
+
+**[pathway_capability_dependency]** The `seedannotationtoroles` table has columns `seed_desc` and `seedrole` only — no `orgId` or `locusId`. Join chain: `seedannotation` (orgId, locusId, seed_desc) → `seedannotationtoroles` (seed_desc → seedrole) → `seedroles` (seedrole → toplevel, category, subsystem). The `seedroles` table columns are `toplevel`, `category`, `subsystem`, `seedrole` — not `seed_role`, `seed_subsystem`, or `seedroleId`.
+
 ### seedclass Has No Subsystem Hierarchy
 
 **[fitness_modules]** `seedclass` has columns `orgId, locusId, type, num` — it stores EC numbers, NOT SEED subsystem categories. Use `seedannotation` (columns: `orgId, locusId, seed_desc`) for functional descriptions.
@@ -877,6 +885,12 @@ cat /tmp/output.txt
 ```
 
 Do NOT use `wait` on the PID — this triggers the same output suppression.
+
+### [counter_ion_effects] NaCl-importance thresholds are sensitive to experiment count
+
+**Problem**: Using `n_sick >= 1` (at least one NaCl experiment with fit < -1) as an NaCl-importance threshold is biased by the number of NaCl experiments per organism. *Synechococcus elongatus* (SynE) has 12 NaCl dose-response experiments (0.5–250 mM) and flags 32.6% of genes as NaCl-important — 3× higher than the next organism. This inflates cross-condition overlap statistics (SynE shows 88.6% metal–NaCl shared-stress).
+
+**Solution**: When comparing gene-level importance across conditions with unequal experiment counts, either (a) require `n_sick >= 2` or use `mean_fit < threshold` instead of `n_sick >= 1`, or (b) report results with and without outlier organisms as a sensitivity check. Excluding SynE, overall metal–NaCl overlap drops from 39.8% to 36.7% — modest but worth documenting.
 
 ---
 
