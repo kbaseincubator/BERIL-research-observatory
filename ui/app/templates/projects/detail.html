@@ -151,8 +151,48 @@
 </section>
 {% endif %}
 
-<!-- References (from REPORT.md) -->
-{% if project.references %}
+<!-- References (from REPORT.md or provenance.yaml) -->
+{% if project.provenance and project.provenance.references %}
+<section class="section">
+    <h2 id="references">References</h2>
+    {% set ref_types = [
+        ('primary_data_source', 'Primary Data Sources'),
+        ('supporting', 'Supporting'),
+        ('contradicting', 'Contradicting'),
+        ('methodology', 'Methodology'),
+        ('review', 'Reviews'),
+    ] %}
+    {% for type_id, type_label in ref_types %}
+    {% set typed_refs = project.provenance.get_references_by_type(type_id) %}
+    {% if typed_refs %}
+    <div class="card" style="margin-bottom: var(--space-4);">
+        <h4 style="margin-bottom: var(--space-3);">{{ type_label }}</h4>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {% for ref in typed_refs %}
+            <li style="margin-bottom: var(--space-3); padding-left: var(--space-4); border-left: 2px solid var(--border-color);">
+                <div>
+                    <strong>{{ ref.short_citation }}</strong>
+                    {% if ref.title %}<span class="text-muted"> — {{ ref.title }}</span>{% endif %}
+                </div>
+                <div class="text-small text-muted" style="margin-top: var(--space-1);">
+                    {% if ref.journal %}<em>{{ ref.journal }}</em>{% endif %}
+                    {% if ref.volume %} {{ ref.volume }}{% endif %}
+                    {% if ref.pages %}: {{ ref.pages }}{% endif %}
+                    {% if ref.doi %}
+                    &middot; <a href="{{ ref.doi_url }}" target="_blank" rel="noopener">DOI</a>
+                    {% endif %}
+                    {% if ref.pmid %}
+                    &middot; <a href="{{ ref.pmid_url }}" target="_blank" rel="noopener">PubMed</a>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endfor %}
+</section>
+{% elif project.references %}
 <section class="section">
     <h2 id="references">References</h2>
     <div class="card markdown-content">
@@ -213,7 +253,38 @@
 {% endif %}
 
 <!-- Data Collections -->
-{% if project_collections %}
+{% if project.provenance and project.provenance.data_sources and project_collections %}
+<section class="section">
+    <h2 id="data-collections">Data Collections</h2>
+    <div class="grid grid-3">
+        {% for ds in project.provenance.data_sources %}
+        {% set ns = namespace(coll=None) %}
+        {% for c in project_collections %}{% if c.id == ds.collection %}{% set ns.coll = c %}{% endif %}{% endfor %}
+        <a href="/collections/{{ ds.collection }}" class="card" style="text-decoration: none;">
+            {% if ns.coll %}
+            <div class="flex items-center gap-4">
+                <span style="font-size: 1.25rem;">{{ ns.coll.icon | safe }}</span>
+                <div>
+                    <h4 style="margin-bottom: 0; color: var(--text-primary);">{{ ns.coll.name }}</h4>
+                    <p class="text-muted text-small" style="font-family: var(--font-mono); margin-bottom: 0;">{{ ds.collection }}</p>
+                </div>
+            </div>
+            {% else %}
+            <code style="color: var(--text-primary);">{{ ds.collection }}</code>
+            {% endif %}
+            {% if ds.tables %}
+            <div class="text-small text-muted" style="margin-top: var(--space-2); font-family: var(--font-mono);">
+                Tables: {{ ds.tables | join(', ') }}
+            </div>
+            {% endif %}
+            {% if ds.purpose %}
+            <p class="text-small text-muted" style="margin-top: var(--space-1); margin-bottom: 0;">{{ ds.purpose }}</p>
+            {% endif %}
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% elif project_collections %}
 <section class="section">
     <h2 id="data-collections">Data Collections</h2>
     <div class="grid grid-3">
@@ -248,7 +319,33 @@
 {% endif %}
 
 <!-- Derived Data (cross-project data dependencies) -->
-{% if project.derived_from %}
+{% if project.provenance and project.provenance.cross_project_deps %}
+<section class="section">
+    <h2 id="derived-data">Derived Data</h2>
+    <p class="text-muted text-small" style="margin-bottom: var(--space-4);">
+        This project builds on processed data from other projects.
+    </p>
+    <div class="grid grid-3">
+        {% for dep in project.provenance.cross_project_deps %}
+        <a href="/projects/{{ dep.project }}" class="card" style="text-decoration: none;">
+            <div>
+                <h4 style="margin-bottom: var(--space-1); color: var(--text-primary);">{{ dep.project | replace('_', ' ') | title }}</h4>
+                <span class="badge badge-in-progress" style="font-size: 0.7rem;">{{ dep.relationship | replace('_', ' ') }}</span>
+                {% if dep.description %}
+                <p class="text-small text-muted" style="margin-top: var(--space-2); margin-bottom: 0;">{{ dep.description }}</p>
+                {% endif %}
+                {% if dep.files %}
+                <div class="text-small text-muted" style="font-family: var(--font-mono); margin-top: var(--space-2);">
+                    {% for f in dep.files[:3] %}{{ f }}{% if not loop.last %}, {% endif %}{% endfor %}{% if dep.files|length > 3 %} +{{ dep.files|length - 3 }} more{% endif %}
+                </div>
+                {% endif %}
+            </div>
+            <p class="text-small mt-4" style="margin-bottom: 0; color: var(--text-link);">View source project &rarr;</p>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% elif project.derived_from %}
 <section class="section">
     <h2 id="derived-data">Derived Data</h2>
     <p class="text-muted text-small" style="margin-bottom: var(--space-4);">
