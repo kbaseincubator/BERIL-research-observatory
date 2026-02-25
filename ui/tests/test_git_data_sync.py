@@ -1,7 +1,9 @@
 """Unit tests for app.git_data_sync."""
 
 import subprocess
-from unittest.mock import AsyncMock, patch
+from pathlib import Path
+from unittest.mock import AsyncMock, MagicMock, patch, call
+import asyncio
 
 import pytest
 
@@ -31,15 +33,11 @@ class TestEnsureRepoCloned:
     async def test_clones_when_not_exists(self, tmp_path):
         local_path = tmp_path / "repo"  # does not exist yet
 
-        with (
-            patch("app.git_data_sync._git_clone", new_callable=AsyncMock) as mock_clone,
-            patch("app.git_data_sync._git_pull", new_callable=AsyncMock) as mock_pull,
-        ):
+        with patch("app.git_data_sync._git_clone", new_callable=AsyncMock) as mock_clone, \
+             patch("app.git_data_sync._git_pull", new_callable=AsyncMock) as mock_pull:
             await ensure_repo_cloned("https://example.com/repo.git", "main", local_path)
 
-        mock_clone.assert_called_once_with(
-            "https://example.com/repo.git", "main", local_path
-        )
+        mock_clone.assert_called_once_with("https://example.com/repo.git", "main", local_path)
         mock_pull.assert_not_called()
 
     @pytest.mark.asyncio
@@ -48,10 +46,8 @@ class TestEnsureRepoCloned:
         local_path.mkdir()
         (local_path / ".git").mkdir()
 
-        with (
-            patch("app.git_data_sync._git_clone", new_callable=AsyncMock) as mock_clone,
-            patch("app.git_data_sync._git_pull", new_callable=AsyncMock) as mock_pull,
-        ):
+        with patch("app.git_data_sync._git_clone", new_callable=AsyncMock) as mock_clone, \
+             patch("app.git_data_sync._git_pull", new_callable=AsyncMock) as mock_pull:
             await ensure_repo_cloned("https://example.com/repo.git", "main", local_path)
 
         mock_pull.assert_called_once_with(local_path, "main")
@@ -62,10 +58,8 @@ class TestEnsureRepoCloned:
         local_path = tmp_path / "repo"
         local_path.mkdir()  # exists but no .git subdir
 
-        with (
-            patch("app.git_data_sync._git_clone", new_callable=AsyncMock) as mock_clone,
-            patch("app.git_data_sync._git_pull", new_callable=AsyncMock) as mock_pull,
-        ):
+        with patch("app.git_data_sync._git_clone", new_callable=AsyncMock) as mock_clone, \
+             patch("app.git_data_sync._git_pull", new_callable=AsyncMock) as mock_pull:
             await ensure_repo_cloned("https://example.com/repo.git", "main", local_path)
 
         mock_clone.assert_called_once()
@@ -125,9 +119,7 @@ class TestGitClone:
         local_path = tmp_path / "repo"
         success_proc = _make_process(returncode=0)
 
-        with patch(
-            "asyncio.create_subprocess_exec", return_value=success_proc
-        ) as mock_exec:
+        with patch("asyncio.create_subprocess_exec", return_value=success_proc) as mock_exec:
             await _git_clone("https://example.com/repo.git", "main", local_path)
 
         args = mock_exec.call_args[0]

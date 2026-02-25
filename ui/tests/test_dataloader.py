@@ -3,6 +3,9 @@
 import gzip
 import json
 import pickle
+import tempfile
+from datetime import datetime
+from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -14,6 +17,7 @@ from app.dataloader import (
     slugify,
 )
 from app.models import (
+    CollectionCategory,
     IdeaStatus,
     Priority,
     ProjectStatus,
@@ -134,8 +138,7 @@ class TestContributorKey:
 
 class TestAggregateContributors:
     def _make_project(self, pid, contributors):
-        from app.models import Project
-
+        from app.models import Contributor, Project
         return Project(
             id=pid,
             title=pid,
@@ -145,7 +148,6 @@ class TestAggregateContributors:
 
     def _make_contrib(self, name, pid, orcid=None, affiliation=None, roles=None):
         from app.models import Contributor
-
         return Contributor(
             name=name,
             orcid=orcid,
@@ -250,9 +252,7 @@ class TestExtractOtherSections:
         self.parser = RepositoryParser.__new__(RepositoryParser)
 
     def test_skips_known_sections(self):
-        content = (
-            "## Key Findings\nFindings here.\n\n## Custom Section\nCustom content.\n"
-        )
+        content = "## Key Findings\nFindings here.\n\n## Custom Section\nCustom content.\n"
         result = self.parser._extract_other_sections(content, {"Key Findings"})
         assert len(result) == 1
         assert result[0][0] == "Custom Section"
@@ -338,7 +338,8 @@ class TestParseContributors:
 
     def test_bold_format_with_affiliation_and_orcid(self):
         content = (
-            "## Authors\n- **Alice Smith** (LBNL) | ORCID: 0000-0001-1111-1111 | lead\n"
+            "## Authors\n"
+            "- **Alice Smith** (LBNL) | ORCID: 0000-0001-1111-1111 | lead\n"
         )
         contribs = self.parser._parse_contributors(content, "proj_a")
         assert len(contribs) == 1
@@ -357,7 +358,8 @@ class TestParseContributors:
 
     def test_plain_format_with_orcid_url(self):
         content = (
-            "## Authors\n- Carol White (https://orcid.org/0000-0002-2222-2222), LBNL\n"
+            "## Authors\n"
+            "- Carol White (https://orcid.org/0000-0002-2222-2222), LBNL\n"
         )
         contribs = self.parser._parse_contributors(content, "proj_c")
         assert len(contribs) == 1
@@ -446,7 +448,8 @@ class TestParseProjects:
         src_dir = tmp_repo / "projects" / "source_proj"
         src_dir.mkdir()
         (src_dir / "README.md").write_text(
-            "# Source\n\n## Research Question\nQ?\n\n## Key Findings\nFound it.\n"
+            "# Source\n\n## Research Question\nQ?\n\n"
+            "## Key Findings\nFound it.\n"
         )
 
         consumer_dir = tmp_repo / "projects" / "consumer_proj"
@@ -461,9 +464,7 @@ class TestParseProjects:
             "cells": [
                 {
                     "cell_type": "code",
-                    "source": [
-                        "df = pd.read_csv('../../source_proj/data/results.csv')"
-                    ],
+                    "source": ["df = pd.read_csv('../../source_proj/data/results.csv')"],
                     "outputs": [],
                     "metadata": {},
                 }
@@ -657,7 +658,6 @@ class TestParseRowCounts:
 class TestClusterResearchAreas:
     def _make_project(self, pid, title, research_question=""):
         from app.models import Project
-
         return Project(id=pid, title=title, research_question=research_question)
 
     def test_empty_returns_empty(self):
@@ -686,7 +686,6 @@ class TestClusterResearchAreas:
 
     def test_data_dep_boosts_similarity(self):
         from app.models import DerivedDataRef
-
         p1 = self._make_project("p1", "Essential genome analysis")
         p2 = self._make_project("p2", "Dispensable genome study")
         p2.derived_from = [DerivedDataRef(source_project="p1")]

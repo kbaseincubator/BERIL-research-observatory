@@ -329,25 +329,20 @@ class TestTypeCoercion:
 class TestSettingsSingleton:
     def test_singleton_is_settings_instance(self):
         from app.config import settings
-
         assert isinstance(settings, Settings)
 
     def test_singleton_has_correct_app_name(self):
         from app.config import settings
-
         assert settings.app_name == "Microbial Discovery Forge"
 
     def test_singleton_debug_is_false(self):
         from app.config import settings
-
         assert settings.debug is False
 
     def test_singleton_data_repo_url_is_none(self):
         from app.config import settings
-
         assert settings.data_repo_url is None
 
     def test_singleton_webhook_secret_is_none(self):
         from app.config import settings
-
         assert settings.webhook_secret is None

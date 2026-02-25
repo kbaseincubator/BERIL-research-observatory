@@ -1,8 +1,11 @@
 """Shared pytest fixtures for the BERIL Observatory UI test suite."""
 
 import gzip
+import json
 import pickle
+import tempfile
 from datetime import datetime
+from pathlib import Path
 
 import pytest
 
@@ -10,9 +13,13 @@ from app.models import (
     Collection,
     CollectionCategory,
     CollectionTable,
+    Column,
     Contributor,
+    DataFile,
+    DerivedDataRef,
     Discovery,
     IdeaStatus,
+    Notebook,
     PerformanceTip,
     Pitfall,
     Priority,
@@ -22,8 +29,11 @@ from app.models import (
     ResearchArea,
     ResearchIdea,
     Review,
+    ReviewStatus,
     SampleQuery,
     Skill,
+    Table,
+    Visualization,
 )
 
 
