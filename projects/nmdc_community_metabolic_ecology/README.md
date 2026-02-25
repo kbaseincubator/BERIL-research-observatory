@@ -8,7 +8,13 @@ habitat types?
 
 ## Status
 
-In Progress — research plan created, awaiting data exploration on BERDL JupyterHub.
+Complete — see [Report](REPORT.md) for findings.
+
+All five notebooks have been executed. Key results: BQH signal detected in leucine and
+arginine biosynthesis (Spearman r ≈ −0.30–0.33, FDR q = 0.045); 83% of tested aa
+pathways trend in BQH direction (binomial p = 0.019). Community metabolic potential
+separates strongly by ecosystem type (PC1 = 49.4% variance; Soil vs. Freshwater
+Mann-Whitney p < 0.0001).
 
 ## Overview
 
