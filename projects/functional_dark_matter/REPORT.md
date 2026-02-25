@@ -138,7 +138,11 @@ Beyond these pre-registered predictions, 76 of 105 total Spearman correlation te
 
 ![NMDC correlation results](figures/fig12_nmdc_correlations.png)
 
-*(Notebook: 04_lab_field_concordance.ipynb)*
+**NMDC trait-condition validation** (NB06 Section 3) provides an additional layer: using the same genus bridge, carrier genera abundance was correlated with matching community functional trait scores from NMDC `trait_features` (76 functional_group columns across 6,365 samples). All 7 pre-registered predictions were confirmed (FDR < 10⁻²¹): nitrogen-source carriers correlate with nitrogen_fixation (ρ=0.60) and nitrate_denitrification (ρ=0.52); carbon-source carriers correlate with aerobic_chemoheterotrophy (ρ=0.73) and fermentation (ρ=0.59); anaerobic carriers correlate with fermentation (ρ=0.59) and iron_respiration (ρ=0.45). An additional 441/449 exploratory tests reached FDR < 0.05. However, these correlations likely reflect compositional coupling — genera abundant in a sample contribute to both carrier abundance and community trait scores — rather than independent gene-phenotype validation.
+
+![NMDC trait-condition correlations](figures/fig21_trait_correlations.png)
+
+*(Notebooks: 04_lab_field_concordance.ipynb, 06_robustness_checks.ipynb)*
 
 ### Finding 8: Top 100 prioritized candidates span 23 organisms with 86% high-confidence functional hypotheses
 
@@ -255,7 +259,7 @@ The first two additions (*B. subtilis* and *S. coelicolor*) would fill the two l
 
 Essential dark genes (no viable transposon mutants) represent 55% of the experimentally actionable dark matter but score poorly in the fitness-centric NB05 framework. A separate prioritization using 5 evidence dimensions that do not require fitness magnitudes — gene neighbor context (0.25), cross-organism conservation (0.20), phylogenetic breadth (0.20), domain annotations (0.15), and CRISPRi tractability (0.20) — ranked all 9,557 essential dark genes.
 
-Gene neighbor analysis reveals that 97.2% of dark genes (55,422/57,011) have at least one annotated neighbor within a 5-gene window, and 30,190 (52.9%) share a predicted operon with an annotated gene (same strand, gap < 300 bp). This provides the primary functional inference for essential genes lacking fitness profiles.
+Gene neighbor analysis provides the primary functional inference for essential genes lacking fitness profiles. Of 57,011 dark genes, 30,190 (52.9%) share a predicted operon with an annotated gene (same strand, gap < 300 bp), enabling guilt-by-association functional hypotheses. While 97.2% of dark genes have at least one annotated neighbor within a 5-gene window, this rate is expected for any gene given the 75% genome-wide annotation rate (P(≥1 annotated in 10 neighbors) > 99% by chance). More informatively, the mean annotated neighbor fraction (63.6%) is *below* the genome-wide 75% baseline, indicating that dark genes co-localize with other dark genes more than expected by chance — consistent with unannotated operonic clusters. Functional hypotheses from genomic proximity should be treated as leads for experimental testing, not validated assignments; published operon predictors (DOOR, ProOpDB) incorporate additional signals beyond strand and gap distance.
 
 The top 10 essential dark gene candidates:
 
@@ -317,6 +321,8 @@ All top-50 candidates have high-confidence functional hypotheses derived from op
 | Lab-field concordance (FDR < 0.2) | 47 | 6 significant | 12.8% |
 | NMDC abiotic correlations (FDR < 0.05) | 105 | 76 | 72.4% |
 | NMDC pre-registered predictions confirmed | 4 | 4 | 100% |
+| NMDC trait-condition pre-registered (FDR < 0.05) | 7 | 7 | 100% |
+| NMDC trait-condition exploratory (FDR < 0.05) | 449 | 441 | 98.2% |
 
 ### Prioritization Summary
 
@@ -340,7 +346,7 @@ All top-50 candidates have high-confidence functional hypotheses derived from op
 | Top 50 organisms represented | 15 |
 | With high-confidence hypothesis | 50/50 |
 | With annotated operon partner | 30,190 (52.9% of all dark) |
-| Dark genes with annotated neighbors | 55,422 (97.2% of all dark) |
+| Mean annotated neighbor fraction | 63.6% (below 75% genome baseline) |
 
 ## Interpretation
 
@@ -354,7 +360,7 @@ All top-50 candidates have high-confidence functional hypotheses derived from op
 
 - **H1c (Cross-organism concordance)**: Supported for the 65 testable ortholog groups. Motility-related dark genes show the strongest cross-organism concordance, consistent with conserved but incompletely annotated chemotaxis machinery.
 
-- **H1d (Biogeographic pattern)**: Supported. 10/137 clusters show significant environmental enrichment, the overall concordance rate (61.7%) exceeds the 50% chance level, and NMDC independent validation confirmed all 4 testable pre-registered predictions (nitrogen~nitrogen, pH~pH, anaerobic~dissolved oxygen). The strongest within-species signals are in *Pseudomonas* and *P. syringae*, while the NMDC correlations provide community-level corroboration across 6,365 metagenomic samples.
+- **H1d (Biogeographic pattern)**: Supported. 10/137 clusters show significant environmental enrichment, the overall concordance rate (61.7%) exceeds the 50% chance level, and NMDC independent validation confirmed all 4 testable pre-registered predictions (nitrogen~nitrogen, pH~pH, anaerobic~dissolved oxygen). The strongest within-species signals are in *Pseudomonas* and *P. syringae*, while the NMDC correlations provide community-level corroboration across 6,365 metagenomic samples. Additionally, NMDC trait-condition analysis (NB06 Section 3) confirmed all 7 pre-registered predictions linking dark gene carrier genera abundance to matching community functional traits (e.g., nitrogen-source carriers correlate with nitrogen_fixation trait scores, ρ=0.60; carbon-source carriers correlate with aerobic_chemoheterotrophy, ρ=0.73). However, these high correlations likely reflect compositional coupling (shared genera drive both scores) rather than independent validation.
 
 - **H1e (Pathway integration)**: Suggestive but not directly tested at the gene-to-step level. GapMind identifies 1,256 organism-pathway pairs where dark genes co-occur with metabolic gaps, but no direct gene-to-gap enzymatic matching was performed. Confirming that specific dark genes fill specific missing steps requires EC number matching, AlphaFold structure prediction, or experimental validation.
 
@@ -394,9 +400,11 @@ This project contributes:
 
 7. **Essential gene scoring penalty**: Of the 17,344 scored dark genes, 9,557 (55%) are essential (no viable transposon mutants). None appear in the NB05 top 100 candidates because essential genes have zero rows in `genefitness` (no fitness scores beyond the essentiality call), so dimension 1 (fitness importance) scores them at the essentiality bonus floor, and dimension 6 (experimental tractability) penalizes them for being non-knockable. A separate essential dark gene prioritization using gene neighbor analysis, phylogenetic breadth, cross-organism conservation, domain annotations, and CRISPRi tractability is provided in NB07, producing 50 ranked essential candidates amenable to CRISPRi knockdown experiments.
 
-8. **NMDC trait_features not used**: The research plan specified NMDC `trait_features` (92 community-level functional traits per sample) for functional context, but these were not implemented. Trait-based comparisons (e.g., testing whether samples with high nitrogen-cycling trait scores have high abundance of nitrogen-phenotype dark gene carriers) remain available for future work.
+8. **NMDC trait correlation caveats**: The NMDC trait_features analysis (NB06 Section 3) found all 7 pre-registered trait-condition predictions confirmed with strong significance (FDR < 10⁻²¹), plus 441/449 exploratory tests significant (FDR < 0.05). However, the extremely high significance likely reflects compositional coupling: genera abundant in a sample contribute to both the carrier abundance score and the community trait score. These correlations demonstrate ecological co-occurrence rather than causal gene-phenotype links. A permutation test shuffling sample labels would provide a proper null distribution.
 
 9. **Dark-vs-annotated controls partial**: The concordance null control (NB06) shows dark genes achieve concordance levels indistinguishable from annotated genes, supporting H1. However, equivalent null controls were not run for the biogeographic and lab-field concordance analyses. A full null comparison using annotated accessory genes through the same biogeographic pipeline would strengthen the H0 rejection.
+
+10. **Scoring weight sensitivity**: Both prioritization frameworks use arbitrary expert-assigned weights. Sensitivity analysis (NB05/NB07) shows that while overall rank correlations remain high across alternative weight configurations (ρ > 0.93), the top-ranked candidate lists are moderately sensitive to weight choices. For NB05 (fitness-active): conservation-dominant and drop-tractability configurations each retain only 32/50 original top candidates (64%). For NB07 (essential): dropping tractability retains only 18/50 (36%) and dropping neighbor context retains 24/50 (48%). Users should treat specific rankings as approximate and focus on candidates that appear in the top tier across multiple weight schemes rather than relying on exact rank order.
 
 ## Data
 
@@ -406,7 +414,7 @@ This project contributes:
 |------------|-------------|---------|
 | `kescience_fitnessbrowser` | `gene`, `genefitness`, `specificphenotype`, `experiment`, `cofit`, `ortholog`, `genedomain`, `seedannotation`, `organism`, `specog` | Fitness phenotypes, gene descriptions, co-fitness, orthologs, domains |
 | `kbase_ke_pangenome` | `gene_cluster`, `gene`, `gene_genecluster_junction`, `genome`, `eggnog_mapper_annotations`, `gtdb_species_clade`, `gtdb_taxonomy_r214v1`, `gtdb_metadata`, `ncbi_env`, `alphaearth_embeddings_all_years`, `gapmind_pathways` | Pangenome conservation, phylogenetic breadth, environmental metadata, pathway analysis |
-| `nmdc_arkin` | `taxonomy_features`, `abiotic_features`, `taxonomy_dim` | Independent environmental validation via genus-level taxonomy bridge |
+| `nmdc_arkin` | `taxonomy_features`, `abiotic_features`, `taxonomy_dim`, `trait_features` | Independent environmental validation via genus-level taxonomy bridge; trait-condition concordance analysis |
 
 ### Generated Data
 
@@ -430,6 +438,9 @@ This project contributes:
 | `data/gene_neighbor_context.tsv` | 57,011 | Gene neighbor profiles for all dark genes (operon predictions, functional keywords) |
 | `data/essential_dark_scored.tsv` | 9,557 | Essential dark genes scored across 5 dimensions |
 | `data/essential_prioritized_candidates.tsv` | 50 | Top 50 essential dark gene candidates with CRISPRi experiments |
+| `data/nmdc_trait_validation.tsv` | 456 | NMDC trait-condition correlation results (7 pre-registered + 449 exploratory) |
+| `data/scoring_sensitivity_nb05.tsv` | 6 | NB05 scoring sensitivity analysis (6 weight configurations) |
+| `data/scoring_sensitivity_nb07.tsv` | 6 | NB07 scoring sensitivity analysis (6 weight configurations) |
 
 ## Supporting Evidence
 
@@ -442,7 +453,7 @@ This project contributes:
 | `03_biogeographic_analysis.ipynb` | Environmental distribution of carriers, within-species tests |
 | `04_lab_field_concordance.ipynb` | Pre-registered lab-field concordance, NMDC independent validation |
 | `05_prioritization_dossiers.ipynb` | Multi-dimensional scoring, ranking, candidate dossiers |
-| `06_robustness_checks.ipynb` | H1b formal test (Fisher's exact) and dark-vs-annotated concordance null control |
+| `06_robustness_checks.ipynb` | H1b formal test, dark-vs-annotated concordance null control, NMDC trait-condition validation |
 | `07_essential_dark_prioritization.ipynb` | Gene neighbor analysis, essential gene scoring, CRISPRi experiment dossiers |
 
 ### Figures
@@ -469,6 +480,7 @@ This project contributes:
 | `fig18_neighbor_analysis.png` | Gene neighbor analysis: annotated neighbor and operon partner rates |
 | `fig19_essential_scores.png` | Essential dark gene score distributions across 5 dimensions |
 | `fig20_essential_top20.png` | Top 20 essential dark gene candidates with score breakdown |
+| `fig21_trait_correlations.png` | NMDC trait-condition correlation heatmap (7 pre-registered + exploratory) |
 
 ## Future Directions
 
@@ -493,3 +505,7 @@ This project contributes:
 - Vaccaro BJ, Lancaster WA, Thorgersen MP, Zane GM, Younkin AD, Kazakov AE, Wetmore KM, Deutschbauer A, Arkin AP, Novichkov PS, Wall JD, Adams MW. (2016). "Novel Metal Cation Resistance Systems from Mutant Fitness Analysis of Denitrifying Pseudomonas stutzeri." *Appl Environ Microbiol* 82:6046–6056. PMID: 27474723
 - Makarova KS, Wolf YI, Koonin EV. (2019). "Towards functional characterization of archaeal genomic dark matter." *Biochem Soc Trans* 47:389–398. PMID: 30647141
 - Arkin AP, Cottingham RW, Henry CS, Harris NL, Stevens RL, Masber S, et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nature Biotechnology* 36:566–569. PMID: 29979655
+- Peters JM, Colavin A, Shi H, Czarny TL, Larson MH, Wong S, Hawkins JS, Lu CHS, Koo BM, Marta E, et al. (2016). "A Comprehensive, CRISPR-based Functional Analysis of Essential Genes in Bacteria." *Cell* 165:1493–1506. PMID: 27238023
+- Peters JM, Koo BM, Patidar R, Heber CC, Tekin S, Cao K, Terber K, Lanze CE, Sirothia IR, Murray HJ, et al. (2019). "Enabling genetic analysis of diverse bacteria with Mobile-CRISPRi." *Nature Microbiology* 4:244–250. PMID: 30617347
+- Tan SZ, Reisch CR, Prather KLJ. (2018). "A robust CRISPRi gene repression system in Pseudomonas." *Journal of Bacteriology* 200:e00575-17. PMID: 29311275
+- Mimee M, Tucker AC, Voigt CA, Lu TK. (2015). "Programming a Human Commensal Bacterium, Bacteroides thetaiotaomicron, to Sense and Respond to Stimuli in the Murine Gut Microbiota." *Cell Systems* 1:62–71. PMID: 26918244
