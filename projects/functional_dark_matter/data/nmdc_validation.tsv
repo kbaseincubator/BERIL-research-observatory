@@ -1,0 +1,16 @@
+score_type	abiotic_variable	n_samples	spearman_rho	p_value	fdr
+dark_carrier_abundance	ammonium	33			
+dark_carrier_abundance	ammonium_nitrogen	1230			
+dark_carrier_abundance	carb_nitro_ratio	910			
+dark_carrier_abundance	chlorophyll	34			
+dark_carrier_abundance	conduc	70			
+dark_carrier_abundance	depth_has_maximum_numeric_value	4973			
+dark_carrier_abundance	depth_has_minimum_numeric_value	349			
+dark_carrier_abundance	depth	517			
+dark_carrier_abundance	diss_oxygen	272			
+dark_carrier_abundance	ph	4366			
+dark_carrier_abundance	samp_size	148			
+dark_carrier_abundance	soluble_react_phosp	32			
+dark_carrier_abundance	temp	4587			
+dark_carrier_abundance	tot_nitro_content	1231			
+dark_carrier_abundance	tot_phosp	32			
