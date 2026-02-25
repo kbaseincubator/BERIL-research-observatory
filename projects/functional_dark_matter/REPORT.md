@@ -173,6 +173,78 @@ Several patterns emerge in the top candidates: (1) MR-1 genes 199738, 203545, an
 
 *(Notebook: 05_prioritization_dossiers.ipynb)*
 
+### Finding 9: Experimental roadmap — 10 RB-TnSeq experiments cover 45% of the top 500 dark genes
+
+Given that RB-TnSeq libraries already exist for the Fitness Browser organisms, which organism x condition experiments would have the highest return on investment for characterizing dark genes? We ranked all organism-condition pairs by the number of top-500 dark gene candidates they would address, then applied a greedy set-cover optimization:
+
+| Priority | Organism | Condition | Dark genes addressed | Cumulative | % of Top 500 |
+|---------:|----------|-----------|---------------------:|-----------:|-------------:|
+| 1 | **Shewanella MR-1** | stress | 57 | 57 | 10.7% |
+| 2 | **Shewanella MR-1** | nitrogen source | 31 | 88 | 16.5% |
+| 3 | **Shewanella MR-1** | carbon source | 23 | 111 | 20.8% |
+| 4 | ***P. putida* N2C3** | stress | 23 | 134 | 25.1% |
+| 5 | ***S. meliloti*** | carbon source | 22 | 156 | 29.2% |
+| 6 | ***S. meliloti*** | stress | 20 | 176 | 33.0% |
+| 7 | ***P. stutzeri* RCH2** | stress | 20 | 196 | 36.7% |
+| 8 | **Marinobacter** | stress | 18 | 214 | 40.1% |
+| 9 | ***P. fluorescens* GW456-L13** | carbon source | 15 | 229 | 42.9% |
+| 10 | ***P. putida*** | carbon source | 13 | 242 | 45.3% |
+
+**Just 3 experiments in MR-1** (stress, nitrogen, carbon) would cover 111 top-500 candidates (20.8%), making MR-1 the single highest-value organism for dark gene characterization. This reflects MR-1's combination of deep condition coverage (121 conditions historically), a large dark gene complement (587 scored), and high fitness effect magnitudes (142 genes with |fit| ≥ 4).
+
+The top MR-1 targets by condition include:
+
+- **Stress (57 genes)**: led by 202463 (YGGT domain, |fit|=6.4), 203247 (GBBH-like_N, |fit|=4.6), and 203631 (|fit|=4.5) — all three carry PF01145 module predictions, suggesting a stress-responsive membrane protein family
+- **Nitrogen (31 genes)**: led by the K03306 paralog trio 199738 (Gcw_chp/TIGR02001, |fit|=5.5), 203545 (DUF4124, |fit|=4.0), and 202450 (Gly_transporter, |fit|=3.9) — comparing single vs. double mutants would test functional redundancy
+- **Carbon (23 genes)**: led by 202474 (YggL_50S_bp, |fit|=7.1) and 202608 (BcrAD_BadFG, |fit|=7.3) — the highest fitness magnitudes in the entire top-100
+
+The second-highest-value organism is *P. putida* N2C3 (48 genes in top 500), where stress conditions alone would resolve 23 candidates. The #1-ranked gene AO356_11255 (D-alanyl-D-alanine carboxypeptidase prediction, EamA domain, |fit|=3.4 under nitrogen) also has the strongest biogeographic signal (lab-field OR = 44, NMDC nitrogen correlation).
+
+**Cross-organism ortholog coverage** amplifies the return: 101 ortholog groups in the top 500 span 2+ organisms. The most widely shared include:
+
+| Ortholog group | Condition | Organisms | Significance |
+|----------------|-----------|----------:|--------------|
+| OG03827 | carbon source | 6 | MR-1, Marinobacter, ANA3, PV4, *P. fluorescens* N1B4, *P. simiae* N2E2 |
+| OG02907 | nitrogen source | 6 | MR-1, *E. coli* Keio, *K. oxytoca*, *P. putida*, *P. fluorescens* N1B4, *P. simiae* N2E3 |
+| OG01383 | pH | 5 | MR-1, *S. meliloti*, *C. metallidurans*, *P. fluorescens* GW456-L13, *P. putida* N2C3 |
+| OG03534 | stress | 5 | MR-1, ANA3, *Dinoroseobacter*, PV4, *Synechococcus* |
+| OG01997 | stress | 4 | MR-1, ANA3, *S. meliloti*, *P. putida* N2C3 |
+
+Running stress experiments in MR-1 and *P. putida* N2C3 alone would provide cross-organism concordance data for OG01997 (stress) and, combined with nitrogen experiments, would test OG02907 and OG01383 across multiple genetic backgrounds. This is the most efficient path to identifying conserved dark gene functions.
+
+### Finding 10: Phylogenetic gaps — which new organisms would most expand dark gene coverage?
+
+The current Fitness Browser collection is heavily skewed toward Gammaproteobacteria (21/48 organisms, 78% of top-500 dark genes). Several major bacterial phyla are absent or severely underrepresented:
+
+| Phylum/Class | Current FB coverage | Top-500 genes | Gap severity |
+|-------------|--------------------:|--------------:|:------------:|
+| Gammaproteobacteria | 21 organisms | 417 | Saturated |
+| Betaproteobacteria | 8 organisms | 10 | Moderate |
+| Alphaproteobacteria | 5 organisms | 71 | Low |
+| Deltaproteobacteria | 5 organisms | 17 | Low |
+| Bacteroidetes | 5 organisms | 12 | Low |
+| **Firmicutes** | **1 organism** | **5** | **Critical** |
+| Cyanobacteria | 1 organism | 2 | Moderate |
+| Archaea | 2 organisms | 0 | Severe |
+| **Actinobacteria** | **0** | **—** | **Critical** |
+| **Epsilonproteobacteria** | **0** | **—** | **High** |
+
+The most common domain families in the most widespread top-500 dark gene clusters (present in 15+ pangenome species) include TauE (sulfonate export, 7 clusters), DUF444 (5 clusters), Cu-oxidase_4 (5 clusters), EamA (4 clusters, including the #1 candidate), and DUF484/DUF971/DUF934 (3+ clusters each). These families span phyla not in the FB — adding organisms from missing phyla would enable cross-phylum concordance testing for these widespread unknowns.
+
+**Recommended new organisms for RB-TnSeq library construction**, prioritized by (a) phylogenetic gap filled, (b) laboratory tractability, (c) overlap with widespread dark gene families, and (d) environmental/biomedical relevance:
+
+| Priority | Organism | Phylum | Rationale |
+|---------:|----------|--------|-----------|
+| 1 | ***Bacillus subtilis* 168** | Firmicutes | The best-studied Gram-positive model organism. Well-established RB-TnSeq protocols exist (Koo et al. 2017). Would fill the largest phylogenetic gap and enable Gram-positive vs. Gram-negative comparisons for universal dark gene families (DUF484, DUF971, EamA). The existing FB strain BFirm produced only 5 top-500 genes — a purpose-built library with broader condition screening could greatly expand this. |
+| 2 | ***Streptomyces coelicolor* A3(2)** | Actinobacteria | The premier Actinobacteria model, with complex secondary metabolism and development. Would add an entirely missing phylum. Genetically tractable with extensive tools. Its large genome (8.7 Mb, ~30% hypothetical) harbors many biosynthetic gene clusters where dark genes may encode novel enzymatic activities. |
+| 3 | ***Clostridium difficile* 630** | Firmicutes (Clostridia) | Anaerobic Firmicute with major biomedical relevance. Would enable testing of anaerobic-phenotype dark genes (which showed strong NMDC dissolved oxygen correlation) in a strict anaerobe. Genetic tools and TnSeq have been established (Dembek et al. 2015). |
+| 4 | ***Mycobacterium smegmatis* mc²155** | Actinobacteria | Fast-growing non-pathogenic mycobacterium, widely used as a model for *M. tuberculosis*. Tn-seq is well-established. Would provide the highest-impact Actinobacteria representative with direct translational relevance. |
+| 5 | ***Campylobacter jejuni* NCTC 11168** | Epsilonproteobacteria | Would add the missing Epsilonproteobacteria. TnSeq has been applied successfully (de Vries et al. 2017). Important foodborne pathogen with unusual metabolic requirements. |
+| 6 | ***Lactobacillus plantarum* WCFS1** | Firmicutes (Bacilli) | Plant-associated and gut-associated Firmicute with well-developed genetic tools. Would complement *B. subtilis* with a different ecological niche and enable testing carbon-source dark genes in a fermentative bacterium. |
+| 7 | ***Rhodobacter sphaeroides* 2.4.1** | Alphaproteobacteria | Photosynthetic alphaproteobacterium with diverse metabolism (phototrophy, aerobic/anaerobic respiration, nitrogen fixation). Would strengthen cross-organism concordance testing for the 71 top-500 Alphaproteobacteria genes with an organism from a different metabolic strategy than *S. meliloti*. |
+
+The first two additions (*B. subtilis* and *S. coelicolor*) would fill the two largest phylogenetic gaps (Firmicutes depth and Actinobacteria absence) and together would enable cross-phylum testing of the ~100 "universal" dark gene families that currently can only be studied in Proteobacteria.
+
 ## Results
 
 ### Dark Gene Census
