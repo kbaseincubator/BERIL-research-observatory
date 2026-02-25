@@ -1,0 +1,22 @@
+Essentiality Vectors Metadata
+================================================================================
+
+Set 1 (Rich Media):
+  - fba_rich_essential: FBA prediction (1=essential, 0=non-essential, NaN=no prediction)
+  - ko_rich_essential: KO experiment truth (1=essential, 0=dispensable, NaN=uncertain)
+  - tnseq_ess_0.01: RB-TnSeq essentiality_fraction >= 0.01 (lenient, ~46% of genes)
+  - tnseq_ess_0.025: RB-TnSeq essentiality_fraction >= 0.025 (75th percentile)
+  - tnseq_ess_0.05: RB-TnSeq essentiality_fraction >= 0.05 (~16% of genes)
+  - tnseq_ess_0.10: RB-TnSeq essentiality_fraction >= 0.10 (95th percentile)
+  - tnseq_ess_0.20: RB-TnSeq essentiality_fraction >= 0.20 (99th percentile)
+
+Set 2 (Minimal Media):
+  - fba_min_essential: FBA prediction (1=essential, 0=non-essential, NaN=no prediction)
+  - ko_min_essential: KO experiment merged (1=essential, 0=dispensable, NaN=uncertain)
+  - proteomics_avg_log2: Average log2 expression across 7 strains
+  - proteomics_avg_abundance: Average relative abundance (2^log2)
+  - tnseq_ess_no_fitness: TnSeq fitness-based (1=no fitness data/essential, 0=has fitness/dispensable)
+
+Continuous Variables (for correlation analysis):
+  - essentiality_fraction: RB-TnSeq essentiality fraction (0-1 continuous)
+  - fitness_mean: Average fitness across phenotypes (continuous)
