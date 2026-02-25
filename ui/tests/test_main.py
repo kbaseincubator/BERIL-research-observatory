@@ -2,8 +2,6 @@
 
 import hashlib
 import hmac
-import json
-from datetime import datetime
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -16,13 +14,6 @@ from app.main import (
     slugify_filter,
     strip_images_filter,
     get_base_context,
-)
-from app.models import (
-    CollectionCategory,
-    IdeaStatus,
-    Project,
-    ProjectStatus,
-    RepositoryData,
 )
 
 

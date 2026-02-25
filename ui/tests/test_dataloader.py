@@ -3,9 +3,6 @@
 import gzip
 import json
 import pickle
-import tempfile
-from datetime import datetime
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
@@ -17,7 +14,6 @@ from app.dataloader import (
     slugify,
 )
 from app.models import (
-    CollectionCategory,
     IdeaStatus,
     Priority,
     ProjectStatus,
@@ -138,7 +134,7 @@ class TestContributorKey:
 
 class TestAggregateContributors:
     def _make_project(self, pid, contributors):
-        from app.models import Contributor, Project
+        from app.models import Project
         return Project(
             id=pid,
             title=pid,

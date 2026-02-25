@@ -1,8 +1,7 @@
 """Unit tests for app.models."""
 
-from datetime import datetime, date
+from datetime import datetime
 
-import pytest
 
 from app.models import (
     Collection,
