@@ -160,7 +160,11 @@ Group results by theme and present as a structured summary:
 
 ### Step 6: Store References
 
-Save structured references to the project directory:
+Save structured references to the project directory in two formats:
+
+#### 6a. Markdown references (human-readable)
+
+Save to `projects/{project_id}/references.md`:
 
 ```markdown
 # References
@@ -180,9 +184,34 @@ Query: "[search terms used]"
 1. ...
 ```
 
-**File location**: `projects/{project_id}/references.md`
-
 If no project context exists, offer to create the file in the current working directory.
+
+#### 6b. Structured provenance (machine-readable)
+
+Also update or create `projects/{project_id}/provenance.yaml` with the `references` list.
+
+- **If `provenance.yaml` already exists**: Read the existing file, merge new references into the `references` list. Avoid duplicates by matching on DOI or PMID. Preserve all other sections (data_sources, findings, etc.) unchanged.
+- **If `provenance.yaml` does not exist**: Create a minimal file with just `schema_version` and `references`:
+
+```yaml
+schema_version: 1
+
+references:
+  - id: price2018
+    type: supporting
+    title: "Mutant phenotypes for thousands of bacterial genes of unknown function"
+    authors: ["Price MN", "Wetmore KM", "Waters RJ"]
+    year: 2018
+    journal: "Nature"
+    volume: "557"
+    pages: "503-509"
+    doi: "10.1038/s41586-018-0124-0"
+    pmid: "29769716"
+```
+
+**Reference ID convention**: Use first author's last name + year (e.g., `price2018`). If duplicates, append a letter (`smith2020a`, `smith2020b`).
+
+**Type classification**: Default to `supporting` for literature review references. The `/synthesize` skill will reclassify types based on how each reference is used in the report.
 
 ### Step 7: Connect to BERDL (optional)
 

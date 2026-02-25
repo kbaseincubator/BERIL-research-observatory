@@ -45,6 +45,17 @@ Run these checks against the project directory and print a checklist summary:
 - **Figures**: Check that `figures/` directory exists and contains at least one PNG file. Warn if empty or missing.
 - **Dependencies**: Check that `requirements.txt` exists in the project directory. Warn if missing.
 - **Reproduction guide**: Check that README.md contains a `## Reproduction` section. Warn if missing.
+- **Provenance metadata**: If `projects/{project_id}/provenance.yaml` exists, validate it:
+  - YAML parses successfully (WARN if malformed)
+  - `schema_version` field is present (WARN if missing)
+  - All `data_sources[].collection` IDs match entries in `ui/config/collections.yaml` (WARN on unrecognized IDs)
+  - All `cross_project_deps[].project` directories exist under `projects/` (WARN on missing projects)
+  - All `findings[].notebook` files exist in `notebooks/` (WARN on missing notebooks)
+  - All `findings[].figures[]` files exist in `figures/` (WARN on missing figures)
+  - All `generated_data[].file` files exist in the project directory (WARN on missing files)
+  - All references have at least a DOI or PMID (WARN on references lacking both)
+  - Note: All provenance checks are advisory (WARN), never blocking (FAIL)
+- If `provenance.yaml` does not exist, print an `INFO` line: `INFO  No provenance.yaml found (structured metadata not yet generated)`
 - **User-provided data**: If `projects/{project_id}/user_data/` exists and contains files, print an `INFO` line noting the count and total size (e.g., `INFO  User-provided data: 3 files, 12 MB`). This is informational only — not a warning.
 
 Print the checklist as:
