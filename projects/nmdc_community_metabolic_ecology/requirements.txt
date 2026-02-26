@@ -1,0 +1,8 @@
+pandas>=1.5
+numpy>=1.23
+scipy>=1.10
+scikit-learn>=1.2
+matplotlib>=3.6
+seaborn>=0.12
+# umap-learn>=0.5  # optional — NB05 skips UMAP visualization if not installed
+statsmodels>=0.14
