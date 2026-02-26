@@ -153,13 +153,14 @@ class Notebook:
 
 @dataclass
 class Visualization:
-    """A visualization image from a project."""
+    """A visualization image or interactive figure from a project."""
 
     filename: str
     path: str
     title: str | None = None
     description: str | None = None
     size_bytes: int = 0
+    is_interactive: bool = False  # True for .html (Plotly standalone exports)
 
 
 @dataclass
