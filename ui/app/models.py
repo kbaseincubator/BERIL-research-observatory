@@ -343,6 +343,16 @@ class ResearchIdea:
 
 
 @dataclass
+class CollectionEdge:
+    """An edge between two collections, derived from explicit links or project co-usage."""
+
+    source_id: str
+    target_id: str
+    edge_type: str  # "explicit" or "project_cooccurrence"
+    projects: list[str] = field(default_factory=list)
+
+
+@dataclass
 class RepositoryData:
     """All parsed data from the repository."""
 
@@ -356,6 +366,7 @@ class RepositoryData:
     contributors: list[Contributor] = field(default_factory=list)
     skills: list[Skill] = field(default_factory=list)
     research_areas: list[ResearchArea] = field(default_factory=list)
+    collection_edges: list[CollectionEdge] = field(default_factory=list)
 
     # Computed stats
     total_notebooks: int = 0
