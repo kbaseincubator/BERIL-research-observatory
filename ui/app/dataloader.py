@@ -15,6 +15,7 @@ from .config import settings
 from .models import (
     Collection,
     CollectionCategory,
+    CollectionEdge,
     CollectionTable,
     Column,
     Contributor,
@@ -232,6 +233,9 @@ class RepositoryParser:
         # Auto-cluster projects into research areas
         research_areas = self._cluster_research_areas(projects)
 
+        # Compute collection-to-collection edges
+        collection_edges = self._compute_collection_edges(collections, projects)
+
         # Compute stats
         total_notebooks = sum(len(p.notebooks) for p in projects)
         total_visualizations = sum(len(p.visualizations) for p in projects)
@@ -248,6 +252,7 @@ class RepositoryParser:
             contributors=contributors,
             skills=skills,
             research_areas=research_areas,
+            collection_edges=collection_edges,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -423,6 +428,51 @@ class RepositoryParser:
             ))
 
         return areas
+
+    @staticmethod
+    def _compute_collection_edges(
+        collections: list[Collection], projects: list[Project]
+    ) -> list[CollectionEdge]:
+        """Build collection-to-collection edges from explicit links and project co-usage.
+
+        Two edge types:
+        1. "explicit" — from Collection.related_collections in collections.yaml
+        2. "project_cooccurrence" — projects that reference multiple collections
+        """
+        edges: dict[tuple[str, str], CollectionEdge] = {}
+        collection_ids = {c.id for c in collections}
+
+        def _edge_key(a: str, b: str) -> tuple[str, str]:
+            return (min(a, b), max(a, b))
+
+        # Explicit links from collections.yaml
+        for coll in collections:
+            for related_id in coll.related_collections:
+                if related_id in collection_ids:
+                    key = _edge_key(coll.id, related_id)
+                    if key not in edges:
+                        edges[key] = CollectionEdge(
+                            source_id=key[0],
+                            target_id=key[1],
+                            edge_type="explicit",
+                        )
+
+        # Project co-occurrence: projects that reference 2+ collections
+        for project in projects:
+            colls = [c for c in project.related_collections if c in collection_ids]
+            for i in range(len(colls)):
+                for j in range(i + 1, len(colls)):
+                    key = _edge_key(colls[i], colls[j])
+                    if key not in edges:
+                        edges[key] = CollectionEdge(
+                            source_id=key[0],
+                            target_id=key[1],
+                            edge_type="project_cooccurrence",
+                        )
+                    if project.id not in edges[key].projects:
+                        edges[key].projects.append(project.id)
+
+        return sorted(edges.values(), key=lambda e: (e.source_id, e.target_id))
 
     def _get_git_dates(self, project_dir: Path) -> tuple[datetime | None, datetime | None]:
         """Get first and last commit dates for a project directory using git log."""

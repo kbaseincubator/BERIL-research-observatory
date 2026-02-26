@@ -1,0 +1,498 @@
+{% extends "base.html" %}
+
+{% block title %}Data Explorer - {{ app_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Collection Network */
+.network-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+}
+
+.network-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-4) var(--space-3);
+    background: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+}
+
+.network-node:hover,
+.network-node.active {
+    border-color: var(--accent-primary);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+    color: inherit;
+}
+
+.network-node.highlighted {
+    border-color: var(--viz-auxiliary);
+    background: rgba(163, 113, 247, 0.05);
+}
+
+.network-node.dimmed {
+    opacity: 0.3;
+}
+
+.node-icon {
+    font-size: 1.75rem;
+    margin-bottom: var(--space-2);
+}
+
+.node-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-1);
+    line-height: 1.2;
+}
+
+.node-meta {
+    font-size: 0.7rem;
+    color: var(--text-tertiary);
+}
+
+/* Connection detail panel */
+.connection-panel {
+    display: none;
+    background: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+.connection-panel.visible {
+    display: block;
+}
+
+.connection-panel h3 {
+    margin-bottom: var(--space-4);
+}
+
+.connection-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.connection-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-1) var(--space-3);
+    background: var(--surface-overlay);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.connection-chip .chip-type {
+    font-size: 0.65rem;
+    padding: 1px 6px;
+    border-radius: 999px;
+}
+
+.chip-type-explicit {
+    background: rgba(57, 212, 230, 0.15);
+    color: var(--accent-primary);
+}
+
+.chip-type-project {
+    background: rgba(163, 113, 247, 0.15);
+    color: var(--viz-auxiliary);
+}
+
+/* Join path cards */
+.join-path-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-5);
+    margin-bottom: var(--space-4);
+}
+
+.join-path-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.join-path-header a {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.join-path-header a:hover {
+    color: var(--accent-primary);
+}
+
+.join-arrow {
+    color: var(--accent-primary);
+    font-size: 1.25rem;
+}
+
+/* Explorer cards */
+.explorer-card {
+    background: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6);
+    transition: border-color 0.15s ease;
+}
+
+.explorer-card:hover {
+    border-color: var(--surface-border-light);
+}
+
+.explorer-card h4 a {
+    color: var(--text-primary);
+}
+
+.explorer-card h4 a:hover {
+    color: var(--accent-primary);
+}
+
+.finding-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-3) 0 0 0;
+}
+
+.finding-list li {
+    padding: var(--space-2) 0;
+    border-top: 1px solid var(--surface-border);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.finding-list li:first-child {
+    border-top: none;
+}
+
+/* Stats bar */
+.stats-bar {
+    display: flex;
+    gap: var(--space-8);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-8);
+    padding: var(--space-5) var(--space-6);
+    background: var(--surface-raised);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+}
+
+.stat-item .stat-value {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    font-family: var(--font-mono);
+}
+
+.stat-item .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    margin-top: var(--space-1);
+}
+
+/* Category badges */
+.category-primary { background: rgba(57, 212, 230, 0.15); color: #39d4e6; }
+.category-domain { background: rgba(163, 113, 247, 0.15); color: #a371f7; }
+.category-reference { background: rgba(139, 148, 158, 0.15); color: #8b949e; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Data Explorer</h1>
+    <p class="page-description">
+        Discover how BERDL collections connect through shared organisms, join keys, and cross-collection research projects.
+    </p>
+</div>
+
+<!-- Summary stats -->
+<div class="stats-bar">
+    <div class="stat-item">
+        <div class="stat-value">{{ collection_count }}</div>
+        <div class="stat-label">Collections</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-value">{{ edge_count }}</div>
+        <div class="stat-label">Connections</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-value">{{ multi_collection_project_count }}</div>
+        <div class="stat-label">Cross-Collection Projects</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-value">{{ explorer_projects|length }}</div>
+        <div class="stat-label">Explorer Projects</div>
+    </div>
+</div>
+
+<!-- Section 1: Collection Network -->
+<section class="section">
+    <h2 id="network">Collection Network</h2>
+    <p class="text-muted" style="margin-bottom: var(--space-6);">
+        Click a collection to see its connections. Edges come from explicit links
+        (<span style="color: var(--accent-primary);">schema relationships</span>)
+        and projects that use multiple collections
+        (<span style="color: var(--viz-auxiliary);">project co-usage</span>).
+    </p>
+
+    <div class="network-grid" id="networkGrid">
+        {% for node in nodes %}
+        <div class="network-node"
+             data-id="{{ node.collection.id }}"
+             data-name="{{ node.collection.name }}"
+             data-category="{{ node.collection.category.value }}"
+             onclick="selectNode('{{ node.collection.id }}')">
+            <span class="node-icon">{{ node.collection.icon | safe }}</span>
+            <span class="node-name">{{ node.collection.name }}</span>
+            <span class="node-meta">{{ node.connection_count }} connection{% if node.connection_count != 1 %}s{% endif %}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Connection detail panel -->
+    <div class="connection-panel" id="connectionPanel">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div>
+                <h3 id="panelTitle" style="margin-bottom: var(--space-2);"></h3>
+                <p class="text-muted text-small" id="panelSubtitle"></p>
+            </div>
+            <button onclick="clearSelection()" style="background: none; border: 1px solid var(--surface-border); color: var(--text-secondary); border-radius: var(--radius-sm); padding: var(--space-1) var(--space-3); cursor: pointer; font-size: 0.8rem;">&times; Close</button>
+        </div>
+        <div id="panelConnections"></div>
+        <div id="panelProjects" style="margin-top: var(--space-4);"></div>
+    </div>
+</section>
+
+<!-- Section 2: Join Paths -->
+<section class="section">
+    <h2 id="join-paths">Cross-Collection Join Paths</h2>
+    <p class="text-muted" style="margin-bottom: var(--space-6);">
+        Documented ways to connect data across collections. Each path shows the relationship
+        and linking strategy between two collections.
+    </p>
+
+    {% for path in join_paths %}
+    <div class="join-path-card">
+        <div class="join-path-header">
+            <span style="font-size: 1.25rem;">{{ path.source.icon | safe }}</span>
+            <a href="/collections/{{ path.source.id }}">{{ path.source.name }}</a>
+            <span class="join-arrow">&#10230;</span>
+            <span style="font-size: 1.25rem;">{{ path.target.icon | safe }}</span>
+            <a href="/collections/{{ path.target.id }}">{{ path.target.name }}</a>
+        </div>
+        <div style="display: flex; gap: var(--space-6); flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+                <p class="text-small text-muted" style="margin-bottom: var(--space-2);">
+                    <strong style="color: var(--text-secondary);">Source:</strong>
+                    <code style="font-size: 0.75rem;">{{ path.source.id }}</code>
+                </p>
+                <p class="text-small text-muted" style="margin-bottom: 0;">
+                    <strong style="color: var(--text-secondary);">Target:</strong>
+                    <code style="font-size: 0.75rem;">{{ path.target.id }}</code>
+                </p>
+            </div>
+            <div style="flex: 2; min-width: 300px;">
+                {% set bridging_projects = [] %}
+                {% for edge in edges %}
+                    {% if (edge.source_id == path.source.id and edge.target_id == path.target.id) or (edge.source_id == path.target.id and edge.target_id == path.source.id) %}
+                        {% for pid in edge.projects %}
+                            {% if pid not in bridging_projects %}
+                                {% if bridging_projects.append(pid) %}{% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+                {% if bridging_projects %}
+                <p class="text-small" style="margin-bottom: var(--space-2);">
+                    <strong style="color: var(--text-secondary);">Bridging projects:</strong>
+                </p>
+                <div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">
+                    {% for pid in bridging_projects %}
+                    <a href="/projects/{{ pid }}" class="badge" style="font-size: 0.65rem; background: var(--surface-overlay); color: var(--text-link); text-decoration: none;">{{ pid }}</a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-small text-muted" style="margin-bottom: 0;">
+                    Schema-linked collections. See individual collection pages for join examples.
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- Section 3: Explorer Highlights -->
+<section class="section">
+    <h2 id="explorers">Explorer Project Highlights</h2>
+    <p class="text-muted" style="margin-bottom: var(--space-6);">
+        Deep-dive explorations of BERDL collections, characterizing their content, cross-collection links, and research potential.
+    </p>
+
+    <div class="grid grid-2">
+        {% for project in explorer_projects %}
+        <div class="explorer-card">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: var(--space-3);">
+                <h4 style="margin-bottom: 0;"><a href="/projects/{{ project.id }}">{{ project.title }}</a></h4>
+                {% if project.status.value == "Completed" %}
+                <span class="badge badge-completed" style="font-size: 0.65rem; flex-shrink: 0;">{{ project.status.value }}</span>
+                {% elif project.status.value == "In Progress" %}
+                <span class="badge badge-in-progress" style="font-size: 0.65rem; flex-shrink: 0;">{{ project.status.value }}</span>
+                {% else %}
+                <span class="badge badge-proposed" style="font-size: 0.65rem; flex-shrink: 0;">{{ project.status.value }}</span>
+                {% endif %}
+            </div>
+            <p class="text-small text-muted" style="margin-bottom: var(--space-3);">{{ project.research_question[:200] }}{% if project.research_question|length > 200 %}...{% endif %}</p>
+
+            {% if project.related_collections %}
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-1); margin-bottom: var(--space-3);">
+                {% for coll_id in project.related_collections %}
+                    {% if coll_id in collection_map %}
+                    <a href="/collections/{{ coll_id }}" class="badge" style="font-size: 0.6rem; background: var(--surface-overlay); color: var(--text-secondary); text-decoration: none;">{{ collection_map[coll_id].name }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if project.findings %}
+            <ul class="finding-list">
+                {% for line in project.findings.split('\n') %}
+                    {% if line.strip().startswith('###') %}
+                    <li><strong style="color: var(--text-primary);">{{ line.strip().lstrip('#').strip()[:120] }}{% if line.strip().lstrip('#').strip()|length > 120 %}...{% endif %}</strong></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            <div style="margin-top: var(--space-4);">
+                <a href="/projects/{{ project.id }}" class="text-small" style="color: var(--text-link);">View full project &rarr;</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function() {
+    // Build edge data from server
+    var edges = [
+        {% for edge in edges %}
+        {
+            source: "{{ edge.source_id }}",
+            target: "{{ edge.target_id }}",
+            type: "{{ edge.edge_type }}",
+            projects: [{% for p in edge.projects %}"{{ p }}"{% if not loop.last %},{% endif %}{% endfor %}]
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ];
+
+    // Collection metadata
+    var collections = {
+        {% for node in nodes %}
+        "{{ node.collection.id }}": {
+            name: "{{ node.collection.name }}",
+            category: "{{ node.collection.category.value }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    };
+
+    // Build adjacency
+    var adjacency = {};
+    for (var id in collections) {
+        adjacency[id] = [];
+    }
+    edges.forEach(function(e) {
+        if (adjacency[e.source]) adjacency[e.source].push({id: e.target, type: e.type, projects: e.projects});
+        if (adjacency[e.target]) adjacency[e.target].push({id: e.source, type: e.type, projects: e.projects});
+    });
+
+    window.selectNode = function(nodeId) {
+        var allNodes = document.querySelectorAll('.network-node');
+        var panel = document.getElementById('connectionPanel');
+        var neighbors = adjacency[nodeId] || [];
+        var neighborIds = new Set(neighbors.map(function(n) { return n.id; }));
+
+        // Check if clicking same node — toggle off
+        var currentActive = document.querySelector('.network-node.active');
+        if (currentActive && currentActive.dataset.id === nodeId) {
+            clearSelection();
+            return;
+        }
+
+        // Update node visual states
+        allNodes.forEach(function(el) {
+            el.classList.remove('active', 'highlighted', 'dimmed');
+            if (el.dataset.id === nodeId) {
+                el.classList.add('active');
+            } else if (neighborIds.has(el.dataset.id)) {
+                el.classList.add('highlighted');
+            } else {
+                el.classList.add('dimmed');
+            }
+        });
+
+        // Update panel
+        var info = collections[nodeId];
+        document.getElementById('panelTitle').textContent = info.name;
+        document.getElementById('panelSubtitle').innerHTML = '<code style="font-size: 0.8rem;">' + nodeId + '</code> &mdash; ' + neighbors.length + ' connection' + (neighbors.length !== 1 ? 's' : '');
+
+        // Connection chips
+        var connectionsHtml = '<div class="connection-list">';
+        neighbors.forEach(function(n) {
+            var typeClass = n.type === 'explicit' ? 'chip-type-explicit' : 'chip-type-project';
+            var typeLabel = n.type === 'explicit' ? 'schema' : 'project';
+            connectionsHtml += '<a href="/collections/' + n.id + '" class="connection-chip" style="text-decoration: none;">' +
+                collections[n.id].name +
+                ' <span class="chip-type ' + typeClass + '">' + typeLabel + '</span></a>';
+        });
+        connectionsHtml += '</div>';
+        document.getElementById('panelConnections').innerHTML = connectionsHtml;
+
+        // Bridging projects
+        var allProjects = new Set();
+        neighbors.forEach(function(n) {
+            n.projects.forEach(function(p) { allProjects.add(p); });
+        });
+
+        var projectsHtml = '';
+        if (allProjects.size > 0) {
+            projectsHtml = '<p class="text-small" style="margin-bottom: var(--space-2);"><strong style="color: var(--text-secondary);">Projects using this collection with others:</strong></p><div style="display: flex; flex-wrap: wrap; gap: var(--space-1);">';
+            allProjects.forEach(function(pid) {
+                projectsHtml += '<a href="/projects/' + pid + '" class="badge" style="font-size: 0.65rem; background: var(--surface-overlay); color: var(--text-link); text-decoration: none;">' + pid + '</a>';
+            });
+            projectsHtml += '</div>';
+        }
+        document.getElementById('panelProjects').innerHTML = projectsHtml;
+
+        panel.classList.add('visible');
+    };
+
+    window.clearSelection = function() {
+        document.querySelectorAll('.network-node').forEach(function(el) {
+            el.classList.remove('active', 'highlighted', 'dimmed');
+        });
+        document.getElementById('connectionPanel').classList.remove('visible');
+    };
+})();
+</script>
+{% endblock %}
