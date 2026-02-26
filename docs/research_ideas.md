@@ -477,6 +477,10 @@
 **Status**: COMPLETED
 **Results**: Counter ions (chloride, sulfate, acetate) are NOT the primary confound in Fitness Browser metal experiments. 39.8% of metal-important genes overlap with NaCl stress across 19 organisms and 14 metals, but this reflects shared stress biology, not counter ion contamination. Key evidence: ZnSO₄ (0 mM Cl⁻) shows 44.6% NaCl overlap — higher than most chloride metals. The Metal Fitness Atlas core enrichment is fully robust after removing shared-stress genes (7/14 metals show stronger enrichment). DvH metal-NaCl correlation hierarchy (Zn r=0.72 → Fe r=0.09) follows toxicity mechanism, not Cl⁻ dose. See `projects/counter_ion_effects/`.
 
+### [fw300_metabolic_consistency] Metabolic Consistency of Pseudomonas FW300-N2E3
+**Status**: COMPLETED
+**Results**: Four BERDL databases (Web of Microbes, Fitness Browser, BacDive, GapMind) show 94% mean concordance for FW300-N2E3 metabolites, but this is structurally driven by FB (21/21=100%) and GapMind (13/13=100%). BacDive is the only informative variable (3/7=43%, binomial p=0.40 vs baseline). The key biological finding is tryptophan overflow: FW300-N2E3 produces tryptophan (WoM), has 231 fitness genes (FB), a complete pathway (GapMind), yet 0/50 *P. fluorescens* strains utilize it (BacDive) — consistent with cross-feeding. Per-strain BacDive consensus, approximate-match flagging, and concordance decomposition are methodological contributions. See `projects/fw300_metabolic_consistency/`.
+
 ---
 
 ## Ideas to Discuss / Refine
