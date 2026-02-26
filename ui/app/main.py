@@ -432,6 +432,87 @@ async def project_file_redirect(request: Request, project_id: str, filename: str
     raise HTTPException(status_code=404, detail="File not found")
 
 
+@app.get("/data-explorer", response_class=HTMLResponse)
+async def data_explorer(request: Request):
+    """Cross-Collection Explorer Dashboard."""
+    repo_data = get_repo_data(request)
+    context = get_base_context(request)
+
+    # Build collection lookup and node data
+    collection_map = {c.id: c for c in repo_data.collections}
+    project_map = {p.id: p for p in repo_data.projects}
+
+    # Build adjacency info for each collection
+    adjacency: dict[str, dict] = {}
+    for coll in repo_data.collections:
+        adjacency[coll.id] = {"explicit": set(), "project": set(), "projects": set()}
+
+    for edge in repo_data.collection_edges:
+        if edge.source_id in adjacency and edge.target_id in adjacency:
+            if edge.edge_type == "explicit":
+                adjacency[edge.source_id]["explicit"].add(edge.target_id)
+                adjacency[edge.target_id]["explicit"].add(edge.source_id)
+            adjacency[edge.source_id]["project"].update(edge.projects)
+            adjacency[edge.target_id]["project"].update(edge.projects)
+            adjacency[edge.source_id]["projects"].update(edge.projects)
+            adjacency[edge.target_id]["projects"].update(edge.projects)
+
+    # Build node info for template
+    nodes = []
+    for coll in repo_data.collections:
+        adj = adjacency.get(coll.id, {})
+        connected_ids = adj.get("explicit", set()) | {
+            e.target_id if e.source_id == coll.id else e.source_id
+            for e in repo_data.collection_edges
+            if coll.id in (e.source_id, e.target_id)
+        }
+        nodes.append({
+            "collection": coll,
+            "connection_count": len(connected_ids),
+            "project_count": len(adj.get("projects", set())),
+        })
+
+    context["nodes"] = nodes
+    context["edges"] = repo_data.collection_edges
+    context["collection_map"] = collection_map
+
+    # Build join paths from explicit related_collections with sample queries
+    join_paths = []
+    seen_pairs: set[tuple[str, str]] = set()
+    for coll in repo_data.collections:
+        for related_id in coll.related_collections:
+            pair = (min(coll.id, related_id), max(coll.id, related_id))
+            if pair in seen_pairs or related_id not in collection_map:
+                continue
+            seen_pairs.add(pair)
+            join_paths.append({
+                "source": coll,
+                "target": collection_map[related_id],
+            })
+
+    context["join_paths"] = join_paths
+
+    # Explorer project highlights
+    explorer_ids = [
+        "env_embedding_explorer",
+        "paperblast_explorer",
+        "webofmicrobes_explorer",
+        "acinetobacter_adp1_explorer",
+    ]
+    context["explorer_projects"] = [
+        project_map[pid] for pid in explorer_ids if pid in project_map
+    ]
+
+    # Cross-collection stats
+    multi_coll_projects = [
+        p for p in repo_data.projects if len(p.related_collections) >= 2
+    ]
+    context["multi_collection_project_count"] = len(multi_coll_projects)
+    context["edge_count"] = len(repo_data.collection_edges)
+
+    return templates.TemplateResponse("data-explorer.html", context)
+
+
 @app.get("/collections", response_class=HTMLResponse)
 async def collections_overview(request: Request):
     """Collections overview page - browse all BERDL collections."""
