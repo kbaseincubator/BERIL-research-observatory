@@ -119,7 +119,6 @@ def check_for_updates(data_source_url: str, current_last_updated: datetime) -> b
     Returns:
         True if remote data is newer, False otherwise
     """
-    import json
 
     # Ensure URL ends with a slash
     if not data_source_url.endswith("/"):
@@ -963,6 +962,7 @@ class RepositoryParser:
                     ".jpeg",
                     ".svg",
                     ".gif",
+                    ".html",
                 ):
                     visualizations.append(
                         Visualization(
@@ -970,6 +970,7 @@ class RepositoryParser:
                             path=str(file_path.relative_to(self.repo_path)),
                             title=file_path.stem.replace("_", " ").title(),
                             size_bytes=size_bytes,
+                            is_interactive=file_path.suffix.lower() == ".html",
                         )
                     )
                 elif file_path.suffix.lower() in (".csv", ".tsv", ".json", ".parquet"):
