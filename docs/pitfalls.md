@@ -892,6 +892,33 @@ Do NOT use `wait` on the PID — this triggers the same output suppression.
 
 **Solution**: When comparing gene-level importance across conditions with unequal experiment counts, either (a) require `n_sick >= 2` or use `mean_fit < threshold` instead of `n_sick >= 1`, or (b) report results with and without outlier organisms as a sensitivity check. Excluding SynE, overall metal–NaCl overlap drops from 39.8% to 36.7% — modest but worth documenting.
 
+### [fw300_metabolic_consistency] BacDive utilization has four values, not two
+
+**Problem**: BacDive `metabolite_utilization.utilization` stores four distinct values: `+` (can utilize), `-` (cannot utilize), `produced` (organism produces it), and `+/-` (variable/ambiguous). Treating this as a binary +/- field inflates counts: for *P. fluorescens*, indole has 60 "produced" entries and only 1 actual utilization test. Computing `pct_positive` from raw +/- counts without excluding `produced` and `+/-` entries gives incorrect species-level utilization rates.
+
+**Solution**: Filter to explicit +/- tests before computing utilization percentages:
+```python
+n_tested = (utilization == '+').sum() + (utilization == '-').sum()
+pct_positive = (utilization == '+').sum() / n_tested  # exclude 'produced' and '+/-'
+```
+Track all four categories separately (`n_positive`, `n_negative`, `n_produced`, `n_ambiguous`) for full transparency.
+
+### [fw300_metabolic_consistency] GapMind genome IDs lack the RS_/GB_ prefix used in pangenome tables
+
+**Problem**: The `kbase_ke_pangenome.gapmind_pathways` table stores genome IDs without the GTDB `RS_` or `GB_` prefix (e.g., `GCF_001307155.1`), while the pangenome `genome` table uses the prefixed form (`RS_GCF_001307155.1`). A direct equality match between a pangenome genome_id and GapMind genome_id returns zero rows.
+
+**Solution**: Strip the `RS_` or `GB_` prefix before matching, or use a fallback chain:
+```python
+# Try original ID first, then stripped, then partial match
+gapmind_match = df[df['genome_id'] == pangenome_id]
+if len(gapmind_match) == 0:
+    alt_id = pangenome_id.replace('RS_', '').replace('GB_', '')
+    gapmind_match = df[df['genome_id'] == alt_id]
+if len(gapmind_match) == 0:
+    accession = pangenome_id.split('_', 1)[-1]  # e.g., GCF_001307155.1
+    gapmind_match = df[df['genome_id'].str.contains(accession)]
+```
+
 ---
 
 ## NMDC (`nmdc_arkin`) Pitfalls
