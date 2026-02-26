@@ -417,6 +417,10 @@
 
 ## Completed Ideas
 
+### [nmdc_community_metabolic_ecology] Community Metabolic Ecology via NMDC × Pangenome Integration
+**Status**: COMPLETED
+**Results**: Weak but consistent Black Queen signal detected in community metabolomics: 11/13 (85%) amino acid biosynthesis pathways trend in BQH-predicted direction (binomial p=0.011). Leucine (r=−0.390, q=0.022, n=62) and arginine (r=−0.297, q=0.049, n=80) biosynthesis are FDR-significant. Community metabolic potential separates strongly by ecosystem type (PC1=49.4% variance; Soil vs. Freshwater Mann-Whitney p<0.0001); 17/18 aa pathways significantly differentiated across ecosystem types. First BERDL integration of NMDC multi-omics with GapMind pangenome pathway completeness across 220 samples. See `projects/nmdc_community_metabolic_ecology/`.
+
 ### [lab_field_ecology] Lab Fitness Predicts Field Ecology at Oak Ridge
 **Status**: COMPLETED
 **Results**: 14 of 26 FB genera detected at Oak Ridge (108 sites). 5 of 11 tested genera correlate with uranium after FDR correction: *Herbaspirillum* and *Bacteroides* increase at contaminated sites, *Caulobacter*, *Sphingomonas*, and *Pedobacter* decrease. Lab metal tolerance suggestive but not significant (rho=0.50, p=0.095). First study linking Fitness Browser data with ENIGMA CORAL field ecology. See `projects/lab_field_ecology/`.
@@ -534,3 +538,6 @@ _Capture half-baked ideas here for future refinement_
 - Link to relevant notebooks, data files, or papers when adding ideas
 - When an idea moves to IN_PROGRESS, create a project directory or notebook
 - Archive completed ideas with links to results
+
+---
+

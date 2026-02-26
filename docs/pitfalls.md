@@ -71,6 +71,55 @@ WHERE CAST(fit AS FLOAT) < -2
 
 This affects: `kescience_fitnessbrowser` (all columns), `kbase_genomes` (coordinates, lengths), and others.
 
+### [nmdc_community_metabolic_ecology] Spark DECIMAL Columns Return `decimal.Decimal` in Pandas, Not `float`
+
+**Problem**: Spark SQL `DECIMAL` columns (e.g., `abundance` in `nmdc_arkin.centrifuge_gold`) are returned as Python `decimal.Decimal` objects when collected via `.toPandas()`. Arithmetic with `float` values (e.g., from `AVG()` aggregates) raises `TypeError: unsupported operand type(s) for *: 'float' and 'decimal.Decimal'`.
+
+**Solution**: `CAST(col AS DOUBLE)` in the SQL query, or `.astype(float)` on the pandas column after collection:
+
+```python
+# Option 1: Cast in SQL (preferred — avoids the type in the DataFrame entirely)
+spark.sql("SELECT CAST(abundance AS DOUBLE) AS abundance FROM ...")
+
+# Option 2: Cast after .toPandas()
+df['abundance'] = df['abundance'].astype(float)
+```
+
+**Second manifestation**: `AVG(CASE WHEN condition THEN 1.0 ELSE 0.0 END)` also returns `DECIMAL` because Spark treats the literal `1.0` as `DECIMAL(2,1)`, not `DOUBLE`. Use `CAST(AVG(...) AS DOUBLE)` on aggregated columns too:
+
+```sql
+-- WRONG — frac_complete arrives as decimal.Decimal
+AVG(CASE WHEN best_score >= 5 THEN 1.0 ELSE 0.0 END) AS frac_complete
+
+-- CORRECT
+CAST(AVG(CASE WHEN best_score >= 5 THEN 1.0 ELSE 0.0 END) AS DOUBLE) AS frac_complete
+```
+
+**Rule of thumb**: Any `AVG()` over integers or decimal literals in Spark SQL should be wrapped in `CAST(... AS DOUBLE)`. Add `.astype(float)` after `.toPandas()` as a defensive safety net.
+
+Observed in `[nmdc_community_metabolic_ecology]` NB03: `centrifuge_gold.abundance` (cell-15) and `gapmind_pathways` AVG aggregates (cell-11/18).
+
+### `SELECT DISTINCT col, COUNT(*) ...` Without GROUP BY Fails in Spark Strict Mode
+
+Spark Connect's SQL analyzer rejects `SELECT DISTINCT` combined with an aggregate function when no `GROUP BY` is present (`MISSING_GROUP_BY`, SQLSTATE 42803). This is a strict standard-SQL interpretation that differs from some other databases (e.g., DuckDB, SQLite) which accept this syntax.
+
+```sql
+-- WRONG — AnalysisException: MISSING_GROUP_BY
+SELECT DISTINCT score_category, COUNT(*) as n
+FROM kbase_ke_pangenome.gapmind_pathways
+LIMIT 20
+
+-- CORRECT — GROUP BY only; DISTINCT is redundant when GROUP BY is present
+SELECT score_category, COUNT(*) as n
+FROM kbase_ke_pangenome.gapmind_pathways
+GROUP BY score_category
+ORDER BY n DESC
+```
+
+**Rule**: Never combine `DISTINCT` with aggregate functions. Use `GROUP BY` exclusively for grouped aggregations. `SELECT DISTINCT col, COUNT(*)` is always wrong — replace with `GROUP BY col`.
+
+Observed in `[nmdc_community_metabolic_ecology]` NB03 cell-9 when checking `score_category` value distribution in `gapmind_pathways`.
+
 ---
 
 ## Pangenome (`kbase_ke_pangenome`) Pitfalls
@@ -116,6 +165,52 @@ returns 0 rows even when the taxids should match, because the stored values are 
 spark.sql("SELECT ncbi_taxid, COUNT(*) FROM kbase_ke_pangenome.gtdb_metadata GROUP BY ncbi_taxid LIMIT 10").show()
 ```
 Use an alternative join key (e.g., organism name string matching or `orgId`-based lookup) or look for a different taxonomy column. In `metabolic_capability_dependency`, the fallback was to match organisms directly by `orgId` without a clade-level link.
+
+### [nmdc_community_metabolic_ecology] `gapmind_pathways.clade_name` = `gtdb_species_clade_id` Format, NOT `GTDB_species`
+
+**Problem**: `gapmind_pathways.clade_name` stores the full `gtdb_species_clade_id` including the representative genome accession suffix (e.g., `s__Rhizobium_phaseoli--RS_GCF_001234567.1`). It does **not** store the short `GTDB_species` name (e.g., `s__Rhizobium_phaseoli`).
+
+**Symptom**: Joining `gapmind_pathways` on a temp view populated from `gtdb_species_clade.GTDB_species` returns 0 rows because the two formats don't match.
+
+**Solution**: When filtering `gapmind_pathways` by species, use `gtdb_species_clade_id` values directly. The `taxon_bridge.tsv` produced by NB02 already stores `gtdb_species_clade_id` — use those directly as the clade filter without a round-trip through `gtdb_species_clade.GTDB_species`.
+
+```python
+# WRONG — uses GTDB_species format (s__Genus_species) which doesn't match clade_name
+gtdb_meta = spark.sql("SELECT GTDB_species FROM kbase_ke_pangenome.gtdb_species_clade").toPandas()
+clade_names_df = pd.DataFrame({'clade_name': gtdb_meta['GTDB_species'].tolist()})
+
+# CORRECT — use gtdb_species_clade_id directly (matches clade_name in gapmind_pathways)
+clade_names_df = pd.DataFrame({'clade_name': mapped_clade_ids})  # from taxon_bridge
+```
+
+### [nmdc_community_metabolic_ecology] `gapmind_pathways.metabolic_category` Values Are `'aa'` and `'carbon'`, Not `'amino_acid'`
+
+**Problem**: Filter code using `metabolic_category == 'amino_acid'` returns 0 rows. The actual stored values are `'aa'` (amino acid pathways) and `'carbon'` (carbon source pathways).
+
+```python
+# WRONG
+aa_mask = df['metabolic_category'] == 'amino_acid'  # always False
+
+# CORRECT
+aa_mask = df['metabolic_category'] == 'aa'
+```
+
+### [nmdc_community_metabolic_ecology] Spark Connect Temp Views Lost After Long-Running Cell
+
+**Problem**: A Spark temp view registered in cell N may be silently destroyed if the Spark Connect server reconnects during cell N (e.g., triggered by an expensive 305M-row full-table scan). Subsequent cells that JOIN against the temp view return 0 rows with no error.
+
+**Symptom**: Row count queries like `SELECT COUNT(*) FROM table JOIN temp_view ON ...` return 0 unexpectedly.
+
+**Solution**: Re-register the temp view immediately before any cell that uses it in a JOIN. The Python variable holding the data persists in the kernel even when the Spark server reconnects.
+
+```python
+# At the top of any cell that JOINs against a temp view:
+spark.createDataFrame(
+    pd.DataFrame({'clade_name': mapped_clade_names})
+).createOrReplaceTempView('mapped_clade_names_tmp')
+```
+
+**Prevention**: Avoid expensive full-table scans in cells between temp view registration and temp view use. Use `LIMIT` or `TABLESAMPLE` for schema verification queries rather than full `GROUP BY` counts on large tables.
 
 ---
 
@@ -796,6 +891,137 @@ Do NOT use `wait` on the PID — this triggers the same output suppression.
 **Problem**: Using `n_sick >= 1` (at least one NaCl experiment with fit < -1) as an NaCl-importance threshold is biased by the number of NaCl experiments per organism. *Synechococcus elongatus* (SynE) has 12 NaCl dose-response experiments (0.5–250 mM) and flags 32.6% of genes as NaCl-important — 3× higher than the next organism. This inflates cross-condition overlap statistics (SynE shows 88.6% metal–NaCl shared-stress).
 
 **Solution**: When comparing gene-level importance across conditions with unequal experiment counts, either (a) require `n_sick >= 2` or use `mean_fit < threshold` instead of `n_sick >= 1`, or (b) report results with and without outlier organisms as a sensitivity check. Excluding SynE, overall metal–NaCl overlap drops from 39.8% to 36.7% — modest but worth documenting.
+
+---
+
+## NMDC (`nmdc_arkin`) Pitfalls
+
+### [nmdc_community_metabolic_ecology] Classifier and metabolomics tables use `file_id`, not `sample_id`
+
+**Problem**: `nmdc_arkin.metabolomics_gold`, `kraken_gold`, `centrifuge_gold`, and
+`gottcha_gold` all use `file_id` and `file_name` as their primary identifier — not
+`sample_id`. Queries with `WHERE sample_id = ...` or `COUNT(DISTINCT sample_id)` will throw
+`AnalysisException: UNRESOLVED_COLUMN` and stop notebook execution.
+
+**Solution**: Use `file_id` as the join key for all classifier and metabolomics tables.
+```sql
+-- WRONG
+SELECT COUNT(DISTINCT sample_id) FROM nmdc_arkin.metabolomics_gold
+
+-- CORRECT
+SELECT COUNT(DISTINCT file_id) FROM nmdc_arkin.metabolomics_gold
+```
+
+### [nmdc_community_metabolic_ecology] `taxonomy_features` is a wide-format matrix with numeric column names
+
+**Problem**: `nmdc_arkin.taxonomy_features` does not have a `sample_id` or `file_id` column.
+Its columns are numeric NCBI taxon IDs (e.g., `7`, `11`, `33`, `34`, ...). Attempting to
+`SELECT sample_id FROM taxonomy_features` fails immediately. The table is a pivoted matrix
+where rows are likely samples and columns are taxon abundances.
+
+**Solution**: Do not use `taxonomy_features` for tidy-format joins. Use the classifier tables
+(`kraken_gold`, `centrifuge_gold`, `gottcha_gold`) instead — they are tidy format with
+`file_id`, `rank`, `name`/`label`, and `abundance` columns. Count rows with
+`SELECT COUNT(*) FROM nmdc_arkin.taxonomy_features` to verify the row count matches the
+expected number of samples.
+
+### [nmdc_community_metabolic_ecology] Confirmed `metabolomics_gold` compound annotation columns
+
+The `metabolomics_gold` table has: `kegg` (string — KEGG compound ID), `chebi` (double —
+ChEBI ID), `name` (string — compound name), `inchi`, `inchikey`, `smiles`. Use backtick
+quoting for column names with spaces (e.g., `` `Molecular Formula` ``, `` `Area` ``).
+The `annotation_terms_unified` table is a gene-annotation lookup (COG/EC/GO/KEGG terms) and
+**cannot** be used as a metabolite compound lookup.
+
+### [nmdc_community_metabolic_ecology] Classifier and metabolomics `file_id` namespaces do not overlap — must bridge through `sample_id`
+
+**Problem**: Joining `nmdc_arkin.centrifuge_gold` (or `kraken_gold`, `gottcha_gold`) directly
+to `nmdc_arkin.metabolomics_gold` on `file_id` always returns **zero rows**. The two table
+sets use non-overlapping `file_id` prefixes:
+- Classifier files: `nmdc:dobj-11-*` (metagenomics workflow outputs)
+- Metabolomics files: `nmdc:dobj-12-*` (metabolomics workflow outputs)
+
+They are different workflow output types for the same biosample and are only linkable through
+the **biosample `sample_id`** (e.g., `nmdc:bsm-11-*`).
+
+**Solution**: Find a `file_id → sample_id` bridge table in `nmdc_arkin` before attempting
+to link classifier and metabolomics data. The `abiotic_features` table uses `sample_id` as
+its primary key; scan all tables in `nmdc_arkin` with `SHOW TABLES` + `DESCRIBE` to find
+any table that has **both** `file_id` and `sample_id` columns. NB02 of
+`nmdc_community_metabolic_ecology` does this scan systematically.
+
+```python
+# Scan all nmdc_arkin tables for file_id + sample_id
+for tbl in all_tables:
+    schema = spark.sql(f'DESCRIBE nmdc_arkin.{tbl}').toPandas()
+    cols = set(schema['col_name'])
+    if 'file_id' in cols and 'sample_id' in cols:
+        print(f'Bridge candidate: {tbl}')
+```
+
+The bridge table is `nmdc_arkin.omics_files_table` (385,562 rows, confirmed). It has
+`file_id`, `sample_id`, `study_id`, `workflow_type`, and `file_type` columns.
+
+### [nmdc_community_metabolic_ecology] `spark.createDataFrame(pandas_df)` fails with `ChunkedArray` error after `.toPandas()` on Spark Connect
+
+**Problem**: When a pandas DataFrame is produced by calling `.toPandas()` on a Spark Connect
+DataFrame, its columns are backed by PyArrow `ChunkedArray` objects. Passing this DataFrame
+back to `spark.createDataFrame()` raises:
+
+```
+TypeError: Cannot convert pyarrow.lib.ChunkedArray to pyarrow.lib.Array
+```
+
+This prevents the common pattern of "pull data to pandas, filter it, register as a Spark temp view."
+
+**Solution**: Avoid the pandas→Spark roundtrip entirely. Instead, keep all filtering and joining
+in Spark SQL using subqueries and the original table name. For bridge joins, use the full table
+name directly in SQL rather than materializing the bridge to a temp view:
+
+```python
+# WRONG — fails with ChunkedArray error
+bridge_df = spark.sql("SELECT file_id, sample_id FROM nmdc_arkin.omics_files_table").toPandas()
+bridge_spark = spark.createDataFrame(bridge_df)  # TypeError
+
+# CORRECT — join using the table name directly in SQL
+clf_samples = spark.sql("""
+    SELECT DISTINCT b.sample_id
+    FROM (SELECT DISTINCT file_id FROM nmdc_arkin.centrifuge_gold) c
+    JOIN nmdc_arkin.omics_files_table b ON c.file_id = b.file_id
+""").toPandas()
+```
+
+If you must convert pandas back to Spark (small DataFrames only), convert columns to native
+Python lists first: `df[col] = df[col].tolist()` for each column before calling
+`spark.createDataFrame(df)`.
+
+### [nmdc_community_metabolic_ecology] `abiotic_features` Column Names Use `_has_numeric_value` Suffix; No `water_content` Column
+
+**Problem**: Most numeric columns in `nmdc_arkin.abiotic_features` use a `_has_numeric_value` suffix (e.g., `annotations_tot_org_carb_has_numeric_value`), but two columns do not: `annotations_ph` (no suffix) and depth/temp which do have the suffix. Using the bare name without the suffix raises `UNRESOLVED_COLUMN`.
+
+Additionally, `annotations_water_content` does not exist. Use `annotations_diss_org_carb_has_numeric_value` and `annotations_conduc_has_numeric_value` instead.
+
+**Columns are already `double` type** — no `CAST` needed, but harmless if included.
+
+**All-zero values mean missing**: the table stores `0.0` for unmeasured variables rather than `NULL`. Replace zeros with `NaN` before analysis:
+```python
+for col in abiotic_num_cols:
+    abiotic[col] = abiotic[col].replace(0.0, np.nan)
+```
+
+**Correct column reference**:
+```sql
+-- WRONG
+a.annotations_tot_org_carb, a.annotations_tot_nitro_content, a.annotations_water_content
+
+-- CORRECT
+a.annotations_tot_org_carb_has_numeric_value,
+a.annotations_tot_nitro_content_has_numeric_value,
+a.annotations_diss_org_carb_has_numeric_value,   -- dissolved organic carbon proxy
+a.annotations_conduc_has_numeric_value            -- conductance (replaces water_content)
+```
+
+Full column list: `sample_id`, `annotations_ph`, `annotations_temp_has_numeric_value`, `annotations_depth_has_numeric_value`, `annotations_depth_has_maximum_numeric_value`, `annotations_depth_has_minimum_numeric_value`, `annotations_tot_org_carb_has_numeric_value`, `annotations_tot_nitro_content_has_numeric_value`, `annotations_diss_org_carb_has_numeric_value`, `annotations_conduc_has_numeric_value`, `annotations_diss_oxygen_has_numeric_value`, `annotations_ammonium_has_numeric_value`, `annotations_tot_phosp_has_numeric_value`, `annotations_soluble_react_phosp_has_numeric_value`, `annotations_carb_nitro_ratio_has_numeric_value`, `annotations_chlorophyll_has_numeric_value`, `annotations_calcium_has_numeric_value`, `annotations_magnesium_has_numeric_value`, `annotations_potassium_has_numeric_value`, `annotations_manganese_has_numeric_value`, `annotations_samp_size_has_numeric_value`.
 
 ---
 
