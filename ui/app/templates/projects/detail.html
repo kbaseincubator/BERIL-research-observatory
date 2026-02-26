@@ -364,7 +364,7 @@
             <iframe
                 src="/project-assets/{{ viz.path | replace('projects/', '', 1) }}"
                 title="{{ viz.title }}"
-                style="width: 100%; height: 520px; border: none; border-radius: var(--radius-sm); display: block;"
+                style="width: 100%; height: {{ viz.iframe_height or 520 }}px; border: none; border-radius: var(--radius-sm); display: block;"
                 loading="lazy"
             ></iframe>
             <p class="text-small text-muted mt-4" style="margin-bottom: 0;">{{ viz.title }}</p>

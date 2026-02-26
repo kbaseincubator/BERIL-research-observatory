@@ -161,6 +161,7 @@ class Visualization:
     description: str | None = None
     size_bytes: int = 0
     is_interactive: bool = False  # True for .html (Plotly standalone exports)
+    iframe_height: int | None = None  # Extracted from plotly-graph-div style, px
 
 
 @dataclass
