@@ -99,7 +99,7 @@ Recent work has shown that amino acid cross-feeding is widespread in soil commun
 
 ### Trehalose: osmoprotectant, not carbon source
 
-Trehalose production by FW300-N2E3 (WoM: Increased) with low species-level catabolism (2/7 BacDive strains positive) likely reflects trehalose's well-documented role as an osmoprotectant in Pseudomonads. Wang et al. (2020) showed that *Pseudomonas protegens* (closely related to *P. fluorescens*) upregulates trehalose synthesis under osmotic stress, and Harty et al. (2019) demonstrated ethanol-stimulated trehalose production in *Pseudomonas aeruginosa*. Trehalose secretion during growth on R2A medium (as measured by WoM) may reflect a constitutive stress-protection strategy rather than metabolic overflow.
+Trehalose production by FW300-N2E3 (WoM: Increased) with low species-level catabolism (1/6 BacDive strains positive, per-strain consensus) likely reflects trehalose's well-documented role as an osmoprotectant in Pseudomonads. Wang et al. (2020) showed that *Pseudomonas protegens* (closely related to *P. fluorescens*) upregulates trehalose synthesis under osmotic stress, and Harty et al. (2019) demonstrated ethanol-stimulated trehalose production in *Pseudomonas aeruginosa*. Trehalose secretion during growth on R2A medium (as measured by WoM) may reflect a constitutive stress-protection strategy rather than metabolic overflow.
 
 ### GapMind validation
 
