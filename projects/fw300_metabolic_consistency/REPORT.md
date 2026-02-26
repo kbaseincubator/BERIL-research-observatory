@@ -8,6 +8,10 @@
 
 Of the 58 metabolites produced or increased by FW300-N2E3 (Web of Microbes), 21 could be cross-referenced against at least one other database. Among these testable metabolites, 17/21 (81%) were fully concordant across all matched databases, 4/21 (19%) were partially concordant, and none were fully discordant. The mean concordance score was 0.94. The remaining 37 metabolites (64%) were only observed in WoM — they were not tested in BacDive, not predicted by GapMind, and not used as a condition in FB experiments for this organism.
 
+**Statistical decomposition**: The 94% concordance is largely structural — Fitness Browser (21/21 = 100%) and GapMind (13/13 = 100%) are invariably concordant with WoM production. The only variable component is BacDive (3/7 = 43% utilized). Across all 41 individual metabolite-database comparisons, 37 are concordant (90.2%). A binomial test comparing the BacDive utilization rate for WoM-produced metabolites (3/7 = 43%) against the overall *P. fluorescens* baseline (22/80 = 27.5%) shows no significant difference (p = 0.40), indicating that the metabolites FW300-N2E3 produces are utilized at a rate consistent with the species norm.
+
+**Sensitivity analysis**: Excluding two approximate FB matches (Cytosine→Cytidine and Uracil→Uridine, which are base→nucleoside mappings flagged with `fb_match_quality=approximate` in the crosswalk) reduces testable metabolites from 21 to 19, with mean concordance shifting from 0.937 to 0.930 — a negligible change, as both approximate matches were already fully concordant.
+
 *(Notebook: 03_consistency_matrix.ipynb)*
 
 ### 2. Tryptophan overflow: the strongest biologically meaningful discordance
@@ -28,7 +32,9 @@ Every metabolite that could be mapped to a GapMind pathway (lactate, valine, ala
 
 ![Number of significant fitness genes per WoM-produced metabolite](figures/fitness_hits_per_metabolite.png)
 
-Across 21 WoM metabolites with matching FB experiments, FW300-N2E3 showed significant gene fitness effects (|fit| > 1, |t| > 4) for 601 unique genes, with 4,764 total significant gene-condition hits. The most genetically complex metabolisms were carnitine (283 genes), alanine (295 genes across D/L forms), arginine (270 genes), and tryptophan (231 genes). 231 genes were pleiotropic (significant fitness in 3+ metabolite conditions), suggesting shared metabolic infrastructure across these carbon/nitrogen sources.
+Across 21 WoM metabolites with matching FB experiments, FW300-N2E3 showed significant gene fitness effects (|fit| > 1, |t| > 4) for 601 unique genes, with 4,764 total significant gene-condition hits. The most genetically complex metabolisms were carnitine (283 genes), alanine (295 genes across D/L forms), arginine (270 genes), and tryptophan (231 genes).
+
+**Pleiotropic genes reflect amino acid biosynthesis requirements, not substrate-specific catabolism.** 231 genes were significant in 3+ metabolite conditions, and the top 18 genes (significant in all 21 conditions) are amino acid biosynthesis enzymes: homoserine O-acetyltransferase (methionine), ATP phosphoribosyltransferase (histidine), dihydroxy-acid dehydratase (branched-chain amino acids), isopropylmalate dehydrogenase (leucine), shikimate dehydrogenase (aromatic amino acids), and imidazoleglycerol-phosphate dehydratase (histidine). These genes are essential for growth on *any* minimal medium — they represent "housekeeping fitness" rather than substrate-specific metabolism. The ~370 genes significant in only 1-2 conditions are the truly substrate-specific ones (e.g., carnitine-specific transporters, lactate dehydrogenases, trehalose-specific phosphotransferases).
 
 *(Notebook: 02_wom_fb_integration.ipynb)*
 
@@ -117,8 +123,9 @@ The perfect concordance between GapMind pathway predictions and both WoM product
 - **Low cross-database overlap**: Only 21/58 WoM metabolites (36%) could be tested against any other database, and only 3 metabolites achieved four-way coverage. Results are robust where data exists but the untested 64% may harbor additional discordances.
 - **Medium effects**: WoM exometabolomics was measured on R2A (rich medium), while FB fitness was measured on minimal medium with single C/N sources. Metabolic profiles are condition-dependent, and some metabolites detected in WoM may only be produced on rich media.
 - **BacDive species-level aggregation**: BacDive aggregates across *P. fluorescens* strains, which under GTDB reclassification spans a broad clade (*Pseudomonas_E fluorescens_E*). Strain-level variation (e.g., trehalose: 2/7 positive) means species consensus may not reflect FW300-N2E3's specific capabilities.
-- **Name matching limitations**: Manual curation identified 28 WoM-FB and 8 WoM-BacDive matches. Additional matches may exist but were missed due to nomenclature differences (e.g., "Cytosine" matched to "Cytidine" — related but not identical metabolites).
-- **No Notebook 4**: The planned pathway-level analysis (mapping metabolite findings to individual pathway steps and genes) was not completed. This would strengthen the mechanistic interpretation of the tryptophan overflow hypothesis.
+- **Name matching limitations**: Manual curation identified 28 WoM-FB and 8 WoM-BacDive matches. Two FB matches are approximate (Cytosine→Cytidine and Uracil→Uridine are base→nucleoside mappings, flagged with `fb_match_quality=approximate` in the crosswalk). A sensitivity analysis confirms excluding these does not affect concordance results. Additional matches may exist but were missed due to nomenclature differences.
+- **Pleiotropic fitness genes**: The top 18 fitness genes are significant across all 21 metabolite conditions because they are essential amino acid biosynthesis genes (histidine, leucine, methionine, aromatic amino acids), not substrate-specific catabolism genes. The fitness signal contains both "housekeeping" and "substrate-specific" components; future work should separate these to sharpen the WoM↔FB integration.
+- **Deferred pathway-level analysis**: The planned NB04 (mapping fitness genes to specific GapMind pathway steps) was deferred. It would strengthen the mechanistic interpretation of the tryptophan overflow hypothesis.
 
 ## Data
 
