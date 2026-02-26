@@ -21,7 +21,24 @@ FW300-N2E3 is one of very few organisms with data in all four major BERDL metabo
 - `kbase_msd_biochemistry` — ModelSEED reactions/compounds
 
 ## Reproduction
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+
+### Prerequisites
+- Python 3.10+ with `pandas`, `numpy`, `matplotlib`
+- BERDL Spark access via JupyterHub (for NB01 and NB02; NB03 runs from cached TSV files)
+- On BERDL JupyterHub: `spark = get_spark_session()` is available in the notebook kernel without imports
+
+### Steps
+1. Run `01_data_extraction.ipynb` — extracts data from 4 BERDL databases, writes TSV files to `data/` (~30s, requires Spark)
+2. Run `02_wom_fb_integration.ipynb` — queries gene fitness data, writes gene tables to `data/` (~15s, requires Spark)
+3. Run `03_consistency_matrix.ipynb` — reads cached TSV files, computes concordance and permutation test, generates figures (~5s, no Spark needed)
+
+All notebooks can be executed with papermill:
+```bash
+cd projects/fw300_metabolic_consistency/notebooks
+papermill 01_data_extraction.ipynb 01_data_extraction.ipynb --kernel python3
+papermill 02_wom_fb_integration.ipynb 02_wom_fb_integration.ipynb --kernel python3
+papermill 03_consistency_matrix.ipynb 03_consistency_matrix.ipynb --kernel python3
+```
 
 ## Authors
 - Paramvir Dehal (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497))

@@ -153,13 +153,14 @@ GROUP BY pathway, genome_id
   - Statistical test: is concordance better than random?
 - **Expected output**: `data/consistency_matrix.tsv`, heatmap figure, summary statistics
 
-### Notebook 4: Pathway-Level Analysis
+### Notebook 4: Pathway-Level Analysis *(deferred — see Future Directions in REPORT.md)*
 - **Goal**: Map metabolite-level findings to pathway-level predictions
 - **Analysis**:
   - For amino acids produced in WoM, check GapMind biosynthesis pathway completeness
   - For carbon sources tested in FB, check GapMind catabolism pathway completeness
   - Compare: does GapMind "complete" predict FB growth? Does it predict WoM production?
 - **Expected output**: pathway concordance table, Sankey or alluvial diagram
+- **Status**: Deferred. The metabolite-level analysis (NB01-NB03) already shows perfect GapMind concordance (13/13 complete pathways match growth). Gene-to-step mapping would add mechanistic detail for the tryptophan overflow finding but requires additional data (individual GapMind step annotations per gene).
 
 ## Expected Outcomes
 
@@ -175,6 +176,7 @@ GROUP BY pathway, genome_id
 
 ## Revision History
 - **v1** (2026-02-25): Initial plan based on data exploration across WoM, FB, BacDive, and pangenome
+- **v2** (2026-02-25): Updated BacDive handling to track all utilization categories (+, -, produced, +/-) with sample-size-based confidence scoring. Added statistical baseline test and sensitivity analysis for approximate matches. Deferred NB04 (pathway-level analysis).
 
 ## Authors
 - Paramvir Dehal (ORCID: 0000-0001-5810-2497)
