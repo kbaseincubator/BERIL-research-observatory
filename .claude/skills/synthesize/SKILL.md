@@ -244,6 +244,16 @@ generated_data:
 
 **Important**: Reference IDs should be short, memorable keys (e.g., `price2018`, `arkin2018`). Use the first author's last name + year. If duplicates, append a letter (e.g., `smith2020a`, `smith2020b`).
 
+#### Step 7.6: Update Knowledge Registry
+
+After writing provenance.yaml, update the project's entry in the global knowledge registry:
+
+```bash
+uv run scripts/build_registry.py --project {project_id}
+```
+
+This ensures the project's findings, tags, data artifacts, and dependencies are immediately searchable via `/knowledge`. If the script is not found or fails, print a note and continue — this is non-blocking.
+
 #### Step 8: Update References
 
 Add any new papers found during synthesis to `projects/{project_id}/references.md`.
@@ -267,8 +277,8 @@ After completing the synthesis, tell the user:
 
 - **Reads from**: `data/*.csv`, `figures/`, `notebooks/*.ipynb`, `RESEARCH_PLAN.md`, `references.md`
 - **Calls**: `/literature-review` (for literature comparison)
-- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); `provenance.yaml` (structured metadata); updated `README.md` (Status)
-- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md; validator checks provenance.yaml)
+- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); `provenance.yaml` (structured metadata); updated `README.md` (Status); updated `docs/project_registry.yaml` (via build_registry.py)
+- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md; validator checks provenance.yaml); `/knowledge` (searches registry)
 
 ## Pitfall Detection
 

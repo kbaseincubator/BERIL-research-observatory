@@ -57,6 +57,11 @@ Run these checks against the project directory and print a checklist summary:
   - Note: All provenance checks are advisory (WARN), never blocking (FAIL)
 - If `provenance.yaml` does not exist, print an `INFO` line: `INFO  No provenance.yaml found (structured metadata not yet generated)`
 - **User-provided data**: If `projects/{project_id}/user_data/` exists and contains files, print an `INFO` line noting the count and total size (e.g., `INFO  User-provided data: 3 files, 12 MB`). This is informational only — not a warning.
+- **Knowledge registry**: After all other checks, update the project's entry in the global knowledge registry:
+  ```bash
+  uv run scripts/build_registry.py --project {project_id}
+  ```
+  Print `INFO  Updated knowledge registry for {project_id}`. If the script fails, print `WARN  Registry update failed (non-blocking)` and continue — this is advisory, not blocking.
 
 Print the checklist as:
 ```
