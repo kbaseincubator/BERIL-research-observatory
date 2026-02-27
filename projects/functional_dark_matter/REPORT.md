@@ -43,7 +43,11 @@ The organisms with the most gapped pathways — Marinobacter (49), *D. desulfuri
 
 ![GapMind gap-filling candidates](figures/fig05_gapmind_gaps.png)
 
-*(Notebook: 02_gapmind_concordance_phylo.ipynb)*
+**Supplementary domain matching** (NB10 Section 1): To move beyond organism-level co-occurrence, curated pathway-enzyme mappings (EC prefixes, PFam families, functional keywords) were used to identify dark genes with annotations compatible with gapped pathways. Of 1,256 organism-pathway pairs, domain matching identified 42,239 gene-pathway candidates across 3,186 unique dark genes, with 5,398 high-confidence (EC prefix match), 4,687 medium-confidence (PFam family match), and 32,154 low-confidence (keyword match) hits. These domain-compatible candidates narrow the search space from all dark genes in a gapped organism to those with enzymatically plausible annotations.
+
+![Domain matching analysis](figures/fig28_domain_matching.png)
+
+*(Notebooks: 02_gapmind_concordance_phylo.ipynb, 10_review_improvements.ipynb)*
 
 ### Finding 4: Cross-organism fitness concordance identifies 65 ortholog groups with conserved dark gene phenotypes
 
@@ -75,7 +79,11 @@ Phylogenetic breadth analysis of dark gene clusters reveals a range of conservat
 
 ![Phylogenetic breadth distribution](figures/fig07_phylo_breadth.png)
 
-*(Notebook: 02_gapmind_concordance_phylo.ipynb)*
+**Supplementary species-count scoring** (NB10 Section 3): Replacing the binary breadth classification with a continuous species-count metric (`min(n_species / 20, 1.0) × 0.5`) produces rankings highly correlated with the original (Spearman ρ = 0.982) but with meaningfully different top lists: top-50 overlap is 62% and top-100 overlap is 58%. This confirms that the coarse breadth classification does not discriminate among candidates, while species count provides finer resolution. The species-count variant is provided as supplementary analysis in `data/scoring_species_count_variant.tsv`.
+
+![Species-count scoring variant](figures/fig30_species_count_scoring.png)
+
+*(Notebooks: 02_gapmind_concordance_phylo.ipynb, 10_review_improvements.ipynb)*
 
 ### Finding 6: Within-species biogeographic analysis reveals 10 dark gene clusters with significant environmental enrichment
 
@@ -120,6 +128,8 @@ Pre-registered mapping of FB experiment condition classes to expected environmen
 The *P. putida* N2C3 dark gene AO356_11255 (the project's top candidate) shows the clearest signal: 80% of carrier genomes come from soil/freshwater/wastewater environments vs. only 8.3% of non-carriers (OR = 44, FDR = 0.093), matching its lab phenotype of strong nitrogen utilization fitness.
 
 ![Lab-field concordance matrix](figures/fig11_concordance_matrix.png)
+
+**Formal statistical test** (NB10 Section 5): A one-sided binomial test of the 29/47 concordance rate against the null of p = 0.5 yields p = 0.072 — marginal but consistent with the Wilson score 95% CI of [0.474, 0.742], which includes 0.50. Fisher's combined probability across all 47 individual Fisher's exact test p-values yields p = 0.031, providing stronger aggregate evidence that the lab-field concordance is non-random. Additionally, a binomial sign test on the 7/7 correct-direction pre-registered NMDC trait predictions yields p = 0.0078, confirming that pre-registered directional hypotheses are significantly non-random.
 
 **NMDC independent validation** further corroborates the lab-field link. Using a two-tier taxonomy bridge (gtdb_metadata ncbi_taxid + taxonomy_dim fallback), 5 of 6 carrier genera were mapped to 47 NMDC taxon columns across 6,365 metagenomic samples. All 4 testable pre-registered predictions were confirmed:
 
@@ -548,17 +558,21 @@ This project contributes:
 
 5. **Condition coverage unevenness**: Not all 48 organisms were tested under the same conditions. Organisms with more conditions (e.g., MR-1 with 121) produce more specific phenotypes, biasing them toward higher prioritization scores.
 
-6. **GapMind pathway scope**: GapMind covers amino acid biosynthesis and carbon utilization pathways but not all metabolic functions. Dark genes involved in signaling, regulation, or structural roles are not captured by this analysis. Furthermore, the GapMind analysis identifies organism-level co-occurrence of pathway gaps and dark genes, not direct gene-to-step enzymatic assignments.
+6. **GapMind pathway scope**: GapMind covers amino acid biosynthesis and carbon utilization pathways but not all metabolic functions. Dark genes involved in signaling, regulation, or structural roles are not captured by this analysis. Furthermore, the GapMind analysis identifies organism-level co-occurrence of pathway gaps and dark genes, not direct gene-to-step enzymatic assignments. NB10 partially addresses this with curated pathway-enzyme domain matching (EC prefix, PFam family, and keyword compatibility), identifying 42,239 domain-compatible gene-pathway candidates including 5,398 high-confidence EC matches. However, full gene-to-step validation would require AlphaFold structure prediction or experimental enzymology.
 
 7. **Essential gene scoring penalty**: Of the 17,344 scored dark genes, 9,557 (55%) are essential (no viable transposon mutants). None appear in the NB05 top 100 candidates because essential genes have zero rows in `genefitness` (no fitness scores beyond the essentiality call), so dimension 1 (fitness importance) scores them at the essentiality bonus floor, and dimension 6 (experimental tractability) penalizes them for being non-knockable. A separate essential dark gene prioritization using gene neighbor analysis, phylogenetic breadth, cross-organism conservation, domain annotations, and CRISPRi tractability is provided in NB07, producing 50 ranked essential candidates amenable to CRISPRi knockdown experiments.
 
-8. **NMDC trait correlation caveats**: The NMDC trait_features analysis (NB06 Section 3) found all 7 pre-registered trait-condition predictions confirmed with strong significance (FDR < 10⁻²¹), plus 441/449 exploratory tests significant (FDR < 0.05). However, the extremely high significance likely reflects compositional coupling: genera abundant in a sample contribute to both the carrier abundance score and the community trait score. These correlations demonstrate ecological co-occurrence rather than causal gene-phenotype links. A permutation test shuffling sample labels would provide a proper null distribution.
+8. **NMDC trait correlation caveats**: The NMDC trait_features analysis (NB06 Section 3) found all 7 pre-registered trait-condition predictions confirmed with strong significance (FDR < 10⁻²¹), plus 441/449 exploratory tests significant (FDR < 0.05). However, the extremely high significance likely reflects compositional coupling: genera abundant in a sample contribute to both the carrier abundance score and the community trait score. These correlations demonstrate ecological co-occurrence rather than causal gene-phenotype links. NB10 provides partial null approximations: (1) a sign test on 7/7 pre-registered trait directions (p = 0.0078) and 4/4 pre-registered abiotic directions (p = 0.0625) confirms non-random directionality; (2) Fisher's combined probability across all 11 pre-registered tests yields p ≈ 0; (3) an inflation factor of ~20× for exploratory tests (441/449 significant vs. 22.5 expected) quantifies the compositional coupling. A full permutation test shuffling sample labels remains a future direction requiring Spark access to raw per-sample matrices.
 
-9. **Dark-vs-annotated controls partial**: The concordance null control (NB06) shows dark genes achieve concordance levels indistinguishable from annotated genes, supporting H1. However, equivalent null controls were not run for the biogeographic and lab-field concordance analyses. A full null comparison using annotated accessory genes through the same biogeographic pipeline would strengthen the H0 rejection.
+9. **Dark-vs-annotated controls partial**: The concordance null control (NB06) shows dark genes achieve concordance levels indistinguishable from annotated genes, supporting H1. However, equivalent null controls were not run for the biogeographic and lab-field concordance analyses. NB10 provides a binomial test (29/47 vs. p = 0.5, one-sided p = 0.072) and Wilson score 95% CI [0.474, 0.742], showing the concordance rate is marginally above chance. Fisher's combined probability across all 47 individual tests yields p = 0.031. A full null comparison using annotated accessory genes through the same biogeographic pipeline would further strengthen the H0 rejection but requires Spark for carrier genome queries.
+
+![Statistical tests summary](figures/fig31_statistical_tests.png)
 
 10. **Gene neighborhood methodology gap**: NB07's operon predictions use a single-genome positional heuristic (5-gene window, same strand, ≤300 bp gap). NB08 adds cross-species synteny validation across 48 Fitness Browser genomes and co-fitness confirmation, but still falls short of industry-standard tools. DOOR v2.0 uses intergenic distance, neighborhood conservation, phylogenetic distance, and experimentally validated training sets across thousands of genomes. STRING v12 combines genomic neighborhood, gene fusion, phylogenetic co-occurrence, co-expression, and text mining across >14,000 organisms. EFI-GNT provides interactive genome neighborhood diagrams across all sequenced genomes with SSN-guided filtering. Our analysis captures the most accessible signal (positional heuristic + limited cross-species synteny + co-fitness) but lacks gene fusion detection, regulatory element analysis, and broad taxonomic sampling that would improve prediction accuracy.
 
-11. **Scoring weight sensitivity**: Both prioritization frameworks use arbitrary expert-assigned weights. Sensitivity analysis (NB05/NB07) shows that while overall rank correlations remain high across alternative weight configurations (ρ > 0.93), the top-ranked candidate lists are moderately sensitive to weight choices. For NB05 (fitness-active): conservation-dominant and drop-tractability configurations each retain only 32/50 original top candidates (64%). For NB07 (essential): dropping tractability retains only 18/50 (36%) and dropping neighbor context retains 24/50 (48%). Users should treat specific rankings as approximate and focus on candidates that appear in the top tier across multiple weight schemes rather than relying on exact rank order.
+11. **Scoring weight sensitivity**: Both prioritization frameworks use arbitrary expert-assigned weights. Sensitivity analysis (NB05/NB07) shows that while overall rank correlations remain high across alternative weight configurations (ρ > 0.93), the top-ranked candidate lists are moderately sensitive to weight choices. For NB05 (fitness-active): conservation-dominant and drop-tractability configurations each retain only 32/50 original top candidates (64%). For NB07 (essential): dropping tractability retains only 18/50 (36%) and dropping neighbor context retains 24/50 (48%). NB10 provides robust rank indicators: across all 6 fitness-active weight configurations, 18 genes remain in the top 50 and 35 remain in the top 100 regardless of weight choice. For essential genes, 6 remain always-top-50 and 19 always-top-100. These "always-top" candidates are the most defensible targets for experimental follow-up. Full per-gene rank ranges are in `data/robust_ranks_fitness.tsv` and `data/robust_ranks_essential.tsv`.
+
+![Robust rank indicators](figures/fig29_robust_ranks.png)
 
 ## Data
 
@@ -602,6 +616,10 @@ This project contributes:
 | `data/dark_gene_census_full.tsv` | 57,011 | Full darkness spectrum census with tier, evidence flags, composite score |
 | `data/minimum_covering_set.tsv` | 16,488 | Gene-to-organism assignments from greedy weighted set cover |
 | `data/experimental_action_plan.tsv` | 42 | Per-organism experiment recommendations (targeted vs broad screen) |
+| `data/gapmind_domain_matched.tsv` | 42,239 | Domain-compatible dark gene candidates matched to gapped pathways (EC/PFam/keyword) |
+| `data/robust_ranks_fitness.tsv` | 17,344 | Per-gene rank ranges across 6 weight configurations (fitness-active) |
+| `data/robust_ranks_essential.tsv` | 9,557 | Per-gene rank ranges across 6 weight configurations (essential) |
+| `data/scoring_species_count_variant.tsv` | 17,344 | Species-count scoring variant with original vs adjusted ranks |
 
 ## Supporting Evidence
 
@@ -618,6 +636,7 @@ This project contributes:
 | `07_essential_dark_prioritization.ipynb` | Gene neighbor analysis, essential gene scoring, CRISPRi experiment dossiers |
 | `08_improved_neighborhoods.ipynb` | Cross-species synteny, cofit-validated operons, improved prioritization, evidence-weighted roadmap |
 | `09_final_synthesis.ipynb` | Darkness spectrum census, minimum covering set optimization, per-organism experimental action plans |
+| `10_review_improvements.ipynb` | Supplementary analyses addressing review suggestions: domain matching, robust ranks, species-count scoring, NMDC null tests, biogeographic binomial test |
 
 ### Figures
 
@@ -650,6 +669,10 @@ This project contributes:
 | `fig25_darkness_spectrum.png` | Darkness tier distribution, evidence flag combinations, composite score by tier |
 | `fig26_covering_set.png` | Set-cover diminishing returns, per-organism tier breakdown, genus diversity progression |
 | `fig27_action_plan.png` | Organism action plan heatmap, condition recommendations, tractability vs gene count |
+| `fig28_domain_matching.png` | GapMind domain matching: matches per pathway/organism, confidence tiers, fitness by tier |
+| `fig29_robust_ranks.png` | Robust rank indicators: rank range distributions, min/max scatter, always-top-50 by organism |
+| `fig30_species_count_scoring.png` | Species-count scoring: score distributions, rank comparison, rank changes, top-20 table |
+| `fig31_statistical_tests.png` | Statistical tests: binomial null, QQ plot, sign tests, summary table |
 
 ## Future Directions
 
