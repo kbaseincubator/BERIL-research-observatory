@@ -298,7 +298,7 @@ This study provides the **first comprehensive pangenome-scale survey of PHB path
 1. **Fix PHA synthase class analysis**: Map Pfam accession IDs to eggNOG domain names (PF00561 -> Abhydrolase_1 for Class I/II, PF07167 -> PhaC_N for Class III/IV) to enable proper classification of the 11,792 phaC clusters.
 3. **Phylogenetically controlled environmental analysis**: Apply phylogenetic logistic regression or phylogenetic independent contrasts to disentangle environmental selection from phylogenetic inertia in PHB distribution.
 4. **phaC phylogenetic tree**: Reconstruct a phaC gene tree and compare to species tree topology to directly identify incongruent (HGT) branches, rather than relying on core/accessory proxy.
-5. **Fitness Browser integration**: Query the BERDL Fitness Browser (`kescience_fitnessbrowser`) for phaC mutant fitness phenotypes to test whether phaC confers measurable fitness advantages under carbon-variable conditions.
+5. **Fitness Browser integration**: Query the BERDL Fitness Browser for phaC mutant fitness phenotypes to test whether phaC confers measurable fitness advantages under carbon-variable conditions.
 6. **AlphaEarth embedding deep analysis**: Use the full 64-dimensional embeddings (not just variance) with dimensionality reduction to map PHB+ vs PHB- species in environmental space, identifying specific environmental axes that differentiate them.
 7. **NMDC environment labels**: Leverage the `study_table` ecosystem columns (ecosystem, ecosystem_category, ecosystem_type, ecosystem_subtype, specific_ecosystem) and `env_triads_flattened` ENVO terms for richer environmental classification of NMDC samples.
 

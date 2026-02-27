@@ -1,0 +1,301 @@
+orgId	locusId	desc	annotation_class	total_score	total_score_original	new_rank	max_conservation_score	max_cofit_score	candidate_type
+pseudo5_N2C3_1	AO356_15270	hypothetical protein	hypothetical	0.745	0.6849999999999999	1	1.0	1.0	fitness_active
+Marino	GFF1367	conserved hypothetical protein	hypothetical	0.7324999999999999	0.6725	2	1.0	1.0	fitness_active
+pseudo5_N2C3_1	AO356_17245	hypothetical protein	hypothetical	0.73110425625	0.67110425625	3	1.0	1.0	fitness_active
+MR1	201124	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7259999999999999	0.6849999999999999	4	0.36666666666666664	1.0	fitness_active
+MR1	203631	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7258333333333333	0.6658333333333333	5	1.0	1.0	fitness_active
+MR1	203545	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7244895614583333	0.6944895614583333	6	1.0	0.0	fitness_active
+pseudo5_N2C3_1	AO356_08210	hypothetical protein	hypothetical	0.7226720520833333	0.6701720520833333	7	1.0	0.75	fitness_active
+MR1	202608	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7224999999999999	0.6625	8	1.0	1.0	fitness_active
+MR1	202208	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7192953326388889	0.66040644375	9	0.9629629629629629	1.0	fitness_active
+pseudo3_N2E3	AO353_06515	hypothetical protein	hypothetical	0.7175	0.6575000000000001	10	1.0	1.0	fitness_active
+MR1	202463	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7168548387096774	0.6975	11	0.6451612903225806	0.0	fitness_active
+pseudo5_N2C3_1	AO356_11255	hypothetical protein	hypothetical	0.714985759375	0.714985759375	12	0.0	0.0	fitness_active
+MR1	203454	hypothetical protein (NCBI ptt file)	hypothetical	0.71037750625	0.65037750625	13	1.0	1.0	fitness_active
+pseudo5_N2C3_1	AO356_18320	hypothetical protein	hypothetical	0.7101036547275641	0.6893344239583333	14	0.6923076923076923	0.0	fitness_active
+MR1	199636	hypothetical protein (NCBI ptt file)	hypothetical	0.7096666666666667	0.6616666666666666	15	0.6	1.0	fitness_active
+MR1	202474	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7094230769230769	0.6725	16	0.23076923076923078	1.0	fitness_active
+pseudo1_N1B4	Pf1N1B4_3696	FIG00955360: hypothetical protein	hypothetical	0.709139296875	0.687139296875	17	0.7333333333333333	0.0	fitness_active
+MR1	201731	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.70371613125	0.67371613125	18	1.0	0.0	fitness_active
+Marino	GFF2506	conserved hypothetical protein	hypothetical	0.70210759375	0.67810759375	19	0.8	0.0	fitness_active
+MR1	199738	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7014130434782608	0.6975	20	0.13043478260869565	0.0	fitness_active
+MR1	203247	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7	0.6849999999999999	21	0.5	0.0	fitness_active
+PV4	5210578	hypothetical protein (RefSeq)	hypothetical	0.6987931034482758	0.645	22	0.7931034482758621	1.0	fitness_active
+WCS417	GFF1426	hypothetical protein	hypothetical	0.6975000000000001	0.6575000000000001	23	0.3333333333333333	1.0	fitness_active
+psRCH2	GFF1886	Uncharacterized anaerobic dehydrogenase	uncharacterized	0.6970454545454546	0.6425000000000001	24	0.8181818181818182	1.0	fitness_active
+Phaeo	GFF1616	Uncharacterized protein conserved in bacteria containing a pentein-type domain	uncharacterized	0.69625	0.6475000000000001	25	0.625	1.0	fitness_active
+Putida	PP_0177	conserved protein of unknown function	uncharacterized	0.6961421208333334	0.6361421208333334	26	1.0	1.0	fitness_active
+Koxy	BWI76_RS11480	hypothetical protein	hypothetical	0.6955468687499999	0.63554686875	27	1.0	1.0	fitness_active
+MR1	202450	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6932625625	0.6932625625	28	0.0	0.0	fitness_active
+Pedo557	CA265_RS23005	hypothetical protein	hypothetical	0.6900702090909091	0.6334793000000001	29	0.8863636363636364	1.0	fitness_active
+pseudo5_N2C3_1	AO356_13585	hypothetical protein	hypothetical	0.6894299638392857	0.633715678125	30	0.8571428571428571	1.0	fitness_active
+MR1	203026	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6891720320723684	0.676540453125	31	0.42105263157894735	0.0	fitness_active
+Keio	18268	orf, hypothetical protein (VIMSS)	hypothetical	0.688908925	0.664908925	32	0.8	0.0	fitness_active
+pseudo5_N2C3_1	AO356_23240	hypothetical protein	hypothetical	0.6879761904761905	0.6408333333333334	33	0.5714285714285714	1.0	fitness_active
+Marino	GFF1827	protein belonging to uncharacterized protein family UPF0005	uncharacterized	0.6878305625	0.6758305625	34	0.4	0.0	fitness_active
+Marino	GFF239	protein of unknown function, HemX	uncharacterized	0.6877158531249999	0.627715853125	35	1.0	1.0	fitness_active
+DvH	209182	conserved hypothetical protein (TIGR)	hypothetical	0.6875000000000001	0.6575000000000001	36	0.0	1.0	fitness_active
+MR1	200452	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6860714285714286	0.6599999999999999	37	0.6190476190476191	0.25	fitness_active
+pseudo13_GW456_L13	PfGW456L13_2307	FIG049111: Hypothetical protein in pyoverdin gene cluster	hypothetical	0.6849999999999999	0.625	38	1.0	1.0	fitness_active
+Koxy	BWI76_RS06505	hypothetical protein	hypothetical	0.6849999999999999	0.625	39	1.0	1.0	fitness_active
+Keio	17261	orf, hypothetical protein (VIMSS)	hypothetical	0.6838461538461538	0.6599999999999999	40	0.7948717948717948	0.0	fitness_active
+DvH	206682	conserved hypothetical protein (TIGR)	hypothetical	0.6835227500000001	0.64852275	41	0.4166666666666667	0.75	fitness_active
+Putida	PP_0903	conserved protein of unknown function	uncharacterized	0.6833333333333333	0.6266666666666667	42	0.8888888888888888	1.0	fitness_active
+ANA3	7026494	hypothetical protein (RefSeq)	hypothetical	0.68228059375	0.62228059375	43	1.0	1.0	fitness_active
+Smeli	SMc02236	hypothetical protein	hypothetical	0.681608684375	0.6216086843749999	44	1.0	1.0	fitness_active
+pseudo6_N2E2	Pf6N2E2_512	5-keto-2-deoxygluconokinase (EC 2.7.1.92) / uncharacterized domain	uncharacterized	0.68	0.62	45	1.0	1.0	fitness_active
+MR1	203720	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6799999999999999	0.6799999999999999	46	0.0	0.0	fitness_active
+pseudo5_N2C3_1	AO356_04335	hypothetical protein	hypothetical	0.6799999999999999	0.62	47	1.0	1.0	fitness_active
+pseudo1_N1B4	Pf1N1B4_3997	Uncharacterized protein YtfM precursor	uncharacterized	0.6799999999999999	0.62	48	1.0	1.0	fitness_active
+MR1	203035	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6799999999999999	0.62	49	1.0	1.0	fitness_active
+MR1	203037	conserved hypothetical protein TIGR00056 (NCBI ptt file)	hypothetical	0.6792857142857143	0.62	50	0.9761904761904762	1.0	fitness_active
+Marino	GFF287	protein of unknown function YGGT	uncharacterized	0.6788895637096773	0.659534725	51	0.6451612903225806	0.0	fitness_active
+pseudo13_GW456_L13	PfGW456L13_3301	hypothetical protein PA3071	hypothetical	0.6788888888888889	0.62	52	0.9629629629629629	1.0	fitness_active
+pseudo5_N2C3_1	AO356_20850	hypothetical protein	hypothetical	0.6783333333333332	0.6183333333333333	53	1.0	1.0	fitness_active
+BFirm	BPHYT_RS19100	hypothetical protein	hypothetical	0.6782848267045455	0.6428302812500001	54	0.18181818181818182	1.0	fitness_active
+Marino	GFF4148	protein of unknown function, cysteine-rich region domain protein	uncharacterized	0.6779310344827586	0.62	55	0.9310344827586207	1.0	fitness_active
+PV4	5210576	hypothetical protein (RefSeq)	hypothetical	0.6779310344827586	0.62	56	0.9310344827586207	1.0	fitness_active
+Putida	PP_0309	conserved protein of unknown function	uncharacterized	0.6763804750000001	0.616380475	57	1.0	1.0	fitness_active
+Keio	17270	hypothetical protein (NCBI)	hypothetical	0.675	0.615	58	1.0	1.0	fitness_active
+MR1	202543	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.675	0.615	59	1.0	1.0	fitness_active
+pseudo5_N2C3_1	AO356_10000	hypothetical protein	hypothetical	0.675	0.615	60	1.0	1.0	fitness_active
+pseudo3_N2E3	AO353_17575	hypothetical protein	hypothetical	0.675	0.615	61	1.0	1.0	fitness_active
+pseudo5_N2C3_1	AO356_24645	hypothetical protein	hypothetical	0.675	0.615	62	1.0	1.0	fitness_active
+MR1	202421	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.675	0.615	63	1.0	1.0	fitness_active
+pseudo5_N2C3_1	AO356_03345	hypothetical protein	hypothetical	0.675	0.63	64	0.5	1.0	fitness_active
+Smeli	SMc02123	hypothetical protein	hypothetical	0.675	0.615	65	1.0	1.0	fitness_active
+psRCH2	GFF205	Uncharacterized protein conserved in bacteria	uncharacterized	0.6741666666666668	0.6275	66	0.5555555555555556	1.0	fitness_active
+MR1	201809	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6741666666666667	0.6741666666666667	67	0.0	0.0	fitness_active
+pseudo5_N2C3_1	AO356_24655	hypothetical protein	hypothetical	0.6741666666666666	0.6141666666666666	68	1.0	1.0	fitness_active
+MR1	203172	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6740909090909091	0.615	69	0.9696969696969697	1.0	fitness_active
+MR1	199587	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6740322580645162	0.615	70	0.967741935483871	1.0	fitness_active
+Smeli	SMc03789	hypothetical protein	hypothetical	0.673994340625	0.613994340625	71	1.0	1.0	fitness_active
+pseudo13_GW456_L13	PfGW456L13_4121	FIG139976: hypothetical protein	hypothetical	0.6733333333333333	0.6133333333333333	72	1.0	1.0	fitness_active
+MR1	201766	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6732857142857143	0.615	73	0.9428571428571428	1.0	fitness_active
+MR1	200691	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6729310344827586	0.615	74	0.9310344827586207	1.0	fitness_active
+pseudo5_N2C3_1	AO356_01105	hypothetical protein	hypothetical	0.6728643958333334	0.6616143958333334	75	0.375	0.0	fitness_active
+pseudo3_N2E3	AO353_07340	hypothetical protein	hypothetical	0.672743328125	0.6127433281250001	76	1.0	1.0	fitness_active
+pseudo5_N2C3_1	AO356_09635	hypothetical protein	hypothetical	0.6726923076923076	0.6599999999999999	77	0.4230769230769231	0.0	fitness_active
+acidovorax_3H11	Ac3H11_4707	FIG00537720: hypothetical protein	hypothetical	0.6725000000000001	0.6325000000000001	78	0.3333333333333333	1.0	fitness_active
+BFirm	BPHYT_RS12970	hypothetical protein	hypothetical	0.6718497104166666	0.61518304375	79	0.8888888888888888	1.0	fitness_active
+pseudo5_N2C3_1	AO356_20905	hypothetical protein	hypothetical	0.6717620249999999	0.611762025	80	1.0	1.0	fitness_active
+Marino	GFF4032	conserved hypothetical protein	hypothetical	0.6716666666666666	0.6416666666666666	81	0.0	1.0	fitness_active
+psRCH2	GFF3859	hypothetical protein	hypothetical	0.6708333333333334	0.6408333333333334	82	1.0	0.0	fitness_active
+DvH	206683	conserved hypothetical protein (TIGR)	hypothetical	0.6703808479166666	0.61371418125	83	0.8888888888888888	1.0	fitness_active
+MR1	203444	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6703619375	0.6103619374999999	84	1.0	1.0	fitness_active
+MR1	199537	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6703125	0.615	85	0.84375	1.0	fitness_active
+pseudo5_N2C3_1	AO356_03355	hypothetical protein	hypothetical	0.67	0.63	86	0.3333333333333333	1.0	fitness_active
+MR1	202269	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6699999999999999	0.61	87	1.0	1.0	fitness_active
+MR1	203449	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6696532802083333	0.6096532802083333	88	1.0	1.0	fitness_active
+pseudo3_N2E3	AO353_00915	hypothetical protein	hypothetical	0.6691356770833333	0.6091356770833334	89	1.0	1.0	fitness_active
+MR1	200689	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6687931034482759	0.615	90	0.7931034482758621	1.0	fitness_active
+Putida	PP_3273	conserved protein of unknown function	uncharacterized	0.6676534375000001	0.6151534375000001	91	1.0	0.75	fitness_active
+Putida	PP_0765	conserved exported protein of unknown function	uncharacterized	0.6675000000000001	0.6675000000000001	92	0.0	0.0	fitness_active
+pseudo6_N2E2	Pf6N2E2_4692	FIG004891: hypothetical protein in carnitine cluster	hypothetical	0.6675	0.62	93	0.8333333333333334	0.75	fitness_active
+MR1	202985	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6667857142857142	0.6475	94	0.6428571428571429	0.0	fitness_active
+Smeli	SMc00174	hypothetical protein	hypothetical	0.66608561875	0.60608561875	95	1.0	1.0	fitness_active
+MR1	201501	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6656896551724139	0.615	96	0.6896551724137931	1.0	fitness_active
+pseudo5_N2C3_1	AO356_03360	hypothetical protein	hypothetical	0.665625	0.63	97	0.1875	1.0	fitness_active
+HerbieS	HSERO_RS10520	hypothetical protein	hypothetical	0.665	0.605	98	1.0	1.0	fitness_active
+PV4	5211093	hypothetical protein (RefSeq)	hypothetical	0.665	0.62	99	1.0	0.5	fitness_active
+Koxy	BWI76_RS19600	hypothetical protein	hypothetical	0.66498134375	0.6049813437499999	100	1.0	1.0	fitness_active
+DvH	209282	hypothetical protein (TIGR)	hypothetical	0.66476030625	0.60476030625	101	1.0	1.0	fitness_active
+Keio	16530	orf, hypothetical protein (VIMSS)	hypothetical	0.66408334375	0.66408334375	102	0.0	0.0	fitness_active
+pseudo13_GW456_L13	PfGW456L13_2601	Uncharacterized protein YtfM precursor	uncharacterized	0.663857384375	0.6038573843749999	103	1.0	1.0	fitness_active
+Koxy	BWI76_RS22685	hypothetical protein	hypothetical	0.6633333333333333	0.6333333333333333	104	1.0	0.0	fitness_active
+MR1	199559	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6630367135416666	0.6630367135416666	105	0.0	0.0	fitness_active
+pseudo5_N2C3_1	AO356_04430	hypothetical protein	hypothetical	0.6625	0.6475	106	0.25	0.25	fitness_active
+MR1	200488	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6623494375	0.6133494374999999	107	0.6333333333333333	1.0	fitness_active
+pseudo13_GW456_L13	PfGW456L13_3532	FIG00955631: hypothetical protein	hypothetical	0.6620109156249999	0.602010915625	108	1.0	1.0	fitness_active
+pseudo6_N2E2	Pf6N2E2_2710	FIG00953701: hypothetical protein	hypothetical	0.6616666666666667	0.6391666666666667	109	0.75	0.0	fitness_active
+Putida	PP_1151	conserved protein of unknown function	uncharacterized	0.6616666666666666	0.6016666666666667	110	1.0	1.0	fitness_active
+pseudo5_N2C3_1	AO356_04525	hypothetical protein	hypothetical	0.66076344375	0.6307634437499999	111	1.0	0.0	fitness_active
+pseudo5_N2C3_1	AO356_12710	hypothetical protein	hypothetical	0.6603340375	0.6523340375	112	0.26666666666666666	0.0	fitness_active
+pseudo1_N1B4	Pf1N1B4_2522	FIG002076: hypothetical protein	hypothetical	0.66027491875	0.6002749187499999	113	1.0	1.0	fitness_active
+psRCH2	GFF1126	Uncharacterized iron-regulated protein	uncharacterized	0.6602013343750001	0.600201334375	114	1.0	1.0	fitness_active
+pseudo1_N1B4	Pf1N1B4_4934	Hypothetical protein, restriction endonuclease-like VRR-NUC domain	hypothetical	0.6598481653846153	0.60446355	115	0.8461538461538461	1.0	fitness_active
+pseudo1_N1B4	Pf1N1B4_1189	Predicted L-lactate dehydrogenase, hypothetical protein subunit YkgG	hypothetical	0.6596673628232758	0.605874259375	116	0.7931034482758621	1.0	fitness_active
+pseudo13_GW456_L13	PfGW456L13_3524	FIG00443700: hypothetical protein	hypothetical	0.6588670906249999	0.6138670906249999	117	0.75	0.75	fitness_active
+DvH	209482	conserved hypothetical protein (TIGR)	hypothetical	0.6586111111111111	0.6575000000000001	118	0.037037037037037035	0.0	fitness_active
+Marino	GFF3678	conserved hypothetical protein	hypothetical	0.6583333333333333	0.6583333333333333	119	0.0	0.0	fitness_active
+Phaeo	GFF2999	Uncharacterized conserved protein	uncharacterized	0.65821345625	0.6094634562500001	120	0.625	1.0	fitness_active
+Keio	16233	orf, hypothetical protein (VIMSS)	hypothetical	0.657827990625	0.597827990625	121	1.0	1.0	fitness_active
+pseudo5_N2C3_1	AO356_25185	hypothetical protein	hypothetical	0.6576182625	0.6051182625	122	1.0	0.75	fitness_active
+Smeli	SM_b21182	hypothetical protein	hypothetical	0.6575806451612903	0.615	123	0.41935483870967744	1.0	fitness_active
+Putida	PP_4628	conserved protein of unknown function	uncharacterized	0.6575000000000001	0.6575000000000001	124	0.0	0.0	fitness_active
+Btheta	353429	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6575000000000001	0.6575000000000001	125	0.0	0.0	fitness_active
+pseudo13_GW456_L13	PfGW456L13_201	Hypothetical protein FIG015671 in large core OS assembly cluster	hypothetical	0.6575	0.5974999999999999	126	1.0	1.0	fitness_active
+Koxy	BWI76_RS24405	hypothetical protein	hypothetical	0.6574515583333334	0.5974515583333333	127	1.0	1.0	fitness_active
+Putida	PP_2921	conserved protein of unknown function	uncharacterized	0.6566666666666667	0.5966666666666667	128	1.0	1.0	fitness_active
+MR1	203287	hypothetical protein (NCBI ptt file)	hypothetical	0.6566666666666666	0.6116666666666667	129	0.5	1.0	fitness_active
+pseudo5_N2C3_1	AO356_01050	hypothetical protein	hypothetical	0.6555	0.615	130	0.6	0.75	fitness_active
+pseudo5_N2C3_1	AO356_15325	hypothetical protein	hypothetical	0.6549999999999999	0.62	131	0.9166666666666666	0.25	fitness_active
+Marino	GFF1839	uncharacterized conserved protein UCP030820	uncharacterized	0.6549999999999999	0.595	132	1.0	1.0	fitness_active
+pseudo13_GW456_L13	PfGW456L13_859	Uncharacterized protein EC-HemY, likely associated with heme metabolism based on gene clustering with hemC, hemD in Proteobacteria (unrelated to HemY-type PPO in GramPositives)	uncharacterized	0.6546348750000001	0.594634875	133	1.0	1.0	fitness_active
+Dino	3609861	protein of unknown function DUF403 (RefSeq)	DUF	0.6545967741935484	0.62	134	0.9032258064516129	0.25	fitness_active
+psRCH2	GFF2090	Uncharacterized protein conserved in bacteria	uncharacterized	0.654276609375	0.594276609375	135	1.0	1.0	fitness_active
+psRCH2	GFF207	Uncharacterized protein conserved in bacteria	uncharacterized	0.6541666666666668	0.6375	136	0.5555555555555556	0.0	fitness_active
+pseudo5_N2C3_1	AO356_10905	hypothetical protein	hypothetical	0.6541666666666667	0.6541666666666667	137	0.0	0.0	fitness_active
+Keio	17262	orf, hypothetical protein (VIMSS)	hypothetical	0.6534401125	0.5934401125	138	1.0	1.0	fitness_active
+Keio	14308	orf, hypothetical protein (VIMSS)	hypothetical	0.653220140625	0.645220140625	139	0.26666666666666666	0.0	fitness_active
+MR1	201404	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6519111979166666	0.6219111979166666	140	1.0	0.0	fitness_active
+Smeli	SMc01001	hypothetical protein	hypothetical	0.65168090625	0.65168090625	141	0.0	0.0	fitness_active
+MR1	202294	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6516666666666666	0.6016666666666666	142	0.6666666666666666	1.0	fitness_active
+Smeli	SM_b21108	hypothetical protein	hypothetical	0.6511904761904762	0.6158333333333333	143	0.42857142857142855	0.75	fitness_active
+psRCH2	GFF1494	hypothetical protein	hypothetical	0.650087440625	0.627587440625	144	0.0	0.75	fitness_active
+MR1	200980	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.65	0.62	145	1.0	0.0	fitness_active
+MR1	199620	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.65	0.62	146	1.0	0.0	fitness_active
+Keio	14337	hypothetical protein (NCBI)	hypothetical	0.65	0.62	147	1.0	0.0	fitness_active
+pseudo13_GW456_L13	PfGW456L13_5011	Uncharacterized protein YrbK clustered with lipopolysaccharide transporters	uncharacterized	0.65	0.62	148	1.0	0.0	fitness_active
+Ponti	CA264_05755	hypothetical protein	hypothetical	0.64933775	0.58933775	149	1.0	1.0	fitness_active
+pseudo1_N1B4	Pf1N1B4_3816	FIG139976: hypothetical protein	hypothetical	0.6492783645833333	0.5892783645833333	150	1.0	1.0	fitness_active
+Marino	GFF4186	conserved hypothetical protein	hypothetical	0.6492608270833333	0.5892608270833333	151	1.0	1.0	fitness_active
+ANA3	7025963	hypothetical protein (RefSeq)	hypothetical	0.6491666666666667	0.6058333333333333	152	0.4444444444444444	1.0	fitness_active
+psRCH2	GFF1090	Protein of unknown function (DUF1329).	DUF	0.6484631022727273	0.591190375	153	0.9090909090909091	1.0	fitness_active
+Marino	GFF439	conserved hypothetical protein, secreted	hypothetical	0.6483333333333333	0.6183333333333333	154	1.0	0.0	fitness_active
+Smeli	SMc03162	hypothetical protein	hypothetical	0.6479167208333333	0.5970833875	155	0.9444444444444444	0.75	fitness_active
+Smeli	SMc02875	hypothetical protein	hypothetical	0.6477272727272727	0.645	156	0.09090909090909091	0.0	fitness_active
+pseudo1_N1B4	Pf1N1B4_2130	FIG00953403: hypothetical protein	hypothetical	0.6475	0.6475	157	0.0	0.0	fitness_active
+pseudo5_N2C3_1	AO356_18060	hypothetical protein	hypothetical	0.647	0.62	158	0.9	0.0	fitness_active
+MR1	203048	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6468243243243244	0.615	159	0.8108108108108109	0.25	fitness_active
+Putida	PP_0766	conserved exported protein of unknown function	uncharacterized	0.6465264125000001	0.6465264125000001	160	0.0	0.0	fitness_active
+pseudo5_N2C3_1	AO356_08645	hypothetical protein	hypothetical	0.646446	0.586446	161	1.0	1.0	fitness_active
+BFirm	BPHYT_RS22385	hypothetical protein	hypothetical	0.646262396875	0.591262396875	162	0.8333333333333334	1.0	fitness_active
+MR1	199597	hypothetical protein (NCBI ptt file)	hypothetical	0.6458333333333333	0.6458333333333333	163	0.0	0.0	fitness_active
+Keio	14528	hypothetical protein (NCBI)	hypothetical	0.6458333333333333	0.6458333333333333	164	0.0	0.0	fitness_active
+pseudo1_N1B4	Pf1N1B4_1625	FIG00956267: hypothetical protein	hypothetical	0.6457658114583333	0.5962658114583332	165	0.9	0.75	fitness_active
+MR1	201972	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6453571428571429	0.6425	166	0.09523809523809523	0.0	fitness_active
+Smeli	SMc03002	hypothetical protein	hypothetical	0.6451519166666667	0.6076519166666666	167	0.5	0.75	fitness_active
+Marino	GFF1694	protein containing DUF1348	DUF	0.645	0.615	168	0.0	1.0	fitness_active
+MR1	203309	conserved hypothetical protein TIGR00006 (NCBI ptt file)	hypothetical	0.645	0.615	169	1.0	0.0	fitness_active
+MR1	201772	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.645	0.615	170	1.0	0.0	fitness_active
+Ponti	CA264_06090	hypothetical protein	hypothetical	0.645	0.645	171	0.0	0.0	fitness_active
+Smeli	SMc04209	hypothetical protein	hypothetical	0.645	0.645	172	0.0	0.0	fitness_active
+acidovorax_3H11	Ac3H11_3276	hypothetical protein	hypothetical	0.645	0.645	173	0.0	0.0	fitness_active
+pseudo3_N2E3	AO353_04865	hypothetical protein	hypothetical	0.645	0.645	174	0.0	0.0	fitness_active
+pseudo13_GW456_L13	PfGW456L13_843	Protein of unknown function DUF484	DUF	0.645	0.615	175	1.0	0.0	fitness_active
+Smeli	SMc02714	hypothetical protein	hypothetical	0.645	0.585	176	1.0	1.0	fitness_active
+MR1	202185	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.645	0.615	177	1.0	0.0	fitness_active
+Marino	GFF1402	conserved hypothetical protein	hypothetical	0.645	0.62	178	0.8333333333333334	0.0	fitness_active
+MR1	202849	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.6445641510416666	0.6445641510416666	179	0.0	0.0	fitness_active
+pseudo5_N2C3_1	AO356_13655	hypothetical protein	hypothetical	0.6445454545454545	0.62	180	0.8181818181818182	0.0	fitness_active
+Keio	17276	hypothetical protein (NCBI)	hypothetical	0.6443243243243243	0.62	181	0.8108108108108109	0.0	fitness_active
+DvH	206326	conserved hypothetical protein (TIGR)	hypothetical	0.6440912964389536	0.6210680406250001	182	0.7674418604651163	0.0	fitness_active
+Marino	GFF3145	protein belonging to uncharacterized protein family UPF0125	uncharacterized	0.6440322580645161	0.615	183	0.967741935483871	0.0	fitness_active
+Marino	GFF4150	protein containing DUF162	DUF	0.6437931034482759	0.59	184	0.7931034482758621	1.0	fitness_active
+Marino	GFF338	conserved hypothetical protein	hypothetical	0.643761290625	0.643761290625	185	0.0	0.0	fitness_active
+MR1	202212	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.64351578125	0.5835157812499999	186	1.0	1.0	fitness_active
+MR1	201753	conserved hypothetical protein TIGR00247 (NCBI ptt file)	hypothetical	0.6435135135135135	0.62	187	0.7837837837837838	0.0	fitness_active
+Smeli	SMc02877	hypothetical protein	hypothetical	0.643	0.615	188	0.9333333333333333	0.0	fitness_active
+Koxy	BWI76_RS25205	hypothetical protein	hypothetical	0.6427443875	0.6127443874999999	189	1.0	0.0	fitness_active
+pseudo3_N2E3	AO353_16895	hypothetical protein	hypothetical	0.64264634375	0.58264634375	190	1.0	1.0	fitness_active
+Smeli	SMc03109	hypothetical protein	hypothetical	0.6425	0.6425	191	0.0	0.0	fitness_active
+Marino	GFF1368	uncharacterized conserved protein UCP037290	uncharacterized	0.6425	0.6425	192	0.0	0.0	fitness_active
+MR1	200349	conserved hypothetical protein TIGR00246 (NCBI ptt file)	hypothetical	0.6420967741935484	0.615	193	0.9032258064516129	0.0	fitness_active
+MR1	201174	conserved hypothetical protein TIGR00103 (NCBI ptt file)	hypothetical	0.642014521875	0.6120145218749999	194	1.0	0.0	fitness_active
+MR1	201884	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.642	0.615	195	0.9	0.0	fitness_active
+Marino	GFF684	conserved hypothetical protein	hypothetical	0.6419941833333334	0.5969941833333333	196	1.0	0.5	fitness_active
+Keio	17187	orf, hypothetical protein (VIMSS)	hypothetical	0.6418310807432431	0.6085878374999999	197	0.10810810810810811	1.0	fitness_active
+Smeli	SMc00619	hypothetical protein	hypothetical	0.6416666666666667	0.615	198	0.8888888888888888	0.0	fitness_active
+MR1	203092	hypothetical protein (NCBI ptt file)	hypothetical	0.6416666666666666	0.6416666666666666	199	0.0	0.0	fitness_active
+Putida	PP_0909	conserved exported protein of unknown function	uncharacterized	0.6404616875000001	0.6404616875000001	200	0.0	0.0	fitness_active
+MR1	200382	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.8991666666666668	0.8741666666666668	1	1.0	0.0	essential
+Keio	14796	hypothetical protein (NCBI)	hypothetical	0.8984375000000001	0.8750000000000001	2	0.9375	0.0	essential
+Koxy	BWI76_RS08540	hypothetical protein	hypothetical	0.8900000000000001	0.865	3	1.0	0.0	essential
+MR1	201473	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.86	0.8350000000000001	4	1.0	0.0	essential
+Keio	14768	hypothetical protein (NCBI)	hypothetical	0.8566666666666668	0.8325000000000001	5	0.9666666666666667	0.0	essential
+MR1	200359	conserved hypothetical protein TIGR00043 (NCBI ptt file)	hypothetical	0.8559375000000001	0.8325000000000001	6	0.9375	0.0	essential
+Putida	PP_1910	conserved protein of unknown function	uncharacterized	0.8525000000000001	0.8275	7	1.0	0.0	essential
+pseudo5_N2C3_1	AO356_29395	hypothetical protein	hypothetical	0.8470238095238096	0.8375000000000001	8	0.38095238095238093	0.0	essential
+MR1	200343	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.8441666666666668	0.8200000000000002	9	0.9666666666666667	0.0	essential
+Keio	15387	orf, hypothetical protein (VIMSS)	hypothetical	0.8425000000000001	0.8175000000000001	10	1.0	0.0	essential
+Putida	PP_4931	conserved protein of unknown function	uncharacterized	0.8425000000000001	0.8175000000000001	11	1.0	0.0	essential
+Putida	PP_1901	conserved protein of unknown function, UPF0434 family	uncharacterized	0.8407142857142859	0.8200000000000002	12	0.8285714285714286	0.0	essential
+Putida	PP_5002	conserved protein of unknown function	uncharacterized	0.8400000000000001	0.8275	13	0.5	0.0	essential
+Keio	16703	orf, hypothetical protein (VIMSS)	hypothetical	0.838409090909091	0.8141666666666668	14	0.9696969696969697	0.0	essential
+pseudo5_N2C3_1	AO356_18485	hypothetical protein	hypothetical	0.8350000000000001	0.8100000000000002	15	1.0	0.0	essential
+Putida	PP_1980	conserved protein of unknown function	uncharacterized	0.835	0.8266666666666667	16	0.3333333333333333	0.0	essential
+pseudo5_N2C3_1	AO356_15335	hypothetical protein	hypothetical	0.8341666666666668	0.8100000000000002	17	0.9666666666666667	0.0	essential
+Putida	PP_3995	conserved protein of unknown function	uncharacterized	0.8333333333333335	0.8083333333333333	18	1.0	0.0	essential
+Keio	16623	hypothetical protein (NCBI)	hypothetical	0.8333333333333334	0.8083333333333335	19	1.0	0.0	essential
+pseudo1_N1B4	Pf1N1B4_1077	Uncharacterized protein YrbK clustered with lipopolysaccharide transporters	uncharacterized	0.8325000000000001	0.8075	20	1.0	0.0	essential
+Putida	PP_4017	conserved protein of unknown function	uncharacterized	0.8311559139784946	0.8158333333333334	21	0.6129032258064516	0.0	essential
+MR1	201916	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.8300000000000002	0.805	22	1.0	0.0	essential
+MR1	199787	conserved hypothetical protein TIGR00150 (NCBI ptt file)	hypothetical	0.8226126126126126	0.8016666666666667	23	0.8378378378378378	0.0	essential
+Koxy	BWI76_RS08015	hypothetical protein	hypothetical	0.8216666666666667	0.7975	24	0.9666666666666667	0.0	essential
+MR1	202418	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.8200000000000001	0.795	25	1.0	0.0	essential
+psRCH2	GFF696	uncharacterized protein, YfiH family	uncharacterized	0.8176829268292684	0.7999999999999999	26	0.7073170731707317	0.0	essential
+Putida	PP_0955	conserved exported protein of unknown function	uncharacterized	0.8175	0.7925000000000001	27	1.0	0.0	essential
+psRCH2	GFF3247	Uncharacterized protein conserved in bacteria	uncharacterized	0.8175	0.7925000000000001	28	1.0	0.0	essential
+Koxy	BWI76_RS11065	hypothetical protein	hypothetical	0.8150000000000001	0.7900000000000001	29	1.0	0.0	essential
+pseudo5_N2C3_1	AO356_26130	hypothetical protein	hypothetical	0.811875	0.8108333333333334	30	0.041666666666666664	0.0	essential
+Putida	PP_0347	conserved protein of unknown function	uncharacterized	0.8116666666666668	0.7866666666666667	31	1.0	0.0	essential
+psRCH2	GFF949	Uncharacterized protein conserved in bacteria	uncharacterized	0.8116666666666666	0.7866666666666666	32	1.0	0.0	essential
+pseudo1_N1B4	Pf1N1B4_4045	FIG002776: hypothetical protein	hypothetical	0.8111559139784946	0.7958333333333334	33	0.6129032258064516	0.0	essential
+Koxy	BWI76_RS20425	hypothetical protein	hypothetical	0.8100000000000002	0.7900000000000001	34	0.8	0.0	essential
+Putida	PP_1715	conserved protein of unknown function	uncharacterized	0.8075	0.7825000000000001	35	1.0	0.0	essential
+SyringaeB728a	Psyr_4182	Protein of unknown function DUF150	DUF	0.8066666666666666	0.8066666666666666	36	1.0	0.0	essential
+PV4	5210386	hypothetical protein (RefSeq)	hypothetical	0.8066666666666666	0.7816666666666667	37	1.0	0.0	essential
+ANA3	7023808	hypothetical protein (RefSeq)	hypothetical	0.8066666666666666	0.7816666666666667	38	1.0	0.0	essential
+HerbieS	HSERO_RS23355	hypothetical protein	hypothetical	0.8062500000000001	0.7875000000000001	39	0.75	0.0	essential
+SyringaeB728a	Psyr_0430	conserved hypothetical protein	hypothetical	0.8049999999999999	0.78	40	1.0	0.0	essential
+MR1	201421	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.8045833333333333	0.8033333333333333	41	0.05	0.0	essential
+MR1	201653	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.8041666666666668	0.7791666666666668	42	1.0	0.0	essential
+Koxy	BWI76_RS14220	hypothetical protein	hypothetical	0.8041666666666667	0.7875000000000001	43	0.6666666666666666	0.0	essential
+PV4	5209621	hypothetical protein (RefSeq)	hypothetical	0.8028409090909092	0.7875000000000001	44	0.6136363636363636	0.0	essential
+WCS417	GFF4387	hypothetical protein	hypothetical	0.8028409090909092	0.7875000000000001	45	0.6136363636363636	0.0	essential
+pseudo1_N1B4	Pf1N1B4_2188	Uncharacterized protein EC-HemY, likely associated with heme metabolism based on gene clustering with hemC, hemD in Proteobacteria (unrelated to HemY-type PPO in GramPositives)	uncharacterized	0.8025000000000001	0.7775000000000001	46	1.0	0.0	essential
+pseudo5_N2C3_1	AO356_03165	hypothetical protein	hypothetical	0.8	0.775	47	1.0	0.0	essential
+PS	Dsui_2724	hypothetical protein	hypothetical	0.7991666666666668	0.7741666666666667	48	1.0	0.0	essential
+psRCH2	GFF307	Uncharacterized conserved protein	uncharacterized	0.7989285714285715	0.7775	49	0.8571428571428571	0.0	essential
+Marino	GFF1927	protein belonging to uncharacterized protein family UPF0133	uncharacterized	0.7985714285714286	0.775	50	0.9428571428571428	0.0	essential
+Koxy	BWI76_RS21575	hypothetical protein	hypothetical	0.7983602150537635	0.7741666666666667	51	0.967741935483871	0.0	essential
+Putida	PP_5432	conserved protein of unknown function	uncharacterized	0.7983333333333335	0.7941666666666668	52	0.16666666666666666	0.0	essential
+MR1	202546	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7978703703703706	0.7775000000000002	53	0.8148148148148148	0.0	essential
+PV4	5209781	hypothetical protein (RefSeq)	hypothetical	0.7975000000000001	0.7725	54	1.0	0.0	essential
+Marino	GFF2495	protein containing DUF1239	DUF	0.7949999999999999	0.7699999999999999	55	1.0	0.0	essential
+Keio	14302	hypothetical protein (NCBI)	hypothetical	0.7944444444444445	0.7916666666666667	56	0.1111111111111111	0.0	essential
+pseudo1_N1B4	Pf1N1B4_3691	FIG00953296: hypothetical protein	hypothetical	0.7932692307692308	0.7875000000000001	57	0.23076923076923078	0.0	essential
+azobra	AZOBR_RS15735	hypothetical protein	hypothetical	0.7921951219512195	0.78	58	0.4878048780487805	0.0	essential
+Keio	15041	hypothetical protein (NCBI)	hypothetical	0.7921428571428574	0.7750000000000001	59	0.6857142857142857	0.0	essential
+pseudo1_N1B4	Pf1N1B4_881	FIG00954164: hypothetical protein	hypothetical	0.7912500000000001	0.7725000000000001	60	0.75	0.0	essential
+MR1	201504	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7908333333333334	0.7658333333333335	61	1.0	0.0	essential
+psRCH2	GFF1638	Uncharacterized conserved protein	uncharacterized	0.7907142857142858	0.7700000000000001	62	0.8285714285714286	0.0	essential
+pseudo1_N1B4	Pf1N1B4_279	FIG00956413: hypothetical protein	hypothetical	0.79	0.765	63	1.0	0.0	essential
+pseudo1_N1B4	Pf1N1B4_5068	FIG00974267: hypothetical protein	hypothetical	0.7899999999999999	0.765	64	1.0	0.0	essential
+MR1	203282	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7899712643678162	0.7658333333333335	65	0.9655172413793104	0.0	essential
+Putida	PP_5012	conserved protein of unknown function	uncharacterized	0.7899712643678162	0.7658333333333335	66	0.9655172413793104	0.0	essential
+pseudo1_N1B4	Pf1N1B4_3863	FIG000557: hypothetical protein co-occurring with RecR	hypothetical	0.7885714285714286	0.765	67	0.9428571428571428	0.0	essential
+Putida	PP_4248	conserved protein of unknown function, UPF0345 family	uncharacterized	0.7881818181818182	0.7700000000000001	68	0.7272727272727273	0.0	essential
+psRCH2	GFF512	Uncharacterized conserved protein	uncharacterized	0.7866666666666667	0.7625000000000001	69	0.9666666666666667	0.0	essential
+Marino	GFF3334	membrane protein containing DUF423	DUF	0.7858333333333334	0.7858333333333334	70	0.45	0.0	essential
+pseudo5_N2C3_1	AO356_15370	hypothetical protein	hypothetical	0.7858333333333333	0.7608333333333334	71	1.0	0.0	essential
+Smeli	SMc01122	hypothetical protein	hypothetical	0.7850000000000001	0.7850000000000001	72	0.0	0.0	essential
+Marino	GFF626	hypothetical protein	hypothetical	0.7841666666666668	0.7600000000000001	73	0.9666666666666667	0.0	essential
+MR1	201543	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7841666666666668	0.7633333333333334	74	0.8333333333333334	0.0	essential
+Keio	14170	hypothetical protein (NCBI)	hypothetical	0.7840530303030304	0.7641666666666668	75	0.7954545454545454	0.0	essential
+psRCH2	GFF4301	Uncharacterized conserved protein	uncharacterized	0.7836842105263158	0.76	76	0.9473684210526315	0.0	essential
+Smeli	SMc01935	hypothetical protein	hypothetical	0.7816666666666667	0.7566666666666667	77	1.0	0.0	essential
+MR1	200242	conserved hypothetical protein (NCBI ptt file)	hypothetical	0.7808333333333334	0.7558333333333334	78	1.0	0.0	essential
+Koxy	BWI76_RS24755	hypothetical protein	hypothetical	0.7808333333333334	0.7558333333333335	79	1.0	0.0	essential
+pseudo1_N1B4	Pf1N1B4_3735	DUF1232 domain-containing protein	DUF	0.7800000000000001	0.755	80	1.0	0.0	essential
+Smeli	SMc01876	hypothetical protein	hypothetical	0.7787121212121213	0.7741666666666668	81	0.18181818181818182	0.0	essential
+Koxy	BWI76_RS24700	hypothetical protein	hypothetical	0.778452380952381	0.7766666666666667	82	0.07142857142857142	0.0	essential
+pseudo1_N1B4	Pf1N1B4_3157	FIG00956655: hypothetical protein	hypothetical	0.7783333333333334	0.765	83	0.5333333333333333	0.0	essential
+Marino	GFF2559	protein containing uncharacterized protein family UPF0079, ATPase bacteria domains	uncharacterized	0.7776126126126126	0.7566666666666666	84	0.8378378378378378	0.0	essential
+Smeli	SMc00532	hypothetical protein	hypothetical	0.7766666666666667	0.7516666666666667	85	1.0	0.0	essential
+pseudo5_N2C3_1	AO356_21630	hypothetical protein	hypothetical	0.7758333333333335	0.7508333333333334	86	1.0	0.0	essential
+pseudo1_N1B4	Pf1N1B4_5076	FIG00641944: hypothetical protein	hypothetical	0.7756578947368421	0.7625000000000001	87	0.5263157894736842	0.0	essential
+Cup4G11	RR42_RS02100	hypothetical protein	hypothetical	0.7750000000000001	0.75	88	1.0	0.0	essential
+BFirm	BPHYT_RS02920	hypothetical protein	hypothetical	0.7750000000000001	0.75	89	1.0	0.0	essential
+azobra	AZOBR_RS04720	conserved exported protein of unknown function	uncharacterized	0.7750000000000001	0.75	90	1.0	0.0	essential
+psRCH2	GFF1759	conserved hypothetical protein, PP_1857 family	hypothetical	0.775	0.75	91	1.0	0.0	essential
+Keio	1936309	hypothetical protein (NCBI)	hypothetical	0.7733333333333334	0.7483333333333334	92	1.0	0.0	essential
+Keio	14665	orf, hypothetical protein (VIMSS)	hypothetical	0.7727631578947369	0.7675000000000001	93	0.21052631578947367	0.0	essential
+Smeli	SMc01113	hypothetical protein	hypothetical	0.7717105263157895	0.7500000000000001	94	0.868421052631579	0.0	essential
+SyringaeB728a	Psyr_4366	Protein of unknown function DUF163	DUF	0.7709139784946237	0.7483333333333333	95	0.9032258064516129	0.0	essential
+WCS417	GFF707	hypothetical protein	hypothetical	0.77	0.7450000000000001	96	1.0	0.0	essential
+RalstoniaGMI1000	RS_RS06080	DUF4115 domain-containing protein	DUF	0.7683333333333333	0.7433333333333334	97	1.0	0.0	essential
+RalstoniaUW163	UW163_RS12735	DUF4115 domain-containing protein	DUF	0.7683333333333333	0.7433333333333334	98	1.0	0.0	essential
+pseudo1_N1B4	Pf1N1B4_227	FIG074102: hypothetical protein	hypothetical	0.7681818181818182	0.7500000000000001	99	0.7272727272727273	0.0	essential
+acidovorax_3H11	Ac3H11_367	FIG00537757: hypothetical protein	hypothetical	0.7675000000000001	0.7425000000000002	100	1.0	0.0	essential
