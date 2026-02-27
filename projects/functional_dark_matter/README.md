@@ -6,7 +6,7 @@ Which genes of unknown function across 48 bacteria have strong fitness phenotype
 
 ## Status
 
-Complete — 10 notebooks executed (9 core + 1 supplementary review improvements), 13 findings produced. Deliverables: 57,011 dark genes classified into 5 darkness tiers, 100 fitness-active + 50 essential prioritized candidates with experimental protocols and robust rank indicators (18 always-top-50 across weight configurations), minimum covering set of 42 organisms with per-organism action plans. See [Report](REPORT.md) for findings.
+Complete — 13 notebooks executed (9 core + 1 supplementary review improvements + 3 conservation/extended analysis), 14 findings produced. Deliverables: 57,011 dark genes classified into 5 darkness tiers and 8 conservation tiers, 100 fitness-active + 50 essential prioritized candidates with experimental protocols and robust rank indicators (18 always-top-50 across weight configurations), dual-route experimental prioritization (Route A evidence-weighted, Route B conservation-weighted) with minimum covering sets of 42 organisms each, extended covering set of 50 organisms spanning 6 phyla (including non-FB organisms from Bacillota, Actinomycetota, Campylobacterota). See [Report](REPORT.md) for findings.
 
 ## Overview
 
@@ -37,14 +37,14 @@ This project explicitly builds on completed projects:
 
 ## Reproduction
 
-**Prerequisites**: BERDL JupyterHub access with `get_spark_session()` available (NB01–NB04, NB07–NB08 require Spark). NB05, NB06, NB09, NB10 run locally on pandas/scipy only.
+**Prerequisites**: BERDL JupyterHub access with `get_spark_session()` available (NB01–NB04, NB07–NB08, NB11b, NB11c require Spark). NB05, NB06, NB09, NB10, NB11 run locally on pandas/scipy only.
 
 **Dependencies**: `numpy`, `pandas`, `matplotlib`, `seaborn`, `scipy`, `statsmodels`, `scikit-learn`, `umap-learn`
 
 **Steps**:
 1. Ensure prior project data exists: `conservation_vs_fitness/data/fb_pangenome_link.tsv`, `fitness_modules/data/modules/`, `essential_genome/data/`
 2. Execute notebooks in order: `jupyter nbconvert --to notebook --execute --inplace notebooks/01_integration_census.ipynb`
-3. Repeat for NB02 through NB10 (NB05, NB06, NB09, NB10 do not require Spark)
+3. Repeat for NB02 through NB11c (NB05, NB06, NB09, NB10, NB11 do not require Spark; NB11b and NB11c require Spark)
 4. All intermediate data is saved to `data/`; figures to `figures/`
 
 ## Authors

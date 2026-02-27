@@ -8,102 +8,106 @@ project: functional_dark_matter
 
 ## Summary
 
-This is an ambitious and well-executed project that integrates data products from four prior observatory projects (fitness_modules, essential_genome, conservation_vs_fitness, module_conservation) with three BERDL collections to build a unified catalog of 57,011 functionally uncharacterized bacterial genes and prioritize them for experimental follow-up. The project's strongest contributions are the multi-dimensional scoring framework, the systematic lab-field concordance testing (a genuinely novel analytical framework), the darkness spectrum classification (T1 Void through T5 Dawn), and the practical experimental campaign design culminating in per-organism action plans for 42 organisms. The documentation is exemplary — the README, RESEARCH_PLAN, and REPORT are thorough and internally consistent, with honest reporting of null results (H1b rejection, NMDC compositional coupling caveats). The v6 revision addressed three critical bugs identified in a prior review (breadth_class vocabulary mismatch, ORG_GENUS incomplete mapping, missing umap-learn dependency, matplotlib backend issues), and all 9 notebooks now have saved inline outputs and figures. The main remaining areas for improvement are: (1) the GapMind gap-filling analysis stops at organism-level co-occurrence rather than gene-to-step enzymatic matching, weakening Finding 3; (2) scoring weight sensitivity is acknowledged but not fully addressed — users lack a practical way to identify which candidates are robust across weight schemes; and (3) the phylogenetic breadth classification remains nearly uninformative (99.9% "universal"), meaning the species-count metric rather than the categorical classification should drive the pangenome scoring sub-dimension.
+This is an exceptionally comprehensive project that catalogs 57,011 functionally dark genes across 48 bacteria, integrates evidence from four prior observatory projects and three BERDL collections, applies six novel inference layers (GapMind gap-filling, cross-organism concordance, phylogenetic breadth, biogeographic carrier analysis, lab-field concordance, NMDC validation), and produces a dual-route experimentally prioritized candidate list with organism-level covering sets. The project spans 13 notebooks (255 code cells, all with saved outputs), generates 39 figures, produces 44 data files, and is supported by thorough documentation including a detailed research plan with pre-registered hypotheses, a comprehensive 844-line report with 14 findings, and 12 explicitly stated limitations. The statistical methodology is sound throughout, with appropriate use of FDR correction, pre-registered predictions, stratified controls, sensitivity analysis, and robust rank indicators. Notably, many suggestions from the prior review cycle have been addressed — domain matching for GapMind (NB10), robust rank indicators (NB10), species-count scoring variant (NB10), formal binomial and sign tests (NB10), and full pangenome conservation (NB11b). The main remaining areas for improvement are a handful of code-level bugs (operator precedence in NB06, stale string constant in NB05, potential concordance score asymmetry), the mobile gene classification heuristic sensitivity, and the opportunity for a proper null comparison in the biogeographic analysis.
 
 ## Methodology
 
-**Research question**: Clearly stated and testable. The question — which dark genes have strong fitness phenotypes, and can multi-evidence integration prioritize them for experiments — is well-scoped and builds naturally on four prior observatory projects. The relationship to prior work is commendably explicit: Table 1 of the RESEARCH_PLAN maps each prior project to how it is loaded and used, with a clear delineation of what is re-used vs. what is newly derived.
+**Research question and hypotheses**: The research question is clearly stated and decomposed into five testable sub-hypotheses (H1a–H1e). The null hypothesis is well-defined, and mixed outcomes are honestly anticipated. The pre-registration of condition-environment mappings before examining biogeographic data (NB04) is a commendable methodological safeguard rarely seen in computational biology projects.
 
-**Hypothesis structure**: The H0/H1 framework with 5 sub-hypotheses (H1a–H1e) provides a rigorous scaffold. Each sub-hypothesis maps to specific notebooks and analyses. The honest rejection of H1b (stress genes are *not* more accessory than carbon/nitrogen genes — Fisher's exact p=0.013, opposite direction) and the careful caveating of H1e (organism-level co-occurrence only, no gene-to-gap matching) demonstrate scientific integrity. The pre-registered condition-environment mapping (defined before examining biogeographic data) in NB04 is a strong methodological choice.
+**Approach soundness**: The multi-layered evidence integration is well-motivated. Each notebook addresses a question the preceding layer cannot answer: GapMind provides metabolic context beyond fitness data; concordance confirms cross-organism reproducibility; biogeography tests ecological relevance. The dual-route framework (Route A evidence-weighted, Route B conservation-weighted) is a thoughtful design that acknowledges different experimental objectives rather than forcing a single ranking. The 10-revision research plan documents the evolution of the project's design with intellectual honesty.
 
-**Data sources**: All three BERDL collections are clearly identified with table names, estimated row counts, and filter strategies. The RESEARCH_PLAN's "Tables Required" section lists 20 tables across 3 databases with specific query approaches — a model for reproducibility.
+**Data sources**: Clearly identified across three BERDL collections (`kescience_fitnessbrowser`, `kbase_ke_pangenome`, `nmdc_arkin`) and four prior observatory projects. The RESEARCH_PLAN's "Tables Required" section lists 20 tables with estimated row counts and filter strategies — a model for reproducibility. The explicit table documenting what was loaded from prior work vs. newly derived prevents credit ambiguity.
 
-**Approach soundness**: The nine-notebook pipeline follows a logical progression: census → new inference layers → biogeographic testing → concordance → prioritization → robustness → essential genes → synteny validation → synthesis. Each step is motivated by a gap in the preceding analysis. The separation of fitness-active (NB05) and essential (NB07) gene scoring is well-justified — essential genes structurally cannot have fitness magnitudes and would be unfairly penalized in a single framework. The subsequent re-integration in NB08 (synteny + cofit validation) and NB09 (unified darkness spectrum) brings these streams back together coherently.
-
-**GapMind limitation**: The GapMind analysis (Finding 3) identifies 1,256 organism-pathway pairs where dark genes co-occur with nearly-complete metabolic pathways, but the REPORT honestly notes that "no direct gene-to-gap enzymatic matching was performed." The RESEARCH_PLAN (Phase 2) mentions matching "via EC numbers, KEGG reactions, or PFAM domains between dark gene annotations and missing pathway steps," but NB02 does not implement this matching. This gap between plan and execution is the project's most significant methodological shortcoming.
+**Reproducibility**: Strong. The README includes a Reproduction section specifying prerequisites, Spark vs. local dependencies per notebook, and execution order. A `requirements.txt` with 9 dependencies is present. All 13 notebooks have 100% code cells with saved outputs (255/255). The `figures/` directory contains all 39 referenced figures (5.3 MB total). Every intermediate data file is saved to `data/` (147 MB, 44 files), enabling downstream notebooks to run from cached results without re-running Spark queries. One gap: estimated runtimes per notebook are not provided, which would help users plan execution on BERDL JupyterHub.
 
 ## Code Quality
 
-**SQL correctness**: Spark SQL queries across all notebooks correctly CAST Fitness Browser string columns to FLOAT/INT before numeric comparisons (verified in NB01 cell 17: `CAST(gf.fit AS FLOAT)`, `CAST(gf.t AS FLOAT)`; NB02 cell 5: GapMind `MAX(gm.score)` with CASE expression for score_category hierarchy; NB07: `CAST(begin AS INT)`, `CAST(end AS INT)`). This is a critical known pitfall in BERDL, and the project handles it correctly throughout.
+**SQL correctness and pitfall awareness**: The notebooks demonstrate strong awareness of BERDL pitfalls documented in `docs/pitfalls.md`:
+- Fitness Browser string columns are properly CAST to FLOAT/INT throughout (NB01: `CAST(gf.fit AS FLOAT)`, `CAST(gf.t AS FLOAT)`; NB06: `CAST(s.minFit AS FLOAT)`, `CAST(s.nInOG AS INT)`)
+- Spark temp views used instead of large IN clauses (NB01 `target_loci`, NB03 `target_species`/`target_clusters`/`target_genomes`, NB06 `target_annot_ogs`, NB11b `target_root_ogs` with 11,774 OGs)
+- BROADCAST hints applied for small lookup tables joined against billion-row tables (NB03 cell 13: `/*+ BROADCAST(tc) */`)
+- GapMind MAX score aggregation with correct four-level hierarchy via CASE expression (NB02)
+- `ncbi_env` EAV format properly pivoted before use (NB03)
+- AlphaEarth 28% coverage reported with every biogeographic claim
+- Essential genes handled as a separate scoring class (NB07) since they structurally cannot have genefitness rows
 
-**Known pitfall awareness**: The project addresses the following pitfalls from `docs/pitfalls.md`:
-- String-typed numeric columns: CAST used throughout ✓
-- Essential genes having zero genefitness rows: Handled as a separate class with dedicated NB07 scoring ✓
-- GapMind multiple rows per genome-pathway pair: Two-stage MAX aggregation (genome-pathway → species-pathway) applied in NB02 ✓
-- GapMind score_category hierarchy: Correctly encoded via CASE expression (likely_complete=4 > steps_missing_low=3 > steps_missing_medium=2 > not_present=1) ✓
-- `ncbi_env` EAV format: Pivoted before use in NB03 ✓
-- Large IN clauses with `--` species IDs: Temp views and JOINs used instead ✓
-- AlphaEarth 28% coverage: Coverage reported with every biogeographic claim ✓
-- PySpark numpy `str_` types: Not directly triggered but acknowledged in RESEARCH_PLAN
+**Statistical methods**: Generally appropriate and well-chosen:
+- Fisher's exact test for 2×2 contingency tables (NB03, NB04, NB06)
+- Mann-Whitney U and KS tests for distribution comparisons (NB03, NB06)
+- BH-FDR correction applied systematically throughout (NB03, NB04, NB06)
+- Spearman rank correlation for scoring sensitivity and NMDC validation (NB05, NB10)
+- Pre-registered vs. exploratory test separation with independent FDR correction (NB06)
+- Stratified sampling of annotated control OGs matching dark OG organism-count distribution (NB06)
+- Binomial and sign tests for concordance rate assessment (NB10)
+- Fisher's combined probability for aggregate evidence across 47 individual tests (NB10)
 
-**Notebook organization**: Each notebook follows a consistent structure: markdown header with goal/inputs/outputs → setup cell → data loading → analysis sections → figures → save outputs → summary statistics. Summary cells (e.g., NB01 cell 36, NB02 cell 28) provide clean tabular overviews.
+**Notebook organization**: All 13 notebooks follow a consistent structure: markdown header → setup → data loading → analysis → visualization → save. All figures use `plt.show()` for inline rendering. Summary cells provide tabular overviews.
 
-**Type safety**: NB05 and NB07 implement `_safe_float()` and `_safe_int()` wrapper functions with NaN/None handling. Weight validation assertions (`abs(sum(WEIGHTS.values()) - 1.0) < 1e-6`) are present.
+**Bugs identified**:
 
-**Statistical methods**: Appropriate throughout — Fisher's exact test (NB03, NB06), Mann-Whitney U (NB03, NB06), Spearman correlation with BH-FDR correction (NB04, NB06), Kolmogorov-Smirnov test (NB06). The separation of pre-registered vs. exploratory FDR correction in NB06 is commendable.
+1. **NB06 cell 6 — Operator precedence bug** (moderate): The expression `dark['top_condition_class'].notna() & (dark['is_core'] == True) | (dark['is_auxiliary'] == True)` evaluates as `(notna() & is_core) | is_auxiliary` due to `&` binding tighter than `|`, including all auxiliary genes regardless of whether they have a condition class. This affects only the extended H1b analysis (cell 6), not the main H1b test (cells 4–5) which pre-filters correctly. The parenthesized intent should be `notna() & ((is_core) | (is_auxiliary))`.
 
-**Issues identified**:
+2. **NB06 — Concordance score asymmetry** (moderate): NB06 cell 13 identifies and fixes a bug where `n_strong` can exceed `n_organisms` in specog concordance computation and applies the fix to annotated control OGs. However, the dark gene concordance scores loaded from NB02's `concordance_scores.tsv` may contain the same uncorrected bug. The Mann-Whitney comparison in cell 14 could compare corrected annotated scores against uncorrected dark scores. Since this bug tends to inflate concordance and dark genes already show median=1.0, the impact on the H1 conclusion (p=0.17) may be modest, but the asymmetry should be documented or resolved.
 
-1. **Phylogenetic breadth classification is nearly uninformative** (NB02 cell 17): 99.9% of dark gene clusters (30,721/30,756) are classified as "universal" because most eggNOG OGs have root-level annotations. The REPORT acknowledges this, and the v6 fix corrected NB05's scoring to match NB02's vocabulary. However, the fundamental problem remains: the categorical `breadth_class` does not discriminate among candidates. The species-count metric (range 1–33, median=1, mean=2.2) provides finer resolution but is not used as the primary pangenome breadth input to scoring. As a result, virtually every gene with eggNOG data receives the same phylogenetic breadth sub-score (0.5 for "universal"), collapsing one of six scoring dimensions to near-constant values.
+3. **NB05 cell 7 — Stale essentiality class string** (minor): `score_fitness()` checks `essentiality_class == 'essential_all'`, but NB01 produces `'universally_essential'`. The `is_essential_dark` boolean fallback covers the main case so the essentiality bonus (0.15) is still applied, but this branch is dead code.
 
-2. **DtypeWarning on loading `dark_genes_integrated.tsv`**: Appears in NB02 (cell 2) and likely NB08 output. Harmless but indicates mixed-type columns (gene, module, familyId, module_prediction, prediction_source, top_cofit_partners). Specifying `low_memory=False` or explicit dtypes would suppress it.
+4. **NB11b — Mobile gene classification heuristic** (minor): The threshold `n_species / n_phyla <= 10` for mobile element detection may be too aggressive. An OG present in 20 species across 2 phyla (ratio=10) would be classified as "mobile" even though this pattern is consistent with a genuinely conserved but phylum-sparse gene. The 6.5% mobile rate should be interpreted cautiously.
 
-3. **Duplicated `classify_environment` function**: The same environment classification logic is reimplemented in NB03 and NB04. Divergence risk if one is updated without the other.
+5. **NB03 — Embedding dimensionality reduction** (minor): Mann-Whitney U on L2 norms of 64-dimensional embeddings reduces a multivariate comparison to univariate, potentially missing structured differences. A PERMANOVA would be more principled, though the current approach is reasonable given only 1/67 significant results.
 
-4. **NMDC trait over-significance**: 441/449 exploratory tests reach FDR < 0.05 (98.2%) in NB06 Section 3. The REPORT correctly attributes this to compositional coupling and identifies a permutation test as the proper null. This should be implemented rather than left as a future direction.
-
-5. **Concordance ceiling effect**: In the NB06 dark-vs-annotated comparison, both dark and annotated OG medians are 1.0 (means 0.976 vs. 0.985). The inability to distinguish the two populations may reflect small sample sizes (most OGs have exactly 3 organisms) rather than genuinely identical behavior. With only 3 organisms per OG, concordance is either 1.0 (all agree) or 0.33/0.67 (one disagrees), creating a highly discretized distribution that's hard to interpret.
+6. **NB01 cell 25 — Per-organism SQL loop** (minor): Iterates 48 individual domain queries instead of a single query with a temp view. Functionally correct but inefficient.
 
 ## Findings Assessment
 
-**Findings are generally well-supported**: The 13 findings follow directly from notebook analyses, with specific numbers, tables, and figures for each. The REPORT's Results section provides narrative context explaining *why* each analysis step was needed — a welcome structural choice.
+**Findings well-supported by data**: The 14 findings follow directly from notebook analyses with specific numbers, tables, and figures. The REPORT's Results section provides narrative context explaining *why* each analysis step was needed — a welcome structural choice that transforms raw results into a scientific argument.
 
 **Strongest findings**:
-- **Finding 1** (dark gene census): 57,011/228,709 = 24.9% aligns with published 25–40% estimates. The integration of 4 prior project data products into a unified 43-column table is a genuine infrastructure contribution.
-- **Finding 4** (cross-organism concordance): 65 OG families with conserved phenotypes across 3+ organisms, validated by the NB06 null control (dark concordance indistinguishable from annotated, p=0.17).
-- **Finding 7** (lab-field concordance): 61.7% directional concordance + 4/4 NMDC pre-registered confirmations is compelling. The strongest individual result (AO356_11255 lab-field OR=44, NMDC nitrogen correlation) demonstrates the framework's value.
-- **Finding 12** (synteny + cofit validation): 998 "double-validated" pairs (conserved synteny + co-fitness) provide STRING-like evidence from Fitness Browser data alone. The explicit comparison against DOOR/STRING/EFI-GNT standards (Limitation 10) shows appropriate self-awareness.
-- **Finding 13** (darkness spectrum): The five-tier classification transforms "dark matter" from a monolithic category into an actionable gradient. Only 7.5% of dark genes (T1 Void) truly lack all evidence — the rest have at least one clue.
+- **Finding 1** (24.9% dark, 17,344 with phenotypes): Directly derived from data integration; aligns with published 25–40% estimates.
+- **Finding 4** (65 concordant OGs): Cross-organism concordance validated by NB06 null control (dark genes indistinguishable from annotated, p=0.17).
+- **Finding 7** (61.7% concordance + 4/4 NMDC confirmations): Lab-field concordance rate is now formally tested (binomial p=0.072, Fisher's combined p=0.031; NB10). The 7/7 NMDC trait sign test (p=0.0078) is the most convincing statistical result.
+- **Finding 12** (998 double-validated pairs): Synteny + co-fitness provides STRING-like evidence from Fitness Browser data alone. The explicit comparison against DOOR/STRING/EFI-GNT standards shows appropriate self-awareness.
+- **Finding 13** (darkness spectrum): The five-tier classification transforms "dark matter" from monolithic to actionable — only 7.5% truly lack all evidence.
+- **Finding 14** (full pangenome conservation): NB11b corrects the original species-count range from 1–33 to 1–27,482. The revelation that 55.9% of dark gene OGs are kingdom-level is a significant finding about the scale of the annotation gap.
+
+**Areas where prior review suggestions were addressed**:
+- Domain matching for GapMind (Suggestion 1 → NB10 Section 1: 42,239 candidates, 5,398 high-confidence EC matches)
+- Robust rank indicators (Suggestion 2 → NB10 Section 2: 18 always-top-50 fitness, 6 always-top-50 essential)
+- Species-count scoring variant (Suggestion 3 → NB10 Section 3: Spearman ρ=0.982, 62% top-50 overlap)
+- Formal binomial test (Suggestion 6 → NB10 Section 5: p=0.072, Fisher's combined p=0.031)
 
 **Findings with caveats**:
-- **Finding 3** (GapMind): The 1,256 organism-pathway pairs are organism-level co-occurrences, not gene-to-gap matches. The REPORT is honest about this, but the finding may be over-prominent given the evidence level.
-- **Finding 5** (phylogenetic breadth): The note that 99.9% are "universal" is honest, but the finding title could better reflect the limited resolution.
-- **Finding 6** (biogeographic): 10/137 significant clusters is a modest hit rate. The *P. putida* clinical isolate enrichment is interesting but ecologically puzzling for genes with stress/nitrogen lab phenotypes.
+- **Finding 3** (GapMind): NB10's domain matching substantially improves on organism-level co-occurrence, but the report correctly notes full gene-to-step validation requires AlphaFold or experimental enzymology.
+- **Finding 6** (10/137 significant biogeographic clusters): Modest hit rate. The *P. putida* clinical isolate enrichment for stress/nitrogen genes is ecologically interesting but not intuitive.
+- **Finding 5** (phylogenetic breadth): The eggNOG coarseness limitation is honestly reported and addressed by NB11b's full pangenome analysis.
 
-**Limitations**: Comprehensively documented — 11 numbered limitations covering environmental metadata sparsity, NMDC genus-level resolution, annotation bias, module prediction confidence, condition coverage unevenness, GapMind scope, essential gene scoring penalty, NMDC trait caveats, missing biogeographic null controls, gene neighborhood methodology gaps, and scoring weight sensitivity. This level of self-criticism is exemplary.
-
-**Literature context**: Well-integrated. The REPORT contextualizes the work against Pavlopoulos et al. (2023, *Nature*) and Zhang et al. (2025, *Nature Biotechnology*) for metagenomic-scale dark matter efforts, and against Deutschbauer et al. (2011) for the MR-1 function prediction lineage. A separate `references.md` provides 16 properly formatted citations.
+**Limitations**: Comprehensively documented (12 items) covering environmental metadata sparsity, NMDC genus-level resolution, annotation bias, module prediction confidence, condition coverage unevenness, GapMind scope, essential gene scoring penalty, NMDC trait compositional coupling, missing biogeographic null, gene neighborhood methodology gaps, scoring weight sensitivity, and Proteobacteria organism bias. This level of self-criticism is exemplary and exceeds what most projects provide.
 
 ## Suggestions
 
-### Critical
-
-1. **Implement gene-to-gap enzymatic matching for GapMind candidates** (Finding 3, NB02). The current organism-level co-occurrence is too indirect. Cross-reference dark gene domain annotations (PFam/TIGRFam from `genedomain`, already loaded in NB01) against the enzymatic activities expected for missing GapMind steps. Even a simple overlap between dark gene PFam domains and pathway-expected enzyme families would elevate this from "suggestive" to "testable." The eggNOG EC numbers (1,120 dark clusters with EC annotations) could also be matched against pathway requirements.
-
-2. **Add a "robust rank" indicator to prioritized candidates** (NB05, NB07). For each candidate, compute the minimum and maximum rank across all 6 sensitivity configurations. Flag candidates that remain in the top-50 across all weight schemes. The data to compute this already exists in `scoring_sensitivity_nb05.tsv` and `scoring_sensitivity_nb07.tsv`. This transforms the sensitivity analysis from a caveat into an actionable filter.
-
 ### Important
 
-3. **Use species-count instead of categorical breadth_class for pangenome scoring** (NB05). Since 99.9% of clusters are "universal," the categorical classification is effectively constant. Replace `breadth_class == 'universal' → 0.5` with a continuous function of species count: e.g., `min(species_count / 20, 1.0) × 0.5`. This would provide meaningful discrimination in the pangenome scoring dimension.
+1. **Fix operator precedence in NB06 cell 6**: Add parentheses to correctly filter the extended H1b analysis: `dark['top_condition_class'].notna() & ((dark['is_core'] == True) | (dark['is_auxiliary'] == True))`. Re-run and verify results are unchanged or update accordingly.
 
-4. **Implement a permutation-based null for NMDC trait correlations** (NB06 Section 3). Shuffle sample labels 1,000 times to build null distributions for the pre-registered Spearman correlations. This would quantitatively address the compositional coupling concern (Limitation 8) and distinguish real signal from artifact.
+2. **Reconcile concordance scores between NB02 and NB06**: Either (a) retroactively apply the `nunique()` fix from NB06 cell 13 to the dark gene concordance computation in NB02, regenerating `concordance_scores.tsv`, or (b) add a sentence in Limitation 9 noting that the dark-vs-annotated comparison may have an asymmetry in concordance score computation.
 
-5. **Add a biogeographic null control using annotated accessory genes** (Limitation 9). Run the NB03–NB04 pipeline on a matched set of annotated accessory genes (same organisms, same conservation status, known function). This would test whether the 61.7% lab-field concordance rate exceeds what's expected for any accessory gene, not just dark ones.
+3. **Fix stale essentiality class string in NB05**: Change `'essential_all'` to `'universally_essential'` in `score_fitness()`. The dead code branch is misleading and could cause bugs if scoring logic is reused.
 
-6. **Add a formal binomial test for the 61.7% directional concordance rate** (NB04). The claim that 29/47 "exceeds chance" should be backed by a binomial test against H0: p=0.5 (random concordance), which would yield p ≈ 0.07 — marginal, and worth reporting explicitly.
+4. **Add a biogeographic null control using annotated accessory genes**: The report acknowledges this gap (Limitation 9). Running the NB03–NB04 pipeline on a matched set of annotated accessory genes (same organisms, same conservation status, known function) would test whether the 61.7% concordance rate exceeds what's expected for *any* accessory gene. With the marginal binomial p=0.072, this controlled comparison would substantially strengthen or appropriately weaken the H1d conclusion.
 
-### Nice-to-have
+5. **Document mobile gene heuristic sensitivity**: Add a brief note in the REPORT's limitations or NB11b that the mobile detection threshold (`n_species / n_phyla <= 10`) was not systematically optimized, and the 6.5% mobile rate may include genuinely conserved but phylum-sparse genes. Consider testing alternative thresholds (e.g., 5, 15) and reporting the range of mobile rates.
 
-7. **Add estimated runtimes to the Reproduction section** (README). For each Spark-dependent notebook, estimate wall-clock time (e.g., "NB01: ~15 min on BERDL JupyterHub"). This helps users plan execution.
+### Nice-to-Have
 
-8. **Add a Venn/UpSet plot for the 6 evidence flags** (NB09). The darkness spectrum tiers are defined by evidence flag count, but specific flag combinations (e.g., "has domain + has ortholog but no fitness data") are biologically meaningful. An UpSet plot would complement the tier distribution in fig25.
+6. **Add estimated runtimes to the Reproduction section**: For each Spark-dependent notebook, provide approximate wall-clock times on BERDL JupyterHub (e.g., "NB01: ~15 min, NB11b: ~5 min"). This helps users plan execution sessions.
 
-9. **Refactor `classify_environment` into a shared utility** (NB03/NB04). The duplication is a maintenance risk. A `utils.py` module or even a shared cell imported by both notebooks would be cleaner.
+7. **Consolidate per-organism SQL loop in NB01**: Replace the 48 individual domain queries (cell 25) with a single query using a temp view of organism IDs. Functionally equivalent but cleaner.
 
-10. **Suppress the DtypeWarning** in NB02 and NB08 by passing `low_memory=False` or explicit dtypes when reading `dark_genes_integrated.tsv` (cosmetic).
+8. **Add `low_memory=False` to large TSV reads**: NB11b shows a DtypeWarning from mixed-type columns in `dark_genes_integrated.tsv`. Adding `low_memory=False` to those `pd.read_csv()` calls suppresses the warning.
+
+9. **Version-pin dependencies more tightly**: The `requirements.txt` uses `>=` constraints. For long-term reproducibility, consider adding upper bounds (e.g., `pandas>=2.0,<3.0`) or a lockfile.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
 - **Date**: 2026-02-27
-- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, references.md, requirements.txt, 9 notebooks, 29 data files, 27 figures
+- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, references.md, requirements.txt, 13 notebooks, 44 data files, 39 figures
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.

@@ -29,6 +29,8 @@
 - Makarova KS, Wolf YI, Koonin EV. (2019). "Towards functional characterization of archaeal genomic dark matter." *Biochem Soc Trans* 47:389–398. PMID: 30647141
 - Dembek M, Barquist L, Boinett CJ, Cain AK, Mayho M, Lawley TD, Fairweather NF, Fagan RP. (2015). "High-throughput analysis of gene essentiality and sporulation in Clostridium difficile." *mBio* 6:e02383-14. PMID: 25714712
 - de Vries SP, et al. (2017). "Genome-wide fitness analyses of the foodborne pathogen Campylobacter jejuni in in vitro and in vivo models." *Scientific Reports* 7:1251. PMID: 28455506
+- Yang Z, Helmann T, Baudin M, Schreiber KJ, Bao Z, Stodghill P, Deutschbauer A, Lewis JD, Swingle B. (2025). "Genome-wide identification of novel flagellar motility genes in Pseudomonas syringae." *Front Microbiol* 16:1535114. PMID: 39935648
+- Akusobi C, Benghomari BS, Zhu J, Wolf ID, Singhvi S, Dulberger CL, Ioerger TR, Rubin EJ. (2022). "Transposon mutagenesis in Mycobacterium abscessus identifies an essential penicillin-binding protein involved in septal peptidoglycan synthesis and antibiotic sensitivity." *eLife* 11:e71947. PMID: 35659317
 
 ## Dark Proteome and Function Prediction at Scale
 

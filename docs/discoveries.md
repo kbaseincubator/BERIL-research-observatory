@@ -336,6 +336,34 @@ Analysis of 1,872 bacterial species with complete pangenome, GapMind pathway, an
 
 **Data coverage limitation**: Only 6.8% of species (1,872/27,690) have sufficient AlphaEarth coverage (≥5 genomes with embeddings). This is due to missing lat/lon metadata for most NCBI genomes, especially clinical isolates.
 
+### [functional_dark_matter] 55.9% of dark gene ortholog groups are kingdom-level — present across multiple phyla
+
+Full pangenome analysis (27,690 species, NB11b) reveals that over half of functionally dark gene OGs are pan-bacterial, present in thousands of species across multiple phyla. Species counts range from 1 to 27,482 (median 135). This demonstrates that functional dark matter is not a minor annotation gap but a fundamental limitation in understanding broadly conserved biology. The top-ranked unknowns (COG0468, COG0443, COG0491) are present in virtually all sequenced bacterial genomes yet have zero functional evidence.
+
+### [functional_dark_matter] Only 7.5% of dark genes are truly unknown — most have converging evidence
+
+The darkness spectrum classification across 57,011 dark genes shows T1 Void (zero evidence) is only 4,273 genes (7.5%). The majority — T4 Penumbra (22,500, 39.5%) — have 3-4 converging lines of evidence (fitness phenotype, domain annotation, ortholog group, module membership). The "dark matter problem" is not monolithic: most genes have substantial clues, and the key bottleneck is targeted experimental validation, not computational inference.
+
+### [functional_dark_matter] Lab fitness phenotypes predict environmental distribution at 61.7% concordance
+
+Across 47 testable dark gene clusters, 29 (61.7%) show directional concordance between lab fitness condition and carrier genome environment (Fisher's combined p=0.031). NMDC independent validation confirmed all 4 pre-registered abiotic predictions (nitrogen~nitrogen, pH~pH, anaerobic~dissolved_oxygen) and all 7 pre-registered trait predictions. This provides the first systematic evidence that Fitness Browser lab phenotypes reflect real ecological function, validating fitness data as a proxy for in situ importance.
+
+### [functional_dark_matter] Cross-organism concordance confirms dark genes behave like real functional genes
+
+65 dark gene ortholog groups show conserved fitness effects across 3+ organisms. Dark gene concordance levels are statistically indistinguishable from annotated genes (Mann-Whitney p=0.17). Motility-related dark genes show the strongest cross-organism concordance, suggesting conserved but incompletely annotated chemotaxis machinery.
+
+### [functional_dark_matter] MR-1 is the single highest-value organism for dark gene characterization
+
+Shewanella MR-1 contributes 25/100 top fitness-active candidates, 587 scored dark genes total, and covers 20.8% of the top-500 in just 3 experiments (stress, nitrogen, carbon). This reflects deep condition coverage (121 conditions), a large dark gene complement, and high fitness effect magnitudes (142 genes with |fit| >= 4). For conservation-weighted prioritization (Route B), S. meliloti ranks first (1,630 OGs, 195 kingdom-level gaps) due to its broader coverage of conserved unknowns.
+
+### [functional_dark_matter] Dual-route covering sets share 39/42 organisms but differ in ordering
+
+Evidence-weighted (Route A, NB09) and conservation-weighted (Route B, NB11) covering sets both select 42 organisms covering ~95% of priority, sharing 39 organisms. Route A puts MR-1 first (deep condition evidence); Route B puts S. meliloti first (most kingdom-level gaps). The complementarity enables both targeted hypothesis testing (Route A) and novel function discovery (Route B) from largely the same organism set.
+
+### [functional_dark_matter] Extended covering set spans 6 phyla but Bacillota OGs are subsets of Pseudomonadota coverage
+
+Adding 25 non-FB organisms (Bacillota, Actinomycetota, Campylobacterota) to the covering set candidate pool selects 50 organisms spanning 6 phyla (vs 4 for FB-only). P. aeruginosa PAO1 ranks #1 (3,713 OGs) and M. tuberculosis reaches #6 (first Actinomycetota). However, Bacillota organisms (B. subtilis, S. aureus) are NOT selected because their kingdom-level OGs are already covered by Pseudomonadota selections. They remain valuable for studying genes in native Gram-positive context, but don't contribute unique OG coverage.
+
 ---
 
 ## Template
