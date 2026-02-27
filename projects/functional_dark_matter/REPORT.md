@@ -368,17 +368,38 @@ Per-organism experimental plans specify recommended experiment types (CRISPRi kn
 
 ![Full pangenome species distribution](figures/fig38_pangenome_species_distribution.png)
 
-*(Notebooks: 11_conservation_classes.ipynb, 11b_extended_conservation.ipynb)*
+**Extended covering set** (NB11c): To address the Proteobacteria-heavy FB sampling, a Spark query mapped genus-level OG membership for 25 non-FB organisms across the full pangenome (24 genera, 53,970 genus-OG pairs in 2.9 min). Running the conservation-weighted covering set with all 73 candidates produces a **50-organism set covering 98.7% of OGs across 6 phyla** (vs. 41 organisms, 100%, 4 phyla for FB-only). 16 non-FB organisms are selected, led by *P. aeruginosa* PAO1 (3,713 OGs, tractability 0.8), *V. cholerae* N16961 (1,049 OGs), *B. cenocepacia* K56-2 (956 OGs), and critically *M. tuberculosis* H37Rv (#6, 131 new OGs from Actinomycetota) and *C. jejuni* (#48, Campylobacterota). Coverage at N=5 organisms reaches 57.7% (vs. 38.1% FB-only, +19.6%). Bacillota organisms (B. subtilis, S. aureus) were not selected because their OGs are subsets of coverage already provided by Pseudomonadota, but they remain valuable for studying genes in native Gram-positive genomic context.
+
+![Extended covering set comparison](figures/fig39_extended_covering_set.png)
+
+*(Notebooks: 11_conservation_classes.ipynb, 11b_extended_conservation.ipynb, 11c_extended_covering_set.ipynb)*
 
 ## Experimental Recommendations
 
-This section distills the entire analysis into an actionable experimental campaign: which dark genes are most valuable, why, which organisms to use, why those organisms, and what experiments to run.
+This section distills the entire analysis into an actionable experimental campaign. Two complementary prioritization routes were developed — one optimized for genes with the strongest existing evidence, the other for maximizing discovery of completely unknown functions — and both converge on a tractable set of organisms.
+
+### Two complementary prioritization routes
+
+**Route A — Evidence-weighted prioritization (NB05–NB09)**: Scores each dark gene across 6 dimensions (fitness importance 0.25, conservation 0.20, inference 0.20, pangenome 0.15, biogeographic 0.10, tractability 0.10) using data available from the 48 Fitness Browser organisms. This route identifies genes where multiple lines of evidence converge on a testable hypothesis. Best for: **targeted experiments** on genes where we already know what to test and under what conditions.
+
+**Route B — Conservation-weighted prioritization (NB11, NB11b)**: Queries the full 27,690-species GTDB r214 pangenome to measure taxonomic breadth of each dark gene OG (species range 1–27,482), classifies by taxonomic tier (kingdom through species) and hypothesis status (strong hypothesis, weak lead, true knowledge gap), then ranks by importance = conservation × ignorance. This route identifies broadly conserved genes where we know the least. Best for: **discovery experiments** targeting the most fundamentally important unknowns in biology.
+
+The two routes produce different organism orderings because they optimize different objectives:
+
+| | Route A (Evidence-weighted) | Route B (Conservation-weighted) |
+|---|---|---|
+| **Top organism** | MR-1 (deep condition coverage, many converging evidence lines) | *S. meliloti* (1,630 OGs, 195 kingdom-level gaps) |
+| **Optimization** | Σ(composite_score) × tractability × phylo_diversity | Σ(importance) × tractability × phylo_bonus |
+| **Organisms selected** | 42 (28 genera), 95% of composite priority | 42 (28 genera), 95.6% of importance-weighted priority |
+| **Overlap** | 39 organisms shared; Route A uniquely selects 3 (Dda3937, Ddia6719, Miya), Route B uniquely selects 3 (Kang, Methanococcus_JJ, Methanococcus_S2) |
+| **Key strength** | Condition-specific experimental protocols; testable hypotheses | Identifies broadly conserved true knowledge gaps invisible to evidence-based scoring |
+| **Best for** | Targeted RB-TnSeq under predicted conditions | Broad phenotypic screens for fundamentally unknown genes |
 
 ### The most valuable dark genes and why
 
 Of 57,011 dark genes across 48 bacteria, 17,344 have experimentally measurable phenotypes — either strong fitness defects (|fit| ≥ 2 in at least one condition) or essentiality (no viable transposon mutants). These are not computationally predicted to matter; they demonstrably matter in the lab. Among them, the convergence of multiple independent evidence lines (fitness phenotype, conservation, co-regulation, domain structure, gene neighborhood, cross-organism concordance) identifies a subset that are both important and interpretable.
 
-The **top fitness-active candidates** are genes where fitness data, module co-regulation, domain annotations, and biogeographic signals converge to produce testable functional hypotheses:
+**Route A top fitness-active candidates** — genes where fitness data, module co-regulation, domain annotations, and biogeographic signals converge to produce testable functional hypotheses:
 
 | Rank | Gene | Organism | Score | Hypothesis | Top Condition | Why Valuable |
 |------|------|----------|-------|------------|---------------|--------------|
@@ -387,6 +408,16 @@ The **top fitness-active candidates** are genes where fitness data, module co-re
 | 3 | 199738 | *S. oneidensis* MR-1 | 0.698 | K03306 family (nitrogen metabolism) | nitrogen (fit=5.5) | Part of a three-gene paralog family (with 203545, 202450) — comparing mutants tests functional redundancy |
 | 4 | 203545 | *S. oneidensis* MR-1 | 0.694 | K03306 family (DUF4124 domain) | nitrogen (fit=4.0) | Paralog of 199738; same module, different domain — suggests subfunctionalization |
 | 5 | 202450 | *S. oneidensis* MR-1 | 0.693 | K03306 family (Gly_transporter domain) | nitrogen (fit=3.9) | Third K03306 paralog; glycine transporter domain suggests nitrogen/amino acid link |
+
+**Route B top knowledge gaps** — the most broadly conserved genes with zero functional evidence, where experimental characterization would produce the most novel biological insight:
+
+| Rank | Root OG | Species | Phyla | Tier | Hypothesis Status | Importance | Description |
+|------|---------|---------|-------|------|-------------------|------------|-------------|
+| 1 | COG0468 | 27,427 | 142 | kingdom | true knowledge gap | 23.9 | Pan-bacterial, present in virtually all sequenced genomes |
+| 2 | COG0443 | 27,279 | 142 | kingdom | true knowledge gap | 23.9 | Pan-bacterial, functionally uncharacterized |
+| 3 | COG0491 | 27,393 | 142 | kingdom | true knowledge gap | 23.9 | Pan-bacterial, zero evidence across all inference layers |
+
+These OGs are among the most universally conserved genes in bacteria yet remain functionally uncharacterized. They are invisible to Route A because they may lack condition-specific fitness effects (they may be essential under all conditions, producing no differential fitness signal).
 
 The **top essential dark gene candidates** are genes where no viable knockout mutants exist, but gene neighborhood context, cross-species conservation, and domain structure enable CRISPRi knockdown experiments:
 
@@ -400,17 +431,46 @@ These candidates score highest because multiple independent evidence lines conve
 
 ### Which organisms and why
 
-A greedy weighted set-cover algorithm selected 42 organisms (28 genera) that together cover 95% of the total priority value across all scored dark genes. The algorithm optimizes three factors simultaneously: (1) the aggregate priority score of uncovered dark genes in each organism, (2) CRISPRi/genetic tractability, and (3) phylogenetic diversity (penalty for repeat genera). The top 5 organisms cover 16% of total priority:
+**Route A organism selection** (NB09): A greedy weighted set-cover algorithm selected 42 organisms (28 genera) covering 95% of the total priority value across all scored dark genes. The algorithm optimizes composite priority score × tractability × phylogenetic diversity.
 
-**1. *Shewanella oneidensis* MR-1** (587 genes, tractability 0.8) — Selected first because it combines deep condition coverage (121 conditions historically), a large dark gene complement spanning all tiers (172 T5 Dawn, 257 T4 Penumbra), and high genetic tractability. 544 of its dark genes have specific condition recommendations (stress, nitrogen, carbon). MR-1 is the single highest-impact organism: 25/100 top fitness-active candidates reside here. Three stress experiments alone (stress, nitrogen, carbon source) would address 301 dark gene phenotypes.
+**1. *Shewanella oneidensis* MR-1** (587 genes, tractability 0.8) — Selected first because it combines deep condition coverage (121 conditions historically), a large dark gene complement spanning all tiers (172 T5 Dawn, 257 T4 Penumbra), and high genetic tractability. 544 of its dark genes have specific condition recommendations (stress, nitrogen, carbon). MR-1 is the single highest-impact organism: 25/100 top fitness-active candidates reside here.
 
-**2. *Pseudomonas fluorescens* N1B4** (624 genes, tractability 0.7) — Second because it contributes the most additional uncovered genes after MR-1, particularly in carbon/nitrogen source panels (215 genes) and membrane stress (77 genes). The Pseudomonas genus has well-established CRISPRi tools (Tan et al. 2018). 455 of its genes are essential, making it important for CRISPRi-based approaches.
+**2. *Pseudomonas fluorescens* N1B4** (624 genes, tractability 0.7) — Contributes the most additional uncovered genes after MR-1, particularly in carbon/nitrogen source panels (215 genes) and membrane stress (77 genes).
 
-**3. *Sinorhizobium meliloti*** (570 genes, tractability 0.6) — Third because it covers a distinct phylogenetic lineage (Alphaproteobacteria) with different biology than the first two Gammaproteobacteria. 316 T4 Penumbra genes and 90 T5 Dawn genes have substantial evidence. Particularly strong in carbon/nitrogen source panels (164 genes) and membrane stress (62 genes).
+**3. *Sinorhizobium meliloti*** (570 genes, tractability 0.6) — Covers a distinct phylogenetic lineage (Alphaproteobacteria) with 316 T4 Penumbra and 90 T5 Dawn genes.
 
-**4. *Escherichia coli* K-12 (Keio)** (368 genes, tractability 0.9) — Fourth despite having the highest tractability of any organism because much of its dark gene content overlaps with *Klebsiella*. Nevertheless, *E. coli* has the best-developed genetic toolkit, making its 259 hypothesis-bearing genes immediately testable. 205 essential genes are ideal CRISPRi targets given the mature *E. coli* CRISPRi systems (Peters et al. 2016).
+**4. *Escherichia coli* K-12 (Keio)** (368 genes, tractability 0.9) — Highest tractability; 259 hypothesis-bearing genes immediately testable; 205 essential genes ideal for CRISPRi.
 
-**5. *Klebsiella oxytoca*** (396 genes, tractability 0.65) — Fifth because it covers Enterobacteriaceae genes not present in *E. coli* K-12, particularly in carbon source utilization (65 genes) and carbon/nitrogen panels (136 genes). The top essential candidate BWI76_RS08540 (score 0.865, predicted cell division) resides here.
+**5. *Klebsiella oxytoca*** (396 genes, tractability 0.65) — Covers Enterobacteriaceae genes not in *E. coli*, including top essential candidate BWI76_RS08540 (score 0.865).
+
+**Route B organism selection** (NB11): A conservation-weighted set-cover algorithm selected 42 organisms covering 95.6% of total importance-weighted priority. The algorithm optimizes Σ(importance) × tractability × phylo_bonus.
+
+**1. *Sinorhizobium meliloti*** (1,630 OGs, 195 kingdom gaps, tractability 0.6) — Selected first because its dark genes span the most kingdom-level true knowledge gaps — broadly conserved genes with zero functional evidence.
+
+**2. *Pseudomonas putida*** (1,043 OGs, 172 kingdom gaps, tractability 0.8) — High tractability combined with deep coverage of conserved unknowns.
+
+**3. *Shewanella oneidensis* MR-1** (805 OGs, 105 kingdom gaps, tractability 0.8) — Third in Route B vs. first in Route A, because Route B weights conservation breadth over condition-specific evidence depth.
+
+**4. *Bacteroides thetaiotaomicron*** (1,382 OGs, 267 kingdom gaps, tractability 0.3) — Highest raw OG count of any organism; deprioritized by low tractability (0.3) but critical for non-Proteobacteria coverage (Bacteroidota).
+
+**5. *Klebsiella michiganensis*** (568 OGs, 65 kingdom gaps, tractability 0.65) — Enterobacteriaceae depth beyond *E. coli*.
+
+The first 10 Route B organisms cover 31% of importance-weighted priority (9,014 genes across 10 genera).
+
+### Phylogenetic gap analysis: beyond the 48 Fitness Browser organisms
+
+Both covering sets draw only from the 48 FB organisms, which are heavily biased: 37/48 are Pseudomonadota (Proteobacteria), with Bacteroidota (4), Cyanobacteriota (1), and Halobacteriota (2) the only other phyla represented. Major bacterial phyla — Bacillota (Firmicutes), Actinomycetota (Actinobacteria), and Campylobacterota — have zero FB representation. This means kingdom-level OGs (55.9% of dark gene OGs, present across multiple phyla) cannot be experimentally addressed in their non-Proteobacterial hosts using FB organisms alone.
+
+To address this gap, we curated an extended tractable organism list of **73 organisms** (48 FB + 25 literature-curated with published TnSeq or CRISPRi resources; `data/extended_tractable_organisms.tsv`). The 25 non-FB organisms fill specific phylogenetic gaps:
+
+| Phylum | Organisms added | Technology | Key references |
+|--------|----------------|------------|----------------|
+| **Bacillota** (6) | *B. subtilis* 168, *S. aureus* USA300, *S. pneumoniae* TIGR4, *C. difficile* R20291, *E. faecium*, *L. monocytogenes* EGD-e | TnSeq + CRISPRi | Koo et al. 2017; Bae et al. 2004; van Opijnen et al. 2009; Dembek et al. 2015 |
+| **Actinomycetota** (2) | *M. tuberculosis* H37Rv, *C. glutamicum* ATCC 13032 | TnSeq + CRISPRi | DeJesus et al. 2017; Cleto et al. 2016 |
+| **Campylobacterota** (2) | *C. jejuni* NCTC 11168, *H. pylori* 26695 | TnSeq | Gao et al. 2014; Salama et al. 2004 |
+| **Pseudomonadota** (15) | *P. aeruginosa* PAO1, *Salmonella* 14028s, *V. cholerae* N16961, *A. baumannii* 17978, + 11 others | TnSeq/CRISPRi | Turner et al. 2015; Langridge et al. 2009; Chao et al. 2013 |
+
+Incorporating these organisms into the Route B covering set would enable experimental characterization of kingdom-level dark gene OGs in their native Gram-positive, Actinobacterial, and Campylobacterial genomic contexts. This requires a Spark query to map each non-FB organism's genome to dark gene root_ogs via the pangenome — a natural extension of the NB11b pipeline.
 
 ### How to study them: the experimental strategy
 
@@ -422,13 +482,15 @@ The action plan classifies each dark gene into one of two experimental categorie
 
 **Essential genes (8,900 in covering set)**: These cannot be studied by transposon knockout. The recommended approach is CRISPRi knockdown (Mobile-CRISPRi for non-model organisms, Peters et al. 2019) with growth curves under standard and stress conditions. The top 50 essential candidates have specific CRISPRi experiment designs in NB07.
 
-**Prioritized entry points** — a three-experiment starting campaign:
+**Prioritized entry points** — a three-experiment starting campaign (Route A):
 
 1. **MR-1 stress screen**: RB-TnSeq under 5 stress conditions (oxidative, osmotic, metal, heat, pH). Addresses 161 hypothesis-bearing dark genes including the #2 overall candidate (202463, fit=6.4 under stress).
 2. **MR-1 nitrogen screen**: RB-TnSeq under nitrogen limitation and amino acid supplements. Addresses the K03306 paralog family (3 genes, fits 3.9–5.5) and 74 total dark genes.
 3. ***E. coli* K-12 CRISPRi**: Knockdown of top 20 essential dark genes with growth curves. Leverages the highest-tractability organism (0.9) and mature CRISPRi tools. Top target: Keio:14796 (YbeY domain, score 0.875).
 
-These three experiments touch two organisms, address ~250 dark genes, and test both fitness-active and essential gene categories. The full action plan for all 42 organisms is in `data/experimental_action_plan.tsv`.
+**Discovery campaign** (Route B): For labs focused on novel function discovery rather than hypothesis testing, the Route B ordering — starting with *S. meliloti* (195 kingdom-level gaps), *P. putida* (172 kingdom gaps), and MR-1 (105 kingdom gaps) — maximizes the probability of uncovering completely new biology. Broad phenotypic screens under diverse condition panels are recommended for Route B organisms, since the target genes are true knowledge gaps without condition predictions.
+
+These campaigns are complementary: Route A produces mechanistic insights for genes where we have hypotheses; Route B discovers functions for genes where we have none. The full action plans are in `data/experimental_action_plan.tsv` (Route A) and `data/conservation_experiment_plans.tsv` (Route B).
 
 ## Results
 
@@ -528,9 +590,25 @@ The preceding analyses produced gene-level evidence and organism-level candidate
 
 **Action plan**: 14,450 genes are classified as hypothesis-bearing (with specific condition recommendations from fitness data, module prediction, or neighbor context); 2,038 are classified as darkest (requiring broad phenotypic screens). 8,900 essential genes in the covering set are recommended for CRISPRi approaches.
 
-**Conclusion**: The darkness spectrum reveals that the "dark matter" problem is not monolithic — most dark genes (92.5%) have at least some evidence, and 39.5% have 3–4 converging lines. The set-cover algorithm translates gene priorities into a practical experimental campaign: 42 organisms, each with a specific mix of targeted experiments and broad screens, covering 95% of all scored dark gene priority. This is the actionable output of the entire project.
+**Conclusion**: The darkness spectrum reveals that the "dark matter" problem is not monolithic — most dark genes (92.5%) have at least some evidence, and 39.5% have 3–4 converging lines. The evidence-weighted set-cover algorithm translates gene priorities into a practical experimental campaign: 42 organisms covering 95% of all scored dark gene priority. A complementary conservation-weighted covering set (NB11, Finding 14) provides an alternative organism ordering optimized for discovering functions of broadly conserved true knowledge gaps.
 
 *Data*: `data/dark_gene_census_full.tsv` (57,011 genes with darkness tier and evidence flags), `data/minimum_covering_set.tsv` (16,488 gene-to-organism assignments), `data/experimental_action_plan.tsv` (42 organism action plans). *Notebook*: `09_final_synthesis.ipynb`.
+
+### Step 9: Pangenome-scale conservation × hypothesis classification (NB11, NB11b)
+
+The NB09 evidence-weighted approach relies on Fitness Browser data, which limits conservation assessment to the 48 FB organisms. The eggNOG breadth classification used in NB05's s_pangenome score is non-discriminative: 99.9% of dark gene clusters map to "universal" root-level OGs, producing identical conservation scores. NB11 addresses this by querying the full 27,690-species GTDB r214 pangenome.
+
+**Full pangenome conservation** (NB11b): A Spark query explodes eggNOG_OGs annotations across 93.5M gene clusters, matching all comma-separated OG entries against 11,774 dark gene root OGs. Species counts now range from 1 to 27,482 (median 135, mean 2,128) — replacing the previous 1-to-33 range from FB-only analysis. OG_id propagation recovers 5,206 additional dark genes by transferring root_og assignments from genes with known pangenome links to genes in the same 48-organism ortholog group.
+
+**Taxonomic tier × hypothesis classification**: Each dark gene OG is classified into 8 taxonomic tiers (kingdom 55.9%, class 11.0%, family 10.5%, genus 6.9%, mobile 6.5%, phylum 4.8%, order 3.9%, species 0.5%) and 3 hypothesis status tiers (strong testable hypothesis 6.0%, weak lead 52.5%, true knowledge gap 41.5%). The importance score = (tier-adjusted conservation + log₂-scaled species fraction) × ignorance multiplier ranks all OGs, with kingdom-level true knowledge gaps at the top.
+
+**Conservation-weighted covering set**: A greedy set-cover algorithm optimizing Σ(importance) × tractability × phylo_bonus selects 42 organisms (28 genera) covering 95.6% of importance-weighted priority. *S. meliloti* ranks first (1,630 OGs, 195 kingdom gaps), followed by *P. putida* (1,043 OGs, 172 kingdom gaps) and MR-1 (805 OGs, 105 kingdom gaps). Per-organism experimental plans specify recommended approaches by tier × hypothesis status.
+
+**Extended covering set** (NB11c): A curated list of 73 organisms (48 FB + 25 literature-curated with TnSeq/CRISPRi resources from Bacillota, Actinomycetota, and Campylobacterota) was assembled to address the Proteobacteria-heavy FB sampling bias. A Spark query mapped genus-level OG membership for 25 non-FB organisms across the pangenome (24 genera, 53,970 genus-OG pairs). Running the covering set with all 73 candidates produces a 50-organism set covering 98.7% of OGs across 6 phyla (vs. 41 organisms, 4 phyla for FB-only), with 16 non-FB organisms selected including *P. aeruginosa* PAO1 (#1, 3,713 OGs), *M. tuberculosis* (#6, Actinomycetota), and *C. jejuni* (#48, Campylobacterota).
+
+**Conclusion**: The full pangenome reveals that 55.9% of dark gene OGs are kingdom-level — present across multiple phyla and thousands of species — demonstrating that functional dark matter is not a minor annotation gap but a fundamental limitation in understanding conserved biology. The conservation-weighted covering set provides an alternative experimental ordering optimized for discovering completely unknown functions, complementing the evidence-weighted ordering from NB09.
+
+*Data*: `data/og_pangenome_distribution.tsv` (11,774 OGs with full pangenome counts), `data/dark_gene_classes.tsv` (57,011 genes with tier/status/importance), `data/og_importance_ranked.tsv` (11,774 OGs ranked by importance), `data/conservation_covering_set.tsv` (42 FB-only organisms), `data/conservation_experiment_plans.tsv` (42 organism plans), `data/extended_tractable_organisms.tsv` (73 organisms), `data/non_fb_genus_og_coverage.tsv` (53,970 genus-OG pairs), `data/extended_covering_set.tsv` (50-organism extended covering set). *Notebooks*: `11_conservation_classes.ipynb`, `11b_extended_conservation.ipynb`, `11c_extended_covering_set.ipynb`.
 
 ## Interpretation
 
@@ -574,7 +652,7 @@ This project contributes:
 
 5. **Darkness spectrum classification** — a five-tier evidence inventory (T1 Void through T5 Dawn) that for the first time quantifies "how dark" each gene is across 6 independent evidence axes. This reveals that only 7.5% of dark genes (4,273 T1 Void) are truly unknown with zero evidence; the majority (39.5%, T4 Penumbra) have 3–4 converging lines of evidence and are ripe for targeted characterization. This framework enables resource allocation: T5 Dawn genes need confirmation, T4 Penumbra genes need targeted experiments, T1 Void genes need broad screens.
 
-6. **Minimum covering set optimization** — greedy weighted set-cover algorithm selecting 42 organisms (28 genera) that together cover 95% of total priority value, with CRISPRi tractability and phylogenetic diversity as optimization weights. This translates gene-level priorities into an experimental campaign design, answering the practical question: which organisms should a lab study to maximize discovery of dark gene functions? The action plan further classifies 14,450 genes as hypothesis-bearing (with specific condition recommendations) and 2,038 as requiring broad phenotypic screens.
+6. **Dual-route covering set optimization** — two complementary greedy weighted set-cover algorithms: Route A (evidence-weighted, NB09) selects 42 organisms optimized for genes with testable hypotheses; Route B (conservation-weighted, NB11) selects 42 organisms optimized for discovering functions of broadly conserved true knowledge gaps. The routes share 39 organisms but produce different orderings reflecting different experimental strategies. An extended tractable organism list (73 organisms: 48 FB + 25 literature-curated from 3 additional phyla) provides a pathway to expand experimental coverage beyond the Proteobacteria-dominated Fitness Browser.
 
 ### Limitations
 
@@ -603,6 +681,8 @@ This project contributes:
 11. **Scoring weight sensitivity**: Both prioritization frameworks use arbitrary expert-assigned weights. Sensitivity analysis (NB05/NB07) shows that while overall rank correlations remain high across alternative weight configurations (ρ > 0.93), the top-ranked candidate lists are moderately sensitive to weight choices. For NB05 (fitness-active): conservation-dominant and drop-tractability configurations each retain only 32/50 original top candidates (64%). For NB07 (essential): dropping tractability retains only 18/50 (36%) and dropping neighbor context retains 24/50 (48%). NB10 provides robust rank indicators: across all 6 fitness-active weight configurations, 18 genes remain in the top 50 and 35 remain in the top 100 regardless of weight choice. For essential genes, 6 remain always-top-50 and 19 always-top-100. These "always-top" candidates are the most defensible targets for experimental follow-up. Full per-gene rank ranges are in `data/robust_ranks_fitness.tsv` and `data/robust_ranks_essential.tsv`.
 
 ![Robust rank indicators](figures/fig29_robust_ranks.png)
+
+12. **Proteobacteria-dominated organism set**: The 48 Fitness Browser organisms are 77% Pseudomonadota (37/48). The extended covering set (NB11c) partially addresses this by incorporating 25 non-FB organisms from Bacillota, Actinomycetota, and Campylobacterota, expanding phylum coverage from 4 to 6. However, the non-FB OG coverage is estimated at the genus level (any species in the genus has the OG), which overestimates individual organism coverage. Additionally, non-FB organisms lack Fitness Browser condition profiling, so their dark genes cannot be assigned to condition-specific experiments — only broad phenotypic screens. Bacillota organisms (B. subtilis, S. aureus) were not selected by the covering set algorithm because their OGs are subsets of coverage provided by Pseudomonadota, despite their value for studying genes in native Gram-positive contexts.
 
 ## Data
 
@@ -658,6 +738,8 @@ This project contributes:
 | `data/conservation_covering_set.tsv` | 42 | Ordered organism list with cumulative coverage for high-importance OGs |
 | `data/conservation_experiment_plans.tsv` | 42 | Per-organism experimental plans with tier × hypothesis breakdowns |
 | `data/extended_tractable_organisms.tsv` | 73 | 48 FB + 25 literature-curated organisms with TnSeq/CRISPRi tractability scores |
+| `data/non_fb_genus_og_coverage.tsv` | 53,970 | Genus-level dark gene OG coverage for 24 non-FB genera from full pangenome query |
+| `data/extended_covering_set.tsv` | 50 | Extended covering set (73-organism pool): organism ordering, coverage, phyla breakdown |
 
 ## Supporting Evidence
 
@@ -677,6 +759,7 @@ This project contributes:
 | `10_review_improvements.ipynb` | Supplementary analyses addressing review suggestions: domain matching, robust ranks, species-count scoring, NMDC null tests, biogeographic binomial test |
 | `11_conservation_classes.ipynb` | Pangenome-scale conservation × hypothesis classification, importance scoring, conservation-weighted covering set, per-organism experimental plans |
 | `11b_extended_conservation.ipynb` | Full pangenome Spark query (eggNOG_OGs explode across 93.5M annotations) + OG_id propagation for extended dark gene coverage |
+| `11c_extended_covering_set.ipynb` | Genus-level pangenome query for 25 non-FB organisms; extended covering set with 73 candidates (50 selected, 6 phyla, 98.7% coverage) |
 
 ### Figures
 
@@ -720,10 +803,11 @@ This project contributes:
 | `fig36_covering_set_curve.png` | Conservation-weighted covering set optimization (cumulative coverage + marginal genes) |
 | `fig37_experiment_plan_heatmap.png` | Per-organism dark gene coverage by conservation tier (top 20 organisms) |
 | `fig38_pangenome_species_distribution.png` | Full pangenome species count distribution (old FB-only vs new), phyla distribution |
+| `fig39_extended_covering_set.png` | Extended covering set comparison: FB-only vs 73-organism pool, marginal coverage, phylum diversity, kingdom-level gap coverage |
 
 ## Future Directions
 
-1. **Execute the minimum covering set action plan** — the NB09 covering set identifies 42 organisms that together address 95% of scored dark genes. The top 5 organisms (MR-1, *P. fluorescens* N1B4, *S. meliloti*, *E. coli* Keio, *K. oxytoca*) cover ~18% of priority value and represent the highest-impact starting points. Each organism's action plan specifies whether targeted RB-TnSeq under specific conditions (for hypothesis-bearing genes) or broad phenotypic screens (for T1/T2 genes) is more appropriate.
+1. **Execute the dual-route experimental campaign** — Route A (NB09, evidence-weighted) identifies 42 organisms covering 95% of composite priority; start with MR-1 stress/nitrogen screens and *E. coli* CRISPRi for targeted hypothesis testing. Route B (NB11, conservation-weighted) identifies 42 organisms covering 95.6% of importance-weighted priority; start with *S. meliloti*, *P. putida*, and MR-1 broad phenotypic screens for novel function discovery. The two routes share 39 organisms and are complementary: Route A produces mechanistic insights for genes with hypotheses; Route B discovers functions for broadly conserved true knowledge gaps.
 
 2. **Targeted validation of top candidates** — the top 5 fitness-active candidates (4 in MR-1, 1 in *P. putida* N2C3) are immediately testable via RB-TnSeq under their predicted condition classes. Specific targets: AO356_11255 (D-alanyl-D-alanine carboxypeptidase prediction, EamA domain — test under nitrogen limitation); MR-1 202463 (YGGT domain, T5 Dawn, composite score 0.698 — test under multiple stress conditions); MR-1 199738/203545/202450 (K03306 paralog family — test under nitrogen limitation and compare single/double mutants).
 
@@ -733,7 +817,7 @@ This project contributes:
 
 5. **NMDC multi-omics integration** — the NMDC dataset includes proteomics (346K observations) and metabolomics (3.1M observations) that were not used here. Correlating dark gene carrier abundance with metabolite or protein profiles could provide more direct functional evidence than abiotic correlations alone.
 
-6. **Expand to additional organisms** — 4 FB organisms lacked pangenome links. As BERDL coverage expands, re-running the pipeline on new species could identify additional candidates and further reduce the covering set size.
+6. **Expand the covering set beyond Fitness Browser organisms** — the current covering sets draw only from 48 FB organisms, which are 77% Pseudomonadota. An extended tractable organism list (`data/extended_tractable_organisms.tsv`) curates 25 additional organisms with published TnSeq/CRISPRi resources from Bacillota (6), Actinomycetota (2), Campylobacterota (2), and additional Pseudomonadota (15). Incorporating these into Route B's conservation-weighted covering set would enable experimental characterization of kingdom-level OGs (55.9% of dark gene OGs) in their native Gram-positive, Actinobacterial, and Campylobacterial contexts. This requires a pangenome Spark query to map each organism's genes to dark gene root_ogs — an extension of the NB11b pipeline.
 
 7. **Community resource** — publish the darkness spectrum census (`dark_gene_census_full.tsv`) and experimental action plan as a community resource for bacterial functional genomics, enabling other labs to target specific organisms, tiers, or condition classes matching their expertise and infrastructure.
 
