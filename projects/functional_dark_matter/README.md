@@ -6,7 +6,7 @@ Which genes of unknown function across 48 bacteria have strong fitness phenotype
 
 ## Status
 
-Complete — all 5 notebooks executed, 100 prioritized candidates produced. See [Report](REPORT.md) for findings.
+Complete — 9 notebooks executed, 13 findings produced. Deliverables: 57,011 dark genes classified into 5 darkness tiers, 100 fitness-active + 50 essential prioritized candidates with experimental protocols, minimum covering set of 42 organisms with per-organism action plans. See [Report](REPORT.md) for findings.
 
 ## Overview
 
@@ -21,6 +21,14 @@ This project builds on those foundations with genuinely new analyses: (1) GapMin
 
 ## Data Sources
 
+### BERDL Collections
+
+- `kescience_fitnessbrowser` — Genome-wide mutant fitness data (48 organisms, 27M fitness scores, 7,552 conditions)
+- `kbase_ke_pangenome` — Species-level pangenomes (293K genomes, 1B genes, 27,690 species), environmental metadata, GapMind pathway predictions
+- `nmdc_arkin` — NMDC multi-omics for independent environmental validation (6,365 metagenomic samples, taxonomy and abiotic features)
+
+### Prior Observatory Projects
+
 This project explicitly builds on completed projects:
 - [`conservation_vs_fitness`](../conservation_vs_fitness/) — FB-pangenome link table (177,863 gene-cluster mappings, 44 organisms)
 - [`fitness_modules`](../fitness_modules/) — ICA fitness modules (1,116 modules, 32 organisms, 6,691 function predictions)
@@ -29,14 +37,14 @@ This project explicitly builds on completed projects:
 
 ## Reproduction
 
-**Prerequisites**: BERDL JupyterHub access with `get_spark_session()` available (NB01–NB04 require Spark). NB05 runs locally on pandas only.
+**Prerequisites**: BERDL JupyterHub access with `get_spark_session()` available (NB01–NB04, NB07–NB08 require Spark). NB05, NB06, NB09 run locally on pandas only.
 
 **Dependencies**: `numpy`, `pandas`, `matplotlib`, `seaborn`, `scipy`, `statsmodels`, `scikit-learn`, `umap-learn`
 
 **Steps**:
 1. Ensure prior project data exists: `conservation_vs_fitness/data/fb_pangenome_link.tsv`, `fitness_modules/data/modules/`, `essential_genome/data/`
 2. Execute notebooks in order: `jupyter nbconvert --to notebook --execute --inplace notebooks/01_integration_census.ipynb`
-3. Repeat for NB02 through NB05 (NB05 does not require Spark)
+3. Repeat for NB02 through NB09 (NB05, NB06, NB09 do not require Spark)
 4. All intermediate data is saved to `data/`; figures to `figures/`
 
 ## Authors
