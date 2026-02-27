@@ -340,6 +340,32 @@ Greedy weighted set-cover optimization over the 16,488 scored dark genes identif
 
 *(Notebook: 09_final_synthesis.ipynb)*
 
+### Finding 14: Pangenome-scale conservation × hypothesis classification reveals broadly conserved true knowledge gaps; conservation-weighted covering set orders experiments for maximum novel discovery
+
+The coarse eggNOG breadth classification used in prior analyses (99.9% "universal") and the sparse 48-organism Fitness Browser sampling (37/48 Proteobacteria) fail to meaningfully distinguish conservation patterns among dark genes. NB11 addresses this by querying the full pangenome (27,690 species) for species distribution of each dark gene ortholog group, then classifying into 8 taxonomic tiers (kingdom, phylum, class, order, family, genus, species, mobile) based on the narrowest rank containing all member species. Mobile elements are detected via COG category X or phylogenetic patchiness (present in distant phyla but few species per phylum).
+
+Each dark gene is independently classified into a hypothesis status tier — **strong testable hypothesis** (module prediction with EC number, high cross-organism concordance, high-confidence GapMind match, or named domain + strong fitness), **weak lead** (DUF-only domain, bare module prediction, medium/low GapMind, strong fitness without annotation, or named domain without fitness), or **true knowledge gap** (zero functional evidence of any kind).
+
+The importance score `conservation × ignorance` (tier-adjusted conservation score × ignorance multiplier) ranks all dark gene OGs. Kingdom-level true knowledge gaps score highest — these are the most broadly conserved genes where experimental characterization would produce the most novel biological insight. Species-specific strong hypotheses score lowest — already close to characterized.
+
+A conservation-weighted minimum covering set selects organisms to maximize novel functional discovery per experiment. Unlike NB09's covering set (which optimized for all dark genes), this set focuses on high-importance OGs (top quartile by importance score, plus all kingdom/phylum-level true gaps and weak leads). The greedy algorithm selects organisms by `sum(importance) × tractability × phylo_bonus`, where phylo_bonus penalizes genus-redundant selections.
+
+Per-organism experimental plans specify recommended experiment types (CRISPRi knockdown for essential genes in tractable organisms, condition-specific TnSeq for fitness-active genes, broad phenotypic screen for true knowledge gaps) and top conditions derived from fitness data or keyword inference.
+
+![Organism taxonomy context](figures/fig32_organism_taxonomy.png)
+
+![Conservation tier distribution](figures/fig33_conservation_tiers.png)
+
+![Classification heatmap](figures/fig34_classification_heatmap.png)
+
+![Top knowledge gaps](figures/fig35_top_knowledge_gaps.png)
+
+![Covering set optimization](figures/fig36_covering_set_curve.png)
+
+![Experiment plan heatmap](figures/fig37_experiment_plan_heatmap.png)
+
+*(Notebook: 11_conservation_classes.ipynb)*
+
 ## Experimental Recommendations
 
 This section distills the entire analysis into an actionable experimental campaign: which dark genes are most valuable, why, which organisms to use, why those organisms, and what experiments to run.
@@ -620,6 +646,11 @@ This project contributes:
 | `data/robust_ranks_fitness.tsv` | 17,344 | Per-gene rank ranges across 6 weight configurations (fitness-active) |
 | `data/robust_ranks_essential.tsv` | 9,557 | Per-gene rank ranges across 6 weight configurations (essential) |
 | `data/scoring_species_count_variant.tsv` | 17,344 | Species-count scoring variant with original vs adjusted ranks |
+| `data/og_pangenome_distribution.tsv` | ~11,774 | Per root_og species/phyla/class/order/family/genus counts from full pangenome |
+| `data/dark_gene_classes.tsv` | 57,011 | Per dark gene: taxonomic_tier, hypothesis_status, importance_score, evidence_summary |
+| `data/og_importance_ranked.tsv` | ~11,774 | All OGs ranked by importance (conservation × ignorance) |
+| `data/conservation_covering_set.tsv` | ~15-25 | Ordered organism list with cumulative coverage for high-importance OGs |
+| `data/conservation_experiment_plans.tsv` | ~15-25 | Per-organism experimental plans with tier × hypothesis breakdowns |
 
 ## Supporting Evidence
 
@@ -637,6 +668,7 @@ This project contributes:
 | `08_improved_neighborhoods.ipynb` | Cross-species synteny, cofit-validated operons, improved prioritization, evidence-weighted roadmap |
 | `09_final_synthesis.ipynb` | Darkness spectrum census, minimum covering set optimization, per-organism experimental action plans |
 | `10_review_improvements.ipynb` | Supplementary analyses addressing review suggestions: domain matching, robust ranks, species-count scoring, NMDC null tests, biogeographic binomial test |
+| `11_conservation_classes.ipynb` | Pangenome-scale conservation × hypothesis classification, importance scoring, conservation-weighted covering set, per-organism experimental plans |
 
 ### Figures
 
@@ -673,6 +705,12 @@ This project contributes:
 | `fig29_robust_ranks.png` | Robust rank indicators: rank range distributions, min/max scatter, always-top-50 by organism |
 | `fig30_species_count_scoring.png` | Species-count scoring: score distributions, rank comparison, rank changes, top-20 table |
 | `fig31_statistical_tests.png` | Statistical tests: binomial null, QQ plot, sign tests, summary table |
+| `fig32_organism_taxonomy.png` | FB organism phylum distribution showing sparse taxonomic coverage |
+| `fig33_conservation_tiers.png` | Conservation tier × hypothesis status stacked bars (absolute + normalized) |
+| `fig34_classification_heatmap.png` | 2D heatmap: taxonomic tier × hypothesis status with counts and percentages |
+| `fig35_top_knowledge_gaps.png` | Top 25 true knowledge gap OGs by pangenome species count |
+| `fig36_covering_set_curve.png` | Conservation-weighted covering set optimization (cumulative coverage + marginal genes) |
+| `fig37_experiment_plan_heatmap.png` | Per-organism dark gene coverage by conservation tier (top 20 organisms) |
 
 ## Future Directions
 
