@@ -1,0 +1,74 @@
+organism_name	genus	phylum	technology	tractability_score	tier	reference	notes	in_FB
+Escherichia coli BW25113	Escherichia	Pseudomonadota	both	0.9	1	Baba et al. 2006; Keio collection	Gold standard; Keio deletion collection + TnSeq + CRISPRi; FB orgId=Keio	True
+Shewanella oneidensis MR-1	Shewanella	Pseudomonadota	TnSeq	0.8	1	Deutschbauer et al. 2011	Well-established TnSeq, extensive condition profiling; FB orgId=MR1	True
+Pseudomonas putida KT2440	Pseudomonas	Pseudomonadota	both	0.8	1	Price et al. 2018	Well-established TnSeq + CRISPRi; FB orgId=Putida	True
+Pseudomonas fluorescens FW300-N2C3	Pseudomonas	Pseudomonadota	TnSeq	0.75	1	Price et al. 2018	FB TnSeq, extensive phenotyping; FB orgId=pseudo5_N2C3_1	True
+Pseudomonas fluorescens FW300-N1B4	Pseudomonas	Pseudomonadota	TnSeq	0.7	1	Price et al. 2018	FB TnSeq; FB orgId=pseudo1_N1B4	True
+Shewanella amazonensis SB2B	Shewanella	Pseudomonadota	TnSeq	0.7	1	Deutschbauer et al. 2011	FB TnSeq; FB orgId=SB2B	True
+Pseudomonas fluorescens FW300-N2E3	Pseudomonas	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, default tractability; FB orgId=pseudo3_N2E3	True
+Pseudomonas fluorescens FW300-N2E2	Pseudomonas	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, default tractability; FB orgId=pseudo6_N2E2	True
+Pseudomonas fluorescens GW456-L13	Pseudomonas	Pseudomonadota	TnSeq	0.65	1	Price et al. 2018	FB TnSeq; FB orgId=pseudo13_GW456_L13	True
+Pseudomonas stutzeri RCH2	Pseudomonas	Pseudomonadota	TnSeq	0.55	1	Price et al. 2018	FB TnSeq; FB orgId=psRCH2	True
+Pseudomonas syringae B728a	Pseudomonas	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, phytopathogen; FB orgId=SyringaeB728a	True
+Pseudomonas syringae B728a mexB-delta	Pseudomonas	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, efflux mutant; FB orgId=SyringaeB728a_mexBdelta	True
+Pseudomonas simiae WCS417	Pseudomonas	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, plant-associated; FB orgId=WCS417	True
+Klebsiella michiganensis M5al	Klebsiella	Pseudomonadota	TnSeq	0.65	1	Price et al. 2018	FB TnSeq; FB orgId=Koxy	True
+Sinorhizobium meliloti 1021	Sinorhizobium	Pseudomonadota	TnSeq	0.6	1	Price et al. 2018	FB TnSeq; FB orgId=Smeli	True
+Marinobacter adhaerens HP15	Marinobacter	Pseudomonadota	TnSeq	0.5	1	Price et al. 2018	FB TnSeq; FB orgId=Marino	True
+Desulfovibrio vulgaris Hildenborough	Desulfovibrio	Pseudomonadota	TnSeq	0.5	1	Deutschbauer et al. 2011	FB TnSeq, anaerobe; FB orgId=DvH	True
+Cupriavidus basilensis FW507-4G11	Cupriavidus	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Cup4G11	True
+Burkholderia phytofirmans PsJN	Burkholderia	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=BFirm	True
+Paraburkholderia bryophila 376MFSha3.1	Paraburkholderia	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Burk376	True
+Dinoroseobacter shibae DFL-12	Dinoroseobacter	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Dino	True
+Azospirillum brasilense Sp245	Azospirillum	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=azobra	True
+Ralstonia solanacearum GMI1000	Ralstonia	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, phytopathogen; FB orgId=RalstoniaGMI1000	True
+Ralstonia solanacearum IBSBF1503	Ralstonia	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=RalstoniaBSBF1503	True
+Ralstonia solanacearum PSI07	Ralstonia	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=RalstoniaPSI07	True
+Ralstonia solanacearum UW163	Ralstonia	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=RalstoniaUW163	True
+Sphingomonas koreensis DSMZ 15582	Sphingomonas	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Korea	True
+Phaeobacter inhibens BS107	Phaeobacter	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Phaeo	True
+Herbaspirillum seropedicae SmR1	Herbaspirillum	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=HerbieS	True
+Caulobacter crescentus NA1000	Caulobacter	Pseudomonadota	TnSeq	0.6	1	Christen et al. 2011; Price et al. 2018	FB TnSeq + external high-density TnSeq (Christen); FB orgId=Caulo	True
+Dechlorosoma suillum PS	Dechlorosoma	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=PS	True
+Acidovorax sp. GW101-3H11	Acidovorax	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=acidovorax_3H11	True
+Shewanella sp. ANA-3	Shewanella	Pseudomonadota	TnSeq	0.3	1	Deutschbauer et al. 2011	FB TnSeq; FB orgId=ANA3	True
+Shewanella loihica PV-4	Shewanella	Pseudomonadota	TnSeq	0.3	1	Deutschbauer et al. 2011	FB TnSeq; FB orgId=PV4	True
+Dyella japonica UNC79MFTsu3.2	Dyella	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Dyella79	True
+Dickeya dadantii 3937	Dickeya	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, phytopathogen; FB orgId=Dda3937	True
+Dickeya dianthicola 67-19	Dickeya	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Ddia6719	True
+Dickeya dianthicola ME23	Dickeya	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=DdiaME23	True
+Desulfovibrio vulgaris Miyazaki F	Desulfovibrio	Pseudomonadota	TnSeq	0.3	1	Deutschbauer et al. 2011	FB TnSeq, anaerobe; FB orgId=Miya	True
+Magnetospirillum magneticum AMB-1	Magnetospirillum	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, magnetotactic; FB orgId=Magneto	True
+Kangiella koreensis DSM 16069	Kangiella	Pseudomonadota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Kang	True
+Bacteroides thetaiotaomicron VPI-5482	Bacteroides	Bacteroidota	TnSeq	0.6	1	Goodman et al. 2009; Price et al. 2018	FB TnSeq, gut commensal model; extensive gut fitness data; FB orgId=Btheta	True
+Pedobacter sp. GW460-11-11-14-LB5	Pedobacter	Bacteroidota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Pedo557	True
+Pontibacter actiniarum DSM 19842	Pontibacter	Bacteroidota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Ponti	True
+Echinicola vietnamensis DSM 17526	Echinicola	Bacteroidota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq; FB orgId=Cola	True
+Synechococcus elongatus PCC 7942	Synechococcus	Cyanobacteriota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, cyanobacterium; FB orgId=SynE	True
+Methanococcus maripaludis JJ	Methanococcus	Halobacteriota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, archaeon; FB orgId=Methanococcus_JJ	True
+Methanococcus maripaludis S2	Methanococcus	Halobacteriota	TnSeq	0.3	1	Price et al. 2018	FB TnSeq, archaeon; FB orgId=Methanococcus_S2	True
+Pseudomonas aeruginosa PAO1	Pseudomonas	Pseudomonadota	both	0.8	1	Turner et al. 2015; Qi et al. 2013	Well-established TnSeq + CRISPRi; ESKAPE pathogen; extensive condition profiling	False
+Salmonella enterica Typhimurium 14028s	Salmonella	Pseudomonadota	TnSeq	0.7	1	Langridge et al. 2009	Large-scale TnSeq; model pathogen; extensive in vivo fitness data	False
+Staphylococcus aureus USA300	Staphylococcus	Bacillota	both	0.8	1	Bae et al. 2004	TnSeq + CRISPRi available; ESKAPE pathogen; CA-MRSA reference	False
+Streptococcus pneumoniae TIGR4	Streptococcus	Bacillota	TnSeq	0.7	1	van Opijnen et al. 2009	Pioneering Tn-seq methodology; extensive essentiality data	False
+Vibrio cholerae O1 El Tor N16961	Vibrio	Pseudomonadota	TnSeq	0.7	1	Chao et al. 2013	Saturated TnSeq; cholera reference strain; in vivo fitness data	False
+Mycobacterium tuberculosis H37Rv	Mycobacterium	Actinomycetota	both	0.8	1	DeJesus et al. 2017; Rock et al. 2017	TnSeq + CRISPRi; major human pathogen; slow-growing; essential gene atlas	False
+Bacillus subtilis 168	Bacillus	Bacillota	both	0.7	1	Koo et al. 2017	TnSeq + CRISPRi; model Gram-positive; extensive genetic tools	False
+Acinetobacter baumannii ATCC 17978	Acinetobacter	Pseudomonadota	TnSeq	0.6	1	Wang et al. 2014	TnSeq library; ESKAPE pathogen; nosocomial infections	False
+Clostridioides difficile R20291	Clostridioides	Bacillota	TnSeq	0.5	2	Dembek et al. 2015	TnSeq library; anaerobe; major hospital pathogen	False
+Klebsiella pneumoniae KPNIH1	Klebsiella	Pseudomonadota	TnSeq	0.5	2	Bachman et al. 2015	TnSeq library; carbapenem-resistant; overlaps FB Klebsiella genus	False
+Enterococcus faecium	Enterococcus	Bacillota	TnSeq	0.4	2	Zhang et al. 2017	TnSeq library; VRE clinical concern; ESKAPE pathogen	False
+Campylobacter jejuni NCTC 11168	Campylobacter	Campylobacterota	TnSeq	0.5	2	Gao et al. 2014	TnSeq library; foodborne pathogen; unique phylum for FB coverage	False
+Helicobacter pylori 26695	Helicobacter	Campylobacterota	TnSeq	0.5	2	Salama et al. 2004	TnSeq library; gastric pathogen; unique phylum	False
+Listeria monocytogenes EGD-e	Listeria	Bacillota	TnSeq	0.5	2	Grubmuller et al. 2014	TnSeq library; foodborne pathogen; intracellular	False
+Francisella tularensis Schu S4	Francisella	Pseudomonadota	TnSeq	0.4	2	Gallagher et al. 2007	TnSeq library; BSL-3 pathogen; intracellular; limited conditions	False
+Neisseria meningitidis MC58	Neisseria	Pseudomonadota	TnSeq	0.5	2	Capel et al. 2016	TnSeq library; meningitis pathogen; Betaproteobacteria	False
+Corynebacterium glutamicum ATCC 13032	Corynebacterium	Actinomycetota	both	0.6	2	Cleto et al. 2016	TnSeq + CRISPRi; industrial amino acid producer; adds Actinomycetota depth	False
+Serratia marcescens DB10	Serratia	Pseudomonadota	TnSeq	0.4	3	Peters et al. 2019	Mobile CRISPRi (Tn7) demonstrated; Gammaproteobacterium with attTn7	False
+Proteus mirabilis HI4320	Proteus	Pseudomonadota	TnSeq	0.4	3	Peters et al. 2019	Mobile CRISPRi applicable; urinary pathogen; swarming motility	False
+Yersinia pseudotuberculosis IP32953	Yersinia	Pseudomonadota	TnSeq	0.4	3	Peters et al. 2019	Mobile CRISPRi applicable; enteric pathogen	False
+Burkholderia cenocepacia K56-2	Burkholderia	Pseudomonadota	TnSeq	0.4	3	Peters et al. 2019	Mobile CRISPRi applicable; CF pathogen; overlaps FB Burkholderia genus	False
+Vibrio parahaemolyticus RIMD 2210633	Vibrio	Pseudomonadota	TnSeq	0.4	3	Peters et al. 2019	Mobile CRISPRi applicable; seafood pathogen	False
+Legionella pneumophila Philadelphia-1	Legionella	Pseudomonadota	TnSeq	0.4	3	Peters et al. 2019	Mobile CRISPRi applicable; intracellular; Legionnaires disease	False
+Erwinia amylovora CFBP 1430	Erwinia	Pseudomonadota	TnSeq	0.3	3	Peters et al. 2019	Mobile CRISPRi potential; fire blight pathogen; adds Erwinia genus	False
+Chromobacterium violaceum ATCC 12472	Chromobacterium	Pseudomonadota	TnSeq	0.3	3	Peters et al. 2019	Mobile CRISPRi potential; violacein producer; environmental	False

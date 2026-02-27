@@ -1,0 +1,43 @@
+priority	orgId	genus	tractability	n_OGs_covered	n_kingdom_gaps	n_phylum_gaps	n_kingdom_leads	n_phylum_leads	expected_novel	experiment_type	top_conditions	pct_covered
+1	Smeli	Sinorhizobium	0.6	1630	195	29	1354	21	1630	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(1493); stress(68); pH(27)	5.585946602134254
+2	Putida	Pseudomonas	0.8	1043	172	11	797	13	1043	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(775); membrane stress (SDS, EDTA)(102); carbon source(51)	9.207355415044402
+3	MR1	Shewanella	0.8	805	105	8	657	9	805	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(556); stress(63); carbon source(56)	11.95361011712214
+4	Btheta	Bacteroides	0.3	1382	267	0	1109	0	1382	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(747); stress(421); carbon source(121)	16.78554075137119
+5	Koxy	Klebsiella	0.65	568	65	1	489	7	568	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(398); carbon source(66); nitrogen source(33)	18.69294353208882
+6	Keio	Escherichia	0.9	403	9	0	388	4	403	targeted TnSeq + condition-specific TnSeq + broad phenotypic screen	broad screen(284); stress(44); carbon source(23)	19.991505314771455
+7	Marino	Marinobacter	0.5	576	143	10	405	2	576	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(369); membrane stress (SDS, EDTA)(78); stress(67)	22.062402399301927
+8	Ponti	Pontibacter	0.3	943	151	10	742	14	943	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(564); stress(278); module: PF00128(14)	25.329159953088165
+9	pseudo5_N2C3_1	Pseudomonas	0.75	752	118	14	568	7	752	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(593); stress(57); carbon source(36)	27.936467331959296
+10	Cup4G11	Cupriavidus	0.3	912	153	21	695	18	912	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(715); stress(58); nitrogen source(20)	31.11380498430192
+11	BFirm	Burkholderia	0.3	809	170	39	541	23	809	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(705); carbon source(27); stress(15)	33.984482217571504
+12	DvH	Desulfovibrio	0.5	440	100	8	323	9	440	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(322); stress(50); nitrogen source(26)	35.5476383669931
+13	Dino	Dinoroseobacter	0.3	725	109	34	536	27	725	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(489); stress(128); carbon source(42)	38.0576202848911
+14	azobra	Azospirillum	0.3	702	126	18	535	7	702	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(619); stress(18); carbon source(16)	40.525789283300455
+15	pseudo1_N1B4	Pseudomonas	0.7	594	119	13	417	10	594	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(432); carbon source(55); stress(47)	42.621355518890134
+16	RalstoniaGMI1000	Ralstonia	0.3	664	194	25	385	17	664	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(658); xylem sap(5); m63_quarter_strength(1)	45.0553334015325
+17	Korea	Sphingomonas	0.3	637	167	34	393	16	637	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(500); motility(31); nitrogen source(22)	47.37174289453765
+18	SB2B	Shewanella	0.7	576	66	1	495	3	576	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(366); stress(70); nitrogen source(44)	49.3248105503635
+19	Burk376	Paraburkholderia	0.3	597	125	31	409	10	597	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(504); membrane stress (SDS, EDTA)(34); carbon source(33)	51.448946416328475
+20	SynE	Synechococcus	0.3	622	69	1	500	3	622	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(391); stress(196); nitrogen source(8)	53.56632047694664
+21	Pedo557	Pedobacter	0.3	615	80	4	509	2	615	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(479); stress(82); carbon source(18)	55.663890269878706
+22	psRCH2	Pseudomonas	0.55	622	110	15	445	15	622	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(302); stress(214); carbon source(30)	57.82970913688498
+23	Phaeo	Phaeobacter	0.3	502	96	18	344	20	502	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(292); carbon source(79); stress(77)	59.592594091057
+24	HerbieS	Herbaspirillum	0.3	487	96	11	349	12	487	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(438); carbon source(28); stress(16)	61.30999113209794
+25	pseudo13_GW456_L13	Pseudomonas	0.65	455	70	5	359	7	455	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(313); carbon source(45); module: PF02589(9)	62.8762345295229
+26	acidovorax_3H11	Acidovorax	0.3	467	103	9	323	10	467	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(363); stress(32); carbon source(10)	64.53355227449136
+27	PS	Dechlorosoma	0.3	445	121	8	287	6	445	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(335); stress(65); anaerobic(27)	66.15021451169639
+28	SyringaeB728a_mexBdelta	Pseudomonas	0.3	882	155	20	669	10	882	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(800); stress(64); motility/soft agar(5)	69.23566058793507
+29	SyringaeB728a	Pseudomonas	0.3	833	137	15	642	14	833	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(709); stress(66); in planta(46)	72.12763331940923
+30	pseudo3_N2E3	Pseudomonas	0.3	789	133	20	583	12	789	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(550); stress(79); carbon source(72)	74.87036150409054
+31	Cola	Echinicola	0.3	397	60	1	324	5	397	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(254); stress(55); nitrogen source(39)	76.22998605733265
+32	ANA3	Shewanella	0.3	712	113	5	559	4	712	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(478); stress(63); carbon source(44)	78.68307766417577
+33	DdiaME23	Dickeya	0.3	334	91	9	198	4	334	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(293); plant(32); carbon source(6)	79.89089240409574
+34	Caulo	Caulobacter	0.3	319	70	20	196	12	319	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(151); stress(112); carbon source(30)	81.02588009157148
+35	RalstoniaUW163	Ralstonia	0.3	596	179	25	335	13	596	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(589); cpg(6); m63_quarter_strength(1)	83.21674927346666
+36	RalstoniaBSBF1503	Ralstonia	0.3	586	173	22	341	13	586	targeted TnSeq + broad phenotypic screen	broad screen(582); cpg(2); m63_quarter_strength(2)	85.36421665665341
+37	PV4	Shewanella	0.3	614	103	3	480	5	614	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(472); stress(51); carbon source(34)	87.49213541493123
+38	Dyella79	Dyella	0.3	310	40	0	269	1	310	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(236); stress(29); membrane stress (SDS, EDTA)(22)	88.54903306393597
+39	WCS417	Pseudomonas	0.3	598	123	9	422	9	598	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(483); stress(47); carbon source(25)	90.6592215238337
+40	RalstoniaPSI07	Ralstonia	0.3	564	169	16	328	16	564	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(552); m63_quarter_strength(5); xylem sap(5)	92.72475456409964
+41	pseudo6_N2E2	Pseudomonas	0.3	586	109	12	406	11	586	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(440); carbon source(51); stress(36)	94.78016892302482
+42	Magneto	Magnetospirillum	0.3	232	50	4	173	3	232	targeted TnSeq + broad phenotypic screen + condition-specific TnSeq	broad screen(215); magnetic pulldown(15); electron acceptor panel(1)	95.60274588737748

@@ -342,15 +342,15 @@ Greedy weighted set-cover optimization over the 16,488 scored dark genes identif
 
 ### Finding 14: Pangenome-scale conservation × hypothesis classification reveals broadly conserved true knowledge gaps; conservation-weighted covering set orders experiments for maximum novel discovery
 
-The coarse eggNOG breadth classification used in prior analyses (99.9% "universal") and the sparse 48-organism Fitness Browser sampling (37/48 Proteobacteria) fail to meaningfully distinguish conservation patterns among dark genes. NB11 addresses this by resolving each dark gene's eggNOG root ortholog group through the pangenome gene cluster taxonomy (27,690 species, GTDB r214), classifying 11,774 root OGs into 8 taxonomic tiers (kingdom, phylum, class, order, family, genus, species, mobile) based on the narrowest rank containing all member species across the 48 FB organisms. Species counts range from 1 to 33 organisms (mean 2.2); phylum counts range from 1 to 4. Mobile elements are detected via phylogenetic patchiness (present in distant phyla but few species per phylum).
+The coarse eggNOG breadth classification used in prior analyses (99.9% "universal") and the sparse 48-organism Fitness Browser sampling (37/48 Proteobacteria) fail to meaningfully distinguish conservation patterns among dark genes. NB11 addresses this in two stages: (1) NB11b queries the full 27,690-species GTDB r214 pangenome by exploding eggNOG_OGs annotations across 93.5M gene clusters, matching all entries against 11,774 dark gene root OGs, and aggregating species counts and taxonomy from the complete pangenome rather than only the 48 FB organisms; (2) OG_id propagation recovers an additional 5,206 dark genes (9.1%) by transferring root_og assignments from genes with known pangenome links to genes in the same 48-organism ortholog group that lack them. Together, these approaches bring pangenome conservation coverage from 32,791 (57.5%) to 37,997 (66.6%) dark genes. Species counts now range from 1 to 27,482 (median 135, mean 2,128); phylum counts range from 1 to 142. Mobile elements are detected via phylogenetic patchiness (present in distant phyla but few species per phylum).
 
-The resulting tier distribution shows meaningful spread: species-specific 45.1%, mobile 19.0%, genus 16.5%, phylum 7.4%, class 5.8%, kingdom 3.5%, family 1.9%, order 1.0% — a dramatic improvement over the prior 99.9% "universal" classification. An additional 24,220 genes (42.5%) without pangenome gene cluster IDs are classified using the 48-organism ortholog groups from the essential genome project (marked `FB-only`).
+The 11,774 root OGs are classified into 8 taxonomic tiers based on the narrowest rank containing all member species: **kingdom 55.9%**, class 11.0%, family 10.5%, genus 6.9%, mobile 6.5%, phylum 4.8%, order 3.9%, species 0.5%. Over half of dark gene OGs are pan-bacterial — present across multiple phyla and thousands of species — demonstrating that functional dark matter is not a minor annotation gap but a fundamental limitation in our understanding of broadly conserved biology. At the gene level (57,011 dark genes including 19,014 FB-only fallback assignments): kingdom 51.4%, species 29.8%, genus 6.2%, class 4.0%, family 3.5%, mobile 1.9%, phylum 1.9%, order 1.3%.
 
 Each dark gene is independently classified into a hypothesis status tier — **strong testable hypothesis** (6.0%: module prediction with EC number, high cross-organism concordance, high-confidence GapMind match, or named domain + strong fitness), **weak lead** (52.5%: DUF-only domain, bare module prediction, medium/low GapMind, strong fitness without annotation, or named domain without fitness), or **true knowledge gap** (41.5%: zero functional evidence of any kind).
 
-The importance score `conservation × ignorance` (tier-adjusted conservation score × ignorance multiplier) ranks all 11,774 dark gene OGs. Kingdom-level true knowledge gaps score highest — the most broadly conserved genes where experimental characterization would produce the most novel biological insight. The top-ranked OGs are kingdom-level weak leads (COG2308 in 25 species/2 phyla, COG2050 in 23 species/2 phyla) where functional evidence exists but no strong testable hypothesis has emerged. Species-specific strong hypotheses score lowest.
+The importance score `conservation × ignorance` (tier-adjusted conservation score + log₂-scaled species fraction × ignorance multiplier) ranks all 11,774 dark gene OGs. Kingdom-level true knowledge gaps score highest — the most broadly conserved genes where experimental characterization would produce the most novel biological insight. The top-ranked OGs include COG0468 (27,427 species, 142 phyla — true knowledge gap), COG0443 (27,279 species — true knowledge gap), and COG0172 (27,431 species — weak lead). These are among the most universally conserved genes in bacteria yet remain functionally uncharacterized. Species-specific strong hypotheses score lowest.
 
-A conservation-weighted minimum covering set of **40 organisms** (vs. NB09's 42 for all dark genes) covers 95% of total importance-weighted priority. The algorithm focuses on high-importance OGs (top quartile by importance score, plus all kingdom/phylum-level true gaps and weak leads) and selects organisms by `sum(importance) × tractability × phylo_bonus`, where phylo_bonus penalizes genus-redundant selections. *Sinorhizobium meliloti* ranks first (1,357 genes, 107 kingdom-level gaps), followed by *P. putida* (694 genes), *S. oneidensis* MR-1 (577 genes), and *Bacteroides thetaiotaomicron* (867 genes). The first 8 organisms cover 31% of priority.
+A conservation-weighted minimum covering set of **42 organisms** covers 95.6% of total importance-weighted priority across 28,584 high-priority dark genes. The algorithm selects organisms by `sum(importance) × tractability × phylo_bonus`, where phylo_bonus penalizes genus-redundant selections. *Sinorhizobium meliloti* ranks first (1,630 genes, 195 kingdom-level gaps), followed by *P. putida* (1,043 genes, 172 kingdom gaps), *S. oneidensis* MR-1 (805 genes, 105 kingdom gaps), and *Bacteroides thetaiotaomicron* (1,382 genes, 267 kingdom gaps — highest raw count, deprioritized by 0.3 tractability). The first 10 organisms cover 31% of priority.
 
 Per-organism experimental plans specify recommended experiment types (CRISPRi knockdown for essential genes in tractable organisms, condition-specific TnSeq for fitness-active genes, broad phenotypic screen for true knowledge gaps) and top conditions derived from fitness data or keyword inference.
 
@@ -366,7 +366,9 @@ Per-organism experimental plans specify recommended experiment types (CRISPRi kn
 
 ![Experiment plan heatmap](figures/fig37_experiment_plan_heatmap.png)
 
-*(Notebook: 11_conservation_classes.ipynb)*
+![Full pangenome species distribution](figures/fig38_pangenome_species_distribution.png)
+
+*(Notebooks: 11_conservation_classes.ipynb, 11b_extended_conservation.ipynb)*
 
 ## Experimental Recommendations
 
@@ -648,11 +650,14 @@ This project contributes:
 | `data/robust_ranks_fitness.tsv` | 17,344 | Per-gene rank ranges across 6 weight configurations (fitness-active) |
 | `data/robust_ranks_essential.tsv` | 9,557 | Per-gene rank ranges across 6 weight configurations (essential) |
 | `data/scoring_species_count_variant.tsv` | 17,344 | Species-count scoring variant with original vs adjusted ranks |
-| `data/og_pangenome_distribution.tsv` | ~11,774 | Per root_og species/phyla/class/order/family/genus counts from full pangenome |
+| `data/og_pangenome_distribution.tsv` | 11,774 | Per root_og species/phyla/class/order/family/genus counts from full 27,690-species pangenome (species range 1–27,482) |
+| `data/og_pangenome_distribution_fb_only.tsv` | 11,774 | Backup of original FB-only distribution (species range 1–33) |
+| `data/og_id_root_propagation.tsv` | 7,898 | OG_id → root_og propagation mapping (recovers 5,206 additional dark genes) |
 | `data/dark_gene_classes.tsv` | 57,011 | Per dark gene: taxonomic_tier, hypothesis_status, importance_score, evidence_summary |
-| `data/og_importance_ranked.tsv` | ~11,774 | All OGs ranked by importance (conservation × ignorance) |
-| `data/conservation_covering_set.tsv` | ~15-25 | Ordered organism list with cumulative coverage for high-importance OGs |
-| `data/conservation_experiment_plans.tsv` | ~15-25 | Per-organism experimental plans with tier × hypothesis breakdowns |
+| `data/og_importance_ranked.tsv` | 11,774 | All OGs ranked by importance (conservation × ignorance) |
+| `data/conservation_covering_set.tsv` | 42 | Ordered organism list with cumulative coverage for high-importance OGs |
+| `data/conservation_experiment_plans.tsv` | 42 | Per-organism experimental plans with tier × hypothesis breakdowns |
+| `data/extended_tractable_organisms.tsv` | 73 | 48 FB + 25 literature-curated organisms with TnSeq/CRISPRi tractability scores |
 
 ## Supporting Evidence
 
@@ -671,6 +676,7 @@ This project contributes:
 | `09_final_synthesis.ipynb` | Darkness spectrum census, minimum covering set optimization, per-organism experimental action plans |
 | `10_review_improvements.ipynb` | Supplementary analyses addressing review suggestions: domain matching, robust ranks, species-count scoring, NMDC null tests, biogeographic binomial test |
 | `11_conservation_classes.ipynb` | Pangenome-scale conservation × hypothesis classification, importance scoring, conservation-weighted covering set, per-organism experimental plans |
+| `11b_extended_conservation.ipynb` | Full pangenome Spark query (eggNOG_OGs explode across 93.5M annotations) + OG_id propagation for extended dark gene coverage |
 
 ### Figures
 
@@ -713,6 +719,7 @@ This project contributes:
 | `fig35_top_knowledge_gaps.png` | Top 25 true knowledge gap OGs by pangenome species count |
 | `fig36_covering_set_curve.png` | Conservation-weighted covering set optimization (cumulative coverage + marginal genes) |
 | `fig37_experiment_plan_heatmap.png` | Per-organism dark gene coverage by conservation tier (top 20 organisms) |
+| `fig38_pangenome_species_distribution.png` | Full pangenome species count distribution (old FB-only vs new), phyla distribution |
 
 ## Future Directions
 
