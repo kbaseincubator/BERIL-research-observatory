@@ -294,7 +294,7 @@ Independent co-fitness validation tested 32,075 non-essential operon pairs using
 
 **998 pairs are "double-validated"** with both conserved synteny (>30%) and strong co-fitness (score ≥ 0.5), representing the highest-confidence functional predictions in this study.
 
-Incorporating this evidence improved scores for **10,757 fitness-active** and **4,028 essential** dark genes, with some candidates rising significantly in rank. Cross-checking the NB05 top 100 candidates against Paramvir Dehal's prior module-based predictions found 89/100 had existing predictions, all agreeing with our independent inference — providing strong orthogonal validation.
+Incorporating this evidence improved scores for **10,757 fitness-active** and **4,028 essential** dark genes, with some candidates rising significantly in rank. Cross-checking the NB05 top 100 candidates against Paramvir Dehal's prior module-based predictions found 85/100 had existing predictions, all agreeing with our independent inference — providing strong orthogonal validation.
 
 The evidence-weighted experimental roadmap ranks MR-1 as the top organism (61 candidates: 47 fitness-active + 14 essential, 83 synteny-validated pairs, 31 cofit-validated pairs), followed by *P. putida* N2C3 (35 candidates) and *P. putida* (24 candidates). Just 4 experiments now achieve 45% coverage of the top 300 candidates.
 
@@ -345,8 +345,8 @@ The **top fitness-active candidates** are genes where fitness data, module co-re
 | 1 | AO356_11255 | *P. putida* N2C3 | 0.715 | D-alanyl-D-alanine carboxypeptidase (EC 3.4.16.4) | nitrogen (fit=3.4) | Module prediction + EamA domain + strongest biogeographic signal (lab-field OR=44) + NMDC nitrogen correlation |
 | 2 | 202463 | *S. oneidensis* MR-1 | 0.698 | Stress-responsive membrane protein (PF01145) | stress (fit=6.4) | Highest fitness magnitude among top candidates + YGGT domain + co-regulated module |
 | 3 | 199738 | *S. oneidensis* MR-1 | 0.698 | K03306 family (nitrogen metabolism) | nitrogen (fit=5.5) | Part of a three-gene paralog family (with 203545, 202450) — comparing mutants tests functional redundancy |
-| 4 | 203545 | *S. oneidensis* MR-1 | 0.629 | K03306 family (DUF4124 domain) | nitrogen (fit=4.0) | Paralog of 199738; same module, different domain — suggests subfunctionalization |
-| 5 | 202450 | *S. oneidensis* MR-1 | 0.628 | K03306 family (Gly_transporter domain) | nitrogen (fit=3.9) | Third K03306 paralog; glycine transporter domain suggests nitrogen/amino acid link |
+| 4 | 203545 | *S. oneidensis* MR-1 | 0.694 | K03306 family (DUF4124 domain) | nitrogen (fit=4.0) | Paralog of 199738; same module, different domain — suggests subfunctionalization |
+| 5 | 202450 | *S. oneidensis* MR-1 | 0.693 | K03306 family (Gly_transporter domain) | nitrogen (fit=3.9) | Third K03306 paralog; glycine transporter domain suggests nitrogen/amino acid link |
 
 The **top essential dark gene candidates** are genes where no viable knockout mutants exist, but gene neighborhood context, cross-species conservation, and domain structure enable CRISPRi knockdown experiments:
 
@@ -432,7 +432,7 @@ With fitness importance, conservation, module membership, domain annotations, bi
 
 The top 100 candidates (scores 0.624–0.715) span 22 organisms, with 82/100 having high-confidence functional hypotheses, 85/100 having module-based predictions, and 97/100 having domain annotations. MR-1 contributes 25/100 top candidates — a consequence of its deep condition coverage (121 conditions) rather than inherent biology.
 
-**Conclusion**: Multi-dimensional scoring reduces 17,344 phenotype-bearing dark genes to a prioritized list where the top candidates have converging evidence from fitness, conservation, co-regulation, and domain structure. The top 100 are not just statistically interesting — 86% have testable functional hypotheses with specific experimental protocols.
+**Conclusion**: Multi-dimensional scoring reduces 17,344 phenotype-bearing dark genes to a prioritized list where the top candidates have converging evidence from fitness, conservation, co-regulation, and domain structure. The top 100 are not just statistically interesting — 82% have testable functional hypotheses with specific experimental protocols.
 
 *Data*: `data/scoring_all_dark.tsv` (17,344 fully scored genes), `data/prioritized_candidates.tsv` (top 100 with hypotheses and suggested experiments). *Notebook*: `05_prioritization_dossiers.ipynb`.
 
@@ -445,6 +445,10 @@ Prioritization is only useful if the underlying signals are robust. Three contro
 **Dark-vs-annotated concordance null** (Mann-Whitney, 65 dark vs. 490 annotated OGs): dark genes achieve cross-organism concordance levels indistinguishable from annotated genes (p=0.17). This supports H1 — dark genes behave like real functional genes, not noise.
 
 **Scoring weight sensitivity**: rank correlations remain high (ρ > 0.93) across 6 alternative weight configurations, but specific top-50 lists are moderately sensitive (64% retention for conservation-dominant weighting). Users should treat rankings as approximate and focus on genes that appear in the top tier across multiple weight schemes.
+
+![H1b formal test: stress vs carbon/nitrogen accessory rates](figures/fig16_h1b_test.png)
+
+![Dark vs annotated gene concordance distributions](figures/fig17_concordance_comparison.png)
 
 **Conclusion**: The prioritization is defensible but not perfect. Dark genes behave statistically like annotated genes (supporting H1), the overall ranking is stable across weight perturbations, and H1b's rejection reveals genuine biological complexity rather than a flaw in the analysis. The main caution: specific rank positions are sensitive to weight choices, so candidates should be evaluated in tiers rather than by exact rank.
 
@@ -472,7 +476,7 @@ Re-scoring all 17,344 fitness-active and 9,557 essential dark genes with synteny
 
 **Conclusion**: Cross-species synteny and co-fitness provide independent validation of operon-based functional inferences. Genes whose neighborhood is conserved across multiple organisms and whose operon partners show correlated fitness profiles have the strongest evidence for guilt-by-association function prediction. The 300 improved candidates integrate all evidence layers accumulated across the project.
 
-*Data*: `data/conserved_neighborhoods.tsv` (21,011 synteny-scored pairs), `data/cofit_validated_operons.tsv` (32,075 cofit-scored pairs), `data/improved_candidates.tsv` (300 re-scored candidates), `data/experimental_roadmap.tsv` (31 organism experiment priorities). *Notebook*: `08_improved_neighborhoods.ipynb`.
+*Data*: `data/conserved_neighborhoods.tsv` (21,011 synteny-scored pairs), `data/cofit_validated_operons.tsv` (32,075 cofit-scored pairs), `data/improved_candidates.tsv` (300 re-scored candidates), `data/experimental_roadmap.tsv` (30 organism experiment priorities). *Notebook*: `08_improved_neighborhoods.ipynb`.
 
 ### Step 8: Final synthesis — darkness spectrum, covering set, action plan (NB09)
 
@@ -494,7 +498,7 @@ The preceding analyses produced gene-level evidence and organism-level candidate
 
 **H1 is partially supported; H0 can be partially rejected.** Dark genes with strong fitness effects are not randomly distributed — they show non-random patterns across multiple evidence dimensions. Critically, a matched comparison of dark vs. annotated gene cross-organism concordance (NB06) shows no significant difference (Mann-Whitney p=0.17, KS p=1.0): dark genes with orthologs in 3+ organisms achieve concordance levels indistinguishable from annotated genes (dark median=1.0, annotated median=1.0; dark mean=0.976, annotated mean=0.985). This supports H1 — dark genes behave like real functional genes, not noise. The specific sub-hypothesis assessments:
 
-- **H1a (Functional coherence)**: Supported. 6,142 dark genes co-regulate with annotated genes in ICA modules, and 89/100 top candidates have module-based function predictions. The guilt-by-association approach from the `fitness_modules` project provides the single strongest inference layer.
+- **H1a (Functional coherence)**: Supported. 6,142 dark genes co-regulate with annotated genes in ICA modules, and 85/100 top candidates have module-based function predictions. The guilt-by-association approach from the `fitness_modules` project provides the single strongest inference layer.
 
 - **H1b (Conservation signal)**: **Not supported.** Formal testing (Fisher's exact, n=7,491 dark genes; NB06) showed the opposite of the predicted pattern: stress-condition dark genes are 23.0% accessory, while carbon/nitrogen dark genes are 25.5% accessory (OR=1.15, p=0.013). The hypothesis that stress genes should be more accessory than carbon/nitrogen genes is rejected. This suggests that the relationship between condition specificity and pangenome conservation is more complex than a simple stress=accessory, metabolism=core dichotomy.
 
@@ -594,10 +598,10 @@ This project contributes:
 | `data/conserved_neighborhoods.tsv` | 21,011 | Per-pair cross-species synteny conservation scores |
 | `data/cofit_validated_operons.tsv` | 32,075 | Per-pair co-fitness validation of operon predictions |
 | `data/improved_candidates.tsv` | 300 | Re-scored top candidates (200 fitness-active + 100 essential) with synteny + cofit evidence |
-| `data/experimental_roadmap.tsv` | 31 | Evidence-weighted organism experiment priorities |
+| `data/experimental_roadmap.tsv` | 30 | Evidence-weighted organism experiment priorities |
 | `data/dark_gene_census_full.tsv` | 57,011 | Full darkness spectrum census with tier, evidence flags, composite score |
 | `data/minimum_covering_set.tsv` | 16,488 | Gene-to-organism assignments from greedy weighted set cover |
-| `data/experimental_action_plan.tsv` | 41 | Per-organism experiment recommendations (targeted vs broad screen) |
+| `data/experimental_action_plan.tsv` | 42 | Per-organism experiment recommendations (targeted vs broad screen) |
 
 ## Supporting Evidence
 
@@ -651,7 +655,7 @@ This project contributes:
 
 1. **Execute the minimum covering set action plan** — the NB09 covering set identifies 42 organisms that together address 95% of scored dark genes. The top 5 organisms (MR-1, *P. fluorescens* N1B4, *S. meliloti*, *E. coli* Keio, *K. oxytoca*) cover ~18% of priority value and represent the highest-impact starting points. Each organism's action plan specifies whether targeted RB-TnSeq under specific conditions (for hypothesis-bearing genes) or broad phenotypic screens (for T1/T2 genes) is more appropriate.
 
-2. **Targeted validation of top candidates** — the top 5 fitness-active candidates (4 in MR-1, 1 in *P. putida* N2C3) are immediately testable via RB-TnSeq under their predicted condition classes. Specific targets: AO356_11255 (D-alanyl-D-alanine carboxypeptidase prediction, EamA domain — test under nitrogen limitation); MR-1 202463 (YGGT domain, T5 Dawn, composite score 0.65 — test under multiple stress conditions); MR-1 199738/203545/202450 (K03306 paralog family — test under nitrogen limitation and compare single/double mutants).
+2. **Targeted validation of top candidates** — the top 5 fitness-active candidates (4 in MR-1, 1 in *P. putida* N2C3) are immediately testable via RB-TnSeq under their predicted condition classes. Specific targets: AO356_11255 (D-alanyl-D-alanine carboxypeptidase prediction, EamA domain — test under nitrogen limitation); MR-1 202463 (YGGT domain, T5 Dawn, composite score 0.698 — test under multiple stress conditions); MR-1 199738/203545/202450 (K03306 paralog family — test under nitrogen limitation and compare single/double mutants).
 
 3. **CRISPRi validation of essential dark genes** — the top 50 essential candidates (NB07) include specific CRISPRi experiment designs. The highest-priority targets are Keio:14796 (YbeY domain, score 0.875, predicted ion transport), MR-1:200382 (RimP_N/DUF150_C, score 0.874, predicted ribosome assembly), and Koxy:BWI76_RS08540 (OmpA/TIGR02802, score 0.865, predicted cell division). The covering set assigns 8,900 essential genes to specific organisms for CRISPRi-based approaches.
 
@@ -679,3 +683,7 @@ This project contributes:
 - Pavlopoulos GA, Baltoumas FA, Liu S, Noval Rivas M, Pinto-Cardoso S, et al. (2023). "Unraveling the functional dark matter through global metagenomics." *Nature* 622:594–602. PMID: 37821698
 - Zhang Y, Bhosle A, Bae S, Franzosa EA, Huttenhower C, et al. (2025). "Predicting functions of uncharacterized gene products from microbial communities." *Nature Biotechnology*. PMID: 41094150
 - Alam MT, Takano E, Breitling R. (2011). "Prioritizing orphan proteins for further study using phylogenomics and gene expression profiles in Streptomyces coelicolor." *BMC Research Notes* 4:325. PMID: 21899768
+- Koo BM, Kritikos G, Farelli JD, Todor H, Tong K, Kimber H, Wapinski I, Galardini M, Caber A, Peters JM, et al. (2017). "Construction and Analysis of Two Genome-Scale Deletion Libraries for Bacillus subtilis." *Cell Systems* 4:291–305. PMID: 28189581
+- Dembek M, Barquist L, Boinett CJ, Cain AK, Mayho M, Lawley TD, Fairweather NF, Fagan RP. (2015). "High-throughput analysis of gene essentiality and sporulation in Clostridium difficile." *mBio* 6:e02383-14. PMID: 25714712
+- de Vries SP, et al. (2017). "Genome-wide fitness analyses of the foodborne pathogen Campylobacter jejuni in in vitro and in vivo models." *Scientific Reports* 7:1251. PMID: 28455506
+- Sastry AV, Gao Y, Szubin R, Hefner Y, Xu S, Kim D, Choudhary KS, Yang L, King ZA, Palsson BO. (2019). "The Escherichia coli transcriptome mostly consists of independently regulated modules." *Nature Communications* 10:5536. PMID: 31797920

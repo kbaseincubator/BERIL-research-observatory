@@ -291,7 +291,7 @@ spark = get_spark_session()
 
 ### Notebook 9: Final Synthesis — Darkness Spectrum, Covering Set & Action Plan
 - **Goal**: Translate gene-level evidence into an experimental campaign: (1) classify all 57,011 dark genes into a "darkness spectrum" (T1 Void through T5 Dawn) based on 6 binary evidence flags, (2) select a minimum set of organisms via greedy weighted set-cover that covers 95% of total priority value, optimizing for tractability and phylogenetic diversity, (3) produce per-organism action plans classifying each gene as hypothesis-bearing (specific condition recommendation) or darkest (broad screen needed).
-- **Expected output**: `data/dark_gene_census_full.tsv` (57,011 rows), `data/minimum_covering_set.tsv` (16,067 gene-to-organism assignments), `data/experimental_action_plan.tsv` (41 organisms with experiment types and conditions)
+- **Expected output**: `data/dark_gene_census_full.tsv` (57,011 rows), `data/minimum_covering_set.tsv` (16,488 gene-to-organism assignments), `data/experimental_action_plan.tsv` (42 organisms with experiment types and conditions)
 - **Key figures**: (1) Darkness tier distribution with evidence flag combinations, (2) set-cover diminishing returns curve with organism labels, (3) organism action plan heatmap with condition recommendations
 
 ## Expected Outcomes
