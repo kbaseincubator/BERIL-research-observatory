@@ -17,6 +17,12 @@
 - Mimee M, Tucker AC, Voigt CA, Lu TK. (2015). "Programming a Human Commensal Bacterium, Bacteroides thetaiotaomicron, to Sense and Respond to Stimuli in the Murine Gut Microbiota." *Cell Systems* 1:62–71. PMID: 26918244
 - Sastry AV, Gao Y, Szubin R, Hefner Y, Xu S, Kim D, Choudhary KS, Yang L, King ZA, Palsson BO. (2019). "The Escherichia coli transcriptome mostly consists of independently regulated modules." *Nature Communications* 10:5536. PMID: 31797920
 
+## GapMind Pathway Analysis
+
+- Price MN, Zane GM, Kuehl JV, Melnyk RA, Wall JD, Deutschbauer AM, Arkin AP. (2018). "Filling gaps in bacterial amino acid biosynthesis pathways with high-throughput genetics." *PLoS Genetics* 14:e1007147. PMID: 29324775
+- Price MN, Deutschbauer AM, Arkin AP. (2020). "GapMind: Automated Annotation of Amino Acid Biosynthesis." *mSystems* 5:e00291-20. PMID: 32576650
+- Price MN, Deutschbauer AM, Arkin AP. (2022). "Filling gaps in bacterial catabolic pathways with computation and high-throughput genetics." *PLoS Genetics* 18:e1010156. PMID: 35588107
+
 ## Related Work
 
 - Vaccaro BJ, Lancaster WA, Thorgersen MP, Zane GM, Younkin AD, Kazakov AE, Wetmore KM, Deutschbauer A, Arkin AP, Novichkov PS, Wall JD, Adams MW. (2016). "Novel Metal Cation Resistance Systems from Mutant Fitness Analysis of Denitrifying Pseudomonas stutzeri." *Appl Environ Microbiol* 82:6046–6056. PMID: 27474723
