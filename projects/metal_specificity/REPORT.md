@@ -31,7 +31,7 @@ Per-metal specificity varies across metals but — with DvH now included — ess
 
 All three categories are significantly core-enriched above baseline. Metal-specific genes are the least core-enriched of the three, consistent with specialized metal resistance mechanisms being slightly more likely to reside in the accessory genome than general stress functions — but the difference is modest.
 
-**CMH test**: The Cochran-Mantel-Haenszel test comparing metal-specific vs general-sick core enrichment across organisms does not reach statistical significance (p=0.11), indicating the difference is a trend rather than a definitive separation.
+**CMH test**: The Cochran-Mantel-Haenszel test comparing metal-specific vs general-sick core enrichment across organisms is statistically significant (p=0.011), confirming that metal-specific genes are less core-enriched than general sick genes across organisms. This is consistent with specialized metal resistance mechanisms being modestly more likely to reside in the accessory genome than general cellular functions.
 
 **Essential gene caveat**: ~14% of protein-coding genes (~82% core) are putatively essential and absent from fitness data. This biases all categories toward core enrichment — the true baseline core fraction is likely lower than 81%, making the reported deltas conservative.
 
@@ -127,7 +127,7 @@ The counter_ion_effects project found 39.8% overlap between metal-important and 
 | Metal-specific | 88.0% | +6.9% | 19/22 | 12/22 | — |
 | Metal+stress | 93.6% | +10.9% | 13/13 | 1/13 | — |
 | General sick | 90.2% | +9.0% | 21/21 | 8/21 | — |
-| Metal-specific vs general-sick | — | — | — | — | 0.11 (ns) |
+| Metal-specific vs general-sick | — | — | — | — | 0.011 * |
 
 ### Functional Enrichment
 
@@ -148,11 +148,11 @@ The most important finding is that the specificity classification works — it s
 
 ### The Core Genome Robustness Model Holds
 
-Metal-specific genes are core-enriched (88.0% vs 81.1% baseline), though slightly less so than general sick genes (90.2%). The CMH test does not reach significance (p=0.11), so we cannot definitively claim a difference in conservation between the two categories. This means:
+Metal-specific genes are core-enriched (88.0% vs 81.1% baseline), but significantly less so than general sick genes (90.2%; CMH p=0.011). This confirms a modest but real difference: specialized metal resistance genes are slightly more likely to be in the accessory genome than general stress genes. This means:
 
 1. **The Metal Atlas's 87.4% core finding is not an artifact.** It was not inflated by general stress genes. Even after removing all pleiotropic genes, the remaining metal-specific set is 88% core.
-2. **Metal resistance is fundamentally a core genome function.** Specialized metal resistance genes — efflux pumps, metal-binding proteins, detoxification enzymes — are predominantly conserved in the core genome across diverse bacteria.
-3. **The two-tier model from the Metal Atlas needs revision.** Both tiers (general stress + specific resistance) are core. The accessory genome contributes only the most narrowly distributed resistance mechanisms.
+2. **Metal resistance is predominantly a core genome function**, but significantly less so than general stress response (CMH p=0.011). Specialized metal resistance genes are still 88% core — overwhelmingly conserved — but the 2% gap from general sick genes (90.2%) represents a detectable signal of accessory genome contribution.
+3. **The two-tier model from the Metal Atlas is partially supported.** Tier 1 (general stress) is more core than Tier 2 (specific resistance), as hypothesized. But the effect is modest: both tiers are strongly core-enriched, and the accessory genome contributes only a small fraction of metal resistance machinery.
 
 ### Candidate Prioritization
 
