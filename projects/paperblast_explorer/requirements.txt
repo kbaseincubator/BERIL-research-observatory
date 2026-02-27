@@ -1,0 +1,7 @@
+# Python >= 3.10
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+
+# NB01 and NB02 also require berdl_notebook_utils (pre-installed on BERDL JupyterHub)
+# for Spark session access: from berdl_notebook_utils.setup_spark_session import get_spark_session

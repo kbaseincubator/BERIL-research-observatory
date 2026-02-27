@@ -1,0 +1,47 @@
+{
+  "tenant": "kescience",
+  "dataset": "webofmicrobes",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/webofmicrobes/",
+    "silver_base": "s3a://cdm-lake/tenant-sql-warehouse/kescience/kescience_webofmicrobes.db"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "compound",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/webofmicrobes/compound.tsv",
+      "schema_sql": "id INT, metabolite_atlas_id INT, formula STRING, fragments STRING, compound_name STRING, synonyms STRING, masscharge DOUBLE, neutralmass DOUBLE, retention DOUBLE, protocol STRING, pubchem_id INT, inchi_key STRING, smiles_string STRING"
+    },
+    {
+      "name": "environment",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/webofmicrobes/environment.tsv",
+      "schema_sql": "id INT, env_name STRING, temperature INT, pH DOUBLE, light_condition STRING, latitude DOUBLE, longitude DOUBLE, method STRING, inorganic_comp STRING, organic_comp STRING, env_tags STRING"
+    },
+    {
+      "name": "organism",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/webofmicrobes/organism.tsv",
+      "schema_sql": "id INT, NCBI_taxid INT, common_name STRING"
+    },
+    {
+      "name": "project",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/webofmicrobes/project.tsv",
+      "schema_sql": "id INT, contributor STRING, project_description STRING, project_name STRING"
+    },
+    {
+      "name": "observation",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/webofmicrobes/observation.tsv",
+      "schema_sql": "id INT, time_entered STRING, time_updated STRING, entered_by STRING, confidence INT, organism_id INT, action STRING, compound_id INT, environment_id INT, project_id INT, doi STRING"
+    }
+  ]
+}

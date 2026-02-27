@@ -134,6 +134,14 @@ class Review:
 
 
 @dataclass
+class DerivedDataRef:
+    """A reference to data from another project used as input."""
+
+    source_project: str  # project ID (e.g. "essential_genome")
+    files: list[str] = field(default_factory=list)  # specific files used
+
+
+@dataclass
 class Notebook:
     """A Jupyter notebook in a project."""
 
@@ -201,6 +209,9 @@ class Project:
     references: str | None = None
     other_sections: list[tuple[str, str]] = field(default_factory=list)
     revision_history: str | None = None
+    # Cross-project data provenance
+    derived_from: list[DerivedDataRef] = field(default_factory=list)
+    used_by: list[str] = field(default_factory=list)  # project IDs
 
     @property
     def review_status(self) -> ReviewStatus:
@@ -228,6 +239,16 @@ class Project:
             if u_date > r_date:
                 return ReviewStatus.NEEDS_RE_REVIEW
         return ReviewStatus.REVIEWED
+
+
+@dataclass
+class ResearchArea:
+    """An auto-detected cluster of thematically related projects."""
+
+    id: str
+    name: str
+    project_ids: list[str] = field(default_factory=list)
+    top_terms: list[str] = field(default_factory=list)
 
 
 @dataclass
@@ -322,6 +343,16 @@ class ResearchIdea:
 
 
 @dataclass
+class CollectionEdge:
+    """An edge between two collections, derived from explicit links or project co-usage."""
+
+    source_id: str
+    target_id: str
+    edge_type: str  # "explicit" or "project_cooccurrence"
+    projects: list[str] = field(default_factory=list)
+
+
+@dataclass
 class RepositoryData:
     """All parsed data from the repository."""
 
@@ -334,6 +365,8 @@ class RepositoryData:
     collections: list[Collection] = field(default_factory=list)
     contributors: list[Contributor] = field(default_factory=list)
     skills: list[Skill] = field(default_factory=list)
+    research_areas: list[ResearchArea] = field(default_factory=list)
+    collection_edges: list[CollectionEdge] = field(default_factory=list)
 
     # Computed stats
     total_notebooks: int = 0

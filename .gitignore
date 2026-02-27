@@ -58,8 +58,9 @@ projects/*/data/**/*.tsv
 projects/*/data/**/*.npy
 projects/*/data/**/*.pkl
 projects/*/data/**/*.fasta
-projects/*/data/**/*.fa
+projects/*/data/**/*.fna
 projects/*/data/**/*.faa
+projects/*/data/**/*.fa
 !projects/*/data/.gitkeep
 projects/*/user_data/**/*.csv
 projects/*/user_data/**/*.tsv
@@ -81,3 +82,9 @@ venv/
 
 .stignore
 .stfolder/
+
+# Python test results
+.coverage
+htmlcov/
+.pytest_cache/
+.ruff_cache/

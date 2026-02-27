@@ -310,6 +310,71 @@ Re-testing confirmatory defense endpoint under four index constructions (all-met
 
 ---
 
+### [nmdc_community_metabolic_ecology] Black Queen Hypothesis is detectable at community scale in environmental metabolomics
+
+Spearman correlation of community-weighted GapMind amino acid biosynthesis completeness against
+ambient amino acid metabolomics across 131 NMDC soil samples:
+
+- **11/13 tested aa pathways trend in BQH-predicted direction** (negative r = lower community
+  completeness co-occurs with higher ambient metabolite concentration); binomial sign test
+  p = 0.011
+- **Two pathways reach FDR significance** (BH-corrected q < 0.05): leucine (r = −0.390, q = 0.022,
+  n = 62) and arginine (r = −0.297, q = 0.049, n = 80)
+- Both FDR-significant pathways are among the most energetically expensive to synthesize (leucine:
+  37 ATP equivalents; arginine: 26 ATP equivalents) — consistent with BQH predicting loss is
+  most favored when the benefit of gene retention is lowest
+- Methionine shows the largest effect (r = −0.496) but is underpowered (n = 18, q = 0.117)
+- **leu signal is robust** to soil-only stratification (q = 0.022 unchanged) and to study-level
+  blocking (dataset is 95% single-study; see below)
+- Tyrosine is an anti-BQH outlier (r = +0.42, ns): likely explained by phenylalanine hydroxylation
+  providing an alternative tyrosine source that decouples biosynthesis completeness from pool size
+
+First demonstration that community-weighted pangenome completeness scores correlate with measured
+metabolite pools at landscape scale using public multi-omics data.
+
+### [nmdc_community_metabolic_ecology] Carbon utilization pathways, not amino acid pathways, are the primary axis of ecosystem metabolic differentiation
+
+PCA of 220-sample × 80-pathway GapMind completeness matrix:
+
+- **PC1 = 49.4% of variance** captures near-complete Soil vs Freshwater separation (Mann-Whitney
+  p < 0.0001; median PC1 Soil = +3.86, Freshwater = −6.28)
+- PC1 loadings are dominated by carbon utilization pathways (glucuronate, fumarate, succinate,
+  cellobiose, galactose) — **not** amino acid pathways
+- Amino acid pathways load more strongly on PC2 (16.6%), separating sub-clusters within Soil
+- 17/18 aa pathways are significantly differentiated across ecosystem types (q < 0.05 KW),
+  but the primary driver is carbon substrate availability, not biosynthesis capacity
+
+Implication: when community metabolic potential is used as a feature space, carbon substrate range
+is the dominant ecological axis and will confound aa pathway analyses unless controlled for.
+Use PC1-residualized or ecosystem-stratified analyses for BQH-type tests.
+
+### [nmdc_community_metabolic_ecology] NMDC metabolomics overlap is dominated by a single study
+
+Study-level analysis of the 131-sample H1 dataset revealed that **95% of samples (125/131) come
+from one NMDC study** (nmdc:sty-11-r2h77870). The remaining 6 samples are from a second study.
+This means:
+- Cross-study LC-MS protocol heterogeneity is effectively absent as a confounder (contrary to
+  the naive expectation for NMDC metabolomics)
+- The leucine BQH signal is internally consistent within one analytical protocol
+- Future multi-study NMDC metabolomics analyses should count study-level sample representation
+  before treating the aggregate as cross-study data
+
+### [nmdc_community_metabolic_ecology] NMDC metabolomics KEGG annotation rate is ~2%; string matching required
+
+Only ~2% of compounds in `nmdc_arkin.metabolomics_gold` have KEGG compound IDs populated.
+Pathway matching must rely on compound name substring patterns rather than KEGG-based ontologies.
+Key caveats:
+- Substring matching introduces collision risk (e.g., `'leucine'` matches inside `'isoleucine'`) —
+  use first-match-wins ordering with longer/more specific patterns before shorter ones
+- Chorismate itself is rarely detected; shikimic acid and 3-dehydroshikimic acid serve as upstream
+  proxies but reflect precursor availability, not chorismate pool size
+- Three aa pathways remain untestable (cys, his, lys) due to absent compound detections in the
+  175-sample overlap cohort
+
+See also `docs/pitfalls.md` for the isoleucine/leucine substring collision fix.
+
+---
+
 ### [pangenome_pathway_geography] Ecological niche breadth strongly predicts metabolic pathway diversity
 
 Analysis of 1,872 bacterial species with complete pangenome, GapMind pathway, and AlphaEarth embedding data reveals:
@@ -366,7 +431,84 @@ Adding 25 non-FB organisms (Bacillota, Actinomycetota, Campylobacterota) to the 
 
 ---
 
+## 2026-02
+
+### [pathway_capability_dependency] Pathway completeness ≠ metabolic dependency
+
+Four-category classification of 7 FB organisms × 23 GapMind pathways reveals:
+- 35.4% Active Dependencies (complete + fitness-important)
+- 41.0% Latent Capabilities (complete but fitness-neutral in rich media)
+- 14.9% Incomplete but Important
+- 8.7% Missing
+
+Key insight: ALL Latent Capabilities become fitness-important under condition-specific analysis (nitrogen limitation, stress, carbon source shifts). This validates the core_gene_tradeoffs finding that lab fitness underestimates natural selection on metabolic genes.
+
+### [pathway_capability_dependency] Variable pathways strongly predict pangenome openness
+
+Pan-bacterial analysis (2,810 species, ≥10 genomes each):
+- Spearman(variable pathways, openness): rho=0.327, p=7.2e-71
+- Partial Spearman controlling for genome count: rho=0.530, p=2.83e-203
+- Signal holds across 18/21 phylogenetic groups tested
+- Amino acid biosynthesis pathways (leu, val, arg, lys, thr) show largest accessory dependence gap (~0.14)
+
+This is much stronger than the pangenome_openness project's null result for environmental/phylogenetic predictors of openness. Metabolic pathway variability is a genuine predictor.
+
+### [pathway_capability_dependency] FB-native KEGG annotations bypass pangenome link table
+
+The Fitness Browser's own KEGG tables (`besthitkegg` + `keggmember` + `kgroupec`) provide direct gene-to-KEGG KO-to-EC-to-pathway mapping for all 48 FB organisms. This is much simpler than the DIAMOND blastp pipeline used by conservation_vs_fitness to build a link table, and covers more organisms. The chain: besthitkegg → keggmember → kgroupec → keggconf → GapMind pathway.
+
+### [pathway_capability_dependency] Metabolic ecotypes: median 4 per species
+
+Hierarchical clustering of 225 species (≥50 genomes, ≥3 variable pathways) by GapMind pathway profiles:
+- Median 4 metabolic ecotypes per species, max 8
+- More ecotypes correlate with pangenome openness (partial rho=0.322, p=8.0e-07)
+- Top ecotyped species: *Alistipes onderdonkii* (8), *Barnesiella intestinihominis* (8)
+
+### [counter_ion_effects] Counter ions in metal salts are NOT the primary confound in RB-TnSeq metal fitness data
+
+39.8% of metal-important genes are also NaCl-important across 19 organisms and 14 metals, but this overlap reflects shared stress biology (cell envelope, ion homeostasis, DNA repair) rather than chloride counter ion contamination. The definitive evidence: zinc sulfate (0 mM Cl⁻) shows 44.6% NaCl overlap and the highest DvH profile correlation (r=0.715) — higher than most chloride-delivered metals.
+
+### [counter_ion_effects] Metal Fitness Atlas core enrichment is robust to shared-stress correction
+
+After removing the ~40% of metal-important genes that overlap with NaCl stress, the core genome enrichment persists for 12 of 14 metals. Essential metals (Mo, W, Se, Hg) actually show stronger enrichment after correction (e.g., Mo delta +0.132 → +0.145). The original atlas conclusion (OR=2.08) is not an artifact.
+
+### [counter_ion_effects] DvH metal-NaCl correlation hierarchy reveals a general-to-specific toxicity gradient
+
+Whole-genome fitness correlation with NaCl: Zn (r=0.72) > Mn (0.55) > Cu (0.53) > Co (0.50) > Hg (0.48) > Ni (0.45) > Al (0.42) > Mo (0.40) > U (0.35) > Se (0.34) > Cr (0.32) > W (0.30) > Fe (0.09). Metals that broadly displace cofactors share more genes with ionic stress; metals targeting specific pathways (Mo/W for molybdopterin, Fe for iron-sulfur clusters) are distinct from general stress.
+
+### [counter_ion_effects] SynE is an outlier in NaCl overlap due to dose-response experiment design
+
+*Synechococcus elongatus* has 12 NaCl dose-response experiments (0.5–250 mM), far more than any other organism (1–6). This makes the `n_sick >= 1` threshold much easier to satisfy, producing an 88.6% shared-stress rate. Excluding SynE, overall overlap drops from 39.8% to 36.7%. Analyses using NaCl fitness data should account for experiment count when setting importance thresholds.
+
+### [fw300_metabolic_consistency] Tryptophan overflow: converging evidence from four databases
+
+FW300-N2E3 produces tryptophan (WoM: Increased), has 231 genes with significant fitness when grown on tryptophan (FB), has a complete tryptophan biosynthesis pathway (GapMind), yet 0/52 *P. fluorescens* strains in BacDive can utilize tryptophan as a carbon source. This convergence of four independent lines of evidence makes a compelling case for tryptophan overflow metabolism serving a cross-feeding or signaling function rather than a catabolic one. The finding is consistent with Fritts et al. (2021) and Ramoneda et al. (2023) who showed amino acid cross-feeding is widespread in soil communities and tryptophan auxotrophy is particularly common.
+
+### [fw300_metabolic_consistency] GapMind 13/13 perfect concordance with experimental data
+
+All 13 WoM-produced metabolites that could be mapped to GapMind pathways had "complete" pathway predictions, and all 13 also showed growth in FB experiments. This perfect agreement validates GapMind's accuracy for *Pseudomonas fluorescens* FW300-N2E3, consistent with Price et al. (2022, 2024). The matched metabolites are common amino acids and organic acids with well-characterized pathways.
+
+### [fw300_metabolic_consistency] 94% concordance is structurally driven — BacDive is the only informative component
+
+The 94% mean concordance across four databases decomposes into: FB 21/21 = 100% (structural), GapMind 13/13 = 100% (structural), BacDive 3/7 = 43% (informative). Overall 37/41 comparisons are concordant (90.2%). A binomial test comparing BacDive utilization of WoM-produced metabolites (43%) against the species baseline (27.5%) shows no significant difference (p=0.40). The high concordance is largely inevitable given that FB always shows growth for metabolites used as sole C/N sources, and GapMind predicts complete pathways for common amino acids.
+
+### [fw300_metabolic_consistency] Pleiotropic fitness genes are amino acid biosynthesis housekeeping, not substrate-specific
+
+The top 18 genes significant across all 21 FB metabolite conditions are amino acid biosynthesis enzymes: homoserine O-acetyltransferase (methionine), ATP phosphoribosyltransferase (histidine), dihydroxy-acid dehydratase (branched-chain), isopropylmalate dehydrogenase (leucine), shikimate dehydrogenase (aromatic), imidazoleglycerol-phosphate dehydratase (histidine). These are essential for growth on *any* minimal medium. The ~370 genes significant in only 1-2 conditions are the truly substrate-specific ones. This distinction is critical for interpreting WoM↔FB integration.
+
 ## Template
+
+### [webofmicrobes_explorer] WoM action 'E' encodes de novo metabolite production, distinct from 'I' (increased)
+
+The Web of Microbes database uses a 4-action encoding system. For organisms, 'E' (Emerged) means the metabolite was absent from the control medium and now detected — genuine de novo biosynthesis. 'I' (Increased) means the metabolite was present in the control and its level went up. E and I are mutually exclusive (0 overlap across 10,744 observations). For the control ("The Environment"), 'D' means Detected in medium and 'N' means Not detected. Critically, there is NO "Decreased" (consumption) action for any organism in the 2018 WoM snapshot — all 742 'D' observations belong to the control. This means the database records only production, not consumption.
+
+### [webofmicrobes_explorer] WoM ENIGMA isolates have direct Fitness Browser strain matches
+
+Two WoM organisms are exact strain matches to FB organisms: Pseudomonas sp. FW300-N2E3 = `pseudo3_N2E3` (5,854 genes, 211 experiments) and Pseudomonas sp. GW456-L13 = `pseudo13_GW456_L13` (5,243 genes, 106 experiments). E. coli BW25113 = `Keio` is also the same strain. These enable direct metabolite-to-gene-fitness linking. The FB conditions for these organisms include carbon source experiments (L-alanine, L-proline, sodium D-lactate, etc.) that test the same metabolites WoM detects as produced — 109 metabolite-condition name overlaps.
+
+### [webofmicrobes_explorer] 68.5% of identified WoM metabolites link to ModelSEED molecules
+
+Of 257 identified (non-unknown) WoM compounds, 69 match ModelSEED molecules by exact name and 107 by formula, totaling 176 (68.5%). This enables reaction-level annotation for the majority of WoM metabolites.
 
 ```markdown
 ### [project_name] Brief title

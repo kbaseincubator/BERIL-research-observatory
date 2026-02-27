@@ -15,10 +15,12 @@ from .config import settings
 from .models import (
     Collection,
     CollectionCategory,
+    CollectionEdge,
     CollectionTable,
     Column,
     Contributor,
     DataFile,
+    DerivedDataRef,
     Discovery,
     IdeaStatus,
     Notebook,
@@ -28,6 +30,7 @@ from .models import (
     Project,
     ProjectStatus,
     RepositoryData,
+    ResearchArea,
     ResearchIdea,
     Review,
     SampleQuery,
@@ -227,6 +230,12 @@ class RepositoryParser:
         # Aggregate unique contributors across all projects
         contributors = self._aggregate_contributors(projects)
 
+        # Auto-cluster projects into research areas
+        research_areas = self._cluster_research_areas(projects)
+
+        # Compute collection-to-collection edges
+        collection_edges = self._compute_collection_edges(collections, projects)
+
         # Compute stats
         total_notebooks = sum(len(p.notebooks) for p in projects)
         total_visualizations = sum(len(p.visualizations) for p in projects)
@@ -242,6 +251,8 @@ class RepositoryParser:
             collections=collections,
             contributors=contributors,
             skills=skills,
+            research_areas=research_areas,
+            collection_edges=collection_edges,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -295,6 +306,174 @@ class RepositoryParser:
 
         return sorted(merged.values(), key=lambda c: c.name.lower())
 
+    @staticmethod
+    def _cluster_research_areas(projects: list[Project]) -> list[ResearchArea]:
+        """Auto-cluster projects into thematic research areas.
+
+        Uses text similarity (title + research question), data provenance,
+        and shared collections as signals. Agglomerative clustering with
+        average linkage.
+        """
+        from collections import Counter
+        from math import sqrt
+
+        _STOP = {
+            "the", "a", "an", "and", "or", "but", "in", "on", "at", "to",
+            "for", "of", "with", "by", "from", "is", "are", "was", "were",
+            "be", "been", "have", "has", "do", "does", "did", "will", "would",
+            "could", "should", "may", "can", "this", "that", "these", "those",
+            "it", "its", "we", "our", "how", "what", "which", "where", "when",
+            "who", "than", "more", "most", "between", "across", "each", "per",
+            "using", "used", "based", "whether", "not", "no", "into", "also",
+            "both", "all", "show", "results", "data", "analysis", "gene",
+            "genes", "genome", "genomes", "species", "bacterial", "bacteria",
+            "pangenome", "pangenomes", "fitness",
+        }
+
+        def _terms(text: str | None) -> Counter:
+            if not text:
+                return Counter()
+            words = re.findall(r"[a-z]{4,}", text.lower())
+            return Counter(w for w in words if w not in _STOP)
+
+        def _cosine(a: Counter, b: Counter) -> float:
+            keys = set(a) | set(b)
+            dot = sum(a.get(k, 0) * b.get(k, 0) for k in keys)
+            mag_a = sqrt(sum(v ** 2 for v in a.values()))
+            mag_b = sqrt(sum(v ** 2 for v in b.values()))
+            if mag_a == 0 or mag_b == 0:
+                return 0.0
+            return dot / (mag_a * mag_b)
+
+        if not projects:
+            return []
+
+        pids = [p.id for p in projects]
+        features = {}
+        dep_sets = {}
+        for p in projects:
+            features[p.id] = _terms(p.title) + _terms(p.research_question)
+            dep_sets[p.id] = {r.source_project for r in p.derived_from}
+
+        # Pairwise similarity with data dep boost
+        sims: dict[tuple[str, str], float] = {}
+        for i in range(len(pids)):
+            for j in range(i + 1, len(pids)):
+                a, b = pids[i], pids[j]
+                s = _cosine(features[a], features[b])
+                if b in dep_sets[a] or a in dep_sets[b]:
+                    s += 0.3
+                if dep_sets[a] & dep_sets[b]:
+                    s += 0.15
+                sims[(a, b)] = s
+                sims[(b, a)] = s
+
+        # Agglomerative clustering (average linkage)
+        clusters: dict[str, list[str]] = {pid: [pid] for pid in pids}
+        THRESHOLD = 0.25
+
+        while True:
+            best_sim = 0.0
+            best_pair = None
+            ckeys = list(clusters.keys())
+            for i in range(len(ckeys)):
+                for j in range(i + 1, len(ckeys)):
+                    total = sum(
+                        sims.get((a, b), 0.0)
+                        for a in clusters[ckeys[i]]
+                        for b in clusters[ckeys[j]]
+                    )
+                    count = len(clusters[ckeys[i]]) * len(clusters[ckeys[j]])
+                    avg = total / count if count else 0.0
+                    if avg > best_sim:
+                        best_sim = avg
+                        best_pair = (ckeys[i], ckeys[j])
+            if best_sim < THRESHOLD or best_pair is None:
+                break
+            a, b = best_pair
+            clusters[a].extend(clusters[b])
+            del clusters[b]
+
+        # Build ResearchArea objects
+        areas = []
+        singletons = []
+        for members in clusters.values():
+            # Auto-name from top distinctive terms
+            combined = Counter()
+            for pid in members:
+                combined += features[pid]
+            top = [t for t, _ in combined.most_common(3)]
+            name = " & ".join(w.title() for w in top[:2]) if top else "Misc"
+
+            if len(members) == 1:
+                singletons.extend(members)
+            else:
+                areas.append(ResearchArea(
+                    id=slugify(name),
+                    name=name,
+                    project_ids=sorted(members),
+                    top_terms=[t for t, _ in combined.most_common(5)],
+                ))
+
+        # Sort by cluster size descending
+        areas.sort(key=lambda a: len(a.project_ids), reverse=True)
+
+        # Group singletons under "Independent Studies"
+        if singletons:
+            areas.append(ResearchArea(
+                id="independent-studies",
+                name="Independent Studies",
+                project_ids=sorted(singletons),
+                top_terms=[],
+            ))
+
+        return areas
+
+    @staticmethod
+    def _compute_collection_edges(
+        collections: list[Collection], projects: list[Project]
+    ) -> list[CollectionEdge]:
+        """Build collection-to-collection edges from explicit links and project co-usage.
+
+        Two edge types:
+        1. "explicit" — from Collection.related_collections in collections.yaml
+        2. "project_cooccurrence" — projects that reference multiple collections
+        """
+        edges: dict[tuple[str, str], CollectionEdge] = {}
+        collection_ids = {c.id for c in collections}
+
+        def _edge_key(a: str, b: str) -> tuple[str, str]:
+            return (min(a, b), max(a, b))
+
+        # Explicit links from collections.yaml
+        for coll in collections:
+            for related_id in coll.related_collections:
+                if related_id in collection_ids:
+                    key = _edge_key(coll.id, related_id)
+                    if key not in edges:
+                        edges[key] = CollectionEdge(
+                            source_id=key[0],
+                            target_id=key[1],
+                            edge_type="explicit",
+                        )
+
+        # Project co-occurrence: projects that reference 2+ collections
+        for project in projects:
+            colls = [c for c in project.related_collections if c in collection_ids]
+            for i in range(len(colls)):
+                for j in range(i + 1, len(colls)):
+                    key = _edge_key(colls[i], colls[j])
+                    if key not in edges:
+                        edges[key] = CollectionEdge(
+                            source_id=key[0],
+                            target_id=key[1],
+                            edge_type="project_cooccurrence",
+                        )
+                    if project.id not in edges[key].projects:
+                        edges[key].projects.append(project.id)
+
+        return sorted(edges.values(), key=lambda e: (e.source_id, e.target_id))
+
     def _get_git_dates(self, project_dir: Path) -> tuple[datetime | None, datetime | None]:
         """Get first and last commit dates for a project directory using git log."""
         try:
@@ -332,6 +511,18 @@ class RepositoryParser:
             project = self._parse_project_dir(project_dir)
             if project:
                 projects.append(project)
+
+        # Compute reverse mapping: which projects use each project's data
+        project_ids = {p.id for p in projects}
+        for project in projects:
+            for ref in project.derived_from:
+                if ref.source_project in project_ids:
+                    # Find the source project and add this project to its used_by
+                    for src in projects:
+                        if src.id == ref.source_project:
+                            if project.id not in src.used_by:
+                                src.used_by.append(project.id)
+                            break
 
         return sorted(
             projects, key=lambda p: p.updated_date or datetime.min, reverse=True
@@ -426,6 +617,9 @@ class RepositoryParser:
         # Parse notebooks
         notebooks = self._parse_notebooks(project_dir)
 
+        # Scan notebooks for cross-project data dependencies
+        derived_from = self._scan_notebook_data_deps(project_dir)
+
         # Parse visualizations and data files
         visualizations, data_files = self._parse_data_dir(project_dir)
 
@@ -490,6 +684,7 @@ class RepositoryParser:
                 for name, body in other_sections
             ],
             revision_history=revision_history,
+            derived_from=derived_from,
         )
 
     @staticmethod
@@ -711,6 +906,67 @@ class RepositoryParser:
                 if body:
                     others.append((name, body))
         return others
+
+    def _scan_notebook_data_deps(
+        self, project_dir: Path
+    ) -> list[DerivedDataRef]:
+        """Scan notebook code cells for cross-project data references.
+
+        Detects patterns like:
+        - ../../other_project/data/file.tsv
+        - .parent / 'other_project' / 'data'
+        - projects/other_project/data/file.tsv
+        """
+        notebooks_dir = project_dir / "notebooks"
+        if not notebooks_dir.exists():
+            return []
+
+        project_id = project_dir.name
+        # source_project -> set of filenames
+        deps: dict[str, set[str]] = {}
+
+        patterns = [
+            # ../../project/data/file or ../../project/data (dir-only)
+            re.compile(
+                r"\.\./\.\./([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
+            ),
+            # .parent / 'project' / 'data' / 'file' (Path objects)
+            re.compile(
+                r"\.parent\s*/\s*['\"]([a-z_]+)['\"]\s*/\s*['\"](?:data|user_data)['\"]"
+                r"(?:\s*/\s*['\"]([^'\"]+)['\"])?"
+            ),
+            # projects/project/data/file (absolute-ish paths)
+            re.compile(
+                r"projects/([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
+            ),
+        ]
+
+        import json
+
+        for nb_path in notebooks_dir.glob("*.ipynb"):
+            try:
+                nb_data = json.loads(nb_path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                continue
+
+            for cell in nb_data.get("cells", []):
+                if cell.get("cell_type") != "code":
+                    continue
+                source = "".join(cell.get("source", []))
+                for pattern in patterns:
+                    for match in pattern.finditer(source):
+                        src_project = match.group(1)
+                        if src_project == project_id:
+                            continue
+                        filename = match.group(2) if match.lastindex >= 2 and match.group(2) else None
+                        deps.setdefault(src_project, set())
+                        if filename:
+                            deps[src_project].add(filename)
+
+        return [
+            DerivedDataRef(source_project=sp, files=sorted(files))
+            for sp, files in sorted(deps.items())
+        ]
 
     def _parse_notebooks(self, project_dir: Path) -> list[Notebook]:
         """Parse notebooks from project/notebooks/ directory."""

@@ -32,10 +32,12 @@
             <ul class="nav-links">
                 <li><a href="/co-scientist" class="{% if request.url.path == '/co-scientist' %}active{% endif %}">Co-Scientist</a></li>
                 <li class="nav-dropdown">
-                    <a href="/projects" class="{% if request.url.path.startswith('/projects') or request.url.path.startswith('/collections') %}active{% endif %}">Observatory</a>
+                    <a href="/projects" class="{% if request.url.path.startswith('/projects') or request.url.path.startswith('/collections') or request.url.path == '/data-explorer' %}active{% endif %}">Observatory</a>
                     <ul class="dropdown-menu">
                         <li><a href="/projects">Projects</a></li>
+                        <li><a href="/research-areas">Research Areas</a></li>
                         <li><a href="/collections">Collections</a></li>
+                        <li><a href="/data-explorer">Data Explorer</a></li>
                         <li><a href="/knowledge/discoveries">Discoveries</a></li>
                         <li><a href="/community/contributors">Community</a></li>
                     </ul>
@@ -152,6 +154,17 @@
                 if (e.key === 'Escape') overlay.classList.remove('active');
             });
         })();
+
+        // Collapsible sections
+        document.querySelectorAll('.collapse-toggle').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var section = this.closest('.section').querySelector('.collapsible-section');
+                if (section) {
+                    section.classList.toggle('collapsed');
+                    this.classList.toggle('collapsed');
+                }
+            });
+        });
 
         // Anchor links on headings
         document.querySelectorAll('.section h2[id]').forEach(function(h2) {

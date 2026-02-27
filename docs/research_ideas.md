@@ -417,6 +417,10 @@
 
 ## Completed Ideas
 
+### [nmdc_community_metabolic_ecology] Community Metabolic Ecology via NMDC × Pangenome Integration
+**Status**: COMPLETED
+**Results**: Weak but consistent Black Queen signal detected in community metabolomics: 11/13 (85%) amino acid biosynthesis pathways trend in BQH-predicted direction (binomial p=0.011). Leucine (r=−0.390, q=0.022, n=62) and arginine (r=−0.297, q=0.049, n=80) biosynthesis are FDR-significant. Community metabolic potential separates strongly by ecosystem type (PC1=49.4% variance; Soil vs. Freshwater Mann-Whitney p<0.0001); 17/18 aa pathways significantly differentiated across ecosystem types. First BERDL integration of NMDC multi-omics with GapMind pangenome pathway completeness across 220 samples. See `projects/nmdc_community_metabolic_ecology/`.
+
 ### [lab_field_ecology] Lab Fitness Predicts Field Ecology at Oak Ridge
 **Status**: COMPLETED
 **Results**: 14 of 26 FB genera detected at Oak Ridge (108 sites). 5 of 11 tested genera correlate with uranium after FDR correction: *Herbaspirillum* and *Bacteroides* increase at contaminated sites, *Caulobacter*, *Sphingomonas*, and *Pedobacter* decrease. Lab metal tolerance suggestive but not significant (rho=0.50, p=0.095). First study linking Fitness Browser data with ENIGMA CORAL field ecology. See `projects/lab_field_ecology/`.
@@ -472,6 +476,14 @@
 ### [respiratory_chain_wiring] Condition-Specific Respiratory Chain Wiring in ADP1
 **Status**: COMPLETED
 **Results**: ADP1's branched respiratory chain (62 genes, 8 subsystems) uses qualitatively different configurations per carbon source: quinate requires only Complex I, acetate requires everything, glucose requires nothing. The paradox (quinate has lower NADH yield but higher Complex I dependency) is resolved by NADH flux rate — concentrated TCA burst from ring cleavage vs distributed production. ADP1 has 3 parallel NADH dehydrogenases (Complex I, NDH-2, ACIAD3522) with non-overlapping condition requirements. Cross-species: after correcting NDH-2 false positives (filtering to 1-2 hits/organism), NDH-2 presence does NOT predict reduced Complex I aromatic deficits (p=0.52), suggesting ADP1's wiring is species-specific. See `projects/respiratory_chain_wiring/`.
+
+### [counter_ion_effects] Counter Ion Effects on Metal Fitness Measurements
+**Status**: COMPLETED
+**Results**: Counter ions (chloride, sulfate, acetate) are NOT the primary confound in Fitness Browser metal experiments. 39.8% of metal-important genes overlap with NaCl stress across 19 organisms and 14 metals, but this reflects shared stress biology, not counter ion contamination. Key evidence: ZnSO₄ (0 mM Cl⁻) shows 44.6% NaCl overlap — higher than most chloride metals. The Metal Fitness Atlas core enrichment is fully robust after removing shared-stress genes (7/14 metals show stronger enrichment). DvH metal-NaCl correlation hierarchy (Zn r=0.72 → Fe r=0.09) follows toxicity mechanism, not Cl⁻ dose. See `projects/counter_ion_effects/`.
+
+### [fw300_metabolic_consistency] Metabolic Consistency of Pseudomonas FW300-N2E3
+**Status**: COMPLETED
+**Results**: Four BERDL databases (Web of Microbes, Fitness Browser, BacDive, GapMind) show 94% mean concordance for FW300-N2E3 metabolites, but this is structurally driven by FB (21/21=100%) and GapMind (13/13=100%). BacDive is the only informative variable (3/7=43%, binomial p=0.40 vs baseline). The key biological finding is tryptophan overflow: FW300-N2E3 produces tryptophan (WoM), has 231 fitness genes (FB), a complete pathway (GapMind), yet 0/50 *P. fluorescens* strains utilize it (BacDive) — consistent with cross-feeding. Per-strain BacDive consensus, approximate-match flagging, and concordance decomposition are methodological contributions. See `projects/fw300_metabolic_consistency/`.
 
 ---
 
@@ -530,3 +542,6 @@ _Capture half-baked ideas here for future refinement_
 - Link to relevant notebooks, data files, or papers when adding ideas
 - When an idea moves to IN_PROGRESS, create a project directory or notebook
 - Archive completed ideas with links to results
+
+---
+
