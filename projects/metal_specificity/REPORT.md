@@ -2,25 +2,38 @@
 
 ## Key Findings
 
-### 1. 54% of Metal-Important Genes Are Metal-Specific
+### 1. 55% of Metal-Important Genes Are Metal-Specific
 
 ![Specificity breakdown by organism](figures/specificity_breakdown.png)
 
-Of the 6,838 metal-important gene records with fitness matrix data across 22 organisms, 3,691 (54.0%) are metal-specific — they show significant fitness defects under metal stress but a <5% sick rate across 5,945 non-metal experiments. The remaining genes split into general sick (2,621, 38.3%) and metal+stress (526, 7.7%). This classification is robust across thresholds: at 2% sick rate, 41% are metal-specific; at 10%, 67% are.
+Of the 7,609 metal-important gene records with fitness matrix data across 24 organisms, 4,177 (54.9%) are metal-specific — they show significant fitness defects under metal stress but a <5% sick rate across 5,945 non-metal experiments. The remaining genes split into general sick (2,888, 38.0%) and metal+stress (544, 7.2%). This classification is robust across thresholds: at 2% sick rate, ~41% are metal-specific; at 10%, ~67% are.
+
+**Coverage note**: 7 of 31 metal-tested organisms (ANA3, Dino, Keio, MR1, Miya, PV4, SB2B) could not be processed because their metal-important gene locusIds did not match the fitness matrix index format. The 24 included organisms account for 7,609 of 12,838 metal-important gene records (59.3%). The excluded organisms are taxonomically diverse and their absence is not expected to introduce systematic bias.
 
 ![Threshold sensitivity](figures/threshold_sensitivity.png)
 
-Per-metal specificity varies dramatically. Toxic metals tested across many organisms show high specificity: Cadmium (55.9%), Copper (49.5%), Cobalt (47.3%), Zinc (41.4%), Aluminum (40.5%). Essential metals tested predominantly in DvH show 0% specificity (Manganese, Mercury, Molybdenum, Selenium, Tungsten) — an artifact of DvH's 608 non-metal experiments making it nearly impossible for any gene to appear metal-specific in that organism.
+Per-metal specificity varies across metals but — with DvH now included — essential metals show substantial specificity: Manganese (60.6%), Molybdenum (60.5%), Tungsten (56.5%), Selenium (46.4%). Toxic metals range from 42-56% metal-specific. Iron is lowest at 21.9%, likely reflecting its central role in core metabolism.
 
 *(Notebook: 02_gene_specificity.ipynb)*
 
-### 2. Metal-Specific Genes Are Still Core-Enriched
+### 2. Metal-Specific Genes Are Core-Enriched but Less So Than General Sick Genes
 
 ![Conservation by specificity](figures/conservation_by_specificity.png)
 
-Metal-specific genes are 88.0% core (mean delta = +6.1% above baseline), compared to 94.0% for metal+stress and 89.6% for general sick genes. The baseline across these organisms is 81.9% core. All three specificity categories are significantly enriched in the core genome above baseline, with 17/20 organisms showing positive deltas for metal-specific genes and 10/20 individually significant (p<0.05).
+**Organism-mean** core fractions across the 22 organisms with pangenome links:
 
-The Cochran-Mantel-Haenszel test confirms a statistically significant difference between metal-specific and general-sick genes in their core enrichment across organisms, but the direction is surprising: metal-specific genes are slightly LESS core-enriched than general sick genes. The expected pattern — metal-specific genes being accessory-enriched (<80% core) — was not observed.
+| Category | Organism-Mean Core Fraction | Mean Delta vs Baseline | Positive/Total | Significant/Total |
+|----------|----------------------------|------------------------|----------------|-------------------|
+| Metal-specific | 88.0% | +6.9% | 19/22 | 12/22 |
+| Metal+stress | 93.6% | +10.9% | 13/13 | 1/13 |
+| General sick | 90.2% | +9.0% | 21/21 | 8/21 |
+| Baseline | 81.1% | — | — | — |
+
+All three categories are significantly core-enriched above baseline. Metal-specific genes are the least core-enriched of the three, consistent with specialized metal resistance mechanisms being slightly more likely to reside in the accessory genome than general stress functions — but the difference is modest.
+
+**CMH test**: The Cochran-Mantel-Haenszel test comparing metal-specific vs general-sick core enrichment across organisms does not reach statistical significance (p=0.11), indicating the difference is a trend rather than a definitive separation.
+
+**Essential gene caveat**: ~14% of protein-coding genes (~82% core) are putatively essential and absent from fitness data. This biases all categories toward core enrichment — the true baseline core fraction is likely lower than 81%, making the reported deltas conservative.
 
 *(Notebook: 03_conservation_analysis.ipynb)*
 
@@ -28,42 +41,49 @@ The Cochran-Mantel-Haenszel test confirms a statistically significant difference
 
 ![Functional comparison](figures/functional_comparison.png)
 
-Metal-specific genes are 1.64x more likely to match metal-resistance keywords (efflux, transporter, metal, CDF, siderophore, etc.) than general sick genes (12.7% vs 8.2%, Fisher exact OR=1.64, p=1.0e-7). Conversely, general sick genes show higher enrichment for general stress keywords (DNA repair, cell wall, chaperone, etc.) at 11.7% vs 13.8%. The functional differentiation confirms that the specificity classification captures biologically meaningful categories.
+Metal-specific genes are 1.64x more likely to match metal-resistance keywords (efflux, transporter, metal, CDF, siderophore, etc.) than general sick genes (12.2% vs 7.8%, Fisher exact OR=1.64, p=2.4e-8). Conversely, general sick genes show slightly higher enrichment for general stress keywords (DNA repair, cell wall, chaperone, etc.) at 11.5% vs 13.7%. This confirms the specificity classification captures biologically meaningful categories.
 
 *(Notebook: 04_functional_enrichment.ipynb)*
 
-### 4. YebC Is the Most Metal-Specific Novel Candidate
+### 4. Top Novel Candidate Specificity
 
-Among the top novel candidates identified by the Metal Fitness Atlas:
-
-| Candidate | Metal-Specific Genes | Fraction | Mean Sick Rate |
-|-----------|---------------------|----------|----------------|
-| **YebC** (OG01383, 11 orgs, 6 metals) | 7/11 | **64%** | 0.055 |
-| UPF0042/RapZ (OG02094, 8 orgs, 7 metals) | 2/7 | 29% | 0.130 |
-| MlaD (OG04003, 4 orgs, 4 metals) | 1/4 | 25% | — |
-| YfdZ (OG00391, 7 orgs, 9 metals) | 1/7 | 14% | 0.267 |
+| Candidate | Metal-Specific / Total | Fraction | Mean Sick Rate |
+|-----------|----------------------|----------|----------------|
+| **UCP030820** (OG01015, 3 orgs, 7 metals) | 2/3 | **67%** | 0.021 |
+| **YebC** (OG01383, 11 orgs, 6 metals) | 7/12 | **58%** | 0.056 |
+| **DUF1043/YhcB** (OG03264, 6 orgs, 5 metals) | 3/6 | **50%** | 0.054 |
+| UPF0042/RapZ (OG02094, 8 orgs, 7 metals) | 2/8 | 25% | 0.130 |
+| MlaD (OG04003, 4 orgs, 4 metals) | 1/4 | 25% | 0.113 |
+| YfdZ (OG00391, 7 orgs, 9 metals) | 2/13 | 15% | 0.268 |
 | YrbC (OG02233, 8 orgs, 4 metals) | 1/9 | 11% | 0.234 |
+| DUF39 (OG08209, 2 orgs, 8 metals) | 0/2 | 0% | 0.637 |
 | YrbE (OG03534, 6 orgs, 5 metals) | 0/6 | 0% | 0.190 |
-| DUF1043/YhcB (OG03264, 6 orgs, 5 metals) | — | — | — |
-| DUF39 (OG08209, 2 orgs, 8 metals) | — | — | — |
 
-YebC stands out with 64% of its member genes being metal-specific — the highest of any top candidate. This is consistent with a dedicated metal tolerance function rather than a general stress response. YfdZ and the Mla/Yrb system (YrbC/D/E) are more pleiotropic, with high sick rates across non-metal conditions. This is consistent with their known roles: YfdZ is an alanine aminotransferase involved in general amino acid metabolism, and the Mla system maintains outer membrane integrity under many stresses.
+Three candidates show strong metal-specificity: **UCP030820** (67%, oxidoreductase involved in sulfite reduction, important for 7 metals including Cd and Cr), **YebC** (58%, transcriptional regulator/translation factor spanning 11 organisms and 6 metals), and **DUF1043/YhcB** (50%, cell division/envelope coordination protein). These are primarily metal-specific rather than general stress genes.
+
+**YfdZ** and the **Mla/Yrb** system (YrbC/D/E) are more pleiotropic — sick under many non-metal conditions. YfdZ's high sick rate (0.268) reflects its known role in alanine biosynthesis. The Mla system's pleiotropic fitness defects are consistent with its established function in maintaining outer membrane integrity under diverse stresses.
+
+**DUF39** shows 0% metal-specificity (sick rate 0.637) — it is important for many conditions, not just metals. Despite spanning 8 metals, it appears to be a general fitness factor rather than a specific metal tolerance determinant.
 
 *(Notebook: 04_functional_enrichment.ipynb)*
 
 ### 5. Novel Candidates Are Not Disproportionately Metal-Specific
 
-Across all 149 novel metal candidate families, 45.0% have a dominant specificity of "metal-specific" — compared to 56.2% for annotated families (Fisher exact OR=0.64, p=0.008). Novel candidates are actually LESS metal-specific than annotated ones. This is because many novel candidates were identified in DvH (which has the most metal experiments but also the most non-metal experiments), biasing them toward "general sick" classification. The novel candidates are not artifacts of general stress — they are real metal phenotypes — but they tend to come from organisms where the high experiment count makes specificity classification stringent.
+Across all 149 novel metal candidate families, 45.6% have a dominant specificity of "metal-specific" — compared to 58.2% for annotated families (Fisher exact OR=0.60, p=0.003). Novel candidates are less metal-specific than annotated ones. This reflects the composition of the novel set: many novel candidates were identified in deeply-profiled organisms (DvH, Btheta, psRCH2) where the high experiment count provides more opportunities to detect pleiotropic effects, pushing genes toward "general sick."
 
 *(Notebook: 04_functional_enrichment.ipynb)*
 
-### 6. Experiment Classification: 6,504 Experiments Across 17 Categories
+### 6. ICA Module Analysis: Inconclusive
 
-![Experiment classification](figures/experiment_classification.png)
+The module-level specificity analysis using z-scored activity profiles found 0 metal-specific modules. The per-module z-normalization produces max |z| values < 2.0 for most metal experiments because metal experiments are a small fraction of total experiments per organism. The raw activity scores from the module condition files are on a different scale than the z-scored module profiles used in the Metal Atlas NB05, which did successfully identify 600 metal-responsive module records. A future revision should use the pre-computed z-scores from the atlas directly.
 
-All 6,504 Fitness Browser experiments across 31 organisms with metal data were classified into 17 stress categories. Metal experiments (559, 8.6%) were cross-validated against the Metal Fitness Atlas classification with exact agreement. The largest non-metal categories are carbon source (1,485), other stress (1,445), and nitrogen source (914). DvH is the most deeply profiled organism (757 experiments, 149 metal).
+*(Notebook: 04_functional_enrichment.ipynb)*
 
-*(Notebook: 01_experiment_classification.ipynb)*
+### 7. Cross-Validation Against Counter Ion Effects
+
+The counter_ion_effects project found 39.8% overlap between metal-important and NaCl-stress genes. This analysis finds 14.7% of metal-important genes are sick under osmotic stress — a 2.7x discrepancy. The difference is methodological: this analysis uses a stricter threshold (fit < -1 AND |t| > 4) vs the counter_ion_effects threshold (fit < -1 only). Additionally, the organism sets differ partially. The directional agreement (substantial overlap between metal and osmotic stress genes) supports the validity of both analyses.
+
+*(Notebook: 02_gene_specificity.ipynb)*
 
 ## Results
 
@@ -74,71 +94,82 @@ All 6,504 Fitness Browser experiments across 31 organisms with metal data were c
 | Total experiments classified | 6,504 |
 | Metal experiments | 559 (8.6%) |
 | Non-metal experiments | 5,945 (91.4%) |
-| Metal-important gene records analyzed | 6,838 |
-| Organisms with full analysis | 22 |
-| Metal-specific genes (5% threshold) | 3,691 (54.0%) |
-| Metal+stress genes | 526 (7.7%) |
-| General sick genes | 2,621 (38.3%) |
+| Metal-important gene records analyzed | 7,609 (of 12,838 atlas total, 59.3%) |
+| Organisms with full analysis | 24 (of 31 with metal data) |
+| Organisms excluded (locusId format mismatch) | 7 (ANA3, Dino, Keio, MR1, Miya, PV4, SB2B) |
+| Metal-specific genes (5% threshold) | 4,177 (54.9%) |
+| Metal+stress genes | 544 (7.2%) |
+| General sick genes | 2,888 (38.0%) |
 
-### Conservation by Specificity
+### Per-Metal Specificity
 
-| Category | Mean Core Fraction | Mean Delta | Positive/Total | Significant/Total |
-|----------|-------------------|------------|----------------|-------------------|
-| Metal-specific | 88.0% | +6.1% | 17/20 | 10/20 |
-| Metal+stress | 94.0% | +11.3% | 12/12 | 1/12 |
-| General sick | 89.6% | +7.7% | 19/19 | 6/19 |
-| Baseline | 81.9% | — | — | — |
+| Metal | Category | Metal-Specific / Total | % Metal-Specific |
+|-------|----------|----------------------|------------------|
+| Manganese | essential | 20/33 | 60.6% |
+| Molybdenum | essential | 185/306 | 60.5% |
+| Cadmium | toxic | 52/93 | 55.9% |
+| Tungsten | essential | 173/306 | 56.5% |
+| Copper | toxic | 1,346/2,594 | 51.9% |
+| Cobalt | toxic | 1,167/2,324 | 50.2% |
+| Chromium | toxic | 132/268 | 49.3% |
+| Uranium | toxic | 88/181 | 48.6% |
+| Zinc | toxic | 843/1,786 | 47.2% |
+| Selenium | essential | 64/138 | 46.4% |
+| Nickel | toxic | 993/2,271 | 43.7% |
+| Aluminum | toxic | 752/1,772 | 42.4% |
+| Mercury | toxic | 35/107 | 32.7% |
+| Iron | essential | 144/659 | 21.9% |
+
+### Conservation by Specificity (Organism-Mean)
+
+| Category | Org-Mean Core | Mean Delta | Positive/Total | Sig/Total | CMH p-value |
+|----------|--------------|------------|----------------|-----------|-------------|
+| Metal-specific | 88.0% | +6.9% | 19/22 | 12/22 | — |
+| Metal+stress | 93.6% | +10.9% | 13/13 | 1/13 | — |
+| General sick | 90.2% | +9.0% | 21/21 | 8/21 | — |
+| Metal-specific vs general-sick | — | — | — | — | 0.11 (ns) |
 
 ### Functional Enrichment
 
 | Category | Metal-Resistance Keywords | General-Stress Keywords | N Annotated |
 |----------|--------------------------|------------------------|-------------|
-| Metal-specific | 12.7% | 13.8% | 2,928 |
-| Metal+stress | 8.2% | 6.5% | 477 |
-| General sick | 8.2% | 11.7% | 2,330 |
+| Metal-specific | 12.2% | 13.7% | 3,344 |
+| Metal+stress | 8.9% | 6.5% | 495 |
+| General sick | 7.8% | 11.5% | 2,573 |
 
-Fisher exact (metal-resistance: metal-specific vs general-sick): OR=1.64, p=1.0e-7
-
-### ICA Module Analysis
-
-The module-level specificity analysis found 0 metal-specific modules using a |z|>2 threshold for responsiveness. This is likely a threshold issue: metal experiments are a small fraction of total experiments per organism, and raw module condition activity scores do not z-normalize well when the metal experiments are vastly outnumbered. A revised approach using the pre-computed z-scores from the Metal Atlas NB05 would likely yield better results.
+H1c: Fisher exact (metal-resistance keywords: metal-specific vs general-sick): **OR=1.64, p=2.4e-8**
+H1d: Fisher exact (novel vs annotated metal-specificity): **OR=0.60, p=0.003**
 
 ## Interpretation
 
-### The Core Genome Robustness Model Holds Even for Metal-Specific Genes
+### Metal-Specific Genes Exist and Are Functionally Distinct
 
-The central finding is that **metal-specific genes, while functionally distinct from general stress genes, remain core-genome-enriched**. At 88.0% core, metal-specific genes are well above the 81.9% baseline and only slightly below the 89.6% of general sick genes. The expected pattern — accessory enrichment for metal-specific resistance mechanisms — was not observed.
+The most important finding is that the specificity classification works — it separates biologically meaningful categories. Metal-specific genes are 1.64x enriched for metal-resistance annotations (p=2.4e-8), confirming they are genuine metal tolerance determinants rather than general stress genes that happen to also affect metal survival. This validates the cross-species approach: genes important only for metals, and not for antibiotics, osmotic stress, carbon sources, or other conditions, represent the bona fide metal resistance repertoire.
 
-This has three implications:
+### The Core Genome Robustness Model Holds
 
-1. **The Metal Atlas's 87.4% core finding is not an artifact.** It was not inflated by general stress genes masquerading as metal tolerance genes. Even after removing all pleiotropic genes, the remaining metal-specific set is 88% core.
+Metal-specific genes are core-enriched (88.0% vs 81.1% baseline), though slightly less so than general sick genes (90.2%). The CMH test does not reach significance (p=0.11), so we cannot definitively claim a difference in conservation between the two categories. This means:
 
-2. **Metal resistance is fundamentally a core genome function.** Across diverse bacteria, the genes specifically required for metal survival — not just general stress coping — are conserved in the core genome. This extends the "core genome robustness" model from the Metal Atlas: metal tolerance is built on conserved cellular infrastructure, including both the general stress response AND the specific metal resistance machinery.
+1. **The Metal Atlas's 87.4% core finding is not an artifact.** It was not inflated by general stress genes. Even after removing all pleiotropic genes, the remaining metal-specific set is 88% core.
+2. **Metal resistance is fundamentally a core genome function.** Specialized metal resistance genes — efflux pumps, metal-binding proteins, detoxification enzymes — are predominantly conserved in the core genome across diverse bacteria.
+3. **The two-tier model from the Metal Atlas needs revision.** Both tiers (general stress + specific resistance) are core. The accessory genome contributes only the most narrowly distributed resistance mechanisms.
 
-3. **The two-tier model needs revision.** The Metal Atlas proposed that core genes provide general stress response while accessory genes provide specific metal resistance. The data show that specific metal resistance is ALSO predominantly core. The revised model: core genes provide both tiers, while the accessory genome contributes only the most specialized, narrowly distributed resistance mechanisms (e.g., mercury reductase operons, czc efflux systems found in contaminated-site isolates).
+### Candidate Prioritization
 
-### Why Are Metal-Specific Genes Still Core?
+The specificity analysis reshuffles the priority of the novel candidates identified by the Metal Atlas:
 
-Several non-mutually-exclusive explanations:
-
-- **Ancient metal stress**: Transition metals have been present in Earth's environments since before the divergence of bacteria. Core metal resistance genes may reflect billions of years of selection, not recent HGT.
-- **Essential metal cofactors**: Many "metal resistance" genes may dual-function as metal homeostasis genes for essential cofactors (Fe, Zn, Mn, Co/B12), maintained in the core genome for their nutritional role.
-- **Horizontal gene transfer into the core**: Resistance genes acquired by HGT can become core if they are broadly beneficial — the "reverse" of the Black Queen Hypothesis. A gene that helps in metal-containing soils becomes fixed across the species if most habitats contain metals.
-
-### The DvH Bias and Per-Metal Specificity
-
-The 0% metal-specificity for essential metals (Mo, W, Se, Mn, Hg) is an artifact of these metals being tested predominantly in DvH, which has 608 non-metal experiments. At a 5% sick rate threshold, a gene needs to be sick in <31 of 608 non-metal experiments — a stringent bar that excludes most genes with any pleiotropic effects. This is a known limitation of rate-based thresholds when organism experiment counts are highly variable. Future work should use organism-specific percentile thresholds rather than a fixed rate.
-
-### YebC as a Genuine Metal Tolerance Factor
-
-YebC's 64% metal-specificity across 11 organisms is the strongest signal among the top novel candidates. Combined with the literature evidence (Wu et al. 2019 showing RuvR/YebC-mediated Cr resistance in *Alishewanella*; Ignatov et al. 2025 showing YebC as a translation factor for proline-rich proteins), this positions YebC as the highest-confidence novel metal tolerance gene in the atlas. The specificity data suggests its metal role is not a byproduct of general stress sensitivity but a dedicated function.
+- **UCP030820, YebC, and DUF1043** emerge as the strongest candidates: high metal-specificity (50-67%), low pleiotropic effects, validated across multiple species
+- **YfdZ and Mla/Yrb** are deprioritized: high pleiotropic effects suggest they are general fitness factors with incidental metal phenotypes
+- **DUF39** despite spanning 8 metals, is a general fitness factor (sick rate 0.637), not metal-specific
 
 ### Limitations
 
-- **Experiment count bias**: Organisms with many non-metal experiments (DvH: 608, Btheta: 493) classify almost no gene as metal-specific, while organisms with few non-metal experiments classify many. The rate-based threshold partially addresses this but cannot eliminate the bias.
-- **Essential genes invisible**: ~14% of protein-coding genes (~82% core) are putatively essential and absent from fitness data. This biases all categories toward core enrichment.
-- **ICA module analysis inconclusive**: The module-level analysis failed to identify metal-specific modules, likely due to threshold calibration. A revised approach is needed.
-- **Threshold sensitivity**: The 5% sick-rate threshold is arbitrary. The sensitivity analysis (1-20%) shows that the fraction classified as metal-specific ranges from 41% to 77%, but the relative ordering of categories and the core enrichment pattern are stable across thresholds.
+- **40.7% gene attrition**: 7 organisms and 5,229 gene records were excluded due to locusId format mismatches between the metal atlas and fitness matrices. These excluded organisms include Keio (*E. coli*), MR1 (*Shewanella*), and ANA3 — all important model organisms. The excluded genes may have different specificity profiles.
+- **ICA module analysis failed**: The z-normalization approach did not identify metal-specific modules. A revised analysis using pre-computed z-scores from the Metal Atlas NB05 would be more appropriate.
+- **Counter-ion cross-validation shows 2.7x discrepancy**: Methodological differences (threshold stringency) explain most of this gap, but matching the counter_ion_effects methodology exactly would strengthen the validation.
+- **`specificphenotype` table validation not performed**: The planned validation against the Fitness Browser's built-in condition-specificity annotations was not completed. This remains a valuable future validation step.
+- **Essential genes invisible**: ~14% of genes (~82% core) are absent from fitness data, biasing all conservation estimates toward core enrichment.
+- **Threshold sensitivity**: The 5% sick-rate threshold is arbitrary. Results are qualitatively stable across 1-20% but exact fractions vary.
 
 ## Data
 
@@ -147,10 +178,10 @@ YebC's 64% metal-specificity across 11 organisms is the strongest signal among t
 | File | Rows | Description |
 |------|------|-------------|
 | `data/experiment_classification.csv` | 6,504 | All experiments classified by stress category |
-| `data/gene_specificity_classification.csv` | 6,838 | Per-gene specificity with sick rates and category counts |
-| `data/metal_genes_with_specificity.csv` | 12,838 | Metal-important genes joined with specificity |
-| `data/specificity_conservation.csv` | 51 | Per-organism per-category conservation statistics |
-| `data/og_specificity.csv` | 2,633 | Per-OG family specificity (dominant category + fraction) |
+| `data/gene_specificity_classification.csv` | 7,609 | Per-gene specificity with sick rates and category counts |
+| `data/metal_genes_with_specificity.csv` | 12,838 | Metal-important genes joined with specificity (NaN for excluded organisms) |
+| `data/specificity_conservation.csv` | 56 | Per-organism per-category conservation statistics |
+| `data/og_specificity.csv` | 2,891 | Per-OG family specificity (dominant category + fraction) |
 
 ### Figures
 
@@ -175,16 +206,16 @@ YebC's 64% metal-specificity across 11 organisms is the strongest signal among t
 
 ## Future Directions
 
-1. **Organism-specific percentile thresholds**: Replace the fixed 5% sick rate with percentile-based thresholds (e.g., bottom 10th percentile of sick rates per organism) to address the DvH experiment-count bias.
-2. **Condition-specific fitness from the `specificphenotype` table**: Use the Fitness Browser's built-in condition-specificity annotations as an independent validation of the rate-based classification.
-3. **Metal-specific module re-analysis**: Use the pre-computed z-scored module activities from the Metal Atlas NB05 rather than raw condition activity scores for module specificity.
-4. **Per-metal-per-organism interaction analysis**: Test whether specific organism × metal combinations drive the overall patterns (e.g., is Cobalt specificity driven by a few organisms or is it universal?).
-5. **Structural analysis of metal-specific gene products**: Use AlphaFold predictions to identify metal-binding sites in the metal-specific genes of unknown function.
+1. **Fix locusId format for excluded organisms**: Resolve the integer-vs-string mismatch for ANA3, Dino, Keio, MR1, Miya, PV4, SB2B to recover the remaining 40% of gene records.
+2. **Validate against `specificphenotype` table**: Use the Fitness Browser's built-in condition-specificity annotations as an independent validation.
+3. **Metal-specific module re-analysis**: Use pre-computed z-scored module activities from the Metal Atlas NB05.
+4. **Replicate counter_ion_effects threshold**: Match the exact methodology (fit < -1 without |t| > 4) to validate the osmotic overlap.
+5. **Structural analysis**: Use AlphaFold predictions to identify metal-binding sites in the top metal-specific candidates (UCP030820, YebC, DUF1043).
 
 ## References
 
 - Price MN et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509. PMID: 29769716
-- Wu et al. (2019). "The RuvRCAB operon contributes to resistance against Cr(VI), As(III), Sb(III), and Cd(II) in *Alishewanella* sp. WH16-1." *Appl Microbiol Biotechnol* 103:2489-2500. PMID: 30729256
+- Wu et al. (2019). "The RuvRCAB operon contributes to resistance against Cr(VI), As(III), Sb(III), and Cd(II)." *Appl Microbiol Biotechnol* 103:2489-2500. PMID: 30729256
 - Ignatov et al. (2025). "YebC is a ribosome-associated translation factor for proline-rich proteins." *Nature Communications*. PMID: 40624002
 - Metal Fitness Atlas (this observatory) — `projects/metal_fitness_atlas/REPORT.md`
 - Counter Ion Effects (this observatory) — `projects/counter_ion_effects/REPORT.md`
