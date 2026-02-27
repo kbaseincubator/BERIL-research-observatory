@@ -55,6 +55,8 @@ data/               # Shared data extracts reusable across projects
 | `/literature-review` | Search PubMed, bioRxiv, arXiv, Semantic Scholar, and Google Scholar for relevant biological literature |
 | `/synthesize` | Read analysis outputs, compare against literature, and draft findings |
 | `/submit` | Submit a project for automated review |
+| `/knowledge` | Search projects, findings, figures, and data artifacts across the observatory |
+| `/build-registry` | Regenerate the knowledge registry index files |
 | `/cts` | Run batch compute jobs on the CTS cluster |
 
 > **Note**: Hypothesis generation, research planning, and notebook creation are handled automatically as part of the research workflow (Path 1 below). You don't need to invoke them separately.
@@ -170,6 +172,11 @@ When the user wants to start a new research project, the agent drives the entire
 16. Create project directory structure: `notebooks/`, `data/`, `user_data/`, `figures/`
 17. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch."
 18. Create branch `projects/{project_id}`, switch to it, and commit README + RESEARCH_PLAN. Working on a dedicated branch from the start avoids accumulating changes on main during long-running projects. Tell the user what you're doing — if they prefer to stay on main, skip branch creation.
+18b. Register the new project in the knowledge registry so it's immediately discoverable:
+    ```bash
+    uv run scripts/build_registry.py --project {project_id}
+    ```
+    This creates a `proposed` or `in-progress` entry. If the script is not found, skip silently.
 19. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer subagent:
 
     ```bash

@@ -19,9 +19,13 @@ from .models import (
     CollectionTable,
     Column,
     Contributor,
+    CrossProjectDep,
     DataFile,
+    DataSourceRef,
     DerivedDataRef,
     Discovery,
+    FindingEvidence,
+    GeneratedDataEntry,
     IdeaStatus,
     Notebook,
     PerformanceTip,
@@ -29,6 +33,8 @@ from .models import (
     Priority,
     Project,
     ProjectStatus,
+    Provenance,
+    Reference,
     RepositoryData,
     ResearchArea,
     ResearchIdea,
@@ -643,13 +649,29 @@ class RepositoryParser:
         # Parse review
         review = self._parse_review(project_dir)
 
-        # Extract collection references from all available text
-        all_text = readme_content
-        if research_plan_raw:
-            all_text += "\n" + research_plan_raw
-        if report_raw:
-            all_text += "\n" + report_raw
-        related_collections = self._extract_collection_refs(all_text)
+        # Parse structured provenance metadata
+        provenance = self._parse_provenance(project_dir)
+
+        # Extract collection references — prefer provenance when available
+        if provenance and provenance.data_sources:
+            related_collections = provenance.collection_ids
+        else:
+            all_text = readme_content
+            if research_plan_raw:
+                all_text += "\n" + research_plan_raw
+            if report_raw:
+                all_text += "\n" + report_raw
+            related_collections = self._extract_collection_refs(all_text)
+
+        # Use provenance for cross-project deps when available
+        if provenance and provenance.cross_project_deps:
+            derived_from = [
+                DerivedDataRef(
+                    source_project=dep.project,
+                    files=dep.files,
+                )
+                for dep in provenance.cross_project_deps
+            ]
 
         return Project(
             id=project_dir.name,
@@ -685,6 +707,7 @@ class RepositoryParser:
             ],
             revision_history=revision_history,
             derived_from=derived_from,
+            provenance=provenance,
         )
 
     @staticmethod
@@ -967,6 +990,140 @@ class RepositoryParser:
             DerivedDataRef(source_project=sp, files=sorted(files))
             for sp, files in sorted(deps.items())
         ]
+
+    def _parse_provenance(self, project_dir: Path) -> Provenance | None:
+        """Parse provenance.yaml from a project directory."""
+        prov_path = project_dir / "provenance.yaml"
+        if not prov_path.exists():
+            return None
+
+        try:
+            data = yaml.safe_load(prov_path.read_text(encoding="utf-8"))
+        except (yaml.YAMLError, OSError, UnicodeDecodeError):
+            return None
+
+        if not isinstance(data, dict):
+            return None
+
+        references = []
+        for r in data.get("references", []):
+            if not isinstance(r, dict):
+                continue
+            # Normalize authors to list[str]
+            authors_raw = r.get("authors", [])
+            if isinstance(authors_raw, str):
+                authors = [authors_raw]
+            elif isinstance(authors_raw, list):
+                authors = [str(a) for a in authors_raw]
+            else:
+                authors = [str(authors_raw)] if authors_raw else []
+            # Coerce year to int
+            year = r.get("year")
+            if year is not None:
+                try:
+                    year = int(year)
+                except (TypeError, ValueError):
+                    pass
+            references.append(Reference(
+                id=r.get("id", ""),
+                type=r.get("type", "supporting"),
+                title=r.get("title", ""),
+                authors=authors,
+                year=year,
+                journal=r.get("journal"),
+                volume=str(r["volume"]) if r.get("volume") is not None else None,
+                pages=str(r["pages"]) if r.get("pages") is not None else None,
+                doi=r.get("doi"),
+                pmid=str(r["pmid"]) if r.get("pmid") is not None else None,
+                url=r.get("url"),
+            ))
+
+        data_sources = []
+        for ds in data.get("data_sources", []):
+            if not isinstance(ds, dict):
+                continue
+            collection = ds.get("collection")
+            if not collection:
+                continue
+            # Normalize tables to list[str]
+            tables_raw = ds.get("tables", [])
+            if isinstance(tables_raw, str):
+                tables = [tables_raw]
+            elif isinstance(tables_raw, list):
+                tables = [str(t) for t in tables_raw]
+            else:
+                tables = []
+            data_sources.append(DataSourceRef(
+                collection=collection,
+                tables=tables,
+                purpose=ds.get("purpose"),
+                reference=ds.get("reference"),
+            ))
+
+        cross_project_deps = []
+        for dep in data.get("cross_project_deps", []):
+            if not isinstance(dep, dict):
+                continue
+            project = dep.get("project")
+            if not project:
+                continue
+            # Normalize files to list[str]
+            files_raw = dep.get("files", [])
+            if isinstance(files_raw, str):
+                files = [files_raw]
+            elif isinstance(files_raw, list):
+                files = [str(f) for f in files_raw]
+            else:
+                files = [str(files_raw)] if files_raw else []
+            cross_project_deps.append(CrossProjectDep(
+                project=project,
+                relationship=dep.get("relationship", "data_input"),
+                files=files,
+                description=dep.get("description"),
+            ))
+
+        def _to_str_list(val: object) -> list[str]:
+            """Normalize a YAML value to list[str]."""
+            if isinstance(val, str):
+                return [val]
+            if isinstance(val, list):
+                return [str(v) for v in val]
+            return [str(val)] if val else []
+
+        findings = []
+        for f in data.get("findings", []):
+            if not isinstance(f, dict):
+                continue
+            stats = f.get("statistics", {})
+            findings.append(FindingEvidence(
+                id=f.get("id", ""),
+                title=f.get("title", ""),
+                notebook=f.get("notebook"),
+                figures=_to_str_list(f.get("figures", [])),
+                data_files=_to_str_list(f.get("data_files", [])),
+                references=_to_str_list(f.get("references", [])),
+                statistics={str(k): str(v) for k, v in stats.items()} if isinstance(stats, dict) else {},
+            ))
+
+        generated_data = []
+        for g in data.get("generated_data", []):
+            if not isinstance(g, dict):
+                continue
+            generated_data.append(GeneratedDataEntry(
+                file=g.get("file", ""),
+                rows=g.get("rows"),
+                description=g.get("description"),
+                source_notebook=g.get("source_notebook"),
+            ))
+
+        return Provenance(
+            schema_version=data.get("schema_version", 1),
+            references=references,
+            data_sources=data_sources,
+            cross_project_deps=cross_project_deps,
+            findings=findings,
+            generated_data=generated_data,
+        )
 
     def _parse_notebooks(self, project_dir: Path) -> list[Notebook]:
         """Parse notebooks from project/notebooks/ directory."""

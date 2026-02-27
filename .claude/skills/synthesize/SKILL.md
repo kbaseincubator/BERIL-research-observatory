@@ -175,6 +175,85 @@ Also update `projects/{project_id}/README.md`:
 - Update `## Status` to reflect completion (e.g., "Complete — see [Report](REPORT.md) for findings")
 - Preserve existing `## Research Question` and `## Authors` sections
 
+#### Step 7.5: Generate `provenance.yaml`
+
+After writing REPORT.md, generate a structured provenance sidecar file at `projects/{project_id}/provenance.yaml`. Extract metadata from the report sections just written:
+
+- **References**: Parse `## References` lines into structured `Reference` entries. Classify type based on where each reference appeared:
+  - Referenced in `## Data > ### Sources` → `primary_data_source`
+  - Referenced in `### Literature Context` agreement → `supporting`
+  - Referenced in `### Literature Context` contradiction → `contradicting`
+  - Referenced as a method → `methodology`
+  - Otherwise → `supporting`
+- **Data sources**: Parse `## Data > ### Sources` table into `DataSourceRef` entries (collection ID, tables, purpose). Link to the corresponding Reference.id if one exists.
+- **Cross-project deps**: Parse README Dependencies section and Data Sources referencing other projects → `CrossProjectDep` entries with relationship type (e.g., `data_input`, `extends`).
+- **Findings**: Parse each `### {Title}` under `## Key Findings`. Extract:
+  - Notebook provenance from `*(Notebook: ...)*` annotations
+  - Figure references from `![...](figures/...)` syntax
+  - Inline citation references (match to Reference.id values)
+  - Statistical values (test name, p-value, effect size) from the finding text
+- **Generated data**: Parse `## Data > ### Generated Data` table into `GeneratedDataEntry` entries (file, rows, description, source_notebook).
+
+Write the file using this YAML structure:
+
+```yaml
+schema_version: 1
+
+references:
+  - id: price2018
+    type: primary_data_source
+    title: "Mutant phenotypes for thousands of bacterial genes of unknown function"
+    authors: ["Price MN", "Wetmore KM", "Waters RJ"]
+    year: 2018
+    journal: "Nature"
+    volume: "557"
+    pages: "503-509"
+    doi: "10.1038/s41586-018-0124-0"
+    pmid: "29769716"
+
+data_sources:
+  - collection: kescience_fitnessbrowser
+    tables: [organism, gene, fitness]
+    purpose: "Genome-wide fitness phenotypes"
+    reference: price2018
+
+cross_project_deps:
+  - project: conservation_vs_fitness
+    relationship: data_input
+    files: [data/fb_pangenome_link.tsv]
+    description: "Pre-computed pangenome-fitness links"
+
+findings:
+  - id: core_fitness_impact
+    title: "Core genes show higher fitness impact than accessory genes"
+    notebook: 01_core_fitness.ipynb
+    figures: [core_vs_accessory_fitness.png]
+    data_files: [data/core_fitness_comparison.csv]
+    references: [price2018]
+    statistics:
+      test: "Mann-Whitney U"
+      p_value: "1.6e-87"
+      effect_size: "0.003"
+
+generated_data:
+  - file: data/core_fitness_comparison.csv
+    rows: 15234
+    description: "Core vs accessory gene fitness comparison"
+    source_notebook: 01_core_fitness.ipynb
+```
+
+**Important**: Reference IDs should be short, memorable keys (e.g., `price2018`, `arkin2018`). Use the first author's last name + year. If duplicates, append a letter (e.g., `smith2020a`, `smith2020b`).
+
+#### Step 7.6: Update Knowledge Registry
+
+After writing provenance.yaml, update the project's entry in the global knowledge registry:
+
+```bash
+uv run scripts/build_registry.py --project {project_id}
+```
+
+This ensures the project's findings, tags, data artifacts, and dependencies are immediately searchable via `/knowledge`. If the script is not found or fails, print a note and continue — this is non-blocking.
+
 #### Step 8: Update References
 
 Add any new papers found during synthesis to `projects/{project_id}/references.md`.
@@ -198,8 +277,8 @@ After completing the synthesis, tell the user:
 
 - **Reads from**: `data/*.csv`, `figures/`, `notebooks/*.ipynb`, `RESEARCH_PLAN.md`, `references.md`
 - **Calls**: `/literature-review` (for literature comparison)
-- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); updated `README.md` (Status)
-- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md)
+- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); `provenance.yaml` (structured metadata); updated `README.md` (Status); updated `docs/project_registry.yaml` (via build_registry.py)
+- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md; validator checks provenance.yaml); `/knowledge` (searches registry)
 
 ## Pitfall Detection
 

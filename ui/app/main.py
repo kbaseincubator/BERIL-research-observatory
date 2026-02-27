@@ -345,9 +345,18 @@ async def project_detail(request: Request, project_id: str):
     ]
 
     # Resolve collection IDs to full objects for richer display
-    context["project_collections"] = [
-        c for c in (repo_data.get_collection(cid) for cid in project.related_collections) if c
-    ]
+    # When provenance exists, use provenance data_sources for collection resolution
+    if project.provenance and project.provenance.data_sources:
+        prov_collection_ids = project.provenance.collection_ids
+        context["project_collections"] = [
+            c for c in (repo_data.get_collection(cid) for cid in prov_collection_ids) if c
+        ]
+    else:
+        context["project_collections"] = [
+            c for c in (repo_data.get_collection(cid) for cid in project.related_collections) if c
+        ]
+    # Build id->collection mapping for O(1) template lookups
+    context["collection_map"] = {c.id: c for c in context["project_collections"]}
 
     # Resolve used_by IDs to full Project objects
     context["used_by_projects"] = [

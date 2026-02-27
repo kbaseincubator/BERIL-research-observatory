@@ -1,0 +1,1553 @@
+version: 1
+generated_at: '2026-02-27T18:20:47'
+project_count: 35
+projects:
+- id: acinetobacter_adp1_explorer
+  title: Acinetobacter baylyi ADP1 Data Explorer
+  status: complete
+  research_question: What is the scope and structure of a comprehensive ADP1 database, and how do its annotations, metabolic
+    models, and phenotype data intersect with BERDL collections (pangenome, biochemistry, fitness, PhageFoundry)?
+  key_findings:
+  - Rich Multi-Omics Database with 6 Data Modalities
+  - 'Strong BERDL Connectivity: 4 of 5 Connection Types at >90% Match'
+  - 'Pangenome Cluster ID Bridge: 100% Mapping via Gene Junction Table'
+  - FBA and TnSeq Essentiality Agree 74% of the Time
+  - 'Condition-Specific Fitness: Urea and Quinate Stand Apart'
+  - Essential Genes Are 6x More Likely to Have COG Annotations
+  - Highly Conserved Core Metabolism Across 14 Genomes
+  - 87% of Growth Predictions Depend on Gapfilled Reactions
+  tags:
+  - conservation
+  - correlation
+  - defense
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 1 genome
+  - 14 Genomes
+  - 13 genomes
+  - 14 genomes
+  - 1 genome
+  databases_used:
+  - kbase_ke_pangenome
+  - kbase_msd_biochemistry
+  - kbase_uniref
+  - kescience_fitnessbrowser
+  - phagefoundry
+  notebook_count: 5
+  figure_count: 18
+  key_data_artifacts:
+  - file: data/berdl_connection_summary.csv
+    description: null
+    reusable: true
+  - file: data/cluster_id_mapping.csv
+    description: null
+    reusable: true
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: adp1_deletion_phenotypes
+  title: ADP1 Deletion Collection Phenotype Analysis
+  status: complete
+  research_question: What is the condition-dependent structure of gene essentiality in *Acinetobacter baylyi* ADP1, as revealed
+    by the de Berardinis single-gene deletion collection grown on 8 carbon sources?
+  key_findings:
+  - Carbon sources define a three-tier essentiality landscape
+  - Conditions are largely independent — 5 PCs capture 82% of variance
+  - The phenotype landscape is a continuum, not discrete modules
+  - Condition-specific genes reveal the metabolic architecture of ADP1
+  - Missing dispensable genes are shorter, less conserved, and enriched for hypotheticals
+  tags:
+  - conservation
+  - correlation
+  - dark-genes
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 1 genome
+  databases_used:
+  - kbase_ke_pangenome
+  notebook_count: 5
+  figure_count: 15
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: adp1_triple_essentiality
+  title: ADP1 Triple Essentiality Concordance
+  status: complete
+  research_question: Among genes that TnSeq says are dispensable in *Acinetobacter baylyi* ADP1, does FBA correctly predict
+    which ones have growth defects? Can direct mutant growth rate measurements serve as an independent axis to evaluate where
+    computational (FBA) and genetic (TnSeq) methods agree or disagree?
+  key_findings:
+  - FBA Essentiality Class Does Not Predict Growth Defects Among Dispensable Genes
+  - The Null Result Is Robust Across Growth Defect Thresholds
+  - Growth Measurements Cannot Break FBA-TnSeq Ties
+  - Condition-Specific FBA Flux Shows Weak, Mixed Correlations with Growth
+  - Growth Defects Are Partially Condition-Specific
+  - Aromatic Degradation Genes Are Enriched Among FBA-Discordant Genes
+  tags:
+  - conservation
+  - correlation
+  - ecotype
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 1 genome
+  - 1 genome
+  - 1 genome
+  - 1 genome
+  databases_used:
+  - kbase_ke_pangenome
+  notebook_count: 3
+  figure_count: 10
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: aromatic_catabolism_network
+  title: Aromatic Catabolism Support Network in ADP1
+  status: complete
+  research_question: Why does aromatic catabolism in *Acinetobacter baylyi* ADP1 require Complex I (NADH dehydrogenase), iron
+    acquisition, and PQQ biosynthesis when growth on other carbon sources does not?
+  key_findings:
+  - Aromatic catabolism requires a 51-gene support network spanning 4 metabolic subsystems
+  - Complex I is the largest support subsystem — and invisible to FBA
+  - Support subsystems are genomically independent but metabolically coupled
+  - Co-fitness assigns 16 unknown genes to specific subsystems
+  - 'Cross-species: Complex I dependency is on high-NADH substrates, not aromatics specifically'
+  tags:
+  - cofitness
+  - conservation
+  - correlation
+  - dark-genes
+  - ecotype
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 1 genome
+  - 1 genome
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 4
+  figure_count: 9
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: cofitness_coinheritance
+  title: Co-fitness Predicts Co-inheritance in Bacterial Pangenomes
+  status: complete
+  research_question: Do genes with correlated fitness profiles (co-fit) tend to co-occur in the same genomes across a species'
+    pangenome? Does functional coupling constrain which genes are gained and lost together?
+  key_findings:
+  - Pairwise Co-fitness Weakly Predicts Co-occurrence
+  - Operons Are Not a Confound
+  - ICA Modules Show Co-inheritance, Especially Accessory Modules
+  - Co-fitness Strength Weakly Anti-correlates with Co-occurrence
+  - Phylogenetic Distance Stratification
+  tags:
+  - co-occurrence
+  - cofitness
+  - conservation
+  - correlation
+  - dark-genes
+  - enrichment
+  - fitness
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 9 organisms
+  - 11 bacteria
+  - 9 organisms
+  - 9 organisms
+  - 9 organisms
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 4
+  figure_count: 8
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - fitness_modules
+  - module_conservation
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: cog_analysis
+  title: COG Functional Category Analysis
+  status: complete
+  research_question: How do COG functional category distributions differ across core, auxiliary, and novel genes in bacterial
+    pangenomes?
+  key_findings:
+  - Universal Functional Partitioning in Bacterial Pangenomes
+  - Composite COG Categories Are Biologically Meaningful
+  tags:
+  - HGT
+  - conservation
+  - correlation
+  - dark-genes
+  - defense
+  - ecotype
+  - enrichment
+  - essential-genes
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  organisms:
+  - 32 species
+  - 32 species
+  - 32 species
+  - 32 species
+  - 32 species
+  databases_used:
+  - kbase_ke_pangenome
+  notebook_count: 4
+  figure_count: 0
+  key_data_artifacts:
+  - file: data/cog_distribution_raw.json
+    description: null
+    reusable: true
+  - file: data/query.json
+    description: null
+    reusable: true
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: conservation_fitness_synthesis
+  title: Gene Conservation, Fitness, and the Architecture of Bacterial Genomes
+  status: complete
+  research_question: How does a gene's importance for bacterial survival relate to its evolutionary conservation, and what
+    does the conserved genome actually look like?
+  key_findings:
+  - The Gradient
+  - The Paradox
+  - The Resolution
+  - The Architecture
+  tags:
+  - conservation
+  - correlation
+  - dark-genes
+  - ecotype
+  - enrichment
+  - essential-genes
+  - fitness
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  organisms:
+  - 43 bacteria
+  - 43 organisms
+  - 32 organisms
+  - 43 organisms
+  - 43 bacteria
+  databases_used: []
+  notebook_count: 1
+  figure_count: 3
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - fitness_effects_conservation
+  - fitness_modules
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: conservation_vs_fitness
+  title: Conservation vs Fitness -- Linking FB Genes to Pangenome Clusters
+  status: complete
+  research_question: Are essential genes preferentially conserved in the core genome, and what functional categories distinguish
+    essential-core from essential-auxiliary genes?
+  key_findings:
+  - Link Table (Phase 1)
+  - Essential Genes Are Enriched in Core Clusters (Phase 2)
+  - Functional Profiles Differ by Conservation Category
+  - Validation
+  tags:
+  - conservation
+  - correlation
+  - dark-genes
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  organisms:
+  - 33 organisms
+  - 48 bacteria
+  - 34 organisms
+  - 4 organisms
+  - 33 organisms
+  databases_used: []
+  notebook_count: 4
+  figure_count: 8
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables:
+  - cofitness_coinheritance
+  - conservation_fitness_synthesis
+  - core_gene_tradeoffs
+  - costly_dispensable_genes
+  - essential_genome
+  - field_vs_lab_fitness
+  - fitness_effects_conservation
+  - lab_field_ecology
+  - metabolic_capability_dependency
+  - metal_fitness_atlas
+  - module_conservation
+  - pathway_capability_dependency
+  has_provenance: false
+  date_completed: 2026-02
+- id: core_gene_tradeoffs
+  title: Core Gene Paradox -- Why Are Core Genes More Burdensome?
+  status: complete
+  research_question: Why are core genome genes MORE likely to show positive fitness effects when deleted, and what functions
+    and conditions drive this burden paradox?
+  key_findings:
+  - The Burden Paradox Is Function-Specific
+  - Trade-Off Genes Are Enriched in Core
+  - The Selection Signature Matrix
+  - Case Studies
+  tags:
+  - conservation
+  - dark-genes
+  - defense
+  - ecotype
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms: []
+  databases_used: []
+  notebook_count: 1
+  figure_count: 6
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - fitness_effects_conservation
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: costly_dispensable_genes
+  title: The 5,526 Costly + Dispensable Genes
+  status: complete
+  research_question: What characterizes genes that are simultaneously burdensome (fitness improves when deleted) and not conserved
+    in the pangenome? Are they mobile elements, recent acquisitions, degraded pathways, or something else?
+  key_findings:
+  - Costly+Dispensable Genes Are Mobile Genetic Elements
+  - They Are Poorly Characterized Recent Acquisitions
+  - Core Metabolism Is Depleted
+  - '*Pseudomonas stutzeri* RCH2 Is an Outlier'
+  - Costly+Dispensable Genes Still Have Condition-Specific Effects
+  tags:
+  - HGT
+  - co-occurrence
+  - conservation
+  - dark-genes
+  - defense
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 48 organisms
+  - 48 organisms
+  - 15 organisms
+  - 43 bacteria
+  - 48 organisms
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 3
+  figure_count: 6
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - essential_genome
+  - fitness_effects_conservation
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: counter_ion_effects
+  title: Counter Ion Effects on Metal Fitness Measurements
+  status: complete
+  research_question: When bacteria are exposed to metal salts (CoCl₂, NiCl₂, CuCl₂), how much of the observed fitness effect
+    is caused by the metal cation versus the counter anion (chloride)? Does correcting for chloride confounding change the
+    conclusions of the Pan-Bacterial Metal Fitness Atlas?
+  key_findings:
+  - 39.8% of Metal-Important Genes Are Also NaCl-Important
+  - Counter Ions Are NOT the Primary Driver of the Overlap
+  - DvH Metal-NaCl Correlation Follows Toxicity Mechanism, Not Chloride Dose
+  - Metal Fitness Atlas Core Enrichment Is Robust After Correction
+  - 'Gene Classification: 60% of Metal Fitness Genes Are Metal-Specific'
+  - 'psRCH2: The Only Within-Metal Counter Ion Comparison'
+  tags:
+  - conservation
+  - correlation
+  - dark-genes
+  - defense
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 19 organisms
+  - 86 organism
+  - 1 organism
+  - 25 organisms
+  - 86 organism
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 5
+  figure_count: 7
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: ecotype_analysis
+  title: Ecotype Correlation Analysis
+  status: complete
+  research_question: 'What drives gene content similarity between bacterial genomes: environmental similarity or phylogenetic
+    relatedness?'
+  key_findings:
+  - Phylogeny Usually Dominates
+  - No Difference by Lifestyle
+  - Statistical Summary
+  - Category Breakdown
+  - Embedding Diversity
+  tags:
+  - HGT
+  - biogeography
+  - co-occurrence
+  - correlation
+  - defense
+  - ecotype
+  - gene-annotation
+  - mobile-elements
+  - modules
+  - pangenome
+  organisms:
+  - 172 species
+  - 172 species
+  - 172 species
+  - 12 species
+  - 4 species
+  databases_used:
+  - kbase_ke_pangenome
+  notebook_count: 2
+  figure_count: 5
+  key_data_artifacts:
+  - file: data/ecotype_correlation_results.csv
+    description: null
+    reusable: true
+  references: []
+  depends_on: []
+  enables:
+  - ecotype_env_reanalysis
+  has_provenance: false
+  date_completed: 2026-02
+- id: ecotype_env_reanalysis
+  title: 'Ecotype Reanalysis: Environmental-Only Samples'
+  status: complete
+  research_question: Does the environment effect on gene content become stronger when analysis is restricted to genuinely
+    environmental samples, excluding human-associated genomes whose AlphaEarth embeddings reflect hospital satellite imagery
+    rather than ecological habitat?
+  key_findings:
+  - Clinical bias does NOT explain the weak environment signal (H0 not rejected)
+  - 47% of ecotype species are human-associated, only 21% environmental
+  - NaN species are disproportionately environmental, not human-associated
+  - Overall partial correlations are 27x higher than the original analysis
+  tags:
+  - biogeography
+  - correlation
+  - ecotype
+  - metabolism
+  - modules
+  - pangenome
+  organisms:
+  - 172 species
+  - 224 species
+  - 30 species
+  - 183 species
+  - 213 species
+  databases_used:
+  - kbase_ke_pangenome
+  notebook_count: 1
+  figure_count: 8
+  key_data_artifacts:
+  - file: data/ecotype_corr_with_env_group.csv
+    description: null
+    reusable: true
+  - file: data/species_env_classification.csv
+    description: null
+    reusable: true
+  references: []
+  depends_on:
+  - ecotype_analysis
+  - env_embedding_explorer
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: enigma_contamination_functional_potential
+  title: Contamination Gradient vs Functional Potential in ENIGMA Communities
+  status: complete
+  research_question: Do high-contamination Oak Ridge groundwater communities show enrichment for taxa with higher inferred
+    stress-related functional potential compared with low-contamination communities?
+  key_findings:
+  - Multiplicity and sample-size context (primary panel)
+  - Confirmatory Spearman tests remain null with confidence intervals and global FDR
+  - Exploratory defense signal remains strongest in coverage-aware models
+  - Community-fraction robustness does not show strong within-fraction monotonic signal
+  - Contamination-index sensitivity does not change confirmatory outcome
+  - Species-proxy resolution sensitivity is limited by mapped coverage
+  - Contamination index was broad but right-skewed
+  tags:
+  - co-occurrence
+  - correlation
+  - defense
+  - enrichment
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms: []
+  databases_used:
+  - enigma_coral
+  - kbase_ke_pangenome
+  notebook_count: 3
+  figure_count: 4
+  key_data_artifacts:
+  - file: data/bridge_clade_count_distribution.tsv
+    description: null
+    reusable: true
+  - file: data/bridge_quality_summary.tsv
+    description: null
+    reusable: true
+  - file: data/bridge_top_ambiguous_genera.tsv
+    description: null
+    reusable: true
+  - file: data/community_taxon_counts.tsv
+    description: null
+    reusable: true
+  - file: data/confirmatory_family_summary.tsv
+    description: null
+    reusable: true
+  - file: data/contamination_index_sensitivity.tsv
+    description: null
+    reusable: true
+  - file: data/geochemistry_sample_matrix.tsv
+    description: null
+    reusable: true
+  - file: data/mapped_coverage_deciles.tsv
+    description: null
+    reusable: true
+  - file: data/model_family_sample_counts.tsv
+    description: null
+    reusable: true
+  - file: data/model_results.tsv
+    description: null
+    reusable: true
+  - file: data/sample_location_metadata.tsv
+    description: null
+    reusable: true
+  - file: data/site_functional_scores.tsv
+    description: null
+    reusable: true
+  - file: data/taxon_bridge.tsv
+    description: null
+    reusable: true
+  - file: data/taxon_functional_features.tsv
+    description: null
+    reusable: true
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: env_embedding_explorer
+  title: AlphaEarth Embeddings, Geography & Environment Explorer
+  status: complete
+  research_question: What do AlphaEarth environmental embeddings capture, and how do they relate to geographic coordinates
+    and NCBI environment labels?
+  key_findings:
+  - Environmental samples show 3.4x stronger geographic signal than human-associated samples
+  - AlphaEarth embeddings encode real geographic signal — not noise
+  - Strong clinical/human sampling bias in the AlphaEarth subset
+  - 36% of coordinates flagged as potential institutional addresses
+  - UMAP reveals fine-grained embedding structure with environment-correlated clusters
+  - Embedding space also shows taxonomic structure
+  tags:
+  - biogeography
+  - correlation
+  - ecotype
+  - metal-stress
+  - modules
+  - pangenome
+  organisms:
+  - 10 species
+  - 15,046 species
+  - 287 genomes
+  - 287 genomes
+  - 287 genomes
+  databases_used:
+  - kbase_ke_pangenome
+  notebook_count: 2
+  figure_count: 28
+  key_data_artifacts:
+  - file: data/coverage_stats.csv
+    description: null
+    reusable: true
+  - file: data/isolation_source_raw_counts.csv
+    description: null
+    reusable: true
+  - file: data/ncbi_env_attribute_counts.csv
+    description: null
+    reusable: true
+  - file: data/umap_coords.csv
+    description: null
+    reusable: true
+  references: []
+  depends_on: []
+  enables:
+  - ecotype_env_reanalysis
+  has_provenance: false
+  date_completed: 2026-02
+- id: essential_genome
+  title: The Pan-Bacterial Essential Genome
+  status: complete
+  research_question: Which essential genes are conserved across bacteria, which are context-dependent, and can we predict
+    function for uncharacterized essential genes using module context from non-essential orthologs?
+  key_findings:
+  - 15 Gene Families Are Essential in All 48 Bacteria
+  - Only 5% of Ortholog Families Are Universally Essential
+  - Orphan Essential Genes Are 58.7% Hypothetical
+  - 1,382 Function Predictions for Hypothetical Essentials
+  - Universally Essential Families Are Overwhelmingly Core
+  tags:
+  - conservation
+  - correlation
+  - dark-genes
+  - defense
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 48 organisms
+  - 48 organisms
+  - 34 organisms
+  - 32 organisms
+  - 48 Bacteria
+  databases_used: []
+  notebook_count: 3
+  figure_count: 3
+  key_data_artifacts:
+  - file: data/all_ortholog_groups.csv
+    description: null
+    reusable: true
+  - file: data/essential_families.tsv
+    description: null
+    reusable: true
+  - file: data/essential_predictions.tsv
+    description: null
+    reusable: true
+  - file: data/family_conservation.tsv
+    description: null
+    reusable: true
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - fitness_modules
+  enables:
+  - costly_dispensable_genes
+  - essential_metabolome
+  - metal_fitness_atlas
+  - pathway_capability_dependency
+  has_provenance: false
+  date_completed: 2026-02
+- id: essential_metabolome
+  title: The Pan-Bacterial Essential Metabolome
+  status: complete
+  research_question: Which biochemical reactions are universally essential across bacteria, and what does the essential metabolome
+    reveal about the minimal core metabolism required for microbial life?
+  key_findings:
+  - High Conservation of Amino Acid Biosynthesis Pathways
+  - '*Desulfovibrio vulgaris* Serine Auxotrophy'
+  - Conserved Carbon Source Utilization
+  - GapMind Coverage Limitation Discovered
+  tags:
+  - conservation
+  - dark-genes
+  - ecotype
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 7 organisms
+  - 7 bacteria
+  - 48 organisms
+  - 8 organisms
+  - 7 organisms
+  databases_used:
+  - kbase_ke_pangenome
+  - kbase_msd_biochemistry
+  notebook_count: 2
+  figure_count: 1
+  key_data_artifacts:
+  - file: data/aa_pathway_completeness.tsv
+    description: null
+    reusable: true
+  - file: data/carbon_pathway_completeness.tsv
+    description: null
+    reusable: true
+  - file: data/essential_genome_families.tsv
+    description: null
+    reusable: true
+  - file: data/fb_genome_mapping_manual.tsv
+    description: null
+    reusable: true
+  - file: data/gapmind_aa_pathway_summary.tsv
+    description: null
+    reusable: true
+  - file: data/gapmind_fb_predictions.tsv
+    description: null
+    reusable: true
+  - file: data/pathway_completeness.tsv
+    description: null
+    reusable: true
+  references: []
+  depends_on:
+  - essential_genome
+  enables:
+  - pathway_capability_dependency
+  has_provenance: false
+  date_completed: 2026-02
+- id: field_vs_lab_fitness
+  title: Field vs Lab Gene Importance in *Desulfovibrio vulgaris* Hildenborough
+  status: complete
+  research_question: Which genes matter for survival under environmentally-realistic conditions but appear dispensable in
+    the lab, and vice versa? Do field-relevant fitness effects predict pangenome conservation better than lab-only effects?
+  key_findings:
+  - ENIGMA CORAL Contains No DvH Fitness Data (NB01)
+  - Condition Classification (NB02)
+  - Genes Important for Field Conditions Are Significantly More Conserved (NB03)
+  - 'Specificity Analysis: Lab-Specific Genes Are Surprisingly More Core'
+  - Fitness Effects Are Weak Predictors of Core Status
+  - Threshold Sensitivity Analysis
+  - Module-Level Conservation Shows No Field-Lab Difference (NB04)
+  tags:
+  - co-occurrence
+  - conservation
+  - correlation
+  - dark-genes
+  - ecotype
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 705 genomes
+  databases_used:
+  - enigma_coral
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 4
+  figure_count: 6
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - fitness_modules
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: fitness_effects_conservation
+  title: Fitness Effects vs Conservation -- Quantitative Analysis
+  status: complete
+  research_question: Is there a continuous gradient from essential genes (core) to dispensable genes (accessory) across the
+    full fitness spectrum, and what does the fitness landscape of novel genes look like?
+  key_findings:
+  - Conservation Increases with Fitness Importance
+  - Breadth of Fitness Effects Predicts Conservation
+  - Core Genes Are Not Burdens -- They're More Likely Beneficial
+  - Specific-Phenotype Genes Are More Likely Core
+  - Ephemeral Niche Genes
+  - Fitness Distributions by Conservation
+  - Novel Gene Landscape
+  tags:
+  - HGT
+  - conservation
+  - correlation
+  - dark-genes
+  - ecotype
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 43 bacteria
+  databases_used: []
+  notebook_count: 2
+  figure_count: 9
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  enables:
+  - conservation_fitness_synthesis
+  - core_gene_tradeoffs
+  - costly_dispensable_genes
+  - lab_field_ecology
+  - pathway_capability_dependency
+  has_provenance: false
+  date_completed: 2026-02
+- id: fitness_modules
+  title: Pan-bacterial Fitness Modules via Independent Component Analysis
+  status: complete
+  research_question: Can we decompose RB-TnSeq fitness compendia into latent functional modules via robust ICA, align them
+    across organisms using orthology, and use module context to predict gene function?
+  key_findings:
+  - 1,116 stable modules across 32 organisms, 156 cross-organism families, 6,691 function predictions for hypothetical proteins
+  tags:
+  - cofitness
+  - conservation
+  - correlation
+  - dark-genes
+  - ecotype
+  - enrichment
+  - fitness
+  - gene-annotation
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 32 organisms
+  - 32 bacteria
+  - 32 organisms
+  - 32 organisms
+  - 32 organisms
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 7
+  figure_count: 8
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables:
+  - cofitness_coinheritance
+  - conservation_fitness_synthesis
+  - essential_genome
+  - field_vs_lab_fitness
+  - metal_fitness_atlas
+  - module_conservation
+  has_provenance: false
+  date_completed: 2026-02
+- id: lab_field_ecology
+  title: Lab Fitness Predicts Field Ecology at Oak Ridge
+  status: complete
+  research_question: Do lab-measured fitness effects under contaminant stress predict the field abundance of Fitness Browser
+    organisms across Oak Ridge groundwater sites with varying geochemistry?
+  key_findings:
+  - 14 of 26 Fitness Browser Genera Detected at Oak Ridge
+  - Genus Abundance Correlates with Uranium -- in Both Directions
+  - Lab Metal Tolerance Does Not Significantly Predict Field Abundance Ratio
+  - Community Composition Shifts with Contamination
+  tags:
+  - HGT
+  - conservation
+  - correlation
+  - dark-genes
+  - ecotype
+  - enrichment
+  - fitness
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - modules
+  - pangenome
+  organisms:
+  - 48 organisms
+  - 43 organisms
+  - 43 organisms
+  databases_used:
+  - enigma_coral
+  notebook_count: 3
+  figure_count: 4
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - fitness_effects_conservation
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: metabolic_capability_dependency
+  title: Metabolic Capability vs Dependency
+  status: in-progress
+  research_question: Can we distinguish metabolic *capability* (genome predicts a complete pathway) from metabolic *dependency*
+    (fitness data shows the pathway genes actually matter)? Do "latent capabilities" — pathways that are genomically present
+    but experimentally dispensable — predict pangenome openness and evolutionary gene loss?
+  key_findings:
+  - 'H1 Supported: A Substantial Fraction of Complete Pathways Are Functionally Neutral'
+  - 'H2 Mixed: Pathway-Level Conservation Undifferentiated; Pangenome Openness Correlated with Latent Rate'
+  - 'H3 Supported: All Target Species Show Distinct Metabolic Ecotypes'
+  tags:
+  - co-occurrence
+  - conservation
+  - correlation
+  - dark-genes
+  - ecotype
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 48 organisms
+  - 48 organisms
+  - 30 organisms
+  - 48 organisms
+  - 48 organisms
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 10
+  figure_count: 18
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  enables: []
+  has_provenance: false
+  date_completed: null
+- id: metal_fitness_atlas
+  title: Pan-Bacterial Metal Fitness Atlas
+  status: complete
+  research_question: Across diverse bacteria subjected to genome-wide fitness profiling under metal stress, what is the genetic
+    architecture of metal tolerance — is it encoded in the core or accessory genome, is it conserved across species, and can
+    fitness-validated metal tolerance genes predict capabilities across the broader pangenome?
+  key_findings:
+  - Metal-Important Genes Are Enriched in the Core Genome
+  - Essential Metals Show Stronger Core Enrichment Than Toxic Metals
+  - 559 Metal Experiments Across 31 Organisms and 16 Metals
+  - 12,838 Metal-Important Gene Records Across 24 Organisms
+  - 1,182 Conserved Metal Gene Families Identified
+  - Metal-Responsive ICA Modules Have High Core Fraction
+  - Pangenome-Scale Prediction Validates Metal Gene Signature
+  tags:
+  - co-occurrence
+  - conservation
+  - dark-genes
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 31 organisms
+  - 22 organisms
+  - 48 organisms
+  - 32 organisms
+  - 22 organisms
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 7
+  figure_count: 11
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - essential_genome
+  - fitness_modules
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: module_conservation
+  title: Fitness Modules x Pangenome Conservation
+  status: complete
+  research_question: Are ICA fitness modules enriched in core pangenome genes, and do cross-organism module families map to
+    the core genome?
+  key_findings:
+  - Module Genes Are More Core Than Average
+  - Most Modules Are Core
+  - Family Breadth Does NOT Predict Conservation
+  - Accessory Module Families Exist
+  - Essential Genes Are Absent from Modules
+  tags:
+  - HGT
+  - conservation
+  - dark-genes
+  - ecotype
+  - enrichment
+  - essential-genes
+  - fitness
+  - mobile-elements
+  - modules
+  - pangenome
+  organisms:
+  - 32 bacteria
+  - 32 organism
+  - 32 organisms
+  databases_used: []
+  notebook_count: 2
+  figure_count: 2
+  key_data_artifacts: []
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - fitness_modules
+  enables:
+  - cofitness_coinheritance
+  has_provenance: false
+  date_completed: 2026-02
+- id: openness_functional_composition
+  title: Openness vs Functional Composition
+  status: in-progress
+  research_question: Do species with open pangenomes show different COG functional enrichment patterns than species with closed
+    pangenomes?
+  key_findings: []
+  tags:
+  - defense
+  - enrichment
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  organisms: []
+  databases_used: []
+  notebook_count: 3
+  figure_count: 3
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: null
+- id: pangenome_openness
+  title: Pangenome Openness Analysis
+  status: complete
+  research_question: Do open pangenomes show different patterns of environmental vs phylogenetic effects compared to closed
+    pangenomes?
+  key_findings:
+  - No Correlation Found
+  - Interpretation
+  - Literature Context
+  - Limitations
+  tags:
+  - HGT
+  - correlation
+  - defense
+  - ecotype
+  - mobile-elements
+  - modules
+  - pangenome
+  organisms: []
+  databases_used: []
+  notebook_count: 1
+  figure_count: 1
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: pangenome_pathway_ecology
+  title: Pangenome Openness, Metabolic Pathways, and Phylogenetic Distances
+  status: proposed
+  research_question: How do pangenome characteristics (open vs. closed) correlate with metabolic pathway completeness, phylogenetic
+    distances, and species ecology?
+  key_findings: []
+  tags:
+  - conservation
+  - correlation
+  - ecotype
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms: []
+  databases_used: []
+  notebook_count: 2
+  figure_count: 0
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: null
+- id: pangenome_pathway_geography
+  title: Pangenome Openness, Metabolic Pathways, and Biogeography
+  status: in-progress
+  research_question: Do pangenome characteristics (open vs. closed) correlate with metabolic pathway diversity and biogeographic
+    distribution patterns?
+  key_findings: []
+  tags:
+  - biogeography
+  - correlation
+  - ecotype
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 690 bacteria
+  databases_used: []
+  notebook_count: 4
+  figure_count: 6
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: null
+- id: paperblast_explorer
+  title: PaperBLAST Data Explorer
+  status: complete
+  research_question: What does the `kescience_paperblast` collection contain, how current is it, and what are its coverage
+    patterns across organisms, domains of life, and functional databases?
+  key_findings:
+  - 'Finding 1: One organism dominates nearly half of all literature'
+  - 'Finding 2: 65.6% of genes have exactly one paper'
+  - 'Finding 3: Literature inequality is extreme — Lorenz curves'
+  - 'Finding 4: Bacterial research is concentrated on pathogens'
+  - 'Finding 5: 345K protein families from 816K sequences'
+  - 'Finding 6: 55% of protein families are dark or dim'
+  tags:
+  - conservation
+  - correlation
+  - dark-genes
+  - ecotype
+  - fitness
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - modules
+  organisms:
+  - 20 bacteria
+  - 20 organisms
+  - 5 organisms
+  - 723 organisms
+  - 723 organisms
+  databases_used:
+  - kescience_fitnessbrowser
+  - kescience_paperblast
+  notebook_count: 3
+  figure_count: 12
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: pathway_capability_dependency
+  title: Metabolic Capability vs Dependency
+  status: complete
+  research_question: When a bacterium's genome encodes a complete biosynthetic or catabolic pathway, does the organism actually
+    depend on it? Can we use fitness data to distinguish **active dependencies** from **latent capabilities** — and predict
+    which pathways are candidates for evolutionary gene loss?
+  key_findings:
+  - Pathway Completeness Alone Is Insufficient to Predict Metabolic Dependency
+  - All "Latent Capabilities" Become Important Under Specific Conditions
+  - 'Conservation Validation: Active Dependencies Have Near-Complete Core Genomes'
+  - Variable Pathways Strongly Correlate with Pangenome Openness
+  - Amino Acid Biosynthesis Pathways Show the Strongest Accessory Dependence
+  - Metabolic Ecotypes Correlate with Pangenome Openness
+  tags:
+  - cofitness
+  - conservation
+  - correlation
+  - ecotype
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 34 organisms
+  - 48 organisms
+  - 161 organism
+  - 7 Fitness Browser organisms
+  - 7 Fitness Browser organisms
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 5
+  figure_count: 16
+  key_data_artifacts:
+  - file: data/core_vs_all_pathway_completeness.csv
+    description: null
+    reusable: true
+  - file: data/ecotype_summary.csv
+    description: null
+    reusable: true
+  - file: data/fb_essential_genes.csv
+    description: null
+    reusable: true
+  - file: data/fb_fitness_by_condition_type.csv
+    description: null
+    reusable: true
+  - file: data/fb_fitness_summary.csv
+    description: null
+    reusable: true
+  - file: data/fb_gene_ec.csv
+    description: null
+    reusable: true
+  - file: data/fb_gene_kegg_ko.csv
+    description: null
+    reusable: true
+  - file: data/fb_gene_seed.csv
+    description: null
+    reusable: true
+  - file: data/gapmind_core_pathway_status.csv
+    description: null
+    reusable: true
+  - file: data/gapmind_fb_coverage.csv
+    description: null
+    reusable: true
+  - file: data/gapmind_genome_pathway_status.csv
+    description: null
+    reusable: true
+  - file: data/kegg_map_ec.csv
+    description: null
+    reusable: true
+  - file: data/kegg_map_titles.csv
+    description: null
+    reusable: true
+  - file: data/metabolic_ecotypes.csv
+    description: null
+    reusable: true
+  - file: data/pangenome_stats.csv
+    description: null
+    reusable: true
+  - file: data/species_pathway_metrics.csv
+    description: null
+    reusable: true
+  - file: data/species_pathway_summary.csv
+    description: null
+    reusable: true
+  - file: data/tier1_condition_type_analysis.csv
+    description: null
+    reusable: true
+  - file: data/tier1_pathway_classification.csv
+    description: null
+    reusable: true
+  references: []
+  depends_on:
+  - conservation_vs_fitness
+  - essential_genome
+  - essential_metabolome
+  - fitness_effects_conservation
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: phb_granule_ecology
+  title: 'Polyhydroxybutyrate Granule Formation Pathways: Distribution Across Clades and Environmental Selection'
+  status: complete
+  research_question: How are polyhydroxybutyrate (PHB) granule-forming pathways distributed across bacterial clades and environments,
+    and does this distribution support the hypothesis that carbon storage granules are most beneficial in temporally variable
+    feast/famine environments?
+  key_findings:
+  - 'Finding 1: PHB pathways are widespread but phylogenetically concentrated'
+  - 'Finding 2: PHB is enriched in environmentally variable habitats (H1a supported)'
+  - 'Finding 3: PHB-niche breadth association is largely explained by genome size (H1b qualified)'
+  - 'Finding 4: Subclade enrichment reveals heterogeneous selection within phyla (H1d partially supported)'
+  - 'Finding 5: Strong signal of horizontal gene transfer in phaC distribution'
+  - 'Finding 6: NMDC metagenomic cross-validation supports pangenome PHB patterns (H1c supported)'
+  tags:
+  - HGT
+  - conservation
+  - correlation
+  - defense
+  - ecotype
+  - enrichment
+  - fitness
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 19,496 species
+  - 7,456 species
+  - 20 species
+  - 27,690 species
+  - 2,008 species
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  - nmdc_arkin
+  notebook_count: 6
+  figure_count: 10
+  key_data_artifacts:
+  - file: data/nmdc_abiotic_correlations.tsv
+    description: null
+    reusable: true
+  - file: data/nmdc_phb_prevalence.tsv
+    description: null
+    reusable: true
+  - file: data/pangenome_vs_metagenome.tsv
+    description: null
+    reusable: true
+  - file: data/phaC_class_distribution.tsv
+    description: null
+    reusable: true
+  - file: data/phb_by_order.tsv
+    description: null
+    reusable: true
+  - file: data/phb_by_taxonomy.tsv
+    description: null
+    reusable: true
+  - file: data/phb_embedding_analysis.tsv
+    description: null
+    reusable: true
+  - file: data/phb_gene_clusters.tsv
+    description: null
+    reusable: true
+  - file: data/phb_species_summary.tsv
+    description: null
+    reusable: true
+  - file: data/species_environment.tsv
+    description: null
+    reusable: true
+  - file: data/species_genome_size.tsv
+    description: null
+    reusable: true
+  - file: data/subclade_enrichment.tsv
+    description: null
+    reusable: true
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: resistance_hotspots
+  title: Antibiotic Resistance Hotspots in Microbial Pangenomes
+  status: proposed
+  research_question: Which microbial species and ecological environments show the highest concentration of antibiotic resistance
+    genes, and can we predict resistance accumulation from phylogenetic and ecological features?
+  key_findings: []
+  tags:
+  - ecotype
+  - fitness
+  - gene-annotation
+  - mobile-elements
+  - modules
+  - pangenome
+  organisms:
+  - 059 genomes
+  databases_used: []
+  notebook_count: 6
+  figure_count: 0
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: null
+- id: respiratory_chain_wiring
+  title: Condition-Specific Respiratory Chain Wiring in ADP1
+  status: complete
+  research_question: How is *Acinetobacter baylyi* ADP1's branched respiratory chain wired across carbon sources — which NADH
+    dehydrogenases and terminal oxidases are required for which substrates?
+  key_findings:
+  - Each carbon source uses a distinct respiratory chain configuration
+  - ADP1 has three parallel NADH dehydrogenases with distinct condition profiles
+  - The quinate-Complex I paradox is resolved by NADH flux rate, not total yield
+  - 'Cross-species: NDH-2 presence does NOT predict reduced Complex I aromatic dependency'
+  - 'Proteomics: respiratory wiring is metabolic, not transcriptional'
+  tags:
+  - co-occurrence
+  - dark-genes
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 14 organisms
+  - 4 organisms
+  - 4 organisms
+  - 1 genome
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  notebook_count: 5
+  figure_count: 8
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: temporal_core_dynamics
+  title: Temporal Core Genome Dynamics
+  status: proposed
+  research_question: How does core genome composition change over sampling time, and do genes transition in and out of core
+    status?
+  key_findings: []
+  tags:
+  - ecotype
+  - enrichment
+  organisms: []
+  databases_used: []
+  notebook_count: 4
+  figure_count: 0
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: null
+- id: webofmicrobes_explorer
+  title: Web of Microbes Data Explorer
+  status: complete
+  research_question: What does the `kescience_webofmicrobes` exometabolomics collection contain, which organisms overlap with
+    the Fitness Browser, and how well do metabolite uptake/release profiles connect to pangenome-predicted metabolic capabilities?
+  key_findings:
+  - WoM Action Encoding Uses Four Distinct Semantics, Not Three
+  - Two Direct Fitness Browser Strain Matches Plus Two Genus-Level Matches
+  - 19 WoM-Produced Metabolites Are Tested as FB Carbon/Nitrogen Sources
+  - 26.8% of WoM Metabolites Have Definitive ModelSEED Links (68.5% with Ambiguous Formula Matches)
+  - ENIGMA Isolates Show Distinct "Metabolic Novelty Rates"
+  - All WoM Genera Have Pangenome Species Clades
+  tags:
+  - conservation
+  - dark-genes
+  - ecotype
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 37 organisms
+  - 3 organisms
+  - 3 organisms
+  - 37 organisms
+  - 3 organisms
+  databases_used:
+  - kbase_ke_pangenome
+  - kbase_msd_biochemistry
+  - kescience_fitnessbrowser
+  - kescience_webofmicrobes
+  notebook_count: 2
+  figure_count: 1
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02

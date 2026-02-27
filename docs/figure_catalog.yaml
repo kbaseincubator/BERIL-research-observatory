@@ -1,0 +1,1714 @@
+version: 1
+generated_at: '2026-02-27T18:20:47'
+figure_count: 254
+figures:
+- project: acinetobacter_adp1_explorer
+  file: data_coverage_by_modality.png
+  path: projects/acinetobacter_adp1_explorer/figures/data_coverage_by_modality.png
+  caption: Data coverage by modality
+  notebook: null
+  tags: []
+- project: acinetobacter_adp1_explorer
+  file: fba_tnseq_concordance.png
+  path: projects/acinetobacter_adp1_explorer/figures/fba_tnseq_concordance.png
+  caption: FBA vs TnSeq concordance
+  notebook: 03_cluster_id_mapping.ipynb
+  tags:
+  - fitness
+- project: acinetobacter_adp1_explorer
+  file: essentiality_overview.png
+  path: projects/acinetobacter_adp1_explorer/figures/essentiality_overview.png
+  caption: Essentiality overview
+  notebook: 03_cluster_id_mapping.ipynb
+  tags:
+  - essential-genes
+- project: acinetobacter_adp1_explorer
+  file: growth_condition_correlation.png
+  path: projects/acinetobacter_adp1_explorer/figures/growth_condition_correlation.png
+  caption: Carbon source fitness correlation
+  notebook: 04_gene_essentiality_and_fitness.ipynb
+  tags:
+  - correlation
+  - fitness
+- project: acinetobacter_adp1_explorer
+  file: mutant_growth_fitness.png
+  path: projects/acinetobacter_adp1_explorer/figures/mutant_growth_fitness.png
+  caption: Mutant growth fitness distributions
+  notebook: 04_gene_essentiality_and_fitness.ipynb
+  tags:
+  - fitness
+- project: acinetobacter_adp1_explorer
+  file: annotation_by_essentiality.png
+  path: projects/acinetobacter_adp1_explorer/figures/annotation_by_essentiality.png
+  caption: Annotation coverage by essentiality
+  notebook: 04_gene_essentiality_and_fitness.ipynb
+  tags:
+  - essential-genes
+  - gene-annotation
+- project: acinetobacter_adp1_explorer
+  file: essentiality_vs_pangenome.png
+  path: projects/acinetobacter_adp1_explorer/figures/essentiality_vs_pangenome.png
+  caption: Essentiality vs pangenome status
+  notebook: 04_gene_essentiality_and_fitness.ipynb
+  tags:
+  - essential-genes
+  - pangenome
+- project: acinetobacter_adp1_explorer
+  file: reaction_conservation.png
+  path: projects/acinetobacter_adp1_explorer/figures/reaction_conservation.png
+  caption: Reaction conservation
+  notebook: 04_gene_essentiality_and_fitness.ipynb
+  tags:
+  - conservation
+- project: acinetobacter_adp1_explorer
+  file: reaction_gapfilling.png
+  path: projects/acinetobacter_adp1_explorer/figures/reaction_gapfilling.png
+  caption: Reaction gapfilling by genome
+  notebook: 04_gene_essentiality_and_fitness.ipynb
+  tags: []
+- project: acinetobacter_adp1_explorer
+  file: gapfilling_impact.png
+  path: projects/acinetobacter_adp1_explorer/figures/gapfilling_impact.png
+  caption: Gapfilling impact
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  tags: []
+- project: acinetobacter_adp1_explorer
+  file: growth_phenotype_predictions.png
+  path: projects/acinetobacter_adp1_explorer/figures/growth_phenotype_predictions.png
+  caption: Growth phenotype predictions
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  tags: []
+- project: acinetobacter_adp1_explorer
+  file: proteomics_cross_strain.png
+  path: projects/acinetobacter_adp1_explorer/figures/proteomics_cross_strain.png
+  caption: Proteomics cross-strain comparison
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  tags: []
+- project: acinetobacter_adp1_explorer
+  file: proteomics_wt_vs_engineered.png
+  path: projects/acinetobacter_adp1_explorer/figures/proteomics_wt_vs_engineered.png
+  caption: WT vs most divergent engineered strain
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  tags: []
+- project: acinetobacter_adp1_explorer
+  file: fba_flux_class_transition.png
+  path: projects/acinetobacter_adp1_explorer/figures/fba_flux_class_transition.png
+  caption: FBA flux class transition heatmap
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  tags: []
+- project: acinetobacter_adp1_explorer
+  file: essentiality_distribution.png
+  path: projects/acinetobacter_adp1_explorer/figures/essentiality_distribution.png
+  caption: Essentiality distribution
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  tags:
+  - essential-genes
+- project: acinetobacter_adp1_explorer
+  file: metabolic_flux_classes.png
+  path: projects/acinetobacter_adp1_explorer/figures/metabolic_flux_classes.png
+  caption: Metabolic flux classes
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  tags:
+  - metabolism
+- project: acinetobacter_adp1_explorer
+  file: mutant_growth_by_condition.png
+  path: projects/acinetobacter_adp1_explorer/figures/mutant_growth_by_condition.png
+  caption: Mutant growth by condition
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  tags: []
+- project: acinetobacter_adp1_explorer
+  file: ontology_distribution.png
+  path: projects/acinetobacter_adp1_explorer/figures/ontology_distribution.png
+  caption: Ontology term distribution
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: condition_boxplots.png
+  path: projects/adp1_deletion_phenotypes/figures/condition_boxplots.png
+  caption: Growth defect severity across carbon sources
+  notebook: null
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: pca_variance.png
+  path: projects/adp1_deletion_phenotypes/figures/pca_variance.png
+  caption: PCA variance explained and cumulative variance
+  notebook: 01_data_extraction.ipynb
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: pca_biplot.png
+  path: projects/adp1_deletion_phenotypes/figures/pca_biplot.png
+  caption: PCA biplot showing gene scores and condition loadings
+  notebook: 01_data_extraction.ipynb
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: condition_clustermap.png
+  path: projects/adp1_deletion_phenotypes/figures/condition_clustermap.png
+  caption: Condition correlation heatmap with hierarchical clustering
+  notebook: 01_data_extraction.ipynb
+  tags:
+  - correlation
+  - modules
+- project: adp1_deletion_phenotypes
+  file: silhouette_analysis.png
+  path: projects/adp1_deletion_phenotypes/figures/silhouette_analysis.png
+  caption: Silhouette analysis for gene clustering
+  notebook: 02_condition_structure.ipynb
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: gene_heatmap.png
+  path: projects/adp1_deletion_phenotypes/figures/gene_heatmap.png
+  caption: Growth profiles of all 2,034 genes ordered by hierarchical clustering
+  notebook: 02_condition_structure.ipynb
+  tags:
+  - modules
+- project: adp1_deletion_phenotypes
+  file: module_profiles.png
+  path: projects/adp1_deletion_phenotypes/figures/module_profiles.png
+  caption: Module mean z-score profiles
+  notebook: 02_condition_structure.ipynb
+  tags:
+  - modules
+- project: adp1_deletion_phenotypes
+  file: specificity_distribution.png
+  path: projects/adp1_deletion_phenotypes/figures/specificity_distribution.png
+  caption: Distribution of gene condition-specificity scores
+  notebook: 03_gene_modules.ipynb
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: condition_specific_heatmap.png
+  path: projects/adp1_deletion_phenotypes/figures/condition_specific_heatmap.png
+  caption: Z-score heatmap of top condition-specific genes
+  notebook: 03_gene_modules.ipynb
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: tnseq_gap_coverage.png
+  path: projects/adp1_deletion_phenotypes/figures/tnseq_gap_coverage.png
+  caption: TnSeq gap coverage by essentiality class
+  notebook: 04_condition_specific.ipynb
+  tags:
+  - essential-genes
+  - fitness
+- project: adp1_deletion_phenotypes
+  file: missing_gene_length.png
+  path: projects/adp1_deletion_phenotypes/figures/missing_gene_length.png
+  caption: Gene length distribution comparison
+  notebook: 04_condition_specific.ipynb
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: condition_correlation_preview.png
+  path: projects/adp1_deletion_phenotypes/figures/condition_correlation_preview.png
+  caption: null
+  notebook: null
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: condition_correlations.png
+  path: projects/adp1_deletion_phenotypes/figures/condition_correlations.png
+  caption: null
+  notebook: null
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: condition_dendrogram.png
+  path: projects/adp1_deletion_phenotypes/figures/condition_dendrogram.png
+  caption: null
+  notebook: null
+  tags: []
+- project: adp1_deletion_phenotypes
+  file: growth_distributions.png
+  path: projects/adp1_deletion_phenotypes/figures/growth_distributions.png
+  caption: null
+  notebook: null
+  tags: []
+- project: adp1_triple_essentiality
+  file: fba_growth_concordance.png
+  path: projects/adp1_triple_essentiality/figures/fba_growth_concordance.png
+  caption: FBA class vs growth defect contingency table and defect rates
+  notebook: null
+  tags: []
+- project: adp1_triple_essentiality
+  file: threshold_sensitivity.png
+  path: projects/adp1_triple_essentiality/figures/threshold_sensitivity.png
+  caption: Threshold sensitivity analysis
+  notebook: 02_concordance_analysis.ipynb
+  tags: []
+- project: adp1_triple_essentiality
+  file: growth_by_fba_class.png
+  path: projects/adp1_triple_essentiality/figures/growth_by_fba_class.png
+  caption: Growth rate distributions by FBA class
+  notebook: 02_concordance_analysis.ipynb
+  tags: []
+- project: adp1_triple_essentiality
+  file: flux_vs_growth_scatter.png
+  path: projects/adp1_triple_essentiality/figures/flux_vs_growth_scatter.png
+  caption: FBA flux vs mutant growth rate scatter plots by carbon source
+  notebook: 02_concordance_analysis.ipynb
+  tags: []
+- project: adp1_triple_essentiality
+  file: defect_condition_correlation.png
+  path: projects/adp1_triple_essentiality/figures/defect_condition_correlation.png
+  caption: Growth defect correlation across conditions
+  notebook: 02_concordance_analysis.ipynb
+  tags:
+  - correlation
+- project: adp1_triple_essentiality
+  file: rast_enrichment_discordant.png
+  path: projects/adp1_triple_essentiality/figures/rast_enrichment_discordant.png
+  caption: RAST functional category enrichment in discordant genes
+  notebook: 02_concordance_analysis.ipynb
+  tags:
+  - enrichment
+  - gene-annotation
+- project: adp1_triple_essentiality
+  file: rast_by_discordance_class.png
+  path: projects/adp1_triple_essentiality/figures/rast_by_discordance_class.png
+  caption: RAST functional category distribution by concordance class
+  notebook: 02_concordance_analysis.ipynb
+  tags:
+  - gene-annotation
+- project: adp1_triple_essentiality
+  file: pangenome_discordance.png
+  path: projects/adp1_triple_essentiality/figures/pangenome_discordance.png
+  caption: Pangenome status by discordance class
+  notebook: 02_concordance_analysis.ipynb
+  tags:
+  - pangenome
+- project: adp1_triple_essentiality
+  file: data_assembly_overview.png
+  path: projects/adp1_triple_essentiality/figures/data_assembly_overview.png
+  caption: Data assembly overview
+  notebook: 03_discordant_characterization.ipynb
+  tags: []
+- project: adp1_triple_essentiality
+  file: growth_rate_distributions.png
+  path: projects/adp1_triple_essentiality/figures/growth_rate_distributions.png
+  caption: Growth rate distributions per condition
+  notebook: 03_discordant_characterization.ipynb
+  tags: []
+- project: aromatic_catabolism_network
+  file: support_network_categories.png
+  path: projects/aromatic_catabolism_network/figures/support_network_categories.png
+  caption: Quinate-specific genes by functional category
+  notebook: null
+  tags:
+  - gene-annotation
+- project: aromatic_catabolism_network
+  file: fba_flux_heatmap.png
+  path: projects/aromatic_catabolism_network/figures/fba_flux_heatmap.png
+  caption: FBA-predicted flux heatmap for quinate-specific genes
+  notebook: 01_metabolic_dependencies.ipynb, 03_cofitness_network.ipynb
+  tags: []
+- project: aromatic_catabolism_network
+  file: chromosome_map.png
+  path: projects/aromatic_catabolism_network/figures/chromosome_map.png
+  caption: Chromosome map of quinate-specific genes
+  notebook: 01_metabolic_dependencies.ipynb
+  tags: []
+- project: aromatic_catabolism_network
+  file: gene_clusters.png
+  path: projects/aromatic_catabolism_network/figures/gene_clusters.png
+  caption: Genomic clusters of quinate-specific genes
+  notebook: 01_metabolic_dependencies.ipynb
+  tags: []
+- project: aromatic_catabolism_network
+  file: cofitness_heatmap.png
+  path: projects/aromatic_catabolism_network/figures/cofitness_heatmap.png
+  caption: Co-fitness heatmap among 51 quinate-specific genes
+  notebook: 02_genomic_organization.ipynb
+  tags:
+  - cofitness
+  - fitness
+- project: aromatic_catabolism_network
+  file: unknown_assignments_heatmap.png
+  path: projects/aromatic_catabolism_network/figures/unknown_assignments_heatmap.png
+  caption: Unknown gene correlations with known subsystems
+  notebook: 02_genomic_organization.ipynb
+  tags:
+  - correlation
+- project: aromatic_catabolism_network
+  file: cofitness_within_between.png
+  path: projects/aromatic_catabolism_network/figures/cofitness_within_between.png
+  caption: Within vs between category co-fitness
+  notebook: 02_genomic_organization.ipynb
+  tags:
+  - cofitness
+  - fitness
+- project: aromatic_catabolism_network
+  file: cross_species_fitness.png
+  path: projects/aromatic_catabolism_network/figures/cross_species_fitness.png
+  caption: Cross-species fitness on aromatic vs non-aromatic conditions
+  notebook: 03_cofitness_network.ipynb
+  tags:
+  - fitness
+- project: aromatic_catabolism_network
+  file: complex_I_vs_background.png
+  path: projects/aromatic_catabolism_network/figures/complex_I_vs_background.png
+  caption: Complex I fitness relative to background by condition
+  notebook: 03_cofitness_network.ipynb
+  tags:
+  - fitness
+- project: cofitness_coinheritance
+  file: fig1_cofit_cooccurrence.png
+  path: projects/cofitness_coinheritance/figures/fig1_cofit_cooccurrence.png
+  caption: Co-fitness vs Co-occurrence
+  notebook: null
+  tags:
+  - co-occurrence
+  - cofitness
+  - fitness
+- project: cofitness_coinheritance
+  file: fig2_operon_control.png
+  path: projects/cofitness_coinheritance/figures/fig2_operon_control.png
+  caption: Operon Control
+  notebook: 02_cooccurrence.ipynb, 04_cross_organism.ipynb
+  tags: []
+- project: cofitness_coinheritance
+  file: fig5_module_coinheritance.png
+  path: projects/cofitness_coinheritance/figures/fig5_module_coinheritance.png
+  caption: Module Co-inheritance
+  notebook: 02_cooccurrence.ipynb
+  tags:
+  - modules
+- project: cofitness_coinheritance
+  file: fig4_cofit_strength.png
+  path: projects/cofitness_coinheritance/figures/fig4_cofit_strength.png
+  caption: Co-fitness Strength vs Phi
+  notebook: 03_module_coinheritance.ipynb
+  tags:
+  - cofitness
+  - fitness
+- project: cofitness_coinheritance
+  file: fig3_phylo_control.png
+  path: projects/cofitness_coinheritance/figures/fig3_phylo_control.png
+  caption: Phylogenetic Control
+  notebook: 02_cooccurrence.ipynb
+  tags: []
+- project: cofitness_coinheritance
+  file: fig6_functional.png
+  path: projects/cofitness_coinheritance/figures/fig6_functional.png
+  caption: Functional Enrichment
+  notebook: 01_data_extraction.ipynb
+  tags:
+  - enrichment
+- project: cofitness_coinheritance
+  file: module_coinheritance.png
+  path: projects/cofitness_coinheritance/figures/module_coinheritance.png
+  caption: null
+  notebook: null
+  tags: []
+- project: cofitness_coinheritance
+  file: quick_cooccurrence.png
+  path: projects/cofitness_coinheritance/figures/quick_cooccurrence.png
+  caption: null
+  notebook: null
+  tags: []
+- project: conservation_fitness_synthesis
+  file: fitness_conservation_gradient.png
+  path: projects/conservation_fitness_synthesis/figures/fitness_conservation_gradient.png
+  caption: Fitness-Conservation Gradient
+  notebook: null
+  tags:
+  - conservation
+  - fitness
+- project: conservation_fitness_synthesis
+  file: selection_signature.png
+  path: projects/conservation_fitness_synthesis/figures/selection_signature.png
+  caption: Selection Signature
+  notebook: 01_summary_figures.ipynb
+  tags: []
+- project: conservation_fitness_synthesis
+  file: core_genome_active.png
+  path: projects/conservation_fitness_synthesis/figures/core_genome_active.png
+  caption: Core Genome Active
+  notebook: 01_summary_figures.ipynb
+  tags: []
+- project: conservation_vs_fitness
+  file: identity_distributions.png
+  path: projects/conservation_vs_fitness/figures/identity_distributions.png
+  caption: DIAMOND Identity Distributions
+  notebook: null
+  tags: []
+- project: conservation_vs_fitness
+  file: conservation_breakdown.png
+  path: projects/conservation_vs_fitness/figures/conservation_breakdown.png
+  caption: Conservation Breakdown
+  notebook: null
+  tags:
+  - conservation
+- project: conservation_vs_fitness
+  file: essential_vs_core_forest_plot.png
+  path: projects/conservation_vs_fitness/figures/essential_vs_core_forest_plot.png
+  caption: Essential vs Core Forest Plot
+  notebook: 01_organism_mapping.ipynb, 03_build_link_table.ipynb
+  tags:
+  - essential-genes
+- project: conservation_vs_fitness
+  file: essential_enzyme_breakdown.png
+  path: projects/conservation_vs_fitness/figures/essential_enzyme_breakdown.png
+  caption: Enzyme Classification Breakdown
+  notebook: 04_essential_conservation.ipynb
+  tags:
+  - metabolism
+  - modules
+- project: conservation_vs_fitness
+  file: essential_seed_toplevel_heatmap.png
+  path: projects/conservation_vs_fitness/figures/essential_seed_toplevel_heatmap.png
+  caption: SEED Functional Category Heatmap
+  notebook: 04_essential_conservation.ipynb
+  tags:
+  - gene-annotation
+- project: conservation_vs_fitness
+  file: essential_length_validation.png
+  path: projects/conservation_vs_fitness/figures/essential_length_validation.png
+  caption: Gene Length Validation
+  notebook: 04_essential_conservation.ipynb
+  tags: []
+- project: conservation_vs_fitness
+  file: essential_enrichment_by_context.png
+  path: projects/conservation_vs_fitness/figures/essential_enrichment_by_context.png
+  caption: Enrichment by Context
+  notebook: 04_essential_conservation.ipynb
+  tags:
+  - enrichment
+- project: conservation_vs_fitness
+  file: essential_enrichment_by_lifestyle.png
+  path: projects/conservation_vs_fitness/figures/essential_enrichment_by_lifestyle.png
+  caption: Enrichment by Lifestyle
+  notebook: 04_essential_conservation.ipynb
+  tags:
+  - enrichment
+- project: core_gene_tradeoffs
+  file: burden_by_function.png
+  path: projects/core_gene_tradeoffs/figures/burden_by_function.png
+  caption: Burden by Functional Category
+  notebook: null
+  tags:
+  - gene-annotation
+- project: core_gene_tradeoffs
+  file: burden_by_condition.png
+  path: projects/core_gene_tradeoffs/figures/burden_by_condition.png
+  caption: Burden Patterns by Condition Type
+  notebook: null
+  tags: []
+- project: core_gene_tradeoffs
+  file: tradeoff_genes_conservation.png
+  path: projects/core_gene_tradeoffs/figures/tradeoff_genes_conservation.png
+  caption: Trade-off Gene Conservation Enrichment
+  notebook: 01_burden_anatomy.ipynb
+  tags:
+  - conservation
+  - enrichment
+- project: core_gene_tradeoffs
+  file: selection_signature_matrix.png
+  path: projects/core_gene_tradeoffs/figures/selection_signature_matrix.png
+  caption: Selection Signature Matrix
+  notebook: 01_burden_anatomy.ipynb
+  tags: []
+- project: core_gene_tradeoffs
+  file: specific_phenotype_conditions.png
+  path: projects/core_gene_tradeoffs/figures/specific_phenotype_conditions.png
+  caption: Specific Phenotype Conditions
+  notebook: 01_burden_anatomy.ipynb
+  tags: []
+- project: core_gene_tradeoffs
+  file: motility_case_study.png
+  path: projects/core_gene_tradeoffs/figures/motility_case_study.png
+  caption: Motility Case Study
+  notebook: 01_burden_anatomy.ipynb
+  tags: []
+- project: costly_dispensable_genes
+  file: fig_seed_enrichment.png
+  path: projects/costly_dispensable_genes/figures/fig_seed_enrichment.png
+  caption: SEED top-level category enrichment in costly+dispensable vs costly+conserved
+  notebook: null
+  tags:
+  - conservation
+  - enrichment
+- project: costly_dispensable_genes
+  file: fig_annotation_rate.png
+  path: projects/costly_dispensable_genes/figures/fig_annotation_rate.png
+  caption: Annotation rate (SEED, KEGG) by selection quadrant
+  notebook: 02_functional_characterization.ipynb
+  tags:
+  - gene-annotation
+  - pathway-analysis
+- project: costly_dispensable_genes
+  file: fig_ortholog_breadth.png
+  path: projects/costly_dispensable_genes/figures/fig_ortholog_breadth.png
+  caption: Ortholog group breadth and orphan gene fraction by quadrant
+  notebook: 02_functional_characterization.ipynb
+  tags: []
+- project: costly_dispensable_genes
+  file: fig_gene_length.png
+  path: projects/costly_dispensable_genes/figures/fig_gene_length.png
+  caption: Gene length distributions by quadrant
+  notebook: 02_functional_characterization.ipynb
+  tags: []
+- project: costly_dispensable_genes
+  file: fig_organism_distribution.png
+  path: projects/costly_dispensable_genes/figures/fig_organism_distribution.png
+  caption: Costly+dispensable gene counts by organism
+  notebook: 02_functional_characterization.ipynb
+  tags: []
+- project: costly_dispensable_genes
+  file: fig_per_organism.png
+  path: projects/costly_dispensable_genes/figures/fig_per_organism.png
+  caption: Stacked bar of quadrant proportions per organism
+  notebook: 02_functional_characterization.ipynb
+  tags: []
+- project: counter_ion_effects
+  file: nacl_metal_overlap_heatmap.png
+  path: projects/counter_ion_effects/figures/nacl_metal_overlap_heatmap.png
+  caption: Heatmap of metal-NaCl gene overlap by organism and metal
+  notebook: null
+  tags:
+  - metal-stress
+- project: counter_ion_effects
+  file: metal_nacl_overlap_by_counter_ion.png
+  path: projects/counter_ion_effects/figures/metal_nacl_overlap_by_counter_ion.png
+  caption: Per-metal overlap colored by counter ion type
+  notebook: 02_metal_nacl_overlap.ipynb
+  tags:
+  - metal-stress
+- project: counter_ion_effects
+  file: cl_concentration_vs_overlap.png
+  path: projects/counter_ion_effects/figures/cl_concentration_vs_overlap.png
+  caption: Cl⁻ concentration vs NaCl overlap scatter
+  notebook: 02_metal_nacl_overlap.ipynb
+  tags: []
+- project: counter_ion_effects
+  file: dvh_nacl_metal_correlation.png
+  path: projects/counter_ion_effects/figures/dvh_nacl_metal_correlation.png
+  caption: DvH fitness profile correlations with NaCl
+  notebook: 02_metal_nacl_overlap.ipynb
+  tags:
+  - correlation
+  - fitness
+- project: counter_ion_effects
+  file: atlas_original_vs_corrected.png
+  path: projects/counter_ion_effects/figures/atlas_original_vs_corrected.png
+  caption: Original vs corrected core enrichment per metal
+  notebook: 02_metal_nacl_overlap.ipynb
+  tags:
+  - enrichment
+  - metal-stress
+- project: counter_ion_effects
+  file: gene_classification_by_metal.png
+  path: projects/counter_ion_effects/figures/gene_classification_by_metal.png
+  caption: 'Per-metal gene classification: shared-stress vs metal-specific'
+  notebook: 04_corrected_atlas.ipynb
+  tags:
+  - metal-stress
+  - modules
+- project: counter_ion_effects
+  file: psrch2_copper_comparison.png
+  path: projects/counter_ion_effects/figures/psrch2_copper_comparison.png
+  caption: psRCH2 CuCl₂ vs CuSO₄ fitness profiles
+  notebook: 03_profile_decomposition.ipynb
+  tags:
+  - fitness
+- project: ecotype_analysis
+  file: ecotype_correlation_summary.png
+  path: projects/ecotype_analysis/figures/ecotype_correlation_summary.png
+  caption: Ecotype correlation summary
+  notebook: null
+  tags:
+  - correlation
+  - ecotype
+- project: ecotype_analysis
+  file: environmental_vs_host_comparison.png
+  path: projects/ecotype_analysis/figures/environmental_vs_host_comparison.png
+  caption: Environmental vs host comparison
+  notebook: null
+  tags:
+  - ecotype
+- project: ecotype_analysis
+  file: ecotype_by_category.png
+  path: projects/ecotype_analysis/figures/ecotype_by_category.png
+  caption: Ecotype effects by category
+  notebook: null
+  tags:
+  - ecotype
+- project: ecotype_analysis
+  file: ecotype_scatter_by_category.png
+  path: projects/ecotype_analysis/figures/ecotype_scatter_by_category.png
+  caption: Ecotype scatter by category
+  notebook: null
+  tags:
+  - ecotype
+- project: ecotype_analysis
+  file: embedding_diversity_distribution.png
+  path: projects/ecotype_analysis/figures/embedding_diversity_distribution.png
+  caption: Embedding diversity distribution
+  notebook: null
+  tags: []
+- project: ecotype_env_reanalysis
+  file: partial_corr_by_group.png
+  path: projects/ecotype_env_reanalysis/figures/partial_corr_by_group.png
+  caption: Partial correlations by species group
+  notebook: null
+  tags:
+  - correlation
+- project: ecotype_env_reanalysis
+  file: partial_corr_distributions.png
+  path: projects/ecotype_env_reanalysis/figures/partial_corr_distributions.png
+  caption: Distribution of partial correlations
+  notebook: null
+  tags:
+  - correlation
+- project: ecotype_env_reanalysis
+  file: frac_env_vs_partial_corr.png
+  path: projects/ecotype_env_reanalysis/figures/frac_env_vs_partial_corr.png
+  caption: 'Continuous analysis: fraction environmental vs partial correlation'
+  notebook: null
+  tags:
+  - correlation
+  - ecotype
+- project: ecotype_env_reanalysis
+  file: species_classification.png
+  path: projects/ecotype_env_reanalysis/figures/species_classification.png
+  caption: Species classification by dominant environment
+  notebook: 01_environmental_only_reanalysis.ipynb
+  tags:
+  - modules
+- project: ecotype_env_reanalysis
+  file: frac_env_vs_partial_corr.html
+  path: projects/ecotype_env_reanalysis/figures/frac_env_vs_partial_corr.html
+  caption: null
+  notebook: null
+  tags: []
+- project: ecotype_env_reanalysis
+  file: partial_corr_by_group.html
+  path: projects/ecotype_env_reanalysis/figures/partial_corr_by_group.html
+  caption: null
+  notebook: null
+  tags: []
+- project: ecotype_env_reanalysis
+  file: partial_corr_distributions.html
+  path: projects/ecotype_env_reanalysis/figures/partial_corr_distributions.html
+  caption: null
+  notebook: null
+  tags: []
+- project: ecotype_env_reanalysis
+  file: species_classification.html
+  path: projects/ecotype_env_reanalysis/figures/species_classification.html
+  caption: null
+  notebook: null
+  tags: []
+- project: enigma_contamination_functional_potential
+  file: confirmatory_defense_vs_contamination.png
+  path: projects/enigma_contamination_functional_potential/figures/confirmatory_defense_vs_contamination.png
+  caption: Confirmatory defense score vs contamination index by mapping mode
+  notebook: null
+  tags:
+  - defense
+- project: enigma_contamination_functional_potential
+  file: contamination_vs_functional_score.png
+  path: projects/enigma_contamination_functional_potential/figures/contamination_vs_functional_score.png
+  caption: Exploratory stress score vs contamination index by mapping mode
+  notebook: null
+  tags: []
+- project: enigma_contamination_functional_potential
+  file: mapping_coverage_by_mode.png
+  path: projects/enigma_contamination_functional_potential/figures/mapping_coverage_by_mode.png
+  caption: Mapping and feature coverage by mode
+  notebook: null
+  tags: []
+- project: enigma_contamination_functional_potential
+  file: contamination_index_distribution.png
+  path: projects/enigma_contamination_functional_potential/figures/contamination_index_distribution.png
+  caption: Distribution of contamination index
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: geo_vs_embedding_by_env_group.png
+  path: projects/env_embedding_explorer/figures/geo_vs_embedding_by_env_group.png
+  caption: Geographic distance vs embedding distance stratified by environment group
+  notebook: null
+  tags:
+  - biogeography
+- project: env_embedding_explorer
+  file: geo_vs_embedding_binned.png
+  path: projects/env_embedding_explorer/figures/geo_vs_embedding_binned.png
+  caption: Mean embedding distance increases monotonically with geographic distance
+  notebook: 02_interactive_exploration.ipynb
+  tags:
+  - biogeography
+  - modules
+- project: env_embedding_explorer
+  file: env_categories.png
+  path: projects/env_embedding_explorer/figures/env_categories.png
+  caption: Harmonized environment categories showing human clinical and gut dominance
+  notebook: 02_interactive_exploration.ipynb
+  tags:
+  - modules
+- project: env_embedding_explorer
+  file: coord_quality_map.png
+  path: projects/env_embedding_explorer/figures/coord_quality_map.png
+  caption: Global coordinate quality assessment
+  notebook: 02_interactive_exploration.ipynb
+  tags: []
+- project: env_embedding_explorer
+  file: umap_by_env_category.png
+  path: projects/env_embedding_explorer/figures/umap_by_env_category.png
+  caption: UMAP of AlphaEarth embeddings colored by environment category
+  notebook: 02_interactive_exploration.ipynb
+  tags: []
+- project: env_embedding_explorer
+  file: cluster_env_heatmap.png
+  path: projects/env_embedding_explorer/figures/cluster_env_heatmap.png
+  caption: Environment category composition of UMAP clusters
+  notebook: 02_interactive_exploration.ipynb
+  tags: []
+- project: env_embedding_explorer
+  file: env_cluster_distribution.png
+  path: projects/env_embedding_explorer/figures/env_cluster_distribution.png
+  caption: Cluster distribution per environment category
+  notebook: 02_interactive_exploration.ipynb
+  tags: []
+- project: env_embedding_explorer
+  file: umap_by_phylum.png
+  path: projects/env_embedding_explorer/figures/umap_by_phylum.png
+  caption: UMAP colored by phylum
+  notebook: 02_interactive_exploration.ipynb
+  tags: []
+- project: env_embedding_explorer
+  file: coverage_bar.png
+  path: projects/env_embedding_explorer/figures/coverage_bar.png
+  caption: Attribute population rates
+  notebook: 02_interactive_exploration.ipynb
+  tags: []
+- project: env_embedding_explorer
+  file: coverage_intersections.png
+  path: projects/env_embedding_explorer/figures/coverage_intersections.png
+  caption: Metadata attribute combinations
+  notebook: 02_interactive_exploration.ipynb
+  tags: []
+- project: env_embedding_explorer
+  file: cluster_env_heatmap.html
+  path: projects/env_embedding_explorer/figures/cluster_env_heatmap.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: coord_quality_map.html
+  path: projects/env_embedding_explorer/figures/coord_quality_map.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: coverage_bar.html
+  path: projects/env_embedding_explorer/figures/coverage_bar.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: coverage_intersections.html
+  path: projects/env_embedding_explorer/figures/coverage_intersections.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: env_categories.html
+  path: projects/env_embedding_explorer/figures/env_categories.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: env_cluster_distribution.html
+  path: projects/env_embedding_explorer/figures/env_cluster_distribution.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: geo_vs_embedding_binned.html
+  path: projects/env_embedding_explorer/figures/geo_vs_embedding_binned.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: geo_vs_embedding_by_env_group.html
+  path: projects/env_embedding_explorer/figures/geo_vs_embedding_by_env_group.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: geo_vs_embedding_distance.html
+  path: projects/env_embedding_explorer/figures/geo_vs_embedding_distance.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: geo_vs_embedding_distance.png
+  path: projects/env_embedding_explorer/figures/geo_vs_embedding_distance.png
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: global_map_by_env.html
+  path: projects/env_embedding_explorer/figures/global_map_by_env.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: global_map_by_env.png
+  path: projects/env_embedding_explorer/figures/global_map_by_env.png
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: umap_by_coord_quality.html
+  path: projects/env_embedding_explorer/figures/umap_by_coord_quality.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: umap_by_coord_quality.png
+  path: projects/env_embedding_explorer/figures/umap_by_coord_quality.png
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: umap_by_env_category.html
+  path: projects/env_embedding_explorer/figures/umap_by_env_category.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: umap_by_phylum.html
+  path: projects/env_embedding_explorer/figures/umap_by_phylum.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: umap_clusters.html
+  path: projects/env_embedding_explorer/figures/umap_clusters.html
+  caption: null
+  notebook: null
+  tags: []
+- project: env_embedding_explorer
+  file: umap_clusters.png
+  path: projects/env_embedding_explorer/figures/umap_clusters.png
+  caption: null
+  notebook: null
+  tags: []
+- project: essential_genome
+  file: essential_families_overview.png
+  path: projects/essential_genome/figures/essential_families_overview.png
+  caption: Essential Families Overview
+  notebook: 02_essential_families.ipynb
+  tags:
+  - essential-genes
+- project: essential_genome
+  file: essential_families_heatmap.png
+  path: projects/essential_genome/figures/essential_families_heatmap.png
+  caption: Essential Families Heatmap
+  notebook: 02_essential_families.ipynb
+  tags:
+  - essential-genes
+- project: essential_genome
+  file: conservation_architecture.png
+  path: projects/essential_genome/figures/conservation_architecture.png
+  caption: Conservation Architecture
+  notebook: 03_function_prediction.ipynb
+  tags:
+  - conservation
+- project: essential_metabolome
+  file: pathway_completeness.png
+  path: projects/essential_metabolome/figures/pathway_completeness.png
+  caption: Pathway completeness visualization
+  notebook: null
+  tags:
+  - metabolism
+  - pathway-analysis
+- project: field_vs_lab_fitness
+  file: fig_condition_importance_heatmap.png
+  path: projects/field_vs_lab_fitness/figures/fig_condition_importance_heatmap.png
+  caption: Heatmap of gene importance (fitness < -2) by condition class and conservation status
+  notebook: 01_enigma_discovery.ipynb
+  tags:
+  - conservation
+  - fitness
+- project: field_vs_lab_fitness
+  file: fig_conservation_by_condition_class.png
+  path: projects/field_vs_lab_fitness/figures/fig_conservation_by_condition_class.png
+  caption: Core genome percentage for genes important under each condition class, with baseline
+  notebook: 02_condition_classification.ipynb
+  tags: []
+- project: field_vs_lab_fitness
+  file: fig_field_vs_lab_specificity.png
+  path: projects/field_vs_lab_fitness/figures/fig_field_vs_lab_specificity.png
+  caption: Scatter plot of mean field fitness vs mean lab fitness per gene, colored by core/auxiliary status
+  notebook: 03_fitness_conservation.ipynb
+  tags:
+  - fitness
+- project: field_vs_lab_fitness
+  file: fig_roc_conservation_prediction.png
+  path: projects/field_vs_lab_fitness/figures/fig_roc_conservation_prediction.png
+  caption: ROC curves comparing field-only, lab-only, combined, and full models for predicting core genome status
+  notebook: 03_fitness_conservation.ipynb
+  tags: []
+- project: field_vs_lab_fitness
+  file: fig_module_conservation_vs_activity.png
+  path: projects/field_vs_lab_fitness/figures/fig_module_conservation_vs_activity.png
+  caption: Module core fraction vs field and lab condition activity (two-panel scatter)
+  notebook: 03_fitness_conservation.ipynb
+  tags:
+  - conservation
+  - modules
+- project: field_vs_lab_fitness
+  file: fig_ecological_vs_lab_modules.png
+  path: projects/field_vs_lab_fitness/figures/fig_ecological_vs_lab_modules.png
+  caption: Module conservation and activity by module type classification (box + scatter)
+  notebook: 03_fitness_conservation.ipynb
+  tags:
+  - conservation
+  - modules
+- project: fitness_effects_conservation
+  file: conservation_by_fitness_profile.png
+  path: projects/fitness_effects_conservation/figures/conservation_by_fitness_profile.png
+  caption: Conservation by Fitness Profile
+  notebook: null
+  tags:
+  - conservation
+  - fitness
+- project: fitness_effects_conservation
+  file: fitness_magnitude_vs_conservation.png
+  path: projects/fitness_effects_conservation/figures/fitness_magnitude_vs_conservation.png
+  caption: Fitness Magnitude vs Conservation
+  notebook: null
+  tags:
+  - conservation
+  - fitness
+- project: fitness_effects_conservation
+  file: fitness_breadth_vs_conservation.png
+  path: projects/fitness_effects_conservation/figures/fitness_breadth_vs_conservation.png
+  caption: Fitness Breadth vs Conservation
+  notebook: 02_fitness_vs_conservation.ipynb
+  tags:
+  - conservation
+  - fitness
+- project: fitness_effects_conservation
+  file: broad_vs_specific_conservation.png
+  path: projects/fitness_effects_conservation/figures/broad_vs_specific_conservation.png
+  caption: Broad vs Specific Conservation
+  notebook: 02_fitness_vs_conservation.ipynb
+  tags:
+  - conservation
+- project: fitness_effects_conservation
+  file: burden_genes_by_conservation.png
+  path: projects/fitness_effects_conservation/figures/burden_genes_by_conservation.png
+  caption: Burden Genes by Conservation
+  notebook: 03_breadth_vs_conservation.ipynb
+  tags:
+  - conservation
+- project: fitness_effects_conservation
+  file: cost_benefit_portrait.png
+  path: projects/fitness_effects_conservation/figures/cost_benefit_portrait.png
+  caption: Cost-Benefit Portrait
+  notebook: 03_breadth_vs_conservation.ipynb
+  tags: []
+- project: fitness_effects_conservation
+  file: conservation_by_condition_type.png
+  path: projects/fitness_effects_conservation/figures/conservation_by_condition_type.png
+  caption: Conservation by Condition Type
+  notebook: 02_fitness_vs_conservation.ipynb
+  tags:
+  - conservation
+- project: fitness_effects_conservation
+  file: fitness_distributions_by_conservation.png
+  path: projects/fitness_effects_conservation/figures/fitness_distributions_by_conservation.png
+  caption: Fitness Distributions by Conservation
+  notebook: 03_breadth_vs_conservation.ipynb
+  tags:
+  - conservation
+  - fitness
+- project: fitness_effects_conservation
+  file: novel_gene_mean_fitness.png
+  path: projects/fitness_effects_conservation/figures/novel_gene_mean_fitness.png
+  caption: Novel Gene Mean Fitness
+  notebook: 02_fitness_vs_conservation.ipynb
+  tags:
+  - fitness
+- project: fitness_modules
+  file: pca_eigenvalues.png
+  path: projects/fitness_modules/figures/pca_eigenvalues.png
+  caption: PCA eigenvalue spectrum used for component selection across organisms
+  notebook: null
+  tags: []
+- project: fitness_modules
+  file: module_size_distribution.png
+  path: projects/fitness_modules/figures/module_size_distribution.png
+  caption: Distribution of module sizes across all 32 organisms
+  notebook: null
+  tags:
+  - modules
+- project: fitness_modules
+  file: validation_summary.png
+  path: projects/fitness_modules/figures/validation_summary.png
+  caption: 'Cofitness validation: within-module vs background correlation distributions'
+  notebook: null
+  tags:
+  - cofitness
+  - correlation
+  - fitness
+  - modules
+- project: fitness_modules
+  file: benchmark_strict.png
+  path: projects/fitness_modules/figures/benchmark_strict.png
+  caption: 'Strict benchmarking: precision and coverage by method'
+  notebook: null
+  tags: []
+- project: fitness_modules
+  file: benchmark_neighborhood.png
+  path: projects/fitness_modules/figures/benchmark_neighborhood.png
+  caption: 'Neighborhood benchmarking: performance when allowing nearby KO matches'
+  notebook: null
+  tags: []
+- project: fitness_modules
+  file: module_families.png
+  path: projects/fitness_modules/figures/module_families.png
+  caption: 'Cross-organism module families: size distribution and taxonomic span'
+  notebook: null
+  tags:
+  - modules
+- project: fitness_modules
+  file: enrichment_summary.png
+  path: projects/fitness_modules/figures/enrichment_summary.png
+  caption: Functional enrichment of modules by annotation source
+  notebook: null
+  tags:
+  - enrichment
+  - gene-annotation
+  - modules
+- project: fitness_modules
+  file: prediction_summary.png
+  path: projects/fitness_modules/figures/prediction_summary.png
+  caption: 'Function prediction summary: family-backed vs module-only predictions'
+  notebook: null
+  tags:
+  - modules
+- project: lab_field_ecology
+  file: fig_fb_genus_prevalence.png
+  path: projects/lab_field_ecology/figures/fig_fb_genus_prevalence.png
+  caption: FB Genus Prevalence
+  notebook: null
+  tags: []
+- project: lab_field_ecology
+  file: fig_abundance_vs_uranium.png
+  path: projects/lab_field_ecology/figures/fig_abundance_vs_uranium.png
+  caption: Abundance vs Uranium
+  notebook: 02_genus_abundance.ipynb
+  tags:
+  - metal-stress
+- project: lab_field_ecology
+  file: fig_metal_tolerance_score.png
+  path: projects/lab_field_ecology/figures/fig_metal_tolerance_score.png
+  caption: Metal Tolerance Score
+  notebook: 03_fitness_vs_field.ipynb
+  tags:
+  - metal-stress
+- project: lab_field_ecology
+  file: fig_community_by_contamination.png
+  path: projects/lab_field_ecology/figures/fig_community_by_contamination.png
+  caption: Community by Contamination
+  notebook: 03_fitness_vs_field.ipynb
+  tags: []
+- project: metabolic_capability_dependency
+  file: nb03_stacked_bar.png
+  path: projects/metabolic_capability_dependency/figures/nb03_stacked_bar.png
+  caption: Pathway dependency class distribution by category
+  notebook: null
+  tags:
+  - metabolism
+  - pathway-analysis
+- project: metabolic_capability_dependency
+  file: nb04_conservation_boxplot.png
+  path: projects/metabolic_capability_dependency/figures/nb04_conservation_boxplot.png
+  caption: Pathway conservation by dependency class
+  notebook: null
+  tags:
+  - conservation
+  - metabolism
+  - pathway-analysis
+- project: metabolic_capability_dependency
+  file: nb04_conservation_cdf.png
+  path: projects/metabolic_capability_dependency/figures/nb04_conservation_cdf.png
+  caption: Conservation CDF by dependency class
+  notebook: null
+  tags:
+  - conservation
+- project: metabolic_capability_dependency
+  file: nb04_openness_scatter.png
+  path: projects/metabolic_capability_dependency/figures/nb04_openness_scatter.png
+  caption: Pangenome openness vs latent capability rate
+  notebook: null
+  tags:
+  - pangenome
+- project: metabolic_capability_dependency
+  file: nb05_pca_all_species.png
+  path: projects/metabolic_capability_dependency/figures/nb05_pca_all_species.png
+  caption: PCA of metabolic pathway profiles by species
+  notebook: 04_black_queen_test.ipynb
+  tags:
+  - metabolism
+  - pathway-analysis
+- project: metabolic_capability_dependency
+  file: nb05_pathway_heterogeneity.png
+  path: projects/metabolic_capability_dependency/figures/nb05_pathway_heterogeneity.png
+  caption: Pathway heterogeneity overview
+  notebook: 04_black_queen_test.ipynb
+  tags:
+  - metabolism
+  - pathway-analysis
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_Salmonella_enterica.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_Salmonella_enterica.png
+  caption: Salmonella enterica metabolic profile heatmap
+  notebook: 04_black_queen_test.ipynb
+  tags:
+  - metabolism
+  - modules
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_Prochlorococcus_A_sp000635495.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_Prochlorococcus_A_sp000635495.png
+  caption: Prochlorococcus metabolic profile heatmap
+  notebook: 04_black_queen_test.ipynb
+  tags:
+  - metabolism
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_Pelagibacter_sp003209915.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_Pelagibacter_sp003209915.png
+  caption: Pelagibacter metabolic profile heatmap
+  notebook: 04_black_queen_test.ipynb
+  tags:
+  - metabolism
+- project: metabolic_capability_dependency
+  file: nb03_scatter.png
+  path: projects/metabolic_capability_dependency/figures/nb03_scatter.png
+  caption: 'Scatter: mean |t-score| vs. % essential genes'
+  notebook: 05_metabolic_ecotypes.ipynb
+  tags:
+  - essential-genes
+- project: metabolic_capability_dependency
+  file: nb03_organism_overview.png
+  path: projects/metabolic_capability_dependency/figures/nb03_organism_overview.png
+  caption: Organism-level overview
+  notebook: 05_metabolic_ecotypes.ipynb
+  tags: []
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_Acetatifactor_intestinalis.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_Acetatifactor_intestinalis.png
+  caption: null
+  notebook: null
+  tags: []
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_Alteromonas_macleodii.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_Alteromonas_macleodii.png
+  caption: null
+  notebook: null
+  tags: []
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_Limivicinus_sp900317375.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_Limivicinus_sp900317375.png
+  caption: null
+  notebook: null
+  tags: []
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_PALSA-747_sp903897155.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_PALSA-747_sp903897155.png
+  caption: null
+  notebook: null
+  tags: []
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_Phenylobacterium_sp020401865.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_Phenylobacterium_sp020401865.png
+  caption: null
+  notebook: null
+  tags: []
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_Ruminococcus_E_sp900316555.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_Ruminococcus_E_sp900316555.png
+  caption: null
+  notebook: null
+  tags: []
+- project: metabolic_capability_dependency
+  file: nb05_heatmap_Stutzerimonas_stutzeri.png
+  path: projects/metabolic_capability_dependency/figures/nb05_heatmap_Stutzerimonas_stutzeri.png
+  caption: null
+  notebook: null
+  tags: []
+- project: metal_fitness_atlas
+  file: core_fraction_by_metal.png
+  path: projects/metal_fitness_atlas/figures/core_fraction_by_metal.png
+  caption: Core genome fraction by metal
+  notebook: null
+  tags:
+  - conservation
+  - metal-stress
+- project: metal_fitness_atlas
+  file: metal_conservation_by_organism.png
+  path: projects/metal_fitness_atlas/figures/metal_conservation_by_organism.png
+  caption: Per-organism conservation delta
+  notebook: 03_metal_conservation_analysis.ipynb
+  tags:
+  - conservation
+- project: metal_fitness_atlas
+  file: organism_metal_matrix.png
+  path: projects/metal_fitness_atlas/figures/organism_metal_matrix.png
+  caption: Organism x metal experiment matrix
+  notebook: 03_metal_conservation_analysis.ipynb
+  tags:
+  - metal-stress
+- project: metal_fitness_atlas
+  file: metal_fitness_distributions.png
+  path: projects/metal_fitness_atlas/figures/metal_fitness_distributions.png
+  caption: Metal fitness distributions
+  notebook: 01_metal_experiment_classification.ipynb
+  tags:
+  - fitness
+  - metal-stress
+- project: metal_fitness_atlas
+  file: metal_important_genes_by_organism.png
+  path: projects/metal_fitness_atlas/figures/metal_important_genes_by_organism.png
+  caption: Metal-important genes by organism
+  notebook: 01_metal_experiment_classification.ipynb
+  tags:
+  - metal-stress
+- project: metal_fitness_atlas
+  file: metal_family_conservation_heatmap.png
+  path: projects/metal_fitness_atlas/figures/metal_family_conservation_heatmap.png
+  caption: Metal family breadth and conservation
+  notebook: 02_metal_fitness_extraction.ipynb
+  tags:
+  - conservation
+  - metal-stress
+- project: metal_fitness_atlas
+  file: metal_module_activity_heatmap.png
+  path: projects/metal_fitness_atlas/figures/metal_module_activity_heatmap.png
+  caption: Metal-responsive module activity
+  notebook: 04_cross_species_metal_families.ipynb
+  tags:
+  - metal-stress
+  - modules
+- project: metal_fitness_atlas
+  file: species_metal_score_distribution.png
+  path: projects/metal_fitness_atlas/figures/species_metal_score_distribution.png
+  caption: Species metal score distribution
+  notebook: 05_metal_responsive_modules.ipynb
+  tags:
+  - metal-stress
+- project: metal_fitness_atlas
+  file: bioleaching_species_scores.png
+  path: projects/metal_fitness_atlas/figures/bioleaching_species_scores.png
+  caption: Bioleaching species scores
+  notebook: 05_metal_responsive_modules.ipynb
+  tags: []
+- project: metal_fitness_atlas
+  file: summary_atlas_overview.png
+  path: projects/metal_fitness_atlas/figures/summary_atlas_overview.png
+  caption: null
+  notebook: null
+  tags: []
+- project: metal_fitness_atlas
+  file: summary_metal_families.png
+  path: projects/metal_fitness_atlas/figures/summary_metal_families.png
+  caption: null
+  notebook: null
+  tags: []
+- project: module_conservation
+  file: module_core_distribution.png
+  path: projects/module_conservation/figures/module_core_distribution.png
+  caption: Module Core Distribution
+  notebook: null
+  tags:
+  - modules
+- project: module_conservation
+  file: family_breadth_vs_conservation.png
+  path: projects/module_conservation/figures/family_breadth_vs_conservation.png
+  caption: Family Breadth vs Conservation
+  notebook: 01_module_conservation.ipynb
+  tags:
+  - conservation
+- project: openness_functional_composition
+  file: core_metabolic_by_openness.png
+  path: projects/openness_functional_composition/figures/core_metabolic_by_openness.png
+  caption: null
+  notebook: null
+  tags: []
+- project: openness_functional_composition
+  file: enrichment_by_quartile_heatmap.png
+  path: projects/openness_functional_composition/figures/enrichment_by_quartile_heatmap.png
+  caption: null
+  notebook: null
+  tags: []
+- project: openness_functional_composition
+  file: openness_vs_lv_enrichment.png
+  path: projects/openness_functional_composition/figures/openness_vs_lv_enrichment.png
+  caption: null
+  notebook: null
+  tags: []
+- project: pangenome_openness
+  file: pangenome_vs_effects.png
+  path: projects/pangenome_openness/figures/pangenome_vs_effects.png
+  caption: Pangenome Openness vs Effects
+  notebook: null
+  tags:
+  - pangenome
+- project: pangenome_pathway_geography
+  file: H1_pangenome_vs_pathways.png
+  path: projects/pangenome_pathway_geography/figures/H1_pangenome_vs_pathways.png
+  caption: null
+  notebook: null
+  tags: []
+- project: pangenome_pathway_geography
+  file: H2_niche_breadth_vs_pathways.png
+  path: projects/pangenome_pathway_geography/figures/H2_niche_breadth_vs_pathways.png
+  caption: null
+  notebook: null
+  tags: []
+- project: pangenome_pathway_geography
+  file: H3_pangenome_vs_niche_breadth.png
+  path: projects/pangenome_pathway_geography/figures/H3_pangenome_vs_niche_breadth.png
+  caption: null
+  notebook: null
+  tags: []
+- project: pangenome_pathway_geography
+  file: geography_vs_pathways.png
+  path: projects/pangenome_pathway_geography/figures/geography_vs_pathways.png
+  caption: null
+  notebook: null
+  tags: []
+- project: pangenome_pathway_geography
+  file: pangenome_vs_geography.png
+  path: projects/pangenome_pathway_geography/figures/pangenome_vs_geography.png
+  caption: null
+  notebook: null
+  tags: []
+- project: pangenome_pathway_geography
+  file: pangenome_vs_pathways.png
+  path: projects/pangenome_pathway_geography/figures/pangenome_vs_pathways.png
+  caption: null
+  notebook: null
+  tags: []
+- project: paperblast_explorer
+  file: organism_coverage_skew.png
+  path: projects/paperblast_explorer/figures/organism_coverage_skew.png
+  caption: Cumulative coverage of organisms by paper count and top 20 organisms bar chart
+  notebook: null
+  tags: []
+- project: paperblast_explorer
+  file: gene_coverage_skew.png
+  path: projects/paperblast_explorer/figures/gene_coverage_skew.png
+  caption: 'Gene coverage skew: Lorenz curve and papers-per-gene histogram'
+  notebook: 02_coverage_skew.ipynb
+  tags: []
+- project: paperblast_explorer
+  file: lorenz_curves.png
+  path: projects/paperblast_explorer/figures/lorenz_curves.png
+  caption: Lorenz inequality curves for organisms and genes
+  notebook: 02_coverage_skew.ipynb
+  tags: []
+- project: paperblast_explorer
+  file: top20_bacteria.png
+  path: projects/paperblast_explorer/figures/top20_bacteria.png
+  caption: Top 20 bacteria by paper count with cumulative percentages
+  notebook: 02_coverage_skew.ipynb
+  tags: []
+- project: paperblast_explorer
+  file: sequence_space_reduction.png
+  path: projects/paperblast_explorer/figures/sequence_space_reduction.png
+  caption: Sequence space reduction at 90%, 50%, and 30% identity
+  notebook: 02_coverage_skew.ipynb
+  tags: []
+- project: paperblast_explorer
+  file: literature_coverage_landscape.png
+  path: projects/paperblast_explorer/figures/literature_coverage_landscape.png
+  caption: Literature coverage landscape of protein families
+  notebook: 03_sequence_clustering.ipynb
+  tags: []
+- project: paperblast_explorer
+  file: year_distribution.png
+  path: projects/paperblast_explorer/figures/year_distribution.png
+  caption: Publication year distribution from 1990 onwards
+  notebook: 01_paperblast_overview.ipynb
+  tags:
+  - modules
+- project: paperblast_explorer
+  file: domain_distribution.png
+  path: projects/paperblast_explorer/figures/domain_distribution.png
+  caption: Domain distribution by organisms and genes
+  notebook: 01_paperblast_overview.ipynb
+  tags: []
+- project: paperblast_explorer
+  file: cluster_size_distributions.png
+  path: projects/paperblast_explorer/figures/cluster_size_distributions.png
+  caption: Cluster size distributions at three identity thresholds
+  notebook: 01_paperblast_overview.ipynb
+  tags: []
+- project: paperblast_explorer
+  file: cluster_cumulative_capture.png
+  path: projects/paperblast_explorer/figures/cluster_cumulative_capture.png
+  caption: Cumulative sequence capture by cluster rank
+  notebook: 01_paperblast_overview.ipynb
+  tags: []
+- project: paperblast_explorer
+  file: cluster_vs_literature.png
+  path: projects/paperblast_explorer/figures/cluster_vs_literature.png
+  caption: Cluster size vs literature coverage scatter plot and bar chart
+  notebook: 01_paperblast_overview.ipynb
+  tags: []
+- project: paperblast_explorer
+  file: papers_per_gene.png
+  path: projects/paperblast_explorer/figures/papers_per_gene.png
+  caption: Papers per gene histogram with median line
+  notebook: 03_sequence_clustering.ipynb
+  tags: []
+- project: pathway_capability_dependency
+  file: fig1_four_category_overview.png
+  path: projects/pathway_capability_dependency/figures/fig1_four_category_overview.png
+  caption: Four-category overview
+  notebook: null
+  tags: []
+- project: pathway_capability_dependency
+  file: fig5_condition_type_shifts.png
+  path: projects/pathway_capability_dependency/figures/fig5_condition_type_shifts.png
+  caption: Condition-type shifts
+  notebook: 02_tier1_pathway_classification.ipynb
+  tags: []
+- project: pathway_capability_dependency
+  file: fig2_conservation_by_category.png
+  path: projects/pathway_capability_dependency/figures/fig2_conservation_by_category.png
+  caption: Conservation by category
+  notebook: 02_tier1_pathway_classification.ipynb
+  tags:
+  - conservation
+- project: pathway_capability_dependency
+  file: fig3_core_accessory_pathways.png
+  path: projects/pathway_capability_dependency/figures/fig3_core_accessory_pathways.png
+  caption: Core vs accessory pathway completeness
+  notebook: 02_tier1_pathway_classification.ipynb
+  tags:
+  - metabolism
+  - pangenome
+  - pathway-analysis
+- project: pathway_capability_dependency
+  file: fig4_ecotype_openness.png
+  path: projects/pathway_capability_dependency/figures/fig4_ecotype_openness.png
+  caption: Ecotype count vs openness
+  notebook: 03_tier2_pathway_conservation.ipynb
+  tags:
+  - ecotype
+- project: pathway_capability_dependency
+  file: tier1_classification_heatmap.png
+  path: projects/pathway_capability_dependency/figures/tier1_classification_heatmap.png
+  caption: Classification heatmap
+  notebook: 04_metabolic_ecotypes.ipynb
+  tags:
+  - modules
+- project: pathway_capability_dependency
+  file: tier1_condition_type_shifts.png
+  path: projects/pathway_capability_dependency/figures/tier1_condition_type_shifts.png
+  caption: Condition-type shifts
+  notebook: 04_metabolic_ecotypes.ipynb
+  tags: []
+- project: pathway_capability_dependency
+  file: pathway_conservation_vs_openness.png
+  path: projects/pathway_capability_dependency/figures/pathway_conservation_vs_openness.png
+  caption: Pathway conservation vs openness
+  notebook: 04_metabolic_ecotypes.ipynb
+  tags:
+  - conservation
+  - metabolism
+  - pathway-analysis
+- project: pathway_capability_dependency
+  file: core_vs_all_pathway_completeness.png
+  path: projects/pathway_capability_dependency/figures/core_vs_all_pathway_completeness.png
+  caption: Core vs all pathway completeness
+  notebook: 04_metabolic_ecotypes.ipynb
+  tags:
+  - metabolism
+  - pathway-analysis
+- project: pathway_capability_dependency
+  file: pathway_conservation_by_genus.png
+  path: projects/pathway_capability_dependency/figures/pathway_conservation_by_genus.png
+  caption: Pathway conservation by genus
+  notebook: 04_metabolic_ecotypes.ipynb
+  tags:
+  - conservation
+  - metabolism
+  - pathway-analysis
+- project: pathway_capability_dependency
+  file: ecotype_count_vs_openness.png
+  path: projects/pathway_capability_dependency/figures/ecotype_count_vs_openness.png
+  caption: Ecotype count vs openness
+  notebook: 04_metabolic_ecotypes.ipynb
+  tags:
+  - ecotype
+- project: pathway_capability_dependency
+  file: pathway_conservation_by_phylum.png
+  path: projects/pathway_capability_dependency/figures/pathway_conservation_by_phylum.png
+  caption: null
+  notebook: null
+  tags: []
+- project: pathway_capability_dependency
+  file: summary_statistics.txt
+  path: projects/pathway_capability_dependency/figures/summary_statistics.txt
+  caption: null
+  notebook: null
+  tags: []
+- project: pathway_capability_dependency
+  file: tier1_category_distribution.png
+  path: projects/pathway_capability_dependency/figures/tier1_category_distribution.png
+  caption: null
+  notebook: null
+  tags: []
+- project: pathway_capability_dependency
+  file: tier1_completeness_vs_importance.png
+  path: projects/pathway_capability_dependency/figures/tier1_completeness_vs_importance.png
+  caption: null
+  notebook: null
+  tags: []
+- project: pathway_capability_dependency
+  file: tier1_conservation_validation.png
+  path: projects/pathway_capability_dependency/figures/tier1_conservation_validation.png
+  caption: null
+  notebook: null
+  tags: []
+- project: phb_granule_ecology
+  file: phb_prevalence_by_phylum.png
+  path: projects/phb_granule_ecology/figures/phb_prevalence_by_phylum.png
+  caption: PHB pathway prevalence across 20 major bacterial phyla, showing Pseudomonadota, Myxococcota, and Halobacteriota
+    as the most enriched
+  notebook: null
+  tags:
+  - enrichment
+  - metabolism
+  - pathway-analysis
+- project: phb_granule_ecology
+  file: phb_pathway_completeness.png
+  path: projects/phb_granule_ecology/figures/phb_pathway_completeness.png
+  caption: PHB pathway completeness across all 27K species, showing 21.7% complete, 0.2% synthase-only, 46.5% precursors-only,
+    2.0% accessory-only, and 29.6% absent
+  notebook: null
+  tags:
+  - metabolism
+  - pathway-analysis
+- project: phb_granule_ecology
+  file: phb_by_environment.png
+  path: projects/phb_granule_ecology/figures/phb_by_environment.png
+  caption: 'PHB prevalence by environment type, color-coded by expected temporal variability: high-variability environments
+    (plant, soil, wastewater) show 34-44% prevalence, while low-variability environments (marine, clinical, animal) show 3-19%'
+  notebook: 01_phb_gene_discovery.ipynb, 02_phylogenetic_mapping.ipynb
+  tags:
+  - modules
+- project: phb_granule_ecology
+  file: embedding_variance_phb.png
+  path: projects/phb_granule_ecology/figures/embedding_variance_phb.png
+  caption: Box plots showing AlphaEarth embedding variance for phaC+ vs phaC- species, with phaC+ species showing significantly
+    higher environmental breadth (p=1.88e-06)
+  notebook: 03_environmental_correlation.ipynb
+  tags:
+  - ecotype
+  - modules
+- project: phb_granule_ecology
+  file: genome_size_confound.png
+  path: projects/phb_granule_ecology/figures/genome_size_confound.png
+  caption: 'Genome size confound analysis: size distributions (left), size vs niche breadth colored by PHB status (center),
+    and PHB enrichment by environment within genome size quartiles (right)'
+  notebook: 03_environmental_correlation.ipynb
+  tags:
+  - ecotype
+  - enrichment
+- project: phb_granule_ecology
+  file: phb_enrichment_heatmap.png
+  path: projects/phb_granule_ecology/figures/phb_enrichment_heatmap.png
+  caption: Heatmap of PHB prevalence by order within six major phyla, showing substantial variation at the order and family
+    level even within PHB-rich phyla
+  notebook: 03_environmental_correlation.ipynb
+  tags: []
+- project: phb_granule_ecology
+  file: phb_core_vs_accessory.png
+  path: projects/phb_granule_ecology/figures/phb_core_vs_accessory.png
+  caption: phaC core vs accessory status by phylum, showing most phyla have predominantly core phaC, but some (SAR324, Bacillota_A,
+    Eremiobacterota, Desulfobacterota) have high accessory fractions
+  notebook: 05_subclade_enrichment.ipynb
+  tags:
+  - conservation
+  - pangenome
+- project: phb_granule_ecology
+  file: nmdc_phb_by_environment.png
+  path: projects/phb_granule_ecology/figures/nmdc_phb_by_environment.png
+  caption: Distribution of PHB inference scores across 6,365 NMDC samples (left) and pangenome matching coverage (right)
+  notebook: 05_subclade_enrichment.ipynb
+  tags:
+  - pangenome
+- project: phb_granule_ecology
+  file: nmdc_phb_vs_abiotic.png
+  path: projects/phb_granule_ecology/figures/nmdc_phb_vs_abiotic.png
+  caption: 'PHB inference score vs top abiotic correlates: depth, temperature, maximum depth, and minimum depth'
+  notebook: 05_subclade_enrichment.ipynb
+  tags:
+  - correlation
+- project: phb_granule_ecology
+  file: pangenome_vs_metagenome.png
+  path: projects/phb_granule_ecology/figures/pangenome_vs_metagenome.png
+  caption: Pangenome PHB prevalence vs NMDC metagenomic abundance (left) and abundance comparison of PHB-high vs PHB-low genera
+    (right)
+  notebook: 05_subclade_enrichment.ipynb
+  tags:
+  - pangenome
+- project: respiratory_chain_wiring
+  file: respiratory_chain_heatmap.png
+  path: projects/respiratory_chain_wiring/figures/respiratory_chain_heatmap.png
+  caption: Respiratory chain growth ratios by carbon source
+  notebook: null
+  tags: []
+- project: respiratory_chain_wiring
+  file: subsystem_profiles.png
+  path: projects/respiratory_chain_wiring/figures/subsystem_profiles.png
+  caption: Mean growth ratio by subsystem and carbon source
+  notebook: null
+  tags: []
+- project: respiratory_chain_wiring
+  file: wiring_model.png
+  path: projects/respiratory_chain_wiring/figures/wiring_model.png
+  caption: 'Respiratory chain wiring model: glucose vs quinate vs acetate'
+  notebook: 01_respiratory_chain_map.ipynb
+  tags: []
+- project: respiratory_chain_wiring
+  file: nadh_stoichiometry.png
+  path: projects/respiratory_chain_wiring/figures/nadh_stoichiometry.png
+  caption: NADH stoichiometry and reducing equivalent production
+  notebook: 02_ndh2_indirect.ipynb
+  tags: []
+- project: respiratory_chain_wiring
+  file: wiring_matrix.png
+  path: projects/respiratory_chain_wiring/figures/wiring_matrix.png
+  caption: Respiratory chain wiring matrix
+  notebook: 02_ndh2_indirect.ipynb
+  tags: []
+- project: respiratory_chain_wiring
+  file: ndh2_vs_complex_I.png
+  path: projects/respiratory_chain_wiring/figures/ndh2_vs_complex_I.png
+  caption: 'Complex I fitness: aromatic vs non-aromatic by NDH-2 status'
+  notebook: 03_stoichiometry.ipynb
+  tags:
+  - fitness
+- project: respiratory_chain_wiring
+  file: respiratory_clustermap.png
+  path: projects/respiratory_chain_wiring/figures/respiratory_clustermap.png
+  caption: Respiratory chain clustermap
+  notebook: 03_stoichiometry.ipynb
+  tags: []
+- project: respiratory_chain_wiring
+  file: proteomics_respiratory.png
+  path: projects/respiratory_chain_wiring/figures/proteomics_respiratory.png
+  caption: 'Proteomics: NADH dehydrogenase expression vs all genes'
+  notebook: 04_cross_species_respiratory.ipynb
+  tags: []
+- project: webofmicrobes_explorer
+  file: enigma_metabolite_heatmap.png
+  path: projects/webofmicrobes_explorer/figures/enigma_metabolite_heatmap.png
+  caption: ENIGMA isolate metabolite profiles in R2A medium
+  notebook: 01_database_overview.ipynb, 02_cross_collection_links.ipynb
+  tags:
+  - metabolism

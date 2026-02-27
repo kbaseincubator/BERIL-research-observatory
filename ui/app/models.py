@@ -134,6 +134,126 @@ class Review:
 
 
 @dataclass
+class Reference:
+    """A structured literature or data reference."""
+
+    id: str  # local short ID, e.g. "price2018"
+    type: str  # primary_data_source | supporting | contradicting | methodology | review
+    title: str
+    authors: list[str] = field(default_factory=list)
+    year: int | None = None
+    journal: str | None = None
+    volume: str | None = None
+    pages: str | None = None
+    doi: str | None = None
+    pmid: str | None = None
+    url: str | None = None
+
+    @property
+    def doi_url(self) -> str | None:
+        """Full DOI URL."""
+        if self.doi:
+            return f"https://doi.org/{self.doi}"
+        return None
+
+    @property
+    def pmid_url(self) -> str | None:
+        """Full PubMed URL."""
+        if self.pmid:
+            return f"https://pubmed.ncbi.nlm.nih.gov/{self.pmid}/"
+        return None
+
+    @property
+    def short_citation(self) -> str:
+        """Short citation string, e.g. 'Price et al. (2018)'."""
+        if not self.authors:
+            return self.title
+        # First token is typically the surname (e.g. "Price MN" or "Price")
+        first_author = self.authors[0].strip()
+        if not first_author:
+            return self.title
+        first = first_author.split()[0]
+        if len(self.authors) > 1:
+            first += " et al."
+        if self.year:
+            return f"{first} ({self.year})"
+        return first
+
+
+@dataclass
+class DataSourceRef:
+    """A reference to a BERDL data collection used in a project."""
+
+    collection: str  # BERDL collection ID
+    tables: list[str] = field(default_factory=list)
+    purpose: str | None = None
+    reference: str | None = None  # links to a Reference.id
+
+
+@dataclass
+class CrossProjectDep:
+    """A structured cross-project dependency."""
+
+    project: str  # source project ID
+    relationship: str  # data_input | extends | contradicts | replicates | synthesizes
+    files: list[str] = field(default_factory=list)
+    description: str | None = None
+
+
+@dataclass
+class FindingEvidence:
+    """Evidence linking a finding to its supporting data."""
+
+    id: str
+    title: str
+    notebook: str | None = None
+    figures: list[str] = field(default_factory=list)
+    data_files: list[str] = field(default_factory=list)
+    references: list[str] = field(default_factory=list)  # Reference.id values
+    statistics: dict[str, str] = field(default_factory=dict)
+
+
+@dataclass
+class GeneratedDataEntry:
+    """A generated data file produced by a project."""
+
+    file: str
+    rows: int | None = None
+    description: str | None = None
+    source_notebook: str | None = None
+
+
+@dataclass
+class Provenance:
+    """Structured provenance metadata for a project."""
+
+    schema_version: int = 1
+    references: list[Reference] = field(default_factory=list)
+    data_sources: list[DataSourceRef] = field(default_factory=list)
+    cross_project_deps: list[CrossProjectDep] = field(default_factory=list)
+    findings: list[FindingEvidence] = field(default_factory=list)
+    generated_data: list[GeneratedDataEntry] = field(default_factory=list)
+
+    def get_reference(self, ref_id: str) -> Reference | None:
+        """Get a reference by its ID."""
+        return next((r for r in self.references if r.id == ref_id), None)
+
+    def get_references_by_type(self, ref_type: str) -> list[Reference]:
+        """Get all references of a given type."""
+        return [r for r in self.references if r.type == ref_type]
+
+    @property
+    def collection_ids(self) -> list[str]:
+        """Get all unique collection IDs from data sources."""
+        ids: list[str] = []
+        for ds in self.data_sources:
+            cid = (ds.collection or "").strip()
+            if cid:
+                ids.append(cid)
+        return list(dict.fromkeys(ids))
+
+
+@dataclass
 class DerivedDataRef:
     """A reference to data from another project used as input."""
 
@@ -212,6 +332,8 @@ class Project:
     # Cross-project data provenance
     derived_from: list[DerivedDataRef] = field(default_factory=list)
     used_by: list[str] = field(default_factory=list)  # project IDs
+    # Structured provenance metadata (from provenance.yaml)
+    provenance: Provenance | None = None
 
     @property
     def review_status(self) -> ReviewStatus:
