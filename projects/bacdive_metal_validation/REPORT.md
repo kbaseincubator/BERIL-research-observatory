@@ -8,13 +8,15 @@
 
 Organisms isolated from heavy metal contamination sites have metal tolerance scores a full standard deviation above the environmental baseline (Cohen's d = +1.00, Mann-Whitney p=0.006, n=10). The effect is dose-dependent across contamination intensity: heavy metal (+1.00) > waste/sludge (+0.57) > all contamination (+0.43) > industrial (+0.20). This validates the Metal Fitness Atlas's genome-based prediction method against real-world isolation ecology.
 
-| Environment | n | Median Score | Mean Score | Delta | Cohen's d | p-value |
-|-------------|---|-------------|------------|-------|-----------|---------|
-| Heavy metal contamination | 10 | — | — | — | **+1.00** | **0.006** |
-| Waste/sludge | 305 | — | — | — | **+0.57** | **<0.0001** |
-| All contamination | 176 | — | — | — | **+0.43** | **<0.0001** |
-| Industrial | 796 | — | — | — | **+0.20** | **<0.0001** |
-| Host-associated | 12,086 | — | — | — | +0.14 | <0.0001 |
+Cohen's d is computed as (mean_group - mean_baseline) / pooled_SD, where pooled_SD = sqrt((SD_group² + SD_baseline²) / 2). Environmental baseline: median=0.187, mean=0.195.
+
+| Environment | n | Median | Mean | Delta (median) | Cohen's d | p-value |
+|-------------|---|--------|------|----------------|-----------|---------|
+| Heavy metal contamination | 10 | 0.240 | 0.236 | +0.053 | **+1.00** | **0.006** |
+| Waste/sludge | 305 | 0.219 | 0.218 | +0.032 | **+0.57** | **<0.0001** |
+| All contamination | 176 | 0.215 | 0.211 | +0.028 | **+0.43** | **<0.0001** |
+| Industrial | 796 | 0.199 | 0.202 | +0.012 | **+0.20** | **<0.0001** |
+| Host-associated | 12,086 | 0.194 | 0.201 | +0.007 | +0.14 | <0.0001 |
 
 *(Notebook: 02_environment_metal_scores.ipynb)*
 
