@@ -1110,6 +1110,16 @@ The Metal Atlas NB05 avoided this by using pre-computed z-scores from `metal_mod
 
 **Fix**: Use the pre-computed z-scores from upstream analysis rather than re-normalizing from raw activity scores.
 
+### BacDive Species Names Don't Always Match GTDB Species Names
+
+**[bacdive_metal_validation]** GTDB (used by the pangenome) renames many species with suffixes like `_A`, `_B` (e.g., `Pseudomonas fluorescens A`), adds genus-level splits (e.g., `Pantoea A`), and redefines species boundaries differently from LPSN/DSMZ (used by BacDive). Direct species name matching captures only 34.5% of strains; adding base-name matching (stripping GTDB suffixes) adds another 8.9% for 43.4% total. The remaining 56.6% are genuinely different species concepts or genera not yet in GTDB r214.
+
+**Fix**: Use two-pass matching: (1) exact species name, (2) base name with GTDB suffix stripped. For higher coverage, match via GCA genome accession → pangenome `genome_id` (requires `GB_` prefix + version suffix handling).
+
+### BacDive Heavy Metal Category Is Small After Matching
+
+**[bacdive_metal_validation]** BacDive has 31 strains tagged with cat3=#Heavy metal contamination, but only 10 match to pangenome species with metal tolerance scores. Research plans should not assume the full BacDive category size will survive matching — always compute post-matching sample sizes and power before interpreting results.
+
 ### Variable Overwriting in Multi-Test Notebook Cells
 
 **[metal_specificity]** When running multiple statistical tests in sequence (e.g., Fisher exact for H1c then Fisher exact for H1d), reusing generic variable names like `odds, p = stats.fisher_exact(table)` causes the second test to overwrite the first. A downstream summary cell then prints the wrong values under the wrong labels.

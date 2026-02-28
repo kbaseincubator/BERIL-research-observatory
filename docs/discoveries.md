@@ -518,6 +518,18 @@ YebC was recently shown to be a translation factor for proline-rich proteins (Ig
 
 Initial analysis showed 0% metal-specificity for essential metals (Mo, W, Se, Mn), seemingly due to DvH's 608 non-metal experiments making specificity impossible. After fixing a locusId type mismatch that had silently excluded DvH, essential metals show 47-61% metal-specificity: Manganese (61%), Molybdenum (61%), Tungsten (57%), Selenium (46%). The experiment-count bias is real but less severe than initially thought.
 
+### [bacdive_metal_validation] Metal tolerance scores predict isolation from metal-contaminated environments (d=+1.0, p=0.006)
+
+Bacteria isolated from heavy metal contamination sites have metal tolerance scores a full standard deviation above the environmental baseline (Cohen's d = +1.00, Mann-Whitney p=0.006, n=10). The effect is dose-dependent: heavy metal (+1.00) > waste/sludge (+0.57) > all contamination (+0.43) > industrial (+0.20). This validates the Metal Fitness Atlas's genome-based prediction method against real-world isolation ecology. The signal holds within Pseudomonadota and Actinomycetota after phylogenetic stratification.
+
+### [bacdive_metal_validation] 43% of BacDive strains link to pangenome species via name matching
+
+Species name matching (exact + GTDB suffix removal) links 42,227 BacDive strains (43.4% of 97K) to 6,426 GTDB pangenome species. The bridge enables cross-referencing BacDive phenotypic data with pangenome-derived predictions without Spark queries. The 56.6% unmatched strains reflect GTDB's different species boundaries from LPSN/DSMZ taxonomy.
+
+### [bacdive_metal_validation] Host-associated bacteria score higher than environmental (contradicts expectation)
+
+Host-associated bacteria (n=12,086) have slightly but significantly higher metal tolerance scores than environmental bacteria (d=+0.14, p<0.0001). This contradicts the expectation that host niches have lower metal exposure. The likely explanation is genome size confounding: BacDive host-associated strains are dominated by Pseudomonadota pathogens with large genomes and correspondingly more KEGG-annotated gene clusters, inflating the normalized metal score.
+
 ## Template
 
 ### [webofmicrobes_explorer] WoM action 'E' encodes de novo metabolite production, distinct from 'I' (increased)
