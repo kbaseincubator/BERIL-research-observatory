@@ -23,6 +23,7 @@ Do bacteria isolated from metal-contaminated environments have higher predicted 
 - BacDive (Reimer et al. 2022, *Nucleic Acids Research*) is the largest standardized bacterial phenotype database (97K strains). Its hierarchical isolation source categories include #Heavy metal contamination.
 - No prior study has validated genome-based metal tolerance predictions against isolation environment metadata at this scale.
 - Carlson et al. 2019 (*ISME J*) used Fitness Browser data to predict which organisms survive at Oak Ridge metal-contaminated sites, but used organism-level fitness, not genome-based scoring.
+- The lab_field_ecology project (this observatory) found a suggestive but non-significant correlation between lab metal tolerance and field abundance at Oak Ridge (rho=0.50, p=0.095, n=11 genera), providing context for expected effect sizes.
 
 ## Data Sources
 
@@ -86,10 +87,11 @@ This returns ~100-150K rows (GenBank genomes only). The join to BacDive is done 
 - **Goal**: Test H1a-H1d — do metal-contaminated isolates have higher metal scores?
 - **Method**:
   1. Join bridge table with isolation categories
-  2. Mann-Whitney U test for each environment comparison
-  3. Effect sizes (Cohen's d) and bootstrap confidence intervals
-  4. Phylogenetic confounding check: genus distribution in contamination vs baseline
-  5. Stratified analysis: test within major phyla to control for phylogeny
+  2. Power analysis: compute minimum detectable effect size at 80% power for the heavy-metal group (n=31 vs baseline), so a null result is interpretable
+  3. Mann-Whitney U test for each environment comparison
+  4. Effect sizes (Cohen's d) and bootstrap confidence intervals
+  5. Phylogenetic confounding check: genus/phylum distribution in contamination vs baseline
+  6. Phylum-stratified permutation test: within Proteobacteria, Firmicutes, Actinobacteriota separately to control for phylogenetic bias in culture collections
 - **Expected output**: `data/environment_metal_scores.csv`, `figures/metal_score_by_environment.png`
 
 ### Notebook 3: Metal Utilization Phenotypes (Exploratory)
@@ -115,6 +117,7 @@ This returns ~100-150K rows (GenBank genomes only). The join to BacDive is done 
 
 ## Revision History
 - **v1** (2026-02-28): Initial plan
+- **v2** (2026-02-28): Plan review feedback: added power analysis for n=31 group, phylum-stratified permutation test, lab_field_ecology cross-reference. Verified BacDive accessions have no version suffix (0/27,502). Confirmed species_metal_scores.csv exists locally.
 
 ## Authors
 - Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
