@@ -1088,6 +1088,40 @@ Full column list: `sample_id`, `annotations_ph`, `annotations_temp_has_numeric_v
 
 ---
 
+### Fitness Matrix locusId Type Mismatch (Integer vs String)
+
+**[metal_specificity]** Fitness matrices from `fitness_modules/data/matrices/` use integer-typed locusId indices (e.g., `206065`) while the Metal Atlas `metal_important_genes.csv` stores locusIds as strings (e.g., `'206065'`). Pandas index lookup (`locus not in fit_mat.index`) silently fails when types don't match — the gene appears absent rather than raising an error.
+
+This caused DvH (495 metal-important genes) and Btheta (276 genes) to be completely dropped from the analysis without any warning. The organism processing loop reported "SKIPPED (no fitness matrix or no non-metal experiments)" even though the matrix existed.
+
+**Fix**: Always convert both sides to strings before matching:
+```python
+fit_mat.index = fit_mat.index.astype(str)
+metal_loci = {str(l) for l in metal_loci}
+```
+
+**Detection**: Check organism counts in your output data against the expected input. If organisms with known data are missing, suspect a type mismatch.
+
+### ICA Module z-Normalization Fails When Target Experiments Are Rare
+
+**[metal_specificity]** When computing per-module z-scores across all experiments to identify metal-responsive modules, the z-normalization produces max |z| < 2.0 for metal experiments if metals are a small fraction of total experiments (e.g., 12/176 for MR1). This is because the z-score denominator (std across all experiments) is dominated by the non-metal majority.
+
+The Metal Atlas NB05 avoided this by using pre-computed z-scores from `metal_modules.csv` that were standardized per-module across all experiments (not per-experiment-type). Re-computing z-scores from raw `module_conditions.csv` activity values does not reproduce the same responsiveness threshold.
+
+**Fix**: Use the pre-computed z-scores from upstream analysis rather than re-normalizing from raw activity scores.
+
+### Variable Overwriting in Multi-Test Notebook Cells
+
+**[metal_specificity]** When running multiple statistical tests in sequence (e.g., Fisher exact for H1c then Fisher exact for H1d), reusing generic variable names like `odds, p = stats.fisher_exact(table)` causes the second test to overwrite the first. A downstream summary cell then prints the wrong values under the wrong labels.
+
+**Fix**: Use descriptive variable names for each test:
+```python
+h1c_or, h1c_p = stats.fisher_exact(table_h1c)
+h1d_or, h1d_p = stats.fisher_exact(table_h1d)
+```
+
+---
+
 ## Quick Checklist
 
 Before running a query, verify:
