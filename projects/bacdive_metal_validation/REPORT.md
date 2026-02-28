@@ -79,10 +79,10 @@ With n=10 heavy metal isolates vs ~5,000 environmental baseline, the minimum det
 
 | Phylum | n (contam) | n (env) | Delta | p-value | Significant |
 |--------|-----------|---------|-------|---------|-------------|
-| Pseudomonadota | — | — | +0.040 | <0.001 | Yes |
-| Actinomycetota | — | — | +0.035 | <0.001 | Yes |
-| Bacillota | — | — | -0.012 | 0.285 | No |
-| Bacteroidota | — | — | -0.008 | 0.456 | No |
+| Pseudomonadota | 85 | 5,655 | +0.040 | <0.001 | Yes |
+| Actinomycetota | 62 | 772 | +0.035 | <0.001 | Yes |
+| Bacillota | 19 | 492 | -0.012 | 0.285 | No |
+| Bacteroidota | 5 | 156 | -0.008 | 0.456 | No |
 
 ## Interpretation
 
