@@ -496,6 +496,28 @@ The 94% mean concordance across four databases decomposes into: FB 21/21 = 100% 
 
 The top 18 genes significant across all 21 FB metabolite conditions are amino acid biosynthesis enzymes: homoserine O-acetyltransferase (methionine), ATP phosphoribosyltransferase (histidine), dihydroxy-acid dehydratase (branched-chain), isopropylmalate dehydrogenase (leucine), shikimate dehydrogenase (aromatic), imidazoleglycerol-phosphate dehydratase (histidine). These are essential for growth on *any* minimal medium. The ~370 genes significant in only 1-2 conditions are the truly substrate-specific ones. This distinction is critical for interpreting WoM↔FB integration.
 
+## 2026-02
+
+### [metal_specificity] 55% of metal-important genes are genuinely metal-specific
+
+Of 7,609 metal-important gene records across 24 organisms, 4,177 (55%) are sick under metal stress but have a <5% sick rate across 5,945 non-metal experiments (antibiotics, osmotic, carbon sources, etc.). The remaining 38% are "general sick" (important across many conditions) and 7% are "metal+stress" (shared with other stresses). This demonstrates that the Metal Fitness Atlas's metal-important gene set is not dominated by general stress response — the majority are genuine metal tolerance determinants.
+
+### [metal_specificity] Metal-specific genes are core-enriched but less so than general stress genes (CMH p=0.011)
+
+Metal-specific genes are 84.8% core (pooled) vs 90.2% for general sick genes — a statistically significant difference (Cochran-Mantel-Haenszel p=0.011). Both categories are enriched above the 79.8% baseline. This partially supports the Metal Atlas's two-tier model: general stress response (Tier 1) is more core than specialized metal resistance (Tier 2), but both are predominantly core. The accessory genome contributes only modestly to metal resistance machinery.
+
+### [metal_specificity] UCP030820, YebC, and DUF1043 are the most metal-specific novel candidates
+
+Among the top novel candidates from the Metal Atlas, three stand out as metal-specific rather than pleiotropic: UCP030820/OG01015 (67% metal-specific, oxidoreductase, 7 metals), YebC/OG01383 (58%, transcriptional regulator/translation factor, 6 metals, 11 organisms), and DUF1043-YhcB/OG03264 (50%, cell division protein, 5 metals). In contrast, YfdZ (15%) and the Mla/Yrb system (0-25%) are pleiotropic — important for many conditions, not just metals. DUF39 (0%, sick rate 0.64) is a general fitness factor despite spanning 8 metals.
+
+### [metal_specificity] YebC metal-specificity may link to proline-rich metal transporter translation
+
+YebC was recently shown to be a translation factor for proline-rich proteins (Ignatov et al. 2025). Many metal homeostasis proteins (P-type ATPases CopA/ZntA, CDF transporters) contain proline-rich cytoplasmic loops. Hypothesis: YebC is specifically needed under metal stress because upregulation of proline-rich metal transporters creates a translation bottleneck that YebC resolves. Under non-metal conditions these transporters are not highly expressed and YebC is dispensable.
+
+### [metal_specificity] Essential metals show high metal-specificity when DvH is properly included
+
+Initial analysis showed 0% metal-specificity for essential metals (Mo, W, Se, Mn), seemingly due to DvH's 608 non-metal experiments making specificity impossible. After fixing a locusId type mismatch that had silently excluded DvH, essential metals show 47-61% metal-specificity: Manganese (61%), Molybdenum (61%), Tungsten (57%), Selenium (46%). The experiment-count bias is real but less severe than initially thought.
+
 ## Template
 
 ### [webofmicrobes_explorer] WoM action 'E' encodes de novo metabolite production, distinct from 'I' (increased)
