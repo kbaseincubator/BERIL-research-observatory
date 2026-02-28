@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     data_repo_url: str | None = None  # Git repository URL
     data_repo_branch: str = "data-cache"  # Branch to checkout
     data_repo_path: Path = Path("/tmp/beril_data_cache")  # Local clone path
+    force_local_data: bool = False
 
     # Webhook configuration
     webhook_secret: str | None = None
@@ -66,6 +67,9 @@ class Settings(BaseSettings):
 
     class Config:
         env_prefix = "BERIL_"  # BERIL Research Observatory
+        # Resolve .env relative to the repo root (two levels up from this file)
+        env_file = str(Path(__file__).parent.parent.parent / ".env")
+        env_file_encoding = "utf-8"
 
 
 settings = Settings()
