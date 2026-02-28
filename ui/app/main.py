@@ -26,6 +26,11 @@ from .dataloader import load_repository_data
 from .git_data_sync import ensure_repo_cloned, pull_latest
 from .models import CollectionCategory
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 logger = logging.getLogger(__name__)
 
 PLOTLY_CDN = (
@@ -80,7 +85,10 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing repository data")
 
     # If git repo is configured, clone/pull it first
-    if settings.data_repo_url:
+    if settings.force_local_data:
+        logger.info("Forcing parsing and loading of local data")
+        app.state.repo_data = load_repository_data(None)
+    elif settings.data_repo_url:
         try:
             logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
             await ensure_repo_cloned(
@@ -695,7 +703,7 @@ async def data_update_webhook(request: Request, x_webhook_signature: str = Heade
     # Pull latest changes and reload
     if settings.data_repo_url:
         try:
-            logger.info(f"Pulling latest changes from git repository")
+            logger.info("Pulling latest changes from git repository")
 
             # Pull latest changes
             await pull_latest(settings.data_repo_path, settings.data_repo_branch)

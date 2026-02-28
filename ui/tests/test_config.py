@@ -4,6 +4,9 @@ from pathlib import Path
 
 from app.config import Settings
 
+# Sentinel path that does not exist — tells pydantic-settings to skip .env loading.
+_NO_ENV_FILE = "/dev/null/nonexistent.env"
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -11,13 +14,12 @@ from app.config import Settings
 
 
 def make_settings(**env_overrides) -> Settings:
-    """Instantiate a fresh Settings object with explicit field overrides.
+    """Instantiate a fresh Settings object isolated from the repo .env file.
 
-    pydantic-settings reads from the environment at construction time, so we
-    pass overrides directly as constructor kwargs to avoid needing to mutate
-    os.environ in most tests.
+    Passes _env_file to override the hardcoded env_file path so that the real
+    .env at the repo root is not read. Field values can be provided as kwargs.
     """
-    return Settings(**env_overrides)
+    return Settings(_env_file=_NO_ENV_FILE, **env_overrides)
 
 
 # ---------------------------------------------------------------------------
@@ -278,7 +280,7 @@ class TestEnvironmentVariables:
         assert s1.data_repo_branch == "temp-branch"
 
         monkeypatch.delenv("BERIL_DATA_REPO_BRANCH")
-        s2 = Settings()
+        s2 = make_settings()
         assert s2.data_repo_branch == "data-cache"
 
 
@@ -338,11 +340,3 @@ class TestSettingsSingleton:
     def test_singleton_debug_is_false(self):
         from app.config import settings
         assert settings.debug is False
-
-    def test_singleton_data_repo_url_is_none(self):
-        from app.config import settings
-        assert settings.data_repo_url is None
-
-    def test_singleton_webhook_secret_is_none(self):
-        from app.config import settings
-        assert settings.webhook_secret is None

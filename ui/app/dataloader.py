@@ -120,7 +120,6 @@ def check_for_updates(data_source_url: str, current_last_updated: datetime) -> b
     Returns:
         True if remote data is newer, False otherwise
     """
-    import json
 
     # Ensure URL ends with a slash
     if not data_source_url.endswith("/"):
@@ -987,6 +986,29 @@ class RepositoryParser:
 
         return sorted(notebooks, key=lambda n: n.filename)
 
+    def _extract_plotly_height(self, html_path: Path) -> int | None:
+        """
+        Extract figure height (px) from the plotly-graph-div in a Plotly HTML export.
+        Adds an extra 20 px as a buffer to avoid having a scrollbar.
+        """
+        try:
+            from bs4 import BeautifulSoup
+            with open(html_path, encoding="utf-8") as f:
+                soup = BeautifulSoup(f, "html.parser")
+            div = soup.find("div", class_="plotly-graph-div")
+            if div is None:
+                return None
+            style = div.get("style", "")
+            for part in style.split(";"):
+                part = part.strip()
+                if part.startswith("height:"):
+                    val = part.split(":")[1].strip()
+                    if val.endswith("px"):
+                        return int(val[:-2]) + 20
+        except Exception:
+            pass
+        return None
+
     def _parse_data_dir(
         self, project_dir: Path
     ) -> tuple[list[Visualization], list[DataFile]]:
@@ -1013,13 +1035,20 @@ class RepositoryParser:
                     ".jpeg",
                     ".svg",
                     ".gif",
+                    ".html",
                 ):
+                    is_interactive = file_path.suffix.lower() == ".html"
+                    iframe_height = None
+                    if is_interactive:
+                        iframe_height = self._extract_plotly_height(file_path)
                     visualizations.append(
                         Visualization(
                             filename=file_path.name,
                             path=str(file_path.relative_to(self.repo_path)),
                             title=file_path.stem.replace("_", " ").title(),
                             size_bytes=size_bytes,
+                            is_interactive=is_interactive,
+                            iframe_height=iframe_height,
                         )
                     )
                 elif file_path.suffix.lower() in (".csv", ".tsv", ".json", ".parquet"):
