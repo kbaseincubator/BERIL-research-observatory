@@ -30,7 +30,7 @@ This demonstrates that the metal tolerance score captures real metal adaptation 
 
 ![Bridge summary](figures/bridge_summary.png)
 
-Species name matching between BacDive taxonomy and GTDB pangenome species successfully linked 42,227 BacDive strains (34.5% of 97,334) to metal tolerance scores. Of these, 25,089 have isolation source metadata. The matching used exact species name agreement (primary) with GTDB suffix removal as fallback (e.g., matching BacDive "Pseudomonas fluorescens" to GTDB "Pseudomonas fluorescens A").
+Species name matching between BacDive taxonomy and GTDB pangenome species successfully linked 42,227 BacDive strains (43.4% of 97,334) to metal tolerance scores across 6,426 unique GTDB species. Of these, 25,089 have isolation source metadata. The matching used exact species name agreement (33,535 strains, 34.5%) with GTDB suffix removal as fallback (8,692 additional strains, 8.9%), e.g., matching BacDive "Pseudomonas fluorescens" to GTDB "Pseudomonas fluorescens A".
 
 *(Notebook: 01_bacdive_pangenome_bridge.ipynb)*
 
@@ -44,7 +44,7 @@ Only 24 BacDive metal utilization test records (iron, manganese, arsenate, chrom
 
 ### 5. Power Analysis: The Heavy Metal Group Was At Detection Limit
 
-With n=10 heavy metal isolates vs ~5,000 environmental baseline, the minimum detectable effect size at 80% power is approximately d=0.90. The observed d=1.00 barely exceeds this threshold, meaning we had just enough power to detect the effect. A larger heavy metal contamination dataset would be needed to precisely estimate the effect size.
+With n=10 heavy metal isolates vs ~5,000 environmental baseline, the minimum detectable effect size at 80% power is approximately d=0.93. The observed d=1.00 barely exceeds this threshold, meaning we had just enough power to detect the effect. A larger heavy metal contamination dataset would be needed to precisely estimate the effect size. Note: the RESEARCH_PLAN.md referenced n=31 BacDive heavy metal isolates, but only 10 matched to pangenome species with metal scores after the species name bridge.
 
 *(Notebook: 02_environment_metal_scores.ipynb)*
 
@@ -55,13 +55,13 @@ With n=10 heavy metal isolates vs ~5,000 environmental baseline, the minimum det
 | Metric | Value |
 |--------|-------|
 | BacDive strains | 97,334 |
-| Matched to pangenome species | 42,227 (34.5%) |
-| Exact species match | 33,535 |
-| Base name match (GTDB suffix removal) | 8,692 |
-| Unmatched (no GTDB species) | 55,107 |
+| Matched to pangenome species | 42,227 (43.4%) |
+| Exact species match | 33,535 (34.5%) |
+| Base name match (GTDB suffix removal) | 8,692 (8.9%) |
+| Unmatched (no GTDB species) | 55,107 (56.6%) |
 | Matched with isolation data | 25,089 |
 | Matched with metal utilization data | 24 |
-| Unique GTDB species linked | 5,523 |
+| Unique GTDB species linked | 6,426 |
 
 ### Environment Comparisons
 
@@ -106,11 +106,15 @@ The phylum-stratified analysis shows the signal is real within Pseudomonadota an
 
 Both explanations are consistent with the data and are not mutually exclusive.
 
+### Host-Associated Bacteria Score Higher Than Expected
+
+H1d predicted that host-associated bacteria would have lower metal scores than environmental bacteria, reflecting reduced metal exposure in host niches. The data show the opposite: host-associated bacteria score slightly but significantly higher (d=+0.14, p<0.0001). This likely reflects genome size confounding: host-associated bacteria in BacDive are dominated by Pseudomonadota pathogens (e.g., *Pseudomonas*, *Klebsiella*, *Acinetobacter*) with large genomes and correspondingly more KEGG-annotated gene clusters, inflating the normalized metal score. The genome-size normalization (metal clusters / annotated clusters) reduces but does not eliminate this effect because metal tolerance functions correlate with total metabolic complexity. This finding does not undermine H1a-H1c because the contamination signal (d=+0.43-1.00) is much larger than the host-associated signal (d=+0.14).
+
 ### Limitations
 
 - **Small heavy metal group**: n=10 after matching is at the detection limit for d=1.0. The effect size estimate is imprecise.
 - **Culture collection bias**: BacDive represents culturable, described strains — not the full diversity of environmental bacteria. Metal-tolerant extremophiles may be under-represented.
-- **Species-level matching is lossy**: 65.5% of BacDive strains didn't match any GTDB species, primarily because GTDB uses different species boundaries than LPSN/DSMZ. Genome accession-based matching (GCA→pangenome genome_id) would improve coverage but requires a Spark query.
+- **Species-level matching is lossy**: 56.6% of BacDive strains didn't match any GTDB species, primarily because GTDB uses different species boundaries than LPSN/DSMZ. Genome accession-based matching (GCA→pangenome genome_id) would improve coverage but requires a Spark query.
 - **Metal tolerance score is genome-size-normalized**: The `metal_score_norm` controls for genome size, which is important because Pseudomonadota tend to have larger genomes. Without normalization, the environmental signal could partly reflect genome size rather than metal gene content.
 - **Metal utilization phenotypes inconclusive**: Only 24 records matched — far too few for reliable statistics.
 
@@ -146,7 +150,7 @@ Both explanations are consistent with the data and are not mutually exclusive.
 
 ## Future Directions
 
-1. **GCA accession-based matching**: Query `kbase_ke_pangenome.genome` to match BacDive GCA accessions directly to pangenome genome_ids, potentially recovering more of the 65.5% unmatched strains.
+1. **GCA accession-based matching**: Query `kbase_ke_pangenome.genome` to match BacDive GCA accessions directly to pangenome genome_ids, potentially recovering more of the 56.6% unmatched strains.
 2. **ENIGMA CORAL integration**: Cross-reference with ENIGMA community data at the Oak Ridge metal-contaminated site for a complementary field validation.
 3. **Per-metal environment analysis**: For metals with sufficient BacDive representation (iron, manganese), test whether specific metal tolerance gene families predict specific metal contamination environments.
 4. **Expand BacDive metal phenotypes**: The BacDive API may contain additional metal tolerance test data not captured in the current metabolite_utilization table (e.g., MIC data, growth inhibition).
