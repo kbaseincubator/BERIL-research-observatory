@@ -20,14 +20,16 @@ Per-metal specificity varies across metals but — with DvH now included — ess
 
 ![Conservation by specificity](figures/conservation_by_specificity.png)
 
-**Organism-mean** core fractions across the 22 organisms with pangenome links:
+Core fractions across the 22 organisms with pangenome links, reported as both **pooled** (total core / total genes) and **organism-mean** (mean of per-organism core fractions):
 
-| Category | Organism-Mean Core Fraction | Mean Delta vs Baseline | Positive/Total | Significant/Total |
-|----------|----------------------------|------------------------|----------------|-------------------|
-| Metal-specific | 88.0% | +6.9% | 19/22 | 12/22 |
-| Metal+stress | 93.6% | +10.9% | 13/13 | 1/13 |
-| General sick | 90.2% | +9.0% | 21/21 | 8/21 |
-| Baseline | 81.1% | — | — | — |
+| Category | Pooled Core Fraction | Organism-Mean Core Fraction | Mean Delta vs Baseline | Positive/Total | Significant/Total |
+|----------|---------------------|----------------------------|------------------------|----------------|-------------------|
+| Metal-specific | **84.8%** (2,969/3,500) | 88.0% | +6.9% | 19/22 | 12/22 |
+| Metal+stress | **94.3%** (467/495) | 93.6% | +10.9% | 13/13 | 1/13 |
+| General sick | **90.2%** (2,183/2,420) | 90.2% | +9.0% | 21/21 | 8/21 |
+| Baseline | **79.8%** (73,957/92,650) | 81.1% | — | — | — |
+
+The pooled metal-specific core fraction (84.8%) is lower than the organism-mean (88.0%), reflecting the influence of organisms with large gene sets and lower core fractions. Both metrics show the same pattern: metal-specific genes are core-enriched above baseline but less so than general sick genes.
 
 All three categories are significantly core-enriched above baseline. Metal-specific genes are the least core-enriched of the three, consistent with specialized metal resistance mechanisms being slightly more likely to reside in the accessory genome than general stress functions — but the difference is modest.
 
@@ -60,6 +62,8 @@ Metal-specific genes are 1.64x more likely to match metal-resistance keywords (e
 | YrbE (OG03534, 6 orgs, 5 metals) | 0/6 | 0% | 0.190 |
 
 Three candidates show strong metal-specificity: **UCP030820** (67%, oxidoreductase involved in sulfite reduction, important for 7 metals including Cd and Cr), **YebC** (58%, transcriptional regulator/translation factor spanning 11 organisms and 6 metals), and **DUF1043/YhcB** (50%, cell division/envelope coordination protein). These are primarily metal-specific rather than general stress genes.
+
+YebC's metal-specificity is mechanistically intriguing. Ignatov et al. (2025) showed YebC functions as a translation factor for proline-rich proteins, resolving ribosome stalling at polyproline motifs. Many metal homeostasis proteins — including P-type ATPases (CopA, ZntA), CDF transporters (CzcD), and metal-binding chaperones — contain proline-rich regions in their cytoplasmic loops. A plausible hypothesis is that YebC is specifically required under metal stress because metal-induced demand for these proline-rich metal transporters creates a translation bottleneck that YebC resolves. Under non-metal conditions, these transporters are not highly expressed and YebC is dispensable — explaining its metal-specific fitness profile.
 
 **YfdZ** and the **Mla/Yrb** system (YrbC/D/E) are more pleiotropic — sick under many non-metal conditions. YfdZ's high sick rate (0.268) reflects its known role in alanine biosynthesis. The Mla system's pleiotropic fitness defects are consistent with its established function in maintaining outer membrane integrity under diverse stresses.
 
