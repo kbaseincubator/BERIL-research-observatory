@@ -1,0 +1,36 @@
+{
+  "submitted_at": "2026-02-26T19:27:00Z",
+  "n_jobs": 5,
+  "jobs": [
+    {
+      "batch": 1,
+      "chunks": "000-013",
+      "n_chunks": 14,
+      "job_id": "e31f81c4-170b-4658-9918-9ab6f8bc7764"
+    },
+    {
+      "batch": 2,
+      "chunks": "014-026",
+      "n_chunks": 13,
+      "job_id": "f4b804cb-c220-41e1-9239-5bd69ac21f39"
+    },
+    {
+      "batch": 3,
+      "chunks": "027-039",
+      "n_chunks": 13,
+      "job_id": "b28b13e1-a9f0-4bb2-aadb-78b85860bb31"
+    },
+    {
+      "batch": 4,
+      "chunks": "040-052",
+      "n_chunks": 13,
+      "job_id": "123f79b8-3b8d-4a04-bd96-4316fdf2a4c0"
+    },
+    {
+      "batch": 5,
+      "chunks": "053-066",
+      "n_chunks": 14,
+      "job_id": "5f662adb-a2e5-4475-a77d-480c28eab73f"
+    }
+  ]
+}
