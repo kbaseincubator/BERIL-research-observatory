@@ -14,19 +14,23 @@ Across 5,852 ADP1 genomic features (3,235 protein-coding), the GPT-5.2 agent ann
 
 ![Hypothetical resolution rates and agreement analysis](figures/hypothetical_resolution.png)
 
-The agent resolved 264 of 432 RAST hypotheticals (61.1%) and 158 of 270 Bakta hypotheticals (58.5%) to specific functions. For the 209 genes where both RAST and Bakta assigned "hypothetical protein," the agent resolved 120 (57.4%) — these represent genes with genuinely new functional information unavailable from either conventional pipeline.
+The agent resolved 264 of 432 RAST hypotheticals (61.1%) and 158 of 270 Bakta hypotheticals (58.5%) to specific functions. For the 209 genes where both RAST and Bakta assigned "hypothetical protein," the agent resolved 120 (57.4%) — these represent genes with new annotations unavailable from either conventional pipeline.
 
-When both RAST and agent provide specific annotations (2,720 genes), keyword Jaccard similarity is low (median 0.10). This primarily reflects annotation style: RAST uses terse function names ("LSU ribosomal protein L34p") while the agent produces descriptive sentences ("50S ribosomal protein bL34, a small basic component of the large ribosomal subunit..."). Only 652/2,720 (24%) show zero keyword overlap, and manual inspection of "disagreements" reveals that most describe the same function in different vocabulary.
+**However, a systematic evidence evaluation (NB05) and UniProt spot-check reveal that these annotations vary widely in reliability.** The agent's primary evidence comes from sequence homology to characterized genes in other organisms (75/120), InterProScan domain matches (45/120), gene neighborhood conservation (27/120), and RB-TnSeq fitness data from homologs. A reliability tier analysis classifies only 3/120 (2%) as Tier 1 (domain evidence + fitness support), 53/120 (44%) as Tier 2 (domain evidence or high homology), 42/120 (35%) as Tier 3 (moderate homology or gene neighborhood), and 22/120 (18%) as Tier 4 (speculative). The agent tends to **over-specify** — correctly identifying a protein family (e.g., DUF805) but adding unsupported functional claims (e.g., "involved in cell division"). In 6/120 cases, the agent assigns enzyme names that already belong to other characterized ADP1 genes (e.g., calling a DUF4199 protein "malate synthase G" when ADP1's real GlcB is at a different locus with completely different fitness profile). These annotations are best treated as functional hypotheses ranked by evidence tier.
+
+When both RAST and agent provide specific annotations (2,720 genes), keyword Jaccard similarity is low (median 0.10) but TF-IDF cosine similarity is substantially higher (median 0.28), with 497 genes (18.3%) showing high agreement (>0.5) vs only 15 (0.6%) by Jaccard. This confirms that the low Jaccard scores primarily reflect annotation style differences: RAST uses terse function names ("LSU ribosomal protein L34p") while the agent produces descriptive sentences ("50S ribosomal protein bL34, a small basic component of the large ribosomal subunit..."). The TF-IDF metric, which weights informative terms and normalizes by document length, provides a more accurate picture of functional agreement.
 
 Resolved hypotheticals are modestly enriched for essential genes (11/264 = 4.2% essential vs 4/168 = 2.4% unresolved; Fisher's exact test OR=1.78, p=0.423). The enrichment is not statistically significant given the small counts, but the trend suggests the agent may preferentially resolve genes with detectable phenotypes. No severe multi-condition growth defects (fitness < 0.3 on ≥2 conditions) were observed among either resolved or unresolved hypotheticals — consistent with hypothetical proteins being predominantly accessory or regulatory rather than core metabolic enzymes.
 
-*(Notebook: 02_hypothetical_resolution.ipynb)*
+![Evidence evaluation for 120 agent-unique annotations](figures/evidence_evaluation.png)
 
-### Finding 3: Agent annotations show 56% higher concordance with condition-specific growth phenotypes
+*(Notebooks: 02_hypothetical_resolution.ipynb, 05_evidence_evaluation.ipynb)*
+
+### Finding 3: Agent annotations capture 27 condition-specific genes missed by RAST, but concordance gain is largely driven by verbosity
 
 ![Phenotype concordance across three validation datasets](figures/phenotype_concordance.png)
 
-Using keyword matching against condition-relevant terms, 22.3% of highly condition-specific genes (273 genes with specificity > 1.5) have agent annotations concordant with their most specific carbon source, compared to 14.3% for RAST and 15.0% for Bakta — a 56% improvement over RAST. In a paired analysis (McNemar's test), 27 genes are concordant with the agent only vs 5 with RAST only (p=0.0001), confirming the advantage is statistically significant at the gene set level. However, keyword-density normalization reveals the agent's concordance density (1.07 hits per 100 annotation words) is lower than RAST's (3.01) and Bakta's (4.38), indicating the raw concordance improvement is largely driven by the agent's ~4.6x greater annotation verbosity (mean 22.0 vs 4.8 words per annotation) rather than proportionally higher information content per word.
+Agent annotations are concordant with condition-specific growth phenotypes for 27 genes where RAST is not, versus only 5 where RAST is concordant but the agent is not (McNemar p=0.0001). In raw terms, 22.3% of highly condition-specific genes (273 genes with specificity > 1.5) have agent-concordant annotations vs 14.3% for RAST and 15.0% for Bakta — a 56% relative improvement. However, keyword-density normalization reveals the agent's concordance density (1.07 hits per 100 annotation words) is lower than RAST's (3.01) and Bakta's (4.38), indicating the raw improvement is largely driven by the agent's ~4.6x greater annotation verbosity (mean 22.0 vs 4.8 words per annotation) rather than proportionally higher information content per word. The statistically significant gene-set-level advantage is real, but its magnitude is confounded by annotation length.
 
 Per-condition concordance (agent / RAST / Bakta):
 | Condition | N | Agent | RAST | Bakta | p (Fisher) |
@@ -80,13 +84,32 @@ The master table integrates 3,083 agent annotations with RAST, Bakta, and experi
 ### Agreement Analysis
 
 For 2,720 genes where both RAST and agent provide specific annotations:
-- Mean keyword Jaccard similarity: 0.12
-- High agreement (>0.5): 15 genes (0.6%)
-- Moderate agreement (0.2–0.5): 490 genes (18.0%)
-- Low agreement (0.01–0.2): 1,563 genes (57.5%)
-- No keyword overlap: 652 genes (24.0%)
 
-The low similarity scores reflect annotation style differences rather than functional disagreement. The agent's sentence-style annotations contain many additional context words that dilute keyword overlap even when the core function is identical.
+| Metric | Mean | Median | High (>0.5) | Moderate (0.2–0.5) | Low (0.01–0.2) | No overlap |
+|--------|------|--------|-------------|--------------------|----|------------|
+| Keyword Jaccard | 0.12 | 0.10 | 15 (0.6%) | 490 (18.0%) | 1,563 (57.5%) | 652 (24.0%) |
+| TF-IDF cosine | 0.29 | 0.28 | 497 (18.3%) | 1,179 (43.3%) | 621 (22.8%) | 423 (15.6%) |
+
+TF-IDF cosine similarity, which weights informative terms and normalizes by annotation length, reveals substantially higher agreement than keyword Jaccard. Nearly 62% of gene pairs show moderate or high TF-IDF agreement, confirming that the low Jaccard scores reflect annotation style differences rather than functional disagreement.
+
+### Evidence Evaluation of Unique Annotations
+
+Reliability tiers for 120 agent-unique annotations (hypothetical in both RAST and Bakta):
+
+| Tier | Criteria | Count | Rate |
+|------|----------|-------|------|
+| 1 (High) | InterProScan domain + fitness data support | 3 | 2% |
+| 2 (Moderate) | InterProScan domain OR high homology (≥60%) | 53 | 44% |
+| 3 (Low) | Moderate homology (40-60%) or gene neighborhood | 42 | 35% |
+| 4 (Speculative) | Weak/no homology, no domain evidence | 22 | 18% |
+
+Primary evidence types: sequence homology (75/120), InterProScan domains (45/120), gene neighborhood (27/120). All 120 genes have zero EC numbers from Bakta and are either "DUF domain-containing" (60) or "hypothetical protein" (60) — confirming these are genuinely hard-to-annotate genes where homology-based tools cannot assign functions.
+
+Bakta corroboration: Of the 264 RAST hypotheticals the agent resolves, 144 (55%) are corroborated by Bakta (Bakta also gives a specific annotation). Even among these, Bakta-agent keyword agreement is only 31/144 (22%) — the agent over-specifies beyond the domain evidence in 100/144 cases. The remaining 120 genes (where Bakta also says hypothetical) are the purely speculative set.
+
+Over-specification in the broader set: Among 2,720 genes where both RAST and agent have specific annotations, 558 (21%) show completely different names, 639 (24%) partial overlap, and 1,508 (55%) agree — confirming that over-specification is a systematic pattern, not limited to hypotheticals.
+
+A UniProt spot-check of 15 genes found: 6 contradicted (40%), 5 partially confirmed (33%), 3 not confirmed (20%), 0 confirmed (0%). The most concerning pattern is the agent assigning enzyme names (GlcB, ProC, RmlB) that already belong to other characterized ADP1 genes at different loci.
 
 ### Phenotype Concordance
 
@@ -132,9 +155,9 @@ Model expansion candidates:
 
 ## Interpretation
 
-### The Agent's Primary Value: Resolving Hypotheticals
+### The Agent's Primary Value — and Primary Risk — in Resolving Hypotheticals
 
-The agent's most impactful contribution is not raw coverage gain (only ~1% above Bakta) but the dramatic reduction in hypothetical annotations. By synthesizing InterProScan domain evidence through reasoning, the agent can assign plausible functions to proteins where individual domain hits are insufficient for homology-based assignment. The 120 genes uniquely annotated by the agent (hypothetical in both RAST and Bakta) represent the clearest added value.
+The agent's most striking capability is the dramatic reduction in hypothetical annotations (19 vs 432 for RAST). The evidence evaluation (NB05) reveals a spectrum of reliability: 46% of unique annotations have moderate-to-high evidence support (Tiers 1-2), while 18% are speculative (Tier 4). The agent's reasoning draws on homolog characterization in other organisms, gene neighborhood conservation, and InterProScan domain evidence — all legitimate inference methods. However, it systematically **over-specifies**: correctly identifying a protein family but then adding unsupported functional claims that go beyond the evidence. The most concerning pattern is assigning enzyme names that already belong to other characterized ADP1 genes (e.g., a 78-aa DUF4199 protein called "malate synthase G" when the real 720-aa GlcB is at ACIAD2335 with a completely different fitness profile). The 120 uniquely annotated genes are best treated as functional hypotheses ranked by evidence tier, not as reliable annotations.
 
 ### Concordance Reflects Annotation Style, Not Just Accuracy
 
@@ -142,7 +165,7 @@ The 56% improvement in phenotype concordance must be interpreted carefully. Keyw
 
 ### Complementary Strengths Across Subsystems
 
-No single source dominates all validation datasets. RAST excels on well-characterized subsystems (respiratory chain) where its curated subsystem models are strongest. The agent excels on condition-specific phenotypes and aromatic catabolism where its reasoning over domain combinations adds value. Bakta sits between the two. An optimal annotation strategy might combine all three sources.
+No single source dominates all validation datasets. RAST excels on well-characterized subsystems (respiratory chain) where its curated subsystem models are strongest. The agent excels on condition-specific phenotypes and aromatic catabolism where its reasoning over domain combinations adds value. Bakta sits between the two. A simple consensus rule (prefer RAST when available, agent for hypotheticals) achieves 15.0% condition concordance (matching Bakta) and 74.2% respiratory accuracy (matching RAST). However, the consensus rule is too RAST-biased — it defaults to RAST for 88% of condition-specific genes, losing the agent's advantage on those genes. A more sophisticated consensus that also uses the agent when RAST's annotation lacks condition-relevant terms would likely outperform any single source.
 
 ### Literature Context
 
@@ -153,7 +176,7 @@ No single source dominates all validation datasets. RAST excels on well-characte
 
 ### Novel Contribution
 
-This work provides a phenotype-grounded evaluation framework for comparing annotation methods. Rather than relying on reference databases (which can be circular), we use experimental deletion fitness, TnSeq essentiality, and FBA predictions as independent ground truth. The finding that AI-assisted annotation resolves 61% of hypotheticals while improving phenotype concordance by 56% (McNemar p=0.0001, though largely driven by verbosity) establishes a concrete benchmark for future annotation tools.
+This work provides a phenotype-grounded evaluation framework for comparing annotation methods. Rather than relying on reference databases (which can be circular), we use experimental deletion fitness, TnSeq essentiality, and FBA predictions as independent ground truth. The finding that AI-assisted annotation resolves 61% of hypotheticals while improving phenotype concordance by 56% (McNemar p=0.0001, though largely driven by verbosity) establishes a concrete benchmark for future annotation tools. Critically, the UniProt validation reveals that resolution rate alone is insufficient — 40% of unique annotations were contradicted by existing evidence. This underscores the need for accuracy benchmarks alongside coverage metrics when evaluating LLM-based annotation tools.
 
 ### Limitations
 
@@ -162,6 +185,7 @@ This work provides a phenotype-grounded evaluation framework for comparing annot
 - **Single organism**: Results from ADP1 may not generalize to organisms with less experimental data or more divergent gene content.
 - **Agent annotation scope**: The agent was not given access to the experimental phenotype data, so its annotations are independent of the ground truth. However, it may have been trained on published ADP1 literature.
 - **Coverage denominator**: The "51% coverage" includes non-coding features in the denominator. Among protein-coding genes only, all three sources achieve >85% specific annotation.
+- **Annotation hallucination**: The agent assigns specific enzyme names to DUF/uncharacterized proteins that are contradicted by UniProt in 40% of spot-checked cases. In several instances, the agent duplicated functions already assigned to other characterized ADP1 genes (e.g., calling a DUF4199 protein "malate synthase G" when ADP1's real GlcB is at ACIAD2335). This hallucination pattern is a fundamental limitation of LLM-based annotation.
 
 ## Data
 
@@ -189,6 +213,7 @@ This work provides a phenotype-grounded evaluation framework for comparing annot
 | `02_hypothetical_resolution.ipynb` | Quantify hypothetical resolution, analyze agreement |
 | `03_phenotype_concordance.ipynb` | Score concordance against condition-specific, aromatic, and respiratory phenotypes |
 | `04_model_reconciliation.ipynb` | Assess FBA-discordant genes, identify model expansion candidates |
+| `05_evidence_evaluation.ipynb` | Evaluate agent evidence quality, reliability tiers, fitness consistency |
 
 ### Figures
 | Figure | Description |
@@ -197,6 +222,7 @@ This work provides a phenotype-grounded evaluation framework for comparing annot
 | `hypothetical_resolution.png` | Resolution rates, RAST-agent similarity distribution, agreement categories |
 | `phenotype_concordance.png` | Grouped bar chart of concordance across three validation datasets |
 | `model_reconciliation.png` | Annotation coverage by FBA class, metabolic annotation rates |
+| `evidence_evaluation.png` | Evidence types, reliability tiers, and fitness consistency for 120 unique annotations |
 
 ## Future Directions
 

@@ -27,6 +27,7 @@ Do the new AI-generated annotations improve our understanding of ADP1 biology co
 2. **02_hypothetical_resolution.ipynb** — How many hypothetical proteins does the agent resolve?
 3. **03_phenotype_concordance.ipynb** — Do new annotations better explain experimental phenotypes?
 4. **04_model_reconciliation.ipynb** — Can new annotations fill gaps in the FBA metabolic model?
+5. **05_evidence_evaluation.ipynb** — How reliable are the agent's unique annotations? Evidence quality and fitness consistency
 
 ## Status
 
@@ -46,15 +47,16 @@ This project uses data from the following BERDL collections:
 
 ## Reproduction
 
-**Prerequisites:** Python 3.11+ with pandas, numpy, matplotlib, seaborn, scipy. No Spark required — all data is local.
+**Prerequisites:** Python 3.11+ with pandas, numpy, matplotlib, seaborn, scipy, scikit-learn. No Spark required — all data is local.
 
 **Execution order:** Run notebooks sequentially (each builds on prior outputs):
 1. `notebooks/01_data_integration.ipynb` — produces `data/master_annotation_table.csv`
 2. `notebooks/02_hypothetical_resolution.ipynb` — produces `data/agent_unique_annotations.csv`
 3. `notebooks/03_phenotype_concordance.ipynb` — produces figures
 4. `notebooks/04_model_reconciliation.ipynb` — produces figures
+5. `notebooks/05_evidence_evaluation.ipynb` — evaluates agent evidence quality, produces figure
 
-**Estimated runtime:** < 2 minutes total for all four notebooks.
+**Estimated runtime:** < 2 minutes total for all five notebooks.
 
 **Cross-project dependencies:** NB03 and NB04 load ground-truth data from four sibling projects. These must be present in the repository:
 - `projects/adp1_deletion_phenotypes/data/condition_specific_genes.csv` — condition-specific growth phenotypes
