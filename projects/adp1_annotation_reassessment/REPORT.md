@@ -6,7 +6,7 @@
 
 ![Annotation coverage by source](figures/annotation_coverage.png)
 
-Across 5,852 ADP1 genomic features (3,235 protein-coding), the GPT-5.2 agent annotated 2,984 genes with specific functions (51.0% of all features), compared to Bakta's 2,939 (50.2%) and RAST's 2,803 (47.9%). The agent produced only 19 hypothetical annotations versus RAST's 432 and Bakta's 270 — a 95.6% reduction relative to RAST. This reflects the agent's ability to synthesize InterProScan domain evidence into functional descriptions even when individual domains are insufficient for homology-based tools to assign a named function.
+Across 5,852 ADP1 genomic features (3,235 protein-coding), the GPT-5.2 agent annotated 2,984 genes with specific functions (51.0% of all features; ~92% of protein-coding genes), compared to Bakta's 2,939 (50.2%; ~91%) and RAST's 2,803 (47.9%; ~87%). Note that coverage percentages include non-coding features (tRNA, rRNA, etc.) in the denominator; among protein-coding genes only, all three sources achieve >85% specific annotation coverage. The agent produced only 19 hypothetical annotations versus RAST's 432 and Bakta's 270 — a 95.6% reduction relative to RAST. This reflects the agent's ability to synthesize InterProScan domain evidence into functional descriptions even when individual domains are insufficient for homology-based tools to assign a named function.
 
 *(Notebook: 01_data_integration.ipynb)*
 
@@ -39,7 +39,9 @@ Per-condition concordance (agent / RAST / Bakta):
 
 The agent's largest gains are on quinate and acetate, metabolic pathways where its verbose annotations naturally include pathway and substrate terms that keyword matching captures. For the aromatic catabolism network (8 confirmed pathway genes), the agent correctly identifies 87.5% vs 75.0% for both RAST and Bakta.
 
-For the respiratory chain (62 genes across 8 subsystems), RAST leads at 74.2% vs 69.4% for both agent and Bakta. RAST's advantage here reflects its strong curated subsystem models for well-characterized complexes like NADH dehydrogenase and ATP synthase.
+For the respiratory chain (62 genes across 8 subsystems), RAST leads at 74.2% vs 69.4% for both agent and Bakta. RAST's advantage here reflects its strong curated subsystem models for well-characterized complexes (all three sources score 100% on ATP synthase and Complex II). The agent's lower score on Complex I (10/13 vs 13/13 RAST) is driven by subunits where the agent annotation uses "NADH:ubiquinone oxidoreductase" phrasing that doesn't match the "nuo" keyword set, not by incorrect annotation.
+
+The overall concordance ceiling of 22.3% (even for the best-performing source) reflects a fundamental limitation: many condition-specific genes are regulators, transporters, or structural proteins whose annotations do not contain substrate-specific keywords even when the annotation is correct. For example, a transcriptional regulator essential for quinate utilization would be annotated as "LysR family transcriptional regulator" by all three sources — correct, but not keyword-concordant with quinate metabolism. Additionally, several conditions (urea, asparagine) have small keyword vocabularies, limiting detection.
 
 *(Notebook: 03_phenotype_concordance.ipynb)*
 
@@ -49,7 +51,7 @@ For the respiratory chain (62 genes across 8 subsystems), RAST leads at 74.2% vs
 
 Among 150 FBA-miss genes (FBA predicts variable flux but experiments show growth defects), the agent provides metabolic annotations for 128 (85.3%) compared to RAST's 116 (77.3%) and Bakta's 115 (76.7%). For 81 FBA-discordant genes (FBA predicts essentiality but growth is normal), agent metabolic annotation rate is 86.4% vs RAST's 70.4%.
 
-The agent identifies 696 genes without current FBA reaction mappings that have metabolic-sounding annotations (enzyme names, pathway terms) where RAST does not — these are candidates for model expansion. Among 11 quinate-specific genes lacking FBA reactions, the agent provides specific annotations for all 11, compared to RAST's 10 (the one RAST hypothetical is resolved by the agent).
+The agent identifies 696 genes without current FBA reaction mappings that have metabolic-sounding annotations (enzyme names, pathway terms) where RAST does not. This broad set includes transport proteins, chaperones, and stress-response genes whose agent annotations contain enzyme-like terms (e.g., "oxidoreductase", "transferase") but which may not represent true FBA reaction gaps. A narrower subset restricted to annotations containing EC numbers or explicit pathway enzyme terms would yield a more actionable candidate list; the 696 figure should be treated as an upper bound. Among 11 quinate-specific genes lacking FBA reactions, the agent provides specific annotations for all 11, compared to RAST's 10 (the one RAST hypothetical is resolved by the agent) — these represent the most compelling model expansion targets.
 
 All 478 genes in the triple essentiality dataset have 100% annotation coverage from all three sources, so the agent's value here is not coverage but annotation quality — providing more metabolically informative descriptions that could guide reaction mapping.
 
@@ -95,7 +97,21 @@ Overall concordance rates for highly condition-specific genes:
 
 Subsystem-level validation:
 - Aromatic pathway: Agent 87.5%, RAST 75.0%, Bakta 75.0%
-- Respiratory chain: RAST 74.2%, Agent 69.4%, Bakta 69.4%
+- Respiratory chain (overall): RAST 74.2%, Agent 69.4%, Bakta 69.4%
+
+Respiratory chain per-subsystem accuracy (RAST / Agent / Bakta):
+| Subsystem | N | RAST | Agent | Bakta |
+|-----------|---|------|-------|-------|
+| ATP synthase | 9 | 9 | 9 | 9 |
+| Complex I (NDH-1) | 13 | 13 | 10 | 13 |
+| Complex II (SDH) | 5 | 5 | 5 | 5 |
+| Cyt bd oxidase | 5 | 5 | 4 | 5 |
+| Cyt bo3 oxidase | 4 | 4 | 3 | 4 |
+| NADH-flavin OR | 5 | 5 | 5 | 2 |
+| NDH-2 | 1 | 1 | 1 | 1 |
+| Other respiratory | 20 | 4 | 6 | 4 |
+
+All three sources achieve 100% on ATP synthase and Complex II. Agent underperforms on Complex I due to annotation phrasing differences, not incorrect identification.
 
 ### Model Reconciliation
 
@@ -104,7 +120,7 @@ Subsystem-level validation:
 | FBA-miss (variable + defect) | 150 | 128 (85.3%) | 116 (77.3%) | 115 (76.7%) |
 | FBA-discordant (essential + normal) | 81 | 70 (86.4%) | 57 (70.4%) | 59 (72.8%) |
 
-Model expansion candidates: 696 genes with agent metabolic annotations but no current FBA reaction and no RAST metabolic annotation.
+Model expansion candidates: 696 genes (upper bound) with agent metabolic-sounding annotations but no current FBA reaction and no RAST metabolic annotation. This count uses a broad keyword list that includes transport and chaperone terms; a stricter filter (e.g., EC number presence) would yield a smaller, more actionable set.
 
 ## Interpretation
 
