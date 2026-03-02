@@ -24,6 +24,16 @@ Do the new AI-generated annotations improve our understanding of ADP1 biology co
 3. **03_phenotype_concordance.ipynb** — Do new annotations better explain experimental phenotypes?
 4. **04_model_reconciliation.ipynb** — Can new annotations fill gaps in the FBA metabolic model?
 
+## Status
+
+Complete — see [Report](REPORT.md) for findings.
+
+## Data Collections
+
+This project uses data from the following BERDL collections:
+- `kescience_fitnessbrowser` — Fitness Browser (growth phenotypes, TnSeq essentiality)
+- `kbase_ke_pangenome` — KBase pangenome (cluster assignments)
+
 ## Data
 
 - `user_data/berdl-annotations.with-ipr.annotation_by_gene_detailed_dec_11_2025.tsv` — Agent annotations (3,083 sequences)
