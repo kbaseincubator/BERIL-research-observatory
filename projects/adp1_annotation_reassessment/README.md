@@ -2,7 +2,11 @@
 
 Evaluating AI-generated gene function annotations (GPT-5.2 + InterProScan) for *Acinetobacter baylyi* ADP1 against existing RAST and Bakta annotations, using experimental phenotype data as ground truth.
 
-## Central Question
+## Authors
+
+- Paramvir Dehal
+
+## Research Question
 
 Do the new AI-generated annotations improve our understanding of ADP1 biology compared to existing RAST and Bakta annotations? Without a gold-standard human-curated annotation set, we use five experimental datasets as ground truth — if a gene's annotation better explains its observed phenotype, that annotation is "better."
 
