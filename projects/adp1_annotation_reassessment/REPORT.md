@@ -18,7 +18,7 @@ The agent resolved 264 of 432 RAST hypotheticals (61.1%) and 158 of 270 Bakta hy
 
 When both RAST and agent provide specific annotations (2,720 genes), keyword Jaccard similarity is low (median 0.10). This primarily reflects annotation style: RAST uses terse function names ("LSU ribosomal protein L34p") while the agent produces descriptive sentences ("50S ribosomal protein bL34, a small basic component of the large ribosomal subunit..."). Only 652/2,720 (24%) show zero keyword overlap, and manual inspection of "disagreements" reveals that most describe the same function in different vocabulary.
 
-Resolved hypotheticals are modestly enriched for essential genes (11/264 = 4.2% essential vs 4/168 = 2.4% unresolved), suggesting the agent preferentially resolves genes with detectable phenotypes.
+Resolved hypotheticals are modestly enriched for essential genes (11/264 = 4.2% essential vs 4/168 = 2.4% unresolved; Fisher's exact test OR=1.78, p=0.423). The enrichment is not statistically significant given the small counts, but the trend suggests the agent may preferentially resolve genes with detectable phenotypes. No severe multi-condition growth defects (fitness < 0.3 on ≥2 conditions) were observed among either resolved or unresolved hypotheticals — consistent with hypothetical proteins being predominantly accessory or regulatory rather than core metabolic enzymes.
 
 *(Notebook: 02_hypothetical_resolution.ipynb)*
 
@@ -26,16 +26,16 @@ Resolved hypotheticals are modestly enriched for essential genes (11/264 = 4.2% 
 
 ![Phenotype concordance across three validation datasets](figures/phenotype_concordance.png)
 
-Using keyword matching against condition-relevant terms, 22.3% of highly condition-specific genes (273 genes with specificity > 1.5) have agent annotations concordant with their most specific carbon source, compared to 14.3% for RAST and 15.0% for Bakta — a 56% improvement over RAST.
+Using keyword matching against condition-relevant terms, 22.3% of highly condition-specific genes (273 genes with specificity > 1.5) have agent annotations concordant with their most specific carbon source, compared to 14.3% for RAST and 15.0% for Bakta — a 56% improvement over RAST. In a paired analysis (McNemar's test), 27 genes are concordant with the agent only vs 5 with RAST only (p=0.0001), confirming the advantage is statistically significant at the gene set level. However, keyword-density normalization reveals the agent's concordance density (1.07 hits per 100 annotation words) is lower than RAST's (3.01) and Bakta's (4.38), indicating the raw concordance improvement is largely driven by the agent's ~4.6x greater annotation verbosity (mean 22.0 vs 4.8 words per annotation) rather than proportionally higher information content per word.
 
 Per-condition concordance (agent / RAST / Bakta):
-| Condition | N | Agent | RAST | Bakta |
-|-----------|---|-------|------|-------|
-| Quinate | 27 | 21 (78%) | 17 (63%) | 18 (67%) |
-| Acetate | 20 | 6 (30%) | 2 (10%) | 0 (0%) |
-| Glucarate | 30 | 9 (30%) | 2 (7%) | 5 (17%) |
-| Urea | 62 | 9 (15%) | 8 (13%) | 8 (13%) |
-| Butanediol | 27 | 6 (22%) | 3 (11%) | 4 (15%) |
+| Condition | N | Agent | RAST | Bakta | p (Fisher) |
+|-----------|---|-------|------|-------|------------|
+| Quinate | 27 | 21 (78%) | 17 (63%) | 18 (67%) | 0.372 |
+| Acetate | 20 | 6 (30%) | 2 (10%) | 0 (0%) | 0.235 |
+| Glucarate | 30 | 9 (30%) | 2 (7%) | 5 (17%) | 0.042* |
+| Urea | 62 | 9 (15%) | 8 (13%) | 8 (13%) | 1.000 |
+| Butanediol | 27 | 6 (22%) | 3 (11%) | 4 (15%) | 0.467 |
 
 The agent's largest gains are on quinate and acetate, metabolic pathways where its verbose annotations naturally include pathway and substrate terms that keyword matching captures. For the aromatic catabolism network (8 confirmed pathway genes), the agent correctly identifies 87.5% vs 75.0% for both RAST and Bakta.
 
@@ -51,7 +51,7 @@ The overall concordance ceiling of 22.3% (even for the best-performing source) r
 
 Among 150 FBA-miss genes (FBA predicts variable flux but experiments show growth defects), the agent provides metabolic annotations for 128 (85.3%) compared to RAST's 116 (77.3%) and Bakta's 115 (76.7%). For 81 FBA-discordant genes (FBA predicts essentiality but growth is normal), agent metabolic annotation rate is 86.4% vs RAST's 70.4%.
 
-The agent identifies 696 genes without current FBA reaction mappings that have metabolic-sounding annotations (enzyme names, pathway terms) where RAST does not. This broad set includes transport proteins, chaperones, and stress-response genes whose agent annotations contain enzyme-like terms (e.g., "oxidoreductase", "transferase") but which may not represent true FBA reaction gaps. A narrower subset restricted to annotations containing EC numbers or explicit pathway enzyme terms would yield a more actionable candidate list; the 696 figure should be treated as an upper bound. Among 11 quinate-specific genes lacking FBA reactions, the agent provides specific annotations for all 11, compared to RAST's 10 (the one RAST hypothetical is resolved by the agent) — these represent the most compelling model expansion targets.
+The agent identifies 696 genes without current FBA reaction mappings that have metabolic-sounding annotations (enzyme names, pathway terms) where RAST does not. This broad set includes transport proteins, chaperones, and stress-response genes whose agent annotations contain enzyme-like terms (e.g., "oxidoreductase", "transferase") but which may not represent true FBA reaction gaps. A stricter filter requiring explicit enzyme class terms (synthase, kinase, dehydrogenase, etc.) or EC numbers while excluding transport, chaperone, stress-response, and regulatory proteins yields 175 candidates — the more actionable subset for FBA gap-filling. Among 11 quinate-specific genes lacking FBA reactions, the agent provides specific annotations for all 11, compared to RAST's 10 (the one RAST hypothetical is resolved by the agent) — these represent the most compelling model expansion targets.
 
 All 478 genes in the triple essentiality dataset have 100% annotation coverage from all three sources, so the agent's value here is not coverage but annotation quality — providing more metabolically informative descriptions that could guide reaction mapping.
 
@@ -94,6 +94,12 @@ Overall concordance rates for highly condition-specific genes:
 - Agent: 22.3%
 - Bakta: 15.0%
 - RAST: 14.3%
+- McNemar test (paired): 27 agent-only vs 5 RAST-only concordant genes (p=0.0001)
+
+Keyword-density normalization (concordance hits per 100 annotation words):
+- RAST: 3.01 (mean 4.8 words/annotation)
+- Bakta: 4.38 (mean 3.5 words/annotation)
+- Agent: 1.07 (mean 22.0 words/annotation)
 
 Subsystem-level validation:
 - Aromatic pathway: Agent 87.5%, RAST 75.0%, Bakta 75.0%
@@ -111,7 +117,7 @@ Respiratory chain per-subsystem accuracy (RAST / Agent / Bakta):
 | NDH-2 | 1 | 1 | 1 | 1 |
 | Other respiratory | 20 | 4 | 6 | 4 |
 
-All three sources achieve 100% on ATP synthase and Complex II. Agent underperforms on Complex I due to annotation phrasing differences, not incorrect identification.
+All three sources achieve 100% on ATP synthase and Complex II. Agent underperforms on Complex I due to annotation phrasing differences, not incorrect identification. Of 62 respiratory genes, 37 are correctly identified by all three sources and 12 show inter-source disagreement — the agent uniquely identifies 3 "Other respiratory" genes that RAST and Bakta miss, while RAST/Bakta correctly identify 5 genes (3 Complex I, 1 Cyt bd, 1 Cyt bo3) that the agent misses due to keyword phrasing.
 
 ### Model Reconciliation
 
@@ -120,7 +126,9 @@ All three sources achieve 100% on ATP synthase and Complex II. Agent underperfor
 | FBA-miss (variable + defect) | 150 | 128 (85.3%) | 116 (77.3%) | 115 (76.7%) |
 | FBA-discordant (essential + normal) | 81 | 70 (86.4%) | 57 (70.4%) | 59 (72.8%) |
 
-Model expansion candidates: 696 genes (upper bound) with agent metabolic-sounding annotations but no current FBA reaction and no RAST metabolic annotation. This count uses a broad keyword list that includes transport and chaperone terms; a stricter filter (e.g., EC number presence) would yield a smaller, more actionable set.
+Model expansion candidates:
+- Broad filter (metabolic keywords including transport): 696 genes (upper bound)
+- Strict filter (enzyme class terms/EC numbers, excluding transport/chaperone/regulatory): 175 genes
 
 ## Interpretation
 
@@ -130,7 +138,7 @@ The agent's most impactful contribution is not raw coverage gain (only ~1% above
 
 ### Concordance Reflects Annotation Style, Not Just Accuracy
 
-The 56% improvement in phenotype concordance must be interpreted carefully. The agent's verbose annotations naturally contain more keywords — including metabolic pathway terms, substrate names, and biological context — that overlap with condition-relevant keyword lists. This is both a feature (richer annotations are more useful for biologists) and a measurement artifact (keyword matching favors verbose text). A more rigorous evaluation would require expert curation of a gold-standard set.
+The 56% improvement in phenotype concordance must be interpreted carefully. Keyword-density normalization reveals that the agent's concordance per 100 words (1.07) is actually lower than RAST's (3.01) and Bakta's (4.38), indicating the raw improvement is driven by annotation verbosity (~22 words vs ~5 words per annotation) rather than proportionally higher information density. However, the McNemar test (p=0.0001) confirms the agent concordance advantage is statistically significant at the gene set level — the agent captures 27 genes that RAST misses vs only 5 where RAST is concordant but the agent is not. The practical question is whether more verbose annotations are genuinely more useful for biologists, even if their per-word hit rate is lower.
 
 ### Complementary Strengths Across Subsystems
 
@@ -145,7 +153,7 @@ No single source dominates all validation datasets. RAST excels on well-characte
 
 ### Novel Contribution
 
-This work provides a phenotype-grounded evaluation framework for comparing annotation methods. Rather than relying on reference databases (which can be circular), we use experimental deletion fitness, TnSeq essentiality, and FBA predictions as independent ground truth. The finding that AI-assisted annotation resolves 61% of hypotheticals while improving phenotype concordance by 56% establishes a concrete benchmark for future annotation tools.
+This work provides a phenotype-grounded evaluation framework for comparing annotation methods. Rather than relying on reference databases (which can be circular), we use experimental deletion fitness, TnSeq essentiality, and FBA predictions as independent ground truth. The finding that AI-assisted annotation resolves 61% of hypotheticals while improving phenotype concordance by 56% (McNemar p=0.0001, though largely driven by verbosity) establishes a concrete benchmark for future annotation tools.
 
 ### Limitations
 
@@ -196,7 +204,7 @@ This work provides a phenotype-grounded evaluation framework for comparing annot
 2. **Semantic similarity scoring**: Replace keyword Jaccard with embedding-based similarity (e.g., BioBERT) to better capture functional agreement between different annotation styles.
 3. **Multi-organism evaluation**: Apply the same evaluation framework to other Fitness Browser organisms with rich phenotype data (e.g., *Pseudomonas fluorescens*, *Shewanella oneidensis*).
 4. **Consensus annotation pipeline**: Build an annotation pipeline that combines RAST subsystem assignments, Bakta structural predictions, and agent reasoning into a single best annotation per gene.
-5. **Model gap-filling**: Use the 696 agent-identified model expansion candidates to systematically test whether adding their predicted reactions improves FBA concordance.
+5. **Model gap-filling**: Use the 175 strict model expansion candidates (enzyme-class annotations without current FBA reactions) to systematically test whether adding their predicted reactions improves FBA concordance.
 
 ## References
 
