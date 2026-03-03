@@ -19,14 +19,13 @@ Quick scan is the default for ad-hoc questions. Standard review is the default w
 ```
 Step 1: Understand question → select depth tier
 Step 2: Construct queries (MeSH expansion, organism filters, COG/KEGG keywords)
-Step 3: Search across sources → deduplicate by DOI/PMID
-Step 4: Filter and rank by BERDL relevance
-Step 4.5: Citation snowballing (Standard + Deep)
-Step 4.7: Full-text deep reading via subagents (Standard + Deep)
-Step 4.9: PaperBLAST cross-reference (Deep, or when genes/proteins involved)
-Step 5: Summarize with methods comparison, quantitative results, evidence quality
-Step 6: Store references to projects/{id}/references.md
-Step 7: Connect findings back to BERDL tables
+Step 3: Discover and rank papers via subagent (search → dedup → rank → snowball)
+Step 4: PaperBLAST cross-reference via subagent (parallel with Step 3)
+Step 5: Full-text deep reading via subagents (Standard + Deep)
+Step 5.5: On-demand deep reading (after presenting review)
+Step 6: Summarize with methods comparison, quantitative results, evidence quality
+Step 7: Store references to projects/{id}/references.md
+Step 8: Connect findings back to BERDL tables
 ```
 
 ### Tool Architecture
@@ -67,44 +66,61 @@ The PubMed MCP covers published biomedical literature with rich search, citation
 | Google Scholar | No | **Yes** |
 | Preprint PDF full-text reading | No | **Yes** |
 
-### Context-Efficient Full-Text Reading
+### Context-Efficient Subagent Architecture
 
-Full-text papers are 5K-20K+ tokens each. Reading 10 papers directly in the main context would consume ~100K tokens, leaving little room for synthesis. The skill delegates full-text reading to **subagents** via the Agent tool:
+The skill delegates three heavy operations to subagents to keep the main context clean for synthesis:
 
 ```
-Main context                          Subagent (isolated context)
-─────────────                         ──────────────────────────
-Paper manifest (IDs, titles)    ──►   ToolSearch → load MCP tool
+Main context                          Subagents (isolated contexts)
+─────────────                         ───────────────────────────
+
+Queries, tier, filters          ──►   DISCOVERY SUBAGENT
+                                      Search PubMed, bioRxiv, arXiv, Scholar
+                                      Deduplicate by DOI/PMID
+                                      Rank by BERDL relevance
+                                      Citation snowball (Standard + Deep)
+Compact manifest (2-4K tokens)  ◄──   Return ~100-150 tokens/paper
+
+Gene/protein identifiers        ──►   PAPERBLAST SUBAGENT
+                                      SQL queries against kescience_paperblast
+                                      Gene lookup, gene-paper, snippets, curated, GeneRIF
+Gene-lit summary (1-3K tokens)  ◄──   Return compact summary + PMID list
+
+Paper manifest (IDs, titles)    ──►   PAPER-READER SUBAGENTS (1 per paper)
+                                      ToolSearch → load MCP tool
                                       Call get_full_text_article / read_*_paper
                                       Read 5K-20K tokens of full text
 Structured summary (200-400 tokens) ◄── Extract methods, results, limitations
 ```
 
-**How it works:**
-1. Main agent builds a manifest of papers to read (IDs, sources, titles)
-2. Spawns one subagent per paper using the Agent tool (`subagent_type: "general-purpose"`)
-3. Multiple subagents launch in parallel (up to 5 at a time in a single message)
-4. Each subagent loads the appropriate MCP tool via ToolSearch, retrieves full text, and returns a structured extraction
-5. Main agent collects ~200-400 token summaries instead of ~5K-20K tokens of raw text
+**Discovery + PaperBLAST launch in parallel** (single message, two Agent tool calls). Paper-reader subagents launch after the discovery manifest is received.
 
-**Context savings:** ~3K-5K tokens for 10 papers (structured summaries) vs. ~100K tokens (raw full text). This is a ~20-30x reduction.
+**Context savings:**
 
-**Fallback:** Papers not available in full text (not in PMC, PDF extraction fails) are tagged `ABSTRACT_ONLY` and the abstract from Step 3 is used instead.
+| Component | Before (main context) | After (subagent) | Saved |
+|-----------|----------------------|-------------------|-------|
+| Search + abstracts | 8-20K tokens | ~50 (launch) | 8-20K |
+| Ranking + snowball | 7-20K tokens | 2-4K (manifest) | 5-16K |
+| PaperBLAST | 9.5-40K tokens | 1-3K (summary) | 8-37K |
+| Full-text reading (10 papers) | ~100K tokens | 3-5K (summaries) | ~95K |
+| **Total pipeline** | **125-180K** | **~6-12K** | **~115-170K** |
 
-**On-demand deep reading:** After the review is presented, users can request deeper analysis of any specific paper. A single subagent is spawned with an expanded 800-word extraction focused on the user's specific question.
+**Fallback:** If any subagent fails, the main agent degrades gracefully — running the operation directly in main context or skipping the optional step.
 
 ### What Changed from the Previous Version
 
-The previous skill stopped at abstract-level search results. The upgrade adds:
+The previous skill stopped at abstract-level search results. The upgrades add:
 
-1. **Full-text reading via subagents** — retrieves and analyzes actual paper content (methods, results, limitations) through context-isolated subagents instead of loading raw text into the main context
-2. **Citation snowballing** — finds related papers through PubMed's citation network, catching papers that use different terminology
-3. **PaperBLAST integration** — queries 3.2M gene-paper associations when the research involves specific genes or proteins
-4. **Depth tiers** — scales the review effort to match the need (quick check vs. systematic review)
-5. **Project-level PubMed MCP** — `pubmed` HTTP server in `.mcp.json` so all collaborators get it (no plugin install needed)
-6. **Cross-source deduplication** — removes duplicate papers found across PubMed, bioRxiv, and Google Scholar
-7. **Enhanced summaries** — includes methods comparison tables, quantitative results, and evidence quality indicators
-8. **On-demand deep reading** — drill into any paper post-review with an expanded extraction focused on a specific question
+1. **Discovery pipeline delegation** — search, dedup, rank, and citation snowball run in a subagent, returning a compact manifest (~100-150 tokens/paper) instead of loading 15-40K+ tokens of raw results into main context
+2. **PaperBLAST delegation** — gene-literature SQL queries run in a subagent, returning a compact summary (~1-3K tokens) instead of 9.5-40K+ tokens of raw SQL results
+3. **Full-text reading via subagents** — retrieves and analyzes actual paper content (methods, results, limitations) through context-isolated subagents instead of loading raw text into the main context
+4. **Citation snowballing** — finds related papers through PubMed's citation network, catching papers that use different terminology
+5. **PaperBLAST integration** — queries 3.2M gene-paper associations when the research involves specific genes or proteins
+6. **Depth tiers** — scales the review effort to match the need (quick check vs. systematic review)
+7. **Project-level PubMed MCP** — `pubmed` HTTP server in `.mcp.json` so all collaborators get it (no plugin install needed)
+8. **Cross-source deduplication** — removes duplicate papers found across PubMed, bioRxiv, and Google Scholar
+9. **Enhanced summaries** — includes methods comparison tables, quantitative results, and evidence quality indicators
+10. **On-demand deep reading** — drill into any paper post-review with an expanded extraction focused on a specific question
 
 ---
 
@@ -122,9 +138,10 @@ Just 5-10 recent papers to get an overview of the current state.
 ```
 
 **What to verify:**
-- Uses `mcp__pubmed__search_articles` for PubMed, not `mcp__paper-search__search_pubmed`
-- Returns 5-10 papers with abstracts
-- Skips Steps 4.5, 4.7, 4.9 (quick scan tier)
+- Step 3 spawns a discovery subagent (not direct MCP calls in main context)
+- Main context receives a compact manifest, not raw search results
+- Skips Steps 4, 5, 5.5 (quick scan tier — no PaperBLAST, no full-text, no snowball)
+- Discovery subagent skips citation snowball for quick_scan tier
 - Summary uses the basic template (no methods comparison table)
 
 ### Test 2: Standard Review (full text + citation snowballing)
@@ -140,10 +157,10 @@ project comparing pangenome statistics across habitats.
 
 **What to verify:**
 - Selects "standard review" tier
-- Searches PubMed (`mcp__pubmed__`), bioRxiv (`mcp__paper-search__`), arXiv
-- Deduplicates results by DOI before ranking
-- Step 4.5: Uses `find_related_articles` on top papers
-- Step 4.7: Spawns paper-reader subagents via Agent tool (not direct MCP calls in main context)
+- Step 3 spawns a discovery subagent that searches PubMed, bioRxiv, arXiv
+- Discovery subagent performs citation snowballing and returns a compact manifest
+- Main context does NOT contain raw search results or abstracts (only the manifest)
+- Step 5 spawns paper-reader subagents via Agent tool (not direct MCP calls in main context)
 - Main context does NOT contain raw full-text paper content (only structured summaries)
 - Each subagent returns a structured extraction under 400 words
 - Summary includes methods comparison and quantitative results tables
@@ -162,11 +179,12 @@ cross-referencing.
 ```
 
 **What to verify:**
-- Recognizes gene involvement → activates Step 4.9
-- Queries `kescience_paperblast.genepaper` for rpoB-related gene IDs
-- Queries `kescience_paperblast.snippet` for text excerpts
-- Cross-references PaperBLAST PMIDs with keyword search results
-- Summary includes "PaperBLAST Findings" section
+- Recognizes gene involvement → activates Step 4 (PaperBLAST subagent)
+- Steps 3 and 4 launch in parallel (single message with two Agent tool calls)
+- PaperBLAST subagent queries `kescience_paperblast` tables via SQL
+- Main context receives compact gene-lit summary, not raw SQL results
+- Step 4c cross-references PaperBLAST PMIDs with discovery manifest
+- Summary includes "PaperBLAST Findings" section with confirmed/new paper counts
 
 ### Test 4: Fallback Behavior
 
@@ -177,9 +195,10 @@ Quick scan on horizontal gene transfer in thermophilic archaea.
 ```
 
 **What to verify:**
-- If `pubmed` MCP is down, falls back to `mcp__paper-search__search_pubmed`
+- If `pubmed` MCP is down, discovery subagent falls back to `mcp__paper-search__search_pubmed`
 - Notes in output that results may be less comprehensive
 - Still searches bioRxiv and arXiv via paper-search-mcp
+- If discovery subagent crashes entirely, main agent runs search directly (degraded mode)
 
 ### Test 5: Deep Review (comprehensive)
 
@@ -195,11 +214,13 @@ resistance genes found.
 
 **What to verify:**
 - Selects "deep review" tier
-- Searches broadly (all 4 sources)
-- Citation snowballing on top 10 papers
-- Full-text reading on top 20 papers via subagents (multiple Agent tool calls in parallel batches)
-- Main context stays clean — only structured summaries, no raw paper text
-- PaperBLAST queries for resistance gene IDs
+- Steps 3 and 4 launch in parallel as subagents (single message with two Agent tool calls)
+- Discovery subagent searches broadly (all 4 sources) with citation snowballing
+- PaperBLAST subagent queries for resistance gene IDs
+- Main context receives compact manifest + gene-lit summary, not raw results
+- Step 5 spawns paper-reader subagents for top 20 papers (multiple Agent tool calls in parallel batches)
+- Main context stays clean — only structured summaries, no raw paper text or SQL results
+- Step 4c cross-references PaperBLAST PMIDs with discovery manifest
 - Summary includes all extended sections (methods, quant results, evidence quality, PaperBLAST findings)
 - Methods comparison table is populated from subagent extractions
 - References stored to project file
