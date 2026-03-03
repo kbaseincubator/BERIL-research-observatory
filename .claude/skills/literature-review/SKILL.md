@@ -1,7 +1,7 @@
 ---
 name: literature-review
 description: Search and review biological literature using MCP tools (PubMed, arXiv, bioRxiv, Google Scholar) with full-text reading, citation snowballing, and PaperBLAST integration. Use when the user wants to find papers, review existing research on a topic, check what's known about an organism or pathway, or support a hypothesis with citations.
-allowed-tools: Bash, Read, Write, WebSearch
+allowed-tools: Bash, Read, Write, WebSearch, Agent, ToolSearch
 user-invocable: true
 ---
 
@@ -169,29 +169,98 @@ This catches papers using different terminology but studying the same phenomenon
 
 > **Tip**: `find_related_articles` also supports `link_type=pubmed_pmc_refs_citedin` for forward citations (papers that cite this one) — useful for finding recent follow-up studies.
 
-### Step 4.7: Deep Reading of Key Papers *(Standard + Deep tiers only)*
+### Step 4.7: Deep Reading of Key Papers via Subagents *(Standard + Deep tiers only)*
 
-For the top 5-10 most relevant papers (after deduplication):
+Full-text papers are 5K-20K+ tokens each. Reading them directly in the main context would consume 50K-200K tokens, leaving little room for synthesis. Instead, delegate full-text reading to **subagents** that each return a structured summary (~200-400 tokens).
 
-**For PubMed papers:**
-1. Use `mcp__pubmed__convert_article_ids` to get PMCID from PMID
-2. Use `mcp__pubmed__get_full_text_article` to retrieve full text from PMC
-3. If not in PMC (paywalled), note as "abstract-only" and rely on the abstract
+> **Context budget**: ~200-400 tokens per paper summary vs. 5K-20K+ for raw full text. For 10 papers this reduces context consumption from ~100K tokens to ~3K-5K tokens.
 
-**For arXiv papers:**
-- Use `mcp__paper-search__read_arxiv_paper` with the arXiv ID (e.g., `2301.12345`)
+#### 4.7a: Build the Paper Manifest
 
-**For bioRxiv/medRxiv papers:**
-- Use `mcp__paper-search__read_biorxiv_paper` / `mcp__paper-search__read_medrxiv_paper` with the DOI
+From the ranked papers (Steps 4-4.5), build a manifest of the top papers to read in full:
 
-**From each full-text paper, extract:**
-- **Methods**: study design, key techniques, sample size, organisms used
-- **Results**: specific numbers, effect sizes, p-values, confidence intervals
-- **Limitations**: what the authors acknowledge as weaknesses
-- **Future directions**: what they suggest for follow-up work
-- **BERDL relevance**: specific data points that could be cross-referenced with BERDL tables
+| Field | Description |
+|---|---|
+| `title` | Paper title |
+| `id` | PMID, PMCID, arXiv ID, or DOI |
+| `source` | `pubmed`, `arxiv`, `biorxiv`, or `medrxiv` |
+| `has_pmcid` | Whether a PMCID is available (for PubMed papers, use `mcp__pubmed__convert_article_ids`) |
 
-> **Note**: Full-text extraction may return large amounts of text. Focus on the Methods, Results, and Discussion sections. Skip supplementary materials unless specifically relevant.
+Standard tier: top 10 papers. Deep tier: top 20 papers.
+
+#### 4.7b: Spawn Paper-Reader Subagents
+
+For each paper in the manifest, spawn a subagent using the **Agent tool** with `subagent_type: "general-purpose"`. Launch multiple subagents in parallel — use a **single message with multiple Agent tool calls** (up to 5 at a time) for efficiency.
+
+Each subagent receives this prompt template (fill in the bracketed values):
+
+```
+You are a paper-reader agent. Your task is to retrieve and extract structured information from a scientific paper.
+
+RESEARCH QUESTION: [the user's research question]
+
+PAPER: "[title]"
+SOURCE: [pubmed|arxiv|biorxiv|medrxiv]
+IDENTIFIER: [PMCID, arXiv ID, or DOI]
+
+STEP 1: Load the appropriate MCP tool using ToolSearch:
+- For PubMed/PMC papers: ToolSearch query "select:mcp__pubmed__get_full_text_article", then call mcp__pubmed__get_full_text_article with pmcid="[PMCID]"
+- For arXiv papers: ToolSearch query "select:mcp__paper-search__read_arxiv_paper", then call mcp__paper-search__read_arxiv_paper with the arXiv ID
+- For bioRxiv papers: ToolSearch query "select:mcp__paper-search__read_biorxiv_paper", then call mcp__paper-search__read_biorxiv_paper with the DOI
+- For medRxiv papers: ToolSearch query "select:mcp__paper-search__read_medrxiv_paper", then call mcp__paper-search__read_medrxiv_paper with the DOI
+
+STEP 2: Read the full text. Focus on Methods, Results, and Discussion sections.
+
+STEP 3: Return EXACTLY this structured extraction (400 words max):
+
+**[First Author et al. (Year)] — [Title]**
+STATUS: FULL_TEXT
+
+### Methods
+- [study design, key techniques, sample size, organisms used] (1-3 bullets)
+
+### Key Results
+- [findings with specific numbers, effect sizes, p-values] (3-5 bullets, focused on the research question)
+
+### Limitations
+- [acknowledged weaknesses] (1-3 bullets)
+
+### BERDL Relevance
+- [organisms, genes, pathways, EC numbers, or data types that map to BERDL tables]
+
+### Notable Quotes
+- "[verbatim quote]" — [section name]
+
+If the full text is unavailable (tool error, not in PMC, PDF extraction fails), return:
+STATUS: ABSTRACT_ONLY
+and note the reason. The main agent will use the abstract from Step 3 instead.
+```
+
+#### 4.7c: Collect and Tag Results
+
+After all subagents return:
+1. Collect each structured extraction
+2. Tag each paper as `[FULL TEXT]` or `[ABSTRACT ONLY]` based on the STATUS field
+3. For `ABSTRACT_ONLY` papers, use the abstract retrieved in Step 3 for synthesis
+4. Use the structured extractions (not raw full text) for the summary in Step 5
+
+**Error handling:**
+- **Paper not in PMC**: Subagent returns `STATUS: ABSTRACT_ONLY` — use abstract from Step 3
+- **MCP tool unavailable**: Subagent returns `ABSTRACT_ONLY` with reason — fall back per the Fallback section
+- **PDF extraction fails**: Same `ABSTRACT_ONLY` fallback
+- **Subagent timeout/failure**: Note as `ABSTRACT_ONLY`, continue with remaining papers
+
+### Step 4.8: On-Demand Deep Reading *(after presenting the review)*
+
+After the review is presented to the user, if they want deeper analysis of a specific paper, spawn a **single subagent** with an expanded extraction prompt:
+
+- Increase the word limit to **800 words**
+- Include the user's specific question about the paper
+- Add a `### Detailed Analysis` section addressing the user's question
+- Add a `### Future Directions` section (what the authors suggest for follow-up)
+- Include more extensive quotes from relevant sections
+
+This keeps the main context clean while allowing drill-down into any paper on demand.
 
 ### Step 4.9: PaperBLAST Cross-Reference *(Deep tier, or when genes/proteins are involved)*
 
