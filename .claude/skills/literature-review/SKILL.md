@@ -116,79 +116,214 @@ When searching for gene functions found in BERDL data, expand:
 | EC 2.7.1.* | "kinase" AND "phosphorylation" |
 | KEGG pathway map00010 | "glycolysis" OR "gluconeogenesis" |
 
-### Step 3: Execute Search
+### Step 3: Discover and Rank Papers via Subagent
 
-Search across multiple sources, then deduplicate before ranking.
+The discovery pipeline (search, deduplicate, rank, citation snowball) runs inside a subagent that returns a compact manifest. This keeps ~15-40K+ tokens of raw search results, abstracts, and citation data out of the main context.
 
-**Search priority order** (for biology/BERDL research):
-1. **PubMed** via `mcp__pubmed__search_articles` — primary for published biomedical papers. Supports date filters, MeSH terms, field tags, pagination, and sorting. Richer than paper-search-mcp's `search_pubmed`.
-2. **bioRxiv** via `mcp__paper-search__search_biorxiv` — keyword search for recent preprints. (The bio-research bioRxiv plugin only supports category/date browsing, not keyword search.)
-3. **arXiv** via `mcp__paper-search__search_arxiv` — computational biology and bioinformatics methods papers
-4. **Google Scholar** via `mcp__paper-search__search_google_scholar` — broad fallback for papers missed by other sources
-5. **WebSearch fallback** — if MCP servers are unavailable, use `site:pubmed.ncbi.nlm.nih.gov [query]`
+> **Context budget**: The discovery subagent returns ~100-150 tokens per paper in a structured manifest (~2-4K total for a standard review) vs. 15-40K+ tokens if search + rank + snowball ran in the main context.
 
-> **Fallback**: If `search_articles` (bio-research) is unavailable, use `search_pubmed` (paper-search-mcp) as a secondary PubMed search option.
+#### 3a: Prepare Inputs
 
-**For each search**:
-- Start with a focused query (specific organism + specific topic)
-- If too few results (<5), broaden the query
-- If too many results (>100), narrow with date range or additional terms
-- Retrieve: title, authors, year, DOI, PMID/PMCID, abstract
+Gather these values from Steps 1-2:
+- Research question
+- Review tier (`quick_scan`, `standard`, `deep`)
+- Search queries (PubMed, preprint, Scholar)
+- Organism filters
+- Paper count target (5-10 for quick, 20-30 for standard, 50+ for deep)
 
-**Deduplication**: After collecting results from all sources, deduplicate by DOI (preferred) or PMID before proceeding to Step 4. Papers found in multiple sources get a small relevance boost in ranking (multiple indexing suggests broad impact). Use `mcp__pubmed__convert_article_ids` to resolve PMID ↔ PMCID ↔ DOI when needed.
+#### 3b: Spawn Discovery Subagent
 
-### Step 4: Filter and Rank Results
+Spawn via `Agent(subagent_type="general-purpose")` with this prompt template (fill `[bracketed]` values):
 
-Filter results for relevance to BERDL research:
+```
+You are a literature discovery agent. Search scientific databases, deduplicate, rank by relevance, and return a compact paper manifest.
 
-**High relevance** (prioritize these):
-- Papers using the same organisms present in BERDL
-- Pangenome analyses, comparative genomics, core/accessory gene studies
-- Metabolic pathway analyses that can be cross-referenced with BERDL biochemistry data
-- Environmental genomics studies with taxonomic overlap
+RESEARCH QUESTION: [research_question]
+REVIEW TIER: [quick_scan|standard|deep]
+SEARCH QUERIES:
+- PubMed: [pubmed_query]
+- Preprint: [preprint_query]
+- Scholar: [scholar_query]
+- Organism filters: [organism_filters]
+PAPER COUNT TARGET: [5-10|20-30|50+]
 
-**Medium relevance**:
-- Methodology papers (pangenome tools, clustering methods)
-- Review articles on relevant topics
-- Related organisms or pathways
+STEP 1 — Load tools via ToolSearch:
+- "select:mcp__pubmed__search_articles"
+- "select:mcp__paper-search__search_biorxiv"
+- "select:mcp__paper-search__search_arxiv"
+- "select:mcp__paper-search__search_google_scholar"
+- "select:mcp__pubmed__convert_article_ids"
+- "select:mcp__pubmed__find_related_articles"
 
-**Low relevance** (include only if few high-relevance results):
-- Tangentially related topics
-- Papers on distant organisms
+STEP 2 — Search all sources (priority order):
+1. PubMed → 2. bioRxiv → 3. arXiv → 4. Google Scholar
+Start focused; broaden if <5 results; narrow if >100.
+Collect: title, authors, year, DOI, PMID/PMCID, abstract, source.
+If a tool fails, note failure and continue with remaining sources.
 
-### Step 4.5: Expand via Citation Network *(Standard + Deep tiers only)*
+STEP 3 — Deduplicate by DOI (primary) or PMID.
+Use convert_article_ids to resolve PMID↔PMCID↔DOI.
+For PubMed papers, check if PMCID exists (record has_pmcid).
+Track which sources each paper appeared in.
 
-For the top 10 most relevant papers found in Steps 3-4:
+STEP 4 — Rank by BERDL relevance:
+HIGH: BERDL organism overlap, pangenome/comparative genomics, metabolic pathway analyses, environmental genomics with BERDL taxonomic overlap
+MEDIUM: Methodology papers, reviews, related organisms/pathways
+LOW: Tangential topics, distant organisms
 
-1. **Find related papers**: Use `mcp__pubmed__find_related_articles` with `link_type=pubmed_pubmed` to find computationally similar papers not caught by keyword search
-2. **Score new papers** against the same relevance criteria from Step 4
-3. **Add high-relevance papers** to the results set
-4. **Deduplicate** by DOI/PMID before proceeding
+STEP 5 — Citation snowball (SKIP for quick_scan):
+For top 10 PMIDs, call find_related_articles (pubmed_pubmed).
+Score new papers by same criteria. Deduplicate again.
 
-This catches papers using different terminology but studying the same phenomenon (e.g., a paper about "dispensable genes" when you searched for "accessory genome").
+STEP 6 — Return EXACTLY this format:
 
-> **Tip**: `find_related_articles` also supports `link_type=pubmed_pmc_refs_citedin` for forward citations (papers that cite this one) — useful for finding recent follow-up studies.
+DISCOVERY_MANIFEST
+TOTAL_FOUND: [N]
+TOTAL_AFTER_DEDUP: [N]
+TOTAL_RANKED: [N]
+SOURCES_SEARCHED: [list]
+SOURCES_FAILED: [list or "none"]
+SNOWBALL_PERFORMED: [yes|no]
+SNOWBALL_NEW_PAPERS: [N]
 
-### Step 4.7: Deep Reading of Key Papers via Subagents *(Standard + Deep tiers only)*
+---PAPERS---
+
+1. TITLE: [title]
+   AUTHORS: [first author et al.]
+   YEAR: [year]
+   PMID: [or "none"]
+   PMCID: [or "none"]
+   DOI: [or "none"]
+   SOURCE: [pubmed|biorxiv|arxiv|scholar]
+   FOUND_IN: [sources list]
+   RELEVANCE: [HIGH|MEDIUM|LOW]
+   HAS_PMCID: [yes|no]
+   ABSTRACT_SUMMARY: [2-3 sentences focused on the research question]
+
+---END---
+
+Sort: HIGH→MEDIUM→LOW, newest first within each tier.
+~100-150 tokens per entry. Do NOT include full abstracts.
+```
+
+#### 3c: Parse the Discovery Manifest
+
+The subagent returns a `DISCOVERY_MANIFEST` with:
+- Summary stats (total found, after dedup, sources searched/failed, snowball stats)
+- Per-paper entries: title, authors, year, IDs, relevance tier, abstract summary
+- Papers sorted HIGH → MEDIUM → LOW, newest first within each tier
+
+Use this manifest for all downstream steps. If the subagent fails, fall back to running search + rank directly in main context (see Error Handling below).
+
+### Step 4: PaperBLAST Cross-Reference via Subagent *(Deep tier, or when genes/proteins are involved)*
+
+> **Launch in parallel with Step 3**: Steps 3 and 4 are independent — spawn both subagents in a **single message** (two Agent tool calls) for efficiency.
+
+When the research question involves specific genes, proteins, enzymes, or pathways, a PaperBLAST subagent queries BERDL's `kescience_paperblast` database and returns a compact gene-literature summary.
+
+> **Context budget**: ~1-3K tokens returned vs. 9.5-40K+ tokens if PaperBLAST SQL ran in the main context.
+
+#### 4a: Extract Gene/Protein Identifiers
+
+From the research question, identify:
+- Gene names (e.g., rpoB, dnaA)
+- Protein accessions (e.g., NP_*, WP_*)
+- Enzyme EC numbers
+- Pathway identifiers
+
+#### 4b: Spawn PaperBLAST Subagent
+
+Spawn via `Agent(subagent_type="general-purpose")` with this prompt template (fill `[bracketed]` values):
+
+```
+You are a PaperBLAST cross-reference agent. Query BERDL's PaperBLAST database for gene/protein literature and return a compact summary.
+
+RESEARCH QUESTION: [research_question]
+GENE/PROTEIN IDENTIFIERS: [list]
+ORGANISMS OF INTEREST: [organisms]
+
+AUTH SETUP:
+AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
+
+SQL via curl:
+curl -s -X POST \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "<SQL>", "limit": 1000, "offset": 0}' \
+  https://hub.berdl.kbase.us/apis/mcp/delta/tables/query
+
+QUERIES (for each identifier):
+1. Gene lookup: SELECT geneId, organism, desc FROM kescience_paperblast.gene WHERE desc LIKE '%[name]%' OR geneId='[accession]' LIMIT 20
+2. Gene-paper: SELECT geneId, title, journal, CAST(year AS INT) as year, pmId, doi FROM kescience_paperblast.genepaper WHERE geneId='[geneId]' ORDER BY CAST(year AS INT) DESC LIMIT 20
+3. Snippets (top 5 genes): SELECT snippet, pmId, pmcId FROM kescience_paperblast.snippet WHERE geneId='[geneId]' LIMIT 10
+4. Curated: SELECT cg.protId, cg.name, cg.desc, cg.organism, cg.comment, cp.pmId FROM kescience_paperblast.curatedgene cg JOIN kescience_paperblast.curatedpaper cp ON cg.db=cp.db AND cg.protId=cp.protId WHERE cg.name LIKE '%[name]%' LIMIT 20
+5. GeneRIF: SELECT comment, pmId FROM kescience_paperblast.generif WHERE geneId='[geneId]' LIMIT 10
+
+IMPORTANT: year is STRING — always CAST(year AS INT).
+
+Return EXACTLY:
+
+PAPERBLAST_SUMMARY
+GENES_SEARCHED: [N]
+GENES_FOUND: [N]
+TOTAL_PAPERS: [N unique]
+TOTAL_SNIPPETS: [N]
+
+---GENE_RESULTS---
+
+GENE: [name / geneId]
+ORGANISM: [organism]
+DESCRIPTION: [description]
+PAPERS_FOUND: [N]
+  PAPER: [title] | [journal] | [year] | PMID:[pmid]
+  CURATED: [db]: [description] | PMID:[pmid]
+  GENERIF: "[summary]" | PMID:[pmid]
+  SNIPPET: "[truncated ~100 chars]..." | PMID:[pmid]
+
+---ALL_PMIDS---
+[comma-separated unique PMIDs for cross-referencing]
+
+---END---
+
+Truncate snippets to ~100 chars. If auth fails, report error and stop.
+```
+
+#### 4c: Cross-Reference with Discovery Manifest
+
+After both subagents return:
+1. Extract `---ALL_PMIDS---` from the PaperBLAST summary
+2. Compare against PMIDs in the discovery manifest (Step 3)
+3. Categorize:
+   - **Confirmed**: PMIDs found in both (confirms relevance)
+   - **New from PaperBLAST**: PMIDs not in discovery manifest (add to results)
+   - **Discovery-only**: Papers without PaperBLAST gene associations (still relevant for broader context)
+
+If the PaperBLAST subagent fails (auth missing, crash), proceed with discovery results alone (see Error Handling below).
+
+> **Pitfall**: PaperBLAST `year` is stored as a string — always use `CAST(year AS INT)` for comparisons or ordering. Gene IDs span multiple namespaces (RefSeq NP_*, UniProt WP_*, VIMSS) — use `seqtoduplicate` table for cross-referencing.
+
+See `.claude/skills/berdl/modules/paperblast.md` for full table schemas and additional query patterns.
+
+### Step 5: Deep Reading of Key Papers via Subagents *(Standard + Deep tiers only)*
 
 Full-text papers are 5K-20K+ tokens each. Reading them directly in the main context would consume 50K-200K tokens, leaving little room for synthesis. Instead, delegate full-text reading to **subagents** that each return a structured summary (~200-400 tokens).
 
 > **Context budget**: ~200-400 tokens per paper summary vs. 5K-20K+ for raw full text. For 10 papers this reduces context consumption from ~100K tokens to ~3K-5K tokens.
 
-#### 4.7a: Build the Paper Manifest
+#### 5a: Build the Paper Manifest
 
-From the ranked papers (Steps 4-4.5), build a manifest of the top papers to read in full:
+From the discovery manifest (Step 3), select the top papers to read in full:
 
 | Field | Description |
 |---|---|
 | `title` | Paper title |
 | `id` | PMID, PMCID, arXiv ID, or DOI |
 | `source` | `pubmed`, `arxiv`, `biorxiv`, or `medrxiv` |
-| `has_pmcid` | Whether a PMCID is available (for PubMed papers, use `mcp__pubmed__convert_article_ids`) |
+| `has_pmcid` | Whether a PMCID is available (from the discovery manifest's `HAS_PMCID` field) |
 
 Standard tier: top 10 papers. Deep tier: top 20 papers.
 
-#### 4.7b: Spawn Paper-Reader Subagents
+#### 5b: Spawn Paper-Reader Subagents
 
 For each paper in the manifest, spawn a subagent using the **Agent tool** with `subagent_type: "general-purpose"`. Launch multiple subagents in parallel — use a **single message with multiple Agent tool calls** (up to 5 at a time) for efficiency.
 
@@ -233,24 +368,24 @@ STATUS: FULL_TEXT
 
 If the full text is unavailable (tool error, not in PMC, PDF extraction fails), return:
 STATUS: ABSTRACT_ONLY
-and note the reason. The main agent will use the abstract from Step 3 instead.
+and note the reason. The main agent will use the abstract summary from the discovery manifest instead.
 ```
 
-#### 4.7c: Collect and Tag Results
+#### 5c: Collect and Tag Results
 
 After all subagents return:
 1. Collect each structured extraction
 2. Tag each paper as `[FULL TEXT]` or `[ABSTRACT ONLY]` based on the STATUS field
-3. For `ABSTRACT_ONLY` papers, use the abstract retrieved in Step 3 for synthesis
-4. Use the structured extractions (not raw full text) for the summary in Step 5
+3. For `ABSTRACT_ONLY` papers, use the abstract summary from the discovery manifest for synthesis
+4. Use the structured extractions (not raw full text) for the summary in Step 6
 
 **Error handling:**
-- **Paper not in PMC**: Subagent returns `STATUS: ABSTRACT_ONLY` — use abstract from Step 3
+- **Paper not in PMC**: Subagent returns `STATUS: ABSTRACT_ONLY` — use abstract summary from the discovery manifest
 - **MCP tool unavailable**: Subagent returns `ABSTRACT_ONLY` with reason — fall back per the Fallback section
 - **PDF extraction fails**: Same `ABSTRACT_ONLY` fallback
 - **Subagent timeout/failure**: Note as `ABSTRACT_ONLY`, continue with remaining papers
 
-### Step 4.8: On-Demand Deep Reading *(after presenting the review)*
+### Step 5.5: On-Demand Deep Reading *(after presenting the review)*
 
 After the review is presented to the user, if they want deeper analysis of a specific paper, spawn a **single subagent** with an expanded extraction prompt:
 
@@ -262,57 +397,7 @@ After the review is presented to the user, if they want deeper analysis of a spe
 
 This keeps the main context clean while allowing drill-down into any paper on demand.
 
-### Step 4.9: PaperBLAST Cross-Reference *(Deep tier, or when genes/proteins are involved)*
-
-When the research question involves specific genes, proteins, enzymes, or pathways, query the `kescience_paperblast` database in BERDL to find literature linked to specific gene/protein identifiers.
-
-**Queries to run** (via the `/berdl` skill or direct SQL):
-
-1. **Find papers mentioning relevant genes:**
-   ```sql
-   SELECT gp.geneId, gp.title, gp.journal, gp.year, gp.pmId, gp.doi
-   FROM kescience_paperblast.genepaper gp
-   WHERE gp.geneId = '<gene_accession>'
-   ORDER BY CAST(gp.year AS INT) DESC
-   LIMIT 20
-   ```
-
-2. **Get text snippets from those papers:**
-   ```sql
-   SELECT s.snippet, s.pmId, s.pmcId
-   FROM kescience_paperblast.snippet s
-   WHERE s.geneId = '<gene_accession>'
-   LIMIT 10
-   ```
-
-3. **Find curated functional annotations with references:**
-   ```sql
-   SELECT cg.protId, cg.name, cg.desc, cg.organism, cg.comment, cp.pmId
-   FROM kescience_paperblast.curatedgene cg
-   JOIN kescience_paperblast.curatedpaper cp
-     ON cg.db = cp.db AND cg.protId = cp.protId
-   WHERE cg.name LIKE '%<gene_name>%' OR cg.desc LIKE '%<keyword>%'
-   LIMIT 20
-   ```
-
-4. **Get GeneRIF functional summaries:**
-   ```sql
-   SELECT gr.comment, gr.pmId
-   FROM kescience_paperblast.generif gr
-   WHERE gr.geneId = '<gene_accession>'
-   LIMIT 10
-   ```
-
-**Cross-reference** found PMIDs with papers already discovered in Steps 3-4 to identify:
-- Papers already found (confirms relevance)
-- New papers not caught by keyword search (add to results)
-- Text snippets providing gene-specific context from full-text mining
-
-See `.claude/skills/berdl/modules/paperblast.md` for full table schemas and additional query patterns.
-
-> **Pitfall**: PaperBLAST `year` is stored as a string — always use `CAST(year AS INT)` for comparisons or ordering. Gene IDs span multiple namespaces (RefSeq NP_*, UniProt WP_*, VIMSS) — use `seqtoduplicate` table for cross-referencing.
-
-### Step 5: Summarize Findings
+### Step 6: Summarize Findings
 
 Group results by theme and present as a structured summary. The depth of summary should match the review tier.
 
@@ -324,7 +409,7 @@ Group results by theme and present as a structured summary. The depth of summary
 ## Literature Review: [Topic]
 
 **Review depth**: [Quick scan | Standard review | Deep review]
-**Papers found**: [N total] | **Full text read**: [N] | **Abstract only**: [N]
+**Papers found**: [N total] | **Full text read**: [N] | **Abstract only**: [N] | **PaperBLAST additions**: [N]
 **Sources searched**: [list sources used]
 
 ### Summary
@@ -362,7 +447,7 @@ Group results by theme and present as a structured summary. The depth of summary
 ### Gaps in Current Knowledge
 - [What hasn't been studied yet that BERDL could address]
 
-### PaperBLAST Findings *(if Step 4.9 was performed)*
+### PaperBLAST Findings *(if Step 4 was performed)*
 - [Gene-specific literature connections found via text mining]
 - [PMIDs confirmed by both keyword search and PaperBLAST]
 - [New papers found only through PaperBLAST]
@@ -372,7 +457,7 @@ Group results by theme and present as a structured summary. The depth of summary
 - [Which BERDL species overlap with the studies found]
 ```
 
-### Step 6: Store References
+### Step 7: Store References
 
 Save structured references to the project directory:
 
@@ -399,7 +484,7 @@ Review depth: [Quick scan | Standard review | Deep review]
 
 If no project context exists, offer to create the file in the current working directory.
 
-### Step 7: Connect to BERDL (optional)
+### Step 8: Connect to BERDL (optional)
 
 If the literature review reveals organisms, genes, or pathways present in BERDL:
 
@@ -407,6 +492,19 @@ If the literature review reveals organisms, genes, or pathways present in BERDL:
 2. Suggest specific queries to test literature findings at scale
 3. Identify discrepancies between published results and BERDL data
 4. Flag opportunities for novel analysis
+
+## Error Handling
+
+Both discovery and PaperBLAST subagents are **optimizations**, not hard requirements. If a subagent fails, degrade gracefully:
+
+| Failure | Recovery |
+|---------|----------|
+| Discovery: single source fails | Subagent proceeds with remaining sources (noted in `SOURCES_FAILED`) |
+| Discovery: all sources fail | Fall back to WebSearch in main context |
+| Discovery: subagent crash | Run search + rank + snowball directly in main context (degraded) |
+| PaperBLAST: auth missing | Warn user, proceed without PaperBLAST |
+| PaperBLAST: gene not found | Normal — note in summary |
+| PaperBLAST: subagent crash | Omit PaperBLAST section, proceed with discovery results |
 
 ## Integration with Other Skills
 
