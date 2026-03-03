@@ -6,7 +6,7 @@
 
 ![Annotation coverage by source](figures/annotation_coverage.png)
 
-Across 5,852 ADP1 genomic features (3,235 protein-coding), the GPT-5.2 agent annotated 2,984 genes with specific functions (51.0% of all features; ~92% of protein-coding genes), compared to Bakta's 2,939 (50.2%; ~91%) and RAST's 2,803 (47.9%; ~87%). Note that coverage percentages include non-coding features (tRNA, rRNA, etc.) in the denominator; among protein-coding genes only, all three sources achieve >85% specific annotation coverage. The agent produced only 19 hypothetical annotations versus RAST's 432 and Bakta's 270 — a 95.6% reduction relative to RAST. This reflects the agent's ability to synthesize InterProScan domain evidence into functional descriptions even when individual domains are insufficient for homology-based tools to assign a named function.
+Among 3,209 protein-coding genes in the ADP1 genome, the GPT-5.2 agent annotated 2,984 with specific functions (93.0%), compared to Bakta's 2,939 (91.6%) and RAST's 2,784 (86.8%). The agent produced only 19 hypothetical annotations versus RAST's 425 and Bakta's 270 — a 95.5% reduction relative to RAST. (The genome contains 5,852 total features including 2,643 non-coding elements such as tRNA and rRNA; coverage percentages use the protein-coding denominator since the agent only annotates protein-coding genes.) This reflects the agent's ability to synthesize InterProScan domain evidence into functional descriptions even when individual domains are insufficient for homology-based tools to assign a named function.
 
 *(Notebook: 01_data_integration.ipynb)*
 
@@ -61,17 +61,31 @@ All 478 genes in the triple essentiality dataset have 100% annotation coverage f
 
 *(Notebook: 04_model_reconciliation.ipynb)*
 
+### Finding 5: Agent adds value through domain interpretation and fitness-of-homolog evidence, not literature access
+
+![Annotation source resolution](figures/source_resolution.png)
+
+Across all 3,003 agent-annotated genes, evidence classification reveals: 92% cite domain databases (InterPro/Pfam/TIGRFAM), 75% incorporate fitness-of-homologs data from other Fitness Browser organisms, 66% cite sequence homology, 39% use gene neighborhood conservation, 6% cite experimental characterization, and only 0.2% reference specific papers (zero in the reasoning field). The agent's distinctive value comes from (a) reasoning over domain combinations shared with Bakta/RAST, and (b) incorporating fitness data from characterized homologs — a data source unavailable to conventional annotation pipelines.
+
+Using Bakta as an independent adjudicator for 2,682 genes where all three sources provide specific annotations, Bakta agrees more with RAST overall (agent win rate 28.7% on non-ties), as expected given their shared short annotation style. However, when RAST gives uninformative annotations ("putative membrane protein"), the agent wins 62.5% of non-ties. Gene neighborhood evidence is associated with *lower* Bakta agreement (24.5% agent win rate with neighborhood vs 30.8% without), confirming that this evidence type drives over-specification.
+
+A per-gene decision framework assigns each protein-coding gene to its best annotation source: RAST for 2,756 genes (85.9%), agent for 191 (6.0%), Bakta for 161 (5.0%), with 12 (0.4%) needing manual review and 89 (2.8%) having no good annotation. The decision framework achieves 96.6% specific annotation coverage on condition-specific genes (vs 92.1% for agent alone, 91.0% for Bakta, 85.9% for RAST) and correctly routes 61/62 respiratory chain genes to RAST, preserving its subsystem accuracy.
+
+*(Notebook: 06_source_resolution.ipynb)*
+
 ## Results
 
 ### Annotation Coverage
 
-The master table integrates 3,083 agent annotations with RAST, Bakta, and experimental data for 5,852 ADP1 features. All 3,083 agent protein sequences matched sequences in the genome features database (zero orphans). The 2,769 features without agent annotation are non-coding elements (tRNA, rRNA, etc.) and 114 protein sequences not included in the agent annotation run.
+The master table integrates 3,083 agent annotations with RAST, Bakta, and experimental data for 5,852 ADP1 features (3,209 protein-coding). All 3,083 agent protein sequences matched sequences in the genome features database (zero orphans). The 2,643 features without agent annotation are non-coding elements (tRNA, rRNA, etc.) and 206 protein-coding genes not included in the agent annotation run.
+
+Among protein-coding genes (N=3,209):
 
 | Source | Specific | Hypothetical | Missing | Coverage (%) |
 |--------|----------|-------------|---------|-------------|
-| RAST | 2,803 | 432 | 2,617 | 47.9% |
-| Bakta | 2,939 | 270 | 2,643 | 50.2% |
-| Agent | 2,984 | 19 | 2,849 | 51.0% |
+| RAST | 2,784 | 425 | 0 | 86.8% |
+| Bakta | 2,939 | 270 | 0 | 91.6% |
+| Agent | 2,984 | 19 | 206 | 93.0% |
 
 ### Hypothetical Resolution
 
@@ -142,6 +156,29 @@ Respiratory chain per-subsystem accuracy (RAST / Agent / Bakta):
 
 All three sources achieve 100% on ATP synthase and Complex II. Agent underperforms on Complex I due to annotation phrasing differences, not incorrect identification. Of 62 respiratory genes, 37 are correctly identified by all three sources and 12 show inter-source disagreement — the agent uniquely identifies 3 "Other respiratory" genes that RAST and Bakta miss, while RAST/Bakta correctly identify 5 genes (3 Complex I, 1 Cyt bd, 1 Cyt bo3) that the agent misses due to keyword phrasing.
 
+### Source Resolution
+
+Evidence types across 3,003 agent-annotated genes:
+
+| Evidence Type | Count | % |
+|---------------|-------|---|
+| Domain databases (InterPro/Pfam/TIGRFAM) | 2,759 | 91.9% |
+| Fitness of homologs (RB-TnSeq) | 2,244 | 74.7% |
+| Sequence homology | 1,975 | 65.8% |
+| Gene neighborhood | 1,181 | 39.3% |
+| Experimental characterization | 170 | 5.7% |
+| Specific papers | 5 | 0.2% |
+
+Per-gene best source recommendation (3,209 protein-coding genes):
+
+| Best Source | Count | % |
+|-------------|-------|---|
+| RAST | 2,756 | 85.9% |
+| Agent | 191 | 6.0% |
+| Bakta | 161 | 5.0% |
+| Needs review | 12 | 0.4% |
+| None available | 89 | 2.8% |
+
 ### Model Reconciliation
 
 | Gene Set | N | Agent Metabolic | RAST Metabolic | Bakta Metabolic |
@@ -165,7 +202,7 @@ The 56% improvement in phenotype concordance must be interpreted carefully. Keyw
 
 ### Complementary Strengths Across Subsystems
 
-No single source dominates all validation datasets. RAST excels on well-characterized subsystems (respiratory chain) where its curated subsystem models are strongest. The agent excels on condition-specific phenotypes and aromatic catabolism where its reasoning over domain combinations adds value. Bakta sits between the two. A simple consensus rule (prefer RAST when available, agent for hypotheticals) achieves 15.0% condition concordance (matching Bakta) and 74.2% respiratory accuracy (matching RAST). However, the consensus rule is too RAST-biased — it defaults to RAST for 88% of condition-specific genes, losing the agent's advantage on those genes. A more sophisticated consensus that also uses the agent when RAST's annotation lacks condition-relevant terms would likely outperform any single source.
+No single source dominates all validation datasets. RAST excels on well-characterized subsystems (respiratory chain) where its curated subsystem models are strongest. The agent excels on condition-specific phenotypes and aromatic catabolism where its reasoning over domain combinations adds value. Bakta sits between the two. The evidence-based decision framework (NB06) assigns each gene to its best source by considering RAST annotation quality, agent evidence type, and Bakta as an independent adjudicator. This framework achieves 96.6% specific annotation coverage on condition-specific genes (vs 92.1% for agent alone, 85.9% for RAST) while correctly routing 61/62 respiratory chain genes to RAST, preserving its subsystem accuracy. The agent is the recommended source for 191 genes (6.0%), primarily where RAST gives hypothetical or uninformative annotations and the agent has domain-based or fitness-supported evidence.
 
 ### Literature Context
 
@@ -184,7 +221,6 @@ This work provides a phenotype-grounded evaluation framework for comparing annot
 - **No gold-standard curation**: Without expert-curated annotations for all 3,083 genes, we cannot measure true precision/recall. Our phenotype concordance is a proxy.
 - **Single organism**: Results from ADP1 may not generalize to organisms with less experimental data or more divergent gene content.
 - **Agent annotation scope**: The agent was not given access to the experimental phenotype data, so its annotations are independent of the ground truth. However, it may have been trained on published ADP1 literature.
-- **Coverage denominator**: The "51% coverage" includes non-coding features in the denominator. Among protein-coding genes only, all three sources achieve >85% specific annotation.
 - **Annotation hallucination**: The agent assigns specific enzyme names to DUF/uncharacterized proteins that are contradicted by UniProt in 40% of spot-checked cases. In several instances, the agent duplicated functions already assigned to other characterized ADP1 genes (e.g., calling a DUF4199 protein "malate synthase G" when ADP1's real GlcB is at ACIAD2335). This hallucination pattern is a fundamental limitation of LLM-based annotation.
 
 ## Data
@@ -203,6 +239,7 @@ This work provides a phenotype-grounded evaluation framework for comparing annot
 |------|------|-------------|
 | `data/master_annotation_table.csv` | 5,852 | Integrated master table with all annotations and experimental data |
 | `data/agent_unique_annotations.csv` | 120 | Genes where agent provides specific annotation but both RAST and Bakta are hypothetical |
+| `data/annotation_recommendations.csv` | 3,209 | Per-gene best-source recommendation with all annotations |
 
 ## Supporting Evidence
 
@@ -214,6 +251,7 @@ This work provides a phenotype-grounded evaluation framework for comparing annot
 | `03_phenotype_concordance.ipynb` | Score concordance against condition-specific, aromatic, and respiratory phenotypes |
 | `04_model_reconciliation.ipynb` | Assess FBA-discordant genes, identify model expansion candidates |
 | `05_evidence_evaluation.ipynb` | Evaluate agent evidence quality, reliability tiers, fitness consistency |
+| `06_source_resolution.ipynb` | Per-gene best-source recommendation using Bakta adjudication and evidence analysis |
 
 ### Figures
 | Figure | Description |
@@ -223,6 +261,7 @@ This work provides a phenotype-grounded evaluation framework for comparing annot
 | `phenotype_concordance.png` | Grouped bar chart of concordance across three validation datasets |
 | `model_reconciliation.png` | Annotation coverage by FBA class, metabolic annotation rates |
 | `evidence_evaluation.png` | Evidence types, reliability tiers, and fitness consistency for 120 unique annotations |
+| `source_resolution.png` | Agent evidence types and per-gene best-source recommendation |
 
 ## Future Directions
 
