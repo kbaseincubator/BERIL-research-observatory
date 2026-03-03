@@ -31,22 +31,41 @@ Step 7: Connect findings back to BERDL tables
 
 ### Tool Architecture
 
-**Primary PubMed search** — bio-research plugin (`search_articles`):
-- Date filters, MeSH support, pagination, sorting
-- Citation network via `find_related_articles`
-- Full text from PMC via `get_full_text_article` (~6M open-access articles)
-- ID conversion: PMID ↔ PMCID ↔ DOI
+Both MCP servers are configured in `.mcp.json` and available to all collaborators automatically.
 
-**Preprint search** — paper-search-mcp:
+**Primary PubMed search** — `pubmed` MCP server (`https://pubmed.mcp.claude.com/mcp`):
+- Tools prefixed `mcp__pubmed__*`
+- `search_articles`: date filters, MeSH support, pagination, sorting
+- `find_related_articles`: citation network exploration
+- `get_full_text_article`: full text from PMC (~6M open-access articles)
+- `convert_article_ids`: PMID ↔ PMCID ↔ DOI
+
+**Preprint search** — `paper-search` MCP server (runs locally via `uvx`):
+- Tools prefixed `mcp__paper-search__*`
 - bioRxiv, arXiv, medRxiv keyword search
 - Google Scholar broad fallback
 - Full-text PDF extraction via `read_arxiv_paper`, `read_biorxiv_paper`, `read_medrxiv_paper`
+- Requires Python 3.10+ and [uv](https://docs.astral.sh/uv/)
 
 **Gene/protein literature** — PaperBLAST (BERDL local):
 - 3.2M gene-paper associations from PMC text mining
 - 1.9M text snippets mentioning specific genes
 - Curated annotations from SwissProt, BRENDA, etc.
 - GeneRIF functional summaries from NCBI
+
+### Why Both MCP Servers?
+
+The PubMed MCP covers published biomedical literature with rich search, citation networks, and PMC full text. But it doesn't cover preprints or non-biomedical sources. paper-search-mcp fills the gaps:
+
+| Capability | `pubmed` MCP | `paper-search` MCP |
+|---|---|---|
+| PubMed search (rich, MeSH, pagination) | Yes | Basic only |
+| PMC full text | Yes | Not supported |
+| Citation snowballing | Yes | No |
+| bioRxiv keyword search | No | **Yes** |
+| arXiv search | No | **Yes** |
+| Google Scholar | No | **Yes** |
+| Preprint PDF full-text reading | No | **Yes** |
 
 ### What Changed from the Previous Version
 
@@ -56,7 +75,7 @@ The previous skill stopped at abstract-level search results. The upgrade adds:
 2. **Citation snowballing** — finds related papers through PubMed's citation network, catching papers that use different terminology
 3. **PaperBLAST integration** — queries 3.2M gene-paper associations when the research involves specific genes or proteins
 4. **Depth tiers** — scales the review effort to match the need (quick check vs. systematic review)
-5. **Better PubMed tooling** — uses bio-research plugin with richer search capabilities (date filters, MeSH, pagination)
+5. **Project-level PubMed MCP** — `pubmed` HTTP server in `.mcp.json` so all collaborators get it (no plugin install needed)
 6. **Cross-source deduplication** — removes duplicate papers found across PubMed, bioRxiv, and Google Scholar
 7. **Enhanced summaries** — includes methods comparison tables, quantitative results, and evidence quality indicators
 
@@ -64,7 +83,7 @@ The previous skill stopped at abstract-level search results. The upgrade adds:
 
 ## Test Prompts
 
-Use these after restarting Claude Code (the bio-research PubMed MCP plugin needs a fresh session).
+Use these after restarting Claude Code (MCP servers initialize on session start).
 
 ### Test 1: Quick Scan (basic search, abstract-only)
 
@@ -76,7 +95,7 @@ Just 5-10 recent papers to get an overview of the current state.
 ```
 
 **What to verify:**
-- Uses `search_articles` (bio-research) for PubMed, not `search_pubmed` (paper-search-mcp)
+- Uses `mcp__pubmed__search_articles` for PubMed, not `mcp__paper-search__search_pubmed`
 - Returns 5-10 papers with abstracts
 - Skips Steps 4.5, 4.7, 4.9 (quick scan tier)
 - Summary uses the basic template (no methods comparison table)
@@ -94,7 +113,7 @@ project comparing pangenome statistics across habitats.
 
 **What to verify:**
 - Selects "standard review" tier
-- Searches PubMed (bio-research), bioRxiv (paper-search-mcp), arXiv
+- Searches PubMed (`mcp__pubmed__`), bioRxiv (`mcp__paper-search__`), arXiv
 - Deduplicates results by DOI before ranking
 - Step 4.5: Uses `find_related_articles` on top papers
 - Step 4.7: Retrieves full text (PMC for PubMed papers, PDF for preprints)
@@ -128,7 +147,7 @@ Quick scan on horizontal gene transfer in thermophilic archaea.
 ```
 
 **What to verify:**
-- If bio-research PubMed plugin is down, falls back to `search_pubmed` (paper-search-mcp)
+- If `pubmed` MCP is down, falls back to `mcp__paper-search__search_pubmed`
 - Notes in output that results may be less comprehensive
 - Still searches bioRxiv and arXiv via paper-search-mcp
 
