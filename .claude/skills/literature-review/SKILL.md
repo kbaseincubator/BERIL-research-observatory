@@ -11,11 +11,11 @@ Search, read, and synthesize biological literature relevant to BERDL research. C
 
 ## Prerequisites
 
-Two MCP tool sets provide literature access. Both are already configured in this repo.
+Two MCP servers provide literature access. Both are configured in `.mcp.json` and available to all collaborators.
 
-### Primary: bio-research PubMed plugin (built-in MCP)
+### Primary: PubMed MCP (project-level, HTTP)
 
-The `bio-research` PubMed plugin provides the richest PubMed access with date filters, pagination, MeSH support, citation networks, and full-text retrieval from PMC.
+The `pubmed` MCP server (`https://pubmed.mcp.claude.com/mcp`) provides the richest PubMed access with date filters, pagination, MeSH support, citation networks, and full-text retrieval from PMC. Tools are prefixed `mcp__pubmed__`.
 
 **Search & discovery:**
 - **`search_articles`** — Rich PubMed search with date filters, sorting, MeSH, pagination
@@ -43,7 +43,7 @@ The `paper-search-mcp` from [openags/paper-search-mcp](https://github.com/openag
 - **`read_biorxiv_paper`** — Read bioRxiv paper full text
 - **`read_medrxiv_paper`** — Read medRxiv paper full text
 
-> **Note**: `download_pubmed` and `read_pubmed_paper` from paper-search-mcp are **not supported** and return errors. Use the bio-research plugin's `get_full_text_article` for PubMed/PMC full text instead.
+> **Note**: `download_pubmed` and `read_pubmed_paper` from paper-search-mcp are **not supported** and return errors. Use the pubmed MCP's `get_full_text_article` for PubMed/PMC full text instead.
 
 ### PaperBLAST (BERDL local resource)
 
@@ -53,7 +53,7 @@ The `kescience_paperblast` database (3.2M gene-paper associations, 1.9M text sni
 
 | Source | Best for | Primary tool |
 |---|---|---|
-| PubMed | Biomedical, microbiology, genomics — primary for BERDL | bio-research `search_articles` |
+| PubMed | Biomedical, microbiology, genomics — primary for BERDL | `mcp__pubmed__search_articles` |
 | bioRxiv | Recent preprints in biology, genomics, microbiology | paper-search-mcp `search_biorxiv` |
 | arXiv | Computational biology, bioinformatics methods | paper-search-mcp `search_arxiv` |
 | Google Scholar | Broad coverage, catching papers not in other databases | paper-search-mcp `search_google_scholar` |
@@ -121,7 +121,7 @@ When searching for gene functions found in BERDL data, expand:
 Search across multiple sources, then deduplicate before ranking.
 
 **Search priority order** (for biology/BERDL research):
-1. **PubMed** via `mcp__plugin_bio-research_pubmed__search_articles` — primary for published biomedical papers. Supports date filters, MeSH terms, field tags, pagination, and sorting. Richer than paper-search-mcp's `search_pubmed`.
+1. **PubMed** via `mcp__pubmed__search_articles` — primary for published biomedical papers. Supports date filters, MeSH terms, field tags, pagination, and sorting. Richer than paper-search-mcp's `search_pubmed`.
 2. **bioRxiv** via `mcp__paper-search__search_biorxiv` — keyword search for recent preprints. (The bio-research bioRxiv plugin only supports category/date browsing, not keyword search.)
 3. **arXiv** via `mcp__paper-search__search_arxiv` — computational biology and bioinformatics methods papers
 4. **Google Scholar** via `mcp__paper-search__search_google_scholar` — broad fallback for papers missed by other sources
@@ -135,7 +135,7 @@ Search across multiple sources, then deduplicate before ranking.
 - If too many results (>100), narrow with date range or additional terms
 - Retrieve: title, authors, year, DOI, PMID/PMCID, abstract
 
-**Deduplication**: After collecting results from all sources, deduplicate by DOI (preferred) or PMID before proceeding to Step 4. Papers found in multiple sources get a small relevance boost in ranking (multiple indexing suggests broad impact). Use `mcp__plugin_bio-research_pubmed__convert_article_ids` to resolve PMID ↔ PMCID ↔ DOI when needed.
+**Deduplication**: After collecting results from all sources, deduplicate by DOI (preferred) or PMID before proceeding to Step 4. Papers found in multiple sources get a small relevance boost in ranking (multiple indexing suggests broad impact). Use `mcp__pubmed__convert_article_ids` to resolve PMID ↔ PMCID ↔ DOI when needed.
 
 ### Step 4: Filter and Rank Results
 
@@ -160,7 +160,7 @@ Filter results for relevance to BERDL research:
 
 For the top 10 most relevant papers found in Steps 3-4:
 
-1. **Find related papers**: Use `mcp__plugin_bio-research_pubmed__find_related_articles` with `link_type=pubmed_pubmed` to find computationally similar papers not caught by keyword search
+1. **Find related papers**: Use `mcp__pubmed__find_related_articles` with `link_type=pubmed_pubmed` to find computationally similar papers not caught by keyword search
 2. **Score new papers** against the same relevance criteria from Step 4
 3. **Add high-relevance papers** to the results set
 4. **Deduplicate** by DOI/PMID before proceeding
@@ -174,8 +174,8 @@ This catches papers using different terminology but studying the same phenomenon
 For the top 5-10 most relevant papers (after deduplication):
 
 **For PubMed papers:**
-1. Use `mcp__plugin_bio-research_pubmed__convert_article_ids` to get PMCID from PMID
-2. Use `mcp__plugin_bio-research_pubmed__get_full_text_article` to retrieve full text from PMC
+1. Use `mcp__pubmed__convert_article_ids` to get PMCID from PMID
+2. Use `mcp__pubmed__get_full_text_article` to retrieve full text from PMC
 3. If not in PMC (paywalled), note as "abstract-only" and rely on the abstract
 
 **For arXiv papers:**
@@ -361,7 +361,7 @@ The `references.md` file created by this skill is checked during project submiss
 
 If MCP tools are unavailable:
 
-1. **Bio-research PubMed plugin unavailable**: Fall back to paper-search-mcp's `search_pubmed` for PubMed search
+1. **PubMed MCP unavailable**: Fall back to paper-search-mcp's `search_pubmed` for PubMed search
 2. **paper-search-mcp unavailable**: Check `.mcp.json` is configured with `"command": "uvx", "args": ["--from", "paper-search-mcp", "python", "-m", "paper_search_mcp.server"]`. Test: `uvx --from paper-search-mcp python -m paper_search_mcp.server`
 3. **All MCP unavailable**: Use `WebSearch` to search PubMed: `site:pubmed.ncbi.nlm.nih.gov [query]`
 4. Use `WebFetch` to retrieve paper details from DOIs: `https://doi.org/[doi]`
