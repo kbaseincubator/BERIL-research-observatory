@@ -950,16 +950,16 @@ class RepositoryParser:
         patterns = [
             # ../../project/data/file or ../../project/data (dir-only)
             re.compile(
-                r"\.\./\.\./([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
+                r"\.\./\.\./([a-z0-9_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
             ),
             # .parent / 'project' / 'data' / 'file' (Path objects)
             re.compile(
-                r"\.parent\s*/\s*['\"]([a-z_]+)['\"]\s*/\s*['\"](?:data|user_data)['\"]"
+                r"\.parent\s*/\s*['\"]([a-z0-9_]+)['\"]\s*/\s*['\"](?:data|user_data)['\"]"
                 r"(?:\s*/\s*['\"]([^'\"]+)['\"])?"
             ),
             # projects/project/data/file (absolute-ish paths)
             re.compile(
-                r"projects/([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
+                r"projects/([a-z0-9_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
             ),
         ]
 

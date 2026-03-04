@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -132,14 +133,14 @@ def detect_status(text: str) -> str:
 
 NOTEBOOK_DEP_PATTERNS = [
     # ../../project/data/file or ../../project/data (dir-only)
-    re.compile(r"\.\./\.\./([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"),
+    re.compile(r"\.\./\.\./([a-z0-9_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"),
     # .parent / 'project' / 'data' / 'file' (Path objects)
     re.compile(
-        r"\.parent\s*/\s*['\"]([a-z_]+)['\"]\s*/\s*['\"](?:data|user_data)['\"]"
+        r"\.parent\s*/\s*['\"]([a-z0-9_]+)['\"]\s*/\s*['\"](?:data|user_data)['\"]"
         r"(?:\s*/\s*['\"]([^'\"]+)['\"])?"
     ),
     # projects/project/data/file (absolute-ish paths)
-    re.compile(r"projects/([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"),
+    re.compile(r"projects/([a-z0-9_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"),
 ]
 
 
@@ -197,12 +198,12 @@ def parse_readme_deps(readme_content: str) -> list[str]:
             break
         if in_deps:
             # Look for project directory references like `project_name`
-            for m in re.finditer(r"`([a-z_]+)`", line):
+            for m in re.finditer(r"`([a-z0-9_]+)`", line):
                 candidate = m.group(1)
                 if (PROJECTS_DIR / candidate).is_dir():
                     dep_ids.append(candidate)
             # Also look for links like [name](../project_name/)
-            for m in re.finditer(r"\.\./([a-z_]+)", line):
+            for m in re.finditer(r"\.\./([a-z0-9_]+)", line):
                 candidate = m.group(1)
                 if (PROJECTS_DIR / candidate).is_dir():
                     dep_ids.append(candidate)
@@ -558,16 +559,42 @@ def extract_status_text(readme_content: str) -> str:
 def detect_date_completed(
     project_dir: Path, status: str, report_content: str | None
 ) -> str | None:
-    """Try to detect completion date from git or file modification time."""
+    """Detect completion date from git history (fallback to file mtime)."""
     if status != "complete":
         return None
 
-    # Use REPORT.md modification time as a rough proxy
     report_path = project_dir / "REPORT.md"
     if report_path.exists():
+        # Prefer git history for deterministic output across environments/CI.
+        try:
+            result = subprocess.run(
+                [
+                    "git",
+                    "--no-pager",
+                    "log",
+                    "-1",
+                    "--format=%aI",
+                    "--",
+                    str(report_path),
+                ],
+                capture_output=True,
+                text=True,
+                cwd=REPO_ROOT,
+                check=False,
+            )
+            iso = result.stdout.strip()
+            if iso:
+                dt = datetime.fromisoformat(iso)
+                return dt.strftime("%Y-%m")
+        except Exception:
+            pass
+
+        # Fallback for environments without git metadata.
         mtime = report_path.stat().st_mtime
         dt = datetime.fromtimestamp(mtime, tz=timezone.utc)
         return dt.strftime("%Y-%m")
+
+    return None
 
     return None
 
