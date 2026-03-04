@@ -2,6 +2,7 @@
 # requires-python = ">=3.11"
 # dependencies = [
 #   "anthropic>=0.40",
+#   "jsonschema>=4.23",
 #   "pyyaml>=6.0",
 # ]
 # ///
@@ -24,12 +25,14 @@ Requires ANTHROPIC_API_KEY environment variable.
 
 import argparse
 import os
+import re
 import sys
 import time
 from pathlib import Path
 
 import anthropic
 import yaml
+from jsonschema import Draft202012Validator
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -61,6 +64,24 @@ KNOWN_COLLECTIONS = [
     "kescience_webofmicrobes",
     "kescience_bacdive",
 ]
+
+PROVENANCE_SCHEMA_PATH = REPO_ROOT / "knowledge" / "schema" / "provenance.schema.json"
+
+REFERENCE_TYPES = {
+    "primary_data_source",
+    "supporting",
+    "contradicting",
+    "methodology",
+    "review",
+}
+
+DEPENDENCY_RELATIONSHIPS = {
+    "data_input",
+    "extends",
+    "contradicts",
+    "replicates",
+    "synthesizes",
+}
 
 # ---------------------------------------------------------------------------
 # System prompt
@@ -233,46 +254,270 @@ def call_claude(
     raise RuntimeError(f"API call failed after {max_retries} retries")
 
 
-def validate_provenance(yaml_text: str) -> tuple[dict | None, list[str]]:
-    """Parse YAML and validate required fields. Returns (data, errors)."""
-    errors = []
+def _load_provenance_validator() -> Draft202012Validator:
+    """Load JSON Schema validator for provenance.yaml."""
+    if not PROVENANCE_SCHEMA_PATH.exists():
+        raise FileNotFoundError(f"Schema not found: {PROVENANCE_SCHEMA_PATH}")
+    schema = yaml.safe_load(PROVENANCE_SCHEMA_PATH.read_text(encoding="utf-8"))
+    return Draft202012Validator(schema)
 
+
+def _normalize_doi(doi: str | None) -> str | None:
+    if not doi:
+        return None
+    value = str(doi).strip()
+    value = re.sub(r"^https?://doi\.org/", "", value, flags=re.IGNORECASE)
+    return value or None
+
+
+def _normalize_pmid(pmid: str | int | None) -> str | None:
+    if pmid is None:
+        return None
+    value = re.sub(r"\D+", "", str(pmid))
+    return value or None
+
+
+def _to_str_list(value: object) -> list[str]:
+    if isinstance(value, str):
+        return [value]
+    if isinstance(value, list):
+        return [str(v).strip() for v in value if str(v).strip()]
+    if value is None:
+        return []
+    casted = str(value).strip()
+    return [casted] if casted else []
+
+
+def _to_int_or_none(value: object) -> int | None:
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, int):
+        return value
+    if isinstance(value, float):
+        return int(value) if value.is_integer() else None
+    text = str(value).strip()
+    if not text:
+        return None
     try:
-        data = yaml.safe_load(yaml_text)
+        return int(text)
+    except ValueError:
+        return None
+
+
+def _discover_generated_data_files(project_dir: Path) -> list[str]:
+    data_dir = project_dir / "data"
+    if not data_dir.exists():
+        return []
+    files = []
+    for item in sorted(data_dir.iterdir()):
+        if not item.is_file() or item.name.startswith("."):
+            continue
+        if item.suffix.lower() not in {".csv", ".tsv", ".json", ".parquet"}:
+            continue
+        files.append(f"data/{item.name}")
+    return files
+
+
+def _normalize_provenance_data(data: dict, project_dir: Path) -> dict:
+    """Normalize provenance content and deterministically enrich missing artifacts."""
+    normalized: dict = {
+        "schema_version": 1,
+        "references": [],
+        "data_sources": [],
+        "cross_project_deps": [],
+        "findings": [],
+        "generated_data": [],
+    }
+
+    # References
+    seen_ref_ids: set[str] = set()
+    for ref in data.get("references", []) or []:
+        if not isinstance(ref, dict):
+            continue
+        ref_id = str(ref.get("id", "")).strip()
+        if not ref_id or ref_id in seen_ref_ids:
+            continue
+        ref_type = str(ref.get("type", "supporting")).strip() or "supporting"
+        if ref_type not in REFERENCE_TYPES:
+            ref_type = "supporting"
+        entry = {
+            "id": ref_id,
+            "type": ref_type,
+            "title": str(ref.get("title", "")).strip(),
+            "authors": _to_str_list(ref.get("authors", [])),
+            "year": _to_int_or_none(ref.get("year")),
+            "journal": ref.get("journal"),
+            "volume": str(ref["volume"]) if ref.get("volume") is not None else None,
+            "pages": str(ref["pages"]) if ref.get("pages") is not None else None,
+            "doi": _normalize_doi(ref.get("doi")),
+            "pmid": _normalize_pmid(ref.get("pmid")),
+            "url": ref.get("url"),
+        }
+        normalized["references"].append(entry)
+        seen_ref_ids.add(ref_id)
+    ref_ids = {r["id"] for r in normalized["references"]}
+
+    # Data sources
+    for ds in data.get("data_sources", []) or []:
+        if not isinstance(ds, dict):
+            continue
+        collection = str(ds.get("collection", "")).strip()
+        if not collection:
+            continue
+        entry = {
+            "collection": collection,
+            "tables": _to_str_list(ds.get("tables", [])),
+            "purpose": ds.get("purpose"),
+            "reference": ds.get("reference") if ds.get("reference") in ref_ids else None,
+        }
+        normalized["data_sources"].append(entry)
+
+    # Cross-project dependencies
+    for dep in data.get("cross_project_deps", []) or []:
+        if not isinstance(dep, dict):
+            continue
+        project = str(dep.get("project", "")).strip()
+        if not project:
+            continue
+        relationship = str(dep.get("relationship", "data_input")).strip() or "data_input"
+        if relationship not in DEPENDENCY_RELATIONSHIPS:
+            relationship = "data_input"
+        entry = {
+            "project": project,
+            "relationship": relationship,
+            "files": _to_str_list(dep.get("files", [])),
+            "description": dep.get("description"),
+        }
+        normalized["cross_project_deps"].append(entry)
+
+    # Findings
+    seen_finding_ids: set[str] = set()
+    for finding in data.get("findings", []) or []:
+        if not isinstance(finding, dict):
+            continue
+        fid = str(finding.get("id", "")).strip()
+        title = str(finding.get("title", "")).strip()
+        if not fid or not title or fid in seen_finding_ids:
+            continue
+
+        notebook = finding.get("notebook")
+        if notebook and not (project_dir / "notebooks" / str(notebook)).exists():
+            notebook = None
+
+        figures = [f for f in _to_str_list(finding.get("figures", [])) if (project_dir / "figures" / f).exists()]
+        data_files = [f for f in _to_str_list(finding.get("data_files", [])) if (project_dir / f).exists()]
+        refs = [r for r in _to_str_list(finding.get("references", [])) if r in ref_ids]
+        stats = finding.get("statistics", {})
+        if not isinstance(stats, dict):
+            stats = {}
+        entry = {
+            "id": fid,
+            "title": title,
+            "notebook": notebook,
+            "figures": figures,
+            "data_files": data_files,
+            "references": refs,
+            "statistics": {str(k): str(v) for k, v in stats.items()},
+        }
+        normalized["findings"].append(entry)
+        seen_finding_ids.add(fid)
+
+    # Generated data (deterministic supplementation from data/ directory)
+    seen_generated_files: set[str] = set()
+    for gd in data.get("generated_data", []) or []:
+        if not isinstance(gd, dict):
+            continue
+        file = str(gd.get("file", "")).strip()
+        if not file or file in seen_generated_files:
+            continue
+        if not (project_dir / file).exists():
+            continue
+        source_nb = gd.get("source_notebook")
+        if source_nb and not (project_dir / "notebooks" / str(source_nb)).exists():
+            source_nb = None
+        entry = {
+            "file": file,
+            "rows": _to_int_or_none(gd.get("rows")),
+            "description": gd.get("description"),
+            "source_notebook": source_nb,
+        }
+        normalized["generated_data"].append(entry)
+        seen_generated_files.add(file)
+
+    for file in _discover_generated_data_files(project_dir):
+        if file not in seen_generated_files:
+            normalized["generated_data"].append(
+                {
+                    "file": file,
+                    "rows": None,
+                    "description": None,
+                    "source_notebook": None,
+                }
+            )
+            seen_generated_files.add(file)
+
+    return normalized
+
+
+def validate_provenance(
+    yaml_text: str, project_dir: Path, validator: Draft202012Validator
+) -> tuple[dict | None, list[str]]:
+    """Parse, normalize, and strictly validate provenance YAML."""
+    errors: list[str] = []
+    try:
+        raw = yaml.safe_load(yaml_text)
     except yaml.YAMLError as e:
         return None, [f"YAML parse error: {e}"]
-
-    if not isinstance(data, dict):
+    if not isinstance(raw, dict):
         return None, ["Top-level YAML is not a mapping"]
 
-    if "schema_version" not in data:
-        errors.append("Missing schema_version")
+    data = _normalize_provenance_data(raw, project_dir)
 
-    # Validate references
-    for i, ref in enumerate(data.get("references", [])):
-        if not isinstance(ref, dict):
-            errors.append(f"references[{i}]: not a mapping")
-            continue
-        for field in ("id", "type", "title"):
-            if not ref.get(field):
-                errors.append(f"references[{i}]: missing required field '{field}'")
+    for err in validator.iter_errors(data):
+        path = ".".join(str(p) for p in err.absolute_path) or "<root>"
+        errors.append(f"schema error at {path}: {err.message}")
 
-    # Validate data_sources
+    # Additional strict integrity checks.
+    ref_ids = {r["id"] for r in data.get("references", [])}
+    for ref in data.get("references", []):
+        rid = ref.get("id", "<missing-id>")
+        if not (ref.get("doi") or ref.get("pmid") or ref.get("url")):
+            errors.append(f"references[{rid}] must include at least one of DOI, PMID, or URL")
     for i, ds in enumerate(data.get("data_sources", [])):
-        if not isinstance(ds, dict):
-            errors.append(f"data_sources[{i}]: not a mapping")
-            continue
-        if not ds.get("collection"):
-            errors.append(f"data_sources[{i}]: missing 'collection'")
+        coll = ds.get("collection")
+        if coll not in KNOWN_COLLECTIONS:
+            errors.append(f"data_sources[{i}] unknown collection '{coll}'")
+        if ds.get("reference") and ds["reference"] not in ref_ids:
+            errors.append(f"data_sources[{i}] unknown reference ID '{ds['reference']}'")
 
-    # Validate findings
-    for i, f in enumerate(data.get("findings", [])):
-        if not isinstance(f, dict):
-            errors.append(f"findings[{i}]: not a mapping")
-            continue
-        for field in ("id", "title"):
-            if not f.get(field):
-                errors.append(f"findings[{i}]: missing required field '{field}'")
+    for i, dep in enumerate(data.get("cross_project_deps", [])):
+        dep_project = dep.get("project")
+        if dep_project and not (PROJECTS_DIR / dep_project).is_dir():
+            errors.append(f"cross_project_deps[{i}] unknown project '{dep_project}'")
+
+    for i, finding in enumerate(data.get("findings", [])):
+        nb = finding.get("notebook")
+        if nb and not (project_dir / "notebooks" / nb).exists():
+            errors.append(f"findings[{i}] notebook not found: notebooks/{nb}")
+        for fig in finding.get("figures", []):
+            if not (project_dir / "figures" / fig).exists():
+                errors.append(f"findings[{i}] figure not found: figures/{fig}")
+        for file in finding.get("data_files", []):
+            if not (project_dir / file).exists():
+                errors.append(f"findings[{i}] data_file not found: {file}")
+        for ref in finding.get("references", []):
+            if ref not in ref_ids:
+                errors.append(f"findings[{i}] unknown reference ID '{ref}'")
+
+    for i, gd in enumerate(data.get("generated_data", [])):
+        file = gd.get("file")
+        if file and not (project_dir / file).exists():
+            errors.append(f"generated_data[{i}] file not found: {file}")
+        source_nb = gd.get("source_notebook")
+        if source_nb and not (project_dir / "notebooks" / source_nb).exists():
+            errors.append(f"generated_data[{i}] source_notebook not found: notebooks/{source_nb}")
 
     return data, errors
 
@@ -294,6 +539,7 @@ def generate_for_project(
     project_dir: Path,
     model: str,
     system_prompt: str,
+    validator: Draft202012Validator,
     dry_run: bool = False,
 ) -> bool:
     """Generate provenance.yaml for a single project. Returns True on success."""
@@ -324,7 +570,7 @@ def generate_for_project(
         return False
     yaml_text = strip_yaml_fences(raw_response)
 
-    data, errors = validate_provenance(yaml_text)
+    data, errors = validate_provenance(yaml_text, project_dir, validator)
 
     # Retry once if validation failed
     if errors:
@@ -341,15 +587,23 @@ def generate_for_project(
             print(f" FAIL: {e}", file=sys.stderr)
             return False
         yaml_text = strip_yaml_fences(raw_response)
-        data, errors = validate_provenance(yaml_text)
+        data, errors = validate_provenance(yaml_text, project_dir, validator)
 
     if errors:
         print(f" FAIL: {'; '.join(errors[:3])}", file=sys.stderr)
         return False
+    assert data is not None
+    normalized_yaml = yaml.safe_dump(
+        data,
+        sort_keys=False,
+        allow_unicode=True,
+        default_flow_style=False,
+        width=120,
+    ).strip()
 
     # Write the file
     output_path = project_dir / "provenance.yaml"
-    output_path.write_text(yaml_text + "\n", encoding="utf-8")
+    output_path.write_text(normalized_yaml + "\n", encoding="utf-8")
     print(f" OK", file=sys.stderr)
     return True
 
@@ -396,6 +650,7 @@ def main():
         sys.exit(1)
 
     client = anthropic.Anthropic() if not args.dry_run else None
+    validator = _load_provenance_validator()
 
     # Prepare system prompt with actual collection IDs
     system_prompt = SYSTEM_PROMPT.replace(
@@ -434,7 +689,7 @@ def main():
     failed = 0
     for i, project_dir in enumerate(project_dirs):
         ok = generate_for_project(
-            client, project_dir, args.model, system_prompt, args.dry_run
+            client, project_dir, args.model, system_prompt, validator, args.dry_run
         )
         if ok:
             success += 1
