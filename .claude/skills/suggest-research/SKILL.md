@@ -85,6 +85,8 @@ Identify **underexplored collections** — present in BERDL but rarely cited in 
 
 If `knowledge/entities/` exists, read the semantic knowledge graph for entity-level gap analysis:
 
+0. Read `docs/knowledge_graph_coverage.md` and `docs/knowledge_gaps.md` (if present) for deterministic baseline coverage/gap signals
+
 1. Read `knowledge/entities/organisms.yaml`, `methods.yaml`, `concepts.yaml`
 2. Read `knowledge/relations.yaml` — note which entity pairs have relations and which don't
 3. Read `knowledge/hypotheses.yaml` — identify:
@@ -227,7 +229,7 @@ If no, leave no files modified.
 
 ## Integration
 
-- **Reads from**: `docs/project_registry.yaml` (primary), `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `projects/*/REPORT.md` (top 3-5 only), `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml` (Layer 3 graph)
+- **Reads from**: `docs/project_registry.yaml` (primary), `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `docs/knowledge_graph_coverage.md`, `docs/knowledge_gaps.md`, `projects/*/REPORT.md` (top 3-5 only), `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml` (Layer 3 graph)
 - **Calls**: `/literature-review` (Step 9, for novelty check on top candidate); `/berdl_start` (Step 11, if user confirms the idea)
 - **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry only — never edits existing entries)
 - **Consumed by**: `/literature-review`, `/synthesize`

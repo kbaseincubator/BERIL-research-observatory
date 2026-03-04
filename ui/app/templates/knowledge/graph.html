@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}Knowledge Graph - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Knowledge Graph</h1>
+    <p class="page-description">
+        Layer 3 semantic graph: entities, relations, hypotheses, and timeline events across projects.
+    </p>
+</div>
+
+{% if not graph.available %}
+<p class="text-muted">Knowledge graph files are not available in this deployment.</p>
+{% else %}
+
+<section class="section">
+    <h2>Graph Summary</h2>
+    <div class="grid grid-3">
+        <div class="card">
+            <h3 style="margin-top: 0;">Entities</h3>
+            <p class="text-small text-muted" style="margin-bottom: var(--space-2);">{{ graph.entity_total }} total</p>
+            <ul class="text-small" style="margin: 0; padding-left: 1rem;">
+                {% for key, count in graph.entity_counts.items() %}
+                <li>{{ key }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="card">
+            <h3 style="margin-top: 0;">Relations</h3>
+            <p class="text-small text-muted">{{ graph.relation_count }} typed edges</p>
+        </div>
+        <div class="card">
+            <h3 style="margin-top: 0;">Hypotheses</h3>
+            <p class="text-small text-muted" style="margin-bottom: var(--space-2);">{{ graph.hypothesis_count }} tracked</p>
+            <ul class="text-small" style="margin: 0; padding-left: 1rem;">
+                {% for status, count in graph.hypothesis_status_counts.items() %}
+                <li>{{ status }}: {{ count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+
+{% if graph.coverage_report %}
+<section class="section">
+    <h2>Coverage Report</h2>
+    <div class="card markdown-content">
+        {{ graph.coverage_report | markdown }}
+    </div>
+</section>
+{% endif %}
+
+<section class="section">
+    <h2>Sample Relations</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Predicate</th>
+                <th>Object</th>
+                <th>Evidence Project</th>
+                <th>Confidence</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rel in graph.relations[:40] %}
+            <tr>
+                <td><code>{{ rel.subject }}</code></td>
+                <td><code>{{ rel.predicate }}</code></td>
+                <td><code>{{ rel.object }}</code></td>
+                <td><a href="/projects/{{ rel.evidence_project }}">{{ rel.evidence_project }}</a></td>
+                <td>{{ rel.confidence }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="section">
+    <h2>Hypotheses</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Origin</th>
+                <th>Evidence</th>
+                <th>Statement</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hyp in graph.hypotheses[:40] %}
+            <tr>
+                <td><code>{{ hyp.id }}</code></td>
+                <td>{{ hyp.status }}</td>
+                <td><a href="/projects/{{ hyp.origin_project }}">{{ hyp.origin_project }}</a></td>
+                <td>{{ hyp.supporting_count }} supporting / {{ hyp.contradicting_count }} contradicting</td>
+                <td>{{ hyp.statement[:120] }}{% if hyp.statement|length > 120 %}...{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<section class="section">
+    <h2>Recent Timeline Events</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Project</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in graph.timeline_events[:40] %}
+            <tr>
+                <td>{{ event.date }}</td>
+                <td><code>{{ event.type }}</code></td>
+                <td>
+                    {% if event.project %}
+                    <a href="/projects/{{ event.project }}">{{ event.project }}</a>
+                    {% elif event.projects %}
+                    {{ event.projects | join(', ') }}
+                    {% else %}
+                    —
+                    {% endif %}
+                </td>
+                <td>{{ event.summary }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endif %}
+{% endblock %}

@@ -210,7 +210,7 @@ class FindingEvidence:
     figures: list[str] = field(default_factory=list)
     data_files: list[str] = field(default_factory=list)
     references: list[str] = field(default_factory=list)  # Reference.id values
-    statistics: dict[str, str] = field(default_factory=dict)
+    statistics: dict[str, str | int | float | bool | None] = field(default_factory=dict)
 
 
 @dataclass

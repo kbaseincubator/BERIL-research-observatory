@@ -30,6 +30,8 @@ This skill reads from the auto-generated registry files in `docs/`:
 - `docs/project_registry.yaml` — aggregated index of all projects
 - `docs/figure_catalog.yaml` — searchable catalog of all figures
 - `docs/findings_digest.md` — concise summary of key findings with links
+- `docs/knowledge_graph_coverage.md` — Layer 3 graph coverage report
+- `docs/knowledge_gaps.md` — deterministic graph-derived research opportunities
 
 If these files do not exist, tell the user:
 
@@ -39,9 +41,28 @@ Then stop.
 
 ## Workflow
 
+Use the deterministic backend for every subcommand:
+
+```bash
+uv run scripts/query_knowledge.py <subcommand> ...
+```
+
+Map subcommands directly:
+- `/knowledge <topic>` → `search <topic>`
+- `/knowledge figures <topic>` → `figures <topic>`
+- `/knowledge data <topic>` → `data <topic>`
+- `/knowledge project <id>` → `project <id>`
+- `/knowledge landscape` → `landscape`
+- `/knowledge entities <type>` → `entities <type> [--query <keyword>]`
+- `/knowledge connections <entity>` → `connections <entity>`
+- `/knowledge hypotheses [status]` → `hypotheses [status]`
+- `/knowledge gaps` → `gaps`
+- `/knowledge timeline [project]` → `timeline [project]`
+
 ### Subcommand: `/knowledge <topic>`
 
 **Search projects and findings by keyword.**
+Run: `uv run scripts/query_knowledge.py search "<topic>"`
 
 1. Read `docs/project_registry.yaml`
 2. Search across all project entries for matches in: `title`, `research_question`, `key_findings`, `tags`, `organisms`, `databases_used`
@@ -71,6 +92,7 @@ Then stop.
 ### Subcommand: `/knowledge figures <topic>`
 
 **Search the figure catalog.**
+Run: `uv run scripts/query_knowledge.py figures "<topic>"`
 
 1. Read `docs/figure_catalog.yaml`
 2. Search `caption`, `tags`, `file` name, and `project` for keyword matches
@@ -89,6 +111,7 @@ Then stop.
 ### Subcommand: `/knowledge data <topic>`
 
 **Search reusable data artifacts.**
+Run: `uv run scripts/query_knowledge.py data "<topic>"`
 
 1. Read `docs/project_registry.yaml`
 2. Search `key_data_artifacts` across all projects for matches in `file` name or `description`
@@ -108,6 +131,7 @@ Then stop.
 ### Subcommand: `/knowledge project <id>`
 
 **Full summary of a specific project.**
+Run: `uv run scripts/query_knowledge.py project <id>`
 
 1. Read `docs/project_registry.yaml` and find the project by ID
 2. If not found, suggest close matches or list all project IDs
@@ -151,6 +175,7 @@ Then stop.
 ### Subcommand: `/knowledge landscape`
 
 **High-level overview of all research.**
+Run: `uv run scripts/query_knowledge.py landscape`
 
 1. Read `docs/project_registry.yaml`
 2. Compute and present:
@@ -192,6 +217,7 @@ Projects with most upstream dependencies:
 ### Subcommand: `/knowledge entities <type>`
 
 **List entities of a given type from the knowledge graph.**
+Run: `uv run scripts/query_knowledge.py entities <type> [--query <keyword>]`
 
 Valid types: `organism`, `gene`, `pathway`, `method`, `concept`
 
@@ -216,6 +242,7 @@ Valid types: `organism`, `gene`, `pathway`, `method`, `concept`
 ### Subcommand: `/knowledge connections <entity_id>`
 
 **Find all relations involving a specific entity.**
+Run: `uv run scripts/query_knowledge.py connections <entity_id>`
 
 1. Read `knowledge/relations.yaml`
 2. Filter relations where `subject` or `object` matches the entity ID (or a substring match on entity name)
@@ -240,6 +267,7 @@ Valid types: `organism`, `gene`, `pathway`, `method`, `concept`
 ### Subcommand: `/knowledge hypotheses [status]`
 
 **List hypotheses, optionally filtered by lifecycle status.**
+Run: `uv run scripts/query_knowledge.py hypotheses [status]`
 
 Valid statuses: `proposed`, `refined`, `testing`, `validated`, `rejected`, `merged`, `superseded`
 
@@ -260,6 +288,7 @@ Valid statuses: `proposed`, `refined`, `testing`, `validated`, `rejected`, `merg
 ### Subcommand: `/knowledge gaps`
 
 **Find unexplored entity combinations and research opportunities.**
+Run: `uv run scripts/query_knowledge.py gaps`
 
 1. Read all entity files and `knowledge/relations.yaml`
 2. Build an entity-entity co-occurrence matrix from relations
@@ -308,6 +337,7 @@ Valid statuses: `proposed`, `refined`, `testing`, `validated`, `rejected`, `merg
 ### Subcommand: `/knowledge timeline [project]`
 
 **Show research evolution chronologically.**
+Run: `uv run scripts/query_knowledge.py timeline [project]`
 
 1. Read `knowledge/timeline.yaml`
 2. If a project filter is given, show only events for that project
@@ -326,7 +356,8 @@ Valid statuses: `proposed`, `refined`, `testing`, `validated`, `rejected`, `merg
 
 ## Integration
 
-- **Reads from**: `docs/project_registry.yaml`, `docs/figure_catalog.yaml`, `docs/findings_digest.md`, `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml`, `knowledge/timeline.yaml`
+- **Reads from**: `docs/project_registry.yaml`, `docs/figure_catalog.yaml`, `docs/findings_digest.md`, `docs/knowledge_graph_coverage.md`, `docs/knowledge_gaps.md`, `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml`, `knowledge/timeline.yaml`
+- **Deterministic backend**: `scripts/query_knowledge.py`
 - **Regenerated by**: `/build-registry` (Layer 2), `/synthesize` (Layer 3 updates)
 - **Consumed by**: agents and users exploring the research landscape
 - **Related skills**: `/suggest-research` (uses registry and knowledge graph for landscape analysis), `/build-registry` (regenerates the Layer 2 index), `/synthesize` (updates Layer 3 after project completion)

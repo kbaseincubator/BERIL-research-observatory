@@ -305,6 +305,11 @@ def _to_int_or_none(value: object) -> int | None:
     except ValueError:
         return None
 
+def _normalize_stat_value(value: object) -> str | int | float | bool | None:
+    if isinstance(value, (str, int, float, bool)) or value is None:
+        return value
+    return str(value)
+
 
 def _discover_generated_data_files(project_dir: Path) -> list[str]:
     data_dir = project_dir / "data"
@@ -419,7 +424,7 @@ def _normalize_provenance_data(data: dict, project_dir: Path) -> dict:
             "figures": figures,
             "data_files": data_files,
             "references": refs,
-            "statistics": {str(k): str(v) for k, v in stats.items()},
+            "statistics": {str(k): _normalize_stat_value(v) for k, v in stats.items()},
         }
         normalized["findings"].append(entry)
         seen_finding_ids.add(fid)
@@ -604,7 +609,7 @@ def generate_for_project(
     # Write the file
     output_path = project_dir / "provenance.yaml"
     output_path.write_text(normalized_yaml + "\n", encoding="utf-8")
-    print(f" OK", file=sys.stderr)
+    print(" OK", file=sys.stderr)
     return True
 
 

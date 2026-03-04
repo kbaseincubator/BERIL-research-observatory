@@ -3,13 +3,16 @@
 import hashlib
 import hmac
 import logging
+from collections import Counter
 from contextlib import asynccontextmanager
 from datetime import datetime
+from pathlib import Path
 
 import json
 import uuid
 
 import nbformat
+import yaml
 from markupsafe import Markup
 from nbconvert import HTMLExporter
 from nbconvert.preprocessors import Preprocessor
@@ -193,6 +196,138 @@ templates.env.filters["slugify"] = slugify_filter
 def get_repo_data(request: Request):
     """Get repository data from app state."""
     return request.app.state.repo_data
+
+def _knowledge_repo_root() -> Path:
+    if settings.data_repo_url and settings.data_repo_path.exists():
+        return settings.data_repo_path
+    return settings.repo_dir
+
+
+def _load_yaml_dict(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def _load_knowledge_graph_context() -> dict:
+    repo_root = _knowledge_repo_root()
+    knowledge_dir = repo_root / "knowledge"
+    docs_dir = repo_root / "docs"
+
+    entity_specs = {
+        "organisms": ("entities/organisms.yaml", "organisms"),
+        "genes": ("entities/genes.yaml", "genes"),
+        "pathways": ("entities/pathways.yaml", "pathways"),
+        "methods": ("entities/methods.yaml", "methods"),
+        "concepts": ("entities/concepts.yaml", "concepts"),
+    }
+
+    entities_by_type: dict[str, list[dict]] = {}
+    entity_counts: dict[str, int] = {}
+    for entity_type, (rel_path, root_key) in entity_specs.items():
+        payload = _load_yaml_dict(knowledge_dir / rel_path)
+        rows = payload.get(root_key, [])
+        if not isinstance(rows, list):
+            rows = []
+        cleaned = []
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            cleaned.append(
+                {
+                    "id": str(row.get("id", "")).strip(),
+                    "name": str(row.get("name", "")).strip() or str(row.get("id", "")).strip(),
+                    "projects": [
+                        str(p).strip() for p in (row.get("projects") or [])
+                        if str(p).strip()
+                    ] if isinstance(row.get("projects"), list) else [],
+                    "description": str(
+                        row.get("description")
+                        or row.get("definition")
+                        or row.get("role")
+                        or ""
+                    ).strip(),
+                }
+            )
+        cleaned.sort(key=lambda r: r["id"])
+        entities_by_type[entity_type] = cleaned
+        entity_counts[entity_type] = len(cleaned)
+
+    relation_rows = _load_yaml_dict(knowledge_dir / "relations.yaml").get("relations", [])
+    if not isinstance(relation_rows, list):
+        relation_rows = []
+    relations = [r for r in relation_rows if isinstance(r, dict)]
+    relations.sort(
+        key=lambda r: (
+            str(r.get("subject", "")),
+            str(r.get("predicate", "")),
+            str(r.get("object", "")),
+        )
+    )
+
+    hypothesis_rows = _load_yaml_dict(knowledge_dir / "hypotheses.yaml").get("hypotheses", [])
+    if not isinstance(hypothesis_rows, list):
+        hypothesis_rows = []
+    hypotheses = []
+    hypothesis_status_counts: Counter[str] = Counter()
+    for row in hypothesis_rows:
+        if not isinstance(row, dict):
+            continue
+        status = str(row.get("status", "unknown")).strip() or "unknown"
+        hypothesis_status_counts[status] += 1
+        hypotheses.append(
+            {
+                "id": str(row.get("id", "")).strip(),
+                "status": status,
+                "statement": str(row.get("statement", "")).strip(),
+                "origin_project": str(row.get("origin_project", "")).strip(),
+                "supporting_count": len(row.get("evidence_supporting", []) or []),
+                "contradicting_count": len(row.get("evidence_contradicting", []) or []),
+            }
+        )
+    hypotheses.sort(key=lambda h: h["id"])
+
+    timeline_rows = _load_yaml_dict(knowledge_dir / "timeline.yaml").get("events", [])
+    if not isinstance(timeline_rows, list):
+        timeline_rows = []
+    timeline_events = [e for e in timeline_rows if isinstance(e, dict)]
+    timeline_events.sort(
+        key=lambda e: (
+            str(e.get("date", "")),
+            str(e.get("type", "")),
+            str(e.get("ref", "")),
+        ),
+        reverse=True,
+    )
+
+    coverage_report_path = docs_dir / "knowledge_graph_coverage.md"
+    coverage_report = (
+        coverage_report_path.read_text(encoding="utf-8")
+        if coverage_report_path.exists()
+        else None
+    )
+    gaps_path = docs_dir / "knowledge_gaps.md"
+    gaps_report = gaps_path.read_text(encoding="utf-8") if gaps_path.exists() else None
+
+    return {
+        "available": knowledge_dir.exists(),
+        "entities_by_type": entities_by_type,
+        "entity_counts": entity_counts,
+        "entity_total": sum(entity_counts.values()),
+        "relations": relations,
+        "relation_count": len(relations),
+        "hypotheses": hypotheses,
+        "hypothesis_count": len(hypotheses),
+        "hypothesis_status_counts": dict(sorted(hypothesis_status_counts.items())),
+        "timeline_events": timeline_events,
+        "timeline_count": len(timeline_events),
+        "coverage_report": coverage_report,
+        "gaps_report": gaps_report,
+    }
 
 
 # Template context processor
@@ -636,6 +771,23 @@ async def research_ideas(request: Request):
 
     return templates.TemplateResponse("knowledge/ideas.html", context)
 
+
+@app.get("/knowledge/graph", response_class=HTMLResponse)
+async def knowledge_graph(request: Request):
+    """Knowledge graph overview page."""
+    context = get_base_context(request)
+    context["graph"] = _load_knowledge_graph_context()
+    return templates.TemplateResponse("knowledge/graph.html", context)
+
+
+@app.get("/knowledge/gaps", response_class=HTMLResponse)
+async def knowledge_gaps(request: Request):
+    """Graph-derived research gaps page."""
+    context = get_base_context(request)
+    graph = _load_knowledge_graph_context()
+    context["gaps_markdown"] = graph.get("gaps_report")
+    context["coverage_markdown"] = graph.get("coverage_report")
+    return templates.TemplateResponse("knowledge/gaps.html", context)
 
 @app.get("/community/contributors", response_class=HTMLResponse)
 async def community_contributors(request: Request):

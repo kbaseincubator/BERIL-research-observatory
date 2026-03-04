@@ -1089,6 +1089,11 @@ class RepositoryParser:
                 return [str(v) for v in val]
             return [str(val)] if val else []
 
+        def _normalize_stat_value(val: object) -> str | int | float | bool | None:
+            if isinstance(val, (str, int, float, bool)) or val is None:
+                return val
+            return str(val)
+
         findings = []
         for f in data.get("findings", []):
             if not isinstance(f, dict):
@@ -1101,7 +1106,11 @@ class RepositoryParser:
                 figures=_to_str_list(f.get("figures", [])),
                 data_files=_to_str_list(f.get("data_files", [])),
                 references=_to_str_list(f.get("references", [])),
-                statistics={str(k): str(v) for k, v in stats.items()} if isinstance(stats, dict) else {},
+                statistics=(
+                    {str(k): _normalize_stat_value(v) for k, v in stats.items()}
+                    if isinstance(stats, dict)
+                    else {}
+                ),
             ))
 
         generated_data = []

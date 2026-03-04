@@ -308,6 +308,14 @@ class TestKnowledgeRoutes:
         response = client.get("/knowledge/ideas")
         assert response.status_code == 200
 
+    def test_graph_200(self, client):
+        response = client.get("/knowledge/graph")
+        assert response.status_code == 200
+
+    def test_gaps_200(self, client):
+        response = client.get("/knowledge/gaps")
+        assert response.status_code == 200
+
 
 class TestCommunityRoutes:
     def test_contributors_200(self, client):

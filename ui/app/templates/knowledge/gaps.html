@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Research Gaps - {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">Research Gaps</h1>
+    <p class="page-description">
+        Deterministic opportunities derived from the semantic knowledge graph and project coverage.
+    </p>
+</div>
+
+{% if gaps_markdown %}
+<section class="section">
+    <h2>Prioritized Gap Report</h2>
+    <div class="card markdown-content">
+        {{ gaps_markdown | markdown }}
+    </div>
+</section>
+{% else %}
+<section class="section">
+    <div class="card">
+        <p class="text-muted" style="margin-bottom: 0;">
+            Gap artifact not found. Run <code>uv run scripts/build_registry.py</code> to regenerate <code>docs/knowledge_gaps.md</code>.
+        </p>
+    </div>
+</section>
+{% endif %}
+
+{% if coverage_markdown %}
+<section class="section">
+    <h2>Coverage Context</h2>
+    <div class="card markdown-content">
+        {{ coverage_markdown | markdown }}
+    </div>
+</section>
+{% endif %}
+{% endblock %}

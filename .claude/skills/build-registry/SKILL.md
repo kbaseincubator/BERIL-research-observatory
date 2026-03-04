@@ -31,6 +31,7 @@ This scans all project directories and generates:
 - `docs/figure_catalog.yaml` — searchable figure catalog
 - `docs/findings_digest.md` — concise findings with links
 - `docs/knowledge_graph_coverage.md` — Layer 3 graph coverage and integrity summary
+- `docs/knowledge_gaps.md` — deterministic graph-derived research opportunities
 
 Present the summary output to the user (project count, figure count, findings count, status breakdown).
 
@@ -74,6 +75,7 @@ Projects without a README.md are skipped. The `hackathon_demo` directory is alwa
 | `docs/figure_catalog.yaml` | All figures with captions, notebooks, tags | ~10-15K tokens |
 | `docs/findings_digest.md` | Grep-searchable findings summary with REPORT links | ~5-8K tokens |
 | `docs/knowledge_graph_coverage.md` | Layer 3 coverage gaps and integrity checks | ~2-4K tokens |
+| `docs/knowledge_gaps.md` | Deterministic prioritized graph-driven gap list | ~2-4K tokens |
 
 ## Integration
 

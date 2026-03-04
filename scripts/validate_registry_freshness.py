@@ -29,6 +29,7 @@ OUTPUT_REGISTRY = DOCS_DIR / "project_registry.yaml"
 OUTPUT_FIGURES = DOCS_DIR / "figure_catalog.yaml"
 OUTPUT_FINDINGS = DOCS_DIR / "findings_digest.md"
 OUTPUT_GRAPH_COVERAGE = DOCS_DIR / "knowledge_graph_coverage.md"
+OUTPUT_KNOWLEDGE_GAPS = DOCS_DIR / "knowledge_gaps.md"
 
 
 def _load_build_registry_module():
@@ -70,6 +71,14 @@ def _normalize_graph_coverage(text: str) -> str:
     return "\n".join(lines).strip()
 
 
+def _normalize_knowledge_gaps(text: str) -> str:
+    lines = text.splitlines()
+    if len(lines) >= 2 and lines[1].startswith("**Last updated**:"):
+        suffix = lines[1].split("|", 1)[1].strip() if "|" in lines[1] else ""
+        lines[1] = f"**Last updated**: <normalized>{' | ' + suffix if suffix else ''}"
+    return "\n".join(lines).strip()
+
+
 def _load_yaml(path: Path) -> dict:
     return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
 
@@ -82,6 +91,7 @@ def main() -> int:
             OUTPUT_FIGURES,
             OUTPUT_FINDINGS,
             OUTPUT_GRAPH_COVERAGE,
+            OUTPUT_KNOWLEDGE_GAPS,
         )
         if not p.exists()
     ]
@@ -135,11 +145,13 @@ def main() -> int:
         all_project_dirs, all_projects, provenance_cache, report_cache
     )
     expected_graph_coverage = build_registry.generate_knowledge_graph_coverage(all_projects)
+    expected_knowledge_gaps = build_registry.generate_knowledge_gaps(all_projects)
 
     actual_registry = _load_yaml(OUTPUT_REGISTRY)
     actual_figure_catalog = _load_yaml(OUTPUT_FIGURES)
     actual_findings = OUTPUT_FINDINGS.read_text(encoding="utf-8")
     actual_graph_coverage = OUTPUT_GRAPH_COVERAGE.read_text(encoding="utf-8")
+    actual_knowledge_gaps = OUTPUT_KNOWLEDGE_GAPS.read_text(encoding="utf-8")
 
     issues: list[str] = []
 
@@ -185,6 +197,11 @@ def main() -> int:
     norm_expected_graph = _normalize_graph_coverage(expected_graph_coverage)
     if norm_actual_graph != norm_expected_graph:
         issues.append("knowledge_graph_coverage.md is stale")
+
+    norm_actual_gaps = _normalize_knowledge_gaps(actual_knowledge_gaps)
+    norm_expected_gaps = _normalize_knowledge_gaps(expected_knowledge_gaps)
+    if norm_actual_gaps != norm_expected_gaps:
+        issues.append("knowledge_gaps.md is stale")
 
     if issues:
         print("FAIL: knowledge registry artifacts are out of date.\n")

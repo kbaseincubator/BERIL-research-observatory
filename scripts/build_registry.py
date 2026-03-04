@@ -13,6 +13,7 @@ Reads all project directories and generates derived knowledge artifacts:
   - docs/figure_catalog.yaml    — searchable catalog of all figures
   - docs/findings_digest.md     — concise summary of key findings with links
   - docs/knowledge_graph_coverage.md — Layer 3 graph coverage and integrity report
+  - docs/knowledge_gaps.md — deterministic list of graph-driven research opportunities
 
 Two-tier data strategy:
   1. Primary: reads provenance.yaml (from PR #123) for structured metadata
@@ -49,6 +50,7 @@ OUTPUT_REGISTRY = DOCS_DIR / "project_registry.yaml"
 OUTPUT_FIGURES = DOCS_DIR / "figure_catalog.yaml"
 OUTPUT_FINDINGS = DOCS_DIR / "findings_digest.md"
 OUTPUT_GRAPH_COVERAGE = DOCS_DIR / "knowledge_graph_coverage.md"
+OUTPUT_KNOWLEDGE_GAPS = DOCS_DIR / "knowledge_gaps.md"
 
 # Directories to skip
 SKIP_PROJECTS = {"hackathon_demo"}
@@ -1116,6 +1118,226 @@ def generate_knowledge_graph_coverage(projects: list[dict]) -> str:
     ]
     return "\n".join(lines)
 
+
+def generate_knowledge_gaps(projects: list[dict]) -> str:
+    """Generate docs/knowledge_gaps.md with deterministic, graph-derived opportunities."""
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    all_project_ids = sorted(p["id"] for p in projects)
+    all_project_id_set = set(all_project_ids)
+
+    organisms = _load_knowledge_list(KNOWLEDGE_DIR / "entities/organisms.yaml", "organisms")
+    pathways = _load_knowledge_list(KNOWLEDGE_DIR / "entities/pathways.yaml", "pathways")
+    methods = _load_knowledge_list(KNOWLEDGE_DIR / "entities/methods.yaml", "methods")
+    relations = _load_knowledge_list(KNOWLEDGE_DIR / "relations.yaml", "relations")
+    hypotheses = _load_knowledge_list(KNOWLEDGE_DIR / "hypotheses.yaml", "hypotheses")
+    timeline_events = _load_knowledge_list(KNOWLEDGE_DIR / "timeline.yaml", "events")
+
+    def _truncate(text: str, limit: int = 120) -> str:
+        clean = " ".join(text.split())
+        return clean if len(clean) <= limit else clean[: limit - 1].rstrip() + "…"
+
+    # Gap 1: organisms with sparse project coverage.
+    sparse_organisms = []
+    org_projects: dict[str, set[str]] = {}
+    for org in organisms:
+        org_id = str(org.get("id", "")).strip()
+        if not org_id:
+            continue
+        projects_field = org.get("projects") or []
+        project_ids = {
+            str(pid).strip()
+            for pid in projects_field
+            if str(pid).strip() and str(pid).strip() in all_project_id_set
+        } if isinstance(projects_field, list) else set()
+        org_projects[org_id] = project_ids
+        if len(project_ids) <= 1:
+            sparse_organisms.append(
+                (
+                    len(project_ids),
+                    org_id,
+                    str(org.get("name", org_id)).strip() or org_id,
+                    sorted(project_ids),
+                )
+            )
+    sparse_organisms.sort(key=lambda x: (x[0], x[1]))
+
+    # Gap 2: methods with limited organism linkage in relations.
+    org_ids = {str(o.get("id", "")).strip() for o in organisms if str(o.get("id", "")).strip()}
+    method_meta: dict[str, str] = {}
+    method_to_orgs: dict[str, set[str]] = {}
+    for m in methods:
+        mid = str(m.get("id", "")).strip()
+        if not mid:
+            continue
+        method_meta[mid] = str(m.get("name", mid)).strip() or mid
+        method_to_orgs[mid] = set()
+
+    for rel in relations:
+        subj = str(rel.get("subject", "")).strip()
+        pred = str(rel.get("predicate", "")).strip()
+        obj = str(rel.get("object", "")).strip()
+        if pred not in {"applied_to", "measured_by", "studied_in"}:
+            continue
+        if subj.startswith("meth_") and obj in org_ids:
+            method_to_orgs.setdefault(subj, set()).add(obj)
+        if obj.startswith("meth_") and subj in org_ids:
+            method_to_orgs.setdefault(obj, set()).add(subj)
+
+    method_gap_rows = []
+    for mid, linked in method_to_orgs.items():
+        if not org_ids:
+            continue
+        if len(linked) >= len(org_ids):
+            continue
+        missing = sorted(org_ids - linked)
+        method_gap_rows.append(
+            (
+                len(linked),
+                mid,
+                method_meta.get(mid, mid),
+                sorted(linked),
+                missing,
+            )
+        )
+    method_gap_rows.sort(key=lambda x: (x[0], x[1]))
+
+    # Gap 3: hypotheses in non-terminal states.
+    pending_hypotheses = []
+    for hyp in hypotheses:
+        status = str(hyp.get("status", "")).strip().lower()
+        if status not in {"proposed", "testing", "refined"}:
+            continue
+        hid = str(hyp.get("id", "")).strip() or "<missing-id>"
+        statement = _truncate(str(hyp.get("statement", "")).strip())
+        origin = str(hyp.get("origin_project", "")).strip() or "unknown"
+        pending_hypotheses.append((status, hid, statement, origin))
+    pending_hypotheses.sort(key=lambda x: (x[0], x[1]))
+
+    # Gap 4: projects still absent from timeline.
+    timeline_projects: set[str] = set()
+    for event in timeline_events:
+        project = str(event.get("project", "")).strip()
+        if project:
+            timeline_projects.add(project)
+        projects_field = event.get("projects") or []
+        if isinstance(projects_field, list):
+            for pid in projects_field:
+                pid_text = str(pid).strip()
+                if pid_text:
+                    timeline_projects.add(pid_text)
+    missing_from_timeline = sorted(all_project_id_set - timeline_projects)
+
+    # Gap 5: organism-pathway pairs co-mentioned in projects without direct relation edge.
+    path_projects: dict[str, set[str]] = {}
+    path_names: dict[str, str] = {}
+    for path in pathways:
+        path_id = str(path.get("id", "")).strip()
+        if not path_id:
+            continue
+        path_names[path_id] = str(path.get("name", path_id)).strip() or path_id
+        projects_field = path.get("projects") or []
+        path_projects[path_id] = {
+            str(pid).strip()
+            for pid in projects_field
+            if str(pid).strip() and str(pid).strip() in all_project_id_set
+        } if isinstance(projects_field, list) else set()
+
+    related_org_path_pairs: set[tuple[str, str]] = set()
+    for rel in relations:
+        subj = str(rel.get("subject", "")).strip()
+        obj = str(rel.get("object", "")).strip()
+        if subj in org_ids and obj in path_projects:
+            related_org_path_pairs.add((subj, obj))
+        if obj in org_ids and subj in path_projects:
+            related_org_path_pairs.add((obj, subj))
+
+    unexplored_pairs = []
+    for org_id in sorted(org_ids):
+        org_proj = org_projects.get(org_id, set())
+        if not org_proj:
+            continue
+        for path_id in sorted(path_projects.keys()):
+            if (org_id, path_id) in related_org_path_pairs:
+                continue
+            overlap = sorted(org_proj & path_projects.get(path_id, set()))
+            if not overlap:
+                continue
+            unexplored_pairs.append(
+                (
+                    -len(overlap),
+                    org_id,
+                    path_id,
+                    overlap,
+                )
+            )
+    unexplored_pairs.sort()
+
+    lines = [
+        "# Knowledge Graph Research Gaps",
+        f"**Last updated**: {now} | **Projects in registry**: {len(all_project_ids)}",
+        "",
+        "## 1) Organisms with Sparse Cross-Project Coverage",
+    ]
+    if sparse_organisms:
+        for count, org_id, org_name, org_proj in sparse_organisms[:20]:
+            project_text = _format_id_list(org_proj, max_items=8)
+            lines.append(
+                f"- `{org_id}` ({org_name}) appears in {count} project(s): {project_text}"
+            )
+    else:
+        lines.append("- _None_")
+
+    lines.extend(
+        [
+            "",
+            "## 2) Method Coverage Gaps Across Organisms",
+        ]
+    )
+    if method_gap_rows:
+        for linked_count, mid, method_name, linked, missing in method_gap_rows[:15]:
+            lines.append(
+                f"- `{mid}` ({method_name}): linked to {linked_count}/{len(org_ids)} organisms; "
+                f"missing {_format_id_list(missing, max_items=6)}"
+            )
+    else:
+        lines.append("- _None_")
+
+    lines.extend(
+        [
+            "",
+            "## 3) Hypotheses Needing Validation",
+        ]
+    )
+    if pending_hypotheses:
+        for status, hid, statement, origin in pending_hypotheses:
+            lines.append(
+                f"- `{hid}` ({status}) from `{origin}`: {statement}"
+            )
+    else:
+        lines.append("- _None_")
+
+    lines.extend(
+        [
+            "",
+            f"## 4) Projects Missing Timeline Events ({len(missing_from_timeline)})",
+            _format_id_list(missing_from_timeline, max_items=20),
+            "",
+            "## 5) Unexplored Organism-Pathway Pairs with Shared Project Context",
+        ]
+    )
+    if unexplored_pairs:
+        for _, org_id, path_id, overlap in unexplored_pairs[:15]:
+            lines.append(
+                f"- `{org_id}` × `{path_id}` ({path_names.get(path_id, path_id)}): "
+                f"co-mentioned in {len(overlap)} project(s) {_format_id_list(overlap, max_items=5)} "
+                "but no direct relation edge"
+            )
+    else:
+        lines.append("- _None_")
+
+    lines.append("")
+    return "\n".join(lines)
+
 # ---------------------------------------------------------------------------
 # YAML output helper
 # ---------------------------------------------------------------------------
@@ -1234,6 +1456,7 @@ def main():
         all_project_dirs, all_projects, provenance_cache, report_cache
     )
     knowledge_graph_coverage = generate_knowledge_graph_coverage(all_projects)
+    knowledge_gaps = generate_knowledge_gaps(all_projects)
 
     # Summary
     status_counts: dict[str, int] = {}
@@ -1241,7 +1464,7 @@ def main():
         status_counts[p["status"]] = status_counts.get(p["status"], 0) + 1
     prov_count = sum(1 for p in all_projects if p["has_provenance"])
 
-    print(f"\nRegistry summary:", file=sys.stderr)
+    print("\nRegistry summary:", file=sys.stderr)
     print(f"  Projects: {len(all_projects)}", file=sys.stderr)
     for st, count in sorted(status_counts.items()):
         print(f"    {st}: {count}", file=sys.stderr)
@@ -1273,6 +1496,7 @@ def main():
         print(f"  {OUTPUT_FIGURES}", file=sys.stderr)
         print(f"  {OUTPUT_FINDINGS}", file=sys.stderr)
         print(f"  {OUTPUT_GRAPH_COVERAGE}", file=sys.stderr)
+        print(f"  {OUTPUT_KNOWLEDGE_GAPS}", file=sys.stderr)
         return
 
     # Write outputs
@@ -1288,6 +1512,9 @@ def main():
     print(f"  Wrote {OUTPUT_FINDINGS}", file=sys.stderr)
     OUTPUT_GRAPH_COVERAGE.write_text(knowledge_graph_coverage, encoding="utf-8")
     print(f"  Wrote {OUTPUT_GRAPH_COVERAGE}", file=sys.stderr)
+
+    OUTPUT_KNOWLEDGE_GAPS.write_text(knowledge_gaps, encoding="utf-8")
+    print(f"  Wrote {OUTPUT_KNOWLEDGE_GAPS}", file=sys.stderr)
 
 
 if __name__ == "__main__":
