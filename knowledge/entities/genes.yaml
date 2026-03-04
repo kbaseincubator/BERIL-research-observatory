@@ -1,0 +1,170 @@
+genes:
+
+  - id: gene_ribosomal_proteins
+    name: Ribosomal protein genes
+    description: >-
+      Core of pan-bacterial essential genome. 10 of 15 universally essential
+      gene families are ribosomal proteins (rpsC, rplW, rplK, rplB, rplA,
+      rplF, rps11, rpsJ, rpsI, rpsM).
+    projects:
+      - essential_genome
+      - conservation_vs_fitness
+      - cog_analysis
+    organisms:
+      - org_ecoli
+      - org_adp1
+      - org_dvh
+
+  - id: gene_groel
+    name: GroEL (chaperonin)
+    description: >-
+      One of 15 pan-bacterial universally essential gene families.
+      Essential chaperonin for protein folding.
+    kegg_ko: [K04077]
+    projects:
+      - essential_genome
+    organisms:
+      - org_ecoli
+
+  - id: gene_pyrg
+    name: PyrG (CTP synthase)
+    description: >-
+      One of 15 pan-bacterial universally essential gene families.
+      Essential for CTP synthesis.
+    kegg_ko: [K01937]
+    projects:
+      - essential_genome
+
+  - id: gene_fusa
+    name: FusA (elongation factor G)
+    description: >-
+      One of 15 pan-bacterial universally essential gene families.
+      Translation elongation GTPase.
+    kegg_ko: [K02355]
+    projects:
+      - essential_genome
+
+  - id: gene_vals
+    name: ValS (valyl-tRNA synthetase)
+    description: >-
+      One of 15 pan-bacterial universally essential gene families.
+    kegg_ko: [K01873]
+    projects:
+      - essential_genome
+
+  - id: gene_nuo_complex
+    name: Complex I / NADH:ubiquinone oxidoreductase (nuoA-nuoN)
+    description: >-
+      Proton-pumping NADH dehydrogenase (NDH-1). 13 subunits. Condition-specifically
+      essential on quinate (growth ratio 0.37) and acetate (0.49), dispensable on
+      glucose (1.44) in ADP1. Dominant support requirement for aromatic catabolism
+      (21 of 51 quinate-specific genes).
+    kegg_ko: [K00330, K00331, K00332, K00333, K00334, K00335, K00336,
+              K00337, K00338, K00339, K00340, K00341, K00342, K00343]
+    projects:
+      - aromatic_catabolism_network
+      - respiratory_chain_wiring
+      - adp1_deletion_phenotypes
+      - metal_fitness_atlas
+    organisms:
+      - org_adp1
+
+  - id: gene_ndh2
+    name: NDH-2 (type 2 NADH dehydrogenase)
+    description: >-
+      Non-proton-pumping alternative NADH dehydrogenase. Single-gene. Constitutively
+      expressed at similar protein level to Complex I. NDH-2 presence does NOT
+      predict reduced Complex I aromatic dependency cross-species.
+    kegg_ko: [K03885]
+    locus_tags: [ACIAD_RS16420]
+    projects:
+      - aromatic_catabolism_network
+      - respiratory_chain_wiring
+    organisms:
+      - org_adp1
+
+  - id: gene_aciad3522
+    name: ACIAD3522 (NADH-FMN oxidoreductase)
+    description: >-
+      Third NADH dehydrogenase in ADP1. Specifically lethal on acetate
+      (growth ratio 0.013), dispensable on quinate and glucose (1.39).
+      Most condition-specific gene in the ADP1 genome.
+    locus_tags: [ACIAD3522]
+    projects:
+      - respiratory_chain_wiring
+    organisms:
+      - org_adp1
+
+  - id: gene_pca_pathway
+    name: pca/qui aromatic degradation genes
+    description: >-
+      Core 8-gene aromatic degradation pathway (pcaGH, pcaC, pcaB, pcaD,
+      pcaI, pcaJ, pcaF, quiA, quiB, quiC). Most prominent discrete
+      phenotypic module in ADP1.
+    projects:
+      - aromatic_catabolism_network
+      - adp1_deletion_phenotypes
+      - adp1_triple_essentiality
+    organisms:
+      - org_adp1
+
+  - id: gene_pqq_biosynthesis
+    name: PQQ biosynthesis genes (pqqC, pqqD)
+    description: >-
+      Pyrroloquinoline quinone cofactor biosynthesis. Required for quinate
+      dehydrogenase and PQQ-glucose dehydrogenase.
+    kegg_ko: [K06138, K06139]
+    projects:
+      - aromatic_catabolism_network
+      - adp1_deletion_phenotypes
+    organisms:
+      - org_adp1
+
+  - id: gene_iron_acquisition
+    name: Iron acquisition gene set
+    description: >-
+      7 of 51 quinate-specific support genes. Fe2+ required by protocatechuate
+      3,4-dioxygenase for ring cleavage. Scattered across 4 chromosomal loci.
+    projects:
+      - aromatic_catabolism_network
+    organisms:
+      - org_adp1
+
+  - id: gene_phac
+    name: phaC (PHA synthase)
+    description: >-
+      Committed step in PHB biosynthesis. Present in 21.9% of 27,690 GTDB
+      species. Highest prevalence in Pseudomonadota (60.9%).
+    kegg_ko: [K03821]
+    projects:
+      - phb_granule_ecology
+
+  - id: gene_phab
+    name: phaB (acetoacetyl-CoA reductase)
+    description: >-
+      Reduces acetoacetyl-CoA to (R)-3-hydroxybutyryl-CoA in PHB pathway.
+      Pleiotropic — also functions in general fatty acid metabolism.
+    kegg_ko: [K00023]
+    projects:
+      - phb_granule_ecology
+
+  - id: gene_urease_complex
+    name: Urease complex (ureA-G)
+    description: >-
+      All 7 subunits/accessory proteins are top urea-specific genes in ADP1.
+      Urea is the most demanding carbon source (97.9% genes show severe defects).
+    projects:
+      - adp1_deletion_phenotypes
+    organisms:
+      - org_adp1
+
+  - id: gene_duf_complex1_candidates
+    name: DUF proteins ACIAD3137 and ACIAD2176
+    description: >-
+      Two DUF-domain proteins with r > 0.98 co-fitness correlation with
+      Complex I genes. Candidate uncharacterized Complex I accessory factors.
+    locus_tags: [ACIAD3137, ACIAD2176]
+    projects:
+      - aromatic_catabolism_network
+    organisms:
+      - org_adp1

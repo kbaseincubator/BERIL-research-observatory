@@ -1,0 +1,241 @@
+relations:
+
+  # Organism - Essential gene data relationships
+  - subject: org_adp1
+    predicate: has_essential_gene_data
+    object: conc_essential_genes
+    evidence_project: essential_genome
+    confidence: high
+    note: "RB-TnSeq essentiality across 8 carbon sources plus deletion collection"
+
+  - subject: org_dvh
+    predicate: has_essential_gene_data
+    object: conc_essential_genes
+    evidence_project: essential_genome
+    confidence: high
+    note: "149 experiments, 13 metals; most metal-profiled organism in Fitness Browser"
+
+  - subject: org_ecoli
+    predicate: has_essential_gene_data
+    object: conc_essential_genes
+    evidence_project: essential_genome
+    confidence: high
+    note: "TraDIS-defined essential genome (Goodall et al. 2018)"
+
+  - subject: org_methanococcus_s2
+    predicate: has_essential_gene_data
+    object: conc_essential_genes
+    evidence_project: conservation_vs_fitness
+    confidence: high
+    note: "Strongest essential-core enrichment among all organisms (OR=5.21)"
+
+  # Core genome enrichment patterns
+  - subject: conc_core_genome
+    predicate: enriched_for
+    object: path_translation_machinery
+    evidence_project: cog_analysis
+    confidence: high
+    note: "COG J enriched in core: -4.65% novel depletion, 97% consistency across 32 species"
+
+  - subject: conc_core_genome
+    predicate: enriched_for
+    object: path_coenzyme_metabolism
+    evidence_project: cog_analysis
+    confidence: high
+    note: "COG H enriched in core: -2.06% novel depletion, 97% consistency"
+
+  - subject: conc_core_genome
+    predicate: enriched_for
+    object: path_nucleotide_metabolism
+    evidence_project: cog_analysis
+    confidence: high
+    note: "COG F enriched in core: -2.09% novel depletion, 100% consistency"
+
+  - subject: conc_core_genome
+    predicate: enriched_for
+    object: conc_essential_genes
+    evidence_project: conservation_vs_fitness
+    confidence: high
+    note: "Essential genes are 86.1-91.7% core across 33 organisms (OR=1.51-5.21)"
+
+  - subject: conc_accessory_genome
+    predicate: enriched_for
+    object: conc_hgt
+    evidence_project: cog_analysis
+    confidence: high
+    note: "COG L (mobile elements) +10.88% enrichment in novel genes, 100% consistency"
+
+  # Aromatic catabolism support network
+  - subject: path_beta_ketoadipate
+    predicate: requires_support_genes
+    object: gene_nuo_complex
+    evidence_project: aromatic_catabolism_network
+    confidence: high
+    note: "21 of 51 quinate-specific genes are Complex I subunits"
+
+  - subject: path_beta_ketoadipate
+    predicate: requires_support_genes
+    object: gene_iron_acquisition
+    evidence_project: aromatic_catabolism_network
+    confidence: high
+    note: "7 of 51 quinate-specific genes; Fe2+ required for ring-cleavage dioxygenase"
+
+  - subject: path_beta_ketoadipate
+    predicate: requires_support_genes
+    object: gene_pqq_biosynthesis
+    evidence_project: aromatic_catabolism_network
+    confidence: high
+    note: "2 genes; PQQ cofactor for quinate dehydrogenase"
+
+  # Respiratory chain wiring
+  - subject: gene_nuo_complex
+    predicate: condition_specific_for
+    object: path_beta_ketoadipate
+    evidence_project: respiratory_chain_wiring
+    confidence: high
+    note: "Growth ratio 0.37 on quinate, 1.44 on glucose"
+
+  - subject: gene_aciad3522
+    predicate: condition_specific_for
+    object: path_glyoxylate_shunt
+    evidence_project: respiratory_chain_wiring
+    confidence: high
+    note: "Growth ratio 0.013 on acetate (essentially lethal), 1.39 on quinate/glucose"
+
+  # Method applications
+  - subject: meth_ica
+    predicate: applied_to
+    object: meth_rbtnseq
+    evidence_project: fitness_modules
+    confidence: high
+    note: "ICA decomposition of RB-TnSeq fitness matrices across 32 organisms"
+
+  - subject: meth_fba
+    predicate: applied_to
+    object: org_adp1
+    evidence_project: adp1_triple_essentiality
+    confidence: high
+    note: "FBA essentiality prediction vs TnSeq vs growth phenotypes"
+
+  - subject: meth_gapmind
+    predicate: applied_to
+    object: path_aa_biosynthesis
+    evidence_project: essential_metabolome
+    confidence: high
+    note: "305M predictions across 293K genomes for amino acid and carbon pathways"
+
+  - subject: meth_diamond
+    predicate: applied_to
+    object: meth_pangenome_construction
+    evidence_project: conservation_vs_fitness
+    confidence: high
+    note: "Maps FB proteins to pangenome clusters; 177,863 gene-to-cluster links"
+
+  - subject: meth_cofitness
+    predicate: applied_to
+    object: org_adp1
+    evidence_project: aromatic_catabolism_network
+    confidence: high
+    note: "Assigned 16 unknown genes to specific subsystems via co-fitness"
+
+  # DUF protein candidates
+  - subject: gene_duf_complex1_candidates
+    predicate: co_regulated_with
+    object: gene_nuo_complex
+    evidence_project: aromatic_catabolism_network
+    confidence: high
+    note: "r > 0.98 co-fitness correlation across 8 conditions"
+
+  # PHB ecology
+  - subject: gene_phac
+    predicate: enriched_in
+    object: conc_feast_famine
+    evidence_project: phb_granule_ecology
+    confidence: high
+    note: "PHB prevalence: plant 44%, soil 43.6% > marine 18.7% > clinical 7.4%"
+
+  - subject: gene_phac
+    predicate: studied_in
+    object: org_cupriavidus
+    evidence_project: phb_granule_ecology
+    confidence: high
+    note: "Model PHB producer for feast/famine competition experiments"
+
+  # Metal fitness
+  - subject: conc_core_robustness
+    predicate: contradicts
+    object: conc_accessory_genome
+    evidence_project: metal_fitness_atlas
+    confidence: high
+    note: "Metal-important genes are 87.4% core (OR=2.08), opposite of accessory resistance expectation"
+
+  - subject: org_dvh
+    predicate: measured_by
+    object: meth_rbtnseq
+    evidence_project: metal_fitness_atlas
+    confidence: high
+    note: "149 experiments, 13 metals; most metal-profiled organism"
+
+  # Burden paradox
+  - subject: conc_core_genome
+    predicate: enriched_for
+    object: conc_burden_paradox
+    evidence_project: core_gene_tradeoffs
+    confidence: high
+    note: "24.4% of core genes burdensome vs 19.9% for accessory"
+
+  # Cofitness-coinheritance link
+  - subject: conc_fitness_module
+    predicate: predicts
+    object: conc_cofitness_coinheritance
+    evidence_project: cofitness_coinheritance
+    confidence: high
+    note: "26% of modules significant for co-inheritance; 73% for accessory modules"
+
+  # Module transfer for function prediction
+  - subject: meth_ortholog_transfer
+    predicate: applied_to
+    object: conc_orphan_essential
+    evidence_project: essential_genome
+    confidence: high
+    note: "1,382 function predictions for hypothetical essential genes"
+
+  # FBA limitations
+  - subject: meth_fba
+    predicate: contradicts
+    object: conc_condition_specific_essentiality
+    evidence_project: aromatic_catabolism_network
+    confidence: high
+    note: "FBA misses 59% of condition-specific essential genes; no reaction mappings"
+
+  # Cross-project: pangenome ecology
+  - subject: conc_pangenome_openness
+    predicate: contradicts
+    object: conc_pangenome_ecology
+    evidence_project: pangenome_openness
+    confidence: high
+    note: "No correlation between openness and environment/phylogeny effects (rho=-0.05, p=0.54)"
+
+  # Serine auxotrophy discovery
+  - subject: org_dvh
+    predicate: absent_from
+    object: path_aa_biosynthesis
+    evidence_project: essential_metabolome
+    confidence: medium
+    note: "Serine biosynthesis absent from D. vulgaris — putative auxotrophy"
+
+  # Ecotype analysis
+  - subject: conc_pangenome_ecology
+    predicate: enriched_for
+    object: conc_core_genome
+    evidence_project: ecotype_analysis
+    confidence: high
+    note: "Phylogeny dominates gene content in 60.5% of 172 species"
+
+  # Essential genome and minimal genome
+  - subject: gene_ribosomal_proteins
+    predicate: component_of
+    object: conc_minimal_genome
+    evidence_project: essential_genome
+    confidence: high
+    note: "10 of 15 universally essential gene families are ribosomal proteins"

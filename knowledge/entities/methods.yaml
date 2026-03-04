@@ -1,0 +1,206 @@
+methods:
+
+  - id: meth_rbtnseq
+    name: RB-TnSeq
+    full_name: Randomly Barcoded Transposon Sequencing
+    category: experimental
+    description: >-
+      Primary fitness measurement technology. Genome-wide mutant fitness
+      across thousands of conditions. Defines essential genes as those
+      lacking viable transposon insertions. Basis of the Fitness Browser
+      (48 organisms, 6,804+ experiments).
+    projects:
+      - essential_genome
+      - conservation_vs_fitness
+      - fitness_modules
+      - field_vs_lab_fitness
+      - metal_fitness_atlas
+      - cog_analysis
+      - cofitness_coinheritance
+      - core_gene_tradeoffs
+      - costly_dispensable_genes
+      - fitness_effects_conservation
+      - module_conservation
+      - aromatic_catabolism_network
+      - respiratory_chain_wiring
+
+  - id: meth_ica
+    name: ICA
+    full_name: Independent Component Analysis
+    category: computational
+    description: >-
+      Decomposes gene-fitness matrices into independently regulated modules.
+      1,116 stable modules across 32 organisms. Weight threshold |weight| >= 0.3,
+      max 50 genes. 94.2% show elevated within-module cofitness. 22.7x genomic
+      adjacency enrichment.
+    projects:
+      - fitness_modules
+      - module_conservation
+      - field_vs_lab_fitness
+      - metal_fitness_atlas
+      - cofitness_coinheritance
+      - conservation_fitness_synthesis
+      - essential_genome
+
+  - id: meth_fba
+    name: FBA
+    full_name: Flux Balance Analysis
+    category: computational
+    description: >-
+      Constraint-based metabolic flux prediction. Key blind spots:
+      misses 59% of condition-specific essential genes (no FBA reaction
+      mappings for PQQ, iron, regulators). 87% of ADP1 growth predictions
+      depend on gapfilled reactions. FBA essentiality class does not predict
+      growth defect magnitude among dispensable genes (p=0.63).
+    projects:
+      - aromatic_catabolism_network
+      - respiratory_chain_wiring
+      - adp1_deletion_phenotypes
+      - acinetobacter_adp1_explorer
+      - adp1_triple_essentiality
+
+  - id: meth_gapmind
+    name: GapMind
+    full_name: GapMind metabolic pathway gap analysis
+    category: computational
+    description: >-
+      Computational tool predicting metabolic pathway completeness.
+      Applied to 7 FB organisms for 18 amino acid biosynthesis pathways
+      and 62 carbon source utilization pathways. 305M predictions across
+      293K genomes.
+    projects:
+      - essential_metabolome
+      - functional_dark_matter
+
+  - id: meth_diamond
+    name: DIAMOND
+    full_name: DIAMOND blastp protein similarity search
+    category: computational
+    description: >-
+      Maps Fitness Browser proteins to KBase pangenome clusters. 100.0%
+      median protein identity, 94.2% median gene coverage for 177,863
+      gene-to-cluster links across 44 organisms.
+    projects:
+      - conservation_vs_fitness
+      - essential_genome
+      - core_gene_tradeoffs
+
+  - id: meth_bbh
+    name: BBH
+    full_name: Bidirectional Best Hit ortholog inference
+    category: computational
+    description: >-
+      Identifies ortholog pairs across organisms. 2.8M BBH pairs for
+      essential genome study. Yields 17,222 ortholog groups across
+      48 organisms.
+    projects:
+      - fitness_modules
+      - essential_genome
+      - cofitness_coinheritance
+
+  - id: meth_cofitness
+    name: Co-fitness analysis
+    full_name: Pairwise Pearson correlation of fitness profiles
+    category: computational
+    description: >-
+      Identifies functionally related genes. Within-module mean |r| = 0.34
+      vs background 0.12. Used to assign 16 unknown ADP1 genes to subsystems.
+    projects:
+      - aromatic_catabolism_network
+      - cofitness_coinheritance
+      - fitness_modules
+      - module_conservation
+      - field_vs_lab_fitness
+
+  - id: meth_eggnog
+    name: eggNOG-mapper
+    full_name: eggNOG-mapper v6 functional annotation
+    category: computational
+    description: >-
+      Assigns COG categories, KEGG KOs, Pfam domains, and SEED subsystems.
+      Covers ~70% of genes. Used for PHB gene identification across 27,690 species.
+    projects:
+      - cog_analysis
+      - phb_granule_ecology
+      - metal_fitness_atlas
+      - acinetobacter_adp1_explorer
+
+  - id: meth_spark_sql
+    name: Spark SQL
+    full_name: Apache Spark SQL on BERDL
+    category: computational
+    description: >-
+      Distributed query engine for large-scale BERDL queries.
+      Handles billion-row tables with BROADCAST hint optimization.
+    projects:
+      - fitness_modules
+      - cofitness_coinheritance
+      - metal_fitness_atlas
+      - phb_granule_ecology
+      - field_vs_lab_fitness
+
+  - id: meth_pangenome_construction
+    name: Pangenome construction
+    full_name: KBase/GTDB pangenome construction
+    category: computational
+    description: >-
+      Species-level pangenomes for 27,690 GTDB species from 293K+ genomes.
+      Core/accessory/singleton classification (>90% prevalence = core).
+      132.5M gene clusters.
+    projects:
+      - conservation_vs_fitness
+      - cog_analysis
+      - phb_granule_ecology
+      - cofitness_coinheritance
+      - module_conservation
+      - pangenome_openness
+      - ecotype_analysis
+
+  - id: meth_alphaearth
+    name: AlphaEarth embeddings
+    full_name: AlphaEarth 64-dimensional environmental embeddings
+    category: computational
+    description: >-
+      Environmental embeddings for geographic coordinates. 28.4% genome
+      coverage (83K/293K genomes). Used as environmental similarity proxy.
+    projects:
+      - ecotype_analysis
+      - phb_granule_ecology
+
+  - id: meth_fisher_exact
+    name: Fisher's exact test
+    full_name: Fisher's exact test with Benjamini-Hochberg FDR correction
+    category: statistical
+    description: >-
+      Primary enrichment test for categorical features. Used with BH-FDR
+      correction across multiple organism/condition comparisons.
+    projects:
+      - conservation_vs_fitness
+      - cofitness_coinheritance
+      - phb_granule_ecology
+      - costly_dispensable_genes
+      - metal_fitness_atlas
+      - field_vs_lab_fitness
+
+  - id: meth_ortholog_transfer
+    name: Ortholog transfer
+    full_name: Ortholog-based function prediction via ICA modules
+    category: computational
+    description: >-
+      Predicts function of hypothetical essential genes via non-essential
+      orthologs. Benchmark precision 95.8% for KEGG KO prediction.
+      1,382 function predictions for hypothetical essential genes.
+    projects:
+      - essential_genome
+      - fitness_modules
+
+  - id: meth_paperblast
+    name: PaperBLAST
+    full_name: PaperBLAST literature-based protein function search
+    category: computational
+    description: >-
+      Searches literature for functional annotations of protein homologs.
+      Suggested for characterization of novel metal biology candidates.
+    projects:
+      - metal_fitness_atlas
+      - paperblast_explorer

@@ -1,13 +1,13 @@
 ---
 name: knowledge
-description: Search the research observatory knowledge base — projects, findings, figures, and reusable data artifacts. Use when the user wants to find projects by topic, search for figures, locate reusable data, or get a landscape overview.
+description: Search the research observatory knowledge base — projects, findings, figures, reusable data, entities, hypotheses, and cross-project connections. Use when the user wants to find projects by topic, search for figures, locate reusable data, explore the knowledge graph, or get a landscape overview.
 allowed-tools: Read, Bash, Grep
 user-invocable: true
 ---
 
 # Knowledge Query Skill
 
-Search the observatory's knowledge registry to find projects, findings, figures, and reusable data artifacts without reading every project file.
+Search the observatory's knowledge registry and semantic knowledge graph to find projects, findings, figures, reusable data, entities, relationships, and hypotheses.
 
 ## Usage
 
@@ -17,6 +17,11 @@ Search the observatory's knowledge registry to find projects, findings, figures,
 /knowledge data <topic>         — search reusable data artifacts
 /knowledge project <id>         — full summary of a specific project
 /knowledge landscape            — high-level overview of all research
+/knowledge entities <type>      — list entities (organism, gene, pathway, method, concept)
+/knowledge connections <entity> — find all relations involving an entity
+/knowledge hypotheses [status]  — list hypotheses, optionally filtered by status
+/knowledge gaps                 — find unexplored entity combinations
+/knowledge timeline [project]   — show research evolution
 ```
 
 ## Prerequisite
@@ -184,9 +189,144 @@ Projects with most upstream dependencies:
 
 3. If the user asks follow-up questions, drill into specific areas.
 
+### Subcommand: `/knowledge entities <type>`
+
+**List entities of a given type from the knowledge graph.**
+
+Valid types: `organism`, `gene`, `pathway`, `method`, `concept`
+
+1. Read the corresponding file from `knowledge/entities/`:
+   - `organism` → `knowledge/entities/organisms.yaml`
+   - `gene` → `knowledge/entities/genes.yaml`
+   - `pathway` → `knowledge/entities/pathways.yaml`
+   - `method` → `knowledge/entities/methods.yaml`
+   - `concept` → `knowledge/entities/concepts.yaml`
+2. Present a summary table:
+
+```markdown
+### {Type} Entities ({count} total)
+
+| ID | Name | Projects | Description |
+|----|------|----------|-------------|
+| {id} | {name} | {project_count} projects | {description (truncated)} |
+```
+
+3. If a topic is also provided (`/knowledge entities organism metal`), filter to entities whose name, description, or project list matches the keyword.
+
+### Subcommand: `/knowledge connections <entity_id>`
+
+**Find all relations involving a specific entity.**
+
+1. Read `knowledge/relations.yaml`
+2. Filter relations where `subject` or `object` matches the entity ID (or a substring match on entity name)
+3. Present:
+
+```markdown
+### Connections for {entity_name} ({entity_id})
+
+**Outgoing relations (this entity → other):**
+| Predicate | Target | Evidence Project | Confidence | Note |
+|-----------|--------|-----------------|------------|------|
+| {predicate} | {object} | {evidence_project} | {confidence} | {note} |
+
+**Incoming relations (other → this entity):**
+| Source | Predicate | Evidence Project | Confidence | Note |
+|--------|-----------|-----------------|------------|------|
+| {subject} | {predicate} | {evidence_project} | {confidence} | {note} |
+```
+
+4. Also check `knowledge/hypotheses.yaml` for hypotheses that reference this entity in their `entities` list. List any matching hypotheses.
+
+### Subcommand: `/knowledge hypotheses [status]`
+
+**List hypotheses, optionally filtered by lifecycle status.**
+
+Valid statuses: `proposed`, `refined`, `testing`, `validated`, `rejected`, `merged`, `superseded`
+
+1. Read `knowledge/hypotheses.yaml`
+2. If a status filter is given, show only matching hypotheses
+3. Present:
+
+```markdown
+### Hypotheses ({status filter or "all"})
+
+| ID | Status | Statement | Origin Project | Evidence |
+|----|--------|-----------|---------------|----------|
+| {id} | {status} | {statement (truncated to 80 chars)} | {origin_project} | {n} supporting, {n} contradicting |
+```
+
+4. For detailed view, user can ask about a specific hypothesis ID to see full statement, all evidence, evolution timeline, and parent/child relationships.
+
+### Subcommand: `/knowledge gaps`
+
+**Find unexplored entity combinations and research opportunities.**
+
+1. Read all entity files and `knowledge/relations.yaml`
+2. Build an entity-entity co-occurrence matrix from relations
+3. Identify:
+
+   **a) Organisms with data but no cross-project analysis:**
+   - Find organisms that appear in only 1 project but have RB-TnSeq data
+   - These are candidates for cross-organism comparison
+
+   **b) Methods applied to some organisms but not others:**
+   - Cross-reference method-organism pairs to find gaps
+   - E.g., "ICA applied to 32 organisms but GapMind only to 7"
+
+   **c) Hypotheses in "testing" or "proposed" state:**
+   - These are untested hypotheses needing validation
+
+   **d) Entity pairs not yet studied together:**
+   - Find pairs of organisms, or organism-pathway pairs, that appear in separate projects but have no relation connecting them
+
+4. Present:
+
+```markdown
+### Research Gaps
+
+#### Organisms Needing Cross-Project Analysis
+| Organism | Current Projects | Suggested Analysis |
+|----------|-----------------|-------------------|
+| {name} | {projects} | {suggestion} |
+
+#### Method Coverage Gaps
+| Method | Applied To | Not Yet Applied To |
+|--------|-----------|-------------------|
+| {method} | {organisms/entities} | {missing organisms/entities} |
+
+#### Untested Hypotheses
+| ID | Statement | Status | Blocking |
+|----|-----------|--------|----------|
+| {id} | {statement} | {status} | {what's needed} |
+
+#### Unexplored Entity Pairs
+| Entity A | Entity B | Why Interesting |
+|----------|----------|----------------|
+| {entity_a} | {entity_b} | {rationale} |
+```
+
+### Subcommand: `/knowledge timeline [project]`
+
+**Show research evolution chronologically.**
+
+1. Read `knowledge/timeline.yaml`
+2. If a project filter is given, show only events for that project
+3. Present chronologically:
+
+```markdown
+### Research Timeline {("for " + project) if filtered}
+
+| Date | Type | Project | Summary |
+|------|------|---------|---------|
+| {date} | {type} | {project} | {summary} |
+```
+
+4. Highlight hypothesis state changes and cross-project connections
+5. If no filter, group by month for readability
+
 ## Integration
 
-- **Reads from**: `docs/project_registry.yaml`, `docs/figure_catalog.yaml`, `docs/findings_digest.md`
-- **Regenerated by**: `/build-registry`
+- **Reads from**: `docs/project_registry.yaml`, `docs/figure_catalog.yaml`, `docs/findings_digest.md`, `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml`, `knowledge/timeline.yaml`
+- **Regenerated by**: `/build-registry` (Layer 2), `/synthesize` (Layer 3 updates)
 - **Consumed by**: agents and users exploring the research landscape
-- **Related skills**: `/suggest-research` (uses registry for landscape analysis), `/build-registry` (regenerates the index)
+- **Related skills**: `/suggest-research` (uses registry and knowledge graph for landscape analysis), `/build-registry` (regenerates the Layer 2 index), `/synthesize` (updates Layer 3 after project completion)

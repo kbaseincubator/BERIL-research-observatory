@@ -81,9 +81,27 @@ Read `docs/collections.md` to inventory the BERDL data collections. For each col
 
 Identify **underexplored collections** — present in BERDL but rarely cited in completed project reports.
 
+### Step 5b: Read the Knowledge Graph (if available)
+
+If `knowledge/entities/` exists, read the semantic knowledge graph for entity-level gap analysis:
+
+1. Read `knowledge/entities/organisms.yaml`, `methods.yaml`, `concepts.yaml`
+2. Read `knowledge/relations.yaml` — note which entity pairs have relations and which don't
+3. Read `knowledge/hypotheses.yaml` — identify:
+   - Hypotheses in `testing` or `proposed` state (need validation)
+   - `rejected` hypotheses whose alternatives haven't been explored
+   - Entity pairs referenced by hypotheses but lacking direct relations
+4. Build supplementary gap analysis:
+   - **Organisms with data but no cross-project analysis**: organisms appearing in only 1 project
+   - **Methods applied to some organisms but not others**: e.g., ICA to 32 organisms but GapMind only to 7
+   - **Untested hypotheses**: hypotheses in `proposed` or `testing` state
+   - **Unexplored entity pairs**: organisms/pathways/concepts appearing in separate projects but never studied together
+
+This enriches Step 6 with entity-level precision beyond keyword matching.
+
 ### Step 6: Synthesize the Landscape
 
-Build an internal summary across Steps 1–5:
+Build an internal summary across Steps 1–5b:
 
 | Dimension | Assessment |
 |---|---|
@@ -94,6 +112,8 @@ Build an internal summary across Steps 1–5:
 | Discovery log | What serendipitous patterns are unclaimed? |
 | Underexplored data | Which BERDL collections have not been leveraged? |
 | Recurring gaps | What limitation appears in multiple project reports? |
+| Entity gaps | Which organisms/methods/concepts lack cross-project connections? |
+| Untested hypotheses | Which proposed/testing hypotheses need validation? |
 
 ### Step 7: Ask the User for Priorities (Optional)
 
@@ -207,7 +227,7 @@ If no, leave no files modified.
 
 ## Integration
 
-- **Reads from**: `docs/project_registry.yaml` (primary), `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `projects/*/REPORT.md` (top 3-5 only)
+- **Reads from**: `docs/project_registry.yaml` (primary), `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `projects/*/REPORT.md` (top 3-5 only), `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml` (Layer 3 graph)
 - **Calls**: `/literature-review` (Step 9, for novelty check on top candidate); `/berdl_start` (Step 11, if user confirms the idea)
 - **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry only — never edits existing entries)
 - **Consumed by**: `/literature-review`, `/synthesize`
