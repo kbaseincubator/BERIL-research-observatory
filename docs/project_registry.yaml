@@ -1,6 +1,6 @@
 version: 1
-generated_at: '2026-02-27T18:20:47'
-project_count: 35
+generated_at: '2026-03-04T15:42:20'
+project_count: 41
 projects:
 - id: acinetobacter_adp1_explorer
   title: Acinetobacter baylyi ADP1 Data Explorer
@@ -98,21 +98,20 @@ projects:
     which ones have growth defects? Can direct mutant growth rate measurements serve as an independent axis to evaluate where
     computational (FBA) and genetic (TnSeq) methods agree or disagree?
   key_findings:
-  - FBA Essentiality Class Does Not Predict Growth Defects Among Dispensable Genes
-  - The Null Result Is Robust Across Growth Defect Thresholds
-  - Growth Measurements Cannot Break FBA-TnSeq Ties
-  - Condition-Specific FBA Flux Shows Weak, Mixed Correlations with Growth
-  - Growth Defects Are Partially Condition-Specific
-  - Aromatic Degradation Genes Are Enriched Among FBA-Discordant Genes
+  - FBA essentiality class does not predict growth defects among TnSeq-dispensable genes (chi-squared p=0.63). See [Report](REPORT.md)
+    for findings
   tags:
+  - co-occurrence
   - conservation
   - correlation
+  - dark-genes
   - ecotype
   - enrichment
   - essential-genes
   - fitness
   - gene-annotation
   - metabolism
+  - mobile-elements
   - modules
   - pangenome
   - pathway-analysis
@@ -120,11 +119,9 @@ projects:
   - 1 genome
   - 1 genome
   - 1 genome
-  - 1 genome
-  databases_used:
-  - kbase_ke_pangenome
-  notebook_count: 3
-  figure_count: 10
+  databases_used: []
+  notebook_count: 5
+  figure_count: 17
   key_data_artifacts: []
   references: []
   depends_on: []
@@ -163,6 +160,42 @@ projects:
   - kescience_fitnessbrowser
   notebook_count: 4
   figure_count: 9
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: bacdive_metal_validation
+  title: BacDive Isolation Environment × Metal Tolerance Prediction
+  status: complete
+  research_question: Do bacteria isolated from metal-contaminated environments have higher predicted metal tolerance scores
+    than bacteria from uncontaminated environments?
+  key_findings:
+  - Bacteria From Metal-Contaminated Environments Have Significantly Higher Metal Tolerance Scores
+  - The Signal Holds Within Major Phyla
+  - 42,227 BacDive Strains Linked to Pangenome Metal Scores
+  - 'Metal Utilization Phenotypes: Inconclusive'
+  - 'Power Analysis: The Heavy Metal Group Was At Detection Limit'
+  tags:
+  - conservation
+  - correlation
+  - ecotype
+  - enrichment
+  - fitness
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 27,702 pangenome species
+  - 27,702 pangenome species
+  databases_used:
+  - kbase_ke_pangenome
+  notebook_count: 3
+  figure_count: 3
   key_data_artifacts: []
   references: []
   depends_on: []
@@ -936,6 +969,188 @@ projects:
   - module_conservation
   has_provenance: false
   date_completed: 2026-02
+- id: functional_dark_matter
+  title: Functional Dark Matter — Experimentally Prioritized Novel Genetic Systems
+  status: complete
+  research_question: Which genes of unknown function across 48 bacteria have strong fitness phenotypes, and can biogeographic
+    patterns, pathway gap analysis, and cross-organism fitness concordance — combined with existing function predictions and
+    conservation data — prioritize them for experimental follow-up?
+  key_findings:
+  - 'Finding 1: One in four bacterial genes is functionally dark, and 17,344 have experimentally measurable phenotypes'
+  - 'Finding 2: 39,532 dark genes link to the pangenome; 6,142 belong to co-regulated fitness modules'
+  - 'Finding 3: GapMind identifies 1,256 organism-pathway pairs with metabolic gaps in species harboring dark genes'
+  - 'Finding 4: Cross-organism fitness concordance identifies 65 ortholog groups with conserved dark gene phenotypes'
+  - 'Finding 5: Dark gene families span diverse taxonomic breadth — 30,756 clusters mapped across 27,690 species'
+  - 'Finding 6: Within-species biogeographic analysis reveals 10 dark gene clusters with significant environmental enrichment'
+  - 'Finding 7: Lab-field concordance rate of 61.7%, with NMDC validation confirming 4/4 pre-registered abiotic predictions'
+  - 'Finding 8: Top 100 prioritized candidates span 22 organisms with 82% high-confidence functional hypotheses'
+  tags:
+  - biogeography
+  - co-occurrence
+  - cofitness
+  - conservation
+  - correlation
+  - dark-genes
+  - defense
+  - ecotype
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 48 bacteria
+  - 42 organisms
+  - 50 organisms
+  - 48 organisms
+  - 44 organisms
+  databases_used:
+  - kbase_ke_pangenome
+  - kescience_fitnessbrowser
+  - nmdc_arkin
+  notebook_count: 13
+  figure_count: 39
+  key_data_artifacts:
+  - file: data/biogeographic_profiles.tsv
+    description: null
+    reusable: true
+  - file: data/carrier_genome_map.tsv
+    description: null
+    reusable: true
+  - file: data/carrier_noncarrier_tests.tsv
+    description: null
+    reusable: true
+  - file: data/concordance_detailed.tsv
+    description: null
+    reusable: true
+  - file: data/concordance_scores.tsv
+    description: null
+    reusable: true
+  - file: data/conservation_covering_set.tsv
+    description: null
+    reusable: true
+  - file: data/conservation_experiment_plans.tsv
+    description: null
+    reusable: true
+  - file: data/dark_gene_census_full.tsv
+    description: null
+    reusable: true
+  - file: data/dark_gene_classes.tsv
+    description: null
+    reusable: true
+  - file: data/experimental_action_plan.tsv
+    description: null
+    reusable: true
+  - file: data/experimental_roadmap.tsv
+    description: null
+    reusable: true
+  - file: data/extended_covering_set.tsv
+    description: null
+    reusable: true
+  - file: data/extended_tractable_organisms.tsv
+    description: null
+    reusable: true
+  - file: data/gapmind_domain_matched.tsv
+    description: null
+    reusable: true
+  - file: data/gapmind_gap_candidates.tsv
+    description: null
+    reusable: true
+  - file: data/gapmind_pathway_summary.tsv
+    description: null
+    reusable: true
+  - file: data/improved_candidates.tsv
+    description: null
+    reusable: true
+  - file: data/lab_field_concordance.tsv
+    description: null
+    reusable: true
+  - file: data/minimum_covering_set.tsv
+    description: null
+    reusable: true
+  - file: data/nmdc_validation.tsv
+    description: null
+    reusable: true
+  - file: data/non_fb_genus_og_coverage.tsv
+    description: null
+    reusable: true
+  - file: data/og_id_root_propagation.tsv
+    description: null
+    reusable: true
+  - file: data/og_importance_ranked.tsv
+    description: null
+    reusable: true
+  - file: data/og_pangenome_distribution.tsv
+    description: null
+    reusable: true
+  - file: data/og_pangenome_distribution_fb_only.tsv
+    description: null
+    reusable: true
+  - file: data/phylogenetic_breadth.tsv
+    description: null
+    reusable: true
+  - file: data/prioritized_candidates.tsv
+    description: null
+    reusable: true
+  - file: data/robust_ranks_essential.tsv
+    description: null
+    reusable: true
+  - file: data/robust_ranks_fitness.tsv
+    description: null
+    reusable: true
+  - file: data/scoring_all_dark.tsv
+    description: null
+    reusable: true
+  - file: data/scoring_species_count_variant.tsv
+    description: null
+    reusable: true
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: fw300_metabolic_consistency
+  title: Metabolic Consistency of Pseudomonas FW300-N2E3
+  status: complete
+  research_question: For *Pseudomonas fluorescens* FW300-N2E3 (ENIGMA groundwater isolate), how consistent are exometabolomic
+    outputs (Web of Microbes), genome-wide gene fitness (Fitness Browser), species-level utilization phenotypes (BacDive),
+    and computational pathway predictions (GapMind)?
+  key_findings:
+  - High overall concordance across databases (94% mean concordance)
+  - 'Tryptophan overflow: the strongest biologically meaningful discordance'
+  - All 13 GapMind-matched metabolites have complete pathways
+  - Rich fitness landscapes for produced metabolites
+  - BacDive discordances are graded by data quality
+  tags:
+  - dark-genes
+  - ecotype
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms: []
+  databases_used:
+  - kbase_ke_pangenome
+  - kbase_msd_biochemistry
+  - kescience_bacdive
+  - kescience_fitnessbrowser
+  - kescience_webofmicrobes
+  notebook_count: 3
+  figure_count: 3
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
 - id: lab_field_ecology
   title: Lab Fitness Predicts Field Ecology at Oak Ridge
   status: complete
@@ -1065,6 +1280,45 @@ projects:
   enables: []
   has_provenance: false
   date_completed: 2026-02
+- id: metal_specificity
+  title: Metal-Specific vs General Stress Genes in the Metal Fitness Atlas
+  status: complete
+  research_question: Among the 12,838 metal-important genes identified by the Metal Fitness Atlas, which are specifically
+    required for metal tolerance vs general stress survival — and do the metal-specific genes show the expected accessory-genome
+    enrichment?
+  key_findings:
+  - 55% of Metal-Important Genes Are Metal-Specific
+  - Metal-Specific Genes Are Core-Enriched but Less So Than General Sick Genes
+  - Metal-Specific Genes Are Enriched for Metal Resistance Functions
+  - Top Novel Candidate Specificity
+  - Novel Candidates Are Not Disproportionately Metal-Specific
+  - 'ICA Module Analysis: Inconclusive'
+  - Cross-Validation Against Counter Ion Effects
+  tags:
+  - conservation
+  - dark-genes
+  - enrichment
+  - essential-genes
+  - fitness
+  - gene-annotation
+  - metabolism
+  - metal-stress
+  - modules
+  - pangenome
+  organisms:
+  - 24 organisms
+  - 22 organisms
+  - 11 organisms
+  - 7 organisms
+  databases_used: []
+  notebook_count: 4
+  figure_count: 5
+  key_data_artifacts: []
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
 - id: module_conservation
   title: Fitness Modules x Pangenome Conservation
   status: complete
@@ -1101,6 +1355,40 @@ projects:
   - fitness_modules
   enables:
   - cofitness_coinheritance
+  has_provenance: false
+  date_completed: 2026-02
+- id: nmdc_community_metabolic_ecology
+  title: Community Metabolic Ecology via NMDC × Pangenome Integration
+  status: complete
+  research_question: Do the GapMind-predicted pathway completeness profiles of community resident taxa predict or correlate
+    with observed metabolomics profiles in NMDC environmental samples across diverse habitat types?
+  key_findings:
+  - Finding 1 — Black Queen dynamics are detectable at community scale
+  - Finding 2 — Community metabolic potential separates strongly by ecosystem type
+  - Finding 3 — Amino acid pathway completeness differs across ecosystem types for 17 of 18 pathways
+  tags:
+  - conservation
+  - correlation
+  - ecotype
+  - essential-genes
+  - gene-annotation
+  - metabolism
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms: []
+  databases_used:
+  - kbase_ke_pangenome
+  - nmdc_arkin
+  notebook_count: 5
+  figure_count: 8
+  key_data_artifacts:
+  - file: data/taxon_bridge.tsv
+    description: null
+    reusable: true
+  references: []
+  depends_on: []
+  enables: []
   has_provenance: false
   date_completed: 2026-02
 - id: openness_functional_composition
@@ -1383,7 +1671,6 @@ projects:
   - 2,008 species
   databases_used:
   - kbase_ke_pangenome
-  - kescience_fitnessbrowser
   - nmdc_arkin
   notebook_count: 6
   figure_count: 10
@@ -1422,6 +1709,53 @@ projects:
     description: null
     reusable: true
   - file: data/subclade_enrichment.tsv
+    description: null
+    reusable: true
+  references: []
+  depends_on: []
+  enables: []
+  has_provenance: false
+  date_completed: 2026-02
+- id: prophage_ecology
+  title: Prophage Gene Modules and Terminase-Defined Lineages Across Bacterial Phylogeny and Environmental Gradients
+  status: complete
+  research_question: How are prophage gene modules and terminase-defined prophage lineages distributed across bacterial phylogeny
+    and environmental gradients, and which modules/lineages show environmental enrichment exceeding phylogenetic expectation?
+  key_findings:
+  - Prophage gene modules are universal but structurally variable across 27,702 bacterial species
+  - Environment explains more variance in prophage composition than host phylogeny
+  - Tail, head, and anti-defense modules are enriched in human-associated environments beyond phylogenetic expectation
+  - TerL lineages are phylogenetically constrained but include both specialist and generalist strategies
+  - NMDC metagenomic data independently validates module-level environmental signal
+  tags:
+  - co-occurrence
+  - conservation
+  - correlation
+  - defense
+  - ecotype
+  - enrichment
+  - gene-annotation
+  - metabolism
+  - mobile-elements
+  - modules
+  - pangenome
+  - pathway-analysis
+  organisms:
+  - 690 bacteria
+  - 702 bacteria
+  - 000 bacteria
+  - 27,702 species
+  - 1,773 species
+  databases_used:
+  - kbase_ke_pangenome
+  - nmdc_arkin
+  notebook_count: 6
+  figure_count: 11
+  key_data_artifacts:
+  - file: data/contig_colocation.tsv
+    description: null
+    reusable: true
+  - file: data/module_cooccurrence_stats.tsv
     description: null
     reusable: true
   references: []

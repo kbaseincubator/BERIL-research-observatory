@@ -1,5 +1,5 @@
 # Findings Digest
-**Last updated**: 2026-02-27 | **Projects**: 35 | **Findings**: ~153
+**Last updated**: 2026-03-04 | **Projects**: 41 | **Findings**: ~186
 
 ## acinetobacter_adp1_explorer (2026-02, complete)
 **Q**: What is the scope and structure of a comprehensive ADP1 database, and how do its annotations, metabolic models, and phenotype data intersect with BERDL collections (pangenome, biochemistry, fitness, PhageFoundry)?
@@ -20,15 +20,6 @@
 4. **Condition-specific genes reveal the metabolic architecture of ADP1** — [REPORT](../projects/adp1_deletion_phenotypes/REPORT.md)
 5. **Missing dispensable genes are shorter, less conserved, and enriched for hypotheticals** — [REPORT](../projects/adp1_deletion_phenotypes/REPORT.md)
 
-## adp1_triple_essentiality (2026-02, complete)
-**Q**: Among genes that TnSeq says are dispensable in *Acinetobacter baylyi* ADP1, does FBA correctly predict which ones have growth defects? Can direct mutant growth rate measurements serve as an independent axis to evaluate where computational (FBA) and genetic (TnSeq) methods agree or disagree?
-1. **FBA Essentiality Class Does Not Predict Growth Defects Among Dispensable Genes** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
-2. **The Null Result Is Robust Across Growth Defect Thresholds** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
-3. **Growth Measurements Cannot Break FBA-TnSeq Ties** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
-4. **Condition-Specific FBA Flux Shows Weak, Mixed Correlations with Growth** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
-5. **Growth Defects Are Partially Condition-Specific** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
-6. **Aromatic Degradation Genes Are Enriched Among FBA-Discordant Genes** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
-
 ## aromatic_catabolism_network (2026-02, complete)
 **Q**: Why does aromatic catabolism in *Acinetobacter baylyi* ADP1 require Complex I (NADH dehydrogenase), iron acquisition, and PQQ biosynthesis when growth on other carbon sources does not?
 1. **Aromatic catabolism requires a 51-gene support network spanning 4 metabolic subsystems** — [REPORT](../projects/aromatic_catabolism_network/REPORT.md)
@@ -36,6 +27,14 @@
 3. **Support subsystems are genomically independent but metabolically coupled** — [REPORT](../projects/aromatic_catabolism_network/REPORT.md)
 4. **Co-fitness assigns 16 unknown genes to specific subsystems** — [REPORT](../projects/aromatic_catabolism_network/REPORT.md)
 5. **Cross-species: Complex I dependency is on high-NADH substrates, not aromatics specifically** — [REPORT](../projects/aromatic_catabolism_network/REPORT.md)
+
+## bacdive_metal_validation (2026-02, complete)
+**Q**: Do bacteria isolated from metal-contaminated environments have higher predicted metal tolerance scores than bacteria from uncontaminated environments?
+1. **Bacteria From Metal-Contaminated Environments Have Significantly Higher Metal Tolerance Scores** — [REPORT](../projects/bacdive_metal_validation/REPORT.md)
+2. **The Signal Holds Within Major Phyla** — [REPORT](../projects/bacdive_metal_validation/REPORT.md)
+3. **42,227 BacDive Strains Linked to Pangenome Metal Scores** — [REPORT](../projects/bacdive_metal_validation/REPORT.md)
+4. **Metal Utilization Phenotypes: Inconclusive** — [REPORT](../projects/bacdive_metal_validation/REPORT.md)
+5. **Power Analysis: The Heavy Metal Group Was At Detection Limit** — [REPORT](../projects/bacdive_metal_validation/REPORT.md)
 
 ## cofitness_coinheritance (2026-02, complete)
 **Q**: Do genes with correlated fitness profiles (co-fit) tend to co-occur in the same genomes across a species' pangenome? Does functional coupling constrain which genes are gained and lost together?
@@ -162,6 +161,31 @@
 **Q**: Can we decompose RB-TnSeq fitness compendia into latent functional modules via robust ICA, align them across organisms using orthology, and use module context to predict gene function?
 1. **1. The strict membership threshold (|weight| >= 0.3, max 50 genes) was critical. The initial D'Agostino K-squared approach gave 100-280 genes per module with weak cofitness signal (59% enriched, 1-17x correlation). After switching to absolute weight thresholds, modules became biologically coherent (94% enriched, 2.8x correlation enrichment)** — [REPORT](../projects/fitness_modules/REPORT.md)
 
+## functional_dark_matter (2026-02, complete)
+**Q**: Which genes of unknown function across 48 bacteria have strong fitness phenotypes, and can biogeographic patterns, pathway gap analysis, and cross-organism fitness concordance — combined with existing function predictions and conservation data — prioritize them for experimental follow-up?
+1. **Finding 1: One in four bacterial genes is functionally dark, and 17,344 have experimentally measurable phenotypes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+2. **Finding 2: 39,532 dark genes link to the pangenome; 6,142 belong to co-regulated fitness modules** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+3. **Finding 3: GapMind identifies 1,256 organism-pathway pairs with metabolic gaps in species harboring dark genes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+4. **Finding 4: Cross-organism fitness concordance identifies 65 ortholog groups with conserved dark gene phenotypes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+5. **Finding 5: Dark gene families span diverse taxonomic breadth — 30,756 clusters mapped across 27,690 species** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+6. **Finding 6: Within-species biogeographic analysis reveals 10 dark gene clusters with significant environmental enrichment** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+7. **Finding 7: Lab-field concordance rate of 61.7%, with NMDC validation confirming 4/4 pre-registered abiotic predictions** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+8. **Finding 8: Top 100 prioritized candidates span 22 organisms with 82% high-confidence functional hypotheses** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+9. **Finding 9: Experimental roadmap — 10 RB-TnSeq experiments cover 45% of the top 500 dark genes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+10. **Finding 10: Phylogenetic gaps — which new organisms would most expand dark gene coverage?** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+11. **Finding 11: 9,557 essential dark genes ranked by gene neighbor context and cross-organism conservation — top 50 candidates with CRISPRi experiment designs** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+12. **Finding 12: Conserved gene neighborhoods and cofit-validated operons strengthen 10,150 dark gene predictions** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+13. **Finding 13: Darkness spectrum classifies 57,011 genes into 5 tiers; 42 organisms (28 genera) cover 95% of actionable dark genes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+14. **Finding 14: Pangenome-scale conservation × hypothesis classification reveals broadly conserved true knowledge gaps; conservation-weighted covering set orders experiments for maximum novel discovery** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+
+## fw300_metabolic_consistency (2026-02, complete)
+**Q**: For *Pseudomonas fluorescens* FW300-N2E3 (ENIGMA groundwater isolate), how consistent are exometabolomic outputs (Web of Microbes), genome-wide gene fitness (Fitness Browser), species-level utilization phenotypes (BacDive), and computational pathway predictions (GapMind)?
+1. **High overall concordance across databases (94% mean concordance)** — [REPORT](../projects/fw300_metabolic_consistency/REPORT.md)
+2. **Tryptophan overflow: the strongest biologically meaningful discordance** — [REPORT](../projects/fw300_metabolic_consistency/REPORT.md)
+3. **All 13 GapMind-matched metabolites have complete pathways** — [REPORT](../projects/fw300_metabolic_consistency/REPORT.md)
+4. **Rich fitness landscapes for produced metabolites** — [REPORT](../projects/fw300_metabolic_consistency/REPORT.md)
+5. **BacDive discordances are graded by data quality** — [REPORT](../projects/fw300_metabolic_consistency/REPORT.md)
+
 ## lab_field_ecology (2026-02, complete)
 **Q**: Do lab-measured fitness effects under contaminant stress predict the field abundance of Fitness Browser organisms across Oak Ridge groundwater sites with varying geochemistry?
 1. **14 of 26 Fitness Browser Genera Detected at Oak Ridge** — [REPORT](../projects/lab_field_ecology/REPORT.md)
@@ -185,6 +209,16 @@
 6. **Metal-Responsive ICA Modules Have High Core Fraction** — [REPORT](../projects/metal_fitness_atlas/REPORT.md)
 7. **Pangenome-Scale Prediction Validates Metal Gene Signature** — [REPORT](../projects/metal_fitness_atlas/REPORT.md)
 
+## metal_specificity (2026-02, complete)
+**Q**: Among the 12,838 metal-important genes identified by the Metal Fitness Atlas, which are specifically required for metal tolerance vs general stress survival — and do the metal-specific genes show the expected accessory-genome enrichment?
+1. **55% of Metal-Important Genes Are Metal-Specific** — [REPORT](../projects/metal_specificity/REPORT.md)
+2. **Metal-Specific Genes Are Core-Enriched but Less So Than General Sick Genes** — [REPORT](../projects/metal_specificity/REPORT.md)
+3. **Metal-Specific Genes Are Enriched for Metal Resistance Functions** — [REPORT](../projects/metal_specificity/REPORT.md)
+4. **Top Novel Candidate Specificity** — [REPORT](../projects/metal_specificity/REPORT.md)
+5. **Novel Candidates Are Not Disproportionately Metal-Specific** — [REPORT](../projects/metal_specificity/REPORT.md)
+6. **ICA Module Analysis: Inconclusive** — [REPORT](../projects/metal_specificity/REPORT.md)
+7. **Cross-Validation Against Counter Ion Effects** — [REPORT](../projects/metal_specificity/REPORT.md)
+
 ## module_conservation (2026-02, complete)
 **Q**: Are ICA fitness modules enriched in core pangenome genes, and do cross-organism module families map to the core genome?
 1. **Module Genes Are More Core Than Average** — [REPORT](../projects/module_conservation/REPORT.md)
@@ -192,6 +226,12 @@
 3. **Family Breadth Does NOT Predict Conservation** — [REPORT](../projects/module_conservation/REPORT.md)
 4. **Accessory Module Families Exist** — [REPORT](../projects/module_conservation/REPORT.md)
 5. **Essential Genes Are Absent from Modules** — [REPORT](../projects/module_conservation/REPORT.md)
+
+## nmdc_community_metabolic_ecology (2026-02, complete)
+**Q**: Do the GapMind-predicted pathway completeness profiles of community resident taxa predict or correlate with observed metabolomics profiles in NMDC environmental samples across diverse habitat types?
+1. **Finding 1 — Black Queen dynamics are detectable at community scale** — [REPORT](../projects/nmdc_community_metabolic_ecology/REPORT.md)
+2. **Finding 2 — Community metabolic potential separates strongly by ecosystem type** — [REPORT](../projects/nmdc_community_metabolic_ecology/REPORT.md)
+3. **Finding 3 — Amino acid pathway completeness differs across ecosystem types for 17 of 18 pathways** — [REPORT](../projects/nmdc_community_metabolic_ecology/REPORT.md)
 
 ## pangenome_openness (2026-02, complete)
 **Q**: Do open pangenomes show different patterns of environmental vs phylogenetic effects compared to closed pangenomes?
@@ -226,6 +266,14 @@
 4. **Finding 4: Subclade enrichment reveals heterogeneous selection within phyla (H1d partially supported)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
 5. **Finding 5: Strong signal of horizontal gene transfer in phaC distribution** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
 6. **Finding 6: NMDC metagenomic cross-validation supports pangenome PHB patterns (H1c supported)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
+
+## prophage_ecology (2026-02, complete)
+**Q**: How are prophage gene modules and terminase-defined prophage lineages distributed across bacterial phylogeny and environmental gradients, and which modules/lineages show environmental enrichment exceeding phylogenetic expectation?
+1. **Prophage gene modules are universal but structurally variable across 27,702 bacterial species** — [REPORT](../projects/prophage_ecology/REPORT.md)
+2. **Environment explains more variance in prophage composition than host phylogeny** — [REPORT](../projects/prophage_ecology/REPORT.md)
+3. **Tail, head, and anti-defense modules are enriched in human-associated environments beyond phylogenetic expectation** — [REPORT](../projects/prophage_ecology/REPORT.md)
+4. **TerL lineages are phylogenetically constrained but include both specialist and generalist strategies** — [REPORT](../projects/prophage_ecology/REPORT.md)
+5. **NMDC metagenomic data independently validates module-level environmental signal** — [REPORT](../projects/prophage_ecology/REPORT.md)
 
 ## respiratory_chain_wiring (2026-02, complete)
 **Q**: How is *Acinetobacter baylyi* ADP1's branched respiratory chain wired across carbon sources — which NADH dehydrogenases and terminal oxidases are required for which substrates?

@@ -478,6 +478,45 @@ class TestParseProjects:
         assert src is not None
         assert "consumer_proj" in src.used_by
 
+    def test_used_by_reverse_mapping_with_digit_project_ids(self, tmp_repo):
+        """Verify dependency scanning works when project IDs contain digits."""
+        src_dir = tmp_repo / "projects" / "source2_proj"
+        src_dir.mkdir()
+        (src_dir / "README.md").write_text(
+            "# Source 2\n\n## Research Question\nQ?\n\n"
+            "## Key Findings\nFound it.\n"
+        )
+
+        consumer_dir = tmp_repo / "projects" / "consumer2_proj"
+        consumer_dir.mkdir()
+        notebooks_dir = consumer_dir / "notebooks"
+        notebooks_dir.mkdir()
+        nb = {
+            "nbformat": 4,
+            "nbformat_minor": 5,
+            "metadata": {},
+            "cells": [
+                {
+                    "cell_type": "code",
+                    "source": [
+                        "df = pd.read_csv('../../source2_proj/data/results.csv')"
+                    ],
+                    "outputs": [],
+                    "metadata": {},
+                }
+            ],
+        }
+        (notebooks_dir / "analysis.ipynb").write_text(json.dumps(nb))
+        (consumer_dir / "README.md").write_text(
+            "# Consumer 2\n\n## Research Question\nQ?\n"
+        )
+
+        parser = RepositoryParser(repo_path=tmp_repo)
+        projects = parser.parse_projects()
+        src = next((p for p in projects if p.id == "source2_proj"), None)
+        assert src is not None
+        assert "consumer2_proj" in src.used_by
+
 
 # ---------------------------------------------------------------------------
 # RepositoryParser.parse_discoveries
