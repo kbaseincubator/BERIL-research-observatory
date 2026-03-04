@@ -8,10 +8,11 @@
 """
 Build the BERIL Research Observatory knowledge registry.
 
-Reads all project directories and generates three searchable index files:
+Reads all project directories and generates derived knowledge artifacts:
   - docs/project_registry.yaml  — aggregated index of all projects
   - docs/figure_catalog.yaml    — searchable catalog of all figures
   - docs/findings_digest.md     — concise summary of key findings with links
+  - docs/knowledge_graph_coverage.md — Layer 3 graph coverage and integrity report
 
 Two-tier data strategy:
   1. Primary: reads provenance.yaml (from PR #123) for structured metadata
@@ -42,10 +43,12 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTS_DIR = REPO_ROOT / "projects"
 DOCS_DIR = REPO_ROOT / "docs"
+KNOWLEDGE_DIR = REPO_ROOT / "knowledge"
 
 OUTPUT_REGISTRY = DOCS_DIR / "project_registry.yaml"
 OUTPUT_FIGURES = DOCS_DIR / "figure_catalog.yaml"
 OUTPUT_FINDINGS = DOCS_DIR / "findings_digest.md"
+OUTPUT_GRAPH_COVERAGE = DOCS_DIR / "knowledge_graph_coverage.md"
 
 # Directories to skip
 SKIP_PROJECTS = {"hackathon_demo"}
@@ -908,6 +911,211 @@ def generate_findings_digest(
     return "\n".join(lines)
 
 
+def _load_knowledge_list(path: Path, root_key: str) -> list[dict]:
+    if not path.exists():
+        return []
+    try:
+        payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+    except (yaml.YAMLError, OSError):
+        return []
+    if not isinstance(payload, dict):
+        return []
+    values = payload.get(root_key, [])
+    if not isinstance(values, list):
+        return []
+    return [v for v in values if isinstance(v, dict)]
+
+
+def _format_id_list(values: list[str], max_items: int = 15) -> str:
+    if not values:
+        return "_None_"
+    shown = ", ".join(f"`{v}`" for v in values[:max_items])
+    if len(values) > max_items:
+        shown += f", ... (+{len(values) - max_items} more)"
+    return shown
+
+
+def generate_knowledge_graph_coverage(projects: list[dict]) -> str:
+    """Generate docs/knowledge_graph_coverage.md from Layer 3 graph files."""
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    all_project_ids = sorted(p["id"] for p in projects)
+    all_project_id_set = set(all_project_ids)
+
+    entity_roots = {
+        "organisms": ("entities/organisms.yaml", "organisms"),
+        "genes": ("entities/genes.yaml", "genes"),
+        "pathways": ("entities/pathways.yaml", "pathways"),
+        "methods": ("entities/methods.yaml", "methods"),
+        "concepts": ("entities/concepts.yaml", "concepts"),
+    }
+    entities_by_type: dict[str, list[dict]] = {}
+    for entity_type, (rel_path, root_key) in entity_roots.items():
+        entities_by_type[entity_type] = _load_knowledge_list(KNOWLEDGE_DIR / rel_path, root_key)
+
+    entity_ids: set[str] = set()
+    entity_project_ids: set[str] = set()
+    entity_counts: dict[str, int] = {}
+    for entity_type, rows in entities_by_type.items():
+        entity_counts[entity_type] = len(rows)
+        for row in rows:
+            entity_id = str(row.get("id", "")).strip()
+            if entity_id:
+                entity_ids.add(entity_id)
+            projects_field = row.get("projects") or []
+            if isinstance(projects_field, list):
+                for pid in projects_field:
+                    pid_text = str(pid).strip()
+                    if pid_text:
+                        entity_project_ids.add(pid_text)
+
+    relations = _load_knowledge_list(KNOWLEDGE_DIR / "relations.yaml", "relations")
+    relation_projects: set[str] = set()
+    relation_unknown_entities: set[str] = set()
+    relation_unknown_projects: set[str] = set()
+    related_entity_ids: set[str] = set()
+    for rel in relations:
+        subject = str(rel.get("subject", "")).strip()
+        obj = str(rel.get("object", "")).strip()
+        if subject:
+            related_entity_ids.add(subject)
+            if subject not in entity_ids:
+                relation_unknown_entities.add(subject)
+        if obj:
+            related_entity_ids.add(obj)
+            if obj not in entity_ids:
+                relation_unknown_entities.add(obj)
+        evidence_project = str(rel.get("evidence_project", "")).strip()
+        if evidence_project:
+            relation_projects.add(evidence_project)
+            if evidence_project not in all_project_id_set:
+                relation_unknown_projects.add(evidence_project)
+
+    hypotheses = _load_knowledge_list(KNOWLEDGE_DIR / "hypotheses.yaml", "hypotheses")
+    hypothesis_status_counts: dict[str, int] = {}
+    hypothesis_origin_projects: set[str] = set()
+    hypothesis_unknown_origin_projects: set[str] = set()
+    hypothesis_unknown_entities: set[str] = set()
+    for hyp in hypotheses:
+        status = str(hyp.get("status", "unknown")).strip() or "unknown"
+        hypothesis_status_counts[status] = hypothesis_status_counts.get(status, 0) + 1
+
+        origin_project = str(hyp.get("origin_project", "")).strip()
+        if origin_project:
+            hypothesis_origin_projects.add(origin_project)
+            if origin_project not in all_project_id_set:
+                hypothesis_unknown_origin_projects.add(origin_project)
+
+        entities_field = hyp.get("entities") or []
+        if isinstance(entities_field, list):
+            for entity_id in entities_field:
+                entity_text = str(entity_id).strip()
+                if entity_text and entity_text not in entity_ids:
+                    hypothesis_unknown_entities.add(entity_text)
+
+    timeline_events = _load_knowledge_list(KNOWLEDGE_DIR / "timeline.yaml", "events")
+    timeline_projects: set[str] = set()
+    timeline_unknown_projects: set[str] = set()
+    for event in timeline_events:
+        project = str(event.get("project", "")).strip()
+        if project:
+            timeline_projects.add(project)
+            if project not in all_project_id_set:
+                timeline_unknown_projects.add(project)
+        projects_field = event.get("projects") or []
+        if isinstance(projects_field, list):
+            for project_id in projects_field:
+                project_text = str(project_id).strip()
+                if project_text:
+                    timeline_projects.add(project_text)
+                    if project_text not in all_project_id_set:
+                        timeline_unknown_projects.add(project_text)
+
+    projects_with_entities = sorted(entity_project_ids & all_project_id_set)
+    projects_with_relation_evidence = sorted(relation_projects & all_project_id_set)
+    projects_with_hypothesis_origins = sorted(hypothesis_origin_projects & all_project_id_set)
+    projects_with_timeline_events = sorted(timeline_projects & all_project_id_set)
+
+    missing_from_entities = sorted(all_project_id_set - set(projects_with_entities))
+    missing_from_relations = sorted(all_project_id_set - set(projects_with_relation_evidence))
+    missing_from_hypotheses = sorted(all_project_id_set - set(projects_with_hypothesis_origins))
+    missing_from_timeline = sorted(all_project_id_set - set(projects_with_timeline_events))
+
+    isolated_entities = sorted(entity_ids - related_entity_ids)
+    entity_unknown_projects = sorted(entity_project_ids - all_project_id_set)
+
+    status_bits = ", ".join(
+        f"{status}={count}" for status, count in sorted(hypothesis_status_counts.items())
+    )
+
+    lines = [
+        "# Knowledge Graph Coverage Report",
+        f"**Last updated**: {now} | **Projects in registry**: {len(all_project_ids)}",
+        "",
+        "## Asset Counts",
+        (
+            "- Entities: "
+            f"{len(entity_ids)} "
+            f"(organisms={entity_counts.get('organisms', 0)}, "
+            f"genes={entity_counts.get('genes', 0)}, "
+            f"pathways={entity_counts.get('pathways', 0)}, "
+            f"methods={entity_counts.get('methods', 0)}, "
+            f"concepts={entity_counts.get('concepts', 0)})"
+        ),
+        f"- Relations: {len(relations)}",
+        f"- Hypotheses: {len(hypotheses)} ({status_bits if status_bits else 'none'})",
+        f"- Timeline events: {len(timeline_events)}",
+        "",
+        "## Project Coverage",
+        f"- Entity references: {len(projects_with_entities)}/{len(all_project_ids)} projects",
+        f"- Relation evidence: {len(projects_with_relation_evidence)}/{len(all_project_ids)} projects",
+        f"- Hypothesis origins: {len(projects_with_hypothesis_origins)}/{len(all_project_ids)} projects",
+        f"- Timeline events: {len(projects_with_timeline_events)}/{len(all_project_ids)} projects",
+        "",
+        f"### Missing from Timeline ({len(missing_from_timeline)})",
+        _format_id_list(missing_from_timeline),
+        "",
+        f"### Missing from Entity References ({len(missing_from_entities)})",
+        _format_id_list(missing_from_entities),
+        "",
+        f"### Missing from Relation Evidence ({len(missing_from_relations)})",
+        _format_id_list(missing_from_relations),
+        "",
+        f"### Missing from Hypothesis Origins ({len(missing_from_hypotheses)})",
+        _format_id_list(missing_from_hypotheses),
+        "",
+        "## Integrity Checks",
+        (
+            f"- Unknown entity IDs referenced in relations ({len(relation_unknown_entities)}): "
+            f"{_format_id_list(sorted(relation_unknown_entities))}"
+        ),
+        (
+            f"- Unknown entity IDs referenced in hypotheses ({len(hypothesis_unknown_entities)}): "
+            f"{_format_id_list(sorted(hypothesis_unknown_entities))}"
+        ),
+        (
+            f"- Unknown project IDs referenced by entities ({len(entity_unknown_projects)}): "
+            f"{_format_id_list(entity_unknown_projects)}"
+        ),
+        (
+            f"- Unknown project IDs referenced by relations ({len(relation_unknown_projects)}): "
+            f"{_format_id_list(sorted(relation_unknown_projects))}"
+        ),
+        (
+            f"- Unknown project IDs referenced by hypotheses ({len(hypothesis_unknown_origin_projects)}): "
+            f"{_format_id_list(sorted(hypothesis_unknown_origin_projects))}"
+        ),
+        (
+            f"- Unknown project IDs referenced by timeline events ({len(timeline_unknown_projects)}): "
+            f"{_format_id_list(sorted(timeline_unknown_projects))}"
+        ),
+        (
+            f"- Isolated entities with no relation edges ({len(isolated_entities)}): "
+            f"{_format_id_list(isolated_entities)}"
+        ),
+        "",
+    ]
+    return "\n".join(lines)
+
 # ---------------------------------------------------------------------------
 # YAML output helper
 # ---------------------------------------------------------------------------
@@ -1025,6 +1233,7 @@ def main():
     findings_digest = generate_findings_digest(
         all_project_dirs, all_projects, provenance_cache, report_cache
     )
+    knowledge_graph_coverage = generate_knowledge_graph_coverage(all_projects)
 
     # Summary
     status_counts: dict[str, int] = {}
@@ -1051,12 +1260,19 @@ def main():
         if all_findings
     )
     print(f"  Findings: ~{total_findings}", file=sys.stderr)
+    coverage_line = next(
+        (line for line in knowledge_graph_coverage.splitlines() if line.startswith("- Timeline events:")),
+        None,
+    )
+    if coverage_line:
+        print(f"  {coverage_line[2:]}", file=sys.stderr)
 
     if args.dry_run:
         print("\n[DRY RUN] Would write:", file=sys.stderr)
         print(f"  {OUTPUT_REGISTRY}", file=sys.stderr)
         print(f"  {OUTPUT_FIGURES}", file=sys.stderr)
         print(f"  {OUTPUT_FINDINGS}", file=sys.stderr)
+        print(f"  {OUTPUT_GRAPH_COVERAGE}", file=sys.stderr)
         return
 
     # Write outputs
@@ -1070,6 +1286,8 @@ def main():
 
     OUTPUT_FINDINGS.write_text(findings_digest, encoding="utf-8")
     print(f"  Wrote {OUTPUT_FINDINGS}", file=sys.stderr)
+    OUTPUT_GRAPH_COVERAGE.write_text(knowledge_graph_coverage, encoding="utf-8")
+    print(f"  Wrote {OUTPUT_GRAPH_COVERAGE}", file=sys.stderr)
 
 
 if __name__ == "__main__":

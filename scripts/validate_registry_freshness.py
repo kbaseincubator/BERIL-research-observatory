@@ -28,6 +28,7 @@ DOCS_DIR = REPO_ROOT / "docs"
 OUTPUT_REGISTRY = DOCS_DIR / "project_registry.yaml"
 OUTPUT_FIGURES = DOCS_DIR / "figure_catalog.yaml"
 OUTPUT_FINDINGS = DOCS_DIR / "findings_digest.md"
+OUTPUT_GRAPH_COVERAGE = DOCS_DIR / "knowledge_graph_coverage.md"
 
 
 def _load_build_registry_module():
@@ -61,12 +62,29 @@ def _normalize_findings_digest(text: str) -> str:
     return "\n".join(lines).strip()
 
 
+def _normalize_graph_coverage(text: str) -> str:
+    lines = text.splitlines()
+    if len(lines) >= 2 and lines[1].startswith("**Last updated**:"):
+        suffix = lines[1].split("|", 1)[1].strip() if "|" in lines[1] else ""
+        lines[1] = f"**Last updated**: <normalized>{' | ' + suffix if suffix else ''}"
+    return "\n".join(lines).strip()
+
+
 def _load_yaml(path: Path) -> dict:
     return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
 
 
 def main() -> int:
-    missing = [p for p in (OUTPUT_REGISTRY, OUTPUT_FIGURES, OUTPUT_FINDINGS) if not p.exists()]
+    missing = [
+        p
+        for p in (
+            OUTPUT_REGISTRY,
+            OUTPUT_FIGURES,
+            OUTPUT_FINDINGS,
+            OUTPUT_GRAPH_COVERAGE,
+        )
+        if not p.exists()
+    ]
     if missing:
         print("FAIL: missing registry artifacts:")
         for p in missing:
@@ -116,10 +134,12 @@ def main() -> int:
     expected_findings = build_registry.generate_findings_digest(
         all_project_dirs, all_projects, provenance_cache, report_cache
     )
+    expected_graph_coverage = build_registry.generate_knowledge_graph_coverage(all_projects)
 
     actual_registry = _load_yaml(OUTPUT_REGISTRY)
     actual_figure_catalog = _load_yaml(OUTPUT_FIGURES)
     actual_findings = OUTPUT_FINDINGS.read_text(encoding="utf-8")
+    actual_graph_coverage = OUTPUT_GRAPH_COVERAGE.read_text(encoding="utf-8")
 
     issues: list[str] = []
 
@@ -160,6 +180,11 @@ def main() -> int:
         if preview:
             issues.append("  diff preview:")
             issues.extend(f"    {line}" for line in preview)
+
+    norm_actual_graph = _normalize_graph_coverage(actual_graph_coverage)
+    norm_expected_graph = _normalize_graph_coverage(expected_graph_coverage)
+    if norm_actual_graph != norm_expected_graph:
+        issues.append("knowledge_graph_coverage.md is stale")
 
     if issues:
         print("FAIL: knowledge registry artifacts are out of date.\n")
