@@ -9,13 +9,12 @@ from datetime import datetime
 import json
 import uuid
 
+from app.filters import markdown_filter, markdown_inline_filter, slugify_filter, strip_images_filter
 import nbformat
-from markupsafe import Markup
 from nbconvert import HTMLExporter
 from nbconvert.preprocessors import Preprocessor
 
 # Add custom Jinja2 filters
-import markdown
 from fastapi import FastAPI, Request, Header, HTTPException
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -83,14 +82,17 @@ class PlotlyPreprocessor(Preprocessor):
 async def lifespan(app: FastAPI):
     """Initialize app on startup."""
     logger.info("Initializing repository data")
+    print("Initializing repository data")
 
     # If git repo is configured, clone/pull it first
     if settings.force_local_data:
         logger.info("Forcing parsing and loading of local data")
+        print("Forcing parsing and loading of local data")
         app.state.repo_data = load_repository_data(None)
     elif settings.data_repo_url:
         try:
             logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
+            print(f"Syncing data from git repository: {settings.data_repo_url}")
             await ensure_repo_cloned(
                 settings.data_repo_url,
                 settings.data_repo_branch,
@@ -101,13 +103,16 @@ async def lifespan(app: FastAPI):
             data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
             app.state.repo_data = load_repository_data(data_file)
             logger.info(f"Repository data loaded from git. Last updated: {app.state.repo_data.last_updated}")
+            print(f"Repository data loaded from git. Last updated: {app.state.repo_data.last_updated}")
         except Exception as e:
             logger.error(f"Failed to load from git repo: {e}")
             logger.info("Falling back to local parsing")
+            print("Falling back to local parsing")
             app.state.repo_data = load_repository_data(None)
     else:
         # No git repo configured, load from local parsing
         logger.info("No git repo configured, parsing local files")
+        print("No git repo configured, parsing local files")
         app.state.repo_data = load_repository_data(None)
 
     yield
@@ -120,7 +125,6 @@ app = FastAPI(
     debug=settings.debug,
     lifespan=lifespan,
 )
-
 
 
 # Mount static files
@@ -136,57 +140,12 @@ app.mount(
 # Configure templates
 templates = Jinja2Templates(directory=settings.templates_dir)
 
-
-def markdown_filter(text: str) -> Markup:
-    """Convert markdown text to HTML."""
-    if not text:
-        return Markup("")
-    # Convert markdown to HTML
-    html = markdown.markdown(
-        text,
-        extensions=["fenced_code", "tables", "nl2br"],
-    )
-    return Markup(html)
-
-
-def markdown_inline_filter(text: str) -> Markup:
-    """Convert markdown text to inline HTML (strips outer <p> tags)."""
-    if not text:
-        return Markup("")
-    html = markdown.markdown(text, extensions=["fenced_code"])
-    # Strip outer <p> tags for inline use
-    if html.startswith("<p>") and html.endswith("</p>"):
-        html = html[3:-4]
-    return Markup(html)
-
-
-def strip_images_filter(text: str) -> str:
-    """Strip markdown image syntax from text for preview use."""
-    if not text:
-        return ""
-    import re
-    return re.sub(r"!\[[^\]]*\]\([^)]+\)", "", text)
-
-
 # Register filters
 templates.env.filters["markdown"] = markdown_filter
 templates.env.filters["md"] = markdown_filter  # Alias
 templates.env.filters["markdown_inline"] = markdown_inline_filter
 templates.env.filters["mdi"] = markdown_inline_filter  # Alias
 templates.env.filters["strip_images"] = strip_images_filter
-
-
-def slugify_filter(text: str) -> str:
-    """Convert text to a URL-friendly slug for anchor IDs."""
-    if not text:
-        return ""
-    import re
-    text = text.lower().strip()
-    text = re.sub(r"[^\w\s-]", "", text)
-    text = re.sub(r"[\s_]+", "-", text)
-    return text
-
-
 templates.env.filters["slugify"] = slugify_filter
 
 
