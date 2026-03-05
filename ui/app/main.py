@@ -2,23 +2,25 @@
 
 import hashlib
 import hmac
-import json
 import logging
-import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime
 
+from app.notebook_processors import PlotlyPreprocessor
 import nbformat
-from fastapi import (APIRouter, FastAPI, Header, HTTPException, Request,
-                     Response)
+from fastapi import APIRouter, FastAPI, Header, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from nbconvert import HTMLExporter
 from starlette.middleware.base import BaseHTTPMiddleware
 
-from app.filters import (markdown_filter, markdown_inline_filter,
-                         slugify_filter, strip_images_filter)
+from app.filters import (
+    markdown_filter,
+    markdown_inline_filter,
+    slugify_filter,
+    strip_images_filter,
+)
 
 from .config import get_settings
 from .dataloader import load_repository_data
@@ -37,7 +39,6 @@ PLOTLY_CDN = (
 )
 
 templates = None
-
 
 
 @asynccontextmanager
@@ -165,6 +166,7 @@ ROUTER_GENERAL = APIRouter(tags=["General"])
 ROUTER_KNOWLEDGE = APIRouter(tags=["Knowledge"])
 ROUTER_PROJECTS = APIRouter(tags=["Project"])
 ROUTER_SKILLS = APIRouter(tags=["Skills"])
+
 
 # Routes
 @ROUTER_GENERAL.get("/", response_class=HTMLResponse)
