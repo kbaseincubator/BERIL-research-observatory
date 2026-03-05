@@ -34,10 +34,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-PLOTLY_CDN = (
-    '<script src="https://cdn.plot.ly/plotly-3.4.0.min.js" charset="utf-8"></script>'
-)
-
 templates = None
 
 
@@ -379,7 +375,8 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
 
         # Prepend Plotly CDN script if any plotly figures were found
         if nb_resources.get("needs_plotly"):
-            body = PLOTLY_CDN + body
+            plotly_cdn = f'<script src="{get_settings().plotly_cdn_url}" charset="utf-8"></script>'
+            body = plotly_cdn + body
 
         context.update(
             {

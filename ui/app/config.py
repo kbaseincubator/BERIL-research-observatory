@@ -24,6 +24,8 @@ class Settings(BaseSettings):
     data_repo_path: Path = Path("/tmp/beril_data_cache")  # Local clone path
     force_local_data: bool = False
 
+    plotly_cdn_url: str = "https://cdn.plot.ly/plotly-3.4.0.min.js"
+
     # Webhook configuration
     webhook_secret: str | None = None
 
