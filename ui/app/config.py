@@ -4,7 +4,7 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-settings = None
+_settings = None
 
 
 class Settings(BaseSettings):
@@ -83,7 +83,7 @@ class Settings(BaseSettings):
 
 
 def get_settings():
-    global settings
-    if settings is None:
-        settings = Settings()
-    return settings
+    global _settings
+    if _settings is None:
+        _settings = Settings()
+    return _settings
