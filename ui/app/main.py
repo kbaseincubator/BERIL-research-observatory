@@ -80,15 +80,14 @@ class PlotlyPreprocessor(Preprocessor):
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # TODO: move this to the create_app function
     settings = get_settings()
     if settings.test_skip_lifespan:
-        print("Test mode - skipping lifespan and data loading")
         yield
         return
 
     """Initialize app on startup."""
     logger.info("Initializing repository data")
-    print("Initializing repository data")
 
     # If git repo is configured, clone/pull it first
     if settings.force_local_data:
@@ -98,7 +97,6 @@ async def lifespan(app: FastAPI):
     elif settings.data_repo_url:
         try:
             logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
-            print(f"Syncing data from git repository: {settings.data_repo_url}")
             await ensure_repo_cloned(
                 settings.data_repo_url,
                 settings.data_repo_branch,
@@ -111,18 +109,13 @@ async def lifespan(app: FastAPI):
             logger.info(
                 f"Repository data loaded from git. Last updated: {app.state.repo_data.last_updated}"
             )
-            print(
-                f"Repository data loaded from git. Last updated: {app.state.repo_data.last_updated}"
-            )
         except Exception as e:
             logger.error(f"Failed to load from git repo: {e}")
             logger.info("Falling back to local parsing")
-            print("Falling back to local parsing")
             app.state.repo_data = load_repository_data(None)
     else:
         # No git repo configured, load from local parsing
         logger.info("No git repo configured, parsing local files")
-        print("No git repo configured, parsing local files")
         app.state.repo_data = load_repository_data(None)
 
     yield
