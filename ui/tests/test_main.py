@@ -11,43 +11,6 @@ from fastapi.testclient import TestClient
 
 from app.config import Settings
 from app.main import PlotlyPreprocessor, create_app  # get_base_context,
-from app.models import (CollectionCategory, IdeaStatus, Project, ProjectStatus,
-                        RepositoryData)
-
-# ---------------------------------------------------------------------------
-# get_base_context
-# ---------------------------------------------------------------------------
-
-
-# class TestGetBaseContext:
-#     def test_returns_expected_keys(self, repository_data):
-#         request = MagicMock()
-#         request.app.state.repo_data = repository_data
-#         context = get_base_context(request)
-#         expected_keys = [
-#             "request", "app_name", "total_genomes", "total_species", "total_genes",
-#             "project_count", "discovery_count", "idea_count", "collection_count",
-#             "contributor_count", "skill_count", "last_updated",
-#         ]
-#         for key in expected_keys:
-#             assert key in context, f"Missing key: {key}"
-
-#     def test_counts_match_data(self, repository_data):
-#         request = MagicMock()
-#         request.app.state.repo_data = repository_data
-#         context = get_base_context(request)
-#         assert context["project_count"] == len(repository_data.projects)
-#         assert context["discovery_count"] == len(repository_data.discoveries)
-#         assert context["idea_count"] == len(repository_data.research_ideas)
-#         assert context["collection_count"] == len(repository_data.collections)
-
-#     def test_total_genomes_formatted(self, repository_data):
-#         request = MagicMock()
-#         request.app.state.repo_data = repository_data
-#         context = get_base_context(request)
-#         # Should be comma-formatted
-#         assert "," in context["total_genomes"]
-
 
 # ---------------------------------------------------------------------------
 # HTTP Routes via TestClient
