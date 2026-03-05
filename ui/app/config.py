@@ -2,9 +2,9 @@
 
 from pathlib import Path
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
-settings = None
+_settings = None
 
 
 class Settings(BaseSettings):
@@ -23,6 +23,8 @@ class Settings(BaseSettings):
     data_repo_branch: str = "data-cache"  # Branch to checkout
     data_repo_path: Path = Path("/tmp/beril_data_cache")  # Local clone path
     force_local_data: bool = False
+
+    plotly_cdn_url: str = "https://cdn.plot.ly/plotly-3.4.0.min.js"
 
     # Webhook configuration
     webhook_secret: str | None = None
@@ -72,15 +74,16 @@ class Settings(BaseSettings):
     total_species: int = 27_000
     total_genes: str = "1B+"
 
-    class Config:
-        env_prefix = "BERIL_"  # BERIL Research Observatory
+    model_config = SettingsConfigDict(
+        env_prefix="BERIL_",  # BERIL Research Observatory
         # Resolve .env relative to the repo root (two levels up from this file)
-        env_file = str(Path(__file__).parent.parent.parent / ".env")
-        env_file_encoding = "utf-8"
+        env_file=str(Path(__file__).parent.parent.parent / ".env"),
+        env_file_encoding="utf-8",
+    )
 
 
 def get_settings():
-    global settings
-    if settings is None:
-        settings = Settings()
-    return settings
+    global _settings
+    if _settings is None:
+        _settings = Settings()
+    return _settings

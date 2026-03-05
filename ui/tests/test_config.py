@@ -334,9 +334,9 @@ class TestTypeCoercion:
 class TestSettingsSingleton:
     @pytest.fixture(scope="class", autouse=True)
     def setup_teardown(self):
-        config.settings = None
+        config._settings = None
         yield
-        config.settings = None
+        config._settings = None
 
     def test_singleton_is_settings_instance(self):
         assert isinstance(get_settings(), Settings)

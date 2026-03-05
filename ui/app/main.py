@@ -2,25 +2,25 @@
 
 import hashlib
 import hmac
-import json
 import logging
-import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime
 
+from app.notebook_processors import PlotlyPreprocessor
 import nbformat
-# Add custom Jinja2 filters
-from fastapi import (APIRouter, FastAPI, Header, HTTPException, Request,
-                     Response)
+from fastapi import APIRouter, FastAPI, Header, HTTPException, Request, Response
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from nbconvert import HTMLExporter
-from nbconvert.preprocessors import Preprocessor
 from starlette.middleware.base import BaseHTTPMiddleware
 
-from app.filters import (markdown_filter, markdown_inline_filter,
-                         slugify_filter, strip_images_filter)
+from app.filters import (
+    markdown_filter,
+    markdown_inline_filter,
+    slugify_filter,
+    strip_images_filter,
+)
 
 from .config import get_settings
 from .dataloader import load_repository_data
@@ -34,48 +34,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-PLOTLY_CDN = (
-    '<script src="https://cdn.plot.ly/plotly-3.4.0.min.js" charset="utf-8"></script>'
-)
-
 templates = None
-
-
-class PlotlyPreprocessor(Preprocessor):
-    """Convert application/vnd.plotly.v1+json outputs to rendered HTML."""
-
-    def preprocess_cell(self, cell, resources, cell_index):
-        new_outputs = []
-        needs_plotly = resources.get("needs_plotly", False)
-        for output in cell.get("outputs", []):
-            plotly_json = output.get("data", {}).get("application/vnd.plotly.v1+json")
-            if plotly_json is not None:
-                div_id = f"plotly-{uuid.uuid4().hex}"
-                fig_json = json.dumps(plotly_json)
-                html = (
-                    f'<div id="{div_id}" style="width:100%;min-height:400px;"></div>'
-                    f"<script>"
-                    f"(function(){{"
-                    f"  var fig = {fig_json};"
-                    f'  Plotly.newPlot("{div_id}", fig.data, fig.layout, fig.config || {{}});'
-                    f"}})();"
-                    f"</script>"
-                )
-                output = nbformat.from_dict(
-                    {
-                        "output_type": output["output_type"],
-                        "metadata": output.get("metadata", {}),
-                        "data": {
-                            "text/html": html,
-                            "text/plain": "[Plotly figure]",
-                        },
-                    }
-                )
-                needs_plotly = True
-            new_outputs.append(output)
-        cell["outputs"] = new_outputs
-        resources["needs_plotly"] = needs_plotly
-        return cell, resources
 
 
 @asynccontextmanager
@@ -196,30 +155,6 @@ ROUTER_GENERAL = APIRouter(tags=["General"])
 ROUTER_KNOWLEDGE = APIRouter(tags=["Knowledge"])
 ROUTER_PROJECTS = APIRouter(tags=["Project"])
 ROUTER_SKILLS = APIRouter(tags=["Skills"])
-
-# def get_repo_data(request: Request):
-#     """Get repository data from app state."""
-#     return request.app.state.repo_data
-
-
-# # Template context processor
-# def get_base_context(request: Request) -> dict:
-#     """Get base context for all templates."""
-#     repo_data = get_repo_data(request)
-#     return {
-#         "request": request,
-#         "app_name": settings.app_name,
-#         "total_genomes": f"{settings.total_genomes:,}",
-#         "total_species": f"{settings.total_species:,}",
-#         "total_genes": settings.total_genes,
-#         "project_count": len(repo_data.projects),
-#         "discovery_count": len(repo_data.discoveries),
-#         "idea_count": len(repo_data.research_ideas),
-#         "collection_count": len(repo_data.collections),
-#         "contributor_count": len(repo_data.contributors),
-#         "skill_count": len(repo_data.skills),
-#         "last_updated": repo_data.last_updated,
-#     }
 
 
 # Routes
@@ -433,7 +368,8 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
 
         # Prepend Plotly CDN script if any plotly figures were found
         if nb_resources.get("needs_plotly"):
-            body = PLOTLY_CDN + body
+            plotly_cdn = f'<script src="{get_settings().plotly_cdn_url}" charset="utf-8"></script>'
+            body = plotly_cdn + body
 
         context.update(
             {
