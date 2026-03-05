@@ -4,9 +4,14 @@ from pathlib import Path
 
 from pydantic_settings import BaseSettings
 
+settings = None
+
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
+
+    # Test-only settings. These should be left False unless running tests.
+    test_skip_lifespan: bool = False
 
     # Paths
     app_dir: Path = Path(__file__).parent
@@ -57,7 +62,9 @@ class Settings(BaseSettings):
 
     # App settings
     app_name: str = "Microbial Discovery Forge"
-    app_description: str = "AI co-scientist and research observatory for BERDL-scale microbial discovery"
+    app_description: str = (
+        "AI co-scientist and research observatory for BERDL-scale microbial discovery"
+    )
     debug: bool = False
 
     # Database stats (for hero display)
@@ -72,4 +79,8 @@ class Settings(BaseSettings):
         env_file_encoding = "utf-8"
 
 
-settings = Settings()
+def get_settings():
+    global settings
+    if settings is None:
+        settings = Settings()
+    return settings
