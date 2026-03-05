@@ -2,7 +2,7 @@
 
 from pathlib import Path
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 settings = None
 
@@ -72,11 +72,12 @@ class Settings(BaseSettings):
     total_species: int = 27_000
     total_genes: str = "1B+"
 
-    class Config:
-        env_prefix = "BERIL_"  # BERIL Research Observatory
+    model_config = SettingsConfigDict(
+        env_prefix="BERIL_",  # BERIL Research Observatory
         # Resolve .env relative to the repo root (two levels up from this file)
-        env_file = str(Path(__file__).parent.parent.parent / ".env")
-        env_file_encoding = "utf-8"
+        env_file=str(Path(__file__).parent.parent.parent / ".env"),
+        env_file_encoding="utf-8",
+    )
 
 
 def get_settings():
