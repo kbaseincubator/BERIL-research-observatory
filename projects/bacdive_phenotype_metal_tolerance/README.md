@@ -4,7 +4,7 @@
 Can BacDive-measured bacterial phenotypes (Gram stain, oxygen tolerance, metabolite utilization, enzyme activities) predict metal tolerance as measured by Fitness Browser experiments and the Metal Fitness Atlas?
 
 ## Status
-In Progress — research plan created, awaiting analysis.
+Complete — BacDive phenotypes capture real metal tolerance signal (R²=0.16) but are entirely phylogenetically confounded (delta R²=-0.009 over taxonomy). Genome-encoded metal resistance gene count is the true predictor (full model R²=0.63). Seven of 10 features significant univariately; Gram stain strongest (d=-0.61). Urease effect reversed (d=-0.18, driven by Actinomycetes). See [Report](REPORT.md) for full findings.
 
 ## Overview
 The Metal Fitness Atlas scored 27,702 pangenome species for metal tolerance using gene functional signatures validated against RB-TnSeq fitness data. BacDive provides standardized phenotypic measurements (Gram stain, oxygen tolerance, metabolite utilization, enzyme activities) for 97K bacterial strains. This project tests whether these readily measurable phenotypes predict metal tolerance, connecting classical microbiology (culture-based phenotyping) to genomic metal tolerance predictions. A two-scale design validates associations both directly (12 FB organisms matching BacDive) and at pangenome scale (~3,000-5,000 species linked via genome accessions).
