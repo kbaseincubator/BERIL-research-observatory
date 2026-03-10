@@ -1,24 +1,27 @@
 # Knowledge Management Layer - Design Document
 
 **Date**: 2026-02-27
-**Status**: Implemented (pending merge)
-**PRs**: #123 (structured provenance) + stacked PR (knowledge registry)
+**Status**: Implemented
+**Branches**: `feature/structured-provenance` (Layer 1+2), `feature/semantic-knowledge-graph` (Layer 3 + workflow improvements)
 
 ## Problem
 
 The observatory has 35+ projects with standardized reports, figures, and data artifacts, but no structured index connecting them. Skills like `/suggest-research` must read ALL project READMEs and REPORTs sequentially (~200K+ tokens) to understand the landscape. There's no efficient way to ask "which projects studied defense genes?" or "find figures about pangenome openness" or "what reusable data exists for fitness scores?" without reading everything.
 
-## Solution: Two-Layer Architecture
+## Solution: Three-Layer Architecture
 
-We chose **structured YAML/markdown index files** over knowledge graphs (Neo4j/Graphiti) or vector databases (FAISS/Chroma). At 35-42 projects, the overhead of infrastructure far exceeds the benefit. Claude Code already has grep/glob/read tools that work perfectly on structured text. The relationships we need (project -> findings, project -> figures) are simple hierarchies. Revisit at 500+ projects.
+We chose **structured YAML/markdown index files** over knowledge graphs (Neo4j/Graphiti) or vector databases (FAISS/Chroma). At 41 projects, the overhead of infrastructure far exceeds the benefit. Claude Code already has grep/glob/read tools that work perfectly on structured text. Revisit at 500+ projects.
 
 This aligns with the emerging "context engineering" best practice: structured metadata + intelligent agent retrieval outperforms vector search for curated collections at this scale.
 
 ```
-Layer 1 (per-project):   provenance.yaml        <- PR #123
-Layer 2 (global index):  project_registry.yaml   <- This PR (knowledge registry)
+Layer 1 (per-project):   provenance.yaml           <- feature/structured-provenance
+Layer 2 (global index):  project_registry.yaml      <- feature/structured-provenance
                           figure_catalog.yaml
                           findings_digest.md
+Layer 3 (semantic graph): knowledge/                 <- feature/semantic-knowledge-graph
+                          docs/knowledge_graph_coverage.md
+                          docs/knowledge_gaps.md
 ```
 
 ### Layer 1: Structured Provenance (PR #123)
@@ -43,9 +46,9 @@ Per-project `provenance.yaml` sidecar files containing machine-readable metadata
 - `/literature-review` Step 6b — Creates/merges provenance.yaml references
 - `/submit` — Advisory validation of provenance.yaml (WARN, never FAIL)
 
-### Layer 2: Knowledge Registry (This PR)
+### Layer 2: Knowledge Registry
 
-**Branch**: `feature/knowledge-registry` (stacked on `feature/structured-provenance`)
+**Branch**: `feature/structured-provenance` (includes both Layer 1 and Layer 2)
 
 A global aggregation layer that reads all provenance.yaml files (or falls back to markdown parsing) and produces three searchable index files.
 
@@ -66,25 +69,31 @@ A global aggregation layer that reads all provenance.yaml files (or falls back t
 ## Data Flow
 
 ```
-/synthesize  -->  REPORT.md  -->  provenance.yaml  -->  /build-registry  -->  project_registry.yaml
-                                                                              figure_catalog.yaml
-                                                                              findings_digest.md
-                                                                                     |
-                                                                                     v
-                                                                              /knowledge (queries)
-                                                                              /suggest-research (landscape)
+/synthesize  -->  REPORT.md  -->  provenance.yaml  -->  build_registry.py  -->  project_registry.yaml
+                                       |                                        figure_catalog.yaml
+                                       |                                        findings_digest.md
+                                       v                                        knowledge_graph_coverage.md
+                                  knowledge/                                    knowledge_gaps.md
+                                  (entities, relations,                              |
+                                   hypotheses, timeline)                             v
+                                       |                                      /knowledge (queries)
+                                       +------------------------------------> /suggest-research (landscape)
+                                                                              /status (dashboard)
+                                                                              /interpret (context)
+                                                                              /compare (cross-project)
 ```
 
 ## Synchronization Strategy
 
-| Trigger | Layer 1 (provenance.yaml) | Layer 2 (registry) |
-|---------|---------------------------|--------------------|
-| `/synthesize` | Generates (Step 7.5) | `--project {id}` (Step 7.6) |
-| `/submit` | Validates (advisory) | `--project {id}` |
-| `/literature-review` | Merges refs (Step 6b) | No change needed |
-| `/berdl_start` | Not yet (new project) | `--project {id}` |
-| `/build-registry` | Not touched | Full regeneration |
-| `generate_provenance.py` | Generates/regenerates | Run `/build-registry` after |
+| Trigger | Layer 1 (provenance) | Layer 2 (registry) | Layer 3 (graph) |
+|---------|---------------------|--------------------|-----------------|
+| `/synthesize` | Generates (Step 7.5) | `--project {id}` (Step 7.6) | Required updates (Step 7.7) |
+| `/submit` | Validates (advisory) | `--project {id}` | — |
+| `/literature-review` | Merges refs (Step 6b) | — | — |
+| `/berdl_start` | — | `--project {id}` | — |
+| `/build-registry` | — | Full regeneration | Coverage/gap reports |
+| `/knowledge backfill` | Reads | — | Retroactive population |
+| `generate_provenance.py` | Generates/regenerates | Run `/build-registry` after | — |
 
 The registry is always **derivable from provenance.yaml + markdown files** — if it drifts, `/build-registry` regenerates it completely. Skills treat it as a cache, not the source of truth.
 
@@ -103,37 +112,58 @@ The registry is always **derivable from provenance.yaml + markdown files** — i
 - Skips `hackathon_demo` (no README)
 - Strips leading numbers from finding titles
 
-**Current stats** (as of 2026-02-27):
-- 35 projects indexed (29 complete, 3 in-progress, 3 proposed)
-- 254 figures cataloged (203 with captions)
-- ~153 findings extracted
-- 31 cross-project dependency edges (bidirectional)
-- 0 provenance.yaml files yet (all fallback parsing — will improve after running `generate_provenance.py`)
+**Current stats** (as of 2026-03-09):
+- 41 projects indexed (35 complete, 3 in-progress, 3 proposed)
+- 330 figures cataloged
+- ~195 findings extracted
+- 41 provenance.yaml files (full coverage)
+- 83 entities, 32 relations, 15 hypotheses, 43 timeline events (Layer 3)
 
-## /knowledge Skill
+## Skills
 
-Subcommands:
-- `/knowledge <topic>` — search projects and findings by keyword
-- `/knowledge figures <topic>` — search figure catalog
-- `/knowledge data <topic>` — search reusable data artifacts
-- `/knowledge project <id>` — full summary of a specific project
-- `/knowledge landscape` — high-level overview (status breakdown, top tags, collection usage, dependency graph, coverage gaps)
+### Querying skills (read-only)
+
+| Skill | Purpose |
+|-------|---------|
+| `/knowledge <topic>` | Search projects and findings by keyword |
+| `/knowledge figures <topic>` | Search figure catalog |
+| `/knowledge data <topic>` | Search reusable data artifacts |
+| `/knowledge project <id>` | Full summary of a specific project |
+| `/knowledge landscape` | Status overview, top tags, collection usage, dependency graph |
+| `/knowledge entities <type>` | List entities by type (organism, gene, pathway, method, concept) |
+| `/knowledge connections <entity>` | Find all relations for an entity |
+| `/knowledge hypotheses [status]` | List hypotheses by lifecycle status |
+| `/knowledge gaps` | Unexplored entity combinations and method coverage gaps |
+| `/knowledge timeline [project]` | Chronological research events |
+| `/knowledge backfill [project_id]` | Retroactively populate Layer 3 from reports |
+| `/status` | Dashboard: active work, hypotheses, gaps, recent progress |
+| `/interpret [project_id]` | Discuss intermediate results (conversation only, no file writes) |
+| `/compare <A> <B>` | Side-by-side comparison of projects, organisms, or entities |
+
+### Workflow skills (read-write)
+
+| Skill | Knowledge layer interaction |
+|-------|---------------------------|
+| `/synthesize` | Writes Layer 1 + updates Layer 2 + requires Layer 3 updates |
+| `/suggest-research` | Reads Layer 2+3 for gap-driven recommendations |
+| `/build-registry` | Regenerates Layer 2 and Layer 3 coverage/gap reports |
+| `/submit` | Validates Layer 1, updates Layer 2 |
 
 ## Merge Strategy
 
-These are **stacked PRs**:
-1. Merge PR #123 (`feature/structured-provenance`) into `main` first
-2. GitHub automatically retargets the knowledge registry PR to `main`
-3. Merge the knowledge registry PR
-4. Run `uv run tools/generate_provenance.py` to generate provenance.yaml for all existing projects
-5. Run `uv run scripts/build_registry.py` to rebuild registry with provenance data
+These are **stacked branches**:
+1. Merge `feature/structured-provenance` into `main` first (Layer 1+2: provenance model, generator, registry, `/knowledge` skill)
+2. Rebase `feature/semantic-knowledge-graph` onto `main`
+3. Merge `feature/semantic-knowledge-graph` (Layer 3: knowledge graph, new skills, workflow improvements, all 41 provenance.yaml files)
 
 ## Future Considerations
 
-- **Scale threshold**: At 500+ projects, consider graph database or vector search. Current approach works well at 35-50 projects.
+- **Scale threshold**: At 500+ projects, consider graph database or vector search. Current approach works well at 41 projects.
 - **Provenance generation**: Currently requires Claude API. Could add a lightweight regex-only mode for CI/CD.
 - **UI integration**: The registry YAML files could feed a dashboard page showing the research landscape, dependency graph, and search interface.
-- **Automated staleness detection**: A pre-commit hook could warn if registry files are older than the newest REPORT.md.
+- **Automated staleness detection**: `validate_registry_freshness.py` exists; could become a pre-commit hook.
+- **Layer 3 backfill**: 24/41 projects need retroactive graph population via `/knowledge backfill`.
+- **Graph density**: As more projects are backfilled and new projects use mandatory Layer 3 updates, relation density should increase significantly from the current 32 edges.
 
 ## References
 
