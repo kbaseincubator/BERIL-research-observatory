@@ -1,5 +1,5 @@
 version: 1
-generated_at: '2026-03-10T02:18:32'
+generated_at: '2026-03-10T02:26:30'
 project_count: 41
 projects:
 - id: acinetobacter_adp1_explorer
@@ -75,6 +75,7 @@ projects:
   depends_on: []
   enables:
   - adp1_triple_essentiality
+  - aromatic_catabolism_network
   has_provenance: true
   date_completed: 2026-02
 - id: adp1_deletion_phenotypes
@@ -152,6 +153,7 @@ projects:
   depends_on:
   - adp1_triple_essentiality
   enables:
+  - aromatic_catabolism_network
   - respiratory_chain_wiring
   has_provenance: true
   date_completed: 2026-02
@@ -274,11 +276,64 @@ projects:
   notebook_count: 4
   figure_count: 9
   key_data_artifacts: []
-  references: []
-  depends_on: []
+  references:
+  - id: adachi2003
+    title: PQQ-dependent quinoprotein dehydrogenases in oxidative fermentation
+    doi: null
+    pmid: null
+    type: supporting
+  - id: dal2005
+    title: Transcriptional organization of genes for protocatechuate and quinate degradation from Acinetobacter sp. strain
+      ADP1
+    doi: 10.1128/AEM.71.2.1025-1034.2005
+    pmid: null
+    type: supporting
+  - id: deberardinis2008
+    title: A complete collection of single-gene deletion mutants of Acinetobacter baylyi ADP1
+    doi: null
+    pmid: '18319726'
+    type: primary_data_source
+  - id: erickson2022
+    title: Critical enzyme reactions in aromatic catabolism for microbial lignin conversion
+    doi: 10.1038/s41929-022-00829-3
+    pmid: null
+    type: supporting
+  - id: fischer2008
+    title: Catabolite repression of aromatic compound degradation in Acinetobacter baylyi
+    doi: 10.1128/JB.01437-07
+    pmid: null
+    type: supporting
+  - id: melo2016
+    title: Supramolecular organization of bacterial aerobic respiratory chains
+    doi: 10.1016/j.bbabio.2015.11.001
+    pmid: null
+    type: supporting
+  - id: price2018
+    title: Mutant phenotypes for thousands of bacterial genes of unknown function
+    doi: 10.1038/s41586-018-0124-0
+    pmid: null
+    type: methodology
+  - id: que2005
+    title: 'Non-heme iron dioxygenases: structure and mechanism'
+    doi: 10.1007/b12434
+    pmid: null
+    type: supporting
+  - id: stanier1973
+    title: The β-ketoadipate pathway
+    doi: 10.1016/S0065-2911(08)60302-0
+    pmid: null
+    type: review
+  - id: stuani2014
+    title: Novel metabolic features in Acinetobacter baylyi ADP1 revealed by a multiomics approach
+    doi: null
+    pmid: '25374488'
+    type: supporting
+  depends_on:
+  - adp1_deletion_phenotypes
+  - acinetobacter_adp1_explorer
   enables:
   - respiratory_chain_wiring
-  has_provenance: false
+  has_provenance: true
   date_completed: 2026-02
 - id: bacdive_metal_validation
   title: BacDive Isolation Environment × Metal Tolerance Prediction
@@ -2911,12 +2966,12 @@ projects:
     and does this distribution support the hypothesis that carbon storage granules are most beneficial in temporally variable
     feast/famine environments?
   key_findings:
-  - 'Finding 1: PHB pathways are widespread but phylogenetically concentrated'
-  - 'Finding 2: PHB is enriched in environmentally variable habitats (H1a supported)'
-  - 'Finding 3: PHB-niche breadth association is largely explained by genome size (H1b qualified)'
-  - 'Finding 4: Subclade enrichment reveals heterogeneous selection within phyla (H1d partially supported)'
-  - 'Finding 5: Strong signal of horizontal gene transfer in phaC distribution'
-  - 'Finding 6: NMDC metagenomic cross-validation supports pangenome PHB patterns (H1c supported)'
+  - PHB pathways are widespread but phylogenetically concentrated
+  - PHB is enriched in environmentally variable habitats (H1a supported)
+  - PHB-niche breadth association is largely explained by genome size (H1b qualified)
+  - Subclade enrichment reveals heterogeneous selection within phyla (H1d partially supported)
+  - Strong signal of horizontal gene transfer in phaC distribution
+  - NMDC metagenomic cross-validation supports pangenome PHB patterns (H1c supported)
   tags:
   - HGT
   - conservation
@@ -2943,46 +2998,191 @@ projects:
   notebook_count: 6
   figure_count: 10
   key_data_artifacts:
-  - file: data/nmdc_abiotic_correlations.tsv
-    description: null
-    reusable: true
-  - file: data/nmdc_phb_prevalence.tsv
-    description: null
-    reusable: true
-  - file: data/pangenome_vs_metagenome.tsv
-    description: null
-    reusable: true
-  - file: data/phaC_class_distribution.tsv
-    description: null
-    reusable: true
-  - file: data/phb_by_order.tsv
-    description: null
-    reusable: true
-  - file: data/phb_by_taxonomy.tsv
-    description: null
-    reusable: true
-  - file: data/phb_embedding_analysis.tsv
-    description: null
-    reusable: true
   - file: data/phb_gene_clusters.tsv
-    description: null
+    description: All PHB-related gene clusters with KEGG KO, species, core/accessory status
     reusable: true
   - file: data/phb_species_summary.tsv
-    description: null
+    description: Species-level PHB pathway status (complete/partial/absent)
+    reusable: true
+  - file: data/phb_by_taxonomy.tsv
+    description: All species with taxonomy and PHB status merged
+    reusable: true
+  - file: data/phb_by_order.tsv
+    description: PHB prevalence aggregated by taxonomic order
     reusable: true
   - file: data/species_environment.tsv
-    description: null
+    description: Species with primary environment classification and PHB status
+    reusable: true
+  - file: data/phb_embedding_analysis.tsv
+    description: Species with AlphaEarth embedding variance, genome size, and PHB status
     reusable: true
   - file: data/species_genome_size.tsv
-    description: null
+    description: Species-level genome size (Mbp), protein count, and PHB status
     reusable: true
   - file: data/subclade_enrichment.tsv
-    description: null
+    description: Family-level Fisher's exact test results (enriched/depleted/ns)
     reusable: true
-  references: []
+  - file: data/phaC_class_distribution.tsv
+    description: phaC-carrying species with attempted PHA synthase class (all other_pfam due to annotation format issue)
+    reusable: true
+  - file: data/nmdc_phb_prevalence.tsv
+    description: NMDC sample PHB inference scores (mean=201.5, median=137.7, 87.2% median coverage)
+    reusable: true
+  - file: data/nmdc_abiotic_correlations.tsv
+    description: Spearman correlations of PHB score with abiotic variables (6 significant at p<0.001)
+    reusable: true
+  - file: data/pangenome_vs_metagenome.tsv
+    description: Genus-level pangenome phaC prevalence vs NMDC mean abundance
+    reusable: true
+  references:
+  - id: parks2022
+    title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+      and complete genome-based taxonomy'
+    doi: 10.1093/nar/gkab776
+    pmid: null
+    type: primary_data_source
+  - id: arkin2018
+    title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+    doi: null
+    pmid: '29979655'
+    type: primary_data_source
+  - id: dawes1973
+    title: The role and regulation of energy reserve polymers in micro-organisms
+    doi: 10.1016/S0065-2911(08)60088-0
+    pmid: null
+    type: methodology
+  - id: anderson1990
+    title: Occurrence, metabolism, metabolic role, and industrial uses of bacterial polyhydroxyalkanoates
+    doi: null
+    pmid: '2087222'
+    type: supporting
+  - id: rehm2003
+    title: 'Polyester synthases: natural catalysts for plastics'
+    doi: null
+    pmid: '12954078'
+    type: methodology
+  - id: kadouri2005
+    title: Ecological and agricultural significance of bacterial polyhydroxyalkanoates
+    doi: null
+    pmid: '15747757'
+    type: review
+  - id: jendrossek2014
+    title: New insights in the formation of polyhydroxyalkanoate granules (carbonosomes) and novel functions of poly(3-hydroxybutyrate)
+    doi: null
+    pmid: '24735308'
+    type: supporting
+  - id: rehm1999
+    title: Biochemical and genetic analysis of PHA synthases and other proteins required for PHA synthesis
+    doi: null
+    pmid: '10416645'
+    type: methodology
+  - id: mezzolla2018
+    title: Role of PhaC Type I and Type II Enzymes during PHA Biosynthesis
+    doi: null
+    pmid: '30966625'
+    type: methodology
+  - id: han2010
+    title: Wide distribution among halophilic archaea of a novel polyhydroxyalkanoate synthase subtype with homology to bacterial
+      Type III synthases
+    doi: null
+    pmid: '20889785'
+    type: supporting
+  - id: kalia2007
+    title: 'Insight in to the phylogeny of polyhydroxyalkanoate biosynthesis: horizontal gene transfer'
+    doi: null
+    pmid: '17276615'
+    type: supporting
+  - id: cai2011
+    title: Comparative genomics study of polyhydroxyalkanoates (PHA) and ectoine relevant genes from Halomonas sp. TD01 revealed
+      extensive horizontal gene transfer events and co-evolutionary relationships
+    doi: null
+    pmid: '22040376'
+    type: supporting
+  - id: catone2014
+    title: High polyhydroxybutyrate production in Pseudomonas extremaustralis is associated with differential expression of
+      horizontally acquired and core genome polyhydroxyalkanoate synthase genes
+    doi: null
+    pmid: '24897376'
+    type: supporting
+  - id: obruca2018
+    title: 'Involvement of polyhydroxyalkanoates in stress resistance of microbial cells: Biotechnological consequences and
+      applications'
+    doi: null
+    pmid: '29248684'
+    type: supporting
+  - id: obruca2020
+    title: Novel unexpected functions of PHA granules
+    doi: null
+    pmid: '32424455'
+    type: supporting
+  - id: mullerssantos2021
+    title: The protective role of PHB and its degradation products against stress situations in bacteria
+    doi: null
+    pmid: '33118006'
+    type: supporting
+  - id: pieja2011
+    title: Distribution and Selection of Poly-3-Hydroxybutyrate Production Capacity in Methanotrophic Proteobacteria
+    doi: null
+    pmid: '21725983'
+    type: supporting
+  - id: viljakainen2021
+    title: The phylogenetic and global distribution of bacterial polyhydroxyalkanoate bioplastic-degrading genes
+    doi: null
+    pmid: '33496062'
+    type: supporting
+  - id: masonjones2023
+    title: Intracellular carbon storage by microorganisms is an overlooked pathway of biomass growth
+    doi: null
+    pmid: '37076457'
+    type: supporting
+  - id: konstantinidis2004
+    title: Trends between Gene Content and Genome Size in Prokaryotic Species with Larger Genomes
+    doi: 10.1073/pnas.0308653100
+    pmid: null
+    type: methodology
+  - id: giovannoni2005
+    title: Genome Streamlining in a Cosmopolitan Oceanic Bacterium
+    doi: 10.1126/science.1114057
+    pmid: null
+    type: supporting
+  - id: vieiirasilva2010
+    title: The Systemic Imprint of Growth and Its Uses in Ecological (Meta)Genomics
+    doi: 10.1371/journal.pgen.1000808
+    pmid: null
+    type: methodology
+  - id: barberan2014
+    title: Why are some microbes more ubiquitous than others? Predicting the habitat breadth of soil bacteria
+    doi: 10.1111/ele.12282
+    pmid: null
+    type: supporting
+  - id: giovannoni2014
+    title: Implications of Streamlining Theory for Microbial Ecology
+    doi: 10.1038/ismej.2014.60
+    pmid: null
+    type: supporting
+  - id: bentkowski2015
+    title: A Model of Genome Size Evolution for Prokaryotes in Stable and Fluctuating Environments
+    doi: 10.1093/gbe/evv148
+    pmid: null
+    type: supporting
+  - id: mendler2019
+    title: 'AnnoTree: visualization and exploration of a functionally annotated microbial tree of life'
+    doi: null
+    pmid: '31081040'
+    type: methodology
+  - id: szabo2023
+    title: Reconstruction of the last bacterial common ancestor from 183 pangenomes reveals a versatile ancient core genome
+    doi: null
+    pmid: '37537394'
+    type: methodology
+  - id: gibbons2021
+    title: Metabolic flexibility allows bacterial habitat generalists to become dominant in a frequently disturbed ecosystem
+    doi: null
+    pmid: '33941890'
+    type: supporting
   depends_on: []
   enables: []
-  has_provenance: false
+  has_provenance: true
   date_completed: 2026-02
 - id: prophage_ecology
   title: Prophage Gene Modules and Terminase-Defined Lineages Across Bacterial Phylogeny and Environmental Gradients
