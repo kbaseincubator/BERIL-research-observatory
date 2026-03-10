@@ -417,6 +417,10 @@
 
 ## Completed Ideas
 
+### [bacdive_phenotype_metal_tolerance] BacDive Phenotype Signatures of Metal Tolerance
+**Status**: COMPLETED
+**Results**: BacDive phenotypes (Gram stain, oxygen tolerance, enzyme activities, metabolite utilization) capture real metal tolerance signal (R²=0.16 alone, 7/10 features significant after FDR) but are entirely phylogenetically confounded — adding phenotype features to a taxonomy-based model provides zero improvement (delta R²=-0.009). Genome-encoded metal resistance gene count is the true predictor (full model R²=0.63). Gram stain is the strongest univariate predictor (d=-0.61) but indistinguishable from phylogeny. Urease effect reversed (d=-0.18, driven by Actinomycetes). Catalase shows Simpson's paradox (positive overall, negative within every major class). First large-scale test of BacDive phenotypes as metal tolerance predictors across 5,647 species. See `projects/bacdive_phenotype_metal_tolerance/`.
+
 ### [nmdc_community_metabolic_ecology] Community Metabolic Ecology via NMDC × Pangenome Integration
 **Status**: COMPLETED
 **Results**: Weak but consistent Black Queen signal detected in community metabolomics: 11/13 (85%) amino acid biosynthesis pathways trend in BQH-predicted direction (binomial p=0.011). Leucine (r=−0.390, q=0.022, n=62) and arginine (r=−0.297, q=0.049, n=80) biosynthesis are FDR-significant. Community metabolic potential separates strongly by ecosystem type (PC1=49.4% variance; Soil vs. Freshwater Mann-Whitney p<0.0001); 17/18 aa pathways significantly differentiated across ecosystem types. First BERDL integration of NMDC multi-omics with GapMind pangenome pathway completeness across 220 samples. See `projects/nmdc_community_metabolic_ecology/`.

@@ -550,3 +550,7 @@ Of 257 identified (non-unknown) WoM compounds, 69 match ModelSEED molecules by e
 Description of what was discovered, why it matters, and any implications
 for future analyses.
 ```
+
+### [bacdive_phenotype_metal_tolerance] BacDive phenotypes are phylogenetic proxies for metal tolerance
+
+Classical microbiology phenotypes (Gram stain, oxygen tolerance, enzyme activities) from BacDive capture real metal tolerance signal (R²=0.16 alone, 7/10 significant after FDR) but are entirely phylogenetically confounded — adding phenotype features to a taxonomy-based model provides zero improvement (delta R²=-0.009). The genome's metal resistance gene count is the true predictor (full model R²=0.63). Urease-positive bacteria surprisingly have *lower* metal tolerance (d=-0.18), driven by Actinomycetes lineage composition. This validates genome-based prediction (Metal Fitness Atlas) over phenotype-based screening for metal tolerance assessment.
