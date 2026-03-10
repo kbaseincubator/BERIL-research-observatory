@@ -22,10 +22,10 @@ from app.filters import (
     strip_images_filter,
 )
 
-from .config import get_settings
+from .config import Settings, get_settings
 from .dataloader import load_repository_data
 from .git_data_sync import ensure_repo_cloned, pull_latest
-from .models import CollectionCategory
+from .models import CollectionCategory, RepositoryData
 
 logging.basicConfig(
     level=logging.INFO,
@@ -35,49 +35,6 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 templates = None
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # TODO: move this to the create_app function
-    settings = get_settings()
-    if settings.test_skip_lifespan:
-        yield
-        return
-
-    """Initialize app on startup."""
-    logger.info("Initializing repository data")
-
-    # If git repo is configured, clone/pull it first
-    if settings.force_local_data:
-        logger.info("Forcing parsing and loading of local data")
-        print("Forcing parsing and loading of local data")
-        app.state.repo_data = load_repository_data(None)
-    elif settings.data_repo_url:
-        try:
-            logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
-            await ensure_repo_cloned(
-                settings.data_repo_url,
-                settings.data_repo_branch,
-                settings.data_repo_path,
-            )
-
-            # Load from local git repo
-            data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
-            app.state.repo_data = load_repository_data(data_file)
-            logger.info(
-                f"Repository data loaded from git. Last updated: {app.state.repo_data.last_updated}"
-            )
-        except Exception as e:
-            logger.error(f"Failed to load from git repo: {e}")
-            logger.info("Falling back to local parsing")
-            app.state.repo_data = load_repository_data(None)
-    else:
-        # No git repo configured, load from local parsing
-        logger.info("No git repo configured, parsing local files")
-        app.state.repo_data = load_repository_data(None)
-
-    yield
 
 
 class DataContextMiddleware(BaseHTTPMiddleware):
@@ -99,6 +56,48 @@ class DataContextMiddleware(BaseHTTPMiddleware):
             "last_updated": repo_data.last_updated,
         }
         return await call_next(request)
+
+async def initialize_data(settings: Settings) -> RepositoryData:
+    """Initialize app on startup."""
+    logger.info("Initializing repository data")
+
+    # If git repo is configured, clone/pull it first
+    if settings.force_local_data:
+        logger.info("Forcing parsing and loading of local data")
+        print("Forcing parsing and loading of local data")
+        repo_data = load_repository_data(None)
+    elif settings.data_repo_url:
+        try:
+            logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
+            await ensure_repo_cloned(
+                settings.data_repo_url,
+                settings.data_repo_branch,
+                settings.data_repo_path,
+            )
+
+            # Load from local git repo
+            data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
+            repo_data = load_repository_data(data_file)
+            logger.info(
+                f"Repository data loaded from git. Last updated: {repo_data.last_updated}"
+            )
+        except Exception as e:
+            logger.error(f"Failed to load from git repo: {e}")
+            logger.info("Falling back to local parsing")
+            repo_data = load_repository_data(None)
+    else:
+        # No git repo configured, load from local parsing
+        logger.info("No git repo configured, parsing local files")
+        repo_data = load_repository_data(None)
+    return repo_data
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    settings = get_settings()
+    if not settings.test_skip_lifespan:
+        app.state.repo_data = await initialize_data(settings)
+    yield
 
 
 def create_app() -> FastAPI:
