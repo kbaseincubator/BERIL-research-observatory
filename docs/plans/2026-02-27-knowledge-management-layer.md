@@ -117,7 +117,7 @@ The registry is always **derivable from provenance.yaml + markdown files** — i
 - 330 figures cataloged
 - ~195 findings extracted
 - 41 provenance.yaml files (full coverage)
-- 83 entities, 32 relations, 15 hypotheses, 43 timeline events (Layer 3)
+- 80 entities, 32 relations, 20 hypotheses, 43 timeline events (Layer 3)
 
 ## Skills
 

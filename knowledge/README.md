@@ -39,9 +39,9 @@ Layer 3 (semantic):      knowledge/                 <- THIS LAYER
 | Type | File | External IDs | Count |
 |------|------|-------------|-------|
 | Organism | `entities/organisms.yaml` | NCBI Taxonomy | 20 |
-| Gene | `entities/genes.yaml` | KEGG KO, UniProt | 16 |
-| Pathway | `entities/pathways.yaml` | KEGG Pathway | 11 |
-| Method | `entities/methods.yaml` | — | 15 |
+| Gene | `entities/genes.yaml` | KEGG KO, UniProt | 15 |
+| Pathway | `entities/pathways.yaml` | KEGG Pathway | 10 |
+| Method | `entities/methods.yaml` | — | 14 |
 | Concept | `entities/concepts.yaml` | — | 21 |
 
 ## Adding Entities
@@ -114,6 +114,9 @@ When `/synthesize` completes a project, it automatically:
 The LinkML schema at `schema/research_graph.yaml` governs all data files. To validate:
 
 ```bash
+# Validate cross-file integrity and repository references
+uv run scripts/validate_knowledge_graph.py
+
 # Generate JSON Schema (one-time)
 gen-json-schema knowledge/schema/research_graph.yaml > knowledge/schema/research_graph.json
 
