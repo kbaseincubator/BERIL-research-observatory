@@ -481,6 +481,60 @@ def _render_timeline(project_filter: str | None) -> str:
     return "\n".join(lines)
 
 
+def _render_backfill() -> str:
+    """List projects missing Layer 3 graph coverage."""
+    registry, _, _ = _require_registry_artifacts()
+    projects = registry.get("projects", [])
+    if not isinstance(projects, list):
+        projects = []
+
+    # Collect projects referenced in timeline events
+    timeline_events = _load_knowledge_list(KNOWLEDGE_DIR / "timeline.yaml", "events")
+    timeline_projects: set[str] = set()
+    for event in timeline_events:
+        project = str(event.get("project", "")).strip()
+        if project:
+            timeline_projects.add(project)
+        for pid in event.get("projects") or []:
+            pid_text = str(pid).strip()
+            if pid_text:
+                timeline_projects.add(pid_text)
+
+    # Collect projects referenced in relations
+    relations = _load_knowledge_list(KNOWLEDGE_DIR / "relations.yaml", "relations")
+    relation_projects: set[str] = set()
+    for rel in relations:
+        ep = str(rel.get("evidence_project", "")).strip()
+        if ep:
+            relation_projects.add(ep)
+
+    missing = []
+    for p in projects:
+        if not isinstance(p, dict):
+            continue
+        pid = str(p.get("id", ""))
+        status = str(p.get("status", "unknown"))
+        has_timeline = pid in timeline_projects
+        has_relations = pid in relation_projects
+        if not has_timeline and not has_relations:
+            missing.append((pid, status))
+    missing.sort(key=lambda x: (x[1], x[0]))
+
+    lines = ["### Projects Missing Layer 3 Graph Coverage", ""]
+    if not missing:
+        lines.append("_All projects have graph coverage._")
+    else:
+        lines.append(f"{len(missing)} project(s) have no timeline events or relation edges:", )
+        lines.append("")
+        lines.append("| Project | Status |")
+        lines.append("|---|---|")
+        for pid, status in missing:
+            lines.append(f"| {pid} | {status} |")
+        lines.append("")
+        lines.append("Use `/knowledge backfill <project_id>` to retroactively populate Layer 3.")
+    return "\n".join(lines)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Deterministic knowledge query backend")
     sub = parser.add_subparsers(dest="command")
@@ -513,6 +567,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_timeline = sub.add_parser("timeline", help="Show timeline events")
     p_timeline.add_argument("project", nargs="?")
+    sub.add_parser("backfill", help="List projects missing Layer 3 graph coverage")
     return parser
 
 
@@ -558,6 +613,9 @@ def main() -> int:
         return 0
     if args.command == "timeline":
         print(_render_timeline(args.project))
+        return 0
+    if args.command == "backfill":
+        print(_render_backfill())
         return 0
 
     parser.print_help()

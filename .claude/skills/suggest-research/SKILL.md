@@ -1,6 +1,6 @@
 ---
 name: suggest-research
-description: Review completed projects and their findings, then suggest a new high-impact research topic grounded in available BERDL data and scientific gaps. Use when the user wants to identify the next best research direction based on what has already been done.
+description: "Review completed projects and their findings, then suggest a new high-impact research topic grounded in available BERDL data and scientific gaps. Use when the user wants to identify the next best research direction, asks 'what should I study next', 'where are the gaps', or 'what hasn't been explored'."
 allowed-tools: Bash, Read, Write, Edit, WebSearch, AskUserQuestion
 user-invocable: true
 ---
@@ -33,6 +33,8 @@ Build three lists:
 3. `proposed_ideas` — ideas with Status: PROPOSED (candidates for recommendation)
 
 ### Step 2: Read the Knowledge Registry
+
+**Freshness check**: Run `uv run scripts/validate_registry_freshness.py`. If exit code 1 (stale), warn: "The knowledge registry may be out of date. Run `/build-registry` to refresh, or proceed with current data." Proceed regardless — stale data is better than no data.
 
 **Primary path** (if `docs/project_registry.yaml` exists):
 
@@ -81,25 +83,17 @@ Read `docs/collections.md` to inventory the BERDL data collections. For each col
 
 Identify **underexplored collections** — present in BERDL but rarely cited in completed project reports.
 
-### Step 5b: Read the Knowledge Graph (if available)
+### Step 5b: Read Knowledge Graph Gaps (if available)
 
-If `knowledge/entities/` exists, read the semantic knowledge graph for entity-level gap analysis:
+Run: `uv run scripts/query_knowledge.py gaps`
 
-0. Read `docs/knowledge_graph_coverage.md` and `docs/knowledge_gaps.md` (if present) for deterministic baseline coverage/gap signals
+This outputs the deterministic gap analysis covering organisms with sparse coverage,
+method gaps, untested hypotheses, and unexplored entity pairs.
+Use this output directly in Step 6 under "Entity gaps" and "Untested hypotheses".
 
-1. Read `knowledge/entities/organisms.yaml`, `methods.yaml`, `concepts.yaml`
-2. Read `knowledge/relations.yaml` — note which entity pairs have relations and which don't
-3. Read `knowledge/hypotheses.yaml` — identify:
-   - Hypotheses in `testing` or `proposed` state (need validation)
-   - `rejected` hypotheses whose alternatives haven't been explored
-   - Entity pairs referenced by hypotheses but lacking direct relations
-4. Build supplementary gap analysis:
-   - **Organisms with data but no cross-project analysis**: organisms appearing in only 1 project
-   - **Methods applied to some organisms but not others**: e.g., ICA to 32 organisms but GapMind only to 7
-   - **Untested hypotheses**: hypotheses in `proposed` or `testing` state
-   - **Unexplored entity pairs**: organisms/pathways/concepts appearing in separate projects but never studied together
-
-This enriches Step 6 with entity-level precision beyond keyword matching.
+Additionally, read `knowledge/hypotheses.yaml` for detail not in the gap report:
+- `rejected` hypotheses whose alternatives haven't been explored
+- Entity pairs referenced by hypotheses but lacking direct relations
 
 ### Step 6: Synthesize the Landscape
 

@@ -1201,6 +1201,23 @@ def generate_knowledge_gaps(projects: list[dict]) -> str:
         )
     method_gap_rows.sort(key=lambda x: (x[0], x[1]))
 
+    # Gap 2b: methods and organisms co-mentioned in projects but lacking relation edges.
+    co_mentioned_missing = []
+    for mid in method_to_orgs:
+        m_entity = next((m for m in methods if str(m.get("id", "")).strip() == mid), None)
+        if not m_entity:
+            continue
+        m_projects = set(str(p).strip() for p in (m_entity.get("projects") or []) if str(p).strip())
+        for org in organisms:
+            org_id = str(org.get("id", "")).strip()
+            if not org_id or org_id in method_to_orgs.get(mid, set()):
+                continue
+            o_projects = set(str(p).strip() for p in (org.get("projects") or []) if str(p).strip())
+            shared = sorted(m_projects & o_projects)
+            if shared:
+                co_mentioned_missing.append((mid, method_meta.get(mid, mid), org_id, shared))
+    co_mentioned_missing.sort(key=lambda x: (-len(x[3]), x[0], x[2]))
+
     # Gap 3: hypotheses in non-terminal states.
     pending_hypotheses = []
     for hyp in hypotheses:
@@ -1301,6 +1318,14 @@ def generate_knowledge_gaps(projects: list[dict]) -> str:
             )
     else:
         lines.append("- _None_")
+
+    if co_mentioned_missing:
+        lines.extend(["", "### Co-mentioned but Missing `applied_to` Relations"])
+        for mid, method_name, org_id, shared in co_mentioned_missing[:15]:
+            lines.append(
+                f"- `{mid}` ({method_name}) × `{org_id}`: "
+                f"co-mentioned in {_format_id_list(shared, max_items=4)} but no relation edge"
+            )
 
     lines.extend(
         [

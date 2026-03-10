@@ -1,6 +1,6 @@
 ---
 name: synthesize
-description: Read analysis outputs, compare against literature, and draft findings for a project REPORT.md. Use when notebooks have been run and the user wants to interpret results and write up findings.
+description: "Read analysis outputs, compare against literature, and draft findings for a project REPORT.md. Use when notebooks have been run and the user wants to interpret results, write up findings, draft the report, or asks 'what do these results mean' in a completion context."
 allowed-tools: Bash, Read, Write, Edit, WebSearch, AskUserQuestion
 user-invocable: true
 ---
@@ -256,7 +256,7 @@ This ensures the project's findings, tags, data artifacts, and dependencies are 
 
 #### Step 7.7: Update Knowledge Graph (Layer 3)
 
-After writing provenance.yaml and updating the registry, update the semantic knowledge graph in `knowledge/`. This step is non-blocking — if the knowledge directory doesn't exist, skip silently.
+After writing provenance.yaml and updating the registry, update the semantic knowledge graph in `knowledge/`. This step is required. If `knowledge/` doesn't exist, create the directory structure first (entities/, relations.yaml, hypotheses.yaml, timeline.yaml).
 
 **a) Register new entities:**
 - Read the REPORT.md Key Findings and identify any organisms, genes, pathways, methods, or concepts not yet in `knowledge/entities/*.yaml`
@@ -275,6 +275,8 @@ After writing provenance.yaml and updating the registry, update the semantic kno
   - `confidence`: based on statistical significance reported
   - `note`: brief evidence description
 
+For each analytical method used in this project, add an `applied_to` relation connecting the method entity to each organism studied. This ensures method coverage gap analysis is accurate.
+
 **d) Create/update hypotheses:**
 - For each Key Finding, check if a related hypothesis exists in `knowledge/hypotheses.yaml`
   - If yes: add this project's finding as supporting or contradicting evidence
@@ -286,6 +288,12 @@ After writing provenance.yaml and updating the registry, update the semantic kno
 - Add `discovery` events for notable findings
 - Add `hypothesis_validated` or `hypothesis_rejected` events as appropriate
 - Add `cross_project_connection` events if findings link to other projects
+
+**Layer 3 completion checklist** — before proceeding to Step 8, verify:
+- [ ] At least 1 entity registered or updated with this project_id
+- [ ] At least 1 relation added with evidence_project: {project_id}
+- [ ] At least 1 timeline event appended for this project
+- [ ] At least 1 hypothesis created or updated with evidence from this project
 
 #### Step 8: Update References
 

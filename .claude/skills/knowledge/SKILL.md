@@ -1,6 +1,6 @@
 ---
 name: knowledge
-description: Search the research observatory knowledge base — projects, findings, figures, reusable data, entities, hypotheses, and cross-project connections. Use when the user wants to find projects by topic, search for figures, locate reusable data, explore the knowledge graph, or get a landscape overview.
+description: "Search the research observatory knowledge base — projects, findings, figures, reusable data, entities, hypotheses, and cross-project connections. Use when the user wants to find projects by topic, search for figures, locate reusable data, explore the knowledge graph, get a landscape overview, or asks questions like 'what do we know about X', 'have we studied Y', 'which projects involve Z', or 'show me findings on W'."
 allowed-tools: Read, Bash, Grep
 user-invocable: true
 ---
@@ -22,6 +22,7 @@ Search the observatory's knowledge registry and semantic knowledge graph to find
 /knowledge hypotheses [status]  — list hypotheses, optionally filtered by status
 /knowledge gaps                 — find unexplored entity combinations
 /knowledge timeline [project]   — show research evolution
+/knowledge backfill [project_id]  — retroactively populate Layer 3 from project reports
 ```
 
 ## Prerequisite
@@ -38,6 +39,12 @@ If these files do not exist, tell the user:
 > "The knowledge registry hasn't been generated yet. Run `/build-registry` to create it."
 
 Then stop.
+
+### Freshness Check
+Run: `uv run scripts/validate_registry_freshness.py`
+If exit code 1 (stale), warn: "The knowledge registry may be out of date.
+Run `/build-registry` to refresh, or proceed with current data."
+Proceed regardless — stale data is better than no data.
 
 ## Workflow
 
@@ -353,6 +360,26 @@ Run: `uv run scripts/query_knowledge.py timeline [project]`
 
 4. Highlight hypothesis state changes and cross-project connections
 5. If no filter, group by month for readability
+
+### Subcommand: `/knowledge backfill [project_id]`
+
+**Retroactively populate Layer 3 from project reports.**
+
+This is an LLM-driven workflow (not a deterministic script for the full extraction).
+
+1. If `project_id` is given: target that project. If omitted: run `uv run scripts/query_knowledge.py backfill` to list projects missing graph coverage, then ask the user which to process.
+2. Read `projects/{id}/REPORT.md` and `projects/{id}/provenance.yaml` (if exists)
+3. Extract entities, relations, hypotheses, and timeline events following `/synthesize` Step 7.7 logic (a)-(e)
+4. Present proposed additions to the user in a structured diff:
+   ```
+   ### Proposed Knowledge Graph Additions for {project_id}
+   **New entities**: {list}
+   **New relations**: {list}
+   **New hypotheses**: {list}
+   **Timeline events**: {list}
+   ```
+5. On user confirmation, write to `knowledge/` files
+6. Run `uv run scripts/build_registry.py --project {project_id}` to update coverage report
 
 ## Integration
 

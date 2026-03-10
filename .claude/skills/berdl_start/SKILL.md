@@ -1,6 +1,6 @@
 ---
 name: berdl_start
-description: Get started with the BERIL Research Observatory. Use when a user is new, wants orientation, or asks what they can do.
+description: "Get started with the BERIL Research Observatory. Use when a user is new, wants orientation, asks 'what can I do', 'help me get started', wants to resume work, or says 'continue where I left off'."
 allowed-tools: Read, Bash
 user-invocable: true
 ---
@@ -60,6 +60,16 @@ data/               # Shared data extracts reusable across projects
 | `/cts` | Run batch compute jobs on the CTS cluster |
 
 > **Note**: Hypothesis generation, research planning, and notebook creation are handled automatically as part of the research workflow (Path 1 below). You don't need to invoke them separately.
+
+### Skill Workflow Map
+
+Common paths through the observatory:
+
+- **New project**: `/status` → `/suggest-research` → `/berdl_start` Path 1 → `/literature-review` → [analysis] → `/interpret` → `/synthesize` → `/submit`
+- **Quick lookup**: `/knowledge <topic>`
+- **Resume work**: `/status` → `/berdl_start` Path 4
+- **Cross-project**: `/knowledge gaps` → `/compare <A> <B>` → `/suggest-research`
+- **After completion**: `/synthesize` → `/submit` → `/build-registry`
 
 ### Existing Projects
 
@@ -260,11 +270,22 @@ Suggest using `/literature-review` to search biological databases. This is usefu
 ### Path 4: Continue an Existing Project
 
 Steps:
-1. Run `ls projects/` and list all projects for the user to choose from
-2. Read the chosen project's `README.md`
-3. Check if a `REVIEW.md` exists in that project directory (read it if so)
-4. Summarize where the project stands: what's done, what's next
-5. Suggest using `/submit` when the project is ready for review
+1. Run `uv run scripts/query_knowledge.py landscape` for status counts
+2. List in-progress projects with phase detection based on file existence:
+   - Has `RESEARCH_PLAN.md` but no notebook outputs → "Planning done, ready for analysis"
+   - Has notebook outputs but no `REPORT.md` → "Analysis done, ready for `/synthesize`"
+   - Has `REPORT.md` but no `REVIEW.md` → "Report written, ready for `/submit`"
+   - Has `REVIEW.md` → "Review complete"
+3. If the user selects a project:
+   a. Read `README.md` and summarize where the project stands
+   b. If `REVIEW.md` exists, read and summarize outstanding issues
+   c. Check `git status` for uncommitted changes in the project directory
+   d. Check `knowledge/hypotheses.yaml` for hypotheses relevant to this project
+4. Suggest the appropriate next skill based on phase:
+   - Planning phase → continue analysis (Phase C in Path 1)
+   - Analysis done → `/interpret` to discuss results, then `/synthesize`
+   - Report written → `/submit`
+   - Review complete → address feedback or start next project via `/suggest-research`
 
 ### Path 5: Understand the System
 
