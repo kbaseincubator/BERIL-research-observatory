@@ -1,5 +1,5 @@
 # Findings Digest
-**Last updated**: 2026-03-04 | **Projects**: 41 | **Findings**: ~186
+**Last updated**: 2026-03-10 | **Projects**: 41 | **Findings**: ~186
 
 ## acinetobacter_adp1_explorer (2026-02, complete)
 **Q**: What is the scope and structure of a comprehensive ADP1 database, and how do its annotations, metabolic models, and phenotype data intersect with BERDL collections (pangenome, biochemistry, fitness, PhageFoundry)?

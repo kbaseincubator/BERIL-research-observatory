@@ -1,5 +1,5 @@
 # Knowledge Graph Coverage Report
-**Last updated**: 2026-03-04 | **Projects in registry**: 41
+**Last updated**: 2026-03-10 | **Projects in registry**: 41
 
 ## Asset Counts
 - Entities: 80 (organisms=20, genes=15, pathways=10, methods=14, concepts=21)

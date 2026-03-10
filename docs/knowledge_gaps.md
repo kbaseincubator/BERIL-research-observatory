@@ -1,5 +1,5 @@
 # Knowledge Graph Research Gaps
-**Last updated**: 2026-03-04 | **Projects in registry**: 41
+**Last updated**: 2026-03-10 | **Projects in registry**: 41
 
 ## 1) Organisms with Sparse Cross-Project Coverage
 - `org_azobra` (Azospirillum brasilense) appears in 1 project(s): `essential_metabolome`
@@ -25,6 +25,23 @@
 - `meth_cofitness` (Co-fitness analysis): linked to 1/20 organisms; missing `org_azobra`, `org_btheta`, `org_caulo`, `org_cupriavidus`, `org_dvh`, `org_ecoli`, ... (+13 more)
 - `meth_fba` (FBA): linked to 1/20 organisms; missing `org_azobra`, `org_btheta`, `org_caulo`, `org_cupriavidus`, `org_dvh`, `org_ecoli`, ... (+13 more)
 - `meth_rbtnseq` (RB-TnSeq): linked to 1/20 organisms; missing `org_adp1`, `org_azobra`, `org_btheta`, `org_caulo`, `org_cupriavidus`, `org_ecoli`, ... (+13 more)
+
+### Co-mentioned but Missing `applied_to` Relations
+- `meth_fisher_exact` (Fisher's exact test) × `org_pseudo3_n2e3`: co-mentioned in `cofitness_coinheritance`, `conservation_vs_fitness`, `metal_fitness_atlas` but no relation edge
+- `meth_ica` (ICA) × `org_putida`: co-mentioned in `cofitness_coinheritance`, `fitness_modules`, `metal_fitness_atlas` but no relation edge
+- `meth_rbtnseq` (RB-TnSeq) × `org_btheta`: co-mentioned in `cofitness_coinheritance`, `costly_dispensable_genes`, `essential_genome` but no relation edge
+- `meth_rbtnseq` (RB-TnSeq) × `org_methanococcus_s2`: co-mentioned in `conservation_vs_fitness`, `essential_genome`, `metal_fitness_atlas` but no relation edge
+- `meth_rbtnseq` (RB-TnSeq) × `org_pseudo3_n2e3`: co-mentioned in `cofitness_coinheritance`, `conservation_vs_fitness`, `metal_fitness_atlas` but no relation edge
+- `meth_rbtnseq` (RB-TnSeq) × `org_putida`: co-mentioned in `cofitness_coinheritance`, `fitness_modules`, `metal_fitness_atlas` but no relation edge
+- `meth_spark_sql` (Spark SQL) × `org_putida`: co-mentioned in `cofitness_coinheritance`, `fitness_modules`, `metal_fitness_atlas` but no relation edge
+- `meth_bbh` (BBH) × `org_btheta`: co-mentioned in `cofitness_coinheritance`, `essential_genome` but no relation edge
+- `meth_bbh` (BBH) × `org_putida`: co-mentioned in `cofitness_coinheritance`, `fitness_modules` but no relation edge
+- `meth_cofitness` (Co-fitness analysis) × `org_putida`: co-mentioned in `cofitness_coinheritance`, `fitness_modules` but no relation edge
+- `meth_diamond` (DIAMOND) × `org_caulo`: co-mentioned in `conservation_vs_fitness`, `essential_genome` but no relation edge
+- `meth_diamond` (DIAMOND) × `org_magneto`: co-mentioned in `conservation_vs_fitness`, `essential_genome` but no relation edge
+- `meth_diamond` (DIAMOND) × `org_methanococcus_s2`: co-mentioned in `conservation_vs_fitness`, `essential_genome` but no relation edge
+- `meth_fisher_exact` (Fisher's exact test) × `org_btheta`: co-mentioned in `cofitness_coinheritance`, `costly_dispensable_genes` but no relation edge
+- `meth_fisher_exact` (Fisher's exact test) × `org_dvh`: co-mentioned in `field_vs_lab_fitness`, `metal_fitness_atlas` but no relation edge
 
 ## 3) Hypotheses Needing Validation
 - `H020` (testing) from `metal_fitness_atlas`: Pseudomonas putida KT2440 should have extensive metal fitness data given its role in bioremediation.
