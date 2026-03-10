@@ -12,7 +12,7 @@ Gram-negative species have higher metal tolerance scores than Gram-positive spec
 
 ### 2. Seven of Ten Phenotype Features Are Individually Significant After FDR Correction
 
-Seven features pass FDR correction at q < 0.05: Gram stain (d = -0.61), oxidase (d = +0.53), motility (d = +0.35), urease (d = -0.18), enzyme breadth (rho = -0.06), nitrate reduction (d = +0.10), and catalase (d = +0.10). Three do not reach significance: H₂S production (d = -0.87, q = 0.073 — large effect but underpowered with only 8 negative controls), metabolite breadth (rho = -0.01, ns), and acetate utilization (d = 0.005, ns).
+Seven features pass FDR correction at q < 0.05: Gram stain (d = -0.61), oxidase (d = +0.53), motility (d = +0.35), urease (d = -0.18), enzyme breadth (rho = -0.06), nitrate reduction (d = +0.10), and catalase (d = +0.10). Three do not reach significance: H₂S production (d = -0.87, q = 0.073 — but this effect size estimate is unreliable with only 8 negative controls and likely inflated by small-sample bias), metabolite breadth (rho = -0.01, ns), and acetate utilization (d = 0.005, ns).
 
 *(Notebook: 03_univariate_associations.ipynb)*
 
@@ -113,7 +113,7 @@ SHAP feature importance from the full XGBoost model shows that taxonomic class/o
 | **H1c** (Metabolite breadth → tolerance) | Broader metabolism → higher scores | **Not supported** (rho = -0.01, ns) |
 | **H1d** (Catalase → redox metals) | Catalase+ tolerate Cu, Cr, Fe | **Marginally supported** (d = +0.10, q = 0.04) |
 | **H1e** (Urease → Ni tolerance) | Urease+ handle nickel better | **Reversed** (d = -0.18); driven by Actinomycetes |
-| **H1f** (H₂S → chalcophilic metals) | H₂S producers tolerate Zn, Cu, Cd | **Underpowered** (d = -0.87 but only 8 negatives, q = 0.07) |
+| **H1f** (H₂S → chalcophilic metals) | H₂S producers tolerate Zn, Cu, Cd | **Unreliable** (d = -0.87 but only 8 negatives — effect size likely inflated by small-sample bias) |
 
 ### Direct FB-BacDive Validation (n = 12)
 
@@ -137,7 +137,9 @@ This is consistent with Goberna & Verdú (2016), who showed through meta-analysi
 
 2. **Urease reversal reflects lineage composition**: The surprising urease-negative → higher metal tolerance finding is entirely driven by Actinomycetes, where urease-positive species are a phylogenetically distinct subgroup with low metal scores. Within other classes, the urease effect is zero.
 
-3. **Metabolic breadth is not a metal tolerance proxy**: The hypothesis that metabolically versatile organisms harbor more resistance genes (Martin-Moldes et al. 2015) was not supported. Metabolite utilization breadth shows no correlation with metal score (rho = -0.01), likely because metabolic versatility operates in different genomic neighborhoods than metal resistance.
+3. **Catalase exhibits Simpson's paradox**: The overall catalase effect is d = +0.10 (catalase-positive species have slightly higher metal scores), marginally supporting H1d. But class-stratified analysis reveals the *opposite* within every major class: catalase-negative species score higher within Actinomycetes (d = -0.62, p < 1e-5), Gammaproteobacteria (d = -0.49, p = 0.004), and Betaproteobacteria (d = -0.51, p = 0.006). The overall positive effect is an artifact of between-class composition — catalase-positive classes (Proteobacteria) happen to have higher metal scores than catalase-negative classes. This is the same Simpson's paradox pattern as urease, reinforcing the phylogenetic confounding narrative.
+
+4. **Metabolic breadth is not a metal tolerance proxy**: The hypothesis that metabolically versatile organisms harbor more resistance genes (Martin-Moldes et al. 2015) was not supported. Metabolite utilization breadth shows no correlation with metal score (rho = -0.01), likely because metabolic versatility operates in different genomic neighborhoods than metal resistance.
 
 ### What Does Predict Metal Tolerance
 

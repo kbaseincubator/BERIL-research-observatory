@@ -20,7 +20,26 @@ The Metal Fitness Atlas scored 27,702 pangenome species for metal tolerance usin
 - `projects/counter_ion_effects/data/` — metal experiment classifications and counter ion data
 
 ## Reproduction
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+
+### Prerequisites
+- Python 3.11+ with packages in `requirements.txt`
+- BacDive ingest data in `data/bacdive_ingest/` (TSV files)
+- Metal Fitness Atlas scores in `projects/metal_fitness_atlas/data/species_metal_scores.csv`
+- FB organism mapping in `projects/conservation_vs_fitness/data/organism_mapping.tsv`
+- Metal experiment data in `projects/metal_fitness_atlas/data/metal_experiments.csv`
+
+### Running the Pipeline
+All notebooks run locally (no Spark required). Total runtime: ~2 minutes.
+```bash
+pip install -r requirements.txt
+cd notebooks/
+jupyter nbconvert --to notebook --execute --inplace 01_bacdive_pangenome_bridge.ipynb
+jupyter nbconvert --to notebook --execute --inplace 02_phenotype_feature_engineering.ipynb
+jupyter nbconvert --to notebook --execute --inplace 03_univariate_associations.ipynb
+jupyter nbconvert --to notebook --execute --inplace 04_multivariate_model.ipynb
+jupyter nbconvert --to notebook --execute --inplace 05_fb_bacdive_case_studies.ipynb
+```
+Notebooks must run in order (NB02 depends on NB01, NB03-04 depend on NB02). NB05 is independent but requires NB01 bridge data.
 
 ## Authors
 - Paramvir Dehal (https://orcid.org/0000-0002-3495-1240), Lawrence Berkeley National Laboratory, US Department of Energy
