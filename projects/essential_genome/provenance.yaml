@@ -1,0 +1,253 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: '29769716'
+  url: null
+- id: rosconi2022
+  type: supporting
+  title: A bacterial pan-genome makes gene essentiality strain-dependent and evolvable
+  authors:
+  - Rosconi F
+  - Newmann E
+  - Sanguinetti M
+  year: 2022
+  journal: Nat Microbiol
+  volume: '7'
+  pages: 1580-1592
+  doi: 10.1038/s41564-022-01208-7
+  pmid: '36097170'
+  url: null
+- id: hutchison2016
+  type: supporting
+  title: Design and synthesis of a minimal bacterial genome
+  authors:
+  - Hutchison CA
+  - Chuang RY
+  - Noskov VN
+  year: 2016
+  journal: Science
+  volume: '351'
+  pages: aad6253
+  doi: 10.1126/science.aad6253
+  pmid: '27013737'
+  url: null
+- id: koonin2003
+  type: supporting
+  title: Comparative genomics, minimal gene-sets and the last universal common ancestor
+  authors:
+  - Koonin EV
+  year: 2003
+  journal: Nat Rev Microbiol
+  volume: '1'
+  pages: 127-136
+  doi: null
+  pmid: '15035042'
+  url: null
+- id: gil2004
+  type: supporting
+  title: Determination of the core of a minimal bacterial gene set
+  authors:
+  - Gil R
+  - Silva FJ
+  - Pereto J
+  - Moya A
+  year: 2004
+  journal: Microbiol Mol Biol Rev
+  volume: '68'
+  pages: 518-537
+  doi: null
+  pmid: '15353568'
+  url: null
+- id: duffield2010
+  type: supporting
+  title: 'Predicting conserved essential genes in bacteria: in silico identification of putative drug targets'
+  authors:
+  - Duffield M
+  - Cooper I
+  - McAlister E
+  - Bayliss M
+  - Ford T
+  - Sheridan E
+  year: 2010
+  journal: Mol BioSyst
+  volume: '6'
+  pages: 2482-2489
+  doi: null
+  pmid: '20949199'
+  url: null
+- id: goodall2018
+  type: supporting
+  title: The Essential Genome of Escherichia coli K-12
+  authors:
+  - Goodall ECA
+  - Robinson A
+  - Sherlock E
+  year: 2018
+  journal: mBio
+  volume: '9'
+  pages: e02096-17
+  doi: 10.1128/mBio.02096-17
+  pmid: '29463657'
+  url: null
+- id: deutschbauer2014
+  type: methodology
+  title: Towards an informative mutant phenotype for every bacterial gene
+  authors:
+  - Deutschbauer A
+  - Price MN
+  - Wetmore KM
+  year: 2014
+  journal: J Bacteriol
+  volume: '196'
+  pages: 3643-55
+  doi: 10.1128/JB.01836-14
+  pmid: '25112473'
+  url: null
+- id: koonin2000
+  type: review
+  title: 'How many genes can make a cell: the minimal-gene-set concept'
+  authors:
+  - Koonin EV
+  year: 2000
+  journal: Annu Rev Genomics Hum Genet
+  volume: '1'
+  pages: 99-116
+  doi: null
+  pmid: '11701626'
+  url: null
+- id: parks2022
+  type: supporting
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Res
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - gene
+  - genefitness
+  - ortholog
+  - seedannotation
+  purpose: Essential gene identification, ortholog mapping, functional annotations across 48 organisms
+  reference: price2018
+cross_project_deps:
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  - data/organism_mapping.tsv
+  - data/pangenome_metadata.tsv
+  - data/seed_annotations.tsv
+  - data/seed_hierarchy.tsv
+  description: Gene-to-cluster conservation links, organism metadata, SEED annotations
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/modules/
+  - data/module_families/module_families.csv
+  - data/module_families/family_annotations.csv
+  description: ICA module membership and annotations for function prediction via module transfer
+findings:
+- id: universal_core_15_families
+  title: 15 Gene Families Are Essential in All 48 Bacteria
+  notebook: 02_essential_families.ipynb
+  figures: []
+  data_files: []
+  references:
+  - koonin2003
+  - price2018
+  statistics:
+    universal_families: '15'
+    families_in_all_organisms: '15'
+    key_functions: ribosomal proteins, groEL, pyrG, fusA, valS
+- id: universal_5_percent
+  title: Only 5% of Ortholog Families Are Universally Essential
+  notebook: 02_essential_families.ipynb
+  figures:
+  - essential_families_overview.png
+  - essential_families_heatmap.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    total_families: '17222'
+    universally_essential: '859'
+    universally_essential_percent: '5.0'
+    strict_single_copy: '839'
+    with_paralogs: '20'
+    variably_essential: '4799'
+    variably_essential_percent: '27.9'
+    never_essential: '11564'
+    never_essential_percent: '67.1'
+- id: orphan_hypothetical
+  title: Orphan Essential Genes Are 58.7% Hypothetical
+  notebook: 02_essential_families.ipynb
+  figures: []
+  data_files: []
+  references:
+  - hutchison2016
+  statistics:
+    orphan_essential_genes: '7084'
+    orphan_hypothetical_percent: '58.7'
+    universally_essential_hypothetical_percent: '8.2'
+- id: function_predictions_1382
+  title: 1,382 Function Predictions for Hypothetical Essentials
+  notebook: 03_function_prediction.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    total_predictions: '1382'
+    predictable_targets: '3912'
+    prediction_coverage_percent: '35.3'
+    top_predicted_functions: TIGR00254, PF00460, PF00356
+- id: conservation_core_91_percent
+  title: Universally Essential Families Are Overwhelmingly Core
+  notebook: 04_conservation_architecture.ipynb
+  figures:
+  - conservation_architecture.png
+  data_files: []
+  references:
+  - rosconi2022
+  statistics:
+    universally_essential_core_percent: '91.7'
+    non_essential_core_percent: '80.7'
+    universally_essential_100_percent_core: '71'
+    orphan_essential_core_percent: '49.5'
+    conservation_penetrance_correlation: rho=0.123, p=1.6e-17
+    clade_size_essentiality_correlation: rho=-0.13, p=0.36
+generated_data:
+- file: data/all_ortholog_groups.csv
+  rows: 179237
+  description: 179,237 gene-OG assignments across 17,222 ortholog groups
+  source_notebook: null
+- file: data/essential_families.tsv
+  rows: 17222
+  description: Per-family essentiality classification (universally/variably/never essential)
+  source_notebook: 02_essential_families.ipynb
+- file: data/essential_predictions.tsv
+  rows: 1382
+  description: 1,382 function predictions for hypothetical essential genes
+  source_notebook: 03_function_prediction.ipynb
+- file: data/family_conservation.tsv
+  rows: 16758
+  description: Per-family pangenome conservation metrics
+  source_notebook: 04_conservation_architecture.ipynb

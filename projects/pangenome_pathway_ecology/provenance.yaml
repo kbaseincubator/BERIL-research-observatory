@@ -1,0 +1,31 @@
+schema_version: 1
+references: []
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - pangenome
+  - gapmind_pathways
+  - alphaearth_embeddings_all_years
+  - phylogenetic_tree_distance_pairs
+  purpose: Primary data for analyzing pangenome openness, metabolic pathway completeness, and phylogenetic distances
+  reference: null
+- collection: nmdc_ncbi_biosamples
+  tables:
+  - ncbi_env
+  purpose: Environmental metadata for ecological context analysis
+  reference: null
+cross_project_deps:
+- project: pangenome_openness
+  relationship: extends
+  files: []
+  description: Existing analysis of open vs. closed pangenome patterns
+- project: ecotype_analysis
+  relationship: synthesizes
+  files: []
+  description: Environment vs. phylogeny effects on gene content
+- project: cog_analysis
+  relationship: synthesizes
+  files: []
+  description: COG functional category distributions
+findings: []
+generated_data: []

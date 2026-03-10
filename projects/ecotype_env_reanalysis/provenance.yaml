@@ -1,0 +1,98 @@
+schema_version: 1
+references:
+- id: parks2022
+  type: supporting
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - genome
+  - alphaearth_embeddings_all_years
+  - genome_ani
+  - gene
+  - gene_genecluster_junction
+  purpose: Genome metadata, embeddings, ANI distances, gene cluster memberships
+  reference: null
+cross_project_deps:
+- project: ecotype_analysis
+  relationship: extends
+  files:
+  - data/ecotype_correlation_results.csv
+  - data/target_genomes_expanded.csv
+  description: Partial correlations for 213 species and target genomes with species assignments
+- project: env_embedding_explorer
+  relationship: data_input
+  files:
+  - data/alphaearth_with_env.csv
+  description: Harmonized env_category per genome for environment classification
+findings:
+- id: clinical_bias_not_explanatory
+  title: Clinical bias does NOT explain the weak environment signal (H0 not rejected)
+  notebook: 01_environmental_only_reanalysis.ipynb
+  figures:
+  - partial_corr_by_group.png
+  - partial_corr_distributions.png
+  - frac_env_vs_partial_corr.png
+  data_files:
+  - data/ecotype_corr_with_env_group.csv
+  references: []
+  statistics:
+    mann_whitney_u_test: U=1536
+    p_value: '0.83'
+    environmental_median_partial_corr: '0.051'
+    human_associated_median_partial_corr: '0.084'
+    spearman_frac_env: rho=-0.085, p=0.25
+- id: species_classification_bias
+  title: 47% of ecotype species are human-associated, only 21% environmental
+  notebook: 01_environmental_only_reanalysis.ipynb
+  figures:
+  - species_classification.png
+  data_files:
+  - data/species_env_classification.csv
+  references: []
+  statistics:
+    human_associated_species: '106'
+    human_associated_percent: 47%
+    environmental_species: '47'
+    environmental_percent: 21%
+    mixed_other_species: '71'
+    mixed_other_percent: 32%
+- id: nan_species_disproportionately_environmental
+  title: NaN species are disproportionately environmental, not human-associated
+  notebook: 01_environmental_only_reanalysis.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    nan_rate_environmental: 21%
+    nan_rate_human_associated: 7%
+    nan_rate_mixed_other: 20%
+- id: partial_correlations_27x_higher
+  title: Overall partial correlations are 27x higher than the original analysis
+  notebook: 01_environmental_only_reanalysis.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    median_partial_corr_current: '0.081'
+    median_partial_corr_original: '0.003'
+    fold_difference: '27'
+generated_data:
+- file: data/species_env_classification.csv
+  rows: 224
+  description: Species classified by majority env_category from harmonized genome-level isolation sources
+  source_notebook: 01_environmental_only_reanalysis.ipynb
+- file: data/ecotype_corr_with_env_group.csv
+  rows: 213
+  description: Partial correlations merged with environment group labels for statistical analysis
+  source_notebook: 01_environmental_only_reanalysis.ipynb

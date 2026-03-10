@@ -1,0 +1,251 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: '29769716'
+  url: null
+- id: parks2022
+  type: primary_data_source
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  - Chuvochina M
+  - Chaumeil PA
+  - Rinke C
+  - Mussig AJ
+  - Hugenholtz P
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+- id: rosconi2022
+  type: supporting
+  title: A bacterial pan-genome makes gene essentiality strain-dependent and evolvable
+  authors:
+  - Rosconi F
+  - Hellweger FL
+  - Borenstein E
+  year: 2022
+  journal: Nature Microbiology
+  volume: '7'
+  pages: 1580-1592
+  doi: 10.1038/s41564-022-01208-7
+  pmid: '36097170'
+  url: null
+- id: hutchison2016
+  type: supporting
+  title: Design and synthesis of a minimal bacterial genome
+  authors:
+  - Hutchison CA
+  - Chuang RY
+  - Noskov VN
+  - Assad-Garcia N
+  - Deerinck TJ
+  - Ellisman MH
+  - Gill J
+  - Kannan K
+  - Karas BJ
+  - Kucukyildirim S
+  - Lartigue C
+  - Mamouni ME
+  - Mee C
+  - Park JS
+  - Pearlman RE
+  - Qi HS
+  - Richter A
+  - Rossjohn J
+  - Springer TA
+  - Strychalski EA
+  - Thachuk C
+  - Vashee S
+  - Venter JC
+  - Weyman PD
+  - Young L
+  - Zerbino D
+  year: 2016
+  journal: Science
+  volume: '351'
+  pages: aad6253
+  doi: 10.1126/science.aad6253
+  pmid: '27013737'
+  url: null
+- id: goodall2018
+  type: supporting
+  title: The Essential Genome of Escherichia coli K-12
+  authors:
+  - Goodall ECA
+  - Robinson A
+  - Johnston IG
+  - Jabbari S
+  - Turner KA
+  - Cunningham AF
+  - Iacono M
+  - Bevan ER
+  - Smith MJ
+  - Cole JA
+  year: 2018
+  journal: mBio
+  volume: '9'
+  pages: e02096-17
+  doi: 10.1128/mBio.02096-17
+  pmid: '29463657'
+  url: null
+- id: deutschbauer2014
+  type: methodology
+  title: Towards an informative mutant phenotype for every bacterial gene
+  authors:
+  - Deutschbauer AM
+  - Chivian D
+  - Conocimiento RC
+  - Arkin AP
+  year: 2014
+  journal: Journal of Bacteriology
+  volume: '196'
+  pages: 3643-3655
+  doi: 10.1128/JB.01836-14
+  pmid: '25112473'
+  url: null
+- id: buchfink2015
+  type: methodology
+  title: Fast and sensitive protein alignment using DIAMOND
+  authors:
+  - Buchfink B
+  - Xie C
+  - Huson DH
+  year: 2015
+  journal: Nature Methods
+  volume: '12'
+  pages: 59-60
+  doi: 10.1038/nmeth.3176
+  pmid: null
+  url: null
+- id: overbeek2014
+  type: methodology
+  title: The SEED and the Rapid Annotation of microbial genomes using Subsystems Technology (RAST)
+  authors:
+  - Overbeek R
+  - Olson R
+  - Pusch GD
+  - Olsen GJ
+  - Davis JJ
+  - Disz T
+  - Edwards RA
+  - Gerdes S
+  - Parrello B
+  - Shukla M
+  - Vonstein V
+  - Wattam AR
+  - Xia F
+  - Stevens R
+  year: 2014
+  journal: Nucleic Acids Research
+  volume: '42'
+  pages: D206-D214
+  doi: 10.1093/nar/gkt1226
+  pmid: null
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - organism
+  - gene
+  - genefitness
+  - seedannotation
+  - besthitkegg
+  - keggmember
+  - kgroupdesc
+  - seedannotationtoroles
+  - seedroles
+  purpose: Gene metadata, fitness scores, and functional annotations across 48 bacteria
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables:
+  - gtdb_metadata
+  - gene_cluster
+  - pangenome
+  purpose: Pangenome clusters, conservation classification, and taxonomic mapping
+  reference: parks2022
+cross_project_deps: []
+findings:
+- id: link_table_phase1
+  title: Link Table (Phase 1)
+  notebook: 01_organism_mapping.ipynb
+  figures:
+  - identity_distributions.png
+  - conservation_breakdown.png
+  data_files: []
+  references:
+  - price2018
+  - parks2022
+  statistics:
+    organisms_mapped: 44 of 48
+    gene_cluster_links: 177,863
+    median_protein_identity: 100.0%
+    median_gene_coverage: 94.2%
+    core_genes: 145,821 (82.0%)
+    auxiliary_genes: 32,042 (18.0%)
+    singleton_genes: 7,574
+- id: essential_genes_core_enrichment
+  title: Essential Genes Are Enriched in Core Clusters (Phase 2)
+  notebook: 04_essential_conservation.ipynb
+  figures:
+  - essential_vs_core_forest_plot.png
+  data_files: []
+  references:
+  - price2018
+  - rosconi2022
+  - hutchison2016
+  - goodall2018
+  statistics:
+    putative_essential_genes: 27,693
+    percent_of_proteome: 18.6%
+    essential_genes_in_core: 86.1%
+    non_essential_genes_in_core: 81.2%
+    median_odds_ratio: '1.56'
+    organisms_with_significant_enrichment: 18 of 33
+    fisher_test: Fisher's exact test, BH-FDR q < 0.05
+    strongest_signal_maripaludis: OR=5.21
+    strongest_signal_syzygii: OR=3.41
+    strongest_signal_adhaerens: OR=3.08
+- id: functional_profiles_conservation
+  title: Functional Profiles Differ by Conservation Category
+  notebook: 04_essential_conservation.ipynb
+  figures:
+  - essential_enzyme_breakdown.png
+  - essential_seed_toplevel_heatmap.png
+  - essential_length_validation.png
+  - essential_enrichment_by_context.png
+  - essential_enrichment_by_lifestyle.png
+  data_files: []
+  references:
+  - price2018
+  - rosconi2022
+  - hutchison2016
+  - deutschbauer2014
+  statistics:
+    essential_core_enzyme_percent: 41.9%
+    essential_core_hypothetical_percent: 13.0%
+    essential_core_with_known_function: 87%
+    essential_auxiliary_hypothetical_percent: 38.2%
+    essential_unmapped_hypothetical_percent: 44.7%
+    protein_metabolism_enrichment: +13.7 percentage points
+    cofactors_vitamins_enrichment: +6.2 percentage points
+    cell_wall_enrichment: +3.9 percentage points
+    fatty_acid_enrichment: +3.1 percentage points
+    carbohydrates_depletion: -7.9 percentage points
+    amino_acids_depletion: -5.6 percentage points
+    membrane_transport_depletion: -4.0 percentage points
+generated_data: []

@@ -1,0 +1,730 @@
+schema_version: 1
+references:
+- id: arkin2018
+  type: primary_data_source
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  - Cottingham RW
+  - Henry CS
+  - Harris NL
+  - He L
+  - Hilmer JF
+  - Jacobs JM
+  - Jeffries GF
+  - Jiang D
+  - Jungbluth SP
+  - Kennedy K
+  - Liu X
+  - Mayers TJ
+  - Meldrum J
+  - Nilo-Poyanco R
+  - Olsen GJ
+  - Overbeek R
+  - Parrello B
+  - Pasternak S
+  - Pett-Ridge J
+  - Rodionov DA
+  - Romine MF
+  - Rubin EM
+  - Sergeyenko TV
+  - Seshadri R
+  - Shogun VA
+  - Simmons BA
+  - Stevens R
+  - Szeto E
+  - Teshima H
+  - Travers M
+  - Tschaplinski TJ
+  - Usuka J
+  - Vallat B
+  - Vass AA
+  - Vieille C
+  - Weeks D
+  - Xia F
+  - Xu Y
+  - Zagnitko OP
+  year: 2018
+  journal: Nature Biotechnology
+  volume: '36'
+  pages: 566-569
+  doi: null
+  pmid: '29979655'
+  url: null
+- id: parks2022
+  type: primary_data_source
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  - Chuvochina M
+  - Chaumeil PA
+  - Rinke C
+  - Mussig AJ
+  - Hugenholtz P
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+- id: anderson2001
+  type: methodology
+  title: A new method for non-parametric multivariate analysis of variance
+  authors:
+  - Anderson MJ
+  year: 2001
+  journal: Austral Ecology
+  volume: '26'
+  pages: 32-46
+  doi: 10.1046/j.1442-9993.2001.01070.x
+  pmid: null
+  url: null
+- id: bernheim2020
+  type: supporting
+  title: 'The pan-immune system of bacteria: antiviral defence as a community resource'
+  authors:
+  - Bernheim A
+  - Sorek R
+  year: 2020
+  journal: Nature Reviews Microbiology
+  volume: '18'
+  pages: 113-119
+  doi: null
+  pmid: '31695182'
+  url: null
+- id: bobay2014
+  type: supporting
+  title: Pervasive domestication of defective prophages by bacteria
+  authors:
+  - Bobay LM
+  - Touchon M
+  - Rocha EPC
+  year: 2014
+  journal: Proceedings of the National Academy of Sciences
+  volume: '111'
+  pages: 12127-12132
+  doi: null
+  pmid: '25092302'
+  url: null
+- id: borcard1992
+  type: methodology
+  title: Partialling out the spatial component of ecological variation
+  authors:
+  - Borcard D
+  - Legendre P
+  - Drapeau P
+  year: 1992
+  journal: Ecology
+  volume: '73'
+  pages: 1045-1055
+  doi: 10.2307/1940179
+  pmid: null
+  url: null
+- id: camarillo2021
+  type: supporting
+  title: Massive expansion of human gut bacteriophage diversity
+  authors:
+  - Camarillo-Guerrero LF
+  - Almeida A
+  - Rangel-Pineros G
+  - Finn RD
+  - Lawley TD
+  year: 2021
+  journal: Cell
+  volume: '184'
+  pages: 1098-1109
+  doi: null
+  pmid: '33606979'
+  url: null
+- id: casjens2003
+  type: methodology
+  title: 'Prophages and bacterial genomics: what have we learned so far?'
+  authors:
+  - Casjens S
+  year: 2003
+  journal: Molecular Microbiology
+  volume: '49'
+  pages: 277-300
+  doi: 10.1046/j.1365-2958.2003.03580.x
+  pmid: null
+  url: null
+- id: casjens2009
+  type: methodology
+  title: Determining DNA packaging strategy by analysis of the termini of the chromosomes in tailed-bacteriophage virions
+  authors:
+  - Casjens SR
+  - Gilcrease EB
+  year: 2009
+  journal: Methods in Molecular Biology
+  volume: '502'
+  pages: 91-111
+  doi: 10.1007/978-1-60327-565-1_6
+  pmid: null
+  url: null
+- id: casjens2015
+  type: methodology
+  title: 'Bacteriophage lambda: Early pioneer and still relevant'
+  authors:
+  - Casjens SR
+  - Hendrix RW
+  year: 2015
+  journal: Virology
+  volume: 479-480
+  pages: 310-330
+  doi: 10.1016/j.virol.2015.02.010
+  pmid: null
+  url: null
+- id: costa2025
+  type: supporting
+  title: Bacteriophage genomes encode both broad and specific counter-defense repertoires
+  authors:
+  - Costa AR
+  - Sinha D
+  - Horne Z
+  - Wang Y
+  - Ramos-Barbero J
+  - Tzelepis V
+  - Hatoum-Aslan A
+  - Sorek R
+  year: 2025
+  journal: Cell Host & Microbe
+  volume: null
+  pages: null
+  doi: null
+  pmid: '40639337'
+  url: null
+- id: doron2018
+  type: supporting
+  title: Systematic discovery of antiphage defense systems in the microbial pangenome
+  authors:
+  - Doron S
+  - Melamed S
+  - Ofir G
+  - Leavitt A
+  - Lopatina A
+  - Keim M
+  - Dahan O
+  - Sharit B
+  - Pyenson N
+  - Shitrit D
+  - Peleg AY
+  - Porgador A
+  - Tatusov R
+  - Kustin T
+  - Sorek R
+  year: 2018
+  journal: Science
+  volume: '359'
+  pages: eaar4120
+  doi: null
+  pmid: '29371424'
+  url: null
+- id: dion2020
+  type: supporting
+  title: Phage diversity, genomics and phylogeny
+  authors:
+  - Dion MB
+  - Oechsner F
+  - Moineau S
+  year: 2020
+  journal: Nature Reviews Microbiology
+  volume: '18'
+  pages: 125-138
+  doi: 10.1038/s41579-019-0311-5
+  pmid: null
+  url: null
+- id: georjon2023
+  type: supporting
+  title: The highly diverse antiphage defence systems of bacteria
+  authors:
+  - Georjon H
+  - Bernheim A
+  year: 2023
+  journal: Nature Reviews Microbiology
+  volume: '21'
+  pages: 686-700
+  doi: 10.1038/s41579-023-00920-3
+  pmid: null
+  url: null
+- id: goberna2016
+  type: methodology
+  title: Predicting microbial traits with phylogenies
+  authors:
+  - Goberna M
+  - Verdu M
+  year: 2016
+  journal: ISME Journal
+  volume: '10'
+  pages: 959-967
+  doi: null
+  pmid: '26613341'
+  url: null
+- id: hendrix2000
+  type: supporting
+  title: Evolutionary relationships among diverse bacteriophages and prophages
+  authors:
+  - Hendrix RW
+  - Smith MCM
+  - Burns RN
+  - Ford ME
+  - Sanger F
+  year: 2000
+  journal: Trends in Microbiology
+  volume: '8'
+  pages: 504-508
+  doi: 10.1016/S0966-842X(00)01863-0
+  pmid: null
+  url: null
+- id: howard2017
+  type: supporting
+  title: 'Lysogeny in nature: mechanisms, impact and ecology of temperate phages'
+  authors:
+  - Howard-Varona C
+  - Hargreaves KR
+  - Abedon ST
+  - Sullivan MB
+  year: 2017
+  journal: ISME Journal
+  volume: '11'
+  pages: 1511-1520
+  doi: 10.1038/ismej.2017.16
+  pmid: null
+  url: null
+- id: ives2010
+  type: methodology
+  title: Phylogenetic logistic regression for binary dependent variables
+  authors:
+  - Ives AR
+  - Garland T
+  year: 2010
+  journal: Systematic Biology
+  volume: '59'
+  pages: 9-26
+  doi: null
+  pmid: '20525620'
+  url: null
+- id: kim2018
+  type: supporting
+  title: Lysogeny is prevalent and widely distributed in the murine gut microbiota
+  authors:
+  - Kim MS
+  - Bae JW
+  year: 2018
+  journal: ISME Journal
+  volume: '12'
+  pages: 1127-1141
+  doi: null
+  pmid: '29416123'
+  url: null
+- id: knowles2016
+  type: supporting
+  title: Lytic to temperate switching of viral communities
+  authors:
+  - Knowles B
+  - Silveira CB
+  - Bailey BA
+  - Barott K
+  - Cantu VA
+  - Cobián-Güemes AG
+  - Coutinho FH
+  - Dinsdale EA
+  - Felts B
+  - Furby KA
+  - George EE
+  - Green KT
+  - Gregoracci GB
+  - Haas AF
+  - Haggerty JM
+  - Hutto C
+  - Hynes B
+  - Knight R
+  - Labonte JM
+  - Lauro FM
+  - Lima AA
+  - Luque A
+  - Maliniak E
+  - McDole T
+  - McMinds R
+  - Milligan GL
+  - Moitinho-Silva L
+  - Moon K
+  - Muslin D
+  - Noto CR
+  - O'Neill J
+  - Phipps KE
+  - Just RB
+  - Richter D
+  - Robinett N
+  - Rohwer F
+  - Rojas MI
+  - Roth SK
+  - Sanchez K
+  - Shivak DJ
+  - Silveira JD
+  - Slack W
+  - Spalding C
+  - Stackhouse B
+  - Sudek S
+  - Taylor MW
+  - Teplitski M
+  - Tittl B
+  - Vega Thurber R
+  - Bourne DG
+  - Bourne DG
+  year: 2016
+  journal: Nature
+  volume: '531'
+  pages: 466-470
+  doi: null
+  pmid: '26982729'
+  url: null
+- id: low2019
+  type: supporting
+  title: Evaluation of a concatenated protein phylogeny for classification of tailed double-stranded DNA viruses belonging
+    to the order Caudovirales
+  authors:
+  - Low SJ
+  - Džunková M
+  - Chaumeil PA
+  - Parks DH
+  - Hugenholtz P
+  year: 2019
+  journal: Nature Microbiology
+  volume: '4'
+  pages: 1306-1315
+  doi: 10.1038/s41564-019-0515-5
+  pmid: null
+  url: null
+- id: low2024
+  type: supporting
+  title: Prophage-encoded antibiotic resistance genes are enriched in human-impacted environments
+  authors:
+  - Low SJ
+  - Rappé MS
+  - Hugenholtz P
+  year: 2024
+  journal: Nature Communications
+  volume: '15'
+  pages: '8178'
+  doi: 10.1038/s41467-024-51900-0
+  pmid: null
+  url: null
+- id: luque2020
+  type: supporting
+  title: Quantification of lysogeny caused by phage coinfections in microbial communities from biophysical principles
+  authors:
+  - Luque A
+  - Silveira CB
+  year: 2020
+  journal: mSystems
+  volume: '5'
+  pages: e00353-20
+  doi: null
+  pmid: '32934113'
+  url: null
+- id: mavrich2017
+  type: supporting
+  title: Bacteriophage evolution differs by host, lifestyle and genome
+  authors:
+  - Mavrich TN
+  - Hatfull GF
+  year: 2017
+  journal: Nature Microbiology
+  volume: '2'
+  pages: '17112'
+  doi: null
+  pmid: '28692019'
+  url: null
+- id: paez2016
+  type: supporting
+  title: Uncovering Earth's virome
+  authors:
+  - Paez-Espino D
+  - Eloe-Fadrosh EA
+  - Pavlopoulos GA
+  - Thomas AD
+  - Huntemann M
+  - Mikhailova N
+  - Rubin E
+  - Ivanova NN
+  - Kyrpides NC
+  year: 2016
+  journal: Nature
+  volume: '536'
+  pages: 425-430
+  doi: null
+  pmid: '27533034'
+  url: null
+- id: pinilla2020
+  type: supporting
+  title: Discovery of multiple anti-CRISPRs highlights anti-defense gene clustering in mobile genetic elements
+  authors:
+  - Pinilla-Redondo R
+  - Shehreen S
+  - Marino ND
+  - Fagerlind MG
+  - Brown CM
+  - Selle K
+  - Cygan AM
+  - Shah SA
+  - Barrangou R
+  - Bondy-Denomy J
+  year: 2020
+  journal: Nature Communications
+  volume: '11'
+  pages: '5652'
+  doi: null
+  pmid: '33159058'
+  url: null
+- id: pons2023
+  type: supporting
+  title: Ecology and evolution of phages encoding anti-CRISPR proteins
+  authors:
+  - Pons BJ
+  - Barrangou R
+  - Bond-Denomy J
+  year: 2023
+  journal: Journal of Molecular Biology
+  volume: '435'
+  pages: '167974'
+  doi: null
+  pmid: '36690071'
+  url: null
+- id: rahimian2026
+  type: supporting
+  title: Genomic landscape of biosynthetic gene clusters in Iranian extremophiles reveals prolific metabolite potential, prophage
+    associations, and integrated defensive-metabolic islands
+  authors:
+  - Rahimian M
+  - Aghdam EM
+  - Aminimehr F
+  - Bouhmidi K
+  - Rood J
+  - Katz LS
+  - Williams WP
+  year: 2026
+  journal: BMC Microbiology
+  volume: null
+  pages: null
+  doi: null
+  pmid: '41578173'
+  url: null
+- id: roux2015
+  type: supporting
+  title: Viral dark matter and virus-host interactions resolved from publicly available microbial genomes
+  authors:
+  - Roux S
+  - Hallam SJ
+  - Woyke T
+  - Sullivan MB
+  year: 2015
+  journal: eLife
+  volume: '4'
+  pages: e08490
+  doi: 10.7554/eLife.08490
+  pmid: null
+  url: null
+- id: tesson2024
+  type: supporting
+  title: Exploring the diversity of anti-defense systems across prokaryotes, phages, and mobile genetic elements
+  authors:
+  - Tesson F
+  - Landan G
+  - Makarova KS
+  - Wolf YI
+  - Koonin EV
+  year: 2024
+  journal: Nucleic Acids Research
+  volume: '53'
+  pages: gkae1171
+  doi: null
+  pmid: '39657785'
+  url: null
+- id: touchon2016
+  type: supporting
+  title: Genetic and life-history traits associated with the distribution of prophages in bacteria
+  authors:
+  - Touchon M
+  - Charpentier S
+  - Clermont O
+  - Rocha EPC
+  - Denamur E
+  - Hasler R
+  - Hauser PM
+  year: 2016
+  journal: ISME Journal
+  volume: '10'
+  pages: 2744-2754
+  doi: null
+  pmid: '27015004'
+  url: null
+- id: yutin2018
+  type: supporting
+  title: Discovery of an expansive bacteriophage family that includes the most abundant viruses from the human gut
+  authors:
+  - Yutin N
+  - Makarova KS
+  - Meinke AL
+  - Sorek R
+  - Koonin EV
+  year: 2018
+  journal: Nature Microbiology
+  volume: '3'
+  pages: 38-46
+  doi: 10.1038/s41564-017-0053-y
+  pmid: null
+  url: null
+- id: camargo2023
+  type: methodology
+  title: Identification of mobile genetic elements with geNomad
+  authors:
+  - Camargo AP
+  - Nayfach S
+  - Souza MLM
+  - Domenico MD
+  - Roux S
+  - Kyrpides NC
+  - Eloe-Fadrosh EA
+  year: 2023
+  journal: Nature Biotechnology
+  volume: '42'
+  pages: 1303-1312
+  doi: 10.1038/s41587-023-01953-y
+  pmid: null
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - eggnog_mapper_annotations
+  - gene_cluster
+  - gene
+  - gene_genecluster_junction
+  - genome
+  - gtdb_species_clade
+  - gtdb_taxonomy_r214v1
+  - gtdb_metadata
+  - pangenome
+  - ncbi_env
+  - alphaearth_embeddings_all_years
+  purpose: Prophage gene identification, taxonomy, environment metadata, genome size, and co-occurrence analysis
+  reference: arkin2018
+- collection: nmdc_arkin
+  tables:
+  - taxonomy_features
+  - taxonomy_dim
+  - abiotic_features
+  - study_table
+  purpose: Metagenomic cross-validation of prophage burden against abiotic environmental variables
+  reference: null
+cross_project_deps: []
+findings:
+- id: prophage_modules_universal_structurally_variable
+  title: Prophage gene modules are universal but structurally variable across 27,702 bacterial species
+  notebook: 01_prophage_gene_discovery.ipynb
+  figures:
+  - prophage_prevalence_by_phylum.png
+  - prophage_module_discovery.png
+  - prophage_conservation_by_module.png
+  data_files: []
+  references:
+  - bobay2014
+  - hendrix2000
+  statistics:
+    species_total: '27702'
+    gene_clusters_total: '4005537'
+    packaging_prevalence: 100%
+    lysis_prevalence: 99.9%
+    lysogenic_regulation_prevalence: 100%
+    head_morphogenesis_prevalence: 56.1%
+    tail_prevalence: 55.6%
+    anti_defense_prevalence: 64.3%
+    all_seven_modules: 34.9%
+- id: environment_explains_more_variance_than_phylogeny
+  title: Environment explains more variance in prophage composition than host phylogeny
+  notebook: 04_phylogenetic_distribution.ipynb
+  figures:
+  - variance_partitioning.png
+  - genome_size_confound.png
+  data_files: []
+  references:
+  - anderson2001
+  statistics:
+    test: PERMANOVA
+    genome_size_f_statistic: '212.99'
+    environment_f_statistic: '30.04'
+    phylogeny_f_statistic: '6.17'
+    p_value: '0.01'
+    genome_size_species_correlation: '0.717'
+    partial_spearman_rho: '0.468'
+    partial_spearman_p_value: '8.41e-110'
+- id: tail_head_antidefense_enriched_human_associated
+  title: Tail, head, and anti-defense modules are enriched in human-associated environments beyond phylogenetic expectation
+  notebook: 06_enriched_modules_lineages.ipynb
+  figures:
+  - module_environment_enrichment.png
+  data_files: []
+  references:
+  - low2024
+  - bernheim2020
+  statistics:
+    test: Constrained permutation null model
+    permutations: '500'
+    species_analyzed: '18031'
+    significant_enrichments: '8'
+    fdr_threshold: '0.05'
+    tail_human_associated_log2or: '2.21'
+    tail_human_associated_zscore: '10.86'
+    head_human_associated_log2or: '1.98'
+    head_human_associated_zscore: '10.00'
+    antidefense_human_associated_log2or: '1.70'
+    antidefense_human_associated_zscore: '8.76'
+- id: terL_lineages_phylogenetically_constrained
+  title: TerL lineages are phylogenetically constrained but include both specialist and generalist strategies
+  notebook: 02_terL_lineage_clustering.ipynb
+  figures:
+  - terL_lineage_overview.png
+  - lineage_environment_heatmap.png
+  data_files: []
+  references:
+  - mavrich2017
+  statistics:
+    terL_sequences: '38085'
+    clustering_identity: 70%
+    lineages_total: '10991'
+    lineage_median_size: '1'
+    lineage_max_size: '1094'
+    lineage_max_species: '869'
+    significant_lineage_enrichments: '0'
+    fdr_corrected_tests: '500'
+    specialist_lineages: '325'
+    generalist_lineages: '499'
+- id: nmdc_validates_module_environmental_signal
+  title: NMDC metagenomic data independently validates module-level environmental signal
+  notebook: 05_nmdc_environmental_analysis.ipynb
+  figures:
+  - nmdc_prophage_vs_abiotic.png
+  - nmdc_module_abiotic_heatmap.png
+  data_files: []
+  references:
+  - low2024
+  statistics:
+    nmdc_samples: '6365'
+    median_matching_coverage: 87.2%
+    significant_correlations: '57'
+    fdr_threshold: '0.05'
+    packaging_ph_rho: '0.519'
+    all_modules_ph_rho: '0.474'
+    all_modules_temperature_rho: '0.399'
+    all_modules_depth_rho: '0.361'
+    all_modules_nitrogen_rho: '0.333'
+generated_data:
+- file: data/module_cooccurrence_stats.tsv
+  rows: 95
+  description: Per-species per-module co-occurrence z-scores and permutation-based p-values
+  source_notebook: 03_module_cooccurrence.ipynb
+- file: data/contig_colocation.tsv
+  rows: 95
+  description: Per-species per-module contig co-localization fractions (genes on same contig)
+  source_notebook: 03_module_cooccurrence.ipynb

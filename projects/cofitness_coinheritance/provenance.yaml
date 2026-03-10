@@ -1,0 +1,193 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Callaghan M
+  - Ray J
+  - Liu H
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: '29769716'
+  url: null
+- id: hall2021
+  type: supporting
+  title: Gene-gene relationships in an Escherichia coli accessory genome are linked to function and mobility
+  authors:
+  - Hall RJ
+  - Whelan FJ
+  - McInerney JO
+  - Ou Y
+  - Domingo-Sananes MR
+  year: 2021
+  journal: Microbial Genomics
+  volume: '7'
+  pages: null
+  doi: 10.1099/mgen.0.000650
+  pmid: '34499026'
+  url: null
+- id: whelan2020
+  type: methodology
+  title: 'Coinfinder: detecting significant associations and dissociations in pangenomes'
+  authors:
+  - Whelan FJ
+  - Rusilowicz M
+  - McInerney JO
+  year: 2020
+  journal: Microbial Genomics
+  volume: '6'
+  pages: null
+  doi: 10.1099/mgen.0.000338
+  pmid: '32100706'
+  url: null
+- id: choudhury2025
+  type: supporting
+  title: Heterogeneity in recombination rates and accessory gene co-occurrence distinguish Pseudomonas aeruginosa phylogroups
+  authors:
+  - Choudhury ST
+  - Bhatt P
+  - Giri S
+  - Fitch K
+  - Roach DJ
+  - Smith AH
+  year: 2025
+  journal: mSystems
+  volume: '10'
+  pages: null
+  doi: 10.1128/msystems.00088-25
+  pmid: '40304385'
+  url: null
+- id: parks2022
+  type: supporting
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: 10.1093/nar/gkab776
+  pmid: '34520557'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - cofit
+  - gene
+  purpose: Co-fitness pairs (top-20 per gene) and gene coordinates
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables:
+  - gene_genecluster_junction
+  - gene
+  - phylogenetic_tree_distance_pairs
+  purpose: Genome x cluster presence matrices and phylogenetic distances
+  reference: null
+cross_project_deps:
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  - data/organism_mapping.tsv
+  - data/seed_annotations.tsv
+  description: Gene-to-cluster mapping, organism clade mapping, and SEED functional annotations
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/modules/
+  description: ICA module memberships for secondary analysis
+- project: module_conservation
+  relationship: extends
+  files:
+  - data/module_conservation.tsv
+  description: Module conservation statistics; extends by testing co-inheritance
+findings:
+- id: cofit_predicts_cooccurrence
+  title: Pairwise Co-fitness Weakly Predicts Co-occurrence
+  notebook: 02_cooccurrence.ipynb
+  figures:
+  - fig1_cofit_cooccurrence.png
+  data_files: []
+  references:
+  - price2018
+  - whelan2020
+  statistics:
+    organisms_analyzed: '9'
+    cofit_pairs_tested: 2,253,491
+    random_pairs_control: 22,534,910
+    mean_delta_phi: '+0.003'
+    organisms_positive_delta: 7/9
+    organisms_significant: 8/9
+    mann_whitney_p_value: '1.66e-29'
+    wilcoxon_signed_rank_p_value: '0.13'
+    strongest_organism_ddia6719_delta: '+0.093'
+- id: operons_not_confound
+  title: Operons Are Not a Confound
+  notebook: 02_cooccurrence.ipynb
+  figures:
+  - fig2_operon_control.png
+  data_files: []
+  references: []
+  statistics:
+    adjacent_cofit_pairs_percent: '0.7'
+- id: ica_modules_co_inherit
+  title: ICA Modules Show Co-inheritance, Especially Accessory Modules
+  notebook: 03_module_coinheritance.ipynb
+  figures:
+  - fig5_module_coinheritance.png
+  data_files: []
+  references: []
+  statistics:
+    modules_analyzed: '195'
+    organisms: '6'
+    mean_module_phi: '0.229'
+    null_expectation_phi: '0.177'
+    delta_phi: '+0.053'
+    significant_modules_p05: 51/195
+    significant_modules_fdr_q05: 21/195
+    accessory_modules_significant: 8/11
+    accessory_modules_fdr: 4/11
+    accessory_mean_delta: '+0.108'
+    core_mean_delta: '+0.059'
+    mixed_mean_delta: '+0.031'
+    mann_whitney_accessory_vs_core_p: '0.051'
+- id: cofit_strength_anticorrelates
+  title: Co-fitness Strength Weakly Anti-correlates with Co-occurrence
+  notebook: 02_cooccurrence.ipynb
+  figures:
+  - fig4_cofit_strength.png
+  data_files: []
+  references: []
+  statistics:
+    spearman_rho: '-0.109'
+    p_value: <1e-300
+    pairs_analyzed: 1,040,000
+- id: phylogenetic_distance_stratification
+  title: Phylogenetic Distance Stratification
+  notebook: 02_cooccurrence.ipynb
+  figures:
+  - fig3_phylo_control.png
+  data_files: []
+  references: []
+  statistics:
+    mean_phi_near_genomes: '0.102'
+    mean_phi_medium_genomes: '0.067'
+- id: functional_enrichment
+  title: Functional Enrichment
+  notebook: 04_cross_organism.ipynb
+  figures:
+  - fig6_functional.png
+  data_files: []
+  references: []
+  statistics:
+    top_category_metabolism: 15,936
+    top_category_transport: 11,940
+generated_data: []

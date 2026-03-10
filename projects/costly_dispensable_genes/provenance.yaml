@@ -1,0 +1,165 @@
+schema_version: 1
+references:
+- id: morris2012
+  type: supporting
+  title: 'The Black Queen Hypothesis: evolution of dependencies through adaptive gene loss'
+  authors:
+  - Morris JJ
+  - Lenski RE
+  - Zinser ER
+  year: 2012
+  journal: mBio
+  volume: '3'
+  pages: null
+  doi: 10.1128/mBio.00036-12
+  pmid: '22448042'
+  url: null
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Calef M
+  - Tber J
+  - Engel A
+  - Chol J
+  - Arkin AP
+  - Deutschbauer AM
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: '29769716'
+  url: null
+- id: rosconi2022
+  type: supporting
+  title: A bacterial pan-genome makes gene essentiality strain-dependent and evolvable
+  authors:
+  - Rosconi F
+  year: 2022
+  journal: Nat Microbiol
+  volume: '7'
+  pages: 1580-1592
+  doi: 10.1038/s41564-022-01208-7
+  pmid: '36097170'
+  url: null
+- id: armitage2025
+  type: supporting
+  title: Adaptive pangenomic remodeling in the Azolla cyanobiont amid a transient microbiome
+  authors:
+  - Armitage DW
+  year: 2025
+  journal: null
+  volume: ISME J
+  pages: null
+  doi: null
+  pmid: '40728316'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - genefitness
+  - gene
+  - exps
+  purpose: Per-gene fitness values, gene metadata, experiment descriptions
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables:
+  - gene_cluster
+  - gene_genecluster_junction
+  - eggnog_mapper_annotations
+  purpose: Pangenome gene clusters, gene-to-cluster mappings, functional annotations
+  reference: null
+cross_project_deps:
+- project: core_gene_tradeoffs
+  relationship: data_input
+  files: []
+  description: 2x2 selection signature matrix, fitness stats, and conservation status for 142,190 genes
+- project: fitness_effects_conservation
+  relationship: data_input
+  files: []
+  description: Fitness statistics, specific phenotypes, SEED annotations, KEGG annotations
+- project: conservation_vs_fitness
+  relationship: data_input
+  files: []
+  description: FB-pangenome linkage, core/auxiliary classification, gene metadata
+- project: essential_genome
+  relationship: data_input
+  files: []
+  description: Ortholog group assignments across 48 organisms
+findings:
+- id: costly_dispensable_mobile_elements
+  title: Costly+Dispensable Genes Are Mobile Genetic Elements
+  notebook: 02_functional_characterization.ipynb
+  figures:
+  - fig_seed_enrichment.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    mobile_element_keyword_or: '7.45'
+    mobile_element_keyword_p: '4.6e-71'
+    phage_transposon_plasmid_enrichment: 11.7x
+    phage_transposon_plasmid_fdr: '1.3e-17'
+    virulence_enrichment: 26.7x
+    virulence_fdr: '5.6e-14'
+- id: costly_dispensable_recent_acquisitions
+  title: They Are Poorly Characterized Recent Acquisitions
+  notebook: null
+  figures:
+  - fig_annotation_rate.png
+  - fig_ortholog_breadth.png
+  - fig_gene_length.png
+  data_files: []
+  references: []
+  statistics:
+    seed_annotation_rate_costly_dispensable: 50.8%
+    seed_annotation_rate_costly_conserved: 74.9%
+    kegg_annotation_rate_costly_dispensable: 20.0%
+    kegg_annotation_rate_costly_conserved: 42.7%
+    orphan_fraction_costly_dispensable: 44.5%
+    orphan_fraction_costly_conserved: 13.1%
+    median_og_breadth_costly_dispensable: '15'
+    median_og_breadth_costly_conserved: '31'
+    og_breadth_mann_whitney_p: '4.0e-99'
+    og_breadth_rank_biserial_r: '0.233'
+    singleton_fraction_costly_dispensable: 24.2%
+    singleton_fraction_costly_conserved: 0%
+    median_length_costly_dispensable: 615 bp
+    median_length_costly_conserved: 765 bp
+    gene_length_p: '4.2e-75'
+    gene_length_rank_biserial_r: '0.170'
+- id: core_metabolism_depleted
+  title: Core Metabolism Is Depleted
+  notebook: 02_functional_characterization.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    depleted_categories_fdr_threshold: '0.05'
+    depleted_categories_count: '14'
+- id: pstutzeri_outlier
+  title: '*Pseudomonas stutzeri* RCH2 Is an Outlier'
+  notebook: 03_evolutionary_context.ipynb
+  figures:
+  - fig_organism_distribution.png
+  - fig_per_organism.png
+  data_files: []
+  references: []
+  statistics:
+    pstutzeri_costly_dispensable_fraction: 21.5%
+    next_organism_costly_dispensable_fraction: 14.0%
+- id: condition_specific_phenotypes
+  title: Costly+Dispensable Genes Still Have Condition-Specific Effects
+  notebook: 01_define_quadrants.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    costly_dispensable_condition_specific: 14.1%
+    costly_conserved_condition_specific: 16.7%
+    neutral_dispensable_condition_specific: 2.7%
+generated_data: []

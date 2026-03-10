@@ -1,0 +1,150 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: parks2022
+  type: supporting
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+- id: rosconi2022
+  type: supporting
+  title: A bacterial pan-genome makes gene essentiality strain-dependent and evolvable
+  authors:
+  - Rosconi F
+  year: 2022
+  journal: Nature Microbiology
+  volume: '7'
+  pages: 1580-1592
+  doi: 10.1038/s41564-022-01243-6
+  pmid: null
+  url: null
+- id: koskiniemi2012
+  type: supporting
+  title: Selection-driven gene loss in bacteria
+  authors:
+  - Koskiniemi S
+  year: 2012
+  journal: PLOS Genetics
+  volume: '8'
+  pages: null
+  doi: null
+  pmid: '22761588'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables: []
+  purpose: RB-TnSeq mutant fitness data across diverse bacterial conditions
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables: []
+  purpose: Gene-to-cluster conservation mapping
+  reference: null
+cross_project_deps:
+- project: fitness_effects_conservation
+  relationship: data_input
+  files:
+  - data/fitness_stats.tsv
+  description: Per-gene fitness statistics and core/accessory classification
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  - data/seed_annotations.tsv
+  - data/seed_hierarchy.tsv
+  description: Gene-to-cluster links with conservation status and SEED functional annotations
+findings:
+- id: burden_paradox_function_specific
+  title: The Burden Paradox Is Function-Specific
+  notebook: 01_burden_anatomy.ipynb
+  figures:
+  - burden_by_function.png
+  - burden_by_condition.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    protein_metabolism_excess: +6.2pp
+    motility_excess: +7.8pp
+    rna_metabolism_excess: +12.9pp
+    cell_wall_reversal: -14.1pp
+- id: tradeoff_genes_core_enrichment
+  title: Trade-Off Genes Are Enriched in Core
+  notebook: 01_burden_anatomy.ipynb
+  figures:
+  - tradeoff_genes_conservation.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    tradeoff_genes_count: '25271'
+    tradeoff_genes_percentage: 17.8%
+    odds_ratio: '1.29'
+    p_value: '1.2e-44'
+- id: selection_signature_matrix
+  title: The Selection Signature Matrix
+  notebook: 01_burden_anatomy.ipynb
+  figures:
+  - selection_signature_matrix.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    costly_conserved: '28017'
+    costly_dispensable: '5526'
+    neutral_conserved: '86761'
+    neutral_dispensable: '21886'
+- id: case_studies_phenotype
+  title: Case Studies
+  notebook: 01_burden_anatomy.ipynb
+  figures:
+  - specific_phenotype_conditions.png
+  - motility_case_study.png
+  data_files: []
+  references:
+  - price2018
+  - koskiniemi2012
+  statistics: {}
+generated_data:
+- file: figures/burden_by_function.png
+  rows: null
+  description: Burden excess by functional category
+  source_notebook: 01_burden_anatomy.ipynb
+- file: figures/burden_by_condition.png
+  rows: null
+  description: Burden patterns by condition type
+  source_notebook: 01_burden_anatomy.ipynb
+- file: figures/tradeoff_genes_conservation.png
+  rows: null
+  description: Trade-off gene conservation enrichment
+  source_notebook: 01_burden_anatomy.ipynb
+- file: figures/selection_signature_matrix.png
+  rows: null
+  description: Selection signature matrix
+  source_notebook: 01_burden_anatomy.ipynb
+- file: figures/specific_phenotype_conditions.png
+  rows: null
+  description: Specific phenotype conditions
+  source_notebook: 01_burden_anatomy.ipynb
+- file: figures/motility_case_study.png
+  rows: null
+  description: Motility case study
+  source_notebook: 01_burden_anatomy.ipynb

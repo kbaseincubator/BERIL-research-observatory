@@ -1,5 +1,5 @@
 version: 1
-generated_at: '2026-03-10T01:56:36'
+generated_at: '2026-03-10T02:18:32'
 figure_count: 330
 figures:
 - project: acinetobacter_adp1_explorer
@@ -1966,32 +1966,32 @@ figures:
   tags:
   - ecotype
 - project: pathway_capability_dependency
-  file: pathway_conservation_by_phylum.png
-  path: projects/pathway_capability_dependency/figures/pathway_conservation_by_phylum.png
-  caption: null
-  notebook: null
-  tags: []
-- project: pathway_capability_dependency
-  file: summary_statistics.txt
-  path: projects/pathway_capability_dependency/figures/summary_statistics.txt
-  caption: null
-  notebook: null
-  tags: []
-- project: pathway_capability_dependency
   file: tier1_category_distribution.png
   path: projects/pathway_capability_dependency/figures/tier1_category_distribution.png
-  caption: null
-  notebook: null
+  caption: Pathway Completeness Alone Is Insufficient to Predict Metabolic Dependency
+  notebook: 02_tier1_pathway_classification.ipynb
   tags: []
 - project: pathway_capability_dependency
   file: tier1_completeness_vs_importance.png
   path: projects/pathway_capability_dependency/figures/tier1_completeness_vs_importance.png
-  caption: null
-  notebook: null
+  caption: Pathway Completeness Alone Is Insufficient to Predict Metabolic Dependency
+  notebook: 02_tier1_pathway_classification.ipynb
   tags: []
 - project: pathway_capability_dependency
   file: tier1_conservation_validation.png
   path: projects/pathway_capability_dependency/figures/tier1_conservation_validation.png
+  caption: 'Conservation Validation: Active Dependencies Have Near-Complete Core Genomes'
+  notebook: 02_tier1_pathway_classification.ipynb
+  tags: []
+- project: pathway_capability_dependency
+  file: pathway_conservation_by_phylum.png
+  path: projects/pathway_capability_dependency/figures/pathway_conservation_by_phylum.png
+  caption: Variable Pathways Strongly Correlate with Pangenome Openness
+  notebook: 03_tier2_pathway_conservation.ipynb
+  tags: []
+- project: pathway_capability_dependency
+  file: summary_statistics.txt
+  path: projects/pathway_capability_dependency/figures/summary_statistics.txt
   caption: null
   notebook: null
   tags: []

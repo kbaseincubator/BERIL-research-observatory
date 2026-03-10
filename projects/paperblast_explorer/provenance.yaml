@@ -1,0 +1,208 @@
+schema_version: 1
+references:
+- id: price2017
+  type: primary_data_source
+  title: 'PaperBLAST: Text Mining Papers for Information about Homologs'
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2017
+  journal: mSystems
+  volume: '2'
+  pages: null
+  doi: 10.1128/msystems.00039-17
+  pmid: '28845461'
+  url: null
+- id: price2019
+  type: supporting
+  title: Curated BLAST for Genomes
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2019
+  journal: mSystems
+  volume: '4'
+  pages: null
+  doi: 10.1128/mSystems.00072-19
+  pmid: '31164459'
+  url: null
+- id: price2024
+  type: supporting
+  title: Interactive tools for functional annotation of bacterial genomes
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2024
+  journal: Database
+  volume: '2024'
+  pages: null
+  doi: 10.1093/database/baae089
+  pmid: null
+  url: null
+- id: stoeger2018
+  type: supporting
+  title: Large-scale investigation of the reasons why potentially important genes are ignored
+  authors:
+  - Stoeger T
+  - Gerlach M
+  - Morimoto RI
+  - Nunes Amaral LA
+  year: 2018
+  journal: PLoS Biology
+  volume: '16'
+  pages: null
+  doi: 10.1371/journal.pbio.2006643
+  pmid: '30226837'
+  url: null
+- id: perdigao2015
+  type: supporting
+  title: Unexpected features of the dark proteome
+  authors:
+  - Perdigao N
+  - Heinrich J
+  - Stolte C
+  year: 2015
+  journal: Proceedings of the National Academy of Sciences USA
+  volume: '112'
+  pages: 15898-15903
+  doi: 10.1073/pnas.1508380112
+  pmid: '26627242'
+  url: null
+- id: rocha2023
+  type: supporting
+  title: 'Functional unknomics: Systematic screening of conserved genes of unknown function'
+  authors:
+  - Rocha JJ
+  - Jayaram SA
+  - Stevens TJ
+  year: 2023
+  journal: PLoS Biology
+  volume: '21'
+  pages: null
+  doi: 10.1371/journal.pbio.3002222
+  pmid: '37590228'
+  url: null
+- id: arkin2018
+  type: methodology
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  - Cottingham RW
+  - Henry CS
+  year: 2018
+  journal: Nature Biotechnology
+  volume: '36'
+  pages: 566-569
+  doi: 10.1038/nbt.4163
+  pmid: '29979655'
+  url: null
+data_sources:
+- collection: kescience_paperblast
+  tables:
+  - genepaper
+  - gene
+  - snippet
+  - generif
+  - curatedgene
+  - curatedpaper
+  - uniq
+  - site
+  - hassites
+  - seqhassite
+  - pdbligand
+  - pdbclustinfo
+  - paperaccess
+  - seqtoduplicate
+  purpose: All 14 tables — gene-paper links, metadata, sequences, structural data
+  reference: price2017
+- collection: kescience_fitnessbrowser
+  tables: []
+  purpose: Cross-referencing via VIMSS IDs for organism coverage validation
+  reference: null
+cross_project_deps: []
+findings:
+- id: organism_dominance
+  title: One organism dominates nearly half of all literature
+  notebook: 02_coverage_skew.ipynb
+  figures:
+  - organism_coverage_skew.png
+  data_files: []
+  references:
+  - stoeger2018
+  statistics:
+    homo_sapiens_percentage: 46.7%
+    top5_organisms_percentage: 72.8%
+    top1000_organisms_percentage: 94.2%
+- id: gene_coverage_concentration
+  title: 65.6% of genes have exactly one paper
+  notebook: 02_coverage_skew.ipynb
+  figures:
+  - gene_coverage_skew.png
+  data_files: []
+  references:
+  - stoeger2018
+  statistics:
+    single_paper_genes: 551K (65.6%)
+    median_papers_per_gene: '1'
+    mean_papers_per_gene: '3.8'
+    top_gene: p53 with 9988 papers
+    top_50_genes_percentage: 57.7%
+- id: lorenz_inequality
+  title: Literature inequality is extreme — Lorenz curves
+  notebook: 02_coverage_skew.ipynb
+  figures:
+  - lorenz_curves.png
+  data_files: []
+  references: []
+  statistics:
+    organism_gini: '0.967'
+    gene_gini: '0.669'
+- id: bacterial_research_bias
+  title: Bacterial research is concentrated on pathogens
+  notebook: 02_coverage_skew.ipynb
+  figures:
+  - top20_bacteria.png
+  data_files: []
+  references: []
+  statistics:
+    total_bacterial_organisms: '15312'
+    top100_bacteria_percentage: 44.3%
+    m_tuberculosis_papers: '9079'
+    e_coli_papers: '8860'
+    p_aeruginosa_papers: '5928'
+- id: protein_family_clustering
+  title: 345K protein families from 816K sequences
+  notebook: 03_sequence_clustering.ipynb
+  figures:
+  - sequence_space_reduction.png
+  data_files: []
+  references: []
+  statistics:
+    total_sequences: '815571'
+    clusters_at_90_percent: 628K
+    clusters_at_50_percent: 345K
+    clusters_at_30_percent: 215K
+    largest_hsp70_family: 650 members at 50%
+    largest_gapdh_family: 609 members
+    largest_enolase_family: 552 members
+    largest_groel_family: 443 members
+- id: dark_protein_families
+  title: 55% of protein families are dark or dim
+  notebook: 03_sequence_clustering.ipynb
+  figures:
+  - literature_coverage_landscape.png
+  data_files: []
+  references:
+  - perdigao2015
+  - rocha2023
+  statistics:
+    zero_paper_families: 31653 (9.2%)
+    single_paper_families: 159046 (46.1%)
+    twenty_plus_paper_families: 14904 (4.3%)
+    dark_families: '5218'
+    dark_family_sequences: '14534'
+generated_data:
+- file: data/clustering_summary.txt
+  rows: null
+  description: MMseqs2 clustering summary
+  source_notebook: null

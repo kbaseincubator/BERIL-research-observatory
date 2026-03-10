@@ -1,0 +1,170 @@
+schema_version: 1
+references:
+- id: price2018
+  type: methodology
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: wu2019
+  type: supporting
+  title: The RuvRCAB operon contributes to resistance against Cr(VI), As(III), Sb(III), and Cd(II)
+  authors:
+  - Wu
+  year: 2019
+  journal: Appl Microbiol Biotechnol
+  volume: '103'
+  pages: 2489-2500
+  doi: null
+  pmid: '30729256'
+  url: null
+- id: ignatov2025
+  type: supporting
+  title: YebC is a ribosome-associated translation factor for proline-rich proteins
+  authors:
+  - Ignatov
+  year: 2025
+  journal: Nature Communications
+  volume: null
+  pages: null
+  doi: null
+  pmid: '40624002'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - specificphenotype
+  - experiments
+  - fitness_matrix
+  purpose: Source of fitness defect data for 6,504 experiments across 32 organisms
+  reference: null
+cross_project_deps:
+- project: metal_fitness_atlas
+  relationship: data_input
+  files:
+  - data/metal_important_genes.csv
+  - data/metal_experiments.csv
+  - data/novel_metal_candidates.csv
+  - data/conserved_metal_families.csv
+  description: 12,838 metal-important genes and 559 metal experiments classified by metal type
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/matrices
+  description: Full fitness and t-score matrices for 32 organisms (6,504 total experiments)
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  description: Gene-to-pangenome links with core/accessory status for conservation analysis
+- project: essential_genome
+  relationship: data_input
+  files:
+  - data/all_ortholog_groups.csv
+  - data/all_seed_annotations.tsv
+  description: Ortholog group assignments and functional annotations
+- project: counter_ion_effects
+  relationship: data_input
+  files:
+  - data/
+  description: Cross-validation of osmotic stress overlap with metal-important genes
+findings:
+- id: metal_specificity_prevalence
+  title: 55% of Metal-Important Genes Are Metal-Specific
+  notebook: 02_gene_specificity.ipynb
+  figures:
+  - specificity_breakdown.png
+  - threshold_sensitivity.png
+  data_files: []
+  references: []
+  statistics:
+    metal_specific_genes: 4,177 (54.9%)
+    general_sick_genes: 2,888 (38.0%)
+    metal_plus_stress_genes: 544 (7.2%)
+    genes_analyzed: 7,609 of 12,838 (59.3%)
+    organisms_analyzed: 24 of 31
+    manganese_specificity: 60.6%
+    molybdenum_specificity: 60.5%
+    tungsten_specificity: 56.5%
+    iron_specificity: 21.9%
+- id: core_enrichment_by_specificity
+  title: Metal-Specific Genes Are Core-Enriched but Less So Than General Sick Genes
+  notebook: 03_conservation_analysis.ipynb
+  figures:
+  - conservation_by_specificity.png
+  data_files: []
+  references: []
+  statistics:
+    metal_specific_pooled_core: 84.8% (2,969/3,500)
+    metal_specific_organism_mean: 88.0%
+    metal_specific_delta: +6.9%
+    general_sick_core: 90.2% (2,183/2,420)
+    baseline_core: 79.8% (73,957/92,650)
+    cmh_test_pvalue: '0.011'
+    positive_organisms: 19/22
+    significant_organisms: 12/22
+- id: functional_enrichment_metal_specificity
+  title: Metal-Specific Genes Are Enriched for Metal Resistance Functions
+  notebook: 04_functional_enrichment.ipynb
+  figures:
+  - functional_comparison.png
+  data_files: []
+  references: []
+  statistics:
+    metal_specific_metal_keywords: 12.2%
+    general_sick_metal_keywords: 7.8%
+    fisher_or: '1.64'
+    fisher_p: '2.4e-8'
+    metal_specific_stress_keywords: 13.7%
+    general_sick_stress_keywords: 11.5%
+- id: novel_candidates_specificity
+  title: Top Novel Candidate Specificity
+  notebook: 04_functional_enrichment.ipynb
+  figures: []
+  data_files: []
+  references:
+  - ignatov2025
+  statistics:
+    ucp030820_specificity: 67%
+    yebC_specificity: 58%
+    duf1043_specificity: 50%
+    yebC_organisms: '11'
+    yebC_metals: '6'
+- id: novel_candidates_not_disproportionately_specific
+  title: Novel Candidates Are Not Disproportionately Metal-Specific
+  notebook: 04_functional_enrichment.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    novel_metal_specific_fraction: 45.6%
+    annotated_metal_specific_fraction: 58.2%
+    fisher_or: '0.60'
+    fisher_p: '0.003'
+    novel_candidates_count: '149'
+- id: ica_module_analysis_inconclusive
+  title: 'ICA Module Analysis: Inconclusive'
+  notebook: 04_functional_enrichment.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    metal_specific_modules: '0'
+- id: osmotic_stress_cross_validation
+  title: Cross-Validation Against Counter Ion Effects
+  notebook: 02_gene_specificity.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    counter_ion_overlap: 39.8%
+    osmotic_stress_genes: 14.7%
+    discrepancy_ratio: 2.7x
+generated_data: []

@@ -1,0 +1,318 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: wetmore2015
+  type: methodology
+  title: Rapid quantification of mutant fitness in diverse bacteria by sequencing randomly bar-coded transposons
+  authors:
+  - Wetmore KM
+  year: 2015
+  journal: mBio
+  volume: '6'
+  pages: null
+  doi: null
+  pmid: '25968644'
+  url: null
+- id: carlson2019
+  type: supporting
+  title: The selective pressures on the microbial community in a metal-contaminated aquifer
+  authors:
+  - Carlson HK
+  year: 2019
+  journal: ISME J
+  volume: '13'
+  pages: 937-949
+  doi: null
+  pmid: '30523276'
+  url: null
+- id: trotter2023
+  type: supporting
+  title: Large-scale genetic characterization of DvH
+  authors:
+  - Trotter VV
+  year: 2023
+  journal: Front Microbiol
+  volume: '14'
+  pages: '1095132'
+  doi: null
+  pmid: '37065130'
+  url: null
+- id: peng2022
+  type: supporting
+  title: Genomic features and pervasive negative selection in Rhodanobacter
+  authors:
+  - Peng M
+  year: 2022
+  journal: Microbiol Spectr
+  volume: '10'
+  pages: null
+  doi: null
+  pmid: '35107332'
+  url: null
+- id: rosconi2022
+  type: supporting
+  title: A bacterial pan-genome makes gene essentiality strain-dependent
+  authors:
+  - Rosconi F
+  year: 2022
+  journal: Nat Microbiol
+  volume: '7'
+  pages: 1580-1592
+  doi: null
+  pmid: '36097170'
+  url: null
+- id: pal2014
+  type: supporting
+  title: 'BacMet: antibacterial biocide and metal resistance genes database'
+  authors:
+  - Pal C
+  year: 2014
+  journal: Nucleic Acids Res
+  volume: '42'
+  pages: D617-D624
+  doi: null
+  pmid: '24304895'
+  url: null
+- id: nies2003
+  type: supporting
+  title: Efflux-mediated heavy metal resistance in prokaryotes
+  authors:
+  - Nies DH
+  year: 2003
+  journal: FEMS Microbiol Rev
+  volume: '27'
+  pages: 313-339
+  doi: null
+  pmid: '12829273'
+  url: null
+- id: li2017
+  type: contradicting
+  title: Co-occurrence of antibiotic and metal resistance genes
+  authors:
+  - Li LG
+  year: 2017
+  journal: ISME J
+  volume: '11'
+  pages: 651-662
+  doi: null
+  pmid: '27959344'
+  url: null
+- id: borchert2019
+  type: supporting
+  title: Modular fitness landscapes reveal parallels between independent biological systems
+  authors:
+  - Borchert AJ
+  year: 2019
+  journal: Nat Ecol Evol
+  volume: '3'
+  pages: 1233-1242
+  doi: null
+  pmid: null
+  url: https://www.nature.com/articles/s41559-019-0957-4
+- id: arkin2018
+  type: methodology
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  year: 2018
+  journal: Nat Biotechnol
+  volume: '36'
+  pages: 566-569
+  doi: null
+  pmid: '29979655'
+  url: null
+- id: mergeay2003
+  type: supporting
+  title: Ralstonia metallidurans, towards a catalogue of metal-responsive genes
+  authors:
+  - Mergeay M
+  year: 2003
+  journal: FEMS Microbiol Rev
+  volume: '27'
+  pages: 385-410
+  doi: null
+  pmid: null
+  url: https://academic.oup.com/femsre/article/27/4/385/555233
+- id: vera2013
+  type: supporting
+  title: 'Progress in bioleaching: mechanisms of bacterial metal sulfide oxidation'
+  authors:
+  - Vera M
+  year: 2013
+  journal: Appl Microbiol Biotechnol
+  volume: '97'
+  pages: 7529-7541
+  doi: null
+  pmid: null
+  url: https://link.springer.com/article/10.1007/s00253-013-5095-3
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - genefitness
+  - expcondition
+  - experiment
+  - ortholog
+  purpose: Metal fitness scores, experiment metadata, cross-organism orthologs
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables:
+  - gene_cluster
+  - eggnog_mapper_annotations
+  purpose: Core/accessory classification, functional annotations
+  reference: null
+cross_project_deps:
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/matrices/
+  - data/modules/
+  - data/annotations/
+  description: Fitness matrices for 32 organisms, ICA module data, experiment metadata
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  - data/organism_mapping.tsv
+  description: FB-to-pangenome gene links, organism-to-clade mapping
+- project: essential_genome
+  relationship: data_input
+  files:
+  - data/all_ortholog_groups.csv
+  - data/family_conservation.tsv
+  - data/essential_families.tsv
+  - data/all_seed_annotations.tsv
+  description: Cross-organism ortholog groups, pangenome conservation, essentiality classification, SEED functional annotations
+- project: field_vs_lab_fitness
+  relationship: data_input
+  files:
+  - data/experiment_classification.csv
+  - data/gene_fitness_conservation.csv
+  description: DvH experiment classification template and baseline metal-conservation data
+findings:
+- id: metal_genes_core_enriched
+  title: Metal-Important Genes Are Enriched in the Core Genome
+  notebook: 03_metal_conservation_analysis.ipynb
+  figures:
+  - core_fraction_by_metal.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    overall_core_fraction: 87.4%
+    baseline_core_fraction: 76.9%
+    odds_ratio: '2.08'
+    p_value: '4.3e-162'
+    organisms_significant: 21 of 22
+    organisms_significant_p05: '14'
+- id: essential_metals_stronger_enrichment
+  title: Essential Metals Show Stronger Core Enrichment Than Toxic Metals
+  notebook: 03_metal_conservation_analysis.ipynb
+  figures:
+  - metal_conservation_by_organism.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    essential_metal_delta: '+0.148'
+    toxic_metal_delta: '+0.081'
+    mann_whitney_u: '39'
+    p_value: '0.015'
+    metals_significant_p05: 12 of 14
+    manganese_delta: '+0.198'
+    zinc_delta: '+0.151'
+- id: metal_experiments_scale
+  title: 559 Metal Experiments Across 31 Organisms and 16 Metals
+  notebook: 01_metal_experiment_classification.ipynb
+  figures:
+  - organism_metal_matrix.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    total_metal_experiments: '559'
+    fraction_of_total: 8.2%
+    metals_covered: '16'
+    metals_cross_species: '6'
+    cobalt_organisms: '27'
+    nickel_organisms: '26'
+    copper_organisms: '23'
+- id: metal_important_genes_count
+  title: 12,838 Metal-Important Gene Records Across 24 Organisms
+  notebook: 02_metal_fitness_extraction.ipynb
+  figures:
+  - metal_fitness_distributions.png
+  - metal_important_genes_by_organism.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    metal_important_genes: 12,838
+    total_gene_metal_records: 383,349
+    fraction_important: 3.3%
+    iron_important_fraction: 12.3%
+    molybdenum_important_fraction: 11.2%
+    dvh_metal_important_genes: 1,366
+    synechococcus_important_fraction: 33.6%
+- id: conserved_metal_families
+  title: 1,182 Conserved Metal Gene Families Identified
+  notebook: 04_cross_species_metal_families.ipynb
+  figures:
+  - metal_family_conservation_heatmap.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    conserved_families_2orgs: 1,182
+    conserved_families_3orgs: '601'
+    novel_candidates: '149'
+    novel_truly_unknown: '89'
+    novel_duf_domain: '43'
+    novel_partial_annotation: '17'
+    broadest_family_organisms: '17'
+    broadest_family_metals: '9'
+- id: metal_responsive_modules
+  title: Metal-Responsive ICA Modules Have High Core Fraction
+  notebook: 05_metal_responsive_modules.ipynb
+  figures:
+  - metal_module_activity_heatmap.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    metal_responsive_modules: '600'
+    total_module_metal_records: 19,453
+    responsive_fraction: 3.1%
+    modules_with_conservation_data: '183'
+    mean_core_fraction: '0.826'
+    median_core_fraction: '0.929'
+    dvh_responsive_modules: '47'
+- id: pangenome_metal_prediction
+  title: Pangenome-Scale Prediction Validates Metal Gene Signature
+  notebook: 06_pangenome_metal_prediction.ipynb
+  figures:
+  - species_metal_score_distribution.png
+  - bioleaching_species_scores.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    pangenome_species_scored: 27,702
+    metal_signature_kos: 1,286
+    leptospirillum_percentile: 91st
+    acidithiobacillus_percentile: 77th
+    marinobacter_percentile: 75th
+    sulfobacillus_percentile: 71st
+    bioleaching_group_p_value: '0.17'
+generated_data: []

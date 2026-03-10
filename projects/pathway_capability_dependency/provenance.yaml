@@ -1,0 +1,374 @@
+schema_version: 1
+references:
+- id: morris2012
+  type: supporting
+  title: 'The Black Queen Hypothesis: Evolution, Cancer, and the Origins of Altruism'
+  authors:
+  - Morris JJ
+  - Lenski RE
+  - Zinser ER
+  year: 2012
+  journal: mBio
+  volume: null
+  pages: null
+  doi: 10.1128/mBio.00102-12
+  pmid: null
+  url: null
+- id: price2020
+  type: methodology
+  title: Amino Acid Biosynthesis Pathway Completeness in Bacterial Genomes
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2020
+  journal: mSystems
+  volume: null
+  pages: null
+  doi: 10.1128/mSystems.00091-20
+  pmid: null
+  url: null
+- id: price2022
+  type: methodology
+  title: Complete Pathway Predictions in Bacterial Genomes for Carbon Source Utilization
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2022
+  journal: PLOS Genetics
+  volume: null
+  pages: null
+  doi: 10.1371/journal.pgen.1010636
+  pmid: null
+  url: null
+- id: takeuchi2024
+  type: supporting
+  title: The Constructive Black Queen Hypothesis
+  authors:
+  - Takeuchi N
+  - Hogeweg P
+  - Kaneko K
+  year: 2024
+  journal: ISME Journal
+  volume: null
+  pages: null
+  doi: 10.1038/s41396-023-01532-8
+  pmid: null
+  url: null
+- id: madi2023
+  type: supporting
+  title: Community-scale Black Queen Dynamics in the Human Gut Microbiome
+  authors:
+  - Madi A
+  - Halloway SA
+  - Korem T
+  year: 2023
+  journal: eLife
+  volume: null
+  pages: null
+  doi: 10.7554/eLife.81641
+  pmid: null
+  url: null
+- id: thompson2024
+  type: methodology
+  title: Functional Gene Modules Revealed by Independent Component Analysis of Fitness Compendia
+  authors:
+  - Thompson L
+  - Revilla-i-Roma J
+  - Colosimo M
+  year: 2024
+  journal: mSystems
+  volume: null
+  pages: null
+  doi: 10.1128/mSystems.00842-23
+  pmid: null
+  url: null
+- id: wetmore2015
+  type: primary_data_source
+  title: 'The Fitness Browser: A Database of Fitness Profiles for Microbial Genes'
+  authors:
+  - Wetmore KM
+  - Price MN
+  - Waters RJ
+  year: 2015
+  journal: Nature Methods
+  volume: null
+  pages: null
+  doi: null
+  pmid: '25849638'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - gapmind_pathways
+  - gene_cluster
+  - eggnog_mapper_annotations
+  - pangenome
+  - genome
+  purpose: GapMind pathway completeness predictions across 293K genomes; core/accessory gene classification; KEGG ortholog
+    annotations; pangenome openness metrics
+  reference: null
+- collection: kescience_fitnessbrowser
+  tables:
+  - genefitness
+  - gene
+  - exps
+  - besthitkegg
+  - seedannotation
+  purpose: RB-TnSeq fitness measurements for 48 organisms; gene metadata; experiment condition types; KEGG KO and SEED subsystem
+    annotations
+  reference: wetmore2015
+cross_project_deps:
+- project: metal_fitness_atlas
+  relationship: extends
+  files: []
+  description: Primary methodological template. Adopted cross-species conservation pipeline (fitness × conservation × Black
+    Queen framework), pangenome-scale scoring methodology, and odds ratio enrichment tests for core genome enrichment validation.
+- project: essential_metabolome
+  relationship: data_input
+  files:
+  - data/fb_genome_mapping_manual.tsv
+  description: Pilot study identifying 7 FB organisms with GapMind coverage and GapMind annotation gaps (E. coli absent).
+    Provided initial data extracts and methodology.
+- project: conservation_vs_fitness
+  relationship: data_input
+  files: []
+  description: FB-pangenome link table construction (177K links, 44 organisms), essential gene classification, SEED annotation
+    pipeline.
+- project: fitness_effects_conservation
+  relationship: data_input
+  files: []
+  description: Demonstrated that fitness breadth (number of conditions where gene is important) predicts conservation better
+    than median fitness magnitude. Incorporated breadth as 30% component of composite importance score.
+- project: core_gene_tradeoffs
+  relationship: data_input
+  files: []
+  description: Identified 28,017 genes that are costly in laboratory conditions but conserved in nature. Motivated condition-type
+    stratification (carbon/nitrogen/stress) to distinguish lab artifacts from true functional dependencies.
+- project: field_vs_lab_fitness
+  relationship: data_input
+  files: []
+  description: Field-important genes are 83.6% core vs 76.3% baseline. Adopted condition-type stratification approach (stress/carbon
+    limitation/nitrogen limitation/antibiotic) for fitness aggregation.
+- project: ecotype_analysis
+  relationship: data_input
+  files: []
+  description: Found that phylogeny dominates gene content similarity in 60.5% of species. Added phylogenetic controls to
+    all correlations and metabolic ecotype analyses to avoid confounding ancestry with independent metabolic variation.
+- project: pangenome_openness
+  relationship: data_input
+  files: []
+  description: 'Null result: pangenome openness does not correlate with environment or phylogeny effect sizes. Our pathway-variability
+    metric provides a mechanistically interpretable correlate of openness.'
+- project: cofitness_coinheritance
+  relationship: data_input
+  files: []
+  description: Found 73% of accessory modules show co-inheritance with co-fitness. Validates pathway-level aggregation of
+    gene-level fitness data.
+- project: module_conservation
+  relationship: data_input
+  files: []
+  description: 'Null result: module family breadth does NOT predict conservation. Our pathway-level conservation approach
+    avoids breadth-based metrics in favor of variability-based metrics.'
+- project: conservation_fitness_synthesis
+  relationship: data_input
+  files: []
+  description: Established 16pp fitness-conservation gradient showing that conserved genes are functionally active. Provides
+    evolutionary context for interpreting Active Dependencies as high-conservation phenotypes.
+- project: cog_analysis
+  relationship: data_input
+  files: []
+  description: 'Two-speed genome: core enriched in translation and central metabolism, novel enriched in mobile elements.
+    Establishes baseline expectations for metabolic gene conservation patterns.'
+findings:
+- id: pathway_completeness_insufficient_for_dependency
+  title: Pathway Completeness Alone Is Insufficient to Predict Metabolic Dependency
+  notebook: 02_tier1_pathway_classification.ipynb
+  figures:
+  - fig1_four_category_overview.png
+  - tier1_category_distribution.png
+  - tier1_completeness_vs_importance.png
+  data_files:
+  - data/tier1_pathway_classification.csv
+  references:
+  - morris2012
+  - price2020
+  - price2022
+  statistics:
+    active_dependencies: 57/161 (35.4%)
+    latent_capabilities: 66/161 (41.0%)
+    incomplete_but_important: 24/161 (14.9%)
+    missing: 14/161 (8.7%)
+    organisms_tested: 7
+    pathways_tested: 23
+    composite_importance_weights: essentiality 40%, fitness breadth 30%, fitness magnitude 30%
+- id: latent_capabilities_become_important_under_stress
+  title: All 'Latent Capabilities' Become Important Under Specific Conditions
+  notebook: 02_tier1_pathway_classification.ipynb
+  figures:
+  - fig5_condition_type_shifts.png
+  - tier1_condition_type_shifts.png
+  data_files:
+  - data/tier1_condition_type_analysis.csv
+  references:
+  - morris2012
+  statistics:
+    latent_capabilities_with_conditions: 66/66 (100%)
+    condition_types_tested: 4
+    most_frequent_reclassification_triggers: '[''nitrogen limitation'', ''stress'', ''carbon limitation'']'
+    genes_costly_in_lab_conserved_in_nature: 28017
+- id: active_dependencies_core_genome_enriched
+  title: 'Conservation Validation: Active Dependencies Have Near-Complete Core Genomes'
+  notebook: 02_tier1_pathway_classification.ipynb
+  figures:
+  - fig2_conservation_by_category.png
+  - tier1_conservation_validation.png
+  data_files:
+  - data/tier1_pathway_classification.csv
+  references:
+  - price2020
+  statistics:
+    active_dependency_core_completeness: '0.986'
+    latent_capability_core_completeness: '0.975'
+    completeness_gap: '0.011'
+    core_enrichment_odds_ratio: '2.08'
+- id: variable_pathways_pangenome_openness
+  title: Variable Pathways Strongly Correlate with Pangenome Openness
+  notebook: 03_tier2_pathway_conservation.ipynb
+  figures:
+  - fig3_core_accessory_pathways.png
+  - pathway_conservation_vs_openness.png
+  - pathway_conservation_by_genus.png
+  - pathway_conservation_by_phylum.png
+  data_files:
+  - data/species_pathway_metrics.csv
+  - data/core_vs_all_pathway_completeness.csv
+  references:
+  - morris2012
+  statistics:
+    species_analyzed: 2810
+    raw_spearman_rho: '0.327'
+    raw_p_value: '7.2e-71'
+    partial_spearman_rho_genome_controlled: '0.530'
+    partial_p_value: '2.83e-203'
+    genera_significant_at_p_05: 5/18
+    genera_signal_positive_direction: 13/18
+    strongest_genus_clostridium_rho: '0.534'
+    strongest_genus_eubacterium_rho: '0.506'
+- id: amino_acid_accessory_dependence
+  title: Amino Acid Biosynthesis Pathways Show the Strongest Accessory Dependence
+  notebook: 03_tier2_pathway_conservation.ipynb
+  figures:
+  - fig3_core_accessory_pathways.png
+  data_files:
+  - data/core_vs_all_pathway_completeness.csv
+  references:
+  - morris2012
+  statistics:
+    leucine_all_genes_completeness: '0.614'
+    leucine_core_completeness: '0.468'
+    leucine_gap: '0.146'
+    valine_gap: '0.146'
+    arginine_gap: '0.141'
+    lysine_gap: '0.140'
+    threonine_gap: '0.140'
+- id: metabolic_ecotypes_pangenome_correlation
+  title: Metabolic Ecotypes Correlate with Pangenome Openness
+  notebook: 04_metabolic_ecotypes.ipynb
+  figures:
+  - fig4_ecotype_openness.png
+  - ecotype_count_vs_openness.png
+  data_files:
+  - data/metabolic_ecotypes.csv
+  - data/ecotype_summary.csv
+  references: []
+  statistics:
+    species_analyzed: 225
+    median_ecotypes_per_species: 4
+    maximum_ecotypes: 8
+    species_with_8_ecotypes: '[''Alistipes onderdonkii'', ''Barnesiella intestinihominis'']'
+    raw_ecotype_openness_spearman: '0.262'
+    raw_p_value: '6.8e-05'
+    partial_spearman_genome_controlled: '0.322'
+    partial_p_value: '8.0e-07'
+generated_data:
+- file: data/gapmind_genome_pathway_status.csv
+  rows: null
+  description: Per-genome pathway completeness status from GapMind (all sequence scope), aggregated across pathway routes
+  source_notebook: 01_data_extraction.ipynb
+- file: data/gapmind_core_pathway_status.csv
+  rows: null
+  description: Per-genome pathway completeness status from GapMind (core sequence scope only)
+  source_notebook: 01_data_extraction.ipynb
+- file: data/gapmind_fb_coverage.csv
+  rows: null
+  description: GapMind pathway coverage check for all 48 Fitness Browser organisms
+  source_notebook: 01_data_extraction.ipynb
+- file: data/fb_fitness_summary.csv
+  rows: null
+  description: Per-gene fitness summary statistics including breadth (fraction of conditions with significant phenotype)
+  source_notebook: 01_data_extraction.ipynb
+- file: data/fb_fitness_by_condition_type.csv
+  rows: null
+  description: Per-gene fitness aggregated by condition type (carbon limitation, nitrogen limitation, stress, other)
+  source_notebook: 01_data_extraction.ipynb
+- file: data/fb_essential_genes.csv
+  rows: null
+  description: Putative essential genes from Fitness Browser (genes with no fitness measurements)
+  source_notebook: 01_data_extraction.ipynb
+- file: data/fb_gene_kegg_ko.csv
+  rows: null
+  description: KEGG ortholog (KO) annotations for Fitness Browser genes via besthitkegg
+  source_notebook: 01_data_extraction.ipynb
+- file: data/fb_gene_ec.csv
+  rows: null
+  description: Enzyme Commission (EC) annotations for Fitness Browser genes
+  source_notebook: 01_data_extraction.ipynb
+- file: data/fb_gene_seed.csv
+  rows: null
+  description: SEED subsystem annotations for Fitness Browser genes
+  source_notebook: 01_data_extraction.ipynb
+- file: data/kegg_map_ec.csv
+  rows: null
+  description: KEGG pathway map to EC number mappings
+  source_notebook: 01_data_extraction.ipynb
+- file: data/kegg_map_titles.csv
+  rows: null
+  description: KEGG pathway map titles and identifiers
+  source_notebook: 01_data_extraction.ipynb
+- file: data/pangenome_stats.csv
+  rows: null
+  description: Pangenome statistics per species (openness, core size, accessory size, gene cluster counts)
+  source_notebook: 01_data_extraction.ipynb
+- file: data/species_pathway_summary.csv
+  rows: null
+  description: Per-species pathway statistics (fraction of genomes complete, variation metrics)
+  source_notebook: 01_data_extraction.ipynb
+- file: data/tier1_pathway_classification.csv
+  rows: null
+  description: Classification of 161 organism-pathway pairs into four categories (Active Dependency, Latent Capability, Incomplete
+    but Important, Missing)
+  source_notebook: 02_tier1_pathway_classification.ipynb
+- file: data/tier1_condition_type_analysis.csv
+  rows: null
+  description: Per-pathway fitness effects stratified by condition type; identifies latent capabilities that become important
+    under stress/limitation
+  source_notebook: 02_tier1_pathway_classification.ipynb
+- file: data/species_pathway_metrics.csv
+  rows: null
+  description: Per-species pathway metrics including core vs all completeness gap (accessory dependence indicator)
+  source_notebook: 03_tier2_pathway_conservation.ipynb
+- file: data/core_vs_all_pathway_completeness.csv
+  rows: null
+  description: Pathway-level comparison of core-only vs all-genes completeness; identifies pathways dependent on accessory
+    genome
+  source_notebook: 03_tier2_pathway_conservation.ipynb
+- file: data/metabolic_ecotypes.csv
+  rows: null
+  description: Per-genome metabolic ecotype assignment from hierarchical clustering of pathway profiles
+  source_notebook: 04_metabolic_ecotypes.ipynb
+- file: data/ecotype_summary.csv
+  rows: null
+  description: Per-species metabolic ecotype count and diversity metrics
+  source_notebook: 04_metabolic_ecotypes.ipynb

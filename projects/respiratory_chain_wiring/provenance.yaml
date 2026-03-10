@@ -1,0 +1,197 @@
+schema_version: 1
+references:
+- id: deberardinis2008
+  type: primary_data_source
+  title: A complete collection of single-gene deletion mutants of Acinetobacter baylyi ADP1
+  authors:
+  - de Berardinis V
+  - Vallenet D
+  - Sherbet V
+  - Weissenbach J
+  - Salanoubat M
+  - Lapujade P
+  - Butland G
+  - Mechold U
+  - Koeva M
+  - Danchin A
+  year: 2008
+  journal: Molecular Systems Biology
+  volume: '4'
+  pages: '174'
+  doi: null
+  pmid: '18319726'
+  url: null
+- id: lencina2018
+  type: supporting
+  title: Type 2 NADH dehydrogenase is the only point of entry for electrons into the Streptococcus agalactiae respiratory
+    chain
+  authors:
+  - Lencina AM
+  - Ponte-Sucre A
+  - Soriano F
+  year: 2018
+  journal: mBio
+  volume: '9'
+  pages: e01034-18
+  doi: 10.1128/mBio.01034-18
+  pmid: null
+  url: null
+- id: melo2016
+  type: review
+  title: Supramolecular organization of bacterial aerobic respiratory chains
+  authors:
+  - Melo AMP
+  - Teixeira M
+  year: 2016
+  journal: BBA - Bioenergetics
+  volume: '1857'
+  pages: 190-197
+  doi: 10.1016/j.bbabio.2015.10.009
+  pmid: null
+  url: null
+- id: price2018
+  type: methodology
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Deutschman O
+  - Arkin AP
+  - others
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: null
+  url: null
+- id: sena2024
+  type: supporting
+  title: The two alternative NADH:quinone oxidoreductases from Staphylococcus aureus
+  authors:
+  - Sena FV
+  - Sousa FL
+  - Teixeira M
+  year: 2024
+  journal: Microbiology Spectrum
+  volume: '12'
+  pages: e04152-23
+  doi: 10.1128/spectrum.04152-23
+  pmid: null
+  url: null
+- id: stuani2014
+  type: supporting
+  title: Novel metabolic features in Acinetobacter baylyi ADP1 revealed by a multiomics approach
+  authors:
+  - Stuani L
+  - Riboldi GP
+  - Ferreira-da-Silva F
+  - Pereira PJB
+  year: 2014
+  journal: Metabolomics
+  volume: '10'
+  pages: 1223-1238
+  doi: null
+  pmid: '25374488'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - experiment
+  - gene
+  - genefitness
+  purpose: Cross-species aromatic substrate experiments and respiratory chain fitness data
+  reference: null
+- collection: kbase_ke_pangenome
+  tables: []
+  purpose: Pangenome analysis for NDH-2 and Complex I co-occurrence across Acinetobacter species
+  reference: null
+cross_project_deps:
+- project: aromatic_catabolism_network
+  relationship: data_input
+  files: []
+  description: Prior project identified Complex I support network for aromatic catabolism; current project extends analysis
+    to full respiratory chain condition-specificity
+- project: adp1_deletion_phenotypes
+  relationship: data_input
+  files: []
+  description: Source of condition-specific growth data across 8 carbon sources for 2,034 genes
+findings:
+- id: condition_specific_respiratory_wiring
+  title: Each carbon source uses a distinct respiratory chain configuration
+  notebook: 01_respiratory_chain_map.ipynb
+  figures:
+  - respiratory_chain_heatmap.png
+  - subsystem_profiles.png
+  data_files: []
+  references:
+  - melo2016
+  statistics:
+    quinate_complex_I_growth: '0.37'
+    acetate_complex_I_growth: '0.49'
+    glucose_complex_I_growth: '1.44'
+    lactate_complex_I_growth: '0.77'
+- id: three_nadh_dehydrogenases
+  title: ADP1 has three parallel NADH dehydrogenases with distinct condition profiles
+  notebook: 02_ndh2_indirect.ipynb
+  figures:
+  - wiring_model.png
+  data_files: []
+  references:
+  - lencina2018
+  - melo2016
+  statistics:
+    complex_I_complex_I_subunits: '13'
+    complex_I_proton_pumping: '4'
+    ndh2_subunits: '1'
+    ndh2_proton_pumping: '0'
+    aciad3522_subunits: '1'
+    aciad3522_acetate_growth: '0.013'
+- id: quinate_complex_I_paradox_resolution
+  title: The quinate-Complex I paradox is resolved by NADH flux rate, not total yield
+  notebook: 03_stoichiometry.ipynb
+  figures:
+  - nadh_stoichiometry.png
+  - wiring_matrix.png
+  data_files: []
+  references: []
+  statistics:
+    quinate_nadh_per_carbon: '0.57'
+    glucose_nadh_per_carbon: '1.50'
+    acetate_nadh_per_carbon: '1.50'
+    lactate_nadh_per_carbon: '1.67'
+    quinate_total_nadh: '4'
+    glucose_total_nadh: '9'
+    acetate_total_nadh: '3'
+    lactate_total_nadh: '5'
+- id: cross_species_ndh2_compensation
+  title: Cross-species NDH-2 presence does NOT predict reduced Complex I aromatic dependency
+  notebook: 04_cross_species_respiratory.ipynb
+  figures:
+  - ndh2_vs_complex_I.png
+  - respiratory_clustermap.png
+  data_files: []
+  references: []
+  statistics:
+    organisms_with_ndh2: '5'
+    organisms_without_ndh2: '9'
+    mean_complex_I_deficit_with_ndh2: '-0.297'
+    mean_complex_I_deficit_without_ndh2: '-0.156'
+    p_value: '0.52'
+    comparison_test: two-sample t-test
+- id: proteomics_metabolic_wiring
+  title: Proteomics indicates respiratory wiring is metabolic, not transcriptional
+  notebook: 05_proteomics_expression.ipynb
+  figures:
+  - proteomics_respiratory.png
+  data_files: []
+  references: []
+  statistics:
+    complex_I_mean_abundance: '27.6'
+    complex_I_percentile: '66'
+    ndh2_mean_abundance: '27.0'
+    ndh2_percentile: '59'
+    aciad3522_mean_abundance: '26.2'
+    aciad3522_percentile: '48'
+    genome_median_abundance: '26.4'
+    abundance_spread: '1.4'
+generated_data: []

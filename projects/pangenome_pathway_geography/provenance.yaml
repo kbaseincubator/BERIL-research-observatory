@@ -1,0 +1,26 @@
+schema_version: 1
+references: []
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - pangenome
+  - gapmind_pathways
+  - alphaearth_embeddings_all_years
+  purpose: Primary data integration for pangenome openness metrics, metabolic pathway completeness, and biogeographic embeddings
+    across 27,690 bacterial species
+  reference: null
+cross_project_deps:
+- project: ecotype_analysis
+  relationship: data_input
+  files: []
+  description: Related work on environment vs. phylogeny effects
+- project: pangenome_openness
+  relationship: extends
+  files: []
+  description: Builds on open vs. closed pangenome pattern analysis
+- project: cog_analysis
+  relationship: data_input
+  files: []
+  description: Related functional category distribution research
+findings: []
+generated_data: []

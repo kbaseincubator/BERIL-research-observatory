@@ -1,0 +1,196 @@
+schema_version: 1
+references:
+- id: sastry2019
+  type: supporting
+  title: The Escherichia coli transcriptome mostly consists of independently regulated modules
+  authors:
+  - Sastry AV
+  - Gao Y
+  - Szeto WW
+  - Forsyth VS
+  - Chemla Y
+  - Maslov S
+  - Botstein D
+  - Rabinowitz JD
+  year: 2019
+  journal: Nature Communications
+  volume: '10'
+  pages: '5536'
+  doi: null
+  pmid: '31767856'
+  url: null
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Skerker JM
+  - Wetmore KM
+  - Rudie AK
+  - Jackson RN
+  - Arkin AP
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: hyvarinen2000
+  type: methodology
+  title: 'Independent component analysis: algorithms and applications'
+  authors:
+  - Hyvarinen A
+  - Oja E
+  year: 2000
+  journal: Neural Networks
+  volume: null
+  pages: null
+  doi: 10.1016/S0893-6080(00)00026-5
+  pmid: null
+  url: null
+- id: borchert2019
+  type: methodology
+  title: Proteome and transcriptome analysis of Pseudomonas putida KT2440 using independent component analysis
+  authors:
+  - Borchert AJ
+  - Federowicz SA
+  - Skerker JM
+  - Geddes BA
+  - Pinel N
+  - Szeto WW
+  - Downs DM
+  - Arkin AP
+  year: 2019
+  journal: mBio
+  volume: '10'
+  pages: null
+  doi: null
+  pmid: '31527256'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - genefitness
+  - gene
+  - exps
+  - ortholog
+  - organism
+  - experiment
+  - cofit
+  - besthitkegg
+  - keggmember
+  - kgroupdesc
+  - seedannotation
+  - genedomain
+  - specificphenotype
+  purpose: RB-TnSeq fitness scores, gene metadata, experiment conditions, and ortholog mappings
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables:
+  - gene_cluster
+  purpose: Pangenome gene cluster assignments for cross-organism alignment
+  reference: null
+cross_project_deps: []
+findings:
+- id: ica_decomposition_32_organisms
+  title: ICA Decomposition (32 organisms)
+  notebook: null
+  figures:
+  - pca_eigenvalues.png
+  - module_size_distribution.png
+  data_files:
+  - data/matrices/
+  - data/modules/
+  references:
+  - sastry2019
+  statistics:
+    stable_modules: '1116'
+    median_module_size: 7-50 genes
+    cofitness_enriched_modules: 94.2%
+    test: Mann-Whitney U
+    p_value: <0.05
+    within_module_correlation: '0.34'
+    background_correlation: '0.12'
+    correlation_enrichment: 2.8x
+    genomic_adjacency_enrichment: 22.7x
+- id: benchmarking_nb07
+  title: Benchmarking (NB07)
+  notebook: null
+  figures:
+  - validation_summary.png
+  - benchmark_strict.png
+  - benchmark_neighborhood.png
+  data_files:
+  - data/predictions/
+  references: []
+  statistics:
+    ortholog_transfer_precision: 95.8%
+    ortholog_transfer_coverage: 91.2%
+    ortholog_transfer_f1: '0.934'
+    domain_based_precision: 29.1%
+    domain_based_coverage: 66.6%
+    domain_based_f1: '0.401'
+    module_ica_precision: <1%
+    module_ica_coverage: 23.3%
+    cofitness_voting_precision: <1%
+    cofitness_voting_coverage: 73.0%
+- id: cross_organism_alignment
+  title: Cross-Organism Alignment
+  notebook: null
+  figures:
+  - module_families.png
+  data_files:
+  - data/orthologs/
+  - data/module_families/
+  references: []
+  statistics:
+    bbh_pairs: 1.15M
+    ortholog_groups: '13402'
+    module_families: '156'
+    families_spanning_2plus_organisms: '156'
+    families_spanning_5plus_organisms: '28'
+    families_spanning_10plus_organisms: '7'
+    families_spanning_21_organisms: '1'
+    annotated_families: '145'
+    annotation_rate: 93%
+- id: function_prediction
+  title: Function Prediction
+  notebook: null
+  figures:
+  - enrichment_summary.png
+  - prediction_summary.png
+  data_files:
+  - data/predictions/
+  references: []
+  statistics:
+    total_predictions: '6691'
+    family_backed_predictions: '2455'
+    family_backed_percentage: 37%
+    module_only_predictions: '4236'
+generated_data:
+- file: data/matrices/
+  rows: null
+  description: Per-organism gene-fitness matrices extracted from Spark (NB02); 2531-6384 genes x 104-757 experiments per organism
+  source_notebook: null
+- file: data/modules/
+  rows: null
+  description: ICA module definitions, gene weights, and per-organism ICA parameters (32 *_ica_params.json files)
+  source_notebook: null
+- file: data/annotations/
+  rows: null
+  description: Gene and experiment metadata, functional annotations (KEGG, SEED, TIGRFam, PFam)
+  source_notebook: null
+- file: data/orthologs/
+  rows: null
+  description: Bidirectional best-hit (BBH) ortholog pairs (1.15M) and ortholog groups (13402)
+  source_notebook: null
+- file: data/module_families/
+  rows: null
+  description: Cross-organism module families constructed via ortholog fingerprints (156 families)
+  source_notebook: null
+- file: data/predictions/
+  rows: null
+  description: Function predictions for hypothetical proteins (6691 total) and benchmark results
+  source_notebook: null

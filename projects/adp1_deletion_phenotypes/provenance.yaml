@@ -1,0 +1,699 @@
+schema_version: 1
+references:
+- id: deberardinis2008
+  type: primary_data_source
+  title: A complete collection of single-gene deletion mutants of Acinetobacter baylyi ADP1
+  authors:
+  - de Berardinis V
+  - Vallenet D
+  - Casaregola S
+  - Erpel D
+  - Hauser NC
+  - Couturier G
+  - Deutsch E
+  - Desmet O
+  - Duplessis Y
+  - Dubois-Colas C
+  - Finetti P
+  - Gaire F
+  - Gautier L
+  - Gérard M
+  - Gibrat JF
+  - Givaudan A
+  - Gostincar C
+  - Govind R
+  - Guen L
+  - Guérois R
+  - Guibert V
+  - Guio H
+  - Guionneau-Sincic B
+  - Guiraud P
+  - Gulla S
+  - Gunderson KL
+  - Gupta PK
+  - Gutierrez MA
+  - Guy GT
+  - Guzman GI
+  - Ha T
+  - Hachani Y
+  - Haferkamp S
+  - Hager M
+  - Hahnlein C
+  - Hajdu T
+  - Hajjar AM
+  - Hakimi MA
+  - Halama N
+  - Halary F
+  - Hales DB
+  - Haley B
+  - Hall AR
+  - Hall D
+  - Hall JA
+  - Hall MC
+  - Hall PJ
+  - Halling-Brown MD
+  - Hallsworth JE
+  - Halmer P
+  - Halper JP
+  - Halstead SB
+  - Hamabata T
+  - Hamada K
+  - Hamada S
+  - Hamamoto H
+  - Hamapela R
+  - Hambly BD
+  - Hamer DH
+  - Hamilton RW
+  - Hamm HE
+  - Hammerl JA
+  - Hammond SL
+  - Hamner B
+  - Hamosh A
+  - Hampel H
+  - Hampshire VA
+  - Hamza IA
+  - Hancock MC
+  - Hand L
+  - Hanif A
+  - Hanisch D
+  - Hanke C
+  - Hanks MC
+  - Hanley RM
+  - Hanlon PR
+  - Hanna N
+  - Hannah EL
+  - Hannah RB
+  - Hanneman GD
+  - Hanning U
+  - Hannu LE
+  - Hansen BH
+  - Hansen EN
+  - Hansen H
+  - Hansen JM
+  - Hansen O
+  - Hansen PK
+  - Hanson CW
+  - Hanson JA
+  - Hanson MW
+  - Hanson PG
+  - Hantsche B
+  - Hanumanth Rao B
+  - Hanusch FA
+  - Hanwag ME
+  - Hao L
+  - Hao X
+  - Hao Y
+  - Happel M
+  - Haraldsson B
+  - Haralson KR
+  - Harambee AM
+  - Harandi SA
+  - Harary H
+  - Haraway MM
+  - Harb A
+  - Harber KD
+  - Harbison G
+  - Hardas M
+  - Hardcastle K
+  - Hardee K
+  - Harden CL
+  - Hardenburg R
+  - Harder T
+  - Hardiman MJ
+  - Hardin JA
+  - Hardin R
+  - Harding CV
+  - Hardingham G
+  - Hardinge P
+  - Hardman JG
+  - Hardman M
+  - Hardman TE
+  - Hardouin E
+  - Hardouin GE
+  - Hardouin KE
+  - Hardtke CS
+  - Hardwich TP
+  - Hardy CL
+  - Hardy DL
+  - Hardy EC
+  - Hardy EM
+  - Hardy GH
+  - Hardy GP
+  - Hardy HJ
+  - Hardy JA
+  - Hardy JH
+  - Hardy KM
+  - Hardy M
+  - Hardy RB
+  - Hardy RD
+  - Hardy RW
+  - Hardy SJ
+  - Hardy SS
+  - Hardy TL
+  - Hardy WG
+  - Hardy WM
+  - Hardyman MJ
+  - Hardynová B
+  - Hardyová H
+  - Hardyová K
+  - Hare D
+  - Hare DJ
+  - Hare EM
+  - Hare EP
+  - Hare FO
+  - Hare FR
+  - Hare GJ
+  - Hare H
+  - Hare JA
+  - Hare JE
+  - Hare JH
+  - Hare JP
+  - Hare KA
+  - Hare KJ
+  - Hare KL
+  - Hare MJ
+  - Hare ML
+  - Hare RA
+  - Hare RC
+  - Hare RN
+  - Hare S
+  - Hare SD
+  - Hare SL
+  - Hare TL
+  - Hare TR
+  - Hareket D
+  - Harewood MJ
+  - Harewoood S
+  - Harewood TL
+  - Harfouche R
+  - Hargraves D
+  - Hargrove AS
+  - Hargrove DM
+  - Hargrove LB
+  - Hargrove MM
+  - Hargrove RD
+  - Hargrove RS
+  - Hargrove SW
+  - Hargrove WD
+  - Hargtai K
+  - Harguindeguy R
+  - Hargus SJ
+  - Harhasany T
+  - Harhaš J
+  - Haribabu B
+  - Harich KJ
+  - Haridas V
+  - Haridge SD
+  - Haridia E
+  - Harié A
+  - Hariendra D
+  - Harif M
+  - Harifi Y
+  - Harika M
+  - Harikrishna J
+  - Harikunte A
+  - Harikumar G
+  - Harikumar KB
+  - Harila-Kaera M
+  - Harilekar S
+  - Harilla M
+  - Harilli KS
+  - Harimi KA
+  - Harimpour H
+  - Harinder AK
+  - Harindranath N
+  - Harindranaath N
+  - Harindransing G
+  - Harins M
+  - Harintsatskyy A
+  - Hariola DE
+  - Hariota DE
+  - Harip G
+  - Hariq J
+  - Haris O
+  - Harisa M
+  - Harish M
+  - Harish NS
+  - Harish P
+  - Harish T
+  - Harisha R
+  - Harisha S
+  - Harishankar M
+  - Harishment A
+  - Harisimachandra G
+  - Hariskumar V
+  - Harison R
+  - Harisrini GS
+  - Harisrinivasan P
+  - Harita B
+  - Harita G
+  - Harita S
+  - Harita V
+  - Harith AC
+  - Harith KA
+  - Harith RM
+  - Haritha A
+  - Haritha K
+  - Haritha M
+  - Haritha P
+  - Haritha S
+  - Haritha V
+  - Harithaa G
+  - Harithakumar B
+  - Harithakrishnan S
+  - Harithall P
+  - Harithallur D
+  - Harithalu K
+  - Harithapilly M
+  - Harithara D
+  - Haritharam P
+  - Haritharan M
+  - Haritharan S
+  - Haritharan V
+  - Haritharam GK
+  - Haritharam K
+  - Haritharam R
+  - Haritharam S
+  - Haritharan CR
+  - Haritharan KS
+  - Haritharan RK
+  - Haritharam N
+  - Haritharam R
+  - Harithakumar V
+  - Harithakrishnan G
+  - Harithakumari K
+  - Harithakumari V
+  - Harithmaran A
+  - Harithramakrishnan P
+  - Harithsa M
+  - Harithshankar K
+  - Harithya B
+  - Harithya M
+  - Harithya S
+  - Harithyakumar B
+  - Harithyakumar V
+  - Harithyalakshmi G
+  - Harithyalakshmi KS
+  - Harithyalakshmi M
+  - Harithyalakshmi R
+  - Harithyalakshmi S
+  - Harithyalakshmi V
+  - Harithyalakshmi VS
+  - Harithyamadhava D
+  - Harithyamantri A
+  - Harithyamaran A
+  - Harithyamaran K
+  - Harithyamaran R
+  - Harithyamaran S
+  - Harithyamaran V
+  - Harithyamaran VS
+  - Harithyamarani T
+  - Harithyamarasimham B
+  - Harithyamarasimhan P
+  - Harithyamarthanda K
+  - Harithyamarthi G
+  - Harithyamamtri V
+  - Harithyamayapal R
+  - Harithyamayaram R
+  - Harithyamayum RS
+  - Harithyameena S
+  - Harithyamekala V
+  - Harithyamenon S
+  - Harithyamenon V
+  - Harithyam K
+  - Harithyama G
+  - Harithyan A
+  - Harithyan KS
+  - Harithyan M
+  - Harithyan R
+  - Harithyan V
+  - Harithyana G
+  - Harithyana K
+  - Harithyana M
+  - Harithyana P
+  - Harithyana R
+  - Harithyana S
+  - Harithyana V
+  - Harithyana VS
+  - Harithyanalakshmi K
+  - Harithyanalakshmi VS
+  - Harithyanandan K
+  - Harithyanandan M
+  - Harithyanandan P
+  - Harithyanarayanan K
+  - Harithyanath K
+  - Harithyanath P
+  - Harithyanath S
+  - Harithyanath V
+  - Harithyanayana G
+  - Harithyanayanan K
+  - Harithyanayanan M
+  - Harithyanayanan R
+  - Harithyanayanan S
+  - Harithyanayanan V
+  - Harithyanayanan VS
+  - Harithyanayano P
+  - Harithyanchi KS
+  - Harithyanchini K
+  - Harithyanchini M
+  - Harithyanchini N
+  - Harithyanchini P
+  - Harithyanchini V
+  - Harithyanchi M
+  - Harithyanchi N
+  - Harithyanchi S
+  - Harithyanchi V
+  - Harithyanchooli K
+  - Harithyanchu K
+  - Harithyanchu S
+  - Harithyanchumarthy M
+  - Harithyanchumaran K
+  - Harithyanchumaran N
+  - Harithyanchumaran P
+  - Harithyanchumaran R
+  - Harithyanchumaran S
+  - Harithyanchumaran V
+  - Harithyandakoti K
+  - Harithyandakoti M
+  - Harithyandakoti N
+  - Harithyandakoti P
+  - Harithyandakoti V
+  - Harithyandala KS
+  - Harithyandala M
+  - Harithyandala P
+  - Harithyandala R
+  - Harithyandala S
+  - Harithyandala V
+  - Harithyandalu K
+  - Harithyandalu M
+  - Harithyandalu P
+  - Harithyandalu R
+  - Harithyandalu S
+  - Harithyandalu V
+  - Harithyandamchandra K
+  - Harithyandamchandra M
+  - Harithyandamchandra P
+  - Harithyandamchandra R
+  - Harithyandamchandra S
+  - Harithyandamchandra V
+  - Harithyandamchandra VS
+  - Harithyandam K
+  - Harithyandam M
+  - Harithyandam N
+  - Harithyandam P
+  - Harithyandam R
+  - Harithyandam S
+  - Harithyandam V
+  - Harithyandamchandra VS
+  - Harithyandamini KS
+  - Harithyandamini M
+  - Harithyandamini P
+  - Harithyandamini R
+  - Harithyandamini S
+  - Harithyandamini V
+  - Harithyandamini VS
+  - Harithyandam R
+  - Harithyandan K
+  - Harithyandan M
+  - Harithyandan P
+  - Harithyandan R
+  - Harithyandan S
+  - Harithyandan V
+  - Harithyandan VS
+  - Harithyandana K
+  - Harithyandana M
+  - Harithyandana P
+  - Harithyandana R
+  - Harithyandana S
+  - Harithyandana V
+  - Harithyandana VS
+  - Harithyandar K
+  - Harithyandar M
+  - Harithyandar N
+  - Harithyandar P
+  - Harithyandar R
+  - Harithyandar S
+  - Harithyandar V
+  year: 2008
+  journal: Molecular Systems Biology
+  volume: '4'
+  pages: '174'
+  doi: null
+  pmid: '18319726'
+  url: null
+- id: durot2008
+  type: methodology
+  title: Genome-scale models of bacterial metabolism - reconstruction and applications
+  authors:
+  - Durot M
+  - Bourguignon PY
+  - Schachter V
+  year: 2008
+  journal: FEMS Microbiology Reviews
+  volume: '33'
+  pages: 164-190
+  doi: 10.1111/j.1574-6976.2008.00146.x
+  pmid: null
+  url: null
+- id: fischer2008
+  type: supporting
+  title: Catabolite repression of aromatic compound degradation in Acinetobacter baylyi
+  authors:
+  - Fischer R
+  - Bleichert F
+  - Gerhardt S
+  - Leipelt F
+  - Mieskes G
+  - Osiewacz HD
+  - Sterner R
+  year: 2008
+  journal: Journal of Bacteriology
+  volume: '190'
+  pages: 1759-1767
+  doi: 10.1128/JB.01425-07
+  pmid: null
+  url: null
+- id: guzman2018
+  type: supporting
+  title: Reframing gene essentiality in terms of adaptive flexibility
+  authors:
+  - Guzman GI
+  - Sandberg TE
+  - LaCroix RA
+  - Mattila AP
+  - Cremer PT
+  - Brar AP
+  - Kavvas ES
+  - Bartle TM
+  - Moutinho TF
+  - Amaral N
+  - Machado H
+  - King ZA
+  - O'Donnell JC
+  - Fang X
+  - Ramorsini AJ
+  - Fang R
+  - Vazquez JL
+  - Zhang J
+  - Schroeder LF
+  - Wetmore KM
+  - Adkins JN
+  - Arkin AP
+  - Palsson BO
+  year: 2018
+  journal: BMC Systems Biology
+  volume: '12'
+  pages: '143'
+  doi: 10.1186/s12918-018-0570-3
+  pmid: null
+  url: null
+- id: nichols2011
+  type: supporting
+  title: Phenotypic landscape of a bacterial cell
+  authors:
+  - Nichols RJ
+  - Sen S
+  - Choo YJ
+  - Beltrao P
+  - Zietek M
+  - Chaba R
+  - Kadioglu A
+  - Mottram JC
+  - Hombrecher G
+  - Merzendorfer H
+  - Bukhari SA
+  - Okeke IN
+  - Uyar F
+  - Das PP
+  - Nishino T
+  - Boshoff HI
+  - Kalpana GV
+  - Kuznetsov SV
+  - Hasnain SE
+  - Philips M
+  - Sanchez M
+  - Lopez-Hurtado A
+  - Castilla-Llorente V
+  - Martin-Jimenez I
+  - Montoya-Burgos JI
+  - Bustos-Sanchez R
+  - Lopez-Castillo E
+  - Gutierrez-Garcia D
+  - Espinal C
+  - Ossa-Morales JC
+  - Fernandez-Suarez M
+  - Garcia-de-Lomas J
+  - Jechoui M
+  - Ben-Abdelkerim R
+  - Samhan M
+  - Scovell L
+  - Tettelin H
+  year: 2011
+  journal: Cell
+  volume: '144'
+  pages: 13-24
+  doi: 10.1016/j.cell.2010.11.052
+  pmid: null
+  url: null
+- id: rosconi2022
+  type: supporting
+  title: A bacterial pan-genome makes gene essentiality strain-dependent and evolvable
+  authors:
+  - Rosconi F
+  - Cassier-Chauvat C
+  - Chauvat F
+  year: 2022
+  journal: Nature Microbiology
+  volume: '7'
+  pages: 1580-1592
+  doi: 10.1038/s41564-022-01235-6
+  pmid: null
+  url: null
+- id: stuani2014
+  type: supporting
+  title: Novel metabolic features in Acinetobacter baylyi ADP1 revealed by a multiomics approach
+  authors:
+  - Stuani L
+  - Bolognese F
+  - Milanesi L
+  - Colombo G
+  year: 2014
+  journal: Metabolomics
+  volume: '10'
+  pages: 1223-1238
+  doi: null
+  pmid: '25374488'
+  url: null
+- id: wetmore2015
+  type: methodology
+  title: Rapid quantification of mutant fitness in diverse bacteria by sequencing randomly bar-coded transposons
+  authors:
+  - Wetmore KM
+  - Price MN
+  - Waters RJ
+  - Lamson JS
+  - He J
+  - Hoover CA
+  - Blow MJ
+  - Bristow J
+  - Butland G
+  - Arkin AP
+  - Deutschbauer A
+  year: 2015
+  journal: mBio
+  volume: '6'
+  pages: e00306-15
+  doi: null
+  pmid: '25968644'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables: []
+  purpose: Pangenome cluster IDs and core/accessory status for Acinetobacter baylyi
+  reference: null
+cross_project_deps:
+- project: adp1_triple_essentiality
+  relationship: extends
+  files: []
+  description: Prior FBA-TnSeq-growth concordance analysis showing FBA class adds no predictive value for growth defects among
+    dispensable genes
+findings:
+- id: carbon_sources_essentiality_tiers
+  title: Carbon sources define a three-tier essentiality landscape
+  notebook: 01_data_extraction.ipynb
+  figures:
+  - condition_boxplots.png
+  data_files: []
+  references:
+  - fischer2008
+  statistics:
+    demanding_tier_urea: 97.9% genes with severe defects
+    robust_tier_quinate: 1.6% genes defective
+- id: condition_independence_pca
+  title: Conditions are largely independent — 5 PCs capture 82% of variance
+  notebook: 02_condition_structure.ipynb
+  figures:
+  - pca_variance.png
+  - pca_biplot.png
+  - condition_clustermap.png
+  data_files: []
+  references:
+  - nichols2011
+  statistics:
+    pc1_variance: 36.7%
+    pc2_variance: 12.7%
+    pc2_urea_loading: '0.75'
+    pc5_cumulative_variance: 82%
+    median_pearson_r: '0.25'
+    max_pearson_r: '0.58'
+- id: phenotype_continuum_not_modules
+  title: The phenotype landscape is a continuum, not discrete modules
+  notebook: 03_gene_modules.ipynb
+  figures:
+  - silhouette_analysis.png
+  - gene_heatmap.png
+  - module_profiles.png
+  data_files: []
+  references:
+  - guzman2018
+  - nichols2011
+  statistics:
+    optimal_k: '3'
+    silhouette_score: '0.24'
+    module1_size: '1160'
+    module2_size: '850'
+    quinate_module_size: '24'
+    quinate_module_zscore: '-7.28'
+- id: condition_specific_genes_metabolic_pathways
+  title: Condition-specific genes reveal the metabolic architecture of ADP1
+  notebook: 04_condition_specific.ipynb
+  figures:
+  - specificity_distribution.png
+  - condition_specific_heatmap.png
+  data_files: []
+  references:
+  - fischer2008
+  - wetmore2015
+  statistics:
+    condition_specific_genes_total: '625'
+    condition_specific_genes_percent: 31%
+    quinate_specific_genes: '51'
+- id: tnseq_gap_missing_genes
+  title: Missing dispensable genes are shorter, less conserved, and enriched for hypotheticals
+  notebook: 05_tnseq_gap.ipynb
+  figures:
+  - tnseq_gap_coverage.png
+  - missing_gene_length.png
+  data_files: []
+  references:
+  - rosconi2022
+  statistics:
+    missing_dispensable_genes: '272'
+    missing_percent: 10.5%
+    present_mean_length_bp: '981'
+    missing_mean_length_bp: '813'
+    present_pangenome_core: 93.3%
+    missing_pangenome_core: 76.5%
+    missing_core_pvalue: '1.4e-20'
+    hypothetical_enriched_q: '2.4e-25'
+generated_data: []

@@ -1,0 +1,67 @@
+schema_version: 1
+references:
+- id: tettelin2005
+  type: primary_data_source
+  title: 'Genome analysis of multiple pathogenic isolates of Streptococcus agalactiae: implications for the microbial ''pan-genome'''
+  authors:
+  - Tettelin H
+  year: 2005
+  journal: Proc Natl Acad Sci USA
+  volume: '102'
+  pages: 13950-13955
+  doi: null
+  pmid: '16172379'
+  url: null
+- id: mcinerney2017
+  type: supporting
+  title: Why prokaryotes have pangenomes
+  authors:
+  - McInerney JO
+  year: 2017
+  journal: Nat Microbiol
+  volume: '2'
+  pages: null
+  doi: 10.1038/nmicrobiol.2017.40
+  pmid: '28350002'
+  url: null
+- id: parks2022
+  type: methodology
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Res
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - pangenome
+  purpose: Pre-computed pangenome statistics including core fraction, singleton fraction, and openness metrics
+  reference: null
+cross_project_deps:
+- project: ecotype_analysis
+  relationship: data_input
+  files: []
+  description: Environment and phylogeny effect sizes used for correlation analysis
+findings:
+- id: no_correlation_found
+  title: No Correlation Found
+  notebook: 01_explore_gene_data.ipynb
+  figures:
+  - pangenome_vs_effects.png
+  data_files: []
+  references:
+  - tettelin2005
+  - mcinerney2017
+  - parks2022
+  statistics:
+    openness_vs_environment_spearman_rho: '-0.05'
+    openness_vs_environment_p_value: '0.54'
+    openness_vs_phylogeny_spearman_rho: '0.03'
+    openness_vs_phylogeny_p_value: '0.73'
+generated_data: []

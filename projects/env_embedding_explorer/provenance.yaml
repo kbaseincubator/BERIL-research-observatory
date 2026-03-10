@@ -1,0 +1,201 @@
+schema_version: 1
+references:
+- id: parks2022
+  type: methodology
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+- id: pearman2024
+  type: supporting
+  title: Macroalgal microbiome biogeography is shaped by environmental drivers rather than geographical distance
+  authors:
+  - Pearman WS
+  year: 2024
+  journal: Annals of Botany
+  volume: null
+  pages: null
+  doi: null
+  pmid: '37804485'
+  url: null
+- id: liu2022
+  type: supporting
+  title: Disentangling biogeographic and underlying assembly patterns of fungal communities in metalliferous mining and smelting
+    soils
+  authors:
+  - Liu B
+  year: 2022
+  journal: Science of the Total Environment
+  volume: null
+  pages: null
+  doi: null
+  pmid: '35798111'
+  url: null
+- id: zhang2022
+  type: supporting
+  title: Biogeographic Patterns and Elevational Differentiation of Sedimentary Bacterial Communities across River Systems
+    in China
+  authors:
+  - Zhang S
+  year: 2022
+  journal: Applied and Environmental Microbiology
+  volume: null
+  pages: null
+  doi: null
+  pmid: '35638840'
+  url: null
+- id: wang2024
+  type: supporting
+  title: Aridity shapes distinct biogeographic and assembly patterns of forest soil bacterial and fungal communities at the
+    regional scale
+  authors:
+  - Wang X
+  year: 2024
+  journal: Science of the Total Environment
+  volume: null
+  pages: null
+  doi: null
+  pmid: '39019268'
+  url: null
+- id: xu2024
+  type: supporting
+  title: Consistent community assembly but contingent species pool effects drive beta-diversity patterns of multiple microbial
+    groups in desert biocrust systems
+  authors:
+  - Xu L
+  year: 2024
+  journal: Molecular Ecology
+  volume: null
+  pages: null
+  doi: null
+  pmid: '38751195'
+  url: null
+- id: gill2022
+  type: supporting
+  title: Sargasso Sea bacterioplankton community structure and drivers of variance as revealed by DNA metabarcoding analysis
+  authors:
+  - Gill JG
+  year: 2022
+  journal: PeerJ
+  volume: null
+  pages: null
+  doi: null
+  pmid: '35251777'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - alphaearth_embeddings_all_years
+  - ncbi_env
+  - gtdb_metadata
+  purpose: 64-dimensional environmental embeddings, NCBI environment metadata (EAV format), genome quality and assembly metadata
+  reference: null
+cross_project_deps:
+- project: ecotype_analysis
+  relationship: data_input
+  files: []
+  description: AlphaEarth embeddings were previously used in ecotype_analysis to test environment vs phylogeny effects on
+    gene content. This project characterizes the embedding space to support interpretation of those results.
+findings:
+- id: environmental_samples_stronger_geographic_signal
+  title: Environmental samples show 3.4x stronger geographic signal than human-associated samples
+  notebook: 02_interactive_exploration.ipynb
+  figures:
+  - geo_vs_embedding_by_env_group.png
+  data_files: []
+  references:
+  - pearman2024
+  - wang2024
+  statistics:
+    environmental_nearby_cosine_distance: '0.27'
+    environmental_intercontinental_cosine_distance: '0.90'
+    environmental_ratio: 3.4x
+    human_nearby_cosine_distance: '0.37'
+    human_intercontinental_cosine_distance: '0.75'
+    human_ratio: 2.0x
+- id: embeddings_encode_real_geographic_signal
+  title: AlphaEarth embeddings encode real geographic signal — not noise
+  notebook: 02_interactive_exploration.ipynb
+  figures:
+  - geo_vs_embedding_binned.png
+  data_files: []
+  references: []
+  statistics:
+    sample_size: 50,000 genome pairs
+    relationship_type: monotonic
+    plateau_distance: '>5,000 km'
+- id: clinical_human_sampling_bias
+  title: Strong clinical/human sampling bias in the AlphaEarth subset
+  notebook: 02_interactive_exploration.ipynb
+  figures:
+  - env_categories.png
+  data_files: []
+  references: []
+  statistics:
+    total_genomes: 83,287
+    human_clinical_percent: 20%
+    human_gut_percent: 16%
+    human_other_percent: 2%
+    total_human_percent: 38%
+    soil_percent: 7%
+    marine_percent: 7%
+    freshwater_percent: 7%
+    other_category_percent: 17%
+- id: coordinates_flagged_institutional_addresses
+  title: 36% of coordinates flagged as potential institutional addresses
+  notebook: 02_interactive_exploration.ipynb
+  figures:
+  - coord_quality_map.png
+  data_files: []
+  references: []
+  statistics:
+    flagged_genomes: 30,469
+    flagged_percent: 36.6%
+    threshold: '>50 genomes and >10 species at same coordinate'
+- id: umap_reveals_embedding_structure
+  title: UMAP reveals fine-grained embedding structure with environment-correlated clusters
+  notebook: 02_interactive_exploration.ipynb
+  figures:
+  - umap_by_env_category.png
+  - cluster_env_heatmap.png
+  - env_cluster_distribution.png
+  data_files: []
+  references: []
+  statistics:
+    dbscan_clusters: '320'
+    dimensionality_input: '64'
+    dimensionality_output: '2'
+- id: embedding_space_shows_taxonomic_structure
+  title: Embedding space also shows taxonomic structure
+  notebook: 02_interactive_exploration.ipynb
+  figures:
+  - umap_by_phylum.png
+  data_files: []
+  references: []
+  statistics:
+    phyla_span: '135'
+    species_span: 15,046
+generated_data:
+- file: data/coverage_stats.csv
+  rows: 7
+  description: Per-attribute population rates
+  source_notebook: 01_data_extraction.ipynb
+- file: data/ncbi_env_attribute_counts.csv
+  rows: 334
+  description: Full inventory of harmonized_name values across NCBI env metadata
+  source_notebook: 01_data_extraction.ipynb
+- file: data/isolation_source_raw_counts.csv
+  rows: 5774
+  description: Raw isolation_source value frequencies
+  source_notebook: 01_data_extraction.ipynb
+- file: data/umap_coords.csv
+  rows: 79449
+  description: Pre-computed UMAP 2D coordinates for AlphaEarth embeddings
+  source_notebook: 02_interactive_exploration.ipynb

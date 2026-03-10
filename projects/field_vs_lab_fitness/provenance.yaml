@@ -1,0 +1,280 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Calef M
+  - Tber J
+  - Engel A
+  - Chol J
+  - Arkin AP
+  - Deutschbauer AM
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: '29769716'
+  url: null
+- id: trotter2023
+  type: supporting
+  title: Large-scale genetic characterization of the model sulfate-reducing bacterium, Desulfovibrio vulgaris Hildenborough
+  authors:
+  - Trotter VV
+  - Mirasol R
+  - Yung M
+  - Chandran A
+  - Kuehl JV
+  - Katsnelson B
+  - De León KB
+  - Wall JD
+  - Deutschbauer AM
+  year: 2023
+  journal: Frontiers in Microbiology
+  volume: '14'
+  pages: '1095132'
+  doi: null
+  pmid: '37065130'
+  url: null
+- id: rosconi2022
+  type: supporting
+  title: A bacterial pan-genome makes gene essentiality strain-dependent and evolvable
+  authors:
+  - Rosconi F
+  - Rudmann E
+  - Li J
+  - Surujon D
+  - Anthony J
+  - Frank M
+  - Jones DS
+  - Rock C
+  - Bhatt AS
+  - Roditi I
+  - van Opijnen T
+  year: 2022
+  journal: Nature Microbiology
+  volume: '7'
+  pages: 1580-1592
+  doi: 10.1038/s41564-022-01208-7
+  pmid: '36097170'
+  url: null
+- id: lee2015
+  type: supporting
+  title: General and condition-specific essential functions of Pseudomonas aeruginosa
+  authors:
+  - Lee SA
+  - Gallagher LA
+  - Thongdee M
+  - Stodghill BJ
+  - Hachey SJ
+  - Sanowar S
+  - Cooley RB
+  - Leung KP
+  year: 2015
+  journal: Proceedings of the National Academy of Sciences USA
+  volume: '112'
+  pages: 5189-5194
+  doi: null
+  pmid: '25848053'
+  url: null
+- id: akusobi2025
+  type: supporting
+  title: Transposon-sequencing across multiple Mycobacterium abscessus isolates reveals significant functional genomic diversity
+    among strains
+  authors:
+  - Akusobi C
+  - Benoit BM
+  - Cavallo K
+  - Williams EP
+  - Bhatt A
+  - Rubin EJ
+  year: 2025
+  journal: mBio
+  volume: '16'
+  pages: e02488-24
+  doi: null
+  pmid: '39745363'
+  url: null
+- id: shi2021
+  type: supporting
+  title: Genetic basis of chromate adaptation and the role of pre-existing genetic divergence during an experimental evolution
+    study with Desulfovibrio vulgaris populations
+  authors:
+  - Shi W
+  - Zhan T
+  - Guo Y
+  - Zhou A
+  - He Z
+  - Deng Y
+  year: 2021
+  journal: mSystems
+  volume: '6'
+  pages: e00351-21
+  doi: null
+  pmid: '34061571'
+  url: null
+- id: huang2022
+  type: supporting
+  title: Genomic analysis reveals high intra-species diversity of Shewanella algae
+  authors:
+  - Huang Z
+  - Yu K
+  - Fu S
+  - Xiao Y
+  - Wei Q
+  - Wang D
+  year: 2022
+  journal: Microbial Genomics
+  volume: '8'
+  pages: 000786
+  doi: null
+  pmid: '35143386'
+  url: null
+- id: borchert2019
+  type: methodology
+  title: Modular fitness landscapes reveal parallels between independent biological systems
+  authors:
+  - Borchert AJ
+  - Ernst DC
+  - Downs DM
+  year: 2019
+  journal: Nature Ecology & Evolution
+  volume: '3'
+  pages: 1233-1242
+  doi: 10.1038/s41559-019-0938-7
+  pmid: null
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables: []
+  purpose: RB-TnSeq fitness data for DvH across 757 experiments and 2,741 genes
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables: []
+  purpose: Pangenome gene clusters with core/auxiliary/singleton classification for DvH
+  reference: null
+cross_project_deps:
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  - data/essential_genes.tsv
+  - data/seed_annotations.tsv
+  description: DvH pangenome links, essential genes list, and functional annotations
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/matrices/DvH_fitness_matrix.csv
+  - data/annotations/DvH_experiments.csv
+  - data/modules/DvH_gene_membership.csv
+  - data/modules/DvH_module_annotations.csv
+  - data/modules/DvH_module_conditions.csv
+  description: DvH fitness matrix, experiment metadata, ICA module membership and characterization
+findings:
+- id: enigma_coral_no_dvh_data
+  title: ENIGMA CORAL Contains No DvH Fitness Data
+  notebook: 01_enigma_discovery.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics: {}
+- id: condition_classification
+  title: Condition Classification
+  notebook: 02_condition_classification.ipynb
+  figures:
+  - fig_condition_importance_heatmap.png
+  data_files: []
+  references: []
+  statistics:
+    total_experiments: '757'
+    field_experiments: 337 (44.5%)
+    lab_experiments: 420 (55.5%)
+- id: field_genes_more_conserved
+  title: Genes Important for Field Conditions Are Significantly More Conserved
+  notebook: 03_fitness_conservation.ipynb
+  figures:
+  - fig_conservation_by_condition_class.png
+  data_files: []
+  references:
+  - price2018
+  - trotter2023
+  statistics:
+    field_stress_core_percent: 83.6%
+    field_stress_odds_ratio: '1.58'
+    field_stress_fdr_q: '0.026'
+    field_core_core_percent: 82.4%
+    field_core_odds_ratio: '1.46'
+    field_core_fdr_q: '0.026'
+    lab_nutrient_core_percent: 81.4%
+    lab_nutrient_odds_ratio: '1.36'
+    lab_nutrient_fdr_q: '0.037'
+    all_genes_baseline_core_percent: 76.3%
+- id: lab_specific_genes_more_core
+  title: 'Specificity Analysis: Lab-Specific Genes Are Surprisingly More Core'
+  notebook: 03_fitness_conservation.ipynb
+  figures:
+  - fig_field_vs_lab_specificity.png
+  data_files: []
+  references:
+  - rosconi2022
+  statistics:
+    lab_specific_core_percent: 96.0%
+    lab_specific_n: '50'
+    field_specific_core_percent: 88.5%
+    field_specific_n: '52'
+    field_specific_vs_lab_specific_fisher_or: '0.32'
+    field_specific_vs_lab_specific_p_value: '0.27'
+    universal_vs_neutral_odds_ratio: '1.35'
+    universal_vs_neutral_p_value: '0.033'
+- id: fitness_weak_predictor_core_status
+  title: Fitness Effects Are Weak Predictors of Core Status
+  notebook: 03_fitness_conservation.ipynb
+  figures:
+  - fig_roc_conservation_prediction.png
+  data_files: []
+  references:
+  - lee2015
+  statistics:
+    field_fitness_only_cv_auc: '0.517'
+    field_fitness_only_std: '0.052'
+    lab_fitness_only_cv_auc: '0.531'
+    lab_fitness_only_std: '0.052'
+    field_plus_lab_cv_auc: '0.548'
+    field_plus_lab_std: '0.053'
+    full_model_with_gene_length_cv_auc: '0.645'
+    full_model_with_gene_length_std: '0.068'
+- id: threshold_sensitivity_analysis
+  title: Threshold Sensitivity Analysis
+  notebook: 03_fitness_conservation.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    fitness_threshold_range: -1.0 to -3.0
+    field_stress_robustness: 89.4% to 82.1% core
+- id: module_level_conservation_no_field_lab_difference
+  title: Module-Level Conservation Shows No Field-Lab Difference
+  notebook: 04_module_analysis.ipynb
+  figures:
+  - fig_module_conservation_vs_activity.png
+  - fig_ecological_vs_lab_modules.png
+  data_files: []
+  references:
+  - borchert2019
+  statistics:
+    total_modules: '52'
+    mean_core_fraction: '0.886'
+    median_core_fraction: '1.000'
+    field_activity_vs_conservation_spearman_rho: '0.071'
+    field_activity_vs_conservation_p_value: '0.62'
+    ecological_modules_count: '21'
+    ecological_modules_mean_core_fraction: '0.980'
+    ecological_modules_member_genes: '239'
+    ecological_modules_unannotated_genes: '52'
+    lab_modules_count: '9'
+    lab_modules_mean_core_fraction: '0.516'
+generated_data: []

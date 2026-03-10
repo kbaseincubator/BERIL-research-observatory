@@ -1,0 +1,272 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Callaghan M
+  - Liu H
+  - Kuehl JV
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: null
+  url: null
+- id: price2022
+  type: methodology
+  title: Filling gaps in bacterial catabolic pathways with computation and high-throughput genetics
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2022
+  journal: PLoS Genetics
+  volume: '18'
+  pages: e1010156
+  doi: 10.1371/journal.pgen.1010156
+  pmid: null
+  url: null
+- id: price2024a
+  type: primary_data_source
+  title: 'Improving the annotation of amino acid biosynthesis pathways: GapMind 2024'
+  authors:
+  - Price MN
+  - Shiver AL
+  - Day LA
+  - Torres M
+  - Lesea HP
+  year: 2024
+  journal: bioRxiv
+  volume: null
+  pages: null
+  doi: 10.1101/2024.10.14.618325
+  pmid: null
+  url: null
+- id: price2024b
+  type: methodology
+  title: Interactive tools for functional annotation of bacterial genomes
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2024
+  journal: Database
+  volume: null
+  pages: baae089
+  doi: 10.1093/database/baae089
+  pmid: null
+  url: null
+- id: morris2012
+  type: supporting
+  title: 'The Black Queen Hypothesis: evolution of dependencies through adaptive gene loss'
+  authors:
+  - Morris JJ
+  - Lenski RE
+  - Zinser ER
+  year: 2012
+  journal: mBio
+  volume: '3'
+  pages: e00036-12
+  doi: 10.1128/mBio.00036-12
+  pmid: null
+  url: null
+- id: dsouza2014
+  type: supporting
+  title: 'Less is more: selective advantages can explain the prevalent loss of biosynthetic genes in bacteria'
+  authors:
+  - D'Souza G
+  - Waschina S
+  - Pande S
+  - Bohl K
+  - Kaleta C
+  - Kost C
+  year: 2014
+  journal: Evolution
+  volume: '68'
+  pages: 2559-2570
+  doi: 10.1111/evo.12468
+  pmid: '24910088'
+  url: null
+- id: ramoneda2023
+  type: supporting
+  title: Taxonomic and environmental distribution of bacterial amino acid auxotrophies
+  authors:
+  - Ramoneda J
+  - Jensen TBN
+  - Price MN
+  year: 2023
+  journal: Nature Communications
+  volume: '14'
+  pages: '7608'
+  doi: 10.1038/s41467-023-43435-4
+  pmid: null
+  url: null
+- id: vanrossum2020
+  type: supporting
+  title: 'Diversity within species: interpreting strains in microbiomes'
+  authors:
+  - Van Rossum T
+  - Ferretti P
+  - Maistrenko OM
+  - Bork P
+  year: 2020
+  journal: Nature Reviews Microbiology
+  volume: '18'
+  pages: 491-506
+  doi: 10.1038/s41579-020-0368-1
+  pmid: null
+  url: null
+- id: nowinski2023
+  type: supporting
+  title: Ecological divergence of syntopic marine bacterial species is shaped by gene content and expression
+  authors:
+  - Nowinski B
+  - Feng X
+  - Preston CM
+  - Birch JM
+  year: 2023
+  journal: ISME Journal
+  volume: '17'
+  pages: 813-823
+  doi: 10.1093/ismej/wrad008
+  pmid: null
+  url: null
+- id: schakel2025
+  type: supporting
+  title: Microbial cross-feeding stabilized by segregation of a dependent mutant from its independent ancestor
+  authors:
+  - Schakel OF
+  - Fritts RK
+  - Zmuda AJ
+  year: 2025
+  journal: ISME Journal
+  volume: null
+  pages: wraf131
+  doi: 10.1093/ismejo/wraf131
+  pmid: '40568968'
+  url: null
+- id: tschoeke2020
+  type: supporting
+  title: Unlocking the Genomic Taxonomy of the Prochlorococcus Collective
+  authors:
+  - Tschoeke D
+  - Salazar VW
+  - Vidal L
+  - Campeão ME
+  year: 2020
+  journal: Microbial Ecology
+  volume: '82'
+  pages: 41-53
+  doi: 10.1007/s00248-020-01526-5
+  pmid: null
+  url: null
+- id: behringer2022
+  type: supporting
+  title: Complex Ecotype Dynamics Evolve in Response to Fluctuating Resources
+  authors:
+  - Behringer MG
+  - Ho WC
+  - Meraz JC
+  year: 2022
+  journal: mBio
+  volume: '13'
+  pages: e03467-21
+  doi: 10.1128/mbio.03467-21
+  pmid: '35575545'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - gapmind_pathways
+  - pangenome
+  - gtdb_metadata
+  purpose: Pathway completeness predictions for 293K genomes; pangenome openness metrics; NCBI taxonomy for organism matching
+  reference: price2024a
+- collection: kescience_fitnessbrowser
+  tables:
+  - genefitness
+  - gene
+  - seedannotation
+  purpose: Gene-level fitness scores across 48 organisms; essentiality inference; SEED subsystem annotations for pathway membership
+    proxy
+  reference: price2018
+cross_project_deps: []
+findings:
+- id: latent_capabilities_fraction
+  title: 'H1 Supported: A Substantial Fraction of Complete Pathways Are Functionally Neutral'
+  notebook: null
+  figures:
+  - nb03_stacked_bar.png
+  data_files: []
+  references:
+  - price2024a
+  - dsouza2014
+  - ramoneda2023
+  statistics:
+    global_latent_fraction: 15.8%
+    organism_count: '48'
+    pathway_organism_pairs: 1,695
+    carbon_latent_fraction: 24.3%
+    amino_acid_latent_fraction: 6.5%
+    chi_square: '163.6'
+    chi_square_df: '4'
+    chi_square_p: '2.5e-34'
+    latent_fraction_range: 0-31.6%
+    latent_fraction_mean: 15.0%
+- id: black_queen_pangenome_openness
+  title: 'H2 Mixed: Pathway-Level Conservation Undifferentiated; Pangenome Openness Correlated with Latent Rate'
+  notebook: 04_black_queen_test.ipynb
+  figures:
+  - nb04_conservation_boxplot.png
+  - nb04_conservation_cdf.png
+  - nb04_openness_scatter.png
+  data_files: []
+  references:
+  - morris2012
+  - dsouza2014
+  - schakel2025
+  statistics:
+    active_dependency_mean_conservation: '0.829'
+    intermediate_mean_conservation: '0.907'
+    latent_capability_mean_conservation: '0.869'
+    mann_whitney_u_p: '0.94'
+    rank_biserial_r: '0.052'
+    spearman_rho: '0.69'
+    spearman_p: '0.0004'
+    species_clades_tested: '22'
+    species_count: '41'
+- id: metabolic_ecotypes
+  title: 'H3 Supported: All Target Species Show Distinct Metabolic Ecotypes'
+  notebook: 05_metabolic_ecotypes.ipynb
+  figures:
+  - nb05_pca_all_species.png
+  - nb05_pathway_heterogeneity.png
+  - nb05_heatmap_Salmonella_enterica.png
+  - nb05_heatmap_Prochlorococcus_A_sp000635495.png
+  - nb05_heatmap_Pelagibacter_sp003209915.png
+  data_files: []
+  references:
+  - vanrossum2020
+  - nowinski2023
+  - ramoneda2023
+  - tschoeke2020
+  statistics:
+    target_species_count: '10'
+    salmonella_silhouette: '0.894'
+    salmonella_clusters: '6'
+    salmonella_genomes: '11396'
+    stutzerimonas_silhouette: '0.780'
+    minimum_silhouette: '0.349'
+    salmonella_chi_square: '1570.2'
+    salmonella_chi_square_df: '25'
+    salmonella_chi_square_p: <0.0001
+    phenylobacterium_chi_square: '12.2'
+    phenylobacterium_chi_square_p: '0.0005'
+    max_pathway_heterogeneity_valine_leucine: '0.60'
+    tryptophan_heterogeneity: '0.51'
+    lysine_threonine_heterogeneity: '0.49'
+generated_data: []

@@ -1,5 +1,5 @@
 # Findings Digest
-**Last updated**: 2026-03-10 | **Projects**: 41 | **Findings**: ~186
+**Last updated**: 2026-03-10 | **Projects**: 41 | **Findings**: ~195
 
 ## acinetobacter_adp1_explorer (2026-02, complete)
 **Q**: What is the scope and structure of a comprehensive ADP1 database, and how do its annotations, metabolic models, and phenotype data intersect with BERDL collections (pangenome, biochemistry, fitness, PhageFoundry)?
@@ -19,6 +19,19 @@
 3. **The phenotype landscape is a continuum, not discrete modules** — [REPORT](../projects/adp1_deletion_phenotypes/REPORT.md)
 4. **Condition-specific genes reveal the metabolic architecture of ADP1** — [REPORT](../projects/adp1_deletion_phenotypes/REPORT.md)
 5. **Missing dispensable genes are shorter, less conserved, and enriched for hypotheticals** — [REPORT](../projects/adp1_deletion_phenotypes/REPORT.md)
+
+## adp1_triple_essentiality (2026-02, complete)
+**Q**: Among genes that TnSeq says are dispensable in *Acinetobacter baylyi* ADP1, does FBA correctly predict which ones have growth defects? Can direct mutant growth rate measurements serve as an independent axis to evaluate where computational (FBA) and genetic (TnSeq) methods agree or disagree?
+1. **FBA Does Not Predict Growth Defects Among TnSeq-Dispensable Genes** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
+2. **Null Result Is Robust Across Growth Defect Thresholds** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
+3. **Growth Measurements Cannot Break FBA-TnSeq Ties** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
+4. **Condition-Specific FBA Flux Shows Weak, Mixed Correlations with Growth** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
+5. **Growth Defects Are Partially Condition-Specific** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
+6. **Aromatic Degradation Genes Are Enriched Among FBA-Discordant Genes** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
+7. **FBA Shows Moderate Concordance with Knockout Experiments** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
+8. **RB-TnSeq Systematically Disagrees with Knockout Experiments** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
+9. **Fitness Is the Best Predictor of Essentiality** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
+10. **Proteomics Strongly Correlates with Essentiality** — [REPORT](../projects/adp1_triple_essentiality/REPORT.md)
 
 ## aromatic_catabolism_network (2026-02, complete)
 **Q**: Why does aromatic catabolism in *Acinetobacter baylyi* ADP1 require Complex I (NADH dehydrogenase), iron acquisition, and PQQ biosynthesis when growth on other carbon sources does not?
@@ -43,6 +56,7 @@
 3. **ICA Modules Show Co-inheritance, Especially Accessory Modules** — [REPORT](../projects/cofitness_coinheritance/REPORT.md)
 4. **Co-fitness Strength Weakly Anti-correlates with Co-occurrence** — [REPORT](../projects/cofitness_coinheritance/REPORT.md)
 5. **Phylogenetic Distance Stratification** — [REPORT](../projects/cofitness_coinheritance/REPORT.md)
+6. **Functional Enrichment** — [REPORT](../projects/cofitness_coinheritance/REPORT.md)
 
 ## cog_analysis (2026-02, complete)
 **Q**: How do COG functional category distributions differ across core, auxiliary, and novel genes in bacterial pangenomes?
@@ -61,7 +75,6 @@
 1. **Link Table (Phase 1)** — [REPORT](../projects/conservation_vs_fitness/REPORT.md)
 2. **Essential Genes Are Enriched in Core Clusters (Phase 2)** — [REPORT](../projects/conservation_vs_fitness/REPORT.md)
 3. **Functional Profiles Differ by Conservation Category** — [REPORT](../projects/conservation_vs_fitness/REPORT.md)
-4. **Validation** — [REPORT](../projects/conservation_vs_fitness/REPORT.md)
 
 ## core_gene_tradeoffs (2026-02, complete)
 **Q**: Why are core genome genes MORE likely to show positive fitness effects when deleted, and what functions and conditions drive this burden paradox?
@@ -89,12 +102,11 @@
 
 ## ecotype_analysis (2026-02, complete)
 **Q**: What drives gene content similarity between bacterial genomes: environmental similarity or phylogenetic relatedness?
-1. **Analysis of **172 species** with sufficient environmental and phylogenetic data reveals:** — [REPORT](../projects/ecotype_analysis/REPORT.md)
-2. **Phylogeny Usually Dominates** — [REPORT](../projects/ecotype_analysis/REPORT.md)
-3. **No Difference by Lifestyle** — [REPORT](../projects/ecotype_analysis/REPORT.md)
-4. **Statistical Summary** — [REPORT](../projects/ecotype_analysis/REPORT.md)
-5. **Category Breakdown** — [REPORT](../projects/ecotype_analysis/REPORT.md)
-6. **Embedding Diversity** — [REPORT](../projects/ecotype_analysis/REPORT.md)
+1. **Phylogeny Usually Dominates** — [REPORT](../projects/ecotype_analysis/REPORT.md)
+2. **No Difference by Lifestyle** — [REPORT](../projects/ecotype_analysis/REPORT.md)
+3. **Statistical Summary** — [REPORT](../projects/ecotype_analysis/REPORT.md)
+4. **Category Breakdown** — [REPORT](../projects/ecotype_analysis/REPORT.md)
+5. **Embedding Diversity** — [REPORT](../projects/ecotype_analysis/REPORT.md)
 
 ## ecotype_env_reanalysis (2026-02, complete)
 **Q**: Does the environment effect on gene content become stronger when analysis is restricted to genuinely environmental samples, excluding human-associated genomes whose AlphaEarth embeddings reflect hospital satellite imagery rather than ecological habitat?
@@ -133,19 +145,19 @@
 ## essential_metabolome (2026-02, complete)
 **Q**: Which biochemical reactions are universally essential across bacteria, and what does the essential metabolome reveal about the minimal core metabolism required for microbial life?
 1. **High Conservation of Amino Acid Biosynthesis Pathways** — [REPORT](../projects/essential_metabolome/REPORT.md)
-2. ***Desulfovibrio vulgaris* Serine Auxotrophy** — [REPORT](../projects/essential_metabolome/REPORT.md)
+2. **Desulfovibrio vulgaris Serine Auxotrophy** — [REPORT](../projects/essential_metabolome/REPORT.md)
 3. **Conserved Carbon Source Utilization** — [REPORT](../projects/essential_metabolome/REPORT.md)
 4. **GapMind Coverage Limitation Discovered** — [REPORT](../projects/essential_metabolome/REPORT.md)
 
 ## field_vs_lab_fitness (2026-02, complete)
 **Q**: Which genes matter for survival under environmentally-realistic conditions but appear dispensable in the lab, and vice versa? Do field-relevant fitness effects predict pangenome conservation better than lab-only effects?
-1. **ENIGMA CORAL Contains No DvH Fitness Data (NB01)** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
-2. **Condition Classification (NB02)** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
-3. **Genes Important for Field Conditions Are Significantly More Conserved (NB03)** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
+1. **ENIGMA CORAL Contains No DvH Fitness Data** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
+2. **Condition Classification** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
+3. **Genes Important for Field Conditions Are Significantly More Conserved** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
 4. **Specificity Analysis: Lab-Specific Genes Are Surprisingly More Core** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
 5. **Fitness Effects Are Weak Predictors of Core Status** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
 6. **Threshold Sensitivity Analysis** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
-7. **Module-Level Conservation Shows No Field-Lab Difference (NB04)** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
+7. **Module-Level Conservation Shows No Field-Lab Difference** — [REPORT](../projects/field_vs_lab_fitness/REPORT.md)
 
 ## fitness_effects_conservation (2026-02, complete)
 **Q**: Is there a continuous gradient from essential genes (core) to dispensable genes (accessory) across the full fitness spectrum, and what does the fitness landscape of novel genes look like?
@@ -159,24 +171,27 @@
 
 ## fitness_modules (2026-02, complete)
 **Q**: Can we decompose RB-TnSeq fitness compendia into latent functional modules via robust ICA, align them across organisms using orthology, and use module context to predict gene function?
-1. **1. The strict membership threshold (|weight| >= 0.3, max 50 genes) was critical. The initial D'Agostino K-squared approach gave 100-280 genes per module with weak cofitness signal (59% enriched, 1-17x correlation). After switching to absolute weight thresholds, modules became biologically coherent (94% enriched, 2.8x correlation enrichment)** — [REPORT](../projects/fitness_modules/REPORT.md)
+1. **ICA Decomposition (32 organisms)** — [REPORT](../projects/fitness_modules/REPORT.md)
+2. **Benchmarking (NB07)** — [REPORT](../projects/fitness_modules/REPORT.md)
+3. **Cross-Organism Alignment** — [REPORT](../projects/fitness_modules/REPORT.md)
+4. **Function Prediction** — [REPORT](../projects/fitness_modules/REPORT.md)
 
 ## functional_dark_matter (2026-02, complete)
 **Q**: Which genes of unknown function across 48 bacteria have strong fitness phenotypes, and can biogeographic patterns, pathway gap analysis, and cross-organism fitness concordance — combined with existing function predictions and conservation data — prioritize them for experimental follow-up?
-1. **Finding 1: One in four bacterial genes is functionally dark, and 17,344 have experimentally measurable phenotypes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-2. **Finding 2: 39,532 dark genes link to the pangenome; 6,142 belong to co-regulated fitness modules** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-3. **Finding 3: GapMind identifies 1,256 organism-pathway pairs with metabolic gaps in species harboring dark genes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-4. **Finding 4: Cross-organism fitness concordance identifies 65 ortholog groups with conserved dark gene phenotypes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-5. **Finding 5: Dark gene families span diverse taxonomic breadth — 30,756 clusters mapped across 27,690 species** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-6. **Finding 6: Within-species biogeographic analysis reveals 10 dark gene clusters with significant environmental enrichment** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-7. **Finding 7: Lab-field concordance rate of 61.7%, with NMDC validation confirming 4/4 pre-registered abiotic predictions** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-8. **Finding 8: Top 100 prioritized candidates span 22 organisms with 82% high-confidence functional hypotheses** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-9. **Finding 9: Experimental roadmap — 10 RB-TnSeq experiments cover 45% of the top 500 dark genes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-10. **Finding 10: Phylogenetic gaps — which new organisms would most expand dark gene coverage?** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-11. **Finding 11: 9,557 essential dark genes ranked by gene neighbor context and cross-organism conservation — top 50 candidates with CRISPRi experiment designs** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-12. **Finding 12: Conserved gene neighborhoods and cofit-validated operons strengthen 10,150 dark gene predictions** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-13. **Finding 13: Darkness spectrum classifies 57,011 genes into 5 tiers; 42 organisms (28 genera) cover 95% of actionable dark genes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
-14. **Finding 14: Pangenome-scale conservation × hypothesis classification reveals broadly conserved true knowledge gaps; conservation-weighted covering set orders experiments for maximum novel discovery** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+1. **One in four bacterial genes is functionally dark, and 17,344 have experimentally measurable phenotypes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+2. **39,532 dark genes link to the pangenome; 6,142 belong to co-regulated fitness modules** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+3. **GapMind identifies 1,256 organism-pathway pairs with metabolic gaps in species harboring dark genes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+4. **Cross-organism fitness concordance identifies 65 ortholog groups with conserved dark gene phenotypes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+5. **Dark gene families span diverse taxonomic breadth — 30,756 clusters mapped across 27,690 species** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+6. **Within-species biogeographic analysis reveals 10 dark gene clusters with significant environmental enrichment** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+7. **Lab-field concordance rate of 61.7%, with NMDC validation confirming 4/4 pre-registered abiotic predictions** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+8. **Top 100 prioritized candidates span 22 organisms with 82% high-confidence functional hypotheses** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+9. **Experimental roadmap — 10 RB-TnSeq experiments cover 45% of the top 500 dark genes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+10. **Phylogenetic gaps — which new organisms would most expand dark gene coverage?** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+11. **9,557 essential dark genes ranked by gene neighbor context and cross-organism conservation — top 50 candidates with CRISPRi experiment designs** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+12. **Conserved gene neighborhoods and cofit-validated operons strengthen 10,150 dark gene predictions** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+13. **Darkness spectrum classifies 57,011 genes into 5 tiers; 42 organisms (28 genera) cover 95% of actionable dark genes** — [REPORT](../projects/functional_dark_matter/REPORT.md)
+14. **Pangenome-scale conservation × hypothesis classification reveals broadly conserved true knowledge gaps; conservation-weighted covering set orders experiments for maximum novel discovery** — [REPORT](../projects/functional_dark_matter/REPORT.md)
 
 ## fw300_metabolic_consistency (2026-02, complete)
 **Q**: For *Pseudomonas fluorescens* FW300-N2E3 (ENIGMA groundwater isolate), how consistent are exometabolomic outputs (Web of Microbes), genome-wide gene fitness (Fitness Browser), species-level utilization phenotypes (BacDive), and computational pathway predictions (GapMind)?
@@ -229,30 +244,27 @@
 
 ## nmdc_community_metabolic_ecology (2026-02, complete)
 **Q**: Do the GapMind-predicted pathway completeness profiles of community resident taxa predict or correlate with observed metabolomics profiles in NMDC environmental samples across diverse habitat types?
-1. **Finding 1 — Black Queen dynamics are detectable at community scale** — [REPORT](../projects/nmdc_community_metabolic_ecology/REPORT.md)
-2. **Finding 2 — Community metabolic potential separates strongly by ecosystem type** — [REPORT](../projects/nmdc_community_metabolic_ecology/REPORT.md)
-3. **Finding 3 — Amino acid pathway completeness differs across ecosystem types for 17 of 18 pathways** — [REPORT](../projects/nmdc_community_metabolic_ecology/REPORT.md)
+1. **Black Queen dynamics are detectable at community scale** — [REPORT](../projects/nmdc_community_metabolic_ecology/REPORT.md)
+2. **Community metabolic potential separates strongly by ecosystem type** — [REPORT](../projects/nmdc_community_metabolic_ecology/REPORT.md)
+3. **Amino acid pathway completeness differs across ecosystem types for 17 of 18 pathways** — [REPORT](../projects/nmdc_community_metabolic_ecology/REPORT.md)
 
 ## pangenome_openness (2026-02, complete)
 **Q**: Do open pangenomes show different patterns of environmental vs phylogenetic effects compared to closed pangenomes?
 1. **No Correlation Found** — [REPORT](../projects/pangenome_openness/REPORT.md)
-2. **Interpretation** — [REPORT](../projects/pangenome_openness/REPORT.md)
-3. **Literature Context** — [REPORT](../projects/pangenome_openness/REPORT.md)
-4. **Limitations** — [REPORT](../projects/pangenome_openness/REPORT.md)
 
 ## paperblast_explorer (2026-02, complete)
 **Q**: What does the `kescience_paperblast` collection contain, how current is it, and what are its coverage patterns across organisms, domains of life, and functional databases?
-1. **Finding 1: One organism dominates nearly half of all literature** — [REPORT](../projects/paperblast_explorer/REPORT.md)
-2. **Finding 2: 65.6% of genes have exactly one paper** — [REPORT](../projects/paperblast_explorer/REPORT.md)
-3. **Finding 3: Literature inequality is extreme — Lorenz curves** — [REPORT](../projects/paperblast_explorer/REPORT.md)
-4. **Finding 4: Bacterial research is concentrated on pathogens** — [REPORT](../projects/paperblast_explorer/REPORT.md)
-5. **Finding 5: 345K protein families from 816K sequences** — [REPORT](../projects/paperblast_explorer/REPORT.md)
-6. **Finding 6: 55% of protein families are dark or dim** — [REPORT](../projects/paperblast_explorer/REPORT.md)
+1. **One organism dominates nearly half of all literature** — [REPORT](../projects/paperblast_explorer/REPORT.md)
+2. **65.6% of genes have exactly one paper** — [REPORT](../projects/paperblast_explorer/REPORT.md)
+3. **Literature inequality is extreme — Lorenz curves** — [REPORT](../projects/paperblast_explorer/REPORT.md)
+4. **Bacterial research is concentrated on pathogens** — [REPORT](../projects/paperblast_explorer/REPORT.md)
+5. **345K protein families from 816K sequences** — [REPORT](../projects/paperblast_explorer/REPORT.md)
+6. **55% of protein families are dark or dim** — [REPORT](../projects/paperblast_explorer/REPORT.md)
 
 ## pathway_capability_dependency (2026-02, complete)
 **Q**: When a bacterium's genome encodes a complete biosynthetic or catabolic pathway, does the organism actually depend on it? Can we use fitness data to distinguish **active dependencies** from **latent capabilities** — and predict which pathways are candidates for evolutionary gene loss?
 1. **Pathway Completeness Alone Is Insufficient to Predict Metabolic Dependency** — [REPORT](../projects/pathway_capability_dependency/REPORT.md)
-2. **All "Latent Capabilities" Become Important Under Specific Conditions** — [REPORT](../projects/pathway_capability_dependency/REPORT.md)
+2. **All 'Latent Capabilities' Become Important Under Specific Conditions** — [REPORT](../projects/pathway_capability_dependency/REPORT.md)
 3. **Conservation Validation: Active Dependencies Have Near-Complete Core Genomes** — [REPORT](../projects/pathway_capability_dependency/REPORT.md)
 4. **Variable Pathways Strongly Correlate with Pangenome Openness** — [REPORT](../projects/pathway_capability_dependency/REPORT.md)
 5. **Amino Acid Biosynthesis Pathways Show the Strongest Accessory Dependence** — [REPORT](../projects/pathway_capability_dependency/REPORT.md)
@@ -280,8 +292,8 @@
 1. **Each carbon source uses a distinct respiratory chain configuration** — [REPORT](../projects/respiratory_chain_wiring/REPORT.md)
 2. **ADP1 has three parallel NADH dehydrogenases with distinct condition profiles** — [REPORT](../projects/respiratory_chain_wiring/REPORT.md)
 3. **The quinate-Complex I paradox is resolved by NADH flux rate, not total yield** — [REPORT](../projects/respiratory_chain_wiring/REPORT.md)
-4. **Cross-species: NDH-2 presence does NOT predict reduced Complex I aromatic dependency** — [REPORT](../projects/respiratory_chain_wiring/REPORT.md)
-5. **Proteomics: respiratory wiring is metabolic, not transcriptional** — [REPORT](../projects/respiratory_chain_wiring/REPORT.md)
+4. **Cross-species NDH-2 presence does NOT predict reduced Complex I aromatic dependency** — [REPORT](../projects/respiratory_chain_wiring/REPORT.md)
+5. **Proteomics indicates respiratory wiring is metabolic, not transcriptional** — [REPORT](../projects/respiratory_chain_wiring/REPORT.md)
 
 ## webofmicrobes_explorer (2026-02, complete)
 **Q**: What does the `kescience_webofmicrobes` exometabolomics collection contain, which organisms overlap with the Fitness Browser, and how well do metabolite uptake/release profiles connect to pangenome-predicted metabolic capabilities?
