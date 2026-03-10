@@ -272,12 +272,12 @@
 
 ## phb_granule_ecology (2026-02, complete)
 **Q**: How are polyhydroxybutyrate (PHB) granule-forming pathways distributed across bacterial clades and environments, and does this distribution support the hypothesis that carbon storage granules are most beneficial in temporally variable feast/famine environments?
-1. **Finding 1: PHB pathways are widespread but phylogenetically concentrated** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
-2. **Finding 2: PHB is enriched in environmentally variable habitats (H1a supported)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
-3. **Finding 3: PHB-niche breadth association is largely explained by genome size (H1b qualified)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
-4. **Finding 4: Subclade enrichment reveals heterogeneous selection within phyla (H1d partially supported)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
-5. **Finding 5: Strong signal of horizontal gene transfer in phaC distribution** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
-6. **Finding 6: NMDC metagenomic cross-validation supports pangenome PHB patterns (H1c supported)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
+1. **PHB pathways are widespread but phylogenetically concentrated** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
+2. **PHB is enriched in environmentally variable habitats (H1a supported)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
+3. **PHB-niche breadth association is largely explained by genome size (H1b qualified)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
+4. **Subclade enrichment reveals heterogeneous selection within phyla (H1d partially supported)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
+5. **Strong signal of horizontal gene transfer in phaC distribution** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
+6. **NMDC metagenomic cross-validation supports pangenome PHB patterns (H1c supported)** — [REPORT](../projects/phb_granule_ecology/REPORT.md)
 
 ## prophage_ecology (2026-02, complete)
 **Q**: How are prophage gene modules and terminase-defined prophage lineages distributed across bacterial phylogeny and environmental gradients, and which modules/lineages show environmental enrichment exceeding phylogenetic expectation?

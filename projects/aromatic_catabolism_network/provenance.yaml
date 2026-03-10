@@ -1,0 +1,224 @@
+schema_version: 1
+references:
+- id: adachi2003
+  type: supporting
+  title: PQQ-dependent quinoprotein dehydrogenases in oxidative fermentation
+  authors:
+  - Adachi O
+  year: 2003
+  journal: Enzyme and Microbial Technology
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://www.sciencedirect.com/journal/enzyme-and-microbial-technology
+- id: dal2005
+  type: supporting
+  title: Transcriptional organization of genes for protocatechuate and quinate degradation from Acinetobacter sp. strain ADP1
+  authors:
+  - Dal S
+  year: 2005
+  journal: Applied and Environmental Microbiology
+  volume: '71'
+  pages: 1025-1034
+  doi: 10.1128/AEM.71.2.1025-1034.2005
+  pmid: null
+  url: null
+- id: deberardinis2008
+  type: primary_data_source
+  title: A complete collection of single-gene deletion mutants of Acinetobacter baylyi ADP1
+  authors:
+  - de Berardinis V
+  year: 2008
+  journal: Molecular Systems Biology
+  volume: '4'
+  pages: '174'
+  doi: null
+  pmid: '18319726'
+  url: null
+- id: erickson2022
+  type: supporting
+  title: Critical enzyme reactions in aromatic catabolism for microbial lignin conversion
+  authors:
+  - Erickson E
+  year: 2022
+  journal: Nature Catalysis
+  volume: '5'
+  pages: 886-898
+  doi: 10.1038/s41929-022-00829-3
+  pmid: null
+  url: null
+- id: fischer2008
+  type: supporting
+  title: Catabolite repression of aromatic compound degradation in Acinetobacter baylyi
+  authors:
+  - Fischer R
+  year: 2008
+  journal: Journal of Bacteriology
+  volume: '190'
+  pages: 1759-1767
+  doi: 10.1128/JB.01437-07
+  pmid: null
+  url: null
+- id: melo2016
+  type: supporting
+  title: Supramolecular organization of bacterial aerobic respiratory chains
+  authors:
+  - Melo AMP
+  - Teixeira M
+  year: 2016
+  journal: Biochimica et Biophysica Acta - Bioenergetics
+  volume: '1857'
+  pages: 190-197
+  doi: 10.1016/j.bbabio.2015.11.001
+  pmid: null
+  url: null
+- id: price2018
+  type: methodology
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: null
+  url: null
+- id: que2005
+  type: supporting
+  title: 'Non-heme iron dioxygenases: structure and mechanism'
+  authors:
+  - Que L
+  year: 2005
+  journal: Structure and Bonding
+  volume: '97'
+  pages: 21-58
+  doi: 10.1007/b12434
+  pmid: null
+  url: null
+- id: stanier1973
+  type: review
+  title: The β-ketoadipate pathway
+  authors:
+  - Stanier RY
+  - Ornston LN
+  year: 1973
+  journal: Advances in Microbial Physiology
+  volume: '9'
+  pages: 89-151
+  doi: 10.1016/S0065-2911(08)60302-0
+  pmid: null
+  url: null
+- id: stuani2014
+  type: supporting
+  title: Novel metabolic features in Acinetobacter baylyi ADP1 revealed by a multiomics approach
+  authors:
+  - Stuani L
+  year: 2014
+  journal: Metabolomics
+  volume: '10'
+  pages: 1223-1238
+  doi: null
+  pmid: '25374488'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - experiment
+  - genefitness
+  purpose: Cross-species ortholog-transferred fitness data for Complex I and aromatic substrate conditions
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables:
+  - eggnog_mapper_annotations
+  - gene_cluster
+  purpose: Pangenome core/accessory annotations and KO-based cross-species comparison of pca pathway and Complex I orthologs
+  reference: null
+cross_project_deps:
+- project: adp1_deletion_phenotypes
+  relationship: data_input
+  files:
+  - data/quinate_specific_genes.csv
+  description: Identified the 51 quinate-specific genes (specificity > 0.5, z-score < -1.0 on quinate) that form the basis
+    of this project's analysis
+- project: acinetobacter_adp1_explorer
+  relationship: data_input
+  files:
+  - user_data/berdl_tables.db
+  description: ADP1 SQLite database with genome features, FBA predictions (230 conditions), and gene-reaction mappings; symlinked
+    into this project
+findings:
+- id: aromatic_catabolism_51_gene_support_network
+  title: Aromatic catabolism requires a 51-gene support network spanning 4 metabolic subsystems
+  notebook: 01_metabolic_dependencies.ipynb
+  figures:
+  - support_network_categories.png
+  data_files: []
+  references:
+  - dal2005
+  - stuani2014
+  - stanier1973
+  statistics:
+    genes_assigned_to_subsystems: 44/51 (86%)
+    subsystems_identified: '4'
+- id: complex_i_dominant_support_invisible_to_fba
+  title: Complex I is the largest support subsystem — and invisible to FBA
+  notebook: 01_metabolic_dependencies.ipynb
+  figures:
+  - fba_flux_heatmap.png
+  data_files: []
+  references:
+  - melo2016
+  statistics:
+    complex_i_gene_fraction: 21/51 (41%)
+    fba_flux_ratio_aromatic_vs_nonaromatic: 1.76x (0.55 vs 0.31)
+    fba_predicted_essentiality: 0%
+    genes_without_fba_mappings: 30/51
+- id: support_subsystems_genomically_independent
+  title: Support subsystems are genomically independent but metabolically coupled
+  notebook: 02_genomic_organization.ipynb
+  figures:
+  - chromosome_map.png
+  - gene_clusters.png
+  data_files: []
+  references:
+  - dal2005
+  statistics:
+    genomic_clusters: '9'
+    observed_expected_nn_distance_ratio: '0.89'
+    complex_i_subunits_with_quinate_defects: 10/13
+- id: cofitness_assigns_unknown_genes
+  title: Co-fitness assigns 16 unknown genes to specific subsystems
+  notebook: 03_cofitness_network.ipynb
+  figures:
+  - cofitness_heatmap.png
+  - unknown_assignments_heatmap.png
+  - cofitness_within_between.png
+  data_files: []
+  references: []
+  statistics:
+    unknown_genes_assigned: 16/23
+    duf_protein_correlation_with_complex_i: r > 0.98
+    complex_i_mean_within_category_r: '0.992'
+    aromatic_pathway_mean_within_category_r: '0.961'
+- id: complex_i_dependency_high_nadh_substrates
+  title: 'Cross-species: Complex I dependency is on high-NADH substrates, not aromatics specifically'
+  notebook: 04_cross_species.ipynb
+  figures:
+  - cross_species_fitness.png
+  - complex_I_vs_background.png
+  data_files: []
+  references:
+  - price2018
+  - melo2016
+  statistics:
+    ortholog_entries: 12,241
+    genes_analyzed: 2,005
+    conditions_analyzed: '13'
+    complex_i_mean_fitness_aromatic: '-1.35'
+    complex_i_mean_fitness_nonaromatic: '-0.77'
+    mann_whitney_p: < 0.0001
+    largest_defect_acetate: '-1.55'
+    largest_defect_succinate: '-1.39'
+generated_data: []

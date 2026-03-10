@@ -1,0 +1,584 @@
+schema_version: 1
+references:
+- id: parks2022
+  type: primary_data_source
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  - Chuvochina M
+  - Rinke C
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: 10.1093/nar/gkab776
+  pmid: null
+  url: null
+- id: arkin2018
+  type: primary_data_source
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  - Cottingham RW
+  - Henry CS
+  year: 2018
+  journal: Nature Biotechnology
+  volume: '36'
+  pages: 566-569
+  doi: null
+  pmid: '29979655'
+  url: null
+- id: dawes1973
+  type: methodology
+  title: The role and regulation of energy reserve polymers in micro-organisms
+  authors:
+  - Dawes EA
+  - Senior PJ
+  year: 1973
+  journal: Advances in Microbial Physiology
+  volume: '10'
+  pages: 135-266
+  doi: 10.1016/S0065-2911(08)60088-0
+  pmid: null
+  url: null
+- id: anderson1990
+  type: supporting
+  title: Occurrence, metabolism, metabolic role, and industrial uses of bacterial polyhydroxyalkanoates
+  authors:
+  - Anderson AJ
+  - Dawes EA
+  year: 1990
+  journal: Microbiological Reviews
+  volume: '54'
+  pages: 450-472
+  doi: null
+  pmid: '2087222'
+  url: null
+- id: rehm2003
+  type: methodology
+  title: 'Polyester synthases: natural catalysts for plastics'
+  authors:
+  - Rehm BHA
+  year: 2003
+  journal: Biochemical Journal
+  volume: '376'
+  pages: 15-33
+  doi: null
+  pmid: '12954078'
+  url: null
+- id: kadouri2005
+  type: review
+  title: Ecological and agricultural significance of bacterial polyhydroxyalkanoates
+  authors:
+  - Kadouri D
+  - Jurkevitch E
+  - Okon Y
+  - Castro-Sowinski S
+  year: 2005
+  journal: Critical Reviews in Microbiology
+  volume: '31'
+  pages: 55-67
+  doi: null
+  pmid: '15747757'
+  url: null
+- id: jendrossek2014
+  type: supporting
+  title: New insights in the formation of polyhydroxyalkanoate granules (carbonosomes) and novel functions of poly(3-hydroxybutyrate)
+  authors:
+  - Jendrossek D
+  - Pfeiffer D
+  year: 2014
+  journal: Environmental Microbiology
+  volume: '16'
+  pages: 2357-2373
+  doi: null
+  pmid: '24735308'
+  url: null
+- id: rehm1999
+  type: methodology
+  title: Biochemical and genetic analysis of PHA synthases and other proteins required for PHA synthesis
+  authors:
+  - Rehm BHA
+  - Steinbuchel A
+  year: 1999
+  journal: International Journal of Biological Macromolecules
+  volume: '25'
+  pages: 3-19
+  doi: null
+  pmid: '10416645'
+  url: null
+- id: mezzolla2018
+  type: methodology
+  title: Role of PhaC Type I and Type II Enzymes during PHA Biosynthesis
+  authors:
+  - Mezzolla V
+  - D'Urso OF
+  - Poltronieri P
+  year: 2018
+  journal: Polymers
+  volume: '10'
+  pages: '910'
+  doi: null
+  pmid: '30966625'
+  url: null
+- id: han2010
+  type: supporting
+  title: Wide distribution among halophilic archaea of a novel polyhydroxyalkanoate synthase subtype with homology to bacterial
+    Type III synthases
+  authors:
+  - Han J
+  - Lu Q
+  - Zhou L
+  year: 2010
+  journal: Applied and Environmental Microbiology
+  volume: '76'
+  pages: 7811-7819
+  doi: null
+  pmid: '20889785'
+  url: null
+- id: kalia2007
+  type: supporting
+  title: 'Insight in to the phylogeny of polyhydroxyalkanoate biosynthesis: horizontal gene transfer'
+  authors:
+  - Kalia VC
+  - Lal S
+  - Cheema S
+  year: 2007
+  journal: Gene
+  volume: '389'
+  pages: 19-26
+  doi: null
+  pmid: '17276615'
+  url: null
+- id: cai2011
+  type: supporting
+  title: Comparative genomics study of polyhydroxyalkanoates (PHA) and ectoine relevant genes from Halomonas sp. TD01 revealed
+    extensive horizontal gene transfer events and co-evolutionary relationships
+  authors:
+  - Cai L
+  - Tan D
+  - Aibaidula G
+  year: 2011
+  journal: Microbial Cell Factories
+  volume: '10'
+  pages: '88'
+  doi: null
+  pmid: '22040376'
+  url: null
+- id: catone2014
+  type: supporting
+  title: High polyhydroxybutyrate production in Pseudomonas extremaustralis is associated with differential expression of
+    horizontally acquired and core genome polyhydroxyalkanoate synthase genes
+  authors:
+  - Catone MV
+  - Ruiz JA
+  - Castellanos M
+  year: 2014
+  journal: PLOS ONE
+  volume: '9'
+  pages: e98873
+  doi: null
+  pmid: '24897376'
+  url: null
+- id: obruca2018
+  type: supporting
+  title: 'Involvement of polyhydroxyalkanoates in stress resistance of microbial cells: Biotechnological consequences and
+    applications'
+  authors:
+  - Obruca S
+  - Sedlacek P
+  - Koller M
+  year: 2018
+  journal: Biotechnology Advances
+  volume: '36'
+  pages: 856-870
+  doi: null
+  pmid: '29248684'
+  url: null
+- id: obruca2020
+  type: supporting
+  title: Novel unexpected functions of PHA granules
+  authors:
+  - Obruca S
+  - Sedlacek P
+  - Slaninova E
+  year: 2020
+  journal: Applied Microbiology and Biotechnology
+  volume: '104'
+  pages: 4795-4810
+  doi: null
+  pmid: '32424455'
+  url: null
+- id: mullerssantos2021
+  type: supporting
+  title: The protective role of PHB and its degradation products against stress situations in bacteria
+  authors:
+  - Muller-Santos M
+  - Koskimaki JJ
+  - Hungria M
+  year: 2021
+  journal: FEMS Microbiology Reviews
+  volume: '45'
+  pages: fuaa058
+  doi: null
+  pmid: '33118006'
+  url: null
+- id: pieja2011
+  type: supporting
+  title: Distribution and Selection of Poly-3-Hydroxybutyrate Production Capacity in Methanotrophic Proteobacteria
+  authors:
+  - Pieja AJ
+  - Rostkowski KH
+  - Criddle CS
+  year: 2011
+  journal: Microbial Ecology
+  volume: '62'
+  pages: 564-573
+  doi: null
+  pmid: '21725983'
+  url: null
+- id: viljakainen2021
+  type: supporting
+  title: The phylogenetic and global distribution of bacterial polyhydroxyalkanoate bioplastic-degrading genes
+  authors:
+  - Viljakainen VR
+  - Hug LA
+  year: 2021
+  journal: Environmental Microbiology
+  volume: '23'
+  pages: 1717-1731
+  doi: null
+  pmid: '33496062'
+  url: null
+- id: masonjones2023
+  type: supporting
+  title: Intracellular carbon storage by microorganisms is an overlooked pathway of biomass growth
+  authors:
+  - Mason-Jones K
+  - Breidenbach A
+  - Dyckmans J
+  year: 2023
+  journal: Nature Communications
+  volume: '14'
+  pages: '2240'
+  doi: null
+  pmid: '37076457'
+  url: null
+- id: konstantinidis2004
+  type: methodology
+  title: Trends between Gene Content and Genome Size in Prokaryotic Species with Larger Genomes
+  authors:
+  - Konstantinidis KT
+  - Tiedje JM
+  year: 2004
+  journal: Proceedings of the National Academy of Sciences
+  volume: '101'
+  pages: 3160-3165
+  doi: 10.1073/pnas.0308653100
+  pmid: null
+  url: null
+- id: giovannoni2005
+  type: supporting
+  title: Genome Streamlining in a Cosmopolitan Oceanic Bacterium
+  authors:
+  - Giovannoni SJ
+  - Tripp HJ
+  - Givan S
+  year: 2005
+  journal: Science
+  volume: '309'
+  pages: 1242-1245
+  doi: 10.1126/science.1114057
+  pmid: null
+  url: null
+- id: vieiirasilva2010
+  type: methodology
+  title: The Systemic Imprint of Growth and Its Uses in Ecological (Meta)Genomics
+  authors:
+  - Vieira-Silva S
+  - Rocha EPC
+  year: 2010
+  journal: PLoS Genetics
+  volume: '6'
+  pages: e1000808
+  doi: 10.1371/journal.pgen.1000808
+  pmid: null
+  url: null
+- id: barberan2014
+  type: supporting
+  title: Why are some microbes more ubiquitous than others? Predicting the habitat breadth of soil bacteria
+  authors:
+  - Barberán A
+  - Ramirez KS
+  - Leff JW
+  year: 2014
+  journal: Ecology Letters
+  volume: '17'
+  pages: 794-802
+  doi: 10.1111/ele.12282
+  pmid: null
+  url: null
+- id: giovannoni2014
+  type: supporting
+  title: Implications of Streamlining Theory for Microbial Ecology
+  authors:
+  - Giovannoni SJ
+  - Cameron Thrash J
+  - Temperton B
+  year: 2014
+  journal: The ISME Journal
+  volume: '8'
+  pages: 1553-1565
+  doi: 10.1038/ismej.2014.60
+  pmid: null
+  url: null
+- id: bentkowski2015
+  type: supporting
+  title: A Model of Genome Size Evolution for Prokaryotes in Stable and Fluctuating Environments
+  authors:
+  - Bentkowski P
+  - Van Oosterhout C
+  - Mock T
+  year: 2015
+  journal: Genome Biology and Evolution
+  volume: '7'
+  pages: 2344-2351
+  doi: 10.1093/gbe/evv148
+  pmid: null
+  url: null
+- id: mendler2019
+  type: methodology
+  title: 'AnnoTree: visualization and exploration of a functionally annotated microbial tree of life'
+  authors:
+  - Mendler K
+  - Chen H
+  - Parks DH
+  - Hug LA
+  - Doxey AC
+  year: 2019
+  journal: Nucleic Acids Research
+  volume: '47'
+  pages: 4442-4448
+  doi: null
+  pmid: '31081040'
+  url: null
+- id: szabo2023
+  type: methodology
+  title: Reconstruction of the last bacterial common ancestor from 183 pangenomes reveals a versatile ancient core genome
+  authors:
+  - Szabo RE
+  year: 2023
+  journal: Genome Biology
+  volume: '24'
+  pages: '183'
+  doi: null
+  pmid: '37537394'
+  url: null
+- id: gibbons2021
+  type: supporting
+  title: Metabolic flexibility allows bacterial habitat generalists to become dominant in a frequently disturbed ecosystem
+  authors:
+  - Gibbons SM
+  year: 2021
+  journal: The ISME Journal
+  volume: '15'
+  pages: 2986-2999
+  doi: null
+  pmid: '33941890'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - eggnog_mapper_annotations
+  - gene_cluster
+  - gtdb_species_clade
+  - gtdb_taxonomy_r214v1
+  - genome
+  - pangenome
+  - ncbi_env
+  - alphaearth_embeddings_all_years
+  - gtdb_metadata
+  purpose: PHB gene identification via KEGG KOs and PFams, species taxonomy, genome-to-species mapping, environment metadata,
+    environmental embeddings, NMDC taxonomy bridging
+  reference: null
+- collection: nmdc_arkin
+  tables:
+  - study_table
+  - abiotic_features
+  - taxonomy_features
+  - taxonomy_dim
+  - kegg_ko_terms
+  - metabolomics_gold
+  - trait_features
+  - embedding_metadata
+  purpose: Metagenomic cross-validation via taxonomic composition, abiotic feature correlation, PHB pathway inference
+  reference: null
+cross_project_deps: []
+findings:
+- id: phb_phylogenetic_concentration
+  title: PHB pathways are widespread but phylogenetically concentrated
+  notebook: 01_phb_gene_discovery.ipynb
+  figures:
+  - phb_prevalence_by_phylum.png
+  - phb_pathway_completeness.png
+  data_files:
+  - data/phb_gene_clusters.tsv
+  - data/phb_species_summary.tsv
+  - data/phb_by_taxonomy.tsv
+  references:
+  - anderson1990
+  statistics:
+    phaC_prevalence: 21.9% (6,067/27,690 species)
+    complete_pathway_prevalence: 21.7% (6,005/27,690 species)
+    total_gene_clusters: 118,513 across 19,496 species
+    pseudomonadota_prevalence: 60.9% (4,544/7,456 species)
+    myxococcota_prevalence: 52.9% (83/157 species)
+    halobacteriota_prevalence: 34.4% (89/259 species)
+- id: phb_environmental_enrichment
+  title: PHB is enriched in environmentally variable habitats (H1a supported)
+  notebook: 03_environmental_correlation.ipynb
+  figures:
+  - phb_by_environment.png
+  data_files:
+  - data/species_environment.tsv
+  references:
+  - masonjones2023
+  statistics:
+    plant_phb_prevalence: 44.0%
+    soil_phb_prevalence: 43.6%
+    wastewater_phb_prevalence: 34.5%
+    marine_phb_prevalence: 18.7%
+    clinical_phb_prevalence: 7.4%
+    animal_phb_prevalence: 3.3%
+    chi2_test: chi2=1656.36, p~0, dof=2
+- id: phb_niche_breadth_genome_confound
+  title: PHB-niche breadth association is largely explained by genome size (H1b qualified)
+  notebook: 03_environmental_correlation.ipynb
+  figures:
+  - embedding_variance_phb.png
+  - genome_size_confound.png
+  data_files:
+  - data/phb_embedding_analysis.tsv
+  - data/species_genome_size.tsv
+  references:
+  - vieiirasilva2010
+  - barberan2014
+  - bentkowski2015
+  statistics:
+    phb_plus_embedding_variance: 0.3295 (median, n=531)
+    phb_minus_embedding_variance: 0.2472 (median, n=1477)
+    mannwhitney_u: '446546'
+    mannwhitney_p: '1.88e-06'
+    phb_plus_median_genome: 4.34 Mbp
+    phb_minus_median_genome: 2.44 Mbp
+    genome_size_r: '-0.592'
+    genome_size_niche_rho: '0.302'
+    partial_rho_after_confound: '-0.047'
+    p_value_partial: '0.037'
+    effect_reduction: 56.3%
+- id: phb_subclade_enrichment
+  title: Subclade enrichment reveals heterogeneous selection within phyla (H1d partially supported)
+  notebook: 05_subclade_enrichment.ipynb
+  figures:
+  - phb_enrichment_heatmap.png
+  data_files:
+  - data/subclade_enrichment.tsv
+  references:
+  - pieja2011
+  - kalia2007
+  statistics:
+    families_tested: 248 (Fisher's exact, Bonferroni-corrected)
+    families_enriched: '41'
+    families_depleted: '62'
+    families_not_significant: '145'
+- id: phb_horizontal_gene_transfer
+  title: Strong signal of horizontal gene transfer in phaC distribution
+  notebook: 05_subclade_enrichment.ipynb
+  figures:
+  - phb_core_vs_accessory.png
+  data_files:
+  - data/phb_gene_clusters.tsv
+  references:
+  - kalia2007
+  - catone2014
+  - cai2011
+  statistics:
+    hgt_acquisition_events: '311'
+    hgt_loss_events: '278'
+    accessory_rate_discordant: 60.1%
+    accessory_rate_overall: 32.3%
+    core_phaC_species: '5371'
+    accessory_phaC_species: '1959'
+- id: nmdc_cross_validation
+  title: NMDC metagenomic cross-validation supports pangenome PHB patterns (H1c supported)
+  notebook: 04_nmdc_metagenomic_analysis.ipynb
+  figures:
+  - nmdc_phb_by_environment.png
+  - nmdc_phb_vs_abiotic.png
+  - pangenome_vs_metagenome.png
+  data_files:
+  - data/nmdc_phb_prevalence.tsv
+  - data/nmdc_abiotic_correlations.tsv
+  - data/pangenome_vs_metagenome.tsv
+  references:
+  - viljakainen2021
+  statistics:
+    nmdc_samples: '6365'
+    nmdc_taxon_mapping: 3014/3492 (86.3%)
+    median_phb_inference_score: '137.7'
+    depth_rho: '-0.119'
+    depth_p: '1.14e-21'
+    temperature_rho: '0.088'
+    temperature_p: '1.86e-12'
+    genus_level_matches: '693'
+    phb_high_vs_low_mannwhitney_p: '8.41e-22'
+generated_data:
+- file: data/phb_gene_clusters.tsv
+  rows: 118513
+  description: All PHB-related gene clusters with KEGG KO, species, core/accessory status
+  source_notebook: 01_phb_gene_discovery.ipynb
+- file: data/phb_species_summary.tsv
+  rows: 19496
+  description: Species-level PHB pathway status (complete/partial/absent)
+  source_notebook: 02_phylogenetic_mapping.ipynb
+- file: data/phb_by_taxonomy.tsv
+  rows: 27690
+  description: All species with taxonomy and PHB status merged
+  source_notebook: 02_phylogenetic_mapping.ipynb
+- file: data/phb_by_order.tsv
+  rows: 1058
+  description: PHB prevalence aggregated by taxonomic order
+  source_notebook: 02_phylogenetic_mapping.ipynb
+- file: data/species_environment.tsv
+  rows: 27690
+  description: Species with primary environment classification and PHB status
+  source_notebook: 03_environmental_correlation.ipynb
+- file: data/phb_embedding_analysis.tsv
+  rows: 2008
+  description: Species with AlphaEarth embedding variance, genome size, and PHB status
+  source_notebook: 03_environmental_correlation.ipynb
+- file: data/species_genome_size.tsv
+  rows: 27690
+  description: Species-level genome size (Mbp), protein count, and PHB status
+  source_notebook: 03_environmental_correlation.ipynb
+- file: data/subclade_enrichment.tsv
+  rows: 248
+  description: Family-level Fisher's exact test results (enriched/depleted/ns)
+  source_notebook: 05_subclade_enrichment.ipynb
+- file: data/phaC_class_distribution.tsv
+  rows: 6067
+  description: phaC-carrying species with attempted PHA synthase class (all other_pfam due to annotation format issue)
+  source_notebook: 05_subclade_enrichment.ipynb
+- file: data/nmdc_phb_prevalence.tsv
+  rows: 6365
+  description: NMDC sample PHB inference scores (mean=201.5, median=137.7, 87.2% median coverage)
+  source_notebook: 04_nmdc_metagenomic_analysis.ipynb
+- file: data/nmdc_abiotic_correlations.tsv
+  rows: 21
+  description: Spearman correlations of PHB score with abiotic variables (6 significant at p<0.001)
+  source_notebook: 04_nmdc_metagenomic_analysis.ipynb
+- file: data/pangenome_vs_metagenome.tsv
+  rows: 693
+  description: Genus-level pangenome phaC prevalence vs NMDC mean abundance
+  source_notebook: 05_subclade_enrichment.ipynb
