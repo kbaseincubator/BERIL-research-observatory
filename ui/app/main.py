@@ -39,22 +39,24 @@ templates = None
 
 class DataContextMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next) -> Response:
-        settings = get_settings()
-        repo_data = request.app.state.repo_data
-        request.state.repo_data = repo_data
-        request.state.base_context = {
-            "app_name": settings.app_name,
-            "total_genomes": f"{settings.total_genomes:,}",
-            "total_species": f"{settings.total_species:,}",
-            "total_genes": settings.total_genes,
-            "project_count": len(repo_data.projects),
-            "discovery_count": len(repo_data.discoveries),
-            "idea_count": len(repo_data.research_ideas),
-            "collection_count": len(repo_data.collections),
-            "contributor_count": len(repo_data.contributors),
-            "skill_count": len(repo_data.skills),
-            "last_updated": repo_data.last_updated,
-        }
+        # settings = get_settings()
+        request.state.repo_data = request.app.state.repo_data
+        request.state.base_context = request.app.state.base_context
+        # repo_data = request.app.state.repo_data
+        # request.state.repo_data = repo_data
+        # request.state.base_context = {
+        #     "app_name": settings.app_name,
+        #     "total_genomes": f"{settings.total_genomes:,}",
+        #     "total_species": f"{settings.total_species:,}",
+        #     "total_genes": settings.total_genes,
+        #     "project_count": len(repo_data.projects),
+        #     "discovery_count": len(repo_data.discoveries),
+        #     "idea_count": len(repo_data.research_ideas),
+        #     "collection_count": len(repo_data.collections),
+        #     "contributor_count": len(repo_data.contributors),
+        #     "skill_count": len(repo_data.skills),
+        #     "last_updated": repo_data.last_updated,
+        # }
         return await call_next(request)
 
 async def initialize_data(settings: Settings) -> RepositoryData:
@@ -92,11 +94,28 @@ async def initialize_data(settings: Settings) -> RepositoryData:
     return repo_data
 
 
+def get_base_context(settings: Settings, repo_data: RepositoryData) -> dict:
+    return {
+        "app_name": settings.app_name,
+        "total_genomes": f"{settings.total_genomes:,}",
+        "total_species": f"{settings.total_species:,}",
+        "total_genes": settings.total_genes,
+        "project_count": len(repo_data.projects),
+        "discovery_count": len(repo_data.discoveries),
+        "idea_count": len(repo_data.research_ideas),
+        "collection_count": len(repo_data.collections),
+        "contributor_count": len(repo_data.contributors),
+        "skill_count": len(repo_data.skills),
+        "last_updated": repo_data.last_updated,
+    }
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     settings = get_settings()
     if not settings.test_skip_lifespan:
         app.state.repo_data = await initialize_data(settings)
+        app.state.base_context = get_base_context(settings, app.state.repo_data)
     yield
 
 
@@ -670,6 +689,7 @@ async def data_update_webhook(
             # Reload from local git repo
             data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
             request.app.state.repo_data = load_repository_data(data_file)
+            request.app.state.base_context = get_base_context(settings, request.app.state.repo_data)
 
             logger.info(
                 f"Data reloaded successfully. New last_updated: {request.app.state.repo_data.last_updated}"
