@@ -10,7 +10,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.config import Settings
-from app.main import create_app, get_base_context
+from app.main import create_app, generate_base_context
 
 # ---------------------------------------------------------------------------
 # HTTP Routes via TestClient
@@ -323,14 +323,14 @@ class TestWebhookEndpoint:
 
 
 # ---------------------------------------------------------------------------
-# get_base_context unit tests
+# generate_base_context unit tests
 # ---------------------------------------------------------------------------
 
 
 class TestGetBaseContext:
     def test_counts_match_repo_data(self, repository_data):
         settings = Settings()
-        ctx = get_base_context(settings, repository_data)
+        ctx = generate_base_context(settings, repository_data)
         assert ctx["project_count"] == len(repository_data.projects)
         assert ctx["discovery_count"] == len(repository_data.discoveries)
         assert ctx["idea_count"] == len(repository_data.research_ideas)
@@ -340,18 +340,18 @@ class TestGetBaseContext:
 
     def test_last_updated_matches_repo_data(self, repository_data):
         settings = Settings()
-        ctx = get_base_context(settings, repository_data)
+        ctx = generate_base_context(settings, repository_data)
         assert ctx["last_updated"] == repository_data.last_updated
 
     def test_counts_update_when_repo_data_changes(self, repository_data, project):
         import dataclasses
 
         settings = Settings()
-        ctx_before = get_base_context(settings, repository_data)
+        ctx_before = generate_base_context(settings, repository_data)
 
         updated = dataclasses.replace(
             repository_data, projects=repository_data.projects + [project]
         )
-        ctx_after = get_base_context(settings, updated)
+        ctx_after = generate_base_context(settings, updated)
 
         assert ctx_after["project_count"] == ctx_before["project_count"] + 1
