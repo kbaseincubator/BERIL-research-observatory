@@ -6,9 +6,13 @@ import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
 
+import json
+import uuid
+
 import nbformat
 from markupsafe import Markup
 from nbconvert import HTMLExporter
+from nbconvert.preprocessors import Preprocessor
 
 # Add custom Jinja2 filters
 import markdown
@@ -22,7 +26,56 @@ from .dataloader import load_repository_data
 from .git_data_sync import ensure_repo_cloned, pull_latest
 from .models import CollectionCategory
 
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 logger = logging.getLogger(__name__)
+
+PLOTLY_CDN = (
+    '<script src="https://cdn.plot.ly/plotly-3.4.0.min.js"'
+    ' charset="utf-8"></script>'
+)
+
+
+class PlotlyPreprocessor(Preprocessor):
+    """Convert application/vnd.plotly.v1+json outputs to rendered HTML."""
+
+    def preprocess_cell(self, cell, resources, cell_index):
+        new_outputs = []
+        needs_plotly = resources.get("needs_plotly", False)
+        for output in cell.get("outputs", []):
+            plotly_json = output.get("data", {}).get(
+                "application/vnd.plotly.v1+json"
+            )
+            if plotly_json is not None:
+                div_id = f"plotly-{uuid.uuid4().hex}"
+                fig_json = json.dumps(plotly_json)
+                html = (
+                    f'<div id="{div_id}" style="width:100%;min-height:400px;"></div>'
+                    f"<script>"
+                    f"(function(){{"
+                    f"  var fig = {fig_json};"
+                    f'  Plotly.newPlot("{div_id}", fig.data, fig.layout, fig.config || {{}});'
+                    f"}})();"
+                    f"</script>"
+                )
+                output = nbformat.from_dict(
+                    {
+                        "output_type": output["output_type"],
+                        "metadata": output.get("metadata", {}),
+                        "data": {
+                            "text/html": html,
+                            "text/plain": "[Plotly figure]",
+                        },
+                    }
+                )
+                needs_plotly = True
+            new_outputs.append(output)
+        cell["outputs"] = new_outputs
+        resources["needs_plotly"] = needs_plotly
+        return cell, resources
 
 
 # Add custom template globals
@@ -32,7 +85,10 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing repository data")
 
     # If git repo is configured, clone/pull it first
-    if settings.data_repo_url:
+    if settings.force_local_data:
+        logger.info("Forcing parsing and loading of local data")
+        app.state.repo_data = load_repository_data(None)
+    elif settings.data_repo_url:
         try:
             logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
             await ensure_repo_cloned(
@@ -343,6 +399,10 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
         with open(notebook_path, "r", encoding="utf-8") as f:
             nb = nbformat.read(f, as_version=4)
 
+        # Convert plotly outputs to renderable HTML before exporting
+        preprocessor = PlotlyPreprocessor()
+        nb, nb_resources = preprocessor.preprocess(nb, {})
+
         # Convert to HTML
         html_exporter = HTMLExporter()
         html_exporter.template_name = "classic"
@@ -351,6 +411,10 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
         html_exporter.exclude_output_prompt = False
 
         (body, resources) = html_exporter.from_notebook_node(nb)
+
+        # Prepend Plotly CDN script if any plotly figures were found
+        if nb_resources.get("needs_plotly"):
+            body = PLOTLY_CDN + body
 
         context.update(
             {
@@ -374,6 +438,87 @@ async def project_file_redirect(request: Request, project_id: str, filename: str
     if filename.endswith(".md"):
         return RedirectResponse(url=f"/projects/{project_id}", status_code=302)
     raise HTTPException(status_code=404, detail="File not found")
+
+
+@app.get("/data-explorer", response_class=HTMLResponse)
+async def data_explorer(request: Request):
+    """Cross-Collection Explorer Dashboard."""
+    repo_data = get_repo_data(request)
+    context = get_base_context(request)
+
+    # Build collection lookup and node data
+    collection_map = {c.id: c for c in repo_data.collections}
+    project_map = {p.id: p for p in repo_data.projects}
+
+    # Build adjacency info for each collection
+    adjacency: dict[str, dict] = {}
+    for coll in repo_data.collections:
+        adjacency[coll.id] = {"explicit": set(), "project": set(), "projects": set()}
+
+    for edge in repo_data.collection_edges:
+        if edge.source_id in adjacency and edge.target_id in adjacency:
+            if edge.edge_type == "explicit":
+                adjacency[edge.source_id]["explicit"].add(edge.target_id)
+                adjacency[edge.target_id]["explicit"].add(edge.source_id)
+            adjacency[edge.source_id]["project"].update(edge.projects)
+            adjacency[edge.target_id]["project"].update(edge.projects)
+            adjacency[edge.source_id]["projects"].update(edge.projects)
+            adjacency[edge.target_id]["projects"].update(edge.projects)
+
+    # Build node info for template
+    nodes = []
+    for coll in repo_data.collections:
+        adj = adjacency.get(coll.id, {})
+        connected_ids = adj.get("explicit", set()) | {
+            e.target_id if e.source_id == coll.id else e.source_id
+            for e in repo_data.collection_edges
+            if coll.id in (e.source_id, e.target_id)
+        }
+        nodes.append({
+            "collection": coll,
+            "connection_count": len(connected_ids),
+            "project_count": len(adj.get("projects", set())),
+        })
+
+    context["nodes"] = nodes
+    context["edges"] = repo_data.collection_edges
+    context["collection_map"] = collection_map
+
+    # Build join paths from explicit related_collections with sample queries
+    join_paths = []
+    seen_pairs: set[tuple[str, str]] = set()
+    for coll in repo_data.collections:
+        for related_id in coll.related_collections:
+            pair = (min(coll.id, related_id), max(coll.id, related_id))
+            if pair in seen_pairs or related_id not in collection_map:
+                continue
+            seen_pairs.add(pair)
+            join_paths.append({
+                "source": coll,
+                "target": collection_map[related_id],
+            })
+
+    context["join_paths"] = join_paths
+
+    # Explorer project highlights
+    explorer_ids = [
+        "env_embedding_explorer",
+        "paperblast_explorer",
+        "webofmicrobes_explorer",
+        "acinetobacter_adp1_explorer",
+    ]
+    context["explorer_projects"] = [
+        project_map[pid] for pid in explorer_ids if pid in project_map
+    ]
+
+    # Cross-collection stats
+    multi_coll_projects = [
+        p for p in repo_data.projects if len(p.related_collections) >= 2
+    ]
+    context["multi_collection_project_count"] = len(multi_coll_projects)
+    context["edge_count"] = len(repo_data.collection_edges)
+
+    return templates.TemplateResponse("data-explorer.html", context)
 
 
 @app.get("/collections", response_class=HTMLResponse)
@@ -558,7 +703,7 @@ async def data_update_webhook(request: Request, x_webhook_signature: str = Heade
     # Pull latest changes and reload
     if settings.data_repo_url:
         try:
-            logger.info(f"Pulling latest changes from git repository")
+            logger.info("Pulling latest changes from git repository")
 
             # Pull latest changes
             await pull_latest(settings.data_repo_path, settings.data_repo_branch)
