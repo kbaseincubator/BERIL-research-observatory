@@ -3,13 +3,14 @@
 import hashlib
 import hmac
 import os
+from datetime import datetime
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from fastapi.testclient import TestClient
 
 from app.config import Settings
-from app.main import create_app
+from app.main import create_app, generate_base_context
 
 # ---------------------------------------------------------------------------
 # HTTP Routes via TestClient
@@ -17,13 +18,14 @@ from app.main import create_app
 
 
 @pytest.fixture
-def client(repository_data):
+def client(repository_data, app_data_context):
     """TestClient with injected repository data, no lifespan startup."""
 
     with patch.dict(os.environ, {"BERIL_TEST_SKIP_LIFESPAN": "True"}):
         app = create_app()
         with TestClient(app, raise_server_exceptions=True) as c:
             app.state.repo_data = repository_data
+            app.state.base_context = app_data_context
             yield c
 
 
@@ -247,3 +249,109 @@ class TestWebhookEndpoint:
             )
         assert response.status_code == 200
         assert response.json()["status"] == "success"
+
+    def test_valid_webhook_updates_repo_data(self, client, repository_data):
+        """After a successful webhook, app.state.repo_data is replaced."""
+        secret = "mysecret"
+        body = b"{}"
+        expected_sig = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
+
+        mock_settings = Settings()
+        mock_settings.webhook_secret = secret
+        mock_settings.data_repo_url = "http://example.com/repo"
+        mock_settings.data_repo_path = MagicMock()
+        mock_settings.data_repo_branch = "data-cache"
+
+        new_repo_data = MagicMock()
+        new_repo_data.last_updated = datetime(2025, 1, 1)
+
+        with (
+            patch("app.main.get_settings", return_value=mock_settings),
+            patch("app.main.pull_latest", new_callable=AsyncMock),
+            patch("app.main.load_repository_data", return_value=new_repo_data),
+        ):
+            response = client.post(
+                "/api/webhook/data-update",
+                content=body,
+                headers={"x-webhook-signature": expected_sig},
+            )
+
+        assert response.status_code == 200
+        assert client.app.state.repo_data is new_repo_data
+
+    def test_valid_webhook_updates_base_context(self, client, repository_data):
+        """After a successful webhook, app.state.base_context reflects the new data."""
+        secret = "mysecret"
+        body = b"{}"
+        expected_sig = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
+
+        mock_settings = Settings()
+        mock_settings.webhook_secret = secret
+        mock_settings.data_repo_url = "http://example.com/repo"
+        mock_settings.data_repo_path = MagicMock()
+        mock_settings.data_repo_branch = "data-cache"
+
+        new_repo_data = MagicMock()
+        new_repo_data.last_updated = datetime(2025, 1, 1)
+        new_repo_data.projects = [MagicMock(), MagicMock(), MagicMock()]
+        new_repo_data.discoveries = [MagicMock()]
+        new_repo_data.research_ideas = []
+        new_repo_data.collections = [MagicMock(), MagicMock()]
+        new_repo_data.contributors = [MagicMock()]
+        new_repo_data.skills = [MagicMock(), MagicMock()]
+
+        with (
+            patch("app.main.get_settings", return_value=mock_settings),
+            patch("app.main.pull_latest", new_callable=AsyncMock),
+            patch("app.main.load_repository_data", return_value=new_repo_data),
+        ):
+            response = client.post(
+                "/api/webhook/data-update",
+                content=body,
+                headers={"x-webhook-signature": expected_sig},
+            )
+
+        assert response.status_code == 200
+        ctx = client.app.state.base_context
+        assert ctx["project_count"] == 3
+        assert ctx["discovery_count"] == 1
+        assert ctx["idea_count"] == 0
+        assert ctx["collection_count"] == 2
+        assert ctx["contributor_count"] == 1
+        assert ctx["skill_count"] == 2
+        assert ctx["last_updated"] == datetime(2025, 1, 1)
+
+
+# ---------------------------------------------------------------------------
+# generate_base_context unit tests
+# ---------------------------------------------------------------------------
+
+
+class TestGetBaseContext:
+    def test_counts_match_repo_data(self, repository_data):
+        settings = Settings()
+        ctx = generate_base_context(settings, repository_data)
+        assert ctx["project_count"] == len(repository_data.projects)
+        assert ctx["discovery_count"] == len(repository_data.discoveries)
+        assert ctx["idea_count"] == len(repository_data.research_ideas)
+        assert ctx["collection_count"] == len(repository_data.collections)
+        assert ctx["contributor_count"] == len(repository_data.contributors)
+        assert ctx["skill_count"] == len(repository_data.skills)
+
+    def test_last_updated_matches_repo_data(self, repository_data):
+        settings = Settings()
+        ctx = generate_base_context(settings, repository_data)
+        assert ctx["last_updated"] == repository_data.last_updated
+
+    def test_counts_update_when_repo_data_changes(self, repository_data, project):
+        import dataclasses
+
+        settings = Settings()
+        ctx_before = generate_base_context(settings, repository_data)
+
+        updated = dataclasses.replace(
+            repository_data, projects=repository_data.projects + [project]
+        )
+        ctx_after = generate_base_context(settings, updated)
+
+        assert ctx_after["project_count"] == ctx_before["project_count"] + 1
