@@ -530,6 +530,32 @@ Species name matching (exact + GTDB suffix removal) links 42,227 BacDive strains
 
 Host-associated bacteria (n=12,086) have slightly but significantly higher metal tolerance scores than environmental bacteria (d=+0.14, p<0.0001). This contradicts the expectation that host niches have lower metal exposure. The likely explanation is genome size confounding: BacDive host-associated strains are dominated by Pseudomonadota pathogens with large genomes and correspondingly more KEGG-annotated gene clusters, inflating the normalized metal score.
 
+## 2026-03
+
+### [snipe_defense_system] SNIPE antiphage defense found in 1,696 species across 33 phyla
+
+Survey of DUF4041 (PF13250) in the 293K-genome BERDL pangenome found 4,572 gene clusters across 1,696 species and 33 phyla — far exceeding the >500 homologues reported in Saxton et al. 2026 (*Nature*). 86.7% are accessory or singleton genes, consistent with mobile defense island carriage. The patchy distribution across many phyla and families supports horizontal gene transfer.
+
+### [snipe_defense_system] SNIPE nuclease is PF13455 (Mug113), not PF01541 (canonical GIY-YIG)
+
+The SNIPE nuclease domain belongs to Pfam family PF13455 (Mug113), not PF01541 (canonical GIY-YIG restriction enzymes/DNA repair). Both are in the GIY-YIG clan (CL0418) but are distinct families. This explains why zero gene clusters show DUF4041 + PF01541 co-occurrence — it's biological truth, not an annotation artifact. The paper describes the nuclease as "GIY-YIG" at the superfamily level, but never cites Pfam accessions. Verified via InterPro/UniProt analysis of the *E. coli* SNIPE protein (A0A0A1A5Z2: PF13250 at positions 232–333, PF13455 at positions 443–520).
+
+### [snipe_defense_system] PhageFoundry strain_modelling contains Gaborieau et al. 2024 phage-host interaction data
+
+The `phagefoundry_strain_modelling` database (separate from the GenomeDepot annotation browsers) contains experimental data from Gaborieau et al. 2024 (*Nature Microbiology*): 188 *E. coli* strains × 96 phages = 17,672 binary infection outcomes, plus an ML model (AUC=0.883) with SHAP importances for 1,582 gene cluster features. Lambdavirus 411_P1 (phage lambda) infects only 1/188 strains (0.5%), vs. 43.4% for Myoviridae — consistent with widespread ManYZ receptor loss making lambda-mediated infection rare.
+
+### [snipe_defense_system] ManXYZ is a mannose/glucosamine transporter, NOT a fructose transporter
+
+Fitness Browser data (168 experiments, *E. coli* K-12 Keio collection) shows ManXYZ knockouts have severe fitness defects on D-mannose (fit = -3.93) and D-glucosamine (fit = -2.75) but are dispensable for D-fructose (fit = +0.18 to +0.66). This contradicts the UniProt annotation "fructose import across plasma membrane" (GO:0005354) for ManX. The mannose/glucosamine specificity is critical for understanding why SNIPE targets the ManYZ pore — it's the mannose transporter that phage lambda exploits for DNA injection, not a general sugar transporter.
+
+### [snipe_defense_system] Methanococcus maripaludis JJ has a full two-domain SNIPE protein with fitness data
+
+The Fitness Browser contains one archaeal SNIPE protein in *Methanococcus maripaludis* JJ (locus MMJJ_RS01635), annotated with both PF13250 (DUF4041) and PF13455 (Mug113/GIY-YIG nuclease), plus PF10544 (DUF2525). This is a full two-domain SNIPE protein with 129 experiments of fitness data — the first SNIPE homologue with genome-wide knockout phenotypes available for analysis.
+
+### [snipe_defense_system] SNIPE detected in Klebsiella with ManYZ co-occurrence
+
+PhageFoundry Klebsiella genome browser contains 1 DUF4041 annotation (3 proteins at 558 aa — same length as *E. coli* SNIPE) and 4,619 PTS_EIIC (PF02378/ManY family) annotations. Klebsiella is the only PhageFoundry species with both SNIPE and the ManX-family PTS domain (PF00358). This is clinically relevant — SNIPE could affect phage therapy efficacy in this key pathogen.
+
 ## Template
 
 ### [webofmicrobes_explorer] WoM action 'E' encodes de novo metabolite production, distinct from 'I' (increased)
