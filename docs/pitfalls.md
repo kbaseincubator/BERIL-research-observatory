@@ -51,6 +51,20 @@ AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
 AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
 ```
 
+### Token Expiration During Long Sessions
+
+**[snipe_defense_system]** The token stored in `.env` (`KBASE_AUTH_TOKEN`) can expire during long analysis sessions. When this happens, all BERDL API calls return 401/403 errors.
+
+**Symptom**: Previously-working queries suddenly return authentication errors mid-session.
+
+**Solution**: On JupyterHub, a fresh token is always available at `~/.berdl_kbase_session`, synced every 30 seconds by the IPython startup script (`~/.ipython/profile_default/startup/05-token-sync.py`). Read the token from there:
+```python
+from pathlib import Path
+token = (Path.home() / ".berdl_kbase_session").read_text().strip()
+```
+
+**Note**: The `.env` file is not automatically updated. For long-running CLI sessions outside JupyterHub, re-export the token manually.
+
 ### MinIO Upload Requires Proxy (Off-Cluster)
 
 **[essential_metabolome]** When uploading projects to the lakehouse via `python tools/lakehouse_upload.py`, the `mc` (MinIO client) commands will timeout if proxy environment variables are not set.
@@ -162,21 +176,28 @@ JOIN kbase_ke_pangenome.gtdb_taxonomy_r214v1 t ON g.gtdb_taxonomy_id = t.gtdb_ta
 
 ### SQL Syntax Issues
 
-### The `--` Non-Issue in Species IDs
+### The `--` in Species IDs: Non-Issue in Spark, Real Issue in REST API
 
-Species clade IDs contain `--` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`), but this is **NOT a problem** in SQL when the ID is inside a quoted string literal.
+Species clade IDs contain `--` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`). Behavior depends on the query method:
 
+**Direct Spark SQL**: NOT a problem when the ID is inside a quoted string literal:
 ```sql
--- CORRECT: The '--' inside quotes is NOT interpreted as a comment
+-- CORRECT via Spark: The '--' inside quotes is NOT interpreted as a comment
 SELECT * FROM kbase_ke_pangenome.genome
 WHERE gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
-
--- AVOID: LIKE patterns are slower and unnecessary
-SELECT * FROM kbase_ke_pangenome.genome
-WHERE gtdb_species_clade_id LIKE 's__Escherichia_coli%'
 ```
 
-**Note**: The `--` would only be a problem if it appeared outside of quotes in the SQL statement itself. When using exact equality with proper quoting, there is no issue and performance is better.
+**REST API**: IS a problem — the REST API rejects any query containing `--` regardless of quoting, treating it as a SQL comment metacharacter (returns 400 error).
+
+**[snipe_defense_system]** Workaround for REST API: query all rows unfiltered and filter locally with pandas:
+```python
+# WRONG via REST API: '--' in the string causes 400 error
+query = "SELECT * FROM ... WHERE species_id = 's__E_coli--RS_GCF_000005845.2'"
+
+# CORRECT via REST API: query unfiltered, filter locally
+df_all = query_berdl("SELECT * FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1")
+df_filtered = df_all[df_all['species_id'] == target_species]
+```
 
 ### ID Format Reference
 
@@ -341,6 +362,83 @@ Gene cluster IDs are only meaningful within a species. You cannot compare cluste
 -- 1. COG categories from eggnog_mapper_annotations
 -- 2. KEGG orthologs (KEGG_ko column)
 -- 3. PFAM domains
+```
+
+### [snipe_defense_system] eggNOG `PFAMs` Column Stores Domain Names, Not Accessions
+
+**Problem**: The `eggnog_mapper_annotations.PFAMs` column stores Pfam domain **names** (e.g., `DUF4041`, `GIY-YIG`), not Pfam **accession IDs** (e.g., `PF13250`, `PF01541`). Searching by accession returns 0 results.
+
+**Symptom**: `WHERE PFAMs LIKE '%PF13250%'` returns 0 rows; `WHERE PFAMs LIKE '%DUF4041%'` returns 2,962.
+
+```sql
+-- WRONG: accession IDs are not stored in this column
+WHERE PFAMs LIKE '%PF13250%'   -- returns 0
+
+-- CORRECT: search by domain family name
+WHERE PFAMs LIKE '%DUF4041%'   -- returns 2,962
+```
+
+**Note**: The column contains comma-separated lists of domain names, so always use `LIKE` with `%` wildcards, not exact equality.
+
+### [snipe_defense_system] eggNOG Query Returns Fewer Rows Than gene_cluster JOIN
+
+**Problem**: Querying `eggnog_mapper_annotations` for a domain returns N rows (e.g., 2,962 DUF4041 annotations), but joining to `gene_cluster` produces more rows (e.g., 4,572). This is because gene clusters are species-specific — the same eggNOG annotation (`query_name`) can map to gene_cluster entries in multiple species pangenomes.
+
+**Rule**: The final row count after JOIN is the correct number of *species-level gene clusters*. The eggNOG count is the number of *unique annotation records*. Both are valid counts for different purposes — document which one you're reporting.
+
+### [snipe_defense_system] Pfam Accession Lookup Errors: Always Verify Against InterPro/UniProt
+
+**Problem**: Pfam domain names (e.g., "DUF4041", "GIY-YIG") can map to wrong accessions if looked up by name alone. PF13250 and PF13291 are numerically close but completely unrelated families. PF01541 (canonical GIY-YIG) and PF13455 (Mug113) are in the same clan but are distinct families.
+
+**Symptom**: Zero co-occurrence hits for domains that should co-occur (e.g., DUF4041 + GIY-YIG in SNIPE proteins), or unexpected functional annotations for your domain hits.
+
+**Fix**: Always verify Pfam accessions against a known protein in InterPro or UniProt. For SNIPE:
+- DUF4041 = **PF13250** (IPR025280), NOT PF13291 (ACT_4)
+- SNIPE nuclease = **PF13455** (Mug113, GIY-YIG clan CL0418), NOT PF01541 (canonical GIY-YIG)
+
+```python
+# Verify via InterPro API
+import requests
+r = requests.get("https://www.ebi.ac.uk/interpro/api/entry/pfam/PF13250/")
+# Check the name matches your expected domain
+```
+
+---
+
+## PhageFoundry (`phagefoundry_*`) Pitfalls
+
+### [snipe_defense_system] PhageFoundry Has Two Types of Databases
+
+PhageFoundry data is split across two different database types in BERDL:
+
+| Type | Database pattern | Contents | Tables |
+|------|-----------------|----------|--------|
+| GenomeDepot browsers | `phagefoundry_{species}_genome_browser_genomedepot` | Genome annotations only (eggNOG, COG, Pfam) | `browser_*` (10+ tables each) |
+| Strain modelling | `phagefoundry_strain_modelling` | Experimental phage-host interaction data + ML model | 18 tables (organism, interaction, feature, etc.) |
+
+**Pitfall**: It's easy to explore only the GenomeDepot databases and conclude PhageFoundry has "no experimental data." The strain modelling database is separate and contains the actual experimental results (Gaborieau et al. 2024, *Nature Microbiology*).
+
+### [snipe_defense_system] Strain Modelling Gene Table Has No Functional Annotations
+
+The `strainmodelling_gene` table has 933K genes but only `locus_tag` and `protein_seq` columns — no `gene_name`, `product`, or functional annotation fields. You cannot search for genes by name.
+
+**Workaround**: Use the `strainmodelling_feature` and `strainmodelling_protein_family` tables instead, which link gene clusters to ML model features with SHAP importance scores.
+
+### [snipe_defense_system] Spark Cold-Start: Count Works But Query Returns Empty
+
+For rarely-accessed BERDL databases (including `phagefoundry_strain_modelling`), the Spark cluster needs warm-up time. The `/count` endpoint often returns correct results while `/query` and `/sample` endpoints return 0 rows or empty results.
+
+**Workaround**: Use `/count` to verify data exists, then retry `/query` with exponential backoff. May take several minutes for the Spark cluster to warm up for cold databases.
+
+### [snipe_defense_system] GenomeDepot COG Column Name Mismatch
+
+The `browser_protein_cog_classes` table uses `cog_class_id` (not `cogclass_id`). Always check the schema with `DESCRIBE` before filtering:
+```sql
+-- WRONG
+WHERE cogclass_id = 'V'
+
+-- CORRECT
+WHERE cog_class_id = 'V'
 ```
 
 ---
@@ -1144,3 +1242,7 @@ Before running a query, verify:
 - [ ] Expected tables actually exist (check [schemas/](schemas/))
 - [ ] Data coverage is sufficient for your analysis
 - [ ] Using REST API only for simple queries; Spark SQL for complex ones
+- [ ] Pfam accessions verified against InterPro/UniProt (not assumed from name)
+- [ ] eggNOG PFAMs column searched by domain NAME, not accession
+- [ ] Auth token is fresh (check `~/.berdl_kbase_session` if `.env` token fails)
+- [ ] Checked ALL databases for a project prefix (e.g., both GenomeDepot and strain_modelling for PhageFoundry)
