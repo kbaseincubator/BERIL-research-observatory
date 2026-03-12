@@ -8,6 +8,38 @@ See [collections.md](collections.md) for the full database inventory and [schema
 
 ## General BERDL Pitfalls
 
+### `data_lakehouse_ingest` Tenant Name ≠ Database Prefix
+
+**[bakta_reannotation]** The `tenant` field in a `data_lakehouse_ingest` config is the MinIO governance group name, not the database name prefix. The library auto-prepends the tenant name to the `dataset` field to form the namespace.
+
+The `kbase_ke_pangenome` database lives under the `kbase` tenant (not `kbase_ke`):
+
+```python
+# WRONG: tenant="kbase_ke" → user has no access, falls back to personal warehouse
+# Also wrong: dataset="kbase_ke_pangenome" with tenant="kbase" → creates "kbase_kbase_ke_pangenome"
+
+# CORRECT:
+config = {
+    "tenant": "kbase",           # MinIO group name (check with get_group_sql_warehouse)
+    "dataset": "ke_pangenome",   # tenant + "_" + dataset = "kbase_ke_pangenome"
+}
+```
+
+**How to check**: Use `get_group_sql_warehouse(tenant_name)` to verify access. An `ErrorResponse` with error 20040 means you're not in that group.
+
+```python
+from berdl_notebook_utils.spark.database import get_group_sql_warehouse
+print(get_group_sql_warehouse('kbase'))      # OK → GroupSqlWarehousePrefixResponse
+print(get_group_sql_warehouse('kbase_ke'))   # FAIL → ErrorResponse (no such group)
+```
+
+**How to find the right tenant**: Check the database's physical location:
+```python
+spark.sql("DESCRIBE NAMESPACE EXTENDED kbase_ke_pangenome").show()
+# Location = s3a://cdm-lake/tenant-sql-warehouse/kbase/kbase_ke_pangenome.db
+#                                                 ^^^^^ this is the tenant
+```
+
 ### PySpark Cannot Infer numpy `str_` Types
 
 **[prophage_ecology]** `np.random.choice()` on a list of Python strings returns numpy `str_` objects. PySpark's `createDataFrame()` cannot infer schema for `str_`, raising `PySparkTypeError: [CANNOT_INFER_TYPE_FOR_FIELD]`.
