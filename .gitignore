@@ -53,14 +53,21 @@ data/**/*.csv
 data/**/*.npy
 data/**/*.pkl
 !data/.gitkeep
+
+# MGnify ingest - ignore all downloaded data, keep scripts
+data/mgnify_ingest/metadata/
+data/mgnify_ingest/protein_db/
+data/mgnify_ingest/genome_catalogues/
+data/mgnify_ingest/sourmash_dbs/
+data/mgnify_ingest/logs/
 projects/*/data/**/*.csv
+projects/*/data/**/*.tsv
 projects/*/data/**/*.npy
 projects/*/data/**/*.pkl
 projects/*/data/**/*.fasta
 projects/*/data/**/*.fna
 projects/*/data/**/*.faa
 projects/*/data/**/*.fa
-projects/*/data/**/*.tsv
 !projects/*/data/.gitkeep
 projects/*/user_data/**/*.csv
 projects/*/user_data/**/*.tsv
@@ -82,3 +89,9 @@ venv/
 
 .stignore
 .stfolder/
+
+# Python test results
+.coverage
+htmlcov/
+.pytest_cache/
+.ruff_cache/

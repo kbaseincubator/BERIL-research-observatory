@@ -310,6 +310,71 @@ Re-testing confirmatory defense endpoint under four index constructions (all-met
 
 ---
 
+### [nmdc_community_metabolic_ecology] Black Queen Hypothesis is detectable at community scale in environmental metabolomics
+
+Spearman correlation of community-weighted GapMind amino acid biosynthesis completeness against
+ambient amino acid metabolomics across 131 NMDC soil samples:
+
+- **11/13 tested aa pathways trend in BQH-predicted direction** (negative r = lower community
+  completeness co-occurs with higher ambient metabolite concentration); binomial sign test
+  p = 0.011
+- **Two pathways reach FDR significance** (BH-corrected q < 0.05): leucine (r = −0.390, q = 0.022,
+  n = 62) and arginine (r = −0.297, q = 0.049, n = 80)
+- Both FDR-significant pathways are among the most energetically expensive to synthesize (leucine:
+  37 ATP equivalents; arginine: 26 ATP equivalents) — consistent with BQH predicting loss is
+  most favored when the benefit of gene retention is lowest
+- Methionine shows the largest effect (r = −0.496) but is underpowered (n = 18, q = 0.117)
+- **leu signal is robust** to soil-only stratification (q = 0.022 unchanged) and to study-level
+  blocking (dataset is 95% single-study; see below)
+- Tyrosine is an anti-BQH outlier (r = +0.42, ns): likely explained by phenylalanine hydroxylation
+  providing an alternative tyrosine source that decouples biosynthesis completeness from pool size
+
+First demonstration that community-weighted pangenome completeness scores correlate with measured
+metabolite pools at landscape scale using public multi-omics data.
+
+### [nmdc_community_metabolic_ecology] Carbon utilization pathways, not amino acid pathways, are the primary axis of ecosystem metabolic differentiation
+
+PCA of 220-sample × 80-pathway GapMind completeness matrix:
+
+- **PC1 = 49.4% of variance** captures near-complete Soil vs Freshwater separation (Mann-Whitney
+  p < 0.0001; median PC1 Soil = +3.86, Freshwater = −6.28)
+- PC1 loadings are dominated by carbon utilization pathways (glucuronate, fumarate, succinate,
+  cellobiose, galactose) — **not** amino acid pathways
+- Amino acid pathways load more strongly on PC2 (16.6%), separating sub-clusters within Soil
+- 17/18 aa pathways are significantly differentiated across ecosystem types (q < 0.05 KW),
+  but the primary driver is carbon substrate availability, not biosynthesis capacity
+
+Implication: when community metabolic potential is used as a feature space, carbon substrate range
+is the dominant ecological axis and will confound aa pathway analyses unless controlled for.
+Use PC1-residualized or ecosystem-stratified analyses for BQH-type tests.
+
+### [nmdc_community_metabolic_ecology] NMDC metabolomics overlap is dominated by a single study
+
+Study-level analysis of the 131-sample H1 dataset revealed that **95% of samples (125/131) come
+from one NMDC study** (nmdc:sty-11-r2h77870). The remaining 6 samples are from a second study.
+This means:
+- Cross-study LC-MS protocol heterogeneity is effectively absent as a confounder (contrary to
+  the naive expectation for NMDC metabolomics)
+- The leucine BQH signal is internally consistent within one analytical protocol
+- Future multi-study NMDC metabolomics analyses should count study-level sample representation
+  before treating the aggregate as cross-study data
+
+### [nmdc_community_metabolic_ecology] NMDC metabolomics KEGG annotation rate is ~2%; string matching required
+
+Only ~2% of compounds in `nmdc_arkin.metabolomics_gold` have KEGG compound IDs populated.
+Pathway matching must rely on compound name substring patterns rather than KEGG-based ontologies.
+Key caveats:
+- Substring matching introduces collision risk (e.g., `'leucine'` matches inside `'isoleucine'`) —
+  use first-match-wins ordering with longer/more specific patterns before shorter ones
+- Chorismate itself is rarely detected; shikimic acid and 3-dehydroshikimic acid serve as upstream
+  proxies but reflect precursor availability, not chorismate pool size
+- Three aa pathways remain untestable (cys, his, lys) due to absent compound detections in the
+  175-sample overlap cohort
+
+See also `docs/pitfalls.md` for the isoleucine/leucine substring collision fix.
+
+---
+
 ### [pangenome_pathway_geography] Ecological niche breadth strongly predicts metabolic pathway diversity
 
 Analysis of 1,872 bacterial species with complete pangenome, GapMind pathway, and AlphaEarth embedding data reveals:
@@ -335,6 +400,34 @@ Analysis of 1,872 bacterial species with complete pangenome, GapMind pathway, an
 **Key insight**: AlphaEarth embedding diversity is a better predictor of metabolic completeness than geography alone. The embeddings capture ecological context (soil vs marine vs clinical), not just geographic distance. This explains why embedding variance (r=0.412) outperforms geographic range (r=0.360) in predicting pathway completeness.
 
 **Data coverage limitation**: Only 6.8% of species (1,872/27,690) have sufficient AlphaEarth coverage (≥5 genomes with embeddings). This is due to missing lat/lon metadata for most NCBI genomes, especially clinical isolates.
+
+### [functional_dark_matter] 55.9% of dark gene ortholog groups are kingdom-level — present across multiple phyla
+
+Full pangenome analysis (27,690 species, NB11b) reveals that over half of functionally dark gene OGs are pan-bacterial, present in thousands of species across multiple phyla. Species counts range from 1 to 27,482 (median 135). This demonstrates that functional dark matter is not a minor annotation gap but a fundamental limitation in understanding broadly conserved biology. The top-ranked unknowns (COG0468, COG0443, COG0491) are present in virtually all sequenced bacterial genomes yet have zero functional evidence.
+
+### [functional_dark_matter] Only 7.5% of dark genes are truly unknown — most have converging evidence
+
+The darkness spectrum classification across 57,011 dark genes shows T1 Void (zero evidence) is only 4,273 genes (7.5%). The majority — T4 Penumbra (22,500, 39.5%) — have 3-4 converging lines of evidence (fitness phenotype, domain annotation, ortholog group, module membership). The "dark matter problem" is not monolithic: most genes have substantial clues, and the key bottleneck is targeted experimental validation, not computational inference.
+
+### [functional_dark_matter] Lab fitness phenotypes predict environmental distribution at 61.7% concordance
+
+Across 47 testable dark gene clusters, 29 (61.7%) show directional concordance between lab fitness condition and carrier genome environment (Fisher's combined p=0.031). NMDC independent validation confirmed all 4 pre-registered abiotic predictions (nitrogen~nitrogen, pH~pH, anaerobic~dissolved_oxygen) and all 7 pre-registered trait predictions. This provides the first systematic evidence that Fitness Browser lab phenotypes reflect real ecological function, validating fitness data as a proxy for in situ importance.
+
+### [functional_dark_matter] Cross-organism concordance confirms dark genes behave like real functional genes
+
+65 dark gene ortholog groups show conserved fitness effects across 3+ organisms. Dark gene concordance levels are statistically indistinguishable from annotated genes (Mann-Whitney p=0.17). Motility-related dark genes show the strongest cross-organism concordance, suggesting conserved but incompletely annotated chemotaxis machinery.
+
+### [functional_dark_matter] MR-1 is the single highest-value organism for dark gene characterization
+
+Shewanella MR-1 contributes 25/100 top fitness-active candidates, 587 scored dark genes total, and covers 20.8% of the top-500 in just 3 experiments (stress, nitrogen, carbon). This reflects deep condition coverage (121 conditions), a large dark gene complement, and high fitness effect magnitudes (142 genes with |fit| >= 4). For conservation-weighted prioritization (Route B), S. meliloti ranks first (1,630 OGs, 195 kingdom-level gaps) due to its broader coverage of conserved unknowns.
+
+### [functional_dark_matter] Dual-route covering sets share 39/42 organisms but differ in ordering
+
+Evidence-weighted (Route A, NB09) and conservation-weighted (Route B, NB11) covering sets both select 42 organisms covering ~95% of priority, sharing 39 organisms. Route A puts MR-1 first (deep condition evidence); Route B puts S. meliloti first (most kingdom-level gaps). The complementarity enables both targeted hypothesis testing (Route A) and novel function discovery (Route B) from largely the same organism set.
+
+### [functional_dark_matter] Extended covering set spans 6 phyla but Bacillota OGs are subsets of Pseudomonadota coverage
+
+Adding 25 non-FB organisms (Bacillota, Actinomycetota, Campylobacterota) to the covering set candidate pool selects 50 organisms spanning 6 phyla (vs 4 for FB-only). P. aeruginosa PAO1 ranks #1 (3,713 OGs) and M. tuberculosis reaches #6 (first Actinomycetota). However, Bacillota organisms (B. subtilis, S. aureus) are NOT selected because their kingdom-level OGs are already covered by Pseudomonadota selections. They remain valuable for studying genes in native Gram-positive context, but don't contribute unique OG coverage.
 
 ---
 
@@ -387,6 +480,56 @@ Whole-genome fitness correlation with NaCl: Zn (r=0.72) > Mn (0.55) > Cu (0.53) 
 
 *Synechococcus elongatus* has 12 NaCl dose-response experiments (0.5–250 mM), far more than any other organism (1–6). This makes the `n_sick >= 1` threshold much easier to satisfy, producing an 88.6% shared-stress rate. Excluding SynE, overall overlap drops from 39.8% to 36.7%. Analyses using NaCl fitness data should account for experiment count when setting importance thresholds.
 
+### [fw300_metabolic_consistency] Tryptophan overflow: converging evidence from four databases
+
+FW300-N2E3 produces tryptophan (WoM: Increased), has 231 genes with significant fitness when grown on tryptophan (FB), has a complete tryptophan biosynthesis pathway (GapMind), yet 0/52 *P. fluorescens* strains in BacDive can utilize tryptophan as a carbon source. This convergence of four independent lines of evidence makes a compelling case for tryptophan overflow metabolism serving a cross-feeding or signaling function rather than a catabolic one. The finding is consistent with Fritts et al. (2021) and Ramoneda et al. (2023) who showed amino acid cross-feeding is widespread in soil communities and tryptophan auxotrophy is particularly common.
+
+### [fw300_metabolic_consistency] GapMind 13/13 perfect concordance with experimental data
+
+All 13 WoM-produced metabolites that could be mapped to GapMind pathways had "complete" pathway predictions, and all 13 also showed growth in FB experiments. This perfect agreement validates GapMind's accuracy for *Pseudomonas fluorescens* FW300-N2E3, consistent with Price et al. (2022, 2024). The matched metabolites are common amino acids and organic acids with well-characterized pathways.
+
+### [fw300_metabolic_consistency] 94% concordance is structurally driven — BacDive is the only informative component
+
+The 94% mean concordance across four databases decomposes into: FB 21/21 = 100% (structural), GapMind 13/13 = 100% (structural), BacDive 3/7 = 43% (informative). Overall 37/41 comparisons are concordant (90.2%). A binomial test comparing BacDive utilization of WoM-produced metabolites (43%) against the species baseline (27.5%) shows no significant difference (p=0.40). The high concordance is largely inevitable given that FB always shows growth for metabolites used as sole C/N sources, and GapMind predicts complete pathways for common amino acids.
+
+### [fw300_metabolic_consistency] Pleiotropic fitness genes are amino acid biosynthesis housekeeping, not substrate-specific
+
+The top 18 genes significant across all 21 FB metabolite conditions are amino acid biosynthesis enzymes: homoserine O-acetyltransferase (methionine), ATP phosphoribosyltransferase (histidine), dihydroxy-acid dehydratase (branched-chain), isopropylmalate dehydrogenase (leucine), shikimate dehydrogenase (aromatic), imidazoleglycerol-phosphate dehydratase (histidine). These are essential for growth on *any* minimal medium. The ~370 genes significant in only 1-2 conditions are the truly substrate-specific ones. This distinction is critical for interpreting WoM↔FB integration.
+
+## 2026-02
+
+### [metal_specificity] 55% of metal-important genes are genuinely metal-specific
+
+Of 7,609 metal-important gene records across 24 organisms, 4,177 (55%) are sick under metal stress but have a <5% sick rate across 5,945 non-metal experiments (antibiotics, osmotic, carbon sources, etc.). The remaining 38% are "general sick" (important across many conditions) and 7% are "metal+stress" (shared with other stresses). This demonstrates that the Metal Fitness Atlas's metal-important gene set is not dominated by general stress response — the majority are genuine metal tolerance determinants.
+
+### [metal_specificity] Metal-specific genes are core-enriched but less so than general stress genes (CMH p=0.011)
+
+Metal-specific genes are 84.8% core (pooled) vs 90.2% for general sick genes — a statistically significant difference (Cochran-Mantel-Haenszel p=0.011). Both categories are enriched above the 79.8% baseline. This partially supports the Metal Atlas's two-tier model: general stress response (Tier 1) is more core than specialized metal resistance (Tier 2), but both are predominantly core. The accessory genome contributes only modestly to metal resistance machinery.
+
+### [metal_specificity] UCP030820, YebC, and DUF1043 are the most metal-specific novel candidates
+
+Among the top novel candidates from the Metal Atlas, three stand out as metal-specific rather than pleiotropic: UCP030820/OG01015 (67% metal-specific, oxidoreductase, 7 metals), YebC/OG01383 (58%, transcriptional regulator/translation factor, 6 metals, 11 organisms), and DUF1043-YhcB/OG03264 (50%, cell division protein, 5 metals). In contrast, YfdZ (15%) and the Mla/Yrb system (0-25%) are pleiotropic — important for many conditions, not just metals. DUF39 (0%, sick rate 0.64) is a general fitness factor despite spanning 8 metals.
+
+### [metal_specificity] YebC metal-specificity may link to proline-rich metal transporter translation
+
+YebC was recently shown to be a translation factor for proline-rich proteins (Ignatov et al. 2025). Many metal homeostasis proteins (P-type ATPases CopA/ZntA, CDF transporters) contain proline-rich cytoplasmic loops. Hypothesis: YebC is specifically needed under metal stress because upregulation of proline-rich metal transporters creates a translation bottleneck that YebC resolves. Under non-metal conditions these transporters are not highly expressed and YebC is dispensable.
+
+### [metal_specificity] Essential metals show high metal-specificity when DvH is properly included
+
+Initial analysis showed 0% metal-specificity for essential metals (Mo, W, Se, Mn), seemingly due to DvH's 608 non-metal experiments making specificity impossible. After fixing a locusId type mismatch that had silently excluded DvH, essential metals show 47-61% metal-specificity: Manganese (61%), Molybdenum (61%), Tungsten (57%), Selenium (46%). The experiment-count bias is real but less severe than initially thought.
+
+### [bacdive_metal_validation] Metal tolerance scores predict isolation from metal-contaminated environments (d=+1.0, p=0.006)
+
+Bacteria isolated from heavy metal contamination sites have metal tolerance scores a full standard deviation above the environmental baseline (Cohen's d = +1.00, Mann-Whitney p=0.006, n=10). The effect is dose-dependent: heavy metal (+1.00) > waste/sludge (+0.57) > all contamination (+0.43) > industrial (+0.20). This validates the Metal Fitness Atlas's genome-based prediction method against real-world isolation ecology. The signal holds within Pseudomonadota and Actinomycetota after phylogenetic stratification.
+
+### [bacdive_metal_validation] 43% of BacDive strains link to pangenome species via name matching
+
+Species name matching (exact + GTDB suffix removal) links 42,227 BacDive strains (43.4% of 97K) to 6,426 GTDB pangenome species. The bridge enables cross-referencing BacDive phenotypic data with pangenome-derived predictions without Spark queries. The 56.6% unmatched strains reflect GTDB's different species boundaries from LPSN/DSMZ taxonomy.
+
+### [bacdive_metal_validation] Host-associated bacteria score higher than environmental (contradicts expectation)
+
+Host-associated bacteria (n=12,086) have slightly but significantly higher metal tolerance scores than environmental bacteria (d=+0.14, p<0.0001). This contradicts the expectation that host niches have lower metal exposure. The likely explanation is genome size confounding: BacDive host-associated strains are dominated by Pseudomonadota pathogens with large genomes and correspondingly more KEGG-annotated gene clusters, inflating the normalized metal score.
+
 ## Template
 
 ### [webofmicrobes_explorer] WoM action 'E' encodes de novo metabolite production, distinct from 'I' (increased)
@@ -407,3 +550,7 @@ Of 257 identified (non-unknown) WoM compounds, 69 match ModelSEED molecules by e
 Description of what was discovered, why it matters, and any implications
 for future analyses.
 ```
+
+### [bacdive_phenotype_metal_tolerance] BacDive phenotypes are phylogenetic proxies for metal tolerance
+
+Classical microbiology phenotypes (Gram stain, oxygen tolerance, enzyme activities) from BacDive capture real metal tolerance signal (R²=0.16 alone, 7/10 significant after FDR) but are entirely phylogenetically confounded — adding phenotype features to a taxonomy-based model provides zero improvement (delta R²=-0.009). The genome's metal resistance gene count is the true predictor (full model R²=0.63). Urease-positive bacteria surprisingly have *lower* metal tolerance (d=-0.18), driven by Actinomycetes lineage composition. This validates genome-based prediction (Metal Fitness Atlas) over phenotype-based screening for metal tolerance assessment.
