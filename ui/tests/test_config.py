@@ -2,7 +2,10 @@
 
 from pathlib import Path
 
-from app.config import Settings
+import pytest
+
+import app.config as config
+from app.config import Settings, get_settings
 
 # Sentinel path that does not exist — tells pydantic-settings to skip .env loading.
 _NO_ENV_FILE = "/dev/null/nonexistent.env"
@@ -329,14 +332,17 @@ class TestTypeCoercion:
 
 
 class TestSettingsSingleton:
+    @pytest.fixture(scope="class", autouse=True)
+    def setup_teardown(self):
+        config.settings = None
+        yield
+        config.settings = None
+
     def test_singleton_is_settings_instance(self):
-        from app.config import settings
-        assert isinstance(settings, Settings)
+        assert isinstance(get_settings(), Settings)
 
     def test_singleton_has_correct_app_name(self):
-        from app.config import settings
-        assert settings.app_name == "Microbial Discovery Forge"
+        assert get_settings().app_name == "Microbial Discovery Forge"
 
     def test_singleton_debug_is_false(self):
-        from app.config import settings
-        assert settings.debug is False
+        assert get_settings().debug is False

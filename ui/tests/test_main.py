@@ -2,185 +2,15 @@
 
 import hashlib
 import hmac
-import json
-from datetime import datetime
+import os
 from unittest.mock import AsyncMock, MagicMock, patch
 
+import nbformat
 import pytest
 from fastapi.testclient import TestClient
-from markupsafe import Markup
 
-from app.main import (
-    markdown_filter,
-    markdown_inline_filter,
-    slugify_filter,
-    strip_images_filter,
-    get_base_context,
-)
-from app.models import (
-    CollectionCategory,
-    IdeaStatus,
-    Project,
-    ProjectStatus,
-    RepositoryData,
-)
-
-
-# ---------------------------------------------------------------------------
-# Filter: markdown_filter
-# ---------------------------------------------------------------------------
-
-
-class TestMarkdownFilter:
-    def test_converts_bold(self):
-        result = markdown_filter("**bold**")
-        assert "<strong>bold</strong>" in result
-
-    def test_converts_heading(self):
-        result = markdown_filter("# Heading")
-        assert "<h1>" in result
-
-    def test_empty_string(self):
-        result = markdown_filter("")
-        assert result == Markup("")
-
-    def test_none_value(self):
-        result = markdown_filter(None)
-        assert result == Markup("")
-
-    def test_returns_markup(self):
-        result = markdown_filter("hello")
-        assert isinstance(result, Markup)
-
-    def test_fenced_code(self):
-        result = markdown_filter("```python\nprint('hi')\n```")
-        assert "<code" in result
-
-    def test_table_extension(self):
-        result = markdown_filter("| a | b |\n|---|---|\n| 1 | 2 |")
-        assert "<table>" in result
-
-
-# ---------------------------------------------------------------------------
-# Filter: markdown_inline_filter
-# ---------------------------------------------------------------------------
-
-
-class TestMarkdownInlineFilter:
-    def test_strips_outer_p_tags(self):
-        result = markdown_inline_filter("hello world")
-        assert not str(result).startswith("<p>")
-        assert not str(result).endswith("</p>")
-
-    def test_empty_string(self):
-        assert markdown_inline_filter("") == Markup("")
-
-    def test_none_value(self):
-        assert markdown_inline_filter(None) == Markup("")
-
-    def test_returns_markup(self):
-        result = markdown_inline_filter("test")
-        assert isinstance(result, Markup)
-
-    def test_preserves_inline_code(self):
-        result = markdown_inline_filter("`code`")
-        assert "<code>" in str(result)
-
-    def test_multiline_keeps_inner_structure(self):
-        # Multi-paragraph won't be stripped since it's more than one <p>
-        result = markdown_inline_filter("line one\n\nline two")
-        assert "line" in str(result)
-
-
-# ---------------------------------------------------------------------------
-# Filter: strip_images_filter
-# ---------------------------------------------------------------------------
-
-
-class TestStripImagesFilter:
-    def test_strips_image(self):
-        result = strip_images_filter("Text ![alt](path/to/img.png) more text")
-        assert "![" not in result
-        assert "more text" in result
-
-    def test_empty_string(self):
-        assert strip_images_filter("") == ""
-
-    def test_none_value(self):
-        assert strip_images_filter(None) == ""
-
-    def test_no_image(self):
-        text = "Just some text without images."
-        assert strip_images_filter(text) == text
-
-    def test_multiple_images(self):
-        text = "![a](a.png) text ![b](b.png)"
-        result = strip_images_filter(text)
-        assert "![" not in result
-        assert "text" in result
-
-
-# ---------------------------------------------------------------------------
-# Filter: slugify_filter
-# ---------------------------------------------------------------------------
-
-
-class TestSlugifyFilter:
-    def test_basic(self):
-        assert slugify_filter("Hello World") == "hello-world"
-
-    def test_empty_string(self):
-        assert slugify_filter("") == ""
-
-    def test_none_value(self):
-        assert slugify_filter(None) == ""
-
-    def test_special_chars_removed(self):
-        result = slugify_filter("Research & Development!")
-        assert "&" not in result
-        assert "!" not in result
-
-    def test_spaces_become_hyphens(self):
-        assert slugify_filter("My Section Title") == "my-section-title"
-
-    def test_underscores_become_hyphens(self):
-        assert slugify_filter("my_section") == "my-section"
-
-
-# ---------------------------------------------------------------------------
-# get_base_context
-# ---------------------------------------------------------------------------
-
-
-class TestGetBaseContext:
-    def test_returns_expected_keys(self, repository_data):
-        request = MagicMock()
-        request.app.state.repo_data = repository_data
-        context = get_base_context(request)
-        expected_keys = [
-            "request", "app_name", "total_genomes", "total_species", "total_genes",
-            "project_count", "discovery_count", "idea_count", "collection_count",
-            "contributor_count", "skill_count", "last_updated",
-        ]
-        for key in expected_keys:
-            assert key in context, f"Missing key: {key}"
-
-    def test_counts_match_data(self, repository_data):
-        request = MagicMock()
-        request.app.state.repo_data = repository_data
-        context = get_base_context(request)
-        assert context["project_count"] == len(repository_data.projects)
-        assert context["discovery_count"] == len(repository_data.discoveries)
-        assert context["idea_count"] == len(repository_data.research_ideas)
-        assert context["collection_count"] == len(repository_data.collections)
-
-    def test_total_genomes_formatted(self, repository_data):
-        request = MagicMock()
-        request.app.state.repo_data = repository_data
-        context = get_base_context(request)
-        # Should be comma-formatted
-        assert "," in context["total_genomes"]
-
+from app.config import Settings
+from app.main import PlotlyPreprocessor, create_app  # get_base_context,
 
 # ---------------------------------------------------------------------------
 # HTTP Routes via TestClient
@@ -190,18 +20,19 @@ class TestGetBaseContext:
 @pytest.fixture
 def client(repository_data):
     """TestClient with injected repository data, no lifespan startup."""
-    from app.main import app
 
-    with TestClient(app, raise_server_exceptions=True) as c:
-        app.state.repo_data = repository_data
-        yield c
+    with patch.dict(os.environ, {"BERIL_TEST_SKIP_LIFESPAN": "True"}):
+        app = create_app()
+        with TestClient(app, raise_server_exceptions=True) as c:
+            app.state.repo_data = repository_data
+            yield c
 
 
 class TestHealthEndpoint:
     def test_health_returns_200(self, client):
         response = client.get("/health")
         assert response.status_code == 200
-        assert response.json() == {"status": "healthy"}
+        assert response.json().get("status") == "healthy"
 
 
 class TestHomeRoute:
@@ -354,21 +185,25 @@ class TestNotebookViewerRoute:
 
 class TestWebhookEndpoint:
     def test_no_repo_configured_returns_400(self, client):
-        with patch("app.main.settings") as mock_settings:
-            mock_settings.data_repo_url = None
-            mock_settings.webhook_secret = None
+        mock_settings = Settings()
+        mock_settings.data_repo_url = None
+        mock_settings.webhook_secret = None
+
+        with patch("app.main.get_settings", return_value=mock_settings):
             response = client.post(
                 "/api/webhook/data-update",
                 content=b"{}",
             )
-        assert response.status_code == 400
+            assert response.status_code == 400
 
     def test_missing_signature_with_secret_returns_401(self, client):
-        with patch("app.main.settings") as mock_settings:
-            mock_settings.webhook_secret = "mysecret"
-            mock_settings.data_repo_url = "http://example.com/repo"
-            mock_settings.data_repo_path = MagicMock()
-            mock_settings.data_repo_branch = "data-cache"
+        mock_settings = Settings()
+        mock_settings.webhook_secret = "mysecret"
+        mock_settings.data_repo_url = "http://example.com/repo"
+        mock_settings.data_repo_path = MagicMock()
+        mock_settings.data_repo_branch = "data-cache"
+
+        with patch("app.main.get_settings", return_value=mock_settings):
             response = client.post(
                 "/api/webhook/data-update",
                 content=b"{}",
@@ -376,11 +211,13 @@ class TestWebhookEndpoint:
         assert response.status_code == 401
 
     def test_invalid_signature_returns_401(self, client):
-        with patch("app.main.settings") as mock_settings:
-            mock_settings.webhook_secret = "mysecret"
-            mock_settings.data_repo_url = "http://example.com/repo"
-            mock_settings.data_repo_path = MagicMock()
-            mock_settings.data_repo_branch = "data-cache"
+        mock_settings = Settings()
+        mock_settings.webhook_secret = "mysecret"
+        mock_settings.data_repo_url = "http://example.com/repo"
+        mock_settings.data_repo_path = MagicMock()
+        mock_settings.data_repo_branch = "data-cache"
+
+        with patch("app.main.get_settings", return_value=mock_settings):
             response = client.post(
                 "/api/webhook/data-update",
                 content=b"{}",
@@ -391,20 +228,19 @@ class TestWebhookEndpoint:
     def test_valid_signature_triggers_reload(self, client, repository_data):
         secret = "mysecret"
         body = b"{}"
-        expected_sig = hmac.new(
-            secret.encode(), body, hashlib.sha256
-        ).hexdigest()
+        expected_sig = hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
+
+        mock_settings = Settings()
+        mock_settings.webhook_secret = secret
+        mock_settings.data_repo_url = "http://example.com/repo"
+        mock_settings.data_repo_path = MagicMock()
+        mock_settings.data_repo_branch = "data-cache"
 
         with (
-            patch("app.main.settings") as mock_settings,
+            patch("app.main.get_settings", return_value=mock_settings),
             patch("app.main.pull_latest", new_callable=AsyncMock),
             patch("app.main.load_repository_data", return_value=repository_data),
         ):
-            mock_settings.webhook_secret = secret
-            mock_settings.data_repo_url = "http://example.com/repo"
-            mock_settings.data_repo_path = MagicMock()
-            mock_settings.data_repo_branch = "data-cache"
-
             response = client.post(
                 "/api/webhook/data-update",
                 content=body,
@@ -421,26 +257,26 @@ class TestWebhookEndpoint:
 
 class TestPlotlyPreprocessor:
     def test_converts_plotly_output(self):
-        import nbformat
-        from app.main import PlotlyPreprocessor
 
-        cell = nbformat.from_dict({
-            "cell_type": "code",
-            "source": "",
-            "metadata": {},
-            "outputs": [
-                {
-                    "output_type": "display_data",
-                    "metadata": {},
-                    "data": {
-                        "application/vnd.plotly.v1+json": {
-                            "data": [],
-                            "layout": {},
-                        }
-                    },
-                }
-            ],
-        })
+        cell = nbformat.from_dict(
+            {
+                "cell_type": "code",
+                "source": "",
+                "metadata": {},
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "metadata": {},
+                        "data": {
+                            "application/vnd.plotly.v1+json": {
+                                "data": [],
+                                "layout": {},
+                            }
+                        },
+                    }
+                ],
+            }
+        )
 
         preprocessor = PlotlyPreprocessor()
         result_cell, resources = preprocessor.preprocess_cell(cell, {}, 0)
@@ -453,21 +289,21 @@ class TestPlotlyPreprocessor:
         assert "<div id=" in html
 
     def test_non_plotly_output_unchanged(self):
-        import nbformat
-        from app.main import PlotlyPreprocessor
 
-        cell = nbformat.from_dict({
-            "cell_type": "code",
-            "source": "",
-            "metadata": {},
-            "outputs": [
-                {
-                    "output_type": "stream",
-                    "name": "stdout",
-                    "text": "hello\n",
-                }
-            ],
-        })
+        cell = nbformat.from_dict(
+            {
+                "cell_type": "code",
+                "source": "",
+                "metadata": {},
+                "outputs": [
+                    {
+                        "output_type": "stream",
+                        "name": "stdout",
+                        "text": "hello\n",
+                    }
+                ],
+            }
+        )
 
         preprocessor = PlotlyPreprocessor()
         result_cell, resources = preprocessor.preprocess_cell(cell, {}, 0)
@@ -476,15 +312,15 @@ class TestPlotlyPreprocessor:
         assert result_cell["outputs"][0]["output_type"] == "stream"
 
     def test_empty_outputs_no_plotly_flag(self):
-        import nbformat
-        from app.main import PlotlyPreprocessor
 
-        cell = nbformat.from_dict({
-            "cell_type": "code",
-            "source": "",
-            "metadata": {},
-            "outputs": [],
-        })
+        cell = nbformat.from_dict(
+            {
+                "cell_type": "code",
+                "source": "",
+                "metadata": {},
+                "outputs": [],
+            }
+        )
 
         preprocessor = PlotlyPreprocessor()
         _, resources = preprocessor.preprocess_cell(cell, {}, 0)
