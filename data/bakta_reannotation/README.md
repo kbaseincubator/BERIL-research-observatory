@@ -2,50 +2,49 @@
 
 ## Status
 
-**Phase: MinIO upload complete — ready for Delta Lake ingestion on JupyterHub.**
+**Complete.** All 4 tables ingested into `kbase_ke_pangenome` on 2026-03-12.
 
-### What's done
+### What was done
 
-- Annotated all **132,538,155** protein cluster representatives (from 27,690 species) using `bakta_proteins` v1.12.0 on NERSC Perlmutter
-- Extracted per-chunk tables (176 chunks) and combined into 4 final TSVs
-- Uploaded all files to MinIO at `s3a://cdm-lake/users-general-warehouse/psdehal/data/bakta_reannotation/`
+1. Annotated all **132,538,155** protein cluster representatives (from 27,690 species) using `bakta_proteins` v1.12.0 on NERSC Perlmutter
+2. Extracted per-chunk tables (176 chunks) and combined into 4 final TSVs
+3. Uploaded TSVs to MinIO user staging area
+4. Ingested into Delta Lake via `data_lakehouse_ingest` on JupyterHub
 
-### Final tables
+### Delta Lake tables in `kbase_ke_pangenome`
 
-| File | Rows | Size | Description |
-|------|------|------|-------------|
-| `bakta_annotations.tsv` | 132,538,155 | 18 GB | Main annotations: gene, product, EC, GO, COG, KEGG, UniRef, MW, pI |
-| `bakta_db_xrefs.tsv` | 572,376,477 | 22 GB | Database cross-references (db, accession) |
-| `bakta_pfam_domains.tsv` | 18,807,208 | 2.1 GB | Pfam domain hits with scores, e-values, coverage |
-| `bakta_amr.tsv` | 83,008 | 8 MB | AMR gene annotations from AMRFinderPlus |
-| `bakta_reannotation.json` | — | 2 KB | Ingestion config (schema definitions, paths) |
+| Table | Rows | Description |
+|-------|------|-------------|
+| `bakta_annotations` | 132,538,155 | Main annotations: gene, product, EC, GO, COG, KEGG, UniRef, MW, pI |
+| `bakta_db_xrefs` | 572,376,477 | Database cross-references (db, accession) |
+| `bakta_pfam_domains` | 18,807,208 | Pfam domain hits with scores, e-values, coverage |
+| `bakta_amr` | 83,008 | AMR gene annotations from AMRFinderPlus |
 
-### Next step: Ingest into Delta Lake (on JupyterHub)
+### Example queries
 
-1. Open a JupyterHub terminal at `https://hub.berdl.kbase.us`
-2. Update `ingest_bakta.py` paths to read from the user area:
-   ```python
-   FINAL_DIR = None  # not needed — files already on MinIO
-   BRONZE_PREFIX = "users-general-warehouse/psdehal/data/bakta_reannotation"
-   ```
-   Or copy the files from user area to the tenant bronze path first:
-   ```python
-   # From JupyterHub (has tenant write access):
-   from berdl_notebook_utils.minio_governance import get_minio_credentials
-   # ... copy from users-general-warehouse to tenant-general-warehouse
-   ```
-3. Run `data_lakehouse_ingest` with the config JSON to create Delta Lake tables in `kbase_ke_pangenome`
-4. Verify tables are queryable:
-   ```sql
-   SELECT COUNT(*) FROM kbase_ke_pangenome.bakta_annotations;
-   -- expect 132,538,155
-   ```
+```sql
+-- Get bakta annotation for a gene cluster
+SELECT * FROM kbase_ke_pangenome.bakta_annotations
+WHERE gene_cluster_id = 'JABHIP010000076.1_14';
 
-### MinIO paths
+-- Find all AMR genes
+SELECT gene_cluster_id, amr_gene, amr_product, identity
+FROM kbase_ke_pangenome.bakta_amr
+ORDER BY identity DESC;
 
-- **User staging area**: `s3a://cdm-lake/users-general-warehouse/psdehal/data/bakta_reannotation/`
-- **Target bronze path**: `s3a://cdm-lake/tenant-general-warehouse/kbase_ke/datasets/pangenome/bakta/`
-- **Target database**: `kbase_ke_pangenome`
+-- Count Pfam domain assignments
+SELECT pfam_id, pfam_name, COUNT(*) as n_clusters
+FROM kbase_ke_pangenome.bakta_pfam_domains
+GROUP BY pfam_id, pfam_name
+ORDER BY n_clusters DESC
+LIMIT 20;
+
+-- Cross-reference: find all KEGG links for a cluster
+SELECT gene_cluster_id, db, accession
+FROM kbase_ke_pangenome.bakta_db_xrefs
+WHERE gene_cluster_id = 'JABHIP010000076.1_14'
+  AND db = 'KEGG';
+```
 
 ## Background
 
@@ -64,7 +63,7 @@ The `kbase_ke_pangenome` database has 1B gene cluster representatives but only e
 - AMRFinderPlus: 4.2.7 (DB: 2026-01-21.1)
 - HMMER: 3.4
 
-### Key files on NERSC pscratch
+### Key files on NERSC pscratch (ephemeral — may be purged)
 
 - Chunks: `/pscratch/sd/p/psdehal/bakta_reannotation/chunks_2M/chunk_000.fasta` through `chunk_043.fasta`
 - Raw results: `/pscratch/sd/p/psdehal/bakta_reannotation/results_2M/chunk_*/`
@@ -77,5 +76,13 @@ The `kbase_ke_pangenome` database has 1B gene cluster representatives but only e
 |--------|---------|
 | `extract_bakta_tables.py` | Parse bakta TSV output into normalized tables per chunk |
 | `combine_tables.py` | Concatenate per-chunk tables into final combined files |
-| `ingest_bakta.py` | Upload to MinIO and run Delta Lake ingestion |
+| `ingest_bakta.py` | Original upload + ingest script (paths point to NERSC) |
+| `run_ingest.py` | Final ingest script used for Delta Lake import (reads from MinIO user staging) |
 | `bakta_reannotation.json` | Ingestion config with table schemas |
+
+### Ingestion notes
+
+- Tenant is `kbase` (not `kbase_ke`) — see pitfalls doc
+- `data_lakehouse_ingest` auto-prepends tenant name to the dataset as a namespace prefix, so `dataset="ke_pangenome"` with `tenant="kbase"` produces `kbase_ke_pangenome`
+- Ingestion of all 4 tables took ~20 minutes on JupyterHub Spark
+- Staging TSVs on MinIO were deleted after successful ingestion

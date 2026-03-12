@@ -51,8 +51,12 @@ summary.toPandas().plot(kind='bar')
 | `genome_ani` | 421,218,641 | **HUGE** | Query one species at a time |
 | `gapmind_pathways` | 305,471,280 | **LARGE** | Filter by `genome_id` or `pathway` |
 | `gene_cluster` | 132,531,501 | **LARGE** | Filter by `gtdb_species_clade_id` |
+| `bakta_db_xrefs` | 572,376,477 | **HUGE** | Filter by `gene_cluster_id` |
+| `bakta_annotations` | 132,538,155 | **LARGE** | Filter by `gene_cluster_id` |
 | `eggnog_mapper_annotations` | 93,558,330 | **LARGE** | Filter by `query_name` (gene_cluster_id) |
+| `bakta_pfam_domains` | 18,807,208 | **LARGE** | Filter by `gene_cluster_id` or `pfam_id` |
 | `ncbi_env` | 4,124,801 | Medium | Filter by `accession` |
+| `bakta_amr` | 83,008 | Small | Safe to scan |
 | `genome` | 293,059 | Small | Safe to scan |
 | `gtdb_metadata` | 293,059 | Small | Safe to scan |
 | `gtdb_taxonomy_r214v1` | 293,059 | Small | Safe to scan |
