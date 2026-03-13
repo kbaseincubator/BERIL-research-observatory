@@ -65,9 +65,19 @@ Comparison script: `scripts/compare_bakta_eggnog.py` (Spark-optimized, all joins
 
 ### Why bakta's COG/KEGG/Pfam coverage is lower
 
-Bakta uses a **hierarchical annotation strategy**: PSC (UniProt protein similarity clusters) first, then Pfam HMMER only for hypotheticals. If PSC matches, bakta assigns the gene name/product/EC/KEGG from that UniProt entry and **skips Pfam HMMER**. This is why Pfam domains are only on hypothetical proteins (10.2M/132.5M).
+This is **by design, not a bug** — confirmed by bakta's developer (Oliver Schwengers) across multiple GitHub issues (#350, #385, #391, #393). The coverage gap reflects a precision/recall tradeoff:
 
-EggNOG uses **orthology transfer** — maps every protein to an orthologous group and transfers ALL group annotations (COG, KEGG, Pfam, etc.), which yields higher coverage but potentially lower specificity.
+| Factor | Impact | Details |
+|--------|--------|---------|
+| Orthology transfer vs. sequence matching | Major | eggNOG maps proteins to orthologous groups (OGs) and transfers ALL OG annotations ("guilt by association"). Bakta matches to a specific UniRef90 representative and only transfers what's pre-computed for that entry. Higher recall vs. higher specificity. |
+| Sparse PSC pre-computed annotations | Major | Bakta's PSC database only has COG/KEGG/EC for a fraction of UniRef90 entries (~14% have COG, ~19% have KEGG in our 10k pilot). The PSC DB is optimized for product descriptions and gene names, not functional categories. |
+| COG 2024 mapping limitations | Moderate | COG 2024 no longer provides representative sequences, forcing an indirect WP accession→IPS→PSC mapping that loses many connections (issue #393). |
+| Pfam skipped for non-hypotheticals | Major | Bakta runs HMMER only on proteins that remain "hypothetical" after PSC matching (~7.7%). The 92% that got a PSC product description never get Pfam searched. |
+| DIAMOND fast vs. HMM sensitivity | Minor | Bakta's PSC uses DIAMOND fast mode, less sensitive than eggNOG's HMM-based ortholog assignment. |
+
+The bakta developer planned to re-annotate PSC representatives using eggNOG to boost COG/KEGG coverage (issue #325). This may have partially happened in DB v6.0, but our results suggest limited impact.
+
+**Bottom line**: `bakta_proteins` runs the full protein annotation pipeline and is the correct tool. The two tools are complementary by design — bakta prioritizes specificity, eggNOG prioritizes sensitivity.
 
 ### Combined coverage (union of both tools)
 

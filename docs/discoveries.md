@@ -15,7 +15,16 @@ Comprehensive comparison of bakta v1.12.0 vs eggNOG-mapper across 132.5M gene cl
 - **Bakta wins** on GO terms (15% vs 7.4%), product descriptions (71.2% vs 70.4%), and UniRef50 links (79.2%, unique)
 - **Union raises coverage** from ~70% to 77.3% for "any functional annotation"
 - Bakta rescues 11.2M clusters (of 39.2M) that eggNOG misses entirely
-- Bakta's low COG/Pfam is by design: PSC match → skip HMMER. Not a data quality issue.
+
+### [bakta_reannotation] Bakta's lower COG/KEGG/Pfam coverage is by design, not a bug
+
+Confirmed by bakta developer Oliver Schwengers across GitHub issues #350, #385, #391, #393:
+- **PSC pre-computed annotations are sparse**: only ~14% of PSC entries have COG, ~19% have KEGG. PSC DB is optimized for product descriptions, not functional categories.
+- **COG 2024 broke direct mapping**: COG 2024 no longer provides representative sequences, forcing lossy indirect WP accession→IPS→PSC mapping.
+- **Pfam skipped by design**: HMMER only runs on hypotheticals (~7.7%). The 92% with PSC matches never get Pfam searched.
+- **DIAMOND fast < HMM sensitivity**: bakta's PSC uses DIAMOND fast mode; eggNOG uses HMM-based ortholog assignment.
+- Developer planned to integrate eggNOG into PSC representatives (issue #325) — may have partially happened in DB v6.0 but limited impact.
+- The Arche benchmark paper (Alonso-Reyes & Albarracin 2025, PMID 40811208) independently confirmed bakta's conservative annotation transfer vs. other tools.
 
 ### [bakta_reannotation] UniRef50 bridge has limited value with current BERDL UniProt
 
