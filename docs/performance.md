@@ -516,6 +516,14 @@ Gene cluster extraction is **18x slower** because it joins two billion-row unpar
 
 **K. pneumoniae exceeded `maxResultSize`**: This species (250 genomes × ~5,500 genes) produced results exceeding Spark's 1GB `spark.driver.maxResultSize`. For very large species, chunk the genome list or increase the driver memory limit.
 
+**`[bakta_reannotation]` Broadcast joins fail on `uniprot_identifier` (2.5B rows)**: Any multi-way join touching `kbase_uniprot.uniprot_identifier` can exceed `maxResultSize` via broadcast exchange, even if the final result is small. Fix: disable auto-broadcast before the join:
+```python
+spark.sql("SET spark.sql.autoBroadcastJoinThreshold = -1")
+# ... run your join ...
+spark.sql("SET spark.sql.autoBroadcastJoinThreshold = 10485760")  # restore default
+```
+This forces sort-merge joins which stream data rather than materializing entire tables in the driver.
+
 ---
 
 ### GapMind Pathway Aggregation Performance
