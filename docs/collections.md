@@ -30,6 +30,7 @@ Core KBase scientific data collections.
 
 | Database | Short Name | Tables | Scale | Schema Doc | Description |
 |----------|-----------|--------|-------|------------|-------------|
+| `kescience_alphafold` | AlphaFold | 2 | ~241M predicted structures | [alphafold.md](schemas/alphafold.md) | AlphaFold protein structure metadata: UniProt→structure mapping and MSA depth (prediction quality). Joinable to any collection with UniProt/UniRef IDs. |
 | `kescience_fitnessbrowser` | Fitness Browser | 50+ | 48 organisms, 27M fitness scores | [fitnessbrowser.md](schemas/fitnessbrowser.md) | Genome-wide mutant fitness data from RB-TnSeq experiments across diverse bacteria |
 | `kescience_webofmicrobes` | Web of Microbes | 5 | 37 organisms, 589 metabolites, 10K observations | [webofmicrobes.md](schemas/webofmicrobes.md) | Curated microbial exometabolomics: metabolite production/excretion profiles (Kosina et al. 2018) |
 | `kescience_bacdive` | BacDive | 8 | 97K strains, 988K metabolite tests, 643K enzyme records | [bacdive.md](schemas/bacdive.md) | Bacterial diversity metadatabase: phenotypes, growth conditions, isolation source, metabolite utilization (DSMZ) |
@@ -137,6 +138,12 @@ kbase_ke_pangenome ←→ kbase_genomes
     │              988K metabolite utilization records
     │              63 metabolites shared with WoM
     │
+    ├→ kescience_alphafold
+    │  bakta_annotations.uniref100 → strip "UniRef100_" → uniprot_accession
+    │  bakta_db_xrefs (UniRef*) → strip prefix → uniprot_accession
+    │  kbase_uniref100.cluster_id → uniprot_accession
+    │  ~241M AlphaFold structures with MSA depth quality scores
+    │
     └→ nmdc_arkin
        Shared annotation ontologies (COG, KEGG, EC, GO)
 ```
@@ -160,6 +167,8 @@ kbase_ke_pangenome ←→ kbase_genomes
 8. **BacDive ↔ Pangenome**: 27,502 BacDive genome accessions (GCA format) can be matched to pangenome genomes. Requires prefix adjustment (BacDive uses GCA_*, pangenome uses GB_GCA_* or RS_GCF_*).
 
 9. **BacDive ↔ Web of Microbes**: 63 WoM metabolite names match BacDive metabolite utilization compound names. Top overlaps: trehalose (13,838 BacDive strains tested), arginine (13,665), glucose (7,103).
+
+10. **AlphaFold ↔ Pangenome/UniRef**: AlphaFold entries are keyed by UniProt accession. Any collection with UniProt or UniRef references can join directly — no bridge table needed. Bakta annotations link via `REPLACE(uniref100, 'UniRef100_', '')`, and `kbase_uniref100.cluster_id` maps directly. MSA depth provides a quality proxy for each predicted structure.
 
 ---
 
