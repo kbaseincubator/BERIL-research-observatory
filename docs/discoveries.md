@@ -6,6 +6,30 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ---
 
+## 2026-03
+
+### [bakta_reannotation] Bakta and eggNOG are complementary annotation sources
+
+Comprehensive comparison of bakta v1.12.0 vs eggNOG-mapper across 132.5M gene clusters:
+- **EggNOG wins** on enrichment-style annotations: COG (51% vs 8.2%), KEGG (38.5% vs 17.3%), Pfam (63% vs 7.7%)
+- **Bakta wins** on GO terms (15% vs 7.4%), product descriptions (71.2% vs 70.4%), and UniRef50 links (79.2%, unique)
+- **Union raises coverage** from ~70% to 77.3% for "any functional annotation"
+- Bakta rescues 11.2M clusters (of 39.2M) that eggNOG misses entirely
+- Bakta's low COG/Pfam is by design: PSC match → skip HMMER. Not a data quality issue.
+
+### [bakta_reannotation] UniRef50 bridge has limited value with current BERDL UniProt
+
+- Only 33.3% of bakta's 17.6M distinct UniRef50 IDs exist in `kbase_uniprot.uniprot_identifier`
+- The bridge reaches RefSeq (71%), OrthoDB (46%), STRING (40%), KEGG (36%) of matched IDs
+- **Missing from bridge**: GO, EC, InterPro, Pfam — importing full UniProt would unlock these
+- For now, eggNOG remains the better source for COG/KEGG/Pfam enrichment analysis
+
+### [bakta_reannotation] Spark broadcast joins fail on uniprot_identifier (2.5B rows)
+
+Any join that touches `kbase_uniprot.uniprot_identifier` can exceed `spark.driver.maxResultSize` (1GB) via broadcast exchange. Fix: `SET spark.sql.autoBroadcastJoinThreshold = -1` to force sort-merge joins. See `data/bakta_reannotation/scripts/compare_bakta_eggnog.py` for the pattern.
+
+---
+
 ## 2026-01
 
 ### [ecotype_analysis] Environment vs Phylogeny: Phylogeny usually dominates
