@@ -29,6 +29,15 @@ class Settings(BaseSettings):
     # Webhook configuration
     webhook_secret: str | None = None
 
+    # ORCiD OAuth2 configuration
+    orcid_client_id: str | None = None
+    orcid_client_secret: str | None = None
+    orcid_redirect_uri: str = "http://localhost:8000/auth/orcid/callback"
+    orcid_base_url: str = "https://orcid.org"  # Use https://sandbox.orcid.org for development
+
+    # Session configuration
+    session_secret_key: str = "change-me-in-production"  # Signs session cookies
+
     # Derived paths
     @property
     def projects_dir(self) -> Path:
