@@ -5,8 +5,12 @@
 
 from markupsafe import Markup
 
-from app.filters import (markdown_filter, markdown_inline_filter,
-                         slugify_filter, strip_images_filter)
+from app.filters import (
+    markdown_filter,
+    markdown_inline_filter,
+    slugify_filter,
+    strip_images_filter,
+)
 
 
 class TestMarkdownFilter:

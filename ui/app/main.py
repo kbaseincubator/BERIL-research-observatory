@@ -2,30 +2,29 @@
 
 import hashlib
 import hmac
-import json
 import logging
-import uuid
 from contextlib import asynccontextmanager
 from datetime import datetime
 
+from app.notebook_processors import PlotlyPreprocessor
 import nbformat
-# Add custom Jinja2 filters
-from fastapi import (APIRouter, FastAPI, Header, HTTPException, Request,
-                     Response)
+from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from nbconvert import HTMLExporter
-from nbconvert.preprocessors import Preprocessor
-from starlette.middleware.base import BaseHTTPMiddleware
 
-from app.filters import (markdown_filter, markdown_inline_filter,
-                         slugify_filter, strip_images_filter)
+from app.filters import (
+    markdown_filter,
+    markdown_inline_filter,
+    slugify_filter,
+    strip_images_filter,
+)
 
-from .config import get_settings
+from .config import Settings, get_settings
 from .dataloader import load_repository_data
 from .git_data_sync import ensure_repo_cloned, pull_latest
-from .models import CollectionCategory
+from .models import CollectionCategory, RepositoryData
 
 logging.basicConfig(
     level=logging.INFO,
@@ -34,58 +33,17 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-PLOTLY_CDN = (
-    '<script src="https://cdn.plot.ly/plotly-3.4.0.min.js" charset="utf-8"></script>'
-)
-
 templates = None
 
 
-class PlotlyPreprocessor(Preprocessor):
-    """Convert application/vnd.plotly.v1+json outputs to rendered HTML."""
-
-    def preprocess_cell(self, cell, resources, cell_index):
-        new_outputs = []
-        needs_plotly = resources.get("needs_plotly", False)
-        for output in cell.get("outputs", []):
-            plotly_json = output.get("data", {}).get("application/vnd.plotly.v1+json")
-            if plotly_json is not None:
-                div_id = f"plotly-{uuid.uuid4().hex}"
-                fig_json = json.dumps(plotly_json)
-                html = (
-                    f'<div id="{div_id}" style="width:100%;min-height:400px;"></div>'
-                    f"<script>"
-                    f"(function(){{"
-                    f"  var fig = {fig_json};"
-                    f'  Plotly.newPlot("{div_id}", fig.data, fig.layout, fig.config || {{}});'
-                    f"}})();"
-                    f"</script>"
-                )
-                output = nbformat.from_dict(
-                    {
-                        "output_type": output["output_type"],
-                        "metadata": output.get("metadata", {}),
-                        "data": {
-                            "text/html": html,
-                            "text/plain": "[Plotly figure]",
-                        },
-                    }
-                )
-                needs_plotly = True
-            new_outputs.append(output)
-        cell["outputs"] = new_outputs
-        resources["needs_plotly"] = needs_plotly
-        return cell, resources
+def get_repo_data(request: Request) -> RepositoryData:
+    return request.app.state.repo_data
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    # TODO: move this to the create_app function
-    settings = get_settings()
-    if settings.test_skip_lifespan:
-        yield
-        return
+def get_base_context(request: Request) -> dict:
+    return dict(request.app.state.base_context)
 
+async def initialize_data(settings: Settings) -> RepositoryData:
     """Initialize app on startup."""
     logger.info("Initializing repository data")
 
@@ -93,7 +51,7 @@ async def lifespan(app: FastAPI):
     if settings.force_local_data:
         logger.info("Forcing parsing and loading of local data")
         print("Forcing parsing and loading of local data")
-        app.state.repo_data = load_repository_data(None)
+        repo_data = load_repository_data(None)
     elif settings.data_repo_url:
         try:
             logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
@@ -105,41 +63,44 @@ async def lifespan(app: FastAPI):
 
             # Load from local git repo
             data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
-            app.state.repo_data = load_repository_data(data_file)
+            repo_data = load_repository_data(data_file)
             logger.info(
-                f"Repository data loaded from git. Last updated: {app.state.repo_data.last_updated}"
+                f"Repository data loaded from git. Last updated: {repo_data.last_updated}"
             )
         except Exception as e:
             logger.error(f"Failed to load from git repo: {e}")
             logger.info("Falling back to local parsing")
-            app.state.repo_data = load_repository_data(None)
+            repo_data = load_repository_data(None)
     else:
         # No git repo configured, load from local parsing
         logger.info("No git repo configured, parsing local files")
-        app.state.repo_data = load_repository_data(None)
+        repo_data = load_repository_data(None)
+    return repo_data
 
+
+def generate_base_context(settings: Settings, repo_data: RepositoryData) -> dict:
+    return {
+        "app_name": settings.app_name,
+        "total_genomes": f"{settings.total_genomes:,}",
+        "total_species": f"{settings.total_species:,}",
+        "total_genes": settings.total_genes,
+        "project_count": len(repo_data.projects),
+        "discovery_count": len(repo_data.discoveries),
+        "idea_count": len(repo_data.research_ideas),
+        "collection_count": len(repo_data.collections),
+        "contributor_count": len(repo_data.contributors),
+        "skill_count": len(repo_data.skills),
+        "last_updated": repo_data.last_updated,
+    }
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    settings = get_settings()
+    if not settings.test_skip_lifespan:
+        app.state.repo_data = await initialize_data(settings)
+        app.state.base_context = generate_base_context(settings, app.state.repo_data)
     yield
-
-
-class DataContextMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next) -> Response:
-        settings = get_settings()
-        repo_data = request.app.state.repo_data
-        request.state.repo_data = repo_data
-        request.state.base_context = {
-            "app_name": settings.app_name,
-            "total_genomes": f"{settings.total_genomes:,}",
-            "total_species": f"{settings.total_species:,}",
-            "total_genes": settings.total_genes,
-            "project_count": len(repo_data.projects),
-            "discovery_count": len(repo_data.discoveries),
-            "idea_count": len(repo_data.research_ideas),
-            "collection_count": len(repo_data.collections),
-            "contributor_count": len(repo_data.contributors),
-            "skill_count": len(repo_data.skills),
-            "last_updated": repo_data.last_updated,
-        }
-        return await call_next(request)
 
 
 def create_app() -> FastAPI:
@@ -153,7 +114,6 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
-    app.add_middleware(DataContextMiddleware)
     # Mount static files
     app.mount("/static", StaticFiles(directory=settings.static_dir), name="static")
 
@@ -197,37 +157,15 @@ ROUTER_KNOWLEDGE = APIRouter(tags=["Knowledge"])
 ROUTER_PROJECTS = APIRouter(tags=["Project"])
 ROUTER_SKILLS = APIRouter(tags=["Skills"])
 
-# def get_repo_data(request: Request):
-#     """Get repository data from app state."""
-#     return request.app.state.repo_data
-
-
-# # Template context processor
-# def get_base_context(request: Request) -> dict:
-#     """Get base context for all templates."""
-#     repo_data = get_repo_data(request)
-#     return {
-#         "request": request,
-#         "app_name": settings.app_name,
-#         "total_genomes": f"{settings.total_genomes:,}",
-#         "total_species": f"{settings.total_species:,}",
-#         "total_genes": settings.total_genes,
-#         "project_count": len(repo_data.projects),
-#         "discovery_count": len(repo_data.discoveries),
-#         "idea_count": len(repo_data.research_ideas),
-#         "collection_count": len(repo_data.collections),
-#         "contributor_count": len(repo_data.contributors),
-#         "skill_count": len(repo_data.skills),
-#         "last_updated": repo_data.last_updated,
-#     }
-
 
 # Routes
 @ROUTER_GENERAL.get("/", response_class=HTMLResponse)
-async def home(request: Request):
+async def home(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Home page - Research Observatory dashboard."""
-    repo_data = request.state.repo_data
-    context = request.state.base_context
     context.update(
         {
             "projects": repo_data.projects[:3],  # Latest 3 projects
@@ -243,10 +181,12 @@ async def home(request: Request):
 
 
 @ROUTER_COSCIENTIST.get("/co-scientist", response_class=HTMLResponse)
-async def co_scientist(request: Request):
+async def co_scientist(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """AI Co-Scientist page."""
-    context = request.state.base_context
-    repo_data = request.state.repo_data
     context["skills"] = repo_data.skills
     # Example project for the workflow walkthrough
     context["example_project"] = next(
@@ -256,19 +196,27 @@ async def co_scientist(request: Request):
 
 
 @ROUTER_SKILLS.get("/skills", response_class=HTMLResponse)
-async def skills_page(request: Request):
+async def skills_page(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Skills catalog page."""
-    context = request.state.base_context | {"skills": request.state.repo_data.skills}
+    context["skills"] = repo_data.skills
     return templates.TemplateResponse(request, "skills.html", context)
 
 
 @ROUTER_PROJECTS.get("/projects", response_class=HTMLResponse)
-async def projects_list(request: Request, sort: str = "recent", dir: str = ""):
+async def projects_list(
+    request: Request,
+    sort: str = "recent",
+    dir: str = "",
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Projects list page with sortable project grid."""
 
-    projects = list(
-        request.state.repo_data.projects
-    )  # copy to avoid mutating cached data
+    projects = list(repo_data.projects)  # copy to avoid mutating cached data
 
     # Default directions: recent=desc, others=asc
     default_dir = "desc" if sort == "recent" else "asc"
@@ -298,7 +246,6 @@ async def projects_list(request: Request, sort: str = "recent", dir: str = ""):
         # "recent" is already desc from dataloader; reverse if asc requested
         projects.reverse()
 
-    context = request.state.base_context
     context["projects"] = projects
     context["current_sort"] = sort
     context["sort_dir"] = sort_dir
@@ -306,10 +253,12 @@ async def projects_list(request: Request, sort: str = "recent", dir: str = ""):
 
 
 @ROUTER_COSCIENTIST.get("/research-areas", response_class=HTMLResponse)
-async def research_areas(request: Request):
+async def research_areas(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Research areas page - auto-clustered project groups."""
-    repo_data = request.state.repo_data
-
     # Resolve project IDs to full objects for each area
     project_map = {p.id: p for p in repo_data.projects}
     areas_with_projects = []
@@ -323,15 +272,18 @@ async def research_areas(request: Request):
             }
         )
 
-    context = request.state.base_context | {"areas": areas_with_projects}
+    context["areas"] = areas_with_projects
     return templates.TemplateResponse(request, "research-areas.html", context)
 
 
 @ROUTER_PROJECTS.get("/projects/{project_id}", response_class=HTMLResponse)
-async def project_detail(request: Request, project_id: str):
+async def project_detail(
+    request: Request,
+    project_id: str,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Project detail page."""
-    repo_data = request.state.repo_data
-    context = request.state.base_context
 
     # Find project
     project = next((p for p in repo_data.projects if p.id == project_id), None)
@@ -381,13 +333,17 @@ async def project_detail(request: Request, project_id: str):
 @ROUTER_PROJECTS.get(
     "/projects/{project_id}/notebooks/{notebook_name}", response_class=HTMLResponse
 )
-async def notebook_viewer(request: Request, project_id: str, notebook_name: str):
+async def notebook_viewer(
+    request: Request,
+    project_id: str,
+    notebook_name: str,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Render a Jupyter notebook as HTML."""
-    context = request.state.base_context
-
     # Find project
     project = next(
-        (p for p in request.state.repo_data.projects if p.id == project_id), None
+        (p for p in repo_data.projects if p.id == project_id), None
     )
     if not project:
         context["error"] = f"Project '{project_id}' not found"
@@ -433,7 +389,8 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
 
         # Prepend Plotly CDN script if any plotly figures were found
         if nb_resources.get("needs_plotly"):
-            body = PLOTLY_CDN + body
+            plotly_cdn = f'<script src="{get_settings().plotly_cdn_url}" charset="utf-8"></script>'
+            body = plotly_cdn + body
 
         context.update(
             {
@@ -462,10 +419,12 @@ async def project_file_redirect(request: Request, project_id: str, filename: str
 
 
 @ROUTER_DATA.get("/data-explorer", response_class=HTMLResponse)
-async def data_explorer(request: Request):
+async def data_explorer(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Cross-Collection Explorer Dashboard."""
-    repo_data = request.state.repo_data
-    context = request.state.base_context
 
     # Build collection lookup and node data
     collection_map = {c.id: c for c in repo_data.collections}
@@ -547,10 +506,12 @@ async def data_explorer(request: Request):
 
 
 @ROUTER_COLLECTIONS.get("/collections", response_class=HTMLResponse)
-async def collections_overview(request: Request):
+async def collections_overview(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Collections overview page - browse all BERDL collections."""
-    repo_data = request.state.repo_data
-    context = request.state.base_context
 
     context["collections"] = repo_data.collections
     context["primary_collections"] = repo_data.get_collections_by_category(
@@ -566,10 +527,13 @@ async def collections_overview(request: Request):
 
 
 @ROUTER_COLLECTIONS.get("/collections/{collection_id}", response_class=HTMLResponse)
-async def collection_detail(request: Request, collection_id: str):
+async def collection_detail(
+    request: Request,
+    collection_id: str,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Collection detail page with schema browser."""
-    repo_data = request.state.repo_data
-    context = request.state.base_context
 
     # Find the collection
     collection = repo_data.get_collection(collection_id)
@@ -611,39 +575,47 @@ async def schema_redirect():
 
 
 @ROUTER_KNOWLEDGE.get("/knowledge/discoveries", response_class=HTMLResponse)
-async def discoveries_timeline(request: Request):
+async def discoveries_timeline(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Discoveries timeline page."""
-    context = request.state.base_context | {
-        "discoveries": request.state.repo_data.discoveries
-    }
+    context["discoveries"] = repo_data.discoveries
     return templates.TemplateResponse(request, "knowledge/discoveries.html", context)
 
 
 @ROUTER_KNOWLEDGE.get("/knowledge/pitfalls", response_class=HTMLResponse)
-async def pitfalls_list(request: Request):
+async def pitfalls_list(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Pitfalls and gotchas page."""
-    context = request.state.base_context | {
-        "pitfalls": request.state.repo_data.pitfalls
-    }
+    context["pitfalls"] = repo_data.pitfalls
     return templates.TemplateResponse(request, "knowledge/pitfalls.html", context)
 
 
 @ROUTER_KNOWLEDGE.get("/knowledge/performance", response_class=HTMLResponse)
-async def performance_tips(request: Request):
+async def performance_tips(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Performance tips and query patterns page."""
-    context = request.state.base_context | {
-        "tips": request.state.repo_data.performance_tips
-    }
+    context["tips"] = repo_data.performance_tips
     return templates.TemplateResponse(request, "knowledge/performance.html", context)
 
 
 @ROUTER_KNOWLEDGE.get("/knowledge/ideas", response_class=HTMLResponse)
-async def research_ideas(request: Request):
+async def research_ideas(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Research ideas board page."""
-    context = request.state.base_context
-
     # Group ideas by status
-    ideas = request.state.repo_data.research_ideas
+    ideas = repo_data.research_ideas
     context["proposed_ideas"] = [i for i in ideas if i.status.value == "PROPOSED"]
     context["in_progress_ideas"] = [i for i in ideas if i.status.value == "IN_PROGRESS"]
     context["completed_ideas"] = [i for i in ideas if i.status.value == "COMPLETED"]
@@ -652,10 +624,12 @@ async def research_ideas(request: Request):
 
 
 @ROUTER_COMMUNITY.get("/community/contributors", response_class=HTMLResponse)
-async def community_contributors(request: Request):
+async def community_contributors(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Community contributors page."""
-    repo_data = request.state.repo_data
-    context = request.state.base_context
 
     # Sort by project count (most projects first)
     contributors = sorted(
@@ -682,11 +656,14 @@ async def community_contributors(request: Request):
 
 
 @ROUTER_GENERAL.get("/about", response_class=HTMLResponse)
-async def about(request: Request):
+async def about(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """About page."""
-    context = request.state.base_context
-    context["primary_collections"] = (
-        request.state.repo_data.get_collections_by_category(CollectionCategory.PRIMARY)
+    context["primary_collections"] = repo_data.get_collections_by_category(
+        CollectionCategory.PRIMARY
     )
     return templates.TemplateResponse(request, "about/about.html", context)
 
@@ -735,6 +712,7 @@ async def data_update_webhook(
             # Reload from local git repo
             data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
             request.app.state.repo_data = load_repository_data(data_file)
+            request.app.state.base_context = generate_base_context(settings, request.app.state.repo_data)
 
             logger.info(
                 f"Data reloaded successfully. New last_updated: {request.app.state.repo_data.last_updated}"
@@ -761,6 +739,8 @@ async def data_update_webhook(
 
 # Health check
 @ROUTER_GENERAL.get("/health")
-async def health(request: Request):
+async def health(
+    context: dict = Depends(get_base_context),
+):
     """Health check endpoint."""
-    return {"status": "healthy"} | request.state.base_context
+    return {"status": "healthy"} | context
