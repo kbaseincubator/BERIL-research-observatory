@@ -2,7 +2,7 @@
 
 ## Status
 
-**In progress.** Downloading and preparing AlphaFold metadata for ingestion.
+**Complete.** Both tables ingested into `kescience_alphafold` on 2026-03-13.
 
 ### Goal
 
