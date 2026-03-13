@@ -21,7 +21,9 @@ exports data if needed, then executes a **two-phase ingest**:
 
 1. `KBASE_AUTH_TOKEN` set in environment or `.env`.
 2. **Ingest packages installed**: run `bash scripts/bootstrap_ingest.sh` (requires `.venv-berdl` from `bootstrap_client.sh`).
-3. **Proxy running**: SSH tunnels on 1337/1338, pproxy on 8123, JupyterHub session active. See `berdl-query/references/proxy-setup.md`.
+3. **SSH tunnels on ports 1337 and 1338 must be running** (user must start these —
+   see `berdl-query/references/proxy-setup.md`). pproxy (:8123) and JupyterHub
+   server are started automatically by the notebook if not already running.
 4. **`mc` configured**: `~/.mc/config.json` must have a `berdl-minio` alias. Run `bash scripts/configure_mc.sh --berdl-proxy` if not set.
 
 ## Workflow
@@ -204,11 +206,16 @@ count mismatch is found, use these to cross-check against the Delta table's last
 ## Error Handling
 
 - **Ingest packages missing**: run `bash scripts/bootstrap_ingest.sh`.
-- **Proxy not running**: check ports 1337, 1338, 8123 with `lsof -i :1337 -i :1338 -i :8123 | grep LISTEN`.
-- **Spark Connect not reachable after kernel restart**: the Spark Connect sidecar takes 20–60 s
-  to start after a kernel reset. Poll with retries rather than resetting again — see `docs/pitfalls.md`.
-- **Spark session timeout mid-chunk**: re-run the ingest cell. The progress log resumes from
-  the last completed chunk automatically.
+- **SSH tunnels down (ports 1337/1338)**: notebook will raise and print the exact ssh
+  command to run. Start the tunnel(s), then re-run the initialization cell.
+- **pproxy not running (:8123)**: started automatically by the notebook.
+- **JupyterHub server not running**: spawned automatically via `berdl-remote`. Requires
+  `KBASE_AUTH_TOKEN` in environment or `.env`.
+- **Spark session timeout mid-chunk**: health check before each chunk detects this
+  automatically. The notebook reconnects and retries the failed chunk. Progress
+  already written to MinIO is preserved.
+- **Spark session timeout limit (1 hour)**: cluster admin task — request BERDL
+  administrators to increase Spark Connect session timeout to 10 hours.
 - **Namespace already exists**: confirm with user before re-ingesting; `MODE = "overwrite"` on
   the first chunk will replace the existing Delta table.
 - **Row count mismatch**: inspect the progress log for `start_line`/`end_line` of the last
