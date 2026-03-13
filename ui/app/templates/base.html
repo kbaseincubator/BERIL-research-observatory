@@ -54,6 +54,23 @@
                 <li><a href="/about" class="{% if request.url.path == '/about' %}active{% endif %}">About</a></li>
             </ul>
 
+            <div class="nav-auth">
+                {% if current_user %}
+                    <span class="nav-auth-user">
+                        <a href="https://orcid.org/{{ current_user.orcid_id }}" target="_blank" rel="noopener" title="{{ current_user.orcid_id }}">
+                            <img src="{{ url_for('static', path='img/orcid-logo.svg') }}" alt="ORCiD" class="orcid-icon">
+                            {{ current_user.name or current_user.orcid_id }}
+                        </a>
+                    </span>
+                    <a href="/auth/logout" class="btn btn-sm btn-outline">Log out</a>
+                {% else %}
+                    <a href="/auth/login" class="btn btn-sm btn-outline">
+                        <img src="{{ url_for('static', path='img/orcid-logo.svg') }}" alt="ORCiD" class="orcid-icon">
+                        Log in with ORCiD
+                    </a>
+                {% endif %}
+            </div>
+
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
