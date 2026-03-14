@@ -20,6 +20,7 @@ Experimental structure metadata from the Protein Data Bank. Contains ~250K depos
 |-------|-------------|-------------|
 | `pdb_entries` | 250,741 | One row per PDB entry — core metadata |
 | `pdb_uniprot_mapping` | 966,977 | PDB chain → UniProt accession (from SIFTS) |
+| `pdb_validation` | ~250K | wwPDB validation metrics (clashscore, Ramachandran, rotamers) |
 
 ## Key Table Schemas
 
@@ -56,6 +57,19 @@ PDB chain → UniProt accession mapping from SIFTS. This is the critical join ta
 | `pdb_end` | STRING | PDB residue end (can be "None") |
 | `sp_beg` | INT | UniProt sequence begin |
 | `sp_end` | INT | UniProt sequence end |
+
+### pdb_validation
+
+wwPDB validation metrics from RCSB GraphQL API (`pdbx_vrpt_summary_geometry`). One row per PDB entry.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `pdb_id` | STRING | PDB accession — FK to `pdb_entries.pdb_id` |
+| `clashscore` | FLOAT | All-atom clashscore |
+| `percent_ramachandran_outliers` | FLOAT | % Ramachandran outliers |
+| `percent_rotamer_outliers` | FLOAT | % rotamer outliers |
+| `angles_rmsz` | FLOAT | RMS Z-score for bond angles |
+| `bonds_rmsz` | FLOAT | RMS Z-score for bond lengths |
 
 ## Cross-Collection Links
 
@@ -119,6 +133,28 @@ JOIN kescience_pdb.pdb_entries pe
   ON pe.pdb_id = pm.pdb_id
 ORDER BY af.mean_plddt DESC
 LIMIT 50;
+```
+
+### Validation quality by resolution
+
+```sql
+SELECT
+  CASE
+    WHEN pe.resolution < 1.5 THEN '< 1.5 A'
+    WHEN pe.resolution < 2.0 THEN '1.5-2.0 A'
+    WHEN pe.resolution < 3.0 THEN '2.0-3.0 A'
+    WHEN pe.resolution < 4.0 THEN '3.0-4.0 A'
+    ELSE '> 4.0 A'
+  END AS resolution_bin,
+  COUNT(*) AS n_structures,
+  ROUND(AVG(pv.clashscore), 2) AS avg_clashscore,
+  ROUND(AVG(pv.percent_ramachandran_outliers), 2) AS avg_rama_outliers,
+  ROUND(AVG(pv.percent_rotamer_outliers), 2) AS avg_rota_outliers
+FROM kescience_pdb.pdb_entries pe
+JOIN kescience_pdb.pdb_validation pv ON pv.pdb_id = pe.pdb_id
+WHERE pe.method = 'X-ray' AND pe.resolution IS NOT NULL
+GROUP BY 1
+ORDER BY 1;
 ```
 
 ## Known Limitations

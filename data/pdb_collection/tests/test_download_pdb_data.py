@@ -11,8 +11,10 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
 
 from download_pdb_data import (
     parse_entry,
+    parse_validation_entry,
     ENTRIES_COLUMNS,
     MAPPING_COLUMNS,
+    VALIDATION_COLUMNS,
 )
 
 
@@ -130,6 +132,40 @@ class TestColumnDefinitions(unittest.TestCase):
                 self.assertEqual(schema_cols, ENTRIES_COLUMNS)
             elif table["name"] == "pdb_uniprot_mapping":
                 self.assertEqual(schema_cols, MAPPING_COLUMNS)
+            elif table["name"] == "pdb_validation":
+                self.assertEqual(schema_cols, VALIDATION_COLUMNS)
+
+
+class TestParseValidationEntry(unittest.TestCase):
+    """Test parsing GraphQL validation responses."""
+
+    def test_parse_validation(self):
+        entry = {
+            "rcsb_id": "4HHB",
+            "pdbx_vrpt_summary_geometry": [{
+                "clashscore": 141.11,
+                "percent_ramachandran_outliers": 1.24,
+                "percent_rotamer_outliers": 8.44,
+                "angles_RMSZ": 7.11,
+                "bonds_RMSZ": 9.69,
+            }],
+        }
+        row = parse_validation_entry(entry)
+        self.assertEqual(row["pdb_id"], "4HHB")
+        self.assertAlmostEqual(row["clashscore"], 141.11)
+        self.assertAlmostEqual(row["percent_ramachandran_outliers"], 1.24)
+
+    def test_missing_validation(self):
+        entry = {"rcsb_id": "1XYZ", "pdbx_vrpt_summary_geometry": None}
+        row = parse_validation_entry(entry)
+        self.assertEqual(row["pdb_id"], "1XYZ")
+        self.assertIsNone(row["clashscore"])
+
+    def test_all_validation_columns(self):
+        entry = {"rcsb_id": "1ABC", "pdbx_vrpt_summary_geometry": [{}]}
+        row = parse_validation_entry(entry)
+        for col in VALIDATION_COLUMNS:
+            self.assertIn(col, row)
 
 
 class TestSiftsOutput(unittest.TestCase):

@@ -24,6 +24,12 @@
       "format": "tsv",
       "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_uniprot_mapping.tsv",
       "schema_sql": "pdb_id STRING, chain_id STRING, uniprot_accession STRING, res_beg INT, res_end INT, pdb_beg STRING, pdb_end STRING, sp_beg INT, sp_end INT"
+    },
+    {
+      "name": "pdb_validation",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_validation.tsv",
+      "schema_sql": "pdb_id STRING, clashscore FLOAT, percent_ramachandran_outliers FLOAT, percent_rotamer_outliers FLOAT, angles_rmsz FLOAT, bonds_rmsz FLOAT"
     }
   ]
 }

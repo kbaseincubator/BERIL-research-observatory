@@ -55,6 +55,24 @@ MAPPING_COLUMNS = [
     "res_beg", "res_end", "pdb_beg", "pdb_end", "sp_beg", "sp_end",
 ]
 
+VALIDATION_GRAPHQL_QUERY = """{
+  entries(entry_ids: %s) {
+    rcsb_id
+    pdbx_vrpt_summary_geometry {
+      clashscore
+      percent_ramachandran_outliers
+      percent_rotamer_outliers
+      angles_RMSZ
+      bonds_RMSZ
+    }
+  }
+}"""
+
+VALIDATION_COLUMNS = [
+    "pdb_id", "clashscore", "percent_ramachandran_outliers",
+    "percent_rotamer_outliers", "angles_rmsz", "bonds_rmsz",
+]
+
 
 def fetch_all_pdb_ids():
     """Fetch all current PDB IDs from RCSB holdings API."""
@@ -66,8 +84,10 @@ def fetch_all_pdb_ids():
     return ids
 
 
-def batch_graphql_query(pdb_ids, batch_size=1000):
+def batch_graphql_query(pdb_ids, batch_size=1000, query_template=None):
     """Query RCSB GraphQL API in batches. Yields parsed entry dicts."""
+    if query_template is None:
+        query_template = GRAPHQL_QUERY
     total = len(pdb_ids)
     n_batches = (total + batch_size - 1) // batch_size
 
@@ -76,7 +96,7 @@ def batch_graphql_query(pdb_ids, batch_size=1000):
         batch_num = i // batch_size + 1
         print(f"  Batch {batch_num}/{n_batches} ({len(batch)} IDs)...", end="", flush=True)
 
-        query = GRAPHQL_QUERY % json.dumps(batch)
+        query = query_template % json.dumps(batch)
         data = json.dumps({"query": query}).encode("utf-8")
         req = urllib.request.Request(
             RCSB_GRAPHQL_URL, data=data,
@@ -226,6 +246,41 @@ def download_sifts(output_path):
     return count
 
 
+def parse_validation_entry(entry):
+    """Parse a GraphQL validation entry into a flat dict."""
+    geom = entry.get("pdbx_vrpt_summary_geometry") or [{}]
+    g = geom[0] if geom else {}
+    return {
+        "pdb_id": entry.get("rcsb_id", ""),
+        "clashscore": g.get("clashscore"),
+        "percent_ramachandran_outliers": g.get("percent_ramachandran_outliers"),
+        "percent_rotamer_outliers": g.get("percent_rotamer_outliers"),
+        "angles_rmsz": g.get("angles_RMSZ"),
+        "bonds_rmsz": g.get("bonds_RMSZ"),
+    }
+
+
+def download_validation(pdb_ids, output_path, batch_size=1000):
+    """Download PDB validation metrics via GraphQL and write to TSV."""
+    print(f"\nDownloading PDB validation metrics ({len(pdb_ids):,} entries)...")
+    t0 = time.time()
+
+    with open(output_path, "w", newline="") as f:
+        writer = csv.writer(f, delimiter="\t", lineterminator="\n")
+        writer.writerow(VALIDATION_COLUMNS)
+
+        count = 0
+        for entry in batch_graphql_query(pdb_ids, batch_size,
+                                          query_template=VALIDATION_GRAPHQL_QUERY):
+            row = parse_validation_entry(entry)
+            writer.writerow([_fmt(row.get(col)) for col in VALIDATION_COLUMNS])
+            count += 1
+
+    dt = time.time() - t0
+    print(f"  Wrote {count:,} validation rows to {output_path} in {dt:.1f}s")
+    return count
+
+
 def _fmt(val):
     """Format a value for TSV output."""
     if val is None:
@@ -247,9 +302,11 @@ def main():
     parser.add_argument("--batch-size", type=int, default=1000,
                         help="GraphQL batch size (default: 1000)")
     parser.add_argument("--entries-only", action="store_true",
-                        help="Only download PDB entries, skip SIFTS")
+                        help="Only download PDB entries, skip SIFTS and validation")
     parser.add_argument("--sifts-only", action="store_true",
-                        help="Only download SIFTS mapping, skip entries")
+                        help="Only download SIFTS mapping")
+    parser.add_argument("--validation-only", action="store_true",
+                        help="Only download validation metrics")
     parser.add_argument("--sample", type=int, default=0,
                         help="Only download first N entries (for testing)")
     args = parser.parse_args()
@@ -258,25 +315,37 @@ def main():
 
     entries_path = os.path.join(args.output_dir, "pdb_entries.tsv")
     mapping_path = os.path.join(args.output_dir, "pdb_uniprot_mapping.tsv")
+    validation_path = os.path.join(args.output_dir, "pdb_validation.tsv")
 
     n_entries = 0
     n_mappings = 0
+    n_validation = 0
 
-    if not args.sifts_only:
+    # Determine what to download
+    only_flags = [args.entries_only, args.sifts_only, args.validation_only]
+    do_all = not any(only_flags)
+
+    if do_all or args.entries_only or args.validation_only:
         pdb_ids = fetch_all_pdb_ids()
         if args.sample:
             pdb_ids = pdb_ids[:args.sample]
             print(f"  Sampling first {args.sample} entries")
+
+    if do_all or args.entries_only:
         n_entries = download_entries(pdb_ids, entries_path, args.batch_size)
 
-    if not args.entries_only:
+    if do_all or args.sifts_only:
         n_mappings = download_sifts(mapping_path)
+
+    if do_all or args.validation_only:
+        n_validation = download_validation(pdb_ids, validation_path, args.batch_size)
 
     print(f"\n{'=' * 60}")
     print("SUMMARY")
     print(f"{'=' * 60}")
     print(f"  pdb_entries.tsv:         {n_entries:>10,} rows")
     print(f"  pdb_uniprot_mapping.tsv: {n_mappings:>10,} rows")
+    print(f"  pdb_validation.tsv:      {n_validation:>10,} rows")
     print(f"  Output directory:        {args.output_dir}")
 
 

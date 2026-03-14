@@ -14,6 +14,7 @@ Protein Data Bank (PDB) experimental structure metadata for BERDL. Provides reso
 |-------|-------------|-------------|
 | `pdb_entries` | 250,741 | One row per PDB entry (method, resolution, R-factors, organism) |
 | `pdb_uniprot_mapping` | 966,977 | PDB chain → UniProt accession mapping (from SIFTS) |
+| `pdb_validation` | ~250K | Validation metrics (clashscore, Ramachandran, rotamers, RMSZ) |
 
 Schema documentation: [docs/schemas/pdb.md](../../docs/schemas/pdb.md)
 
