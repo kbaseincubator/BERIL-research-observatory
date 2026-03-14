@@ -30,6 +30,36 @@
       "format": "tsv",
       "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_validation.tsv",
       "schema_sql": "pdb_id STRING, clashscore FLOAT, percent_ramachandran_outliers FLOAT, percent_rotamer_outliers FLOAT, angles_rmsz FLOAT, bonds_rmsz FLOAT"
+    },
+    {
+      "name": "pdb_taxonomy",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_taxonomy.tsv",
+      "schema_sql": "pdb_id STRING, taxonomy_id INT, organism STRING"
+    },
+    {
+      "name": "pdb_ligands",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_ligands.tsv",
+      "schema_sql": "pdb_id STRING, ligand_id STRING, ligand_name STRING, ligand_type STRING, formula STRING, formula_weight FLOAT"
+    },
+    {
+      "name": "pdb_citations",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_citations.tsv",
+      "schema_sql": "pdb_id STRING, citation_id STRING, is_primary STRING, title STRING, year INT, journal STRING, volume STRING, page_first STRING, doi STRING, pubmed_id INT, authors STRING"
+    },
+    {
+      "name": "pdb_pfam",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_pfam.tsv",
+      "schema_sql": "pdb_id STRING, chain_id STRING, uniprot_accession STRING, pfam_id STRING, coverage FLOAT"
+    },
+    {
+      "name": "pdb_sequence_clusters",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_sequence_clusters.tsv",
+      "schema_sql": "cluster_id STRING, pdb_entity_id STRING, identity_level INT"
     }
   ]
 }
