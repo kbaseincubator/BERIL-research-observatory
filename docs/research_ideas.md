@@ -13,6 +13,42 @@
 
 ## High Priority Ideas
 
+### [truly_dark_genes] Truly Dark Genes — What Remains Unknown After Modern Annotation?
+**Status**: IN_PROGRESS
+**Priority**: HIGH
+**Effort**: Medium (2-3 weeks)
+
+**Research Question**: Among the ~6,400 FB genes that remain hypothetical even after bakta v1.12.0 reannotation, what distinguishes them from annotation-lag dark matter, and can fitness phenotypes + sparse annotations prioritize them for experimental characterization?
+
+**Approach**:
+- Fork from `functional_dark_matter` NB12 insight: 83.7% of "dark" genes are annotation-lag, not truly unknown
+- Characterize the residual ~6,400 truly dark genes (shorter? more divergent? species-specific?)
+- Mine sparse annotations (UniRef50, Pfam HMMER, ICA modules, db_xrefs) as partial clues
+- Test cross-organism fitness concordance for truly dark orthologs
+- Produce prioritized ~50-100 candidates with experimental protocols
+
+**Hypotheses**:
+- Truly dark genes are structurally distinct (shorter, less conserved, taxonomically restricted)
+- They are enriched in stress conditions and accessory genomes
+- Partial annotations (UniRef50 + Pfam + module context) can narrow functional hypotheses
+
+**Impact**: High — reduces the "dark matter" problem from 57,011 genes to ~6,400 genuinely unknown ones and provides a tractable experimental target list
+
+**Dependencies**:
+- Existing: `functional_dark_matter` data (NB12 bakta enrichment)
+- Existing: `bakta_reannotation` Delta Lake tables
+- Existing: FB-pangenome link table from `conservation_vs_fitness`
+
+**Progress**:
+- ✅ Project structure created: `projects/truly_dark_genes/`
+- ✅ Research plan written
+- ⏳ Next: NB01 census and characterization
+- ⏳ Next: NB02 Spark data enrichment
+
+**Location**: `projects/truly_dark_genes/`
+
+---
+
 ### [pangenome_pathway_geography] Pangenome Openness, Metabolic Pathways, and Biogeography
 **Status**: IN_PROGRESS
 **Priority**: HIGH
