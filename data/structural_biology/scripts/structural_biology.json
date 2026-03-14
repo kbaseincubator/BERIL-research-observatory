@@ -1,0 +1,41 @@
+{
+  "tenant": "kescience",
+  "dataset": "structural-biology",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/structural-biology/",
+    "silver_base": "s3a://cdm-lake/tenant-sql-warehouse/kescience/kescience_structural_biology.db"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "structure_projects",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/structural-biology/structure_projects.tsv",
+      "schema_sql": "project_id STRING, uniprot_accession STRING, pdb_id STRING, method STRING, resolution FLOAT, space_group STRING, status STRING, created_date STRING, completed_date STRING"
+    },
+    {
+      "name": "refinement_cycles",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/structural-biology/refinement_cycles.tsv",
+      "schema_sql": "project_id STRING, cycle_number INT, r_work FLOAT, r_free FLOAT, r_gap FLOAT, map_model_cc FLOAT, molprobity_score FLOAT, ramachandran_favored FLOAT, ramachandran_outliers FLOAT, clash_score FLOAT, rotamer_outliers FLOAT, refinement_strategy STRING, parameters_json STRING, model_path STRING, notes STRING, timestamp STRING"
+    },
+    {
+      "name": "validation_reports",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/structural-biology/validation_reports.tsv",
+      "schema_sql": "uniprot_accession STRING, source STRING, molprobity_score FLOAT, ramachandran_favored FLOAT, ramachandran_outliers FLOAT, clash_score FLOAT, rotamer_outliers FLOAT, cbeta_deviations INT, report_path STRING, model_path STRING, validation_date STRING"
+    },
+    {
+      "name": "alphafold_structures",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/structural-biology/alphafold_structures.tsv",
+      "schema_sql": "uniprot_accession STRING, pdb_path STRING, cif_path STRING, pae_path STRING, n_residues INT, n_domains INT, mean_plddt FLOAT, retrieval_date STRING"
+    }
+  ]
+}

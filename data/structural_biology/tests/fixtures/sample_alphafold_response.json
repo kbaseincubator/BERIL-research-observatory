@@ -1,0 +1,24 @@
+[
+  {
+    "entryId": "AF-P0A6Y8-F1",
+    "gene": "trxA",
+    "uniprotAccession": "P0A6Y8",
+    "uniprotId": "THIO_ECOLI",
+    "uniprotDescription": "Thioredoxin 1",
+    "taxId": 83333,
+    "organismScientificName": "Escherichia coli (strain K12)",
+    "uniprotStart": 1,
+    "uniprotEnd": 109,
+    "uniprotSequence": "MSDKIIHLTDDSFDTDVLKADGAILVDFWAEWCGPCKMIAPILDEIADEYQGKLTVAKLNIDQNPGTAPKYGIRGIPTLLLFKNGEVAATKVGALSKGQLKEFLDANLA",
+    "modelCreatedDate": "2022-06-01",
+    "latestVersion": 4,
+    "allVersions": [1, 2, 3, 4],
+    "isReviewed": true,
+    "isReferenceProteome": true,
+    "cifUrl": "https://alphafold.ebi.ac.uk/files/AF-P0A6Y8-F1-model_v4.cif",
+    "bcifUrl": "https://alphafold.ebi.ac.uk/files/AF-P0A6Y8-F1-model_v4.bcif",
+    "pdbUrl": "https://alphafold.ebi.ac.uk/files/AF-P0A6Y8-F1-model_v4.pdb",
+    "paeDocUrl": "https://alphafold.ebi.ac.uk/files/AF-P0A6Y8-F1-predicted_aligned_error_v4.json",
+    "paeImageUrl": "https://alphafold.ebi.ac.uk/files/AF-P0A6Y8-F1-predicted_aligned_error_v4.png"
+  }
+]

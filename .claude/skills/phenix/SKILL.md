@@ -50,29 +50,58 @@ Read these as needed for parameter details and troubleshooting:
 
 ## Preconditions
 
-1. **Phenix installed** on NERSC — check with:
+1. **Phenix installed** on NERSC — install with `data/structural_biology/scripts/install_phenix.sh`, then:
    ```bash
-   module load phenix 2>/dev/null || source /path/to/phenix/phenix_env.sh
+   module load conda
+   conda activate phenix
    phenix.version
    ```
 2. **KBASE_AUTH_TOKEN** set in `.env` (for BERDL queries and MinIO storage)
 3. **MinIO access** configured (for structure storage) — see `/berdl-minio` skill
 4. **For SLURM jobs**: Access to Perlmutter compute nodes
+5. **Python 3.9+**: Use `module load python` on NERSC (system Python is too old)
 
 ## Phenix Environment Setup
 
 Before running any Phenix tool:
 
 ```bash
-# Option 1: Module system (if available)
-module load phenix
-
-# Option 2: Source environment directly
-source $PHENIX_ROOT/phenix_env.sh
-
-# Verify
+module load conda
+conda activate phenix
 phenix.version
 ```
+
+## Pipeline Scripts
+
+The pipeline orchestrator at `data/structural_biology/scripts/run_pipeline.py` handles
+project creation, SLURM job submission, output parsing, and provenance logging:
+
+```bash
+module load python
+python3 data/structural_biology/scripts/run_pipeline.py retrieve --accession P0A6Y8
+python3 data/structural_biology/scripts/run_pipeline.py validate --model model.pdb
+python3 data/structural_biology/scripts/run_pipeline.py xray --data data.mtz --seq seq.fa --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py refine --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py process --project-id struct_YYYYMMDD_name --cycle 3
+python3 data/structural_biology/scripts/run_pipeline.py accept --project-id struct_YYYYMMDD_name --model rebuilt.pdb
+python3 data/structural_biology/scripts/run_pipeline.py converge --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py finalize --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py batch-validate --accessions P0A6Y8 Q9Y6K9 --output-dir results/
+python3 data/structural_biology/scripts/run_pipeline.py advise --resolution 2.5 --method xray
+python3 data/structural_biology/scripts/run_pipeline.py figures --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py dashboard
+python3 data/structural_biology/scripts/run_pipeline.py status --project-id struct_YYYYMMDD_name
+```
+
+### Refinement Loop Workflow
+
+1. Submit refinement: `run_pipeline.py refine --project-id ...`
+2. After SLURM job finishes: `run_pipeline.py process --project-id ... --cycle N`
+3. Process generates Coot/PyMOL/ChimeraX scripts and checks convergence
+4. If not converged: user inspects model in Coot, rebuilds, saves
+5. Accept rebuilt model: `run_pipeline.py accept --project-id ... --model rebuilt.pdb`
+6. Repeat from step 1 until converged
+7. Finalize: `run_pipeline.py finalize --project-id ...`
 
 ## Project State Management
 
