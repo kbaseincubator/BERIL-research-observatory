@@ -494,6 +494,69 @@ def cmd_finalize(args):
         print(f"Final model: {final}")
 
 
+def cmd_batch_validate(args):
+    """Batch validate AlphaFold structures or local PDB files."""
+    from batch_validate import batch_validate_accessions, batch_validate_pdbs, \
+        write_summary_tsv, write_batch_stats, print_summary
+    import glob as globmod
+
+    os.makedirs(args.output_dir, exist_ok=True)
+    reports = []
+
+    accessions = args.accessions or []
+    if accessions:
+        reports.extend(batch_validate_accessions(accessions, args.output_dir))
+
+    if args.pdb_dir:
+        pdb_files = sorted(globmod.glob(os.path.join(args.pdb_dir, "*.pdb")))
+        if pdb_files:
+            reports.extend(batch_validate_pdbs(pdb_files, args.output_dir))
+
+    if reports:
+        write_summary_tsv(reports, os.path.join(args.output_dir, "summary.tsv"))
+        write_batch_stats(reports, args.output_dir)
+        print_summary(reports)
+
+
+def cmd_advise(args):
+    """Get refinement strategy recommendation."""
+    from strategy_advisor import recommend_strategy, format_recommendation
+
+    staging = args.staging or DEFAULT_STAGING
+    rec = recommend_strategy(args.resolution, args.method, staging)
+    print(format_recommendation(rec, as_json=args.json))
+
+
+def cmd_figures(args):
+    """Generate publication figures for a project."""
+    from generate_figures import generate_quality_summary, generate_plddt_heatmap
+
+    staging = args.staging or DEFAULT_STAGING
+    project_dir = os.path.join(staging, args.project_id)
+
+    if not os.path.exists(project_dir):
+        print(f"Project not found: {project_dir}")
+        return
+
+    figures_dir = os.path.join(project_dir, "figures")
+    os.makedirs(figures_dir, exist_ok=True)
+
+    generate_quality_summary(project_dir, os.path.join(figures_dir, "quality_summary.png"))
+    print(f"Figures saved to {figures_dir}")
+
+
+def cmd_dashboard(args):
+    """Show project dashboard."""
+    from project_dashboard import scan_projects, print_dashboard, export_all_projects
+
+    staging = args.staging or DEFAULT_STAGING
+    summaries = scan_projects(staging)
+    print_dashboard(summaries)
+
+    if args.export_tsv:
+        export_all_projects(summaries, args.export_tsv)
+
+
 def cmd_status(args):
     """Show project status."""
     staging = args.staging or DEFAULT_STAGING
@@ -605,6 +668,26 @@ def main():
     p_final = subparsers.add_parser("finalize", help="Finalize converged project")
     p_final.add_argument("--project-id", required=True)
 
+    # batch-validate (M4)
+    p_bv = subparsers.add_parser("batch-validate", help="Batch validate structures")
+    p_bv.add_argument("--accessions", nargs="+", help="UniProt accessions")
+    p_bv.add_argument("--pdb-dir", help="Directory of PDB files")
+    p_bv.add_argument("--output-dir", default="batch_results")
+
+    # advise (M4)
+    p_adv = subparsers.add_parser("advise", help="Get strategy recommendation")
+    p_adv.add_argument("--resolution", type=float, required=True)
+    p_adv.add_argument("--method", default="xray", choices=["xray", "cryo_em"])
+    p_adv.add_argument("--json", action="store_true")
+
+    # figures (M4)
+    p_fig = subparsers.add_parser("figures", help="Generate publication figures")
+    p_fig.add_argument("--project-id", required=True)
+
+    # dashboard (M4)
+    p_dash = subparsers.add_parser("dashboard", help="Show project dashboard")
+    p_dash.add_argument("--export-tsv", help="Export all projects to TSV directory")
+
     # status
     p_stat = subparsers.add_parser("status", help="Show project status")
     p_stat.add_argument("--project-id", required=True)
@@ -621,6 +704,10 @@ def main():
         "accept": cmd_accept,
         "converge": cmd_converge,
         "finalize": cmd_finalize,
+        "batch-validate": cmd_batch_validate,
+        "advise": cmd_advise,
+        "figures": cmd_figures,
+        "dashboard": cmd_dashboard,
         "status": cmd_status,
     }
 

@@ -1,6 +1,6 @@
 # Structural Biology Data Collection
 
-Status: **In development**. Milestone 3 (refinement loop) complete 2026-03-14. No tables ingested yet.
+Status: **In development**. All 4 milestones complete 2026-03-14. No tables ingested yet.
 
 ## What This Is
 
@@ -60,7 +60,7 @@ The `/phenix` skill is at `.claude/skills/phenix/SKILL.md`. It provides:
 - [x] Milestone 1: Skill framework, schema design, AlphaFold retrieval, validation
 - [x] Milestone 2: Phenix installation, automated pipelines, SLURM templates, tests
 - [x] Milestone 3: Human-in-the-loop refinement management, convergence detection, Delta Lake export
-- [ ] Milestone 4: Cross-project intelligence, batch validation, figure generation
+- [x] Milestone 4: Cross-project intelligence, batch validation, figure generation
 
 ## Scripts
 
@@ -74,6 +74,10 @@ The `/phenix` skill is at `.claude/skills/phenix/SKILL.md`. It provides:
 | `scripts/generate_scripts.py` | Coot/PyMOL/ChimeraX visualization script generator |
 | `scripts/cycle_manager.py` | Post-refinement workflow, convergence detection, finalization |
 | `scripts/export_tables.py` | Delta Lake TSV export matching ingestion config schema |
+| `scripts/batch_validate.py` | Batch validation of AlphaFold/PDB structures |
+| `scripts/strategy_advisor.py` | Resolution-based refinement strategy recommendations |
+| `scripts/generate_figures.py` | Publication figure generation (pLDDT, convergence, quality summary) |
+| `scripts/project_dashboard.py` | Multi-project status dashboard with stale detection |
 | `scripts/structural_biology.json` | BERDL ingestion config for 4 Delta Lake tables |
 | `scripts/slurm_templates/refine.sh` | SLURM template for phenix.refine (4h, 8 CPUs) |
 | `scripts/slurm_templates/real_space_refine.sh` | SLURM template for phenix.real_space_refine (4h, 8 CPUs) |
@@ -96,3 +100,7 @@ Run with: `module load python && python3 -m unittest discover -s tests -v`
 | `tests/test_generate_scripts.py` | Coot/PyMOL/ChimeraX script generation |
 | `tests/test_cycle_manager.py` | Convergence detection, model acceptance |
 | `tests/test_export_tables.py` | TSV export format, schema consistency |
+| `tests/test_batch_validate.py` | Batch processing, summary generation |
+| `tests/test_strategy_advisor.py` | Static recommendations, resolution matching, history |
+| `tests/test_generate_figures.py` | Figure generation with mock data |
+| `tests/test_project_dashboard.py` | Project scanning, stale detection, formatting |

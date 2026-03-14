@@ -86,6 +86,10 @@ python3 data/structural_biology/scripts/run_pipeline.py process --project-id str
 python3 data/structural_biology/scripts/run_pipeline.py accept --project-id struct_YYYYMMDD_name --model rebuilt.pdb
 python3 data/structural_biology/scripts/run_pipeline.py converge --project-id struct_YYYYMMDD_name
 python3 data/structural_biology/scripts/run_pipeline.py finalize --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py batch-validate --accessions P0A6Y8 Q9Y6K9 --output-dir results/
+python3 data/structural_biology/scripts/run_pipeline.py advise --resolution 2.5 --method xray
+python3 data/structural_biology/scripts/run_pipeline.py figures --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py dashboard
 python3 data/structural_biology/scripts/run_pipeline.py status --project-id struct_YYYYMMDD_name
 ```
 
