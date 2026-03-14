@@ -45,6 +45,7 @@ def get_repo_data(request: Request) -> RepositoryData:
 def get_base_context(request: Request) -> dict:
     context = dict(request.app.state.base_context)
     context["current_user"] = get_current_user(request)
+    context["path"] = request.url.path
     return context
 
 async def initialize_data(settings: Settings) -> RepositoryData:
@@ -118,7 +119,7 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
-    app.add_middleware(SessionMiddleware, secret_key=settings.session_secret_key)
+    app.add_middleware(SessionMiddleware, secret_key=settings.session_secret_key, session_cookie="beril_session")
 
     # Mount static files
     app.mount("/static", StaticFiles(directory=settings.static_dir), name="static")
@@ -185,6 +186,19 @@ async def home(
         }
     )
     return templates.TemplateResponse(request, "home.html", context)
+
+
+@ROUTER_GENERAL.get("/user_profile", response_class=HTMLResponse)
+async def user_profile(
+    request: Request,
+    context: dict = Depends(get_base_context)
+):
+    user = context.get("current_user")
+    if user is None:
+        return templates.TemplateResponse(request, "unauthenticated.html", context)
+    else:
+        return templates.TemplateResponse(request, "profile.html", context)
+
 
 
 @ROUTER_COSCIENTIST.get("/co-scientist", response_class=HTMLResponse)

@@ -64,7 +64,7 @@
                     </span>
                     <a href="/auth/logout" class="btn btn-sm btn-outline">Log out</a>
                 {% else %}
-                    <a href="/auth/login" class="btn btn-sm btn-outline">
+                    <a href="/auth/login?next={{ path }}" class="btn btn-sm btn-outline">
                         <img src="{{ url_for('static', path='img/orcid-logo.svg') }}" alt="ORCiD" class="orcid-icon">
                         Log in with ORCiD
                     </a>
