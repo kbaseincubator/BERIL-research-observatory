@@ -1,6 +1,6 @@
 # BERDL Collections Overview
 
-The **KBase BER Data Lakehouse (BERDL)** hosts 37 databases organized across 9 tenants. This document provides an overview of all collections, organized by tenant, with links to detailed schema documentation.
+The **KBase BER Data Lakehouse (BERDL)** hosts 38 databases organized across 9 tenants. This document provides an overview of all collections, organized by tenant, with links to detailed schema documentation.
 
 **Last Updated**: 2026-02-23
 **Discovery Method**: REST API introspection (`/delta/databases/list`)
@@ -31,6 +31,7 @@ Core KBase scientific data collections.
 | Database | Short Name | Tables | Scale | Schema Doc | Description |
 |----------|-----------|--------|-------|------------|-------------|
 | `kescience_alphafold` | AlphaFold | 2 | ~241M predicted structures | [alphafold.md](schemas/alphafold.md) | AlphaFold protein structure metadata: UniProt→structure mapping and MSA depth (prediction quality). Joinable to any collection with UniProt/UniRef IDs. |
+| `kescience_structural_biology` | Structural Biology | 4 | grows with usage | [structural_biology.md](schemas/structural_biology.md) | Structure determination projects, refinement history, validation reports, and retrieved AlphaFold structure files. Managed by the `/phenix` agent skill. |
 | `kescience_fitnessbrowser` | Fitness Browser | 50+ | 48 organisms, 27M fitness scores | [fitnessbrowser.md](schemas/fitnessbrowser.md) | Genome-wide mutant fitness data from RB-TnSeq experiments across diverse bacteria |
 | `kescience_webofmicrobes` | Web of Microbes | 5 | 37 organisms, 589 metabolites, 10K observations | [webofmicrobes.md](schemas/webofmicrobes.md) | Curated microbial exometabolomics: metabolite production/excretion profiles (Kosina et al. 2018) |
 | `kescience_bacdive` | BacDive | 8 | 97K strains, 988K metabolite tests, 643K enzyme records | [bacdive.md](schemas/bacdive.md) | Bacterial diversity metadatabase: phenotypes, growth conditions, isolation source, metabolite utilization (DSMZ) |
@@ -138,11 +139,13 @@ kbase_ke_pangenome ←→ kbase_genomes
     │              988K metabolite utilization records
     │              63 metabolites shared with WoM
     │
-    ├→ kescience_alphafold
+    ├→ kescience_alphafold ←→ kescience_structural_biology
     │  bakta_annotations.uniref100 → strip "UniRef100_" → uniprot_accession
     │  bakta_db_xrefs (UniRef*) → strip prefix → uniprot_accession
     │  kbase_uniref100.cluster_id → uniprot_accession
     │  ~241M AlphaFold structures with MSA depth quality scores
+    │  structural_biology links via uniprot_accession for
+    │  refinement history, validation, and retrieved structures
     │
     └→ nmdc_arkin
        Shared annotation ontologies (COG, KEGG, EC, GO)
@@ -169,6 +172,8 @@ kbase_ke_pangenome ←→ kbase_genomes
 9. **BacDive ↔ Web of Microbes**: 63 WoM metabolite names match BacDive metabolite utilization compound names. Top overlaps: trehalose (13,838 BacDive strains tested), arginine (13,665), glucose (7,103).
 
 10. **AlphaFold ↔ Pangenome/UniRef**: AlphaFold entries are keyed by UniProt accession. Any collection with UniProt or UniRef references can join directly — no bridge table needed. Bakta annotations link via `REPLACE(uniref100, 'UniRef100_', '')`, and `kbase_uniref100.cluster_id` maps directly. MSA depth provides a quality proxy for each predicted structure.
+
+11. **Structural Biology ↔ AlphaFold/Pangenome**: `kescience_structural_biology` links to AlphaFold and pangenome via `uniprot_accession`. Contains structure determination project metadata, refinement cycle history, validation reports, and retrieved AlphaFold structure files. Managed by the `/phenix` agent skill.
 
 ---
 
