@@ -1,0 +1,35 @@
+{
+  "tenant": "kescience",
+  "dataset": "interpro",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/interpro/",
+    "silver_base": "s3a://cdm-lake/tenant-sql-warehouse/kescience/kescience_interpro.db"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "protein2ipr",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/interpro/protein2ipr.tsv.gz",
+      "schema_sql": "uniprot_acc STRING, ipr_id STRING, ipr_desc STRING, source_db STRING, source_acc STRING, start INT, stop INT"
+    },
+    {
+      "name": "entry",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/interpro/interpro_entries.tsv",
+      "schema_sql": "ipr_id STRING, entry_type STRING, entry_name STRING"
+    },
+    {
+      "name": "go_mapping",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/interpro/interpro_go_mappings.tsv",
+      "schema_sql": "ipr_id STRING, go_id STRING, go_name STRING"
+    }
+  ]
+}

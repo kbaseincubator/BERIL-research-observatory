@@ -1,47 +1,63 @@
-# InterPro Lookup for Pangenome Proteins
+# InterPro Ingest for BERDL
 
-Fetch pre-computed InterProScan results for the 132.5M gene cluster representative
-proteins in `kbase_ke_pangenome`.
+Ingest the full InterPro protein annotation database as a permanent BERDL collection:
+`kescience_interpro`.
 
-## Strategy
+## Why
 
-InterPro pre-computes domain/family annotations for all UniProt proteins (~167M).
-Bakta mapped our gene clusters to UniRef100/90/50 representatives, giving us UniProt
-accessions we can look up directly.
+InterPro pre-computes domain/family/site annotations for all ~250M UniProt proteins
+using 14 member databases (Pfam, PRINTS, ProSite, SMART, CDD, etc.). Ingesting this
+into BERDL enables cross-collection JOINs:
 
-**Match tiers (best to worst):**
-1. **UniRef100** — exact sequence match → InterPro results apply precisely
-2. **UniRef90** — ≥90% identity → InterPro family/domain annotations transfer reliably
-3. **UniRef50** — ≥50% identity → InterPro family annotations likely conserved
+- **Pangenome proteins** → bakta UniRef100/90/50 → InterPro domains, GO terms
+- **Fitness Browser genes** → pangenome link → InterPro functional families
+- **Any UniProt accession** → full InterPro annotation
+
+## Tables
+
+| Table | Source | Rows (est.) | Description |
+|-------|--------|-------------|-------------|
+| `protein2ipr` | protein2ipr.dat.gz (16GB) | ~1.5B | UniProt acc → InterPro entry with domain boundaries + source DB |
+| `entry` | entry.list | ~50K | InterPro entry metadata (ID, type, name) |
+| `go_mapping` | interpro2go | ~30K | InterPro entry → GO term mappings |
 
 ## Pipeline
 
 | Script | Description | Runs on | Network? |
 |--------|-------------|---------|----------|
-| `01_extract_identifiers.py` | Extract UniRef/UniParc accessions from BERDL | JupyterHub (Spark) | No |
-| `02_download_interpro_bulk.sh` | Download protein2ipr.dat.gz from EBI FTP | Any | Yes (16GB) |
-| `03_match_bulk.py` | Match our accessions against bulk data | Any (needs ~10GB RAM) | No |
-| `04_api_lookup_remaining.py` | API lookup for unmatched accessions | Any | Yes |
-| `05_assess_coverage.py` | Coverage report and gap analysis | Any | No |
+| `02_download_interpro_bulk.sh` | Download from EBI FTP (16GB, resumable) | Any | Yes |
+| `03_prepare_for_ingest.sh` | Add headers, parse entry.list + interpro2go to TSV | Any | No |
+| `04_ingest_interpro.py` | Upload to MinIO + run data_lakehouse_ingest | JupyterHub | Yes (MinIO) |
+| `05_assess_coverage.py` | Coverage report: pangenome × InterPro via Spark | JupyterHub | No |
+
+## BERDL Paths
+
+- **Tenant**: `kescience`
+- **Database**: `kescience_interpro`
+- **Bronze**: `s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/interpro/`
+- **Silver**: `s3a://cdm-lake/tenant-sql-warehouse/kescience/kescience_interpro.db`
 
 ## Checkpointing
 
-All network-dependent scripts checkpoint progress:
-- `02`: Uses `wget -c` for resumable downloads
-- `04`: Saves progress every N batches to `checkpoints/api_lookup_checkpoint.json`
+- `02_download`: Uses `wget -c` for resumable downloads
+- `04_ingest`: data_lakehouse_ingest handles Delta writes atomically
 
-## Data Files
+## Pangenome Coverage Estimate
 
-Outputs go to `data/interpro_lookup/`:
-- `gene_cluster_accessions.tsv` — gene_cluster_id → UniProt accession mappings
-- `interpro_matches.tsv` — matched InterPro results from bulk data
-- `api_matches.tsv` — matched InterPro results from API lookups
-- `unmatched_clusters.tsv` — gene clusters with no InterPro results (need InterProScan)
-- `coverage_report.txt` — summary statistics
+From bakta_annotations (132.5M gene clusters):
+- 46.4% have UniRef100 accessions (exact match, 56.9M unique accessions)
+- 79.2% have UniRef50 accessions (≥50% identity, 17.6M unique accessions)
+- 20.7% have no accession — would need full InterProScan
 
-## InterPro Bulk Data
+After ingest, coverage is assessed via:
+```sql
+SELECT COUNT(DISTINCT ba.gene_cluster_id)
+FROM kbase_ke_pangenome.bakta_annotations ba
+JOIN kescience_interpro.protein2ipr ip
+  ON REPLACE(ba.uniref100, 'UniRef100_', '') = ip.uniprot_acc
+```
 
-Downloaded to `data/interpro_lookup/bulk/`:
-- `protein2ipr.dat.gz` — 16GB, maps UniProt accessions → InterPro entries
-- `entry.list` — InterPro entry descriptions and types
-- `interpro2go` — InterPro → GO term mappings
+## InterPro Data Version
+
+Current release: v108.0 (2026-01-29)
+Source: https://ftp.ebi.ac.uk/pub/databases/interpro/current_release/

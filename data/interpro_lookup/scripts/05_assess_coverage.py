@@ -1,238 +1,161 @@
 #!/usr/bin/env python3
 """
-Assess InterPro coverage across gene clusters and produce a gap report.
+Assess InterPro coverage across BERDL collections via Spark SQL.
 
-Reads outputs from scripts 03 and 04, produces a coverage report
-showing how many gene clusters have InterPro results and at what quality.
-
-Input:
-  data/interpro_lookup/gene_cluster_accessions.tsv
-  data/interpro_lookup/interpro_matches.tsv    (bulk matches)
-  data/interpro_lookup/api_matches.tsv         (API matches, optional)
-  data/interpro_lookup/api_no_results.tsv      (API misses, optional)
-  data/interpro_lookup/bulk/entry.list         (InterPro entry descriptions)
-
-Output:
-  data/interpro_lookup/coverage_report.txt
-  data/interpro_lookup/unmatched_clusters.tsv  (clusters needing InterProScan)
+After ingestion, this runs JOINs between kescience_interpro.protein2ipr
+and other BERDL collections to report coverage statistics.
 
 Usage:
   python data/interpro_lookup/scripts/05_assess_coverage.py
 """
 
-import os
-import sys
-from collections import Counter, defaultdict
+import time
 
-OUT_DIR = "data/interpro_lookup"
-ACCESSIONS_FILE = os.path.join(OUT_DIR, "gene_cluster_accessions.tsv")
-BULK_MATCHES = os.path.join(OUT_DIR, "interpro_matches.tsv")
-API_MATCHES = os.path.join(OUT_DIR, "api_matches.tsv")
-API_NO_RESULTS = os.path.join(OUT_DIR, "api_no_results.tsv")
-ENTRY_LIST = os.path.join(OUT_DIR, "bulk", "entry.list")
-REPORT_FILE = os.path.join(OUT_DIR, "coverage_report.txt")
-UNMATCHED_FILE = os.path.join(OUT_DIR, "unmatched_clusters.tsv")
+from berdl_notebook_utils.setup_spark_session import get_spark_session
 
-
-def load_entry_types(filepath):
-    """Load InterPro entry types from entry.list."""
-    types = {}
-    if not os.path.exists(filepath):
-        return types
-    with open(filepath) as f:
-        for line in f:
-            parts = line.strip().split("\t")
-            if len(parts) >= 2:
-                types[parts[0]] = parts[1]  # IPR_id -> type (Family, Domain, etc)
-    return types
-
-
-def count_matched_clusters(filepath, gc_col_idx=0):
-    """Count unique gene clusters from a match file."""
-    clusters = set()
-    if not os.path.exists(filepath):
-        return clusters, Counter()
-
-    ipr_counter = Counter()
-    with open(filepath) as f:
-        next(f)  # skip header
-        for line in f:
-            parts = line.strip().split("\t")
-            if parts:
-                clusters.add(parts[gc_col_idx])
-                # Count IPR entries
-                ipr_idx = 3 if filepath == BULK_MATCHES else 3
-                if len(parts) > ipr_idx and parts[ipr_idx].startswith("IPR"):
-                    ipr_counter[parts[ipr_idx]] += 1
-    return clusters, ipr_counter
-
-
-def load_all_clusters(filepath):
-    """Load all gene cluster IDs and their accession status."""
-    clusters = {}  # gc_id -> {'uniref100': acc, 'uniref90': acc, ...}
-    with open(filepath) as f:
-        header = f.readline().strip().split("\t")
-        col_idx = {name: i for i, name in enumerate(header)}
-
-        for line in f:
-            parts = line.strip().split("\t")
-            gc_id = parts[col_idx["gene_cluster_id"]]
-            info = {}
-            for col in ["uniref100_acc", "uniref90_acc", "uniref50_acc"]:
-                idx = col_idx.get(col)
-                if idx is not None and idx < len(parts):
-                    val = parts[idx]
-                    if val and val != "" and val != "None":
-                        info[col] = val
-            if "uniparc" in col_idx:
-                idx = col_idx["uniparc"]
-                if idx < len(parts) and parts[idx] and parts[idx] != "None":
-                    info["uniparc"] = parts[idx]
-            clusters[gc_id] = info
-
-    return clusters
+IPR = "kescience_interpro"
+PAN = "kbase_ke_pangenome"
 
 
 def main():
-    if not os.path.exists(ACCESSIONS_FILE):
-        print(f"ERROR: {ACCESSIONS_FILE} not found.")
-        sys.exit(1)
+    spark = get_spark_session()
 
-    print("Loading data...")
+    print("=" * 70)
+    print("InterPro Coverage Assessment")
+    print("=" * 70)
 
-    # All clusters
-    all_clusters = load_all_clusters(ACCESSIONS_FILE)
-    total = len(all_clusters)
+    # ── InterPro table stats ─────────────────────────────────────────
+    print("\n── InterPro Table Stats ──")
 
-    # Matched from bulk
-    bulk_matched, bulk_ipr_counts = count_matched_clusters(BULK_MATCHES)
+    for table, desc in [
+        ("protein2ipr", "protein → InterPro mappings"),
+        ("entry", "InterPro entry metadata"),
+        ("go_mapping", "InterPro → GO mappings"),
+    ]:
+        t0 = time.time()
+        n = spark.sql(f"SELECT COUNT(*) AS n FROM {IPR}.{table}").collect()[0]["n"]
+        elapsed = time.time() - t0
+        print(f"  {IPR}.{table:15s}: {n:>14,} rows ({elapsed:.1f}s) — {desc}")
 
-    # Matched from API
-    api_matched, api_ipr_counts = count_matched_clusters(API_MATCHES, gc_col_idx=1)
-
-    # API no-results
-    api_no_results_accs = set()
-    if os.path.exists(API_NO_RESULTS):
-        with open(API_NO_RESULTS) as f:
-            next(f)
-            for line in f:
-                parts = line.strip().split("\t")
-                if len(parts) >= 2:
-                    for gc_id in parts[1].split(","):
-                        api_no_results_accs.add(gc_id.strip())
-
-    # Combined
-    all_matched = bulk_matched | api_matched
-    all_ipr_counts = bulk_ipr_counts + api_ipr_counts
-
-    # Classify clusters
-    has_any_accession = {gc for gc, info in all_clusters.items() if info}
-    no_accession = {gc for gc, info in all_clusters.items() if not info}
-    unmatched = has_any_accession - all_matched - api_no_results_accs
+    # Unique proteins in protein2ipr
+    n_proteins = spark.sql(f"""
+        SELECT COUNT(DISTINCT uniprot_acc) AS n FROM {IPR}.protein2ipr
+    """).collect()[0]["n"]
+    print(f"\n  Unique UniProt proteins with InterPro: {n_proteins:,}")
 
     # Entry type breakdown
-    entry_types = load_entry_types(ENTRY_LIST)
-    type_counts = Counter()
-    for ipr_id in all_ipr_counts:
-        etype = entry_types.get(ipr_id, "Unknown")
-        type_counts[etype] += all_ipr_counts[ipr_id]
+    print("\n── InterPro Entry Types ──")
+    types = spark.sql(f"""
+        SELECT entry_type, COUNT(*) AS n
+        FROM {IPR}.entry
+        GROUP BY entry_type
+        ORDER BY n DESC
+    """).toPandas()
+    for _, row in types.iterrows():
+        print(f"  {row['entry_type']:20s}: {row['n']:>8,}")
 
-    # Tier breakdown of matched clusters
-    tier_counts = Counter()
-    if os.path.exists(BULK_MATCHES):
-        with open(BULK_MATCHES) as f:
-            next(f)
-            seen = set()
-            for line in f:
-                parts = line.strip().split("\t")
-                if len(parts) >= 2:
-                    key = (parts[0], parts[1])  # gc_id, tier
-                    if key not in seen:
-                        seen.add(key)
-                        tier_counts[parts[1]] += 1
+    # Top source databases
+    print("\n── Top Source Databases in protein2ipr ──")
+    src_dbs = spark.sql(f"""
+        SELECT source_db, COUNT(*) AS n
+        FROM {IPR}.protein2ipr
+        GROUP BY source_db
+        ORDER BY n DESC
+        LIMIT 15
+    """).toPandas()
+    for _, row in src_dbs.iterrows():
+        print(f"  {row['source_db']:20s}: {row['n']:>14,}")
 
-    # Top InterPro entries
-    top_entries = all_ipr_counts.most_common(20)
+    # ── Pangenome coverage ───────────────────────────────────────────
+    print("\n── Pangenome Gene Cluster Coverage ──")
 
-    # Build report
-    report = []
-    report.append("=" * 70)
-    report.append("InterPro Coverage Report for Pangenome Gene Clusters")
-    report.append("=" * 70)
-    report.append("")
-    report.append(f"Total gene clusters:        {total:>12,}")
-    report.append(f"With any UniRef accession:   {len(has_any_accession):>12,} "
-                  f"({len(has_any_accession)/total*100:.1f}%)")
-    report.append(f"Without any accession:       {len(no_accession):>12,} "
-                  f"({len(no_accession)/total*100:.1f}%)")
-    report.append("")
-    report.append("─── InterPro Match Results ───")
-    report.append("")
-    report.append(f"Matched (bulk):              {len(bulk_matched):>12,} "
-                  f"({len(bulk_matched)/total*100:.1f}%)")
-    report.append(f"Matched (API):               {len(api_matched):>12,} "
-                  f"({len(api_matched)/total*100:.1f}%)")
-    report.append(f"Matched (total):             {len(all_matched):>12,} "
-                  f"({len(all_matched)/total*100:.1f}%)")
-    report.append(f"Confirmed no results (API):  {len(api_no_results_accs):>12,}")
-    report.append(f"Not yet looked up:           {len(unmatched):>12,}")
-    report.append(f"No accession (need IPS):     {len(no_accession):>12,}")
-    report.append("")
+    total_clusters = spark.sql(f"""
+        SELECT COUNT(*) AS n FROM {PAN}.bakta_annotations
+    """).collect()[0]["n"]
+    print(f"\n  Total gene clusters (bakta_annotations): {total_clusters:,}")
 
-    if tier_counts:
-        report.append("─── Match Quality Tiers ───")
-        report.append("")
-        for tier in ["uniref100", "uniref90", "uniref50"]:
-            n = tier_counts.get(tier, 0)
-            report.append(f"  {tier}:  {n:>12,}")
-        report.append("")
+    # UniRef100 exact match
+    print("\n  Matching via UniRef100 (exact sequence match)...")
+    t0 = time.time()
+    uniref100_match = spark.sql(f"""
+        SELECT COUNT(DISTINCT ba.gene_cluster_id) AS n
+        FROM {PAN}.bakta_annotations ba
+        JOIN {IPR}.protein2ipr ip
+          ON REPLACE(ba.uniref100, 'UniRef100_', '') = ip.uniprot_acc
+        WHERE ba.uniref100 IS NOT NULL AND ba.uniref100 <> ''
+    """).collect()[0]["n"]
+    elapsed = time.time() - t0
+    pct = uniref100_match / total_clusters * 100
+    print(f"  UniRef100 → InterPro: {uniref100_match:>12,} clusters ({pct:.1f}%) [{elapsed:.0f}s]")
 
-    if type_counts:
-        report.append("─── InterPro Entry Types ───")
-        report.append("")
-        for etype, count in type_counts.most_common():
-            report.append(f"  {etype:<20s}  {count:>12,}")
-        report.append("")
+    # UniRef50 match (adds clusters without UniRef100)
+    print("  Matching via UniRef50 (≥50% identity, additional clusters)...")
+    t0 = time.time()
+    uniref50_match = spark.sql(f"""
+        SELECT COUNT(DISTINCT ba.gene_cluster_id) AS n
+        FROM {PAN}.bakta_annotations ba
+        JOIN {IPR}.protein2ipr ip
+          ON REPLACE(ba.uniref50, 'UniRef50_', '') = ip.uniprot_acc
+        WHERE ba.uniref50 IS NOT NULL AND ba.uniref50 <> ''
+          AND (ba.uniref100 IS NULL OR ba.uniref100 = '')
+    """).collect()[0]["n"]
+    elapsed = time.time() - t0
+    pct50 = uniref50_match / total_clusters * 100
+    print(f"  UniRef50 additional: {uniref50_match:>12,} clusters ({pct50:.1f}%) [{elapsed:.0f}s]")
 
-    if top_entries:
-        report.append("─── Top 20 InterPro Entries ───")
-        report.append("")
-        for ipr_id, count in top_entries:
-            desc = entry_types.get(ipr_id, "")
-            report.append(f"  {ipr_id}  {count:>10,}  {desc}")
-        report.append("")
+    combined = uniref100_match + uniref50_match
+    combined_pct = combined / total_clusters * 100
+    gap = total_clusters - combined
+    gap_pct = gap / total_clusters * 100
 
-    report.append("─── Gap Analysis ───")
-    report.append("")
-    gap_total = len(no_accession) + len(unmatched)
-    report.append(f"Need full InterProScan:      {gap_total:>12,} "
-                  f"({gap_total/total*100:.1f}%)")
-    report.append(f"  No accession at all:       {len(no_accession):>12,}")
-    report.append(f"  Has accession, no match:   {len(unmatched):>12,}")
-    report.append("")
-    report.append("=" * 70)
+    print(f"\n  ─── Summary ───")
+    print(f"  Total clusters:           {total_clusters:>12,}")
+    print(f"  With InterPro (exact):    {uniref100_match:>12,} ({uniref100_match/total_clusters*100:.1f}%)")
+    print(f"  With InterPro (≥50%):   + {uniref50_match:>12,} ({pct50:.1f}%)")
+    print(f"  With InterPro (total):    {combined:>12,} ({combined_pct:.1f}%)")
+    print(f"  No InterPro coverage:     {gap:>12,} ({gap_pct:.1f}%)")
 
-    report_text = "\n".join(report)
-    print(report_text)
+    # ── InterPro annotations per cluster (sample) ────────────────────
+    print("\n── Annotations per Cluster (sample of matched) ──")
+    stats = spark.sql(f"""
+        WITH matched AS (
+            SELECT ba.gene_cluster_id, COUNT(*) AS n_ipr_entries
+            FROM {PAN}.bakta_annotations ba
+            JOIN {IPR}.protein2ipr ip
+              ON REPLACE(ba.uniref100, 'UniRef100_', '') = ip.uniprot_acc
+            WHERE ba.uniref100 IS NOT NULL AND ba.uniref100 <> ''
+            GROUP BY ba.gene_cluster_id
+        )
+        SELECT
+            MIN(n_ipr_entries) AS min_entries,
+            PERCENTILE_APPROX(n_ipr_entries, 0.25) AS p25,
+            PERCENTILE_APPROX(n_ipr_entries, 0.5) AS median,
+            PERCENTILE_APPROX(n_ipr_entries, 0.75) AS p75,
+            MAX(n_ipr_entries) AS max_entries,
+            AVG(n_ipr_entries) AS mean_entries
+        FROM matched
+    """).collect()[0]
+    print(f"  Min: {stats['min_entries']}, P25: {stats['p25']}, "
+          f"Median: {stats['median']}, P75: {stats['p75']}, "
+          f"Max: {stats['max_entries']}, Mean: {stats['mean_entries']:.1f}")
 
-    with open(REPORT_FILE, "w") as f:
-        f.write(report_text + "\n")
-    print(f"\nReport saved: {REPORT_FILE}")
+    # ── GO term coverage ─────────────────────────────────────────────
+    print("\n── GO Term Coverage ──")
+    go_count = spark.sql(f"""
+        SELECT COUNT(DISTINCT gm.go_id) AS n_go_terms
+        FROM {PAN}.bakta_annotations ba
+        JOIN {IPR}.protein2ipr ip
+          ON REPLACE(ba.uniref100, 'UniRef100_', '') = ip.uniprot_acc
+        JOIN {IPR}.go_mapping gm
+          ON ip.ipr_id = gm.ipr_id
+        WHERE ba.uniref100 IS NOT NULL AND ba.uniref100 <> ''
+    """).collect()[0]["n_go_terms"]
+    print(f"  Unique GO terms reachable via pangenome: {go_count:,}")
 
-    # Write unmatched clusters
-    unmatched_all = no_accession | unmatched
-    with open(UNMATCHED_FILE, "w") as f:
-        f.write("gene_cluster_id\treason\tbest_accession\n")
-        for gc_id in sorted(unmatched_all):
-            info = all_clusters.get(gc_id, {})
-            if not info:
-                f.write(f"{gc_id}\tno_accession\t\n")
-            else:
-                best = (info.get("uniref100_acc") or info.get("uniref90_acc")
-                        or info.get("uniref50_acc") or "")
-                f.write(f"{gc_id}\tno_interpro_match\t{best}\n")
+    print("\n" + "=" * 70)
+    print("Done.")
 
-    print(f"Unmatched clusters: {UNMATCHED_FILE} ({len(unmatched_all):,} rows)")
+    spark.stop()
 
 
 if __name__ == "__main__":
