@@ -50,28 +50,38 @@ Read these as needed for parameter details and troubleshooting:
 
 ## Preconditions
 
-1. **Phenix installed** on NERSC — check with:
+1. **Phenix installed** on NERSC — install with `data/structural_biology/scripts/install_phenix.sh`, then:
    ```bash
-   module load phenix 2>/dev/null || source /path/to/phenix/phenix_env.sh
+   module load conda
+   conda activate phenix
    phenix.version
    ```
 2. **KBASE_AUTH_TOKEN** set in `.env` (for BERDL queries and MinIO storage)
 3. **MinIO access** configured (for structure storage) — see `/berdl-minio` skill
 4. **For SLURM jobs**: Access to Perlmutter compute nodes
+5. **Python 3.9+**: Use `module load python` on NERSC (system Python is too old)
 
 ## Phenix Environment Setup
 
 Before running any Phenix tool:
 
 ```bash
-# Option 1: Module system (if available)
-module load phenix
-
-# Option 2: Source environment directly
-source $PHENIX_ROOT/phenix_env.sh
-
-# Verify
+module load conda
+conda activate phenix
 phenix.version
+```
+
+## Pipeline Scripts
+
+The pipeline orchestrator at `data/structural_biology/scripts/run_pipeline.py` handles
+project creation, SLURM job submission, output parsing, and provenance logging:
+
+```bash
+module load python
+python3 data/structural_biology/scripts/run_pipeline.py retrieve --accession P0A6Y8
+python3 data/structural_biology/scripts/run_pipeline.py validate --model model.pdb
+python3 data/structural_biology/scripts/run_pipeline.py xray --data data.mtz --seq seq.fa --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py status --project-id struct_YYYYMMDD_name
 ```
 
 ## Project State Management

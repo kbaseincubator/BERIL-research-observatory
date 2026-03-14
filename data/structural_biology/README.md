@@ -1,6 +1,6 @@
 # Structural Biology Data Collection
 
-Status: **In development**. Skill framework created 2026-03-13. No tables ingested yet.
+Status: **In development**. Milestone 2 (pipelines + scripts) complete 2026-03-14. No tables ingested yet.
 
 ## What This Is
 
@@ -58,7 +58,7 @@ The `/phenix` skill is at `.claude/skills/phenix/SKILL.md`. It provides:
 ## Implementation Roadmap
 
 - [x] Milestone 1: Skill framework, schema design, AlphaFold retrieval, validation
-- [ ] Milestone 2: X-ray and cryo-EM automated pipelines, SLURM templates
+- [x] Milestone 2: Phenix installation, automated pipelines, SLURM templates, tests
 - [ ] Milestone 3: Human-in-the-loop refinement management, provenance capture
 - [ ] Milestone 4: Cross-project intelligence, batch validation, figure generation
 
@@ -66,4 +66,25 @@ The `/phenix` skill is at `.claude/skills/phenix/SKILL.md`. It provides:
 
 | Script | Purpose |
 |--------|---------|
-| _(none yet)_ | Ingestion scripts will be added when tables are first populated |
+| `scripts/install_phenix.sh` | Install Phenix via conda on NERSC Perlmutter |
+| `scripts/retrieve_alphafold.py` | Retrieve AlphaFold structures from EBI API |
+| `scripts/parse_validation.py` | Parse Phenix validation output into structured JSON |
+| `scripts/run_pipeline.py` | Pipeline orchestrator (xray, cryoem, validate, retrieve, refine, status) |
+| `scripts/structural_biology.json` | BERDL ingestion config for 4 Delta Lake tables |
+| `scripts/slurm_templates/refine.sh` | SLURM template for phenix.refine (4h, 8 CPUs) |
+| `scripts/slurm_templates/real_space_refine.sh` | SLURM template for phenix.real_space_refine (4h, 8 CPUs) |
+| `scripts/slurm_templates/phaser.sh` | SLURM template for phenix.phaser (4h, 32 CPUs) |
+| `scripts/slurm_templates/autobuild.sh` | SLURM template for phenix.autobuild (8h, 32 CPUs) |
+| `scripts/slurm_templates/map_to_model.sh` | SLURM template for phenix.map_to_model (24h, 32 CPUs) |
+| `scripts/slurm_templates/predict_and_build.sh` | SLURM template for phenix.predict_and_build (48h, 32 CPUs) |
+
+## Tests
+
+Run with: `module load python && python3 -m unittest discover -s tests -v`
+
+| Test | What It Tests |
+|------|--------------|
+| `tests/test_retrieve_alphafold.py` | EBI API retrieval, file validation, pLDDT parsing |
+| `tests/test_parse_validation.py` | Phenix output parsing with mock log files |
+| `tests/test_slurm_templates.py` | Template structure, SBATCH directives, parameterization |
+| `tests/test_run_pipeline.py` | Project state management, provenance, cycle tracking |
