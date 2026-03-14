@@ -17,7 +17,7 @@
       "name": "protein2ipr",
       "format": "tsv",
       "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/interpro/protein2ipr.tsv.gz",
-      "schema_sql": "uniprot_acc STRING, ipr_id STRING, ipr_desc STRING, source_db STRING, source_acc STRING, start INT, stop INT"
+      "schema_sql": "uniprot_acc STRING, ipr_id STRING, ipr_desc STRING, source_acc STRING, start INT, stop INT"
     },
     {
       "name": "entry",

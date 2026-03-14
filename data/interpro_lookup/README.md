@@ -17,7 +17,7 @@ into BERDL enables cross-collection JOINs:
 
 | Table | Source | Rows (est.) | Description |
 |-------|--------|-------------|-------------|
-| `protein2ipr` | protein2ipr.dat.gz (16GB) | ~1.5B | UniProt acc → InterPro entry with domain boundaries + source DB |
+| `protein2ipr` | protein2ipr.dat.gz (16GB) | ~1.5B | UniProt acc → InterPro entry with domain boundaries (6 cols: uniprot_acc, ipr_id, ipr_desc, source_acc, start, stop) |
 | `entry` | entry.list | ~50K | InterPro entry metadata (ID, type, name) |
 | `go_mapping` | interpro2go | ~30K | InterPro entry → GO term mappings |
 

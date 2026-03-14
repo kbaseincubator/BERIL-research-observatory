@@ -50,13 +50,15 @@ else
     NCOLS=$(zcat "$PROTEIN2IPR_IN" | head -1 | awk -F'\t' '{print NF}')
     log "  Detected $NCOLS columns"
 
-    if [ "$NCOLS" -lt 6 ] || [ "$NCOLS" -gt 7 ]; then
-        log "WARNING: Expected 6-7 columns, got $NCOLS. Check format."
+    if [ "$NCOLS" -ne 6 ]; then
+        log "WARNING: Expected 6 columns, got $NCOLS. Check format."
     fi
 
     # Stream: header + decompressed data → recompressed
+    # Columns: uniprot_acc, ipr_id, ipr_desc, source_acc, start, stop
+    # (source DB is encoded in source_acc prefix: PF=Pfam, TIGR=TIGRFam, etc.)
     (
-        printf "uniprot_acc\tipr_id\tipr_desc\tsource_db\tsource_acc\tstart\tstop\n"
+        printf "uniprot_acc\tipr_id\tipr_desc\tsource_acc\tstart\tstop\n"
         zcat "$PROTEIN2IPR_IN"
     ) | gzip > "${PROTEIN2IPR_OUT}.tmp"
 
@@ -66,8 +68,11 @@ fi
 
 # ── 2. entry.list → interpro_entries.tsv ─────────────────────────────
 #
-# entry.list format (tab-separated, no header):
-#   IPR000001  Domain  Kringle
+# entry.list format (tab-separated, WITH header):
+#   ENTRY_AC  ENTRY_TYPE  ENTRY_NAME
+#   IPR000126  Active_site  Serine proteases...
+#
+# Rename columns to our convention for consistency.
 #
 ENTRY_IN="${BULK_DIR}/entry.list"
 ENTRY_OUT="${OUT_DIR}/interpro_entries.tsv"
@@ -78,10 +83,10 @@ else
     if [ ! -f "$ENTRY_IN" ]; then
         log "SKIP entry.list (not downloaded)"
     else
-        log "Parsing entry.list → interpro_entries.tsv"
+        log "Parsing entry.list → interpro_entries.tsv (renaming header)"
         (
             printf "ipr_id\tentry_type\tentry_name\n"
-            cat "$ENTRY_IN"
+            tail -n +2 "$ENTRY_IN"
         ) > "$ENTRY_OUT"
         NLINES=$(wc -l < "$ENTRY_OUT")
         log "  Done: $((NLINES - 1)) entries"

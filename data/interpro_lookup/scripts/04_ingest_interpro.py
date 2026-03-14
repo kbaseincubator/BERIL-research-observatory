@@ -165,7 +165,7 @@ def main():
         print(f"  WHERE uniprot_acc = 'A0A2M8CU66'")
         print(f"")
         print(f"  -- Pangenome gene clusters with InterPro domains")
-        print(f"  SELECT ba.gene_cluster_id, ip.ipr_id, ip.ipr_desc, ip.source_db")
+        print(f"  SELECT ba.gene_cluster_id, ip.ipr_id, ip.ipr_desc, ip.source_acc")
         print(f"  FROM kbase_ke_pangenome.bakta_annotations ba")
         print(f"  JOIN kescience_interpro.protein2ipr ip")
         print(f"    ON REPLACE(ba.uniref100, 'UniRef100_', '') = ip.uniprot_acc")

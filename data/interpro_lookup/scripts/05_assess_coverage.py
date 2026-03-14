@@ -54,12 +54,27 @@ def main():
     for _, row in types.iterrows():
         print(f"  {row['entry_type']:20s}: {row['n']:>8,}")
 
-    # Top source databases
+    # Top source databases (parsed from source_acc prefix)
     print("\n── Top Source Databases in protein2ipr ──")
     src_dbs = spark.sql(f"""
-        SELECT source_db, COUNT(*) AS n
+        SELECT
+            CASE
+                WHEN source_acc LIKE 'PF%' THEN 'Pfam'
+                WHEN source_acc LIKE 'TIGR%' THEN 'NCBIfam/TIGRFam'
+                WHEN source_acc LIKE 'G3DSA:%' THEN 'CATH-Gene3D'
+                WHEN source_acc LIKE 'SSF%' THEN 'SUPERFAMILY'
+                WHEN source_acc LIKE 'PS%' THEN 'PROSITE'
+                WHEN source_acc LIKE 'PR%' THEN 'PRINTS'
+                WHEN source_acc LIKE 'PTHR%' THEN 'PANTHER'
+                WHEN source_acc LIKE 'cd%' THEN 'CDD'
+                WHEN source_acc LIKE 'SM%' THEN 'SMART'
+                WHEN source_acc LIKE 'MF_%' THEN 'HAMAP'
+                WHEN source_acc LIKE 'PIRSF%' THEN 'PIRSF'
+                ELSE 'Other'
+            END AS source_db,
+            COUNT(*) AS n
         FROM {IPR}.protein2ipr
-        GROUP BY source_db
+        GROUP BY 1
         ORDER BY n DESC
         LIMIT 15
     """).toPandas()
