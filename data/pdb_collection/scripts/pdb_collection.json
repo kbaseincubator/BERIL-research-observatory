@@ -1,0 +1,29 @@
+{
+  "tenant": "kescience",
+  "dataset": "pdb",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/",
+    "silver_base": "s3a://cdm-lake/tenant-sql-warehouse/kescience/kescience_pdb.db"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "pdb_entries",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_entries.tsv",
+      "schema_sql": "pdb_id STRING, title STRING, method STRING, method_full STRING, resolution FLOAT, r_work FLOAT, r_free FLOAT, organism STRING, deposition_date STRING, release_date STRING, citation_doi STRING"
+    },
+    {
+      "name": "pdb_uniprot_mapping",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/pdb/pdb_uniprot_mapping.tsv",
+      "schema_sql": "pdb_id STRING, chain_id STRING, uniprot_accession STRING, res_beg INT, res_end INT, pdb_beg STRING, pdb_end STRING, sp_beg INT, sp_end INT"
+    }
+  ]
+}
