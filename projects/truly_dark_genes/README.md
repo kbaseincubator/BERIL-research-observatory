@@ -6,7 +6,7 @@ Among the ~6,400 Fitness Browser genes that remain functionally unannotated even
 
 ## Status
 
-In Progress — research plan created, awaiting analysis.
+Complete — see [Report](REPORT.md) for findings.
 
 ## Overview
 
