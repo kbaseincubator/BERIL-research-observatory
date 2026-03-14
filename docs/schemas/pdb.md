@@ -4,7 +4,7 @@ Database: `kescience_pdb`
 Location: On-prem Delta Lakehouse (BERDL)
 Tenant: kescience
 Last Updated: 2026-03-14
-Verified: Schema designed, tables not yet ingested
+Verified: Ingested 2026-03-14 (250,741 entries + 966,977 mappings)
 
 ## Overview
 
@@ -12,14 +12,14 @@ Experimental structure metadata from the Protein Data Bank. Contains ~250K depos
 
 **Database**: `kescience_pdb`
 **Source**: RCSB PDB GraphQL API + EBI SIFTS
-**Scale**: ~250K entries, ~800K chain mappings
+**Scale**: 250,741 entries, 966,977 chain mappings
 
 ## Tables
 
 | Table | Rows (est.) | Description |
 |-------|-------------|-------------|
-| `pdb_entries` | ~250K | One row per PDB entry — core metadata |
-| `pdb_uniprot_mapping` | ~800K | PDB chain → UniProt accession (from SIFTS) |
+| `pdb_entries` | 250,741 | One row per PDB entry — core metadata |
+| `pdb_uniprot_mapping` | 966,977 | PDB chain → UniProt accession (from SIFTS) |
 
 ## Key Table Schemas
 
@@ -132,4 +132,4 @@ LIMIT 50;
 
 ## Changelog
 
-- **2026-03-14**: Initial schema design (2 tables). Scripts ready, tables not yet ingested.
+- **2026-03-14**: Initial schema design, download, and ingestion. 250,741 PDB entries + 966,977 SIFTS mappings.

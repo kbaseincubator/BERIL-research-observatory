@@ -1,6 +1,6 @@
 # PDB Collection for BERDL
 
-Status: **Scripts ready, not yet ingested.**
+Status: **Complete.** Both tables ingested into `kescience_pdb` on 2026-03-14.
 
 ## What This Is
 
@@ -12,8 +12,8 @@ Protein Data Bank (PDB) experimental structure metadata for BERDL. Provides reso
 
 | Table | Rows (est.) | Description |
 |-------|-------------|-------------|
-| `pdb_entries` | ~250K | One row per PDB entry (method, resolution, R-factors, organism) |
-| `pdb_uniprot_mapping` | ~800K | PDB chain → UniProt accession mapping (from SIFTS) |
+| `pdb_entries` | 250,741 | One row per PDB entry (method, resolution, R-factors, organism) |
+| `pdb_uniprot_mapping` | 966,977 | PDB chain → UniProt accession mapping (from SIFTS) |
 
 Schema documentation: [docs/schemas/pdb.md](../../docs/schemas/pdb.md)
 
