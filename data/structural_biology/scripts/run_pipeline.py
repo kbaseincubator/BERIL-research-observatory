@@ -11,6 +11,10 @@ Usage:
   run_pipeline.py xray --data data.mtz --seq seq.fa --project-id struct_20260314_dhfr
   run_pipeline.py cryoem --map map.mrc --seq seq.fa --resolution 3.0 --project-id struct_20260314_ribo
   run_pipeline.py refine --project-id struct_20260314_dhfr [--strategy individual_sites+individual_adp+tls]
+  run_pipeline.py process --project-id struct_20260314_dhfr --cycle 3
+  run_pipeline.py accept --project-id struct_20260314_dhfr --model rebuilt.pdb
+  run_pipeline.py converge --project-id struct_20260314_dhfr
+  run_pipeline.py finalize --project-id struct_20260314_dhfr
   run_pipeline.py status --project-id struct_20260314_dhfr
 """
 
@@ -424,6 +428,72 @@ def cmd_refine(args):
     print(f"\nCycle {cycle_num} submitted. Check with: run_pipeline.py status --project-id {args.project_id}")
 
 
+def cmd_process(args):
+    """Process SLURM output after refinement finishes."""
+    from cycle_manager import process_refinement_output
+
+    staging = args.staging or DEFAULT_STAGING
+    project_dir = os.path.join(staging, args.project_id)
+
+    if not os.path.exists(project_dir):
+        print(f"Project not found: {project_dir}")
+        return
+
+    result = process_refinement_output(project_dir, args.cycle)
+    print()
+    print(json.dumps(result, indent=2))
+
+
+def cmd_accept(args):
+    """Accept a rebuilt model from the user."""
+    from cycle_manager import accept_rebuilt_model
+
+    staging = args.staging or DEFAULT_STAGING
+    project_dir = os.path.join(staging, args.project_id)
+
+    if not os.path.exists(project_dir):
+        print(f"Project not found: {project_dir}")
+        return
+
+    next_cycle = accept_rebuilt_model(project_dir, args.model, args.notes or "")
+    print(f"Ready for refinement cycle {next_cycle}")
+
+
+def cmd_converge(args):
+    """Check convergence and recommend next step."""
+    from cycle_manager import check_convergence as _check_conv
+    from refinement_state import ProjectState
+
+    staging = args.staging or DEFAULT_STAGING
+    project_dir = os.path.join(staging, args.project_id)
+
+    if not os.path.exists(project_dir):
+        print(f"Project not found: {project_dir}")
+        return
+
+    state = ProjectState.load(project_dir)
+    converged, reason, recommendation = _check_conv(state)
+    print(f"Converged: {converged}")
+    print(f"Reason: {reason}")
+    print(f"Recommendation: {recommendation}")
+
+
+def cmd_finalize(args):
+    """Finalize a converged project."""
+    from cycle_manager import finalize_project
+
+    staging = args.staging or DEFAULT_STAGING
+    project_dir = os.path.join(staging, args.project_id)
+
+    if not os.path.exists(project_dir):
+        print(f"Project not found: {project_dir}")
+        return
+
+    final = finalize_project(project_dir)
+    if final:
+        print(f"Final model: {final}")
+
+
 def cmd_status(args):
     """Show project status."""
     staging = args.staging or DEFAULT_STAGING
@@ -516,6 +586,25 @@ def main():
     p_ref.add_argument("--cycles", type=int, help="Number of macro cycles")
     p_ref.add_argument("--notes", help="Notes on what changed this cycle")
 
+    # process (M3)
+    p_proc = subparsers.add_parser("process", help="Process refinement output")
+    p_proc.add_argument("--project-id", required=True)
+    p_proc.add_argument("--cycle", type=int, required=True, help="Cycle number to process")
+
+    # accept (M3)
+    p_acc = subparsers.add_parser("accept", help="Accept rebuilt model from user")
+    p_acc.add_argument("--project-id", required=True)
+    p_acc.add_argument("--model", required=True, help="Path to rebuilt PDB")
+    p_acc.add_argument("--notes", help="Notes about what was changed")
+
+    # converge (M3)
+    p_conv = subparsers.add_parser("converge", help="Check convergence")
+    p_conv.add_argument("--project-id", required=True)
+
+    # finalize (M3)
+    p_final = subparsers.add_parser("finalize", help="Finalize converged project")
+    p_final.add_argument("--project-id", required=True)
+
     # status
     p_stat = subparsers.add_parser("status", help="Show project status")
     p_stat.add_argument("--project-id", required=True)
@@ -528,6 +617,10 @@ def main():
         "xray": cmd_xray,
         "cryoem": cmd_cryoem,
         "refine": cmd_refine,
+        "process": cmd_process,
+        "accept": cmd_accept,
+        "converge": cmd_converge,
+        "finalize": cmd_finalize,
         "status": cmd_status,
     }
 

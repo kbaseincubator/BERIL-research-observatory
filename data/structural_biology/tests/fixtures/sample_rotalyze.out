@@ -1,0 +1,12 @@
+ A   2  LYS:  mt180,-60:154.23:Favored:ptm
+ A   4  VAL:  m:175.34:Favored:m
+ A   5  LEU:  mt:168.45:Favored:mt
+ A  15  PRO:  Cg_endo:142.56:Favored:Cg_endo
+ A  42  ASP:  m-20:95.67:Allowed:m-20
+ A  45  LEU:  tp:  5.23:OUTLIER:tp
+ A  50  ILE:  mt:170.12:Favored:mt
+ A  78  ARG:  mtp85:  3.45:OUTLIER:mtp85
+ A 100  ALA:  :  0.00:Favored:
+ A 123  PHE:  m-80:120.34:Favored:m-80
+ A 200  TRP:  m-90:135.67:Favored:m-90
+ A 234  HIS:  m170:  2.78:OUTLIER:m170

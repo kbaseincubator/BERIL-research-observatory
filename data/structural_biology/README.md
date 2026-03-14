@@ -1,6 +1,6 @@
 # Structural Biology Data Collection
 
-Status: **In development**. Milestone 2 (pipelines + scripts) complete 2026-03-14. No tables ingested yet.
+Status: **In development**. Milestone 3 (refinement loop) complete 2026-03-14. No tables ingested yet.
 
 ## What This Is
 
@@ -59,7 +59,7 @@ The `/phenix` skill is at `.claude/skills/phenix/SKILL.md`. It provides:
 
 - [x] Milestone 1: Skill framework, schema design, AlphaFold retrieval, validation
 - [x] Milestone 2: Phenix installation, automated pipelines, SLURM templates, tests
-- [ ] Milestone 3: Human-in-the-loop refinement management, provenance capture
+- [x] Milestone 3: Human-in-the-loop refinement management, convergence detection, Delta Lake export
 - [ ] Milestone 4: Cross-project intelligence, batch validation, figure generation
 
 ## Scripts
@@ -69,7 +69,11 @@ The `/phenix` skill is at `.claude/skills/phenix/SKILL.md`. It provides:
 | `scripts/install_phenix.sh` | Install Phenix via conda on NERSC Perlmutter |
 | `scripts/retrieve_alphafold.py` | Retrieve AlphaFold structures from EBI API |
 | `scripts/parse_validation.py` | Parse Phenix validation output into structured JSON |
-| `scripts/run_pipeline.py` | Pipeline orchestrator (xray, cryoem, validate, retrieve, refine, status) |
+| `scripts/run_pipeline.py` | Pipeline orchestrator (retrieve, validate, xray, cryoem, refine, process, accept, converge, finalize, status) |
+| `scripts/refinement_state.py` | Project lifecycle state machine (new → xtriage → ... → complete) |
+| `scripts/generate_scripts.py` | Coot/PyMOL/ChimeraX visualization script generator |
+| `scripts/cycle_manager.py` | Post-refinement workflow, convergence detection, finalization |
+| `scripts/export_tables.py` | Delta Lake TSV export matching ingestion config schema |
 | `scripts/structural_biology.json` | BERDL ingestion config for 4 Delta Lake tables |
 | `scripts/slurm_templates/refine.sh` | SLURM template for phenix.refine (4h, 8 CPUs) |
 | `scripts/slurm_templates/real_space_refine.sh` | SLURM template for phenix.real_space_refine (4h, 8 CPUs) |
@@ -88,3 +92,7 @@ Run with: `module load python && python3 -m unittest discover -s tests -v`
 | `tests/test_parse_validation.py` | Phenix output parsing with mock log files |
 | `tests/test_slurm_templates.py` | Template structure, SBATCH directives, parameterization |
 | `tests/test_run_pipeline.py` | Project state management, provenance, cycle tracking |
+| `tests/test_refinement_state.py` | State transitions, validation, advance logic |
+| `tests/test_generate_scripts.py` | Coot/PyMOL/ChimeraX script generation |
+| `tests/test_cycle_manager.py` | Convergence detection, model acceptance |
+| `tests/test_export_tables.py` | TSV export format, schema consistency |
