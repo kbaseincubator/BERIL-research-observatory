@@ -8,7 +8,8 @@
 #   interpro2go         — InterPro → GO term mappings
 #
 # Features:
-#   - Resumable downloads (wget -c)
+#   - Resumable downloads (curl -C -)
+#   - Retry on failure (up to 10 attempts)
 #   - MD5 checksum verification
 #   - Progress logging
 #
@@ -40,22 +41,36 @@ download_file() {
     log "DOWNLOADING $filename from $url"
     touch "${outpath}.incomplete"
 
-    # wget with resume, retries, and timeout
-    if wget -c \
-        --tries=10 \
-        --wait=5 \
-        --waitretry=30 \
-        --timeout=300 \
-        --read-timeout=300 \
-        --progress=dot:giga \
-        -O "$outpath" \
-        "$url" 2>&1 | tee -a "$LOG_FILE"; then
-        rm -f "${outpath}.incomplete"
-        log "DONE $filename ($(du -h "$outpath" | cut -f1))"
-    else
-        log "FAILED $filename — will resume on next run"
-        return 1
-    fi
+    # curl with resume (-C -), retries, and progress bar
+    local attempt=0
+    local max_attempts=10
+
+    while [ $attempt -lt $max_attempts ]; do
+        attempt=$((attempt + 1))
+        log "  Attempt $attempt/$max_attempts"
+
+        if curl -L -C - \
+            --retry 3 \
+            --retry-delay 10 \
+            --connect-timeout 60 \
+            --max-time 0 \
+            --progress-bar \
+            -o "$outpath" \
+            "$url" 2>&1 | tee -a "$LOG_FILE"; then
+            rm -f "${outpath}.incomplete"
+            log "DONE $filename ($(du -h "$outpath" | cut -f1))"
+            return 0
+        fi
+
+        if [ $attempt -lt $max_attempts ]; then
+            local wait=$((attempt * 30))
+            log "  Failed, waiting ${wait}s before retry..."
+            sleep $wait
+        fi
+    done
+
+    log "FAILED $filename after $max_attempts attempts — will resume on next run"
+    return 1
 }
 
 verify_checksum() {
@@ -70,7 +85,7 @@ verify_checksum() {
     fi
 
     log "Downloading MD5 for $filename..."
-    if wget -q -O "$md5_file" "$md5_url" 2>/dev/null; then
+    if curl -sL -o "$md5_file" "$md5_url" 2>/dev/null; then
         local expected
         expected=$(awk '{print $1}' "$md5_file")
         local actual
