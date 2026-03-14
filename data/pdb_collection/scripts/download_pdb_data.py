@@ -153,7 +153,7 @@ def parse_entry(entry):
         "resolution": resolution,
         "r_work": r_work,
         "r_free": r_free,
-        "organism": organism.replace("\t", " "),
+        "organism": (organism or "").replace("\t", " "),
         "deposition_date": dep_date,
         "release_date": rel_date,
         "citation_doi": citation.get("pdbx_database_id_DOI", ""),
