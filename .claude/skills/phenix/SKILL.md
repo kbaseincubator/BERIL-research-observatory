@@ -81,8 +81,23 @@ module load python
 python3 data/structural_biology/scripts/run_pipeline.py retrieve --accession P0A6Y8
 python3 data/structural_biology/scripts/run_pipeline.py validate --model model.pdb
 python3 data/structural_biology/scripts/run_pipeline.py xray --data data.mtz --seq seq.fa --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py refine --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py process --project-id struct_YYYYMMDD_name --cycle 3
+python3 data/structural_biology/scripts/run_pipeline.py accept --project-id struct_YYYYMMDD_name --model rebuilt.pdb
+python3 data/structural_biology/scripts/run_pipeline.py converge --project-id struct_YYYYMMDD_name
+python3 data/structural_biology/scripts/run_pipeline.py finalize --project-id struct_YYYYMMDD_name
 python3 data/structural_biology/scripts/run_pipeline.py status --project-id struct_YYYYMMDD_name
 ```
+
+### Refinement Loop Workflow
+
+1. Submit refinement: `run_pipeline.py refine --project-id ...`
+2. After SLURM job finishes: `run_pipeline.py process --project-id ... --cycle N`
+3. Process generates Coot/PyMOL/ChimeraX scripts and checks convergence
+4. If not converged: user inspects model in Coot, rebuilds, saves
+5. Accept rebuilt model: `run_pipeline.py accept --project-id ... --model rebuilt.pdb`
+6. Repeat from step 1 until converged
+7. Finalize: `run_pipeline.py finalize --project-id ...`
 
 ## Project State Management
 
