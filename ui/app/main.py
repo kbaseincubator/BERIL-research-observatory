@@ -6,6 +6,8 @@ import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
 
+import app.context as ctx
+from app.context import generate_base_context, get_base_context, get_repo_data, initialize_data
 from app.notebook_processors import PlotlyPreprocessor
 import nbformat
 from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request
@@ -22,11 +24,11 @@ from app.filters import (
     strip_images_filter,
 )
 
-from .auth import get_current_user
 from .routes.auth import ROUTER_AUTH
-from .config import Settings, get_settings
+from .routes.user import ROUTER_USER
+from .config import get_settings
 from .dataloader import load_repository_data, RepositoryParser
-from .git_data_sync import ensure_repo_cloned, pull_latest
+from .git_data_sync import pull_latest
 from .models import CollectionCategory, RepositoryData
 
 logging.basicConfig(
@@ -38,66 +40,6 @@ logger = logging.getLogger(__name__)
 
 templates = None
 
-
-def get_repo_data(request: Request) -> RepositoryData:
-    return request.app.state.repo_data
-
-
-def get_base_context(request: Request) -> dict:
-    context = dict(request.app.state.base_context)
-    context["current_user"] = get_current_user(request)
-    context["path"] = request.url.path
-    return context
-
-async def initialize_data(settings: Settings) -> RepositoryData:
-    """Initialize app on startup."""
-    logger.info("Initializing repository data")
-
-    # If git repo is configured, clone/pull it first
-    if settings.force_local_data:
-        logger.info("Forcing parsing and loading of local data")
-        print("Forcing parsing and loading of local data")
-        repo_data = load_repository_data(None)
-    elif settings.data_repo_url:
-        try:
-            logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
-            await ensure_repo_cloned(
-                settings.data_repo_url,
-                settings.data_repo_branch,
-                settings.data_repo_path,
-            )
-
-            # Load from local git repo
-            data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
-            repo_data = load_repository_data(data_file)
-            logger.info(
-                f"Repository data loaded from git. Last updated: {repo_data.last_updated}"
-            )
-        except Exception as e:
-            logger.error(f"Failed to load from git repo: {e}")
-            logger.info("Falling back to local parsing")
-            repo_data = load_repository_data(None)
-    else:
-        # No git repo configured, load from local parsing
-        logger.info("No git repo configured, parsing local files")
-        repo_data = load_repository_data(None)
-    return repo_data
-
-
-def generate_base_context(settings: Settings, repo_data: RepositoryData) -> dict:
-    return {
-        "app_name": settings.app_name,
-        "total_genomes": f"{settings.total_genomes:,}",
-        "total_species": f"{settings.total_species:,}",
-        "total_genes": settings.total_genes,
-        "project_count": len(repo_data.projects),
-        "discovery_count": len(repo_data.discoveries),
-        "idea_count": len(repo_data.research_ideas),
-        "collection_count": len(repo_data.collections),
-        "contributor_count": len(repo_data.contributors),
-        "skill_count": len(repo_data.skills),
-        "last_updated": repo_data.last_updated,
-    }
 
 
 @asynccontextmanager
@@ -134,6 +76,7 @@ def create_app() -> FastAPI:
 
     app.include_router(ROUTER_AUTH)
     app.include_router(ROUTER_COLLECTIONS)
+    app.include_router(ROUTER_USER)
     app.include_router(ROUTER_COMMUNITY)
     app.include_router(ROUTER_COSCIENTIST)
     app.include_router(ROUTER_DATA)
@@ -145,6 +88,7 @@ def create_app() -> FastAPI:
     # Configure templates
     global templates
     templates = Jinja2Templates(directory=settings.templates_dir)
+    ctx.templates = templates
 
     # Register filters
     templates.env.filters["markdown"] = markdown_filter
@@ -187,18 +131,6 @@ async def home(
         }
     )
     return templates.TemplateResponse(request, "home.html", context)
-
-
-@ROUTER_GENERAL.get("/user_profile", response_class=HTMLResponse)
-async def user_profile(
-    request: Request,
-    context: dict = Depends(get_base_context)
-):
-    user = context.get("current_user")
-    if user is None:
-        return templates.TemplateResponse(request, "unauthenticated.html", context)
-    else:
-        return templates.TemplateResponse(request, "profile.html", context)
 
 
 
