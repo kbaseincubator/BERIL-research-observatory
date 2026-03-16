@@ -6,7 +6,7 @@ What is the distribution, conservation, phylogenetic structure, functional conte
 
 ## Status
 
-In Progress — research plan created, awaiting JupyterHub Spark session for data exploration.
+Complete — see [Report](REPORT.md) for findings. All 7 notebooks executed with saved outputs.
 
 ## Overview
 
@@ -37,7 +37,19 @@ The BERDL pangenome collection contains AMRFinderPlus annotations (via Bakta v1.
 
 ## Reproduction
 
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+### Prerequisites
+- Python 3.11+ with pandas, numpy, matplotlib, scipy, scikit-learn
+- BERDL Spark session (JupyterHub or local proxy) for NB01, NB04, NB05, NB06
+- `kbase_ke_pangenome` and `kescience_fitnessbrowser` database access
+
+### Steps
+1. Run `01_amr_census.ipynb` (Spark) — generates base data in `data/`
+2. Run `02_conservation_patterns.ipynb` (local) — conservation deep-dive
+3. Run `03_phylogenetic_distribution.ipynb` (local) — taxonomic analysis
+4. Run `04_functional_context.ipynb` (Spark) — COG enrichment
+5. Run `05_environmental_distribution.ipynb` (Spark) — environment + AlphaEarth
+6. Run `06_fitness_crossref.ipynb` (Spark) — fitness cross-reference
+7. Run `07_synthesis.ipynb` (local) — summary figures
 
 ## Authors
 
