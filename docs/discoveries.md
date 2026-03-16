@@ -8,6 +8,22 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-03
 
+### [truly_dark_genes] Only 16.3% of "dark matter" resists modern annotation
+
+Of 39,532 Fitness Browser dark genes with pangenome links, bakta v1.12.0 reclassifies 33,105 (83.7%). Just 6,427 are "truly dark" — both FB and bakta agree: hypothetical protein. Truly dark genes are structurally distinct: shorter (121 vs 194 aa), less conserved (43% vs 73% core), fewer orthologs (29% vs 64%), higher GC deviation (d=0.247). These properties are consistent with recent HGT outpacing annotation databases.
+
+### [truly_dark_genes] Truly dark genes cluster in genomic "dark islands"
+
+41% of neighbors of truly dark genes are also hypothetical, 12% are within 2 genes of mobile elements (transposases, integrases, phage proteins). This suggests dark genes concentrate in recently acquired genomic islands rather than being randomly distributed.
+
+### [truly_dark_genes] Stress enrichment hypothesis rejected — nutrient/community enrichment instead
+
+Contrary to expectation, truly dark genes with strong fitness phenotypes are depleted in stress conditions (OR=0.53, p<0.001) and enriched in nutrient, mixed community, and iron conditions. This suggests novel metabolic or inter-species interaction functions rather than stress responses.
+
+### [truly_dark_genes] 96% of truly dark genes have partial annotation clues
+
+Only 246/6,427 (3.8%) truly dark genes have zero annotation clues. 84.7% have database cross-references, 43.5% have eggNOG hits (though 55% of COG assignments are "S"/unknown), 29.3% have cross-organism orthologs, 9.5% are in ICA fitness modules.
+
 ### [bakta_reannotation] Bakta and eggNOG are complementary annotation sources
 
 Comprehensive comparison of bakta v1.12.0 vs eggNOG-mapper across 132.5M gene clusters:
