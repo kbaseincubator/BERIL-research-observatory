@@ -1,0 +1,5 @@
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+scipy>=1.10
+pyspark>=3.5
