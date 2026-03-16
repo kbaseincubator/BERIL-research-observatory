@@ -44,7 +44,7 @@ COG category analysis (77K AMR clusters with eggNOG annotations vs 86M baseline)
 
 ![AMR by isolation environment](figures/amr_by_environment.png)
 
-Species classified as **Human/Clinical carry 10.6 AMR clusters per species** (n=2,248), compared to 4.6 for Soil/Terrestrial (n=2,469), 3.9 for Aquatic (n=1,827), and 3.0 for Animal (n=959). This difference is highly significant (Kruskal-Wallis H=440, p=7.0e-93). Critically, clinical AMR is **less core** (30.8%) than soil AMR (58.1%) or plant AMR (63.1%), confirming that clinical environments select for acquired/mobile resistance while environmental AMR is predominantly intrinsic.
+Species classified as **Human/Clinical carry 10.6 AMR clusters per species** (n=2,248), compared to 4.6 for Soil/Terrestrial (n=2,469), 3.9 for Aquatic (n=1,827), and 3.0 for Animal (n=959). This difference is highly significant (Kruskal-Wallis H=440, p=7.0e-93). Critically, clinical AMR is **less core** (30.8%) than soil AMR (58.1%) or plant AMR (63.1%), confirming that clinical environments select for acquired/mobile resistance while environmental AMR is predominantly intrinsic. Note: of the 14,723 AMR-carrying species, 7,838 (53.2%) received a non-"Other/Unknown" environment classification; the Kruskal-Wallis test is restricted to these well-classified species across 6 categories. The large "Other/Unknown" bin (46.8% of species) reflects the sparsity and inconsistency of free-text isolation_source metadata in NCBI BioSample records.
 
 **AlphaEarth embedding analysis** (2,684 species with ≥3 genomes and embeddings) reveals that **environmental diversity strongly predicts AMR count** (Spearman rho=0.466, p=1.6e-144). Species sampled from more diverse environments carry more AMR genes, and those AMR genes are less core (rho=-0.173, p=1.8e-19).
 
@@ -56,7 +56,7 @@ Species classified as **Human/Clinical carry 10.6 AMR clusters per species** (n=
 
 ![AMR gene fitness distribution](figures/amr_fitness_distribution.png)
 
-Using the DIAMOND-based FB-pangenome link table (177,863 links), we identified **178 AMR genes across 37 Fitness Browser organisms**, yielding 29,386 fitness measurements. Surprisingly, AMR genes show **slightly less fitness cost** than the non-AMR baseline (median fitness -0.007 vs -0.012, Mann-Whitney p=3.7e-6). Beta-lactamases are nearly neutral (median -0.001). Singleton AMR genes are costliest (median -0.019). This suggests that the AMR genes present in these predominantly environmental FB organisms are well-integrated intrinsic resistance genes, not recently acquired mobile elements.
+Using the DIAMOND-based FB-pangenome link table (177,863 links at 100% sequence identity), we identified **178 AMR genes across 37 Fitness Browser organisms**, yielding 29,386 fitness measurements. Surprisingly, AMR genes show **slightly less fitness cost** than the non-AMR baseline (median fitness -0.007 vs -0.012, Mann-Whitney p=3.7e-6). Beta-lactamases are nearly neutral (median -0.001). Singleton AMR genes are costliest (median -0.019). This suggests that the AMR genes present in these predominantly environmental FB organisms are well-integrated intrinsic resistance genes, not recently acquired mobile elements. The 100% identity threshold is conservative — it avoids paralog confusion but may undercount fitness effects for closely related gene variants (e.g., alleles differing by a single synonymous substitution). Furthermore, the Fitness Browser organisms are predominantly environmental isolates where intrinsic resistance predominates; the fitness cost of recently acquired mobile resistance elements in clinical pathogens may differ substantially.
 
 *(Notebook: 06_fitness_crossref.ipynb)*
 
@@ -78,6 +78,8 @@ The `bakta_amr` table contains **83,008 AMRFinderPlus hits** on gene cluster rep
 | Oxidoreductase | 6,852 | 8.3% | 15.4% |
 | Cell wall modification | 4,964 | 6.0% | 45.2% |
 | Regulatory | 2,848 | 3.4% | 6.5% |
+
+Mechanism classification uses keyword matching against AMRFinderPlus product descriptions (e.g., "beta-lactamase", "efflux", "acetyltransferase"), not the CARD Antibiotic Resistance Ontology (ARO). The 22.2% "Other/Unclassified" category includes genes with product descriptions that do not match any keyword set (e.g., ribosomal protection proteins with non-standard names, novel resistance mechanisms). Future work could reduce this fraction by mapping `bakta_db_xrefs` cross-references to CARD ARO terms, which would provide a systematic, ontology-based classification.
 
 ### Dominant AMR Gene Families
 
@@ -141,6 +143,8 @@ This is the first analysis to:
 - **Fitness Browser coverage**: Only 37/48 FB organisms had AMR genes, and these are predominantly environmental strains — the fitness analysis doesn't capture the cost of recently acquired mobile resistance in pathogens
 - **Mechanism classification**: The keyword-based mechanism classification leaves 22% as "Other/Unclassified" — a more systematic approach using CARD ontology would improve this
 - **Singleton inflation**: Some singleton AMR clusters may reflect annotation artifacts rather than true species-specific resistance genes
+- **Multiple testing**: The six hypotheses involve many individual tests (per-mechanism binomial tests, per-phylum correlations, per-environment comparisons). Formal Bonferroni or FDR correction was not applied because the primary test p-values are extreme (many < 1e-100) and correction would not change any conclusion. The per-gene and per-phylum tests are exploratory and should be interpreted as hypothesis-generating
+- **FB-pangenome identity threshold**: The 100% DIAMOND identity threshold for FB-pangenome linking is conservative; closely related allelic variants may be missed, potentially undercounting AMR gene fitness effects
 
 ## Data
 
