@@ -25,7 +25,7 @@ from app.filters import (
 from .auth import get_current_user
 from .routes.auth import ROUTER_AUTH
 from .config import Settings, get_settings
-from .dataloader import load_repository_data
+from .dataloader import load_repository_data, RepositoryParser
 from .git_data_sync import ensure_repo_cloned, pull_latest
 from .models import CollectionCategory, RepositoryData
 
@@ -316,8 +316,6 @@ async def project_detail(
         )
 
     # Enrich project contributors with aggregated data (ORCID, full name)
-    from .dataloader import RepositoryParser
-
     agg_by_key = {
         RepositoryParser._contributor_key(c.name): c for c in repo_data.contributors
     }
