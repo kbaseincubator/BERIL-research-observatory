@@ -71,21 +71,21 @@ This is a mature, well-executed project that delivers a pangenome-scale survey o
 
 ## Suggestions
 
-1. **(Critical) Add fitness distribution figure for NB06.** The fitness analysis is one of the most interesting hypotheses, but it is the only one without a saved PNG in `figures/`. Add a box plot or violin plot of fitness scores grouped by AMR mechanism (or conservation class) and save it as `figures/amr_fitness_by_mechanism.png`. This also means NB07's synthesis figure could reference it.
+1. **(Critical) Add fitness distribution figure for NB06.** — **RESOLVED**: `figures/amr_fitness_distribution.png` already existed at review time (2-panel: AMR vs non-AMR density plot + fitness by mechanism box plot). Reviewer oversight.
 
-2. **(Important) Quantify the "Other/Unclassified" environment bin in NB05.** Add a one-cell summary showing how many of the 14,723 AMR-carrying species fall into each classification category, including the unclassified remainder. If >30% are unclassified, note this in the REPORT and consider a brief sensitivity test (e.g., restrict the Kruskal-Wallis to the 5 best-covered categories).
+2. **(Important) Quantify the "Other/Unclassified" environment bin in NB05.** — **RESOLVED**: Added to REPORT.md Finding #5: 7,838/14,723 AMR species (53.2%) received a well-classified environment; 46.8% fell into Other/Unknown due to sparse/inconsistent NCBI BioSample metadata. Kruskal-Wallis test restricted to well-classified species.
 
-3. **(Important) Add an explicit note on the NB06 100%-identity threshold.** A comment in the DIAMOND-linking cell explaining why 100% identity was chosen (conservative, avoids paralog confusion) and what fraction of AMR cluster representatives went unmatched would improve transparency. Add one sentence to the REPORT acknowledging this may undercount fitness effects for closely related gene variants.
+3. **(Important) Add an explicit note on the NB06 100%-identity threshold.** — **RESOLVED**: Added to REPORT.md Finding #6: notes the conservative threshold, potential undercounting of allelic variants, and the FB organism bias toward environmental strains where intrinsic resistance predominates. Also added to Limitations section.
 
-4. **(Moderate) Note the absence of multiple-testing correction in the REPORT.** The six hypotheses involve many individual tests. The REPORT should include one sentence explaining why Bonferroni or FDR correction was not applied — the p-values are so extreme for the primary tests that correction does not change conclusions, and the supplementary per-gene tests are exploratory.
+4. **(Moderate) Note the absence of multiple-testing correction in the REPORT.** — **RESOLVED**: Added to Limitations section: primary test p-values are extreme (many < 1e-100), correction would not change conclusions, per-gene/per-phylum tests are exploratory.
 
-5. **(Moderate) Clarify the mechanism classification method in REPORT.md.** The "Other/Unclassified" category at 22.2% is large. A footnote or REPORT paragraph explaining that classification uses AMRFinderPlus `subclass` and `class` fields (not CARD ARO ontology) would contextualize the gap. Suggest CARD mapping as a specific next step with an estimated feasibility note (the `bakta_db_xrefs` table contains cross-references that may already include CARD identifiers).
+5. **(Moderate) Clarify the mechanism classification method in REPORT.md.** — **RESOLVED**: Added paragraph after mechanism classification table explaining keyword-based approach, the 22.2% Other/Unclassified gap, and suggesting CARD ARO mapping via `bakta_db_xrefs` as future work.
 
-6. **(Moderate) Cross-reference notebooks in the REPORT.** REPORT.md currently presents findings without citing which notebook produced each result. Adding brief parenthetical references (e.g., "NB02, Fig. amr_conservation_per_species.png") would make the document easier to navigate and validate.
+6. **(Moderate) Cross-reference notebooks in the REPORT.** — **RESOLVED**: Already present at review time — each finding subsection ends with `*(Notebook: filename.ipynb)*`. Reviewer oversight.
 
-7. **(Minor) Add a `data/README.md` describing all 10 CSV output files.** Each file's row count, column semantics, and the notebook that produced it are currently implicit. A brief data dictionary would help future users who want to work from the cached CSVs without re-running Spark queries.
+7. **(Minor) Add a `data/README.md` describing all 10 CSV output files.** — **RESOLVED**: Created `data/README.md` with full data dictionary: file name, row count, producing notebook, and column descriptions for all 10 CSVs.
 
-8. **(Minor) Consider adding `spark_connect_remote` and `berdl_remote` to `requirements.txt`.** These packages are required for the Spark-dependent notebooks (NB01–NB06) but are currently omitted. Including them with a comment (`# required for Spark Connect; install from internal PyPI`) would prevent confusing import errors for new users following the reproduction guide.
+8. **(Minor) Consider adding `spark_connect_remote` and `berdl_remote` to `requirements.txt`.** — **RESOLVED**: Added `scikit-learn>=1.3`, `spark-connect-remote`, and `berdl-remote` (with comment noting internal PyPI requirement).
 
 ---
 
