@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 
-{% block title %}Not Logged In - {{ app_name }}{% endblock %}
+{% block title %}Log In - {{ app_name }}{% endblock %}
 
 {% block content %}
-
-You don't seem to be logged in. Log in with your ORCiD account with the button in the upper right.
-
+<div style="max-width: 480px; margin: var(--space-16) auto; text-align: center;">
+    <div class="card" style="padding: var(--space-10);">
+        <img src="{{ url_for('static', path='img/orcid-logo.svg') }}" alt="ORCiD" style="width: 48px; height: 48px; margin-bottom: var(--space-6);">
+        <h2 style="margin-top: 0; margin-bottom: var(--space-3);">Log in to view your profile</h2>
+        <p class="text-muted" style="margin-bottom: var(--space-6);">
+            Sign in with your ORCiD account to see your projects, collections, and review status.
+        </p>
+        <a href="/auth/login?next=/user_profile" class="btn btn-primary">
+            <img src="{{ url_for('static', path='img/orcid-logo.svg') }}" alt="" class="orcid-icon">
+            Log in with ORCiD
+        </a>
+    </div>
+</div>
 {% endblock %}

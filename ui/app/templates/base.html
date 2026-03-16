@@ -57,7 +57,7 @@
             <div class="nav-auth">
                 {% if current_user %}
                     <span class="nav-auth-user">
-                        <a href="https://orcid.org/{{ current_user.orcid_id }}" target="_blank" rel="noopener" title="{{ current_user.orcid_id }}">
+                        <a href="/user_profile" title="{{ current_user.orcid_id }}">
                             <img src="{{ url_for('static', path='img/orcid-logo.svg') }}" alt="ORCiD" class="orcid-icon">
                             {{ current_user.name or current_user.orcid_id }}
                         </a>
