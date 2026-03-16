@@ -22,7 +22,8 @@ from app.filters import (
     strip_images_filter,
 )
 
-from .auth import ROUTER_AUTH, get_current_user
+from .auth import get_current_user
+from .routes.auth import ROUTER_AUTH
 from .config import Settings, get_settings
 from .dataloader import load_repository_data
 from .git_data_sync import ensure_repo_cloned, pull_latest
