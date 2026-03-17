@@ -11,10 +11,11 @@ import yaml
 
 import httpx
 
-from .config import settings
+from .config import get_settings
 from .models import (
     Collection,
     CollectionCategory,
+    CollectionEdge,
     CollectionTable,
     Column,
     Contributor,
@@ -66,6 +67,7 @@ def load_repository_data(source_path: Path | str | None = None) -> RepositoryDat
         except Exception as e:
             # Fall through to local parsing
             import logging
+
             logger = logging.getLogger(__name__)
             logger.warning(f"Failed to load from {source_path}: {e}")
             logger.warning("Falling back to local file parsing")
@@ -90,6 +92,7 @@ def load_local_pickle(file_path: Path) -> RepositoryData:
         pickle.UnpicklingError: If file is not a valid pickle
     """
     import logging
+
     logger = logging.getLogger(__name__)
 
     logger.info(f"Loading data from local file: {file_path}")
@@ -119,7 +122,6 @@ def check_for_updates(data_source_url: str, current_last_updated: datetime) -> b
     Returns:
         True if remote data is newer, False otherwise
     """
-    import json
 
     # Ensure URL ends with a slash
     if not data_source_url.endswith("/"):
@@ -141,6 +143,7 @@ def check_for_updates(data_source_url: str, current_last_updated: datetime) -> b
 
         # Parse the remote timestamp
         from datetime import datetime as dt
+
         remote_timestamp = dt.fromisoformat(remote_timestamp_str)
 
         # Compare timestamps
@@ -213,7 +216,7 @@ class RepositoryParser:
 
     def __init__(self, repo_path: Path | None = None):
         """Initialize parser with repository path."""
-        self.repo_path = repo_path or settings.repo_dir
+        self.repo_path = repo_path or get_settings().repo_dir
 
     def parse_all(self) -> RepositoryData:
         """Parse entire repository into structured data."""
@@ -232,6 +235,9 @@ class RepositoryParser:
         # Auto-cluster projects into research areas
         research_areas = self._cluster_research_areas(projects)
 
+        # Compute collection-to-collection edges
+        collection_edges = self._compute_collection_edges(collections, projects)
+
         # Compute stats
         total_notebooks = sum(len(p.notebooks) for p in projects)
         total_visualizations = sum(len(p.visualizations) for p in projects)
@@ -248,6 +254,7 @@ class RepositoryParser:
             contributors=contributors,
             skills=skills,
             research_areas=research_areas,
+            collection_edges=collection_edges,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -313,16 +320,83 @@ class RepositoryParser:
         from math import sqrt
 
         _STOP = {
-            "the", "a", "an", "and", "or", "but", "in", "on", "at", "to",
-            "for", "of", "with", "by", "from", "is", "are", "was", "were",
-            "be", "been", "have", "has", "do", "does", "did", "will", "would",
-            "could", "should", "may", "can", "this", "that", "these", "those",
-            "it", "its", "we", "our", "how", "what", "which", "where", "when",
-            "who", "than", "more", "most", "between", "across", "each", "per",
-            "using", "used", "based", "whether", "not", "no", "into", "also",
-            "both", "all", "show", "results", "data", "analysis", "gene",
-            "genes", "genome", "genomes", "species", "bacterial", "bacteria",
-            "pangenome", "pangenomes", "fitness",
+            "the",
+            "a",
+            "an",
+            "and",
+            "or",
+            "but",
+            "in",
+            "on",
+            "at",
+            "to",
+            "for",
+            "of",
+            "with",
+            "by",
+            "from",
+            "is",
+            "are",
+            "was",
+            "were",
+            "be",
+            "been",
+            "have",
+            "has",
+            "do",
+            "does",
+            "did",
+            "will",
+            "would",
+            "could",
+            "should",
+            "may",
+            "can",
+            "this",
+            "that",
+            "these",
+            "those",
+            "it",
+            "its",
+            "we",
+            "our",
+            "how",
+            "what",
+            "which",
+            "where",
+            "when",
+            "who",
+            "than",
+            "more",
+            "most",
+            "between",
+            "across",
+            "each",
+            "per",
+            "using",
+            "used",
+            "based",
+            "whether",
+            "not",
+            "no",
+            "into",
+            "also",
+            "both",
+            "all",
+            "show",
+            "results",
+            "data",
+            "analysis",
+            "gene",
+            "genes",
+            "genome",
+            "genomes",
+            "species",
+            "bacterial",
+            "bacteria",
+            "pangenome",
+            "pangenomes",
+            "fitness",
         }
 
         def _terms(text: str | None) -> Counter:
@@ -334,8 +408,8 @@ class RepositoryParser:
         def _cosine(a: Counter, b: Counter) -> float:
             keys = set(a) | set(b)
             dot = sum(a.get(k, 0) * b.get(k, 0) for k in keys)
-            mag_a = sqrt(sum(v ** 2 for v in a.values()))
-            mag_b = sqrt(sum(v ** 2 for v in b.values()))
+            mag_a = sqrt(sum(v**2 for v in a.values()))
+            mag_b = sqrt(sum(v**2 for v in b.values()))
             if mag_a == 0 or mag_b == 0:
                 return 0.0
             return dot / (mag_a * mag_b)
@@ -403,41 +477,100 @@ class RepositoryParser:
             if len(members) == 1:
                 singletons.extend(members)
             else:
-                areas.append(ResearchArea(
-                    id=slugify(name),
-                    name=name,
-                    project_ids=sorted(members),
-                    top_terms=[t for t, _ in combined.most_common(5)],
-                ))
+                areas.append(
+                    ResearchArea(
+                        id=slugify(name),
+                        name=name,
+                        project_ids=sorted(members),
+                        top_terms=[t for t, _ in combined.most_common(5)],
+                    )
+                )
 
         # Sort by cluster size descending
         areas.sort(key=lambda a: len(a.project_ids), reverse=True)
 
         # Group singletons under "Independent Studies"
         if singletons:
-            areas.append(ResearchArea(
-                id="independent-studies",
-                name="Independent Studies",
-                project_ids=sorted(singletons),
-                top_terms=[],
-            ))
+            areas.append(
+                ResearchArea(
+                    id="independent-studies",
+                    name="Independent Studies",
+                    project_ids=sorted(singletons),
+                    top_terms=[],
+                )
+            )
 
         return areas
 
-    def _get_git_dates(self, project_dir: Path) -> tuple[datetime | None, datetime | None]:
+    @staticmethod
+    def _compute_collection_edges(
+        collections: list[Collection], projects: list[Project]
+    ) -> list[CollectionEdge]:
+        """Build collection-to-collection edges from explicit links and project co-usage.
+
+        Two edge types:
+        1. "explicit" — from Collection.related_collections in collections.yaml
+        2. "project_cooccurrence" — projects that reference multiple collections
+        """
+        edges: dict[tuple[str, str], CollectionEdge] = {}
+        collection_ids = {c.id for c in collections}
+
+        def _edge_key(a: str, b: str) -> tuple[str, str]:
+            return (min(a, b), max(a, b))
+
+        # Explicit links from collections.yaml
+        for coll in collections:
+            for related_id in coll.related_collections:
+                if related_id in collection_ids:
+                    key = _edge_key(coll.id, related_id)
+                    if key not in edges:
+                        edges[key] = CollectionEdge(
+                            source_id=key[0],
+                            target_id=key[1],
+                            edge_type="explicit",
+                        )
+
+        # Project co-occurrence: projects that reference 2+ collections
+        for project in projects:
+            colls = [c for c in project.related_collections if c in collection_ids]
+            for i in range(len(colls)):
+                for j in range(i + 1, len(colls)):
+                    key = _edge_key(colls[i], colls[j])
+                    if key not in edges:
+                        edges[key] = CollectionEdge(
+                            source_id=key[0],
+                            target_id=key[1],
+                            edge_type="project_cooccurrence",
+                        )
+                    if project.id not in edges[key].projects:
+                        edges[key].projects.append(project.id)
+
+        return sorted(edges.values(), key=lambda e: (e.source_id, e.target_id))
+
+    def _get_git_dates(
+        self, project_dir: Path
+    ) -> tuple[datetime | None, datetime | None]:
         """Get first and last commit dates for a project directory using git log."""
         try:
             # Last commit date
             result = subprocess.run(
                 ["git", "log", "-1", "--format=%aI", "--", str(project_dir)],
-                capture_output=True, text=True, cwd=self.repo_path,
+                capture_output=True,
+                text=True,
+                cwd=self.repo_path,
             )
-            updated = datetime.fromisoformat(result.stdout.strip()) if result.stdout.strip() else None
+            updated = (
+                datetime.fromisoformat(result.stdout.strip())
+                if result.stdout.strip()
+                else None
+            )
 
             # First commit date
             result = subprocess.run(
                 ["git", "log", "--reverse", "--format=%aI", "--", str(project_dir)],
-                capture_output=True, text=True, cwd=self.repo_path,
+                capture_output=True,
+                text=True,
+                cwd=self.repo_path,
             )
             lines = result.stdout.strip().split("\n")
             created = datetime.fromisoformat(lines[0]) if lines and lines[0] else None
@@ -512,7 +645,9 @@ class RepositoryParser:
             research_plan_raw = plan_path.read_text()
             hypothesis = self._extract_section(research_plan_raw, "Hypothesis")
             approach = self._extract_section(research_plan_raw, "Approach")
-            revision_history = self._extract_section(research_plan_raw, "Revision History")
+            revision_history = self._extract_section(
+                research_plan_raw, "Revision History"
+            )
         else:
             # Fallback: extract from README (legacy projects)
             hypothesis = self._extract_section(readme_content, "Hypothesis")
@@ -531,8 +666,14 @@ class RepositoryParser:
         other_sections = []
 
         _KNOWN_REPORT_SECTIONS = {
-            "Key Findings", "Results", "Interpretation", "Limitations",
-            "Future Directions", "Data", "References", "Supporting Evidence",
+            "Key Findings",
+            "Results",
+            "Interpretation",
+            "Limitations",
+            "Future Directions",
+            "Data",
+            "References",
+            "Supporting Evidence",
             "Revision History",
         }
 
@@ -553,7 +694,11 @@ class RepositoryParser:
             findings = self._extract_section(readme_content, "Key Findings")
 
         # Determine status
-        if findings and "to be filled" not in findings.lower() and "tbd" not in findings.lower():
+        if (
+            findings
+            and "to be filled" not in findings.lower()
+            and "tbd" not in findings.lower()
+        ):
             status = ProjectStatus.COMPLETED
         elif has_research_plan:
             status = ProjectStatus.IN_PROGRESS
@@ -626,7 +771,9 @@ class RepositoryParser:
             results=self._rewrite_md_links(results, project_dir.name),
             interpretation=self._rewrite_md_links(interpretation, project_dir.name),
             limitations=self._rewrite_md_links(limitations, project_dir.name),
-            future_directions=self._rewrite_md_links(future_directions, project_dir.name),
+            future_directions=self._rewrite_md_links(
+                future_directions, project_dir.name
+            ),
             data_section=self._rewrite_md_links(data_section, project_dir.name),
             references=self._rewrite_md_links(references, project_dir.name),
             other_sections=[
@@ -696,9 +843,14 @@ class RepositoryParser:
                 if orcid_paren_match:
                     orcid = orcid_paren_match.group(1)
                     plain_text = (
-                        plain_text[: orcid_paren_match.start()]
-                        + plain_text[orcid_paren_match.end() :]
-                    ).strip().strip(",").strip()
+                        (
+                            plain_text[: orcid_paren_match.start()]
+                            + plain_text[orcid_paren_match.end() :]
+                        )
+                        .strip()
+                        .strip(",")
+                        .strip()
+                    )
                 else:
                     # Bare URL fallback: (https://orcid.org/id)
                     orcid_url_match = re.search(
@@ -707,9 +859,14 @@ class RepositoryParser:
                     if orcid_url_match:
                         orcid = orcid_url_match.group(1)
                         plain_text = (
-                            plain_text[: orcid_url_match.start()]
-                            + plain_text[orcid_url_match.end() :]
-                        ).strip().strip(",").strip()
+                            (
+                                plain_text[: orcid_url_match.start()]
+                                + plain_text[orcid_url_match.end() :]
+                            )
+                            .strip()
+                            .strip(",")
+                            .strip()
+                        )
                 # Split by comma: first part is name, rest is affiliation
                 parts = [p.strip() for p in plain_text.split(",", 1)]
                 name = parts[0]
@@ -857,9 +1014,7 @@ class RepositoryParser:
                     others.append((name, body))
         return others
 
-    def _scan_notebook_data_deps(
-        self, project_dir: Path
-    ) -> list[DerivedDataRef]:
+    def _scan_notebook_data_deps(self, project_dir: Path) -> list[DerivedDataRef]:
         """Scan notebook code cells for cross-project data references.
 
         Detects patterns like:
@@ -877,18 +1032,14 @@ class RepositoryParser:
 
         patterns = [
             # ../../project/data/file or ../../project/data (dir-only)
-            re.compile(
-                r"\.\./\.\./([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
-            ),
+            re.compile(r"\.\./\.\./([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"),
             # .parent / 'project' / 'data' / 'file' (Path objects)
             re.compile(
                 r"\.parent\s*/\s*['\"]([a-z_]+)['\"]\s*/\s*['\"](?:data|user_data)['\"]"
                 r"(?:\s*/\s*['\"]([^'\"]+)['\"])?"
             ),
             # projects/project/data/file (absolute-ish paths)
-            re.compile(
-                r"projects/([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"
-            ),
+            re.compile(r"projects/([a-z_]+)/(?:data|user_data)(?:/([^\s'\"\\,)]+))?"),
         ]
 
         import json
@@ -908,7 +1059,11 @@ class RepositoryParser:
                         src_project = match.group(1)
                         if src_project == project_id:
                             continue
-                        filename = match.group(2) if match.lastindex >= 2 and match.group(2) else None
+                        filename = (
+                            match.group(2)
+                            if match.lastindex >= 2 and match.group(2)
+                            else None
+                        )
                         deps.setdefault(src_project, set())
                         if filename:
                             deps[src_project].add(filename)
@@ -937,6 +1092,30 @@ class RepositoryParser:
 
         return sorted(notebooks, key=lambda n: n.filename)
 
+    def _extract_plotly_height(self, html_path: Path) -> int | None:
+        """
+        Extract figure height (px) from the plotly-graph-div in a Plotly HTML export.
+        Adds an extra 20 px as a buffer to avoid having a scrollbar.
+        """
+        try:
+            from bs4 import BeautifulSoup
+
+            with open(html_path, encoding="utf-8") as f:
+                soup = BeautifulSoup(f, "html.parser")
+            div = soup.find("div", class_="plotly-graph-div")
+            if div is None:
+                return None
+            style = div.get("style", "")
+            for part in style.split(";"):
+                part = part.strip()
+                if part.startswith("height:"):
+                    val = part.split(":")[1].strip()
+                    if val.endswith("px"):
+                        return int(val[:-2]) + 20
+        except Exception:
+            pass
+        return None
+
     def _parse_data_dir(
         self, project_dir: Path
     ) -> tuple[list[Visualization], list[DataFile]]:
@@ -963,13 +1142,20 @@ class RepositoryParser:
                     ".jpeg",
                     ".svg",
                     ".gif",
+                    ".html",
                 ):
+                    is_interactive = file_path.suffix.lower() == ".html"
+                    iframe_height = None
+                    if is_interactive:
+                        iframe_height = self._extract_plotly_height(file_path)
                     visualizations.append(
                         Visualization(
                             filename=file_path.name,
                             path=str(file_path.relative_to(self.repo_path)),
                             title=file_path.stem.replace("_", " ").title(),
                             size_bytes=size_bytes,
+                            is_interactive=is_interactive,
+                            iframe_height=iframe_height,
                         )
                     )
                 elif file_path.suffix.lower() in (".csv", ".tsv", ".json", ".parquet"):
@@ -1004,9 +1190,7 @@ class RepositoryParser:
         # Extract date headers and their positions first
         date_positions = []
         for m in re.finditer(r"^## (\d{4}-\d{2})\s*$", content, re.MULTILINE):
-            date_positions.append(
-                (m.start(), datetime.strptime(m.group(1), "%Y-%m"))
-            )
+            date_positions.append((m.start(), datetime.strptime(m.group(1), "%Y-%m")))
 
         # Split by ### headers (discovery entries)
         sections = re.split(r"\n###\s+", content)
@@ -1036,9 +1220,7 @@ class RepositoryParser:
                 title = match.group(2)
                 # Strip any trailing ## date headers from the content
                 content_text = "\n".join(lines[1:])
-                content_text = re.sub(
-                    r"\n## \d{4}-\d{2}\s*$", "", content_text
-                ).strip()
+                content_text = re.sub(r"\n## \d{4}-\d{2}\s*$", "", content_text).strip()
 
                 # Skip template section
                 if (
@@ -1414,7 +1596,7 @@ class RepositoryParser:
     def parse_collections(self) -> list[Collection]:
         """Parse collections from config/collections.yaml."""
         collections = []
-        config_path = settings.ui_dir / "config" / "collections.yaml"
+        config_path = get_settings().ui_dir / "config" / "collections.yaml"
 
         if not config_path.exists():
             return collections

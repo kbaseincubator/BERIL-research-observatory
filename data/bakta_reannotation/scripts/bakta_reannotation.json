@@ -1,0 +1,41 @@
+{
+  "tenant": "kbase_ke",
+  "dataset": "pangenome_bakta",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/tenant-general-warehouse/kbase_ke/datasets/pangenome/bakta/",
+    "silver_base": "s3a://cdm-lake/tenant-sql-warehouse/kbase_ke/kbase_ke_pangenome.db"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "bakta_annotations",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kbase_ke/datasets/pangenome/bakta/bakta_annotations.tsv",
+      "schema_sql": "gene_cluster_id STRING, length INT, gene STRING, product STRING, hypothetical BOOLEAN, ec STRING, go STRING, cog_id STRING, cog_category STRING, kegg_orthology_id STRING, refseq STRING, uniparc STRING, uniref100 STRING, uniref90 STRING, uniref50 STRING, molecular_weight DOUBLE, isoelectric_point DOUBLE"
+    },
+    {
+      "name": "bakta_db_xrefs",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kbase_ke/datasets/pangenome/bakta/bakta_db_xrefs.tsv",
+      "schema_sql": "gene_cluster_id STRING, db STRING, accession STRING"
+    },
+    {
+      "name": "bakta_pfam_domains",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kbase_ke/datasets/pangenome/bakta/bakta_pfam_domains.tsv",
+      "schema_sql": "gene_cluster_id STRING, pfam_id STRING, pfam_name STRING, start INT, stop INT, score DOUBLE, evalue DOUBLE, aa_cov DOUBLE, hmm_cov DOUBLE"
+    },
+    {
+      "name": "bakta_amr",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kbase_ke/datasets/pangenome/bakta/bakta_amr.tsv",
+      "schema_sql": "gene_cluster_id STRING, amr_gene STRING, amr_product STRING, method STRING, identity DOUBLE, query_cov DOUBLE, subject_cov DOUBLE, accession STRING"
+    }
+  ]
+}

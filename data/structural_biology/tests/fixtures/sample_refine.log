@@ -1,0 +1,49 @@
+##-------------------------------------------##
+## phenix.refine log                          ##
+##-------------------------------------------##
+
+Starting model: model_in.pdb
+Data file:      data.mtz
+Refinement strategy: individual_sites+individual_adp
+
+  Start R-work = 0.2456, R-free = 0.2812
+
+  macro_cycle 1:
+    R-work = 0.2234, R-free = 0.2645
+    bonds: 0.009  angles: 1.134
+    Ramachandran favored: 96.2%
+    Ramachandran outliers: 0.8%
+    Rotamer outliers: 3.4%
+    Clashscore: 8.23
+
+  macro_cycle 2:
+    R-work = 0.2156, R-free = 0.2567
+    bonds: 0.008  angles: 1.089
+    Ramachandran favored: 96.9%
+    Ramachandran outliers: 0.5%
+    Rotamer outliers: 2.8%
+    Clashscore: 6.45
+
+  macro_cycle 3:
+    R-work = 0.2098, R-free = 0.2489
+    bonds: 0.007  angles: 1.045
+    Ramachandran favored: 97.2%
+    Ramachandran outliers: 0.3%
+    Rotamer outliers: 2.1%
+    Clashscore: 5.12
+
+  Final R-work = 0.2098, R-free = 0.2489
+
+  Final model statistics:
+    R-work: 0.2098
+    R-free: 0.2489
+    RMS(bonds): 0.007
+    RMS(angles): 1.045
+    Ramachandran favored: 97.20 %
+    Ramachandran outliers: 0.30 %
+    Rotamer outliers: 2.10 %
+    Clashscore: 5.12
+    MolProbity score: 1.95
+    Number of TLS groups: 0
+
+  Output model: model_out.pdb
