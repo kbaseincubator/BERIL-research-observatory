@@ -13,6 +13,7 @@ from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from nbconvert import HTMLExporter
+from starlette.middleware.sessions import SessionMiddleware
 
 from app.filters import (
     markdown_filter,
@@ -21,6 +22,8 @@ from app.filters import (
     strip_images_filter,
 )
 
+from .auth import get_current_user
+from .routes.auth import ROUTER_AUTH
 from .config import Settings, get_settings
 from .dataloader import load_repository_data
 from .git_data_sync import ensure_repo_cloned, pull_latest
@@ -41,7 +44,10 @@ def get_repo_data(request: Request) -> RepositoryData:
 
 
 def get_base_context(request: Request) -> dict:
-    return dict(request.app.state.base_context)
+    context = dict(request.app.state.base_context)
+    context["current_user"] = get_current_user(request)
+    context["path"] = request.url.path
+    return context
 
 async def initialize_data(settings: Settings) -> RepositoryData:
     """Initialize app on startup."""
@@ -114,6 +120,8 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
 
+    app.add_middleware(SessionMiddleware, secret_key=settings.session_secret_key, session_cookie="beril_session")
+
     # Mount static files
     app.mount("/static", StaticFiles(directory=settings.static_dir), name="static")
 
@@ -124,6 +132,7 @@ def create_app() -> FastAPI:
         name="project-assets",
     )
 
+    app.include_router(ROUTER_AUTH)
     app.include_router(ROUTER_COLLECTIONS)
     app.include_router(ROUTER_COMMUNITY)
     app.include_router(ROUTER_COSCIENTIST)
@@ -178,6 +187,19 @@ async def home(
         }
     )
     return templates.TemplateResponse(request, "home.html", context)
+
+
+@ROUTER_GENERAL.get("/user_profile", response_class=HTMLResponse)
+async def user_profile(
+    request: Request,
+    context: dict = Depends(get_base_context)
+):
+    user = context.get("current_user")
+    if user is None:
+        return templates.TemplateResponse(request, "unauthenticated.html", context)
+    else:
+        return templates.TemplateResponse(request, "profile.html", context)
+
 
 
 @ROUTER_COSCIENTIST.get("/co-scientist", response_class=HTMLResponse)

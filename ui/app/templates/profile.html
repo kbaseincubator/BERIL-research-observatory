@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - {{ app_name }}{% endblock %}
+
+{% block content %}
+This is where user profiles go. Not sure what to include yet.
+
+Your user name is
+{% if current_user %}
+{{ current_user.name or current_user.orcid_id }}
+{% else %}
+Unknown, sorry! That's gotta be a bug.
+{% endif %}
+
+{% endblock %}
