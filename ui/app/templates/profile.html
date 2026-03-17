@@ -1,15 +1,138 @@
 {% extends "base.html" %}
 
-{% block title %}Profile - {{ app_name }}{% endblock %}
+{% block title %}My Profile - {{ app_name }}{% endblock %}
 
 {% block content %}
-This is where user profiles go. Not sure what to include yet.
+<div class="page-header">
+    <div style="display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap;">
+        <div>
+            <h1 class="page-title" style="margin-bottom: var(--space-1);">
+                {{ current_user.name or current_user.orcid_id }}
+            </h1>
+            <a href="{{ current_user.orcid_url }}" target="_blank" rel="noopener" class="orcid-link">
+                <img src="{{ url_for('static', path='img/orcid-logo.svg') }}" alt="ORCiD" class="orcid-icon">
+                {{ current_user.orcid_id }}
+            </a>
+            {% if contributor and contributor.affiliation %}
+            <span class="text-muted text-small" style="margin-left: var(--space-4);">{{ contributor.affiliation }}</span>
+            {% endif %}
+        </div>
+        <div style="margin-left: auto;">
+            <a href="/auth/logout" class="btn btn-sm btn-outline">Log out</a>
+        </div>
+    </div>
+</div>
 
-Your user name is
-{% if current_user %}
-{{ current_user.name or current_user.orcid_id }}
-{% else %}
-Unknown, sorry! That's gotta be a bug.
+{% if not contributor %}
+<div class="card" style="background: rgba(255, 180, 50, 0.07); border-color: rgba(255, 180, 50, 0.3); margin-bottom: var(--space-8);">
+    <p style="margin: 0;">
+        <strong>Your ORCiD isn't linked to any projects yet.</strong>
+        To have your projects appear here, add your ORCiD (<code>{{ current_user.orcid_id }}</code>) to the
+        <code>## Authors</code> section of a project's <code>README.md</code>.
+    </p>
+</div>
+{% endif %}
+
+<!-- Stats row -->
+<div class="community-stats" style="margin-bottom: var(--space-8);">
+    <div class="community-stat">
+        <div class="stat-value">{{ owned_projects | length }}</div>
+        <div class="stat-label">projects</div>
+    </div>
+    <div class="community-stat">
+        <div class="stat-value">{{ collections_used | length }}</div>
+        <div class="stat-label">collections used</div>
+    </div>
+    <div class="community-stat">
+        <div class="stat-value">{{ review_counts.reviewed }}</div>
+        <div class="stat-label">reviewed</div>
+    </div>
+    <div class="community-stat">
+        <div class="stat-value">{{ review_counts.not_reviewed + review_counts.needs_re_review }}</div>
+        <div class="stat-label">awaiting review</div>
+    </div>
+</div>
+
+<!-- Projects -->
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Your Projects</h2>
+    </div>
+
+    {% if owned_projects %}
+    <div class="grid grid-2">
+        {% for project in owned_projects %}
+        <article class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <a href="/projects/{{ project.id }}">{{ project.title | markdown_inline }}</a>
+                </h3>
+                {% if project.status.value == "Completed" %}
+                <span class="badge badge-completed">{{ project.status.value }}</span>
+                {% elif project.status.value == "In Progress" %}
+                <span class="badge badge-in-progress">{{ project.status.value }}</span>
+                {% else %}
+                <span class="badge badge-proposed">{{ project.status.value }}</span>
+                {% endif %}
+                {% if project.review_status.value == "Reviewed" %}
+                <span class="badge badge-reviewed">Reviewed</span>
+                {% elif project.review_status.value == "Needs Re-review" %}
+                <span class="badge" style="background: rgba(255,180,50,0.15); color: #ffb432;">Needs Re-review</span>
+                {% endif %}
+            </div>
+            <div class="card-content">
+                <p class="text-muted text-small">{{ project.research_question | strip_images | markdown_inline }}</p>
+            </div>
+            {% if project.related_collections or project.review_status.value != "Reviewed" %}
+            <div class="card-footer">
+                {% for cid in project.related_collections %}
+                <a href="/collections/{{ cid }}" class="badge" style="background: rgba(57,212,230,0.1); color: #39d4e6; font-size: 0.7rem;">{{ cid }}</a>
+                {% endfor %}
+                {% if project.review_status.value != "Reviewed" %}
+                <span class="text-muted text-small" style="margin-left: auto; font-style: italic;">/submit to request review</span>
+                {% endif %}
+            </div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="card" style="text-align: center; padding: var(--space-12);">
+        <p class="text-muted">No projects linked to your ORCiD yet.</p>
+    </div>
+    {% endif %}
+</section>
+
+<!-- Collections used -->
+{% if collections_used %}
+<section class="section">
+    <div class="section-header">
+        <h2 class="section-title">Collections You've Used</h2>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: var(--space-2);">
+        {% for collection in collections_used %}
+        <a href="/collections/{{ collection.id }}" class="badge" style="background: rgba(57,212,230,0.1); color: #39d4e6; font-size: 0.85rem; padding: var(--space-2) var(--space-3);">
+            {{ collection.icon }} {{ collection.name }}
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+<!-- Review nudge -->
+{% if review_counts.not_reviewed > 0 or review_counts.needs_re_review > 0 %}
+<section class="section">
+    <div class="card" style="background: rgba(57,212,230,0.05); border-color: rgba(57,212,230,0.2);">
+        <h3 style="margin-top: 0;">Ready to get your work reviewed?</h3>
+        <p class="text-muted" style="margin-bottom: 0;">
+            You have {{ review_counts.not_reviewed + review_counts.needs_re_review }}
+            project{% if review_counts.not_reviewed + review_counts.needs_re_review != 1 %}s{% endif %}
+            that {% if review_counts.not_reviewed + review_counts.needs_re_review == 1 %}hasn't{% else %}haven't{% endif %}
+            been reviewed yet. Run <code>/submit</code> in Claude Code from inside a project directory
+            to trigger an automated review.
+        </p>
+    </div>
+</section>
 {% endif %}
 
 {% endblock %}
