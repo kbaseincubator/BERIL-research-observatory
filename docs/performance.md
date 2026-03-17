@@ -51,8 +51,12 @@ summary.toPandas().plot(kind='bar')
 | `genome_ani` | 421,218,641 | **HUGE** | Query one species at a time |
 | `gapmind_pathways` | 305,471,280 | **LARGE** | Filter by `genome_id` or `pathway` |
 | `gene_cluster` | 132,531,501 | **LARGE** | Filter by `gtdb_species_clade_id` |
+| `bakta_db_xrefs` | 572,376,477 | **HUGE** | Filter by `gene_cluster_id` |
+| `bakta_annotations` | 132,538,155 | **LARGE** | Filter by `gene_cluster_id` |
 | `eggnog_mapper_annotations` | 93,558,330 | **LARGE** | Filter by `query_name` (gene_cluster_id) |
+| `bakta_pfam_domains` | 18,807,208 | **LARGE** | Filter by `gene_cluster_id` or `pfam_id` |
 | `ncbi_env` | 4,124,801 | Medium | Filter by `accession` |
+| `bakta_amr` | 83,008 | Small | Safe to scan |
 | `genome` | 293,059 | Small | Safe to scan |
 | `gtdb_metadata` | 293,059 | Small | Safe to scan |
 | `gtdb_taxonomy_r214v1` | 293,059 | Small | Safe to scan |
@@ -511,6 +515,14 @@ Gene cluster extraction is **18x slower** because it joins two billion-row unpar
 - **Use BROADCAST hints** with a temp view of target genome IDs (see `cofitness_coinheritance` pitfall)
 
 **K. pneumoniae exceeded `maxResultSize`**: This species (250 genomes × ~5,500 genes) produced results exceeding Spark's 1GB `spark.driver.maxResultSize`. For very large species, chunk the genome list or increase the driver memory limit.
+
+**`[bakta_reannotation]` Broadcast joins fail on `uniprot_identifier` (2.5B rows)**: Any multi-way join touching `kbase_uniprot.uniprot_identifier` can exceed `maxResultSize` via broadcast exchange, even if the final result is small. Fix: disable auto-broadcast before the join:
+```python
+spark.sql("SET spark.sql.autoBroadcastJoinThreshold = -1")
+# ... run your join ...
+spark.sql("SET spark.sql.autoBroadcastJoinThreshold = 10485760")  # restore default
+```
+This forces sort-merge joins which stream data rather than materializing entire tables in the driver.
 
 ---
 

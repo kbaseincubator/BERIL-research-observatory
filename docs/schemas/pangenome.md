@@ -4,8 +4,8 @@
 **Location**: On-prem Delta Lakehouse (BERDL - KBase BER Data Lakehouse)
 **Access**: Spark SQL via REST API at `https://hub.berdl.kbase.us/apis/mcp/`
 **Tenant**: KBase
-**Last Updated**: 2026-02-13
-**Verified**: Direct Spark SQL queries on cluster (2026-02-13)
+**Last Updated**: 2026-03-12
+**Verified**: Direct Spark SQL queries on cluster (2026-03-12)
 
 ---
 
@@ -16,6 +16,7 @@ This database contains pangenome data for **293,059 genomes** across **27,690 mi
 - **Cluster representative sequences** (protein and nucleotide) stored directly in `gene_cluster`
 - Pairwise ANI between genomes (~421M pairs)
 - Functional annotations via eggNOG v6
+- **Bakta reannotation** of all 132M cluster representatives (gene names, EC, COG, KEGG, UniRef, Pfam domains, AMR)
 - Metabolic pathway predictions via GapMind
 - Environmental embeddings from AlphaEarth
 - **Phylogenetic trees** (Newick) and pairwise branch distances for 330 species
@@ -35,6 +36,10 @@ This database contains pangenome data for **293,059 genomes** across **27,690 mi
 | `gene_cluster` | 132,531,501 | Gene family classifications with representative sequences |
 | `gene_genecluster_junction` | 1,011,650,762 | Gene-to-cluster memberships |
 | `eggnog_mapper_annotations` | 93,558,330 | Functional annotations (COG, GO, KEGG, EC, PFAM) |
+| `bakta_annotations` | 132,538,155 | Bakta reannotation: gene, product, EC, GO, COG, KEGG, UniRef, MW, pI |
+| `bakta_db_xrefs` | 572,376,477 | Bakta database cross-references (db, accession) |
+| `bakta_pfam_domains` | 18,807,208 | Bakta Pfam domain hits with scores and coverage |
+| `bakta_amr` | 83,008 | AMR gene annotations from AMRFinderPlus |
 | `genome_ani` | 421,218,641 | Pairwise ANI values between genomes |
 | `sample` | 293,059 | Biosample/Bioproject accessions |
 | `ncbi_env` | 4,124,801 | NCBI environment metadata (key-value format) |
@@ -381,6 +386,79 @@ Newick-format phylogenetic trees per species clade, built from single-copy core 
 
 ---
 
+### 17. `bakta_annotations`
+
+Bakta v1.12.0 reannotation of all 132.5M cluster representative proteins. Joins to `gene_cluster` on `gene_cluster_id`.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `gene_cluster_id` | string | FK → `gene_cluster.gene_cluster_id` |
+| `length` | int | Protein length (amino acids) |
+| `gene` | string | Gene name (e.g., `mutL`, `rpoB`). NULL if hypothetical |
+| `product` | string | Product description |
+| `hypothetical` | boolean | True if no functional annotation found |
+| `ec` | string | EC number |
+| `go` | string | GO term(s) |
+| `cog_id` | string | COG identifier |
+| `cog_category` | string | COG functional category letter(s) |
+| `kegg_orthology_id` | string | KEGG Orthology ID (e.g., K00001) |
+| `refseq` | string | RefSeq accession |
+| `uniparc` | string | UniParc accession |
+| `uniref100` | string | UniRef100 cluster ID |
+| `uniref90` | string | UniRef90 cluster ID |
+| `uniref50` | string | UniRef50 cluster ID |
+| `molecular_weight` | double | Predicted molecular weight (Da) |
+| `isoelectric_point` | double | Predicted isoelectric point |
+
+**Row Count**: 132,538,155
+
+### 18. `bakta_db_xrefs`
+
+Database cross-references from Bakta annotation. Multiple rows per gene cluster.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `gene_cluster_id` | string | FK → `gene_cluster.gene_cluster_id` |
+| `db` | string | Database name (e.g., SO, UniRef, KEGG, COG, GO, EC, Pfam) |
+| `accession` | string | Accession in the external database |
+
+**Row Count**: 572,376,477
+
+### 19. `bakta_pfam_domains`
+
+Pfam domain hits from HMMER via Bakta. Multiple domains per protein possible.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `gene_cluster_id` | string | FK → `gene_cluster.gene_cluster_id` |
+| `pfam_id` | string | Pfam accession (e.g., PF00001) |
+| `pfam_name` | string | Pfam domain name |
+| `start` | int | Domain start position (1-based) |
+| `stop` | int | Domain end position |
+| `score` | double | HMMER bit score |
+| `evalue` | double | HMMER e-value |
+| `aa_cov` | double | Amino acid sequence coverage (0-1) |
+| `hmm_cov` | double | HMM model coverage (0-1) |
+
+**Row Count**: 18,807,208
+
+### 20. `bakta_amr`
+
+AMR gene annotations from AMRFinderPlus via Bakta.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `gene_cluster_id` | string | FK → `gene_cluster.gene_cluster_id` |
+| `amr_gene` | string | AMR gene name |
+| `amr_product` | string | AMR product description |
+| `method` | string | Detection method |
+| `identity` | double | Sequence identity (0-100) |
+| `query_cov` | double | Query coverage (0-100) |
+| `subject_cov` | double | Subject coverage (0-100) |
+| `accession` | string | Reference accession |
+
+**Row Count**: 83,008
+
 ### 16. `phylogenetic_tree_distance_pairs`
 
 Pairwise branch distances extracted from species phylogenetic trees.
@@ -418,7 +496,11 @@ gtdb_species_clade (27,690)
     │            └── N:N → genome_ani (genome1_id, genome2_id)
     │
     ├── 1:N → gene_cluster (gtdb_species_clade_id)
-    │            └── 1:1 → eggnog_mapper_annotations (query_name)
+    │            ├── 1:1 → eggnog_mapper_annotations (query_name)
+    │            ├── 1:1 → bakta_annotations (gene_cluster_id)
+    │            ├── 1:N → bakta_db_xrefs (gene_cluster_id)
+    │            ├── 0:N → bakta_pfam_domains (gene_cluster_id)
+    │            └── 0:1 → bakta_amr (gene_cluster_id)
     │
     └── 0:1 → phylogenetic_tree (gtdb_species_clade_id)  [330 species]
                  └── 1:N → phylogenetic_tree_distance_pairs (phylogenetic_tree_id)
@@ -597,12 +679,16 @@ WHERE g.gtdb_species_clade_id LIKE 's__Prochlorococcus%'
 
 ## Recently Added / Updated
 
-*Confirmed via direct Spark SQL on cluster (2026-02-13)*
+*Confirmed via direct Spark SQL on cluster (2026-03-12)*
 
 | Table Name | Description | Status |
 |------------|-------------|--------|
-| `phylogenetic_tree` | 330 Newick trees from single-copy core genes | **AVAILABLE** — schema documented above |
-| `phylogenetic_tree_distance_pairs` | 22.6M pairwise branch distances | **AVAILABLE** — schema documented above |
+| `bakta_annotations` | 132.5M rows — Bakta v1.12.0 reannotation of all cluster reps | **NEW** (2026-03-12) |
+| `bakta_db_xrefs` | 572M rows — database cross-references from Bakta | **NEW** (2026-03-12) |
+| `bakta_pfam_domains` | 18.8M rows — Pfam domain hits from Bakta | **NEW** (2026-03-12) |
+| `bakta_amr` | 83K rows — AMR annotations from AMRFinderPlus via Bakta | **NEW** (2026-03-12) |
+| `phylogenetic_tree` | 330 Newick trees from single-copy core genes | **AVAILABLE** |
+| `phylogenetic_tree_distance_pairs` | 22.6M pairwise branch distances | **AVAILABLE** |
 | `gene_cluster` (updated) | Now includes `is_cluster_rep`, `faa_header`, `faa_sequence`, `fna_header`, `fna_sequence` | **UPDATED** — representative sequences inline |
 
 ## Missing Tables (Mentioned in Project Docs but Not Present)
@@ -633,6 +719,7 @@ The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can experience 504 Gatewa
 
 ## Changelog
 
+- **2026-03-12**: Added 4 Bakta reannotation tables (`bakta_annotations`, `bakta_db_xrefs`, `bakta_pfam_domains`, `bakta_amr`) — 132.5M cluster reps annotated with Bakta v1.12.0 on NERSC Perlmutter. Now 20 tables total.
 - **2026-02-13**: Re-verified full schema (16 tables). Documented 5 new `gene_cluster` columns (`is_cluster_rep`, `faa_header`, `faa_sequence`, `fna_header`, `fna_sequence`) — cluster representative sequences now available inline. Documented `phylogenetic_tree` (330 rows) and `phylogenetic_tree_distance_pairs` (22.6M rows) schemas.
 - **2026-01-07**: Full verification via direct Spark SQL on cluster. Added gapmind_pathways schema, gene cluster category distribution, genes per genome statistics, identified 12 specific orphan pangenomes.
 - **2026-01-06**: Initial documentation based on REST API queries and local data extracts.

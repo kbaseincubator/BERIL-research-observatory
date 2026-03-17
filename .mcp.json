@@ -1,5 +1,9 @@
 {
   "mcpServers": {
+    "pubmed": {
+      "type": "http",
+      "url": "https://pubmed.mcp.claude.com/mcp"
+    },
     "paper-search": {
       "command": "uvx",
       "args": ["--from", "paper-search-mcp", "python", "-m", "paper_search_mcp.server"],

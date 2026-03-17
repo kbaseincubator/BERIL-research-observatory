@@ -11,6 +11,17 @@
     </p>
 </div>
 
+<!-- Architecture -->
+<section class="section">
+    <h2>Architecture</h2>
+    <div class="card" style="padding: var(--space-4); text-align: center;">
+        <img src="{{ url_for('static', path='images/architecture_dark.png') }}"
+             alt="Microbial Discovery Forge architecture diagram"
+             style="width: 100%; max-width: 900px; height: auto; border-radius: var(--radius-sm);"
+             loading="lazy">
+    </div>
+</section>
+
 <!-- Two Experiences -->
 <section class="section">
     <h2>Two Experiences</h2>
@@ -64,7 +75,7 @@
     <div class="team-grid">
         <div class="card team-card">
             <div style="position: relative;">
-                <img src="https://berkeleybop.org/people/chris-mungall/Mungall-headshot.jpeg"
+                <img src="https://biosciences.lbl.gov/wp-content/uploads/2015/11/Chris-Mungal-2022-square-scaled-e1761083522626.jpeg"
                      alt="Headshot of Chris Mungall" class="team-avatar"
                      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
                 <div class="avatar-initials" style="display:none">CM</div>
@@ -207,6 +218,8 @@
 <!-- Contributing Projects and Resources -->
 <section class="section">
     <h2>Contributing Projects and Resources</h2>
+
+    <h3>Infrastructure</h3>
     <div class="grid grid-3">
         <div class="card">
             <h4 style="margin-top: 0;">BERIL</h4>
@@ -229,6 +242,42 @@
                 The <strong>BER Data Lakehouse</strong> is the underlying data resource hosting 35+ databases
                 across 9 tenants of curated scientific datasets. Developed by the KBase team, BERDL provides
                 the data foundation for all Observatory analyses.
+            </p>
+        </div>
+    </div>
+
+    <h3 style="margin-top: var(--space-6);">Data Partners</h3>
+    <div class="grid grid-2">
+        <div class="card">
+            <h4 style="margin-top: 0;">NMDC</h4>
+            <p class="text-small">
+                The <strong>National Microbiome Data Collaborative</strong> provides multi-omics microbiome
+                data including annotations, metabolomics, and proteomics. Used in Observatory projects
+                for environmental and functional analyses.
+            </p>
+        </div>
+        <div class="card">
+            <h4 style="margin-top: 0;">ENIGMA</h4>
+            <p class="text-small">
+                The <strong>Ecosystems and Networks Integrated with Genes and Molecular Assemblies</strong>
+                SFA provides environmental microbiology data from Oak Ridge field sites, including genomes,
+                communities, and strain isolates.
+            </p>
+        </div>
+        <div class="card">
+            <h4 style="margin-top: 0;">JGI</h4>
+            <p class="text-small">
+                The <strong>Joint Genome Institute</strong> provides upstream genome sequencing, assembly,
+                and annotation pipelines. JGI's GOLD and IMG databases supply the foundational genomic
+                data underlying BERDL collections.
+            </p>
+        </div>
+        <div class="card">
+            <h4 style="margin-top: 0;">PhageFoundry</h4>
+            <p class="text-small">
+                The <strong>Phage Foundry</strong> provides species-specific genome browsers for
+                phage-host interaction research, with curated data for <em>Acinetobacter</em>,
+                <em>Klebsiella</em>, <em>Pseudomonas</em>, and other priority pathogens.
             </p>
         </div>
     </div>

@@ -2,11 +2,16 @@
 
 from pathlib import Path
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+_settings = None
 
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
+
+    # Test-only settings. These should be left False unless running tests.
+    test_skip_lifespan: bool = False
 
     # Paths
     app_dir: Path = Path(__file__).parent
@@ -17,11 +22,28 @@ class Settings(BaseSettings):
     data_repo_url: str | None = None  # Git repository URL
     data_repo_branch: str = "data-cache"  # Branch to checkout
     data_repo_path: Path = Path("/tmp/beril_data_cache")  # Local clone path
+    force_local_data: bool = False
+
+    plotly_cdn_url: str = "https://cdn.plot.ly/plotly-3.4.0.min.js"
 
     # Webhook configuration
     webhook_secret: str | None = None
 
+    # ORCiD OAuth2 configuration
+    orcid_client_id: str | None = None
+    orcid_client_secret: str | None = None
+    orcid_redirect_root: str = "http://localhost:8000"  # expected not to end with a slash
+    orcid_redirect_path: str = "/auth/orcid/callback"  # expects to be prepended with slash
+    orcid_base_url: str = "https://orcid.org"  # Use https://sandbox.orcid.org for development
+
+    # Session configuration
+    session_secret_key: str = "change-me-in-production"  # Signs session cookies
+
     # Derived paths
+    @property
+    def orcid_redirect_uri(self) -> str:
+        return self.orcid_redirect_root + self.orcid_redirect_path
+
     @property
     def projects_dir(self) -> Path:
         return self.repo_dir / "projects"
@@ -56,7 +78,9 @@ class Settings(BaseSettings):
 
     # App settings
     app_name: str = "Microbial Discovery Forge"
-    app_description: str = "AI co-scientist and research observatory for BERDL-scale microbial discovery"
+    app_description: str = (
+        "AI co-scientist and research observatory for BERDL-scale microbial discovery"
+    )
     debug: bool = False
 
     # Database stats (for hero display)
@@ -64,8 +88,16 @@ class Settings(BaseSettings):
     total_species: int = 27_000
     total_genes: str = "1B+"
 
-    class Config:
-        env_prefix = "BERIL_"  # BERIL Research Observatory
+    model_config = SettingsConfigDict(
+        env_prefix="BERIL_",  # BERIL Research Observatory
+        # Resolve .env relative to the repo root (two levels up from this file)
+        env_file=str(Path(__file__).parent.parent.parent / ".env"),
+        env_file_encoding="utf-8",
+    )
 
 
-settings = Settings()
+def get_settings():
+    global _settings
+    if _settings is None:
+        _settings = Settings()
+    return _settings

@@ -13,6 +13,42 @@
 
 ## High Priority Ideas
 
+### [truly_dark_genes] Truly Dark Genes — What Remains Unknown After Modern Annotation?
+**Status**: IN_PROGRESS
+**Priority**: HIGH
+**Effort**: Medium (2-3 weeks)
+
+**Research Question**: Among the ~6,400 FB genes that remain hypothetical even after bakta v1.12.0 reannotation, what distinguishes them from annotation-lag dark matter, and can fitness phenotypes + sparse annotations prioritize them for experimental characterization?
+
+**Approach**:
+- Fork from `functional_dark_matter` NB12 insight: 83.7% of "dark" genes are annotation-lag, not truly unknown
+- Characterize the residual ~6,400 truly dark genes (shorter? more divergent? species-specific?)
+- Mine sparse annotations (UniRef50, Pfam HMMER, ICA modules, db_xrefs) as partial clues
+- Test cross-organism fitness concordance for truly dark orthologs
+- Produce prioritized ~50-100 candidates with experimental protocols
+
+**Hypotheses**:
+- Truly dark genes are structurally distinct (shorter, less conserved, taxonomically restricted)
+- They are enriched in stress conditions and accessory genomes
+- Partial annotations (UniRef50 + Pfam + module context) can narrow functional hypotheses
+
+**Impact**: High — reduces the "dark matter" problem from 57,011 genes to ~6,400 genuinely unknown ones and provides a tractable experimental target list
+
+**Dependencies**:
+- Existing: `functional_dark_matter` data (NB12 bakta enrichment)
+- Existing: `bakta_reannotation` Delta Lake tables
+- Existing: FB-pangenome link table from `conservation_vs_fitness`
+
+**Progress**:
+- ✅ Project structure created: `projects/truly_dark_genes/`
+- ✅ Research plan written
+- ⏳ Next: NB01 census and characterization
+- ⏳ Next: NB02 Spark data enrichment
+
+**Location**: `projects/truly_dark_genes/`
+
+---
+
 ### [pangenome_pathway_geography] Pangenome Openness, Metabolic Pathways, and Biogeography
 **Status**: IN_PROGRESS
 **Priority**: HIGH
@@ -417,6 +453,14 @@
 
 ## Completed Ideas
 
+### [bacdive_phenotype_metal_tolerance] BacDive Phenotype Signatures of Metal Tolerance
+**Status**: COMPLETED
+**Results**: BacDive phenotypes (Gram stain, oxygen tolerance, enzyme activities, metabolite utilization) capture real metal tolerance signal (R²=0.16 alone, 7/10 features significant after FDR) but are entirely phylogenetically confounded — adding phenotype features to a taxonomy-based model provides zero improvement (delta R²=-0.009). Genome-encoded metal resistance gene count is the true predictor (full model R²=0.63). Gram stain is the strongest univariate predictor (d=-0.61) but indistinguishable from phylogeny. Urease effect reversed (d=-0.18, driven by Actinomycetes). Catalase shows Simpson's paradox (positive overall, negative within every major class). First large-scale test of BacDive phenotypes as metal tolerance predictors across 5,647 species. See `projects/bacdive_phenotype_metal_tolerance/`.
+
+### [nmdc_community_metabolic_ecology] Community Metabolic Ecology via NMDC × Pangenome Integration
+**Status**: COMPLETED
+**Results**: Weak but consistent Black Queen signal detected in community metabolomics: 11/13 (85%) amino acid biosynthesis pathways trend in BQH-predicted direction (binomial p=0.011). Leucine (r=−0.390, q=0.022, n=62) and arginine (r=−0.297, q=0.049, n=80) biosynthesis are FDR-significant. Community metabolic potential separates strongly by ecosystem type (PC1=49.4% variance; Soil vs. Freshwater Mann-Whitney p<0.0001); 17/18 aa pathways significantly differentiated across ecosystem types. First BERDL integration of NMDC multi-omics with GapMind pangenome pathway completeness across 220 samples. See `projects/nmdc_community_metabolic_ecology/`.
+
 ### [lab_field_ecology] Lab Fitness Predicts Field Ecology at Oak Ridge
 **Status**: COMPLETED
 **Results**: 14 of 26 FB genera detected at Oak Ridge (108 sites). 5 of 11 tested genera correlate with uranium after FDR correction: *Herbaspirillum* and *Bacteroides* increase at contaminated sites, *Caulobacter*, *Sphingomonas*, and *Pedobacter* decrease. Lab metal tolerance suggestive but not significant (rho=0.50, p=0.095). First study linking Fitness Browser data with ENIGMA CORAL field ecology. See `projects/lab_field_ecology/`.
@@ -472,6 +516,14 @@
 ### [respiratory_chain_wiring] Condition-Specific Respiratory Chain Wiring in ADP1
 **Status**: COMPLETED
 **Results**: ADP1's branched respiratory chain (62 genes, 8 subsystems) uses qualitatively different configurations per carbon source: quinate requires only Complex I, acetate requires everything, glucose requires nothing. The paradox (quinate has lower NADH yield but higher Complex I dependency) is resolved by NADH flux rate — concentrated TCA burst from ring cleavage vs distributed production. ADP1 has 3 parallel NADH dehydrogenases (Complex I, NDH-2, ACIAD3522) with non-overlapping condition requirements. Cross-species: after correcting NDH-2 false positives (filtering to 1-2 hits/organism), NDH-2 presence does NOT predict reduced Complex I aromatic deficits (p=0.52), suggesting ADP1's wiring is species-specific. See `projects/respiratory_chain_wiring/`.
+
+### [counter_ion_effects] Counter Ion Effects on Metal Fitness Measurements
+**Status**: COMPLETED
+**Results**: Counter ions (chloride, sulfate, acetate) are NOT the primary confound in Fitness Browser metal experiments. 39.8% of metal-important genes overlap with NaCl stress across 19 organisms and 14 metals, but this reflects shared stress biology, not counter ion contamination. Key evidence: ZnSO₄ (0 mM Cl⁻) shows 44.6% NaCl overlap — higher than most chloride metals. The Metal Fitness Atlas core enrichment is fully robust after removing shared-stress genes (7/14 metals show stronger enrichment). DvH metal-NaCl correlation hierarchy (Zn r=0.72 → Fe r=0.09) follows toxicity mechanism, not Cl⁻ dose. See `projects/counter_ion_effects/`.
+
+### [fw300_metabolic_consistency] Metabolic Consistency of Pseudomonas FW300-N2E3
+**Status**: COMPLETED
+**Results**: Four BERDL databases (Web of Microbes, Fitness Browser, BacDive, GapMind) show 94% mean concordance for FW300-N2E3 metabolites, but this is structurally driven by FB (21/21=100%) and GapMind (13/13=100%). BacDive is the only informative variable (3/7=43%, binomial p=0.40 vs baseline). The key biological finding is tryptophan overflow: FW300-N2E3 produces tryptophan (WoM), has 231 fitness genes (FB), a complete pathway (GapMind), yet 0/50 *P. fluorescens* strains utilize it (BacDive) — consistent with cross-feeding. Per-strain BacDive consensus, approximate-match flagging, and concordance decomposition are methodological contributions. See `projects/fw300_metabolic_consistency/`.
 
 ---
 
@@ -530,3 +582,6 @@ _Capture half-baked ideas here for future refinement_
 - Link to relevant notebooks, data files, or papers when adding ideas
 - When an idea moves to IN_PROGRESS, create a project directory or notebook
 - Archive completed ideas with links to results
+
+---
+

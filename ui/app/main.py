@@ -6,165 +6,119 @@ import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
 
+import app.context as ctx
+from app.context import generate_base_context, get_base_context, get_repo_data, initialize_data
+from app.notebook_processors import PlotlyPreprocessor
 import nbformat
-from markupsafe import Markup
-from nbconvert import HTMLExporter
-
-# Add custom Jinja2 filters
-import markdown
-from fastapi import FastAPI, Request, Header, HTTPException
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from nbconvert import HTMLExporter
+from starlette.middleware.sessions import SessionMiddleware
 
-from .config import settings
-from .dataloader import load_repository_data
-from .git_data_sync import ensure_repo_cloned, pull_latest
-from .models import CollectionCategory
+from app.filters import (
+    markdown_filter,
+    markdown_inline_filter,
+    slugify_filter,
+    strip_images_filter,
+)
 
+from .routes.auth import ROUTER_AUTH
+from .routes.user import ROUTER_USER
+from .config import get_settings
+from .dataloader import load_repository_data, RepositoryParser
+from .git_data_sync import pull_latest
+from .models import CollectionCategory, RepositoryData
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 logger = logging.getLogger(__name__)
 
+templates = None
 
-# Add custom template globals
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Initialize app on startup."""
-    logger.info("Initializing repository data")
-
-    # If git repo is configured, clone/pull it first
-    if settings.data_repo_url:
-        try:
-            logger.info(f"Syncing data from git repository: {settings.data_repo_url}")
-            await ensure_repo_cloned(
-                settings.data_repo_url,
-                settings.data_repo_branch,
-                settings.data_repo_path
-            )
-
-            # Load from local git repo
-            data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
-            app.state.repo_data = load_repository_data(data_file)
-            logger.info(f"Repository data loaded from git. Last updated: {app.state.repo_data.last_updated}")
-        except Exception as e:
-            logger.error(f"Failed to load from git repo: {e}")
-            logger.info("Falling back to local parsing")
-            app.state.repo_data = load_repository_data(None)
-    else:
-        # No git repo configured, load from local parsing
-        logger.info("No git repo configured, parsing local files")
-        app.state.repo_data = load_repository_data(None)
-
+    settings = get_settings()
+    if not settings.test_skip_lifespan:
+        app.state.repo_data = await initialize_data(settings)
+        app.state.base_context = generate_base_context(settings, app.state.repo_data)
     yield
 
 
-# Create FastAPI app
-app = FastAPI(
-    title=settings.app_name,
-    description=settings.app_description,
-    debug=settings.debug,
-    lifespan=lifespan,
-)
+def create_app() -> FastAPI:
+    settings = get_settings()
 
-
-
-# Mount static files
-app.mount("/static", StaticFiles(directory=settings.static_dir), name="static")
-
-# Mount project data files for visualization serving
-app.mount(
-    "/project-assets",
-    StaticFiles(directory=settings.projects_dir),
-    name="project-assets",
-)
-
-# Configure templates
-templates = Jinja2Templates(directory=settings.templates_dir)
-
-
-def markdown_filter(text: str) -> Markup:
-    """Convert markdown text to HTML."""
-    if not text:
-        return Markup("")
-    # Convert markdown to HTML
-    html = markdown.markdown(
-        text,
-        extensions=["fenced_code", "tables", "nl2br"],
+    # Create FastAPI app
+    app = FastAPI(
+        title=settings.app_name,
+        description=settings.app_description,
+        debug=settings.debug,
+        lifespan=lifespan,
     )
-    return Markup(html)
+
+    app.add_middleware(SessionMiddleware, secret_key=settings.session_secret_key, session_cookie="beril_session")
+
+    # Mount static files
+    app.mount("/static", StaticFiles(directory=settings.static_dir), name="static")
+
+    # Mount project data files for visualization serving
+    app.mount(
+        "/project-assets",
+        StaticFiles(directory=settings.projects_dir),
+        name="project-assets",
+    )
+
+    app.include_router(ROUTER_AUTH)
+    app.include_router(ROUTER_COLLECTIONS)
+    app.include_router(ROUTER_USER)
+    app.include_router(ROUTER_COMMUNITY)
+    app.include_router(ROUTER_COSCIENTIST)
+    app.include_router(ROUTER_DATA)
+    app.include_router(ROUTER_GENERAL)
+    app.include_router(ROUTER_KNOWLEDGE)
+    app.include_router(ROUTER_PROJECTS)
+    app.include_router(ROUTER_SKILLS)
+
+    # Configure templates
+    global templates
+    templates = Jinja2Templates(directory=settings.templates_dir)
+    ctx.templates = templates
+
+    # Register filters
+    templates.env.filters["markdown"] = markdown_filter
+    templates.env.filters["md"] = markdown_filter  # Alias
+    templates.env.filters["markdown_inline"] = markdown_inline_filter
+    templates.env.filters["mdi"] = markdown_inline_filter  # Alias
+    templates.env.filters["strip_images"] = strip_images_filter
+    templates.env.filters["slugify"] = slugify_filter
+
+    return app
 
 
-def markdown_inline_filter(text: str) -> Markup:
-    """Convert markdown text to inline HTML (strips outer <p> tags)."""
-    if not text:
-        return Markup("")
-    html = markdown.markdown(text, extensions=["fenced_code"])
-    # Strip outer <p> tags for inline use
-    if html.startswith("<p>") and html.endswith("</p>"):
-        html = html[3:-4]
-    return Markup(html)
-
-
-def strip_images_filter(text: str) -> str:
-    """Strip markdown image syntax from text for preview use."""
-    if not text:
-        return ""
-    import re
-    return re.sub(r"!\[[^\]]*\]\([^)]+\)", "", text)
-
-
-# Register filters
-templates.env.filters["markdown"] = markdown_filter
-templates.env.filters["md"] = markdown_filter  # Alias
-templates.env.filters["markdown_inline"] = markdown_inline_filter
-templates.env.filters["mdi"] = markdown_inline_filter  # Alias
-templates.env.filters["strip_images"] = strip_images_filter
-
-
-def slugify_filter(text: str) -> str:
-    """Convert text to a URL-friendly slug for anchor IDs."""
-    if not text:
-        return ""
-    import re
-    text = text.lower().strip()
-    text = re.sub(r"[^\w\s-]", "", text)
-    text = re.sub(r"[\s_]+", "-", text)
-    return text
-
-
-templates.env.filters["slugify"] = slugify_filter
-
-
-def get_repo_data(request: Request):
-    """Get repository data from app state."""
-    return request.app.state.repo_data
-
-
-# Template context processor
-def get_base_context(request: Request) -> dict:
-    """Get base context for all templates."""
-    repo_data = get_repo_data(request)
-    return {
-        "request": request,
-        "app_name": settings.app_name,
-        "total_genomes": f"{settings.total_genomes:,}",
-        "total_species": f"{settings.total_species:,}",
-        "total_genes": settings.total_genes,
-        "project_count": len(repo_data.projects),
-        "discovery_count": len(repo_data.discoveries),
-        "idea_count": len(repo_data.research_ideas),
-        "collection_count": len(repo_data.collections),
-        "contributor_count": len(repo_data.contributors),
-        "skill_count": len(repo_data.skills),
-        "last_updated": repo_data.last_updated,
-    }
+ROUTER_COLLECTIONS = APIRouter(tags=["Collections"])
+ROUTER_COMMUNITY = APIRouter(tags=["Community"])
+ROUTER_COSCIENTIST = APIRouter(tags=["Coscientist"])
+ROUTER_DATA = APIRouter(tags=["Data"])
+ROUTER_GENERAL = APIRouter(tags=["General"])
+ROUTER_KNOWLEDGE = APIRouter(tags=["Knowledge"])
+ROUTER_PROJECTS = APIRouter(tags=["Project"])
+ROUTER_SKILLS = APIRouter(tags=["Skills"])
 
 
 # Routes
-@app.get("/", response_class=HTMLResponse)
-async def home(request: Request):
+@ROUTER_GENERAL.get("/", response_class=HTMLResponse)
+async def home(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Home page - Research Observatory dashboard."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
     context.update(
         {
             "projects": repo_data.projects[:3],  # Latest 3 projects
@@ -176,36 +130,45 @@ async def home(request: Request):
             )[:3],
         }
     )
-    return templates.TemplateResponse("home.html", context)
+    return templates.TemplateResponse(request, "home.html", context)
 
 
-@app.get("/co-scientist", response_class=HTMLResponse)
-async def co_scientist(request: Request):
+
+@ROUTER_COSCIENTIST.get("/co-scientist", response_class=HTMLResponse)
+async def co_scientist(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """AI Co-Scientist page."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
     context["skills"] = repo_data.skills
     # Example project for the workflow walkthrough
     context["example_project"] = next(
         (p for p in repo_data.projects if p.id == "costly_dispensable_genes"), None
     )
-    return templates.TemplateResponse("co-scientist.html", context)
+    return templates.TemplateResponse(request, "co-scientist.html", context)
 
 
-@app.get("/skills", response_class=HTMLResponse)
-async def skills_page(request: Request):
+@ROUTER_SKILLS.get("/skills", response_class=HTMLResponse)
+async def skills_page(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Skills catalog page."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
     context["skills"] = repo_data.skills
-    return templates.TemplateResponse("skills.html", context)
+    return templates.TemplateResponse(request, "skills.html", context)
 
 
-@app.get("/projects", response_class=HTMLResponse)
-async def projects_list(request: Request, sort: str = "recent", dir: str = ""):
+@ROUTER_PROJECTS.get("/projects", response_class=HTMLResponse)
+async def projects_list(
+    request: Request,
+    sort: str = "recent",
+    dir: str = "",
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Projects list page with sortable project grid."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
 
     projects = list(repo_data.projects)  # copy to avoid mutating cached data
 
@@ -240,45 +203,53 @@ async def projects_list(request: Request, sort: str = "recent", dir: str = ""):
     context["projects"] = projects
     context["current_sort"] = sort
     context["sort_dir"] = sort_dir
-    return templates.TemplateResponse("projects/list.html", context)
+    return templates.TemplateResponse(request, "projects/list.html", context)
 
 
-@app.get("/research-areas", response_class=HTMLResponse)
-async def research_areas(request: Request):
+@ROUTER_COSCIENTIST.get("/research-areas", response_class=HTMLResponse)
+async def research_areas(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Research areas page - auto-clustered project groups."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
-
     # Resolve project IDs to full objects for each area
     project_map = {p.id: p for p in repo_data.projects}
     areas_with_projects = []
     for area in repo_data.research_areas:
-        areas_with_projects.append({
-            "area": area,
-            "projects": [project_map[pid] for pid in area.project_ids if pid in project_map],
-        })
+        areas_with_projects.append(
+            {
+                "area": area,
+                "projects": [
+                    project_map[pid] for pid in area.project_ids if pid in project_map
+                ],
+            }
+        )
 
     context["areas"] = areas_with_projects
-    return templates.TemplateResponse("research-areas.html", context)
+    return templates.TemplateResponse(request, "research-areas.html", context)
 
 
-@app.get("/projects/{project_id}", response_class=HTMLResponse)
-async def project_detail(request: Request, project_id: str):
+@ROUTER_PROJECTS.get("/projects/{project_id}", response_class=HTMLResponse)
+async def project_detail(
+    request: Request,
+    project_id: str,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Project detail page."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
 
     # Find project
     project = next((p for p in repo_data.projects if p.id == project_id), None)
     if not project:
         context["error"] = f"Project '{project_id}' not found"
-        return templates.TemplateResponse("error.html", context, status_code=404)
+        return templates.TemplateResponse(
+            request, "error.html", context, status_code=404
+        )
 
     # Enrich project contributors with aggregated data (ORCID, full name)
-    from .dataloader import RepositoryParser
     agg_by_key = {
-        RepositoryParser._contributor_key(c.name): c
-        for c in repo_data.contributors
+        RepositoryParser._contributor_key(c.name): c for c in repo_data.contributors
     }
     for contrib in project.contributors:
         key = RepositoryParser._contributor_key(contrib.name)
@@ -298,7 +269,9 @@ async def project_detail(request: Request, project_id: str):
 
     # Resolve collection IDs to full objects for richer display
     context["project_collections"] = [
-        c for c in (repo_data.get_collection(cid) for cid in project.related_collections) if c
+        c
+        for c in (repo_data.get_collection(cid) for cid in project.related_collections)
+        if c
     ]
 
     # Resolve used_by IDs to full Project objects
@@ -306,23 +279,29 @@ async def project_detail(request: Request, project_id: str):
         p for p in repo_data.projects if p.id in project.used_by
     ]
 
-    return templates.TemplateResponse("projects/detail.html", context)
+    return templates.TemplateResponse(request, "projects/detail.html", context)
 
 
-@app.get(
+@ROUTER_PROJECTS.get(
     "/projects/{project_id}/notebooks/{notebook_name}", response_class=HTMLResponse
 )
-async def notebook_viewer(request: Request, project_id: str, notebook_name: str):
+async def notebook_viewer(
+    request: Request,
+    project_id: str,
+    notebook_name: str,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Render a Jupyter notebook as HTML."""
-
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
-
     # Find project
-    project = next((p for p in repo_data.projects if p.id == project_id), None)
+    project = next(
+        (p for p in repo_data.projects if p.id == project_id), None
+    )
     if not project:
         context["error"] = f"Project '{project_id}' not found"
-        return templates.TemplateResponse("error.html", context, status_code=404)
+        return templates.TemplateResponse(
+            request, "error.html", context, status_code=404
+        )
 
     # Find notebook
     notebook = next((n for n in project.notebooks if n.filename == notebook_name), None)
@@ -330,18 +309,26 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
         context["error"] = (
             f"Notebook '{notebook_name}' not found in project '{project_id}'"
         )
-        return templates.TemplateResponse("error.html", context, status_code=404)
+        return templates.TemplateResponse(
+            request, "error.html", context, status_code=404
+        )
 
     # Load and convert notebook
-    notebook_path = settings.repo_dir / notebook.path
+    notebook_path = get_settings().repo_dir / notebook.path
     if not notebook_path.exists():
         context["error"] = f"Notebook file not found: {notebook.path}"
-        return templates.TemplateResponse("error.html", context, status_code=404)
+        return templates.TemplateResponse(
+            request, "error.html", context, status_code=404
+        )
 
     try:
         # Read the notebook
         with open(notebook_path, "r", encoding="utf-8") as f:
             nb = nbformat.read(f, as_version=4)
+
+        # Convert plotly outputs to renderable HTML before exporting
+        preprocessor = PlotlyPreprocessor()
+        nb, nb_resources = preprocessor.preprocess(nb, {})
 
         # Convert to HTML
         html_exporter = HTMLExporter()
@@ -350,7 +337,12 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
         html_exporter.exclude_input_prompt = False
         html_exporter.exclude_output_prompt = False
 
-        (body, resources) = html_exporter.from_notebook_node(nb)
+        (body, _) = html_exporter.from_notebook_node(nb)
+
+        # Prepend Plotly CDN script if any plotly figures were found
+        if nb_resources.get("needs_plotly"):
+            plotly_cdn = f'<script src="{get_settings().plotly_cdn_url}" charset="utf-8"></script>'
+            body = plotly_cdn + body
 
         context.update(
             {
@@ -359,28 +351,120 @@ async def notebook_viewer(request: Request, project_id: str, notebook_name: str)
                 "notebook_html": body,
             }
         )
-        return templates.TemplateResponse("projects/notebook.html", context)
+        return templates.TemplateResponse(request, "projects/notebook.html", context)
 
     except Exception as e:
         context["error"] = f"Error rendering notebook: {str(e)}"
-        return templates.TemplateResponse("error.html", context, status_code=500)
+        return templates.TemplateResponse(
+            request, "error.html", context, status_code=500
+        )
 
 
-@app.get("/projects/{project_id}/{filename:path}", response_class=HTMLResponse)
+@ROUTER_PROJECTS.get(
+    "/projects/{project_id}/{filename:path}", response_class=HTMLResponse
+)
 async def project_file_redirect(request: Request, project_id: str, filename: str):
     """Redirect markdown file links to the project detail page."""
-    from fastapi.responses import RedirectResponse
-
     if filename.endswith(".md"):
         return RedirectResponse(url=f"/projects/{project_id}", status_code=302)
     raise HTTPException(status_code=404, detail="File not found")
 
 
-@app.get("/collections", response_class=HTMLResponse)
-async def collections_overview(request: Request):
+@ROUTER_DATA.get("/data-explorer", response_class=HTMLResponse)
+async def data_explorer(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
+    """Cross-Collection Explorer Dashboard."""
+
+    # Build collection lookup and node data
+    collection_map = {c.id: c for c in repo_data.collections}
+    project_map = {p.id: p for p in repo_data.projects}
+
+    # Build adjacency info for each collection
+    adjacency: dict[str, dict] = {}
+    for coll in repo_data.collections:
+        adjacency[coll.id] = {"explicit": set(), "project": set(), "projects": set()}
+
+    for edge in repo_data.collection_edges:
+        if edge.source_id in adjacency and edge.target_id in adjacency:
+            if edge.edge_type == "explicit":
+                adjacency[edge.source_id]["explicit"].add(edge.target_id)
+                adjacency[edge.target_id]["explicit"].add(edge.source_id)
+            adjacency[edge.source_id]["project"].update(edge.projects)
+            adjacency[edge.target_id]["project"].update(edge.projects)
+            adjacency[edge.source_id]["projects"].update(edge.projects)
+            adjacency[edge.target_id]["projects"].update(edge.projects)
+
+    # Build node info for template
+    nodes = []
+    for coll in repo_data.collections:
+        adj = adjacency.get(coll.id, {})
+        connected_ids = adj.get("explicit", set()) | {
+            e.target_id if e.source_id == coll.id else e.source_id
+            for e in repo_data.collection_edges
+            if coll.id in (e.source_id, e.target_id)
+        }
+        nodes.append(
+            {
+                "collection": coll,
+                "connection_count": len(connected_ids),
+                "project_count": len(adj.get("projects", set())),
+            }
+        )
+
+    context["nodes"] = nodes
+    context["edges"] = repo_data.collection_edges
+    context["collection_map"] = collection_map
+
+    # Build join paths from explicit related_collections with sample queries
+    join_paths = []
+    seen_pairs: set[tuple[str, str]] = set()
+    for coll in repo_data.collections:
+        for related_id in coll.related_collections:
+            pair = (min(coll.id, related_id), max(coll.id, related_id))
+            if pair in seen_pairs or related_id not in collection_map:
+                continue
+            seen_pairs.add(pair)
+            join_paths.append(
+                {
+                    "source": coll,
+                    "target": collection_map[related_id],
+                }
+            )
+
+    context["join_paths"] = join_paths
+
+    # Explorer project highlights
+    explorer_ids = [
+        "env_embedding_explorer",
+        "paperblast_explorer",
+        "webofmicrobes_explorer",
+        "acinetobacter_adp1_explorer",
+    ]
+    context["explorer_projects"] = [
+        project_map[pid] for pid in explorer_ids if pid in project_map
+    ]
+
+    # Cross-collection stats
+    multi_coll_projects = [
+        p for p in repo_data.projects if len(p.related_collections) >= 2
+    ]
+    context["multi_collection_project_count"] = len(multi_coll_projects)
+    context["edge_count"] = len(repo_data.collection_edges)
+
+    return templates.TemplateResponse(request, "data-explorer.html", context)
+
+
+@ROUTER_COLLECTIONS.get("/collections", response_class=HTMLResponse)
+async def collections_overview(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Collections overview page - browse all BERDL collections."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
+
     context["collections"] = repo_data.collections
     context["primary_collections"] = repo_data.get_collections_by_category(
         CollectionCategory.PRIMARY
@@ -391,20 +475,25 @@ async def collections_overview(request: Request):
     context["reference_collections"] = repo_data.get_collections_by_category(
         CollectionCategory.REFERENCE
     )
-    return templates.TemplateResponse("collections/overview.html", context)
+    return templates.TemplateResponse(request, "collections/overview.html", context)
 
 
-@app.get("/collections/{collection_id}", response_class=HTMLResponse)
-async def collection_detail(request: Request, collection_id: str):
+@ROUTER_COLLECTIONS.get("/collections/{collection_id}", response_class=HTMLResponse)
+async def collection_detail(
+    request: Request,
+    collection_id: str,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Collection detail page with schema browser."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
 
     # Find the collection
     collection = repo_data.get_collection(collection_id)
     if not collection:
         context["error"] = f"Collection '{collection_id}' not found"
-        return templates.TemplateResponse("error.html", context, status_code=404)
+        return templates.TemplateResponse(
+            request, "error.html", context, status_code=404
+        )
 
     context["collection"] = collection
     context["collection_id"] = collection_id
@@ -421,73 +510,78 @@ async def collection_detail(request: Request, collection_id: str):
         p for p in repo_data.projects if collection_id in p.related_collections
     ]
 
-    return templates.TemplateResponse("collections/detail.html", context)
+    return templates.TemplateResponse(request, "collections/detail.html", context)
 
 
 # Legacy redirect for /data routes
-@app.get("/data", response_class=HTMLResponse)
-async def data_redirect(request: Request):
+@ROUTER_DATA.get("/data", response_class=HTMLResponse)
+async def data_redirect():
     """Redirect legacy /data to /collections."""
-    from fastapi.responses import RedirectResponse
-
     return RedirectResponse(url="/collections", status_code=301)
 
 
-@app.get("/data/schema", response_class=HTMLResponse)
-async def schema_redirect(request: Request):
+@ROUTER_DATA.get("/data/schema", response_class=HTMLResponse)
+async def schema_redirect():
     """Redirect legacy /data/schema to /collections/kbase_ke_pangenome."""
-    from fastapi.responses import RedirectResponse
-
     return RedirectResponse(url="/collections/kbase_ke_pangenome", status_code=301)
 
 
-@app.get("/knowledge/discoveries", response_class=HTMLResponse)
-async def discoveries_timeline(request: Request):
+@ROUTER_KNOWLEDGE.get("/knowledge/discoveries", response_class=HTMLResponse)
+async def discoveries_timeline(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Discoveries timeline page."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
     context["discoveries"] = repo_data.discoveries
-    return templates.TemplateResponse("knowledge/discoveries.html", context)
+    return templates.TemplateResponse(request, "knowledge/discoveries.html", context)
 
 
-@app.get("/knowledge/pitfalls", response_class=HTMLResponse)
-async def pitfalls_list(request: Request):
+@ROUTER_KNOWLEDGE.get("/knowledge/pitfalls", response_class=HTMLResponse)
+async def pitfalls_list(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Pitfalls and gotchas page."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
     context["pitfalls"] = repo_data.pitfalls
-    return templates.TemplateResponse("knowledge/pitfalls.html", context)
+    return templates.TemplateResponse(request, "knowledge/pitfalls.html", context)
 
 
-@app.get("/knowledge/performance", response_class=HTMLResponse)
-async def performance_tips(request: Request):
+@ROUTER_KNOWLEDGE.get("/knowledge/performance", response_class=HTMLResponse)
+async def performance_tips(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Performance tips and query patterns page."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
     context["tips"] = repo_data.performance_tips
-    return templates.TemplateResponse("knowledge/performance.html", context)
+    return templates.TemplateResponse(request, "knowledge/performance.html", context)
 
 
-@app.get("/knowledge/ideas", response_class=HTMLResponse)
-async def research_ideas(request: Request):
+@ROUTER_KNOWLEDGE.get("/knowledge/ideas", response_class=HTMLResponse)
+async def research_ideas(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Research ideas board page."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
-
     # Group ideas by status
     ideas = repo_data.research_ideas
     context["proposed_ideas"] = [i for i in ideas if i.status.value == "PROPOSED"]
     context["in_progress_ideas"] = [i for i in ideas if i.status.value == "IN_PROGRESS"]
     context["completed_ideas"] = [i for i in ideas if i.status.value == "COMPLETED"]
 
-    return templates.TemplateResponse("knowledge/ideas.html", context)
+    return templates.TemplateResponse(request, "knowledge/ideas.html", context)
 
 
-@app.get("/community/contributors", response_class=HTMLResponse)
-async def community_contributors(request: Request):
+@ROUTER_COMMUNITY.get("/community/contributors", response_class=HTMLResponse)
+async def community_contributors(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """Community contributors page."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
 
     # Sort by project count (most projects first)
     contributors = sorted(
@@ -510,29 +604,35 @@ async def community_contributors(request: Request):
     context["contributor_collections"] = contributor_collections
     context["total_collections_used"] = len(all_collections)
 
-    return templates.TemplateResponse("community/contributors.html", context)
+    return templates.TemplateResponse(request, "community/contributors.html", context)
 
 
-@app.get("/about", response_class=HTMLResponse)
-async def about(request: Request):
+@ROUTER_GENERAL.get("/about", response_class=HTMLResponse)
+async def about(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
     """About page."""
-    repo_data = get_repo_data(request)
-    context = get_base_context(request)
     context["primary_collections"] = repo_data.get_collections_by_category(
         CollectionCategory.PRIMARY
     )
-    return templates.TemplateResponse("about/about.html", context)
+    return templates.TemplateResponse(request, "about/about.html", context)
 
 
 # Webhook endpoint for data cache updates
-@app.post("/api/webhook/data-update")
-async def data_update_webhook(request: Request, x_webhook_signature: str = Header(None)):
+@ROUTER_GENERAL.post("/api/webhook/data-update")
+async def data_update_webhook(
+    request: Request, x_webhook_signature: str = Header(None)
+):
     """
     Webhook endpoint to receive data cache update notifications.
 
     Expected to be called by GitHub Actions after building new cache.
     Validates signature and reloads data from the remote source.
     """
+    settings = get_settings()
+
     # Read the request body
     body = await request.body()
 
@@ -544,9 +644,7 @@ async def data_update_webhook(request: Request, x_webhook_signature: str = Heade
 
         # Compute expected signature
         expected_signature = hmac.new(
-            settings.webhook_secret.encode(),
-            body,
-            hashlib.sha256
+            settings.webhook_secret.encode(), body, hashlib.sha256
         ).hexdigest()
 
         if not hmac.compare_digest(x_webhook_signature, expected_signature):
@@ -558,7 +656,7 @@ async def data_update_webhook(request: Request, x_webhook_signature: str = Heade
     # Pull latest changes and reload
     if settings.data_repo_url:
         try:
-            logger.info(f"Pulling latest changes from git repository")
+            logger.info("Pulling latest changes from git repository")
 
             # Pull latest changes
             await pull_latest(settings.data_repo_path, settings.data_repo_branch)
@@ -566,24 +664,35 @@ async def data_update_webhook(request: Request, x_webhook_signature: str = Heade
             # Reload from local git repo
             data_file = settings.data_repo_path / "data_cache" / "data.pkl.gz"
             request.app.state.repo_data = load_repository_data(data_file)
+            request.app.state.base_context = generate_base_context(settings, request.app.state.repo_data)
 
-            logger.info(f"Data reloaded successfully. New last_updated: {request.app.state.repo_data.last_updated}")
+            logger.info(
+                f"Data reloaded successfully. New last_updated: {request.app.state.repo_data.last_updated}"
+            )
 
-            return JSONResponse({
-                "status": "success",
-                "message": "Data reloaded successfully from git",
-                "last_updated": request.app.state.repo_data.last_updated.isoformat() if request.app.state.repo_data.last_updated else None
-            })
+            return JSONResponse(
+                {
+                    "status": "success",
+                    "message": "Data reloaded successfully from git",
+                    "last_updated": request.app.state.repo_data.last_updated.isoformat()
+                    if request.app.state.repo_data.last_updated
+                    else None,
+                }
+            )
         except Exception as e:
             logger.error(f"Failed to reload data from git: {e}")
-            raise HTTPException(status_code=500, detail=f"Failed to reload data: {str(e)}")
+            raise HTTPException(
+                status_code=500, detail=f"Failed to reload data: {str(e)}"
+            )
     else:
         logger.warning("Webhook received but no data_repo_url configured")
         raise HTTPException(status_code=400, detail="No git repository configured")
 
 
 # Health check
-@app.get("/health")
-async def health():
+@ROUTER_GENERAL.get("/health")
+async def health(
+    context: dict = Depends(get_base_context),
+):
     """Health check endpoint."""
-    return {"status": "healthy"}
+    return {"status": "healthy"} | context

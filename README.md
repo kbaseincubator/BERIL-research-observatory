@@ -1,5 +1,7 @@
 # Microbial Discovery Forge
 
+![Architecture](docs/figures/architecture_dark.png)
+
 The **Microbial Discovery Forge** is an AI co-scientist and research observatory for BERDL-scale microbial discovery. Built on the **KBase BER Data Lakehouse (BERDL)**, it combines reusable skills, shared memory, and scalable data to accelerate research.
 
 Through the Microbial Discovery Forge, users can:

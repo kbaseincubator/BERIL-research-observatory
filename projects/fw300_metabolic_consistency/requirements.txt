@@ -1,0 +1,7 @@
+pandas>=1.5
+numpy>=1.23
+matplotlib>=3.6
+# Spark access (NB01, NB02 only):
+#   On BERDL JupyterHub: get_spark_session() is pre-loaded in the notebook kernel
+#   Off-cluster: requires .venv-berdl environment with pyspark + proxy chain
+#   NB03 does not require Spark — it reads cached TSV files from data/
