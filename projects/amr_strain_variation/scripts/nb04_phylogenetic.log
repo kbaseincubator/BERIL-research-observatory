@@ -1,0 +1,67 @@
+[15:43:04] NB04: Starting phylogenetic signal analysis
+[15:43:07] Spark session ready
+[15:43:07] Phase 1: ANI extraction
+[15:43:10] Species eligible for ANI extraction: 1262
+[15:44:48]   [50/1262] 50 ok, 0 cached, 0 err, 2min
+[15:46:31]   [100/1262] 100 ok, 0 cached, 0 err, 3min
+[15:48:08]   [150/1262] 150 ok, 0 cached, 0 err, 5min
+[15:49:45]   [200/1262] 200 ok, 0 cached, 0 err, 7min
+[15:51:24]   [250/1262] 250 ok, 0 cached, 0 err, 8min
+[15:53:10]   [300/1262] 300 ok, 0 cached, 0 err, 10min
+[15:54:56]   [350/1262] 350 ok, 0 cached, 0 err, 12min
+[15:56:49]   [400/1262] 400 ok, 0 cached, 0 err, 14min
+[15:58:34]   [450/1262] 450 ok, 0 cached, 0 err, 15min
+[16:00:20]   [500/1262] 500 ok, 0 cached, 0 err, 17min
+[16:02:09]   [550/1262] 550 ok, 0 cached, 0 err, 19min
+[16:04:02]   [600/1262] 600 ok, 0 cached, 0 err, 21min
+[16:05:51]   [650/1262] 650 ok, 0 cached, 0 err, 23min
+[16:07:42]   [700/1262] 700 ok, 0 cached, 0 err, 25min
+[16:09:33]   [750/1262] 750 ok, 0 cached, 0 err, 26min
+[16:11:29]   [800/1262] 800 ok, 0 cached, 0 err, 28min
+[16:13:40]   [850/1262] 850 ok, 0 cached, 0 err, 31min
+[16:15:46]   [900/1262] 900 ok, 0 cached, 0 err, 33min
+[16:17:53]   [950/1262] 950 ok, 0 cached, 0 err, 35min
+[16:20:11]   [1000/1262] 1000 ok, 0 cached, 0 err, 37min
+[16:22:45]   [1050/1262] 1050 ok, 0 cached, 0 err, 40min
+[16:25:47]   [1100/1262] 1100 ok, 0 cached, 0 err, 43min
+[16:29:45]   [1150/1262] 1150 ok, 0 cached, 0 err, 47min
+[16:36:19]   [1200/1262] 1200 ok, 0 cached, 0 err, 53min
+[16:50:42]   [1250/1262] 1249 ok, 0 cached, 1 err, 68min
+[16:58:03] ANI extraction done: 1261 ok, 0 cached, 1 err in 1.2h
+[16:58:04] Spark stopped
+[16:58:04] Phase 2: Mantel tests
+[16:58:04] Running Mantel tests for 1261 species...
+[16:58:55]   Mantel [50/1261] 50 results
+[16:59:46]   Mantel [100/1261] 100 results
+[17:00:54]   Mantel [150/1261] 150 results
+[17:01:50]   Mantel [200/1261] 200 results
+[17:02:48]   Mantel [250/1261] 250 results
+[17:03:29]   Mantel [300/1261] 300 results
+[17:04:18]   Mantel [350/1261] 350 results
+[17:05:07]   Mantel [400/1261] 400 results
+[17:06:02]   Mantel [450/1261] 450 results
+[17:06:51]   Mantel [500/1261] 500 results
+[17:07:28]   Mantel [550/1261] 550 results
+[17:08:35]   Mantel [600/1261] 600 results
+[17:09:29]   Mantel [650/1261] 650 results
+[17:10:15]   Mantel [700/1261] 700 results
+[17:11:01]   Mantel [750/1261] 750 results
+[17:11:48]   Mantel [800/1261] 800 results
+[17:12:38]   Mantel [850/1261] 850 results
+[17:13:25]   Mantel [900/1261] 900 results
+[17:14:14]   Mantel [950/1261] 950 results
+[17:15:01]   Mantel [1000/1261] 1000 results
+[17:16:03]   Mantel [1050/1261] 1050 results
+[17:17:09]   Mantel [1100/1261] 1100 results
+[17:17:56]   Mantel [1150/1261] 1150 results
+[17:18:37]   Mantel [1200/1261] 1200 results
+[17:19:34]   Mantel [1250/1261] 1250 results
+[17:19:46] Saved mantel_results.csv: 1261 species
+[17:19:46] 
+NB04 COMPLETE
+[17:19:46] Species tested: 1261
+[17:19:46] Significant phylogenetic signal (FDR<0.05): 701/1261
+[17:19:46] Median Mantel r (all): 0.247
+[17:19:46] Core vs non-core: 0.193 vs 0.324 (p=7.0e-16)
+[17:19:46] Re-running NB07 synthesis...
+[17:19:48] All done!
