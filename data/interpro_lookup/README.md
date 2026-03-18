@@ -49,18 +49,19 @@ enabled, GO terms, and pathway annotations.
 - The `split_fasta.py` script strips asterisks during splitting
 - 8 GB memory is insufficient — jobs need 9-16 GB (24 GB provides safe headroom)
 
-### Phase 3: Transform & Ingest into BERDL — UPLOADED, AWAITING INGEST
+### Phase 3: Transform & Ingest into BERDL — COMPLETE
 
-Transformed the raw 15-column InterProScan TSV into 3 normalized tables for
-ingestion into the existing `kbase_ke_pangenome` database alongside bakta tables.
-Files uploaded to MinIO — run `10_ingest_interproscan_results.py --skip-upload`
-from JupyterHub to complete ingestion.
+Transformed the raw 15-column InterProScan TSV into 3 normalized tables and
+ingested into the existing `kbase_ke_pangenome` database alongside bakta tables.
 
-| Table | Rows | Compressed | On MinIO |
-|-------|------|------------|----------|
-| `interproscan_domains` | 833,303,130 | 25 GB | Yes |
-| `interproscan_go` | 266,317,724 | 1.2 GB | Yes |
-| `interproscan_pathways` | 287,228,475 | 1.0 GB | Yes |
+| Table | Rows | Status |
+|-------|------|--------|
+| `kbase_ke_pangenome.interproscan_domains` | 833,303,130 | Ingested |
+| `kbase_ke_pangenome.interproscan_go` | 266,317,724 | Ingested |
+| `kbase_ke_pangenome.interproscan_pathways` | 287,228,475 | Ingested |
+
+**Coverage:** 111M clusters (83.8% of 132.5M) have at least one domain hit.
+584M hits have formal IPR accessions; 249M are member-DB-only hits (Pfam, CDD, etc.).
 
 **Note:** Reactome pathways (~12B rows) are excluded — they are eukaryotic
 species-specific mappings inherited from InterPro and not relevant for bacterial proteins.
@@ -100,7 +101,7 @@ into BERDL enables cross-collection JOINs:
 | `run_iprscan_shared.sh` | Production shared-queue InterProScan job | NERSC | Done |
 | `08_collect_results.py` | Collect InterProScan TSV results → BERDL ingest | JupyterHub | Done |
 | `09_transform_results.py` | Transform 15-col TSV → 3 normalized tables | NERSC | Done |
-| `10_ingest_interproscan_results.py` | Upload to MinIO + ingest into BERDL | JupyterHub | Ready |
+| `10_ingest_interproscan_results.py` | Upload to MinIO + ingest into BERDL | JupyterHub | Done |
 
 ## Lookup Service Probe Results
 
