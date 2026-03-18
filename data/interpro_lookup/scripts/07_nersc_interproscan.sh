@@ -36,11 +36,17 @@
 
 set -euo pipefail
 
+# MobiDB (idrpred-cli.py) requires Python ≥ 3.7 (uses re.Match).
+# NERSC system python is 3.6 — load the module to get 3.13.
+module load python
+
 # ── Configuration ────────────────────────────────────────────────────
 IPRSCAN_HOME="${IPRSCAN_HOME:-$SCRATCH/interproscan/interproscan-5.77-108.0}"
 SPLITS_DIR="${SPLITS_DIR:-$SCRATCH/interproscan/splits}"
 RESULTS_DIR="${RESULTS_DIR:-$SCRATCH/interproscan/results}"
-TEMP_DIR="${TEMP_DIR:-$SCRATCH/interproscan/tmp/${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}}"
+# Use node-local tmpfs (/tmp) — Lustre (pscratch) causes race conditions
+# where temp files vanish before InterProScan binaries can read them.
+TEMP_DIR="${TEMP_DIR:-/tmp/iprscan_${SLURM_ARRAY_JOB_ID}_${SLURM_ARRAY_TASK_ID}}"
 
 # Number of CPU cores for InterProScan
 NCPU=${SLURM_CPUS_PER_TASK:-64}
