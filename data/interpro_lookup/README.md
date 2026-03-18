@@ -49,6 +49,25 @@ enabled, GO terms, and pathway annotations.
 - The `split_fasta.py` script strips asterisks during splitting
 - 8 GB memory is insufficient — jobs need 9-16 GB (24 GB provides safe headroom)
 
+### Phase 3: Transform & Ingest into BERDL — UPLOADED, AWAITING INGEST
+
+Transformed the raw 15-column InterProScan TSV into 3 normalized tables for
+ingestion into the existing `kbase_ke_pangenome` database alongside bakta tables.
+Files uploaded to MinIO — run `10_ingest_interproscan_results.py --skip-upload`
+from JupyterHub to complete ingestion.
+
+| Table | Rows | Compressed | On MinIO |
+|-------|------|------------|----------|
+| `interproscan_domains` | 833,303,130 | 25 GB | Yes |
+| `interproscan_go` | 266,317,724 | 1.2 GB | Yes |
+| `interproscan_pathways` | 287,228,475 | 1.0 GB | Yes |
+
+**Note:** Reactome pathways (~12B rows) are excluded — they are eukaryotic
+species-specific mappings inherited from InterPro and not relevant for bacterial proteins.
+Use `--include-reactome` with `09_transform_results.py` to include them.
+
+**MinIO path:** `s3a://cdm-lake/users-general-warehouse/psdehal/data/interproscan_results/`
+
 ## Why
 
 InterPro pre-computes domain/family/site annotations for all ~250M UniProt proteins
@@ -79,7 +98,9 @@ into BERDL enables cross-collection JOINs:
 | `07_nersc_interproscan.sh` | SLURM job array for InterProScan at NERSC | NERSC | Done |
 | `split_fasta.py` | Split FASTA into 10K sub-chunks (strips asterisks) | NERSC | Done |
 | `run_iprscan_shared.sh` | Production shared-queue InterProScan job | NERSC | Done |
-| `08_collect_results.py` | Collect InterProScan TSV results → BERDL ingest | JupyterHub | Ready |
+| `08_collect_results.py` | Collect InterProScan TSV results → BERDL ingest | JupyterHub | Done |
+| `09_transform_results.py` | Transform 15-col TSV → 3 normalized tables | NERSC | Done |
+| `10_ingest_interproscan_results.py` | Upload to MinIO + ingest into BERDL | JupyterHub | Ready |
 
 ## Lookup Service Probe Results
 
@@ -120,8 +141,11 @@ sbatch --account=amsc002 --array=0-4999%500 run_iprscan_shared.sh
 sbatch --account=amsc002 --array=5000-8999%500 run_iprscan_shared.sh
 sbatch --account=kbase   --array=9000-13253%500 run_iprscan_shared.sh
 
-# 4. Collect results and upload to MinIO
-python scripts/08_collect_results.py
+# 4. Transform results into 3 normalized tables
+python scripts/09_transform_results.py
+
+# 5. Upload to MinIO and ingest into BERDL
+python scripts/10_ingest_interproscan_results.py
 ```
 
 ### Benchmarking Results
@@ -169,6 +193,7 @@ protein_id  md5  seq_len  analysis  sig_acc  sig_desc  start  stop  score  statu
   fasta/                      # 27 input FASTA chunks (42 GB)
   splits/                     # 13,254 × 10K-sequence splits (40 GB)
   results/                    # 13,254 TSV result files (2.8 TB)
+  tables/                     # 3 transformed + compressed tables (27.4 GB)
   benchmark/                  # Benchmark results and summary
   logs/                       # SLURM job logs
 ```
