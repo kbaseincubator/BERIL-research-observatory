@@ -28,7 +28,7 @@ enabled, GO terms, and pathway annotations.
 | Metric | Value |
 |--------|-------|
 | Input sequences | 132,538,155 |
-| Result lines | ~810M (estimated from 133-file sample) |
+| Result lines | 833,242,989 |
 | Result files | 13,254 splits |
 | Result size | 2.8 TB (TSV) |
 | Analyses | 18 (Pfam, CDD, Gene3D, PANTHER, SUPERFAMILY, etc.) |
