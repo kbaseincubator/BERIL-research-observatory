@@ -280,6 +280,45 @@ spark.createDataFrame(
 
 **Prevention**: Avoid expensive full-table scans in cells between temp view registration and temp view use. Use `LIMIT` or `TABLESAMPLE` for schema verification queries rather than full `GROUP BY` counts on large tables.
 
+### `ncbi_env` Table is EAV (Key-Value), Not Flat
+
+**[amr_strain_variation]** The `ncbi_env` table is **not** a flat table with columns like `genome_id, isolation_source, collection_date`. It's an Entity-Attribute-Value table with columns: `accession` (BioSample ID), `attribute_name`, `content`, `display_name`, `harmonized_name`, `id`, `package_content`.
+
+To get genome metadata you must:
+1. Join `genome.ncbi_biosample_id` → `ncbi_env.accession`
+2. Filter `attribute_name IN ('isolation_source', 'collection_date', 'geo_loc_name', 'host')`
+3. Pivot from long to wide format
+
+```sql
+-- WRONG: these columns don't exist
+SELECT genome_id, isolation_source, collection_date FROM ncbi_env
+
+-- CORRECT: EAV query
+SELECT accession, attribute_name, content
+FROM kbase_ke_pangenome.ncbi_env
+WHERE accession IN (...) AND attribute_name IN ('isolation_source', 'collection_date', 'host')
+```
+
+### `genome_ani` Column Names Are Not What You Expect
+
+**[amr_strain_variation]** The `genome_ani` table uses `genome1_id`, `genome2_id`, `ANI` — **not** `genome_id_1`, `genome_id_2`, `ani`. The capitalization matters too (`ANI` not `ani`).
+
+```sql
+-- WRONG
+SELECT genome_id_1, genome_id_2, ani FROM genome_ani
+
+-- CORRECT
+SELECT genome1_id, genome2_id, ANI FROM genome_ani
+```
+
+### Large Species Blow Up ANI Queries (O(n²) Problem)
+
+**[amr_strain_variation]** ANI queries for species with >500 genomes can take 30+ minutes per species and may timeout Spark connections. *K. pneumoniae* (14,240 genomes) and *S. aureus* (14,526 genomes) generate IN clauses with 14K+ IDs that overwhelm the query planner. Cap at <=500 genomes for Mantel tests, or use subsampling.
+
+### Per-Genome Environment Classification Gives 53% "Unknown"
+
+**[amr_strain_variation]** Parsing `isolation_source` and `host` from `ncbi_env` at the per-genome level produces 52.7% "Unknown" labels (94,957/180,025 genomes), because most BioSample records lack structured isolation metadata. For cross-species analyses, use species-level majority-vote environment labels instead (91% coverage via keyword classification of NCBI metadata).
+
 ---
 
 ## Data Sparsity Issues
