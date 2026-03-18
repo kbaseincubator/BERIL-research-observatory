@@ -4,8 +4,8 @@
 **Location**: On-prem Delta Lakehouse (BERDL - KBase BER Data Lakehouse)
 **Access**: Spark SQL via REST API at `https://hub.berdl.kbase.us/apis/mcp/`
 **Tenant**: KBase
-**Last Updated**: 2026-03-12
-**Verified**: Direct Spark SQL queries on cluster (2026-03-12)
+**Last Updated**: 2026-03-18
+**Verified**: Direct Spark SQL queries on cluster (2026-03-18)
 
 ---
 
@@ -17,6 +17,7 @@ This database contains pangenome data for **293,059 genomes** across **27,690 mi
 - Pairwise ANI between genomes (~421M pairs)
 - Functional annotations via eggNOG v6
 - **Bakta reannotation** of all 132M cluster representatives (gene names, EC, COG, KEGG, UniRef, Pfam domains, AMR)
+- **InterProScan annotations** of all 132M cluster representatives (18 member databases, GO terms, MetaCyc pathways)
 - Metabolic pathway predictions via GapMind
 - Environmental embeddings from AlphaEarth
 - **Phylogenetic trees** (Newick) and pairwise branch distances for 330 species
@@ -40,6 +41,9 @@ This database contains pangenome data for **293,059 genomes** across **27,690 mi
 | `bakta_db_xrefs` | 572,376,477 | Bakta database cross-references (db, accession) |
 | `bakta_pfam_domains` | 18,807,208 | Bakta Pfam domain hits with scores and coverage |
 | `bakta_amr` | 83,008 | AMR gene annotations from AMRFinderPlus |
+| `interproscan_domains` | 833,303,130 | InterProScan domain/family/site hits (18 analyses) |
+| `interproscan_go` | 266,317,724 | GO term assignments from InterProScan |
+| `interproscan_pathways` | 287,228,475 | MetaCyc/KEGG pathway assignments from InterProScan |
 | `genome_ani` | 421,218,641 | Pairwise ANI values between genomes |
 | `sample` | 293,059 | Biosample/Bioproject accessions |
 | `ncbi_env` | 4,124,801 | NCBI environment metadata (key-value format) |
@@ -459,6 +463,56 @@ AMR gene annotations from AMRFinderPlus via Bakta.
 
 **Row Count**: 83,008
 
+### 21. `interproscan_domains`
+
+InterProScan 5.77-108.0 annotations of all 132.5M cluster representative proteins. One row per protein × analysis hit across 18 member databases (Pfam, Gene3D, SUPERFAMILY, PANTHER, CDD, NCBIfam, etc.). Coverage: 111M clusters (83.8%) have at least one domain hit.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `gene_cluster_id` | string | FK → `gene_cluster.gene_cluster_id` |
+| `md5` | string | MD5 hash of the protein sequence |
+| `seq_len` | int | Protein sequence length |
+| `analysis` | string | Member database (e.g., Pfam, Gene3D, CDD, PANTHER, SUPERFAMILY) |
+| `signature_acc` | string | Signature accession in member database (e.g., PF00001, G3DSA:1.10.10.10) |
+| `signature_desc` | string | Signature description |
+| `start` | int | Domain start position (1-based) |
+| `stop` | int | Domain end position |
+| `score` | string | E-value or score (format varies by analysis) |
+| `ipr_acc` | string | InterPro accession (e.g., IPR000001). Empty if member-DB-only hit |
+| `ipr_desc` | string | InterPro entry description. Empty if no IPR accession |
+
+**Row Count**: 833,303,130
+
+**Analysis breakdown**: Pfam (146M), Gene3D (141M), SUPERFAMILY (112M), PANTHER (77M), PRINTS (61M), CDD (47M), NCBIfam (47M), ProSiteProfiles (42M), MobiDBLite (40M), SMART (31M), FunFam (26M), ProSitePatterns (20M), Coils (15M), Hamap (13M), PIRSF (10M), SFLD (3M), AntiFam (160K)
+
+### 22. `interproscan_go`
+
+Deduplicated GO term assignments from InterProScan. One row per gene cluster × GO term × source.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `gene_cluster_id` | string | FK → `gene_cluster.gene_cluster_id` |
+| `go_id` | string | GO term (e.g., GO:0005524) |
+| `go_source` | string | Source database: "InterPro" or "PANTHER" |
+| `n_supporting_analyses` | int | Number of member DB analyses supporting this assignment |
+
+**Row Count**: 266,317,724
+
+### 23. `interproscan_pathways`
+
+Deduplicated metabolic pathway assignments from InterProScan. Primarily MetaCyc pathways (Reactome excluded as eukaryotic-only).
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `gene_cluster_id` | string | FK → `gene_cluster.gene_cluster_id` |
+| `pathway_db` | string | Pathway database (MetaCyc, KEGG) |
+| `pathway_id` | string | Pathway identifier (e.g., PWY-7884) |
+| `n_supporting_analyses` | int | Number of member DB analyses supporting this assignment |
+
+**Row Count**: 287,228,475
+
+---
+
 ### 16. `phylogenetic_tree_distance_pairs`
 
 Pairwise branch distances extracted from species phylogenetic trees.
@@ -500,7 +554,10 @@ gtdb_species_clade (27,690)
     │            ├── 1:1 → bakta_annotations (gene_cluster_id)
     │            ├── 1:N → bakta_db_xrefs (gene_cluster_id)
     │            ├── 0:N → bakta_pfam_domains (gene_cluster_id)
-    │            └── 0:1 → bakta_amr (gene_cluster_id)
+    │            ├── 0:1 → bakta_amr (gene_cluster_id)
+    │            ├── 0:N → interproscan_domains (gene_cluster_id)
+    │            ├── 0:N → interproscan_go (gene_cluster_id)
+    │            └── 0:N → interproscan_pathways (gene_cluster_id)
     │
     └── 0:1 → phylogenetic_tree (gtdb_species_clade_id)  [330 species]
                  └── 1:N → phylogenetic_tree_distance_pairs (phylogenetic_tree_id)
@@ -649,6 +706,39 @@ WHERE gc.gtdb_species_clade_id LIKE 's__Escherichia_coli%'
 LIMIT 100
 ```
 
+### Get InterProScan Domains with Bakta Annotations
+```sql
+SELECT
+  d.gene_cluster_id,
+  ba.gene,
+  ba.product,
+  d.analysis,
+  d.signature_acc,
+  d.ipr_acc,
+  d.ipr_desc
+FROM kbase_ke_pangenome.interproscan_domains d
+JOIN kbase_ke_pangenome.bakta_annotations ba
+  ON d.gene_cluster_id = ba.gene_cluster_id
+WHERE d.ipr_acc != ''
+  AND ba.gene IS NOT NULL
+LIMIT 20
+```
+
+### Get GO Terms for Gene Clusters
+```sql
+SELECT
+  gc.gene_cluster_id,
+  gc.is_core,
+  igo.go_id,
+  igo.go_source,
+  igo.n_supporting_analyses
+FROM kbase_ke_pangenome.gene_cluster gc
+JOIN kbase_ke_pangenome.interproscan_go igo
+  ON gc.gene_cluster_id = igo.gene_cluster_id
+WHERE gc.gtdb_species_clade_id LIKE 's__Escherichia_coli%'
+LIMIT 20
+```
+
 ### Get Environmental Embeddings for Species
 ```sql
 SELECT
@@ -679,10 +769,13 @@ WHERE g.gtdb_species_clade_id LIKE 's__Prochlorococcus%'
 
 ## Recently Added / Updated
 
-*Confirmed via direct Spark SQL on cluster (2026-03-12)*
+*Confirmed via direct Spark SQL on cluster (2026-03-18)*
 
 | Table Name | Description | Status |
 |------------|-------------|--------|
+| `interproscan_domains` | 833M rows — InterProScan 5.77-108.0 domain/family/site hits (18 analyses) | **NEW** (2026-03-18) |
+| `interproscan_go` | 266M rows — GO term assignments from InterProScan | **NEW** (2026-03-18) |
+| `interproscan_pathways` | 287M rows — MetaCyc/KEGG pathway assignments from InterProScan | **NEW** (2026-03-18) |
 | `bakta_annotations` | 132.5M rows — Bakta v1.12.0 reannotation of all cluster reps | **NEW** (2026-03-12) |
 | `bakta_db_xrefs` | 572M rows — database cross-references from Bakta | **NEW** (2026-03-12) |
 | `bakta_pfam_domains` | 18.8M rows — Pfam domain hits from Bakta | **NEW** (2026-03-12) |
@@ -719,7 +812,8 @@ The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can experience 504 Gatewa
 
 ## Changelog
 
-- **2026-03-12**: Added 4 Bakta reannotation tables (`bakta_annotations`, `bakta_db_xrefs`, `bakta_pfam_domains`, `bakta_amr`) — 132.5M cluster reps annotated with Bakta v1.12.0 on NERSC Perlmutter. Now 20 tables total.
+- **2026-03-18**: Added 3 InterProScan tables (`interproscan_domains`, `interproscan_go`, `interproscan_pathways`) — 1.39B rows total from InterProScan 5.77-108.0 on NERSC Perlmutter. 111M clusters (83.8%) have domain hits. Now 23 tables total.
+- **2026-03-12**: Added 4 Bakta reannotation tables (`bakta_annotations`, `bakta_db_xrefs`, `bakta_pfam_domains`, `bakta_amr`) — 132.5M cluster reps annotated with Bakta v1.12.0 on NERSC Perlmutter.
 - **2026-02-13**: Re-verified full schema (16 tables). Documented 5 new `gene_cluster` columns (`is_cluster_rep`, `faa_header`, `faa_sequence`, `fna_header`, `fna_sequence`) — cluster representative sequences now available inline. Documented `phylogenetic_tree` (330 rows) and `phylogenetic_tree_distance_pairs` (22.6M rows) schemas.
 - **2026-01-07**: Full verification via direct Spark SQL on cluster. Added gapmind_pathways schema, gene cluster category distribution, genes per genome statistics, identified 12 specific orphan pangenomes.
 - **2026-01-06**: Initial documentation based on REST API queries and local data extracts.
