@@ -8,6 +8,22 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-03
 
+### [amr_strain_variation] Acquired AMR genes track phylogeny more strongly than intrinsic
+
+Mantel tests across 1,261 species show non-core (acquired) AMR genes have stronger phylogenetic signal (median r=0.222) than core (intrinsic) genes (median r=0.117), paired t-test p=7.0e-16. This contradicts the standard model that acquired resistance is phylogenetically random via HGT. Instead, once a lineage acquires resistance elements, they are stably maintained and vertically inherited, creating clonal AMR lineages. Note: core genes have near-zero Jaccard variance by definition (>=95% prevalence), which partly suppresses their distance-based signal.
+
+### [amr_strain_variation] Over half of within-species AMR genes are rare (<5% prevalence)
+
+Across 1,305 species and 180,025 genomes, 51.3% of AMR gene-species occurrences are rare (<=5% prevalence), 41.3% variable (5-95%), and only 7.5% fixed (>=95%). Median pairwise Jaccard distance between strains = 0.435 — strains within the same species share less than 60% of their AMR repertoire. Atlas Core genes are 77% fixed within species; Singletons are 79% rare — validating the cross-species conservation classification at strain resolution.
+
+### [amr_strain_variation] Resistance islands are widespread — 54% of species, mean 6.2 genes
+
+1,517 resistance islands detected across 705/1,305 species, with mean phi coefficient = 0.827 (very tight co-occurrence). 88% contain multiple resistance mechanisms (efflux + enzymatic inactivation most common). Maximum island = 43 genes. These multi-mechanism islands provide coordinated defense against multiple drug classes.
+
+### [amr_strain_variation] AMR variability weakly anti-correlates with pangenome openness
+
+Spearman rho = -0.193, p = 2.2e-12. Species with more open pangenomes have slightly *lower* AMR variability — unexpected. Likely because open-pangenome species accumulate more rare/singleton AMR genes below the 5% threshold, deflating the variability index (which measures the 5-95% zone).
+
 ### [truly_dark_genes] Only 16.3% of "dark matter" resists modern annotation
 
 Of 39,532 Fitness Browser dark genes with pangenome links, bakta v1.12.0 reclassifies 33,105 (83.7%). Just 6,427 are "truly dark" — both FB and bakta agree: hypothetical protein. Truly dark genes are structurally distinct: shorter (121 vs 194 aa), less conserved (43% vs 73% core), fewer orthologs (29% vs 64%), higher GC deviation (d=0.247). These properties are consistent with recent HGT outpacing annotation databases.
