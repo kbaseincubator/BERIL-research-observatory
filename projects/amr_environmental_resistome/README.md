@@ -6,7 +6,7 @@ Do antimicrobial resistance gene profiles differ between ecological niches acros
 
 ## Status
 
-Complete — see [Report](REPORT.md) for findings. Clinical species carry 2.5× more AMR (median 5 vs 2, p=9.4e-167). Mechanism composition is strongly environment-dependent: efflux peaks in clinical/gut (21%), metal resistance in soil/aquatic (45%). Core vs accessory AMR varies from 43% accessory (soil) to 68% (clinical). Within species, clinical fraction predicts AMR count (rho=0.465, p=2.2e-45). All findings survive phylogenetic control (5/6 phyla, 20/141 families significant).
+Complete — see [Report](REPORT.md) for findings. Clinical species carry 2.5× more AMR (median 5 vs 2, p=9.4e-167). Mechanism composition is strongly environment-dependent: metal resistance peaks in soil/aquatic (45%), target modification in gut/clinical (28-44%). Core vs accessory AMR varies from 43% accessory (soil) to 68% (clinical). Within species, clinical fraction predicts AMR count (rho=0.465, p=2.2e-45). All findings survive phylogenetic control (5/6 phyla, 20/141 families significant).
 
 ## Overview
 

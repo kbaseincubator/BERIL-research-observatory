@@ -37,17 +37,17 @@ This confirms at pangenome scale the pattern observed by Jiang et al. (2024) in 
 
 All four AMR mechanisms show significant environment-dependent composition (all q ~ 0 after BH-FDR). The two largest effects are:
 
-- **Efflux pumps**: 21% of AMR in human gut, 15% in clinical, but only 1-2% in aquatic/soil (η² = 0.127 — the largest effect in the study)
-- **Metal resistance**: 45% of AMR in aquatic, 44% in soil, but only 6% in human gut (η² = 0.107)
+- **Metal resistance**: 45% of AMR in aquatic, 44% in soil, but only 6% in human gut (η² = 0.107 — the largest effect)
+- **Target modification**: 44% in human gut, 28% in clinical, but only 6% in aquatic (η² = 0.100)
 
-| Mechanism | Clinical | Human Gut | Host-assoc | Soil | Aquatic | Other Env |
-|-----------|---------|-----------|------------|------|---------|-----------|
-| Efflux | 15.0% | 21.4% | 7.3% | 2.0% | 1.1% | 6.5% |
-| Enzymatic inactivation | 28.2% | 24.1% | 44.1% | 34.3% | 41.2% | 33.6% |
-| Metal resistance | 19.7% | 6.1% | 12.7% | 44.0% | 45.0% | 24.9% |
-| Target modification | 18.6% | 29.2% | 19.3% | 10.0% | 6.2% | 21.3% |
+| Mechanism | Clinical | Human Gut | Host-assoc | Soil | Aquatic | Other Env | η² |
+|-----------|---------|-----------|------------|------|---------|-----------|-----|
+| Efflux | 6.1% | 7.0% | 3.7% | 2.0% | 1.1% | 2.7% | 0.055 |
+| Enzymatic inactivation | 28.2% | 24.1% | 44.1% | 34.3% | 41.2% | 33.6% | 0.019 |
+| Metal resistance | 19.7% | 6.1% | 12.7% | 44.0% | 45.0% | 24.9% | 0.107 |
+| Target modification | 27.5% | 43.6% | 22.8% | 10.1% | 6.2% | 25.1% | 0.100 |
 
-This is the most actionable finding: **different ecological niches select for fundamentally different resistance strategies**. Soil and aquatic bacteria invest heavily in metal resistance (consistent with heavy metal exposure in natural environments), while clinical and gut bacteria favor efflux pumps and target modification (consistent with antibiotic selection pressure). This connects the `amr_fitness_cost` finding (mechanism predicts conservation: metal 44% accessory vs efflux 13% core) to ecology — efflux genes are core because they serve host-associated organisms across conditions, while metal resistance is accessory because it's only needed in metal-rich environments.
+This is the most actionable finding: **different ecological niches select for fundamentally different resistance strategies**. Soil and aquatic bacteria invest heavily in metal resistance (consistent with heavy metal exposure in natural environments), while clinical and gut bacteria favor target modification (ribosomal protection, PBP alterations) and to a lesser extent efflux pumps (consistent with antibiotic selection pressure). This connects the `amr_fitness_cost` finding (mechanism predicts conservation: metal 44% accessory vs efflux 13% core) to ecology — efflux genes are core because they serve host-associated organisms across conditions, while metal resistance is accessory because it's only needed in metal-rich environments.
 
 **Note on mechanism classification**: 18.7% of AMR clusters (15,550) could not be classified to a mechanism from gene name or product annotation. These unclassified clusters are excluded from the mechanism fractions above. Tetracycline resistance genes are split between efflux (tet(A-E,K,L)) and target modification (tet(M,O,Q,W) ribosomal protection proteins).
 
@@ -109,9 +109,9 @@ Among 2,659 species with both AMR data and AlphaEarth environmental embeddings, 
 |------|-----------|---------|-------------|
 | H1: AMR count by environment | KW H=781.9 | 9.4×10⁻¹⁶⁷ | η²=0.056 |
 | H2: Core AMR % by environment | KW H=506.0 | 4×10⁻¹⁰⁷ | η²=0.036 |
-| H3: Efflux by environment | KW H=1775.0 | ~0 | η²=0.127 |
 | H3: Metal by environment | KW H=1498.4 | ~0 | η²=0.107 |
-| H3: Target mod by environment | KW H=971.7 | 8.2×10⁻²⁰⁸ | η²=0.069 |
+| H3: Target mod by environment | KW H=1394.9 | 1.7×10⁻²⁹⁹ | η²=0.100 |
+| H3: Efflux by environment | KW H=768.0 | 9.8×10⁻¹⁶⁴ | η²=0.055 |
 | H3: Enzymatic by environment | KW H=266.0 | 2.0×10⁻⁵⁵ | η²=0.019 |
 
 ### Within-Species Analysis (NB03)
@@ -167,7 +167,7 @@ The within-species analysis reveals that AMR accumulation is not just a property
 
 This is the **largest genomic analysis of environmental AMR distribution**, extending Gibson et al. (2015) from ~6K genomes to 293K genomes across 14,723 species. Key novel contributions:
 
-1. **Mechanism × environment decomposition**: efflux peaks in clinical/gut (21%), metal in soil/aquatic (45%) — η² = 0.127, the largest effect size in the study
+1. **Mechanism × environment decomposition**: metal resistance peaks in soil/aquatic (45%), target modification in gut/clinical (28-44%) — η² = 0.107 for metal, 0.100 for target modification
 2. **Core vs accessory gradient by environment**: clinical 68% accessory → soil 43% accessory, demonstrating that the intrinsic/acquired composition of the resistome varies quantitatively with ecology
 3. **Within-species clinical fraction predicts AMR**: rho = 0.465 across 823 species — the strongest evidence that AMR accumulation tracks antibiotic exposure at the strain level
 4. **Phylogenetic control at family level**: 20/141 families show within-family environment effects, confirming ecology is a real driver independent of phylogeny
