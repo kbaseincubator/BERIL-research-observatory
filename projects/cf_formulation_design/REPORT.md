@@ -249,18 +249,18 @@ Overall mean synergy is −5.8%, indicating mildly antagonistic interactions on 
 
 **Rationale**: Since no tested amino acid serves as a selective prebiotic (Section 2.7), we expanded the search genomically. GapMind predicts pathway completeness for ~80 carbon and amino acid pathways — many not among our 22 tested substrates. We compared pathway completeness between our 5 core commensals and *P. aeruginosa* across the pangenome.
 
-**Eight GapMind pathways are complete in commensals but absent in PA14:**
+**Six GapMind pathways are complete in at least one commensal species but absent in PA14.** Importantly, each pathway is carried by only 1–2 of the 5 core species — these are species-specific capabilities, not consortium-wide:
 
-| Pathway | Commensal Completeness | PA Completeness | Selectivity |
-|---------|----------------------|-----------------|-------------|
-| Myoinositol | 100% | 0% | **1.00** |
-| Xylitol | 100% | 0% | **1.00** |
-| Xylose | 100% | 0% | **1.00** |
-| Arabinose | 100% | 0% | **1.00** |
-| Fucose | 100% | 1% | **0.99** |
-| Rhamnose | 100% | 1% | **0.99** |
-| Sorbitol | 100% | 88% | 0.12 |
-| Mannitol | 100% | 88% | 0.12 |
+| Pathway | PA Complete | Commensal Carrier Species | Selectivity |
+|---------|:-----------:|---------------------------|:-----------:|
+| Myoinositol | 0% | *R. dentocariosa* (100%) | **1.00** |
+| Xylitol | 0% | *S. salivarius* (98%), *G. sanguinis* (100%) | **1.00** |
+| Xylose | 0% | *N. mucosa* (100%), *G. sanguinis* (100%) | **1.00** |
+| Arabinose | 0% | *N. mucosa* (100%), *G. sanguinis* (100%) | **1.00** |
+| Fucose | 1% | *N. mucosa* (100%), *G. sanguinis* (100%) | **0.99** |
+| Rhamnose | 1% | *N. mucosa* (100%), *G. sanguinis* (100%) | **0.99** |
+
+This per-species specificity has practical implications for prebiotic pairing: xylitol benefits *S. salivarius* (the top inhibitor), while xylose/arabinose/fucose benefit *N. mucosa* (the engraftment anchor) and *G. sanguinis*. A multi-prebiotic cocktail targeting different formulation members may be more effective than a single prebiotic.
 
 ![Pathway completeness: PA14 vs core commensals](figures/09_pathway_selectivity_heatmap.png)
 
@@ -286,11 +286,17 @@ Our data support a model where effective commensal formulations suppress *P. aer
 
 The remaining the remaining 64% of variance is likely attributable to unmeasured factors: biofilm dynamics, pH effects, iron competition, quorum sensing interference, and stochastic variation in the planktonic assay.
 
-### 3.2 The Prebiotic Strategy Shifts from Amino Acids to Sugar Alcohols
+### 3.2 The *M. luteus* Engraftment Question
+
+*M. luteus* is the keystone species for niche coverage — its addition at k=3 is what achieves 100% PA substrate coverage. Yet it has zero engraftability (not detected in any patient metagenome) and zero lung genomes in the pangenome (primarily skin/environmental). This creates a fundamental design tension: the species most important for metabolic coverage is the least likely to persist in the lung.
+
+Three paths forward warrant consideration: (a) **Accept the risk and test k=3 in mice** — *M. luteus*'s broad carbon utilization may compensate for low natural prevalence if delivered at sufficient dose; (b) **Prioritize the k=2 formulation** (*R. dentocariosa* + *N. mucosa*) — both lung-adapted species with combined 84% inhibition and 0.820 engraftability, sacrificing niche coverage for colonization reliability; (c) **Search for an alternative broad-spectrum metabolizer** among lung-adapted species that could replace *M. luteus*'s niche coverage role. We recommend testing both k=2 and k=3 formulations in the mouse model (Proposed Experiment 4.5) to resolve this empirically.
+
+### 3.3 The Prebiotic Strategy: From Amino Acids to Sugar Alcohols
 
 A key surprise was the complete absence of selective amino acid prebiotics — PA14 is simply too metabolically versatile on amino acids. However, the genomic extension reveals an entirely different prebiotic strategy: sugar alcohols and pentoses that commensals can metabolize but PA14 cannot. This shifts the design from "compete on PA14's turf" to "feed your team on a field PA14 can't access." Xylitol is particularly attractive because it is already FDA-approved for CF airway use (mucolytic/antimicrobial properties), creating a dual-purpose prebiotic opportunity.
 
-### 3.3 Literature Context
+### 3.4 Literature Context
 
 Our findings align with and extend several threads in the literature:
 
@@ -300,7 +306,7 @@ Our findings align with and extend several threads in the literature:
 - **Probiotic precedent**: Anderson et al. (2017) reviewed CF probiotic trials finding suggestive but inconclusive results, attributing this partly to lack of rational strain selection. Our multi-criterion optimization directly addresses this gap. *S. salivarius* BLIS K12 has established respiratory probiotic credentials (Tagg et al. 2025; Burton et al. 2011).
 - **Pangenome-guided design**: Shao et al. (2026) used pangenome analysis for *Bifidobacterium* probiotic design, finding strong strain-level functional divergence requiring careful strain selection. Our finding of >95% metabolic conservation represents the opposite scenario — equally valuable for translational confidence.
 
-### 3.4 Novel Contributions
+### 3.5 Novel Contributions
 
 1. **First quantification of metabolic competition's predictive power** for PA14 inhibition (R² = 0.274), establishing that resource competition is a real but partial mechanism.
 2. **Identification of dual-mechanism species** that combine metabolic competition with direct antagonism — a formulation design principle not previously articulated for respiratory pathogens.
@@ -309,7 +315,7 @@ Our findings align with and extend several threads in the literature:
 5. **Discovery of sugar alcohol prebiotics** through genomic pathway comparison — a qualitatively different prebiotic strategy from amino acid supplementation.
 6. **Multi-criterion optimization framework** integrating inhibition, metabolism, kinetics, engraftability, safety, and interaction data into a single formulation scoring system.
 
-### 3.5 Limitations
+### 3.6 Limitations
 
 - **Planktonic culture only**: Our inhibition assays measure planktonic competition. PA14 in CF lungs grows primarily in biofilms, where metabolic dynamics, diffusion gradients, and spatial structure differ substantially.
 - **22 tested carbon sources**: While covering major amino acids and glucose/lactate, we miss mucins, lipids, iron, polyamines, and the sugar alcohols our genomic analysis predicts as important.
@@ -318,7 +324,7 @@ Our findings align with and extend several threads in the literature:
 - **Engraftability is inferred**: Patient prevalence is a proxy, not a direct measure of colonization persistence after probiotic administration.
 - **Sparse lung metadata**: Only 21 lung genomes across 5 species limits the lung adaptation comparison.
 - **`fact_pairwise_interaction` is identical to `fact_carbon_utilization`**: NB08 discovered that these tables contain the same values (correlation = 1.0, mean difference = 0.0), meaning the endpoint OD data does not capture co-culture metabolic interactions. The competition assay (RFU-based) does capture pairwise effects, but the per-substrate interaction analysis is not possible with current data.
-- **N. mucosa clade selection**: The pangenome contains two N. mucosa clades: `s__Neisseria_mucosa_A` (15 genomes) and `s__Neisseria_mucosa` (8 genomes). NB07 uses the first (larger) clade. The PROTECT isolate reference genome (`GCA_003028315.1`) maps to the 8-genome clade via `GB_GCA_003028315.1`. Results may differ slightly if the alternate clade is used.
+- **N. mucosa clade selection**: The pangenome contains two *N. mucosa* clades. NB07 uses `s__Neisseria_mucosa_A` (15 genomes), but the PROTECT isolate reference genome (`GCA_003028315.1`) maps to `s__Neisseria_mucosa` (8 genomes). A sensitivity check on the 8-genome clade shows **stronger conservation** (18/18 AA pathways at >95%, vs 16/18 for the 15-genome clade; 37/62 carbon pathways vs 27/62). The 8-genome clade also has 1 respiratory genome. This means the conservation claims for the formulation anchor species are, if anything, *understated* by the primary analysis.
 
 ---
 
@@ -356,9 +362,9 @@ Based on our findings, we recommend the following experimental program:
 
 ### 4.5 Mouse Model: Formulation Efficacy Testing
 
-**Experiment**: Test k=3 (*M. luteus* + *N. mucosa* + *S. salivarius*) and k=5 formulations in a chronic PA14 lung infection mouse model. Test with and without xylitol prebiotic supplementation.
+**Experiment**: Test k=2 (*R. dentocariosa* + *N. mucosa*), k=3 (*M. luteus* + *N. mucosa* + *S. salivarius*), and k=5 formulations in a chronic PA14 lung infection mouse model. Test with and without xylitol + xylose prebiotic supplementation.
 
-**Rationale**: The ultimate test of the competitive exclusion hypothesis. The k=3 vs k=5 comparison tests whether the additional species (*R. dentocariosa*, *G. sanguinis*) provide in vivo benefit beyond the minimal niche-covering set. The prebiotic arm tests the sugar alcohol strategy.
+**Rationale**: The k=2 vs k=3 comparison resolves the *M. luteus* engraftment question: does 100% niche coverage (k=3) outperform a lung-adapted pair (k=2) with only 18% coverage but high engraftability? The k=5 tests whether additional species provide in vivo benefit. The prebiotic arm tests the sugar alcohol strategy (xylitol for *S. salivarius*, xylose for *N. mucosa*).
 
 ### 4.6 PAO1 and Clinical Strain Extension
 
