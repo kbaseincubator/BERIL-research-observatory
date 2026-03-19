@@ -157,12 +157,12 @@ This is the **first pan-bacterial mapping of AMR co-fitness neighborhoods** acro
 ### Limitations
 
 1. **Shared dispensability confound (critical)**: The flagellar/biosynthesis enrichment may reflect shared "useless under lab conditions" status rather than mechanistic co-regulation. AMR genes (no antibiotics present), flagellar genes (shaken liquid culture), and amino acid biosynthesis genes (supplemented media) are all metabolic burdens under FB experimental conditions. A fitness-matched permutation test (matching on mean fitness level, not just conservation) is needed to resolve this.
-2. **Cofitness ≠ co-regulation**: Even without the dispensability confound, high cofitness implies shared fitness phenotypes, not direct transcriptional co-regulation.
+2. **Cofitness ≠ co-regulation**: Even without the dispensability confound, high cofitness implies shared fitness phenotypes, not direct transcriptional co-regulation. Additionally, the cofitness computation treats missing fitness values as zero in z-score space (via `np.nan_to_num`), which approximates but does not equal pairwise-complete Pearson correlation. For the relatively dense FB matrices this is unlikely to affect conclusions.
 3. **GO term granularity**: Broad GO terms (transmembrane transport, membrane) appear in nearly all support networks and all genomes, potentially masking more specific signals.
 4. **Support network size**: At |r| > 0.3, mean network size is 233 genes (large). This includes many weak associations. Confirmation at |r| > 0.4 is needed.
 5. **H3 null result**: The absence of a network-size-cost correlation may reflect insufficient variance in fitness cost across genes.
 6. **FB organism bias**: The 28 organisms are lab-adapted, phylogenetically biased (many Pseudomonas), and limited in ecological diversity.
-7. **Operon exclusion heuristic**: The 5-ORF exclusion zone is approximate and uses matrix index order rather than genomic coordinates.
+7. **Operon exclusion heuristic**: The 5-ORF exclusion zone uses matrix row index position as a proxy for genomic proximity, which may not reliably reflect chromosomal gene order. Genomic coordinate columns (`begin`, `end`, `strand`) are loaded in the annotation data and could be used for a proper coordinate-based exclusion in future work. Only 0.6% of pairs are excluded by the current heuristic.
 
 ## Data
 
