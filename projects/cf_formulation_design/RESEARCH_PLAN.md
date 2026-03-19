@@ -11,6 +11,8 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 - **H2 (Complementary coverage)**: Multi-organism formulations whose members collectively cover PA14's carbon niche while minimizing internal metabolic overlap outperform random or redundant combinations of the same size.
 - **H3 (Engraftability)**: Species that are prevalent (>50% of patients) and metabolically active (high metaRS/metaG CPM ratio) in patient microbiomes are better formulation candidates than rare or dormant species.
 - **H4 (Prebiotic boost)**: Carbon sources that support commensal growth but not PA14 (candidates: threonine, methionine, serine, glycine — all <0.07 OD for PA14) can serve as selective prebiotics, providing a biomass advantage before niche competition begins.
+- **H5 (Pangenome conservation)**: The metabolic competition properties of candidate commensals are conserved across their species pangenomes (GapMind pathway predictions), making formulation designs robust to strain variation. Alternatively, lung-associated isolates may be metabolically distinct from other members of the same species — adaptations that can be identified and exploited.
+- **H6 (Lung adaptation)**: Commensal species with lung/respiratory-associated genomes in the pangenome show metabolic or genomic signatures (e.g., amino acid catabolism, biofilm, oxidative stress response) distinct from non-lung members of the same species/genus, and our PROTECT isolates cluster with the lung-adapted subpopulation.
 
 ## Literature Context
 
@@ -190,18 +192,42 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 
 **Expected output**: `data/prebiotic_pairings.tsv`, formulation + prebiotic recommendations
 
-### Notebook 07: Genomic Context & Extension (if time permits)
+### Notebook 07: Pangenome Conservation & Lung Adaptation
 
-**Goal**: Extend metabolic predictions beyond the 22 tested carbon sources using genomic data.
+**Goal**: Test H5 and H6 — are the metabolic properties of our commensals species-typical or lung-specific? Are there lung-associated genomes in the pangenome that reveal adaptation signatures?
+
+**EDA deliverables**:
+- Species-level GapMind pathway completeness for candidate commensal species
+- Within-species pathway variation: how conserved are carbon/amino acid utilization pathways?
+- Environmental source breakdown: how many genomes in each commensal's species clade are lung/respiratory-associated?
+- Comparison: lung-associated vs non-lung genomes on metabolic pathway profiles
 
 **Analysis**:
-- Link isolate reference genomes (`dim_isolate.closest_genome_reference`) to pangenome GapMind pathways
-- Compare GapMind predictions vs observed growth: how well do genomic predictions match lab data?
+- Link isolate reference genomes (`dim_isolate.closest_genome_reference`) to pangenome via `kbase_ke_pangenome.genome` (strip RS_/GB_ prefix as needed)
+- For each candidate commensal species:
+  - Extract GapMind pathway predictions for ALL genomes in the species clade
+  - Compute pathway conservation: fraction of genomes with complete/likely_complete for each pathway
+  - Compare our PROTECT isolate's predicted pathways to the species distribution
+- Query `ncbi_env` and `gtdb_metadata` for isolation source of genomes in commensal species clades
+  - Identify lung/respiratory/sputum/oral isolates vs soil/water/gut/other
+  - If lung genomes exist: compare their GapMind profiles, eggNOG annotations, and gene cluster content to non-lung genomes
+  - Look for enriched COG categories, specific KEGG pathways, or accessory gene clusters unique to lung variants
+- GapMind vs observed growth concordance: how well do pangenome predictions match our lab carbon utilization data?
 - For isolates lacking growth curves, use GapMind as a proxy for metabolic capability
-- Explore PROTECT genomedepot annotations for top formulation candidates
-- BacDive cross-validation for species with literature utilization data
 
-**Expected output**: Extended metabolic predictions, GapMind vs observed concordance statistics
+**Expected output**: `data/pangenome_conservation.tsv`, `data/lung_adaptation_signatures.tsv`, GapMind concordance statistics
+
+### Notebook 08: Genomic Extension & BacDive Validation (if time permits)
+
+**Goal**: Extend metabolic predictions beyond the 22 tested carbon sources and cross-validate with external data.
+
+**Analysis**:
+- Explore PROTECT genomedepot annotations (KEGG pathways, operons, regulons) for top formulation candidates
+- BacDive cross-validation: metabolite utilization data for species matching our candidates
+- ModelSEED biochemistry: stoichiometric context for competition modeling
+- Identify additional carbon sources not tested in the lab that could serve as prebiotics
+
+**Expected output**: Extended metabolic predictions, external validation statistics
 
 ## Expected Outcomes
 
@@ -209,10 +235,13 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 - **If H0 not rejected**: Inhibition is dominated by direct antagonism — screen for bacteriocin/T6SS genes in genomic data, pivot to a genomics-first approach.
 - **If H2 supported**: Complementary formulations outperform — the "eat their lunch" design theory is validated, and we have ranked formulations ready for mouse testing.
 - **If H4 supported**: Specific prebiotics (likely among threonine, methionine, serine, glycine) provide selective advantage — synbiotic design is feasible.
-- **Potential confounders**: Strain-specific effects within species, condition-dependent inhibition (gain/OD settings), growth medium differences between assays and lung environment.
+- **If H5 supported (conservation)**: Metabolic competition properties are species-level traits — formulation designs are robust to strain variation, and GapMind can predict capabilities for untested isolates.
+- **If H6 supported (lung adaptation)**: Lung-associated genomes show distinct metabolic signatures — PROTECT isolates that cluster with lung-adapted subpopulations may be better formulation candidates. Lung-specific accessory genes could explain why some commensal strains compete better in the airway environment.
+- **Potential confounders**: Strain-specific effects within species, condition-dependent inhibition (gain/OD settings), growth medium differences between assays and lung environment, sparse environmental metadata in pangenome (ncbi_env coverage).
 
 ## Revision History
 - **v1** (2026-03-19): Initial plan — integrates 23 experimental tables with BERDL resources for multi-criterion formulation scoring
+- **v2** (2026-03-19): Added H5/H6 (pangenome conservation + lung adaptation). NB07 now dedicated to pangenome analysis of commensal species — pathway conservation, environmental source breakdown, lung-specific signatures. NB08 added for extended genomic/BacDive validation. NB01 executed: metabolic overlap vs inhibition r=0.384 (p=2.3e-6).
 
 ## Authors
 - Adam Arkin (ORCID: 0000-0002-4999-2931) — U.C. Berkeley / Lawrence Berkeley National Laboratory
