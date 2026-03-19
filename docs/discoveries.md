@@ -8,6 +8,10 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-03
 
+### [amr_fitness_cost] AMR genes impose a universal +0.086 fitness cost across 25 bacteria
+
+Random-effects meta-analysis of 801 AMR genes across 25 organisms shows a pooled fitness shift of +0.086 [+0.074, +0.098] when AMR genes are knocked out — all 25/25 organisms positive. This cost is mechanism-independent (KW p=0.89), conservation-independent (core = accessory, p=0.33), and tier-independent (bakta_amr = keyword, p=0.26). The uniformity suggests compensatory evolution has equalized costs to an irreducible floor. However, mechanism strongly predicts conservation status (metal resistance 44% accessory vs efflux 13%, χ²=69.3, p=1.4e-13) — acquisition history, not cost, determines whether AMR genes are core or accessory. Efflux genes (broad-spectrum) show a stronger antibiotic-dependent fitness flip than enzymatic inactivation genes (narrow-spectrum): +0.094 vs −0.001, MWU p=0.007.
+
 ### [amr_strain_variation] Acquired AMR genes track phylogeny more strongly than intrinsic
 
 Mantel tests across 1,261 species show non-core (acquired) AMR genes have stronger phylogenetic signal (median r=0.222) than core (intrinsic) genes (median r=0.117), paired t-test p=7.0e-16. This contradicts the standard model that acquired resistance is phylogenetically random via HGT. Instead, once a lineage acquires resistance elements, they are stably maintained and vertically inherited, creating clonal AMR lineages. Note: core genes have near-zero Jaccard variance by definition (>=95% prevalence), which partly suppresses their distance-based signal.
