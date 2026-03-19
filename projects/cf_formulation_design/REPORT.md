@@ -270,6 +270,42 @@ Patient metatranscriptomics corroborates the genomic predictions: 47 KEGG pathwa
 
 *(Notebook: 09_genomic_carbon_extension.ipynb)*
 
+### 2.12 PA Lung Adaptation: Metabolic Streamlining Toward Amino Acid Dependence
+
+**Rationale**: Understanding what makes lung PA variants special informs which metabolic targets are most critical for competitive exclusion — and whether our formulation needs to be customized for different PA subpopulations.
+
+Among 6,760 PA genomes (5,199 with metadata), 1,796 are from lung/respiratory or CF sources. Seven GapMind pathways differ significantly (FDR < 0.05) between lung and non-lung PA — and all are **carbon source pathways that lung PA is losing**: sorbitol (−0.165), mannitol (−0.204), gluconate (−0.185). Lung PA is undergoing metabolic streamlining: in the amino acid-rich sputum environment, sugar catabolism is dispensable and under relaxed selection. This validates that PA's amino acid dependence is not just a preference — it is an **evolutionary adaptation**.
+
+![PA genome sources in pangenome](figures/10_pa_genome_sources.png)
+
+![PA metabolic pathways by isolation source](figures/10_pa_lung_vs_nonlung_pathways.png)
+
+Patient metatranscriptomics reveals that during acute exacerbation, PA massively downregulates 170 of 207 measured pathways — including amino acid biosynthesis (cysteine, methionine: 10× lower) and imipenem resistance (OprD: 13× lower). Only phosphate transport is upregulated (64×). Sick PA is metabolically quiescent and dependent on scavenging host-derived amino acids, making it potentially **more vulnerable** to competitive exclusion during acute episodes.
+
+![PA pathway expression: acute vs stable patients](figures/10_pa_sick_vs_stable_pathways.png)
+
+*(Notebook: 10_pa_lung_adaptation.ipynb)*
+
+### 2.13 Formulation Robustness: PA's Amino Acid Core Is Invariant Across Lung Variants
+
+**Rationale**: If different lung PA isolates have different metabolic profiles, our formulation might work against some variants but not others.
+
+Across 1,796 lung PA genomes, amino acid catabolic pathways are **97.4% conserved** (mean completeness). Even proline — PA14's top substrate — is complete in 97% of lung isolates. The main variation among lung PA (PC1 = 79%) is in carbon source pathways (sorbitol, mannitol, gluconate) — substrates our formulation does NOT target.
+
+![Formulation target robustness across lung PA](figures/11_pa_target_robustness.png)
+
+Two metabolic subpopulations exist: a major cluster (1,743 genomes, 97%) with full metabolic capacity, and a minor cluster (53 genomes, 3%) lacking TCA cycle intermediates. The minor cluster is CF-enriched (25% CF vs 16%) and may represent chronically adapted PA that is even MORE dependent on external metabolites — potentially more vulnerable to competitive exclusion.
+
+CF-derived PA shows 6 FDR-significant differences from non-CF lung PA, but all are in sugar-related pathways — **zero amino acid differences**. Formulations designed for general lung PA should work equivalently for CF PA.
+
+![PA lung metabolic subpopulations and CF vs non-CF](figures/11_pa_lung_clusters.png)
+
+![PROTECT PA genome variation (655 isolates, 15 strain groups)](figures/11_protect_pa_genome_variation.png)
+
+**Genomic growth rate context**: PA's genome (6.58 Mb, 6,177 CDS) is 2.5–3× larger than our commensal species (2.1–2.7 Mb, 2,200–3,000 CDS). While genome size inversely correlates with maximum growth rate in many bacteria (Vieira-Silva & Rocha 2010), PA is a known exception — a fast grower despite its large genome, likely due to high rRNA operon copy number (4 copies; comparable to Streptococcus at 5–6). Our growth curve data (NB02) confirms this: PA14 outgrows most commensals on preferred substrates. However, the 33% accessory genome variation among PROTECT PA isolates (gene count range 4,877–7,266) suggests that some PA strains carry metabolic burdens that could slow their growth, creating windows of vulnerability for competitive exclusion.
+
+*(Notebooks: 10_pa_lung_adaptation.ipynb, 11_pa_within_lung_diversity.ipynb)*
+
 ---
 
 ## 3. Discussion
@@ -292,11 +328,21 @@ The remaining the remaining 64% of variance is likely attributable to unmeasured
 
 Three paths forward warrant consideration: (a) **Accept the risk and test k=3 in mice** — *M. luteus*'s broad carbon utilization may compensate for low natural prevalence if delivered at sufficient dose; (b) **Prioritize the k=2 formulation** (*R. dentocariosa* + *N. mucosa*) — both lung-adapted species with combined 84% inhibition and 0.820 engraftability, sacrificing niche coverage for colonization reliability; (c) **Search for an alternative broad-spectrum metabolizer** among lung-adapted species that could replace *M. luteus*'s niche coverage role. We recommend testing both k=2 and k=3 formulations in the mouse model (Proposed Experiment 4.5) to resolve this empirically.
 
-### 3.3 The Prebiotic Strategy: From Amino Acids to Sugar Alcohols
+### 3.3 Growth Rate Asymmetry and the Importance of Pre-Colonization
+
+A fundamental challenge for competitive exclusion is that PA14 outgrows most commensals on its preferred substrates (only 13.8% of pairwise comparisons show a commensal rate advantage). Genomically, PA's 4 rRNA operons and efficient amino acid catabolism make it a formidable competitor in head-to-head growth. However, three factors mitigate this:
+
+First, **commensals have a lag advantage** in 43.1% of comparisons — they start growing before PA14. In a formulation context, delivering commensals before pathogen exposure (or boosting them with prebiotics first) could exploit this window.
+
+Second, **community biomass matters more than individual growth rate**. A 3-organism consortium each growing at half PA14's rate still depletes resources 1.5× faster collectively. The k=3 formulation achieves 100% niche coverage — PA's fast growth on any single substrate is neutralized when all substrates are simultaneously contested.
+
+Third, the **33% accessory genome variation** among PROTECT PA isolates (gene count 4,877–7,266) suggests substantial metabolic burden variation. PA strains carrying large accessory genomes (mobile elements, secondary metabolite clusters) may grow slower on amino acids than the lean PA14 reference, creating natural opportunities for competitive exclusion. Growth rate prediction from genomic features (rRNA copy number, codon adaptation index; Vieira-Silva & Rocha 2010) could identify which PA strains are most vulnerable, enabling patient-specific formulation decisions.
+
+### 3.4 The Prebiotic Strategy: From Amino Acids to Sugar Alcohols
 
 A key surprise was the complete absence of selective amino acid prebiotics — PA14 is simply too metabolically versatile on amino acids. However, the genomic extension reveals an entirely different prebiotic strategy: sugar alcohols and pentoses that commensals can metabolize but PA14 cannot. This shifts the design from "compete on PA14's turf" to "feed your team on a field PA14 can't access." Xylitol is particularly attractive because it is already FDA-approved for CF airway use (mucolytic/antimicrobial properties), creating a dual-purpose prebiotic opportunity.
 
-### 3.4 Literature Context
+### 3.5 Literature Context
 
 Our findings align with and extend several threads in the literature:
 
@@ -306,7 +352,7 @@ Our findings align with and extend several threads in the literature:
 - **Probiotic precedent**: Anderson et al. (2017) reviewed CF probiotic trials finding suggestive but inconclusive results, attributing this partly to lack of rational strain selection. Our multi-criterion optimization directly addresses this gap. *S. salivarius* BLIS K12 has established respiratory probiotic credentials (Tagg et al. 2025; Burton et al. 2011).
 - **Pangenome-guided design**: Shao et al. (2026) used pangenome analysis for *Bifidobacterium* probiotic design, finding strong strain-level functional divergence requiring careful strain selection. Our finding of >95% metabolic conservation represents the opposite scenario — equally valuable for translational confidence.
 
-### 3.5 Novel Contributions
+### 3.6 Novel Contributions
 
 1. **First quantification of metabolic competition's predictive power** for PA14 inhibition (R² = 0.274), establishing that resource competition is a real but partial mechanism.
 2. **Identification of dual-mechanism species** that combine metabolic competition with direct antagonism — a formulation design principle not previously articulated for respiratory pathogens.
@@ -314,8 +360,10 @@ Our findings align with and extend several threads in the literature:
 4. **Pangenome validation of metabolic robustness** across hundreds of genomes, providing translational assurance for species-level formulation design.
 5. **Discovery of sugar alcohol prebiotics** through genomic pathway comparison — a qualitatively different prebiotic strategy from amino acid supplementation.
 6. **Multi-criterion optimization framework** integrating inhibition, metabolism, kinetics, engraftability, safety, and interaction data into a single formulation scoring system.
+7. **PA lung metabolic streamlining**: Lung PA genomes lose sugar utilization pathways (sorbitol, mannitol, gluconate) while amino acid catabolism remains invariant — confirming competitive exclusion targets are evolutionarily stable.
+8. **Formulation robustness across PA diversity**: Amino acid pathways are 97.4% conserved across 1,796 lung PA genomes, and CF vs non-CF PA show zero amino acid pathway differences — one formulation should work across PA variants.
 
-### 3.6 Limitations
+### 3.7 Limitations
 
 - **Planktonic culture only**: Our inhibition assays measure planktonic competition. PA14 in CF lungs grows primarily in biofilms, where metabolic dynamics, diffusion gradients, and spatial structure differ substantially.
 - **22 tested carbon sources**: While covering major amino acids and glucose/lactate, we miss mucins, lipids, iron, polyamines, and the sugar alcohols our genomic analysis predicts as important.
@@ -372,7 +420,15 @@ Based on our findings, we recommend the following experimental program:
 
 **Rationale**: PA14 is a reference strain. Clinical CF isolates — especially mucoid variants adapted to chronic infection — may respond differently to competitive exclusion.
 
-### 4.7 Extended Metabolic Profiling
+### 4.7 Genomic Growth Rate Prediction for PA Strain Vulnerability
+
+**Experiment**: Compute codon adaptation index (CAI) and rRNA operon copy number for all PROTECT PA isolates. Correlate with genome size and accessory gene content. For the 32 isolates with growth curves, validate genomic predictors against measured growth rates.
+
+**Rationale**: The 33% accessory genome variation among PROTECT PA (gene count 4,877–7,266) likely correlates with growth rate variation. Strains with large accessory genomes (mobile elements, secondary metabolites) may grow slower on amino acids, creating windows for competitive exclusion. Identifying which PA strains are most/least vulnerable would enable patient-specific formulation deployment — testing first in patients whose PA is genomically predicted to be a slower grower.
+
+**Methods**: Use `gRodon` (Weissman et al. 2021) or the Vieira-Silva & Rocha (2010) approach to predict minimum doubling time from codon usage in highly expressed genes (ribosomal proteins). The rRNA Database (rrnDB) provides copy numbers for reference genomes.
+
+### 4.8 Extended Metabolic Profiling
 
 **Experiment**: Test the 5 core species on an expanded substrate panel: N-acetylglucosamine (mucin component), putrescine/spermidine (polyamines), iron-limited conditions, and pH 6.5 (CF sputum pH).
 
@@ -407,6 +463,10 @@ Based on our findings, we recommend the following experimental program:
 | `data/pairwise_synergy.tsv` | 8 | Pairwise interaction synergy scores |
 | `data/gapmind_pathway_comparison.tsv` | 80 | GapMind pathway completeness: 6 species compared |
 | `data/kegg_expression_comparison.tsv` | 252 | KEGG pathway expression: commensals vs PA in vivo |
+| `data/pa_genome_sources.tsv` | 5,199 | PA genome isolation source classifications |
+| `data/pa_lung_vs_nonlung_pathways.tsv` | 80 | PA lung vs non-lung pathway FDR tests |
+| `data/pa_sick_vs_stable_pathways.tsv` | 207 | PA pathway expression: acute vs stable patients |
+| `data/pa_target_robustness.tsv` | 24 | PA amino acid/carbon pathway conservation in lung isolates |
 
 ## 6. Supporting Evidence
 
@@ -424,6 +484,8 @@ Based on our findings, we recommend the following experimental program:
 | `07_pangenome_conservation.ipynb` | GapMind pathway conservation, environmental source analysis, lung adaptation |
 | `08_interaction_modeling.ipynb` | Pairwise synergy/antagonism classification, dose-response patterns |
 | `09_genomic_carbon_extension.ipynb` | Genomic + transcriptomic prebiotic candidate identification |
+| `10_pa_lung_adaptation.ipynb` | PA lung vs non-lung metabolic comparison, disease severity analysis |
+| `11_pa_within_lung_diversity.ipynb` | Within-lung PA diversity, formulation robustness assessment |
 
 ### Figures (25 total)
 
@@ -445,4 +507,6 @@ All figures are saved in `figures/` and appear inline throughout this report.
 - Tony-Odigie A et al. (2022). "Commensal Bacteria in the Cystic Fibrosis Airway Microbiome Reduce P. aeruginosa Induced Inflammation." *Front Cell Infect Microbiol*. 12:824101. PMID: 35174108
 - Dreher SM (2017). "US Regulatory Considerations for Development of Live Biotherapeutic Products as Drugs." *Microbiol Spectr*. 5(5):BAD-0017-2017.
 - Shao Y et al. (2026). "Genomic atlas of Bifidobacterium infantis and B. longum informs infant probiotic design." *Cell*. 189. PMID: 41713418
+- Vieira-Silva S, Rocha EPC (2010). "The Systemic Imprint of Growth and Its Uses in Ecological (Meta)Genomics." *PLoS Genet*. 6(1):e1000808. PMID: 20090831
+- Weissman JL, Hou S, Fuhrman JA (2021). "Estimating maximal microbial growth rates from cultures, metagenomes, and single cells via codon usage patterns." *PNAS*. 118(12):e2016810118. PMID: 33723043
 - Arkin AP et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nat Biotechnol*. 36(7):566-569. PMID: 29979655
