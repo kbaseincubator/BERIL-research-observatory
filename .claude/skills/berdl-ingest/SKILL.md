@@ -32,9 +32,10 @@ exports data if needed, then executes a **two-phase ingest**:
 
 Ask the user for the path to their source data directory. The directory should contain:
 
+- One `.parquet` file per table — Parquet files are read natively by Spark with embedded schema (preferred format), **or**
 - A `.db` / `.sqlite` file — SQLite database (tables exported to TSV automatically), **or**
 - One `.tsv` or `.csv` file per table — used directly, no conversion needed
-- Optionally a `.sql` file with `CREATE TABLE` statements — used to map column types to Spark SQL types; all columns default to `STRING` without it
+- Optionally a `.sql` file with `CREATE TABLE` statements — used to map column types to Spark SQL types for CSV/TSV; all columns default to `STRING` without it (not needed for Parquet)
 
 Inspect the directory and report what was found before continuing:
 
