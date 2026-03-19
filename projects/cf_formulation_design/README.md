@@ -6,7 +6,7 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 
 ## Status
 
-Complete — see [Report](REPORT.md) for findings. Eight notebooks executed, 23 figures generated, 13 data files produced. Key result: a 5-organism FDA-safe formulation (*N. mucosa* + *S. salivarius* + *M. luteus* + *R. dentocariosa* + *G. sanguinis*) achieves 100% PA14 niche coverage with 78% mean inhibition.
+Complete — see [Report](REPORT.md) for findings. 13 notebooks executed, 35 figures generated, 21 data files produced. Key result: a 5-organism FDA-safe formulation (*N. mucosa* + *S. salivarius* + *M. luteus* + *R. dentocariosa* + *G. sanguinis*) achieves 100% PA14 niche coverage with 78% mean inhibition. PA amino acid catabolism is 97% conserved across 1,796 lung genomes — formulation predicted equally effective across PA variants. Sugar alcohols (xylitol, myoinositol, xylose, arabinose) identified as genomically-predicted selective prebiotics.
 
 ## Overview
 
