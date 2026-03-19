@@ -45,6 +45,8 @@ The PROTECT study produced 23 structured data tables (30.5M total rows) covering
 
 ![Genome quality: completeness, contamination, reference ANI](figures/01_genome_quality.png)
 
+![Carbon utilization clustermap — top 50 most variable isolates](figures/01_carbon_util_clustermap.png)
+
 Three experimental assays provide complementary views of competitive potential: planktonic inhibition of PA14 (220 isolates), carbon source utilization profiling (430 isolates on 21 substrates), and growth kinetics (32 isolates with full time-series curves). The core analysis cohort — isolates with both inhibition and carbon utilization data — comprises 142 isolates from 62 species.
 
 ![Data type overlap across isolates](figures/01_data_overlap.png)
@@ -71,6 +73,8 @@ The other reporter pathogens (*A. baumannii*, *K. pneumoniae*) show distinct pro
 
 Across the 142-isolate analysis cohort, metabolic overlap with PA14 (weighted by PA14's substrate preferences) significantly predicts planktonic inhibition: **r = 0.384, p = 2.3×10⁻⁶**. A multivariate model incorporating metabolic overlap, total growth on PA-preferred substrates, metabolic breadth, and maximum growth explains **R² = 0.274**. Adding genus-level taxonomy increases this to **R² = 0.360** — genus explains an additional 8.6% of variance, indicating intrinsic species-level mechanisms (likely direct antagonism) contribute independently of metabolism.
 
+![Metabolic overlap vs inhibition — initial preview (r=0.384)](figures/01_overlap_vs_inhibition_preview.png)
+
 ![Three metabolic features vs inhibition with regression lines](figures/03_metabolic_features_vs_inhibition.png)
 
 ![Predicted vs observed inhibition from metabolic model (R² = 0.274)](figures/03_predicted_vs_observed.png)
@@ -80,6 +84,10 @@ Five-fold cross-validation yields **CV R² = 0.145 ± 0.142**, below the trainin
 **Conclusion**: H1 (metabolic competition) is supported but incomplete. Metabolic overlap is a genuine predictor, but approximately 73% of variance remains unexplained by metabolism alone.
 
 **The residual analysis reveals dual-mechanism species**: Isolates whose inhibition substantially exceeds metabolic predictions are candidate direct antagonists. The top positive residuals — *S. salivarius* ASMA-737 (+74.1%), *G. sanguinis* ASMA-3044 (+62.2%), *N. mucosa* ASMA-3643 (+57.2%) — are the same species that later dominate our FDA-safe formulations. These organisms appear to combine metabolic competition with direct antagonism, making them particularly valuable.
+
+![Inhibition distribution — all measurements and per-isolate best](figures/01_inhibition_distribution.png)
+
+![Inhibition by genus — full isolate collection (top 20)](figures/01_inhibition_by_genus.png)
 
 ![Inhibition by genus in the analysis cohort](figures/03_inhibition_by_genus_cohort.png)
 
@@ -94,6 +102,8 @@ Commensals beat PA14's maximum growth rate on only **13.8%** of substrate compar
 ![Growth curves: PA14 (dashed) vs representative commensals](figures/02_growth_curve_gallery.png)
 
 ![Growth rate advantage vs PA14 per isolate × substrate](figures/02_rate_advantage_heatmap.png)
+
+![Growth parameter distributions — K, mu_max, lag, AUC](figures/02_parameter_distributions.png)
 
 Growth kinetic parameters are moderately correlated with endpoint OD (r ≈ 0.40) but not redundant. For the 29 isolates with all three assay types, adding kinetic features to the metabolic overlap model improves prediction to **R² = 0.311**.
 
@@ -160,6 +170,8 @@ The table below presents the top-ranked FDA-safe formulations at each size (k=1�
 **k=4** — *R. dentocariosa* [ASMA-2935] + *M. luteus* [ASMA-2965] + *N. mucosa* [ASMA-3643] + *S. salivarius* [ASMA-737]: composite 0.578, 100% coverage, 76% inhibition, engraftability 0.185. Adds *R. dentocariosa* for lung tropism and direct antagonism depth.
 
 **k=5** — *R. dentocariosa* [ASMA-2935] + *M. luteus* [ASMA-2965] + *G. sanguinis* [ASMA-3044] + *N. mucosa* [ASMA-3643] + *S. salivarius* [ASMA-737]: composite 0.587, 100% coverage, 78% mean inhibition, engraftability 0.188. **The full formulation** — all five core species, maximum redundancy and inhibition depth.
+
+![Best formulation composite score by size](figures/05_formulation_scores_by_size.png)
 
 #### Design Rationale by Species
 
