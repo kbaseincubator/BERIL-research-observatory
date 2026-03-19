@@ -16,12 +16,12 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 
 ## Literature Context
 
-*To be populated by /literature-review — key topics:*
-- Competitive exclusion in CF lung microbiome (Filkins & O'Toole 2015, Caverly et al. 2019)
-- Metabolic niche partitioning in polymicrobial communities
-- Probiotic approaches for respiratory infections
-- *P. aeruginosa* amino acid catabolism (SCFM composition, Palmer et al. 2007)
-- RB-TnSeq essentiality under nutrient limitation (Fitness Browser methodology)
+- **CF sputum metabolism**: Palmer et al. (2005, 2007) established amino acids as PA's primary carbon sources in CF sputum and developed SCFM (synthetic CF sputum medium).
+- **Commensal airway protection**: Rigauts et al. (2022) showed Rothia mucilaginosa suppresses NF-κB inflammation in CF airways; Stubbendieck et al. (2023) identified R. dentocariosa peptidoglycan endopeptidase for colonization resistance.
+- **Community ecology in CF**: Widder et al. (2022) identified 8 pulmotypes; Rogers et al. (2015) demonstrated PA–H. influenzae competitive exclusion.
+- **Probiotic precedent**: Anderson et al. (2017) systematic review of CF probiotic trials; S. salivarius BLIS K12 (Tagg et al. 2025; Burton et al. 2011).
+- **Regulatory**: Dreher (2017) FDA/CBER framework for live biotherapeutic products.
+- **Pangenome-guided design**: Shao et al. (2026) used pangenome analysis for Bifidobacterium probiotic design.
 - FDA regulatory precedent for live biotherapeutic products (LBPs)
 
 ## Data Sources
