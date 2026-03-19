@@ -28,7 +28,15 @@ This project builds on data from:
 
 ## Reproduction
 
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+**Prerequisites:**
+- Python 3.10+ with pandas, numpy, scipy, matplotlib, seaborn, statsmodels, scikit-learn, scikit-bio
+- BERDL JupyterHub access (for NB01 Spark queries, NB03 temp view, NB04 AlphaEarth extraction)
+
+**Pipeline:**
+1. Execute `notebooks/01_data_extraction.ipynb` — Spark queries for AMR + environment + taxonomy (~20 min)
+2. Execute `notebooks/02_resistome_vs_environment.ipynb` — species-level H1-H3 tests (~5 min, local)
+3. Execute `notebooks/03_within_species.ipynb` — clinical enrichment proxy for H4 (~10 min, needs Spark)
+4. Execute `notebooks/04_alphaearth_analysis.ipynb` — supplementary embedding analysis (~5 min, needs Spark)
 
 ## Authors
 
