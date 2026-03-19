@@ -5,9 +5,9 @@ work. Keep the runtime data directory outside Git and point the server at a
 repo-managed config file.
 
 For implementation details of the currently landed migration slice, see
-[`docs/openviking_phase0_phase1.md`](openviking_phase0_phase1.md).
-For the remaining migration work, see
-[`docs/openviking_next_phases.md`](openviking_next_phases.md).
+[`docs/openviking_phase2.md`](openviking_phase2.md).
+For the next implementation slice, see
+[`docs/openviking_phase3_plan.md`](openviking_phase3_plan.md).
 
 ## 1. Install the local package environment
 
