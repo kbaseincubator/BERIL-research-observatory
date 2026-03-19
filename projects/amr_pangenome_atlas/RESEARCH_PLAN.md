@@ -150,4 +150,4 @@ LEFT JOIN kbase_ke_pangenome.eggnog_mapper_annotations egg ON amr.gene_cluster_i
 - **v2** (2026-03-15): Analysis complete. Key changes: (1) pangenome table columns differ from schema docs (no_core not no_core_gene_clusters), fixed in NB01; (2) createDataFrame incompatible with Spark server version, switched to chunked IN clauses; (3) Pfam has zero overlap with AMR clusters — separate annotation pipelines; (4) AlphaEarth embeddings added to NB05 for environmental diversity analysis; (5) NB06 rewritten to use DIAMOND-based FB-pangenome link table (177K links) instead of gene name matching
 
 ## Authors
-- **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) — Lawrence Berkeley National Laboratory
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

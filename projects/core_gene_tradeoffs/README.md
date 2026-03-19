@@ -28,4 +28,4 @@ jupyter nbconvert --execute notebooks/01_burden_anatomy.ipynb
 
 ## Authors
 
-- **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) -- Lawrence Berkeley National Laboratory
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

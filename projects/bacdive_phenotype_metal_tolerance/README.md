@@ -42,4 +42,4 @@ jupyter nbconvert --to notebook --execute --inplace 05_fb_bacdive_case_studies.i
 Notebooks must run in order (NB02 depends on NB01, NB03-04 depend on NB02). NB05 is independent but requires NB01 bridge data.
 
 ## Authors
-- Paramvir Dehal (https://orcid.org/0000-0002-3495-1240), Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

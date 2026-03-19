@@ -120,4 +120,4 @@ This returns ~100-150K rows (GenBank genomes only). The join to BacDive is done 
 - **v2** (2026-02-28): Plan review feedback: added power analysis for n=31 group, phylum-stratified permutation test, lab_field_ecology cross-reference. Verified BacDive accessions have no version suffix (0/27,502). Confirmed species_metal_scores.csv exists locally.
 
 ## Authors
-- Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
