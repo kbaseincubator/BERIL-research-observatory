@@ -1,0 +1,252 @@
+"""Tests for the Phase 2 OpenViking context service."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+
+from observatory_context.render import RenderLevel
+
+
+def _write(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+
+
+class FakeOpenVikingClient:
+    """Small in-memory fake for Phase 2 service tests."""
+
+    def __init__(self) -> None:
+        self.resources: dict[str, dict[str, object]] = {}
+        self.links: dict[str, list[dict[str, str]]] = {}
+        self.search_calls = 0
+        self.fail_semantic_search = False
+
+    def add_text_resource(self, uri: str, content: str, metadata: dict[str, object]) -> None:
+        self.resources[uri] = {"uri": uri, "content": content, "metadata": metadata}
+
+    def list_resources(self, uri: str, recursive: bool = False) -> list[dict[str, object]]:
+        results: list[dict[str, object]] = []
+        prefix = uri.rstrip("/")
+        for resource_uri in sorted(self.resources):
+            if recursive:
+                if resource_uri.startswith(prefix):
+                    results.append({"uri": resource_uri})
+            elif resource_uri.rsplit("/", 1)[0] == prefix:
+                results.append({"uri": resource_uri})
+        return results
+
+    def read_resource(self, uri: str) -> str:
+        return str(self.resources[uri]["content"])
+
+    def stat_resource(self, uri: str) -> dict[str, object]:
+        resource = self.resources[uri]
+        return {"uri": uri, "metadata": resource["metadata"]}
+
+    def search(self, query: str, target_uri: str | None = None) -> list[dict[str, object]]:
+        self.search_calls += 1
+        if self.fail_semantic_search:
+            raise RuntimeError("semantic retrieval unavailable")
+        query_lower = query.lower()
+        results = []
+        for uri, resource in self.resources.items():
+            if target_uri and not uri.startswith(target_uri):
+                continue
+            if query_lower in str(resource["content"]).lower():
+                results.append({"uri": uri, "score": 1.0})
+        return results
+
+    def make_directory(self, uri: str) -> None:
+        return None
+
+    def link_resources(self, from_uri: str, uris: list[str], reason: str = "") -> None:
+        self.links.setdefault(from_uri, [])
+        for uri in uris:
+            self.links[from_uri].append({"uri": uri, "reason": reason})
+
+    def relations(self, uri: str) -> list[dict[str, str]]:
+        return self.links.get(uri, [])
+
+    def add_note_resource(self, uri: str, content: str, metadata: dict[str, object]) -> None:
+        self.resources[uri] = {"uri": uri, "content": content, "metadata": metadata}
+
+
+@pytest.fixture
+def sample_repo(tmp_path: Path) -> Path:
+    _write(
+        tmp_path / "docs" / "project_registry.yaml",
+        """
+projects:
+  - id: alpha_proj
+    title: Alpha Project
+    status: complete
+    tags: [metal-stress, fitness]
+    research_question: How does alpha respond?
+  - id: beta_proj
+    title: Beta Project
+    status: in-progress
+    tags: [fitness, regulation]
+    research_question: How does beta respond?
+""".strip()
+        + "\n",
+    )
+    _write(
+        tmp_path / "docs" / "figure_catalog.yaml",
+        """
+figure_count: 1
+figures:
+  - id: alpha_proj__main
+    project_id: alpha_proj
+    figure_file: figures/main.png
+    caption: Main alpha figure
+    tags: [metal-stress]
+""".strip()
+        + "\n",
+    )
+    _write(
+        tmp_path / "knowledge" / "entities" / "organisms.yaml",
+        """
+organisms:
+  - id: org_alpha
+    name: Alpha organism
+""".strip()
+        + "\n",
+    )
+    _write(
+        tmp_path / "projects" / "alpha_proj" / "README.md",
+        "# Alpha Project\n\nQuestion: How does alpha respond?\n",
+    )
+    _write(
+        tmp_path / "projects" / "alpha_proj" / "REPORT.md",
+        "# Report\n\nAlpha report body mentions org_adp1 and metal stress.\n",
+    )
+    _write(
+        tmp_path / "projects" / "alpha_proj" / "provenance.yaml",
+        """
+project_id: alpha_proj
+created_at: 2026-03-18
+""".strip()
+        + "\n",
+    )
+    _write(
+        tmp_path / "projects" / "alpha_proj" / "figures" / "main.png",
+        "not a real png, just a fixture\n",
+    )
+    _write(
+        tmp_path / "projects" / "beta_proj" / "README.md",
+        "# Beta Project\n\nQuestion: How does beta respond?\n",
+    )
+    _write(
+        tmp_path / "projects" / "beta_proj" / "REPORT.md",
+        "# Beta Report\n\nBeta report body.\n",
+    )
+    _write(
+        tmp_path / "projects" / "beta_proj" / "provenance.yaml",
+        """
+project_id: beta_proj
+created_at: 2026-03-19
+""".strip()
+        + "\n",
+    )
+    return tmp_path
+
+
+@pytest.fixture
+def service(sample_repo: Path) -> object:
+    from observatory_context.service import ObservatoryContextService
+
+    client = FakeOpenVikingClient()
+    return ObservatoryContextService(
+        repo_root=sample_repo,
+        client=client,
+        now_factory=lambda: "2026-03-19T12:00:00Z",
+    )
+
+
+def test_get_resource_returns_deterministic_views(service: object) -> None:
+    resource = service.get_resource("alpha_proj", detail_level=RenderLevel.L1)
+
+    assert resource.resource.id == "alpha_proj"
+    assert resource.resource.uri.endswith("/projects/alpha_proj/authored/README.md")
+    assert "How does alpha respond?" in resource.rendered
+
+    by_uri = service.get_resource(resource.resource.uri, detail_level=RenderLevel.L2)
+    assert "```yaml" in by_uri.rendered
+    assert by_uri.resource.kind == "project"
+
+
+def test_get_project_workspace_lists_authored_resources(service: object) -> None:
+    workspace = service.get_project_workspace("alpha_proj", detail_level=RenderLevel.L0)
+
+    assert workspace.project_id == "alpha_proj"
+    assert workspace.workspace_uri.endswith("/projects/alpha_proj")
+    assert workspace.project_resource.id == "alpha_proj"
+    assert {resource.kind for resource in workspace.resources} == {
+        "project",
+        "project_document",
+        "figure",
+    }
+
+
+def test_list_project_resources_supports_kind_filter(service: object) -> None:
+    figures = service.list_project_resources("alpha_proj", kind="figure")
+
+    assert len(figures) == 1
+    assert figures[0].uri.endswith("/authored/figures/alpha_proj__main")
+
+
+def test_search_context_falls_back_to_lexical_metadata_search(service: object) -> None:
+    service.client.fail_semantic_search = True
+
+    results = service.search_context("org_adp1", detail_level=RenderLevel.L0)
+
+    assert service.client.search_calls == 1
+    assert [result.resource.id for result in results] == ["alpha_proj"]
+    assert "Alpha Project" in results[0].rendered
+
+
+def test_related_resources_are_metadata_and_link_driven(service: object) -> None:
+    note = service.add_note(
+        project_id="alpha_proj",
+        title="Alpha follow-up",
+        body="Cross-reference the main figure and report.",
+        tags=["metal-stress"],
+        links=["viking://resources/observatory/projects/alpha_proj/authored/figures/alpha_proj__main"],
+    )
+
+    related = service.related_resources("alpha_proj", limit=5)
+    related_uris = [resource.uri for resource in related]
+
+    assert any(uri.endswith("/authored/REPORT.md") for uri in related_uris)
+    assert any(uri.endswith("/authored/figures/alpha_proj__main") for uri in related_uris)
+    assert note.resource.uri in related_uris
+
+
+def test_add_note_and_observation_are_visible_to_subsequent_reads(service: object) -> None:
+    note = service.add_note(
+        project_id="alpha_proj",
+        title="Shared note",
+        body="A live note for other clients.",
+        tags=["live-context"],
+        links=["viking://resources/observatory/projects/alpha_proj/authored/REPORT.md"],
+    )
+    observation = service.add_observation(
+        project_id="alpha_proj",
+        source_ref="projects/alpha_proj/REPORT.md",
+        body="Observed a strong lexical fallback hit for org_adp1.",
+        tags=["observation"],
+        links=[note.resource.uri],
+    )
+
+    resources = service.list_project_resources("alpha_proj")
+    resource_ids = {resource.id for resource in resources}
+
+    assert note.resource.id in resource_ids
+    assert observation.resource.id in resource_ids
+
+    note_read = service.get_resource(note.resource.uri, detail_level=RenderLevel.L2)
+    assert "A live note for other clients." in note_read.rendered
+
+    search_results = service.search_context("lexical fallback", project="alpha_proj")
+    assert [result.resource.id for result in search_results] == [observation.resource.id]

@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+from tempfile import NamedTemporaryFile
 from typing import Any
+
+import yaml
 
 from observatory_context.config import ObservatoryContextSettings
 
@@ -49,3 +53,36 @@ class OpenVikingObservatoryClient:
             return self.client.find(query, target_uri=target_uri)
         return self.client.find(query)
 
+    def read_resource(self, uri: str) -> str:
+        return self.client.read(uri)
+
+    def stat_resource(self, uri: str) -> dict[str, Any]:
+        return self.client.stat(uri)
+
+    def make_directory(self, uri: str) -> None:
+        self.client.mkdir(uri)
+
+    def link_resources(self, from_uri: str, uris: list[str], reason: str = "") -> None:
+        self.client.link(from_uri, uris=uris, reason=reason)
+
+    def relations(self, uri: str) -> list[dict[str, Any]]:
+        return self.client.relations(uri)
+
+    def add_text_resource(
+        self,
+        uri: str,
+        content: str,
+        metadata: dict[str, Any],
+        reason: str,
+        wait: bool = True,
+    ) -> dict[str, Any]:
+        with NamedTemporaryFile("w", suffix=".md", encoding="utf-8", delete=False) as handle:
+            temp_path = Path(handle.name)
+            handle.write("---\n")
+            handle.write(yaml.safe_dump(metadata, sort_keys=True))
+            handle.write("---\n\n")
+            handle.write(content)
+        try:
+            return self.add_resource(path=str(temp_path), uri=uri, reason=reason, wait=wait)
+        finally:
+            temp_path.unlink(missing_ok=True)
