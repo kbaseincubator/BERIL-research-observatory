@@ -75,7 +75,7 @@ Across the 142-isolate analysis cohort, metabolic overlap with PA14 (weighted by
 
 ![Predicted vs observed inhibition from metabolic model (R² = 0.274)](figures/03_predicted_vs_observed.png)
 
-**Conclusion**: H1 (metabolic competition) is supported but incomplete. Metabolic overlap is a genuine predictor — not an artifact of taxonomy or confounders — but ~73% of variance remains unexplained by metabolism alone.
+**Conclusion**: H1 (metabolic competition) is supported but incomplete. Metabolic overlap is a genuine predictor — not an artifact of taxonomy or confounders — but approximately 73% of variance remains unexplained by metabolism alone.
 
 **The residual analysis reveals dual-mechanism species**: Isolates whose inhibition substantially exceeds metabolic predictions are candidate direct antagonists. The top positive residuals — *S. salivarius* ASMA-737 (+74.1%), *G. sanguinis* ASMA-3044 (+62.2%), *N. mucosa* ASMA-3643 (+57.2%) — are the same species that later dominate our FDA-safe formulations. These organisms appear to combine metabolic competition with direct antagonism, making them particularly valuable.
 
@@ -129,7 +129,7 @@ Growth kinetic parameters are moderately correlated with endpoint OD (r ≈ 0.40
 
 ![Core species frequency in top strict-safe formulations](figures/05b_strict_safe_species_frequency.png)
 
-**Conclusion**: At k=3, the formulation achieves 100% niche coverage — meaning at least one member grows on every amino acid that PA14 can use. The strict filter costs ~15% inhibition ceiling but doubles engraftability. The five-species core is consistent across all formulation sizes, indicating a robust solution rather than an optimization artifact.
+**Conclusion**: At k=3, the formulation achieves 100% niche coverage — meaning at least one member grows on every amino acid that PA14 can use. The strict filter costs roughly 15% inhibition ceiling but doubles engraftability. The five-species core is consistent across all formulation sizes, indicating a robust solution rather than an optimization artifact.
 
 *(Notebooks: 05_formulation_optimization.ipynb, 05b_formulation_strict_safety.ipynb)*
 
@@ -230,13 +230,13 @@ Patient metatranscriptomics corroborates the genomic predictions: 47 KEGG pathwa
 
 Our data support a model where effective commensal formulations suppress *P. aeruginosa* through at least three mechanisms operating simultaneously:
 
-1. **Metabolic competition** (~27% of variance): Direct resource depletion of PA14's preferred amino acid substrates. This is the "eat their lunch" mechanism and is quantitatively validated by the metabolic overlap–inhibition correlation.
+1. **Metabolic competition** (approximately 27% of variance): Direct resource depletion of PA14's preferred amino acid substrates. This is the "eat their lunch" mechanism and is quantitatively validated by the metabolic overlap–inhibition correlation.
 
-2. **Direct antagonism** (additional ~9% from taxonomy): Species-specific mechanisms — likely bacteriocins, secreted enzymes (Stubbendieck et al. 2023), or contact-dependent killing — that inhibit PA14 independently of resource competition. The top formulation species (*S. salivarius*, *N. mucosa*, *G. sanguinis*) all show strong positive residuals in the metabolic model.
+2. **Direct antagonism** (additional an additional 9% from taxonomy): Species-specific mechanisms — likely bacteriocins, secreted enzymes (Stubbendieck et al. 2023), or contact-dependent killing — that inhibit PA14 independently of resource competition. The top formulation species (*S. salivarius*, *N. mucosa*, *G. sanguinis*) all show strong positive residuals in the metabolic model.
 
 3. **Community-level niche saturation**: No individual commensal outgrows PA14 on any tested substrate, but a 3–5 organism consortium collectively covers 100% of PA14's metabolic niche. This is an emergent community property not predictable from individual organism profiles.
 
-The remaining ~64% of variance is likely attributable to unmeasured factors: biofilm dynamics, pH effects, iron competition, quorum sensing interference, and stochastic variation in the planktonic assay.
+The remaining the remaining 64% of variance is likely attributable to unmeasured factors: biofilm dynamics, pH effects, iron competition, quorum sensing interference, and stochastic variation in the planktonic assay.
 
 ### 3.2 The Prebiotic Strategy Shifts from Amino Acids to Sugar Alcohols
 
