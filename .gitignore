@@ -97,3 +97,5 @@ venv/
 htmlcov/
 .pytest_cache/
 .ruff_cache/
+.cache/openviking/
+config/openviking/ov.conf
