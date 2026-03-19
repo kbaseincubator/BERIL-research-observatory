@@ -1,0 +1,302 @@
+schema_version: 1
+references:
+- id: arkin2018
+  type: methodology
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  year: 2018
+  journal: Nat Biotechnol
+  volume: '36'
+  pages: 566-569
+  doi: null
+  pmid: '29979655'
+  url: null
+- id: biswas2021
+  type: supporting
+  title: Overview on the role of heavy metals tolerance on developing antibiotic resistance in both Gram-negative and Gram-positive
+    bacteria
+  authors:
+  - Biswas R
+  year: 2021
+  journal: Arch Microbiol
+  volume: '203'
+  pages: '2275'
+  doi: 10.1007/s00203-021-02275-w
+  pmid: null
+  url: null
+- id: goberna2016
+  type: supporting
+  title: Predicting microbial traits with phylogenies
+  authors:
+  - Goberna M
+  - Verdú M
+  year: 2016
+  journal: ISME J
+  volume: '10'
+  pages: 959-967
+  doi: 10.1038/ismej.2015.171
+  pmid: null
+  url: null
+- id: koblitz2025
+  type: methodology
+  title: Predicting bacterial phenotypic traits through improved machine learning using high-quality, curated datasets
+  authors:
+  - Koblitz J
+  year: 2025
+  journal: Commun Biol
+  volume: null
+  pages: null
+  doi: 10.1038/s42003-025-08313-3
+  pmid: null
+  url: null
+- id: maier2019
+  type: supporting
+  title: Role of Nickel in Microbial Pathogenesis
+  authors:
+  - Maier RJ
+  - Benoit SL
+  year: 2019
+  journal: Inorganics
+  volume: '7'
+  pages: '80'
+  doi: 10.3390/inorganics7070080
+  pmid: null
+  url: null
+- id: martin-moldes2015
+  type: supporting
+  title: Whole-genome analysis of Azoarcus sp. strain CIB provides genetic insights to its different lifestyles
+  authors:
+  - Martin-Moldes Z
+  year: 2015
+  journal: Syst Appl Microbiol
+  volume: '38'
+  pages: 462-471
+  doi: null
+  pmid: null
+  url: https://www.sciencedirect.com/science/article/pii/S0723202015000885
+- id: olenski2025
+  type: supporting
+  title: Molecular mechanisms of bacterial survival strategies under heavy metal stress
+  authors:
+  - Oleńska E
+  year: 2025
+  journal: Int J Mol Sci
+  volume: '26'
+  pages: '5716'
+  doi: 10.3390/ijms26125716
+  pmid: null
+  url: null
+- id: paulsen1997
+  type: supporting
+  title: 'The SMR family: a novel family of multidrug efflux proteins'
+  authors:
+  - Paulsen IT
+  year: 1997
+  journal: FEMS Microbiol Lett
+  volume: '156'
+  pages: 1-8
+  doi: null
+  pmid: null
+  url: https://academic.oup.com/femsle/article/156/1/1/467888
+- id: price2018
+  type: methodology
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: reimer2022
+  type: primary_data_source
+  title: 'BacDive in 2022: the knowledge base for standardized bacterial and archaeal data'
+  authors:
+  - Reimer LC
+  year: 2022
+  journal: Nucleic Acids Res
+  volume: '50'
+  pages: D741-D746
+  doi: 10.1093/nar/gkab961
+  pmid: null
+  url: null
+- id: schwan2023
+  type: supporting
+  title: Genotypic and phenotypic characterization of antimicrobial resistance and metal tolerance in Salmonella and E. coli
+  authors:
+  - Schwan CL
+  year: 2023
+  journal: J Food Prot
+  volume: '86'
+  pages: '100113'
+  doi: null
+  pmid: '37290750'
+  url: null
+- id: stahler2006
+  type: supporting
+  title: The CznABC metal efflux pump is required for cadmium, zinc, and nickel resistance, urease modulation, and gastric
+    colonization
+  authors:
+  - Stähler FN
+  year: 2006
+  journal: Infect Immun
+  volume: '74'
+  pages: 3845-3852
+  doi: null
+  pmid: null
+  url: https://journals.asm.org/doi/10.1128/IAI.74.7.3845-3852.2006
+- id: van-assche2017
+  type: supporting
+  title: Phylogenetic signal in carbon source assimilation profiles and tolerance to chemical agents
+  authors:
+  - Van Assche A
+  - Álvarez-Pérez S
+  year: 2017
+  journal: Appl Microbiol Biotechnol
+  volume: '101'
+  pages: 3049-3061
+  doi: 10.1007/s00253-016-7866-0
+  pmid: null
+  url: null
+data_sources:
+- collection: kescience_bacdive
+  tables:
+  - strain
+  - physiology
+  - metabolite_utilization
+  - enzyme
+  - isolation
+  - taxonomy
+  - sequence_info
+  purpose: Phenotype features for 97K strains including Gram stain, oxygen tolerance, metabolite utilization, enzyme activities,
+    and isolation source
+  reference: reimer2022
+- collection: kbase_ke_pangenome
+  tables: []
+  purpose: Metal tolerance genome-based predictions for 27,702 species via Metal Fitness Atlas scores
+  reference: null
+- collection: kescience_fitnessbrowser
+  tables: []
+  purpose: 12 direct FB-BacDive organism matches and metal experiment metadata
+  reference: null
+cross_project_deps:
+- project: metal_fitness_atlas
+  relationship: data_input
+  files:
+  - data/species_metal_scores.csv
+  - data/metal_experiments.csv
+  description: Metal tolerance scores for 27,702 pangenome species and metal-specific gene count data
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/organism_mapping.tsv
+  description: FB organism-to-pangenome species mapping for 12 matched organisms
+- project: counter_ion_effects
+  relationship: data_input
+  files:
+  - data/corrected_metal_conservation.csv
+  description: Metal-specific corrected scores to test per-metal hypotheses and control for shared stress signal
+- project: bacdive_metal_validation
+  relationship: replicates
+  files:
+  - data/
+  description: Reference implementation of BacDive-pangenome bridge construction and GCA matching strategy
+findings:
+- id: gram_negative_higher_metal_tolerance
+  title: Gram-Negative Bacteria Have Significantly Higher Metal Tolerance Scores (d=-0.61)
+  notebook: 03_univariate_associations.ipynb
+  figures:
+  - univariate_effect_sizes.png
+  data_files: []
+  references:
+  - biswas2021
+  - paulsen1997
+  statistics:
+    effect_size_cohens_d: '-0.61'
+    p_value: < 1e-60
+    sample_size: '3272'
+    fdr_q: '4.0e-60'
+- id: seven_features_fdr_significant
+  title: Seven of Ten Phenotype Features Are Individually Significant After FDR Correction
+  notebook: 03_univariate_associations.ipynb
+  figures:
+  - univariate_effect_sizes.png
+  data_files: []
+  references: []
+  statistics:
+    significant_features: 7/10
+    gram_stain_d: '-0.61'
+    oxidase_d: '+0.53'
+    motility_d: '+0.35'
+    urease_d: '-0.18'
+    enzyme_breadth_rho: '-0.06'
+    nitrate_reduction_d: '+0.10'
+    catalase_d: '+0.10'
+- id: phenotypes_add_nothing_beyond_taxonomy
+  title: Phenotype Features Add Nothing Beyond Taxonomy (Delta R² = -0.009)
+  notebook: 04_multivariate_model.ipynb
+  figures:
+  - model_comparison.png
+  data_files: []
+  references:
+  - goberna2016
+  - van-assche2017
+  statistics:
+    taxonomy_only_r2: '0.354'
+    phenotype_only_r2: '0.163'
+    taxonomy_phenotype_r2: '0.345'
+    delta_r2: '-0.009'
+    full_model_r2: '0.633'
+    n_metal_clusters_delta_r2: '+0.28'
+- id: urease_lower_metal_tolerance
+  title: Urease-Positive Organisms Have Lower Metal Tolerance (H1e Reversed)
+  notebook: 03_univariate_associations.ipynb
+  figures:
+  - univariate_effect_sizes.png
+  data_files: []
+  references:
+  - maier2019
+  statistics:
+    effect_size_cohens_d: '-0.18'
+    p_value: < 1e-5
+    actinomycetes_d: '-0.59'
+    actinomycetes_p: < 1e-16
+    gammaproteobacteria_d: '+0.08'
+    gammaproteobacteria_p: ns
+- id: anaerobe_aerobe_negligible
+  title: Anaerobe vs Aerobe Difference Is Negligible (H1b Not Supported)
+  notebook: 03_univariate_associations.ipynb
+  figures:
+  - feature_completeness.png
+  data_files: []
+  references: []
+  statistics:
+    effect_size_cohens_d: '-0.016'
+    p_value: '0.55'
+    facultative_mean_score: '0.221'
+    aerobe_mean_score: '0.216'
+    anaerobe_mean_score: '0.215'
+    kruskal_wallis_h: '8.53'
+    kruskal_wallis_p: '0.014'
+- id: shap_confirms_taxonomy_gene_count_dominate
+  title: SHAP Analysis Confirms Taxonomy and Gene Count Dominate
+  notebook: 04_multivariate_model.ipynb
+  figures:
+  - shap_summary.png
+  data_files: []
+  references: []
+  statistics: {}
+- id: direct_fb_bacdive_validation
+  title: Direct FB-BacDive Validation (n = 12)
+  notebook: 05_fb_bacdive_case_studies.ipynb
+  figures:
+  - fb_bacdive_phenotype_table.png
+  data_files: []
+  references: []
+  statistics:
+    matched_organisms: '12'
+    unique_species: '6'
+generated_data: []

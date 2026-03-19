@@ -1,0 +1,128 @@
+schema_version: 1
+references:
+- id: koonin2008
+  type: review
+  title: 'Genomics of bacteria and archaea: the emerging dynamic view of the prokaryotic world'
+  authors:
+  - Koonin EV
+  - Wolf YI
+  year: 2008
+  journal: Nucleic Acids Res
+  volume: '36'
+  pages: 6688-6719
+  doi: null
+  pmid: '18948295'
+  url: null
+- id: treangen2011
+  type: supporting
+  title: Horizontal transfer, not duplication, drives the expansion of protein families in prokaryotes
+  authors:
+  - Treangen TJ
+  - Rocha EP
+  year: 2011
+  journal: PLoS Genet
+  volume: '7'
+  pages: null
+  doi: 10.1371/journal.pgen.1001284
+  pmid: '21298028'
+  url: null
+- id: parks2022
+  type: methodology
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Res
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - gene_cluster
+  - gene_genecluster_junction
+  - eggnog_mapper_annotations
+  - pangenome
+  - gtdb_species_clade
+  purpose: COG category distributions across core, auxiliary, and singleton gene classes
+  reference: null
+cross_project_deps: []
+findings:
+- id: universal_functional_partitioning
+  title: Universal Functional Partitioning in Bacterial Pangenomes
+  notebook: cog_analysis.ipynb
+  figures: []
+  data_files:
+  - data/cog_distribution_raw.json
+  references:
+  - koonin2008
+  - treangen2011
+  statistics:
+    total_genes_analyzed: '357623'
+    total_species: '32'
+    total_phyla: '9'
+    l_enrichment_novel: +10.88%
+    l_consistency: 100%
+    v_enrichment_novel: +2.83%
+    v_consistency: 100%
+    s_enrichment_novel: +1.64%
+    s_consistency: 69%
+    j_depletion_core: -4.65%
+    j_consistency: 97%
+    f_depletion_core: -2.09%
+    f_consistency: 100%
+    h_depletion_core: -2.06%
+    h_consistency: 97%
+    e_depletion_core: -1.81%
+    e_consistency: 81%
+    c_depletion_core: -1.75%
+    c_consistency: 88%
+- id: composite_cog_categories_biologically_meaningful
+  title: Composite COG Categories Are Biologically Meaningful
+  notebook: cog_analysis.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    lv_enrichment: +0.34%
+    lv_consistency: 76%
+generated_data:
+- file: data/cog_distribution_raw.json
+  rows: null
+  description: Raw COG distribution data across species
+  source_notebook: multi_species_cog_analysis.ipynb
+- file: data/cog_heatmap.png
+  rows: null
+  description: Heatmap visualization of COG proportions across gene classes
+  source_notebook: cog_analysis.ipynb
+- file: data/cog_enrichment.png
+  rows: null
+  description: Bar plot showing top enriched/depleted COG categories in novel genes
+  source_notebook: cog_analysis.ipynb
+- file: data/cog_enrichment_by_phylum.png
+  rows: null
+  description: COG enrichment patterns stratified by bacterial phylum
+  source_notebook: multi_species_cog_analysis.ipynb
+- file: data/cog_mean_enrichment.png
+  rows: null
+  description: Mean COG enrichment across all species analyzed
+  source_notebook: multi_species_cog_analysis.ipynb
+- file: data/multi_species_enrichment_heatmap.png
+  rows: null
+  description: Heatmap of COG enrichment patterns across 32 species and 9 phyla
+  source_notebook: multi_species_cog_analysis.ipynb
+- file: data/pangenome_characteristics.png
+  rows: null
+  description: Summary statistics for pangenome characteristics across species
+  source_notebook: multi_species_cog_analysis.ipynb
+- file: data/phylum_distribution_100_500.png
+  rows: null
+  description: Distribution of species across phyla in the 100-500 genome size range
+  source_notebook: species_selection_exploration.ipynb
+- file: data/query.json
+  rows: null
+  description: null
+  source_notebook: null

@@ -1,0 +1,327 @@
+schema_version: 1
+references:
+- id: arkin2018
+  type: primary_data_source
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  year: 2018
+  journal: Nature Biotechnology
+  volume: '36'
+  pages: 566-569
+  doi: null
+  pmid: '29979655'
+  url: null
+- id: parks2022
+  type: primary_data_source
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+- id: sanchez-buso2020
+  type: supporting
+  title: A Pangenomic Perspective on the Emergence, Maintenance, and Predictability of Antibiotic Resistance
+  authors:
+  - Sanchez-Buso L
+  - Comas I
+  - Harris SR
+  year: 2020
+  journal: The Pangenome
+  volume: null
+  pages: null
+  doi: null
+  pmid: '32633921'
+  url: null
+- id: mcinerney2017
+  type: methodology
+  title: Why prokaryotes have pangenomes
+  authors:
+  - McInerney JO
+  - McNally A
+  - O'Connell MJ
+  year: 2017
+  journal: Nature Microbiology
+  volume: '2'
+  pages: '17040'
+  doi: null
+  pmid: '28350002'
+  url: null
+- id: domingo-sananes2021
+  type: supporting
+  title: Mechanisms That Shape Microbial Pangenomes
+  authors:
+  - Domingo-Sananes MR
+  - McInerney JO
+  year: 2021
+  journal: Trends in Microbiology
+  volume: '29'
+  pages: 493-503
+  doi: null
+  pmid: '33279381'
+  url: null
+- id: colquhoun2024
+  type: supporting
+  title: Bacterial lifestyle shapes pangenomes
+  authors:
+  - Colquhoun RM
+  year: 2024
+  journal: PNAS
+  volume: '121'
+  pages: e2320170121
+  doi: 10.1073/pnas.2320170121
+  pmid: null
+  url: null
+- id: partridge2018
+  type: methodology
+  title: Mobile Genetic Elements Associated with Antimicrobial Resistance
+  authors:
+  - Partridge SR
+  - Kwong SM
+  - Firth N
+  - Jensen SO
+  year: 2018
+  journal: Clinical Microbiology Reviews
+  volume: '31'
+  pages: e00088-17
+  doi: null
+  pmid: '30068738'
+  url: null
+- id: dobrindt2004
+  type: methodology
+  title: Genomic islands in pathogenic and environmental microorganisms
+  authors:
+  - Dobrindt U
+  - Hochhut B
+  - Hentschel U
+  - Hacker J
+  year: 2004
+  journal: Nature Reviews Microbiology
+  volume: '2'
+  pages: 414-24
+  doi: null
+  pmid: '15100694'
+  url: null
+- id: maier2025
+  type: supporting
+  title: Genetic compatibility and ecological connectivity drive the dissemination of antibiotic resistance genes
+  authors:
+  - Maier L
+  year: 2025
+  journal: Nature Communications
+  volume: '16'
+  pages: '2534'
+  doi: 10.1038/s41467-025-49301-1
+  pmid: null
+  url: null
+- id: souza2020
+  type: methodology
+  title: First Steps in the Analysis of Prokaryotic Pan-Genomes
+  authors:
+  - Souza SSR
+  year: 2020
+  journal: Bioinformatics and Biology Insights
+  volume: '14'
+  pages: '1177932220938064'
+  doi: null
+  pmid: '32742128'
+  url: null
+- id: wiedenbeck2011
+  type: methodology
+  title: Origins of bacterial diversity through horizontal genetic transfer and adaptation to new ecological niches
+  authors:
+  - Wiedenbeck J
+  - Cohan FM
+  year: 2011
+  journal: FEMS Microbiology Reviews
+  volume: '35'
+  pages: 957-976
+  doi: null
+  pmid: '21711367'
+  url: null
+- id: holt2015
+  type: supporting
+  title: Genomic analysis of diversity, population structure, virulence, and antimicrobial resistance in Klebsiella pneumoniae,
+    an urgent threat to public health
+  authors:
+  - Holt KE
+  year: 2015
+  journal: PNAS
+  volume: '112'
+  pages: E3574-81
+  doi: null
+  pmid: '26100894'
+  url: null
+- id: wyres2018
+  type: supporting
+  title: Klebsiella pneumoniae as a key trafficker of drug resistance genes from environmental to clinically important bacteria
+  authors:
+  - Wyres KL
+  - Holt KE
+  year: 2018
+  journal: Current Opinion in Microbiology
+  volume: '45'
+  pages: 131-139
+  doi: null
+  pmid: '29723841'
+  url: null
+- id: croucher2014
+  type: supporting
+  title: Population genomics of post-vaccine changes in pneumococcal epidemiology
+  authors:
+  - Croucher NJ
+  year: 2014
+  journal: Nature Genetics
+  volume: '45'
+  pages: 656-663
+  doi: null
+  pmid: '23644493'
+  url: null
+- id: bourély2024
+  type: supporting
+  title: 'PanKA: Leveraging population pangenome to predict antibiotic resistance'
+  authors:
+  - Bourély C
+  year: 2024
+  journal: iScience
+  volume: '27'
+  pages: '110623'
+  doi: null
+  pmid: '39262793'
+  url: null
+- id: nguyen2018
+  type: methodology
+  title: A pan-genome-based machine learning approach for predicting antimicrobial resistance activities of the Escherichia
+    coli strains
+  authors:
+  - Nguyen M
+  year: 2018
+  journal: Bioinformatics
+  volume: '34'
+  pages: i89-i95
+  doi: null
+  pmid: '29950006'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - gene
+  - gene_genecluster_junction
+  - genome
+  - genome_ani
+  - ncbi_env
+  purpose: Genome-level AMR presence/absence, ANI distances, environmental metadata
+  reference: arkin2018
+cross_project_deps:
+- project: amr_pangenome_atlas
+  relationship: data_input
+  files:
+  - data/amr_census.csv
+  - data/amr_species_summary.csv
+  description: AMR cluster x species mapping and species selection criteria
+findings:
+- id: amr_genes_variable_rare_within_species
+  title: The majority of AMR genes are variable or rare within species
+  notebook: 02_variation_metrics.ipynb
+  figures:
+  - nb02_variation_landscape.png
+  data_files: []
+  references:
+  - sanchez-buso2020
+  statistics:
+    rare_genes_percent: 51.3%
+    variable_genes_percent: 41.3%
+    fixed_genes_percent: 7.5%
+    median_variability_index: '0.526'
+    median_jaccard_distance: '0.435'
+    core_genes_fixed_percent: 77.3%
+    singletons_rare_percent: 78.7%
+    pangenome_openness_correlation_p: '2.2e-12'
+    pangenome_openness_correlation_r: '-0.193'
+- id: resistance_islands_tightly_coinherited
+  title: Resistance islands are widespread and tightly co-inherited
+  notebook: 03_cooccurrence_islands.ipynb
+  figures:
+  - nb03_cooccurrence.png
+  data_files: []
+  references:
+  - partridge2018
+  statistics:
+    total_resistance_islands: '1517'
+    species_with_islands: '705'
+    species_with_islands_percent: 54%
+    mean_island_size: '6.2'
+    median_island_size: '4'
+    max_island_size: '43'
+    mean_phi_coefficient: '0.827'
+    islands_multi_mechanism_percent: 88%
+    islands_with_efflux: '954'
+    islands_with_enzymatic_inactivation: '698'
+- id: amr_variation_tracks_phylogeny
+  title: AMR variation tracks phylogeny in the majority of species — but acquired genes show stronger signal than intrinsic
+  notebook: 04_phylogenetic_signal.ipynb
+  figures:
+  - nb04_phylogenetic_signal.png
+  data_files: []
+  references:
+  - maier2025
+  - holt2015
+  statistics:
+    species_with_significant_signal: 701/1261
+    species_with_significant_signal_percent: 55.6%
+    median_mantel_r_all: '0.247'
+    species_positive_correlation_percent: 87.8%
+    median_mantel_r_core: '0.117'
+    median_mantel_r_noncore: '0.222'
+    core_vs_noncore_t_statistic: '-8.35'
+    core_vs_noncore_p_value: '7.0e-16'
+    core_vs_noncore_n: '489'
+- id: amr_ecotypes_one_in_five_species
+  title: One in five species has distinct AMR ecotypes
+  notebook: 05_amr_ecotypes.ipynb
+  figures:
+  - nb05_Klebsiella_pneumoniae_ecotypes.png
+  - nb05_Staphylococcus_aureus_ecotypes.png
+  - nb05_Salmonella_enterica_ecotypes.png
+  - nb05_Pseudomonas_aeruginosa_ecotypes.png
+  - nb05_Acinetobacter_baumannii_ecotypes.png
+  data_files: []
+  references:
+  - holt2015
+  statistics:
+    species_analyzed_for_ecotypes: '974'
+    species_with_ecotypes: '190'
+    species_with_ecotypes_percent: 19.5%
+    median_silhouette_score: '0.620'
+    genomes_with_metadata_percent: 52.7%
+    species_with_env_diversity_for_testing: '2'
+- id: no_temporal_trends_amr_accumulation
+  title: No significant temporal trends in AMR accumulation after multiple-testing correction
+  notebook: 06_temporal_bacdive.ipynb
+  figures:
+  - nb06_temporal_bacdive.png
+  data_files: []
+  references: []
+  statistics:
+    species_with_temporal_data: '513'
+    species_with_significant_trends: '0'
+    species_positive_slope: '251'
+    species_negative_slope: '262'
+- id: host_associated_species_more_amr
+  title: Host-associated species carry more AMR genes than environmental species
+  notebook: 06_temporal_bacdive.ipynb
+  figures:
+  - nb06_temporal_bacdive.png
+  data_files: []
+  references: []
+  statistics:
+    species_with_ncbi_classification: 1190/1307
+    species_with_bacdive_approximation: 459/1307
+    kruskal_wallis_p_value: <0.05
+generated_data: []

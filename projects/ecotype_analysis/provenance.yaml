@@ -1,0 +1,121 @@
+schema_version: 1
+references:
+- id: garud2019
+  type: supporting
+  title: Population genetics in the human microbiome
+  authors:
+  - Garud NR
+  year: 2019
+  journal: Trends Genet
+  volume: '35'
+  pages: 626-636
+  doi: null
+  pmid: null
+  url: https://www.cell.com/trends/genetics/fulltext/S0168-9525(19)30057-X
+- id: shapiro2012
+  type: supporting
+  title: Population genomics of early events in the ecological differentiation of bacteria
+  authors:
+  - Shapiro BJ
+  year: 2012
+  journal: Science
+  volume: '336'
+  pages: 48-51
+  doi: null
+  pmid: null
+  url: https://www.science.org/doi/10.1126/science.1218198
+- id: polz2013
+  type: supporting
+  title: Horizontal gene transfer and the evolution of bacterial and archaeal population structure
+  authors:
+  - Polz MF
+  year: 2013
+  journal: Trends Genet
+  volume: '29'
+  pages: 170-175
+  doi: null
+  pmid: '23332119'
+  url: null
+- id: parks2022
+  type: methodology
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Res
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - alphaearth_embeddings
+  - genome
+  - ncbi_env
+  - pangenome
+  - gene_cluster
+  purpose: Environmental embeddings, genome metadata, taxonomy, pangenome composition, and gene cluster profiles
+  reference: null
+cross_project_deps: []
+findings:
+- id: phylogeny_dominates
+  title: Phylogeny Usually Dominates
+  notebook: null
+  figures:
+  - ecotype_correlation_summary.png
+  data_files: []
+  references:
+  - garud2019
+  - shapiro2012
+  statistics:
+    median_partial_correlation_environment: '0.0025'
+    median_partial_correlation_phylogeny: '0.0143'
+    phylogeny_dominates_percent: '60.5'
+    environment_dominates_percent: '39.5'
+- id: no_lifestyle_difference
+  title: No Difference by Lifestyle
+  notebook: null
+  figures:
+  - environmental_vs_host_comparison.png
+  data_files: []
+  references: []
+  statistics:
+    p_value: '0.66'
+- id: statistical_summary
+  title: Statistical Summary
+  notebook: null
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    significant_positive_environment_species: '12'
+    significant_positive_environment_percent: '7.0'
+    significant_negative_environment_species: '4'
+    significant_negative_environment_percent: '2.3'
+    not_significant_species: '156'
+    not_significant_percent: '90.7'
+- id: category_breakdown
+  title: Category Breakdown
+  notebook: null
+  figures:
+  - ecotype_by_category.png
+  - ecotype_scatter_by_category.png
+  data_files: []
+  references: []
+  statistics: {}
+- id: embedding_diversity
+  title: Embedding Diversity
+  notebook: null
+  figures:
+  - embedding_diversity_distribution.png
+  data_files: []
+  references: []
+  statistics: {}
+generated_data:
+- file: data/ecotype_correlation_results.csv
+  rows: 172
+  description: Correlation results for all 172 species
+  source_notebook: null

@@ -1,0 +1,200 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Calef M
+  - Tber J
+  - Engel A
+  - Chol J
+  - Arkin AP
+  - Deutschbauer AM
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: carlson2019
+  type: supporting
+  title: The selective pressures on the microbial community in a metal-contaminated aquifer
+  authors:
+  - Carlson HK
+  - Price MN
+  - Callaghan MM
+  - Aaring A
+  - Chakraborty R
+  - Liu H
+  - Kuehl JV
+  - Arkin AP
+  - Deutschbauer AM
+  year: 2019
+  journal: ISME J
+  volume: '13'
+  pages: 937-949
+  doi: 10.1038/s41396-018-0328-1
+  pmid: '30523276'
+  url: null
+- id: peng2022
+  type: supporting
+  title: Genomic features and pervasive negative selection in Rhodanobacter strains isolated from nitrate and heavy metal
+    contaminated aquifer
+  authors:
+  - Peng M
+  - Jiang Z
+  - Zhou F
+  - Wang Z
+  year: 2022
+  journal: Microbiol Spectr
+  volume: '10'
+  pages: null
+  doi: null
+  pmid: '35107332'
+  url: null
+- id: michael2024
+  type: supporting
+  title: Reproducible responses of geochemical and microbial successional patterns in the subsurface to carbon source amendment
+  authors:
+  - Michael JP
+  - He Z
+  - Price MN
+  - Carlson HK
+  - Arkin AP
+  - Deutschbauer AM
+  - Zhou J
+  - Chakraborty R
+  year: 2024
+  journal: Water Res
+  volume: '254'
+  pages: '121393'
+  doi: null
+  pmid: '38552495'
+  url: null
+- id: lasarre2020
+  type: supporting
+  title: Covert cross-feeding revealed by genome-wide analysis of fitness determinants in a synthetic bacterial mutualism
+  authors:
+  - LaSarre B
+  - McCully AL
+  - Lennon JT
+  - McKinlay JB
+  year: 2020
+  journal: Appl Environ Microbiol
+  volume: '86'
+  pages: null
+  doi: null
+  pmid: '32332139'
+  url: null
+- id: parks2022
+  type: methodology
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  - Chuvochina M
+  - Chaumeil PA
+  - Rinke C
+  - Mussig AJ
+  - Hugenholtz P
+  year: 2022
+  journal: Nucleic Acids Res
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+data_sources:
+- collection: enigma_coral
+  tables:
+  - ddt_brick0000010
+  - ddt_brick0000459
+  - ddt_brick0000454
+  - sdt_sample
+  - sdt_community
+  purpose: Extract geochemistry (uranium, chromium, nickel, zinc, iron concentrations), 16S amplicon community composition
+    (ASV counts), and ASV taxonomy at genus level from 108 Oak Ridge groundwater samples
+  reference: null
+- collection: kescience_fitnessbrowser
+  tables: []
+  purpose: Fitness Browser fitness statistics across 43 organisms for metal tolerance prediction
+  reference: price2018
+cross_project_deps:
+- project: fitness_effects_conservation
+  relationship: data_input
+  files:
+  - data/fitness_stats.tsv
+  description: Per-gene fitness effects used for metal tolerance scoring
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/organism_mapping.tsv
+  - data/fb_pangenome_link.tsv
+  description: Fitness Browser organism to species mapping and pangenome core/accessory gene classification
+findings:
+- id: fb_genera_detected_oak_ridge
+  title: 14 of 26 Fitness Browser Genera Detected at Oak Ridge
+  notebook: 02_genus_abundance.ipynb
+  figures:
+  - fig_fb_genus_prevalence.png
+  data_files: []
+  references: []
+  statistics:
+    sphingomonas_prevalence: 93% of 108 sites
+    pseudomonas_prevalence: 91%
+    caulobacter_prevalence: 82%
+    desulfovibrio_prevalence: 34%
+    desulfovibrio_max_abundance: 0.09% relative abundance
+- id: abundance_correlates_uranium
+  title: Genus Abundance Correlates with Uranium -- in Both Directions
+  notebook: 03_fitness_vs_field.ipynb
+  figures:
+  - fig_abundance_vs_uranium.png
+  data_files: []
+  references: []
+  statistics:
+    herbaspirillum_rho: '+0.336'
+    herbaspirillum_pvalue: '3.8e-4'
+    herbaspirillum_q: '0.001'
+    bacteroides_rho: '+0.264'
+    bacteroides_pvalue: '0.006'
+    bacteroides_q: '0.013'
+    caulobacter_rho: '-0.411'
+    caulobacter_pvalue: '1.0e-5'
+    caulobacter_q: '1.1e-4'
+    sphingomonas_rho: '-0.382'
+    sphingomonas_pvalue: '4.5e-5'
+    sphingomonas_q: '2.5e-4'
+    pedobacter_rho: '-0.266'
+    pedobacter_pvalue: '0.005'
+    pedobacter_q: '0.013'
+    test: Spearman correlation with Benjamini-Hochberg FDR correction
+    genera_tested: 11 of 14 detected FB genera
+    significant_at_fdr_005: 5 genera
+- id: metal_tolerance_vs_field_abundance
+  title: Lab Metal Tolerance Does Not Significantly Predict Field Abundance Ratio
+  notebook: 03_fitness_vs_field.ipynb
+  figures:
+  - fig_metal_tolerance_score.png
+  data_files: []
+  references: []
+  statistics:
+    rho: '0.503'
+    pvalue: '0.095'
+    n: 12 genera
+    test: Spearman correlation
+    conclusion: Suggestive but not significant
+- id: community_shifts_contamination
+  title: Community Composition Shifts with Contamination
+  notebook: 03_fitness_vs_field.ipynb
+  figures:
+  - fig_community_by_contamination.png
+  data_files: []
+  references:
+  - carlson2019
+  statistics: {}
+generated_data: []

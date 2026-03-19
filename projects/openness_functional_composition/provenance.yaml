@@ -1,0 +1,87 @@
+schema_version: 1
+references:
+- id: tettelin2005
+  type: primary_data_source
+  title: Genome segmentation in bacterial species
+  authors:
+  - Tettelin H
+  - Masignani V
+  - Cieslewicz MJ
+  year: 2005
+  journal: Science
+  volume: '310'
+  pages: 1344-1349
+  doi: 10.1126/science.1121066
+  pmid: null
+  url: null
+- id: mcinerney2017
+  type: supporting
+  title: 'Pangenome: Past, Present, and Future of Microbial Genomics'
+  authors:
+  - McInerney JO
+  - McNally A
+  - O'Connell MJ
+  year: 2017
+  journal: Trends in Microbiology
+  volume: '25'
+  pages: 143-156
+  doi: 10.1016/j.tim.2016.11.005
+  pmid: null
+  url: null
+- id: cog_analysis
+  type: supporting
+  title: 'Two-Speed Genome: COG Functional Enrichment in Novel vs Core Genes'
+  authors:
+  - Reese J
+  year: 2026
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://github.com/beril/cog_analysis
+- id: pangenome_openness
+  type: supporting
+  title: Pangenome Openness and Eco-Phylo Dynamics
+  authors:
+  - Reese J
+  year: 2026
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://github.com/beril/pangenome_openness
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - pangenome
+  - gtdb_species_clade
+  - gene_cluster
+  - gene_genecluster_junction
+  - eggnog_mapper_annotations
+  purpose: Extract pangenome openness metrics, COG functional annotations, and core/auxiliary gene classifications
+  reference: null
+cross_project_deps:
+- project: cog_analysis
+  relationship: extends
+  files: []
+  description: Tests whether the universal two-speed genome pattern scales with pangenome openness
+- project: pangenome_openness
+  relationship: extends
+  files: []
+  description: Extends openness stratification approach by stratifying by gene function
+findings: []
+generated_data:
+- file: figures/enrichment_by_quartile_heatmap.png
+  rows: null
+  description: Heatmap of COG category enrichment across openness quartiles
+  source_notebook: 03_statistical_analysis.ipynb
+- file: figures/openness_vs_lv_enrichment.png
+  rows: null
+  description: Scatter plot of pangenome openness vs L/V enrichment in novel genes
+  source_notebook: 03_statistical_analysis.ipynb
+- file: figures/core_metabolic_by_openness.png
+  rows: null
+  description: Metabolic COG category enrichment in core genes by openness quartile
+  source_notebook: 03_statistical_analysis.ipynb

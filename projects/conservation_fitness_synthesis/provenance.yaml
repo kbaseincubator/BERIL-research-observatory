@@ -1,0 +1,133 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: parks2022
+  type: supporting
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Res
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+- id: rosconi2022
+  type: supporting
+  title: A bacterial pan-genome makes gene essentiality strain-dependent and evolvable
+  authors:
+  - Rosconi F
+  year: 2022
+  journal: Nat Microbiol
+  volume: '7'
+  pages: 1580-1592
+  doi: null
+  pmid: null
+  url: https://www.nature.com/articles/s41564-022-01228-5
+- id: hutchison2016
+  type: methodology
+  title: Design and synthesis of a minimal bacterial genome
+  authors:
+  - Hutchison CA
+  year: 2016
+  journal: Science
+  volume: '351'
+  pages: null
+  doi: 10.1126/science.aad6253
+  pmid: null
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables: []
+  purpose: RB-TnSeq mutant fitness data for ~194,000 genes across 43 bacteria
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables: []
+  purpose: Gene cluster conservation across 27,690 microbial species
+  reference: parks2022
+cross_project_deps:
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/
+  description: Link table and essential gene analysis; essential genes 86% core (OR=1.56)
+- project: fitness_effects_conservation
+  relationship: data_input
+  files:
+  - data/
+  description: Quantitative fitness spectrum; 16pp gradient showing core genes more burdensome
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/modules/
+  description: ICA modules vs pangenome; module genes 86% core (OR=1.46)
+- project: core_gene_tradeoffs
+  relationship: data_input
+  files: []
+  description: Anatomy of the burden paradox; trade-offs drive the paradox (OR=1.29)
+findings:
+- id: fitness_conservation_gradient
+  title: The Gradient
+  notebook: 01_summary_figures.ipynb
+  figures:
+  - fitness_conservation_gradient.png
+  data_files: []
+  references:
+  - price2018
+  - parks2022
+  statistics:
+    essential_genes_core: 82%
+    neutral_genes_core: 66%
+    gradient_span: 194,216 protein-coding genes
+    organisms: 43 diverse bacteria
+- id: burden_paradox
+  title: The Paradox
+  notebook: 01_summary_figures.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    core_genes_positive_fitness: 24.4%
+    accessory_genes_positive_fitness: 19.9%
+    condition_specific_enrichment: 1.78x
+    trade_off_enrichment: 1.29x
+- id: selection_signature
+  title: The Resolution
+  notebook: 01_summary_figures.ipynb
+  figures:
+  - selection_signature.png
+  data_files: []
+  references: []
+  statistics:
+    costly_conserved_genes: 28,017
+    costly_dispensable_genes: 5,526
+- id: core_genome_architecture
+  title: The Architecture
+  notebook: 01_summary_figures.ipynb
+  figures:
+  - core_genome_active.png
+  data_files: []
+  references: []
+  statistics:
+    ica_modules: 1,116
+    organisms_modules: '32'
+    module_core_enrichment: '1.46'
+    module_core_enrichment_pvalue: '1.6e-87'
+    modules_over_90_percent_core: 59%
+    motility_chemotaxis_excess: +7.8pp
+    rna_metabolism_excess: +12.9pp
+    protein_metabolism_excess: +6.2pp
+generated_data: []

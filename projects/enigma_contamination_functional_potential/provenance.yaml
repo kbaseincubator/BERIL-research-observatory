@@ -1,0 +1,293 @@
+schema_version: 1
+references:
+- id: carlson2019
+  type: supporting
+  title: The selective pressures on the microbial community in a metal-contaminated aquifer
+  authors:
+  - Carlson HK
+  - Price MN
+  - Callaghan MM
+  year: 2019
+  journal: ISME Journal
+  volume: '13'
+  pages: 937-949
+  doi: 10.1038/s41396-018-0328-1
+  pmid: '30523276'
+  url: null
+- id: parks2022
+  type: methodology
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  - Chuvochina M
+  - Rinke C
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D785-D794
+  doi: 10.1093/nar/gkab776
+  pmid: null
+  url: null
+- id: cantalapiedra2021
+  type: methodology
+  title: 'eggNOG-mapper v2: Functional annotation, orthology assignments, and domain prediction at the metagenomic scale'
+  authors:
+  - Cantalapiedra CP
+  - Hernandez-Plaza A
+  - Letunic I
+  year: 2021
+  journal: Molecular Biology and Evolution
+  volume: '38'
+  pages: 5825-5829
+  doi: 10.1093/molbev/msab293
+  pmid: null
+  url: null
+- id: price2018
+  type: methodology
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: hemme2010
+  type: supporting
+  title: Metagenomic insights into evolution of a heavy metal-contaminated groundwater microbial community
+  authors:
+  - Hemme CL
+  - Tu Q
+  - Shi Z
+  year: 2010
+  journal: ISME Journal
+  volume: '4'
+  pages: 660-672
+  doi: 10.1038/ismej.2009.154
+  pmid: null
+  url: null
+- id: hemme2015
+  type: supporting
+  title: Comparative metagenomics reveals impact of contaminants on groundwater microbiomes
+  authors:
+  - Hemme CL
+  - Deng Y
+  - Gentry TJ
+  year: 2015
+  journal: Frontiers in Microbiology
+  volume: '6'
+  pages: '1205'
+  doi: 10.3389/fmicb.2015.01205
+  pmid: '26583008'
+  url: null
+- id: fan2025
+  type: supporting
+  title: Modest functional diversity decline and pronounced composition shifts of microbial communities in a mixed waste-contaminated
+    aquifer
+  authors:
+  - Fan Y
+  - Zhou M
+  - Chai Y
+  year: 2025
+  journal: Microbiome
+  volume: '13'
+  pages: '106'
+  doi: 10.1186/s40168-025-02105-x
+  pmid: null
+  url: null
+data_sources:
+- collection: enigma_coral
+  tables:
+  - ddt_brick0000010
+  - ddt_brick0000459
+  - ddt_brick0000454
+  - sdt_sample
+  - sdt_community
+  - sdt_location
+  purpose: Geochemistry, community composition, taxonomy linkage, and sample metadata
+  reference: null
+- collection: kbase_ke_pangenome
+  tables:
+  - gtdb_species_clade
+  - pangenome
+  - gene_cluster
+  - eggnog_mapper_annotations
+  purpose: Taxonomy bridge and COG-derived functional feature construction
+  reference: null
+cross_project_deps:
+- project: lab_field_ecology
+  relationship: data_input
+  files: []
+  description: Prior ENIGMA field ecology analysis motivating contamination-linked community structure tests
+- project: field_vs_lab_fitness
+  relationship: data_input
+  files: []
+  description: ENIGMA CORAL discovery findings and constraints relevant to project design
+findings:
+- id: multiplicity_sample_size_context
+  title: Multiplicity and sample-size context (primary panel)
+  notebook: 03_contamination_functional_models.ipynb
+  figures: []
+  data_files:
+  - data/model_family_sample_counts.tsv
+  references: []
+  statistics:
+    relaxed_all_clades_n: '108'
+    strict_single_clade_n: '108'
+    species_proxy_unique_genus_n: '1'
+- id: confirmatory_spearman_tests_null
+  title: Confirmatory Spearman tests remain null with confidence intervals and global FDR
+  notebook: 03_contamination_functional_models.ipynb
+  figures:
+  - confirmatory_defense_vs_contamination.png
+  data_files:
+  - data/confirmatory_family_summary.tsv
+  references:
+  - carlson2019
+  statistics:
+    relaxed_all_clades_rho: '0.0587'
+    relaxed_all_clades_ci: '[-0.128, 0.250]'
+    relaxed_all_clades_p: '0.546'
+    relaxed_all_clades_q: '0.862'
+    strict_single_clade_rho: '0.0682'
+    strict_single_clade_ci: '[-0.111, 0.253]'
+    strict_single_clade_p: '0.483'
+    strict_single_clade_q: '0.849'
+- id: exploratory_defense_signal_coverage_aware
+  title: Exploratory defense signal remains strongest in coverage-aware models
+  notebook: 03_contamination_functional_models.ipynb
+  figures:
+  - contamination_vs_functional_score.png
+  data_files: []
+  references: []
+  statistics:
+    relaxed_all_clades_beta: '0.000751'
+    relaxed_all_clades_ci: '[0.000224, 0.001779]'
+    relaxed_all_clades_p: '0.000398'
+    relaxed_all_clades_q: '0.0462'
+    strict_single_clade_beta: '0.000640'
+    strict_single_clade_ci: '[0.000169, 0.001538]'
+    strict_single_clade_p: '0.00354'
+    strict_single_clade_q: '0.130'
+    high_coverage_relaxed_p: '0.0207'
+    high_coverage_relaxed_q: '0.301'
+    high_coverage_strict_p: '0.00980'
+    high_coverage_strict_q: '0.189'
+- id: community_fraction_robustness
+  title: Community-fraction robustness does not show strong within-fraction monotonic signal
+  notebook: 03_contamination_functional_models.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    fraction_aware_n: '212'
+    within_fraction_relaxed_02_micron_p: '0.767'
+    within_fraction_relaxed_10_micron_p: '0.898'
+    within_fraction_strict_02_micron_p: '0.780'
+    within_fraction_strict_10_micron_p: '0.793'
+- id: contamination_index_sensitivity
+  title: Contamination-index sensitivity does not change confirmatory outcome
+  notebook: 03_contamination_functional_models.ipynb
+  figures: []
+  data_files:
+  - data/contamination_index_sensitivity.tsv
+  references: []
+  statistics:
+    index_variants_tested: '4'
+    confirmatory_test_variants: '8'
+    global_fdr_q: '0.546'
+- id: species_proxy_resolution_sensitivity
+  title: Species-proxy resolution sensitivity is limited by mapped coverage
+  notebook: 02_taxonomy_bridge_functional_features.ipynb
+  figures:
+  - mapping_coverage_by_mode.png
+  data_files:
+  - data/taxon_bridge.tsv
+  - data/bridge_quality_summary.tsv
+  - data/bridge_clade_count_distribution.tsv
+  - data/bridge_top_ambiguous_genera.tsv
+  references: []
+  statistics:
+    unique_clade_genera: '150'
+    ambiguous_multi_clade_genera: '380'
+    total_mapped_genera: '530'
+    mean_mapped_abundance_fraction_species_proxy: '0.031'
+    mean_mapped_abundance_fraction_strict_relaxed: '0.343'
+    species_proxy_defense_rho: '0.169'
+    species_proxy_defense_p: '0.081'
+- id: contamination_index_distribution
+  title: Contamination index was broad but right-skewed
+  notebook: 03_contamination_functional_models.ipynb
+  figures:
+  - contamination_index_distribution.png
+  data_files: []
+  references: []
+  statistics:
+    n_samples: '108'
+    min: '-0.448'
+    max: '3.836'
+    median: '-0.271'
+    iqr: '[-0.363, 0.053]'
+generated_data:
+- file: data/geochemistry_sample_matrix.tsv
+  rows: 108
+  description: Per-sample geochemistry matrix used for contamination index
+  source_notebook: 01_enigma_extraction_qc.ipynb
+- file: data/community_taxon_counts.tsv
+  rows: 41711
+  description: Sample-community-genus abundance table
+  source_notebook: 01_enigma_extraction_qc.ipynb
+- file: data/sample_location_metadata.tsv
+  rows: 108
+  description: Location/depth metadata for overlapping samples
+  source_notebook: 01_enigma_extraction_qc.ipynb
+- file: data/taxon_bridge.tsv
+  rows: 8242
+  description: Genus-to-GTDB species-clade bridge with mapping tier
+  source_notebook: 02_taxonomy_bridge_functional_features.ipynb
+- file: data/taxon_functional_features.tsv
+  rows: 3630
+  description: Per-genus functional proxy features across three mapping modes
+  source_notebook: 02_taxonomy_bridge_functional_features.ipynb
+- file: data/site_functional_scores.tsv
+  rows: 324
+  description: Site-level functional scores by mapping mode
+  source_notebook: 03_contamination_functional_models.ipynb
+- file: data/model_results.tsv
+  rows: 12
+  description: Confirmatory/exploratory labels, Spearman/permutation, adjusted model coefficients with bootstrap CIs, fraction-aware/coverage/site
+    sensitivities, and global FDR q-values
+  source_notebook: 03_contamination_functional_models.ipynb
+- file: data/contamination_index_sensitivity.tsv
+  rows: 8
+  description: Confirmatory endpoint results across contamination index variants
+  source_notebook: 03_contamination_functional_models.ipynb
+- file: data/mapped_coverage_deciles.tsv
+  rows: 30
+  description: Defense association diagnostics by mapped-coverage decile and mapping mode
+  source_notebook: 03_contamination_functional_models.ipynb
+- file: data/model_family_sample_counts.tsv
+  rows: 96
+  description: Sample-count table for each modeling family and endpoint
+  source_notebook: 03_contamination_functional_models.ipynb
+- file: data/confirmatory_family_summary.tsv
+  rows: 2
+  description: Compact confirmatory endpoint summary with effect sizes, CIs, p, q, and n
+  source_notebook: 03_contamination_functional_models.ipynb
+- file: data/bridge_quality_summary.tsv
+  rows: 6
+  description: Bridge-level mapped/unmapped/ambiguity summary metrics
+  source_notebook: 02_taxonomy_bridge_functional_features.ipynb
+- file: data/bridge_clade_count_distribution.tsv
+  rows: 71
+  description: Distribution of species-clade counts per mapped genus
+  source_notebook: 02_taxonomy_bridge_functional_features.ipynb
+- file: data/bridge_top_ambiguous_genera.tsv
+  rows: 20
+  description: Most ambiguous mapped genera by species-clade multiplicity
+  source_notebook: 02_taxonomy_bridge_functional_features.ipynb

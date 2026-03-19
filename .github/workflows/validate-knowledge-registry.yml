@@ -1,0 +1,41 @@
+name: Validate Knowledge Registry
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - ready_for_review
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  validate-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Validate registry freshness
+        run: uv run scripts/validate_registry_freshness.py
+
+      - name: Run build_registry regression tests
+        run: uv run --with pytest --with pyyaml pytest scripts/tests/test_build_registry.py
+
+      - name: Validate provenance schema and cross-file integrity
+        run: uv run scripts/validate_provenance.py
+
+      - name: Validate knowledge graph integrity
+        run: uv run scripts/validate_knowledge_graph.py

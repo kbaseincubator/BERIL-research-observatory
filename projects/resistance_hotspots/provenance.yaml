@@ -1,0 +1,68 @@
+schema_version: 1
+references:
+- id: card
+  type: methodology
+  title: Comprehensive Antibiotic Resistance Database
+  authors: []
+  year: null
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://card.mcmaster.ca/
+- id: resfinder
+  type: methodology
+  title: 'ResFinder: Identification of antimicrobial resistance genes'
+  authors: []
+  year: 2013
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: '22782694'
+  url: null
+- id: gtdb
+  type: methodology
+  title: Genome Taxonomy Database
+  authors: []
+  year: null
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://gtdb.ecogenomic.org/
+- id: patric
+  type: supporting
+  title: 'PATRIC: The All-Species Microbial Infection Research Center'
+  authors: []
+  year: null
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://www.patricbrc.org/
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - pangenome
+  - gene
+  - orthogroup
+  - gtdb_species_clade
+  purpose: Antibiotic resistance gene distribution and pangenome characterization across 293,059 genomes
+  reference: null
+- collection: kescience_fitnessbrowser
+  tables:
+  - fitness
+  - fitness_experiments
+  purpose: Fitness effects of antibiotic resistance genes using transposon mutant data
+  reference: null
+- collection: kbase_genomes
+  tables: []
+  purpose: Structural genomics data for detailed annotation
+  reference: null
+cross_project_deps: []
+findings: []
+generated_data: []

@@ -1,6 +1,6 @@
 ---
 name: suggest-research
-description: Review completed projects and their findings, then suggest a new high-impact research topic grounded in available BERDL data and scientific gaps. Use when the user wants to identify the next best research direction based on what has already been done.
+description: "Review completed projects and their findings, then suggest a new high-impact research topic grounded in available BERDL data and scientific gaps. Use when the user wants to identify the next best research direction, asks 'what should I study next', 'where are the gaps', or 'what hasn't been explored'."
 allowed-tools: Bash, Read, Write, Edit, WebSearch, AskUserQuestion
 user-invocable: true
 ---
@@ -32,27 +32,38 @@ Build three lists:
 2. `in_progress_ideas` — ideas with Status: IN_PROGRESS
 3. `proposed_ideas` — ideas with Status: PROPOSED (candidates for recommendation)
 
-### Step 2: Inventory All Projects
+### Step 2: Read the Knowledge Registry
+
+**Freshness check**: Run `uv run scripts/validate_registry_freshness.py`. If exit code 1 (stale), warn: "The knowledge registry may be out of date. Run `/build-registry` to refresh, or proceed with current data." Proceed regardless — stale data is better than no data.
+
+**Primary path** (if `docs/project_registry.yaml` exists):
+
+1. Read `docs/project_registry.yaml` (~15-20K tokens instead of ~200K+ from reading all files)
+2. For each project, capture: `id`, `status`, `research_question`, `key_findings`, `tags`, `databases_used`, `depends_on`, `enables`, `references`
+3. Build lists: `finished_projects`, `in_progress_projects`, `proposed_projects`
+4. Cross-check against `research_ideas.md` entries from Step 1
+
+**Fallback** (if registry doesn't exist):
 
 List all directories under `projects/`. For each project directory:
-
 1. Read `projects/{id}/README.md` — capture the **Research Question**, **Status**, and any **Quick Links**
 2. If Status indicates completion (contains "Complete" or links to a REPORT), mark it as a **finished project**
 3. If Status indicates active work, mark it as **in-progress**
 
-This cross-checks `research_ideas.md` against actual on-disk project state.
+### Step 3: Deep-Read Top-Relevant Projects
 
-### Step 3: Read Findings from Completed Projects
-
-For every finished project identified in Step 2:
+From the registry (or README scan), identify the 3-5 projects **most relevant** to emerging recommendation themes. For only those projects:
 
 1. Read `projects/{id}/REPORT.md`
 2. Extract:
-   - **Key Findings** (the 2–4 headline results)
+   - **Key Findings** (the 2-4 headline results) — supplement the registry summary with details
    - **Future Directions** section — these are investigator-suggested follow-ups
    - **Limitations** — gaps the authors identified
    - **Novel Contribution** — what made the project scientifically unique
-3. Note any cross-project patterns: recurring organisms, pathways, themes, or data gaps that appear in multiple reports
+3. Note any cross-project patterns: recurring organisms, pathways, themes, or data gaps
+4. Use `references` field from the registry to identify literature themes cited across multiple projects
+
+For remaining projects, the registry summaries (key_findings, tags, databases_used) provide sufficient context without reading full reports.
 
 ### Step 4: Read the Discoveries Log
 
@@ -72,9 +83,21 @@ Read `docs/collections.md` to inventory the BERDL data collections. For each col
 
 Identify **underexplored collections** — present in BERDL but rarely cited in completed project reports.
 
+### Step 5b: Read Knowledge Graph Gaps (if available)
+
+Run: `uv run scripts/query_knowledge.py gaps`
+
+This outputs the deterministic gap analysis covering organisms with sparse coverage,
+method gaps, untested hypotheses, and unexplored entity pairs.
+Use this output directly in Step 6 under "Entity gaps" and "Untested hypotheses".
+
+Additionally, read `knowledge/hypotheses.yaml` for detail not in the gap report:
+- `rejected` hypotheses whose alternatives haven't been explored
+- Entity pairs referenced by hypotheses but lacking direct relations
+
 ### Step 6: Synthesize the Landscape
 
-Build an internal summary across Steps 1–5:
+Build an internal summary across Steps 1–5b:
 
 | Dimension | Assessment |
 |---|---|
@@ -85,6 +108,8 @@ Build an internal summary across Steps 1–5:
 | Discovery log | What serendipitous patterns are unclaimed? |
 | Underexplored data | Which BERDL collections have not been leveraged? |
 | Recurring gaps | What limitation appears in multiple project reports? |
+| Entity gaps | Which organisms/methods/concepts lack cross-project connections? |
+| Untested hypotheses | Which proposed/testing hypotheses need validation? |
 
 ### Step 7: Ask the User for Priorities (Optional)
 
@@ -198,7 +223,7 @@ If no, leave no files modified.
 
 ## Integration
 
-- **Reads from**: `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `projects/*/README.md`, `projects/*/REPORT.md`
+- **Reads from**: `docs/project_registry.yaml` (primary), `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `docs/knowledge_graph_coverage.md`, `docs/knowledge_gaps.md`, `projects/*/REPORT.md` (top 3-5 only), `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml` (Layer 3 graph)
 - **Calls**: `/literature-review` (Step 9, for novelty check on top candidate); `/berdl_start` (Step 11, if user confirms the idea)
 - **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry only — never edits existing entries)
 - **Consumed by**: `/literature-review`, `/synthesize`

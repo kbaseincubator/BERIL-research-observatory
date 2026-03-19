@@ -1,0 +1,262 @@
+schema_version: 1
+references:
+- id: morris2012
+  type: primary_data_source
+  title: 'The Black Queen Hypothesis: Evolution of Dependencies through Adaptive Gene Loss'
+  authors:
+  - Morris JJ
+  - Lenski RE
+  - Zinser ER
+  year: 2012
+  journal: mBio
+  volume: '3'
+  pages: e00036-12
+  doi: 10.1128/mBio.00036-12
+  pmid: null
+  url: null
+- id: danczak2020
+  type: supporting
+  title: Using metacommunity ecology to understand environmental metabolomes
+  authors:
+  - Danczak RE
+  - Chu RK
+  - Fansler SJ
+  - Goldman AE
+  - Graham EB
+  - Tfaily MM
+  - Toyoda J
+  - Stegen JC
+  year: 2020
+  journal: Nature Communications
+  volume: '11'
+  pages: '6369'
+  doi: 10.1038/s41467-020-19989-y
+  pmid: '33311510'
+  url: null
+- id: price2020
+  type: methodology
+  title: 'GapMind: Automated Annotation of Amino Acid Biosynthesis'
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2020
+  journal: mSystems
+  volume: '5'
+  pages: e00291-20
+  doi: 10.1128/mSystems.00291-20
+  pmid: null
+  url: null
+- id: price2022
+  type: methodology
+  title: Filling gaps in bacterial catabolic pathways with computation and high-throughput genetics
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2022
+  journal: PLOS Genetics
+  volume: '18'
+  pages: e1010156
+  doi: 10.1371/journal.pgen.1010156
+  pmid: null
+  url: null
+- id: arkin2018
+  type: methodology
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  - Cottingham RW
+  - Henry CS
+  - Harris NL
+  - Stevens RL
+  - Maslov S
+  year: 2018
+  journal: Nature Biotechnology
+  volume: '36'
+  pages: 566-569
+  doi: 10.1038/nbt.4163
+  pmid: null
+  url: null
+- id: noecker2016
+  type: supporting
+  title: Metabolic model-based integration of microbiome taxonomic and metabolomic profiles elucidates mechanistic links between
+    ecological and metabolic variation
+  authors:
+  - Noecker C
+  - Eng A
+  - Srinivasan S
+  - Theriot CM
+  - Young VB
+  - Jansson JK
+  year: 2016
+  journal: mSystems
+  volume: '1'
+  pages: e00013-15
+  doi: 10.1128/mSystems.00013-15
+  pmid: null
+  url: null
+- id: mallick2019
+  type: supporting
+  title: Predictive metabolomic profiling of microbial communities using amplicon or metagenomic sequences
+  authors:
+  - Mallick H
+  - Franzosa EA
+  - McIver LJ
+  - Banerjee S
+  - Sirota-Madi A
+  - Kostic AD
+  year: 2019
+  journal: Nature Communications
+  volume: '10'
+  pages: '3136'
+  doi: 10.1038/s41467-019-11052-9
+  pmid: '31316056'
+  url: null
+- id: gowda2022
+  type: supporting
+  title: Genomic structure predicts metabolite dynamics in microbial communities
+  authors:
+  - Gowda K
+  - Ping D
+  - Mani M
+  - Kuehn S
+  year: 2022
+  journal: Cell
+  volume: '185'
+  pages: 530-546
+  doi: 10.1016/j.cell.2021.12.036
+  pmid: '35085485'
+  url: null
+- id: ramoneda2023
+  type: supporting
+  title: Taxonomic and environmental distribution of bacterial amino acid auxotrophies
+  authors:
+  - Ramoneda J
+  - Jensen TBN
+  - Price MN
+  - Fierer N
+  - Braendle C
+  year: 2023
+  journal: Nature Communications
+  volume: '14'
+  pages: '7608'
+  doi: 10.1038/s41467-023-43435-4
+  pmid: null
+  url: null
+- id: danczak2021
+  type: supporting
+  title: Ecological theory applied to environmental metabolomes reveals compositional divergence despite conserved molecular
+    properties
+  authors:
+  - Danczak RE
+  - Goldman AE
+  - Chu RK
+  - Toyoda JG
+  - Borton MA
+  year: 2021
+  journal: Science of the Total Environment
+  volume: '788'
+  pages: '147409'
+  doi: 10.1016/j.scitotenv.2021.147409
+  pmid: null
+  url: null
+- id: hesse2024
+  type: supporting
+  title: Ecological dependencies and the illusion of cooperation in microbial communities
+  authors:
+  - Hesse E
+  - O'Brien S
+  year: 2024
+  journal: Microbiology Research
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://example.com
+data_sources:
+- collection: nmdc_arkin
+  tables:
+  - centrifuge_gold
+  - omics_files_table
+  - study_table
+  - abiotic_features
+  - metabolomics_gold
+  purpose: Community taxonomic profiles (species-level Centrifuge classifications), sample-to-file bridge, study metadata,
+    environmental measurements, and LC-MS metabolomics
+  reference: null
+- collection: kbase_ke_pangenome
+  tables:
+  - gapmind_pathways
+  - gtdb_species_clade
+  - pangenome
+  purpose: GapMind pathway completeness scores, GTDB taxonomy bridge, and per-species statistics
+  reference: null
+cross_project_deps: []
+findings:
+- id: black_queen_dynamics_community_scale
+  title: Black Queen dynamics are detectable at community scale
+  notebook: 05_statistical_analysis.ipynb
+  figures:
+  - h1_bqh_barplot.png
+  - h1_scatter_top.png
+  data_files: []
+  references:
+  - morris2012
+  - gowda2022
+  - noecker2016
+  - mallick2019
+  statistics:
+    leucine_spearman_r: '-0.390'
+    leucine_q_value: '0.022'
+    leucine_n: '62'
+    arginine_spearman_r: '-0.297'
+    arginine_q_value: '0.049'
+    arginine_n: '80'
+    methionine_spearman_r: '-0.496'
+    methionine_n: '18'
+    binomial_test_p: '0.011'
+    negative_pathways: 11/13
+- id: community_metabolic_potential_ecosystem_type
+  title: Community metabolic potential separates strongly by ecosystem type
+  notebook: 05_statistical_analysis.ipynb
+  figures:
+  - h2_pca.png
+  data_files: []
+  references:
+  - danczak2020
+  - ramoneda2023
+  statistics:
+    pc1_variance_explained: 49.4%
+    pc2_variance_explained: 16.6%
+    pc1_pc5_total_variance: 83.0%
+    pc1_kruskal_wallis_h: '52.98'
+    pc1_kruskal_wallis_p: <0.0001
+    pc2_kruskal_wallis_h: '123.74'
+    pc2_kruskal_wallis_p: <0.0001
+    soil_vs_freshwater_mann_whitney_u: '3674'
+    soil_vs_freshwater_p: <0.0001
+    soil_pc1_median: '+3.86'
+    freshwater_pc1_median: '-6.28'
+- id: amino_acid_pathway_ecosystem_differentiation
+  title: Amino acid pathway completeness differs across ecosystem types for 17 of 18 pathways
+  notebook: 05_statistical_analysis.ipynb
+  figures:
+  - pathway_completeness_boxplot.png
+  data_files: []
+  references:
+  - ramoneda2023
+  statistics:
+    pathways_significantly_different: 17/18
+    glycine_kruskal_wallis_h: '92.98'
+    glycine_q_value: '1.2e-19'
+    asparagine_kruskal_wallis_h: '66.19'
+    asparagine_q_value: '3.8e-14'
+    cysteine_kruskal_wallis_h: '62.66'
+    cysteine_q_value: '1.5e-13'
+    tyrosine_not_significant_q: '0.71'
+generated_data:
+- file: data/taxon_bridge.tsv
+  rows: null
+  description: null
+  source_notebook: null

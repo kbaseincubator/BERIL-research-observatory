@@ -1,0 +1,337 @@
+schema_version: 1
+references:
+- id: durot2008
+  type: primary_data_source
+  title: Iterative reconstruction of a global metabolic model of Acinetobacter baylyi ADP1 using high-throughput growth phenotype
+    and gene essentiality data
+  authors:
+  - Durot M
+  - Bourguignon PY
+  - Schachter V
+  - Sarazin A
+  - Colombelli C
+  - Gaudet P
+  - Muller C
+  - Nitsche B
+  - Sismeiro O
+  - Vacherie B
+  - Dillies MA
+  - Coppée JY
+  - Médigue C
+  - Rabus R
+  - Cohen GN
+  year: 2008
+  journal: BMC Systems Biology
+  volume: '2'
+  pages: '85'
+  doi: 10.1186/1752-0509-2-85
+  pmid: null
+  url: null
+- id: deberardinis2008
+  type: primary_data_source
+  title: A complete collection of single-gene deletion mutants of Acinetobacter baylyi ADP1
+  authors:
+  - de Berardinis V
+  - Vallenet D
+  - Castelli V
+  - Besnard M
+  - Pinet A
+  - Cruaud C
+  - Samair S
+  - Lechaplais C
+  - Gyapay G
+  - Richez C
+  - Durot M
+  - Dossat C
+  - Wincker P
+  - Ornstein B
+  - Weissenbach J
+  - Salanoubat M
+  - Cohen GN
+  - Coque JMR
+  year: 2008
+  journal: Molecular Systems Biology
+  volume: '4'
+  pages: '174'
+  doi: 10.1038/msb.2008.10
+  pmid: '18382270'
+  url: null
+- id: barbe2004
+  type: supporting
+  title: Unique features revealed by the genome sequence of Acinetobacter sp. ADP1, a versatile and naturally transformation
+    competent bacterium
+  authors:
+  - Barbe V
+  - Marchand C
+  - Meurice F
+  - Bochot A
+  - Uria-Nickelsen M
+  - Norris V
+  - Varenne S
+  - Medigue C
+  year: 2004
+  journal: Nucleic Acids Research
+  volume: '32'
+  pages: 5766-5779
+  doi: 10.1093/nar/gkh910
+  pmid: '15479783'
+  url: null
+- id: price2018
+  type: methodology
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Skerker JM
+  - Wetmore KM
+  - Ruths T
+  - Mar JS
+  - Kuehl SV
+  - Diamond S
+  - Rainey PB
+  - Marks D
+  - Rubin EM
+  - Arkin AP
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: '29769656'
+  url: null
+- id: monk2013
+  type: methodology
+  title: iML1515, a knowledgebase that computes Escherichia coli traits
+  authors:
+  - Monk JM
+  - Lloyd CJ
+  - Brunk E
+  - Mih N
+  - Sastry A
+  - King ZA
+  - Feist AM
+  - Palsson BO
+  year: 2013
+  journal: Nature Biotechnology
+  volume: '31'
+  pages: 419-425
+  doi: 10.1038/nbt.2568
+  pmid: '23455439'
+  url: null
+- id: guzman2018
+  type: supporting
+  title: Reframing gene essentiality in terms of adaptive flexibility
+  authors:
+  - Guzman MS
+  - Uetz P
+  year: 2018
+  journal: BMC Systems Biology
+  volume: '12'
+  pages: '143'
+  doi: 10.1186/s12918-018-0656-y
+  pmid: '30396369'
+  url: null
+- id: suarez2020
+  type: supporting
+  title: Rapid and assured genetic engineering methods applied to Acinetobacter baylyi ADP1 genome streamlining
+  authors:
+  - Suárez GA
+  - Pfeiffer F
+  - Demmer U
+  - Merkl R
+  - Schäfer B
+  - Müller V
+  year: 2020
+  journal: Nucleic Acids Research
+  volume: '48'
+  pages: 4585-4600
+  doi: 10.1093/nar/gkaa226
+  pmid: '32286631'
+  url: null
+data_sources:
+- collection: kbase_genomes
+  tables:
+  - genome_features
+  purpose: Core ADP1 genome annotations, TnSeq essentiality calls, FBA predictions, mutant growth rates on 8 carbon sources
+  reference: null
+- collection: kescience_fitnessbrowser
+  tables:
+  - gene_phenotypes
+  purpose: Per-condition FBA flux predictions for 6 matched carbon sources
+  reference: null
+- collection: kbase_phenotype
+  tables:
+  - knockout_essentiality
+  purpose: Experimental knockout essentiality calls for rich and minimal media
+  reference: deberardinis2008
+- collection: planetmicrobe
+  tables:
+  - proteomics_acinetobacter_7_strains
+  purpose: Average protein expression levels across 7 Acinetobacter strains
+  reference: null
+cross_project_deps:
+- project: acinetobacter_adp1_explorer
+  relationship: data_input
+  files:
+  - user_data/berdl_tables.db
+  - data/cluster_id_mapping.csv
+  description: Upstream project providing SQLite database with ADP1 genome, pangenome, and experimental data; cluster ID mappings
+    for functional annotation
+findings:
+- id: fba_does_not_predict_growth_defects
+  title: FBA Does Not Predict Growth Defects Among TnSeq-Dispensable Genes
+  notebook: 02_concordance_analysis.ipynb
+  figures:
+  - fba_growth_concordance.png
+  - growth_by_fba_class.png
+  data_files: []
+  references: []
+  statistics:
+    chi_squared: '0.93'
+    p_value: '0.63'
+    kruskal_wallis_h: '1.67'
+    kruskal_wallis_p: '0.43'
+    n_genes: '478'
+    fba_essential_defect_rate: 73.1%
+    fba_variable_defect_rate: 73.5%
+    fba_blocked_defect_rate: 69.4%
+- id: threshold_sensitivity_robust
+  title: Null Result Is Robust Across Growth Defect Thresholds
+  notebook: 02_concordance_analysis.ipynb
+  figures:
+  - threshold_sensitivity.png
+  data_files: []
+  references: []
+  statistics:
+    thresholds_tested: Q10, Q15, Q20, Q25, Q30, Q35, Q40
+    chi_squared_p_range: 0.048 to 0.985
+    robust_range: Q10-Q35 all p > 0.05
+- id: growth_cannot_break_ties
+  title: Growth Measurements Cannot Break FBA-TnSeq Ties
+  notebook: 02_concordance_analysis.ipynb
+  figures:
+  - growth_by_fba_class.png
+  data_files: []
+  references: []
+  statistics:
+    fba_essential_with_defect: 57/78 (73%)
+    fba_essential_no_defect: 21/78 (27%)
+    background_defect_rate: 72%
+- id: weak_fba_flux_growth_correlation
+  title: Condition-Specific FBA Flux Shows Weak, Mixed Correlations with Growth
+  notebook: 02_concordance_analysis.ipynb
+  figures:
+  - flux_vs_growth_scatter.png
+  data_files: []
+  references: []
+  statistics:
+    glucose_spearman_rho: '-0.021'
+    glucose_p_value: '0.677'
+    acetate_spearman_rho: '-0.153'
+    acetate_p_value: '0.004'
+    asparagine_spearman_rho: '-0.257'
+    asparagine_p_value: <0.001
+    glucarate_spearman_rho: '+0.246'
+    glucarate_p_value: '0.005'
+- id: condition_specific_growth_defects
+  title: Growth Defects Are Partially Condition-Specific
+  notebook: 02_concordance_analysis.ipynb
+  figures:
+  - defect_condition_correlation.png
+  data_files: []
+  references: []
+  statistics:
+    genes_any_defect: 333/478 (70%)
+    genes_all_defects: 10/478 (2%)
+    genes_no_defect: 135/478 (28%)
+    mean_pairwise_correlation: '0.38'
+- id: aromatic_degradation_enriched
+  title: Aromatic Degradation Genes Are Enriched Among FBA-Discordant Genes
+  notebook: 03_discordant_characterization.ipynb
+  figures:
+  - rast_enrichment_discordant.png
+  - rast_by_discordance_class.png
+  - pangenome_discordance.png
+  data_files: []
+  references:
+  - barbe2004
+  statistics:
+    aromatic_degradation_odds_ratio: '9.70'
+    aromatic_degradation_q_value: '0.012'
+    aromatic_degradation_discordant: 9/11
+    lipid_metabolism_odds_ratio: '0.34'
+    lipid_metabolism_q_value: '0.042'
+    lipid_metabolism_discordant: 7/46
+    pangenome_core_fraction: 93-100%
+- id: fba_moderate_concordance_ko
+  title: FBA Shows Moderate Concordance with Knockout Experiments
+  notebook: 02_refined_concordance_analysis.ipynb
+  figures:
+  - fba_comparison.png
+  - concordance_comprehensive.png
+  data_files: []
+  references:
+  - deberardinis2008
+  statistics:
+    rich_media_recall: 60.8%
+    rich_media_precision: 64.0%
+    rich_media_f1: '0.624'
+    rich_media_kappa: '0.486'
+    minimal_media_recall: 65.6%
+    minimal_media_precision: 69.2%
+    minimal_media_f1: '0.673'
+    minimal_media_kappa: '0.493'
+- id: tnseq_systematic_discordance
+  title: RB-TnSeq Systematically Disagrees with Knockout Experiments
+  notebook: 02_refined_concordance_analysis.ipynb
+  figures:
+  - concordance_comprehensive.png
+  - discordance_analysis.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    all_thresholds_kappa: negative
+    optimal_threshold: '0.025'
+    optimal_f1: '0.077'
+    ko_essential_tnseq_dispensable: 211 genes (10.9%)
+    ko_dispensable_tnseq_essential: 293 genes (15.2%)
+    both_essential: 18 genes (0.9%)
+    both_dispensable: 1411 genes (73.0%)
+- id: fitness_best_predictor
+  title: Fitness Is the Best Predictor of Essentiality
+  notebook: null
+  figures:
+  - roc_comprehensive.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    fitness_auc_rich: '0.700'
+    fitness_auc_minimal: '0.725'
+    essentiality_fraction_auc_rich: '0.344'
+    essentiality_fraction_auc_minimal: '0.403'
+    fitness_interpretation: Fair predictor, best among TnSeq metrics
+    essentiality_fraction_interpretation: Worse than random
+- id: proteomics_strong_correlation
+  title: Proteomics Strongly Correlates with Essentiality
+  notebook: null
+  figures:
+  - proteomics_expression_distribution.png
+  data_files: []
+  references: []
+  statistics:
+    n_genes: '2288'
+    essential_mean_log2: '28.43'
+    essential_std_log2: '2.94'
+    dispensable_mean_log2: '25.73'
+    dispensable_std_log2: '2.96'
+    difference_log2: '2.70'
+    fold_change: '6.5'
+    mann_whitney_u_p: '9.91e-59'
+    pearson_r: '0.345'
+    pearson_p: '5.32e-65'
+    spearman_rho: '0.338'
+    spearman_p: '3.28e-62'
+    roc_auc: '0.743'
+generated_data: []

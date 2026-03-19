@@ -1,0 +1,191 @@
+schema_version: 1
+references:
+- id: saxton2026
+  type: primary_data_source
+  title: A membrane-bound nuclease directly cleaves phage DNA during genome injection
+  authors:
+  - Saxton DS
+  - DeWeirdt PC
+  - Doering CR
+  - Roney IJ
+  - Laub MT
+  year: 2026
+  journal: Nature
+  volume: '527'
+  pages: null
+  doi: 10.1038/s41586-026-10207-1
+  pmid: '41741653'
+  url: null
+- id: burmeister2021
+  type: supporting
+  title: None
+  authors:
+  - Burmeister A
+  year: 2021
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: '34032565'
+  url: null
+- id: price2018
+  type: methodology
+  title: Mutant phenotypes for thousands of bacterial genes of unknown or predicted function
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2018
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://figshare.com/articles/dataset/Fitness_Browser_database/25584818
+- id: gaborieau2024
+  type: supporting
+  title: None
+  authors:
+  - Gaborieau L
+  year: 2024
+  journal: Nature Microbiology
+  volume: null
+  pages: null
+  doi: null
+  pmid: '39482383'
+  url: null
+- id: goormaghtigh2025
+  type: supporting
+  title: AlphaEarth Environmental Embeddings
+  authors:
+  - Goormaghtigh R
+  year: 2025
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://www.alphaearth.org
+data_sources: []
+cross_project_deps: []
+findings:
+- id: snipe_resolves_trade_off
+  title: SNIPE resolves the phage resistance vs. metabolic cost trade-off
+  notebook: 01_extract_snipe_domains.ipynb
+  figures: []
+  data_files:
+  - data/price2018_supp_table3.xlsx
+  references:
+  - saxton2026
+  - burmeister2021
+  - price2018
+  statistics:
+    manx_worst_fitness: '-3.93'
+    many_worst_fitness: '-3.82'
+    manz_worst_fitness: '-4.14'
+    mannose_manx_avg: '-2.75'
+    mannose_many_avg: '-3.00'
+    mannose_manz_avg: '-2.74'
+    glucosamine_manx_avg: '-3.79'
+    glucosamine_many_avg: '-2.79'
+    glucosamine_manz_avg: '-3.63'
+    manx_many_correlation: '0.705'
+    manx_manz_correlation: '0.851'
+    many_manz_correlation: '0.725'
+    phage_lambda_infection_rate: 0.5%
+    myoviridae_infection_rate: 43.4%
+    siphoviridae_infection_rate: 9.7%
+    podoviridae_infection_rate: 13.0%
+- id: snipe_widespread
+  title: SNIPE is widespread (1,696 species, 33 phyla)
+  notebook: 02_taxonomic_distribution.ipynb
+  figures:
+  - snipe_phylum_distribution.png
+  data_files: []
+  references:
+  - saxton2026
+  statistics:
+    total_clusters: '4572'
+    total_species: '1696'
+    total_phyla: '33'
+    pseudomonadota_species: '556'
+    actinomycetota_species: '334'
+    bacillota_a_species: '275'
+    bacillota_species: '206'
+- id: snipe_predominantly_accessory
+  title: SNIPE genes are predominantly accessory (86.7%)
+  notebook: 02_taxonomic_distribution.ipynb
+  figures:
+  - snipe_pangenome_status.png
+  data_files: []
+  references:
+  - saxton2026
+  statistics:
+    core_percent: 13.3%
+    core_clusters: '604'
+    accessory_percent: 30.7%
+    accessory_clusters: '1402'
+    singleton_percent: 56.1%
+    singleton_clusters: '2566'
+    accessory_singleton_combined: 86.7%
+- id: snipe_nuclease_pf13455
+  title: The SNIPE nuclease domain is PF13455 (Mug113), not PF01541 (GIY-YIG)
+  notebook: 01_extract_snipe_domains.ipynb
+  figures: []
+  data_files: []
+  references:
+  - saxton2026
+  statistics:
+    duf4041_clusters_with_mug113: '54'
+    canonical_giy_yig_pf01541_proteins: '74686'
+    ecoli_snipe_length: 558 aa
+    duf4041_start: '232'
+    duf4041_end: '333'
+    mug113_start: '443'
+    mug113_end: '520'
+- id: snipe_distinct_environmental_niches
+  title: SNIPE-bearing species occupy distinct environmental niches
+  notebook: 03_environmental_analysis.ipynb
+  figures:
+  - snipe_alphaearth_pca.png
+  data_files: []
+  references:
+  - goormaghtigh2025
+  statistics:
+    significant_dimensions: 22/64
+    bonferroni_p_threshold: '0.05'
+    largest_effect_dimension: A19
+    cohens_d_a19: '0.26'
+    p_value_a19: '5.0e-14'
+    snipe_species_with_embeddings: '1069'
+    non_snipe_species_with_embeddings: '13977'
+    alphaearth_coverage_percent: 28.4%
+- id: snipe_in_klebsiella
+  title: SNIPE detected in phage therapy target (Klebsiella)
+  notebook: 04_phage_databases.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    klebsiella_duf4041_proteins: '3'
+    klebsiella_duf4041_length: 558 aa
+    klebsiella_mannose_pts_eiid: '28'
+    klebsiella_mannose_pts_eiia: '1'
+    klebsiella_pts_eiic_annotations: '4619'
+    klebsiella_pts_eiia_annotations: '571'
+- id: snipe_functional_annotations
+  title: Functional annotations are consistent with SNIPE
+  notebook: 01_extract_snipe_domains.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    t5orf172_annotations: '2109'
+    duf4041_annotations: '1566'
+    high_confidence_snipe: 80.4%
+    histidine_kinase_annotations: '319'
+    seryl_trna_annotations: '238'
+    cog_m_category: '834'
+    cog_d_category: '1533'
+    cog_t_category: '1118'
+    cog_j_category: '1066'
+generated_data: []

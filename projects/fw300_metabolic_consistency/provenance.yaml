@@ -1,0 +1,309 @@
+schema_version: 1
+references:
+- id: kosina2018
+  type: primary_data_source
+  title: 'Web of microbes (WoM): a curated microbial exometabolomics database for linking chemistry and microbes'
+  authors:
+  - Kosina SM
+  - Greiner AM
+  - Lau RK
+  - Jenkins S
+  - Baran R
+  - Bowen BP
+  - Northen TR
+  year: 2018
+  journal: BMC Microbiology
+  volume: '18'
+  pages: '139'
+  doi: 10.1186/s12866-018-1283-z
+  pmid: '30208844'
+  url: null
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Callaghan M
+  - Ray J
+  - Liu H
+  - Kuehl JV
+  - Melnyk RA
+  - Lamson JS
+  - Cai Y
+  - Carlson HK
+  - Bristow J
+  - Tainer JA
+  - Arkin AP
+  - Deutschbauer AM
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: '29769716'
+  url: null
+- id: price2022
+  type: methodology
+  title: Filling gaps in bacterial catabolic pathways with computation and high-throughput genetics
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2022
+  journal: PLoS Genetics
+  volume: '18'
+  pages: e1010156
+  doi: 10.1371/journal.pgen.1010156
+  pmid: '35511789'
+  url: null
+- id: price2024
+  type: methodology
+  title: 'Improving the annotation of amino acid biosynthesis pathways: GapMind 2024'
+  authors:
+  - Price MN
+  - Shiver AL
+  - Day LA
+  - Torres M
+  - Lesea HP
+  year: 2024
+  journal: null
+  volume: null
+  pages: null
+  doi: 10.1101/2024.10.14.618325
+  pmid: null
+  url: null
+- id: raad2022
+  type: supporting
+  title: NLDM exometabolomics for 110 soil bacteria
+  authors:
+  - de Raad M
+  year: 2022
+  journal: Frontiers in Microbiology
+  volume: '13'
+  pages: '855331'
+  doi: 10.3389/fmicb.2022.855331
+  pmid: null
+  url: null
+- id: ramoneda2023
+  type: supporting
+  title: Amino acid auxotrophy mapping
+  authors:
+  - Ramoneda J
+  year: 2023
+  journal: Nature Communications
+  volume: '14'
+  pages: '7608'
+  doi: 10.1038/s41467-023-43435-4
+  pmid: null
+  url: null
+- id: fritts2021
+  type: supporting
+  title: Extracellular metabolism sets the table for microbial cross-feeding
+  authors:
+  - Fritts RK
+  - McCully AL
+  - McKinlay JB
+  year: 2021
+  journal: Microbiology and Molecular Biology Reviews
+  volume: '85'
+  pages: e00135-20
+  doi: 10.1128/MMBR.00135-20
+  pmid: '33441489'
+  url: null
+- id: giri2021
+  type: supporting
+  title: Metabolic dissimilarity determines the establishment of cross-feeding interactions in bacteria
+  authors:
+  - Giri S
+  - Oña L
+  - Waschina S
+  - Shitut S
+  - Yousif G
+  - Kaleta C
+  - Kost C
+  year: 2021
+  journal: Current Biology
+  volume: '31'
+  pages: 5547-5557
+  doi: 10.1016/j.cub.2021.10.019
+  pmid: '34731681'
+  url: null
+- id: yousif2025
+  type: supporting
+  title: Obligate cross-feeding of metabolites is common in soil microbial communities
+  authors:
+  - Yousif G
+  - Zorrilla F
+  - Dash S
+  - Oña L
+  - Shekhar A
+  - Giri S
+  year: 2025
+  journal: null
+  volume: null
+  pages: null
+  doi: 10.1101/2025.01.29.635426
+  pmid: null
+  url: null
+- id: sibanyoni2025
+  type: supporting
+  title: Metabolomic Insights into Cross-Feeding Interactions Between Priestia megaterium PM and Pseudomonas fluorescens NO4
+  authors:
+  - Sibanyoni NR
+  - Piater LA
+  - Kerchev P
+  - Madala NE
+  year: 2025
+  journal: Microbial Ecology
+  volume: null
+  pages: null
+  doi: 10.1007/s00248-025-02577-2
+  pmid: null
+  url: null
+- id: wang2020
+  type: supporting
+  title: Hyperosmotic Adaptation of Pseudomonas protegens SN15-2 Helps Cells to Survive at Lethal Temperatures
+  authors:
+  - Wang X
+  - Tang D
+  - Wang W
+  year: 2020
+  journal: Biotechnology and Bioprocess Engineering
+  volume: '25'
+  pages: 299-306
+  doi: 10.1007/s12257-019-0376-3
+  pmid: null
+  url: null
+- id: harty2019
+  type: supporting
+  title: Ethanol stimulates trehalose production through a SpoT-DksA-AlgU-dependent pathway in Pseudomonas aeruginosa
+  authors:
+  - Harty CE
+  - Martins D
+  - Doing G
+  - Mould DL
+  year: 2019
+  journal: Journal of Bacteriology
+  volume: '201'
+  pages: e00794-18
+  doi: 10.1128/JB.00794-18
+  pmid: '30936377'
+  url: null
+data_sources:
+- collection: kescience_webofmicrobes
+  tables:
+  - observation
+  - organism
+  - compound
+  - environment
+  - project
+  purpose: Exometabolomic profile of FW300-N2E3
+  reference: kosina2018
+- collection: kescience_fitnessbrowser
+  tables:
+  - genefitness
+  - experiment
+  - gene
+  - seedannotation
+  purpose: Gene fitness on carbon/nitrogen sources
+  reference: price2018
+- collection: kescience_bacdive
+  tables:
+  - metabolite_utilization
+  - strain
+  - taxonomy
+  purpose: Species-level metabolite utilization for P. fluorescens
+  reference: null
+- collection: kbase_ke_pangenome
+  tables:
+  - gapmind_pathways
+  purpose: Pathway completeness predictions
+  reference: price2024
+- collection: kbase_msd_biochemistry
+  tables: []
+  purpose: Cross-reference for reaction/compound mapping
+  reference: null
+cross_project_deps: []
+findings:
+- id: high_overall_concordance
+  title: High overall concordance across databases (94% mean concordance)
+  notebook: 03_consistency_matrix.ipynb
+  figures:
+  - concordance_summary.png
+  data_files: []
+  references:
+  - kosina2018
+  - price2018
+  statistics:
+    mean_concordance: '0.94'
+    testable_metabolites: 21/58
+    fully_concordant: 17/21 (81%)
+    partially_concordant: 4/21 (19%)
+    fb_concordance: 21/21 (100%)
+    gapmind_concordance: 13/13 (100%)
+    bacdive_concordance: 3/7 (43%)
+    binomial_test_p_value: '0.40'
+- id: tryptophan_overflow
+  title: 'Tryptophan overflow: the strongest biologically meaningful discordance'
+  notebook: 03_consistency_matrix.ipynb
+  figures: []
+  data_files: []
+  references:
+  - price2018
+  - fritts2021
+  - ramoneda2023
+  - yousif2025
+  - sibanyoni2025
+  statistics:
+    wom_action: Increased
+    fb_genes: '231'
+    bacdive_utilization_rate: 0/50 (0%)
+    gapmind_prediction: complete
+- id: gapmind_complete_pathways
+  title: All 13 GapMind-matched metabolites have complete pathways
+  notebook: 03_consistency_matrix.ipynb
+  figures:
+  - consistency_heatmap.png
+  data_files: []
+  references:
+  - price2024
+  statistics:
+    matched_metabolites: '13'
+    complete_pathway_rate: 13/13 (100%)
+    fb_growth_rate: 13/13 (100%)
+- id: rich_fitness_landscapes
+  title: Rich fitness landscapes for produced metabolites
+  notebook: 02_wom_fb_integration.ipynb
+  figures:
+  - fitness_hits_per_metabolite.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    wom_metabolites_with_fb: '21'
+    unique_genes_significant: '601'
+    total_significant_hits: '4764'
+    carnitine_genes: '283'
+    alanine_genes: '295'
+    arginine_genes: '270'
+    tryptophan_genes: '231'
+    pleiotropic_genes_3plus: '231'
+    housekeeping_genes_all_21: '18'
+- id: bacdive_confidence_grading
+  title: BacDive discordances are graded by data quality
+  notebook: 03_consistency_matrix.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    tryptophan_confidence: High
+    tryptophan_sample_size: '50'
+    trehalose_confidence: Moderate
+    trehalose_sample_size: '6'
+    lysine_confidence: Moderate
+    lysine_sample_size: '3'
+    glycine_confidence: Low
+    glycine_sample_size: '1'
+generated_data: []

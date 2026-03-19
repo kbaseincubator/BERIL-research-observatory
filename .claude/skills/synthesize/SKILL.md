@@ -1,6 +1,6 @@
 ---
 name: synthesize
-description: Read analysis outputs, compare against literature, and draft findings for a project REPORT.md. Use when notebooks have been run and the user wants to interpret results and write up findings.
+description: "Read analysis outputs, compare against literature, and draft findings for a project REPORT.md. Use when notebooks have been run and the user wants to interpret results, write up findings, draft the report, or asks 'what do these results mean' in a completion context."
 allowed-tools: Bash, Read, Write, Edit, WebSearch, AskUserQuestion
 user-invocable: true
 ---
@@ -175,6 +175,126 @@ Also update `projects/{project_id}/README.md`:
 - Update `## Status` to reflect completion (e.g., "Complete — see [Report](REPORT.md) for findings")
 - Preserve existing `## Research Question` and `## Authors` sections
 
+#### Step 7.5: Generate `provenance.yaml`
+
+After writing REPORT.md, generate a structured provenance sidecar file at `projects/{project_id}/provenance.yaml`. Extract metadata from the report sections just written:
+
+- **References**: Parse `## References` lines into structured `Reference` entries. Classify type based on where each reference appeared:
+  - Referenced in `## Data > ### Sources` → `primary_data_source`
+  - Referenced in `### Literature Context` agreement → `supporting`
+  - Referenced in `### Literature Context` contradiction → `contradicting`
+  - Referenced as a method → `methodology`
+  - Otherwise → `supporting`
+- **Data sources**: Parse `## Data > ### Sources` table into `DataSourceRef` entries (collection ID, tables, purpose). Link to the corresponding Reference.id if one exists.
+- **Cross-project deps**: Parse README Dependencies section and Data Sources referencing other projects → `CrossProjectDep` entries with relationship type (e.g., `data_input`, `extends`).
+- **Findings**: Parse each `### {Title}` under `## Key Findings`. Extract:
+  - Notebook provenance from `*(Notebook: ...)*` annotations
+  - Figure references from `![...](figures/...)` syntax
+  - Inline citation references (match to Reference.id values)
+  - Statistical values (test name, p-value, effect size) from the finding text
+- **Generated data**: Parse `## Data > ### Generated Data` table into `GeneratedDataEntry` entries (file, rows, description, source_notebook).
+
+Write the file using this YAML structure:
+
+```yaml
+schema_version: 1
+
+references:
+  - id: price2018
+    type: primary_data_source
+    title: "Mutant phenotypes for thousands of bacterial genes of unknown function"
+    authors: ["Price MN", "Wetmore KM", "Waters RJ"]
+    year: 2018
+    journal: "Nature"
+    volume: "557"
+    pages: "503-509"
+    doi: "10.1038/s41586-018-0124-0"
+    pmid: "29769716"
+
+data_sources:
+  - collection: kescience_fitnessbrowser
+    tables: [organism, gene, fitness]
+    purpose: "Genome-wide fitness phenotypes"
+    reference: price2018
+
+cross_project_deps:
+  - project: conservation_vs_fitness
+    relationship: data_input
+    files: [data/fb_pangenome_link.tsv]
+    description: "Pre-computed pangenome-fitness links"
+
+findings:
+  - id: core_fitness_impact
+    title: "Core genes show higher fitness impact than accessory genes"
+    notebook: 01_core_fitness.ipynb
+    figures: [core_vs_accessory_fitness.png]
+    data_files: [data/core_fitness_comparison.csv]
+    references: [price2018]
+    statistics:
+      test: "Mann-Whitney U"
+      p_value: "1.6e-87"
+      effect_size: "0.003"
+
+generated_data:
+  - file: data/core_fitness_comparison.csv
+    rows: 15234
+    description: "Core vs accessory gene fitness comparison"
+    source_notebook: 01_core_fitness.ipynb
+```
+
+**Important**: Reference IDs should be short, memorable keys (e.g., `price2018`, `arkin2018`). Use the first author's last name + year. If duplicates, append a letter (e.g., `smith2020a`, `smith2020b`).
+
+#### Step 7.6: Update Knowledge Registry
+
+After writing provenance.yaml, update the project's entry in the global knowledge registry:
+
+```bash
+uv run scripts/build_registry.py --project {project_id}
+```
+
+This ensures the project's findings, tags, data artifacts, and dependencies are immediately searchable via `/knowledge`. If the script is not found or fails, print a note and continue — this is non-blocking.
+
+#### Step 7.7: Update Knowledge Graph (Layer 3)
+
+After writing provenance.yaml and updating the registry, update the semantic knowledge graph in `knowledge/`. This step is required. If `knowledge/` doesn't exist, create the directory structure first (entities/, relations.yaml, hypotheses.yaml, timeline.yaml).
+
+**a) Register new entities:**
+- Read the REPORT.md Key Findings and identify any organisms, genes, pathways, methods, or concepts not yet in `knowledge/entities/*.yaml`
+- For each new entity, append to the appropriate file using the existing format
+- Use ID prefixes: `org_`, `gene_`, `path_`, `meth_`, `conc_`
+- Include the current `project_id` in the entity's `projects` list
+- Map to external IDs (NCBI Taxonomy, KEGG) where possible
+
+**b) Update existing entity project lists:**
+- For entities already in the knowledge graph that appear in this project, add `project_id` to their `projects` list if not already present
+
+**c) Add/update relations:**
+- Extract entity-entity relationships from Key Findings
+- Append new relations to `knowledge/relations.yaml` with:
+  - `evidence_project`: the current project_id
+  - `confidence`: based on statistical significance reported
+  - `note`: brief evidence description
+
+For each analytical method used in this project, add an `applied_to` relation connecting the method entity to each organism studied. This ensures method coverage gap analysis is accurate.
+
+**d) Create/update hypotheses:**
+- For each Key Finding, check if a related hypothesis exists in `knowledge/hypotheses.yaml`
+  - If yes: add this project's finding as supporting or contradicting evidence
+  - If no: create a new hypothesis entry with status `validated` (if the finding is definitive) or `proposed` (if exploratory)
+- If any findings contradict existing hypotheses, update the contradicting evidence list and consider changing status to `rejected`
+
+**e) Append timeline events:**
+- Add a `project_completed` event to `knowledge/timeline.yaml` with today's date
+- Add `discovery` events for notable findings
+- Add `hypothesis_validated` or `hypothesis_rejected` events as appropriate
+- Add `cross_project_connection` events if findings link to other projects
+
+**Layer 3 completion checklist** — before proceeding to Step 8, verify:
+- [ ] At least 1 entity registered or updated with this project_id
+- [ ] At least 1 relation added with evidence_project: {project_id}
+- [ ] At least 1 timeline event appended for this project
+- [ ] At least 1 hypothesis created or updated with evidence from this project
+
 #### Step 8: Update References
 
 Add any new papers found during synthesis to `projects/{project_id}/references.md`.
@@ -198,8 +318,8 @@ After completing the synthesis, tell the user:
 
 - **Reads from**: `data/*.csv`, `figures/`, `notebooks/*.ipynb`, `RESEARCH_PLAN.md`, `references.md`
 - **Calls**: `/literature-review` (for literature comparison)
-- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); updated `README.md` (Status)
-- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md)
+- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); `provenance.yaml` (structured metadata); updated `README.md` (Status); updated `docs/project_registry.yaml` (via build_registry.py); updated `knowledge/` (entities, relations, hypotheses, timeline)
+- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md; validator checks provenance.yaml); `/knowledge` (searches registry and knowledge graph); `/suggest-research` (uses knowledge graph for gap analysis)
 
 ## Pitfall Detection
 

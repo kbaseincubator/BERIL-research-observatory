@@ -1,0 +1,177 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Callaghan M
+  - Ray J
+  - Liu H
+  - Kuehl JV
+  - Martin RA
+  - Suh MJ
+  - Carlson HK
+  - Esquivel Z
+  - Sadeeshkumar H
+  - Chakraborty R
+  - Zane GM
+  - Rubin BE
+  - Wall JD
+  - Arkin AP
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: luo2015
+  type: supporting
+  title: Evolution of divergent life history strategies in marine alphaproteobacteria
+  authors:
+  - Luo H
+  - Friedman R
+  - ([2015
+  year: 2015
+  journal: mBio
+  volume: '6'
+  pages: null
+  doi: null
+  pmid: '26530382'
+  url: null
+- id: mcinerney2017
+  type: supporting
+  title: Why prokaryotes have pangenomes
+  authors:
+  - McInerney JO
+  - McNally A
+  - O'Connell MJ
+  year: 2017
+  journal: Nat Microbiol
+  volume: '2'
+  pages: '17040'
+  doi: null
+  pmid: '28350002'
+  url: null
+- id: parks2022
+  type: supporting
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  - Chuvochina M
+  - Chaumeil PA
+  - Rinke C
+  - Mussig AJ
+  - Hugenholtz P
+  year: 2022
+  journal: Nucleic Acids Res
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - genefitness
+  - experiment
+  - specificphenotype
+  purpose: Per-gene per-experiment fitness scores and metadata
+  reference: price2018
+cross_project_deps:
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  - data/essential_genes.tsv
+  description: Gene-to-cluster conservation mapping and essential gene classification
+findings:
+- id: conservation_increases_with_fitness_importance
+  title: Conservation Increases with Fitness Importance
+  notebook: 02_fitness_vs_conservation.ipynb
+  figures:
+  - conservation_by_fitness_profile.png
+  - fitness_magnitude_vs_conservation.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    essential_genes_core_percent: '82'
+    always_neutral_genes_core_percent: '66'
+    gradient_magnitude_percentage_points: '16'
+- id: breadth_of_fitness_effects_predicts_conservation
+  title: Breadth of Fitness Effects Predicts Conservation
+  notebook: 03_breadth_vs_conservation.ipynb
+  figures:
+  - fitness_breadth_vs_conservation.png
+  - broad_vs_specific_conservation.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    spearman_rho: '0.086'
+    p_value: '8.1e-230'
+    essential_breadth_core_percent: '82'
+    zero_experiments_core_percent: '66'
+- id: core_genes_are_not_burdens_they_are_more_likely_beneficial
+  title: Core Genes Are Not Burdens -- They're More Likely Beneficial
+  notebook: 02_fitness_vs_conservation.ipynb
+  figures:
+  - burden_genes_by_conservation.png
+  - cost_benefit_portrait.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    core_genes_ever_beneficial_percent: '24.4'
+    auxiliary_genes_ever_beneficial_percent: '19.9'
+    odds_ratio_auxiliary_vs_core: '0.77'
+- id: specific_phenotype_genes_are_more_likely_core
+  title: Specific-Phenotype Genes Are More Likely Core
+  notebook: 03_breadth_vs_conservation.ipynb
+  figures:
+  - conservation_by_condition_type.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    specific_phenotype_genes_core_percent: '77.3'
+    non_specific_phenotype_genes_core_percent: '70.3'
+    odds_ratio: '1.78'
+    p_value: '1.8e-97'
+- id: ephemeral_niche_genes
+  title: Ephemeral Niche Genes
+  notebook: 03_breadth_vs_conservation.ipynb
+  figures: []
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    ephemeral_niche_genes_total: '4450'
+    percentage_of_all_genes: '2.7'
+    core_genes_percentage: '3.0'
+    auxiliary_genes_percentage: '1.7'
+    singleton_genes_percentage: '1.6'
+- id: fitness_distributions_by_conservation
+  title: Fitness Distributions by Conservation
+  notebook: 02_fitness_vs_conservation.ipynb
+  figures:
+  - fitness_distributions_by_conservation.png
+  data_files: []
+  references:
+  - price2018
+  statistics: {}
+- id: novel_gene_landscape
+  title: Novel Gene Landscape
+  notebook: 02_fitness_vs_conservation.ipynb
+  figures:
+  - novel_gene_mean_fitness.png
+  data_files: []
+  references:
+  - price2018
+  statistics: {}
+generated_data: []

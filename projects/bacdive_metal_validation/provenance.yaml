@@ -1,0 +1,133 @@
+schema_version: 1
+references:
+- id: reimer2022
+  type: primary_data_source
+  title: 'BacDive in 2022: the knowledge base for standardized bacterial and archaeal data'
+  authors:
+  - Reimer LC
+  - Sarda Carbasse J
+  - Koblitz J
+  - Ebeling C
+  - Podstawka A
+  - Overmann J
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D741-D746
+  doi: 10.1093/nar/gkab943
+  pmid: null
+  url: null
+- id: carlson2019
+  type: supporting
+  title: The selective pressures on the microbial community in a metal-contaminated aquifer
+  authors:
+  - Carlson HK
+  - Iyer R
+  - Navid A
+  - Mukarakate C
+  - Arkin AP
+  year: 2019
+  journal: ISME Journal
+  volume: '13'
+  pages: 937-949
+  doi: 10.1038/s41396-018-0356-x
+  pmid: null
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - genome
+  purpose: Map GCA genome accessions to GTDB species clades for linking BacDive strains to pangenome metal tolerance scores
+  reference: null
+cross_project_deps:
+- project: metal_fitness_atlas
+  relationship: data_input
+  files:
+  - data/species_metal_scores.csv
+  description: Metal tolerance scores for 27,702 pangenome species derived from cross-species RB-TnSeq fitness data
+- project: metal_specificity
+  relationship: data_input
+  files: []
+  description: Analysis of core genome enrichment in metal tolerance genes (88% core), provides context for reconciling core
+    conservation with between-species variation
+- project: lab_field_ecology
+  relationship: data_input
+  files: []
+  description: Related study finding suggestive but non-significant correlation between lab metal tolerance and field abundance
+    at Oak Ridge (rho=0.50, p=0.095, n=11)
+findings:
+- id: metal_contamination_isolates_higher_scores
+  title: Bacteria From Metal-Contaminated Environments Have Significantly Higher Metal Tolerance Scores
+  notebook: 02_environment_metal_scores.ipynb
+  figures:
+  - metal_score_by_environment.png
+  data_files: []
+  references: []
+  statistics:
+    heavy_metal_cohens_d: '+1.00'
+    heavy_metal_p_value: '0.006'
+    heavy_metal_n: '10'
+    waste_sludge_cohens_d: '+0.57'
+    waste_sludge_p_value: <0.0001
+    all_contamination_cohens_d: '+0.43'
+    all_contamination_p_value: <0.0001
+    industrial_cohens_d: '+0.20'
+    industrial_p_value: <0.0001
+    test: Mann-Whitney U
+- id: signal_within_major_phyla
+  title: The Signal Holds Within Major Phyla
+  notebook: 02_environment_metal_scores.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    pseudomonadota_delta: '+0.040'
+    pseudomonadota_p_value: <0.001
+    actinomycetota_delta: '+0.035'
+    actinomycetota_p_value: <0.001
+    bacillota_p_value: '0.285'
+    bacteroidota_p_value: '0.456'
+- id: bacdive_pangenome_bridge
+  title: 42,227 BacDive Strains Linked to Pangenome Metal Scores
+  notebook: 01_bacdive_pangenome_bridge.ipynb
+  figures:
+  - bridge_summary.png
+  data_files: []
+  references:
+  - reimer2022
+  statistics:
+    matched_strains: '42227'
+    match_rate_percent: '43.4'
+    exact_match: '33535'
+    exact_match_percent: '34.5'
+    base_name_match: '8692'
+    base_name_match_percent: '8.9'
+    matched_with_isolation_data: '25089'
+    unique_gtdb_species: '6426'
+- id: metal_utilization_inconclusive
+  title: 'Metal Utilization Phenotypes: Inconclusive'
+  notebook: 03_metal_utilization.ipynb
+  figures:
+  - utilization_vs_score.png
+  data_files: []
+  references: []
+  statistics:
+    n: '24'
+    positive_results: '8'
+    negative_results: '16'
+    test: Mann-Whitney U
+    p_value: '0.14'
+    cohens_d: '-0.57'
+- id: power_analysis_heavy_metal
+  title: 'Power Analysis: The Heavy Metal Group Was At Detection Limit'
+  notebook: 02_environment_metal_scores.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    heavy_metal_n: '10'
+    baseline_n: ~5000
+    minimum_detectable_effect_size: '0.93'
+    observed_cohens_d: '+1.00'
+    power_percent: '80'
+generated_data: []

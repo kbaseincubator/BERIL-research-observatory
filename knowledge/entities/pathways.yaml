@@ -1,0 +1,125 @@
+pathways:
+
+  - id: path_beta_ketoadipate
+    name: Beta-ketoadipate pathway
+    kegg_id: map00362
+    description: >-
+      Core aromatic catabolism pathway. Quinate -> protocatechuate ->
+      beta-ketoadipate -> succinyl-CoA + acetyl-CoA -> TCA cycle.
+      Requires PQQ, Fe2+, and Complex I support. 7:1 support-to-pathway
+      gene ratio discovered.
+    projects:
+      - aromatic_catabolism_network
+      - adp1_deletion_phenotypes
+      - adp1_triple_essentiality
+      - respiratory_chain_wiring
+    organisms:
+      - org_adp1
+
+  - id: path_tca_cycle
+    name: TCA cycle
+    kegg_id: map00020
+    description: >-
+      Receives succinyl-CoA and acetyl-CoA from beta-ketoadipate pathway.
+      Generates concentrated NADH burst from aromatic catabolism.
+    projects:
+      - aromatic_catabolism_network
+      - respiratory_chain_wiring
+      - adp1_deletion_phenotypes
+    organisms:
+      - org_adp1
+
+  - id: path_aa_biosynthesis
+    name: Amino acid biosynthesis
+    kegg_id: map01230
+    description: >-
+      17 of 18 pathways present in all 7 organisms tested via GapMind.
+      Serine biosynthesis absent from D. vulgaris (putative auxotrophy).
+    projects:
+      - essential_metabolome
+    organisms:
+      - org_dvh
+      - org_mr1
+      - org_putida
+      - org_paeruginosa
+      - org_caulo
+      - org_smeli
+      - org_azobra
+
+  - id: path_phb_synthesis
+    name: PHB biosynthesis pathway
+    kegg_id: map00650
+    description: >-
+      Three-step pathway: phaA -> phaB -> phaC. Present as complete
+      pathway in 21.7% of 27,690 GTDB species. Strongly associated
+      with feast/famine environments.
+    projects:
+      - phb_granule_ecology
+    organisms:
+      - org_cupriavidus
+
+  - id: path_sulfate_reduction
+    name: Dissimilatory sulfate reduction
+    description: >-
+      Primary energy metabolism of D. vulgaris. Genes for sulfate, lactate,
+      formate, pyruvate, H2 catabolism are significantly more conserved
+      (82.4% core, OR=1.46).
+    projects:
+      - field_vs_lab_fitness
+      - essential_metabolome
+    organisms:
+      - org_dvh
+
+  - id: path_respiratory_chain
+    name: Aerobic respiratory chain
+    description: >-
+      62 genes across 8 subsystems in ADP1. Condition-specifically wired:
+      quinate requires only Complex I; acetate requires Complex I + cyt bo3
+      + ACIAD3522; glucose requires no specific component.
+    projects:
+      - aromatic_catabolism_network
+      - respiratory_chain_wiring
+      - adp1_deletion_phenotypes
+    organisms:
+      - org_adp1
+
+  - id: path_translation_machinery
+    name: Translation machinery
+    kegg_id: map03010
+    description: >-
+      Most conserved functional category. COG J most depleted in
+      novel/singleton genes (-4.65%, 97% consistency). Contains
+      majority of 15 pan-bacterial essential gene families.
+    projects:
+      - cog_analysis
+      - essential_genome
+      - conservation_vs_fitness
+      - conservation_fitness_synthesis
+
+  - id: path_glyoxylate_shunt
+    name: Glyoxylate cycle
+    description: >-
+      Condition-specific for acetate in ADP1. Bypasses oxidative
+      TCA decarboxylation for growth on C2 compounds.
+    projects:
+      - adp1_deletion_phenotypes
+    organisms:
+      - org_adp1
+
+  - id: path_coenzyme_metabolism
+    name: Coenzyme metabolism
+    description: >-
+      COG category H. Strongly enriched in core genes
+      (-2.06% enrichment for novel, 97% consistency).
+    projects:
+      - cog_analysis
+
+  - id: path_nucleotide_metabolism
+    name: Nucleotide metabolism
+    description: >-
+      COG category F. Strongly depleted in novel genes
+      (-2.09%, 100% consistency). Enriched in essential-core
+      gene category (+6.2pp vs non-essential).
+    projects:
+      - cog_analysis
+      - conservation_vs_fitness

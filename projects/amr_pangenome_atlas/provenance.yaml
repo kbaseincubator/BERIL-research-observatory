@@ -1,0 +1,255 @@
+schema_version: 1
+references:
+- id: feldgarden2021
+  type: primary_data_source
+  title: AMRFinderPlus and the Reference Gene Catalog facilitate examination of the genomic links among antimicrobial resistance,
+    stress response, and virulence
+  authors:
+  - Feldgarden M
+  - Brover V
+  - Gonzalez-Escalona N
+  year: 2021
+  journal: Scientific Reports
+  volume: '11'
+  pages: '12728'
+  doi: null
+  pmid: '34135355'
+  url: null
+- id: larsson2022
+  type: supporting
+  title: Antibiotic resistance in the environment
+  authors:
+  - Larsson DGJ
+  - Flach CF
+  year: 2022
+  journal: Nature Reviews Microbiology
+  volume: '20'
+  pages: 257-269
+  doi: null
+  pmid: '34737424'
+  url: null
+- id: hua2020
+  type: supporting
+  title: Comparison of Antimicrobial Resistance Detected in Environmental and Clinical Isolates from Historical Data for the
+    US
+  authors:
+  - Hua X
+  - Liang Q
+  - Deng M
+  year: 2020
+  journal: BioMed Research International
+  volume: '2020'
+  pages: '4254530'
+  doi: null
+  pmid: '32351993'
+  url: null
+- id: schwengers2021
+  type: methodology
+  title: 'Bakta: rapid and standardized annotation of bacterial genomes via alignment-free sequence identification'
+  authors:
+  - Schwengers O
+  - Jelonek L
+  - Diber MA
+  - Grüning BA
+  year: 2021
+  journal: Microbial Genomics
+  volume: '7'
+  pages: 000685
+  doi: null
+  pmid: '34739369'
+  url: null
+- id: parks2022
+  type: methodology
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  - Chuvochina M
+  - Rinke C
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+- id: price2018
+  type: methodology
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: arkin2018
+  type: methodology
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  - Cottingham RW
+  - Henry CS
+  year: 2018
+  journal: Nature Biotechnology
+  volume: '36'
+  pages: 566-569
+  doi: null
+  pmid: '29979655'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - bakta_amr
+  - gene_cluster
+  - bakta_annotations
+  - eggnog_mapper_annotations
+  - bakta_pfam_domains
+  - pangenome
+  - genome
+  - gtdb_taxonomy_r214v1
+  - ncbi_env
+  - alphaearth_embeddings_all_years
+  purpose: AMR annotations, conservation flags, functional context, taxonomy, environment metadata
+  reference: feldgarden2021
+- collection: kescience_fitnessbrowser
+  tables:
+  - organism
+  - gene
+  - genefitness
+  purpose: Fitness effects of AMR genes
+  reference: price2018
+cross_project_deps: []
+findings:
+- id: amr_genes_depleted_core_genome
+  title: AMR Genes Are Massively Depleted from the Core Genome
+  notebook: null
+  figures:
+  - amr_conservation_vs_baseline.png
+  data_files: []
+  references:
+  - feldgarden2021
+  - larsson2022
+  statistics:
+    amr_core_fraction: 30.3%
+    baseline_core_fraction: 46.8%
+    odds_ratio: '0.49'
+    chi_squared: '23117'
+    p_value: ~0
+    auxiliary_enrichment: 2.2x
+    wilcoxon_p: '1.1e-130'
+    paired_species_n: '4252'
+    species_showing_amr_less_core: 63.7%
+- id: intrinsic_acquired_resistance_dichotomy
+  title: Intrinsic vs Acquired Resistance Creates a Conservation Dichotomy
+  notebook: 02_conservation_patterns.ipynb
+  figures:
+  - amr_mechanism_conservation.png
+  - amr_gene_families_core_fraction.png
+  data_files: []
+  references:
+  - feldgarden2021
+  statistics:
+    betalactamase_core: 54.9%
+    betalactamase_p: '7.7e-74'
+    regulatory_core: 6.5%
+    blatEM_core: 0%
+    emhABC_intrinsic_core: '>95%'
+- id: amr_hotspots_clinical_pathogens
+  title: AMR Hotspots Are Concentrated in Clinical Pathogens
+  notebook: null
+  figures:
+  - amr_hotspot_families.png
+  - amr_openness_by_phylum.png
+  data_files: []
+  references:
+  - larsson2022
+  statistics:
+    klebsiella_amr_per_species: '206'
+    salmonella_amr_per_species: '198'
+    citrobacter_amr_per_species: '134'
+    enterobacter_amr_per_species: '93'
+    gammaproteobacteria_amr_fraction: 45%
+    gammaproteobacteria_clusters: 37752/83008
+    enterobacteriaceae_amr_per_species: '37.5'
+    staphylococcaceae_amr_per_species: '37.3'
+    bacillota_openness_correlation: '0.219'
+    bacillota_openness_p: '1.0e-16'
+    bacillota_c_openness_correlation: '0.374'
+    bacillota_c_openness_p: '3.1e-5'
+    overall_correlation: '0.006'
+- id: amr_enriched_defense_ion_transport
+  title: AMR Genes Are Enriched in Defense and Ion Transport Functions
+  notebook: 04_functional_context.ipynb
+  figures:
+  - amr_cog_enrichment.png
+  data_files: []
+  references:
+  - feldgarden2021
+  statistics:
+    cog_v_enrichment: 7.05x
+    cog_v_amr_fraction: 14.9%
+    cog_v_baseline_fraction: 2.1%
+    cog_p_enrichment: 1.93x
+    cog_p_amr_fraction: 10.7%
+    cog_p_baseline_fraction: 5.6%
+    cog_j_enrichment: 1.50x
+    cog_l_depletion: 0.12x
+    cog_i_depletion: 0.10x
+    cog_n_depletion: 0.08x
+    amr_clusters_with_annotations: '77000'
+    baseline_clusters: '86000000'
+- id: clinical_species_more_amr_acquired
+  title: Clinical Species Carry 2.7x More AMR — and It's More Acquired
+  notebook: 05_environmental_distribution.ipynb
+  figures:
+  - amr_by_environment.png
+  - amr_alphaearth_diversity.png
+  data_files: []
+  references:
+  - larsson2022
+  - hua2020
+  statistics:
+    human_clinical_amr_per_species: '10.6'
+    human_clinical_n: '2248'
+    soil_terrestrial_amr_per_species: '4.6'
+    soil_terrestrial_n: '2469'
+    aquatic_amr_per_species: '3.9'
+    aquatic_n: '1827'
+    animal_amr_per_species: '3.0'
+    animal_n: '959'
+    kruskal_wallis_h: '440'
+    kruskal_wallis_p: '7.0e-93'
+    clinical_amr_core_fraction: 30.8%
+    soil_amr_core_fraction: 58.1%
+    plant_amr_core_fraction: 63.1%
+    amr_species_classified: 7838/14723
+    classification_fraction: 53.2%
+    alphaearth_species_with_embeddings: '2684'
+    alphaearth_spearman_rho: '0.466'
+    alphaearth_p: '1.6e-144'
+    amr_core_vs_diversity_rho: '-0.173'
+    amr_core_vs_diversity_p: '1.8e-19'
+- id: amr_not_fitness_burden
+  title: AMR Genes Are Not a Fitness Burden in Lab Conditions
+  notebook: 06_fitness_crossref.ipynb
+  figures:
+  - amr_fitness_distribution.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    fb_pangenome_links: '177863'
+    amr_genes_in_fb: '178'
+    fb_organisms: '37'
+    fitness_measurements: '29386'
+    amr_median_fitness: '-0.007'
+    non_amr_median_fitness: '-0.012'
+    mann_whitney_p: '3.7e-6'
+    betalactamase_median_fitness: '-0.001'
+    singleton_median_fitness: '-0.019'
+generated_data: []

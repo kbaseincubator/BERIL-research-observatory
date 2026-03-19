@@ -1,0 +1,17 @@
+schema_version: 1
+references: []
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - genome
+  - ncbi_env
+  - gene_cluster
+  - gene_genecluster_junction
+  - gene
+  - eggnog_mapper_annotations
+  purpose: Extract genomes with collection dates, gene cluster memberships, and functional annotations for temporal core genome
+    analysis
+  reference: null
+cross_project_deps: []
+findings: []
+generated_data: []

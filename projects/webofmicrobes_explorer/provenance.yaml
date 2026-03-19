@@ -1,0 +1,206 @@
+schema_version: 1
+references:
+- id: kosina2018
+  type: primary_data_source
+  title: 'Web of microbes (WoM): a curated microbial exometabolomics database for linking chemistry and microbes'
+  authors:
+  - Kosina SM
+  - Greiner AM
+  - Lau RK
+  - Jenkins S
+  - Baran R
+  - Bowen BP
+  - Northen TR
+  year: 2018
+  journal: BMC Microbiology
+  volume: '18'
+  pages: '139'
+  doi: null
+  pmid: '30208844'
+  url: null
+- id: deraad2022
+  type: supporting
+  title: A Defined Medium for Cultivation and Exometabolite Profiling of Soil Bacteria
+  authors:
+  - de Raad M
+  - Li YV
+  - Kuehl JV
+  - Andeer PF
+  - Kosina SM
+  - Hendrickson A
+  - Saichek NR
+  - Golini AN
+  - Han Z
+  - Wang Y
+  - Bowen BP
+  - Deutschbauer AM
+  - Arkin AP
+  - Chakraborty R
+  - Northen TR
+  year: 2022
+  journal: Front Microbiol
+  volume: '13'
+  pages: '855331'
+  doi: null
+  pmid: '35694313'
+  url: null
+- id: douglas2020
+  type: review
+  title: 'The microbial exometabolome: ecological resource and architect of microbial communities'
+  authors:
+  - Douglas AE
+  year: 2020
+  journal: Phil Trans R Soc B
+  volume: '375'
+  pages: '20190250'
+  doi: null
+  pmid: null
+  url: https://doi.org/10.1098/rstb.2019.0250
+- id: jacoby2019
+  type: review
+  title: 'Metabolic niches in the rhizosphere microbiome: new tools and approaches to analyse metabolic mechanisms of plant-microbe
+    nutrient exchange'
+  authors:
+  - Jacoby RP
+  - Kopriva S
+  year: 2019
+  journal: J Exp Bot
+  volume: '70'
+  pages: 697-713
+  doi: null
+  pmid: '30576534'
+  url: null
+- id: price2018
+  type: methodology
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Callaghan M
+  - Ray J
+  - Liu H
+  - Kuehl JV
+  - Melnyk RA
+  - Lamson JS
+  - Cai Y
+  - Carlson HK
+  - Bristow J
+  - Arkin AP
+  - Deutschbauer AM
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: null
+  url: null
+data_sources:
+- collection: kescience_webofmicrobes
+  tables:
+  - compound
+  - environment
+  - organism
+  - project
+  - observation
+  purpose: Exometabolomics data (metabolite production/excretion profiles)
+  reference: kosina2018
+- collection: kescience_fitnessbrowser
+  tables:
+  - organism
+  - gene
+  - experiment
+  purpose: Fitness data for organism overlap and condition matching
+  reference: null
+- collection: kbase_msd_biochemistry
+  tables:
+  - molecule
+  purpose: Compound name/formula matching for reaction-level annotation
+  reference: null
+- collection: kbase_ke_pangenome
+  tables:
+  - pangenome
+  - gapmind_pathways
+  purpose: Species clade counts and pathway predictions
+  reference: null
+cross_project_deps: []
+findings:
+- id: wom_action_encoding_four_semantics
+  title: WoM Action Encoding Uses Four Distinct Semantics, Not Three
+  notebook: 01_database_overview.ipynb
+  figures: []
+  data_files: []
+  references:
+  - kosina2018
+  statistics:
+    control_detected: '742'
+    control_not_detected: '1023'
+    organism_increased: '1338'
+    organism_emerged: '1155'
+    organism_no_change: '7509'
+    total_observations: '10744'
+- id: fitness_browser_strain_matches
+  title: Two Direct Fitness Browser Strain Matches Plus Two Genus-Level Matches
+  notebook: null
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    pseudomonas_n2e3_genes: '5854'
+    pseudomonas_n2e3_experiments: '211'
+    pseudomonas_gw456_genes: '5243'
+    pseudomonas_gw456_experiments: '106'
+    ecoli_keio_genes: '4610'
+    ecoli_keio_experiments: '168'
+- id: wom_produced_metabolites_tested_as_sources
+  title: 19 WoM-Produced Metabolites Are Tested as FB Carbon/Nitrogen Sources
+  notebook: 02_cross_collection_links.ipynb
+  figures:
+  - enigma_metabolite_heatmap.png
+  data_files: []
+  references: []
+  statistics:
+    matched_metabolites: '19'
+    de_novo_products: '5'
+    amplified_metabolites: '14'
+- id: wom_metabolites_modelseed_links
+  title: 26.8% of WoM Metabolites Have Definitive ModelSEED Links (68.5% with Ambiguous Formula Matches)
+  notebook: 02_cross_collection_links.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    exact_name_matches: '69'
+    exact_name_percentage: '26.8'
+    formula_only_matches: '107'
+    formula_only_percentage: '41.6'
+    total_with_any_link: '176'
+    total_with_any_link_percentage: '68.5'
+    unmatched: '81'
+    unmatched_percentage: '31.5'
+    total_identified_compounds: '257'
+    average_formula_expansion: '8.4'
+- id: enigma_isolates_metabolic_novelty_rates
+  title: ENIGMA Isolates Show Distinct "Metabolic Novelty Rates"
+  notebook: 01_database_overview.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    gw456_novelty_rate: '32.4'
+    fw507_14tsa_novelty_rate: '31.4'
+    fw300_n2a2_novelty_rate: '30.5'
+    gw101_3e06_novelty_rate: '28.6'
+    fw507_8r2a_novelty_rate: '15.2'
+    novelty_rate_range: 15.2-32.4
+- id: wom_genera_pangenome_coverage
+  title: All WoM Genera Have Pangenome Species Clades
+  notebook: 02_cross_collection_links.ipynb
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    genera_with_pangenome: '8'
+    bacillus_genomes: '2557'
+    rhizobium_genomes: '449'
+generated_data: []

@@ -1,0 +1,215 @@
+schema_version: 1
+references:
+- id: battesti2011
+  type: supporting
+  title: The RpoS-mediated general stress response in Escherichia coli
+  authors:
+  - Battesti A
+  - Majdalani N
+  - Gottesman S
+  year: 2011
+  journal: Annu Rev Microbiol
+  volume: '65'
+  pages: 189-213
+  doi: null
+  pmid: '21639793'
+  url: null
+- id: danilova2020
+  type: methodology
+  title: Inhibitory Effect of Copper and Zinc Ions on the Growth of Streptococcus pyogenes and Escherichia coli Biofilms
+  authors:
+  - Danilova TA
+  - et al.
+  year: 2020
+  journal: Bull Exp Biol Med
+  volume: '169'
+  pages: 648-652
+  doi: null
+  pmid: '32986214'
+  url: null
+- id: dehal2026
+  type: primary_data_source
+  title: Pan-Bacterial Metal Fitness Atlas
+  authors:
+  - Dehal P
+  year: 2026
+  journal: null
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: projects/metal_fitness_atlas/
+- id: nies2003
+  type: supporting
+  title: Efflux-mediated heavy metal resistance in prokaryotes
+  authors:
+  - Nies DH
+  year: 2003
+  journal: FEMS Microbiol Rev
+  volume: '27'
+  pages: 313-339
+  doi: null
+  pmid: '12829273'
+  url: null
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - et al.
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: wetmore2015
+  type: methodology
+  title: Rapid quantification of mutant fitness in diverse bacteria by sequencing randomly bar-coded transposons
+  authors:
+  - Wetmore KM
+  - et al.
+  year: 2015
+  journal: mBio
+  volume: '6'
+  pages: e00306-15
+  doi: null
+  pmid: '25968644'
+  url: null
+- id: arkin2018
+  type: supporting
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  - et al.
+  year: 2018
+  journal: Nat Biotechnol
+  volume: '36'
+  pages: 566-569
+  doi: null
+  pmid: '29979655'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - genefitness
+  - experiment
+  purpose: Fitness scores, experiment metadata for NaCl and metal stress experiments
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables:
+  - gene_cluster
+  purpose: Core/accessory gene classification
+  reference: null
+cross_project_deps:
+- project: metal_fitness_atlas
+  relationship: data_input
+  files:
+  - data/metal_experiments.csv
+  - data/metal_fitness_scores.csv
+  - data/metal_important_genes.csv
+  - data/metal_conservation_stats.csv
+  - data/conserved_metal_families.csv
+  description: Metal experiment classification, fitness scores, conservation statistics
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/matrices/
+  - data/annotations/
+  description: Cached fitness matrices and experiment metadata including NaCl experiments
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  description: FB-to-pangenome gene mapping for core enrichment analysis
+- project: essential_genome
+  relationship: data_input
+  files:
+  - data/all_seed_annotations.tsv
+  description: SEED functional annotations for gene classification
+findings:
+- id: metal_nacl_overlap_40percent
+  title: 39.8% of Metal-Important Genes Are Also NaCl-Important
+  notebook: 02_metal_nacl_overlap.ipynb
+  figures:
+  - nacl_metal_overlap_heatmap.png
+  data_files: []
+  references:
+  - price2018
+  - danilova2020
+  statistics:
+    overall_overlap: 39.8% (4,304/10,821 metal-important gene records)
+    range_by_metal: 9.2% (molybdenum) to 57.6% (manganese)
+    outlier_correction: Excluding SynE reduces to 36.7%
+    organism_metal_pairs: '86'
+- id: counter_ions_not_primary
+  title: Counter Ions Are NOT the Primary Driver of the Overlap
+  notebook: 02_metal_nacl_overlap.ipynb
+  figures:
+  - metal_nacl_overlap_by_counter_ion.png
+  - cl_concentration_vs_overlap.png
+  data_files: []
+  references:
+  - danilova2020
+  statistics:
+    zinc_sulfate_overlap: 44.6% (zero chloride)
+    cobalt_chloride_overlap: 41.3% (up to 500 mM Cl⁻)
+    chloride_metals_mean: 41.6%
+    non_chloride_metals_mean: 37.8%
+- id: dvh_metal_nacl_correlation
+  title: DvH Metal-NaCl Correlation Follows Toxicity Mechanism, Not Chloride Dose
+  notebook: 02_metal_nacl_overlap.ipynb
+  figures:
+  - dvh_nacl_metal_correlation.png
+  data_files: []
+  references:
+  - price2018
+  - nies2003
+  statistics:
+    zinc_correlation: r=0.715
+    manganese_correlation: r=0.545
+    iron_correlation: r=0.086
+    metals_tested_dvh: '13'
+- id: metal_atlas_robust
+  title: Metal Fitness Atlas Core Enrichment Is Robust After Correction
+  notebook: 04_corrected_atlas.ipynb
+  figures:
+  - atlas_original_vs_corrected.png
+  data_files: []
+  references:
+  - dehal2026
+  statistics:
+    metals_preserved: 12 of 14
+    essential_metals_stronger: Molybdenum +0.132→+0.145, Tungsten +0.129→+0.134, Mercury +0.116→+0.133, Selenium +0.115→+0.131
+- id: gene_classification_metal_specific
+  title: 'Gene Classification: 60% of Metal Fitness Genes Are Metal-Specific'
+  notebook: 03_profile_decomposition.ipynb
+  figures:
+  - gene_classification_by_metal.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    metal_specific_fraction: 60.2% (6,517/10,821 across all organisms)
+    dvh_metal_specific: 85.3% (422/495 unique genes)
+    dvh_shared_stress: 14.7% (73/495 unique genes)
+    mean_metals_shared: 4.1 per gene
+    mean_metals_specific: 2.5 per gene
+    annotation_rate_shared: 78.1% with SEED
+    annotation_rate_specific: 90.5% with SEED
+- id: psrch2_copper_comparison
+  title: 'psRCH2: The Only Within-Metal Counter Ion Comparison'
+  notebook: 05_psrch2_comparison.ipynb
+  figures:
+  - psrch2_copper_comparison.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    cross_salt_correlation: r=0.439
+    cucl2_within_replicate: r=0.720
+    cuso4_within_replicate: r=0.859
+    cuso4_nacl_correlation: r=0.450
+    cucl2_nacl_correlation: r=0.212
+generated_data: []

@@ -1,0 +1,231 @@
+schema_version: 1
+references:
+- id: parks2022
+  type: review
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  - Chuvochina M
+  - Rinke C
+  - Mussig AJ
+  - Chaumeil PA
+  - Hugenholtz P
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: 10.1093/nar/gkab1053
+  pmid: null
+  url: null
+- id: henry2010
+  type: methodology
+  title: High-throughput generation, optimization and analysis of genome-scale metabolic models
+  authors:
+  - Henry CS
+  - DeJongh M
+  - Best AA
+  - Frybarger PM
+  - Linsay B
+  - Stevens RL
+  year: 2010
+  journal: Nature Biotechnology
+  volume: '28'
+  pages: 977-982
+  doi: 10.1038/nbt.1672
+  pmid: null
+  url: null
+- id: deberardinis2008
+  type: primary_data_source
+  title: A complete collection of single-gene deletion mutants of Acinetobacter baylyi ADP1
+  authors:
+  - de Berardinis V
+  - Vallenet D
+  - Castelli V
+  - Besnard M
+  - Pinet A
+  - Cruaud C
+  - Samair S
+  - Lechaplais C
+  - Gyapay G
+  - Riber C
+  year: 2008
+  journal: Molecular Systems Biology
+  volume: '4'
+  pages: '174'
+  doi: 10.1038/msb.2008.11
+  pmid: null
+  url: null
+- id: arkin2018
+  type: supporting
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  - Cottingham RW
+  - Henry CS
+  - Harris NL
+  - Stevens RL
+  year: 2018
+  journal: Nature Biotechnology
+  volume: '36'
+  pages: 566-569
+  doi: 10.1038/nbt.4163
+  pmid: null
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - genome
+  - gene_cluster
+  - gene_genecluster_junction
+  - gtdb_species_clade
+  - pangenome
+  purpose: Pangenome context for A. baylyi (13 genomes, 4,891 clusters)
+  reference: null
+- collection: kbase_msd_biochemistry
+  tables:
+  - reaction
+  - molecule
+  purpose: ModelSEED reaction/compound name resolution
+  reference: null
+- collection: kescience_fitnessbrowser
+  tables:
+  - organism
+  purpose: Check for ADP1 presence in fitness browser
+  reference: null
+- collection: phagefoundry
+  tables: []
+  purpose: Acinetobacter genome browser (37 tables, identified but not deeply queried)
+  reference: null
+cross_project_deps: []
+findings:
+- id: rich_multi_omics_database
+  title: Rich Multi-Omics Database with 6 Data Modalities
+  notebook: 01_database_exploration.ipynb
+  figures:
+  - data_coverage_by_modality.png
+  data_files: []
+  references: []
+  statistics:
+    total_rows: 461,522
+    total_size_mb: '135'
+    genes: 5,852
+    annotation_columns: '51'
+    tnseq_coverage: 58%
+    fba_coverage: 15%
+    fitness_coverage: 39%
+    proteomics_coverage: 41%
+    pangenome_coverage: 54%
+    functional_annotation_coverage: 34-55%
+- id: strong_berdl_connectivity
+  title: 'Strong BERDL Connectivity: 4 of 5 Connection Types at >90% Match'
+  notebook: 02_berdl_connection_scan.ipynb
+  figures: []
+  data_files:
+  - data/berdl_connection_summary.csv
+  references: []
+  statistics:
+    genome_match_percent: 100%
+    reaction_match_percent: 91%
+    compound_match_percent: 100%
+    cluster_match_percent: 100%
+    fitness_browser_match: 0%
+    total_reactions: 1,330
+    berdl_reaction_matches: 1,210
+    unmatched_reactions: '120'
+    total_compounds: '230'
+    core_clusters_berdl: 3,207
+    accessory_clusters_berdl: 1,684
+- id: pangenome_cluster_id_bridge
+  title: 'Pangenome Cluster ID Bridge: 100% Mapping via Gene Junction Table'
+  notebook: 03_cluster_id_mapping.ipynb
+  figures: []
+  data_files:
+  - data/cluster_id_mapping.csv
+  references: []
+  statistics:
+    total_berdl_clusters: 4,891
+    unique_adp1_clusters: 4,081
+    mapping_coverage: 100%
+    total_genes_mapped: 43,754
+- id: fba_tnseq_essentiality_concordance
+  title: FBA and TnSeq Essentiality Agree 74% of the Time
+  notebook: 04_gene_essentiality_and_fitness.ipynb
+  figures:
+  - fba_tnseq_concordance.png
+  - essentiality_overview.png
+  data_files: []
+  references: []
+  statistics:
+    genes_with_both_data: '866'
+    concordant_genes: '639'
+    concordance_percent: 73.8%
+    essential_minimal_media: '499'
+    essential_lb_media: '346'
+- id: condition_specific_fitness
+  title: 'Condition-Specific Fitness: Urea and Quinate Stand Apart'
+  notebook: 04_gene_essentiality_and_fitness.ipynb
+  figures:
+  - growth_condition_correlation.png
+  - mutant_growth_fitness.png
+  data_files: []
+  references: []
+  statistics:
+    carbon_sources: '8'
+    mean_pairwise_correlation: '0.44'
+    urea_quinate_correlation: '0.11'
+    urea_other_correlation_range: 0.12-0.28
+    butanediol_acetate_correlation: '0.58'
+    butanediol_lactate_correlation: '0.53'
+- id: essential_genes_annotation_rich
+  title: Essential Genes Are 6x More Likely to Have COG Annotations
+  notebook: 04_gene_essentiality_and_fitness.ipynb
+  figures:
+  - annotation_by_essentiality.png
+  - essentiality_vs_pangenome.png
+  data_files: []
+  references: []
+  statistics:
+    essential_genes_cog: 33%
+    dispensable_genes_cog: 5%
+    essential_genes_ko: 92%
+    dispensable_genes_ko: 53%
+    essential_genes_no_ko: 8%
+- id: conserved_core_metabolism
+  title: Highly Conserved Core Metabolism Across 14 Genomes
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  figures:
+  - reaction_conservation.png
+  - reaction_gapfilling.png
+  data_files: []
+  references: []
+  statistics:
+    total_reactions: 1,330
+    core_reactions: 1,248
+    core_reactions_percent: 94%
+    variable_reactions: '62'
+    genome_unique_reactions: '20'
+    missing_functions: '243'
+    gapfilling_average_percent: 7.7%
+- id: growth_predictions_gapfilling_dependent
+  title: 87% of Growth Predictions Depend on Gapfilled Reactions
+  notebook: 05_metabolic_model_and_phenotypes.ipynb
+  figures:
+  - gapfilling_impact.png
+  - growth_phenotype_predictions.png
+  data_files: []
+  references: []
+  statistics:
+    total_phenotype_predictions: 121,519
+    dependent_on_gapfilling: 105,376
+    gapfilling_dependency_percent: 87%
+    genomes: '14'
+generated_data:
+- file: data/cluster_id_mapping.csv
+  rows: 4891
+  description: BERDL ↔ ADP1 pangenome cluster ID mapping with bridging through gene junction table
+  source_notebook: 03_cluster_id_mapping.ipynb
+- file: data/berdl_connection_summary.csv
+  rows: 5
+  description: Connection scan results summary showing match percentages across 5 connection types
+  source_notebook: 02_berdl_connection_scan.ipynb

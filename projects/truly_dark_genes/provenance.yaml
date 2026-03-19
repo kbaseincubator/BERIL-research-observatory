@@ -1,0 +1,407 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Callaghan M
+  - Ray J
+  - Liu H
+  - Kuehl JV
+  - Melnyk RA
+  - Lamson JS
+  - Cai Y
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503–509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: price2024
+  type: supporting
+  title: A comprehensive update to the Fitness Browser
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2024
+  journal: mSystems
+  volume: '9'
+  pages: e00470-24
+  doi: 10.1128/msystems.00470-24
+  pmid: null
+  url: null
+- id: arkin2018
+  type: methodology
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  - Cottingham RW
+  - Henry CS
+  - Harris NL
+  - Stevens RL
+  - Masber S
+  year: 2018
+  journal: Nature Biotechnology
+  volume: '36'
+  pages: 566–569
+  doi: null
+  pmid: '29979655'
+  url: null
+- id: wetmore2015
+  type: methodology
+  title: Rapid quantification of mutant fitness in diverse bacteria by sequencing randomly bar-coded transposons
+  authors:
+  - Wetmore KM
+  - Price MN
+  - Waters RJ
+  - Lamson JS
+  - He J
+  - Hoover CA
+  - Blow MJ
+  - Bristow J
+  - Butland G
+  - Arkin AP
+  - Deutschbauer A
+  year: 2015
+  journal: mBio
+  volume: '6'
+  pages: e00306-15
+  doi: null
+  pmid: '25968644'
+  url: null
+- id: schwengers2021
+  type: methodology
+  title: 'Bakta: rapid and standardized annotation of bacterial genomes via alignment-free sequence identification'
+  authors:
+  - Schwengers O
+  - Jelonek L
+  - Giber MA
+  - Gutzelmann F
+  - Tremendous J
+  year: 2021
+  journal: Microbial Genomics
+  volume: '7'
+  pages: 000685
+  doi: null
+  pmid: '34739369'
+  url: null
+- id: cantalapiedra2021
+  type: methodology
+  title: 'eggNOG-mapper v2: functional annotation, orthology assignments, and domain prediction at the metagenomic scale'
+  authors:
+  - Cantalapiedra CP
+  - Hernández-Plaza A
+  - Letunic I
+  - Bork P
+  - Huerta-Cepas J
+  year: 2021
+  journal: Molecular Biology and Evolution
+  volume: '38'
+  pages: 5825–5829
+  doi: null
+  pmid: '34597405'
+  url: null
+- id: makarova2019
+  type: supporting
+  title: Towards functional characterization of archaeal genomic dark matter
+  authors:
+  - Makarova KS
+  - Wolf YI
+  - Koonin EV
+  year: 2019
+  journal: Biochem Soc Trans
+  volume: '47'
+  pages: 389–398
+  doi: null
+  pmid: '30647141'
+  url: null
+- id: pavlopoulos2023
+  type: supporting
+  title: Unraveling the functional dark matter through global metagenomics
+  authors:
+  - Pavlopoulos GA
+  - Baltoumas FA
+  - Liu S
+  - Noval Rivas M
+  - Pinto-Cardoso S
+  year: 2023
+  journal: Nature
+  volume: '622'
+  pages: 594–602
+  doi: null
+  pmid: '37821698'
+  url: null
+- id: peters2019
+  type: methodology
+  title: Enabling genetic analysis of diverse bacteria with Mobile-CRISPRi
+  authors:
+  - Peters JM
+  - Koo BM
+  - Patidar R
+  - Heber CC
+  - Tekin S
+  - Cao K
+  - Terber K
+  - Lanze CE
+  - Sirothia IR
+  - Murray HJ
+  year: 2019
+  journal: Nature Microbiology
+  volume: '4'
+  pages: 244–250
+  doi: null
+  pmid: '30617347'
+  url: null
+- id: siew2003
+  type: review
+  title: Analysis of singleton ORFans in fully sequenced microbial genomes
+  authors:
+  - Siew N
+  - Fischer D
+  year: 2003
+  journal: Proteins
+  volume: '53'
+  pages: 241–251
+  doi: null
+  pmid: '14517976'
+  url: null
+- id: daubin2003
+  type: supporting
+  title: The source of laterally transferred genes in bacterial genomes
+  authors:
+  - Daubin V
+  - Lerat E
+  - Perrière G
+  year: 2003
+  journal: Genome Biology
+  volume: '4'
+  pages: R57
+  doi: null
+  pmid: '12952534'
+  url: null
+- id: vankempen2024
+  type: methodology
+  title: Fast and accurate protein structure search with Foldseek
+  authors:
+  - van Kempen M
+  - Kim SS
+  - Tumescheit C
+  - Mirdita M
+  - Lee J
+  - Gilchrist CLM
+  - Söding J
+  - Steinegger M
+  year: 2024
+  journal: Nature Biotechnology
+  volume: '42'
+  pages: 243–246
+  doi: null
+  pmid: '37156916'
+  url: null
+- id: oliver2000
+  type: supporting
+  title: Guilt-by-association goes global
+  authors:
+  - Oliver S
+  year: 2000
+  journal: Nature
+  volume: null
+  pages: null
+  doi: null
+  pmid: null
+  url: https://www.nature.com/articles/35017670
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - gene
+  - ortholog
+  purpose: Gene properties (length, GC, position), cross-organism orthologs, fitness phenotypes
+  reference: null
+- collection: kbase_ke_pangenome
+  tables:
+  - bakta_pfam_domains
+  - bakta_db_xrefs
+  - eggnog_mapper_annotations
+  - gene_cluster
+  purpose: Pfam domain hits, database cross-references, eggNOG functional annotations, conservation status
+  reference: null
+cross_project_deps:
+- project: functional_dark_matter
+  relationship: data_input
+  files:
+  - data/bakta_dark_gene_annotations.tsv
+  - data/dark_gene_census_full.tsv
+  - data/updated_darkness_tiers.tsv
+  - data/concordance_scores.tsv
+  - data/concordance_detailed.tsv
+  description: Parent project providing dark gene census, bakta reannotation results, and concordance data
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_links.tsv
+  description: FB-pangenome link table (177,863 mappings)
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/ica_modules.tsv
+  description: ICA fitness modules (1,116 modules, 6,142 dark genes in modules)
+- project: essential_genome
+  relationship: data_input
+  files:
+  - data/essential_gene_predictions.tsv
+  description: Essential gene families (1,382 predictions)
+findings:
+- id: truly_dark_census
+  title: Only 16.3% of 'dark matter' resists modern annotation
+  notebook: 01_truly_dark_census.ipynb
+  figures:
+  - fig01_organism_distribution.png
+  data_files: []
+  references:
+  - price2018
+  - price2024
+  statistics:
+    truly_dark_count: 6,427
+    annotation_lag_count: 33,105
+    unlinked_dark_count: 17,479
+    truly_dark_fraction: 16.3%
+    methanococcus_concentration: 55%
+    archaeal_resistance_range: 4–96%
+- id: structural_distinction
+  title: Truly dark genes are structurally distinct from annotation-lag genes
+  notebook: null
+  figures:
+  - fig02_gene_length.png
+  - fig03_summary_comparison.png
+  data_files: []
+  references:
+  - price2018
+  - wetmore2015
+  statistics:
+    truly_dark_median_length_aa: '121'
+    annotation_lag_median_length_aa: '194'
+    length_effect_size: d = −0.432
+    length_p_value: < 1e-100
+    truly_dark_core_genome_fraction: 43.1%
+    annotation_lag_core_genome_fraction: 72.7%
+    core_genome_effect: OR = 0.284
+    core_genome_p_value: < 1e-100
+    truly_dark_essential_fraction: 18.0%
+    annotation_lag_essential_fraction: 13.4%
+    essential_effect: OR = 1.420
+    essential_p_value: < 1e-10
+    truly_dark_mean_gc: '0.542'
+    annotation_lag_mean_gc: '0.584'
+    gc_effect_size: d = −0.395
+    gc_p_value: 2e-115
+    truly_dark_orthologs_fraction: 29.3%
+    annotation_lag_orthologs_fraction: 63.7%
+    orthologs_effect: OR = 0.236
+    orthologs_p_value: < 1e-100
+    truly_dark_ortholog_breadth_median_orgs: '1'
+    annotation_lag_ortholog_breadth_median_orgs: '4'
+    ortholog_breadth_effect_size: d = −1.072
+    ortholog_breadth_p_value: < 1e-100
+- id: annotation_paradox
+  title: Annotation databases recognize the sequences but not the function
+  notebook: 02_spark_enrichment.ipynb
+  figures: []
+  data_files: []
+  references:
+  - schwengers2021
+  - cantalapiedra2021
+  statistics:
+    uniref50_fraction: 79.4%
+    database_xrefs_fraction: 84.7%
+    pfam_hits_fraction: 4.0%
+    kegg_ko_fraction: 4.6%
+    eggnog_partial_signal: 43.5%
+    cog_unknown_fraction: 55.4%
+- id: partial_clues
+  title: 96% of truly dark genes have at least one partial annotation clue
+  notebook: 03_sparse_annotation_mining.ipynb
+  figures:
+  - fig04_clue_coverage.png
+  - fig05_annotation_tiers.png
+  data_files: []
+  references:
+  - oliver2000
+  statistics:
+    clue_matrix_dimensions: '12'
+    zero_clues_count: '246'
+    zero_clues_fraction: 3.8%
+    at_least_one_clue_fraction: 96.2%
+    tier1_no_clues_count: '246'
+    tier1_fraction: 3.8%
+    tier2_minimal_count: 3,867
+    tier2_fraction: 60.2%
+    tier3_partial_count: '711'
+    tier3_fraction: 11.1%
+    tier4_phenotype_count: 1,603
+    tier4_fraction: 24.9%
+    promising_candidates_tier3_4: 2,314
+- id: accessory_genome_hgt
+  title: Truly dark genes are enriched in accessory genomes and show HGT signatures
+  notebook: null
+  figures:
+  - fig06_ortholog_breadth.png
+  - fig07_gc_deviation.png
+  data_files: []
+  references:
+  - daubin2003
+  - makarova2019
+  statistics:
+    orthologs_enrichment_fold: 4.2×
+    orthologs_odds_ratio: OR = 0.236
+    dark_concordance_groups: 3 of 65
+    gc_deviation_truly_dark_mean: '0.047'
+    gc_deviation_annotation_lag_mean: '0.038'
+    gc_deviation_effect_size: d = 0.247
+    gc_deviation_p_value: '1.3e-43'
+    strong_gc_deviation_truly_dark: 9.2%
+    strong_gc_deviation_annotation_lag: 4.0%
+    mobile_element_proximity_fraction: 12.0%
+- id: stress_enrichment_rejected
+  title: Stress enrichment hypothesis rejected
+  notebook: 05_genomic_context.ipynb
+  figures:
+  - fig08_genomic_context.png
+  data_files: []
+  references: []
+  statistics:
+    truly_dark_stress_fraction: 28.7%
+    annotation_lag_stress_fraction: 43.2%
+    stress_enrichment_odds_ratio: OR = 0.53
+    stress_enrichment_p_value: < 0.001
+    truly_dark_nutrient_fraction: 7.5%
+    annotation_lag_nutrient_fraction: 0%
+    truly_dark_iron_fraction: 0.7%
+- id: experimental_prioritization
+  title: 100 top candidates prioritized for experimental characterization
+  notebook: 06_experimental_prioritization.ipynb
+  figures:
+  - fig09_prioritization.png
+  data_files: []
+  references:
+  - peters2019
+  - vankempen2024
+  statistics:
+    top_candidates_count: '100'
+    top_candidates_score_range: 8–10
+    top_candidates_organisms: '19'
+    methanococcus_s2_top_candidates: '29'
+    dvh_top_candidates: '13'
+    methanococcus_jj_top_candidates: '13'
+    mr1_top_candidates: '8'
+    essential_in_top100: '34'
+    in_operons_top100: '53'
+    in_ica_modules_top100: '30'
+    estimated_unlinked_truly_dark: ~2,841
+    estimated_unlinked_strong_phenotype: ~2,208
+    coverage_of_estimated_total: ~69%
+generated_data: []

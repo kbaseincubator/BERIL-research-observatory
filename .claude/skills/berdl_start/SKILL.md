@@ -1,6 +1,6 @@
 ---
 name: berdl_start
-description: Get started with the BERIL Research Observatory. Use when a user is new, wants orientation, or asks what they can do.
+description: "Get started with the BERIL Research Observatory. Use when a user is new, wants orientation, asks 'what can I do', 'help me get started', wants to resume work, or says 'continue where I left off'."
 allowed-tools: Read, Bash
 user-invocable: true
 ---
@@ -55,9 +55,21 @@ data/               # Shared data extracts reusable across projects
 | `/literature-review` | Search PubMed, bioRxiv, arXiv, Semantic Scholar, and Google Scholar for relevant biological literature |
 | `/synthesize` | Read analysis outputs, compare against literature, and draft findings |
 | `/submit` | Submit a project for automated review |
+| `/knowledge` | Search projects, findings, figures, and data artifacts across the observatory |
+| `/build-registry` | Regenerate the knowledge registry index files |
 | `/cts` | Run batch compute jobs on the CTS cluster |
 
 > **Note**: Hypothesis generation, research planning, and notebook creation are handled automatically as part of the research workflow (Path 1 below). You don't need to invoke them separately.
+
+### Skill Workflow Map
+
+Common paths through the observatory:
+
+- **New project**: `/status` → `/suggest-research` → `/berdl_start` Path 1 → `/literature-review` → [analysis] → `/interpret` → `/synthesize` → `/submit`
+- **Quick lookup**: `/knowledge <topic>`
+- **Resume work**: `/status` → `/berdl_start` Path 4
+- **Cross-project**: `/knowledge gaps` → `/compare <A> <B>` → `/suggest-research`
+- **After completion**: `/synthesize` → `/submit` → `/build-registry`
 
 ### Existing Projects
 
@@ -170,6 +182,11 @@ When the user wants to start a new research project, the agent drives the entire
 16. Create project directory structure: `notebooks/`, `data/`, `user_data/`, `figures/`
 17. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch."
 18. Create branch `projects/{project_id}`, switch to it, and commit README + RESEARCH_PLAN. Working on a dedicated branch from the start avoids accumulating changes on main during long-running projects. Tell the user what you're doing — if they prefer to stay on main, skip branch creation.
+18b. Register the new project in the knowledge registry so it's immediately discoverable:
+    ```bash
+    uv run scripts/build_registry.py --project {project_id}
+    ```
+    This creates a `proposed` or `in-progress` entry. If the script is not found, skip silently.
 19. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer subagent using the **Agent tool** (not `claude -p`, which hangs when spawned from within a session due to sandbox/auth issues):
 
     Use the Agent tool with `subagent_type="general-purpose"` and provide the system prompt from `.claude/reviewer/PLAN_REVIEW_PROMPT.md` inline in the prompt. The agent should:
@@ -252,11 +269,22 @@ Suggest using `/literature-review` to search biological databases. This is usefu
 ### Path 4: Continue an Existing Project
 
 Steps:
-1. Run `ls projects/` and list all projects for the user to choose from
-2. Read the chosen project's `README.md`
-3. Check if a `REVIEW.md` exists in that project directory (read it if so)
-4. Summarize where the project stands: what's done, what's next
-5. Suggest using `/submit` when the project is ready for review
+1. Run `uv run scripts/query_knowledge.py landscape` for status counts
+2. List in-progress projects with phase detection based on file existence:
+   - Has `RESEARCH_PLAN.md` but no notebook outputs → "Planning done, ready for analysis"
+   - Has notebook outputs but no `REPORT.md` → "Analysis done, ready for `/synthesize`"
+   - Has `REPORT.md` but no `REVIEW.md` → "Report written, ready for `/submit`"
+   - Has `REVIEW.md` → "Review complete"
+3. If the user selects a project:
+   a. Read `README.md` and summarize where the project stands
+   b. If `REVIEW.md` exists, read and summarize outstanding issues
+   c. Check `git status` for uncommitted changes in the project directory
+   d. Check `knowledge/hypotheses.yaml` for hypotheses relevant to this project
+4. Suggest the appropriate next skill based on phase:
+   - Planning phase → continue analysis (Phase C in Path 1)
+   - Analysis done → `/interpret` to discuss results, then `/synthesize`
+   - Report written → `/submit`
+   - Review complete → address feedback or start next project via `/suggest-research`
 
 ### Path 5: Understand the System
 

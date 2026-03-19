@@ -1,0 +1,132 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: parks2022
+  type: supporting
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D199-D207
+  doi: null
+  pmid: '34520557'
+  url: null
+- id: saelens2018
+  type: methodology
+  title: A comprehensive evaluation of module detection methods for gene expression data
+  authors:
+  - Saelens W
+  year: 2018
+  journal: Nature Communications
+  volume: '9'
+  pages: '1090'
+  doi: null
+  pmid: '29545622'
+  url: null
+- id: vernikos2015
+  type: review
+  title: Ten years of pan-genome analyses
+  authors:
+  - Vernikos G
+  year: 2015
+  journal: Current Opinion in Microbiology
+  volume: '23'
+  pages: 148-154
+  doi: null
+  pmid: '25483351'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables: []
+  purpose: ICA fitness modules and module families
+  reference: price2018
+- collection: kbase_genomes
+  tables: []
+  purpose: Pangenome conservation status and gene-to-cluster mapping
+  reference: parks2022
+cross_project_deps:
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/modules/
+  - data/module_families/
+  description: ICA fitness modules across 32 organisms and cross-organism module families
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  - data/essential_genes.tsv
+  description: Gene-to-cluster conservation mapping and essential gene classification
+findings:
+- id: module_genes_more_core
+  title: Module Genes Are More Core Than Average
+  notebook: 01_module_conservation.ipynb
+  figures:
+  - module_core_distribution.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    module_core_fraction: 86.0%
+    baseline_core_fraction: 81.5%
+    difference: +4.5 percentage points
+- id: most_modules_are_core
+  title: Most Modules Are Core
+  notebook: 01_module_conservation.ipynb
+  figures: []
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    core_modules_count: '577'
+    core_modules_fraction: 59%
+    mixed_modules_count: '349'
+    mixed_modules_fraction: 36%
+    accessory_modules_count: '48'
+    accessory_modules_fraction: 5%
+    median_module_core: 93.4%
+    total_modules: '974'
+- id: family_breadth_no_conservation_prediction
+  title: Family Breadth Does NOT Predict Conservation
+  notebook: 02_family_conservation.ipynb
+  figures:
+  - family_breadth_vs_conservation.png
+  data_files: []
+  references:
+  - vernikos2015
+  statistics:
+    spearman_rho: '-0.01'
+    p_value: '0.914'
+- id: accessory_module_families_exist
+  title: Accessory Module Families Exist
+  notebook: null
+  figures: []
+  data_files: []
+  references: []
+  statistics:
+    accessory_families_count: '38'
+- id: essential_genes_absent_from_modules
+  title: Essential Genes Are Absent from Modules
+  notebook: null
+  figures: []
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    essential_genes_in_modules: '0'
+generated_data: []

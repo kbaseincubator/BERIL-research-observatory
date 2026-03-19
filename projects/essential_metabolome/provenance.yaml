@@ -1,0 +1,150 @@
+schema_version: 1
+references:
+- id: price2020
+  type: methodology
+  title: Filling gaps in bacterial amino acid biosynthesis pathways with high-throughput genetics
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2020
+  journal: PLoS Genetics
+  volume: '16'
+  pages: e1008594
+  doi: 10.1371/journal.pgen.1008594
+  pmid: '31951614'
+  url: null
+- id: heidelberg2004
+  type: supporting
+  title: The genome sequence of the anaerobic, sulfate-reducing bacterium Desulfovibrio vulgaris Hildenborough
+  authors:
+  - Heidelberg JF
+  year: 2004
+  journal: Nature Biotechnology
+  volume: '22'
+  pages: 554-559
+  doi: 10.1038/nbt959
+  pmid: '15077118'
+  url: null
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Arkin AP
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: 10.1038/s41586-018-0124-0
+  pmid: '29769716'
+  url: null
+- id: parks2022
+  type: methodology
+  title: 'GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized
+    and complete genome-based taxonomy'
+  authors:
+  - Parks DH
+  year: 2022
+  journal: Nucleic Acids Research
+  volume: '50'
+  pages: D785-D794
+  doi: 10.1093/nar/gkab776
+  pmid: '34520557'
+  url: null
+data_sources:
+- collection: kbase_ke_pangenome
+  tables:
+  - gapmind_pathways
+  - genome
+  purpose: Pathway completeness predictions for amino acid biosynthesis and carbon source utilization
+  reference: price2020
+- collection: kbase_ke_pangenome
+  tables:
+  - eggnog_mapper_annotations
+  purpose: EC number annotations for gene clusters
+  reference: null
+cross_project_deps:
+- project: essential_genome
+  relationship: data_input
+  files:
+  - data/essential_families.tsv
+  description: Universally essential gene families from transposon mutagenesis across 48 organisms
+findings:
+- id: high_conservation_amino_acid_biosynthesis
+  title: High Conservation of Amino Acid Biosynthesis Pathways
+  notebook: 02_gapmind_pathway_analysis.ipynb
+  figures:
+  - pathway_completeness.png
+  data_files:
+  - data/aa_pathway_completeness.tsv
+  references:
+  - price2020
+  statistics:
+    pathways_complete_all_organisms: 17/18
+    percentage_complete: 94.4-100%
+    serine_biosynthesis_presence: 6/7 organisms (85.7%)
+- id: desulfovibrio_serine_auxotrophy
+  title: Desulfovibrio vulgaris Serine Auxotrophy
+  notebook: 02_gapmind_pathway_analysis.ipynb
+  figures: []
+  data_files:
+  - data/fb_genome_mapping_manual.tsv
+  - data/gapmind_fb_predictions.tsv
+  references:
+  - heidelberg2004
+  statistics:
+    organisms_lacking_serine: 1/7
+    percentage_lacking: 14.3%
+    aa_pathway_completeness_dvh: 17/18 (94.4%)
+- id: conserved_carbon_source_utilization
+  title: Conserved Carbon Source Utilization
+  notebook: 02_gapmind_pathway_analysis.ipynb
+  figures:
+  - pathway_completeness.png
+  data_files:
+  - data/carbon_pathway_completeness.tsv
+  references: []
+  statistics:
+    universal_carbon_sources: 5 pathways in 7/7 organisms
+    nearly_universal_carbon_sources: 2 pathways in 6/7 organisms
+- id: gapmind_coverage_limitation
+  title: GapMind Coverage Limitation Discovered
+  notebook: 02_gapmind_pathway_analysis.ipynb
+  figures: []
+  data_files:
+  - data/fb_genome_mapping_manual.tsv
+  references:
+  - parks2022
+  statistics:
+    ecoli_coverage: 0/1 organisms
+    other_organisms_coverage: 7/8 organisms
+    coverage_percentage: 87.5%
+generated_data:
+- file: data/pathway_completeness.tsv
+  rows: 80
+  description: All pathway completeness predictions across 7 organisms (18 amino acids + 62 carbon sources)
+  source_notebook: 02_gapmind_pathway_analysis.ipynb
+- file: data/aa_pathway_completeness.tsv
+  rows: 18
+  description: Amino acid biosynthesis pathway completeness across organisms
+  source_notebook: 02_gapmind_pathway_analysis.ipynb
+- file: data/carbon_pathway_completeness.tsv
+  rows: 62
+  description: Carbon source utilization pathway completeness across organisms
+  source_notebook: 02_gapmind_pathway_analysis.ipynb
+- file: data/gapmind_fb_predictions.tsv
+  rows: 7389
+  description: Raw GapMind pathway predictions for 7 organisms (646 KB)
+  source_notebook: 02_gapmind_pathway_analysis.ipynb
+- file: data/fb_genome_mapping_manual.tsv
+  rows: 8
+  description: Manual mapping of Fitness Browser organisms to GTDB genome IDs
+  source_notebook: 02_gapmind_pathway_analysis.ipynb
+- file: data/essential_genome_families.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/gapmind_aa_pathway_summary.tsv
+  rows: null
+  description: null
+  source_notebook: null

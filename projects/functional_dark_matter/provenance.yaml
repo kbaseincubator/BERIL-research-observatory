@@ -1,0 +1,867 @@
+schema_version: 1
+references:
+- id: price2018
+  type: primary_data_source
+  title: Mutant phenotypes for thousands of bacterial genes of unknown function
+  authors:
+  - Price MN
+  - Wetmore KM
+  - Waters RJ
+  - Callaghan M
+  - Ray J
+  - Liu H
+  - Kuehl JV
+  - Melnyk RA
+  - Lamson JS
+  - Cai Y
+  year: 2018
+  journal: Nature
+  volume: '557'
+  pages: 503-509
+  doi: null
+  pmid: '29769716'
+  url: null
+- id: price2024
+  type: primary_data_source
+  title: A comprehensive update to the Fitness Browser
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2024
+  journal: mSystems
+  volume: '9'
+  pages: null
+  doi: 10.1128/msystems.00470-24
+  pmid: null
+  url: null
+- id: arkin2018
+  type: primary_data_source
+  title: 'KBase: The United States Department of Energy Systems Biology Knowledgebase'
+  authors:
+  - Arkin AP
+  - Cottingham RW
+  - Henry CS
+  - Harris NL
+  - Stevens RL
+  - Masber S
+  year: 2018
+  journal: Nature Biotechnology
+  volume: '36'
+  pages: 566-569
+  doi: null
+  pmid: '29979655'
+  url: null
+- id: deutschbauer2011
+  type: methodology
+  title: Evidence-based annotation of gene function in Shewanella oneidensis MR-1 using genome-wide fitness profiling across
+    121 conditions
+  authors:
+  - Deutschbauer A
+  - Price MN
+  - Wetmore KM
+  - Shao W
+  - Baumohl JK
+  - Xu Z
+  - Nguyen M
+  - Tamse R
+  - Davis RW
+  - Arkin AP
+  year: 2011
+  journal: PLoS Genetics
+  volume: '7'
+  pages: e1002385
+  doi: null
+  pmid: '22125499'
+  url: null
+- id: wetmore2015
+  type: methodology
+  title: Rapid quantification of mutant fitness in diverse bacteria by sequencing randomly bar-coded transposons
+  authors:
+  - Wetmore KM
+  - Price MN
+  - Waters RJ
+  - Lamson JS
+  - He J
+  - Hoover CA
+  - Blow MJ
+  - Bristow J
+  - Butland G
+  - Arkin AP
+  - Deutschbauer A
+  year: 2015
+  journal: mBio
+  volume: '6'
+  pages: e00306-15
+  doi: null
+  pmid: '25968644'
+  url: null
+- id: peters2016
+  type: methodology
+  title: A Comprehensive, CRISPR-based Functional Analysis of Essential Genes in Bacteria
+  authors:
+  - Peters JM
+  - Colavin A
+  - Shi H
+  - Czarny TL
+  - Larson MH
+  - Wong S
+  - Hawkins JS
+  - Lu CHS
+  - Koo BM
+  - Marta E
+  year: 2016
+  journal: Cell
+  volume: '165'
+  pages: 1493-1506
+  doi: null
+  pmid: '27238023'
+  url: null
+- id: koo2017
+  type: methodology
+  title: Construction and Analysis of Two Genome-Scale Deletion Libraries for Bacillus subtilis
+  authors:
+  - Koo BM
+  - Kritikos G
+  - Farelli JD
+  - Todor H
+  - Tong K
+  - Kimber H
+  - Wapinski I
+  - Galardini M
+  - Caber A
+  - Peters JM
+  year: 2017
+  journal: Cell Systems
+  volume: '4'
+  pages: 291-305
+  doi: null
+  pmid: '28189581'
+  url: null
+- id: peters2019
+  type: methodology
+  title: Enabling genetic analysis of diverse bacteria with Mobile-CRISPRi
+  authors:
+  - Peters JM
+  - Koo BM
+  - Patidar R
+  - Heber CC
+  - Tekin S
+  - Cao K
+  - Terber K
+  - Lanze CE
+  - Sirothia IR
+  - Murray HJ
+  year: 2019
+  journal: Nature Microbiology
+  volume: '4'
+  pages: 244-250
+  doi: null
+  pmid: '30617347'
+  url: null
+- id: tan2018
+  type: methodology
+  title: A robust CRISPRi gene repression system in Pseudomonas
+  authors:
+  - Tan SZ
+  - Reisch CR
+  - Prather KLJ
+  year: 2018
+  journal: Journal of Bacteriology
+  volume: '200'
+  pages: e00575-17
+  doi: null
+  pmid: '29311275'
+  url: null
+- id: mimee2015
+  type: methodology
+  title: Programming a Human Commensal Bacterium, Bacteroides thetaiotaomicron, to Sense and Respond to Stimuli in the Murine
+    Gut Microbiota
+  authors:
+  - Mimee M
+  - Tucker AC
+  - Voigt CA
+  - Lu TK
+  year: 2015
+  journal: Cell Systems
+  volume: '1'
+  pages: 62-71
+  doi: null
+  pmid: '26918244'
+  url: null
+- id: sastry2019
+  type: methodology
+  title: The Escherichia coli transcriptome mostly consists of independently regulated modules
+  authors:
+  - Sastry AV
+  - Gao Y
+  - Szubin R
+  - Hefner Y
+  - Xu S
+  - Kim D
+  - Choudhary KS
+  - Yang L
+  - King ZA
+  - Palsson BO
+  year: 2019
+  journal: Nature Communications
+  volume: '10'
+  pages: '5536'
+  doi: null
+  pmid: '31797920'
+  url: null
+- id: price2018a
+  type: methodology
+  title: Filling gaps in bacterial amino acid biosynthesis pathways with high-throughput genetics
+  authors:
+  - Price MN
+  - Zane GM
+  - Kuehl JV
+  - Melnyk RA
+  - Wall JD
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2018
+  journal: PLoS Genetics
+  volume: '14'
+  pages: e1007147
+  doi: null
+  pmid: '29324775'
+  url: null
+- id: price2020
+  type: methodology
+  title: 'GapMind: Automated Annotation of Amino Acid Biosynthesis'
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2020
+  journal: mSystems
+  volume: '5'
+  pages: e00291-20
+  doi: null
+  pmid: '32576650'
+  url: null
+- id: price2022
+  type: methodology
+  title: Filling gaps in bacterial catabolic pathways with computation and high-throughput genetics
+  authors:
+  - Price MN
+  - Deutschbauer AM
+  - Arkin AP
+  year: 2022
+  journal: PLoS Genetics
+  volume: '18'
+  pages: e1010156
+  doi: null
+  pmid: '35588107'
+  url: null
+- id: vaccaro2016
+  type: supporting
+  title: Novel Metal Cation Resistance Systems from Mutant Fitness Analysis of Denitrifying Pseudomonas stutzeri
+  authors:
+  - Vaccaro BJ
+  - Lancaster WA
+  - Thorgersen MP
+  - Zane GM
+  - Younkin AD
+  - Kazakov AE
+  - Wetmore KM
+  - Deutschbauer A
+  - Arkin AP
+  - Novichkov PS
+  - Wall JD
+  - Adams MW
+  year: 2016
+  journal: Applied and Environmental Microbiology
+  volume: '82'
+  pages: 6046-6056
+  doi: null
+  pmid: '27474723'
+  url: null
+- id: makarova2019
+  type: review
+  title: Towards functional characterization of archaeal genomic dark matter
+  authors:
+  - Makarova KS
+  - Wolf YI
+  - Koonin EV
+  year: 2019
+  journal: Biochemical Society Transactions
+  volume: '47'
+  pages: 389-398
+  doi: null
+  pmid: '30647141'
+  url: null
+- id: dembek2015
+  type: methodology
+  title: High-throughput analysis of gene essentiality and sporulation in Clostridium difficile
+  authors:
+  - Dembek M
+  - Barquist L
+  - Boinett CJ
+  - Cain AK
+  - Mayho M
+  - Lawley TD
+  - Fairweather NF
+  - Fagan RP
+  year: 2015
+  journal: mBio
+  volume: '6'
+  pages: e02383-14
+  doi: null
+  pmid: '25714712'
+  url: null
+- id: devries2017
+  type: supporting
+  title: Genome-wide fitness analyses of the foodborne pathogen Campylobacter jejuni in in vitro and in vivo models
+  authors:
+  - de Vries SP
+  year: 2017
+  journal: Scientific Reports
+  volume: '7'
+  pages: '1251'
+  doi: null
+  pmid: '28455506'
+  url: null
+- id: yang2025
+  type: supporting
+  title: Genome-wide identification of novel flagellar motility genes in Pseudomonas syringae
+  authors:
+  - Yang Z
+  - Helmann T
+  - Baudin M
+  - Schreiber KJ
+  - Bao Z
+  - Stodghill P
+  - Deutschbauer A
+  - Lewis JD
+  - Swingle B
+  year: 2025
+  journal: Frontiers in Microbiology
+  volume: '16'
+  pages: '1535114'
+  doi: null
+  pmid: '39935648'
+  url: null
+- id: akusobi2022
+  type: supporting
+  title: Transposon mutagenesis in Mycobacterium abscessus identifies an essential penicillin-binding protein involved in
+    septal peptidoglycan synthesis and antibiotic sensitivity
+  authors:
+  - Akusobi C
+  - Benghomari BS
+  - Zhu J
+  - Wolf ID
+  - Singhvi S
+  - Dulberger CL
+  - Ioerger TR
+  - Rubin EJ
+  year: 2022
+  journal: eLife
+  volume: '11'
+  pages: e71947
+  doi: null
+  pmid: '35659317'
+  url: null
+- id: pavlopoulos2023
+  type: review
+  title: Unraveling the functional dark matter through global metagenomics
+  authors:
+  - Pavlopoulos GA
+  - Baltoumas FA
+  - Liu S
+  - Noval Rivas M
+  - Pinto-Cardoso S
+  year: 2023
+  journal: Nature
+  volume: '622'
+  pages: 594-602
+  doi: null
+  pmid: '37821698'
+  url: null
+- id: zhang2025
+  type: review
+  title: Predicting functions of uncharacterized gene products from microbial communities
+  authors:
+  - Zhang Y
+  - Bhosle A
+  - Bae S
+  - Franzosa EA
+  - Huttenhower C
+  year: 2025
+  journal: Nature Biotechnology
+  volume: null
+  pages: null
+  doi: null
+  pmid: '41094150'
+  url: null
+- id: alam2011
+  type: methodology
+  title: Prioritizing orphan proteins for further study using phylogenomics and gene expression profiles in Streptomyces coelicolor
+  authors:
+  - Alam MT
+  - Takano E
+  - Breitling R
+  year: 2011
+  journal: BMC Research Notes
+  volume: '4'
+  pages: '325'
+  doi: null
+  pmid: '21899768'
+  url: null
+data_sources:
+- collection: kescience_fitnessbrowser
+  tables:
+  - gene
+  - genefitness
+  - specificphenotype
+  - experiment
+  - cofit
+  - ortholog
+  - genedomain
+  - seedannotation
+  - organism
+  - specog
+  purpose: Genome-wide mutant fitness data, gene descriptions, cross-organism orthologs, domain annotations, co-fitness partners
+  reference: price2018
+- collection: kbase_ke_pangenome
+  tables:
+  - gene_cluster
+  - gene
+  - gene_genecluster_junction
+  - genome
+  - eggnog_mapper_annotations
+  - gtdb_species_clade
+  - gtdb_taxonomy_r214v1
+  - gtdb_metadata
+  - ncbi_env
+  - alphaearth_embeddings_all_years
+  - gapmind_pathways
+  purpose: Pangenome conservation, phylogenetic breadth, environmental metadata, GapMind pathway predictions
+  reference: null
+- collection: nmdc_arkin
+  tables:
+  - taxonomy_features
+  - abiotic_features
+  - taxonomy_dim
+  - trait_features
+  purpose: Independent environmental validation via genus-level taxonomy bridge; trait-condition concordance analysis
+  reference: null
+cross_project_deps:
+- project: conservation_vs_fitness
+  relationship: data_input
+  files:
+  - data/fb_pangenome_link.tsv
+  - data/organism_mapping.tsv
+  description: FB-pangenome link table (177,863 gene-cluster mappings) and organism ID mapping; backbone for all pangenome
+    queries
+- project: fitness_modules
+  relationship: data_input
+  files:
+  - data/modules/
+  description: 1,116 ICA fitness modules across 32 organisms with 6,691 function predictions for hypothetical proteins
+- project: essential_genome
+  relationship: data_input
+  files:
+  - data/
+  description: 17,222 ortholog families with essentiality classification and 1,382 function predictions for hypothetical essentials;
+    defines 9,557 essential dark genes
+- project: module_conservation
+  relationship: data_input
+  files:
+  - data/
+  description: Module conservation patterns; context for pangenome distribution of dark gene modules
+findings:
+- id: one_in_four_dark
+  title: One in four bacterial genes is functionally dark, and 17,344 have experimentally measurable phenotypes
+  notebook: 01_integration_census.ipynb
+  figures:
+  - fig01_annotation_breakdown.png
+  - fig02_fitness_distributions.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    total_genes: '228709'
+    dark_genes: '57011'
+    dark_fraction: 24.9%
+    strong_fitness_effects: '7787'
+    essential_dark: '9557'
+    actionable_dark: '17344'
+- id: pangenome_links_modules
+  title: 39,532 dark genes link to the pangenome; 6,142 belong to co-regulated fitness modules
+  notebook: 01_integration_census.ipynb
+  figures:
+  - fig03_dark_gene_coverage.png
+  - fig04_condition_classes.png
+  data_files: []
+  references:
+  - price2018
+  statistics:
+    dark_genes_pangenome_linked: '39532'
+    dark_genes_pangenome_fraction: 69.3%
+    accessory_dark: '12686'
+    accessory_strong_fitness: '511'
+    module_member_dark: '6142'
+    module_member_fraction: 10.8%
+- id: gapmind_metabolic_gaps
+  title: GapMind identifies 1,256 organism-pathway pairs with metabolic gaps in species harboring dark genes
+  notebook: 02_gapmind_concordance_phylo.ipynb
+  figures:
+  - fig05_gapmind_gaps.png
+  - fig28_domain_matching.png
+  data_files:
+  - data/gapmind_gap_candidates.tsv
+  - data/gapmind_domain_matched.tsv
+  references:
+  - price2018a
+  - price2020
+  - price2022
+  statistics:
+    organism_pathway_pairs: '1256'
+    unique_dark_genes_gapped: '3186'
+    high_confidence_ec_matches: '5398'
+    medium_confidence_pfam: '4687'
+    low_confidence_keyword: '32154'
+- id: cross_organism_concordance
+  title: Cross-organism fitness concordance identifies 65 ortholog groups with conserved dark gene phenotypes
+  notebook: 02_gapmind_concordance_phylo.ipynb
+  figures:
+  - fig06_concordance.png
+  data_files:
+  - data/concordance_scores.tsv
+  - data/concordance_detailed.tsv
+  references: []
+  statistics:
+    ortholog_groups_tested: '65'
+    min_organisms: '3'
+    concordant_carbon_genes: ~30
+    concordant_motility_genes: ~15
+- id: phylogenetic_breadth_distribution
+  title: Dark gene families span diverse taxonomic breadth — 30,756 clusters mapped across 27,690 species
+  notebook: 02_gapmind_concordance_phylo.ipynb
+  figures:
+  - fig07_phylo_breadth.png
+  - fig30_species_count_scoring.png
+  data_files:
+  - data/phylogenetic_breadth.tsv
+  - data/scoring_species_count_variant.tsv
+  references: []
+  statistics:
+    gene_clusters: '30756'
+    species_count_range: 1-33
+    universal_breadth: 99.9%
+    species_count_median: '1'
+    species_count_mean: '2.2'
+- id: biogeographic_environmental_enrichment
+  title: Within-species biogeographic analysis reveals 10 dark gene clusters with significant environmental enrichment
+  notebook: 03_biogeographic_analysis.ipynb
+  figures:
+  - fig08_env_distribution.png
+  - fig09_carrier_tests.png
+  - fig10_embedding_umap.png
+  data_files:
+  - data/biogeographic_profiles.tsv
+  - data/carrier_noncarrier_tests.tsv
+  references: []
+  statistics:
+    accessory_clusters_tested: '151'
+    significant_clusters_fdr_005: '10'
+    significant_embedding_divergence: '1'
+    top_candidate_odds_ratio: '44.0'
+    top_candidate_fdr: '0.093'
+- id: lab_field_concordance
+  title: Lab-field concordance rate of 61.7%, with NMDC validation confirming 4/4 pre-registered abiotic predictions
+  notebook: 04_lab_field_concordance.ipynb
+  figures:
+  - fig11_concordance_matrix.png
+  - fig12_nmdc_correlations.png
+  - fig21_trait_correlations.png
+  data_files:
+  - data/lab_field_concordance.tsv
+  - data/nmdc_validation.tsv
+  references: []
+  statistics:
+    testable_clusters: '47'
+    concordant_clusters: '29'
+    concordance_rate: 61.7%
+    binomial_p: '0.072'
+    fishers_combined_p: '0.031'
+    nmdc_confirmed_predictions: '4'
+    nmdc_trait_tests_significant: '76'
+    nmdc_trait_total_tests: '105'
+    nmdc_trait_fdr_005_rate: 72.4%
+- id: top_prioritized_candidates
+  title: Top 100 prioritized candidates span 22 organisms with 82% high-confidence functional hypotheses
+  notebook: 05_prioritization_dossiers.ipynb
+  figures:
+  - fig13_score_components.png
+  - fig14_top20_dossiers.png
+  - fig15_organism_distribution.png
+  data_files:
+  - data/scoring_all_dark.tsv
+  - data/prioritized_candidates.tsv
+  references:
+  - price2018
+  statistics:
+    top_candidates: '100'
+    score_range: 0.624-0.715
+    organisms_represented: '22'
+    high_confidence_hypotheses: '82'
+    module_predictions: '85'
+    domain_annotations: '97'
+    mr1_representation: '25'
+- id: experimental_roadmap_set_cover
+  title: Experimental roadmap — 10 RB-TnSeq experiments cover 45% of the top 500 dark genes
+  notebook: 05_prioritization_dossiers.ipynb
+  figures: []
+  data_files:
+  - data/experimental_roadmap.tsv
+  references: []
+  statistics:
+    top_500_candidates: '500'
+    experiments_recommended: '10'
+    coverage_percent: 45.3%
+    mr1_stress_genes: '57'
+    mr1_nitrogen_genes: '31'
+    mr1_carbon_genes: '23'
+- id: phylogenetic_gaps_organism_coverage
+  title: Phylogenetic gaps — which new organisms would most expand dark gene coverage?
+  notebook: 05_prioritization_dossiers.ipynb
+  figures: []
+  data_files:
+  - data/extended_tractable_organisms.tsv
+  references: []
+  statistics:
+    gammaproteobacteria_organisms: '21'
+    firmicutes_coverage: critical
+    actinobacteria_coverage: critical
+    extended_organism_list: '25'
+    phyla_added: '3'
+- id: essential_dark_genes_crisprI
+  title: 9,557 essential dark genes ranked by gene neighbor context and cross-organism conservation — top 50 candidates with
+    CRISPRi experiment designs
+  notebook: 07_essential_dark_prioritization.ipynb
+  figures:
+  - fig18_neighbor_analysis.png
+  - fig19_essential_scores.png
+  - fig20_essential_top20.png
+  data_files: []
+  references:
+  - peters2016
+  - peters2019
+  statistics:
+    essential_dark_genes: '9557'
+    genes_with_annotated_neighbors: '30190'
+    neighbor_coverage_percent: 52.9%
+    annotated_neighbor_5gene_window: 97.2%
+    top_50_score_range: 0.740-0.875
+    high_confidence_top50: '50'
+- id: conserved_neighborhoods_cofit_validation
+  title: Conserved gene neighborhoods and cofit-validated operons strengthen 10,150 dark gene predictions
+  notebook: 08_improved_neighborhoods.ipynb
+  figures:
+  - fig22_conserved_neighborhoods.png
+  - fig23_cofit_validation.png
+  - fig24_improved_experimental_roadmap.png
+  data_files:
+  - data/improved_candidates.tsv
+  references: []
+  statistics:
+    gene_operon_pairs_tested: '21011'
+    pairs_conserved_3plus_organisms: '10150'
+    median_conservation_score: '0.95'
+    cofit_pairs_tested: '32075'
+    pairs_with_cofit_evidence: '2899'
+    mutual_top5_cofit: '1129'
+    double_validated_pairs: '998'
+- id: darkness_spectrum_synthesis
+  title: Darkness spectrum classifies 57,011 genes into 5 tiers; 42 organisms (28 genera) cover 95% of actionable dark genes
+  notebook: 09_final_synthesis.ipynb
+  figures:
+  - fig25_darkness_spectrum.png
+  - fig26_covering_set.png
+  - fig27_action_plan.png
+  data_files:
+  - data/dark_gene_census_full.tsv
+  - data/minimum_covering_set.tsv
+  - data/experimental_action_plan.tsv
+  references: []
+  statistics:
+    t1_void_genes: '4273'
+    t2_twilight_genes: '12282'
+    t3_dusk_genes: '16103'
+    t4_penumbra_genes: '22500'
+    t5_dawn_genes: '1853'
+    covering_set_organisms: '42'
+    covering_set_genera: '28'
+    coverage_percent: 95%
+    organisms_for_80_percent: '32'
+- id: conservation_weighted_prioritization
+  title: Pangenome-scale conservation × hypothesis classification reveals broadly conserved true knowledge gaps; conservation-weighted
+    covering set orders experiments for maximum novel discovery
+  notebook: 11_conservation_classes.ipynb
+  figures:
+  - fig32_organism_taxonomy.png
+  - fig33_conservation_tiers.png
+  - fig34_classification_heatmap.png
+  - fig35_top_knowledge_gaps.png
+  - fig36_covering_set_curve.png
+  - fig37_experiment_plan_heatmap.png
+  - fig38_pangenome_species_distribution.png
+  - fig39_extended_covering_set.png
+  data_files:
+  - data/og_pangenome_distribution.tsv
+  - data/og_pangenome_distribution_fb_only.tsv
+  - data/og_id_root_propagation.tsv
+  - data/dark_gene_classes.tsv
+  - data/og_importance_ranked.tsv
+  - data/conservation_covering_set.tsv
+  - data/conservation_experiment_plans.tsv
+  - data/non_fb_genus_og_coverage.tsv
+  - data/extended_covering_set.tsv
+  references: []
+  statistics:
+    root_ogs_identified: '11774'
+    pangenome_species_range: 1-27482
+    pangenome_species_median: '135'
+    pangenome_species_mean: '2128'
+    kingdom_tier_percentage: 55.9%
+    class_tier_percentage: 11.0%
+    family_tier_percentage: 10.5%
+    genus_tier_percentage: 6.9%
+    mobile_tier_percentage: 6.5%
+    strong_hypothesis_percentage: 6.0%
+    weak_lead_percentage: 52.5%
+    true_knowledge_gap_percentage: 41.5%
+    conservation_covering_set_organisms: '42'
+    conservation_covering_set_coverage: 95.6%
+    extended_covering_set_organisms: '50'
+    extended_covering_set_phyla: '6'
+    extended_covering_set_coverage: 98.7%
+generated_data:
+- file: data/gapmind_gap_candidates.tsv
+  rows: 1256
+  description: Organism-pathway pairs with dark genes near metabolic gaps
+  source_notebook: 02_gapmind_concordance_phylo.ipynb
+- file: data/gapmind_pathway_summary.tsv
+  rows: 80
+  description: Per-pathway completeness summary across 44 species
+  source_notebook: 02_gapmind_concordance_phylo.ipynb
+- file: data/concordance_scores.tsv
+  rows: 65
+  description: Cross-organism fitness concordance per ortholog group
+  source_notebook: 02_gapmind_concordance_phylo.ipynb
+- file: data/phylogenetic_breadth.tsv
+  rows: 30756
+  description: Taxonomic breadth per gene cluster (clade-restricted vs widespread)
+  source_notebook: 02_gapmind_concordance_phylo.ipynb
+- file: data/biogeographic_profiles.tsv
+  rows: 31
+  description: Species-level environmental profiles for gene carriers
+  source_notebook: 03_biogeographic_analysis.ipynb
+- file: data/carrier_noncarrier_tests.tsv
+  rows: 151
+  description: Within-species carrier vs non-carrier test results with environmental enrichment
+  source_notebook: 03_biogeographic_analysis.ipynb
+- file: data/lab_field_concordance.tsv
+  rows: 47
+  description: Pre-registered lab-field concordance test results with odds ratios and FDR
+  source_notebook: 04_lab_field_concordance.ipynb
+- file: data/nmdc_validation.tsv
+  rows: 105
+  description: NMDC abiotic correlation tests (7 trait types × 15 abiotic variables)
+  source_notebook: 04_lab_field_concordance.ipynb
+- file: data/scoring_all_dark.tsv
+  rows: 17344
+  description: Full scoring for all strong/essential dark genes across 6 dimensions
+  source_notebook: 05_prioritization_dossiers.ipynb
+- file: data/prioritized_candidates.tsv
+  rows: 100
+  description: Top 100 ranked candidates with functional hypotheses and experiment recommendations
+  source_notebook: 05_prioritization_dossiers.ipynb
+- file: data/improved_candidates.tsv
+  rows: 300
+  description: Re-scored top candidates (200 fitness-active + 100 essential) with synteny + cofit evidence
+  source_notebook: 08_improved_neighborhoods.ipynb
+- file: data/experimental_roadmap.tsv
+  rows: 30
+  description: Evidence-weighted organism experiment priorities
+  source_notebook: 08_improved_neighborhoods.ipynb
+- file: data/dark_gene_census_full.tsv
+  rows: 57011
+  description: Full darkness spectrum census with tier
+  source_notebook: null
+- file: data/carrier_genome_map.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/concordance_detailed.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/conservation_covering_set.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/conservation_experiment_plans.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/dark_gene_classes.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/experimental_action_plan.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/extended_covering_set.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/extended_tractable_organisms.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/gapmind_domain_matched.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/minimum_covering_set.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/non_fb_genus_og_coverage.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/og_id_root_propagation.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/og_importance_ranked.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/og_pangenome_distribution.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/og_pangenome_distribution_fb_only.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/robust_ranks_essential.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/robust_ranks_fitness.tsv
+  rows: null
+  description: null
+  source_notebook: null
+- file: data/scoring_species_count_variant.tsv
+  rows: null
+  description: null
+  source_notebook: null
