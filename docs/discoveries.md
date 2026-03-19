@@ -8,6 +8,10 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-03
 
+### [amr_cofitness_networks] AMR support networks enriched for flagellar motility and amino acid biosynthesis
+
+Cofitness analysis of 801 AMR genes across 28 organisms reveals that AMR cofitness neighborhoods are enriched for flagellar motility (GO:0071973, 5 organisms FDR<0.05), flagellum assembly (GO:0044780, 5 orgs), histidine biosynthesis (GO:0000105, 3 orgs), and tryptophan biosynthesis (GO:0000162, 3 orgs). This enrichment is undetectable with old FB SEED annotations (0/280 significant) — only InterProScan GO (68% coverage) reveals it. Support networks are organism-specific (cross-mechanism Jaccard 0.375 >> within-mechanism 0.207, MWU p=4.3e-13). AMR genes are in larger-than-average ICA modules (median 46 vs 27, p=1.7e-8). The co-regulation with motility and biosynthesis suggests AMR costs reflect competition for the proton motive force.
+
 ### [amr_fitness_cost] AMR genes impose a universal +0.086 fitness cost across 25 bacteria
 
 Random-effects meta-analysis of 801 AMR genes across 25 organisms shows a pooled fitness shift of +0.086 [+0.074, +0.098] when AMR genes are knocked out — all 25/25 organisms positive. This cost is mechanism-independent (KW p=0.89), conservation-independent (core = accessory, p=0.33), and tier-independent (bakta_amr = keyword, p=0.26). The uniformity suggests compensatory evolution has equalized costs to an irreducible floor. However, mechanism strongly predicts conservation status (metal resistance 44% accessory vs efflux 13%, χ²=69.3, p=1.4e-13) — acquisition history, not cost, determines whether AMR genes are core or accessory. Efflux genes (broad-spectrum) show a stronger antibiotic-dependent fitness flip than enzymatic inactivation genes (narrow-spectrum): +0.094 vs −0.001, MWU p=0.007.
