@@ -304,7 +304,7 @@ CF-derived PA shows 6 FDR-significant differences from non-CF lung PA, but all a
 
 **Genomic growth rate context**: PA's genome (6.58 Mb, 6,177 CDS) is 2.5–3× larger than our commensal species (2.1–2.7 Mb, 2,200–3,000 CDS). Despite this size disadvantage, our growth curve data (NB02) shows PA14 outgrows most commensals on its preferred amino acid substrates — confirming that PA's catabolic enzyme efficiency, not its ribosomal translation rate, drives its competitive advantage on amino acids. Codon usage bias analysis (NB12) of ribosomal proteins shows commensals have comparable or higher CUB than PA (commensal mean 688 vs PA 644), suggesting commensals are not inherently slow translators — they simply lack PA's amino acid catabolic specialization.
 
-**Within-PA growth rate variation**: Among 15 PROTECT PA strain groups, genome size ranges from 6.12 Mb (5,668 CDS) to 7.35 Mb (7,026 CDS) — a 24% difference in gene content. The largest strain group (725, 98 isolates) carries 1,358 extra genes compared to the smallest. This accessory genome variation likely imposes differential metabolic burdens: strains with larger genomes must replicate more DNA and synthesize more protein per division, potentially slowing growth on limiting substrates. Patients colonized by larger-genome PA strains may be more amenable to competitive exclusion.
+**Within-PA strain variation**: Among 15 PROTECT PA strain groups, genome size ranges from 6.12 Mb (5,668 CDS) to 7.35 Mb (7,026 CDS) — a 24% difference in gene content. The largest strain group (725, 98 isolates) carries 1,358 extra genes compared to the smallest. However, since all strain groups retain the same amino acid catabolic pathways (97%+ conservation, NB11), the extra genes are likely conditionally expressed accessory functions (prophages, mobile elements, niche-specific adaptations) that affect virulence and persistence rather than amino acid growth rate. Within-species genome size variation is a much weaker predictor of growth rate than cross-species variation (Vieira-Silva & Rocha 2010). We therefore predict that **PA strains will respond similarly to our formulation**, because the competitive targets — amino acid catabolism — are invariant across the species. Where PA strains are expected to differ is in virulence, antibiotic resistance, and biofilm properties — factors that matter for disease severity but not for the metabolic competition mechanism our formulation exploits.
 
 *(Notebooks: 10_pa_lung_adaptation.ipynb, 11_pa_within_lung_diversity.ipynb)*
 
@@ -340,7 +340,7 @@ First, **commensals have a lag advantage** in 43.1% of comparisons — they star
 
 Second, **community biomass matters more than individual growth rate**. A 3-organism consortium each growing at half PA14's rate still depletes resources 1.5× faster collectively. The k=3 formulation achieves 100% niche coverage — PA's fast growth on any single substrate is neutralized when all substrates are simultaneously contested.
 
-Third, **PA strain-level variation creates differential vulnerability**. PROTECT PA strain groups span 6.1–7.4 Mb (15 groups, 24% gene content variation). The dominant strain group 725 (98 isolates) carries 1,358 extra genes compared to the smallest group — metabolic burden that could slow growth on limiting substrates. Measuring growth rates across PA strain groups on amino acids would identify which patients' PA is most vulnerable to competitive exclusion.
+Third, **PA's amino acid catabolism is invariant across strains** — all 15 PROTECT strain groups retain the same core pathways (97%+ conservation). While genome sizes range from 6.1–7.4 Mb (24% gene content variation), the extra genes are likely accessory functions (prophages, resistance islands) that affect virulence and persistence but not amino acid growth rate. This is actually favorable for formulation design: we predict our formulation should be **equally effective across PA variants** because the metabolic competition targets are invariant. Strain-level variation is expected to matter more for virulence, biofilm formation, and antibiotic resistance — properties that affect disease severity but are orthogonal to the competitive exclusion mechanism.
 
 ### 3.4 The Prebiotic Strategy: From Amino Acids to Sugar Alcohols
 
@@ -424,13 +424,13 @@ Based on our findings, we recommend the following experimental program:
 
 **Rationale**: PA14 is a reference strain. Clinical CF isolates — especially mucoid variants adapted to chronic infection — may respond differently to competitive exclusion.
 
-### 4.7 PA Strain Growth Rate Measurement for Patient Stratification
+### 4.7 PA Strain Variation: Virulence and Biofilm, Not Growth Rate
 
-**Experiment**: Measure growth rates of representative isolates from all 15 PROTECT PA strain groups on PA14's preferred amino acids (proline, histidine, glutamate, arginine) in the single-carbon-source assay. Correlate measured growth rates with genome size and accessory gene content.
+**Experiment**: Characterize the 15 PROTECT PA strain groups for virulence factors (T3SS effectors, exotoxins), biofilm formation capacity, and antibiotic resistance profiles. Correlate with the 1,358-gene accessory genome that distinguishes the largest from smallest strain groups.
 
-**Rationale**: The 15 PA strain groups span 6.1–7.4 Mb (24% gene content variation, 1,358 extra genes in the largest). If larger-genome PA strains grow measurably slower on amino acids, patients colonized by these strains would be the best initial candidates for formulation testing. Genomic predictors (CUB, genome size) can provide hypotheses, but measured growth rates on the specific competitive substrates are the ground truth.
+**Rationale**: Since amino acid catabolism is invariant across PA strains (97%+ conservation), our formulation's competitive exclusion mechanism should be equally effective regardless of PA strain. However, clinical outcomes will also depend on virulence and biofilm properties that vary between strains. Understanding which accessory genes distinguish PA strain groups informs: (a) whether certain patients need formulation + antibiotics rather than formulation alone, (b) whether biofilm-adapted PA strains resist competitive exclusion through spatial refuge rather than metabolic advantage, and (c) which PA strain groups to prioritize for initial mouse model testing.
 
-**Expected outcome**: A rank ordering of PA strain groups by amino acid growth rate, enabling patient-specific formulation deployment decisions.
+**Expected outcome**: A functional annotation of the PA accessory genome, linking strain group differences to virulence/biofilm/resistance rather than metabolic competition — confirming that one formulation design serves all PA variants.
 
 ### 4.8 Extended Metabolic Profiling
 
