@@ -302,7 +302,9 @@ CF-derived PA shows 6 FDR-significant differences from non-CF lung PA, but all a
 
 ![PROTECT PA genome variation (655 isolates, 15 strain groups)](figures/11_protect_pa_genome_variation.png)
 
-**Genomic growth rate context**: PA's genome (6.58 Mb, 6,177 CDS) is 2.5–3× larger than our commensal species (2.1–2.7 Mb, 2,200–3,000 CDS). While genome size inversely correlates with maximum growth rate in many bacteria (Vieira-Silva & Rocha 2010), PA is a known exception — a fast grower despite its large genome, likely due to high rRNA operon copy number (4 copies; comparable to Streptococcus at 5–6). Our growth curve data (NB02) confirms this: PA14 outgrows most commensals on preferred substrates. However, the 33% accessory genome variation among PROTECT PA isolates (gene count range 4,877–7,266) suggests that some PA strains carry metabolic burdens that could slow their growth, creating windows of vulnerability for competitive exclusion.
+**Genomic growth rate context**: PA's genome (6.58 Mb, 6,177 CDS) is 2.5–3× larger than our commensal species (2.1–2.7 Mb, 2,200–3,000 CDS). Despite this size disadvantage, our growth curve data (NB02) shows PA14 outgrows most commensals on its preferred amino acid substrates — confirming that PA's catabolic enzyme efficiency, not its ribosomal translation rate, drives its competitive advantage on amino acids. Codon usage bias analysis (NB12) of ribosomal proteins shows commensals have comparable or higher CUB than PA (commensal mean 688 vs PA 644), suggesting commensals are not inherently slow translators — they simply lack PA's amino acid catabolic specialization.
+
+**Within-PA growth rate variation**: Among 15 PROTECT PA strain groups, genome size ranges from 6.12 Mb (5,668 CDS) to 7.35 Mb (7,026 CDS) — a 24% difference in gene content. The largest strain group (725, 98 isolates) carries 1,358 extra genes compared to the smallest. This accessory genome variation likely imposes differential metabolic burdens: strains with larger genomes must replicate more DNA and synthesize more protein per division, potentially slowing growth on limiting substrates. Patients colonized by larger-genome PA strains may be more amenable to competitive exclusion.
 
 *(Notebooks: 10_pa_lung_adaptation.ipynb, 11_pa_within_lung_diversity.ipynb)*
 
@@ -330,13 +332,15 @@ Three paths forward warrant consideration: (a) **Accept the risk and test k=3 in
 
 ### 3.3 Growth Rate Asymmetry and the Importance of Pre-Colonization
 
-A fundamental challenge for competitive exclusion is that PA14 outgrows most commensals on its preferred substrates (only 13.8% of pairwise comparisons show a commensal rate advantage). Genomically, PA's 4 rRNA operons and efficient amino acid catabolism make it a formidable competitor in head-to-head growth. However, three factors mitigate this:
+A fundamental challenge for competitive exclusion is that PA14 outgrows most commensals on its preferred amino acid substrates (only 13.8% of pairwise comparisons show a commensal rate advantage). This advantage is driven by PA's specialized amino acid catabolic enzymes, not by ribosomal translation speed — codon usage bias analysis (NB12) shows commensals have comparable ribosomal optimization (CUB 688 vs PA 644). The lab assay, which measures growth on single amino acids in planktonic culture, is the ground truth for this specific competitive scenario.
+
+Three factors mitigate PA's substrate-specific growth advantage:
 
 First, **commensals have a lag advantage** in 43.1% of comparisons — they start growing before PA14. In a formulation context, delivering commensals before pathogen exposure (or boosting them with prebiotics first) could exploit this window.
 
 Second, **community biomass matters more than individual growth rate**. A 3-organism consortium each growing at half PA14's rate still depletes resources 1.5× faster collectively. The k=3 formulation achieves 100% niche coverage — PA's fast growth on any single substrate is neutralized when all substrates are simultaneously contested.
 
-Third, the **33% accessory genome variation** among PROTECT PA isolates (gene count 4,877–7,266) suggests substantial metabolic burden variation. PA strains carrying large accessory genomes (mobile elements, secondary metabolite clusters) may grow slower on amino acids than the lean PA14 reference, creating natural opportunities for competitive exclusion. Growth rate prediction from genomic features (rRNA copy number, codon adaptation index; Vieira-Silva & Rocha 2010) could identify which PA strains are most vulnerable, enabling patient-specific formulation decisions.
+Third, **PA strain-level variation creates differential vulnerability**. PROTECT PA strain groups span 6.1–7.4 Mb (15 groups, 24% gene content variation). The dominant strain group 725 (98 isolates) carries 1,358 extra genes compared to the smallest group — metabolic burden that could slow growth on limiting substrates. Measuring growth rates across PA strain groups on amino acids would identify which patients' PA is most vulnerable to competitive exclusion.
 
 ### 3.4 The Prebiotic Strategy: From Amino Acids to Sugar Alcohols
 
@@ -420,13 +424,13 @@ Based on our findings, we recommend the following experimental program:
 
 **Rationale**: PA14 is a reference strain. Clinical CF isolates — especially mucoid variants adapted to chronic infection — may respond differently to competitive exclusion.
 
-### 4.7 Genomic Growth Rate Prediction for PA Strain Vulnerability
+### 4.7 PA Strain Growth Rate Measurement for Patient Stratification
 
-**Experiment**: Compute codon adaptation index (CAI) and rRNA operon copy number for all PROTECT PA isolates. Correlate with genome size and accessory gene content. For the 32 isolates with growth curves, validate genomic predictors against measured growth rates.
+**Experiment**: Measure growth rates of representative isolates from all 15 PROTECT PA strain groups on PA14's preferred amino acids (proline, histidine, glutamate, arginine) in the single-carbon-source assay. Correlate measured growth rates with genome size and accessory gene content.
 
-**Rationale**: The 33% accessory genome variation among PROTECT PA (gene count 4,877–7,266) likely correlates with growth rate variation. Strains with large accessory genomes (mobile elements, secondary metabolites) may grow slower on amino acids, creating windows for competitive exclusion. Identifying which PA strains are most/least vulnerable would enable patient-specific formulation deployment — testing first in patients whose PA is genomically predicted to be a slower grower.
+**Rationale**: The 15 PA strain groups span 6.1–7.4 Mb (24% gene content variation, 1,358 extra genes in the largest). If larger-genome PA strains grow measurably slower on amino acids, patients colonized by these strains would be the best initial candidates for formulation testing. Genomic predictors (CUB, genome size) can provide hypotheses, but measured growth rates on the specific competitive substrates are the ground truth.
 
-**Methods**: Use `gRodon` (Weissman et al. 2021) or the Vieira-Silva & Rocha (2010) approach to predict minimum doubling time from codon usage in highly expressed genes (ribosomal proteins). The rRNA Database (rrnDB) provides copy numbers for reference genomes.
+**Expected outcome**: A rank ordering of PA strain groups by amino acid growth rate, enabling patient-specific formulation deployment decisions.
 
 ### 4.8 Extended Metabolic Profiling
 
