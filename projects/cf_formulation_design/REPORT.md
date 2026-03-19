@@ -298,11 +298,15 @@ Two metabolic subpopulations exist: a major cluster (1,743 genomes, 97%) with fu
 
 CF-derived PA shows 6 FDR-significant differences from non-CF lung PA, but all are in sugar-related pathways — **zero amino acid differences**. Formulations designed for general lung PA should work equivalently for CF PA.
 
+![PA lung metabolic diversity — PCA colored by cluster and CF status](figures/10_pa_lung_pca.png)
+
 ![PA lung metabolic subpopulations and CF vs non-CF](figures/11_pa_lung_clusters.png)
 
 ![PROTECT PA genome variation (655 isolates, 15 strain groups)](figures/11_protect_pa_genome_variation.png)
 
 **Genomic growth rate context**: PA's genome (6.58 Mb, 6,177 CDS) is 2.5–3× larger than our commensal species (2.1–2.7 Mb, 2,200–3,000 CDS). Despite this size disadvantage, our growth curve data (NB02) shows PA14 outgrows most commensals on its preferred amino acid substrates — confirming that PA's catabolic enzyme efficiency, not its ribosomal translation rate, drives its competitive advantage on amino acids. Codon usage bias analysis (NB12) of ribosomal proteins shows commensals have comparable or higher CUB than PA (commensal mean 688 vs PA 644), suggesting commensals are not inherently slow translators — they simply lack PA's amino acid catabolic specialization.
+
+![Growth rate prediction: CUB scores and genome size for PA vs commensals](figures/12_growth_rate_prediction.png)
 
 **Within-PA strain variation**: Among 15 PROTECT PA strain groups, genome size ranges from 6.12 Mb (5,668 CDS) to 7.35 Mb (7,026 CDS) — a 24% difference in gene content. The largest strain group (725, 98 isolates) carries 1,358 extra genes compared to the smallest. However, since all strain groups retain the same amino acid catabolic pathways (97%+ conservation, NB11), the extra genes are likely conditionally expressed accessory functions (prophages, mobile elements, niche-specific adaptations) that affect virulence and persistence rather than amino acid growth rate. Within-species genome size variation is a much weaker predictor of growth rate than cross-species variation (Vieira-Silva & Rocha 2010). We therefore predict that **PA strains will respond similarly to our formulation**, because the competitive targets — amino acid catabolism — are invariant across the species. Where PA strains are expected to differ is in virulence, antibiotic resistance, and biofilm properties — factors that matter for disease severity but not for the metabolic competition mechanism our formulation exploits.
 
@@ -490,6 +494,7 @@ Based on our findings, we recommend the following experimental program:
 | `09_genomic_carbon_extension.ipynb` | Genomic + transcriptomic prebiotic candidate identification |
 | `10_pa_lung_adaptation.ipynb` | PA lung vs non-lung metabolic comparison, disease severity analysis |
 | `11_pa_within_lung_diversity.ipynb` | Within-lung PA diversity, formulation robustness assessment |
+| `12_growth_rate_prediction.ipynb` | Codon usage bias analysis for growth rate prediction |
 
 ### Figures (25 total)
 
