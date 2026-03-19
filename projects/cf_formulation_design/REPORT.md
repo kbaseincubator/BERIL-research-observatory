@@ -159,6 +159,24 @@ The pangenome analysis provides crucial reassurance for translational developmen
 
 The finding that *Rothia dentocariosa* (38%) and *Neisseria mucosa* (33%) are disproportionately lung-associated in the pangenome validates their selection as formulation anchors. These are not arbitrary oral commensals — they are organisms with demonstrated respiratory tropism. The metabolic adaptations seen in lung *S. salivarius* genomes (enriched L-malate utilization, depleted sorbitol/galactose) suggest active selection for the lung carbon environment, distinct from the gut niche.
 
+### Literature Context
+
+Our finding that amino acid competition predicts PA14 inhibition aligns with Palmer et al. (2005, 2007), who established that free amino acids (4.4–24.7 mM) are the preferred carbon/energy sources for *P. aeruginosa* in CF sputum. PA14's strongest growth on proline, histidine, and ornithine mirrors the SCFM composition, validating that our in vitro system captures the metabolically relevant competition landscape.
+
+The dual-mechanism profile of our top candidates — metabolic competition plus direct antagonism — is consistent with Stubbendieck et al. (2023), who identified a secreted peptidoglycan endopeptidase from nasal *R. dentocariosa* that inhibits *Moraxella catarrhalis* colonization. Rigauts et al. (2022) further showed that *Rothia mucilaginosa* suppresses NF-κB-mediated inflammation in chronic lung disease, adding an anti-inflammatory dimension beyond competitive exclusion.
+
+The community-level competition model — where no single commensal beats PA14 but combinations can — aligns with Widder et al. (2022), who identified eight distinct pulmotypes in CF airways driven by ecological competition and niche construction. Our k=3 formulation achieving 100% niche coverage operationalizes this ecological insight for therapeutic design.
+
+*S. salivarius* BLIS K12 is an established respiratory probiotic with anti-streptococcal and immunomodulatory activity (Tagg et al. 2025; Burton et al. 2011). The systematic review by Anderson et al. (2017) found suggestive but inconclusive evidence for probiotics in CF — our work advances this by providing a rational, data-driven framework for strain selection. Our pangenome conservation analysis follows the approach of Shao et al. (2026) for *Bifidobacterium*, but finds the opposite result: our formulation species' metabolic capabilities are so conserved that strain selection is less critical.
+
+### Novel Contribution
+
+1. **Quantification of metabolic competition's role**: 27% of PA14 inhibition variance is attributable to metabolic overlap — confirming "eating their lunch" as a real mechanism while showing it is not the whole story.
+2. **Dual-mechanism species**: The top formulation candidates (*S. salivarius*, *N. mucosa*, *G. sanguinis*) combine metabolic competition with strong direct antagonism (residuals +57–74%), a combination not previously characterized for respiratory commensals.
+3. **Community-level competitive exclusion**: No individual commensal outgrows PA14 on any substrate, but combinations achieve 100% niche coverage — operationalizing ecological theory for therapeutic design.
+4. **Pangenome validation of strain robustness**: >95% metabolic pathway conservation across species provides translational assurance not available from single-isolate studies.
+5. **Lung tropism of formulation candidates**: *R. dentocariosa* (38%) and *N. mucosa* (33%) are disproportionately lung-associated in the pangenome, validating their selection beyond in vitro performance.
+
 ### Limitations
 
 - **Planktonic culture only**: The inhibition assays measure planktonic competition, not biofilm dynamics. PA14 in CF lungs grows primarily in biofilms, where metabolic dynamics differ.
@@ -251,8 +269,18 @@ The finding that *Rothia dentocariosa* (38%) and *Neisseria mucosa* (33%) are di
 
 ## References
 
+- Palmer KL, Mashburn LM, Singh PK, Whiteley M (2005). "Cystic Fibrosis Sputum Supports Growth and Cues Key Aspects of Pseudomonas aeruginosa Physiology." *J Bacteriol*. 187(15):5267-77. DOI: 10.1128/JB.187.15.5267-5277.2005
 - Palmer KL, Aye LM, Whiteley M (2007). "Nutritional cues control Pseudomonas aeruginosa multicellular behavior in cystic fibrosis sputum." *J Bacteriol*. 189(22):8079-87. PMID: 17873029
-- Filkins LM, O'Toole GA (2015). "Cystic fibrosis lung infections: polymicrobial, complex, and hard to treat." *PLoS Pathog*. 11(12):e1005258. PMID: 26719892
-- Arkin AP et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nat Biotechnol*. 36(7):566-569. PMID: 29979655
+- Rogers GB, van der Gast CJ, Serisier DJ (2015). "Predominant pathogen competition and core microbiota divergence in chronic airway infection." *ISME J*. 9(1):217-225. PMID: 25036925
+- Chatterjee P et al. (2017). "Environmental Pseudomonads Inhibit Cystic Fibrosis Patient-Derived Pseudomonas aeruginosa." *Appl Environ Microbiol*. 83(5):e02701-16. PMID: 27881418
+- Nagalingam NA, Cope EK, Lynch SV (2013). "Probiotic strategies for treatment of respiratory diseases." *Trends Microbiol*. 21(9):485-492. PMID: 23707554
+- Anderson JL, Miles C, Tierney AC (2017). "Effect of probiotics on respiratory, gastrointestinal and nutritional outcomes in patients with cystic fibrosis: A systematic review." *J Cyst Fibros*. 16(2):186-197. DOI: 10.1016/j.jcf.2016.09.004
 - Burton JP, Wescombe PA, Cadieux PA, Tagg JR (2011). "Beneficial microbes for the oral cavity: time to harness the oral streptococci?" *Benef Microbes*. 2(2):93-101. PMID: 21840808
-- Whiteson KL et al. (2014). "Breath gas metabolites and bacterial metagenomes from cystic fibrosis airways indicate active pH neutral 2,3-butanedione fermentation." *ISME J*. 8(6):1247-58. PMID: 24401864
+- Tagg JR, Harold LK, Hale JDF (2025). "Review of Streptococcus salivarius BLIS K12 in the Prevention and Modulation of Viral Infections." *Appl Microbiol*. 5(1):7.
+- Rigauts C et al. (2022). "Rothia mucilaginosa is an anti-inflammatory bacterium in the respiratory tract of patients with chronic lung disease." *Eur Respir J*. 59(5):2101293. PMID: 34588194
+- Stubbendieck RM et al. (2023). "Rothia from the Human Nose Inhibit Moraxella catarrhalis Colonization with a Secreted Peptidoglycan Endopeptidase." *mBio*. 14(2):e00464-23. PMID: 37010413
+- Widder S et al. (2022). "Association of bacterial community types, functional microbial processes and lung disease in cystic fibrosis airways." *ISME J*. 16(4):905-914. PMID: 34689185
+- Tony-Odigie A et al. (2022). "Commensal Bacteria in the Cystic Fibrosis Airway Microbiome Reduce P. aeruginosa Induced Inflammation." *Front Cell Infect Microbiol*. 12:824101. PMID: 35174108
+- Dreher SM (2017). "US Regulatory Considerations for Development of Live Biotherapeutic Products as Drugs." *Microbiol Spectr*. 5(5):BAD-0017-2017.
+- Shao Y et al. (2026). "Genomic atlas of Bifidobacterium infantis and B. longum informs infant probiotic design." *Cell*. 189. PMID: 41713418
+- Arkin AP et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nat Biotechnol*. 36(7):566-569. PMID: 29979655
