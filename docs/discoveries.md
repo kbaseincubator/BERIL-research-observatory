@@ -516,3 +516,21 @@ Of 257 identified (non-unknown) WoM compounds, 69 match ModelSEED molecules by e
 Description of what was discovered, why it matters, and any implications
 for future analyses.
 ```
+
+## 2026-03
+
+### [cf_formulation_design] Metabolic overlap explains 27% of PA14 inhibition in planktonic culture
+
+Across 142 CF airway isolates, metabolic overlap with PA14's amino acid preferences (proline, histidine, ornithine, glutamate, aspartate) predicts planktonic inhibition (r=0.384, p=2.3e-6, R²=27.4%). However, the strongest FDA-safe inhibitors (S. salivarius, N. mucosa, G. sanguinis) show 57-74% more inhibition than metabolic overlap predicts, indicating dual-mechanism (metabolic + direct antagonism) organisms are the best formulation candidates.
+
+### [cf_formulation_design] PA14 outgrows all commensals on every tested amino acid — no simple prebiotic exists
+
+PA14 is a metabolic generalist: it outgrows the average commensal on all 20 tested amino acids plus glucose and lactate (selectivity ratio <1.0 for all). Competitive exclusion requires community-level niche coverage (3+ organisms), not individual superiority.
+
+### [cf_formulation_design] Sugar alcohols are genomically predicted prebiotics for CF protective microbiomes
+
+GapMind pathway comparison reveals 6 carbon sources where formulation commensals have 100% pathway completeness but PA14 has 0%: xylitol, myoinositol, xylose, arabinose, fucose, rhamnose. These are FDA-GRAS and xylitol is already used in CF airway products. Patient metatranscriptomics confirms commensal-specific PTS sugar transport expression in vivo.
+
+### [cf_formulation_design] Rothia dentocariosa and Neisseria mucosa are naturally lung-adapted
+
+In the BERDL pangenome, 38% of R. dentocariosa genomes and 33% of N. mucosa genomes are from respiratory sources — disproportionately lung-associated compared to other formulation species. These two anchor the FDA-safe formulation (highest inhibition + highest engraftability + lung tropism).
