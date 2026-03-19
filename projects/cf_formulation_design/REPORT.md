@@ -269,6 +269,8 @@ Our findings align with and extend several threads in the literature:
 - **Pairwise interaction data are sparse**: Only 3 A × 3 B isolate combinations were tested, limiting our ability to predict interactions for the full formulation.
 - **Engraftability is inferred**: Patient prevalence is a proxy, not a direct measure of colonization persistence after probiotic administration.
 - **Sparse lung metadata**: Only 21 lung genomes across 5 species limits the lung adaptation comparison.
+- **`fact_pairwise_interaction` is identical to `fact_carbon_utilization`**: NB08 discovered that these tables contain the same values (correlation = 1.0, mean difference = 0.0), meaning the endpoint OD data does not capture co-culture metabolic interactions. The competition assay (RFU-based) does capture pairwise effects, but the per-substrate interaction analysis is not possible with current data.
+- **N. mucosa clade selection**: The pangenome contains two N. mucosa clades: `s__Neisseria_mucosa_A` (15 genomes) and `s__Neisseria_mucosa` (8 genomes). NB07 uses the first (larger) clade. The PROTECT isolate reference genome (`GCA_003028315.1`) maps to the 8-genome clade via `GB_GCA_003028315.1`. Results may differ slightly if the alternate clade is used.
 
 ---
 

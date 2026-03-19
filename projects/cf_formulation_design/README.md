@@ -32,9 +32,9 @@ The design theory is **metabolic competitive exclusion** — commensal organisms
 - Data files in `~/protect/gold/` (parquet format)
 
 ### Steps
-1. Run notebooks in order: NB01 → NB02 → NB03 → NB04 → NB05 → NB06 → NB07
-2. NB01–NB06 run locally from cached parquet files
-3. NB07 requires BERDL Spark access for GapMind queries
+1. Run notebooks in order: NB01 → NB02 → NB03 → NB04 → NB05 → NB05b → NB06 → NB07 → NB08 → NB09
+2. NB01–NB06, NB08 run locally from cached parquet files (< 2 min each)
+3. NB07 and NB09 require BERDL Spark access for GapMind queries (5–10 min each)
 
 ## Authors
 
