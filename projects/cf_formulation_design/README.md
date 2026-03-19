@@ -6,7 +6,7 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 
 ## Status
 
-In Progress — research plan created, awaiting analysis.
+Complete — see [Report](REPORT.md) for findings. Eight notebooks executed, 23 figures generated, 13 data files produced. Key result: a 5-organism FDA-safe formulation (*N. mucosa* + *S. salivarius* + *M. luteus* + *R. dentocariosa* + *G. sanguinis*) achieves 100% PA14 niche coverage with 78% mean inhibition.
 
 ## Overview
 
