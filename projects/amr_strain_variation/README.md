@@ -72,4 +72,4 @@ All → NB07 (synthesis)
 
 ## Authors
 
-- Paramvir Dehal (LBNL)
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
