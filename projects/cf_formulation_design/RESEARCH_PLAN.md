@@ -217,31 +217,69 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 
 **Expected output**: `data/pangenome_conservation.tsv`, `data/lung_adaptation_signatures.tsv`, GapMind concordance statistics
 
-### Notebook 08: Genomic Extension & BacDive Validation (if time permits)
+### Notebook 05b: Formulation Optimization — Strict FDA Safety Filter
 
-**Goal**: Extend metabolic predictions beyond the 22 tested carbon sources and cross-validate with external data.
+**Goal**: Re-run optimization with strict safety filter excluding all Pseudomonas, Enterobacteriaceae, and Staphylococcus. Compare permissive vs strict to show staged design decisions. Added species uniqueness constraint and scoring weight sensitivity analysis.
 
-**Analysis**:
-- Explore PROTECT genomedepot annotations (KEGG pathways, operons, regulons) for top formulation candidates
-- BacDive cross-validation: metabolite utilization data for species matching our candidates
-- ModelSEED biochemistry: stoichiometric context for competition modeling
-- Identify additional carbon sources not tested in the lab that could serve as prebiotics
+**Expected output**: `data/formulations_strict_safety.tsv`
 
-**Expected output**: Extended metabolic predictions, external validation statistics
+### Notebook 08: Interaction Modeling
 
-## Expected Outcomes
+**Goal**: Detect and classify pairwise interactions (synergistic, additive, antagonistic) between consortium members from the competition assay data. Assess whether the additive scoring assumption in NB05 is valid.
 
-- **If H1 supported**: Metabolic overlap is a design principle — formulations can be rationally designed from carbon utilization data. Growth rate adds predictive power beyond yield.
-- **If H0 not rejected**: Inhibition is dominated by direct antagonism — screen for bacteriocin/T6SS genes in genomic data, pivot to a genomics-first approach.
-- **If H2 supported**: Complementary formulations outperform — the "eat their lunch" design theory is validated, and we have ranked formulations ready for mouse testing.
-- **If H4 supported**: Specific prebiotics (likely among threonine, methionine, serine, glycine) provide selective advantage — synbiotic design is feasible.
-- **If H5 supported (conservation)**: Metabolic competition properties are species-level traits — formulation designs are robust to strain variation, and GapMind can predict capabilities for untested isolates.
-- **If H6 supported (lung adaptation)**: Lung-associated genomes show distinct metabolic signatures — PROTECT isolates that cluster with lung-adapted subpopulations may be better formulation candidates. Lung-specific accessory genes could explain why some commensal strains compete better in the airway environment.
-- **Potential confounders**: Strain-specific effects within species, condition-dependent inhibition (gain/OD settings), growth medium differences between assays and lung environment, sparse environmental metadata in pangenome (ncbi_env coverage).
+**Key finding**: `fact_pairwise_interaction` proved identical to `fact_carbon_utilization`, limiting per-substrate co-culture analysis. RFU-based competition assay shows *N. mucosa* pairs are near-additive (mean synergy −5.8%, but +5.3% for N. mucosa specifically).
+
+**Expected output**: `data/pairwise_synergy.tsv`
+
+### Notebook 09: Genomic Carbon Source Extension
+
+**Goal**: Identify prebiotic candidates beyond the 22 tested substrates using GapMind pathway predictions (80 pathways) and patient metatranscriptomics (220 KEGG pathways). Find carbon sources where commensals have complete pathways but PA14 does not.
+
+**Key finding**: 6 sugar alcohol/pentose pathways (xylitol, myoinositol, xylose, arabinose, fucose, rhamnose) are 100% complete in commensals and 0% in PA14 — strong prebiotic candidates.
+
+**Expected output**: `data/gapmind_pathway_comparison.tsv`, `data/kegg_expression_comparison.tsv`
+
+### Notebook 10: PA Lung Adaptation
+
+**Goal**: Characterize what makes lung/airway PA variants metabolically distinct from non-lung PA. Identify PA metabolic pathways associated with disease severity from patient metatranscriptomics.
+
+**Key finding**: Lung PA loses sugar utilization pathways (sorbitol, mannitol, gluconate) — metabolic streamlining toward amino acid dependence. During acute exacerbation, PA massively downregulates biosynthetic pathways and upregulates phosphate transport.
+
+**Expected output**: `data/pa_lung_vs_nonlung_pathways.tsv`, `data/pa_sick_vs_stable_pathways.tsv`, `data/pa_genome_sources.tsv`
+
+### Notebook 11: Within-Lung PA Diversity & Formulation Robustness
+
+**Goal**: Assess whether PA metabolic variation among lung isolates could cause differential formulation responses. Test whether amino acid catabolic pathways (our formulation targets) are invariant or variable across lung PA.
+
+**Key finding**: Amino acid pathways 97.4% conserved across 1,796 lung PA genomes. Main variation (PC1=79%) is in carbon source pathways NOT targeted by our formulation. CF vs non-CF lung PA show zero amino acid differences. Formulation predicted equally effective across PA variants.
+
+**Expected output**: `data/pa_target_robustness.tsv`
+
+### Notebook 12: Genomic Growth Rate Prediction
+
+**Goal**: Compute codon usage bias (CUB) of ribosomal proteins as a proxy for maximum growth rate potential. Compare PA vs formulation commensals.
+
+**Key finding**: Cross-species CUB comparison is confounded by GC content variation (31–73%) and cannot reliably predict growth rate differences. Lab growth data remains ground truth. Within-PA strain variation (15 groups, 6.1–7.4 Mb) reflects accessory genome content affecting virulence/persistence, not amino acid growth rate.
+
+**Expected output**: `data/codon_usage_bias.tsv`
+
+## Outcomes (as observed)
+
+- **H1 supported (partial)**: Metabolic overlap predicts inhibition (r=0.384, p=2.3e-6, R²=0.274; CV R²=0.145). Metabolic competition is a real mechanism but explains only 15–27% of variance. The strongest inhibitors combine metabolic competition with direct antagonism.
+- **H0 partially rejected**: Direct antagonism contributes (genus adds 8.6% R²) but is not the sole mechanism. Dual-mechanism species (metabolic + direct) are the best formulation candidates.
+- **H2 supported**: k=3 formulation achieves 100% PA niche coverage. Five-species core (*N. mucosa, S. salivarius, M. luteus, R. dentocariosa, G. sanguinis*) is robust across scoring weight variations.
+- **H4 rejected for amino acids, supported genomically for sugar alcohols**: PA14 outgrows all commensals on all 22 tested substrates. GapMind identifies 6 untested sugar alcohol/pentose pathways (xylitol, myoinositol, xylose, arabinose, fucose, rhamnose) where commensals are complete and PA is absent.
+- **H5 strongly supported**: 4/5 core species show >95% amino acid pathway conservation across 15–295 pangenome genomes. Formulation design is robust to strain variation.
+- **H6 supported qualitatively**: *R. dentocariosa* (38%) and *N. mucosa* (33%) are disproportionately lung-associated. Lung PA shows metabolic streamlining (losing sugar pathways). 21 lung genomes found across commensal species.
+- **Additional finding — PA formulation robustness**: PA amino acid catabolism is 97.4% conserved across 1,796 lung genomes. CF vs non-CF PA show zero amino acid differences. One formulation should work across PA variants. PA strain variation affects virulence/persistence, not the metabolic competition targets.
+- **Confounders confirmed**: Planktonic assay limitations, sparse pairwise interaction data (8 comparisons), CUB confounded by GC content, `fact_pairwise_interaction` identical to `fact_carbon_utilization`.
 
 ## Revision History
-- **v1** (2026-03-19): Initial plan — integrates 23 experimental tables with BERDL resources for multi-criterion formulation scoring
-- **v2** (2026-03-19): Added H5/H6 (pangenome conservation + lung adaptation). NB07 now dedicated to pangenome analysis of commensal species — pathway conservation, environmental source breakdown, lung-specific signatures. NB08 added for extended genomic/BacDive validation. NB01 executed: metabolic overlap vs inhibition r=0.384 (p=2.3e-6).
+- **v1** (2026-03-19): Initial plan — 7 notebooks integrating 23 experimental tables with BERDL for multi-criterion formulation scoring
+- **v2** (2026-03-19): Added H5/H6 (pangenome conservation + lung adaptation). NB07 dedicated to pangenome, NB08 for genomic extension.
+- **v3** (2026-03-19): NB01–NB07 executed. NB05b added (strict FDA safety filter with staged comparison). Key result: metabolic overlap r=0.384 (R²=0.274). Five-species FDA-safe formulation identified.
+- **v4** (2026-03-19): NB08 repurposed from BacDive validation to interaction modeling (pairwise synergy/antagonism). NB09 added for genomic carbon source extension — discovered 6 sugar alcohol prebiotic candidates. NB10 added for PA lung adaptation analysis (6,760 PA genomes). NB11 added for within-lung PA diversity and formulation robustness (97.4% AA pathway conservation). NB12 added for codon usage bias growth rate prediction.
+- **v5** (2026-03-19): Corrected CUB interpretation (GC-confounded). Corrected PA strain variation interpretation (accessory genome affects virulence not amino acid growth rate). Lab growth data confirmed as ground truth. Expected Outcomes updated to observed outcomes.
 
 ## Authors
 - Adam Arkin (ORCID: 0000-0002-4999-2931) — U.C. Berkeley / Lawrence Berkeley National Laboratory
