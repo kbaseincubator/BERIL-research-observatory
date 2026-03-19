@@ -135,6 +135,40 @@ Growth kinetic parameters are moderately correlated with endpoint OD (r ≈ 0.40
 
 *(Notebooks: 05_formulation_optimization.ipynb, 05b_formulation_strict_safety.ipynb)*
 
+### Unified Formulation Rankings
+
+The table below presents the top-ranked FDA-safe formulations at each size (k=1–5), with all scoring criteria and per-isolate detail. The same five species recur consistently across sizes, confirming the solution is robust.
+
+#### Core Species Profiles
+
+| Species | Best Inhibition | Engraftability | Pangenome | AA Pathway Conservation | Lung Genomes |
+|---------|:-:|:-:|:-:|:-:|:-:|
+| *Neisseria mucosa* | 88% | 1.595 | 15 genomes | 16/18 | 5 (33%) |
+| *Streptococcus salivarius* | 98% | 0.172 | 153 genomes | 18/18 | 5 (4%) |
+| *Rothia dentocariosa* | 79% | 0.422 | 29 genomes | 14/18 | 10 (38%) |
+| *Gemella sanguinis* | 85% | 0.202 | 7 genomes | 7/18 | 1 |
+| *Micrococcus luteus* | 38% | 0.000 | 295 genomes | 18/18 | 0 |
+
+#### Recommended Formulations (Strict FDA Safety, Ranked by Composite Score)
+
+**k=1** — *N. mucosa* [ASMA-3643]: composite 0.753, 18% coverage, 88% inhibition, engraftability 1.595. Best single organism: highest engraftability + strong inhibition. Low coverage limits monotherapy.
+
+**k=2** — *R. dentocariosa* [ASMA-2935] + *N. mucosa* [ASMA-3643]: composite 0.588, 18% coverage, 84% mean inhibition, engraftability 0.820. Both are lung-adapted species (33–38% respiratory in pangenome).
+
+**k=3** — *M. luteus* [ASMA-2965] + *N. mucosa* [ASMA-3643] + *S. salivarius* [ASMA-737]: composite 0.562, **100% PA niche coverage**, 75% mean inhibition, engraftability 0.140. **The minimum viable formulation** — first size to achieve full niche coverage. *M. luteus* contributes broad carbon utilization that closes the remaining PA substrate gaps.
+
+**k=4** — *R. dentocariosa* [ASMA-2935] + *M. luteus* [ASMA-2965] + *N. mucosa* [ASMA-3643] + *S. salivarius* [ASMA-737]: composite 0.578, 100% coverage, 76% inhibition, engraftability 0.185. Adds *R. dentocariosa* for lung tropism and direct antagonism depth.
+
+**k=5** — *R. dentocariosa* [ASMA-2935] + *M. luteus* [ASMA-2965] + *G. sanguinis* [ASMA-3044] + *N. mucosa* [ASMA-3643] + *S. salivarius* [ASMA-737]: composite 0.587, 100% coverage, 78% mean inhibition, engraftability 0.188. **The full formulation** — all five core species, maximum redundancy and inhibition depth.
+
+#### Design Rationale by Species
+
+- **N. mucosa** — Anchor. Highest engraftability (1.6), strong inhibition (88%), lung-adapted (33%), near-additive in pairwise interactions. The indispensable member at every k.
+- **S. salivarius** — Highest individual inhibition (98%), established probiotic precedent (BLIS K12), dual-mechanism (residual +74% beyond metabolic prediction). Provides the direct antagonism backbone.
+- **M. luteus** — Metabolic coverage specialist. The broadest carbon utilization profile among safe candidates — its addition at k=3 is what achieves 100% PA niche coverage. Highly conserved (295 genomes, 18/18 AA pathways).
+- **R. dentocariosa** — Lung-adapted (38% respiratory), strong inhibition (79%), dual-mechanism (residual +57%). Published evidence for colonization resistance via secreted endopeptidase (Stubbendieck et al. 2023).
+- **G. sanguinis** — Strong inhibition (85%), dual-mechanism (residual +62%), adds depth at k=5. Smallest pangenome (7 genomes) — strain selection most critical for this species.
+
 ### 2.7 PA14 Is a Metabolic Generalist — Amino Acid Prebiotics Don't Work
 
 **Rationale**: Can we find a carbon source that selectively feeds commensals but starves PA14, providing a biomass head-start? We computed selectivity ratios (commensal mean OD / PA14 OD) for all 20 tested substrates.
