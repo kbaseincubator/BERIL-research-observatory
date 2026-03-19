@@ -49,13 +49,17 @@ All four AMR mechanisms show significant environment-dependent composition (all 
 
 This is the most actionable finding: **different ecological niches select for fundamentally different resistance strategies**. Soil and aquatic bacteria invest heavily in metal resistance (consistent with heavy metal exposure in natural environments), while clinical and gut bacteria favor efflux pumps and target modification (consistent with antibiotic selection pressure). This connects the `amr_fitness_cost` finding (mechanism predicts conservation: metal 44% accessory vs efflux 13% core) to ecology — efflux genes are core because they serve host-associated organisms across conditions, while metal resistance is accessory because it's only needed in metal-rich environments.
 
+**Note on mechanism classification**: 18.7% of AMR clusters (15,550) could not be classified to a mechanism from gene name or product annotation. These unclassified clusters are excluded from the mechanism fractions above. Tetracycline resistance genes are split between efflux (tet(A-E,K,L)) and target modification (tet(M,O,Q,W) ribosomal protection proteins).
+
 *(Notebook: 02_resistome_vs_environment.ipynb)*
 
-### 4. Within species, clinical strain fraction predicts AMR accumulation (H4 supported)
+### 4. Species with more clinical genomes carry more AMR (H4 proxy — species-level analysis)
 
 ![Within-species AMR by environment](figures/h4_within_species.png)
 
-Among 823 species with genomes in ≥2 environments (≥5 genomes each), the fraction of genomes from clinical sources strongly predicts total AMR cluster count (Spearman rho = 0.465, p = 2.2×10⁻⁴⁵). Clinical-dominated species have **4.4× more AMR clusters** (mean 72.9 vs 16.4, MWU p = 2×10⁻¹⁸) and a higher fraction of accessory AMR (93.6% vs 81.7%, p = 0.004) compared to environmentally-dominated species.
+**Note**: This is a species-level proxy analysis, not a true per-genome within-species comparison (which would require billion-row joins). We test whether species whose genomes are predominantly from clinical sources carry more AMR than species whose genomes are predominantly from environmental sources.
+
+Among 823 species with genomes in ≥2 environments (≥5 genomes each), the fraction of genomes from clinical sources strongly predicts total AMR cluster count (Spearman rho = 0.465, p = 2.2×10⁻⁴⁵). Clinical-dominated species have **4.4× more AMR clusters** (mean 72.9 vs 16.4, MWU p = 2×10⁻¹⁸) and a higher fraction of accessory AMR in a grouped comparison (93.6% vs 81.7%, MWU p = 0.004). The continuous correlation of clinical fraction with % accessory is borderline (rho = 0.065, p = 0.064).
 
 Case studies of deeply-sampled species:
 
@@ -178,6 +182,8 @@ This is the **largest genomic analysis of environmental AMR distribution**, exte
 5. **Core/accessory precision**: The 95% prevalence threshold for "core" depends on species genome count. Many species have few genomes, making core/accessory labels imprecise.
 6. **Causality**: We observe correlation between environment and AMR, not causation. Clinical species may carry more AMR because they are clinical (antibiotic exposure), or they may be clinical because they carry more AMR (virulence-resistance co-selection).
 7. **Effect sizes**: While all tests are highly significant (p ~ 0), the effect sizes are modest (η² = 0.02–0.13). Environment explains 2-13% of variance in AMR composition — phylogeny likely explains much more.
+8. **Mechanism classification completeness**: 18.7% of AMR clusters (15,550) could not be classified to a mechanism. These are excluded from H3 mechanism fractions, potentially biasing the analysis if unclassified genes are non-randomly distributed across environments.
+9. **Planned but unperformed analyses**: PCoA ordination, PERMANOVA, environment-specific gene identification, MAG/isolate assessment, and archaea-specific analysis were planned in RESEARCH_PLAN v2 but not executed. The within-species analysis (NB03) uses a species-level proxy rather than the per-genome Fisher's exact test originally planned, due to the computational cost of billion-row joins.
 
 ## Data
 
