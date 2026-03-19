@@ -75,7 +75,9 @@ Across the 142-isolate analysis cohort, metabolic overlap with PA14 (weighted by
 
 ![Predicted vs observed inhibition from metabolic model (R² = 0.274)](figures/03_predicted_vs_observed.png)
 
-**Conclusion**: H1 (metabolic competition) is supported but incomplete. Metabolic overlap is a genuine predictor — not an artifact of taxonomy or confounders — but approximately 73% of variance remains unexplained by metabolism alone.
+Five-fold cross-validation yields **CV R² = 0.145 ± 0.142**, below the training R² of 0.274, indicating the multivariate model overfits to the 142-isolate cohort. The true out-of-sample predictive power of metabolic features is closer to 15% than 27%. This does not invalidate the qualitative conclusion — metabolic overlap is a statistically significant predictor (p = 2.3×10⁻⁶) — but the effect size should be interpreted conservatively.
+
+**Conclusion**: H1 (metabolic competition) is supported but incomplete. Metabolic overlap is a genuine predictor, but approximately 73% of variance remains unexplained by metabolism alone.
 
 **The residual analysis reveals dual-mechanism species**: Isolates whose inhibition substantially exceeds metabolic predictions are candidate direct antagonists. The top positive residuals — *S. salivarius* ASMA-737 (+74.1%), *G. sanguinis* ASMA-3044 (+62.2%), *N. mucosa* ASMA-3643 (+57.2%) — are the same species that later dominate our FDA-safe formulations. These organisms appear to combine metabolic competition with direct antagonism, making them particularly valuable.
 
@@ -193,7 +195,7 @@ Overall mean synergy is −5.8%, indicating mildly antagonistic interactions on 
 
 ![Dose-response: pair inhibition vs total inoculation density](figures/08_dose_response_pairs.png)
 
-**Conclusion**: Pairwise interactions are approximately additive for key species, validating the formulation scoring approach. Specific antagonistic pairs should be excluded from formulations.
+**Conclusion**: Pairwise interactions are approximately additive for *N. mucosa* combinations, supporting its role as a formulation anchor. However, these conclusions are based on only **8 comparisons across 5 unique pairs** — an underpowered sample. The complete 10-pair interaction matrix for the 5-species core (Proposed Experiment 4.2) is a critical gap, not merely a nice-to-have extension. Until the full matrix is measured, the additive scoring assumption should be treated as provisional.
 
 *(Notebook: 08_interaction_modeling.ipynb)*
 

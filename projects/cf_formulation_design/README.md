@@ -27,8 +27,8 @@ The design theory is **metabolic competitive exclusion** — commensal organisms
 ## Reproduction
 
 ### Prerequisites
-- Python 3.10+, pandas, pyarrow, numpy, scipy, scikit-learn, matplotlib, seaborn
-- BERDL access (KBASE_AUTH_TOKEN) for NB07 genomic extension
+- Python 3.10+, pandas, pyarrow, numpy, scipy, scikit-learn, matplotlib, seaborn, statsmodels
+- BERDL JupyterHub access for NB07 and NB09 (provides `pyspark`, `berdl_notebook_utils`, and Spark session)
 - Data files in `~/protect/gold/` (parquet format)
 
 ### Steps

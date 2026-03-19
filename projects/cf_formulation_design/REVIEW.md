@@ -8,96 +8,111 @@ project: cf_formulation_design
 
 ## Summary
 
-This is an ambitious and well-executed project that integrates experimental data (4,949 isolates, 23 tables) with BERDL pangenome resources to rationally design probiotic formulations for competitive exclusion of *P. aeruginosa* in CF airways. The scientific narrative is compelling — moving from EDA through mechanistic hypothesis testing to a concrete 5-organism formulation backed by pangenome validation and a novel sugar-alcohol prebiotic strategy. The project excels in documentation (thorough REPORT.md with literature context, limitations, and proposed experiments), statistical rigor (appropriate regression, variance decomposition, and effect sizes), and creative use of BERDL resources (GapMind pathway conservation, NCBI environmental metadata for lung tropism). The main areas for improvement are: two notebooks (NB05, NB06) lack saved outputs, the scoring function weights change between NB05 and NB05b without formal sensitivity analysis, and several minor code quality issues (duplicated cell, unhandled NaN species, identical pairwise/monoculture tables discovered late). Overall, this is one of the strongest projects in the observatory — the findings are well-supported, limitations are honestly acknowledged, and the proposed experimental follow-ups are specific and actionable.
+This is an exceptionally well-executed project that integrates 23 experimental tables (30.5M rows) from the PROTECT CF study with BERDL pangenome resources to design rationally optimized probiotic formulations for competitive exclusion of *P. aeruginosa* in CF airways. The project follows a clear logical arc from data integration through hypothesis testing to actionable formulation design, supported by 10 notebooks with saved outputs, 29 figures, 16 data files, and a thorough REPORT.md. The research question is well-motivated, the methodology is sound, and the findings — particularly the identification of dual-mechanism species and sugar alcohol prebiotics — are scientifically compelling. The main areas for improvement are: (1) the cross-validation results in NB03 reveal meaningful overfitting (CV R² = 0.145 vs training R² = 0.274) that should be discussed more prominently in the report, (2) the *N. mucosa* clade selection inconsistency between NB07 and the reference genome mapping deserves more attention, and (3) the pairwise interaction data is extremely sparse (only 8 pair comparisons) relative to the claims made about formulation additivity.
 
 ## Methodology
 
-**Research question**: Clearly stated, testable, and multi-faceted. The six hypotheses (H0–H6) provide a structured framework with pre-specified expected outcomes and confounders. The null hypothesis (H0: direct antagonism dominates) is explicitly stated and tested against.
+### Research Question & Hypotheses
+The research question is clearly stated, testable, and well-scoped. The six hypotheses (H0–H6) are well-formulated with specific, falsifiable predictions and clear criteria for support. The staged design — from individual mechanisms (H1: metabolic competition) through community optimization (H2) to genomic validation (H5/H6) — is logically compelling. The null hypothesis (H0: inhibition is driven by direct antagonism, not metabolism) is appropriately framed and honestly evaluated.
 
-**Approach**: The multi-criterion optimization framework is sound. The staged analysis (EDA → mechanism → ecology → optimization → validation → extension) builds logically. The decision to run permissive and strict safety filters as separate notebooks (NB05 vs NB05b) is a good design choice — it shows the reader what safety costs and why the strict filter is necessary.
+### Approach
+The multi-criterion optimization framework is appropriate for the problem. The decision to separate permissive (NB05) and strict (NB05b) safety filters is a smart design choice that reveals the clinical viability tradeoff transparently. The sensitivity analysis in NB05b (cell-13), which shows the same 5-species core emerging across all weight sets, is particularly effective. The staged approach — EDA → mechanism identification → optimization → genomic validation → interaction testing → extension — follows best scientific practice.
 
-**Data sources**: Thoroughly documented in both README.md and RESEARCH_PLAN.md. The 23-table PROTECT Gold dataset is loaded and profiled in NB01. BERDL sources are clearly identified with specific table names, row counts, and filter strategies in the query plan.
+### Data Sources
+Data sources are thoroughly documented in RESEARCH_PLAN.md with row counts, column descriptions, and roles in the analysis. The project clearly identifies which data comes from local experimental files (`~/protect/gold/`) and which from BERDL. Known pitfalls from `docs/pitfalls.md` are addressed: GapMind genome ID prefix stripping (NB07 cell-4), the `gapmind_pathways` multi-row-per-genome-pathway issue (correct `MAX(score_val)` pattern used throughout NB07 and NB09), and Spark `DECIMAL` casting (explicit `CAST(... AS DOUBLE)` in NB07/NB09).
 
-**Reproducibility concerns**:
-- **NB05 (Formulation Optimization) has zero saved outputs** across all 8 code cells. This is the central optimization notebook — the reader cannot see any formulation results, scores, or the scores-by-size visualization without re-running it. The `formulations_ranked.tsv` output file exists (5.1 MB, 22,389 rows), confirming the notebook was run, but outputs were not preserved.
-- **NB06 (Prebiotic Pairing) also has zero saved outputs** across all 6 code cells. Again, output files exist but notebook outputs are missing.
-- The remaining 8 notebooks all have complete outputs (100% of code cells).
-- The README Reproduction section lists NB01→NB07 but omits NB08 and NB09, which are also needed for the complete analysis.
-- NB07 and NB09 require BERDL Spark access, which is correctly documented, but expected runtimes are not provided.
-- `requirements.txt` is present and complete.
+### Reproducibility
+- **Notebook outputs**: All 10 notebooks are committed with saved outputs (text, tables, and figures). This is exemplary and meets the hard requirement. Figures are rendered inline alongside numeric summaries.
+- **Figures**: 29 figures in the `figures/` directory covering every analysis stage — well above the minimum. Each major notebook contributes 2–4 figures.
+- **Dependencies**: `requirements.txt` is present with pinned minimum versions. However, it is missing `pyspark` (required for NB07, NB09) and the `berdl_notebook_utils` package (imported in NB07/NB09 for `get_spark_session`). These are available on the BERDL JupyterHub but should be noted as cluster-only prerequisites.
+- **Reproduction guide**: The README includes a clear `## Reproduction` section with prerequisites, ordered steps, and which notebooks require Spark vs run locally. Runtime estimates are provided for local notebooks (< 2 min each) and Spark notebooks (5–10 min each).
+- **Spark/local separation**: Well-handled. NB01–NB06 and NB08 run locally from cached parquet files. NB07 and NB09 require Spark and are clearly documented as such. Intermediate data files (TSV) enable downstream notebooks to run without re-executing Spark queries.
 
 ## Code Quality
 
-**Notebook organization**: All notebooks follow a clean setup → analysis → visualization → save → summary pattern. Markdown headers provide clear section breaks. Each notebook begins with a description of its goal, inputs, and outputs.
+### SQL Correctness
+The GapMind queries in NB07 and NB09 correctly implement the multi-row aggregation pattern (`MAX(score_val)` per genome-pathway pair via CTE), properly cast `AVG(CASE WHEN ...)` to `DOUBLE` (avoiding the Spark DECIMAL pitfall from `docs/pitfalls.md`), and use exact equality filters on `clade_name` for performance. The species clade lookup (NB07 cell-4) tries both `RS_` and `GB_` prefixed accessions with a fallback to name-based search — good defensive coding that addresses the documented GapMind ID prefix mismatch.
 
-**SQL queries (NB07, NB09)**: GapMind queries correctly use the `MAX(score_val)` per genome-pathway pair pattern documented in `docs/pitfalls.md`, avoiding the multiple-rows-per-pair trap. The `CAST(... AS DOUBLE)` pattern is used for AVG aggregates, following the documented Spark DECIMAL pitfall. Species clade lookup uses both `RS_` and `GB_` prefixed accessions with a fallback to name-based search — good defensive coding.
+### Statistical Methods
+- **NB03 regression**: The OLS model progression (overlap-only R²=0.141 → all metabolic R²=0.274 → metabolic+genus R²=0.360) is appropriate. However, the 5-fold cross-validation (cell-14) reveals substantial overfitting: **CV R² = 0.145 ± 0.142** vs training R² = 0.274, with one fold producing negative R² (−0.049). The gap of 0.129 is acknowledged as "some overfitting" in the notebook but the REPORT (Section 2.3) cites R² = 0.274 without the CV caveat. This is the most significant methodological concern — the true out-of-sample predictive power of metabolic features may be closer to 15%.
+- **Engraftability score** (NB04): The formula `prevalence × log1p(activity_ratio)` is reasonable but ad hoc. The choice of `log1p` vs `log` vs linear scaling affects species rankings but is not justified or sensitivity-tested.
+- **Formulation scoring** (NB05/05b): The multi-criterion composite score uses fixed weights. The sensitivity analysis in NB05b (cell-13) is excellent — the same 5 species emerge across all 5 tested weight configurations — providing strong evidence the solution is robust to scoring assumptions.
+- **Synergy classification** (NB08): Using ±10% thresholds for synergistic/additive/antagonistic classification on only 8 data points is underpowered. The mean synergy score of −5.8% should be interpreted cautiously given n=8.
 
-**Statistical methods**: Appropriate throughout. Pearson/Spearman correlations for continuous/ordinal relationships, OLS regression with variance decomposition for H1 testing, Kruskal-Wallis for genus effects, geometric mean for engraftability aggregation. The R² = 0.274 for the metabolic model is honestly reported rather than inflated.
+### Notebook Organization
+All notebooks follow a consistent and logical structure: markdown header with goal/inputs/outputs → imports/setup → data loading → analysis → visualization → summary → file save. Section numbering is consistent. Each notebook summary prints key statistics for quick reference.
 
-**Issues identified**:
+### Pitfall Awareness
+The project correctly addresses several `docs/pitfalls.md` entries:
+- GapMind genome ID prefix mismatch (`RS_`/`GB_` — NB07 cell-4)
+- GapMind multi-row-per-pathway aggregation (correct `MAX` pattern used in all GapMind queries)
+- Spark `DECIMAL` → `DOUBLE` casting (explicit `CAST(... AS DOUBLE)` in NB07/NB09)
+- GapMind `score_category` values (`complete`/`likely_complete`/etc., not a simple `present` flag)
+- GapMind `metabolic_category` values (`'aa'`/`'carbon'` — used correctly)
+- `fact_pairwise_interaction` identity with `fact_carbon_utilization` — discovered and documented in NB08
 
-1. **Duplicated scoring function in NB05**: Cell-4 is a markdown cell containing Python code (the `score_formulation` function), and cell-5 is a code cell with an identical copy. This appears to be an editing artifact. The markdown cell will not execute, so the code cell is the operative one, but it is confusing.
+### Code Issues
 
-2. **NB05b formulation deduplication**: The k=5 #2 formulation lists "*Streptococcus salivarius*" twice (two different S. salivarius isolates: ASMA-737 and one of ASMA-1064/ASMA-3933/etc.). The scoring function operates on isolate IDs, not species, so this is valid but means the "5-species" formulation is actually a 4-species formulation with two S. salivarius strains. This should be flagged or filtered.
+1. **NB01 cell-27**: The metabolic overlap computation has a dangling `for/continue` loop that iterates over `carbon_sources` but only checks for `no_carbon` — the actual overlap computation is in a separate loop below. The dead code is harmless but confusing.
 
-3. **NaN species values**: Several isolates (APA20015, ASMA-1309, ASMA-2475, ASMA-765) have NaN species throughout the pipeline. APA20015 appears in the top 20 strict-safe candidates (#5 at k=1 with 59% inhibition) as "Unknown." These should either be resolved against `dim_isolate` or explicitly excluded with a note.
+2. **NB03 cell-11**: The `model_data_full` merge is immediately overridden by `.loc` indexing to attach `asma_id` and `species`. The merge is dead code and should be removed for clarity.
 
-4. **`fact_pairwise_interaction` is identical to `fact_carbon_utilization`**: NB08 discovers this (correlation = 1.0, mean_diff = 0.0 for all substrates). This is an important data quality finding that should be documented earlier — it means the "pairwise interaction" table does not contain co-culture data and the metabolic facilitation/competition analysis in Section 2 of NB08 is a dead end. The notebook handles this gracefully with a note, but this should propagate to the REPORT.
+3. **NB05 scoring weights vs NB05b**: NB05 uses weights (30% coverage, 15% complementarity, 35% inhibition, 20% engraftability); NB05b uses (25%, 10%, 35%, 30%). The weight change is motivated (more engraftability for clinical viability) but the lack of a bridging comment makes it easy to miss.
 
-5. **Scoring weight sensitivity not implemented**: RESEARCH_PLAN.md §NB05 specifies "Sensitivity analysis: vary criterion weights, check stability of top formulations." The scoring weights change between NB05 (coverage=30%, complementarity=15%, inhibition=35%, engraftability=20%) and NB05b (25%, 10%, 35%, 30%) but there is no systematic sensitivity analysis showing how results change across a range of weights. The consistency of the 5-species core across formulation sizes is noted as evidence of robustness, which is good but not a formal sensitivity test.
+4. **NB08 cell-3/5**: The `id_species.get()` call for ASMA-2260 returns a full Series rather than a scalar because the isolates table has duplicate rows for that ID. This produces garbled output in the interaction summary table where the species column shows the raw Series repr. Fix with `.iloc[0]` or `.drop_duplicates()`.
 
-6. **NB03 residual merge**: Lines creating `model_data_full` via a merge are immediately overridden by direct `.loc` indexing to attach `asma_id` and `species`. The merge is dead code.
-
-**Pitfall awareness**: The project correctly addresses several `docs/pitfalls.md` entries: GapMind genome ID prefix stripping (`RS_`/`GB_`), `CAST(... AS DOUBLE)` for Spark decimal columns, GapMind `score_category` values (`complete`/`likely_complete` not `present`), and the multiple-rows-per-genome-pathway issue. The `metabolic_category` values (`'aa'`/`'carbon'`) are used correctly. The BacDive utilization values pitfall is not relevant since BacDive is not queried.
+5. **NaN species isolates**: APA20015, ASMA-1309, ASMA-2475, and ASMA-765 propagate through the pipeline with NaN species. APA20015 appears in the top 5 single-isolate strict-safe candidates at k=1 with 59% inhibition, labeled "Unknown." These should be resolved or explicitly excluded.
 
 ## Findings Assessment
 
-**Are conclusions supported?**
-- **H1 (metabolic competition)**: r = 0.384, R² = 0.274 — well-supported by the data. The honest reporting of 27% explained variance, with 73% residual, is a strength. The identification of "dual-mechanism species" with high positive residuals is an insightful analysis.
-- **H2 (complementary coverage)**: The finding that k=3 achieves 100% niche coverage is supported by NB05b output tables. However, complementarity scores are uniformly low (0.04–0.13) — the formulation members are metabolically similar, not complementary. The niche coverage comes from each species covering a different *subset* of PA14's substrates, not from internal metabolic dissimilarity. This nuance could be discussed more explicitly.
-- **H3 (engraftability)**: *N. mucosa*'s top engraftability (1.595) is supported. The engraftability metric (prevalence × log1p(activity_ratio)) is reasonable but the REPORT says "prevalence × log(activity ratio)" — minor inconsistency.
-- **H4 (prebiotic)**: The negative result (no amino acid prebiotic) is well-supported. The pivot to sugar alcohols via GapMind (NB09) is the project's most novel finding and is strongly supported by the genomic evidence (100% vs 0% pathway completeness).
-- **H5 (pangenome conservation)**: Strongly supported for 4/5 species. The caveat about *G. sanguinis* (7 genomes, 39% AA pathway conservation) is appropriately flagged.
-- **H6 (lung adaptation)**: Supported qualitatively (21 lung genomes, enrichment in *R. dentocariosa* and *N. mucosa*). The small sample sizes (5–10 lung genomes) are acknowledged as a limitation.
+### Conclusions
+- **H1 (metabolic competition)**: Supported. The r = 0.384 correlation is statistically significant (p = 2.3×10⁻⁶). The honest reporting that metabolism explains only 27% of variance is a strength, though the CV results suggest the true figure is closer to 15%.
+- **H2 (complementary coverage)**: Supported. The k=3 formulation achieves 100% niche coverage. The sensitivity analysis confirms the 5-species core is robust across weight variations. Note: complementarity scores are uniformly low (0.04–0.13), meaning coverage comes from members hitting different *subsets* of PA14's substrates, not from overall metabolic dissimilarity.
+- **H3 (engraftability)**: Partially supported. *N. mucosa*'s top engraftability (1.595) is data-driven. The caveat that engraftability is inferred from prevalence, not directly measured, is appropriately noted.
+- **H4 (prebiotic)**: Amino acid prebiotics rejected (NB06); sugar alcohol candidates identified genomically (NB09). The pivot from a negative result to a novel prebiotic strategy is the project's most creative contribution.
+- **H5 (conservation)**: Strongly supported for 4/5 species. *G. sanguinis* (7 genomes, 39% AA pathway conservation) is correctly flagged as the weakest link.
+- **H6 (lung adaptation)**: Weakly supported. 21 lung genomes across 5 species with modest metabolic differences. The *R. dentocariosa* (38%) and *N. mucosa* (33%) lung enrichment is interesting but statistically underpowered.
 
-**Limitations acknowledged**: Yes, comprehensively — planktonic-only assays, 22 tested substrates, 142-isolate core cohort, sparse pairwise data, inferred engraftability, sparse lung metadata. The REPORT §3.5 is thorough.
+### Limitations
+The REPORT §3.5 is thorough and honest, covering: planktonic-only assays, 22 tested substrates, 142-isolate core cohort, sparse pairwise data (only 8 pair comparisons), inferred engraftability, sparse lung metadata (21 genomes), the `fact_pairwise_interaction` data identity issue, and the *N. mucosa* clade selection question. This is an exemplary limitations section.
 
-**Incomplete analysis**: The RESEARCH_PLAN mentions an NB08 for "Genomic Extension & BacDive Validation (if time permits)" — this was partially implemented as NB09 (genomic extension) but BacDive cross-validation and ModelSEED biochemistry analysis were not performed. This is acceptable given the "if time permits" qualifier and should be noted as future work.
+### Incomplete Analysis
+- BacDive cross-validation and ModelSEED biochemistry analysis mentioned in RESEARCH_PLAN.md (NB08 goals) were not performed — NB08 pivoted to pairwise interaction analysis instead. This is acceptable given the "if time permits" qualifier but should be noted as future work.
+- The REPORT mentions "eight stages" but the pipeline has 10 notebooks (including NB05b and NB09). Minor numbering discrepancy.
 
-**Literature context**: The REPORT §3.3 provides substantive literature integration with specific citations. The RESEARCH_PLAN literature section says "To be populated by /literature-review" but the REPORT itself has a complete references section — this is fine for the REPORT but the PLAN should be updated.
+### Visualizations
+29 figures are well-labeled and informative. The heatmaps (carbon utilization clustermap, pathway conservation, rate advantage, pathway selectivity) are particularly effective. The prebiotic selectivity plot (NB06) clearly communicates the negative result. One gap: there is no visualization of the final recommended formulation's niche coverage — a figure showing which of the 5 species covers which PA14 substrates would strengthen the community-level competitive exclusion narrative.
 
 ## Suggestions
 
-### Critical (should fix)
+### Critical
 
-1. **Re-execute NB05 and NB06 with saved outputs.** These are core notebooks (formulation optimization and prebiotic analysis) with zero saved outputs. Run `jupyter nbconvert --to notebook --execute --inplace` on both, or Kernel → Restart & Run All. The data files exist confirming they ran successfully — outputs just weren't saved. This is a hard requirement per the observatory standard.
+1. **Discuss cross-validation results in REPORT.md**: The 5-fold CV R² (0.145 ± 0.142) is substantially lower than the training R² (0.274) reported as the headline number in Section 2.3. Add a sentence acknowledging the CV results and noting that the true predictive power of metabolic features may be closer to 15% than 27%. This does not invalidate the qualitative conclusion (metabolic overlap is a real predictor) but affects quantitative interpretation.
 
-2. **Update README Reproduction section** to include NB05b, NB08, and NB09, which are needed for the complete analysis pipeline. Currently only NB01–NB07 are listed.
+2. **Acknowledge *N. mucosa* clade mismatch more prominently**: NB07 uses `s__Neisseria_mucosa_A` (15 genomes) for all pangenome analyses, but the PROTECT isolate reference genome (`GCA_003028315.1`) maps to the 8-genome `s__Neisseria_mucosa` clade via `GB_GCA_003028315.1`. This is noted in REPORT §3.5 but could affect conservation and lung adaptation findings for this key anchor species. Consider running the GapMind query for the 8-genome clade as a sensitivity check.
 
-### Important (should address)
+3. **Add `pyspark` and cluster-only dependencies to `requirements.txt` or Reproduction section**: Users attempting to run NB07/NB09 need `pyspark` and `berdl_notebook_utils`, neither of which is listed. A note that these are pre-installed on BERDL JupyterHub would suffice.
 
-3. **Filter or flag duplicate-species formulations in NB05b.** Several top-ranked k=5 formulations include two isolates of the same species (e.g., two *S. salivarius* strains). Either add a species-uniqueness constraint to the scoring function, or add a post-hoc column flagging these and discuss whether intra-species strain diversity provides meaningful benefit.
+### Important
 
-4. **Resolve NaN species isolates.** APA20015, ASMA-1309, ASMA-2475, and ASMA-765 propagate through the pipeline with NaN species. Either resolve them against the isolate catalog or filter them with a documented reason. APA20015 ranks in the top 5 single-isolate candidates under strict safety — its identity matters.
+4. **Resolve or exclude NaN-species isolates**: APA20015 ranks in the top 5 strict-safe candidates with 59% inhibition, labeled "Unknown." Either resolve its taxonomy against the isolate catalog or exclude it with a documented reason. Three other NaN-species isolates (ASMA-1309, ASMA-2475, ASMA-765) also propagate through the pipeline.
 
-5. **Add scoring weight sensitivity analysis.** Even a simple grid (vary each weight ±10%, check if the top-5 formulations change) would satisfy the RESEARCH_PLAN commitment and strengthen the claim that the 5-species core is robust.
+5. **Add a formulation niche coverage visualization**: A figure showing which of the 5 core species covers which PA14-preferred substrates would clearly communicate the community-level competitive exclusion mechanism. Currently, niche coverage is reported only as a percentage.
 
-6. **Remove the duplicated cell in NB05.** Cell-4 (markdown) contains the `score_formulation` function source code as markdown text; cell-5 contains it as executable code. Delete cell-4 or convert it to a proper markdown description of the scoring approach.
+6. **Fix NB08 ASMA-2260 species lookup** (cell-3/5): The duplicate isolate entries for ASMA-2260 cause garbled Series output in the interaction summary. Use `.iloc[0]` or `.drop_duplicates()` on the species lookup.
 
-### Nice-to-have
+7. **Caveat the pairwise interaction conclusions**: The claim that pairs are "near-additive" is based on only 8 comparisons across 5 unique pairs. Add a sample-size caveat to REPORT §2.10 and note that the complete 10-pair matrix (Section 4.2) is a critical gap, not just a nice-to-have follow-up.
 
-7. **Document the `fact_pairwise_interaction` = `fact_carbon_utilization` identity** in a project-level note or in the REPORT limitations. This data quality finding in NB08 is important for anyone extending the analysis — they should know this table does not contain co-culture data.
+### Nice-to-Have
 
-8. **Add expected runtimes** to the Reproduction section. NB07 and NB09 require Spark and may take several minutes per GapMind query across 6,760 PA genomes. Users benefit from knowing what to expect.
+8. **Justify the engraftability score formula**: The `prevalence × log1p(activity_ratio)` formula is reasonable but ad hoc. A brief justification (e.g., diminishing returns of very high activity ratios) or a check that top species are consistent with alternative formulations would strengthen NB04.
 
-9. **Update RESEARCH_PLAN.md Literature Context** section to replace "To be populated by /literature-review" with actual content (which is already present in REPORT.md §3.3). The RESEARCH_PLAN should not have placeholder text in a completed project.
+9. **Document BacDive/ModelSEED omissions**: Add a note in RESEARCH_PLAN.md or REPORT.md explaining that BacDive cross-validation and ModelSEED biochemistry were deferred due to the pivot toward pairwise interaction analysis.
 
-10. **Consider a cross-validation or hold-out test** for the metabolic overlap → inhibition regression. The R² = 0.274 is based on the full 142-isolate cohort. A leave-one-out or 5-fold CV R² would strengthen the predictive claim and could be added to NB03 with minimal effort.
-
-11. **Clarify the NB07 *Neisseria mucosa* clade selection.** The query finds two clades: `s__Neisseria_mucosa_A` (15 genomes) and `s__Neisseria_mucosa` (8 genomes). Only the first is used (`clades[:1]`). Document which clade corresponds to the PROTECT isolate's reference genome (`GCA_003028315.1` maps to `s__Neisseria_mucosa`, the 8-genome clade, but the code uses the 15-genome clade). This may not affect conclusions but should be noted.
+10. **Clean up dead code**: Remove the dangling `for/continue` block in NB01 cell-27 and the dead `model_data_full` merge in NB03 cell-11. Minor, but improves readability.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
 - **Date**: 2026-03-19
-- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, requirements.txt, 10 notebooks, 16 data files, 26 figures
+- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, requirements.txt, 10 notebooks, 16 data files, 29 figures
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.
