@@ -241,6 +241,8 @@ Overall mean synergy is −5.8%, indicating mildly antagonistic interactions on 
 
 ![Dose-response: pair inhibition vs total inoculation density](figures/08_dose_response_pairs.png)
 
+**Data note**: The `fact_pairwise_interaction` table proved identical to `fact_carbon_utilization` (correlation = 1.0), meaning per-substrate co-culture effects cannot be assessed from endpoint OD data. The interaction analysis relies solely on the RFU-based competition assay.
+
 **Conclusion**: Pairwise interactions are approximately additive for *N. mucosa* combinations, supporting its role as a formulation anchor. However, these conclusions are based on only **8 comparisons across 5 unique pairs** — an underpowered sample. The complete 10-pair interaction matrix for the 5-species core (Proposed Experiment 4.2) is a critical gap, not merely a nice-to-have extension. Until the full matrix is measured, the additive scoring assumption should be treated as provisional.
 
 *(Notebook: 08_interaction_modeling.ipynb)*
@@ -304,7 +306,7 @@ CF-derived PA shows 6 FDR-significant differences from non-CF lung PA, but all a
 
 ![PROTECT PA genome variation (655 isolates, 15 strain groups)](figures/11_protect_pa_genome_variation.png)
 
-**Genomic growth rate context**: PA's genome (6.58 Mb, 6,177 CDS) is 2.5–3× larger than our commensal species (2.1–2.7 Mb, 2,200–3,000 CDS). Despite this size disadvantage, our growth curve data (NB02) shows PA14 outgrows most commensals on its preferred amino acid substrates — confirming that PA's catabolic enzyme efficiency, not its ribosomal translation rate, drives its competitive advantage on amino acids. Codon usage bias analysis (NB12) of ribosomal proteins shows commensals have comparable or higher CUB than PA (commensal mean 688 vs PA 644), suggesting commensals are not inherently slow translators — they simply lack PA's amino acid catabolic specialization.
+**Genomic growth rate context**: PA's genome (6.58 Mb, 6,177 CDS) is 2.5–3× larger than our commensal species (2.1–2.7 Mb, 2,200–3,000 CDS). Despite this size disadvantage, our growth curve data (NB02) shows PA14 outgrows most commensals on its preferred amino acid substrates — confirming that PA's catabolic enzyme efficiency, not its ribosomal translation rate, drives its competitive advantage on amino acids. Codon usage bias analysis (NB12) of ribosomal proteins shows variation across species, but cross-species CUB comparisons are confounded by GC content (ranging from 31% for *G. sanguinis* to 73% for *M. luteus*) — organisms with extreme GC composition have inflated CUB scores regardless of growth optimization. The CUB analysis therefore cannot reliably distinguish growth rate differences between our species; the lab growth data remains the definitive measure of competitive dynamics on amino acid substrates.
 
 ![Growth rate prediction: CUB scores and genome size for PA vs commensals](figures/12_growth_rate_prediction.png)
 
@@ -336,7 +338,7 @@ Three paths forward warrant consideration: (a) **Accept the risk and test k=3 in
 
 ### 3.3 Growth Rate Asymmetry and the Importance of Pre-Colonization
 
-A fundamental challenge for competitive exclusion is that PA14 outgrows most commensals on its preferred amino acid substrates (only 13.8% of pairwise comparisons show a commensal rate advantage). This advantage is driven by PA's specialized amino acid catabolic enzymes, not by ribosomal translation speed — codon usage bias analysis (NB12) shows commensals have comparable ribosomal optimization (CUB 688 vs PA 644). The lab assay, which measures growth on single amino acids in planktonic culture, is the ground truth for this specific competitive scenario.
+A fundamental challenge for competitive exclusion is that PA14 outgrows most commensals on its preferred amino acid substrates (only 13.8% of pairwise comparisons show a commensal rate advantage). This advantage is driven by PA's specialized amino acid catabolic enzymes. While codon usage bias analysis (NB12) shows variation across species, the cross-species CUB comparison is confounded by GC content variation (31–73%) and cannot reliably distinguish growth rate potential. The lab growth data — which directly measures competitive dynamics on the relevant substrates — is the ground truth.
 
 Three factors mitigate PA's substrate-specific growth advantage:
 
@@ -496,7 +498,7 @@ Based on our findings, we recommend the following experimental program:
 | `11_pa_within_lung_diversity.ipynb` | Within-lung PA diversity, formulation robustness assessment |
 | `12_growth_rate_prediction.ipynb` | Codon usage bias analysis for growth rate prediction |
 
-### Figures (25 total)
+### Figures (35 total)
 
 All figures are saved in `figures/` and appear inline throughout this report.
 
