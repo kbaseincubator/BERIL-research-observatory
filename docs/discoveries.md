@@ -8,6 +8,10 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-03
 
+### [amr_environmental_resistome] Resistance mechanism composition is strongly environment-dependent across 14,723 species
+
+Efflux pumps constitute 21% of AMR in human gut species but only 1% in aquatic (η²=0.127). Metal resistance constitutes 45% in soil/aquatic but 6% in human gut (η²=0.107). Clinical species have 68% accessory (acquired) AMR vs soil 43%. Within 823 multi-environment species, clinical strain fraction predicts total AMR (rho=0.465, p=2.2e-45). K. pneumoniae has 1,115 AMR clusters (only 7 core) across 13,637 genomes. All findings survive family-level phylogenetic control (20/141 families significant). This is the largest genomic AMR-environment analysis to date, extending Gibson et al. (2015, 6K genomes) by 50×.
+
 ### [amr_cofitness_networks] AMR support networks enriched for flagellar motility and amino acid biosynthesis
 
 Cofitness analysis of 801 AMR genes across 28 organisms reveals that AMR cofitness neighborhoods are enriched for flagellar motility (GO:0071973, 5 organisms FDR<0.05), flagellum assembly (GO:0044780, 5 orgs), histidine biosynthesis (GO:0000105, 3 orgs), and tryptophan biosynthesis (GO:0000162, 3 orgs). This enrichment is undetectable with old FB SEED annotations (0/280 significant) — only InterProScan GO (68% coverage) reveals it. Support networks are organism-specific (cross-mechanism Jaccard 0.375 >> within-mechanism 0.207, MWU p=4.3e-13). AMR genes are in larger-than-average ICA modules (median 46 vs 27, p=1.7e-8). The co-regulation with motility and biosynthesis suggests AMR costs reflect competition for the proton motive force.
