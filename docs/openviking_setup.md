@@ -5,9 +5,9 @@ work. Keep the runtime data directory outside Git and point the server at a
 repo-managed config file.
 
 For implementation details of the currently landed migration slice, see
-[`docs/openviking_phase2.md`](openviking_phase2.md).
+[`docs/openviking_phase3.md`](openviking_phase3.md).
 For the next implementation slice, see
-[`docs/openviking_phase3_plan.md`](openviking_phase3_plan.md).
+[`docs/openviking_phase4_plan.md`](openviking_phase4_plan.md).
 
 ## 1. Install the local package environment
 
@@ -57,6 +57,8 @@ This writes `docs/migration_baseline/2026-03-19/baseline_snapshot.json` and
 ```bash
 uv run scripts/viking_ingest.py --dry-run --limit 5
 uv run scripts/viking_materialize_renders.py
+uv run scripts/viking_materialize_exports.py
+uv run scripts/viking_validate_exports.py --generated-dir docs
 uv run scripts/viking_validate_parity.py
 ```
 

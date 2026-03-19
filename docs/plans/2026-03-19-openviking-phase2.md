@@ -84,7 +84,8 @@ Expected: PASS
 
 **Files:**
 - Create: `docs/openviking_phase2.md`
-- Create: `docs/openviking_phase3_plan.md`
+- Create: `docs/openviking_phase3.md`
+- Create: `docs/openviking_phase4_plan.md`
 - Modify: `docs/openviking_setup.md`
 - Modify: `docs/viking_sql_migration.md`
 
@@ -93,7 +94,8 @@ Expected: PASS
 Document:
 - what Phase 2 now implements
 - how to smoke test the service
-- what remains for Phase 3 only
+- what Phase 3 implements
+- what remains for Phase 4 only
 
 **Step 2: Verify docs references**
 

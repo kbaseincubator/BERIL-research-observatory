@@ -1,7 +1,7 @@
 # OpenViking Phase 2 Implementation
 
-This document describes the current Phase 2 slice of the OpenViking migration:
-read parity plus the first shared live-context write paths.
+This document describes the Phase 2 slice of the OpenViking migration: read
+parity plus the first shared live-context write paths.
 
 It builds on the baseline and resource-model decisions in
 [`docs/viking_sql_migration.md`](viking_sql_migration.md).
@@ -155,4 +155,9 @@ Phase 2 does **not** implement:
 - tenancy or memory design
 - UI integration
 
-Those remain Phase 3+ work.
+Those moved into Phase 3 and later work.
+
+For the landed export slice, see
+[`docs/openviking_phase3.md`](openviking_phase3.md).
+For the next implementation slice, see
+[`docs/openviking_phase4_plan.md`](openviking_phase4_plan.md).
