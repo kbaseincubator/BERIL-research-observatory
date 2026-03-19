@@ -14,12 +14,26 @@ What genes are co-regulated with antimicrobial resistance (AMR) genes across gro
 
 ## Literature Context
 
-- **Olivares Pacheco et al. (2017)** showed efflux pump costs in *P. aeruginosa* are metabolic (proton motive force drain) and compensated by metabolic rewiring — implying the support network is metabolic.
-- **Melnyk et al. (2015)** found fitness costs are highly variable (CV > 100%), which our prior project narrowed to a uniform +0.086 at the organism level. The variability may reside in the support network rather than the AMR gene itself.
-- **Our `aromatic_catabolism_network` project** demonstrated that ADP1's aromatic degradation requires a 51-gene support network (Complex I, iron, PQQ) identified via cofitness. This is the methodological template.
-- **Our `amr_fitness_cost` project** found: (1) universal +0.086 cost across 25 organisms, (2) cost is mechanism-independent, (3) mechanism predicts conservation but not cost (χ²=69.3, p=1.4e-13), (4) efflux shows stronger antibiotic flip than enzymatic (MWU p=0.007).
+### Co-fitness as functional genomics tool
+- **Sagawa et al. (2017, PLoS ONE)** validated that cofitness recovers transcriptional regulatory relationships — at FDR 3%, identified significant cofitness for targets of 158 TFs in 24 bacteria. Directly supports our premise that cofitness between an AMR gene and another gene implies shared regulation. PMID: 28542589
+- **Price et al. (2018, Nature)** demonstrated conserved cofitness associations provide high-confidence functional predictions for 2,316 genes across 32 bacteria. PMID: 29769716
+- **Nichols et al. (2011, Cell)** pioneered chemical genomics in *E. coli*, showing condition-dependent fitness profiles reveal gene function — including insights into multiple antibiotic resistance genes. PMID: 21185072
 
-**Gap**: No study has systematically mapped the co-fitness neighborhoods of AMR genes across multiple organisms. We know AMR genes are costly and that compensatory evolution reduces costs, but we don't know *which genes* constitute the compensatory/support network — or whether this network is conserved.
+### AMR regulatory networks and compensatory evolution
+- **Patel & Matange (2021, eLife)** showed that AMR regulatory networks rewire under antibiotic selection, with compensatory rewiring that restores fitness while maintaining resistance. Cofitness could capture both original and compensatorily rewired regulatory context. PMID: 34591012
+- **Eckartt et al. (2024, Nature)** identified compensatory mutations in NusG (transcription elongation factor) that restore fitness of rifampicin-resistant *M. tuberculosis* — compensatory evolution targets the same functional pathway disrupted by resistance. This predicts support networks are functionally related to the AMR gene. PMID: 38509362
+- **Olivares Pacheco et al. (2017)** showed efflux pump costs in *P. aeruginosa* are metabolic (proton motive force drain) and compensated by metabolic rewiring. PMID: 28765215
+- **Martinez & Rojo (2011, FEMS Microbiol Rev)** reviewed linkage between metabolism and resistance — global metabolic regulators modulate antibiotic susceptibility, supporting the hypothesis that AMR genes are embedded in broader metabolic/regulatory networks. PMID: 21645016
+
+### The intrinsic resistome concept
+- **Cox & Wright (2013)** defined the "intrinsic resistome" — genes that don't directly encode resistance but are required for it to function. This is exactly the support network we aim to map. PMID: 23499305
+
+### Prior BERIL projects
+- **`aromatic_catabolism_network`** demonstrated that ADP1's aromatic degradation requires a 51-gene support network (Complex I, iron, PQQ) identified via cofitness. This is the methodological template.
+- **`amr_fitness_cost`** found: (1) universal +0.086 cost across 25 organisms, (2) cost is mechanism-independent, (3) mechanism predicts conservation but not cost (χ²=69.3, p=1.4e-13), (4) efflux shows stronger antibiotic flip than enzymatic (MWU p=0.007).
+- **`fitness_modules`** decomposed fitness data into 1,116 ICA modules with 156 cross-organism families — ready to intersect with AMR genes.
+
+**Gap**: No study has systematically mapped the co-fitness neighborhoods of AMR genes across multiple organisms. We know AMR genes are costly and that compensatory evolution reduces costs, but we don't know *which genes* constitute the compensatory/support network — or whether this network is conserved. Sagawa et al. validated cofitness as a regulatory inference tool, Eckartt et al. showed compensatory mutations target related pathways, and Cox & Wright defined the intrinsic resistome concept — but nobody has combined genome-wide cofitness with pan-bacterial AMR annotation to map these networks at scale.
 
 ## Data Sources
 
@@ -39,88 +53,97 @@ What genes are co-regulated with antimicrobial resistance (AMR) genes across gro
 
 ### Key Numbers
 
-- **25 organisms** with both AMR genes and fitness modules (intersection of amr_fitness_cost and fitness_modules)
-- **801 AMR genes** with fitness data in those organisms
+- **~25 organisms** with both AMR genes and fitness modules (intersection to be verified in NB01)
+- **801 AMR genes** with fitness data across 25 amr_fitness_cost organisms
 - **~1,116 ICA modules** across 32 organisms
-- **13.6M cofitness pairs** in the `cofit` table (need to extract for our 25 organisms)
+- **Cofitness computed locally** from cached fitness matrices (~2 min/organism, ~50 min total)
 
 ## Query Strategy
 
-### Tables Required
+### Cofitness Computation (Primary Method)
+
+The `cofit` table stores only top ~96 partners per gene (not all pairwise), making it unsuitable for threshold-based network definition. Instead, compute full pairwise cofitness from cached fitness matrices:
+
+```python
+# For each organism: compute Pearson correlation between each AMR gene
+# and all other genes across all experiments
+fit_mat = pd.read_csv(f'{org}_fitness_matrix.csv', index_col=0)
+fit_mat.index = fit_mat.index.astype(str)
+fit_mat = fit_mat.apply(pd.to_numeric, errors='coerce')
+
+# Full pairwise correlation: AMR genes vs all genes
+amr_profiles = fit_mat.loc[amr_loci]
+all_corr = amr_profiles.T.corrwith(fit_mat.T)  # vectorized per AMR gene
+```
+
+### Tables Required (for annotation only)
 
 | Table | Purpose | Estimated Rows | Filter Strategy |
 |-------|---------|----------------|-----------------|
-| `cofit` | Cofitness partners of AMR genes | ~13.6M total, ~500K per organism | Filter by `orgId` and `locusId IN (amr_loci)` |
-| `gene` | Gene metadata (descriptions, type) | ~228K | Filter by `orgId` |
-
-### Key Queries
-
-1. **Extract cofitness partners of AMR genes** (per organism, via Spark):
-```sql
-SELECT orgId, locusId, hitId, CAST(cofit AS FLOAT) AS cofit, CAST(rank AS INT) AS rank
-FROM kescience_fitnessbrowser.cofit
-WHERE orgId = '{org}' AND locusId IN ({amr_loci})
-ORDER BY CAST(cofit AS FLOAT) DESC
-```
-
-2. **Alternatively, compute cofitness from cached fitness matrices** (local, no Spark):
-```python
-# Pearson correlation of fitness profiles between AMR genes and all other genes
-fit_mat = pd.read_csv(f'{org}_fitness_matrix.csv', index_col=0)
-amr_corr = fit_mat.loc[amr_loci].T.corrwith(fit_mat.T)  # vectorized
-```
+| Gene annotations | SEED, KEGG, COG for support network genes | Cached locally | Load from `fitness_modules/data/annotations/` |
+| `ortholog` | Cross-organism gene mapping for H4 | ~1.15M | Cached in fitness_modules |
 
 ### Performance Plan
 
-- **Tier**: Hybrid — Spark for `cofit` table extraction (one query per organism), local computation for module analysis
-- **Estimated complexity**: Moderate — the cofit table is large but well-indexed by orgId
-- **Alternative**: Compute cofitness directly from cached fitness matrices (avoids Spark entirely, ~2 min per organism)
-- **Known pitfalls**: All FB columns are strings — CAST before numeric operations; locusId type mismatch (always .astype(str))
+- **Tier**: Fully local — all data pre-cached in fitness matrices, ICA modules, and annotation files
+- **No Spark required** for core analysis
+- **Estimated runtime**: ~2 min/organism for cofitness computation, ~50 min total for 25 organisms
+- **Known pitfalls**:
+  - locusId type mismatch (integer vs string) — always `.astype(str)` and verify overlap before computation
+  - All FB numeric values are strings — `pd.to_numeric(errors='coerce')` on fitness matrices
+  - Essential genes invisible in genefitness — report fraction of AMR genes absent from matrices
 
 ## Analysis Plan
 
-### Notebook 1: Data Assembly
+### Notebook 1: Data Assembly (~60 min runtime)
 
-- **Goal**: Merge AMR gene catalog with ICA module membership and extract cofitness data
+- **Goal**: Merge AMR gene catalog with ICA module membership and compute full cofitness
 - **Method**:
-  1. Load AMR genes (801 with fitness data) and map to ICA modules
-  2. For each organism, compute AMR gene cofitness from cached fitness matrices (faster than Spark cofit table)
-  3. For each AMR gene, identify top-N cofitness partners (|r| > 0.5 threshold, or top 20)
-  4. Annotate cofitness partners with functional categories (SEED, KEGG, COG)
+  1. Verify organism intersection: which organisms have AMR genes AND fitness matrices AND ICA modules? Report exact count.
+  2. Verify locusId overlap: for each organism, check that AMR gene locusIds exist in the fitness matrix index after `.astype(str)`. Report any 0%-overlap organisms.
+  3. Report AMR gene ICA module coverage: what fraction of AMR genes are in any ICA module? If <50%, note that module analysis is supplementary.
+  4. For each organism, compute full pairwise Pearson correlation between each AMR gene's fitness profile and all other genes' profiles. (~2 min/organism)
+  5. For each AMR gene, extract support network at three thresholds: |r| > 0.3 (primary), |r| > 0.4, |r| > 0.5.
+  6. Separate intra-operon from extra-operon partners: exclude genes within 5 ORFs on the same strand as the AMR gene (polar effect control).
+  7. Annotate support network genes with functional categories (SEED, KEGG, COG from cached annotation files).
 - **Expected output**: `data/amr_cofitness_partners.csv`, `data/amr_module_membership.csv`
+- **Key figures**: AMR module coverage bar chart, cofitness threshold sensitivity plot
 
-### Notebook 2: AMR Genes in ICA Modules
+### Notebook 2: AMR Genes in ICA Modules (~10 min)
 
 - **Goal**: Test H2 — are AMR genes in stress modules (efflux) vs isolated modules (enzymatic)?
 - **Method**:
-  1. For each AMR gene, identify which ICA module(s) it belongs to
-  2. Characterize AMR-containing modules: size, functional annotations, % AMR genes, module family membership
-  3. Compare module properties by AMR mechanism: are efflux modules larger/more broadly annotated than enzymatic modules?
-  4. Test whether AMR-containing modules are enriched for stress response, membrane, or energy metabolism annotations
-  5. Check whether AMR genes are in cross-organism conserved module families
+  1. For each AMR gene with module membership, characterize the module: size, functional annotations, % AMR genes, module family membership
+  2. Compare module properties by AMR mechanism: are efflux modules larger/more broadly annotated than enzymatic modules? (Kruskal-Wallis)
+  3. Test whether AMR-containing modules are enriched for stress response, membrane, or energy metabolism annotations vs non-AMR modules (Fisher's exact, BH-FDR across annotation categories within each organism)
+  4. Check whether AMR genes are in cross-organism conserved module families (from `fitness_modules/data/module_families/`)
+  5. For AMR genes NOT in any module, characterize their cofitness neighborhoods as a complementary analysis
 - **Expected output**: `data/amr_modules_characterized.csv`, figures
+- **Key figures**: Module annotation heatmap (AMR-containing vs all), mechanism × module type stacked bar
 
-### Notebook 3: Support Network Analysis
+### Notebook 3: Support Network Analysis (~20 min)
 
 - **Goal**: Test H1 and H3 — characterize the co-fitness support network and test whether network size predicts cost
 - **Method**:
-  1. For each AMR gene, define the "support network" as genes with |cofitness r| > 0.5 (or top 20 partners)
-  2. Functional enrichment of support networks: what COG/KEGG/SEED categories are overrepresented?
-  3. Test whether AMR support networks are enriched for specific functions compared to random gene support networks (permutation test)
-  4. Test H3: correlate support network size/essentiality with AMR gene fitness cost
-  5. Identify "hub" support genes that appear in multiple AMR networks within an organism
+  1. For each AMR gene, define the "support network" as extra-operon genes with |cofitness r| > 0.3 (primary threshold)
+  2. Functional enrichment: for each COG/KEGG/SEED category, test overrepresentation in AMR support networks vs genome background (Fisher's exact per organism, BH-FDR across categories)
+  3. Permutation test for H1: select 1,000 random non-AMR gene sets matched by conservation class (core/auxiliary) and organism, compute their support networks identically, compare functional enrichment distributions. Report fraction of AMR enrichments that exceed 95th percentile of random.
+  4. Test H3: correlate support network size with AMR gene fitness cost (Spearman, pooled across organisms with organism as a covariate). Acknowledge possible low power if cost variance is narrow.
+  5. Identify "hub" support genes that appear in multiple AMR networks within an organism — these are candidate compensatory evolution targets.
 - **Expected output**: `data/amr_support_networks.csv`, `data/support_network_enrichment.csv`, figures
+- **Key figures**: Enrichment volcano plot, network size vs fitness cost scatter, hub gene frequency distribution
 
-### Notebook 4: Cross-Organism Conservation of Support Networks
+### Notebook 4: Cross-Organism Conservation of Support Networks (~15 min)
 
 - **Goal**: Test H4 — are support networks conserved across organisms for the same AMR mechanism?
 - **Method**:
-  1. For each AMR mechanism (efflux, enzymatic, metal), collect support network genes across all organisms
-  2. Map support genes to ortholog groups (using FB `ortholog` table or KEGG KOs)
-  3. Test whether the same functional categories appear in support networks for the same mechanism across organisms
-  4. Identify the "core support network" — functions present in >50% of organisms for a given mechanism
-  5. Compare to the `aromatic_catabolism_network` approach for methodological validation
+  1. For each AMR mechanism (efflux, enzymatic, metal), collect extra-operon support network genes across all organisms
+  2. Map support genes to KEGG KOs (from cached annotations) for cross-organism comparison
+  3. Test H4: for each mechanism, are the same KO categories overrepresented in support networks across organisms more than expected by chance? Null model: support networks of random genes matched by conservation class show the same KO distribution. Compare to `cofitness_coinheritance` baseline (accessory modules: 36% significant after FDR).
+  4. Identify the "core support network" — KO categories present in support networks of >50% of organisms for a given mechanism
+  5. Compare efflux vs enzymatic vs metal support networks: do different mechanisms recruit different support functions?
 - **Expected output**: `data/conserved_support_network.csv`, figures
+- **Key figures**: Conservation heatmap (KO category × mechanism × organism), core support network summary
 
 ## Expected Outcomes
 
@@ -131,14 +154,18 @@ amr_corr = fit_mat.loc[amr_loci].T.corrwith(fit_mat.T)  # vectorized
 
 ## Potential Confounders
 
-1. **Genomic proximity confound**: Genes near AMR genes on the chromosome will have correlated fitness due to polar effects of transposon insertions, not true co-regulation. Mitigation: exclude genes within 5 kb of each AMR gene from the support network.
+1. **Genomic proximity / operon confound**: Genes near AMR genes on the chromosome show correlated fitness from polar effects of transposon insertions, not true co-regulation. This is especially relevant for multi-gene efflux operons (regulator + inner membrane + outer membrane). Mitigation: exclude genes within 5 ORFs on the same strand; classify partners as intra-operon vs extra-operon.
 2. **Module size bias**: Larger modules are more likely to contain AMR genes by chance. Mitigation: permutation test comparing observed AMR module membership to random expectation.
-3. **Annotation bias**: Well-annotated organisms may show stronger functional enrichment simply because more genes have annotations. Mitigation: report enrichment as fraction of annotated genes only.
-4. **Multiple testing**: Many AMR genes × many organisms × multiple enrichment tests. Mitigation: BH-FDR within each analysis dimension.
-5. **Cofitness threshold sensitivity**: The support network definition depends on the cofitness threshold. Mitigation: test multiple thresholds (|r| > 0.3, 0.4, 0.5) and report sensitivity.
+3. **Sparse module coverage**: ICA modules contain ~700 genes/organism, so many AMR genes may not be in any module. Mitigation: report coverage fraction; supplement module analysis with direct cofitness neighborhoods.
+4. **Annotation bias**: Well-annotated organisms may show stronger functional enrichment. Mitigation: report enrichment as fraction of annotated genes only; compare across organisms with similar annotation rates.
+5. **Multiple testing**: NB02: BH-FDR across annotation categories within each organism. NB03: BH-FDR across COG/KEGG/SEED categories per organism; permutation test provides a separate non-parametric control. NB04: BH-FDR across KO categories per mechanism. Target FDR = 0.05 throughout.
+6. **Cofitness threshold sensitivity**: Support network definition depends on threshold. Mitigation: test |r| > 0.3 (primary), 0.4, 0.5 and report all three.
+7. **H3 power concern**: Per-gene fitness cost variance may be narrow (most genes near −0.024 with tight distribution), limiting ability to detect a correlation with network size. Mitigation: report variance; consider pooling across organisms with organism as covariate.
+8. **Essential AMR genes**: ~4.6% of AMR genes are absent from fitness matrices (putatively essential). These are excluded from support network analysis but may be the most interesting cases. Mitigation: report count and acknowledge.
 
 ## Revision History
 
+- **v2** (2026-03-19): Incorporated plan review — switched to local cofitness computation (cofit table stores only top ~96 partners), lowered primary threshold to |r|>0.3, added operon separation, specified permutation design (1000 draws, conservation-matched), added FDR scope per notebook, added module coverage check, added runtime estimates
 - **v1** (2026-03-19): Initial plan
 
 ## Authors
