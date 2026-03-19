@@ -27,7 +27,7 @@ Using InterProScan GO annotations (68% gene coverage — 3.6× better than old S
 
 This enrichment was undetectable with old SEED annotations (0/280 significant) — a dramatic demonstration that annotation quality matters for functional genomics.
 
-The biological interpretation: AMR genes are co-regulated with the two most energetically expensive bacterial programs — **flagellar motility** (proton motive force driven) and **aromatic amino acid biosynthesis** (shikimate pathway). Both share the proton motive force as an energy source with efflux pumps, suggesting the cost of resistance reflects competition for cellular energy budgets.
+**Important caveat:** This enrichment may reflect **shared dispensability under lab conditions** rather than genuine co-regulation. FB experiments use shaken liquid culture (where flagella are useless) and often supplemented media (where biosynthesis is redundant). AMR genes, flagellar genes, and biosynthesis genes are all metabolic burdens under these conditions. A fitness-matched permutation (drawing random genes with the same slightly-positive fitness distribution) is needed to distinguish true co-regulation from shared dispensability — see Interpretation section for full discussion.
 
 By mechanism, efflux AMR genes show the strongest enrichment for amino acid biosynthesis (histidine in 6 organisms, tryptophan in 5), while metal resistance genes show stronger chemotaxis enrichment (4 organisms). However, no GO term is significantly mechanism-specific after FDR correction.
 
@@ -110,42 +110,59 @@ This is a methodological contribution: genome-wide cofitness analyses require hi
 
 ## Interpretation
 
-### AMR genes are co-regulated with the bacterial motility-chemotaxis-biosynthesis axis
+### Cofitness enrichment may reflect shared dispensability, not co-regulation
 
-The central finding is that AMR genes are not isolated functions — they are embedded in a regulatory context dominated by **flagellar motility, chemotaxis, two-component signaling, and amino acid biosynthesis**. These functions share a common thread: they are among the most energetically expensive programs in a bacterial cell, and they compete with efflux pumps and other resistance mechanisms for the proton motive force.
+The enrichment of flagellar motility, chemotaxis, and amino acid biosynthesis in AMR support networks admits two interpretations:
 
-This provides a mechanistic explanation for the uniform +0.086 fitness cost observed in `amr_fitness_cost`: the cost reflects **competition for shared cellular energy budgets**, not the specific biochemistry of resistance. Disrupting an AMR gene frees energy for other co-regulated programs (motility, biosynthesis), producing a modest fitness advantage.
+**Interpretation A (co-regulation):** AMR genes are genuinely embedded in regulatory programs that co-control resistance, motility, and biosynthesis, and the cofitness signal reflects condition-specific co-regulation via shared transcription factors or signaling cascades.
 
-### Organism regulatory architecture trumps resistance mechanism
+**Interpretation B (shared dispensability):** The enrichment is an artifact of the Fitness Browser experimental design. Nearly all FB experiments use **shaken liquid culture**, where flagella are useless (no surface to swim on, no chemical gradient to follow). Most use **rich or defined media with amino acid supplements**, where biosynthesis is redundant. AMR genes are similarly dispensable without antibiotics. All three gene classes — AMR, flagellar, and biosynthetic — are therefore **metabolic burdens under standard lab conditions**, producing modestly positive knockout fitness across most experiments. The cofitness signal reflects shared membership in the "dispensable under lab conditions" gene class, not a mechanistic connection.
 
-The strong organism-specificity of support networks (cross-mechanism Jaccard 0.375 >> within-mechanism 0.207) reveals that AMR genes adapt to **the organism's existing regulatory landscape** rather than building dedicated support infrastructure. This is consistent with compensatory evolution models (Patel & Matange 2021, eLife) that predict regulatory network rewiring integrates resistance into existing programs.
+**Evidence favoring Interpretation B:**
+- The enriched categories are precisely the ones that would be dispensable in shaken flask culture: motility (useless without surfaces), chemotaxis (useless without gradients), amino acid biosynthesis (redundant in supplemented media)
+- Energy metabolism is NOT enriched (0/25 organisms, fold 0.91 from the permutation test) — because energy metabolism IS useful in lab conditions
+- The permutation test matched random genes by conservation class but **not by mean fitness level**. If we had drawn random genes with the same slightly-positive fitness distribution as AMR genes, the flagellar enrichment might disappear entirely
 
-This explains a puzzle from `amr_fitness_cost`: mechanism predicts conservation (metal 44% accessory vs efflux 13%) but not cost. The cost is determined by the organism's regulatory context, while conservation is determined by the mechanism's acquisition history.
+**What Pearson correlation does and doesn't control:** Pearson r subtracts each gene's mean fitness before correlating, so two genes that are *uniformly* slightly positive would show zero correlation. The cofitness signal requires condition-specific covariation. However, dispensable genes may share condition-responsive patterns (e.g., both are more dispensable under nutrient-rich conditions and less dispensable under starvation) without being co-regulated — they just respond similarly to the same environmental axis.
+
+**The key unresolved test:** A fitness-matched permutation — drawing random non-AMR genes with the same mean fitness distribution (−0.05 to +0.05) — would distinguish the two interpretations. If random slightly-positive genes also show flagellar enrichment in their cofitness neighborhoods, Interpretation B is correct. If AMR genes uniquely enrich for flagella even among genes with similar fitness, Interpretation A is supported. This is the single most important follow-up analysis.
+
+### Organism regulatory architecture trumps resistance mechanism (robust finding)
+
+The organism-specificity finding is **robust to the dispensability confound**: regardless of why AMR genes correlate with their partners, the fact that different AMR mechanisms within the same organism share more partners (J = 0.375) than the same mechanism across organisms (J = 0.207, p = 4.3×10⁻¹³) reveals that each organism has its own characteristic set of dispensable/co-varying genes. This is a genuine structural finding about how genomes are organized, not an artifact of the enrichment categories.
+
+This explains a puzzle from `amr_fitness_cost`: mechanism predicts conservation (metal 44% accessory vs efflux 13%) but not cost. The cost is determined by the organism's gene content and growth context, while conservation is determined by the mechanism's acquisition history.
+
+### AMR genes are in larger-than-average modules (robust finding)
+
+The ICA module size result (AMR modules median 46 vs non-AMR 27, p = 1.7×10⁻⁸) is also robust — ICA decomposition captures condition-specific co-regulation, not just shared mean fitness. AMR genes that do land in modules are in larger, cross-organism conserved modules, indicating they are embedded in broad cellular programs with genuine co-regulatory structure.
 
 ### Literature Context
 
-- **Sagawa et al. (2017)** validated that cofitness recovers transcriptional regulatory relationships in 24 bacteria. Our finding that AMR cofitness neighborhoods are enriched for specific GO terms confirms this, with AMR genes revealing co-regulation with motility and biosynthesis.
-- **Martinez & Rojo (2011)** reviewed the linkage between metabolism and intrinsic resistance, noting that global metabolic regulators modulate antibiotic susceptibility. Our discovery of amino acid biosynthesis enrichment in AMR support networks supports this metabolism-resistance coupling.
-- **Olivares Pacheco et al. (2017)** showed efflux pump costs in *P. aeruginosa* are metabolic (PMF drain) and compensated by metabolic rewiring. The co-regulation of efflux genes with histidine and tryptophan biosynthesis (both energetically expensive) supports the PMF competition model.
-- **Eckartt et al. (2024, Nature)** identified compensatory mutations targeting the same functional pathway as the resistance mutation. Our finding that support networks are organism-specific (not mechanism-specific) extends this: compensation integrates AMR genes into the organism's broader regulatory programs.
-- **Cox & Wright (2013)** defined the "intrinsic resistome" — genes required for resistance to function. Our cofitness-defined support networks are an empirical mapping of this concept, revealing that the intrinsic resistome converges on motility and metabolic functions across diverse bacteria.
+- **Sagawa et al. (2017)** validated that cofitness recovers transcriptional regulatory relationships in 24 bacteria. Our cofitness analysis successfully identifies functional categories — the question is whether the AMR-motility signal reflects regulation or shared dispensability.
+- **Martinez & Rojo (2011)** reviewed the linkage between metabolism and intrinsic resistance, noting that global metabolic regulators modulate antibiotic susceptibility. If Interpretation A is correct, this framework directly supports our findings.
+- **Olivares Pacheco et al. (2017)** showed efflux pump costs in *P. aeruginosa* are metabolic (PMF drain) and compensated by metabolic rewiring. The PMF competition model would explain why efflux genes correlate with flagellar genes (both use PMF) — but shared dispensability could produce the same signal.
+- **Eckartt et al. (2024, Nature)** identified compensatory mutations targeting the same functional pathway as the resistance mutation. Our organism-specificity finding is consistent with this: compensation integrates AMR genes into whatever programs the organism already has.
+- **Nichols et al. (2011, Cell)** showed that condition-dependent fitness profiles reveal gene function in *E. coli*. The general principle holds, but our analysis highlights a caveat: functional enrichment in cofitness neighborhoods can reflect shared experimental context (lab conditions) rather than biological co-regulation.
 
 ### Novel Contribution
 
-This is the **first pan-bacterial mapping of AMR co-fitness support networks** across 28 organisms. Key novel findings:
-1. AMR support networks are enriched for **flagellar motility and amino acid biosynthesis** — the two most energy-expensive bacterial programs
-2. Support networks are **organism-specific** (J = 0.375) not mechanism-specific (J = 0.207), indicating regulatory integration dominates
+This is the **first pan-bacterial mapping of AMR co-fitness neighborhoods** across 28 organisms. Key contributions:
+1. AMR cofitness neighborhoods are enriched for **flagellar motility and amino acid biosynthesis** — but this may reflect shared dispensability under lab conditions rather than mechanistic co-regulation (a key caveat for all cofitness-based functional inference)
+2. Support networks are **organism-specific** (J = 0.375) not mechanism-specific (J = 0.207) — a robust structural finding about genome organization
 3. **Annotation quality is critical**: InterProScan GO transformed a null result into a significant one, demonstrating that legacy annotations are insufficient for functional genomics
 4. AMR genes are in **larger-than-average ICA modules** (p = 1.7×10⁻⁸), confirming they are embedded in broad cellular programs
+5. The analysis identifies a general caveat for cofitness-based functional genomics: **genes that are dispensable under experimental conditions may show artifactual co-regulation**, a concern relevant beyond AMR to any cofitness study using lab-grown organisms
 
 ### Limitations
 
-1. **Cofitness ≠ co-regulation**: High cofitness implies shared fitness phenotypes across conditions but does not prove direct transcriptional co-regulation. Some associations may reflect shared pathway membership or epistatic interactions.
-2. **GO term granularity**: Broad GO terms (transmembrane transport, membrane) appear in nearly all support networks and all genomes, potentially masking more specific signals. Future work should use GO slim subsets or Pfam domain-level analysis.
-3. **Support network size**: At |r| > 0.3, mean network size is 233 genes (large). This may include many weak, non-specific associations. The key results hold at stricter thresholds (|r| > 0.4, |r| > 0.5) but with reduced sample sizes.
-4. **H3 null result**: The absence of a network-size-cost correlation may reflect insufficient variance in fitness cost across genes, not a true absence of relationship.
-5. **FB organism bias**: The 28 organisms are lab-adapted, phylogenetically biased (many Pseudomonas), and limited in ecological diversity.
-6. **Operon exclusion heuristic**: The 5-ORF exclusion zone is approximate. Some true extra-operon partners may be excluded, and some polar-effect artifacts may remain.
+1. **Shared dispensability confound (critical)**: The flagellar/biosynthesis enrichment may reflect shared "useless under lab conditions" status rather than mechanistic co-regulation. AMR genes (no antibiotics present), flagellar genes (shaken liquid culture), and amino acid biosynthesis genes (supplemented media) are all metabolic burdens under FB experimental conditions. A fitness-matched permutation test (matching on mean fitness level, not just conservation) is needed to resolve this.
+2. **Cofitness ≠ co-regulation**: Even without the dispensability confound, high cofitness implies shared fitness phenotypes, not direct transcriptional co-regulation.
+3. **GO term granularity**: Broad GO terms (transmembrane transport, membrane) appear in nearly all support networks and all genomes, potentially masking more specific signals.
+4. **Support network size**: At |r| > 0.3, mean network size is 233 genes (large). This includes many weak associations. Confirmation at |r| > 0.4 is needed.
+5. **H3 null result**: The absence of a network-size-cost correlation may reflect insufficient variance in fitness cost across genes.
+6. **FB organism bias**: The 28 organisms are lab-adapted, phylogenetically biased (many Pseudomonas), and limited in ecological diversity.
+7. **Operon exclusion heuristic**: The 5-ORF exclusion zone is approximate and uses matrix index order rather than genomic coordinates.
 
 ## Data
 
@@ -208,11 +225,11 @@ This is the **first pan-bacterial mapping of AMR co-fitness support networks** a
 
 ## Future Directions
 
-1. **Pfam domain-level enrichment**: Pfam has 88% coverage (vs 68% for GO). Domain-level enrichment may reveal more specific support network functions than broad GO terms.
-2. **Condition-specific cofitness**: Instead of all experiments, compute cofitness separately for antibiotic conditions vs standard growth. This could reveal AMR-specific co-regulation that is masked when averaged.
-3. **Regulatory network inference**: Use motif analysis or regulon predictions to test whether AMR genes share transcription factor binding sites with their cofitness partners.
-4. **Integrate with `amr_fitness_cost` antibiotic validation**: The NB03 finding that efflux genes flip more strongly under antibiotics (p = 0.007) may connect to the efflux-biosynthesis co-regulation — antibiotic exposure may simultaneously induce efflux and repress biosynthesis.
-5. **Extend to prophage ecology**: The `prophage_ecology` project found phage modules; testing whether phage defense genes show similar co-regulation patterns with motility would reveal whether the AMR-motility axis is specific to resistance or a general feature of accessory gene regulation.
+1. **Fitness-matched permutation (critical)**: The most important follow-up is a permutation test drawing random non-AMR genes matched on **mean fitness level** (not just conservation class). If random genes with fitness between −0.05 and +0.05 also show flagellar/biosynthesis enrichment in their cofitness neighborhoods, the enrichment is a shared-dispensability artifact. If AMR genes uniquely enrich even among fitness-matched genes, the co-regulation interpretation is supported.
+2. **Condition-specific cofitness**: Computing cofitness separately for antibiotic conditions vs standard growth could distinguish true co-regulation from shared dispensability. If AMR-flagella cofitness is specifically elevated under antibiotic stress (not just standard growth), it would support a regulatory connection.
+3. **Verify flagellar gene dispensability directly**: Check whether flagellar gene knockouts show positive mean fitness across FB experiments. If so, the shared-dispensability explanation is confirmed as plausible. If flagellar knockouts are near-zero or negative, the co-regulation interpretation is strengthened.
+4. **Pfam domain-level enrichment**: Pfam has 88% coverage (vs 68% for GO). Domain-level enrichment may reveal more specific support network functions than broad GO terms.
+5. **Extend to other dispensable gene classes**: Test whether phage defense genes, secondary metabolite genes, or other "condition-specific" gene classes show the same cofitness patterns as AMR genes. If so, the signal is a general feature of dispensable genes under lab conditions, not AMR-specific.
 
 ## References
 
