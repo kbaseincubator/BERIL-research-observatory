@@ -171,4 +171,4 @@ WHERE mutant_growth_acetate IS NOT NULL
 - **v1** (2026-02-19): Initial plan
 
 ## Authors
-- Paramvir Dehal (ORCID: 0000-0001-5810-2497), Lawrence Berkeley National Laboratory
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
