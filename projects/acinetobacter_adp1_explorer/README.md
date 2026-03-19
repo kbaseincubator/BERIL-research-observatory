@@ -36,4 +36,4 @@ jupyter nbconvert --to notebook --execute --inplace 01_database_exploration.ipyn
 ```
 
 ## Authors
-- Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

@@ -36,4 +36,4 @@ NB01 (database overview, FB overlap, heatmap)
 **Note**: The RESEARCH_PLAN described a third notebook (NB03: Metabolite Interaction Profiles) which was deferred. The absence of consumption data in this 2018 WoM snapshot made organism-comparison heatmaps less informative than planned — the data only records production, so cross-feeding analysis is not possible with this version.
 
 ## Authors
-Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

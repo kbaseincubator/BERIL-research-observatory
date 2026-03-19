@@ -191,4 +191,4 @@ FB organism-to-pangenome mapping: `projects/conservation_vs_fitness/data/organis
 - **v2** (2026-03-10): Addressed plan review — added value encoding rules, coverage waterfall, agreement scores, class-level stratification, circular reasoning mitigation, descriptive framing for n=12 validation, expected effect sizes, cross-project data reuse conventions, go/no-go gate
 
 ## Authors
-- Paramvir Dehal (https://orcid.org/0000-0002-3495-1240), Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
