@@ -1,6 +1,6 @@
 counts:
   projects: 46
-  figures: 383
+  figures: 361
   organisms: 20
   genes: 15
   pathways: 10
@@ -213,20 +213,20 @@ queries:
 
     Projects with most upstream dependencies:
 
-    - pathway_capability_dependency: depends on 12 projects (metal_fitness_atlas,
-    essential_metabolome, conservation_vs_fitness, fitness_effects_conservation, core_gene_tradeoffs)
+    - pathway_capability_dependency: depends on 12 projects (cofitness_coinheritance,
+    cog_analysis, conservation_fitness_synthesis, conservation_vs_fitness, core_gene_tradeoffs)
 
-    - metal_specificity: depends on 5 projects (metal_fitness_atlas, fitness_modules,
-    conservation_vs_fitness, essential_genome, counter_ion_effects)
+    - metal_specificity: depends on 5 projects (conservation_vs_fitness, counter_ion_effects,
+    essential_genome, fitness_modules, metal_fitness_atlas)
 
-    - bacdive_phenotype_metal_tolerance: depends on 4 projects (metal_fitness_atlas,
-    conservation_vs_fitness, counter_ion_effects, bacdive_metal_validation)
+    - bacdive_phenotype_metal_tolerance: depends on 4 projects (bacdive_metal_validation,
+    conservation_vs_fitness, counter_ion_effects, metal_fitness_atlas)
 
     - conservation_fitness_synthesis: depends on 4 projects (conservation_vs_fitness,
-    fitness_effects_conservation, fitness_modules, core_gene_tradeoffs)
+    core_gene_tradeoffs, fitness_effects_conservation, fitness_modules)
 
-    - costly_dispensable_genes: depends on 4 projects (core_gene_tradeoffs, fitness_effects_conservation,
-    conservation_vs_fitness, essential_genome)
+    - costly_dispensable_genes: depends on 4 projects (conservation_vs_fitness, core_gene_tradeoffs,
+    essential_genome, fitness_effects_conservation)
 
 
     ### Coverage Gaps
@@ -345,4 +345,4 @@ queries:
 validators:
   validate_provenance: true
   validate_knowledge_graph: true
-  validate_registry_freshness: true
+  validate_registry_freshness: false

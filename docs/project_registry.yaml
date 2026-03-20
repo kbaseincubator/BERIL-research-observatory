@@ -1,5 +1,5 @@
 version: 1
-generated_at: '2026-03-19T16:43:57'
+generated_at: '2026-03-20T04:20:48'
 project_count: 46
 projects:
 - id: acinetobacter_adp1_explorer
@@ -539,8 +539,8 @@ projects:
     pmid: '25374488'
     type: supporting
   depends_on:
-  - adp1_deletion_phenotypes
   - acinetobacter_adp1_explorer
+  - adp1_deletion_phenotypes
   enables:
   - respiratory_chain_wiring
   has_provenance: true
@@ -588,9 +588,9 @@ projects:
     pmid: null
     type: supporting
   depends_on:
+  - lab_field_ecology
   - metal_fitness_atlas
   - metal_specificity
-  - lab_field_ecology
   enables:
   - bacdive_phenotype_metal_tolerance
   has_provenance: true
@@ -701,10 +701,10 @@ projects:
     pmid: null
     type: supporting
   depends_on:
-  - metal_fitness_atlas
+  - bacdive_metal_validation
   - conservation_vs_fitness
   - counter_ion_effects
-  - bacdive_metal_validation
+  - metal_fitness_atlas
   enables: []
   has_provenance: true
   date_completed: 2026-03
@@ -924,9 +924,9 @@ projects:
     type: methodology
   depends_on:
   - conservation_vs_fitness
+  - core_gene_tradeoffs
   - fitness_effects_conservation
   - fitness_modules
-  - core_gene_tradeoffs
   enables:
   - pathway_capability_dependency
   has_provenance: true
@@ -1100,8 +1100,8 @@ projects:
     pmid: '22761588'
     type: supporting
   depends_on:
-  - fitness_effects_conservation
   - conservation_vs_fitness
+  - fitness_effects_conservation
   enables:
   - conservation_fitness_synthesis
   - costly_dispensable_genes
@@ -1168,10 +1168,10 @@ projects:
     pmid: '40728316'
     type: supporting
   depends_on:
-  - core_gene_tradeoffs
-  - fitness_effects_conservation
   - conservation_vs_fitness
+  - core_gene_tradeoffs
   - essential_genome
+  - fitness_effects_conservation
   enables: []
   has_provenance: true
   date_completed: 2026-02
@@ -1252,10 +1252,10 @@ projects:
     pmid: '29979655'
     type: supporting
   depends_on:
-  - metal_fitness_atlas
-  - fitness_modules
   - conservation_vs_fitness
   - essential_genome
+  - fitness_modules
+  - metal_fitness_atlas
   enables:
   - bacdive_phenotype_metal_tolerance
   - metal_specificity
@@ -1491,8 +1491,8 @@ projects:
     pmid: null
     type: supporting
   depends_on:
-  - lab_field_ecology
   - field_vs_lab_fitness
+  - lab_field_ecology
   enables: []
   has_provenance: true
   date_completed: 2026-02
@@ -2287,8 +2287,8 @@ projects:
     type: methodology
   depends_on:
   - conservation_vs_fitness
-  - fitness_modules
   - essential_genome
+  - fitness_modules
   - module_conservation
   enables:
   - truly_dark_genes
@@ -2459,8 +2459,8 @@ projects:
     pmid: '34520557'
     type: methodology
   depends_on:
-  - fitness_effects_conservation
   - conservation_vs_fitness
+  - fitness_effects_conservation
   enables:
   - bacdive_metal_validation
   - enigma_contamination_functional_potential
@@ -2675,10 +2675,10 @@ projects:
     pmid: null
     type: supporting
   depends_on:
-  - fitness_modules
   - conservation_vs_fitness
   - essential_genome
   - field_vs_lab_fitness
+  - fitness_modules
   enables:
   - bacdive_metal_validation
   - bacdive_phenotype_metal_tolerance
@@ -2739,11 +2739,11 @@ projects:
     pmid: '40624002'
     type: supporting
   depends_on:
-  - metal_fitness_atlas
-  - fitness_modules
   - conservation_vs_fitness
-  - essential_genome
   - counter_ion_effects
+  - essential_genome
+  - fitness_modules
+  - metal_fitness_atlas
   enables:
   - bacdive_metal_validation
   has_provenance: true
@@ -2803,8 +2803,8 @@ projects:
     pmid: '25483351'
     type: review
   depends_on:
-  - fitness_modules
   - conservation_vs_fitness
+  - fitness_modules
   enables:
   - cofitness_coinheritance
   - functional_dark_matter
@@ -3028,9 +3028,9 @@ projects:
   key_data_artifacts: []
   references: []
   depends_on:
-  - pangenome_openness
-  - ecotype_analysis
   - cog_analysis
+  - ecotype_analysis
+  - pangenome_openness
   enables: []
   has_provenance: true
   date_completed: null
@@ -3057,9 +3057,9 @@ projects:
   key_data_artifacts: []
   references: []
   depends_on:
+  - cog_analysis
   - ecotype_analysis
   - pangenome_openness
-  - cog_analysis
   enables: []
   has_provenance: true
   date_completed: null
@@ -3276,18 +3276,18 @@ projects:
     pmid: '25849638'
     type: primary_data_source
   depends_on:
-  - metal_fitness_atlas
-  - essential_metabolome
-  - conservation_vs_fitness
-  - fitness_effects_conservation
-  - core_gene_tradeoffs
-  - field_vs_lab_fitness
-  - ecotype_analysis
-  - pangenome_openness
   - cofitness_coinheritance
-  - module_conservation
-  - conservation_fitness_synthesis
   - cog_analysis
+  - conservation_fitness_synthesis
+  - conservation_vs_fitness
+  - core_gene_tradeoffs
+  - ecotype_analysis
+  - essential_metabolome
+  - field_vs_lab_fitness
+  - fitness_effects_conservation
+  - metal_fitness_atlas
+  - module_conservation
+  - pangenome_openness
   enables: []
   has_provenance: true
   date_completed: 2026-02
@@ -3843,8 +3843,8 @@ projects:
     pmid: '25374488'
     type: supporting
   depends_on:
-  - aromatic_catabolism_network
   - adp1_deletion_phenotypes
+  - aromatic_catabolism_network
   enables: []
   has_provenance: true
   date_completed: 2026-02
@@ -4051,10 +4051,10 @@ projects:
     pmid: null
     type: supporting
   depends_on:
-  - functional_dark_matter
   - conservation_vs_fitness
-  - fitness_modules
   - essential_genome
+  - fitness_modules
+  - functional_dark_matter
   enables: []
   has_provenance: true
   date_completed: 2026-03
