@@ -64,14 +64,14 @@ def build_resource_manifest(
         if isinstance(figure, dict)
     }
     selected_project_ids = set(project_ids or [])
-    project_ids = [
+    discovered_project_ids = [
         path.name
         for path in sorted((repo_root / "projects").iterdir())
         if path.is_dir() and (path / "README.md").exists()
         and (not selected_project_ids or path.name in selected_project_ids)
     ]
 
-    for project_id in project_ids:
+    for project_id in discovered_project_ids:
         project_dir = repo_root / "projects" / project_id
         project = parse_project(project_dir)
         legacy_project = registry_projects.get(project_id, {})
@@ -108,7 +108,7 @@ def build_resource_manifest(
                 )
             )
 
-    for project_id in project_ids:
+    for project_id in discovered_project_ids:
         project_dir = repo_root / "projects" / project_id
         report_path = project_dir / "REPORT.md"
         provenance_path = project_dir / "provenance.yaml"

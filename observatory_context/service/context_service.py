@@ -353,7 +353,7 @@ class ObservatoryContextService:
 def _split_frontmatter(content: str, fallback_metadata: dict[str, Any]) -> tuple[dict[str, Any], str]:
     metadata = dict(fallback_metadata)
     body = content
-    if content.startswith("---\n"):
+    if content.startswith("---\n") and "\n---\n" in content:
         _, remainder = content.split("---\n", 1)
         front_matter, body = remainder.split("\n---\n", 1)
         metadata.update(yaml.safe_load(front_matter) or {})

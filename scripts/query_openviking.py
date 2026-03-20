@@ -117,6 +117,9 @@ def main(argv: list[str] | None = None) -> int:
         _print_result(1, response)
         return 0
 
+    if args.command != "related":
+        return 1
+
     related = service.related_resources(args.id_or_uri, limit=args.limit)
     print(f"Related resources for {args.id_or_uri}")
     print("=" * (len(args.id_or_uri) + 22))

@@ -67,7 +67,7 @@ class OpenVikingObservatoryClient:
         try:
             self.stat_resource(uri)
         except Exception as exc:
-            if exc.__class__.__name__ == "NotFoundError":
+            if any(cls.__name__ == "NotFoundError" for cls in type(exc).__mro__):
                 return False
             raise
         return True

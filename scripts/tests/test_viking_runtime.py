@@ -147,6 +147,7 @@ def test_setup_script_can_write_repo_config(
     from scripts import viking_setup
 
     monkeypatch.setattr(viking_setup.shutil, "which", lambda name: f"/usr/bin/{name}")
+    monkeypatch.setenv("OPENAI_API_KEY", "test-key")
 
     config_path = sample_repo / "config" / "openviking" / "ov.conf"
     assert viking_setup.main(["--repo-root", str(sample_repo), "--write-config"]) == 0

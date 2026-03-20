@@ -116,11 +116,13 @@ def test_ingest_can_limit_to_specific_project_ids(
         def wait_until_processed(self, timeout: float | None = None) -> None:
             return None
 
-    monkeypatch.setattr(
-        viking_ingest,
-        "build_resource_manifest",
-        lambda repo_root, project_ids=None: [alpha, beta],
-    )
+    def fake_manifest(repo_root, project_ids=None):
+        items = [alpha, beta]
+        if project_ids:
+            items = [item for item in items if project_ids.intersection(set(item.project_ids))]
+        return items
+
+    monkeypatch.setattr(viking_ingest, "build_resource_manifest", fake_manifest)
     monkeypatch.setattr(viking_ingest, "OpenVikingObservatoryClient", lambda settings: FakeClient())
     monkeypatch.setattr(viking_ingest, "ObservatoryContextSettings", lambda: SimpleNamespace())
 

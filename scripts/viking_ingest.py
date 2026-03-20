@@ -57,10 +57,6 @@ def main(argv: list[str] | None = None) -> int:
         REPO_ROOT,
         project_ids=selected_projects,
     )
-    if selected_projects:
-        manifest = [
-            item for item in manifest if selected_projects.intersection(set(item.project_ids))
-        ]
     if args.limit is not None:
         manifest = manifest[: args.limit]
 
