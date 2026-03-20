@@ -173,12 +173,6 @@ uv run scripts/query_knowledge_unified.py timeline
 uv run scripts/query_knowledge_unified.py related essential_genome
 ```
 
-All subcommands are available via the unified script:
-
-```bash
-uv run scripts/query_knowledge_unified.py search "metal stress"
-```
-
 ### Validate consistency
 
 ```bash
@@ -238,6 +232,87 @@ Use `/status` to see:
 - Recent timeline events
 
 This orients the co-scientist to pick up where the last session left off.
+
+## Using the Knowledge Skills
+
+### How the Unified Backend Works
+
+All knowledge queries flow through a single script — `scripts/query_knowledge_unified.py`. When OpenViking is running, it provides semantic (embedding-based) retrieval. When it's not, the script silently falls back to deterministic token-based search. No manual health checks, no separate commands, no fallback logic in skills.
+
+On top of this, a `KnowledgeIndex` is built at startup from the `knowledge/*.yaml` files. This index is always available (it reads Git-authored YAML, not the server) and enhances both search and related-resource queries with entity and graph awareness.
+
+### What the Knowledge Graph Adds to Search
+
+#### Entity-aware search boosting
+
+Searching for an organism or concept now consults the knowledge graph. The index matches queries against entity names, IDs, and aliases, then boosts projects linked to matched entities.
+
+```
+/knowledge ADP1
+```
+
+Without the index, "ADP1" is scored purely on string presence — a project mentioning it once in passing scores similarly to the five projects where ADP1 is the primary subject. With the index, `org_adp1` is recognized (matching the strain alias "ADP1"), its 5 linked projects are identified, and they receive a +6 score boost. Deep ADP1 projects rank first.
+
+#### Graph-aware related resources
+
+```
+/knowledge related essential_genome
+```
+
+Without the graph, related resources come from metadata overlap only — shared project IDs, tags, and explicit links. Two projects studying the same organism through different lenses (e.g., `essential_genome` and `aromatic_catabolism_network` both study ADP1) but with different tags get zero relatedness signal.
+
+With the graph, the system traverses one hop through knowledge relations: `essential_genome` → its entities (`org_adp1`, `conc_essential_genes`) → their graph neighbors → projects linked to those neighbors. Projects connected through shared biological entities surface even without overlapping metadata.
+
+### When OpenViking Matters
+
+For exact lookups (`/knowledge project essential_genome`, `/knowledge entities organism`), OpenViking and deterministic results are equivalent — same data, same output.
+
+OpenViking adds value for **fuzzy discovery**: searching with natural language queries, finding conceptually related resources, and getting results ranked by semantic similarity rather than token counting. Searching "metabolic adaptation" surfaces projects about carbon source fitness, amino acid biosynthesis, and metabolic pathway gaps — even when those exact words don't appear in project metadata.
+
+If OpenViking isn't running, everything still works. You get lexical matching instead of semantic matching for `search`, `project`, and `related`. The knowledge graph boosting works either way since it's built from YAML files at startup, not from the server.
+
+### Practical Examples
+
+**Orienting at session start:**
+```
+/status
+```
+Calls `hypotheses testing` and `timeline` under the hood. Shows active hypotheses, in-progress projects, and recent events.
+
+**Exploring a topic across projects:**
+```
+/knowledge essential genes
+/knowledge connections conc_essential_genes
+/knowledge related essential_genome
+```
+The first finds projects by topic. The second shows entities connected to the concept of essential genes in the knowledge graph. The third finds resources related to the essential genome project — including projects connected through shared organisms via graph traversal.
+
+**Finding research gaps:**
+```
+/knowledge gaps
+/knowledge entities method --query fitness
+/knowledge hypotheses proposed
+```
+Gaps shows method coverage holes and untested hypotheses. Then drill into which methods exist and which hypotheses are waiting for validation.
+
+**Comparing organisms:**
+```
+/compare org_adp1 org_dvh
+```
+Uses `connections` for both organisms, surfaces shared methods, differing project coverage, and hypotheses referencing one but not the other.
+
+**Discovering figures and data:**
+```
+/knowledge figures pangenome
+/knowledge data fitness
+```
+Searches the figure catalog and data artifact index by keyword. These are deterministic-only (no OpenViking equivalent) but benefit from the unified entry point.
+
+**Checking a specific project:**
+```
+/knowledge project essential_genome
+```
+With OpenViking: returns the full workspace view with all authored resources. Without: returns the registry summary with findings, tags, dependencies, and provenance status.
 
 ## Design Decisions
 
