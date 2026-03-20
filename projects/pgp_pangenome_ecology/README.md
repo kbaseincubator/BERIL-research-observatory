@@ -6,7 +6,7 @@ Does environmental selection shape the distribution of plant growth-promoting (P
 
 ## Status
 
-In progress — notebooks executing.
+Complete — see [Report](REPORT.md) for findings.
 
 ## Overview
 
