@@ -30,7 +30,7 @@ Comparing 1,039 soil/rhizosphere species against 10,233 species from other envir
 | pqqC | 43.8% | 21.2% | **2.90** | 2.8e-53 |
 | hcnC | 11.3% | 6.4% | **1.85** | 6.1e-08 |
 | nifH | 12.9% | 19.7% | 0.60 | 5.5e-08 (depleted) |
-| ipdC | 1.5% | 1.9% | 0.79 | 0.47 (ns) |
+| ipdC | 1.5% | 1.9% | 0.79 | 0.47 (ns) — see H4 for soil-specific reversal |
 
 The acdS enrichment is particularly striking: ACC deaminase is 7× more prevalent in soil/rhizosphere species than in other environments and the effect survives phylum-level fixed effects in logistic regression (OR = 6.98, p = 4.8e-61). The enrichment also holds in a strict rhizosphere-only sensitivity analysis using only genomes with "rhizosphere" or "root nodule" in their isolation source (acdS OR = 10.6, q = 7.6e-38).
 
@@ -76,6 +76,8 @@ However, the tyrosine pathway (negative control) also predicts ipdC presence at 
 
 The stratified analysis reveals an additional complexity: within soil/rhizosphere species (n = 1,039), the association **reverses** (OR = 0.30, p = 0.02), meaning trp-complete soil species are *less* likely to carry ipdC. In non-soil species (n = 10,233) the positive association holds strongly (OR = 3.56, p = 7.7e-13). This may reflect that soil-associated PGPB obtain tryptophan exogenously from plant root exudates, relaxing selective pressure to maintain autonomous trp biosynthesis, while retaining ipdC for IAA production from plant-supplied substrate.
 
+A phylum + soil logistic model (Model 3) was attempted but failed due to quasi-complete separation caused by ipdC's rarity across phyla (214 species, 1.9%); conclusions are therefore based on Model 1 (trp only) and Model 2 (trp + is_soil).
+
 *(Notebook: 05_tryptophan_iaa.ipynb)*
 
 ---
@@ -89,7 +91,7 @@ The stratified analysis reveals an additional complexity: within soil/rhizospher
 - **291,279 genomes** with ncbi_isolation_source metadata; 93.5% classifiable
 
 ### PGP gene prevalence
-pqqD (55.5% core, present in 11,040 species) is the most widespread PGP gene — it is the most promiscuous pqq gene and appears as a single-gene orphan in many species lacking other pqq genes. Excluding pqqD, pqqC is the most prevalent focal trait (3,028 species, 26.8% of species with any PGP gene). ipdC is the rarest focal gene (226 species, 2.0%).
+pqqD (55.5% core, present in 11,040 species) is the most widespread PGP gene — it is the most promiscuous pqq gene and appears as a single-gene orphan in many species lacking other pqq genes. Excluding pqqD, pqqC is the most prevalent focal trait (3,028 species, 26.8% of species with any PGP gene). ipdC is the rarest focal gene (214 species, 1.9%); note that 226 is the number of ipdC gene *clusters*, while 214 is the number of species carrying at least one such cluster.
 
 ### Environment classification coverage
 The soil/rhizosphere category is conservative: only 1,637 species (5.9% of species with env label) are classified as soil/rhizosphere dominant, reflecting NCBI's clinical and host-associated sampling bias. The acdS and pqqC enrichment effects (ORs of 7.0 and 2.9) are therefore likely underestimates of the true rhizosphere enrichment, since many soil isolates are deposited under broader "environmental" labels.
