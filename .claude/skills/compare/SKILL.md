@@ -50,7 +50,7 @@ If both arguments are project IDs:
    - Overlapping tags/themes
    - Cross-project dependencies (from `depends_on`/`enables`)
 
-4. Run `uv run scripts/query_knowledge.py connections <shared_entity>` for any shared entities to find relation paths between the projects
+4. Run `uv run scripts/query_knowledge_unified.py connections <shared_entity>` for any shared entities to find relation paths between the projects
 
 5. Highlight gaps: methods applied in A but not B, organisms in A but not B
 
@@ -60,7 +60,7 @@ If both arguments are organism entity IDs:
 
 1. Run for each organism:
    ```bash
-   uv run scripts/query_knowledge.py connections <org_id>
+   uv run scripts/query_knowledge_unified.py connections <org_id>
    ```
 2. Read both organism entries from `knowledge/entities/organisms.yaml`
 3. Compare:
@@ -106,6 +106,6 @@ Based on the comparison, suggest:
 ## Integration
 
 - **Reads from**: `docs/project_registry.yaml`, `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml`
-- **Deterministic backend**: `scripts/query_knowledge.py` (for connections queries)
+- **Query backend**: `scripts/query_knowledge_unified.py` (for connections queries)
 - **Consumed by**: users exploring cross-project patterns
 - **Related skills**: `/knowledge` (deeper exploration), `/suggest-research` (gap-driven recommendations)

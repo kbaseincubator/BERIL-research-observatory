@@ -23,8 +23,8 @@ No arguments required.
 
 Run:
 ```bash
-uv run scripts/query_knowledge.py hypotheses testing
-uv run scripts/query_knowledge.py hypotheses proposed
+uv run scripts/query_knowledge_unified.py hypotheses testing
+uv run scripts/query_knowledge_unified.py hypotheses proposed
 ```
 
 Surface hypotheses in `testing` or `proposed` state that need work.
@@ -52,7 +52,7 @@ If the file doesn't exist, note: "Run `/build-registry` to generate gap analysis
 
 Run:
 ```bash
-uv run scripts/query_knowledge.py timeline
+uv run scripts/query_knowledge_unified.py timeline
 ```
 
 Show the last 5 events (most recent first).
@@ -90,6 +90,6 @@ End with: "What would you like to work on?"
 ## Integration
 
 - **Reads from**: `docs/project_registry.yaml`, `docs/knowledge_gaps.md`, `knowledge/hypotheses.yaml`, `knowledge/timeline.yaml`
-- **Deterministic backend**: `scripts/query_knowledge.py`
+- **Query backend**: `scripts/query_knowledge_unified.py`
 - **Consumed by**: users at session start for orientation
 - **Related skills**: `/berdl_start` (more detailed onboarding), `/suggest-research` (detailed gap analysis), `/knowledge` (search)
