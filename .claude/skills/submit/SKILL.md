@@ -11,8 +11,12 @@ Submit a BERDL analysis project for automated review. This runs pre-submission v
 ## Usage
 
 ```
-/submit <project_id>
+/submit <project_id> [--reviewer claude|codex] [--model <model_id>]
 ```
+
+Options:
+- `--reviewer claude|codex` — Reviewer backend (default: `claude`)
+- `--model <model_id>` — Model override (default: `claude-sonnet-4-20250514` for claude, `gpt-5.4` for codex)
 
 If no `<project_id>` argument is provided, detect from the current working directory (if inside `projects/{id}/`).
 
@@ -81,17 +85,15 @@ If the user declines, proceed with the current status.
 
 ### Step 4: Invoke Reviewer
 
-If all critical checks pass, invoke the reviewer subprocess:
+If all critical checks pass, invoke the reviewer via `tools/review.sh`:
 
 ```bash
-CLAUDECODE= claude -p \
-  --system-prompt "$(cat .claude/reviewer/SYSTEM_PROMPT.md)" \
-  --allowedTools "Read,Write" \
-  --dangerously-skip-permissions \
-  "Review the project at projects/{project_id}/. Read all files in the project directory — especially README.md, RESEARCH_PLAN.md, and REPORT.md. Also read docs/pitfalls.md for known issues. Write your review to projects/{project_id}/REVIEW.md."
+bash tools/review.sh {project_id} --reviewer {reviewer} --model {model}
 ```
 
-> **Note**: The `CLAUDECODE=` prefix is required to allow launching a Claude subprocess from within Claude Code. Without it, the command fails with a "can't launch Claude inside Claude" error.
+- `{reviewer}` defaults to `claude` if `--reviewer` was not provided
+- `{model}` defaults to the frontier model for the selected reviewer if `--model` was not provided
+- Omit `--model` entirely if the user did not specify one (the script applies its own defaults)
 
 Run this command from the repository root directory.
 
@@ -133,6 +135,8 @@ After presenting the review summary, provide next steps based on the review outc
 **If the review has critical or important issues**:
 - List the issues to address
 - Suggest re-running `/submit` after fixes
+
+> **Note**: For final submission reviews, use the default frontier model (no `--model` flag). Use `--model` with faster/cheaper models for iterating on reviewer feedback.
 
 ### Notes
 
