@@ -16,7 +16,7 @@ Submit a BERDL analysis project for automated review. This runs pre-submission v
 
 Options:
 - `--reviewer claude|codex` — Reviewer backend (default: `claude`)
-- `--model <model_id>` — Model override (default: `claude-sonnet-4-20250514` for claude, `o3` for codex)
+- `--model <model_id>` — Model override (default: `claude-sonnet-4-20250514` for claude, `gpt-5.4` for codex)
 
 If no `<project_id>` argument is provided, detect from the current working directory (if inside `projects/{id}/`).
 
