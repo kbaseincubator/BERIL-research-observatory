@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -150,6 +151,60 @@ def test_setup_script_can_write_repo_config(
     config_path = sample_repo / "config" / "openviking" / "ov.conf"
     assert viking_setup.main(["--repo-root", str(sample_repo), "--write-config"]) == 0
     assert config_path.exists()
+
+
+def test_setup_script_generates_valid_openai_config_from_shell_env(
+    sample_repo: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from scripts import viking_setup
+
+    monkeypatch.setattr(viking_setup.shutil, "which", lambda name: f"/usr/bin/{name}")
+    monkeypatch.setenv("OPENAI_API_KEY", "shell-openai-key")
+    monkeypatch.setenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+    monkeypatch.delenv("OPENVIKING_EMBEDDING_MODEL", raising=False)
+    monkeypatch.delenv("OPENVIKING_VLM_MODEL", raising=False)
+
+    config_path = sample_repo / "config" / "openviking" / "ov.conf"
+    assert viking_setup.main(["--repo-root", str(sample_repo), "--write-config"]) == 0
+
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    assert config["embedding"]["dense"]["provider"] == "openai"
+    assert config["embedding"]["dense"]["api_key"] == "shell-openai-key"
+    assert config["embedding"]["dense"]["api_base"] == "https://api.openai.com/v1"
+    assert config["embedding"]["dense"]["model"] == "text-embedding-3-large"
+    assert config["vlm"]["api_key"] == "shell-openai-key"
+    assert config["vlm"]["model"] == "gpt-4o-mini"
+
+
+def test_setup_script_uses_dotenv_when_shell_env_is_missing(
+    sample_repo: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from scripts import viking_setup
+
+    monkeypatch.setattr(viking_setup.shutil, "which", lambda name: f"/usr/bin/{name}")
+    monkeypatch.delenv("OPENAI_API_KEY", raising=False)
+    monkeypatch.delenv("OPENAI_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENVIKING_EMBEDDING_MODEL", raising=False)
+    monkeypatch.delenv("OPENVIKING_VLM_MODEL", raising=False)
+
+    _write(
+        sample_repo / ".env",
+        "OPENAI_API_KEY=dotenv-openai-key\n"
+        "OPENAI_BASE_URL=https://example.test/v1\n"
+        "OPENVIKING_EMBEDDING_MODEL=text-embedding-3-small\n"
+        "OPENVIKING_VLM_MODEL=gpt-4.1-mini\n",
+    )
+
+    config_path = sample_repo / "config" / "openviking" / "ov.conf"
+    assert viking_setup.main(["--repo-root", str(sample_repo), "--write-config"]) == 0
+
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    assert config["embedding"]["dense"]["api_key"] == "dotenv-openai-key"
+    assert config["embedding"]["dense"]["api_base"] == "https://example.test/v1"
+    assert config["embedding"]["dense"]["model"] == "text-embedding-3-small"
+    assert config["vlm"]["model"] == "gpt-4.1-mini"
 
 
 def test_healthcheck_script_reports_server_state(

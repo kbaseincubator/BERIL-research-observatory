@@ -18,6 +18,7 @@ uv sync --extra dev
 ## 1. Create the repo-local server config
 
 ```bash
+export OPENAI_API_KEY="your-openai-api-key"
 uv run scripts/viking_setup.py --write-config
 export OPENVIKING_CONFIG_FILE="$PWD/config/openviking/ov.conf"
 ```
@@ -25,8 +26,24 @@ export OPENVIKING_CONFIG_FILE="$PWD/config/openviking/ov.conf"
 The setup script validates that:
 
 - `config/openviking/ov.conf.example` exists
-- `config/openviking/ov.conf` exists or can be created
+- `config/openviking/ov.conf` can be generated from shell env or `.env`
 - `openviking-server` is installed in the active environment
+
+It resolves settings in this order:
+
+1. Shell environment variables
+2. Repo-local `.env`
+
+Supported variables:
+
+- `OPENAI_API_KEY`
+- `OPENAI_BASE_URL` (optional, defaults to `https://api.openai.com/v1`)
+- `OPENVIKING_EMBEDDING_MODEL` (optional, defaults to `text-embedding-3-large`)
+- `OPENVIKING_EMBEDDING_DIMENSION` (optional, defaults to `3072`)
+- `OPENVIKING_VLM_MODEL` (optional, defaults to `gpt-4o-mini`)
+
+OpenViking itself does not read `.env` or expand env vars inside `ov.conf`; the
+setup script writes a concrete JSON file using those values.
 
 ## 2. Start the local server
 
@@ -123,5 +140,7 @@ uv run scripts/viking_validate_parity.py
   Start the server first or verify `BERIL_OPENVIKING_URL`.
 - `FAIL: config not found .../config/openviking/ov.conf`:
   Run `uv run scripts/viking_setup.py --write-config`.
+- `Missing OPENAI_API_KEY`:
+  Export it in your shell or add it to `.env`, then rerun the setup script.
 - Materializer commands fail in live mode:
   Confirm ingest has completed and re-run the healthcheck.
