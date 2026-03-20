@@ -107,12 +107,67 @@ figures:
     )
     _write(
         tmp_path / "knowledge" / "entities" / "organisms.yaml",
-        """
+        """\
 organisms:
   - id: org_alpha
     name: Alpha organism
-""".strip()
-        + "\n",
+    strain: Alpha-1
+    projects:
+      - alpha_proj
+  - id: org_beta
+    name: Beta organism
+    projects:
+      - beta_proj
+""",
+    )
+    _write(
+        tmp_path / "knowledge" / "entities" / "concepts.yaml",
+        """\
+concepts:
+  - id: conc_fitness
+    name: Fitness
+    projects:
+      - alpha_proj
+      - beta_proj
+""",
+    )
+    _write(
+        tmp_path / "knowledge" / "entities" / "genes.yaml",
+        "genes: []\n",
+    )
+    _write(
+        tmp_path / "knowledge" / "entities" / "pathways.yaml",
+        "pathways: []\n",
+    )
+    _write(
+        tmp_path / "knowledge" / "entities" / "methods.yaml",
+        "methods: []\n",
+    )
+    _write(
+        tmp_path / "knowledge" / "relations.yaml",
+        """\
+relations:
+  - subject: org_alpha
+    predicate: studied_in
+    object: conc_fitness
+    evidence_project: alpha_proj
+    confidence: high
+  - subject: org_beta
+    predicate: studied_in
+    object: conc_fitness
+    evidence_project: beta_proj
+    confidence: high
+""",
+    )
+    _write(
+        tmp_path / "knowledge" / "hypotheses.yaml",
+        """\
+hypotheses:
+  - id: H001
+    statement: Alpha and Beta share fitness patterns.
+    status: testing
+    origin_project: alpha_proj
+""",
     )
     _write(
         tmp_path / "projects" / "alpha_proj" / "README.md",
@@ -268,3 +323,68 @@ def test_add_note_and_observation_are_visible_to_subsequent_reads(service: objec
 
     search_results = service.search_context("lexical fallback", project="alpha_proj")
     assert [result.resource.id for result in search_results] == [observation.resource.id]
+
+
+# --- Knowledge graph integration tests ---
+
+
+@pytest.fixture
+def offline_service(sample_repo: Path) -> object:
+    from observatory_context.service import ObservatoryContextService
+
+    return ObservatoryContextService(
+        repo_root=sample_repo,
+        client=None,
+        now_factory=lambda: "2026-03-19T12:00:00Z",
+    )
+
+
+def test_search_context_boosts_entity_linked_projects(offline_service: object) -> None:
+    results = offline_service.search_context("alpha respond", detail_level=RenderLevel.L0)
+
+    project_ids = [r.resource.id for r in results if r.resource.kind == "project"]
+    assert "alpha_proj" in project_ids
+
+
+def test_related_resources_use_graph_connections(offline_service: object) -> None:
+    related = offline_service.related_resources("alpha_proj", limit=10)
+
+    related_ids = {r.id for r in related}
+    assert "beta_proj" in related_ids
+
+
+def test_get_entity_returns_knowledge_entity(offline_service: object) -> None:
+    entity = offline_service.get_entity("org_alpha")
+
+    assert entity is not None
+    assert entity["name"] == "Alpha organism"
+    assert entity["kind"] == "organism"
+    assert "alpha_proj" in entity["projects"]
+
+
+def test_get_entity_returns_none_for_unknown(offline_service: object) -> None:
+    assert offline_service.get_entity("nonexistent") is None
+
+
+def test_list_entities_filters_by_kind(offline_service: object) -> None:
+    organisms = offline_service.list_entities(kind="organism")
+    assert len(organisms) == 2
+    assert all(e["kind"] == "organism" for e in organisms)
+
+    concepts = offline_service.list_entities(kind="concept")
+    assert len(concepts) == 1
+    assert concepts[0]["id"] == "conc_fitness"
+
+    all_entities = offline_service.list_entities()
+    assert len(all_entities) == 3  # 2 organisms + 1 concept
+
+
+def test_entity_connections_returns_relations(offline_service: object) -> None:
+    connections = offline_service.entity_connections("org_alpha")
+
+    assert len(connections) == 1
+    assert connections[0]["predicate"] == "studied_in"
+    assert connections[0]["object"] == "conc_fitness"
+
+    connections = offline_service.entity_connections("conc_fitness")
+    assert len(connections) == 2

@@ -1,19 +1,13 @@
-"""Tests for scripts/query_knowledge.py."""
+"""Tests for deterministic render functions in query_knowledge_unified.py."""
 
 from __future__ import annotations
 
-import importlib.util
 from pathlib import Path
 
 import pytest
 import yaml
 
-
-MODULE_PATH = Path(__file__).resolve().parents[1] / "query_knowledge.py"
-SPEC = importlib.util.spec_from_file_location("query_knowledge", MODULE_PATH)
-assert SPEC and SPEC.loader
-query_knowledge = importlib.util.module_from_spec(SPEC)
-SPEC.loader.exec_module(query_knowledge)
+import scripts.query_knowledge_unified as query_knowledge
 
 
 def _write_yaml(path: Path, payload: dict) -> None:
