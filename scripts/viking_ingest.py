@@ -19,6 +19,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--dry-run", action="store_true", help="Print the manifest without uploading resources.")
     parser.add_argument("--limit", type=int, default=None, help="Only process the first N manifest items.")
     parser.add_argument(
+        "--project",
+        action="append",
+        default=None,
+        help="Restrict ingest to one project ID. Repeat to include multiple projects.",
+    )
+    parser.add_argument(
         "--resume",
         action=argparse.BooleanOptionalAction,
         default=True,
@@ -46,7 +52,15 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    manifest = build_resource_manifest(REPO_ROOT)
+    selected_projects = set(args.project or [])
+    manifest = build_resource_manifest(
+        REPO_ROOT,
+        project_ids=selected_projects,
+    )
+    if selected_projects:
+        manifest = [
+            item for item in manifest if selected_projects.intersection(set(item.project_ids))
+        ]
     if args.limit is not None:
         manifest = manifest[: args.limit]
 

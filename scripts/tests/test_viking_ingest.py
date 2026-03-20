@@ -41,7 +41,11 @@ def test_ingest_skips_existing_resources_by_default(
         def wait_until_processed(self, timeout: float | None = None) -> None:
             raise AssertionError("wait_until_processed should not be called")
 
-    monkeypatch.setattr(viking_ingest, "build_resource_manifest", lambda repo_root: [existing, missing])
+    monkeypatch.setattr(
+        viking_ingest,
+        "build_resource_manifest",
+        lambda repo_root, project_ids=None: [existing, missing],
+    )
     monkeypatch.setattr(viking_ingest, "OpenVikingObservatoryClient", lambda settings: FakeClient())
     monkeypatch.setattr(viking_ingest, "ObservatoryContextSettings", lambda: SimpleNamespace())
 
@@ -74,7 +78,11 @@ def test_ingest_waits_once_after_queueing_when_requested(
         def wait_until_processed(self, timeout: float | None = None) -> None:
             wait_calls.append(timeout)
 
-    monkeypatch.setattr(viking_ingest, "build_resource_manifest", lambda repo_root: [item])
+    monkeypatch.setattr(
+        viking_ingest,
+        "build_resource_manifest",
+        lambda repo_root, project_ids=None: [item],
+    )
     monkeypatch.setattr(viking_ingest, "OpenVikingObservatoryClient", lambda settings: FakeClient())
     monkeypatch.setattr(viking_ingest, "ObservatoryContextSettings", lambda: SimpleNamespace())
 
@@ -85,3 +93,40 @@ def test_ingest_waits_once_after_queueing_when_requested(
     output = capsys.readouterr().out
     assert f"Queued {item.uri}" in output
     assert "Waiting for OpenViking processing to finish..." in output
+
+
+def test_ingest_can_limit_to_specific_project_ids(
+    tmp_path: Path,
+    monkeypatch,
+    capsys,
+) -> None:
+    from scripts import viking_ingest
+
+    alpha = _manifest_item(tmp_path, "alpha_proj")
+    beta = _manifest_item(tmp_path, "beta_proj")
+    calls: list[str] = []
+
+    class FakeClient:
+        def resource_exists(self, uri: str) -> bool:
+            return False
+
+        def add_manifest_resource(self, item: ResourceManifestItem, wait: bool = True) -> None:
+            calls.append(item.uri)
+
+        def wait_until_processed(self, timeout: float | None = None) -> None:
+            return None
+
+    monkeypatch.setattr(
+        viking_ingest,
+        "build_resource_manifest",
+        lambda repo_root, project_ids=None: [alpha, beta],
+    )
+    monkeypatch.setattr(viking_ingest, "OpenVikingObservatoryClient", lambda settings: FakeClient())
+    monkeypatch.setattr(viking_ingest, "ObservatoryContextSettings", lambda: SimpleNamespace())
+
+    assert viking_ingest.main(["--project", "alpha_proj"]) == 0
+
+    assert calls == [alpha.uri]
+    output = capsys.readouterr().out
+    assert f"Queued {alpha.uri}" in output
+    assert beta.uri not in output

@@ -41,7 +41,10 @@ class ResourceManifestItem:
         return asdict(self)
 
 
-def build_resource_manifest(repo_root: Path) -> list[ResourceManifestItem]:
+def build_resource_manifest(
+    repo_root: Path,
+    project_ids: set[str] | None = None,
+) -> list[ResourceManifestItem]:
     """Build the Phase 1 resource manifest from repository content."""
     manifest: list[ResourceManifestItem] = []
     registry = _load_yaml(repo_root / "docs" / "project_registry.yaml")
@@ -60,10 +63,12 @@ def build_resource_manifest(repo_root: Path) -> list[ResourceManifestItem]:
         for figure in figure_catalog.get("figures", [])
         if isinstance(figure, dict)
     }
+    selected_project_ids = set(project_ids or [])
     project_ids = [
         path.name
         for path in sorted((repo_root / "projects").iterdir())
         if path.is_dir() and (path / "README.md").exists()
+        and (not selected_project_ids or path.name in selected_project_ids)
     ]
 
     for project_id in project_ids:
@@ -153,6 +158,9 @@ def build_resource_manifest(repo_root: Path) -> list[ResourceManifestItem]:
                     },
                 )
             )
+
+    if selected_project_ids:
+        return manifest
 
     for relative_path in _knowledge_paths(repo_root / "knowledge"):
         source_path = repo_root / "knowledge" / relative_path
