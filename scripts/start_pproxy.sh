@@ -6,10 +6,10 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-VENV_PATH="${REPO_ROOT}/.venv-berdl"
+VENV_PATH="${REPO_ROOT}/.venv"
 
 if [[ ! -d "${VENV_PATH}" ]]; then
-  echo "Error: .venv-berdl not found. Run: bash scripts/bootstrap_client.sh" >&2
+  echo "Error: .venv not found. Run: bash scripts/bootstrap_client.sh" >&2
   exit 1
 fi
 

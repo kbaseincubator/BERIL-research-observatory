@@ -614,7 +614,7 @@ There are three environments with different import patterns. Using the wrong one
 |---|---|---|
 | **BERDL JupyterHub notebooks** | `spark = get_spark_session()` (no import) | Injected by `/configs/ipython_startup/00-notebookutils.py` |
 | **BERDL JupyterHub CLI/scripts** | `from berdl_notebook_utils.setup_spark_session import get_spark_session` | Same module, explicit import. **[fitness_modules]** discovered this works from regular Python scripts, not just notebooks. |
-| **Local machine** | `from get_spark_session import get_spark_session` | Uses `scripts/get_spark_session.py`, requires `.venv-berdl` + proxy chain |
+| **Local machine** | `from get_spark_session import get_spark_session` | Uses `scripts/get_spark_session.py`, requires `.venv` + proxy chain |
 
 **Common mistakes**:
 - Using `from get_spark_session import get_spark_session` on the BERDL cluster → `ImportError` (that module is `scripts/get_spark_session.py`, only on local machines)
@@ -645,7 +645,7 @@ This is misleading — the session *is* running, the sidecar just hasn't finishe
 **Solution**: After restarting the kernel, wait ~30–60 seconds before attempting off-cluster connections, or poll with retries:
 
 ```bash
-source .venv-berdl/bin/activate
+source .venv/bin/activate
 for i in $(seq 1 10); do
     echo "Attempt $i at $(date +%H:%M:%S)..."
     result=$(python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok" 2>&1)

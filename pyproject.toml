@@ -16,6 +16,20 @@ dev = [
     "pytest>=8.0.0",
     "ruff>=0.15.0",
 ]
+berdl = [
+    "boto3>=1.34.0",
+    "matplotlib",
+    "pandas",
+    "pproxy",
+]
+ingest = [
+    "jupyter",
+    "linkml>=1.9.4",
+    "linkml-runtime>=1.9.5",
+    "linkml-validator>=0.4.5",
+    "minio>=7.2.0",
+    "nbconvert",
+]
 
 [build-system]
 requires = ["hatchling"]
