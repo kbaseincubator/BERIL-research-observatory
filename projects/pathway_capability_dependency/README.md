@@ -63,7 +63,7 @@ pathway_capability_dependency/
 ## Reproduction
 
 ### Prerequisites
-- Python 3.10+ with `.venv-berdl` environment (see `scripts/bootstrap_client.sh`)
+- Python 3.10+ with `.venv` environment (see `scripts/bootstrap_client.sh`)
 - BERDL proxy chain for NB01 (SSH tunnels + pproxy; see `.claude/skills/berdl-query/references/proxy-setup.md`)
 - NB02-NB05 run locally on pre-extracted CSV data
 
