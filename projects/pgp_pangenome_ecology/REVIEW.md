@@ -8,120 +8,112 @@ project: pgp_pangenome_ecology
 
 ## Summary
 
-This is a high-quality, well-scoped project that tests four clearly stated hypotheses about plant growth-promoting (PGP) bacterial genes across the full BERDL pangenome (293K genomes, 27K species). The three-file structure (README / RESEARCH_PLAN / REPORT) is correctly implemented, the literature grounding is strong, and the downstream analysis notebooks (NB02–NB05) all have saved outputs that faithfully reproduce the numbers reported. The most significant problem is in NB01: two cells fail with `NameError` in the saved state and five further cells have no outputs at all, leaving the data-extraction notebook's audit trail incomplete. This is almost certainly caused by a known SQL pitfall — an unquoted `order` reserved word in the Spark query — that was identified in the RESEARCH_PLAN but not applied in the implemented SQL. Correcting NB01 and re-executing it to capture clean outputs is the priority action; everything downstream is sound.
+This is a well-executed, scientifically rigorous project that tests four clearly stated hypotheses about plant growth-promoting (PGP) bacterial genes across the full BERDL pangenome (293K genomes, 27K species). The three-file structure (README / RESEARCH_PLAN / REPORT) is correctly implemented, the literature grounding is excellent, and all five notebooks have saved outputs — data was retrieved via a cache-check pattern, making NB02–NB05 runnable locally without Spark. All seven expected figures are present. REPORT numbers match notebook outputs exactly for every tested hypothesis. The two most notable issues are: (1) a latent SQL bug in NB01 (`t.order` is an unquoted reserved word that the RESEARCH_PLAN itself flagged as Pitfall #7 — if the cache is cleared and Spark re-queried, the query will fail); and (2) the logistic Model 2 output shows OR_trp = 2.874 while the REPORT text cites logit OR = 2.81 — this appears to conflate Model 1 and Model 2 OR values and should be clarified. Both are correctable. The science is sound and the findings are clearly communicated.
 
 ---
 
 ## Methodology
 
-**Research question and hypotheses.** The research question is precise and testable. All four hypotheses (H1 co-occurrence syndrome, H2 soil enrichment, H3 HGT/accessory status, H4 trp→ipdC coupling) are stated in falsifiable form with expected directions and effect sizes. This is exemplary planning.
+**Research question and hypotheses.** The research question is precise and testable. All four hypotheses are stated in falsifiable form with expected directions and effect sizes in RESEARCH_PLAN.md, and REPORT.md addresses each one with a clear verdict (H1 supported, H2 supported, H3 rejected, H4 partially supported). The H3 rejection is presented honestly and the unexpected result (PGP genes MORE core than genome-wide baseline, not less) is well-argued.
 
-**Approach.** The analytical pipeline is appropriate for each hypothesis:
-- H1: Pairwise Fisher's exact tests on a binary species × focal-gene matrix, BH-FDR corrected, with log2-OR heatmap — standard and correct for presence/absence pangenome data.
-- H2: Per-gene Fisher's exact + logistic regression with phylum fixed effects + strict-rhizosphere sensitivity analysis — good choice of confounders.
-- H3: Per-gene chi-square vs genome-wide cluster baseline + Spearman openness correlation — sound design; the code correctly handles the singleton-within-auxiliary nesting of flags.
-- H4: Fisher's exact + logistic regression + stratified analysis + negative control — a well-structured causal test.
+**Analytical approach.** Each hypothesis has an appropriate method:
+- H1: Pairwise Fisher's exact tests on a binary species × focal-gene matrix, BH-FDR corrected with a log2-OR heatmap — standard and correct for presence/absence pangenome data.
+- H2: Per-gene Fisher's exact + logistic regression with phylum fixed effects + strict-rhizosphere sensitivity analysis — well-chosen confounders; the phylum-stratified analysis (18 phyla with ≥50 species) is a genuine check on phylogenetic confounding.
+- H3: Per-gene chi-square vs genome-wide cluster baseline + Spearman openness correlation — correct design; the code correctly disentangles auxiliary-but-not-singleton from the raw `is_auxiliary` flag.
+- H4: Fisher's exact + three logistic models + stratified analysis + negative control — a thorough causal test. The mechanistic explanation for the failed negative control (TyrR aromatic amino acid regulation) converts a potential weakness into a novel finding.
 
-**Data sources.** All tables are from `kbase_ke_pangenome` and are clearly identified with field names and scale in the RESEARCH_PLAN table. The direct `gtdb_metadata.ncbi_isolation_source` column is correctly preferred over the EAV `ncbi_env` table (documented pitfall avoided).
+**Data sources.** All seven tables from `kbase_ke_pangenome` are clearly identified in RESEARCH_PLAN.md with field names and scale. The direct `gtdb_metadata.ncbi_isolation_source` column is correctly preferred over the EAV `ncbi_env` table, consistent with the documented pitfall. The GapMind query correctly uses `MAX(score_simplified) … GROUP BY clade_name, pathway` to aggregate across multiple rows per species-pathway pair.
 
-**Reproducibility of approach.** The README contains an explicit `## Reproduction` section with runtime estimates and Spark/local distinctions for each notebook. This is exactly the right information for someone trying to re-run the pipeline.
+**Reproducibility.** The README contains an explicit `## Reproduction` section with per-notebook runtime estimates (NB01: ~20 min Spark; NB02–NB05: ~5–10 min local). The Spark/local distinction is clearly marked. The NB01 cache-check pattern (`if os.path.exists(path): load from CSV else run Spark`) means the full pipeline can be reproduced locally after NB01 has been run once on JupyterHub — this is a good design choice.
 
 ---
 
 ## Code Quality
 
-### NB01 — Data Extraction (Spark): ❌ Execution errors in saved state
+### NB01 — Data Extraction (Spark): ⚠️ Latent SQL bug; outputs present via cache
 
-**Bug: `NameError: name 'env_df' is not defined` in cells 9 and 11.** The Spark query in cell 8 (environment extraction) has no saved output, indicating the cell did not execute successfully in the run that was committed. Cells 9 and 11, which depend on `env_df`, then fail visibly:
+All cells executed with outputs. The notebook loaded all six data files from disk cache (`pgp_clusters.csv`, `species_pgp_matrix.csv`, `genome_environment.csv`, `species_environment.csv`, `pangenome_stats.csv`, `trp_completeness.csv`) rather than running live Spark queries, so the analysis chain is unbroken. However, a latent bug will cause failure if the cache is cleared and NB01 is re-run from scratch:
 
-```
-NameError: name 'env_df' is not defined
-```
-
-**Root cause: unquoted `order` reserved word.** Cell 8 contains:
+**Latent bug: unquoted `order` reserved word in NB01 cell 8.**
 ```sql
-SELECT m.accession AS genome_id, m.ncbi_isolation_source,
-       t.phylum, t.class, t.order, t.family, t.genus, t.species, ...
+-- NB01 cell 8 (current code — will FAIL when run live against Spark):
+SELECT m.accession AS genome_id, ...,
+       t.phylum, t.class, t.order, t.family, ...
 ```
-The `t.order` column is used without backtick quoting. The RESEARCH_PLAN itself explicitly documents this as Pitfall #7: *"`order` column: backtick-quote in SQL (reserved word)."* This known pitfall was not applied in the implemented query, and is the most likely cause of the Spark query failure.
+The column `order` is a SQL reserved word and must be backtick-quoted in Spark SQL: `` t.`order` ``. This is explicitly documented as Pitfall #7 in RESEARCH_PLAN.md: *"`order` column: backtick-quote in SQL (reserved word)."* The fix was planned but not applied to the code. Because `genome_environment.csv` already existed when the notebook was committed, the Spark branch was never taken and the bug was never triggered.
 
-**Cascade of missing outputs.** Because cells 9 and 11 fail, cells 13 (pangenome stats), 15 (GapMind trp), 17 (validation checkpoint), 18 (summary figure), and 19 (final summary) all have no saved outputs. This means the following are unverifiable from the notebook alone:
-- That pangenome_stats.csv was produced correctly (genome-wide baseline of 46.8% core)
-- That trp_completeness.csv contains the expected 27,690 species
-- The validation that nifH cluster count is 2,756 (noted as diverging 43% from the expected ~1,913 — an unexplained discrepancy worth flagging)
-- The summary figure `figures/nb01_pgp_prevalence.png` (absent from the figures/ directory)
-
-Despite these execution failures, the output data files (`genome_environment.csv`, `species_environment.csv`, `pangenome_stats.csv`, `trp_completeness.csv`) do exist with the expected row counts — confirming they were produced in a prior successful session. All downstream notebooks (NB02–NB05) load from these CSVs and run cleanly.
+**Additional NB01 observations:**
+- The nifH cluster count (2,756) differs from the RESEARCH_PLAN estimate (~1,913). NB01 cell 4 explains this inline as GTDB database growth. This is acceptable and honestly documented.
+- Pangenome numeric columns are correctly CAST to `INT`/`DOUBLE` in the Spark query (NB01 cell 13), avoiding the string-typed-numeric pitfall.
+- The known PGPB genus sanity check (NB01 cell 17) confirms Azospirillum leads with median 8 PGP genes/species, consistent with its role as the model PGPB genus.
 
 ### NB02 — PGP Co-occurrence (H1): ✅ Correct and complete
 
-All cells executed with outputs. Fisher's exact tests, BH-FDR correction, and OR heatmap are correctly implemented. The `fisher_pair()` function constructs the 2×2 contingency table correctly (`[[both, a_only], [b_only, neither]]`). Reported numbers (pqqC × acdS OR = 7.24, n = 286, q = 1.2e-83) match the notebook output exactly. Figures saved to disk. ✓
+All cells have saved outputs. The `fisher_pair()` function builds the 2×2 contingency table correctly (`[[both, a_only], [b_only, neither]]`). BH-FDR correction is applied across all 10 pairs. Reported numbers in REPORT (pqqC × acdS OR = 7.24, n = 286, q = 1.2e-83; nifH × hcnC OR = 0.23, q = 5.8e-29) match notebook output exactly.
 
 ### NB03 — Environmental Selection (H2): ✅ Correct and complete
 
-All cells executed with outputs. Environment enrichment test function is correctly implemented, including correct contingency table orientation (soil+ vs soil-, gene+ vs gene−). Phylum-stratified analysis, logistic regression with family-level fixed effects, and strict-rhizosphere sensitivity analysis all execute. Results in the REPORT match notebook outputs precisely (acdS OR = 7.02, soil sensitivity OR = 10.59). ✓
+All cells have saved outputs. The `enrichment_test()` function correctly orients the contingency table (soil+ vs soil−, gene+ vs gene−). The phylum-stratified analysis runs on 18 qualifying phyla and the strict-rhizosphere sensitivity analysis correctly re-runs within the soil subset. All reported effect sizes (acdS OR = 7.02, q = 5.15e-62; strict rhizosphere OR = 10.59) match notebook outputs.
 
-One noteworthy result: the phylum-controlled logistic regression for ipdC returns OR = 0.558, p = 0.027, flagging a soil *depletion* of ipdC — opposite to the main enrichment direction. This is correctly handled in the sensitivity analysis and discussed in the REPORT as a soil-reversal finding.
+The phylum-controlled logistic regression for ipdC returns OR = 0.558, p = 0.027, indicating soil *depletion* of ipdC — opposite to the raw Fisher's direction (OR = 0.79, ns). The REPORT discusses the soil reversal in the H4 context but does not explicitly reconcile why the phylum-controlled H2 logit shows soil depletion while the raw H2 Fisher's test is non-significant. See Suggestion 4.
 
 ### NB04 — Core vs Accessory (H3): ✅ Correct and complete
 
-All cells executed with outputs. The code correctly handles the singleton-within-auxiliary structure of the `gene_cluster` flags using `(is_auxiliary & ~is_singleton)` for true auxiliary and `is_singleton` separately. Chi-square tests and the Spearman openness correlation (ρ = −0.195, p = 2.0e-97) match REPORT values. ✓
+All cells have saved outputs. The code correctly partitions `is_auxiliary & ~is_singleton` for true auxiliary clusters and `is_singleton` separately (consistent with pangenome table semantics documented in pitfalls.md: singletons ⊂ auxiliary). Chi-square tests compare observed core/non-core counts against the weighted genome-wide baseline (46.8% core), which is computed correctly from summing across all species in `pangenome_stats`. The Spearman correlation (ρ = −0.195, p = 2.0e-97) matches REPORT.
 
-### NB05 — Tryptophan → IAA (H4): ✅ Mostly correct, one silent failure unreported
+### NB05 — Tryptophan → IAA (H4): ✅ Mostly correct; one REPORT citation inconsistency
 
-All cells have outputs. Fisher's exact, logistic Model 1 (trp only, OR = 2.808, p = 1.36e-08), and stratified analysis are correct. The negative control (tyr → ipdC, OR = 3.620, p = 2.32e-11) unexpectedly passes significance — the notebook comment correctly flags this as contrary to expectation, and the REPORT provides a mechanistically sound explanation (TyrR aromatic amino acid regulation).
+All cells have saved outputs. Fisher's exact test (OR = 2.808, p = 6.31e-10), logistic Model 1 (OR = 2.808, p = 1.36e-08), logistic Model 2 (OR_trp = 2.874), and stratified results (soil: OR = 0.30, p = 0.02; non-soil: OR = 3.56, p = 7.69e-13) are all present and clearly shown.
 
-**Unreported Model 3 failure.** Cell 7 shows:
-```
-Model 3 failed: Singular matrix
-```
-The phylum + is_soil logistic regression fails due to quasi-complete separation (too many phyla relative to ipdC prevalence). This failure is not mentioned in the REPORT, which refers only to "logit OR = 2.81" (Model 1). The omission is not harmful to the conclusions but should be disclosed.
+**REPORT logit OR citation ambiguity.** NB05 cell 7 shows: Model 1 OR = 2.808; Model 2 OR_trp = 2.874. The REPORT H4 section cites: *"logit OR = 2.81, 95% CI 1.97–4.01, p = 1.4e-08."* The OR of 2.81 and CI match Model 1. However, the sentence immediately precedes reference to Model 2 (trp + is_soil). The REPORT should clarify which model's OR is being cited (Model 1 for the OR, or Model 2 if that is preferred). The difference is small (2.808 vs 2.874) but should be explicit.
+
+**Model 3 failure correctly disclosed.** The REPORT states: *"A phylum + soil logistic model (Model 3) was attempted but failed due to quasi-complete separation caused by ipdC's rarity across phyla (214 species, 1.9%)"* — this is accurate and appropriately disclosed.
+
+**Negative control result is interpretable.** The tyr → ipdC association (OR = 3.62) being similar to trp → ipdC (OR = 2.81) is correctly explained via TyrR regulatory circuitry (Ryu & Patten 2008, PMID 18757531). This is a well-handled result.
 
 ### SQL and pitfall compliance
 
-| Pitfall | Status |
-|---------|--------|
-| `ncbi_isolation_source` direct column (not EAV) | ✅ Correctly used |
-| `metabolic_category = 'aa'` for GapMind | ✅ Correctly used |
+| Pitfall from docs/pitfalls.md | Status |
+|-------------------------------|--------|
+| `ncbi_isolation_source` direct column (not EAV `ncbi_env`) | ✅ Correctly used |
+| `metabolic_category = 'aa'` for GapMind amino acid pathways | ✅ Correctly used |
 | `sequence_scope = 'core'` for GapMind | ✅ Correctly used |
-| `order` reserved word requires backtick quoting | ❌ Missing in NB01 cell 8 |
-| JOIN on `genome_id` (not `gtdb_taxonomy_id`) | ✅ Correctly used in cell 8 |
-| `gapmind_pathways.clade_name` = `gtdb_species_clade_id` format | ✅ Used as `clade_name AS gtdb_species_clade_id` |
-| CAST pangenome numeric columns from Spark | ✅ CASTed in NB01 cell 13 |
+| GapMind multiple rows per genome-pathway: use `MAX()` + `GROUP BY` | ✅ Correctly handled |
+| JOIN taxonomy on `genome_id` (not `gtdb_taxonomy_id`) | ✅ Correctly used |
+| CAST pangenome numeric columns from Spark string types | ✅ Applied in NB01 cell 13 |
+| `order` reserved word requires backtick quoting in Spark SQL | ❌ Unquoted `t.order` in NB01 cell 8 (latent bug) |
 
 ---
 
 ## Findings Assessment
 
-**H1 (PGP syndrome): SUPPORTED.** The pqqC × acdS co-occurrence (OR = 7.24) is the strongest result in the project and well-supported by both statistics and existing literature (Vejan et al. 2016). The finding that nifH is negatively associated with pqqC and hcnC — forming a distinct ecological guild — is a genuine novel contribution at this scale. The REPORT's nuance (only 157 species carry ≥3 traits, and the "syndrome" is more a pqqC–acdS module than a broad suite) is honestly stated.
+**H1 (PGP syndrome): SUPPORTED.** The pqqC × acdS co-occurrence (OR = 7.24, n = 286) is the strongest result and well-supported by literature. The finding that nifH is *negatively* associated with pqqC (OR = 0.57) and hcnC (OR = 0.23) — creating a separate diazotroph guild — is a genuine and novel contribution at this scale. The nuance (only 157 species carry ≥3 traits; the "syndrome" is primarily a pqqC–acdS module) is honestly stated.
 
-**H2 (Soil enrichment): SUPPORTED.** acdS OR = 7.0 in soil is a large and robust effect that survives phylogenetic control (OR = 6.98 in logistic regression). The strict rhizosphere sensitivity (OR = 10.6) strengthens the finding. The unexpected nifH *depletion* in soil is correctly presented and cited against the literature (Wardell et al. 2022). The ipdC non-enrichment in soil is puzzling given H4's finding that soil species show a reversal; the REPORT addresses this but the explanation is necessarily speculative.
+**H2 (Soil enrichment): SUPPORTED.** The acdS soil enrichment (OR = 7.02) surviving phylum fixed effects (logit OR = 6.98) and strict-rhizosphere sensitivity (OR = 10.6) is a robust, highly significant result. The unexpected nifH *depletion* in soil is correctly presented with appropriate literature support (Wardell et al. 2022). Acknowledging the NCBI clinical sampling bias (only 5.9% of species classified as soil/rhizosphere-dominant) as a limitation is appropriate and honest.
 
-**H3 (HGT/accessory): REJECTED.** The REPORT honestly and clearly rejects H3. All 13 PGP genes are significantly MORE core than the 46.8% genome-wide baseline. The REPORT's interpretation (vertical inheritance as the primary mode) is well-supported and appropriately caveated (pqqD as an outlier). The pangenome-openness correlation (ρ = −0.195) is an important independent corroboration.
+**H3 (HGT/accessory): REJECTED.** All 13 PGP genes are significantly MORE core than the 46.8% genome-wide baseline. This clear rejection of the HGT hypothesis is honestly presented. The pqqD outlier (55.5% core, highest singleton fraction) is appropriately called out. The pangenome openness correlation (ρ = −0.195) provides independent corroboration. The REPORT's interpretation — stable ecological specialization rather than HGT-driven gene accumulation — is well-argued.
 
-**H4 (trp → ipdC coupling): PARTIALLY SUPPORTED.** The core Fisher's result (OR = 2.81, p = 6.3e-10) and the soil reversal are both faithfully reported. The REPORT's mechanistic explanation for the failed negative control (TyrR aromatic amino acid regulation; Ryu & Patten 2008, PMID 18757531) is scientifically sound and converts a potential embarrassment into a novel finding. The REPORT correctly recommends controlling for genome-wide pathway completeness as a future direction.
+**H4 (trp → ipdC coupling): PARTIALLY SUPPORTED.** The Fisher's result (OR = 2.81, p = 6.3e-10) is solid. The soil-reversal finding (in soil species, trp-complete predicts *lower* ipdC prevalence, OR = 0.30) is a genuinely interesting secondary result. The REPORT's mechanistic interpretation (soil PGPB obtain tryptophan exogenously from root exudates, relaxing biosynthetic pressure while retaining ipdC) is speculative but scientifically plausible and correctly flagged as hypothesis-generating. The Limitations section correctly identifies that controlling for genome-wide pathway completeness would be needed to isolate the specific trp–ipdC signal.
 
-**Minor factual error in REPORT.** The REPORT states: *"ipdC is the rarest focal gene (226 species, 2.0%)."* However, NB01 cell 3 shows 226 **gene clusters** for ipdC, while NB01 cell 6 shows **214 species** carry ipdC (confirmed by NB05: "ipdC present in: 214 species"). The correct figure is 214 species (1.9%), not 226 species. The 2.0% percentage in the same sentence is also slightly inconsistent (214/11272 = 1.9%).
+**REPORT accuracy:** Checked key numbers — all match notebook outputs exactly (pqqC × acdS OR, nifH depletion, acdS soil enrichment, chi-square baselines, Spearman ρ, Fisher H4 OR/p, stratified ORs). The REPORT correctly distinguishes ipdC species count (214) from cluster count (226). No unsupported numbers found.
 
-**Limitations.** The Limitations section in the REPORT is specific and honest: environment classification coverage (5.9% soil/rhizosphere), gene-name-only search, no functional validation of truncated genes, low ipdC prevalence limiting stratified power, and the GapMind confound. All are relevant and correctly assessed.
+**Limitations section** is specific and honest: environment classification noise, gene-name-only search (misses product-description-annotated genes), no functional validation of truncated/pseudogenized genes, low ipdC prevalence limiting stratified power, and the GapMind pathway-completeness confound. All relevant.
 
 ---
 
 ## Suggestions
 
-1. **[Critical] Fix `t.order` SQL in NB01 cell 8.** Backtick-quote the reserved word: change `t.order` to `` t.`order` `` in the Spark SQL query. This is documented as Pitfall #7 in the RESEARCH_PLAN but was not applied in the code. After fixing, re-execute NB01 on JupyterHub to regenerate `genome_environment.csv` and capture clean outputs for cells 8–19.
+1. **[Critical] Fix the `t.order` reserved word in NB01 cell 8.** Change `t.order` to `` t.`order` `` in the Spark SQL query. This is exactly Pitfall #7 from the RESEARCH_PLAN but was not applied to the implemented code. The bug is currently latent because `genome_environment.csv` is cached; it will surface if the cache is cleared or the query is re-run. After fixing, re-execute NB01 on BERDL JupyterHub and save the notebook with live Spark outputs to replace the cache-only run.
 
-2. **[Critical] Re-execute NB01 to capture saved outputs.** After fixing the SQL bug, run NB01 end-to-end on BERDL JupyterHub and save the notebook with outputs. Cells 13 (pangenome stats), 15 (GapMind trp), 17 (validation checkpoint), 18 (summary figure), and 19 (final summary) currently have no outputs, making them unverifiable. The `figures/nb01_pgp_prevalence.png` file is also missing.
+2. **[Moderate] Clarify the logit OR citation in the H4 REPORT section.** The REPORT cites "logit OR = 2.81, 95% CI 1.97–4.01, p = 1.4e-08" — these values match Model 1 (trp only). However, Model 2 (trp + is_soil) gives OR_trp = 2.874. The text should explicitly name the model being cited (e.g., "Model 1: trp only, OR = 2.81") to avoid ambiguity about whether soil adjustment was applied.
 
-3. **[Moderate] Explain the nifH cluster count discrepancy.** NB01 cell 4 validation notes "nifH clusters = 2,756 (expected ~1,913)" — a 43% excess over the RESEARCH_PLAN estimate — without explanation. Add a comment or markdown cell explaining why the observed count diverges from the prior estimate (e.g., updated database since the plan was written, or the prior estimate assumed a different query scope). The discrepancy is not necessarily a problem, but it should not be flagged as a failed validation without context.
+3. **[Moderate] Clarify the ipdC soil enrichment paradox between H2 and H4.** H2 finds ipdC non-enriched in soil (raw OR = 0.79, ns; phylum-controlled OR = 0.558, p = 0.027 soil-depleted), while H4's stratified analysis finds the trp→ipdC positive coupling *only* in non-soil species. These two results are related but the REPORT discusses them in separate sections without a cross-reference. A brief sentence in either the H2 or H4 interpretation section explicitly connecting the ipdC soil-depletion pattern across both analyses would help readers follow the logic.
 
-4. **[Moderate] Disclose the Model 3 singular matrix failure in the REPORT.** NB05 cell 7 records "Model 3 failed: Singular matrix" (phylum + is_soil regression for ipdC). The REPORT should note that Model 3 was attempted but failed due to quasi-complete separation, and that conclusions are therefore based on the simpler Model 1 (trp only) and Model 2 (trp + is_soil). Add a sentence to the H4 section and/or Limitations.
+4. **[Minor] Explain the nifH cluster count discrepancy more prominently.** NB01 cell 4 notes "nifH clusters = 2,756 (expected ~1,913 at plan time)" — a 43% excess — in a print statement. The inline explanation ("reflects DB growth since plan was written") is sufficient for a notebook but deserves a brief acknowledgment in the RESEARCH_PLAN's Revision History or the REPORT's Dataset Scale section, since the plan's expected-outcome section (H1: "nifH × pqqC pair co-occurrence supported") was calibrated against the older count.
 
-5. **[Minor] Correct the ipdC species count in the REPORT.** Change *"ipdC is the rarest focal gene (226 species, 2.0%)"* to *"ipdC is the rarest focal gene (214 species, 1.9%)"*. The number 226 refers to gene clusters, not species; the correct species count (214) is shown in NB01 cell 6 and NB05 cell 1.
+5. **[Minor] Add a comment explaining why `score_simplified` values are binary (0.0 / 1.0).** NB01 cell 15 extracts GapMind trp completeness via `MAX(score_simplified)` and NB05 cell 3 shows the values are only `[0.0, 1.0]`. The `score_simplified` column's binary nature is not explained. A brief comment noting that GapMind `score_simplified` encodes pathway completeness as 0/1 (from `sequence_scope = 'core'`) would help readers who expect a continuous score.
 
-6. **[Minor] Address the ipdC soil-enrichment paradox.** The H2 analysis finds ipdC non-enriched in soil (OR = 0.79, ns) while the H4 stratified analysis shows the trp→ipdC positive coupling is present only in *non-soil* species. The REPORT mentions the soil-reversal but does not explicitly reconcile it with H2's null result for ipdC soil enrichment. A brief cross-reference in the H2 or H4 interpretation section would help the reader.
-
-7. **[Nice-to-have] Add `nb01_pgp_prevalence.png` to figures/ or remove its reference.** NB01 cell 18 generates and saves `figures/nb01_pgp_prevalence.png`, but it does not exist in the repository because NB01 never completed that cell. Either include it after re-executing NB01, or remove the `plt.savefig` call if the figure is not needed for the REPORT.
+6. **[Nice-to-have] Consider adding a figure to visualize the nifH ecological guild separation.** The diazotroph-vs-non-diazotroph finding from H1 and H2 (nifH negatively associated with pqqC/hcnC; nifH depleted in soil) is a strong secondary finding described primarily in prose. A simple phylum-stratified bar chart showing nifH vs pqqC/acdS prevalence across the top 8 phyla would make this guild-separation result visually striking and more accessible to readers.
 
 ---
 
@@ -129,5 +121,5 @@ The phylum + is_soil logistic regression fails due to quasi-complete separation 
 
 - **Reviewer**: BERIL Automated Review
 - **Date**: 2026-03-20
-- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, 5 notebooks (NB01–NB05), 11 data files, 6 figures, requirements.txt, docs/pitfalls.md
+- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, 5 notebooks (NB01–NB05), 11 data files, 7 figures, requirements.txt, docs/pitfalls.md
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.
