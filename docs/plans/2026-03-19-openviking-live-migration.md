@@ -8,6 +8,8 @@
 
 **Tech Stack:** Python 3.11+, OpenViking SyncHTTPClient, pydantic-settings, pytest, PyYAML, uv
 
+> **Status (2026-03-20):** Phase 2 read parity is complete. The unified query backend (`scripts/query_knowledge_unified.py`) now tries OpenViking first and silently falls back to deterministic search. A `KnowledgeIndex` built from `knowledge/*.yaml` provides entity-aware search boosting and graph-aware related resource ranking. The `/knowledge` skill uses the unified backend exclusively.
+
 ---
 
 ### Task 1: Add failing live-runtime tests

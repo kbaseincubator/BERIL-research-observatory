@@ -20,11 +20,11 @@ VALIDATORS = {
     "validate_registry_freshness": ["uv", "run", "scripts/validate_registry_freshness.py"],
 }
 QUERY_COMMANDS = {
-    "metal stress": ["uv", "run", "scripts/query_knowledge.py", "search", "metal stress"],
-    "essential genes": ["uv", "run", "scripts/query_knowledge.py", "search", "essential genes"],
-    "org_adp1": ["uv", "run", "scripts/query_knowledge.py", "search", "org_adp1"],
-    "landscape": ["uv", "run", "scripts/query_knowledge.py", "landscape"],
-    "gaps": ["uv", "run", "scripts/query_knowledge.py", "gaps"],
+    "metal stress": ["uv", "run", "scripts/query_knowledge_unified.py", "search", "metal stress"],
+    "essential genes": ["uv", "run", "scripts/query_knowledge_unified.py", "search", "essential genes"],
+    "org_adp1": ["uv", "run", "scripts/query_knowledge_unified.py", "search", "org_adp1"],
+    "landscape": ["uv", "run", "scripts/query_knowledge_unified.py", "landscape"],
+    "gaps": ["uv", "run", "scripts/query_knowledge_unified.py", "gaps"],
 }
 
 
