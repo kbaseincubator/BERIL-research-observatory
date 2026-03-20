@@ -259,6 +259,33 @@ JOIN kbase_ke_pangenome.gtdb_taxonomy_r214v1 t ON g.gtdb_taxonomy_id = t.gtdb_ta
 
 ### SQL Syntax Issues
 
+### [pgp_pangenome_ecology] `order` is a Spark SQL reserved word — must be backtick-quoted
+
+The `gtdb_taxonomy_r214v1` table has a column named `order` (taxonomic rank). In Spark SQL, `order` is a reserved keyword and will cause a parse error if used unquoted in a SELECT or JOIN. Always backtick-quote it:
+
+```sql
+-- WRONG: AnalysisException: Reserved keyword 'order' used as identifier
+SELECT t.phylum, t.class, t.order, t.family FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1 t
+
+-- CORRECT: backtick-quote the reserved word
+SELECT t.phylum, t.class, t.`order`, t.family FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1 t
+```
+
+The same applies to other SQL reserved words that appear as column names (e.g., `class`, `select`, `from`). When in doubt, backtick-quote any column name that looks like a keyword.
+
+### [pgp_pangenome_ecology] GapMind `score_simplified` is binary (0.0 / 1.0), not continuous
+
+When querying `kbase_ke_pangenome.gapmind_pathways` with `sequence_scope = 'core'`, the `score_simplified` column contains only `0.0` (pathway incomplete) or `1.0` (pathway complete) — it is not a continuous confidence score. The table is genome-level (one row per genome-pathway pair); aggregate to species level with `MAX(score_simplified) GROUP BY clade_name, pathway` before joining to species data.
+
+```sql
+-- CORRECT: aggregate to species level, binary threshold still applies
+SELECT clade_name AS gtdb_species_clade_id, pathway,
+       MAX(score_simplified) AS score_simplified  -- still 0.0 or 1.0 after MAX
+FROM kbase_ke_pangenome.gapmind_pathways
+WHERE pathway IN ('trp', 'tyr') AND metabolic_category = 'aa' AND sequence_scope = 'core'
+GROUP BY clade_name, pathway
+```
+
 ### The `--` in Species IDs: Non-Issue in Spark, Real Issue in REST API
 
 Species clade IDs contain `--` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`). Behavior depends on the query method:
