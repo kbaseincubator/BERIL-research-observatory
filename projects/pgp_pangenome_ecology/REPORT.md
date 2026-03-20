@@ -70,7 +70,7 @@ Confirming this interpretation, pangenome openness (singleton fraction) correlat
 
 ![Tryptophan pathway completeness vs ipdC presence (contingency heatmap and prevalence by environment)](figures/trp_iaa_contingency.png)
 
-Tryptophan biosynthesis completeness (GapMind score ≥ 0.9) significantly predicts ipdC presence: species with complete trp pathway carry ipdC at 2.5% vs 0.9% in trp-incomplete species (Fisher OR = 2.81, p = 6.3e-10; logit OR = 2.81, 95% CI 1.97–4.01, p = 1.4e-08, n = 11,272).
+Tryptophan biosynthesis completeness (GapMind score ≥ 0.9) significantly predicts ipdC presence: species with complete trp pathway carry ipdC at 2.5% vs 0.9% in trp-incomplete species (Fisher OR = 2.81, p = 6.3e-10; Model 1 logit, trp only: OR = 2.81, 95% CI 1.97–4.01, p = 1.4e-08, n = 11,272; Model 2 adding soil covariate: OR_trp = 2.87, p = 7.0e-09).
 
 However, the tyrosine pathway (negative control) also predicts ipdC presence at similar effect size (OR = 3.62, p = 2.3e-11). This is not merely a statistical artifact — it is mechanistically expected: the ipdC gene in *Enterobacter cloacae* and related species is regulated by TyrR, a transcription factor activated by all three aromatic amino acids (tryptophan, phenylalanine, and tyrosine; Ryu & Patten 2008, PMID 18757531). Species with complete aromatic amino acid biosynthesis pathways are more likely to maintain the full TyrR regulatory circuit, and thus ipdC.
 
@@ -89,6 +89,7 @@ A phylum + soil logistic model (Model 3) was attempted but failed due to quasi-c
 - **32,736 PGP gene clusters** extracted across all species
 - **27,690 species** with GapMind tryptophan completeness scores
 - **291,279 genomes** with ncbi_isolation_source metadata; 93.5% classifiable
+- **nifH count note**: The RESEARCH_PLAN estimated ~1,913 nifH clusters; the actual count is 2,756 (43% higher), reflecting incremental growth in the GTDB r214 pangenome since the plan was written. This discrepancy does not affect any analysis; it is documented in NB01 cell 4.
 
 ### PGP gene prevalence
 pqqD (55.5% core, present in 11,040 species) is the most widespread PGP gene — it is the most promiscuous pqq gene and appears as a single-gene orphan in many species lacking other pqq genes. Excluding pqqD, pqqC is the most prevalent focal trait (3,028 species, 26.8% of species with any PGP gene). ipdC is the rarest focal gene (214 species, 1.9%); note that 226 is the number of ipdC gene *clusters*, while 214 is the number of species carrying at least one such cluster.
@@ -99,6 +100,10 @@ The soil/rhizosphere category is conservative: only 1,637 species (5.9% of speci
 ---
 
 ## Interpretation
+
+### ipdC is soil-depleted regardless of analysis: H2 and H4 are consistent
+
+The ipdC non-enrichment in H2 (raw OR = 0.79, ns; phylum-controlled logit OR = 0.56, p = 0.027 showing soil *depletion*) connects directly with H4's stratified result: the trp→ipdC positive coupling exists only in *non-soil* species (OR = 3.56), while in soil species it reverses (OR = 0.30). Both analyses point to the same underlying pattern — ipdC is less prevalent in soil-dwelling species, and when it does occur in soil species, its prevalence is not predicted by autonomous trp biosynthesis capacity. This is consistent with soil PGPB obtaining aromatic amino acids from plant exudates rather than synthesizing them de novo.
 
 ### A non-diazotrophic PGP module dominates soil bacteria
 
