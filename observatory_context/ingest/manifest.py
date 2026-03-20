@@ -109,6 +109,7 @@ def build_resource_manifest(repo_root: Path) -> list[ResourceManifestItem]:
         provenance_path = project_dir / "provenance.yaml"
         report_content = report_path.read_text(encoding="utf-8") if report_path.exists() else None
         provenance = _load_yaml(provenance_path) if provenance_path.exists() else None
+        seen_figure_uris: set[str] = set()
         figures = parse_figures_from_report(
             project_id,
             report_content,
@@ -122,6 +123,10 @@ def build_resource_manifest(repo_root: Path) -> list[ResourceManifestItem]:
             source_path = repo_root / str(figure.get("path"))
             if not figure_file or not source_path.exists():
                 continue
+            figure_uri = build_figure_resource_uri(project_id, figure_id)
+            if figure_uri in seen_figure_uris:
+                continue
+            seen_figure_uris.add(figure_uri)
             export_figure = {
                 "project": project_id,
                 "file": figure_file,
@@ -132,7 +137,7 @@ def build_resource_manifest(repo_root: Path) -> list[ResourceManifestItem]:
             }
             manifest.append(
                 ResourceManifestItem(
-                    uri=build_figure_resource_uri(project_id, figure_id),
+                    uri=figure_uri,
                     kind="figure",
                     source_path=str(source_path),
                     project_ids=[project_id],

@@ -22,6 +22,10 @@ def build_project_resource_uri(project_id: str, section: str, relative_path: str
     return f"{_ROOT}/{path.as_posix()}"
 
 
+def build_observatory_root_uri() -> str:
+    return _ROOT
+
+
 def build_project_workspace_uri(project_id: str) -> str:
     path = PurePosixPath("projects", _normalize_segment(project_id))
     return f"{_ROOT}/{path.as_posix()}"

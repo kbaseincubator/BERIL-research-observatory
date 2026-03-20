@@ -9,6 +9,7 @@ from typing import Any
 import yaml
 
 from observatory_context.config import ObservatoryContextSettings
+from observatory_context.ingest.manifest import ResourceManifestItem
 
 
 class OpenVikingObservatoryClient:
@@ -62,6 +63,12 @@ class OpenVikingObservatoryClient:
     def make_directory(self, uri: str) -> None:
         self.client.mkdir(uri)
 
+    def health(self) -> bool:
+        return bool(self.client.health())
+
+    def get_status(self) -> dict[str, Any]:
+        return dict(self.client.get_status())
+
     def link_resources(self, from_uri: str, uris: list[str], reason: str = "") -> None:
         self.client.link(from_uri, uris=uris, reason=reason)
 
@@ -86,3 +93,18 @@ class OpenVikingObservatoryClient:
             return self.add_resource(path=str(temp_path), uri=uri, reason=reason, wait=wait)
         finally:
             temp_path.unlink(missing_ok=True)
+
+    def add_manifest_resource(self, item: ResourceManifestItem, wait: bool = True) -> dict[str, Any]:
+        source_path = Path(item.source_path)
+        if item.kind == "figure":
+            caption = item.metadata.get("caption") or item.metadata.get("title") or source_path.name
+            content = f"Figure resource for {caption}\nSource artifact: {source_path}\n"
+        else:
+            content = source_path.read_text(encoding="utf-8")
+        return self.add_text_resource(
+            uri=item.uri,
+            content=content,
+            metadata=item.metadata,
+            reason=f"Ingest {item.kind} from BERIL observatory manifest",
+            wait=wait,
+        )

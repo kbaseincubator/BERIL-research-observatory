@@ -8,6 +8,7 @@ from pathlib import Path
 
 import yaml
 
+from observatory_context import runtime
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
@@ -21,11 +22,14 @@ def build_parser() -> argparse.ArgumentParser:
         required=True,
         help="Directory containing generated project_registry.yaml and figure_catalog.yaml.",
     )
+    parser.add_argument("--offline", action="store_true", help="Validate without requiring a live server.")
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    if not args.offline:
+        runtime.build_service(args.repo_root, offline=False, require_live=True)
     tracked_dir = args.repo_root / "docs"
 
     issues: list[str] = []

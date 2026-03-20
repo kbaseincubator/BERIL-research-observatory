@@ -46,15 +46,10 @@ def main() -> int:
 
     client = OpenVikingObservatoryClient(ObservatoryContextSettings())
     for item in manifest:
-        client.add_resource(
-            path=item.source_path,
-            uri=item.uri,
-            reason=f"Ingest {item.kind} from BERIL observatory manifest",
-        )
+        client.add_manifest_resource(item)
         print(f"Ingested {item.uri}")
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

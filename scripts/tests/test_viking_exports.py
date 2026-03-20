@@ -1,18 +1,70 @@
-"""Tests for the Phase 3 OpenViking export materialization slice."""
+"""Tests for deterministic export materialization."""
 
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Callable
 
 import pytest
 import yaml
 
+from observatory_context.ingest.manifest import build_resource_manifest
 from observatory_context.service import ObservatoryContextService
 
 
 def _write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
+
+
+class FakeLiveClient:
+    def __init__(self) -> None:
+        self.resources: dict[str, dict[str, object]] = {}
+
+    def seed_manifest_resource(
+        self,
+        source_path: Path,
+        uri: str,
+        metadata: dict[str, object],
+        kind: str,
+        body: str | None = None,
+    ) -> None:
+        if body is None:
+            if kind == "figure":
+                body = f"Figure resource for {metadata.get('title', source_path.name)}\n"
+            else:
+                body = source_path.read_text(encoding="utf-8")
+        front_matter = yaml.safe_dump(metadata, sort_keys=True).strip()
+        content = f"---\n{front_matter}\n---\n\n{body.strip()}\n"
+        self.resources[uri] = {"content": content, "metadata": dict(metadata)}
+
+    def list_resources(self, uri: str, recursive: bool = False) -> list[dict[str, object]]:
+        prefix = uri.rstrip("/")
+        results = []
+        for resource_uri in sorted(self.resources):
+            if recursive and resource_uri.startswith(prefix):
+                results.append({"uri": resource_uri})
+        return results
+
+    def read_resource(self, uri: str) -> str:
+        return str(self.resources[uri]["content"])
+
+    def stat_resource(self, uri: str) -> dict[str, object]:
+        return {"uri": uri, "metadata": self.resources[uri]["metadata"]}
+
+
+def _seed_live_resources(
+    sample_repo: Path,
+    mutate: Callable[[object, dict[str, object]], tuple[dict[str, object], str | None]] | None = None,
+) -> FakeLiveClient:
+    client = FakeLiveClient()
+    for item in build_resource_manifest(sample_repo):
+        metadata = dict(item.metadata)
+        body = None
+        if mutate is not None:
+            metadata, body = mutate(item, metadata)
+        client.seed_manifest_resource(Path(item.source_path), item.uri, metadata, item.kind, body=body)
+    return client
 
 
 @pytest.fixture
@@ -235,6 +287,28 @@ def test_build_figure_catalog_export_from_resources(service: ObservatoryContextS
     ]
 
 
+def test_build_project_registry_export_prefers_live_server_resources(sample_repo: Path) -> None:
+    from observatory_context.materialize.exports import build_project_registry_export
+
+    def mutate(item, metadata):
+        if item.uri.endswith("/projects/alpha_proj/authored/README.md"):
+            export_project = dict(metadata["export_project"])
+            export_project["title"] = "Alpha Project From Server"
+            metadata["title"] = "Alpha Project From Server"
+            metadata["export_project"] = export_project
+        return metadata, None
+
+    service = ObservatoryContextService(repo_root=sample_repo, client=_seed_live_resources(sample_repo, mutate=mutate))
+
+    export = build_project_registry_export(
+        service,
+        project_ids=["alpha_proj"],
+        generated_at="2026-03-19T16:43:57",
+    )
+
+    assert export["projects"][0]["title"] == "Alpha Project From Server"
+
+
 def test_materialized_exports_use_deterministic_ordering(
     service: ObservatoryContextService,
 ) -> None:
@@ -290,6 +364,7 @@ def test_materialize_and_validate_exports_against_tracked_outputs(
             str(sample_repo),
             "--output-dir",
             str(output_dir),
+            "--offline",
             "--generated-at",
             "2026-03-19T16:43:57",
         ]
@@ -310,6 +385,7 @@ def test_materialize_and_validate_exports_against_tracked_outputs(
             str(sample_repo),
             "--generated-dir",
             str(output_dir),
+            "--offline",
         ]
     )
     assert validate_exit == 0
@@ -327,6 +403,7 @@ def test_materialize_and_validate_exports_against_tracked_outputs(
             str(sample_repo),
             "--generated-dir",
             str(output_dir),
+            "--offline",
         ]
     )
     assert mismatch_exit == 1

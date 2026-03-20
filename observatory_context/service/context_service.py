@@ -5,14 +5,16 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
+import yaml
+
 from observatory_context.notes import build_live_resource, parse_live_resource
 from observatory_context.render import RenderLevel, render_resource
 from observatory_context.retrieval import build_authored_resource_index, lexical_search, rank_related_resources
 from observatory_context.service.models import ContextResource, ProjectWorkspace, ResourceResponse
 from observatory_context.uris import (
+    build_observatory_root_uri,
     build_project_notes_root_uri,
     build_project_workspace_uri,
-    build_shared_notes_root_uri,
 )
 
 
@@ -208,35 +210,70 @@ class ObservatoryContextService:
 
     def _all_resources(self) -> dict[str, ContextResource]:
         resources = dict(self._authored_resources)
-        resources.update(self._load_live_resources())
+        resources.update(self._load_client_resources())
         return resources
 
-    def _load_live_resources(self) -> dict[str, ContextResource]:
+    def _load_client_resources(self) -> dict[str, ContextResource]:
         if self.client is None:
             return {}
         resources: dict[str, ContextResource] = {}
-        note_roots = [build_shared_notes_root_uri()]
-        note_roots.extend(build_project_notes_root_uri(project_id) for project_id in self._project_ids)
-        for root_uri in note_roots:
+        try:
+            entries = self.client.list_resources(build_observatory_root_uri(), recursive=True)
+        except Exception:
+            return {}
+        for entry in entries:
+            uri = entry.get("uri")
+            if not uri or uri in resources:
+                continue
             try:
-                entries = self.client.list_resources(root_uri, recursive=True)
+                content = self.client.read_resource(uri)
             except Exception:
                 continue
-            for entry in entries:
-                uri = entry.get("uri")
-                if not uri or uri in resources:
-                    continue
-                content = self.client.read_resource(uri)
-                fallback_metadata: dict[str, Any] = {}
-                try:
-                    stat = self.client.stat_resource(uri)
-                except Exception:
-                    stat = {}
-                if isinstance(stat.get("metadata"), dict):
-                    fallback_metadata = dict(stat["metadata"])
-                parsed = parse_live_resource(uri, content, fallback_metadata=fallback_metadata)
-                resources[uri] = ContextResource(**parsed)
+            fallback_metadata: dict[str, Any] = {}
+            try:
+                stat = self.client.stat_resource(uri)
+            except Exception:
+                stat = {}
+            if isinstance(stat.get("metadata"), dict):
+                fallback_metadata = dict(stat["metadata"])
+            resource = self._parse_client_resource(uri, content, fallback_metadata)
+            if resource is not None:
+                resources[uri] = resource
         return resources
+
+    def _parse_client_resource(
+        self,
+        uri: str,
+        content: str,
+        fallback_metadata: dict[str, Any],
+    ) -> ContextResource | None:
+        metadata, body = _split_frontmatter(content, fallback_metadata)
+        kind = str(metadata.get("kind") or "")
+        if not kind:
+            return None
+        if kind in {"note", "observation"}:
+            return ContextResource(**parse_live_resource(uri, content, fallback_metadata=metadata))
+
+        if kind == "project":
+            summary = metadata.get("research_question")
+        elif kind == "figure":
+            summary = metadata.get("caption")
+        else:
+            summary = metadata.get("summary") or _compact_text(body)
+        return ContextResource(
+            id=str(metadata.get("id") or uri.rsplit("/", 1)[-1]),
+            uri=uri,
+            kind=kind,
+            title=str(metadata.get("title") or metadata.get("id") or uri.rsplit("/", 1)[-1]),
+            project_ids=list(metadata.get("project_ids") or []),
+            tags=list(metadata.get("tags") or []),
+            source_refs=list(metadata.get("source_refs") or []),
+            links=list(metadata.get("links") or []),
+            summary=summary,
+            research_question=metadata.get("research_question"),
+            body=body,
+            metadata=metadata,
+        )
 
     def _write_live_resource(self, payload: dict[str, Any]) -> ContextResource:
         uri = payload["uri"]
@@ -277,3 +314,20 @@ class ObservatoryContextService:
         if isinstance(detail_level, RenderLevel):
             return detail_level
         return RenderLevel(detail_level)
+
+
+def _split_frontmatter(content: str, fallback_metadata: dict[str, Any]) -> tuple[dict[str, Any], str]:
+    metadata = dict(fallback_metadata)
+    body = content
+    if content.startswith("---\n"):
+        _, remainder = content.split("---\n", 1)
+        front_matter, body = remainder.split("\n---\n", 1)
+        metadata.update(yaml.safe_load(front_matter) or {})
+    return metadata, body.strip()
+
+
+def _compact_text(text: str | None, limit: int = 240) -> str | None:
+    if not text:
+        return None
+    compact = " ".join(text.split())
+    return compact[:limit]

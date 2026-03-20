@@ -7,8 +7,8 @@ from pathlib import Path
 
 import yaml
 
+from observatory_context import runtime
 from observatory_context.overlays import build_raw_knowledge_overlays
-from observatory_context.service import ObservatoryContextService
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -23,12 +23,13 @@ def build_parser() -> argparse.ArgumentParser:
         required=True,
         help="Directory containing generated overlay YAML files.",
     )
+    parser.add_argument("--offline", action="store_true", help="Validate without requiring a live server.")
     return parser
 
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
-    service = ObservatoryContextService(repo_root=args.repo_root, client=None)
+    service = runtime.build_service(args.repo_root, offline=args.offline, require_live=not args.offline)
     issues = collect_overlay_parity_issues(service, args.generated_dir)
 
     if issues:

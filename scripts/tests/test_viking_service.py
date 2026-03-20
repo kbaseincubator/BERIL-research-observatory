@@ -1,4 +1,4 @@
-"""Tests for the Phase 2 OpenViking context service."""
+"""Tests for the OpenViking-backed context service."""
 
 from __future__ import annotations
 

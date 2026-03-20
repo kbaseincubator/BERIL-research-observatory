@@ -12,7 +12,7 @@ from observatory_context.materialize import (
     collect_project_ids,
     write_yaml_export,
 )
-from observatory_context.service import ObservatoryContextService
+from observatory_context import runtime
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -23,6 +23,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Materialize Phase 3 Git review exports.")
     parser.add_argument("--repo-root", type=Path, default=REPO_ROOT, help="Repository root.")
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR, help="Output directory for YAML exports.")
+    parser.add_argument("--offline", action="store_true", help="Materialize from repository files without a live server.")
     parser.add_argument(
         "--generated-at",
         default=None,
@@ -34,7 +35,7 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     generated_at = args.generated_at or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S")
-    service = ObservatoryContextService(repo_root=args.repo_root, client=None)
+    service = runtime.build_service(args.repo_root, offline=args.offline, require_live=not args.offline)
     project_ids = collect_project_ids(args.repo_root)
     registry = build_project_registry_export(service, project_ids=project_ids, generated_at=generated_at)
     figure_catalog = build_figure_catalog_export(service, project_ids=project_ids, generated_at=generated_at)

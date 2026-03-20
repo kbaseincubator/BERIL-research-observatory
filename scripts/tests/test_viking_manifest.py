@@ -1,4 +1,4 @@
-"""Tests for the Phase 0/1 OpenViking migration helpers."""
+"""Tests for manifest and parity helpers."""
 
 from __future__ import annotations
 
@@ -116,6 +116,52 @@ def test_manifest_imports_knowledge_as_raw_resources(sample_repo: Path) -> None:
         ]
         == "knowledge_document"
     )
+
+
+def test_manifest_deduplicates_duplicate_figure_uris(tmp_path: Path) -> None:
+    _write(
+        tmp_path / "docs" / "project_registry.yaml",
+        """
+projects:
+  - id: alpha_proj
+    title: Alpha Project
+    status: complete
+    tags: []
+    research_question: How does alpha respond?
+""".strip()
+        + "\n",
+    )
+    _write(
+        tmp_path / "docs" / "figure_catalog.yaml",
+        """
+figure_count: 1
+figures:
+  - id: alpha_proj__main
+    project_id: alpha_proj
+    figure_file: figures/main.png
+    caption: Main alpha figure
+""".strip()
+        + "\n",
+    )
+    _write(tmp_path / "knowledge" / "timeline.yaml", "events: []\n")
+    _write(tmp_path / "projects" / "alpha_proj" / "README.md", "# Alpha Project\n")
+    _write(
+        tmp_path / "projects" / "alpha_proj" / "REPORT.md",
+        """
+# Alpha Report
+
+![Main alpha figure](figures/main.png)
+![Main alpha figure again](figures/main.png)
+""".strip()
+        + "\n",
+    )
+    _write(tmp_path / "projects" / "alpha_proj" / "provenance.yaml", "project_id: alpha_proj\n")
+    _write(tmp_path / "projects" / "alpha_proj" / "figures" / "main.png", "not-a-real-png\n")
+
+    manifest = build_resource_manifest(tmp_path)
+    figure_uris = [item.uri for item in manifest if item.kind == "figure"]
+
+    assert figure_uris == ["viking://resources/observatory/projects/alpha_proj/authored/figures/alpha_proj__main"]
 
 
 def test_render_resource_returns_deterministic_project_views() -> None:

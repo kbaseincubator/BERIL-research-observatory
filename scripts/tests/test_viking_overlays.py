@@ -1,18 +1,63 @@
-"""Tests for the Phase 4 OpenViking overlay materialization slice."""
+"""Tests for deterministic overlay materialization."""
 
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Callable
 
 import pytest
 import yaml
 
+from observatory_context.ingest.manifest import build_resource_manifest
 from observatory_context.service import ObservatoryContextService
 
 
 def _write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
+
+
+class FakeLiveClient:
+    def __init__(self) -> None:
+        self.resources: dict[str, dict[str, object]] = {}
+
+    def seed_manifest_resource(
+        self,
+        source_path: Path,
+        uri: str,
+        metadata: dict[str, object],
+        kind: str,
+        body: str | None = None,
+    ) -> None:
+        if body is None:
+            body = source_path.read_text(encoding="utf-8") if kind != "figure" else "Figure resource\n"
+        front_matter = yaml.safe_dump(metadata, sort_keys=True).strip()
+        content = f"---\n{front_matter}\n---\n\n{body.strip()}\n"
+        self.resources[uri] = {"content": content, "metadata": dict(metadata)}
+
+    def list_resources(self, uri: str, recursive: bool = False) -> list[dict[str, object]]:
+        prefix = uri.rstrip("/")
+        return [{"uri": resource_uri} for resource_uri in sorted(self.resources) if recursive and resource_uri.startswith(prefix)]
+
+    def read_resource(self, uri: str) -> str:
+        return str(self.resources[uri]["content"])
+
+    def stat_resource(self, uri: str) -> dict[str, object]:
+        return {"uri": uri, "metadata": self.resources[uri]["metadata"]}
+
+
+def _seed_live_resources(
+    sample_repo: Path,
+    mutate: Callable[[object, dict[str, object]], tuple[dict[str, object], str | None]] | None = None,
+) -> FakeLiveClient:
+    client = FakeLiveClient()
+    for item in build_resource_manifest(sample_repo):
+        metadata = dict(item.metadata)
+        body = None
+        if mutate is not None:
+            metadata, body = mutate(item, metadata)
+        client.seed_manifest_resource(Path(item.source_path), item.uri, metadata, item.kind, body=body)
+    return client
 
 
 @pytest.fixture
@@ -106,6 +151,25 @@ def test_overlay_serialization_is_deterministic(service: ObservatoryContextServi
     assert first_pass == second_pass[::-1]
 
 
+def test_build_raw_knowledge_overlays_prefers_live_server_resources(sample_repo: Path) -> None:
+    from observatory_context.overlays import build_raw_knowledge_overlays
+
+    def mutate(item, metadata):
+        if item.uri.endswith("/overlays/raw-knowledge/entities/genes.yaml"):
+            body = """
+genes:
+  - id: gene_live
+    name: Live gene
+""".strip()
+            return metadata, body
+        return metadata, None
+
+    service = ObservatoryContextService(repo_root=sample_repo, client=_seed_live_resources(sample_repo, mutate=mutate))
+    overlays = build_raw_knowledge_overlays(service)
+
+    assert overlays[0].payload == {"genes": [{"id": "gene_live", "name": "Live gene"}]}
+
+
 def test_missing_required_overlay_metadata_fails(service: ObservatoryContextService) -> None:
     from observatory_context.overlays import OverlayMaterializationError, build_raw_knowledge_overlays
 
@@ -139,6 +203,7 @@ def test_materialize_and_validate_overlay_outputs(
             str(sample_repo),
             "--output-dir",
             str(output_dir),
+            "--offline",
         ]
     ) == 0
     assert (output_dir / "entities" / "genes.yaml").exists()
@@ -159,6 +224,7 @@ def test_materialize_and_validate_overlay_outputs(
             str(sample_repo),
             "--generated-dir",
             str(output_dir),
+            "--offline",
         ]
     ) == 0
     assert "PASS: generated overlays match tracked knowledge outputs." in capsys.readouterr().out
@@ -171,6 +237,7 @@ def test_materialize_and_validate_overlay_outputs(
             str(sample_repo),
             "--generated-dir",
             str(output_dir),
+            "--offline",
         ]
     ) == 1
     assert "relations.yaml does not match tracked output" in capsys.readouterr().out
