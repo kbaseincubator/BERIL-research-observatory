@@ -453,6 +453,10 @@
 
 ## Completed Ideas
 
+### [pgp_pangenome_ecology] PGP Gene Distribution Across Environments & Pangenomes
+**Status**: COMPLETED
+**Results**: H1 SUPPORTED — pqqC × acdS co-occur at OR = 7.24 (strongest pair), forming a vertically inherited rhizosphere module; nifH forms a separate ecological guild (negatively associated with pqqC, depleted in soil). H2 SUPPORTED — acdS (OR = 7.0) and pqqC (OR = 2.9) strongly enriched in soil/rhizosphere, surviving phylum fixed effects. H3 REJECTED — PGP genes are predominantly core (mean 29.7% accessory vs 53.2% genome-wide baseline), contra the HGT hypothesis. H4 PARTIALLY SUPPORTED — trp completeness predicts ipdC (OR = 2.81) but tyrosine "negative control" also significant (OR = 3.62) due to TyrR co-regulation; soil species show reversal (OR = 0.30). First pangenome-scale analysis across 293K genomes, 27K species. See `projects/pgp_pangenome_ecology/`.
+
 ### [bacdive_phenotype_metal_tolerance] BacDive Phenotype Signatures of Metal Tolerance
 **Status**: COMPLETED
 **Results**: BacDive phenotypes (Gram stain, oxygen tolerance, enzyme activities, metabolite utilization) capture real metal tolerance signal (R²=0.16 alone, 7/10 features significant after FDR) but are entirely phylogenetically confounded — adding phenotype features to a taxonomy-based model provides zero improvement (delta R²=-0.009). Genome-encoded metal resistance gene count is the true predictor (full model R²=0.63). Gram stain is the strongest univariate predictor (d=-0.61) but indistinguishable from phylogeny. Urease effect reversed (d=-0.18, driven by Actinomycetes). Catalase shows Simpson's paradox (positive overall, negative within every major class). First large-scale test of BacDive phenotypes as metal tolerance predictors across 5,647 species. See `projects/bacdive_phenotype_metal_tolerance/`.

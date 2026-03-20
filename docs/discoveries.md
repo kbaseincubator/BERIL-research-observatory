@@ -657,3 +657,11 @@ for future analyses.
 ### [bacdive_phenotype_metal_tolerance] BacDive phenotypes are phylogenetic proxies for metal tolerance
 
 Classical microbiology phenotypes (Gram stain, oxygen tolerance, enzyme activities) from BacDive capture real metal tolerance signal (R²=0.16 alone, 7/10 significant after FDR) but are entirely phylogenetically confounded — adding phenotype features to a taxonomy-based model provides zero improvement (delta R²=-0.009). The genome's metal resistance gene count is the true predictor (full model R²=0.63). Urease-positive bacteria surprisingly have *lower* metal tolerance (d=-0.18), driven by Actinomycetes lineage composition. This validates genome-based prediction (Metal Fitness Atlas) over phenotype-based screening for metal tolerance assessment.
+
+### [pgp_pangenome_ecology] pqqC–acdS is a vertically inherited, soil-enriched rhizosphere module
+
+Across 27K GTDB species, pqqC (phosphate solubilization) and acdS (ACC deaminase) co-occur at OR = 7.24 — far stronger than any other PGP gene pair — and are both strongly enriched in soil/rhizosphere environments (acdS OR = 7.0, pqqC OR = 2.9). Counterintuitively, all 13 PGP genes are predominantly **core** (29.7% mean accessory vs 53.2% genome-wide), rejecting the HGT hypothesis and indicating vertical inheritance. Nitrogen fixation (nifH) forms a separate ecological guild: negatively associated with pqqC and hcnC, and depleted in soil relative to aquatic environments. The trp→ipdC coupling (OR = 2.81) holds in non-soil species but reverses in soil species, likely because soil PGPB acquire tryptophan exogenously from root exudates.
+
+### [pgp_pangenome_ecology] nbconvert crashes Spark kernels — use CSV caching in notebooks
+
+Running `jupyter nbconvert --execute` on notebooks that call `spark.sql(...).toPandas()` on large result sets causes the kernel to die (DeadKernelError). Workaround: add cache-check logic to Spark cells (`if os.path.exists(path): load CSV else run Spark`) so nbconvert can execute the notebook locally from cached CSVs after the initial JupyterHub run. The live Spark outputs should be captured interactively on JupyterHub, not via nbconvert.
