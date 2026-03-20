@@ -16,6 +16,7 @@ CODEX_DEFAULT_MODEL="o3"
 
 # --- Usage ---
 usage() {
+  local exit_code="${1:-0}"
   cat <<EOF
 Usage: tools/review.sh <project_id> [--reviewer claude|codex] [--model <model_id>]
 
@@ -33,7 +34,7 @@ Examples:
   tools/review.sh bacdive_metal_validation --reviewer claude --model claude-haiku-4-5-20251001
   tools/review.sh bacdive_metal_validation --reviewer codex --model gpt-4o-mini
 EOF
-  exit 0
+  exit "$exit_code"
 }
 
 # --- Parse arguments ---
@@ -52,14 +53,14 @@ while [[ $# -gt 0 ]]; do
       ;;
     -*)
       echo "Error: Unknown option $1" >&2
-      usage
+      usage 1
       ;;
     *)
       if [[ -z "$PROJECT_ID" ]]; then
         PROJECT_ID="$1"
       else
         echo "Error: Unexpected argument $1" >&2
-        usage
+        usage 1
       fi
       shift
       ;;
@@ -69,7 +70,7 @@ done
 # --- Validate inputs ---
 if [[ -z "$PROJECT_ID" ]]; then
   echo "Error: project_id is required" >&2
-  usage
+  usage 1
 fi
 
 if [[ "$REVIEWER" != "claude" && "$REVIEWER" != "codex" ]]; then
