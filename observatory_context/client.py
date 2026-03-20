@@ -47,7 +47,15 @@ class OpenVikingObservatoryClient:
         return self.client.add_resource(path=path, to=uri, reason=reason, wait=wait)
 
     def wait_until_processed(self, timeout: float | None = None) -> dict[str, Any]:
-        return self.client.wait_processed(timeout=timeout)
+        try:
+            return self.client.wait_processed(timeout=timeout)
+        except Exception as exc:
+            if any(cls.__name__ in {"ReadTimeout", "ConnectTimeout", "TimeoutException"} for cls in type(exc).__mro__):
+                raise TimeoutError(
+                    "Timed out waiting for OpenViking to confirm processing. "
+                    "Resources were queued — processing may still be in progress."
+                ) from exc
+            raise
 
     def list_resources(self, uri: str, recursive: bool = False) -> list[dict[str, Any]]:
         return self.client.ls(uri, recursive=recursive)

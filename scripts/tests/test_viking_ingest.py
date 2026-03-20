@@ -57,6 +57,40 @@ def test_ingest_skips_existing_resources_by_default(
     assert f"Queued {missing.uri}" in output
 
 
+def test_ingest_handles_wait_timeout_gracefully(
+    tmp_path: Path,
+    monkeypatch,
+    capsys,
+) -> None:
+    from scripts import viking_ingest
+
+    item = _manifest_item(tmp_path, "alpha")
+
+    class FakeClient:
+        def resource_exists(self, uri: str) -> bool:
+            return False
+
+        def add_manifest_resource(self, item: ResourceManifestItem, wait: bool = True) -> None:
+            pass
+
+        def wait_until_processed(self, timeout: float | None = None) -> None:
+            raise TimeoutError("Timed out waiting for OpenViking to confirm processing. Resources were queued — processing may still be in progress.")
+
+    monkeypatch.setattr(
+        viking_ingest,
+        "build_resource_manifest",
+        lambda repo_root, project_ids=None: [item],
+    )
+    monkeypatch.setattr(viking_ingest, "OpenVikingObservatoryClient", lambda settings: FakeClient())
+    monkeypatch.setattr(viking_ingest, "ObservatoryContextSettings", lambda: SimpleNamespace())
+
+    assert viking_ingest.main(["--wait"]) == 0
+
+    output = capsys.readouterr().out
+    assert "Warning:" in output
+    assert "healthcheck" in output
+
+
 def test_ingest_waits_once_after_queueing_when_requested(
     tmp_path: Path,
     monkeypatch,
