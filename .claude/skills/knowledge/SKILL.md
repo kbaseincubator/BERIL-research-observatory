@@ -1,13 +1,13 @@
 ---
 name: knowledge
-description: "Search the research observatory knowledge base — projects, findings, figures, reusable data, entities, hypotheses, and cross-project connections. Use when the user wants to find projects by topic, search for figures, locate reusable data, explore the knowledge graph, get a landscape overview, or asks questions like 'what do we know about X', 'have we studied Y', 'which projects involve Z', or 'show me findings on W'."
+description: "Search the research observatory knowledge base through OpenViking first — projects, findings, figures, reusable data, entities, hypotheses, and cross-project connections. Use when the user wants to find projects by topic, search for figures, locate reusable data, explore the knowledge graph, get a landscape overview, or asks questions like 'what do we know about X', 'have we studied Y', 'which projects involve Z', or 'show me findings on W'."
 allowed-tools: Read, Bash, Grep
 user-invocable: true
 ---
 
 # Knowledge Query Skill
 
-Search the observatory's knowledge registry and semantic knowledge graph to find projects, findings, figures, reusable data, entities, relationships, and hypotheses.
+Search the observatory's knowledge through OpenViking first, then fall back to deterministic Git-authored registry files when the live context layer is unavailable or stale.
 
 ## Usage
 
@@ -26,6 +26,29 @@ Search the observatory's knowledge registry and semantic knowledge graph to find
 ```
 
 ## Prerequisite
+
+Preferred live path:
+
+- OpenViking server is running
+- BERIL content has been ingested into OpenViking
+
+Check health with:
+
+```bash
+uv run scripts/viking_server_healthcheck.py
+```
+
+If the server is unavailable, tell the user:
+
+> "OpenViking is not reachable right now. Start it with `uv run openviking-server --config \"$OPENVIKING_CONFIG_FILE\"` after running `uv run scripts/viking_setup.py --write-config`, or I can fall back to the Git-authored registry."
+
+If the server is running but content may be stale, suggest:
+
+```bash
+uv run scripts/viking_ingest.py --resume
+```
+
+Fallback path:
 
 This skill reads from the auto-generated registry files in `docs/`:
 - `docs/project_registry.yaml` — aggregated index of all projects
@@ -48,6 +71,24 @@ Proceed regardless — stale data is better than no data.
 
 ## Workflow
 
+Use OpenViking first for semantic retrieval and direct resource reads:
+
+```bash
+uv run scripts/query_openviking.py search "<topic>"
+```
+
+Use project-scoped and resource-scoped views when the user asks for a single project or a specific resource:
+
+```bash
+uv run scripts/query_openviking.py project <project_id>
+uv run scripts/query_openviking.py resource <id_or_uri>
+uv run scripts/query_openviking.py related <id_or_uri>
+```
+
+If OpenViking is unavailable or clearly missing the needed content, fall back to the deterministic backend below.
+
+## Fallback Workflow
+
 Use the deterministic backend for every subcommand:
 
 ```bash
@@ -69,7 +110,13 @@ Map subcommands directly:
 ### Subcommand: `/knowledge <topic>`
 
 **Search projects and findings by keyword.**
-Run: `uv run scripts/query_knowledge.py search "<topic>"`
+
+Primary:
+- Run: `uv run scripts/query_openviking.py search "<topic>"`
+- If the user scoped to a project, run: `uv run scripts/query_openviking.py search "<topic>" --project <project_id>`
+
+Fallback:
+- Run: `uv run scripts/query_knowledge.py search "<topic>"`
 
 1. Read `docs/project_registry.yaml`
 2. Search across all project entries for matches in: `title`, `research_question`, `key_findings`, `tags`, `organisms`, `databases_used`
@@ -138,7 +185,12 @@ Run: `uv run scripts/query_knowledge.py data "<topic>"`
 ### Subcommand: `/knowledge project <id>`
 
 **Full summary of a specific project.**
-Run: `uv run scripts/query_knowledge.py project <id>`
+
+Primary:
+- Run: `uv run scripts/query_openviking.py project <id>`
+
+Fallback:
+- Run: `uv run scripts/query_knowledge.py project <id>`
 
 1. Read `docs/project_registry.yaml` and find the project by ID
 2. If not found, suggest close matches or list all project IDs

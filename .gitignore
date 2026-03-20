@@ -98,3 +98,7 @@ htmlcov/
 .ruff_cache/
 .cache/openviking/
 config/openviking/ov.conf
+data/.openviking.pid
+data/_system/
+data/vectordb/
+data/viking/
