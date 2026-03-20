@@ -9,7 +9,8 @@ import yaml
 
 from observatory_context.notes import build_live_resource, parse_live_resource
 from observatory_context.render import RenderLevel, render_resource
-from observatory_context.retrieval import build_authored_resource_index, lexical_search, rank_related_resources
+from observatory_context.retrieval import build_authored_resource_index, build_knowledge_index, lexical_search, rank_related_resources
+from observatory_context.retrieval.knowledge_index import KnowledgeIndex
 from observatory_context.service.models import ContextResource, ProjectWorkspace, ResourceResponse
 from observatory_context.uris import (
     build_observatory_root_uri,
@@ -31,6 +32,10 @@ class ObservatoryContextService:
         self.client = client
         self.now_factory = now_factory or (lambda: "1970-01-01T00:00:00Z")
         self._authored_resources = build_authored_resource_index(self.repo_root)
+        try:
+            self._knowledge_index: KnowledgeIndex | None = build_knowledge_index(self.repo_root)
+        except Exception:
+            self._knowledge_index = None
         self._project_ids = sorted(
             {
                 project_id
@@ -62,7 +67,7 @@ class ObservatoryContextService:
                 if resolved_uri is None:
                     continue
                 semantic_results.append(all_resources[resolved_uri])
-        ranked = semantic_results or lexical_search(resources, query)
+        ranked = semantic_results or lexical_search(resources, query, knowledge_index=self._knowledge_index)
         seen: set[str] = set()
         results: list[ResourceResponse] = []
         for resource in ranked:
@@ -152,7 +157,7 @@ class ObservatoryContextService:
     ) -> list[ContextResource]:
         source = self._resolve_resource(id_or_uri)
         candidates = self._filtered_resources()
-        return rank_related_resources(source, candidates, mode=mode, limit=limit)
+        return rank_related_resources(source, candidates, mode=mode, limit=limit, knowledge_index=self._knowledge_index)
 
     def add_note(
         self,
@@ -195,6 +200,51 @@ class ObservatoryContextService:
         )
         resource = self._write_live_resource(payload)
         return self._render_response(resource, RenderLevel.L2)
+
+    def get_entity(self, entity_id: str) -> dict[str, Any] | None:
+        """Return a knowledge graph entity as a plain dict."""
+        if self._knowledge_index is None:
+            return None
+        entity = self._knowledge_index.get_entity(entity_id)
+        if entity is None:
+            return None
+        return {
+            "id": entity.id,
+            "name": entity.name,
+            "kind": entity.kind,
+            "projects": sorted(entity.projects),
+            "aliases": sorted(entity.aliases),
+        }
+
+    def list_entities(self, kind: str | None = None) -> list[dict[str, Any]]:
+        """Return knowledge graph entities, optionally filtered by kind."""
+        if self._knowledge_index is None:
+            return []
+        return [
+            {
+                "id": e.id,
+                "name": e.name,
+                "kind": e.kind,
+                "projects": sorted(e.projects),
+                "aliases": sorted(e.aliases),
+            }
+            for e in self._knowledge_index.list_entities(kind=kind)
+        ]
+
+    def entity_connections(self, entity_id: str) -> list[dict[str, Any]]:
+        """Return knowledge graph relations involving an entity."""
+        if self._knowledge_index is None:
+            return []
+        return [
+            {
+                "subject": rel.subject,
+                "predicate": rel.predicate,
+                "object": rel.object,
+                "evidence_project": rel.evidence_project,
+                "confidence": rel.confidence,
+            }
+            for rel in self._knowledge_index.entity_connections(entity_id)
+        ]
 
     def _render_response(self, resource: ContextResource, detail_level: RenderLevel) -> ResourceResponse:
         level = self._coerce_level(detail_level)
