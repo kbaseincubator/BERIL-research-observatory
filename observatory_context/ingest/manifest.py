@@ -15,6 +15,17 @@ from observatory_context.uris import (
     build_project_resource_uri,
 )
 
+_KNOWLEDGE_ROOT_KEYS = {
+    "entities/organisms.yaml": "organisms",
+    "entities/genes.yaml": "genes",
+    "entities/pathways.yaml": "pathways",
+    "entities/methods.yaml": "methods",
+    "entities/concepts.yaml": "concepts",
+    "relations.yaml": "relations",
+    "hypotheses.yaml": "hypotheses",
+    "timeline.yaml": "events",
+}
+
 
 @dataclass(slots=True)
 class ResourceManifestItem:
@@ -140,9 +151,10 @@ def build_resource_manifest(repo_root: Path) -> list[ResourceManifestItem]:
 
     for relative_path in _knowledge_paths(repo_root / "knowledge"):
         source_path = repo_root / "knowledge" / relative_path
+        relative_posix = relative_path.as_posix()
         manifest.append(
             ResourceManifestItem(
-                uri=build_knowledge_resource_uri(relative_path.as_posix()),
+                uri=build_knowledge_resource_uri(relative_posix),
                 kind="knowledge_document",
                 source_path=str(source_path),
                 project_ids=[],
@@ -151,7 +163,10 @@ def build_resource_manifest(repo_root: Path) -> list[ResourceManifestItem]:
                     "kind": "knowledge_document",
                     "title": relative_path.name,
                     "tags": ["raw-knowledge"],
-                    "source_refs": [f"knowledge/{relative_path.as_posix()}"],
+                    "source_refs": [f"knowledge/{relative_posix}"],
+                    "overlay_family": "raw-knowledge",
+                    "overlay_relative_path": relative_posix,
+                    "overlay_root_key": _knowledge_root_keys(relative_path),
                 },
             )
         )
@@ -172,6 +187,14 @@ def _knowledge_paths(knowledge_root: Path) -> list[Path]:
             continue
         paths.append(path.relative_to(knowledge_root))
     return paths
+
+
+def _knowledge_root_keys(relative_path: Path) -> str:
+    relative_posix = relative_path.as_posix()
+    try:
+        return _KNOWLEDGE_ROOT_KEYS[relative_posix]
+    except KeyError as exc:
+        raise ValueError(f"Unsupported knowledge overlay path: {relative_posix}") from exc
 
 
 def _compute_enables(project_entries: dict[str, dict]) -> None:
