@@ -34,4 +34,4 @@ Plant growth-promoting bacteria (PGPB) carry suites of traits — nitrogen fixat
 
 ## Authors
 
-TBD
+- **Priya Ranjan** (ORCID: [0000-0002-0357-1939](https://orcid.org/0000-0002-0357-1939)) — Oak Ridge National Laboratory
