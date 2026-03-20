@@ -170,14 +170,13 @@ When the user wants to start a new research project, the agent drives the entire
 16. Create project directory structure: `notebooks/`, `data/`, `user_data/`, `figures/`
 17. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch."
 18. Create branch `projects/{project_id}`, switch to it, and commit README + RESEARCH_PLAN. Working on a dedicated branch from the start avoids accumulating changes on main during long-running projects. Tell the user what you're doing — if they prefer to stay on main, skip branch creation.
-19. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer subagent using the **Agent tool** (not `claude -p`, which hangs when spawned from within a session due to sandbox/auth issues):
+19. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer via `tools/review.sh`:
 
-    Use the Agent tool with `subagent_type="general-purpose"` and provide the system prompt from `.claude/reviewer/PLAN_REVIEW_PROMPT.md` inline in the prompt. The agent should:
-    - Read `projects/{project_id}/RESEARCH_PLAN.md` and `README.md`
-    - Read `docs/pitfalls.md`, `docs/performance.md`, `docs/collections.md`, and `PROJECT.md`
-    - Check `docs/schemas/` for any tables referenced in the plan
-    - Read README.md files of related existing projects to check for overlap
-    - Return a concise list of suggestions organized by: Feasibility, Overlap, Pitfall Awareness, Statistical Rigor, Convention Compliance, and Missing Considerations
+    ```bash
+    bash tools/review.sh {project_id} --type plan [--reviewer claude|codex] [--model <model_id>]
+    ```
+
+    This runs a CLI subprocess that reads the research plan, checks it against pitfalls/schemas/existing projects, and writes feedback to `projects/{project_id}/PLAN_REVIEW.md`. The user can choose `--reviewer codex` for an alternative perspective. Default reviewer is `claude`.
 
     Present the suggestions to the user. They can address them, note them for later, or skip — this is advisory, not blocking.
 
