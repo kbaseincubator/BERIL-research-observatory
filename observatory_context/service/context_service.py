@@ -55,11 +55,13 @@ class ObservatoryContextService:
                 semantic_hits = self.client.search(query, target_uri=target_uri)
             except Exception:
                 semantic_hits = []
-            semantic_results = [
-                self._all_resources()[hit["uri"]]
-                for hit in semantic_hits
-                if hit.get("uri") in self._all_resources()
-            ]
+            all_resources = self._all_resources()
+            semantic_results = []
+            for hit in self._semantic_hit_items(semantic_hits):
+                resolved_uri = self._resolve_semantic_hit_uri(hit, all_resources)
+                if resolved_uri is None:
+                    continue
+                semantic_results.append(all_resources[resolved_uri])
         ranked = semantic_results or lexical_search(resources, query)
         seen: set[str] = set()
         results: list[ResourceResponse] = []
@@ -69,6 +71,38 @@ class ObservatoryContextService:
             seen.add(resource.uri)
             results.append(self._render_response(resource, detail_level))
         return results
+
+    def _semantic_hit_items(self, semantic_hits: Any) -> list[Any]:
+        if isinstance(semantic_hits, list):
+            return semantic_hits
+        if hasattr(semantic_hits, "resources") and isinstance(semantic_hits.resources, list):
+            return semantic_hits.resources
+        return []
+
+    def _resolve_semantic_hit_uri(
+        self,
+        hit: Any,
+        resources: dict[str, ContextResource],
+    ) -> str | None:
+        if isinstance(hit, dict):
+            uri = hit.get("uri")
+        else:
+            uri = getattr(hit, "uri", None)
+        if not isinstance(uri, str):
+            return None
+        if uri in resources:
+            return uri
+        for suffix in ("/.abstract.md", "/.overview.md"):
+            if uri.endswith(suffix):
+                uri = uri[: -len(suffix)]
+                break
+        while uri:
+            if uri in resources:
+                return uri
+            if "/" not in uri.replace("://", "__", 1):
+                break
+            uri = uri.rsplit("/", 1)[0]
+        return None
 
     def get_resource(
         self,

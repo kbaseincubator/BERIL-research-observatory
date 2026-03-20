@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -204,6 +205,23 @@ def test_search_context_falls_back_to_lexical_metadata_search(service: object) -
     assert service.client.search_calls == 1
     assert [result.resource.id for result in results] == ["alpha_proj"]
     assert "Alpha Project" in results[0].rendered
+
+
+def test_search_context_accepts_findresult_style_semantic_hits(service: object) -> None:
+    report_uri = "viking://resources/observatory/projects/alpha_proj/authored/REPORT.md"
+    service.client.search = lambda query, target_uri=None: SimpleNamespace(
+        resources=[
+            SimpleNamespace(
+                uri=f"{report_uri}/Nested_Section/.abstract.md",
+                score=0.8,
+            )
+        ]
+    )
+
+    results = service.search_context("metal stress", detail_level=RenderLevel.L1)
+
+    assert [result.resource.uri for result in results] == [report_uri]
+    assert "Alpha report body" in results[0].rendered
 
 
 def test_related_resources_are_metadata_and_link_driven(service: object) -> None:
