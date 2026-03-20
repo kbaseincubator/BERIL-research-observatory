@@ -111,15 +111,17 @@ Random Forest classification into 4 environment classes (soil: 13, freshwater: 1
 
 ### Literature Context
 
-The loss of plant sugar catabolism in *P. aeruginosa* is consistent with La Rosa et al. (2018), who tracked *P. aeruginosa* metabolic adaptation in CF lungs and found convergent loss of carbon catabolism with retained amino acid utilization. Our genome-scale results quantify this pattern across the entire genus rather than within a single species during infection.
+The loss of plant sugar catabolism in *P. aeruginosa* is consistent with La Rosa et al. (2018), who tracked *P. aeruginosa* metabolic adaptation in CF lungs and found convergent loss of carbon catabolism with retained amino acid utilization. Our genome-scale results quantify this pattern across the entire genus rather than within a single species during infection. Mathee et al. (2008) showed that *P. aeruginosa* maintains a mosaic genome architecture with strain-specific regions of genomic plasticity, but our results demonstrate that the sugar pathway losses are conserved at the species level, not strain-specific.
 
-Palmer et al. (2007) demonstrated that CF sputum is dominated by amino acids (especially aromatic amino acids) as carbon sources, providing the ecological explanation for why *P. aeruginosa* retains amino acid pathways while losing sugar catabolism. Our finding that amino acid pathways (arginine, histidine, serine, glutamate) remain >99.5% complete in *P. aeruginosa* despite loss of plant sugars aligns with this nutritional specialization.
+Palmer et al. (2007) demonstrated that CF sputum is dominated by amino acids (especially aromatic amino acids) as carbon sources, providing the ecological explanation for why *P. aeruginosa* retains amino acid pathways while losing sugar catabolism. Flynn et al. (2016) further showed that *P. aeruginosa* relies on amino acids and short-chain fatty acids derived from anaerobic mucin-fermenting bacteria in CF airways, reinforcing this amino acid-centric nutrition. Our finding that amino acid pathways (arginine, histidine, serine, glutamate) remain >99.5% complete in *P. aeruginosa* despite loss of plant sugars aligns with this nutritional specialization.
 
-Silby et al. (2011) and Loper et al. (2012) highlighted the metabolic diversity of *P. fluorescens* group genomes, with ~54% of their pangenome encoding variable metabolic capabilities. Our analysis now quantifies this at genus scale: the *P. fluorescens/putida* group maintains substantially greater carbon pathway breadth (mean richness 56.1) compared to *P. aeruginosa* (mean richness ~50), particularly in sugar and sugar alcohol catabolism.
+Silby et al. (2011) and Loper et al. (2012) highlighted the metabolic diversity of *P. fluorescens* group genomes, with ~54% of their pangenome encoding variable metabolic capabilities. Belda et al. (2016) documented 92 catabolic pathways in the re-annotated *P. putida* KT2440 genome, and Nikel & de Lorenzo (2018) emphasized *P. putida*'s broad carbon source utilization spanning sugars, organic acids, and aromatics. Our analysis now quantifies this at genus scale: the *P. fluorescens/putida* group maintains substantially greater carbon pathway breadth (mean richness 56.1) compared to *P. aeruginosa* (mean richness ~50), particularly in sugar and sugar alcohol catabolism.
 
 Rossi et al. (2021) documented that chronic *P. aeruginosa* infections involve progressive loss of metabolic versatility. Our results suggest that much of this "loss" is not acquired during infection but rather reflects the ancestral metabolic streamlining of the *P. aeruginosa* lineage itself — these pathways were already absent at the species level across thousands of isolates.
 
-The modest predictive accuracy for fine-grained environment type (0.41) within free-living species is consistent with Guo et al. (2026), who found that hydrocarbon degradation genes are concentrated in the accessory genome and show strain-level rather than species-level variation. GapMind's 62 carbon pathways may be too coarse to capture the niche-specific metabolic differences that operate at the strain level within environmental species.
+Saati-Santamaria et al. (2022) analyzed 3,274 *Pseudomonas* genomes and found functional divergence dependent on ecological niche, with environment-specific metabolic pathway sets. Our PERMANOVA result (p = 0.006) aligns with their finding, and extends it by using standardized GapMind pathway predictions rather than KEGG-based annotations. Ghirardi et al. (2012) showed that rhizosphere competence in fluorescent pseudomonads was associated with catabolic profile diversity, consistent with our finding that D-serine, arabinose, and rhamnose are the top discriminating pathways for environment prediction.
+
+The modest predictive accuracy for fine-grained environment type (0.41) within free-living species is consistent with Guo et al. (2026), who found that hydrocarbon degradation genes are concentrated in the accessory genome and show strain-level rather than species-level variation. GapMind's 62 carbon pathways (Price et al. 2022) may be too coarse to capture the niche-specific metabolic differences that operate at the strain level within environmental species.
 
 ### Novel Contribution
 
@@ -196,14 +198,22 @@ This is the first study to systematically quantify carbon pathway profiles acros
 
 ## References
 
-- La Rosa R, Johansen HK, Molin S (2018). "Convergent metabolic specialization through distinct evolutionary paths in *Pseudomonas aeruginosa*." *mBio*. DOI: 10.1128/mBio.00269-18
-- Loper JE et al. (2012). "Comparative genomics of plant-associated *Pseudomonas* spp." *J Bacteriol* 194:2601-2611. PMID: 22408644
-- Rossi E, La Rosa R, Bartell JA, Marvig RL, Haagensen JAJ, Sommer LM, Molin S, Johansen HK (2021). "Pseudomonas aeruginosa adaptation and evolution in patients with cystic fibrosis." *Nat Rev Microbiol* 19:331-342. DOI: 10.1038/s41579-020-00477-5
+- Arkin AP et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nat Biotechnol* 36:566-569. PMID: 29979655
+- Belda E, van Heck RG, Jose Lopez-Sanchez M, et al. (2016). "The revisited genome of *Pseudomonas putida* KT2440 enlightens its value as a robust metabolic chassis." *Environ Microbiol* 18:3403-3424. PMID: 26913973
+- Flynn JM, Niccum D, Dunitz JM, Hunter RC (2016). "Evidence and Role for Bacterial Mucin Degradation in Cystic Fibrosis Airway Disease." *PLoS Pathog* 12:e1005846. PMID: 27548479
+- Ghirardi S, Dessaint F, Mazurier S, et al. (2012). "Identification of traits shared by rhizosphere-competent strains of fluorescent pseudomonads." *Microb Ecol* 64:725-737. PMID: 22576821
+- Guo Y et al. (2026). "Genus-level pangenome analysis of *Pseudomonas* reveals habitat-specific accessory genome content." *Environ Microbiol*. DOI: 10.1111/1462-2920.16789
+- La Rosa R, Johansen HK, Molin S (2018). "Convergent metabolic specialization through distinct evolutionary paths in *Pseudomonas aeruginosa*." *mBio* 9:e00269-18. PMID: 29636437
+- Loper JE et al. (2012). "Comparative genomics of plant-associated *Pseudomonas* spp." *PLoS Genet* 8:e1002784. PMID: 22408644
+- Mathee K, Narasimhan G, Valdes C, et al. (2008). "Dynamics of *Pseudomonas aeruginosa* genome evolution." *Proc Natl Acad Sci USA* 105:3100-3105. PMID: 18287045
+- Nikel PI, de Lorenzo V (2018). "*Pseudomonas putida* as a functional chassis for industrial biocatalysis." *Metab Eng* 50:142-155. PMID: 29758287
+- Okumura Y et al. (2025). "Pan-genome analysis of 320 *Pseudomonas* genomes reveals four major metabolic groups." *Microb Genom*. DOI: 10.1099/mgen.0.001234
 - Palmer KL, Aye LM, Whiteley M (2007). "Nutritional cues control *Pseudomonas aeruginosa* multicellular behavior in cystic fibrosis sputum." *J Bacteriol* 189:8079-8087. PMID: 17873029
+- Parks DH, Chuvochina M, Rinke C, Mussig AJ, Chaumeil PA, Hugenholtz P (2022). "GTDB: an ongoing census of bacterial and archaeal diversity." *Nucleic Acids Res* 50:D199-D207. PMID: 34520557
+- Price MN, Deutschbauer AM, Arkin AP (2022). "Filling gaps in bacterial catabolic pathways with computation and high-throughput genetics." *PLoS Genet* 18:e1010156. PMID: 35417463
+- Price MN, Wetmore KM, Waters RJ, et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509. PMID: 29769716
+- Rossi E, La Rosa R, Bartell JA, et al. (2021). "*Pseudomonas aeruginosa* adaptation and evolution in patients with cystic fibrosis." *Nat Rev Microbiol* 19:331-342. PMID: 33214718
+- Saati-Santamaria Z, Baroncelli R, Rivas R, Garcia-Fraile P (2022). "Comparative Genomics of the Genus Pseudomonas Reveals Host- and Environment-Specific Evolution." *Microbiol Spectr* 10:e02370-22. PMID: 36354324
 - Silby MW, Winstanley C, Godfrey SA, Levy SB, Jackson RW (2011). "Pseudomonas genomes: diverse and adaptable." *FEMS Microbiol Rev* 35:652-680. PMID: 21361996
 - Silby MW et al. (2009). "Genomic and genetic analyses of diversity and plant interactions of *Pseudomonas fluorescens*." *Genome Biol* 10:R51. PMID: 19432983
-- Guo Y et al. (2026). "Genus-level pangenome analysis of *Pseudomonas* reveals habitat-specific accessory genome content." *Environ Microbiol*. DOI: 10.1111/1462-2920.16789
-- Okumura Y et al. (2025). "Pan-genome analysis of 320 *Pseudomonas* genomes reveals four major metabolic groups." *Microb Genom*. DOI: 10.1099/mgen.0.001234
-- Price MN, Wetmore KM, Waters RJ, Callaghan M, Ray J, Liu H, Kuehl JV, Melnyk RA, Lamson JS, Cai Y, Carlson HK, Bristow J, Arkin AP (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509. PMID: 29769716
-- Arkin AP et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nat Biotechnol* 36:566-569. PMID: 29979655
-- Parks DH, Chuvochina M, Rinke C, Mussig AJ, Chaumeil PA, Hugenholtz P (2022). "GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy." *Nucleic Acids Res* 50:D199-D207. PMID: 34520557
+- Stover CK, Pham XQ, Erwin AL, et al. (2000). "Complete genome sequence of *Pseudomonas aeruginosa* PAO1." *Nature* 406:959-964. PMID: 10984043
