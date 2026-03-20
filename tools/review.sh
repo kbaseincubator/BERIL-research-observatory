@@ -12,7 +12,7 @@ MODEL=""
 PROJECT_ID=""
 
 CLAUDE_DEFAULT_MODEL="claude-sonnet-4-20250514"
-CODEX_DEFAULT_MODEL="o3"
+CODEX_DEFAULT_MODEL="gpt-5.4"
 
 # --- Usage ---
 usage() {
@@ -25,7 +25,7 @@ Arguments:
 
 Options:
   --reviewer claude|codex Reviewer backend (default: claude)
-  --model <model_id>      Model override (default: claude-sonnet-4-20250514 for claude, o3 for codex)
+  --model <model_id>      Model override (default: claude-sonnet-4-20250514 for claude, gpt-5.4 for codex)
   --help                  Show this help message
 
 Examples:
@@ -140,8 +140,7 @@ ${REVIEW_PROMPT}"
 
   codex exec \
     --model "$MODEL" \
-    --sandbox read-only \
+    --sandbox workspace-write \
     --ephemeral \
-    -o "${PROJECT_DIR}/REVIEW.md" \
     "$FULL_PROMPT"
 fi
