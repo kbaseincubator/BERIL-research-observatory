@@ -3,23 +3,28 @@
 # requires-python = ">=3.11"
 # dependencies = [
 #   "pyyaml>=6.0",
+#   "pydantic>=2.0",
+#   "pydantic-settings>=2.0",
+#   "httpx>=0.27",
 # ]
 # ///
 """
-Deterministic query backend for BERIL knowledge and registry artifacts.
+Unified query backend for BERIL knowledge — tries OpenViking first,
+falls back to deterministic Git-authored registry files silently.
 
 Usage examples:
-    uv run scripts/query_knowledge.py search metal
-    uv run scripts/query_knowledge.py figures pangenome
-    uv run scripts/query_knowledge.py data fitness
-    uv run scripts/query_knowledge.py project essential_genome
-    uv run scripts/query_knowledge.py landscape
-    uv run scripts/query_knowledge.py entities organism --query pseudomonas
-    uv run scripts/query_knowledge.py connections org_adp1
-    uv run scripts/query_knowledge.py hypotheses testing
-    uv run scripts/query_knowledge.py gaps
-    uv run scripts/query_knowledge.py timeline field_vs_lab_fitness
-    uv run scripts/query_knowledge.py backfill essential_genome
+    uv run scripts/query_knowledge_unified.py search "essential genes"
+    uv run scripts/query_knowledge_unified.py figures pangenome
+    uv run scripts/query_knowledge_unified.py data fitness
+    uv run scripts/query_knowledge_unified.py project essential_genome
+    uv run scripts/query_knowledge_unified.py landscape
+    uv run scripts/query_knowledge_unified.py entities organism --query pseudomonas
+    uv run scripts/query_knowledge_unified.py connections org_adp1
+    uv run scripts/query_knowledge_unified.py hypotheses testing
+    uv run scripts/query_knowledge_unified.py gaps
+    uv run scripts/query_knowledge_unified.py timeline field_vs_lab_fitness
+    uv run scripts/query_knowledge_unified.py backfill essential_genome
+    uv run scripts/query_knowledge_unified.py related essential_genome
 """
 
 from __future__ import annotations
@@ -32,7 +37,6 @@ from pathlib import Path
 
 import yaml
 
-
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DOCS_DIR = REPO_ROOT / "docs"
 KNOWLEDGE_DIR = REPO_ROOT / "knowledge"
@@ -42,6 +46,16 @@ FIGURE_CATALOG_PATH = DOCS_DIR / "figure_catalog.yaml"
 FINDINGS_DIGEST_PATH = DOCS_DIR / "findings_digest.md"
 GRAPH_COVERAGE_PATH = DOCS_DIR / "knowledge_graph_coverage.md"
 GAPS_PATH = DOCS_DIR / "knowledge_gaps.md"
+
+# Add repo root to path for imports
+sys.path.insert(0, str(REPO_ROOT))
+
+from observatory_context.render import RenderLevel
+
+
+# ---------------------------------------------------------------------------
+# YAML helpers
+# ---------------------------------------------------------------------------
 
 
 def _load_yaml(path: Path) -> dict:
@@ -75,6 +89,11 @@ def _text_contains(text: str, term: str) -> bool:
     return term.lower() in text.lower()
 
 
+# ---------------------------------------------------------------------------
+# Deterministic renderers
+# ---------------------------------------------------------------------------
+
+
 def _render_topic_search(topic: str, registry: dict, findings_digest: str) -> str:
     projects = registry.get("projects", [])
     if not isinstance(projects, list):
@@ -104,7 +123,7 @@ def _render_topic_search(topic: str, registry: dict, findings_digest: str) -> st
     scored.sort(key=lambda x: (-x[0], x[1]))
     top = scored[:5]
 
-    lines = [f"### Results for \"{topic}\"", ""]
+    lines = [f'### Results for "{topic}"', ""]
     if not top:
         lines.append("_No matching projects found._")
     else:
@@ -152,7 +171,7 @@ def _render_figure_search(topic: str, figure_catalog: dict) -> str:
             matches.append(fig)
     matches.sort(key=lambda f: (str(f.get("project", "")), str(f.get("file", ""))))
 
-    lines = [f"### Figures matching \"{topic}\"", ""]
+    lines = [f'### Figures matching "{topic}"', ""]
     if not matches:
         lines.append("_No matching figures found._")
         return "\n".join(lines)
@@ -163,7 +182,7 @@ def _render_figure_search(topic: str, figure_catalog: dict) -> str:
         proj = str(fig.get("project", ""))
         file = str(fig.get("file", ""))
         caption = str(fig.get("caption", "") or "")
-        lines.append(f"| {proj} | [{{file}}](projects/{proj}/figures/{file}) | {caption} |".replace("{file}", file))
+        lines.append(f"| {proj} | [{file}](projects/{proj}/figures/{file}) | {caption} |")
     return "\n".join(lines)
 
 
@@ -191,7 +210,7 @@ def _render_data_search(topic: str, registry: dict) -> str:
                 rows.append((pid, file, desc, reusable))
     rows.sort(key=lambda x: (x[0], x[1]))
 
-    lines = [f"### Data artifacts matching \"{topic}\"", ""]
+    lines = [f'### Data artifacts matching "{topic}"', ""]
     if not rows:
         lines.append("_No matching artifacts found._")
         return "\n".join(lines)
@@ -265,8 +284,8 @@ def _render_landscape(registry: dict) -> str:
     if not isinstance(projects, list):
         projects = []
     status_counts = Counter(str(p.get("status", "unknown")) for p in projects if isinstance(p, dict))
-    tag_counts = Counter()
-    coll_counts = Counter()
+    tag_counts: Counter[str] = Counter()
+    coll_counts: Counter[str] = Counter()
     for p in projects:
         if not isinstance(p, dict):
             continue
@@ -380,7 +399,7 @@ def _render_entities(entity_type: str, query: str | None) -> str:
         desc = str(row.get("description") or row.get("definition") or row.get("role") or "")
         desc = " ".join(desc.split())
         if len(desc) > 90:
-            desc = desc[:89] + "…"
+            desc = desc[:89] + "\u2026"
         lines.append(f"| {rid} | {name} | {proj_n} | {desc} |")
     return "\n".join(lines)
 
@@ -401,7 +420,7 @@ def _render_connections(entity: str) -> str:
     incoming.sort(key=lambda r: (str(r.get("predicate", "")), str(r.get("subject", ""))))
 
     lines = [f"### Connections for {entity}", ""]
-    lines.extend(["**Outgoing relations (this entity → other):**", "| Predicate | Target | Evidence Project | Confidence | Note |", "|---|---|---|---|---|"])
+    lines.extend(["**Outgoing relations (this entity \u2192 other):**", "| Predicate | Target | Evidence Project | Confidence | Note |", "|---|---|---|---|---|"])
     for r in outgoing[:80]:
         lines.append(
             f"| {r.get('predicate','')} | {r.get('object','')} | {r.get('evidence_project','')} | {r.get('confidence','')} | {str(r.get('note','')).replace('|','/')} |"
@@ -409,7 +428,7 @@ def _render_connections(entity: str) -> str:
     if not outgoing:
         lines.append("| _none_ |  |  |  |  |")
 
-    lines.extend(["", "**Incoming relations (other → this entity):**", "| Source | Predicate | Evidence Project | Confidence | Note |", "|---|---|---|---|---|"])
+    lines.extend(["", "**Incoming relations (other \u2192 this entity):**", "| Source | Predicate | Evidence Project | Confidence | Note |", "|---|---|---|---|---|"])
     for r in incoming[:80]:
         lines.append(
             f"| {r.get('subject','')} | {r.get('predicate','')} | {r.get('evidence_project','')} | {r.get('confidence','')} | {str(r.get('note','')).replace('|','/')} |"
@@ -429,7 +448,7 @@ def _render_hypotheses(status: str | None) -> str:
     for h in hypotheses:
         statement = " ".join(str(h.get("statement", "")).split())
         if len(statement) > 80:
-            statement = statement[:79] + "…"
+            statement = statement[:79] + "\u2026"
         sup_n = len(h.get("evidence_supporting", []) or [])
         con_n = len(h.get("evidence_contradicting", []) or [])
         lines.append(
@@ -489,7 +508,6 @@ def _render_backfill(project_id: str | None = None) -> str:
     if not isinstance(projects, list):
         projects = []
 
-    # Collect projects referenced in timeline events
     timeline_events = _load_knowledge_list(KNOWLEDGE_DIR / "timeline.yaml", "events")
     timeline_projects: set[str] = set()
     for event in timeline_events:
@@ -501,7 +519,6 @@ def _render_backfill(project_id: str | None = None) -> str:
             if pid_text:
                 timeline_projects.add(pid_text)
 
-    # Collect projects referenced in relations
     relations = _load_knowledge_list(KNOWLEDGE_DIR / "relations.yaml", "relations")
     relation_projects: set[str] = set()
     for rel in relations:
@@ -552,7 +569,7 @@ def _render_backfill(project_id: str | None = None) -> str:
     if not missing:
         lines.append("_All projects have graph coverage._")
     else:
-        lines.append(f"{len(missing)} project(s) have no timeline events or relation edges:", )
+        lines.append(f"{len(missing)} project(s) have no timeline events or relation edges:")
         lines.append("")
         lines.append("| Project | Status |")
         lines.append("|---|---|")
@@ -563,12 +580,21 @@ def _render_backfill(project_id: str | None = None) -> str:
     return "\n".join(lines)
 
 
+# ---------------------------------------------------------------------------
+# CLI
+# ---------------------------------------------------------------------------
+
+
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Deterministic knowledge query backend")
+    parser = argparse.ArgumentParser(
+        description="Unified BERIL knowledge query — OpenViking first, deterministic fallback."
+    )
     sub = parser.add_subparsers(dest="command")
 
     p_search = sub.add_parser("search", help="Search projects/findings by topic")
     p_search.add_argument("topic")
+    p_search.add_argument("--project", default=None)
+    p_search.add_argument("--limit", type=int, default=5)
 
     p_fig = sub.add_parser("figures", help="Search figure catalog")
     p_fig.add_argument("topic")
@@ -582,7 +608,9 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("landscape", help="Show overall landscape summary")
 
     p_entities = sub.add_parser("entities", help="List entities by type")
-    p_entities.add_argument("entity_type", choices=["organism", "gene", "pathway", "method", "concept"])
+    p_entities.add_argument(
+        "entity_type", choices=["organism", "gene", "pathway", "method", "concept"]
+    )
     p_entities.add_argument("--query")
 
     p_conn = sub.add_parser("connections", help="Show relations for an entity")
@@ -595,60 +623,214 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_timeline = sub.add_parser("timeline", help="Show timeline events")
     p_timeline.add_argument("project", nargs="?")
-    p_backfill = sub.add_parser("backfill", help="List projects missing Layer 3 graph coverage")
+
+    p_backfill = sub.add_parser("backfill", help="List projects missing Layer 3 coverage")
     p_backfill.add_argument("project_id", nargs="?")
+
+    p_related = sub.add_parser("related", help="Show related resources")
+    p_related.add_argument("id_or_uri")
+    p_related.add_argument("--limit", type=int, default=5)
+
     return parser
 
 
-def main() -> int:
+def _try_build_service(offline: bool = False):
+    """Build the service, trying live first then falling back to offline."""
+    from observatory_context import runtime
+
+    if offline:
+        return runtime.build_service(REPO_ROOT, offline=True)
+    try:
+        return runtime.build_service(REPO_ROOT, offline=False)
+    except Exception:
+        return runtime.build_service(REPO_ROOT, offline=True)
+
+
+def _print_result(index: int, response) -> None:
+    print(f"## {index}. {response.resource.title}")
+    print(f"- uri: {response.resource.uri}")
+    print(f"- kind: {response.resource.kind}")
+    if response.resource.project_ids:
+        print(f"- projects: {', '.join(response.resource.project_ids)}")
+    print()
+    print(response.rendered)
+    print()
+
+
+def _print_resource(resource) -> None:
+    print(f"- {resource.title} [{resource.kind}]")
+    print(f"  {resource.uri}")
+
+
+# ---------------------------------------------------------------------------
+# Subcommand handlers
+# ---------------------------------------------------------------------------
+
+
+def _handle_search(args) -> int:
+    """Search: try service (OpenViking-backed) first, fall back to deterministic."""
+    try:
+        service = _try_build_service(offline=False)
+        results = service.search_context(
+            args.topic,
+            project=args.project,
+            detail_level=RenderLevel.L1,
+        )
+        if results:
+            print(f'Results for "{args.topic}"')
+            print("=" * (len(args.topic) + 13))
+            print()
+            for i, response in enumerate(results[: args.limit], 1):
+                _print_result(i, response)
+            return 0
+    except Exception:
+        pass
+
+    registry, _, findings = _require_registry_artifacts()
+    print(_render_topic_search(args.topic, registry, findings))
+    return 0
+
+
+def _handle_figures(args) -> int:
+    _, figures, _ = _require_registry_artifacts()
+    print(_render_figure_search(args.topic, figures))
+    return 0
+
+
+def _handle_data(args) -> int:
+    registry, _, _ = _require_registry_artifacts()
+    print(_render_data_search(args.topic, registry))
+    return 0
+
+
+def _handle_project(args) -> int:
+    """Project: try service first, fall back to deterministic."""
+    try:
+        service = _try_build_service(offline=False)
+        workspace = service.get_project_workspace(args.project_id, detail_level=RenderLevel.L1)
+        print(f"Project workspace: {workspace.project_id}")
+        print(f"URI: {workspace.workspace_uri}")
+        print()
+        print(workspace.project_resource.title)
+        print()
+        for resource in workspace.resources:
+            _print_resource(resource)
+        return 0
+    except Exception:
+        pass
+
+    registry, _, _ = _require_registry_artifacts()
+    print(_render_project(args.project_id, registry))
+    return 0
+
+
+def _handle_landscape(args) -> int:
+    registry, _, _ = _require_registry_artifacts()
+    print(_render_landscape(registry))
+    return 0
+
+
+def _handle_entities(args) -> int:
+    print(_render_entities(args.entity_type, args.query))
+    return 0
+
+
+def _handle_connections(args) -> int:
+    print(_render_connections(args.entity))
+    return 0
+
+
+def _handle_hypotheses(args) -> int:
+    print(_render_hypotheses(args.status))
+    return 0
+
+
+def _handle_gaps(args) -> int:
+    registry, _, _ = _require_registry_artifacts()
+    print(_render_gaps(registry))
+    return 0
+
+
+def _handle_timeline(args) -> int:
+    print(_render_timeline(args.project))
+    return 0
+
+
+def _handle_backfill(args) -> int:
+    print(_render_backfill(args.project_id))
+    return 0
+
+
+def _handle_related(args) -> int:
+    """Related: try service first, fall back to deterministic."""
+    try:
+        service = _try_build_service(offline=False)
+        related = service.related_resources(args.id_or_uri, limit=args.limit)
+        print(f"Related resources for {args.id_or_uri}")
+        print("=" * (len(args.id_or_uri) + 22))
+        print()
+        if not related:
+            print("No related resources found.")
+        else:
+            for resource in related:
+                _print_resource(resource)
+        return 0
+    except Exception:
+        pass
+
+    try:
+        service = _try_build_service(offline=True)
+        related = service.related_resources(args.id_or_uri, limit=args.limit)
+        print(f"Related resources for {args.id_or_uri}")
+        print("=" * (len(args.id_or_uri) + 22))
+        print()
+        if not related:
+            print("No related resources found.")
+        else:
+            for resource in related:
+                _print_resource(resource)
+        return 0
+    except KeyError:
+        print(f"Resource `{args.id_or_uri}` not found.")
+        return 1
+
+
+_HANDLERS = {
+    "search": _handle_search,
+    "figures": _handle_figures,
+    "data": _handle_data,
+    "project": _handle_project,
+    "landscape": _handle_landscape,
+    "entities": _handle_entities,
+    "connections": _handle_connections,
+    "hypotheses": _handle_hypotheses,
+    "gaps": _handle_gaps,
+    "timeline": _handle_timeline,
+    "backfill": _handle_backfill,
+    "related": _handle_related,
+}
+
+
+def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
-    # Convenience fallback: `query_knowledge.py <topic>` => search
-    if args.command is None and len(sys.argv) == 2:
-        topic = sys.argv[1]
-        registry, _, findings = _require_registry_artifacts()
-        print(_render_topic_search(topic, registry, findings))
-        return 0
+    # Convenience fallback: bare argument => search
+    if args.command is None:
+        if argv is None and len(sys.argv) == 2:
+            args.command = "search"
+            args.topic = sys.argv[1]
+            args.project = None
+            args.limit = 5
+        else:
+            parser.print_help()
+            return 1
 
-    registry, figures, findings = _require_registry_artifacts()
-
-    if args.command == "search":
-        print(_render_topic_search(args.topic, registry, findings))
-        return 0
-    if args.command == "figures":
-        print(_render_figure_search(args.topic, figures))
-        return 0
-    if args.command == "data":
-        print(_render_data_search(args.topic, registry))
-        return 0
-    if args.command == "project":
-        print(_render_project(args.project_id, registry))
-        return 0
-    if args.command == "landscape":
-        print(_render_landscape(registry))
-        return 0
-    if args.command == "entities":
-        print(_render_entities(args.entity_type, args.query))
-        return 0
-    if args.command == "connections":
-        print(_render_connections(args.entity))
-        return 0
-    if args.command == "hypotheses":
-        print(_render_hypotheses(args.status))
-        return 0
-    if args.command == "gaps":
-        print(_render_gaps(registry))
-        return 0
-    if args.command == "timeline":
-        print(_render_timeline(args.project))
-        return 0
-    if args.command == "backfill":
-        print(_render_backfill(args.project_id))
-        return 0
-
-    parser.print_help()
-    return 1
+    handler = _HANDLERS.get(args.command)
+    if handler is None:
+        parser.print_help()
+        return 1
+    return handler(args)
 
 
 if __name__ == "__main__":
