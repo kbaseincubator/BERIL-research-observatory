@@ -19,6 +19,23 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--dry-run", action="store_true", help="Print the manifest without uploading resources.")
     parser.add_argument("--limit", type=int, default=None, help="Only process the first N manifest items.")
     parser.add_argument(
+        "--resume",
+        action=argparse.BooleanOptionalAction,
+        default=True,
+        help="Skip resources whose target URI already exists in OpenViking.",
+    )
+    parser.add_argument(
+        "--wait",
+        action="store_true",
+        help="Wait for OpenViking to finish processing after queueing all uploads.",
+    )
+    parser.add_argument(
+        "--wait-timeout",
+        type=float,
+        default=None,
+        help="Optional timeout in seconds for the final processing wait.",
+    )
+    parser.add_argument(
         "--manifest-json",
         type=Path,
         default=None,
@@ -27,8 +44,8 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main() -> int:
-    args = build_parser().parse_args()
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
     manifest = build_resource_manifest(REPO_ROOT)
     if args.limit is not None:
         manifest = manifest[: args.limit]
@@ -46,8 +63,14 @@ def main() -> int:
 
     client = OpenVikingObservatoryClient(ObservatoryContextSettings())
     for item in manifest:
-        client.add_manifest_resource(item)
-        print(f"Ingested {item.uri}")
+        if args.resume and client.resource_exists(item.uri):
+            print(f"Skipping existing {item.uri}")
+            continue
+        client.add_manifest_resource(item, wait=False)
+        print(f"Queued {item.uri}")
+    if args.wait:
+        print("Waiting for OpenViking processing to finish...")
+        client.wait_until_processed(timeout=args.wait_timeout)
     return 0
 
 

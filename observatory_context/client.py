@@ -46,6 +46,9 @@ class OpenVikingObservatoryClient:
     def add_resource(self, path: str, uri: str, reason: str, wait: bool = True) -> dict[str, Any]:
         return self.client.add_resource(path=path, to=uri, reason=reason, wait=wait)
 
+    def wait_until_processed(self, timeout: float | None = None) -> dict[str, Any]:
+        return self.client.wait_processed(timeout=timeout)
+
     def list_resources(self, uri: str, recursive: bool = False) -> list[dict[str, Any]]:
         return self.client.ls(uri, recursive=recursive)
 
@@ -59,6 +62,15 @@ class OpenVikingObservatoryClient:
 
     def stat_resource(self, uri: str) -> dict[str, Any]:
         return self.client.stat(uri)
+
+    def resource_exists(self, uri: str) -> bool:
+        try:
+            self.stat_resource(uri)
+        except Exception as exc:
+            if exc.__class__.__name__ == "NotFoundError":
+                return False
+            raise
+        return True
 
     def make_directory(self, uri: str) -> None:
         self.client.mkdir(uri)
