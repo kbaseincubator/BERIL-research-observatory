@@ -141,7 +141,13 @@ Growth kinetic parameters are moderately correlated with endpoint OD (r ≈ 0.40
 
 ![Core species frequency in top strict-safe formulations](figures/05b_strict_safe_species_frequency.png)
 
-**Conclusion**: At k=3, the formulation achieves 100% niche coverage — meaning at least one member grows on every amino acid that PA14 can use. The strict filter costs roughly 15% inhibition ceiling but doubles engraftability. The five-species core is consistent across all formulation sizes, indicating a robust solution rather than an optimization artifact.
+**Exhaustive validation**: To confirm the top-30-restricted search did not miss better combinations, we exhaustively enumerated all C(97,3) = 147,440 possible triples from the full strict-safe candidate pool. Of 127,598 valid (unique-species) formulations scored, the same *M. luteus* + *N. mucosa* + *S. salivarius* triple emerged as the global optimum (score 0.562), confirming the optimization result is not an artifact of candidate pool restriction.
+
+**Bootstrap confidence intervals**: Resampling 1,000 times over the raw inhibition measurements yields 95% CIs on composite scores: k=1 [0.753, 0.753], k=2 [0.514, 0.588], k=3 [0.551, 0.562], k=4 [0.534, 0.578], k=5 [0.520, 0.587]. All k=2 through k=5 CIs overlap — formulation sizes are **not statistically distinguishable** on the composite score, supporting the recommendation of k=2 as the practical primary candidate (see §3.2).
+
+![Bootstrap confidence intervals on formulation composite scores](figures/05b_bootstrap_ci.png)
+
+**Conclusion**: At k=3, the formulation achieves 100% niche coverage — meaning at least one member grows on every amino acid that PA14 can use. The strict filter costs roughly 15% inhibition ceiling but doubles engraftability. The five-species core is consistent across all formulation sizes, indicating a robust solution rather than an optimization artifact. Exhaustive enumeration and bootstrap analysis further confirm the robustness of these rankings.
 
 *(Notebooks: 05_formulation_optimization.ipynb, 05b_formulation_strict_safety.ipynb)*
 
@@ -153,7 +159,7 @@ The table below presents the top-ranked FDA-safe formulations at each size (k=1�
 
 | Species | Best Inhibition | Engraftability | Pangenome | AA Pathway Conservation | Lung Genomes |
 |---------|:-:|:-:|:-:|:-:|:-:|
-| *Neisseria mucosa* | 88% | 1.595 | 15 genomes | 16/18 | 5 (33%) |
+| *Neisseria mucosa* | 88% | 1.595 | 15 genomes (8 in PROTECT clade) | 16/18 (18/18 in PROTECT clade) | 5 (33%) |
 | *Streptococcus salivarius* | 98% | 0.172 | 153 genomes | 18/18 | 5 (4%) |
 | *Rothia dentocariosa* | 79% | 0.422 | 29 genomes | 14/18 | 10 (38%) |
 | *Gemella sanguinis* | 85% | 0.202 | 7 genomes | 7/18 | 1 |
@@ -363,6 +369,9 @@ Our findings align with and extend several threads in the literature:
 - **Community ecology in CF**: Widder et al. (2022) identified eight pulmotypes driven by ecological competition. Our community-level niche coverage model operationalizes this concept for therapeutic design. Rogers et al. (2015) demonstrated competitive exclusion between PA and *H. influenzae* in bronchiectasis, supporting the ecological framework.
 - **Probiotic precedent**: Anderson et al. (2017) reviewed CF probiotic trials finding suggestive but inconclusive results, attributing this partly to lack of rational strain selection. Our multi-criterion optimization directly addresses this gap. *S. salivarius* BLIS K12 has established respiratory probiotic credentials (Tagg et al. 2025; Burton et al. 2011).
 - **Pangenome-guided design**: Shao et al. (2026) used pangenome analysis for *Bifidobacterium* probiotic design, finding strong strain-level functional divergence requiring careful strain selection. Our finding of >95% metabolic conservation represents the opposite scenario — equally valuable for translational confidence.
+- **Xylitol clinical precedent**: Our identification of xylitol as a selective prebiotic is supported by clinical evidence: Durairaj et al. (2007) demonstrated safety of inhaled xylitol in CF patients, and Singh et al. (2020) conducted a randomized controlled trial of aerosolized hypertonic xylitol vs saline during CF exacerbations. These establish the delivery route and safety profile our prebiotic strategy would use.
+- **Probiotic safety in CF**: Drost & Fuhrmann (2025) showed that *Lactiplantibacillus plantarum* — a commonly proposed probiotic — actually **enhanced** PA pathogenicity in a CF sputum–epithelial cell model. This underscores the importance of our strict FDA safety filtering approach and species-specific validation rather than using generic "probiotic" organisms.
+- **Commensal respiratory colonization**: Weyand (2017) reviewed *Neisseria* colonization models in the upper respiratory tract, noting *N. mucosa*'s prevalence in oral tissue. Clark (2020) reviewed mechanisms by which upper respiratory commensals regulate infection susceptibility. These provide ecological context for our *N. mucosa* engraftment assumptions.
 
 ### 3.6 Novel Contributions
 
@@ -374,6 +383,7 @@ Our findings align with and extend several threads in the literature:
 6. **Multi-criterion optimization framework** integrating inhibition, metabolism, kinetics, engraftability, safety, and interaction data into a single formulation scoring system.
 7. **PA lung metabolic streamlining**: Lung PA genomes lose sugar utilization pathways (sorbitol, mannitol, gluconate) while amino acid catabolism remains invariant — confirming competitive exclusion targets are evolutionarily stable.
 8. **Formulation robustness across PA diversity**: Amino acid pathways are 97.4% conserved across 1,796 lung PA genomes, and CF vs non-CF PA show zero amino acid pathway differences — one formulation should work across PA variants.
+9. **Exhaustive combinatorial validation**: All 127,598 valid k=3 triples from 97 candidates confirm the globally optimal formulation, and bootstrap CIs reveal k=2 through k=5 are statistically indistinguishable — supporting a minimalist k=2 approach.
 
 ### 3.7 Limitations
 
@@ -522,3 +532,8 @@ All figures are saved in `figures/` and appear inline throughout this report.
 - Vieira-Silva S, Rocha EPC (2010). "The Systemic Imprint of Growth and Its Uses in Ecological (Meta)Genomics." *PLoS Genet*. 6(1):e1000808. PMID: 20090831
 - Weissman JL, Hou S, Fuhrman JA (2021). "Estimating maximal microbial growth rates from cultures, metagenomes, and single cells via codon usage patterns." *PNAS*. 118(12):e2016810118. PMID: 33723043
 - Arkin AP et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nat Biotechnol*. 36(7):566-569. PMID: 29979655
+- Singh S et al. (2020). "Randomized controlled study of aerosolized hypertonic xylitol versus hypertonic saline in hospitalized patients with pulmonary exacerbation of cystic fibrosis." *J Cyst Fibros*. 19(1):108-113. DOI: 10.1016/j.jcf.2019.06.016
+- Durairaj L et al. (2007). "Safety assessment of inhaled xylitol in subjects with cystic fibrosis." *J Cyst Fibros*. 6(1):31-34. DOI: 10.1016/j.jcf.2006.01.002
+- Weyand NJ (2017). "Neisseria models of infection and persistence in the upper respiratory tract." *Pathog Dis*. 75(3):ftx031. DOI: 10.1093/femspd/ftx031
+- Clark SE (2020). "Commensal bacteria in the upper respiratory tract regulate susceptibility to infection." *Curr Opin Immunol*. 66:42-49. DOI: 10.1016/j.coi.2020.03.010
+- Drost M, Fuhrmann G (2025). "Pseudomonas aeruginosa and Its Unsuspected Ally Lactiplantibacillus plantarum: Enhanced Pathogenicity in A Combined Cystic Fibrosis Sputum–Epithelial Cell Model." *ACS Infect Dis*. DOI: 10.1021/acsinfecdis.5c00759
