@@ -46,18 +46,22 @@ EOF
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --type)
+      [[ -z "${2:-}" ]] && { echo "Error: --type requires a value" >&2; usage 1; }
       REVIEW_TYPE="$2"
       shift 2
       ;;
     --reviewer)
+      [[ -z "${2:-}" ]] && { echo "Error: --reviewer requires a value" >&2; usage 1; }
       REVIEWER="$2"
       shift 2
       ;;
     --model)
+      [[ -z "${2:-}" ]] && { echo "Error: --model requires a value" >&2; usage 1; }
       MODEL="$2"
       shift 2
       ;;
     --output)
+      [[ -z "${2:-}" ]] && { echo "Error: --output requires a value" >&2; usage 1; }
       OUTPUT_FILE="$2"
       shift 2
       ;;
@@ -195,7 +199,7 @@ ${REVIEW_PROMPT}"
     --model "$MODEL" \
     --sandbox workspace-write \
     --ephemeral \
-    "$FULL_PROMPT" 2>&1 >/dev/null) || REVIEW_EXIT=$?
+    "$FULL_PROMPT" 2>&1) || REVIEW_EXIT=$?
 
   # --- Friendly codex error messages ---
   if [[ $REVIEW_EXIT -ne 0 && -n "$REVIEW_STDERR" ]]; then
