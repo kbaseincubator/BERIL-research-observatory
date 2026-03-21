@@ -278,6 +278,7 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 - **v4** (2026-03-19): NB08 repurposed from BacDive validation to interaction modeling (pairwise synergy/antagonism). NB09 added for genomic carbon source extension — discovered 6 sugar alcohol prebiotic candidates. NB10 added for PA lung adaptation analysis (6,760 PA genomes). NB11 added for within-lung PA diversity and formulation robustness (97.4% AA pathway conservation). NB12 added for codon usage bias growth rate prediction.
 - **v5** (2026-03-19): Corrected CUB interpretation (GC-confounded). Corrected PA strain variation interpretation (accessory genome affects virulence not amino acid growth rate). Lab growth data confirmed as ground truth. Expected Outcomes updated to observed outcomes.
 - **v6** (2026-03-21): Review response. Consolidated NB10+NB11 into single notebook. Added N. mucosa clade sensitivity check to NB07. Added exhaustive k=3 enumeration and bootstrap CIs to NB05b. Elevated pairwise interaction testing to highest-priority experiment. Strengthened M. luteus engraftment recommendation (k=2 as primary candidate).
+- **v7** (2026-03-21): Added NB13 (PA virulence system distribution). Mapped T3SS effectors (exoU/exoS), biofilm polysaccharides (pel/psl), and regulatory genes (ladS/retS/gacS) across 6,760 PA genomes by isolation environment. Key finding: CF PA is 94% ExoS+ — PA14 (ExoU+, Pel-only, ladS mutant) represents <5% of CF isolates.
 
 ## Authors
 - Adam Arkin (ORCID: 0000-0002-4999-2931) — U.C. Berkeley / Lawrence Berkeley National Laboratory
