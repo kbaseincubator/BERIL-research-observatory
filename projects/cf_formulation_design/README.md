@@ -6,7 +6,7 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 
 ## Status
 
-Complete — see [Report](REPORT.md) for findings. 13 notebooks executed, 35 figures generated, 21 data files produced. Key result: a 5-organism FDA-safe formulation (*N. mucosa* + *S. salivarius* + *M. luteus* + *R. dentocariosa* + *G. sanguinis*) achieves 100% PA14 niche coverage with 78% mean inhibition. PA amino acid catabolism is 97% conserved across 1,796 lung genomes — formulation predicted equally effective across PA variants. Sugar alcohols (xylitol, myoinositol, xylose, arabinose) identified as genomically-predicted selective prebiotics.
+Complete — see [Report](REPORT.md) for findings. 12 notebooks executed, 35 figures generated, 21 data files produced. Key result: a 5-organism FDA-safe formulation (*N. mucosa* + *S. salivarius* + *M. luteus* + *R. dentocariosa* + *G. sanguinis*) achieves 100% PA14 niche coverage with 78% mean inhibition. PA amino acid catabolism is 97% conserved across 1,796 lung genomes — formulation predicted equally effective across PA variants. Sugar alcohols (xylitol, myoinositol, xylose, arabinose) identified as genomically-predicted selective prebiotics.
 
 ## Overview
 
@@ -31,10 +31,30 @@ The design theory is **metabolic competitive exclusion** — commensal organisms
 - BERDL JupyterHub access for NB07 and NB09 (provides `pyspark`, `berdl_notebook_utils`, and Spark session)
 - Data files in `~/protect/gold/` (parquet format)
 
+### Notebook Dependency DAG
+
+```
+NB01 (Data Integration & EDA)
+ ├── NB02 (Growth Kinetics)
+ ├── NB03 (Explaining Inhibition)
+ ├── NB04 (Patient Ecology)
+ │    ├── NB05 (Formulation Optimization, permissive)
+ │    │    └── NB05b (Formulation Optimization, strict safety)
+ │    └── NB06 (Prebiotic Pairing)
+ ├── NB07 (Pangenome Conservation) ★ Spark
+ │    └── NB09 (Genomic Carbon Extension) ★ Spark
+ ├── NB08 (Interaction Modeling)
+ └── NB10 (PA Lung Adaptation & Robustness) ★ Spark
+      └── NB12 (Growth Rate Prediction)
+
+★ = requires BERDL Spark access
+NB02, NB03, NB04, NB07, NB08 can run in parallel after NB01
+```
+
 ### Steps
-1. Run notebooks in order: NB01 → NB02 → NB03 → NB04 → NB05 → NB05b → NB06 → NB07 → NB08 → NB09
-2. NB01–NB06, NB08 run locally from cached parquet files (< 2 min each)
-3. NB07 and NB09 require BERDL Spark access for GapMind queries (5–10 min each)
+1. Run notebooks following the DAG above (NB01 first, then parallel branches)
+2. NB01–NB06, NB08, NB12 run locally from cached parquet files (< 2 min each)
+3. NB07, NB09, NB10 require BERDL Spark access for GapMind/pangenome queries (5–10 min each)
 
 ## Authors
 
