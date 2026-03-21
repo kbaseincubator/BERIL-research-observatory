@@ -318,6 +318,41 @@ CF-derived PA shows 6 FDR-significant differences from non-CF lung PA, but all a
 
 *(Notebook: 10_pa_lung_adaptation.ipynb)*
 
+### 2.14 PA Virulence System Distribution: PA14 Is Not Representative of CF
+
+**Rationale**: PA14 and PAO1 differ qualitatively in T3SS effectors (ExoU vs ExoS), biofilm polysaccharides (Pel-only vs Pel+Psl), and regulatory state (ladS mutation). Which variant dominates in CF lungs determines whether our PA14-based inhibition assays generalize.
+
+Across 6,760 PA genomes with environmental metadata for 4,769, T3SS effector typing reveals a striking gradient:
+
+| Environment | ExoS+ | ExoU+ | Both | n |
+|---|---|---|---|---|
+| CF patient | **94%** | **5%** | 0% | 291 |
+| Lung/Respiratory | 82% | 16% | 1% | 1,505 |
+| Other Clinical | 63% | 33% | 3% | 1,731 |
+| Environmental | 62% | 35% | 1% | 370 |
+
+CF PA is overwhelmingly ExoS+ — the PA14 ExoU+ phenotype represents only 5% of CF isolates. ExoU prevalence increases with acute/invasive infection contexts (33% in other clinical, 35% in environmental), consistent with ExoU's role as an acute cytotoxic effector rather than a chronic colonization factor.
+
+![T3SS effector type and biofilm polysaccharide distribution by environment](figures/13_t3ss_by_environment.png)
+
+Biofilm architecture: 96.4% of PA genomes carry both Pel and Psl operons (PAO1-like). Only 3.5% are Pel-only (PA14-like), with slight enrichment in CF (8%) vs environmental (3%). PA14's psl deletion is a rare variant, not representative of the species.
+
+![Biofilm polysaccharide type by environment](figures/13_biofilm_by_environment.png)
+
+Regulatory genes: ladS is detected in only 0.5% of PA genomes by bakta annotation — PA14's ladS frameshift mutation is an extreme outlier that locks it in an acute-virulence regulatory state unrepresentative of natural infection dynamics.
+
+**Critically, amino acid catabolic pathways are identical between ExoU+ and ExoS+ PA** (GapMind score differences <0.03 on a 1–5 scale, zero FDR-significant pathways). The competitive exclusion targets our formulation exploits are completely independent of the virulence genotype — one formulation should work against all PA variants regardless of their T3SS effector type.
+
+![PA virulence systems summary across environments](figures/13_pa_virulence_summary.png)
+
+**Formulation implication**: Our PA14-based inhibition assays tested the formulation against a minority (<5%) CF PA variant. The dominance of ExoS+ PA in CF lungs is actually favorable: ExoS mediates slower, apoptotic killing vs ExoU's rapid cytotoxic lysis, potentially providing a wider time window for competitive exclusion to take effect. However, **Proposed Experiment 4.6 (PAO1 and clinical strain extension) is now elevated in importance** — confirming inhibition against ExoS+ strains is essential.
+
+In the PROTECT collection (651 PA genomes), 47% carry exoS and 7% carry exoU, with 45% unannotated for T3SS effectors (annotation coverage gap for GenomeDepot gene names).
+
+![PROTECT PA virulence gene prevalence](figures/13_protect_pa_virulence.png)
+
+*(Notebook: 13_pa_virulence_systems.ipynb)*
+
 ---
 
 ## 3. Discussion
@@ -508,6 +543,7 @@ Based on our findings, we recommend the following experimental program:
 | `09_genomic_carbon_extension.ipynb` | Genomic + transcriptomic prebiotic candidate identification |
 | `10_pa_lung_adaptation.ipynb` | PA lung adaptation, formulation robustness, disease severity, PROTECT PA diversity |
 | `12_growth_rate_prediction.ipynb` | Codon usage bias analysis for growth rate prediction |
+| `13_pa_virulence_systems.ipynb` | PA virulence system distribution (T3SS, pel/psl, ladS) by environment |
 
 ### Figures (35 total)
 
