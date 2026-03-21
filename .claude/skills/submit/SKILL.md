@@ -50,6 +50,7 @@ Run these checks against the project directory and print a checklist summary:
 - **Dependencies**: Check that `requirements.txt` exists in the project directory. Warn if missing.
 - **Reproduction guide**: Check that README.md contains a `## Reproduction` section. Warn if missing.
 - **User-provided data**: If `projects/{project_id}/user_data/` exists and contains files, print an `INFO` line noting the count and total size (e.g., `INFO  User-provided data: 3 files, 12 MB`). This is informational only — not a warning.
+- **Previous reviews**: If `REVIEW_*.md` files exist in the project directory, print `INFO  {N} previous review(s) found — will be cleared on submission`. This is informational only.
 
 Print the checklist as:
 ```
@@ -85,15 +86,19 @@ If the user declines, proceed with the current status.
 
 ### Step 4: Invoke Reviewer
 
-If all critical checks pass, invoke the reviewer via `tools/review.sh`:
+If all critical checks pass:
+
+1. **Clear previous reviews**: Remove all numbered review files (`REVIEW_*.md`) in the project directory — this is a fresh submission round.
+2. **Invoke reviewer**: Run `tools/review.sh` with `--output` to produce the canonical `REVIEW.md`:
 
 ```bash
-bash tools/review.sh {project_id} --reviewer {reviewer} --model {model}
+rm -f projects/{project_id}/REVIEW_*.md
+bash tools/review.sh {project_id} --reviewer {reviewer} --model {model} --output projects/{project_id}/REVIEW.md
 ```
 
 - `{reviewer}` defaults to `claude` if `--reviewer` was not provided
 - `{model}` defaults to the frontier model for the selected reviewer if `--model` was not provided
-- Omit `--model` entirely if the user did not specify one (the script applies its own defaults)
+- Omit `--reviewer` and `--model` entirely if the user did not specify them (the script applies its own defaults)
 
 Run this command from the repository root directory.
 
@@ -101,9 +106,9 @@ Run this command from the repository root directory.
 
 After the reviewer subprocess completes:
 
-1. Check that `projects/{project_id}/REVIEW.md` was created
-2. If it exists, print a success message with a brief summary
-3. If it was not created, print an error indicating the reviewer did not produce output
+1. Check that `projects/{project_id}/REVIEW.md` was created **and is non-empty** (more than 0 bytes)
+2. If it exists and is non-empty, print a success message with a brief summary
+3. If it was not created or is empty, print an error indicating the reviewer did not produce output
 
 ### Step 6: Lakehouse Upload
 
@@ -141,8 +146,9 @@ After presenting the review summary, provide next steps based on the review outc
 ### Notes
 
 - The reviewer prompt is stored at `.claude/reviewer/SYSTEM_PROMPT.md` and is not controlled by the author
-- Each `/submit` produces a fresh review, replacing any existing `REVIEW.md`
-- To address review feedback, update the project and run `/submit` again
+- Each `/submit` clears numbered `REVIEW_*.md` files and produces a fresh canonical `REVIEW.md`
+- To iterate on review feedback without the full checklist, use `/berdl-review` instead
+- To address review feedback and re-submit, update the project and run `/submit` again
 
 ## Pitfall Detection
 
