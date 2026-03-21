@@ -407,6 +407,8 @@ Our findings align with and extend several threads in the literature:
 - **Xylitol clinical precedent**: Our identification of xylitol as a selective prebiotic is supported by clinical evidence: Durairaj et al. (2007) demonstrated safety of inhaled xylitol in CF patients, and Singh et al. (2020) conducted a randomized controlled trial of aerosolized hypertonic xylitol vs saline during CF exacerbations. These establish the delivery route and safety profile our prebiotic strategy would use.
 - **Probiotic safety in CF**: Drost & Fuhrmann (2025) showed that *Lactiplantibacillus plantarum* — a commonly proposed probiotic — actually **enhanced** PA pathogenicity in a CF sputum–epithelial cell model. This underscores the importance of our strict FDA safety filtering approach and species-specific validation rather than using generic "probiotic" organisms.
 - **Commensal respiratory colonization**: Weyand (2017) reviewed *Neisseria* colonization models in the upper respiratory tract, noting *N. mucosa*'s prevalence in oral tissue. Clark (2020) reviewed mechanisms by which upper respiratory commensals regulate infection susceptibility. These provide ecological context for our *N. mucosa* engraftment assumptions.
+- **PA14 reference strain limitations**: Grace et al. (2022) comprehensively reviewed PAO1 vs PA14 genomic and phenotypic differences, including the ExoU/ExoS T3SS distinction, psl deletion, and ladS frameshift. Our pangenome-scale analysis quantifies the clinical relevance of these differences for the first time: CF PA is 94% ExoS+ (PAO1-like) and 92% Pel+Psl+, confirming that PA14 is a poor model for chronic CF infection.
+- **T3SS effector distribution in CF**: Hu et al. (2013) found a "predominantly exoS+/exoU– genotype" in longitudinal CF isolates from young children, and Sarges et al. (2020) reported similar ExoS dominance in CF PA with the atypical exoS+/exoU+ virulotype as a rare variant. Our pangenome-scale finding of 94% ExoS+ in CF PA is consistent with these clinical studies and extends them to 291 genomes. Song et al. (2023) described the emergence of hypervirulent exoS+/exoU+ co-expressing strains — our analysis detected these in 1.5% of PA genomes, concentrated in non-CF clinical settings.
 
 ### 3.6 Novel Contributions
 
@@ -419,6 +421,7 @@ Our findings align with and extend several threads in the literature:
 7. **PA lung metabolic streamlining**: Lung PA genomes lose sugar utilization pathways (sorbitol, mannitol, gluconate) while amino acid catabolism remains invariant — confirming competitive exclusion targets are evolutionarily stable.
 8. **Formulation robustness across PA diversity**: Amino acid pathways are 97.4% conserved across 1,796 lung PA genomes, and CF vs non-CF PA show zero amino acid pathway differences — one formulation should work across PA variants.
 9. **Exhaustive combinatorial validation**: All 127,598 valid k=3 triples from 97 candidates confirm the globally optimal formulation, and bootstrap CIs reveal k=2 through k=5 are statistically indistinguishable — supporting a minimalist k=2 approach.
+10. **PA14 is not representative of CF PA**: T3SS typing of 6,760 PA genomes reveals CF isolates are 94% ExoS+ while PA14 is ExoU+ — the reference strain used in our inhibition assays represents <5% of CF PA. Yet amino acid catabolism is identical across ExoU+ and ExoS+ variants, confirming the formulation's mechanism is independent of virulence genotype.
 
 ### 3.7 Limitations
 
@@ -426,6 +429,7 @@ Our findings align with and extend several threads in the literature:
 - **22 tested carbon sources**: While covering major amino acids and glucose/lactate, we miss mucins, lipids, iron, polyamines, and the sugar alcohols our genomic analysis predicts as important.
 - **142-isolate core cohort**: The overlap between inhibition and carbon utilization data limits multivariate model power. Growth kinetics are available for only 32 isolates. This subset is enriched for species with multiple assay types, which may over-represent organisms prioritized for deeper characterization — though the genus distribution (dominated by *Rothia*, *Streptococcus*, *Neisseria*, *Gemella*) mirrors the broader collection.
 - **Pairwise interaction data are sparse**: Only 3 A × 3 B isolate combinations were tested, limiting our ability to predict interactions for the full formulation.
+- **PA14 reference strain bias**: All inhibition assays used PA14, which is ExoU+ and Pel-only — representing <5% of CF PA isolates. While our pangenome analysis confirms AA catabolism is identical across ExoU+ and ExoS+ strains, the inhibition measurements themselves have not been validated against ExoS+/PAO1-type strains. Proposed Experiment 4.6 (PAO1 and clinical strain extension) directly addresses this gap.
 - **Engraftability is inferred**: Patient prevalence is a proxy, not a direct measure of colonization persistence after probiotic administration.
 - **Sparse lung metadata**: Only 21 lung genomes across 5 species limits the lung adaptation comparison.
 - **`fact_pairwise_interaction` is identical to `fact_carbon_utilization`**: NB08 discovered that these tables contain the same values (correlation = 1.0, mean difference = 0.0), meaning the endpoint OD data does not capture co-culture metabolic interactions. The competition assay (RFU-based) does capture pairwise effects, but the per-substrate interaction analysis is not possible with current data.
@@ -524,6 +528,7 @@ Based on our findings, we recommend the following experimental program:
 | `data/pa_lung_vs_nonlung_pathways.tsv` | 80 | PA lung vs non-lung pathway FDR tests |
 | `data/pa_sick_vs_stable_pathways.tsv` | 207 | PA pathway expression: acute vs stable patients |
 | `data/pa_target_robustness.tsv` | 22 | PA amino acid/carbon pathway conservation in lung isolates |
+| `data/pa_virulence_systems.tsv` | 6,760 | PA virulence gene presence, T3SS type, biofilm type, environment |
 
 ## 6. Supporting Evidence
 
@@ -545,7 +550,7 @@ Based on our findings, we recommend the following experimental program:
 | `12_growth_rate_prediction.ipynb` | Codon usage bias analysis for growth rate prediction |
 | `13_pa_virulence_systems.ipynb` | PA virulence system distribution (T3SS, pel/psl, ladS) by environment |
 
-### Figures (35 total)
+### Figures (39 total)
 
 All figures are saved in `figures/` and appear inline throughout this report.
 
@@ -573,3 +578,7 @@ All figures are saved in `figures/` and appear inline throughout this report.
 - Weyand NJ (2017). "Neisseria models of infection and persistence in the upper respiratory tract." *Pathog Dis*. 75(3):ftx031. DOI: 10.1093/femspd/ftx031
 - Clark SE (2020). "Commensal bacteria in the upper respiratory tract regulate susceptibility to infection." *Curr Opin Immunol*. 66:42-49. DOI: 10.1016/j.coi.2020.03.010
 - Drost M, Fuhrmann G (2025). "Pseudomonas aeruginosa and Its Unsuspected Ally Lactiplantibacillus plantarum: Enhanced Pathogenicity in A Combined Cystic Fibrosis Sputum–Epithelial Cell Model." *ACS Infect Dis*. DOI: 10.1021/acsinfecdis.5c00759
+- Grace A, Sahu R, Owen DR, Dennis VA (2022). "Pseudomonas aeruginosa reference strains PAO1 and PA14: A genomic, phenotypic, and therapeutic review." *Front Microbiol*. 13:1023523. DOI: 10.3389/fmicb.2022.1023523
+- Hu H et al. (2013). "T3SS effector genotype and secretion phenotype of longitudinally collected P. aeruginosa isolates from young children diagnosed with cystic fibrosis." *Clin Microbiol Infect*. 19(12):E508-17. DOI: 10.1111/1469-0691.12255
+- Sarges ESNF et al. (2020). "Pseudomonas aeruginosa Type III Secretion System Virulotypes and Their Association with Clinical Features of Cystic Fibrosis Patients." *Infect Drug Resist*. 13:3505-3512. DOI: 10.2147/IDR.S273759
+- Song Y et al. (2023). "Emergence of hypervirulent Pseudomonas aeruginosa pathotypically armed with co-expressed T3SS effectors ExoS and ExoU." *One Health Advances*. 1:4. DOI: 10.1016/j.ohadvs.2023.00004
