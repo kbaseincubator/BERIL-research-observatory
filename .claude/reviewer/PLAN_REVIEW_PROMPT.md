@@ -103,7 +103,6 @@ Omit any priority section that has no items. Keep each suggestion to 1-2 sentenc
 
 ## Important Rules
 
-- Do NOT write a file — return your review as text output only
 - Focus on actionable suggestions, not general advice
 - If the plan looks solid, say so briefly — don't manufacture issues
 - Frame everything as suggestions, not requirements — the researcher may have context you don't
