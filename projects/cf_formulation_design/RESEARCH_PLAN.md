@@ -239,21 +239,18 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 
 **Expected output**: `data/gapmind_pathway_comparison.tsv`, `data/kegg_expression_comparison.tsv`
 
-### Notebook 10: PA Lung Adaptation
+### Notebook 10: PA Lung Adaptation & Formulation Robustness
 
-**Goal**: Characterize what makes lung/airway PA variants metabolically distinct from non-lung PA. Identify PA metabolic pathways associated with disease severity from patient metatranscriptomics.
+**Goal**: Characterize lung-specific PA metabolic adaptations, assess formulation target conservation across lung PA variants, test CF vs non-CF equivalence, identify metabolic subpopulations, and analyze disease severity associations from patient metatranscriptomics. (Consolidated from former NB10 + NB11.)
 
-**Key finding**: Lung PA loses sugar utilization pathways (sorbitol, mannitol, gluconate) — metabolic streamlining toward amino acid dependence. During acute exacerbation, PA massively downregulates biosynthetic pathways and upregulates phosphate transport.
+**Key findings**:
+- Lung PA loses sugar utilization pathways (sorbitol, mannitol, gluconate) — metabolic streamlining toward amino acid dependence
+- Amino acid pathways 97.4% conserved across 1,796 lung PA genomes — formulation targets are invariant
+- CF vs non-CF lung PA show zero amino acid differences
+- Two metabolic subpopulations exist (k=2, silhouette=0.95), main variation in carbon sources NOT targeted by formulation
+- During acute exacerbation, PA massively downregulates biosynthetic pathways
 
-**Expected output**: `data/pa_lung_vs_nonlung_pathways.tsv`, `data/pa_sick_vs_stable_pathways.tsv`, `data/pa_genome_sources.tsv`
-
-### Notebook 11: Within-Lung PA Diversity & Formulation Robustness
-
-**Goal**: Assess whether PA metabolic variation among lung isolates could cause differential formulation responses. Test whether amino acid catabolic pathways (our formulation targets) are invariant or variable across lung PA.
-
-**Key finding**: Amino acid pathways 97.4% conserved across 1,796 lung PA genomes. Main variation (PC1=79%) is in carbon source pathways NOT targeted by our formulation. CF vs non-CF lung PA show zero amino acid differences. Formulation predicted equally effective across PA variants.
-
-**Expected output**: `data/pa_target_robustness.tsv`
+**Expected output**: `data/pa_lung_vs_nonlung_pathways.tsv`, `data/pa_sick_vs_stable_pathways.tsv`, `data/pa_genome_sources.tsv`, `data/pa_target_robustness.tsv`
 
 ### Notebook 12: Genomic Growth Rate Prediction
 
@@ -280,6 +277,7 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 - **v3** (2026-03-19): NB01–NB07 executed. NB05b added (strict FDA safety filter with staged comparison). Key result: metabolic overlap r=0.384 (R²=0.274). Five-species FDA-safe formulation identified.
 - **v4** (2026-03-19): NB08 repurposed from BacDive validation to interaction modeling (pairwise synergy/antagonism). NB09 added for genomic carbon source extension — discovered 6 sugar alcohol prebiotic candidates. NB10 added for PA lung adaptation analysis (6,760 PA genomes). NB11 added for within-lung PA diversity and formulation robustness (97.4% AA pathway conservation). NB12 added for codon usage bias growth rate prediction.
 - **v5** (2026-03-19): Corrected CUB interpretation (GC-confounded). Corrected PA strain variation interpretation (accessory genome affects virulence not amino acid growth rate). Lab growth data confirmed as ground truth. Expected Outcomes updated to observed outcomes.
+- **v6** (2026-03-21): Review response. Consolidated NB10+NB11 into single notebook. Added N. mucosa clade sensitivity check to NB07. Added exhaustive k=3 enumeration and bootstrap CIs to NB05b. Elevated pairwise interaction testing to highest-priority experiment. Strengthened M. luteus engraftment recommendation (k=2 as primary candidate).
 
 ## Authors
 - Adam Arkin (ORCID: 0000-0002-4999-2931) — U.C. Berkeley / Lawrence Berkeley National Laboratory

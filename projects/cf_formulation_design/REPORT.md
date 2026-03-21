@@ -294,17 +294,15 @@ Patient metatranscriptomics reveals that during acute exacerbation, PA massively
 
 Across 1,796 lung PA genomes, amino acid catabolic pathways are **97.4% conserved** (mean completeness). Even proline — PA14's top substrate — is complete in 97% of lung isolates. The main variation among lung PA (PC1 = 79%) is in carbon source pathways (sorbitol, mannitol, gluconate) — substrates our formulation does NOT target.
 
-![Formulation target robustness across lung PA](figures/11_pa_target_robustness.png)
+![Formulation target robustness across lung PA](figures/10_pa_target_robustness.png)
 
 Two metabolic subpopulations exist: a major cluster (1,743 genomes, 97%) with full metabolic capacity, and a minor cluster (53 genomes, 3%) lacking TCA cycle intermediates. The minor cluster is CF-enriched (25% CF vs 16%) and may represent chronically adapted PA that is even MORE dependent on external metabolites — potentially more vulnerable to competitive exclusion.
 
 CF-derived PA shows 6 FDR-significant differences from non-CF lung PA, but all are in sugar-related pathways — **zero amino acid differences**. Formulations designed for general lung PA should work equivalently for CF PA.
 
-![PA lung metabolic diversity — PCA colored by cluster and CF status](figures/10_pa_lung_pca.png)
+![PA lung metabolic subpopulations and CF vs non-CF](figures/10_pa_lung_clusters.png)
 
-![PA lung metabolic subpopulations and CF vs non-CF](figures/11_pa_lung_clusters.png)
-
-![PROTECT PA genome variation (655 isolates, 15 strain groups)](figures/11_protect_pa_genome_variation.png)
+![PROTECT PA genome variation (655 isolates, 15 strain groups)](figures/10_protect_pa_genome_variation.png)
 
 **Genomic growth rate context**: PA's genome (6.58 Mb, 6,177 CDS) is 2.5–3× larger than our commensal species (2.1–2.7 Mb, 2,200–3,000 CDS). Despite this size disadvantage, our growth curve data (NB02) shows PA14 outgrows most commensals on its preferred amino acid substrates — confirming that PA's catabolic enzyme efficiency, not its ribosomal translation rate, drives its competitive advantage on amino acids. Codon usage bias analysis (NB12) of ribosomal proteins shows variation across species, but cross-species CUB comparisons are confounded by GC content (ranging from 31% for *G. sanguinis* to 73% for *M. luteus*) — organisms with extreme GC composition have inflated CUB scores regardless of growth optimization. The CUB analysis therefore cannot reliably distinguish growth rate differences between our species; the lab growth data remains the definitive measure of competitive dynamics on amino acid substrates.
 
@@ -312,7 +310,7 @@ CF-derived PA shows 6 FDR-significant differences from non-CF lung PA, but all a
 
 **Within-PA strain variation**: Among 15 PROTECT PA strain groups, genome size ranges from 6.12 Mb (5,668 CDS) to 7.35 Mb (7,026 CDS) — a 24% difference in gene content. The largest strain group (725, 98 isolates) carries 1,358 extra genes compared to the smallest. However, since all strain groups retain the same amino acid catabolic pathways (97%+ conservation, NB11), the extra genes are likely conditionally expressed accessory functions (prophages, mobile elements, niche-specific adaptations) that affect virulence and persistence rather than amino acid growth rate. Within-species genome size variation is a much weaker predictor of growth rate than cross-species variation (Vieira-Silva & Rocha 2010). We therefore predict that **PA strains will respond similarly to our formulation**, because the competitive targets — amino acid catabolism — are invariant across the species. Where PA strains are expected to differ is in virulence, antibiotic resistance, and biofilm properties — factors that matter for disease severity but not for the metabolic competition mechanism our formulation exploits.
 
-*(Notebooks: 10_pa_lung_adaptation.ipynb, 11_pa_within_lung_diversity.ipynb)*
+*(Notebook: 10_pa_lung_adaptation.ipynb)*
 
 ---
 
@@ -334,7 +332,11 @@ The remaining the remaining 64% of variance is likely attributable to unmeasured
 
 *M. luteus* is the keystone species for niche coverage — its addition at k=3 is what achieves 100% PA substrate coverage. Yet it has zero engraftability (not detected in any patient metagenome) and zero lung genomes in the pangenome (primarily skin/environmental). This creates a fundamental design tension: the species most important for metabolic coverage is the least likely to persist in the lung.
 
-Three paths forward warrant consideration: (a) **Accept the risk and test k=3 in mice** — *M. luteus*'s broad carbon utilization may compensate for low natural prevalence if delivered at sufficient dose; (b) **Prioritize the k=2 formulation** (*R. dentocariosa* + *N. mucosa*) — both lung-adapted species with combined 84% inhibition and 0.820 engraftability, sacrificing niche coverage for colonization reliability; (c) **Search for an alternative broad-spectrum metabolizer** among lung-adapted species that could replace *M. luteus*'s niche coverage role. We recommend testing both k=2 and k=3 formulations in the mouse model (Proposed Experiment 4.5) to resolve this empirically.
+Three paths forward warrant consideration: (a) **Accept the risk and test k=3 in mice** — *M. luteus*'s broad carbon utilization may compensate for low natural prevalence if delivered at sufficient dose; (b) **Prioritize the k=2 formulation** (*R. dentocariosa* + *N. mucosa*) — both lung-adapted species with combined 84% inhibition and 0.820 engraftability, sacrificing niche coverage for colonization reliability; (c) **Search for an alternative broad-spectrum metabolizer** among lung-adapted species that could replace *M. luteus*'s niche coverage role.
+
+**Our recommendation**: The k=2 formulation (*R. dentocariosa* + *N. mucosa*) should be the **primary clinical candidate**. Both species are naturally lung-adapted (33–38% respiratory genomes in pangenome), both are dual-mechanism inhibitors (metabolic + direct antagonism), and their combined engraftability (0.820) is nearly 6× higher than the k=3 formulation (0.140). While k=2 achieves only 18% PA niche coverage, the high per-organism inhibition (84% mean) suggests direct antagonism may matter more than niche coverage for clinical efficacy — a hypothesis testable in the mouse model (Proposed Experiment 4.5).
+
+The k=3 formulation (*M. luteus* + *N. mucosa* + *S. salivarius*) should be pursued as an **aspirational second-line candidate**, contingent on demonstrating *M. luteus* lung engraftment in vivo. In parallel, a systematic search for a lung-adapted broad-spectrum metabolizer to replace *M. luteus* should be conducted — screening oral/respiratory Actinobacteria with broad carbon utilization profiles (e.g., *Kocuria*, *Dermacoccus*, or other Micrococcaceae with respiratory isolation records) against our PA14 carbon utilization panel.
 
 ### 3.3 Growth Rate Asymmetry and the Importance of Pre-Colonization
 
@@ -390,21 +392,21 @@ Our findings align with and extend several threads in the literature:
 
 Based on our findings, we recommend the following experimental program:
 
-### 4.1 Immediate Priority: Sugar Alcohol Prebiotic Validation
+### 4.1 Highest Priority: Pairwise Interaction Matrix for Core Formulation
+
+**Experiment**: Measure all 10 pairwise combinations of the 5 core species in the PA14 competition assay at multiple inoculation densities.
+
+**Rationale**: This is the single most important validation experiment. NB08 showed that some pairs are strongly antagonistic (up to −19.8% synergy), yet the current data covers only 5 of the 10 possible pairs in the 5-species formulation. A single antagonistic interaction between untested core members could invalidate the entire formulation design. The additive scoring assumption underlying all formulation rankings (NB05, NB05b) is provisional until the complete interaction matrix is measured. This experiment is lower cost and faster than any other proposed experiment, yet has the highest potential to change the formulation recommendation.
+
+**Expected outcome**: Complete 10-pair interaction matrix enabling: (a) validation or correction of additive formulation scores, (b) identification of any combinations that must be avoided, (c) informed selection of which 3- and 4-member subsets to advance to mouse models.
+
+### 4.2 Sugar Alcohol Prebiotic Validation
 
 **Experiment**: Test growth of the 5 core formulation species + PA14 on xylitol, myoinositol, xylose, arabinose, fucose, and rhamnose as sole carbon sources, using the same endpoint OD and growth curve assays as the current study.
 
 **Rationale**: The genomic prediction (100% commensal pathway completeness vs 0% PA) is strong but must be validated experimentally. If confirmed, these substrates provide a selective prebiotic strategy qualitatively different from amino acid competition.
 
 **Expected outcome**: Commensals grow; PA14 does not. Selectivity ratios >10 (vs <1 for all tested amino acids).
-
-### 4.2 Pairwise Interaction Matrix for Core Formulation
-
-**Experiment**: Measure all 10 pairwise combinations of the 5 core species in the PA14 competition assay at multiple inoculation densities.
-
-**Rationale**: NB08 showed that *N. mucosa* pairs are near-additive but some pairs are strongly antagonistic. We need the complete interaction matrix to predict formulation behavior and identify any combinations that should be avoided.
-
-**Expected outcome**: Interaction matrix enabling adjustment of additive formulation scores. Identify which 3- and 4-member subsets of the 5-species core avoid antagonistic pairs.
 
 ### 4.3 Biofilm Competition Model
 
@@ -494,8 +496,7 @@ Based on our findings, we recommend the following experimental program:
 | `07_pangenome_conservation.ipynb` | GapMind pathway conservation, environmental source analysis, lung adaptation |
 | `08_interaction_modeling.ipynb` | Pairwise synergy/antagonism classification, dose-response patterns |
 | `09_genomic_carbon_extension.ipynb` | Genomic + transcriptomic prebiotic candidate identification |
-| `10_pa_lung_adaptation.ipynb` | PA lung vs non-lung metabolic comparison, disease severity analysis |
-| `11_pa_within_lung_diversity.ipynb` | Within-lung PA diversity, formulation robustness assessment |
+| `10_pa_lung_adaptation.ipynb` | PA lung adaptation, formulation robustness, disease severity, PROTECT PA diversity |
 | `12_growth_rate_prediction.ipynb` | Codon usage bias analysis for growth rate prediction |
 
 ### Figures (35 total)

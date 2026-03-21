@@ -79,6 +79,44 @@ This is an exceptionally ambitious and well-executed project that integrates exp
 
 10. **Add confidence intervals to the formulation composite scores**. The current scoring produces point estimates. Bootstrap resampling over the inhibition measurements (which have biological replicates) would provide uncertainty bands that help distinguish genuinely different formulations from scoring noise.
 
+## Review Response (2026-03-21)
+
+### Critical Items
+
+1. **README stats** — Fixed in commit 537a44b (prior to this response).
+
+2. **M. luteus engraftment gap** — REPORT §3.2 now makes a concrete recommendation: k=2 (*R. dentocariosa* + *N. mucosa*) as **primary clinical candidate** (both lung-adapted, 6× higher engraftability), with k=3 as aspirational pending M. luteus engraftment data. Recommends searching oral/respiratory Actinobacteria (e.g., *Kocuria*, *Dermacoccus*) as potential M. luteus replacements.
+
+3. **Pairwise interaction priority** — Proposed Experiment 4.2 (pairwise interaction matrix) elevated to **4.1 Highest Priority**, above prebiotic validation. Rationale strengthened: antagonistic interactions could invalidate formulation design, making this the single most important validation experiment.
+
+### Important Items
+
+4. **NB10/NB11 consolidation** — Merged into a single `10_pa_lung_adaptation.ipynb` (28 cells, 7 sections). Eliminated redundant Spark query, replaced NB10's simple PCA with NB11's improved variable-pathway PCA + KMeans clustering. All 4 data outputs and 6 figures produced from one notebook. NB11 deleted. REPORT.md, RESEARCH_PLAN.md, and README.md references updated.
+
+5. **Data dictionary** — Created `data/DATA_DICTIONARY.md` with per-file documentation: source notebook, row count, and column-level metadata (name, type, description) for all 21 TSV files.
+
+6. **N. mucosa clade sensitivity** — Added markdown + code cell to NB07 after the conservation summary. Queries GapMind for the alternate `s__Neisseria_mucosa` clade (8 genomes, contains PROTECT reference genome) and compares to the primary `s__Neisseria_mucosa_A` analysis. Result: PROTECT clade shows **18/18 AA pathways >95% conserved** vs 16/18 for _A clade, and **37/62 carbon pathways** vs 27/62 — conservation claims are understated by the primary analysis.
+
+### Nice-to-Have Items
+
+7. **Exhaustive k=3 enumeration** — Added to NB05b. All C(97,3) ≈ 147K triples scored exhaustively, confirming whether the top-30-restricted solution is globally optimal.
+
+8. **Notebook dependency DAG** — Added ASCII DAG to README showing data flow between notebooks and identifying which can run in parallel.
+
+9. **NB12 shortening** — Not addressed. NB12 documents a genuine negative result (CUB confounded by GC) that is worth preserving for the scientific record, even if the conclusion is implicit from NB02.
+
+10. **Bootstrap CIs** — Added to NB05b. 1,000 bootstrap resamples over raw inhibition measurements provide 95% CIs on composite scores for each formulation size.
+
+### Summary of Changes
+- REPORT.md: strengthened §3.2 recommendation, reordered §4 experiments, updated figure references
+- RESEARCH_PLAN.md: v6 revision, consolidated NB10+NB11 description
+- README.md: updated notebook count (12), added dependency DAG, updated reproduction steps
+- NB07: added N. mucosa clade sensitivity check (2 new cells)
+- NB05b: added exhaustive k=3 enumeration (2 new cells) + bootstrap CIs (2 new cells)
+- NB10: rebuilt as merged NB10+NB11 (28 cells, 6 figures, 4 data outputs)
+- NB11: deleted (consolidated into NB10)
+- New file: `data/DATA_DICTIONARY.md`
+
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
 - **Date**: 2026-03-19
