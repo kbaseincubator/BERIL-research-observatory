@@ -55,7 +55,8 @@ NB02, NB03, NB04, NB07, NB08 can run in parallel after NB01
 ### Steps
 1. Run notebooks following the DAG above (NB01 first, then parallel branches)
 2. NB01–NB06, NB08, NB12 run locally from cached parquet files (< 2 min each)
-3. NB07, NB09, NB10 require BERDL Spark access for GapMind/pangenome queries (5–10 min each)
+3. NB07, NB09, NB10, NB13 require BERDL Spark access for GapMind/pangenome queries (5–10 min each)
+4. NB11 was consolidated into NB10 during review — the numbering gap is intentional
 
 ## Authors
 

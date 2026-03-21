@@ -1100,3 +1100,55 @@ Before running a query, verify:
 - [ ] Expected tables actually exist (check [schemas/](schemas/))
 - [ ] Data coverage is sufficient for your analysis
 - [ ] Using REST API only for simple queries; Spark SQL for complex ones
+
+---
+
+## Project-Specific Pitfalls
+
+### `fact_pairwise_interaction` Is Identical to `fact_carbon_utilization`
+
+**[cf_formulation_design]** In the PROTECT Gold tables, `fact_pairwise_interaction` and `fact_carbon_utilization` contain identical values (correlation = 1.0, mean difference = 0.0). The endpoint OD data does not capture co-culture metabolic interactions — only the RFU-based competition assay provides pairwise interaction effects.
+
+**Impact**: Per-substrate co-culture analysis is impossible from endpoint OD data. NB08 discovered this and pivoted to using only the RFU-based competition assay.
+
+### Codon Usage Bias (CUB) Is Confounded by GC Content Across Species
+
+**[cf_formulation_design]** Cross-species CUB comparisons (e.g., PA vs commensals) are confounded by GC content variation (31–73%). Organisms with extreme GC composition have inflated CUB scores regardless of growth optimization. CUB is only meaningful within species or across species with similar GC content.
+
+**Fix**: Use lab growth data as ground truth for cross-species growth rate comparisons. CUB is valid within-species (e.g., comparing PA strain groups).
+
+### PA14 Is Not Representative of CF Lung PA
+
+**[cf_formulation_design]** PA14 (ExoU+, Pel-only, ladS mutant) represents <5% of CF PA isolates by virulence genotype. CF PA is 94% ExoS+ and 92% Pel+Psl+ (PAO1-like). Results from PA14-based assays should be validated against ExoS+ strains before generalizing to CF.
+
+**Impact**: Inhibition assays using PA14 test the formulation against a minority variant. Amino acid catabolism is identical across ExoU+ and ExoS+ strains (no FDR-significant differences), so competitive exclusion mechanism should transfer, but direct validation is needed.
+
+### Pangenome `gene_cluster` Uses `gtdb_species_clade_id`, Not `clade_name`
+
+**[cf_formulation_design]** The `kbase_ke_pangenome.gene_cluster` table has `gtdb_species_clade_id` (not `clade_name`). The `gapmind_pathways` table has `clade_name`. The `gene` table has only `gene_id` and `genome_id` — no species/clade column. The `eggnog_mapper_annotations` table uses `query_name` (not `gene_cluster_id`) as its identifier, which maps to `gene_cluster_id` in the gene_cluster table.
+
+**Fix**: Always check column names with `DESCRIBE table` before writing joins. Common join patterns:
+```sql
+-- bakta: gene_cluster_id matches directly
+bakta_annotations ba JOIN gene_cluster gc ON ba.gene_cluster_id = gc.gene_cluster_id
+
+-- eggnog: query_name = gene_cluster_id
+eggnog_mapper_annotations ea JOIN gene_cluster gc ON ea.query_name = gc.gene_cluster_id
+
+-- gene-to-genome: via junction table
+gene_genecluster_junction ggj JOIN gene g ON ggj.gene_id = g.gene_id
+```
+
+### protect_genomedepot Species Filter Requires Taxon Join
+
+**[cf_formulation_design]** `browser_genome` has no `species` column. Filtering by species requires joining through `browser_taxon`:
+```sql
+FROM protect_genomedepot.browser_gene bg
+JOIN protect_genomedepot.browser_genome bge ON bg.genome_id = bge.id
+JOIN protect_genomedepot.browser_taxon bt ON bge.taxon_id = bt.id
+WHERE bt.name LIKE '%aeruginosa%'
+```
+
+### Psl Operon Genes Are Under-Annotated by Name
+
+**[cf_formulation_design]** In GenomeDepot-based databases (`protect_genomedepot`, `phagefoundry_paeruginosa_genome_browser`), pslA-pslO genes are rarely annotated with canonical gene names — only PAO1's reference genome has them. The pangenome `bakta_annotations` has better coverage but pslA/pslG/pslK are still sparse. Use KEGG orthologs (K20997–K21005) via `eggnog_mapper_annotations` for reliable psl detection (~95% prevalence vs <1% by gene name alone).
