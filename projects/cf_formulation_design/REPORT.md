@@ -20,7 +20,7 @@ This approach requires solving a multi-objective optimization problem: formulati
 
 ### 1.3 Study Design
 
-We integrated experimental data from the PROTECT CF Synbiotic Cocktail Study (4,949 isolates from 175 CF/NCFB patient samples) with the KBase BER Data Lakehouse (BERDL) pangenome containing 293,000 genomes and GapMind metabolic pathway predictions. Our analysis proceeded through eight stages, each motivated by a specific question:
+We integrated experimental data from the PROTECT CF Synbiotic Cocktail Study (4,949 isolates from 175 CF/NCFB patient samples) with the KBase BER Data Lakehouse (BERDL) pangenome containing 293,000 genomes and GapMind metabolic pathway predictions. Species names throughout follow GTDB taxonomy (Parks et al. 2022), which may differ from NCBI names — e.g., *Pseudomonas_E* denotes a non-aeruginosa Pseudomonas clade distinct from *P. aeruginosa*. Our analysis proceeded through eight stages, each motivated by a specific question:
 
 1. **Data integration** — What experimental data do we have, and how do the assays overlap?
 2. **Growth kinetics** — Does growth *rate* on shared substrates predict competitive outcome beyond growth *yield*?
@@ -171,7 +171,7 @@ The table below presents the top-ranked FDA-safe formulations at each size (k=1�
 
 **k=2** — *R. dentocariosa* [ASMA-2935] + *N. mucosa* [ASMA-3643]: composite 0.588, 18% coverage, 84% mean inhibition, engraftability 0.820. Both are lung-adapted species (33–38% respiratory in pangenome).
 
-**k=3** — *M. luteus* [ASMA-2965] + *N. mucosa* [ASMA-3643] + *S. salivarius* [ASMA-737]: composite 0.562, **100% PA niche coverage**, 75% mean inhibition, engraftability 0.140. **The minimum viable formulation** — first size to achieve full niche coverage. *M. luteus* contributes broad carbon utilization that closes the remaining PA substrate gaps.
+**k=3** — *M. luteus* [ASMA-2965] + *N. mucosa* [ASMA-3643] + *S. salivarius* [ASMA-737]: composite 0.562, **100% PA niche coverage**, 75% mean inhibition, engraftability 0.140. **The minimum viable formulation** — first size to achieve full niche coverage. The dramatic 18% → 100% coverage jump occurs because *M. luteus* grows on 9 of PA14's 11 preferred substrates (including proline, histidine, glutamate, aspartate, arginine, and glucose), covering the amino acid substrates that *N. mucosa* and *S. salivarius* do not reach individually. Its uniquely broad carbon utilization profile — the widest among all strict-safe candidates — closes every remaining PA substrate gap in a single addition.
 
 **k=4** — *R. dentocariosa* [ASMA-2935] + *M. luteus* [ASMA-2965] + *N. mucosa* [ASMA-3643] + *S. salivarius* [ASMA-737]: composite 0.578, 100% coverage, 76% inhibition, engraftability 0.185. Adds *R. dentocariosa* for lung tropism and direct antagonism depth.
 
@@ -328,11 +328,11 @@ Our data support a model where effective commensal formulations suppress *P. aer
 
 1. **Metabolic competition** (approximately 27% of variance): Direct resource depletion of PA14's preferred amino acid substrates. This is the "eat their lunch" mechanism and is quantitatively validated by the metabolic overlap–inhibition correlation.
 
-2. **Direct antagonism** (additional an additional 9% from taxonomy): Species-specific mechanisms — likely bacteriocins, secreted enzymes (Stubbendieck et al. 2023), or contact-dependent killing — that inhibit PA14 independently of resource competition. The top formulation species (*S. salivarius*, *N. mucosa*, *G. sanguinis*) all show strong positive residuals in the metabolic model.
+2. **Direct antagonism** (an additional 9% from taxonomy): Species-specific mechanisms — likely bacteriocins, secreted enzymes (Stubbendieck et al. 2023), or contact-dependent killing — that inhibit PA14 independently of resource competition. The top formulation species (*S. salivarius*, *N. mucosa*, *G. sanguinis*) all show strong positive residuals in the metabolic model.
 
 3. **Community-level niche saturation**: No individual commensal outgrows PA14 on any tested substrate, but a 3–5 organism consortium collectively covers 100% of PA14's metabolic niche. This is an emergent community property not predictable from individual organism profiles.
 
-The remaining the remaining 64% of variance is likely attributable to unmeasured factors: biofilm dynamics, pH effects, iron competition, quorum sensing interference, and stochastic variation in the planktonic assay.
+The remaining 64% of variance is likely attributable to unmeasured factors: biofilm dynamics, pH effects, iron competition, quorum sensing interference, and stochastic variation in the planktonic assay.
 
 ### 3.2 The *M. luteus* Engraftment Question
 
@@ -389,7 +389,7 @@ Our findings align with and extend several threads in the literature:
 
 - **Planktonic culture only**: Our inhibition assays measure planktonic competition. PA14 in CF lungs grows primarily in biofilms, where metabolic dynamics, diffusion gradients, and spatial structure differ substantially.
 - **22 tested carbon sources**: While covering major amino acids and glucose/lactate, we miss mucins, lipids, iron, polyamines, and the sugar alcohols our genomic analysis predicts as important.
-- **142-isolate core cohort**: The overlap between inhibition and carbon utilization data limits multivariate model power. Growth kinetics are available for only 32 isolates.
+- **142-isolate core cohort**: The overlap between inhibition and carbon utilization data limits multivariate model power. Growth kinetics are available for only 32 isolates. This subset is enriched for species with multiple assay types, which may over-represent organisms prioritized for deeper characterization — though the genus distribution (dominated by *Rothia*, *Streptococcus*, *Neisseria*, *Gemella*) mirrors the broader collection.
 - **Pairwise interaction data are sparse**: Only 3 A × 3 B isolate combinations were tested, limiting our ability to predict interactions for the full formulation.
 - **Engraftability is inferred**: Patient prevalence is a proxy, not a direct measure of colonization persistence after probiotic administration.
 - **Sparse lung metadata**: Only 21 lung genomes across 5 species limits the lung adaptation comparison.
@@ -478,7 +478,7 @@ Based on our findings, we recommend the following experimental program:
 | `data/single_isolate_scores.tsv` | 429 | Composite scores: metabolic, inhibition, safety, overall |
 | `data/species_engraftability.tsv` | 134 | Per-species prevalence, activity, engraftability |
 | `data/formulations_ranked.tsv` | 22,389 | Permissive-filter formulation scores (k=1–5) |
-| `data/formulations_strict_safety.tsv` | 25,731 | Strict-safety formulation scores |
+| `data/formulations_strict_safety.tsv` | 146,379 | Strict-safety formulation scores (includes exhaustive k=3 enumeration) |
 | `data/carbon_selectivity.tsv` | 20 | Per-substrate selectivity ratio |
 | `data/pangenome_conservation.tsv` | 400 | GapMind pathway conservation per species × pathway |
 | `data/isolation_sources.tsv` | 443 | Environmental source classification |
@@ -488,7 +488,7 @@ Based on our findings, we recommend the following experimental program:
 | `data/pa_genome_sources.tsv` | 5,199 | PA genome isolation source classifications |
 | `data/pa_lung_vs_nonlung_pathways.tsv` | 80 | PA lung vs non-lung pathway FDR tests |
 | `data/pa_sick_vs_stable_pathways.tsv` | 207 | PA pathway expression: acute vs stable patients |
-| `data/pa_target_robustness.tsv` | 24 | PA amino acid/carbon pathway conservation in lung isolates |
+| `data/pa_target_robustness.tsv` | 22 | PA amino acid/carbon pathway conservation in lung isolates |
 
 ## 6. Supporting Evidence
 

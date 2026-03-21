@@ -212,8 +212,8 @@ notebook, row count, and per-column metadata (name, inferred type, description).
 | Property | Value |
 |----------|-------|
 | **Source Notebook** | NB05b — `05b_formulation_strict_safety.ipynb` |
-| **Rows** | 22,515 |
-| **Description** | All evaluated formulations ranked by composite score under strict safety filters (excluding all Pseudomonas, Enterobacteriaceae, and Staphylococcus in addition to known pathogens). Same schema as formulations_ranked.tsv. |
+| **Rows** | 146,379 |
+| **Description** | All evaluated formulations ranked by composite score under strict safety filters (excluding all Pseudomonas, Enterobacteriaceae, and Staphylococcus). Includes exhaustive k=3 enumeration of all C(97,3) valid triples. Same schema as formulations_ranked.tsv. |
 
 | Column | Type | Description |
 |--------|------|-------------|
@@ -453,7 +453,7 @@ notebook, row count, and per-column metadata (name, inferred type, description).
 
 | Property | Value |
 |----------|-------|
-| **Source Notebook** | NB11 — `11_pa_within_lung_diversity.ipynb` |
+| **Source Notebook** | NB10 — `10_pa_lung_adaptation.ipynb` |
 | **Rows** | 22 |
 | **Description** | Conservation of formulation-targeted metabolic pathways across 1,796 lung P. aeruginosa genomes. Validates that the amino acid catabolic pathways targeted by the formulation are invariant across PA lung variants. |
 
