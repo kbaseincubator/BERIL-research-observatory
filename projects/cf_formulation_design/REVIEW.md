@@ -1,6 +1,6 @@
 ---
 reviewer: BERIL Automated Review
-date: 2026-03-19
+date: 2026-03-21
 project: cf_formulation_design
 ---
 
@@ -8,117 +8,95 @@ project: cf_formulation_design
 
 ## Summary
 
-This is an exceptionally ambitious and well-executed project that integrates experimental inhibition assays, carbon utilization profiling, growth kinetics, patient metagenomics, pairwise interaction data, and pangenome analysis to rationally design commensal formulations for competitive exclusion of *P. aeruginosa* in CF airways. The pipeline is comprehensive — 13 notebooks, 35 figures, 21 data files, and a thorough 524-line REPORT.md — and the core finding (a five-organism FDA-safe formulation achieving 100% PA14 niche coverage) is well-supported by multi-layered evidence. The project's greatest strengths are its honest treatment of negative results (no amino acid prebiotics work, CUB is GC-confounded, pairwise interaction data is limited), its staged safety filtering approach, and the pangenome robustness analysis that validates formulation design across hundreds of genomes. The main areas for improvement are the sparse pairwise interaction data (8 comparisons for a 5-species formulation), the *M. luteus* engraftment gap (zero lung genomes, zero patient prevalence), and a few reproducibility gaps around Spark-dependent notebooks.
+This is a remarkably thorough and well-structured project that integrates six distinct data modalities — planktonic inhibition assays, carbon source utilization, growth kinetics, patient metagenomics, pairwise interaction data, and pangenome analysis — to rationally design commensal formulations for competitive exclusion of *P. aeruginosa* in CF airways. The 12-notebook pipeline produces 35 figures and 21 data files, culminating in a concrete, actionable output: a ranked set of FDA-safe formulations with quantified confidence intervals and pangenome-validated robustness. The REPORT.md is written at a high standard, with a clear narrative arc from problem statement through mechanistic analysis to translational recommendations. The project's greatest strengths are (1) the honest, quantitative treatment of what metabolic competition can and cannot explain (R² = 0.274 training, 0.145 CV), (2) the staged safety filtering that transparently shows the cost of clinical viability, (3) the pangenome robustness analysis demonstrating that formulation targets are invariant across 1,796 lung PA genomes, and (4) the mature discussion of the *M. luteus* engraftment tension with a concrete k=2 vs k=3 recommendation. The main areas for improvement are minor text errors in the REPORT, a row-count discrepancy in one data file, and a stale reference in the data dictionary. This is a strong project that reads as a near-complete translational blueprint for experimental follow-up.
 
 ## Methodology
 
-**Research question**: Clearly stated and testable — the multi-criterion framework for formulation design is well-motivated by the competitive exclusion hypothesis and decomposed into six testable sub-hypotheses (H0–H6). The staged hypothesis structure (metabolic competition → complementary coverage → engraftability → prebiotic boost → pangenome conservation → lung adaptation) creates a logical narrative arc.
+**Research question and hypotheses**: The central question is clearly stated, testable, and decomposed into six well-motivated sub-hypotheses (H0–H6) that build on each other logically. The progression from "does metabolic overlap predict inhibition?" (H1) through "do combinations outperform singles?" (H2) to "are these results robust across the species pangenome?" (H5) creates a natural escalation of confidence. The null hypothesis (H0: inhibition is driven by direct antagonism alone) is properly framed and partially rejected with quantitative support.
 
-**Approach soundness**: The multi-objective optimization framework integrating niche coverage, complementarity, inhibition, engraftability, and safety is well-conceived. The decision to run permissive and strict FDA safety filters in parallel (NB05 vs NB05b) is a smart design choice that transparently shows the cost of clinical viability. The sensitivity analysis across 5 weight schemes converging to the same core formulation strengthens confidence in the result.
+**Approach soundness**: The multi-objective optimization framework is well-conceived. The five scoring criteria (niche coverage, complementarity, inhibition, engraftability, safety) capture the key dimensions of a translatable formulation. The dual-pass safety filtering (permissive NB05 vs strict NB05b) is a particularly smart design choice — it shows the reader exactly which organisms are lost and what inhibition ceiling is sacrificed when applying clinically realistic constraints. The exhaustive enumeration of all 147,440 k=3 triples confirming the greedy optimum, and the bootstrap confidence intervals showing k=2–5 are statistically indistinguishable, are strong additions that move the analysis from "plausible" to "rigorous."
 
-**Data sources**: Clearly identified in both README.md and RESEARCH_PLAN.md. The 23-table PROTECT Gold dataset is thoroughly characterized in NB01, with row counts, schema descriptions, and overlap analysis. BERDL databases (pangenome, GapMind, NCBI environment metadata) are used appropriately for validation and extension rather than primary analysis.
+**Data sources**: Clearly documented in README.md, RESEARCH_PLAN.md (§Data Sources), and REPORT.md (§5). The 23-table PROTECT Gold dataset is thoroughly characterized with row counts and roles. BERDL databases are used appropriately for validation and extension (pangenome conservation, environmental metadata, GapMind predictions) rather than as primary evidence. The bridge between experimental isolates and pangenome genomes via reference genome accessions is carefully managed, including prefix-stripping (RS_/GB_) as documented in docs/pitfalls.md.
 
-**Reproducibility**: The README includes a clear Reproduction section with prerequisites, step-by-step instructions, and Spark/local separation (NB07 and NB09 require BERDL Spark; all others run locally). A `requirements.txt` is provided with versioned dependencies. However, the reproduction guide lists only 10 notebooks (NB01–NB09) while the project contains 13 (NB10–NB12 are omitted). The README Status line says "Eight notebooks executed" but 13 exist with outputs — the README is stale. All 13 notebooks have saved outputs with text, tables, and figures, which is excellent for reviewability.
+**Reproducibility**:
+- **Notebook outputs**: All 12 notebooks have been executed with saved outputs — text, tables, and figures are preserved in every code cell. This fully meets the hard requirement for committed outputs and means the project is reviewable without re-running any code.
+- **Figures**: 35 figures in `figures/` cover every analysis stage: EDA (10 figures from NB01), growth kinetics (4 from NB02), inhibition modeling (4 from NB03), patient ecology (1 from NB04), formulation optimization (3 from NB05/05b), prebiotic analysis (1 from NB06), pangenome conservation (2 from NB07), interaction modeling (2 from NB08), genomic extension (1 from NB09), PA adaptation (6 from NB10), and growth rate prediction (1 from NB12). Coverage is excellent.
+- **Dependencies**: `requirements.txt` lists 10 packages with minimum versions. PySpark and `berdl_notebook_utils` are noted as BERDL JupyterHub prerequisites in the README.
+- **Reproduction guide**: The README includes a Reproduction section with prerequisites, a notebook dependency DAG showing parallel branches, clear identification of which notebooks require Spark (NB07, NB09, NB10), and estimated runtimes (< 2 min local, 5–10 min Spark).
+- **Spark/local separation**: Clean. Nine notebooks run locally from cached parquet files and upstream TSV outputs. Three notebooks (NB07, NB09, NB10) require BERDL Spark access for pangenome queries. This is well-documented.
+- **Data dictionary**: `data/DATA_DICTIONARY.md` provides per-file documentation with source notebook, row counts, and column-level metadata. This is a significant aid to reproducibility.
 
 ## Code Quality
 
-**Notebook organization**: All notebooks follow a consistent setup → load → analysis → visualization → save pattern. Markdown cells provide section headers, goal statements, and interpretive commentary. Each notebook clearly identifies its inputs (upstream data files or Spark queries) and outputs (TSV files and figures).
+**Notebook organization**: All 12 notebooks follow a consistent pattern: imports and setup → data loading → analysis → visualization → output saving → summary. Markdown cells provide section headers, goal statements, and inline interpretation. Each notebook header identifies inputs and outputs. The code is clean, uses descriptive variable names, and applies pandas/scipy/sklearn idiomatically.
 
-**Statistical methods**: Appropriate and carefully applied. NB03 uses OLS regression with proper cross-validation (5-fold CV R² = 0.145 vs training R² = 0.274), honestly reporting the overfitting gap. Multiple comparison corrections (FDR-BH) are used in NB10–NB11 for pathway differential analysis. Effect sizes are reported alongside p-values throughout. The Kruskal-Wallis test for genus effects (NB03) is appropriate for non-normal inhibition distributions.
+**Statistical methods**: Appropriate and carefully applied throughout:
+- NB03: OLS regression with proper 5-fold cross-validation, honest reporting of the train-CV gap (0.274 vs 0.145). Kruskal-Wallis for genus effects is appropriate for non-normal distributions.
+- NB05b: Bootstrap CIs (1,000 resamples) on composite scores and exhaustive combinatorial enumeration.
+- NB10: Mann-Whitney U tests with FDR correction (Benjamini-Hochberg) for pathway differential analysis, PCA with KMeans clustering (k=2, silhouette=0.95) for PA subpopulation identification.
+- Effect sizes are reported alongside p-values throughout — a commendable practice.
 
-**SQL queries**: NB07, NB09, NB10, NB11, and NB12 use Spark SQL for pangenome queries. Queries are well-structured with proper WHERE/GROUP BY clauses. The known pitfall about GapMind `clade_name` matching `gtdb_species_clade_id` format (documented in docs/pitfalls.md) appears to be handled correctly — species are matched using full clade IDs rather than short species names. The `CAST(... AS DOUBLE)` pitfall for Spark DECIMAL columns is addressed where applicable.
+**SQL queries**: NB07, NB09, and NB10 use Spark SQL for pangenome queries. Queries are well-structured with proper `GROUP BY`, appropriate `CAST(... AS DOUBLE)` for Spark DECIMAL columns (per docs/pitfalls.md), and `WHERE` filtering by `gtdb_species_clade_id` rather than LIKE patterns. The GapMind `clade_name` format pitfall is handled correctly.
 
-**Pitfall awareness**: The RESEARCH_PLAN.md explicitly notes known pitfalls (GapMind genome ID prefix stripping, BacDive metabolite utilization value encoding, protect_genomedepot timeout). The `fact_pairwise_interaction` = `fact_carbon_utilization` identity is discovered and documented in NB08 rather than silently ignored — this is commendable scientific practice.
+**Pitfall awareness**: The project addresses multiple documented pitfalls: GapMind genome ID prefix stripping (NB07), Spark DECIMAL column casting (NB09, NB10), `ncbi_env` EAV format pivot (NB07, NB10). The discovery that `fact_pairwise_interaction` is identical to `fact_carbon_utilization` (correlation = 1.0, NB08) is properly documented and reported as a limitation rather than silently worked around.
 
-**Potential issues**:
-- The greedy set cover approach for k=4–5 formulations (NB05) may miss globally optimal combinations. For k=3 with 97 candidates (strict safety), exhaustive enumeration of all ~150K triples is feasible and would strengthen the claim that the identified formulation is optimal. The notebook acknowledges this limitation.
-- NB12's codon usage bias analysis ultimately finds CUB confounded by GC content (31–73% range across species) and concludes it cannot predict cross-species growth rate differences. This is a correct interpretation, but the notebook could have been omitted or shortened — it contributes a negative result that is already implied by the direct growth data in NB02.
-- The *N. mucosa* clade selection issue (noted in REPORT §3.7) — NB07 analyzes `s__Neisseria_mucosa_A` (15 genomes) while the PROTECT isolate maps to `s__Neisseria_mucosa` (8 genomes) — is documented but not resolved in the notebook itself. The sensitivity check showing stronger conservation in the 8-genome clade is reassuring but is presented only in the REPORT, not in the notebook.
+**Notable code quality decisions**:
+- NB05b's exhaustive k=3 enumeration with a species-uniqueness constraint is well-implemented.
+- NB07's clade sensitivity check for *N. mucosa* (comparing 15-genome vs 8-genome clades) adds important validation directly in the notebook.
+- NB10's consolidation of the former NB10+NB11 into a single coherent notebook with 7 sections is well-organized.
+
+**Minor issues identified**:
+- NB03 cell-18: The permissive safety filter includes `Pseudomonas` but not `Pseudomonas_E`, allowing *P. juntendi* into the top candidates list. This is by design (the strict filter catches it in NB05b), but a brief comment in the code noting this is intentional would prevent reader confusion.
 
 ## Findings Assessment
 
-**Conclusions supported by data**: The core findings are well-supported:
-- Metabolic overlap predicting inhibition (r = 0.384, p = 2.3×10⁻⁶) is statistically robust, and the honest reporting of the CV R² (0.145) alongside training R² (0.274) prevents overclaiming.
-- The five-species formulation achieving 100% PA niche coverage at k=3 is directly demonstrable from the carbon utilization data.
-- Pangenome conservation (>95% for 4/5 species) across 499 genomes provides genuine translational confidence.
-- PA amino acid pathway invariance (97.4% conservation across 1,796 lung genomes) is a strong result supporting formulation robustness.
+**Conclusions well-supported by data**:
+- The metabolic overlap–inhibition correlation (r = 0.384, p = 2.3×10⁻⁶) is statistically robust, and the conservative CV R² (0.145) prevents overclaiming. The identification of "dual-mechanism" species that combine metabolic competition with direct antagonism (§2.3) is a valuable insight grounded in the residual analysis.
+- The five-species formulation achieving 100% PA niche coverage at k=3 is directly verifiable from carbon utilization data.
+- PA amino acid pathway conservation (97.4% across 1,796 lung genomes, §2.13) is a strong result. The finding that CF vs non-CF lung PA show zero amino acid pathway differences is compelling for translational generalizability.
+- The sugar alcohol prebiotic discovery (§2.11) — six pathways complete in commensals and absent in PA — is well-supported by both GapMind predictions and patient metatranscriptomics.
+- The *M. luteus* engraftment discussion (§3.2) honestly confronts the fundamental design tension and arrives at a concrete, well-reasoned recommendation (k=2 as primary candidate).
 
-**Limitations acknowledged**: The REPORT §3.7 provides a thorough limitations section covering planktonic-only assays, limited substrate panel, sparse pairwise data, inferred engraftability, and the `fact_pairwise_interaction` data quality issue. Two additional limitations deserve mention:
-- The formulation composite score weights (coverage 30%, complementarity 15%, inhibition 35%, engraftability 20%) are chosen without empirical calibration — the sensitivity analysis shows robustness to weight variation, but the absolute score values are not directly interpretable.
-- The 142-isolate core cohort is a subset of 4,949 total isolates — selection bias toward isolates with multiple assay types could affect the generality of the metabolic overlap–inhibition relationship.
+**REPORT narrative quality**: The REPORT reads well for a scientific audience unfamiliar with the project. The Introduction establishes the CF clinical problem, the competitive exclusion design theory, and the multi-stage study design within three pages. Each Results subsection opens with a "Rationale" that explains *why* the analysis was done (not just what was done), making the logical flow easy to follow. The Discussion synthesizes the findings into a multi-mechanism model (§3.1), confronts the M. luteus engraftment question directly (§3.2), and places results in literature context (§3.5) with relevant citations. The Proposed Experiments (§4) are ordered by priority and include clear rationale and expected outcomes — this section reads as a genuine experimental roadmap, not an afterthought.
 
-**Incomplete analysis**: NB10 and NB11 have substantial overlap in their PA lung adaptation analysis (both perform PCA on lung PA GapMind pathways, both compare CF vs non-CF). Some consolidation would improve clarity. The REPORT mentions "PA strain variation interpretation (accessory genome affects virulence not amino acid growth rate)" in the revision history but this claim, while reasonable, is not directly tested — it is inferred from pathway conservation plus genome size variation.
+**Limitations honestly acknowledged**: Section 3.7 is thorough, covering planktonic assay limitations, the 22-substrate constraint, sparse pairwise data, inferred engraftability, the `fact_pairwise_interaction` data quality issue, and the *N. mucosa* clade selection. The CUB/GC confound (NB12) is presented as a negative result rather than hidden.
 
-**Visualizations**: 35 figures are well-labeled with descriptive titles and are referenced inline throughout the REPORT. The progression from EDA (NB01) through mechanistic analysis (NB02–04) to design (NB05–06) to validation (NB07–12) is visually coherent.
+**Internal consistency issues**:
+- REPORT §3.1 contains two duplicated phrases: "additional an additional 9%" (line 331) and "The remaining the remaining 64%" (line 335). These appear to be editing artifacts.
+- The `formulations_strict_safety.tsv` file contains 146,379 data rows, but the DATA_DICTIONARY reports 22,515 rows and the REPORT §5 table reports 25,731. This discrepancy likely reflects the exhaustive k=3 enumeration added in the review response — the file grew substantially but the documentation was not fully updated. This should be reconciled.
+- The DATA_DICTIONARY lists `pa_target_robustness.tsv` as sourced from "NB11 — `11_pa_within_lung_diversity.ipynb`", but NB11 was consolidated into NB10 during the review response. The source notebook reference should be updated.
+- The REPORT §5 table lists `pa_target_robustness.tsv` with 24 rows, but `wc -l` shows 23 (22 data rows + header). A minor off-by-one.
+
+**Visualization quality**: The 35 figures are well-labeled with descriptive titles, axis labels, and legend entries. The numbered prefix system (01_, 02_, ...) makes figures easy to trace to their source notebooks. Key figures are embedded inline throughout the REPORT with contextual captions.
 
 ## Suggestions
 
-### Critical
+### Critical (factual/consistency errors)
 
-1. **Update README.md** to reflect all 13 notebooks, not just the original 8–10. The Status line says "Eight notebooks executed" but 13 exist with outputs. The Reproduction Steps list only NB01–NB09, omitting NB10–NB12. This creates confusion about the project's actual scope.
+1. **Fix duplicated phrases in REPORT §3.1**: Line 331 reads "additional an additional 9%" — should be "an additional 9%". Line 335 reads "The remaining the remaining 64%" — should be "The remaining 64%". These are copy-editing errors that undermine an otherwise polished narrative.
 
-2. **Address the *M. luteus* engraftment gap more concretely**. This species is the keystone for 100% niche coverage (its addition at k=3 is what closes the substrate gap), yet it has zero patient prevalence and zero lung genomes. The Discussion (§3.2) identifies three paths forward but does not recommend one. Consider either (a) presenting the k=2 formulation (*R. dentocariosa* + *N. mucosa*) as the primary recommendation with k=3 as aspirational, or (b) explicitly recommending a search for a lung-adapted broad-spectrum metabolizer to replace *M. luteus*.
+2. **Reconcile `formulations_strict_safety.tsv` row count**: The file contains 146,379 data rows (reflecting both greedy-search and exhaustive k=3 enumeration results), but the DATA_DICTIONARY reports 22,515 and the REPORT §5 table reports 25,731. Update both documents to reflect the actual file contents, and consider adding a note explaining the two result sets within the file (e.g., a `method` column distinguishing greedy vs exhaustive results, or separate files).
 
-3. **Expand pairwise interaction testing coverage in proposed experiments**. Only 8 pairwise comparisons across 5 unique pairs exist (NB08), while the 5-species formulation has 10 possible pairs. The REPORT correctly flags this as a "critical gap" (§2.10), but Proposed Experiment 4.2 should be elevated to the highest priority — above even sugar alcohol prebiotic validation (4.1) — since antagonistic interactions could invalidate the entire formulation design.
+3. **Update DATA_DICTIONARY `pa_target_robustness.tsv` source**: Currently references "NB11 — `11_pa_within_lung_diversity.ipynb`" which was deleted and consolidated into NB10 (`10_pa_lung_adaptation.ipynb`).
 
-### Important
+### Important (strengthening the analysis)
 
-4. **Consolidate NB10 and NB11**. Both notebooks analyze PA lung adaptation via GapMind pathway PCA, CF vs non-CF comparisons, and metabolic clustering. The overlap is substantial. Merging them into a single "PA Lung Adaptation & Formulation Robustness" notebook would reduce redundancy and strengthen the narrative flow.
+4. **Clarify the k=2 → k=3 niche coverage jump in the REPORT**: The formulation table (§2.6) shows coverage jumping from 18% at k=2 to 100% at k=3. This is a dramatic transition that deserves a sentence explaining which specific substrates *M. luteus* covers that *N. mucosa* and *R. dentocariosa*/*S. salivarius* do not. This would help the reader understand why *M. luteus*'s broad metabolic profile is so critical.
 
-5. **Add a data dictionary file**. While individual notebooks document their output columns, a standalone `data/DATA_DICTIONARY.md` mapping each TSV file to its columns, units, and provenance notebook would improve reusability. For example, `formulations_ranked.tsv` has 22,389 rows with composite scores — the column definitions and weight parameterization should be documented outside the notebook.
+5. **Add a brief note on GTDB taxonomy conventions**: The project uses GTDB taxonomy throughout (e.g., *Pseudomonas_E*, *Serratia_J*, *Bacillus_A*). A one-sentence note in the REPORT Introduction or Methods explaining that species names follow GTDB conventions (which differ from NCBI taxonomy) would help readers unfamiliar with the naming system. This is especially relevant for the clinical audience who may not recognize *Pseudomonas_E juntendi* as a non-aeruginosa Pseudomonas.
 
-6. **Document the *N. mucosa* clade resolution in the notebook**. The sensitivity check comparing `s__Neisseria_mucosa_A` (15 genomes) vs `s__Neisseria_mucosa` (8 genomes) is mentioned only in REPORT §3.7 Limitations. Adding this as a cell in NB07 would make the analysis self-contained and reproducible.
+6. **Consider noting selection bias in the 142-isolate cohort**: The core analysis cohort (142 isolates with both inhibition and carbon utilization data) is a subset of 4,949 total isolates. While this is acknowledged implicitly, a brief note in §3.7 Limitations about whether this subset is taxonomically representative of the full collection would strengthen the methodology. NB01's data overlap figure addresses this visually but a quantitative statement would help.
 
 ### Nice-to-Have
 
-7. **Consider exhaustive enumeration for k=3 strict-safety formulations**. With 97 candidates, C(97,3) ≈ 147,000 — computationally trivial. This would confirm the greedy solution is globally optimal and strengthen the formulation recommendation.
+7. **Add a comment in NB03 about the permissive safety filter design**: The top-20 candidate list (cell 18) includes *Pseudomonas_E juntendi* and *Leclercia adecarboxylata* because the permissive filter excludes `Pseudomonas` but not `Pseudomonas_E`. A brief code comment noting this is intentional (the strict filter in NB05b catches these) would prevent reader confusion.
 
-8. **Add a notebook dependency diagram** to the README showing the DAG of data flow (NB01 → NB02/NB03/NB04 → NB05 → NB05b, NB01 → NB07 → NB09, etc.). This would help reproducers understand which notebooks can run in parallel.
+8. **Reconcile `pa_target_robustness.tsv` row count**: The REPORT says 24 rows, but the actual file has 22 data rows. Minor but worth fixing for consistency.
 
-9. **Shorten or appendicize NB12** (codon usage bias). The notebook's main conclusion — that CUB is GC-confounded and cannot predict cross-species growth rates — is a negative result already implicit from NB02's direct growth data. It could be reduced to a supplementary analysis or merged into the PA analysis notebooks.
-
-10. **Add confidence intervals to the formulation composite scores**. The current scoring produces point estimates. Bootstrap resampling over the inhibition measurements (which have biological replicates) would provide uncertainty bands that help distinguish genuinely different formulations from scoring noise.
-
-## Review Response (2026-03-21)
-
-### Critical Items
-
-1. **README stats** — Fixed in commit 537a44b (prior to this response).
-
-2. **M. luteus engraftment gap** — REPORT §3.2 now makes a concrete recommendation: k=2 (*R. dentocariosa* + *N. mucosa*) as **primary clinical candidate** (both lung-adapted, 6× higher engraftability), with k=3 as aspirational pending M. luteus engraftment data. Recommends searching oral/respiratory Actinobacteria (e.g., *Kocuria*, *Dermacoccus*) as potential M. luteus replacements.
-
-3. **Pairwise interaction priority** — Proposed Experiment 4.2 (pairwise interaction matrix) elevated to **4.1 Highest Priority**, above prebiotic validation. Rationale strengthened: antagonistic interactions could invalidate formulation design, making this the single most important validation experiment.
-
-### Important Items
-
-4. **NB10/NB11 consolidation** — Merged into a single `10_pa_lung_adaptation.ipynb` (28 cells, 7 sections). Eliminated redundant Spark query, replaced NB10's simple PCA with NB11's improved variable-pathway PCA + KMeans clustering. All 4 data outputs and 6 figures produced from one notebook. NB11 deleted. REPORT.md, RESEARCH_PLAN.md, and README.md references updated.
-
-5. **Data dictionary** — Created `data/DATA_DICTIONARY.md` with per-file documentation: source notebook, row count, and column-level metadata (name, type, description) for all 21 TSV files.
-
-6. **N. mucosa clade sensitivity** — Added markdown + code cell to NB07 after the conservation summary. Queries GapMind for the alternate `s__Neisseria_mucosa` clade (8 genomes, contains PROTECT reference genome) and compares to the primary `s__Neisseria_mucosa_A` analysis. Result: PROTECT clade shows **18/18 AA pathways >95% conserved** vs 16/18 for _A clade, and **37/62 carbon pathways** vs 27/62 — conservation claims are understated by the primary analysis.
-
-### Nice-to-Have Items
-
-7. **Exhaustive k=3 enumeration** — Added to NB05b. All C(97,3) ≈ 147K triples scored exhaustively, confirming whether the top-30-restricted solution is globally optimal.
-
-8. **Notebook dependency DAG** — Added ASCII DAG to README showing data flow between notebooks and identifying which can run in parallel.
-
-9. **NB12 shortening** — Not addressed. NB12 documents a genuine negative result (CUB confounded by GC) that is worth preserving for the scientific record, even if the conclusion is implicit from NB02.
-
-10. **Bootstrap CIs** — Added to NB05b. 1,000 bootstrap resamples over raw inhibition measurements provide 95% CIs on composite scores for each formulation size.
-
-### Summary of Changes
-- REPORT.md: strengthened §3.2 recommendation, reordered §4 experiments, updated figure references
-- RESEARCH_PLAN.md: v6 revision, consolidated NB10+NB11 description
-- README.md: updated notebook count (12), added dependency DAG, updated reproduction steps
-- NB07: added N. mucosa clade sensitivity check (2 new cells)
-- NB05b: added exhaustive k=3 enumeration (2 new cells) + bootstrap CIs (2 new cells)
-- NB10: rebuilt as merged NB10+NB11 (28 cells, 6 figures, 4 data outputs)
-- NB11: deleted (consolidated into NB10)
-- New file: `data/DATA_DICTIONARY.md`
+9. **Consider a summary figure**: A single "graphical abstract" figure showing the pipeline from data integration through formulation design to pangenome validation — possibly as the first figure in the REPORT — would help readers quickly grasp the project's scope and logic before diving into details.
 
 ## Review Metadata
 - **Reviewer**: BERIL Automated Review
-- **Date**: 2026-03-19
-- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, requirements.txt, 13 notebooks, 21 data files, 35 figures, docs/pitfalls.md
+- **Date**: 2026-03-21
+- **Scope**: README.md, RESEARCH_PLAN.md, REPORT.md, requirements.txt, DATA_DICTIONARY.md, 12 notebooks, 21 data files, 35 figures, docs/pitfalls.md
 - **Note**: This review was generated by an AI system. It should be treated as advisory input, not a definitive assessment.
