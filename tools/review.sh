@@ -29,7 +29,7 @@ Options:
   --type project|plan     Review type (default: project)
   --reviewer claude|codex Reviewer backend (default: claude)
   --model <model_id>      Model override (default: claude-sonnet-4-20250514 for claude, gpt-5.4 for codex)
-  --output <path>         Output file path (default: REVIEW.md or PLAN_REVIEW.md in project dir)
+  --output <path>         Output file path (default: auto-numbered REVIEW_N.md in project dir)
   --help                  Show this help message
 
 Examples:
@@ -37,7 +37,7 @@ Examples:
   tools/review.sh bacdive_metal_validation --type plan
   tools/review.sh bacdive_metal_validation --type plan --reviewer codex
   tools/review.sh bacdive_metal_validation --reviewer codex --model gpt-5.4-mini
-  tools/review.sh bacdive_metal_validation --output projects/bacdive_metal_validation/REVIEW_1.md
+  tools/review.sh bacdive_metal_validation --output projects/bacdive_metal_validation/REVIEW.md
 EOF
   exit "$exit_code"
 }
@@ -116,17 +116,29 @@ if [[ -z "$MODEL" ]]; then
 fi
 
 # --- Resolve output file ---
+# If --output not provided, auto-number: REVIEW_1.md, REVIEW_2.md, etc.
 if [[ -z "$OUTPUT_FILE" ]]; then
   if [[ "$REVIEW_TYPE" == "project" ]]; then
-    OUTPUT_FILE="${PROJECT_DIR}/REVIEW.md"
+    PREFIX="REVIEW"
   else
-    OUTPUT_FILE="${PROJECT_DIR}/PLAN_REVIEW.md"
+    PREFIX="PLAN_REVIEW"
   fi
+
+  # Find the next available number
+  NEXT_N=1
+  while [[ -f "${PROJECT_DIR}/${PREFIX}_${NEXT_N}.md" ]]; do
+    NEXT_N=$(( NEXT_N + 1 ))
+  done
+  OUTPUT_FILE="${PROJECT_DIR}/${PREFIX}_${NEXT_N}.md"
 fi
+
+# --- Write placeholder to claim the output file (prevents race conditions) ---
+echo "<!-- Review in progress by ${REVIEWER} (${MODEL}) — started $(date -u +%Y-%m-%dT%H:%M:%SZ) -->" > "$OUTPUT_FILE"
 
 # --- Check CLI tool is installed ---
 if ! command -v "$REVIEWER" &>/dev/null; then
   echo "Error: '$REVIEWER' CLI is not installed or not in PATH" >&2
+  rm -f "$OUTPUT_FILE"
   exit 1
 fi
 
@@ -139,6 +151,7 @@ fi
 
 if [[ ! -f "$SYSTEM_PROMPT_FILE" ]]; then
   echo "Error: System prompt not found at $SYSTEM_PROMPT_FILE" >&2
+  rm -f "$OUTPUT_FILE"
   exit 1
 fi
 SYSTEM_PROMPT="$(cat "$SYSTEM_PROMPT_FILE")"
@@ -162,6 +175,7 @@ echo "Invoking ${REVIEWER_LABEL} ${REVIEW_TYPE} reviewer (model: ${MODEL}) for p
 echo "Output: ${OUTPUT_FILE}"
 
 REVIEW_EXIT=0
+REVIEW_STDERR=""
 if [[ "$REVIEWER" == "claude" ]]; then
   CLAUDECODE= claude -p \
     --model "$MODEL" \
@@ -177,22 +191,42 @@ else
 
 ${REVIEW_PROMPT}"
 
-  codex exec \
+  REVIEW_STDERR=$(codex exec \
     --model "$MODEL" \
     --sandbox workspace-write \
     --ephemeral \
-    "$FULL_PROMPT" || REVIEW_EXIT=$?
+    "$FULL_PROMPT" 2>&1 >/dev/null) || REVIEW_EXIT=$?
+
+  # --- Friendly codex error messages ---
+  if [[ $REVIEW_EXIT -ne 0 && -n "$REVIEW_STDERR" ]]; then
+    if echo "$REVIEW_STDERR" | grep -qi "sign in again\|refresh token\|token.*expired\|401 Unauthorized"; then
+      echo "Error: Codex authentication expired. Run 'codex login' to re-authenticate." >&2
+      rm -f "$OUTPUT_FILE"
+      exit 1
+    elif echo "$REVIEW_STDERR" | grep -qi "not supported when using Codex with a ChatGPT account"; then
+      echo "Error: Model '${MODEL}' is not available with your Codex account. Try a different model or check 'codex' for available models." >&2
+      rm -f "$OUTPUT_FILE"
+      exit 1
+    fi
+  fi
 fi
 
 # --- Post-run validation ---
 if [[ $REVIEW_EXIT -ne 0 ]]; then
   echo "Error: Reviewer exited with code $REVIEW_EXIT" >&2
+  [[ -n "$REVIEW_STDERR" ]] && echo "$REVIEW_STDERR" >&2
   rm -f "$OUTPUT_FILE"
   exit $REVIEW_EXIT
 fi
 
-if [[ ! -s "$OUTPUT_FILE" ]]; then
-  echo "Error: Review output is empty or missing: $OUTPUT_FILE" >&2
+# Check output file has real content (not just the placeholder)
+if [[ ! -s "$OUTPUT_FILE" ]] || ! grep -q '^---' "$OUTPUT_FILE" 2>/dev/null; then
+  # Check if it's still just the placeholder
+  if grep -q '<!-- Review in progress' "$OUTPUT_FILE" 2>/dev/null && [[ $(wc -l < "$OUTPUT_FILE") -le 1 ]]; then
+    echo "Error: Reviewer did not write to the output file: $OUTPUT_FILE" >&2
+  else
+    echo "Error: Review output is empty or missing: $OUTPUT_FILE" >&2
+  fi
   rm -f "$OUTPUT_FILE"
   exit 1
 fi
