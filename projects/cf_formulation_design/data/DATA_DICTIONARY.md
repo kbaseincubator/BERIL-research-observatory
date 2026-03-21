@@ -487,3 +487,23 @@ notebook, row count, and per-column metadata (name, inferred type, description).
 | `n_genes` | integer | Number of ribosomal protein genes analyzed |
 | `genome_size_mb` | float | Mean genome size in megabases (averaged across available genomes) |
 | `total_cds` | float | Mean total coding sequences (averaged across available genomes) |
+
+---
+
+## pa_virulence_systems.tsv
+
+| Property | Value |
+|----------|-------|
+| **Source Notebook** | NB13 — `13_pa_virulence_systems.ipynb` |
+| **Rows** | 6,760 |
+| **Description** | PA virulence gene presence/absence, T3SS effector type, biofilm polysaccharide type, and isolation environment for all PA genomes in the pangenome. |
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `genome_id` | string | Pangenome genome identifier (RS_/GB_ prefixed) |
+| `environment` | string | Isolation source category (CF patient, Lung/Respiratory, Upper Airway, Other Clinical, Environmental, Other, Unknown) |
+| `t3ss_type` | string | T3SS effector classification: ExoS+, ExoU+, ExoU+ExoS+, or Neither |
+| `biofilm_type` | string | Biofilm polysaccharide classification: Pel+Psl+ (PAO1-like), Pel-only (PA14-like), Psl-only, or Minimal |
+| `pel_count` | integer | Number of pel operon genes detected (0–7) |
+| `psl_count` | integer | Number of psl operon genes detected (0–11) |
+| `exoS` through `retS` | integer | Binary presence (1) or absence (0) of individual virulence genes |
