@@ -29,37 +29,21 @@ If no `<project_id>` argument is provided, detect from the current working direc
 2. Validate that `projects/{project_id}/` exists in the repository root
 3. If the directory does not exist, print an error and stop
 
-### Step 2: Find Next Review Number
+### Step 2: Invoke Reviewer
 
-Scan the project directory for existing numbered review files:
-- For project reviews: find all `REVIEW_N.md` files, pick the next number
-- For plan reviews: find all `PLAN_REVIEW_N.md` files, pick the next number
-
-If no numbered reviews exist, start at 1.
+Run `tools/review.sh` — the script automatically numbers the output file (`REVIEW_1.md`, `REVIEW_2.md`, etc.):
 
 ```bash
-# Example: find next project review number
-NEXT_N=$(ls projects/{project_id}/REVIEW_*.md 2>/dev/null | grep -oP 'REVIEW_\K[0-9]+' | sort -n | tail -1)
-NEXT_N=$(( ${NEXT_N:-0} + 1 ))
+bash tools/review.sh {project_id} --type {type} --reviewer {reviewer} --model {model}
 ```
 
-### Step 3: Invoke Reviewer
-
-Run `tools/review.sh` with the `--output` flag pointing to the numbered file:
-
-```bash
-bash tools/review.sh {project_id} \
-  --type {type} \
-  --reviewer {reviewer} \
-  --model {model} \
-  --output projects/{project_id}/REVIEW_{N}.md
-```
-
-For plan reviews, use `PLAN_REVIEW_{N}.md` instead.
+- Omit `--type` if reviewing the project (default)
+- Omit `--reviewer` and `--model` if using defaults
+- The script claims the next available number immediately (race-condition safe)
 
 Run this command from the repository root directory.
 
-### Step 4: Verify Review Completion
+### Step 3: Verify Review Completion
 
 After the reviewer subprocess completes:
 
@@ -67,14 +51,14 @@ After the reviewer subprocess completes:
 2. If it exists and is non-empty, print a success message
 3. If it was not created or is empty, print an error indicating the reviewer did not produce output
 
-### Step 5: Present Summary
+### Step 4: Present Summary
 
 Read the review file and present a brief summary to the user:
 - Overall assessment (from the Summary section)
 - Number of suggestions by priority (critical, important, nice-to-have)
 - Key issues to address
 
-### Step 6: Guidance
+### Step 5: Guidance
 
 Based on the review outcome:
 

@@ -206,9 +206,10 @@ After notebooks are executed and committed, **pause and present the key results 
 
 #### Phase E: Review & Submission
 
-33. Run `/submit` to validate documentation and generate `REVIEW.md`
-34. Fix any issues flagged by the review
-35. Commit fixes
+33. **Optional: iterate with `/berdl-review`** — Run `/berdl-review {project_id}` to get feedback without the full submission checklist. This produces numbered reviews (`REVIEW_1.md`, `REVIEW_2.md`, ...) and is useful for iterating quickly. Use `--reviewer codex` for a second opinion. Address feedback, then review again until satisfied.
+34. Run `/submit` to validate documentation and generate the final canonical `REVIEW.md` (clears numbered reviews)
+35. Fix any issues flagged by the review
+36. Commit fixes
 36. Upload project to the lakehouse: `python tools/lakehouse_upload.py {project_id}` (prompted by `/submit` after clean review)
 37. Chat with user about next steps
 
