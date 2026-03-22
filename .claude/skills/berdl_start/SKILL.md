@@ -176,7 +176,7 @@ When the user wants to start a new research project, the agent drives the entire
     bash tools/review.sh {project_id} --type plan [--reviewer claude|codex] [--model <model_id>]
     ```
 
-    This runs a CLI subprocess that reads the research plan, checks it against pitfalls/schemas/existing projects, and writes feedback to `projects/{project_id}/PLAN_REVIEW.md`. The user can choose `--reviewer codex` for an alternative perspective. Default reviewer is `claude`.
+    This runs a CLI subprocess that reads the research plan, checks it against pitfalls/schemas/existing projects, and writes feedback to an auto-numbered file (`PLAN_REVIEW_1.md`, `PLAN_REVIEW_2.md`, etc.). The user can choose `--reviewer codex` for an alternative perspective. Default reviewer is `claude`.
 
     Present the suggestions to the user. They can address them, note them for later, or skip — this is advisory, not blocking.
 
