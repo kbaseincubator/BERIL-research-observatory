@@ -48,6 +48,51 @@ sqlite3 /tmp/<dataset>.db < <dump>.sql
 # then move the .db into the source directory
 ```
 
+### Step 1b: Resolve schema
+
+After inspecting the directory, check whether a `.sql` file with `CREATE TABLE` statements is present.
+
+**If a `.sql` file exists:** use it directly — no further action needed. Skip to Step 2.
+
+**If no `.sql` file exists:** attempt to infer column types from the data source:
+
+- **SQLite (`.db`):** run `PRAGMA table_info(<table>)` for each table to get column names and SQLite-declared types. Map to Spark SQL types:
+
+  | SQLite type | Spark SQL type |
+  |-------------|----------------|
+  | `INTEGER`   | `BIGINT`       |
+  | `REAL`      | `DOUBLE`       |
+  | `TEXT`      | `STRING`       |
+  | `BLOB`      | `BINARY`       |
+  | `NUMERIC`   | `DOUBLE`       |
+  | (empty/unknown) | `STRING`   |
+
+  ```bash
+  sqlite3 <DATA_DIR>/<file>.db ".tables"
+  sqlite3 <DATA_DIR>/<file>.db "PRAGMA table_info(<table>);"
+  ```
+
+- **TSV/CSV:** read the header row and sample ~5 rows. Infer types by inspecting values — integers, floats, and strings. When in doubt, use `STRING`.
+
+  ```bash
+  head -6 <DATA_DIR>/<file>.tsv
+  ```
+
+After inference, **present the proposed schema to the user** as a draft `.sql` file (one `CREATE TABLE` block per table). Ask the user to review and confirm or correct it. Example format:
+
+```sql
+CREATE TABLE my_table (
+    id       BIGINT,
+    name     STRING,
+    score    DOUBLE,
+    active   STRING
+);
+```
+
+- If the inferred schema looks complete and unambiguous, propose writing it as `<DATA_DIR>/schema.sql` and proceed once the user confirms.
+- If there are ambiguous columns (e.g. a column that looks like dates, mixed numeric/text, or unclear nullability), flag them specifically and ask the user what type to use before writing the file.
+- If the data cannot be sampled (e.g. files are too large to inspect headers, or PRAGMA returns no type info), tell the user what's missing and ask them to provide a schema or decide to proceed with all columns as `STRING`.
+
 ### Step 2: Choose tenant
 
 List existing tenants:
