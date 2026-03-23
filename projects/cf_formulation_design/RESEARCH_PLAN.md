@@ -279,6 +279,7 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 - **v5** (2026-03-19): Corrected CUB interpretation (GC-confounded). Corrected PA strain variation interpretation (accessory genome affects virulence not amino acid growth rate). Lab growth data confirmed as ground truth. Expected Outcomes updated to observed outcomes.
 - **v6** (2026-03-21): Review response. Consolidated NB10+NB11 into single notebook. Added N. mucosa clade sensitivity check to NB07. Added exhaustive k=3 enumeration and bootstrap CIs to NB05b. Elevated pairwise interaction testing to highest-priority experiment. Strengthened M. luteus engraftment recommendation (k=2 as primary candidate).
 - **v7** (2026-03-21): Added NB13 (PA virulence system distribution). Mapped T3SS effectors (exoU/exoS), biofilm polysaccharides (pel/psl), and regulatory genes (ladS/retS/gacS) across 6,760 PA genomes by isolation environment. Key finding: CF PA is 94% ExoS+ — PA14 (ExoU+, Pel-only, ladS mutant) represents <5% of CF isolates.
+- **v8** (2026-03-23): Added NB14 (per-ASMA isolate virulence profiling + phylogenetic tree). Profiled 643 PROTECT PA genomes for 32 virulence genes; 86% of classifiable isolates are PAO1-like. Gene content tree (153 genomes, 3,730 accessory clusters) places PROTECT isolates in lung PA diversity context.
 
 ## Authors
 - Adam Arkin (ORCID: 0000-0002-4999-2931) — U.C. Berkeley / Lawrence Berkeley National Laboratory
