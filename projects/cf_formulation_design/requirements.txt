@@ -8,3 +8,8 @@ seaborn>=0.13
 statsmodels>=0.14
 jupyter>=1.0
 nbconvert>=7.0
+biopython>=1.80
+pycirclize>=1.0
+# Spark notebooks (NB07, NB09, NB10, NB13, NB14) require:
+# pyspark>=3.5 (provided by BERDL JupyterHub)
+# berdl_notebook_utils (provided by BERDL JupyterHub)
