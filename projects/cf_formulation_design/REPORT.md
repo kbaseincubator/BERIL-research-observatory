@@ -353,6 +353,26 @@ In the PROTECT collection (651 PA genomes), 47% carry exoS and 7% carry exoU, wi
 
 *(Notebook: 13_pa_virulence_systems.ipynb)*
 
+### 2.15 Per-Isolate Virulence Profiling and Phylogenetic Context
+
+**Rationale**: To move beyond population-level statistics to individual isolate characterization, we profiled all 643 annotated PROTECT PA genomes for 32 virulence genes spanning T3SS effectors, biofilm operons, alginate biosynthesis, quorum sensing, iron acquisition, and T6SS. Each isolate was classified as PAO1-like, PA14-like, or intermediate based on its ExoU/ExoS status, biofilm architecture, and ladS presence.
+
+Of 643 profiled genomes, **304 (47%) are PAO1-like** (ExoS+) and **48 (7%) are PA14-like** (ExoU+), with 291 (45%) intermediate (lacking clear T3SS annotation in GenomeDepot). Among classifiable isolates, **86% are PAO1-like** — confirming at the individual isolate level that PA14 is not representative of the PROTECT CF collection.
+
+Strain group assignment is strongly correlated with virulence type: entire strain groups are either uniformly PAO1-like or uniformly PA14-like, indicating that T3SS effector type is a clonal trait inherited within lineages rather than a horizontally transferred variable.
+
+![ASMA PA virulence profiles: T3SS, model similarity, gene prevalence, and strain group breakdown](figures/14_asma_virulence_profiles.png)
+
+**Gene content phylogenetic tree**: To place PROTECT isolates in broader evolutionary context, we constructed a gene content tree from 3,730 accessory gene clusters across 153 PA genomes: 15 PROTECT strain group representatives, ~136 sampled lung/airway PA from the pangenome, and the PAO1/PA14 reference strains. Jaccard distances on accessory gene content capture the biology that distinguishes PAO1-like from PA14-like variants — T3SS effector islands, biofilm operon presence, and pathogenicity island content.
+
+The tree reveals that PROTECT isolates are distributed across the lung PA diversity, not clustered in a single lineage. ExoU+ isolates form a distinct clade separated from the ExoS+ majority, consistent with the PAPI-1/PAPI-2 pathogenicity island acquisition being a deep phylogenetic event rather than recent horizontal transfer.
+
+![Circular gene content tree: PROTECT PA in pangenome context, annotated with T3SS type, biofilm, source, and PROTECT identity](figures/14_pa_phylogenetic_tree.png)
+
+The Newick tree file (`data/pa_gene_content_tree.nwk`) enables downstream re-visualization with alternative annotation schemes as new metadata becomes available.
+
+*(Notebook: 14_pa_isolate_profiling_tree.ipynb)*
+
 ---
 
 ## 3. Discussion
@@ -529,6 +549,9 @@ Based on our findings, we recommend the following experimental program:
 | `data/pa_sick_vs_stable_pathways.tsv` | 207 | PA pathway expression: acute vs stable patients |
 | `data/pa_target_robustness.tsv` | 22 | PA amino acid/carbon pathway conservation in lung isolates |
 | `data/pa_virulence_systems.tsv` | 6,760 | PA virulence gene presence, T3SS type, biofilm type, environment |
+| `data/asma_pa_virulence_profiles.tsv` | 643 | Per-ASMA-isolate virulence gene profiles with model classification |
+| `data/pa_tree_annotations.tsv` | 153 | Annotation metadata for phylogenetic tree genomes |
+| `data/pa_gene_content_tree.nwk` | — | Newick tree file (153 genomes, 3,730 accessory gene clusters) |
 
 ## 6. Supporting Evidence
 
@@ -549,8 +572,9 @@ Based on our findings, we recommend the following experimental program:
 | `10_pa_lung_adaptation.ipynb` | PA lung adaptation, formulation robustness, disease severity, PROTECT PA diversity |
 | `12_growth_rate_prediction.ipynb` | Codon usage bias analysis for growth rate prediction |
 | `13_pa_virulence_systems.ipynb` | PA virulence system distribution (T3SS, pel/psl, ladS) by environment |
+| `14_pa_isolate_profiling_tree.ipynb` | Per-ASMA isolate virulence profiling and gene content phylogenetic tree |
 
-### Figures (39 total)
+### Figures (41 total)
 
 All figures are saved in `figures/` and appear inline throughout this report.
 

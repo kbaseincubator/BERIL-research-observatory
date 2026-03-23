@@ -6,7 +6,7 @@ Can we build a multi-criterion framework that explains measured *P. aeruginosa* 
 
 ## Status
 
-Complete — see [Report](REPORT.md) for findings. 13 notebooks executed, 39 figures generated, 22 data files produced. Key result: a 5-organism FDA-safe formulation (*N. mucosa* + *S. salivarius* + *M. luteus* + *R. dentocariosa* + *G. sanguinis*) achieves 100% PA14 niche coverage with 78% mean inhibition. PA amino acid catabolism is 97% conserved across 1,796 lung genomes — formulation predicted equally effective across PA variants. Sugar alcohols (xylitol, myoinositol, xylose, arabinose) identified as genomically-predicted selective prebiotics.
+Complete — see [Report](REPORT.md) for findings. 14 notebooks executed, 41 figures generated, 25 data files produced. Key result: a 5-organism FDA-safe formulation (*N. mucosa* + *S. salivarius* + *M. luteus* + *R. dentocariosa* + *G. sanguinis*) achieves 100% PA14 niche coverage with 78% mean inhibition. PA amino acid catabolism is 97% conserved across 1,796 lung genomes — formulation predicted equally effective across PA variants. Sugar alcohols (xylitol, myoinositol, xylose, arabinose) identified as genomically-predicted selective prebiotics.
 
 ## Overview
 
@@ -46,7 +46,8 @@ NB01 (Data Integration & EDA)
  ├── NB08 (Interaction Modeling)
  ├── NB10 (PA Lung Adaptation & Robustness) ★ Spark
  │    └── NB12 (Growth Rate Prediction)
- └── NB13 (PA Virulence System Distribution) ★ Spark
+ ├── NB13 (PA Virulence System Distribution) ★ Spark
+ └── NB14 (ASMA Isolate Profiling & Phylogenetic Tree) ★ Spark
 
 ★ = requires BERDL Spark access
 NB02, NB03, NB04, NB07, NB08 can run in parallel after NB01
