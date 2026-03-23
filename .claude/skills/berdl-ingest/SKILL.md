@@ -22,11 +22,46 @@ exports data if needed, then executes a **two-phase ingest**:
 1. `KBASE_AUTH_TOKEN` set in environment or `.env`.
 2. **Ingest packages installed**: run `bash scripts/bootstrap_ingest.sh` (requires `.venv-berdl` from `bootstrap_client.sh`).
 3. **SSH tunnels on ports 1337 and 1338 must be running** (user must start these —
-   see `berdl-query/references/proxy-setup.md`). pproxy (:8123) and JupyterHub
-   server are started automatically by the notebook if not already running.
+   Claude cannot run interactive SSH commands). pproxy (:8123) is started automatically.
+   JupyterHub server is spawned in Step 0 before ingest begins. If tunnels are not running,
+   tell the user to run these two commands in a terminal:
+   ```bash
+   ssh -f -N -o ServerAliveInterval=60 -D 1338 ac.<username>@login1.berkeley.kbase.us
+   ssh -f -N -o ServerAliveInterval=60 -D 1337 ac.<username>@login1.berkeley.kbase.us
+   ```
 4. **`mc` configured**: `~/.mc/config.json` must have a `berdl-minio` alias. Run `bash scripts/configure_mc.sh --berdl-proxy` if not set.
 
 ## Workflow
+
+### Step 0: Ensure JupyterHub server is running
+
+Do this before anything else. The Spark Connect sidecar lives inside the JupyterHub pod —
+without it there is nothing to connect to.
+
+```bash
+source .venv-berdl/bin/activate
+berdl-remote status
+```
+
+If the output contains "Kernel available", the server is up — proceed to Step 1.
+
+If not (server stopped, not spawned, or config missing), spawn it now:
+
+```bash
+berdl-remote login --hub-url https://hub.berdl.kbase.us
+berdl-remote spawn --timeout 120
+```
+
+`berdl-remote login` authenticates non-interactively using `KBASE_AUTH_TOKEN` — do not ask
+the user to log into JupyterHub in a browser. After spawn completes, wait 40 seconds for the
+Spark Connect sidecar to start before proceeding:
+
+```bash
+sleep 40
+```
+
+Do not skip this step or defer it to the notebook. The ingest must never prompt the user for
+JupyterHub credentials or ask them to visit the hub URL.
 
 ### Step 1: Ask for source directory
 
@@ -251,11 +286,17 @@ count mismatch is found, use these to cross-check against the Delta table's last
 ## Error Handling
 
 - **Ingest packages missing**: run `bash scripts/bootstrap_ingest.sh`.
-- **SSH tunnels down (ports 1337/1338)**: notebook will raise and print the exact ssh
-  command to run. Start the tunnel(s), then re-run the initialization cell.
+- **SSH tunnels down (ports 1337/1338)**: tell the user to run the missing tunnel command(s)
+  in a terminal (replace `<username>` with their LBNL username), then re-run the
+  initialization cell:
+  ```bash
+  ssh -f -N -o ServerAliveInterval=60 -D 1338 ac.<username>@login1.berkeley.kbase.us
+  ssh -f -N -o ServerAliveInterval=60 -D 1337 ac.<username>@login1.berkeley.kbase.us
+  ```
 - **pproxy not running (:8123)**: started automatically by the notebook.
-- **JupyterHub server not running**: spawned automatically via `berdl-remote`. Requires
-  `KBASE_AUTH_TOKEN` in environment or `.env`.
+- **JupyterHub server not running**: this should have been caught in Step 0. Re-run Step 0
+  (`berdl-remote login` then `berdl-remote spawn --timeout 120`, then `sleep 40`) before
+  retrying. Do not ask the user to log into JupyterHub manually.
 - **Spark session timeout mid-chunk**: health check before each chunk detects this
   automatically. The notebook reconnects and retries the failed chunk. Progress
   already written to MinIO is preserved.
@@ -274,10 +315,13 @@ count mismatch is found, use these to cross-check against the Delta table's last
 ## Safety Rules
 
 1. Never print or log MinIO `secretKey` values.
-2. Do not set `MODE = "overwrite"` for an existing namespace without explicit user confirmation.
-3. Do not set `CONFIRMED = True` on behalf of the user — always present the pre-flight plan
+2. Never print, log, or write `KBASE_AUTH_TOKEN` in any notebook, script, or file. Always
+   access it exclusively through `os.getenv("KBASE_AUTH_TOKEN")` or the `.env` file loader —
+   never hardcode or echo the value.
+3. Do not set `MODE = "overwrite"` for an existing namespace without explicit user confirmation.
+4. Do not set `CONFIRMED = True` on behalf of the user — always present the pre-flight plan
    and wait for explicit confirmation before proceeding.
-4. Do not commit the notebook with credentials visible in cell outputs.
+5. Do not commit the notebook with credentials visible in cell outputs.
 
 ## Pitfall Detection
 
