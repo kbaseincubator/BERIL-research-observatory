@@ -259,6 +259,33 @@ JOIN kbase_ke_pangenome.gtdb_taxonomy_r214v1 t ON g.gtdb_taxonomy_id = t.gtdb_ta
 
 ### SQL Syntax Issues
 
+### [pgp_pangenome_ecology] `order` is a Spark SQL reserved word — must be backtick-quoted
+
+The `gtdb_taxonomy_r214v1` table has a column named `order` (taxonomic rank). In Spark SQL, `order` is a reserved keyword and will cause a parse error if used unquoted in a SELECT or JOIN. Always backtick-quote it:
+
+```sql
+-- WRONG: AnalysisException: Reserved keyword 'order' used as identifier
+SELECT t.phylum, t.class, t.order, t.family FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1 t
+
+-- CORRECT: backtick-quote the reserved word
+SELECT t.phylum, t.class, t.`order`, t.family FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1 t
+```
+
+The same applies to other SQL reserved words that appear as column names (e.g., `class`, `select`, `from`). When in doubt, backtick-quote any column name that looks like a keyword.
+
+### [pgp_pangenome_ecology] GapMind `score_simplified` is binary (0.0 / 1.0), not continuous
+
+When querying `kbase_ke_pangenome.gapmind_pathways` with `sequence_scope = 'core'`, the `score_simplified` column contains only `0.0` (pathway incomplete) or `1.0` (pathway complete) — it is not a continuous confidence score. The table is genome-level (one row per genome-pathway pair); aggregate to species level with `MAX(score_simplified) GROUP BY clade_name, pathway` before joining to species data.
+
+```sql
+-- CORRECT: aggregate to species level, binary threshold still applies
+SELECT clade_name AS gtdb_species_clade_id, pathway,
+       MAX(score_simplified) AS score_simplified  -- still 0.0 or 1.0 after MAX
+FROM kbase_ke_pangenome.gapmind_pathways
+WHERE pathway IN ('trp', 'tyr') AND metabolic_category = 'aa' AND sequence_scope = 'core'
+GROUP BY clade_name, pathway
+```
+
 ### The `--` in Species IDs: Non-Issue in Spark, Real Issue in REST API
 
 Species clade IDs contain `--` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`). Behavior depends on the query method:
@@ -351,6 +378,45 @@ spark.createDataFrame(
 ```
 
 **Prevention**: Avoid expensive full-table scans in cells between temp view registration and temp view use. Use `LIMIT` or `TABLESAMPLE` for schema verification queries rather than full `GROUP BY` counts on large tables.
+
+### `ncbi_env` Table is EAV (Key-Value), Not Flat
+
+**[amr_strain_variation]** The `ncbi_env` table is **not** a flat table with columns like `genome_id, isolation_source, collection_date`. It's an Entity-Attribute-Value table with columns: `accession` (BioSample ID), `attribute_name`, `content`, `display_name`, `harmonized_name`, `id`, `package_content`.
+
+To get genome metadata you must:
+1. Join `genome.ncbi_biosample_id` → `ncbi_env.accession`
+2. Filter `attribute_name IN ('isolation_source', 'collection_date', 'geo_loc_name', 'host')`
+3. Pivot from long to wide format
+
+```sql
+-- WRONG: these columns don't exist
+SELECT genome_id, isolation_source, collection_date FROM ncbi_env
+
+-- CORRECT: EAV query
+SELECT accession, attribute_name, content
+FROM kbase_ke_pangenome.ncbi_env
+WHERE accession IN (...) AND attribute_name IN ('isolation_source', 'collection_date', 'host')
+```
+
+### `genome_ani` Column Names Are Not What You Expect
+
+**[amr_strain_variation]** The `genome_ani` table uses `genome1_id`, `genome2_id`, `ANI` — **not** `genome_id_1`, `genome_id_2`, `ani`. The capitalization matters too (`ANI` not `ani`).
+
+```sql
+-- WRONG
+SELECT genome_id_1, genome_id_2, ani FROM genome_ani
+
+-- CORRECT
+SELECT genome1_id, genome2_id, ANI FROM genome_ani
+```
+
+### Large Species Blow Up ANI Queries (O(n²) Problem)
+
+**[amr_strain_variation]** ANI queries for species with >500 genomes can take 30+ minutes per species and may timeout Spark connections. *K. pneumoniae* (14,240 genomes) and *S. aureus* (14,526 genomes) generate IN clauses with 14K+ IDs that overwhelm the query planner. Cap at <=500 genomes for Mantel tests, or use subsampling.
+
+### Per-Genome Environment Classification Gives 53% "Unknown"
+
+**[amr_strain_variation]** Parsing `isolation_source` and `host` from `ncbi_env` at the per-genome level produces 52.7% "Unknown" labels (94,957/180,025 genomes), because most BioSample records lack structured isolation metadata. For cross-species analyses, use species-level majority-vote environment labels instead (91% coverage via keyword classification of NCBI metadata).
 
 ---
 

@@ -40,6 +40,9 @@ def split_fasta_file(input_path: str, output_dir: str, chunk_size: int,
                     current_split += 1
                 current_count += 1
             if out_f:
+                # Strip asterisks (stop codons) — InterProScan rejects them
+                if not line.startswith(">"):
+                    line = line.replace("*", "")
                 out_f.write(line)
 
     if out_f:

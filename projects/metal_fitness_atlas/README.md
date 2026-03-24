@@ -66,5 +66,5 @@ Notebooks must run in order (NB02 depends on NB01, etc.). Full pipeline runs in 
 - NB06 (pangenome-scale prediction) requires BERDL JupyterHub with `get_spark_session()` — queries `gene_cluster` (132M rows) joined with `eggnog_mapper_annotations` (93M rows)
 
 ## Authors
-- Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
 - Adam Deutschbauer (https://orcid.org/0000-0003-2728-7622), Lawrence Berkeley National Laboratory
