@@ -19,25 +19,55 @@ The full InterPro v108.0 protein2ipr database has been ingested into BERDL:
 - 38.5M clusters (29.0%) have InterPro entries via UniRef100/UniRef50 lookup
 - Remaining 73.6M clusters need InterProScan annotation
 
-### Phase 2: InterProScan on NERSC — READY TO RUN
+### Phase 2: InterProScan on NERSC — COMPLETE
 
-Run InterProScan on all 132.5M cluster rep sequences at NERSC Perlmutter.
-InterProScan's built-in lookup service will resolve ~54% of sequences from cache
-(milliseconds each); only ~46% need full local analysis.
+Ran InterProScan 5.77-108.0 on all 132,538,155 cluster rep sequences at NERSC
+Perlmutter using the shared queue. All 18 member databases with lookup service
+enabled, GO terms, and pathway annotations.
 
-**Input files on MinIO** (ready to use):
-```
-cts/io/psdehal/bakta_reannotation/fasta_chunks_5M/
-  chunk_000.fasta  ...  chunk_026.fasta   (27 files, 42.2 GB total)
-  5M sequences per chunk, 132,538,155 total
-```
+| Metric | Value |
+|--------|-------|
+| Input sequences | 132,538,155 |
+| Result lines | 833,242,989 |
+| Result files | 13,254 splits |
+| Result size | 2.8 TB (TSV) |
+| Analyses | 18 (Pfam, CDD, Gene3D, PANTHER, SUPERFAMILY, etc.) |
+| Annotations | GO terms, KEGG, MetaCyc, Reactome pathways |
 
-**Job sizing:**
-- 27 FASTA chunks × 500 sub-chunks of 10K sequences = ~13,500 jobs
-- Each job: ~10K sequences, ~5,400 cache misses, ~1 hour wall time w/ 32 cores
-- Total: ~13,500 node-hours on Perlmutter
+**Job configuration (determined by benchmarking):**
+- 10K sequences per split, 8 CPUs, 24 GB memory, 4-hour limit
+- Shared queue (`--qos=shared`) for partial-node allocation
+- Lookup service enabled — resolves ~90-95% of sequences in milliseconds
+- Node-local `/tmp` (tmpfs) for InterProScan temp files (Lustre causes race conditions)
+- `module load python` required (MobiDB needs Python ≥ 3.7, system is 3.6)
+- Asterisks stripped from sequences (InterProScan rejects stop codon `*` characters)
 
-See `scripts/07_nersc_interproscan.sh` for the SLURM job array script.
+**Throughput:** ~2.9 seq/s per job (8 CPUs), ~500 concurrent jobs on shared queue
+
+**Known issues:**
+- Sequences >10K aa can cause jobs to run for hours (e.g., 175K aa assembly artifact)
+- The `split_fasta.py` script strips asterisks during splitting
+- 8 GB memory is insufficient — jobs need 9-16 GB (24 GB provides safe headroom)
+
+### Phase 3: Transform & Ingest into BERDL — COMPLETE
+
+Transformed the raw 15-column InterProScan TSV into 3 normalized tables and
+ingested into the existing `kbase_ke_pangenome` database alongside bakta tables.
+
+| Table | Rows | Status |
+|-------|------|--------|
+| `kbase_ke_pangenome.interproscan_domains` | 833,303,130 | Ingested |
+| `kbase_ke_pangenome.interproscan_go` | 266,317,724 | Ingested |
+| `kbase_ke_pangenome.interproscan_pathways` | 287,228,475 | Ingested |
+
+**Coverage:** 111M clusters (83.8% of 132.5M) have at least one domain hit.
+584M hits have formal IPR accessions; 249M are member-DB-only hits (Pfam, CDD, etc.).
+
+**Note:** Reactome pathways (~12B rows) are excluded — they are eukaryotic
+species-specific mappings inherited from InterPro and not relevant for bacterial proteins.
+Use `--include-reactome` with `09_transform_results.py` to include them.
+
+**MinIO path:** `s3a://cdm-lake/users-general-warehouse/psdehal/data/interproscan_results/`
 
 ## Why
 
@@ -66,8 +96,12 @@ into BERDL enables cross-collection JOINs:
 | `04_ingest_interpro.py` | Upload to MinIO + run data_lakehouse_ingest | JupyterHub | Done |
 | `05_assess_coverage.py` | Coverage report: pangenome × InterPro via Spark | JupyterHub | Done |
 | `06_probe_lookup_service.py` | Probe EBI lookup cache to estimate hit rate | JupyterHub | Done (sample) |
-| `07_nersc_interproscan.sh` | SLURM job array for InterProScan at NERSC | NERSC | Ready |
-| `08_collect_results.py` | Collect InterProScan TSV results → BERDL ingest | JupyterHub | Ready |
+| `07_nersc_interproscan.sh` | SLURM job array for InterProScan at NERSC | NERSC | Done |
+| `split_fasta.py` | Split FASTA into 10K sub-chunks (strips asterisks) | NERSC | Done |
+| `run_iprscan_shared.sh` | Production shared-queue InterProScan job | NERSC | Done |
+| `08_collect_results.py` | Collect InterProScan TSV results → BERDL ingest | JupyterHub | Done |
+| `09_transform_results.py` | Transform 15-col TSV → 3 normalized tables | NERSC | Done |
+| `10_ingest_interproscan_results.py` | Upload to MinIO + ingest into BERDL | JupyterHub | Done |
 
 ## Lookup Service Probe Results
 
@@ -89,32 +123,80 @@ milliseconds, only true misses incur compute cost.
 
 ## NERSC InterProScan Setup
 
-### Prerequisites on NERSC
-1. InterProScan 5.77-108.0 (matches our InterPro v108.0 data)
-2. InterProScan data directory (~18GB compressed, ~80GB extracted)
-3. Access to MinIO for downloading FASTA chunks
+### Installation
+InterProScan 5.77-108.0 installed at `/pscratch/sd/p/psdehal/interproscan/interproscan-5.77-108.0`
+(50 GB, downloaded from EBI FTP). Requires Java 11 (available by default on Perlmutter).
 
-### Workflow
+### Workflow (as executed)
+```bash
+# 1. Download FASTA chunks from MinIO (9 missing + 18 symlinked from bakta)
+bash download_missing_chunks.sh
+
+# 2. Split into 10K sub-chunks with asterisk stripping
+python split_fasta.py /pscratch/sd/p/psdehal/interproscan/fasta/ \
+       /pscratch/sd/p/psdehal/interproscan/splits/ --chunk-size 10000
+# → 13,254 split files, 40 GB total
+
+# 3. Submit on shared queue in batches (5,000 job submit limit)
+sbatch --account=amsc002 --array=0-4999%500 run_iprscan_shared.sh
+sbatch --account=amsc002 --array=5000-8999%500 run_iprscan_shared.sh
+sbatch --account=kbase   --array=9000-13253%500 run_iprscan_shared.sh
+
+# 4. Transform results into 3 normalized tables
+python scripts/09_transform_results.py
+
+# 5. Upload to MinIO and ingest into BERDL
+python scripts/10_ingest_interproscan_results.py
 ```
-# 1. Download FASTA chunks from MinIO to $SCRATCH
-mc cp --recursive cts/io/psdehal/bakta_reannotation/fasta_chunks_5M/ $SCRATCH/interproscan/fasta/
 
-# 2. Split each 5M chunk into 10K sub-chunks
-for chunk in $SCRATCH/interproscan/fasta/chunk_*.fasta; do
-  split_fasta.py $chunk $SCRATCH/interproscan/splits/ 10000
-done
+### Benchmarking Results
 
-# 3. Submit job array
-sbatch scripts/07_nersc_interproscan.sh
+**Chunk size scaling (64 CPUs, lookup enabled):**
 
-# 4. Collect results and upload to MinIO
-python scripts/08_collect_results.py
-```
+| Sequences | Wall time | Seqs/sec | Memory |
+|-----------|-----------|----------|--------|
+| 100 | 1.7 min | 1.0 | 4.2 GB |
+| 500 | 5.2 min | 1.6 | 4.4 GB |
+| 2,000 | 15.7 min | 2.1 | 6.1 GB |
+| 10,000 | 36.6 min | 4.6 | 16.8 GB |
+
+**CPU scaling (3K sequences, lookup enabled):**
+
+| CPUs | Wall time | Speedup vs 8 | Memory |
+|------|-----------|-------------|--------|
+| 8 | 21.1 min | 1.0x | 4.8 GB |
+| 16 | 19.5 min | 1.08x | 7.6 GB |
+| 32 | 17.6 min | 1.20x | 7.9 GB |
+| 64 | 18.2 min | 1.16x | 8.0 GB |
+
+**Key finding:** CPU scaling is minimal (8→64 CPUs gives only 1.2x speedup).
+The optimal config is 8 CPUs with many concurrent jobs on the shared queue.
+
+**Lookup service impact (100 sequences):**
+
+| Mode | Wall time | Seqs/sec |
+|------|-----------|----------|
+| With lookup | 104s | 1.0 |
+| Without (-dp) | 272s | 0.4 |
+
+Lookup service provides ~2.6x speedup. Perlmutter compute nodes have internet access.
 
 ### Output format
-InterProScan TSV output (one line per domain hit):
+InterProScan TSV output (one line per domain hit, 15 columns):
 ```
 protein_id  md5  seq_len  analysis  sig_acc  sig_desc  start  stop  score  status  date  ipr_acc  ipr_desc  go_terms  pathways
+```
+
+### Results on pscratch
+```
+/pscratch/sd/p/psdehal/interproscan/
+  interproscan-5.77-108.0/   # InterProScan installation (50 GB)
+  fasta/                      # 27 input FASTA chunks (42 GB)
+  splits/                     # 13,254 × 10K-sequence splits (40 GB)
+  results/                    # 13,254 TSV result files (2.8 TB)
+  tables/                     # 3 transformed + compressed tables (27.4 GB)
+  benchmark/                  # Benchmark results and summary
+  logs/                       # SLURM job logs
 ```
 
 ## BERDL Paths

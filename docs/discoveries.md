@@ -8,6 +8,34 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-03
 
+### [amr_environmental_resistome] Resistance mechanism composition is strongly environment-dependent across 14,723 species
+
+Efflux pumps constitute 21% of AMR in human gut species but only 1% in aquatic (η²=0.127). Metal resistance constitutes 45% in soil/aquatic but 6% in human gut (η²=0.107). Clinical species have 68% accessory (acquired) AMR vs soil 43%. Within 823 multi-environment species, clinical strain fraction predicts total AMR (rho=0.465, p=2.2e-45). K. pneumoniae has 1,115 AMR clusters (only 7 core) across 13,637 genomes. All findings survive family-level phylogenetic control (20/141 families significant). This is the largest genomic AMR-environment analysis to date, extending Gibson et al. (2015, 6K genomes) by 50×.
+
+### [amr_cofitness_networks] AMR support networks enriched for flagellar motility and amino acid biosynthesis
+
+Cofitness analysis of 801 AMR genes across 28 organisms reveals that AMR cofitness neighborhoods are enriched for flagellar motility (GO:0071973, 5 organisms FDR<0.05), flagellum assembly (GO:0044780, 5 orgs), histidine biosynthesis (GO:0000105, 3 orgs), and tryptophan biosynthesis (GO:0000162, 3 orgs). This enrichment is undetectable with old FB SEED annotations (0/280 significant) — only InterProScan GO (68% coverage) reveals it. Support networks are organism-specific (cross-mechanism Jaccard 0.375 >> within-mechanism 0.207, MWU p=4.3e-13). AMR genes are in larger-than-average ICA modules (median 46 vs 27, p=1.7e-8). The co-regulation with motility and biosynthesis suggests AMR costs reflect competition for the proton motive force.
+
+### [amr_fitness_cost] AMR genes impose a universal +0.086 fitness cost across 25 bacteria
+
+Random-effects meta-analysis of 801 AMR genes across 25 organisms shows a pooled fitness shift of +0.086 [+0.074, +0.098] when AMR genes are knocked out — all 25/25 organisms positive. This cost is mechanism-independent (KW p=0.89), conservation-independent (core = accessory, p=0.33), and tier-independent (bakta_amr = keyword, p=0.26). The uniformity suggests compensatory evolution has equalized costs to an irreducible floor. However, mechanism strongly predicts conservation status (metal resistance 44% accessory vs efflux 13%, χ²=69.3, p=1.4e-13) — acquisition history, not cost, determines whether AMR genes are core or accessory. Efflux genes (broad-spectrum) show a stronger antibiotic-dependent fitness flip than enzymatic inactivation genes (narrow-spectrum): +0.094 vs −0.001, MWU p=0.007.
+
+### [amr_strain_variation] Acquired AMR genes track phylogeny more strongly than intrinsic
+
+Mantel tests across 1,261 species show non-core (acquired) AMR genes have stronger phylogenetic signal (median r=0.222) than core (intrinsic) genes (median r=0.117), paired t-test p=7.0e-16. This contradicts the standard model that acquired resistance is phylogenetically random via HGT. Instead, once a lineage acquires resistance elements, they are stably maintained and vertically inherited, creating clonal AMR lineages. Note: core genes have near-zero Jaccard variance by definition (>=95% prevalence), which partly suppresses their distance-based signal.
+
+### [amr_strain_variation] Over half of within-species AMR genes are rare (<5% prevalence)
+
+Across 1,305 species and 180,025 genomes, 51.3% of AMR gene-species occurrences are rare (<=5% prevalence), 41.3% variable (5-95%), and only 7.5% fixed (>=95%). Median pairwise Jaccard distance between strains = 0.435 — strains within the same species share less than 60% of their AMR repertoire. Atlas Core genes are 77% fixed within species; Singletons are 79% rare — validating the cross-species conservation classification at strain resolution.
+
+### [amr_strain_variation] Resistance islands are widespread — 54% of species, mean 6.2 genes
+
+1,517 resistance islands detected across 705/1,305 species, with mean phi coefficient = 0.827 (very tight co-occurrence). 88% contain multiple resistance mechanisms (efflux + enzymatic inactivation most common). Maximum island = 43 genes. These multi-mechanism islands provide coordinated defense against multiple drug classes.
+
+### [amr_strain_variation] AMR variability weakly anti-correlates with pangenome openness
+
+Spearman rho = -0.193, p = 2.2e-12. Species with more open pangenomes have slightly *lower* AMR variability — unexpected. Likely because open-pangenome species accumulate more rare/singleton AMR genes below the 5% threshold, deflating the variability index (which measures the 5-95% zone).
+
 ### [truly_dark_genes] Only 16.3% of "dark matter" resists modern annotation
 
 Of 39,532 Fitness Browser dark genes with pangenome links, bakta v1.12.0 reclassifies 33,105 (83.7%). Just 6,427 are "truly dark" — both FB and bakta agree: hypothetical protein. Truly dark genes are structurally distinct: shorter (121 vs 194 aa), less conserved (43% vs 73% core), fewer orthologs (29% vs 64%), higher GC deviation (d=0.247). These properties are consistent with recent HGT outpacing annotation databases.
@@ -629,3 +657,11 @@ for future analyses.
 ### [bacdive_phenotype_metal_tolerance] BacDive phenotypes are phylogenetic proxies for metal tolerance
 
 Classical microbiology phenotypes (Gram stain, oxygen tolerance, enzyme activities) from BacDive capture real metal tolerance signal (R²=0.16 alone, 7/10 significant after FDR) but are entirely phylogenetically confounded — adding phenotype features to a taxonomy-based model provides zero improvement (delta R²=-0.009). The genome's metal resistance gene count is the true predictor (full model R²=0.63). Urease-positive bacteria surprisingly have *lower* metal tolerance (d=-0.18), driven by Actinomycetes lineage composition. This validates genome-based prediction (Metal Fitness Atlas) over phenotype-based screening for metal tolerance assessment.
+
+### [pgp_pangenome_ecology] pqqC–acdS is a vertically inherited, soil-enriched rhizosphere module
+
+Across 27K GTDB species, pqqC (phosphate solubilization) and acdS (ACC deaminase) co-occur at OR = 7.24 — far stronger than any other PGP gene pair — and are both strongly enriched in soil/rhizosphere environments (acdS OR = 7.0, pqqC OR = 2.9). Counterintuitively, all 13 PGP genes are predominantly **core** (29.7% mean accessory vs 53.2% genome-wide), rejecting the HGT hypothesis and indicating vertical inheritance. Nitrogen fixation (nifH) forms a separate ecological guild: negatively associated with pqqC and hcnC, and depleted in soil relative to aquatic environments. The trp→ipdC coupling (OR = 2.81) holds in non-soil species but reverses in soil species, likely because soil PGPB acquire tryptophan exogenously from root exudates.
+
+### [pgp_pangenome_ecology] nbconvert crashes Spark kernels — use CSV caching in notebooks
+
+Running `jupyter nbconvert --execute` on notebooks that call `spark.sql(...).toPandas()` on large result sets causes the kernel to die (DeadKernelError). Workaround: add cache-check logic to Spark cells (`if os.path.exists(path): load CSV else run Spark`) so nbconvert can execute the notebook locally from cached CSVs after the initial JupyterHub run. The live Spark outputs should be captured interactively on JupyterHub, not via nbconvert.
