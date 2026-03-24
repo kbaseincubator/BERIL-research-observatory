@@ -5,8 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Callable
 
-import yaml
-
+from observatory_context._text import compact_text, split_frontmatter
 from observatory_context.notes import build_live_resource, parse_live_resource
 from observatory_context.render import RenderLevel, render_resource
 from observatory_context.retrieval import build_authored_resource_index, build_knowledge_index, lexical_search, rank_related_resources
@@ -331,7 +330,7 @@ class ObservatoryContextService:
         content: str,
         fallback_metadata: dict[str, Any],
     ) -> ContextResource | None:
-        metadata, body = _split_frontmatter(content, fallback_metadata)
+        metadata, body = split_frontmatter(content, fallback_metadata)
         kind = str(metadata.get("kind") or "")
         if not kind:
             return None
@@ -343,7 +342,7 @@ class ObservatoryContextService:
         elif kind == "figure":
             summary = metadata.get("caption")
         else:
-            summary = metadata.get("summary") or _compact_text(body)
+            summary = metadata.get("summary") or compact_text(body)
         return ContextResource(
             id=str(metadata.get("id") or uri.rsplit("/", 1)[-1]),
             uri=uri,
@@ -400,18 +399,3 @@ class ObservatoryContextService:
         return RenderLevel(detail_level)
 
 
-def _split_frontmatter(content: str, fallback_metadata: dict[str, Any]) -> tuple[dict[str, Any], str]:
-    metadata = dict(fallback_metadata)
-    body = content
-    if content.startswith("---\n") and "\n---\n" in content:
-        _, remainder = content.split("---\n", 1)
-        front_matter, body = remainder.split("\n---\n", 1)
-        metadata.update(yaml.safe_load(front_matter) or {})
-    return metadata, body.strip()
-
-
-def _compact_text(text: str | None, limit: int = 240) -> str | None:
-    if not text:
-        return None
-    compact = " ".join(text.split())
-    return compact[:limit]

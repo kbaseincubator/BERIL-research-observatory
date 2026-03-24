@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from observatory_context._text import compact_text
 from observatory_context.ingest import build_resource_manifest
 from observatory_context.service.models import ContextResource
 
@@ -22,7 +23,7 @@ def build_authored_resource_index(repo_root: Path) -> dict[str, ContextResource]
         elif item.kind == "figure":
             summary = metadata.get("caption")
         else:
-            summary = _compact_text(content)
+            summary = compact_text(content)
         resource = ContextResource(
             id=str(metadata.get("id") or source_path.stem),
             uri=item.uri,
@@ -39,10 +40,3 @@ def build_authored_resource_index(repo_root: Path) -> dict[str, ContextResource]
         )
         resources[resource.uri] = resource
     return resources
-
-
-def _compact_text(text: str | None, limit: int = 240) -> str | None:
-    if not text:
-        return None
-    compact = " ".join(text.split())
-    return compact[:limit]

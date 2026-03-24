@@ -7,6 +7,7 @@ from typing import Any
 
 import yaml
 
+from observatory_context._text import compact_text, split_frontmatter
 from observatory_context.uris import build_project_live_note_uri, build_shared_live_note_uri
 
 
@@ -43,7 +44,7 @@ def build_live_resource(
         "updated_at": timestamp,
         "author_or_actor": "observatory_context",
         "provenance": {"origin": "openviking-live-context"},
-        "summary": " ".join(body.split())[:240],
+        "summary": compact_text(body) or "",
     }
     content = serialize_live_resource(metadata, body)
     return {"uri": uri, "metadata": metadata, "content": content}
@@ -57,12 +58,7 @@ def serialize_live_resource(metadata: dict[str, Any], body: str) -> str:
 
 def parse_live_resource(uri: str, content: str, fallback_metadata: dict[str, Any] | None = None) -> dict[str, Any]:
     """Parse live resource content from YAML front matter plus markdown body."""
-    metadata = dict(fallback_metadata or {})
-    body = content
-    if content.startswith("---\n"):
-        _, remainder = content.split("---\n", 1)
-        front_matter, body = remainder.split("\n---\n", 1)
-        metadata.update(yaml.safe_load(front_matter) or {})
+    metadata, body = split_frontmatter(content, dict(fallback_metadata or {}))
     return {
         "id": metadata["id"],
         "uri": uri,

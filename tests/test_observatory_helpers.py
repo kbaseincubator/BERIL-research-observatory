@@ -4,85 +4,63 @@ from __future__ import annotations
 
 import pytest
 
+from observatory_context._text import compact_text, split_frontmatter
 from observatory_context.retrieval.knowledge_index import KnowledgeEntity, KnowledgeIndex
 
 
-# --- compact_text (currently _compact_text in retrieval/index.py and service/context_service.py) ---
-
-
-def _compact_text_impl(text: str | None, limit: int = 240) -> str | None:
-    """Reference implementation matching the current duplicated _compact_text."""
-    if not text:
-        return None
-    compact = " ".join(text.split())
-    return compact[:limit]
+# --- compact_text ---
 
 
 class TestCompactText:
     def test_none_returns_none(self) -> None:
-        assert _compact_text_impl(None) is None
+        assert compact_text(None) is None
 
     def test_empty_returns_none(self) -> None:
-        assert _compact_text_impl("") is None
+        assert compact_text("") is None
 
     def test_short_text_passes_through(self) -> None:
-        assert _compact_text_impl("hello world") == "hello world"
+        assert compact_text("hello world") == "hello world"
 
     def test_whitespace_normalized(self) -> None:
-        assert _compact_text_impl("hello   \n\t  world") == "hello world"
+        assert compact_text("hello   \n\t  world") == "hello world"
 
     def test_long_text_truncated_at_240(self) -> None:
         long_text = "a " * 200
-        result = _compact_text_impl(long_text)
+        result = compact_text(long_text)
         assert result is not None
         assert len(result) == 240
 
     def test_custom_limit(self) -> None:
-        result = _compact_text_impl("hello world foo bar", limit=11)
+        result = compact_text("hello world foo bar", limit=11)
         assert result == "hello world"
 
 
-# --- split_frontmatter (currently _split_frontmatter in service/context_service.py) ---
-
-
-def _split_frontmatter_impl(
-    content: str, fallback_metadata: dict,
-) -> tuple[dict, str]:
-    """Reference implementation matching context_service._split_frontmatter."""
-    import yaml
-
-    metadata = dict(fallback_metadata)
-    body = content
-    if content.startswith("---\n") and "\n---\n" in content:
-        _, remainder = content.split("---\n", 1)
-        front_matter, body = remainder.split("\n---\n", 1)
-        metadata.update(yaml.safe_load(front_matter) or {})
-    return metadata, body.strip()
+# --- split_frontmatter ---
 
 
 class TestSplitFrontmatter:
     def test_valid_frontmatter_parsed(self) -> None:
         content = "---\ntitle: Hello\nkind: note\n---\n\nBody text here."
-        metadata, body = _split_frontmatter_impl(content, {})
+        metadata, body = split_frontmatter(content, {})
         assert metadata["title"] == "Hello"
         assert metadata["kind"] == "note"
         assert body == "Body text here."
 
     def test_no_frontmatter_returns_content_as_body(self) -> None:
         content = "Just plain text without frontmatter."
-        metadata, body = _split_frontmatter_impl(content, {"fallback": True})
+        metadata, body = split_frontmatter(content, {"fallback": True})
         assert metadata == {"fallback": True}
         assert body == "Just plain text without frontmatter."
 
     def test_opening_delimiter_without_closing_does_not_crash(self) -> None:
         content = "---\ntitle: Hello\nNo closing delimiter here."
-        metadata, body = _split_frontmatter_impl(content, {})
+        metadata, body = split_frontmatter(content, {})
         # Should return content as-is since no closing ---
         assert body == content.strip()
 
     def test_fallback_metadata_preserved_and_merged(self) -> None:
         content = "---\ntitle: From FM\n---\n\nBody."
-        metadata, body = _split_frontmatter_impl(content, {"existing": "value"})
+        metadata, body = split_frontmatter(content, {"existing": "value"})
         assert metadata["existing"] == "value"
         assert metadata["title"] == "From FM"
 
