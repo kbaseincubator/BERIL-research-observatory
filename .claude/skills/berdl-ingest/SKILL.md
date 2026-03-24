@@ -63,6 +63,30 @@ sleep 40
 Do not skip this step or defer it to the notebook. The ingest must never prompt the user for
 JupyterHub credentials or ask them to visit the hub URL.
 
+### Step 0b: Verify MinIO credentials
+
+Before proceeding, confirm `~/.mc/config.json` exists and has a `berdl-minio` alias:
+
+```bash
+python3 -c "
+import json, pathlib
+cfg = json.load(open(pathlib.Path.home() / '.mc/config.json'))
+alias = cfg['aliases']['berdl-minio']
+print('berdl-minio URL:', alias['url'])
+"
+```
+
+If this fails with `FileNotFoundError` or `KeyError`, the alias is not configured.
+Tell the user to run:
+
+```bash
+bash scripts/configure_mc.sh --berdl-proxy
+```
+
+Do not proceed to Step 1 until this check passes. Connectivity (whether the credentials
+are valid against the live cluster) is verified automatically when `initialize()` runs
+in the notebook — any auth failure there will surface with a clear error message.
+
 ### Step 1: Ask for source directory
 
 Ask the user for the path to their source data directory. The directory should contain:
@@ -192,7 +216,12 @@ jupyter nbconvert --to notebook --execute --inplace \
 ```
 
 The Pre-flight cell will raise a `RuntimeError` (intentionally) when `CONFIRMED = False`,
-halting execution after printing the plan. Read the plan output from the notebook cell outputs:
+halting execution after printing the plan.
+
+**Extract the plan output and present it to the user in chat.** Do not ask the user to
+open the notebook or edit it manually — the agent handles all notebook edits.
+
+Extract all cell text output from the notebook:
 
 ```bash
 python3 -c "
@@ -204,13 +233,23 @@ for cell in nb.get('cells', []):
 "
 ```
 
-**Review the pre-flight plan with the user.** It shows:
+Format the plan as a clear markdown summary in chat, showing:
 
-- **Step 1**: each table's file size and total upload size
-- **Step 2**: for each table — single ingest or number of chunks × lines per chunk
+- **Upload**: each table name, file size (GB), and total upload size
+- **Ingest**: for each table — single ingest or number of chunks × lines per chunk
 
-Once the user confirms the plan looks correct, set `CONFIRMED = True` in the config cell,
-then execute the full notebook:
+**Do not run the full notebook until the user explicitly confirms.** Ask the user:
+
+> "Here is the ingest plan. Would you like to (a) request any changes, or (b) confirm
+> and proceed?"
+
+**(a) Suggest changes** — Make the requested edits to cell
+`b0000003-0000-0000-0000-000000000003` in the notebook (e.g. lower `CHUNK_TARGET_GB`,
+change `MODE`, disable a table), re-run the pre-flight `nbconvert` command, extract the
+updated output, and re-present the revised plan. Repeat until the user is satisfied.
+
+**(b) Confirm and proceed** — Edit cell `b0000003-0000-0000-0000-000000000003` to set
+`CONFIRMED = True`, then execute the full notebook:
 
 ```bash
 source .venv-berdl/bin/activate
@@ -286,6 +325,11 @@ count mismatch is found, use these to cross-check against the Delta table's last
 ## Error Handling
 
 - **Ingest packages missing**: run `bash scripts/bootstrap_ingest.sh`.
+- **MinIO config missing or alias not found** (`FileNotFoundError` or `KeyError` on
+  `berdl-minio`): run `bash scripts/configure_mc.sh --berdl-proxy`, then re-run Step 0b.
+- **MinIO connection failed** (credentials invalid or expired): re-run
+  `bash scripts/configure_mc.sh --berdl-proxy` to refresh the alias, confirm pproxy is
+  running on :8123, then retry. Never print `accessKey` or `secretKey` when diagnosing.
 - **SSH tunnels down (ports 1337/1338)**: tell the user to run the missing tunnel command(s)
   in a terminal (replace `<username>` with their LBNL username), then re-run the
   initialization cell:
@@ -297,9 +341,10 @@ count mismatch is found, use these to cross-check against the Delta table's last
 - **JupyterHub server not running**: this should have been caught in Step 0. Re-run Step 0
   (`berdl-remote login` then `berdl-remote spawn --timeout 120`, then `sleep 40`) before
   retrying. Do not ask the user to log into JupyterHub manually.
-- **Spark session timeout mid-chunk**: health check before each chunk detects this
-  automatically. The notebook reconnects and retries the failed chunk. Progress
-  already written to MinIO is preserved.
+- **Spark session timeout mid-table**: a health check runs once per table before ingest
+  begins. If Spark dies mid-table during a chunked ingest, the chunk write raises and
+  the ingest cell fails. Re-run the cell to resume automatically from the last completed
+  chunk — no data is lost because the progress log records every completed chunk.
 - **Spark session timeout limit (1 hour)**: cluster admin task — request BERDL
   administrators to increase Spark Connect session timeout to 10 hours.
 - **Namespace already exists**: confirm with user before re-ingesting; `MODE = "overwrite"` on
@@ -314,7 +359,8 @@ count mismatch is found, use these to cross-check against the Delta table's last
 
 ## Safety Rules
 
-1. Never print or log MinIO `secretKey` values.
+1. Never print, log, or echo any MinIO credential fields (`accessKey`, `secretKey`).
+   When inspecting `~/.mc/config.json` for diagnostics, only print the `url` field.
 2. Never print, log, or write `KBASE_AUTH_TOKEN` in any notebook, script, or file. Always
    access it exclusively through `os.getenv("KBASE_AUTH_TOKEN")` or the `.env` file loader —
    never hardcode or echo the value.
