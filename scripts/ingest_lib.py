@@ -391,14 +391,15 @@ def parse_sql_schema(sql_path: Path):
             rest       = tokens[2] if len(tokens) > 2 else ""
             nullable   = not bool(re.search(r"\bNOT\s+NULL\b", rest, re.I))
             comment_m  = re.search(r"COMMENT\s+'([^']*)'", rest, re.I)
-            comment    = comment_m.group(1) if comment_m else None
             cols.append(f"{col_name} {spark_type}")
-            col_defs.append({
+            col_def = {
                 "column":   col_name,
                 "type":     spark_type.lower(),
                 "nullable": nullable,
-                "comment":  comment,
-            })
+            }
+            if comment_m:
+                col_def["comment"] = comment_m.group(1)
+            col_defs.append(col_def)
         if cols:
             schemas[table_name]     = ", ".join(cols)
             schema_defs[table_name] = col_defs
@@ -615,7 +616,6 @@ def _build_dataset_config(
         "tables": [
             {
                 "name": table, "enabled": True,
-                "schema_sql": schemas.get(table, ""),
                 "schema": schema_defs.get(table, []),
                 "partition_by": None, "mode": mode,
                 "bronze_path": f"s3a://{bucket}/{bronze_prefix}/{table}{file_ext}",
