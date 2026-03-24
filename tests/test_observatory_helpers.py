@@ -68,46 +68,26 @@ class TestSplitFrontmatter:
 # --- _compute_enables (manifest version, dict-of-dicts) ---
 
 
-class TestComputeEnablesManifest:
+class TestComputeEnables:
     def test_populates_enables_from_depends_on(self) -> None:
-        from observatory_context.ingest.manifest import _compute_enables
-
-        entries = {
-            "alpha": {"id": "alpha", "depends_on": ["beta"]},
-            "beta": {"id": "beta", "depends_on": []},
-            "gamma": {"id": "gamma", "depends_on": ["beta"]},
-        }
-        _compute_enables(entries)
-
-        assert entries["beta"]["enables"] == ["alpha", "gamma"]
-        assert entries["alpha"]["enables"] == []
-        assert entries["gamma"]["enables"] == []
-
-    def test_missing_dependency_is_silently_skipped(self) -> None:
-        from observatory_context.ingest.manifest import _compute_enables
-
-        entries = {
-            "alpha": {"id": "alpha", "depends_on": ["nonexistent"]},
-        }
-        _compute_enables(entries)
-        assert entries["alpha"]["enables"] == []
-
-
-# --- _compute_enables (exports version, list-of-dicts) ---
-
-
-class TestComputeEnablesExports:
-    def test_populates_enables_from_depends_on(self) -> None:
-        from observatory_context.materialize.exports import _compute_enables
+        from observatory_context._graph import compute_enables
 
         projects = [
-            {"id": "alpha", "depends_on": ["beta"], "enables": []},
-            {"id": "beta", "depends_on": [], "enables": []},
-            {"id": "gamma", "depends_on": ["beta"], "enables": []},
+            {"id": "alpha", "depends_on": ["beta"]},
+            {"id": "beta", "depends_on": []},
+            {"id": "gamma", "depends_on": ["beta"]},
         ]
-        _compute_enables(projects)
+        compute_enables(projects)
 
         assert projects[1]["enables"] == ["alpha", "gamma"]
+        assert projects[0]["enables"] == []
+        assert projects[2]["enables"] == []
+
+    def test_missing_dependency_is_silently_skipped(self) -> None:
+        from observatory_context._graph import compute_enables
+
+        projects = [{"id": "alpha", "depends_on": ["nonexistent"]}]
+        compute_enables(projects)
         assert projects[0]["enables"] == []
 
 

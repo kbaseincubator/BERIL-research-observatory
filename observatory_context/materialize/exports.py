@@ -5,6 +5,7 @@ from __future__ import annotations
 from copy import deepcopy
 from pathlib import Path
 
+from observatory_context._graph import compute_enables
 from observatory_context.service import ObservatoryContextService
 
 
@@ -42,7 +43,7 @@ def build_project_registry_export(
         project["enables"] = []
         projects.append(project)
 
-    _compute_enables(projects)
+    compute_enables(projects)
     return {
         "version": 1,
         "generated_at": generated_at,
@@ -75,14 +76,3 @@ def build_figure_catalog_export(
     }
 
 
-def _compute_enables(projects: list[dict[str, object]]) -> None:
-    id_to_project = {str(project["id"]): project for project in projects}
-    for project in projects:
-        for dependency in project.get("depends_on") or []:
-            dependency_id = str(dependency)
-            if dependency_id in id_to_project:
-                enables = id_to_project[dependency_id].setdefault("enables", [])
-                if project["id"] not in enables:
-                    enables.append(project["id"])
-    for project in projects:
-        project["enables"] = sorted(project.get("enables") or [])

@@ -9,6 +9,7 @@ import yaml
 
 from scripts.build_registry import parse_figures_from_report, parse_project
 
+from observatory_context._graph import compute_enables
 from observatory_context.uris import (
     build_figure_resource_uri,
     build_knowledge_resource_uri,
@@ -82,7 +83,7 @@ def build_resource_manifest(
         if not project:
             continue
         project_entries[project_id] = project
-    _compute_enables(project_entries)
+    compute_enables(list(project_entries.values()))
 
     for project_id, project in project_entries.items():
         for name in ("README.md", "REPORT.md", "provenance.yaml"):
@@ -209,18 +210,6 @@ def _knowledge_root_keys(relative_path: Path) -> str:
     except KeyError as exc:
         raise ValueError(f"Unsupported knowledge overlay path: {relative_posix}") from exc
 
-
-def _compute_enables(project_entries: dict[str, dict]) -> None:
-    for project in project_entries.values():
-        project["depends_on"] = sorted(project.get("depends_on") or [])
-        project["enables"] = []
-    for project in project_entries.values():
-        for dependency in project.get("depends_on") or []:
-            dependency_id = str(dependency)
-            if dependency_id in project_entries:
-                project_entries[dependency_id]["enables"].append(project["id"])
-    for project in project_entries.values():
-        project["enables"] = sorted(project.get("enables") or [])
 
 
 def _merge_project_entry(parsed: dict, legacy: dict) -> dict:
