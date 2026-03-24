@@ -27,7 +27,7 @@ def build_raw_knowledge_overlays(service: ObservatoryContextService) -> list[Ove
     """Build deterministic overlay payloads from tracked raw knowledge resources."""
     resources = [
         resource
-        for resource in service._all_resources().values()
+        for resource in service.all_resources().values()
         if resource.kind == "knowledge_document" and "raw-knowledge" in resource.tags
     ]
     resources.sort(key=lambda resource: resource.uri)

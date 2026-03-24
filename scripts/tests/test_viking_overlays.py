@@ -175,7 +175,7 @@ def test_missing_required_overlay_metadata_fails(service: ObservatoryContextServ
 
     resource = next(
         resource
-        for resource in service._all_resources().values()
+        for resource in service.all_resources().values()
         if resource.uri.endswith("/overlays/raw-knowledge/entities/genes.yaml")
     )
     resource.metadata.pop("overlay_relative_path", None)

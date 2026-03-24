@@ -292,6 +292,10 @@ class ObservatoryContextService:
             resources.append(resource)
         return resources
 
+    def all_resources(self) -> dict[str, ContextResource]:
+        """Return all authored and client-backed resources."""
+        return self._all_resources()
+
     def _all_resources(self) -> dict[str, ContextResource]:
         if self._cached_all_resources is None:
             resources = dict(self._authored_resources)
