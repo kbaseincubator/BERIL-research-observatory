@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 import yaml
@@ -42,17 +42,13 @@ class KnowledgeIndex:
         self._relations = relations
 
         self._entities_by_kind: dict[str, list[KnowledgeEntity]] = {}
-        for entity in entities.values():
-            self._entities_by_kind.setdefault(entity.kind, []).append(entity)
-
         self._project_to_entities: dict[str, set[str]] = {}
-        for entity in entities.values():
-            for project_id in entity.projects:
-                self._project_to_entities.setdefault(project_id, set()).add(entity.id)
-
         self._entity_to_projects: dict[str, set[str]] = {}
         for entity in entities.values():
+            self._entities_by_kind.setdefault(entity.kind, []).append(entity)
             self._entity_to_projects[entity.id] = set(entity.projects)
+            for project_id in entity.projects:
+                self._project_to_entities.setdefault(project_id, set()).add(entity.id)
 
     def get_entity(self, entity_id: str) -> KnowledgeEntity | None:
         return self._entities.get(entity_id)
