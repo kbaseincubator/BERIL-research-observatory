@@ -53,6 +53,12 @@ sys.path.insert(0, str(REPO_ROOT))
 from observatory_context.render import RenderLevel
 
 
+def _print_backend(backend: str) -> None:
+    """Print a visible banner showing which backend served this query."""
+    print(f"=== Backend: {backend} ===")
+    print()
+
+
 # ---------------------------------------------------------------------------
 # YAML helpers
 # ---------------------------------------------------------------------------
@@ -706,6 +712,7 @@ def _handle_search(args) -> int:
             detail_level=RenderLevel.L1,
         )
         if results:
+            _print_backend("OpenViking (semantic search)")
             print(f'Results for "{args.topic}"')
             print("=" * (len(args.topic) + 13))
             print()
@@ -715,6 +722,7 @@ def _handle_search(args) -> int:
     except Exception:
         pass
 
+    _print_backend("Deterministic (Git registry)")
     registry, _, findings = _require_registry_artifacts()
     print(_render_topic_search(args.topic, registry, findings))
     return 0
@@ -725,6 +733,7 @@ def _handle_figures(args) -> int:
         service = _try_build_service(offline=False)
         results = service.search_context(args.topic, kind="figure", detail_level=RenderLevel.L1)
         if results:
+            _print_backend("OpenViking (semantic search)")
             print(f'Figures matching "{args.topic}"')
             print("=" * (len(args.topic) + 18))
             print()
@@ -733,6 +742,7 @@ def _handle_figures(args) -> int:
             return 0
     except Exception:
         pass
+    _print_backend("Deterministic (Git registry)")
     _, figures, _ = _require_registry_artifacts()
     print(_render_figure_search(args.topic, figures))
     return 0
@@ -740,6 +750,10 @@ def _handle_figures(args) -> int:
 
 def _handle_data(args) -> int:
     boosted_ids = _semantic_project_ids(args.topic)
+    if boosted_ids:
+        _print_backend("Deterministic + semantic boost")
+    else:
+        _print_backend("Deterministic (Git registry)")
     registry, _, _ = _require_registry_artifacts()
     print(_render_data_search(args.topic, registry, boosted_project_ids=boosted_ids or None))
     return 0
@@ -750,6 +764,7 @@ def _handle_project(args) -> int:
     try:
         service = _try_build_service(offline=False)
         workspace = service.get_project_workspace(args.project_id, detail_level=RenderLevel.L1)
+        _print_backend("OpenViking (semantic search)")
         print(f"Project workspace: {workspace.project_id}")
         print(f"URI: {workspace.workspace_uri}")
         print()
@@ -761,12 +776,14 @@ def _handle_project(args) -> int:
     except Exception:
         pass
 
+    _print_backend("Deterministic (Git registry)")
     registry, _, _ = _require_registry_artifacts()
     print(_render_project(args.project_id, registry))
     return 0
 
 
 def _handle_landscape(args) -> int:
+    _print_backend("Deterministic (Git registry)")
     registry, _, _ = _require_registry_artifacts()
     output = _render_landscape(registry)
     try:
@@ -784,15 +801,22 @@ def _handle_landscape(args) -> int:
 def _handle_entities(args) -> int:
     search_term = " ".join(filter(None, [args.entity_type, args.query]))
     boosted_ids = _semantic_project_ids(search_term) if args.query else None
+    if boosted_ids:
+        _print_backend("Deterministic + semantic boost")
+    else:
+        _print_backend("Deterministic (Git registry)")
     print(_render_entities(args.entity_type, args.query, boosted_project_ids=boosted_ids))
     return 0
 
 
 def _handle_connections(args) -> int:
+    has_semantic = False
     try:
         service = _try_build_service(offline=False)
         results = service.search_context(args.entity, detail_level=RenderLevel.L1)
         if results:
+            has_semantic = True
+            _print_backend("OpenViking (semantic search) + Deterministic")
             print(f"### Resources mentioning '{args.entity}'")
             print()
             for i, r in enumerate(results[:3], 1):
@@ -801,6 +825,8 @@ def _handle_connections(args) -> int:
             print()
     except Exception:
         pass
+    if not has_semantic:
+        _print_backend("Deterministic (Git registry)")
     print(_render_connections(args.entity))
     return 0
 
@@ -808,11 +834,16 @@ def _handle_connections(args) -> int:
 def _handle_hypotheses(args) -> int:
     search_term = args.status or "hypothesis"
     boosted_ids = _semantic_project_ids(search_term)
+    if boosted_ids:
+        _print_backend("Deterministic + semantic boost")
+    else:
+        _print_backend("Deterministic (Git registry)")
     print(_render_hypotheses(args.status, boosted_project_ids=boosted_ids or None))
     return 0
 
 
 def _handle_gaps(args) -> int:
+    _print_backend("Deterministic (Git registry)")
     registry, _, _ = _require_registry_artifacts()
     print(_render_gaps(registry))
     return 0
@@ -820,11 +851,16 @@ def _handle_gaps(args) -> int:
 
 def _handle_timeline(args) -> int:
     boosted_ids = _semantic_project_ids(args.project) if args.project else None
+    if boosted_ids:
+        _print_backend("Deterministic + semantic boost")
+    else:
+        _print_backend("Deterministic (Git registry)")
     print(_render_timeline(args.project, boosted_project_ids=boosted_ids or None))
     return 0
 
 
 def _handle_backfill(args) -> int:
+    _print_backend("Deterministic (Git registry)")
     print(_render_backfill(args.project_id))
     return 0
 
@@ -834,6 +870,7 @@ def _handle_related(args) -> int:
     try:
         service = _try_build_service(offline=False)
         related = service.related_resources(args.id_or_uri, limit=args.limit)
+        _print_backend("OpenViking (semantic search)")
         print(f"Related resources for {args.id_or_uri}")
         print("=" * (len(args.id_or_uri) + 22))
         print()
@@ -849,6 +886,7 @@ def _handle_related(args) -> int:
     try:
         service = _try_build_service(offline=True)
         related = service.related_resources(args.id_or_uri, limit=args.limit)
+        _print_backend("Deterministic (Git registry)")
         print(f"Related resources for {args.id_or_uri}")
         print("=" * (len(args.id_or_uri) + 22))
         print()

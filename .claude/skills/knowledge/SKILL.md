@@ -72,6 +72,13 @@ Map subcommands directly:
 - `/knowledge backfill [project_id]` → `backfill [project_id]`
 - `/knowledge related <id>` → `related <id_or_uri> [--limit N]`
 
+### Backend Indicator
+
+The script prints a `=== Backend: ... ===` banner at the top of every output. **Always relay this to the user** so they know which search layer served the query. Example phrasing:
+- "Using **OpenViking semantic search**" when you see `OpenViking (semantic search)`
+- "Using **deterministic Git registry**" when you see `Deterministic (Git registry)`
+- "Using **deterministic + semantic boost**" when you see `Deterministic + semantic boost`
+
 ### Subcommand: `/knowledge <topic>`
 
 **Search projects and findings by keyword.**
