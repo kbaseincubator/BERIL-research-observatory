@@ -35,6 +35,7 @@ class ObservatoryContextService:
             self._knowledge_index: KnowledgeIndex | None = build_knowledge_index(self.repo_root)
         except Exception:
             self._knowledge_index = None
+        self._cached_all_resources: dict[str, ContextResource] | None = None
         self._project_ids = sorted(
             {
                 project_id
@@ -292,9 +293,11 @@ class ObservatoryContextService:
         return resources
 
     def _all_resources(self) -> dict[str, ContextResource]:
-        resources = dict(self._authored_resources)
-        resources.update(self._load_client_resources())
-        return resources
+        if self._cached_all_resources is None:
+            resources = dict(self._authored_resources)
+            resources.update(self._load_client_resources())
+            self._cached_all_resources = resources
+        return dict(self._cached_all_resources)
 
     def _load_client_resources(self) -> dict[str, ContextResource]:
         if self.client is None:
@@ -377,6 +380,7 @@ class ObservatoryContextService:
                 )
             if metadata.get("links"):
                 self.client.link_resources(uri, metadata["links"], reason=f"{metadata['kind']} links")
+        self._cached_all_resources = None
         parsed = parse_live_resource(uri, content, fallback_metadata=metadata)
         return ContextResource(**parsed)
 
