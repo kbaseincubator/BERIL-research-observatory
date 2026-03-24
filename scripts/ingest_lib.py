@@ -409,7 +409,7 @@ def parse_sql_schema(sql_path: Path):
         print(f"  {name}:")
         for col in defs:
             nullable_tag = "" if col["nullable"] else "  NOT NULL"
-            comment_tag  = f"  # {col['comment']}" if col["comment"] else ""
+            comment_tag  = f"  # {col['comment']}" if col.get("comment") else ""
             print(f"    {col['column']}: {col['type']}{nullable_tag}{comment_tag}")
 
     return schemas, schema_defs
