@@ -293,36 +293,43 @@ def detect_source_files(data_dir: Path):
     """Scan data_dir and return (source_mode, source_db, sql_schema, data_files,
     file_ext, delimiter).
 
-    source_mode  -- 'sqlite', 'tsv', or 'csv'
+    source_mode  -- 'sqlite', 'parquet', 'tsv', or 'csv'
     source_db    -- Path to the .db file, or None
-    sql_schema   -- Path to the .sql schema file, or None
+    sql_schema   -- Path to the .sql schema file, or None (always None for parquet)
     data_files   -- list of Paths to the files to ingest (empty for sqlite mode;
                     populated by export_sqlite)
-    file_ext     -- '.tsv' or '.csv'
-    delimiter    -- '\\t' or ','
+    file_ext     -- '.parquet', '.tsv', or '.csv'
+    delimiter    -- '\\t' or ',' (ignored for parquet)
     """
     if not data_dir.exists():
         raise FileNotFoundError(f"DATA_DIR not found: {data_dir}")
 
-    db_files  = (sorted(data_dir.glob("*.db"))
-                 + sorted(data_dir.glob("*.sqlite"))
-                 + sorted(data_dir.glob("*.sqlite3")))
-    sql_files = sorted(data_dir.glob("*.sql"))
-    tsv_files = sorted(data_dir.glob("*.tsv"))
-    csv_files = sorted(data_dir.glob("*.csv"))
+    db_files      = (sorted(data_dir.glob("*.db"))
+                     + sorted(data_dir.glob("*.sqlite"))
+                     + sorted(data_dir.glob("*.sqlite3")))
+    sql_files     = sorted(data_dir.glob("*.sql"))
+    tsv_files     = sorted(data_dir.glob("*.tsv"))
+    csv_files     = sorted(data_dir.glob("*.csv"))
+    parquet_files = sorted(data_dir.glob("*.parquet"))
 
     print(f"SQLite databases : {[f.name for f in db_files]}")
     print(f"SQL schema files : {[f.name for f in sql_files]}")
     print(f"TSV files        : {[f.name for f in tsv_files]}")
     print(f"CSV files        : {[f.name for f in csv_files]}")
+    print(f"Parquet files    : {[f.name for f in parquet_files]}")
 
     sql_schema = sql_files[0] if sql_files else None
-    print(f"Schema file      : "
-          f"{sql_schema.name if sql_schema else 'none — all columns default to STRING'}")
+    if not parquet_files:
+        print(f"Schema file      : "
+              f"{sql_schema.name if sql_schema else 'none — all columns default to STRING'}")
 
     if db_files:
         print(f"\nMode: SQLite -> TSV  (source: {db_files[0].name})")
         return "sqlite", db_files[0], sql_schema, [], ".tsv", "\t"
+    elif parquet_files:
+        print(f"\nMode: Parquet files ({len(parquet_files)} found)")
+        print("Schema           : embedded in Parquet metadata")
+        return "parquet", None, None, parquet_files, ".parquet", "\t"
     elif tsv_files:
         print(f"\nMode: TSV files ({len(tsv_files)} found)")
         return "tsv", None, sql_schema, tsv_files, ".tsv", "\t"
@@ -481,8 +488,11 @@ def build_table_stats(
     chunk_target_bytes = chunk_target_gb * 1e9
     table_stats: dict = {}
 
-    # Infer STRING schema from headers for any table not covered by the .sql file
+    # Infer STRING schema from headers for any TSV/CSV table not covered by a .sql file.
+    # Parquet files carry embedded schema — skip them.
     for f in source_files:
+        if f.suffix == ".parquet":
+            continue
         table = f.stem
         if table not in schemas:
             with open(f, newline="", encoding="utf-8") as fh:
@@ -498,7 +508,10 @@ def build_table_stats(
         total_lines = _count_lines(f)
         data_lines  = max(total_lines - 1, 0)   # exclude header
 
-        if chunked_ingest and size_bytes > chunk_target_bytes and data_lines > 0:
+        # Parquet uses Spark's native reader — pandas chunking is not supported.
+        if f.suffix == ".parquet":
+            chunk_size, n_chunks = data_lines, 1
+        elif chunked_ingest and size_bytes > chunk_target_bytes and data_lines > 0:
             chunk_size = max(1, round(data_lines * chunk_target_bytes / size_bytes))
             n_chunks   = math.ceil(data_lines / chunk_size)
         else:
@@ -585,6 +598,12 @@ def _build_dataset_config(
     tenant, dataset, bucket, bronze_prefix, silver_base,
     table_stats, schemas, schema_defs, mode, file_ext, delimiter,
 ) -> dict:
+    is_parquet = file_ext == ".parquet"
+    defaults = (
+        {"parquet": {"inferSchema": True}}
+        if is_parquet
+        else {"csv": {"header": True, "delimiter": delimiter, "inferSchema": False}}
+    )
     return {
         "tenant": tenant, "dataset": dataset, "is_tenant": True,
         "paths": {
@@ -592,7 +611,7 @@ def _build_dataset_config(
             "bronze_base": f"s3a://{bucket}/{bronze_prefix}/",
             "silver_base": silver_base,
         },
-        "defaults": {"csv": {"header": True, "delimiter": delimiter, "inferSchema": False}},
+        "defaults": defaults,
         "tables": [
             {
                 "name": table, "enabled": True,
