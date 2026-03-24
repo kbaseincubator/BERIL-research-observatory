@@ -39,4 +39,4 @@ build-backend = "hatchling.build"
 packages = ["observatory_context"]
 
 [tool.pytest.ini_options]
-testpaths = ["scripts/tests"]
+testpaths = ["scripts/tests", "tests"]
