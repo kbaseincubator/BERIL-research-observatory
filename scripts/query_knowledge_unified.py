@@ -671,10 +671,20 @@ def _try_build_service(offline: bool = False):
         return runtime.build_service(REPO_ROOT, offline=True)
 
 
+def _is_openviking_live(service) -> bool:
+    """Check whether the service has a live OpenViking connection."""
+    try:
+        return service.client is not None and service.client.health()
+    except Exception:
+        return False
+
+
 def _semantic_project_ids(query: str) -> set[str]:
     """Return project IDs from a semantic search; empty set if unavailable."""
     try:
         service = _try_build_service(offline=False)
+        if not _is_openviking_live(service):
+            return set()
         results = service.search_context(query, detail_level=RenderLevel.L1)
         return {pid for r in results for pid in r.resource.project_ids}
     except Exception:
@@ -706,19 +716,20 @@ def _handle_search(args) -> int:
     """Search: try service (OpenViking-backed) first, fall back to deterministic."""
     try:
         service = _try_build_service(offline=False)
-        results = service.search_context(
-            args.topic,
-            project=args.project,
-            detail_level=RenderLevel.L1,
-        )
-        if results:
-            _print_backend("OpenViking (semantic search)")
-            print(f'Results for "{args.topic}"')
-            print("=" * (len(args.topic) + 13))
-            print()
-            for i, response in enumerate(results[: args.limit], 1):
-                _print_result(i, response)
-            return 0
+        if _is_openviking_live(service):
+            results = service.search_context(
+                args.topic,
+                project=args.project,
+                detail_level=RenderLevel.L1,
+            )
+            if results:
+                _print_backend("OpenViking (semantic search)")
+                print(f'Results for "{args.topic}"')
+                print("=" * (len(args.topic) + 13))
+                print()
+                for i, response in enumerate(results[: args.limit], 1):
+                    _print_result(i, response)
+                return 0
     except Exception:
         pass
 
@@ -731,15 +742,16 @@ def _handle_search(args) -> int:
 def _handle_figures(args) -> int:
     try:
         service = _try_build_service(offline=False)
-        results = service.search_context(args.topic, kind="figure", detail_level=RenderLevel.L1)
-        if results:
-            _print_backend("OpenViking (semantic search)")
-            print(f'Figures matching "{args.topic}"')
-            print("=" * (len(args.topic) + 18))
-            print()
-            for i, r in enumerate(results[:20], 1):
-                _print_result(i, r)
-            return 0
+        if _is_openviking_live(service):
+            results = service.search_context(args.topic, kind="figure", detail_level=RenderLevel.L1)
+            if results:
+                _print_backend("OpenViking (semantic search)")
+                print(f'Figures matching "{args.topic}"')
+                print("=" * (len(args.topic) + 18))
+                print()
+                for i, r in enumerate(results[:20], 1):
+                    _print_result(i, r)
+                return 0
     except Exception:
         pass
     _print_backend("Deterministic (Git registry)")
@@ -763,16 +775,17 @@ def _handle_project(args) -> int:
     """Project: try service first, fall back to deterministic."""
     try:
         service = _try_build_service(offline=False)
-        workspace = service.get_project_workspace(args.project_id, detail_level=RenderLevel.L1)
-        _print_backend("OpenViking (semantic search)")
-        print(f"Project workspace: {workspace.project_id}")
-        print(f"URI: {workspace.workspace_uri}")
-        print()
-        print(workspace.project_resource.title)
-        print()
-        for resource in workspace.resources:
-            _print_resource(resource)
-        return 0
+        if _is_openviking_live(service):
+            workspace = service.get_project_workspace(args.project_id, detail_level=RenderLevel.L1)
+            _print_backend("OpenViking (semantic search)")
+            print(f"Project workspace: {workspace.project_id}")
+            print(f"URI: {workspace.workspace_uri}")
+            print()
+            print(workspace.project_resource.title)
+            print()
+            for resource in workspace.resources:
+                _print_resource(resource)
+            return 0
     except Exception:
         pass
 
@@ -813,16 +826,17 @@ def _handle_connections(args) -> int:
     has_semantic = False
     try:
         service = _try_build_service(offline=False)
-        results = service.search_context(args.entity, detail_level=RenderLevel.L1)
-        if results:
-            has_semantic = True
-            _print_backend("OpenViking (semantic search) + Deterministic")
-            print(f"### Resources mentioning '{args.entity}'")
-            print()
-            for i, r in enumerate(results[:3], 1):
-                _print_result(i, r)
-            print("---")
-            print()
+        if _is_openviking_live(service):
+            results = service.search_context(args.entity, detail_level=RenderLevel.L1)
+            if results:
+                has_semantic = True
+                _print_backend("OpenViking (semantic search) + Deterministic")
+                print(f"### Resources mentioning '{args.entity}'")
+                print()
+                for i, r in enumerate(results[:3], 1):
+                    _print_result(i, r)
+                print("---")
+                print()
     except Exception:
         pass
     if not has_semantic:
@@ -869,17 +883,18 @@ def _handle_related(args) -> int:
     """Related: try service first, fall back to deterministic."""
     try:
         service = _try_build_service(offline=False)
-        related = service.related_resources(args.id_or_uri, limit=args.limit)
-        _print_backend("OpenViking (semantic search)")
-        print(f"Related resources for {args.id_or_uri}")
-        print("=" * (len(args.id_or_uri) + 22))
-        print()
-        if not related:
-            print("No related resources found.")
-        else:
-            for resource in related:
-                _print_resource(resource)
-        return 0
+        if _is_openviking_live(service):
+            related = service.related_resources(args.id_or_uri, limit=args.limit)
+            _print_backend("OpenViking (semantic search)")
+            print(f"Related resources for {args.id_or_uri}")
+            print("=" * (len(args.id_or_uri) + 22))
+            print()
+            if not related:
+                print("No related resources found.")
+            else:
+                for resource in related:
+                    _print_resource(resource)
+            return 0
     except Exception:
         pass
 
