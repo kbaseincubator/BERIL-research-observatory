@@ -1,0 +1,129 @@
+
+=============================== Model properties ==============================
+
+   Number of:
+     all atoms      : 1080
+     H or D atoms   : 0
+     chains         : 2
+     a.a. residues  : 131
+     nucleotides    : 0
+     water          : 67
+     other (ligands): 0
+   Ligands: None
+
+============================= Geometry restraints =============================
+
+
+                        ----------Bond lengths----------                       
+
+  All restrained atoms within 4.0 sigma of ideal values.
+
+  Min. delta:    0.000 (Z=  0.000)
+  Max. delta:    0.055 (Z=  1.661)
+  Mean delta:    0.007 (Z=  0.330)
+
+                        ----------Bond angles----------                        
+
+  All restrained atoms within 4.0 sigma of ideal values.
+
+  Min. delta:    0.000 (Z=  0.000)
+  Max. delta:    4.828 (Z=  2.539)
+  Mean delta:    0.875 (Z=  0.497)
+
+                      ----------Dihedral angles----------                      
+
+  atoms                   ideal    model    delta   sigma  residual   deviation
+   A  80  TRP  CA
+   A  80  TRP  C
+   A  81  TRP  N
+   A  81  TRP  CA        180.00  -156.79   -23.21  5.00e+00  2.16e+01   4.6*sigma
+
+  Min. delta:    0.014 (Z=  0.001)
+  Max. delta:   83.518 (Z=  4.643)
+  Mean delta:   11.894 (Z=  1.026)
+
+                       ----------Chiral volumes----------                      
+
+  All restrained atoms within 4.0 sigma of ideal values.
+
+  Min. delta:    0.001
+  Max. delta:    0.146
+  Mean delta:    0.052
+
+                       ----------Planar groups----------                       
+
+  All restrained atoms within 4.0 sigma of ideal values.
+
+  Min. delta:    0.000
+  Max. delta:    0.061
+  Mean delta:    0.009
+
+============================ Molprobity validation ============================
+
+
+  Geometry Restraints Library: GeoStd + Monomer Library + CDL v1.2
+  Deviations from Ideal Values - rmsd, rmsZ for bonds and angles.
+    Bond      :  0.007   0.055   1037  Z= 0.337
+    Angle     :  0.875   4.828   1405  Z= 0.498
+    Chirality :  0.052   0.146    146
+    Planarity :  0.009   0.061    183
+    Dihedral  : 11.894  83.518    369
+    Min Nonbonded Distance : 2.533
+  
+  Molprobity Statistics.
+    All-atom Clashscore : 5.04
+    Ramachandran Plot:
+      Outliers :  0.00 %
+      Allowed  :  1.55 %
+      Favored  : 98.45 %
+    Rotamer:
+      Outliers :  1.89 %
+      Allowed  :  0.94 %
+      Favored  : 97.17 %
+    Cbeta Deviations :  0.00 %
+    Peptide Plane:
+      Cis-proline     : 0.00 %
+      Cis-general     : 0.00 %
+      Twisted Proline : 0.00 %
+      Twisted General : 0.00 %
+  
+  Rama-Z values with (uncertainties):
+  Interpretation: poor |Rama-Z| > 3; suspicious 2 < |Rama-Z| < 3; good |Rama-Z| < 2.
+  Scores below are scaled independently, so they are not related in a simple way.
+    whole: -0.06 (0.69), residues: 129
+    helix: -0.72 (0.66), residues: 45
+    sheet: -1.48 (0.98), residues: 10
+    loop :  0.86 (0.74), residues: 74
+  
+  Max deviation from planes:
+     Type  MaxDev  MeanDev LineInFile
+   ARG   0.005   0.001   ARG A 143 
+   TYR   0.013   0.004   TYR A  71 
+   PHE   0.014   0.005   PHE A  52 
+   TRP   0.024   0.005   TRP A 141 
+   HIS   0.007   0.004   HIS A  33 
+  
+  Details of bonding type rmsd
+    covalent geometry    : bond        0.00728 ( 1033)
+    covalent geometry    : angle       0.87204 ( 1397)
+    SS BOND              : bond        0.02249 (    4)
+    SS BOND              : angle       1.28474 (    8)
+
+                     ----------Asn/Gln/His flips----------                     
+
+  No backwards Asn/Gln/His sidechains found.
+
+=================================== Summary ===================================
+
+  Ramachandran outliers =   0.00 %
+                favored =  98.45 %
+  Rotamer outliers      =   1.89 %
+  C-beta deviations     =     0
+  Clashscore            =   5.04
+  RMS(bonds)            =   0.0074
+  RMS(angles)           =   0.87
+  MolProbity score      =   1.48
+  Resolution            =   1.50
+  R-work                =   0.2117
+  R-free                =   0.2442
+  Refinement program    = PHENIX

@@ -1,0 +1,4 @@
+matplotlib>=3.7
+numpy>=1.24
+jupyter>=1.0
+nbconvert>=7.0
