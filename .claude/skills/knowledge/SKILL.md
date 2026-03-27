@@ -24,6 +24,8 @@ Search the observatory's knowledge using the unified query backend. It tries Ope
 /knowledge timeline [project]   — show research evolution
 /knowledge backfill [project_id]  — retroactively populate Layer 3 from project reports
 /knowledge related <id_or_uri>  — find related resources via metadata + knowledge graph
+/knowledge grep <pattern> [--uri <scope>] [--ignore-case]  — content search (requires OpenViking)
+/knowledge glob <pattern>                                   — file pattern match (requires OpenViking)
 ```
 
 ## Prerequisites
@@ -71,6 +73,10 @@ Map subcommands directly:
 - `/knowledge timeline [project]` → `timeline [project]`
 - `/knowledge backfill [project_id]` → `backfill [project_id]`
 - `/knowledge related <id>` → `related <id_or_uri> [--limit N]`
+- `/knowledge grep <pattern>` → `grep "<pattern>"`
+- `/knowledge grep <pattern> --ignore-case` → `grep "<pattern>" --ignore-case`
+- `/knowledge grep <pattern> --uri <scope>` → `grep "<pattern>" --uri <scope>`
+- `/knowledge glob <pattern>` → `glob "<pattern>"`
 
 ### Backend Indicator
 
@@ -180,6 +186,28 @@ Output: table with date, type, project, summary.
 Run: `uv run scripts/query_knowledge_unified.py related <id_or_uri> [--limit N]`
 
 Output: list of related resources ranked by metadata overlap, link connections, and graph proximity.
+
+### Subcommand: `/knowledge grep <pattern>`
+
+**Search inside resource content for a text pattern (requires OpenViking).**
+Run: `uv run scripts/query_knowledge_unified.py grep "<pattern>" [--uri <scope>] [--ignore-case]`
+
+Requires a live OpenViking server. If the server is not running, tell the user:
+
+> "grep requires a live OpenViking server. See `docs/openviking_tutorial.md` for setup."
+
+Output: matches grouped by resource URI with line numbers.
+
+### Subcommand: `/knowledge glob <pattern>`
+
+**Find resources by file pattern (requires OpenViking).**
+Run: `uv run scripts/query_knowledge_unified.py glob "<pattern>"`
+
+Requires a live OpenViking server. If the server is not running, tell the user:
+
+> "glob requires a live OpenViking server. See `docs/openviking_tutorial.md` for setup."
+
+Output: list of matching resource URIs with total count.
 
 ## Integration
 
