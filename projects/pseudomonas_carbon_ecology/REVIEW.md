@@ -8,7 +8,7 @@ project: pseudomonas_carbon_ecology
 
 ## Summary
 
-This is a well-executed comparative genomics project that asks a clear, two-part question about *Pseudomonas* carbon utilization and delivers convincing answers. The analysis spans 12,727 genomes across 433 species clades, using GapMind pathway predictions to quantify metabolic differences between host-associated and free-living lineages. The strongest result — dramatic loss of plant-derived sugar pathways in *P. aeruginosa* (H1b) — is well-supported, biologically intuitive, and contextualized against prior literature. The ecology prediction result (H1a) is honestly reported as partially supported, with appropriate caveats about sample size and pathway resolution. Documentation is thorough: the three-file structure (README, RESEARCH_PLAN, REPORT) is well-maintained, notebooks have saved outputs, all 7 planned figures are present, and the project is reproducible from cached data. The main areas for improvement are the absence of the planned 5th notebook (synthesis), lack of phylogenetic correction, and some methodological details in the PERMANOVA-like test.
+This is a well-executed comparative genomics project that asks a clear, two-part question about *Pseudomonas* carbon utilization and delivers convincing answers. The analysis spans 12,732 genomes across 433 species clades, using GapMind pathway predictions to quantify metabolic differences between host-associated and free-living lineages. The strongest result — dramatic loss of plant-derived sugar pathways in *P. aeruginosa* (H1b) — is well-supported, biologically intuitive, and contextualized against prior literature. The ecology prediction result (H1a) is honestly reported as partially supported, with appropriate caveats about sample size and pathway resolution. Documentation is thorough: the three-file structure (README, RESEARCH_PLAN, REPORT) is well-maintained, notebooks have saved outputs, all 7 planned figures are present, and the project is reproducible from cached data. The main areas for improvement are the absence of the planned 5th notebook (synthesis), lack of phylogenetic correction, and some methodological details in the PERMANOVA-like test.
 
 ## Methodology
 
@@ -51,7 +51,7 @@ This is a well-executed comparative genomics project that asks a clear, two-part
 
 **Incomplete analysis**: The planned NB05 analyses (core vs variable pathways, within-species ecotypes) were not completed. The REPORT acknowledges these as "Future Directions" rather than explicitly noting they were planned but deferred.
 
-**Genome count discrepancy**: Minor: the README states "12,727 genomes" while the REPORT and NB01 output show 12,732. The NB01 species sum shows 12,727 but the isolation source query returned 12,732 rows. This likely reflects 5 genomes not mapped to species in the pangenome table. Worth documenting.
+**Genome count note**: The NB01 pangenome species-table sum is 12,727 while the genome table contains 12,732 rows; the 5-genome difference reflects genomes not mapped to a species in the pangenome table. All documentation now uses 12,732 (the genome-table count) as the canonical total, with the species-sum discrepancy noted in NB01.
 
 ## Suggestions
 
@@ -63,7 +63,7 @@ This is a well-executed comparative genomics project that asks a clear, two-part
 
 4. **Spot-check "other" environment classification (low-medium impact)**: 29.1% of genomes (3,711) fall into the "other" category. Examining the top 50 most common `source_text` values in this category would reveal whether additional keyword rules could rescue a meaningful fraction. This could increase the statistical power of H1a.
 
-5. **Reconcile genome count discrepancy (low impact)**: Document why NB01 reports 12,727 genomes from the species table but 12,732 from the isolation source query. A brief note in NB01 or the REPORT would suffice.
+5. ~~**Reconcile genome count discrepancy (low impact)**~~: Resolved — all documentation now uses 12,732 (genome table count). NB01 includes a note explaining the 12,727 species-sum vs 12,732 genome-table difference.
 
 6. **Explicitly note NB05 deferral in RESEARCH_PLAN (low impact)**: Add a note to RESEARCH_PLAN.md indicating that NB05 was deferred to future work, so the plan and execution are clearly reconciled. Alternatively, update the README's reproduction steps to note that only NB01-04 are currently implemented.
 
