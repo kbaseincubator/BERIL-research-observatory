@@ -20,7 +20,7 @@ The *Pseudomonas* genus spans an extraordinary ecological range — from versati
 - **Guo et al. (2026)**: Genus-level pangenome of 15 Pseudomonas species showed hydrocarbon degradation genes concentrated in the accessory genome; *P. putida*/*P. citronellolis* had the largest catabolic repertoires while *P. aeruginosa* showed a narrower metabolic specialization.
 - **Okumura et al. (2025)**: Pan-genome analysis of 320 genomes classified Pseudomonas into four major groups with distinct metabolic profiles; *P. aeruginosa* group was more streamlined than plant-associated groups.
 
-**Gap**: No study has systematically quantified carbon pathway profiles across the full breadth of *Pseudomonas* species (433 clades, 12,727 genomes) using standardized pathway prediction (GapMind), or tested whether these profiles are predictive of isolation environment at scale.
+**Gap**: No study has systematically quantified carbon pathway profiles across the full breadth of *Pseudomonas* species (433 clades, 12,732 genomes) using standardized pathway prediction (GapMind), or tested whether these profiles are predictive of isolation environment at scale.
 
 ## Data Sources
 
@@ -145,7 +145,7 @@ WHERE g.gtdb_species_clade_id LIKE 's__Pseudomonas_%'
 - **If H0b not rejected**: Pathway presence is uniform across the genus — GapMind may lack resolution to detect lifestyle-associated variation.
 
 ## Potential Confounders
-- **Sampling bias**: P. aeruginosa is massively overrepresented (6,760/12,727 genomes = 53%) due to clinical importance
+- **Sampling bias**: P. aeruginosa is massively overrepresented (6,760/12,732 genomes = 53%) due to clinical importance
 - **Isolation source quality**: Free-text, unstandardized; harmonization may introduce classification errors
 - **GapMind resolution**: Limited to 62 carbon pathways; may miss genus-specific catabolic capabilities (e.g., aromatic degradation via meta-cleavage)
 - **Phylogenetic signal**: Pathway profiles may simply recapitulate taxonomy (subgenus = lifestyle) rather than revealing independent ecological signal
@@ -156,4 +156,4 @@ WHERE g.gtdb_species_clade_id LIKE 's__Pseudomonas_%'
   - Confirmed GTDB subgenus structure captures free-living vs host-associated split
 
 ## Authors
-- Mar Andrew Miller ([ORCID: 0000-0001-9076-6066](https://orcid.org/0000-0001-9076-6066))
+- Mark Andrew Miller ([ORCID: 0000-0001-9076-6066](https://orcid.org/0000-0001-9076-6066))

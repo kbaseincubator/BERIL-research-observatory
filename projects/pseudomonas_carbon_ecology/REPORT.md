@@ -125,7 +125,7 @@ The modest predictive accuracy for fine-grained environment type (0.41) within f
 
 ### Novel Contribution
 
-This is the first study to systematically quantify carbon pathway profiles across the full breadth of *Pseudomonas* (433 species, 12,727 genomes) using standardized pathway predictions. The key novel findings are:
+This is the first study to systematically quantify carbon pathway profiles across the full breadth of *Pseudomonas* (433 species, 12,732 genomes) using standardized pathway predictions. The key novel findings are:
 
 1. **Scale of sugar pathway loss**: The magnitude of difference (>50 pp for 7 pathways, >10 pp for 15 pathways) between host-associated and free-living subgenera, quantified across thousands of genomes, provides the most comprehensive evidence to date for metabolic streamlining in host-adapted *Pseudomonas*.
 

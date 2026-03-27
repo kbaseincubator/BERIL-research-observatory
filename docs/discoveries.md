@@ -508,7 +508,7 @@ Adding 25 non-FB organisms (Bacillota, Actinomycetota, Campylobacterota) to the 
 
 ### [pseudomonas_carbon_ecology] Host-associated Pseudomonas show dramatic loss of plant-derived sugar pathways
 
-Analysis of 433 *Pseudomonas* species (12,727 genomes) using GapMind carbon pathway predictions reveals that the *P. aeruginosa* group has near-complete loss of plant-derived sugar catabolism compared to the *P. fluorescens/putida* group. 43 of 62 pathways differ significantly (FDR < 0.05), with the largest effects in xylose (+74 pp), ribose (+64 pp), arabinose (+63 pp), galacturonate (+60 pp), and myo-inositol (+59 pp). Amino acid catabolism remains near-universal (>99.5%) in both groups, consistent with Palmer et al. (2007) showing CF sputum is amino acid-dominated.
+Analysis of 433 *Pseudomonas* species (12,732 genomes) using GapMind carbon pathway predictions reveals that the *P. aeruginosa* group has near-complete loss of plant-derived sugar catabolism compared to the *P. fluorescens/putida* group. 43 of 62 pathways differ significantly (FDR < 0.05), with the largest effects in xylose (+74 pp), ribose (+64 pp), arabinose (+63 pp), galacturonate (+60 pp), and myo-inositol (+59 pp). Amino acid catabolism remains near-universal (>99.5%) in both groups, consistent with Palmer et al. (2007) showing CF sputum is amino acid-dominated.
 
 Among free-living species, carbon profiles are significantly associated with isolation environment (PERMANOVA p = 0.006), but predictive accuracy is modest (RF balanced accuracy 0.41 vs 0.25 chance). D-serine, arabinose, rhamnose, and fucose are the most discriminating pathways.
 
