@@ -57,7 +57,9 @@ Delegates to `self.client.find(query, target_uri=..., limit=..., score_threshold
 
 ### Server-side filtering in `search_context()`
 
-Build a `filter` dict from existing `kind`, `project`, and `tags` parameters and pass it to the client:
+Add `limit: int = 10` and `score_threshold: float | None = None` parameters to `search_context()`.
+
+When the client is live, build a `filter` dict from existing `kind`, `project`, and `tags` parameters and pass everything to the client:
 
 ```python
 ov_filter = {}
@@ -67,9 +69,17 @@ if project:
     ov_filter["project_ids"] = project
 if tags:
     ov_filter["tags"] = tags
+
+semantic_hits = self.client.search(
+    query,
+    target_uri=target_uri,
+    limit=limit,
+    score_threshold=score_threshold,
+    filter=ov_filter or None,
+)
 ```
 
-Add a `limit` parameter to `search_context()` (default 10) passed through to the client.
+Remove the client-side `results[:args.limit]` truncation in the script when server-side limiting is active — the server handles it.
 
 Post-fetch Python filtering remains as the offline fallback when `self.client is None`.
 
@@ -98,10 +108,20 @@ def _render_response(self, resource, detail_level):
 
 ```python
 def grep_resources(self, pattern: str, uri: str | None = None, case_insensitive: bool = False) -> dict
-def glob_resources(self, pattern: str) -> dict
+def glob_resources(self, pattern: str, uri: str | None = None) -> dict
 ```
 
 Both require a live OpenViking connection and raise `RuntimeError` if the client is `None`. No offline fallback — these are OpenViking-only features.
+
+`glob_resources` accepts an optional `uri` to scope the search; defaults to the observatory root URI.
+
+**Note on `filter` parameter naming**: The client uses `filter` (shadowing the Python built-in) because it matches the OpenViking SDK's parameter name. The service layer uses `ov_filter` internally to avoid the shadowing.
+
+**Return dict shapes** (passthrough from OpenViking SDK):
+- `grep()` returns `{"matches": [{"uri": str, "lines": [{"number": int, "content": str}]}]}`
+- `glob()` returns `{"matches": [{"uri": str}]}`
+
+Exact shapes may vary by SDK version; the script layer handles formatting defensively.
 
 ## Layer 3: Script (`scripts/query_knowledge_unified.py`)
 
@@ -137,9 +157,23 @@ Both check `_is_openviking_live(service)` and print a clear message if the serve
   (N total)
 ```
 
+### Argparse additions in `build_parser()`
+
+```python
+p_grep = sub.add_parser("grep", help="Content search across resources (requires OpenViking)")
+p_grep.add_argument("pattern")
+p_grep.add_argument("--uri", default=None, help="Scope search to a URI subtree")
+p_grep.add_argument("--ignore-case", action="store_true")
+
+p_glob = sub.add_parser("glob", help="File pattern matching (requires OpenViking)")
+p_glob.add_argument("pattern")
+```
+
+Register in `_HANDLERS`: `"grep": _handle_grep, "glob": _handle_glob`.
+
 ### Existing handler changes
 
-`_handle_search`: pass `args.limit` through to `service.search_context()` when using the OpenViking path. Currently `--limit` exists in the argparser but is not forwarded to the service layer for live queries.
+`_handle_search`: pass `args.limit` through to `service.search_context(limit=args.limit)` when using the OpenViking path. Remove the client-side `results[:args.limit]` truncation since the server now handles it. Currently `--limit` exists in the argparser but is not forwarded to the service layer for live queries.
 
 Other handlers benefit transparently from server-side filtering and rendering.
 
