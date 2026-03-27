@@ -656,6 +656,14 @@ def build_parser() -> argparse.ArgumentParser:
     p_related.add_argument("id_or_uri")
     p_related.add_argument("--limit", type=int, default=5)
 
+    p_grep = sub.add_parser("grep", help="Content search across resources (requires OpenViking)")
+    p_grep.add_argument("pattern")
+    p_grep.add_argument("--uri", default=None, help="Scope search to a URI subtree")
+    p_grep.add_argument("--ignore-case", action="store_true")
+
+    p_glob = sub.add_parser("glob", help="File pattern matching (requires OpenViking)")
+    p_glob.add_argument("pattern")
+
     return parser
 
 
@@ -721,13 +729,14 @@ def _handle_search(args) -> int:
                 args.topic,
                 project=args.project,
                 detail_level=RenderLevel.L1,
+                limit=args.limit,
             )
             if results:
                 _print_backend("OpenViking (semantic search)")
                 print(f'Results for "{args.topic}"')
                 print("=" * (len(args.topic) + 13))
                 print()
-                for i, response in enumerate(results[: args.limit], 1):
+                for i, response in enumerate(results, 1):
                     _print_result(i, response)
                 return 0
     except Exception:
@@ -916,6 +925,64 @@ def _handle_related(args) -> int:
         return 1
 
 
+def _handle_grep(args) -> int:
+    """Content search across OpenViking resources."""
+    try:
+        service = _try_build_service(offline=False)
+        if not _is_openviking_live(service):
+            print("grep requires a live OpenViking server. Start the server first.")
+            print("See docs/openviking_tutorial.md for setup instructions.")
+            return 1
+        _print_backend("OpenViking (content search)")
+        result = service.grep_resources(
+            args.pattern, uri=args.uri, case_insensitive=args.ignore_case,
+        )
+        matches = result.get("matches", [])
+        if not matches:
+            print(f'No content matches for "{args.pattern}"')
+            return 0
+        print(f'### Content matches for "{args.pattern}"')
+        print()
+        for entry in matches:
+            uri = entry.get("uri", "unknown")
+            print(f"**{uri}**")
+            for line in entry.get("lines", []):
+                num = line.get("number", "?")
+                content = line.get("content", "")
+                print(f"  L{num}: {content}")
+            print()
+        return 0
+    except RuntimeError as exc:
+        print(str(exc))
+        return 1
+
+
+def _handle_glob(args) -> int:
+    """File pattern matching across OpenViking resources."""
+    try:
+        service = _try_build_service(offline=False)
+        if not _is_openviking_live(service):
+            print("glob requires a live OpenViking server. Start the server first.")
+            print("See docs/openviking_tutorial.md for setup instructions.")
+            return 1
+        _print_backend("OpenViking (pattern match)")
+        result = service.glob_resources(args.pattern)
+        matches = result.get("matches", [])
+        if not matches:
+            print(f'No resources matching "{args.pattern}"')
+            return 0
+        print(f'### Resources matching "{args.pattern}"')
+        print()
+        for entry in matches:
+            uri = entry.get("uri", "unknown")
+            print(f"- {uri}")
+        print(f"\n({len(matches)} total)")
+        return 0
+    except RuntimeError as exc:
+        print(str(exc))
+        return 1
+
+
 _HANDLERS = {
     "search": _handle_search,
     "figures": _handle_figures,
@@ -929,6 +996,8 @@ _HANDLERS = {
     "timeline": _handle_timeline,
     "backfill": _handle_backfill,
     "related": _handle_related,
+    "grep": _handle_grep,
+    "glob": _handle_glob,
 }
 
 
