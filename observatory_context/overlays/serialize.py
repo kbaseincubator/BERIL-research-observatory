@@ -4,14 +4,13 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from scripts.build_registry import yaml_dump
-
+from observatory_context._serialize import dump_yaml
 from observatory_context.overlays.materialize import OverlayDocument
 
 
 def dump_overlay_yaml(payload: dict[str, object]) -> str:
     """Serialize an overlay payload using the repository YAML format."""
-    return yaml_dump(payload)
+    return dump_yaml(payload)
 
 
 def write_overlay_documents(output_dir: Path, overlays: list[OverlayDocument]) -> None:
@@ -21,4 +20,4 @@ def write_overlay_documents(output_dir: Path, overlays: list[OverlayDocument]) -
     for overlay in overlays:
         output_path = root / overlay.relative_path
         output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text(dump_overlay_yaml(overlay.payload), encoding="utf-8")
+        output_path.write_text(dump_yaml(overlay.payload), encoding="utf-8")

@@ -44,11 +44,16 @@ class KnowledgeIndex:
         self._entities_by_kind: dict[str, list[KnowledgeEntity]] = {}
         self._project_to_entities: dict[str, set[str]] = {}
         self._entity_to_projects: dict[str, set[str]] = {}
+        self._relations_by_entity: dict[str, list[KnowledgeRelation]] = {}
         for entity in entities.values():
             self._entities_by_kind.setdefault(entity.kind, []).append(entity)
             self._entity_to_projects[entity.id] = set(entity.projects)
             for project_id in entity.projects:
                 self._project_to_entities.setdefault(project_id, set()).add(entity.id)
+        for rel in relations:
+            self._relations_by_entity.setdefault(rel.subject, []).append(rel)
+            if rel.object != rel.subject:
+                self._relations_by_entity.setdefault(rel.object, []).append(rel)
 
     def get_entity(self, entity_id: str) -> KnowledgeEntity | None:
         return self._entities.get(entity_id)
@@ -59,11 +64,7 @@ class KnowledgeIndex:
         return list(self._entities.values())
 
     def entity_connections(self, entity_id: str) -> list[KnowledgeRelation]:
-        return [
-            rel
-            for rel in self._relations
-            if rel.subject == entity_id or rel.object == entity_id
-        ]
+        return list(self._relations_by_entity.get(entity_id, []))
 
     def projects_for_entity(self, entity_id: str) -> set[str]:
         return set(self._entity_to_projects.get(entity_id, set()))
@@ -98,11 +99,9 @@ class KnowledgeIndex:
 
     def entity_neighbors(self, entity_id: str) -> set[str]:
         neighbors: set[str] = set()
-        for rel in self._relations:
-            if rel.subject == entity_id:
-                neighbors.add(rel.object)
-            elif rel.object == entity_id:
-                neighbors.add(rel.subject)
+        for rel in self._relations_by_entity.get(entity_id, []):
+            other = rel.object if rel.subject == entity_id else rel.subject
+            neighbors.add(other)
         return neighbors
 
 

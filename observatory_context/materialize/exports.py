@@ -5,6 +5,7 @@ from __future__ import annotations
 from copy import deepcopy
 from pathlib import Path
 
+from observatory_context._discovery import discover_project_ids
 from observatory_context._graph import compute_enables
 from observatory_context.service import ObservatoryContextService
 
@@ -15,13 +16,7 @@ class ExportMaterializationError(ValueError):
 
 def collect_project_ids(repo_root: Path) -> list[str]:
     """Discover project IDs from the Git-authored project workspace layout."""
-    projects_root = Path(repo_root) / "projects"
-    project_ids = [
-        path.name
-        for path in sorted(projects_root.iterdir())
-        if path.is_dir() and (path / "README.md").exists()
-    ]
-    return project_ids
+    return discover_project_ids(repo_root)
 
 
 def build_project_registry_export(

@@ -223,6 +223,22 @@ class ObservatoryContextService:
         entity = self._knowledge_index.get_entity(entity_id)
         if entity is None:
             return None
+        return self._entity_to_dict(entity)
+
+    def list_entities(self, kind: str | None = None) -> list[dict[str, Any]]:
+        """Return knowledge graph entities, optionally filtered by kind."""
+        if self._knowledge_index is None:
+            return []
+        return [self._entity_to_dict(e) for e in self._knowledge_index.list_entities(kind=kind)]
+
+    def entity_connections(self, entity_id: str) -> list[dict[str, Any]]:
+        """Return knowledge graph relations involving an entity."""
+        if self._knowledge_index is None:
+            return []
+        return [self._relation_to_dict(rel) for rel in self._knowledge_index.entity_connections(entity_id)]
+
+    @staticmethod
+    def _entity_to_dict(entity: Any) -> dict[str, Any]:
         return {
             "id": entity.id,
             "name": entity.name,
@@ -231,35 +247,15 @@ class ObservatoryContextService:
             "aliases": sorted(entity.aliases),
         }
 
-    def list_entities(self, kind: str | None = None) -> list[dict[str, Any]]:
-        """Return knowledge graph entities, optionally filtered by kind."""
-        if self._knowledge_index is None:
-            return []
-        return [
-            {
-                "id": e.id,
-                "name": e.name,
-                "kind": e.kind,
-                "projects": sorted(e.projects),
-                "aliases": sorted(e.aliases),
-            }
-            for e in self._knowledge_index.list_entities(kind=kind)
-        ]
-
-    def entity_connections(self, entity_id: str) -> list[dict[str, Any]]:
-        """Return knowledge graph relations involving an entity."""
-        if self._knowledge_index is None:
-            return []
-        return [
-            {
-                "subject": rel.subject,
-                "predicate": rel.predicate,
-                "object": rel.object,
-                "evidence_project": rel.evidence_project,
-                "confidence": rel.confidence,
-            }
-            for rel in self._knowledge_index.entity_connections(entity_id)
-        ]
+    @staticmethod
+    def _relation_to_dict(rel: Any) -> dict[str, Any]:
+        return {
+            "subject": rel.subject,
+            "predicate": rel.predicate,
+            "object": rel.object,
+            "evidence_project": rel.evidence_project,
+            "confidence": rel.confidence,
+        }
 
     def grep_resources(
         self,
@@ -351,7 +347,7 @@ class ObservatoryContextService:
             resources = dict(self._authored_resources)
             resources.update(self._load_client_resources())
             self._cached_all_resources = resources
-        return dict(self._cached_all_resources)
+        return self._cached_all_resources
 
     def _load_client_resources(self) -> dict[str, ContextResource]:
         if self.client is None:

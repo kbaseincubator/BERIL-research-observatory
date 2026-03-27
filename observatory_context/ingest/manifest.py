@@ -9,6 +9,7 @@ import yaml
 
 from scripts.build_registry import parse_figures_from_report, parse_project
 
+from observatory_context._discovery import discover_project_ids
 from observatory_context._graph import compute_enables
 from observatory_context.uris import (
     build_figure_resource_uri,
@@ -65,12 +66,7 @@ def build_resource_manifest(
         if isinstance(figure, dict)
     }
     selected_project_ids = set(project_ids or [])
-    discovered_project_ids = [
-        path.name
-        for path in sorted((repo_root / "projects").iterdir())
-        if path.is_dir() and (path / "README.md").exists()
-        and (not selected_project_ids or path.name in selected_project_ids)
-    ]
+    discovered_project_ids = discover_project_ids(repo_root, selected=selected_project_ids or None)
 
     for project_id in discovered_project_ids:
         project_dir = repo_root / "projects" / project_id
