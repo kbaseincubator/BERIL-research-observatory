@@ -6,6 +6,7 @@
 #   "pydantic>=2.0",
 #   "pydantic-settings>=2.0",
 #   "httpx>=0.27",
+#   "openviking>=0.2.9",
 # ]
 # ///
 """
