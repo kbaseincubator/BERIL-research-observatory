@@ -45,7 +45,7 @@ class FakeOpenVikingClient:
         resource = self.resources[uri]
         return {"uri": uri, "metadata": resource["metadata"]}
 
-    def search(self, query: str, target_uri: str | None = None) -> list[dict[str, object]]:
+    def search(self, query: str, target_uri: str | None = None, limit: int = 10, score_threshold: float | None = None, filter: dict | None = None) -> list[dict[str, object]]:
         self.search_calls += 1
         if self.fail_semantic_search:
             raise RuntimeError("semantic retrieval unavailable")
@@ -264,7 +264,7 @@ def test_search_context_falls_back_to_lexical_metadata_search(service: object) -
 
 def test_search_context_accepts_findresult_style_semantic_hits(service: object) -> None:
     report_uri = "viking://resources/observatory/projects/alpha_proj/authored/REPORT.md"
-    service.client.search = lambda query, target_uri=None: SimpleNamespace(
+    service.client.search = lambda query, target_uri=None, **kw: SimpleNamespace(
         resources=[
             SimpleNamespace(
                 uri=f"{report_uri}/Nested_Section/.abstract.md",
@@ -442,6 +442,24 @@ def _make_client_with_fake():
     fake = FakeUnderlyingClient()
     client._client = fake
     return client, fake
+
+
+def test_search_context_passes_filter_to_client(service: object) -> None:
+    """When client is live, search_context should build ov_filter and pass limit."""
+    calls = []
+    original_search = service.client.search
+
+    def capturing_search(query, target_uri=None, limit=10, score_threshold=None, filter=None):
+        calls.append({"limit": limit, "score_threshold": score_threshold, "filter": filter})
+        return original_search(query, target_uri=target_uri)
+
+    service.client.search = capturing_search
+    service.search_context("metal", kind="project", limit=3, score_threshold=0.7)
+
+    assert len(calls) == 1
+    assert calls[0]["limit"] == 3
+    assert calls[0]["score_threshold"] == 0.7
+    assert calls[0]["filter"]["kind"] == "project"
 
 
 def test_client_search_passes_filter_limit_threshold():

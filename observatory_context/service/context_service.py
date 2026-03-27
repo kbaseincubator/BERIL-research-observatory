@@ -51,13 +51,28 @@ class ObservatoryContextService:
         project: str | None = None,
         tags: list[str] | None = None,
         detail_level: RenderLevel = RenderLevel.L1,
+        limit: int = 10,
+        score_threshold: float | None = None,
     ) -> list[ResourceResponse]:
         resources = self._filtered_resources(kind=kind, project=project, tags=tags)
         semantic_results: list[ContextResource] = []
         if self.client is not None:
             target_uri = build_project_workspace_uri(project) if project else None
+            ov_filter: dict[str, Any] = {}
+            if kind:
+                ov_filter["kind"] = kind
+            if project:
+                ov_filter["project_ids"] = project
+            if tags:
+                ov_filter["tags"] = tags
             try:
-                semantic_hits = self.client.search(query, target_uri=target_uri)
+                semantic_hits = self.client.search(
+                    query,
+                    target_uri=target_uri,
+                    limit=limit,
+                    score_threshold=score_threshold,
+                    filter=ov_filter or None,
+                )
             except Exception:
                 semantic_hits = []
             all_resources = self._all_resources()
