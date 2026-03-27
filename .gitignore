@@ -8,6 +8,7 @@
 .claude/plans/
 .serena/
 docs/superpowers/specs/
+docs/superpowers/plans/
 
 # Large data files
 *.npy
