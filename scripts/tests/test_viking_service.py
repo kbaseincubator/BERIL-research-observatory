@@ -388,3 +388,99 @@ def test_entity_connections_returns_relations(offline_service: object) -> None:
 
     connections = offline_service.entity_connections("conc_fitness")
     assert len(connections) == 2
+
+
+# --- Client wrapper tests ---
+
+
+class FakeUnderlyingClient:
+    """Minimal fake for the raw OpenViking SyncHTTPClient."""
+
+    def __init__(self) -> None:
+        self.find_calls: list[dict] = []
+        self.grep_calls: list[dict] = []
+        self.glob_calls: list[dict] = []
+        self.abstract_calls: list[str] = []
+        self.overview_calls: list[str] = []
+
+    def find(self, query, target_uri="", limit=10, score_threshold=None, filter=None, **kw):
+        self.find_calls.append({
+            "query": query, "target_uri": target_uri,
+            "limit": limit, "score_threshold": score_threshold, "filter": filter,
+        })
+        return []
+
+    def grep(self, uri, pattern, case_insensitive=False, **kw):
+        self.grep_calls.append({"uri": uri, "pattern": pattern, "case_insensitive": case_insensitive})
+        return {"matches": []}
+
+    def glob(self, pattern, uri="viking://", **kw):
+        self.glob_calls.append({"pattern": pattern, "uri": uri})
+        return {"matches": []}
+
+    def abstract(self, uri):
+        self.abstract_calls.append(uri)
+        return "L0 abstract text"
+
+    def overview(self, uri):
+        self.overview_calls.append(uri)
+        return "L1 overview text"
+
+    def health(self):
+        return True
+
+    def initialize(self):
+        pass
+
+
+def _make_client_with_fake():
+    from observatory_context.client import OpenVikingObservatoryClient
+    from observatory_context.config import ObservatoryContextSettings
+
+    settings = ObservatoryContextSettings(openviking_url="http://localhost:1933")
+    client = OpenVikingObservatoryClient(settings)
+    fake = FakeUnderlyingClient()
+    client._client = fake
+    return client, fake
+
+
+def test_client_search_passes_filter_limit_threshold():
+    client, fake = _make_client_with_fake()
+    client.search("metal stress", limit=3, score_threshold=0.5, filter={"kind": "project"})
+    assert len(fake.find_calls) == 1
+    call = fake.find_calls[0]
+    assert call["query"] == "metal stress"
+    assert call["limit"] == 3
+    assert call["score_threshold"] == 0.5
+    assert call["filter"] == {"kind": "project"}
+
+
+def test_client_grep_delegates():
+    client, fake = _make_client_with_fake()
+    result = client.grep("viking://resources/observatory", "cadA", case_insensitive=True)
+    assert len(fake.grep_calls) == 1
+    assert fake.grep_calls[0]["pattern"] == "cadA"
+    assert fake.grep_calls[0]["case_insensitive"] is True
+    assert result == {"matches": []}
+
+
+def test_client_glob_delegates():
+    client, fake = _make_client_with_fake()
+    result = client.glob("*.yaml", uri="viking://resources/observatory")
+    assert len(fake.glob_calls) == 1
+    assert fake.glob_calls[0]["pattern"] == "*.yaml"
+    assert result == {"matches": []}
+
+
+def test_client_abstract_delegates():
+    client, fake = _make_client_with_fake()
+    result = client.abstract("viking://resources/observatory/projects/alpha/authored/README.md")
+    assert result == "L0 abstract text"
+    assert len(fake.abstract_calls) == 1
+
+
+def test_client_overview_delegates():
+    client, fake = _make_client_with_fake()
+    result = client.overview("viking://resources/observatory/projects/alpha/authored/README.md")
+    assert result == "L1 overview text"
+    assert len(fake.overview_calls) == 1

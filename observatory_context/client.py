@@ -60,10 +60,22 @@ class OpenVikingObservatoryClient:
     def list_resources(self, uri: str, recursive: bool = False) -> list[dict[str, Any]]:
         return self.client.ls(uri, recursive=recursive)
 
-    def search(self, query: str, target_uri: str | None = None) -> list[dict[str, Any]]:
+    def search(
+        self,
+        query: str,
+        target_uri: str | None = None,
+        limit: int = 10,
+        score_threshold: float | None = None,
+        filter: dict | None = None,
+    ) -> list[dict[str, Any]]:
+        kwargs: dict[str, Any] = {"limit": limit}
         if target_uri:
-            return self.client.find(query, target_uri=target_uri)
-        return self.client.find(query)
+            kwargs["target_uri"] = target_uri
+        if score_threshold is not None:
+            kwargs["score_threshold"] = score_threshold
+        if filter is not None:
+            kwargs["filter"] = filter
+        return self.client.find(query, **kwargs)
 
     def read_resource(self, uri: str) -> str:
         return self.client.read(uri)
@@ -94,6 +106,18 @@ class OpenVikingObservatoryClient:
 
     def relations(self, uri: str) -> list[dict[str, Any]]:
         return self.client.relations(uri)
+
+    def grep(self, uri: str, pattern: str, case_insensitive: bool = False) -> dict[str, Any]:
+        return self.client.grep(uri, pattern, case_insensitive=case_insensitive)
+
+    def glob(self, pattern: str, uri: str = "viking://") -> dict[str, Any]:
+        return self.client.glob(pattern, uri=uri)
+
+    def abstract(self, uri: str) -> str:
+        return self.client.abstract(uri)
+
+    def overview(self, uri: str) -> str:
+        return self.client.overview(uri)
 
     def add_text_resource(
         self,
