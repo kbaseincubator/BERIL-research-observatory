@@ -263,10 +263,22 @@ class ObservatoryContextService:
 
     def _render_response(self, resource: ContextResource, detail_level: RenderLevel) -> ResourceResponse:
         level = self._coerce_level(detail_level)
+        rendered = None
+        if self.client is not None and level in (RenderLevel.L0, RenderLevel.L1):
+            try:
+                rendered = (
+                    self.client.abstract(resource.uri)
+                    if level == RenderLevel.L0
+                    else self.client.overview(resource.uri)
+                )
+            except Exception:
+                rendered = None
+        if not rendered:
+            rendered = render_resource(resource.render_payload(), level)
         return ResourceResponse(
             resource=resource,
             detail_level=level,
-            rendered=render_resource(resource.render_payload(), level),
+            rendered=rendered,
         )
 
     def _resolve_resource(self, id_or_uri: str) -> ContextResource:

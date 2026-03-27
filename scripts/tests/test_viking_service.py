@@ -69,6 +69,12 @@ class FakeOpenVikingClient:
     def relations(self, uri: str) -> list[dict[str, str]]:
         return self.links.get(uri, [])
 
+    def abstract(self, uri: str) -> str:
+        return f"[L0] Abstract for {uri.split('/')[-1]}"
+
+    def overview(self, uri: str) -> str:
+        return f"[L1] Overview for {uri.split('/')[-1]}"
+
     def add_note_resource(self, uri: str, content: str, metadata: dict[str, object]) -> None:
         self.resources[uri] = {"uri": uri, "content": content, "metadata": metadata}
 
@@ -225,7 +231,7 @@ def test_get_resource_returns_deterministic_views(service: object) -> None:
 
     assert resource.resource.id == "alpha_proj"
     assert resource.resource.uri.endswith("/projects/alpha_proj/authored/README.md")
-    assert "How does alpha respond?" in resource.rendered
+    assert resource.rendered.startswith("[L1] Overview for")
 
     by_uri = service.get_resource(resource.resource.uri, detail_level=RenderLevel.L2)
     assert "```yaml" in by_uri.rendered
@@ -259,7 +265,7 @@ def test_search_context_falls_back_to_lexical_metadata_search(service: object) -
 
     assert service.client.search_calls == 1
     assert [result.resource.id for result in results] == ["alpha_proj"]
-    assert "Alpha Project" in results[0].rendered
+    assert results[0].rendered.startswith("[L0] Abstract for")
 
 
 def test_search_context_accepts_findresult_style_semantic_hits(service: object) -> None:
@@ -276,7 +282,7 @@ def test_search_context_accepts_findresult_style_semantic_hits(service: object) 
     results = service.search_context("metal stress", detail_level=RenderLevel.L1)
 
     assert [result.resource.uri for result in results] == [report_uri]
-    assert "Alpha report body" in results[0].rendered
+    assert results[0].rendered.startswith("[L1] Overview for")
 
 
 def test_related_resources_are_metadata_and_link_driven(service: object) -> None:
@@ -502,3 +508,43 @@ def test_client_overview_delegates():
     result = client.overview("viking://resources/observatory/projects/alpha/authored/README.md")
     assert result == "L1 overview text"
     assert len(fake.overview_calls) == 1
+
+
+# --- Server-side rendering tests ---
+
+
+def test_render_response_uses_server_abstract_for_L0(service: object) -> None:
+    resource = service.get_resource("alpha_proj", detail_level=RenderLevel.L0)
+    assert resource.rendered.startswith("[L0] Abstract for")
+
+
+def test_render_response_uses_server_overview_for_L1(service: object) -> None:
+    resource = service.get_resource("alpha_proj", detail_level=RenderLevel.L1)
+    assert resource.rendered.startswith("[L1] Overview for")
+
+
+def test_render_response_uses_local_renderer_for_L2(service: object) -> None:
+    resource = service.get_resource("alpha_proj", detail_level=RenderLevel.L2)
+    assert not resource.rendered.startswith("[L0]")
+    assert not resource.rendered.startswith("[L1]")
+
+
+def test_render_response_falls_back_when_server_fails(service: object) -> None:
+    def failing_abstract(uri: str) -> str:
+        raise RuntimeError("server error")
+
+    def failing_overview(uri: str) -> str:
+        raise RuntimeError("server error")
+
+    service.client.abstract = failing_abstract
+    service.client.overview = failing_overview
+
+    resource = service.get_resource("alpha_proj", detail_level=RenderLevel.L0)
+    assert resource.rendered
+    assert not resource.rendered.startswith("[L0]")
+
+
+def test_render_response_uses_local_renderer_when_offline(offline_service: object) -> None:
+    resource = offline_service.get_resource("alpha_proj", detail_level=RenderLevel.L0)
+    assert resource.rendered
+    assert not resource.rendered.startswith("[L0]")
