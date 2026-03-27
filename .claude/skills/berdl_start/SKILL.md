@@ -269,7 +269,7 @@ Suggest using `/literature-review` to search biological databases. This is usefu
 ### Path 4: Continue an Existing Project
 
 Steps:
-1. Run `uv run scripts/query_knowledge.py landscape` for status counts
+1. Run `uv run scripts/query_knowledge_unified.py landscape` for status counts
 2. List in-progress projects with phase detection based on file existence:
    - Has `RESEARCH_PLAN.md` but no notebook outputs → "Planning done, ready for analysis"
    - Has notebook outputs but no `REPORT.md` → "Analysis done, ready for `/synthesize`"

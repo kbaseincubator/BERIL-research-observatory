@@ -102,7 +102,7 @@ df = spark.read.csv(lakehouse_path, header=True, sep="\t")
 2. ✅ Start pproxy: `bash scripts/start_pproxy.sh` (runs in background)
 3. ✅ Activate JupyterHub session: Open notebook at hub.berdl.kbase.us
 4. ✅ Verify ports: `lsof -i :1338 -i :8123 | grep LISTEN`
-5. ✅ Activate venv: `source .venv-berdl/bin/activate` (for notebooks)
+5. ✅ Activate venv: `source .venv/bin/activate` (for notebooks)
 
 ### Useful Commands
 ```bash
@@ -129,7 +129,7 @@ mc ls berdl-minio/cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/proj
 ```markdown
 ## Using in Notebooks
 
-When `.venv-berdl` is active, notebooks can use get_spark_session():
+When `.venv` is active, notebooks can use get_spark_session():
 
 \```python
 from get_spark_session import get_spark_session
@@ -436,7 +436,7 @@ spark.stop()
 ### 🚀 Ready State
 
 **Environment**:
-- ✅ .venv-berdl installed and working
+- ✅ .venv installed and working
 - ✅ pproxy running on port 8123
 - ✅ SSH tunnel on port 1338
 - ✅ JupyterHub session active
@@ -484,4 +484,3 @@ Created `data/fb_genome_mapping_manual.tsv` with known FB organism → genome_id
 3. Identify universally complete pathways in subset
 4. Document approach in RESEARCH_PLAN.md
 5. Expand mapping to all 45 organisms (iterative)
-

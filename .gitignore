@@ -7,6 +7,8 @@
 .claude/settings.local.json
 .claude/plans/
 .serena/
+docs/superpowers/specs/
+docs/superpowers/plans/
 
 # Large data files
 *.npy
@@ -86,7 +88,6 @@ ui/data/indexdir/
 
 # Python virtual environments
 .venv/
-.venv-berdl/
 venv/
 
 .stignore
@@ -97,3 +98,9 @@ venv/
 htmlcov/
 .pytest_cache/
 .ruff_cache/
+.cache/openviking/
+config/openviking/ov.conf
+data/.openviking.pid
+data/_system/
+data/vectordb/
+data/viking/

@@ -347,7 +347,7 @@ from berdl_notebook_utils.setup_spark_session import get_spark_session
 spark = get_spark_session()
 ```
 
-**3. Local machine** (requires `.venv-berdl` + proxy chain):
+**3. Local machine** (requires `.venv` + proxy chain):
 
 ```python
 from get_spark_session import get_spark_session  # scripts/get_spark_session.py

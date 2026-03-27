@@ -4,7 +4,7 @@ The observatory has a 3-layer knowledge system that turns individual project res
 
 ## Why This Exists
 
-With 41 projects, the observatory generates hundreds of findings, figures, and data artifacts. Without structured indexing, answering questions like "which organisms have fitness data but no metal experiments?" requires reading all 41 project reports (~200K+ tokens). The knowledge layer makes cross-project discovery instant and enables the AI co-scientist to reason about research gaps, suggest next steps, and maintain continuity across sessions.
+With 46 projects, the observatory generates hundreds of findings, figures, and data artifacts. Without structured indexing, answering questions like "which organisms have fitness data but no metal experiments?" requires reading all 46 project reports (~200K+ tokens). The knowledge layer makes cross-project discovery instant and enables the AI co-scientist to reason about research gaps, suggest next steps, and maintain continuity across sessions.
 
 ## The Three Layers
 
@@ -37,7 +37,7 @@ A set of global index files derived from all provenance.yaml files (with markdow
 | File | Contents | Size |
 |------|----------|------|
 | `docs/project_registry.yaml` | All projects with status, questions, findings, tags, deps | ~20K tokens |
-| `docs/figure_catalog.yaml` | 330 figures with captions, tags, project links | ~15K tokens |
+| `docs/figure_catalog.yaml` | 361 figures with captions, tags, project links | ~15K tokens |
 | `docs/findings_digest.md` | ~195 findings as a concise searchable summary | ~8K tokens |
 
 The registry is always re-derivable from project files — if it drifts, `/build-registry` regenerates it completely. Skills treat it as a read cache, not the source of truth.
@@ -101,7 +101,7 @@ Every project completion enriches all three layers. The `/synthesize` skill now 
 | Skill | How it uses the knowledge layer |
 |-------|-------------------------------|
 | `/status` | Reads registry for in-progress projects, hypotheses for attention items, timeline for recent events, gaps for top research opportunities |
-| `/suggest-research` | Reads registry for landscape analysis, runs `query_knowledge.py gaps` for entity-level gap detection, checks hypotheses for untested claims |
+| `/suggest-research` | Reads registry for landscape analysis, runs `query_knowledge_unified.py gaps` for entity-level gap detection, checks hypotheses for untested claims |
 | `/interpret` | Checks hypotheses.yaml for related hypotheses from other projects to contextualize intermediate results |
 | `/compare <A> <B>` | Reads registry entries and entity connections to produce side-by-side project or organism comparisons |
 | `/synthesize` | **Writes** provenance.yaml (Layer 1), runs build_registry.py (Layer 2), updates entities/relations/hypotheses/timeline (Layer 3) |
@@ -158,16 +158,19 @@ uv run scripts/build_registry.py --project <project_id>
 uv run scripts/build_registry.py --dry-run
 ```
 
-### Query knowledge deterministically
+### Query knowledge (unified backend)
+
+The unified query script tries OpenViking first for semantic retrieval, then falls back silently to the deterministic backend. It also uses a `KnowledgeIndex` built from `knowledge/*.yaml` to boost entity-linked projects in search and surface graph-connected resources in related queries.
 
 ```bash
-uv run scripts/query_knowledge.py search "metal stress"
-uv run scripts/query_knowledge.py landscape
-uv run scripts/query_knowledge.py gaps
-uv run scripts/query_knowledge.py backfill          # list projects missing Layer 3
-uv run scripts/query_knowledge.py hypotheses testing
-uv run scripts/query_knowledge.py connections org_adp1
-uv run scripts/query_knowledge.py timeline
+uv run scripts/query_knowledge_unified.py search "metal stress"
+uv run scripts/query_knowledge_unified.py landscape
+uv run scripts/query_knowledge_unified.py gaps
+uv run scripts/query_knowledge_unified.py backfill          # list projects missing Layer 3
+uv run scripts/query_knowledge_unified.py hypotheses testing
+uv run scripts/query_knowledge_unified.py connections org_adp1
+uv run scripts/query_knowledge_unified.py timeline
+uv run scripts/query_knowledge_unified.py related essential_genome
 ```
 
 ### Validate consistency
@@ -200,7 +203,7 @@ All three layers are updated automatically by `/synthesize`.
 
 ```bash
 # See which projects need backfilling
-uv run scripts/query_knowledge.py backfill
+uv run scripts/query_knowledge_unified.py backfill
 
 # Backfill interactively via the skill
 /knowledge backfill <project_id>
@@ -230,10 +233,92 @@ Use `/status` to see:
 
 This orients the co-scientist to pick up where the last session left off.
 
+## Using the Knowledge Skills
+
+### How the Unified Backend Works
+
+All knowledge queries flow through a single script — `scripts/query_knowledge_unified.py`. When OpenViking is running, it provides semantic (embedding-based) retrieval. When it's not, the script silently falls back to deterministic token-based search. No manual health checks, no separate commands, no fallback logic in skills.
+
+On top of this, a `KnowledgeIndex` is built at startup from the `knowledge/*.yaml` files. This index is always available (it reads Git-authored YAML, not the server) and enhances both search and related-resource queries with entity and graph awareness.
+
+### What the Knowledge Graph Adds to Search
+
+#### Entity-aware search boosting
+
+Searching for an organism or concept now consults the knowledge graph. The index matches queries against entity names, IDs, and aliases, then boosts projects linked to matched entities.
+
+```
+/knowledge ADP1
+```
+
+Without the index, "ADP1" is scored purely on string presence — a project mentioning it once in passing scores similarly to the five projects where ADP1 is the primary subject. With the index, `org_adp1` is recognized (matching the strain alias "ADP1"), its 5 linked projects are identified, and they receive a +6 score boost. Deep ADP1 projects rank first.
+
+#### Graph-aware related resources
+
+```
+/knowledge related essential_genome
+```
+
+Without the graph, related resources come from metadata overlap only — shared project IDs, tags, and explicit links. Two projects studying the same organism through different lenses (e.g., `essential_genome` and `aromatic_catabolism_network` both study ADP1) but with different tags get zero relatedness signal.
+
+With the graph, the system traverses one hop through knowledge relations: `essential_genome` → its entities (`org_adp1`, `conc_essential_genes`) → their graph neighbors → projects linked to those neighbors. Projects connected through shared biological entities surface even without overlapping metadata.
+
+### When OpenViking Matters
+
+For exact lookups (`/knowledge project essential_genome`, `/knowledge entities organism`), OpenViking and deterministic results are equivalent — same data, same output.
+
+OpenViking adds value for **fuzzy discovery**: searching with natural language queries, finding conceptually related resources, and getting results ranked by semantic similarity rather than token counting. Searching "metabolic adaptation" surfaces projects about carbon source fitness, amino acid biosynthesis, and metabolic pathway gaps — even when those exact words don't appear in project metadata.
+
+If OpenViking isn't running, everything still works. You get lexical matching instead of semantic matching for `search`, `project`, and `related`. The knowledge graph boosting works either way since it's built from YAML files at startup, not from the server.
+
+### Practical Examples
+
+**Orienting at session start:**
+```
+/status
+```
+Calls `hypotheses testing` and `timeline` under the hood. Shows active hypotheses, in-progress projects, and recent events.
+
+**Exploring a topic across projects:**
+```
+/knowledge essential genes
+/knowledge connections conc_essential_genes
+/knowledge related essential_genome
+```
+The first finds projects by topic. The second shows entities connected to the concept of essential genes in the knowledge graph. The third finds resources related to the essential genome project — including projects connected through shared organisms via graph traversal.
+
+**Finding research gaps:**
+```
+/knowledge gaps
+/knowledge entities method --query fitness
+/knowledge hypotheses proposed
+```
+Gaps shows method coverage holes and untested hypotheses. Then drill into which methods exist and which hypotheses are waiting for validation.
+
+**Comparing organisms:**
+```
+/compare org_adp1 org_dvh
+```
+Uses `connections` for both organisms, surfaces shared methods, differing project coverage, and hypotheses referencing one but not the other.
+
+**Discovering figures and data:**
+```
+/knowledge figures pangenome
+/knowledge data fitness
+```
+Searches the figure catalog and data artifact index by keyword. These are deterministic-only (no OpenViking equivalent) but benefit from the unified entry point.
+
+**Checking a specific project:**
+```
+/knowledge project essential_genome
+```
+With OpenViking: returns the full workspace view with all authored resources. Without: returns the registry summary with findings, tags, dependencies, and provenance status.
+
 ## Design Decisions
 
-- **Structured YAML over vector databases**: At 41 projects, grep/glob on structured text outperforms the overhead of embedding infrastructure. Claude Code's native tools work directly on YAML. Revisit at 500+ projects.
-- **Deterministic scripts over LLM queries**: `query_knowledge.py` and `build_registry.py` are pure Python with no LLM calls. Only `generate_provenance.py` uses the API (for initial extraction). This ensures reproducible, fast queries.
+- **Structured YAML over vector databases**: At 46 projects, grep/glob on structured text outperforms the overhead of embedding infrastructure. Claude Code's native tools work directly on YAML. Revisit at 500+ projects.
+- **Unified query backend**: `query_knowledge_unified.py` tries OpenViking for semantic retrieval and silently falls back to deterministic search. Skills no longer need manual fallback logic. A `KnowledgeIndex` built from `knowledge/*.yaml` boosts entity-linked projects in search and surfaces graph-connected resources.
+- **Deterministic scripts over LLM queries**: `query_knowledge_unified.py` and `build_registry.py` are pure Python with no LLM calls. Only `generate_provenance.py` uses the API (for initial extraction). This ensures reproducible, fast queries.
 - **Layer 3 is required, not optional**: The knowledge graph was sparse (32 relations for 80 entities) because updates were optional. Making them mandatory in `/synthesize` ensures density grows with each project.
 - **Freshness checks are advisory**: Skills warn about stale data but proceed regardless. Stale data is better than no data; blocking on staleness would break the workflow.
 
@@ -241,12 +326,12 @@ This orients the co-scientist to pick up where the last session left off.
 
 | Metric | Count |
 |--------|-------|
-| Projects indexed | 41 |
-| With provenance.yaml | 41 |
-| Figures cataloged | 330 |
+| Projects indexed | 46 |
+| With provenance.yaml | 46 |
+| Figures cataloged | 361 |
 | Findings extracted | ~195 |
 | Timeline events | 43 |
 | Entities | 80 (20 organisms, 15 genes, 10 pathways, 14 methods, 21 concepts) |
 | Relations | 32 |
 | Hypotheses | 20 (11 validated, 8 rejected, 1 testing) |
-| Projects with Layer 3 coverage | 17/41 (24 need backfilling) |
+| Projects with Layer 3 coverage | 24/46 (22 need backfilling) |

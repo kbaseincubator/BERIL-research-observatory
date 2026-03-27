@@ -85,7 +85,7 @@ Identify **underexplored collections** — present in BERDL but rarely cited in 
 
 ### Step 5b: Read Knowledge Graph Gaps (if available)
 
-Run: `uv run scripts/query_knowledge.py gaps`
+Run: `uv run scripts/query_knowledge_unified.py gaps`
 
 This outputs the deterministic gap analysis covering organisms with sparse coverage,
 method gaps, untested hypotheses, and unexplored entity pairs.

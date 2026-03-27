@@ -62,6 +62,11 @@ Run these checks against the project directory and print a checklist summary:
   uv run scripts/build_registry.py --project {project_id}
   ```
   Print `INFO  Updated knowledge registry for {project_id}`. If the script fails, print `WARN  Registry update failed (non-blocking)` and continue — this is advisory, not blocking.
+- **OpenViking sync**: After the registry update, sync the submitted project's authored resources into OpenViking:
+  ```bash
+  uv run scripts/viking_ingest.py --project {project_id} --resume
+  ```
+  Print `INFO  Synced {project_id} into OpenViking` on success. If it fails, print `WARN  OpenViking sync failed (non-blocking)` and continue.
 
 Print the checklist as:
 ```

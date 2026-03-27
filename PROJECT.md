@@ -187,12 +187,12 @@ Run queries locally while computation happens on the remote BERDL cluster. This 
 
 **One-time setup:**
 ```bash
-bash scripts/bootstrap_client.sh   # creates .venv-berdl with required packages
+bash scripts/bootstrap_client.sh   # syncs repo .venv with BERDL packages
 ```
 
 **Running queries:**
 ```bash
-source .venv-berdl/bin/activate
+source .venv/bin/activate
 python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
 ```
 
@@ -212,7 +212,7 @@ See the `/berdl-query` and `/berdl-minio` skills for full workflow details.
 # On BERDL JupyterHub — no import needed (injected into kernel)
 spark = get_spark_session()
 
-# On local machine — requires .venv-berdl + proxy chain
+# On local machine — requires .venv + proxy chain
 from get_spark_session import get_spark_session
 spark = get_spark_session()
 ```

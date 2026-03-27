@@ -10,12 +10,13 @@ Command-line tools for working with BERDL (BER Data Lakehouse) from your local m
 bash scripts/bootstrap_client.sh
 ```
 
-Creates `.venv-berdl` with required packages (`spark_connect_remote`, `berdl_remote`, `boto3`, `pproxy`).
+Syncs the repo-managed `.venv` with the `berdl` extra
+(`spark_connect_remote`, `berdl_remote`, `boto3`, `pproxy`, and notebook helpers).
 
 ### 2. Check your environment
 
 ```bash
-source .venv-berdl/bin/activate
+source .venv/bin/activate
 python scripts/detect_berdl_environment.py
 ```
 
@@ -42,7 +43,7 @@ lsof -i :1337 -i :1338 -i :8123 | grep LISTEN
 ### 4. Run queries
 
 ```bash
-source .venv-berdl/bin/activate
+source .venv/bin/activate
 python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
 python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10"
 ```
@@ -78,7 +79,7 @@ mc cp --recursive berdl-minio/cdm-lake/.../my-export ./local/
 
 | Script | Purpose |
 |--------|---------|
-| `bootstrap_client.sh` | One-time setup: creates `.venv-berdl` and installs packages |
+| `bootstrap_client.sh` | One-time setup: syncs the repo `.venv` with BERDL extras |
 | `detect_berdl_environment.py` | Check prerequisites and get actionable next steps |
 | `start_pproxy.sh` | Start the HTTP-to-SOCKS5 proxy bridge on port 8123 |
 | `run_sql.py` | Run SQL queries, return results as JSON |
@@ -89,7 +90,7 @@ mc cp --recursive berdl-minio/cdm-lake/.../my-export ./local/
 
 ## Running Notebooks Locally
 
-Once `.venv-berdl` is set up and the proxy chain is running, notebooks work identically on and off cluster:
+Once `.venv` is set up and the proxy chain is running, notebooks work identically on and off cluster:
 
 ```python
 from get_spark_session import get_spark_session

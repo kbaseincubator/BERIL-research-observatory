@@ -55,7 +55,7 @@
 
 ## Recommendations
 
-1. **For notebooks**: Use `from get_spark_session import get_spark_session` (when `.venv-berdl` is active)
+1. **For notebooks**: Use `from get_spark_session import get_spark_session` (when `.venv` is active)
 2. **For queries**: Keep using `spark.sql()` - works identically to JupyterHub
 3. **For large results**: Export to MinIO via `scripts/export_sql.py`
 4. **Schema discovery**: Always query `DESCRIBE table` before writing complex queries
