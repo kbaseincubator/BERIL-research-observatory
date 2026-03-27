@@ -75,6 +75,12 @@ class FakeOpenVikingClient:
     def overview(self, uri: str) -> str:
         return f"[L1] Overview for {uri.split('/')[-1]}"
 
+    def grep(self, uri: str, pattern: str, case_insensitive: bool = False) -> dict:
+        return {"matches": [{"uri": uri, "lines": [{"number": 1, "content": f"match: {pattern}"}]}]}
+
+    def glob(self, pattern: str, uri: str = "viking://") -> dict:
+        return {"matches": [{"uri": f"{uri}/{pattern}"}]}
+
     def add_note_resource(self, uri: str, content: str, metadata: dict[str, object]) -> None:
         self.resources[uri] = {"uri": uri, "content": content, "metadata": metadata}
 
@@ -548,3 +554,37 @@ def test_render_response_uses_local_renderer_when_offline(offline_service: objec
     resource = offline_service.get_resource("alpha_proj", detail_level=RenderLevel.L0)
     assert resource.rendered
     assert not resource.rendered.startswith("[L0]")
+
+
+# --- grep_resources / glob_resources tests ---
+
+
+def test_grep_resources_delegates_to_client(service: object) -> None:
+    result = service.grep_resources("cadA", case_insensitive=True)
+    assert "matches" in result
+    assert result["matches"][0]["lines"][0]["content"] == "match: cadA"
+
+
+def test_grep_resources_with_custom_uri(service: object) -> None:
+    result = service.grep_resources("cadA", uri="viking://resources/observatory/projects/alpha_proj")
+    assert "matches" in result
+
+
+def test_glob_resources_delegates_to_client(service: object) -> None:
+    result = service.glob_resources("*.yaml")
+    assert "matches" in result
+
+
+def test_glob_resources_with_custom_uri(service: object) -> None:
+    result = service.glob_resources("*.yaml", uri="viking://resources/observatory/projects/alpha_proj")
+    assert "matches" in result
+
+
+def test_grep_resources_raises_when_offline(offline_service: object) -> None:
+    with pytest.raises(RuntimeError, match="grep requires a live OpenViking connection"):
+        offline_service.grep_resources("cadA")
+
+
+def test_glob_resources_raises_when_offline(offline_service: object) -> None:
+    with pytest.raises(RuntimeError, match="glob requires a live OpenViking connection"):
+        offline_service.glob_resources("*.yaml")

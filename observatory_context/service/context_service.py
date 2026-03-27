@@ -261,6 +261,29 @@ class ObservatoryContextService:
             for rel in self._knowledge_index.entity_connections(entity_id)
         ]
 
+    def grep_resources(
+        self,
+        pattern: str,
+        uri: str | None = None,
+        case_insensitive: bool = False,
+    ) -> dict[str, Any]:
+        """Content search across OpenViking resources. Requires live server."""
+        if self.client is None:
+            raise RuntimeError("grep requires a live OpenViking connection")
+        target = uri or build_observatory_root_uri()
+        return self.client.grep(target, pattern, case_insensitive=case_insensitive)
+
+    def glob_resources(
+        self,
+        pattern: str,
+        uri: str | None = None,
+    ) -> dict[str, Any]:
+        """File pattern matching across OpenViking resources. Requires live server."""
+        if self.client is None:
+            raise RuntimeError("glob requires a live OpenViking connection")
+        target = uri or build_observatory_root_uri()
+        return self.client.glob(pattern, uri=target)
+
     def _render_response(self, resource: ContextResource, detail_level: RenderLevel) -> ResourceResponse:
         level = self._coerce_level(detail_level)
         rendered = None
