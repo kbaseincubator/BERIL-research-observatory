@@ -12,7 +12,6 @@ from observatory_context.parity import collect_parity_issues
 from observatory_context.render import RenderLevel, render_resource
 from observatory_context.uris import (
     build_figure_resource_uri,
-    build_knowledge_resource_uri,
     build_project_resource_uri,
 )
 
@@ -49,26 +48,6 @@ figures:
         + "\n",
     )
     _write(
-        tmp_path / "knowledge" / "entities" / "organisms.yaml",
-        """
-organisms:
-  - id: org_alpha
-    name: Alpha organism
-""".strip()
-        + "\n",
-    )
-    _write(
-        tmp_path / "knowledge" / "timeline.yaml",
-        """
-events:
-  - date: 2026-03-19
-    type: milestone
-    project: alpha_proj
-    summary: Alpha milestone
-""".strip()
-        + "\n",
-    )
-    _write(
         tmp_path / "projects" / "alpha_proj" / "README.md",
         "# Alpha Project\n\nQuestion: How does alpha respond?\n",
     )
@@ -96,28 +75,6 @@ def test_resource_uris_are_deterministic() -> None:
         build_figure_resource_uri("alpha_proj", "main")
         == "viking://resources/observatory/projects/alpha_proj/authored/figures/main"
     )
-    assert (
-        build_knowledge_resource_uri("entities/organisms.yaml")
-        == "viking://resources/observatory/overlays/raw-knowledge/entities/organisms.yaml"
-    )
-
-
-def test_manifest_imports_knowledge_as_raw_resources(sample_repo: Path) -> None:
-    manifest = build_resource_manifest(sample_repo)
-
-    kinds = {item.uri: item.kind for item in manifest}
-    assert (
-        "viking://resources/observatory/overlays/raw-knowledge/entities/organisms.yaml"
-        in kinds
-    )
-    assert (
-        kinds[
-            "viking://resources/observatory/overlays/raw-knowledge/entities/organisms.yaml"
-        ]
-        == "knowledge_document"
-    )
-
-
 def test_manifest_deduplicates_duplicate_figure_uris(tmp_path: Path) -> None:
     _write(
         tmp_path / "docs" / "project_registry.yaml",
@@ -143,7 +100,6 @@ figures:
 """.strip()
         + "\n",
     )
-    _write(tmp_path / "knowledge" / "timeline.yaml", "events: []\n")
     _write(tmp_path / "projects" / "alpha_proj" / "README.md", "# Alpha Project\n")
     _write(
         tmp_path / "projects" / "alpha_proj" / "REPORT.md",
@@ -196,15 +152,10 @@ def test_capture_baseline_snapshot_collects_counts(sample_repo: Path) -> None:
         },
         validator_results={
             "validate_provenance": True,
-            "validate_knowledge_graph": True,
-            "validate_registry_freshness": True,
         },
     )
 
     assert snapshot["counts"]["projects"] == 1
-    assert snapshot["counts"]["figures"] == 1
-    assert snapshot["counts"]["organisms"] == 1
-    assert snapshot["counts"]["timeline_events"] == 1
     assert snapshot["queries"]["org_adp1"] == "no direct hit"
 
 

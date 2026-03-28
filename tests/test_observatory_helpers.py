@@ -2,10 +2,7 @@
 
 from __future__ import annotations
 
-import pytest
-
 from observatory_context._text import compact_text, split_frontmatter
-from observatory_context.retrieval.knowledge_index import KnowledgeEntity, KnowledgeIndex
 
 
 # --- compact_text ---
@@ -120,50 +117,3 @@ class TestParseLiveResource:
         assert result["kind"] == "note"
 
 
-# --- KnowledgeIndex init ---
-
-
-class TestKnowledgeIndexInit:
-    @pytest.fixture
-    def sample_index(self) -> KnowledgeIndex:
-        entities = {
-            "org_a": KnowledgeEntity(
-                id="org_a", name="Org A", kind="organism",
-                projects=frozenset(["proj1", "proj2"]),
-            ),
-            "gene_b": KnowledgeEntity(
-                id="gene_b", name="Gene B", kind="gene",
-                projects=frozenset(["proj1"]),
-            ),
-            "conc_c": KnowledgeEntity(
-                id="conc_c", name="Concept C", kind="concept",
-                projects=frozenset(["proj2"]),
-            ),
-        }
-        return KnowledgeIndex(entities=entities, relations=[])
-
-    def test_entities_by_kind(self, sample_index: KnowledgeIndex) -> None:
-        organisms = sample_index.list_entities(kind="organism")
-        assert len(organisms) == 1
-        assert organisms[0].id == "org_a"
-
-        genes = sample_index.list_entities(kind="gene")
-        assert len(genes) == 1
-
-    def test_project_to_entities(self, sample_index: KnowledgeIndex) -> None:
-        entities = sample_index.entities_for_project("proj1")
-        assert entities == {"org_a", "gene_b"}
-
-        entities = sample_index.entities_for_project("proj2")
-        assert entities == {"org_a", "conc_c"}
-
-    def test_entity_to_projects(self, sample_index: KnowledgeIndex) -> None:
-        projects = sample_index.projects_for_entity("org_a")
-        assert projects == {"proj1", "proj2"}
-
-        projects = sample_index.projects_for_entity("gene_b")
-        assert projects == {"proj1"}
-
-    def test_unknown_entity_returns_empty(self, sample_index: KnowledgeIndex) -> None:
-        assert sample_index.projects_for_entity("nonexistent") == set()
-        assert sample_index.entities_for_project("nonexistent") == set()

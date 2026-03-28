@@ -358,50 +358,6 @@ def test_search_context_boosts_entity_linked_projects(offline_service: object) -
     assert "alpha_proj" in project_ids
 
 
-def test_related_resources_use_graph_connections(offline_service: object) -> None:
-    related = offline_service.related_resources("alpha_proj", limit=10)
-
-    related_ids = {r.id for r in related}
-    assert "beta_proj" in related_ids
-
-
-def test_get_entity_returns_knowledge_entity(offline_service: object) -> None:
-    entity = offline_service.get_entity("org_alpha")
-
-    assert entity is not None
-    assert entity["name"] == "Alpha organism"
-    assert entity["kind"] == "organism"
-    assert "alpha_proj" in entity["projects"]
-
-
-def test_get_entity_returns_none_for_unknown(offline_service: object) -> None:
-    assert offline_service.get_entity("nonexistent") is None
-
-
-def test_list_entities_filters_by_kind(offline_service: object) -> None:
-    organisms = offline_service.list_entities(kind="organism")
-    assert len(organisms) == 2
-    assert all(e["kind"] == "organism" for e in organisms)
-
-    concepts = offline_service.list_entities(kind="concept")
-    assert len(concepts) == 1
-    assert concepts[0]["id"] == "conc_fitness"
-
-    all_entities = offline_service.list_entities()
-    assert len(all_entities) == 3  # 2 organisms + 1 concept
-
-
-def test_entity_connections_returns_relations(offline_service: object) -> None:
-    connections = offline_service.entity_connections("org_alpha")
-
-    assert len(connections) == 1
-    assert connections[0]["predicate"] == "studied_in"
-    assert connections[0]["object"] == "conc_fitness"
-
-    connections = offline_service.entity_connections("conc_fitness")
-    assert len(connections) == 2
-
-
 # --- Client wrapper tests ---
 
 

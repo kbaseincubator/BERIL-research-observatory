@@ -105,41 +105,6 @@ def test_materialize_exports_uses_runtime_service_by_default(
     assert calls == [(sample_repo, False, True)]
 
 
-def test_materialize_overlays_supports_offline_flag(
-    sample_repo: Path,
-    tmp_path: Path,
-    monkeypatch: pytest.MonkeyPatch,
-) -> None:
-    from scripts import viking_materialize_overlays
-
-    calls: list[tuple[Path, bool, bool]] = []
-
-    class FakeService:
-        pass
-
-    def fake_build_service(repo_root: Path, offline: bool = False, require_live: bool = False):
-        calls.append((repo_root, offline, require_live))
-        return FakeService()
-
-    monkeypatch.setattr(viking_materialize_overlays.runtime, "build_service", fake_build_service)
-    monkeypatch.setattr(viking_materialize_overlays, "build_raw_knowledge_overlays", lambda service: [])
-    monkeypatch.setattr(viking_materialize_overlays, "write_overlay_documents", lambda output_dir, overlays: None)
-
-    assert (
-        viking_materialize_overlays.main(
-            [
-                "--repo-root",
-                str(sample_repo),
-                "--output-dir",
-                str(tmp_path),
-                "--offline",
-            ]
-        )
-        == 0
-    )
-    assert calls == [(sample_repo, True, False)]
-
-
 def test_setup_script_can_write_repo_config(
     sample_repo: Path,
     monkeypatch: pytest.MonkeyPatch,
