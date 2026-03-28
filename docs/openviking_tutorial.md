@@ -1,7 +1,7 @@
 # OpenViking Tutorial
 
-This is the current workflow for running the BERIL observatory against a real
-local OpenViking server.
+OpenViking is the single source of truth for all observatory knowledge data.
+This tutorial walks through setting up and running a local OpenViking server.
 
 ## Prerequisites
 
@@ -83,32 +83,13 @@ Upload the full manifest to the live server:
 uv run scripts/viking_ingest.py
 ```
 
-This uploads authored project documents, figure metadata resources, and tracked
-knowledge documents with stable URIs and deterministic metadata.
+This uploads authored project documents and figure metadata resources with
+stable URIs and deterministic metadata. Use `--check` to verify all expected
+resources are present, and `--fix` to re-ingest any that are missing.
 
-## 5. Use the live-backed materializers
+## 5. Use the live context service
 
-Generate Git review exports from live OpenViking resources:
-
-```bash
-uv run scripts/viking_materialize_exports.py --generated-at 2026-03-19T16:43:57
-uv run scripts/viking_validate_exports.py --generated-dir docs
-```
-
-Generate tracked overlay YAML from live OpenViking resources:
-
-```bash
-uv run scripts/viking_materialize_overlays.py
-uv run scripts/viking_validate_overlays.py --generated-dir .cache/openviking/overlays
-```
-
-If you want repo-only fallback behavior without contacting the server, add
-`--offline` to the materialize and validate commands.
-
-## 6. Use the live context service
-
-The service layer reads authored resources from the repository and overrides
-them with matching live OpenViking resources when present. Notes and
+The service layer queries OpenViking for all knowledge data. Notes and
 observations are written directly into OpenViking.
 
 Current write surfaces:
@@ -124,13 +105,12 @@ Current read surfaces:
 - `list_project_resources(project_id, kind?, path?)`
 - `related_resources(id_or_uri, mode?, limit?)`
 
-## 7. Run repository verification
+## 6. Run repository verification
 
 ```bash
 uv run --with pytest pytest scripts/tests -q
 uv run scripts/validate_provenance.py
-uv run scripts/validate_knowledge_graph.py
-uv run scripts/validate_registry_freshness.py
+uv run scripts/viking_ingest.py --check
 uv run scripts/viking_validate_parity.py
 ```
 
@@ -142,5 +122,5 @@ uv run scripts/viking_validate_parity.py
   Run `uv run scripts/viking_setup.py --write-config`.
 - `Missing OPENAI_API_KEY`:
   Export it in your shell or add it to `.env`, then rerun the setup script.
-- Materializer commands fail in live mode:
-  Confirm ingest has completed and re-run the healthcheck.
+- `--check` reports missing resources:
+  Run `uv run scripts/viking_ingest.py --fix` to re-ingest them.

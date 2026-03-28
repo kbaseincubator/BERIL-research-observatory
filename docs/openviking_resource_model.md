@@ -1,7 +1,6 @@
 # OpenViking Resource Model
 
-The Phase 1 ingest is document-first. It does not rebuild the current
-`knowledge/` graph as mandatory server-side structure.
+OpenViking is the single source of truth for all observatory knowledge data.
 
 ## URI layout
 
@@ -17,19 +16,11 @@ Figure resources:
 viking://resources/observatory/projects/{project_id}/authored/figures/{figure_id}
 ```
 
-Raw knowledge imports:
-
-```text
-viking://resources/observatory/overlays/raw-knowledge/{relative_path}
-```
-
 ## Resource kinds
 
 - `project`: the project `README.md` entry point
 - `project_document`: project `REPORT.md` and `provenance.yaml`
-- `figure`: project figure files referenced by `docs/figure_catalog.yaml`
-- `knowledge_document`: YAML files from `knowledge/` imported as retrievable
-  documents
+- `figure`: project figure files
 
 ## Deterministic metadata
 
