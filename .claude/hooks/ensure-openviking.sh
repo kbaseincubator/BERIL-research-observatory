@@ -26,7 +26,7 @@ if [ -f "$CONFIG_FILE" ]; then
   export OPENVIKING_CONFIG_FILE="$CONFIG_FILE"
 fi
 
-nohup uv run openviking serve > "$LOG_FILE" 2>&1 &
+nohup uv run openviking-server --config "$CONFIG_FILE" > "$LOG_FILE" 2>&1 &
 echo $! > "$PID_FILE"
 
 # Wait briefly for startup

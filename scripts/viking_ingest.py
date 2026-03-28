@@ -168,7 +168,7 @@ def main(argv: list[str] | None = None) -> int:
         except Exception:
             url = getattr(getattr(client, "settings", None), "openviking_url", "http://127.0.0.1:1933")
             print(f"OpenViking server is not reachable at {url}")
-            print("Start it with: uv run openviking serve")
+            print("Start it with: uv run openviking-server --config config/openviking/ov.conf")
             return 1
 
     if args.check and not args.fix:
