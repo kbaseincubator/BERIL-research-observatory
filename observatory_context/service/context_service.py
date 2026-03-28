@@ -8,8 +8,7 @@ from typing import Any, Callable
 from observatory_context._text import compact_text, split_frontmatter
 from observatory_context.notes import build_live_resource, parse_live_resource
 from observatory_context.render import RenderLevel, render_resource
-from observatory_context.retrieval import build_authored_resource_index, build_knowledge_index, lexical_search, rank_related_resources
-from observatory_context.retrieval.knowledge_index import KnowledgeIndex
+from observatory_context.retrieval import build_authored_resource_index, lexical_search, rank_related_resources
 from observatory_context.service.models import ContextResource, ProjectWorkspace, ResourceResponse
 from observatory_context.uris import (
     build_observatory_root_uri,
@@ -31,10 +30,6 @@ class ObservatoryContextService:
         self.client = client
         self.now_factory = now_factory or (lambda: "1970-01-01T00:00:00Z")
         self._authored_resources = build_authored_resource_index(self.repo_root)
-        try:
-            self._knowledge_index: KnowledgeIndex | None = build_knowledge_index(self.repo_root)
-        except Exception:
-            self._knowledge_index = None
         self._cached_all_resources: dict[str, ContextResource] | None = None
         self._project_ids = sorted(
             {
@@ -82,7 +77,7 @@ class ObservatoryContextService:
                 if resolved_uri is None:
                     continue
                 semantic_results.append(all_resources[resolved_uri])
-        ranked = semantic_results or lexical_search(resources, query, knowledge_index=self._knowledge_index)
+        ranked = semantic_results or lexical_search(resources, query)
         seen: set[str] = set()
         results: list[ResourceResponse] = []
         for resource in ranked:
@@ -172,7 +167,7 @@ class ObservatoryContextService:
     ) -> list[ContextResource]:
         source = self._resolve_resource(id_or_uri)
         candidates = self._filtered_resources()
-        return rank_related_resources(source, candidates, mode=mode, limit=limit, knowledge_index=self._knowledge_index)
+        return rank_related_resources(source, candidates, mode=mode, limit=limit)
 
     def add_note(
         self,
@@ -215,47 +210,6 @@ class ObservatoryContextService:
         )
         resource = self._write_live_resource(payload)
         return self._render_response(resource, RenderLevel.L2)
-
-    def get_entity(self, entity_id: str) -> dict[str, Any] | None:
-        """Return a knowledge graph entity as a plain dict."""
-        if self._knowledge_index is None:
-            return None
-        entity = self._knowledge_index.get_entity(entity_id)
-        if entity is None:
-            return None
-        return self._entity_to_dict(entity)
-
-    def list_entities(self, kind: str | None = None) -> list[dict[str, Any]]:
-        """Return knowledge graph entities, optionally filtered by kind."""
-        if self._knowledge_index is None:
-            return []
-        return [self._entity_to_dict(e) for e in self._knowledge_index.list_entities(kind=kind)]
-
-    def entity_connections(self, entity_id: str) -> list[dict[str, Any]]:
-        """Return knowledge graph relations involving an entity."""
-        if self._knowledge_index is None:
-            return []
-        return [self._relation_to_dict(rel) for rel in self._knowledge_index.entity_connections(entity_id)]
-
-    @staticmethod
-    def _entity_to_dict(entity: Any) -> dict[str, Any]:
-        return {
-            "id": entity.id,
-            "name": entity.name,
-            "kind": entity.kind,
-            "projects": sorted(entity.projects),
-            "aliases": sorted(entity.aliases),
-        }
-
-    @staticmethod
-    def _relation_to_dict(rel: Any) -> dict[str, Any]:
-        return {
-            "subject": rel.subject,
-            "predicate": rel.predicate,
-            "object": rel.object,
-            "evidence_project": rel.evidence_project,
-            "confidence": rel.confidence,
-        }
 
     def grep_resources(
         self,
@@ -442,7 +396,6 @@ class ObservatoryContextService:
             "observation": 2,
             "figure": 3,
             "project_document": 4,
-            "knowledge_document": 5,
         }
         return (priority.get(resource.kind, 99), resource.uri)
 
@@ -451,5 +404,3 @@ class ObservatoryContextService:
         if isinstance(detail_level, RenderLevel):
             return detail_level
         return RenderLevel(detail_level)
-
-

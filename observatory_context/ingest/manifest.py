@@ -7,26 +7,14 @@ from pathlib import Path
 
 import yaml
 
-from scripts.build_registry import parse_figures_from_report, parse_project
+from observatory_context.parsing import parse_figures_from_report, parse_project
 
 from observatory_context._discovery import discover_project_ids
 from observatory_context._graph import compute_enables
 from observatory_context.uris import (
     build_figure_resource_uri,
-    build_knowledge_resource_uri,
     build_project_resource_uri,
 )
-
-_KNOWLEDGE_ROOT_KEYS = {
-    "entities/organisms.yaml": "organisms",
-    "entities/genes.yaml": "genes",
-    "entities/pathways.yaml": "pathways",
-    "entities/methods.yaml": "methods",
-    "entities/concepts.yaml": "concepts",
-    "relations.yaml": "relations",
-    "hypotheses.yaml": "hypotheses",
-    "timeline.yaml": "events",
-}
 
 
 @dataclass(slots=True)
@@ -156,31 +144,6 @@ def build_resource_manifest(
                 )
             )
 
-    if selected_project_ids:
-        return manifest
-
-    for relative_path in _knowledge_paths(repo_root / "knowledge"):
-        source_path = repo_root / "knowledge" / relative_path
-        relative_posix = relative_path.as_posix()
-        manifest.append(
-            ResourceManifestItem(
-                uri=build_knowledge_resource_uri(relative_posix),
-                kind="knowledge_document",
-                source_path=str(source_path),
-                project_ids=[],
-                metadata={
-                    "id": relative_path.stem,
-                    "kind": "knowledge_document",
-                    "title": relative_path.name,
-                    "tags": ["raw-knowledge"],
-                    "source_refs": [f"knowledge/{relative_posix}"],
-                    "overlay_family": "raw-knowledge",
-                    "overlay_relative_path": relative_posix,
-                    "overlay_root_key": _knowledge_root_keys(relative_path),
-                },
-            )
-        )
-
     return manifest
 
 
@@ -188,23 +151,6 @@ def _load_yaml(path: Path) -> dict:
     if not path.exists():
         return {}
     return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-
-
-def _knowledge_paths(knowledge_root: Path) -> list[Path]:
-    paths = []
-    for path in sorted(knowledge_root.rglob("*.yaml")):
-        if path.name == "research_graph.yaml":
-            continue
-        paths.append(path.relative_to(knowledge_root))
-    return paths
-
-
-def _knowledge_root_keys(relative_path: Path) -> str:
-    relative_posix = relative_path.as_posix()
-    try:
-        return _KNOWLEDGE_ROOT_KEYS[relative_posix]
-    except KeyError as exc:
-        raise ValueError(f"Unsupported knowledge overlay path: {relative_posix}") from exc
 
 
 

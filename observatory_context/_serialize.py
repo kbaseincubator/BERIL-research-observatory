@@ -2,9 +2,15 @@
 
 from __future__ import annotations
 
-from scripts.build_registry import yaml_dump
+import yaml
 
 
 def dump_yaml(payload: dict[str, object]) -> str:
     """Serialize a payload using the repository YAML format."""
-    return yaml_dump(payload)
+    return yaml.dump(
+        payload,
+        default_flow_style=False,
+        allow_unicode=True,
+        sort_keys=False,
+        width=120,
+    )
