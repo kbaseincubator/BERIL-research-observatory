@@ -161,6 +161,16 @@ def main(argv: list[str] | None = None) -> int:
 
     client = OpenVikingObservatoryClient(ObservatoryContextSettings())
 
+    if hasattr(client, "health"):
+        try:
+            if not client.health():
+                raise RuntimeError
+        except Exception:
+            url = getattr(getattr(client, "settings", None), "openviking_url", "http://127.0.0.1:1933")
+            print(f"OpenViking server is not reachable at {url}")
+            print("Start it with: uv run openviking serve")
+            return 1
+
     if args.check and not args.fix:
         missing = _check_manifest(client, manifest)
         return 1 if missing else 0
