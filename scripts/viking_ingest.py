@@ -1,4 +1,4 @@
-"""Build and optionally ingest the Phase 1 OpenViking manifest."""
+"""Build, ingest, check, and fix the OpenViking resource manifest."""
 
 from __future__ import annotations
 
@@ -59,6 +59,16 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="Skip projects whose REPORT.md exceeds N kilobytes (e.g. 50).",
     )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Verify all manifest resources exist in OpenViking without uploading.",
+    )
+    parser.add_argument(
+        "--fix",
+        action="store_true",
+        help="Re-ingest any missing resources found by --check.",
+    )
     return parser
 
 
@@ -92,6 +102,41 @@ def _filter_oversized_projects(
     return [item for item in manifest if not any(pid in skip for pid in item.project_ids)]
 
 
+def _check_manifest(client: OpenVikingObservatoryClient, manifest: list) -> list:
+    """Check which manifest items exist in OpenViking. Returns list of missing items."""
+    knowledge = [item for item in manifest if "overlays/raw-knowledge" in item.uri]
+    projects = [item for item in manifest if "overlays/raw-knowledge" not in item.uri]
+
+    missing: list = []
+    knowledge_ok = 0
+    project_ok = 0
+
+    print("Knowledge resources:")
+    for item in knowledge:
+        if client.resource_exists(item.uri):
+            print(f"  ok  {item.uri}")
+            knowledge_ok += 1
+        else:
+            print(f"  MISSING  {item.uri}")
+            missing.append(item)
+
+    print()
+    print("Project resources:")
+    for item in projects:
+        if client.resource_exists(item.uri):
+            print(f"  ok  {item.uri}")
+            project_ok += 1
+        else:
+            print(f"  MISSING  {item.uri}")
+            missing.append(item)
+
+    print()
+    k_total = len(knowledge)
+    p_total = len(projects)
+    print(f"Summary: {knowledge_ok}/{k_total} knowledge, {project_ok}/{p_total} projects — {len(missing)} MISSING")
+    return missing
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     selected_projects = set(args.project or [])
@@ -115,6 +160,34 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     client = OpenVikingObservatoryClient(ObservatoryContextSettings())
+
+    if args.check and not args.fix:
+        missing = _check_manifest(client, manifest)
+        return 1 if missing else 0
+
+    if args.fix:
+        print("=== Checking for missing resources ===")
+        print()
+        missing = _check_manifest(client, manifest)
+        if not missing:
+            print("\nAll resources present — nothing to fix.")
+            return 0
+        print(f"\n=== Re-ingesting {len(missing)} missing resources ===")
+        print()
+        for item in missing:
+            client.add_manifest_resource(item, wait=False)
+            print(f"Queued {item.uri}")
+        if args.wait:
+            print("\nWaiting for OpenViking processing to finish...")
+            try:
+                client.wait_until_processed(timeout=args.wait_timeout)
+            except TimeoutError as exc:
+                print(f"Warning: {exc}")
+        print("\n=== Re-checking ===")
+        print()
+        still_missing = _check_manifest(client, manifest)
+        return 1 if still_missing else 0
+
     for item in manifest:
         if args.resume and client.resource_exists(item.uri):
             print(f"Skipping existing {item.uri}")

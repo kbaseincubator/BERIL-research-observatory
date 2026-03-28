@@ -16,8 +16,6 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT_DIR = REPO_ROOT / "docs" / "migration_baseline" / "2026-03-19"
 VALIDATORS = {
     "validate_provenance": ["uv", "run", "scripts/validate_provenance.py"],
-    "validate_knowledge_graph": ["uv", "run", "scripts/validate_knowledge_graph.py"],
-    "validate_registry_freshness": ["uv", "run", "scripts/validate_registry_freshness.py"],
 }
 QUERY_COMMANDS = {
     "metal stress": ["uv", "run", "scripts/query_knowledge_unified.py", "search", "metal stress"],

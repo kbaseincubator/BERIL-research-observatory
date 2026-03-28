@@ -65,7 +65,7 @@ KNOWN_COLLECTIONS = [
     "kescience_bacdive",
 ]
 
-PROVENANCE_SCHEMA_PATH = REPO_ROOT / "knowledge" / "schema" / "provenance.schema.json"
+PROVENANCE_SCHEMA_PATH = REPO_ROOT / "docs" / "schemas" / "provenance.schema.json"
 
 REFERENCE_TYPES = {
     "primary_data_source",
