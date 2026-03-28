@@ -1,2 +1,16 @@
 {
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/ensure-openviking.sh",
+            "timeout": 10,
+            "statusMessage": "Checking OpenViking server..."
+          }
+        ]
+      }
+    ]
+  }
 }
