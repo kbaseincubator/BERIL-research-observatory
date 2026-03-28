@@ -39,7 +39,7 @@ If no `project_id` argument is provided, detect from the current working directo
 
 ### Step 3: Check Knowledge Graph Context
 
-Read `knowledge/hypotheses.yaml` (if it exists) and find hypotheses related to this project:
+Run `uv run scripts/query_knowledge_unified.py hypotheses` and find hypotheses related to this project:
 - Hypotheses originated by this project
 - Hypotheses from other projects that share entities/organisms
 
@@ -93,7 +93,7 @@ When the user is satisfied with the interpretation:
 
 ## Integration
 
-- **Reads from**: `projects/{id}/RESEARCH_PLAN.md`, `projects/{id}/data/*.csv`, `projects/{id}/notebooks/*.ipynb`, `projects/{id}/figures/`, `knowledge/hypotheses.yaml`
+- **Reads from**: `projects/{id}/RESEARCH_PLAN.md`, `projects/{id}/data/*.csv`, `projects/{id}/notebooks/*.ipynb`, `projects/{id}/figures/`, OpenViking (hypotheses via `scripts/query_knowledge_unified.py`)
 - **Produces**: Conversational interpretation only (no files)
 - **Leads to**: `/synthesize` (when user is ready for formal writeup)
 - **Related skills**: `/synthesize` (formal writeup), `/knowledge` (search for related findings)

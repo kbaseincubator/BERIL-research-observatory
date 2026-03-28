@@ -279,7 +279,7 @@ Steps:
    a. Read `README.md` and summarize where the project stands
    b. If `REVIEW.md` exists, read and summarize outstanding issues
    c. Check `git status` for uncommitted changes in the project directory
-   d. Check `knowledge/hypotheses.yaml` for hypotheses relevant to this project
+   d. Run `uv run scripts/query_knowledge_unified.py hypotheses` and check for hypotheses relevant to this project
 4. Suggest the appropriate next skill based on phase:
    - Planning phase → continue analysis (Phase C in Path 1)
    - Analysis done → `/interpret` to discuss results, then `/synthesize`

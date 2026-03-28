@@ -254,13 +254,15 @@ uv run scripts/build_registry.py --project {project_id}
 
 This ensures the project's findings, tags, data artifacts, and dependencies are immediately searchable via `/knowledge`. If the script is not found or fails, print a note and continue — this is non-blocking.
 
-#### Step 7.7: Update Knowledge Graph (Layer 3)
+#### Step 7.7: Update Knowledge Graph via OpenViking
 
-After writing provenance.yaml and updating the registry, update the semantic knowledge graph in `knowledge/`. This step is required. If `knowledge/` doesn't exist, create the directory structure first (entities/, relations.yaml, hypotheses.yaml, timeline.yaml).
+After writing provenance.yaml and updating the registry, update the knowledge graph through OpenViking. This step is required.
+
+For each substep below, read current content via the query script, prepare updates, and write back via the service.
 
 **a) Register new entities:**
-- Read the REPORT.md Key Findings and identify any organisms, genes, pathways, methods, or concepts not yet in `knowledge/entities/*.yaml`
-- For each new entity, append to the appropriate file using the existing format
+- Read the REPORT.md Key Findings and identify any organisms, genes, pathways, methods, or concepts not yet registered
+- Run `uv run scripts/query_knowledge_unified.py entities <type>` to check existing entities for each type
 - Use ID prefixes: `org_`, `gene_`, `path_`, `meth_`, `conc_`
 - Include the current `project_id` in the entity's `projects` list
 - Map to external IDs (NCBI Taxonomy, KEGG) where possible
@@ -270,7 +272,8 @@ After writing provenance.yaml and updating the registry, update the semantic kno
 
 **c) Add/update relations:**
 - Extract entity-entity relationships from Key Findings
-- Append new relations to `knowledge/relations.yaml` with:
+- Run `uv run scripts/query_knowledge_unified.py connections <entity_id>` to check existing relations
+- Add new relations with:
   - `evidence_project`: the current project_id
   - `confidence`: based on statistical significance reported
   - `note`: brief evidence description
@@ -278,18 +281,20 @@ After writing provenance.yaml and updating the registry, update the semantic kno
 For each analytical method used in this project, add an `applied_to` relation connecting the method entity to each organism studied. This ensures method coverage gap analysis is accurate.
 
 **d) Create/update hypotheses:**
-- For each Key Finding, check if a related hypothesis exists in `knowledge/hypotheses.yaml`
+- Run `uv run scripts/query_knowledge_unified.py hypotheses` to read existing hypotheses
+- For each Key Finding, check if a related hypothesis exists
   - If yes: add this project's finding as supporting or contradicting evidence
   - If no: create a new hypothesis entry with status `validated` (if the finding is definitive) or `proposed` (if exploratory)
 - If any findings contradict existing hypotheses, update the contradicting evidence list and consider changing status to `rejected`
 
 **e) Append timeline events:**
-- Add a `project_completed` event to `knowledge/timeline.yaml` with today's date
+- Run `uv run scripts/query_knowledge_unified.py timeline` to read existing events
+- Add a `project_completed` event with today's date
 - Add `discovery` events for notable findings
 - Add `hypothesis_validated` or `hypothesis_rejected` events as appropriate
 - Add `cross_project_connection` events if findings link to other projects
 
-**Layer 3 completion checklist** — before proceeding to Step 8, verify:
+**Knowledge graph completion checklist** — before proceeding to Step 8, verify:
 - [ ] At least 1 entity registered or updated with this project_id
 - [ ] At least 1 relation added with evidence_project: {project_id}
 - [ ] At least 1 timeline event appended for this project
@@ -318,8 +323,8 @@ After completing the synthesis, tell the user:
 
 - **Reads from**: `data/*.csv`, `figures/`, `notebooks/*.ipynb`, `RESEARCH_PLAN.md`, `references.md`
 - **Calls**: `/literature-review` (for literature comparison)
-- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); `provenance.yaml` (structured metadata); updated `README.md` (Status); updated `docs/project_registry.yaml` (via build_registry.py); updated `knowledge/` (entities, relations, hypotheses, timeline)
-- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md; validator checks provenance.yaml); `/knowledge` (searches registry and knowledge graph); `/suggest-research` (uses knowledge graph for gap analysis)
+- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); `provenance.yaml` (structured metadata); updated `README.md` (Status); updated knowledge graph via OpenViking (entities, relations, hypotheses, timeline)
+- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md; validator checks provenance.yaml); `/knowledge` (searches via OpenViking); `/suggest-research` (uses knowledge graph for gap analysis)
 
 ## Pitfall Detection
 

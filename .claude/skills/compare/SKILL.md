@@ -22,9 +22,9 @@ Where `<A>` and `<B>` are project IDs, organism entity IDs, or other entity IDs.
 ### Step 1: Determine Comparison Type
 
 Check if the arguments match:
-1. **Project IDs**: Look up in `docs/project_registry.yaml`
-2. **Entity IDs**: Look up in `knowledge/entities/*.yaml` (check organisms, then genes, pathways, methods, concepts)
-3. **Entity names**: If not exact ID matches, search entity files for name matches
+1. **Project IDs**: Run `uv run scripts/query_knowledge_unified.py project <id>` for each
+2. **Entity IDs**: Run `uv run scripts/query_knowledge_unified.py entities <type>` to look up entities (check organism, then gene, pathway, method, concept)
+3. **Entity names**: If not exact ID matches, search entities for name matches
 
 If one arg matches a project and the other an entity, tell the user and ask for clarification.
 
@@ -32,7 +32,7 @@ If one arg matches a project and the other an entity, tell the user and ask for 
 
 If both arguments are project IDs:
 
-1. Read both entries from `docs/project_registry.yaml`
+1. Run `uv run scripts/query_knowledge_unified.py project <id>` for each project
 2. Compare:
 
 | Dimension | Project A | Project B |
@@ -62,7 +62,7 @@ If both arguments are organism entity IDs:
    ```bash
    uv run scripts/query_knowledge_unified.py connections <org_id>
    ```
-2. Read both organism entries from `knowledge/entities/organisms.yaml`
+2. Run `uv run scripts/query_knowledge_unified.py entities organism --query <name>` for each organism
 3. Compare:
 
 | Dimension | Organism A | Organism B |
@@ -82,8 +82,8 @@ If both arguments are organism entity IDs:
 
 For other entity types (methods, pathways, concepts):
 
-1. Read both entity entries from the appropriate `knowledge/entities/*.yaml` file
-2. Read their relations from `knowledge/relations.yaml`
+1. Run `uv run scripts/query_knowledge_unified.py entities <type>` to look up each entity
+2. Run `uv run scripts/query_knowledge_unified.py connections <entity_id>` for each entity
 3. Compare project coverage, connected entities, and relation types
 4. Present a side-by-side summary
 
@@ -105,7 +105,7 @@ Based on the comparison, suggest:
 
 ## Integration
 
-- **Reads from**: `docs/project_registry.yaml`, `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml`
-- **Query backend**: `scripts/query_knowledge_unified.py` (for connections queries)
+- **Reads from**: OpenViking (via `scripts/query_knowledge_unified.py`)
+- **Query backend**: `scripts/query_knowledge_unified.py` (all subcommands)
 - **Consumed by**: users exploring cross-project patterns
 - **Related skills**: `/knowledge` (deeper exploration), `/suggest-research` (gap-driven recommendations)
