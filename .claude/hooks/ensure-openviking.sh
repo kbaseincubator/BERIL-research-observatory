@@ -4,7 +4,7 @@
 
 REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 HEALTH_URL="http://127.0.0.1:1933/health"
-PID_FILE="$REPO_ROOT/data/.openviking.pid"
+HOOK_PID_FILE="$REPO_ROOT/data/.openviking-hook.pid"
 LOG_FILE="$REPO_ROOT/data/.openviking.log"
 
 # Fast path: server already healthy
@@ -13,9 +13,18 @@ if curl -sf --max-time 1 "$HEALTH_URL" > /dev/null 2>&1; then
 fi
 
 # Check if another instance is already starting
-if [ -f "$PID_FILE" ] && kill -0 "$(cat "$PID_FILE")" 2>/dev/null; then
+if [ -f "$HOOK_PID_FILE" ] && kill -0 "$(cat "$HOOK_PID_FILE")" 2>/dev/null; then
   # Process exists but health check failed — still starting up
   exit 0
+fi
+
+# Clean stale OpenViking lock file if the owning process is dead
+OV_LOCK="$REPO_ROOT/data/.openviking.pid"
+if [ -f "$OV_LOCK" ]; then
+  STALE_PID=$(cat "$OV_LOCK" 2>/dev/null)
+  if [ -n "$STALE_PID" ] && ! kill -0 "$STALE_PID" 2>/dev/null; then
+    rm -f "$OV_LOCK"
+  fi
 fi
 
 # Start the server
@@ -27,7 +36,7 @@ if [ -f "$CONFIG_FILE" ]; then
 fi
 
 nohup uv run openviking-server --config "$CONFIG_FILE" > "$LOG_FILE" 2>&1 &
-echo $! > "$PID_FILE"
+echo $! > "$HOOK_PID_FILE"
 
 # Wait briefly for startup
 for i in 1 2 3 4 5; do

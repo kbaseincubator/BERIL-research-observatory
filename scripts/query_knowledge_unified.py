@@ -3,6 +3,10 @@
 
 from __future__ import annotations
 
+import warnings
+
+warnings.filterwarnings("ignore", message="urllib3.*or chardet.*doesn't match")
+
 import argparse
 import json
 import sys
