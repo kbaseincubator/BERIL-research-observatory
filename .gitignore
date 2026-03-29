@@ -101,6 +101,10 @@ htmlcov/
 .cache/openviking/
 config/openviking/ov.conf
 data/.openviking.pid
+data/.openviking.log
 data/_system/
 data/vectordb/
 data/viking/
+.superpowers/
+.kg_cache/
+/data/.openviking-hook.pid
