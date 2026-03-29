@@ -65,3 +65,57 @@ def build_project_notes_root_uri(project_id: str) -> str:
 def build_shared_notes_root_uri() -> str:
     path = PurePosixPath("notes")
     return f"{_ROOT}/{path.as_posix()}"
+
+
+_ENTITY_TYPE_PLURALS = {
+    "organism": "organisms",
+    "gene": "genes",
+    "pathway": "pathways",
+    "method": "methods",
+    "concept": "concepts",
+}
+
+_MEMORY_STORE_DIRS = {
+    "journal": "research-journal",
+    "patterns": "patterns",
+    "conversations": "conversations",
+}
+
+
+def build_knowledge_graph_uri() -> str:
+    path = PurePosixPath("knowledge-graph")
+    return f"{_ROOT}/{path.as_posix()}"
+
+
+def build_entity_uri(entity_type: str, entity_id: str) -> str:
+    plural = _ENTITY_TYPE_PLURALS[entity_type]
+    path = PurePosixPath(
+        "knowledge-graph",
+        "entities",
+        _normalize_segment(plural),
+        _normalize_segment(entity_id),
+    )
+    return f"{_ROOT}/{path.as_posix()}"
+
+
+def build_entity_relations_uri(entity_type: str, entity_id: str) -> str:
+    return f"{build_entity_uri(entity_type, entity_id)}/relations"
+
+
+def build_hypothesis_uri(hypothesis_id: str) -> str:
+    path = PurePosixPath("knowledge-graph", "hypotheses", _normalize_segment(hypothesis_id))
+    return f"{_ROOT}/{path.as_posix()}"
+
+
+def build_timeline_uri() -> str:
+    path = PurePosixPath("knowledge-graph", "timeline")
+    return f"{_ROOT}/{path.as_posix()}"
+
+
+def build_memory_uri(store: str, slug: str | None = None) -> str:
+    store_dir = _MEMORY_STORE_DIRS[store]
+    if slug is None:
+        path = PurePosixPath("memories", _normalize_segment(store_dir))
+    else:
+        path = PurePosixPath("memories", _normalize_segment(store_dir), _normalize_segment(slug))
+    return f"{_ROOT}/{path.as_posix()}"

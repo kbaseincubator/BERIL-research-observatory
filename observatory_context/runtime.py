@@ -17,6 +17,38 @@ def build_client(
     return OpenVikingObservatoryClient(settings or ObservatoryContextSettings())
 
 
+def build_delivery(
+    *,
+    require_live: bool = True,
+    with_extractor: bool = False,
+) -> "ContextDelivery":
+    """Build a ContextDelivery instance with optional CBORG extractor.
+
+    Parameters
+    ----------
+    require_live:
+        If True, call ``client.health()`` and raise on failure.
+    with_extractor:
+        If True and a CBORG API key is configured, attach a
+        CBORGExtractor to the delivery instance.
+    """
+    from observatory_context.delivery import ContextDelivery
+    from observatory_context.extraction import CBORGExtractor
+
+    settings = ObservatoryContextSettings()
+    client = build_client(settings)
+    if require_live:
+        client.health()
+    extractor = None
+    if with_extractor and settings.cborg_api_key:
+        extractor = CBORGExtractor(
+            api_url=settings.cborg_api_url,
+            model=settings.cborg_model,
+            api_key=settings.cborg_api_key,
+        )
+    return ContextDelivery(client=client, extractor=extractor)
+
+
 def build_service(
     repo_root: Path,
     offline: bool = False,
