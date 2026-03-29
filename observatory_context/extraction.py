@@ -98,11 +98,26 @@ class CBORGExtractor:
         Model identifier to use for all completions.
     api_key:
         Bearer token for the CBORG API.
+    max_input_tokens:
+        Maximum input tokens the model supports. Reports exceeding this
+        (estimated at ~4 chars/token) are skipped.
+    max_output_tokens:
+        Maximum output tokens the model supports. Used as the default
+        ``max_tokens`` for extraction calls.
     """
 
-    def __init__(self, api_url: str, model: str, api_key: str) -> None:
+    def __init__(
+        self,
+        api_url: str,
+        model: str,
+        api_key: str,
+        max_input_tokens: int | None = None,
+        max_output_tokens: int | None = None,
+    ) -> None:
         self.model = model
         self._api_url = api_url.rstrip("/")
+        self._max_input_tokens = max_input_tokens
+        self._max_output_tokens = max_output_tokens or 16384
         self._client = httpx.Client(
             headers={"Authorization": f"Bearer {api_key}"},
             timeout=120.0,
@@ -122,12 +137,24 @@ class CBORGExtractor:
         -------
         EntityExtraction
             Parsed extraction result; empty on parse failure.
+
+        Raises
+        ------
+        ValueError
+            If the prompt exceeds the model's max input token estimate.
         """
         prompt = self._build_extraction_prompt(report, provenance)
+        total_chars = len(_EXTRACTION_SYSTEM) + len(prompt)
+        estimated_tokens = total_chars // 4  # conservative ~4 chars/token
+        if self._max_input_tokens and estimated_tokens > self._max_input_tokens:
+            raise ValueError(
+                f"Prompt too large (~{estimated_tokens} tokens) for model limit "
+                f"({self._max_input_tokens} tokens)"
+            )
         raw = self._chat(
             system=_EXTRACTION_SYSTEM,
             user=prompt,
-            max_tokens=2048,
+            max_tokens=self._max_output_tokens,
         )
         try:
             data = json.loads(raw)

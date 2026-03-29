@@ -21,7 +21,7 @@ class ObservatoryContextSettings(BaseSettings):
         validation_alias=AliasChoices("CBORG_API_URL", "BERIL_CBORG_API_URL"),
     )
     cborg_model: str = Field(
-        default="claude-haiku-4-5-20251001",
+        default="gpt-5.4-mini",
         validation_alias=AliasChoices("CBORG_MODEL", "BERIL_CBORG_MODEL"),
     )
     cborg_api_key: str | None = Field(

@@ -1,14 +1,4 @@
 #!/usr/bin/env python3
-# /// script
-# requires-python = ">=3.11"
-# dependencies = [
-#   "pyyaml>=6.0",
-#   "pydantic>=2.0",
-#   "pydantic-settings>=2.0",
-#   "httpx>=0.27",
-#   "openviking>=0.2.9",
-# ]
-# ///
 """Unified query backend for BERIL knowledge — delegates all queries via ContextDelivery."""
 
 from __future__ import annotations

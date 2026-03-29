@@ -51,7 +51,7 @@ To rebuild only the knowledge graph without re-uploading resources:
 uv run scripts/viking_ingest.py --graph-only --wait
 ```
 
-To use a specific model: `--model haiku-4.5` or `--model gpt-5.4-mini`
+To use a specific model: `--model claude-haiku` or `--model gpt-5.4-mini`
 
 ### Check Status
 
