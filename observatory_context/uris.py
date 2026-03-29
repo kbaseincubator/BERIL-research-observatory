@@ -36,11 +36,6 @@ def build_figure_resource_uri(project_id: str, figure_id: str) -> str:
     return f"{_ROOT}/{path.as_posix()}"
 
 
-def build_knowledge_resource_uri(relative_path: str) -> str:
-    path = PurePosixPath("overlays", "raw-knowledge", _normalize_segment(relative_path))
-    return f"{_ROOT}/{path.as_posix()}"
-
-
 def build_project_live_note_uri(project_id: str, resource_id: str, date: str) -> str:
     path = PurePosixPath(
         "projects",

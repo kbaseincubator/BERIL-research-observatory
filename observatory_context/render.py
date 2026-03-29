@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from enum import StrEnum
 
+import yaml
+
 
 class RenderLevel(StrEnum):
     """Supported deterministic detail levels."""
@@ -50,8 +52,5 @@ def render_resource(resource: dict, level: RenderLevel) -> str:
 
 
 def _dump_yamlish(data: dict) -> str:
-    parts: list[str] = []
-    for key, value in data.items():
-        parts.append(f"{key}: {value!r}")
-    return "\n".join(parts)
+    return yaml.safe_dump(data, default_flow_style=False, sort_keys=False).rstrip()
 

@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 import logging
-import re
 from datetime import date
 from typing import Any
 
 import yaml
 
-from observatory_context._text import split_frontmatter
+from observatory_context._text import slugify, split_frontmatter
 from observatory_context.client import OpenVikingObservatoryClient
 from observatory_context.extraction import CBORGExtractor
 from observatory_context.models import (
@@ -22,7 +21,6 @@ from observatory_context.models import (
 )
 from observatory_context.uris import (
     _ENTITY_TYPE_PLURALS,
-    _MEMORY_STORE_DIRS,
     _ROOT,
     build_entity_uri,
     build_knowledge_graph_uri,
@@ -32,18 +30,17 @@ from observatory_context.uris import (
 
 logger = logging.getLogger(__name__)
 
+
+def _is_not_found(exc: Exception) -> bool:
+    """Check if an exception is an OpenViking NotFoundError (by class name)."""
+    return any(cls.__name__ == "NotFoundError" for cls in type(exc).__mro__)
+
+
 _MEMORY_FILE_NAMES = {
     "journal": "entry.md",
     "patterns": "pattern.yaml",
     "conversations": "insight.yaml",
 }
-
-
-def _slugify(text: str) -> str:
-    """Convert text to a URL-safe slug."""
-    slug = text.lower().strip()
-    slug = re.sub(r"[^a-z0-9]+", "-", slug)
-    return slug.strip("-")
 
 
 class ContextDelivery:
@@ -74,7 +71,7 @@ class ContextDelivery:
         if scope == Scope.memory:
             return f"{_ROOT}/memories"
         if scope == Scope.graph:
-            return f"{_ROOT}/knowledge-graph"
+            return build_knowledge_graph_uri()
         # ALL and RESOURCES both start from root
         return _ROOT
 
@@ -90,17 +87,21 @@ class ContextDelivery:
     def _load_tier_file(self, uri: str, suffix: str, tier: Tier) -> ContextItem:
         """Try to load a tier file, falling back to full content."""
         # Try in-directory first (for entities that ARE directories)
-        in_dir = f"{uri}/{suffix}"
-        if self.client.resource_exists(in_dir):
-            content = self.client.read_resource(in_dir)
+        try:
+            content = self.client.read_resource(f"{uri}/{suffix}")
             return self._build_item(uri, content, tier)
+        except Exception as exc:
+            if not _is_not_found(exc):
+                raise
 
         # Try at parent level (for files)
         parent, _name = uri.rsplit("/", 1)
-        at_parent = f"{parent}/{suffix}"
-        if self.client.resource_exists(at_parent):
-            content = self.client.read_resource(at_parent)
+        try:
+            content = self.client.read_resource(f"{parent}/{suffix}")
             return self._build_item(uri, content, tier)
+        except Exception as exc:
+            if not _is_not_found(exc):
+                raise
 
         # Fall back to full L2 content
         return self._load_full(uri, override_tier=tier)
@@ -183,7 +184,7 @@ class ContextDelivery:
                 item = self._load_item(uri, tier)
                 items.append(item)
             except Exception:
-                logger.debug("Failed to load search hit %s", hit)
+                logger.warning("Failed to load search hit %s", hit, exc_info=True)
 
         return SearchResults(query=query, items=items, total_count=len(items))
 
@@ -210,7 +211,7 @@ class ContextDelivery:
                 item = self._load_item(entry["uri"], tier)
                 items.append(item)
             except Exception:
-                logger.debug("Failed to load browse entry %s", entry.get("uri"))
+                logger.warning("Failed to load browse entry %s", entry.get("uri"), exc_info=True)
         return items
 
     def traverse(
@@ -220,7 +221,7 @@ class ContextDelivery:
         relation_filter: str | None = None,
         hops: int = 1,
         tier: Tier = Tier.L2,
-    ) -> GraphResult:
+        ) -> GraphResult:
         """Traverse the knowledge graph from an entity.
 
         Parameters
@@ -230,46 +231,66 @@ class ContextDelivery:
         relation_filter:
             Optional predicate name to filter relations.
         hops:
-            Number of traversal hops (currently only 1 supported).
+            Number of traversal hops.
         tier:
             Detail tier for items.
         """
         root = self._load_item(entity_uri, tier)
-        relations_uri = f"{entity_uri}/relations"
-
         edges: list[RelationEdge] = []
         connected: list[ContextItem] = []
+        seen_entities: set[str] = {entity_uri}
+        seen_edges: set[tuple[str, str, str]] = set()
 
-        try:
-            rel_entries = self.client.list_resources(relations_uri)
-        except Exception:
-            rel_entries = []
-
-        for entry in rel_entries:
+        def walk(current_uri: str, remaining_hops: int) -> None:
             try:
-                raw = self.client.read_resource(entry["uri"])
-                meta, _ = split_frontmatter(raw, {})
-                predicate = meta.get("predicate", "")
+                rel_entries = self.client.list_resources(f"{current_uri}/relations")
+            except Exception:
+                return
+
+            for entry in rel_entries:
+                entry_uri = entry["uri"]
+                if entry_uri.endswith((".abstract.md", ".overview.md")):
+                    continue
+
+                try:
+                    relation_data = self._parse_relation(self.client.read_resource(entry_uri))
+                except Exception:
+                    logger.debug("Failed to parse relation %s", entry_uri)
+                    continue
+
+                predicate = str(relation_data.get("predicate", ""))
                 if relation_filter and predicate != relation_filter:
                     continue
 
-                obj_ref = meta.get("object", "")
-                edge = RelationEdge(
-                    subject_uri=entity_uri,
-                    predicate=predicate,
-                    object_uri=self._resolve_entity_ref(obj_ref),
-                    evidence=meta.get("evidence", ""),
-                    confidence=meta.get("confidence", "moderate"),
-                )
-                edges.append(edge)
+                target_uri = self._resolve_entity_ref(str(relation_data.get("object", "")))
+                edge_key = (current_uri, predicate, target_uri)
+                if edge_key not in seen_edges:
+                    seen_edges.add(edge_key)
+                    edges.append(
+                        RelationEdge(
+                            subject_uri=current_uri,
+                            predicate=predicate,
+                            object_uri=target_uri,
+                            evidence=str(relation_data.get("evidence", "")),
+                            confidence=str(relation_data.get("confidence", "moderate")),
+                        )
+                    )
 
+                if target_uri in seen_entities:
+                    continue
+
+                seen_entities.add(target_uri)
                 try:
-                    connected_item = self._load_item(edge.object_uri, tier)
-                    connected.append(connected_item)
+                    connected_item = self._load_item(target_uri, tier)
                 except Exception:
-                    logger.debug("Could not load connected entity %s", edge.object_uri)
-            except Exception:
-                logger.debug("Failed to parse relation %s", entry.get("uri"))
+                    logger.debug("Could not load connected entity %s", target_uri)
+                    continue
+
+                connected.append(connected_item)
+                if remaining_hops > 1:
+                    walk(target_uri, remaining_hops - 1)
+
+        walk(entity_uri, hops)
 
         return GraphResult(root=root, connected=connected, relations=edges)
 
@@ -283,16 +304,16 @@ class ContextDelivery:
         """List entities, optionally filtered by type."""
         if entity_type:
             plural = _ENTITY_TYPE_PLURALS[entity_type]
-            uri = f"{_ROOT}/knowledge-graph/entities/{plural}"
+            uri = f"{build_knowledge_graph_uri()}/entities/{plural}"
         else:
-            uri = f"{_ROOT}/knowledge-graph/entities"
+            uri = f"{build_knowledge_graph_uri()}/entities"
         return self.browse(uri, tier=tier)
 
     def hypotheses(
         self, status: str | None = None, *, tier: Tier = Tier.L2
     ) -> list[ContextItem]:
         """List hypotheses, optionally filtered by status."""
-        uri = f"{_ROOT}/knowledge-graph/hypotheses"
+        uri = f"{build_knowledge_graph_uri()}/hypotheses"
         items = self.browse(uri, tier=tier)
         if status:
             items = [i for i in items if i.metadata.get("status") == status]
@@ -351,7 +372,7 @@ class ContextDelivery:
             URI of the created memory resource.
         """
         today = date.today().isoformat()
-        slug = f"{today}_{_slugify(title)}"
+        slug = f"{today}_{slugify(title)}"
         file_name = _MEMORY_FILE_NAMES.get(store, "entry.md")
         uri = f"{build_memory_uri(store, slug)}/{file_name}"
 
@@ -412,7 +433,7 @@ class ContextDelivery:
                 item = self._load_item(hit["uri"], Tier.L2)
                 items.append(item)
             except Exception:
-                logger.debug("Failed to load memory hit %s", hit.get("uri"))
+                logger.warning("Failed to load memory hit %s", hit.get("uri"), exc_info=True)
         return items
 
     # ------------------------------------------------------------------
@@ -560,6 +581,17 @@ class ContextDelivery:
         if ref.startswith("viking://"):
             return ref
         return f"{_ROOT}/knowledge-graph/entities/{ref}"
+
+    def _parse_relation(self, raw: str) -> dict[str, Any]:
+        """Parse relation content from frontmatter, YAML body, or both."""
+        metadata, body = split_frontmatter(raw, {})
+        if not body.strip():
+            return metadata
+
+        parsed_body = yaml.safe_load(body)
+        if isinstance(parsed_body, dict):
+            return {**parsed_body, **metadata}
+        return metadata
 
 
 def _ensure_list(val: Any) -> list[str]:

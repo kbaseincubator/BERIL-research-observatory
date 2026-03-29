@@ -7,7 +7,7 @@ from typing import Any
 
 import yaml
 
-from observatory_context._text import compact_text, split_frontmatter
+from observatory_context._text import compact_text, slugify, split_frontmatter
 from observatory_context.uris import build_project_live_note_uri, build_shared_live_note_uri
 
 
@@ -25,7 +25,7 @@ def build_live_resource(
     timestamp = _coerce_timestamp(now)
     date = timestamp[:10]
     token = timestamp.replace("-", "").replace(":", "")
-    slug = _slugify(title or body.split(".", 1)[0] or kind)
+    slug = slugify(title or body.split(".", 1)[0] or kind)
     resource_id = f"{kind}-{token}-{slug}"
     uri = (
         build_project_live_note_uri(project_id, resource_id, date)
@@ -68,7 +68,7 @@ def parse_live_resource(uri: str, content: str, fallback_metadata: dict[str, Any
         "tags": list(metadata.get("tags") or []),
         "source_refs": list(metadata.get("source_refs") or []),
         "links": list(metadata.get("links") or []),
-        "summary": metadata.get("summary") or " ".join(body.split())[:240],
+        "summary": metadata.get("summary") or compact_text(body) or "",
         "body": body.strip(),
         "metadata": metadata,
     }
@@ -86,8 +86,3 @@ def _coerce_timestamp(value: str | datetime) -> str:
     return f"{text}Z"
 
 
-def _slugify(value: str) -> str:
-    lowered = value.lower().replace("_", "-")
-    pieces = ["".join(ch for ch in part if ch.isalnum() or ch == "-") for part in lowered.split()]
-    slug = "-".join(piece for piece in pieces if piece)
-    return slug[:48] or "entry"

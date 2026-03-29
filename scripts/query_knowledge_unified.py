@@ -16,14 +16,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from pathlib import Path
 
-import yaml
-
-REPO_ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(REPO_ROOT))
-
-from observatory_context._text import split_frontmatter
 from observatory_context.delivery import ContextDelivery
 from observatory_context.models import (
     ContextItem,
@@ -34,7 +27,6 @@ from observatory_context.models import (
 )
 from observatory_context.uris import (
     build_knowledge_graph_uri,
-    build_knowledge_resource_uri,
     build_project_workspace_uri,
 )
 
@@ -48,18 +40,12 @@ def _build_delivery() -> ContextDelivery:
     try:
         delivery = build_delivery(require_live=True)
     except Exception as exc:
+        import sys
+
         print(f"Error: OpenViking server is not reachable: {exc}", file=sys.stderr)
         print("Start the server first. See docs/openviking_tutorial.md.", file=sys.stderr)
         raise SystemExit(1)
     return delivery
-
-
-def _read_knowledge_yaml(relative_path: str) -> dict | list:
-    """Read a knowledge YAML file from OpenViking and return parsed data."""
-    uri = build_knowledge_resource_uri(relative_path)
-    content = DELIVERY.client.read_resource(uri)
-    _, body = split_frontmatter(content, {})
-    return yaml.safe_load(body) or {}
 
 
 # ------------------------------------------------------------------
@@ -199,7 +185,7 @@ def _handle_gaps(args) -> int:
 
 
 def _handle_timeline(args) -> int:
-    items = DELIVERY.timeline(project=args.project)
+    items = DELIVERY.timeline(project=args.project, since=args.since)
     suffix = f" for {args.project}" if args.project else ""
     _print_items(items, f"Research Timeline{suffix}")
     return 0
@@ -256,8 +242,7 @@ def _handle_glob(args) -> int:
 
 
 def _handle_browse(args) -> int:
-    # Use browse-specific tier (default L1) unless global --tier was set
-    tier = Tier(args.browse_tier) if args.tier == "L2" else Tier(args.tier)
+    tier = Tier(args.browse_tier) if args.browse_tier else Tier.L1
     items = DELIVERY.browse(args.uri, tier=tier)
     _print_items(items, f"Browse: {args.uri}")
     return 0
@@ -395,10 +380,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_timeline = sub.add_parser("timeline", help="Show timeline events")
     p_timeline.add_argument("--project", default=None)
+    p_timeline.add_argument("--since", default=None)
 
-    p_backfill = sub.add_parser(
-        "backfill", help="DEPRECATED — use viking_ingest.py --graph-only"
-    )
+    sub.add_parser("backfill", help="DEPRECATED — use viking_ingest.py --graph-only")
 
     p_related = sub.add_parser("related", help="Show related resources (graph traverse)")
     p_related.add_argument("id_or_uri")
@@ -418,8 +402,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_browse.add_argument(
         "--browse-tier",
         choices=["L0", "L1", "L2"],
-        default="L1",
-        help="Detail tier for browse (default: L1)",
+        default=None,
+        help="Override browse detail tier (default: L1)",
     )
 
     p_traverse = sub.add_parser("traverse", help="Graph walk from an entity")

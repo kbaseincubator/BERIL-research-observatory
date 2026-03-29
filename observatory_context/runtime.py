@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from observatory_context.client import OpenVikingObservatoryClient
 from observatory_context.config import ObservatoryContextSettings
 from observatory_context.service import ObservatoryContextService
+
+if TYPE_CHECKING:
+    from observatory_context.delivery import ContextDelivery
 
 
 def build_client(
@@ -21,7 +24,7 @@ def build_delivery(
     *,
     require_live: bool = True,
     with_extractor: bool = False,
-) -> "ContextDelivery":
+) -> ContextDelivery:
     """Build a ContextDelivery instance with optional CBORG extractor.
 
     Parameters

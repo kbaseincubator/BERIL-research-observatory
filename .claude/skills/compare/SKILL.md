@@ -23,8 +23,8 @@ Where `<A>` and `<B>` are project IDs, organism entity IDs, or other entity IDs.
 
 Check if the arguments match:
 1. **Project IDs**: Run `uv run scripts/query_knowledge_unified.py project <id>` for each
-2. **Entity IDs**: Run `uv run scripts/query_knowledge_unified.py entities <type>` to look up entities (check organism, then gene, pathway, method, concept)
-3. **Entity names**: If not exact ID matches, search entities for name matches
+2. **Entity URIs or IDs**: Run `uv run scripts/query_knowledge_unified.py entities <type>` to inspect candidate entities (check organism, then gene, pathway, method, concept)
+3. **Entity names**: If not exact matches, run `uv run scripts/query_knowledge_unified.py search "<name>" --scope graph --tier L1` to find graph entries by name or context
 
 If one arg matches a project and the other an entity, tell the user and ask for clarification.
 
@@ -62,7 +62,7 @@ If both arguments are organism entity IDs:
    ```bash
    uv run scripts/query_knowledge_unified.py traverse <org_entity_uri> --hops 2
    ```
-2. Run `uv run scripts/query_knowledge_unified.py entities organism --query <name>` for each organism
+2. If needed, run `uv run scripts/query_knowledge_unified.py search "<organism name>" --scope graph --tier L1`
 3. Compare:
 
 | Dimension | Organism A | Organism B |
@@ -83,7 +83,7 @@ If both arguments are organism entity IDs:
 For other entity types (methods, pathways, concepts):
 
 1. Run `uv run scripts/query_knowledge_unified.py entities <type>` to look up each entity
-2. Run `uv run scripts/query_knowledge_unified.py connections <entity_id>` for each entity
+2. Run `uv run scripts/query_knowledge_unified.py traverse <entity_uri> --hops 1` for each entity
 3. Compare project coverage, connected entities, and relation types
 4. Present a side-by-side summary
 
@@ -101,7 +101,7 @@ Present a clear, structured comparison with:
 Based on the comparison, suggest:
 - `/knowledge gaps` if significant coverage gaps were found
 - `/suggest-research` if the comparison reveals a promising new direction
-- Specific `/knowledge connections <entity>` queries for deeper exploration
+- Specific `/knowledge traverse <entity_uri> --hops 1` queries for deeper exploration
 
 ## Integration
 

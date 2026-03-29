@@ -21,7 +21,7 @@ Search the observatory's knowledge via OpenViking. OpenViking must be running fo
 /knowledge connections <entity> — find all relations involving an entity
 /knowledge hypotheses [status]  — list hypotheses, optionally filtered by status
 /knowledge gaps                 — find unexplored entity combinations
-/knowledge timeline [project]   — show research evolution
+/knowledge timeline [--project <id>] [--since <date>] — show research evolution
 /knowledge related <id_or_uri>  — find related resources via metadata + knowledge graph
 /knowledge grep <pattern> [--uri <scope>] [--ignore-case]  — content search (requires OpenViking)
 /knowledge glob <pattern>                                   — file pattern match (requires OpenViking)
@@ -60,13 +60,12 @@ Map subcommands directly:
 - `/knowledge data <topic>` → `data "<topic>"`
 - `/knowledge project <id>` → `project <id>`
 - `/knowledge landscape` → `landscape`
-- `/knowledge entities <type>` → `entities <type> [--query <keyword>]`
+- `/knowledge entities <type>` → `entities <type>`
 - `/knowledge connections <entity>` → `connections <entity>`
 - `/knowledge hypotheses [status]` → `hypotheses [status]`
 - `/knowledge gaps` → `gaps`
-- `/knowledge timeline [project]` → `timeline [project]`
-- `/knowledge backfill [project_id]` → `backfill [project_id]`
-- `/knowledge related <id>` → `related <id_or_uri> [--limit N]`
+- `/knowledge timeline [project]` → `timeline [--project <id>] [--since <date>]`
+- `/knowledge related <id>` → `related <id_or_uri>`
 - `/knowledge grep <pattern>` → `grep "<pattern>"`
 - `/knowledge grep <pattern> --ignore-case` → `grep "<pattern>" --ignore-case`
 - `/knowledge grep <pattern> --uri <scope>` → `grep "<pattern>" --uri <scope>`
@@ -122,16 +121,16 @@ Output: status counts, top tags, BERDL collections, dependency graph, coverage g
 ### Subcommand: `/knowledge entities <type>`
 
 **List entities of a given type from the knowledge graph.**
-Run: `uv run scripts/query_knowledge_unified.py entities <type> [--query <keyword>]`
+Run: `uv run scripts/query_knowledge_unified.py entities <type>`
 
 Valid types: `organism`, `gene`, `pathway`, `method`, `concept`
 
 Output: table with ID, name, project count, description.
 
-### Subcommand: `/knowledge connections <entity_id>`
+### Subcommand: `/knowledge connections <entity_uri>`
 
 **Find all relations involving a specific entity.**
-Run: `uv run scripts/query_knowledge_unified.py connections <entity_id>`
+Run: `uv run scripts/query_knowledge_unified.py connections <entity_uri>`
 
 Output: outgoing and incoming relation tables with predicate, target/source, evidence project, confidence.
 
@@ -151,10 +150,10 @@ Run: `uv run scripts/query_knowledge_unified.py gaps`
 
 Output: organisms needing analysis, method coverage gaps, untested hypotheses, unexplored entity pairs.
 
-### Subcommand: `/knowledge timeline [project]`
+### Subcommand: `/knowledge timeline [--project <id>] [--since <date>]`
 
 **Show research evolution chronologically.**
-Run: `uv run scripts/query_knowledge_unified.py timeline [project]`
+Run: `uv run scripts/query_knowledge_unified.py timeline [--project <id>] [--since <date>]`
 
 Output: table with date, type, project, summary.
 

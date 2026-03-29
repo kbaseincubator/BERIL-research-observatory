@@ -272,7 +272,7 @@ For each substep below, read current content via the query script, prepare updat
 
 **c) Add/update relations:**
 - Extract entity-entity relationships from Key Findings
-- Run `uv run scripts/query_knowledge_unified.py connections <entity_id>` to check existing relations
+- Run `uv run scripts/query_knowledge_unified.py traverse <entity_uri> --hops 1` to check existing relations
 - Add new relations with:
   - `evidence_project`: the current project_id
   - `confidence`: based on statistical significance reported

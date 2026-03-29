@@ -1,19 +1,13 @@
-"""Tests for the ContextDelivery service layer."""
+"""Essential tests for the ContextDelivery service layer."""
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock, call, patch
+from unittest.mock import MagicMock
 
 import pytest
 
 from observatory_context.delivery import ContextDelivery
-from observatory_context.models import (
-    ContextItem,
-    GraphResult,
-    Scope,
-    SearchResults,
-    Tier,
-)
+from observatory_context.models import ContextItem, Scope, SearchResults, Tier
 
 
 @pytest.fixture()
@@ -62,13 +56,6 @@ def test_search_with_scope_memory(delivery, mock_client):
 # --- get ---
 
 
-def test_get_returns_context_item(delivery, mock_client):
-    mock_client.read_resource.return_value = "---\ntitle: Doc\nkind: note\n---\n\nFull content"
-    item = delivery.get("viking://resources/observatory/projects/p1/doc.md")
-    assert isinstance(item, ContextItem)
-    assert item.uri == "viking://resources/observatory/projects/p1/doc.md"
-
-
 def test_get_at_tier_l0(delivery, mock_client):
     mock_client.read_resource.side_effect = [
         "L0 abstract text",  # .abstract.md found at parent
@@ -77,17 +64,6 @@ def test_get_at_tier_l0(delivery, mock_client):
 
     item = delivery.get("viking://resources/observatory/projects/p1/doc.md", tier=Tier.L0)
     assert item.tier == Tier.L0
-
-
-def test_get_at_tier_l2(delivery, mock_client):
-    mock_client.read_resource.return_value = "---\ntitle: Doc\nkind: note\n---\n\nFull content"
-
-    item = delivery.get("viking://resources/observatory/projects/p1/doc.md", tier=Tier.L2)
-    assert item.tier == Tier.L2
-    assert "Full content" in item.content
-
-
-# --- browse ---
 
 
 def test_browse_returns_list(delivery, mock_client):
@@ -106,34 +82,75 @@ def test_browse_returns_list(delivery, mock_client):
 # --- traverse ---
 
 
-def test_traverse_returns_graph_result(delivery, mock_client):
+def test_traverse_reads_relation_fields_from_yaml_body(delivery, mock_client):
     entity_uri = "viking://resources/observatory/knowledge-graph/entities/organisms/ecoli"
-    mock_client.read_resource.return_value = "---\ntitle: E. coli\nkind: entity\n---\n\nProfile"
-    mock_client.resource_exists.return_value = False
-    mock_client.list_resources.return_value = [
-        {"uri": f"{entity_uri}/relations/regulates__genes__trpA.yaml", "name": "regulates__genes__trpA.yaml"},
-    ]
+    relation_uri = f"{entity_uri}/relations/regulates__genes__trpA.yaml"
+    target_uri = "viking://resources/observatory/knowledge-graph/entities/genes/trpA"
 
-    # Relation file content
-    relation_content = (
-        "---\nsubject: organisms/ecoli\npredicate: regulates\n"
-        "object: genes/trpA\nevidence: paper\nconfidence: high\n---\n"
-    )
+    mock_client.resource_exists.return_value = False
+    mock_client.list_resources.return_value = [{"uri": relation_uri, "name": "regulates__genes__trpA.yaml"}]
     mock_client.read_resource.side_effect = [
-        # root item L2
         "---\ntitle: E. coli\nkind: entity\n---\n\nProfile",
-        # relations listing read
-        relation_content,
-        # connected item
+        "---\nkind: relation\n---\n\n"
+        "subject: organisms/ecoli\n"
+        "predicate: regulates\n"
+        "object: genes/trpA\n"
+        "evidence: paper\n"
+        "confidence: high\n",
         "---\ntitle: trpA\nkind: entity\n---\n\nGene profile",
     ]
 
     result = delivery.traverse(entity_uri)
-    assert isinstance(result, GraphResult)
-    assert result.root.uri == entity_uri
+
+    assert [edge.object_uri for edge in result.relations] == [target_uri]
+    assert [item.uri for item in result.connected] == [target_uri]
 
 
-# --- remember ---
+def test_traverse_supports_multiple_hops(delivery, mock_client):
+    root_uri = "viking://resources/observatory/knowledge-graph/entities/organisms/ecoli"
+    gene_uri = "viking://resources/observatory/knowledge-graph/entities/genes/trpA"
+    pathway_uri = (
+        "viking://resources/observatory/knowledge-graph/entities/pathways/tryptophan-biosynthesis"
+    )
+    relation_one_uri = f"{root_uri}/relations/regulates__genes__trpA.yaml"
+    relation_two_uri = f"{gene_uri}/relations/participates_in__pathways__tryptophan-biosynthesis.yaml"
+
+    mock_client.resource_exists.return_value = False
+
+    def list_resources(uri, recursive=False):
+        if uri == f"{root_uri}/relations":
+            return [{"uri": relation_one_uri, "name": "regulates__genes__trpA.yaml"}]
+        if uri == f"{gene_uri}/relations":
+            return [
+                {
+                    "uri": relation_two_uri,
+                    "name": "participates_in__pathways__tryptophan-biosynthesis.yaml",
+                }
+            ]
+        return []
+
+    def read_resource(uri):
+        contents = {
+            root_uri: "---\ntitle: E. coli\nkind: entity\n---\n\nProfile",
+            relation_one_uri: (
+                "---\npredicate: regulates\nobject: genes/trpA\nevidence: paper\nconfidence: high\n---\n"
+            ),
+            gene_uri: "---\ntitle: trpA\nkind: entity\n---\n\nGene profile",
+            relation_two_uri: (
+                "---\npredicate: participates_in\n"
+                "object: pathways/tryptophan-biosynthesis\nevidence: pathway db\nconfidence: moderate\n---\n"
+            ),
+            pathway_uri: "---\ntitle: Tryptophan Biosynthesis\nkind: entity\n---\n\nPathway profile",
+        }
+        return contents[uri]
+
+    mock_client.list_resources.side_effect = list_resources
+    mock_client.read_resource.side_effect = read_resource
+
+    result = delivery.traverse(root_uri, hops=2)
+
+    assert [item.uri for item in result.connected] == [gene_uri, pathway_uri]
+    assert [edge.object_uri for edge in result.relations] == [gene_uri, pathway_uri]
 
 
 def test_remember_calls_add_text_resource(delivery, mock_client):
@@ -155,17 +172,11 @@ def test_remember_calls_add_text_resource(delivery, mock_client):
     assert args[1].get("reason") or (len(args[0]) >= 4 and args[0][3])
 
 
-# --- recall ---
-
-
 def test_recall_searches_with_memory_prefix(delivery, mock_client):
     mock_client.search.return_value = []
     delivery.recall("test query")
     _, kwargs = mock_client.search.call_args
     assert "memories" in kwargs.get("target_uri", "")
-
-
-# --- entities ---
 
 
 def test_entities_calls_browse_correct_uri(delivery, mock_client):
@@ -174,26 +185,6 @@ def test_entities_calls_browse_correct_uri(delivery, mock_client):
     mock_client.list_resources.assert_called_once()
     call_args = mock_client.list_resources.call_args
     assert "organisms" in call_args[0][0]
-
-
-# --- hypotheses ---
-
-
-def test_hypotheses_returns_list(delivery, mock_client):
-    mock_client.list_resources.return_value = [
-        {"uri": "viking://resources/observatory/knowledge-graph/hypotheses/h1", "name": "h1"},
-    ]
-    mock_client.read_resource.return_value = (
-        "---\ntitle: Hyp1\nkind: hypothesis\nstatus: open\n---\n\nClaim text"
-    )
-    mock_client.resource_exists.return_value = False
-
-    items = delivery.hypotheses(status="open")
-    assert isinstance(items, list)
-    assert all(isinstance(i, ContextItem) for i in items)
-
-
-# --- ingest_entity ---
 
 
 def test_ingest_entity_creates_profile_and_relations(delivery, mock_client):

@@ -2,9 +2,24 @@
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 import yaml
+
+
+def slugify(text: str, *, max_length: int = 48) -> str:
+    """Convert *text* to a URL-safe slug.
+
+    Parameters
+    ----------
+    text:
+        Input string.
+    max_length:
+        Truncate the slug to this many characters.
+    """
+    slug = re.sub(r"[^a-z0-9]+", "-", text.lower().strip()).strip("-")
+    return slug[:max_length] or "entry"
 
 
 def compact_text(text: str | None, limit: int = 240) -> str | None:

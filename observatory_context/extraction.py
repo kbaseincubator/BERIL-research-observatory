@@ -7,7 +7,7 @@ import logging
 from typing import Literal
 
 import httpx
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 
 logger = logging.getLogger(__name__)
 
@@ -132,7 +132,7 @@ class CBORGExtractor:
         try:
             data = json.loads(raw)
             return EntityExtraction.model_validate(data)
-        except Exception as exc:
+        except (json.JSONDecodeError, ValidationError) as exc:
             logger.warning("Failed to parse extraction response: %s", exc)
             return EntityExtraction()
 
