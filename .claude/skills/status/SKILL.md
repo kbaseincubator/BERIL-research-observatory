@@ -19,15 +19,17 @@ No arguments required.
 
 ## Workflow
 
-### Step 1: Gather Active Hypotheses
+### Step 1: Gather Active Hypotheses and Recent Context
 
 Run:
 ```bash
-uv run scripts/query_knowledge_unified.py hypotheses testing
-uv run scripts/query_knowledge_unified.py hypotheses proposed
+uv run scripts/query_knowledge_unified.py hypotheses testing --tier L1
+uv run scripts/query_knowledge_unified.py hypotheses proposed --tier L1
+uv run scripts/query_knowledge_unified.py timeline --since 7d
+uv run scripts/query_knowledge_unified.py recall "recent work" --store journal --limit 3
 ```
 
-Surface hypotheses in `testing` or `proposed` state that need work.
+Surface hypotheses in `testing` or `proposed` state that need work. Use `--tier L1` for compact overviews. The journal recall shows recent research decisions for session continuity.
 
 ### Step 2: Detect In-Progress Projects
 

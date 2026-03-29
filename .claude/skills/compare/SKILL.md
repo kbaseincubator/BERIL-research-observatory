@@ -50,7 +50,7 @@ If both arguments are project IDs:
    - Overlapping tags/themes
    - Cross-project dependencies (from `depends_on`/`enables`)
 
-4. Run `uv run scripts/query_knowledge_unified.py connections <shared_entity>` for any shared entities to find relation paths between the projects
+4. Run `uv run scripts/query_knowledge_unified.py traverse <shared_entity_uri> --hops 2` for any shared entities to find relation paths between the projects. Also run `uv run scripts/query_knowledge_unified.py recall "comparison patterns" --store patterns` for learned comparison heuristics
 
 5. Highlight gaps: methods applied in A but not B, organisms in A but not B
 
@@ -60,7 +60,7 @@ If both arguments are organism entity IDs:
 
 1. Run for each organism:
    ```bash
-   uv run scripts/query_knowledge_unified.py connections <org_id>
+   uv run scripts/query_knowledge_unified.py traverse <org_entity_uri> --hops 2
    ```
 2. Run `uv run scripts/query_knowledge_unified.py entities organism --query <name>` for each organism
 3. Compare:

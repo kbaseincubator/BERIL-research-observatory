@@ -22,11 +22,20 @@ Search the observatory's knowledge via OpenViking. OpenViking must be running fo
 /knowledge hypotheses [status]  — list hypotheses, optionally filtered by status
 /knowledge gaps                 — find unexplored entity combinations
 /knowledge timeline [project]   — show research evolution
-/knowledge backfill [project_id]  — retroactively populate Layer 3 from project reports
 /knowledge related <id_or_uri>  — find related resources via metadata + knowledge graph
 /knowledge grep <pattern> [--uri <scope>] [--ignore-case]  — content search (requires OpenViking)
 /knowledge glob <pattern>                                   — file pattern match (requires OpenViking)
+/knowledge browse <uri>          — browse a directory with tiered content
+/knowledge traverse <entity>     — graph walk from an entity (--hops N)
+/knowledge recall <query>        — search memories (--store journal|patterns|conversations)
 ```
+
+### Global Flags
+
+All subcommands accept these optional flags:
+- `--tier L0|L1|L2` — content detail level (default L2). Use L1 for compact overviews, L0 for one-line abstracts.
+- `--with-memory` — blend memory results (research journal, patterns, conversation insights) into search results.
+- `--scope all|resources|memory|graph` — restrict search scope. `resources` = projects + notes, `graph` = knowledge graph entities/hypotheses, `memory` = memories only.
 
 ## Prerequisites
 
@@ -149,21 +158,41 @@ Run: `uv run scripts/query_knowledge_unified.py timeline [project]`
 
 Output: table with date, type, project, summary.
 
-### Subcommand: `/knowledge backfill [project_id]`
-
-**Retroactively populate Layer 3 from project reports.**
-
-1. If `project_id` is given: target that project. If omitted: run `uv run scripts/query_knowledge_unified.py backfill` to list projects missing graph coverage, then ask the user which to process.
-2. Read `projects/{id}/REPORT.md` and `projects/{id}/provenance.yaml` (if exists)
-3. Extract entities, relations, hypotheses, and timeline events following `/synthesize` Step 7.7 logic (a)-(e)
-4. Present proposed additions to the user for confirmation before writing
-
 ### Subcommand: `/knowledge related <id_or_uri>`
 
-**Find related resources via metadata overlap and knowledge graph connections.**
-Run: `uv run scripts/query_knowledge_unified.py related <id_or_uri> [--limit N]`
+**Find related resources via graph traversal.**
+Run: `uv run scripts/query_knowledge_unified.py traverse <entity_uri> --hops 1`
 
-Output: list of related resources ranked by metadata overlap, link connections, and graph proximity.
+Output: root entity, connected entities, and relation edges.
+
+### Subcommand: `/knowledge browse <uri>`
+
+**Browse a directory in the knowledge graph with tiered content.**
+Run: `uv run scripts/query_knowledge_unified.py browse <uri> [--tier L0|L1|L2]`
+
+Default tier is L1 (overviews). Examples:
+- `browse viking://resources/observatory/knowledge-graph/entities/` — list all entity types
+- `browse viking://resources/observatory/knowledge-graph/entities/organisms/ --tier L0` — compact organism list
+- `browse viking://resources/observatory/projects/` — list all projects
+
+### Subcommand: `/knowledge traverse <entity_uri>`
+
+**Graph walk from an entity through its relations.**
+Run: `uv run scripts/query_knowledge_unified.py traverse <entity_uri> [--hops N] [--relation-filter PRED]`
+
+Examples:
+- `traverse viking://resources/observatory/knowledge-graph/entities/organisms/escherichia-coli --hops 2` — E. coli and 2-hop neighbors
+- `traverse viking://resources/observatory/knowledge-graph/entities/organisms/ecoli --relation-filter studied-in` — only "studied-in" relations
+
+### Subcommand: `/knowledge recall <query>`
+
+**Search the memory system for past insights, patterns, and decisions.**
+Run: `uv run scripts/query_knowledge_unified.py recall "<query>" [--store journal|patterns|conversations] [--limit N]`
+
+Memory stores:
+- `journal` — research decisions, hypothesis refinements, analysis pivots
+- `patterns` — cross-project heuristics and learned lessons
+- `conversations` — data surprises, debugging insights, BERDL quirks
 
 ### Subcommand: `/knowledge grep <pattern>`
 

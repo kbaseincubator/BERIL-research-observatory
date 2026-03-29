@@ -14,6 +14,8 @@ Re-ingest all observatory resources into OpenViking so that `/knowledge` queries
 ```
 /build-registry              — full re-ingest of all resources
 /build-registry --check      — verify ingest status without re-ingesting
+/build-registry --rebuild-graph  — re-ingest + extract knowledge graph via CBORG
+/build-registry --graph-only     — rebuild knowledge graph only (skip resource upload)
 ```
 
 ## Workflow
@@ -32,6 +34,24 @@ This scans all project directories and ingests into OpenViking:
 - Knowledge graph data (entities, relations, hypotheses, timeline)
 
 Present the summary output to the user (resource count, project count, any errors).
+
+### Rebuild Knowledge Graph
+
+Run:
+
+```bash
+uv run scripts/viking_ingest.py --rebuild-graph --wait
+```
+
+This runs Phase 1 (resource upload) + Phase 2 (CBORG entity extraction) + Phase 3 (L0/L1 tier generation). Requires `BERIL_CBORG_API_KEY` env var.
+
+To rebuild only the knowledge graph without re-uploading resources:
+
+```bash
+uv run scripts/viking_ingest.py --graph-only --wait
+```
+
+To use a specific model: `--model haiku-4.5` or `--model gpt-5.4-mini`
 
 ### Check Status
 

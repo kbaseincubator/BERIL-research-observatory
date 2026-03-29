@@ -280,6 +280,7 @@ Steps:
    b. If `REVIEW.md` exists, read and summarize outstanding issues
    c. Check `git status` for uncommitted changes in the project directory
    d. Run `uv run scripts/query_knowledge_unified.py hypotheses` and check for hypotheses relevant to this project
+   e. Run `uv run scripts/query_knowledge_unified.py recall "recent work" --store journal --limit 3` for session continuity — shows recent research decisions and context from past sessions
 4. Suggest the appropriate next skill based on phase:
    - Planning phase → continue analysis (Phase C in Path 1)
    - Analysis done → `/interpret` to discuss results, then `/synthesize`

@@ -34,7 +34,7 @@ Build three lists:
 
 ### Step 2: Read the Knowledge Registry
 
-Run `uv run scripts/query_knowledge_unified.py landscape` to get a high-level overview of all projects.
+Run `uv run scripts/query_knowledge_unified.py browse viking://resources/observatory/knowledge-graph/entities/ --tier L1` to get entity coverage, and `uv run scripts/query_knowledge_unified.py recall "research pitfalls" --store patterns` for known pitfalls to avoid.
 
 For each project, capture: `id`, `status`, `research_question`, `key_findings`, `tags`, `databases_used`, `depends_on`, `enables`, `references`.
 
