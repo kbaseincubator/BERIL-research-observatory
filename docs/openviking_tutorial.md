@@ -63,29 +63,52 @@ export BERIL_OPENVIKING_API_KEY="your-api-key"
 uv run scripts/viking_server_healthcheck.py
 ```
 
-Expected success:
+Expected: a Rich dashboard showing HEALTHY status, processing queue progress,
+vector store stats, and component badges. Use `--watch` to auto-refresh until
+queues drain:
 
-```text
-PASS: OpenViking server is reachable.
+```bash
+uv run scripts/viking_server_healthcheck.py --watch --interval 10
 ```
 
-## 4. Preview and ingest observatory resources
+## 4. Ingest observatory resources
 
-Preview the deterministic manifest first:
+Preview the manifest first:
 
 ```bash
 uv run scripts/viking_ingest.py --dry-run --limit 5
 ```
 
-Upload the full manifest to the live server:
+Full ingest with knowledge graph (recommended for first run):
 
 ```bash
-uv run scripts/viking_ingest.py
+uv run scripts/viking_ingest.py --no-resume --rebuild-graph --clean --wait
 ```
 
-This uploads authored project documents and figure metadata resources with
-stable URIs and deterministic metadata. Use `--check` to verify all expected
-resources are present, and `--fix` to re-ingest any that are missing.
+This runs three phases:
+1. **Phase 1** — Uploads project documents (README, REPORT, provenance, figures)
+2. **Phase 2** — Extracts entities, relations, hypotheses, and timeline events from
+   each project's REPORT.md via CBORG (default model: `gpt-5.4-mini`). Requires
+   `CBORG_API_KEY` env var. Extractions are cached locally in `.kg_cache/` so
+   subsequent runs only re-extract changed projects.
+3. **Phase 3** — Generates L0/L1 tier summaries for knowledge graph directories.
+
+The knowledge graph is written to a local temp directory and uploaded as a single
+`add_resource` call (batch upload). Entities and hypotheses are deduplicated and
+merged across projects before upload.
+
+Incremental update (after editing a project):
+
+```bash
+uv run scripts/viking_ingest.py --graph-only --wait
+```
+
+Only projects whose REPORT.md or provenance.yaml changed since the last extraction
+are sent to CBORG. All other projects use cached results. The merged graph replaces
+the previous one atomically.
+
+Use `--check` to verify all expected resources are present, and `--fix` to
+re-ingest any that are missing.
 
 ## 5. Use the live context service
 
@@ -233,33 +256,48 @@ uv run scripts/query_knowledge_unified.py recall "normalization" --store pattern
 # Full ingest with knowledge graph rebuild (Phases 1 + 2 + 3)
 uv run scripts/viking_ingest.py --rebuild-graph --wait
 
-# Graph rebuild only (skip resource upload)
-uv run scripts/viking_ingest.py --graph-only
+# Incremental graph rebuild (skip resource upload, use cache)
+uv run scripts/viking_ingest.py --graph-only --wait
 
-# Single project graph rebuild
-uv run scripts/viking_ingest.py --graph-only --project phage_fitness_001
+# Full rebuild from scratch (wipe graph + cache)
+uv run scripts/viking_ingest.py --no-resume --rebuild-graph --clean --wait
+
+# Check server health (Rich dashboard with queue progress)
+uv run scripts/viking_server_healthcheck.py
+uv run scripts/viking_server_healthcheck.py --watch  # auto-refresh
 ```
 
 ### CBORG extraction pipeline
 
 `viking_ingest.py --rebuild-graph` runs three phases:
 
-1. **Phase 1 — Resource upload** (existing): scans `projects/`, uploads
-   README/REPORT/provenance/figures with stable URIs.
-2. **Phase 2 — Knowledge graph extraction** (new): for each project with
-   `REPORT.md` + `provenance.yaml`, sends content to the CBORG API (Haiku 4.5
-   or GPT mini). The `CBORGExtractor` returns a structured `EntityExtraction`
-   (entities, relations, hypotheses, timeline events). `ContextDelivery.ingest_entity()`
-   creates entity directories with `profile.yaml` and bidirectional relation
-   files.
-3. **Phase 3 — Tier generation** (new): generates L0/L1 abstracts for every
-   entity directory, roll-up summaries for parent directories, and each
-   hypothesis directory. If CBORG is unavailable, the resource is created at
-   L2 only and tiers can be regenerated later with `--rebuild-graph`.
+1. **Phase 1 — Resource upload**: scans `projects/`, uploads
+   README/REPORT/provenance/figures with stable URIs. Skips existing resources
+   by default (`--resume`).
+2. **Phase 2 — Knowledge graph extraction**: for each project with
+   `REPORT.md` + `provenance.yaml`, checks the local extraction cache
+   (`.kg_cache/`). If the project files haven't changed since last extraction,
+   the cached result is loaded instantly. Otherwise, sends content to the CBORG
+   API (default: `gpt-5.4-mini`). The `CBORGExtractor` returns a structured
+   `EntityExtraction` (entities, relations, hypotheses, timeline events).
+   Entities and hypotheses are deduplicated and merged across projects — same
+   entity from multiple projects accumulates project lists, metadata, and
+   relations. The merged graph is written to a local temp directory.
+3. **Phase 3 — Tier generation**: generates L0/L1 abstracts for every entity
+   type directory, roll-up summaries for parent directories, and hypotheses.
+   These are also written to the staging directory.
+
+After Phase 3, the entire knowledge graph directory is uploaded to OpenViking
+in a single `add_resource` call (batch upload), replacing the previous graph
+atomically. This avoids the lock contention and queue overload that occurs
+with individual resource uploads.
+
+The extraction includes retry logic for CBORG rate limits (HTTP 429) with
+exponential backoff, and skips reports that exceed the model's max input
+token limit.
 
 Cost is low: ~2K input + ~500 output tokens per project for extraction, plus
-~200 tokens per entity for tier generation. Twenty projects with five
-entities each costs pennies on Haiku 4.5.
+~200 tokens per entity for tier generation.
 
 ## 6. Run repository verification
 

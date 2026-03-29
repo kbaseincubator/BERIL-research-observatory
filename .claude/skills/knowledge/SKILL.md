@@ -22,20 +22,32 @@ Search the observatory's knowledge via OpenViking. OpenViking must be running fo
 /knowledge hypotheses [status]  — list hypotheses, optionally filtered by status
 /knowledge gaps                 — find unexplored entity combinations
 /knowledge timeline [--project <id>] [--since <date>] — show research evolution
-/knowledge related <id_or_uri>  — find related resources via metadata + knowledge graph
-/knowledge grep <pattern> [--uri <scope>] [--ignore-case]  — content search (requires OpenViking)
-/knowledge glob <pattern>                                   — file pattern match (requires OpenViking)
+/knowledge related <id_or_uri>  — find related resources (1-hop graph traversal)
+/knowledge grep <pattern> [--uri <scope>] [--ignore-case]  — content search
+/knowledge glob <pattern>                                   — file pattern match
 /knowledge browse <uri>          — browse a directory with tiered content
-/knowledge traverse <entity>     — graph walk from an entity (--hops N)
-/knowledge recall <query>        — search memories (--store journal|patterns|conversations)
+/knowledge traverse <entity>     — graph walk from an entity
+/knowledge recall <query>        — search memories
+/knowledge remember <store> <title> <body> — write a memory entry
+/knowledge ingest-entity <type> <id> --profile-json <json> — create an entity
 ```
 
-### Global Flags
+### Optional Flags
 
-All subcommands accept these optional flags:
-- `--tier L0|L1|L2` — content detail level (default L2). Use L1 for compact overviews, L0 for one-line abstracts.
-- `--with-memory` — blend memory results (research journal, patterns, conversation insights) into search results.
-- `--scope all|resources|memory|graph` — restrict search scope. `resources` = projects + notes, `graph` = knowledge graph entities/hypotheses, `memory` = memories only.
+These flags are defined on the parent parser. Place them **before** the subcommand name.
+
+| Flag | Supported by | Description |
+|------|-------------|-------------|
+| `--tier L0\|L1\|L2` | `search`, `figures`, `data`, `entities`, `connections`, `browse`, `traverse` | Content detail level (default L2). L1 for overviews, L0 for one-liners. |
+| `--with-memory` | `search` only | Blend memory results (journal, patterns, conversations) into search. |
+| `--scope all\|resources\|memory\|graph` | `search` only | Restrict search scope. `resources` = projects + notes, `graph` = entities/hypotheses, `memory` = memories only. |
+
+Example with flags before subcommand:
+```bash
+uv run scripts/query_knowledge_unified.py --tier L1 browse viking://resources/observatory/projects/
+```
+
+Subcommands not listed above (`project`, `landscape`, `gaps`, `timeline`, `hypotheses`, `related`, `grep`, `glob`, `recall`, `remember`, `ingest-entity`) ignore these flags.
 
 ## Prerequisites
 
@@ -70,6 +82,17 @@ Map subcommands directly:
 - `/knowledge grep <pattern> --ignore-case` → `grep "<pattern>" --ignore-case`
 - `/knowledge grep <pattern> --uri <scope>` → `grep "<pattern>" --uri <scope>`
 - `/knowledge glob <pattern>` → `glob "<pattern>"`
+- `/knowledge browse <uri>` → `browse <uri>`
+- `/knowledge traverse <entity>` → `traverse <entity_uri>`
+- `/knowledge recall <query>` → `recall "<query>"`
+- `/knowledge remember <store> <title> <body>` → `remember <store> <title> <body>`
+- `/knowledge ingest-entity <type> <id> --profile-json <json>` → `ingest-entity <type> <id> --profile-json <json>`
+
+A bare argument (no subcommand) is treated as `search` for backward compatibility:
+```bash
+uv run scripts/query_knowledge_unified.py "some topic"
+# equivalent to: search "some topic"
+```
 
 ### Subcommand: `/knowledge <topic>`
 
@@ -77,6 +100,8 @@ Map subcommands directly:
 Run: `uv run scripts/query_knowledge_unified.py search "<topic>"`
 
 Scoped to a project: `uv run scripts/query_knowledge_unified.py search "<topic>" --project <project_id>`
+
+Supports `--tier`, `--with-memory`, `--scope`, `--kind <resource_kind>`, `--limit N` (default 10).
 
 Output format:
 ```markdown
@@ -95,28 +120,28 @@ Output format:
 **Search the figure catalog.**
 Run: `uv run scripts/query_knowledge_unified.py figures "<topic>"`
 
-Output: table of matching figures with project, file, and caption. Cap at 20.
+Supports `--tier`. Output: table of matching figures with project, file, and caption. Cap at 20.
 
 ### Subcommand: `/knowledge data <topic>`
 
 **Search reusable data artifacts.**
 Run: `uv run scripts/query_knowledge_unified.py data "<topic>"`
 
-Output: table of matching artifacts with project, file, description, and reusable flag.
+Supports `--tier`. Output: table of matching artifacts with project, file, description, and reusable flag.
 
 ### Subcommand: `/knowledge project <id>`
 
 **Full summary of a specific project.**
 Run: `uv run scripts/query_knowledge_unified.py project <id>`
 
-Output: title, status, research question, key findings, tags, data sources, artifacts, dependencies, provenance status.
+Always fetches at L2 (ignores `--tier`). Output: title, status, research question, key findings, tags, data sources, artifacts, dependencies, provenance status.
 
 ### Subcommand: `/knowledge landscape`
 
 **High-level overview of all research.**
 Run: `uv run scripts/query_knowledge_unified.py landscape`
 
-Output: status counts, top tags, BERDL collections, dependency graph, coverage gaps.
+Always fetches at L1 (ignores `--tier`). Output: status counts, top tags, BERDL collections, dependency graph, coverage gaps.
 
 ### Subcommand: `/knowledge entities <type>`
 
@@ -125,14 +150,14 @@ Run: `uv run scripts/query_knowledge_unified.py entities <type>`
 
 Valid types: `organism`, `gene`, `pathway`, `method`, `concept`
 
-Output: table with ID, name, project count, description.
+Supports `--tier`. Output: table with ID, name, project count, description.
 
 ### Subcommand: `/knowledge connections <entity_uri>`
 
 **Find all relations involving a specific entity.**
 Run: `uv run scripts/query_knowledge_unified.py connections <entity_uri>`
 
-Output: outgoing and incoming relation tables with predicate, target/source, evidence project, confidence.
+Supports `--tier`. Output: outgoing and incoming relation tables with predicate, target/source, evidence project, confidence.
 
 ### Subcommand: `/knowledge hypotheses [status]`
 
@@ -155,31 +180,31 @@ Output: organisms needing analysis, method coverage gaps, untested hypotheses, u
 **Show research evolution chronologically.**
 Run: `uv run scripts/query_knowledge_unified.py timeline [--project <id>] [--since <date>]`
 
-Output: table with date, type, project, summary.
+With no arguments, shows all timeline events across all projects. Output: table with date, type, project, summary.
 
 ### Subcommand: `/knowledge related <id_or_uri>`
 
-**Find related resources via graph traversal.**
-Run: `uv run scripts/query_knowledge_unified.py traverse <entity_uri> --hops 1`
+**Find related resources via 1-hop graph traversal.**
+Run: `uv run scripts/query_knowledge_unified.py related <id_or_uri>`
 
 Output: root entity, connected entities, and relation edges.
 
 ### Subcommand: `/knowledge browse <uri>`
 
 **Browse a directory in the knowledge graph with tiered content.**
-Run: `uv run scripts/query_knowledge_unified.py browse <uri> [--tier L0|L1|L2]`
+Run: `uv run scripts/query_knowledge_unified.py --tier L1 browse <uri>`
 
-Default tier is L1 (overviews). Examples:
-- `browse viking://resources/observatory/knowledge-graph/entities/` — list all entity types
-- `browse viking://resources/observatory/knowledge-graph/entities/organisms/ --tier L0` — compact organism list
-- `browse viking://resources/observatory/projects/` — list all projects
+Supports `--tier` (default L2, but L1 recommended for browsing). Examples:
+- `--tier L1 browse viking://resources/observatory/knowledge-graph/entities/` — list all entity types
+- `--tier L0 browse viking://resources/observatory/knowledge-graph/entities/organisms/` — compact organism list
+- `browse viking://resources/observatory/projects/` — list all projects at L2
 
 ### Subcommand: `/knowledge traverse <entity_uri>`
 
 **Graph walk from an entity through its relations.**
 Run: `uv run scripts/query_knowledge_unified.py traverse <entity_uri> [--hops N] [--relation-filter PRED]`
 
-Examples:
+Supports `--tier`. `--hops` defaults to 1. Examples:
 - `traverse viking://resources/observatory/knowledge-graph/entities/organisms/escherichia-coli --hops 2` — E. coli and 2-hop neighbors
 - `traverse viking://resources/observatory/knowledge-graph/entities/organisms/ecoli --relation-filter studied-in` — only "studied-in" relations
 
@@ -188,10 +213,46 @@ Examples:
 **Search the memory system for past insights, patterns, and decisions.**
 Run: `uv run scripts/query_knowledge_unified.py recall "<query>" [--store journal|patterns|conversations] [--limit N]`
 
+`--limit` defaults to 5.
+
 Memory stores:
 - `journal` — research decisions, hypothesis refinements, analysis pivots
 - `patterns` — cross-project heuristics and learned lessons
 - `conversations` — data surprises, debugging insights, BERDL quirks
+
+### Subcommand: `/knowledge remember <store> <title> <body>`
+
+**Write a memory entry to the knowledge base.**
+Run: `uv run scripts/query_knowledge_unified.py remember <store> <title> <body> [--entities e1,e2] [--projects p1,p2] [--tags t1,t2]`
+
+Positional arguments:
+- `store` — one of `journal`, `patterns`, `conversations`
+- `title` — short title for the memory
+- `body` — memory content
+
+Optional flags:
+- `--entities` — comma-separated entity references
+- `--projects` — comma-separated project IDs
+- `--tags` — comma-separated tags
+
+Output: URI of the created memory entry.
+
+### Subcommand: `/knowledge ingest-entity <type> <id>`
+
+**Create a new entity with a profile in the knowledge graph.**
+Run: `uv run scripts/query_knowledge_unified.py ingest-entity <type> <id> --profile-json '<json>' [--relations-json '<json>']`
+
+Positional arguments:
+- `type` — one of `organism`, `gene`, `pathway`, `method`, `concept`
+- `id` — entity identifier slug (e.g., `escherichia-coli`)
+
+Required flag:
+- `--profile-json` — JSON string with entity profile data
+
+Optional flag:
+- `--relations-json` — JSON array of relations
+
+Output: URI of the created entity.
 
 ### Subcommand: `/knowledge grep <pattern>`
 

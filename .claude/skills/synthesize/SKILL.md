@@ -244,61 +244,23 @@ generated_data:
 
 **Important**: Reference IDs should be short, memorable keys (e.g., `price2018`, `arkin2018`). Use the first author's last name + year. If duplicates, append a letter (e.g., `smith2020a`, `smith2020b`).
 
-#### Step 7.6: Update Knowledge Registry
+#### Step 7.6: Update Knowledge Graph via OpenViking
 
-After writing provenance.yaml, update the project's entry in the global knowledge registry:
+After writing provenance.yaml, rebuild the knowledge graph. The ingest script automatically extracts entities, relations, hypotheses, and timeline events from REPORT.md via CBORG, deduplicates across projects, and uploads as a single batch:
 
 ```bash
-uv run scripts/build_registry.py --project {project_id}
+uv run scripts/viking_ingest.py --graph-only --wait
 ```
 
-This ensures the project's findings, tags, data artifacts, and dependencies are immediately searchable via `/knowledge`. If the script is not found or fails, print a note and continue — this is non-blocking.
+This is incremental — only projects whose REPORT.md or provenance.yaml changed since last extraction are re-extracted via CBORG. Cached results are used for all other projects. The entire merged graph is re-uploaded atomically.
 
-#### Step 7.7: Update Knowledge Graph via OpenViking
+If the script fails, print `WARN  Knowledge graph update failed (non-blocking)` and continue.
 
-After writing provenance.yaml and updating the registry, update the knowledge graph through OpenViking. This step is required.
+**Verify** the project appears in the graph after ingest:
 
-For each substep below, read current content via the query script, prepare updates, and write back via the service.
-
-**a) Register new entities:**
-- Read the REPORT.md Key Findings and identify any organisms, genes, pathways, methods, or concepts not yet registered
-- Run `uv run scripts/query_knowledge_unified.py entities <type>` to check existing entities for each type
-- Use ID prefixes: `org_`, `gene_`, `path_`, `meth_`, `conc_`
-- Include the current `project_id` in the entity's `projects` list
-- Map to external IDs (NCBI Taxonomy, KEGG) where possible
-
-**b) Update existing entity project lists:**
-- For entities already in the knowledge graph that appear in this project, add `project_id` to their `projects` list if not already present
-
-**c) Add/update relations:**
-- Extract entity-entity relationships from Key Findings
-- Run `uv run scripts/query_knowledge_unified.py traverse <entity_uri> --hops 1` to check existing relations
-- Add new relations with:
-  - `evidence_project`: the current project_id
-  - `confidence`: based on statistical significance reported
-  - `note`: brief evidence description
-
-For each analytical method used in this project, add an `applied_to` relation connecting the method entity to each organism studied. This ensures method coverage gap analysis is accurate.
-
-**d) Create/update hypotheses:**
-- Run `uv run scripts/query_knowledge_unified.py hypotheses` to read existing hypotheses
-- For each Key Finding, check if a related hypothesis exists
-  - If yes: add this project's finding as supporting or contradicting evidence
-  - If no: create a new hypothesis entry with status `validated` (if the finding is definitive) or `proposed` (if exploratory)
-- If any findings contradict existing hypotheses, update the contradicting evidence list and consider changing status to `rejected`
-
-**e) Append timeline events:**
-- Run `uv run scripts/query_knowledge_unified.py timeline` to read existing events
-- Add a `project_completed` event with today's date
-- Add `discovery` events for notable findings
-- Add `hypothesis_validated` or `hypothesis_rejected` events as appropriate
-- Add `cross_project_connection` events if findings link to other projects
-
-**Knowledge graph completion checklist** — before proceeding to Step 8, verify:
-- [ ] At least 1 entity registered or updated with this project_id
-- [ ] At least 1 relation added with evidence_project: {project_id}
-- [ ] At least 1 timeline event appended for this project
-- [ ] At least 1 hypothesis created or updated with evidence from this project
+```bash
+uv run scripts/query_knowledge_unified.py search "{project_id}" --scope graph
+```
 
 #### Step 8: Update References
 

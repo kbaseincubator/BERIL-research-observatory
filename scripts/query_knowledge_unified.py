@@ -181,12 +181,6 @@ def _handle_timeline(args) -> int:
     return 0
 
 
-def _handle_backfill(_args) -> int:
-    print("DEPRECATED: `backfill` has been removed.")
-    print("Use `viking_ingest.py --graph-only` instead.")
-    return 1
-
-
 def _handle_related(args) -> int:
     result = DELIVERY.traverse(args.id_or_uri, hops=1)
     _print_graph_result(result)
@@ -232,7 +226,7 @@ def _handle_glob(args) -> int:
 
 
 def _handle_browse(args) -> int:
-    tier = Tier(args.browse_tier) if args.browse_tier else Tier.L1
+    tier = Tier(args.tier)
     items = DELIVERY.browse(args.uri, tier=tier)
     _print_items(items, f"Browse: {args.uri}")
     return 0
@@ -298,7 +292,6 @@ _HANDLERS = {
     "hypotheses": _handle_hypotheses,
     "gaps": _handle_gaps,
     "timeline": _handle_timeline,
-    "backfill": _handle_backfill,
     "related": _handle_related,
     "grep": _handle_grep,
     "glob": _handle_glob,
@@ -372,8 +365,6 @@ def build_parser() -> argparse.ArgumentParser:
     p_timeline.add_argument("--project", default=None)
     p_timeline.add_argument("--since", default=None)
 
-    sub.add_parser("backfill", help="DEPRECATED — use viking_ingest.py --graph-only")
-
     p_related = sub.add_parser("related", help="Show related resources (graph traverse)")
     p_related.add_argument("id_or_uri")
 
@@ -389,12 +380,6 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_browse = sub.add_parser("browse", help="Directory listing via ContextDelivery")
     p_browse.add_argument("uri", help="Directory URI to browse")
-    p_browse.add_argument(
-        "--browse-tier",
-        choices=["L0", "L1", "L2"],
-        default=None,
-        help="Override browse detail tier (default: L1)",
-    )
 
     p_traverse = sub.add_parser("traverse", help="Graph walk from an entity")
     p_traverse.add_argument("entity_uri", help="Starting entity URI")
