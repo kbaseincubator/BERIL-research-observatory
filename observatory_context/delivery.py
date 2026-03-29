@@ -447,6 +447,7 @@ class ContextDelivery:
         *,
         metadata: dict[str, Any] | None = None,
         generate_tiers: bool = True,
+        wait: bool = False,
     ) -> None:
         """Ingest a resource into the observatory.
 
@@ -460,6 +461,8 @@ class ContextDelivery:
             Optional metadata dict.
         generate_tiers:
             Whether to generate L0/L1 tiers via CBORG.
+        wait:
+            Whether to block until OpenViking finishes processing.
         """
         meta = metadata or {}
 
@@ -477,6 +480,7 @@ class ContextDelivery:
             content=content,
             metadata=meta,
             reason=f"Ingest resource: {uri}",
+            wait=wait,
         )
 
     def ingest_entity(
@@ -486,6 +490,7 @@ class ContextDelivery:
         profile: dict[str, Any],
         *,
         relations: list[dict[str, Any]] | None = None,
+        wait: bool = False,
     ) -> str:
         """Create an entity with profile and relation files.
 
@@ -500,6 +505,8 @@ class ContextDelivery:
         relations:
             Optional list of relation dicts with subject, predicate,
             object, evidence, confidence.
+        wait:
+            Whether to block until OpenViking finishes processing.
 
         Returns
         -------
@@ -522,15 +529,16 @@ class ContextDelivery:
             content=profile_content,
             metadata=profile_meta,
             reason=f"Ingest entity profile: {entity_type}/{entity_id}",
+            wait=wait,
         )
 
         for rel in relations or []:
-            self._write_relation(entity_uri, rel)
-            self._write_inverse_relation(entity_uri, rel)
+            self._write_relation(entity_uri, rel, wait=wait)
+            self._write_inverse_relation(entity_uri, rel, wait=wait)
 
         return entity_uri
 
-    def _write_relation(self, entity_uri: str, rel: dict[str, Any]) -> None:
+    def _write_relation(self, entity_uri: str, rel: dict[str, Any], *, wait: bool = False) -> None:
         """Write a forward relation file."""
         predicate = rel["predicate"]
         obj_ref = rel["object"]  # e.g. "genes/trpA"
@@ -543,9 +551,10 @@ class ContextDelivery:
             content=content,
             metadata={"kind": "relation"},
             reason=f"Relation: {rel.get('subject')} {predicate} {obj_ref}",
+            wait=wait,
         )
 
-    def _write_inverse_relation(self, entity_uri: str, rel: dict[str, Any]) -> None:
+    def _write_inverse_relation(self, entity_uri: str, rel: dict[str, Any], *, wait: bool = False) -> None:
         """Write an inverse relation at the object entity's location."""
         obj_ref = rel["object"]  # e.g. "genes/trpA"
         parts = obj_ref.split("/", 1)
@@ -574,6 +583,7 @@ class ContextDelivery:
             content=content,
             metadata={"kind": "relation"},
             reason=f"Inverse relation: {obj_ref} inverse_{predicate} {subj_ref}",
+            wait=wait,
         )
 
     def _resolve_entity_ref(self, ref: str) -> str:
