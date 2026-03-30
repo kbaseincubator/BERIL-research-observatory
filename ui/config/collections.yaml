@@ -318,39 +318,100 @@ collections:
     provider: "ENIGMA SFA, LBNL"
     website: "https://enigma.lbl.gov/"
     description: >
-      Environmental microbiology data from the ENIGMA SFA project. Includes
-      samples, genomes, communities, and strains for studying microbial
-      ecology at contaminated sites.
+      Subsurface microbial ecology and geochemistry data from the ENIGMA SFA
+      project at the Oak Ridge Reservation (ORR), Tennessee. Covers
+      environmental sampling (groundwater from boreholes), 16S amplicon
+      community profiling, isolated bacterial strains with genomes, and
+      geochemical measurements. Includes the SSO (subsurface observatory)
+      site with spatial and temporal community profiles.
     philosophy: >
-      Understand environmental microbial ecology. Study microbial community
-      composition, functional potential, and environmental associations
-      across contaminated and reference sites.
+      Understand subsurface microbial ecology at contaminated sites. Study
+      how microbial community composition (ASVs) varies in space and time
+      and correlates with geochemical parameters (metals, nitrate, etc.)
+      across the Oak Ridge Reservation watershed.
     data_sources:
       - ENIGMA SFA
     scale_stats:
-      taxa: 3000
-      genomes: 7000
-      tables: 45
+      locations: 596
+      samples: 4346
+      asvs: 213044
+      strains: 3154
+      genomes: 6705
+      tables: 47
     key_tables:
-      - name: sample
-        description: Environmental samples
-        row_count: null
-      - name: genome
-        description: Microbial genomes
-        row_count: null
-      - name: community
-        description: Microbial community profiles
-        row_count: null
-      - name: strain
-        description: Strain information
-        row_count: null
+      - name: sdt_location
+        description: Field sites with GPS coordinates and biome annotations
+        row_count: 596
+      - name: sdt_sample
+        description: Environmental samples (mostly groundwater) linked to locations
+        row_count: 4346
+      - name: sdt_asv
+        description: 16S rRNA Amplicon Sequence Variants
+        row_count: 213044
+      - name: ddt_brick0000459
+        description: ASV abundance counts per community (dataset 1, 868K rows)
+        row_count: 867946
+      - name: ddt_brick0000454
+        description: ASV taxonomy assignments at all levels (dataset 1)
+        row_count: 627241
+      - name: ddt_brick0000010
+        description: Per-sample geochemistry in µM (nitrate, nitrite, metals)
+        row_count: 52884
+      - name: sdt_genome
+        description: Annotated microbial genomes
+        row_count: 6705
+      - name: sdt_strain
+        description: Isolated bacterial strains
+        row_count: 3154
+      - name: ddt_brick0000521
+        description: Genome quality metrics (CheckM completeness, contamination, N50)
+        row_count: 1496
+      - name: sys_process
+        description: Scientific process provenance (campaign, person, protocol)
+        row_count: 87677
     sample_queries:
-      - title: Get ENIGMA samples
+      - title: Get SSO community ASV profiles
         query: |
-          SELECT *
-          FROM enigma_coral.sample
-          LIMIT 20
-    related_collections: []
+          SELECT ab.sdt_community_name, ab.sdt_asv_name,
+                 tax.taxonomic_level_sys_oterm_name, tax.sdt_taxon_name,
+                 ab.count_count_unit
+          FROM enigma_coral.ddt_brick0000459 ab
+          JOIN enigma_coral.ddt_brick0000454 tax
+            ON ab.sdt_asv_name = tax.sdt_asv_name
+          WHERE ab.sdt_community_name LIKE 'SSO%'
+            AND ab.count_count_unit > 0
+            AND tax.taxonomic_level_sys_oterm_name = 'Genus'
+          ORDER BY ab.sdt_community_name, ab.count_count_unit DESC
+      - title: Get SSO geochemistry
+        query: |
+          SELECT sdt_sample_name, molecule_from_list_sys_oterm_name,
+                 concentration_micromolar, physiochemical_state
+          FROM enigma_coral.ddt_brick0000010
+          WHERE sdt_sample_name LIKE 'SSO%'
+          ORDER BY sdt_sample_name, concentration_micromolar DESC
+      - title: Get samples with location metadata
+        query: |
+          SELECT s.sdt_sample_name, s.date, s.depth_meter,
+                 l.latitude_degree, l.longitude_degree, l.region,
+                 l.feature_sys_oterm_name
+          FROM enigma_coral.sdt_sample s
+          JOIN enigma_coral.sdt_location l
+            ON s.sdt_location_name = l.sdt_location_name
+          WHERE s.sdt_location_name LIKE 'SSO%'
+          ORDER BY s.date, s.sdt_location_name
+      - title: Get high-quality genomes
+        query: |
+          SELECT q.sdt_strain_name,
+                 q.genome_completeness_method_checkm_percent,
+                 q.genome_contamination_method_checkm_percent,
+                 q.genome_n50_method_checkm_count_unit
+          FROM enigma_coral.ddt_brick0000521 q
+          WHERE q.genome_completeness_method_checkm_percent >= 95
+            AND q.genome_contamination_method_checkm_percent <= 5
+          ORDER BY q.genome_completeness_method_checkm_percent DESC
+    related_collections:
+      - kbase_ke_pangenome
+      - kescience_fitnessbrowser
 
   - id: nmdc_arkin
     name: NMDC Multi-omics
