@@ -57,4 +57,4 @@ FBA-essential genes that are TnSeq-dispensable should show measurable growth def
 - **v1** (2026-02-18): Initial plan
 
 ## Authors
-- Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

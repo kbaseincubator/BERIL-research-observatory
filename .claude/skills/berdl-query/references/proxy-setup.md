@@ -100,6 +100,7 @@ mc ls berdl-minio/cdm-lake/...
 - [ ] LBNL account with SSH access to `login1.berkeley.kbase.us`
 - [ ] `KBASE_AUTH_TOKEN` in `.env`
 - [ ] `.venv-berdl` created via `scripts/bootstrap_client.sh`
-- [ ] JupyterHub session active (log in at `https://hub.berdl.kbase.us`, open a notebook)
 - [ ] SSH tunnels running on ports 1337 and 1338
 - [ ] pproxy running on port 8123
+
+The JupyterHub server is spawned automatically by `get_spark_session()` when needed — no manual login required.

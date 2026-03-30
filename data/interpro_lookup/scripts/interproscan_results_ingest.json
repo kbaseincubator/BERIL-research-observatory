@@ -1,0 +1,35 @@
+{
+  "tenant": "kbase",
+  "dataset": "ke_pangenome",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/users-general-warehouse/psdehal/data/interproscan_results/",
+    "silver_base": "s3a://cdm-lake/tenant-sql-warehouse/kbase/kbase_ke_pangenome.db"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "interproscan_domains",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/users-general-warehouse/psdehal/data/interproscan_results/interproscan_domains.tsv.gz",
+      "schema_sql": "gene_cluster_id STRING, md5 STRING, seq_len INT, analysis STRING, signature_acc STRING, signature_desc STRING, start INT, stop INT, score STRING, ipr_acc STRING, ipr_desc STRING"
+    },
+    {
+      "name": "interproscan_go",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/users-general-warehouse/psdehal/data/interproscan_results/interproscan_go.tsv.gz",
+      "schema_sql": "gene_cluster_id STRING, go_id STRING, go_source STRING, n_supporting_analyses INT"
+    },
+    {
+      "name": "interproscan_pathways",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/users-general-warehouse/psdehal/data/interproscan_results/interproscan_pathways.tsv.gz",
+      "schema_sql": "gene_cluster_id STRING, pathway_db STRING, pathway_id STRING, n_supporting_analyses INT"
+    }
+  ]
+}

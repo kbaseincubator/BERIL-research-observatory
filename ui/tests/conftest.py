@@ -1,11 +1,8 @@
 """Shared pytest fixtures for the BERIL Observatory UI test suite."""
 
 import gzip
-import json
 import pickle
-import tempfile
 from datetime import datetime
-from pathlib import Path
 
 import pytest
 
@@ -13,13 +10,9 @@ from app.models import (
     Collection,
     CollectionCategory,
     CollectionTable,
-    Column,
     Contributor,
-    DataFile,
-    DerivedDataRef,
     Discovery,
     IdeaStatus,
-    Notebook,
     PerformanceTip,
     Pitfall,
     Priority,
@@ -29,11 +22,8 @@ from app.models import (
     ResearchArea,
     ResearchIdea,
     Review,
-    ReviewStatus,
     SampleQuery,
     Skill,
-    Table,
-    Visualization,
 )
 
 
@@ -171,6 +161,21 @@ def repository_data(project, completed_project, collection):
         last_updated=datetime(2024, 6, 15),
     )
 
+@pytest.fixture
+def app_data_context(repository_data: RepositoryData):
+    return {
+        "app_name": "BERIL Test App",
+        "total_genomes": "500",
+        "total_species": "100",
+        "total_genes": 10000,
+        "project_count": len(repository_data.projects),
+        "discovery_count": len(repository_data.discoveries),
+        "idea_count": len(repository_data.research_ideas),
+        "collection_count": len(repository_data.collections),
+        "contributor_count": len(repository_data.contributors),
+        "skill_count": len(repository_data.skills),
+        "last_updated": repository_data.last_updated,
+    }
 
 # ---------------------------------------------------------------------------
 # File system fixtures

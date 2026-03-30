@@ -84,4 +84,4 @@ NB02-NB05 depend only on NB01 CSV outputs; NB03 and NB04 are independent of NB02
 ## Authors
 
 - Dileep Kishore
-- Paramvir Dehal
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

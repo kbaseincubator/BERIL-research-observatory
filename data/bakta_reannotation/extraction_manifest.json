@@ -1,0 +1,9 @@
+{
+  "total_sequences": 132538156,
+  "total_species": 27690,
+  "chunk_size_target": 2000000,
+  "n_chunks": 67,
+  "output_dir": "/home/psdehal/pangenome_science/BERIL-research-observatory/data/bakta_reannotation/fasta_chunks",
+  "extraction_time_sec": 2774,
+  "note": "Resumed extraction. 112,000,000 seqs from initial run + 20,538,156 from resume."
+}
