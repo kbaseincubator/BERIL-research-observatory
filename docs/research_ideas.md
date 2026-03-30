@@ -13,6 +13,42 @@
 
 ## High Priority Ideas
 
+### [truly_dark_genes] Truly Dark Genes — What Remains Unknown After Modern Annotation?
+**Status**: IN_PROGRESS
+**Priority**: HIGH
+**Effort**: Medium (2-3 weeks)
+
+**Research Question**: Among the ~6,400 FB genes that remain hypothetical even after bakta v1.12.0 reannotation, what distinguishes them from annotation-lag dark matter, and can fitness phenotypes + sparse annotations prioritize them for experimental characterization?
+
+**Approach**:
+- Fork from `functional_dark_matter` NB12 insight: 83.7% of "dark" genes are annotation-lag, not truly unknown
+- Characterize the residual ~6,400 truly dark genes (shorter? more divergent? species-specific?)
+- Mine sparse annotations (UniRef50, Pfam HMMER, ICA modules, db_xrefs) as partial clues
+- Test cross-organism fitness concordance for truly dark orthologs
+- Produce prioritized ~50-100 candidates with experimental protocols
+
+**Hypotheses**:
+- Truly dark genes are structurally distinct (shorter, less conserved, taxonomically restricted)
+- They are enriched in stress conditions and accessory genomes
+- Partial annotations (UniRef50 + Pfam + module context) can narrow functional hypotheses
+
+**Impact**: High — reduces the "dark matter" problem from 57,011 genes to ~6,400 genuinely unknown ones and provides a tractable experimental target list
+
+**Dependencies**:
+- Existing: `functional_dark_matter` data (NB12 bakta enrichment)
+- Existing: `bakta_reannotation` Delta Lake tables
+- Existing: FB-pangenome link table from `conservation_vs_fitness`
+
+**Progress**:
+- ✅ Project structure created: `projects/truly_dark_genes/`
+- ✅ Research plan written
+- ⏳ Next: NB01 census and characterization
+- ⏳ Next: NB02 Spark data enrichment
+
+**Location**: `projects/truly_dark_genes/`
+
+---
+
 ### [pangenome_pathway_geography] Pangenome Openness, Metabolic Pathways, and Biogeography
 **Status**: IN_PROGRESS
 **Priority**: HIGH
@@ -416,6 +452,14 @@
 ---
 
 ## Completed Ideas
+
+### [pgp_pangenome_ecology] PGP Gene Distribution Across Environments & Pangenomes
+**Status**: COMPLETED
+**Results**: H1 SUPPORTED — pqqC × acdS co-occur at OR = 7.24 (strongest pair), forming a vertically inherited rhizosphere module; nifH forms a separate ecological guild (negatively associated with pqqC, depleted in soil). H2 SUPPORTED — acdS (OR = 7.0) and pqqC (OR = 2.9) strongly enriched in soil/rhizosphere, surviving phylum fixed effects. H3 REJECTED — PGP genes are predominantly core (mean 29.7% accessory vs 53.2% genome-wide baseline), contra the HGT hypothesis. H4 PARTIALLY SUPPORTED — trp completeness predicts ipdC (OR = 2.81) but tyrosine "negative control" also significant (OR = 3.62) due to TyrR co-regulation; soil species show reversal (OR = 0.30). First pangenome-scale analysis across 293K genomes, 27K species. See `projects/pgp_pangenome_ecology/`.
+
+### [bacdive_phenotype_metal_tolerance] BacDive Phenotype Signatures of Metal Tolerance
+**Status**: COMPLETED
+**Results**: BacDive phenotypes (Gram stain, oxygen tolerance, enzyme activities, metabolite utilization) capture real metal tolerance signal (R²=0.16 alone, 7/10 features significant after FDR) but are entirely phylogenetically confounded — adding phenotype features to a taxonomy-based model provides zero improvement (delta R²=-0.009). Genome-encoded metal resistance gene count is the true predictor (full model R²=0.63). Gram stain is the strongest univariate predictor (d=-0.61) but indistinguishable from phylogeny. Urease effect reversed (d=-0.18, driven by Actinomycetes). Catalase shows Simpson's paradox (positive overall, negative within every major class). First large-scale test of BacDive phenotypes as metal tolerance predictors across 5,647 species. See `projects/bacdive_phenotype_metal_tolerance/`.
 
 ### [nmdc_community_metabolic_ecology] Community Metabolic Ecology via NMDC × Pangenome Integration
 **Status**: COMPLETED

@@ -1,0 +1,6 @@
+# Large data files — archived to BERDL MinIO
+*.csv
+*.tsv
+*.parquet
+*.json
+!.gitignore

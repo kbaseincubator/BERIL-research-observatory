@@ -41,5 +41,5 @@ jupyter nbconvert --to notebook --execute --inplace 05_psrch2_comparison.ipynb
 Notebooks must run in order. Full pipeline runs in under 1 minute.
 
 ## Authors
-- Paramvir Dehal (https://orcid.org/0000-0002-3495-1240), Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
 - Aindrila Mukhopadhyay (https://orcid.org/0000-0002-6513-7425), Lawrence Berkeley National Laboratory, US Department of Energy

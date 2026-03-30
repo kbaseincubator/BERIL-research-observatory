@@ -3,8 +3,6 @@
 import gzip
 import json
 import pickle
-import tempfile
-from datetime import datetime
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -17,7 +15,6 @@ from app.dataloader import (
     slugify,
 )
 from app.models import (
-    CollectionCategory,
     IdeaStatus,
     Priority,
     ProjectStatus,
@@ -693,3 +690,153 @@ class TestClusterResearchAreas:
         all_ids = [pid for area in result for pid in area.project_ids]
         assert "p1" in all_ids
         assert "p2" in all_ids
+
+
+# ---------------------------------------------------------------------------
+# RepositoryParser._extract_plotly_height
+# ---------------------------------------------------------------------------
+
+
+class TestExtractPlotlyHeight:
+    BUFFER_HEIGHT=20
+
+    def setup_method(self):
+        self.parser = RepositoryParser.__new__(RepositoryParser)
+
+    def _write_plotly_html(self, tmp_path, style: str, filename="fig.html") -> Path:
+        """Write a minimal Plotly standalone HTML export with the given div style."""
+        content = (
+            "<html><head></head><body>"
+            f'<div id="abc123" class="plotly-graph-div" style="{style}"></div>'
+            "<script>/* plotly js here */</script>"
+            "</body></html>"
+        )
+        p = tmp_path / filename
+        p.write_text(content, encoding="utf-8")
+        return p
+
+    def test_extracts_height_px(self, tmp_path):
+        html = self._write_plotly_html(tmp_path, "height:700px; width:1000px;")
+        assert self.parser._extract_plotly_height(html) == 700 + self.BUFFER_HEIGHT
+
+    def test_extracts_height_without_trailing_semicolon(self, tmp_path):
+        html = self._write_plotly_html(tmp_path, "height:450px; width:800px")
+        assert self.parser._extract_plotly_height(html) == 450 + self.BUFFER_HEIGHT
+
+    def test_returns_none_when_no_plotly_div(self, tmp_path):
+        content = "<html><body><div class='other-div' style='height:500px'></div></body></html>"
+        p = tmp_path / "no_plotly.html"
+        p.write_text(content)
+        assert self.parser._extract_plotly_height(p) is None
+
+    def test_returns_none_when_no_height_in_style(self, tmp_path):
+        html = self._write_plotly_html(tmp_path, "width:800px;")
+        assert self.parser._extract_plotly_height(html) is None
+
+    def test_returns_none_for_missing_file(self, tmp_path):
+        assert self.parser._extract_plotly_height(tmp_path / "missing.html") is None
+
+
+# ---------------------------------------------------------------------------
+# RepositoryParser._parse_data_dir — visualization and interactive HTML
+# ---------------------------------------------------------------------------
+
+
+class TestParseDataDir:
+    BUFFER_HEIGHT=20
+
+    def setup_method(self):
+        self.parser = RepositoryParser.__new__(RepositoryParser)
+
+    def _make_project_dir(self, tmp_path) -> Path:
+        proj = tmp_path / "projects" / "test_proj"
+        proj.mkdir(parents=True)
+        self.parser.repo_path = tmp_path
+        return proj
+
+    def _plotly_html(self, height: int, width: int = 800) -> str:
+        return (
+            "<html><head></head><body>"
+            f'<div id="x" class="plotly-graph-div" style="height:{height}px; width:{width}px;"></div>'
+            "</body></html>"
+        )
+
+    def test_picks_up_png_as_static(self, tmp_path):
+        proj = self._make_project_dir(tmp_path)
+        figs = proj / "figures"
+        figs.mkdir()
+        (figs / "result.png").write_bytes(b"\x89PNG")
+        vizs, _ = self.parser._parse_data_dir(proj)
+        assert len(vizs) == 1
+        assert vizs[0].filename == "result.png"
+        assert vizs[0].is_interactive is False
+        assert vizs[0].iframe_height is None
+
+    def test_picks_up_html_as_interactive(self, tmp_path):
+        proj = self._make_project_dir(tmp_path)
+        figs = proj / "figures"
+        figs.mkdir()
+        (figs / "umap.html").write_text(self._plotly_html(700), encoding="utf-8")
+        vizs, _ = self.parser._parse_data_dir(proj)
+        assert len(vizs) == 1
+        assert vizs[0].filename == "umap.html"
+        assert vizs[0].is_interactive is True
+        assert vizs[0].iframe_height == 700 + self.BUFFER_HEIGHT
+
+    def test_html_without_plotly_div_has_none_height(self, tmp_path):
+        proj = self._make_project_dir(tmp_path)
+        figs = proj / "figures"
+        figs.mkdir()
+        (figs / "plain.html").write_text("<html><body>no plotly</body></html>")
+        vizs, _ = self.parser._parse_data_dir(proj)
+        assert vizs[0].is_interactive is True
+        assert vizs[0].iframe_height is None
+
+    def test_tsv_goes_to_data_files_not_vizs(self, tmp_path):
+        proj = self._make_project_dir(tmp_path)
+        data = proj / "data"
+        data.mkdir()
+        (data / "results.tsv").write_text("col1\tcol2\n1\t2\n")
+        vizs, files = self.parser._parse_data_dir(proj)
+        assert len(vizs) == 0
+        assert len(files) == 1
+        assert files[0].filename == "results.tsv"
+
+    def test_mixed_figures_dir(self, tmp_path):
+        proj = self._make_project_dir(tmp_path)
+        figs = proj / "figures"
+        figs.mkdir()
+        (figs / "static.png").write_bytes(b"\x89PNG")
+        (figs / "interactive.html").write_text(self._plotly_html(500), encoding="utf-8")
+        vizs, _ = self.parser._parse_data_dir(proj)
+        assert len(vizs) == 2
+        static = next(v for v in vizs if v.filename == "static.png")
+        interactive = next(v for v in vizs if v.filename == "interactive.html")
+        assert static.is_interactive is False
+        assert interactive.is_interactive is True
+        assert interactive.iframe_height == 500 + self.BUFFER_HEIGHT
+
+    def test_hidden_files_skipped(self, tmp_path):
+        proj = self._make_project_dir(tmp_path)
+        figs = proj / "figures"
+        figs.mkdir()
+        (figs / ".DS_Store").write_bytes(b"x")
+        (figs / "real.png").write_bytes(b"\x89PNG")
+        vizs, _ = self.parser._parse_data_dir(proj)
+        assert all(not v.filename.startswith(".") for v in vizs)
+
+    def test_empty_dirs_return_empty_lists(self, tmp_path):
+        proj = self._make_project_dir(tmp_path)
+        vizs, files = self.parser._parse_data_dir(proj)
+        assert vizs == []
+        assert files == []
+
+    def test_results_sorted_alphabetically(self, tmp_path):
+        proj = self._make_project_dir(tmp_path)
+        figs = proj / "figures"
+        figs.mkdir()
+        (figs / "zebra.png").write_bytes(b"\x89PNG")
+        (figs / "alpha.png").write_bytes(b"\x89PNG")
+        vizs, _ = self.parser._parse_data_dir(proj)
+        assert vizs[0].filename == "alpha.png"
+        assert vizs[1].filename == "zebra.png"

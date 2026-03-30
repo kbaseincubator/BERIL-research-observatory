@@ -1,0 +1,31 @@
+                     ----------MolProbity validation----------
+
+  Ramachandran statistics
+    Favored:   285 (97.60%)
+    Allowed:     6 ( 2.05%)
+    Outliers:    1 ( 0.34%)
+
+  Rotamer analysis
+    Favored:   212 (89.83%)
+    Allowed:    19 ( 8.05%)
+    Outliers:    5 ( 2.12%)
+
+  C-beta deviations:    2
+
+  Clashscore: 4.32
+
+  Overall MolProbity score: 1.87
+
+  R-work: 0.1923
+  R-free: 0.2345
+
+  RMS(bonds): 0.008
+  RMS(angles): 1.023
+
+  Summary:
+    MolProbity score   : 1.87
+    Clashscore         : 4.32
+    Ramachandran favored : 97.60 %
+    Ramachandran outliers: 0.34 %
+    Rotamer outliers     : 2.12 %
+    C-beta deviations    : 2

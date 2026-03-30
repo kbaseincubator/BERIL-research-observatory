@@ -170,7 +170,7 @@ This project tests the new local BERDL workflow with both MinIO data access and 
 
 ## Authors
 
-Paramvir Dehal (ORCID: 0000-0001-5810-2497, Lawrence Berkeley National Lab)
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
 
 ---
 

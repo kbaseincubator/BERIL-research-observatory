@@ -1,0 +1,45 @@
+# BacDive Phenotype Signatures of Metal Tolerance
+
+## Research Question
+Can BacDive-measured bacterial phenotypes (Gram stain, oxygen tolerance, metabolite utilization, enzyme activities) predict metal tolerance as measured by Fitness Browser experiments and the Metal Fitness Atlas?
+
+## Status
+Complete — BacDive phenotypes capture real metal tolerance signal (R²=0.16) but are entirely phylogenetically confounded (delta R²=-0.009 over taxonomy). Genome-encoded metal resistance gene count is the true predictor (full model R²=0.63). Seven of 10 features significant univariately; Gram stain strongest (d=-0.61). Urease effect reversed (d=-0.18, driven by Actinomycetes). See [Report](REPORT.md) for full findings.
+
+## Overview
+The Metal Fitness Atlas scored 27,702 pangenome species for metal tolerance using gene functional signatures validated against RB-TnSeq fitness data. BacDive provides standardized phenotypic measurements (Gram stain, oxygen tolerance, metabolite utilization, enzyme activities) for 97K bacterial strains. This project tests whether these readily measurable phenotypes predict metal tolerance, connecting classical microbiology (culture-based phenotyping) to genomic metal tolerance predictions. A two-scale design validates associations both directly (12 FB organisms matching BacDive) and at pangenome scale (~3,000-5,000 species linked via genome accessions).
+
+## Quick Links
+- [Research Plan](RESEARCH_PLAN.md) — hypothesis, approach, query strategy
+- [Report](REPORT.md) — findings, interpretation, supporting evidence
+
+## Data Sources
+- `kescience_bacdive` — 97K strains with phenotype data (local: `data/bacdive_ingest/`)
+- `projects/metal_fitness_atlas/data/species_metal_scores.csv` — metal tolerance scores for 27,702 species
+- `projects/conservation_vs_fitness/data/organism_mapping.tsv` — FB organism-to-pangenome mapping
+- `projects/counter_ion_effects/data/` — metal experiment classifications and counter ion data
+
+## Reproduction
+
+### Prerequisites
+- Python 3.11+ with packages in `requirements.txt`
+- BacDive ingest data in `data/bacdive_ingest/` (TSV files)
+- Metal Fitness Atlas scores in `projects/metal_fitness_atlas/data/species_metal_scores.csv`
+- FB organism mapping in `projects/conservation_vs_fitness/data/organism_mapping.tsv`
+- Metal experiment data in `projects/metal_fitness_atlas/data/metal_experiments.csv`
+
+### Running the Pipeline
+All notebooks run locally (no Spark required). Total runtime: ~2 minutes.
+```bash
+pip install -r requirements.txt
+cd notebooks/
+jupyter nbconvert --to notebook --execute --inplace 01_bacdive_pangenome_bridge.ipynb
+jupyter nbconvert --to notebook --execute --inplace 02_phenotype_feature_engineering.ipynb
+jupyter nbconvert --to notebook --execute --inplace 03_univariate_associations.ipynb
+jupyter nbconvert --to notebook --execute --inplace 04_multivariate_model.ipynb
+jupyter nbconvert --to notebook --execute --inplace 05_fb_bacdive_case_studies.ipynb
+```
+Notebooks must run in order (NB02 depends on NB01, NB03-04 depend on NB02). NB05 is independent but requires NB01 bridge data.
+
+## Authors
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

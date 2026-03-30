@@ -41,5 +41,4 @@ papermill 03_consistency_matrix.ipynb 03_consistency_matrix.ipynb --kernel pytho
 ```
 
 ## Authors
-- Paramvir Dehal (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497))
-- Claude (AI assistant, Anthropic)
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

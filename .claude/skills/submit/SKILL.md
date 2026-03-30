@@ -11,8 +11,12 @@ Submit a BERDL analysis project for automated review. This runs pre-submission v
 ## Usage
 
 ```
-/submit <project_id>
+/submit <project_id> [--reviewer claude|codex] [--model <model_id>]
 ```
+
+Options:
+- `--reviewer claude|codex` — Reviewer backend (default: `claude`)
+- `--model <model_id>` — Model override (default: `claude-sonnet-4-20250514` for claude, `gpt-5.4` for codex)
 
 If no `<project_id>` argument is provided, detect from the current working directory (if inside `projects/{id}/`).
 
@@ -46,6 +50,7 @@ Run these checks against the project directory and print a checklist summary:
 - **Dependencies**: Check that `requirements.txt` exists in the project directory. Warn if missing.
 - **Reproduction guide**: Check that README.md contains a `## Reproduction` section. Warn if missing.
 - **User-provided data**: If `projects/{project_id}/user_data/` exists and contains files, print an `INFO` line noting the count and total size (e.g., `INFO  User-provided data: 3 files, 12 MB`). This is informational only — not a warning.
+- **Previous reviews**: If `REVIEW_*.md` files exist in the project directory, print `INFO  {N} previous review(s) found — will be cleared on submission`. This is informational only.
 
 Print the checklist as:
 ```
@@ -81,17 +86,19 @@ If the user declines, proceed with the current status.
 
 ### Step 4: Invoke Reviewer
 
-If all critical checks pass, invoke the reviewer subprocess:
+If all critical checks pass:
+
+1. **Clear previous reviews**: Remove all numbered review files (`REVIEW_*.md`) in the project directory — this is a fresh submission round.
+2. **Invoke reviewer**: Run `tools/review.sh` with `--output` to produce the canonical `REVIEW.md`:
 
 ```bash
-CLAUDECODE= claude -p \
-  --system-prompt "$(cat .claude/reviewer/SYSTEM_PROMPT.md)" \
-  --allowedTools "Read,Write" \
-  --dangerously-skip-permissions \
-  "Review the project at projects/{project_id}/. Read all files in the project directory — especially README.md, RESEARCH_PLAN.md, and REPORT.md. Also read docs/pitfalls.md for known issues. Write your review to projects/{project_id}/REVIEW.md."
+rm -f projects/{project_id}/REVIEW_*.md
+bash tools/review.sh {project_id} --reviewer {reviewer} --model {model} --output projects/{project_id}/REVIEW.md
 ```
 
-> **Note**: The `CLAUDECODE=` prefix is required to allow launching a Claude subprocess from within Claude Code. Without it, the command fails with a "can't launch Claude inside Claude" error.
+- `{reviewer}` defaults to `claude` if `--reviewer` was not provided
+- `{model}` defaults to the frontier model for the selected reviewer if `--model` was not provided
+- Omit `--reviewer` and `--model` entirely if the user did not specify them (the script applies its own defaults)
 
 Run this command from the repository root directory.
 
@@ -99,9 +106,9 @@ Run this command from the repository root directory.
 
 After the reviewer subprocess completes:
 
-1. Check that `projects/{project_id}/REVIEW.md` was created
-2. If it exists, print a success message with a brief summary
-3. If it was not created, print an error indicating the reviewer did not produce output
+1. Check that `projects/{project_id}/REVIEW.md` was created **and is non-empty** (more than 0 bytes)
+2. If it exists and is non-empty, print a success message with a brief summary
+3. If it was not created or is empty, print an error indicating the reviewer did not produce output
 
 ### Step 6: Lakehouse Upload
 
@@ -134,11 +141,14 @@ After presenting the review summary, provide next steps based on the review outc
 - List the issues to address
 - Suggest re-running `/submit` after fixes
 
+> **Note**: For final submission reviews, use the default frontier model (no `--model` flag). Use `--model` with faster/cheaper models for iterating on reviewer feedback.
+
 ### Notes
 
 - The reviewer prompt is stored at `.claude/reviewer/SYSTEM_PROMPT.md` and is not controlled by the author
-- Each `/submit` produces a fresh review, replacing any existing `REVIEW.md`
-- To address review feedback, update the project and run `/submit` again
+- Each `/submit` clears numbered `REVIEW_*.md` files and produces a fresh canonical `REVIEW.md`
+- To iterate on review feedback without the full checklist, use `/berdl-review` instead
+- To address review feedback and re-submit, update the project and run `/submit` again
 
 ## Pitfall Detection
 

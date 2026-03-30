@@ -19,6 +19,8 @@ dependencies = [
     "pydantic-settings==2.1.0",
     "pyyaml==6.0.1",
     "httpx==0.26.0",
+    "authlib>=1.6.9",
+    "itsdangerous>=2.2.0",
     "ruff>=0.15.0",
     "pygments>=2.19.2",
 ]

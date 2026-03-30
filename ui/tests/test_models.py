@@ -358,6 +358,18 @@ class TestDataclassDefaults:
         assert v.title is None
         assert v.description is None
         assert v.size_bytes == 0
+        assert v.is_interactive is False
+        assert v.iframe_height is None
+
+    def test_visualization_interactive(self):
+        v = Visualization(
+            filename="fig.html",
+            path="projects/p/figures/fig.html",
+            is_interactive=True,
+            iframe_height=700,
+        )
+        assert v.is_interactive is True
+        assert v.iframe_height == 700
 
     def test_data_file(self):
         d = DataFile(filename="results.csv", path="projects/p/data/results.csv")
