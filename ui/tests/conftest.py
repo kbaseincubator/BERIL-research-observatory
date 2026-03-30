@@ -2,9 +2,14 @@
 
 import gzip
 import pickle
+from collections.abc import AsyncGenerator
 from datetime import datetime
 
 import pytest
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+
+from app.db.models import Base
+from app.db.session import get_db
 
 from app.models import (
     Collection,
@@ -220,18 +225,39 @@ def pickle_file(tmp_path, repository_data):
 
 
 # ---------------------------------------------------------------------------
+# Database fixtures
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+async def db_session() -> AsyncGenerator[AsyncSession, None]:
+    """In-memory SQLite session for tests. Creates all tables fresh each test."""
+    engine = create_async_engine("sqlite+aiosqlite:///:memory:")
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    factory = async_sessionmaker(engine, expire_on_commit=False)
+    async with factory() as session:
+        yield session
+    await engine.dispose()
+
+
+# ---------------------------------------------------------------------------
 # FastAPI TestClient fixture
 # ---------------------------------------------------------------------------
 
 
 @pytest.fixture
-def test_client(repository_data):
-    """Return a TestClient with app state pre-loaded."""
+def test_client(repository_data, db_session):
+    """Return a TestClient with app state pre-loaded and DB dependency overridden."""
     from fastapi.testclient import TestClient
 
     from app.main import app
 
+    async def override_get_db() -> AsyncGenerator[AsyncSession, None]:
+        yield db_session
+
+    app.dependency_overrides[get_db] = override_get_db
     with TestClient(app, raise_server_exceptions=False) as client:
-        # Inject repository data directly into app state
         app.state.repo_data = repository_data
         yield client
+    app.dependency_overrides.pop(get_db, None)
