@@ -42,4 +42,4 @@ jupyter nbconvert --to notebook --execute --inplace 03_discordant_characterizati
 - de Berardinis V et al. (2008) "A complete collection of single-gene deletion mutants of Acinetobacter baylyi ADP1." *Molecular Systems Biology* 4:174.
 
 ## Authors
-- Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

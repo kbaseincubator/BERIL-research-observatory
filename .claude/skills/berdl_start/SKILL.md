@@ -170,15 +170,13 @@ When the user wants to start a new research project, the agent drives the entire
 16. Create project directory structure: `notebooks/`, `data/`, `user_data/`, `figures/`
 17. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch."
 18. Create branch `projects/{project_id}`, switch to it, and commit README + RESEARCH_PLAN. Working on a dedicated branch from the start avoids accumulating changes on main during long-running projects. Tell the user what you're doing — if they prefer to stay on main, skip branch creation.
-19. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer subagent:
+19. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer via `tools/review.sh`:
 
     ```bash
-    CLAUDECODE= claude -p \
-      --system-prompt "$(cat .claude/reviewer/PLAN_REVIEW_PROMPT.md)" \
-      --allowedTools "Read" \
-      --dangerously-skip-permissions \
-      "Review the research plan at projects/{project_id}/. Read RESEARCH_PLAN.md and README.md. Also read docs/pitfalls.md, docs/performance.md, docs/collections.md, and PROJECT.md. Check docs/schemas/ for any tables referenced in the plan. List existing projects with ls projects/ and read their README.md files to check for overlap. Return a concise list of suggestions."
+    bash tools/review.sh {project_id} --type plan [--reviewer claude|codex] [--model <model_id>]
     ```
+
+    This runs a CLI subprocess that reads the research plan, checks it against pitfalls/schemas/existing projects, and writes feedback to an auto-numbered file (`PLAN_REVIEW_1.md`, `PLAN_REVIEW_2.md`, etc.). The user can choose `--reviewer codex` for an alternative perspective. Default reviewer is `claude`.
 
     Present the suggestions to the user. They can address them, note them for later, or skip — this is advisory, not blocking.
 
@@ -208,9 +206,10 @@ After notebooks are executed and committed, **pause and present the key results 
 
 #### Phase E: Review & Submission
 
-33. Run `/submit` to validate documentation and generate `REVIEW.md`
-34. Fix any issues flagged by the review
-35. Commit fixes
+33. **Optional: iterate with `/berdl-review`** — Run `/berdl-review {project_id}` to get feedback without the full submission checklist. This produces numbered reviews (`REVIEW_1.md`, `REVIEW_2.md`, ...) and is useful for iterating quickly. Use `--reviewer codex` for a second opinion. Address feedback, then review again until satisfied.
+34. Run `/submit` to validate documentation and generate the final canonical `REVIEW.md` (clears numbered reviews)
+35. Fix any issues flagged by the review
+36. Commit fixes
 36. Upload project to the lakehouse: `python tools/lakehouse_upload.py {project_id}` (prompted by `/submit` after clean review)
 37. Chat with user about next steps
 

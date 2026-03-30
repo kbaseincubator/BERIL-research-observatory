@@ -207,5 +207,5 @@ WHERE orgId = '{org}' AND expName IN ('{metal_exp_list}')
 - **v1** (2026-02-17): Initial plan
 
 ## Authors
-- Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
 - Adam Deutschbauer (https://orcid.org/0000-0003-2728-7622), Lawrence Berkeley National Laboratory

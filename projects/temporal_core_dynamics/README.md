@@ -29,4 +29,4 @@ jupyter notebook
 Execute notebooks in order (01 -> 02 -> 03 -> 04). Each notebook saves intermediate results to `../data/`.
 
 ## Authors
-- **Paramvir S. Dehal** (Lawrence Berkeley National Lab) | ORCID: 0000-0001-5810-2497 | Author
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

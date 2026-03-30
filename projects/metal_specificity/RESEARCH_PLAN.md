@@ -136,4 +136,4 @@ The `specificphenotype` table may be queried via REST API for validation in NB02
 - **v2** (2026-02-27): Incorporated plan review feedback: added rate-based thresholds alongside absolute counts to address experiment-count bias; clarified total experiment count (6,504 total = 559 metal + 5,945 non-metal); added `specificphenotype` table as validation; added ICA module specificity analysis; downgraded H1e to exploratory; added essential gene bias caveat; added counter_ion_effects cross-validation checkpoint
 
 ## Authors
-- Paramvir Dehal, Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

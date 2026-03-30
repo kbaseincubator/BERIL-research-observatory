@@ -116,4 +116,4 @@ The analysis uses the 51 quinate-specific genes (specificity > 0.5, z-score < -1
 - **v1** (2026-02-19): Initial plan
 
 ## Authors
-- Paramvir Dehal (ORCID: 0000-0001-5810-2497), Lawrence Berkeley National Laboratory
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

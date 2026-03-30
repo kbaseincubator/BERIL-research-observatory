@@ -60,4 +60,4 @@ jupyter nbconvert --to notebook --execute --inplace notebooks/03_fitness_vs_fiel
 
 ## Authors
 
-- **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) -- Lawrence Berkeley National Laboratory
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

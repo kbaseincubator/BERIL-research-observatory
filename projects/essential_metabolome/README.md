@@ -112,4 +112,4 @@ See `requirements.txt` for full Python dependencies. Key packages:
 
 ## Authors
 
-Paramvir Dehal (ORCID: 0000-0001-5810-2497, Lawrence Berkeley National Lab)
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
