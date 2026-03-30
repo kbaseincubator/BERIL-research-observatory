@@ -1,13 +1,13 @@
 ---
 name: knowledge
-description: "Search the research observatory knowledge base — projects, findings, figures, reusable data, entities, hypotheses, and cross-project connections. Use when the user wants to find projects by topic, search for figures, locate reusable data, explore the knowledge graph, get a landscape overview, or asks questions like 'what do we know about X', 'have we studied Y', 'which projects involve Z', or 'show me findings on W'."
+description: "Search the research observatory knowledge base through OpenViking first — projects, findings, figures, reusable data, entities, hypotheses, and cross-project connections. Use when the user wants to find projects by topic, search for figures, locate reusable data, explore the knowledge graph, get a landscape overview, or asks questions like 'what do we know about X', 'have we studied Y', 'which projects involve Z', or 'show me findings on W'."
 allowed-tools: Read, Bash, Grep
 user-invocable: true
 ---
 
 # Knowledge Query Skill
 
-Search the observatory's knowledge registry and semantic knowledge graph to find projects, findings, figures, reusable data, entities, relationships, and hypotheses.
+Search the observatory's knowledge via OpenViking. OpenViking must be running for all queries.
 
 ## Usage
 
@@ -21,65 +21,89 @@ Search the observatory's knowledge registry and semantic knowledge graph to find
 /knowledge connections <entity> — find all relations involving an entity
 /knowledge hypotheses [status]  — list hypotheses, optionally filtered by status
 /knowledge gaps                 — find unexplored entity combinations
-/knowledge timeline [project]   — show research evolution
-/knowledge backfill [project_id]  — retroactively populate Layer 3 from project reports
+/knowledge timeline [--project <id>] [--since <date>] — show research evolution
+/knowledge related <id_or_uri>  — find related resources (1-hop graph traversal)
+/knowledge grep <pattern> [--uri <scope>] [--ignore-case]  — content search
+/knowledge glob <pattern>                                   — file pattern match
+/knowledge browse <uri>          — browse a directory with tiered content
+/knowledge traverse <entity>     — graph walk from an entity
+/knowledge recall <query>        — search memories
+/knowledge remember <store> <title> <body> — write a memory entry
+/knowledge ingest-entity <type> <id> --profile-json <json> — create an entity
 ```
 
-## Prerequisite
+### Optional Flags
 
-This skill reads from the auto-generated registry files in `docs/`:
-- `docs/project_registry.yaml` — aggregated index of all projects
-- `docs/figure_catalog.yaml` — searchable catalog of all figures
-- `docs/findings_digest.md` — concise summary of key findings with links
-- `docs/knowledge_graph_coverage.md` — Layer 3 graph coverage report
-- `docs/knowledge_gaps.md` — deterministic graph-derived research opportunities
+These flags are defined on the parent parser. Place them **before** the subcommand name.
 
-If these files do not exist, tell the user:
+| Flag | Supported by | Description |
+|------|-------------|-------------|
+| `--tier L0\|L1\|L2` | `search`, `figures`, `data`, `entities`, `connections`, `browse`, `traverse` | Content detail level (default L2). L1 for overviews, L0 for one-liners. |
+| `--with-memory` | `search` only | Blend memory results (journal, patterns, conversations) into search. |
+| `--scope all\|resources\|memory\|graph` | `search` only | Restrict search scope. `resources` = projects + notes, `graph` = entities/hypotheses, `memory` = memories only. |
 
-> "The knowledge registry hasn't been generated yet. Run `/build-registry` to create it."
+Example with flags before subcommand:
+```bash
+uv run scripts/query_knowledge_unified.py --tier L1 browse viking://resources/observatory/projects/
+```
+
+Subcommands not listed above (`project`, `landscape`, `gaps`, `timeline`, `hypotheses`, `related`, `grep`, `glob`, `recall`, `remember`, `ingest-entity`) ignore these flags.
+
+## Prerequisites
+
+OpenViking must be running. If any query fails with a connection error, tell the user:
+
+> "OpenViking is not reachable. See `docs/openviking_tutorial.md` for setup."
 
 Then stop.
 
-### Freshness Check
-Run: `uv run scripts/validate_registry_freshness.py`
-If exit code 1 (stale), warn: "The knowledge registry may be out of date.
-Run `/build-registry` to refresh, or proceed with current data."
-Proceed regardless — stale data is better than no data.
-
 ## Workflow
 
-Use the deterministic backend for every subcommand:
+Run the unified query script for every subcommand:
 
 ```bash
-uv run scripts/query_knowledge.py <subcommand> ...
+uv run scripts/query_knowledge_unified.py <subcommand> ...
 ```
 
 Map subcommands directly:
-- `/knowledge <topic>` → `search <topic>`
-- `/knowledge figures <topic>` → `figures <topic>`
-- `/knowledge data <topic>` → `data <topic>`
+- `/knowledge <topic>` → `search "<topic>"`
+- `/knowledge <topic> --project <id>` → `search "<topic>" --project <id>`
+- `/knowledge figures <topic>` → `figures "<topic>"`
+- `/knowledge data <topic>` → `data "<topic>"`
 - `/knowledge project <id>` → `project <id>`
 - `/knowledge landscape` → `landscape`
-- `/knowledge entities <type>` → `entities <type> [--query <keyword>]`
+- `/knowledge entities <type>` → `entities <type>`
 - `/knowledge connections <entity>` → `connections <entity>`
 - `/knowledge hypotheses [status]` → `hypotheses [status]`
 - `/knowledge gaps` → `gaps`
-- `/knowledge timeline [project]` → `timeline [project]`
+- `/knowledge timeline [project]` → `timeline [--project <id>] [--since <date>]`
+- `/knowledge related <id>` → `related <id_or_uri>`
+- `/knowledge grep <pattern>` → `grep "<pattern>"`
+- `/knowledge grep <pattern> --ignore-case` → `grep "<pattern>" --ignore-case`
+- `/knowledge grep <pattern> --uri <scope>` → `grep "<pattern>" --uri <scope>`
+- `/knowledge glob <pattern>` → `glob "<pattern>"`
+- `/knowledge browse <uri>` → `browse <uri>`
+- `/knowledge traverse <entity>` → `traverse <entity_uri>`
+- `/knowledge recall <query>` → `recall "<query>"`
+- `/knowledge remember <store> <title> <body>` → `remember <store> <title> <body>`
+- `/knowledge ingest-entity <type> <id> --profile-json <json>` → `ingest-entity <type> <id> --profile-json <json>`
+
+A bare argument (no subcommand) is treated as `search` for backward compatibility:
+```bash
+uv run scripts/query_knowledge_unified.py "some topic"
+# equivalent to: search "some topic"
+```
 
 ### Subcommand: `/knowledge <topic>`
 
 **Search projects and findings by keyword.**
-Run: `uv run scripts/query_knowledge.py search "<topic>"`
+Run: `uv run scripts/query_knowledge_unified.py search "<topic>"`
 
-1. Read `docs/project_registry.yaml`
-2. Search across all project entries for matches in: `title`, `research_question`, `key_findings`, `tags`, `organisms`, `databases_used`
-3. Rank results by relevance — prioritize:
-   - Direct tag match (highest)
-   - Keyword in research question or title
-   - Keyword in key findings
-   - Keyword in organisms or databases
-4. For the top 3-5 matches, present:
+Scoped to a project: `uv run scripts/query_knowledge_unified.py search "<topic>" --project <project_id>`
 
+Supports `--tier`, `--with-memory`, `--scope`, `--kind <resource_kind>`, `--limit N` (default 10).
+
+Output format:
 ```markdown
 ### Results for "{topic}"
 
@@ -89,302 +113,173 @@ Run: `uv run scripts/query_knowledge.py search "<topic>"`
 - **Tags**: {tags}
 - **Data**: {databases_used}
 - [README](projects/{id}/README.md) | [REPORT](projects/{id}/REPORT.md)
-
-**2. {project_id}** ({status})
-...
 ```
-
-5. If the topic matches entries in `docs/findings_digest.md`, also list relevant individual findings with links.
 
 ### Subcommand: `/knowledge figures <topic>`
 
 **Search the figure catalog.**
-Run: `uv run scripts/query_knowledge.py figures "<topic>"`
+Run: `uv run scripts/query_knowledge_unified.py figures "<topic>"`
 
-1. Read `docs/figure_catalog.yaml`
-2. Search `caption`, `tags`, `file` name, and `project` for keyword matches
-3. Present matching figures:
-
-```markdown
-### Figures matching "{topic}"
-
-| Project | Figure | Caption |
-|---------|--------|---------|
-| {project} | [{file}](projects/{project}/figures/{file}) | {caption} |
-```
-
-4. Group by project if many results. Cap at 20 figures.
+Supports `--tier`. Output: table of matching figures with project, file, and caption. Cap at 20.
 
 ### Subcommand: `/knowledge data <topic>`
 
 **Search reusable data artifacts.**
-Run: `uv run scripts/query_knowledge.py data "<topic>"`
+Run: `uv run scripts/query_knowledge_unified.py data "<topic>"`
 
-1. Read `docs/project_registry.yaml`
-2. Search `key_data_artifacts` across all projects for matches in `file` name or `description`
-3. Also match against project tags and research questions for topical relevance
-4. Present:
-
-```markdown
-### Data artifacts matching "{topic}"
-
-| Project | File | Description |
-|---------|------|-------------|
-| {project_id} | `{file}` | {description} |
-```
-
-5. Note which artifacts have `reusable: true`.
+Supports `--tier`. Output: table of matching artifacts with project, file, description, and reusable flag.
 
 ### Subcommand: `/knowledge project <id>`
 
 **Full summary of a specific project.**
-Run: `uv run scripts/query_knowledge.py project <id>`
+Run: `uv run scripts/query_knowledge_unified.py project <id>`
 
-1. Read `docs/project_registry.yaml` and find the project by ID
-2. If not found, suggest close matches or list all project IDs
-3. Present all fields:
-
-```markdown
-## {title}
-**Status**: {status} | **Date**: {date_completed}
-**Research Question**: {research_question}
-
-### Key Findings
-1. {finding 1}
-2. {finding 2}
-...
-
-### Tags
-{tags}
-
-### Data Sources
-{databases_used}
-
-### Data Artifacts
-| File | Description |
-|------|-------------|
-| {file} | {description} |
-
-### Dependencies
-- **Depends on**: {depends_on}
-- **Enables**: {enables}
-
-### References
-| ID | Title | DOI |
-|----|-------|-----|
-| {id} | {title} | {doi} |
-
-**Provenance**: {"Available" if has_provenance else "Not yet generated"}
-```
-
-4. If `has_provenance` is true, suggest: "Run `cat projects/{id}/provenance.yaml` for detailed structured metadata."
+Always fetches at L2 (ignores `--tier`). Output: title, status, research question, key findings, tags, data sources, artifacts, dependencies, provenance status.
 
 ### Subcommand: `/knowledge landscape`
 
 **High-level overview of all research.**
-Run: `uv run scripts/query_knowledge.py landscape`
+Run: `uv run scripts/query_knowledge_unified.py landscape`
 
-1. Read `docs/project_registry.yaml`
-2. Compute and present:
-
-```markdown
-## Research Landscape
-
-### Status
-| Status | Count |
-|--------|-------|
-| complete | {n} |
-| in-progress | {n} |
-| proposed | {n} |
-
-### Top Tags (by project count)
-| Tag | Projects |
-|-----|----------|
-| {tag} | {count} |
-
-### BERDL Collections Used
-| Collection | Projects |
-|------------|----------|
-| {collection} | {count} |
-
-### Dependency Graph
-Projects with most downstream dependents:
-- {project}: enables {n} projects ({list})
-
-Projects with most upstream dependencies:
-- {project}: depends on {n} projects ({list})
-
-### Coverage Gaps
-- Collections not yet used: {list}
-- Tags with only 1 project: {list}
-```
-
-3. If the user asks follow-up questions, drill into specific areas.
+Always fetches at L1 (ignores `--tier`). Output: status counts, top tags, BERDL collections, dependency graph, coverage gaps.
 
 ### Subcommand: `/knowledge entities <type>`
 
 **List entities of a given type from the knowledge graph.**
-Run: `uv run scripts/query_knowledge.py entities <type> [--query <keyword>]`
+Run: `uv run scripts/query_knowledge_unified.py entities <type>`
 
 Valid types: `organism`, `gene`, `pathway`, `method`, `concept`
 
-1. Read the corresponding file from `knowledge/entities/`:
-   - `organism` → `knowledge/entities/organisms.yaml`
-   - `gene` → `knowledge/entities/genes.yaml`
-   - `pathway` → `knowledge/entities/pathways.yaml`
-   - `method` → `knowledge/entities/methods.yaml`
-   - `concept` → `knowledge/entities/concepts.yaml`
-2. Present a summary table:
+Supports `--tier`. Output: table with ID, name, project count, description.
 
-```markdown
-### {Type} Entities ({count} total)
-
-| ID | Name | Projects | Description |
-|----|------|----------|-------------|
-| {id} | {name} | {project_count} projects | {description (truncated)} |
-```
-
-3. If a topic is also provided (`/knowledge entities organism metal`), filter to entities whose name, description, or project list matches the keyword.
-
-### Subcommand: `/knowledge connections <entity_id>`
+### Subcommand: `/knowledge connections <entity_uri>`
 
 **Find all relations involving a specific entity.**
-Run: `uv run scripts/query_knowledge.py connections <entity_id>`
+Run: `uv run scripts/query_knowledge_unified.py connections <entity_uri>`
 
-1. Read `knowledge/relations.yaml`
-2. Filter relations where `subject` or `object` matches the entity ID (or a substring match on entity name)
-3. Present:
-
-```markdown
-### Connections for {entity_name} ({entity_id})
-
-**Outgoing relations (this entity → other):**
-| Predicate | Target | Evidence Project | Confidence | Note |
-|-----------|--------|-----------------|------------|------|
-| {predicate} | {object} | {evidence_project} | {confidence} | {note} |
-
-**Incoming relations (other → this entity):**
-| Source | Predicate | Evidence Project | Confidence | Note |
-|--------|-----------|-----------------|------------|------|
-| {subject} | {predicate} | {evidence_project} | {confidence} | {note} |
-```
-
-4. Also check `knowledge/hypotheses.yaml` for hypotheses that reference this entity in their `entities` list. List any matching hypotheses.
+Supports `--tier`. Output: outgoing and incoming relation tables with predicate, target/source, evidence project, confidence.
 
 ### Subcommand: `/knowledge hypotheses [status]`
 
 **List hypotheses, optionally filtered by lifecycle status.**
-Run: `uv run scripts/query_knowledge.py hypotheses [status]`
+Run: `uv run scripts/query_knowledge_unified.py hypotheses [status]`
 
 Valid statuses: `proposed`, `refined`, `testing`, `validated`, `rejected`, `merged`, `superseded`
 
-1. Read `knowledge/hypotheses.yaml`
-2. If a status filter is given, show only matching hypotheses
-3. Present:
-
-```markdown
-### Hypotheses ({status filter or "all"})
-
-| ID | Status | Statement | Origin Project | Evidence |
-|----|--------|-----------|---------------|----------|
-| {id} | {status} | {statement (truncated to 80 chars)} | {origin_project} | {n} supporting, {n} contradicting |
-```
-
-4. For detailed view, user can ask about a specific hypothesis ID to see full statement, all evidence, evolution timeline, and parent/child relationships.
+Output: table with ID, status, statement, origin project, evidence counts.
 
 ### Subcommand: `/knowledge gaps`
 
 **Find unexplored entity combinations and research opportunities.**
-Run: `uv run scripts/query_knowledge.py gaps`
+Run: `uv run scripts/query_knowledge_unified.py gaps`
 
-1. Read all entity files and `knowledge/relations.yaml`
-2. Build an entity-entity co-occurrence matrix from relations
-3. Identify:
+Output: organisms needing analysis, method coverage gaps, untested hypotheses, unexplored entity pairs.
 
-   **a) Organisms with data but no cross-project analysis:**
-   - Find organisms that appear in only 1 project but have RB-TnSeq data
-   - These are candidates for cross-organism comparison
-
-   **b) Methods applied to some organisms but not others:**
-   - Cross-reference method-organism pairs to find gaps
-   - E.g., "ICA applied to 32 organisms but GapMind only to 7"
-
-   **c) Hypotheses in "testing" or "proposed" state:**
-   - These are untested hypotheses needing validation
-
-   **d) Entity pairs not yet studied together:**
-   - Find pairs of organisms, or organism-pathway pairs, that appear in separate projects but have no relation connecting them
-
-4. Present:
-
-```markdown
-### Research Gaps
-
-#### Organisms Needing Cross-Project Analysis
-| Organism | Current Projects | Suggested Analysis |
-|----------|-----------------|-------------------|
-| {name} | {projects} | {suggestion} |
-
-#### Method Coverage Gaps
-| Method | Applied To | Not Yet Applied To |
-|--------|-----------|-------------------|
-| {method} | {organisms/entities} | {missing organisms/entities} |
-
-#### Untested Hypotheses
-| ID | Statement | Status | Blocking |
-|----|-----------|--------|----------|
-| {id} | {statement} | {status} | {what's needed} |
-
-#### Unexplored Entity Pairs
-| Entity A | Entity B | Why Interesting |
-|----------|----------|----------------|
-| {entity_a} | {entity_b} | {rationale} |
-```
-
-### Subcommand: `/knowledge timeline [project]`
+### Subcommand: `/knowledge timeline [--project <id>] [--since <date>]`
 
 **Show research evolution chronologically.**
-Run: `uv run scripts/query_knowledge.py timeline [project]`
+Run: `uv run scripts/query_knowledge_unified.py timeline [--project <id>] [--since <date>]`
 
-1. Read `knowledge/timeline.yaml`
-2. If a project filter is given, show only events for that project
-3. Present chronologically:
+With no arguments, shows all timeline events across all projects. Output: table with date, type, project, summary.
 
-```markdown
-### Research Timeline {("for " + project) if filtered}
+### Subcommand: `/knowledge related <id_or_uri>`
 
-| Date | Type | Project | Summary |
-|------|------|---------|---------|
-| {date} | {type} | {project} | {summary} |
-```
+**Find related resources via 1-hop graph traversal.**
+Run: `uv run scripts/query_knowledge_unified.py related <id_or_uri>`
 
-4. Highlight hypothesis state changes and cross-project connections
-5. If no filter, group by month for readability
+Output: root entity, connected entities, and relation edges.
 
-### Subcommand: `/knowledge backfill [project_id]`
+### Subcommand: `/knowledge browse <uri>`
 
-**Retroactively populate Layer 3 from project reports.**
+**Browse a directory in the knowledge graph with tiered content.**
+Run: `uv run scripts/query_knowledge_unified.py --tier L1 browse <uri>`
 
-This is an LLM-driven workflow (not a deterministic script for the full extraction).
+Supports `--tier` (default L2, but L1 recommended for browsing). Examples:
+- `--tier L1 browse viking://resources/observatory/knowledge-graph/entities/` — list all entity types
+- `--tier L0 browse viking://resources/observatory/knowledge-graph/entities/organisms/` — compact organism list
+- `browse viking://resources/observatory/projects/` — list all projects at L2
 
-1. If `project_id` is given: target that project. If omitted: run `uv run scripts/query_knowledge.py backfill` to list projects missing graph coverage, then ask the user which to process.
-2. Read `projects/{id}/REPORT.md` and `projects/{id}/provenance.yaml` (if exists)
-3. Extract entities, relations, hypotheses, and timeline events following `/synthesize` Step 7.7 logic (a)-(e)
-4. Present proposed additions to the user in a structured diff:
-   ```
-   ### Proposed Knowledge Graph Additions for {project_id}
-   **New entities**: {list}
-   **New relations**: {list}
-   **New hypotheses**: {list}
-   **Timeline events**: {list}
-   ```
-5. On user confirmation, write to `knowledge/` files
-6. Run `uv run scripts/build_registry.py --project {project_id}` to update coverage report
+### Subcommand: `/knowledge traverse <entity_uri>`
+
+**Graph walk from an entity through its relations.**
+Run: `uv run scripts/query_knowledge_unified.py traverse <entity_uri> [--hops N] [--relation-filter PRED]`
+
+Supports `--tier`. `--hops` defaults to 1. Examples:
+- `traverse viking://resources/observatory/knowledge-graph/entities/organisms/escherichia-coli --hops 2` — E. coli and 2-hop neighbors
+- `traverse viking://resources/observatory/knowledge-graph/entities/organisms/ecoli --relation-filter studied-in` — only "studied-in" relations
+
+### Subcommand: `/knowledge recall <query>`
+
+**Search the memory system for past insights, patterns, and decisions.**
+Run: `uv run scripts/query_knowledge_unified.py recall "<query>" [--store journal|patterns|conversations] [--limit N]`
+
+`--limit` defaults to 5.
+
+Memory stores:
+- `journal` — research decisions, hypothesis refinements, analysis pivots
+- `patterns` — cross-project heuristics and learned lessons
+- `conversations` — data surprises, debugging insights, BERDL quirks
+
+### Subcommand: `/knowledge remember <store> <title> <body>`
+
+**Write a memory entry to the knowledge base.**
+Run: `uv run scripts/query_knowledge_unified.py remember <store> <title> <body> [--entities e1,e2] [--projects p1,p2] [--tags t1,t2]`
+
+Positional arguments:
+- `store` — one of `journal`, `patterns`, `conversations`
+- `title` — short title for the memory
+- `body` — memory content
+
+Optional flags:
+- `--entities` — comma-separated entity references
+- `--projects` — comma-separated project IDs
+- `--tags` — comma-separated tags
+
+Output: URI of the created memory entry.
+
+### Subcommand: `/knowledge ingest-entity <type> <id>`
+
+**Create a new entity with a profile in the knowledge graph.**
+Run: `uv run scripts/query_knowledge_unified.py ingest-entity <type> <id> --profile-json '<json>' [--relations-json '<json>']`
+
+Positional arguments:
+- `type` — one of `organism`, `gene`, `pathway`, `method`, `concept`
+- `id` — entity identifier slug (e.g., `escherichia-coli`)
+
+Required flag:
+- `--profile-json` — JSON string with entity profile data
+
+Optional flag:
+- `--relations-json` — JSON array of relations
+
+Output: URI of the created entity.
+
+### Subcommand: `/knowledge grep <pattern>`
+
+**Search inside resource content for a text pattern (requires OpenViking).**
+Run: `uv run scripts/query_knowledge_unified.py grep "<pattern>" [--uri <scope>] [--ignore-case]`
+
+Requires a live OpenViking server. If the server is not running, tell the user:
+
+> "grep requires a live OpenViking server. See `docs/openviking_tutorial.md` for setup."
+
+Output: matches grouped by resource URI with line numbers.
+
+### Subcommand: `/knowledge glob <pattern>`
+
+**Find resources by file pattern (requires OpenViking).**
+Run: `uv run scripts/query_knowledge_unified.py glob "<pattern>"`
+
+Requires a live OpenViking server. If the server is not running, tell the user:
+
+> "glob requires a live OpenViking server. See `docs/openviking_tutorial.md` for setup."
+
+Output: list of matching resource URIs with total count.
 
 ## Integration
 
-- **Reads from**: `docs/project_registry.yaml`, `docs/figure_catalog.yaml`, `docs/findings_digest.md`, `docs/knowledge_graph_coverage.md`, `docs/knowledge_gaps.md`, `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml`, `knowledge/timeline.yaml`
-- **Deterministic backend**: `scripts/query_knowledge.py`
-- **Regenerated by**: `/build-registry` (Layer 2), `/synthesize` (Layer 3 updates)
+- **Query backend**: `scripts/query_knowledge_unified.py` (requires OpenViking)
+- **Data source**: OpenViking (single source of truth for all observatory knowledge)
+- **Re-ingested by**: `/build-registry` (re-ingests all resources into OpenViking)
 - **Consumed by**: agents and users exploring the research landscape
-- **Related skills**: `/suggest-research` (uses registry and knowledge graph for landscape analysis), `/build-registry` (regenerates the Layer 2 index), `/synthesize` (updates Layer 3 after project completion)
+- **Related skills**: `/suggest-research` (landscape analysis), `/build-registry` (re-ingest), `/synthesize` (updates knowledge after project completion)

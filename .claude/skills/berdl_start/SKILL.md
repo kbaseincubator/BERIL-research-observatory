@@ -269,7 +269,7 @@ Suggest using `/literature-review` to search biological databases. This is usefu
 ### Path 4: Continue an Existing Project
 
 Steps:
-1. Run `uv run scripts/query_knowledge.py landscape` for status counts
+1. Run `uv run scripts/query_knowledge_unified.py landscape` for status counts
 2. List in-progress projects with phase detection based on file existence:
    - Has `RESEARCH_PLAN.md` but no notebook outputs → "Planning done, ready for analysis"
    - Has notebook outputs but no `REPORT.md` → "Analysis done, ready for `/synthesize`"
@@ -279,7 +279,8 @@ Steps:
    a. Read `README.md` and summarize where the project stands
    b. If `REVIEW.md` exists, read and summarize outstanding issues
    c. Check `git status` for uncommitted changes in the project directory
-   d. Check `knowledge/hypotheses.yaml` for hypotheses relevant to this project
+   d. Run `uv run scripts/query_knowledge_unified.py hypotheses` and check for hypotheses relevant to this project
+   e. Run `uv run scripts/query_knowledge_unified.py recall "recent work" --store journal --limit 3` for session continuity — shows recent research decisions and context from past sessions
 4. Suggest the appropriate next skill based on phase:
    - Planning phase → continue analysis (Phase C in Path 1)
    - Analysis done → `/interpret` to discuss results, then `/synthesize`

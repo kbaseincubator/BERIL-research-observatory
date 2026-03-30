@@ -22,9 +22,9 @@ Where `<A>` and `<B>` are project IDs, organism entity IDs, or other entity IDs.
 ### Step 1: Determine Comparison Type
 
 Check if the arguments match:
-1. **Project IDs**: Look up in `docs/project_registry.yaml`
-2. **Entity IDs**: Look up in `knowledge/entities/*.yaml` (check organisms, then genes, pathways, methods, concepts)
-3. **Entity names**: If not exact ID matches, search entity files for name matches
+1. **Project IDs**: Run `uv run scripts/query_knowledge_unified.py project <id>` for each
+2. **Entity URIs or IDs**: Run `uv run scripts/query_knowledge_unified.py entities <type>` to inspect candidate entities (check organism, then gene, pathway, method, concept)
+3. **Entity names**: If not exact matches, run `uv run scripts/query_knowledge_unified.py search "<name>" --scope graph --tier L1` to find graph entries by name or context
 
 If one arg matches a project and the other an entity, tell the user and ask for clarification.
 
@@ -32,7 +32,7 @@ If one arg matches a project and the other an entity, tell the user and ask for 
 
 If both arguments are project IDs:
 
-1. Read both entries from `docs/project_registry.yaml`
+1. Run `uv run scripts/query_knowledge_unified.py project <id>` for each project
 2. Compare:
 
 | Dimension | Project A | Project B |
@@ -50,7 +50,7 @@ If both arguments are project IDs:
    - Overlapping tags/themes
    - Cross-project dependencies (from `depends_on`/`enables`)
 
-4. Run `uv run scripts/query_knowledge.py connections <shared_entity>` for any shared entities to find relation paths between the projects
+4. Run `uv run scripts/query_knowledge_unified.py traverse <shared_entity_uri> --hops 2` for any shared entities to find relation paths between the projects. Also run `uv run scripts/query_knowledge_unified.py recall "comparison patterns" --store patterns` for learned comparison heuristics
 
 5. Highlight gaps: methods applied in A but not B, organisms in A but not B
 
@@ -60,9 +60,9 @@ If both arguments are organism entity IDs:
 
 1. Run for each organism:
    ```bash
-   uv run scripts/query_knowledge.py connections <org_id>
+   uv run scripts/query_knowledge_unified.py traverse <org_entity_uri> --hops 2
    ```
-2. Read both organism entries from `knowledge/entities/organisms.yaml`
+2. If needed, run `uv run scripts/query_knowledge_unified.py search "<organism name>" --scope graph --tier L1`
 3. Compare:
 
 | Dimension | Organism A | Organism B |
@@ -82,8 +82,8 @@ If both arguments are organism entity IDs:
 
 For other entity types (methods, pathways, concepts):
 
-1. Read both entity entries from the appropriate `knowledge/entities/*.yaml` file
-2. Read their relations from `knowledge/relations.yaml`
+1. Run `uv run scripts/query_knowledge_unified.py entities <type>` to look up each entity
+2. Run `uv run scripts/query_knowledge_unified.py traverse <entity_uri> --hops 1` for each entity
 3. Compare project coverage, connected entities, and relation types
 4. Present a side-by-side summary
 
@@ -101,11 +101,11 @@ Present a clear, structured comparison with:
 Based on the comparison, suggest:
 - `/knowledge gaps` if significant coverage gaps were found
 - `/suggest-research` if the comparison reveals a promising new direction
-- Specific `/knowledge connections <entity>` queries for deeper exploration
+- Specific `/knowledge traverse <entity_uri> --hops 1` queries for deeper exploration
 
 ## Integration
 
-- **Reads from**: `docs/project_registry.yaml`, `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml`
-- **Deterministic backend**: `scripts/query_knowledge.py` (for connections queries)
+- **Reads from**: OpenViking (via `scripts/query_knowledge_unified.py`)
+- **Query backend**: `scripts/query_knowledge_unified.py` (all subcommands)
 - **Consumed by**: users exploring cross-project patterns
 - **Related skills**: `/knowledge` (deeper exploration), `/suggest-research` (gap-driven recommendations)

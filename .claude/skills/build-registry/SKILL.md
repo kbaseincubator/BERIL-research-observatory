@@ -1,92 +1,101 @@
 ---
 name: build-registry
-description: Regenerate the knowledge registry (project index, figure catalog, findings digest) from all project files. Use when registry files are missing, stale, or after bulk changes to projects.
+description: Re-ingest all observatory resources into OpenViking. Use when data is missing, stale, or after bulk changes to projects.
 allowed-tools: Bash, Read
 user-invocable: true
 ---
 
 # Build Registry Skill
 
-Regenerate the observatory's knowledge registry files from project provenance.yaml and markdown sources.
+Re-ingest observatory resources into OpenViking so that `/knowledge` queries reflect the latest project state.
 
 ## Usage
 
 ```
-/build-registry                  — full rebuild of all registry files
-/build-registry <project_id>     — incremental update for one project
+/build-registry              — incremental ingest (resources + knowledge graph)
+/build-registry --check      — verify ingest status without re-ingesting
+/build-registry --clean      — full rebuild from scratch (wipes graph + cache)
 ```
 
 ## Workflow
 
-### Full Rebuild
+### Incremental Ingest (default)
 
 Run:
 
 ```bash
-uv run scripts/build_registry.py
+uv run scripts/viking_ingest.py --rebuild-graph --wait
 ```
 
-This scans all project directories and generates:
-- `docs/project_registry.yaml` — aggregated project index
-- `docs/figure_catalog.yaml` — searchable figure catalog
-- `docs/findings_digest.md` — concise findings with links
-- `docs/knowledge_graph_coverage.md` — Layer 3 graph coverage and integrity summary
-- `docs/knowledge_gaps.md` — deterministic graph-derived research opportunities
+This does three phases:
+1. **Phase 1** — Upload project resources (README, REPORT, provenance, figures). Uses `--resume` by default to skip existing resources.
+2. **Phase 2** — Extract knowledge graph via CBORG (gpt-5.4-mini). Uses a local cache (`.kg_cache/`) to skip projects whose REPORT.md and provenance.yaml haven't changed since last extraction. Entities and hypotheses are deduplicated and merged across projects.
+3. **Phase 3** — Generate L0/L1 tier summaries for entity directories and hypotheses.
 
-Present the summary output to the user (project count, figure count, findings count, status breakdown).
+The knowledge graph is uploaded as a single batch (one `add_resource` call with a directory), replacing the previous graph atomically.
 
-### Incremental Update
+Requires `CBORG_API_KEY` env var.
 
-Run:
+### Knowledge Graph Only
+
+Skip Phase 1 resource upload, only rebuild the knowledge graph:
 
 ```bash
-uv run scripts/build_registry.py --project <project_id>
+uv run scripts/viking_ingest.py --graph-only --wait
 ```
 
-This updates only the specified project's entry in the registry while preserving all other entries.
+This is the fastest option when project resources are already uploaded and only the graph needs updating (e.g., after editing a REPORT.md).
 
-Use this after:
-- `/synthesize` completes (report written)
-- `/submit` completes (project validated)
-- `/berdl_start` creates a new project
-- Any manual edits to a project's README.md or REPORT.md
-
-### Dry Run
-
-To preview without writing files:
+### Full Rebuild from Scratch
 
 ```bash
-uv run scripts/build_registry.py --dry-run
+uv run scripts/viking_ingest.py --no-resume --rebuild-graph --clean --wait
 ```
 
-## Data Sources
+- `--no-resume`: re-uploads all project resources
+- `--clean`: wipes the existing knowledge graph in OpenViking and the local extraction cache
+- All projects are re-extracted via CBORG
 
-The script uses a two-tier strategy:
-1. **Primary**: If `projects/{id}/provenance.yaml` exists, reads structured metadata (references, findings, data sources, cross-project deps)
-2. **Fallback**: If no provenance.yaml, parses `README.md` and `REPORT.md` with regex
+### Single Project Update
 
-Projects without a README.md are skipped. The `hackathon_demo` directory is always excluded.
+```bash
+uv run scripts/viking_ingest.py --graph-only --project <project_id> --wait
+```
 
-## Output Files
+Note: with `--project`, only that project's resources are in scope, but the cached extractions for all other projects are still merged into the graph to maintain completeness.
 
-| File | Content | Typical Size |
-|------|---------|-------------|
-| `docs/project_registry.yaml` | All projects with tags, findings, deps, data artifacts | ~15-20K tokens |
-| `docs/figure_catalog.yaml` | All figures with captions, notebooks, tags | ~10-15K tokens |
-| `docs/findings_digest.md` | Grep-searchable findings summary with REPORT links | ~5-8K tokens |
-| `docs/knowledge_graph_coverage.md` | Layer 3 coverage gaps and integrity checks | ~2-4K tokens |
-| `docs/knowledge_gaps.md` | Deterministic prioritized graph-driven gap list | ~2-4K tokens |
+### Check Status
+
+```bash
+uv run scripts/viking_ingest.py --check
+```
+
+Verifies all expected resources are present in OpenViking. Use `--fix` to re-ingest missing ones.
+
+### Server Health
+
+```bash
+uv run scripts/viking_server_healthcheck.py          # one-shot status
+uv run scripts/viking_server_healthcheck.py --watch   # auto-refresh until queues drain
+```
+
+To use a specific CBORG model: `--model claude-haiku` or `--model gpt-5.4-mini`
 
 ## Integration
 
-- **Called by**: `/synthesize` (Step 7.5), `/submit` (Step 2), `/berdl_start` (Phase B)
+- **Called by**: `/synthesize` (Step 7.6), `/submit` (Step 2), `/berdl_start` (Phase B)
 - **Generates for**: `/knowledge` (query skill), `/suggest-research` (landscape analysis)
-- **Source of truth**: provenance.yaml + markdown files (registry is a derived cache)
+- **Source of truth**: OpenViking (all queries go through OpenViking)
+- **Local cache**: `.kg_cache/` stores per-project extraction results for incremental rebuilds
 
-## When to Rebuild
+## When to Re-ingest
 
-The registry is always derivable from source files. If it drifts, a full `/build-registry` regenerates everything. Run a full rebuild when:
-- Multiple projects changed since last build
-- Registry files were deleted or corrupted
-- After merging branches that modified multiple projects
-- After running `generate_provenance.py` on multiple projects
+Run an incremental ingest (`--graph-only --wait`) when:
+- A project's REPORT.md or provenance.yaml changed
+- A new project was added
+- After running `/synthesize` on a project
+
+Run a full rebuild (`--no-resume --rebuild-graph --clean --wait`) when:
+- OpenViking data store was wiped or corrupted
+- After merging branches that modified many projects
+- When `/knowledge` queries return unexpected results

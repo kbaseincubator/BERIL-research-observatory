@@ -88,7 +88,7 @@ This project serves as a validation of the new local BERDL workflow:
 - Access to BERDL Spark Connect (requires active JupyterHub session or local proxy)
 
 ### Steps
-1. **Setup environment**: Activate `.venv-berdl` (see `scripts/bootstrap_client.sh`)
+1. **Setup environment**: Activate `.venv` (see `scripts/bootstrap_client.sh`)
 2. **Run notebooks in order**:
    - `02_gapmind_pathway_analysis.ipynb` — Main analysis (Spark Connect, ~5 min)
    - Outputs saved to `data/` and `figures/`

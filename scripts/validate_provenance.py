@@ -23,18 +23,13 @@ from jsonschema import Draft202012Validator
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 PROJECTS_DIR = REPO_ROOT / "projects"
-SCHEMA_PATH = REPO_ROOT / "knowledge" / "schema" / "provenance.schema.json"
+SCHEMA_PATH = REPO_ROOT / "docs" / "schemas" / "provenance.schema.json"
 SKIP_PROJECTS = {"hackathon_demo"}
 
 
-def _load_build_registry_module():
-    module_path = REPO_ROOT / "scripts" / "build_registry.py"
-    spec = importlib.util.spec_from_file_location("build_registry", module_path)
-    if not spec or not spec.loader:
-        raise RuntimeError(f"Failed to load build_registry module from {module_path}")
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
+def _load_known_collections() -> set[str]:
+    from observatory_context.parsing import KNOWN_COLLECTIONS
+    return set(KNOWN_COLLECTIONS)
 
 
 def _normalize_doi(doi: str) -> str:
@@ -154,8 +149,7 @@ def main() -> int:
     schema = yaml.safe_load(SCHEMA_PATH.read_text(encoding="utf-8"))
     validator = Draft202012Validator(schema)
 
-    build_registry = _load_build_registry_module()
-    known_collections = set(build_registry.KNOWN_COLLECTIONS)
+    known_collections = _load_known_collections()
 
     all_project_dirs = [
         d

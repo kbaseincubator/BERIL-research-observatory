@@ -71,7 +71,7 @@ def detect_environment() -> dict[str, Any]:
     """Detect environment and return status report."""
     repo_root = Path(__file__).resolve().parent.parent
     env_file = repo_root / ".env"
-    venv_path = repo_root / ".venv-berdl"
+    venv_path = repo_root / ".venv"
 
     result: dict[str, Any] = {
         "location": "unknown",
@@ -129,13 +129,13 @@ def detect_environment() -> dict[str, Any]:
                 "and add: KBASE_AUTH_TOKEN=\"your-token-here\""
             )
 
-        # Check .venv-berdl
+        # Check repo-managed .venv
         venv_exists = venv_path.exists()
-        result["checks"]["venv_berdl"] = venv_exists
+        result["checks"]["venv"] = venv_exists
 
         if not venv_exists:
             result["next_steps"].append(
-                "❌ .venv-berdl not found. Run: bash scripts/bootstrap_client.sh"
+                "❌ .venv not found. Run: bash scripts/bootstrap_client.sh"
             )
 
         # Check SSH tunnels

@@ -244,56 +244,23 @@ generated_data:
 
 **Important**: Reference IDs should be short, memorable keys (e.g., `price2018`, `arkin2018`). Use the first author's last name + year. If duplicates, append a letter (e.g., `smith2020a`, `smith2020b`).
 
-#### Step 7.6: Update Knowledge Registry
+#### Step 7.6: Update Knowledge Graph via OpenViking
 
-After writing provenance.yaml, update the project's entry in the global knowledge registry:
+After writing provenance.yaml, rebuild the knowledge graph. The ingest script automatically extracts entities, relations, hypotheses, and timeline events from REPORT.md via CBORG, deduplicates across projects, and uploads as a single batch:
 
 ```bash
-uv run scripts/build_registry.py --project {project_id}
+uv run scripts/viking_ingest.py --graph-only --wait
 ```
 
-This ensures the project's findings, tags, data artifacts, and dependencies are immediately searchable via `/knowledge`. If the script is not found or fails, print a note and continue — this is non-blocking.
+This is incremental — only projects whose REPORT.md or provenance.yaml changed since last extraction are re-extracted via CBORG. Cached results are used for all other projects. The entire merged graph is re-uploaded atomically.
 
-#### Step 7.7: Update Knowledge Graph (Layer 3)
+If the script fails, print `WARN  Knowledge graph update failed (non-blocking)` and continue.
 
-After writing provenance.yaml and updating the registry, update the semantic knowledge graph in `knowledge/`. This step is required. If `knowledge/` doesn't exist, create the directory structure first (entities/, relations.yaml, hypotheses.yaml, timeline.yaml).
+**Verify** the project appears in the graph after ingest:
 
-**a) Register new entities:**
-- Read the REPORT.md Key Findings and identify any organisms, genes, pathways, methods, or concepts not yet in `knowledge/entities/*.yaml`
-- For each new entity, append to the appropriate file using the existing format
-- Use ID prefixes: `org_`, `gene_`, `path_`, `meth_`, `conc_`
-- Include the current `project_id` in the entity's `projects` list
-- Map to external IDs (NCBI Taxonomy, KEGG) where possible
-
-**b) Update existing entity project lists:**
-- For entities already in the knowledge graph that appear in this project, add `project_id` to their `projects` list if not already present
-
-**c) Add/update relations:**
-- Extract entity-entity relationships from Key Findings
-- Append new relations to `knowledge/relations.yaml` with:
-  - `evidence_project`: the current project_id
-  - `confidence`: based on statistical significance reported
-  - `note`: brief evidence description
-
-For each analytical method used in this project, add an `applied_to` relation connecting the method entity to each organism studied. This ensures method coverage gap analysis is accurate.
-
-**d) Create/update hypotheses:**
-- For each Key Finding, check if a related hypothesis exists in `knowledge/hypotheses.yaml`
-  - If yes: add this project's finding as supporting or contradicting evidence
-  - If no: create a new hypothesis entry with status `validated` (if the finding is definitive) or `proposed` (if exploratory)
-- If any findings contradict existing hypotheses, update the contradicting evidence list and consider changing status to `rejected`
-
-**e) Append timeline events:**
-- Add a `project_completed` event to `knowledge/timeline.yaml` with today's date
-- Add `discovery` events for notable findings
-- Add `hypothesis_validated` or `hypothesis_rejected` events as appropriate
-- Add `cross_project_connection` events if findings link to other projects
-
-**Layer 3 completion checklist** — before proceeding to Step 8, verify:
-- [ ] At least 1 entity registered or updated with this project_id
-- [ ] At least 1 relation added with evidence_project: {project_id}
-- [ ] At least 1 timeline event appended for this project
-- [ ] At least 1 hypothesis created or updated with evidence from this project
+```bash
+uv run scripts/query_knowledge_unified.py search "{project_id}" --scope graph
+```
 
 #### Step 8: Update References
 
@@ -318,8 +285,8 @@ After completing the synthesis, tell the user:
 
 - **Reads from**: `data/*.csv`, `figures/`, `notebooks/*.ipynb`, `RESEARCH_PLAN.md`, `references.md`
 - **Calls**: `/literature-review` (for literature comparison)
-- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); `provenance.yaml` (structured metadata); updated `README.md` (Status); updated `docs/project_registry.yaml` (via build_registry.py); updated `knowledge/` (entities, relations, hypotheses, timeline)
-- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md; validator checks provenance.yaml); `/knowledge` (searches registry and knowledge graph); `/suggest-research` (uses knowledge graph for gap analysis)
+- **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); `provenance.yaml` (structured metadata); updated `README.md` (Status); updated knowledge graph via OpenViking (entities, relations, hypotheses, timeline)
+- **Consumed by**: `/submit` (reviewer assesses the findings in REPORT.md; validator checks provenance.yaml); `/knowledge` (searches via OpenViking); `/suggest-research` (uses knowledge graph for gap analysis)
 
 ## Pitfall Detection
 

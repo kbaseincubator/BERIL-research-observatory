@@ -32,38 +32,30 @@ Build three lists:
 2. `in_progress_ideas` — ideas with Status: IN_PROGRESS
 3. `proposed_ideas` — ideas with Status: PROPOSED (candidates for recommendation)
 
-### Step 2: Read the Knowledge Registry
+### Step 2: Read the Knowledge Graph
 
-**Freshness check**: Run `uv run scripts/validate_registry_freshness.py`. If exit code 1 (stale), warn: "The knowledge registry may be out of date. Run `/build-registry` to refresh, or proceed with current data." Proceed regardless — stale data is better than no data.
+Run `uv run scripts/query_knowledge_unified.py browse viking://resources/observatory/knowledge-graph/entities/ --tier L1` to get entity coverage, and `uv run scripts/query_knowledge_unified.py recall "research pitfalls" --store patterns` for known pitfalls to avoid.
 
-**Primary path** (if `docs/project_registry.yaml` exists):
+For each project, capture: `id`, `status`, `research_question`, `key_findings`, `tags`, `databases_used`, `depends_on`, `enables`, `references`.
 
-1. Read `docs/project_registry.yaml` (~15-20K tokens instead of ~200K+ from reading all files)
-2. For each project, capture: `id`, `status`, `research_question`, `key_findings`, `tags`, `databases_used`, `depends_on`, `enables`, `references`
-3. Build lists: `finished_projects`, `in_progress_projects`, `proposed_projects`
-4. Cross-check against `research_ideas.md` entries from Step 1
+Build lists: `finished_projects`, `in_progress_projects`, `proposed_projects`.
 
-**Fallback** (if registry doesn't exist):
-
-List all directories under `projects/`. For each project directory:
-1. Read `projects/{id}/README.md` — capture the **Research Question**, **Status**, and any **Quick Links**
-2. If Status indicates completion (contains "Complete" or links to a REPORT), mark it as a **finished project**
-3. If Status indicates active work, mark it as **in-progress**
+Cross-check against `research_ideas.md` entries from Step 1.
 
 ### Step 3: Deep-Read Top-Relevant Projects
 
-From the registry (or README scan), identify the 3-5 projects **most relevant** to emerging recommendation themes. For only those projects:
+From the knowledge graph (or README scan), identify the 3-5 projects **most relevant** to emerging recommendation themes. For only those projects:
 
 1. Read `projects/{id}/REPORT.md`
 2. Extract:
-   - **Key Findings** (the 2-4 headline results) — supplement the registry summary with details
+   - **Key Findings** (the 2-4 headline results) — supplement the OpenViking summary with details
    - **Future Directions** section — these are investigator-suggested follow-ups
    - **Limitations** — gaps the authors identified
    - **Novel Contribution** — what made the project scientifically unique
 3. Note any cross-project patterns: recurring organisms, pathways, themes, or data gaps
-4. Use `references` field from the registry to identify literature themes cited across multiple projects
+4. Use `references` field from OpenViking to identify literature themes cited across multiple projects
 
-For remaining projects, the registry summaries (key_findings, tags, databases_used) provide sufficient context without reading full reports.
+For remaining projects, the OpenViking summaries (key_findings, tags, databases_used) provide sufficient context without reading full reports.
 
 ### Step 4: Read the Discoveries Log
 
@@ -85,15 +77,13 @@ Identify **underexplored collections** — present in BERDL but rarely cited in 
 
 ### Step 5b: Read Knowledge Graph Gaps (if available)
 
-Run: `uv run scripts/query_knowledge.py gaps`
+Run: `uv run scripts/query_knowledge_unified.py gaps`
 
-This outputs the deterministic gap analysis covering organisms with sparse coverage,
+This outputs the gap analysis covering organisms with sparse coverage,
 method gaps, untested hypotheses, and unexplored entity pairs.
 Use this output directly in Step 6 under "Entity gaps" and "Untested hypotheses".
 
-Additionally, read `knowledge/hypotheses.yaml` for detail not in the gap report:
-- `rejected` hypotheses whose alternatives haven't been explored
-- Entity pairs referenced by hypotheses but lacking direct relations
+Additionally, run `uv run scripts/query_knowledge_unified.py hypotheses rejected` for rejected hypotheses whose alternatives haven't been explored.
 
 ### Step 6: Synthesize the Landscape
 
@@ -223,7 +213,7 @@ If no, leave no files modified.
 
 ## Integration
 
-- **Reads from**: `docs/project_registry.yaml` (primary), `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `docs/knowledge_graph_coverage.md`, `docs/knowledge_gaps.md`, `projects/*/REPORT.md` (top 3-5 only), `knowledge/entities/*.yaml`, `knowledge/relations.yaml`, `knowledge/hypotheses.yaml` (Layer 3 graph)
+- **Reads from**: OpenViking (via `scripts/query_knowledge_unified.py`), `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `projects/*/REPORT.md` (top 3-5 only)
 - **Calls**: `/literature-review` (Step 9, for novelty check on top candidate); `/berdl_start` (Step 11, if user confirms the idea)
 - **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry only — never edits existing entries)
 - **Consumed by**: `/literature-review`, `/synthesize`

@@ -77,6 +77,24 @@ Access is available via Spark SQL, REST API, or JupyterHub.
    # Edit .env with your KBASE_AUTH_TOKEN
    ```
 
+### OpenViking Setup
+
+The observatory now supports a real local OpenViking workflow for live context,
+ingest, and deterministic materialization.
+
+Use:
+
+```bash
+uv sync --extra dev
+uv run scripts/viking_setup.py --write-config
+export OPENVIKING_CONFIG_FILE="$PWD/config/openviking/ov.conf"
+openviking-server --config "$OPENVIKING_CONFIG_FILE"
+uv run scripts/viking_server_healthcheck.py
+```
+
+Then follow [docs/openviking_tutorial.md](docs/openviking_tutorial.md) for
+ingest, export materialization, overlays, and validation.
+
 ### Running the Observatory UI
 
 ```bash
