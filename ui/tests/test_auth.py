@@ -1,11 +1,14 @@
 """Tests for ORCiD OAuth2 auth flow (app.auth)."""
 
 import os
+from collections.abc import AsyncGenerator
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from fastapi.testclient import TestClient
 
+from app.db.crud import get_user_by_orcid
+from app.db.session import get_db
 from app.main import create_app
 
 
@@ -15,7 +18,7 @@ from app.main import create_app
 
 
 @pytest.fixture
-def client(repository_data, app_data_context):
+def client(repository_data, app_data_context, db_session):
     """TestClient with ORCiD credentials configured, lifespan skipped."""
     env = {
         "BERIL_TEST_SKIP_LIFESPAN": "True",
@@ -29,6 +32,11 @@ def client(repository_data, app_data_context):
         import app.config as cfg
         cfg._settings = None
         app_instance = create_app()
+
+        async def override_get_db() -> AsyncGenerator:
+            yield db_session
+
+        app_instance.dependency_overrides[get_db] = override_get_db
         with TestClient(app_instance, raise_server_exceptions=True) as c:
             app_instance.state.repo_data = repository_data
             app_instance.state.base_context = app_data_context
@@ -37,13 +45,12 @@ def client(repository_data, app_data_context):
 
 
 @pytest.fixture
-def client_no_orcid(repository_data, app_data_context):
+def client_no_orcid(repository_data, app_data_context, db_session):
     """TestClient with no ORCiD credentials configured.
 
     Patches get_settings everywhere it's imported so the .env file on disk
     is never consulted and orcid_client_id stays None.
     """
-    from unittest.mock import MagicMock
     import app.config as cfg
 
     no_orcid_settings = MagicMock()
@@ -57,9 +64,13 @@ def client_no_orcid(repository_data, app_data_context):
     no_orcid_settings.projects_dir = cfg.Settings().projects_dir
     no_orcid_settings.templates_dir = cfg.Settings().templates_dir
 
+    async def override_get_db() -> AsyncGenerator:
+        yield db_session
+
     with patch("app.main.get_settings", return_value=no_orcid_settings):
         with patch("app.routes.auth.get_settings", return_value=no_orcid_settings):
             app_instance = create_app()
+            app_instance.dependency_overrides[get_db] = override_get_db
             with TestClient(app_instance, raise_server_exceptions=True) as c:
                 app_instance.state.repo_data = repository_data
                 app_instance.state.base_context = app_data_context
@@ -261,3 +272,71 @@ class TestGetCurrentUser:
         resp = client.get("/")
         assert resp.status_code == 200
         assert "Test Researcher" in resp.text
+
+
+# ---------------------------------------------------------------------------
+# Callback DB integration: user record creation
+# ---------------------------------------------------------------------------
+
+
+class TestCallbackDbIntegration:
+    async def test_callback_creates_beril_user(self, client, db_session):
+        """A successful callback should persist a BerilUser row."""
+        mock_class, _ = make_mock_oauth_client(token=GOOD_TOKEN)
+        with patch("app.routes.auth.AsyncOAuth2Client", mock_class):
+            client.get(
+                "/auth/orcid/callback",
+                params={"code": "fake-code"},
+                follow_redirects=False,
+            )
+
+        user = await get_user_by_orcid(db_session, GOOD_TOKEN["orcid"])
+        assert user is not None
+        assert user.orcid_id == GOOD_TOKEN["orcid"]
+        assert user.display_name == GOOD_TOKEN["name"]
+
+    async def test_callback_sets_beril_user_id_in_session(self, client, db_session):
+        """The session should contain the BERIL user UUID after login."""
+        mock_class, _ = make_mock_oauth_client(token=GOOD_TOKEN)
+        with patch("app.routes.auth.AsyncOAuth2Client", mock_class):
+            client.get(
+                "/auth/orcid/callback",
+                params={"code": "fake-code"},
+                follow_redirects=False,
+            )
+
+        # The session cookie must be present
+        assert "beril_session" in client.cookies
+
+        # The BERIL user in the DB has an ID that must have been written to session
+        user = await get_user_by_orcid(db_session, GOOD_TOKEN["orcid"])
+        assert user is not None
+        assert user.id is not None
+
+    async def test_repeated_callback_does_not_duplicate_user(self, client, db_session):
+        """Logging in twice with the same ORCiD should produce exactly one user row."""
+        from sqlalchemy import func, select
+        from app.db.models import BerilUser
+
+        mock_class, _ = make_mock_oauth_client(token=GOOD_TOKEN)
+        with patch("app.routes.auth.AsyncOAuth2Client", mock_class):
+            client.get("/auth/orcid/callback", params={"code": "c1"}, follow_redirects=False)
+
+        mock_class2, _ = make_mock_oauth_client(token=GOOD_TOKEN)
+        with patch("app.routes.auth.AsyncOAuth2Client", mock_class2):
+            client.get("/auth/orcid/callback", params={"code": "c2"}, follow_redirects=False)
+
+        result = await db_session.execute(
+            select(func.count()).where(BerilUser.orcid_id == GOOD_TOKEN["orcid"])
+        )
+        assert result.scalar() == 1
+
+    async def test_callback_error_does_not_create_user(self, client, db_session):
+        """A failed callback (missing orcid field) should not write any user row."""
+        bad_token = {"access_token": "tok", "token_type": "bearer"}
+        mock_class, _ = make_mock_oauth_client(token=bad_token)
+        with patch("app.routes.auth.AsyncOAuth2Client", mock_class):
+            client.get("/auth/orcid/callback", params={"code": "fake-code"}, follow_redirects=False)
+
+        user = await get_user_by_orcid(db_session, "0000-0001-2345-6789")
+        assert user is None

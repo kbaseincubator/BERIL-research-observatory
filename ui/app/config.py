@@ -39,7 +39,23 @@ class Settings(BaseSettings):
     # Session configuration
     session_secret_key: str = "change-me-in-production"  # Signs session cookies
 
+    # database info
+    db_host: str = "localhost"
+    db_port: int = 5432
+    db_user: str = "beril_user"
+    db_password: str | None = None
+    db_name: str = "beril"
+
+    # User project file storage (filesystem)
+    user_projects_root: Path = ui_dir / "user_projects"
+
     # Derived paths
+    @property
+    def db_url(self) -> str:
+        if self.db_password is None:
+            raise ValueError("BERIL_DB_PASSWORD is not set — cannot construct database URL")
+        return f"postgresql+asyncpg://{self.db_user}:{self.db_password}@{self.db_host}:{self.db_port}/{self.db_name}"
+
     @property
     def orcid_redirect_uri(self) -> str:
         return self.orcid_redirect_root + self.orcid_redirect_path
