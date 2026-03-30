@@ -51,4 +51,4 @@ This is a data characterization project, not a hypothesis-driven analysis. The g
 - **v1** (2026-02-22): Initial plan and analysis complete
 
 ## Authors
-- Paramvir Dehal (https://orcid.org/0000-0002-3495-1240), Lawrence Berkeley National Laboratory, US Department of Energy
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
