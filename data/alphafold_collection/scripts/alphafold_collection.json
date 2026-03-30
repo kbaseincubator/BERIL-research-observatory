@@ -1,0 +1,29 @@
+{
+  "tenant": "kescience",
+  "dataset": "alphafold",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/alphafold/",
+    "silver_base": "s3a://cdm-lake/tenant-sql-warehouse/kescience/kescience_alphafold.db"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "alphafold_entries",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/alphafold/alphafold_entries.tsv",
+      "schema_sql": "uniprot_accession STRING, first_residue INT, last_residue INT, alphafold_id STRING, model_version INT"
+    },
+    {
+      "name": "alphafold_msa_depths",
+      "format": "tsv",
+      "bronze_path": "s3a://cdm-lake/tenant-general-warehouse/kescience/datasets/alphafold/alphafold_msa_depths.tsv",
+      "schema_sql": "uniprot_accession STRING, msa_depth INT"
+    }
+  ]
+}

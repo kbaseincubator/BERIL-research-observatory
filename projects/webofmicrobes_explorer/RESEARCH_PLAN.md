@@ -66,4 +66,4 @@ What does the Web of Microbes exometabolomics collection contain, and how effect
 - **v1** (2026-02-23): Initial plan — characterize WoM and assess cross-collection utility
 
 ## Authors
-Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

@@ -6,7 +6,7 @@ Which genes of unknown function across 48 bacteria have strong fitness phenotype
 
 ## Status
 
-Complete — 13 notebooks executed (9 core + 1 supplementary review improvements + 3 conservation/extended analysis), 14 findings produced. Deliverables: 57,011 dark genes classified into 5 darkness tiers and 8 conservation tiers, 100 fitness-active + 50 essential prioritized candidates with experimental protocols and robust rank indicators (18 always-top-50 across weight configurations), dual-route experimental prioritization (Route A evidence-weighted, Route B conservation-weighted) with minimum covering sets of 42 organisms each, extended covering set of 50 organisms spanning 6 phyla (including non-FB organisms from Bacillota, Actinomycetota, Campylobacterota). See [Report](REPORT.md) for findings.
+Complete — 14 notebooks executed (9 core + 1 supplementary review improvements + 3 conservation/extended analysis + 1 bakta enrichment), 15 findings produced. Deliverables: 57,011 dark genes classified into 5 darkness tiers and 8 conservation tiers, 100 fitness-active + 50 essential prioritized candidates with experimental protocols and robust rank indicators (18 always-top-50 across weight configurations), dual-route experimental prioritization (Route A evidence-weighted, Route B conservation-weighted) with minimum covering sets of 42 organisms each, extended covering set of 50 organisms spanning 6 phyla (including non-FB organisms from Bacillota, Actinomycetota, Campylobacterota). NB12 bakta enrichment reveals 83.7% of linked dark genes are annotated by bakta v1.12.0 — all 100 top candidates gain functional descriptions. See [Report](REPORT.md) for findings.
 
 ## Overview
 

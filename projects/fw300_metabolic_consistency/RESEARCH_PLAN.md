@@ -179,5 +179,5 @@ GROUP BY pathway, genome_id
 - **v2** (2026-02-25): Updated BacDive handling to track all utilization categories (+, -, produced, +/-) with sample-size-based confidence scoring. Added statistical baseline test and sensitivity analysis for approximate matches. Deferred NB04 (pathway-level analysis).
 
 ## Authors
-- Paramvir Dehal (ORCID: 0000-0001-5810-2497)
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
 - Claude (AI assistant, Anthropic)

@@ -1,0 +1,9 @@
+pandas>=2.0
+numpy>=1.24
+matplotlib>=3.7
+scipy>=1.10
+scikit-learn>=1.3
+pyspark>=3.5
+# Required for Spark Connect to BERDL (install from internal PyPI or pip)
+spark-connect-remote
+berdl-remote

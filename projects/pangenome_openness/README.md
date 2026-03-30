@@ -22,4 +22,4 @@ This project tests whether pangenome openness (the ratio of variable to total ge
 See notebooks/ for analysis code.
 
 ## Authors
-- **Paramvir S. Dehal** (Lawrence Berkeley National Lab) | ORCID: 0000-0001-5810-2497 | Author
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
