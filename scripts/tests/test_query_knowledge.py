@@ -5,12 +5,13 @@ from __future__ import annotations
 import scripts.query_knowledge_unified as query_knowledge
 
 
-def test_backfill_parser_is_deprecated_and_takes_no_project_id() -> None:
+def test_project_parser_accepts_project_id() -> None:
     parser = query_knowledge.build_parser()
 
-    args = parser.parse_args(["backfill"])
+    args = parser.parse_args(["project", "metal_fitness_atlas"])
 
-    assert args.command == "backfill"
+    assert args.command == "project"
+    assert args.project_id == "metal_fitness_atlas"
 
 
 def test_timeline_parser_accepts_since() -> None:
@@ -29,7 +30,7 @@ def test_all_subcommands_present() -> None:
     expected = {
         "search", "figures", "data", "project", "landscape",
         "entities", "connections", "hypotheses", "gaps",
-        "timeline", "backfill", "related", "grep", "glob",
+        "timeline", "related", "grep", "glob",
         "browse", "traverse", "recall", "remember", "ingest-entity",
     }
     assert set(subparsers.keys()) == expected

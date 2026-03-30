@@ -136,10 +136,40 @@ def _handle_data(args) -> int:
 
 
 def _handle_project(args) -> int:
-    uri = build_project_workspace_uri(args.project_id)
-    item = DELIVERY.get(uri, tier=Tier.L2)
-    _print_context_item(item)
-    return 0
+    from observatory_context.uris import build_project_resource_uri
+
+    # Try the authored README first (this is what ingest creates)
+    readme_uri = build_project_resource_uri(args.project_id, "authored", "README.md")
+    try:
+        item = DELIVERY.get(readme_uri, tier=Tier.L2)
+        _print_context_item(item)
+        return 0
+    except (LookupError, Exception):
+        pass
+
+    # Fall back to workspace directory (may resolve via _load_full fallbacks)
+    workspace_uri = build_project_workspace_uri(args.project_id)
+    try:
+        item = DELIVERY.get(workspace_uri, tier=Tier.L2)
+        _print_context_item(item)
+        return 0
+    except (LookupError, Exception):
+        pass
+
+    # Last resort: search knowledge graph for the project
+    results = DELIVERY.search(args.project_id, kind="project", limit=5)
+    if results.items:
+        print(f"Project '{args.project_id}' not found as a direct resource.")
+        print(f"Found {len(results.items)} related result(s) via search:\n")
+        _print_search_results(results)
+        return 0
+
+    print(
+        f"Error: Project '{args.project_id}' not found in OpenViking.\n"
+        f"Run '/build-registry' to ingest projects, or check the project ID.",
+        file=sys.stderr,
+    )
+    return 1
 
 
 def _handle_landscape(args) -> int:
@@ -444,7 +474,18 @@ def main(argv: list[str] | None = None) -> int:
     if handler is None:
         parser.print_help()
         return 1
-    return handler(args)
+
+    try:
+        return handler(args)
+    except LookupError as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+    except Exception as exc:
+        if any(cls.__name__ == "NotFoundError" for cls in type(exc).__mro__):
+            print(f"Error: {exc}", file=sys.stderr)
+            print("The resource may not be ingested yet. Try '/build-registry'.", file=sys.stderr)
+            return 1
+        raise
 
 
 if __name__ == "__main__":

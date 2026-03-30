@@ -107,9 +107,47 @@ class ContextDelivery:
         return self._load_full(uri, override_tier=tier)
 
     def _load_full(self, uri: str, override_tier: Tier | None = None) -> ContextItem:
-        """Load the full L2 content of a resource."""
-        raw = self.client.read_resource(uri)
-        return self._build_item(uri, raw, override_tier or Tier.L2)
+        """Load the full L2 content of a resource.
+
+        If the URI is a directory (read raises NotFoundError), try known child
+        files before giving up.
+        """
+        tier = override_tier or Tier.L2
+        try:
+            raw = self.client.read_resource(uri)
+            if raw.strip():
+                return self._build_item(uri, raw, tier)
+            # Empty content likely means a directory — fall through
+        except Exception as exc:
+            if not _is_not_found(exc):
+                raise
+
+        # URI is likely a directory — try known child files
+        for child in ("authored/README.md", "README.md", "profile.yaml", "hypothesis.yaml"):
+            try:
+                raw = self.client.read_resource(f"{uri}/{child}")
+                return self._build_item(uri, raw, tier)
+            except Exception as inner:
+                if not _is_not_found(inner):
+                    raise
+
+        # Last resort: compose a stub from directory listing
+        try:
+            entries = self.client.list_resources(uri)
+            children = [e.get("uri", "") for e in entries]
+            body = "\n".join(f"- {c}" for c in children) if children else "(empty directory)"
+            return ContextItem(
+                uri=uri,
+                title=uri.rsplit("/", 1)[-1],
+                kind="directory",
+                tier=tier,
+                content=body,
+                source_type="resource",
+            )
+        except Exception:
+            pass
+
+        raise LookupError(f"Resource not found: {uri}")
 
     def _build_item(self, uri: str, raw_content: str, tier: Tier) -> ContextItem:
         """Parse raw content (possibly with frontmatter) into a ContextItem."""
