@@ -6,6 +6,83 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ---
 
+## 2026-03
+
+### [amr_environmental_resistome] Resistance mechanism composition is strongly environment-dependent across 14,723 species
+
+Efflux pumps constitute 21% of AMR in human gut species but only 1% in aquatic (η²=0.127). Metal resistance constitutes 45% in soil/aquatic but 6% in human gut (η²=0.107). Clinical species have 68% accessory (acquired) AMR vs soil 43%. Within 823 multi-environment species, clinical strain fraction predicts total AMR (rho=0.465, p=2.2e-45). K. pneumoniae has 1,115 AMR clusters (only 7 core) across 13,637 genomes. All findings survive family-level phylogenetic control (20/141 families significant). This is the largest genomic AMR-environment analysis to date, extending Gibson et al. (2015, 6K genomes) by 50×.
+
+### [amr_cofitness_networks] AMR support networks enriched for flagellar motility and amino acid biosynthesis
+
+Cofitness analysis of 801 AMR genes across 28 organisms reveals that AMR cofitness neighborhoods are enriched for flagellar motility (GO:0071973, 5 organisms FDR<0.05), flagellum assembly (GO:0044780, 5 orgs), histidine biosynthesis (GO:0000105, 3 orgs), and tryptophan biosynthesis (GO:0000162, 3 orgs). This enrichment is undetectable with old FB SEED annotations (0/280 significant) — only InterProScan GO (68% coverage) reveals it. Support networks are organism-specific (cross-mechanism Jaccard 0.375 >> within-mechanism 0.207, MWU p=4.3e-13). AMR genes are in larger-than-average ICA modules (median 46 vs 27, p=1.7e-8). The co-regulation with motility and biosynthesis suggests AMR costs reflect competition for the proton motive force.
+
+### [amr_fitness_cost] AMR genes impose a universal +0.086 fitness cost across 25 bacteria
+
+Random-effects meta-analysis of 801 AMR genes across 25 organisms shows a pooled fitness shift of +0.086 [+0.074, +0.098] when AMR genes are knocked out — all 25/25 organisms positive. This cost is mechanism-independent (KW p=0.89), conservation-independent (core = accessory, p=0.33), and tier-independent (bakta_amr = keyword, p=0.26). The uniformity suggests compensatory evolution has equalized costs to an irreducible floor. However, mechanism strongly predicts conservation status (metal resistance 44% accessory vs efflux 13%, χ²=69.3, p=1.4e-13) — acquisition history, not cost, determines whether AMR genes are core or accessory. Efflux genes (broad-spectrum) show a stronger antibiotic-dependent fitness flip than enzymatic inactivation genes (narrow-spectrum): +0.094 vs −0.001, MWU p=0.007.
+
+### [amr_strain_variation] Acquired AMR genes track phylogeny more strongly than intrinsic
+
+Mantel tests across 1,261 species show non-core (acquired) AMR genes have stronger phylogenetic signal (median r=0.222) than core (intrinsic) genes (median r=0.117), paired t-test p=7.0e-16. This contradicts the standard model that acquired resistance is phylogenetically random via HGT. Instead, once a lineage acquires resistance elements, they are stably maintained and vertically inherited, creating clonal AMR lineages. Note: core genes have near-zero Jaccard variance by definition (>=95% prevalence), which partly suppresses their distance-based signal.
+
+### [amr_strain_variation] Over half of within-species AMR genes are rare (<5% prevalence)
+
+Across 1,305 species and 180,025 genomes, 51.3% of AMR gene-species occurrences are rare (<=5% prevalence), 41.3% variable (5-95%), and only 7.5% fixed (>=95%). Median pairwise Jaccard distance between strains = 0.435 — strains within the same species share less than 60% of their AMR repertoire. Atlas Core genes are 77% fixed within species; Singletons are 79% rare — validating the cross-species conservation classification at strain resolution.
+
+### [amr_strain_variation] Resistance islands are widespread — 54% of species, mean 6.2 genes
+
+1,517 resistance islands detected across 705/1,305 species, with mean phi coefficient = 0.827 (very tight co-occurrence). 88% contain multiple resistance mechanisms (efflux + enzymatic inactivation most common). Maximum island = 43 genes. These multi-mechanism islands provide coordinated defense against multiple drug classes.
+
+### [amr_strain_variation] AMR variability weakly anti-correlates with pangenome openness
+
+Spearman rho = -0.193, p = 2.2e-12. Species with more open pangenomes have slightly *lower* AMR variability — unexpected. Likely because open-pangenome species accumulate more rare/singleton AMR genes below the 5% threshold, deflating the variability index (which measures the 5-95% zone).
+
+### [truly_dark_genes] Only 16.3% of "dark matter" resists modern annotation
+
+Of 39,532 Fitness Browser dark genes with pangenome links, bakta v1.12.0 reclassifies 33,105 (83.7%). Just 6,427 are "truly dark" — both FB and bakta agree: hypothetical protein. Truly dark genes are structurally distinct: shorter (121 vs 194 aa), less conserved (43% vs 73% core), fewer orthologs (29% vs 64%), higher GC deviation (d=0.247). These properties are consistent with recent HGT outpacing annotation databases.
+
+### [truly_dark_genes] Truly dark genes cluster in genomic "dark islands"
+
+41% of neighbors of truly dark genes are also hypothetical, 12% are within 2 genes of mobile elements (transposases, integrases, phage proteins). This suggests dark genes concentrate in recently acquired genomic islands rather than being randomly distributed.
+
+### [truly_dark_genes] Stress enrichment hypothesis rejected — nutrient/community enrichment instead
+
+Contrary to expectation, truly dark genes with strong fitness phenotypes are depleted in stress conditions (OR=0.53, p<0.001) and enriched in nutrient, mixed community, and iron conditions. This suggests novel metabolic or inter-species interaction functions rather than stress responses.
+
+### [truly_dark_genes] 96% of truly dark genes have partial annotation clues
+
+Only 246/6,427 (3.8%) truly dark genes have zero annotation clues. 84.7% have database cross-references, 43.5% have eggNOG hits (though 55% of COG assignments are "S"/unknown), 29.3% have cross-organism orthologs, 9.5% are in ICA fitness modules.
+
+### [bakta_reannotation] Bakta and eggNOG are complementary annotation sources
+
+Comprehensive comparison of bakta v1.12.0 vs eggNOG-mapper across 132.5M gene clusters:
+- **EggNOG wins** on enrichment-style annotations: COG (51% vs 8.2%), KEGG (38.5% vs 17.3%), Pfam (63% vs 7.7%)
+- **Bakta wins** on GO terms (15% vs 7.4%), product descriptions (71.2% vs 70.4%), and UniRef50 links (79.2%, unique)
+- **Union raises coverage** from ~70% to 77.3% for "any functional annotation"
+- Bakta rescues 11.2M clusters (of 39.2M) that eggNOG misses entirely
+
+### [bakta_reannotation] Bakta's lower COG/KEGG/Pfam coverage is by design, not a bug
+
+Confirmed by bakta developer Oliver Schwengers across GitHub issues #350, #385, #391, #393:
+- **PSC pre-computed annotations are sparse**: only ~14% of PSC entries have COG, ~19% have KEGG. PSC DB is optimized for product descriptions, not functional categories.
+- **COG 2024 broke direct mapping**: COG 2024 no longer provides representative sequences, forcing lossy indirect WP accession→IPS→PSC mapping.
+- **Pfam skipped by design**: HMMER only runs on hypotheticals (~7.7%). The 92% with PSC matches never get Pfam searched.
+- **DIAMOND fast < HMM sensitivity**: bakta's PSC uses DIAMOND fast mode; eggNOG uses HMM-based ortholog assignment.
+- Developer planned to integrate eggNOG into PSC representatives (issue #325) — may have partially happened in DB v6.0 but limited impact.
+- The Arche benchmark paper (Alonso-Reyes & Albarracin 2025, PMID 40811208) independently confirmed bakta's conservative annotation transfer vs. other tools.
+
+### [bakta_reannotation] UniRef50 bridge has limited value with current BERDL UniProt
+
+- Only 33.3% of bakta's 17.6M distinct UniRef50 IDs exist in `kbase_uniprot.uniprot_identifier`
+- The bridge reaches RefSeq (71%), OrthoDB (46%), STRING (40%), KEGG (36%) of matched IDs
+- **Missing from bridge**: GO, EC, InterPro, Pfam — importing full UniProt would unlock these
+- For now, eggNOG remains the better source for COG/KEGG/Pfam enrichment analysis
+
+### [bakta_reannotation] Spark broadcast joins fail on uniprot_identifier (2.5B rows)
+
+Any join that touches `kbase_uniprot.uniprot_identifier` can exceed `spark.driver.maxResultSize` (1GB) via broadcast exchange. Fix: `SET spark.sql.autoBroadcastJoinThreshold = -1` to force sort-merge joins. See `data/bakta_reannotation/scripts/compare_bakta_eggnog.py` for the pattern.
+
+---
+
 ## 2026-01
 
 ### [ecotype_analysis] Environment vs Phylogeny: Phylogeny usually dominates
@@ -429,6 +506,12 @@ Evidence-weighted (Route A, NB09) and conservation-weighted (Route B, NB11) cove
 
 Adding 25 non-FB organisms (Bacillota, Actinomycetota, Campylobacterota) to the covering set candidate pool selects 50 organisms spanning 6 phyla (vs 4 for FB-only). P. aeruginosa PAO1 ranks #1 (3,713 OGs) and M. tuberculosis reaches #6 (first Actinomycetota). However, Bacillota organisms (B. subtilis, S. aureus) are NOT selected because their kingdom-level OGs are already covered by Pseudomonadota selections. They remain valuable for studying genes in native Gram-positive context, but don't contribute unique OG coverage.
 
+### [pseudomonas_carbon_ecology] Host-associated Pseudomonas show dramatic loss of plant-derived sugar pathways
+
+Analysis of 433 *Pseudomonas* species (12,732 genomes) using GapMind carbon pathway predictions reveals that the *P. aeruginosa* group has near-complete loss of plant-derived sugar catabolism compared to the *P. fluorescens/putida* group. 43 of 62 pathways differ significantly (FDR < 0.05), with the largest effects in xylose (+74 pp), ribose (+64 pp), arabinose (+63 pp), galacturonate (+60 pp), and myo-inositol (+59 pp). Amino acid catabolism remains near-universal (>99.5%) in both groups, consistent with Palmer et al. (2007) showing CF sputum is amino acid-dominated.
+
+Among free-living species, carbon profiles are significantly associated with isolation environment (PERMANOVA p = 0.006), but predictive accuracy is modest (RF balanced accuracy 0.41 vs 0.25 chance). D-serine, arabinose, rhamnose, and fucose are the most discriminating pathways.
+
 ---
 
 ## 2026-02
@@ -496,6 +579,66 @@ The 94% mean concordance across four databases decomposes into: FB 21/21 = 100% 
 
 The top 18 genes significant across all 21 FB metabolite conditions are amino acid biosynthesis enzymes: homoserine O-acetyltransferase (methionine), ATP phosphoribosyltransferase (histidine), dihydroxy-acid dehydratase (branched-chain), isopropylmalate dehydrogenase (leucine), shikimate dehydrogenase (aromatic), imidazoleglycerol-phosphate dehydratase (histidine). These are essential for growth on *any* minimal medium. The ~370 genes significant in only 1-2 conditions are the truly substrate-specific ones. This distinction is critical for interpreting WoM↔FB integration.
 
+## 2026-02
+
+### [metal_specificity] 55% of metal-important genes are genuinely metal-specific
+
+Of 7,609 metal-important gene records across 24 organisms, 4,177 (55%) are sick under metal stress but have a <5% sick rate across 5,945 non-metal experiments (antibiotics, osmotic, carbon sources, etc.). The remaining 38% are "general sick" (important across many conditions) and 7% are "metal+stress" (shared with other stresses). This demonstrates that the Metal Fitness Atlas's metal-important gene set is not dominated by general stress response — the majority are genuine metal tolerance determinants.
+
+### [metal_specificity] Metal-specific genes are core-enriched but less so than general stress genes (CMH p=0.011)
+
+Metal-specific genes are 84.8% core (pooled) vs 90.2% for general sick genes — a statistically significant difference (Cochran-Mantel-Haenszel p=0.011). Both categories are enriched above the 79.8% baseline. This partially supports the Metal Atlas's two-tier model: general stress response (Tier 1) is more core than specialized metal resistance (Tier 2), but both are predominantly core. The accessory genome contributes only modestly to metal resistance machinery.
+
+### [metal_specificity] UCP030820, YebC, and DUF1043 are the most metal-specific novel candidates
+
+Among the top novel candidates from the Metal Atlas, three stand out as metal-specific rather than pleiotropic: UCP030820/OG01015 (67% metal-specific, oxidoreductase, 7 metals), YebC/OG01383 (58%, transcriptional regulator/translation factor, 6 metals, 11 organisms), and DUF1043-YhcB/OG03264 (50%, cell division protein, 5 metals). In contrast, YfdZ (15%) and the Mla/Yrb system (0-25%) are pleiotropic — important for many conditions, not just metals. DUF39 (0%, sick rate 0.64) is a general fitness factor despite spanning 8 metals.
+
+### [metal_specificity] YebC metal-specificity may link to proline-rich metal transporter translation
+
+YebC was recently shown to be a translation factor for proline-rich proteins (Ignatov et al. 2025). Many metal homeostasis proteins (P-type ATPases CopA/ZntA, CDF transporters) contain proline-rich cytoplasmic loops. Hypothesis: YebC is specifically needed under metal stress because upregulation of proline-rich metal transporters creates a translation bottleneck that YebC resolves. Under non-metal conditions these transporters are not highly expressed and YebC is dispensable.
+
+### [metal_specificity] Essential metals show high metal-specificity when DvH is properly included
+
+Initial analysis showed 0% metal-specificity for essential metals (Mo, W, Se, Mn), seemingly due to DvH's 608 non-metal experiments making specificity impossible. After fixing a locusId type mismatch that had silently excluded DvH, essential metals show 47-61% metal-specificity: Manganese (61%), Molybdenum (61%), Tungsten (57%), Selenium (46%). The experiment-count bias is real but less severe than initially thought.
+
+### [bacdive_metal_validation] Metal tolerance scores predict isolation from metal-contaminated environments (d=+1.0, p=0.006)
+
+Bacteria isolated from heavy metal contamination sites have metal tolerance scores a full standard deviation above the environmental baseline (Cohen's d = +1.00, Mann-Whitney p=0.006, n=10). The effect is dose-dependent: heavy metal (+1.00) > waste/sludge (+0.57) > all contamination (+0.43) > industrial (+0.20). This validates the Metal Fitness Atlas's genome-based prediction method against real-world isolation ecology. The signal holds within Pseudomonadota and Actinomycetota after phylogenetic stratification.
+
+### [bacdive_metal_validation] 43% of BacDive strains link to pangenome species via name matching
+
+Species name matching (exact + GTDB suffix removal) links 42,227 BacDive strains (43.4% of 97K) to 6,426 GTDB pangenome species. The bridge enables cross-referencing BacDive phenotypic data with pangenome-derived predictions without Spark queries. The 56.6% unmatched strains reflect GTDB's different species boundaries from LPSN/DSMZ taxonomy.
+
+### [bacdive_metal_validation] Host-associated bacteria score higher than environmental (contradicts expectation)
+
+Host-associated bacteria (n=12,086) have slightly but significantly higher metal tolerance scores than environmental bacteria (d=+0.14, p<0.0001). This contradicts the expectation that host niches have lower metal exposure. The likely explanation is genome size confounding: BacDive host-associated strains are dominated by Pseudomonadota pathogens with large genomes and correspondingly more KEGG-annotated gene clusters, inflating the normalized metal score.
+
+## 2026-03
+
+### [snipe_defense_system] SNIPE antiphage defense found in 1,696 species across 33 phyla
+
+Survey of DUF4041 (PF13250) in the 293K-genome BERDL pangenome found 4,572 gene clusters across 1,696 species and 33 phyla — far exceeding the >500 homologues reported in Saxton et al. 2026 (*Nature*). 86.7% are accessory or singleton genes, consistent with mobile defense island carriage. The patchy distribution across many phyla and families supports horizontal gene transfer.
+
+### [snipe_defense_system] SNIPE nuclease is PF13455 (Mug113), not PF01541 (canonical GIY-YIG)
+
+The SNIPE nuclease domain belongs to Pfam family PF13455 (Mug113), not PF01541 (canonical GIY-YIG restriction enzymes/DNA repair). Both are in the GIY-YIG clan (CL0418) but are distinct families. This explains why zero gene clusters show DUF4041 + PF01541 co-occurrence — it's biological truth, not an annotation artifact. The paper describes the nuclease as "GIY-YIG" at the superfamily level, but never cites Pfam accessions. Verified via InterPro/UniProt analysis of the *E. coli* SNIPE protein (A0A0A1A5Z2: PF13250 at positions 232–333, PF13455 at positions 443–520).
+
+### [snipe_defense_system] PhageFoundry strain_modelling contains Gaborieau et al. 2024 phage-host interaction data
+
+The `phagefoundry_strain_modelling` database (separate from the GenomeDepot annotation browsers) contains experimental data from Gaborieau et al. 2024 (*Nature Microbiology*): 188 *E. coli* strains × 96 phages = 17,672 binary infection outcomes, plus an ML model (AUC=0.883) with SHAP importances for 1,582 gene cluster features. Lambdavirus 411_P1 (phage lambda) infects only 1/188 strains (0.5%), vs. 43.4% for Myoviridae — consistent with widespread ManYZ receptor loss making lambda-mediated infection rare.
+
+### [snipe_defense_system] ManXYZ is a mannose/glucosamine transporter, NOT a fructose transporter
+
+Fitness Browser data (168 experiments, *E. coli* K-12 Keio collection) shows ManXYZ knockouts have severe fitness defects on D-mannose (fit = -3.93) and D-glucosamine (fit = -2.75) but are dispensable for D-fructose (fit = +0.18 to +0.66). This contradicts the UniProt annotation "fructose import across plasma membrane" (GO:0005354) for ManX. The mannose/glucosamine specificity is critical for understanding why SNIPE targets the ManYZ pore — it's the mannose transporter that phage lambda exploits for DNA injection, not a general sugar transporter.
+
+### [snipe_defense_system] Methanococcus maripaludis JJ has a full two-domain SNIPE protein with fitness data
+
+The Fitness Browser contains one archaeal SNIPE protein in *Methanococcus maripaludis* JJ (locus MMJJ_RS01635), annotated with both PF13250 (DUF4041) and PF13455 (Mug113/GIY-YIG nuclease), plus PF10544 (DUF2525). This is a full two-domain SNIPE protein with 129 experiments of fitness data — the first SNIPE homologue with genome-wide knockout phenotypes available for analysis.
+
+### [snipe_defense_system] SNIPE detected in Klebsiella with ManYZ co-occurrence
+
+PhageFoundry Klebsiella genome browser contains 1 DUF4041 annotation (3 proteins at 558 aa — same length as *E. coli* SNIPE) and 4,619 PTS_EIIC (PF02378/ManY family) annotations. Klebsiella is the only PhageFoundry species with both SNIPE and the ManX-family PTS domain (PF00358). This is clinically relevant — SNIPE could affect phage therapy efficacy in this key pathogen.
+
 ## Template
 
 ### [webofmicrobes_explorer] WoM action 'E' encodes de novo metabolite production, distinct from 'I' (increased)
@@ -534,3 +677,14 @@ GapMind pathway comparison reveals 6 carbon sources where formulation commensals
 ### [cf_formulation_design] Rothia dentocariosa and Neisseria mucosa are naturally lung-adapted
 
 In the BERDL pangenome, 38% of R. dentocariosa genomes and 33% of N. mucosa genomes are from respiratory sources — disproportionately lung-associated compared to other formulation species. These two anchor the FDA-safe formulation (highest inhibition + highest engraftability + lung tropism).
+### [bacdive_phenotype_metal_tolerance] BacDive phenotypes are phylogenetic proxies for metal tolerance
+
+Classical microbiology phenotypes (Gram stain, oxygen tolerance, enzyme activities) from BacDive capture real metal tolerance signal (R²=0.16 alone, 7/10 significant after FDR) but are entirely phylogenetically confounded — adding phenotype features to a taxonomy-based model provides zero improvement (delta R²=-0.009). The genome's metal resistance gene count is the true predictor (full model R²=0.63). Urease-positive bacteria surprisingly have *lower* metal tolerance (d=-0.18), driven by Actinomycetes lineage composition. This validates genome-based prediction (Metal Fitness Atlas) over phenotype-based screening for metal tolerance assessment.
+
+### [pgp_pangenome_ecology] pqqC–acdS is a vertically inherited, soil-enriched rhizosphere module
+
+Across 27K GTDB species, pqqC (phosphate solubilization) and acdS (ACC deaminase) co-occur at OR = 7.24 — far stronger than any other PGP gene pair — and are both strongly enriched in soil/rhizosphere environments (acdS OR = 7.0, pqqC OR = 2.9). Counterintuitively, all 13 PGP genes are predominantly **core** (29.7% mean accessory vs 53.2% genome-wide), rejecting the HGT hypothesis and indicating vertical inheritance. Nitrogen fixation (nifH) forms a separate ecological guild: negatively associated with pqqC and hcnC, and depleted in soil relative to aquatic environments. The trp→ipdC coupling (OR = 2.81) holds in non-soil species but reverses in soil species, likely because soil PGPB acquire tryptophan exogenously from root exudates.
+
+### [pgp_pangenome_ecology] nbconvert crashes Spark kernels — use CSV caching in notebooks
+
+Running `jupyter nbconvert --execute` on notebooks that call `spark.sql(...).toPandas()` on large result sets causes the kernel to die (DeadKernelError). Workaround: add cache-check logic to Spark cells (`if os.path.exists(path): load CSV else run Spark`) so nbconvert can execute the notebook locally from cached CSVs after the initial JupyterHub run. The live Spark outputs should be captured interactively on JupyterHub, not via nbconvert.

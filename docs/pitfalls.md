@@ -8,6 +8,38 @@ See [collections.md](collections.md) for the full database inventory and [schema
 
 ## General BERDL Pitfalls
 
+### `data_lakehouse_ingest` Tenant Name ≠ Database Prefix
+
+**[bakta_reannotation]** The `tenant` field in a `data_lakehouse_ingest` config is the MinIO governance group name, not the database name prefix. The library auto-prepends the tenant name to the `dataset` field to form the namespace.
+
+The `kbase_ke_pangenome` database lives under the `kbase` tenant (not `kbase_ke`):
+
+```python
+# WRONG: tenant="kbase_ke" → user has no access, falls back to personal warehouse
+# Also wrong: dataset="kbase_ke_pangenome" with tenant="kbase" → creates "kbase_kbase_ke_pangenome"
+
+# CORRECT:
+config = {
+    "tenant": "kbase",           # MinIO group name (check with get_group_sql_warehouse)
+    "dataset": "ke_pangenome",   # tenant + "_" + dataset = "kbase_ke_pangenome"
+}
+```
+
+**How to check**: Use `get_group_sql_warehouse(tenant_name)` to verify access. An `ErrorResponse` with error 20040 means you're not in that group.
+
+```python
+from berdl_notebook_utils.spark.database import get_group_sql_warehouse
+print(get_group_sql_warehouse('kbase'))      # OK → GroupSqlWarehousePrefixResponse
+print(get_group_sql_warehouse('kbase_ke'))   # FAIL → ErrorResponse (no such group)
+```
+
+**How to find the right tenant**: Check the database's physical location:
+```python
+spark.sql("DESCRIBE NAMESPACE EXTENDED kbase_ke_pangenome").show()
+# Location = s3a://cdm-lake/tenant-sql-warehouse/kbase/kbase_ke_pangenome.db
+#                                                 ^^^^^ this is the tenant
+```
+
 ### PySpark Cannot Infer numpy `str_` Types
 
 **[prophage_ecology]** `np.random.choice()` on a list of Python strings returns numpy `str_` objects. PySpark's `createDataFrame()` cannot infer schema for `str_`, raising `PySparkTypeError: [CANNOT_INFER_TYPE_FOR_FIELD]`.
@@ -51,6 +83,20 @@ AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
 AUTH_TOKEN=$(grep "KB_AUTH_TOKEN" .env | cut -d'"' -f2)
 ```
 
+### Token Expiration During Long Sessions
+
+**[snipe_defense_system]** The token stored in `.env` (`KBASE_AUTH_TOKEN`) can expire during long analysis sessions. When this happens, all BERDL API calls return 401/403 errors.
+
+**Symptom**: Previously-working queries suddenly return authentication errors mid-session.
+
+**Solution**: On JupyterHub, a fresh token is always available at `~/.berdl_kbase_session`, synced every 30 seconds by the IPython startup script (`~/.ipython/profile_default/startup/05-token-sync.py`). Read the token from there:
+```python
+from pathlib import Path
+token = (Path.home() / ".berdl_kbase_session").read_text().strip()
+```
+
+**Note**: The `.env` file is not automatically updated. For long-running CLI sessions outside JupyterHub, re-export the token manually.
+
 ### MinIO Upload Requires Proxy (Off-Cluster)
 
 **[essential_metabolome]** When uploading projects to the lakehouse via `python tools/lakehouse_upload.py`, the `mc` (MinIO client) commands will timeout if proxy environment variables are not set.
@@ -86,6 +132,57 @@ WHERE CAST(fit AS FLOAT) < -2
 
 This affects: `kescience_fitnessbrowser` (all columns), `kbase_genomes` (coordinates, lengths), and others.
 
+### Non-UTF-8 Bytes in SQLite TEXT Columns
+
+**[kescience_paperblast]** When exporting a SQLite database to TSV using `sqlite3.connect()` and iterating the cursor, Python's `sqlite3` module defaults to strict UTF-8 decoding for TEXT columns. If the database contains non-UTF-8 byte sequences, this raises `OperationalError: Could not decode to UTF-8 column 'comment' with text '...'` during cursor iteration, before any data cleaning (e.g., `_clean()`) is invoked.
+
+```python
+# WRONG: Strict UTF-8 decoding will fail on non-UTF-8 bytes
+conn = sqlite3.connect(db_path)
+cur = conn.cursor()
+cur.execute("SELECT * FROM table_with_bad_bytes")
+for row in cur:  # OperationalError raised here
+    process(row)
+
+# CORRECT: Permissive UTF-8 with replacement characters
+conn = sqlite3.connect(db_path)
+conn.text_factory = lambda b: b.decode('utf-8', errors='replace')  # Set this first
+cur = conn.cursor()
+cur.execute("SELECT * FROM table_with_bad_bytes")
+for row in cur:  # Succeeds; invalid bytes become U+FFFD
+    process(row)
+```
+
+**Solution**: Set `text_factory` immediately after connecting, before executing any queries.
+
+### SQL `/* ... */` Comments in CREATE TABLE Body Parsed as Column Definitions
+
+**[kescience_paperblast]** The `parse_sql_schema()` function in the ingest pipeline uses regex to extract column definitions from `CREATE TABLE` statements. If the table body begins with an inline comment (e.g., `/* geneId is actually a fully specified protein id like YP_006960813.1 */`), the parser treats `/*` as a column name instead of skipping it. This produces an invalid schema string like `/* STRING, geneId STRING, ...`, and the ingest pipeline silently skips the entire table with no error message or quarantine entry.
+
+```python
+# WRONG: Parser treats /* as a column name
+def parse_sql_schema(sql_path):
+    for line in m.group(2).splitlines():
+        line = line.strip().rstrip(",")
+        if not line:
+            continue
+        tokens = re.split(r'\s+', line, maxsplit=2)
+        col_name = tokens[0]  # BUG: May be "/*" if line starts with comment
+        # ...
+
+# CORRECT: Strip comments before tokenizing
+def parse_sql_schema(sql_path):
+    for line in m.group(2).splitlines():
+        line = re.sub(r'/\*.*?\*/', '', line).strip()  # strip /* ... */ comments
+        line = re.sub(r'--.*$', '', line).strip()       # strip -- comments
+        if not line:
+            continue
+        tokens = re.split(r'\s+', line, maxsplit=2)
+        col_name = re.sub(r'[`"\[\]]', '', tokens[0])
+        # ...
+```
+
+**Solution**: Add comment-stripping regex at the top of the per-line loop in `parse_sql_schema` to remove both `/* ... */` and `--` style comments before splitting tokens.
 ### [nmdc_community_metabolic_ecology] Spark DECIMAL Columns Return `decimal.Decimal` in Pandas, Not `float`
 
 **Problem**: Spark SQL `DECIMAL` columns (e.g., `abundance` in `nmdc_arkin.centrifuge_gold`) are returned as Python `decimal.Decimal` objects when collected via `.toPandas()`. Arithmetic with `float` values (e.g., from `AVG()` aggregates) raises `TypeError: unsupported operand type(s) for *: 'float' and 'decimal.Decimal'`.
@@ -162,21 +259,55 @@ JOIN kbase_ke_pangenome.gtdb_taxonomy_r214v1 t ON g.gtdb_taxonomy_id = t.gtdb_ta
 
 ### SQL Syntax Issues
 
-### The `--` Non-Issue in Species IDs
+### [pgp_pangenome_ecology] `order` is a Spark SQL reserved word — must be backtick-quoted
 
-Species clade IDs contain `--` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`), but this is **NOT a problem** in SQL when the ID is inside a quoted string literal.
+The `gtdb_taxonomy_r214v1` table has a column named `order` (taxonomic rank). In Spark SQL, `order` is a reserved keyword and will cause a parse error if used unquoted in a SELECT or JOIN. Always backtick-quote it:
 
 ```sql
--- CORRECT: The '--' inside quotes is NOT interpreted as a comment
-SELECT * FROM kbase_ke_pangenome.genome
-WHERE gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
+-- WRONG: AnalysisException: Reserved keyword 'order' used as identifier
+SELECT t.phylum, t.class, t.order, t.family FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1 t
 
--- AVOID: LIKE patterns are slower and unnecessary
-SELECT * FROM kbase_ke_pangenome.genome
-WHERE gtdb_species_clade_id LIKE 's__Escherichia_coli%'
+-- CORRECT: backtick-quote the reserved word
+SELECT t.phylum, t.class, t.`order`, t.family FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1 t
 ```
 
-**Note**: The `--` would only be a problem if it appeared outside of quotes in the SQL statement itself. When using exact equality with proper quoting, there is no issue and performance is better.
+The same applies to other SQL reserved words that appear as column names (e.g., `class`, `select`, `from`). When in doubt, backtick-quote any column name that looks like a keyword.
+
+### [pgp_pangenome_ecology] GapMind `score_simplified` is binary (0.0 / 1.0), not continuous
+
+When querying `kbase_ke_pangenome.gapmind_pathways` with `sequence_scope = 'core'`, the `score_simplified` column contains only `0.0` (pathway incomplete) or `1.0` (pathway complete) — it is not a continuous confidence score. The table is genome-level (one row per genome-pathway pair); aggregate to species level with `MAX(score_simplified) GROUP BY clade_name, pathway` before joining to species data.
+
+```sql
+-- CORRECT: aggregate to species level, binary threshold still applies
+SELECT clade_name AS gtdb_species_clade_id, pathway,
+       MAX(score_simplified) AS score_simplified  -- still 0.0 or 1.0 after MAX
+FROM kbase_ke_pangenome.gapmind_pathways
+WHERE pathway IN ('trp', 'tyr') AND metabolic_category = 'aa' AND sequence_scope = 'core'
+GROUP BY clade_name, pathway
+```
+
+### The `--` in Species IDs: Non-Issue in Spark, Real Issue in REST API
+
+Species clade IDs contain `--` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`). Behavior depends on the query method:
+
+**Direct Spark SQL**: NOT a problem when the ID is inside a quoted string literal:
+```sql
+-- CORRECT via Spark: The '--' inside quotes is NOT interpreted as a comment
+SELECT * FROM kbase_ke_pangenome.genome
+WHERE gtdb_species_clade_id = 's__Escherichia_coli--RS_GCF_000005845.2'
+```
+
+**REST API**: IS a problem — the REST API rejects any query containing `--` regardless of quoting, treating it as a SQL comment metacharacter (returns 400 error).
+
+**[snipe_defense_system]** Workaround for REST API: query all rows unfiltered and filter locally with pandas:
+```python
+# WRONG via REST API: '--' in the string causes 400 error
+query = "SELECT * FROM ... WHERE species_id = 's__E_coli--RS_GCF_000005845.2'"
+
+# CORRECT via REST API: query unfiltered, filter locally
+df_all = query_berdl("SELECT * FROM kbase_ke_pangenome.gtdb_taxonomy_r214v1")
+df_filtered = df_all[df_all['species_id'] == target_species]
+```
 
 ### ID Format Reference
 
@@ -247,6 +378,45 @@ spark.createDataFrame(
 ```
 
 **Prevention**: Avoid expensive full-table scans in cells between temp view registration and temp view use. Use `LIMIT` or `TABLESAMPLE` for schema verification queries rather than full `GROUP BY` counts on large tables.
+
+### `ncbi_env` Table is EAV (Key-Value), Not Flat
+
+**[amr_strain_variation]** The `ncbi_env` table is **not** a flat table with columns like `genome_id, isolation_source, collection_date`. It's an Entity-Attribute-Value table with columns: `accession` (BioSample ID), `attribute_name`, `content`, `display_name`, `harmonized_name`, `id`, `package_content`.
+
+To get genome metadata you must:
+1. Join `genome.ncbi_biosample_id` → `ncbi_env.accession`
+2. Filter `attribute_name IN ('isolation_source', 'collection_date', 'geo_loc_name', 'host')`
+3. Pivot from long to wide format
+
+```sql
+-- WRONG: these columns don't exist
+SELECT genome_id, isolation_source, collection_date FROM ncbi_env
+
+-- CORRECT: EAV query
+SELECT accession, attribute_name, content
+FROM kbase_ke_pangenome.ncbi_env
+WHERE accession IN (...) AND attribute_name IN ('isolation_source', 'collection_date', 'host')
+```
+
+### `genome_ani` Column Names Are Not What You Expect
+
+**[amr_strain_variation]** The `genome_ani` table uses `genome1_id`, `genome2_id`, `ANI` — **not** `genome_id_1`, `genome_id_2`, `ani`. The capitalization matters too (`ANI` not `ani`).
+
+```sql
+-- WRONG
+SELECT genome_id_1, genome_id_2, ani FROM genome_ani
+
+-- CORRECT
+SELECT genome1_id, genome2_id, ANI FROM genome_ani
+```
+
+### Large Species Blow Up ANI Queries (O(n²) Problem)
+
+**[amr_strain_variation]** ANI queries for species with >500 genomes can take 30+ minutes per species and may timeout Spark connections. *K. pneumoniae* (14,240 genomes) and *S. aureus* (14,526 genomes) generate IN clauses with 14K+ IDs that overwhelm the query planner. Cap at <=500 genomes for Mantel tests, or use subsampling.
+
+### Per-Genome Environment Classification Gives 53% "Unknown"
+
+**[amr_strain_variation]** Parsing `isolation_source` and `host` from `ncbi_env` at the per-genome level produces 52.7% "Unknown" labels (94,957/180,025 genomes), because most BioSample records lack structured isolation metadata. For cross-species analyses, use species-level majority-vote environment labels instead (91% coverage via keyword classification of NCBI metadata).
 
 ---
 
@@ -343,6 +513,83 @@ Gene cluster IDs are only meaningful within a species. You cannot compare cluste
 -- 3. PFAM domains
 ```
 
+### [snipe_defense_system] eggNOG `PFAMs` Column Stores Domain Names, Not Accessions
+
+**Problem**: The `eggnog_mapper_annotations.PFAMs` column stores Pfam domain **names** (e.g., `DUF4041`, `GIY-YIG`), not Pfam **accession IDs** (e.g., `PF13250`, `PF01541`). Searching by accession returns 0 results.
+
+**Symptom**: `WHERE PFAMs LIKE '%PF13250%'` returns 0 rows; `WHERE PFAMs LIKE '%DUF4041%'` returns 2,962.
+
+```sql
+-- WRONG: accession IDs are not stored in this column
+WHERE PFAMs LIKE '%PF13250%'   -- returns 0
+
+-- CORRECT: search by domain family name
+WHERE PFAMs LIKE '%DUF4041%'   -- returns 2,962
+```
+
+**Note**: The column contains comma-separated lists of domain names, so always use `LIKE` with `%` wildcards, not exact equality.
+
+### [snipe_defense_system] eggNOG Query Returns Fewer Rows Than gene_cluster JOIN
+
+**Problem**: Querying `eggnog_mapper_annotations` for a domain returns N rows (e.g., 2,962 DUF4041 annotations), but joining to `gene_cluster` produces more rows (e.g., 4,572). This is because gene clusters are species-specific — the same eggNOG annotation (`query_name`) can map to gene_cluster entries in multiple species pangenomes.
+
+**Rule**: The final row count after JOIN is the correct number of *species-level gene clusters*. The eggNOG count is the number of *unique annotation records*. Both are valid counts for different purposes — document which one you're reporting.
+
+### [snipe_defense_system] Pfam Accession Lookup Errors: Always Verify Against InterPro/UniProt
+
+**Problem**: Pfam domain names (e.g., "DUF4041", "GIY-YIG") can map to wrong accessions if looked up by name alone. PF13250 and PF13291 are numerically close but completely unrelated families. PF01541 (canonical GIY-YIG) and PF13455 (Mug113) are in the same clan but are distinct families.
+
+**Symptom**: Zero co-occurrence hits for domains that should co-occur (e.g., DUF4041 + GIY-YIG in SNIPE proteins), or unexpected functional annotations for your domain hits.
+
+**Fix**: Always verify Pfam accessions against a known protein in InterPro or UniProt. For SNIPE:
+- DUF4041 = **PF13250** (IPR025280), NOT PF13291 (ACT_4)
+- SNIPE nuclease = **PF13455** (Mug113, GIY-YIG clan CL0418), NOT PF01541 (canonical GIY-YIG)
+
+```python
+# Verify via InterPro API
+import requests
+r = requests.get("https://www.ebi.ac.uk/interpro/api/entry/pfam/PF13250/")
+# Check the name matches your expected domain
+```
+
+---
+
+## PhageFoundry (`phagefoundry_*`) Pitfalls
+
+### [snipe_defense_system] PhageFoundry Has Two Types of Databases
+
+PhageFoundry data is split across two different database types in BERDL:
+
+| Type | Database pattern | Contents | Tables |
+|------|-----------------|----------|--------|
+| GenomeDepot browsers | `phagefoundry_{species}_genome_browser_genomedepot` | Genome annotations only (eggNOG, COG, Pfam) | `browser_*` (10+ tables each) |
+| Strain modelling | `phagefoundry_strain_modelling` | Experimental phage-host interaction data + ML model | 18 tables (organism, interaction, feature, etc.) |
+
+**Pitfall**: It's easy to explore only the GenomeDepot databases and conclude PhageFoundry has "no experimental data." The strain modelling database is separate and contains the actual experimental results (Gaborieau et al. 2024, *Nature Microbiology*).
+
+### [snipe_defense_system] Strain Modelling Gene Table Has No Functional Annotations
+
+The `strainmodelling_gene` table has 933K genes but only `locus_tag` and `protein_seq` columns — no `gene_name`, `product`, or functional annotation fields. You cannot search for genes by name.
+
+**Workaround**: Use the `strainmodelling_feature` and `strainmodelling_protein_family` tables instead, which link gene clusters to ML model features with SHAP importance scores.
+
+### [snipe_defense_system] Spark Cold-Start: Count Works But Query Returns Empty
+
+For rarely-accessed BERDL databases (including `phagefoundry_strain_modelling`), the Spark cluster needs warm-up time. The `/count` endpoint often returns correct results while `/query` and `/sample` endpoints return 0 rows or empty results.
+
+**Workaround**: Use `/count` to verify data exists, then retry `/query` with exponential backoff. May take several minutes for the Spark cluster to warm up for cold databases.
+
+### [snipe_defense_system] GenomeDepot COG Column Name Mismatch
+
+The `browser_protein_cog_classes` table uses `cog_class_id` (not `cogclass_id`). Always check the schema with `DESCRIBE` before filtering:
+```sql
+-- WRONG
+WHERE cogclass_id = 'V'
+
+-- CORRECT
+WHERE cog_class_id = 'V'
+```
+
 ---
 
 ## Data Interpretation Issues
@@ -406,6 +653,39 @@ There are three environments with different import patterns. Using the wrong one
 **[conservation_vs_fitness]** The Spark Connect service runs as a Java process on port 15002. Killing Java processes (e.g., when cleaning up stale notebook processes) will take down Spark Connect, and `get_spark_session()` will fail with `RETRIES_EXCEEDED` / `Connection refused`.
 
 **Recovery**: Log out of JupyterHub and start a new session. Then run `get_spark_session()` from a notebook to restart the Spark Connect daemon. You cannot restart it from the CLI.
+
+### Spark Connect Sidecar Startup Race (Off-Cluster Access)
+
+**Context**: Off-cluster access via `scripts/get_spark_session.py` + proxy chain.
+
+**Problem**: After restarting the JupyterHub kernel, the Python kernel becomes ready almost immediately, but the Spark Connect gRPC sidecar (the Java process on port 15002) takes an additional 20–60 seconds to start and register with the BERDL gateway. During this window, any connection attempt from outside the cluster fails with:
+
+```
+SparkConnectGrpcException: FAILED_PRECONDITION
+  "Spark Connect server at jupyter-<username>.jupyterhub-prod.svc.cluster.local:15002
+   is not reachable. Please ensure you have logged in to BERDL JupyterHub and your
+   notebook's Spark Connect service is running."
+```
+
+This is misleading — the session *is* running, the sidecar just hasn't finished starting. The error looks identical to a "not logged in" error, so it's easy to mistake for an authentication problem and keep resetting the kernel unnecessarily.
+
+**Solution**: After restarting the kernel, wait ~30–60 seconds before attempting off-cluster connections, or poll with retries:
+
+```bash
+source .venv-berdl/bin/activate
+for i in $(seq 1 10); do
+    echo "Attempt $i at $(date +%H:%M:%S)..."
+    result=$(python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok" 2>&1)
+    if echo "$result" | grep -q '"ok"'; then
+        echo "Connected!"
+        break
+    fi
+    echo "  Not ready — retrying in 20s"
+    sleep 20
+done
+```
+
+**Do not** reset the kernel repeatedly — this just restarts the race. One reset is enough; then wait and retry from the local side.
 
 ### Running Notebooks from CLI
 
@@ -1088,6 +1368,50 @@ Full column list: `sample_id`, `annotations_ph`, `annotations_temp_has_numeric_v
 
 ---
 
+### Fitness Matrix locusId Type Mismatch (Integer vs String)
+
+**[metal_specificity]** Fitness matrices from `fitness_modules/data/matrices/` use integer-typed locusId indices (e.g., `206065`) while the Metal Atlas `metal_important_genes.csv` stores locusIds as strings (e.g., `'206065'`). Pandas index lookup (`locus not in fit_mat.index`) silently fails when types don't match — the gene appears absent rather than raising an error.
+
+This caused DvH (495 metal-important genes) and Btheta (276 genes) to be completely dropped from the analysis without any warning. The organism processing loop reported "SKIPPED (no fitness matrix or no non-metal experiments)" even though the matrix existed.
+
+**Fix**: Always convert both sides to strings before matching:
+```python
+fit_mat.index = fit_mat.index.astype(str)
+metal_loci = {str(l) for l in metal_loci}
+```
+
+**Detection**: Check organism counts in your output data against the expected input. If organisms with known data are missing, suspect a type mismatch.
+
+### ICA Module z-Normalization Fails When Target Experiments Are Rare
+
+**[metal_specificity]** When computing per-module z-scores across all experiments to identify metal-responsive modules, the z-normalization produces max |z| < 2.0 for metal experiments if metals are a small fraction of total experiments (e.g., 12/176 for MR1). This is because the z-score denominator (std across all experiments) is dominated by the non-metal majority.
+
+The Metal Atlas NB05 avoided this by using pre-computed z-scores from `metal_modules.csv` that were standardized per-module across all experiments (not per-experiment-type). Re-computing z-scores from raw `module_conditions.csv` activity values does not reproduce the same responsiveness threshold.
+
+**Fix**: Use the pre-computed z-scores from upstream analysis rather than re-normalizing from raw activity scores.
+
+### BacDive Species Names Don't Always Match GTDB Species Names
+
+**[bacdive_metal_validation]** GTDB (used by the pangenome) renames many species with suffixes like `_A`, `_B` (e.g., `Pseudomonas fluorescens A`), adds genus-level splits (e.g., `Pantoea A`), and redefines species boundaries differently from LPSN/DSMZ (used by BacDive). Direct species name matching captures only 34.5% of strains; adding base-name matching (stripping GTDB suffixes) adds another 8.9% for 43.4% total. The remaining 56.6% are genuinely different species concepts or genera not yet in GTDB r214.
+
+**Fix**: Use two-pass matching: (1) exact species name, (2) base name with GTDB suffix stripped. For higher coverage, match via GCA genome accession → pangenome `genome_id` (requires `GB_` prefix + version suffix handling).
+
+### BacDive Heavy Metal Category Is Small After Matching
+
+**[bacdive_metal_validation]** BacDive has 31 strains tagged with cat3=#Heavy metal contamination, but only 10 match to pangenome species with metal tolerance scores. Research plans should not assume the full BacDive category size will survive matching — always compute post-matching sample sizes and power before interpreting results.
+
+### Variable Overwriting in Multi-Test Notebook Cells
+
+**[metal_specificity]** When running multiple statistical tests in sequence (e.g., Fisher exact for H1c then Fisher exact for H1d), reusing generic variable names like `odds, p = stats.fisher_exact(table)` causes the second test to overwrite the first. A downstream summary cell then prints the wrong values under the wrong labels.
+
+**Fix**: Use descriptive variable names for each test:
+```python
+h1c_or, h1c_p = stats.fisher_exact(table_h1c)
+h1d_or, h1d_p = stats.fisher_exact(table_h1d)
+```
+
+---
+
 ## Quick Checklist
 
 Before running a query, verify:
@@ -1152,3 +1476,7 @@ WHERE bt.name LIKE '%aeruginosa%'
 ### Psl Operon Genes Are Under-Annotated by Name
 
 **[cf_formulation_design]** In GenomeDepot-based databases (`protect_genomedepot`, `phagefoundry_paeruginosa_genome_browser`), pslA-pslO genes are rarely annotated with canonical gene names — only PAO1's reference genome has them. The pangenome `bakta_annotations` has better coverage but pslA/pslG/pslK are still sparse. Use KEGG orthologs (K20997–K21005) via `eggnog_mapper_annotations` for reliable psl detection (~95% prevalence vs <1% by gene name alone).
+- [ ] Pfam accessions verified against InterPro/UniProt (not assumed from name)
+- [ ] eggNOG PFAMs column searched by domain NAME, not accession
+- [ ] Auth token is fresh (check `~/.berdl_kbase_session` if `.env` token fails)
+- [ ] Checked ALL databases for a project prefix (e.g., both GenomeDepot and strain_modelling for PhageFoundry)

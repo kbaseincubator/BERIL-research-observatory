@@ -1,0 +1,50 @@
+##-------------------------------------------##
+## phenix.xtriage log                         ##
+##-------------------------------------------##
+
+Data file         : data.mtz
+Space group       : P 21 21 21
+Unit cell         : 45.23 62.10 78.56 90.00 90.00 90.00
+
+Resolution range  : 42.31 - 1.80 (1.86 - 1.80)
+Completeness      : 99.2% (97.8%)
+Redundancy        : 6.3 (4.1)
+<I/sigI>          : 15.2 (2.3)
+R-merge           : 0.068 (0.421)
+R-meas            : 0.074 (0.487)
+CC1/2             : 0.998 (0.812)
+
+Number of reflections: 24531
+
+Wilson B-factor   : 22.4
+
+Twinning analysis:
+  No twinning detected.
+  L-test: <|L|> = 0.498 (expected 0.500 for untwinned data)
+
+Anomalous signal:
+  No significant anomalous signal detected.
+
+Matthews analysis:
+  Estimated number of molecules in ASU: 1
+  Matthews coefficient: 2.34
+  Solvent content: 47.3%
+
+Ice ring detection:
+  No ice rings detected.
+
+Systematic absence analysis:
+  Space group is consistent with systematic absences.
+
+##-------------------------------------------##
+## SUMMARY                                    ##
+##-------------------------------------------##
+
+  Resolution       : 1.80 A
+  Space group      : P 21 21 21
+  Unit cell        : 45.23 62.10 78.56 90.00 90.00 90.00
+  Completeness     : 99.2%
+  Wilson B         : 22.4
+  Twinning         : None detected
+  Anomalous signal : None
+  Molecules in ASU : 1

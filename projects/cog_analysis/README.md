@@ -38,4 +38,4 @@ Execute all cells. The notebook will:
 - Generate visualizations in `../data/`
 
 ## Authors
-- **Paramvir S. Dehal** (Lawrence Berkeley National Lab) | ORCID: 0000-0001-5810-2497 | Author
+- Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory

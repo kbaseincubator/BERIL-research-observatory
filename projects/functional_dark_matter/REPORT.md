@@ -374,6 +374,23 @@ Per-organism experimental plans specify recommended experiment types (CRISPRi kn
 
 *(Notebooks: 11_conservation_classes.ipynb, 11b_extended_conservation.ipynb, 11c_extended_covering_set.ipynb)*
 
+### Finding 15: Bakta reannotation reclassifies 83.7% of linked dark genes — all 100 top candidates gain functional descriptions
+
+Bakta v1.12.0 (DB v6.0) annotations for the 132.5M pangenome cluster representatives were cross-referenced against the 57,011 dark gene catalog. Of 39,532 dark genes with pangenome links, **33,105 (83.7%) are reclassified by bakta as NOT hypothetical** — bakta's PSC/PSCC pipeline assigns them a product description where the Fitness Browser had only "hypothetical protein." This represents 58.1% of all dark genes.
+
+**All 100 top prioritized candidates** now have bakta product descriptions, revealing specific functions: Homogentisate 1,2-dioxygenase HmgA (MR-1 rank 8), Cell division proteins ZapE/ZapC (MR-1 ranks 13/16), N-acetylglucosamine kinase (MR-1 rank 26), BolA family iron metabolism protein IbaG (Keio rank 31), and 95 others. These annotations provide independent validation of the experimental prioritization — the "dark" genes with strongest fitness effects tend to be genes that are annotated in UniProt but not in the Fitness Browser's annotation vintage.
+
+**5 dark genes carry AMR annotations** from bakta's AMRFinderPlus: mercury resistance transport (MerF in Marinobacter), yersiniabactin transporter (YbtP in *K. oxytoca*), acid resistance protein (Asr in *K. oxytoca*), heat resistance membrane protein (HdeD-GI in *P. stutzeri*), and an S8 family peptidase (PV4).
+
+**Annotation enrichment for still-dark genes**: The 6,427 genes that remain hypothetical in both FB and bakta still gain UniRef50 links (79.4%), UniParc/UniRef100 (69.1%), and RefSeq (62.4%) — providing cross-reference paths for literature mining even without a product description.
+
+**18,019 genes changed darkness tier** when `has_bakta_annotation` was added as a 7th evidence flag, with the largest shifts from T4 Penumbra → T5 Dawn (genes gaining their final missing evidence line).
+
+![Bakta reclassification breakdown](figures/fig33_bakta_reclassification.png)
+![Bakta coverage heatmap](figures/fig34_bakta_coverage_heatmap.png)
+
+*(Notebook: 12_bakta_enrichment.ipynb)*
+
 ## Experimental Recommendations
 
 This section distills the entire analysis into an actionable experimental campaign. Two complementary prioritization routes were developed — one optimized for genes with the strongest existing evidence, the other for maximizing discovery of completely unknown functions — and both converge on a tractable set of organisms.
@@ -804,6 +821,8 @@ This project contributes:
 | `fig37_experiment_plan_heatmap.png` | Per-organism dark gene coverage by conservation tier (top 20 organisms) |
 | `fig38_pangenome_species_distribution.png` | Full pangenome species count distribution (old FB-only vs new), phyla distribution |
 | `fig39_extended_covering_set.png` | Extended covering set comparison: FB-only vs 73-organism pool, marginal coverage, phylum diversity, kingdom-level gap coverage |
+| `fig33_bakta_reclassification.png` | Bakta reclassification: pie chart (annotated/dark/unlinked) and tier comparison (original vs with bakta) |
+| `fig34_bakta_coverage_heatmap.png` | Bakta annotation coverage (%) by FB dark gene class (hypothetical/DUF/uncharacterized/no_annotation) |
 
 ## Future Directions
 
