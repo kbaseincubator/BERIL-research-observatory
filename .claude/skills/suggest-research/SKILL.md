@@ -32,7 +32,7 @@ Build three lists:
 2. `in_progress_ideas` — ideas with Status: IN_PROGRESS
 3. `proposed_ideas` — ideas with Status: PROPOSED (candidates for recommendation)
 
-### Step 2: Read the Knowledge Registry
+### Step 2: Read the Knowledge Graph
 
 Run `uv run scripts/query_knowledge_unified.py browse viking://resources/observatory/knowledge-graph/entities/ --tier L1` to get entity coverage, and `uv run scripts/query_knowledge_unified.py recall "research pitfalls" --store patterns` for known pitfalls to avoid.
 
@@ -44,18 +44,18 @@ Cross-check against `research_ideas.md` entries from Step 1.
 
 ### Step 3: Deep-Read Top-Relevant Projects
 
-From the registry (or README scan), identify the 3-5 projects **most relevant** to emerging recommendation themes. For only those projects:
+From the knowledge graph (or README scan), identify the 3-5 projects **most relevant** to emerging recommendation themes. For only those projects:
 
 1. Read `projects/{id}/REPORT.md`
 2. Extract:
-   - **Key Findings** (the 2-4 headline results) — supplement the registry summary with details
+   - **Key Findings** (the 2-4 headline results) — supplement the OpenViking summary with details
    - **Future Directions** section — these are investigator-suggested follow-ups
    - **Limitations** — gaps the authors identified
    - **Novel Contribution** — what made the project scientifically unique
 3. Note any cross-project patterns: recurring organisms, pathways, themes, or data gaps
-4. Use `references` field from the registry to identify literature themes cited across multiple projects
+4. Use `references` field from OpenViking to identify literature themes cited across multiple projects
 
-For remaining projects, the registry summaries (key_findings, tags, databases_used) provide sufficient context without reading full reports.
+For remaining projects, the OpenViking summaries (key_findings, tags, databases_used) provide sufficient context without reading full reports.
 
 ### Step 4: Read the Discoveries Log
 
@@ -79,7 +79,7 @@ Identify **underexplored collections** — present in BERDL but rarely cited in 
 
 Run: `uv run scripts/query_knowledge_unified.py gaps`
 
-This outputs the deterministic gap analysis covering organisms with sparse coverage,
+This outputs the gap analysis covering organisms with sparse coverage,
 method gaps, untested hypotheses, and unexplored entity pairs.
 Use this output directly in Step 6 under "Entity gaps" and "Untested hypotheses".
 
