@@ -643,6 +643,74 @@ def _rebuild_knowledge_graph(
         shutil.rmtree(staging_dir, ignore_errors=True)
 
 
+def _batch_upload_resources(
+    client: OpenVikingObservatoryClient,
+    manifest: list,
+    resume: bool = True,
+) -> None:
+    """Stage all Phase 1 resources locally, then upload as a single batch.
+
+    This avoids the per-resource lifecycle lock that causes lock pile-up
+    when hundreds of resources are uploaded individually.
+    """
+    to_upload: list = []
+    skipped = 0
+
+    with _make_progress() as progress:
+        task = progress.add_task("Phase 1: Checking resources", total=len(manifest))
+        for item in manifest:
+            if resume and client.resource_exists(item.uri):
+                skipped += 1
+            else:
+                to_upload.append(item)
+            progress.advance(task)
+
+    if not to_upload:
+        console.print(f"  All [dim]{skipped}[/] resources already present — nothing to upload")
+        return
+
+    staging_dir = Path(tempfile.mkdtemp(prefix="ov_phase1_"))
+    try:
+        with _make_progress() as progress:
+            task = progress.add_task("Phase 1: Staging resources", total=len(to_upload))
+            for item in to_upload:
+                source_path = Path(item.source_path)
+                # Build relative path under the resources root
+                rel_uri = item.uri.removeprefix(_ROOT).lstrip("/")
+
+                if item.kind == "figure":
+                    caption = item.metadata.get("caption") or item.metadata.get("title") or source_path.name
+                    content = f"Figure resource for {caption}\nSource artifact: {source_path}\n"
+                else:
+                    content = source_path.read_text(encoding="utf-8")
+
+                _write_file(staging_dir, rel_uri, content, metadata=item.metadata)
+                progress.advance(task)
+
+        file_count = sum(1 for f in staging_dir.rglob("*") if f.is_file())
+        console.print(f"  Staged [bold]{file_count}[/] files, skipped [dim]{skipped}[/] existing")
+
+        with console.status("[bold]Uploading resource batch to OpenViking..."):
+            result = client.client.add_resource(
+                path=str(staging_dir),
+                to=_ROOT,
+                reason="Batch ingest Phase 1 resources",
+                wait=False,
+            )
+
+        meta = result.get("meta", {})
+        processed = len(meta.get("processed_files", []))
+        failed = len(meta.get("failed_files", []))
+        if failed:
+            console.print(f"  Uploaded [green]{processed}[/] files, [red]{failed} failed[/]")
+            for f in meta.get("failed_files", [])[:10]:
+                console.print(f"    [red]✗[/] {f}")
+        else:
+            console.print(f"  Uploaded [green]{processed}[/] files")
+    finally:
+        shutil.rmtree(staging_dir, ignore_errors=True)
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     selected_projects = set(args.project or [])
@@ -688,11 +756,7 @@ def main(argv: list[str] | None = None) -> int:
             console.print("[green]All resources present — nothing to fix.[/]")
             return 0
         console.rule(f"Re-ingesting {len(missing)} missing resources")
-        with _make_progress() as progress:
-            task = progress.add_task("Re-ingesting", total=len(missing))
-            for item in missing:
-                client.add_manifest_resource(item, wait=False)
-                progress.advance(task)
+        _batch_upload_resources(client, missing, resume=False)
         if args.wait:
             with console.status("[bold]Waiting for OpenViking to process..."):
                 try:
@@ -708,18 +772,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.dry_run:
             print(json.dumps([item.to_dict() for item in manifest], indent=2, sort_keys=True))
         else:
-            queued = 0
-            skipped = 0
-            with _make_progress() as progress:
-                task = progress.add_task("Phase 1: Uploading resources", total=len(manifest))
-                for item in manifest:
-                    if args.resume and client.resource_exists(item.uri):
-                        skipped += 1
-                    else:
-                        client.add_manifest_resource(item, wait=False)
-                        queued += 1
-                    progress.advance(task)
-            console.print(f"  Queued [green]{queued}[/], skipped [dim]{skipped}[/] existing")
+            _batch_upload_resources(client, manifest, resume=args.resume)
 
     # Phase 2+3: Knowledge graph extraction
     if args.rebuild_graph or args.graph_only:
