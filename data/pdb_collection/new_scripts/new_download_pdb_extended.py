@@ -45,6 +45,7 @@ TAXONOMY_LIGANDS_QUERY = """{
     polymer_entities {
       rcsb_entity_source_organism {
         ncbi_scientific_name
+        ncbi_taxonomy_id
         taxonomy_lineage { id name depth }
       }
     }
@@ -250,16 +251,14 @@ def download_ligands(pdb_ids, output_path, batch_size=1000):
                 comp = (ne.get("nonpolymer_comp") or {}).get("chem_comp") or {}
                 if not comp.get("id"):
                     continue
-                writer.writerow(
-                    [
-                        pdb_id,
-                        _fmt(comp.get("id")),
-                        _fmt(comp.get("name")),
-                        _fmt(comp.get("type")),
-                        _fmt(comp.get("formula")),
-                        _fmt(comp.get("formula_weight")),
-                    ]
-                )
+                writer.writerow([
+                    pdb_id,
+                    _fmt(comp.get("id")),
+                    _fmt(comp.get("name")),
+                    _fmt(comp.get("type")),
+                    _fmt(comp.get("formula")),
+                    _fmt(comp.get("formula_weight")),
+                ])
                 count += 1
 
     dt = time.time() - t0
@@ -283,21 +282,19 @@ def download_citations(pdb_ids, output_path, batch_size=1000):
                 authors = c.get("rcsb_authors") or []
                 if isinstance(authors, list):
                     authors = "; ".join(str(a) for a in authors)
-                writer.writerow(
-                    [
-                        pdb_id,
-                        _fmt(c.get("id")),
-                        _fmt(c.get("rcsb_is_primary")),
-                        _fmt(c.get("title")),
-                        _fmt(c.get("year")),
-                        _fmt(c.get("journal_abbrev")),
-                        _fmt(c.get("journal_volume")),
-                        _fmt(c.get("page_first")),
-                        _fmt(c.get("pdbx_database_id_DOI")),
-                        _fmt(c.get("pdbx_database_id_PubMed")),
-                        _fmt(authors),
-                    ]
-                )
+                writer.writerow([
+                    pdb_id,
+                    _fmt(c.get("id")),
+                    _fmt(c.get("rcsb_is_primary")),
+                    _fmt(c.get("title")),
+                    _fmt(c.get("year")),
+                    _fmt(c.get("journal_abbrev")),
+                    _fmt(c.get("journal_volume")),
+                    _fmt(c.get("page_first")),
+                    _fmt(c.get("pdbx_database_id_DOI")),
+                    _fmt(c.get("pdbx_database_id_PubMed")),
+                    _fmt(authors),
+                ])
                 count += 1
 
     dt = time.time() - t0
@@ -326,15 +323,13 @@ def download_pfam(output_path):
             parts = line.strip().split("\t")
             if len(parts) < 5:
                 continue
-            writer.writerow(
-                [
-                    parts[0].upper(),  # pdb_id
-                    parts[1],  # chain_id
-                    parts[2],  # uniprot_accession
-                    parts[3],  # pfam_id
-                    parts[4],  # coverage
-                ]
-            )
+            writer.writerow([
+                parts[0].upper(),  # pdb_id
+                parts[1],  # chain_id
+                parts[2],  # uniprot_accession
+                parts[3],  # pfam_id
+                parts[4],  # coverage
+            ])
             count += 1
 
     os.remove(gz_path)
