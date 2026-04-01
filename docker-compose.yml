@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  ui:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:18.3
+    environment:
+      POSTGRES_USER: beril_user       # Must match BERIL_DB_USER in .env
+      POSTGRES_PASSWORD: changeme     # Must match BERIL_DB_PASSWORD in .env
+      POSTGRES_DB: beril              # Must match BERIL_DB_NAME in .env
+    volumes:
+      - pgdata:/var/lib/postgresql/18/docker
+    restart: unless-stopped
+    # Uncomment for local development to allow psql/GUI access from the host.
+    # Do not expose in production.
+    # ports:
+    #   - "5432:5432"
+
+volumes:
+  pgdata:
