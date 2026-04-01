@@ -9,6 +9,24 @@ services:
     restart: unless-stopped
     depends_on:
       - postgres
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./ui/app
+          target: /repo/ui/app
+          initial_sync: true
+        - action: sync+restart
+          path: ./ui/config
+          target: /repo/ui/config
+        - action: rebuild
+          path: ./ui/pyproject.toml
+        - action: rebuild
+          path: ./ui/uv.lock
+        - action: rebuild
+          path: ./Dockerfile
+        - action: rebuild
+          path: ./.env
+
 
   postgres:
     image: postgres:18.3

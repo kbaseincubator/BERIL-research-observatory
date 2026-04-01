@@ -4,7 +4,7 @@ import pytest
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db import session as db_session_module
-from app.db.session import close_db, get_db, init_db
+from app.db.session import check_db, close_db, get_db, init_db
 
 URL = "sqlite+aiosqlite:///:memory:"
 
@@ -117,3 +117,45 @@ class TestGetDb:
             pass
 
         await close_db()
+
+
+class TestCheckDb:
+    async def test_returns_unavailable_when_not_initialized(self):
+        """check_db should report unavailable when engine is None."""
+        db_session_module._engine = None
+        result = await check_db()
+        assert result["status"] == "unavailable"
+        assert "engine not initialized" in result["detail"]
+
+    async def test_returns_ok_when_connected(self):
+        """check_db should return ok and a version string after init."""
+        await init_db(URL)
+        result = await check_db()
+        print(result)
+        assert result["status"] == "ok"
+        assert "version" in result
+        assert result["version"] is not None
+        await close_db()
+
+    async def test_returns_error_on_failed_connection(self):
+        """check_db should return error status if the query fails."""
+        from unittest.mock import AsyncMock, MagicMock
+
+        mock_conn = AsyncMock()
+        mock_conn.execute.side_effect = Exception("connection refused")
+        mock_ctx = MagicMock()
+        mock_ctx.__aenter__ = AsyncMock(return_value=mock_conn)
+        mock_ctx.__aexit__ = AsyncMock(return_value=False)
+
+        mock_engine = MagicMock()
+        mock_engine.connect.return_value = mock_ctx
+
+        original_engine = db_session_module._engine
+        db_session_module._engine = mock_engine
+        try:
+            result = await check_db()
+        finally:
+            db_session_module._engine = original_engine
+
+        assert result["status"] == "error"
+        assert "connection refused" in result["detail"]

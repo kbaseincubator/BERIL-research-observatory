@@ -8,7 +8,7 @@ from datetime import datetime
 
 import app.context as ctx
 from app.context import generate_base_context, get_base_context, get_repo_data, initialize_data
-from app.db.session import init_db, close_db
+from app.db.session import init_db, close_db, check_db
 from app.notebook_processors import PlotlyPreprocessor
 import nbformat
 from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request
@@ -698,4 +698,14 @@ async def health(
     context: dict = Depends(get_base_context),
 ):
     """Health check endpoint."""
-    return {"status": "healthy"} | context
+    db_status = await check_db()
+    status = "healthy"
+    if db_status["status"] != "ok":
+        status = "degraded"
+    return {
+        "status": status,
+        "services": {
+            "database": db_status
+        },
+        "session": context
+    }
