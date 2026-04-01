@@ -6,6 +6,7 @@ Web interface for the Microbial Discovery Forge — an AI co-scientist and resea
 
 - Python 3.11 or higher
 - [uv](https://github.com/astral-sh/uv) package manager
+- PostgreSQL 14 or higher (for the user database)
 
 Install uv if you haven't already:
 
@@ -37,42 +38,66 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ## Configuration
 
-The application uses environment variables with the `BERIL_` prefix. Configure the following variables:
+Copy `.env.example` to `.env` at the repository root and fill in the values. All variables use the `BERIL_` prefix.
 
-### Required Configuration
+### Required
 
-- `BERIL_DATA_REPO_URL`: Git repository URL to clone/pull data from
-  ```bash
-  export BERIL_DATA_REPO_URL="https://github.com/kbaseincubator/BERIL-research-observatory.git"
-  ```
+| Variable | Description |
+|---|---|
+| `BERIL_DB_PASSWORD` | PostgreSQL password — app will not start without this |
+| `BERIL_SESSION_SECRET_KEY` | Signs session cookies — generate with `python -c "import secrets; print(secrets.token_hex(32))"` |
+| `BERIL_ORCID_CLIENT_ID` | ORCiD OAuth2 client ID |
+| `BERIL_ORCID_CLIENT_SECRET` | ORCiD OAuth2 client secret |
 
-### Optional Configuration
+### Database
 
-- `BERIL_DATA_REPO_BRANCH`: Branch to checkout (defaults to `data-cache`)
-  ```bash
-  export BERIL_DATA_REPO_BRANCH="data-cache"
-  ```
+| Variable | Default | Description |
+|---|---|---|
+| `BERIL_DB_HOST` | `localhost` | PostgreSQL host (use service name in Kubernetes/SPIN) |
+| `BERIL_DB_PORT` | `5432` | PostgreSQL port |
+| `BERIL_DB_USER` | `beril_user` | PostgreSQL username |
+| `BERIL_DB_PASSWORD` | *(required)* | PostgreSQL password |
+| `BERIL_DB_NAME` | `beril` | PostgreSQL database name |
 
-- `BERIL_DATA_REPO_PATH`: Local path where git repo will be cloned (defaults to `/tmp/beril-data-cache`)
-  ```bash
-  export BERIL_DATA_REPO_PATH="/tmp/beril-data-cache"
-  ```
+### ORCiD OAuth2
 
-- `BERIL_WEBHOOK_SECRET`: Secret for validating webhook requests from GitHub Actions
-  ```bash
-  # Generate a secure random secret
-  export BERIL_WEBHOOK_SECRET=$(python -c "import secrets; print(secrets.token_hex(32))")
-  ```
+| Variable | Default | Description |
+|---|---|---|
+| `BERIL_ORCID_BASE_URL` | `https://orcid.org` | Use `https://sandbox.orcid.org` for development |
+| `BERIL_ORCID_CLIENT_ID` | — | From ORCiD developer tools |
+| `BERIL_ORCID_CLIENT_SECRET` | — | From ORCiD developer tools |
+| `BERIL_ORCID_REDIRECT_ROOT` | `http://localhost:8000` | Use `127.0.0.1` not `localhost` — ORCiD blocks `localhost` |
+| `BERIL_ORCID_REDIRECT_PATH` | `/auth/orcid/callback` | Callback path |
+
+### Data / Git sync
+
+| Variable | Default | Description |
+|---|---|---|
+| `BERIL_DATA_REPO_URL` | — | Git repository URL to clone/pull data from |
+| `BERIL_DATA_REPO_BRANCH` | `data-cache` | Branch to checkout |
+| `BERIL_DATA_REPO_PATH` | `/tmp/beril_data_cache` | Local clone path |
+| `BERIL_WEBHOOK_SECRET` | — | HMAC secret for validating GitHub webhook requests |
 
 ## Running the Application
 
-Start the development server:
+1. **Set up the database.** The app creates tables automatically on first start using SQLAlchemy's `create_all`. Ensure PostgreSQL is running and `BERIL_DB_PASSWORD` (and other `BERIL_DB_*` vars) are set.
 
-```bash
-uvicorn app.main:app --reload
-```
+   For local development with Docker:
+   ```bash
+   docker run --name pg -e POSTGRES_PASSWORD=mypassword -d -p 5432:5432 postgres:18
+   # Then in psql (connect with: psql -h 127.0.0.1 -U postgres):
+   # CREATE USER beril_user WITH PASSWORD 'mypassword';
+   # CREATE DATABASE beril OWNER beril_user;
+   ```
+
+2. **Start the development server:**
+   ```bash
+   uvicorn app.main:app --reload
+   ```
 
 The UI will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000)
+
+> **Note:** Use `127.0.0.1`, not `localhost` — ORCiD OAuth2 and asyncpg both have issues with `localhost` on some systems.
 
 ## Features
 
@@ -82,6 +107,7 @@ The UI will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000)
 - **Skills**: Browse reusable AI co-scientist skills
 - **Knowledge Base**: Access shared discoveries, pitfalls, performance tips, and research ideas
 - **Community**: Contributor profiles with project and collection linkage
+- **User Accounts**: ORCiD-based login with persistent user profiles and project ownership stored in PostgreSQL
 - **Automatic Updates**: Webhook-based data refresh when repository content changes
 
 ## Data Cache & Webhook Setup
@@ -161,6 +187,10 @@ curl -X POST https://your-app.com/api/webhook/data-update \
 The application uses:
 - **FastAPI**: Web framework
 - **Jinja2**: Template rendering
+- **SQLAlchemy** (async): ORM and database access
+- **asyncpg**: Async PostgreSQL driver
+- **aiosqlite**: In-memory SQLite driver (used in tests only)
+- **Authlib**: ORCiD OAuth2 login
 - **nbconvert**: Jupyter notebook rendering
 - **Whoosh**: Full-text search
 - **Markdown**: Documentation rendering with extensions
@@ -169,6 +199,14 @@ To add new dependencies, update `pyproject.toml` and run:
 
 ```bash
 uv sync
+```
+
+### Running tests
+
+Tests use an in-memory SQLite database and do not require a running PostgreSQL instance:
+
+```bash
+uv run pytest
 ```
 
 ## Docker Deployment
@@ -201,7 +239,7 @@ docker run -p 8000:8000 --env-file .env microbial-discovery-forge
 
 ### Docker Compose
 
-For production deployment with docker-compose (from repository root):
+For deployment with docker-compose (from repository root):
 
 ```yaml
 version: '3.8'
@@ -213,26 +251,58 @@ services:
     env_file:
       - .env
     restart: unless-stopped
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: beril_user
+      POSTGRES_PASSWORD: changeme
+      POSTGRES_DB: beril
+    volumes:
+      - pgdata:/var/lib/postgresql/18/docker
+    restart: unless-stopped
+    # Uncomment for local development to allow psql/GUI access from the host.
+    # Do not expose in production.
+    # ports:
+    #   - "5432:5432"
+
+volumes:
+  pgdata:
 ```
+
+In `.env`, set the following:
+* `BERIL_DB_USER` must match `POSTGRES_USER`
+* `BERIL_DB_PASSWORD` must match `POSTGRES_PASSWORD`
+* `BERIL_DB_NAME` must match `POSTGRES_DB`
+* `BERIL_DB_HOST=postgres` (the service name) rather than `localhost`. This works for both local and production use.
 
 
 ### Building for SPIN:
-```bash
-docker build \
-  -t registry.nersc.gov/kbase/beril-observatory:latest \
-  --platform linux/amd64 \
-  --push \
-  .
-```
-You must be logged in to NERSC to push.
+You must be logged in to push images to the NERSC registry.
 ```bash
 docker login registry.nersc.gov
 ``` 
 Use your NERSC username and password (no MFA)
 
+```bash
+docker build \
+  -t registry.nersc.gov/kbase/beril-observatory:develop \
+  --platform linux/amd64 \
+  --push \
+  .
+```
+
 ### Deploying on SPIN
 * Push a new image
 * Login to SPIN at https://rancher2.nersc.spin.gov
 * Go to Development -> Workflows -> Deployments
-* In the `knowledge-engine` namespace, go to `beril-observatory`
+* In the `knowledge-engine` namespace, go to `beril-develop`
 * Hit the 3 dots menu on the far right, and select redeploy.
+
+### SPIN configuration
+We need a few pieces set up for running this on SPIN at NERSC. SPIN uses Rancher 2 for
+deployment, so if you know that pipeline, this should be familiar. If not, here's a 
+source for some SPIN documentation: https://docs.nersc.gov/services/spin/
+
