@@ -1,4 +1,3 @@
-# Use Python 3.11 slim image
 FROM python:3.11-slim
 
 # Add SPIN user id
