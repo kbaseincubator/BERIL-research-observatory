@@ -187,6 +187,197 @@ If the user chooses append, confirm which tables they want to append to. For any
 note it now — the user can set `"enabled": false` in the per-table config or skip the relevant
 ingest step in the notebook.
 
+### Step 3b: Collect dataset metadata
+
+One YAML metadata file is created per table, stored locally at `<DATA_DIR>/metadata/{table}.yaml`
+and uploaded to MinIO at `{BRONZE_PREFIX}/metadata/{table}.yaml`. The file is uploaded twice:
+before ingest (`status: in_progress`) and after (`status: completed` or `failed`).
+
+**Ensure PyYAML is available:**
+
+```bash
+source .venv-berdl/bin/activate
+python3 -c "import yaml" 2>/dev/null || pip install pyyaml
+```
+
+**Infer `ingested_by`:**
+
+```bash
+git config user.name
+```
+
+If this returns a name, use it as the default. If git is unavailable or returns empty, prompt
+the user for their name.
+
+**Check for existing metadata files (re-ingest warning):**
+
+```bash
+https_proxy=http://127.0.0.1:8123 mc ls "berdl-minio/cdm-lake/{BRONZE_PREFIX}/metadata/" 2>/dev/null | head -5
+```
+
+If any files are listed, warn the user:
+> "Metadata files already exist for this dataset and will be overwritten."
+
+**Ask about source:**
+
+> "Are all tables from the same source (e.g., the same URL or download location), or do some
+> tables come from different sources?"
+
+**(a) Same source for all tables — ask once:**
+
+> "What is the source URL or download location for this dataset?"
+
+Use that value for all table metadata files.
+
+**(b) Mixed sources — generate a temp fill-in file:**
+
+Create `<DATA_DIR>/metadata/_source_input.yaml`. List every table with blank fields, ordered
+by priority so the user fills in the most important ones first:
+
+```yaml
+# Ingest metadata input for {NAMESPACE}
+# 'shared' fields apply to all tables. Per-table fields override the shared value.
+# Fields left blank will not be set in the metadata.
+# Save and close when done, then let the agent know.
+
+shared:
+  ingested_by: "{inferred name or blank}"
+  ingest_contributors: []
+
+tables:
+  {table1}:
+    source: ""
+    description: ""
+    ingested_by: ""      # leave blank to use shared value above
+    ingest_contributors: []
+    version: ""
+  {table2}:
+    source: ""
+    description: ""
+    ingested_by: ""
+    ingest_contributors: []
+    version: ""
+  # ... one entry per table
+```
+
+Tell the user the file path and ask them to fill it in and confirm when done. After
+confirmation, read the file, extract values, and **delete the temp file**:
+
+```bash
+rm "<DATA_DIR>/metadata/_source_input.yaml"
+```
+
+**Generate local metadata files:**
+
+Create `<DATA_DIR>/metadata/` if it does not exist. Run the following script, substituting
+actual values for all `<PLACEHOLDER>` entries:
+
+```bash
+source .venv-berdl/bin/activate
+python3 - <<'PYEOF'
+import uuid, yaml
+from datetime import date, datetime, timezone
+from pathlib import Path
+
+DATA_DIR      = Path("<DATA_DIR>")
+TENANT        = "<TENANT>"
+DATASET       = "<DATASET>"
+BUCKET        = "cdm-lake"
+BRONZE_PREFIX = f"tenant-general-warehouse/{TENANT}/datasets/{DATASET}"
+
+tables        = [<list of table names as Python strings>]
+ingested_by   = "<inferred or provided name>"
+source_shared = "<source if same for all, else None>"
+source_map    = {<table: source pairs from temp file, else empty dict {}>}
+
+sql_files  = sorted(DATA_DIR.glob("*.sql"))
+sql_bronze = (f"s3a://{BUCKET}/{BRONZE_PREFIX}/config/{sql_files[0].name}"
+              if sql_files else None)
+
+now   = datetime.now(timezone.utc).isoformat()
+today = date.today().isoformat()
+
+metadata_dir = DATA_DIR / "metadata"
+metadata_dir.mkdir(exist_ok=True)
+
+for table in tables:
+    source = source_map.get(table) or source_shared or ""
+    meta = {
+        "schema_version":      "0.2.0",
+        "identifier":          str(uuid.uuid4()),
+        "tenant":              TENANT,
+        "dataset":             DATASET,
+        "namespace":           f"{TENANT}_{DATASET}",
+        "table":               table,
+        "title":               table,
+        "source":              source,
+        "date_accessed":       today,
+        "status":              "in_progress",
+        "ingested_by":         ingested_by,
+        "ingest_started_at":   now,
+        "data_schema_location": sql_bronze,
+        "version":             None,
+        "description":         None,
+        "ingest_contributors": [],
+        "ingest_completed_at": None,
+    }
+    out = metadata_dir / f"{table}.yaml"
+    with open(out, "w") as f:
+        yaml.dump(meta, f, default_flow_style=False, allow_unicode=True, sort_keys=False)
+    print(f"  wrote {out.name}")
+PYEOF
+```
+
+**Present required non-auto fields for user confirmation — REQUIRED STOPPING POINT:**
+
+Display the values that need confirmation. For same-source ingests this is one set of values;
+for mixed-source, show a compact per-table table:
+
+```
+Required fields — please confirm or correct:
+  title         : {table}  (one per table — defaults to table name)
+  source        : {source value(s)}
+  ingested_by   : {name}
+  date_accessed : {today}
+```
+
+Ask: **(a) Confirm these values and proceed, or (b) correct specific values.**
+
+If (b): ask which field and table to correct, update the relevant local `.yaml` file, and
+re-present the summary. Repeat until the user explicitly confirms. Do not proceed until
+confirmation is received.
+
+**Optional fields step — REQUIRED STOPPING POINT:**
+
+After confirmation, strongly suggest completing the optional fields:
+
+> "Consider filling in: `description`, `version`, `ingest_contributors`. These improve
+> discoverability and traceability. How would you like to proceed?
+> (a) Let me help you fill them in now
+> (b) Edit the files manually — they are at `<DATA_DIR>/metadata/`
+> (c) Skip for now (you can update them later)"
+
+Wait for the user's explicit choice before continuing.
+
+- **(a)** Prompt for each optional field. For `description` and `version`: ask once if same
+  for all tables, otherwise per-table. For `ingest_contributors`: always shared. Update
+  local `.yaml` files after each answer.
+- **(b)** List all file paths clearly and wait for the user to confirm they are done editing.
+- **(c)** Warn: "Metadata will be uploaded with optional fields blank. You should return to
+  fill these in before the dataset is used in analyses."
+
+**Upload to MinIO (first push — in_progress):**
+
+```bash
+source .venv-berdl/bin/activate
+https_proxy=http://127.0.0.1:8123 mc cp --recursive "<DATA_DIR>/metadata/" \
+    "berdl-minio/cdm-lake/{BRONZE_PREFIX}/metadata/"
+```
+
+Confirm to the user:
+> "Metadata uploaded (first push — **in_progress**) for {N} tables →
+> `s3a://cdm-lake/{BRONZE_PREFIX}/metadata/`"
+
 ### Step 4: Generate, configure, and run the ingest notebook
 
 Copy the reference template into the source directory, named after the dataset:
@@ -294,6 +485,18 @@ Report to the user:
 Confirm row counts match expected line counts. If there is a mismatch, the progress log
 records `start_line`, `end_line`, and `rows_written` per chunk — the user can query the last
 ingested row in Delta and compare against the logged line range to locate the gap.
+
+The notebook's final cell performs the **metadata second push**: it updates each table's
+local `.yaml` with `ingest_completed_at` and `status: completed` (or `failed`), then
+batch-uploads all files to MinIO. Look for the confirmation line in the notebook output:
+
+```
+Metadata second push complete → s3a://cdm-lake/{BRONZE_PREFIX}/metadata/
+```
+
+If any table shows `status: failed` in the output, that table's metadata was updated
+accordingly — re-run the ingest cell for that table, then re-run the metadata cell to
+push a corrected `completed` record.
 
 ## Scripts
 
