@@ -30,8 +30,12 @@ import urllib.error
 
 RCSB_HOLDINGS_URL = "https://data.rcsb.org/rest/v1/holdings/current/entry_ids"
 RCSB_GRAPHQL_URL = "https://data.rcsb.org/graphql"
-SIFTS_PFAM_URL = "https://ftp.ebi.ac.uk/pub/databases/msd/sifts/flatfiles/tsv/pdb_chain_pfam.tsv.gz"
-RCSB_CLUSTERS_URL = "https://cdn.rcsb.org/resources/sequence/clusters/clusters-by-entity-%d.txt"
+SIFTS_PFAM_URL = (
+    "https://ftp.ebi.ac.uk/pub/databases/msd/sifts/flatfiles/tsv/pdb_chain_pfam.tsv.gz"
+)
+RCSB_CLUSTERS_URL = (
+    "https://cdn.rcsb.org/resources/sequence/clusters/clusters-by-entity-%d.txt"
+)
 
 # --- GraphQL queries ---
 
@@ -41,6 +45,7 @@ TAXONOMY_LIGANDS_QUERY = """{
     polymer_entities {
       rcsb_entity_source_organism {
         ncbi_scientific_name
+        ncbi_taxonomy_id
         taxonomy_lineage { id name depth }
       }
     }
@@ -68,13 +73,26 @@ CITATIONS_QUERY = """{
 TAXONOMY_COLUMNS = ["pdb_id", "taxonomy_id", "organism"]
 
 LIGAND_COLUMNS = [
-    "pdb_id", "ligand_id", "ligand_name", "ligand_type",
-    "formula", "formula_weight",
+    "pdb_id",
+    "ligand_id",
+    "ligand_name",
+    "ligand_type",
+    "formula",
+    "formula_weight",
 ]
 
 CITATION_COLUMNS = [
-    "pdb_id", "citation_id", "is_primary", "title", "year",
-    "journal", "volume", "page_first", "doi", "pubmed_id", "authors",
+    "pdb_id",
+    "citation_id",
+    "is_primary",
+    "title",
+    "year",
+    "journal",
+    "volume",
+    "page_first",
+    "doi",
+    "pubmed_id",
+    "authors",
 ]
 
 PFAM_COLUMNS = ["pdb_id", "chain_id", "uniprot_accession", "pfam_id", "coverage"]
@@ -83,6 +101,7 @@ CLUSTER_COLUMNS = ["cluster_id", "pdb_entity_id", "identity_level"]
 
 
 # --- Utility functions ---
+
 
 def fetch_all_pdb_ids():
     """Fetch all current PDB IDs from RCSB holdings API."""
@@ -103,14 +122,17 @@ def batch_graphql(pdb_ids, query_template, batch_size=1000):
     n_batches = (total + batch_size - 1) // batch_size
 
     for i in range(0, total, batch_size):
-        batch = pdb_ids[i:i + batch_size]
+        batch = pdb_ids[i : i + batch_size]
         batch_num = i // batch_size + 1
-        print(f"  Batch {batch_num}/{n_batches} ({len(batch)} IDs)...", end="", flush=True)
+        print(
+            f"  Batch {batch_num}/{n_batches} ({len(batch)} IDs)...", end="", flush=True
+        )
 
         query = query_template % json.dumps(batch)
         data = json.dumps({"query": query}).encode("utf-8")
         req = urllib.request.Request(
-            RCSB_GRAPHQL_URL, data=data,
+            RCSB_GRAPHQL_URL,
+            data=data,
             headers={"Content-Type": "application/json"},
         )
 
@@ -122,7 +144,7 @@ def batch_graphql(pdb_ids, query_template, batch_size=1000):
                 entries = result.get("data", {}).get("entries", [])
                 break
             except (urllib.error.URLError, TimeoutError, OSError) as e:
-                wait = 2 ** attempt
+                wait = 2**attempt
                 print(f" retry {attempt + 1} (wait {wait}s)...", end="", flush=True)
                 time.sleep(wait)
 
@@ -154,12 +176,15 @@ def _should_download(path, force):
         return True
     if os.path.exists(path):
         size = os.path.getsize(path)
-        print(f"  SKIP {os.path.basename(path)} (exists, {size:,} bytes). Use --force to re-download.")
+        print(
+            f"  SKIP {os.path.basename(path)} (exists, {size:,} bytes). Use --force to re-download."
+        )
         return False
     return True
 
 
 # --- Download functions ---
+
 
 def download_taxonomy(pdb_ids, output_path, batch_size=1000):
     """Download taxonomy IDs for all PDB entries."""
@@ -173,25 +198,48 @@ def download_taxonomy(pdb_ids, output_path, batch_size=1000):
 
         for entry in batch_graphql(pdb_ids, TAXONOMY_LIGANDS_QUERY, batch_size):
             pdb_id = entry.get("rcsb_id", "")
-            tax_id = None
-            organism = ""
 
-            for pe in (entry.get("polymer_entities") or []):
-                for org in (pe.get("rcsb_entity_source_organism") or []):
+            wrote = False
+            seen = set()
+
+            # tax_id = None
+            # organism = ""
+
+            for pe in entry.get("polymer_entities") or []:
+                for org in pe.get("rcsb_entity_source_organism") or []:
                     organism = org.get("ncbi_scientific_name") or ""
-                    lineage = org.get("taxonomy_lineage") or []
-                    # depth=0 is the species level
-                    for t in lineage:
-                        if t.get("depth") == 0:
-                            tax_id = t.get("id")
-                            break
-                    if tax_id:
-                        break
-                if tax_id:
-                    break
+                    tax_id = org.get("ncbi_taxonomy_id")
 
-            writer.writerow([pdb_id, _fmt(tax_id), _fmt(organism)])
-            count += 1
+                    if tax_id is None:
+                        lineage = org.get("taxonomy_lineage") or []
+                        if lineage:
+                            leaf = max(lineage, key=lambda t: t.get("depth", -1))
+                            tax_id = leaf.get("id")
+
+                    if tax_id is not None:
+                        key = (pdb_id, tax_id)
+
+                        if key in seen:
+                            continue
+                        seen.add(key)
+
+                        writer.writerow([pdb_id, _fmt(tax_id), _fmt(organism)])
+                        count += 1
+                        wrote = True
+
+            if not wrote:
+                writer.writerow([pdb_id, "", ""])
+
+                # lineage = org.get("taxonomy_lineage") or []
+                # depth=0 is the species level
+                #     for t in lineage:
+                #         if t.get("depth") == 0:
+                #             tax_id = t.get("id")
+                #             break
+                #     if tax_id:
+                #         break
+                # if tax_id:
+                #     break
 
     dt = time.time() - t0
     print(f"  Wrote {count:,} taxonomy rows to {output_path} in {dt:.1f}s")
@@ -210,7 +258,7 @@ def download_ligands(pdb_ids, output_path, batch_size=1000):
 
         for entry in batch_graphql(pdb_ids, TAXONOMY_LIGANDS_QUERY, batch_size):
             pdb_id = entry.get("rcsb_id", "")
-            for ne in (entry.get("nonpolymer_entities") or []):
+            for ne in entry.get("nonpolymer_entities") or []:
                 comp = (ne.get("nonpolymer_comp") or {}).get("chem_comp") or {}
                 if not comp.get("id"):
                     continue
@@ -241,7 +289,7 @@ def download_citations(pdb_ids, output_path, batch_size=1000):
 
         for entry in batch_graphql(pdb_ids, CITATIONS_QUERY, batch_size):
             pdb_id = entry.get("rcsb_id", "")
-            for c in (entry.get("citation") or []):
+            for c in entry.get("citation") or []:
                 authors = c.get("rcsb_authors") or []
                 if isinstance(authors, list):
                     authors = "; ".join(str(a) for a in authors)
@@ -276,8 +324,7 @@ def download_pfam(output_path):
 
     print(f"  Parsing Pfam mapping...")
     count = 0
-    with gzip.open(gz_path, "rt") as fin, \
-         open(output_path, "w", newline="") as fout:
+    with gzip.open(gz_path, "rt") as fin, open(output_path, "w", newline="") as fout:
         writer = csv.writer(fout, delimiter="\t", lineterminator="\n")
         writer.writerow(PFAM_COLUMNS)
 
@@ -288,11 +335,11 @@ def download_pfam(output_path):
             if len(parts) < 5:
                 continue
             writer.writerow([
-                parts[0].upper(),   # pdb_id
-                parts[1],           # chain_id
-                parts[2],           # uniprot_accession
-                parts[3],           # pfam_id
-                parts[4],           # coverage
+                parts[0].upper(),  # pdb_id
+                parts[1],  # chain_id
+                parts[2],  # uniprot_accession
+                parts[3],  # pfam_id
+                parts[4],  # coverage
             ])
             count += 1
 
@@ -363,15 +410,21 @@ def main():
         help="Output directory for TSV files",
     )
     parser.add_argument(
-        "--only", nargs="+",
+        "--only",
+        nargs="+",
         choices=list(DATASETS.keys()),
         help="Only download specific datasets",
     )
     parser.add_argument("--batch-size", type=int, default=1000)
-    parser.add_argument("--sample", type=int, default=0,
-                        help="Only process first N entries (for testing)")
-    parser.add_argument("--force", action="store_true",
-                        help="Re-download even if files exist")
+    parser.add_argument(
+        "--sample",
+        type=int,
+        default=0,
+        help="Only process first N entries (for testing)",
+    )
+    parser.add_argument(
+        "--force", action="store_true", help="Re-download even if files exist"
+    )
     args = parser.parse_args()
 
     os.makedirs(args.output_dir, exist_ok=True)
@@ -384,7 +437,7 @@ def main():
     if needs_ids:
         pdb_ids = fetch_all_pdb_ids()
         if args.sample:
-            pdb_ids = pdb_ids[:args.sample]
+            pdb_ids = pdb_ids[: args.sample]
             print(f"  Sampling first {args.sample} entries")
 
     results = {}
