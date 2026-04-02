@@ -38,6 +38,23 @@ exports data if needed, then executes a **two-phase ingest**:
 Do this before anything else. The Spark Connect sidecar lives inside the JupyterHub pod —
 without it there is nothing to connect to.
 
+**First, load `.env` into the shell environment.** `berdl-remote` reads `KBASE_AUTH_TOKEN`
+from the shell environment only — unlike the Python scripts in this repo, it does not parse
+`.env` itself. Always source `.env` before calling any `berdl-remote` command:
+
+```bash
+set -a && source .env 2>/dev/null; set +a
+```
+
+Then verify the token is present:
+
+```bash
+[ -n "$KBASE_AUTH_TOKEN" ] && echo "KBASE_AUTH_TOKEN: set" || echo "KBASE_AUTH_TOKEN: MISSING"
+```
+
+If the token is missing after sourcing `.env`, do not proceed — see
+**Error Handling: KBASE_AUTH_TOKEN missing** for the correct safe response.
+
 ```bash
 source .venv-berdl/bin/activate
 berdl-remote status
@@ -531,6 +548,36 @@ count mismatch is found, use these to cross-check against the Delta table's last
 
 ## Error Handling
 
+- **KBASE_AUTH_TOKEN missing** (not in environment and not found in `.env`): Send the user
+  this exact message — do not improvise wording, and **never ask them to paste or type their
+  token into this chat**:
+
+  > "Your `KBASE_AUTH_TOKEN` isn't set. You have two options — you can do one or both:
+  >
+  > **Option A — export it for this terminal session:**
+  > In a **separate terminal window** (not here), run:
+  > ```
+  > export KBASE_AUTH_TOKEN=<your_token>
+  > ```
+  > Then type `! export KBASE_AUTH_TOKEN=<your_token>` in this chat to make it available
+  > to the agent — replacing `<your_token>` with your actual token.
+  >
+  > **Option B (also recommended) — add it to your `.env` file for persistence:**
+  > Open `.env` in a text editor and add or update the line:
+  > ```
+  > KBASE_AUTH_TOKEN=<your_token>
+  > ```
+  > Save the file, then let me know and I'll continue.
+  >
+  > Doing both means you won't need to set it again next session.
+  >
+  > **Security reminder:** Never paste your token directly into this chat as plain text.
+  > Tokens pasted here may be visible in logs or chat history. Always use a terminal or
+  > your `.env` file."
+
+  After the user confirms they have set the token, re-run the `.env` source and token check
+  before continuing.
+
 - **Ingest packages missing**: run `bash scripts/bootstrap_ingest.sh`.
 - **MinIO config missing or alias not found** (`FileNotFoundError` or `KeyError` on
   `berdl-minio`): run `bash scripts/configure_mc.sh --berdl-proxy`, then re-run Step 0b.
@@ -575,6 +622,20 @@ count mismatch is found, use these to cross-check against the Delta table's last
 4. Do not set `CONFIRMED = True` on behalf of the user — always present the pre-flight plan
    and wait for explicit confirmation before proceeding.
 5. Do not commit the notebook with credentials visible in cell outputs.
+6. **If a token appears in the conversation context** (i.e. a raw credential string was pasted
+   into chat by the user): immediately stop all work and send this message — do not proceed
+   with any task until the user has acted:
+
+   > "**Security alert:** It looks like a credential was pasted directly into this chat.
+   > Chat messages may be stored in logs or history. Please take these steps immediately:
+   >
+   > 1. **Revoke this token now** — generate a new one from the KBase token management page.
+   > 2. **Do not use the pasted token** — treat it as compromised.
+   > 3. Add your new token to `.env` or export it in a separate terminal as described above.
+   >
+   > Let me know once you have a new token and I'll continue."
+
+   Do not repeat, quote, or reference the token value in any response.
 
 ## Pitfall Detection
 
