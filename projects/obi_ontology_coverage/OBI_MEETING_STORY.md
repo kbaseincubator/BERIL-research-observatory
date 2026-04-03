@@ -95,11 +95,85 @@ strain X was tested by assay Y (OBI) and showed phenotype Z (METPO) for compound
 - Identified a small complete NMDC study (29 biosamples, all workflow types) as a test case for better OBI annotation
 - This BERIL research observatory project: https://github.com/turbomam/BERIL-research-observatory/tree/projects/obi_ontology_coverage
 
-## Issue to Reference
+## Mark's OBI History (for credibility framing)
 
-obi-ontology/obi#1910 — "bodily fluid cell count assay" request that highlights the
-non-biomedical use case tension. Someone wants cell counts that aren't from bodily fluids.
-Same pattern as our DOE workflows that aren't "biomedical."
+You're not an outsider asking for things. You're the 8th ranked contributor:
+- 27 commits, 13 merged PRs, 20 authored issues
+- Built clinical assay terms (PennTURBO era), Illumina sequencer series classes (2024)
+- Alicia Clum asked you to add NovaSeq X and sequencer groupings -- you delivered via PRs #1826, #1828
+- Regular OBI call participant since at least 2023
+- Built assay terms using ChatGPT 5 (referenced in #1910 comment)
+- Chris Mungall filed #1693 about environmental replicates and told the OBI team "Mark may be able to make a call and present on what we are doing in NMDC"
+
+## Key Open Issues to Reference
+
+### obi-ontology/obi#1693 -- Environmental metagenome replicates (THE critical issue)
+https://github.com/obi-ontology/obi/issues/1693
+
+Filed by Chris Mungall (2023-05-04). OBI's replicate role hierarchy was written for human
+subjects and explicitly excludes environmental samples -- even though the
+`participant under investigation role` definition mentions a lake example. Chris proposed
+broadening labels/definitions. Bjoern Peters agreed ("we should change subject/participant
+to material"). You attended an OBI call about it (2023-09-25). **Discussion stalled in
+Nov 2023 with no resolution and no PR.** This is directly blocking NMDC from properly
+describing biological and technical replicates for environmental samples.
+
+### obi-ontology/obi#990 -- Microbiome sequencing design (open 7+ years)
+https://github.com/obi-ontology/obi/issues/990
+
+Requested 2018-12-04. Extensive discussion involving James Overton, Chris Mungall,
+Ramona Walls, Pier Luigi Buttigieg about where microbiome/microbiota terms belong
+(PCO? ENVO? OHMI?). Chris warned about "patching together hierarchies from multiple
+different ontologies." Still open.
+
+### obi-ontology/obi#1910 -- Bodily fluid cell count assay
+https://github.com/obi-ontology/obi/issues/1910
+
+The pattern example: someone wants cell counts not restricted to bodily fluid. James
+tagged you. You responded noting you built these classes with ChatGPT 5. Bjoern proposed
+a general `cell counting assay` parent. James is drafting a PR (discussed 2026-03-16).
+Same tension as DOE workflows that aren't "biomedical."
+
+### obi-ontology/obi#671 -- Sequence assembly (open since 2013!)
+https://github.com/obi-ontology/obi/issues/671
+
+About representing sequence assembly as data vs. data transformation. 13 years unresolved.
+
+### obi-ontology/obi#950 -- Transcriptome assembly
+https://github.com/obi-ontology/obi/issues/950
+
+### obi-ontology/obi#1869 -- Data transformation template migration
+https://github.com/obi-ontology/obi/issues/1869
+
+Only 5 of ~200 data transformation terms are in the template. This is the infrastructure
+gap that makes adding computational workflow terms harder.
+
+### obi-ontology/obi#1056 -- Whole metagenome sequencing assay (SUCCESS)
+https://github.com/obi-ontology/obi/issues/1056
+
+Requested 2019, added 2021. **Proof that this process works** -- if we request
+metagenomics workflow terms, they can get added.
+
+## Other Context from Slack
+
+### Katherine Heal found OBI's plan_specification relevant
+(NMDC Slack, 2024-04-24): Katherine found `IAO:0000591` (software_method) as a sibling
+of `OBI:0000272` (protocol) under `IAO:0000104` (plan_specification). She thought this
+was close to what NMDC needed for Configuration modeling. You invited her to an OBI call.
+
+### Chris on term selection philosophy
+(NMDC Slack, 2024-01-17): "Its better to avoid pick-n-mix, its also better to prioritize
+OBO ontologies" -- endorsing OBI over non-OBO alternatives like BAO.
+
+### BioPortal OBO/OBI confusion
+(BBOP Slack, 2026-03-12): Sierra Moxon found "OBO" appearing as a separate ontology
+alongside OBI on BioPortal (from BERVO mapping work). Chris said "no need to get OBI
+folks any more riled up." You noted you could raise it at the OBI call you're chairing.
+
+### James Overton's IEDB tour
+(BBOP DM, 2026-03-30): You told Chris that James gave you a tour of the IEDB website's
+assay class browser, similar to NMDC's environmental triad browsers. James seemed
+interested in chromatography and mass spec interfaces on the Data Portal.
 
 ## Agenda Doc
 
