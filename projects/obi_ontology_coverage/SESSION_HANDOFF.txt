@@ -74,6 +74,22 @@ The notebook (NB01) has 8 sections:
 
 The notebook needs to be run on BERDL JupyterHub to execute Spark queries.
 
+CORRECTED FINDING (2026-04-03 late session)
+--------------------------------------------
+Initial report said OBI had "zero computational workflow terms." WRONG.
+OBI has:
+- OBI:0001872 "sequence assembly process" (no children)
+- OBI:0001944 "sequence annotation" (no children)
+- OBI:0200187 "sequence analysis data transformation" (2 children)
+- OBI:0002587 "machine learning" (2 children)
+- Plus assembly/annotation algorithm and metadata terms
+
+The real gaps are: read QC, genome binning (MAGs), taxonomic
+classification, and expression quantification. Sequence assembly
+and annotation exist but are generic — no metagenome-specific subclasses.
+
+See OBI_NMDC_WORKFLOW_MAPPING.md for the full corrected mapping.
+
 WHAT REMAINS
 ------------
 - Execute NB01 on JupyterHub and commit with outputs
