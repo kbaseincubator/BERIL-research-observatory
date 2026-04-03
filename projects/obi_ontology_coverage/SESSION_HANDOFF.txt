@@ -1,0 +1,93 @@
+OBI Ontology Coverage in BERDL — Session Handoff
+==================================================
+Date: 2026-04-03
+Author: Mark Andrew Miller (turbomam)
+System: BERDL JupyterHub (KBase BER Data Lakehouse)
+Repo: https://github.com/kbaseincubator/BERIL-research-observatory
+Fork: https://github.com/turbomam/BERIL-research-observatory
+Branch: projects/obi_ontology_coverage
+Issue: https://github.com/kbaseincubator/BERIL-research-observatory/issues/186
+
+WHAT MARK ASKED FOR
+--------------------
+Mark wants to investigate whether the OBI (Ontology for Biomedical
+Investigations) is being well-utilized by NMDC and other LBL/DOE
+projects. He suspects OBI may not even be fully loaded into the BERDL
+data lakehouse. He acknowledged this may not be a natural fit for this
+repo or lakehouse — the same investigation is being pursued in parallel
+on other systems. The goal here is a lightweight exploration to see
+whether BERDL has useful signal.
+
+This is an unusual project for this repo. Most projects here do
+pangenome analysis, fitness browser queries, or metabolic ecology.
+This one is an ontology adoption audit.
+
+WHAT WE FOUND SO FAR (exploratory queries, not yet in notebook outputs)
+-----------------------------------------------------------------------
+1. OBI IS fully loaded in kbase_ontology_source.statements:
+   - 4,422 OBI terms with labels, from obi-base.owl
+   - 6,029 subClassOf triples (full hierarchy)
+   - 2.8M entailed edges in the transitive closure table
+   - This contradicts an earlier hypothesis that OBI was only
+     present as cross-references from other ontologies.
+
+2. OBI is used in NMDC biosamples, but sporadically:
+   - sample collection device → OBI:0003004 (3,018 samples)
+   - sequencing method → OBI_0002003 (2,901 samples)
+   - collection_device → Virus Transport Medium [OBI:0002866] (2,732)
+   - samp_source_mat_cat → environmental swab specimen [OBI:0002613] (1,148)
+   - Formatting is inconsistent: OBI:, OBI_, OBI: (with space)
+
+3. OBI is completely absent from env_triads_flattened, the curated
+   environment annotation table. That table uses ENVO, UBERON,
+   NCBITaxon, FOODON, and PO exclusively.
+
+4. The ontology store contains ~7.2M distinct subjects across many
+   ontologies. OBI (4,422 terms) is mid-sized — smaller than
+   NCBITaxon (2.6M), CHEBI (223K), GO (52K), but comparable to
+   ENVO (4,514).
+
+WHAT HAS BEEN BUILT
+--------------------
+Project scaffolding committed and pushed to fork:
+  projects/obi_ontology_coverage/
+  ├── README.md           — project overview, linked to issue #186
+  ├── RESEARCH_PLAN.md    — hypotheses, query strategy, analysis plan
+  ├── requirements.txt    — pyspark, pandas, matplotlib, seaborn
+  ├── notebooks/
+  │   └── 01_obi_census_and_usage.ipynb  — NOT YET EXECUTED
+  ├── data/               — empty, will hold CSV exports
+  ├── user_data/          — empty
+  └── figures/            — empty, will hold plots
+
+The notebook (NB01) has 8 sections:
+  1. Spark setup
+  2. OBI term census (counts, labels, definitions)
+  3. OBI hierarchy (top-level branches, root classes)
+  4. OBI usage in NMDC biosamples (regex search, format variants)
+  5. Cross-database joins (resolve OBI IDs in NMDC → ontology definitions)
+  5b. Gap analysis (fields that should use OBI but use free text)
+  6. Ontology adoption comparison (OBI vs ENVO vs UBERON vs others)
+  6b. Ontology store size comparison
+  7. Phenotype and other BERDL collections (kbase_phenotype, staging DBs)
+  8. Summary and CSV export
+
+The notebook needs to be run on BERDL JupyterHub to execute Spark queries.
+
+WHAT REMAINS
+------------
+- Execute NB01 on JupyterHub and commit with outputs
+- Depending on results, possibly build NB02 for deeper gap analysis
+  or cross-ontology join patterns
+- Literature review on OBI adoption in DOE/NMDC contexts
+- Synthesize findings into REPORT.md
+- Mark plans to compare findings with results from other systems
+
+GIT/PERMISSIONS NOTE
+--------------------
+Mark does not currently have write access to the kbaseincubator org
+repo. He pushes to his fork (turbomam/BERIL-research-observatory) and
+PRs from there. He has requested write access via Slack (Paramvir Dehal
+or Bill Riehl can grant it). His GitHub token also lacks issue-creation
+permissions on the upstream repo — issue #186 was created manually
+through the browser.
