@@ -182,6 +182,58 @@ enums:
         description: Size-based separation using membrane filters.
       other:
 
+  PhenotypeCategoryEnum:
+    description: >-
+      Broad categories of microbial phenotype, corresponding to the
+      major sections of culture characterization databases like BacDive.
+    permissible_values:
+      morphology:
+        description: Cell or colony shape, size, color, texture.
+        aliases:
+          - cell morphology
+          - colony morphology
+      metabolite_utilization:
+        description: Ability to use a compound as carbon/energy source.
+        aliases:
+          - carbon source utilization
+          - substrate utilization
+      enzyme_activity:
+        description: Presence or activity of a specific enzyme.
+        aliases:
+          - enzymatic activity
+      antibiotic_resistance:
+        description: Resistance or sensitivity to an antibiotic.
+        aliases:
+          - antimicrobial susceptibility
+          - AMR
+      oxygen_relationship:
+        description: Aerobic, anaerobic, facultative, microaerophilic.
+        aliases:
+          - oxygen tolerance
+      motility:
+        description: Ability to move independently.
+      sporulation:
+        description: Ability to form endospores or other resting structures.
+      gram_stain:
+        description: Gram-positive or Gram-negative cell wall type.
+      temperature_tolerance:
+        description: Growth temperature range classification.
+      pH_tolerance:
+        description: Growth pH range.
+      salinity_tolerance:
+        description: Growth salinity range.
+        aliases:
+          - halotolerance
+      pigmentation:
+        description: Production of pigments or color.
+      biofilm_formation:
+        description: Ability to form biofilms.
+      pathogenicity:
+        description: Ability to cause disease in a host.
+      nitrogen_fixation:
+        description: Ability to fix atmospheric nitrogen.
+      other:
+
   EnvironmentTypeEnum:
     description: Broad categories of environment from which samples originate.
     permissible_values:
@@ -500,7 +552,10 @@ classes:
     is_a: InformationalEntity
     description: >-
       An observable characteristic or trait of an organism resulting from
-      the interaction of genotype and environment.
+      the interaction of genotype and environment. Structured to support
+      the OBI+CHEBI+PATO decomposition pattern: a phenotype is the result
+      of an assay (OBI) measuring a quality (PATO) of a substance (CHEBI)
+      or function (GO).
     aliases:
       - trait
       - observable characteristic
@@ -510,6 +565,13 @@ classes:
       - phenotype_description
       - phenotype_value
       - measurement_method
+      - quality_term
+      - quality_term_source
+      - assayed_entity_term
+      - assayed_entity_term_source
+      - assay_term
+      - assay_term_source
+      - phenotype_category
     exact_mappings:
       - NCIT:C16977    # Phenotype — "assemblage of traits or outward appearance"
       - EFO:0000651    # phenotype — "observable form taken by some character"
@@ -1209,10 +1271,63 @@ slots:
     range: string
     description: >-
       Measured or categorical value for this phenotype
-      (e.g. "resistant", "12.5 mm zone of inhibition").
+      (e.g. "resistant", "12.5 mm zone of inhibition", "+", "-").
 
   measurement_method:
     range: string
     description: >-
       Method used to assess the phenotype (e.g. disk diffusion,
-      MIC assay, growth curve).
+      MIC assay, growth curve, API 20E strip).
+
+  # --- Phenotype: OBI+CHEBI+PATO decomposition ---
+  # These slots enable structured representation of phenotypes
+  # following the pattern: quality (PATO) of entity (CHEBI/GO)
+  # measured by assay (OBI).
+  # Example: "lactose utilization positive by API 20E" becomes:
+  #   quality_term: PATO:0000467 (present)
+  #   assayed_entity_term: CHEBI:17716 (lactose)
+  #   assay_term: OBI:... (carbohydrate utilization assay)
+  #   phenotype_value: "positive"
+  #   phenotype_category: metabolite_utilization
+
+  quality_term:
+    range: uriorcurie
+    description: >-
+      Ontology term for the quality or disposition being observed
+      (e.g. PATO:0000467 "present", PATO:0000462 "absent",
+      PATO:0001997 "resistant to", PATO:0001178 "increased amount").
+
+  quality_term_source:
+    range: string
+    description: >-
+      Source ontology for the quality term (e.g. PATO, OMP).
+
+  assayed_entity_term:
+    range: uriorcurie
+    description: >-
+      Ontology term for the substance, function, or structure being
+      assayed (e.g. CHEBI:17716 "lactose", GO:0009399 "nitrogen
+      fixation", CHEBI:33281 "antimicrobial agent").
+
+  assayed_entity_term_source:
+    range: string
+    description: >-
+      Source ontology for the assayed entity (e.g. CHEBI, GO, EC).
+
+  assay_term:
+    range: uriorcurie
+    description: >-
+      Ontology term for the assay or measurement method
+      (e.g. OBI:0000916 "flow cytometry assay",
+      OBI:0000070 "assay", OBI:0002763 "Biolog assay").
+
+  assay_term_source:
+    range: string
+    description: >-
+      Source ontology for the assay term (e.g. OBI, BAO, MMO).
+
+  phenotype_category:
+    range: PhenotypeCategoryEnum
+    description: >-
+      Broad category of microbial phenotype, aligning with
+      major sections of culture characterization databases.
