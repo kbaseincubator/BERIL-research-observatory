@@ -1,0 +1,1218 @@
+id: https://w3id.org/nmdc/isolates
+name: entities-for-isolates
+title: Entities for Isolates
+description: >-
+  Draft schema for isolate workflow entities, based on Alicia Clum's
+  whiteboard diagram (2026-04-01). Models the path from environmental
+  community through isolation, culturing, treatment, and analysis.
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  isolates: https://w3id.org/nmdc/isolates/
+  schema: http://schema.org/
+  OBI: http://purl.obolibrary.org/obo/OBI_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  ENVO: http://purl.obolibrary.org/obo/ENVO_
+  PATO: http://purl.obolibrary.org/obo/PATO_
+  UO: http://purl.obolibrary.org/obo/UO_
+  IAO: http://purl.obolibrary.org/obo/IAO_
+  CL: http://purl.obolibrary.org/obo/CL_
+  UBERON: http://purl.obolibrary.org/obo/UBERON_
+  SO: http://purl.obolibrary.org/obo/SO_
+  PCO: http://purl.obolibrary.org/obo/PCO_
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  EFO: http://www.ebi.ac.uk/efo/EFO_
+  GENO: http://purl.obolibrary.org/obo/GENO_
+  COB: http://purl.obolibrary.org/obo/COB_
+  GAZ: http://purl.obolibrary.org/obo/GAZ_
+  CHMO: http://purl.obolibrary.org/obo/CHMO_
+  SIO: http://semanticscience.org/resource/SIO_
+  AGRO: http://purl.obolibrary.org/obo/AGRO_
+  OGMS: http://purl.obolibrary.org/obo/OGMS_
+  BFO: http://purl.obolibrary.org/obo/BFO_
+  SNOMED: http://snomed.info/id/
+  nmdc: https://w3id.org/nmdc/
+
+imports:
+  - linkml:types
+
+default_range: string
+
+
+enums:
+
+  TaxonomicRankEnum:
+    description: Standard taxonomic ranks.
+    permissible_values:
+      domain:
+        description: Highest rank (Bacteria, Archaea, Eukarya).
+      phylum:
+      class:
+        description: Taxonomic class (not to be confused with schema class).
+      order:
+      family:
+      genus:
+      species:
+      subspecies:
+      strain:
+        description: Below subspecies; a cultivated lineage.
+
+  AnalyteTypeEnum:
+    description: Categories of substances extracted for analysis.
+    permissible_values:
+      DNA:
+        aliases:
+          - genomic DNA
+          - gDNA
+      RNA:
+        aliases:
+          - total RNA
+          - mRNA
+      protein:
+        aliases:
+          - proteome
+      metabolite:
+        aliases:
+          - small molecule
+      lipid:
+      carbohydrate:
+      whole_cell:
+        description: Intact cells used directly as analyte (e.g. flow cytometry).
+        aliases:
+          - intact cells
+
+  TreatmentTypeEnum:
+    description: Categories of experimental interventions applied to samples.
+    permissible_values:
+      chemical_exposure:
+        description: Exposure to a chemical compound (antibiotic, toxin, nutrient).
+        aliases:
+          - chemical treatment
+      temperature_shift:
+        description: Change in growth temperature.
+      pH_adjustment:
+        description: Modification of medium pH.
+      nutrient_limitation:
+        description: Restriction of one or more nutrients.
+        aliases:
+          - starvation
+      gene_knockout:
+        description: Targeted gene deletion or disruption.
+        aliases:
+          - KO
+          - deletion mutant
+      gene_overexpression:
+        description: Induced overexpression of a target gene.
+      irradiation:
+        description: Exposure to UV, gamma, or other radiation.
+      co_culture:
+        description: Co-cultivation with another organism.
+      other:
+
+  ColonyMorphologyEnum:
+    description: Visual morphology of a microbial colony on solid media.
+    permissible_values:
+      circular:
+      irregular:
+      filamentous:
+      rhizoid:
+      punctiform:
+        description: Very small, dot-like colony.
+      spindle:
+      smooth:
+        description: Smooth (entire) margin.
+        aliases:
+          - entire
+      undulate:
+      lobate:
+      mucoid:
+        description: Wet, glistening, slimy appearance.
+      rough:
+        description: Dry, wrinkled surface texture.
+      other:
+
+  GrowthMediumEnum:
+    description: Common microbiological growth media.
+    permissible_values:
+      LB:
+        description: Lysogeny broth (Luria-Bertani).
+        aliases:
+          - Luria broth
+      TSA:
+        description: Tryptic soy agar.
+      R2A:
+        description: Reasoner's 2A agar, used for oligotrophic organisms.
+      PDA:
+        description: Potato dextrose agar, common for fungi.
+      MRS:
+        description: De Man, Rogosa, Sharpe agar for lactobacilli.
+      BHI:
+        description: Brain heart infusion.
+      minimal_medium:
+        description: Defined minimal medium (e.g. M9).
+        aliases:
+          - M9
+          - defined medium
+      blood_agar:
+      custom:
+        description: Lab-specific or project-specific formulation.
+      other:
+
+  IsolationMethodEnum:
+    description: Methods used to obtain a pure isolate from a community.
+    permissible_values:
+      streak_plate:
+        description: Serial streaking on solid media for single colonies.
+        aliases:
+          - streak plating
+      dilution_plating:
+        description: Serial dilution followed by plating.
+        aliases:
+          - serial dilution
+      enrichment_culture:
+        description: Selective enrichment in liquid media before plating.
+      single_cell_sorting:
+        description: FACS or microfluidic isolation of individual cells.
+        aliases:
+          - FACS
+          - flow sorting
+      micromanipulation:
+        description: Physical picking of single cells under a microscope.
+      filtration:
+        description: Size-based separation using membrane filters.
+      other:
+
+  EnvironmentTypeEnum:
+    description: Broad categories of environment from which samples originate.
+    permissible_values:
+      soil:
+      freshwater:
+        aliases:
+          - lake
+          - river
+          - stream
+      marine:
+        aliases:
+          - ocean
+          - seawater
+      sediment:
+      rhizosphere:
+        description: Zone of soil surrounding plant roots.
+      phyllosphere:
+        description: Aerial surface of plants.
+      gut:
+        aliases:
+          - intestinal
+          - GI tract
+      skin:
+      oral:
+      built_environment:
+        aliases:
+          - indoor
+      subsurface:
+        description: Deep terrestrial or aquatic subsurface.
+      hot_spring:
+        aliases:
+          - thermal spring
+          - geothermal
+      hypersaline:
+        aliases:
+          - salt lake
+          - brine
+      other:
+
+
+classes:
+
+  NamedThing:
+    description: >-
+      Root class for all entities in the isolates schema. Provides
+      universal identifier, name, and description slots.
+    abstract: true
+    slots:
+      - id
+      - name
+      - description
+      - aliases
+
+  # --- Biological Entities ---
+
+  BiologicalEntity:
+    is_a: NamedThing
+    abstract: true
+    description: >-
+      An entity of biological origin, including organisms, their parts,
+      and their genetic elements.
+    aliases:
+      - biological material
+      - living thing
+
+  Organism:
+    is_a: BiologicalEntity
+    description: >-
+      A living individual capable of growth and reproduction. In the
+      isolate workflow, this is typically a microbial organism from which
+      strains are derived.
+    aliases:
+      - individual
+      - microbe
+    slots:
+      - has_taxon
+      - has_genotype
+      - has_phenotype
+      - contains_plasmid
+    class_uri: OBI:0100026
+    exact_mappings:
+      - NCIT:C14250    # Organism — "A living entity"
+      - COB:0000022    # organism — "material entity... develops from a program encoded in a genome"
+    close_mappings:
+      - CARO:0001010   # organism — "Material anatomical entity that is a member of an individual species"
+      - SIO:010000     # organism — "biological entity... capable of genomic replication"
+      - SNOMED:410607006  # Organism (organism)
+    narrow_mappings:
+      - OPMI:0000421   # cellular organism — "self-replicating organic structure"
+      - UBERON:0000468  # multicellular organism
+      - SNOMED:386126001  # Microbial isolate (substance)
+
+  Strain:
+    is_a: Organism
+    description: >-
+      A genetic variant or subtype of a microbial organism, typically
+      maintained as a pure culture in a culture collection. Inherits
+      taxon, genotype, and phenotype from Organism.
+    aliases:
+      - culture
+      - isolate
+      - microbial strain
+    slots:
+      - derived_from_organism
+      - strain_identifier
+      - culture_collection
+      - isolation_method
+      - growth_medium
+      - optimal_growth_temperature
+      - isolation_date
+    exact_mappings:
+      - EFO:0005135    # strain — "population... geneticaly different... possessing defined characteristics"
+      - NCIT:C14419    # Organism Strain — "genetically different from others of same species"
+      - SIO:010055     # strain — "genetic variant or kind of microorganism"
+    close_mappings:
+      - ARO:3004531    # strain — "Specific strain of bacteria"
+      - SNOMED:260946009  # Microbiological strain (attribute)
+      - TAXRANK:0001001   # strain (taxonomic rank)
+    broad_mappings:
+      - OBI:0001185    # selectively maintained organism — "bred to have uniform characteristics"
+      - SNOMED:119303007  # Microbial isolate specimen (specimen)
+
+  Taxon:
+    is_a: NamedThing
+    description: >-
+      A taxonomic classification (e.g. species, genus) assigned to an
+      organism, following the NCBI Taxonomy or equivalent nomenclature.
+    aliases:
+      - taxonomic group
+      - species
+      - taxonomic classification
+    slots:
+      - rank
+      - ncbi_taxon_id
+      - parent_taxon
+    class_uri: NCBITaxon:1
+    exact_mappings:
+      - NCIT:C40098    # Taxon — "Ranked categories for classification of organisms"
+      - EDAM:data_1868  # Taxon
+      - schema:Taxon    # schema.org Taxon — "natural cohesive biological unit"
+    close_mappings:
+      - PCO:0000059    # taxon as collection of organisms
+      - PCO:0000017    # species as a collection of organisms
+    broad_mappings:
+      - EDAM:data_1872  # Taxonomic classification — name components correspond to levels in hierarchy
+
+  Cell:
+    is_a: BiologicalEntity
+    description: >-
+      An individual biological cell, the fundamental unit of life.
+      May be prokaryotic or eukaryotic.
+    aliases:
+      - single cell
+    exact_mappings:
+      - CL:0000000     # cell — "material entity... represents all cells"
+      - NCIT:C12508    # Cell — "smallest units of living structure capable of independent existence"
+    close_mappings:
+      - CARO:0000013   # cell — "maximally connected cell compartment surrounded by plasma membrane"
+      - SIO:010001     # cell (SIO)
+    narrow_mappings:
+      - CL:0000520     # prokaryotic cell
+      - CL:0000255     # eukaryotic cell
+      - NCIT:C178226   # Single Cell Specimen
+
+  Community:
+    is_a: BiologicalEntity
+    description: >-
+      A multi-species assemblage of microorganisms coexisting in an
+      environment. Typically the starting material from which isolates
+      are obtained. Distinct from Population, which refers to a
+      single-species group.
+    aliases:
+      - microbial community
+      - consortia
+      - microbiome
+      - assemblage
+    slots:
+      - has_members
+      - collected_from
+      - community_type
+      - diversity_index
+    exact_mappings:
+      - PCO:1000004    # microbial community — "composed of co-existing populations of microbial organisms"
+    close_mappings:
+      - NCIT:C68564    # Microbiome — "collection of microorganisms"
+      - EFO:0004982    # microbiome — "collection of microorganisms"
+      - OHMI:0000003   # microbiome — "biome consisting of microorganisms and surrounding environment"
+    broad_mappings:
+      - APOLLO_SV:00000094  # community — "two or more distinct populations part of same biotic ecosystem"
+      - IDO:0000515    # Microbiome — "organism population in non-parasitic symbiosis with host"
+
+  Colony:
+    is_a: BiologicalEntity
+    description: >-
+      A visible, clonal group of cells on solid media, derived from
+      a single progenitor cell during the isolation process.
+    aliases:
+      - microbial colony
+    slots:
+      - composed_of_strain
+      - colony_morphology
+      - derived_from_community
+      - growth_medium
+      - colony_count
+      - colony_color
+    exact_mappings:
+      - NCIT:C61515    # Colony — "group of cells or organisms grown from a single progenitor"
+    close_mappings:
+      - IDO:0000615    # colony — "organism population persisting in a site it has colonized"
+      - ECO:0007077    # colony morphology phenotypic evidence
+    related_mappings:
+      - UO:0000212     # colony forming unit per volume (unit, not entity)
+      - UO:0000213     # colony forming unit per milliliter
+
+  Population:
+    is_a: BiologicalEntity
+    description: >-
+      A group of organisms of the same species observed or collected
+      together, which may show phenotypic or genotypic variation.
+      Distinct from Community, which refers to a multi-species
+      assemblage.
+    aliases:
+      - population sample
+      - subpopulation
+    slots:
+      - has_members
+      - population_size
+    exact_mappings:
+      - PCO:0000001    # population of organisms — "collection of organisms, all of same species, in same place"
+      - OBI:0000181    # population — "collection of individuals from same taxonomic class"
+    close_mappings:
+      - SIO:001061     # population — "all organisms that belong to same group and live in same area"
+      - NCIT:C17005    # Population Group
+
+  Tissue:
+    is_a: BiologicalEntity
+    description: >-
+      An organized collection of cells forming a structural and
+      functional unit within a multicellular organism.
+    aliases:
+      - biological tissue
+    slots:
+      - part_of_organism
+      - tissue_type
+    exact_mappings:
+      - UBERON:0000479  # tissue — "many cells of one or a few types, arranged in extracellular matrix"
+      - NCIT:C12801    # Tissue — "similarly specialized cells and intercellular matrix"
+    close_mappings:
+      - CARO:0000043   # tissue (CARO)
+    broad_mappings:
+      - OBI:0001479    # tissue specimen — "derives from an anatomical part"
+      - NCIT:C19697    # Tissue Sample — "piece of tissue removed from an organism"
+
+  Plasmid:
+    is_a: BiologicalEntity
+    description: >-
+      An extrachromosomal, self-replicating genetic element. Commonly
+      found in bacteria and used in genetic engineering.
+    aliases:
+      - extrachromosomal element
+      - vector
+      - episome
+    slots:
+      - plasmid_name
+      - plasmid_size_kb
+      - has_selectable_marker
+      - replicon_type
+    exact_mappings:
+      - SO:0000155     # plasmid (Sequence Ontology)
+      - NCIT:C754      # Plasmid — "ring of DNA... capable of autonomous replication"
+      - OBI:0000430    # plasmid — "DNA and has_quality circular"
+    close_mappings:
+      - OPMI:0000624   # plasmid — "mobile genetic element... circular extrachromosomal DNA"
+      - SO:0000768     # episome — "plasmid that may integrate with a chromosome"
+      - GENO:0000494   # extrachromosomal replicon
+    broad_mappings:
+      - SO:0001038     # extrachromosomal_mobile_genetic_element
+      - OBI:0000737    # cloning vector
+      - NCIT:C1329     # Cloning Vector
+
+  # --- Informational Entities ---
+
+  InformationalEntity:
+    is_a: NamedThing
+    abstract: true
+    description: >-
+      An entity that represents information about or characterization
+      of a biological entity, rather than a physical thing.
+    aliases:
+      - data entity
+      - characterization
+    exact_mappings:
+      - IAO:0000030    # information content entity
+
+  Genotype:
+    is_a: InformationalEntity
+    description: >-
+      The genetic constitution of an organism or strain, including known
+      mutations, markers, and allelic variants.
+    aliases:
+      - genetic makeup
+      - allelic profile
+    slots:
+      - genotype_description
+      - has_mutations
+      - reference_genome
+    exact_mappings:
+      - GENO:0000536   # genotype (GENO) — authoritative genotype ontology
+      - NCIT:C16631    # Genotype — "genetic constitution... as distinct from expressed features"
+      - EFO:0000513    # genotype — "information about genetic content"
+    close_mappings:
+      - SIO:001079     # genotype — "functional specification in terms of genetic composition"
+      - EDAM:topic_0625  # Genotype and phenotype
+
+  Phenotype:
+    is_a: InformationalEntity
+    description: >-
+      An observable characteristic or trait of an organism resulting from
+      the interaction of genotype and environment.
+    aliases:
+      - trait
+      - observable characteristic
+      - phenotypic feature
+    class_uri: PATO:0000001
+    slots:
+      - phenotype_description
+      - phenotype_value
+      - measurement_method
+    exact_mappings:
+      - NCIT:C16977    # Phenotype — "assemblage of traits or outward appearance"
+      - EFO:0000651    # phenotype — "observable form taken by some character"
+      - OGMS:0000023   # phenotype — "quality of an organism determined by genetic make-up and environment"
+    close_mappings:
+      - SIO:010056     # phenotype — "observable characteristic of an individual organism"
+      - UPHENO:0001002  # phenotypic effect
+    broad_mappings:
+      - NCIT:C85496    # Trait — "any genetically determined characteristic"
+      - APO:0000017    # observable — "features of fungal cells, cultures, or colonies that can be detected"
+
+  # --- Material Entities ---
+
+  MaterialEntity:
+    is_a: NamedThing
+    abstract: true
+    description: >-
+      A physical material that can be collected, stored, processed,
+      or consumed in an experiment.
+    aliases:
+      - material
+      - physical entity
+    exact_mappings:
+      - BFO:0000040    # material entity
+
+  Sample:
+    is_a: MaterialEntity
+    description: >-
+      A collected specimen of biological material, prior to any
+      experimental treatment. The fundamental unit of material
+      tracked through the isolate workflow.
+    aliases:
+      - specimen
+      - biosample
+      - biological sample
+    slots:
+      - collected_from
+      - derived_from_organism
+      - derived_from_community
+      - has_taxon
+      - collection_date
+      - storage_conditions
+      - sample_volume
+      - sample_mass
+    exact_mappings:
+      - OBI:0100051    # specimen — "material entity collected for potential use as input for measurements"
+      - OBI:0000747    # material sample — "material entity with material sample role"
+      - NCIT:C19157    # Specimen — "part of a thing taken to determine character of the whole"
+    close_mappings:
+      - NCIT:C43412    # Biosample — "products of treatments that are of interest"
+      - NCIT:C70699    # Biospecimen
+      - SIO:010412     # specimen — "portion of material for use in testing"
+    broad_mappings:
+      - BFO:0000040    # material entity
+
+  TreatedSample:
+    is_a: Sample
+    description: >-
+      A sample that has undergone one or more experimental treatments
+      or preparation steps, altering it from its original state.
+    aliases:
+      - experimental sample
+      - treated specimen
+    slots:
+      - result_of_treatment
+      - processed_by
+      - treatment_duration
+      - treatment_notes
+    exact_mappings:
+      - OBI:0000953    # processed specimen — "specimen that has been intentionally physically modified"
+    close_mappings:
+      - CHMO:0002746   # experimental sample — "portion of material that is the subject of an experiment"
+    broad_mappings:
+      - OBI:0000747    # material sample
+      - NCIT:C70699    # Biospecimen
+
+  Analyte:
+    is_a: MaterialEntity
+    description: >-
+      A substance (e.g. DNA, protein, metabolite) extracted or derived
+      from a sample for downstream measurement or analysis.
+    aliases:
+      - target substance
+      - assay input
+    slots:
+      - extracted_from
+      - analyte_type
+      - concentration
+      - concentration_unit
+      - purity
+      - extraction_method
+    exact_mappings:
+      - NCIT:C128639   # Analyte — "sample or material being subjected to analysis"
+      - CHMO:0002467   # analyte — "component of a system to be analysed"
+      - SIO:001378     # analyte — "substance of interest in an analytical procedure"
+    close_mappings:
+      - OBI:0000275    # analyte role — "measurand role borne by molecular entity"
+      - CAO:000064     # Analyte — "chemical substance being investigated"
+    related_mappings:
+      - NCIT:C156434   # Analyte Type
+
+  # --- Process Entities ---
+
+  ProcessEntity:
+    is_a: NamedThing
+    abstract: true
+    description: >-
+      An activity or procedure that transforms inputs to outputs.
+      Processes consume material entities and may produce new ones.
+    aliases:
+      - activity
+      - procedure
+      - workflow step
+    exact_mappings:
+      - BFO:0000015    # process
+    slots:
+      - has_input
+      - has_output
+      - start_date
+      - end_date
+      - performed_by
+      - protocol_reference
+
+  InstrumentPrepProcessing:
+    is_a: ProcessEntity
+    description: >-
+      A sample preparation or instrument-based processing step such as
+      DNA extraction, library preparation, or a sequencing run.
+    aliases:
+      - library prep
+      - instrument processing
+      - lab processing
+    slots:
+      - uses_instrument
+      - instrument_model
+      - processing_method
+    exact_mappings:
+      - OBI:0000094    # material processing — "planned material process resulting in physical changes"
+    close_mappings:
+      - NCIT:C41604    # Specimen Processing — "preparing a sample for storage, preservation, or analysis"
+      - COB:0000110    # material processing — "completely executed planned process"
+      - OBI:0000073    # sample preparation for assay
+      - SNOMED:9265001  # Specimen processing
+    narrow_mappings:
+      - OBI:0000711    # library preparation — "creation of library from fragments of DNA"
+      - OBI:0666667    # nucleic acid extraction — "material separation to recover nucleic acid fraction"
+      - OBI:0001902    # sample preparation for sequencing assay
+
+  ExperimentalTreatment:
+    is_a: ProcessEntity
+    description: >-
+      An intervention applied to a sample, such as antibiotic exposure,
+      growth condition change, or gene knockout, intended to produce a
+      measurable biological response.
+    aliases:
+      - treatment
+      - intervention
+      - perturbation
+      - experimental condition
+    slots:
+      - treatment_type
+      - applied_to_sample
+      - treatment_concentration
+      - treatment_concentration_unit
+      - treatment_temperature
+      - treatment_duration
+    exact_mappings:
+      - EFO:0000727    # treatment — "planned process intended to modify a condition or characteristic"
+      - AGRO:00000322  # treatment — "process during which material is applied to a subject"
+    close_mappings:
+      - ERO:0000347    # intervention — "planned process to influence factors in a research study"
+      - OGMS:0000090   # treatment — "planned process... to eliminate, prevent, or alleviate a disorder"
+      - NCIT:C25218    # Clinical Intervention or Procedure
+    broad_mappings:
+      - BCIO:037000    # intervention — "planned process with aim of influencing an outcome"
+      - STATO:0000265  # factor level — "value assumed by an independent variable"
+
+  # --- Other ---
+
+  Site:
+    is_a: NamedThing
+    description: >-
+      A geographic or environmental location from which samples are
+      collected. May represent a field site, lab, or collection point.
+    aliases:
+      - sampling site
+      - collection site
+      - location
+      - field site
+    slots:
+      - latitude
+      - longitude
+      - elevation
+      - environment_type
+      - habitat_description
+      - geographic_name
+      - geo_loc_name
+    exact_mappings:
+      - BFO:0000029    # site (BFO) — spatial region
+      - GAZ:00000448   # geographic location — "reference to a place on the Earth"
+    close_mappings:
+      - EFO:0000688    # sampling site — "site from which a sample is extracted"
+      - ENVO:00000000  # geographic feature — "astronomical body part delimited by physical discontinuities"
+      - NCIT:C80403    # Study Site — "facility in which study activities are conducted"
+    related_mappings:
+      - GENEPIO:0002076  # specimen collection site - geographic feature
+      - EDAM:data_3720   # Geographic location — "localisation of the isolation of biological material"
+
+  Command:
+    is_a: NamedThing
+    description: >-
+      A directive or protocol step that initiates or controls one or
+      more processes in the isolate workflow. May represent a lab
+      protocol instruction or a computational analysis command.
+    aliases:
+      - protocol step
+      - directive
+      - instruction
+    slots:
+      - directs_process
+      - command_string
+      - command_category
+    exact_mappings:
+      - IAO:0000007    # action specification — "directive information entity describing an action"
+    close_mappings:
+      - IAO:0000104    # plan specification — "directive... with action and objective specifications"
+      - OBI:0000272    # protocol — "plan specification with sufficient detail to communicate between agents"
+      - IAO:0000033    # directive information entity — "concretizations indicate how to realize them"
+    broad_mappings:
+      - NCIT:C42651    # Protocol — "rule which guides how an activity should be performed"
+      - SIO:000091     # action specification — "sequence of instructions to achieve some objective"
+
+
+slots:
+
+  id:
+    identifier: true
+    range: uriorcurie
+    required: true
+    description: A unique identifier for this entity.
+
+  name:
+    range: string
+    description: A human-readable name or label for this entity.
+    aliases:
+      - label
+      - title
+
+  description:
+    range: string
+    description: A free-text description providing additional context.
+    aliases:
+      - comment
+      - note
+
+  aliases:
+    range: string
+    multivalued: true
+    description: Alternative names or synonyms for this entity.
+    aliases:
+      - synonyms
+      - alternative names
+
+  # --- Organism relationships ---
+
+  has_taxon:
+    range: Taxon
+    description: The taxonomic classification assigned to this entity.
+    aliases:
+      - taxonomy
+      - classified as
+
+  has_genotype:
+    range: Genotype
+    multivalued: true
+    description: Genotype(s) characterizing this organism or strain.
+
+  has_phenotype:
+    range: Phenotype
+    multivalued: true
+    description: Observable phenotype(s) of this organism or strain.
+
+  contains_plasmid:
+    range: Plasmid
+    multivalued: true
+    description: Plasmid(s) harbored by this organism.
+    aliases:
+      - carries plasmid
+      - has plasmid
+
+  # --- Strain ---
+
+  derived_from_organism:
+    range: Organism
+    description: The parent organism from which this entity was derived.
+    aliases:
+      - source organism
+      - parent organism
+
+  strain_identifier:
+    range: string
+    description: >-
+      Culture collection or lab-assigned identifier for the strain
+      (e.g. ATCC 25922, DSM 20036, JGI-xxxx).
+    aliases:
+      - strain ID
+      - culture collection ID
+      - accession
+
+  culture_collection:
+    range: string
+    description: >-
+      Name of the culture collection holding this strain
+      (e.g. ATCC, DSMZ, JCM, NRRL).
+
+  isolation_method:
+    range: IsolationMethodEnum
+    description: Method used to obtain this strain as a pure isolate.
+
+  growth_medium:
+    range: GrowthMediumEnum
+    description: Medium used for growth or isolation.
+    aliases:
+      - culture medium
+      - media
+
+  optimal_growth_temperature:
+    range: float
+    description: Optimal growth temperature in degrees Celsius.
+    aliases:
+      - growth temp
+
+  isolation_date:
+    range: date
+    description: Date when this strain was first isolated.
+
+  # --- Taxon ---
+
+  rank:
+    range: TaxonomicRankEnum
+    description: >-
+      The taxonomic rank of this taxon (e.g. species, genus, phylum).
+
+  ncbi_taxon_id:
+    range: integer
+    description: NCBI Taxonomy database identifier.
+    aliases:
+      - tax_id
+      - NCBI tax ID
+
+  parent_taxon:
+    range: Taxon
+    description: The immediate parent taxon in the taxonomic hierarchy.
+
+  # --- Colony ---
+
+  composed_of_strain:
+    range: Strain
+    description: The strain that constitutes this colony.
+
+  colony_morphology:
+    range: ColonyMorphologyEnum
+    description: Visual morphology of the colony on solid media.
+
+  derived_from_community:
+    range: Community
+    description: The community from which this entity was isolated.
+    aliases:
+      - source community
+
+  colony_count:
+    range: integer
+    description: Number of colonies observed (e.g. CFU count on a plate).
+    aliases:
+      - CFU count
+
+  colony_color:
+    range: string
+    description: Observed color or pigmentation of the colony.
+
+  # --- Community ---
+
+  community_type:
+    range: string
+    description: >-
+      Descriptor for the community type (e.g. soil microbiome,
+      rhizosphere community, gut flora).
+
+  diversity_index:
+    range: float
+    description: >-
+      A numeric diversity metric (e.g. Shannon index) if known.
+
+  # --- Population ---
+
+  has_members:
+    range: Organism
+    multivalued: true
+    description: Organisms that are members of this group.
+    aliases:
+      - includes
+      - comprises
+
+  population_size:
+    range: integer
+    description: Estimated number of individuals in the population.
+
+  # --- Tissue ---
+
+  part_of_organism:
+    range: Organism
+    description: The organism of which this tissue is a part.
+    aliases:
+      - from organism
+
+  tissue_type:
+    range: string
+    description: >-
+      Type of tissue (e.g. leaf, root, liver, epithelial).
+
+  # --- Plasmid ---
+
+  plasmid_name:
+    range: string
+    description: Commonly used name of the plasmid (e.g. pUC19, pET-28a).
+
+  plasmid_size_kb:
+    range: float
+    description: Size of the plasmid in kilobases.
+    aliases:
+      - plasmid length
+
+  has_selectable_marker:
+    range: string
+    multivalued: true
+    description: >-
+      Selectable marker(s) carried by this plasmid
+      (e.g. ampR, kanR, tetR).
+    aliases:
+      - resistance marker
+      - antibiotic resistance
+
+  replicon_type:
+    range: string
+    description: Type of replication origin (e.g. ColE1, p15A, pSC101).
+
+  # --- Sample ---
+
+  collected_from:
+    range: Site
+    description: The site where this sample was collected.
+    aliases:
+      - sampling site
+      - collection location
+
+  collection_date:
+    range: date
+    description: Date when the sample was collected.
+    aliases:
+      - sampling date
+
+  storage_conditions:
+    range: string
+    description: >-
+      How the sample is stored (e.g. -80C freezer, liquid nitrogen,
+      4C refrigerator, lyophilized).
+
+  sample_volume:
+    range: float
+    description: Volume of the sample in milliliters.
+
+  sample_mass:
+    range: float
+    description: Mass of the sample in grams.
+
+  # --- TreatedSample ---
+
+  result_of_treatment:
+    range: ExperimentalTreatment
+    multivalued: true
+    description: Treatment(s) that produced this treated sample.
+
+  processed_by:
+    range: InstrumentPrepProcessing
+    multivalued: true
+    description: Preparation or processing step(s) applied to this sample.
+
+  treatment_duration:
+    range: string
+    description: >-
+      Duration of the treatment (e.g. "24 hours", "7 days").
+
+  treatment_notes:
+    range: string
+    description: Free-text notes about the treatment conditions.
+
+  # --- Analyte ---
+
+  extracted_from:
+    range: Sample
+    description: The sample from which this analyte was obtained.
+    aliases:
+      - source sample
+
+  analyte_type:
+    range: AnalyteTypeEnum
+    description: Category of the analyte substance.
+
+  concentration:
+    range: float
+    description: Measured concentration of the analyte.
+
+  concentration_unit:
+    range: string
+    description: Unit of concentration (e.g. ng/uL, mg/mL, nM).
+
+  purity:
+    range: float
+    description: >-
+      Purity metric (e.g. A260/A280 ratio for nucleic acids).
+
+  extraction_method:
+    range: string
+    description: >-
+      Method used to extract the analyte (e.g. phenol-chloroform,
+      column-based, bead beating).
+
+  # --- Process ---
+
+  has_input:
+    range: MaterialEntity
+    multivalued: true
+    description: Material entity consumed or used by this process.
+
+  has_output:
+    range: MaterialEntity
+    multivalued: true
+    description: Material entity produced by this process.
+
+  start_date:
+    range: date
+    description: Date the process began.
+
+  end_date:
+    range: date
+    description: Date the process was completed.
+
+  performed_by:
+    range: string
+    description: Person or team who performed this process.
+    aliases:
+      - operator
+      - technician
+
+  protocol_reference:
+    range: uriorcurie
+    description: >-
+      URI or identifier for the protocol followed
+      (e.g. protocols.io DOI, SOP number).
+    aliases:
+      - SOP
+      - protocol ID
+
+  uses_instrument:
+    range: string
+    description: >-
+      Name of the instrument or platform used
+      (e.g. Illumina NovaSeq, Nanopore MinION).
+    aliases:
+      - instrument
+      - platform
+
+  instrument_model:
+    range: string
+    description: Specific model of the instrument.
+
+  processing_method:
+    range: string
+    description: >-
+      Name or description of the processing method
+      (e.g. Qiagen DNeasy, Nextera XT).
+
+  treatment_type:
+    range: TreatmentTypeEnum
+    description: Category of experimental treatment applied.
+
+  applied_to_sample:
+    range: Sample
+    description: The sample to which this treatment was applied.
+    aliases:
+      - target sample
+
+  treatment_concentration:
+    range: float
+    description: >-
+      Concentration of the treatment agent (e.g. antibiotic dose).
+
+  treatment_concentration_unit:
+    range: string
+    description: Unit for treatment concentration (e.g. ug/mL, mM).
+
+  treatment_temperature:
+    range: float
+    description: Temperature during treatment, in degrees Celsius.
+
+  # --- Site ---
+
+  latitude:
+    range: float
+    description: Latitude in decimal degrees (WGS84).
+
+  longitude:
+    range: float
+    description: Longitude in decimal degrees (WGS84).
+
+  elevation:
+    range: float
+    description: Elevation in meters above sea level.
+
+  environment_type:
+    range: EnvironmentTypeEnum
+    description: Broad category of environment at this site.
+    aliases:
+      - biome
+      - habitat type
+
+  habitat_description:
+    range: string
+    description: >-
+      Free-text description of the habitat or environment at this site.
+
+  geographic_name:
+    range: string
+    description: >-
+      Named geographic location (e.g. "Yellowstone National Park",
+      "San Francisco Bay").
+    aliases:
+      - place name
+      - locality
+
+  geo_loc_name:
+    range: string
+    description: >-
+      Geographic location name following MIxS geo_loc_name format
+      (e.g. "USA: California: Berkeley").
+    aliases:
+      - geographic location
+
+  # --- Command ---
+
+  directs_process:
+    range: ProcessEntity
+    multivalued: true
+    description: The process(es) that this command initiates or controls.
+
+  command_string:
+    range: string
+    description: >-
+      The literal command or instruction text, if this represents
+      a computational command.
+
+  command_category:
+    range: string
+    description: >-
+      Category of command (e.g. "protocol step", "computational",
+      "quality control").
+
+  # --- Genotype detail ---
+
+  genotype_description:
+    range: string
+    description: >-
+      Free-text description of the genotype (e.g. "wild-type",
+      "delta-lacZ::kanR").
+
+  has_mutations:
+    range: string
+    multivalued: true
+    description: >-
+      Known mutations relative to the reference genome
+      (e.g. "rpoB H526Y", "gyrA S83L").
+
+  reference_genome:
+    range: uriorcurie
+    description: >-
+      Identifier or URI for the reference genome assembly
+      (e.g. NCBI RefSeq accession).
+
+  # --- Phenotype detail ---
+
+  phenotype_description:
+    range: string
+    description: >-
+      Free-text description of the observed phenotype.
+
+  phenotype_value:
+    range: string
+    description: >-
+      Measured or categorical value for this phenotype
+      (e.g. "resistant", "12.5 mm zone of inhibition").
+
+  measurement_method:
+    range: string
+    description: >-
+      Method used to assess the phenotype (e.g. disk diffusion,
+      MIC assay, growth curve).
