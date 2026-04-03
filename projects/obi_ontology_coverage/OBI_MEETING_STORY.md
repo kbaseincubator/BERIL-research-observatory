@@ -175,6 +175,81 @@ folks any more riled up." You noted you could raise it at the OBI call you're ch
 assay class browser, similar to NMDC's environmental triad browsers. James seemed
 interested in chromatography and mass spec interfaces on the Data Portal.
 
+## Room Dynamics — Know Your Audience
+
+### Chris Mungall's Modeling Philosophy (7 relevant blog posts)
+
+Read the full posts at https://douroucouli.wordpress.com/. Key positions:
+
+**"Shadow Concepts Considered Harmful" (2022-08-10):** Uses OBI's `measurement datum`
+classes as a prime negative example. "Axillary temperature measurement datum" is a shadow
+of "temperature." Don't propose new terms as shadow variants (datum, specification, output).
+Propose core concepts.
+
+**"Don't Over-Specify OWL Definitions" (2019-07-29):** If the reasoner can infer it, don't
+assert it. OBI assays are often over-axiomatized. Your ask for "lightweight" computational
+workflow terms aligns with this.
+
+**"Rococo OWL" / Design Pattern Alignment (2020-11-02):** His term for excessive axiom
+complexity. DOSDPs (Dead Simple OWL Design Patterns) are the remedy. OBI #1869 notes only
+5 of ~200 data transformation terms are in templates. Suggesting DOSDP-based terms would
+resonate.
+
+**Pick-and-Mix Antipattern (2021-07-03):** Don't grab assay terms from OBI, workflow terms
+from EDAM, and tool terms from SWO. Draw from one place. This supports expanding OBI
+rather than patching from multiple ontologies.
+
+**Using Ontologies Within Data Models (2022-07-15):** Proposes LinkML dynamic enums (value
+sets defined as ontology graph queries) rather than hardcoded lists. Relevant to how OBI
+terms get consumed by nmdc-schema.
+
+**KG Modeling Design Patterns (2019-03-14):** Contrasts KG modeling (simple edges readable
+as sentences) with OWL modeling (formal, reasoner-driven). Notes "lack of ontological
+commitment makes agreement on standards easier." Frames the question: should OBI invest in
+richer axioms or simplify toward KG-consumable patterns?
+
+**Rector Normalization (2019-06-29):** Decompose into simple primitives, reconstruct via
+reasoning. Assay ontologies are ideal candidates because they're compositional
+(method + target + instrument).
+
+### Other Key People
+
+**James Overton** (lead OBI maintainer, 1003 commits): Methodical, infrastructure-focused.
+Created 48 NIEHS DTT assays in one batch using templates. Will evaluate: does this follow
+OBI patterns? Is the axiomatization tractable? Is the build pipeline clean?
+
+**Bjoern Peters** (LJI, IEDB): Immunology-database pragmatist. In #1693, immediately
+proposed changing "subject/participant" to "material" -- a generalizing move. Proposed
+dual-release process (#1837) for OBI modernization. Sympathetic to expanding scope if it
+simplifies rather than complicates.
+
+**Chris Stoeckert** (UPenn, OBI co-creator, Mark's former boss): Governance- and
+quality-oriented. Requires ORCIDs for term editors (#1605), added OBO Dashboard badges
+(#1551). Will say yes to well-defined, properly attributed terms. Protective of OBI's
+established design patterns.
+
+### Read on the Room
+
+| Person | Will want | Will push back on |
+|---|---|---|
+| Chris Mungall | Core concepts, simple axioms, no shadows, DOSDP templates | Over-axiomatization, shadow hierarchies |
+| James Overton | Template-driven additions, clean builds, proper pattern | Anything that breaks the build or doesn't follow conventions |
+| Bjoern Peters | Generalizing existing terms, practical annotation | Unnecessary abstraction layers |
+| Chris Stoeckert | Well-documented terms, proper attribution, governance | Scope creep without process |
+
+### Your Sweet Spot
+
+"Lightweight computational workflow terms with just enough structure to classify and
+distinguish workflow types" hits all four:
+- Simple enough for Chris M (no shadows, no Rococo OWL)
+- Template-able for James (DOSDP or assays.tsv pattern)
+- Generalizing for Bjoern (broadening OBI beyond clinical)
+- Well-defined for Chris S (proper definitions, provenance)
+
+Don't propose 50 new terms. Propose 5-7 core concepts (metagenome assembly, genome binning,
+taxonomic classification, gene prediction, functional annotation, read quality assessment,
+metatranscriptome assembly) and ask the group how they'd like them axiomatized.
+
 ## Agenda Doc
 
 https://docs.google.com/document/d/1eEutJAG56gncTsWf2sAqHa4a9pQAuCbhsg_kmbF78tw/edit
