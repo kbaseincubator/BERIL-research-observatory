@@ -95,11 +95,11 @@ From `nmdc_arkin.omics_files_table` (385K files across 16 studies):
 
 ## What We Need to Find Out
 
-### 1. Who maintains the NMDC schema?
-The `nmdc-schema` repo on GitHub defines the data model. Who decides which ontology terms are required vs recommended vs free-text for each field? These are the people whose decisions directly control OBI adoption.
+### 1. ~~Who maintains the NMDC schema?~~ ANSWERED
+Mark Miller (the user) is the **primary nmdc-schema author**. Patrick Kalita and Sierra Moxon have made valuable contributions to content and automation. Schema governance discussions happen in the microbiomedata GitHub org and NMDC Slack.
 
-### 2. Who curated env_triads_flattened?
-This is the most well-structured metadata table in NMDC biosamples — it maps samples to ENVO/UBERON/NCBITaxon terms. Someone built the curation pipeline. They chose not to include OBI. Was that deliberate or just out of scope (env_triads is about environment, not methods)?
+### 2. ~~Who curated env_triads_flattened?~~ ANSWERED
+The "env triad" is a **MIxS concept** (env_broad_scale, env_local_scale, env_medium). Mark built `nmdc_flattened_biosamples` which includes these fields. MIxS requires ENVO/UBERON/NCBITaxon for them. OBI's absence is by design — not a gap.
 
 ### 3. Who are the NMDC metadata curators?
 NMDC has people who harmonize biosample metadata from NCBI. They see the raw submissions and decide how to standardize them. They would know whether submitters ever *try* to use OBI and get it wrong, or whether OBI simply never appears in submissions.
@@ -116,6 +116,31 @@ Justin Reese (LBNL/BBOP) works on ontology tooling and is connected to OBO Found
 
 ### 6. Who at JGI/EMSL decides what metadata to capture?
 The upstream facilities generate the raw metadata. If JGI doesn't ask sequencing users for OBI-coded instrument types, NMDC can't harmonize what was never captured.
+
+## OBI Coverage of NMDC Workflow Types (from BERDL queries)
+
+Queried `kbase_ontology_source.statements` for OBI terms matching NMDC workflow concepts:
+
+| NMDC Workflow | OBI Term | OBI ID | Coverage |
+|---|---|---|---|
+| Whole metagenome sequencing | whole metagenome sequencing assay | OBI:0002623 | Direct match |
+| Sequencing (general) | DNA sequencing assay | OBI:0000626 | Direct match |
+| Illumina instruments | Illumina MiSeq, HiSeq, NovaSeq, etc. | OBI:0002003 etc. | Extensive (~20 terms) |
+| Nanopore instruments | Oxford Nanopore MinION, GridION, PromethION | OBI:0002750-52 | Good |
+| PacBio instruments | PacBio RS II, Sequel, Sequel II | OBI:0002012 etc. | Good |
+| Library preparation | library preparation | OBI:0000711 | Direct match |
+| Paired-end library | paired-end library preparation | OBI:0001852 | Direct match |
+| Nucleic acid extraction | nucleic acid extraction | OBI:0666667 | Direct match |
+| Specimen collection | specimen collection process | OBI:0000659 | Direct match |
+| Mass spectrometry | mass spectrometry assay + subtypes | OBI:0000470 etc. | Good (metabolomics/proteomics) |
+| Data transformation | data transformation + 22 subtypes | OBI:0200000 | Generic parent class |
+| **Metagenome assembly** | **NONE** | — | **Gap — no OBI term** |
+| **Genome annotation** | **NONE** | — | **Gap — no OBI term** |
+| **MAG binning** | **NONE** | — | **Gap — no OBI term** |
+| **Read QC** | **NONE** | — | **Gap — no OBI term** |
+| **Taxonomic classification** | **NONE** | — | **Gap — no OBI term** |
+
+**Key finding**: OBI covers wet-lab workflows well (sequencing, extraction, instruments) but has **no terms for computational bioinformatics workflows** (assembly, binning, annotation, QC). This is the core gap. EDAM or SWO may fill it.
 
 ## Suggested Next Steps
 

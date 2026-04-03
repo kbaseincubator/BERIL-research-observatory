@@ -12,15 +12,14 @@ from PIs, the NMDC team, and group leads (Chris Mungall, Paramvir Dehal, etc.). 
 data curation choices to Gazi.
 
 ### NMDC Schema Maintainers
-You asked "who maintains the NMDC schema?" — Mark can answer this directly:
-- **Patrick Kalita** and **Sierra Moxon** are the primary nmdc-schema maintainers
-- **Mark Miller** (the user) is also a contributor
+- **Mark Miller** (the user) is the **primary nmdc-schema author**
+- **Patrick Kalita** and **Sierra Moxon** have made valuable contributions to content and automation
 - Schema governance discussions happen in the microbiomedata GitHub org and NMDC Slack
 
-### env_triads Curation
-You asked "who curated env_triads_flattened?" — Mark built `nmdc_flattened_biosamples` (including
-env triads). The env_triads table uses ENVO/UBERON/NCBITaxon because that's what MIxS requires for
-the `env_broad_scale`, `env_local_scale`, and `env_medium` fields. OBI's absence there is by
+### env_triads
+The "env triad" (env_broad_scale, env_local_scale, env_medium) is a **MIxS concept**, not
+something Mark designed — although he built the `nmdc_flattened_biosamples` table that includes
+these fields. MIxS requires ENVO/UBERON/NCBITaxon for these fields. OBI's absence there is by
 design — OBI describes investigations/assays, not environmental context. Not a gap.
 
 ## Namespace Landscape (Authoritative Source)
