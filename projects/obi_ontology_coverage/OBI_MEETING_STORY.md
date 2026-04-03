@@ -228,6 +228,28 @@ quality-oriented. Requires ORCIDs for term editors (#1605), added OBO Dashboard 
 (#1551). Will say yes to well-defined, properly attributed terms. Protective of OBI's
 established design patterns.
 
+**Damion Dooley** (SFU, Public Health Bioinformatics, GenEpiO): Very relevant -- he filed
+#1232 "Does OBI want the following sequence assembly datums?" (2020), directly asking about
+sequence assembly terms. Also filed #1194 (specimen collection device NTRs from MIxS),
+#1175 (names of sequencing software), and actively participated in #1693 (environmental
+replicates) by drafting revised definitions for "reference subject role." He comes from a
+genomic epidemiology perspective and bridges public health and environmental use cases.
+A natural ally for broadening OBI scope.
+
+**Sebastian Duesing** (LJI, Peters Lab): 2nd ranked contributor (299 commits). The
+operational backbone -- filed #1869 (only 5 of ~200 data transformation terms in templates),
+#1857 (COB transition), #1847 (specimen hierarchy cleanup). He's the person who would
+actually build the templates for any new terms. Getting his buy-in on the DOSDP/template
+approach for computational workflow terms is essential.
+
+**Damien Goutte-Gattat** (German BioImaging, ODK): Infrastructure/build expert, not an
+OBI content contributor. Relevant for build pipeline questions but won't have opinions on
+term scope.
+
+**jmfostel** (NIEHS): Filed #1910 (cell count assay) and several recent assay/measurement
+issues (#1963, #1962, #1960, #1966). Active in adding clinical assay terms. Represents the
+"biomedical" side of OBI -- your proposal shows the environmental side deserves equal attention.
+
 ### Read on the Room
 
 | Person | Will want | Will push back on |
@@ -236,6 +258,9 @@ established design patterns.
 | James Overton | Template-driven additions, clean builds, proper pattern | Anything that breaks the build or doesn't follow conventions |
 | Bjoern Peters | Generalizing existing terms, practical annotation | Unnecessary abstraction layers |
 | Chris Stoeckert | Well-documented terms, proper attribution, governance | Scope creep without process |
+| Damion Dooley | Broadening scope (already asked about assembly datums) | Overly narrow biomedical framing |
+| Sebastian Duesing | Template-driven additions (owns the templates) | Ad-hoc additions that bypass templates |
+| jmfostel | Well-defined assays with measurement datums | May feel environmental terms dilute clinical focus |
 
 ### Your Sweet Spot
 
