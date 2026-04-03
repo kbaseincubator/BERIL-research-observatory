@@ -40,6 +40,18 @@ that offload specificity onto CHEBI, GO, EC, etc.** For example:
 - `trait_unified`: harmonized traits
 - No OBI or METPO IDs anywhere
 
+## Caveat: OBI's Relational Depth vs KGX Flat Modeling
+
+OBI is designed with deeply interconnected OWL axioms — an assay `has_specified_input` some specimen, `realizes` some plan specification, `has_specified_output` some data item, each with its own class hierarchy and restrictions. This doesn't flatten well into KGX-style triples (subject-predicate-object with category/id/name columns).
+
+kg-microbe probably needs something like:
+- `strain --has_phenotype--> "utilizes lactose"` with an edge property for evidence source
+- **Not** a full OBI process graph with 5 intermediate nodes for each assertion
+
+So the real question isn't "should we import OBI's assay hierarchy" but rather: **what's the minimal set of OBI terms we need as edge properties or qualifiers to say *how* a phenotype was measured, without turning every BacDive row into 8 nodes?**
+
+This tension — OBI's expressiveness vs KGX's flat practicality — should inform any recommendation about OBI adoption in kg-microbe or METPO.
+
 ## Questions for Agents with Web Access
 
 ### About kg-microbe
