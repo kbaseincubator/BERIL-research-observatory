@@ -21,28 +21,44 @@ classification by subsumption, input/output constraints, and protocol validation
 
 ### Where OBI stops — the computational gap
 
-NMDC has 10 bioinformatics workflow types. OBI covers the wet-lab side but has
-**zero terms for computational workflows**:
+NMDC has 10+ bioinformatics workflow types. OBI covers wet-lab well and has
+some generic computational terms, but lacks metagenomics-specific coverage:
 
-| NMDC Workflow | OBI Coverage |
-|---|---|
-| Nucleic acid extraction | OBI:0666667 |
-| Library preparation | OBI has terms |
-| Sequencing | OBI:0000626 (DNA), OBI:0001177 (RNA), OBI:0002623 (WMS) |
-| Read QC / quality filtering | Nothing |
-| Metagenome assembly | Nothing |
-| Metagenome annotation / gene finding | Nothing |
-| Read-based taxonomy (Kraken2, Centrifuge) | Nothing |
-| MAG binning + CheckM QC | Nothing |
-| Metabolomics analysis | Likely covered (mass spec assays) |
-| Metaproteomics analysis | Likely covered (proteomics assays) |
+| NMDC Workflow | OBI Coverage | OBI Term |
+|---|---|---|
+| Nucleic acid extraction | Covered | OBI:0666667 |
+| Library preparation | Covered | OBI:0000711 |
+| Sequencing | Covered | OBI:0000626 (DNA), OBI:0002623 (WMS) |
+| Metagenome assembly | **Partial** | OBI:0001872 (generic "sequence assembly process", no metagenome child) |
+| Metagenome annotation | **Partial** | OBI:0001944 (generic "sequence annotation", no metagenome child) |
+| Read QC / quality filtering | **Gap** | Nothing |
+| Read-based taxonomy (Kraken2, Centrifuge) | **Gap** | Nothing |
+| MAG binning + CheckM QC | **Gap** | Nothing |
+| Expression quantification | **Gap** | Nothing |
+| Metabolomics analysis | Likely covered | OBI:0000470 (mass spec assays) |
 
-`OBI:0200000` (data transformation) exists as a generic parent with ~22 subtypes
-(normalization, clustering, differential expression analysis) but nothing specific
-to metagenomics/environmental genomics pipelines.
+OBI also has `OBI:0200187` (sequence analysis data transformation) with children
+for alignment and feature counting, plus assembly/annotation algorithm and metadata
+terms (N50 stats, etc.). The hierarchy exists but is shallow and generic.
 
-EDAM and SWO might fill this gap but neither is loaded in our ontology store and
-neither has OBI's level of axiomatization.
+**Corrected from earlier assessment:** OBI does NOT have "zero computational terms."
+It has sequence assembly and annotation as leaf nodes. The real gaps are read QC,
+genome binning, taxonomic classification, and expression quantification.
+
+### Beyond NMDC — DOE-wide gaps
+
+The Fitness Browser (`kescience_fitnessbrowser`) has **7,552 RB-TnSeq experiments**
+with no OBI term for the assay type. RB-TnSeq (random barcode transposon sequencing)
+is a DOE-developed high-throughput fitness assay used across ~100 papers from the
+Arkin lab and ENIGMA SFA. Each experiment has structured metadata (media, vessel,
+temperature, aerobic/anaerobic, chemical stressor) — all free text, no OBI terms.
+
+ENIGMA CORAL has process tables linking genomes to annotations to assemblies to
+reads to sequencing to strains with full provenance — exactly the pattern where
+OBI terms would add cross-project interoperability.
+
+This isn't just an NMDC problem. DOE's experimental microbiology community generates
+massive structured experimental data that OBI could describe but currently doesn't.
 
 ### The adoption gap — even where OBI has terms
 
@@ -61,10 +77,14 @@ Result: submitters write free text, and there's no validation step that maps to 
 
 ### What we'd like from OBI
 
-1. **Computational workflow terms**: Even lightweight classes for metagenome assembly,
-   genome binning, taxonomic classification, gene prediction, functional annotation.
-   These don't need the full axiom depth of wet-lab assays — just enough to classify
-   and distinguish workflow types.
+1. **5 new terms to fill the real gaps** (assembly and annotation already exist):
+   - `metagenome assembly` (child of OBI:0001872 sequence assembly process)
+   - `metagenome-assembled genome binning` (child of OBI:0200000 data transformation)
+   - `read quality assessment` (child of OBI:0200000)
+   - `sequence-based taxonomic classification` (child of OBI:0200187)
+   - `transcript expression quantification` (child of OBI:0200187)
+   Plus potentially: `random barcode transposon sequencing fitness assay` (child of
+   OBI:0000070 assay) for the Fitness Browser use case.
 
 2. **Guidance on "OBI for DOE"**: The ontology is called "Biomedical Investigations" but
    DOE environmental genomics uses it heavily. Is there appetite for a broader scope, or
@@ -296,9 +316,10 @@ distinguish workflow types" hits all four:
 - Generalizing for Bjoern (broadening OBI beyond clinical)
 - Well-defined for Chris S (proper definitions, provenance)
 
-Don't propose 50 new terms. Propose 5-7 core concepts (metagenome assembly, genome binning,
-taxonomic classification, gene prediction, functional annotation, read quality assessment,
-metatranscriptome assembly) and ask the group how they'd like them axiomatized.
+Don't propose 50 new terms. Propose the 5 gap-filling terms above (assembly and annotation
+already have generic parents). Ask the group how they'd like them axiomatized — DOSDP
+template? Minimal subclass assertion? And mention the RB-TnSeq assay as a bonus DOE term
+request from a different domain (fitness, not metagenomics).
 
 ## Agenda Doc
 
