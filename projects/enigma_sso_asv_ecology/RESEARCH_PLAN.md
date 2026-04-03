@@ -39,11 +39,16 @@ Key knowledge gap: SSO geochemistry measurements (metals, IC/TOC, isotopes, NH3/
 |---------|--------|-------------|
 | Pump test ASV | Brick 0000460-462 | 14 communities, Mar 2024, wells L8/M5/U2 |
 | ASV 16S sequences | Bricks 457/460/477 | Actual DNA sequences for phylogenetic analysis |
+| Nearby well geochemistry | Bricks 0000010/0000080 | 100WS/27WS metals data for EU/ED wells ~90-120 m from SSO (48-52 analytes) |
+| SSO isolate genomes | `sdt_genome` / `sdt_strain` | 18 genomes, 144 isolates from SSO-M6-C2 — direct functional annotation |
 
 ### Not available in BERDL
-- SSO geochemistry (metals, IC/TOC, isotopes) — samples exist but measurements not in data bricks
+- SSO-specific geochemistry (221 METALS/ICTOC/ISOTOPES/NH3NO2 sample tubes registered in CORAL but analytical results never ingested)
 - Well elevation / true Z coordinates — only lat/lon + sample depth
 - Continuous sensor data (if any)
+
+### Regional Geochemistry Context
+The 100 Well Survey and 27 Well Survey metals bricks cover 20 wells within 500 m of SSO, with the closest (EU02-EU07, ED04-ED08) only ~90-120 m northeast. These provide 48-52 analyte panels (uranium, chromium, iron, sulfate, etc.) that establish the regional geochemical gradient context even though they are not SSO well-specific.
 
 ### Taxonomy Resolution Constraints
 | Level | Groundwater | Sediment |
@@ -61,8 +66,12 @@ Key knowledge gap: SSO geochemistry measurements (metals, IC/TOC, isotopes, NH3/
 | Table | Database | Purpose | Estimated Rows | Filter Strategy |
 |---|---|---|---|---|
 | `ddt_ndarray` | `enigma_coral` | Extract pump test ASVs (Bricks 460-462) | ~132K | Filter by brick_id |
+| `ddt_brick0000010` | `enigma_coral` | 100WS metals — nearby well geochemistry | 52,884 | Filter by well for EU/ED wells |
+| `ddt_brick0000080` | `enigma_coral` | 27WS metals — nearby well geochemistry | 98,176 | Filter by well for EU/ED wells |
 | `sdt_sample` | `enigma_coral` | Sample metadata enrichment | 547 SSO | Filter by location LIKE 'SSO%' |
 | `sdt_community` | `enigma_coral` | Community-level metadata | 69 SSO | Filter by location LIKE 'SSO%' |
+| `sdt_strain` | `enigma_coral` | SSO isolates from M6-C2 | 144 SSO | Filter by location |
+| `sdt_genome` | `enigma_coral` | SSO isolate genomes — functional annotation | 18 SSO | Filter by location |
 | `gene_cluster` | `kbase_ke_pangenome` | Functional profiles for mapped genera | Variable | Filter by species matching SSO genera |
 | `eggnog_mapper_annotations` | `kbase_ke_pangenome` | COG categories for functional inference | Variable | Filter by gene_cluster_id |
 
@@ -77,14 +86,17 @@ Key knowledge gap: SSO geochemistry measurements (metals, IC/TOC, isotopes, NH3/
 ## Analysis Plan
 
 ### Notebook 01: Data Integration & Well Geometry (`01_data_integration.ipynb`)
-- **Goal**: Build complete dataset with well coordinates and distance matrices
+- **Goal**: Build complete dataset with well coordinates, distance matrices, and regional geochemistry context
 - **Steps**:
   1. Load all three ASV datasets (sediment, groundwater, pump test if extractable)
   2. Compute inter-well geographic distances from lat/lon (Haversine)
   3. Assign grid positions (row: U/M/L; col: 1-3) and compute row/column distances
   4. Extract lithological zone annotations (VZ, VSZ, SZ1, SZ2) from sample descriptions
   5. Build depth-resolved and well-aggregated community matrices
-- **Expected output**: `data/well_distances.csv`, `data/community_matrices.pkl`, summary statistics
+  6. Extract nearby well geochemistry (EU/ED wells from 100WS/27WS metals bricks)
+  7. Characterize regional geochemical gradients as context for SSO interpretation
+  8. Extract SSO isolate metadata (144 strains from M6-C2, 18 genomes)
+- **Expected output**: `data/well_distances.csv`, `data/community_matrices.pkl`, `data/nearby_geochem.csv`, `data/sso_isolates.csv`, summary statistics
 
 ### Notebook 02: Spatial Analysis of Sediment Communities (`02_sediment_spatial.ipynb`)
 - **Goal**: Test whether community similarity tracks spatial arrangement; identify deviations
@@ -161,6 +173,7 @@ Key knowledge gap: SSO geochemistry measurements (metals, IC/TOC, isotopes, NH3/
 
 ## Revision History
 - **v1** (2026-04-03): Initial plan — restart from corrupted start; builds on existing extracted data + prior project lessons
+- **v1.1** (2026-04-03): Added nearby well geochemistry (EU/ED from 100WS/27WS) as regional context; added SSO isolate genomes (18 from M6-C2); confirmed SSO geochemistry values not in BERDL despite 221 registered sample tubes
 
 ## Authors
 - Adam Arkin (ORCID: 0000-0002-4999-2931), U.C. Berkeley / Lawrence Berkeley National Laboratory
