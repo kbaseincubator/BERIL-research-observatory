@@ -210,13 +210,6 @@ One YAML metadata file is created per table, stored locally at `<DATA_DIR>/metad
 and uploaded to MinIO at `{BRONZE_PREFIX}/metadata/{table}.yaml`. The file is uploaded twice:
 before ingest (`status: in_progress`) and after (`status: completed` or `failed`).
 
-**Ensure PyYAML is available:**
-
-```bash
-source .venv-berdl/bin/activate
-python3 -c "import yaml" 2>/dev/null || pip install pyyaml
-```
-
 **Infer `ingested_by`:**
 
 ```bash
@@ -387,7 +380,8 @@ Wait for the user's explicit choice before continuing.
 
 ```bash
 source .venv-berdl/bin/activate
-https_proxy=http://127.0.0.1:8123 mc cp --recursive "<DATA_DIR>/metadata/" \
+# NOTE: mc interprets relative paths as MinIO URLs — always use an absolute path here.
+https_proxy=http://127.0.0.1:8123 mc cp --recursive "$(realpath <DATA_DIR>)/metadata/" \
     "berdl-minio/cdm-lake/{BRONZE_PREFIX}/metadata/"
 ```
 
@@ -414,38 +408,22 @@ BUCKET          = "cdm-lake"
 MODE            = "overwrite"           # "overwrite" or "append" — determined in Step 3
 CHUNK_TARGET_GB = 20                    # tables above this are ingested in chunks
 CHUNKED_INGEST  = True                  # False = force single-batch (not recommended for large tables)
-CONFIRMED       = False                 # set True after reviewing the pre-flight plan
 ```
 
-**Run the notebook through the Pre-flight plan cell** (do not execute the full notebook yet):
+**Run the pre-flight script** to compute and display the ingest plan. This requires no
+Spark or JupyterHub — only tunnels and MinIO:
 
 ```bash
 source .venv-berdl/bin/activate
-jupyter nbconvert --to notebook --execute --inplace \
-    --ExecutePreprocessor.timeout=120 \
-    --ExecutePreprocessor.raise_on_iopub_timeout=False \
-    <DATA_DIR>/<dataset>_ingest.ipynb 2>&1 | tail -5
+python scripts/ingest_preflight.py \
+    --data-dir "/absolute/path/to/<source directory>" \
+    --tenant "<chosen tenant>" \
+    --dataset "<chosen dataset>" \
+    --mode overwrite \
+    --chunk-target-gb 20
 ```
 
-The Pre-flight cell will raise a `RuntimeError` (intentionally) when `CONFIRMED = False`,
-halting execution after printing the plan.
-
-**Extract the plan output and present it to the user in chat.** Do not ask the user to
-open the notebook or edit it manually — the agent handles all notebook edits.
-
-Extract all cell text output from the notebook:
-
-```bash
-python3 -c "
-import json
-nb = json.load(open('<DATA_DIR>/<dataset>_ingest.ipynb'))
-for cell in nb.get('cells', []):
-    for o in cell.get('outputs', []):
-        if 'text' in o: print(''.join(o['text']))
-"
-```
-
-Format the plan as a clear markdown summary in chat, showing:
+**Present the plan output to the user in chat**, formatted as a clear markdown summary:
 
 - **Upload**: each table name, file size (GB), and total upload size
 - **Ingest**: for each table — single ingest or number of chunks × lines per chunk
@@ -457,11 +435,10 @@ Format the plan as a clear markdown summary in chat, showing:
 
 **(a) Suggest changes** — Make the requested edits to cell
 `b0000003-0000-0000-0000-000000000003` in the notebook (e.g. lower `CHUNK_TARGET_GB`,
-change `MODE`, disable a table), re-run the pre-flight `nbconvert` command, extract the
-updated output, and re-present the revised plan. Repeat until the user is satisfied.
+change `MODE`), re-run the pre-flight script with the updated values, and re-present the
+revised plan. Repeat until the user is satisfied.
 
-**(b) Confirm and proceed** — Edit cell `b0000003-0000-0000-0000-000000000003` to set
-`CONFIRMED = True`, then execute the full notebook:
+**(b) Confirm and proceed** — Execute the full notebook:
 
 ```bash
 source .venv-berdl/bin/activate
@@ -473,14 +450,13 @@ jupyter nbconvert --to notebook --execute --inplace \
 **What the notebook does:**
 
 1. Counts lines in each source file and calculates per-table chunk sizes
-2. Prints the pre-flight plan and blocks until `CONFIRMED = True`
-3. Uploads all files to MinIO bronze (full files, no chunking at this stage)
-4. Loads any existing progress log from MinIO (enables resume on restart)
-5. For each table:
+2. Uploads all files to MinIO bronze (full files, no chunking at this stage)
+3. Loads any existing progress log from MinIO (enables resume on restart)
+4. For each table:
    - **≤ CHUNK_TARGET_GB**: ingests via `ingest()` in one shot
    - **> CHUNK_TARGET_GB**: streams the local file with `pandas.read_csv(chunksize=N)`,
      writes each chunk to Delta via `spark.createDataFrame()`, logs progress to MinIO after each chunk
-6. Verifies final row counts against expected line counts
+5. Verifies final row counts against expected line counts
 
 **Resuming an interrupted ingest:** If the notebook fails mid-ingest (e.g. Spark session timeout),
 simply re-run the ingest cell. The progress log is loaded at startup — already-completed chunks
@@ -519,6 +495,7 @@ push a corrected `completed` record.
 
 - `scripts/bootstrap_client.sh`: create `.venv-berdl` and install base query packages.
 - `scripts/bootstrap_ingest.sh`: install ingest-specific packages on top of `.venv-berdl`.
+- `scripts/ingest_preflight.py`: print the pre-flight ingest plan (no Spark required). Run before executing the ingest notebook to review upload sizes and chunk counts.
 
 ## References
 
@@ -619,8 +596,8 @@ count mismatch is found, use these to cross-check against the Delta table's last
    access it exclusively through `os.getenv("KBASE_AUTH_TOKEN")` or the `.env` file loader —
    never hardcode or echo the value.
 3. Do not set `MODE = "overwrite"` for an existing namespace without explicit user confirmation.
-4. Do not set `CONFIRMED = True` on behalf of the user — always present the pre-flight plan
-   and wait for explicit confirmation before proceeding.
+4. Always present the pre-flight plan output from `ingest_preflight.py` and wait for
+   explicit user confirmation before executing the ingest notebook.
 5. Do not commit the notebook with credentials visible in cell outputs.
 6. **If a token appears in the conversation context** (i.e. a raw credential string was pasted
    into chat by the user): immediately stop all work and send this message — do not proceed

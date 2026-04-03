@@ -29,6 +29,7 @@ uv pip install --no-deps \
 # standard dependencies of data_lakehouse_ingest (PyPI-available)
 uv pip install \
   "minio>=7.2.0" \
+  "pyyaml>=6.0" \
   "linkml>=1.9.4" \
   "linkml-runtime>=1.9.5" \
   "linkml-validator>=0.4.5"
