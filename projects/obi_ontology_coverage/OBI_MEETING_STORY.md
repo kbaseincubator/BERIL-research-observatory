@@ -88,11 +88,36 @@ would strengthen both ontologies.
 BacDive (988K metabolite utilization tests in our lakehouse) is a concrete test case:
 strain X was tested by assay Y (OBI) and showed phenotype Z (METPO) for compound W (CHEBI).
 
+### The real OBI opportunity: WorkflowExecution metadata
+
+The summary stats files (CheckM, GTDBTK, annotation counts) tell a results story but don't
+show OBI. The OBI story is in the **WorkflowExecution** and **DataGeneration** documents
+from NMDC MongoDB. These have:
+- `type`: currently `nmdc:MetagenomeAnnotation` — could be an OBI planned process term
+- `was_informed_by`: provenance chain (WorkflowExecution → DataGeneration)
+- `execution_resource`: where it ran (JGI, NERSC)
+- `git_url`: link to workflow code
+- `started_at_time` / `ended_at_time`
+
+This is where you'd demonstrate: "NMDC has its own type system for workflows. OBI's
+`planned process` hierarchy could replace it, giving us cross-project interoperability."
+
+**Don't ingest study data piecemeal.** Sierra Moxon is building a proper NMDC-to-lakehouse
+pipeline (message 2026-03-30): "On the NMDC side, we're working on a dump that is
+regenerate-able, flattened, has a schema..." Her vision: "one NMDC tenant, with all the
+data NMDC has, regenerated from NMDC itself, pushed up on a regular basis."
+
+The ENIGMA/CORAL project (Adam Arkin's team) already has process tables linking genomes →
+annotations → assemblies → reads → sequencing → strains with full provenance. That's the
+pattern NMDC should follow, and it's exactly where OBI terms would add value.
+
 ### What we're doing about it
 
-- Running the OBI census in our data lakehouse (4,422 OBI terms loaded, cross-referenced against actual usage)
+- Ran the OBI census in our data lakehouse (4,422 OBI terms loaded, cross-referenced against actual usage)
+- BERDL agent confirmed: OBI has zero computational bioinformatics terms, NMDC method fields are 100% free text
 - OpenScientist (AI co-scientist) investigation submitted on OBI coverage for environmental microbiology
-- Identified a small complete NMDC study (29 biosamples, all workflow types) as a test case for better OBI annotation
+- Identified `nmdc:sty-11-1t150432` (Populus, 29 biosamples, complete workflow chain) as a reference study
+- Sierra is building the systematic NMDC-to-lakehouse pipeline — OBI adoption should feed into that, not bypass it
 - This BERIL research observatory project: https://github.com/turbomam/BERIL-research-observatory/tree/projects/obi_ontology_coverage
 
 ## Mark's OBI History (for credibility framing)
