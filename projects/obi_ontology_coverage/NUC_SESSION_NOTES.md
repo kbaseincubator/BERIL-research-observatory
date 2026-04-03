@@ -93,6 +93,37 @@ From `~/Desktop/markdown/ro-crate-vs-croissant-nmdc-relevance-2026-02-24.md`:
 4. Can you query `nmdc_arkin.omics_files_table` to find which biosamples from
    `nmdc:sty-11-1t150432` have complete workflow chains (all 5 types)?
 
+## OpenScientist Is Running
+
+OpenScientist (https://www.openscientist.io/) is actively working on a related investigation
+right now (submitted 2026-04-03). Hypothesis generation ON, coinvestigate mode ON, 10 iterations.
+Track its progress and incorporate findings when available. See `OPENSCIENTIST_INVESTIGATION.md`
+for the exact research question submitted.
+
+## Broader Vision: OBI + METPO as Mark's Research Ontology Stack
+
+This project isn't just about OBI coverage gaps in NMDC. Mark's longer-term goal is to get to a
+state where **OBI + METPO** together provide strong support for his research projects:
+
+- **OBI** covers study designs, assays, instruments, data transformations — the "how" of
+  environmental microbiology research
+- **METPO** (Microbial Traits and Phenotypes Ontology) covers microbial phenotypes — the "what"
+  organisms can do. Mark considers METPO better than other high-profile microbial ontologies
+  for phenotypes because it is easier to maintain, actively maintained, and passes OWL and
+  most OBO expectations.
+- **CHEBI, GO, etc.** are already used in kg-microbe and NMDC annotations — those are covered.
+  The gap is in the OBI + METPO layer.
+
+The framing for this project should be: **OBI is good at representing designs, assays, and
+experimental processes. METPO is good at representing microbial phenotypes. Together they could
+provide a more complete ontological foundation for environmental microbiology research than
+either alone.** The OBI coverage investigation is one half of that picture.
+
+Relevant repos:
+- METPO: `turbomam/microbial-traits-and-phenotypes-ontology`
+- kg-microbe: `CultureBotAI/KG-Microbe-search`
+- microbial-trait-mappings: `turbomam/microbial-trait-mappings`
+
 ## Repo Access Request
 
 Mark has requested contributor access to `kbaseincubator/BERIL-research-observatory` from
