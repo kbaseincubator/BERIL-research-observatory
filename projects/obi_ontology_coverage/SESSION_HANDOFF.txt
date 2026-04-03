@@ -99,6 +99,67 @@ WHAT REMAINS
 - Synthesize findings into REPORT.md
 - Mark plans to compare findings with results from other systems
 
+NEW WORK FROM NUC SESSION 2026-04-03 (Claude Opus 4.6)
+------------------------------------------------------
+Major additions pushed to the branch. The BERDL agent should be aware of:
+
+### 1. Isolate Entities Schema (data/entities-for-isolates.yaml)
+A LinkML schema with 18 classes derived from Alicia Clum's whiteboard at
+the 2026-04-01 isolate hackathon. Validated. Has 120 OBI/OBO ontology
+mappings from OLS4 embeddings search. Key classes: Organism, Strain,
+Taxon, Cell, Community, Colony, Population, Tissue, Plasmid, Genotype,
+Phenotype, Sample, TreatedSample, Analyte, InstrumentPrepProcessing,
+ExperimentalTreatment, Site, Command.
+
+This schema separates Organism from Sample — which is the opposite of
+how nmdc-schema models it (OrganismSample conflates both). The mapping
+analysis (isolate-schema-nmdc-mapping-analysis.md) documents the
+disagreement across three competing models.
+
+### 2. OBI+CHEBI+PATO Phenotype Decomposition
+The Phenotype class now has structured slots: quality_term (PATO),
+assayed_entity_term (CHEBI/GO), assay_term (OBI). This is the pattern
+described in KG_MICROBE_METPO_QUESTIONS.md.
+
+BERDL ACTION: Test this decomposition against real BacDive data.
+Query kescience_bacdive.metabolite_utilization and try to map 10 rows
+to the Phenotype class slots. Does the pattern hold?
+
+### 3. P. putida KT2440 pTE314 Example
+data/example-pseudomonas-putida-kt2440-pte314.yaml — 15 instances
+across 10 classes showing an AMP2/OPAL workflow: receive engineered
+strain from LBNL, culture, induce with IPTG, extract protein for
+proteomics. Demonstrates why Organism + Strain + Plasmid need to be
+separate entities for combinatorial engineered biology.
+
+### 4. OpenScientist Autonomous Research (openscientist_results/)
+10-iteration autonomous investigation completed. Key quantitative
+findings: 9 new mappings → 52% coverage, 6 NTRs → 81%. MAG quality
+assessment is the deepest cross-ontology gap. 12 figures included.
+The final_report.md has the full writeup.
+
+### 5. Bridge Document (ISOLATE_SCHEMA_OBI_BRIDGE.md)
+Connects the isolate schema to three OBI coverage workstreams:
+process gaps (ExperimentalTreatment has no OBI home), trait modeling
+(BacDive free text vs structured entities), and the organism-vs-sample
+question for the OBI April 7 presentation.
+
+### Suggested BERDL queries for next session:
+1. BacDive phenotype decomposition test (see #2 above)
+2. Query kescience_fitnessbrowser for RB-TnSeq experiment metadata
+   — can those 7,552 experiments be mapped to OBI assay terms?
+3. Check if CORAL process tables in the lakehouse have OBI references
+4. Compare OBI term usage across nmdc_arkin vs kescience tenants
+
+CONNECTED ISSUES (for cross-referencing):
+- nmdc-schema#2803 (isolate modeling parent)
+- nmdc-schema#2884 (OrganismSample PR)
+- nmdc-schema#2906 (OBI audit)
+- nmdc-schema#2907 (OLS4 embeddings for schema elements)
+- microbiomedata/issues#1573 (2026 milestone: modeling of microbial isolates)
+- OPAL (DOE autonomous lab, uses AMP2 at EMSL, P. putida chassis)
+- AMP2 (Anaerobic Microbial Phenotyping Platform at PNNL/EMSL)
+
 GIT/PERMISSIONS NOTE
 --------------------
 Mark does not currently have write access to the kbaseincubator org
