@@ -36,13 +36,25 @@ We find that community similarity tracks the contamination plume rather than hil
 
 ### Prerequisites
 - Python 3.10+
-- BERDL access (JupyterHub) for NB01 (Spark data extraction)
+- BERDL access (JupyterHub) for NB01 Spark cells (sections 5-6)
 - Packages: see `requirements.txt`
 
+### Notebooks
+| Notebook | Spark? | Purpose |
+|----------|--------|---------|
+| `01_data_integration.ipynb` | Sections 5-6 | Load ASV data, compute well geometry, assign zones, build community matrices |
+| `02_sediment_spatial.ipynb` | No | Bray-Curtis, Mantel test, NMDS, Procrustes, residual analysis |
+| `03_depth_zonation.ipynb` | No | PERMANOVA (zone vs well), indicator taxa, depth correlations |
+| `04_functional_inference.ipynb` | No | Multi-resolution trait mapping (class + genus level), spatial gradients |
+| `05_gw_vs_sediment.ipynb` | No | Groundwater vs sediment comparison, plume indicator genera |
+| `06_synthesis.ipynb` | No | Contamination plume model, evidence integration |
+| `07_hotspot_interactions.ipynb` | No | Well-by-well community profiles, metabolic guilds, co-occurrence |
+| `08_temporal_stability.ipynb` | No | GW temporal stability (9-day), filter size effects, variance partitioning |
+
 ### Steps
-1. **NB01** (requires Spark): Extract and integrate ASV data → `data/` outputs
-2. **NB02-NB06** (local): Run sequentially; each reads from `data/` produced by prior notebooks
-3. All notebooks should be run with saved outputs: `jupyter nbconvert --to notebook --execute --inplace notebooks/NB.ipynb`
+1. **NB01** (requires Spark for sections 5-6): Extract and integrate ASV data → `data/` outputs. Sections 1-4 run locally from pre-extracted parquets.
+2. **NB02-NB08** (local): Run sequentially; each reads from `data/` produced by prior notebooks.
+3. Execute with saved outputs: `jupyter nbconvert --to notebook --execute --inplace notebooks/<notebook>.ipynb`
 
 ## Authors
 - Adam Arkin (ORCID: [0000-0002-4999-2931](https://orcid.org/0000-0002-4999-2931)), U.C. Berkeley / Lawrence Berkeley National Laboratory

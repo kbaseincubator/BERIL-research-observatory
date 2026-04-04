@@ -119,21 +119,20 @@ The 100 Well Survey and 27 Well Survey metals bricks cover 20 wells within 500 m
   5. Identify taxa with strong depth preferences (indicator species analysis)
 - **Expected output**: Figures (ordination by zone, depth profiles), variance decomposition statistics
 
-### Notebook 04: Functional Inference from Taxonomy (`04_functional_inference.ipynb`)
-- **Goal**: Infer functional gradients across the SSO grid from taxonomic composition
-- **Approach**: Two complementary strategies acknowledging genus-level limitations
-  1. **Phylum/class-level trait mapping** (conservative, well-supported):
-     - Map dominant phyla/classes to known metabolic modes (aerobic/anaerobic, sulfur cycling, iron reduction, methanogenesis, etc.)
-     - Compute trait-weighted community profiles per well
-     - Test for spatial gradients in trait profiles
-  2. **Pangenome-informed genus mapping** (exploratory, known limitations):
-     - Map SSO genera to BERDL pangenome species where unambiguous (1:1 genus→species)
-     - Aggregate COG functional categories weighted by abundance
-     - Test for enrichment of specific COG categories along spatial axes
-  3. **Indicator taxon functional annotation**:
-     - For taxa identified as spatial indicators (NB03), look up known functional roles in literature
-     - WPS-2 (Eremiobacterota) gradient: literature review of this phylum's ecology
-- **Expected output**: Trait profile heatmaps, COG enrichment results, functional gradient interpretation
+### Notebook 04: Multi-Resolution Functional Inference (`04_functional_inference.ipynb`)
+- **Goal**: Infer functional gradients across the SSO grid at three taxonomic resolutions
+- **Approach**: Three complementary resolution levels
+  1. **Class-level trait mapping** (22 classes, 78% coverage):
+     - Split key phyla into functionally distinct lineages (Gammaproteobacteria vs Deltaproteobacteria, Bacilli vs Clostridia, Anaerolineae vs Dehalococcoidia)
+     - Compute trait-weighted community profiles per well (8 traits: aerobic, anaerobic, sulfur, iron, nitrogen, fermentation, chemolithotrophy, C degradation)
+     - Compute redox index (aerobic − anaerobic) per well
+  2. **Genus-level functional annotation** (65 genera, 21% coverage):
+     - Map all classifiable genera to specific biogeochemical processes based on published literature
+     - Aggregate into 12 process categories (denitrification, iron reduction/oxidation, sulfate reduction, sulfur oxidation, fermentation, syntrophy, methanotrophy, nitrification, etc.)
+     - Map process abundances onto the 3×3 grid
+  3. **Spatial gradient tests**:
+     - Spearman correlation of each trait/process with row (uphill-downhill), column (east-west), and diagonal (plume direction) grid coordinates
+- **Expected output**: Trait grid maps, process grid maps, clustered heatmaps, `data/trait_profiles_class.csv`, `data/genus_function_grid.csv`
 
 ### Notebook 05: Groundwater vs Sediment Comparison (`05_gw_vs_sediment.ipynb`)
 - **Goal**: Compare planktonic (groundwater) vs attached (sediment) communities
@@ -144,16 +143,35 @@ The 100 Well Survey and 27 Well Survey metals bricks cover 20 wells within 500 m
   4. Temporal offset analysis (sediment: Feb 2023, groundwater: Sep 2024)
 - **Expected output**: Comparison figures, shared vs unique taxa analysis
 
-### Notebook 06: Synthesis — Environmental Gradient Inference (`06_gradient_synthesis.ipynb`)
-- **Goal**: Integrate all evidence to infer environmental gradients and hydrological patterns
+### Notebook 06: Synthesis — Contamination Plume Model (`06_synthesis.ipynb`)
+- **Goal**: Integrate all evidence under the contamination plume framework
 - **Steps**:
   1. Compile spatial deviations from NB02 (which wells don't fit distance-decay?)
   2. Overlay vertical zonation effects from NB03
   3. Map functional gradients from NB04 onto the physical grid
-  4. Propose environmental gradient hypotheses consistent with all observations
-  5. Compare with known ORR hydrogeology (dip direction, fracture networks, redox zonation)
-  6. Identify predictions that could be tested with the unmeasured geochemistry data
-- **Expected output**: Synthesis figure (physical grid annotated with community/functional patterns), testable predictions
+  4. Model the NE→SW plume trajectory through the SSO grid
+  5. Compare with known ORR hydrogeology (plume source NE of SSO, Area 3 contamination)
+  6. Generate testable predictions for when SSO geochemistry data is loaded
+- **Expected output**: Three-panel synthesis figure (redox, processes, corridor), evidence table, testable predictions
+
+### Notebook 07: Community Hotspot Profiles and Metabolic Interactions (`07_hotspot_interactions.ipynb`)
+- **Goal**: Profile dominant taxa at each well and infer metabolic interactions between co-occurring functional guilds
+- **Steps**:
+  1. Assign 65 annotated genera to 11 metabolic guilds (denitrifier, iron reducer, fermenter, etc.)
+  2. Profile top 15 genera per well with guild assignments
+  3. Compute guild co-occurrence (Spearman) across the 9 wells
+  4. Identify coupled guilds (syntrophic partnerships) and mutually exclusive guilds (redox separation)
+- **Expected output**: Guild composition bars, co-occurrence heatmap, `data/guild_composition.csv`, `data/hotspot_profiles.csv`
+
+### Notebook 08: Temporal Stability of Groundwater Communities (`08_temporal_stability.ipynb`)
+- **Goal**: Assess short-term stability of GW community composition over 9 days (Sep 9 vs Sep 18, 2024)
+- **Steps**:
+  1. PERMANOVA: partition GW variance among well, date, depth (SZ), and filter size (F01/F8)
+  2. Paired temporal comparison: within-well BC over 9 days vs between-well spatial BC
+  3. Mantel correlation between date-1 and date-2 distance matrices (spatial pattern stability)
+  4. Filter size fractionation: free-living (F01) vs particle-associated (F8) communities
+- **Expected output**: Variance partitioning table, temporal vs spatial boxplot, stability scatter plot
+- **Note**: Sediment has no within-well temporal replication (single core per well, Feb-Mar 2023)
 
 ## Expected Outcomes
 
@@ -174,6 +192,7 @@ The 100 Well Survey and 27 Well Survey metals bricks cover 20 wells within 500 m
 ## Revision History
 - **v1** (2026-04-03): Initial plan — restart from corrupted start; builds on existing extracted data + prior project lessons
 - **v1.1** (2026-04-03): Added nearby well geochemistry (EU/ED from 100WS/27WS) as regional context; added SSO isolate genomes (18 from M6-C2); confirmed SSO geochemistry values not in BERDL despite 221 registered sample tubes
+- **v2** (2026-04-04): Added NB07 (guild interactions) and NB08 (temporal stability) to analysis plan. Renamed NB06 to reflect contamination plume model framing. Updated NB04 description to reflect multi-resolution (class + genus) approach with 65 annotated genera. All 8 notebooks now documented.
 
 ## Authors
 - Adam Arkin (ORCID: 0000-0002-4999-2931), U.C. Berkeley / Lawrence Berkeley National Laboratory
