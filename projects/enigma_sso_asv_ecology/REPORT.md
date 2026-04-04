@@ -89,6 +89,45 @@ The groundwater is enriched in denitrifiers (*Rhodanobacter*) and iron oxidizers
 
 *(Notebook: 05_gw_vs_sediment.ipynb)*
 
+### 6. Metabolic Guild Structure and Inferred Interactions
+
+![Metabolic guild composition across wells](figures/guild_composition_bars.png)
+
+Assigning 65 annotated genera to 11 metabolic guilds reveals distinct functional assemblages at each well. Guild co-occurrence analysis across the 9 wells identifies tightly coupled functional partnerships:
+
+- **Nitrifier × iron oxidizer**: ρ = +0.95 — these co-occur strongly, both concentrated at U3 (plume entry). Both are chemolithotrophs exploiting reduced compounds (NH₄⁺, Fe²⁺) arriving in the plume.
+- **Syntroph × fermenter**: ρ = +0.55 — classic anaerobic food web coupling. Fermenters produce organic acids and H₂; syntrophs consume these in obligate partnerships with sulfate reducers or methanogens.
+- **Fermenter × predator (*Bdellovibrio*)**: ρ = +0.85 — predators track bacterial prey biomass, which is highest where fermentation supports dense populations.
+- **Denitrifier × syntroph**: ρ = −0.67 — mutual exclusion across the redox gradient. Denitrifiers thrive where nitrate is available (oxidizing); syntrophs require strictly anaerobic conditions.
+- **Sulfate reducer × aerobic heterotroph**: ρ = −0.75 — textbook redox separation. These guilds occupy opposite ends of the electron acceptor hierarchy.
+
+![Guild co-occurrence matrix](figures/guild_cooccurrence.png)
+
+*(Notebook: 07_hotspot_interactions.ipynb)*
+
+### 7. Groundwater Community Stability Over 9 Days
+
+![Temporal vs spatial variation](figures/temporal_vs_spatial_gw.png)
+
+Groundwater communities at 5 wells sampled 9 days apart (Sep 9 vs Sep 18, 2024) show remarkable short-term stability:
+
+| Factor | R² | p | Interpretation |
+|--------|-----|-----|---------------|
+| **Well** | **49.9%** | **0.001** | Spatial identity dominates |
+| Filter size | 10.1% | 0.001 | Free-living vs particle-associated are distinct |
+| Depth (SZ) | 2.5% | 0.430 | SZ1 vs SZ2 minor effect in GW |
+| **Date** | **0.8%** | **0.998** | **No detectable temporal change** |
+
+The variation hierarchy — temporal (median BC = 0.351) < filter (0.750) < spatial (0.917) — confirms that spatial patterns are temporally stable at the 9-day scale. The Mantel correlation between date-1 and date-2 distance matrices is ρ = 0.867 (p = 0.001): which wells are most similar to each other is nearly identical across the two sampling dates.
+
+This stability strengthens the plume model: the spatial community patterns we observe are not transient fluctuations but reflect persistent environmental structure maintained by the contamination plume.
+
+**Note on sediment temporal resolution**: Sediment cores were collected once per well (Feb-Mar 2023). No within-well temporal replication exists for sediment. The 18-month offset between sediment (2023) and groundwater (2024) confounds material type with time, and cross-material temporal comparisons should be interpreted with this caveat.
+
+![Spatial pattern stability across dates](figures/spatial_stability_mantel.png)
+
+*(Notebook: 08_temporal_stability.ipynb)*
+
 ## Results
 
 ### Spatial Structure (NB02)
@@ -164,7 +203,8 @@ This analysis provides the first spatially explicit mapping of biogeochemical pr
 
 - **No direct geochemistry**: SSO geochemistry (221 sample tubes registered in CORAL) has not been loaded into BERDL. All environmental inferences are from community composition alone. The contamination plume model generates testable predictions that await geochemical confirmation.
 - **Temporal offset**: Sediment cores (Feb-Mar 2023) and groundwater (Sep 2024) were collected 18 months apart. Seasonal or plume dynamics could confound the comparison.
-- **Groundwater coverage**: Only 5 of 9 wells have groundwater ASV data (L7, L9, M4, M6, U2), missing the critical wells M5 (denitrification hotspot) and U3 (plume entry).
+- **Groundwater coverage**: Only 5 of 9 wells have groundwater ASV data (L7, L9, M4, M6, U2), missing the critical wells M5 (denitrification hotspot) and U3 (plume entry). The denitrification and iron oxidation hotspot interpretations are based on sediment data; GW validation at these wells would substantially strengthen the plume model. Pump test ASV data (Brick 460-462, wells L8/M5/U2) remains available for future extraction.
+- **Genus coverage uncertainty**: Genus-level functional annotation covers only 21% of total reads (65 of 1,038 genera). Process abundance estimates are lower bounds; the unclassified 56% of reads could harbor additional functional capacity. Sensitivity to this coverage gap should be assessed by comparing genus-level patterns with the higher-coverage class-level traits (78%), which show consistent redox patterns.
 - **Taxonomy resolution**: Species-level classification is ~0%; genus-level covers only 44% of sediment reads. Functional inference relies on literature-based trait assignments rather than direct genomic evidence.
 - **Single timepoint for sediment**: Temporal dynamics of the plume and community response cannot be assessed from one core sampling event.
 - **Trait dictionary subjectivity**: Phylum/class-level trait scores are consensus estimates, not empirical measurements for these specific populations.
@@ -190,6 +230,8 @@ This analysis provides the first spatially explicit mapping of biogeochemical pr
 | `data/trait_profiles_class.csv` | 9×9 | Class-level trait profiles per well |
 | `data/genus_function_grid.csv` | 9×12 | Genus-inferred process abundances per well |
 | `data/trait_spatial_gradients.csv` | 9 | Spatial gradient tests for each trait |
+| `data/hotspot_profiles.csv` | 135 | Top 15 genera per well with guild assignments |
+| `data/guild_composition.csv` | 9×11 | Guild abundance per well |
 
 ## Supporting Evidence
 
@@ -202,6 +244,8 @@ This analysis provides the first spatially explicit mapping of biogeochemical pr
 | `04_functional_inference.ipynb` | Multi-resolution trait mapping (phylum, class, genus), spatial gradients |
 | `05_gw_vs_sediment.ipynb` | Groundwater vs sediment comparison, plume indicator genera |
 | `06_synthesis.ipynb` | Contamination plume model, evidence synthesis |
+| `07_hotspot_interactions.ipynb` | Well-by-well community profiles, metabolic guilds, co-occurrence |
+| `08_temporal_stability.ipynb` | GW temporal stability, filter size effects, variance partitioning |
 
 ### Figures
 | Figure | Description |
@@ -225,6 +269,10 @@ This analysis provides the first spatially explicit mapping of biogeochemical pr
 | `trait_clustermap.png` | Class-level trait clustermap |
 | `gw_vs_sediment_phylum.png` | Phylum bars: sediment vs groundwater at 5 wells |
 | `synthesis_plume_model.png` | Three-panel synthesis: redox, processes, corridor |
+| `guild_composition_bars.png` | Stacked bar chart of metabolic guilds per well |
+| `guild_cooccurrence.png` | Guild co-occurrence correlation matrix |
+| `temporal_vs_spatial_gw.png` | Temporal vs spatial variation in GW communities |
+| `spatial_stability_mantel.png` | Spatial pattern stability across 9-day interval |
 
 ## Testable Predictions
 
