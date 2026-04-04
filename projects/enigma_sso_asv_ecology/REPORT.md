@@ -137,15 +137,35 @@ This stability strengthens the plume model: the spatial community patterns we ob
 - U3-M6-L7 corridor: 3 most negative residuals (more similar than expected)
 - U3-M4 and U3-L9: most positive residuals (more different than expected)
 
+![Distance-decay scatter plot with pair annotations](figures/mantel_distance_decay.png)
+
+![Procrustes superimposition of community ordination onto grid](figures/procrustes_overlay.png)
+
 ### Depth Zonation (NB03)
 - 37 samples classified into VZ (33), VSZ (25), SZ1 (54), SZ2 (45) by depth + description
 - PERMANOVA: zone R² = 27.5% (p = 0.0001); well R² = 19.2% (p = 0.979, NS)
 - 10/12 top phyla significant for depth (Spearman p < 0.05)
 
+![Well grid geometry with inter-well distances](figures/well_grid_geometry.png)
+
+![Depth-zone profile across wells](figures/depth_zone_profile.png)
+
+![Within-zone vs within-well dissimilarity](figures/zone_vs_well_dissim.png)
+
+![Phylum composition by hydrogeological zone](figures/phylum_by_zone.png)
+
+![Zone enrichment patterns for top phyla](figures/zone_indicator_heatmap.png)
+
 ### Functional Inference (NB04)
 - Class-level: 22 classes, 78% coverage; redox index range 0.047 (M6) to 0.227 (U3)
 - Genus-level: 65 genera annotated, 12 biogeochemical process categories
 - Denitrification range: 1.9–7.7% (M5 peak); fermentation: 2.0–5.3% (L9 peak)
+
+![All trait profiles mapped onto grid](figures/trait_grid_maps.png)
+
+![Key functional gradients: redox, fermentation, nitrogen](figures/key_functional_gradients.png)
+
+![Class-level trait clustermap](figures/trait_clustermap.png)
 
 ### Groundwater vs Sediment (NB05)
 - 5 wells with both materials; within-well BC = 0.364–0.450
@@ -187,6 +207,10 @@ Recent work generating 77 sediment and 33 groundwater metagenomes from the ORR (
 
 The observation of significant community turnover at meter scale is noteworthy. Most subsurface distance-decay studies operate at kilometer scales (Fierer & Jackson 2006). The SSO demonstrates that contamination plumes can structure communities at sub-decameter resolution, consistent with the known sharp geochemical gradients at plume fringes.
 
+The guild co-occurrence patterns (NB07) are consistent with established syntrophic theory. The tight coupling of syntrophs and fermenters (ρ = +0.55) reflects the thermodynamic interdependence described by McInerney et al. (2009): syntrophic fatty acid degradation requires fermentation products (H₂, acetate, formate) to be maintained at low concentrations, creating obligate partnerships. The mutual exclusion of denitrifiers and syntrophs (ρ = −0.67) maps onto the canonical redox zonation of contaminated aquifers (Chapelle 2001), where electron acceptor availability segregates metabolic guilds spatially.
+
+The 9-day temporal stability of groundwater communities (NB08: well R² = 49.9%, date R² = 0.8%) is consistent with long-term monitoring at contaminated aquifers showing that "composition of native microbial communities varied temporally, yet remained distinctive from well to well" (Shi et al. 2021). The spatial signal overwhelms temporal noise at this timescale, supporting the interpretation that community structure reflects persistent geochemical conditions rather than stochastic assembly.
+
 ### Novel Contribution
 
 This analysis provides the first spatially explicit mapping of biogeochemical process distributions across the SSO 3×3 grid, inferred from 16S community composition at three taxonomic resolutions (phylum, class, genus). The key novelties are:
@@ -198,6 +222,10 @@ This analysis provides the first spatially explicit mapping of biogeochemical pr
 3. **M5 as the mixing zone**: The central well's denitrification peak (*Rhodanobacter* at 7.7%) identifies the precise location where plume nitrate meets background organic carbon — a prediction that can be validated when SSO geochemistry data is loaded into CORAL.
 
 4. **Depth × plume interaction**: The vertical zonation (PERMANOVA R² = 27.5%) reflects the plume's confinement to the saturated zone, not just generic depth gradients. Above the water table, communities are unaffected by contamination.
+
+5. **Guild co-occurrence maps the metabolic network**: The strong nitrifier-iron oxidizer coupling (ρ = +0.95) and denitrifier-syntroph exclusion (ρ = −0.67) provide a functional network topology that overlays the spatial redox gradient — connecting community composition to biogeochemical mechanism.
+
+6. **Temporal stability validates spatial inference**: With date explaining only 0.8% of GW variance (vs 49.9% for well), the spatial patterns are not stochastic snapshots but persistent features of the subsurface environment, consistent with stable plume geochemistry.
 
 ### Limitations
 
@@ -297,4 +325,7 @@ This analysis provides the first spatially explicit mapping of biogeochemical pr
 - Thomas SH, Wagner RD, Arakaki AK, Skolnick J, Kirby JR, Shimkets LJ, Sanford RA, Löffler FE. (2008). "The mosaic genome of *Anaeromyxobacter dehalogenans* strain 2CP-C suggests an aerobic common ancestor to the delta-proteobacteria." *PLoS ONE* 3(5):e2103. PMID: [18461131](https://pubmed.ncbi.nlm.nih.gov/18461131/)
 - Fierer N, Jackson RB. (2006). "The diversity and biogeography of soil bacterial communities." *Proceedings of the National Academy of Sciences* 103(3):626-31. PMID: [16407148](https://pubmed.ncbi.nlm.nih.gov/16407148/)
 - Watson DB, Wu WM, Mehlhorn T, Tang G, Earles J, Lowe K, Gihring TM, Zhang G, Phillips J, Boyanov MI, Spalding BP, Schadt C, Kemner KM, Criddle CS, Jardine PM, Brooks SC. (2013). "In situ bioremediation of uranium with emulsified vegetable oil as the electron donor." *Environmental Science & Technology* 47(12):6440-48. PMID: [23631611](https://pubmed.ncbi.nlm.nih.gov/23631611/)
+- McInerney MJ, Sieber JR, Gunsalus RP. (2009). "Syntrophy in anaerobic global carbon cycles." *Current Opinion in Biotechnology* 20(6):623-32. PMID: [19897353](https://pubmed.ncbi.nlm.nih.gov/19897353/)
+- Chapelle FH. (2001). "Ground-Water Microbiology and Geochemistry." 2nd Edition. John Wiley & Sons.
+- Shi Z, Xu M, Gong H, Ye Q, Yan C, et al. (2021). "Long-term dynamic changes in attached and planktonic microbial communities in a contaminated aquifer." *Environmental Pollution* 286:117219. PMID: [34052673](https://pubmed.ncbi.nlm.nih.gov/34052673/)
 - Arkin AP, Cottingham RW, Henry CS, et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nature Biotechnology* 36:566-569. PMID: [29979655](https://pubmed.ncbi.nlm.nih.gov/29979655/)
