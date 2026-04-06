@@ -91,6 +91,7 @@ async def create_project_file(
     title: str | None = None,
     description: str | None = None,
     is_public: bool = False,
+    source: str = "upload",
 ) -> ProjectFile:
     f = ProjectFile(
         project_id=project_id,
@@ -102,6 +103,7 @@ async def create_project_file(
         title=title,
         description=description,
         is_public=is_public,
+        source=source,
     )
     db.add(f)
     await db.commit()
@@ -112,6 +114,19 @@ async def create_project_file(
 async def get_files_for_project(db: AsyncSession, project_id: str) -> list[ProjectFile]:
     result = await db.execute(
         select(ProjectFile).where(ProjectFile.project_id == project_id)
+    )
+    return list(result.scalars().all())
+
+
+async def get_github_files_for_project(
+    db: AsyncSession, project_id: str
+) -> list[ProjectFile]:
+    """Return only files synced from GitHub (source='github') for the given project."""
+    result = await db.execute(
+        select(ProjectFile).where(
+            ProjectFile.project_id == project_id,
+            ProjectFile.source == "github",
+        )
     )
     return list(result.scalars().all())
 
