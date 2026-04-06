@@ -1,9 +1,5 @@
 """Tests for database CRUD operations (app.db.crud)."""
 
-from datetime import datetime, timezone
-
-import pytest
-
 from app.db.crud import get_or_create_user, get_user_by_orcid
 from app.db.models import BerilUser
 

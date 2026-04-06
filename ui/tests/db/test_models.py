@@ -8,6 +8,7 @@ from app.db.models import (
     ProjectContributor,
     ProjectFile,
     ProjectReview,
+    UserApiToken,
     UserProject,
 )
 
@@ -137,6 +138,33 @@ class TestUserProject:
             )
             db_session.add(project)
         await db_session.commit()
+
+    async def test_github_repo_url_defaults_none(self, db_session, user):
+        project = UserProject(
+            owner_id=user.id,
+            slug="no-github",
+            title="T",
+            research_question="Q?",
+        )
+        db_session.add(project)
+        await db_session.commit()
+        await db_session.refresh(project)
+
+        assert project.github_repo_url is None
+
+    async def test_github_repo_url_can_be_set(self, db_session, user):
+        project = UserProject(
+            owner_id=user.id,
+            slug="with-github",
+            title="T",
+            research_question="Q?",
+            github_repo_url="https://github.com/org/repo",
+        )
+        db_session.add(project)
+        await db_session.commit()
+        await db_session.refresh(project)
+
+        assert project.github_repo_url == "https://github.com/org/repo"
 
     async def test_cascade_delete_removes_project(self, db_session, user):
         from sqlalchemy import select
@@ -272,6 +300,33 @@ class TestProjectFile:
             db_session.add(f)
         await db_session.commit()
 
+    async def test_is_public_defaults_false(self, db_session, project):
+        f = ProjectFile(
+            project_id=project.id,
+            file_type="data",
+            filename="data.csv",
+            storage_path=f"{project.id}/data/data.csv",
+        )
+        db_session.add(f)
+        await db_session.commit()
+        await db_session.refresh(f)
+
+        assert f.is_public is False
+
+    async def test_is_public_can_be_set_true(self, db_session, project):
+        f = ProjectFile(
+            project_id=project.id,
+            file_type="data",
+            filename="public.csv",
+            storage_path=f"{project.id}/data/public.csv",
+            is_public=True,
+        )
+        db_session.add(f)
+        await db_session.commit()
+        await db_session.refresh(f)
+
+        assert f.is_public is True
+
 
 # ---------------------------------------------------------------------------
 # ProjectReview
@@ -377,3 +432,75 @@ class TestProjectCollection:
         db_session.add(link2)
         with pytest.raises(IntegrityError):
             await db_session.commit()
+
+
+# ---------------------------------------------------------------------------
+# UserApiToken
+# ---------------------------------------------------------------------------
+
+
+class TestUserApiToken:
+    @pytest.fixture
+    async def user(self, db_session):
+        u = BerilUser(orcid_id="0000-0001-2345-6789", display_name="Alice")
+        db_session.add(u)
+        await db_session.commit()
+        await db_session.refresh(u)
+        return u
+
+    async def test_create_token(self, db_session, user):
+        token = UserApiToken(
+            user_id=user.id,
+            token_hash="abc123deadbeef" * 4,
+        )
+        db_session.add(token)
+        await db_session.commit()
+        await db_session.refresh(token)
+
+        assert token.id is not None
+        assert len(token.id) == 36
+        assert token.user_id == user.id
+        assert token.token_hash == "abc123deadbeef" * 4
+        assert token.created_at is not None
+        assert token.last_used_at is None
+
+    async def test_token_hash_is_unique(self, db_session, user):
+        from sqlalchemy.exc import IntegrityError
+
+        hash_val = "deadbeef" * 8
+        t1 = UserApiToken(user_id=user.id, token_hash=hash_val)
+        t2 = UserApiToken(user_id=user.id, token_hash=hash_val)
+        db_session.add(t1)
+        await db_session.commit()
+
+        db_session.add(t2)
+        with pytest.raises(IntegrityError):
+            await db_session.commit()
+
+    async def test_cascade_delete_removes_token(self, db_session, user):
+        from sqlalchemy import select
+
+        token = UserApiToken(user_id=user.id, token_hash="cafebabe" * 8)
+        db_session.add(token)
+        await db_session.commit()
+        token_id = token.id
+
+        await db_session.delete(user)
+        await db_session.commit()
+
+        result = await db_session.execute(
+            select(UserApiToken).where(UserApiToken.id == token_id)
+        )
+        assert result.scalar_one_or_none() is None
+
+    async def test_user_can_have_multiple_tokens(self, db_session, user):
+        from sqlalchemy import select
+
+        for i in range(3):
+            db_session.add(UserApiToken(user_id=user.id, token_hash=f"hash{i}" * 10))
+        await db_session.commit()
+
+        result = await db_session.execute(
+            select(UserApiToken).where(UserApiToken.user_id == user.id)
+        )
+        assert len(result.scalars().all()) == 3

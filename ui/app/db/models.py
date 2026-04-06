@@ -35,6 +35,9 @@ class BerilUser(Base):
     projects: Mapped[list["UserProject"]] = relationship(
         "UserProject", back_populates="owner", cascade="all, delete-orphan"
     )
+    api_tokens: Mapped[list["UserApiToken"]] = relationship(
+        "UserApiToken", back_populates="user", cascade="all, delete-orphan"
+    )
 
 
 class UserProject(Base):
@@ -58,6 +61,7 @@ class UserProject(Base):
     approach: Mapped[str | None] = mapped_column(Text, nullable=True)
     findings: Mapped[str | None] = mapped_column(Text, nullable=True)
     is_public: Mapped[bool] = mapped_column(Boolean, default=False)
+    github_repo_url: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now, onupdate=_now)
     submitted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
@@ -126,6 +130,7 @@ class ProjectFile(Base):
     content_type: Mapped[str | None] = mapped_column(String(128), nullable=True)
     title: Mapped[str | None] = mapped_column(Text, nullable=True)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    is_public: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
     uploaded_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now, onupdate=_now)
 
@@ -151,6 +156,22 @@ class ProjectReview(Base):
     raw_content: Mapped[str] = mapped_column(Text, default="")
 
     project: Mapped["UserProject"] = relationship("UserProject", back_populates="reviews")
+
+
+class UserApiToken(Base):
+    """A personal API token for a BERIL user. Only the hash is stored."""
+
+    __tablename__ = "user_api_token"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    user_id: Mapped[str] = mapped_column(
+        String(36), ForeignKey("beril_user.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    token_hash: Mapped[str] = mapped_column(Text, unique=True, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
+    last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+
+    user: Mapped["BerilUser"] = relationship("BerilUser", back_populates="api_tokens")
 
 
 class ProjectCollection(Base):
