@@ -54,3 +54,17 @@ async def get_db() -> AsyncGenerator[AsyncSession, None]:
         raise RuntimeError("Database not initialized — call init_db() first")
     async with _async_session_factory() as session:
         yield session
+
+
+async def check_db() -> dict:
+    """Check DB connectivity and return basic status info."""
+    if _engine is None:
+        return {"status": "unavailable", "detail": "engine not initialized"}
+    try:
+        from sqlalchemy import text
+        async with _engine.connect() as conn:
+            await conn.execute(text("SELECT 1"))
+        version = _engine.dialect.server_version_info
+        return {"status": "ok", "version": version}
+    except Exception as e:
+        return {"status": "error", "detail": str(e)}
