@@ -6,6 +6,19 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ---
 
+## 2026-04
+
+### [enigma_sso_asv_ecology] 16S community similarity maps contamination plume at meter scale
+The SSO 3×3 well grid (~6 m span) shows significant distance-decay (Mantel ρ=0.323, p=0.029) driven by the east-west axis rather than the hillslope gradient. A diagonal corridor of wells (U3-M6-L7) shares community composition along the NE→SW plume flow path. Genus-level functional inference maps the thermodynamic redox ladder (denitrification → iron reduction → fermentation) onto the physical grid. M5 hosts a *Rhodanobacter* denitrification hotspot (7.7%) at the plume mixing zone. GW communities are temporally stable (well R²=49.9%, date R²=0.8% over 9 days). This demonstrates that 16S community data can delineate subsurface contamination flow paths at sub-decameter resolution.
+
+### [enigma_sso_asv_ecology] SSO geochemistry not in BERDL despite 221 registered samples
+221 METALS/ICTOC/ISOTOPES/NH3NO2 sample tubes from the SSO Subsurface Observatory campaign are registered in ENIGMA CORAL (`sdt_sample`) but zero `Assay Geochemistry` processes are linked — the analytical measurement values were never ingested. This is the key validation dataset for the plume model.
+
+### [enigma_sso_asv_ecology] Nitrifier × iron oxidizer coupling (ρ=+0.95) at plume entry
+*Candidatus Nitrosotalea* (archaeal ammonia oxidizer) and *Sideroxydans* (iron oxidizer) co-occur almost perfectly across the 9 SSO wells (ρ=+0.95), concentrated at U3. Both are chemolithotrophs exploiting reduced compounds arriving in the contamination plume. This tight coupling suggests shared environmental niche at the oxic plume fringe.
+
+---
+
 ## 2026-03
 
 ### [amr_environmental_resistome] Resistance mechanism composition is strongly environment-dependent across 14,723 species
