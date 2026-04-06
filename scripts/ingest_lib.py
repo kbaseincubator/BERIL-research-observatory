@@ -269,6 +269,18 @@ def initialize():
     return spark, minio_client
 
 
+def initialize_minio():
+    """Set up MinIO only (no Spark, no JupyterHub), returning minio_client.
+
+    Checks SSH tunnels (raises if missing), auto-starts pproxy, then connects
+    to MinIO. Used by ingest_preflight.py for the pre-flight plan step.
+    """
+    _check_ssh_tunnels()
+    _start_pproxy_if_needed()
+    minio_client = _build_minio_client()
+    return minio_client
+
+
 def reconnect_spark(old_spark):
     """Stop a dead Spark session and return a new one.
 
