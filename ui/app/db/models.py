@@ -165,7 +165,7 @@ class UserApiToken(Base):
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
     user_id: Mapped[str] = mapped_column(
-        String(36), ForeignKey("beril_user.id", ondelete="CASCADE"), nullable=False, index=True
+        String(36), ForeignKey("beril_user.id", ondelete="CASCADE"), nullable=False, unique=True
     )
     token_hash: Mapped[str] = mapped_column(Text, unique=True, nullable=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
