@@ -1,0 +1,51 @@
+{
+  "dataset": "phenotype2",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/users-general-warehouse/amkhan/datasets/phenotype2"
+  },
+  "tables": [
+    {
+      "name": "condition_set",
+      "enabled": true,
+      "schema_sql": "condition_set_id STRING, experiment_condition_id STRING",
+      "bronze_path": "${bronze_base}/condition_set.parquet"
+    },
+    {
+      "name": "experiment_x_measurement",
+      "enabled": true,
+      "schema_sql": "experiment_id STRING, variable_id STRING, measurement_set_id STRING, quality STRING, timestamp STRING",
+      "bronze_path": "${bronze_base}/experiment_x_measurement.parquet"
+    },
+    {
+      "name": "experimental_context",
+      "enabled": true,
+      "schema_sql": "experiment_context_id STRING, experiment_id STRING, variable_id STRING, value STRING",
+      "bronze_path": "${bronze_base}/experimental_context.parquet"
+    },
+    {
+      "name": "experimental_variable",
+      "enabled": true,
+      "schema_sql": "variable_id STRING, name STRING, name_cv_id STRING, description STRING, value_type STRING, units STRING",
+      "bronze_path": "${bronze_base}/experimental_variable.parquet"
+    },
+    {
+      "name": "measurement",
+      "enabled": true,
+      "schema_sql": "measurement_id STRING, measurement_set_id STRING, condition_set_id STRING, value DOUBLE",
+      "bronze_path": "${bronze_base}/measurement.parquet"
+    },
+    {
+      "name": "protocol",
+      "enabled": true,
+      "schema_sql": "protocol_id STRING, name STRING, description STRING, steps STRING",
+      "bronze_path": "${bronze_base}/protocol.parquet"
+    },
+    {
+      "name": "experiment_parsed",
+      "enabled": true,
+      "format": "parquet",
+      "schema_sql": "experiment_id STRING, name STRING, description STRING, protocol_id STRING, created_at DATE, contributor STRING",
+      "bronze_path": "${bronze_base}/experiment_parsed.parquet"
+    }
+  ]
+}

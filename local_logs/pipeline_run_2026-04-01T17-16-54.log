@@ -1,0 +1,48 @@
+{"time": "2026-04-01 17:16:54,991", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "config_loader", "msg": "Loading configuration from local file: /home/ahmed_khan/.data_lakehouse/configs/ontology2_ingest.json"}
+{"time": "2026-04-01 17:16:54,991", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "config_loader", "msg": "Config loaded successfully"}
+{"time": "2026-04-01 17:16:54,991", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "config_loader", "msg": "Minimal config validation passed"}
+{"time": "2026-04-01 17:16:54,992", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "init_utils", "msg": "Loaded configuration: tenant=None, dataset=ontology2"}
+{"time": "2026-04-01 17:16:54,992", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "init_utils", "msg": "Found 3 table(s) to process"}
+{"time": "2026-04-01 17:16:56,527", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "ERROR", "module": "init_utils", "msg": "Failed to create or access namespace for dataset 'ontology2': <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.PERMISSION_DENIED
+	details = "Database name 'ontology2' is not allowed. Database names must start with one of the following prefixes: [u_amkhan__, aisynbio_, arkinlab_, bravebread_, ese_, globalusers_, ideas_, kbase_, kescience_, microbialdiscoveryforge_, nmdc_, planetmicrobe_]. Use create_namespace_if_not_exists() to create databases with the correct prefix."
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_status:7, grpc_message:"Database name \'ontology2\' is not allowed. Database names must start with one of the following prefixes: [u_amkhan__, aisynbio_, arkinlab_, bravebread_, ese_, globalusers_, ideas_, kbase_, kescience_, microbialdiscoveryforge_, nmdc_, planetmicrobe_]. Use create_namespace_if_not_exists() to create databases with the correct prefix."}"
+>"}
+Traceback (most recent call last):
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/data_lakehouse_ingest/orchestrator/init_utils.py", line 104, in init_run_context
+    namespace = create_namespace_if_not_exists(spark, dataset)
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/projects/ontology-2/run_ingest.py", line 27, in _create_namespace_if_not_exists
+    spark.sql(f"CREATE DATABASE IF NOT EXISTS `{ns}` LOCATION '{location}'")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/pyspark/sql/connect/session.py", line 828, in sql
+    data, properties, ei = self.client.execute_command(cmd.command(self._client))
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/pyspark/sql/connect/client/core.py", line 1195, in execute_command
+    data, _, metrics, observed_metrics, properties = self._execute_and_fetch(
+                                                     ~~~~~~~~~~~~~~~~~~~~~~~^
+        req, observations or {}
+        ^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/pyspark/sql/connect/client/core.py", line 1697, in _execute_and_fetch
+    for response in self._execute_and_fetch_as_iterator(
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        req, observations, progress=progress
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/pyspark/sql/connect/client/core.py", line 1674, in _execute_and_fetch_as_iterator
+    self._handle_error(error)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/pyspark/sql/connect/client/core.py", line 1982, in _handle_error
+    self._handle_rpc_error(error)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/pyspark/sql/connect/client/core.py", line 2079, in _handle_rpc_error
+    raise SparkConnectGrpcException(
+    ...<2 lines>...
+    ) from None
+pyspark.errors.exceptions.connect.SparkConnectGrpcException: <_MultiThreadedRendezvous of RPC that terminated with:
+	status = StatusCode.PERMISSION_DENIED
+	details = "Database name 'ontology2' is not allowed. Database names must start with one of the following prefixes: [u_amkhan__, aisynbio_, arkinlab_, bravebread_, ese_, globalusers_, ideas_, kbase_, kescience_, microbialdiscoveryforge_, nmdc_, planetmicrobe_]. Use create_namespace_if_not_exists() to create databases with the correct prefix."
+	debug_error_string = "UNKNOWN:Error received from peer  {grpc_status:7, grpc_message:"Database name \'ontology2\' is not allowed. Database names must start with one of the following prefixes: [u_amkhan__, aisynbio_, arkinlab_, bravebread_, ese_, globalusers_, ideas_, kbase_, kescience_, microbialdiscoveryforge_, nmdc_, planetmicrobe_]. Use create_namespace_if_not_exists() to create databases with the correct prefix."}"
+>

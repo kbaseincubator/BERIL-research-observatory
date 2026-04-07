@@ -1,0 +1,33 @@
+{
+  "dataset": "ontology4",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology4"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "entailed_edge",
+      "enabled": true,
+      "schema_sql": "subject STRING, predicate STRING, object STRING",
+      "bronze_path": "${bronze_base}/entailed_edge.tsv"
+    },
+    {
+      "name": "prefix",
+      "enabled": true,
+      "schema_sql": "prefix STRING, base STRING",
+      "bronze_path": "${bronze_base}/prefix.tsv"
+    },
+    {
+      "name": "statements",
+      "enabled": true,
+      "schema_sql": "subject STRING, predicate STRING, object STRING, value STRING, datatype STRING, language STRING",
+      "bronze_path": "${bronze_base}/statements.tsv"
+    }
+  ]
+}

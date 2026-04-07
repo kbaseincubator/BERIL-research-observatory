@@ -1,0 +1,39 @@
+{
+  "dataset": "pangenome2",
+
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/users-general-warehouse/amkhan/datasets/pangenome-1"
+  },
+
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+
+  "tables": [
+    {
+      "name": "gene",
+      "enabled": true,
+      "schema_sql": "gene_id STRING, genome_id STRING",
+      "partition_by": null,
+      "bronze_path": "${bronze_base}/table_gene_V1.0.tsv"
+    },
+    {
+      "name": "genome_ani",
+      "enabled": true,
+      "schema_sql": "genome1_id STRING, genome2_id STRING, protocol_id STRING, ANI DOUBLE, AF DOUBLE, AFMapped BIGINT, AFTotal BIGINT",
+      "partition_by": null,
+      "bronze_path": "${bronze_base}/table_genome_ANI_V1.1.tsv"
+    },
+    {
+      "name": "genome",
+      "enabled": true,
+      "schema_sql": "genome_id STRING, gtdb_species_clade_id STRING, gtdb_taxonomy_id STRING, ncbi_biosample_id STRING, fna_file_path_nersc STRING, faa_file_path_nersc STRING",
+      "partition_by": null,
+      "bronze_path": "${bronze_base}/table_genome_V1.1.tsv"
+    }
+  ]
+}

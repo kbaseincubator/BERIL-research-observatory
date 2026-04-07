@@ -1,0 +1,53 @@
+{"time": "2026-04-01 14:44:24,957", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "ERROR", "module": "config_loader", "msg": "Unsafe or out-of-sandbox config path detected.
+Provided: /mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/projects/pangenome-2/data/pangenome2_ingest.json
+Allowed base directory: /home/ahmed_khan/.data_lakehouse/configs
+Please move your config file inside the safe directory, for example:
+    /home/ahmed_khan/.data_lakehouse/configs/pangenome2_ingest.json"}
+{"time": "2026-04-01 14:44:24,958", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "ERROR", "module": "config_loader", "msg": "ConfigLoader initialization failed: Unsafe or out-of-sandbox config path detected.
+Provided: /mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/projects/pangenome-2/data/pangenome2_ingest.json
+Allowed base directory: /home/ahmed_khan/.data_lakehouse/configs
+Please move your config file inside the safe directory, for example:
+    /home/ahmed_khan/.data_lakehouse/configs/pangenome2_ingest.json"}
+Traceback (most recent call last):
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/data_lakehouse_ingest/config_loader.py", line 71, in __init__
+    self.config: dict[str, Any] = self._load_config(cfg)
+                                  ~~~~~~~~~~~~~~~~~^^^^^
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/data_lakehouse_ingest/config_loader.py", line 141, in _load_config
+    raise ValueError(msg)
+ValueError: Unsafe or out-of-sandbox config path detected.
+Provided: /mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/projects/pangenome-2/data/pangenome2_ingest.json
+Allowed base directory: /home/ahmed_khan/.data_lakehouse/configs
+Please move your config file inside the safe directory, for example:
+    /home/ahmed_khan/.data_lakehouse/configs/pangenome2_ingest.json
+{"time": "2026-04-01 14:44:24,963", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "core", "msg": "Ingestion terminated during config validation"}
+{"time": "2026-04-01 14:44:24,963", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "ERROR", "module": "core", "msg": "Failed to load or validate configuration: Unsafe or out-of-sandbox config path detected.
+Provided: /mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/projects/pangenome-2/data/pangenome2_ingest.json
+Allowed base directory: /home/ahmed_khan/.data_lakehouse/configs
+Please move your config file inside the safe directory, for example:
+    /home/ahmed_khan/.data_lakehouse/configs/pangenome2_ingest.json"}
+Traceback (most recent call last):
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/data_lakehouse_ingest/core.py", line 136, in ingest
+    loader = ConfigLoader(config, logger=logger, minio_client=minio_client)
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/data_lakehouse_ingest/config_loader.py", line 71, in __init__
+    self.config: dict[str, Any] = self._load_config(cfg)
+                                  ~~~~~~~~~~~~~~~~~^^^^^
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/data_lakehouse_ingest/config_loader.py", line 141, in _load_config
+    raise ValueError(msg)
+ValueError: Unsafe or out-of-sandbox config path detected.
+Provided: /mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/projects/pangenome-2/data/pangenome2_ingest.json
+Allowed base directory: /home/ahmed_khan/.data_lakehouse/configs
+Please move your config file inside the safe directory, for example:
+    /home/ahmed_khan/.data_lakehouse/configs/pangenome2_ingest.json
+{"time": "2026-04-01 14:44:24,968", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "logger", "msg": "{
+  "success": false,
+  "started_at": "2026-04-01T19:44:24.949498+00:00",
+  "ended_at": "2026-04-01T19:44:24.968852+00:00",
+  "duration_sec": 0.019354,
+  "tables": [],
+  "errors": [
+    {
+      "phase": "config_validation",
+      "error": "Failed to load or validate configuration: Unsafe or out-of-sandbox config path detected.\nProvided: /mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/projects/pangenome-2/data/pangenome2_ingest.json\nAllowed base directory: /home/ahmed_khan/.data_lakehouse/configs\nPlease move your config file inside the safe directory, for example:\n    /home/ahmed_khan/.data_lakehouse/configs/pangenome2_ingest.json"
+    }
+  ]
+}"}

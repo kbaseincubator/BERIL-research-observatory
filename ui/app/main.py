@@ -696,3 +696,6 @@ async def health(
 ):
     """Health check endpoint."""
     return {"status": "healthy"} | context
+
+
+app = create_app()

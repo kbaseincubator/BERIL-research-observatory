@@ -1,0 +1,46 @@
+{
+  "dataset": "phenotype1",
+
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/users-general-warehouse/amkhan/datasets/phenotype1"
+  },
+
+  "tables": [
+    {
+      "name": "condition_set",
+      "enabled": true,
+      "bronze_path": "${bronze_base}/condition_set.parquet"
+    },
+    {
+      "name": "experiment_parsed",
+      "enabled": true,
+      "format": "parquet",
+      "bronze_path": "${bronze_base}/experiment_parsed.parquet"
+    },
+    {
+      "name": "experiment_x_measurement",
+      "enabled": true,
+      "bronze_path": "${bronze_base}/experiment_x_measurement.parquet"
+    },
+    {
+      "name": "experimental_context",
+      "enabled": true,
+      "bronze_path": "${bronze_base}/experimental_context.parquet"
+    },
+    {
+      "name": "experimental_variable",
+      "enabled": true,
+      "bronze_path": "${bronze_base}/experimental_variable.parquet"
+    },
+    {
+      "name": "measurement",
+      "enabled": true,
+      "bronze_path": "${bronze_base}/measurement.parquet"
+    },
+    {
+      "name": "protocol",
+      "enabled": true,
+      "bronze_path": "${bronze_base}/protocol.parquet"
+    }
+  ]
+}

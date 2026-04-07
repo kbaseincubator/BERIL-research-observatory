@@ -211,6 +211,32 @@ CAST(AVG(CASE WHEN best_score >= 5 THEN 1.0 ELSE 0.0 END) AS DOUBLE) AS frac_com
 
 Observed in `[nmdc_community_metabolic_ecology]` NB03: `centrifuge_gold.abundance` (cell-15) and `gapmind_pathways` AVG aggregates (cell-11/18).
 
+### `ingest()` Config Path Must Be Inside `~/.data_lakehouse/configs/`
+
+**[pangenome-2]** `data_lakehouse_ingest.ingest()` enforces a sandbox check on the config file path. Passing an arbitrary local path raises:
+
+```
+ValueError: Unsafe or out-of-sandbox config path detected.
+Allowed base directory: /home/<user>/.data_lakehouse/configs
+```
+
+```python
+# WRONG: path outside the allowed sandbox
+ingest("projects/pangenome-2/data/pangenome2_ingest.json", spark=spark, minio_client=mc)
+
+# CORRECT: write config to the sandbox directory first
+import shutil
+from pathlib import Path
+
+config_dir = Path.home() / ".data_lakehouse" / "configs"
+config_dir.mkdir(parents=True, exist_ok=True)
+dest = config_dir / "pangenome2_ingest.json"
+shutil.copy("projects/pangenome-2/data/pangenome2_ingest.json", dest)
+ingest(str(dest), spark=spark, minio_client=mc)
+```
+
+**Solution**: Always copy or write the config JSON to `~/.data_lakehouse/configs/` before calling `ingest()`. Inline JSON strings are also accepted — pass the JSON string directly instead of a path.
+
 ### `SELECT DISTINCT col, COUNT(*) ...` Without GROUP BY Fails in Spark Strict Mode
 
 Spark Connect's SQL analyzer rejects `SELECT DISTINCT` combined with an aggregate function when no `GROUP BY` is present (`MISSING_GROUP_BY`, SQLSTATE 42803). This is a strict standard-SQL interpretation that differs from some other databases (e.g., DuckDB, SQLite) which accept this syntax.
@@ -673,6 +699,38 @@ jupyter nbconvert --to notebook --execute notebook.ipynb \
 The kernel spawned by nbconvert has `get_spark_session()` available. However, long-running notebooks may time out — set `--ExecutePreprocessor.timeout` appropriately.
 
 **Tip**: For long pipelines, design notebooks with checkpointing (save intermediate files, skip steps that already have output). This allows re-running after interruptions without repeating completed work.
+
+### `data_lakehouse_ingest` Requires `berdl_notebook_utils` Stubs When Running Locally
+
+**[pangenome-2]** `data_lakehouse_ingest` imports from `berdl_notebook_utils` at the module level. That package only exists on the BERDL JupyterHub cluster. Running `from data_lakehouse_ingest import ingest` locally raises `ModuleNotFoundError: No module named 'berdl_notebook_utils'`.
+
+```python
+# WRONG: import fails locally with ModuleNotFoundError
+from data_lakehouse_ingest import ingest
+
+# CORRECT: stub all nine submodules via sys.modules BEFORE importing
+import sys
+from types import ModuleType
+
+for _name in [
+    "berdl_notebook_utils",
+    "berdl_notebook_utils.berdl_settings",
+    "berdl_notebook_utils.clients",
+    "berdl_notebook_utils.setup_spark_session",
+    "berdl_notebook_utils.spark",
+    "berdl_notebook_utils.spark.database",
+    "berdl_notebook_utils.spark.cluster",
+    "berdl_notebook_utils.spark.dataframe",
+    "berdl_notebook_utils.minio_governance",
+]:
+    sys.modules[_name] = ModuleType(_name)
+
+sys.modules["berdl_notebook_utils.clients"].get_minio_client = lambda **kw: minio_client
+
+from data_lakehouse_ingest import ingest  # now succeeds
+```
+
+**Solution**: Register all nine `berdl_notebook_utils.*` submodules as empty `ModuleType` stubs before importing `data_lakehouse_ingest`. Wire `get_minio_client` to return a real `Minio` client. See `.claude/skills/berdl-dl-ingest/references/ingest.ipynb` for a complete template.
 
 ---
 

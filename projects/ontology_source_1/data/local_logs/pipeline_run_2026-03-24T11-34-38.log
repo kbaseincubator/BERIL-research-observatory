@@ -1,0 +1,150 @@
+{"time": "2026-03-24 11:34:38,590", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "config_loader", "msg": "Fetching config from MinIO: bucket=cdm-lake, key=users-general-warehouse/amkhan/datasets/ontology_source_1_ai/entailed_edge_config.json"}
+{"time": "2026-03-24 11:34:38,711", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "config_loader", "msg": "Config loaded successfully"}
+{"time": "2026-03-24 11:34:38,712", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "config_loader", "msg": "Minimal config validation passed"}
+{"time": "2026-03-24 11:34:38,714", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "init_utils", "msg": "Loaded configuration: tenant=u_amkhan_, dataset=ontology_source_1_ai"}
+{"time": "2026-03-24 11:34:38,715", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "init_utils", "msg": "Found 1 table(s) to process"}
+{"time": "2026-03-24 11:34:38,967", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "init_utils", "msg": "Tenant namespace created/accessed: u_amkhan__ontology_source_1_ai"}
+{"time": "2026-03-24 11:34:40,043", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "init_utils", "msg": "Namespace storage location: s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db"}
+{"time": "2026-03-24 11:34:40,045", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "init_utils", "msg": "Ingestion context initialized successfully."}
+{"time": "2026-03-24 11:34:40,046", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "table_processor", "msg": "Processing table: entailed_edge"}
+{"time": "2026-03-24 11:34:40,046", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "schema_utils", "msg": "Using schema_sql for table entailed_edge"}
+{"time": "2026-03-24 11:34:40,047", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "schema_utils", "msg": "Parsing SQL schema definition: subject STRING, predicate STRING, object STRING"}
+{"time": "2026-03-24 11:34:40,049", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "schema_utils", "msg": "Successfully parsed 3 columns from schema_sql."}
+{"time": "2026-03-24 11:34:40,050", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "table_processor", "msg": "   Silver: s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db"}
+{"time": "2026-03-24 11:34:40,051", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "table_processor", "msg": "   Bronze: s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/entailed_edge.tsv"}
+{"time": "2026-03-24 11:34:40,052", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "dsv_loader", "msg": "📂 Reading TSV data from: s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/entailed_edge.tsv"}
+{"time": "2026-03-24 11:34:44,641", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "dsv_loader", "msg": "✅ Loaded 100 TSV records from s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/entailed_edge.tsv"}
+{"time": "2026-03-24 11:34:49,279", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "schema_utils", "msg": "Applied name-based schema alignment with columns: ['subject', 'predicate', 'object']"}
+{"time": "2026-03-24 11:34:49,280", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "io_utils", "msg": "Resolved Delta target path: s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db/entailed_edge"}
+{"time": "2026-03-24 11:34:55,016", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "io_utils", "msg": "Wrote 100 rows → u_amkhan__ontology_source_1_ai.entailed_edge @ s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db/entailed_edge"}
+{"time": "2026-03-24 11:34:55,017", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "table_processor", "msg": "Table u_amkhan__ontology_source_1_ai.entailed_edge: 100 → 100 rows in 14.97s"}
+{"time": "2026-03-24 11:34:55,018", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "core", "msg": "Ingestion complete"}
+{"time": "2026-03-24 11:34:55,019", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "logger", "msg": "{
+  "success": true,
+  "started_at": "2026-03-24T16:34:38.586700+00:00",
+  "ended_at": "2026-03-24T16:34:55.018906+00:00",
+  "duration_sec": 16.432206,
+  "tables": [
+    {
+      "name": "entailed_edge",
+      "tenant": "u_amkhan_",
+      "target_table": "u_amkhan__ontology_source_1_ai.entailed_edge",
+      "mode": "overwrite",
+      "format": "tsv",
+      "schema_source": "schema_sql",
+      "input_source": "bronze",
+      "bronze_path": "s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/entailed_edge.tsv",
+      "silver_path": "s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db",
+      "rows_in": 100,
+      "rows_written": 100,
+      "rows_rejected": 0,
+      "extra_columns_dropped": [],
+      "partitions_written": null,
+      "quarantine_path": "s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db/quarantine/2026-03-24T16-34-38.586700+00-00/",
+      "elapsed_sec": 14.970882,
+      "status": "success",
+      "comments_report": null
+    }
+  ],
+  "errors": []
+}"}
+{"time": "2026-03-24 11:34:55,829", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "config_loader", "msg": "Fetching config from MinIO: bucket=cdm-lake, key=users-general-warehouse/amkhan/datasets/ontology_source_1_ai/prefix_config.json"}
+{"time": "2026-03-24 11:34:55,947", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "config_loader", "msg": "Config loaded successfully"}
+{"time": "2026-03-24 11:34:55,949", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "config_loader", "msg": "Minimal config validation passed"}
+{"time": "2026-03-24 11:34:55,950", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "init_utils", "msg": "Loaded configuration: tenant=u_amkhan_, dataset=ontology_source_1_ai"}
+{"time": "2026-03-24 11:34:55,952", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "init_utils", "msg": "Found 1 table(s) to process"}
+{"time": "2026-03-24 11:34:56,197", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "init_utils", "msg": "Tenant namespace created/accessed: u_amkhan__ontology_source_1_ai"}
+{"time": "2026-03-24 11:34:57,160", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "init_utils", "msg": "Namespace storage location: s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db"}
+{"time": "2026-03-24 11:34:57,161", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "entailed_edge", "level": "INFO", "module": "init_utils", "msg": "Ingestion context initialized successfully."}
+{"time": "2026-03-24 11:34:57,162", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "table_processor", "msg": "Processing table: prefix"}
+{"time": "2026-03-24 11:34:57,163", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "schema_utils", "msg": "Using schema_sql for table prefix"}
+{"time": "2026-03-24 11:34:57,164", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "schema_utils", "msg": "Parsing SQL schema definition: prefix STRING, base STRING"}
+{"time": "2026-03-24 11:34:57,165", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "schema_utils", "msg": "Successfully parsed 2 columns from schema_sql."}
+{"time": "2026-03-24 11:34:57,166", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "table_processor", "msg": "   Silver: s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db"}
+{"time": "2026-03-24 11:34:57,167", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "table_processor", "msg": "   Bronze: s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/prefix.tsv"}
+{"time": "2026-03-24 11:34:57,168", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "dsv_loader", "msg": "📂 Reading TSV data from: s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/prefix.tsv"}
+{"time": "2026-03-24 11:34:57,942", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "dsv_loader", "msg": "✅ Loaded 1228 TSV records from s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/prefix.tsv"}
+{"time": "2026-03-24 11:34:59,202", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "schema_utils", "msg": "Applied name-based schema alignment with columns: ['prefix', 'base']"}
+{"time": "2026-03-24 11:34:59,203", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "io_utils", "msg": "Resolved Delta target path: s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db/prefix"}
+{"time": "2026-03-24 11:35:04,768", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "io_utils", "msg": "Wrote 1228 rows → u_amkhan__ontology_source_1_ai.prefix @ s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db/prefix"}
+{"time": "2026-03-24 11:35:04,770", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "table_processor", "msg": "Table u_amkhan__ontology_source_1_ai.prefix: 1228 → 1228 rows in 7.61s"}
+{"time": "2026-03-24 11:35:04,771", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "core", "msg": "Ingestion complete"}
+{"time": "2026-03-24 11:35:04,772", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "logger", "msg": "{
+  "success": true,
+  "started_at": "2026-03-24T16:34:55.829600+00:00",
+  "ended_at": "2026-03-24T16:35:04.771395+00:00",
+  "duration_sec": 8.941795,
+  "tables": [
+    {
+      "name": "prefix",
+      "tenant": "u_amkhan_",
+      "target_table": "u_amkhan__ontology_source_1_ai.prefix",
+      "mode": "overwrite",
+      "format": "tsv",
+      "schema_source": "schema_sql",
+      "input_source": "bronze",
+      "bronze_path": "s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/prefix.tsv",
+      "silver_path": "s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db",
+      "rows_in": 1228,
+      "rows_written": 1228,
+      "rows_rejected": 0,
+      "extra_columns_dropped": [],
+      "partitions_written": null,
+      "quarantine_path": "s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db/quarantine/2026-03-24T16-34-55.829600+00-00/",
+      "elapsed_sec": 7.607294,
+      "status": "success",
+      "comments_report": null
+    }
+  ],
+  "errors": []
+}"}
+{"time": "2026-03-24 11:35:05,580", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "config_loader", "msg": "Fetching config from MinIO: bucket=cdm-lake, key=users-general-warehouse/amkhan/datasets/ontology_source_1_ai/statements_config.json"}
+{"time": "2026-03-24 11:35:05,698", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "config_loader", "msg": "Config loaded successfully"}
+{"time": "2026-03-24 11:35:05,700", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "config_loader", "msg": "Minimal config validation passed"}
+{"time": "2026-03-24 11:35:05,701", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "init_utils", "msg": "Loaded configuration: tenant=u_amkhan_, dataset=ontology_source_1_ai"}
+{"time": "2026-03-24 11:35:05,703", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "init_utils", "msg": "Found 1 table(s) to process"}
+{"time": "2026-03-24 11:35:05,887", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "init_utils", "msg": "Tenant namespace created/accessed: u_amkhan__ontology_source_1_ai"}
+{"time": "2026-03-24 11:35:06,784", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "init_utils", "msg": "Namespace storage location: s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db"}
+{"time": "2026-03-24 11:35:06,785", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "prefix", "level": "INFO", "module": "init_utils", "msg": "Ingestion context initialized successfully."}
+{"time": "2026-03-24 11:35:06,786", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "table_processor", "msg": "Processing table: statements"}
+{"time": "2026-03-24 11:35:06,787", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "schema_utils", "msg": "Using schema_sql for table statements"}
+{"time": "2026-03-24 11:35:06,788", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "schema_utils", "msg": "Parsing SQL schema definition: stanza STRING, subject STRING, predicate STRING, object STRING, value STRING, datatype STRING, language STRING, graph STRING"}
+{"time": "2026-03-24 11:35:06,789", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "schema_utils", "msg": "Successfully parsed 8 columns from schema_sql."}
+{"time": "2026-03-24 11:35:06,790", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "table_processor", "msg": "   Silver: s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db"}
+{"time": "2026-03-24 11:35:06,791", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "table_processor", "msg": "   Bronze: s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/statements.tsv"}
+{"time": "2026-03-24 11:35:06,792", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "dsv_loader", "msg": "📂 Reading TSV data from: s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/statements.tsv"}
+{"time": "2026-03-24 11:35:07,500", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "dsv_loader", "msg": "✅ Loaded 100 TSV records from s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/statements.tsv"}
+{"time": "2026-03-24 11:35:08,742", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "schema_utils", "msg": "Applied name-based schema alignment with columns: ['stanza', 'subject', 'predicate', 'object', 'value', 'datatype', 'language', 'graph']"}
+{"time": "2026-03-24 11:35:08,743", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "io_utils", "msg": "Resolved Delta target path: s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db/statements"}
+{"time": "2026-03-24 11:35:12,897", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "io_utils", "msg": "Wrote 100 rows → u_amkhan__ontology_source_1_ai.statements @ s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db/statements"}
+{"time": "2026-03-24 11:35:12,898", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "table_processor", "msg": "Table u_amkhan__ontology_source_1_ai.statements: 100 → 100 rows in 6.11s"}
+{"time": "2026-03-24 11:35:12,900", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "core", "msg": "Ingestion complete"}
+{"time": "2026-03-24 11:35:12,901", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "statements", "level": "INFO", "module": "logger", "msg": "{
+  "success": true,
+  "started_at": "2026-03-24T16:35:05.580197+00:00",
+  "ended_at": "2026-03-24T16:35:12.900167+00:00",
+  "duration_sec": 7.31997,
+  "tables": [
+    {
+      "name": "statements",
+      "tenant": "u_amkhan_",
+      "target_table": "u_amkhan__ontology_source_1_ai.statements",
+      "mode": "overwrite",
+      "format": "tsv",
+      "schema_source": "schema_sql",
+      "input_source": "bronze",
+      "bronze_path": "s3a://cdm-lake/users-general-warehouse/amkhan/datasets/ontology_source_1_ai/statements.tsv",
+      "silver_path": "s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db",
+      "rows_in": 100,
+      "rows_written": 100,
+      "rows_rejected": 0,
+      "extra_columns_dropped": [],
+      "partitions_written": null,
+      "quarantine_path": "s3a://cdm-lake/users-sql-warehouse/amkhan/u_amkhan__ontology_source_1_ai.db/quarantine/2026-03-24T16-35-05.580197+00-00/",
+      "elapsed_sec": 6.111317,
+      "status": "success",
+      "comments_report": null
+    }
+  ],
+  "errors": []
+}"}

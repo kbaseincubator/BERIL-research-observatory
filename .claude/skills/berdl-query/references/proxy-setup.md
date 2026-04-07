@@ -92,8 +92,26 @@ mc ls berdl-minio/cdm-lake/...
 | `connection refused` on :8123 | pproxy not running | Start pproxy (step 2) |
 | `Connect call failed ('127.0.0.1', 1338)` in pproxy output | SSH tunnel on 1338 is dead | Re-run SSH command for port 1338 |
 | `Request to authentication service timed out` | SSH tunnel died mid-query | Check tunnels, restart dead ones, retry |
-| `i/o timeout` on `spark.berdl.kbase.us:443` | Using direct mode instead of proxy | Add `--berdl-proxy` flag |
+| `i/o timeout` on `spark.berdl.kbase.us:443` | Using direct mode instead of proxy | Set `https_proxy=http://127.0.0.1:8123` |
 | `Address already in use` on SSH `-D` port | Tunnel already running on that port | That tunnel is fine, check the other one |
+| `berdl-remote python` or `berdl-remote status` returns HTTP 403 | Stale `jupyterhub-user-*` cookie after server restart | See below |
+
+### berdl-remote HTTP 403 Fix
+
+`berdl-remote spawn` skips refreshing the `jupyterhub-user-<username>` proxy cookie if one is already saved in `~/.berdl/remote-config.yaml`. After an idle timeout or server restart, this cookie is stale and all requests return 403.
+
+**Fix — always run login before spawn:**
+
+```bash
+export https_proxy=http://127.0.0.1:8123
+export no_proxy=localhost,127.0.0.1
+export KBASE_AUTH_TOKEN=$(grep KBASE_AUTH_TOKEN .env | cut -d= -f2 | tr -d '\r')
+berdl-remote login --hub-url https://hub.berdl.kbase.us
+berdl-remote spawn --timeout 120
+berdl-remote status   # confirm: Kernel available
+```
+
+Note: `tr -d '\r'` is required because `.env` uses Windows CRLF line endings — the `\r` causes `requests` to reject the token as an invalid header value.
 
 ## Prerequisites Checklist
 

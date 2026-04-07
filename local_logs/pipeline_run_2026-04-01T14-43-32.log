@@ -1,0 +1,19 @@
+{"time": "2026-04-01 14:43:32,113", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "core", "msg": "No MinIO client provided — attempting auto-initialization via get_minio_client()"}
+{"time": "2026-04-01 14:43:32,113", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "ERROR", "module": "core", "msg": "MinIO client is required for ingestion but could not be initialized. Call get_minio_client() and pass it explicitly into ingest(...)."}
+Traceback (most recent call last):
+  File "/mnt/c/Users/Ahmed Khan/Documents/Coding/beril_github/BERIL-research-observatory/.venv-berdl/lib/python3.13/site-packages/data_lakehouse_ingest/core.py", line 108, in ingest
+    minio_client = get_minio_client()
+TypeError: 'NoneType' object is not callable
+{"time": "2026-04-01 14:43:32,116", "pipeline": "data_lakehouse_ingest", "schema": "default", "table": "pipeline_stage", "level": "INFO", "module": "logger", "msg": "{
+  "success": false,
+  "started_at": "2026-04-01T19:43:32.109938+00:00",
+  "ended_at": "2026-04-01T19:43:32.116911+00:00",
+  "duration_sec": 0.006973,
+  "tables": [],
+  "errors": [
+    {
+      "phase": "minio_initialization",
+      "error": "MinIO client is required for ingestion but could not be initialized. Call get_minio_client() and pass it explicitly into ingest(...)."
+    }
+  ]
+}"}

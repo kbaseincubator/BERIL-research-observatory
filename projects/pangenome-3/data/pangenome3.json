@@ -1,0 +1,50 @@
+{
+  "dataset": "pangenome3",
+  "paths": {
+    "bronze_base": "s3a://cdm-lake/users-general-warehouse/amkhan/datasets/pangenome3"
+  },
+  "defaults": {
+    "tsv": {
+      "header": true,
+      "delimiter": "\t",
+      "inferSchema": false
+    }
+  },
+  "tables": [
+    {
+      "name": "NCBI_env",
+      "enabled": false,
+      "partition_by": null,
+      "schema_sql": "accession STRING, attribute_name STRING, content STRING, display_name STRING, harmonized_name STRING, id INT, package_content STRING",
+      "bronze_path": "${bronze_base}/table_NCBI_env_V1.1.tsv"
+    },
+    {
+      "name": "alphaearth_embeddings_all_years",
+      "enabled": true,
+      "partition_by": null,
+      "schema_sql": "genome_id STRING, ncbi_biosample_accession_id STRING, ncbi_bioproject STRING, domain STRING, phylum STRING, class STRING, order STRING, family STRING, genus STRING, species STRING, cleaned_lat DOUBLE, cleaned_lon DOUBLE, cleaned_year INT, A00 DOUBLE, A01 DOUBLE, A02 DOUBLE, A03 DOUBLE, A04 DOUBLE, A05 DOUBLE, A06 DOUBLE, A07 DOUBLE, A08 DOUBLE, A09 DOUBLE, A10 DOUBLE, A11 DOUBLE, A12 DOUBLE, A13 DOUBLE, A14 DOUBLE, A15 DOUBLE, A16 DOUBLE, A17 DOUBLE, A18 DOUBLE, A19 DOUBLE, A20 DOUBLE, A21 DOUBLE, A22 DOUBLE, A23 DOUBLE, A24 DOUBLE, A25 DOUBLE, A26 DOUBLE, A27 DOUBLE, A28 DOUBLE, A29 DOUBLE, A30 DOUBLE, A31 DOUBLE, A32 DOUBLE, A33 DOUBLE, A34 DOUBLE, A35 DOUBLE, A36 DOUBLE, A37 DOUBLE, A38 DOUBLE, A39 DOUBLE, A40 DOUBLE, A41 DOUBLE, A42 DOUBLE, A43 DOUBLE, A44 DOUBLE, A45 DOUBLE, A46 DOUBLE, A47 DOUBLE, A48 DOUBLE, A49 DOUBLE, A50 DOUBLE, A51 DOUBLE, A52 DOUBLE, A53 DOUBLE, A54 DOUBLE, A55 DOUBLE, A56 DOUBLE, A57 DOUBLE, A58 DOUBLE, A59 DOUBLE, A60 DOUBLE, A61 DOUBLE, A62 DOUBLE, A63 DOUBLE",
+      "bronze_path": "${bronze_base}/table_alphaearth_embeddings_all_years_V1.1.tsv"
+    },
+    {
+      "name": "gene_cluster",
+      "enabled": false,
+      "partition_by": null,
+      "schema_sql": "gene_cluster_id STRING, gtdb_species_clade_id STRING, is_core BOOLEAN, is_auxiliary BOOLEAN, is_singleton BOOLEAN, likelihood DOUBLE",
+      "bronze_path": "${bronze_base}/table_gene_cluster_V1.0.tsv"
+    },
+    {
+      "name": "genome",
+      "enabled": false,
+      "partition_by": null,
+      "schema_sql": "genome_id STRING, gtdb_species_clade_id STRING, gtdb_taxonomy_id STRING, ncbi_biosample_id STRING, fna_file_path_nersc STRING, faa_file_path_nersc STRING",
+      "bronze_path": "${bronze_base}/table_genome_V1.1.tsv"
+    },
+    {
+      "name": "gtdb_metadata",
+      "enabled": false,
+      "partition_by": null,
+      "schema_sql": "accession STRING, ambiguous_bases STRING, checkm_completeness STRING, checkm_contamination STRING, checkm_marker_count STRING, checkm_marker_lineage STRING, checkm_marker_set_count STRING, checkm_strain_heterogeneity STRING, coding_bases STRING, coding_density STRING, contig_count STRING, gc_count STRING, gc_percentage STRING, genome_size STRING, gtdb_genome_representative STRING, gtdb_representative STRING, gtdb_taxonomy STRING, gtdb_type_designation_ncbi_taxa STRING, gtdb_type_designation_ncbi_taxa_sources STRING, gtdb_type_species_of_genus STRING, l50_contigs STRING, l50_scaffolds STRING, longest_contig STRING, longest_scaffold STRING, lsu_23s_contig_len STRING, lsu_23s_count STRING, lsu_23s_length STRING, lsu_23s_query_id STRING, lsu_5s_contig_len STRING, lsu_5s_count STRING, lsu_5s_length STRING, lsu_5s_query_id STRING, lsu_silva_23s_blast_align_len STRING, lsu_silva_23s_blast_bitscore STRING, lsu_silva_23s_blast_evalue STRING, lsu_silva_23s_blast_perc_identity STRING, lsu_silva_23s_blast_subject_id STRING, lsu_silva_23s_taxonomy STRING, mean_contig_length STRING, mean_scaffold_length STRING, mimag_high_quality STRING, mimag_low_quality STRING, mimag_medium_quality STRING, n50_contigs STRING, n50_scaffolds STRING, ncbi_assembly_level STRING, ncbi_assembly_name STRING, ncbi_assembly_type STRING, ncbi_bioproject STRING, ncbi_biosample STRING, ncbi_contig_count STRING, ncbi_contig_n50 STRING, ncbi_country STRING, ncbi_date STRING, ncbi_genbank_assembly_accession STRING, ncbi_genome_category STRING, ncbi_genome_representation STRING, ncbi_isolate STRING, ncbi_isolation_source STRING, ncbi_lat_lon STRING, ncbi_molecule_count STRING, ncbi_ncrna_count STRING, ncbi_organism_name STRING, ncbi_protein_count STRING, ncbi_refseq_category STRING, ncbi_rrna_count STRING, ncbi_scaffold_count STRING, ncbi_scaffold_l50 STRING, ncbi_scaffold_n50 STRING, ncbi_scaffold_n75 STRING, ncbi_scaffold_n90 STRING, ncbi_seq_rel_date STRING, ncbi_spanned_gaps STRING, ncbi_species_taxid STRING, ncbi_ssu_count STRING, ncbi_strain_identifiers STRING, ncbi_submitter STRING, ncbi_taxid STRING, ncbi_taxonomy STRING, ncbi_taxonomy_unfiltered STRING, ncbi_total_gap_length STRING, ncbi_total_length STRING, ncbi_translation_table STRING, ncbi_trna_count STRING, ncbi_type_material_designation STRING, ncbi_ungapped_length STRING, ncbi_unspanned_gaps STRING, ncbi_wgs_master STRING, protein_count STRING, scaffold_count STRING, ssu_contig_len STRING, ssu_count STRING, ssu_gg_blast_align_len STRING, ssu_gg_blast_bitscore STRING, ssu_gg_blast_evalue STRING, ssu_gg_blast_perc_identity STRING, ssu_gg_blast_subject_id STRING, ssu_gg_taxonomy STRING, ssu_length STRING, ssu_query_id STRING, ssu_silva_blast_align_len STRING, ssu_silva_blast_bitscore STRING, ssu_silva_blast_evalue STRING, ssu_silva_blast_perc_identity STRING, ssu_silva_blast_subject_id STRING, ssu_silva_taxonomy STRING, total_gap_length STRING, trna_aa_count STRING, trna_count STRING, trna_selenocysteine_count STRING",
+      "bronze_path": "${bronze_base}/table_gtdb_metadata_V1.1.tsv"
+    }
+  ]
+}
