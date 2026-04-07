@@ -131,6 +131,12 @@ class ProjectFile(Base):
     title: Mapped[str | None] = mapped_column(Text, nullable=True)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     is_public: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    # "upload" for manually uploaded files, "github" for files synced from a repo
+    source: Mapped[str] = mapped_column(
+        Enum("upload", "github", name="file_source"),
+        default="upload",
+        nullable=False,
+    )
     uploaded_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now, onupdate=_now)
 
