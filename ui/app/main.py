@@ -26,6 +26,7 @@ from app.filters import (
 )
 
 from .routes.auth import ROUTER_AUTH
+from .routes.data import ROUTER_USER_DATA
 from .routes.user import ROUTER_USER
 from .config import get_settings
 from .dataloader import load_repository_data, RepositoryParser
@@ -80,6 +81,7 @@ def create_app() -> FastAPI:
     app.include_router(ROUTER_AUTH)
     app.include_router(ROUTER_COLLECTIONS)
     app.include_router(ROUTER_USER)
+    app.include_router(ROUTER_USER_DATA)
     app.include_router(ROUTER_COMMUNITY)
     app.include_router(ROUTER_COSCIENTIST)
     app.include_router(ROUTER_DATA)

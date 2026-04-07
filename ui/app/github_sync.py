@@ -10,6 +10,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.crud import create_project_file, delete_project_file, get_github_files_for_project
@@ -56,7 +57,7 @@ async def sync_github_repo(
     storage: LocalFileStorage,
     db: AsyncSession,
     branch: str = "main",
-) -> list[ProjectFile]:
+) -> tuple[list[ProjectFile], str]:
     """Pull files from a GitHub repo into project storage and sync DB records.
 
     Shallow-clones or pulls `repo_url` into a cache directory under the
@@ -71,14 +72,15 @@ async def sync_github_repo(
         branch: Branch to sync. Tries "main", falls back to "master" if clone fails.
 
     Returns:
-        List of upserted ProjectFile records.
+        Tuple of (upserted ProjectFile records, actual branch checked out).
+        The actual branch may differ from `branch` when the main↔master fallback fires.
     """
     owner_id, slug = project.filesystem_path_parts
     cache_rel = f"{owner_id}/{slug}/.git_cache"
     cache_path = storage.root / cache_rel
 
-    # Clone or pull into the cache directory
-    await _ensure_repo(repo_url, branch, cache_path)
+    # Clone or pull into the cache directory; may fall back to master/main
+    actual_branch = await _ensure_repo(repo_url, branch, cache_path)
 
     # Only consider files previously synced from GitHub; manually uploaded files
     # are untouched even if they share the same project.
@@ -110,16 +112,28 @@ async def sync_github_repo(
             await db.commit()
             await db.refresh(record)
         else:
-            record = await create_project_file(
-                db,
-                project_id=project.id,
-                file_type=file_type,
-                filename=filename,
-                storage_path=dest_rel,
-                size_bytes=size,
-                content_type=content_type,
-                source="github",
-            )
+            try:
+                record = await create_project_file(
+                    db,
+                    project_id=project.id,
+                    file_type=file_type,
+                    filename=filename,
+                    storage_path=dest_rel,
+                    size_bytes=size,
+                    content_type=content_type,
+                    source="github",
+                )
+            except IntegrityError:
+                # Concurrent sync beat us — roll back and update the winner's row.
+                await db.rollback()
+                refreshed = await get_github_files_for_project(db, project.id)
+                existing = {f.filename: f for f in refreshed}
+                record = existing[filename]
+                record.storage_path = dest_rel
+                record.size_bytes = size
+                record.content_type = content_type
+                await db.commit()
+                await db.refresh(record)
 
         synced.append(record)
         logger.debug("Synced %s → %s", filename, dest_rel)
@@ -132,20 +146,23 @@ async def sync_github_repo(
             logger.debug("Removed deleted file %s", filename)
 
     logger.info("Synced %d file(s) from %s for project %s", len(synced), repo_url, project.id)
-    return synced
+    return synced, actual_branch
 
 
-async def _ensure_repo(repo_url: str, branch: str, local_path: Path) -> None:
+async def _ensure_repo(repo_url: str, branch: str, local_path: Path) -> str:
     """Clone the repo if it doesn't exist, otherwise pull. Falls back main→master.
 
     Holds _git_lock for the duration to prevent concurrent operations on the
     same cache directory.
+
+    Returns the branch that was actually checked out (may differ from `branch`
+    if the automatic main↔master fallback was used).
     """
     async with _git_lock:
         if local_path.exists() and (local_path / ".git").exists():
             try:
                 await _git_pull(local_path, branch)
-                return
+                return branch
             except Exception as exc:
                 if not _is_branch_error(exc):
                     # Transient error (network, auth, disk) — do not silently switch
@@ -164,7 +181,7 @@ async def _ensure_repo(repo_url: str, branch: str, local_path: Path) -> None:
                 )
                 shutil.rmtree(local_path)
                 await _git_clone(repo_url, fallback, local_path)
-                return
+                return fallback
 
         # Clean up any stale/partial directory before cloning
         if local_path.exists():
@@ -172,6 +189,7 @@ async def _ensure_repo(repo_url: str, branch: str, local_path: Path) -> None:
 
         try:
             await _git_clone(repo_url, branch, local_path)
+            return branch
         except Exception as exc:
             # Only fall back if the branch genuinely doesn't exist; re-raise
             # for transient errors so the caller sees the real failure.
@@ -185,6 +203,7 @@ async def _ensure_repo(repo_url: str, branch: str, local_path: Path) -> None:
                 shutil.rmtree(local_path)
             logger.warning("Clone of branch %r failed (branch not found), trying %r", branch, fallback)
             await _git_clone(repo_url, fallback, local_path)
+            return fallback
 
 
 def _iter_files(repo_path: Path):

@@ -3,7 +3,7 @@
 import uuid
 from datetime import datetime, timezone
 
-from sqlalchemy import Boolean, DateTime, Enum, ForeignKey, String, Text
+from sqlalchemy import Boolean, DateTime, Enum, ForeignKey, String, Text, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 
@@ -62,6 +62,7 @@ class UserProject(Base):
     findings: Mapped[str | None] = mapped_column(Text, nullable=True)
     is_public: Mapped[bool] = mapped_column(Boolean, default=False)
     github_repo_url: Mapped[str | None] = mapped_column(Text, nullable=True)
+    github_branch: Mapped[str | None] = mapped_column(String(256), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now, onupdate=_now)
     submitted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
@@ -110,6 +111,10 @@ class ProjectFile(Base):
     """A file artifact belonging to a user project, stored on the filesystem."""
 
     __tablename__ = "project_file"
+    __table_args__ = (
+        # Prevents duplicate rows when two uploads for the same file race
+        UniqueConstraint("project_id", "filename", "source", name="uq_project_file_name_source"),
+    )
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
     project_id: Mapped[str] = mapped_column(

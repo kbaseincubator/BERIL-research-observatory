@@ -159,8 +159,8 @@ class TestSyncGithubRepo:
         cache_path = storage.root / project.owner_id / project.slug / ".git_cache"
         self._fake_repo(cache_path, {"data.csv": b"a,b\n1,2", "notebook.ipynb": b"{}"})
 
-        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock):
-            synced = await sync_github_repo(
+        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock, return_value="main"):
+            synced, _ = await sync_github_repo(
                 "https://github.com/org/repo", project, storage, db_session
             )
 
@@ -199,8 +199,8 @@ class TestSyncGithubRepo:
         cache_path = storage.root / project.owner_id / project.slug / ".git_cache"
         self._fake_repo(cache_path, {"data.csv": b"new,content\n"})
 
-        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock):
-            synced = await sync_github_repo(
+        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock, return_value="main"):
+            synced, _ = await sync_github_repo(
                 "https://github.com/org/repo", project, storage, db_session
             )
 
@@ -213,8 +213,8 @@ class TestSyncGithubRepo:
         cache_path = storage.root / project.owner_id / project.slug / ".git_cache"
         self._fake_repo(cache_path, {"analysis.ipynb": b"{}"})
 
-        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock):
-            synced = await sync_github_repo(
+        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock, return_value="main"):
+            synced, _ = await sync_github_repo(
                 "https://github.com/org/repo", project, storage, db_session
             )
 
@@ -224,8 +224,8 @@ class TestSyncGithubRepo:
         cache_path = storage.root / project.owner_id / project.slug / ".git_cache"
         self._fake_repo(cache_path, {"data.csv": b"a,b"})
 
-        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock):
-            synced = await sync_github_repo(
+        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock, return_value="main"):
+            synced, _ = await sync_github_repo(
                 "https://github.com/org/repo", project, storage, db_session
             )
 
@@ -235,8 +235,8 @@ class TestSyncGithubRepo:
         cache_path = storage.root / project.owner_id / project.slug / ".git_cache"
         self._fake_repo(cache_path, {})
 
-        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock):
-            synced = await sync_github_repo(
+        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock, return_value="main"):
+            synced, _ = await sync_github_repo(
                 "https://github.com/org/repo", project, storage, db_session
             )
 
@@ -254,8 +254,8 @@ class TestSyncGithubRepo:
             },
         )
 
-        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock):
-            synced = await sync_github_repo(
+        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock, return_value="main"):
+            synced, _ = await sync_github_repo(
                 "https://github.com/org/repo", project, storage, db_session
             )
 
@@ -289,8 +289,8 @@ class TestSyncGithubRepo:
         cache_path = storage.root / project.owner_id / project.slug / ".git_cache"
         self._fake_repo(cache_path, {"new.csv": b"new,data"})
 
-        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock):
-            synced = await sync_github_repo(
+        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock, return_value="main"):
+            synced, _ = await sync_github_repo(
                 "https://github.com/org/repo", project, storage, db_session
             )
 
@@ -321,8 +321,8 @@ class TestSyncGithubRepo:
         cache_path = storage.root / project.owner_id / project.slug / ".git_cache"
         self._fake_repo(cache_path, {"repo.csv": b"repo,data"})
 
-        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock):
-            synced = await sync_github_repo(
+        with patch("app.github_sync._ensure_repo", new_callable=AsyncMock, return_value="main"):
+            synced, _ = await sync_github_repo(
                 "https://github.com/org/repo", project, storage, db_session
             )
 

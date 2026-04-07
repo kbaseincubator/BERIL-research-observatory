@@ -63,12 +63,17 @@ async def get_projects_for_user(db: AsyncSession, user_id: str) -> list[UserProj
 
 
 async def update_project_github_url(
-    db: AsyncSession, project_id: str, github_repo_url: str | None
+    db: AsyncSession,
+    project_id: str,
+    github_repo_url: str | None,
+    github_branch: str | None = None,
 ) -> UserProject | None:
     project = await get_project_by_id(db, project_id)
     if project is None:
         return None
     project.github_repo_url = github_repo_url
+    if github_branch is not None:
+        project.github_branch = github_branch
     await db.commit()
     await db.refresh(project)
     return project
@@ -129,6 +134,25 @@ async def get_github_files_for_project(
         )
     )
     return list(result.scalars().all())
+
+
+async def get_upload_file_by_filename(
+    db: AsyncSession, project_id: str, filename: str
+) -> ProjectFile | None:
+    """Return the manually-uploaded ProjectFile for a project+filename, for upsert.
+
+    Uses .first() rather than .one_or_none() so that legacy databases with
+    pre-existing duplicate rows (before the uniqueness constraint was added)
+    return a row rather than raising MultipleResultsFound.
+    """
+    result = await db.execute(
+        select(ProjectFile).where(
+            ProjectFile.project_id == project_id,
+            ProjectFile.filename == filename,
+            ProjectFile.source == "upload",
+        )
+    )
+    return result.scalars().first()
 
 
 async def get_file_by_id(db: AsyncSession, file_id: str) -> ProjectFile | None:
