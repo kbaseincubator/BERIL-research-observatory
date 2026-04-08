@@ -61,6 +61,9 @@ def main() -> None:
                         help="Tables above this GB are ingested in chunks (default: 20)")
     parser.add_argument("--no-chunked", action="store_true",
                         help="Force single-batch ingest regardless of table size")
+    parser.add_argument("--user-tenant", action="store_true",
+                        help="Store in user-tenant space (u_username__dataset); "
+                             "resolves username from ~/.mc/config.json")
     args = parser.parse_args()
 
     _load_dotenv()
@@ -73,16 +76,27 @@ def main() -> None:
         parse_sql_schema,
         build_table_stats,
         print_preflight_plan,
+        get_minio_username,
     )
 
     BUCKET         = "cdm-lake"
     DATASET        = args.dataset
-    NAMESPACE      = f"{args.tenant}_{DATASET}"
-    BRONZE_PREFIX  = f"tenant-general-warehouse/{args.tenant}/datasets/{DATASET}"
-    PROGRESS_KEY   = f"{BRONZE_PREFIX}/_ingest_progress.jsonl"
     CHUNKED_INGEST = not args.no_chunked
 
     minio_client = initialize_minio()
+
+    # Resolve paths — user-tenant uses different warehouse roots than shared tenants
+    user_namespace = None
+    if args.user_tenant:
+        username      = get_minio_username()
+        user_namespace = f"u_{username}__{DATASET}"
+        NAMESPACE     = user_namespace
+        BRONZE_PREFIX = f"users-general-warehouse/{username}/data/{DATASET}"
+    else:
+        NAMESPACE     = f"{args.tenant}_{DATASET}"
+        BRONZE_PREFIX = f"tenant-general-warehouse/{args.tenant}/datasets/{DATASET}"
+
+    PROGRESS_KEY = f"{BRONZE_PREFIX}/_ingest_progress.jsonl"
 
     SOURCE_MODE, SOURCE_DB, SQL_SCHEMA, data_files, FILE_EXT, DELIMITER = \
         detect_source_files(args.data_dir)
@@ -109,6 +123,7 @@ def main() -> None:
         bronze_prefix=BRONZE_PREFIX,
         progress_key=PROGRESS_KEY,
         confirmed=True,  # display only — confirmation is handled by the caller
+        user_namespace=user_namespace,
     )
 
 

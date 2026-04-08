@@ -182,7 +182,16 @@ source .venv-berdl/bin/activate
 python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
 ```
 
-Present the results. Tenants are the unique prefixes before the first `_` in each database name (e.g. `kescience`, `nmdc`, `gtdb`). Ask the user to pick an existing tenant or provide a new name.
+Present the results. Tenants are the unique prefixes before the first `_` in each database name (e.g. `kescience`, `nmdc`, `gtdb`). Ask the user to choose one of the following options:
+
+1. **An existing tenant** — pick from the list above
+2. **A new tenant name** — provide a new name (a new tenant namespace will be created)
+3. **My user-tenant space (private)** — data is stored in the authenticated user's personal
+   space, not under a shared tenant. **This is private to the user's account.** When this
+   option is chosen, set `USER_TENANT = True` in the notebook config (Step 4) and **do not**
+   set `TENANT` to the user's name — the `tenant` and `is_tenant` fields are omitted from
+   the config JSON entirely, so the pipeline routes correctly to the user's personal space
+   instead of creating a new tenant with the user's name.
 
 ### Step 3: Choose dataset name and write mode
 
@@ -402,13 +411,19 @@ Edit the configuration cell (cell id `b0000003`) in the copied notebook, replaci
 
 ```python
 DATA_DIR        = Path("/absolute/path/to/<source directory>")
-TENANT          = "<chosen tenant>"
+TENANT          = "<chosen tenant>"     # ignored when USER_TENANT=True
 DATASET         = "<chosen dataset>"    # or None to use DATA_DIR.name
 BUCKET          = "cdm-lake"
 MODE            = "overwrite"           # "overwrite" or "append" — determined in Step 3
 CHUNK_TARGET_GB = 20                    # tables above this are ingested in chunks
 CHUNKED_INGEST  = True                  # False = force single-batch (not recommended for large tables)
+USER_TENANT     = False                 # True = user-tenant space; omits 'tenant'/'is_tenant' from config JSON
 ```
+
+If the user chose **user-tenant space** in Step 2: set `USER_TENANT = True`. Do **not** set
+`TENANT` to the user's name — leave it as a placeholder or empty string. The `tenant` and
+`is_tenant` keys will be absent from the config JSON, routing the ingest to the user's
+personal space.
 
 **Run the pre-flight script** to compute and display the ingest plan. This requires no
 Spark or JupyterHub — only tunnels and MinIO:
@@ -421,10 +436,19 @@ python scripts/ingest_preflight.py \
     --dataset "<chosen dataset>" \
     --mode overwrite \
     --chunk-target-gb 20
+    # add --user-tenant if the user chose user-tenant space in Step 2
 ```
+
+When `--user-tenant` is passed, the script resolves the KBase username from
+`~/.mc/config.json` (the MinIO access key equals the KBase username) and displays the
+exact destination namespace: `u_<username>__<dataset>`. This line appears at the top of
+the plan output — include it verbatim in the chat summary so the user sees precisely where
+their data will land.
 
 **Present the plan output to the user in chat**, formatted as a clear markdown summary:
 
+- **Destination**: namespace name — `u_<username>__<dataset>` for user-tenant space,
+  `<tenant>_<dataset>` for shared tenants. Always show this prominently.
 - **Upload**: each table name, file size (GB), and total upload size
 - **Ingest**: for each table — single ingest or number of chunks × lines per chunk
 
@@ -469,11 +493,20 @@ tables are small enough to ingest without timeout risk.
 ### Step 5: Confirm results
 
 Report to the user:
-- Namespace created: `{tenant}_{dataset}`
+- Namespace created: `{tenant}_{dataset}` for shared tenants, or `u_{username}__{dataset}`
+  for user-tenant space — use the value resolved during Step 4 (printed by the config cell
+  and the pre-flight script). Always show the full namespace name explicitly.
 - Tables ingested and row counts (from notebook verification cell output)
-- Bronze path: `s3a://cdm-lake/tenant-general-warehouse/{tenant}/datasets/{dataset}/`
-- Silver path: `s3a://cdm-lake/tenant-sql-warehouse/{tenant}/{tenant}_{dataset}.db`
+
+For **shared tenant** ingests:
+- Bronze: `s3a://cdm-lake/tenant-general-warehouse/{tenant}/datasets/{dataset}/`
+- Silver: `s3a://cdm-lake/tenant-sql-warehouse/{tenant}/{tenant}_{dataset}.db`
 - Progress log: `s3a://cdm-lake/tenant-general-warehouse/{tenant}/datasets/{dataset}/_ingest_progress.jsonl`
+
+For **user-tenant space** ingests (use `username` and `u_{username}__{dataset}` from Step 4):
+- Bronze: `s3a://cdm-lake/users-general-warehouse/{username}/data/{dataset}/`
+- Silver: `s3a://cdm-lake/users-sql-warehouse/{username}/u_{username}__{dataset}.db`
+- Progress log: `s3a://cdm-lake/users-general-warehouse/{username}/data/{dataset}/_ingest_progress.jsonl`
 
 Confirm row counts match expected line counts. If there is a mismatch, the progress log
 records `start_line`, `end_line`, and `rows_written` per chunk — the user can query the last
@@ -613,6 +646,12 @@ count mismatch is found, use these to cross-check against the Delta table's last
    > Let me know once you have a new token and I'll continue."
 
    Do not repeat, quote, or reference the token value in any response.
+7. **Never auto-resume a prior ingest.** When the skill is invoked, do not automatically
+   check on, investigate, or resume any previously in-progress ingest found in memory or
+   context. At the start of Step 1, if memory contains an in-progress ingest, mention it
+   briefly as one option: "I see a previous ingest was in progress — would you like to
+   resume it, or start a new one?" Then wait for explicit user choice before taking any
+   action related to the prior ingest.
 
 ## Pitfall Detection
 
