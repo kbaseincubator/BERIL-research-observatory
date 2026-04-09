@@ -33,10 +33,9 @@ print_preflight_plan(table_stats, namespace, mode, bucket, bronze_prefix,
                      progress_key, confirmed, user_namespace=None)
     Print upload/ingest plan. Shows user_namespace when provided. Raises if confirmed=False.
 
-upload_files(minio_client, bucket, config_key, table_stats, tenant, dataset,
-             bronze_prefix, silver_base, schemas, schema_defs, mode, file_ext,
-             delimiter)
-    Upload dataset config JSON and data files to MinIO bronze.
+upload_files(minio_client, bucket, table_stats, bronze_prefix, file_ext)
+    Upload data files to MinIO bronze. Chunked tables are skipped here —
+    their chunk files are uploaded one-by-one during ingest.
 
 run_ingest(spark, minio_client, table_stats, schemas, schema_defs, namespace,
            tenant, dataset, bucket, bronze_prefix, silver_base, mode, file_ext,
@@ -571,6 +570,105 @@ def build_table_stats(
     return table_stats
 
 
+# ── Chunked file splitting ─────────────────────────────────────────────────────
+
+_CHUNK_BLOCK_SIZE = 64 * 1024 * 1024  # 64 MB read blocks
+
+
+def _chunk_file_binary(source_path: Path, chunk_target_bytes: float, file_ext: str):
+    """Split a TSV/CSV file into ~chunk_target_bytes chunks at newline boundaries.
+
+    Streams the source file sequentially in 64 MB blocks, writing directly to
+    temp files so memory usage stays at ~128 MB regardless of chunk size.
+    Each chunk file is a complete valid TSV/CSV including the original header row.
+
+    Yields (chunk_index, temp_path, start_line, end_line, size_bytes) for each chunk.
+      - start_line / end_line are 1-indexed data line numbers (header excluded).
+      - temp_path is in /tmp; caller must delete it after use.
+
+    The final chunk may be smaller than chunk_target_bytes.
+    """
+    stem = source_path.stem
+    chunk_index = 0
+    line_cursor = 0   # cumulative data lines completed across all previous chunks
+    leftover    = b"" # bytes from the last block that belong to the next chunk
+    eof         = False
+
+    with open(source_path, "rb") as src:
+        header_bytes = src.readline()  # includes trailing \n
+
+        while not eof:
+            tmp = Path(f"/tmp/{stem}_chunk_{chunk_index:03d}{file_ext}")
+            bytes_data  = 0   # data bytes written (excluding header)
+            n_data_lines = 0
+            last_block   = b""
+
+            with open(tmp, "wb") as dst:
+                dst.write(header_bytes)
+
+                # Seed with any bytes carried over from the previous chunk
+                if leftover:
+                    dst.write(leftover)
+                    bytes_data   += len(leftover)
+                    n_data_lines += leftover.count(b"\n")
+                    last_block    = leftover
+                    leftover      = b""
+
+                while bytes_data < chunk_target_bytes:
+                    block = src.read(_CHUNK_BLOCK_SIZE)
+                    if not block:
+                        eof = True
+                        break
+                    dst.write(block)
+                    bytes_data   += len(block)
+                    n_data_lines += block.count(b"\n")
+                    last_block    = block
+
+            if bytes_data == 0:
+                # Nothing written (EOF on first iteration of a new chunk) — clean up and stop.
+                tmp.unlink(missing_ok=True)
+                break
+
+            if not eof:
+                # We overshot the target. Find the split point within last_block and truncate.
+                # last_block is the block that pushed bytes_data over chunk_target_bytes.
+                bytes_before_last = bytes_data - len(last_block)
+                target_in_block   = int(chunk_target_bytes) - bytes_before_last
+
+                # Find the last \n at or before the target position in last_block.
+                split_in_block = last_block.rfind(b"\n", 0, max(1, target_in_block + 1))
+                if split_in_block == -1:
+                    # No \n before target — find the first \n after target.
+                    split_in_block = last_block.find(b"\n", target_in_block)
+                    if split_in_block == -1:
+                        # No \n anywhere in last_block (extremely wide rows) — keep it all.
+                        split_in_block = len(last_block) - 1
+
+                keep     = split_in_block + 1           # bytes of last_block to keep in this chunk
+                leftover = last_block[keep:]            # rest seeds the next chunk
+
+                # Truncate the temp file: header + bytes_before_last + keep
+                truncate_at = len(header_bytes) + bytes_before_last + keep
+                with open(tmp, "r+b") as f:
+                    f.truncate(truncate_at)
+
+                # Fix line count: remove the lines that moved into leftover
+                n_data_lines -= leftover.count(b"\n")
+            elif last_block and last_block[-1:] != b"\n":
+                # Final chunk and the file does not end with a trailing newline.
+                # The last data line has no \n so it was not counted — add it now.
+                n_data_lines += 1
+
+            start_line = line_cursor + 1
+            end_line   = line_cursor + n_data_lines
+            size_bytes = tmp.stat().st_size
+
+            yield chunk_index, tmp, start_line, end_line, size_bytes
+
+            chunk_index += 1
+            line_cursor  = end_line
+
+
 # ── Pre-flight ─────────────────────────────────────────────────────────────────
 
 def print_preflight_plan(
@@ -643,6 +741,36 @@ def _minio_object_size(minio_client, bucket: str, key: str) -> int:
         raise
 
 
+def _verify_chunk_upload(
+    minio_client,
+    bucket: str,
+    chunk_key: str,
+    expected_size_bytes: int,
+) -> None:
+    """Confirm a chunk file exists in MinIO at the expected byte size.
+
+    Raises RuntimeError if the object is missing or the size does not match,
+    signalling that the chunk must be re-uploaded before ingest proceeds.
+    """
+    try:
+        stat = minio_client.stat_object(bucket, chunk_key)
+    except Exception as e:
+        raise RuntimeError(
+            f"[verify] Chunk not found in MinIO: s3a://{bucket}/{chunk_key}\n"
+            f"  Error: {e}\n"
+            "  The chunk must be re-uploaded."
+        ) from e
+
+    if stat.size != expected_size_bytes:
+        raise RuntimeError(
+            f"[verify] Size mismatch for s3a://{bucket}/{chunk_key}\n"
+            f"  Expected : {expected_size_bytes:,} bytes\n"
+            f"  Found    : {stat.size:,} bytes\n"
+            "  The chunk must be re-uploaded."
+        )
+    print(f"  [verify] s3a://{bucket}/{chunk_key}  {stat.size / 1e9:.2f} GB — OK")
+
+
 def _build_dataset_config(
     tenant, dataset, bucket, bronze_prefix, silver_base,
     table_stats, schemas, schema_defs, mode, file_ext, delimiter,
@@ -698,6 +826,10 @@ def upload_files(
     """
     print("Checking / uploading data files...")
     for table, s in table_stats.items():
+        if s["chunked"]:
+            print(f"  {table}: chunked — will upload per-chunk during ingest, skipping here")
+            continue
+
         key         = f"{bronze_prefix}/{table}{file_ext}"
         local_size  = s["size_bytes"]
         remote_size = _minio_object_size(minio_client, bucket, key)
@@ -748,90 +880,207 @@ def _append_progress(minio_client, bucket: str, progress_key: str, entry: dict) 
 
 # ── Ingest engine ──────────────────────────────────────────────────────────────
 
-def _spark_type(type_name: str):
-    from pyspark.sql import types as T
-    return {
-        "STRING":  T.StringType(),
-        "INT":     T.IntegerType(),
-        "BIGINT":  T.LongType(),
-        "DOUBLE":  T.DoubleType(),
-        "BOOLEAN": T.BooleanType(),
-        "BINARY":  T.BinaryType(),
-    }.get(type_name, T.StringType())
-
-
-def _spark_schema(schema_ddl: str):
-    from pyspark.sql import types as T
-    fields = []
-    for part in schema_ddl.split(","):
-        tokens = part.strip().split()
-        if len(tokens) >= 2:
-            fields.append(T.StructField(tokens[0], _spark_type(tokens[1]), True))
-    return T.StructType(fields)
+def _build_chunk_config(
+    tenant: str,
+    dataset: str,
+    bucket: str,
+    silver_base: str,
+    schema_defs: dict,
+    table: str,
+    chunk_bronze_path: str,
+    file_ext: str,
+    delimiter: str,
+    mode: str,
+    user_tenant: bool = False,
+    username: str | None = None,
+) -> dict:
+    """Build a single-table ingest config JSON pointing at one chunk file in MinIO."""
+    is_parquet = file_ext == ".parquet"
+    defaults = (
+        {"parquet": {"inferSchema": True}}
+        if is_parquet
+        else {"csv": {"header": True, "delimiter": delimiter, "inferSchema": False}}
+    )
+    cfg: dict = {}
+    if user_tenant:
+        cfg["dataset"] = f"u_{username}__{dataset}"
+    else:
+        cfg["dataset"] = dataset
+        cfg["tenant"]    = tenant
+        cfg["is_tenant"] = True
+    cfg["paths"]    = {"silver_base": silver_base}
+    cfg["defaults"] = defaults
+    cfg["tables"]   = [{
+        "name":         table,
+        "enabled":      True,
+        "schema":       schema_defs.get(table, []),
+        "partition_by": None,
+        "mode":         mode,
+        "bronze_path":  chunk_bronze_path,
+    }]
+    return cfg
 
 
 def _ingest_chunked(
-    spark, minio_client, bucket, progress_key,
-    namespace, table, stats, schema_ddl, delta_path, mode, delimiter, progress_log,
-):
-    """Stream a large source file into Delta in line-count chunks."""
-    import pandas as pd
-    from pyspark.sql import functions as F
-    from pyspark.sql import types as T
+    spark,
+    minio_client,
+    bucket: str,
+    progress_key: str,
+    namespace: str,
+    table: str,
+    stats: dict,
+    schemas: dict,
+    schema_defs: dict,
+    silver_base: str,
+    tenant: str,
+    dataset: str,
+    bronze_prefix: str,
+    mode: str,
+    file_ext: str,
+    delimiter: str,
+    progress_log: list,
+    user_tenant: bool = False,
+    username: str | None = None,
+) -> int:
+    """Split a large TSV/CSV file into chunks, upload each to MinIO, and ingest
+    via the upstream ingest() pipeline one chunk at a time.
 
-    target_schema    = _spark_schema(schema_ddl) if schema_ddl else None
-    done_chunks      = {e["chunk"] for e in progress_log
-                        if e["table"] == table and e.get("status") == "ingested"}
-    rows_done        = sum(e["rows_written"] for e in progress_log
-                          if e["table"] == table and e.get("status") == "ingested")
-    table_registered = bool(done_chunks)
+    Resume logic (on restart):
+      uploaded + not ingested  →  verify MinIO size, re-upload if mismatch, then ingest
+      uploaded + ingested      →  skip entirely
+      neither                  →  upload then ingest
 
-    reader = pd.read_csv(
-        stats["path"], sep=delimiter, chunksize=stats["chunk_size"],
-        dtype=str, keep_default_na=False, na_values=[],
+    Each chunk file is deleted from MinIO after successful ingest.
+    Returns (rows_done, spark) — spark may be a new session if a reconnect occurred
+    mid-chunk; the caller must reassign its spark variable from the returned value.
+    """
+    # Build lookup tables from the progress log for this table.
+    uploaded_log = {
+        e["chunk"]: e
+        for e in progress_log
+        if e["table"] == table and e.get("status") == "uploaded"
+    }
+    ingested_chunks = {
+        e["chunk"]
+        for e in progress_log
+        if e["table"] == table and e.get("status") == "ingested"
+    }
+    rows_done = sum(
+        e["rows_written"]
+        for e in progress_log
+        if e["table"] == table and e.get("status") == "ingested"
     )
-    for chunk_num, chunk_df in enumerate(reader):
-        if chunk_num in done_chunks:
-            print(f"  Chunk {chunk_num + 1}/{stats['n_chunks']}: already ingested — skipping")
+
+    chunk_target_bytes = stats["size_bytes"] / stats["n_chunks"]
+    n_chunks           = stats["n_chunks"]
+
+    for chunk_index, tmp_path, start_line, end_line, size_bytes in \
+            _chunk_file_binary(stats["path"], chunk_target_bytes, file_ext):
+
+        n_rows    = end_line - start_line + 1
+        chunk_key = f"{bronze_prefix}/{table}_chunk_{chunk_index:03d}{file_ext}"
+        cfg_key   = f"{bronze_prefix}/config/{table}_chunk_{chunk_index:03d}.json"
+        label     = f"Chunk {chunk_index + 1}/{n_chunks}"
+
+        # ── Already fully ingested — skip ──────────────────────────────────────
+        if chunk_index in ingested_chunks:
+            print(f"  {label}: already ingested — skipping")
+            tmp_path.unlink(missing_ok=True)
             continue
 
-        start_line = chunk_num * stats["chunk_size"] + 1
-        end_line   = start_line + len(chunk_df) - 1
+        # ── Upload (or re-upload if verify fails) ──────────────────────────────
+        already_uploaded = chunk_index in uploaded_log
+        if already_uploaded:
+            logged_size = uploaded_log[chunk_index]["size_bytes"]
+            print(f"  {label}: already uploaded — verifying...")
+            try:
+                _verify_chunk_upload(minio_client, bucket, chunk_key, logged_size)
+            except RuntimeError as exc:
+                print(f"  {label}: verification failed — re-uploading  ({exc})")
+                already_uploaded = False
 
-        if target_schema:
-            str_schema = T.StructType([
-                T.StructField(f.name, T.StringType(), True) for f in target_schema.fields
-            ])
-            sdf = spark.createDataFrame(chunk_df, schema=str_schema)
-            for field in target_schema.fields:
-                if not isinstance(field.dataType, T.StringType):
-                    sdf = sdf.withColumn(field.name, F.col(field.name).cast(field.dataType))
+        if not already_uploaded:
+            print(f"  {label}: uploading {size_bytes / 1e9:.2f} GB "
+                  f"→ s3a://{bucket}/{chunk_key} ...", end=" ", flush=True)
+            minio_client.fput_object(bucket, chunk_key, str(tmp_path))
+            print("done")
+            _append_progress(minio_client, bucket, progress_key, {
+                "table":      table,
+                "chunk":      chunk_index,
+                "status":     "uploaded",
+                "minio_path": f"s3a://{bucket}/{chunk_key}",
+                "size_bytes": size_bytes,
+                "timestamp":  datetime.now(timezone.utc).isoformat(),
+            })
         else:
-            sdf = spark.createDataFrame(chunk_df)
+            # Verify the already-uploaded size matches the local chunk we just wrote.
+            # (Handles the edge case where the file was re-split differently on restart.)
+            logged_size = uploaded_log[chunk_index]["size_bytes"]
+            if logged_size != size_bytes:
+                print(f"  {label}: WARNING — logged size {logged_size:,} B != "
+                      f"local size {size_bytes:,} B; re-uploading to be safe")
+                minio_client.fput_object(bucket, chunk_key, str(tmp_path))
+                _append_progress(minio_client, bucket, progress_key, {
+                    "table":      table,
+                    "chunk":      chunk_index,
+                    "status":     "uploaded",
+                    "minio_path": f"s3a://{bucket}/{chunk_key}",
+                    "size_bytes": size_bytes,
+                    "timestamp":  datetime.now(timezone.utc).isoformat(),
+                })
 
-        write_mode = mode if (chunk_num == 0 and not done_chunks) else "append"
-        sdf.write.format("delta").mode(write_mode).save(delta_path)
+        tmp_path.unlink(missing_ok=True)
 
-        if not table_registered:
-            spark.sql(
-                f"CREATE TABLE IF NOT EXISTS `{namespace}`.`{table}` "
-                f"USING DELTA LOCATION '{delta_path}'"
+        # ── Ingest via upstream pipeline ───────────────────────────────────────
+        chunk_mode = mode if chunk_index == 0 else "append"
+        chunk_cfg  = _build_chunk_config(
+            tenant, dataset, bucket, silver_base, schema_defs,
+            table, f"s3a://{bucket}/{chunk_key}", file_ext, delimiter, chunk_mode,
+            user_tenant=user_tenant, username=username,
+        )
+        cfg_bytes = json.dumps(chunk_cfg, indent=2).encode()
+        minio_client.put_object(
+            bucket, cfg_key, io.BytesIO(cfg_bytes), len(cfg_bytes),
+            content_type="application/json",
+        )
+
+        print(f"  {label}: ingesting lines {start_line:,}–{end_line:,} "
+              f"({n_rows:,} rows, mode={chunk_mode})...")
+
+        if not _check_spark_health(spark):
+            print(f"  {label}: [spark] session unhealthy — reconnecting...")
+            spark = reconnect_spark(spark)
+
+        result = _lakehouse_ingest(
+            f"s3a://{bucket}/{cfg_key}",
+            spark=spark, minio_client=minio_client,
+        )
+        if result and not result.get("success", True):
+            raise RuntimeError(
+                f"ingest() returned failure for {table} chunk {chunk_index}: {result}"
             )
-            table_registered = True
 
-        rows_done += len(chunk_df)
+        rows_done += n_rows
         _append_progress(minio_client, bucket, progress_key, {
-            "table": table, "chunk": chunk_num,
-            "start_line": start_line, "end_line": end_line,
-            "rows_written": len(chunk_df), "rows_cumulative": rows_done,
-            "status": "ingested",
-            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "table":           table,
+            "chunk":           chunk_index,
+            "status":          "ingested",
+            "start_line":      start_line,
+            "end_line":        end_line,
+            "rows_written":    n_rows,
+            "rows_cumulative": rows_done,
+            "timestamp":       datetime.now(timezone.utc).isoformat(),
         })
-        print(f"  Chunk {chunk_num + 1}/{stats['n_chunks']}: "
-              f"lines {start_line:,}-{end_line:,}  "
-              f"({len(chunk_df):,} rows written, {rows_done:,} cumulative)")
+        print(f"  {label}: complete — {rows_done:,} cumulative rows")
 
-    return rows_done
+        # Clean up chunk data and config files from MinIO.
+        for key in (chunk_key, cfg_key):
+            try:
+                minio_client.remove_object(bucket, key)
+            except Exception as e:
+                print(f"  {label}: WARNING — could not delete s3a://{bucket}/{key}: {e}")
+
+    return rows_done, spark
 
 
 def run_ingest(
@@ -856,12 +1105,16 @@ def run_ingest(
 ):
     """Ingest all tables into Delta silver.
 
-    Non-chunked tables are collected and passed to a single _lakehouse_ingest() call
-    using a merged config written to config_key (always under config/ in bronze).
-    Chunked tables are streamed directly via spark.createDataFrame() — no config file.
+    Non-chunked tables are batched into a single _lakehouse_ingest() call using a
+    merged config uploaded to config_key in MinIO.
+
+    Chunked tables are split into ~chunk_target_bytes files locally, uploaded to
+    MinIO one at a time, and ingested via _lakehouse_ingest() per chunk so no large
+    payload ever crosses the gRPC connection. Chunk files are deleted from MinIO
+    after each successful ingest.
 
     Loads the progress log first — completed tables and chunks are skipped
-    automatically so an interrupted ingest can be resumed by re-running this call.
+    automatically so an interrupted ingest resumes from where it left off.
 
     Returns the spark session (which may be a new session if reconnection occurred).
     """
@@ -940,22 +1193,33 @@ def run_ingest(
             complete_tables.add(table)
             print(f"  {table}: {rows_done:,} rows — COMPLETE")
 
-    # ── Chunked: stream each large table directly via spark.createDataFrame() ────
+    # ── Chunked: split locally, upload per-chunk, ingest via upstream pipeline ───
     for table, stats in pending_chunked.items():
         print("=" * 60)
         print(f"Ingesting (chunked): {table}")
         print(f"  {stats['data_lines']:,} rows | {stats['n_chunks']} chunk(s) "
               f"| {stats['size_bytes'] / 1e9:.1f} GB")
 
-        if not _check_spark_health(spark):
-            print("[spark] Session unhealthy — reconnecting...")
-            spark = reconnect_spark(spark)
-
-        delta_path = f"{silver_base}/{table}"
-        rows_done  = _ingest_chunked(
-            spark, minio_client, bucket, progress_key,
-            namespace, table, stats, schemas.get(table, ""),
-            delta_path, mode, delimiter, progress_log,
+        rows_done, spark = _ingest_chunked(
+            spark=spark,
+            minio_client=minio_client,
+            bucket=bucket,
+            progress_key=progress_key,
+            namespace=namespace,
+            table=table,
+            stats=stats,
+            schemas=schemas,
+            schema_defs=schema_defs,
+            silver_base=silver_base,
+            tenant=tenant,
+            dataset=dataset,
+            bronze_prefix=bronze_prefix,
+            mode=mode,
+            file_ext=file_ext,
+            delimiter=delimiter,
+            progress_log=progress_log,
+            user_tenant=user_tenant,
+            username=username,
         )
         _append_progress(minio_client, bucket, progress_key, {
             "table": table, "status": "complete",

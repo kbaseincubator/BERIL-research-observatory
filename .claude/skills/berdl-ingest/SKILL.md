@@ -474,17 +474,23 @@ jupyter nbconvert --to notebook --execute --inplace \
 **What the notebook does:**
 
 1. Counts lines in each source file and calculates per-table chunk sizes
-2. Uploads all files to MinIO bronze (full files, no chunking at this stage)
+2. Uploads non-chunked files to MinIO bronze. Chunked tables are skipped here —
+   their chunk files are uploaded one-by-one during ingest (step 4b below)
 3. Loads any existing progress log from MinIO (enables resume on restart)
 4. For each table:
-   - **≤ CHUNK_TARGET_GB**: ingests via `ingest()` in one shot
-   - **> CHUNK_TARGET_GB**: streams the local file with `pandas.read_csv(chunksize=N)`,
-     writes each chunk to Delta via `spark.createDataFrame()`, logs progress to MinIO after each chunk
+   - **≤ CHUNK_TARGET_GB** (non-chunked): builds a merged config JSON, uploads it to
+     MinIO, and calls `ingest()` once for all non-chunked tables
+   - **> CHUNK_TARGET_GB** (chunked): splits the local file into ~`CHUNK_TARGET_GB`
+     pieces at newline boundaries (streaming, ~128 MB memory), then for each chunk:
+     uploads the chunk file to MinIO, verifies the upload size, calls `ingest()` on
+     that chunk with `append` mode (overwrite for chunk 0), deletes the chunk file
+     from MinIO after success, and logs an `uploaded` + `ingested` entry per chunk
 5. Verifies final row counts against expected line counts
 
-**Resuming an interrupted ingest:** If the notebook fails mid-ingest (e.g. Spark session timeout),
-simply re-run the ingest cell. The progress log is loaded at startup — already-completed chunks
-and tables are skipped automatically.
+**Resuming an interrupted ingest:** If the notebook fails mid-ingest (e.g. Spark session
+timeout), simply re-run the ingest cell. The progress log tracks upload and ingest status
+per chunk — already-completed chunks are skipped, and uploaded-but-not-ingested chunks are
+verified in MinIO before ingest resumes. No data is lost.
 
 **Disabling chunked ingest:** Set `CHUNKED_INGEST = False` to force all tables through the
 single-batch `ingest()` pipeline regardless of size. Only use this for datasets where all
@@ -538,9 +544,16 @@ push a corrected `completed` record.
 ## Progress Log Format
 
 The progress log is a JSONL file at `s3a://cdm-lake/{BRONZE_PREFIX}/_ingest_progress.jsonl`.
-Each line is one JSON object. There are two entry types:
+Each line is one JSON object. There are three entry types:
 
-**Chunk entry** (written after each chunk or single-table ingest):
+**Upload entry** (written immediately after a chunk file lands in MinIO — chunked tables only):
+```json
+{"table": "my_table", "chunk": 2, "status": "uploaded",
+ "minio_path": "s3a://cdm-lake/.../my_table_chunk_002.tsv",
+ "size_bytes": 21474836480, "timestamp": "2026-02-23T14:30:00Z"}
+```
+
+**Ingested entry** (written after `ingest()` confirms success for a chunk or single-batch table):
 ```json
 {"table": "my_table", "chunk": 2, "start_line": 4000001, "end_line": 6000000,
  "rows_written": 2000000, "rows_cumulative": 6000000,
@@ -555,6 +568,9 @@ Each line is one JSON object. There are two entry types:
 
 `start_line` and `end_line` are 1-indexed data line numbers (header excluded). If a row
 count mismatch is found, use these to cross-check against the Delta table's last row.
+
+On restart, resume logic uses all three entry types: an `uploaded`-only chunk triggers a
+MinIO size verification before re-ingesting; an `ingested` chunk is skipped entirely.
 
 ## Error Handling
 
@@ -605,21 +621,21 @@ count mismatch is found, use these to cross-check against the Delta table's last
 - **JupyterHub server not running**: this should have been caught in Step 0. Re-run Step 0
   (`berdl-remote login` then `berdl-remote spawn --timeout 120`, then `sleep 40`) before
   retrying. Do not ask the user to log into JupyterHub manually.
-- **Spark session timeout mid-table**: a health check runs once per table before ingest
-  begins. If Spark dies mid-table during a chunked ingest, the chunk write raises and
-  the ingest cell fails. Re-run the cell to resume automatically from the last completed
-  chunk — no data is lost because the progress log records every completed chunk.
+- **Spark session timeout mid-chunk**: a health check runs before each chunk ingest. If
+  Spark dies mid-chunk, the `ingest()` call raises and the ingest cell fails. Re-run the
+  cell — the progress log will skip already-ingested chunks and re-verify uploaded ones
+  before resuming. No data is lost.
 - **Spark session timeout limit (1 hour)**: cluster admin task — request BERDL
   administrators to increase Spark Connect session timeout to 10 hours.
-- **Namespace already exists**: confirm with user before re-ingesting; `MODE = "overwrite"` on
-  the first chunk will replace the existing Delta table.
+- **Chunk upload verification failure**: if a chunk file is present in the progress log as
+  `uploaded` but MinIO shows a size mismatch or the file is missing, `_ingest_chunked()`
+  automatically re-uploads the chunk from the local temp file before ingesting.
+- **Namespace already exists**: confirm with user before re-ingesting; `MODE = "overwrite"`
+  on chunk 0 will replace the existing Delta table; subsequent chunks use `append`.
 - **Row count mismatch**: inspect the progress log for `start_line`/`end_line` of the last
-  chunk, and check the quarantine path at `{SILVER_BASE}/quarantine/` for rejected rows.
+  ingested chunk and check the quarantine path at `{SILVER_BASE}/quarantine/` for rejected rows.
 - **Schema type errors**: recheck `.sql` parsing output in the schema cell and adjust column
   types in the config cell before re-running the ingest cell.
-- **`createDataFrame` size errors over Spark Connect**: if a chunk is too large for the gRPC
-  channel, reduce `CHUNK_TARGET_GB` (e.g. to 10 or 5) and re-run. The progress log will
-  resume from the last completed chunk.
 
 ## Safety Rules
 
