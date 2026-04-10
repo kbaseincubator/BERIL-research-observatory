@@ -490,14 +490,14 @@ from data_lakehouse_ingest import ingest
 
 ingest(
     config,
-    df_override={
+    dataframes={
         "table_name": dataframe
     }
 )
 ```
 
 **Key Behavior**
-* `df_override` maps **table name → DataFrame**
+* `dataframes` maps **table name → DataFrame**
 * `bronze_path` is **ignored for overridden tables**
 * `input_source` is recorded as `"dataframe"` for observability
 * No file upload or chunking is performed
@@ -523,7 +523,7 @@ config = {
     ]
 }
 
-ingest(config, df_override={"gene_table": df})
+ingest(config, dataframes={"gene_table": df})
 ```
 
 
