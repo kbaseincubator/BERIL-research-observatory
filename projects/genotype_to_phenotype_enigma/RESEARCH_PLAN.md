@@ -4,7 +4,7 @@
 
 Given a bacterial strain's genome and a defined growth condition (carbon source, metal, antibiotic, pH, ...), can we predict its quantitative growth phenotype (growth y/n, lag, µmax, max OD, yield), and do so in a way where the learned predictors are biologically interpretable, mechanistically grounded, and validated against independent fitness data?
 
-Building on the ENIGMA high-throughput growth curve dataset (303 plates, ~26K well-level curves, ~5M timepoint measurements across 88 strains — many with matching Fitness Browser RB-TnSeq data), we aim to:
+Building on the ENIGMA high-throughput growth curve dataset (303 plates, 27,632 well-level curves, 7.57M timepoint measurements across 123 strains — seven with direct Fitness Browser RB-TnSeq matches, thirty-two with BERDL pangenome genomes, all 123 with CORAL narrative genome links), and on the joint KBase/BERDL carbon source phenotype corpus (`globalusers_carbon_source_phenotypes`, 795 genomes × 379 binary phenotypes = ~53K measurements with pre-computed KofamScan KO and BacFormer features, preprint in preparation by Dileep et al.), we aim to:
 
 1. Establish a clean, condition-aligned (strain × condition → phenotype) table usable by multiple predictor families.
 2. Compare three predictor paradigms on the same task: **GapMind pathway completeness** (rule-based), **FBA-lite** (mechanistic), and **gradient-boosted trees on genome features** (data-driven).
@@ -115,17 +115,37 @@ Building on the ENIGMA high-throughput growth curve dataset (303 plates, ~26K we
 | `kbase_msd_biochemistry.reaction` | ModelSEED reactions for FBA-lite | 56K | Full scan |
 | `kbase_msd_biochemistry.compound` | ModelSEED compounds | 46K | Full scan |
 
-### Anchor strain matches (ENIGMA × FB × Pangenome)
+### Strain tiering
 
-| ENIGMA strain | FB orgId | Pangenome link | Notes |
+Investigation of strain-to-genome linkage showed the 88 growth-curve strains are not uniform in data availability. The plan works at three explicit tiers, each supporting a different subset of the modeling questions. The full linkage table is saved as `data/strain_genome_linkage_v1.tsv` and `data/strain_tier_summary_v1.tsv`.
+
+#### Tier 1 — Full overlap (growth + FB fitness + pangenome genome): 5 strains
+These are the gold anchors. Used for (a) fitting GapMind / FBA / GBDT predictors, (b) leave-one-strain-out cross-validation with mechanistic interpretability, (c) FB-concordance scoring for biological meaningfulness (NB10).
+
+| ENIGMA strain | FB orgId | GTDB species clade | Notes |
 |---|---|---|---|
-| `FW300-N1B4` | `pseudo1_N1B4` | via `fb_pangenome_link.tsv` | *Pseudomonas fluorescens* |
-| `FW300-N2E2` | `pseudo6_N2E2` | via link table | *P. fluorescens* |
-| `FW300-N2E3` | `pseudo3_N2E3` | via link table | *P. fluorescens* — primary test case (see `fw300_metabolic_consistency`) |
-| `GW456-L13` | `pseudo13_GW456_L13` | via link table | *P. fluorescens* |
-| `GW460-11-11-14-LB5` | `Pedo557` | via link table | *Pedobacter sp.* |
+| `FW300-N1B4` | `pseudo1_N1B4` | `s__Pseudomonas_E_sp000282495` | *P. fluorescens* (GTDB) |
+| `FW300-N2E2` | `pseudo6_N2E2` | `s__Pseudomonas_E_fluorescens_Q` | *P. fluorescens* |
+| `FW300-N2E3` | `pseudo3_N2E3` | `s__Pseudomonas_E_fluorescens_E` | *P. fluorescens*; previously characterized in `fw300_metabolic_consistency` |
+| `GW456-L13` | `pseudo13_GW456_L13` | `s__Pseudomonas_E_jessenii` | |
+| `GW460-11-11-14-LB5` | `Pedo557` | (to verify) | *Pedobacter sp.* — genome link needs direct verification; not found via `ncbi_strain_identifiers` on exact name |
 
-Additional indirect matches exist via species-level GTDB clades (e.g., other FW300 isolates that share a GTDB species with an FB-linked genome).
+#### Tier 2 — Pangenome-linked (growth + pangenome genome, ± FB): 22 strains
+Strains whose genome is in `kbase_ke_pangenome` via `gtdb_metadata.ncbi_strain_identifiers`. Tier 1 ⊂ Tier 2. Usable for genome-feature-based training (UniRef / COG / KEGG / Pfam / GapMind / scalars), held-out validation, and phylogenetic-leakage diagnostics.
+
+Tier 2 substructure (by distance to FB-linked training data):
+- **Tier 2a — Same GTDB species clade as at least one FB org** (8 strains): FW300-N1B4, FW300-N2E2, FW300-N2E3, FW300-N2F2, GW456-12-10-14-LB3, GW456-L13, GW456-L15, GW460-E12. These can borrow pangenome cluster features from FB-linked genomes in the same clade.
+- **Tier 2b — Same genus as FB but different species clade** (7 strains): FW305-113, FW507-14TSA, GW101-3H06, GW456-11-11-14-LB4, GW460-LB6, GW704-E3, plus GW456-R20 (Comamonas — `acidovorax_3H11` is genus Acidovorax, so GW456-R20 is technically cross-family; reclassify during NB03). Cross-species inference via orthologous KO / UniRef features only.
+- **Tier 2c — Genome in pangenome but no genus match to FB** (7 strains): FW104-10B01, FW104-R3 (*Rhodanobacter*), GW456-12-10-14-TSB1 (*Sphingobium*), GW460-12-10-14-LB2 (*Brevundimonas*), MT20 (*Streptococcus*), MT49 (*Serratia*). Used only as out-of-domain test cases; no FB-concordance validation possible.
+
+#### Tier 3 — Taxonomy-only (growth curves, no pangenome genome): 66 strains
+These are Oak Ridge field isolates whose genomes are not in GTDB r214 (either unassembled, recent, or dereplicated out). They have strain-level labels but no BERDL genome record. Used only for (a) H1 condition-alignment validation (curves can still be fitted and conditions canonicalized), (b) species-average genome features as a fallback predictor in NB04/NB07, (c) coverage-atlas diagnostics.
+
+### Implication for hypothesis testing
+
+- **H1 (condition alignment)** tests on all 88 strains — curve fitting is tier-independent.
+- **H2-H4 (predictor comparison, meaningfulness, feature resolution)** are run primarily on Tier 1 (training + FB validation) and Tier 2a (held-out within-species transfer). Tier 2b/2c serve as out-of-distribution tests. Tier 3 is excluded from genome-feature models but included in species-average fallbacks.
+- **H5 (active learning)** ranks candidates from the full Tier 1+2+3 × canonical-condition grid.
 
 ### Existing assets (reuse, do not re-extract)
 
@@ -366,6 +386,19 @@ The plan is organized into four phases. Each notebook produces a standalone deli
 - **Regulatory signal features** are proxies (Pfam-domain counts), not true network topology; their interpretability is bounded.
 
 ## Revision History
+
+- **v2** (2026-04-14): Post-EDA revision informed by NB00 data survey. Key corrections to v1 assumptions, with implications for the predictor architecture:
+  - **Strain count**: 123 distinct strains in the brick data (not 88 — v1 parsed brick filenames, which misses bricks whose naming doesn't match the canonical pattern).
+  - **Tier 1 anchor size**: **7 strains** with direct Fitness Browser matches (not 5). Additions: `GW101-3H11 ↔ acidovorax_3H11` and `FW507-4G11 ↔ Cup4G11`.
+  - **Tier 2 (BERDL pangenome + growth curves)**: **32 strains** (Tier 1 ⊂ Tier 2).
+  - **Tier 3 (CORAL narrative genome + growth curves)**: **all 123**. Every growth-curve strain has a KBase narrative genome in `enigma_coral.sdt_genome` (dataview workspace 41372). The "missing genome" problem from v1 was an artifact of joining from the wrong side of the FK.
+  - **Primary training corpus added**: `globalusers_carbon_source_phenotypes` — 795 genomes × ~53K binary phenotype measurements with pre-computed KofamScan KO and BacFormer embeddings. This is joint KBase/BERDL data led by team member Dileep (preprint in prep, usable in this project). It expands the effective training cohort from ~5 strains to ~800 genomes for binary-growth prediction. The ENIGMA growth curves now serve as a **continuous-target out-of-distribution test set** rather than the primary training data, with FB fitness as the mechanistic validation cohort for Tier 1 anchors.
+  - **Cross-dataset condition overlap (naive string match)**: 195 ENIGMA molecules × 379 CSP phenotypes × 350 FB conditions → 19 triple-overlap, 82 pairwise, 566 unique. ENIGMA∩FB alone is 73 conditions (~21% of FB's condition catalogue). Proper ChEBI-ID canonicalization in NB02 is expected to grow these numbers substantially.
+  - **FB anchor coverage is uneven**: pseudo3_N2E3 (FW300-N2E3) has 43 FB conditions (19 overlap ENIGMA); pseudo13_GW456_L13 has only 9 (2 overlap). Per-anchor statistics must be weighted.
+  - **New Hypotheses**: Adding H6 (broad-to-narrow transfer learning: pretraining on CSP binary phenotypes and fine-tuning on ENIGMA continuous targets outperforms training from scratch on ENIGMA alone); H7 (BacFormer embeddings are competitive with explicit KO/pathway features on the CSP target — data-driven vs. knowledge-driven comparison); H8 (condition breadth extrapolation: predictors trained on carbon-source data fail on metal/antibiotic stress, providing a genuine out-of-domain test).
+  - **Remaining review items (not yet addressed)**: condition-alignment fallback (Plans A/B/C/D), execution-environment table, NB06a split, QC contingency, bootstrap CV, FBA feasibility gate. Deferred to v3 pending the ENIGMA GenomeDepot upload from Alexey (which will add Tier 2 features for all 123 strains instead of just 32).
+  - **Outstanding access**: `u_janakakbase__growthphenos` (7 tables with experiment/measurement/condition_set/protocol schema) returns `AccessDeniedException` on the personal warehouse path. Needs access grant from Janaka; may replace the CORAL ddt_brick parsing pipeline if it's a cleaner canonicalization of the same underlying data.
+
 - **v1** (2026-04-14): Initial plan. Four-phase design: foundation, baselines, diagnosis, active learning. Multi-feature-family genome representation with phylogenetic controls. Biological meaningfulness defined as FB concordance. Anchor set = 5 direct-match strains; extrapolation set = 88 total ENIGMA strains.
 
 ## Authors
