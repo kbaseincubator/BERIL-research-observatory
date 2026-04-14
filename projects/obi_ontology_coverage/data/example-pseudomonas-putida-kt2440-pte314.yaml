@@ -1,0 +1,194 @@
+# Example: P. putida KT2440 carrying engineered plasmid pTE314
+# Source: Montana Smith's AMP2/OPAL use case from 2026-04-01 hackathon
+# Scenario: EMSL receives engineered Pseudomonas from LBNL, cultures it,
+#           induces with IPTG, and runs proteomics on the treated sample.
+
+- class: Taxon
+  id: isolates:taxon-pputida
+  name: Pseudomonas putida
+  rank: species
+  ncbi_taxon_id: 303
+
+- class: Plasmid
+  id: isolates:plasmid-pte314
+  name: pTE314
+  description: >-
+    Engineered broad-host-range expression plasmid carrying an
+    IPTG-inducible Ptac promoter. Used in P. putida KT2440 for
+    controlled heterologous gene expression in AMP2/OPAL experiments.
+  plasmid_name: pTE314
+  has_selectable_marker:
+    - kanR
+  aliases:
+    - PTE314
+
+- class: Strain
+  id: isolates:strain-kt2440-pte314
+  name: P. putida KT2440 pTE314
+  description: >-
+    Pseudomonas putida KT2440 wild-type chassis carrying the
+    engineered plasmid pTE314. Received by EMSL from LBNL.
+    Provenance of the original KT2440 stock is uncertain --
+    "it's been around for a long time" (Montana, hackathon transcript).
+  has_taxon: isolates:taxon-pputida
+  contains_plasmid:
+    - isolates:plasmid-pte314
+  strain_identifier: KT2440
+  growth_medium: LB
+  optimal_growth_temperature: 30.0
+
+# The wild-type parent strain, without the plasmid
+- class: Strain
+  id: isolates:strain-kt2440-wt
+  name: P. putida KT2440
+  description: >-
+    Wild-type Pseudomonas putida KT2440. Well-characterized
+    chassis organism for metabolic engineering. ATCC 47054.
+  has_taxon: isolates:taxon-pputida
+  strain_identifier: KT2440
+  culture_collection: ATCC
+  growth_medium: LB
+  optimal_growth_temperature: 30.0
+
+# The sample EMSL received from LBNL
+- class: Sample
+  id: isolates:sample-emsl-received
+  name: KT2440-pTE314 shipped from LBNL
+  description: >-
+    Physical sample of P. putida KT2440 pTE314 received by EMSL
+    from LBNL. No upstream environmental biosample -- this is a
+    culture-collection-like acquisition with uncertain deep provenance.
+  derived_from_organism: isolates:strain-kt2440-pte314
+  has_taxon: isolates:taxon-pputida
+  storage_conditions: "-80C glycerol stock"
+
+# EMSL cultures the received sample
+- class: InstrumentPrepProcessing
+  id: isolates:process-culture-growth
+  name: Culture growth of KT2440 pTE314
+  description: >-
+    Overnight culture in LB at 30C with shaking, from glycerol stock.
+  has_input:
+    - isolates:sample-emsl-received
+  has_output:
+    - isolates:sample-cultured
+  processing_method: overnight liquid culture
+
+- class: Sample
+  id: isolates:sample-cultured
+  name: KT2440-pTE314 overnight culture
+  derived_from_organism: isolates:strain-kt2440-pte314
+  has_taxon: isolates:taxon-pputida
+
+# IPTG induction -- this is the ExperimentalTreatment
+- class: ExperimentalTreatment
+  id: isolates:treatment-iptg-induction
+  name: IPTG induction of pTE314
+  description: >-
+    Addition of IPTG to induce expression from the Ptac promoter
+    on pTE314. This activates the engineered gene cassette.
+  treatment_type: chemical_exposure
+  applied_to_sample: isolates:sample-cultured
+  treatment_concentration: 1.0
+  treatment_concentration_unit: mM
+  treatment_temperature: 30.0
+  treatment_duration: "4 hours"
+  has_input:
+    - isolates:sample-cultured
+  has_output:
+    - isolates:sample-induced
+
+- class: TreatedSample
+  id: isolates:sample-induced
+  name: KT2440-pTE314 IPTG-induced
+  description: >-
+    Culture after 4h IPTG induction. Gene cassette on pTE314
+    should be expressed. Ready for extraction and proteomics.
+  derived_from_organism: isolates:strain-kt2440-pte314
+  has_taxon: isolates:taxon-pputida
+  result_of_treatment:
+    - isolates:treatment-iptg-induction
+
+# Protein extraction
+- class: InstrumentPrepProcessing
+  id: isolates:process-protein-extraction
+  name: Protein extraction from induced culture
+  has_input:
+    - isolates:sample-induced
+  has_output:
+    - isolates:analyte-protein
+  processing_method: bead beating + TCA precipitation
+
+- class: Analyte
+  id: isolates:analyte-protein
+  name: Protein extract from KT2440-pTE314 induced
+  analyte_type: protein
+  extracted_from: isolates:sample-induced
+  concentration: 2.5
+  concentration_unit: mg/mL
+
+# Phenotype observation: does shaking affect growth?
+# (Montana's example: "I want to know if it grows better when I shake it or don't shake it")
+- class: Phenotype
+  id: isolates:phenotype-shaking-growth
+  name: Growth under shaking vs static
+  phenotype_description: >-
+    Comparison of growth rate under shaking (200 rpm) vs static
+    conditions in LB at 30C.
+  phenotype_value: "shaking preferred; OD600 2.1 vs 0.8 at 16h"
+  measurement_method: OD600 plate reader
+  phenotype_category: other
+  quality_term: PATO:0000002  # increased rate
+  assay_term: OBI:0000070     # assay (generic -- no specific growth curve assay in OBI)
+
+# Uninduced control -- same strain, no IPTG
+- class: ExperimentalTreatment
+  id: isolates:treatment-no-iptg-control
+  name: Uninduced control (no IPTG)
+  description: >-
+    Negative control: same culture conditions but without IPTG.
+    Plasmid gene cassette should remain silent.
+  treatment_type: other
+  applied_to_sample: isolates:sample-cultured
+  treatment_concentration: 0.0
+  treatment_concentration_unit: mM
+  treatment_temperature: 30.0
+  treatment_duration: "4 hours"
+  has_input:
+    - isolates:sample-cultured
+  has_output:
+    - isolates:sample-uninduced-control
+
+- class: TreatedSample
+  id: isolates:sample-uninduced-control
+  name: KT2440-pTE314 uninduced control
+  derived_from_organism: isolates:strain-kt2440-pte314
+  has_taxon: isolates:taxon-pputida
+  result_of_treatment:
+    - isolates:treatment-no-iptg-control
+
+# Site -- EMSL
+- class: Site
+  id: isolates:site-emsl
+  name: EMSL
+  description: >-
+    Environmental Molecular Sciences Laboratory, Pacific Northwest
+    National Laboratory, Richland WA.
+  geographic_name: EMSL, PNNL
+  geo_loc_name: "USA: Washington: Richland"
+  latitude: 46.3437
+  longitude: -119.2780
+
+# Command -- the AMP2 protocol step
+- class: Command
+  id: isolates:cmd-amp2-culture-protocol
+  name: AMP2 automated culture and induction protocol
+  description: >-
+    Automated protocol executed on the AMP2 platform for culture
+    growth and IPTG induction of P. putida KT2440 pTE314.
+    AMP2 = Anaerobic Microbial Phenotyping Platform at EMSL.
+  directs_process:
+    - isolates:process-culture-growth
+    - isolates:treatment-iptg-induction
+    - isolates:process-protein-extraction
+  command_category: protocol step
