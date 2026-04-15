@@ -462,7 +462,19 @@ their data will land.
 change `MODE`), re-run the pre-flight script with the updated values, and re-present the
 revised plan. Repeat until the user is satisfied.
 
-**(b) Confirm and proceed** — Execute the full notebook:
+**(b) Confirm and proceed** — Before launching the notebook, warn the user about the
+silent startup period. The notebook runs as a background process and produces no visible
+output until each cell completes, so the user will see nothing in chat during this time.
+Send this message (base the estimate on total source size at ~1 min per 30 GB, minimum
+1 minute, and frame it as a rough expectation not a precise figure):
+
+> "Starting the ingest notebook now — running it in the background. You might expect
+> roughly **{N} minutes** of silence while the notebook initialises Spark and counts
+> lines in the source file(s) before any upload begins. I'll let you know as soon as
+> the first chunk starts ingesting so you know setup is done — after that you can ask
+> me for status updates at any time."
+
+Then execute the full notebook in the background:
 
 ```bash
 source .venv-berdl/bin/activate
@@ -470,6 +482,22 @@ jupyter nbconvert --to notebook --execute --inplace \
     --ExecutePreprocessor.timeout=-1 \
     <DATA_DIR>/<dataset>_ingest.ipynb
 ```
+
+After launching, poll the MinIO progress log every 5 minutes until the first entry
+appears, then notify the user:
+
+```bash
+https_proxy=http://127.0.0.1:8123 mc cat \
+  "berdl-minio/cdm-lake/{BRONZE_PREFIX}/_ingest_progress.jsonl" 2>/dev/null | head -1
+```
+
+When the first entry appears, send the user a message such as:
+
+> "Setup complete — chunk 1 is now ingesting. You can ask me for status updates at
+> any time."
+
+Do not continue polling after the first entry is confirmed — the user will ask for
+updates as needed.
 
 **What the notebook does:**
 
