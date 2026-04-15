@@ -51,7 +51,7 @@ class UserProject(Base):
     )
     slug: Mapped[str] = mapped_column(String(128), nullable=False)
     title: Mapped[str] = mapped_column(Text, nullable=False)
-    research_question: Mapped[str] = mapped_column(Text, nullable=False)
+    research_question: Mapped[str | None] = mapped_column(Text, nullable=True)
     status: Mapped[str] = mapped_column(
         Enum("proposed", "in_progress", "completed", name="project_status"),
         default="proposed",

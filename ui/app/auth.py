@@ -2,6 +2,8 @@
 
 from dataclasses import dataclass
 
+from app.db.crud import get_user_by_api_token, get_user_by_orcid
+from app.db.models import BerilUser
 from fastapi import Request
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -19,7 +21,7 @@ class OrcidUser:
         return f"https://orcid.org/{self.orcid_id}"
 
 
-def get_current_user(request: Request) -> OrcidUser | None:
+def get_current_session_user(request: Request) -> OrcidUser | None:
     """Return the logged-in user from the session, or None if not logged in."""
     orcid_id = request.session.get("orcid_id")
     if not orcid_id:
@@ -36,7 +38,7 @@ def get_beril_user_id(request: Request) -> str | None:
     return request.session.get("beril_user_id")
 
 
-async def get_current_user_or_token(
+async def get_current_user_session_or_token(
     request: Request, db: AsyncSession
 ) -> "BerilUser | None":
     """Authenticate via session cookie or Authorization: Bearer token.
@@ -45,8 +47,6 @@ async def get_current_user_or_token(
     token in the Authorization header, which requires a DB lookup.
     Returns the BerilUser ORM object, or None if neither method succeeds.
     """
-    from app.db.crud import get_user_by_api_token, get_user_by_orcid
-
     # Session path — only trust it if the orcid_id still resolves in the DB
     orcid_id = request.session.get("orcid_id")
     if orcid_id:

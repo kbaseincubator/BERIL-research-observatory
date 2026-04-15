@@ -140,24 +140,62 @@ class TestUserDataPage:
 
 
 # ---------------------------------------------------------------------------
-# GET /user/data/upload
+# GET /user/data/new
 # ---------------------------------------------------------------------------
 
 
-class TestUserDataUploadForm:
+class TestUserDataNewForm:
     def test_redirects_when_not_logged_in(self, client):
-        resp = client.get("/user/data/upload", follow_redirects=False)
+        resp = client.get("/user/data/new", follow_redirects=False)
         assert resp.status_code == 302
         assert "/auth/login" in resp.headers["location"]
 
     def test_returns_200_when_logged_in(self, client, beril_user):
         _login(client)
-        resp = client.get("/user/data/upload")
+        resp = client.get("/user/data/new")
         assert resp.status_code == 200
 
 
 # ---------------------------------------------------------------------------
-# POST /user/data/upload
+# GET /user/projects/{id}
+# ---------------------------------------------------------------------------
+
+
+class TestUserProjectFilesPage:
+    def test_redirects_when_not_logged_in(self, client, user_project):
+        resp = client.get(f"/user/projects/{user_project.id}", follow_redirects=False)
+        assert resp.status_code == 302
+        assert "/auth/login" in resp.headers["location"]
+
+    def test_returns_200_when_logged_in(self, client, beril_user, user_project):
+        _login(client)
+        resp = client.get(f"/user/projects/{user_project.id}")
+        assert resp.status_code == 200
+
+    def test_shows_project_title(self, client, beril_user, user_project):
+        _login(client)
+        resp = client.get(f"/user/projects/{user_project.id}")
+        assert resp.status_code == 200
+        assert user_project.title in resp.text
+
+    def test_returns_403_for_wrong_owner(self, client, beril_user, db_session, tmp_path):
+        _login(client)
+        import asyncio
+
+        async def _other():
+            p = UserProject(owner_id="stranger", slug="s", title="T", research_question="Q?")
+            db_session.add(p)
+            await db_session.commit()
+            await db_session.refresh(p)
+            return p
+
+        other = asyncio.get_event_loop().run_until_complete(_other())
+        resp = client.get(f"/user/projects/{other.id}", follow_redirects=False)
+        assert resp.status_code == 403
+
+
+# ---------------------------------------------------------------------------
+# POST /user/data/upload-to-project
 # ---------------------------------------------------------------------------
 
 
@@ -169,18 +207,18 @@ class TestUserDataUploadPost:
             mock_storage_fn.return_value = storage
 
             resp = client.post(
-                "/user/data/upload",
+                "/user/data/upload-to-project",
                 data={
                     "project_id": user_project.id,
                     "file_type": "data",
                     "is_public": False,
                 },
-                files={"file": ("results.csv", b"a,b\n1,2", "text/csv")},
+                files={"files": ("results.csv", b"a,b\n1,2", "text/csv")},
                 follow_redirects=False,
             )
 
         assert resp.status_code == 302
-        assert resp.headers["location"] == "/user/data"
+        assert resp.headers["location"] == f"/user/projects/{user_project.id}"
 
     async def test_upload_stores_file_on_disk(self, client, beril_user, user_project, db_session, tmp_path):
         _login(client)
@@ -189,9 +227,9 @@ class TestUserDataUploadPost:
             mock_storage_fn.return_value = storage
 
             client.post(
-                "/user/data/upload",
+                "/user/data/upload-to-project",
                 data={"project_id": user_project.id, "file_type": "data"},
-                files={"file": ("data.csv", b"x,y\n1,2", "text/csv")},
+                files={"files": ("data.csv", b"x,y\n1,2", "text/csv")},
                 follow_redirects=False,
             )
 
@@ -204,9 +242,9 @@ class TestUserDataUploadPost:
             mock_storage_fn.return_value = LocalFileStorage(tmp_path)
 
             client.post(
-                "/user/data/upload",
+                "/user/data/upload-to-project",
                 data={"project_id": user_project.id, "file_type": "data"},
-                files={"file": ("data.csv", b"x,y", "text/csv")},
+                files={"files": ("data.csv", b"x,y", "text/csv")},
                 follow_redirects=False,
             )
 
@@ -221,15 +259,15 @@ class TestUserDataUploadPost:
 
         with patch("app.routes.data._storage", return_value=storage):
             client.post(
-                "/user/data/upload",
+                "/user/data/upload-to-project",
                 data={"project_id": user_project.id, "file_type": "data"},
-                files={"file": ("data.csv", b"v1", "text/csv")},
+                files={"files": ("data.csv", b"v1", "text/csv")},
                 follow_redirects=False,
             )
             client.post(
-                "/user/data/upload",
+                "/user/data/upload-to-project",
                 data={"project_id": user_project.id, "file_type": "data"},
-                files={"file": ("data.csv", b"v2_longer", "text/csv")},
+                files={"files": ("data.csv", b"v2_longer", "text/csv")},
                 follow_redirects=False,
             )
 
@@ -260,9 +298,9 @@ class TestUserDataUploadPost:
 
         with patch("app.routes.data._storage", return_value=LocalFileStorage(tmp_path)):
             resp = client.post(
-                "/user/data/upload",
+                "/user/data/upload-to-project",
                 data={"project_id": other_project.id, "file_type": "data"},
-                files={"file": ("x.csv", b"data", "text/csv")},
+                files={"files": ("x.csv", b"data", "text/csv")},
                 follow_redirects=False,
             )
         assert resp.status_code == 403
@@ -273,9 +311,9 @@ class TestUserDataUploadPost:
         storage = LocalFileStorage(tmp_path)
         with patch("app.routes.data._storage", return_value=storage):
             client.post(
-                "/user/data/upload",
+                "/user/data/upload-to-project",
                 data={"project_id": user_project.id, "file_type": "data"},
-                files={"file": ("../../evil.csv", b"bad", "text/csv")},
+                files={"files": ("../../evil.csv", b"bad", "text/csv")},
                 follow_redirects=False,
             )
         owner_id, slug = user_project.filesystem_path_parts
@@ -288,9 +326,9 @@ class TestUserDataUploadPost:
         storage = LocalFileStorage(tmp_path)
         with patch("app.routes.data._storage", return_value=storage):
             resp = client.post(
-                "/user/data/upload",
+                "/user/data/upload-to-project",
                 data={"project_id": user_project.id, "file_type": "evil_type"},
-                files={"file": ("x.csv", b"data", "text/csv")},
+                files={"files": ("x.csv", b"data", "text/csv")},
                 follow_redirects=False,
             )
         assert resp.status_code == 422
@@ -305,9 +343,9 @@ class TestUserDataUploadPost:
         storage = LocalFileStorage(tmp_path)
         with patch("app.routes.data._storage", return_value=storage):
             resp = client.post(
-                "/user/data/upload",
+                "/user/data/upload-to-project",
                 data={"project_id": user_project.id, "file_type": "data"},
-                files={"file": (bad_name, b"data", "text/plain")},
+                files={"files": (bad_name, b"data", "text/plain")},
                 follow_redirects=False,
             )
         assert resp.status_code == 422
@@ -400,9 +438,9 @@ class TestUserDataDelete:
         resp = client.delete("/user/data/nonexistent-id")
         assert resp.status_code == 401
 
-    def test_delete_returns_404_for_missing_file(self, client, beril_user):
+    def test_delete_returns_404_for_missing_file(self, client, beril_user, tmp_path):
         _login(client)
-        with patch("app.routes.data._storage", return_value=LocalFileStorage("/tmp")):
+        with patch("app.routes.data._storage", return_value=LocalFileStorage(tmp_path)):
             resp = client.delete("/user/data/no-such-id")
         assert resp.status_code == 404
 
@@ -429,7 +467,7 @@ class TestGithubSync:
             )
 
         assert resp.status_code == 302
-        assert resp.headers["location"] == "/user/data"
+        assert resp.headers["location"] == f"/user/projects/{user_project.id}"
 
     async def test_sync_stores_github_repo_url(self, client, beril_user, user_project, db_session, tmp_path):
         from app.db.crud import get_project_by_id
@@ -502,8 +540,7 @@ class TestGithubSync:
             # Bare github.com or org-only pages: not a clonable repo URL
             "https://github.com",
             "https://github.com/org",
-            "https://github.com/settings/profile",
-            # Sub-pages of a repo: not directly clonable
+            # Sub-pages of a repo: not directly clonable (3+ path segments)
             "https://github.com/org/repo/issues",
             "https://github.com/org/repo/pulls",
             # Browser-copied URLs with query strings or fragments

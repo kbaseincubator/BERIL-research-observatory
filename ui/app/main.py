@@ -12,6 +12,7 @@ from app.db.session import init_db, close_db, check_db
 from app.notebook_processors import PlotlyPreprocessor
 import nbformat
 from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request
+from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -29,6 +30,8 @@ from .routes.auth import ROUTER_AUTH
 from .routes.data import ROUTER_USER_DATA
 from .routes.user import ROUTER_USER
 from .config import get_settings
+from .db.crud import get_all_db_projects, get_project_by_id, user_project_to_model
+from .db.session import get_db
 from .dataloader import load_repository_data, RepositoryParser
 from .git_data_sync import pull_latest
 from .models import CollectionCategory, RepositoryData
@@ -172,10 +175,14 @@ async def projects_list(
     dir: str = "",
     repo_data: RepositoryData = Depends(get_repo_data),
     context: dict = Depends(get_base_context),
+    db: AsyncSession = Depends(get_db),
 ):
     """Projects list page with sortable project grid."""
 
-    projects = list(repo_data.projects)  # copy to avoid mutating cached data
+    db_projects = await get_all_db_projects(db)
+    repo_ids = {p.id for p in repo_data.projects}
+    # Merge: repo projects first, then DB projects not already in repo
+    projects = list(repo_data.projects) + [p for p in db_projects if p.id not in repo_ids]
 
     # Default directions: recent=desc, others=asc
     default_dir = "desc" if sort == "recent" else "asc"
@@ -241,11 +248,16 @@ async def project_detail(
     project_id: str,
     repo_data: RepositoryData = Depends(get_repo_data),
     context: dict = Depends(get_base_context),
+    db: AsyncSession = Depends(get_db),
 ):
     """Project detail page."""
 
-    # Find project
+    # Find project — check repo first, then fall back to DB
     project = next((p for p in repo_data.projects if p.id == project_id), None)
+    if project is None:
+        db_project = await get_project_by_id(db, project_id)
+        if db_project is not None:
+            project = user_project_to_model(db_project)
     if not project:
         context["error"] = f"Project '{project_id}' not found"
         return templates.TemplateResponse(

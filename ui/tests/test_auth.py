@@ -368,15 +368,15 @@ class TestGetBerilUserId:
 
 class TestGetCurrentUserOrToken:
     async def test_returns_none_when_no_auth(self, db_session):
-        from app.auth import get_current_user_or_token
+        from app.auth import get_current_user_session_or_token
         request = MagicMock()
         request.session = {}
         request.headers = {}
-        result = await get_current_user_or_token(request, db_session)
+        result = await get_current_user_session_or_token(request, db_session)
         assert result is None
 
     async def test_returns_user_from_session(self, db_session):
-        from app.auth import get_current_user_or_token
+        from app.auth import get_current_user_session_or_token
         from app.db.models import BerilUser
 
         user = BerilUser(orcid_id="0000-0001-2345-6789")
@@ -386,12 +386,12 @@ class TestGetCurrentUserOrToken:
         request = MagicMock()
         request.session = {"orcid_id": "0000-0001-2345-6789"}
         request.headers = {}
-        result = await get_current_user_or_token(request, db_session)
+        result = await get_current_user_session_or_token(request, db_session)
         assert result is not None
         assert result.orcid_id == "0000-0001-2345-6789"
 
     async def test_returns_user_from_bearer_token(self, db_session):
-        from app.auth import get_current_user_or_token
+        from app.auth import get_current_user_session_or_token
         from app.db.crud import get_or_create_api_token
         from app.db.models import BerilUser
 
@@ -405,12 +405,12 @@ class TestGetCurrentUserOrToken:
         request = MagicMock()
         request.session = {}
         request.headers = {"Authorization": f"Bearer {raw_token}"}
-        result = await get_current_user_or_token(request, db_session)
+        result = await get_current_user_session_or_token(request, db_session)
         assert result is not None
         assert result.id == user.id
 
     async def test_session_takes_priority_over_bearer(self, db_session):
-        from app.auth import get_current_user_or_token
+        from app.auth import get_current_user_session_or_token
         from app.db.crud import get_or_create_api_token
         from app.db.models import BerilUser
 
@@ -426,21 +426,21 @@ class TestGetCurrentUserOrToken:
         request = MagicMock()
         request.session = {"orcid_id": "0000-0001-0001-0001"}
         request.headers = {"Authorization": f"Bearer {raw_token}"}
-        result = await get_current_user_or_token(request, db_session)
+        result = await get_current_user_session_or_token(request, db_session)
         assert result is not None
         assert result.id == user_a.id
 
     async def test_bad_bearer_token_returns_none(self, db_session):
-        from app.auth import get_current_user_or_token
+        from app.auth import get_current_user_session_or_token
         request = MagicMock()
         request.session = {}
         request.headers = {"Authorization": "Bearer not-a-real-token"}
-        result = await get_current_user_or_token(request, db_session)
+        result = await get_current_user_session_or_token(request, db_session)
         assert result is None
 
     async def test_bearer_token_case_insensitive(self, db_session):
         """Authorization: bearer <token> (lowercase) should be accepted."""
-        from app.auth import get_current_user_or_token
+        from app.auth import get_current_user_session_or_token
         from app.db.crud import get_or_create_api_token
         from app.db.models import BerilUser
 
@@ -454,13 +454,13 @@ class TestGetCurrentUserOrToken:
         request = MagicMock()
         request.session = {}
         request.headers = {"Authorization": f"bearer {raw_token}"}
-        result = await get_current_user_or_token(request, db_session)
+        result = await get_current_user_session_or_token(request, db_session)
         assert result is not None
         assert result.id == user.id
 
     async def test_stale_session_falls_back_to_bearer(self, db_session):
         """If the session orcid_id no longer resolves, bearer token is still honoured."""
-        from app.auth import get_current_user_or_token
+        from app.auth import get_current_user_session_or_token
         from app.db.crud import get_or_create_api_token
         from app.db.models import BerilUser
 
@@ -475,6 +475,6 @@ class TestGetCurrentUserOrToken:
         # Session references an orcid_id that does not exist in the DB
         request.session = {"orcid_id": "0000-0000-0000-0000"}
         request.headers = {"Authorization": f"Bearer {raw_token}"}
-        result = await get_current_user_or_token(request, db_session)
+        result = await get_current_user_session_or_token(request, db_session)
         assert result is not None
         assert result.id == user.id

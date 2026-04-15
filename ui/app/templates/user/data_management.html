@@ -1,78 +1,40 @@
 {% extends "base.html" %}
 
-{% block title %}My Data — {{ app_name }}{% endblock %}
+{% block title %}My Projects — {{ app_name }}{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-  <h1>My Data</h1>
-  <p class="text-muted">Manage files and GitHub-linked repositories across your projects.</p>
+<div class="page-header" style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4);">
+  <div>
+    <h1 class="page-title">My Projects</h1>
+    <p class="text-muted">Manage your research projects and their files.</p>
+  </div>
+  <a href="/user/data/new" class="btn btn-primary" style="white-space: nowrap;">+ New Project</a>
+</div>
 
-  <a href="/user/data/upload" class="btn btn-primary mb-3">Upload File</a>
-
-  {% if not projects_with_files %}
-    <p>You have no projects yet.</p>
-  {% else %}
-    {% for item in projects_with_files %}
-      <div class="card mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          <strong>{{ item.project.title }}</strong>
-          <form method="post" action="/user/projects/{{ item.project.id }}/github-sync" class="d-flex gap-2">
-            <input type="text" name="github_repo_url" class="form-control form-control-sm"
-                   placeholder="https://github.com/org/repo"
-                   value="{{ item.project.github_repo_url or '' }}">
-            <input type="text" name="branch" class="form-control form-control-sm" style="width:8em"
-                   value="{{ item.project.github_branch or 'main' }}" placeholder="branch">
-            <button type="submit" class="btn btn-sm btn-outline-secondary">Sync GitHub</button>
-          </form>
-        </div>
-        <div class="card-body p-0">
-          {% if item.files %}
-            <table class="table table-sm mb-0">
-              <thead>
-                <tr>
-                  <th>Filename</th>
-                  <th>Type</th>
-                  <th>Source</th>
-                  <th>Size</th>
-                  <th>Public</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for f in item.files %}
-                  <tr>
-                    <td>
-                      <a href="/api/data/{{ f.id }}">{{ f.filename }}</a>
-                    </td>
-                    <td>{{ f.file_type }}</td>
-                    <td>{{ f.source }}</td>
-                    <td>{{ f.size_bytes }}</td>
-                    <td>{{ "Yes" if f.is_public else "No" }}</td>
-                    <td>
-                      <button class="btn btn-sm btn-outline-danger"
-                              onclick="deleteFile('{{ f.id }}')">Delete</button>
-                    </td>
-                  </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-          {% else %}
-            <p class="p-3 text-muted mb-0">No files yet.</p>
+{% if projects %}
+  <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+    {% for project in projects %}
+      <div class="card" style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 0;">
+          <div style="display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-1);">
+            <span style="font-weight: 600; font-size: 1.05rem;">{{ project.title }}</span>
+            <span class="badge" style="background: rgba(57,212,230,0.1); color: #39d4e6; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;">{{ project.status }}</span>
+            {% if project.github_repo_url %}
+              <span class="badge" style="background: rgba(255,255,255,0.06); color: var(--color-text-muted); font-size: 0.7rem;">GitHub linked</span>
+            {% endif %}
+          </div>
+          {% if project.research_question %}
+            <p class="text-muted text-small" style="margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60ch;">{{ project.research_question }}</p>
           {% endif %}
         </div>
+        <a href="/user/projects/{{ project.id }}" class="btn btn-outline btn-sm" style="white-space: nowrap; flex-shrink: 0;">Manage Files</a>
       </div>
     {% endfor %}
-  {% endif %}
-</div>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-async function deleteFile(fileId) {
-  if (!confirm('Delete this file?')) return;
-  const resp = await fetch('/user/data/' + fileId, {method: 'DELETE'});
-  if (resp.ok) window.location.reload();
-  else alert('Delete failed: ' + resp.status);
-}
-</script>
+  </div>
+{% else %}
+  <div class="card" style="text-align: center; padding: var(--space-10) var(--space-6);">
+    <p class="text-muted" style="margin-bottom: var(--space-4);">You have no projects yet.</p>
+    <a href="/user/data/new" class="btn btn-primary">Create your first project</a>
+  </div>
+{% endif %}
 {% endblock %}

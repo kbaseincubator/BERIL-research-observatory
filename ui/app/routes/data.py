@@ -1,32 +1,38 @@
 """User data management routes.
 
 Browser routes (session auth):
-  GET  /user/data                       — data management page
-  GET  /user/data/upload                — upload form
-  POST /user/data/upload                — handle file upload
-  DELETE /user/data/{file_id}          — delete a file
-  POST /user/projects/{id}/github-sync  — link repo and sync
+  GET  /user/data                            — project list page
+  GET  /user/data/new                        — create new project form
+  POST /user/projects/create                 — create project, redirect to /user/projects/{id}
+  GET  /user/projects/{id}                   — file management page for an existing project
+  POST /user/data/upload-to-project          — upload files to existing project
+  DELETE /user/data/{file_id}                — delete a file
+  POST /user/projects/{id}/github-sync       — link repo and sync
 
 API routes (session or Bearer token):
-  GET  /api/data/{file_id}   — download file bytes
-  POST /api/user/token       — generate/rotate API token
+  GET  /api/data/{file_id}              — download/view file bytes
+  GET  /api/user/projects/{id}/files    — list files for a project (JSON)
+  POST /api/user/token                  — generate/rotate API token
 """
 
 import logging
+import re
+import uuid
 from pathlib import Path
 from urllib.parse import quote as _quote, urlparse
 
-from fastapi import APIRouter, Depends, File, Form, Request, UploadFile
+from fastapi import APIRouter, Depends, File, Form, Query, Request, UploadFile
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 import app.context as ctx
-from app.auth import get_beril_user_id, get_current_user_or_token
+from app.auth import get_beril_user_id, get_current_user_session_or_token
 from app.config import get_settings
 from app.context import get_base_context
 from app.db.crud import (
     create_project_file,
+    create_user_project,
     delete_project_file,
     get_file_by_id,
     get_files_for_project,
@@ -87,6 +93,95 @@ def _storage() -> LocalFileStorage:
     return LocalFileStorage(get_settings().user_projects_root)
 
 
+def _slugify(title: str) -> str:
+    """Convert a project title to a URL/filesystem-safe slug."""
+    slug = title.lower()
+    slug = re.sub(r"[^\w\s-]", "", slug)
+    slug = re.sub(r"[\s_]+", "-", slug)
+    slug = slug.strip("-")
+    return slug or "project"
+
+
+def _safe_relative_path(raw_name: str) -> str | None:
+    """Return a sanitized relative path from an uploaded filename.
+
+    Browsers send a flat basename for regular file picks, and a relative path
+    like ``mydir/subdir/file.csv`` when the user picks a directory via
+    webkitdirectory.  We sanitize every segment individually to prevent path
+    traversal while preserving the directory structure.
+    """
+    # Normalize separators (Windows paths use backslash)
+    normalized = raw_name.replace("\\", "/")
+    segments = normalized.split("/")
+    safe_segments = []
+    for seg in segments:
+        # Strip leading dots to prevent hidden-file tricks; reject empty or dot-only segments
+        seg = seg.strip()
+        if not seg or seg in {".", ".."}:
+            continue
+        safe_segments.append(seg)
+    if not safe_segments:
+        return None
+    return "/".join(safe_segments)
+
+
+async def _save_upload(
+    db: AsyncSession,
+    storage: LocalFileStorage,
+    file: UploadFile,
+    project_id: str,
+    owner_id: str,
+    slug: str,
+    file_type: str,
+    is_public: bool,
+) -> None:
+    """Save one uploaded file to storage and upsert a ProjectFile record.
+
+    Preserves relative paths from directory uploads (webkitdirectory) so that
+    ``mydir/subdir/file.csv`` is stored under ``uploads/mydir/subdir/file.csv``
+    rather than being flattened to ``uploads/file.csv``.
+    """
+    relative_path = _safe_relative_path(file.filename or "upload")
+    if relative_path is None:
+        return
+    storage_path = f"{owner_id}/{slug}/uploads/{relative_path}"
+    # filename stored in DB is the relative path — preserves directory structure
+    # and keeps the upsert uniqueness check meaningful for nested files.
+    existing = await get_upload_file_by_filename(db, project_id, relative_path)
+    data = await file.read()
+    size = await storage.save(data, storage_path)
+    if existing is not None:
+        existing.storage_path = storage_path
+        existing.size_bytes = size
+        existing.content_type = file.content_type
+        existing.file_type = file_type
+        existing.is_public = is_public
+        await db.commit()
+    else:
+        try:
+            await create_project_file(
+                db,
+                project_id=project_id,
+                file_type=file_type,
+                filename=relative_path,
+                storage_path=storage_path,
+                size_bytes=size,
+                content_type=file.content_type,
+                is_public=is_public,
+                source="upload",
+            )
+        except IntegrityError:
+            await db.rollback()
+            existing = await get_upload_file_by_filename(db, project_id, relative_path)
+            if existing is not None:
+                existing.storage_path = storage_path
+                existing.size_bytes = size
+                existing.content_type = file.content_type
+                existing.file_type = file_type
+                existing.is_public = is_public
+                await db.commit()
+
+
 # ---------------------------------------------------------------------------
 # Browser routes
 # ---------------------------------------------------------------------------
@@ -98,35 +193,10 @@ async def user_data(
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
-    """Data management page — lists all files across the user's projects."""
+    """Project list page."""
     user = context.get("current_user")
     if user is None:
-        return RedirectResponse(url=f"/auth/login?next=/user/data", status_code=302)
-
-    beril_user_id = get_beril_user_id(request)
-    if beril_user_id is None:
-        return RedirectResponse(url="/auth/login", status_code=302)
-
-    projects = await get_projects_for_user(db, beril_user_id)
-    projects_with_files = []
-    for project in projects:
-        files = await get_files_for_project(db, project.id)
-        projects_with_files.append({"project": project, "files": files})
-
-    context["projects_with_files"] = projects_with_files
-    return ctx.templates.TemplateResponse(request, "user/data_management.html", context)
-
-
-@ROUTER_USER_DATA.get("/user/data/upload", response_class=HTMLResponse)
-async def user_data_upload_form(
-    request: Request,
-    context: dict = Depends(get_base_context),
-    db: AsyncSession = Depends(get_db),
-):
-    """File upload form."""
-    user = context.get("current_user")
-    if user is None:
-        return RedirectResponse(url="/auth/login?next=/user/data/upload", status_code=302)
+        return RedirectResponse(url="/auth/login?next=/user/data", status_code=302)
 
     beril_user_id = get_beril_user_id(request)
     if beril_user_id is None:
@@ -134,20 +204,98 @@ async def user_data_upload_form(
 
     projects = await get_projects_for_user(db, beril_user_id)
     context["projects"] = projects
-    return ctx.templates.TemplateResponse(request, "user/data_upload.html", context)
+    return ctx.templates.TemplateResponse(request, "user/data_management.html", context)
 
 
-@ROUTER_USER_DATA.post("/user/data/upload")
-async def user_data_upload(
+@ROUTER_USER_DATA.get("/user/data/new", response_class=HTMLResponse)
+async def user_data_new(
+    request: Request,
+    context: dict = Depends(get_base_context),
+):
+    """New project creation form."""
+    user = context.get("current_user")
+    if user is None:
+        return RedirectResponse(url="/auth/login?next=/user/data/new", status_code=302)
+    return ctx.templates.TemplateResponse(request, "user/new_project.html", context)
+
+
+@ROUTER_USER_DATA.post("/user/projects/create")
+async def user_create_project(
+    request: Request,
+    title: str = Form(...),
+    research_question: str = Form(""),
+    context: dict = Depends(get_base_context),
+    db: AsyncSession = Depends(get_db),
+):
+    """Create a new project and redirect to its file management page."""
+    user = context.get("current_user")
+    if user is None:
+        return RedirectResponse(url="/auth/login", status_code=302)
+
+    beril_user_id = get_beril_user_id(request)
+    if beril_user_id is None:
+        return RedirectResponse(url="/auth/login", status_code=302)
+
+    slug = _slugify(title)
+    try:
+        project = await create_user_project(
+            db,
+            beril_user_id,
+            title=title,
+            research_question=research_question or None,
+            slug=slug,
+        )
+    except IntegrityError:
+        await db.rollback()
+        slug = f"{slug}-{uuid.uuid4().hex[:6]}"
+        project = await create_user_project(
+            db,
+            beril_user_id,
+            title=title,
+            research_question=research_question or None,
+            slug=slug,
+        )
+
+    return RedirectResponse(url=f"/user/projects/{project.id}", status_code=302)
+
+
+@ROUTER_USER_DATA.get("/user/projects/{project_id}", response_class=HTMLResponse)
+async def user_project_files(
+    request: Request,
+    project_id: str,
+    context: dict = Depends(get_base_context),
+    db: AsyncSession = Depends(get_db),
+):
+    """File management page for an existing project."""
+    user = context.get("current_user")
+    if user is None:
+        return RedirectResponse(url=f"/auth/login?next=/user/projects/{project_id}", status_code=302)
+
+    beril_user_id = get_beril_user_id(request)
+    if beril_user_id is None:
+        return RedirectResponse(url="/auth/login", status_code=302)
+
+    project = await get_project_by_id(db, project_id)
+    if project is None or project.owner_id != beril_user_id:
+        return Response(status_code=403)
+
+    files = await get_files_for_project(db, project_id)
+    context["project"] = project
+    context["files"] = files
+    return ctx.templates.TemplateResponse(request, "user/project_files.html", context)
+
+
+@ROUTER_USER_DATA.post("/user/data/upload-to-project")
+async def user_upload_to_project(
     request: Request,
     project_id: str = Form(...),
     file_type: str = Form("data"),
     is_public: bool = Form(False),
-    file: UploadFile = File(...),
+    files: list[UploadFile] = File(default=[]),
     context: dict = Depends(get_base_context),
     db: AsyncSession = Depends(get_db),
 ):
-    """Handle multipart file upload, store blob, upsert ProjectFile record."""
+    """Upload one or more files to an existing project."""
     user = context.get("current_user")
     if user is None:
         return RedirectResponse(url="/auth/login", status_code=302)
@@ -163,59 +311,22 @@ async def user_data_upload(
     if project is None or project.owner_id != beril_user_id:
         return Response(status_code=403)
 
-    owner_id, slug = project.filesystem_path_parts
-    # Strip any directory components from the uploaded filename, including both
-    # forward-slash and backslash separators so Windows-style paths like
-    # "..\evil.csv" don't bypass the basename extraction on Unix hosts.
-    raw_name = (file.filename or "upload").replace("\\", "/")
-    safe_name = Path(raw_name).name
-    if not safe_name or safe_name in {".", ".."}:
-        return Response(status_code=422, content="Invalid filename")
-    storage_path = f"{owner_id}/{slug}/uploads/{safe_name}"
+    # Validate all filenames before writing anything to storage
+    for file in files:
+        if not file.filename:
+            continue
+        if _safe_relative_path(file.filename) is None:
+            return Response(status_code=422, content=f"Invalid filename: {file.filename!r}")
 
-    # Check for an existing record before writing to storage so we can skip
-    # creating a blob if the upsert will fail (avoids orphaned files on 422).
-    # A unique-constraint violation from a rare concurrent upload is handled
-    # by re-fetching the row and updating it in a second pass.
-    existing = await get_upload_file_by_filename(db, project_id, safe_name)
-
-    data = await file.read()
     storage = _storage()
-    size = await storage.save(data, storage_path)
+    for file in files:
+        if not file.filename:
+            continue
+        await _save_upload(
+            db, storage, file, project.id, beril_user_id, project.slug, file_type, is_public
+        )
 
-    if existing is not None:
-        existing.storage_path = storage_path
-        existing.size_bytes = size
-        existing.content_type = file.content_type
-        existing.file_type = file_type
-        existing.is_public = is_public
-        await db.commit()
-    else:
-        try:
-            await create_project_file(
-                db,
-                project_id=project_id,
-                file_type=file_type,
-                filename=safe_name,
-                storage_path=storage_path,
-                size_bytes=size,
-                content_type=file.content_type,
-                is_public=is_public,
-                source="upload",
-            )
-        except IntegrityError:
-            # Concurrent upload beat us — roll back and update the winner's row.
-            await db.rollback()
-            existing = await get_upload_file_by_filename(db, project_id, safe_name)
-            if existing is not None:
-                existing.storage_path = storage_path
-                existing.size_bytes = size
-                existing.content_type = file.content_type
-                existing.file_type = file_type
-                existing.is_public = is_public
-                await db.commit()
-
-    return RedirectResponse(url="/user/data", status_code=302)
+    return RedirectResponse(url=f"/user/projects/{project.id}", status_code=302)
 
 
 @ROUTER_USER_DATA.delete("/user/data/{file_id}")
@@ -287,7 +398,7 @@ async def user_github_sync(
     except Exception:
         logger.exception("GitHub sync failed for project %s url %s", project_id, github_repo_url)
 
-    return RedirectResponse(url="/user/data", status_code=302)
+    return RedirectResponse(url=f"/user/projects/{project_id}", status_code=302)
 
 
 # ---------------------------------------------------------------------------
@@ -295,13 +406,46 @@ async def user_github_sync(
 # ---------------------------------------------------------------------------
 
 
+@ROUTER_USER_DATA.get("/api/user/projects/{project_id}/files")
+async def api_list_project_files(
+    request: Request,
+    project_id: str,
+    db: AsyncSession = Depends(get_db),
+):
+    """Return JSON list of files for a project. Owner-only."""
+    user = await get_current_user_session_or_token(request, db)
+    if user is None:
+        return Response(status_code=401)
+
+    project = await get_project_by_id(db, project_id)
+    if project is None or project.owner_id != user.id:
+        return Response(status_code=403)
+
+    files = await get_files_for_project(db, project_id)
+    return JSONResponse([
+        {
+            "id": f.id,
+            "filename": f.filename,
+            "file_type": f.file_type,
+            "size_bytes": f.size_bytes,
+            "uploaded_at": f.uploaded_at.isoformat(),
+        }
+        for f in files
+    ])
+
+
 @ROUTER_USER_DATA.get("/api/data/{file_id}")
 async def api_get_file(
     request: Request,
     file_id: str,
+    view: bool = Query(False),
     db: AsyncSession = Depends(get_db),
 ):
-    """Return file bytes. Accessible to the owner or if the file is public."""
+    """Return file bytes. Accessible to the owner or if the file is public.
+
+    Pass ?view=1 to get an inline Content-Disposition (browser display)
+    instead of the default attachment (download).
+    """
     file = await get_file_by_id(db, file_id)
     if file is None:
         return Response(status_code=404)
@@ -311,7 +455,7 @@ async def api_get_file(
         return Response(status_code=404)
 
     if not file.is_public:
-        user = await get_current_user_or_token(request, db)
+        user = await get_current_user_session_or_token(request, db)
         if user is None or user.id != project.owner_id:
             return Response(status_code=403)
 
@@ -323,10 +467,11 @@ async def api_get_file(
         return Response(status_code=404)
     basename = Path(file.filename).name
     encoded = _quote(basename, safe="")
+    disposition = "inline" if view else "attachment"
     return Response(
         content=data,
         media_type=file.content_type or "application/octet-stream",
-        headers={"Content-Disposition": f"attachment; filename*=UTF-8''{encoded}"},
+        headers={"Content-Disposition": f"{disposition}; filename*=UTF-8''{encoded}"},
     )
 
 
