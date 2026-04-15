@@ -541,7 +541,9 @@ def build_table_stats(
     for f in source_files:
         table      = f.stem
         size_bytes = f.stat().st_size
-        print(f"  {f.name}: {size_bytes / 1e9:.1f} GB", end=" ", flush=True)
+        size_gb    = size_bytes / 1e9
+        wait_note  = "  (large file — may take several minutes)" if size_gb > 10 else ""
+        print(f"  {f.name}: {size_gb:.1f} GB{wait_note}", end=" ", flush=True)
         total_lines = _count_lines(f)
         data_lines  = max(total_lines - 1, 0)   # exclude header
 
@@ -891,6 +893,7 @@ def _build_chunk_config(
     file_ext: str,
     delimiter: str,
     mode: str,
+    bronze_prefix: str = "",
     user_tenant: bool = False,
     username: str | None = None,
 ) -> dict:
@@ -904,11 +907,17 @@ def _build_chunk_config(
     cfg: dict = {}
     if user_tenant:
         cfg["dataset"] = f"u_{username}__{dataset}"
+        data_plane = f"s3a://{bucket}/users-general-warehouse/{username}/"
     else:
         cfg["dataset"] = dataset
         cfg["tenant"]    = tenant
         cfg["is_tenant"] = True
-    cfg["paths"]    = {"silver_base": silver_base}
+        data_plane = f"s3a://{bucket}/tenant-general-warehouse/{tenant}/"
+    cfg["paths"]    = {
+        "data_plane":  data_plane,
+        "bronze_base": f"s3a://{bucket}/{bronze_prefix}/",
+        "silver_base": silver_base,
+    }
     cfg["defaults"] = defaults
     cfg["tables"]   = [{
         "name":         table,
@@ -950,7 +959,7 @@ def _ingest_chunked(
       uploaded + ingested      →  skip entirely
       neither                  →  upload then ingest
 
-    Each chunk file is deleted from MinIO after successful ingest.
+    Each chunk file is retained in MinIO under {bronze_prefix}/{table}/ after ingest.
     Returns (rows_done, spark) — spark may be a new session if a reconnect occurred
     mid-chunk; the caller must reassign its spark variable from the returned value.
     """
@@ -978,7 +987,7 @@ def _ingest_chunked(
             _chunk_file_binary(stats["path"], chunk_target_bytes, file_ext):
 
         n_rows    = end_line - start_line + 1
-        chunk_key = f"{bronze_prefix}/{table}_chunk_{chunk_index:03d}{file_ext}"
+        chunk_key = f"{bronze_prefix}/{table}/{table}_chunk_{chunk_index:03d}{file_ext}"
         cfg_key   = f"{bronze_prefix}/config/{table}_chunk_{chunk_index:03d}.json"
         label     = f"Chunk {chunk_index + 1}/{n_chunks}"
 
@@ -1036,6 +1045,7 @@ def _ingest_chunked(
         chunk_cfg  = _build_chunk_config(
             tenant, dataset, bucket, silver_base, schema_defs,
             table, f"s3a://{bucket}/{chunk_key}", file_ext, delimiter, chunk_mode,
+            bronze_prefix=bronze_prefix,
             user_tenant=user_tenant, username=username,
         )
         cfg_bytes = json.dumps(chunk_cfg, indent=2).encode()
@@ -1073,12 +1083,14 @@ def _ingest_chunked(
         })
         print(f"  {label}: complete — {rows_done:,} cumulative rows")
 
-        # Clean up chunk data and config files from MinIO.
-        for key in (chunk_key, cfg_key):
+        # Retain chunk 0 config as a record of schema and ingest settings.
+        # Clean up all other per-chunk config files (pipeline artifacts).
+        # Chunk data files are retained at {bronze_prefix}/{table}/ for records.
+        if chunk_index > 0:
             try:
-                minio_client.remove_object(bucket, key)
+                minio_client.remove_object(bucket, cfg_key)
             except Exception as e:
-                print(f"  {label}: WARNING — could not delete s3a://{bucket}/{key}: {e}")
+                print(f"  {label}: WARNING — could not delete s3a://{bucket}/{cfg_key}: {e}")
 
     return rows_done, spark
 
