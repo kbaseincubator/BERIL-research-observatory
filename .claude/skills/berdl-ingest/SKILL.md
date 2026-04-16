@@ -524,6 +524,93 @@ verified in MinIO before ingest resumes. No data is lost.
 single-batch `ingest()` pipeline regardless of size. Only use this for datasets where all
 tables are small enough to ingest without timeout risk.
 
+### Alternative Ingest Mode: DataFrame-Based Ingestion
+
+**When to Use This Mode**
+
+Use DataFrame ingestion instead of file-based ingestion when:
+* Data is already loaded in memory (Pandas or Spark DataFrame)
+* Data comes from:
+
+  * APIs
+  * transformations
+  * joins across multiple datasets
+* No physical source file exists
+* You want to bypass chunked ingestion
+
+
+**How It Works**
+
+Instead of relying on `bronze_path`, the ingest library allows passing DataFrames directly:
+
+```python
+from data_lakehouse_ingest import ingest
+
+ingest(
+    config,
+    dataframes={
+        "table_name": dataframe
+    }
+)
+```
+
+**Key Behavior**
+* `dataframes` maps **table name → DataFrame**
+* `bronze_path` is **ignored for overridden tables**
+* `input_source` is recorded as `"dataframe"` for observability
+* No file upload or chunking is performed
+
+
+**Example**
+
+```python
+import pandas as pd
+
+df = pd.DataFrame({
+    "gene_id": ["g1", "g2"],
+    "value": [10, 20]
+})
+
+config = {
+    "dataset": "example_dataset",
+    "tables": [
+        {
+            "name": "gene_table",
+            "schema_sql": "gene_id STRING, value INT"
+        }
+    ]
+}
+
+ingest(config, dataframes={"gene_table": df})
+```
+
+
+**Important Notes**
+* Schema enforcement still applies
+* Extra columns are dropped (and logged)
+* Missing required columns will raise errors
+* Works with both:
+
+  * Pandas DataFrames
+  * Spark DataFrames
+
+
+**When NOT to Use DataFrame Mode**
+
+Avoid this mode when:
+* Dataset is very large (GBs–TBs)
+* Chunking is required to avoid memory issues
+* Data already exists as files in MinIO or local storage
+
+In these cases, use standard file-based ingestion with chunking instead. 
+
+**In DataFrame mode:**
+
+* `bronze_path = None`
+* No physical lineage file exists
+* Provenance is **logical**, not file-based
+
+
 ### Step 5: Confirm results
 
 Report to the user:
