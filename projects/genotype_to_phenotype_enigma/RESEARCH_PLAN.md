@@ -321,60 +321,66 @@ The project is organized into three acts. Each notebook produces a standalone de
   - Optionally validate global co-occurrence patterns in microbeatlas.
   - Output: co-occurrence network (edge list + significance), complementarity analysis for top pairs.
 
-### Act II — Predict and Explain (NB05-NB09)
+### Act II — Predict and Explain (NB05-NB08)
 
-#### NB05: Feature engineering (genome + condition + interaction)
-- **Goal**: Construct the modeling matrices. For genomes, extract features at four levels (phylogeny → bulk scalars → specific KO/OG/pathway → condition interactions). For conditions, build molecular descriptors.
-- **Genome features** (all 123 strains from genome depot; supplementary pangenome features for 32):
-  - **Level 0 — Phylogeny**: GTDB taxonomy categoricals; depot taxonomy; ANI distance to nearest anchor.
-  - **Level 1 — Bulk scalars**: genome size, GC%, coding density, # contigs, # genes, # rRNA operons, codon usage bias (CUB via gRodon — adds the Phydon baseline for free).
-  - **Level 2 — Specific features**: KO presence/absence (~2,000 per genome from depot), COG class counts (23 categories), ortholog group membership (~16K OGs), EC number counts, GapMind pathway scores (for 32 pangenome-linked), KEGG module completeness.
-  - **Level 3 — Functional summaries**: resistance gene count, motility gene presence, sigma factor diversity, two-component system count, mobile element load, secretion system count.
-- **Condition features**: ChEBI → Morgan fingerprint (2048-bit) + functional groups + log(concentration) + pH + condition class (carbon/nitrogen/metal/antibiotic/stress) + media category.
-- **Interaction features**: KO-relevant-to-condition × condition identity (e.g., metal resistance KO count × metal ion identity).
-- **Output**: `data/features/` directory with per-family parquets + `feature_metadata.tsv`.
+#### NB05: Feature engineering [DONE]
+- **Status**: Complete. Modeling tables assembled.
+- **Feature selection**: Prevalence-based filtering on all 123 strains: remove 456 core KOs (p > 0.95) and 2,406 rare KOs (p < 0.05), retain **4,305 informative KOs** (0.05 ≤ p ≤ 0.95) plus 23 COG class counts. This is a principled, target-independent filter with clear biological rationale: core KOs have no discriminative power; rare KOs are too sparse for statistical learning.
+- **No PCA**: KO identity is preserved throughout — every selected feature is a named KEGG ortholog with functional annotation. GBDT handles the 4,305-dimensional feature space via internal regularization (tree splits, feature subsampling, leaf constraints). Interpretability comes from SHAP on named KOs, not from opaque principal components.
+- **Four feature levels**:
+  - **L0 — Phylogeny** (28 features): GTDB order + metabolic guild (one-hot encoded)
+  - **L1 — Bulk scalars** (8 features): genome size, gene count, contigs, unique KOs, coding density, operons, rRNA copies, tRNA copies
+  - **L2 — Specific features** (4,328 features): 4,305 prevalence-filtered KO presence/absence + 23 COG class counts
+  - **L3 — Condition** (7 features): condition class (carbon/amino acid/metal/antibiotic/nitrogen/nucleoside/other) + log(concentration)
+- **Two modeling tables**:
+  - `anchor_gbdt_table.parquet`: 486 pairs × 4,371 features (for GBDT — all KOs)
+  - `anchor_linear_table.parquet`: 486 pairs × 116 features (for baseline comparisons if needed)
+- **CV structure**: 7 leave-one-strain-out folds (4 Pseudomonas_E, 1 Cupriavidus, 1 Acidovorax, 1 Pedobacter)
+- **Output**: `data/features/`, `data/modeling/`
 
-#### NB06: Variance partitioning
-- **Goal**: Decompose growth phenotype variance into the four feature levels: phylogeny → bulk → specific → condition interaction. This is the central analytical framework.
-- **Method**:
-  - Nested linear models with increasing feature complexity. For each phenotype target (binary growth, µmax, lag, max OD, AUC):
-    - **M0**: phylogeny only (GTDB genus/family as random effects, or phylogenetic eigenvectors from ANI distance kernel).
-    - **M1**: M0 + bulk scalars (GC%, genome size, CUB, ribosomal copies).
-    - **M2**: M1 + specific features (top-K KOs by univariate association, selected via stability selection or elastic net).
-    - **M3**: M2 + condition interactions.
-  - Report incremental R² (or pseudo-R² for binary) at each level. Use phylogenetically blocked CV (Xu et al. 2025) with tree cuts at genus, family, and order levels to test generalization.
-  - Adversarial validation: train a GTDB-genus classifier on each feature level; quantify phylogenetic leakage.
-- **Output**: `data/variance_partition.tsv`, figures (stacked bar of R² by level per target, heatmap of level × target × CV-depth).
-
-#### NB07: GBDT modeling + CSP transfer + paradigm comparison
-- **Goal**: Train gradient-boosted models and compare to GapMind pathway baseline and CUB/gRodon baseline. Test transfer from CSP corpus.
-- **Method**:
-  - **GapMind baseline**: For carbon-source conditions, predict growth from GapMind pathway completeness score. Rule-based for binary; ordinal regression for continuous.
-  - **CUB/gRodon baseline**: Predict µmax from codon usage bias (following Phydon). Phylogenetic + CUB weighted ensemble per Xu et al.
-  - **GBDT (ENIGMA-only)**: Train LightGBM on 123 strains × conditions with KO + condition features. Phylogenetically blocked CV.
-  - **GBDT (CSP-pretrained)**: Pretrain on 795 CSP genomes × 379 binary phenotypes (KofamScan KO features). Fine-tune on ENIGMA continuous targets. Compare to ENIGMA-only.
-  - **GBDT (BacFormer)**: Use BacFormer embeddings (480-dim, available for CSP genomes) as features. Compare to explicit KO features — data-driven vs. knowledge-driven.
-  - Report accuracy (RMSE/AUC) AND biological meaningfulness (FB concordance) for each model × target.
-- **Output**: `data/model_results.tsv`, `data/model_predictions.tsv`, paradigm comparison figures.
-
-#### NB08: FB concordance validation (biological meaningfulness)
-- **Goal**: Score each predictor by the fraction of its top SHAP features whose FB orthologs show significant fitness effects under matched conditions.
-- **Method**:
-  - For each (strain, condition) in Tier 1 anchor set with FB fitness data:
-    1. Extract top-K features (K = 10, 50, 100) from each model via SHAP.
-    2. Map KO → FB locus via genome depot gene → pangenome cluster → `fb_pangenome_link.tsv`.
+#### NB06: GBDT variance partitioning + SHAP + FB concordance
+- **Goal**: The central analytical notebook. Decompose growth phenotype variance using GBDT at each feature level, extract interpretable feature attributions via SHAP, and validate biological meaningfulness against independent Fitness Browser gene fitness data.
+- **Why GBDT throughout** (not linear models): Growth phenotype depends on non-linear gene interactions (epistasis, threshold effects, condition-dependent gene importance). Linear models underestimate L2 contributions because they can't capture these effects. Using the same non-linear model (LightGBM) at every level ensures fair comparison — the only thing that changes between M0 and M3 is which features the model sees.
+- **Method — Variance partitioning via nested GBDT**:
+  For each phenotype target (binary growth, µmax, lag, max_A, AUC):
+  - **M0**: LightGBM on L0 features only (28 phylogeny) → leave-one-strain-out CV → R² (or AUC for binary)
+  - **M1**: LightGBM on L0 + L1 (36 features) → CV R²
+  - **M2**: LightGBM on L0 + L1 + L2 (4,364 features) → CV R²
+  - **M3**: LightGBM on L0 + L1 + L2 + L3 (4,371 features) → CV R²
+  - **Incremental contribution** of each level = R²(Mi) - R²(Mi-1). This answers: "how much predictive power does adding KO-level features provide after phylogeny and bulk scalars are already in the model?"
+  - LightGBM hyperparameters: `num_leaves=31, min_data_in_leaf=10, feature_fraction=0.5, learning_rate=0.05, n_estimators=200, reg_alpha=0.1, reg_lambda=1.0`. These provide regularization that prevents overfitting on the 486-pair dataset despite 4,000+ features.
+- **Method — SHAP feature attribution**:
+  - On the full M3 model, compute SHAP values for every prediction.
+  - Report global feature importance (mean |SHAP|) and per-condition-class importance.
+  - Each important feature is a named KO — directly mappable to KEGG pathway/module annotations.
+  - Recursive feature importance: after identifying top-50 SHAP features, refit M3 with only those features and report CV R² to assess whether a compact mechanistic model captures most of the signal.
+- **Method — FB concordance (biological meaningfulness)**:
+  - For each (strain, condition) in the anchor set with FB fitness data:
+    1. Extract top-K SHAP features (K = 10, 50, 100) from M3.
+    2. Map KO → FB locus via genome depot gene → `fb_pangenome_link.tsv`.
     3. Compute FB concordance = fraction of mapped loci with |t| > 4 in matched FB experiment.
-  - Report concordance per model, per condition class, per feature level.
-  - Test independence from accuracy: scatter plot of held-out accuracy vs. FB concordance.
-- **Output**: `data/meaningfulness_scores.tsv`, `figures/NB08_accuracy_vs_meaningfulness.png`.
+  - Compare concordance across models M0-M3: does adding KO features (M2) increase FB concordance relative to phylogeny-only (M0)?
+  - Scatter plot: held-out accuracy vs. FB concordance — are they correlated or independent axes?
+- **Method — Baseline comparisons**:
+  - **GapMind baseline**: For carbon-source conditions with pangenome-linked strains, predict growth from pathway completeness score. Rule-based for binary.
+  - **Taxonomy-only baseline**: Predict from GTDB genus alone (majority vote by genus). This is the "phylogeny explains everything" null.
+- **Output**: `data/variance_partition.tsv`, `data/shap_importance.tsv`, `data/fb_concordance.tsv`, `data/model_predictions.tsv`, figures (stacked bar of incremental R², SHAP beeswarm, accuracy-vs-concordance scatter, per-condition-class feature importance).
 
-#### NB09: WoM exometabolomic prediction (pilot)
-- **Goal**: For the 6 WoM-profiled strains, test whether growth-predictive features also predict metabolite production.
+#### NB07: CSP transfer learning
+- **Goal**: Test whether pretraining on the 795-genome carbon source phenotype corpus improves prediction on ENIGMA continuous targets.
 - **Method**:
-  - For each strain, predict: which of 105 WoM metabolites are Emerged / Increased / No Change?
-  - Use the same genome features (KO presence) and GBDT architecture as NB07.
-  - Test feature overlap: do top SHAP features for growth on substrate X overlap with top features for production of metabolites derived from X?
-  - Cross-reference with `fw300_metabolic_consistency` findings (tryptophan overflow, production vs. utilization distinction).
+  - **GBDT (CSP-pretrained)**: Train LightGBM on CSP corpus (795 genomes × 379 binary phenotypes, KofamScan KO features). Apply to ENIGMA strains by mapping KO features between depot and KofamScan annotations.
+  - **Transfer comparison**: CSP-pretrained → frozen features + retrain on ENIGMA vs. ENIGMA-only training from scratch. Report CV R² and FB concordance for both.
+  - **BacFormer comparison**: Use BacFormer embeddings (480-dim, CSP genomes only) as features. Compare to explicit KO features — data-driven vs. knowledge-driven.
+- **Output**: `data/transfer_results.tsv`, comparison figures.
+
+#### NB08: WoM exometabolomic prediction (pilot)
+- **Goal**: For the 6 WoM-profiled strains, test whether growth-predictive KOs also predict metabolite production.
+- **Method**:
+  - Use the same GBDT architecture and KO features as NB06 M3.
+  - Predict: which of 105 WoM metabolites are Emerged / Increased / No Change?
+  - Test SHAP feature overlap between growth and metabolite production.
+  - Cross-reference with `fw300_metabolic_consistency` tryptophan overflow finding.
 - **Output**: `data/wom_predictions.tsv`, feature overlap analysis, figures.
 
 ### Act III — Diagnose and Propose (NB10-NB11)
@@ -443,12 +449,11 @@ The project is organized into three acts. Each notebook produces a standalone de
 | NB02 (condition canon.) | JupyterHub (Spark) + local (ChEBI lookup) | One-time extraction from FB/WoM/CSP |
 | NB03 (functional census) | JupyterHub (Spark) | Genome depot KO/COG/OG queries for 123 strains |
 | NB04 (env context) | JupyterHub (Spark) | microbeatlas (464K samples), CORAL bricks, pangenome ncbi_env |
-| NB05 (features) | JupyterHub (Spark) | Depot + pangenome queries for feature matrices |
-| NB06 (variance partition) | Local | Statistical modeling on cached feature matrices |
-| NB07 (GBDT + transfer) | Local (LightGBM) | Training on ~10K-100K rows, minutes |
-| NB08 (FB concordance) | Local | Post-hoc SHAP analysis + FB lookups |
-| NB09 (WoM prediction) | Local | Small data (6 strains × 105 metabolites) |
-| NB10-NB11 (diagnosis + AL) | Local | Scoring + ranking |
+| NB05 (features) [done] | JupyterHub (Spark) | Depot + pangenome queries for feature matrices |
+| NB06 (GBDT + SHAP + FB) | Local (LightGBM) | Nested GBDT M0-M3, SHAP, FB concordance |
+| NB07 (CSP transfer) | Local (LightGBM) | Pretraining on 795 CSP genomes |
+| NB08 (WoM prediction) | Local | 6 strains × 105 metabolites |
+| NB09-NB10 (diagnosis + AL) | Local | Scoring + ranking |
 
 ## Condition-Alignment Fallback Strategy
 
@@ -467,6 +472,13 @@ NB01 found 35.7% of curves pass fit_ok (R²>0.8, RMSE<10% OD range). If this pro
 - **Smooth QC**: Replace hard pass/fail with a continuous quality weight in the loss function (low-R² curves get down-weighted, not excluded).
 
 ## Revision History
+
+- **v5** (2026-04-18): Act II methodology revision — GBDT-throughout, no PCA.
+  - **Merged NB06+NB07+NB08 into NB06**: Variance partitioning, SHAP, and FB concordance are now one notebook. All use GBDT (LightGBM) — no linear models, no PCA. The incremental R² from nested GBDT models (M0→M3) replaces the planned linear variance decomposition. Non-linear effects (gene interactions, threshold responses) are captured at every level.
+  - **Principled KO selection**: Replaced arbitrary "top-100 by variance" with prevalence-based filtering: remove 456 core KOs (p > 0.95) and 2,406 rare KOs (p < 0.05), retain 4,305 informative KOs. Rationale: core KOs have no discriminative power; rare KOs are too sparse for statistical learning. GBDT handles the 4,305-dimensional space via internal regularization — no need for pre-selection.
+  - **No PCA**: KO identity preserved throughout for interpretability. Every SHAP-important feature is a named KEGG ortholog, not an opaque principal component. GBDT handles dimensionality via tree splits + feature subsampling.
+  - **Act II simplified**: 5 notebooks → 4 (NB05 features [done], NB06 variance partition + SHAP + FB concordance, NB07 CSP transfer, NB08 WoM prediction).
+  - **CSP transfer moved to NB07**: Separate notebook for pretraining comparison (CSP binary → ENIGMA continuous fine-tuning).
 
 - **v4** (2026-04-18): Three-act restructure with ENIGMA SFA context, biogeography, functional census, and variance partitioning.
   - **ENIGMA SFA context added**: New section describing Oak Ridge field site geology (fractured shale, contamination plumes, uranium/metals/nitrate/low-pH), carbon dynamics (simple C consumed rapidly, complex C persists), and how growth predictions relate to field community dynamics.

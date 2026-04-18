@@ -32,12 +32,11 @@ The project is structured in three acts:
 - NB03: Functional diversity census (phylogeny, metabolic guilds, resistance/motility/mobile elements, pangenome outliers)
 - NB04: Environmental context and biogeography (pangenome species-level via `ncbi_env`, microbeatlas global 16S, CORAL local Oak Ridge, SparCC co-occurrence)
 
-**Act II — Predict and Explain (NB05-NB09)**:
-- NB05: Feature engineering (4-level: phylogeny → bulk scalars → specific KO/OG → condition interactions)
-- NB06: Variance partitioning (nested models, phylogenetically blocked CV per Xu et al. 2025)
-- NB07: GBDT modeling + CSP transfer + paradigm comparison (GapMind / CUB-gRodon / GBDT)
-- NB08: FB concordance validation (biological meaningfulness scoring)
-- NB09: WoM exometabolomic prediction (pilot, 6 strains)
+**Act II — Predict and Explain (NB05-NB08)**:
+- NB05 [done]: Feature engineering (4,305 prevalence-filtered KOs, 4 feature levels, no PCA)
+- NB06: GBDT variance partitioning + SHAP + FB concordance (nested M0→M3, the central analytical notebook)
+- NB07: CSP transfer learning (pretrain on 795-genome corpus, fine-tune on ENIGMA)
+- NB08: WoM exometabolomic prediction (pilot, 6 strains)
 
 **Act III — Diagnose and Propose (NB10-NB11)**:
 - NB10: Conflict detection and counterfactuals

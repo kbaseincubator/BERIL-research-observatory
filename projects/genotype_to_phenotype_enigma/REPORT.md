@@ -86,15 +86,19 @@ Matching ENIGMA strains to the BERDL pangenome via `ncbi_strain_identifiers` cau
 
 ### Act II — Predict and Explain (in progress)
 
-#### 7. A 4-level feature hierarchy is assembled for variance partitioning
+#### 7. A 4-level feature hierarchy with 4,305 prevalence-filtered KOs is assembled for GBDT modeling
 
 ![Feature summary](figures/NB05_feature_summary.png)
 
-The modeling table comprises 486 anchor pairs (7 strains x 72 conditions) with 166 features organized into four hierarchical levels: **L0 Phylogeny** (28 features: GTDB order + metabolic guild one-hot encoding), **L1 Bulk scalars** (8 features: genome size, gene count, contigs, unique KOs, coding density, operons, rRNA/tRNA copies), **L2 Specific features** (123 features: top-100 KOs by variance + 23 COG class counts), and **L3 Condition** (7 features: condition class one-hot + log concentration). Prediction targets include binary growth (275/486 = 56.6% positive) and continuous parameters (mumax, lag, max_A, AUC) for the growth-positive subset.
+The modeling table comprises 486 anchor pairs (7 strains x 72 conditions) with features organized into four hierarchical levels: **L0 Phylogeny** (28 features: GTDB order + metabolic guild), **L1 Bulk scalars** (8 features: genome size, gene count, contigs, unique KOs, coding density, operons, rRNA/tRNA copies), **L2 Specific features** (4,328 features: 4,305 prevalence-filtered KOs + 23 COG class counts), and **L3 Condition** (7 features: condition class + log concentration). Total: 4,371 features.
+
+![KO prevalence filter](figures/NB05_ko_prevalence_filter.png)
+
+KO feature selection uses a principled prevalence filter: remove 456 core KOs (present in >95% of strains — no discriminative power) and 2,406 rare KOs (present in <5% — too sparse for statistical learning), retaining 4,305 informative KOs. No PCA is applied — every feature is a named KEGG ortholog with functional annotation, preserving interpretability for SHAP analysis. LightGBM handles the 4,305-dimensional space via tree-based regularization (feature subsampling, leaf constraints).
 
 ![Target distributions](figures/NB05_target_distributions.png)
 
-Leave-one-strain-out cross-validation uses 7 folds: 4 Pseudomonas_E strains, 1 Cupriavidus, 1 Acidovorax, 1 Pedobacter. This tests both within-genus generalization (the 4 Pseudomonas folds) and cross-genus transfer (the 3 non-Pseudomonas folds). The L2 KO features were reduced from 7,167 to 100 by variance ranking across anchor strains to manage dimensionality; the full matrix is available for per-strain analyses.
+Prediction targets: binary growth (275/486 = 56.6% positive) and continuous parameters (mumax, lag, max_A, AUC). Leave-one-strain-out CV uses 7 folds: 4 Pseudomonas_E, 1 Cupriavidus, 1 Acidovorax, 1 Pedobacter — testing both within-genus and cross-genus generalization.
 
 *(Notebook: NB05_feature_engineering.ipynb)*
 
