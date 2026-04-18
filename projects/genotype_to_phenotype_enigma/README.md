@@ -6,7 +6,7 @@ Can we predict bacterial growth phenotype — at multiple resolutions from binar
 
 ## Status
 
-**In Progress** — NB01 (growth curve fitting) complete. Research plan at v4. Next: NB02 (condition canonicalization), NB03 (functional diversity census), NB04 (environmental context).
+**In Progress** — Act I complete (NB00-NB04). Act I synthesis in [Report](REPORT.md). Starting Act II (feature engineering, variance partitioning, modeling).
 
 ## Context
 
