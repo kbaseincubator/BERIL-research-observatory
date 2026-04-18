@@ -84,6 +84,20 @@ Matching ENIGMA strains to the BERDL pangenome via `ncbi_strain_identifiers` cau
 
 *(Notebooks: NB04_environmental_context.ipynb)*
 
+### Act II — Predict and Explain (in progress)
+
+#### 7. A 4-level feature hierarchy is assembled for variance partitioning
+
+![Feature summary](figures/NB05_feature_summary.png)
+
+The modeling table comprises 486 anchor pairs (7 strains x 72 conditions) with 166 features organized into four hierarchical levels: **L0 Phylogeny** (28 features: GTDB order + metabolic guild one-hot encoding), **L1 Bulk scalars** (8 features: genome size, gene count, contigs, unique KOs, coding density, operons, rRNA/tRNA copies), **L2 Specific features** (123 features: top-100 KOs by variance + 23 COG class counts), and **L3 Condition** (7 features: condition class one-hot + log concentration). Prediction targets include binary growth (275/486 = 56.6% positive) and continuous parameters (mumax, lag, max_A, AUC) for the growth-positive subset.
+
+![Target distributions](figures/NB05_target_distributions.png)
+
+Leave-one-strain-out cross-validation uses 7 folds: 4 Pseudomonas_E strains, 1 Cupriavidus, 1 Acidovorax, 1 Pedobacter. This tests both within-genus generalization (the 4 Pseudomonas folds) and cross-genus transfer (the 3 non-Pseudomonas folds). The L2 KO features were reduced from 7,167 to 100 by variance ranking across anchor strains to manage dimensionality; the full matrix is available for per-strain analyses.
+
+*(Notebook: NB05_feature_engineering.ipynb)*
+
 ## Results
 
 ### Data scale summary
@@ -177,6 +191,13 @@ The functional diversity census (8 guilds, 7,167 KOs) provides the *a priori* cl
 | `data/oakridge_genus_cooccurrence.tsv` | 15 x 15 | Spearman co-occurrence matrix (100WS) |
 | `data/global_genus_cooccurrence_jaccard.tsv` | 18 x 18 | Jaccard co-occurrence (464K samples) |
 | `data/coral_strain_locations.tsv` | 123 | Strain to well to coordinates mapping |
+| `data/modeling/anchor_modeling_table.parquet` | 486 x 173 | Full modeling table (features + targets) |
+| `data/modeling/cv_folds.tsv` | 7 | Leave-one-strain-out CV fold assignments |
+| `data/features/L0_phylogeny.parquet` | 123 x 28 | GTDB order + guild one-hot |
+| `data/features/L1_scalars.parquet` | 123 x 8 | Genome size, genes, operons, rRNA, tRNA |
+| `data/features/L2_ko_binary.parquet` | 123 x 7167 | Full KO presence/absence matrix |
+| `data/features/L2_cog_counts.parquet` | 123 x 23 | COG class gene counts |
+| `data/features/L3_condition.parquet` | 72 x 7 | Condition class + concentration features |
 
 ## Supporting Evidence
 
@@ -189,6 +210,7 @@ The functional diversity census (8 guilds, 7,167 KOs) provides the *a priori* cl
 | `NB02_condition_canonicalization.ipynb` | Cross-dataset condition alignment, anchor set identification |
 | `NB03_functional_census.ipynb` | KO/COG profiling, metabolic guild clustering |
 | `NB04_environmental_context.ipynb` | Biogeography (3 scales), co-occurrence, niche characterization |
+| `NB05_feature_engineering.ipynb` | 4-level feature hierarchy, modeling table assembly, CV fold structure |
 
 ### Figures
 
@@ -216,6 +238,8 @@ The functional diversity census (8 guilds, 7,167 KOs) provides the *a priori* cl
 | `NB04_oakridge_cooccurrence.png` | Local Spearman co-occurrence |
 | `NB04_global_cooccurrence.png` | Global Jaccard co-occurrence |
 | `NB04_cluster_env_comparison.png` | pH/temperature niche comparison |
+| `NB05_feature_summary.png` | Feature dimensionality per level + condition class distribution |
+| `NB05_target_distributions.png` | Binary growth and continuous target distributions in anchor set |
 
 ## Future Directions (Act II)
 
