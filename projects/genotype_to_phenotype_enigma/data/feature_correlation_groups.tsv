@@ -1,0 +1,201 @@
+feature	corr_group	level	mean_abs_shap	kegg_ko	ko_desc
+L3_cond_amino_acid	0	L3	0.4382210277159509		
+L3_cond_nitrogen	1	L3	0.1643401214474364		
+L3_cond_other	2	L3	0.1152692595494254		
+L3_cond_carbon_source	3	L3	0.1084766733424784		
+L3_log_conc	4	L3	0.0942177796400485		
+L3_cond_nucleoside	5	L3	0.0763355788414073		
+L1_n_operons	6	L1	0.0508789288521752		
+L1_genome_size_mb	6	L1	0.0378941567251215		
+L1_n_unique_kos	6	L1	0.0374672471004881		
+L1_n_trna	6	L1	0.0358495749687759		
+L2_173	6	L2	0.0288760514003283	K06131	clsA_B; cardiolipin synthase A/B [EC:2.7.8.-]
+L1_n_genes	6	L1	0.0278138713470238		
+L1_n_rrna	6	L1	0.026809671354728		
+L1_coding_density	6	L1	0.0235276114076748		
+L2_1094	7	L2	0.0200526693527383	K14058	ttcA; tRNA 2-thiocytidine biosynthesis protein TtcA
+L0_guild_7	6	L0	0.0184381532248678		
+L2_258	6	L2	0.0159673015471417	K01916	nadE; NAD+ synthase [EC:6.3.1.5]
+L2_257	8	L2	0.0151564504721895	K02668	pilS, pehS; two-component system, NtrC family, sensor histidine kinase PilS [EC:2.7.13.3]
+L1_n_contigs	9	L1	0.0147912930092704		
+L2_4469	7	L2	0.0135926567270078		
+L2_73	10	L2	0.0135279700804705	K00507	SCD, desC; stearoyl-CoA desaturase (Delta-9 desaturase) [EC:1.14.19.1]
+L2_932	11	L2	0.0134811719066069	K02397	flgL; flagellar hook-associated protein 3 FlgL
+L2_621	10	L2	0.0119850138824046	K08992	lapA; lipopolysaccharide assembly protein A
+L2_212	12	L2	0.0112716235263904	K09691	ABC-2.LPSE.A; lipopolysaccharide transport system ATP-binding protein
+L2_226	6	L2	0.0112427129597609	K04083	hslO; molecular chaperone Hsp33
+L2_701	13	L2	0.0111839825334567	K06201	cutC; copper homeostasis protein
+L2_2173	14	L2	0.0106711906250644	K00720	UGCG; ceramide glucosyltransferase [EC:2.4.1.80]
+L2_128	6	L2	0.0104447330682223	K01138	K01138; uncharacterized sulfatase [EC:3.1.6.-]
+L2_2790	15	L2	0.0102741290626186	K17209	iatP; inositol transport system permease protein
+L2_1835	16	L2	0.0102003068296839	K17324	glpS; glycerol transport system ATP-binding protein
+L2_419	6	L2	0.0099170293338228	K02959	RP-S16, MRPS16, rpsP; small subunit ribosomal protein S16
+L2_81	17	L2	0.0098557705612618	K07560	dtd, DTD1; D-tyrosyl-tRNA(Tyr) deacylase [EC:3.1.-.-]
+L2_1754	16	L2	0.0096504794267173	K02230	cobN; cobaltochelatase CobN [EC:6.6.1.2]
+L2_25	17	L2	0.0091934925692939	K15977	K15977; putative oxidoreductase
+L0_order_Sphingobacteriales	6	L0	0.0090795346837779		
+L2_16	6	L2	0.008749314359233	K06910	K06910; uncharacterized protein
+L2_3788	7	L2	0.0087483738561776	K05522	nei; endonuclease VIII [EC:3.2.2.- 4.2.99.18]
+L2_43	6	L2	0.0087354293381746	K01057	PGLS, pgl, devB; 6-phosphogluconolactonase [EC:3.1.1.31]
+L2_1263	18	L2	0.0086145957107918	K12410	npdA; NAD-dependent deacetylase [EC:3.5.1.-]
+L2_COG_C	6	L2	0.008267514867568		
+L2_COG_D	6	L2	0.008128957830441		
+L2_1056	19	L2	0.0081016138281645	K01609	trpC; indole-3-glycerol phosphate synthase [EC:4.1.1.48]
+L2_246	6	L2	0.0079618879069643	K03328	TC.PST; polysaccharide transporter, PST family
+L2_COG_M	6	L2	0.007956597786133		
+L2_117	19	L2	0.0077148212328492	K09760	rmuC; DNA recombination protein RmuC
+L2_840	20	L2	0.0074620824468667	K07483	K07483; transposase
+L2_928	18	L2	0.0073906886213765	K10941	fleQ, flrA; sigma-54 dependent transcriptional regulator, flagellar regulatory protein
+L2_942	21	L2	0.0073770646466089	K02387	flgB; flagellar basal-body rod protein FlgB
+L2_349	19	L2	0.0072590541621466	K03809	wrbA; NAD(P)H dehydrogenase (quinone) [EC:1.6.5.2]
+L2_2489	14	L2	0.0068383690730463	K20539	blcR; IclR family transcriptional regulator, blcABC operon repressor
+L2_3953	11	L2	0.0066836832743849	K15640	K15640, phoE; uncharacterized phosphatase
+L2_82	17	L2	0.0065559371549477	K02517	lpxL, htrB; Kdo2-lipid IVA lauroyltransferase [EC:2.3.1.241]
+L2_3998	22	L2	0.0065473341340476	K05898	kstD; 3-oxosteroid 1-dehydrogenase [EC:1.3.99.4]
+L2_136	6	L2	0.0064706505420309	K03594	bfr; bacterioferritin [EC:1.16.3.1]
+L2_3274	15	L2	0.0064149453970955	K02610	paaB; ring-1,2-phenylacetyl-CoA epoxidase subunit PaaB
+L2_23	6	L2	0.0063909343024741	K04752	glnK; nitrogen regulatory protein P-II 2
+L3_cond_metal	23	L3	0.0063218751326983		
+L2_960	6	L2	0.0062332078474055	K01198	xynB; xylan 1,4-beta-xylosidase [EC:3.2.1.37]
+L2_1951	24	L2	0.006018140682731	K03780	ttdB; L(+)-tartrate dehydratase beta subunit [EC:4.2.1.32]
+L2_352	25	L2	0.0059836787848406	K02494	lolB; outer membrane lipoprotein LolB
+L2_89	6	L2	0.0059774922235349	K00356	E1.6.99.3; NADH dehydrogenase [EC:1.6.99.3]
+L2_106	9	L2	0.0058226067610159	K02259	COX15; cytochrome c oxidase assembly protein subunit 15
+L2_1777	19	L2	0.0057601648505593	K02641	petH; ferredoxin--NADP+ reductase [EC:1.18.1.2]
+L2_1420	26	L2	0.0057332861408367	K05921	hpaG; 5-oxopent-3-ene-1,2,5-tricarboxylate decarboxylase / 2-hydroxyhepta-2,4-diene-1,7-dioate isomerase [EC:4.1.1.68 5.3.3.-]
+L2_811	6	L2	0.0056183970041036	K03811	pnuC; nicotinamide mononucleotide transporter
+L2_32	6	L2	0.0055985869079232	K07708	glnL, ntrB; two-component system, NtrC family, nitrogen regulation sensor histidine kinase GlnL [EC:2.7.13.3]
+L2_201	27	L2	0.0054838521722283	K03286	TC.OOP; OmpA-OmpF porin, OOP family
+L2_84	17	L2	0.0054644504042113	K01002	mdoB; phosphoglycerol transferase [EC:2.7.8.20]
+L2_2318	13	L2	0.005387256709501	K16871	POP2; 4-aminobutyrate---pyruvate transaminase [EC:2.6.1.96]
+L2_103	27	L2	0.0053439461463493	K02275	coxB; cytochrome c oxidase subunit II [EC:1.9.3.1]
+L2_381	28	L2	0.0053334318468972	K07102	amgK; N-acetylmuramate 1-kinase [EC:2.7.1.221]
+L2_1786	29	L2	0.0052991276484708	K07795	tctC; putative tricarboxylic transport membrane protein
+L2_658	27	L2	0.0052863977363808	K12066	traK; conjugal transfer pilus assembly protein TraK
+L2_1328	6	L2	0.0052613534887177	K01996	livF; branched-chain amino acid transport system ATP-binding protein
+L2_2056	6	L2	0.0051442571690786	K11075	potH; putrescine transport system permease protein
+L2_COG_O	6	L2	0.0051321070455739		
+L2_91	6	L2	0.0050011706128292	K03673	dsbA; thiol:disulfide interchange protein DsbA
+L2_2875	30	L2	0.0049707316427817	K18930	dld; D-lactate dehydrogenase
+L2_COG_J	6	L2	0.0049554654756569		
+L2_940	11	L2	0.0049298454662911	K02389	flgD; flagellar basal-body rod modification protein FlgD
+L0_order_Pseudomonadales	31	L0	0.0049206465938869		
+L2_20	6	L2	0.0048009602523899	K19586	oqxA; membrane fusion protein, multidrug efflux system
+L2_291	6	L2	0.0047763663134846	K00317	dmd-tmd; dimethylamine/trimethylamine dehydrogenase [EC:1.5.8.1 1.5.8.2]
+L2_78	28	L2	0.0047388490100804	K00311	ETFDH; electron-transferring-flavoprotein dehydrogenase [EC:1.5.5.1]
+L2_1054	11	L2	0.0046626888381903	K10914	crp; CRP/FNR family transcriptional regulator, cyclic AMP receptor protein
+L2_799	27	L2	0.0046507456275829	K00030	IDH3; isocitrate dehydrogenase (NAD+) [EC:1.1.1.41]
+L2_1674	24	L2	0.0046503259984277	K01821	praC, xylH; 4-oxalocrotonate tautomerase [EC:5.3.2.6]
+L2_45	6	L2	0.0046319576016562	K03710	K03710; GntR family transcriptional regulator
+L2_1327	10	L2	0.0045809097502765	K01912	paaK; phenylacetate-CoA ligase [EC:6.2.1.30]
+L2_710	32	L2	0.0044837386638697	K00012	UGDH, ugd; UDPglucose 6-dehydrogenase [EC:1.1.1.22]
+L2_1530	6	L2	0.0043785663770943	K01243	mtnN, mtn, pfs; adenosylhomocysteine nucleosidase [EC:3.2.2.9]
+L2_21	33	L2	0.0043444025196488	K18900	bpeT; LysR family transcriptional regulator, regulator for bpeEF and oprC
+L2_2103	34	L2	0.0042885550325154	K08997	ydiU; uncharacterized protein
+L2_COG_L	6	L2	0.004280402932551		
+L2_COG_I	6	L2	0.0042441205210893		
+L2_1320	35	L2	0.0042286197816379	K21196	phnZ; 2-amino-1-hydroxyethylphosphonate dioxygenase (glycine-forming) [EC:1.13.11.78]
+L2_180	36	L2	0.0042096494231227	K07660	phoP; two-component system, OmpR family, response regulator PhoP
+L2_2040	13	L2	0.0042081914815371	K06906	K06906; uncharacterized protein
+L2_853	37	L2	0.0041437536582186	K19342	nosL; copper chaperone NosL
+L2_522	20	L2	0.0041355234611336	K00339	nuoJ; NADH-quinone oxidoreductase subunit J [EC:1.6.5.3]
+L2_455	38	L2	0.0040939497918938	K11381	bkdA; 2-oxoisovalerate dehydrogenase E1 component [EC:1.2.4.4]
+L2_870	39	L2	0.0040769683359345	K00371	narH, narY, nxrB; nitrate reductase / nitrite oxidoreductase, beta subunit [EC:1.7.5.1 1.7.99.-]
+L2_142	10	L2	0.0040589222723401	K21071	pfk, pfp; ATP-dependent phosphofructokinase / diphosphate-dependent phosphofructokinase [EC:2.7.1.11 2.7.1.90]
+L2_2405	10	L2	0.0040019692148905	K19353	eptC; heptose-I-phosphate ethanolaminephosphotransferase [EC:2.7.8.-]
+L2_3735	40	L2	0.0039446645619767	K08159	sotB; MFS transporter, DHA1 family, L-arabinose/isopropyl-beta-D-thiogalactopyranoside export protein
+L2_864	12	L2	0.003944022144436	K02018	modB; molybdate transport system permease protein
+L2_4128	20	L2	0.0039406583143225	K03715	MGD; 1,2-diacylglycerol 3-beta-galactosyltransferase [EC:2.4.1.46]
+L2_963	6	L2	0.003905041017499	K22441	paiA; diamine N-acetyltransferase [EC:2.3.1.57]
+L2_2139	25	L2	0.0038868801506063	K07482	K07482; transposase, IS30 family
+L2_2137	25	L2	0.0038822630686064	K02499	yabN; tetrapyrrole methylase family protein / MazG family protein
+L2_2662	6	L2	0.0037742037630052	K16322	pit; low-affinity inorganic phosphate transporter
+L2_1314	39	L2	0.0037224622660517	K06163	phnJ; alpha-D-ribose 1-methylphosphonate 5-phosphate C-P lyase [EC:4.7.1.1]
+L2_3087	40	L2	0.003691755579972	K03478	chbG; chitin disaccharide deacetylase [EC:3.5.1.105]
+L2_1322	26	L2	0.0036874376250288	K08295	abmG; 2-aminobenzoate-CoA ligase [EC:6.2.1.32]
+L2_168	31	L2	0.0036370706423056	K09790	K09790; uncharacterized protein
+L2_1493	10	L2	0.0035852169803798	K21105	E3.1.1.102; mono(ethylene terephthalate) hydrolase [EC:3.1.1.102]
+L2_74	6	L2	0.0034446927617935	K05770	TSPO, BZRP; translocator protein
+L2_2818	6	L2	0.003443277713025	K09907	K09907; uncharacterized protein
+L2_1212	28	L2	0.0033898841091073	K07192	FLOT; flotillin
+L2_2590	41	L2	0.0033678734757606	K02277	coxD, ctaF; cytochrome c oxidase subunit IV [EC:1.9.3.1]
+L2_1679	18	L2	0.0032883167656975	K19736	aefR; TetR/AcrR family transcriptional regulator, regulator of autoinduction and epiphytic fitness
+L2_137	42	L2	0.0031247807749053	K01507	ppa; inorganic pyrophosphatase [EC:3.6.1.1]
+L2_75	9	L2	0.003113153049144	K01669	phrB; deoxyribodipyrimidine photo-lyase [EC:4.1.99.3]
+L2_COG_V	6	L2	0.0030895133326673		
+L2_945	28	L2	0.0030858752619789	K02398	flgM; negative regulator of flagellin synthesis FlgM
+L2_2218	6	L2	0.0030839895069082	K15975	K15975; glyoxalase family protein
+L2_63	29	L2	0.0030447243132931	K07666	qseB; two-component system, OmpR family, response regulator QseB
+L2_707	27	L2	0.0030138957291508	K01768	E4.6.1.1; adenylate cyclase [EC:4.6.1.1]
+L2_1795	10	L2	0.00301029702048	K07225	hmuS; putative hemin transport protein
+L0_order_Burkholderiales	33	L0	0.0029979111946768		
+L2_COG_H	6	L2	0.002997586675977		
+L2_2919	15	L2	0.0029956797722306	K07751	pepB; PepB aminopeptidase [EC:3.4.11.23]
+L2_COG_U	6	L2	0.0029390003233853		
+L0_guild_3	33	L0	0.00286249380981		
+L2_2414	43	L2	0.0028373605348356	K00975	glgC; glucose-1-phosphate adenylyltransferase [EC:2.7.7.27]
+L2_813	44	L2	0.0028293005303259	K04079	HSP90A, htpG; molecular chaperone HtpG
+L2_368	43	L2	0.002825047562866	K00677	lpxA; UDP-N-acetylglucosamine acyltransferase [EC:2.3.1.129]
+L2_119	31	L2	0.0028043649914096	K06889	K06889; uncharacterized protein
+L2_2126	18	L2	0.0027823810871316	K08990	ycjF; putative membrane protein
+L2_959	6	L2	0.0027786846569541	K01811	xylS, yicI; alpha-D-xyloside xylohydrolase [EC:3.2.1.177]
+L2_548	6	L2	0.0027764822660692	K01659	prpC; 2-methylcitrate synthase [EC:2.3.3.5]
+L2_1980	6	L2	0.0027548762221371	K16877	hmfA; 2-furoyl-CoA dehydrogenase large subunit [EC:1.3.99.8]
+L2_2233	45	L2	0.0026796165167203	K16047	hsaA; 3-hydroxy-9,10-secoandrosta-1,3,5(10)-triene-9,17-dione monooxygenase [EC:1.14.14.12]
+L2_545	46	L2	0.0026652148306495	K03387	ahpF; alkyl hydroperoxide reductase subunit F [EC:1.6.4.-]
+L2_3010	15	L2	0.0026449488954458	K00634	ptb; phosphate butyryltransferase [EC:2.3.1.19]
+L2_1090	6	L2	0.0026190555350406	K00857	tdk, TK; thymidine kinase [EC:2.7.1.21]
+L2_2897	11	L2	0.0026049630712047	K18676	gspK; glucosamine kinase [EC:2.7.1.8]
+L2_1481	6	L2	0.002592914679139	K17317	gtsC, glcG; glucose/mannose transport system permease protein
+L2_364	38	L2	0.0025689787128425	K03592	pmbA; PmbA protein
+L2_27	31	L2	0.0025513775058134	K04047	dps; starvation-inducible DNA-binding protein
+L2_320	45	L2	0.0025489866785264	K06596	chpA; chemosensory pili system protein ChpA (sensor histidine kinase/response regulator)
+L2_2278	6	L2	0.0025091998777637	K01685	uxaA; altronate hydrolase [EC:4.2.1.7]
+L2_1575	26	L2	0.0024811614348348	K03154	thiS; sulfur carrier protein
+L2_1145	47	L2	0.0024810862025983	K07018	K07018; uncharacterized protein
+L2_2201	16	L2	0.002464690001501	K07393	ECM4, yqjG; glutathionyl-hydroquinone reductase [EC:1.8.5.7]
+L2_286	29	L2	0.0024527740555221	K03625	nusB; N utilization substance protein B
+L2_1072	34	L2	0.0024495570472619	K14260	alaA; alanine-synthesizing transaminase [EC:2.6.1.66 2.6.1.2]
+L2_2762	17	L2	0.0024114524797484	K14153	thiDE; hydroxymethylpyrimidine kinase / phosphomethylpyrimidine kinase / thiamine-phosphate diphosphorylase [EC:2.7.1.49 2.7.4.7 2.5.1.3]
+L2_COG_T	6	L2	0.0023737300207908		
+L2_964	34	L2	0.0023679669896952	K09964	K09964; uncharacterized protein
+L2_COG_E	6	L2	0.0023615823741161		
+L2_11	6	L2	0.0023580030208654	K07019	K07019; uncharacterized protein
+L2_619	48	L2	0.0023389818008058	K00963	UGP2, galU, galF; UTP--glucose-1-phosphate uridylyltransferase [EC:2.7.7.9]
+L2_69	6	L2	0.0023336419847133	K03098	APOD; apolipoprotein D and lipocalin family protein
+L2_COG_F	6	L2	0.0022228452502161		
+L2_711	49	L2	0.0022172145614439	K03772	fkpA; FKBP-type peptidyl-prolyl cis-trans isomerase FkpA [EC:5.2.1.8]
+L2_375	31	L2	0.0022169672354207	K04764	ihfA, himA; integration host factor subunit alpha
+L2_837	6	L2	0.0021978282340107	K06197	chaB; cation transport regulator
+L2_408	47	L2	0.0021973048520174	K01070	frmB, ESD, fghA; S-formylglutathione hydrolase [EC:3.1.2.12]
+L0_guild_2	31	L0	0.0021719907920061		
+L2_6912	19	L2	0.0021173241529314		
+L2_40	6	L2	0.0020946091198257	K08995	K08995; putative membrane protein
+L2_2172	34	L2	0.0020698758223186	K07270	K07270; glycosyl transferase, family 25
+L2_235	8	L2	0.0020698360876243	K12524	thrA; bifunctional aspartokinase / homoserine dehydrogenase 1 [EC:2.7.2.4 1.1.1.3]
+L2_372	46	L2	0.0020150980119714	K00990	glnD; [protein-PII] uridylyltransferase [EC:2.7.7.59]
+L2_1188	45	L2	0.0020142033630325	K02379	fdhD; FdhD protein
+L2_50	27	L2	0.002000435876693	K03446	emrB; MFS transporter, DHA2 family, multidrug resistance protein
+L2_3	33	L2	0.0019157068677412	K03559	exbD; biopolymer transport protein ExbD
+L2_804	19	L2	0.0019011255992576	K07733	alpA; prophage regulatory protein
+L2_668	29	L2	0.0018715038486741	K12071	traD; conjugal transfer pilus assembly protein TraD
+L2_1856	50	L2	0.001868652961978	K07402	xdhC; xanthine dehydrogenase accessory factor
+L2_28	31	L2	0.0018552312050487	K07118	K07118; uncharacterized protein
+L2_206	17	L2	0.0018073297042894	K00067	rfbD, rmlD; dTDP-4-dehydrorhamnose reductase [EC:1.1.1.133]
+L2_3011	15	L2	0.0017705854162621	K18303	mexK; multidrug efflux pump
+L2_1174	39	L2	0.0017444224159114	K02027	ABC.MS.S; multiple sugar transport system substrate-binding protein
+L2_304	51	L2	0.0017203603427552	K03789	rimI; ribosomal-protein-alanine N-acetyltransferase [EC:2.3.1.128]
+L2_1632	19	L2	0.0016605547687506	K15358	ena; enamidase [EC:3.5.2.18]
+L2_1468	43	L2	0.0016352751177524	K01799	nicE, maiA; maleate isomerase [EC:5.2.1.1]
+L2_2566	6	L2	0.0016068988915655	K20529	trbD; type IV secretion system protein TrbD
+L2_551	43	L2	0.001491678207384	K00060	tdh; threonine 3-dehydrogenase [EC:1.1.1.103]
+L2_1364	19	L2	0.0014829530539873	K07262	pbpG; serine-type D-Ala-D-Ala endopeptidase (penicillin-binding protein 7) [EC:3.4.21.-]
+L2_1471	6	L2	0.0014736807080579	K03147	thiC; phosphomethylpyrimidine synthase [EC:4.1.99.17]
+L2_1853	21	L2	0.0014145253767971	K02083	allC; allantoate deiminase [EC:3.5.3.9]
+L2_366	38	L2	0.0013900053199602	K00795	ispA; farnesyl diphosphate synthase [EC:2.5.1.1 2.5.1.10]
+L2_2879	6	L2	0.001290112409931	K01200	pulA; pullulanase [EC:3.2.1.41]
+L2_869	39	L2	0.0012636221835682	K00373	narJ, narW; nitrate reductase molybdenum cofactor assembly chaperone NarJ/NarW
+L2_397	19	L2	0.0012597191042139	K03808	pqiA; paraquat-inducible protein A
+L2_1052	12	L2	0.001238102741828	K01807	rpiA; ribose 5-phosphate isomerase A [EC:5.3.1.6]
+L2_1708	6	L2	0.0012145706251575	K06929	K06929; uncharacterized protein
+L2_COG_N	6	L2	0.0012116123970372		
