@@ -366,13 +366,25 @@ The project is organized into three acts. Each notebook produces a standalone de
   - **Taxonomy-only baseline**: Predict from GTDB genus alone (majority vote by genus). This is the "phylogeny explains everything" null.
 - **Output**: `data/variance_partition.tsv`, `data/shap_importance.tsv`, `data/fb_concordance.tsv`, `data/model_predictions.tsv`, figures (stacked bar of incremental R², SHAP beeswarm, accuracy-vs-concordance scatter, per-condition-class feature importance).
 
-#### NB07: CSP transfer learning
-- **Goal**: Test whether pretraining on the 795-genome carbon source phenotype corpus improves prediction on ENIGMA continuous targets.
-- **Method**:
-  - **GBDT (CSP-pretrained)**: Train LightGBM on CSP corpus (795 genomes × 379 binary phenotypes, KofamScan KO features). Apply to ENIGMA strains by mapping KO features between depot and KofamScan annotations.
-  - **Transfer comparison**: CSP-pretrained → frozen features + retrain on ENIGMA vs. ENIGMA-only training from scratch. Report CV R² and FB concordance for both.
-  - **BacFormer comparison**: Use BacFormer embeddings (480-dim, CSP genomes only) as features. Compare to explicit KO features — data-driven vs. knowledge-driven.
-- **Output**: `data/transfer_results.tsv`, comparison figures.
+#### NB07: Condition-specific prediction via GapMind baseline + CSP pretraining + interaction features
+- **Goal**: Build the predictor that works for NEW genomes on SPECIFIC conditions — the core project deliverable. NB06 showed that genome-scale features dominate with n=7; NB07 overcomes this by adding condition-aware features and expanding training data.
+- **Method — GapMind baseline** (amino acid + carbon source conditions only):
+  - For each (genome, condition) pair where GapMind has a relevant pathway, predict growth from pathway completeness score. This asks "does this genome have the pathway for this condition?" — mechanistic, interpretable, condition-specific.
+  - For the ~32 pangenome-linked strains with GapMind data, evaluate against the measured growth curves.
+  - Expected: high precision (pathway complete → usually grows), moderate recall (missing pathway ≠ always no-growth due to alternative pathways), zero coverage for metals/antibiotics.
+- **Method — CSP-pretrained GBDT with condition-aware features**:
+  - Train LightGBM on the 795-genome CSP corpus (53K binary labels, KofamScan KO features).
+  - Key innovation: **KO × condition interaction features** — for each (genome, condition), compute "number of KOs in the KEGG module relevant to this condition" using KEGG module → KO mappings. This transforms generic KO presence into condition-specific predictions.
+  - Apply to ENIGMA strains by mapping depot KO annotations to KofamScan KO space.
+  - Compare: CSP-pretrained vs. ENIGMA-only vs. GapMind baseline.
+- **Method — Continuous parameter prediction**:
+  - After validating binary growth with CSP pretraining, train regression models for µmax/lag/yield.
+  - Two approaches: (a) CSP binary → fine-tune on ENIGMA continuous, (b) train directly on ENIGMA continuous with CSP-derived KO importance as feature weights.
+- **Method — FB concordance validation**:
+  - For the best-performing model, compute FB concordance on the 7 anchor strains.
+  - Map top-SHAP KOs to FB loci via `fb_pangenome_link.tsv`.
+  - Test: do condition-specific predictive KOs show significant fitness effects under matched FB conditions?
+- **Output**: `data/gapmind_predictions.tsv`, `data/csp_transfer_results.tsv`, `data/fb_concordance.tsv`, comparison figures, per-condition confidence scores.
 
 #### NB08: WoM exometabolomic prediction (pilot)
 - **Goal**: For the 6 WoM-profiled strains, test whether growth-predictive KOs also predict metabolite production.

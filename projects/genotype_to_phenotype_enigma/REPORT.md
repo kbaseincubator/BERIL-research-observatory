@@ -102,6 +102,26 @@ Prediction targets: binary growth (275/486 = 56.6% positive) and continuous para
 
 *(Notebook: NB05_feature_engineering.ipynb)*
 
+#### 8. Genome scale and condition class dominate growth prediction; specific KOs contribute mechanistically interpretable but smaller signals
+
+![Variance partitioning](figures/NB06_variance_partition.png)
+
+Nested GBDT models (LightGBM, leave-one-strain-out CV, 486 anchor pairs) reveal that binary growth prediction achieves AUC 0.633 with the full feature set (M3). **Condition class is the biggest single AUC contributor** (+0.13), but SHAP analysis tells a different story: KO features collectively carry 40.6% of feature importance despite only +0.02 incremental AUC — because KOs are correlated with phylogeny and genome size that already capture some of the same signal.
+
+![Group-level SHAP importance](figures/NB06_group_shap.png)
+
+**Correlation grouping** (connected components at |r| > 0.8) resolves this discrepancy. The top predictor group is a 63-feature "genome scale axis" (spanning genome size, gene count, operons, rRNA/tRNA copies, and dozens of co-inherited KOs and COG classes) accounting for **25.3%** of total SHAP importance. Condition class features account for 45.9% collectively. Specific mechanistic KO gene blocks — membrane/fatty acid adaptation (K00507 stearoyl-CoA desaturase, 7 KOs, 2.1%), tRNA modification (K14058 TtcA, 3 KOs, 2.0%), aromatic catabolism (K01609 protocatechuate, 9 KOs, 1.7%), and flagellar motility (K02397 FlgL, 5 KOs, 1.5%) — are individually small but biologically coherent.
+
+![Top 20 SHAP features](figures/NB06_shap_top20.png)
+
+![Feature correlation matrix](figures/NB06_feature_correlation.png)
+
+**Continuous growth parameters** (mumax, lag, max_A) show negative R^2 — the model cannot predict cross-strain kinetics with only 7 training strains. Each held-out strain has a unique baseline growth rate that overfits the training set. **This is a data scarcity bottleneck, not a feature failure**, and directly motivates expanding the training set via CSP pretraining (NB07).
+
+**Critical implication for the project goal**: The current model predicts "big genomes grow on amino acids/carbon sources" — which is biologically real but not condition-specific. For a NEW genome, it doesn't ask "does this genome have the lactate utilization pathway?" It just asks "is this genome big?" To build a condition-specific predictor that works for new genomes, we need (a) condition-aware features (e.g., GapMind pathway completeness for the tested condition) and (b) more training data to learn KO x condition interactions (the 795-genome CSP corpus).
+
+*(Notebooks: NB05_feature_engineering.ipynb, NB06_variance_partition.ipynb)*
+
 ## Results
 
 ### Data scale summary
@@ -146,11 +166,27 @@ Prediction targets: binary growth (275/486 = 56.6% positive) and continuous para
 
 ## Interpretation
 
-Act I establishes that the ENIGMA growth curve collection, combined with the genome depot, Fitness Browser, Web of Microbes, and carbon source phenotype corpus, provides a uniquely dense multi-dataset foundation for genotype-to-phenotype modeling. The 486-pair anchor set — where growth curves, gene fitness, and genome annotations all coexist — is substantially larger than anticipated (the original plan expected ~50-100 pairs) and provides balanced positive/negative labels for binary growth prediction.
+### What we have learned
 
-The most unexpected finding is the global pH-driven niche partition underlying the Oak Ridge co-occurrence pattern. The two genus clusters identified locally (587 wells) map onto a gradient that spans 464K global 16S samples, with a 1.35 pH unit separation. This means growth phenotype predictions should account for pH as a primary ecological axis — strains from the acidic Rhodanobacter-Ralstonia cluster likely have fundamentally different substrate utilization profiles than strains from the neutral Brevundimonas-Caulobacter cluster, and these differences should be predictable from genome content (specifically, acid tolerance genes, proton pump genes, and pH-dependent metabolic pathway regulation).
+Act I established an unprecedented multi-dataset foundation: 486 anchor pairs where growth curves, gene fitness, and genome annotations coexist, 8 metabolic guilds across 123 strains, and a global pH-driven niche partition connecting Oak Ridge co-occurrence to 464K global 16S samples.
 
-The functional diversity census (8 guilds, 7,167 KOs) provides the *a priori* classification that Act II predictions should recover. If variance partitioning shows that guild membership explains substantial growth variance beyond taxonomy, it validates the KO-based guild approach as a natural feature representation for phenotype prediction.
+Act II's variance partitioning (NB06) provides a sobering but instructive diagnostic: **with only 7 anchor strains, binary growth is weakly predictable (AUC 0.633) and continuous kinetics are not predictable (negative R^2)**. The dominant predictors are genome scale (25.3%) and condition class (45.9%), not specific gene-condition interactions. This reveals the fundamental bottleneck: the model learns "big genomes grow on most substrates" — biologically real but not the condition-specific prediction we need for practical applications.
+
+### The path forward
+
+The NB06 diagnostic clarifies exactly what's needed:
+
+1. **Condition-aware genomic features**: Instead of asking "does this genome have K00016?" we should ask "does this genome have the complete pathway for the condition being tested?" GapMind provides this for amino acid biosynthesis and carbon source utilization (~80 pathways). For metals, antibiotics, and pH stress, we need analogous condition-specific feature sets (e.g., metal resistance gene counts for metal conditions, efflux pump counts for antibiotics).
+
+2. **More training data**: The 795-genome CSP corpus provides ~53K (genome x condition) binary labels — enough to learn which KOs matter for which conditions. Training on CSP and evaluating on ENIGMA tests cross-dataset transfer.
+
+3. **KO x condition interaction features**: Explicitly encoding "does genome have a KO relevant to THIS condition?" transforms the model from a genome-scale classifier into a condition-specific predictor.
+
+4. **Confidence estimation**: The gap between genome-scale prediction (works for common conditions) and KO-specific prediction (fails with n=7) naturally defines confidence zones — predictions on common carbon sources using well-characterized pathways deserve high confidence; predictions on rare metals using sparse KO features deserve low confidence.
+
+### The pH finding in context
+
+The global pH-driven niche partition (Finding 5) is the most unexpected result. Green et al. (2012) showed Rhodanobacter dominates acidic Oak Ridge wells, and Smith et al. (2015) showed community composition predicts geochemistry — but neither connected this to a global ecological pattern across 464K samples. Our finding that the Rhodanobacter-Ralstonia-Dyella cluster occupies environments 1.35 pH units more acidic worldwide means this is not site-specific adaptation but a fundamental microbial niche axis. This has direct implications for growth prediction: pH tolerance is a first-order phenotype that any genotype-to-phenotype model must capture.
 
 ### Novel Contribution
 
@@ -215,6 +251,7 @@ The functional diversity census (8 guilds, 7,167 KOs) provides the *a priori* cl
 | `NB03_functional_census.ipynb` | KO/COG profiling, metabolic guild clustering |
 | `NB04_environmental_context.ipynb` | Biogeography (3 scales), co-occurrence, niche characterization |
 | `NB05_feature_engineering.ipynb` | 4-level feature hierarchy, modeling table assembly, CV fold structure |
+| `NB06_variance_partition.ipynb` | Nested GBDT M0-M3, SHAP, correlation grouping, variance decomposition |
 
 ### Figures
 
@@ -244,14 +281,32 @@ The functional diversity census (8 guilds, 7,167 KOs) provides the *a priori* cl
 | `NB04_cluster_env_comparison.png` | pH/temperature niche comparison |
 | `NB05_feature_summary.png` | Feature dimensionality per level + condition class distribution |
 | `NB05_target_distributions.png` | Binary growth and continuous target distributions in anchor set |
+| `NB06_variance_partition.png` | Cumulative AUC + incremental + SHAP by feature level |
+| `NB06_shap_top20.png` | Top 20 SHAP features with KEGG annotations |
+| `NB06_feature_correlation.png` | Correlation matrix of top-50 features showing correlated blocks |
+| `NB06_group_shap.png` | Group-level SHAP after correlation grouping |
 
-## Future Directions (Act II)
+## Future Directions
 
-1. **Variance partitioning** (NB06): Decompose growth phenotype variance into phylogeny, bulk genomic features, specific KO/pathway features, and condition interactions. The guild structure from NB03 and the pH-driven cluster partition from NB04 provide strong *a priori* predictions for what features should matter.
-2. **GBDT modeling with CSP pretraining** (NB07): Train gradient-boosted models on the 795-genome CSP corpus (binary growth labels), then transfer to ENIGMA continuous targets. The 486 anchor pairs provide the evaluation set.
-3. **FB concordance validation** (NB08): Test whether model-predictive KOs correspond to fitness-significant genes in matched FB experiments — a biological meaningfulness metric independent of accuracy.
-4. **Exometabolomic prediction** (NB09): For the 6 WoM-profiled strains, test whether growth-predictive features also predict metabolite production.
-5. **Active learning** (NB11): Rank next experiments by model disagreement x genotype-space novelty, weighted by field relevance (prioritize metals, nitrate, low-pH conditions identified by the co-occurrence analysis).
+### NB07: Condition-specific prediction via CSP pretraining + GapMind baseline
+
+The central remaining question: can we build a predictor that works for NEW genomes on SPECIFIC conditions?
+
+1. **GapMind baseline** (amino acid + carbon source conditions only): For each (genome, condition) pair where GapMind has a relevant pathway, predict growth from pathway completeness score. This is the mechanistic baseline — it asks "does this genome have the right pathway?" rather than "is this genome big?" Expected to be high-precision for well-characterized pathways but zero-coverage for metals/antibiotics/stress.
+
+2. **CSP-pretrained GBDT**: Train LightGBM on the 795-genome CSP corpus (53K binary labels) with per-condition KO interaction features. Apply to ENIGMA strains. This tests whether the larger corpus overcomes the n=7 bottleneck.
+
+3. **KO x condition interaction model**: For each (genome, condition) pair, compute features like "number of KOs in the KEGG module relevant to this condition" or "presence of the specific KO known to catalyze the tested substrate." This transforms generic KO features into condition-aware predictors.
+
+4. **Continuous parameter prediction**: After binary growth is solved, predict mumax/lag/yield by training on CSP binary labels and fine-tuning on ENIGMA continuous targets.
+
+### NB08: WoM exometabolomic prediction (pilot)
+
+For 6 WoM-profiled strains, test whether growth-predictive KOs also predict metabolite production/consumption.
+
+### Act III: Active learning
+
+Rank next experiments by model disagreement x genotype-space novelty, weighted by field relevance (prioritize metals, nitrate, low-pH conditions informed by the pH-niche finding).
 
 ## References
 
