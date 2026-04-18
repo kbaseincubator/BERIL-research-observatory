@@ -2,55 +2,78 @@
 
 ## Research Question
 
-Given a bacterial strain's genome and a defined growth condition (carbon source, metal, antibiotic, pH, ...), can we predict its quantitative growth phenotype in a way that is biologically interpretable, mechanistically grounded, and validated against independent fitness data?
+Can we predict bacterial growth phenotype — at multiple resolutions from binary growth through continuous kinetics to complex dynamics — from genome content and growth condition, in a way where the predictive features are biologically interpretable, validated against independent fitness data, and actionable for rational experimental design at a contaminated field site?
 
 ## Status
 
-**In Progress** — research plan written (2026-04-14), awaiting growth curve parsing and fitting (NB01).
+**In Progress** — NB01 (growth curve fitting) complete. Research plan at v4. Next: NB02 (condition canonicalization), NB03 (functional diversity census), NB04 (environmental context).
+
+## Context
+
+This project sits within the **ENIGMA SFA**, which studies microbial community assembly and function in the contaminated subsurface at the **Oak Ridge Y-12 field site**. Legacy uranium extraction created contamination plumes high in uranium, heavy metals, and nitrate (which lowers pH) in fractured shale aquifers. Carbon availability is low — simple substrates are consumed rapidly from flowing necromass, leaving complex carbon for specialists. Understanding which strains grow on which substrates, how quickly, and what they produce is directly relevant to predicting field-scale community dynamics.
 
 ## Overview
 
-The ENIGMA SFA recently uploaded ~303 plates of high-throughput growth curves to the BERDL lakehouse (`enigma_coral.ddt_brick*`, bricks 928–1230), covering 88 Oak Ridge field isolates under diverse media, carbon sources, metals, and antibiotics. Five of these strains have direct matches in the Fitness Browser RB-TnSeq dataset (*P. fluorescens* FW300-N1B4, FW300-N2E2, FW300-N2E3, GW456-L13; *Pedobacter* GW460-11-11-14-LB5), yielding a unique ground-truth cohort where strain genome, measured gene fitness under defined conditions, and measured growth parameters are all simultaneously available.
+The project sits at a unique convergence of five datasets for the same Oak Ridge field isolates:
 
-This project uses that ground-truth anchor set to compare three predictor paradigms — **GapMind pathway completeness** (rule-based), **FBA-lite** (mechanistic), and **gradient-boosted trees on genome features** (data-driven) — on multiple phenotype targets (growth y/n, lag, µmax, max OD, yield). A central contribution is defining *biological meaningfulness* as a measurable, separable property of a predictor: the fraction of its top-weighted features whose FB orthologs are fitness-significant under matched conditions. This lets us distinguish mechanistically grounded predictors from phylogeny-riding ones even when held-out accuracy is similar.
+| Dataset | Scale | What it provides |
+|---|---|---|
+| **ENIGMA growth curves** | 303 plates, 27,632 curves, 123 strains, 195 molecules | Continuous growth phenotype (lag, µmax, max OD, AUC, diauxy) |
+| **ENIGMA Genome Depot** | 3,110 genomes, 3.7M KO, 6.4M COG, 29.4M OG annotations | Pre-computed genome features for all 123 growth strains |
+| **Fitness Browser** | 7 matching strains, 27M fitness scores | Independent gene-level validation of predictor features |
+| **Web of Microbes** | 6 matching strains, 105 metabolites each | Exometabolomic ground truth |
+| **Carbon source phenotypes** | 795 genomes × 379 conditions = ~53K binary labels | Broad pretraining corpus (Dileep et al., preprint) |
 
-The project is structured in four phases:
+The project is structured in three acts:
 
-1. **Foundation** (NB01–03): Growth curve parsing and fitting, condition canonicalization, coverage atlas.
-2. **Baselines** (NB04–07): GapMind rule-based predictor, FBA-lite mechanistic predictor, GBDT data-driven predictor, feature engineering across multiple genome representations (UniRef, COG, KO, Pfam, GapMind, ModelSEED reactions, GC content, ribosomal/translational, regulatory proxies, defense/mobile load), phylogenetic controls via adversarial validation and mixed-effects models.
-3. **Diagnosis** (NB08–10): Counterfactual and conflict detection, feature attribution via SHAP / flux variability / pathway weights, biological meaningfulness scoring via FB concordance.
-4. **Active learning** (NB11, stretch): Ranked experimental proposal for ENIGMA's next round, scored by model disagreement × genotype-space novelty × meaningfulness-weighted coverage gain.
+**Act I — Know the Collection (NB01-NB04)**:
+- NB01 [done]: Growth curve fitting (27,632 curves, modified Gompertz, QC flags)
+- NB02: Condition canonicalization and cross-dataset alignment (ChEBI-based)
+- NB03: Functional diversity census (phylogeny, metabolic guilds, resistance/motility/mobile elements, pangenome outliers)
+- NB04: Environmental context and biogeography (pangenome species-level via `ncbi_env`, microbeatlas global 16S, CORAL local Oak Ridge, SparCC co-occurrence)
+
+**Act II — Predict and Explain (NB05-NB09)**:
+- NB05: Feature engineering (4-level: phylogeny → bulk scalars → specific KO/OG → condition interactions)
+- NB06: Variance partitioning (nested models, phylogenetically blocked CV per Xu et al. 2025)
+- NB07: GBDT modeling + CSP transfer + paradigm comparison (GapMind / CUB-gRodon / GBDT)
+- NB08: FB concordance validation (biological meaningfulness scoring)
+- NB09: WoM exometabolomic prediction (pilot, 6 strains)
+
+**Act III — Diagnose and Propose (NB10-NB11)**:
+- NB10: Conflict detection and counterfactuals
+- NB11: Active learning proposal (next 200 experiments for ENIGMA)
+
+## Six Hypotheses
+
+1. **H1**: Feature resolution must match phenotype resolution (pathways for binary growth, KOs for kinetics, regulatory proxies for complex dynamics)
+2. **H2**: GapMind, CUB/gRodon, and GBDT are complementary by condition class
+3. **H3**: FB concordance is measurable and independent of held-out accuracy
+4. **H4**: CSP pretraining transfers to ENIGMA continuous targets
+5. **H5**: Growth-predictive features also predict exometabolomic output
+6. **H6**: Active learning outperforms random experimental design
 
 ## Quick Links
 
-- [Research Plan](RESEARCH_PLAN.md) — hypotheses, approach, query strategy, references
-- [Report](REPORT.md) — findings, interpretation, supporting evidence *(pending)*
+- [Research Plan](RESEARCH_PLAN.md) — hypotheses, approach, data sources, references
+- [Report](REPORT.md) — findings *(pending)*
+
+## Anchor Strains (Tier 1)
+
+| ENIGMA strain | FB orgId | WoM? | Curves | Species |
+|---|---|---|---|---|
+| FW300-N2E3 | `pseudo3_N2E3` | Yes | 454 | *P. fluorescens* |
+| FW300-N2E2 | `pseudo6_N2E2` | — | 456 | *P. fluorescens* |
+| FW300-N1B4 | `pseudo1_N1B4` | — | 360 | *P. fluorescens* |
+| GW456-L13 | `pseudo13_GW456_L13` | Yes | 360 | *P. fluorescens* |
+| GW460-11-11-14-LB5 | `Pedo557` | — | 362 | *Pedobacter sp.* |
+| GW101-3H11 | `acidovorax_3H11` | — | 192 | *Acidovorax sp.* |
+| FW507-4G11 | `Cup4G11` | — | 192 | *Cupriavidus basilensis* |
+
+All 123 growth-curve strains have genome depot annotations (KO, COG, OG, EC, GO). 32 also have BERDL pangenome features (GapMind, UniRef, Pfam, ANI).
 
 ## Reproduction
 
-*TBD — prerequisites and step-by-step instructions will be added after Phase 1 is complete.*
-
-## Key Data Sources
-
-- `enigma_coral.ddt_brick0000928`–`ddt_brick0001230` — 303 growth curve plates (~5M timepoint rows)
-- `enigma_coral.sdt_strain`, `sdt_genome`, `sdt_condition` — strain and condition metadata
-- `kescience_fitnessbrowser.*` — RB-TnSeq fitness data for 48 organisms, 27M scores
-- `kbase_ke_pangenome.gapmind_pathways` — pathway completeness predictions
-- `kbase_ke_pangenome.eggnog_mapper_annotations`, `bakta_annotations`, `bakta_pfam_domains`, `genomad_mobile_elements` — genome feature sources
-- `kbase_msd_biochemistry.reaction`, `compound` — ModelSEED biochemistry for FBA-lite
-- `kbase_ke_pangenome.gtdb_metadata`, `gtdb_taxonomy_r214v1`, `genome_ani` — phylogenetic controls
-
-## Anchor Strains (ENIGMA × Fitness Browser direct matches)
-
-| ENIGMA strain | FB orgId | Species |
-|---|---|---|
-| FW300-N1B4 | `pseudo1_N1B4` | *P. fluorescens* |
-| FW300-N2E2 | `pseudo6_N2E2` | *P. fluorescens* |
-| FW300-N2E3 | `pseudo3_N2E3` | *P. fluorescens* (previously characterized in `fw300_metabolic_consistency`) |
-| GW456-L13 | `pseudo13_GW456_L13` | *P. fluorescens* |
-| GW460-11-11-14-LB5 | `Pedo557` | *Pedobacter sp.* |
-
-Additional strains with shared GTDB species (but distinct FB orgId) extend the effective training set.
+*TBD — prerequisites and step-by-step instructions will be added after Act I is complete.*
 
 ## Authors
 

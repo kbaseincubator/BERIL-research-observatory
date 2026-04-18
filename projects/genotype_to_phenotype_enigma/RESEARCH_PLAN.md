@@ -61,54 +61,69 @@ No other lab system currently offers growth curves, gene fitness, exometabolomic
 - **H0**: Random sampling of new (strain, condition) experiments improves model accuracy as efficiently as any principled strategy.
 - **H1**: Ranking candidates by (model disagreement × genotype-space novelty × FB-concordance weight) produces a set that improves accuracy faster per experiment than random, verified by retrospective subsampling on the existing corpus.
 
+## Scientific Context: ENIGMA SFA and the Oak Ridge Field Site
+
+This project sits within the ENIGMA Scientific Focus Area (Ecosystems and Networks Integrated with Genes and Molecular Assemblies), which aims to understand how microbial communities mechanistically assemble in the terrestrial subsurface, grow, and transform their environment.
+
+**The field site**: The Oak Ridge Y-12 National Security Complex has localized contamination plumes from Manhattan Project-era uranium extraction. These plumes are high in uranium and other heavy metals, with nitrate (used in the extraction process) that lowers pH and interacts with the surrounding geology. The geology is dominated by southeast-dipping, fractured shale (Nolichucky, Rogersville, Pumpkin Valley Shales of the Conasauga Group) interbedded with carbonate units, overlaid by 0-80 feet of weathered regolith/saprolite. Adjacent Maynardville Limestone and Copper Ridge Dolomite contribute karst features that interact with the shale aquifers. Contaminants (uranium, metals) concentrate in the water table fluctuation zone where amorphous basaluminite precipitates form.
+
+**Carbon dynamics**: Carbon and other nutrient availability in the subsurface is generally low. Simple carbon compounds (e.g., acetate, lactate from necromass decomposition) are consumed quickly by fast-growing organisms, leaving slower-to-consume, more complex carbon for extended use by specialists. This creates a selective landscape where carbon source breadth, utilization kinetics, and metabolic efficiency are ecologically determinative.
+
+**Why growth prediction matters here**: Understanding which strains grow on which substrates, how quickly, and what they produce while growing is directly relevant to predicting field-scale community dynamics in contaminated subsurface environments. The growth curves in this project are not abstract phenotypes — they represent the physiological capabilities that determine which organisms thrive in plume vs. background conditions at Oak Ridge.
+
 ## Literature Context
 
 ### Genotype–phenotype prediction from bacterial genomes
 
-- **Plata et al. (2015)** pioneered large-scale prediction of bacterial growth media using genome-based FBA on ModelSEED models, establishing FBA as the baseline for carbon source prediction.
-- **Kavvas et al. (2018)** and subsequent work from the Palsson group use ML-on-genome-features (SNP / gene presence) to predict antibiotic MIC, showing that GBDT-class models can match or exceed FBA for structured phenotypes when enough training data is available.
-- **Weimann et al. (2016)** developed Traitar to predict phenotypes from protein family profiles using Pfam, demonstrating that cross-species transfer works when features are chosen at the right granularity.
-- **Price et al. (2020, 2022, 2024)** built GapMind for automated pathway annotation, validated against RB-TnSeq data, and showed that fitness data can fill pathway gaps — setting the precedent for using FB as ground truth for pathway predictions.
+- **Xu, Zakem & Weissman (2025)** developed Phydon, which predicts maximum growth rate from codon usage bias (gRodon) combined with phylogenetic nearest-neighbor interpolation. Their central contribution is **phylogenetically blocked cross-validation**: cutting the GTDB tree at varying depths to create train/test splits with controlled phylogenetic distance. They show that phylogeny beats genomic features at short distances but genomic features (CUB) are more stable at long distances. We adopt their blocked-CV strategy and add CUB as a baseline predictor.
+- **Weimann et al. (2016)** developed Traitar to predict phenotypes from Pfam protein family profiles, demonstrating that cross-species transfer works when features are chosen at the right granularity. Our approach extends this with multi-resolution features and independent fitness validation.
+- **Kavvas et al. (2018)** showed GBDT-class models on genome features can match or exceed FBA for structured phenotypes (antibiotic MIC) when training data is sufficient.
+- **Plata et al. (2015)** used genome-scale FBA (ModelSEED) to predict bacterial growth media, establishing the mechanistic baseline for carbon source prediction.
+- **Price et al. (2020, 2022, 2024)** built GapMind for automated pathway annotation, validated against RB-TnSeq fitness data, showing that fitness data can fill pathway gaps.
 
 ### Growth curve parameterization
 
-- **Baranyi & Roberts (1994)** and **Zwietering et al. (1990)** provide the canonical growth curve models (Baranyi, modified Gompertz) from which lag, µmax, and max OD are extracted.
-- **Sprouffske & Wagner (2016)** `growthcurver` R package and **Kahm et al. (2010)** `grofit` provide widely used automated curve fitting with QC metrics. Python equivalents include `amiGO` and `croissance`.
-- **Midani et al. (2021)** showed that derived growth parameters are reproducible across labs when QC gates are applied (e.g., AIC threshold for model fit, minimum OD range).
+- **Baranyi & Roberts (1994)** and **Zwietering et al. (1990)** provide the canonical growth curve models from which lag, µmax, and max OD are extracted.
+- **Sprouffske & Wagner (2016)** and **Kahm et al. (2010)** provide automated fitting tools with QC metrics.
+- **Midani et al. (2021)** showed derived growth parameters are reproducible across labs when QC gates are applied.
 
 ### Biological meaningfulness and interpretability
 
-- **Lundberg & Lee (2017)** introduced SHAP values for post-hoc interpretation of tree ensembles; widely applied to genome-based ML but rarely cross-validated against independent functional data.
-- **Galardini et al. (2017)** introduced "adversarial validation" in microbial ML: training a classifier to predict phylogeny from features to detect phylogenetic confounding.
-- **Kuhnert et al. (2021)** demonstrated that phylogeny-aware mixed-effects models prevent false-positive feature selection in genome-wide association.
+- **Lundberg & Lee (2017)** introduced SHAP values; widely applied to genome-based ML but rarely cross-validated against independent functional data (our FB concordance metric addresses this gap).
+- **Galardini et al. (2017)** introduced adversarial validation for phylogenetic confounding detection.
+- **Kuhnert et al. (2021)** showed phylogeny-aware mixed-effects models prevent false-positive feature selection.
 
-### Fitness Browser as ground truth
+### Microbial biogeography and co-occurrence
 
-- **Price et al. (2018)** introduced the ~30K-condition RB-TnSeq fitness dataset across 32 bacteria. Subsequent expansions reach 48 organisms and 27M fitness scores in BERDL.
-- **Wetmore et al. (2015)** established the statistical framework (t-like scores) for assessing fitness effect significance per (gene, experiment).
+- **Friedman & Alm (2012)** introduced SparCC for inferring microbial correlations from compositional data (16S amplicon), addressing the compositionality artifact that distorts standard Pearson/Spearman correlations. We use SparCC or a modern variant for co-occurrence analysis of ENIGMA genera.
+- **Thompson et al. (2017)** compiled the Earth Microbiome Project, establishing global patterns of microbial biogeography linked to environmental metadata — the kind of analysis we perform with the microbeatlas database.
+
+### Fitness Browser and exometabolomics
+
+- **Price et al. (2018)** introduced the RB-TnSeq fitness dataset (now 48 organisms, 27M scores in BERDL).
+- **Wetmore et al. (2015)** established the statistical framework for per-gene fitness assessment.
+- **Kosina et al. (2018)** curated the Web of Microbes exometabolomics database — our source for metabolite production/consumption ground truth.
 
 ### ENIGMA high-throughput phenotyping
 
-- ENIGMA SFA (Arkin lab and collaborators) has generated growth curves for field isolates from the Oak Ridge Field Research Center across defined media, carbon sources, and contaminant stress. The dataset stored in BERDL `enigma_coral.ddt_brick*` (bricks 928–1230) represents a novel asset not yet integrated with the pangenome / fitness browser at scale.
-
-### Active learning for microbial phenotyping
-
-- **Hie et al. (2020)** used uncertainty-based active learning to guide bacterial growth experiments, showing 5-10x efficiency gains over random sampling.
-- **Zampieri et al. (2023)** demonstrated Bayesian active learning for microbial community design but not for single-organism (strain × condition) selection.
+- ENIGMA SFA has generated high-throughput growth curves for 123 Oak Ridge field isolates across defined media, carbon sources, metals, and antibiotics. This dataset (303 plates, 27,632 curves, 7.57M timepoints) stored in BERDL represents a novel asset for understanding strain physiology in the context of subsurface contamination biology.
 
 ### Key References
-1. Plata G, Henry CS, Vitkup D (2015). "Long-term phenotypic evolution of bacteria." *Nature* 517:369-372.
-2. Kavvas ES et al. (2018). "Machine learning and structural analysis of Mycobacterium tuberculosis pan-genome identifies genetic signatures of antibiotic resistance." *Nature Communications* 9:4306.
-3. Weimann A et al. (2016). "From genomes to phenotypes: Traitar, the microbial trait analyzer." *mSystems* 1:e00101-16.
-4. Price MN et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509.
-5. Price MN et al. (2020). "GapMind: Automated Annotation of Amino Acid Biosynthesis." *mSystems* 5:e00291-20.
-6. Price MN et al. (2022). "Filling gaps in bacterial catabolic pathways with computation and high-throughput genetics." *PLOS Genetics* 18:e1010156.
-7. Baranyi J, Roberts TA (1994). "A dynamic approach to predicting bacterial growth in food." *Int J Food Microbiol* 23:277-294.
-8. Sprouffske K, Wagner A (2016). "Growthcurver: an R package for obtaining interpretable metrics from microbial growth curves." *BMC Bioinformatics* 17:172.
+1. Xu L, Zakem EJ, Weissman JL (2025). "Improved maximum growth rate prediction from microbial genomes by integrating phylogenetic information." *Nature Communications* 16:4256.
+2. Weimann A et al. (2016). "From genomes to phenotypes: Traitar, the microbial trait analyzer." *mSystems* 1:e00101-16.
+3. Kavvas ES et al. (2018). "Machine learning and structural analysis of Mycobacterium tuberculosis pan-genome." *Nature Communications* 9:4306.
+4. Plata G, Henry CS, Vitkup D (2015). "Long-term phenotypic evolution of bacteria." *Nature* 517:369-372.
+5. Price MN et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557:503-509.
+6. Price MN et al. (2020). "GapMind: Automated Annotation of Amino Acid Biosynthesis." *mSystems* 5:e00291-20.
+7. Price MN et al. (2022). "Filling gaps in bacterial catabolic pathways." *PLOS Genetics* 18:e1010156.
+8. Baranyi J, Roberts TA (1994). "A dynamic approach to predicting bacterial growth in food." *Int J Food Microbiol* 23:277-294.
 9. Lundberg SM, Lee SI (2017). "A unified approach to interpreting model predictions." *NeurIPS*.
 10. Galardini M et al. (2017). "Phenotype inference in an Escherichia coli strain panel." *eLife* 6:e31035.
-11. Hie B, Bryson BD, Berger B (2020). "Leveraging uncertainty in machine learning accelerates biological discovery." *Cell Systems* 11:461-477.
-12. Wetmore KM et al. (2015). "Rapid quantification of mutant fitness in diverse bacteria by sequencing randomly bar-seq mutant libraries." *mBio* 6:e00306-15.
+11. Friedman J, Alm EJ (2012). "Inferring correlation networks from genomic survey data." *PLOS Computational Biology* 8:e1002687.
+12. Thompson LR et al. (2017). "A communal catalogue reveals Earth's multiscale microbial diversity." *Nature* 551:457-463.
+13. Kosina SM et al. (2018). "Web of microbes (WoM): a curated microbial exometabolomics database." *BMC Microbiology* 18:139.
+14. Wetmore KM et al. (2015). "Rapid quantification of mutant fitness." *mBio* 6:e00306-15.
+15. Hie B, Bryson BD, Berger B (2020). "Leveraging uncertainty in machine learning accelerates biological discovery." *Cell Systems* 11:461-477.
 
 ## Data Sources
 
@@ -248,193 +263,138 @@ Substructure by additional data availability:
 
 ## Analysis Plan
 
-The plan is organized into four phases. Each notebook produces a standalone deliverable, so the project yields value even if later phases are deferred.
+The project is organized into three acts. Each notebook produces a standalone deliverable; the project yields value even if later acts are deferred.
 
-### Phase 1 — Foundation (NB01-NB03)
+### Act I — Know the Collection (NB01-NB04)
 
-#### NB01: Growth curve parsing and fitting
-- **Goal**: Convert the 303 plate bricks into a single tidy `(strain, well, condition, time, OD, replicate)` table plus a `(strain, well, condition, lag, µmax, max_OD, AUC, carrying_capacity, diauxy_score, cryptic_score, fit_quality)` parameter table.
+#### NB01: Growth curve parsing and fitting [DONE]
+- **Status**: Complete (27,632 curves fit, 9,861 fit_ok, 15,227 no_growth).
+- See `src/curve_fitting.py` (Gompertz model), `src/batch_fit.py` (resumable batch driver).
+- Output: `data/growth_parameters_all.parquet`, 4 figures.
+
+#### NB02: Condition canonicalization and cross-dataset alignment
+- **Goal**: Produce a canonical condition key for every ENIGMA well, FB experiment, and CSP phenotype, so (strain × condition) tuples are comparable across all datasets. Also align WoM metabolite identifiers.
 - **Method**:
-  - Read each brick via Spark, concatenate with brick-level metadata (date, plate ID).
-  - Fit Gompertz and Baranyi models to every well using `scipy.optimize.curve_fit`, select model per well by AIC.
-  - Compute QC metrics: residual RMSE, OD range, curve monotonicity violations, edge-well flag.
-  - Derive secondary parameters: diauxy score (number of distinct acceleration phases via smoothed derivative), cryptic growth (slow OD rise after apparent plateau), death-phase slope.
-  - Flag curves failing QC gates (minimum OD range, AIC threshold, replicate dispersion).
-- **Expected output**:
-  - `data/growth_curves_long.parquet` — all (strain, well, time, OD) rows, QC-flagged
-  - `data/growth_parameters.parquet` — one row per (strain, well, condition, replicate) with fitted parameters
-  - `figures/NB01_curve_fit_examples.png` — 12 representative curves with fits
-  - `figures/NB01_qc_summary.png` — QC pass/fail distribution across bricks
-- **Runs on**: BERDL JupyterHub (Spark for reads); curve fitting is CPU-bound, parallelized via pandas UDF or driver-side multiprocessing.
+  - ENIGMA → ChEBI ID (already in brick columns) + concentration (mM) + media category + pH.
+  - FB → ChEBI via PubChem/ChEBI API lookup on `condition_1` names + concentration + media.
+  - CSP → ChEBI via phenotype name → compound name mapping.
+  - WoM → ChEBI via compound table.
+  - Fallback strategy: Plan A (exact sdt_condition/FB ID match), Plan B (ChEBI), Plan C (fuzzy string), Plan D (condition-class pooling). See Condition-Alignment Fallback Strategy section.
+- **Output**: `data/condition_canonical.parquet`, `data/cross_dataset_alignment.tsv`, alignment coverage figures.
 
-#### NB02: Condition canonicalization and FB alignment
-- **Goal**: Produce a **canonical condition vector** for every growth well and every FB experiment, so that (strain × condition) keys are comparable across the two sources.
+#### NB03: Functional diversity census
+- **Goal**: Characterize the phylogenetic breadth, metabolic diversity, and ecological functional repertoire of the 123-strain collection. Identify metabolically distinct classes expected to have different growth phenotypes.
 - **Method**:
-  - Extract per-well condition from ENIGMA brick columns: `microplate_well_media_name`, `context_media_sdt_condition_name`, `molecule_from_list_*_sys_oterm_name`, `concentration_*`, `microplate_well_ph_ph`.
-  - Extract FB experiment conditions from `kescience_fitnessbrowser.experiment`: `expDescLong`, `condition_1`, `concentration_1`, `units_1`, `media`, `pH`.
-  - Canonicalize via ontology mapping: (a) molecule ontology term → ChEBI / ModelSEED compound ID; (b) concentration → mM (converting from µg/mL via MW lookup); (c) pH → numeric; (d) media → base media category.
-  - Check whether ENIGMA `sdt_condition` names (`set1IT001` format) literally match FB `setname` + `itnum` concatenations — if yes, we have gold-standard alignment; if not, fall back to canonical vector matching.
-  - Output (strain × canonical_condition) alignment table with match provenance (exact name / canonical vector / approximate).
-- **Expected output**:
-  - `data/condition_canonical.parquet` — one row per canonical condition with ChEBI/ModelSEED compound ID, mM concentration, pH, media category
-  - `data/enigma_fb_condition_alignment.tsv` — alignment map (ENIGMA condition → FB experiment(s))
-  - `figures/NB02_alignment_coverage.png` — Venn / Sankey of condition coverage
-- **Runs locally** from cached parquet + Spark reads of `experiment` table.
+  - **Phylogenetic placement**: Build a genus/family tree from genome depot taxonomy. Map strains to GTDB clades. Compute phylogenetic diversity metrics (Faith's PD, mean pairwise distance).
+  - **Metabolic guild clustering**: Build (123 strains × ~2,000 KO) presence/absence matrix from genome depot. Cluster by Jaccard distance (hierarchical + UMAP). Label guilds by enriched KEGG pathways/modules. For the 32 pangenome-linked strains, overlay GapMind pathway completeness profiles.
+  - **Functional repertoire inventory**: Per strain, count resistance genes (AMR from bakta_amr where available, or by KO annotation), motility genes (flagellar assembly KOs), secretion systems, mobile element markers, two-component systems, sigma factors.
+  - **Pangenome outlier detection**: For strains in BERDL pangenome, compare their KO profile to the species clade average. Flag strains with significant deviations (>2σ in KO count or unique KOs absent from >90% of the clade).
+- **Output**: `data/functional_census.parquet` (123 × features), `data/metabolic_guilds.tsv`, figures (phylo tree, UMAP of metabolic profiles, guild bar charts, outlier scatter).
 
-#### NB03: Coverage atlas
-- **Goal**: Build the (strain × canonical_condition) evidence matrix across all data sources, identifying dense regions and data deserts.
+#### NB04: Environmental context and biogeography
+- **Goal**: Map the 123 isolates and their relatives to local and global environmental distributions. Identify co-occurring taxa and correlations with geochemical features. Contextualize growth predictions in terms of where these organisms live and what conditions they face.
+- **Method — four panels**:
+
+  **Panel A — Pangenome species-level biogeography** (32 pangenome-linked strains):
+  - For each strain's GTDB species clade, query `kbase_ke_pangenome.ncbi_env` for all genomes in the clade. Extract isolation source, geographic coordinates, ENVO/GOLD ecosystem terms.
+  - Aggregate: per-clade environmental distribution (% host-associated, % soil, % freshwater, % engineered). Map global occurrence.
+  - Output: species-level environment profiles for each pangenome-linked strain.
+
+  **Panel B — Microbeatlas global 16S biogeography** (all 123 strains at genus level):
+  - Query `arkinlab_microbeatlas.otu_counts_long` for OTUs classified to ENIGMA genera (Pseudomonas, Acidovorax, Rhodanobacter, Pedobacter, Cupriavidus, Sphingobium, etc.).
+  - Join to `enriched_metadata_gee` for environmental predictors: soil pH (6 depths), temperature, precipitation, soil metals (Co, Cr, Cu, Ni, Zn, Pb, U, As), EPA Superfund proximity, land cover, NDVI.
+  - Build genus × environment association models (logistic regression of genus presence/absence on environmental features; random forest variable importance for each genus).
+  - Output: global distribution maps per genus, genus-environment association tables.
+  - Scale: ~464K samples, 389K geolocated, all 6+ ENIGMA genera detected in 12K-91K samples each.
+
+  **Panel C — CORAL local Oak Ridge spatial analysis** (123 strains):
+  - Link strains to isolation wells via `enigma_coral.ddt_brick0000510` (3,150 strains → 58 wells).
+  - Overlay with geochemistry from `ddt_brick0000080` (1,888 samples, ~50 elements at ppb) and `ddt_brick0000010` (micromolar U, NO₃, metals).
+  - Join to 100 Well Survey ASV community profiles (`ddt_brick0000476`, 587 communities × 111K ASVs) via sample location.
+  - Map which strains come from contaminated vs. background wells; correlate strain metabolic guild (from NB03) with local geochemistry.
+  - Output: strain × well × geochemistry linkage table, spatial distribution figures.
+
+  **Panel D — Co-occurrence network** (SparCC):
+  - Build co-occurrence network from 100WS ASV community data (587 communities). Use SparCC (Friedman & Alm 2012) or FlashWeave to infer genus-genus correlations robust to compositionality.
+  - Focus on ENIGMA growth-curve genera: which taxa co-occur, which are mutually exclusive?
+  - For co-occurring genus pairs, test whether they have complementary metabolic capabilities (from NB03 guild clustering): e.g., a fermenter + a respirer, or a metal reducer + a metal oxidizer.
+  - Optionally validate global co-occurrence patterns in microbeatlas.
+  - Output: co-occurrence network (edge list + significance), complementarity analysis for top pairs.
+
+### Act II — Predict and Explain (NB05-NB09)
+
+#### NB05: Feature engineering (genome + condition + interaction)
+- **Goal**: Construct the modeling matrices. For genomes, extract features at four levels (phylogeny → bulk scalars → specific KO/OG/pathway → condition interactions). For conditions, build molecular descriptors.
+- **Genome features** (all 123 strains from genome depot; supplementary pangenome features for 32):
+  - **Level 0 — Phylogeny**: GTDB taxonomy categoricals; depot taxonomy; ANI distance to nearest anchor.
+  - **Level 1 — Bulk scalars**: genome size, GC%, coding density, # contigs, # genes, # rRNA operons, codon usage bias (CUB via gRodon — adds the Phydon baseline for free).
+  - **Level 2 — Specific features**: KO presence/absence (~2,000 per genome from depot), COG class counts (23 categories), ortholog group membership (~16K OGs), EC number counts, GapMind pathway scores (for 32 pangenome-linked), KEGG module completeness.
+  - **Level 3 — Functional summaries**: resistance gene count, motility gene presence, sigma factor diversity, two-component system count, mobile element load, secretion system count.
+- **Condition features**: ChEBI → Morgan fingerprint (2048-bit) + functional groups + log(concentration) + pH + condition class (carbon/nitrogen/metal/antibiotic/stress) + media category.
+- **Interaction features**: KO-relevant-to-condition × condition identity (e.g., metal resistance KO count × metal ion identity).
+- **Output**: `data/features/` directory with per-family parquets + `feature_metadata.tsv`.
+
+#### NB06: Variance partitioning
+- **Goal**: Decompose growth phenotype variance into the four feature levels: phylogeny → bulk → specific → condition interaction. This is the central analytical framework.
 - **Method**:
-  - For every (strain, canonical_condition) pair, mark which data are available: growth curve? FB fitness vector? BacDive metabolite test? WoM production? GapMind pathway prediction? ModelSEED reaction?
-  - Compute per-strain and per-condition coverage scores.
-  - Identify the "dense anchor set" — (strain, condition) pairs with ≥3 data types — this is the training / evaluation cohort for Phase 2.
-- **Expected output**:
-  - `data/coverage_matrix.parquet` — (strain, condition, evidence_flags, count)
-  - `data/anchor_set.tsv` — the dense-coverage subset for modeling
-  - `figures/NB03_coverage_heatmap.png` — strain × condition evidence heatmap
-  - `figures/NB03_coverage_by_source.png` — bar chart of coverage per data source
-- **Runs locally**.
+  - Nested linear models with increasing feature complexity. For each phenotype target (binary growth, µmax, lag, max OD, AUC):
+    - **M0**: phylogeny only (GTDB genus/family as random effects, or phylogenetic eigenvectors from ANI distance kernel).
+    - **M1**: M0 + bulk scalars (GC%, genome size, CUB, ribosomal copies).
+    - **M2**: M1 + specific features (top-K KOs by univariate association, selected via stability selection or elastic net).
+    - **M3**: M2 + condition interactions.
+  - Report incremental R² (or pseudo-R² for binary) at each level. Use phylogenetically blocked CV (Xu et al. 2025) with tree cuts at genus, family, and order levels to test generalization.
+  - Adversarial validation: train a GTDB-genus classifier on each feature level; quantify phylogenetic leakage.
+- **Output**: `data/variance_partition.tsv`, figures (stacked bar of R² by level per target, heatmap of level × target × CV-depth).
 
-### Phase 2 — Baseline predictors (NB04-NB07)
-
-#### NB04: GapMind-based predictor
-- **Goal**: Predict growth (y/n), lag, µmax, max_OD using only GapMind pathway completeness as features.
+#### NB07: GBDT modeling + CSP transfer + paradigm comparison
+- **Goal**: Train gradient-boosted models and compare to GapMind pathway baseline and CUB/gRodon baseline. Test transfer from CSP corpus.
 - **Method**:
-  - For each anchor (strain, condition) with a defined carbon source or amino acid auxotrophy interpretation, look up GapMind pathway score for the relevant pathway(s).
-  - Rule-based prediction: complete pathway → growth predicted; steps_missing → no-growth predicted.
-  - For continuous targets, fit a simple model `param ~ pathway_score` (ordinal regression / linear mixed model with strain random effect).
-  - Evaluate with leave-one-strain-out CV on the 5 anchor strains.
-- **Expected output**:
-  - `data/gapmind_predictions.tsv` — per (strain, condition) predicted vs observed
-  - `figures/NB04_gapmind_confusion.png`, `figures/NB04_gapmind_scatter.png`
-- **Runs locally**.
+  - **GapMind baseline**: For carbon-source conditions, predict growth from GapMind pathway completeness score. Rule-based for binary; ordinal regression for continuous.
+  - **CUB/gRodon baseline**: Predict µmax from codon usage bias (following Phydon). Phylogenetic + CUB weighted ensemble per Xu et al.
+  - **GBDT (ENIGMA-only)**: Train LightGBM on 123 strains × conditions with KO + condition features. Phylogenetically blocked CV.
+  - **GBDT (CSP-pretrained)**: Pretrain on 795 CSP genomes × 379 binary phenotypes (KofamScan KO features). Fine-tune on ENIGMA continuous targets. Compare to ENIGMA-only.
+  - **GBDT (BacFormer)**: Use BacFormer embeddings (480-dim, available for CSP genomes) as features. Compare to explicit KO features — data-driven vs. knowledge-driven.
+  - Report accuracy (RMSE/AUC) AND biological meaningfulness (FB concordance) for each model × target.
+- **Output**: `data/model_results.tsv`, `data/model_predictions.tsv`, paradigm comparison figures.
 
-#### NB05: FBA-lite predictor
-- **Goal**: Mechanistic baseline predictor using draft FBA models for anchor strains.
+#### NB08: FB concordance validation (biological meaningfulness)
+- **Goal**: Score each predictor by the fraction of its top SHAP features whose FB orthologs show significant fitness effects under matched conditions.
 - **Method**:
-  - For each of the 5 anchor strains, build (or retrieve) a draft genome-scale metabolic model via ModelSEED reconstruction (from `kbase_genomes` and `kbase_msd_biochemistry`).
-  - Run FBA for each canonical condition: set media composition, maximize biomass, record growth feasibility and biomass flux.
-  - Map FBA growth rate → µmax via anchor-strain scaling; map FBA biomass yield → max_OD.
-  - For conditions where no model exists or the compound isn't in the model, return "no prediction" (not a failure — a diagnostic).
-- **Expected output**:
-  - `data/fba_predictions.tsv` — per (strain, condition) predicted growth / flux / "no model" flag
-  - `figures/NB05_fba_vs_observed.png`
-- **Runs on**: BERDL JupyterHub (for model reconstruction) + local (for FBA via `cobrapy`).
+  - For each (strain, condition) in Tier 1 anchor set with FB fitness data:
+    1. Extract top-K features (K = 10, 50, 100) from each model via SHAP.
+    2. Map KO → FB locus via genome depot gene → pangenome cluster → `fb_pangenome_link.tsv`.
+    3. Compute FB concordance = fraction of mapped loci with |t| > 4 in matched FB experiment.
+  - Report concordance per model, per condition class, per feature level.
+  - Test independence from accuracy: scatter plot of held-out accuracy vs. FB concordance.
+- **Output**: `data/meaningfulness_scores.tsv`, `figures/NB08_accuracy_vs_meaningfulness.png`.
 
-#### NB06a: Genome feature engineering
-- **Goal**: Construct and document multiple genome feature representations for every strain in the coverage atlas.
-- **Method**: Compute all of the following, store each as a (strain × feature) matrix and a feature metadata file:
-  - **Gene families (cross-species)**: UniRef50 / UniRef90 / UniRef100 membership counts per strain (via `bakta_annotations.uniref100` → `kbase_uniref50/90/100` cluster IDs). Primary backbone.
-  - **Orthogroups**: COG category counts, KEGG ortholog (KO) presence, eggNOG OG presence per strain (via `eggnog_mapper_annotations`).
-  - **Protein domains**: Pfam domain counts per strain (via `bakta_pfam_domains`).
-  - **Pathway completeness**: GapMind scores per pathway (18 AA + 62 C) as an 80-dim vector.
-  - **Reaction presence**: ModelSEED reaction IDs inferred from EC numbers.
-  - **Genome-scale scalars**: GC%, genome size (bp), coding density, CheckM completeness/contamination, N50, # contigs.
-  - **Ribosomal / translational**: # rRNA operons, # tRNA genes, tRNA species diversity (counts of distinct amino acid targets), codon usage bias (ENC, GC3), ribosomal protein variants.
-  - **Regulatory proxies**: # sigma factor homologs by subfamily (σ70/54/32/S/E, via Pfam), # two-component systems (histidine kinase + response regulator counts), # transcription factors by DBD family (HTH, LuxR, AraC, GntR, MarR, ...).
-  - **Defense / mobile load**: # CRISPR arrays, # R-M systems, prophage count, plasmid-linked gene count, AMR gene count (via `genomad_mobile_elements`, `bakta_amr`).
-  - **Phylogenetic controls**: GTDB taxonomy (family / genus / species as categoricals); ANI to nearest FB-linked anchor; tree distance.
-- **Expected output**:
-  - `data/features/uniref50.parquet`, `uniref90.parquet`, `uniref100.parquet`, `cog.parquet`, `kegg.parquet`, `pfam.parquet`, `gapmind.parquet`, `modelseed_rxn.parquet`, `scalars.parquet`, `ribotranslation.parquet`, `regulatory.parquet`, `defense.parquet`, `phylogeny.parquet`
-  - `data/feature_metadata.tsv` — one row per feature (name, family, description, derivation method, NA rate)
-  - `figures/NB06a_feature_family_sizes.png` — dimensionality per family
-  - `figures/NB06a_feature_redundancy.png` — cross-family correlation
-- **Runs on**: BERDL JupyterHub (Spark-heavy).
-
-#### NB06b: Condition feature engineering
-- **Goal**: Convert canonical conditions to a numeric feature vector suitable for model input.
+#### NB09: WoM exometabolomic prediction (pilot)
+- **Goal**: For the 6 WoM-profiled strains, test whether growth-predictive features also predict metabolite production.
 - **Method**:
-  - Look up ChEBI → SMILES → RDKit Morgan fingerprint (2048-bit, radius 2).
-  - Compute functional group indicators (amine, carboxyl, hydroxyl, phosphate, sulfate, halide, metal-binding, aromatic).
-  - Encode concentration (log mM), pH (numeric), condition class (carbon / nitrogen / metal / antibiotic / stress).
-  - One-hot media category.
-- **Expected output**:
-  - `data/condition_features.parquet` — one row per canonical condition
-  - `figures/NB06b_condition_embedding.png` — 2D UMAP of condition space colored by class
-- **Runs locally**.
+  - For each strain, predict: which of 105 WoM metabolites are Emerged / Increased / No Change?
+  - Use the same genome features (KO presence) and GBDT architecture as NB07.
+  - Test feature overlap: do top SHAP features for growth on substrate X overlap with top features for production of metabolites derived from X?
+  - Cross-reference with `fw300_metabolic_consistency` findings (tryptophan overflow, production vs. utilization distinction).
+- **Output**: `data/wom_predictions.tsv`, feature overlap analysis, figures.
 
-#### NB06c: Interaction features
-- **Goal**: Assemble the modeling matrix as `(genome × condition → phenotype)` with genome features, condition features, and optional interaction terms.
+### Act III — Diagnose and Propose (NB10-NB11)
+
+#### NB10: Conflict detection and counterfactuals
+- **Goal**: Identify (strain, condition) pairs where models disagree or where close relatives diverge, for active learning prioritization.
 - **Method**:
-  - For each (strain, canonical_condition) pair in the anchor set, concatenate the genome features (chosen family) and condition features.
-  - Define interaction terms of interest: GapMind-score-for-this-condition × strain phylogeny; pathway-relevance × condition-class; metal-resistance-gene-count × metal-ion-identity.
-  - Produce several modeling tables, one per feature configuration, so downstream notebooks can compare.
-- **Expected output**:
-  - `data/modeling/X_{feature_set}.parquet` × multiple configurations
-  - `data/modeling/y_{target}.parquet` for each phenotype target
-- **Runs locally**.
+  - Model disagreement: prediction variance across GapMind / CUB / GBDT variants.
+  - Near-neighbor divergence: strains sharing a genus or OG cluster but with divergent growth outcomes.
+  - Replicate inconsistency: high within-condition CV in growth parameters.
+  - Diagnose likely causes: conflicting data (measurement error?), insufficient features (regulatory gap?), genuine biological variation (strain-specific regulation?).
+- **Output**: `data/conflict_ranked.tsv`, diagnostic figures.
 
-#### NB07: GBDT modeling and cross-paradigm comparison
-- **Goal**: Train GBDT models (LightGBM or XGBoost) on each feature configuration × each target, with phylogenetic holdout, and compare to GapMind and FBA baselines on matched train/test splits.
+#### NB11: Active learning proposal
+- **Goal**: Rank the next 200 (strain × condition) experiments for ENIGMA.
 - **Method**:
-  - Leave-one-strain-out CV (on the 5 anchor strains) + leave-one-species-out CV (on the 88-strain extrapolation set, using species-level labels).
-  - Report per-split RMSE (continuous targets) and AUC (binary growth) for every (feature set, target, model) combination.
-  - Adversarial validation: train a taxon classifier on each feature set; features that perfectly predict taxonomy get flagged as phylogeny-confounded.
-  - Mixed-effects residual analysis: fit `target ~ features + (1|genus)` and report variance components.
-  - Head-to-head comparison table: GapMind vs FBA vs GBDT(coarse) vs GBDT(fine) per target.
-- **Expected output**:
-  - `data/model_results.tsv` — per (model, feature_set, target, CV_split) metrics
-  - `data/model_predictions.tsv` — per (strain, condition, model) predicted vs observed
-  - `figures/NB07_paradigm_comparison.png` — bar chart of paradigm × target performance
-  - `figures/NB07_adversarial_validation.png` — feature-family phylogenetic leakage scores
-- **Runs locally**.
-
-### Phase 3 — Diagnosis and interpretability (NB08-NB10)
-
-#### NB08: Counterfactual and conflict detection
-- **Goal**: Identify (strain, condition) pairs where models disagree, where close-ANI strains diverge, or where replicates show unexplained variance — producing a ranked list of "high-information" candidates.
-- **Method**:
-  - Model disagreement: compute per-pair prediction variance across the three paradigms; rank by disagreement.
-  - Near-neighbor divergence: for pairs of strains with ANI > 98% (from `genome_ani`) but divergent measured growth, flag as high-info counterfactuals.
-  - Replicate inconsistency: flag (strain, condition) pairs with high within-condition CV and low measurement quality.
-  - Propose diagnostic experiments: for the top-ranked counterfactuals, suggest what additional measurement (e.g., single-gene complementation, altered medium) would resolve the divergence.
-- **Expected output**:
-  - `data/conflict_ranked.tsv` — ranked candidates with scores and proposed diagnostic
-  - `figures/NB08_disagreement_histogram.png`
-  - `figures/NB08_near_neighbor_divergence.png`
-- **Runs locally**.
-
-#### NB09: Feature attribution and per-prediction interpretation
-- **Goal**: For each predictor, extract the top-weighted features for every (strain, condition) prediction, producing a local explanation table.
-- **Method**:
-  - GBDT: SHAP values per prediction.
-  - GapMind: which pathway step(s) are determinative.
-  - FBA-lite: flux variability analysis on the biomass-producing path; rank reactions by essentiality.
-  - Normalize all three to a common "feature → weight" representation so they can be compared.
-- **Expected output**:
-  - `data/local_attributions.parquet` — per (strain, condition, model, top_feature, weight)
-  - `figures/NB09_example_attribution_cases.png` — 6 worked examples across paradigms
-- **Runs locally**.
-
-#### NB10: Biological meaningfulness via FB validation
-- **Goal**: Score each predictor by the fraction of its top-weighted features whose FB orthologs are fitness-significant under matched conditions — a direct test of mechanistic validity.
-- **Method**:
-  - For each (strain, condition) in the anchor set where FB fitness data exist:
-    1. Pull top-K features from each predictor (K = 10, 50, 100) via NB09 outputs.
-    2. Map feature → FB locus via `fb_pangenome_link.tsv` and UniRef/KO cross-references.
-    3. For matched FB experiment(s), compute fraction of those loci with |t| > 4 (significant fitness effect).
-    4. Report this "FB concordance" as a model-level score, a per-condition score, and a per-feature-family score.
-  - Phylogenetic leakage diagnostic: re-fit each model after regressing out GTDB taxonomy; report the accuracy drop and the FB concordance change. Models that drop sharply were leveraging phylogeny; models that don't drop are more mechanistic.
-  - Combined score: accuracy × FB concordance × (1 - phylogenetic leakage).
-- **Expected output**:
-  - `data/meaningfulness_scores.tsv` — per (model, feature_set, target) meaningfulness metrics
-  - `data/fb_concordance_per_condition.tsv` — breakdown by condition class
-  - `figures/NB10_accuracy_vs_meaningfulness.png` — the key 2D plot
-  - `figures/NB10_phylogenetic_leakage.png`
-- **Runs locally**.
-
-### Phase 4 — Active learning proposal (NB11, stretch)
-
-#### NB11: Ranked experimental proposal
-- **Goal**: Generate a ranked list of proposed next experiments for ENIGMA, targeting (strain, condition) pairs where resolution would most improve the ensemble model.
-- **Method**:
-  - Candidate pool: all (strain × canonical_condition) pairs NOT currently in the anchor set but where at least one data source has coverage (genome exists, or condition is canonicalized).
-  - Scoring: (model disagreement from NB08) × (genotype-space novelty — distance to nearest anchor strain in feature space) × (meaningfulness-weighted coverage gain) × (experimental feasibility — condition class).
-  - Retrospective validation: subsample the current anchor set, re-run NB07 with and without proposed points, show that proposed-point inclusion improves accuracy faster than random.
-- **Expected output**:
-  - `data/proposed_experiments.tsv` — ranked list (top 200), formatted for experimental intake
-  - `figures/NB11_retrospective_learning_curve.png`
-  - `figures/NB11_proposal_coverage_map.png`
-- **Runs locally**.
+  - Score = (model disagreement) × (genotype-space novelty) × (FB-concordance weight) × (experimental feasibility).
+  - Retrospective validation: subsample current data, show proposed points improve accuracy faster than random.
+  - Consider field relevance: prioritize conditions relevant to Oak Ridge (metals, nitrate, low pH, complex carbon) informed by NB04 environmental context.
+- **Output**: `data/proposed_experiments.tsv` (top 200), retrospective learning curve figure.
 
 ## Query Strategy
 
@@ -457,36 +417,38 @@ The plan is organized into four phases. Each notebook produces a standalone deli
 
 ## Expected Outcomes
 
-- **If H1 holds**: We have a clean (strain × condition → phenotype) anchor set of several thousand measurements where all three predictor paradigms can be applied and fairly compared.
-- **If H2 holds**: GapMind / FBA / GBDT have complementary strengths, and an ensemble that weights paradigms per target outperforms any single paradigm. This would be a methodological contribution: "paradigm selection depends on phenotype target."
-- **If H3 holds**: Two models with equal held-out accuracy can have 2-3× different FB concordance scores, establishing "biological meaningfulness" as a measurable, separable property of a predictor. This would allow principled model selection when held-out accuracy ties.
-- **If H4 holds**: We identify a feature family (e.g., KEGG pathway completeness for carbon-source growth; sigma factor diversity for stress; metal-resistance-gene counts for heavy metal conditions) as the natural predictor for each target class, with explicit phylogenetic confounding controls.
-- **If H5 holds**: The ranked active-learning proposal outperforms random sampling in retrospective subsampling, producing a credible, short list of next experiments for ENIGMA.
-- **If all H0 hold**: The project is a negative result on a substantial scale — a calibration of how far current data and methods can go for condition-specific bacterial phenotype prediction. Still publishable as a benchmark.
+- **If H1 holds** (feature resolution × phenotype resolution): We identify which genomic feature level (pathway → KO → regulatory) is the natural predictor for each phenotype target class. This would be a practical guide: "use GapMind for carbon source growth prediction, use KO profiles for kinetic parameters, use regulatory proxies for complex dynamics."
+- **If H2 holds** (paradigm complementarity): GapMind, CUB/gRodon, and GBDT have complementary strengths by condition class. An ensemble that selects paradigm per condition type outperforms any single paradigm. Methodological contribution: paradigm selection depends on condition class, not just dataset size.
+- **If H3 holds** (biological meaningfulness): FB concordance is independently measurable and separable from accuracy. This establishes a new evaluation axis for genotype-phenotype predictors beyond held-out error.
+- **If H4 holds** (CSP transfer): Pretraining on 795-genome binary corpus improves continuous target prediction on ENIGMA strains. Practical contribution: literature-curated phenotype databases are useful as transfer learning priors for lab-specific growth data.
+- **If H5 holds** (exometabolomic prediction): Growth-predictive KOs overlap with metabolite-production-predictive KOs. Conceptual contribution: "will it grow?" and "what will it produce?" share a common genomic basis.
+- **If H6 holds** (active learning): The proposed experimental set outperforms random sampling. Practical deliverable for ENIGMA's next experimental round.
+- **If all H0 hold**: A calibrated negative result on a substantial scale — published as a benchmark showing where current methods fail and what data are needed.
 
 ### Potential confounders and limitations
-- **Only 5 direct-match strains** for the deepest FB-anchored comparison. Extrapolation to the 88-strain set depends on cross-species feature stability.
-- **Growth curve QC may reject many wells** — plate effects, condensation, edge-well artifacts. Expect ~20-30% rejection.
-- **ENIGMA conditions may not literally match FB conditions** even after canonicalization — ontology gaps, concentration differences, media differences. Alignment quality is the key gating factor for H1.
-- **FBA-lite models may not exist** for all 5 anchor strains in usable form; may require reconstruction effort that could blow the scope.
-- **Feature engineering burden** — NB06a is the most expensive notebook and may need to be split further.
-- **Regulatory signal features** are proxies (Pfam-domain counts), not true network topology; their interpretability is bounded.
+- **7 FB-anchor strains** for the deepest validation. Small n for per-strain leave-one-out. Mitigated by CSP pretraining (795 genomes) and phylogenetically blocked CV.
+- **Growth curve QC**: 35.7% fit_ok. Mitigated by recoding no-growth as a valid binary label (biologically correct) and by continuous quality weights in the loss function.
+- **Condition alignment**: Depends on ChEBI ID coverage. Fallback strategy (Plans A-D) covers the spectrum from gold-standard to class-pooled.
+- **Phylogenetic confounding**: The dominant confounder. Addressed by Phydon-style blocked CV, adversarial validation, and explicit variance partitioning (NB06).
+- **Regulatory features are proxies**: Pfam-domain counts for sigma factors and TCS are not true network topology. Interpretability is bounded.
+- **WoM pilot is thin**: Only 6 strains. H5 is a proof-of-concept, not a definitive test.
+- **Biogeography is genus-level** for 16S data (microbeatlas). Species-level resolution available only for 32 pangenome-linked strains via `ncbi_env`.
 
 ## Execution Environment
 
 | Notebook | Environment | Rationale |
 |---|---|---|
-| NB00 (data survey) | JupyterHub (Spark reads) | Queries across 303 bricks + FB + CSP |
+| NB00 (data survey) | JupyterHub (Spark) | Queries across 303 bricks + FB + CSP + depot |
 | NB01 (curve fitting) | JupyterHub (Spark reads) + local (scipy fits) | Brick reads require Spark; fitting is CPU-only |
-| NB02 (condition canon.) | JupyterHub (FB/WoM queries) + local (ChEBI lookup) | One-time extraction of condition metadata |
-| NB03 (coverage atlas) | Local | Joins cached TSVs, no Spark needed |
-| NB04 (GapMind baseline) | Local | Small cached data |
-| NB05 (FBA-lite) | Local (cobrapy) | Runs on local machine or CTS |
-| NB06a (genome features) | JupyterHub (Spark) | Depot + pangenome queries for 123 strains |
-| NB06b-c (condition/interaction features) | Local | ChEBI/RDKit, small data |
-| NB07 (GBDT modeling) | Local (LightGBM) | Training on ~10K-100K rows, minutes |
-| NB08-NB10 (diagnosis) | Local | Post-hoc analysis of model outputs |
-| NB11 (active learning) | Local | Scoring + ranking |
+| NB02 (condition canon.) | JupyterHub (Spark) + local (ChEBI lookup) | One-time extraction from FB/WoM/CSP |
+| NB03 (functional census) | JupyterHub (Spark) | Genome depot KO/COG/OG queries for 123 strains |
+| NB04 (env context) | JupyterHub (Spark) | microbeatlas (464K samples), CORAL bricks, pangenome ncbi_env |
+| NB05 (features) | JupyterHub (Spark) | Depot + pangenome queries for feature matrices |
+| NB06 (variance partition) | Local | Statistical modeling on cached feature matrices |
+| NB07 (GBDT + transfer) | Local (LightGBM) | Training on ~10K-100K rows, minutes |
+| NB08 (FB concordance) | Local | Post-hoc SHAP analysis + FB lookups |
+| NB09 (WoM prediction) | Local | Small data (6 strains × 105 metabolites) |
+| NB10-NB11 (diagnosis + AL) | Local | Scoring + ranking |
 
 ## Condition-Alignment Fallback Strategy
 
@@ -505,6 +467,18 @@ NB01 found 35.7% of curves pass fit_ok (R²>0.8, RMSE<10% OD range). If this pro
 - **Smooth QC**: Replace hard pass/fail with a continuous quality weight in the loss function (low-R² curves get down-weighted, not excluded).
 
 ## Revision History
+
+- **v4** (2026-04-18): Three-act restructure with ENIGMA SFA context, biogeography, functional census, and variance partitioning.
+  - **ENIGMA SFA context added**: New section describing Oak Ridge field site geology (fractured shale, contamination plumes, uranium/metals/nitrate/low-pH), carbon dynamics (simple C consumed rapidly, complex C persists), and how growth predictions relate to field community dynamics.
+  - **Analysis plan restructured to three acts**: Act I (Know the Collection: NB01-NB04), Act II (Predict and Explain: NB05-NB09), Act III (Diagnose and Propose: NB10-NB11).
+  - **NB03 added — Functional diversity census**: Phylogenetic breadth, metabolic guild clustering from KO profiles, resistance/motility/mobile element inventory, pangenome outlier detection. Produces the *a priori* classification of metabolically distinct types.
+  - **NB04 added — Environmental context and biogeography (four panels)**: Panel A: pangenome species-level biogeography via `ncbi_env` for 32 strains. Panel B: microbeatlas global 16S (464K samples, genus-level, with soil pH/metals/temperature metadata). Panel C: CORAL local Oak Ridge spatial analysis (100WS communities + geochemistry + strain isolation wells). Panel D: SparCC co-occurrence network from 100WS ASV data (587 communities × 111K ASVs) + metabolic complementarity test.
+  - **NB06 added — Variance partitioning as central framework**: Nested models at four feature levels (phylogeny → bulk scalars → specific KOs → condition interactions). Phylogenetically blocked CV (Xu et al. 2025). This replaces the old "compare paradigms" framing with a principled decomposition of what genomic information matters at what level.
+  - **FBA cut**: GapMind pathway completeness and KO presence already capture the mechanistic signal. FBA reconstruction cost not justified for marginal gain.
+  - **CUB/gRodon baseline added**: Codon usage bias prediction of µmax per Xu et al. 2025. Cheap to compute, provides Phydon comparison.
+  - **Phylogenetically blocked CV adopted**: Tree-cutting strategy from Xu et al. as primary evaluation in NB06/NB07.
+  - **Literature updated**: Added Phydon (Xu et al. 2025), SparCC (Friedman & Alm 2012), EMP (Thompson et al. 2017), WoM (Kosina et al. 2018).
+  - **Biogeography data sources mapped**: `arkinlab_microbeatlas` (464K samples, all 6+ ENIGMA genera detected in 12K-91K samples), `enigma_coral` CORAL bricks (100WS 587 communities, geochemistry bricks 80/10/72/73, isolation mapping brick 510), `kbase_ke_pangenome.ncbi_env` (4.1M records for pangenome-linked strains).
 
 - **v3** (2026-04-18): Post-Genome-Depot revision.
   - **ENIGMA Genome Depot arrived**: `enigma_genome_depot_enigma` — 3,110 genomes, 6.8M proteins, 3.7M KO, 6.4M COG, 29.4M OG, 1.9M EC, 25.3M GO annotations. All 123 growth-curve strains matched. Collapses old 3-tier structure to 2 tiers (Tier 1: 7 FB anchors; Tier 2: all 123 with genome depot features). Eliminates "Tier 3 no-features" category entirely.
