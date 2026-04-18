@@ -55,7 +55,7 @@ The project is structured in three acts:
 ## Quick Links
 
 - [Research Plan](RESEARCH_PLAN.md) — hypotheses, approach, data sources, references
-- [Report](REPORT.md) — findings *(pending)*
+- [Report](REPORT.md) — Act I findings (6 key results, 22 figures)
 
 ## Anchor Strains (Tier 1)
 
@@ -71,9 +71,21 @@ The project is structured in three acts:
 
 All 123 growth-curve strains have genome depot annotations (KO, COG, OG, EC, GO). 32 also have BERDL pangenome features (GapMind, UniRef, Pfam, ANI).
 
+## Data Collections
+
+This project integrates data from the following BERDL collections:
+
+- `enigma_coral` — ENIGMA CORAL: growth curve bricks, strain metadata, ASV communities, GTDB-Tk taxonomy, isolation locations, geochemistry
+- `enigma_genome_depot_enigma` — ENIGMA Genome Depot: 3,110 genomes with KO, COG, OG, EC, GO annotations
+- `kescience_fitnessbrowser` — Fitness Browser: RB-TnSeq gene fitness for 7 anchor strains
+- `kescience_webofmicrobes` — Web of Microbes: exometabolomics for 6 strains
+- `globalusers_carbon_source_phenotypes` — Carbon source phenotypes: 795 genomes x 379 binary growth labels (Dileep et al.)
+- `kbase_ke_pangenome` — KBase pangenome: species-level biogeography via ncbi_env, GapMind pathways
+- `arkinlab_microbeatlas` — Microbial Atlas: 464K global 16S samples for genus-level biogeography and co-occurrence
+
 ## Reproduction
 
-*TBD — prerequisites and step-by-step instructions will be added after Act I is complete.*
+*TBD — prerequisites and step-by-step instructions will be added after Act II is complete.*
 
 ## Authors
 
