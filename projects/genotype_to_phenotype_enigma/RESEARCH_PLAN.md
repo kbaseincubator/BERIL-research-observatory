@@ -272,54 +272,22 @@ The project is organized into three acts. Each notebook produces a standalone de
 - See `src/curve_fitting.py` (Gompertz model), `src/batch_fit.py` (resumable batch driver).
 - Output: `data/growth_parameters_all.parquet`, 4 figures.
 
-#### NB02: Condition canonicalization and cross-dataset alignment
-- **Goal**: Produce a canonical condition key for every ENIGMA well, FB experiment, and CSP phenotype, so (strain × condition) tuples are comparable across all datasets. Also align WoM metabolite identifiers.
-- **Method**:
-  - ENIGMA → ChEBI ID (already in brick columns) + concentration (mM) + media category + pH.
-  - FB → ChEBI via PubChem/ChEBI API lookup on `condition_1` names + concentration + media.
-  - CSP → ChEBI via phenotype name → compound name mapping.
-  - WoM → ChEBI via compound table.
-  - Fallback strategy: Plan A (exact sdt_condition/FB ID match), Plan B (ChEBI), Plan C (fuzzy string), Plan D (condition-class pooling). See Condition-Alignment Fallback Strategy section.
-- **Output**: `data/condition_canonical.parquet`, `data/cross_dataset_alignment.tsv`, alignment coverage figures.
+#### NB02: Condition canonicalization and cross-dataset alignment [DONE]
+- **Status**: Complete. 486 dense anchor pairs (7 strains × 72 conditions). 42 molecular matches ENIGMA↔FB via normalized string. Media names (RCH2_defined_noCarbon, LB, R2A, M9) match exactly. 5 conditions in all 4 datasets, 30 in 3. Full coverage matrix: 13,632 pairs across 123 strains × 194 conditions.
+- **Output**: `data/condition_canonical.tsv`, `data/anchor_set.tsv`, `data/coverage_matrix.tsv`, 3 figures.
 
-#### NB03: Functional diversity census
-- **Goal**: Characterize the phylogenetic breadth, metabolic diversity, and ecological functional repertoire of the 123-strain collection. Identify metabolically distinct classes expected to have different growth phenotypes.
-- **Method**:
-  - **Phylogenetic placement**: Build a genus/family tree from genome depot taxonomy. Map strains to GTDB clades. Compute phylogenetic diversity metrics (Faith's PD, mean pairwise distance).
-  - **Metabolic guild clustering**: Build (123 strains × ~2,000 KO) presence/absence matrix from genome depot. Cluster by Jaccard distance (hierarchical + UMAP). Label guilds by enriched KEGG pathways/modules. For the 32 pangenome-linked strains, overlay GapMind pathway completeness profiles.
-  - **Functional repertoire inventory**: Per strain, count resistance genes (AMR from bakta_amr where available, or by KO annotation), motility genes (flagellar assembly KOs), secretion systems, mobile element markers, two-component systems, sigma factors.
-  - **Pangenome outlier detection**: For strains in BERDL pangenome, compare their KO profile to the species clade average. Flag strains with significant deviations (>2σ in KO count or unique KOs absent from >90% of the clade).
-- **Output**: `data/functional_census.parquet` (123 × features), `data/metabolic_guilds.tsv`, figures (phylo tree, UMAP of metabolic profiles, guild bar charts, outlier scatter).
+#### NB03: Functional diversity census [DONE]
+- **Status**: Complete. 123 strains × 7,167 KOs, 23 COG classes, 8 metabolic guilds across 20 taxonomic orders. Pseudomonas_E guild (27 strains) contains 5/7 FB anchors. Genome sizes 2.6-11.4 Mb, 1,256-3,014 KOs/strain.
+- **Output**: `data/ko_matrix.parquet`, `data/cog_matrix.tsv`, `data/strain_scalars.tsv`, 3 figures.
 
-#### NB04: Environmental context and biogeography
-- **Goal**: Map the 123 isolates and their relatives to local and global environmental distributions. Identify co-occurring taxa and correlations with geochemical features. Contextualize growth predictions in terms of where these organisms live and what conditions they face.
-- **Method — four panels**:
-
-  **Panel A — Pangenome species-level biogeography** (32 pangenome-linked strains):
-  - For each strain's GTDB species clade, query `kbase_ke_pangenome.ncbi_env` for all genomes in the clade. Extract isolation source, geographic coordinates, ENVO/GOLD ecosystem terms.
-  - Aggregate: per-clade environmental distribution (% host-associated, % soil, % freshwater, % engineered). Map global occurrence.
-  - Output: species-level environment profiles for each pangenome-linked strain.
-
-  **Panel B — Microbeatlas global 16S biogeography** (all 123 strains at genus level):
-  - Query `arkinlab_microbeatlas.otu_counts_long` for OTUs classified to ENIGMA genera (Pseudomonas, Acidovorax, Rhodanobacter, Pedobacter, Cupriavidus, Sphingobium, etc.).
-  - Join to `enriched_metadata_gee` for environmental predictors: soil pH (6 depths), temperature, precipitation, soil metals (Co, Cr, Cu, Ni, Zn, Pb, U, As), EPA Superfund proximity, land cover, NDVI.
-  - Build genus × environment association models (logistic regression of genus presence/absence on environmental features; random forest variable importance for each genus).
-  - Output: global distribution maps per genus, genus-environment association tables.
-  - Scale: ~464K samples, 389K geolocated, all 6+ ENIGMA genera detected in 12K-91K samples each.
-
-  **Panel C — CORAL local Oak Ridge spatial analysis** (123 strains):
-  - Link strains to isolation wells via `enigma_coral.ddt_brick0000510` (3,150 strains → 58 wells).
-  - Overlay with geochemistry from `ddt_brick0000080` (1,888 samples, ~50 elements at ppb) and `ddt_brick0000010` (micromolar U, NO₃, metals).
-  - Join to 100 Well Survey ASV community profiles (`ddt_brick0000476`, 587 communities × 111K ASVs) via sample location.
-  - Map which strains come from contaminated vs. background wells; correlate strain metabolic guild (from NB03) with local geochemistry.
-  - Output: strain × well × geochemistry linkage table, spatial distribution figures.
-
-  **Panel D — Co-occurrence network** (SparCC):
-  - Build co-occurrence network from 100WS ASV community data (587 communities). Use SparCC (Friedman & Alm 2012) or FlashWeave to infer genus-genus correlations robust to compositionality.
-  - Focus on ENIGMA growth-curve genera: which taxa co-occur, which are mutually exclusive?
-  - For co-occurring genus pairs, test whether they have complementary metabolic capabilities (from NB03 guild clustering): e.g., a fermenter + a respirer, or a metal reducer + a metal oxidizer.
-  - Optionally validate global co-occurrence patterns in microbeatlas.
-  - Output: co-occurrence network (edge list + significance), complementarity analysis for top pairs.
+#### NB04: Environmental context and biogeography [DONE]
+- **Status**: Complete. Four panels executed:
+  - **Panel A**: Genus-level environment profiles from GTDB pangenome ncbi_env (52 genera). Pseudomonas 37.8% clinical (P. aeruginosa), Rhodanobacter 0% clinical, 55% aquatic. ENIGMA strains are ecological outliers.
+  - **Panel B**: Global 16S occurrence via microbeatlas (464K samples). All 14+ ENIGMA genera detected in 4K-289K samples.
+  - **Panel C**: 123 strains mapped to 24 Oak Ridge wells with coordinates via CORAL brick 510.
+  - **Panel D**: Spearman co-occurrence from 100WS (587 communities, 15 genera). Global Jaccard co-occurrence (18 genera, 464K samples). **Key finding**: pH-driven niche partition — Cluster B (Rhodanobacter-Ralstonia-Dyella) at pH 5.4, Cluster A (Brevundimonas-Caulobacter-Sphingomonas) at pH 6.8 (Δ1.35 units).
+  - **Pitfall discovered**: Strain-name collision — 12/32 pangenome linkages via ncbi_strain_identifiers were wrong genus (e.g., MT20 Rhodanobacter → Streptococcus pneumoniae). Fixed via CORAL brick 522 GTDB-Tk taxonomy. Documented in `docs/pitfalls.md`.
+- **Output**: 8 figures, `data/genus_env_profiles.tsv`, `data/oakridge_genus_cooccurrence.tsv`, `data/global_genus_cooccurrence_jaccard.tsv`, `data/coral_strain_locations.tsv`, `data/cluster_env_comparison.tsv`.
 
 ### Act II — Predict and Explain (NB05-NB08)
 
@@ -338,67 +306,39 @@ The project is organized into three acts. Each notebook produces a standalone de
 - **CV structure**: 7 leave-one-strain-out folds (4 Pseudomonas_E, 1 Cupriavidus, 1 Acidovorax, 1 Pedobacter)
 - **Output**: `data/features/`, `data/modeling/`
 
-#### NB06: GBDT variance partitioning + SHAP + FB concordance
-- **Goal**: The central analytical notebook. Decompose growth phenotype variance using GBDT at each feature level, extract interpretable feature attributions via SHAP, and validate biological meaningfulness against independent Fitness Browser gene fitness data.
-- **Why GBDT throughout** (not linear models): Growth phenotype depends on non-linear gene interactions (epistasis, threshold effects, condition-dependent gene importance). Linear models underestimate L2 contributions because they can't capture these effects. Using the same non-linear model (LightGBM) at every level ensures fair comparison — the only thing that changes between M0 and M3 is which features the model sees.
-- **Method — Variance partitioning via nested GBDT**:
-  For each phenotype target (binary growth, µmax, lag, max_A, AUC):
-  - **M0**: LightGBM on L0 features only (28 phylogeny) → leave-one-strain-out CV → R² (or AUC for binary)
-  - **M1**: LightGBM on L0 + L1 (36 features) → CV R²
-  - **M2**: LightGBM on L0 + L1 + L2 (4,364 features) → CV R²
-  - **M3**: LightGBM on L0 + L1 + L2 + L3 (4,371 features) → CV R²
-  - **Incremental contribution** of each level = R²(Mi) - R²(Mi-1). This answers: "how much predictive power does adding KO-level features provide after phylogeny and bulk scalars are already in the model?"
-  - LightGBM hyperparameters: `num_leaves=31, min_data_in_leaf=10, feature_fraction=0.5, learning_rate=0.05, n_estimators=200, reg_alpha=0.1, reg_lambda=1.0`. These provide regularization that prevents overfitting on the 486-pair dataset despite 4,000+ features.
-- **Method — SHAP feature attribution**:
-  - On the full M3 model, compute SHAP values for every prediction.
-  - Report global feature importance (mean |SHAP|) and per-condition-class importance.
-  - Each important feature is a named KO — directly mappable to KEGG pathway/module annotations.
-  - Recursive feature importance: after identifying top-50 SHAP features, refit M3 with only those features and report CV R² to assess whether a compact mechanistic model captures most of the signal.
-- **Method — FB concordance (biological meaningfulness)**:
-  - For each (strain, condition) in the anchor set with FB fitness data:
-    1. Extract top-K SHAP features (K = 10, 50, 100) from M3.
-    2. Map KO → FB locus via genome depot gene → `fb_pangenome_link.tsv`.
-    3. Compute FB concordance = fraction of mapped loci with |t| > 4 in matched FB experiment.
-  - Compare concordance across models M0-M3: does adding KO features (M2) increase FB concordance relative to phylogeny-only (M0)?
-  - Scatter plot: held-out accuracy vs. FB concordance — are they correlated or independent axes?
-- **Method — Baseline comparisons**:
-  - **GapMind baseline**: For carbon-source conditions with pangenome-linked strains, predict growth from pathway completeness score. Rule-based for binary.
-  - **Taxonomy-only baseline**: Predict from GTDB genus alone (majority vote by genus). This is the "phylogeny explains everything" null.
-- **Output**: `data/variance_partition.tsv`, `data/shap_importance.tsv`, `data/fb_concordance.tsv`, `data/model_predictions.tsv`, figures (stacked bar of incremental R², SHAP beeswarm, accuracy-vs-concordance scatter, per-condition-class feature importance).
+#### NB06: GBDT variance partitioning + SHAP + correlation grouping [DONE]
+- **Status**: Complete. Preliminary diagnostic on 486 anchor pairs (7 strains, leave-one-strain-out CV).
+- **Key results**:
+  - Binary growth AUC 0.633 with full M3 model. Condition class biggest AUC contributor (+0.13).
+  - SHAP with correlation grouping (|r|>0.8): genome-scale axis (63 features) = 25.3% of importance, condition class = 45.9%, specific KO blocks (membrane, motility, tRNA, aromatics) ~2% each.
+  - Continuous targets: negative R² — not predictable cross-strain with n=7.
+  - **Critical finding**: n=7 model learns "big genomes grow on amino acids" — biologically real but not condition-specific. Motivated full-corpus approach in NB07.
+- **Method**: Nested GBDT M0→M3 at four feature levels. GBDT throughout (not linear) for non-linear effects.
+- **Output**: `data/variance_partition.tsv`, `data/shap_importance.tsv`, `data/feature_correlation_groups.tsv`, `data/group_shap_importance.tsv`, 4 figures.
 
-#### NB07 (revised): Full-corpus modeling with proper validation
-- **Goal**: Build a predictor that works for NEW genomes on SPECIFIC conditions using ALL available training data — the core project deliverable. Prior NB07 was preliminary (n=7 artificial bottleneck). This revision uses the full corpus.
-- **Training data**: Pool 123 ENIGMA strains (13,632 (strain x condition) pairs with binary growth + 9,861 pairs with continuous parameters) + 795 CSP genomes (53K binary growth labels) in a shared KO feature space (6,360 KOs shared between genome depot and KofamScan). Total: ~67K binary training pairs for the largest model.
-- **Method — Full-corpus GBDT with KO x condition interaction features**:
-  - Build shared KO feature space: map depot integer KO IDs to KEGG K-numbers (via `browser_kegg_ortholog`), intersect with CSP KofamScan K-numbers. Prevalence-filter to ~4,300 informative KOs.
-  - **KO x condition interaction features**: For each (genome, condition) pair, compute features: (a) "number of KOs in the KEGG module for this condition" via KEGG module → KO mappings, (b) GapMind pathway completeness score (where available), (c) condition class indicator × genome scalar interactions.
-  - Train LightGBM on the pooled corpus with these interaction features.
-  - **Genus-level blocked holdout**: Train on all genera except one, predict the held-out genus. With 20+ genera across ENIGMA + CSP, this tests whether KO features generalize beyond phylogeny. Report AUC/accuracy per held-out genus.
-  - **Per-condition analysis**: For each of the 72 ENIGMA conditions and the 59 CSP conditions, report prediction accuracy separately. Identify which conditions are well-predicted vs. poorly predicted and why.
-- **Method — SHAP per condition class**:
-  - On the full model, compute SHAP values grouped by condition class (amino acid, carbon source, metal, antibiotic, nitrogen, nucleoside, other).
-  - Report top-10 SHAP features per condition class with KEGG annotations. This is the mechanistic insight: which KOs matter for growth on amino acids vs. carbon sources vs. metals?
-  - Use correlation grouping (from NB06) to aggregate SHAP across co-inherited KO blocks.
-- **Method — Continuous parameter prediction**:
-  - Train regression GBDT on ENIGMA's 9,861 fit-ok curves (µmax, lag, max_A) using the same feature set.
-  - Use genus-level blocked holdout. With 123 strains across 20+ genera (vs. n=7 in preliminary NB06), the regression task has much more statistical power.
-- **Method — GapMind comparison**:
-  - On the subset of conditions with GapMind pathway matches, compare GapMind pathway completeness score vs. full-corpus GBDT. Does the mechanistic baseline outperform, match, or underperform the data-driven model?
-- **Method — FB concordance validation**:
-  - The 7 FB-anchor strains serve as a VALIDATION set (not training).
-  - After training on the full corpus (excluding FB-anchor strains or with them included), extract top SHAP features for predictions on these 7 strains.
-  - Map KOs to FB loci via `fb_pangenome_link.tsv`. Compute concordance = fraction with |t| > 4 in matched FB experiments.
-  - Report concordance per condition class and per model variant.
-- **Output**: `data/full_corpus_results.tsv`, `data/per_condition_accuracy.tsv`, `data/shap_per_condition_class.tsv`, `data/continuous_predictions.tsv`, `data/fb_concordance.tsv`, figures (genus holdout, per-condition heatmap, SHAP per condition class, accuracy vs. concordance).
+#### NB07: Full-corpus modeling + GapMind baseline + FB concordance [DONE]
+- **Status**: Complete. Core deliverable notebook.
+- **Training**: 46,389 pairs (13,632 ENIGMA + 32,757 CSP), 727 genomes, 135 genera, 4,293 shared KOs + condition class + KEGG pathway interaction features.
+- **Validation**: Genus-level blocked holdout (106 genera with ≥50 pairs).
+- **Key results**:
+  - **Binary growth**: Overall AUC 0.620 (genus-blocked). Per-condition-class: amino acids 0.775, nucleosides 0.780, carbon sources 0.695, other 0.654, antibiotics 0.619, metals 0.605, nitrogen 0.435. **95 conditions with AUC > 0.75**.
+  - **Continuous targets**: Negative R² (KO content + bulk features don't predict µmax/lag/max_A cross-genus). Growth RATE is a genus-level trait requiring CUB/expression data.
+  - **SHAP**: Full-corpus model identifies condition-specific catabolic genes (K03762 proP proline transporter, K10440 rbsC ribose transporter, K01857 pcaB protocatechuate cycloisomerase, K13633 ftrA AraC regulator). Qualitative shift from n=7 (genome-scale features) to n=46K (condition-specific genes).
+  - **GapMind baseline**: 78.8% accuracy, AUC 0.646, 96.5% recall on 118 testable pairs (AA + carbon conditions). Coverage: 24.3%.
+  - **KO × condition interactions**: +0.032 AUC (0.620→0.653), 80/106 genera improved.
+  - **FB concordance**: 18.7% of top SHAP KOs (expanded to correlated blocks) show |t|>4 in matched FB experiments vs 16.3% random = 1.19x enrichment (weak positive). Gene presence across genera ≠ gene essentiality within one strain.
+  - **n=7→n=46K comparison**: Demonstrates that ~46K training pairs are needed for condition-specific prediction; n=7 yields only genome-scale features.
+- **Output**: 13 figures, `data/full_corpus_*.tsv`, `data/per_condition_accuracy.tsv`, `data/fb_concordance*.tsv`, `data/interaction_feature_comparison.tsv`, `data/modeling/full_corpus.parquet`.
 
-#### NB08: WoM exometabolomic prediction (pilot)
-- **Goal**: For the 6 WoM-profiled strains, test whether growth-predictive KOs also predict metabolite production.
-- **Method**:
-  - Use the same GBDT architecture and KO features as NB06 M3.
-  - Predict: which of 105 WoM metabolites are Emerged / Increased / No Change?
-  - Test SHAP feature overlap between growth and metabolite production.
-  - Cross-reference with `fw300_metabolic_consistency` tryptophan overflow finding.
-- **Output**: `data/wom_predictions.tsv`, feature overlap analysis, figures.
+#### NB08: WoM exometabolomic prediction [DONE]
+- **Status**: Complete. Tests H5 (do growth-predictive KOs predict metabolite production?).
+- **Key results**:
+  - **GBDT fails**: AUC = 0.500 for all 6 strains. All are Pseudomonas with ~81% Jaccard KO similarity — insufficient variation for multivariate models at n=6.
+  - **Per-metabolite univariate correlation succeeds**: 557 strong associations (|r|>0.7) across 60/62 variable metabolites. 286 production associations (KO present → metabolite produced, e.g., K01048→taurine) + 271 consumption associations (KO present → metabolite consumed, e.g., K02613→lactate consumed).
+  - **FB-cognate feature selection**: Using KOs with significant fitness on rich media (R2A/LB) as the feature set provides a mechanistically focused starting point (1,019 KOs, 104 variable across strains).
+  - **H5 revised**: Growth-predictive KOs (cross-genus) ≠ metabolite-production KOs (within-genus), Spearman ρ=0.043. But gene content explains both when analyzed with appropriate methods (GBDT for cross-genus growth; univariate correlation for within-genus metabolites).
+  - **Methodological insight**: The right analytical method depends on sample size — multivariate ML at n=46K, univariate tests at n=6.
+- **Output**: 5 figures, `data/wom_predictions.tsv`, `data/wom_prediction_results.tsv`, `data/wom_fb_ko_correlations.tsv`.
 
 ### Act III — Diagnose and Propose (NB10-NB11)
 
@@ -489,6 +429,13 @@ NB01 found 35.7% of curves pass fit_ok (R²>0.8, RMSE<10% OD range). If this pro
 - **Smooth QC**: Replace hard pass/fail with a continuous quality weight in the loss function (low-R² curves get down-weighted, not excluded).
 
 ## Revision History
+
+- **v7** (2026-04-19): Comprehensive update — all notebooks through NB08 marked complete with actual results.
+  - NB02-NB04 marked [DONE] with actual output summaries (were unmarked despite being complete since April 14-18).
+  - NB06 description replaced with actual results (AUC 0.633, genome-scale 25.3% + condition 45.9%, correlation grouping).
+  - NB07 description replaced with actual full-corpus results (46K pairs, AUC 0.775 amino acids, 95 conditions AUC>0.75, condition-specific catabolic genes, FB concordance 1.19x, continuous targets negative R²).
+  - NB08 description replaced with actual WoM results (GBDT AUC=0.500, but 557 per-metabolite KO associations via univariate correlation, FB-cognate feature selection).
+  - Execution environment table and Act III descriptions unchanged.
 
 - **v6** (2026-04-19): Full-corpus modeling + honest gap assessment.
   - **Critical reframing**: The n=7 anchor set was an artificial bottleneck. Training should use ALL 123 ENIGMA strains (13,632 pairs) + 795 CSP genomes (53K pairs) = ~67K total training pairs. The 7 FB-anchor strains serve as the VALIDATION set for biological meaningfulness (FB concordance), not as training data.
