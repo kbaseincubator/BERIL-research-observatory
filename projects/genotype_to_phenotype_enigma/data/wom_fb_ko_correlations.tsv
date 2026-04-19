@@ -1,0 +1,1115 @@
+metabolite	KO	r	p	ko_desc
+taurine	K01048	1.0	0.0	"        id kegg_id
+2157  2158  K01048"
+thymine	K05710	1.0	0.0	"      id kegg_id
+547  548  K05710"
+formyl-methionyl peptide	K11892	-1.0	0.0	"        id kegg_id
+2988  2989  K11892"
+formyl-methionyl peptide	K11893	-1.0	0.0	"        id kegg_id
+2989  2990  K11893"
+formyl-methionyl peptide	K11894	-1.0	0.0	"        id kegg_id
+2990  2991  K11894"
+formyl-methionyl peptide	K11895	-1.0	0.0	"        id kegg_id
+2991  2992  K11895"
+formyl-methionyl peptide	K16692	1.0	0.0	"        id kegg_id
+3921  3922  K16692"
+formyl-methionyl peptide	K17737	-1.0	0.0	"        id kegg_id
+4778  4779  K17737"
+formyl-methionyl peptide	K22041	-1.0	0.0	"        id kegg_id
+3275  3276  K22041"
+lactate	K02613	-1.0	0.0	"        id kegg_id
+3837  3838  K02613"
+guanosine 3',5'-cyclic monophosphate	K12981	-1.0	0.0	"        id kegg_id
+4565  4566  K12981"
+guanosine 3',5'-cyclic monophosphate	K01141	1.0	0.0	"      id kegg_id
+970  971  K01141"
+N-acetyl-aspartic acid	K12988	1.0	0.0	"        id kegg_id
+7084  7085  K12988"
+Hypoxanthine	K07334	-1.0	0.0	"      id kegg_id
+295  296  K07334"
+Hypoxanthine	K21498	-1.0	0.0	"      id kegg_id
+296  297  K21498"
+thymine	K06986	1.0	0.0	"        id kegg_id
+5782  5783  K06986"
+cytidine 2',3'-cyclic monophosphate	K03895	-1.0	0.0	"        id kegg_id
+3320  3321  K03895"
+cytidine 5?-monophosphate	K01141	1.0	0.0	"      id kegg_id
+970  971  K01141"
+formyl-methionyl peptide	K01028	-1.0	0.0	"        id kegg_id
+2370  2371  K01028"
+formyl-methionyl peptide	K01029	-1.0	0.0	"        id kegg_id
+2369  2370  K01029"
+formyl-methionyl peptide	K01425	-1.0	0.0	"        id kegg_id
+2666  2667  K01425"
+formyl-methionyl peptide	K02076	1.0	0.0	"        id kegg_id
+6397  6398  K02076"
+formyl-methionyl peptide	K02228	-1.0	0.0	"        id kegg_id
+7064  7065  K02228"
+formyl-methionyl peptide	K02482	-1.0	0.0	"        id kegg_id
+1806  1807  K02482"
+formyl-methionyl peptide	K03684	1.0	0.0	"        id kegg_id
+1081  1082  K03684"
+cytidine 5?-monophosphate	K12981	-1.0	0.0	"        id kegg_id
+4565  4566  K12981"
+isoleucine	K19157	-1.0	0.0	"        id kegg_id
+2585  2586  K19157"
+coeluting isomers (arabitol, ribitol, xilitol)	K07264	-1.0	0.0	"        id kegg_id
+4797  4798  K07264"
+coeluting isomers (arabitol, ribitol, xilitol)	K07806	-1.0	0.0	"        id kegg_id
+4800  4801  K07806"
+coeluting isomers (arabitol, ribitol, xilitol)	K15894	-1.0	0.0	"        id kegg_id
+3297  3298  K15894"
+coeluting isomers (arabitol, ribitol, xilitol)	K18072	-1.0	0.0	"        id kegg_id
+8079  8080  K18072"
+carnosine	K19157	-1.0	0.0	"        id kegg_id
+2585  2586  K19157"
+biotin	K03895	-1.0	0.0	"        id kegg_id
+3320  3321  K03895"
+lysine	K00831	1.0	0.0	"      id kegg_id
+829  830  K00831"
+lysine	K02038	1.0	0.0	"      id kegg_id
+821  822  K02038"
+lysine	K02445	1.0	0.0	"        id kegg_id
+4518  4519  K02445"
+lysine	K05710	1.0	0.0	"      id kegg_id
+547  548  K05710"
+lysine	K06986	1.0	0.0	"        id kegg_id
+5782  5783  K06986"
+lysine	K14335	1.0	0.0	"        id kegg_id
+3974  3975  K14335"
+Xanthine	K07264	1.0	0.0	"        id kegg_id
+4797  4798  K07264"
+Xanthine	K07806	1.0	0.0	"        id kegg_id
+4800  4801  K07806"
+Xanthine	K15894	1.0	0.0	"        id kegg_id
+3297  3298  K15894"
+Xanthine	K18072	1.0	0.0	"        id kegg_id
+8079  8080  K18072"
+anthranilate	K12981	-1.0	0.0	"        id kegg_id
+4565  4566  K12981"
+anthranilate	K01141	1.0	0.0	"      id kegg_id
+970  971  K01141"
+myristic acid	K02770	-1.0	0.0	"        id kegg_id
+3860  3861  K02770"
+myristic acid	K11735	-1.0	0.0	"        id kegg_id
+4062  4063  K11735"
+myo-inositol	K12981	-1.0	0.0	"        id kegg_id
+4565  4566  K12981"
+methionine	K19157	-1.0	0.0	"        id kegg_id
+2585  2586  K19157"
+myo-inositol	K01141	1.0	0.0	"      id kegg_id
+970  971  K01141"
+myristic acid	K00363	-1.0	0.0	"        id kegg_id
+2026  2027  K00363"
+myristic acid	K00372	-1.0	0.0	"        id kegg_id
+2402  2403  K00372"
+myristic acid	K02769	-1.0	0.0	"        id kegg_id
+3859  3860  K02769"
+thymine	K00831	1.0	0.0	"      id kegg_id
+829  830  K00831"
+4-acetamidobutanoate	K12993	1.0	0.0	"        id kegg_id
+6734  6735  K12993"
+4-acetamidobutanoate	K12994	1.0	0.0	"        id kegg_id
+3888  3889  K12994"
+thymine	K02038	1.0	0.0	"      id kegg_id
+821  822  K02038"
+5-aminopentanoate	K09943	1.0	0.0	"      id kegg_id
+243  244  K09943"
+trigonelline	K00661	-1.0	0.0	"        id kegg_id
+2503  2504  K00661"
+formyl-methionyl peptide	K03925	1.0	0.0	"        id kegg_id
+1405  1406  K03925"
+formyl-methionyl peptide	K05559	-1.0	0.0	"        id kegg_id
+2018  2019  K05559"
+formyl-methionyl peptide	K05561	-1.0	0.0	"    id kegg_id
+81  82  K05561"
+formyl-methionyl peptide	K05562	-1.0	0.0	"    id kegg_id
+82  83  K05562"
+formyl-methionyl peptide	K05563	-1.0	0.0	"    id kegg_id
+83  84  K05563"
+formyl-methionyl peptide	K05793	1.0	0.0	"        id kegg_id
+2515  2516  K05793"
+formyl-methionyl peptide	K05946	1.0	0.0	"        id kegg_id
+1262  1263  K05946"
+formyl-methionyl peptide	K11891	-1.0	0.0	"        id kegg_id
+2987  2988  K11891"
+thymine	K14335	1.0	0.0	"        id kegg_id
+3974  3975  K14335"
+thymine	K02445	1.0	0.0	"        id kegg_id
+4518  4519  K02445"
+formyl-methionyl peptide	K11896	-1.0	0.0	"        id kegg_id
+2992  2993  K11896"
+formyl-methionyl peptide	K11900	-1.0	0.0	"        id kegg_id
+2996  2997  K11900"
+formyl-methionyl peptide	K11903	-1.0	0.0	"        id kegg_id
+3000  3001  K11903"
+formyl-methionyl peptide	K11915	-1.0	0.0	"        id kegg_id
+7487  7488  K11915"
+2,3-dihydroxybenzoate	K12981	-1.0	0.0	"        id kegg_id
+4565  4566  K12981"
+valine	K00661	1.0	0.0	"        id kegg_id
+2503  2504  K00661"
+2,3-dihydroxybenzoate	K01141	1.0	0.0	"      id kegg_id
+970  971  K01141"
+uridine-5'-monophosphate	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+4-hydroxyphenylacetate	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+uridine-5'-monophosphate	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+uridine-5'-monophosphate	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+uridine-5'-monophosphate	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+uridine-5'-monophosphate	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+uridine-5'-monophosphate	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+trehalose	K01210	0.9999999999999999	0.0	"        id kegg_id
+4279  4280  K01210"
+trehalose	K01219	0.9999999999999999	0.0	"        id kegg_id
+6809  6810  K01219"
+trehalose	K01531	0.9999999999999999	0.0	"      id kegg_id
+127  128  K01531"
+trehalose	K02441	0.9999999999999999	0.0	"        id kegg_id
+3626  3627  K02441"
+trehalose	K03635	0.9999999999999999	0.0	"        id kegg_id
+1223  1224  K03635"
+trehalose	K05597	0.9999999999999999	0.0	"        id kegg_id
+1907  1908  K05597"
+trehalose	K06950	0.9999999999999999	0.0	"        id kegg_id
+1704  1705  K06950"
+trehalose	K08978	0.9999999999999999	0.0	"        id kegg_id
+2835  2836  K08978"
+tryptophan	K00355	0.9999999999999999	0.0	"        id kegg_id
+2154  2155  K00355"
+tryptophan	K02358	0.9999999999999999	0.0	"      id kegg_id
+452  453  K02358"
+tryptophan	K03181	0.9999999999999999	0.0	"        id kegg_id
+3146  3147  K03181"
+tryptophan	K06199	0.9999999999999999	0.0	"        id kegg_id
+1186  1187  K06199"
+tryptophan	K09688	0.9999999999999999	0.0	"        id kegg_id
+6706  6707  K09688"
+tryptophan	K09690	0.9999999999999999	0.0	"      id kegg_id
+265  266  K09690"
+tryptophan	K09691	0.9999999999999999	0.0	"      id kegg_id
+264  265  K09691"
+trehalose	K12955	0.9999999999999999	0.0	"        id kegg_id
+5102  5103  K12955"
+trehalose	K13694	0.9999999999999999	0.0	"        id kegg_id
+3139  3140  K13694"
+4-guanidinobutanoate	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+4-guanidinobutanoate	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+4-guanidinobutanoate	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+4-guanidinobutanoate	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+4-guanidinobutanoate	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+4-guanidinobutanoate	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+3-hydroxy-3-methylglutarate	K09943	-0.9999999999999999	0.0	"      id kegg_id
+243  244  K09943"
+5-aminopentanoate	K03208	-0.9999999999999999	0.0	"        id kegg_id
+3061  3062  K03208"
+4-hydroxyphenylacetate	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+4-hydroxyphenylacetate	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+4-hydroxyphenylacetate	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+4-hydroxyphenylacetate	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+4-hydroxyphenylacetate	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+4-hydroxyphenylacetate	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+4-hydroxyphenylacetate	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+4-hydroxyphenylacetate	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+4-hydroxyphenylacetate	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+N-acetylputrescine	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+nicotinate	K06199	0.9999999999999999	0.0	"        id kegg_id
+1186  1187  K06199"
+nicotinate	K09688	0.9999999999999999	0.0	"        id kegg_id
+6706  6707  K09688"
+nicotinate	K09690	0.9999999999999999	0.0	"      id kegg_id
+265  266  K09690"
+nicotinate	K09691	0.9999999999999999	0.0	"      id kegg_id
+264  265  K09691"
+nicotinate	K00355	0.9999999999999999	0.0	"        id kegg_id
+2154  2155  K00355"
+nicotinate	K02358	0.9999999999999999	0.0	"      id kegg_id
+452  453  K02358"
+nicotinate	K03181	0.9999999999999999	0.0	"        id kegg_id
+3146  3147  K03181"
+betaine	K01210	0.9999999999999999	0.0	"        id kegg_id
+4279  4280  K01210"
+betaine	K01219	0.9999999999999999	0.0	"        id kegg_id
+6809  6810  K01219"
+betaine	K01531	0.9999999999999999	0.0	"      id kegg_id
+127  128  K01531"
+betaine	K02441	0.9999999999999999	0.0	"        id kegg_id
+3626  3627  K02441"
+betaine	K03635	0.9999999999999999	0.0	"        id kegg_id
+1223  1224  K03635"
+alpha-aminoadipate	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+alpha-aminoadipate	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+alpha-aminoadipate	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+alpha-aminoadipate	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+alpha-aminoadipate	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+alpha-aminoadipate	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+alpha-aminoadipate	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+pyridoxine	K00355	-0.9999999999999999	0.0	"        id kegg_id
+2154  2155  K00355"
+pyridoxine	K02358	-0.9999999999999999	0.0	"      id kegg_id
+452  453  K02358"
+pyridoxine	K03181	-0.9999999999999999	0.0	"        id kegg_id
+3146  3147  K03181"
+pyridoxine	K06199	-0.9999999999999999	0.0	"        id kegg_id
+1186  1187  K06199"
+pyridoxine	K09688	-0.9999999999999999	0.0	"        id kegg_id
+6706  6707  K09688"
+pyridoxine	K09690	-0.9999999999999999	0.0	"      id kegg_id
+265  266  K09690"
+pyridoxine	K09691	-0.9999999999999999	0.0	"      id kegg_id
+264  265  K09691"
+proline	K01219	0.9999999999999999	0.0	"        id kegg_id
+6809  6810  K01219"
+proline	K01531	0.9999999999999999	0.0	"      id kegg_id
+127  128  K01531"
+proline	K02441	0.9999999999999999	0.0	"        id kegg_id
+3626  3627  K02441"
+proline	K03635	0.9999999999999999	0.0	"        id kegg_id
+1223  1224  K03635"
+proline	K05597	0.9999999999999999	0.0	"        id kegg_id
+1907  1908  K05597"
+proline	K06950	0.9999999999999999	0.0	"        id kegg_id
+1704  1705  K06950"
+proline	K08978	0.9999999999999999	0.0	"        id kegg_id
+2835  2836  K08978"
+proline	K12955	0.9999999999999999	0.0	"        id kegg_id
+5102  5103  K12955"
+proline	K01210	0.9999999999999999	0.0	"        id kegg_id
+4279  4280  K01210"
+N-alpha-acetyl-lysine	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+N-alpha-acetyl-lysine	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+N-alpha-acetyl-lysine	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+N-alpha-acetyl-lysine	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+N-alpha-acetyl-lysine	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+N-alpha-acetyl-lysine	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+N-alpha-acetyl-lysine	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+N-alpha-acetyl-lysine	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+N-alpha-acetyl-lysine	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+N-alpha-acetyl-lysine	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+N-acetylputrescine	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+N-acetylputrescine	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+N-acetylputrescine	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+N-acetylputrescine	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+alpha-aminoadipate	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+alpha-aminoadipate	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+alpha-aminoadipate	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+maleic acid	K06199	0.9999999999999999	0.0	"        id kegg_id
+1186  1187  K06199"
+maleic acid	K09688	0.9999999999999999	0.0	"        id kegg_id
+6706  6707  K09688"
+maleic acid	K09690	0.9999999999999999	0.0	"      id kegg_id
+265  266  K09690"
+maleic acid	K09691	0.9999999999999999	0.0	"      id kegg_id
+264  265  K09691"
+maleic acid	K00355	0.9999999999999999	0.0	"        id kegg_id
+2154  2155  K00355"
+maleic acid	K02358	0.9999999999999999	0.0	"      id kegg_id
+452  453  K02358"
+maleic acid	K03181	0.9999999999999999	0.0	"        id kegg_id
+3146  3147  K03181"
+lumichrome	K11937	-0.9999999999999999	0.0	"        id kegg_id
+4976  4977  K11937"
+lumichrome	K18457	-0.9999999999999999	0.0	"        id kegg_id
+5643  5644  K18457"
+cis-4-hydroxyproline	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+cis-4-hydroxyproline	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+cis-4-hydroxyproline	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+cis-4-hydroxyproline	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+cis-4-hydroxyproline	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+cis-4-hydroxyproline	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+cis-4-hydroxyproline	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+betaine	K05597	0.9999999999999999	0.0	"        id kegg_id
+1907  1908  K05597"
+betaine	K06950	0.9999999999999999	0.0	"        id kegg_id
+1704  1705  K06950"
+betaine	K08978	0.9999999999999999	0.0	"        id kegg_id
+2835  2836  K08978"
+betaine	K12955	0.9999999999999999	0.0	"        id kegg_id
+5102  5103  K12955"
+betaine	K13694	0.9999999999999999	0.0	"        id kegg_id
+3139  3140  K13694"
+lumichrome	K06887	-0.9999999999999999	0.0	"        id kegg_id
+3790  3791  K06887"
+lumichrome	K07169	-0.9999999999999999	0.0	"        id kegg_id
+4533  4534  K07169"
+lumichrome	K11913	-0.9999999999999999	0.0	"        id kegg_id
+4534  4535  K11913"
+lumichrome	K11936	-0.9999999999999999	0.0	"      id kegg_id
+997  998  K11936"
+leucine/norleucine	K00355	0.9999999999999999	0.0	"        id kegg_id
+2154  2155  K00355"
+leucine/norleucine	K02358	0.9999999999999999	0.0	"      id kegg_id
+452  453  K02358"
+leucine/norleucine	K03181	0.9999999999999999	0.0	"        id kegg_id
+3146  3147  K03181"
+leucine/norleucine	K06199	0.9999999999999999	0.0	"        id kegg_id
+1186  1187  K06199"
+leucine/norleucine	K09688	0.9999999999999999	0.0	"        id kegg_id
+6706  6707  K09688"
+leucine/norleucine	K09690	0.9999999999999999	0.0	"      id kegg_id
+265  266  K09690"
+leucine/norleucine	K09691	0.9999999999999999	0.0	"      id kegg_id
+264  265  K09691"
+creatinine	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+creatinine	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+creatinine	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+citrulline	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+citrulline	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+citrulline	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+citrulline	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+citrulline	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+cis-4-hydroxyproline	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+cis-4-hydroxyproline	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+cis-4-hydroxyproline	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+citrulline	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+citrulline	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+citrulline	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+citrulline	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+citrulline	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+creatinine	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+creatinine	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+creatinine	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+creatinine	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+creatinine	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+creatinine	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+creatinine	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+tyrosine	K12955	0.9999999999999999	0.0	"        id kegg_id
+5102  5103  K12955"
+tyrosine	K13694	0.9999999999999999	0.0	"        id kegg_id
+3139  3140  K13694"
+N-acetyl-leucine	K00023	0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+N-acetyl-leucine	K00274	-0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+N-acetyl-leucine	K01590	0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+N-acetyl-leucine	K02429	0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+N-acetyl-leucine	K03897	0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+N-acetyl-leucine	K05358	-0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+N-acetyl-leucine	K06160	-0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+riboflavin	K09943	-0.9999999999999999	0.0	"      id kegg_id
+243  244  K09943"
+proline	K13694	0.9999999999999999	0.0	"        id kegg_id
+3139  3140  K13694"
+glutamine	K05358	0.9999999999999999	0.0	"        id kegg_id
+2847  2848  K05358"
+glutamine	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+glutamine	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+glutamine	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+glutamine	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+glutamine	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+glutamine	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+glutamine	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+glutamine	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+glutamine	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+uridine-5'-monophosphate	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+uridine-5'-monophosphate	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+uridine-5'-monophosphate	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+uridine-5'-monophosphate	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+tyrosine	K01210	0.9999999999999999	0.0	"        id kegg_id
+4279  4280  K01210"
+tyrosine	K01219	0.9999999999999999	0.0	"        id kegg_id
+6809  6810  K01219"
+tyrosine	K01531	0.9999999999999999	0.0	"      id kegg_id
+127  128  K01531"
+tyrosine	K03635	0.9999999999999999	0.0	"        id kegg_id
+1223  1224  K03635"
+tyrosine	K05597	0.9999999999999999	0.0	"        id kegg_id
+1907  1908  K05597"
+tyrosine	K06950	0.9999999999999999	0.0	"        id kegg_id
+1704  1705  K06950"
+tyrosine	K08978	0.9999999999999999	0.0	"        id kegg_id
+2835  2836  K08978"
+4-guanidinobutanoate	K06160	0.9999999999999999	0.0	"        id kegg_id
+1847  1848  K06160"
+4-guanidinobutanoate	K09815	0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+4-guanidinobutanoate	K12237	-0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+4-guanidinobutanoate	K16088	0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K09690	0.9999999999999999	0.0	"      id kegg_id
+265  266  K09690"
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K09691	0.9999999999999999	0.0	"      id kegg_id
+264  265  K09691"
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K00355	0.9999999999999999	0.0	"        id kegg_id
+2154  2155  K00355"
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K02358	0.9999999999999999	0.0	"      id kegg_id
+452  453  K02358"
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K03181	0.9999999999999999	0.0	"        id kegg_id
+3146  3147  K03181"
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K06199	0.9999999999999999	0.0	"        id kegg_id
+1186  1187  K06199"
+threonine isomers (coeluters: threonine, homoserine, allothreonine)	K09688	0.9999999999999999	0.0	"        id kegg_id
+6706  6707  K09688"
+tyrosine	K02441	0.9999999999999999	0.0	"        id kegg_id
+3626  3627  K02441"
+N-acetyl-leucine	K09815	-0.9999999999999999	0.0	"        id kegg_id
+2595  2596  K09815"
+N-acetyl-leucine	K12237	0.9999999999999999	0.0	"        id kegg_id
+8247  8248  K12237"
+N-acetyl-leucine	K16088	-0.9999999999999999	0.0	"        id kegg_id
+2404  2405  K16088"
+N-acetylputrescine	K00023	-0.9999999999999999	0.0	"        id kegg_id
+1071  1072  K00023"
+N-acetylputrescine	K00274	0.9999999999999999	0.0	"        id kegg_id
+5592  5593  K00274"
+N-acetylputrescine	K01590	-0.9999999999999999	0.0	"        id kegg_id
+5806  5807  K01590"
+N-acetylputrescine	K02429	-0.9999999999999999	0.0	"      id kegg_id
+309  310  K02429"
+N-acetylputrescine	K03897	-0.9999999999999999	0.0	"        id kegg_id
+3321  3322  K03897"
+pantothenic acid	K03895	0.9999999999999998	7.395570986446986e-32	"        id kegg_id
+3320  3321  K03895"
+3-hydroxy-3-methylglutarate	K03208	0.9999999999999997	2.958228394578794e-31	"        id kegg_id
+3061  3062  K03208"
+carnitine	K13629	0.9999999999999997	2.958228394578794e-31	"        id kegg_id
+4788  4789  K13629"
+lumichrome	K02472	0.9999999999999997	2.958228394578794e-31	"        id kegg_id
+4040  4041  K02472"
+lumichrome	K08485	0.9999999999999997	2.958228394578794e-31	"        id kegg_id
+3218  3219  K08485"
+lumichrome	K02784	0.9999999999999997	2.958228394578794e-31	"        id kegg_id
+3428  3429  K02784"
+riboflavin	K03208	0.9999999999999997	2.958228394578794e-31	"        id kegg_id
+3061  3062  K03208"
+2,3-dihydroxybenzoate	K00831	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+829  830  K00831"
+trans-4-hydroxyproline	K01611	0.7071067811865477	0.11611652351681548	"      id kegg_id
+853  854  K01611"
+trans-4-hydroxyproline	K00661	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2503  2504  K00661"
+4-acetamidobutanoate	K00831	0.7071067811865477	0.11611652351681548	"      id kegg_id
+829  830  K00831"
+4-acetamidobutanoate	K01048	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2157  2158  K01048"
+4-acetamidobutanoate	K02038	0.7071067811865477	0.11611652351681548	"      id kegg_id
+821  822  K02038"
+4-acetamidobutanoate	K02445	0.7071067811865477	0.11611652351681548	"        id kegg_id
+4518  4519  K02445"
+sarcosine	K12981	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4565  4566  K12981"
+taurine	K12988	0.7071067811865477	0.11611652351681548	"        id kegg_id
+7084  7085  K12988"
+taurine	K12993	0.7071067811865477	0.11611652351681548	"        id kegg_id
+6734  6735  K12993"
+taurine	K12994	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3888  3889  K12994"
+2,3-dihydroxybenzoate	K02038	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+821  822  K02038"
+2,3-dihydroxybenzoate	K06986	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+5782  5783  K06986"
+2,3-dihydroxybenzoate	K14335	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3974  3975  K14335"
+2,3-dihydroxybenzoate	K02445	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4518  4519  K02445"
+trans-4-hydroxyproline	K12988	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+7084  7085  K12988"
+trans-4-hydroxyproline	K03606	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2116  2117  K03606"
+sarcosine	K03760	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+2390  2391  K03760"
+sarcosine	K02363	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3849  3850  K02363"
+sarcosine	K01141	0.7071067811865477	0.11611652351681548	"      id kegg_id
+970  971  K01141"
+sarcosine	K01071	0.7071067811865477	0.11611652351681548	"        id kegg_id
+4388  4389  K01071"
+sarcosine	K00661	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2503  2504  K00661"
+thymidine	K01048	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+2157  2158  K01048"
+sarcosine	K07089	0.7071067811865477	0.11611652351681548	"        id kegg_id
+1753  1754  K07089"
+sarcosine	K00209	0.7071067811865477	0.11611652351681548	"        id kegg_id
+1001  1002  K00209"
+N-acetyl-aspartic acid	K07806	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4800  4801  K07806"
+N-acetyl-aspartic acid	K15894	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3297  3298  K15894"
+isoleucine	K01141	0.7071067811865477	0.11611652351681548	"      id kegg_id
+970  971  K01141"
+isoleucine	K12981	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4565  4566  K12981"
+guanosine 3',5'-cyclic monophosphate	K02445	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4518  4519  K02445"
+Hypoxanthine	K18072	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+8079  8080  K18072"
+sarcosine	K09795	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2898  2899  K09795"
+sarcosine	K07677	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3787  3788  K07677"
+guanosine 3',5'-cyclic monophosphate	K14335	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3974  3975  K14335"
+guanosine 3',5'-cyclic monophosphate	K06986	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+5782  5783  K06986"
+salicylate	K01048	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2157  2158  K01048"
+Hypoxanthine	K07264	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4797  4798  K07264"
+Hypoxanthine	K15894	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3297  3298  K15894"
+Hypoxanthine	K07806	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4800  4801  K07806"
+Xanthine	K03760	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+2390  2391  K03760"
+Xanthine	K07089	0.7071067811865477	0.11611652351681548	"        id kegg_id
+1753  1754  K07089"
+Xanthine	K07334	0.7071067811865477	0.11611652351681548	"      id kegg_id
+295  296  K07334"
+Xanthine	K07677	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3787  3788  K07677"
+Xanthine	K09795	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2898  2899  K09795"
+Xanthine	K12988	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+7084  7085  K12988"
+N-alpha-acetyl-asparagine	K02613	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3837  3838  K02613"
+guanosine 3',5'-cyclic monophosphate	K05710	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+547  548  K05710"
+N-acetyl-aspartic acid	K01048	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2157  2158  K01048"
+N-acetyl-aspartic acid	K18072	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+8079  8080  K18072"
+N-alpha-acetyl-asparagine	K12994	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3888  3889  K12994"
+N-alpha-acetyl-asparagine	K12993	0.7071067811865477	0.11611652351681548	"        id kegg_id
+6734  6735  K12993"
+N-alpha-acetyl-asparagine	K07334	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+295  296  K07334"
+N-alpha-acetyl-asparagine	K21498	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+296  297  K21498"
+Xanthine	K02363	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3849  3850  K02363"
+biotin	K01141	0.7071067811865477	0.11611652351681548	"      id kegg_id
+970  971  K01141"
+Xanthine	K01071	0.7071067811865477	0.11611652351681548	"        id kegg_id
+4388  4389  K01071"
+Xanthine	K00209	0.7071067811865477	0.11611652351681548	"        id kegg_id
+1001  1002  K00209"
+lactate	K18457	0.7071067811865477	0.11611652351681548	"        id kegg_id
+5643  5644  K18457"
+biotin	K02613	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3837  3838  K02613"
+lactate	K06887	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3790  3791  K06887"
+lactate	K07169	0.7071067811865477	0.11611652351681548	"        id kegg_id
+4533  4534  K07169"
+lactate	K11913	0.7071067811865477	0.11611652351681548	"        id kegg_id
+4534  4535  K11913"
+lactate	K11936	0.7071067811865477	0.11611652351681548	"      id kegg_id
+997  998  K11936"
+lactate	K11937	0.7071067811865477	0.11611652351681548	"        id kegg_id
+4976  4977  K11937"
+myo-inositol	K14335	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3974  3975  K14335"
+N-alpha-acetyl-asparagine	K00661	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2503  2504  K00661"
+myo-inositol	K00831	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+829  830  K00831"
+myo-inositol	K02038	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+821  822  K02038"
+myo-inositol	K02445	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4518  4519  K02445"
+myo-inositol	K05710	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+547  548  K05710"
+myo-inositol	K06986	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+5782  5783  K06986"
+anthranilate	K05710	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+547  548  K05710"
+anthranilate	K06986	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+5782  5783  K06986"
+anthranilate	K14335	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3974  3975  K14335"
+methionine	K12981	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4565  4566  K12981"
+Xanthine	K12993	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+6734  6735  K12993"
+Xanthine	K12994	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3888  3889  K12994"
+Xanthine	K21498	0.7071067811865477	0.11611652351681548	"      id kegg_id
+296  297  K21498"
+anthranilate	K00831	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+829  830  K00831"
+anthranilate	K02038	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+821  822  K02038"
+N-acetyl-aspartic acid	K07264	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4797  4798  K07264"
+anthranilate	K02445	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4518  4519  K02445"
+lysine	K07677	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3787  3788  K07677"
+lysine	K12981	0.7071067811865477	0.11611652351681548	"        id kegg_id
+4565  4566  K12981"
+lysine	K09795	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+2898  2899  K09795"
+lysine	K12994	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3888  3889  K12994"
+methionine	K01141	0.7071067811865477	0.11611652351681548	"      id kegg_id
+970  971  K01141"
+lysine	K00209	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+1001  1002  K00209"
+lysine	K12993	0.7071067811865477	0.11611652351681548	"        id kegg_id
+6734  6735  K12993"
+lysine	K01071	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4388  4389  K01071"
+lysine	K01141	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+970  971  K01141"
+lysine	K02363	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3849  3850  K02363"
+lysine	K01611	0.7071067811865477	0.11611652351681548	"      id kegg_id
+853  854  K01611"
+lysine	K03606	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2116  2117  K03606"
+lysine	K03760	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2390  2391  K03760"
+lysine	K07089	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+1753  1754  K07089"
+carnosine	K01141	0.7071067811865477	0.11611652351681548	"      id kegg_id
+970  971  K01141"
+carnosine	K12981	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4565  4566  K12981"
+biotin	K12981	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4565  4566  K12981"
+biotin	K12993	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+6734  6735  K12993"
+biotin	K12994	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3888  3889  K12994"
+thymine	K03606	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2116  2117  K03606"
+thymine	K03760	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2390  2391  K03760"
+thymine	K07089	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+1753  1754  K07089"
+thymine	K07677	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3787  3788  K07677"
+thymine	K09795	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+2898  2899  K09795"
+thymine	K12981	0.7071067811865477	0.11611652351681548	"        id kegg_id
+4565  4566  K12981"
+thymine	K12993	0.7071067811865477	0.11611652351681548	"        id kegg_id
+6734  6735  K12993"
+thymine	K12994	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3888  3889  K12994"
+thymine	K00209	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+1001  1002  K00209"
+thymine	K01071	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4388  4389  K01071"
+thymine	K01141	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+970  971  K01141"
+thymine	K01611	0.7071067811865477	0.11611652351681548	"      id kegg_id
+853  854  K01611"
+thymine	K02363	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3849  3850  K02363"
+4-hydroxy-2-quinolinecarboxylic acid	K07089	0.7071067811865477	0.11611652351681548	"        id kegg_id
+1753  1754  K07089"
+4-hydroxy-2-quinolinecarboxylic acid	K07677	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3787  3788  K07677"
+4-hydroxy-2-quinolinecarboxylic acid	K09795	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2898  2899  K09795"
+4-hydroxy-2-quinolinecarboxylic acid	K12981	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4565  4566  K12981"
+4-hydroxy-2-quinolinecarboxylic acid	K00209	0.7071067811865477	0.11611652351681548	"        id kegg_id
+1001  1002  K00209"
+4-hydroxy-2-quinolinecarboxylic acid	K00661	0.7071067811865477	0.11611652351681548	"        id kegg_id
+2503  2504  K00661"
+4-hydroxy-2-quinolinecarboxylic acid	K01071	0.7071067811865477	0.11611652351681548	"        id kegg_id
+4388  4389  K01071"
+4-hydroxy-2-quinolinecarboxylic acid	K01141	0.7071067811865477	0.11611652351681548	"      id kegg_id
+970  971  K01141"
+4-hydroxy-2-quinolinecarboxylic acid	K02363	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3849  3850  K02363"
+4-hydroxy-2-quinolinecarboxylic acid	K03760	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+2390  2391  K03760"
+cytidine 5?-monophosphate	K05710	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+547  548  K05710"
+cytidine 5?-monophosphate	K06986	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+5782  5783  K06986"
+cytidine 5?-monophosphate	K14335	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3974  3975  K14335"
+guanosine 3',5'-cyclic monophosphate	K00831	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+829  830  K00831"
+guanosine 3',5'-cyclic monophosphate	K02038	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+821  822  K02038"
+cytidine 2',3'-cyclic monophosphate	K02613	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3837  3838  K02613"
+cytidine 2',3'-cyclic monophosphate	K12981	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4565  4566  K12981"
+cytidine 2',3'-cyclic monophosphate	K12993	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+6734  6735  K12993"
+cytidine 2',3'-cyclic monophosphate	K12994	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3888  3889  K12994"
+cytidine 5?-monophosphate	K00831	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+829  830  K00831"
+cytidine 5?-monophosphate	K02038	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+821  822  K02038"
+cytidine 5?-monophosphate	K02445	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4518  4519  K02445"
+2,3-dihydroxybenzoate	K05710	-0.7071067811865477	0.11611652351681548	"      id kegg_id
+547  548  K05710"
+cytidine 2',3'-cyclic monophosphate	K01141	0.7071067811865477	0.11611652351681548	"      id kegg_id
+970  971  K01141"
+4-acetamidobutanoate	K05710	0.7071067811865477	0.11611652351681548	"      id kegg_id
+547  548  K05710"
+4-acetamidobutanoate	K06986	0.7071067811865477	0.11611652351681548	"        id kegg_id
+5782  5783  K06986"
+4-acetamidobutanoate	K07264	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4797  4798  K07264"
+4-acetamidobutanoate	K07806	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+4800  4801  K07806"
+4-acetamidobutanoate	K14335	0.7071067811865477	0.11611652351681548	"        id kegg_id
+3974  3975  K14335"
+4-acetamidobutanoate	K15894	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+3297  3298  K15894"
+4-acetamidobutanoate	K18072	-0.7071067811865477	0.11611652351681548	"        id kegg_id
+8079  8080  K18072"
+4-acetamidobutanoate	K13629	0.7071067811865476	0.11611652351681565	"        id kegg_id
+4788  4789  K13629"
+trigonelline	K13629	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4788  4789  K13629"
+trimethyllysine	K00661	0.7071067811865476	0.11611652351681565	"        id kegg_id
+2503  2504  K00661"
+trimethyllysine	K01141	0.7071067811865476	0.11611652351681565	"      id kegg_id
+970  971  K01141"
+trimethyllysine	K07334	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+295  296  K07334"
+trimethyllysine	K12981	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4565  4566  K12981"
+trimethyllysine	K21498	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+296  297  K21498"
+cytidine 5?-monophosphate	K03208	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3061  3062  K03208"
+cytidine 5?-monophosphate	K03895	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3320  3321  K03895"
+cytidine 5?-monophosphate	K09943	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+243  244  K09943"
+cytidine 5?-monophosphate	K19157	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2585  2586  K19157"
+thymidine	K09943	0.7071067811865476	0.11611652351681565	"      id kegg_id
+243  244  K09943"
+thymidine	K12238	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+5019  5020  K12238"
+5-aminopentanoate	K01141	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+970  971  K01141"
+5-aminopentanoate	K02613	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3837  3838  K02613"
+5-aminopentanoate	K12981	0.7071067811865476	0.11611652351681565	"        id kegg_id
+4565  4566  K12981"
+5-aminopentanoate	K12988	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+7084  7085  K12988"
+Hypoxanthine	K01851	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3622  3623  K01851"
+Hypoxanthine	K02361	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3623  3624  K02361"
+thymidine	K13629	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4788  4789  K13629"
+carnitine	K00661	0.7071067811865476	0.11611652351681565	"        id kegg_id
+2503  2504  K00661"
+carnitine	K01611	0.7071067811865476	0.11611652351681565	"      id kegg_id
+853  854  K01611"
+carnitine	K03606	0.7071067811865476	0.11611652351681565	"        id kegg_id
+2116  2117  K03606"
+carnitine	K12993	0.7071067811865476	0.11611652351681565	"        id kegg_id
+6734  6735  K12993"
+carnitine	K12994	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3888  3889  K12994"
+carnosine	K01611	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+853  854  K01611"
+carnosine	K03606	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2116  2117  K03606"
+carnosine	K07334	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+295  296  K07334"
+carnosine	K12988	0.7071067811865476	0.11611652351681565	"        id kegg_id
+7084  7085  K12988"
+carnosine	K21498	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+296  297  K21498"
+methionine	K01611	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+853  854  K01611"
+methionine	K03606	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2116  2117  K03606"
+methionine	K07334	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+295  296  K07334"
+anthranilate	K03208	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3061  3062  K03208"
+anthranilate	K03895	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3320  3321  K03895"
+anthranilate	K09943	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+243  244  K09943"
+anthranilate	K19157	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2585  2586  K19157"
+methionine	K12988	0.7071067811865476	0.11611652351681565	"        id kegg_id
+7084  7085  K12988"
+methionine	K21498	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+296  297  K21498"
+myo-inositol	K03208	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3061  3062  K03208"
+myo-inositol	K03895	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3320  3321  K03895"
+myo-inositol	K09943	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+243  244  K09943"
+myo-inositol	K19157	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2585  2586  K19157"
+ornithine	K00661	0.7071067811865476	0.11611652351681565	"        id kegg_id
+2503  2504  K00661"
+ornithine	K01141	0.7071067811865476	0.11611652351681565	"      id kegg_id
+970  971  K01141"
+ornithine	K07334	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+295  296  K07334"
+ornithine	K12981	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4565  4566  K12981"
+coeluting isomers (arabitol, ribitol, xilitol)	K03760	0.7071067811865476	0.11611652351681565	"        id kegg_id
+2390  2391  K03760"
+coeluting isomers (arabitol, ribitol, xilitol)	K07089	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+1753  1754  K07089"
+coeluting isomers (arabitol, ribitol, xilitol)	K07334	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+295  296  K07334"
+coeluting isomers (arabitol, ribitol, xilitol)	K07677	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3787  3788  K07677"
+coeluting isomers (arabitol, ribitol, xilitol)	K09795	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2898  2899  K09795"
+coeluting isomers (arabitol, ribitol, xilitol)	K12988	0.7071067811865476	0.11611652351681565	"        id kegg_id
+7084  7085  K12988"
+coeluting isomers (arabitol, ribitol, xilitol)	K12993	0.7071067811865476	0.11611652351681565	"        id kegg_id
+6734  6735  K12993"
+coeluting isomers (arabitol, ribitol, xilitol)	K12994	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3888  3889  K12994"
+coeluting isomers (arabitol, ribitol, xilitol)	K21498	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+296  297  K21498"
+lactate	K08485	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3218  3219  K08485"
+lactate	K09943	0.7071067811865476	0.11611652351681565	"      id kegg_id
+243  244  K09943"
+lumichrome	K00209	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+1001  1002  K00209"
+lumichrome	K01071	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4388  4389  K01071"
+lumichrome	K01611	0.7071067811865476	0.11611652351681565	"      id kegg_id
+853  854  K01611"
+lumichrome	K02363	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3849  3850  K02363"
+lumichrome	K02613	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3837  3838  K02613"
+lumichrome	K03606	0.7071067811865476	0.11611652351681565	"        id kegg_id
+2116  2117  K03606"
+lumichrome	K03760	0.7071067811865476	0.11611652351681565	"        id kegg_id
+2390  2391  K03760"
+lumichrome	K07089	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+1753  1754  K07089"
+lumichrome	K07677	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3787  3788  K07677"
+lumichrome	K09795	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2898  2899  K09795"
+ornithine	K21498	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+296  297  K21498"
+pantothenic acid	K01141	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+970  971  K01141"
+pantothenic acid	K02613	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3837  3838  K02613"
+pantothenic acid	K12981	0.7071067811865476	0.11611652351681565	"        id kegg_id
+4565  4566  K12981"
+pantothenic acid	K12993	0.7071067811865476	0.11611652351681565	"        id kegg_id
+6734  6735  K12993"
+pantothenic acid	K12994	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3888  3889  K12994"
+riboflavin	K01141	0.7071067811865476	0.11611652351681565	"      id kegg_id
+970  971  K01141"
+riboflavin	K02613	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3837  3838  K02613"
+riboflavin	K12981	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4565  4566  K12981"
+riboflavin	K12988	0.7071067811865476	0.11611652351681565	"        id kegg_id
+7084  7085  K12988"
+salicylate	K01851	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3622  3623  K01851"
+Hypoxanthine	K12238	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+5019  5020  K12238"
+guanosine 3',5'-cyclic monophosphate	K03208	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3061  3062  K03208"
+guanosine 3',5'-cyclic monophosphate	K03895	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3320  3321  K03895"
+guanosine 3',5'-cyclic monophosphate	K09943	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+243  244  K09943"
+guanosine 3',5'-cyclic monophosphate	K19157	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2585  2586  K19157"
+homogentisate	K01611	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+853  854  K01611"
+homogentisate	K02613	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3837  3838  K02613"
+homogentisate	K03606	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2116  2117  K03606"
+homogentisate	K07334	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+295  296  K07334"
+homogentisate	K21498	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+296  297  K21498"
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K00661	0.7071067811865476	0.11611652351681565	"        id kegg_id
+2503  2504  K00661"
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K01141	0.7071067811865476	0.11611652351681565	"      id kegg_id
+970  971  K01141"
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K07334	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+295  296  K07334"
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K12981	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4565  4566  K12981"
+hydroxybutyric acids (coeluting isomers: 2-hydroxybutyric acid, alpha-hydroxyisobutyric acid)	K21498	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+296  297  K21498"
+isoleucine	K01611	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+853  854  K01611"
+isoleucine	K03606	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2116  2117  K03606"
+isoleucine	K07334	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+295  296  K07334"
+isoleucine	K12988	0.7071067811865476	0.11611652351681565	"        id kegg_id
+7084  7085  K12988"
+isoleucine	K21498	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+296  297  K21498"
+lactate	K02472	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4040  4041  K02472"
+lactate	K02784	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3428  3429  K02784"
+lactate	K03208	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3061  3062  K03208"
+lactate	K03895	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3320  3321  K03895"
+coeluting isomers (arabitol, ribitol, xilitol)	K00209	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+1001  1002  K00209"
+coeluting isomers (arabitol, ribitol, xilitol)	K01071	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4388  4389  K01071"
+coeluting isomers (arabitol, ribitol, xilitol)	K02363	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3849  3850  K02363"
+Hypoxanthine	K19157	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2585  2586  K19157"
+N-acetyl-aspartic acid	K03208	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3061  3062  K03208"
+N-acetyl-aspartic acid	K09943	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+243  244  K09943"
+N-acetyl-aspartic acid	K19157	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2585  2586  K19157"
+salicylate	K02361	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3623  3624  K02361"
+salicylate	K03208	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3061  3062  K03208"
+salicylate	K09943	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+243  244  K09943"
+salicylate	K12238	0.7071067811865476	0.11611652351681565	"        id kegg_id
+5019  5020  K12238"
+salicylate	K13629	0.7071067811865476	0.11611652351681565	"        id kegg_id
+4788  4789  K13629"
+thymidine	K01851	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3622  3623  K01851"
+thymidine	K02361	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3623  3624  K02361"
+thymidine	K03208	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3061  3062  K03208"
+4-acetamidobutanoate	K03895	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3320  3321  K03895"
+3-hydroxy-3-methylglutarate	K12988	0.7071067811865476	0.11611652351681565	"        id kegg_id
+7084  7085  K12988"
+3-hydroxy-3-methylglutarate	K12981	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+4565  4566  K12981"
+3-hydroxy-3-methylglutarate	K02613	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3837  3838  K02613"
+2,3-dihydroxybenzoate	K03895	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+3320  3321  K03895"
+2,3-dihydroxybenzoate	K03208	0.7071067811865476	0.11611652351681565	"        id kegg_id
+3061  3062  K03208"
+3-hydroxy-3-methylglutarate	K01141	0.7071067811865476	0.11611652351681565	"      id kegg_id
+970  971  K01141"
+2,3-dihydroxybenzoate	K19157	-0.7071067811865476	0.11611652351681565	"        id kegg_id
+2585  2586  K19157"
+2,3-dihydroxybenzoate	K09943	-0.7071067811865476	0.11611652351681565	"      id kegg_id
+243  244  K09943"
+valine	K13629	0.7071067811865476	0.11611652351681565	"        id kegg_id
+4788  4789  K13629"
