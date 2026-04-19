@@ -6,7 +6,7 @@ Can we predict bacterial growth phenotype — at multiple resolutions from binar
 
 ## Status
 
-**In Progress** — Act I complete (NB00-NB04). Act I synthesis in [Report](REPORT.md). Starting Act II (feature engineering, variance partitioning, modeling).
+**In Progress** — Act I complete (NB00-NB04). Act II preliminary results (NB05-NB07). NB07 revision underway: full-corpus modeling with 67K training pairs, genus-level blocked holdout, per-condition analysis. See [Report](REPORT.md).
 
 ## Context
 

@@ -366,25 +366,30 @@ The project is organized into three acts. Each notebook produces a standalone de
   - **Taxonomy-only baseline**: Predict from GTDB genus alone (majority vote by genus). This is the "phylogeny explains everything" null.
 - **Output**: `data/variance_partition.tsv`, `data/shap_importance.tsv`, `data/fb_concordance.tsv`, `data/model_predictions.tsv`, figures (stacked bar of incremental R², SHAP beeswarm, accuracy-vs-concordance scatter, per-condition-class feature importance).
 
-#### NB07: Condition-specific prediction via GapMind baseline + CSP pretraining + interaction features
-- **Goal**: Build the predictor that works for NEW genomes on SPECIFIC conditions — the core project deliverable. NB06 showed that genome-scale features dominate with n=7; NB07 overcomes this by adding condition-aware features and expanding training data.
-- **Method — GapMind baseline** (amino acid + carbon source conditions only):
-  - For each (genome, condition) pair where GapMind has a relevant pathway, predict growth from pathway completeness score. This asks "does this genome have the pathway for this condition?" — mechanistic, interpretable, condition-specific.
-  - For the ~32 pangenome-linked strains with GapMind data, evaluate against the measured growth curves.
-  - Expected: high precision (pathway complete → usually grows), moderate recall (missing pathway ≠ always no-growth due to alternative pathways), zero coverage for metals/antibiotics.
-- **Method — CSP-pretrained GBDT with condition-aware features**:
-  - Train LightGBM on the 795-genome CSP corpus (53K binary labels, KofamScan KO features).
-  - Key innovation: **KO × condition interaction features** — for each (genome, condition), compute "number of KOs in the KEGG module relevant to this condition" using KEGG module → KO mappings. This transforms generic KO presence into condition-specific predictions.
-  - Apply to ENIGMA strains by mapping depot KO annotations to KofamScan KO space.
-  - Compare: CSP-pretrained vs. ENIGMA-only vs. GapMind baseline.
+#### NB07 (revised): Full-corpus modeling with proper validation
+- **Goal**: Build a predictor that works for NEW genomes on SPECIFIC conditions using ALL available training data — the core project deliverable. Prior NB07 was preliminary (n=7 artificial bottleneck). This revision uses the full corpus.
+- **Training data**: Pool 123 ENIGMA strains (13,632 (strain x condition) pairs with binary growth + 9,861 pairs with continuous parameters) + 795 CSP genomes (53K binary growth labels) in a shared KO feature space (6,360 KOs shared between genome depot and KofamScan). Total: ~67K binary training pairs for the largest model.
+- **Method — Full-corpus GBDT with KO x condition interaction features**:
+  - Build shared KO feature space: map depot integer KO IDs to KEGG K-numbers (via `browser_kegg_ortholog`), intersect with CSP KofamScan K-numbers. Prevalence-filter to ~4,300 informative KOs.
+  - **KO x condition interaction features**: For each (genome, condition) pair, compute features: (a) "number of KOs in the KEGG module for this condition" via KEGG module → KO mappings, (b) GapMind pathway completeness score (where available), (c) condition class indicator × genome scalar interactions.
+  - Train LightGBM on the pooled corpus with these interaction features.
+  - **Genus-level blocked holdout**: Train on all genera except one, predict the held-out genus. With 20+ genera across ENIGMA + CSP, this tests whether KO features generalize beyond phylogeny. Report AUC/accuracy per held-out genus.
+  - **Per-condition analysis**: For each of the 72 ENIGMA conditions and the 59 CSP conditions, report prediction accuracy separately. Identify which conditions are well-predicted vs. poorly predicted and why.
+- **Method — SHAP per condition class**:
+  - On the full model, compute SHAP values grouped by condition class (amino acid, carbon source, metal, antibiotic, nitrogen, nucleoside, other).
+  - Report top-10 SHAP features per condition class with KEGG annotations. This is the mechanistic insight: which KOs matter for growth on amino acids vs. carbon sources vs. metals?
+  - Use correlation grouping (from NB06) to aggregate SHAP across co-inherited KO blocks.
 - **Method — Continuous parameter prediction**:
-  - After validating binary growth with CSP pretraining, train regression models for µmax/lag/yield.
-  - Two approaches: (a) CSP binary → fine-tune on ENIGMA continuous, (b) train directly on ENIGMA continuous with CSP-derived KO importance as feature weights.
+  - Train regression GBDT on ENIGMA's 9,861 fit-ok curves (µmax, lag, max_A) using the same feature set.
+  - Use genus-level blocked holdout. With 123 strains across 20+ genera (vs. n=7 in preliminary NB06), the regression task has much more statistical power.
+- **Method — GapMind comparison**:
+  - On the subset of conditions with GapMind pathway matches, compare GapMind pathway completeness score vs. full-corpus GBDT. Does the mechanistic baseline outperform, match, or underperform the data-driven model?
 - **Method — FB concordance validation**:
-  - For the best-performing model, compute FB concordance on the 7 anchor strains.
-  - Map top-SHAP KOs to FB loci via `fb_pangenome_link.tsv`.
-  - Test: do condition-specific predictive KOs show significant fitness effects under matched FB conditions?
-- **Output**: `data/gapmind_predictions.tsv`, `data/csp_transfer_results.tsv`, `data/fb_concordance.tsv`, comparison figures, per-condition confidence scores.
+  - The 7 FB-anchor strains serve as a VALIDATION set (not training).
+  - After training on the full corpus (excluding FB-anchor strains or with them included), extract top SHAP features for predictions on these 7 strains.
+  - Map KOs to FB loci via `fb_pangenome_link.tsv`. Compute concordance = fraction with |t| > 4 in matched FB experiments.
+  - Report concordance per condition class and per model variant.
+- **Output**: `data/full_corpus_results.tsv`, `data/per_condition_accuracy.tsv`, `data/shap_per_condition_class.tsv`, `data/continuous_predictions.tsv`, `data/fb_concordance.tsv`, figures (genus holdout, per-condition heatmap, SHAP per condition class, accuracy vs. concordance).
 
 #### NB08: WoM exometabolomic prediction (pilot)
 - **Goal**: For the 6 WoM-profiled strains, test whether growth-predictive KOs also predict metabolite production.
@@ -484,6 +489,12 @@ NB01 found 35.7% of curves pass fit_ok (R²>0.8, RMSE<10% OD range). If this pro
 - **Smooth QC**: Replace hard pass/fail with a continuous quality weight in the loss function (low-R² curves get down-weighted, not excluded).
 
 ## Revision History
+
+- **v6** (2026-04-19): Full-corpus modeling + honest gap assessment.
+  - **Critical reframing**: The n=7 anchor set was an artificial bottleneck. Training should use ALL 123 ENIGMA strains (13,632 pairs) + 795 CSP genomes (53K pairs) = ~67K total training pairs. The 7 FB-anchor strains serve as the VALIDATION set for biological meaningfulness (FB concordance), not as training data.
+  - **NB07 completely revised**: Now includes full-corpus GBDT, genus-level blocked holdout, KO x condition interaction features, per-condition accuracy analysis, SHAP per condition class, continuous parameter prediction (µmax, lag, yield), GapMind comparison, and FB concordance on validation set.
+  - **Honest gap assessment**: Acknowledged that current NB06-NB07 are preliminary — genome-scale and condition-class dominate with n=7, but proper cross-genus holdout on 67K pairs with interaction features is needed to test condition-specific prediction.
+  - **NB08 (WoM) and Act III (active learning) deferred** to focus on getting NB07 right.
 
 - **v5** (2026-04-18): Act II methodology revision — GBDT-throughout, no PCA.
   - **Merged NB06+NB07+NB08 into NB06**: Variance partitioning, SHAP, and FB concordance are now one notebook. All use GBDT (LightGBM) — no linear models, no PCA. The incremental R² from nested GBDT models (M0→M3) replaces the planned linear variance decomposition. Non-linear effects (gene interactions, threshold responses) are captured at every level.

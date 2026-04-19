@@ -84,43 +84,69 @@ Matching ENIGMA strains to the BERDL pangenome via `ncbi_strain_identifiers` cau
 
 *(Notebooks: NB04_environmental_context.ipynb)*
 
-### Act II — Predict and Explain (in progress)
+### Act II — Predict and Explain (preliminary results)
 
-#### 7. A 4-level feature hierarchy with 4,305 prevalence-filtered KOs is assembled for GBDT modeling
+**Status note**: Act II produced useful diagnostic results and initial models but the modeling work is preliminary. Key planned analyses — KO x condition interaction features, per-condition prediction quality, cross-genus holdout validation, continuous parameter prediction, and FB concordance — remain to be done. The findings below represent first-pass explorations that frame the right questions, not definitive answers.
+
+#### 7. Feature engineering: 4,305 prevalence-filtered KOs preserve interpretability
 
 ![Feature summary](figures/NB05_feature_summary.png)
 
-The modeling table comprises 486 anchor pairs (7 strains x 72 conditions) with features organized into four hierarchical levels: **L0 Phylogeny** (28 features: GTDB order + metabolic guild), **L1 Bulk scalars** (8 features: genome size, gene count, contigs, unique KOs, coding density, operons, rRNA/tRNA copies), **L2 Specific features** (4,328 features: 4,305 prevalence-filtered KOs + 23 COG class counts), and **L3 Condition** (7 features: condition class + log concentration). Total: 4,371 features.
+The modeling table comprises 486 anchor pairs (7 strains x 72 conditions) with features organized into four hierarchical levels: L0 Phylogeny (28), L1 Bulk scalars (8), L2 Specific features (4,305 prevalence-filtered KOs + 23 COG classes), and L3 Condition class + concentration (7). KO selection uses a principled prevalence filter: remove 456 core KOs (p > 0.95, no discriminative power) and 2,406 rare KOs (p < 0.05, too sparse), retaining 4,305 informative KOs as named KEGG orthologs for SHAP interpretability. No PCA — every feature is a named KO.
 
 ![KO prevalence filter](figures/NB05_ko_prevalence_filter.png)
 
-KO feature selection uses a principled prevalence filter: remove 456 core KOs (present in >95% of strains — no discriminative power) and 2,406 rare KOs (present in <5% — too sparse for statistical learning), retaining 4,305 informative KOs. No PCA is applied — every feature is a named KEGG ortholog with functional annotation, preserving interpretability for SHAP analysis. LightGBM handles the 4,305-dimensional space via tree-based regularization (feature subsampling, leaf constraints).
-
 ![Target distributions](figures/NB05_target_distributions.png)
-
-Prediction targets: binary growth (275/486 = 56.6% positive) and continuous parameters (mumax, lag, max_A, AUC). Leave-one-strain-out CV uses 7 folds: 4 Pseudomonas_E, 1 Cupriavidus, 1 Acidovorax, 1 Pedobacter — testing both within-genus and cross-genus generalization.
 
 *(Notebook: NB05_feature_engineering.ipynb)*
 
-#### 8. Genome scale and condition class dominate growth prediction; specific KOs contribute mechanistically interpretable but smaller signals
+#### 8. Initial variance partitioning: genome scale + condition class dominate with n=7
 
 ![Variance partitioning](figures/NB06_variance_partition.png)
 
-Nested GBDT models (LightGBM, leave-one-strain-out CV, 486 anchor pairs) reveal that binary growth prediction achieves AUC 0.633 with the full feature set (M3). **Condition class is the biggest single AUC contributor** (+0.13), but SHAP analysis tells a different story: KO features collectively carry 40.6% of feature importance despite only +0.02 incremental AUC — because KOs are correlated with phylogeny and genome size that already capture some of the same signal.
+Nested GBDT models (LightGBM, leave-one-strain-out CV, 486 pairs) achieve AUC 0.633 (binary growth) with the full feature set. SHAP analysis with correlation grouping (|r| > 0.8 connected components) reveals the signal is dominated by a **63-feature genome-scale axis** (25.3% of total SHAP: genome size, gene count, operons, rRNA/tRNA, and co-inherited KOs/COGs) and **condition class** (45.9%: amino acid, carbon source, metal, etc.). Specific KO gene blocks — membrane adaptation, tRNA modification, aromatic catabolism, flagellar motility — contribute ~2% each but are biologically coherent.
 
 ![Group-level SHAP importance](figures/NB06_group_shap.png)
-
-**Correlation grouping** (connected components at |r| > 0.8) resolves this discrepancy. The top predictor group is a 63-feature "genome scale axis" (spanning genome size, gene count, operons, rRNA/tRNA copies, and dozens of co-inherited KOs and COG classes) accounting for **25.3%** of total SHAP importance. Condition class features account for 45.9% collectively. Specific mechanistic KO gene blocks — membrane/fatty acid adaptation (K00507 stearoyl-CoA desaturase, 7 KOs, 2.1%), tRNA modification (K14058 TtcA, 3 KOs, 2.0%), aromatic catabolism (K01609 protocatechuate, 9 KOs, 1.7%), and flagellar motility (K02397 FlgL, 5 KOs, 1.5%) — are individually small but biologically coherent.
 
 ![Top 20 SHAP features](figures/NB06_shap_top20.png)
 
 ![Feature correlation matrix](figures/NB06_feature_correlation.png)
 
-**Continuous growth parameters** (mumax, lag, max_A) show negative R^2 — the model cannot predict cross-strain kinetics with only 7 training strains. Each held-out strain has a unique baseline growth rate that overfits the training set. **This is a data scarcity bottleneck, not a feature failure**, and directly motivates expanding the training set via CSP pretraining (NB07).
+Continuous targets (mumax, lag, max_A) show negative R^2 — not predictable cross-strain with n=7.
 
-**Critical implication for the project goal**: The current model predicts "big genomes grow on amino acids/carbon sources" — which is biologically real but not condition-specific. For a NEW genome, it doesn't ask "does this genome have the lactate utilization pathway?" It just asks "is this genome big?" To build a condition-specific predictor that works for new genomes, we need (a) condition-aware features (e.g., GapMind pathway completeness for the tested condition) and (b) more training data to learn KO x condition interactions (the 795-genome CSP corpus).
+**Limitation**: This analysis uses leave-one-strain-out on 7 strains (4 Pseudomonas_E, 1 each Cupriavidus, Acidovorax, Pedobacter). It does NOT test cross-genus generalization (e.g., train on Pseudomonas, predict Pedobacter), does NOT analyze per-condition prediction quality, and does NOT use condition-specific features. The model effectively learns "big genomes grow on amino acids" — biologically real but not the condition-specific prediction needed for practical use.
 
-*(Notebooks: NB05_feature_engineering.ipynb, NB06_variance_partition.ipynb)*
+*(Notebook: NB06_variance_partition.ipynb)*
+
+#### 9. Preliminary condition-specific models: GapMind and CSP transfer show promise on matched conditions
+
+![Model comparison](figures/NB07_model_comparison.png)
+
+Three approaches were compared for binary growth prediction:
+
+| Model | AUC | Accuracy | Coverage | What it tests |
+|---|---|---|---|---|
+| ENIGMA-only GBDT (NB06) | 0.633 | — | 100% | Generic KO features, n=7 |
+| GapMind baseline | 0.646 | 78.8% | 24.3% | Pathway completeness for AA/carbon |
+| CSP transfer (matched) | 0.800 | 76.8% | 23% | CSP-trained KOs on matched conditions |
+| CSP internal (5-fold) | 0.858 | — | CSP | Achievable ceiling with sufficient data |
+
+GapMind achieves 96.5% recall and 79% precision on 118 testable pairs — it almost never misses a grower but sometimes predicts growth when the pathway is present but unused. CSP transfer reaches AUC 0.800 on the 23% of conditions that match the CSP training set.
+
+![Coverage gap](figures/NB07_coverage_gap.png)
+
+**The coverage gap**: ~76% of ENIGMA conditions (metals, antibiotics, nitrogen, stress) have neither GapMind pathway coverage nor CSP training data. Prediction on these conditions falls to AUC ~0.63 (no better than generic KO features).
+
+**What this analysis does NOT include** (planned but not yet executed):
+- KO x condition interaction features (the key innovation that would make predictions condition-specific)
+- Cross-genus holdout (train on Pseudomonas, test on Pedobacter/Acidovorax/Cupriavidus)
+- Per-condition accuracy breakdown (which specific conditions are predictable?)
+- SHAP analysis on CSP model (which KOs matter for which conditions?)
+- Continuous growth parameter prediction (mumax, lag, yield)
+- FB concordance validation (do predictive KOs have significant fitness effects?)
+- Combined ENIGMA+CSP model with shared feature space
+
+*(Notebook: NB07_condition_specific_prediction.ipynb)*
 
 ## Results
 
@@ -174,15 +200,25 @@ Act II's variance partitioning (NB06) provides a sobering but instructive diagno
 
 ### The path forward
 
-The NB06 diagnostic clarifies exactly what's needed:
+The Act II preliminary results reveal a fundamental framing error: we treated 7 FB-anchor strains as the training set, creating an artificial n=7 bottleneck. In reality, we have **13,632 ENIGMA (strain x condition) pairs** (123 strains, all with growth curves + genome depot KOs) plus **53K CSP pairs** (795 genomes with binary phenotypes). The 7 FB-anchor strains should serve as the VALIDATION set for biological meaningfulness (FB concordance), not as the primary training data.
 
-1. **Condition-aware genomic features**: Instead of asking "does this genome have K00016?" we should ask "does this genome have the complete pathway for the condition being tested?" GapMind provides this for amino acid biosynthesis and carbon source utilization (~80 pathways). For metals, antibiotics, and pH stress, we need analogous condition-specific feature sets (e.g., metal resistance gene counts for metal conditions, efflux pump counts for antibiotics).
+The revised modeling approach:
 
-2. **More training data**: The 795-genome CSP corpus provides ~53K (genome x condition) binary labels — enough to learn which KOs matter for which conditions. Training on CSP and evaluating on ENIGMA tests cross-dataset transfer.
+1. **Full-corpus training**: Pool all 123 ENIGMA strains (13,632 pairs with binary growth + continuous parameters) and 795 CSP genomes (53K binary growth pairs) into a shared KO feature space (6,360 KOs shared between genome depot and KofamScan). Train on ~67K total pairs.
 
-3. **KO x condition interaction features**: Explicitly encoding "does genome have a KO relevant to THIS condition?" transforms the model from a genome-scale classifier into a condition-specific predictor.
+2. **Genus-level blocked holdout**: Train on all but one genus, predict that genus. With 20+ genera across ENIGMA + CSP, this provides robust generalization estimates and tests whether KO features truly predict growth beyond phylogenetic signal.
 
-4. **Confidence estimation**: The gap between genome-scale prediction (works for common conditions) and KO-specific prediction (fails with n=7) naturally defines confidence zones — predictions on common carbon sources using well-characterized pathways deserve high confidence; predictions on rare metals using sparse KO features deserve low confidence.
+3. **Per-condition analysis**: For each of the 194 ENIGMA conditions and 379 CSP conditions, report prediction accuracy separately. Identify which conditions are well-predicted (likely those with condition-specific KO associations) vs. poorly predicted (likely metals, antibiotics, stress).
+
+4. **KO x condition interaction features**: For each (genome, condition) pair, compute condition-specific features: "does this genome have the KOs in the KEGG module relevant to this condition?" This transforms generic KO presence into condition-aware prediction.
+
+5. **Continuous parameter prediction**: With 123 strains providing µmax/lag/yield data (9,861 fit-ok curves), the regression task has much more power than n=7.
+
+6. **FB concordance on the 7-strain validation set**: After training on the full corpus, check whether the model's top SHAP features for the 7 FB-anchor strains correspond to genes with significant fitness effects — the biological meaningfulness check.
+
+7. **SHAP per condition class**: Which KOs matter for growth on amino acids vs. carbon sources vs. metals? This is the mechanistic insight the project should deliver.
+
+8. **Confidence estimation**: Model disagreement between GapMind (pathway-based, high-confidence for AA/carbon) and full-corpus GBDT (data-driven, broader coverage) naturally defines when predictions should be trusted.
 
 ### The pH finding in context
 
@@ -288,25 +324,33 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 
 ## Future Directions
 
-### NB07: Condition-specific prediction via CSP pretraining + GapMind baseline
+### NB07 (revised): Full-corpus modeling with proper validation
 
-The central remaining question: can we build a predictor that works for NEW genomes on SPECIFIC conditions?
+The current NB07 is preliminary. A proper version requires:
 
-1. **GapMind baseline** (amino acid + carbon source conditions only): For each (genome, condition) pair where GapMind has a relevant pathway, predict growth from pathway completeness score. This is the mechanistic baseline — it asks "does this genome have the right pathway?" rather than "is this genome big?" Expected to be high-precision for well-characterized pathways but zero-coverage for metals/antibiotics/stress.
+1. **Full-corpus training**: Pool 123 ENIGMA strains (13,632 pairs) + 795 CSP genomes (53K pairs) in a shared KO feature space (6,360 shared KOs). Total ~67K training pairs — sufficient to learn condition-specific KO effects.
 
-2. **CSP-pretrained GBDT**: Train LightGBM on the 795-genome CSP corpus (53K binary labels) with per-condition KO interaction features. Apply to ENIGMA strains. This tests whether the larger corpus overcomes the n=7 bottleneck.
+2. **Genus-level blocked holdout**: Train on all genera except one, predict the held-out genus. Report AUC/accuracy per held-out genus and per condition class. This tests genuine cross-genus generalization — can the model predict Pedobacter growth from Pseudomonas/Acidovorax/Burkholderia training data?
 
-3. **KO x condition interaction model**: For each (genome, condition) pair, compute features like "number of KOs in the KEGG module relevant to this condition" or "presence of the specific KO known to catalyze the tested substrate." This transforms generic KO features into condition-aware predictors.
+3. **KO x condition interaction features**: For each (genome, condition) pair, compute "does this genome have KOs in the KEGG module for this condition?" This is the critical feature engineering step that transforms generic KO presence into condition-specific prediction.
 
-4. **Continuous parameter prediction**: After binary growth is solved, predict mumax/lag/yield by training on CSP binary labels and fine-tuning on ENIGMA continuous targets.
+4. **Per-condition analysis**: For each of the 72 ENIGMA conditions, report prediction accuracy separately. Which conditions are predictable from KO content? Which require additional feature engineering?
 
-### NB08: WoM exometabolomic prediction (pilot)
+5. **SHAP per condition class**: Which KOs matter for amino acids vs. carbon sources vs. metals? Report top-10 SHAP features per condition class with KEGG annotations.
 
-For 6 WoM-profiled strains, test whether growth-predictive KOs also predict metabolite production/consumption.
+6. **Continuous parameter prediction**: With 123 ENIGMA strains providing 9,861 fit-ok curves with µmax/lag/max_A, train regression models on the full feature set. Use leave-one-genus-out holdout.
 
-### Act III: Active learning
+7. **GapMind comparison**: On the subset of conditions with GapMind pathway matches, compare pathway completeness vs. data-driven GBDT — does GapMind outperform, match, or underperform the full model?
 
-Rank next experiments by model disagreement x genotype-space novelty, weighted by field relevance (prioritize metals, nitrate, low-pH conditions informed by the pH-niche finding).
+8. **FB concordance validation**: On the 7 FB-anchor strains (used as validation only, not training), map top SHAP KOs to FB fitness loci and compute concordance.
+
+### NB08: WoM exometabolomic prediction (deferred)
+
+For 6 WoM-profiled strains, test whether growth-predictive KOs predict metabolite production.
+
+### Act III: Active learning (deferred)
+
+Rank next experiments by model disagreement x genotype-space novelty x field relevance.
 
 ## References
 
