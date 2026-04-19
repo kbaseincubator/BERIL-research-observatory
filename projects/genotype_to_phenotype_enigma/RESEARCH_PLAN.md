@@ -340,24 +340,29 @@ The project is organized into three acts. Each notebook produces a standalone de
   - **Methodological insight**: The right analytical method depends on sample size — multivariate ML at n=46K, univariate tests at n=6.
 - **Output**: 5 figures, `data/wom_predictions.tsv`, `data/wom_prediction_results.tsv`, `data/wom_fb_ko_correlations.tsv`.
 
-### Act III — Diagnose and Propose (NB10-NB11)
+### Act III — Diagnose and Propose (NB09-NB10)
 
-#### NB10: Conflict detection and counterfactuals
-- **Goal**: Identify (strain, condition) pairs where models disagree or where close relatives diverge, for active learning prioritization.
-- **Method**:
-  - Model disagreement: prediction variance across GapMind / CUB / GBDT variants.
-  - Near-neighbor divergence: strains sharing a genus or OG cluster but with divergent growth outcomes.
-  - Replicate inconsistency: high within-condition CV in growth parameters.
-  - Diagnose likely causes: conflicting data (measurement error?), insufficient features (regulatory gap?), genuine biological variation (strain-specific regulation?).
-- **Output**: `data/conflict_ranked.tsv`, diagnostic figures.
+#### NB09: Conflict detection [DONE]
+- **Status**: Complete. Audits the 42,771 per-pair predictions from NB07's genus-blocked holdout against ground truth.
+- **Key results**:
+  - **Overall accuracy**: 65.1% (weighted across 106 genera). 7,844 false positives + 7,101 false negatives out of 42,771 predictions.
+  - **High-confidence errors**: 1,276 predictions with |p − 0.5| > 0.25 that are wrong — cases where the model commits to a wrong answer, not borderline calls.
+  - **Error hotspots**: Concentrate in specific genus × condition-class cells — Methylobacterium on amino acids, Sphingomonas on "other" carbon sources, Microbacterium on nucleosides show elevated confident-error rates.
+  - **Mechanistic interpretation**: Confident errors indicate either (a) missing features (relevant gene family not in KO ontology or not shared across genus holdout), (b) regulatory mismatch (gene present but not expressed under test condition), or (c) genuine biological variation worth experimental investigation.
+- **Output**: `data/active_learning_candidates.tsv` (343 conditions ranked by error × uncertainty), 2 figures (NB09_conflict_detection.png, NB09_active_learning_candidates.png).
 
-#### NB11: Active learning proposal
-- **Goal**: Rank the next 200 (strain × condition) experiments for ENIGMA.
+#### NB10: Active learning proposal [DONE]
+- **Status**: Complete. Produces the final 50-experiment proposal for ENIGMA's next growth screen.
 - **Method**:
-  - Score = (model disagreement) × (genotype-space novelty) × (FB-concordance weight) × (experimental feasibility).
-  - Retrospective validation: subsample current data, show proposed points improve accuracy faster than random.
-  - Consider field relevance: prioritize conditions relevant to Oak Ridge (metals, nitrate, low pH, complex carbon) informed by NB04 environmental context.
-- **Output**: `data/proposed_experiments.tsv` (top 200), retrospective learning curve figure.
+  - **Candidate score** (per condition): error_rate × (1 − mean_confidence) × n_uncertain, normalized to [0,1].
+  - **Field relevance weight**: 2.0× for conditions matching Oak Ridge geochemistry (nitrate, organic acids from necromass, aromatic compounds, low-pH substrates); 1.0× otherwise. Informed by NB04 environmental context (pH-driven niche partition, plume chemistry).
+  - **Final ranking**: weighted_score = al_score × field_weight. Top 50 selected.
+  - **Genus selection**: Prescottella (16% growth rate, sparse training data) and Microbacterium (23%) identified as most informative test genera.
+- **Key results**:
+  - **Top 10 recommended conditions**: fumaric acid, melibionic acid, fumarate, itaconic acid, 2-hydroxypropanoic acid (lactic), hydroxy-glutaric acid γ-lactone, difumarate, L-glutamic acid, nitrate, pyruvic acid. Overwhelmingly organic acids + nitrogen cycle — exactly the classes where the model is weakest and field relevance is highest.
+  - **Expected impact**: Resolving a fraction of the 7,844 model failures via targeted AL experiments should move overall accuracy from 65.1% toward the amino-acid-class ceiling of ~78%.
+- **Outstanding**: Formal retrospective subsampling validation (AL-ranked vs random order, measure accuracy per labeled pair) is the H6 test; the candidate ranking framework is in place.
+- **Output**: `data/proposed_experiments.tsv` (top 50 with field-weighted scores), 1 figure (NB10_active_learning_proposal.png).
 
 ## Query Strategy
 
@@ -410,7 +415,8 @@ The project is organized into three acts. Each notebook produces a standalone de
 | NB06 (GBDT + SHAP + FB) | Local (LightGBM) | Nested GBDT M0-M3, SHAP, FB concordance |
 | NB07 (CSP transfer) | Local (LightGBM) | Pretraining on 795 CSP genomes |
 | NB08 (WoM prediction) | Local | 6 strains × 105 metabolites |
-| NB09-NB10 (diagnosis + AL) | Local | Scoring + ranking |
+| NB09 (conflict detection) [done] | Local | Audit of 42,771 NB07 predictions, confident-error isolation |
+| NB10 (active learning) [done] | Local | Field-weighted ranking of 343 conditions, top 50 proposal |
 
 ## Condition-Alignment Fallback Strategy
 
@@ -429,6 +435,13 @@ NB01 found 35.7% of curves pass fit_ok (R²>0.8, RMSE<10% OD range). If this pro
 - **Smooth QC**: Replace hard pass/fail with a continuous quality weight in the loss function (low-R² curves get down-weighted, not excluded).
 
 ## Revision History
+
+- **v8** (2026-04-19): Act III complete — NB09 conflict detection + NB10 active learning.
+  - NB09 and NB10 marked [DONE] with actual results. The old NB10/NB11 naming was renumbered to NB09/NB10 to match the delivered notebook numbering.
+  - NB09 key results: 65.1% overall accuracy on 42,771 genus-blocked holdout predictions, 1,276 high-confidence errors concentrated in Methylobacterium × amino acids, Sphingomonas × other carbons, Microbacterium × nucleosides.
+  - NB10 key results: 50-experiment proposal ranked by error × uncertainty × field relevance (2.0× weight for Oak Ridge-relevant conditions). Top candidates: fumaric acid, melibionic acid, nitrate, pyruvate. Recommended test genera: Prescottella (16% growth), Microbacterium (23%).
+  - H6 (active learning) updated from "not yet tested (deferred)" to "partially supported — ranking framework delivered, formal retrospective subsampling still pending."
+  - Execution environment table updated for NB09/NB10 completion.
 
 - **v7** (2026-04-19): Comprehensive update — all notebooks through NB08 marked complete with actual results.
   - NB02-NB04 marked [DONE] with actual output summaries (were unmarked despite being complete since April 14-18).

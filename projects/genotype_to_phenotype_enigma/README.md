@@ -6,7 +6,7 @@ Can we predict bacterial growth phenotype — at multiple resolutions from binar
 
 ## Status
 
-**In Progress** — Act I complete (NB00-NB04). Act II complete (NB05-NB07): 14 findings, 39 figures. Binary growth predictable for amino acids (AUC 0.93 tryptophan) and carbon sources (0.90 mannose); NOT for metals/nitrogen. Growth rate NOT predictable from KO content. See [Report](REPORT.md).
+**Complete** — all three acts delivered. Act I (NB00-NB04), Act II (NB05-NB08), Act III (NB09-NB10): 16 findings, 50 figures, 46,389-pair modeling corpus, 50-experiment AL proposal. Binary growth predictable for amino acids (AUC 0.93 tryptophan), nucleosides (0.78 class), and carbon sources (0.90 mannose); NOT for metals/antibiotics/nitrogen. Continuous growth rate NOT predictable from KO content (biological limit, not data problem). 557 mechanistic gene-metabolite associations recovered from WoM via per-metabolite correlation. Active learning proposes 50 Oak Ridge-relevant experiments (fumaric acid, melibionic acid, nitrate; Prescottella, Microbacterium). See [Report](REPORT.md).
 
 ## Context
 
@@ -38,9 +38,9 @@ The project is structured in three acts:
 - NB07: CSP transfer learning (pretrain on 795-genome corpus, fine-tune on ENIGMA)
 - NB08: WoM exometabolomic prediction (pilot, 6 strains)
 
-**Act III — Diagnose and Propose (NB10-NB11)**:
-- NB10: Conflict detection and counterfactuals
-- NB11: Active learning proposal (next 200 experiments for ENIGMA)
+**Act III — Diagnose and Propose (NB09-NB10)**:
+- NB09 [done]: Conflict detection — 65.1% accuracy, 1,276 high-confidence errors, per-genus × condition-class error hotspots
+- NB10 [done]: Active learning proposal — 50 experiments ranked by error × uncertainty × field relevance (fumaric acid, melibionic acid, nitrate; Prescottella, Microbacterium)
 
 ## Six Hypotheses
 
@@ -100,8 +100,11 @@ This project integrates data from the following BERDL collections:
 | NB05 | JupyterHub (Spark) | ~5 sec | Feature matrices, modeling tables |
 | NB06 | Local (LightGBM) | ~30 sec | Variance partitioning, SHAP, correlation groups |
 | NB07 | JupyterHub (Spark) + Local | ~40 min | Full-corpus training, genus-blocked holdout, FB concordance |
+| NB08 | Local | ~30 sec | WoM per-metabolite correlation, 557 mechanistic KO-metabolite associations |
+| NB09 | Local | ~10 sec | Conflict detection: audit of 42,771 predictions, 1,276 confident errors |
+| NB10 | Local | ~5 sec | Active learning ranking with field-relevance weighting, top 50 proposal |
 
-NB00-NB05 require BERDL JupyterHub for Spark access to query databases. NB06-NB07 run locally on cached data files but NB07's corpus-building step requires one Spark query (~38 min).
+NB00-NB05 require BERDL JupyterHub for Spark access to query databases. NB06-NB10 run locally on cached data files, but NB07's corpus-building step requires one Spark query (~38 min).
 
 ### Data dependencies
 - `data/growth_parameters_all.parquet` (NB01 → NB02, NB05, NB07)

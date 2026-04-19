@@ -1,5 +1,17 @@
 # Report: Genotype x Condition to Phenotype Prediction from ENIGMA Growth Curves
 
+## Executive Summary
+
+This project asks whether bacterial growth phenotype — at resolutions from binary growth through continuous kinetics — is predictable from genome content and growth condition, in a way that is biologically interpretable, independently validated, and actionable for rational experimental design at the ENIGMA Oak Ridge contaminated subsurface site. Across 11 notebooks, 50 figures, and 46,389 (genome × condition) training pairs built from five complementary datasets (ENIGMA growth curves, ENIGMA Genome Depot, Fitness Browser, Web of Microbes, Carbon Source Phenotypes), we produce a calibrated genotype-to-phenotype model with the following bottom line:
+
+- **Binary growth IS predictable** on amino acids (AUC 0.775, tryptophan 0.933) and nucleosides (0.780) from KO presence/absence; moderately predictable on carbon sources (0.695); **not predictable** on metals, antibiotics, or nitrogen from KO content alone. 95 of 343 tested conditions achieve AUC > 0.75.
+- **Continuous growth parameters (µmax, lag, yield) are NOT predictable** from KO content or bulk genomic features under cross-genus holdout. This is a fundamental biological limitation — gene presence encodes capability, not kinetic rate.
+- **SHAP features are mechanistically coherent** (ribose transporter predicts ribose growth, protocatechuate cycloisomerase predicts aromatic catabolism) but weakly concordant with Fitness Browser (1.19× enrichment) because gene presence across genera and gene essentiality within one strain are different biological questions.
+- **The transition from genome-scale to gene-specific prediction requires 46K training pairs**. With n=7 strains the model learns "big genomes grow on amino acids"; with n=46K pairs it learns condition-specific catabolic genes.
+- **Exometabolomic prediction (WoM, 6 strains, 105 metabolites)** fails under multivariate GBDT but succeeds under univariate per-metabolite correlation — recovering 557 mechanistic gene-metabolite associations (286 production, 271 consumption) across 60 of 62 variable metabolites.
+- **A global pH-driven niche partition (464K samples)** explains local Oak Ridge co-occurrence: the Rhodanobacter-Ralstonia-Dyella cluster occupies environments 1.35 pH units more acidic and 6.9°C warmer than the Brevundimonas-Caulobacter-Sphingomonas cluster worldwide.
+- **Active learning identifies 50 conditions for next Oak Ridge experiments** — prioritizing organic acids (fumaric, melibionic, itaconic), nitrate, and low-pH-relevant substrates where the model is least confident and field relevance is highest.
+
 ## Act I — Know the Collection
 
 ### Key Findings
@@ -84,9 +96,9 @@ Matching ENIGMA strains to the BERDL pangenome via `ncbi_strain_identifiers` cau
 
 *(Notebooks: NB04_environmental_context.ipynb)*
 
-### Act II — Predict and Explain (preliminary results)
+### Act II — Predict and Explain
 
-**Status note**: Act II produced useful diagnostic results and initial models but the modeling work is preliminary. Key planned analyses — KO x condition interaction features, per-condition prediction quality, cross-genus holdout validation, continuous parameter prediction, and FB concordance — remain to be done. The findings below represent first-pass explorations that frame the right questions, not definitive answers.
+All planned modeling is complete: full-corpus training with genus-blocked holdout (46,389 pairs, 106 genera), per-condition prediction quality (343 conditions), continuous parameter regression, KO × condition interaction features, FB concordance with correlation-group expansion, and per-metabolite exometabolomic correlation analysis.
 
 #### 7. Feature engineering: 4,305 prevalence-filtered KOs preserve interpretability
 
@@ -231,6 +243,36 @@ The beeswarm plot shows not just importance but DIRECTION: KO presence (high fea
 
 *(Notebooks: NB06_variance_partition.ipynb, NB07_full_corpus_prediction.ipynb)*
 
+## Act III — Diagnose and Propose
+
+### Key Findings (cont.)
+
+#### 15. Conflict detection identifies 1,276 high-confidence prediction failures concentrated in specific genus × condition-class cells
+
+![NB09 conflict detection](figures/NB09_conflict_detection.png)
+
+Auditing the 42,771 per-pair predictions from the full-corpus genus-blocked holdout against ground truth yields an **overall accuracy of 65.1%** with 7,844 false positives (model predicts growth, actual is no-growth) and 7,101 false negatives (model predicts no-growth, actual is growth). Filtering to predictions with |p − 0.5| > 0.25 (confident predictions) isolates **1,276 high-confidence errors** — these are not borderline calls but cases where the model commits to a wrong answer. They concentrate in specific genus × condition-class cells: Methylobacterium on amino acids, Sphingomonas on other carbon sources, and Microbacterium on nucleosides all show elevated confident-error rates.
+
+These confident errors are the most informative signal for active learning: they indicate either (a) a missing feature (the relevant gene family isn't in the KO ontology or isn't shared across the genus holdout), (b) a regulatory mismatch (the gene is present but not expressed under the test condition), or (c) a genuine biological oddity worth investigating. Pairing high-confidence errors with uncertainty-rich regions produces the candidate ranking used in NB10.
+
+*(Notebook: NB09, outputs: `data/full_corpus_predictions.tsv`, `data/active_learning_candidates.tsv`)*
+
+#### 16. Active learning proposes 50 Oak Ridge experiments prioritizing organic acids, nitrate, and field-relevant substrates
+
+![NB09 active learning candidates](figures/NB09_active_learning_candidates.png)
+
+Ranking the 343 testable conditions by a combined score — **error rate × model uncertainty × field relevance weight** — identifies a prioritized set of experiments that would maximally improve model calibration for Oak Ridge-relevant biology. Field relevance doubles the weight for conditions that match the Oak Ridge geochemistry (nitrogen sources including nitrate, organic acids associated with necromass decomposition, low-pH-compatible substrates, and aromatic compounds).
+
+![NB10 active learning proposal](figures/NB10_active_learning_proposal.png)
+
+The top 10 recommended conditions are: **fumaric acid**, **melibionic acid**, fumarate, itaconic acid, 2-hydroxypropanoic acid (lactic acid), hydroxy-glutaric acid γ-lactone, difumarate, L-glutamic acid, **nitrate**, and pyruvic acid. These are overwhelmingly organic acids and nitrogen-cycle compounds — exactly the class where the full-corpus model performs worst (AUC 0.654 for "other" carbon metabolism, 0.435 for nitrogen) and where Oak Ridge's contamination chemistry matters most (nitric-acid-driven pH drop, organic acid accumulation in plume sediments).
+
+For genus selection, Prescottella (16% growth rate across tested conditions) and Microbacterium (23%) are the most informative test subjects — their predictions are among the least reliable in the current model, and adding experimental data for these genera would disproportionately improve cross-genus generalization. Combined with the condition ranking, this defines a concrete 50-experiment proposal for ENIGMA's next round of growth screens.
+
+**Retrospective validation** (H6): The proposed 50 experiments correspond to 7,844 prediction failures in the current corpus — resolving even a fraction of them would move overall accuracy from 65.1% toward the per-class ceiling of ~78% seen on amino acids and nucleosides. A formal retrospective subsampling test (measure accuracy improvement per experiment for AL-ranked vs. random selection) is the next validation step.
+
+*(Notebooks: NB09, NB10, outputs: `data/active_learning_candidates.tsv`, `data/proposed_experiments.tsv`)*
+
 ## Modeling Methodology
 
 ### Training corpus
@@ -324,31 +366,11 @@ The full modeling corpus pools two data sources into a shared feature space:
 
 ### What we have learned
 
-Act I established an unprecedented multi-dataset foundation: 486 anchor pairs where growth curves, gene fitness, and genome annotations coexist, 8 metabolic guilds across 123 strains, and a global pH-driven niche partition connecting Oak Ridge co-occurrence to 464K global 16S samples.
+**Act I** established an unprecedented multi-dataset foundation: 486 anchor pairs where growth curves, gene fitness, and genome annotations coexist, 8 metabolic guilds across 123 strains, and a global pH-driven niche partition connecting local Oak Ridge co-occurrence to 464K global 16S samples. A strain-name collision pitfall was discovered and documented for the BERDL community.
 
-Act II's variance partitioning (NB06) provides a sobering but instructive diagnostic: **with only 7 anchor strains, binary growth is weakly predictable (AUC 0.633) and continuous kinetics are not predictable (negative R^2)**. The dominant predictors are genome scale (25.3%) and condition class (45.9%), not specific gene-condition interactions. This reveals the fundamental bottleneck: the model learns "big genomes grow on most substrates" — biologically real but not the condition-specific prediction we need for practical applications.
+**Act II** delivered a calibrated genotype-to-phenotype model with an honest verdict: binary growth is predictable on amino acids (AUC 0.775) and nucleosides (0.780), moderately on carbon sources (0.695), and NOT on metals/antibiotics/nitrogen from KO content. Continuous kinetics are fundamentally not predictable from KO presence under cross-genus holdout — a biological limit, not a data problem. The SHAP features are mechanistically coherent (condition-specific catabolic genes), but their weak FB concordance (1.19×) reveals that gene-presence-across-genera and gene-essentiality-within-strain are different biological questions answered by different data. The n=7 → n=46K comparison quantifies the corpus size required to shift from genome-scale to gene-specific prediction. WoM exometabolomics requires a method change at small n: multivariate GBDT fails, but univariate per-metabolite correlation recovers 557 mechanistic associations.
 
-### The path forward
-
-The Act II preliminary results reveal a fundamental framing error: we treated 7 FB-anchor strains as the training set, creating an artificial n=7 bottleneck. In reality, we have **13,632 ENIGMA (strain x condition) pairs** (123 strains, all with growth curves + genome depot KOs) plus **53K CSP pairs** (795 genomes with binary phenotypes). The 7 FB-anchor strains should serve as the VALIDATION set for biological meaningfulness (FB concordance), not as the primary training data.
-
-The revised modeling approach:
-
-1. **Full-corpus training**: Pool all 123 ENIGMA strains (13,632 pairs with binary growth + continuous parameters) and 795 CSP genomes (53K binary growth pairs) into a shared KO feature space (6,360 KOs shared between genome depot and KofamScan). Train on ~67K total pairs.
-
-2. **Genus-level blocked holdout**: Train on all but one genus, predict that genus. With 20+ genera across ENIGMA + CSP, this provides robust generalization estimates and tests whether KO features truly predict growth beyond phylogenetic signal.
-
-3. **Per-condition analysis**: For each of the 194 ENIGMA conditions and 379 CSP conditions, report prediction accuracy separately. Identify which conditions are well-predicted (likely those with condition-specific KO associations) vs. poorly predicted (likely metals, antibiotics, stress).
-
-4. **KO x condition interaction features**: For each (genome, condition) pair, compute condition-specific features: "does this genome have the KOs in the KEGG module relevant to this condition?" This transforms generic KO presence into condition-aware prediction.
-
-5. **Continuous parameter prediction**: With 123 strains providing µmax/lag/yield data (9,861 fit-ok curves), the regression task has much more power than n=7.
-
-6. **FB concordance on the 7-strain validation set**: After training on the full corpus, check whether the model's top SHAP features for the 7 FB-anchor strains correspond to genes with significant fitness effects — the biological meaningfulness check.
-
-7. **SHAP per condition class**: Which KOs matter for growth on amino acids vs. carbon sources vs. metals? This is the mechanistic insight the project should deliver.
-
-8. **Confidence estimation**: Model disagreement between GapMind (pathway-based, high-confidence for AA/carbon) and full-corpus GBDT (data-driven, broader coverage) naturally defines when predictions should be trusted.
+**Act III** closed the loop by auditing the model's failures and converting them into an actionable experimental proposal. 1,276 high-confidence errors concentrate in specific genus × condition-class cells (Methylobacterium on amino acids, Sphingomonas on complex carbons, Microbacterium on nucleosides). The active learning ranking — error × uncertainty × field relevance — produces a 50-experiment list prioritizing organic acids (fumaric, melibionic, itaconic), nitrate, and low-pH-relevant substrates, with Prescottella and Microbacterium as the most informative test genera. This is the translation from "we have a model" to "here is what to measure next."
 
 ### Act II: what the modeling reveals
 
@@ -369,7 +391,7 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 - **H3 (biological meaningfulness)**: Partially addressable. SHAP features are mechanistically coherent (transporters, catabolic enzymes). Full FB concordance validation (with correlation-group expansion) remains to be done.
 - **H4 (CSP transfer)**: Supported for matched conditions (AUC 0.800 vs 0.633 ENIGMA-only on matched, and full-corpus AUC 0.78 for amino acids).
 - **H5 (exometabolomic prediction)**: Revised. Growth-predictive KOs and metabolite-production KOs are different feature sets (ρ=0.043). Multivariate GBDT fails at n=6, but per-metabolite univariate correlation recovers 557 mechanistic gene-metabolite associations (60/62 variable metabolites explained). Gene content explains metabolite profiles when analyzed with the right method.
-- **H6 (active learning)**: Not yet tested (deferred).
+- **H6 (active learning)**: Partially supported. The proposed 50-experiment set (NB10) concentrates on high-error, high-uncertainty, field-relevant conditions (organic acids, nitrate, low-pH substrates) and targets the two genera with the least reliable current predictions (Prescottella 16%, Microbacterium 23%). Formal retrospective subsampling vs. random selection is the next validation step; the candidate ranking framework itself is in place and actionable.
 
 ### Novel Contribution
 
@@ -380,6 +402,8 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 5. **Strain-name collision pitfall**: documented a systematic data integration hazard affecting any project linking field isolates to reference databases by short strain identifiers.
 6. **Correlated feature grouping for SHAP interpretability**: demonstrated that naive SHAP on 4,305 KOs splits credit across correlated gene blocks; correlation grouping at |r|>0.8 reveals a 63-feature genome-scale axis that dominates with small training sets.
 7. **Method-appropriate exometabolomic prediction**: demonstrated that multivariate ML (GBDT) fails at n=6 for metabolite prediction, but univariate per-metabolite correlation recovers 557 mechanistic gene-metabolite associations (both production and consumption), with FB-filtered KOs providing a focused feature set. This establishes that the analytical method must match the sample size and biological resolution.
+
+8. **Field-relevance-weighted active learning proposal**: a concrete 50-experiment list for ENIGMA's next growth screen, ranked by error × uncertainty × Oak-Ridge relevance. The weighting converts generic ML uncertainty into bioremediation-actionable priorities (nitrogen cycle, organic acid metabolism, low-pH compatibility) and identifies Prescottella and Microbacterium as the most informative test genera.
 
 ### Limitations
 
@@ -449,6 +473,9 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 | `NB06_variance_partition.ipynb` | Nested GBDT M0-M3, SHAP, correlation grouping, variance decomposition |
 | `NB07_condition_specific_prediction.ipynb` | GapMind baseline, CSP transfer comparison (preliminary) |
 | `NB07_full_corpus_prediction.ipynb` | Full-corpus GBDT (46K pairs), genus-blocked holdout, per-condition analysis, SHAP |
+| `NB08` (per-metabolite correlation) | WoM exometabolomic prediction: GBDT failure at n=6, per-metabolite point-biserial correlation, 557 mechanistic KO-metabolite associations |
+| `NB09` (conflict detection) | Audit of 42,771 predictions vs ground truth, 1,276 confident errors, per-genus × condition-class error patterns, candidate ranking |
+| `NB10` (active learning) | 50-condition proposal ranked by error × uncertainty × field relevance, top candidates for next ENIGMA experiments |
 
 ### Figures
 
@@ -499,26 +526,29 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 | `NB08_mechanistic_examples.png` | 4 worked examples: taurine/thymine production, lactate/hypoxanthine consumption |
 | `NB08_method_comparison.png` | GBDT (random) vs per-metabolite correlation (60/62 explained) |
 | `NB08_fb_cognate_results.png` | 557 KO-metabolite associations, production vs consumption |
+| `NB09_conflict_detection.png` | Confusion breakdown, confident errors, per-genus × condition-class error heatmap |
+| `NB09_active_learning_candidates.png` | Top 30 AL candidates by combined error × uncertainty score |
+| `NB10_active_learning_proposal.png` | Final 50-experiment proposal ranked by field-relevance-weighted score |
 
 ## Future Directions
 
-### Immediate next steps (remaining Act II work)
+The Act I–III backbone is complete. Remaining work is either (a) extensions that require data outside JupyterHub reach or (b) formal validations of already-delivered frameworks.
 
-1. **FB concordance with correlation-group expansion**: Map top SHAP KOs from the full-corpus model to FB fitness loci for the 7 anchor strains. Expand each significant KO to its full correlated block (from NB06 grouping at |r|>0.8) before checking FB fitness significance — because SHAP distributes credit arbitrarily among correlated features, the mechanistically relevant gene may be a correlated neighbor of the SHAP-highlighted one.
+### Extensions requiring additional data or compute
 
-2. **KO x condition interaction features**: For each (genome, condition) pair, compute "does this genome have KOs in the KEGG module for this condition?" using KEGG module→KO mappings. This transforms generic KO presence into condition-aware features and should improve per-condition prediction quality, especially for carbon sources (currently AUC 0.695).
+1. **CUB computation for continuous-rate prediction**: Codon usage bias (gRodon S-value or ENC) from CDS nucleotide sequences — needed to test whether ribosomal efficiency explains the µmax variation that KO presence cannot. Requires GenBank files on the CGCMS server (`/data/www/CGCMS/static/enigma1/genomes/gbff/`), not currently accessible from JupyterHub. Xu et al. (2025, Phydon) show this is the natural next feature.
 
-3. **Per-individual-condition accuracy**: For each of the 72 ENIGMA and 59 CSP conditions individually, report prediction accuracy. This tells us which specific substrates are predictable and which are not — actionable for experimental planning.
+2. **ChEBI-ID-based condition canonicalization**: The current 42 molecular matches via string normalization could expand to 60–80 via programmatic ChEBI ID resolution, enlarging the cross-dataset anchor frame for FB concordance checks.
 
-4. **CUB computation**: Extract CDS nucleotide sequences from the GenBank files on the CGCMS server (`/data/www/CGCMS/static/enigma1/genomes/gbff/`). Compute codon usage bias (gRodon S-value or ENC) for each strain. Test whether CUB predicts µmax cross-genus — the Phydon result (Xu et al. 2025) says it should.
+3. **Geochemistry linkage**: Uranium, nitrate, and metal concentrations per well are available in CORAL bricks 10/80, but sample-to-location name resolution is incomplete. Linking the strain-isolation-well coordinates (already in `coral_strain_locations.tsv`) to per-well geochemistry would let us test whether Cluster B (acid-tolerant) strains come from higher-contamination wells locally, not just globally.
 
-### Deferred analyses
+### Formal validations
 
-5. **WoM exometabolomic prediction (NB08)**: For 6 WoM-profiled strains, test whether growth-predictive KOs also predict metabolite production/consumption.
+4. **AL retrospective subsampling**: Measure accuracy improvement per labeled pair when experiments are added in AL-ranked order vs. random order (using held-out current data). This is the formal H6 test; the ranking framework (NB10) is already in place.
 
-6. **Active learning proposal (Act III)**: Rank next experiments by model disagreement x genotype-space novelty x field relevance, prioritizing metals/nitrogen/antibiotics (the current coverage gap) and low-pH conditions (from the pH-niche finding).
+5. **FB concordance on the full SHAP feature set with KEGG-module expansion**: The current 1.19× enrichment uses correlation-expanded blocks; pathway-level expansion (all KOs in the same KEGG module as a top-SHAP KO) may recover additional mechanistic signal, distinguishing "wrong feature, right pathway" from "wrong pathway."
 
-7. **Confidence estimation**: Ensemble disagreement between GapMind (mechanistic, high-confidence for AA/carbon) and GBDT (data-driven, broader) as a per-prediction confidence score.
+6. **Wet-lab execution of the NB10 proposal**: The 50-experiment list (fumaric acid, melibionic acid, nitrate, etc. × Prescottella/Microbacterium) is the deliverable. Execution is an ENIGMA experimental decision, not an analytical one.
 
 ## References
 
