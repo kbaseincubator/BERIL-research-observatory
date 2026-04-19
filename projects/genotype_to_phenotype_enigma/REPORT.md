@@ -171,6 +171,48 @@ Growth rate (mumax), lag time, and yield (max_A) show negative R^2 under genus-b
 
 *(Notebooks: NB07_full_corpus_prediction.ipynb)*
 
+#### 12. KO x condition interaction features modestly improve prediction; 95 conditions are genuinely predictable
+
+![ROC curves by condition class](figures/NB07_roc_curves.png)
+
+Adding KEGG-pathway-based interaction features ("does this genome have KOs relevant to THIS condition's catabolic pathway?") improves mean AUC from 0.620 to **0.653** (+0.032), with 80/106 held-out genera showing improvement. The effect is strongest for Microbacterium (+0.088) and Sphingomonas (+0.074).
+
+![Confusion matrices](figures/NB07_confusion_matrices.png)
+
+Per-individual-condition analysis across 343 testable conditions reveals **95 conditions with AUC > 0.75** — genuinely predictable from KO content. The best-predicted individual substrates are tryptophan (AUC 0.933), phenylalanine (0.932), valine (0.927), mannose (0.904), and galactose (0.895). The worst: turanose (0.059), adonitol (0.010) — complex sugars with rare catabolic pathways.
+
+![Per-condition AUC](figures/NB07_per_condition_auc.png)
+
+![Model diagnostics](figures/NB07_model_diagnostics.png)
+
+*(Notebook: NB07_full_corpus_prediction.ipynb)*
+
+#### 13. FB concordance shows the model predicts correctly but not mechanistically
+
+![FB concordance detail](figures/NB07_fb_concordance_detail.png)
+
+Condition-matched FB concordance — the fraction of top SHAP KOs (expanded to correlated gene blocks at |r|>0.8, totaling 57 KOs → 335 FB loci) that show significant fitness effects (|t|>4) in matched FB experiments — is **18.7%** vs **16.3%** random baseline = **1.19x enrichment**. This is a weak positive: the model's features are barely more fitness-significant than random genes under matched conditions.
+
+Per-strain enrichment ranges from 1.72x (Cup4G11) to 0.83x (pseudo1_N1B4, no enrichment). The model predicts growth correctly (AUC 0.78 for amino acids) through *combinations* of prevalence-variable KOs that act as genus-level proxies, not through individually mechanistically causal genes.
+
+![FB concordance overall](figures/NB07_fb_concordance.png)
+
+**Implication for H3**: Accurate prediction does NOT equal mechanistic prediction when using KO presence/absence. The model learns statistical patterns (which KO combinations correlate with growth across genera) rather than direct gene-function relationships. To achieve mechanistic prediction, condition-specific pathway features (GapMind) or gene-level functional annotations would be needed.
+
+*(Notebook: NB07_full_corpus_prediction.ipynb)*
+
+#### 14. The transition from genome-scale to condition-specific features requires 46K training pairs
+
+![SHAP comparison n=7 vs full corpus](figures/NB07_shap_comparison_n7_vs_full.png)
+
+Comparing SHAP feature importance between the n=7 anchor model (NB06) and the full 46K-pair corpus (NB07) reveals a qualitative shift: with 7 strains, the model uses condition class (45.9%) and genome-scale features (25.3%); with 46K pairs, **condition-specific catabolic genes emerge** — ribose transporter (K10440), proline transporter (K03762), protocatechuate cycloisomerase (K01857), AraC regulators (K13633). This quantifies the data requirement for mechanistic prediction.
+
+![SHAP beeswarm](figures/NB07_shap_beeswarm.png)
+
+The beeswarm plot shows not just importance but DIRECTION: KO presence (high feature value, red) pushes toward growth prediction, KO absence (blue) pushes toward no-growth — consistent with the biological expectation that having the catabolic gene enables growth on the corresponding substrate.
+
+*(Notebooks: NB06_variance_partition.ipynb, NB07_full_corpus_prediction.ipynb)*
+
 ## Results
 
 ### Data scale summary
@@ -317,6 +359,14 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 | `data/features/L2_ko_binary.parquet` | 123 x 7167 | Full KO presence/absence matrix |
 | `data/features/L2_cog_counts.parquet` | 123 x 23 | COG class gene counts |
 | `data/features/L3_condition.parquet` | 72 x 7 | Condition class + concentration features |
+| `data/full_corpus_binary_results.tsv` | 106 | Per-genus AUC/accuracy (genus-blocked holdout) |
+| `data/full_corpus_predictions.tsv` | ~43K | Per-pair predictions from genus-blocked holdout |
+| `data/full_corpus_shap.tsv` | 4,300 | SHAP importance with KEGG annotations |
+| `data/per_condition_accuracy.tsv` | 343 | Per-condition AUC/accuracy (343 testable conditions) |
+| `data/interaction_feature_comparison.tsv` | 106 | AUC with/without interaction features per genus |
+| `data/fb_concordance.tsv` | 7 | Overall FB concordance per anchor strain |
+| `data/fb_concordance_matched.tsv` | 7 | Condition-matched FB concordance with enrichment |
+| `data/fb_ko_mapping.tsv` | 335 | SHAP KO → FB locus mapping (with correlation expansion) |
 
 ## Supporting Evidence
 
@@ -371,6 +421,13 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 | `NB07_full_corpus_results.png` | Per-condition-class and per-genus AUC (genus-blocked holdout) |
 | `NB07_full_corpus_shap.png` | Top 20 SHAP features from full-corpus model |
 | `NB07_bulk_vs_continuous.png` | Bulk genomic features vs continuous growth parameters |
+| `NB07_confusion_matrices.png` | Confusion matrices per condition class (7 panels + overall) |
+| `NB07_roc_curves.png` | ROC curves overlaid by condition class |
+| `NB07_shap_beeswarm.png` | SHAP beeswarm (feature value + direction for top 20) |
+| `NB07_shap_comparison_n7_vs_full.png` | Feature importance shift: n=7 genome-scale → n=46K condition-specific |
+| `NB07_per_condition_auc.png` | Per-condition AUC (top 10 per class, 60 conditions) |
+| `NB07_model_diagnostics.png` | Genus holdout AUC distribution + interaction feature scatter |
+| `NB07_fb_concordance_detail.png` | SHAP vs random per strain with enrichment fold |
 
 ## Future Directions
 
