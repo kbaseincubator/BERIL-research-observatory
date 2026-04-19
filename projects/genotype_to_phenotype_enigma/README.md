@@ -84,7 +84,35 @@ This project integrates data from the following BERDL collections:
 
 ## Reproduction
 
-*TBD — prerequisites and step-by-step instructions will be added after Act II is complete.*
+### Prerequisites
+- BERDL JupyterHub access (for NB00-NB05: Spark queries against `enigma_coral`, `enigma_genome_depot_enigma`, `kescience_fitnessbrowser`, `kescience_webofmicrobes`, `globalusers_carbon_source_phenotypes`, `arkinlab_microbeatlas`, `kbase_ke_pangenome`)
+- Python packages: `pandas`, `numpy`, `scipy`, `matplotlib`, `lightgbm`, `shap`, `scikit-learn`, `nbformat`, `pyarrow` (see `requirements.txt`)
+
+### Execution order
+
+| Notebook | Environment | Runtime | What it produces |
+|---|---|---|---|
+| NB00 | JupyterHub (Spark) | ~5 min | Data survey, linkage tables |
+| NB01 | JupyterHub (Spark) + local | ~8 min | 27,632 Gompertz-fitted growth curves |
+| NB02 | JupyterHub (Spark) | ~3 min | Condition alignment, 486 anchor pairs |
+| NB03 | JupyterHub (Spark) | ~15 sec | KO/COG matrices, 8 metabolic guilds |
+| NB04 | JupyterHub (Spark) | ~5 min | Biogeography, co-occurrence matrices |
+| NB05 | JupyterHub (Spark) | ~5 sec | Feature matrices, modeling tables |
+| NB06 | Local (LightGBM) | ~30 sec | Variance partitioning, SHAP, correlation groups |
+| NB07 | JupyterHub (Spark) + Local | ~40 min | Full-corpus training, genus-blocked holdout, FB concordance |
+
+NB00-NB05 require BERDL JupyterHub for Spark access to query databases. NB06-NB07 run locally on cached data files but NB07's corpus-building step requires one Spark query (~38 min).
+
+### Data dependencies
+- `data/growth_parameters_all.parquet` (NB01 → NB02, NB05, NB07)
+- `data/ko_matrix.parquet` (NB03 → NB05, NB06, NB07)
+- `data/modeling/full_corpus.parquet` (NB07 builds from NB01-NB05 outputs)
+- `data/` directory is gitignored (large files). Regenerate by running notebooks in order, or download from BERDL MinIO after `/submit`.
+
+### Key notes
+- NB01 uses `src/batch_fit.py` which is resumable — skips bricks whose output already exists
+- Growth curve bricks have heterogeneous schemas (some lack pH/temperature columns) — `batch_fit.py` handles this automatically
+- Genus-blocked holdout in NB07 tests 106 genera; runtime ~5 min for binary, ~2 min for continuous targets
 
 ## Authors
 

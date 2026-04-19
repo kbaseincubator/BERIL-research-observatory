@@ -197,7 +197,7 @@ Per-strain enrichment ranges from 1.72x (Cup4G11) to 0.83x (pseudo1_N1B4, no enr
 
 ![FB concordance overall](figures/NB07_fb_concordance.png)
 
-**Implication for H3**: Accurate prediction does NOT equal mechanistic prediction when using KO presence/absence. The model learns statistical patterns (which KO combinations correlate with growth across genera) rather than direct gene-function relationships. To achieve mechanistic prediction, condition-specific pathway features (GapMind) or gene-level functional annotations would be needed.
+**Implication for H3**: The model DOES use condition-specific gene-level functional features — K10440 (ribose transporter) predicting ribose growth IS a gene-function relationship. The weak FB concordance does not mean the features are non-mechanistic; it means **gene presence across genera** (our prediction task) and **gene essentiality within one strain** (the FB fitness task) are fundamentally different biological questions. A gene can be critical for growth prediction across genera (because genera without it don't grow on that substrate) but NOT show a fitness defect when disrupted in one strain (because that strain has redundant pathways or the lab condition differs from the growth assay). Additionally, SHAP distributes credit across correlated features — the mechanistically causal gene may be a correlated neighbor of the SHAP-highlighted one, diluting the concordance signal.
 
 *(Notebook: NB07_full_corpus_prediction.ipynb)*
 
@@ -212,6 +212,53 @@ Comparing SHAP feature importance between the n=7 anchor model (NB06) and the fu
 The beeswarm plot shows not just importance but DIRECTION: KO presence (high feature value, red) pushes toward growth prediction, KO absence (blue) pushes toward no-growth — consistent with the biological expectation that having the catabolic gene enables growth on the corresponding substrate.
 
 *(Notebooks: NB06_variance_partition.ipynb, NB07_full_corpus_prediction.ipynb)*
+
+## Modeling Methodology
+
+### Training corpus
+
+The full modeling corpus pools two data sources into a shared feature space:
+- **ENIGMA growth curves**: 123 strains x 194 conditions = 13,632 (strain x condition) pairs. Growth phenotype extracted from modified Gompertz fits (NB01): binary growth (any OD increase above 0.05), plus continuous parameters (mumax, lag, max_A) for fit-ok curves. Source: `enigma_coral` growth bricks.
+- **Carbon source phenotypes (CSP)**: 795 genomes x 379 conditions = 53,301 pairs with literature-curated binary growth labels. Source: `globalusers_carbon_source_phenotypes` (Dileep et al., preprint).
+- **Combined**: 46,389 pairs across 727 genomes and 363 conditions, with 4,293 shared KEGG orthologs (KOs) as features.
+
+### Feature engineering
+
+**Genomic features** (per genome, derived from ENIGMA Genome Depot `enigma_genome_depot_enigma`):
+- **4,293 KEGG ortholog (KO) presence/absence features**: Derived from genome depot protein → KO annotations. Filtered by prevalence across the combined 727-genome corpus: remove 456 core KOs (present in >95% of genomes — no discriminative power) and 2,406 rare KOs (present in <5% — too sparse for statistical learning). Each retained feature is a named KEGG ortholog (e.g., K10440 = ribose transporter rbsC) preserving full interpretability.
+- **Condition class**: One-hot encoding of condition type (amino acid, carbon source, metal, antibiotic, nitrogen, nucleoside, other) + log10(concentration in mM). 7 features.
+- **KEGG pathway interaction features**: For each (genome, condition) pair, count of KOs in the genome that belong to the KEGG pathway relevant to the tested condition (mapped via keyword matching to KEGG pathway descriptions). 3 features (n_relevant_KOs, frac_relevant, has_any_relevant).
+
+**Why KO presence/absence**: KOs are standardized functional annotations — each KO ID represents a specific enzymatic reaction or transport function with a defined role in metabolism. Unlike genome-scale scalars (genome size, GC%), KOs provide condition-specific mechanistic information: K10440 (ribose transporter) directly enables ribose utilization. Unlike PCA or embeddings, each feature is a named gene function that can be biologically interpreted via KEGG pathway maps and validated against independent fitness data.
+
+**What was NOT used**: GC%, codon usage bias (CUB), and molecular fingerprints (Morgan FP) were planned but not computed — GC% is only available for 32/727 genomes, CUB requires nucleotide sequences not accessible from JupyterHub, and Morgan FP requires RDKit. These would be needed for continuous growth rate prediction.
+
+### Model architecture
+
+**LightGBM gradient-boosted decision trees**: All models use LightGBM (v4.6) with regularization tuned for the 46K-pair corpus:
+- `num_leaves=31`, `min_data_in_leaf=20` (prevent overfitting to small genera)
+- `feature_fraction=0.3` (subsample 30% of 4,300 features per tree — built-in feature selection)
+- `bagging_fraction=0.8, bagging_freq=5` (row subsampling for variance reduction)
+- `reg_alpha=0.5, reg_lambda=2.0` (L1 + L2 regularization on leaf weights)
+- `n_estimators=300, learning_rate=0.05` (moderate ensemble with slow learning)
+
+**Why GBDT, not linear models**: Growth phenotype depends on non-linear gene interactions (epistasis, threshold effects, condition-dependent gene importance). Linear models underestimate the contribution of specific KOs because they can't capture interactions between gene presence and condition type. GBDT handles the 4,293-dimensional binary feature space natively via tree splits without requiring dimensionality reduction.
+
+### Validation strategy
+
+**Genus-level blocked holdout**: For each of 106 genera with ≥50 pairs, train on ALL other genera, predict the held-out genus. This is the most stringent test of cross-genus generalization — the model cannot use phylogenetic signal from the held-out genus. Report AUC, accuracy, balanced F1 per held-out genus.
+
+**Per-condition-class evaluation**: Aggregate predictions across all genus holdouts, stratify by condition class (amino acid, carbon source, metal, etc.). Report AUC and accuracy per class to identify WHERE prediction works vs. fails.
+
+**Per-individual-condition evaluation**: For each of 343 conditions with ≥30 predictions and both growth classes, report AUC separately. This identifies which specific substrates are predictable (tryptophan AUC 0.933) vs. not (turanose 0.059).
+
+**FB concordance validation**: The 7 Fitness Browser anchor strains serve as a BIOLOGICAL VALIDATION set (not training). After training on the full corpus, extract top SHAP features, expand to correlation-grouped gene blocks (connected components at |r|>0.8), map to FB loci via `fb_pangenome_link.tsv`, and check whether these loci show significant fitness effects (|t|>4) in matched FB experiments. Enrichment over the genome-wide random baseline measures whether the model's features are mechanistically grounded.
+
+### Feature interpretation
+
+**SHAP (SHapley Additive exPlanations)**: TreeExplainer computes per-prediction feature attributions. Each prediction decomposes into contributions from individual KOs and condition features. Global importance = mean |SHAP| across predictions. Beeswarm plots show both importance AND direction (does KO presence push toward or against growth prediction?).
+
+**Correlation grouping**: Features correlated at |r|>0.8 are grouped into blocks (connected components). The largest block (63 features: genome size, gene count, operons, rRNA/tRNA, and co-inherited KOs) is the "genome scale axis." SHAP summed within groups gives group-level importance that avoids credit-splitting among redundant features. Individual SHAP values within a group should be interpreted as "this group matters" rather than "this specific KO matters."
 
 ## Results
 
