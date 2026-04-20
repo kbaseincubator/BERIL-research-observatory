@@ -83,6 +83,7 @@ projects/*/user_data/**/*.xlsx
 # UI application
 ui/data/cache.json
 ui/data/indexdir/
+ui/user_projects/
 
 # Python virtual environments
 .venv/

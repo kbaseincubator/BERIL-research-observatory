@@ -10,7 +10,6 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.config import Settings
-from app.db.session import close_db, init_db
 from app.main import create_app, generate_base_context
 
 # ---------------------------------------------------------------------------
@@ -19,15 +18,30 @@ from app.main import create_app, generate_base_context
 
 
 @pytest.fixture
-async def client(repository_data, app_data_context):
-    """TestClient with injected repository data, no lifespan startup."""
+async def client(repository_data, app_data_context, db_session):
+    """TestClient with injected repository data, no lifespan startup.
+
+    Uses the shared in-memory db_session (which already has all tables created)
+    so that routes that query the DB don't fail with 'no such table'.
+    """
+    from collections.abc import AsyncGenerator
+    from app.db.session import get_db, init_db, close_db
+
+    # init_db populates the module-level engine so check_db() works in /health
     await init_db("sqlite+aiosqlite:///:memory:")
+
     with patch.dict(os.environ, {"BERIL_TEST_SKIP_LIFESPAN": "True"}):
         app = create_app()
+
+        async def override_get_db() -> AsyncGenerator:
+            yield db_session
+
+        app.dependency_overrides[get_db] = override_get_db
         with TestClient(app, raise_server_exceptions=True) as c:
             app.state.repo_data = repository_data
             app.state.base_context = app_data_context
             yield c
+        app.dependency_overrides.pop(get_db, None)
     await close_db()
 
 

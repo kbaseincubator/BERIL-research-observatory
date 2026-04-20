@@ -2,7 +2,7 @@
 name = "beril-observatory-ui"
 version = "0.1.0"
 description = "BERIL Research Observatory Web Interface"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "fastapi==0.109.0",
     "uvicorn[standard]==0.27.0",

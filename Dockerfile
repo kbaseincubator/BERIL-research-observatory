@@ -22,6 +22,8 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 # Copy UI application files for dependency installation
 COPY ui/pyproject.toml ui/pyproject.toml
 COPY ui/app ui/app
+COPY ui/alembic ui/alembic
+COPY ui/alembic.ini ui/alembic.ini
 
 # Install dependencies using uv
 RUN uv pip install --system --no-cache -e ui/
@@ -38,5 +40,8 @@ EXPOSE 8000
 # Set working directory to UI for running the app
 WORKDIR /repo/ui
 
+USER beril
+
 # Run the application
-CMD ["uvicorn", "app.main:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:create_app --factory --host 0.0.0.0 --port 8000"]
+# CMD ["uvicorn", "app.main:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]

@@ -36,4 +36,5 @@ jupyter nbconvert --to notebook --execute --inplace 01_database_exploration.ipyn
 ```
 
 ## Authors
+- Beril Admin (https://orcid.org/0009-0007-0287-2979), Lawrence Berkeley National Laboratory
 - Paramvir S. Dehal (https://orcid.org/0000-0001-5810-2497), Lawrence Berkeley National Laboratory
