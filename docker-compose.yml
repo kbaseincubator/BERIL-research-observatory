@@ -19,6 +19,9 @@ services:
         - action: sync+restart
           path: ./ui/config
           target: /repo/ui/config
+        - action: sync+restart
+          path: ./ui/alembic
+          target: /repo/ui/alembic
         - action: rebuild
           path: ./ui/pyproject.toml
         - action: rebuild

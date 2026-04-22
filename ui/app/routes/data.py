@@ -23,6 +23,7 @@ from urllib.parse import quote as _quote, urlparse
 
 from fastapi import APIRouter, Depends, File, Form, Query, Request, UploadFile
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
+from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -42,6 +43,7 @@ from app.db.crud import (
     get_upload_file_by_filename,
     update_project_github_url,
 )
+from app.db.models import BerilUser, UserProject
 from app.db.session import get_db
 from app.github_sync import sync_github_repo
 from app.storage import LocalFileStorage
@@ -205,6 +207,79 @@ async def user_data(
     projects = await get_projects_for_user(db, beril_user_id)
     context["projects"] = projects
     return ctx.templates.TemplateResponse(request, "user/data_management.html", context)
+
+
+@ROUTER_USER_DATA.get("/debug/me")
+async def debug_me(
+    request: Request,
+    db: AsyncSession = Depends(get_db),
+):
+    """Dump the caller's session identity and project ownership counts.
+
+    Helps diagnose cases where /user/data shows no projects despite rows
+    existing in user_project — usually a mismatch between the session's
+    beril_user_id and the owner_id on imported projects.
+    """
+    session_user_id = request.session.get("beril_user_id")
+    session_orcid = request.session.get("orcid_id")
+
+    db_user = None
+    if session_user_id is not None:
+        db_user = await db.get(BerilUser, session_user_id)
+
+    owned_count = 0
+    if session_user_id is not None:
+        owned_count = (
+            await db.execute(
+                select(func.count()).select_from(UserProject).where(
+                    UserProject.owner_id == session_user_id
+                )
+            )
+        ).scalar_one()
+
+    total_count = (
+        await db.execute(select(func.count()).select_from(UserProject))
+    ).scalar_one()
+
+    by_origin_rows = (
+        await db.execute(
+            select(UserProject.origin, func.count())
+            .group_by(UserProject.origin)
+        )
+    ).all()
+
+    distinct_owners_rows = (
+        await db.execute(
+            select(UserProject.owner_id, func.count())
+            .group_by(UserProject.owner_id)
+            .order_by(func.count().desc())
+        )
+    ).all()
+
+    return JSONResponse({
+        "session": {
+            "beril_user_id": session_user_id,
+            "orcid_id": session_orcid,
+        },
+        "db_user": (
+            {
+                "id": db_user.id,
+                "orcid_id": db_user.orcid_id,
+                "display_name": db_user.display_name,
+            }
+            if db_user is not None
+            else None
+        ),
+        "projects": {
+            "owned_by_session_user": owned_count,
+            "total_in_db": total_count,
+            "by_origin": {origin: count for origin, count in by_origin_rows},
+            "by_owner_id": [
+                {"owner_id": owner_id, "count": count}
+                for owner_id, count in distinct_owners_rows
+            ],
+        },
+    })
 
 
 @ROUTER_USER_DATA.get("/user/data/new", response_class=HTMLResponse)
