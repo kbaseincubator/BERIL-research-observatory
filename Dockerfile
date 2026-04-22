@@ -1,8 +1,15 @@
 FROM python:3.11-slim
 
-# Add SPIN user id
+# Add SPIN user id. `--home` + `--shell` give the account a real, writable
+# HOME — without these, `adduser --system` defaults to HOME=/nonexistent,
+# which breaks any tool that reads/writes under $HOME (e.g. the bundled
+# `claude` CLI used by the chat feature hangs on its config path).
 RUN addgroup --system --gid 76761 beril_app
-RUN adduser --system --uid 76761 beril
+RUN adduser --system --uid 76761 \
+    --home /home/beril \
+    --shell /bin/bash \
+    --ingroup beril_app \
+    beril
 
 # Create public directory with proper permissions for beril user to write config
 RUN mkdir -p /tmp/beril_data_cache && \

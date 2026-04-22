@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}My Chats — {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header" style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4);">
+  <div>
+    <h1 class="page-title">My Chats</h1>
+    <p class="text-muted">Persistent conversations with a research co-scientist, backed by your chosen LLM.</p>
+  </div>
+  <button id="chat-new-btn" type="button" class="btn btn-primary" style="white-space: nowrap;">+ New chat</button>
+</div>
+
+{% if active_sessions %}
+  <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+    {% for session in active_sessions %}
+      <div class="card" style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 0;">
+          <div style="display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-1);">
+            <span style="font-weight: 600; font-size: 1.05rem;">{{ session.title }}</span>
+            <span class="badge" style="background: rgba(57,212,230,0.1); color: #39d4e6; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;">{{ session.provider_id }}</span>
+            <span class="badge" style="background: rgba(255,255,255,0.06); color: var(--color-text-muted); font-size: 0.7rem;">{{ session.model }}</span>
+          </div>
+          <p class="text-muted text-small" style="margin: 0;">Last active {{ session.last_active_at.strftime('%Y-%m-%d %H:%M') }}</p>
+        </div>
+        <a href="/chat/{{ session.id }}" class="btn btn-outline btn-sm" style="white-space: nowrap; flex-shrink: 0;">Open</a>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="card" style="text-align: center; padding: var(--space-10) var(--space-6);">
+    <p class="text-muted" style="margin-bottom: var(--space-4);">You have no chats yet.</p>
+    <button id="chat-empty-new-btn" type="button" class="btn btn-primary">Start your first chat</button>
+  </div>
+{% endif %}
+
+{% if archived_sessions %}
+  <details style="margin-top: var(--space-8);">
+    <summary class="text-muted" style="cursor: pointer;">Archived ({{ archived_sessions|length }})</summary>
+    <div style="display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-4);">
+      {% for session in archived_sessions %}
+        <div class="card" style="opacity: 0.7; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);">
+          <span>{{ session.title }}</span>
+          <a href="/chat/{{ session.id }}" class="btn btn-outline btn-sm">Open</a>
+        </div>
+      {% endfor %}
+    </div>
+  </details>
+{% endif %}
+
+{# Provider catalog embedded as JSON so the new-chat modal can populate its dropdowns. #}
+<script type="application/json" id="chat-providers-data">{{ providers | tojson }}</script>
+
+<dialog id="chat-new-dialog" style="border: 1px solid rgba(255,255,255,0.15); border-radius: var(--radius-lg); background: var(--color-bg-elevated); color: var(--color-text); padding: var(--space-6); max-width: 480px; width: 90%;">
+  <form id="chat-new-form" style="display: flex; flex-direction: column; gap: var(--space-4);">
+    <h2 style="margin: 0;">Start a new chat</h2>
+
+    <label style="display: flex; flex-direction: column; gap: var(--space-1);">
+      <span>Host</span>
+      <select name="provider_id" id="chat-new-provider" required></select>
+    </label>
+
+    <label style="display: flex; flex-direction: column; gap: var(--space-1);">
+      <span>Model</span>
+      <select name="model" id="chat-new-model" required></select>
+    </label>
+
+    <label style="display: flex; flex-direction: column; gap: var(--space-1);">
+      <span>Title (optional)</span>
+      <input type="text" name="title" maxlength="500" placeholder="New chat">
+    </label>
+
+    <div style="display: flex; gap: var(--space-3); justify-content: flex-end;">
+      <button type="button" id="chat-new-cancel" class="btn btn-outline">Cancel</button>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </div>
+
+    <p id="chat-new-error" class="text-muted text-small" style="color: #ff6b6b; display: none; margin: 0;"></p>
+  </form>
+</dialog>
+
+<script>
+  (function () {
+    const dialog = document.getElementById('chat-new-dialog');
+    const providerSelect = document.getElementById('chat-new-provider');
+    const modelSelect = document.getElementById('chat-new-model');
+    const form = document.getElementById('chat-new-form');
+    const errorEl = document.getElementById('chat-new-error');
+
+    const providers = JSON.parse(
+      document.getElementById('chat-providers-data').textContent
+    );
+
+    function populateProviders() {
+      providerSelect.innerHTML = '';
+      for (const p of providers) {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = p.display_name;
+        providerSelect.appendChild(opt);
+      }
+      populateModels();
+    }
+
+    function populateModels() {
+      const selected = providers.find(p => p.id === providerSelect.value);
+      modelSelect.innerHTML = '';
+      if (!selected) return;
+      for (const m of selected.models) {
+        const opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = m.display_name;
+        modelSelect.appendChild(opt);
+      }
+    }
+
+    providerSelect.addEventListener('change', populateModels);
+
+    function openDialog() {
+      errorEl.style.display = 'none';
+      populateProviders();
+      dialog.showModal();
+    }
+
+    document.getElementById('chat-new-btn')?.addEventListener('click', openDialog);
+    document.getElementById('chat-empty-new-btn')?.addEventListener('click', openDialog);
+    document.getElementById('chat-new-cancel').addEventListener('click', () => dialog.close());
+
+    form.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      errorEl.style.display = 'none';
+      const data = new FormData(form);
+      const payload = {
+        provider_id: data.get('provider_id'),
+        model: data.get('model'),
+        title: data.get('title') || null,
+      };
+      try {
+        const resp = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!resp.ok) {
+          const body = await resp.json().catch(() => ({}));
+          throw new Error(body.error || `create failed (${resp.status})`);
+        }
+        const body = await resp.json();
+        window.location.assign(`/chat/${body.session_id}`);
+      } catch (err) {
+        errorEl.textContent = err.message;
+        errorEl.style.display = 'block';
+      }
+    });
+  })();
+</script>
+{% endblock %}

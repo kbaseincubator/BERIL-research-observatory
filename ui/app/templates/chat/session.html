@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}{{ session.title }} — {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header" style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4);">
+  <div style="flex: 1; min-width: 0;">
+    <a href="/chat" class="text-muted text-small" style="text-decoration: none;">&larr; All chats</a>
+    <h1 class="page-title" style="margin-top: var(--space-2);">{{ session.title }}</h1>
+    <p class="text-muted text-small" style="margin: 0;">
+      {{ session.provider_id }} · {{ session.model }} ·
+      Last active {{ session.last_active_at.strftime('%Y-%m-%d %H:%M') }}
+    </p>
+  </div>
+</div>
+
+{#
+  Transcript renders server-side so refreshes / no-JS show prior messages.
+  The React island (step 7) will mount underneath and take over new-turn
+  streaming. For now this page is read-only with a notice.
+#}
+<section id="chat-transcript" style="display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6);">
+  {% if messages %}
+    {% for msg in messages %}
+      <article class="card" data-role="{{ msg.role }}" style="padding: var(--space-4);">
+        <header style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-2);">
+          <span style="font-weight: 600; text-transform: capitalize;">{{ msg.role }}</span>
+          <span class="text-muted text-small">{{ msg.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+        </header>
+        {% if msg.content.get('text') %}
+          <p style="margin: 0; white-space: pre-wrap;">{{ msg.content['text'] }}</p>
+        {% endif %}
+        {% if msg.content.get('error') %}
+          <p class="text-small" style="color: #ff6b6b; margin-top: var(--space-2);">
+            Error: {{ msg.content['error'] }}
+          </p>
+        {% endif %}
+        {% if msg.content.get('tool_activity') %}
+          <details style="margin-top: var(--space-2);">
+            <summary class="text-muted text-small" style="cursor: pointer;">
+              Tool activity ({{ msg.content['tool_activity']|length }})
+            </summary>
+            <pre class="text-small" style="overflow-x: auto; margin-top: var(--space-2);">{{ msg.content['tool_activity'] | tojson(indent=2) }}</pre>
+          </details>
+        {% endif %}
+      </article>
+    {% endfor %}
+  {% else %}
+    <div class="card" style="text-align: center; padding: var(--space-8);">
+      <p class="text-muted">No messages yet.</p>
+    </div>
+  {% endif %}
+</section>
+
+{#
+  React chat island. The component itself owns the message list and input;
+  the server-rendered transcript above is the fallback when JS is disabled
+  and is hidden once the component mounts.
+#}
+<div id="chat-island-root"
+     data-session-id="{{ session.id }}"
+     data-provider-id="{{ session.provider_id }}"
+     data-model="{{ session.model }}"
+     style="margin-top: var(--space-6);"></div>
+
+<script type="application/json" id="chat-providers-data">{{ providers | tojson }}</script>
+<script type="application/json" id="chat-initial-messages">{{ messages_json | tojson }}</script>
+
+<script type="module">
+  // Bootstrap: await the bundle so `window.BERILChat` is guaranteed to be
+  // installed before we read it. Using dynamic import (rather than a
+  // separate <script> tag) sequences the module load deterministically.
+  (async function () {
+    const root = document.getElementById('chat-island-root');
+    if (!root) return;
+
+    try {
+      await import('/static/chat/chat.js');
+    } catch (err) {
+      console.error('Failed to load chat component bundle:', err);
+      root.innerHTML =
+        '<p style="color:#ff6b6b;">Chat component failed to load. See console for details.</p>';
+      return;
+    }
+
+    if (!window.BERILChat) {
+      console.error(
+        'Chat bundle loaded but window.BERILChat is undefined — rebuild may be stale.'
+      );
+      return;
+    }
+
+    const providers = JSON.parse(
+      document.getElementById('chat-providers-data').textContent
+    );
+
+    const rawMessages = JSON.parse(
+      document.getElementById('chat-initial-messages').textContent
+    );
+    const initialMessages = rawMessages
+      .filter(m => m && m.id && m.role && m.content)
+      .map(m => ({
+        id: m.id,
+        role: m.role,
+        text: (m.content && m.content.text) || '',
+        tool_activity: (m.content && m.content.tool_activity) || [],
+        error: (m.content && m.content.error) || null,
+        created_at: m.created_at,
+      }));
+
+    const sessionId = root.dataset.sessionId;
+
+    // Hide the SSR transcript once React takes over, but keep it in the DOM
+    // so the no-JS fallback still works on initial paint.
+    const ssrTranscript = document.getElementById('chat-transcript');
+    if (ssrTranscript) ssrTranscript.style.display = 'none';
+
+    window.BERILChat.mount(root, {
+      sessionId,
+      providerCatalog: providers,
+      currentProviderId: root.dataset.providerId,
+      currentModel: root.dataset.model,
+      streamEndpoint: `/api/chat/${sessionId}/stream`,
+      initialMessages,
+    });
+  })();
+</script>
+{% endblock %}

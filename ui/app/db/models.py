@@ -2,9 +2,14 @@
 
 import uuid
 from datetime import datetime, timezone
+from typing import Any
 
-from sqlalchemy import Boolean, DateTime, Enum, ForeignKey, String, Text, UniqueConstraint
+from sqlalchemy import Boolean, DateTime, Enum, ForeignKey, Index, JSON, String, Text, UniqueConstraint
+from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+
+# JSONB on Postgres, JSON fallback elsewhere (used by SQLite-backed tests).
+JSONCol = JSON().with_variant(JSONB(), "postgresql")
 
 
 def _now() -> datetime:
@@ -40,6 +45,9 @@ class BerilUser(Base):
     )
     roles: Mapped[list["UserRole"]] = relationship(
         "UserRole", back_populates="user", cascade="all, delete-orphan"
+    )
+    chat_sessions: Mapped[list["ChatSession"]] = relationship(
+        "ChatSession", back_populates="owner", cascade="all, delete-orphan"
     )
 
 
@@ -124,6 +132,9 @@ class UserProject(Base):
     )
     import_record: Mapped["ProjectImportRecord | None"] = relationship(
         "ProjectImportRecord", back_populates="project", uselist=False
+    )
+    chat_sessions: Mapped[list["ChatSession"]] = relationship(
+        "ChatSession", back_populates="project"
     )
 
     @property
@@ -266,3 +277,69 @@ class ProjectImportRecord(Base):
     project: Mapped["UserProject | None"] = relationship(
         "UserProject", back_populates="import_record"
     )
+
+
+class ChatSession(Base):
+    """A persistent LLM chat session owned by a BERIL user.
+
+    ``provider_id`` is a free-form string matched against the chat provider
+    registry at request time (not an enum). Adding a new provider is a config +
+    code change, not a migration.
+
+    ``sdk_session_id`` is null until the first turn completes; subsequent turns
+    pass it as the resume handle so the underlying agent rehydrates context.
+    """
+
+    __tablename__ = "chat_session"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    owner_id: Mapped[str] = mapped_column(
+        String(36), ForeignKey("beril_user.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    sdk_session_id: Mapped[str | None] = mapped_column(Text, nullable=True)
+    provider_id: Mapped[str] = mapped_column(String(64), nullable=False)
+    model: Mapped[str] = mapped_column(String(128), nullable=False)
+    title: Mapped[str] = mapped_column(Text, nullable=False, default="New chat")
+    project_id: Mapped[str | None] = mapped_column(
+        String(36), ForeignKey("user_project.id", ondelete="SET NULL"), nullable=True
+    )
+    archived: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
+    last_active_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
+
+    owner: Mapped["BerilUser"] = relationship("BerilUser", back_populates="chat_sessions")
+    project: Mapped["UserProject | None"] = relationship(
+        "UserProject", back_populates="chat_sessions"
+    )
+    messages: Mapped[list["ChatMessage"]] = relationship(
+        "ChatMessage",
+        back_populates="session",
+        cascade="all, delete-orphan",
+        order_by="ChatMessage.created_at",
+    )
+
+
+class ChatMessage(Base):
+    """One finalized message in a chat session.
+
+    ``content`` stores structured payloads (text, tool-call dicts, tool-result
+    dicts) as JSON so we preserve the full turn structure on replay.
+    """
+
+    __tablename__ = "chat_message"
+    __table_args__ = (
+        Index("ix_chat_message_session_created", "session_id", "created_at"),
+    )
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    session_id: Mapped[str] = mapped_column(
+        String(36), ForeignKey("chat_session.id", ondelete="CASCADE"), nullable=False
+    )
+    role: Mapped[str] = mapped_column(
+        Enum("user", "assistant", "tool", "tool_result", name="chat_message_role"),
+        nullable=False,
+    )
+    content: Mapped[Any] = mapped_column(JSONCol, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
+
+    session: Mapped["ChatSession"] = relationship("ChatSession", back_populates="messages")
