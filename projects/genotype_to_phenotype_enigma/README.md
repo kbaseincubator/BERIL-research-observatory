@@ -6,7 +6,7 @@ Can we predict bacterial growth phenotype — at multiple resolutions from binar
 
 ## Status
 
-**Complete** — all three acts delivered. Act I (NB00-NB04), Act II (NB05-NB08), Act III (NB09-NB10): 16 findings, 50 figures, 46,389-pair modeling corpus, 50-experiment AL proposal. Binary growth predictable for amino acids (AUC 0.93 tryptophan), nucleosides (0.78 class), and carbon sources (0.90 mannose); NOT for metals/antibiotics/nitrogen. Continuous growth rate NOT predictable from KO content (biological limit, not data problem). 557 mechanistic gene-metabolite associations recovered from WoM via per-metabolite correlation. Active learning proposes 50 Oak Ridge-relevant experiments (fumaric acid, melibionic acid, nitrate; Prescottella, Microbacterium). See [Report](REPORT.md).
+**Complete** — all three acts delivered and fully reproducible (plan v9). Act I (NB00-NB04), Act II (NB05-NB08), Act III (NB09-NB10): 16 findings, 50 figures, 46,389-pair modeling corpus, 50-experiment AL proposal. Binary growth predictable for amino acids (AUC 0.93 tryptophan), nucleosides (0.78 class), and carbon sources (0.90 mannose); NOT for metals/antibiotics/nitrogen. Continuous growth rate NOT predictable from KO content (biological limit, not data problem). 940 mechanistic gene-metabolite associations recovered from WoM via per-metabolite correlation across all 62/62 variable metabolites. Active learning proposes 50 Oak Ridge-relevant experiments (fumaric acid, melibionic acid, nitrate; Prescottella, Microbacterium). See [Report](REPORT.md).
 
 ## Context
 

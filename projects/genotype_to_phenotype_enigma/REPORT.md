@@ -8,7 +8,7 @@ This project asks whether bacterial growth phenotype — at resolutions from bin
 - **Continuous growth parameters (µmax, lag, yield) are NOT predictable** from KO content or bulk genomic features under cross-genus holdout. This is a fundamental biological limitation — gene presence encodes capability, not kinetic rate.
 - **SHAP features are mechanistically coherent** (ribose transporter predicts ribose growth, protocatechuate cycloisomerase predicts aromatic catabolism) but weakly concordant with Fitness Browser (1.19× enrichment) because gene presence across genera and gene essentiality within one strain are different biological questions.
 - **The transition from genome-scale to gene-specific prediction requires 46K training pairs**. With n=7 strains the model learns "big genomes grow on amino acids"; with n=46K pairs it learns condition-specific catabolic genes.
-- **Exometabolomic prediction (WoM, 6 strains, 105 metabolites)** fails under multivariate GBDT but succeeds under univariate per-metabolite correlation — recovering 557 mechanistic gene-metabolite associations (286 production, 271 consumption) across 60 of 62 variable metabolites.
+- **Exometabolomic prediction (WoM, 6 strains, 105 metabolites)** fails under multivariate GBDT but succeeds under univariate per-metabolite correlation — recovering **940 mechanistic gene-metabolite associations** (454 production, 486 consumption) across **all 62 variable metabolites**, drawn from an FB-cognate feature set of 156 KOs (KOs with significant rich-media fitness in Pseudomonas FB anchors that are also variable across the 6 WoM strains).
 - **A global pH-driven niche partition (464K samples)** explains local Oak Ridge co-occurrence: the Rhodanobacter-Ralstonia-Dyella cluster occupies environments 1.35 pH units more acidic and 6.9°C warmer than the Brevundimonas-Caulobacter-Sphingomonas cluster worldwide.
 - **Active learning identifies 50 conditions for next Oak Ridge experiments** — prioritizing organic acids (fumaric, melibionic, itaconic), nitrate, and low-pH-relevant substrates where the model is least confident and field relevance is highest.
 
@@ -149,15 +149,15 @@ GapMind achieves 96.5% recall and 79% precision on 118 testable pairs — it alm
 
 **The coverage gap**: ~76% of ENIGMA conditions (metals, antibiotics, nitrogen, stress) have neither GapMind pathway coverage nor CSP training data. Prediction on these conditions falls to AUC ~0.63 (no better than generic KO features).
 
-#### 9b. Per-metabolite KO correlation recovers 557 mechanistic gene-metabolite associations
+#### 9b. Per-metabolite KO correlation recovers 940 mechanistic gene-metabolite associations
 
 ![Production-KO heatmap](figures/NB08_production_ko_heatmap.png)
 
-While multivariate GBDT fails at n=6 (AUC=0.500), **univariate per-metabolite point-biserial correlation** between KO presence and metabolite production identifies 557 strong associations (|r| > 0.7) across **60 of 62 variable metabolites**. Using FB-significant KOs (genes with fitness effects on rich media, the same condition WoM measures) as the feature set provides a mechanistically focused starting point.
+While multivariate GBDT fails at n=6 (AUC=0.500), **univariate per-metabolite point-biserial correlation** between KO presence and metabolite production identifies **940 strong associations (|r| > 0.7)** across **all 62 variable metabolites**. Using FB-cognate KOs (genes with significant fitness effects on rich media in Pseudomonas Fitness Browser anchor organisms) filtered to those variable across the 6 WoM strains yields a compact, mechanistically focused feature set of 156 KOs.
 
 ![Mechanistic examples](figures/NB08_mechanistic_examples.png)
 
-The associations split evenly between **production** (286: KO present → metabolite produced, e.g., K01048 PAPS synthase → taurine, K05710 thymidine phosphorylase → thymine) and **consumption** (271: KO present → metabolite consumed/degraded, e.g., K02613 lactate permease → lactate consumed, K07334 xanthine oxidase → hypoxanthine consumed). These are mechanistically correct gene-function relationships.
+The associations split into **production** (454: KO present → metabolite produced, e.g., K01048 PAPS synthase → taurine, K05710 thymidine phosphorylase → thymine) and **consumption** (486: KO present → metabolite consumed/degraded, e.g., K02613 lactate permease → lactate consumed, K07334 xanthine oxidase → hypoxanthine consumed). These are mechanistically correct gene-function relationships.
 
 ![Method comparison](figures/NB08_method_comparison.png)
 
@@ -368,7 +368,7 @@ The full modeling corpus pools two data sources into a shared feature space:
 
 **Act I** established an unprecedented multi-dataset foundation: 486 anchor pairs where growth curves, gene fitness, and genome annotations coexist, 8 metabolic guilds across 123 strains, and a global pH-driven niche partition connecting local Oak Ridge co-occurrence to 464K global 16S samples. A strain-name collision pitfall was discovered and documented for the BERDL community.
 
-**Act II** delivered a calibrated genotype-to-phenotype model with an honest verdict: binary growth is predictable on amino acids (AUC 0.775) and nucleosides (0.780), moderately on carbon sources (0.695), and NOT on metals/antibiotics/nitrogen from KO content. Continuous kinetics are fundamentally not predictable from KO presence under cross-genus holdout — a biological limit, not a data problem. The SHAP features are mechanistically coherent (condition-specific catabolic genes), but their weak FB concordance (1.19×) reveals that gene-presence-across-genera and gene-essentiality-within-strain are different biological questions answered by different data. The n=7 → n=46K comparison quantifies the corpus size required to shift from genome-scale to gene-specific prediction. WoM exometabolomics requires a method change at small n: multivariate GBDT fails, but univariate per-metabolite correlation recovers 557 mechanistic associations.
+**Act II** delivered a calibrated genotype-to-phenotype model with an honest verdict: binary growth is predictable on amino acids (AUC 0.775) and nucleosides (0.780), moderately on carbon sources (0.695), and NOT on metals/antibiotics/nitrogen from KO content. Continuous kinetics are fundamentally not predictable from KO presence under cross-genus holdout — a biological limit, not a data problem. The SHAP features are mechanistically coherent (condition-specific catabolic genes), but their weak FB concordance (1.19×) reveals that gene-presence-across-genera and gene-essentiality-within-strain are different biological questions answered by different data. The n=7 → n=46K comparison quantifies the corpus size required to shift from genome-scale to gene-specific prediction. WoM exometabolomics requires a method change at small n: multivariate GBDT fails, but univariate per-metabolite correlation recovers 940 mechanistic associations across all 62 variable metabolites.
 
 **Act III** closed the loop by auditing the model's failures and converting them into an actionable experimental proposal. 1,276 high-confidence errors concentrate in specific genus × condition-class cells (Methylobacterium on amino acids, Sphingomonas on complex carbons, Microbacterium on nucleosides). The active learning ranking — error × uncertainty × field relevance — produces a 50-experiment list prioritizing organic acids (fumaric, melibionic, itaconic), nitrate, and low-pH-relevant substrates, with Prescottella and Microbacterium as the most informative test genera. This is the translation from "we have a model" to "here is what to measure next."
 
@@ -390,7 +390,7 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 - **H2 (paradigm complementarity)**: Supported. GapMind (78.8% accuracy, 24% coverage, mechanistic) and GBDT (AUC 0.78 on amino acids, broader coverage, data-driven) are complementary — GapMind for high-confidence pathway-level predictions, GBDT for broader coverage with lower confidence.
 - **H3 (biological meaningfulness)**: Partially addressable. SHAP features are mechanistically coherent (transporters, catabolic enzymes). Full FB concordance validation (with correlation-group expansion) remains to be done.
 - **H4 (CSP transfer)**: Supported for matched conditions (AUC 0.800 vs 0.633 ENIGMA-only on matched, and full-corpus AUC 0.78 for amino acids).
-- **H5 (exometabolomic prediction)**: Revised. Growth-predictive KOs and metabolite-production KOs are different feature sets (ρ=0.043). Multivariate GBDT fails at n=6, but per-metabolite univariate correlation recovers 557 mechanistic gene-metabolite associations (60/62 variable metabolites explained). Gene content explains metabolite profiles when analyzed with the right method.
+- **H5 (exometabolomic prediction)**: Revised. Growth-predictive KOs and metabolite-production KOs are different feature sets (ρ ≈ 0.04). Multivariate GBDT fails at n=6, but per-metabolite univariate correlation recovers 940 mechanistic gene-metabolite associations covering all 62 variable metabolites. Gene content explains metabolite profiles when analyzed with the right method.
 - **H6 (active learning)**: Partially supported. The proposed 50-experiment set (NB10) concentrates on high-error, high-uncertainty, field-relevant conditions (organic acids, nitrate, low-pH substrates) and targets the two genera with the least reliable current predictions (Prescottella 16%, Microbacterium 23%). Formal retrospective subsampling vs. random selection is the next validation step; the candidate ranking framework itself is in place and actionable.
 
 ### Novel Contribution
@@ -401,7 +401,7 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 4. **Transition from genome-scale to gene-specific prediction**: demonstrating that n=7 strains yields genome-scale predictors ("big genomes grow") while n=46K pairs yields condition-specific predictors (ribose transporter predicts ribose growth). The corpus size required for mechanistic prediction is quantified.
 5. **Strain-name collision pitfall**: documented a systematic data integration hazard affecting any project linking field isolates to reference databases by short strain identifiers.
 6. **Correlated feature grouping for SHAP interpretability**: demonstrated that naive SHAP on 4,305 KOs splits credit across correlated gene blocks; correlation grouping at |r|>0.8 reveals a 63-feature genome-scale axis that dominates with small training sets.
-7. **Method-appropriate exometabolomic prediction**: demonstrated that multivariate ML (GBDT) fails at n=6 for metabolite prediction, but univariate per-metabolite correlation recovers 557 mechanistic gene-metabolite associations (both production and consumption), with FB-filtered KOs providing a focused feature set. This establishes that the analytical method must match the sample size and biological resolution.
+7. **Method-appropriate exometabolomic prediction**: demonstrated that multivariate ML (GBDT) fails at n=6 for metabolite prediction, but univariate per-metabolite correlation recovers 940 mechanistic gene-metabolite associations (454 production + 486 consumption) across all 62 variable metabolites, with FB-cognate rich-media-significant KOs providing a focused feature set of 156 genes. This establishes that the analytical method must match the sample size and biological resolution.
 
 8. **Field-relevance-weighted active learning proposal**: a concrete 50-experiment list for ENIGMA's next growth screen, ranked by error × uncertainty × Oak-Ridge relevance. The weighting converts generic ML uncertainty into bioremediation-actionable priorities (nitrogen cycle, organic acid metabolism, low-pH compatibility) and identifies Prescottella and Microbacterium as the most informative test genera.
 
@@ -473,7 +473,7 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 | `NB06_variance_partition.ipynb` | Nested GBDT M0-M3, SHAP, correlation grouping, variance decomposition |
 | `NB07_condition_specific_prediction.ipynb` | GapMind baseline, CSP transfer comparison (preliminary) |
 | `NB07_full_corpus_prediction.ipynb` | Full-corpus GBDT (46K pairs), genus-blocked holdout, per-condition analysis, SHAP |
-| `NB08` (per-metabolite correlation) | WoM exometabolomic prediction: GBDT failure at n=6, per-metabolite point-biserial correlation, 557 mechanistic KO-metabolite associations |
+| `NB08` (per-metabolite correlation) | WoM exometabolomic prediction: GBDT failure at n=6, per-metabolite point-biserial correlation, 940 mechanistic KO-metabolite associations across 62/62 variable metabolites |
 | `NB09` (conflict detection) | Audit of 42,771 predictions vs ground truth, 1,276 confident errors, per-genus × condition-class error patterns, candidate ranking |
 | `NB10` (active learning) | 50-condition proposal ranked by error × uncertainty × field relevance, top candidates for next ENIGMA experiments |
 
@@ -524,8 +524,8 @@ The global pH-driven niche partition (Finding 5) is the most unexpected result. 
 | `NB08_wom_prediction.png` | GBDT prediction (AUC=0.500), SHAP overlap, per-metabolite accuracy |
 | `NB08_production_ko_heatmap.png` | 6 strains × 30 metabolites with paired KO presence sidebar |
 | `NB08_mechanistic_examples.png` | 4 worked examples: taurine/thymine production, lactate/hypoxanthine consumption |
-| `NB08_method_comparison.png` | GBDT (random) vs per-metabolite correlation (60/62 explained) |
-| `NB08_fb_cognate_results.png` | 557 KO-metabolite associations, production vs consumption |
+| `NB08_method_comparison.png` | GBDT (random) vs per-metabolite correlation (62/62 explained) |
+| `NB08_fb_cognate_results.png` | 940 KO-metabolite associations, production vs consumption |
 | `NB09_conflict_detection.png` | Confusion breakdown, confident errors, per-genus × condition-class error heatmap |
 | `NB09_active_learning_candidates.png` | Top 30 AL candidates by combined error × uncertainty score |
 | `NB10_active_learning_proposal.png` | Final 50-experiment proposal ranked by field-relevance-weighted score |

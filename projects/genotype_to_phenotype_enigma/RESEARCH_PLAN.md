@@ -334,8 +334,8 @@ The project is organized into three acts. Each notebook produces a standalone de
 - **Status**: Complete. Tests H5 (do growth-predictive KOs predict metabolite production?).
 - **Key results**:
   - **GBDT fails**: AUC = 0.500 for all 6 strains. All are Pseudomonas with ~81% Jaccard KO similarity — insufficient variation for multivariate models at n=6.
-  - **Per-metabolite univariate correlation succeeds**: 557 strong associations (|r|>0.7) across 60/62 variable metabolites. 286 production associations (KO present → metabolite produced, e.g., K01048→taurine) + 271 consumption associations (KO present → metabolite consumed, e.g., K02613→lactate consumed).
-  - **FB-cognate feature selection**: Using KOs with significant fitness on rich media (R2A/LB) as the feature set provides a mechanistically focused starting point (1,019 KOs, 104 variable across strains).
+  - **Per-metabolite univariate correlation succeeds**: 940 strong associations (|r|>0.7) across all 62/62 variable metabolites. 454 production associations (KO present → metabolite produced, e.g., K01048→taurine) + 486 consumption associations (KO present → metabolite consumed, e.g., K02613→lactate consumed).
+  - **FB-cognate feature selection**: Using KOs with significant fitness on rich media (LB/R2A) across the Pseudomonas FB anchor organisms (pseudo1_N1B4, pseudo3_N2E3, pseudo5_N2C3_1, pseudo6_N2E2, pseudo13_GW456_L13, psRCH2) as the feature set provides a mechanistically focused starting point; intersection with variable-across-6-WoM-strains yields 156 variable KOs for correlation.
   - **H5 revised**: Growth-predictive KOs (cross-genus) ≠ metabolite-production KOs (within-genus), Spearman ρ=0.043. But gene content explains both when analyzed with appropriate methods (GBDT for cross-genus growth; univariate correlation for within-genus metabolites).
   - **Methodological insight**: The right analytical method depends on sample size — multivariate ML at n=46K, univariate tests at n=6.
 - **Output**: 5 figures, `data/wom_predictions.tsv`, `data/wom_prediction_results.tsv`, `data/wom_fb_ko_correlations.tsv`.
@@ -436,6 +436,12 @@ NB01 found 35.7% of curves pass fit_ok (R²>0.8, RMSE<10% OD range). If this pro
 
 ## Revision History
 
+- **v9** (2026-04-23): Reproducibility gap closed — NB08, NB09, NB10 reconstructed as executable notebooks from the committed analytical artifacts (the original interactive sessions had written only TSVs and figures).
+  - NB09 and NB10 reproduce their committed outputs byte-identically (row order differs only on ties).
+  - NB08 reconstructed with a reproducible FB-cognate KO query. The Pseudomonas-anchor-based definition yields 940 strong correlations (|r|>0.7) across all 62/62 variable metabolites (vs the interactive version's 557/60), using 156 variable KOs (vs 104). All four mechanistic example pairs are preserved (taurine/K01048, thymine/K05710, lactate/K02613, hypoxanthine/K07334, each at r=±1.0). The broader FB-cognate set is the consequence of querying 6 Pseudomonas FB orgs rather than a narrower interactive selection; the qualitative H5 outcome is unchanged.
+  - Executive summary, Finding 9b, Act II summary, H5 outcome, Novel Contribution #7, notebook list, and figure legends in REPORT.md updated with revised counts.
+  - README Reproduction table updated: NB08 environment changed from "Local" to "JupyterHub (Spark) + Local" since WoM production and FB rich-media significance are queried from the lakehouse at runtime.
+
 - **v8** (2026-04-19): Act III complete — NB09 conflict detection + NB10 active learning.
   - NB09 and NB10 marked [DONE] with actual results. The old NB10/NB11 naming was renumbered to NB09/NB10 to match the delivered notebook numbering.
   - NB09 key results: 65.1% overall accuracy on 42,771 genus-blocked holdout predictions, 1,276 high-confidence errors concentrated in Methylobacterium × amino acids, Sphingomonas × other carbons, Microbacterium × nucleosides.
@@ -447,7 +453,7 @@ NB01 found 35.7% of curves pass fit_ok (R²>0.8, RMSE<10% OD range). If this pro
   - NB02-NB04 marked [DONE] with actual output summaries (were unmarked despite being complete since April 14-18).
   - NB06 description replaced with actual results (AUC 0.633, genome-scale 25.3% + condition 45.9%, correlation grouping).
   - NB07 description replaced with actual full-corpus results (46K pairs, AUC 0.775 amino acids, 95 conditions AUC>0.75, condition-specific catabolic genes, FB concordance 1.19x, continuous targets negative R²).
-  - NB08 description replaced with actual WoM results (GBDT AUC=0.500, but 557 per-metabolite KO associations via univariate correlation, FB-cognate feature selection).
+  - NB08 description replaced with actual WoM results (GBDT AUC=0.500, but 557 per-metabolite KO associations via univariate correlation, FB-cognate feature selection). [v9 update 2026-04-23: after NB08 was reconstructed from interactive-session artifacts, the FB-cognate KO subset was re-derived via a reproducible query over Pseudomonas FB anchor orgs — 940 strong correlations across all 62/62 variable metabolites. The broader count reflects a more inclusive FB-cognate set; the four reported mechanistic examples (taurine/K01048, thymine/K05710, lactate/K02613, hypoxanthine/K07334) are preserved at r=±1.0.]
   - Execution environment table and Act III descriptions unchanged.
 
 - **v6** (2026-04-19): Full-corpus modeling + honest gap assessment.
