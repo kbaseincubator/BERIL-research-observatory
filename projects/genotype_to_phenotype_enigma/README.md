@@ -100,11 +100,11 @@ This project integrates data from the following BERDL collections:
 | NB05 | JupyterHub (Spark) | ~5 sec | Feature matrices, modeling tables |
 | NB06 | Local (LightGBM) | ~30 sec | Variance partitioning, SHAP, correlation groups |
 | NB07 | JupyterHub (Spark) + Local | ~40 min | Full-corpus training, genus-blocked holdout, FB concordance |
-| NB08 | Local | ~30 sec | WoM per-metabolite correlation, 557 mechanistic KO-metabolite associations |
+| NB08 | JupyterHub (Spark) + Local | ~2 min | WoM production matrix + FB-cognate per-metabolite correlation; ~900 KO-metabolite associations across 62 metabolites |
 | NB09 | Local | ~10 sec | Conflict detection: audit of 42,771 predictions, 1,276 confident errors |
 | NB10 | Local | ~5 sec | Active learning ranking with field-relevance weighting, top 50 proposal |
 
-NB00-NB05 require BERDL JupyterHub for Spark access to query databases. NB06-NB10 run locally on cached data files, but NB07's corpus-building step requires one Spark query (~38 min).
+NB00-NB05 and NB08 require BERDL JupyterHub for Spark access to query databases (ENIGMA CORAL, Web of Microbes, Fitness Browser). NB06, NB07, NB09, NB10 run locally on cached data files. NB08 in this repository was reconstructed from artifacts after the original interactive run; the committed `wom_fb_ko_correlations.tsv` used a different FB-cognate KO subset than the reconstructed notebook, so counts may differ slightly — qualitative findings are stable.
 
 ### Data dependencies
 - `data/growth_parameters_all.parquet` (NB01 → NB02, NB05, NB07)
