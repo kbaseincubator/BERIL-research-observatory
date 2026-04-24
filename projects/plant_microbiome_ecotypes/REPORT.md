@@ -56,7 +56,12 @@ The attenuation from Fisher OR to phylo-controlled OR (e.g., COG3569: 8.92→6.0
 
 ![Cohort distribution by compartment](figures/nb04_cohort_compartment_bar.png)
 
-The majority of plant-associated species (65–85% per compartment) carry both PGP and pathogenic marker genes simultaneously. In the NB02 marker survey, 15,474 of 25,660 species (60.3%) were classified as dual-nature. After composite scoring in NB07 with adaptive thresholds, the final distribution across 25,660 species was: neutral 38.0%, pathogenic 29.5%, dual-nature 25.2%, beneficial 7.3%.
+The majority of plant-associated species (65–85% per compartment) carry both PGP and pathogenic marker genes simultaneously. Two classification schemes were applied, producing different dual-nature rates:
+
+- **NB02 (binary marker presence)**: Any species carrying ≥1 PGP and ≥1 pathogenic marker is classified as dual-nature → 15,474/25,660 species (60.3%). This reflects the broad prevalence of general bacterial functions (flagella, chemotaxis, T6SS) that span both categories.
+- **NB07 (composite scoring)**: A weighted scoring framework (40% PGP markers, 20% core fraction, 15% complementarity, 10% metabolic breadth, 15% pathogen penalty) with adaptive thresholds (median of non-zero scores) produces a more stringent classification → neutral 38.0%, pathogenic 29.5%, dual-nature 25.2%, beneficial 7.3%.
+
+The 35 percentage point difference between schemes reflects the distinction between *carrying* both marker types (nearly universal among bacteria due to ubiquitous functions like flagella and T6SS) and *scoring highly* on both axes when weighted by genomic architecture and metabolic context. The NB02 classification is more inclusive; the NB07 classification is more discriminating but also more assumption-laden.
 
 ![Synthesis overview: genus profiles, compartment distribution, genomic architecture](figures/synthesis_overview.png)
 
@@ -92,13 +97,13 @@ The most prevalent functional categories were: T6SS products (80,324 clusters), 
 
 ### Enrichment Analysis (NB03)
 
-Server-side aggregation of 93M eggNOG annotations produced OG-level prevalence for 5,671 OGs passing the 5% prevalence filter. Fisher's exact test with BH-FDR correction found 94.2% of tested OGs were significantly associated with plant status, reflecting the broad genomic differences between plant-associated and non-plant bacteria.
+Server-side aggregation of 93M eggNOG annotations produced OG-level prevalence for 5,671 OGs passing the 5% prevalence filter. Fisher's exact test with BH-FDR correction found 94.2% of tested OGs (5,341/5,671) were significantly associated with plant status. This near-saturation reflects genome-wide compositional differences between plant-associated and non-plant bacteria rather than plant-specific functional enrichment — the test is effectively detecting taxonomic divergence. The meaningful signal comes from the phylum-controlled subset.
 
-Top enriched OGs included COG3569 (OR=8.92), COG1764 (OR=9.29), COG5343 (OR=7.74), COG0654 (OR=12.66), and COG1845 (OR=14.47). All 50 top OGs survived phylum-level logistic regression (51 phyla as fixed effects), though all models showed convergence warnings.
+Top enriched OGs included COG3569 (OR=8.92), COG1764 (OR=9.29), COG5343 (OR=7.74), COG0654 (OR=12.66), and COG1845 (OR=14.47). All 50 top OGs survived phylum-level logistic regression (28 large phyla as fixed effects), though all models showed convergence warnings (likely due to quasi-separation when some phyla are entirely plant-associated or entirely non-plant). The convergence warnings mean the reported p-values and odds ratios should be treated as approximate.
 
 ### Compartment Profiling (NB04)
 
-Fisher's exact tests across 96 marker×compartment combinations found 69 significant (q<0.05). The GapMind pathway completeness analysis yielded 0% completeness across all compartments at the core level, suggesting the core-level scoring threshold is too stringent for this broad taxonomic comparison. Thirty plant-associated genera were profiled in detail.
+Fisher's exact tests across 96 marker×compartment combinations found 69 significant (q<0.05). Planned phylogenetic control via genus-level logistic regression was not completed due to a code error (undefined `logit` import); therefore, the compartment enrichments in H1 are not phylogenetically controlled beyond the PERMANOVA test itself. The GapMind pathway completeness analysis yielded 0% completeness across all compartments at the core level, suggesting the core-level scoring threshold is too stringent for this broad taxonomic comparison. Thirty plant-associated genera were profiled in detail.
 
 ### Genomic Architecture (NB05)
 
@@ -109,7 +114,7 @@ Fisher's exact tests across 96 marker×compartment combinations found 69 signifi
 | Pathogenic | 45.2 | 31.0 | 374,416 |
 | Genome-wide baseline | 46.8 | 35.3 | — |
 
-All chi-square tests against the 46.8% baseline were significant (p≈0). The 986,464 transposase/integrase singleton clusters (722,674 transposase + 263,790 integrase) provided the HGT co-occurrence proxy.
+The genome-wide baseline (46.8% core) is computed at the gene cluster level across all species in the pangenome — i.e., the fraction of all gene clusters classified as core by their respective species pangenomes. All chi-square tests against this baseline were significant (p≈0). The per-species Mann-Whitney U test (beneficial vs. pathogenic core fractions within each species having ≥3 markers of each type) provides a complementary species-level view. The 986,464 transposase/integrase singleton clusters (722,674 transposase + 263,790 integrase) provided the HGT co-occurrence proxy.
 
 ### Complementarity Analysis (NB06)
 
@@ -141,6 +146,10 @@ Key mechanism hypotheses:
 | PGP + secretion system co-occurrence | Dual-nature | Medium |
 
 ## Interpretation
+
+### Phylogenetic Null Hypothesis (H0)
+
+The phylogenetic null — that functional differences between plant-associated and non-plant species are explained by phylogeny alone — is **partially rejected**. At the phylum level, all 50 top-enriched OGs retained significance after controlling for 28 phyla as fixed effects (NB03), though odds ratios were attenuated (e.g., COG3569: 8.92→6.01). This confirms a genuine ecological signal beyond phylogenetic structure. However, finer-grained control proved intractable: family-level logistic regression (NB08) found insufficient within-family variation for all 10 OGs tested, indicating that plant association is taxonomically clustered at the family level. The planned genus-level fixed effects were not executed due to computational constraints. The practical interpretation is that plant-associated functional enrichment is real but partially confounded by phylogeny — plant-adapted lineages carry these genes, and it is difficult to disentangle whether the genes cause plant association or whether plant-associated clades simply retain them. Phylogenetic independent contrasts or phylogenetically informed mixed models would be needed to resolve this fully.
 
 ### Compartment as Functional Filter
 
@@ -190,13 +199,16 @@ This study provides three contributions beyond existing literature:
 
 1. **Compartment classification**: Based on NCBI isolation_source metadata, which has variable quality and coverage. Only 7,995 of 293,059 genomes (2.7%) had plant-associated annotations. Endophyte species (n=29) fell below the 30-species threshold.
 2. **Marker gene completeness**: The bakta_pfam_domains table stores versioned Pfam IDs (e.g., `PF13629.12`) rather than bare accessions (`PF00771`), which caused zero hits in the original NB02 query. Fuzzy search in NB08 confirmed that T3SS-related Pfam domains do exist in the database (6 domains found, including PF13629 with 1,289 hits and PF18269 with 1,095 hits). The marker set is literature-curated and inevitably incomplete.
-3. **GapMind pathway resolution**: Core-level completeness scoring yielded 0% across all compartments, suggesting the threshold is too stringent for broad taxonomic comparisons. The complementarity analysis used max-aggregated species-to-genus scores.
-4. **Phylogenetic confounding**: Despite phylum-level fixed effects, the logistic regression models for H5 showed convergence warnings. Family-level control (NB08) produced insufficient variation for the top 10 novel OGs, likely because plant association is taxonomically clustered within families. Finer-grained phylogenetic correction (e.g., phylogenetic independent contrasts) would strengthen the novel marker claims.
+3. **GapMind pathway resolution**: Core-level completeness scoring yielded 0% across all compartments, suggesting the threshold is too stringent for broad taxonomic comparisons. The complementarity analysis used max-aggregated species-to-genus GapMind scores — for each genus, the maximum pathway completeness across its constituent species was used, which inflates completeness estimates toward the best-annotated species.
+4. **Phylogenetic control gaps**: The research plan (DESIGN.md) specified genus-level fixed effects, but execution used phylum-level control (28 phyla in NB03) due to the computational cost of genus-level models with 27K species. Despite this coarser control, all 50 logistic regression models showed convergence warnings, indicating potential numerical instability. Family-level control (NB08) produced insufficient within-family variation for all 10 novel OGs tested, because plant association is taxonomically clustered within families — entire families tend to be plant-associated or not. Additionally, the NB04 compartment profiling logistic regression failed due to a code error (undefined `logit` import), so H1 compartment enrichments lack any phylogenetic control beyond the PERMANOVA test. Three planned safeguards from DESIGN.md were not executed: (a) sensitivity analysis excluding top-3 genome-rich species per compartment, (b) within-genus environment label shuffling, and (c) explicit phylogeny vs. ecology variance decomposition. These omissions mean phylogenetic confounding may be more severe than the current analysis can detect, particularly for H1 and H5.
 5. **Mobility proxies**: Without GeNomad mobile element annotations, HGT was assessed indirectly. The mixed signal (strong transposase co-occurrence but lower-than-baseline singleton enrichment) highlights the limitations of proxy approaches.
 6. **Dual-nature interpretation**: Presence of both PGP and pathogenic marker genes does not confirm simultaneous expression. Transcriptomic or experimental validation is needed to determine whether these represent genuine lifestyle flexibility or simply annotation artifacts (e.g., T6SS serving inter-bacterial competition rather than pathogenicity).
-7. **Marker specificity**: Negative controls (NB08) reveal that non-plant genera such as *Escherichia*, *Salmonella*, and *Clostridioides* are 100% classified as dual-nature, and *Staphylococcus* at 98%. This reflects that several markers (flagella, chemotaxis, biofilm, quorum sensing, secretion systems) are ubiquitous across bacteria and not plant-specific. The marker panel should be refined with plant-specific thresholds or context-dependent scoring.
+7. **Marker specificity**: Negative controls (NB08) reveal that non-plant genera such as *Escherichia*, *Salmonella*, and *Clostridioides* are 100% classified as dual-nature, and *Staphylococcus* at 98%. This reflects that several markers (flagella, chemotaxis, biofilm, quorum sensing, secretion systems) are ubiquitous across bacteria and not plant-specific. Combined with the genome size confound (L#8), this means the NB02 dual-nature rate of 60.3% substantially overestimates genuine plant-adapted duality — many species are classified as dual-nature simply because they are typical bacteria with general motility and secretion capabilities. The NB07 composite scoring (25.2% dual-nature) partially addresses this by weighting genomic architecture and metabolic context, but the refined rate remains dependent on arbitrary scoring weights.
 8. **Genome size confound**: Genome size (gene cluster count) correlates moderately with total marker count (r=0.44, p<1e-300), meaning larger genomes accumulate more markers by chance. Presence-based cohort assignment is partially insulated from this effect, but quantitative scores should be interpreted with caution.
-9. **Multivariate dispersion**: PERMDISP testing (NB08) revealed significant dispersion heterogeneity between cohorts (H=33.12, p=3.0e-7), meaning the PERMANOVA R²=0.53 may partly reflect variance differences rather than pure location shifts.
+9. **Multivariate dispersion**: PERMDISP testing (NB08) revealed significant dispersion heterogeneity between cohorts (H=33.12, p=3.0e-7), meaning the PERMANOVA R²=0.53 may partly reflect variance differences rather than pure location shifts. The compartment effect is still supported by the Fisher enrichment tests (69/96 significant), but the PERMANOVA effect size should be interpreted as an upper bound.
+10. **NMDC genus mapping loss**: The NMDC taxonomy bridge matched 260/322 genera (80.7%), losing 62 genera (19.3%). The impact on complementarity analysis (H3) is unknown — if the unmatched genera include key complementary partners, the observed redundancy signal could be artifactual.
+11. **BacDive bridge zero incremental value**: The BacDive cross-validation found 2,482 plant-related strains but contributed 0 new genome upgrades beyond ncbi_env, indicating complete overlap between these metadata sources for the plant-associated genome set.
+12. **Enrichment saturation**: 94.2% of tested OGs (5,341/5,671) were significantly associated with plant status, reflecting genome-wide compositional differences between plant-associated and non-plant bacteria rather than plant-specific functional enrichment. Only the 50 OGs surviving phylogenetic control represent candidate plant-interaction genes; the raw Fisher test is effectively capturing taxonomic divergence.
 
 ### Adversarial Revision Results (NB08)
 

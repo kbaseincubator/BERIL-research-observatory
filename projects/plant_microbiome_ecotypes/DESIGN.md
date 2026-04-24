@@ -69,6 +69,15 @@ What is the genomic basis for plant-microbe associations across different plant 
 5. **Mobility proxy limitations**: Explicitly acknowledge indirect nature; compare multiple proxy signals (singleton enrichment, transposase co-occurrence, cross-species context variation)
 6. **PGP-pathogen interaction caveats**: Dual-nature classification requires both PGP and pathogenicity markers in same species; co-occurrence patterns from NMDC metagenomes may reflect shared habitat rather than direct interaction
 
+## Execution Deviations
+
+The following planned safeguards were modified or deferred during execution:
+
+1. **Phylogenetic control level**: Genus-level fixed effects were computationally intractable with 27K species. Phylum-level control (28 phyla) was used in NB03; family-level was attempted in NB08 but showed insufficient within-family variation. See REPORT.md Limitation #4.
+2. **NB04 phylogenetic control**: Genus-level logistic regression in NB04 failed due to a code error. H1 compartment enrichments lack phylogenetic control beyond PERMANOVA.
+3. **Three safeguards deferred**: (a) sensitivity excluding top-3 genome-rich species, (b) within-genus label shuffling, (c) phylogeny vs. ecology variance decomposition. These remain future work.
+4. **NB08 added**: An adversarial revisions notebook (not in original plan) was added to address concerns about marker specificity, genome size confounding, negative controls, and HGT deep dive.
+
 ## Key Constraint
 
 The GeNomad mobile element table is NOT in BERDL. Mobile element analysis uses proxies: singleton/accessory enrichment, transposase/integrase co-occurrence markers, and cross-species context variation (same OG core in species X but singleton in species Y).

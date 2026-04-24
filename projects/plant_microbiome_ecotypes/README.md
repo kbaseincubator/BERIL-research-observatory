@@ -32,6 +32,7 @@ This project classifies 293K bacterial/archaeal genomes across 27.7K species by 
 | NB05 | Genomic Architecture | Spark + local | Core/accessory distribution (H2); mobility proxies (H4) |
 | NB06 | Complementarity | Spark + local | NMDC co-occurrence; GapMind gap-filling; PGP-pathogen interactions |
 | NB07 | Cohort Synthesis | Local | Composite scoring; genus dossiers; hypothesis summary |
+| NB08 | Adversarial Revisions | Spark + local | Sensitivity analyses, negative controls, HGT deep dive, predictive classifiers |
 
 ## Key Outputs
 
@@ -74,8 +75,9 @@ Notebooks require the BERDL JupyterHub environment with Spark access. Run in ord
 
 1. Ensure access to the BERDL JupyterHub environment with Spark
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run notebooks in order: NB01 through NB07
+3. Run notebooks in order: NB01 through NB08
 4. Each notebook caches intermediate results to `data/`; re-running individual notebooks after first execution is safe
+5. NB08 (adversarial revisions) is optional but recommended for reproducing sensitivity analyses
 
 ## Authors
 
