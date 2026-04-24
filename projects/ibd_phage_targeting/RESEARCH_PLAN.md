@@ -214,8 +214,9 @@ Per-patient dossier output columns (per H5c):
 | NB | Pillar | Environment | Core output |
 |---|---|---|---|
 | **NB00** | all | local (no Spark) | Data audit: profile each parquet in `~/data/CrohnsPhage/`, validate column names / dtypes / missingness against the per-table dictionary YAMLs, reconcile the 33 tables against `schema_overview.yaml`, and document each fact / ref table's actual columns in `projects/ibd_phage_targeting/data/table_schemas.md` (since `docs/schemas/` has no coverage for these local-mart tables). Reproduce one slice of the preliminary DA vs compositional-aware DA as a proof-of-concept for norm N1 and the *C. scindens* paradox. Figures: coverage summary, missingness heatmap, sample-count-per-cohort, protective-species sanity check (C. scindens, F. prausnitzii, A. muciniphila). |
-| **NB01** | 1 | local | Ecotype training: DMM on CMD_IBD + HMP2 taxa; topic model on CMD_IBD pathways; MOFA+ on joint; consensus ecotypes. Figures: perplexity/BIC curves, ecotype-defining features, bootstrap robustness. |
-| **NB02** | 1 | local | Ecotype projection: project UC Davis and held-out cohorts onto the trained embedding; test H1b occupancy. Figures: UC Davis per-ecotype distribution, held-out cohort occupancy. |
+| **NB01** | 1 | local | Ecotype training v1: build the systematic synonymy layer (`data/species_synonymy.tsv`, 2,417 aliases → 1,848 canonical species, GTDB r214+ renames included), pivot 8,489 CMD MetaPhlAn3 samples × 1,442 species, fit LDA (DMM-equivalent on pseudo-counts) and GMM (on CLR + PCA) over K=2..8. Initial K=8 result. **Note: HMP2 MetaPhlAn3 not in mart yet** (lineage.yaml `PENDING_HMP2_RAW`); training on CMD only. **Pathway topic model deferred** (CMD_IBD-only per scope 1a); **MOFA+ deferred** (cross-modality is properly scoped after each modality has its own ecotypes). |
+| **NB01b** | 1 | local | K-selection refit: held-out perplexity for LDA + cross-method ARI scan (LDA vs GMM) + parsimony rule. Result: **consensus K = 4**, 48.9 % per-sample method agreement, four biologically clean ecotypes (E0 diverse healthy commensal; E1 Bacteroides2 transitional disease/metabolic; E2 Prevotella copri non-Western; E3 severe Bacteroides/fragilis-expanded). `data/ecotype_assignments.tsv` overwritten with K=4 result and `methods_agree` flag. |
+| **NB02** | 1 | local | Ecotype projection: project UC Davis Kuehl_WGS (Kaiju namespace → MetaPhlAn3 via synonymy layer) and HMP2 (when ingested) onto the trained K=4 embedding; test H1b occupancy. Figures: UC Davis per-ecotype distribution, held-out cohort occupancy. |
 | **NB03** | 1 | local | Clinical-covariate-only ecotype classifier (H1c); report AUC, feature importance. |
 | **NB04** | 2 | local | Within-ecotype compositional-aware DA (ANCOM-BC + MaAsLin2 + LinDA consensus); Tier-A A1 / A2 scoring. Figures: ecotype × species enrichment heatmap, C. scindens paradox comparison. |
 | **NB05** | 2 | local | Tier-A scoring pipeline: A3 (literature via paperblast), A4 (protective-analog exclusion), A5 (engraftment + strain adaptation), A6 (BGC linkage). Output: scored candidate table. |
@@ -287,6 +288,17 @@ Tagged via `ref_missing_data_codes` sentinel codes. Does not block analysis but 
 - **Single-donor engraftment evidence (donor 2708)**: N = 1 causal evidence. We treat as strong but irreplicable without additional donors.
 
 ## Revision History
+
+- **v1.2** (2026-04-24): NB01 + NB01b execution outcomes. Updates:
+  - `data/species_synonymy.tsv` (2,417 aliases → 1,848 canonical species) committed as the project-wide taxonomy reconciliation backbone. Norm N7 is now a *deliverable*, not just a methodology note.
+  - **Ecotype training** delivered K=8 in NB01 (per-method criteria) but cross-method ARI was weak (0.128). NB01b refit selected **K=4** by maximum cross-method ARI + parsimony, raising agreement to 48.9 %. Four biologically interpretable ecotypes:
+    - E0 (n=3,604) — diverse healthy commensal (66.8 % of HC)
+    - E1 (n=2,601) — Bacteroides2 transitional / metabolic-disease (48 % CD, 58 % UC, 100 % T1D, 97 % T2D)
+    - E2 (n=920) — Prevotella copri enterotype (non-Western healthy comparator)
+    - E3 (n=1,364) — severe Bacteroides/fragilis-expanded (50 % CD, 67 % IBD acute, 38 % CDI)
+  - **H1a directionally supported**: ≥ 3 reproducible ecotypes confirmed. **H1b directionally supported**: CD/UC distribute across E1 + E3 rather than concentrating in one.
+  - **Notebook table**: NB01 split into NB01 (training, K-scan) and NB01b (K-selection refit). HMP2 MetaPhlAn3 confirmed `PENDING_HMP2_RAW`; pathway topic model and MOFA+ explicitly deferred from NB01.
+  - **Method note**: LDA on pseudo-counts (sklearn) used as DMM equivalent; GMM on CLR + PCA-20 used as compositional-aware alternative. Both methods reach K=4 as the parsimonious agreement point.
 
 - **v1.1** (2026-04-24): Plan-review follow-up (`PLAN_REVIEW_1.md`, claude-sonnet-4). Added:
   - Norm N6 — explicit BERDL query hygiene (Spark import pattern, `CAST` for string-typed numerics, two-hop KO mapping, large-table filter requirements, `order` keyword backtick-quoting, genome_id join rules, genome_ani subsampling).

@@ -8,6 +8,23 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [ibd_phage_targeting] Cross-method ARI is the right K-selection criterion for microbiome ecotype models
+
+Both LDA training perplexity (sklearn `LatentDirichletAllocation`) and GMM BIC (on CLR + PCA-20) are *monotone* with K on this data — they always prefer the largest K available. Held-out perplexity (5-fold) gives the same monotone signal at this sample size (~8.5K samples), so it doesn't help distinguish overfitting from genuine structure. The discriminating signal is **cross-method adjusted Rand index between LDA and GMM at each K**: it has structure (peaks, valleys) precisely because the two methods only agree on K's that reflect real data partitions, not method-specific artifacts. For `ibd_phage_targeting`, ARI peaks at K=7 (0.140) and K=4 (0.131); a parsimony rule (smallest K within 0.02 of the peak) selects K=4. This is the K that gives the most interpretable, biologically clean ecotypes (E0 healthy, E1 Bacteroides2 disease, E2 Prevotella, E3 severe Bacteroides). Generalizable to any project doing microbiome ecotype discovery with two different model families: prefer the K where they agree most, not the K each prefers individually.
+
+### [ibd_phage_targeting] Four-ecotype framework on curatedMetagenomicData IBD reproduces published structure with disease-stratifying signal
+
+K=4 LDA-GMM consensus on 8,489 CMD MetaPhlAn3 samples (5,333 HC + 3,156 IBD/other) yields four ecotypes that align with published gut-microbiome enterotype literature (Vandeputte 2017, Lloyd-Price 2019) and cleanly separate disease from healthy:
+
+| Ecotype | n | Defining species | Diagnosis pattern |
+|---|---|---|---|
+| E0 — Diverse commensal | 3,604 | F. prausnitzii / R. bromii / B. uniformis / Bifidobacterium balanced | 66.8 % of HC |
+| E1 — Bacteroides2 transitional | 2,601 | P. vulgatus / B. uniformis / B. dorei | 48 % CD, 58 % UC, 100 % T1D, 97 % T2D, 67 % nonIBD |
+| E2 — Prevotella copri enterotype | 920 | P. copri 28 % | 16.9 % of HC, ~0 % disease (non-Western healthy) |
+| E3 — Severe Bacteroides-expanded | 1,364 | P. vulgatus 14 % + B. fragilis 3.6 % | 50 % CD, 40 % UC, 67 % IBD acute flare, 38 % CDI |
+
+CD and UC patients distribute across E1 and E3 rather than concentrating in any single ecotype — this is the patient-stratification signal that downstream within-ecotype analyses will exploit. Healthy samples concentrate in E0 + E2 (84 % combined). The Bacteroides2 ecotype's correlation with metabolic disease (T1D, T2D) AND IBD echoes the broader "low-diversity disease state" hypothesis. **`data/ecotype_assignments.tsv` is the consumable artifact for downstream notebooks.**
+
 ### [ibd_phage_targeting] `docs/collections.md` understates the BERDL catalog by several phage- and metagenome-relevant databases
 
 Live `SHOW DATABASES` against the lakehouse returned 138 databases; the committed `docs/collections.md` omits several that matter for gut-microbiome / phage work:

@@ -12,7 +12,17 @@ Three coupled deliverables:
 
 ## Status
 
-**In Progress** — research plan v1 drafted, awaiting plan review and then NB00 data audit.
+**In Progress** — Pillar 1 ecotype framework delivered. Plan v1.2:
+
+- ✅ NB00 data audit + compositional-DA proof of concept (norm N1 justified; *C. scindens* paradox reproduced and partially explained)
+- ✅ NB01 + NB01b ecotype training (K=4 consensus from cross-method ARI + parsimony):
+  - **E0 (n=3,604)** — diverse healthy commensal (*F. prausnitzii* / *R. bromii* / *B. uniformis*); **66.8 % of HC**
+  - **E1 (n=2,601)** — Bacteroides2 transitional disease/metabolic; 48 % CD, 58 % UC, 100 % T1D, 97 % T2D
+  - **E2 (n=920)** — *Prevotella copri* enterotype; 16.9 % HC, almost no disease
+  - **E3 (n=1,364)** — severe Bacteroides/fragilis-expanded; 50 % CD, 40 % UC, 67 % IBD acute, 38 % CDI
+  - Reusable `data/species_synonymy.tsv` (2,417 aliases → 1,848 canonical species, GTDB r214+ renames)
+- ⏳ NB02: project UC Davis (Kuehl_WGS Kaiju → MetaPhlAn3) + HMP2 onto K=4 embedding
+- ⏳ NB03–NB17 per the plan
 
 ## Context
 
