@@ -14,21 +14,25 @@
 # ---
 
 # %% [markdown]
-# # NB01 — Threshold Derivation via Weighted Classifier
+# # NB01 — Curator-Like Priority Queue
 #
 # **Project**: `fitness_browser_stubborn_set`
 #
-# **Goal**: Fit a weighted classifier to BERDL-native evidence features such that:
-# - **Recall** ≥ 90% on the 1,762 reannotated set, AND
-# - **Stubborn candidate pool** < 10,000 genes (non-reannotated in the candidate pool).
+# **Goal**: Rank every non-reannotated Fitness Browser gene by how *curator-like*
+# its primary evidence profile looks (i.e., how closely it resembles the genes in
+# `kescience_fitnessbrowser.reannotation`). The output is a single ranked list
+# that NB02 will walk top-down in chunks of 1,000, applying secondary evidence
+# until the yield of improvable candidates flattens.
 #
-# We try three approaches:
-# 1. Simple counting baseline (C1 + C2 + C3 with unit weights).
-# 2. Logistic regression on 6 continuous features with `class_weight='balanced'`.
-# 3. Hand-tuned compound rules around the tradeoff frontier.
+# **Why a queue, not a threshold?** Earlier exploration showed the dual target of
+# ≥90% recall AND <10K stubborn cannot be hit from primary fitness/cofitness
+# features alone — too many non-reannotated genes have evidence profiles
+# indistinguishable from reannotated ones. Rather than pick a binding threshold
+# and hide the data behind it, we expose the rank order and let NB02/NB03 stop
+# walking when secondary evidence stops yielding improvable candidates.
 #
-# We operate on the local parquet extract produced by `00_extract_gene_features.py` —
-# run that script first to refresh from BERDL.
+# **Inputs**: local parquet from `00_extract_gene_features.py`.
+# **Outputs**: `data/priority_queue.parquet`, `data/chunk_summary.csv`, figures.
 
 # %%
 from pathlib import Path
@@ -49,283 +53,80 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 FEATURES_PATH = DATA_DIR / "gene_evidence_features.parquet"
 assert FEATURES_PATH.exists(), "Run notebooks/00_extract_gene_features.py first"
 
+CHUNK_SIZE = 1000
+
+# %% [markdown]
+# ## 1. Load + restrict to curated organisms
+#
+# The 12 organisms with zero reannotations are dropped — they may be uncurated
+# rather than "left alone after review", and including them inflates the
+# baseline.
+
+# %%
 df_all = pd.read_parquet(FEATURES_PATH)
-print(f"Loaded {len(df_all):,} FB genes × {len(df_all.columns)} columns (all 48 orgs)")
+print(f"Loaded {len(df_all):,} FB genes (all 48 orgs)")
 
-# Restrict to the organisms where curators have actually produced any reannotation.
-# Orgs with zero reannotations may simply be uncurated — not "left alone after review".
-# Scoping the analysis to the curated orgs keeps the comparison apples-to-apples.
 curated_orgs = sorted(df_all.loc[df_all.is_reannotated == 1, "orgId"].unique())
-print(f"\nCurated organisms (any reannotation): {len(curated_orgs)}")
-
 df = df_all[df_all["orgId"].isin(curated_orgs)].copy()
 n_dropped = len(df_all) - len(df)
-print(f"After restriction: {len(df):,} genes  (dropped {n_dropped:,} from {48 - len(curated_orgs)} uncurated orgs)")
-print(df.dtypes.to_string())
-
-# %% [markdown]
-# ## 1. Reannotation set + dual target
-
-# %%
-TARGET_RECALL = 0.90
-TARGET_MAX_STUBBORN = 10_000
-
-n_reann = int(df["is_reannotated"].sum())
+n_reann = int(df.is_reannotated.sum())
 n_other = int(len(df) - n_reann)
-print(f"Reannotated (with fitness data): {n_reann}")
-print(f"Non-reannotated:                {n_other:,}")
-print(f"Dual target: recall >= {TARGET_RECALL*100:.0f}% AND stubborn < {TARGET_MAX_STUBBORN:,}")
+print(f"After restriction: {len(df):,} genes from {len(curated_orgs)} curated organisms")
+print(f"  reannotated: {n_reann:,}")
+print(f"  other:       {n_other:,}")
+print(f"  dropped:     {n_dropped:,} from {48 - len(curated_orgs)} uncurated orgs")
 
 # %% [markdown]
-# ## 2. Evidence features + derived features
+# ## 2. Evidence features
 #
-# The raw extract has 6 numeric features per gene. We also add a few derived features
-# for the classifier (log-compressed counts, clipped magnitudes) so the logistic
-# regression doesn't get dominated by the count scales.
+# Six per-gene features, all from primary fitness + cofitness data:
+#
+# | Feature | Definition |
+# |---|---|
+# | `in_specificphenotype` | binary 0/1 — Price's precomputed specific-phenotype flag |
+# | `max_abs_fit` | largest \|fit\| across experiments (clipped to [0, 8]) |
+# | `max_abs_t` | largest \|t\| across experiments (clipped to [0, 20]) |
+# | `log_n_strong` | log1p of # experiments with \|fit\|≥2 AND \|t\|≥5 |
+# | `log_n_moderate` | log1p of # experiments with \|fit\|≥1 AND \|t\|≥5 |
+# | `max_cofit` | largest cofit with any partner in same organism |
 
 # %%
-FEATURES = [
-    "in_specificphenotype",
-    "max_abs_fit",
-    "max_abs_t",
-    "n_strong_experiments",
-    "n_moderate_experiments",
-    "max_cofit",
-]
-# Clip + log compress — robust to heavy tails
 X = pd.DataFrame({
-    "in_specificphenotype": df["in_specificphenotype"].astype(float),
-    "max_abs_fit":           np.clip(df["max_abs_fit"], 0, 8),
-    "max_abs_t":             np.clip(df["max_abs_t"], 0, 20),
-    "log_n_strong":          np.log1p(df["n_strong_experiments"]),
-    "log_n_moderate":        np.log1p(df["n_moderate_experiments"]),
-    "max_cofit":             df["max_cofit"].astype(float),
+    "in_specificphenotype": df.in_specificphenotype.astype(float),
+    "max_abs_fit":           np.clip(df.max_abs_fit, 0, 8),
+    "max_abs_t":             np.clip(df.max_abs_t, 0, 20),
+    "log_n_strong":          np.log1p(df.n_strong_experiments),
+    "log_n_moderate":        np.log1p(df.n_moderate_experiments),
+    "max_cofit":             df.max_cofit.astype(float),
 })
-y = df["is_reannotated"].astype(int).values
-print(X.describe().round(3).to_string())
+y = df.is_reannotated.astype(int).values
 
-
-# %% [markdown]
-# ## 3. Helper — recall / pool-size scan for any score
-
-# %%
-def operating_points(scores: np.ndarray, y: np.ndarray) -> pd.DataFrame:
-    """For a continuous score, compute recall and stubborn size at every threshold
-    where scores change (uses unique scores descending)."""
-    order = np.argsort(-scores)
-    sorted_scores = scores[order]
-    sorted_y = y[order]
-    # Cumulative counts as we lower the threshold (include more)
-    cum_reann = np.cumsum(sorted_y)
-    cum_other = np.cumsum(1 - sorted_y)
-    total_reann = sorted_y.sum()
-    # Unique thresholds (on boundaries)
-    boundaries = np.concatenate([[True], sorted_scores[1:] != sorted_scores[:-1]])
-    # we want the point AT each score-value (genes with score >= v)
-    idx = np.where(boundaries)[0]
-    # For each boundary, the count of genes with score >= this value is idx+1 ... but we want the
-    # LAST index where score == this value. Use:
-    last_idx_per_group = np.concatenate([idx[1:] - 1, [len(sorted_scores) - 1]])
-    thresholds = sorted_scores[idx]
-    reann_at = cum_reann[last_idx_per_group]
-    other_at = cum_other[last_idx_per_group]
-    recall = reann_at / total_reann
-    return pd.DataFrame({
-        "threshold": thresholds,
-        "reann_at_or_above": reann_at,
-        "stubborn_at_or_above": other_at,
-        "pool_size": reann_at + other_at,
-        "recall": recall,
-    })
-
-
-def pick_target(ops: pd.DataFrame, min_recall: float, max_stubborn: int) -> dict:
-    """Return smallest-pool operating point meeting both targets, else the best-effort
-    frontier point closest to the target."""
-    feasible = ops[(ops["recall"] >= min_recall) & (ops["stubborn_at_or_above"] <= max_stubborn)]
-    if len(feasible) > 0:
-        best = feasible.sort_values("stubborn_at_or_above").iloc[0]
-        return {"feasible": True, **best.to_dict()}
-    # Nearest point: the lowest-stubborn point that still meets recall
-    recall_ok = ops[ops["recall"] >= min_recall]
-    if len(recall_ok) > 0:
-        best = recall_ok.sort_values("stubborn_at_or_above").iloc[0]
-        return {"feasible": False, **best.to_dict()}
-    # Recall target not met anywhere
-    best = ops.sort_values("recall", ascending=False).iloc[0]
-    return {"feasible": False, **best.to_dict()}
-
-
-# %% [markdown]
-# ## 4. Baseline — simple counting score (C1 + C2 + C3)
-
-# %%
-df["C1_specific"] = df["in_specificphenotype"].astype(int)
-df["C2_strong"]   = (df["n_strong_experiments"] >= 1).astype(int)
-df["C3_cofit"]    = (df["max_cofit"] >= 0.75).astype(int)
-df["count_score"] = df["C1_specific"] + df["C2_strong"] + df["C3_cofit"]
-
-count_ops = operating_points(df["count_score"].values.astype(float), y)
-print("Counting classifier (integer score 0-3):")
-print(count_ops.to_string(index=False))
-count_pick = pick_target(count_ops, TARGET_RECALL, TARGET_MAX_STUBBORN)
-print(f"\nTarget hit by counting rule? {count_pick['feasible']}")
-print(f"Best operating point: threshold >= {count_pick['threshold']:.0f}, "
-      f"recall={count_pick['recall']*100:.1f}%, stubborn={int(count_pick['stubborn_at_or_above']):,}")
-
-# %% [markdown]
-# ## 5. Logistic regression on continuous features
-
-# %%
 scaler = StandardScaler()
-X_scaled = scaler.fit_transform(X.values)
+Xs = scaler.fit_transform(X.values)
 
 logit = LogisticRegression(class_weight="balanced", max_iter=2000, random_state=0)
-logit.fit(X_scaled, y)
+logit.fit(Xs, y)
+df["score"] = logit.predict_proba(Xs)[:, 1]
 
+print("Logistic regression weights (standardised features):")
 weights = pd.Series(logit.coef_[0], index=X.columns).sort_values(key=abs, ascending=False)
-print("Logistic regression weights (scaled features):")
 print(weights.round(3).to_string())
 print(f"Intercept: {logit.intercept_[0]:.3f}")
+print(f"\nScore range: [{df.score.min():.4f}, {df.score.max():.4f}]")
 
-# Predicted probability of being reannotated
-probas = logit.predict_proba(X_scaled)[:, 1]
-df["logit_score"] = probas
-
-logit_ops = operating_points(probas, y)
-logit_pick = pick_target(logit_ops, TARGET_RECALL, TARGET_MAX_STUBBORN)
-print(f"\nDual target hit by logistic regression? {logit_pick['feasible']}")
-print(f"Best operating point: proba >= {logit_pick['threshold']:.4f}, "
-      f"recall={logit_pick['recall']*100:.1f}%, "
-      f"pool={int(logit_pick['pool_size']):,}, stubborn={int(logit_pick['stubborn_at_or_above']):,}")
+# Counting flags too — useful as ground-truth-like reference
+df["C1_specific"] = df.in_specificphenotype.astype(int)
+df["C2_strong"]   = (df.n_strong_experiments >= 1).astype(int)
+df["C3_cofit"]    = (df.max_cofit >= 0.75).astype(int)
+df["count_score"] = df.C1_specific + df.C2_strong + df.C3_cofit
 
 # %% [markdown]
-# ## 6. Hand-tuned compound rules
+# ## 3. Annotation category (descriptive)
 #
-# A small set of compound rules built from raw thresholds. Useful sanity checks — if
-# logistic regression is close to any of these, it means the signal is really that
-# simple.
-
-# %%
-rules = {
-    "C1 or C2 or cofit>=0.85":            (df.C1_specific == 1) | (df.C2_strong == 1) | (df.max_cofit >= 0.85),
-    "C1 or (C2 and cofit>=0.85)":         (df.C1_specific == 1) | ((df.C2_strong == 1) & (df.max_cofit >= 0.85)),
-    "C1 or (|fit|>=2 and cofit>=0.80)":   (df.C1_specific == 1) | ((df.max_abs_fit >= 2) & (df.max_cofit >= 0.80)),
-    "C1 or (n_strong>=2)":                (df.C1_specific == 1) | (df.n_strong_experiments >= 2),
-    "C1 or (n_strong>=2 and cofit>=0.80)":(df.C1_specific == 1) | ((df.n_strong_experiments >= 2) & (df.max_cofit >= 0.80)),
-    "(C1 or n_strong>=3) or cofit>=0.85": (df.C1_specific == 1) | (df.n_strong_experiments >= 3) | (df.max_cofit >= 0.85),
-    "C1 and n_moderate>=3":               (df.C1_specific == 1) & (df.n_moderate_experiments >= 3),
-    "|fit|>=3 or cofit>=0.90":            (df.max_abs_fit >= 3) | (df.max_cofit >= 0.90),
-}
-
-rule_results = []
-for name, mask in rules.items():
-    rr = int((mask & (df.is_reannotated == 1)).sum())
-    ro = int((mask & (df.is_reannotated == 0)).sum())
-    rule_results.append({
-        "rule": name,
-        "pool": rr + ro,
-        "reann": rr,
-        "stubborn": ro,
-        "recall_pct": round(rr / n_reann * 100, 1),
-        "hits_target": (rr / n_reann >= TARGET_RECALL) and (ro <= TARGET_MAX_STUBBORN),
-    })
-rule_df = pd.DataFrame(rule_results).sort_values("stubborn")
-print(rule_df.to_string(index=False))
-
-# %% [markdown]
-# ## 7. Frontier figure — recall vs. pool size for the logistic score
-
-# %%
-fig, axes = plt.subplots(1, 2, figsize=(13, 4.5))
-
-# (a) Frontier: stubborn (x) vs recall (y) for the logistic scan
-ax = axes[0]
-ax.plot(logit_ops["stubborn_at_or_above"], logit_ops["recall"] * 100,
-        "-", lw=1, color="tab:blue", label="Logistic regression")
-# Mark counting-rule points
-ax.scatter(count_ops["stubborn_at_or_above"], count_ops["recall"] * 100,
-           marker="s", s=60, color="tab:gray", label="Counting score 0-3", zorder=3)
-# Mark compound rules
-for _, row in rule_df.iterrows():
-    ax.scatter(row["stubborn"], row["recall_pct"],
-               marker="x", s=60, color="tab:red", zorder=4)
-# Target box
-ax.axvline(TARGET_MAX_STUBBORN, color="green", ls="--", lw=1, alpha=0.6)
-ax.axhline(TARGET_RECALL * 100, color="green", ls="--", lw=1, alpha=0.6)
-ax.fill_betweenx([TARGET_RECALL * 100, 100], 0, TARGET_MAX_STUBBORN,
-                 color="green", alpha=0.08, label="Dual target")
-ax.set_xlabel("Stubborn set size (non-reann above threshold)")
-ax.set_ylabel("Recall on reannotated set (%)")
-ax.set_title("Recall vs stubborn pool size")
-ax.set_xlim(0, max(50000, logit_ops["stubborn_at_or_above"].max()))
-ax.set_ylim(40, 101)
-ax.legend(loc="lower right", fontsize=9)
-ax.grid(alpha=0.3)
-
-# (b) Feature weights
-ax = axes[1]
-w = weights.sort_values()
-colors = ["tab:red" if v < 0 else "tab:blue" for v in w.values]
-ax.barh(w.index, w.values, color=colors, edgecolor="black")
-ax.axvline(0, color="black", lw=0.8)
-ax.set_xlabel("Logistic regression weight (standardised features)")
-ax.set_title("Learned weights — which signals move the curator's 'yes'")
-
-plt.tight_layout()
-fig_path = FIG_DIR / "fig02_recall_vs_pool_size.png"
-plt.savefig(fig_path, dpi=150, bbox_inches="tight")
-print(f"Saved {fig_path}")
-plt.show()
-
-# %% [markdown]
-# ## 8. Pick the operating point and save the stubborn set
-#
-# Logic: prefer logistic regression if it hits the dual target; otherwise fall back to
-# whichever rule is closest to the target. Record which was chosen.
-
-# %%
-candidates = []
-if logit_pick["feasible"]:
-    candidates.append(("logit", logit_pick, df["logit_score"].values, float(logit_pick["threshold"])))
-# Try compound rules that hit the target
-for _, row in rule_df[rule_df["hits_target"]].iterrows():
-    mask = rules[row["rule"]]
-    candidates.append(("rule:" + row["rule"], {
-        "feasible": True,
-        "recall": row["recall_pct"] / 100,
-        "stubborn_at_or_above": row["stubborn"],
-        "pool_size": row["pool"],
-        "threshold": np.nan,
-    }, mask.values.astype(int), 0.5))
-
-if not candidates:
-    # no rule hits target; pick the logistic-frontier point that met recall (best stubborn)
-    candidates.append(("logit-best-effort", logit_pick, df["logit_score"].values, float(logit_pick["threshold"])))
-    print("WARNING: No classifier hits the dual target; using best-effort logistic threshold.")
-
-# Choose the candidate with smallest stubborn set
-best_name, best_pick, best_scores, best_thresh = min(
-    candidates, key=lambda c: c[1]["stubborn_at_or_above"]
-)
-print(f"Chosen classifier: {best_name}")
-print(f"  Recall:            {best_pick['recall']*100:.1f}%")
-print(f"  Pool size:         {int(best_pick['pool_size']):,}")
-print(f"  Stubborn set size: {int(best_pick['stubborn_at_or_above']):,}")
-if best_name.startswith("rule:"):
-    mask = best_scores == 1
-else:
-    mask = best_scores >= best_thresh
-df["in_candidate_pool"] = mask.astype(int)
-df["chosen_score"] = best_scores
-
-# %% [markdown]
-# ## 9. Annotation-category distribution (descriptive only)
-#
-# Categorise each gene's existing `gene.desc` into {hypothetical, DUF, vague,
-# named_enzyme, named_other}. This is **descriptive** — we use it to characterise
-# what KIND of genes end up in the stubborn set vs. the reannotated set. It is NOT a
-# filter.
+# Categorise existing `gene.desc` into {`hypothetical`, `DUF`, `vague`,
+# `named_enzyme`, `named_other`}. **Descriptive only — not used in scoring or
+# ranking.** Used downstream to characterise *what kind* of genes appear at each
+# rank position.
 
 # %%
 def categorise_desc(desc: str) -> str:
@@ -340,7 +141,6 @@ def categorise_desc(desc: str) -> str:
         return "DUF"
     if any(tok in d for tok in ("putative", "predicted", "probable", "possible")):
         return "vague"
-    # Named enzyme-like
     enz_tokens = ("ase ", "ase,", "ase/", "ase-", "ligase", "reductase", "transporter",
                   "kinase", "synthase", "dehydrogenase", "permease", "oxidase", "transferase",
                   "hydrolase", "isomerase", "mutase", "polymerase")
@@ -351,111 +151,211 @@ def categorise_desc(desc: str) -> str:
 
 df["annotation_category"] = df["gene_desc"].astype(str).map(categorise_desc)
 
-# Distribution over reannotated vs stubborn (candidate pool AND not reannotated)
-is_stubborn = (df["in_candidate_pool"] == 1) & (df["is_reannotated"] == 0)
-reann_cat = df[df["is_reannotated"] == 1]["annotation_category"].value_counts()
-stubborn_cat = df[is_stubborn]["annotation_category"].value_counts()
-
-cat_table = pd.DataFrame({
-    "reannotated_1729": reann_cat.reindex(["hypothetical", "DUF", "vague", "named_enzyme", "named_other"]).fillna(0).astype(int),
-    f"stubborn_{int(is_stubborn.sum())}": stubborn_cat.reindex(["hypothetical", "DUF", "vague", "named_enzyme", "named_other"]).fillna(0).astype(int),
-})
-cat_table["reann_pct"] = (cat_table["reannotated_1729"] / cat_table["reannotated_1729"].sum() * 100).round(1)
-cat_table[f"stubborn_pct"] = (cat_table[f"stubborn_{int(is_stubborn.sum())}"] / cat_table[f"stubborn_{int(is_stubborn.sum())}"].sum() * 100).round(1)
-print("Existing annotation category distribution:")
-print(cat_table)
+# %% [markdown]
+# ## 4. Build the priority queue
+#
+# Sort all non-reannotated genes by `score` (descending). Assign rank and chunk.
 
 # %%
-fig, ax = plt.subplots(1, 1, figsize=(8, 4.5))
-cats = ["hypothetical", "DUF", "vague", "named_enzyme", "named_other"]
-reann_pct = cat_table.loc[cats, "reann_pct"].values
-stubborn_pct = cat_table.loc[cats, "stubborn_pct"].values
-x = np.arange(len(cats))
-w = 0.38
-ax.bar(x - w/2, reann_pct, w, label=f"Reannotated (n={int(cat_table['reannotated_1729'].sum())})", color="tomato", edgecolor="black")
-ax.bar(x + w/2, stubborn_pct, w, label=f"Stubborn (n={int(cat_table.iloc[:,1].sum())})", color="steelblue", edgecolor="black")
-ax.set_xticks(x)
-ax.set_xticklabels(cats, rotation=20, ha="right")
-ax.set_ylabel("% within group")
-ax.set_title("Existing annotation categories — reannotated vs stubborn")
-ax.legend()
+queue = (
+    df[df.is_reannotated == 0]
+    .sort_values("score", ascending=False)
+    .reset_index(drop=True)
+)
+queue["rank"] = np.arange(1, len(queue) + 1)
+queue["chunk"] = ((queue["rank"] - 1) // CHUNK_SIZE) + 1
+print(f"Priority queue: {len(queue):,} non-reannotated genes")
+print(f"Chunks of {CHUNK_SIZE:,}: {int(queue['chunk'].max())}")
+print(queue[["rank", "score", "C1_specific", "C2_strong", "C3_cofit",
+             "annotation_category", "gene_desc"]].head(10).to_string(index=False))
+
+# %% [markdown]
+# ## 5. Cumulative reannotation hits vs rank
+#
+# For each rank R, what fraction of all reannotated genes have a higher score
+# than the rank-R gene in the queue? This curve answers the question "when does
+# the curator-like signal in the priority queue trail off?"
+
+# %%
+# All genes ranked together (reann included) so we can read off "if curators
+# walked top-down, how many reannotated had they hit by rank R?"
+all_ranked = df.sort_values("score", ascending=False).reset_index(drop=True)
+all_ranked["rank_all"] = np.arange(1, len(all_ranked) + 1)
+all_ranked["cum_reann"] = all_ranked.is_reannotated.cumsum()
+all_ranked["cum_pct_reann"] = all_ranked.cum_reann / n_reann * 100
+# What rank does each reann percentile correspond to?
+milestones = pd.DataFrame({
+    "pct_reann_target": [50, 75, 80, 85, 90, 95, 98, 99, 100],
+})
+ranks_at = []
+for p in milestones["pct_reann_target"]:
+    rec = all_ranked.loc[all_ranked.cum_pct_reann >= p].head(1)
+    ranks_at.append({
+        "pct_reann": p,
+        "rank_in_full": int(rec["rank_all"].iloc[0]) if len(rec) else None,
+        "score_threshold": float(rec["score"].iloc[0]) if len(rec) else None,
+        "non_reann_above_or_equal": int(rec["rank_all"].iloc[0] - rec["cum_reann"].iloc[0]) if len(rec) else None,
+    })
+milestones_df = pd.DataFrame(ranks_at)
+print("Cumulative reannotation milestones:")
+print(milestones_df.to_string(index=False))
+
+# %% [markdown]
+# ## 6. Chunk-level summary
+#
+# For each 1,000-gene chunk of the priority queue (non-reannotated only),
+# report:
+# - Score range
+# - Evidence-flag prevalence (C1/C2/C3 fractions)
+# - Annotation category mix
+# - "Reannotation density" — fraction of genes in the SAME score range that
+#   are reannotated. This tells us whether this chunk is in curator-rich
+#   territory or has fallen below the curator's interest.
+
+# %%
+def chunk_stats(chunk_df: pd.DataFrame, all_ranked: pd.DataFrame) -> dict:
+    s_min, s_max = chunk_df.score.min(), chunk_df.score.max()
+    band = all_ranked[(all_ranked.score >= s_min) & (all_ranked.score <= s_max)]
+    band_n = len(band)
+    band_reann = int(band.is_reannotated.sum())
+    return {
+        "chunk": int(chunk_df["chunk"].iloc[0]),
+        "rank_lo": int(chunk_df["rank"].min()),
+        "rank_hi": int(chunk_df["rank"].max()),
+        "score_lo": round(float(s_min), 4),
+        "score_hi": round(float(s_max), 4),
+        "pct_C1": round(float(chunk_df.C1_specific.mean()) * 100, 1),
+        "pct_C2": round(float(chunk_df.C2_strong.mean()) * 100, 1),
+        "pct_C3": round(float(chunk_df.C3_cofit.mean()) * 100, 1),
+        "mean_max_abs_fit": round(float(chunk_df.max_abs_fit.mean()), 2),
+        "mean_max_cofit": round(float(chunk_df.max_cofit.mean()), 3),
+        "band_reann_density_pct": round(band_reann / band_n * 100, 2) if band_n else 0.0,
+        "n_hypothetical": int((chunk_df.annotation_category == "hypothetical").sum()),
+        "n_DUF": int((chunk_df.annotation_category == "DUF").sum()),
+        "n_vague": int((chunk_df.annotation_category == "vague").sum()),
+        "n_named_enzyme": int((chunk_df.annotation_category == "named_enzyme").sum()),
+        "n_named_other": int((chunk_df.annotation_category == "named_other").sum()),
+    }
+
+
+chunk_summary = pd.DataFrame([
+    chunk_stats(group, all_ranked)
+    for _, group in queue.groupby("chunk", sort=True)
+])
+print(f"Chunk summary ({len(chunk_summary)} chunks of {CHUNK_SIZE}):")
+print(chunk_summary.head(15).to_string(index=False))
+print("...")
+print(chunk_summary.tail(5).to_string(index=False))
+
+# %% [markdown]
+# ## 7. Figure — cumulative reannotation hits + chunk reannotation density
+
+# %%
+fig, axes = plt.subplots(1, 2, figsize=(14, 4.5))
+
+# (a) Cumulative reann captured vs rank
+ax = axes[0]
+ax.plot(all_ranked.rank_all, all_ranked.cum_pct_reann, color="tab:blue", lw=1.5)
+for p, r, _, _ in [tuple(row.values()) for row in ranks_at]:
+    if r is None:
+        continue
+    ax.axhline(p, color="lightgray", lw=0.5)
+    ax.axvline(r, color="lightgray", lw=0.5)
+    ax.annotate(f"{int(p)}% @ rank {r:,}", xy=(r, p), xytext=(r + 1500, p - 4),
+                fontsize=8, color="tab:gray")
+ax.set_xlabel("Rank in full ordering (reann + non-reann combined)")
+ax.set_ylabel("% of reannotated genes captured")
+ax.set_title("Cumulative reannotation hits vs rank")
+ax.set_xlim(0, len(all_ranked))
+ax.set_ylim(0, 102)
+ax.grid(alpha=0.3)
+
+# (b) Reannotation density by chunk
+ax = axes[1]
+ax.bar(chunk_summary.chunk, chunk_summary.band_reann_density_pct,
+       color="tomato", edgecolor="black", width=0.85)
+ax.set_xlabel("Priority-queue chunk (1,000 non-reann genes each, sorted by score desc)")
+ax.set_ylabel("Reannotation density % in this score band")
+ax.set_title("Curator interest by score band — when does the signal flatten?")
+ax.set_yscale("log")
+ax.grid(alpha=0.3, axis="y")
+
 plt.tight_layout()
-fig_path = FIG_DIR / "fig03_annotation_categories.png"
+fig_path = FIG_DIR / "fig01_priority_queue.png"
 plt.savefig(fig_path, dpi=150, bbox_inches="tight")
 print(f"Saved {fig_path}")
 plt.show()
 
 # %% [markdown]
-# ## 10. Save artifacts
+# ## 8. Reannotation rank distribution + annotation category by chunk
 
 # %%
-stubborn_df = df[is_stubborn].copy()
-stubborn_out = DATA_DIR / "stubborn_set_chosen.parquet"
-stubborn_df.to_parquet(stubborn_out, index=False)
-print(f"Wrote {stubborn_out}  ({len(stubborn_df):,} rows)")
+fig, axes = plt.subplots(1, 2, figsize=(14, 4.5))
 
-# Comprehensive calibration summary across all three approaches
-summary_rows = []
-for _, row in count_ops.iterrows():
-    summary_rows.append({
-        "classifier": "counting",
-        "threshold": float(row["threshold"]),
-        "recall_pct": round(row["recall"] * 100, 2),
-        "pool_size": int(row["pool_size"]),
-        "stubborn_size": int(row["stubborn_at_or_above"]),
-        "hits_target": (row["recall"] >= TARGET_RECALL) and (row["stubborn_at_or_above"] <= TARGET_MAX_STUBBORN),
-    })
-# Sample the logistic frontier (10%, 20%, ..., at tick thresholds + chosen)
-for r_target in [0.80, 0.85, 0.90, 0.92, 0.95, 0.98, 1.00]:
-    eligible = logit_ops[logit_ops["recall"] >= r_target]
-    if len(eligible):
-        row = eligible.sort_values("stubborn_at_or_above").iloc[0]
-        summary_rows.append({
-            "classifier": "logistic",
-            "threshold": float(row["threshold"]),
-            "recall_pct": round(row["recall"] * 100, 2),
-            "pool_size": int(row["pool_size"]),
-            "stubborn_size": int(row["stubborn_at_or_above"]),
-            "hits_target": (row["recall"] >= TARGET_RECALL) and (row["stubborn_at_or_above"] <= TARGET_MAX_STUBBORN),
-        })
-for _, row in rule_df.iterrows():
-    summary_rows.append({
-        "classifier": "compound",
-        "threshold": row["rule"],
-        "recall_pct": row["recall_pct"],
-        "pool_size": int(row["pool"]),
-        "stubborn_size": int(row["stubborn"]),
-        "hits_target": bool(row["hits_target"]),
-    })
-summary_df = pd.DataFrame(summary_rows)
-summary_out = DATA_DIR / "threshold_calibration_summary.csv"
-summary_df.to_csv(summary_out, index=False)
-print(f"Wrote {summary_out}")
+# (a) Where do the 1,729 reannotated genes land in the ranking?
+ax = axes[0]
+reann_ranks = all_ranked.loc[all_ranked.is_reannotated == 1, "rank_all"].values
+ax.hist(reann_ranks, bins=60, color="tomato", edgecolor="black")
+ax.set_xlabel("Rank in full ordering")
+ax.set_ylabel("# of reannotated genes")
+ax.set_title(f"Distribution of {n_reann} reannotated genes across the ranking")
+ax.set_xlim(0, len(all_ranked))
 
-# Record the chosen classifier in a small json
-import json
-chosen_out = DATA_DIR / "chosen_classifier.json"
-with open(chosen_out, "w") as f:
-    json.dump({
-        "classifier": best_name,
-        "recall_pct": round(best_pick["recall"] * 100, 2),
-        "pool_size": int(best_pick["pool_size"]),
-        "stubborn_size": int(best_pick["stubborn_at_or_above"]),
-        "threshold": None if np.isnan(best_thresh) else float(best_thresh),
-        "target_recall_pct": TARGET_RECALL * 100,
-        "target_max_stubborn": TARGET_MAX_STUBBORN,
-    }, f, indent=2)
-print(f"Wrote {chosen_out}")
+# (b) Annotation category mix by chunk (top 20 chunks)
+ax = axes[1]
+cats = ["hypothetical", "DUF", "vague", "named_enzyme", "named_other"]
+top_chunks = chunk_summary.head(20)
+bottom = np.zeros(len(top_chunks))
+colors = {"hypothetical": "tab:gray", "DUF": "tab:purple", "vague": "tab:orange",
+          "named_enzyme": "tab:blue", "named_other": "tab:green"}
+for cat in cats:
+    col = "n_" + cat
+    vals = top_chunks[col].values
+    ax.bar(top_chunks.chunk, vals, bottom=bottom, label=cat, color=colors[cat], edgecolor="white")
+    bottom = bottom + vals
+ax.set_xlabel("Chunk (top 20)")
+ax.set_ylabel("Genes in chunk by annotation category")
+ax.set_title("Annotation-category mix in the highest-scoring chunks")
+ax.legend(fontsize=8, loc="lower right")
+ax.set_xticks(top_chunks.chunk)
+
+plt.tight_layout()
+fig_path = FIG_DIR / "fig02_rank_distribution.png"
+plt.savefig(fig_path, dpi=150, bbox_inches="tight")
+print(f"Saved {fig_path}")
+plt.show()
 
 # %% [markdown]
-# ## 11. Takeaways
+# ## 9. Save artifacts
 #
-# - We fit three classifiers (counting baseline, logistic regression, hand-tuned
-#   compound rules) on the same 6 evidence features.
-# - The chosen classifier is the one meeting the dual target (≥90% recall AND <10K
-#   stubborn) with the smallest stubborn set. If no classifier hits both, we record
-#   the tradeoff frontier and pick the best-effort point.
-# - NB02 will take the stubborn set forward — compute secondary evidence (conserved
-#   cofit, ortholog phenotype conservation, informative domain, KEGG KO description,
-#   SEED, MetaCyc via `metacycpathwayreaction`) and keep the annotation-category tag
-#   for the NB03 contingency grid.
+# - `priority_queue.parquet` — the ranked non-reannotated list with all features,
+#   for NB02 to walk through.
+# - `chunk_summary.csv` — per-chunk diagnostics for stop-rule decisions.
+# - `reannotation_milestones.csv` — score thresholds at each cumulative-coverage milestone.
+
+# %%
+queue_out = DATA_DIR / "priority_queue.parquet"
+chunk_out = DATA_DIR / "chunk_summary.csv"
+milestone_out = DATA_DIR / "reannotation_milestones.csv"
+
+queue.to_parquet(queue_out, index=False)
+chunk_summary.to_csv(chunk_out, index=False)
+milestones_df.to_csv(milestone_out, index=False)
+print(f"Wrote {queue_out}  ({len(queue):,} rows)")
+print(f"Wrote {chunk_out}  ({len(chunk_summary)} chunks)")
+print(f"Wrote {milestone_out}")
+
+# %% [markdown]
+# ## 10. Takeaways
+#
+# - We reframed NB01's output from a binary stubborn-set to a **ranked priority
+#   queue** of non-reannotated genes ordered by curator-likeness score.
+# - The cumulative reannotation curve and per-chunk reannotation density tell
+#   NB02 where curator-like signal is rich vs sparse.
+# - NB02 will walk the queue in chunks of 1,000, computing secondary evidence
+#   (conserved cofitness, conserved specific phenotype via `specog`, informative
+#   domain/KEGG/SEED/MetaCyc) per chunk and stopping when the yield of
+#   improvable candidates plateaus.
+# - The 90% reannotation-coverage rank is the practical "stop reviewing past
+#   here" line — beyond that rank we're in territory most curators wouldn't
+#   have considered.
