@@ -17,12 +17,14 @@ endpoint will share the same persistence logic by consuming events from
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from typing import Any, AsyncIterator
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.chat.crud import list_messages_for_session
 from app.chat.providers import get_provider
 from app.chat.providers.base import (
     Credentials,
@@ -34,8 +36,11 @@ from app.chat.providers.base import (
     TurnComplete,
     TurnEvent,
 )
+from app.chat.sdk_sessions import build_resume_preamble, session_file_exists
 from app.config import get_settings
 from app.db.models import ChatMessage, ChatSession
+
+logger = logging.getLogger(__name__)
 
 
 async def persist_user_message(
@@ -118,7 +123,10 @@ async def stream_turn(
 
     try:
         async for event in run_provider_turn(
-            session=session, user_message=user_message, credentials=credentials
+            db=db,
+            session=session,
+            user_message=user_message,
+            credentials=credentials,
         ):
             fold_event(event, text_parts, result)
             yield event_to_frame(event)
@@ -158,7 +166,10 @@ async def run_turn(
     text_parts: list[str] = []
 
     async for event in run_provider_turn(
-        session=session, user_message=user_message, credentials=credentials
+        db=db,
+        session=session,
+        user_message=user_message,
+        credentials=credentials,
     ):
         fold_event(event, text_parts, result)
 
@@ -169,6 +180,7 @@ async def run_turn(
 
 async def run_provider_turn(
     *,
+    db: AsyncSession,
     session: ChatSession,
     user_message: str,
     credentials: Credentials,
@@ -177,15 +189,40 @@ async def run_provider_turn(
 
     Exposed separately so the streaming endpoint can consume the event
     stream directly while still sharing provider resolution.
+
+    If ``session.sdk_session_id`` points to a transcript the SDK can no
+    longer find on disk (volume wiped, different replica, etc.), we clear
+    the stale handle and cold-start the SDK with a reconstructed preamble
+    of prior DB-stored messages so the user doesn't lose context.
     """
     provider = get_provider(session.provider_id)
     cwd = str(get_settings().repo_dir)
+
+    resume_id: str | None = session.sdk_session_id
+    outbound_message = user_message
+    if resume_id and not session_file_exists(cwd, resume_id):
+        logger.warning(
+            "SDK transcript missing for session %s (sdk_session_id=%s); cold-starting with DB preamble",
+            session.id,
+            resume_id,
+        )
+        prior = await list_messages_for_session(db, session.id)
+        # Drop the just-persisted user message — it's already in
+        # ``user_message`` and will be sent as the live prompt.
+        preamble_sources = [m for m in prior if m.content != {"text": user_message}]
+        preamble = build_resume_preamble(preamble_sources)
+        outbound_message = preamble + user_message
+        resume_id = None
+        # Clear the stale handle so persist_assistant_message accepts the
+        # new session ID emitted by the cold-started SDK run.
+        session.sdk_session_id = None
+
     async for event in provider.run_turn(
-        user_message=user_message,
+        user_message=outbound_message,
         credentials=credentials,
         model=session.model,
         cwd=cwd,
-        sdk_session_id=session.sdk_session_id,
+        sdk_session_id=resume_id,
     ):
         yield event
 

@@ -7,6 +7,8 @@ services:
     env_file:
       - .env
     restart: unless-stopped
+    volumes:
+      - claude_sessions:/home/beril/.claude/projects
     depends_on:
       postgres:
         condition: service_healthy
@@ -53,3 +55,4 @@ services:
 
 volumes:
   pgdata:
+  claude_sessions:
