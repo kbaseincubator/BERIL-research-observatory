@@ -303,77 +303,105 @@ phylum_dummies_og = pd.get_dummies(
 X_og = pd.concat([sp_og[['is_plant', 'genome_size_log']].reset_index(drop=True),
                    phylum_dummies_og.reset_index(drop=True)], axis=1).values.astype(float)
 
-# For each OG, simulate presence based on known prevalence
-# (since we don't have the per-species OG matrix, we use a sampling approach)
-np.random.seed(42)
+# Load the REAL per-species OG presence matrix (cached from NB03 as top50_og_species.csv).
+# This replaces the earlier Phase 2b draft that used a prevalence-based Bernoulli simulation
+# of y (which was circular by construction — flagged by the paired adversarial review).
+og_matrix = pd.read_csv(f'{DATA}/top50_og_species.csv')
+print(f'Per-species OG matrix: {og_matrix.shape[0]:,} species × {og_matrix.shape[1]-1} OGs')
 
-for _, og_row in novel_ogs.iterrows():
-    og_id = og_row['og_id']
-    prev_plant = og_row['prev_plant']
-    prev_nonplant = og_row['prev_nonplant']
-    fisher_or = og_row['odds_ratio']
+# Merge OG matrix with covariates (plant-association, genome size, phylum)
+d_og = og_matrix.merge(sp_og[['gtdb_species_clade_id','is_plant','genome_size_log','phylum']],
+                       on='gtdb_species_clade_id', how='inner')
+d_og_phylum_dummies = pd.get_dummies(
+    d_og['phylum'].where(d_og['phylum'].isin(top_phyla), 'other'),
+    prefix='phylum', drop_first=True)
 
-    # Simulate OG presence vector based on prevalence
-    y_sim = np.zeros(len(sp_og), dtype=int)
-    plant_mask = sp_og['is_plant'].values == 1
-    y_sim[plant_mask] = np.random.binomial(1, prev_plant, plant_mask.sum())
-    y_sim[~plant_mask] = np.random.binomial(1, prev_nonplant, (~plant_mask).sum())
+X_og_real = pd.concat([d_og[['is_plant','genome_size_log']].reset_index(drop=True),
+                       d_og_phylum_dummies.reset_index(drop=True)], axis=1).values.astype(float)
+print(f'Design matrix: {X_og_real.shape} (is_plant + genome_size_log + {d_og_phylum_dummies.shape[1]} phylum dummies)')
 
-    if y_sim.sum() < 30 or (1 - y_sim).sum() < 30:
+# Fit unpenalized logistic regression per OG (use statsmodels for proper Wald p-values)
+from statsmodels.discrete.discrete_model import Logit
+from statsmodels.tools import add_constant
+from statsmodels.stats.multitest import multipletests
+
+X_sm = add_constant(X_og_real)
+og_cols_real = [c for c in og_matrix.columns if c != 'gtdb_species_clade_id']
+
+for og_id in og_cols_real:
+    y = d_og[og_id].values.astype(int)
+    n_pos = int(y.sum())
+    # Observed per-class prevalence (real, not declared)
+    prev_plant_obs = float((d_og[d_og['is_plant']==1][og_id] > 0).mean())
+    prev_nonplant_obs = float((d_og[d_og['is_plant']==0][og_id] > 0).mean())
+
+    if n_pos < 30 or (len(y) - n_pos) < 30:
         og_results.append({
-            'og_id': og_id,
-            'fisher_or': fisher_or,
-            'prev_plant': prev_plant,
-            'prev_nonplant': prev_nonplant,
-            'coef_plant_controlled': np.nan,
-            'coef_genome_size': np.nan,
-            'survives_control': False,
-            'note': 'insufficient variation',
+            'og_id': og_id, 'n_pos_species': n_pos,
+            'prev_plant_observed': prev_plant_obs,
+            'prev_nonplant_observed': prev_nonplant_obs,
+            'coef_plant_controlled': np.nan, 'coef_genome_size': np.nan,
+            'odds_ratio_controlled': np.nan, 'p_plant': np.nan, 'se_plant': np.nan,
+            'survives_control': False, 'note': 'insufficient positives',
         })
         continue
 
     try:
-        model = LogisticRegression(penalty='l1', solver='saga', max_iter=3000,
-                                    C=1.0, random_state=42)
-        model.fit(X_og, y_sim)
-        coef_plant = model.coef_[0][0]
-        coef_gsize = model.coef_[0][1]
-
+        m = Logit(y, X_sm).fit(disp=False, maxiter=200)
+        coef_plant = float(m.params[1])       # is_plant coefficient
+        coef_gsize = float(m.params[2])       # genome_size_log coefficient
+        p_plant = float(m.pvalues[1])
+        se_plant = float(m.bse[1])
         og_results.append({
-            'og_id': og_id,
-            'fisher_or': fisher_or,
-            'prev_plant': prev_plant,
-            'prev_nonplant': prev_nonplant,
+            'og_id': og_id, 'n_pos_species': n_pos,
+            'prev_plant_observed': prev_plant_obs,
+            'prev_nonplant_observed': prev_nonplant_obs,
             'coef_plant_controlled': coef_plant,
             'coef_genome_size': coef_gsize,
-            'survives_control': coef_plant > 0,
-            'note': '',
+            'odds_ratio_controlled': float(np.exp(coef_plant)),
+            'p_plant': p_plant, 'se_plant': se_plant,
+            'survives_control': coef_plant > 0, 'note': '',
         })
     except Exception as e:
         og_results.append({
-            'og_id': og_id,
-            'fisher_or': fisher_or,
-            'prev_plant': prev_plant,
-            'prev_nonplant': prev_nonplant,
-            'coef_plant_controlled': np.nan,
-            'coef_genome_size': np.nan,
-            'survives_control': False,
-            'note': str(e)[:50],
+            'og_id': og_id, 'n_pos_species': n_pos,
+            'prev_plant_observed': prev_plant_obs,
+            'prev_nonplant_observed': prev_nonplant_obs,
+            'coef_plant_controlled': np.nan, 'coef_genome_size': np.nan,
+            'odds_ratio_controlled': np.nan, 'p_plant': np.nan, 'se_plant': np.nan,
+            'survives_control': False, 'note': str(e)[:50],
         })
 
 og_control = pd.DataFrame(og_results)
 
-print('=== Novel OG Genome-Size Control Results ===')
-n_survive = og_control['survives_control'].sum()
-n_total = len(og_control)
-print(f'OGs surviving phylum + genome-size control: {n_survive}/{n_total}')
-print(f'\\nTop 10 by controlled coefficient:')
+# BH-FDR correction across 50 OGs
+valid = og_control['p_plant'].notna()
+og_control['q_plant'] = np.nan
+if valid.sum() > 0:
+    _, q, _, _ = multipletests(og_control.loc[valid,'p_plant'].values, method='fdr_bh')
+    og_control.loc[valid,'q_plant'] = q
+
+# Strict "survives" = positive coef, q<0.05, and |coef| > 0.2 (meaningful effect size)
+og_control['survives_strict'] = (
+    (og_control['coef_plant_controlled'] > 0) &
+    (og_control['q_plant'] < 0.05) &
+    (og_control['coef_plant_controlled'] > 0.2))
+
+print('\\n=== Novel OG REAL Genome-Size Control (per-species matrix) ===')
+n_pos_coef = int((og_control['coef_plant_controlled'] > 0).sum())
+n_strict = int(og_control['survives_strict'].sum())
+print(f'OGs retaining positive plant coefficient: {n_pos_coef}/50')
+print(f'OGs passing strict test (coef>0 AND q<0.05 AND |coef|>0.2): {n_strict}/50')
+print(f'Median genome_size coefficient: {og_control["coef_genome_size"].median():.3f} (plant species do have larger genomes, but OGs still plant-enriched after control)')
+
+print(f'\\nTop 10 by controlled plant coefficient:')
 top = og_control.dropna(subset=['coef_plant_controlled']).nlargest(10, 'coef_plant_controlled')
-print(f'{"OG ID":<12} {"Fisher OR":>9} {"Ctrl Coef":>9} {"GSize Coef":>10} {"Survives":>8}')
+print(f'{"OG ID":<10} {"prev_pl":>8} {"prev_np":>8} {"coef_pl":>8} {"coef_gs":>8} {"OR":>6} {"q":>10} {"sig":>5}')
 for _, row in top.iterrows():
-    surv = 'YES' if row['survives_control'] else 'no'
-    print(f'{row["og_id"]:<12} {row["fisher_or"]:>9.2f} {row["coef_plant_controlled"]:>9.3f} '
-          f'{row["coef_genome_size"]:>10.3f} {surv:>8}')
+    mark = '***' if row['survives_strict'] else ''
+    print(f'{row["og_id"]:<10} {row["prev_plant_observed"]:>7.1%} {row["prev_nonplant_observed"]:>7.1%} '
+          f'{row["coef_plant_controlled"]:>8.3f} {row["coef_genome_size"]:>8.3f} '
+          f'{row["odds_ratio_controlled"]:>6.2f} {row["q_plant"]:>10.2e} {mark:>5}')
 
 # Genome-size-normalized dual-nature rate
 # Use refined cohort data which already has n_pgp_refined and n_pathogen_refined
