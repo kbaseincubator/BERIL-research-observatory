@@ -8,6 +8,29 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [ibd_phage_targeting] `docs/collections.md` understates the BERDL catalog by several phage- and metagenome-relevant databases
+
+Live `SHOW DATABASES` against the lakehouse returned 138 databases; the committed `docs/collections.md` omits several that matter for gut-microbiome / phage work:
+
+- `kescience_mgnify` — EBI MGnify (metagenomics service), relevant for IBD-cohort cross-validation. This is also the answer to a mis-recalled `ke_science_magnify` — it's `mgnify`, not `magnify`.
+- `phagefoundry_ecoliphages_genomedepot` (plus a duplicate `_genomedepot` variant) — E. coli phage genome collection, directly relevant for AIEC targeting. PhageFoundry has 7 databases in the tenant, not the 5 documented.
+- `kescience_interpro` — InterPro domain annotations, primary source for virulence-factor classification.
+- `kescience_pubmed` — literature text mining (sibling to `kescience_paperblast`).
+- `pangenome_bakta` — a separate Bakta-pangenome slice distinct from `kbase_ke_pangenome`.
+- `arkinlab_microbeatlas` — 464K global 16S samples, useful prevalence / biogeography baseline.
+- `protect_integration` — second Protect-tenant database beyond `protect_genomedepot`.
+- `u_kazakov__klebsiella_genomedepot` and `u_kazakov__strain_modelling` — user-owned Klebsiella phage-host work worth checking with the owner.
+
+Recommend updating `docs/collections.md` with a full `SHOW DATABASES`-derived inventory; current coverage appears hand-curated and lags behind the live catalog.
+
+### [ibd_phage_targeting] `schema_overview.yaml` + per-table `*.yaml` dictionaries is a useful convention for large local data marts
+
+The UC Davis / Arkin CrohnsPhage data mart ships with a `lineage.yaml` (ETL provenance + changelog + known gaps), a `schema_overview.yaml` (table inventory by category), per-table `*.yaml` dictionaries (columns, dtypes, null counts, unique counts, sample values), and a `ref_missing_data_codes` table with sentinel codes (`PENDING_DAVE_LAB`, `PENDING_KUEHL`, `PENDING_HMP2_RAW`, etc.) that distinguish real NULLs from known-pending data. This pattern makes large local marts agent-readable without any live queries. Worth proposing as a BERIL convention for projects that accumulate their own data tables.
+
+### [ibd_phage_targeting] Preliminary cross-cohort DA flags *C. scindens* as CD-enriched — a compositional / stratification artifact, not biology
+
+The v2 preliminary IBD report (2026-03-28) called *C. scindens* CD-enriched at log₂FC = +2.67 from pooled Mann-Whitney DA. But *C. scindens* is a well-documented protective species (secondary bile-acid producer via 7α-dehydroxylation, TGR5 activator, ~79 % prevalence in healthy individuals, inhibits *C. difficile*). Three likely mechanisms produce this false call: (1) compositional / relative-abundance artifact — Ruminococcaceae loss in severe patients inflates relative abundance of surviving C. scindens strains; (2) strain heterogeneity — not all C. scindens strains carry the `bai` operon; species-level presence ≠ functional presence; (3) ecotype mixing — pooled analysis averages across patient subgroups with different microbiomes. Compositional-aware DA (ANCOM-BC / MaAsLin2 / LinDA) run *within* patient ecotypes is the proposed fix. This is the canonical example for why `ibd_phage_targeting` treats pre-computed `ref_*` tables as starting points requiring verification, not ground truth.
+
 ### [enigma_sso_asv_ecology] 16S community similarity maps contamination plume at meter scale
 The SSO 3×3 well grid (~6 m span) shows significant distance-decay (Mantel ρ=0.323, p=0.029) driven by the east-west axis rather than the hillslope gradient. A diagonal corridor of wells (U3-M6-L7) shares community composition along the NE→SW plume flow path. Genus-level functional inference maps the thermodynamic redox ladder (denitrification → iron reduction → fermentation) onto the physical grid. M5 hosts a *Rhodanobacter* denitrification hotspot (7.7%) at the plume mixing zone. GW communities are temporally stable (well R²=49.9%, date R²=0.8% over 9 days). This demonstrates that 16S community data can delineate subsurface contamination flow paths at sub-decameter resolution.
 

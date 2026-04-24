@@ -22,7 +22,7 @@ Five coupled pillars. Each pillar's hypotheses are falsifiable, state the statis
 
 **H2b**: Target sets differ between UC and CD, and within CD by Montreal-location subtype (ileal L1 vs colonic L2 vs ileocolonic L3). *Test*: Jaccard overlap of top-20 within-ecotype Tier-A candidates between UC and CD, and between L1 / L2 / L3 strata of CD. *Disproved if*: Jaccard > 0.7 (target sets are nearly identical) — which would mean stratification gives no clinical benefit for targeting.
 
-**H2c**: Within-ecotype compositional-aware DA *fails to reproduce protective species as CD-enriched*. Specifically: *C. scindens*, *F. prausnitzii*, *A. muciniphila*, *E. rectale* should NOT show up as CD-enriched when the analysis is done correctly. *Test*: direct check against the preliminary DA (which called *C. scindens* log₂FC +2.67 in pooled analysis). *Disproved if*: any canonical protective species remains CD-enriched after stratification and compositional correction — which would force us to question the stratification itself.
+**H2c**: Within-ecotype compositional-aware DA *fails to reproduce protective species as CD-enriched*. Specifically: *C. scindens*, *F. prausnitzii*, *A. muciniphila*, *E. rectale*, *Roseburia intestinalis*, *Lachnospira eligens* should NOT show up as CD-enriched when the analysis is done correctly. *C. scindens* is the motivating example (preliminary report called it log₂FC +2.67 in pooled analysis despite 79 % prevalence in healthy individuals), but the same sanity-check battery applies to the whole protective-species list. *Test*: direct check against the preliminary pooled DA. *Disproved if*: any canonical protective species remains CD-enriched after stratification and compositional correction — which would force us to question the stratification itself.
 
 **H2d**: Pathobiont co-occurrence modules (SparCC / SpiecEasi per ecotype) contain ≥ 2 Tier-A candidates each. This matters because single-target cocktails may fail if the module re-equilibrates around another hub. *Test*: network inference per ecotype + module detection + intersection with Tier-A candidate list. *Disproved if*: modules contain ≤ 1 Tier-A hub on average — suggesting pathobionts are ecologically independent and monovalent cocktails may suffice.
 
@@ -117,6 +117,17 @@ Every Tier-A scored candidate carries one of three provenance tags per criterion
 
 **N5 — Separate "UC Davis-observed" from "public-reference inherited."** Every UC Davis patient dossier entry makes this distinction explicit, so clinical readers can weigh evidence.
 
+**N6 — BERDL query hygiene.** Every Spark notebook in this project starts with the JupyterHub-native Spark import pattern `spark = get_spark_session()` (no import statement — the session is injected into the BERDL JupyterHub kernel). Every query against a large BERDL table filters before aggregation per `docs/pitfalls.md`. Specifically:
+
+- `kescience_fitnessbrowser.genefitness` (27M rows) — filter by `orgId` before any aggregation; **CAST** `fit` and `t` as DOUBLE before ABS/comparison (string-typed numeric columns).
+- `kescience_fitnessbrowser` KO mapping — two-hop join via `besthitkegg` + `keggmember` (no direct `(orgId, locusId) → KO` table).
+- `kbase_ke_pangenome.gene_cluster` (132M rows) — filter by `gtdb_species_clade_id` first; never full-scan.
+- `kbase_ke_pangenome.genome_ani` (421M rows, O(n²)) — cap large species (K. pneumoniae = 14K genomes) at ≤ 500 genomes via subsampling; prefer species with < 500 genomes.
+- `kbase_ke_pangenome.gtdb_taxonomy_r214v1.order` — backtick-quote in SQL (`` `order` ``) — reserved keyword.
+- Pangenome taxonomy joins — use `genome_id`, not `gtdb_taxonomy_id` (different depth levels).
+
+A notebook starts with an explicit header cell listing which BERDL databases it will touch and which filter predicates are applied; this is sanity-checked in the reviewer pass.
+
 ## Query Strategy — tables required by pillar
 
 ### Pillar 1 (stratification)
@@ -202,7 +213,7 @@ Per-patient dossier output columns (per H5c):
 
 | NB | Pillar | Environment | Core output |
 |---|---|---|---|
-| **NB00** | all | local | Data audit: profile each parquet, validate against the data dictionary, reproduce one slice of the preliminary DA to compare with compositional-aware DA as proof-of-concept for N1 / the C. scindens paradox. Figures: coverage summary, missingness heatmap, sample-count-per-cohort. |
+| **NB00** | all | local (no Spark) | Data audit: profile each parquet in `~/data/CrohnsPhage/`, validate column names / dtypes / missingness against the per-table dictionary YAMLs, reconcile the 33 tables against `schema_overview.yaml`, and document each fact / ref table's actual columns in `projects/ibd_phage_targeting/data/table_schemas.md` (since `docs/schemas/` has no coverage for these local-mart tables). Reproduce one slice of the preliminary DA vs compositional-aware DA as a proof-of-concept for norm N1 and the *C. scindens* paradox. Figures: coverage summary, missingness heatmap, sample-count-per-cohort, protective-species sanity check (C. scindens, F. prausnitzii, A. muciniphila). |
 | **NB01** | 1 | local | Ecotype training: DMM on CMD_IBD + HMP2 taxa; topic model on CMD_IBD pathways; MOFA+ on joint; consensus ecotypes. Figures: perplexity/BIC curves, ecotype-defining features, bootstrap robustness. |
 | **NB02** | 1 | local | Ecotype projection: project UC Davis and held-out cohorts onto the trained embedding; test H1b occupancy. Figures: UC Davis per-ecotype distribution, held-out cohort occupancy. |
 | **NB03** | 1 | local | Clinical-covariate-only ecotype classifier (H1c); report AUC, feature importance. |
@@ -277,6 +288,10 @@ Tagged via `ref_missing_data_codes` sentinel codes. Does not block analysis but 
 
 ## Revision History
 
+- **v1.1** (2026-04-24): Plan-review follow-up (`PLAN_REVIEW_1.md`, claude-sonnet-4). Added:
+  - Norm N6 — explicit BERDL query hygiene (Spark import pattern, `CAST` for string-typed numerics, two-hop KO mapping, large-table filter requirements, `order` keyword backtick-quoting, genome_id join rules, genome_ani subsampling).
+  - Extended H2c protective-species validation battery beyond *C. scindens* to *F. prausnitzii*, *A. muciniphila*, *E. rectale*, *R. intestinalis*, *L. eligens*.
+  - Expanded NB00 scope to include committing a `data/table_schemas.md` for the CrohnsPhage fact / ref tables (since `docs/schemas/` has no coverage).
 - **v1** (2026-04-24): Initial plan — five pillars, four-tier criteria, verify-where-we-can norm, reproduce-and-extend from the 2026-03-28 preliminary report. Scope decisions: (1a) pathway DA on CMD_IBD only, (2a) 35-compound metabolomics cross-cohort bridge, (3a) Kumbhari 432-strain panel as primary. No raw reads available, so options (1b) and (3b) ruled out a priori.
 
 ## Authors
