@@ -25,13 +25,16 @@ Three coupled deliverables:
 - ✅ NB02 UC Davis projection (Kuehl_WGS Kaiju → K=4 via LDA primary / GMM advisory): **E0 27 %, E1 42 %, E2 0 %, E3 31 %**; χ² vs uniform p = 0.019 → **H1b supported**. Patient 6967 shows longitudinal E1 ↔ E3 shift — first H5d signal.
 - ✅ NB03 clinical-covariate classifier (H1c): macro AUC 0.799 (minimal) / 0.810 (extended) on pooled CMD — passes the 0.70 threshold on paper. **But only 41 % agreement with NB02 on UC Davis patients**. Revised: clinical features separate HC vs IBD trivially but *not* IBD ecotypes; metagenomics remains required.
 - ⚠️ **NB04 superseded** — within-ecotype DA committed (a325ce5) but retracted after adversarial review caught feature-leakage and confounder-non-adjustment issues that the standard `/berdl-review` missed twice. See `FAILURE_ANALYSIS.md`.
-- ✅ **NB04b + NB04c + NB04d + NB04e — Pillar 2 rigor-repair pipeline**:
+- ✅ **NB04b → c → d → e → f → g → h — Pillar 2 rigor-repair + strengthening pipeline** (seven notebooks):
   - NB04b: bootstrap CIs, leakage-bound sensitivity (E1 Jaccard 0.230, E3 0.064 vs >0.5 threshold → leakage dominates NB04), LOO refit (*C. scindens* CD↑ in both E1 and E3 under LOO), Jaccard permutation null (observed 0.104 vs null 0.785 → **H2b supported, empirical p = 0.000**), ecotype bootstrap stability (ARI 0.16)
   - NB04c: proper substudy resolution (51 sub-studies, 80.8 % coverage) + documented cMD substudy-nesting unidentifiability + confound-free within-IBD-substudy CD-vs-nonIBD meta (recovers canonical CD signature) + LinDA in pure Python
   - NB04d: formalized rigor-controlled stopping rule for NB05 — E1 PROCEED, E3 PROCEED WITH CAVEAT
   - NB04e: **within-ecotype × within-substudy meta** — E1 Tier-A **51 candidates** (meta-viable, 2 sub-studies, 100 % sign concord), E3 Tier-A **40 provisional candidates** (single-study HallAB_2017)
   - Plus 5 engraftment-confirmed cross-ecotype pathobionts (*M. gnavus*, *E. lenta*, *E. coli*, *E. bolteae*, *H. hathewayi*) under NB04c §3 confound-free contrast
   - **H2c retracted** (no paradox — *C. scindens* is CD↑ under confound-free design)
+  - NB04f LOSO stability (mean ARI 0.113) — documents real cross-study ecotype variance (bootstrap ARI masked this); some sub-studies fit the framework well (LifeLinesDeep 85 % agreement), others poorly (AsnicarF 38 %).
+  - NB04g pathway-feature K=4 refit on 3,145 CMD_IBD HUMAnN3 pathway samples — PARTIAL (ARI 0.113, E1 65 % agreement) — ecotype structure is mixed ecological + taxonomic.
+  - **NB04h HMP_2019_ibdmdb external replication** via `curatedMetagenomicData` v3.18 — 1,627 samples projected, 80 % at posterior > 0.70; subject-level χ² p = 0.016 (ecotype stratifies CD/UC/nonIBD); **E1 Tier-A 88.2 % sign-concordant (45/51)**. **Pillar 2 operationally externally validated.**
 - ⏳ NB05–NB17 per plan; HMP2 ingestion (`PENDING_HMP2_RAW`) is the primary unblock for E3 replication
 
 ## Context

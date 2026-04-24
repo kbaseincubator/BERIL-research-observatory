@@ -134,6 +134,10 @@ A notebook starts with an explicit header cell listing which BERDL databases it 
 
 **N9 — Adversarial review for any project whose conclusions inform downstream action.** The standard `/berdl-review` is systematically blind to (a) selection-on-outcome confounding, (b) effect sizes reported without null distributions, (c) hard-coded or post-hoc decision rules, (d) study-design unidentifiability. For any project whose REPORT.md will be cited by downstream notebooks, experimental design, clinical recommendation, or shared external artifacts, pair `bash tools/review.sh <project>` with a separately-spawned adversarial agent (`Agent(subagent_type=general-purpose, prompt=<explicit find-flaws brief>)`) and reconcile the two. Added in plan v1.4 after the NB04 failure case. Documented in `docs/discoveries.md`.
 
+**N10 — LOSO ARI over bootstrap ARI for cluster stability.** For any clustering framework intended for cross-cohort use, report leave-one-substudy-out ARI (hold out each source study, refit, compute agreement on held-out) as the primary stability metric. Bootstrap 80 %-subsample ARI masks per-substudy variation (verified in NB04f: bootstrap 0.13–0.17 vs LOSO 0.00–0.28). The LOSO metric exposes which sub-studies fit the framework well vs poorly and is the honest replication claim.
+
+**N11 — Separate framework-stability tests from operational-claim tests.** A clustering framework can have moderate stability AND strong per-cluster claim replication (or the reverse). Report both. Don't let "framework is marginally stable" imply "the specific Tier-A we derived from it is unreliable" — if Tier-A has independent-cohort validation (NB04h: 88.2 % sign concordance for NB04e E1 Tier-A on HMP2), that's the operational claim strength, which is what matters for downstream NB05 / clinical translation.
+
 ## Query Strategy — tables required by pillar
 
 ### Pillar 1 (stratification)
@@ -294,6 +298,15 @@ Tagged via `ref_missing_data_codes` sentinel codes. Does not block analysis but 
 - **Single-donor engraftment evidence (donor 2708)**: N = 1 causal evidence. We treat as strong but irreplicable without additional donors.
 
 ## Revision History
+
+- **v1.5** (2026-04-24): Pillar 2 strengthening — LOSO stability, pathway-feature refit, HMP2 external replication. After v1.4 committed the rigor-repair pipeline, three additional notebooks tested the framework and Tier-A against three failure modes:
+  - **NB04f — LOSO ecotype stability.** Mean ARI 0.113 (range 0.000–0.282) across 8 held-out substudies, more honest than bootstrap ARI 0.160. Some sub-studies (LifeLinesDeep 85 % agreement) fit the framework well, others (AsnicarF 38 %, VilaAV 17 %) poorly. **Retracts the "four reproducible ecotypes" framing** as bit-reproducible across sub-studies; the framework has real cross-study variance.
+  - **NB04g — Pathway-feature K=4 refit** on 3,145 CMD_IBD HUMAnN3 samples. ARI 0.113 vs taxon-based consensus; per-ecotype agreement E1 65 %, E3 31 %, E2 47 %, E0 0 % (n=43). Ecotype structure is mixed ecological + taxonomic.
+  - **NB04h — HMP_2019_ibdmdb external replication.** Pulled live via `curatedMetagenomicData` v3.18 (1,627 samples, 130 subjects) — HMP_2019_ibdmdb is NOT in our cMD_IBD training set. Ecotype projection: 80 % of samples at max posterior > 0.70; subject-level χ² = 15.61, p = 0.016; **E1 Tier-A 88.2 % sign-concordant (45/51 candidates CD↑ in both cohorts), including every top-10 candidate**. **Pillar 2 operationally externally validated.**
+  - **New framing**: framework stability and operational-claim replication are separate properties. This project has a framework with real cross-study variance AND rigorously-replicated Tier-A. Both statements are honest.
+  - **New plan norm N10 added**: **LOSO ARI is the preferred stability metric over bootstrap ARI** for any clustering framework intended for cross-cohort use. Bootstrap masks per-substudy variation; LOSO exposes it.
+  - **New plan norm N11 added**: **separate framework-stability tests from operational-claim tests**. A project can have moderate framework stability and strong downstream-claim replication, or the reverse. Report both. Don't let "marginal stability" leak into claims about specific targets that have independent-cohort validation.
+  - HMP2 raw data ingestion via cMD R package is **no longer a blocker** for external replication; the `PENDING_HMP2_RAW` issue primarily affects ingestion into the mart (for Pillar 3 metabolomics × taxonomy integration), not external ecotype / Tier-A replication.
 
 - **v1.4** (2026-04-24): NB04 rigor-repair arc. **NB04 committed → standard `/berdl-review` ×2 clean → adversarial review found 5 critical + 6 important issues → NB04b (partial repair) → NB04c (completion) → NB04d (formalized stopping rule) → NB04e (confound-free Option A meta) rescued Pillar 2.** Key changes to the plan:
   - **H2c retracted.** The NB04 claim "*C. scindens* paradox resolved by within-ecotype stratification" was a feature-leakage artifact. Under the confound-free within-IBD-substudy CD-vs-nonIBD meta (NB04c §3), *C. scindens* is genuinely CD↑ (+1.18 CLR-Δ, FDR 1e-8, 4/4 sign concord) — there is no paradox. REPORT.md §5 retraction box documents this.
