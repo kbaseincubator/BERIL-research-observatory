@@ -8,40 +8,48 @@ We ignore the 2018 paper's 456-gene TableS12 set. It is historical; the live cur
 
 ## Hypothesis
 
-- **H0**: The 1,762 reannotated genes do not separate from the rest of the Fitness Browser by any simple combination of BERDL-native evidence signals (specific phenotype, strong fitness, significant cofitness). Any threshold that captures the reannotated set also captures a "stubborn set" that is either intractably large or indistinguishable from the reannotated genes on secondary evidence — implying there is no principled answer to "which of these can be reannotated now?"
+- **H0**: The 1,762 reannotated genes do not separate from the rest of the Fitness Browser by any weighted combination of BERDL-native evidence signals (specific phenotype, strong fitness, cofitness, and their magnitudes). There is no classifier that simultaneously (a) recovers ≥90% of the reannotated set and (b) yields a stubborn candidate pool under ~10K genes — implying curator decisions cannot be reconstructed from these signals alone.
 
-- **H1**: A simple weighted score over three curator-relevant signals (specific phenotype flag, any strong phenotype, max cofitness ≥ 0.75) captures ≥95% of the reannotated set, and the resulting candidate pool minus reannotation yields a tractable "stubborn set" (target: low thousands or smaller). Within that stubborn set, secondary BERDL-native evidence (ortholog phenotype conservation, informative domain, KEGG KO description, SEED annotation, MetaCyc pathway) separates genes where a new annotation is plausibly proposable from genes where the evidence is genuinely insufficient.
+- **H1**: A weighted classifier fit on the continuous evidence features (`in_specificphenotype`, `max_abs_fit`, `max_abs_t`, `n_strong_experiments`, `n_moderate_experiments`, `max_cofit`) can achieve the **dual target of ≥90% recall on the 1,762 reannotated set AND a stubborn candidate pool < ~10K genes**. Within that stubborn set, secondary BERDL-native evidence (ortholog phenotype conservation, informative domain, KEGG KO description, SEED annotation, MetaCyc pathway) separates genes where a new annotation is plausibly proposable from genes where existing evidence is genuinely insufficient.
+
+### Dual target (operational definition of "tractable")
+
+- **Recall** ≥ 90% of reannotated genes score above threshold.
+- **Stubborn pool size** < 10,000 genes (non-reannotated in the candidate pool).
+
+If neither a weighted score over the raw features nor a hand-tuned compound rule can hit both, we document the frontier (the recall-vs-pool-size tradeoff curve) as the finding, and pick the best available operating point before moving to NB02.
 
 ## Approach Overview
 
-### Stage 1 — Threshold derivation (NB01, formalized here)
+### Stage 1 — Threshold derivation (NB01)
 
-We treat the 1,762 reannotated genes as **positive examples** and back out the evidence thresholds that characterise them.
+We treat the 1,762 reannotated genes as **positive examples** and fit a weighted classifier over continuous BERDL-native evidence features.
 
-**Three evidence signals** (each binary, weight 1):
+**Evidence features** (per gene, computed once in `notebooks/00_extract_gene_features.py` and saved locally as parquet so the notebook is pandas-only):
 
-| Signal | Definition | Source tables |
+| Feature | Type | Source |
 |---|---|---|
-| **C1 — specific phenotype** | Gene appears in `specificphenotype` (Price's precomputed 4-condition test: `|fit|>1 AND |t|>5 AND |fit|₉₅<1 AND |fit|>|fit|₉₅+0.5`) | `specificphenotype` |
-| **C2 — strong phenotype** | Any experiment with `|fit|≥2 AND |t|≥5` | `genefitness` (CAST to DOUBLE first — see pitfall) |
-| **C3 — significant cofitness** | `max_cofit ≥ 0.75` with any partner in the same organism | `cofit` |
+| `in_specificphenotype` | binary 0/1 — Price's precomputed specific-phenotype flag | `specificphenotype` |
+| `max_abs_fit` | continuous — largest \|fit\| across experiments | `genefitness` (CAST DOUBLE) |
+| `max_abs_t` | continuous — largest \|t\| across experiments | `genefitness` (CAST DOUBLE) |
+| `n_strong_experiments` | count — experiments with \|fit\|≥2 AND \|t\|≥5 | `genefitness` |
+| `n_moderate_experiments` | count — experiments with \|fit\|≥1 AND \|t\|≥5 | `genefitness` |
+| `max_cofit` | continuous [0,1] — largest cofit with any partner in same org | `cofit` (CAST DOUBLE) |
 
-**Score = C1 + C2 + C3**, integer 0–3.
+**Classifier candidates** (NB01 will fit all three and pick the one that hits the dual target):
 
-**Calibration rule**: choose the **largest** score threshold such that ≥95% of the 1,762 reannotated set scores at-or-above it. This is the narrowest evidence envelope that still recovers the curator's positive set.
+1. **Simple counting rule** (baseline): binary criteria C1 = `in_specificphenotype`, C2 = `n_strong_experiments ≥ 1`, C3 = `max_cofit ≥ 0.75`; `score = C1 + C2 + C3`; threshold chosen to hit ≥90% recall. Empirically (preliminary results) this gives 96% recall at score ≥ 1 (41K stubborn — too big) or 85% recall at score ≥ 2 (18K stubborn — still too big), so the simple rule alone cannot hit both targets.
+2. **Logistic regression** on all 6 continuous features with `class_weight='balanced'`. Use the predicted probability as the score; threshold = smallest probability that keeps recall ≥ 90%. Report learned weights for interpretability.
+3. **Hand-tuned compound rule** — e.g., tighter cofit cutoff (≥ 0.85 instead of ≥ 0.75), or requiring at least one of {specific, strong} plus something. NB01 will enumerate a small set of compound rules around the recall-vs-pool tradeoff frontier.
 
-Empirical observations from preliminary queries that motivate this design:
-- **73% of reannotated are in `specificphenotype`** (1,291/1,762)
-- **84% have a strong phenotype** in at least one experiment (1,472/1,762)
-- **92% have either specific or strong phenotype** (1,618/1,762)
-- Of the 471 reannotated genes NOT in `specificphenotype`, **73% have max cofit ≥ 0.75** (mean max cofit = 0.85) — cofitness is an independent curator signal.
-
-The union of the three signals therefore captures very nearly all reannotated genes. The threshold calibration decides how narrowly to hold the candidate pool.
-
-**Candidate pool** = `{ genes with score ≥ chosen_threshold }`.
+**Candidate pool** = `{ genes above the chosen classifier's threshold }`.
 **Stubborn set** = `candidate_pool ∖ reannotation`.
 
-We commit to the chosen threshold in NB01 once the distributions are visible. A tractable target is a stubborn set of a few thousand or smaller.
+Preliminary observations from the extract that motivate this design:
+- 73% of reannotated genes are in `specificphenotype` (1,291/1,729 with fitness data)
+- 85% have any strong phenotype (1,472/1,729)
+- Of the 471 reannotated not in `specificphenotype`, 73% have max cofit ≥ 0.75 (mean max cofit = 0.85) — cofitness is an independent curator signal
+- 62/1,729 reannotated genes (3.6%) have NONE of the three binary signals — those are curated on other grounds (conserved ortholog phenotype alone, comparative-genomics operon context) and may be unrecoverable from these features; the 90% recall target implicitly accepts losing roughly those.
 
 ### Stage 2 — Evidence scoring on the stubborn set (NB02)
 
@@ -56,13 +64,38 @@ For each stubborn-set gene, compute a **second layer** of BERDL-native evidence 
 | `informative_seed` | `seedannotation.seed_desc` that is not "hypothetical" — description-level only; we explicitly do NOT attempt the subsystem hierarchy (`seedannotationtoroles → seedroles`) in this project | `seedannotation` |
 | `metacyc_pathway_hit` | EC from `genedomain` or `kgroupec.ecnum` links through `metacycreaction.ecnumber` → `metacycpathwayreaction.reaction_id` → `metacycpathway` | `genedomain`/`kgroupec` → `metacycreaction` → `metacycpathwayreaction` → `metacycpathway` |
 
-### Stage 3 — Partition + filter (NB03)
+### Stage 3 — Partition + annotation-category analysis (NB03)
 
-1. Filter the stubborn set to genes with **poor existing annotation** — `gene.desc` matching "hypothetical", "DUF", "uncharacterized", "predicted", or a bare locus tag. No point proposing improvements for genes that already have a meaningful name.
-2. Partition:
-   - **Improvable-now**: ≥1 conservation signal (`conserved_cofit` OR `conserved_specific_phenotype`) AND ≥1 informative functional signal (`informative_domain` OR `informative_kegg_ko` OR `informative_seed` OR `metacyc_pathway_hit`).
-   - **Unresolvable-from-evidence**: no conservation AND no informative signal.
-   - **Mixed**: everything else (transparency bucket).
+**Existing annotation is a descriptive dimension, NOT a filter.** We keep all stubborn-set genes and characterise the categories of their existing `gene.desc`:
+
+| Category | Definition (regex-style on `gene.desc`, lower-cased) |
+|---|---|
+| `hypothetical` | contains "hypothetical", "uncharacterized", or is empty / bare locus tag |
+| `DUF` | matches "DUF\d+" or "domain of unknown function" or "UPF\d+" |
+| `vague` | contains "putative", "predicted", or "probable" without a specific function |
+| `named_enzyme` | has an enzyme class / EC-style name (e.g., "...-ase", ligase, reductase, transporter, kinase) |
+| `named_other` | any other concrete functional name |
+
+Then partition the stubborn set on evidence (not on existing annotation):
+- **Improvable-now**: ≥1 conservation signal (`conserved_cofit` OR `conserved_specific_phenotype`) AND ≥1 informative functional signal (`informative_domain` OR `informative_kegg_ko` OR `informative_seed` OR `metacyc_pathway_hit`).
+- **Unresolvable-from-evidence**: no conservation AND no informative signal.
+- **Mixed**: everything else (transparency bucket).
+
+**Reporting grid** — contingency table of `existing-annotation-category × evidence-partition`:
+
+|  | Improvable | Unresolvable | Mixed |
+|---|---|---|---|
+| hypothetical | N | N | N |
+| DUF | N | N | N |
+| vague | N | N | N |
+| named_enzyme | N | N | N |
+| named_other | N | N | N |
+
+The scientific questions this table answers:
+- **How many hypotheticals remain hypothetical?** (hypothetical × unresolvable cell) — these are the genuinely dark genes with strong curator-like evidence but no resolvable function.
+- **How many previously-mis-annotated genes were reassigned?** — measured in the 1,762 reannotated set by comparing the pre-reannotation `gene.desc` category to the curator's new annotation. The `named_enzyme` and `named_other` reannotations that got a *different* specific function are the "correction" cases; the `hypothetical`/`DUF`/`vague` ones that got a specific function are the "new-name" cases.
+- **Improvable named genes** (named_* × improvable) are candidates for *correction* — existing name may be wrong given fitness + cofit evidence.
+- **Improvable hypotheticals** (hypothetical × improvable) are candidates for *assignment* — proposing a new name based on existing evidence.
 
 ### Stage 4 — Spot-check (NB04)
 
@@ -128,20 +161,24 @@ Cross-project reuse: in NB03 we will refer to `functional_dark_matter`'s 17,344-
 
 ## Analysis Plan
 
-### Notebook 01 — Threshold Derivation (this stage)
-- **Goal**: Build per-gene evidence features, score every FB gene on C1+C2+C3, calibrate the score threshold to capture ≥95% of the 1,762 reannotated set, report the resulting stubborn-set size.
-- **Expected output**: `data/gene_evidence_features.parquet`, `data/stubborn_set_score_ge_{threshold}.parquet`, `data/threshold_calibration_summary.csv`, `figures/fig01_score_distribution.png`.
+### Extract 00 — `notebooks/00_extract_gene_features.py` (Spark, plain Python)
+- **Goal**: Pull all per-gene evidence features from Spark Connect into a local pandas parquet so notebooks are pandas-only (avoids Spark Connect + nbconvert JSON-serialization bugs). Includes `gene.desc` / `gene.gene` for annotation-category analysis.
+- **Expected output**: `data/gene_evidence_features.parquet`.
 
-### Notebook 02 — Secondary evidence scoring
-- **Goal**: For each stubborn-set gene, compute the six secondary-evidence flags.
-- **Expected output**: `data/stubborn_set_scored.parquet` (per-flag booleans preserved for audit), `figures/fig02_evidence_flag_upset.png`.
+### Notebook 01 — Threshold derivation via weighted classifier
+- **Goal**: Load local extract; fit a weighted classifier (logistic regression on continuous features) alongside the simple counting baseline and a small set of hand-tuned compound rules. Pick the operating point that hits the dual target (≥90% recall AND <10K stubborn), or document the tradeoff curve if neither side of the target is feasible. Report learned weights, the recall-vs-pool-size frontier, and the final chosen rule.
+- **Expected output**: `data/stubborn_set_chosen.parquet`, `data/threshold_calibration_summary.csv`, `figures/fig01_score_distribution.png`, `figures/fig02_recall_vs_pool_size.png`.
 
-### Notebook 03 — Partition + existing-annotation filter + characterization
-- **Goal**: Filter the stubborn set to genes with poor existing annotation (`gene.desc`), apply the improvable / unresolvable / mixed partition, cross-reference with `functional_dark_matter` and `truly_dark_genes` lakehouse outputs.
-- **Expected output**: `data/stubborn_set_partitioned.parquet`, headline figures, numeric summaries.
+### Notebook 02 — Secondary evidence scoring + annotation categorisation
+- **Goal**: For each stubborn-set gene, compute the six secondary-evidence flags (conserved cofit, conserved specific phenotype, informative domain, informative KEGG KO, informative SEED, MetaCyc pathway hit). Also categorise each gene's **existing** `gene.desc` into {hypothetical, DUF, vague, named_enzyme, named_other}. **Annotation category is descriptive, not a filter.**
+- **Expected output**: `data/stubborn_set_scored.parquet` (per-flag booleans + annotation category), `figures/fig03_evidence_flag_upset.png`, `figures/fig04_annotation_category_distribution.png`.
+
+### Notebook 03 — Partition + reporting grid
+- **Goal**: Apply the improvable / unresolvable / mixed partition (evidence-based, not annotation-based). Produce the `annotation-category × partition` contingency grid. Similar grid for the 1,762 reannotated set to characterise *what kind* of reannotation curators performed (hypothetical → named, named → re-named, etc.). Cross-reference stubborn set with `functional_dark_matter` 17,344 and `truly_dark_genes` 6,427 lakehouse outputs.
+- **Expected output**: `data/stubborn_set_partitioned.parquet`, headline figures, contingency tables.
 
 ### Notebook 04 — Spot-check and narrative
-- **Goal**: ~20 per-gene dossiers for Improvable candidates as qualitative sanity check.
+- **Goal**: ~20 per-gene dossiers covering both types of improvable candidate (hypothetical × improvable, named × improvable) as qualitative sanity check.
 - **Expected output**: `data/spot_check_dossiers/*.md`, narrative for REPORT.md.
 
 ## Expected Outcomes
@@ -157,6 +194,7 @@ Cross-project reuse: in NB03 we will refer to `functional_dark_matter`'s 17,344-
 
 - **v1** (2026-04-24): Initial plan. Used a Price-faithful specific-phenotype recomputation as the candidate pool and positioned the paper's 456-gene TableS12 as a reference set.
 - **v2** (2026-04-24): Scope narrowed to the current BERDL `reannotation` table (1,762) as the sole reference. Replaced the manual specific-phenotype recomputation with the precomputed `specificphenotype` table plus a three-signal weighted classifier (C1 specific, C2 strong, C3 cofitness) calibrated to capture ≥95% of the reannotated set. Addressed Codex plan-review critical items: (i) use `specificphenotype` directly rather than recomputing `|fit|₉₅`; (ii) MetaCyc path includes the `metacycpathwayreaction` middle table; (iii) KEGG EC uses `kgroupec.ecnum`. Also pinned execution environment (JupyterHub Spark primary, local via `.venv-berdl` for interactive work) and explicitly scoped out the SEED subsystem hierarchy.
+- **v3** (2026-04-24): Empirical finding from NB01 preliminary run — the 3-signal binary counting rule cannot hit both targets: score ≥ 1 gives 96% recall but 41K stubborn; score ≥ 2 gives 85% recall with 18K stubborn; no integer threshold hits ≥90% recall with <10K stubborn. Changed approach: fit a **weighted classifier** (logistic regression on the 6 continuous evidence features) in NB01, explicitly targeting **≥90% recall AND <10K stubborn**. Added hand-tuned compound rules as comparison points and a recall-vs-pool-size frontier figure. Refactored execution: heavy Spark work moved to a plain `.py` extract script (`notebooks/00_extract_gene_features.py`) producing a local pandas parquet; the analysis notebook is pandas-only to avoid Spark-Connect + nbconvert serialization failures (PlanMetrics is not JSON-serializable and breaks both `jupyter nbconvert` and `pandas.to_parquet` when attached via `df.attrs`). Also changed existing-annotation handling: categorise (`hypothetical`, `DUF`, `vague`, `named_enzyme`, `named_other`) as a **descriptive dimension**, not a filter. Added the `annotation-category × evidence-partition` contingency grid as the primary reporting output.
 
 ## Authors
 - **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) — Lawrence Berkeley National Laboratory

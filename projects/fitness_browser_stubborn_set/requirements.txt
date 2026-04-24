@@ -1,5 +1,8 @@
-pyspark>=3.5
+pyspark>=4.0
 pandas>=2.0
 numpy>=1.26
 matplotlib>=3.8
-seaborn>=0.13
+pyarrow>=15
+scikit-learn>=1.4
+jupytext>=1.19
+
