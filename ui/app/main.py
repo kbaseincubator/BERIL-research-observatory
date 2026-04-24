@@ -745,6 +745,7 @@ async def data_update_webhook(
 # Health check
 @ROUTER_GENERAL.get("/health")
 async def health(
+    request: Request,
     context: dict = Depends(get_base_context),
 ):
     """Health check endpoint."""
@@ -757,5 +758,6 @@ async def health(
         "services": {
             "database": db_status
         },
-        "session": context
+        "session": context,
+        "url_scheme": request.url.scheme
     }

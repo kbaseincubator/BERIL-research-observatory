@@ -8,6 +8,75 @@ See [collections.md](collections.md) for the full database inventory and [schema
 
 ## General BERDL Pitfalls
 
+### [genotype_to_phenotype_enigma] Short Strain Names Collide Across Databases
+
+**Problem**: ENIGMA field isolates often have short strain names (MT20, MT42, GW460-LB6, FW507-14TSA) that are **not globally unique**. When matching to `kbase_ke_pangenome.gtdb_metadata.ncbi_strain_identifiers`, these short names can match **completely unrelated organisms** in NCBI. Example: ENIGMA MT20 is *Rhodanobacter glycinis* (Xanthomonadales, groundwater), but GTDB's MT20 is *Streptococcus pneumoniae* (Lactobacillales, clinical) — 8,434 genomes, 1,751 clinical. This contaminated genus-environment profiles with spurious clinical data.
+
+**Scale**: 12 of 32 pangenome linkages via `ncbi_strain_identifiers` were incorrect genus matches.
+
+**Fix**: Always cross-check the genus from the source database (e.g., `enigma_genome_depot_enigma.browser_taxon`) against the genus from the GTDB match. Reject linkages where genera disagree:
+
+```python
+# After matching via ncbi_strain_identifiers, verify genus consistency
+depot_genus = depot_taxon.split()[0]  # e.g., "Rhodanobacter" from "Rhodanobacter glycinis"
+gtdb_genus = gtdb_taxonomy.split(';g__')[1].split(';')[0]  # from GTDB taxonomy string
+if depot_genus.lower() not in gtdb_genus.lower():
+    # REJECT this linkage — strain name collision
+    pass
+```
+
+**Applies to**: Any project linking ENIGMA CORAL strains or genome depot strains to `kbase_ke_pangenome` via strain name matching. Use assembly accession (GCF_*) matching instead when possible — it's unambiguous.
+
+### [genotype_to_phenotype_enigma] Commit Notebooks Alongside Their Artifacts, Not Just the TSVs
+
+**Problem**: Analyses run interactively in a Claude Code session (pure Python REPL, not a committed `.ipynb`) can produce figures and data files that get staged and committed — while the code that produced them lives only in the session transcript. The project then *looks* reproducible (the README references NB08/NB09/NB10, runtime tables list them, the REPORT cites their findings) but `git log` finds no notebook history for those names. Downstream reviewers read the plan and REPORT at face value and miss the gap.
+
+**Scale**: In this project, three "notebooks" (NB08, NB09, NB10 — the entire Act II/III closing) existed only as outputs. The reconstruction took a few hours once the gap was identified; it would have been far cheaper to have written `.ipynb` cells in the first place.
+
+**Fix**:
+
+- When an analysis is worth committing artifacts for, it is worth committing as a notebook. If you find yourself building figures in a REPL, pause and move the logic into a numbered notebook before saving results.
+- Before running `/submit` (or any milestone commit), run `git log --all --oneline -- projects/{project_id}/notebooks/NB*.ipynb` to verify every NBxx referenced in the README/plan is backed by actual notebook history.
+- If you inherit a project with this gap, reconstruct the notebooks from the committed artifacts; note the reconstruction in `RESEARCH_PLAN.md`'s revision history so reviewers know which numeric counts are the "interactive original" vs. the "reproducible re-run".
+
+**Applies to**: Any Claude Code-assisted project. This is especially easy to trip over late in a project when the user is synthesizing and no longer creating fresh notebooks for each analytical step.
+
+### [genotype_to_phenotype_enigma] Web of Microbes Binary "Produced" Requires Action Code Interpretation
+
+**Problem**: `kescience_webofmicrobes.observation.action` is a single-letter code (`I` increased, `E` emerged, `N` no change, and occasionally `D` decreased). A naive `SELECT action` gives you the raw code; it does NOT give you a binary produced/consumed label. The binary definition used in NB02 and NB08 is `produced = action IN ('I', 'E')` — a compound is counted as produced when it either increased in supernatant (was there and more accumulated) or emerged (was below the detection limit and reached it).
+
+```python
+# correct binary encoding for "did this strain produce this metabolite?"
+obs["produced"] = obs["action"].isin(["I", "E"]).astype(int)
+```
+
+**Why it matters**: Including `N` (no change) in the produced set makes every strain look like a production generalist and collapses the signal. Excluding `E` (emerged, sub-detection-limit → detectable) misses genuinely novel production.
+
+**Applies to**: Any project touching `kescience_webofmicrobes.observation`.
+
+### [genotype_to_phenotype_enigma] Fitness Browser KO Mapping Is a Two-Hop Join
+
+**Problem**: There is no single `(orgId, locusId) → KO` table in `kescience_fitnessbrowser`. Mapping a fitness-browser locus to its KEGG ortholog requires two joins:
+
+```sql
+SELECT gf.orgId, gf.locusId, km.kgroup AS KO
+FROM kescience_fitnessbrowser.genefitness gf
+JOIN kescience_fitnessbrowser.besthitkegg bhk
+     ON gf.orgId = bhk.orgId AND gf.locusId = bhk.locusId
+JOIN kescience_fitnessbrowser.keggmember km
+     ON bhk.keggOrg = km.keggOrg AND bhk.keggId = km.keggId
+```
+
+`besthitkegg` maps each FB locus to a KEGG organism and gene (`keggOrg`, `keggId`) via best hit; `keggmember` maps each `(keggOrg, keggId)` pair to its KEGG ortholog group (`kgroup`, which is the KO). Both joins are required — neither table alone is sufficient.
+
+**Additional gotchas in the same schema**:
+
+- `kescience_fitnessbrowser.kgroupdesc` has column `desc` (not `description`). Use `SELECT kgroup, desc AS description FROM ...` if you want a tidier alias.
+- `kescience_fitnessbrowser.genefitness.fit` and `.t` are stored as **strings**; you must `CAST(t AS DOUBLE)` before any `ABS(...)` or comparison.
+- `kescience_fitnessbrowser.experiment.expGroup` (not `Group`) is the experiment class; `SELECT Group` will fail with an `UNRESOLVED_COLUMN` error.
+
+**Applies to**: Any project pulling fitness-browser loci and trying to aggregate at the KO level — concordance analyses, cross-organism conservation, rich-media fitness filtering.
+
 ### `data_lakehouse_ingest` Tenant Name ≠ Database Prefix
 
 **[bakta_reannotation]** The `tenant` field in a `data_lakehouse_ingest` config is the MinIO governance group name, not the database name prefix. The library auto-prepends the tenant name to the `dataset` field to form the namespace.
@@ -700,6 +769,75 @@ jupyter nbconvert --to notebook --execute notebook.ipynb \
 The kernel spawned by nbconvert has `get_spark_session()` available. However, long-running notebooks may time out — set `--ExecutePreprocessor.timeout` appropriately.
 
 **Tip**: For long pipelines, design notebooks with checkpointing (save intermediate files, skip steps that already have output). This allows re-running after interruptions without repeating completed work.
+
+### `jupyter nbconvert --inplace` Silently Drops Cell Outputs
+
+**[genome_depot_enigma]** On this JupyterHub, `jupyter nbconvert --to notebook --execute --inplace ...` can exit with code 0 but leave the notebook file on disk with **zero cell outputs** — the kernel executes cells successfully, but the outputs are never written back. This is particularly problematic when the pre-flight cell raises an intentional `RuntimeError` (the `CONFIRMED = False` pattern used by `/berdl-ingest`), because the plan output that was supposed to be inspected is lost.
+
+```bash
+# Looks correct but silently strips outputs:
+jupyter nbconvert --to notebook --execute --inplace notebook.ipynb
+# Even with --allow-errors, outputs may still not be persisted.
+
+# Workarounds (any of these):
+# 1. Write to a new file instead of --inplace:
+jupyter nbconvert --to notebook --execute notebook.ipynb --output notebook_executed.ipynb
+
+# 2. Run the equivalent code as a plain Python script and log stdout:
+python3 -u run_ingest.py > ingest.log 2>&1
+```
+
+**Solution**: Don't rely on `--inplace` to capture outputs. Either write to a separate file via `--output`, or for long-running production ingests, run the equivalent logic as a standalone Python script so you get streaming stdout/stderr to a log file.
+
+### `/berdl-ingest` Skill Assumes Off-Cluster — Adapt for On-Cluster Use
+
+**[genome_depot_enigma]** The `/berdl-ingest` skill's `initialize()` (in `scripts/ingest_lib.py`) requires SSH tunnels on ports 1337/1338, pproxy on 8123, and `berdl-remote login`/`spawn` — all specific to running from a laptop. Running it from inside BERDL JupyterHub fails at Step 0 (`berdl-remote status` → "Configuration file not found"), even though Spark Connect is directly reachable at `sc://jupyter-<user>.jupyterhub-prod:15002`.
+
+**On-cluster pattern**: Build your own Spark + MinIO clients and reuse the rest of `ingest_lib` unchanged. The library's helpers (`detect_source_files`, `parse_sql_schema`, `build_table_stats`, `upload_files`, `run_ingest`, `verify_ingest`) are infrastructure-agnostic — only `initialize()` is off-cluster-only.
+
+```python
+import os, sys
+sys.path.insert(0, "/home/aparkin/BERIL-research-observatory/scripts")
+import ingest_lib
+from ingest_lib import (detect_source_files, parse_sql_schema, build_table_stats,
+                       upload_files, run_ingest, verify_ingest)
+from pyspark.sql import SparkSession
+from minio import Minio
+
+# Direct Spark Connect (on-cluster URL, no tunnels/pproxy)
+token = os.environ["KBASE_AUTH_TOKEN"]
+spark_url = f"sc://jupyter-{os.environ['USER']}.jupyterhub-prod:15002/;use_ssl=false;x-kbase-token={token}"
+spark = SparkSession.builder.remote(spark_url).getOrCreate()
+
+# Direct MinIO (env vars are pre-set on-cluster)
+endpoint = os.environ["MINIO_ENDPOINT_URL"].replace("https://","").replace("http://","")
+minio_client = Minio(endpoint,
+    access_key=os.environ["MINIO_ACCESS_KEY"],
+    secret_key=os.environ["MINIO_SECRET_KEY"],
+    secure=os.environ.get("MINIO_SECURE","true").lower()=="true")
+
+# Register with the berdl_notebook_utils stubs that ingest_lib sets up on import
+sys.modules["berdl_notebook_utils.setup_spark_session"].get_spark_session = lambda **kw: spark
+sys.modules["berdl_notebook_utils.clients"].get_minio_client = lambda **kw: minio_client
+
+# Then use the rest of ingest_lib helpers exactly as off-cluster.
+```
+
+**Solution**: Skip the skill's Step 0/0b entirely when on-cluster. Use the pattern above in place of `ingest_lib.initialize()`. The rest of the workflow — schema parsing, plan, upload, ingest, verify — works unchanged.
+
+### MySQL `mysqldump` Exports Aren't Standard TSV/CSV
+
+**[genome_depot_enigma]** A MySQL dump produced by `mysqldump` (especially one packaged with per-table `.sql` + `.txt` file pairs) looks like CSV but has three traps that break `ingest_lib.parse_sql_schema` + standard CSV readers:
+
+1. **No header row** on data files — column names come from the `CREATE TABLE`, not the first line.
+2. **`\N` literal** for NULL — not empty string, not `NULL`.
+3. **MySQL-specific DDL trailer** — `) ENGINE=InnoDB AUTO_INCREMENT=... DEFAULT CHARSET=utf8mb3;` after the column list. `ingest_lib.parse_sql_schema`'s regex `\)\s*;` requires the closing paren be followed only by whitespace and a semicolon — it won't match.
+
+**Solution**: Preprocess before calling the ingest pipeline:
+- **Schema**: strip the `ENGINE=...;` trailer, keep just `CREATE TABLE name (cols);`. Concatenate all per-table `.sql` into one `schema.sql`.
+- **Data**: stream each `.txt` through `csv.reader` (comma-delimited, `doublequote=True`), replace `\N` → empty string, write as TSV with prepended header derived from the `CREATE TABLE`.
+
+See `~/data/genome_depot_enigma/preprocess.py` for a reference implementation (handles 13 GB / 32 tables in ~5 minutes).
 
 ---
 

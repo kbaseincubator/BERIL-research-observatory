@@ -81,22 +81,35 @@ Apply the changes in your current session:
 source ~/.bashrc
 ```
 
-## Step 4: Clone the BERIL repository
+## Step 4: Clone the BERIL repository and install the CLI
 
 ```bash
 git clone https://github.com/kbaseincubator/BERIL-research-observatory.git
 cd BERIL-research-observatory
+pip install -e .
 ```
 
-## Step 5: Start Claude and get oriented
+This installs the `beril` command, a thin launcher that handles environment setup and starts your coding agent.
 
-Launch Claude Code from the repo root:
+## Step 5: Set up and launch
+
+Run the BERIL setup wizard:
 
 ```bash
-claude
+beril setup
 ```
 
-Then run the `/berdl_start` skill:
+On JupyterHub, this will:
+- Auto-detect your `KBASE_AUTH_TOKEN` from the environment and write it to `.env`
+- Confirm you're on-cluster with direct Spark access (no proxy needed)
+- Check for `gh` authentication
+- Optionally collect your name, affiliation, and ORCID
+- Detect installed agents and let you pick a default
+- Offer to launch your agent immediately
+
+You can also check your environment any time with `beril doctor`, or launch directly with `beril start`.
+
+Once inside your agent, run the `/berdl_start` skill:
 
 ```
 /berdl_start
@@ -104,7 +117,7 @@ Then run the `/berdl_start` skill:
 
 This gives you an overview of BERDL, lists available skills and existing projects, and lets you choose a path:
 
-- **Start a new project** — create a research project from scratch
+- **Start a new project** — brainstorm with the agent, explore data, then scaffold a project
 - **Explore data** — browse collections and run queries
 - **Continue an existing project** — pick up where you or someone else left off
 - **Understand the system** — learn about the observatory architecture
@@ -147,9 +160,10 @@ When your project is ready for feedback, run the `/submit` skill from within you
 
 This will:
 
-1. **Validate** that your README has the required sections (Research Question, Authors, etc.)
+1. **Validate** that your project has the required files and sections (README, Authors, REPORT, etc.)
 2. **Generate** an AI review (`REVIEW.md`) with feedback on methodology, reproducibility, and completeness
-3. Prompt you to **commit and push** the review along with your final work
+3. **Present the outcome** — if the review finds issues, you can address them or override and submit anyway (the reviewer is advisory, not authoritative)
+4. **Upload** your project to the BERDL lakehouse and update `beril.yaml` status to `complete`
 
 You can keep working on the project after submitting — submission is not a one-time event.
 
