@@ -54,6 +54,32 @@ obs["produced"] = obs["action"].isin(["I", "E"]).astype(int)
 
 **Applies to**: Any project touching `kescience_webofmicrobes.observation`.
 
+### [ibd_phage_targeting] Agent Sessions Sharing a Checkout — Verify `git branch --show-current` Before Every Commit
+
+**Problem**: Two Claude agent sessions (or any two processes) operating in the same repository clone share one `.git` directory and one working tree. A `git checkout` issued by one session silently reshapes the working tree for the other — files that exist on one branch but not the other simply *disappear* from the working tree, and subsequent `git commit` calls land on whichever branch HEAD is currently pointing at.
+
+**Example** (observed 2026-04-24, during `ibd_phage_targeting` NB00 work): a session working on `projects/ibd_phage_targeting` was operating concurrently with a second `claude` process (PID 22230) working on `projects/plant_microbiome_ecotypes`. During the first session's long `jupyter nbconvert --execute` run, the second session ran `git checkout projects/plant_microbiome_ecotypes`. The first session's subsequent `git commit` landed on the plant-microbiome branch (not ibd), and the user observed `README.md` and `RESEARCH_PLAN.md` "missing" from `projects/ibd_phage_targeting/` when they inspected the directory — both files were still safely in git on the ibd branch, but the checkout had swept them out of the working tree.
+
+**Fix — two layers**:
+
+1. **Defensive hygiene (any session)**:
+   - Call `git branch --show-current` immediately before every `git commit`. If the branch is not the one the session started on, investigate before committing.
+   - Capture the intended branch name at session start; verify `HEAD` before each commit.
+   - If the wrong branch was committed to: `git cherry-pick` onto the correct branch, then `git branch -f <stray> origin/<stray>` to reset the stray. No data loss as long as the stranded commit is recoverable via `git reflog`. Push the corrected branch immediately.
+
+2. **Structural isolation (for parallel sessions)** — use `git worktree add` to give each concurrent session its own working directory on a dedicated branch:
+
+```bash
+git worktree add ../repo-copy-for-branch-X projects/X
+# each session then works inside its own worktree directory
+```
+
+Each worktree has its own `HEAD` and working-tree state while sharing a single object store (cheap). A `git checkout` in one worktree does not affect the other. This is the clean fix for the drift scenario above and is the recommended practice whenever two agents work on the repo simultaneously.
+
+**User-visible symptom to watch for**: "file X is missing from the project directory" when the agent believed it had just committed file X — this is almost always a wrong-branch commit (or, equivalently, a background checkout swept it out of the tree) rather than a genuine deletion. Recovery is cheap if caught early; easier to prevent with worktree isolation.
+
+**Applies to**: Any agent session in this repository longer than a few minutes. Especially: scheduled remote agents, parallel user-started sessions, and auto-import hooks.
+
 ### [ibd_phage_targeting] MetaPhlAn3 Cross-Cohort Taxon Names Need a Synonymy Layer, Not Just Format Normalization
 
 **Problem**: Cross-cohort microbiome analysis that pivots on `taxon_name_original` (or any string key) can silently segregate the same species into two non-overlapping rows when cohorts use different MetaPhlAn3 DB vintages / cMD-processing stages. Three divergences observed in the `~/data/CrohnsPhage` integrated mart:
