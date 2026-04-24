@@ -1,0 +1,30 @@
+# genotype_to_phenotype_enigma project dependencies
+# Install: pip install -r requirements.txt
+
+# Core data processing
+pandas>=2.0
+numpy>=1.24
+pyarrow>=12.0
+
+# Growth curve fitting (NB01)
+scipy>=1.10
+
+# Visualization
+matplotlib>=3.7
+
+# Machine learning (Act II: NB05-NB09)
+scikit-learn>=1.3
+lightgbm>=4.0
+shap>=0.42
+
+# Molecular descriptors (NB05 condition features)
+# rdkit-pypi>=2023.3.1  # uncomment when NB05 condition features are implemented
+
+# Notebook execution
+jupyter>=1.0
+nbformat>=5.9
+nbconvert>=7.0
+
+# BERDL access (on-cluster only — provided by JupyterHub environment)
+# pyspark  # provided by BERDL JupyterHub kernel
+# berdl_notebook_utils  # provided by BERDL JupyterHub kernel
