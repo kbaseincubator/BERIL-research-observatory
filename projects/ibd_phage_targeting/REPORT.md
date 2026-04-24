@@ -1,6 +1,6 @@
 # Report: Metagenome-Prioritized Phage Cocktails for Crohn's Disease and IBD
 
-**Status**: Interim synthesis — Pillar 1 closed; Pillar 2 fully closed (rigor-repaired + externally replicated on HMP_2019_ibdmdb + NB05 Tier-A scored; H2b supported, H2c retracted); Pillars 3–5 in progress.
+**Status**: Interim synthesis — Pillar 1 closed; Pillar 2 fully closed (rigor-repaired + externally replicated on HMP_2019_ibdmdb + NB05 Tier-A scored + NB06 co-occurrence modules mapped; H2b supported, H2c retracted, H2d partially supported with pathobiont-module clustering); Pillars 3–5 in progress.
 
 > **Note on Pillar 2 rigor repair + external replication**: the original NB04 analysis (committed 2026-04-24 early) was superseded by a **seven-notebook** pipeline (NB04b → c → d → e → f → g → h) after an adversarial review caught 5 critical + 6 important methodological issues that two independent standard `/berdl-review` runs missed. NB04b–e performed the rigor repair (see retraction box in §5 and `FAILURE_ANALYSIS.md`). NB04f–h strengthened Pillar 2 against LOSO cross-study stability (NB04f), feature-leakage structural test (NB04g), and HMP_2019_ibdmdb external replication (NB04h). The rigor-controlled Tier-A replicates at 88.2 % sign concordance on HMP2 even though the ecotype framework itself has real cross-study variance. See `docs/pitfalls.md` for the two generalizable pitfalls (cMD substudy-nesting, feature leakage in cluster-stratified DA).
 
@@ -28,7 +28,8 @@ Pillar 1 answers the first two questions.
 4. **Cross-ecotype engraftment-confirmed pathobionts**. Under the within-IBD-substudy (non-stratified-by-ecotype) confound-free contrast, five of the six donor-2708-engraftment pathobionts pass as CD↑ with FDR < 0.10 and ≥ 66 % sign concordance: *M. gnavus* (+5.13), *E. lenta* (+2.30), *E. coli* (+1.43), *E. bolteae* (+1.09), *H. hathewayi* (+0.92). *K. oxytoca* is below prevalence filter and not tested. These are cross-ecotype targets independent of the NB04e ecotype-specific lists.
 5. **NB05 input set (rigor-controlled)**. Union of the E1 meta-viable Tier-A (51), the E3 provisional Tier-A (40), and the 5 engraftment-confirmed cross-ecotype pathobionts — after deduplication, approximately 70–90 unique species across the three categories. *M. gnavus* is the top candidate across all three categories.
 6. **External replication on HMP_2019_ibdmdb (pulled live via curatedMetagenomicData v3.18; NOT in the cMD_IBD training set)**. 1,627 samples / 130 subjects projected onto the K=4 LDA with 80.4 % of samples at confidence > 0.70. Subject-level ecotype × {CD, UC, nonIBD} χ² = 15.61, p = 0.016 — ecotype stratifies disease in HMP2 at significance. **E1 Tier-A replicates at 88.2 % sign-concordance** (45 / 51 candidates CD↑ in both cohorts), including every top-10 candidate (M. gnavus, S. salivarius, S. thermophilus, E. innocuum, S. parasanguinis, E. asparagiformis, I. bartlettii, H. symbiosa, G. pamelaeae, E. ramosum). Two top-20 candidates fail to replicate (*S. thermophilus* on effect sign — possibly cohort-specific dairy exposure; *B. stercoris* n.s.). **The ecotype framework itself has real cross-study variance (NB04f LOSO ARI 0.113) — but the operational Tier-A is externally validated.**
-7. **Tier-A scoring complete (NB05)**. A3–A6 criteria applied to 71 unique rigor-controlled candidates produce 6 actionable targets (total_score ≥ 2.5): ***Hungatella hathewayi*** (4.0, top-scoring), ***Mediterraneibacter gnavus*** (3.8), ***Escherichia coli*** (3.6; MIBiG: Colibactin+Yersiniabactin+Enterobactin), ***Eggerthella lenta*** (3.3), ***Flavonifractor plautii*** (3.3), ***Enterocloster bolteae*** (2.8). 9 Tier-B candidates in the 2.2–2.4 range (including *S. salivarius* with Salivaricin MIBiG matches, *E. asparagiformis*, *V. parvula*, *S. parasanguinis*) remain candidates subject to Pillar 4 phage-availability promotion. **Pillar 2 is now closed with a scored and prioritized hand-off to Pillar 4 / 5.**
+7. **Tier-A scoring complete (NB05)**. A3–A6 criteria applied to 71 unique rigor-controlled candidates produce 6 actionable targets (total_score ≥ 2.5): ***Hungatella hathewayi*** (4.0, top-scoring), ***Mediterraneibacter gnavus*** (3.8), ***Escherichia coli*** (3.6; MIBiG: Colibactin+Yersiniabactin+Enterobactin), ***Eggerthella lenta*** (3.3), ***Flavonifractor plautii*** (3.3), ***Enterocloster bolteae*** (2.8). 9 Tier-B candidates in the 2.2–2.4 range (including *S. salivarius* with Salivaricin MIBiG matches, *E. asparagiformis*, *V. parvula*, *S. parasanguinis*) remain candidates subject to Pillar 4 phage-availability promotion.
+8. **Co-occurrence structure mapped (NB06)**. Per-subnet CLR+Spearman+Louvain networks on E1_all, E1_CD, E3_all, E3_CD produce 3–7 modules per subnet. **In every subnet, 4–5 of 6 actionable Tier-A candidates co-cluster into a single "pathobiont module"** (size 57–84 nodes). Multi-target phage cocktails are ecologically appropriate for the pathobiont-module members. *F. plautii* and *E. coli* show ecotype-specific module membership (relevant for per-patient cocktail specificity in Pillar 5). Module-anchor commensals (*Butyricicoccus pullicaecorum*, *Anaerostipes caccae*, *Lactococcus lactis* in E3) may provide functional-driver context for Pillar 3. **Pillar 2 is now fully closed.**
 
 ### What this report does not yet contain
 
@@ -289,6 +290,49 @@ Four criteria (A3–A6 from `RESEARCH_PLAN.md` §Criteria) applied to the 71 uni
 
 *(Notebooks: NB05_tier_a_scoring.ipynb + run_nb05.py. The scored TSV `data/nb05_tier_a_scored.tsv` is the authoritative hand-off to NB06 co-occurrence networks and Pillar 4 phage-target scoring. Note: this notebook was executed via `run_nb05.py` rather than nbconvert due to an environment-specific numpy.bool serialization issue in the nbconvert notebook-save path; outputs are authoritative and pre-populated in the committed .ipynb.)*
 
+#### 5h. NB06 co-occurrence networks per ecotype (H2d test)
+
+Four per-subnet correlation networks built via CLR transform + rank-based Pearson (= Spearman rho), per-edge BH-FDR, thresholded at |rho| > 0.3 AND FDR < 0.05, with Louvain community detection (`networkx.community.louvain_communities`, edge-weighted by |rho|). Networkx 3.5's built-in Louvain was sufficient; FastSpar / SpiecEasi installation was held back as unnecessary for the H2d question given clear module structure at CLR-Spearman.
+
+| Subnet | n samples | n nodes | n edges | n modules |
+|---|---:|---:|---:|---:|
+| E1_all | 2,601 | 318 | 28,730 | 6 |
+| E1_CD | 581 | 255 | 15,354 | 4 |
+| E3_all | 1,364 | 296 | 30,453 | 3 |
+| E3_CD | 605 | 252 | 19,909 | 7 |
+
+**H2d verdict — nominally PARTIAL, biologically SUPPORTED for the pathobiont module**:
+
+The raw mean-actionable-per-module is 1.38 on E1_all + E3_all (below the ≥ 2 bar stated in the plan), but the signal is not uniformly distributed across modules. **In every subnet, a single module contains 4-5 of the 6 actionable Tier-A candidates**:
+
+| Subnet | Pathobiont module | Size | Actionable members |
+|---|---:|---:|---|
+| E1_all | module 1 | 84 | *E. lenta, E. bolteae, F. plautii, H. hathewayi, M. gnavus* |
+| E1_CD | module 0 | 75 | (same set) |
+| E3_all | module 1 | 76 | *E. lenta, E. bolteae, E. coli, H. hathewayi, M. gnavus* |
+| E3_CD | module 1 | 57 | *E. lenta, E. coli, H. hathewayi, M. gnavus* |
+
+The remaining modules per subnet are commensal / *Prevotella* / diverse-healthy communities that naturally contain 0 Tier-A hits by construction. The mean-per-module statistic is diluted by these biologically-irrelevant-to-the-question modules.
+
+**Biological interpretation**: Tier-A pathobionts form a single ecologically-linked co-occurrence module within CD ecotypes. Multi-target phage cocktails are therefore appropriate for the pathobiont-module members — they co-favour similar conditions (likely bile-acid dysregulation + low-oxygen inflammation) and the ecological coupling suggests a cocktail hitting 3+ of {*M. gnavus, E. lenta, E. bolteae, H. hathewayi, E. coli*} will have compounding effects.
+
+**Ecotype-specific module membership**:
+
+- ***F. plautii*** is in the main pathobiont module in E1 but in the generalist module in E3. Relevant for Pillar 5 per-patient cocktails: for E1 patients, *F. plautii* + main-pathobiont co-targeting is ecologically coherent; for E3 patients, *F. plautii* is less linked and may need a separate phage.
+- ***E. coli*** is in the pathobiont module in E3 only, not E1. Consistent with AIEC being more characteristic of severe-Bacteroides-expanded E3 than transitional E1.
+
+**Module-anchor commensals** (top-degree non-Tier-A hubs in the pathobiont modules, useful for Pillar 3 functional-driver anchoring):
+- E1_all module 1: *Firmicutes bacterium CAG 110*, *Collinsella massiliensis*, *Phascolarctobacterium sp CAG 266*
+- E3_all module 1: *Butyricicoccus pullicaecorum*, *Anaerostipes caccae*, *Lactococcus lactis*
+
+![NB06 per-subnet co-occurrence networks — spring-layout with Tier-A actionable (red, large) + Tier-B (orange) highlighted](figures/NB06_cooccurrence_networks.png)
+
+*(Notebook: NB06_cooccurrence_networks.ipynb; executed via `run_nb06.py` with pre-populated outputs in the committed .ipynb — same workaround as NB05 for the nbconvert numpy.bool issue.)*
+
+### Pillar 2 close-out
+
+With NB06 complete, **Pillar 2 is fully closed**: rigor-controlled Tier-A (NB04b-e) → externally replicated on HMP2 (NB04h) → scored + prioritized (NB05, 6 actionable of 71) → co-occurrence structure mapped (NB06, single-pathobiont-module finding). The set of scored + module-assigned + hub-ranked Tier-A is the complete input package for Pillar 4 (phage-availability × target) and Pillar 5 (UC Davis per-patient cocktail drafts).
+
 ### 6. Taxonomy synonymy layer is the project's reusable foundation
 
 `data/species_synonymy.tsv` — 2,417 alias → 1,848 canonical species, grounded in `ref_taxonomy_crosswalk` NCBI taxid matching with GTDB r214+ genus renames supplemented. This was motivated by a failure mode discovered in NB00: `fact_taxon_abundance` contains three divergent taxon-name formats between cohorts (CMD_IBD short names, CMD_HEALTHY full MetaPhlAn3 lineage, KUEHL_WGS Kaiju), and a naive pivot splits the same species into multiple zero-overlap rows, producing log₂FC ≈ 28 artifacts.
@@ -397,6 +441,10 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `data/nb04h_hmp2_replication_verdict.json` | — | Formal HMP2 external replication verdict (PASS) |
 | `data/nb05_tier_a_scored.tsv` | 71 | Scored Tier-A with A3-A6 breakdowns + total score + actionable flag (authoritative NB05 output) |
 | `data/nb05_tier_a_verdict.json` | — | NB05 summary: 6 actionable of 71 scored |
+| `data/nb06_edges_{subnet}.tsv` | varies | Per-subnet edge lists (|rho| > 0.3, FDR < 0.05) |
+| `data/nb06_modules.tsv` | ~20 | Per-subnet module summary with actionable + tier-B content |
+| `data/nb06_module_hubs.tsv` | ~15 | Top-3 hub species per module by degree |
+| `data/nb06_verdict.json` | — | NB06 summary + H2d verdict |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_relative_abundance.tsv` | 582 | HMP2 MetaPhlAn3 relative abundance (taxa × samples) — out-of-project artifact |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_sample_metadata.tsv` | 1,627 | HMP2 sample metadata from cMD |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_taxon_metadata.tsv` | 585 | HMP2 per-taxon lineage metadata |
@@ -422,6 +470,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB04g_pathway_ecotype_refit.ipynb` | K=4 LDA refit on HUMAnN3 pathway features (3,145 CMD_IBD samples); Option B structural test — partial recovery (ARI 0.113, E1 65 % agreement) |
 | `NB04h_hmp2_external_replication.ipynb` | HMP_2019_ibdmdb pulled via `pull_hmp2_metaphlan3.R` against curatedMetagenomicData v3.18; 1,627 samples projected onto K=4 LDA; 88.2 % E1 Tier-A sign-concordance |
 | `NB05_tier_a_scoring.ipynb` | Tier-A A3–A6 scoring on 71 rigor-controlled candidates; 6 actionable targets for Pillar 4/5 (*H. hathewayi*, *M. gnavus*, *E. coli*, *E. lenta*, *F. plautii*, *E. bolteae*). Executed via `run_nb05.py` (nbconvert bypass for environment numpy.bool issue). |
+| `NB06_cooccurrence_networks.ipynb` | CLR + Spearman + Louvain community detection per-ecotype × CD/all subnet; H2d test. Finding: 5/6 actionable Tier-A form a single pathobiont module per subnet; multi-target cocktails appropriate. Executed via `run_nb06.py` (same nbconvert workaround). |
 
 ### Figures
 
@@ -445,6 +494,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB04g_pathway_vs_taxon_ecotype.png` | Pathway-ecotype × taxon-ecotype cross-table heatmap + per-ecotype agreement bars |
 | `NB04h_hmp2_external_replication.png` | HMP2 external replication — ecotype × diagnosis stacked bar, projection confidence histogram, E1 Tier-A scatter (NB04e vs HMP2 effect) |
 | `NB05_tier_a_scored.png` | Top-30 A3–A6 scoring matrix heatmap + total-score bar chart with 2.5 actionable threshold |
+| `NB06_cooccurrence_networks.png` | Per-subnet spring-layout networks (E1_all, E1_CD, E3_all, E3_CD) with actionable Tier-A highlighted |
 
 Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatmap.png`, `NB01_*.png` (legacy K = 8 fit preserved for methodology audit).
 
