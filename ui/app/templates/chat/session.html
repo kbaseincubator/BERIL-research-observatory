@@ -16,8 +16,8 @@
 
 {#
   Transcript renders server-side so refreshes / no-JS show prior messages.
-  The React island (step 7) will mount underneath and take over new-turn
-  streaming. For now this page is read-only with a notice.
+  The React island will mount underneath and take over new-turn
+  streaming.
 #}
 <section id="chat-transcript" style="display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6);">
   {% if messages %}
