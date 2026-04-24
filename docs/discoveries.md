@@ -8,6 +8,40 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [ibd_phage_targeting] NB04 rigor failure: 33 within-ecotype Tier-A candidates collapsed to 3 rock-solid candidates under independent-evidence gating
+
+**Quantified cost of feature leakage + confound non-adjustment in Pillar 2.** NB04 reported a 33-species within-ecotype Tier-A list (18 E1, 15 E3) with the H2c *C. scindens* paradox marked "RESOLVED by stratification." Two rigor-repair notebooks (NB04b + NB04c) applied three evidence filters to every candidate:
+
+1. Bootstrap CI lower-bound > 0.3 on within-ecotype CLR-Δ (repair for "n.s. → RESOLVED" decision-logic bug)
+2. LinDA (Zhou et al. 2022, pure-Python) CD↑ with FDR < 0.10 in the same ecotype (repair for single-method DA)
+3. Within-substudy CD-vs-nonIBD meta-analysis across 4 IBD sub-studies CD↑ AND ≥ 66 % sign concordance (confound-free independent check; see `docs/pitfalls.md` cMD substudy-nesting entry)
+
+Only evidence-stream (3) is independent of the ecotype definition that generated NB04. Results:
+
+- **E1**: 0 of 18 candidates passed all three filters. All 14 E1 candidates that passed (1) + (2) had *negative* effects under the confound-free contrast — they are ecotype-markers, not CD drivers. The within-ecotype DA "lifted" them to CD↑ via feature leakage + compositional bias compound.
+- **E3**: **3 of 15 candidates passed all three filters**: *Mediterraneibacter gnavus* (within-substudy CD↑ +5.13, LinDA E3 +1.64), *Flavonifractor plautii* (within-substudy +1.89, LinDA +2.91), *Blautia wexlerae* (within-substudy +0.91, LinDA +2.00). These are the trustworthy Tier-A.
+- **H2c (paradox resolution)**: directly contradicted. *C. scindens* is genuinely CD↑ under within-substudy confound-free analysis (pooled CLR-Δ +1.18, FDR 1e-8, 4/4 sign concordance). The NB04 within-ecotype n.s. call was a leakage self-selection artifact (LOO refit in NB04b showed *C. scindens* CD↑ in both E1 and E3 once ecotype definition excluded the test species).
+- **H2b (ecotype divergence)**: survives strongly. Permutation-null p = 0.000 (observed Jaccard 0.104 vs null mean 0.785 ± 0.054). Stratification divergence is a real effect; NB04's effect-size framing was the wrong statistic.
+
+**Implication for Pillar 2 scope**: per-ecotype Tier-A reduces from "33 candidates across both E1 and E3" to "3 candidates, E3 only." E1 needs a reformulated analytical approach before NB05 — the current within-ecotype DA is not a usable target list. Candidate approaches: (a) rebuild ecotypes on a functional (pathway / KEGG) feature matrix to break the taxonomic-feature leakage; (b) run within-IBD-substudy CD-vs-nonIBD stratified by ecotype as the primary analysis (requires substudy × ecotype × diagnosis cells with ≥ 10 samples each, needs checking); (c) broaden to UC-vs-HC + CD-vs-HC combined as IBD-vs-control for power.
+
+**Applies to**: the next three Pillar 2 deliverables in `ibd_phage_targeting` (Tier-A scoring, cocktail draft prep for UC Davis patients). The ecotype framework itself is still usable for patient stratification (NB02 H1b stands); only the within-ecotype DA has been invalidated for target-selection use.
+
+See `projects/ibd_phage_targeting/FAILURE_ANALYSIS.md` for the full arc and methodology lessons.
+
+### [meta] Standard `/berdl-review` is over-optimistic on methodologically nuanced projects — pair with adversarial review for high-stakes claims
+
+`tools/review.sh` (the reviewer behind `/berdl-review` and `/submit`) operates with a "find-strengths-and-suggestions" framing inherited from the system prompt at `.claude/reviewer/SYSTEM_PROMPT.md`. On the `ibd_phage_targeting` project, two reviewers ran on the same state of the project:
+
+- **Standard `/berdl-review`** (claude-sonnet-4): concluded "exceptional methodological sophistication," "no critical issues," and recommended proceeding to Pillars 3–5 with the existing Tier-A candidate list.
+- **Adversarial review** (general-purpose agent with explicit "find flaws, don't be diplomatic" framing on the same files): identified **5 critical issues + 6 important issues**, including (a) feature leakage in within-cluster DA — the analysis clustered samples on taxon abundances then tested the same taxa within cluster; (b) hard-coded "RESOLVED" verdict logic that treated `n.s.` results as positive evidence; (c) zero confounder adjustment despite citing Vujkovic-Cvijin 2020 which calls for it; (d) Jaccard 0.14 reported as supporting H2b without any null distribution; (e) ecotype framework with 48.9 % cross-method agreement and no external replication.
+
+The standard reviewer is excellent at catching surface flaws (missing sections, undocumented dependencies, broken figures, simple statistical errors) and is appropriate for routine submissions. It is **systematically weak** at structural / inferential issues — selection-on-outcome confounding, missing null distributions, post-hoc choice of decision rules, narrative-vs-evidence mismatch. These require an explicit adversarial framing that the default reviewer prompt does not invoke.
+
+**Recommendation**: for any project whose conclusions inform downstream decisions (clinical, experimental, computational), pair `/berdl-review` with a separately-spawned adversarial reviewer and reconcile the two outputs before final synthesis. A proposed enhancement to `/submit`: an optional `--adversarial` flag that runs both reviewers and produces a combined report. Until that lands, the manual pattern is `bash tools/review.sh <proj>` followed by `Agent(subagent_type=general-purpose, prompt=<adversarial brief>)`.
+
+**Applies to**: any BERDL project whose REPORT.md will be cited by downstream work, used to design experiments, or shared externally. The standard review remains the right default for in-progress / iteration-mode work.
+
 ### [ibd_phage_targeting] OvR-AUC can overstate per-patient classifier usefulness when a cohort-axis variable dominates the feature set
 
 Training-cohort OvR-AUC is a weak proxy for "does this classifier help at the patient level" whenever the cohort includes a strong cohort-axis variable that is constant (or nearly so) on the held-out patients. Concrete observation from `ibd_phage_targeting` NB03:
