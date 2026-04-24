@@ -1,0 +1,9 @@
+pandas>=3.0
+numpy>=2.0
+scipy>=1.14
+matplotlib>=3.10
+seaborn>=0.13
+statsmodels>=0.14
+scikit-learn>=1.8
+networkx>=3.5
+pyspark>=3.5
