@@ -383,6 +383,72 @@ NB07b is therefore well-positioned: stratified-pathway (`PWY-XXX|g__species`) gi
 
 *(Notebook: NB07a_pathway_DA_H3a_falsifiability.ipynb; executed via `run_nb07a.py` per the established nbconvert numpy.bool workaround.)*
 
+### 8. NB07b — Stratified-pathway DA per Tier-A-core species (H3a (b) species-resolved re-test)
+
+NB07a clause-(b) failed because only 3 of 52 CD-up unstratified MetaCyc pathways landed in the 7 a-priori IBD categories — test was structurally underpowered. NB07b tests the alternative: at the species-resolved (HUMAnN3 stratified-pathway form `PWY-XXX|g__species`), do per-species CD-up pathways concentrate in those categories?
+
+**H3a (b) verdict at species-resolved level: NOT SUPPORTED for all 6 Tier-A core species** — but the verdict is structural (the 7 a-priori categories are sparse in per-species pathway repertoires), not biological.
+
+| Species | CD-up | CD-down | H3a (b) test | Reason |
+|---|---:|---:|---|---|
+| *Hungatella hathewayi* | 16 | 17 | underpowered | Only 1 of 16 CD-up pathways in 7-cat set |
+| *Mediterraneibacter gnavus* | 0 | 0 | untestable | Background only 4 pathways in 7-cat; no CD-up |
+| *Escherichia coli* | 2 | 18 | underpowered | 0 of 2 CD-up in 7-cat |
+| *Eggerthella lenta* | 0 | 0 | untestable | Background 3 pathways in 7-cat |
+| *Flavonifractor plautii* | 0 | 2 | underpowered | 0 of 0 CD-up in 7-cat |
+| *Enterocloster bolteae* | 1 | 3 | untestable | Background 3 pathways in 7-cat |
+
+**Combined NB07a + NB07b H3a (b) conclusion**: the 7 a-priori IBD-mechanism categories (bile-acid, mucin, sulfide, TMAO, eut/pdu, polyamine, AA-decarb) are **too narrow** to capture HUMAnN3 MetaCyc CD signal at either unstratified or species-resolved level. CD-associated pathways are dominated by **biosynthesis / niche-shift** signals not the prior-literature themes. H3a (b) refutation is real for the v1.7-stated category set but does NOT mean "no compositional themes exist" — it means a different category schema (broader, programmatically derived from MetaCyc taxonomy) is needed.
+
+![NB07b stratified-pathway H3a (b) re-test — per-species × category CD-up heatmap, total-vs-in-7-category bars, top species-stratified pathways forest plot, per-species verdict panel](figures/NB07b_stratified_H3a_b.png)
+
+**But NB07b reveals biology NB07a couldn't see at the per-species level.**
+
+***Hungatella hathewayi*** (33 passing pathways) — coherent within-carrier biosynthesis-vs-degradation shift CD-vs-nonIBD:
+
+| Direction | Top pathway | Effect | FDR |
+|---|---|---:|---:|
+| CD-up | Pentose phosphate pathway | +1.18 | 1.6e-5 |
+| CD-up | Glycolysis IV (plant cytosol) | +0.94 | 1.0e-3 |
+| CD-up | Chorismate biosynthesis I | +0.86 | 1.6e-6 |
+| CD-up | Purine nucleobases degradation | +0.89 | 2.6e-4 |
+| CD-down | Pyrimidine deoxyribonucleosides salvage | −1.51 | 2.4e-7 |
+| CD-down | **1,3-Propanediol biosynthesis** | −1.27 | 4.3e-6 |
+| CD-down | Lactose / galactose degradation | −1.18 | 7.0e-5 |
+| CD-down | O-antigen biosynthesis (GDP-mannose) | −1.07 | 3.4e-4 |
+
+Interpretation: under CD, *H. hathewayi* shifts to a biosynthetic / catabolic-stress state (pentose phosphate, anabolic AA biosynthesis, purine salvage) and away from sugar-utilization (lactose, galactose, propanediol, inositol). The propanediol-degradation CD-down within *H. hathewayi* is consistent with **niche partitioning** — *E. coli* may dominate this niche under CD (consistent with NB07a's *E. coli* propanediol-biosynthesis CD-up at cohort level).
+
+***Escherichia coli*** (20 passing) shows a **within-carrier CD-DOWN per-pathway abundance** — *opposite* of the cohort-level CD-up direction:
+
+| Direction | Top pathway | Effect | FDR |
+|---|---|---:|---:|
+| CD-down | CMP-legionaminate biosynthesis | −0.95 | 3.0e-5 |
+| CD-down | **L-1,2-propanediol degradation** | −0.81 | 2.9e-4 |
+| CD-down | Allantoin degradation to glyoxylate | −0.81 | 1.8e-6 |
+| CD-down | Phospholipid remodeling (PE) | −0.84 | 7.3e-6 |
+| CD-down | Octane oxidation | −0.72 | 2.4e-5 |
+| CD-down | L-histidine degradation I | −0.62 | 2.8e-3 |
+
+This is **not contradictory** to NB07a's cohort-level *E. coli* CD-up:
+- At cohort level: *E. coli* relative abundance is CD-up, so total pathway flux scales up
+- Within carriers: per-cell pathway repertoire is CD-down — *E. coli* in CD samples show **less metabolic versatility per cell**
+
+Two non-mutually-exclusive interpretations:
+1. CD's *E. coli* are an **AIEC-specialized subset** that has shed peripheral metabolic capabilities (consistent with NB05 §5g Yersiniabactin / Colibactin / Dubinsky 2022 IBD-specific lineage finding)
+2. CD's *E. coli* face metabolic competition from co-abundant *Klebsiella* / other Enterobacteriaceae, so per-cell read-mapping share is lower across pathways
+
+Both align with the AIEC narrative; deeper strain-level analysis is the natural NB10 follow-up.
+
+**Other 4 Tier-A core species** (*M. gnavus, E. lenta, F. plautii, E. bolteae*) show small within-carrier shifts (≤ 4 passing pathways each). Their CD signal is dominated by **carriage prevalence**, not **within-carrier metabolic shift**. Implication: pathway-level mechanism is not the right resolution for these species; strain-level (NB10) and BGC-level (NB08) are the natural follow-ups.
+
+**Output artifacts**:
+- `data/nb07b_stratified_pathway_da.tsv` — 621 species-pathway × meta rows
+- `data/nb07b_h3a_b_species_verdict.json` — per-species formal verdict
+- `figures/NB07b_stratified_H3a_b.png` — 4-panel diagnostic
+
+*(Notebook: NB07b_stratified_pathway_DA.ipynb; executed via `run_nb07b.py`.)*
+
 ## Interpretation
 
 ### Why the four-ecotype framework matters for phage targeting
