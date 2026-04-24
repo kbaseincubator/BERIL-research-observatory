@@ -12,16 +12,20 @@ This project classifies 293K bacterial/archaeal genomes across 27.7K species by 
 
 ## Hypotheses
 
-| ID | Hypothesis | Notebook |
-|----|-----------|----------|
-| H0 | Phylogenetic null — functional differences explained by phylogeny alone | All (genus-level fixed effects) |
-| H1 | Compartment specificity — distinct functional profiles per plant compartment | NB04 |
-| H2 | Beneficial genes are core, pathogenic genes are accessory | NB05 |
-| H3 | Co-occurring genera show metabolic complementarity | NB06 |
-| H4 | Compartment-adaptation genes show HGT signatures | NB05 |
-| H5 | Novel gene families distinguish plant-associated species | NB03 |
+| ID | Hypothesis | Notebook | Status |
+|----|-----------|----------|--------|
+| H0 | Phylogenetic null — functional differences explained by phylogeny alone | All | Partially rejected: 3/15 markers (N-fix, ACC deaminase, T3SS) survive within-genus shuffle at species level; most other marker signals are genus-scale |
+| H1 | Compartment specificity — distinct functional profiles per plant compartment | NB04, NB14 | Weakly supported — small effect after top-3 exclusion (R²=0.527→0.072, 86% loss); original magnitude was taxonomic sampling artifact |
+| H2 | Beneficial genes are core, pathogenic genes are accessory | NB05, NB09 | Supported (p=3.4e-125) |
+| H3 | Co-occurring genera show metabolic complementarity | NB06, NB14 | Not supported (small |d|≈0.4, redundancy direction robust; NB06's -7.54 was a Cohen d formula error) |
+| H4 | Compartment-adaptation genes show HGT signatures | NB05, NB11 | Partially supported |
+| H5 | Novel gene families distinguish plant-associated species | NB03, NB09 | Supported at phylum level (reframed as "enriched gene families"; species-level genome-size control deferred) |
+| H6 | Host specificity detectable from metadata + MGnify | NB10, NB11, NB13 | Weakly supported (host metadata parsed; no subclade × host signal survives statistical validity checks) |
+| H7 | Within-species subclade segregation of plant-adaptation | NB12, NB13 | Weakly supported in 1/5 species only (*P. avellanae*, Bonferroni-corrected; *P. amygdali* fails Cochran/Fisher) |
 
 ## Notebooks
+
+### Phase 1 (NB01–NB08)
 
 | Notebook | Title | Compute | Description |
 |----------|-------|---------|-------------|
@@ -33,6 +37,23 @@ This project classifies 293K bacterial/archaeal genomes across 27.7K species by 
 | NB06 | Complementarity | Spark + local | NMDC co-occurrence; GapMind gap-filling; PGP-pathogen interactions |
 | NB07 | Cohort Synthesis | Local | Composite scoring; genus dossiers; hypothesis summary |
 | NB08 | Adversarial Revisions | Spark + local | Sensitivity analyses, negative controls, HGT deep dive, predictive classifiers |
+
+### Phase 2 (NB09–NB12)
+
+| Notebook | Title | Compute | Description |
+|----------|-------|---------|-------------|
+| NB09 | Novel OG Annotation | Spark + local | Functional annotation of 50 plant-enriched OGs via InterProScan, GO, MetaCyc |
+| NB10 | Refined Markers & Host Species | Spark + local | 17-marker panel with KEGG module gating; host species extraction |
+| NB11 | MGnify Integration | Spark + local | Cross-validation with MGnify: mobilome, BGC, KEGG enrichment, host specificity |
+| NB12 | Subclade Analysis | Spark + local | Within-species phylogenetic subclade clustering and plant-association mapping |
+
+### Phase 2b (NB13–NB15) — Adversarial-review corrections
+
+| Notebook | Title | Compute | Description |
+|----------|-------|---------|-------------|
+| NB13 | Validation, Pfam Recovery & Subclade Fix | Spark + local | Species-level confusion matrix (C3), versioned-Pfam LIKE query, NB12 genome ID fix (I6) |
+| NB14 | Deferred Statistical Controls | Local | L1-regularized logit (C1), genome-size covariate (C4), within-genus shuffling, prevalence-weighted complementarity (I1) |
+| NB15 | Final Synthesis | Local | Hypothesis verdict table and synthesis figure across H0–H7 |
 
 ## Key Outputs
 
@@ -51,12 +72,13 @@ This project classifies 293K bacterial/archaeal genomes across 27.7K species by 
 
 ## Status
 
-Complete — see [Report](REPORT.md) for findings.
+Phase 2b drafted (NB01–NB15) — see [Report](REPORT.md) for findings, [REVIEW_2.md](REVIEW_2.md) for standard review, and [REVIEW_2_ADVERSARIAL.md](REVIEW_2_ADVERSARIAL.md) for the paired adversarial review that prompted the final honesty revisions to §11. Phase 1 tested H0–H5 across 8 notebooks; Phase 2 (NB09–NB12) extended with novel OG annotation, refined marker panel, MGnify cross-validation, and within-species subclade analysis; Phase 2b (NB13–NB15) partially addressed adversarial-review issues and revealed new ones. Final status after adversarial reconciliation: **H1 weakened** (86% of original R² was a taxonomic-sampling artifact), **H3 still not supported** (d≈-0.4 after Cohen-formula correction; prior -7.54 was a formula error), **H7 weakly supported in 1/5 species only** (P. avellanae; P. amygdali fails Cochran + Fisher), **H2 and H5 stand at phylum/genus scale**, most marker signals are genus-scale not species-level. Five open methodological items are documented as follow-up (per-species OG matrix for proper C4, PGLMM for proper C1, full 65-species subclade scan, db-RDA for H1 dispersion separation, bakta-vs-IPS Pfam audit).
 
 ## Data Collections
 
 This project uses data from the following BERDL collections:
-- `kbase_ke_pangenome` — 293K genomes, pangenome gene clusters, bakta/eggNOG/GapMind annotations
+- `kbase_ke_pangenome` — 293K genomes, pangenome gene clusters, bakta/eggNOG/GapMind annotations, InterProScan domains, phylogenetic trees
+- `kescience_mgnify` — MGnify genome catalogue: 20K species across 4 biomes, mobilome, BGC, KEGG modules
 - `kescience_bacdive` — BacDive strain isolation sources and metabolic phenotypes
 - `nmdc_arkin` — NMDC community ecology taxonomy features
 
@@ -75,9 +97,11 @@ Notebooks require the BERDL JupyterHub environment with Spark access. Run in ord
 
 1. Ensure access to the BERDL JupyterHub environment with Spark
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run notebooks in order: NB01 through NB08
+3. Run notebooks in order: NB01 through NB15
 4. Each notebook caches intermediate results to `data/`; re-running individual notebooks after first execution is safe
 5. NB08 (adversarial revisions) is optional but recommended for reproducing sensitivity analyses
+6. NB09–NB12 (Phase 2) extend the analysis with InterProScan annotation, MGnify cross-validation, and subclade analysis
+7. NB13–NB15 (Phase 2b) close adversarial-review gaps: species-level validation, Pfam LIKE-query recovery, subclade genome-ID fix, regularized phylogenetic control, and final hypothesis synthesis
 
 ## Authors
 

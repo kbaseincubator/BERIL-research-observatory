@@ -21,6 +21,9 @@
 - Ghaly TM et al. (2024). "Horizontal gene transfer in plant microbiomes: integrons as hotspots." *Front Microbiol* 15:1338026. PMID: 38741746
 - Pinto-Carbo M et al. (2016). "Evidence of HGT between obligate leaf nodule symbionts." *ISME J* 10:2092-2105. PMID: 26978165
 - Coyte KZ et al. (2022). "Horizontal gene transfer and ecological interactions jointly control microbiome stability." *PLoS Biol* 20:e3001847.
+- Rajabal V et al. (2024). "Exploring the role of mobile genetic elements in shaping plant-bacterial interactions." *Plants People Planet* 6:408-420. DOI: 10.1002/ppp3.10448
+- Melnyk RA, Hossain SS, Haney CH (2019). "Convergent gain and loss of genomic islands drive lifestyle changes in plant-associated Pseudomonas." *ISME J* 13:1575-1588. PMID: 30787396
+- Bograd A et al. (2025). "Plasmids, prophages, and defense systems are depleted from plant microbiota genomes." *Genome Biol* 26:117.
 
 ## Dual-Nature Bacteria
 - Drew GC, Stevens EJ, King KC (2021). "Microbial evolution and transitions along the parasite-mutualist continuum." *Nat Rev Microbiol* 19:623-638. PMID: 33875863
@@ -31,6 +34,22 @@
 ## Novel Gene Families
 - Saati-Santamaria Z et al. (2025). "Transcriptome-guided discovery of novel plant-associated genes." *Microbiome* 14:20. PMID: 41345977
 - Zhou H et al. (2025). "Phyllosphere microbiomes harbor a vast reservoir of novel antimicrobial peptides." *J Adv Res*. PMID: 41391818
+
+## Electron Transport & Microaerobic Adaptation (Phase 2)
+- Preisig O et al. (1996). "A high-affinity cbb3-type cytochrome oxidase terminates the symbiosis-specific respiratory chain of Bradyrhizobium japonicum." *J Bacteriol* 178:1532-1538. PMID: 8626278
+- Colburn-Clifford JM, Allen C (2010). "A cbb3-type cytochrome c oxidase contributes to Ralstonia solanacearum growth in microaerobic environments." *Mol Plant-Microbe Interact* 23:1042-1052. PMID: 20615115
+- Fuangthong M et al. (2015). "IscR plays a role in oxidative stress resistance and pathogenicity of Xanthomonas campestris." *Microbiol Res* 170:139-146. PMID: 25200360
+
+## Secretion Systems in Plant-Microbe Interactions (Phase 2)
+- Gonzalez-Vallina SR et al. (2024). "Bacterial family-specific enrichment of secretion systems in the rhizosphere." *bioRxiv*. DOI: 10.1101/2024.05.07.592589
+- Tampakaki AP (2022). "Bridging the gap: Type III secretion systems in plant-beneficial bacteria." *Microorganisms* 10:187. PMID: 35056636
+
+## Pseudomonas Pathovar Host-Specialization (Phase 2b, H7 revision)
+- Satterwhite RS, Bergelson J (2025). "Adaptation without Dominance in Pseudomonas syringae Pathovars." *Microbial Ecology* 89:27. DOI: 10.1007/s00248-025-02675-1. PMID: 41405607
+- Fautt C, Couradeau E, Hockett KL (2024). "Naïve Bayes Classifiers and accompanying dataset for Pseudomonas syringae isolate characterization." *Scientific Data* 11:178. DOI: 10.1038/s41597-024-03003-x. PMID: 38326362
+
+## Phylogenetic Control Methodology (Phase 2b, NB14)
+- Saputra E, Kowalczyk A, Cusick L, Clark N, Chikina M (2021). "Phylogenetic Permulations: A Statistically Rigorous Approach to Measure Confidence in Associations in a Phylogenetic Context." *Molecular Biology and Evolution* 38:3004-3021. DOI: 10.1093/molbev/msab068. PMID: 33739420
 
 ## Data Sources
 - Parks DH et al. (2022). "GTDB: an ongoing census of bacterial and archaeal diversity." *Nucleic Acids Res* 50:D199-D207. PMID: 34520557
