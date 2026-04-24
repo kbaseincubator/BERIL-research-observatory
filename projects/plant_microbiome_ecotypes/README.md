@@ -44,6 +44,17 @@ This project classifies 293K bacterial/archaeal genomes across 27.7K species by 
 | `data/cohort_assignments.csv` | Final composite cohort assignments |
 | `data/genus_dossiers.csv` | Detailed profiles for top 20-30 genera |
 
+## Status
+
+Complete — see [Report](REPORT.md) for findings.
+
+## Data Collections
+
+This project uses data from the following BERDL collections:
+- `kbase_ke_pangenome` — 293K genomes, pangenome gene clusters, bakta/eggNOG/GapMind annotations
+- `kescience_bacdive` — BacDive strain isolation sources and metabolic phenotypes
+- `nmdc_arkin` — NMDC community ecology taxonomy features
+
 ## Running
 
 Notebooks require the BERDL JupyterHub environment with Spark access. Run in order (NB01-NB07); each notebook caches intermediate results to CSV so individual notebooks can be re-run independently after first execution.
