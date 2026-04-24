@@ -2,6 +2,10 @@
 
 Compartment-specific functional guilds and their genetic architecture in plant-associated microbiomes.
 
+## Research Question
+
+What is the genomic basis for plant-microbe associations across different plant compartments (rhizosphere, root, phyllosphere, endophyte)? Can we classify plant-associated microbial genera into beneficial, neutral, pathogenic, and dual-nature cohorts with mechanistic hypotheses, and identify which plant-interaction functions are associated with horizontal gene transfer vs. stable vertical inheritance?
+
 ## Overview
 
 This project classifies 293K bacterial/archaeal genomes across 27.7K species by plant compartment association (rhizosphere, root, phyllosphere, endophyte) and characterizes the genomic basis of plant-microbe interactions. Species are classified into beneficial (PGP), pathogenic, dual-nature, and neutral cohorts based on marker gene profiles, with analysis of genomic architecture (core vs. accessory), metabolic complementarity, and horizontal gene transfer signatures.
@@ -65,3 +69,14 @@ Notebooks require the BERDL JupyterHub environment with Spark access. Run in ord
 - `nmdc_community_metabolic_ecology`: NMDC taxonomy bridge, GapMind community aggregation
 - `phb_granule_ecology`: Environment harmonization patterns
 - `prophage_ecology`: eggNOG-based mobile element proxy methodology
+
+## Reproduction
+
+1. Ensure access to the BERDL JupyterHub environment with Spark
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run notebooks in order: NB01 through NB07
+4. Each notebook caches intermediate results to `data/`; re-running individual notebooks after first execution is safe
+
+## Authors
+
+- Adam P. Arkin (ORCID: 0000-0002-4999-2931) — U.C. Berkeley / Lawrence Berkeley National Laboratory
