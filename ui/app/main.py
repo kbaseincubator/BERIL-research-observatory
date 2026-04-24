@@ -8,6 +8,7 @@ from datetime import datetime
 
 import app.context as ctx
 from app.context import generate_base_context, get_base_context, get_repo_data, initialize_data
+from app.db.session import init_db, close_db, check_db
 from app.notebook_processors import PlotlyPreprocessor
 import nbformat
 from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request
@@ -46,9 +47,11 @@ templates = None
 async def lifespan(app: FastAPI):
     settings = get_settings()
     if not settings.test_skip_lifespan:
+        await init_db(settings.db_url)
         app.state.repo_data = await initialize_data(settings)
         app.state.base_context = generate_base_context(settings, app.state.repo_data)
     yield
+    await close_db()
 
 
 def create_app() -> FastAPI:
@@ -692,7 +695,19 @@ async def data_update_webhook(
 # Health check
 @ROUTER_GENERAL.get("/health")
 async def health(
+    request: Request,
     context: dict = Depends(get_base_context),
 ):
     """Health check endpoint."""
-    return {"status": "healthy"} | context
+    db_status = await check_db()
+    status = "healthy"
+    if db_status["status"] != "ok":
+        status = "degraded"
+    return {
+        "status": status,
+        "services": {
+            "database": db_status
+        },
+        "session": context,
+        "url_scheme": request.url.scheme
+    }

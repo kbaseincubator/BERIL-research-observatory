@@ -3,11 +3,14 @@
 import logging
 
 from authlib.integrations.httpx_client import AsyncOAuth2Client
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth import get_current_user  # noqa: F401 — re-exported for convenience
 from app.config import get_settings
+from app.db.crud import get_or_create_user
+from app.db.session import get_db
 
 logger = logging.getLogger(__name__)
 
@@ -37,7 +40,12 @@ async def login(request: Request):
 
 
 @ROUTER_AUTH.get("/orcid/callback")
-async def orcid_callback(request: Request, code: str | None = None, error: str | None = None):
+async def orcid_callback(
+    request: Request,
+    code: str | None = None,
+    error: str | None = None,
+    db: AsyncSession = Depends(get_db),
+):
     """Handle the ORCiD OAuth2 callback."""
     if error:
         logger.warning(f"ORCiD OAuth error: {error}")
@@ -69,9 +77,15 @@ async def orcid_callback(request: Request, code: str | None = None, error: str |
             logger.error("ORCiD token response missing 'orcid' field")
             return RedirectResponse(url="/?auth_error=1", status_code=302)
 
+        # Upsert the BERIL user record
+        user, created = await get_or_create_user(db, orcid_id=orcid_id, display_name=name)
+        if created:
+            logger.info(f"New BERIL user created: {orcid_id} ({name}) → {user.id}")
+
         request.session["orcid_id"] = orcid_id
         request.session["orcid_name"] = name
         request.session["orcid_access_token"] = access_token
+        request.session["beril_user_id"] = user.id
         request.session.pop("oauth_state", None)
 
         next_url = request.session.pop("login_next", "/")

@@ -327,6 +327,109 @@ class TestTypeCoercion:
 
 
 # ---------------------------------------------------------------------------
+# Database configuration
+# ---------------------------------------------------------------------------
+
+
+class TestDatabaseConfig:
+    def test_db_host_default(self):
+        s = make_settings()
+        assert s.db_host == "localhost"
+
+    def test_db_port_default(self):
+        s = make_settings()
+        assert s.db_port == 5432
+
+    def test_db_user_default(self):
+        s = make_settings()
+        assert s.db_user == "beril_user"
+
+    def test_db_password_default_none(self):
+        s = make_settings()
+        assert s.db_password is None
+
+    def test_db_name_default(self):
+        s = make_settings()
+        assert s.db_name == "beril"
+
+    def test_db_port_is_int(self):
+        s = make_settings()
+        assert isinstance(s.db_port, int)
+
+    def test_db_url_assembles_components(self):
+        s = make_settings(db_host="db-host", db_port=5433, db_user="myuser", db_password="mypass", db_name="mydb")
+        assert s.db_url == "postgresql+asyncpg://myuser:mypass@db-host:5433/mydb"
+
+    def test_db_url_uses_default_components(self):
+        s = make_settings(db_password="secret")
+        assert s.db_url == "postgresql+asyncpg://beril_user:secret@localhost:5432/beril"
+
+    def test_db_url_raises_when_password_unset(self):
+        s = make_settings()
+        with pytest.raises(ValueError, match="BERIL_DB_PASSWORD"):
+            _ = s.db_url
+
+    def test_override_db_host(self):
+        s = make_settings(db_host="postgres-service")
+        assert s.db_host == "postgres-service"
+
+    def test_override_db_port(self):
+        s = make_settings(db_port=5433)
+        assert s.db_port == 5433
+
+    def test_override_db_user(self):
+        s = make_settings(db_user="admin")
+        assert s.db_user == "admin"
+
+    def test_override_db_password(self):
+        s = make_settings(db_password="hunter2")
+        assert s.db_password == "hunter2"
+
+    def test_override_db_name(self):
+        s = make_settings(db_name="production")
+        assert s.db_name == "production"
+
+    def test_env_db_host(self, monkeypatch):
+        monkeypatch.setenv("BERIL_DB_HOST", "my-postgres")
+        s = Settings()
+        assert s.db_host == "my-postgres"
+
+    def test_env_db_port(self, monkeypatch):
+        monkeypatch.setenv("BERIL_DB_PORT", "5433")
+        s = Settings()
+        assert s.db_port == 5433
+
+    def test_env_db_user(self, monkeypatch):
+        monkeypatch.setenv("BERIL_DB_USER", "envuser")
+        s = Settings()
+        assert s.db_user == "envuser"
+
+    def test_env_db_password(self, monkeypatch):
+        monkeypatch.setenv("BERIL_DB_PASSWORD", "envpass")
+        s = Settings()
+        assert s.db_password == "envpass"
+
+    def test_env_db_name(self, monkeypatch):
+        monkeypatch.setenv("BERIL_DB_NAME", "envdb")
+        s = Settings()
+        assert s.db_name == "envdb"
+
+    def test_env_db_port_coerced_to_int(self, monkeypatch):
+        monkeypatch.setenv("BERIL_DB_PORT", "5433")
+        s = Settings()
+        assert isinstance(s.db_port, int)
+
+    def test_db_url_reflects_env_vars(self, monkeypatch):
+        monkeypatch.setenv("BERIL_DB_HOST", "k8s-postgres")
+        monkeypatch.setenv("BERIL_DB_PORT", "5433")
+        monkeypatch.setenv("BERIL_DB_USER", "appuser")
+        monkeypatch.setenv("BERIL_DB_PASSWORD", "s3cr3t")
+        monkeypatch.setenv("BERIL_DB_NAME", "appdb")
+        s = Settings()
+        assert s.db_url == "postgresql+asyncpg://appuser:s3cr3t@k8s-postgres:5433/appdb"
+
+
+# ---------------------------------------------------------------------------
 # Module-level singleton
 # ---------------------------------------------------------------------------
 

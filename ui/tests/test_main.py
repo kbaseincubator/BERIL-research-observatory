@@ -10,6 +10,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.config import Settings
+from app.db.session import close_db, init_db
 from app.main import create_app, generate_base_context
 
 # ---------------------------------------------------------------------------
@@ -18,21 +19,23 @@ from app.main import create_app, generate_base_context
 
 
 @pytest.fixture
-def client(repository_data, app_data_context):
+async def client(repository_data, app_data_context):
     """TestClient with injected repository data, no lifespan startup."""
-
+    await init_db("sqlite+aiosqlite:///:memory:")
     with patch.dict(os.environ, {"BERIL_TEST_SKIP_LIFESPAN": "True"}):
         app = create_app()
         with TestClient(app, raise_server_exceptions=True) as c:
             app.state.repo_data = repository_data
             app.state.base_context = app_data_context
             yield c
+    await close_db()
 
 
 class TestHealthEndpoint:
     def test_health_returns_200(self, client):
         response = client.get("/health")
         assert response.status_code == 200
+        print(response.json())
         assert response.json().get("status") == "healthy"
 
 

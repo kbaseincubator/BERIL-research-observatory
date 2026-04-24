@@ -39,20 +39,39 @@ GRAPHQL_QUERY = """{
     rcsb_accession_info { deposit_date initial_release_date }
     rcsb_primary_citation { pdbx_database_id_DOI }
     polymer_entities {
-      rcsb_entity_source_organism { ncbi_scientific_name }
+      rcsb_entity_source_organism { 
+      ncbi_scientific_name
+      ncbi_taxonomy_id 
+      }
     }
   }
 }"""
 
 ENTRIES_COLUMNS = [
-    "pdb_id", "title", "method", "method_full", "resolution",
-    "r_work", "r_free", "organism", "deposition_date", "release_date",
+    "pdb_id",
+    "title",
+    "method",
+    "method_full",
+    "resolution",
+    "r_work",
+    "r_free",
+    "tax_id",
+    "organism",
+    "deposition_date",
+    "release_date",
     "citation_doi",
 ]
 
 MAPPING_COLUMNS = [
-    "pdb_id", "chain_id", "uniprot_accession",
-    "res_beg", "res_end", "pdb_beg", "pdb_end", "sp_beg", "sp_end",
+    "pdb_id",
+    "chain_id",
+    "uniprot_accession",
+    "res_beg",
+    "res_end",
+    "pdb_beg",
+    "pdb_end",
+    "sp_beg",
+    "sp_end",
 ]
 
 VALIDATION_GRAPHQL_QUERY = """{
@@ -69,8 +88,12 @@ VALIDATION_GRAPHQL_QUERY = """{
 }"""
 
 VALIDATION_COLUMNS = [
-    "pdb_id", "clashscore", "percent_ramachandran_outliers",
-    "percent_rotamer_outliers", "angles_rmsz", "bonds_rmsz",
+    "pdb_id",
+    "clashscore",
+    "percent_ramachandran_outliers",
+    "percent_rotamer_outliers",
+    "angles_rmsz",
+    "bonds_rmsz",
 ]
 
 
@@ -92,14 +115,17 @@ def batch_graphql_query(pdb_ids, batch_size=1000, query_template=None):
     n_batches = (total + batch_size - 1) // batch_size
 
     for i in range(0, total, batch_size):
-        batch = pdb_ids[i:i + batch_size]
+        batch = pdb_ids[i : i + batch_size]
         batch_num = i // batch_size + 1
-        print(f"  Batch {batch_num}/{n_batches} ({len(batch)} IDs)...", end="", flush=True)
+        print(
+            f"  Batch {batch_num}/{n_batches} ({len(batch)} IDs)...", end="", flush=True
+        )
 
         query = query_template % json.dumps(batch)
         data = json.dumps({"query": query}).encode("utf-8")
         req = urllib.request.Request(
-            RCSB_GRAPHQL_URL, data=data,
+            RCSB_GRAPHQL_URL,
+            data=data,
             headers={"Content-Type": "application/json"},
         )
 
@@ -112,7 +138,7 @@ def batch_graphql_query(pdb_ids, batch_size=1000, query_template=None):
             except (urllib.error.URLError, TimeoutError) as e:
                 if attempt < retries - 1:
                     print(f" retry {attempt + 1}...", end="", flush=True)
-                    time.sleep(2 ** attempt)
+                    time.sleep(2**attempt)
                 else:
                     print(f" FAILED: {e}")
                     continue
@@ -153,13 +179,20 @@ def parse_entry(entry):
 
     # Organism (from first polymer entity)
     organism = ""
+    tax_id = None
+
     polymer_entities = entry.get("polymer_entities") or []
+
     for pe in polymer_entities:
         sources = pe.get("rcsb_entity_source_organism") or []
-        if sources:
-            organism = sources[0].get("ncbi_scientific_name", "")
-            if organism:
+
+        for src in sources:
+            if src.get("ncbi_taxonomy_id"):
+                tax_id = src.get("ncbi_taxonomy_id")
+                organism = src.get("ncbi_scientific_name", "")
                 break
+        if tax_id:
+            break
 
     # Dates
     dep_date = (accession.get("deposit_date") or "")[:10]
@@ -173,6 +206,7 @@ def parse_entry(entry):
         "resolution": resolution,
         "r_work": r_work,
         "r_free": r_free,
+        "tax_id": tax_id,
         "organism": (organism or "").replace("\t", " "),
         "deposition_date": dep_date,
         "release_date": rel_date,
@@ -192,9 +226,7 @@ def download_entries(pdb_ids, output_path, batch_size=1000):
         count = 0
         for entry in batch_graphql_query(pdb_ids, batch_size):
             row = parse_entry(entry)
-            writer.writerow([
-                _fmt(row.get(col)) for col in ENTRIES_COLUMNS
-            ])
+            writer.writerow([_fmt(row.get(col)) for col in ENTRIES_COLUMNS])
             count += 1
 
     dt = time.time() - t0
@@ -215,8 +247,7 @@ def download_sifts(output_path):
     # Parse and write normalized TSV
     print(f"  Parsing SIFTS mapping...")
     count = 0
-    with gzip.open(gz_path, "rt") as fin, \
-         open(output_path, "w", newline="") as fout:
+    with gzip.open(gz_path, "rt") as fin, open(output_path, "w", newline="") as fout:
         writer = csv.writer(fout, delimiter="\t", lineterminator="\n")
         writer.writerow(MAPPING_COLUMNS)
 
@@ -232,10 +263,15 @@ def download_sifts(output_path):
             uniprot = parts[2]
 
             writer.writerow([
-                pdb_id, chain_id, uniprot,
-                parts[3], parts[4],  # res_beg, res_end
-                parts[5], parts[6],  # pdb_beg, pdb_end
-                parts[7], parts[8],  # sp_beg, sp_end
+                pdb_id,
+                chain_id,
+                uniprot,
+                parts[3],
+                parts[4],  # res_beg, res_end
+                parts[5],
+                parts[6],  # pdb_beg, pdb_end
+                parts[7],
+                parts[8],  # sp_beg, sp_end
             ])
             count += 1
 
@@ -270,8 +306,9 @@ def download_validation(pdb_ids, output_path, batch_size=1000):
         writer.writerow(VALIDATION_COLUMNS)
 
         count = 0
-        for entry in batch_graphql_query(pdb_ids, batch_size,
-                                          query_template=VALIDATION_GRAPHQL_QUERY):
+        for entry in batch_graphql_query(
+            pdb_ids, batch_size, query_template=VALIDATION_GRAPHQL_QUERY
+        ):
             row = parse_validation_entry(entry)
             writer.writerow([_fmt(row.get(col)) for col in VALIDATION_COLUMNS])
             count += 1
@@ -299,16 +336,31 @@ def main():
         default="/pscratch/sd/p/psdehal/pdb_collection",
         help="Output directory for TSV files",
     )
-    parser.add_argument("--batch-size", type=int, default=1000,
-                        help="GraphQL batch size (default: 1000)")
-    parser.add_argument("--entries-only", action="store_true",
-                        help="Only download PDB entries, skip SIFTS and validation")
-    parser.add_argument("--sifts-only", action="store_true",
-                        help="Only download SIFTS mapping")
-    parser.add_argument("--validation-only", action="store_true",
-                        help="Only download validation metrics")
-    parser.add_argument("--sample", type=int, default=0,
-                        help="Only download first N entries (for testing)")
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=1000,
+        help="GraphQL batch size (default: 1000)",
+    )
+    parser.add_argument(
+        "--entries-only",
+        action="store_true",
+        help="Only download PDB entries, skip SIFTS and validation",
+    )
+    parser.add_argument(
+        "--sifts-only", action="store_true", help="Only download SIFTS mapping"
+    )
+    parser.add_argument(
+        "--validation-only",
+        action="store_true",
+        help="Only download validation metrics",
+    )
+    parser.add_argument(
+        "--sample",
+        type=int,
+        default=0,
+        help="Only download first N entries (for testing)",
+    )
     args = parser.parse_args()
 
     os.makedirs(args.output_dir, exist_ok=True)
@@ -328,7 +380,7 @@ def main():
     if do_all or args.entries_only or args.validation_only:
         pdb_ids = fetch_all_pdb_ids()
         if args.sample:
-            pdb_ids = pdb_ids[:args.sample]
+            pdb_ids = pdb_ids[: args.sample]
             print(f"  Sampling first {args.sample} entries")
 
     if do_all or args.entries_only:
