@@ -21,8 +21,10 @@ Three coupled deliverables:
   - **E2 (n=920)** — *Prevotella copri* enterotype; 16.9 % HC, almost no disease
   - **E3 (n=1,364)** — severe Bacteroides/fragilis-expanded; 50 % CD, 40 % UC, 67 % IBD acute, 38 % CDI
   - Reusable `data/species_synonymy.tsv` (2,417 aliases → 1,848 canonical species, GTDB r214+ renames)
-- ⏳ NB02: project UC Davis (Kuehl_WGS Kaiju → MetaPhlAn3) + HMP2 onto K=4 embedding
-- ⏳ NB03–NB17 per the plan
+- ✅ NB02 UC Davis projection (Kuehl_WGS Kaiju → K=4 via LDA primary / GMM advisory): **E0 27 %, E1 42 %, E2 0 %, E3 31 %**; χ² vs uniform p = 0.019 → **H1b supported**. Patient 6967 shows longitudinal E1 ↔ E3 shift — first H5d signal.
+- ✅ NB03 clinical-covariate classifier (H1c): macro AUC 0.799 (minimal) / 0.810 (extended) on pooled CMD — passes the 0.70 threshold on paper. **But only 41 % agreement with NB02 on UC Davis patients** — classifier collapses to "IBD → E1" because `is_ibd` dominates training. Revised: clinical features separate HC vs IBD trivially but *not* IBD ecotypes; metagenomics remains required for UC Davis-type patient assignment.
+- ⏳ NB04 within-ecotype compositional DA (the *C. scindens* paradox resolution, H2c)
+- ⏳ NB05–NB17 per the plan; HMP2 MetaPhlAn3 ingestion (`PENDING_HMP2_RAW`) will re-open an expanded NB02 projection when available
 
 ## Context
 

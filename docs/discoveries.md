@@ -8,6 +8,25 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [ibd_phage_targeting] OvR-AUC can overstate per-patient classifier usefulness when a cohort-axis variable dominates the feature set
+
+Training-cohort OvR-AUC is a weak proxy for "does this classifier help at the patient level" whenever the cohort includes a strong cohort-axis variable that is constant (or nearly so) on the held-out patients. Concrete observation from `ibd_phage_targeting` NB03:
+
+- Classifier trained on pooled HC + IBD samples to predict K=4 ecotype from {`is_ibd`, `sex`, `age`} achieves macro OvR AUC 0.80 in 5-fold CV — exceeds the 0.70 "passes" threshold.
+- Applied to UC Davis patients (100 % IBD, `is_ibd = 1` constant): only 41 % agreement with the metagenomic projection from NB02. The classifier predicts E1 for 19/22 patients because the dominant learned rule is "IBD → E1 most of the time" (the marginal mode among IBD training samples).
+- The AUC counted HC-vs-IBD separability toward its score; the UC Davis test requires the harder IBD-internal separability (E1 transitional vs E3 severe). These are not the same problem.
+
+**Generalizable fix**: before quoting a classifier AUC as a measure of clinical utility, apply the classifier to an independent cohort with the cohort-axis variable held fixed. The agreement rate on that cohort is the translation-honest metric. Applies to any project building clinical classifiers on pooled disease+control data.
+
+### [ibd_phage_targeting] Kaiju vs MetaPhlAn3 classifier-mismatch asymmetrically breaks CLR+GMM projection but not LDA projection
+
+When projecting a held-out cohort processed with a different taxonomic classifier (Kaiju NCBI-NR read classification) onto a reference embedding trained on a different classifier (MetaPhlAn3 marker-gene relative abundance), the two ecotype methods (LDA on pseudo-counts, GMM on CLR + PCA) behave very differently:
+
+- **LDA on pseudo-counts** is robust. Absence = not-detected; no Kaiju-vs-MetaPhlAn3 abundance-scale or feature-completeness mismatch forces a particular projection coordinate. UC Davis Kuehl samples project to E0, E1, E3 in plausible biological proportions (27 / 42 / 31 %).
+- **GMM on CLR + PCA** is fragile. Kuehl detects only 54 % of training species; 70 % of training species have no Kuehl detection. The CLR transform imputes these zeros with a small pseudocount, and when these sparse vectors go through PCA, they land consistently in the region of feature space occupied by one dominant Gaussian cluster — *regardless of actual biology*. All 26 Kuehl samples project to E3 at GMM confidence > 0.97, an artifact.
+
+**Implication**: when projecting across classifier namespaces, use pseudo-count / sparse-data-robust methods (LDA, MMvec, etc.) as primary; CLR-based methods (ANCOM-BC projection, GMM on CLR) as advisory at best. This generalizes beyond IBD — any project that trains on one microbiome classifier and projects another (MetaPhlAn ↔ Kraken, MetaPhlAn ↔ Kaiju, 16S ↔ WGS) faces this asymmetry.
+
 ### [ibd_phage_targeting] Cross-method ARI is the right K-selection criterion for microbiome ecotype models
 
 Both LDA training perplexity (sklearn `LatentDirichletAllocation`) and GMM BIC (on CLR + PCA-20) are *monotone* with K on this data — they always prefer the largest K available. Held-out perplexity (5-fold) gives the same monotone signal at this sample size (~8.5K samples), so it doesn't help distinguish overfitting from genuine structure. The discriminating signal is **cross-method adjusted Rand index between LDA and GMM at each K**: it has structure (peaks, valleys) precisely because the two methods only agree on K's that reflect real data partitions, not method-specific artifacts. For `ibd_phage_targeting`, ARI peaks at K=7 (0.140) and K=4 (0.131); a parsimony rule (smallest K within 0.02 of the peak) selects K=4. This is the K that gives the most interpretable, biologically clean ecotypes (E0 healthy, E1 Bacteroides2 disease, E2 Prevotella, E3 severe Bacteroides). Generalizable to any project doing microbiome ecotype discovery with two different model families: prefer the K where they agree most, not the K each prefers individually.

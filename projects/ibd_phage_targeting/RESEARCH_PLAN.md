@@ -289,6 +289,13 @@ Tagged via `ref_missing_data_codes` sentinel codes. Does not block analysis but 
 
 ## Revision History
 
+- **v1.3** (2026-04-24): NB02 + NB03 execution outcomes — Pillar 1 closed.
+  - **NB02**: UC Davis Kuehl_WGS (26 samples, 23 patients) projected onto the K=4 embedding via the synonymy layer. LDA is the primary projection method for Kuehl (feature-sparsity-robust); GMM is advisory (collapses under Kaiju / MetaPhlAn3 classifier mismatch — all Kuehl samples land in E3 at >97 % GMM confidence, an artifact). UC Davis distribution: E0 27 % / E1 42 % / E2 0 % / E3 31 %, χ² p = 0.019 against uniform. **H1b directionally supported.** Patient 6967 shows intra-patient longitudinal disagreement (E1 ↔ E3) — first signal for H5d.
+  - **NB03**: clinical-covariate-only ecotype classifier (H1c). Macro OvR AUC 0.799 (minimal) / 0.810 (extended) — both pass the 0.70 threshold. **But UC Davis patient agreement is only 41 % / 36 %.** Minimal classifier predicts E1 for 19/22 UC Davis patients because `is_ibd = 1` is constant and the learned rule collapses to the marginal mode. Extended classifier's training subset is 702 E1 / 959 E3 / 3 E0 / 11 E2 — effectively an E1-vs-E3 binary problem.
+  - **H1c revised**: "Passes on pooled-cohort AUC; fails on patient-level translation." Clinical covariates distinguish HC vs IBD trivially (`is_ibd` dominates AUC), but do *not* reliably separate IBD ecotypes (E1 transitional vs E3 severe) without metagenomics. For UC Davis-type cohorts (all active CD), **metagenomics remains the primary ecotype-assignment method**. The per-patient dossier (Pillar 5, NB15–NB16) cites NB02's metagenomic call, not NB03's clinical prediction.
+  - **Norm note**: OvR-AUC on a cohort with a strong cohort-axis variable (like `is_ibd`) can overstate per-patient classifier usefulness. Logged as discovery: always validate classifier decisions on an independent cohort before quoting AUC as a clinical-utility metric.
+  - **Pillar 1 closed**: H1a, H1b directionally supported; H1c nuanced (paper-pass / patient-fail). Ready for Pillar 2 (NB04 within-ecotype DA — the *C. scindens* paradox resolution).
+
 - **v1.2** (2026-04-24): NB01 + NB01b execution outcomes. Updates:
   - `data/species_synonymy.tsv` (2,417 aliases → 1,848 canonical species) committed as the project-wide taxonomy reconciliation backbone. Norm N7 is now a *deliverable*, not just a methodology note.
   - **Ecotype training** delivered K=8 in NB01 (per-method criteria) but cross-method ARI was weak (0.128). NB01b refit selected **K=4** by maximum cross-method ARI + parsimony, raising agreement to 48.9 %. Four biologically interpretable ecotypes:
