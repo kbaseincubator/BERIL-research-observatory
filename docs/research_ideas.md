@@ -13,6 +13,26 @@
 
 ## High Priority Ideas
 
+### [fitness_browser_stubborn_set] Reconstructing the Price-2018 Curator Decision Boundary
+**Status**: IN_PROGRESS
+**Priority**: HIGH
+**Effort**: Medium (2-3 weeks)
+
+**Research Question**: Among Fitness Browser genes with strong, specific fitness phenotypes that were NOT re-annotated by Price et al., can BERDL-native evidence distinguish genes where an improved annotation is plausible from genes where existing evidence is genuinely insufficient?
+
+**Approach**:
+- Define a candidate pool using Price's own specific-phenotype criterion (`|fit|>1`, `|t|>5`, condition-specificity tests)
+- Subtract the BERDL `reannotation` table (1,762 curator reannotations, 36 organisms) to form the "stubborn set"
+- Score each stubborn gene against the evidence sources FEBA uses: conserved cofitness (`cofit > 0.6` in pair + orthologs), ortholog phenotype agreement (`specog`), TIGRFam/Pfam domains, KEGG KO + descriptions, SEED annotations, MetaCyc pathway coverage via EC
+- Partition into **improvable-now** (≥1 conservation signal + ≥1 informative functional signal) vs. **unresolvable-from-evidence** (no conservation + no informative signal)
+- No new compute — reason only over evidence Price 2018 could have seen
+
+**Impact**: Reconstructs the implicit curator decision boundary; produces an actionable list of genes where existing evidence already supports a proposed annotation that was deferred or missed.
+
+**Location**: `projects/fitness_browser_stubborn_set/`
+
+---
+
 ### [truly_dark_genes] Truly Dark Genes — What Remains Unknown After Modern Annotation?
 **Status**: IN_PROGRESS
 **Priority**: HIGH
