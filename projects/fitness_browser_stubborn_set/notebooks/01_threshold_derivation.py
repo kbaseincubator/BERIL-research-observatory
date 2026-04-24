@@ -49,8 +49,18 @@ FIG_DIR.mkdir(parents=True, exist_ok=True)
 FEATURES_PATH = DATA_DIR / "gene_evidence_features.parquet"
 assert FEATURES_PATH.exists(), "Run notebooks/00_extract_gene_features.py first"
 
-df = pd.read_parquet(FEATURES_PATH)
-print(f"Loaded {len(df):,} FB genes × {len(df.columns)} columns")
+df_all = pd.read_parquet(FEATURES_PATH)
+print(f"Loaded {len(df_all):,} FB genes × {len(df_all.columns)} columns (all 48 orgs)")
+
+# Restrict to the organisms where curators have actually produced any reannotation.
+# Orgs with zero reannotations may simply be uncurated — not "left alone after review".
+# Scoping the analysis to the curated orgs keeps the comparison apples-to-apples.
+curated_orgs = sorted(df_all.loc[df_all.is_reannotated == 1, "orgId"].unique())
+print(f"\nCurated organisms (any reannotation): {len(curated_orgs)}")
+
+df = df_all[df_all["orgId"].isin(curated_orgs)].copy()
+n_dropped = len(df_all) - len(df)
+print(f"After restriction: {len(df):,} genes  (dropped {n_dropped:,} from {48 - len(curated_orgs)} uncurated orgs)")
 print(df.dtypes.to_string())
 
 # %% [markdown]
