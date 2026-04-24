@@ -50,6 +50,7 @@
 
 ## Phylogenetic Control Methodology (Phase 2b, NB14)
 - Saputra E, Kowalczyk A, Cusick L, Clark N, Chikina M (2021). "Phylogenetic Permulations: A Statistically Rigorous Approach to Measure Confidence in Associations in a Phylogenetic Context." *Molecular Biology and Evolution* 38:3004-3021. DOI: 10.1093/molbev/msab068. PMID: 33739420
+- Chatterjee A, Lahiri SN (2011). "Bootstrapping lasso estimators." *Journal of the American Statistical Association* 106:608-625. DOI: 10.1198/jasa.2011.tm10079
 
 ## Data Sources
 - Parks DH et al. (2022). "GTDB: an ongoing census of bacterial and archaeal diversity." *Nucleic Acids Res* 50:D199-D207. PMID: 34520557
