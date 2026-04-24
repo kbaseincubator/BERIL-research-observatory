@@ -189,11 +189,44 @@ This study provides three contributions beyond existing literature:
 ### Limitations
 
 1. **Compartment classification**: Based on NCBI isolation_source metadata, which has variable quality and coverage. Only 7,995 of 293,059 genomes (2.7%) had plant-associated annotations. Endophyte species (n=29) fell below the 30-species threshold.
-2. **Marker gene completeness**: Zero Pfam domain hits suggest the bakta_pfam_domains query format may need refinement. The marker set is literature-curated and inevitably incomplete.
+2. **Marker gene completeness**: The bakta_pfam_domains table stores versioned Pfam IDs (e.g., `PF13629.12`) rather than bare accessions (`PF00771`), which caused zero hits in the original NB02 query. Fuzzy search in NB08 confirmed that T3SS-related Pfam domains do exist in the database (6 domains found, including PF13629 with 1,289 hits and PF18269 with 1,095 hits). The marker set is literature-curated and inevitably incomplete.
 3. **GapMind pathway resolution**: Core-level completeness scoring yielded 0% across all compartments, suggesting the threshold is too stringent for broad taxonomic comparisons. The complementarity analysis used max-aggregated species-to-genus scores.
-4. **Phylogenetic confounding**: Despite phylum-level fixed effects, the logistic regression models for H5 showed convergence warnings. Finer-grained phylogenetic correction (e.g., phylogenetic independent contrasts) would strengthen the novel marker claims.
+4. **Phylogenetic confounding**: Despite phylum-level fixed effects, the logistic regression models for H5 showed convergence warnings. Family-level control (NB08) produced insufficient variation for the top 10 novel OGs, likely because plant association is taxonomically clustered within families. Finer-grained phylogenetic correction (e.g., phylogenetic independent contrasts) would strengthen the novel marker claims.
 5. **Mobility proxies**: Without GeNomad mobile element annotations, HGT was assessed indirectly. The mixed signal (strong transposase co-occurrence but lower-than-baseline singleton enrichment) highlights the limitations of proxy approaches.
 6. **Dual-nature interpretation**: Presence of both PGP and pathogenic marker genes does not confirm simultaneous expression. Transcriptomic or experimental validation is needed to determine whether these represent genuine lifestyle flexibility or simply annotation artifacts (e.g., T6SS serving inter-bacterial competition rather than pathogenicity).
+7. **Marker specificity**: Negative controls (NB08) reveal that non-plant genera such as *Escherichia*, *Salmonella*, and *Clostridioides* are 100% classified as dual-nature, and *Staphylococcus* at 98%. This reflects that several markers (flagella, chemotaxis, biofilm, quorum sensing, secretion systems) are ubiquitous across bacteria and not plant-specific. The marker panel should be refined with plant-specific thresholds or context-dependent scoring.
+8. **Genome size confound**: Genome size (gene cluster count) correlates moderately with total marker count (r=0.44, p<1e-300), meaning larger genomes accumulate more markers by chance. Presence-based cohort assignment is partially insulated from this effect, but quantitative scores should be interpreted with caution.
+9. **Multivariate dispersion**: PERMDISP testing (NB08) revealed significant dispersion heterogeneity between cohorts (H=33.12, p=3.0e-7), meaning the PERMANOVA R²=0.53 may partly reflect variance differences rather than pure location shifts.
+
+### Adversarial Revision Results (NB08)
+
+Twelve additional analyses addressed concerns raised during adversarial review:
+
+**T3SS/T6SS Sensitivity**: Reclassifying T3SS, T6SS, and T2SS from "pathogenic" to "colonization" markers changed 16.4% of dual-nature species to PGP-only. However, plant-associated species remained 86.0% dual-nature under the revised classification, confirming that the dual-nature finding is robust and not driven solely by secretion system annotations.
+
+![Sensitivity analysis: original vs revised cohort distribution](figures/sensitivity_t3ss_t6ss.png)
+
+**Marker Drivers**: In dual-nature species, the most prevalent pathogenic markers were T6SS products (64%), T2SS (55%), T3SS products (50%), and chemotaxis (52%), while the most prevalent PGP markers were quorum sensing (49%), phenazine (34%), and flagella (40%). Chemotaxis and flagella — general motility functions — contribute substantially to the dual-nature classification.
+
+![Marker prevalence in dual-nature species](figures/dual_nature_marker_drivers.png)
+
+**PGP vs Pathogen Scatter**: Validated against known model organisms: *B. subtilis*, *R. leguminosarum*, *B. japonicum*, and *S. meliloti* cluster in expected quadrants.
+
+![PGP vs pathogen composite scores with known organism annotations](figures/pgp_vs_pathogen_scatter.png)
+
+**Genome Size**: Moderate correlation (r=0.44) between genome size and marker count. Cross-tabulation showed that genome-size normalization shifts 33% of dual-nature species to neutral, indicating the effect is meaningful but does not eliminate the dual-nature pattern.
+
+![Genome size vs marker count by cohort](figures/genome_size_vs_markers.png)
+
+**Predictive Classifier**: Random Forest achieved 64.4% accuracy for compartment prediction (root/rhizosphere/phyllosphere) using 25 binary markers — above the 33% random baseline but far from deterministic, consistent with compartment being one of multiple factors shaping marker profiles. Cohort prediction achieved 99.9% accuracy (trivially, since cohorts are defined by marker presence).
+
+![Feature importance for compartment classification](figures/feature_importance_compartment.png)
+
+**HGT Deep Dive**: Per-marker transposase co-occurrence analysis revealed that PGP markers show the strongest HGT signal: DAPG biocontrol (OR=8.75), ACC deaminase (OR=6.43), nitrogen fixation (OR=3.76). Among pathogenic markers, T4SS (OR=3.23), T6SS (OR=2.66), and effectors (OR=2.67) also showed significant enrichment. Contig co-location analysis found 498,677 marker-transposase pairs on shared contigs across 18,569 species. T4SS had the most co-located pairs (84,411) with the closest median distance (238 genes). Fifteen marker-transposase pairs were at gene-number distance 1 (immediately adjacent), spanning effectors, T6SS, T3SS, quorum sensing, cellulase, and T4SS in species including *Rhizobium ecuadorense*, *Phytobacter ursingii*, and *Burkholderia puraquae*.
+
+![HGT signal by marker type](figures/hgt_per_marker_transposase.png)
+
+![Contig co-location distances](figures/hgt_contig_distance.png)
 
 ## Data
 
@@ -238,6 +271,9 @@ This study provides three contributions beyond existing literature:
 | `data/complementarity_network.csv` | 2,346 | Genus-pair complementarity scores |
 | `data/cohort_assignments.csv` | 25,660 | Final composite cohort assignments |
 | `data/genus_dossiers.csv` | 30 | Detailed genus-level dossiers |
+| `data/genus_dossiers_plant_only.csv` | 30 | Plant/soil-filtered genus dossiers (NB08) |
+| `data/species_family_taxonomy.csv` | 27,690 | Species-level GTDB family assignments (NB08) |
+| `data/pfam_investigation_cache.csv` | 36 | Pfam domain investigation results (NB08) |
 
 ## Supporting Evidence
 
@@ -252,6 +288,7 @@ This study provides three contributions beyond existing literature:
 | `05_genomic_architecture.ipynb` | Core/accessory distribution (H2); HGT mobility proxies (H4) |
 | `06_complementarity.ipynb` | NMDC co-occurrence; GapMind complementarity; permutation test |
 | `07_cohort_synthesis.ipynb` | Composite scoring; validation; genus dossiers; hypothesis summary |
+| `08_adversarial_revisions.ipynb` | Sensitivity analyses, negative controls, HGT deep dive, predictive classifiers |
 
 ### Figures
 
@@ -268,6 +305,13 @@ This study provides three contributions beyond existing literature:
 | `complementarity_heatmap.png` | Full complementarity score heatmap across genera |
 | `complementarity_heatmap_detail.png` | Detail view of top complementarity pairs |
 | `synthesis_overview.png` | Three-panel synthesis: genus marker profiles, compartment x cohort distribution, genomic architecture comparison |
+| `sensitivity_t3ss_t6ss.png` | Side-by-side bar chart: original vs revised cohort distribution after T3SS/T6SS reclassification |
+| `pgp_vs_pathogen_scatter.png` | Scatter plot of composite PGP vs pathogen scores with known organism annotations |
+| `dual_nature_marker_drivers.png` | Horizontal bar chart: prevalence of each marker in dual-nature species |
+| `genome_size_vs_markers.png` | Scatter plot: gene cluster count vs total marker count by cohort |
+| `feature_importance_compartment.png` | Random Forest feature importance for compartment classification |
+| `hgt_per_marker_transposase.png` | Dot plot: transposase co-occurrence odds ratio per functional category |
+| `hgt_contig_distance.png` | Histogram of gene-number distances between co-located markers and transposases |
 
 ## Future Directions
 
