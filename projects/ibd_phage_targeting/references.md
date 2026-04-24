@@ -43,6 +43,24 @@ Papers cited in `REPORT.md` and `RESEARCH_PLAN.md`, with identifiers for easy fo
 9. **Henke MT et al. (2019).** "Ruminococcus gnavus, a member of the human gut microbiome associated with Crohn's disease, produces an inflammatory polysaccharide." *Proc Natl Acad Sci USA* 116(26):12672–12677. PMID: 31182571.  
    *Molecular mechanism (glucorhamnan / TLR4 activation) for R. gnavus pathogenicity. Tier-A candidate anchor. M. gnavus is the top hit in E1 Tier-A (+4.85 CLR-Δ), E3 Tier-A (+4.46), and cross-ecotype engraftment-confirmed set (+5.13).*
 
+9b. **Dalmasso G, Nguyen HTT, Faïs T, et al. (2021).** "Yersiniabactin siderophore of Crohn's disease-associated adherent-invasive Escherichia coli." *Int J Mol Sci* 22(7):3512. PMID: 33805299.  
+    *Direct mechanism for the NB05 A6 Yersiniabactin MIBiG match on E. coli — AIEC siderophore function.*
+
+9c. **Prudent V et al. (2021).** "The Crohn's disease-related bacterial strain LF82 assembles biofilm-like communities to protect itself from phagolysosomal attack." *Commun Biol* 4(1). PMID: 34035436.  
+    *AIEC LF82 yersiniabactin iron-capture pathway required for intracellular bacterial-community formation and macrophage survival.*
+
+9d. **Dogan B et al. (2014).** "Inflammation-associated adherent-invasive Escherichia coli are enriched in pathways for use of propanediol and iron and M-cell translocation." *Inflamm Bowel Dis* 21(1):92-111. PMID: 25230163.  
+    *AIEC iron (yersiniabactin) pathway enrichment across CD, dog granulomatous colitis, and mouse ileitis.*
+
+9e. **Dubinsky V et al. (2022).** "Escherichia coli strains from patients with inflammatory bowel diseases have disease-specific genomic adaptations." *J Crohns Colitis* 16(9):1484-1497. PMID: 35560165.  
+    *IBD-specific E. coli lineages — confirms species-level E. coli CD-association has genomic sub-structure.*
+
+9f. **Veziant J et al. (2016).** "Association of colorectal cancer with pathogenic Escherichia coli: focus on mechanisms using optical imaging." *World J Clin Oncol* 7(3):293-302. PMID: 27298769.  
+    *pks+ E. coli colibactin mechanism in colorectal pathology — relevant to NB05 A6 Colibactin MIBiG match.*
+
+9g. **Galtier M et al. (2017).** "Bacteriophages targeting adherent-invasive Escherichia coli strains as a promising new treatment for Crohn's disease." *J Crohns Colitis* 11(7):840-847. PMID: 28130329.  
+    *Direct phage therapy precedent for CD targeting AIEC via CEACAM6 receptor. Validates Pillar 4 strategy with E. coli as primary example.*
+
 10. **Darfeuille-Michaud A et al. (2004).** "High prevalence of adherent-invasive Escherichia coli associated with ileal mucosa in Crohn's disease." *Gastroenterology* 127(2):412–421. PMID: 15300573.  
     *AIEC canonical clinical-association paper for ileal CD. Informs E. coli strain-level Tier-A scoring (NB05).*
 
@@ -70,6 +88,25 @@ Papers cited in `REPORT.md` and `RESEARCH_PLAN.md`, with identifiers for easy fo
 
 10h. **Tierney BT, Van den Abbeele P, Al-Ghalith GA, et al. (2023).** "Capacity of a Microbial Synbiotic to Rescue the in vitro Metabolic Activity of the Gut Microbiome Following Perturbation with Alcohol or Antibiotics." *Appl Environ Microbiol* 89(3):e01880-22. PMID: 36840551.  
     *G. pamelaeae increases during microbiome recovery from dysbiosis-inducing insults. Rationale for the "ambiguous CD-associated" flag on G. pamelaeae in our E1 Tier-A — CD↑ signal may reflect opportunity rather than pathobiont activity; requires NB05 A4 protective-analog exclusion.*
+
+## Module-anchor commensals (NB06 pathobiont-module butyrate-producers)
+
+10i. **Geirnaert A, Wang J, Tinck M, et al. (2015a).** "Interindividual differences in response to treatment with butyrate-producing Butyricicoccus pullicaecorum 25-3T studied in an in vitro gut model." *FEMS Microbiol Ecol* 91(6):fiv054. PMID: 25999470.  
+     *B. pullicaecorum as candidate butyrate-producing probiotic for IBD — provides the anti-inflammatory-commensal framing for the NB06 E3 pathobiont-module anchor finding.*
+
+10j. **Steppe M et al. (2014).** "Safety assessment of the butyrate-producing Butyricicoccus pullicaecorum strain 25-3T, a potential probiotic for patients with inflammatory bowel disease, based on oral toxicity tests and whole genome sequencing." *Food Chem Toxicol* 72:129-37. PMID: 25007784.  
+     *B. pullicaecorum IBD-probiotic safety profile + genome sequence — establishes the reference strain.*
+
+10k. **Jeraldo P et al. (2016).** "Capturing one of the human gut microbiome's most wanted: reconstructing the genome of a novel butyrate-producing, clostridial scavenger from metagenomic sequence data." *Front Microbiol* 7:783. PMID: 27303377.  
+     *Novel B. pullicaecorum-related species (71-76 % ANI) assembled from HMP metagenomes; occupies host-dependent nutrient-scavenging niche. Relevant to the "metabolic partner" interpretation of the NB06 pathobiont-module anchor role.*
+
+## Phage therapy / FMT precedent
+
+10l. **Sheikh IA, Bianchi-Smak J, Laubitz D, et al. (2024).** "Transplant of microbiota from Crohn's disease patients to germ-free mice results in colitis." *Gut Microbes* 16(1):2333483. PMID: 38532703.  
+     *CD-patient microbiome -> germ-free mouse causally sufficient for colitis (discontinued pattern, proximal colonic localization). Supports Pillar-4/5 premise that compositional modification can have therapeutic effect.*
+
+10m. **Barbour A et al. (2023).** "Discovery of phosphorylated lantibiotics with proimmune activity that regulate the oral microbiome." *Proc Natl Acad Sci USA* 120(23):e2219392120. PMID: 37216534.  
+     *Lantibiotic bacteriocin class regulates oral microbiome with proimmune activity. Relevant to NB05 Salivaricin MIBiG matches on S. salivarius — suggests the A6 signal has both antimicrobial (bacteriocin) and proimmune-modulation components.*
 
 ## Project-specific data sources (referenced in dim_studies)
 
