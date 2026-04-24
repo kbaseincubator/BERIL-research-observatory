@@ -8,6 +8,26 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [meta] Adversarial review applies at plan-revision scope, not just notebook scope
+
+The NB04 → NB04b-h rigor-repair arc established that pairing standard `/berdl-review` with an adversarial reviewer (general-purpose Agent with explicit "find flaws" framing) is a project-hygiene rule for **notebook commits**. The `ibd_phage_targeting` v1.6 → v1.7 plan revision establishes the same pattern at the **plan-revision scope**:
+
+- v1.6 was a careful Pillar 3 plan refresh after Pillar 2 closure, written by an experienced agent, sounded principled.
+- Adversarial review of v1.6 (general-purpose Agent reading the plan + REPORT + FAILURE_ANALYSIS + actual mart parquet inspection) found **4 critical + 10 important issues** structurally analogous to NB04's failure pattern: feature leakage in N14 dual-basis (same-axis ecotype basis is leakage-poisoned), "4-substudy meta-viable" inherited from NB04e without re-verification for pathway data (actually 3+1), H3a thresholds without null distributions, H3a-new mislabeled "butyrate-producer ↔ pathobiont" with 4 of 6 named anchors not actually butyrate producers, H3b strain-adaptation collapses to species-level on cMD by construction, H3e n=67 across 3 sites (not 130-subject HMP2). Every category of issue NB04 had at notebook scope, v1.6 had at plan scope.
+
+**Generalizable rule**: any plan revision whose downstream notebooks will be load-bearing for clinical / experimental / external claims should be reviewed by both a standard reviewer (mostly catches surface flaws) AND a paired adversarial reviewer (catches structural / inferential issues — feature leakage, missing nulls, hard-coded verdict logic, sample-size overclaims, label-vs-data mismatches). The cost of catching these issues at plan scope is much lower than catching them at notebook scope (NB04 → NB04b-h was 7 notebooks; v1.6 → v1.7 was a single plan-edit pass).
+
+**Operational pattern**: `bash tools/review.sh <project> --type plan` for the standard plan reviewer; `Agent(subagent_type=general-purpose, prompt=<find-flaws brief>)` for the adversarial; reconcile both before notebook execution. A `--type plan --adversarial` flag for `/berdl-review` would consolidate this into a single command.
+
+**Both NB04 and v1.6 had these recurring features that adversarial review caught and standard didn't**:
+- Effect-size thresholds without null distributions (NB04: Jaccard 0.14; v1.6: |ρ| > 0.4)
+- Substudy / cohort sample-size claims that don't match the data on inspection
+- Hypothesis labels that don't match the operationalized test (NB04: "H2c RESOLVED" treats n.s. as positive; v1.6: "butyrate-producer" anchors with mostly non-butyrate-producers)
+- Same-axis feature leakage in stratified analyses (NB04: cluster on taxa + test taxa; v1.6: stratify pathway DA by pathway-feature ecotype)
+- Falsifiability rules that pass under random data ("≤ 5 categories of 7" is loose enough to pass on random allocation)
+
+The pattern is mostly about pre-registration discipline: what's the actual sample size given the actual data, what's the null distribution against which any positive claim is being made, what does each operational threshold mean given that null. Standard review treats these as advanced questions; adversarial review treats them as the entry-level diligence.
+
 ### [ibd_phage_targeting] NB04 rigor failure: 33 within-ecotype Tier-A candidates collapsed to 3 rock-solid candidates under independent-evidence gating
 
 **Quantified cost of feature leakage + confound non-adjustment in Pillar 2.** NB04 reported a 33-species within-ecotype Tier-A list (18 E1, 15 E3) with the H2c *C. scindens* paradox marked "RESOLVED by stratification." Two rigor-repair notebooks (NB04b + NB04c) applied three evidence filters to every candidate:
