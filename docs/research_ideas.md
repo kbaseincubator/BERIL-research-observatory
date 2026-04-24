@@ -453,6 +453,10 @@
 
 ## Completed Ideas
 
+### [plant_microbiome_ecotypes] Plant Microbiome Ecotype Functional Classification
+**Status**: COMPLETED
+**Results**: Classified 25,660 species into beneficial/pathogenic/dual-nature/neutral cohorts. Key findings: compartment explains 53% of functional variance, beneficial genes are core (64.6%), most plant bacteria are dual-nature (60-85%), 50 novel plant-enriched gene families identified. See `projects/plant_microbiome_ecotypes/`.
+
 ### [pgp_pangenome_ecology] PGP Gene Distribution Across Environments & Pangenomes
 **Status**: COMPLETED
 **Results**: H1 SUPPORTED — pqqC × acdS co-occur at OR = 7.24 (strongest pair), forming a vertically inherited rhizosphere module; nifH forms a separate ecological guild (negatively associated with pqqC, depleted in soil). H2 SUPPORTED — acdS (OR = 7.0) and pqqC (OR = 2.9) strongly enriched in soil/rhizosphere, surviving phylum fixed effects. H3 REJECTED — PGP genes are predominantly core (mean 29.7% accessory vs 53.2% genome-wide baseline), contra the HGT hypothesis. H4 PARTIALLY SUPPORTED — trp completeness predicts ipdC (OR = 2.81) but tyrosine "negative control" also significant (OR = 3.62) due to TyrR co-regulation; soil species show reversal (OR = 0.30). First pangenome-scale analysis across 293K genomes, 27K species. See `projects/pgp_pangenome_ecology/`.
