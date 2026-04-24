@@ -1,6 +1,6 @@
 # Report: Metagenome-Prioritized Phage Cocktails for Crohn's Disease and IBD
 
-**Status**: Interim synthesis — Pillar 1 closed; Pillar 2 rigor-repaired + externally replicated on HMP_2019_ibdmdb (H2b supported, H2c retracted, E1 Tier-A 88.2 % sign-concordant in HMP2); Pillars 3–5 in progress.
+**Status**: Interim synthesis — Pillar 1 closed; Pillar 2 fully closed (rigor-repaired + externally replicated on HMP_2019_ibdmdb + NB05 Tier-A scored; H2b supported, H2c retracted); Pillars 3–5 in progress.
 
 > **Note on Pillar 2 rigor repair + external replication**: the original NB04 analysis (committed 2026-04-24 early) was superseded by a **seven-notebook** pipeline (NB04b → c → d → e → f → g → h) after an adversarial review caught 5 critical + 6 important methodological issues that two independent standard `/berdl-review` runs missed. NB04b–e performed the rigor repair (see retraction box in §5 and `FAILURE_ANALYSIS.md`). NB04f–h strengthened Pillar 2 against LOSO cross-study stability (NB04f), feature-leakage structural test (NB04g), and HMP_2019_ibdmdb external replication (NB04h). The rigor-controlled Tier-A replicates at 88.2 % sign concordance on HMP2 even though the ecotype framework itself has real cross-study variance. See `docs/pitfalls.md` for the two generalizable pitfalls (cMD substudy-nesting, feature leakage in cluster-stratified DA).
 
@@ -28,6 +28,7 @@ Pillar 1 answers the first two questions.
 4. **Cross-ecotype engraftment-confirmed pathobionts**. Under the within-IBD-substudy (non-stratified-by-ecotype) confound-free contrast, five of the six donor-2708-engraftment pathobionts pass as CD↑ with FDR < 0.10 and ≥ 66 % sign concordance: *M. gnavus* (+5.13), *E. lenta* (+2.30), *E. coli* (+1.43), *E. bolteae* (+1.09), *H. hathewayi* (+0.92). *K. oxytoca* is below prevalence filter and not tested. These are cross-ecotype targets independent of the NB04e ecotype-specific lists.
 5. **NB05 input set (rigor-controlled)**. Union of the E1 meta-viable Tier-A (51), the E3 provisional Tier-A (40), and the 5 engraftment-confirmed cross-ecotype pathobionts — after deduplication, approximately 70–90 unique species across the three categories. *M. gnavus* is the top candidate across all three categories.
 6. **External replication on HMP_2019_ibdmdb (pulled live via curatedMetagenomicData v3.18; NOT in the cMD_IBD training set)**. 1,627 samples / 130 subjects projected onto the K=4 LDA with 80.4 % of samples at confidence > 0.70. Subject-level ecotype × {CD, UC, nonIBD} χ² = 15.61, p = 0.016 — ecotype stratifies disease in HMP2 at significance. **E1 Tier-A replicates at 88.2 % sign-concordance** (45 / 51 candidates CD↑ in both cohorts), including every top-10 candidate (M. gnavus, S. salivarius, S. thermophilus, E. innocuum, S. parasanguinis, E. asparagiformis, I. bartlettii, H. symbiosa, G. pamelaeae, E. ramosum). Two top-20 candidates fail to replicate (*S. thermophilus* on effect sign — possibly cohort-specific dairy exposure; *B. stercoris* n.s.). **The ecotype framework itself has real cross-study variance (NB04f LOSO ARI 0.113) — but the operational Tier-A is externally validated.**
+7. **Tier-A scoring complete (NB05)**. A3–A6 criteria applied to 71 unique rigor-controlled candidates produce 6 actionable targets (total_score ≥ 2.5): ***Hungatella hathewayi*** (4.0, top-scoring), ***Mediterraneibacter gnavus*** (3.8), ***Escherichia coli*** (3.6; MIBiG: Colibactin+Yersiniabactin+Enterobactin), ***Eggerthella lenta*** (3.3), ***Flavonifractor plautii*** (3.3), ***Enterocloster bolteae*** (2.8). 9 Tier-B candidates in the 2.2–2.4 range (including *S. salivarius* with Salivaricin MIBiG matches, *E. asparagiformis*, *V. parvula*, *S. parasanguinis*) remain candidates subject to Pillar 4 phage-availability promotion. **Pillar 2 is now closed with a scored and prioritized hand-off to Pillar 4 / 5.**
 
 ### What this report does not yet contain
 
@@ -260,6 +261,34 @@ Three additional analyses (NB04f, NB04g, NB04h) tested the ecotype framework and
 
 *(Notebooks: NB04f_loso_ecotype_stability.ipynb, NB04g_pathway_ecotype_refit.ipynb, NB04h_hmp2_external_replication.ipynb. HMP2 pull via `pull_hmp2_metaphlan3.R` against curatedMetagenomicData v3.18.)*
 
+#### 5g. NB05 Tier-A scoring — prioritized target list for Pillar 4/5
+
+Four criteria (A3–A6 from `RESEARCH_PLAN.md` §Criteria) applied to the 71 unique rigor-controlled candidates (51 E1 + 40 E3 provisional + 5 cross-ecotype engraftment, dedup'd). Scoring:
+
+- **A3 Literature + cohort CD-association (0–5)**: five independent signals per candidate — NB04c confound-free meta, HMP2 external replication concordance, `ref_cd_vs_hc_differential` (Kumbhari reference; log₂FC > 0.5 + FDR < 0.10), `ref_species_ibd_associations` (UHGG-indexed dxIBD mixed-effects), `ref_phage_biology` (curated top-tier targets). Distribution: 13 candidates score 0; 22 score 1; 25 score 2; 5 score 3; 5 score 4; 1 scores 5.
+- **A4 Protective-analog exclusion (0 / 1)**: fails if within-IBD-substudy CD-vs-nonIBD effect (NB04c §3) is negative — protective-analog risk — or if candidate is on the curated-protective-species list (*F. prausnitzii*, *A. muciniphila*, *R. intestinalis*, *R. hominis*, *L. eligens*, *A. rectalis*, *C. scindens*, *C. eutactus*, *B. adolescentis*, *B. longum*). Three candidates fail: *Anaerostipes hadrus* (−0.32 confound-free effect), *Clostridium scindens* (curated protective list), *Roseburia faecis* (−2.74 effect).
+- **A5 Engraftment / strain adaptation (0 / 0.5 / 1)**: 1.0 for the 5 donor-2708-engraftment pathobionts (*M. gnavus*, *E. lenta*, *E. coli*, *E. bolteae*, *H. hathewayi*); 0.5 for Kumbhari strain-competition disease-dominance or IBD-adapted-strain gene signal. 3 candidates hit the 0.5 tier (*A. hadrus*, *B. cellulosilyticus*, *F. plautii*).
+- **A6 BGC inflammatory mediator (0 / 0.5 / 1)**: BGC count per candidate from `ref_bgc_catalog` (synonymy-inverted matching so pre-GTDB names like "Ruminococcus gnavus" match canonical "*Mediterraneibacter gnavus*"). 1.0 if ≥ 1 BGC contains CD-enriched CB-ORFs (effect > 0.5 + FDR < 0.05 per `ref_cborf_enrichment`). 14 candidates score 1.0, including *M. gnavus* (39 BGCs, 26 CD-enriched CB-ORFs — the largest count), *E. coli* (93 BGCs with MIBiG matches to Colibactin / Yersiniabactin / Enterobactin), *S. salivarius* (98 BGCs with Salivaricin 9 / A / Cochonodin I), *Streptococcus parasanguinis* (51 BGCs, 11 CD-enriched), *Hungatella hathewayi* (6 BGCs, 4 CD-enriched).
+
+**Total Tier-A score** = A3/5 + A4 + A5 + A6 (range 0–4); actionable threshold = **2.5**.
+
+**6 actionable candidates (top 6 of 71 scored)**:
+
+| Rank | Species | Ecotype membership | Total | Key evidence |
+|---:|---|---|---:|---|
+| 1 | ***Hungatella hathewayi*** | E1 \| engraftment | **4.0** | all 5 A3 signals pass; 6 BGCs with 4 CD-enriched CB-ORFs |
+| 2 | ***Mediterraneibacter gnavus*** | E1 \| E3_prov \| engraftment | **3.8** | 4/5 A3; 39 BGCs with 26 CD-enriched CB-ORFs (inflammatory glucorhamnan mechanism) |
+| 3 | ***Escherichia coli*** | E1 \| engraftment | **3.6** | engraftment + MIBiG match to Colibactin + Yersiniabactin + Enterobactin |
+| 4 | ***Eggerthella lenta*** | E1 \| engraftment | **3.3** | engraftment + 4/5 A3 signals + Kumbhari IBD-adapted-strain gene signal |
+| 5 | ***Flavonifractor plautii*** | E1 \| E3_prov | **3.3** | Kumbhari strain-competition + BGC with CD-enriched CB-ORFs |
+| 6 | ***Enterocloster bolteae*** | E1 \| engraftment | **2.8** | engraftment; no BGC hit in catalog (potential blind spot) |
+
+**Tier-B candidates (score 2.2–2.4, sub-threshold)**: *Enterocloster asparagiformis*, *Streptococcus salivarius*, *E. citroniae*, *E. clostridioformis*, *Blautia coccoides*, *Veillonella atypica*, *S. parasanguinis*, *Actinomyces oris*, *V. parvula*. These have BGC + A4-pass + A3 = 1–2 signals but lack direct engraftment or strain-adaptation evidence; Pillar 4 phage-targetability scoring may promote any of these based on B-tier phage-availability evidence.
+
+![NB05 Tier-A scoring — top 30 scoring matrix + total-score bar chart](figures/NB05_tier_a_scored.png)
+
+*(Notebooks: NB05_tier_a_scoring.ipynb + run_nb05.py. The scored TSV `data/nb05_tier_a_scored.tsv` is the authoritative hand-off to NB06 co-occurrence networks and Pillar 4 phage-target scoring. Note: this notebook was executed via `run_nb05.py` rather than nbconvert due to an environment-specific numpy.bool serialization issue in the nbconvert notebook-save path; outputs are authoritative and pre-populated in the committed .ipynb.)*
+
 ### 6. Taxonomy synonymy layer is the project's reusable foundation
 
 `data/species_synonymy.tsv` — 2,417 alias → 1,848 canonical species, grounded in `ref_taxonomy_crosswalk` NCBI taxid matching with GTDB r214+ genus renames supplemented. This was motivated by a failure mode discovered in NB00: `fact_taxon_abundance` contains three divergent taxon-name formats between cohorts (CMD_IBD short names, CMD_HEALTHY full MetaPhlAn3 lineage, KUEHL_WGS Kaiju), and a naive pivot splits the same species into multiple zero-overlap rows, producing log₂FC ≈ 28 artifacts.
@@ -366,6 +395,8 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `data/nb04h_hmp2_e1_cd_vs_nonibd.tsv` | 335 | HMP2 within-E1 CD-vs-nonIBD CLR-Δ per species |
 | `data/nb04h_e1_tier_a_hmp2_replication.tsv` | 51 | NB04e E1 Tier-A cross-referenced with HMP2 E1 CD-vs-nonIBD |
 | `data/nb04h_hmp2_replication_verdict.json` | — | Formal HMP2 external replication verdict (PASS) |
+| `data/nb05_tier_a_scored.tsv` | 71 | Scored Tier-A with A3-A6 breakdowns + total score + actionable flag (authoritative NB05 output) |
+| `data/nb05_tier_a_verdict.json` | — | NB05 summary: 6 actionable of 71 scored |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_relative_abundance.tsv` | 582 | HMP2 MetaPhlAn3 relative abundance (taxa × samples) — out-of-project artifact |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_sample_metadata.tsv` | 1,627 | HMP2 sample metadata from cMD |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_taxon_metadata.tsv` | 585 | HMP2 per-taxon lineage metadata |
@@ -390,6 +421,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB04f_loso_ecotype_stability.ipynb` | Leave-one-substudy-out ecotype replication test across top 8 cMD sub-studies — honest cross-study instability finding (mean LOSO ARI 0.113) |
 | `NB04g_pathway_ecotype_refit.ipynb` | K=4 LDA refit on HUMAnN3 pathway features (3,145 CMD_IBD samples); Option B structural test — partial recovery (ARI 0.113, E1 65 % agreement) |
 | `NB04h_hmp2_external_replication.ipynb` | HMP_2019_ibdmdb pulled via `pull_hmp2_metaphlan3.R` against curatedMetagenomicData v3.18; 1,627 samples projected onto K=4 LDA; 88.2 % E1 Tier-A sign-concordance |
+| `NB05_tier_a_scoring.ipynb` | Tier-A A3–A6 scoring on 71 rigor-controlled candidates; 6 actionable targets for Pillar 4/5 (*H. hathewayi*, *M. gnavus*, *E. coli*, *E. lenta*, *F. plautii*, *E. bolteae*). Executed via `run_nb05.py` (nbconvert bypass for environment numpy.bool issue). |
 
 ### Figures
 
@@ -412,6 +444,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB04f_loso_stability.png` | Per-substudy LOSO ARI + per-sample agreement bars; honest cross-study variation |
 | `NB04g_pathway_vs_taxon_ecotype.png` | Pathway-ecotype × taxon-ecotype cross-table heatmap + per-ecotype agreement bars |
 | `NB04h_hmp2_external_replication.png` | HMP2 external replication — ecotype × diagnosis stacked bar, projection confidence histogram, E1 Tier-A scatter (NB04e vs HMP2 effect) |
+| `NB05_tier_a_scored.png` | Top-30 A3–A6 scoring matrix heatmap + total-score bar chart with 2.5 actionable threshold |
 
 Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatmap.png`, `NB01_*.png` (legacy K = 8 fit preserved for methodology audit).
 

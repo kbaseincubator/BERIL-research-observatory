@@ -1,0 +1,69 @@
+{
+  "date": "2026-04-24",
+  "n_candidates_total": 71,
+  "n_actionable": 6,
+  "top_10_by_total_score": [
+    {
+      "rank": 1,
+      "species": "Hungatella hathewayi",
+      "ecotype_membership": "E1|cross_ecotype_engraftment",
+      "total_score": 4.0
+    },
+    {
+      "rank": 2,
+      "species": "Mediterraneibacter gnavus",
+      "ecotype_membership": "E1|E3_provisional|cross_ecotype_engraftment",
+      "total_score": 3.8
+    },
+    {
+      "rank": 3,
+      "species": "Escherichia coli",
+      "ecotype_membership": "E1|cross_ecotype_engraftment",
+      "total_score": 3.6
+    },
+    {
+      "rank": 4,
+      "species": "Eggerthella lenta",
+      "ecotype_membership": "E1|cross_ecotype_engraftment",
+      "total_score": 3.3
+    },
+    {
+      "rank": 5,
+      "species": "Flavonifractor plautii",
+      "ecotype_membership": "E1|E3_provisional",
+      "total_score": 3.3
+    },
+    {
+      "rank": 6,
+      "species": "Enterocloster bolteae",
+      "ecotype_membership": "E1|cross_ecotype_engraftment",
+      "total_score": 2.8
+    },
+    {
+      "rank": 7,
+      "species": "Enterocloster asparagiformis",
+      "ecotype_membership": "E1|E3_provisional",
+      "total_score": 2.4
+    },
+    {
+      "rank": 8,
+      "species": "Streptococcus salivarius",
+      "ecotype_membership": "E1|E3_provisional",
+      "total_score": 2.4
+    },
+    {
+      "rank": 9,
+      "species": "Enterocloster citroniae",
+      "ecotype_membership": "E1",
+      "total_score": 2.4
+    },
+    {
+      "rank": 10,
+      "species": "Enterocloster clostridioformis",
+      "ecotype_membership": "E1|E3_provisional",
+      "total_score": 2.4
+    }
+  ],
+  "actionable_threshold": 2.5,
+  "criteria_weights": "A3/5 + A4 + A5 + A6 (equal-weight; A3 normalized to 0-1 from 0-5 signals)"
+}
