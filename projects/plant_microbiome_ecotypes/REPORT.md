@@ -52,7 +52,7 @@ The attenuation from Fisher OR to phylo-controlled OR (e.g., COG3569: 8.92→6.0
 
 *(Notebook: 03_enrichment_analysis.ipynb)*
 
-### 6. Most plant-associated bacteria are dual-nature, carrying both PGP and pathogenic markers
+### 6. Most plant-associated bacteria carry both PGP and pathogenic markers, but the dual-nature label is uninformative at species level — the continuous pathogen ratio is what discriminates
 
 ![Cohort distribution by compartment](figures/nb04_cohort_compartment_bar.png)
 
@@ -135,10 +135,6 @@ Cross-validation against the MGnify genome catalogue (20,473 species across 4 bi
 The 5/17 finding is consistent with the wider literature on accessory-genome-mediated plant adaptation: Melnyk et al. (2019) found that plant-lifestyle transitions in *Pseudomonas* are driven by convergent gain/loss of accessory genomic islands rather than core-genome phylogeny, and Satterwhite & Bergelson (2025) found local host adaptation in 3/5 *P. syringae* pathovars but only 1/5 locally dominant — both are partial-support patterns at the same proportion we observe genomically. The implication is that within-species plant adaptation is predominantly accessory-driven, but in specific genera (notably *Xanthomonas*) the accessory cassettes have stratified onto core-phylogenetic subclades — i.e., the pathovar designations have a real phylogenetic basis at the within-species level for those genera. The 47 species without phylo-tree coverage are an irreducible source of uncertainty: the true H7 effect across all 65 candidate species cannot be estimated until the GTDB tree is more completely populated in BERDL.
 
 *(Notebooks: 12_subclade_og_analysis.ipynb (5-species subset, kept for figure provenance); 13_validation_pfam_subclade.ipynb (genome-ID fix); `notebooks/_run_subclade_full_scan.py` (full 65→18 species scan, item 19, 2026-04-25); `notebooks/_run_h6_host_subclade.py` (full 18-species H6 host × subclade, 2026-04-25). Data: `data/subclade_full_scan.csv`, `data/h6_host_subclade_full.csv`, `data/species_subclade_definitions_full.csv`. H7 framing revised twice during Phase 2b.)*
-
-**Caveat**: Genome ID mismatches between the phylogenetic tree table and environment metadata reduced the effective sample size for plant/non-plant classification within subclades. The null result should be validated with improved genome-level metadata linking.
-
-*(Notebook: 12_subclade_og_analysis.ipynb. Revised in Phase 2b — see §11 below.)*
 
 ### 11. Phase 2b: Adversarial-review corrections (H0, H1, H3, H5, H7 revised)
 
