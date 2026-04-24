@@ -54,6 +54,26 @@ obs["produced"] = obs["action"].isin(["I", "E"]).astype(int)
 
 **Applies to**: Any project touching `kescience_webofmicrobes.observation`.
 
+### [ibd_phage_targeting] MetaPhlAn3 Cross-Cohort Taxon Names Need a Synonymy Layer, Not Just Format Normalization
+
+**Problem**: Cross-cohort microbiome analysis that pivots on `taxon_name_original` (or any string key) can silently segregate the same species into two non-overlapping rows when cohorts use different MetaPhlAn3 DB vintages / cMD-processing stages. Three divergences observed in the `~/data/CrohnsPhage` integrated mart:
+
+1. **Format** — short name (`Faecalibacterium prausnitzii`) vs. full lineage string (`k__Bacteria|p__Firmicutes|...|s__Faecalibacterium_prausnitzii`). Same database, different export format.
+2. **GTDB r214+ genus renames** — `Bacteroides vulgatus` (CMD_HEALTHY lineage) ↔ `Phocaeicola vulgatus` (CMD_IBD short name) are the same NCBI taxid, treated as separate species. Also affects *B. dorei / coprocola / plebeius / salanitronis / sartorii / massiliensis / coprophilus*, all now *Phocaeicola*.
+3. **Other reclassification splits** — `Eubacterium rectale` → `Agathobacter rectalis`, `E. eligens` → `Lachnospira eligens`, `E. hallii` → `Anaerobutyricum hallii`; `Ruminococcus gnavus` → `Mediterraneibacter gnavus`; `Clostridium bolteae / clostridioforme / symbiosum / innocuum / asparagiforme / hathewayi / citroniae / aldenense` → *Enterocloster* / *Hungatella* / *Erysipelatoclostridium*; `Lactobacillus mucosae / ruminis` → *Limosilactobacillus / Ligilactobacillus*.
+
+**Scale**: In the CrohnsPhage mart, CMD_IBD uses the modern names, CMD_HEALTHY uses legacy names — so a naive pivot gives log₂FC ≈ 28 (≈ 2.68 × 10⁸ fold) for every renamed species because one cohort's mean abundance collapses to pseudocount.
+
+**The committed `ref_taxonomy_crosswalk` does not fully resolve this**: legacy `Bacteroides_X` rows have `ncbi_taxid = NaN`, so joining through taxid leaves them orphaned. The crosswalk lists *B. vulgatus* and *P. vulgatus* as two separate rows with different `canonical_name` values.
+
+**Fix at three levels**:
+
+1. **Format normalization** — parse the `s__Genus_species` component from full lineage strings and strip brackets from short names to get a canonical `"Genus species"`.
+2. **Hand-curated synonym map** — enough for a targeted species battery. NB00 in `projects/ibd_phage_targeting/` ships a 23-entry `SYNONYM_MAP` covering the major renames above.
+3. **Systematic reconciliation** — an NCBI-taxid-backboned synonymy layer with GTDB-version-aware rename tables. Mandatory before any cross-cohort aggregation over the full taxonomy (not just a curated battery). This is an NB01 dependency in `ibd_phage_targeting`.
+
+**Applies to**: Any project using `fact_taxon_abundance` or any other MetaPhlAn3-derived table across multiple cohorts that may have been processed at different times (different mpa DB versions, different cMD releases). Also applies generally to merging MetaPhlAn outputs with GTDB-r214+ downstream analyses.
+
 ### [genotype_to_phenotype_enigma] Fitness Browser KO Mapping Is a Two-Hop Join
 
 **Problem**: There is no single `(orgId, locusId) → KO` table in `kescience_fitnessbrowser`. Mapping a fitness-browser locus to its KEGG ortholog requires two joins:
