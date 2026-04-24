@@ -73,7 +73,8 @@ This project integrates data from:
 ## Quick Links
 
 - [Research Plan](RESEARCH_PLAN.md) — hypotheses, pillar structure, four-tier criteria, BERDL query strategy, per-pillar analysis sketch, known-missing registry, reproduce-and-extend table
-- [Report](REPORT.md) — findings, interpretation, supporting evidence *(created after analysis)*
+- [Report](REPORT.md) — **interim synthesis** — Pillar 1 findings (ecotype framework, UC Davis projection, H1c classifier), interpretation, literature context. Pillars 2–5 pending.
+- [References](references.md) — cited literature with PMIDs and project context
 
 ## Reproduction
 
