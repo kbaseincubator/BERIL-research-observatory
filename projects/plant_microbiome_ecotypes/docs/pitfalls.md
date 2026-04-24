@@ -21,14 +21,30 @@ Documented issues encountered during this project that future analyses should wa
 
 **Where fixed**: NB13 Cell 3 (`pfam_recovery_hits.csv`). NB02 documented as limitation in REPORT.md §Limitations.
 
-**Additional gotcha discovered 2026-04-24** (paired adversarial review, Phase 2b): even with the LIKE fix, `bakta_pfam_domains` **silently omits** some Pfam accessions that are widely detected by InterProScan on the same gene clusters. Verified in this pangenome build:
+**Additional gotcha discovered 2026-04-24** (paired adversarial review, Phase 2b): even with the LIKE fix, `bakta_pfam_domains` **silently omits** many Pfam accessions that are widely detected by InterProScan on the same gene clusters.
 
-| Pfam | `bakta_pfam_domains` | `interproscan_domains` |
-|---|---|---|
-| PF00771 (T3SS inner rod) | 0 | **18,598** |
-| PF01313 (T3SS PrgH) | 0 | **13,576** |
+**Full audit, 2026-04-25** (`data/pfam_bakta_ips_audit.csv`): of the 22 marker Pfam accessions queried by this project across NB02 and NB10, **12 are completely absent from `bakta_pfam_domains` despite being abundant in `interproscan_domains`**:
 
-Likely cause: bakta uses a reduced Pfam HMM profile set (a "core" release) while InterProScan uses the full set. Do not interpret 0 hits in `bakta_pfam_domains` as domain absence — always cross-check `interproscan_domains` via `signature_acc` before drawing biological conclusions about missing functions.
+| Pfam | Description (project) | IPS hits | IPS species | Bakta hits |
+|---|---|---:|---:|---:|
+| PF01312 | (T3SS-related) | 21,954 | 10,225 | **0** |
+| PF00771 | T3SS inner rod (PrgJ) | 18,598 | 10,207 | **0** |
+| PF03743 | TrbI / VirB10 (T4SS) | 17,488 | 4,733 | **0** |
+| PF02579 | (T3SS-related) | 16,847 | 7,549 | **0** |
+| PF04610 | T3SS HrpB7 | 15,625 | 4,337 | **0** |
+| PF01514 | Secretin (T2SS/T3SS) | 15,039 | 10,094 | **0** |
+| PF01313 | T3SS PrgH | 13,576 | 10,088 | **0** |
+| PF03135 | VirB8 (T4SS) | 11,016 | 3,927 | **0** |
+| PF07916 | (T3SS-related) | 8,379 | 2,315 | **0** |
+| PF04183 | (T6SS-related) | 7,530 | 2,718 | **0** |
+| PF05936 | Hcp (T6SS tube) | 7,465 | 3,379 | **0** |
+| PF09599 | (T3SS-related) | 292 | 156 | **0** |
+
+The pattern: **secretion-system Pfams (T3SS, T4SS, T6SS) are systematically missing from `bakta_pfam_domains`** but present in `interproscan_domains`. The 10 Pfams that are present in bakta (PF00857, PF00150, PF00148, PF00295, PF12708, PF05943, PF00142, PF00544, PF01670, PF07201) are mostly nitrogen fixation, CWDE, and a few miscellaneous; bakta returns ~10–35% of the IPS hit count for these, also undercounting but at least non-zero.
+
+Likely cause: bakta uses a reduced Pfam HMM profile set (e.g., the "core" or "trimmed" release) while InterProScan uses the full Pfam-A set. The omitted Pfams skew systematically toward the larger HMM families used in secretion systems.
+
+**Operational consequence**: do not query `bakta_pfam_domains` for any Pfam accession without cross-checking `interproscan_domains.signature_acc` first. NB10's pipeline correctly uses `interproscan_domains` for T3SS/T4SS/T6SS marker detection and is unaffected; Phase 1 NB02's bakta-only Pfam query returned zero hits and the cohort pipeline fell back to gene-name matching, which is also unaffected. Future BERDL projects should treat `bakta_pfam_domains` as an opt-in supplement, not a primary Pfam source.
 
 ## Genome ID prefix mismatch between phylogenetic tree and environment tables
 
