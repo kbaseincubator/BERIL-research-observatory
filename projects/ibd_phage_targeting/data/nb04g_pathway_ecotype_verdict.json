@@ -1,0 +1,28 @@
+{
+  "date": "2026-04-24",
+  "test": "Pathway-feature K=4 LDA ecotype refit vs taxon-based consensus_ecotype",
+  "n_samples": 3145,
+  "n_pathways_used": 2000,
+  "ari_pathway_vs_taxon": 0.113,
+  "overall_agreement": 0.506,
+  "per_ecotype_agreement": {
+    "0": {
+      "n_samples": 43,
+      "agreement": 0.0
+    },
+    "1": {
+      "n_samples": 1839,
+      "agreement": 0.653
+    },
+    "2": {
+      "n_samples": 19,
+      "agreement": 0.474
+    },
+    "3": {
+      "n_samples": 1244,
+      "agreement": 0.307
+    }
+  },
+  "scope_caveat": "CMD_IBD only; fact_pathway_abundance has no HC samples (no pathway data for CMD_HEALTHY)",
+  "verdict": "PARTIAL \u2014 pathway-ecotype and taxon-ecotype partially agree; structure is mixed ecological + taxonomic"
+}
