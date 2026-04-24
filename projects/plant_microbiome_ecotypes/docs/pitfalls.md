@@ -91,3 +91,23 @@ NB10 tried statsmodels `Logit(marker ~ is_plant + genus_dummies)` with ~2000 gen
 ## `species_compartment.csv` column name is `dominant_compartment`, not `compartment`
 
 The `species_compartment.csv` summary file uses `dominant_compartment` as the majority-vote column. Downstream scripts that use `sp_comp['compartment']` will fail with KeyError. The per-genome `genome_environment.csv` does have `compartment`.
+
+## `kbase_ke_pangenome.phylogenetic_tree_distance_pairs` is sparse — most species have no tree
+
+Discovered 2026-04-25 during the full 65-species subclade scan (`notebooks/_run_subclade_full_scan.py`). Of 65 plant-associated species with ≥20 genomes in this project, only **18 (28%)** have any pairwise phylogenetic-distance data in `phylogenetic_tree_distance_pairs`. The other 47 species — including major plant-associated taxa such as *Bradyrhizobium japonicum*, *B. diazoefficiens*, *Mesorhizobium ciceri*, *Sinorhizobium medicae*, *Burkholderia glumae*, *Methylobacterium extorquens*, *Streptomyces scabiei*, *Xylella taiwanensis*, *Clavibacter michiganensis*, *Pectobacterium parmentieri*, *Bacillus_A cereus_U*, *Pseudomonas_E brassicacearum* — return zero rows when their `gtdb_species_clade_id` is queried.
+
+**Operational consequence**: any analysis that requires within-species phylogenetic structure (subclade clustering, MDS embeddings, host-specificity-by-clade tests, intra-species ANI patterns) will silently exclude ~70% of plant-associated species. Always pre-check coverage before drawing conclusions about lineage-level patterns:
+
+```python
+# Audit phylo coverage for a target species set
+spark.sql(f"""
+    SELECT pt.gtdb_species_clade_id, COUNT(*) AS n_pairs
+    FROM kbase_ke_pangenome.phylogenetic_tree pt
+    JOIN kbase_ke_pangenome.phylogenetic_tree_distance_pairs pd
+         ON pd.phylogenetic_tree_id = pt.phylogenetic_tree_id
+    WHERE pt.gtdb_species_clade_id IN (...)
+    GROUP BY pt.gtdb_species_clade_id
+""")
+```
+
+This is a **database-coverage limitation**, not a methodological bug. It bounds the power of any subclade-level hypothesis (H7 in this project) to the species that happen to have trees built. Worth flagging to the BERDL data team if more thorough phylogenetic coverage is feasible.
