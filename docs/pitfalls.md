@@ -27,6 +27,56 @@ if depot_genus.lower() not in gtdb_genus.lower():
 
 **Applies to**: Any project linking ENIGMA CORAL strains or genome depot strains to `kbase_ke_pangenome` via strain name matching. Use assembly accession (GCF_*) matching instead when possible — it's unambiguous.
 
+### [genotype_to_phenotype_enigma] Commit Notebooks Alongside Their Artifacts, Not Just the TSVs
+
+**Problem**: Analyses run interactively in a Claude Code session (pure Python REPL, not a committed `.ipynb`) can produce figures and data files that get staged and committed — while the code that produced them lives only in the session transcript. The project then *looks* reproducible (the README references NB08/NB09/NB10, runtime tables list them, the REPORT cites their findings) but `git log` finds no notebook history for those names. Downstream reviewers read the plan and REPORT at face value and miss the gap.
+
+**Scale**: In this project, three "notebooks" (NB08, NB09, NB10 — the entire Act II/III closing) existed only as outputs. The reconstruction took a few hours once the gap was identified; it would have been far cheaper to have written `.ipynb` cells in the first place.
+
+**Fix**:
+
+- When an analysis is worth committing artifacts for, it is worth committing as a notebook. If you find yourself building figures in a REPL, pause and move the logic into a numbered notebook before saving results.
+- Before running `/submit` (or any milestone commit), run `git log --all --oneline -- projects/{project_id}/notebooks/NB*.ipynb` to verify every NBxx referenced in the README/plan is backed by actual notebook history.
+- If you inherit a project with this gap, reconstruct the notebooks from the committed artifacts; note the reconstruction in `RESEARCH_PLAN.md`'s revision history so reviewers know which numeric counts are the "interactive original" vs. the "reproducible re-run".
+
+**Applies to**: Any Claude Code-assisted project. This is especially easy to trip over late in a project when the user is synthesizing and no longer creating fresh notebooks for each analytical step.
+
+### [genotype_to_phenotype_enigma] Web of Microbes Binary "Produced" Requires Action Code Interpretation
+
+**Problem**: `kescience_webofmicrobes.observation.action` is a single-letter code (`I` increased, `E` emerged, `N` no change, and occasionally `D` decreased). A naive `SELECT action` gives you the raw code; it does NOT give you a binary produced/consumed label. The binary definition used in NB02 and NB08 is `produced = action IN ('I', 'E')` — a compound is counted as produced when it either increased in supernatant (was there and more accumulated) or emerged (was below the detection limit and reached it).
+
+```python
+# correct binary encoding for "did this strain produce this metabolite?"
+obs["produced"] = obs["action"].isin(["I", "E"]).astype(int)
+```
+
+**Why it matters**: Including `N` (no change) in the produced set makes every strain look like a production generalist and collapses the signal. Excluding `E` (emerged, sub-detection-limit → detectable) misses genuinely novel production.
+
+**Applies to**: Any project touching `kescience_webofmicrobes.observation`.
+
+### [genotype_to_phenotype_enigma] Fitness Browser KO Mapping Is a Two-Hop Join
+
+**Problem**: There is no single `(orgId, locusId) → KO` table in `kescience_fitnessbrowser`. Mapping a fitness-browser locus to its KEGG ortholog requires two joins:
+
+```sql
+SELECT gf.orgId, gf.locusId, km.kgroup AS KO
+FROM kescience_fitnessbrowser.genefitness gf
+JOIN kescience_fitnessbrowser.besthitkegg bhk
+     ON gf.orgId = bhk.orgId AND gf.locusId = bhk.locusId
+JOIN kescience_fitnessbrowser.keggmember km
+     ON bhk.keggOrg = km.keggOrg AND bhk.keggId = km.keggId
+```
+
+`besthitkegg` maps each FB locus to a KEGG organism and gene (`keggOrg`, `keggId`) via best hit; `keggmember` maps each `(keggOrg, keggId)` pair to its KEGG ortholog group (`kgroup`, which is the KO). Both joins are required — neither table alone is sufficient.
+
+**Additional gotchas in the same schema**:
+
+- `kescience_fitnessbrowser.kgroupdesc` has column `desc` (not `description`). Use `SELECT kgroup, desc AS description FROM ...` if you want a tidier alias.
+- `kescience_fitnessbrowser.genefitness.fit` and `.t` are stored as **strings**; you must `CAST(t AS DOUBLE)` before any `ABS(...)` or comparison.
+- `kescience_fitnessbrowser.experiment.expGroup` (not `Group`) is the experiment class; `SELECT Group` will fail with an `UNRESOLVED_COLUMN` error.
+
+**Applies to**: Any project pulling fitness-browser loci and trying to aggregate at the KO level — concordance analyses, cross-organism conservation, rich-media fitness filtering.
+
 ### `data_lakehouse_ingest` Tenant Name ≠ Database Prefix
 
 **[bakta_reannotation]** The `tenant` field in a `data_lakehouse_ingest` config is the MinIO governance group name, not the database name prefix. The library auto-prepends the tenant name to the `dataset` field to form the namespace.
