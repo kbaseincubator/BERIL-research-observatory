@@ -341,6 +341,48 @@ With NB06 complete, **Pillar 2 is fully closed**: rigor-controlled Tier-A (NB04b
 
 The synonymy layer was built once in NB01b and is joined against by NB00, NB01, NB02, NB03, and every downstream notebook. Documented as a project-level pitfall (`docs/pitfalls.md`) and a candidate BERIL convention — any project integrating multi-cohort microbiome data needs this layer, and the pattern (NCBI taxid + GTDB-version-aware rename table) generalizes.
 
+### 7. NB07a — Pathway DA + H3a v1.7 three-clause falsifiability (Pillar 3 opener)
+
+First Pillar 3 notebook, executed under RESEARCH_PLAN.md v1.7 norms (post-adversarial-review). Per norm N12, primary contrast is **within-IBD-substudy CD-vs-nonIBD meta** on `fact_pathway_abundance` (HUMAnN3 MetaCyc, CMD_IBD only). Per norm N15, substudy meta-viability re-verified for the pathway modality: 3 robust (HallAB_2017, IjazUZ_2017, NielsenHB_2014) + 1 boundary (LiJ_2014, nonIBD = 10) — **not** the "4 meta-viable" framing v1.6 had inherited from NB04e's taxonomic-modality counts. VilaAV_2018 excluded (CD = 216, nonIBD = 0). 575 unstratified MetaCyc pathways → 409 after 10%-prevalence filter.
+
+**H3a v1.7 verdict: PARTIALLY SUPPORTED — 2 of 3 clauses pass; clause (b) is structurally degenerate, not a fundamental refutation.**
+
+| Clause | Verdict | Detail |
+|---|---|---|
+| (a) Pathway count under permutation null | **PASS** | 52 CD-up + 22 CD-down pathways pass FDR < 0.10 with |effect| > 0.5 (74 either-direction). Permutation null mean (CD-up): 0.077 ± 0.87 — essentially zero. Empirical p < 0.001. |
+| (b) Category coherence under random-allocation null | **FAIL (degenerate)** | Only 44 / 409 background pathways match the 7 a-priori MetaCyc categories with the v1.7 regex patterns. Only 3 of 52 CD-up passing pathways land in those categories. Test had ~zero power (null also at 100% top-3 concentration). Interpretation below. |
+| (c) Pathway-pathobiont attribution under permutation null | **PASS** | Max |ρ_meta| = 0.797 (vs null 0.177 ± 0.019; empirical p < 0.001). **137 pathway-pathobiont pairs with |ρ_meta| > 0.4.** All 100% sign-concordant across the 3 robust substudies. |
+
+![NB07a H3a falsifiability — 2x2 panel: top CD-up pathways forest plot, count permutation null, MetaCyc category enrichment, pathway-pathobiont attribution null](figures/NB07a_H3a_falsifiability.png)
+
+**Top pathway-pathobiont attribution recapitulates known AIEC biology.** The top 25 pairs are all *Escherichia coli* pathways with biological coherence:
+
+| Rank | ρ_meta | Pathway | AIEC mechanistic context |
+|---:|---:|---|---|
+| 1 | 0.797 | GLYOXYLATE-BYPASS (glyoxylate cycle) | Fat utilization in fasting/inflamed gut; AIEC adaptation to bile-acid environment |
+| 5 | 0.725 | PWY-6803 phosphatidylcholine acyl editing | **TMA precursor pathway** — links to NB05 *H. hathewayi* A6 |
+| 6 | 0.707 | PWY-7385 1,3-propanediol biosynthesis | **eut/pdu pathway** — classical AIEC virulence factor (Dogan 2014) |
+| 12 | 0.685 | Allantoin degradation to glyoxylate | Purine recycling under inflammation |
+| 13 | 0.683 | 2-methylcitrate cycle I | Propionate detox |
+| 19 | 0.640 | Heme biosynthesis from glycine | **Iron metabolism** — ties to NB05 *E. coli* Yersiniabactin MIBiG match (Dalmasso 2021) |
+| 25 | 0.617 | L-arginine degradation II (AST pathway) | AA-decarboxylation theme (one of the 7 a-priori categories) |
+
+**Tier-A pair-count distribution**: *E. coli* 105 pairs > 0.4 (76% of total signal); *H. hathewayi* 16; *M. gnavus* 8; *F. plautii* 7; *E. lenta* 1; *E. bolteae* **0**. *E. coli*'s domination reflects three factors: highly specialized AIEC functional repertoire well-matched to MetaCyc, higher relative-abundance variance, and *E. coli* genome content being especially well-represented in HUMAnN3 (vs more obligate-anaerobe Tier-A members like *E. lenta* / *E. bolteae*). *E. bolteae*'s zero pathway-attribution despite being NB05-actionable signals that its CD-up signal may be at the **strain-level** (testable via NB10) or **BGC-level** (NB08) rather than HUMAnN3-pathway level.
+
+**Honest interpretation of clause (b) failure**. The test was structurally underpowered: with only 3 of 52 CD-up pathways landing in the 7 a-priori categories, the top-3-concentration statistic is trivially 100% under both observed and random-allocation null. **The cMD pathway DA at the unstratified MetaCyc level does not preferentially load on the classical IBD-themed categories** (bile-acid 7α-dehydroxylation, mucin degradation, sulfidogenesis, TMA/TMAO, eut/pdu, polyamine, AA-decarb). Instead, the CD signal captures broader **bacterial-fitness-in-inflamed-gut** themes (heme/iron, glyoxylate, fat metabolism, allantoin/purines) that are not in the prior-literature category set as constructed. Two non-mutually-exclusive interpretations:
+
+1. **Category-set choice.** The 7 a-priori categories were drawn from prior pathobiont-mechanism literature; broadening to include "alternative-electron-acceptor metabolism," "iron acquisition," "fat-utilization-in-inflammation" categories may recover the (b) signal.
+2. **Stratified-pathway resolution.** The unstratified-pathway level may be dominated by housekeeping pathways shared across many genera. Per-species stratification (NB07b) — does *M. gnavus* gain bile-acid-deconjugation pathways CD-vs-nonIBD? — is the appropriate next test of H3a (b).
+
+NB07b is therefore well-positioned: stratified-pathway (`PWY-XXX|g__species`) gives ~ 42K pathway-species combinations to query directly. Combined with the (c) attribution signal already strong here, H3a (b) is best resolved as a follow-up question, not as a current refutation.
+
+**Output artifacts**:
+- `data/nb07a_pathway_meta.tsv` — 409 pathways × meta statistics
+- `data/nb07a_pathway_pathobiont_pairs.tsv` — 2,454 pathway × Tier-A-core species pairs with per-substudy + meta ρ
+- `data/nb07a_h3a_verdict.json` — formal H3a v1.7 verdict with all permutation-null statistics
+
+*(Notebook: NB07a_pathway_DA_H3a_falsifiability.ipynb; executed via `run_nb07a.py` per the established nbconvert numpy.bool workaround.)*
+
 ## Interpretation
 
 ### Why the four-ecotype framework matters for phage targeting
