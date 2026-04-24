@@ -169,8 +169,10 @@ When the user wants to start a new research project, the agent drives the entire
 15. Write slim `README.md` with: Title, Research Question, Status (In Progress), Overview, Quick Links, Reproduction placeholder, Authors
 16. Create project directory structure: `notebooks/`, `data/`, `user_data/`, `figures/`
 17. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch."
-18. Create branch `projects/{project_id}`, switch to it, and commit README + RESEARCH_PLAN. Working on a dedicated branch from the start avoids accumulating changes on main during long-running projects. Tell the user what you're doing — if they prefer to stay on main, skip branch creation.
-19. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer via `tools/review.sh`:
+18. Ask the user about branching: offer to create branch `projects/{project_id}` and switch to it. Working on a dedicated branch from the start avoids accumulating changes on main during long-running projects. If they prefer to stay on main, skip branch creation.
+19. Write `beril.yaml` project manifest (see Templates section below). Set `status: proposed`, `created_at` and `last_session_at` to the current ISO 8601 timestamp, `branch` to the **actual branch** (either `projects/{project_id}` if created, or the current branch if the user stayed on it), author info from the user, and `engine.name` to the current agent (e.g., `claude`). Set `artifacts.readme: true` and `artifacts.research_plan: true` after those files are written.
+20. Commit README + RESEARCH_PLAN + beril.yaml.
+20. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer via `tools/review.sh`:
 
     ```bash
     bash tools/review.sh {project_id} --type plan [--reviewer claude|codex] [--model <model_id>]
@@ -182,35 +184,34 @@ When the user wants to start a new research project, the agent drives the entire
 
 #### Phase C: Analysis (Notebooks)
 
-20. Write numbered notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, etc.) following the analysis plan
-21. Notebooks are the primary audit trail — do as much work as possible in notebooks so humans can inspect intermediate results
-22. When parallel execution or complex pipelines are needed, write scripts in `src/` but call them from notebooks
-23. **Run notebooks** — execute cells, inspect outputs, iterate
-24. As new information emerges, update `RESEARCH_PLAN.md` with a revision tag: `- **v2** ({date}): {what changed and why}`
-25. **Check in code frequently** — commit after each major milestone (plan written, notebooks created, data extracted, analysis complete)
-26. Re-read `docs/pitfalls.md` when something doesn't work as expected
+20. Update `beril.yaml`: set `status: active` and `last_session_at` to current timestamp.
+21. Write numbered notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, etc.) following the analysis plan
+22. Notebooks are the primary audit trail — do as much work as possible in notebooks so humans can inspect intermediate results
+23. When parallel execution or complex pipelines are needed, write scripts in `src/` but call them from notebooks
+24. **Run notebooks** — execute cells, inspect outputs, iterate
+25. As new information emerges, update `RESEARCH_PLAN.md` with a revision tag: `- **v2** ({date}): {what changed and why}`
+26. **Check in code frequently** — commit after each major milestone (plan written, notebooks created, data extracted, analysis complete)
+27. Re-read `docs/pitfalls.md` when something doesn't work as expected
 
 #### Checkpoint: Results Review
 
 After notebooks are executed and committed, **pause and present the key results to the user** before moving to synthesis. This is a natural decision point — the user may want to inspect figures, question a result, or request additional analysis before the interpretation gets written.
 
-27. Summarize the key results: main statistics, notable patterns, anything unexpected
-28. Ask: "Would you like to look at the notebooks/figures before I proceed with the writeup, or should I go ahead with `/synthesize`?"
-29. If the user wants to explore first, wait. If they want changes, iterate on the notebooks before proceeding.
+28. Summarize the key results: main statistics, notable patterns, anything unexpected
+29. Ask: "Would you like to look at the notebooks/figures before I proceed with the writeup, or should I go ahead with `/synthesize`?"
+30. If the user wants to explore first, wait. If they want changes, iterate on the notebooks before proceeding.
 
 #### Phase D: Synthesis & Writeup
 
-30. Run `/synthesize` to create `REPORT.md` with findings, interpretation, supporting evidence
-31. Commit the report
-32. Chat with user about the report — revise if needed
+31. Run `/synthesize` to create `REPORT.md` with findings, interpretation, supporting evidence
+32. Update `beril.yaml`: set `status: analysis`, `artifacts.report: true`, and update `last_session_at`.
+33. Commit the report and updated beril.yaml
+34. Chat with user about the report — revise if needed
 
 #### Phase E: Review & Submission
 
-33. **Optional: iterate with `/berdl-review`** — Run `/berdl-review {project_id}` to get feedback without the full submission checklist. This produces numbered reviews (`REVIEW_1.md`, `REVIEW_2.md`, ...) and is useful for iterating quickly. Use `--reviewer codex` for a second opinion. Address feedback, then review again until satisfied.
-34. Run `/submit` to validate documentation and generate the final canonical `REVIEW.md` (clears numbered reviews)
-35. Fix any issues flagged by the review
-36. Commit fixes
-36. Upload project to the lakehouse: `python tools/lakehouse_upload.py {project_id}` (prompted by `/submit` after clean review)
+35. **Optional: iterate with `/berdl-review`** — Run `/berdl-review {project_id}` to get feedback without the full submission checklist. This produces numbered reviews (`REVIEW_1.md`, `REVIEW_2.md`, ...) and is useful for iterating quickly. Use `--reviewer codex` for a second opinion. Address feedback, then review again until satisfied.
+36. Run `/submit` to validate documentation, generate the final canonical `REVIEW.md`, and handle lakehouse upload. `/submit` will present the review outcome and let the user decide: if clean, it proceeds automatically; if issues are found, the user can address them or override. See `/submit` skill for the full flow — it handles `beril.yaml` status updates and lakehouse upload internally.
 37. Chat with user about next steps
 
 #### Throughout the Entire Workflow:
@@ -253,10 +254,12 @@ Suggest using `/literature-review` to search biological databases. This is usefu
 
 Steps:
 1. Run `ls projects/` and list all projects for the user to choose from
-2. Read the chosen project's `README.md`
-3. Check if a `REVIEW.md` exists in that project directory (read it if so)
-4. Summarize where the project stands: what's done, what's next
-5. Suggest using `/submit` when the project is ready for review
+2. For each project, check if `beril.yaml` exists. If it does, read it and display: status, last session date, branch, and which artifacts are present/missing. If it doesn't exist, note "no manifest" — the project still works, it just predates `beril.yaml`.
+3. Read the chosen project's `README.md`
+4. Check if a `REVIEW.md` exists in that project directory (read it if so)
+5. If `beril.yaml` exists, update `last_session_at` to the current timestamp
+6. Summarize where the project stands: what's done, what's next
+7. Suggest using `/submit` when the project is ready for review
 
 ### Path 5: Understand the System
 
@@ -386,3 +389,26 @@ In Progress — research plan created, awaiting analysis.
 ## Authors
 {Authors}
 ```
+
+### beril.yaml (project manifest)
+
+```yaml
+project_id: {project_id}
+status: proposed          # proposed | active | analysis | review | complete
+created_at: "{ISO 8601 timestamp}"
+last_session_at: "{ISO 8601 timestamp}"
+branch: projects/{project_id}
+engine:
+  name: {agent name, e.g. claude}
+authors:
+  - name: "{author name}"
+    affiliation: "{affiliation}"
+    orcid: "{ORCID}"
+artifacts:
+  readme: false
+  research_plan: false
+  report: false
+  review: false
+```
+
+**Status transitions:** `proposed` → `active` (notebooks started) → `analysis` (report written) → `review` (submitted) → `complete` (review passed). Update `artifacts` flags as each file is created. Update `last_session_at` whenever resuming work on the project.

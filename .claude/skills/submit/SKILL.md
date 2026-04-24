@@ -39,6 +39,7 @@ Run these checks against the project directory and print a checklist summary:
 - `REPORT.md` exists in `projects/{project_id}/` and contains a `## Key Findings` section
 
 **Advisory checks** (warn but allow submission):
+- `beril.yaml` exists in `projects/{project_id}/` — if present, check that `status` field is set and that `artifacts` flags are consistent with actual file existence (e.g., `artifacts.report: true` should mean `REPORT.md` exists). If `beril.yaml` is missing, just print `INFO  No beril.yaml manifest (pre-manifest project)` and continue.
 - Discoveries documented in `docs/discoveries.md` — search for `[{project_id}]` tag
 - Pitfalls documented in `docs/pitfalls.md` — search for the project name or id
 - Research plan documented — check if `projects/{project_id}/RESEARCH_PLAN.md` exists (or `research_plan.md` for legacy projects)
@@ -109,37 +110,43 @@ After the reviewer subprocess completes:
 1. Check that `projects/{project_id}/REVIEW.md` was created **and is non-empty** (more than 0 bytes)
 2. If it exists and is non-empty, print a success message with a brief summary
 3. If it was not created or is empty, print an error indicating the reviewer did not produce output
+4. If `projects/{project_id}/beril.yaml` exists, update `artifacts.review: true` and `last_session_at` to the current timestamp. Do **not** set `status: complete` yet — wait until the review outcome is classified in Step 7.
 
-### Step 6: Lakehouse Upload
+### Step 6: Present Review and Decide
 
-After a successful review (no critical issues), automatically upload the project to the lakehouse:
+Read the generated `REVIEW.md` and present a summary to the user, classifying it as:
+- **Clean review**: no critical or important issues
+- **Issues found**: critical or important issues present
 
-```bash
-python tools/lakehouse_upload.py {project_id}
-```
+**If clean review** — proceed directly to Step 7 (Complete & Upload).
 
-This archives all project files (data, notebooks, figures, docs) to the shared `microbialdiscoveryforge` collection on BERDL MinIO at `s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/{project_id}/`.
+**If issues found** — present the issues clearly, then ask the user:
 
-If the `berdl-minio` mc alias is not configured, set it up first:
-```bash
-mc alias set berdl-minio $MINIO_ENDPOINT_URL $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
-```
+> "The reviewer flagged {N} issue(s). You can address them and re-submit, or override and submit anyway if you disagree with the reviewer's assessment. What would you like to do?"
+>
+> 1. **Address issues** — fix and re-run `/submit`
+> 2. **Override and submit** — proceed despite reviewer concerns
 
-If the upload fails (e.g., mc not configured, network issue), print the error and continue to post-review guidance — don't block the submission.
+The AI reviewer's judgment is advisory, not authoritative. The human researcher has final say. If the user chooses to address issues: set `beril.yaml` status to `review` and stop here. If the user chooses to override: proceed to Step 7.
 
-### Step 7: Post-Review Guidance
+### Step 7: Complete & Upload
 
-After presenting the review summary, provide next steps based on the review outcome:
+This step runs for clean reviews and for user-overridden reviews.
 
-**If the review has no critical or important issues** (clean review):
-- Remind the user to mark the project as complete in these locations:
-  1. `projects/{project_id}/README.md` — ensure `## Status` says "Completed" with a one-line summary
-  2. `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary
-- Suggest committing all changes
-
-**If the review has critical or important issues**:
-- List the issues to address
-- Suggest re-running `/submit` after fixes
+1. If `beril.yaml` exists, set `status: complete`
+2. Upload the project to the lakehouse:
+   ```bash
+   python tools/lakehouse_upload.py {project_id}
+   ```
+   This archives all project files to `s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/{project_id}/`. If the `berdl-minio` mc alias is not configured, set it up first:
+   ```bash
+   mc alias set berdl-minio $MINIO_ENDPOINT_URL $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
+   ```
+   If the upload fails (e.g., mc not configured, network issue), print the error and continue — don't block the submission.
+3. Remind the user to mark the project as complete in these locations:
+   - `projects/{project_id}/README.md` — ensure `## Status` says "Completed" with a one-line summary
+   - `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary
+4. Suggest committing all changes
 
 > **Note**: For final submission reviews, use the default frontier model (no `--model` flag). Use `--model` with faster/cheaper models for iterating on reviewer feedback.
 
