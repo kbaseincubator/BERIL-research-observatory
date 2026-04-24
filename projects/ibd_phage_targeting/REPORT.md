@@ -1,6 +1,8 @@
 # Report: Metagenome-Prioritized Phage Cocktails for Crohn's Disease and IBD
 
-**Status**: Interim synthesis — Pillar 1 closed, Pillar 2 opened (H2b + H2c resolved); Pillars 3–5 in progress.
+**Status**: Interim synthesis — Pillar 1 closed; Pillar 2 rigor-repaired (H2b supported, H2c retracted); Pillars 3–5 in progress.
+
+> **Note on Pillar 2 rigor repair**: the original NB04 analysis (committed 2026-04-24 early) was superseded by a four-notebook rigor-repair pipeline (NB04b + NB04c + NB04d + NB04e) on 2026-04-24 after an adversarial review caught 5 critical + 6 important methodological issues that the standard `/berdl-review` missed twice. Two NB04 headline claims were retracted and the Pillar 2 Tier-A target list was rebuilt from a confound-free design. See `FAILURE_ANALYSIS.md` for the full arc and `docs/pitfalls.md` for the two generalizable pitfalls derived from it. All Pillar 2 findings in this report are the rigor-controlled versions; the retracted NB04 claims are marked below.
 
 ## Executive Summary
 
@@ -14,18 +16,21 @@ Pillar 1 answers the first two questions.
 2. **UC Davis cohort placement** onto the four-ecotype embedding — all 23 patients projected via the synonymy layer. **χ²(3) = 10.0, p = 0.019**: UC Davis occupies E0 (27 %), E1 (42 %), E3 (31 %), and zero in E2 — non-random and consistent with an active-disease Western cohort. **Patient 6967 shows longitudinal ecotype drift** (E1 → E3) across re-sampling, the first direct signal of intra-patient ecosystem instability.
 3. **Clinical covariates alone cannot assign IBD patients to ecotype.** A classifier trained on {HC/IBD status, sex, age} achieves macro AUC 0.80 on pooled cross-validation — but only 41 % patient-level agreement with the metagenomic projection on UC Davis. The classifier collapses to "IBD → E1" because `is_ibd` is the dominant feature and becomes constant on the test cohort. **Metagenomics remains required for patient-level ecotype assignment in an all-CD cohort.**
 4. **Systematic taxonomy synonymy layer** covering 2,417 aliases → 1,848 canonical species, grounded in NCBI taxid with GTDB r214+ genus renames (Bacteroides → Phocaeicola etc.). The committed artifact `data/species_synonymy.tsv` is the project-wide reconciliation backbone and the tool that made both CMD pooling and Kaiju → MetaPhlAn3 projection tractable.
-5. **Compositional-DA proof of concept** on the protective-species battery establishes that the *C. scindens* paradox in the preliminary pooled analysis is *partially* but not fully explained by compositional correction alone. Raw Mann-Whitney mis-directs 4+ of 8 protective species; CLR correction recovers them. *C. scindens* and *Roseburia intestinalis* remain paradoxical under pooled CLR — they will resolve (or not) under within-ecotype DA in Pillar 2 (NB04).
+5. **Compositional-DA proof of concept** on the protective-species battery establishes that raw Mann-Whitney on relative abundance is systematically under-sensitive for protective-species depletion under the pooled-cohort contrast. Raw Mann-Whitney mis-directs 4+ of 8 protective species; CLR correction recovers them. *C. scindens* remains pooled-CLR CD↑, which Pillar 2 resolves not through within-ecotype stratification (the original NB04 claim, now retracted) but through a confound-free within-IBD-substudy CD-vs-nonIBD meta-analysis that controls for the HC-study vs IBD-study nesting problem in cMD.
 
-### Pillar 2 opener (this report)
+### Pillar 2 opener — rigor-controlled findings (this report)
 
-6. **The *C. scindens* paradox is resolved by within-ecotype stratification.** Pooled raw Mann-Whitney calls *C. scindens* CD-enriched at log₂FC +4.30 (echoing the preliminary report's finding); pooled CLR correction narrows it to +1.01 but does not flip the call; **within-ecotype CLR in E1 (n = 581 CD vs 759 HC) and E3 (n = 605 CD vs 114 HC) both call *C. scindens* n.s.** The pooled signal was an artifact of CD patients concentrating in E1 / E3 (ecotypes where *C. scindens* happens to be more prevalent for reasons unrelated to disease). **H2c supported.**
-7. **Target sets differ substantially between ecotypes (Jaccard = 0.14 on top-30 Tier-A candidates).** E1 and E3 share only 4 of their top-30 Tier-A CD-enriched species. **H2b supported** — stratified targeting is materially different from pooled targeting, not a near-identity.
-8. **Classical "IBD pathobionts" are mostly ecotype-markers, not within-ecotype CD-drivers.** *E. bolteae*, *E. lenta*, *H. hathewayi* are CD-enriched under pooled CLR DA (confirming the preliminary report) but **CD-neutral or CD-depleted within each ecotype**. *M. gnavus* is CD↑ in E3 (+1.58 CLR-Δ) but CD↓ in E1 (−2.66) — opposite direction in different ecotypes. These findings substantially refine what "targeting R. gnavus" means operationally: it is a target for E3 patients, explicitly *not* for E1 patients.
-9. **A Simpson's-paradox class of findings emerges within ecotype.** *F. prausnitzii*, *R. hominis*, *L. eligens* — canonical protective commensals — appear **CD-enriched within each ecotype** (CLR-Δ +0.5 to +3.1) even though they are CD-depleted pooled. This reflects that HC samples in E1/E3 are atypical low-diversity healthy individuals whose baseline is lower than the CD subset in the same ecotype. **Interpretation**: within-ecotype DA is not a drop-in replacement for pooled DA — it answers a different question ("what differs between CD and HC with the *same* microbiome ecotype?"). The Tier-A candidate list from NB04 therefore requires NB05's layered scoring (engraftment evidence, literature mechanism, protective-analog exclusion) before any candidate is actionable as a phage target.
+1. **H2b (ecotype-specific targeting) is supported at high confidence.** Permutation null for Jaccard(top-30 E1, top-30 E3) under randomized ecotype labels yields mean 0.785 ± 0.054. Observed Jaccard = 0.104, empirical p = 0.000 over 200 permutations. Target sets genuinely diverge between E1 and E3 — this is not a random-overlap artifact. (Retracts NB04's original "Jaccard = 0.14 supports H2b" framing; the value was near the random-overlap baseline and did not have a null distribution attached. The conclusion survives; the statistic did not.)
+2. **H2c (paradox resolution) is retracted.** Under the confound-free within-IBD-substudy CD-vs-nonIBD meta-analysis (NB04c §3), *C. scindens* is genuinely CD↑ with pooled CLR-Δ = +1.18, FDR = 1e-8, and 4/4 sign concordance across sub-studies. The NB04 within-ecotype "n.s." call was an artifact of feature leakage (clustering samples on taxon abundances then testing the same taxa within cluster) — when the leakage is controlled via leave-one-species-out refit, *C. scindens* is CD↑ in both E1 and E3. There is no paradox to resolve; *C. scindens* behaves like a CD-associated species in this design.
+3. **Ecotype-specific Tier-A (rigor-controlled)**. Under a within-ecotype × within-substudy meta-analysis on the 4 IBD sub-studies that carry both CD and nonIBD (HallAB_2017, LiJ_2014, IjazUZ_2017, NielsenHB_2014; NB04e):
+   - **E1 Tier-A = 51 candidates**, meta-analysis across 2 sub-studies (HallAB_2017 + NielsenHB_2014, 82 CD / 280 nonIBD), all 100 % sign-concordant. Top candidates: *M. gnavus* (+4.85), *S. salivarius* (+3.26), *S. thermophilus* (+2.69), *Erysipelatoclostridium innocuum* (+2.65), *S. parasanguinis* (+2.44), *Enterocloster asparagiformis* (+2.41). This list is classical CD pathobionts — not the ecotype-marker commensals that NB04's within-ecotype DA spuriously produced.
+   - **E3 Tier-A = 40 candidates** from single-study HallAB_2017 (22 CD / 31 nonIBD). Flagged as provisional — needs replication. Top candidates: *H. symbiosa* (+4.64), *M. gnavus* (+4.46), *B. coccoides* (+4.22), *R. faecis* (+4.14), *C. spiroforme* (+4.11). E3-specific replication requires a second cMD-IBD study that populates E3 with both CD and nonIBD; this is blocked until HMP2 raw data (`PENDING_HMP2_RAW`) is ingested.
+4. **Cross-ecotype engraftment-confirmed pathobionts**. Under the within-IBD-substudy (non-stratified-by-ecotype) confound-free contrast, five of the six donor-2708-engraftment pathobionts pass as CD↑ with FDR < 0.10 and ≥ 66 % sign concordance: *M. gnavus* (+5.13), *E. lenta* (+2.30), *E. coli* (+1.43), *E. bolteae* (+1.09), *H. hathewayi* (+0.92). *K. oxytoca* is below prevalence filter and not tested. These are cross-ecotype targets independent of the NB04e ecotype-specific lists.
+5. **NB05 input set (rigor-controlled)**. Union of the E1 meta-viable Tier-A (51), the E3 provisional Tier-A (40), and the 5 engraftment-confirmed cross-ecotype pathobionts — after deduplication, approximately 70–90 unique species across the three categories. *M. gnavus* is the top candidate across all three categories.
 
 ### What this report does not yet contain
 
-**Pillars 3–5 and the rest of Pillar 2 are in progress.** NB05 (Tier-A scoring pipeline with A3/A4/A5/A6), NB06 (co-occurrence networks), Pillars 3–5 (functional drivers, phage targetability, UC Davis per-patient cocktails) all build on NB04's Tier-A candidate list and will land in a subsequent synthesis.
+**Pillars 3–5 and NB05–NB06 are in progress.** NB05 (Tier-A scoring pipeline with A3/A4/A5/A6) will consume the rigor-controlled Tier-A from NB04e; NB06 (co-occurrence networks) follows. Pillars 3–5 (functional drivers, phage targetability, UC Davis per-patient cocktails) land in subsequent syntheses.
 
 ## Key Findings
 
@@ -111,50 +116,128 @@ NB00 tests explanation (1) by running the same curated battery of 8 protective +
 - **Top reported pathobionts agree across methods**: *M. gnavus* (R. gnavus), *E. bolteae*, *E. lenta*, *H. hathewayi* all CD-enriched in both.
 - ***C. scindens* remains CD-enriched under both methods** (raw log₂FC +5.66; CLR Δ +1.25). Compositional correction alone is insufficient; explanations (2) and (3) remain live.
 
-**Implication**: the norm-N1 decision to re-analyze is justified. Pooled Mann-Whitney on relative abundance is systematically under-sensitive for protective-species depletion, an artifact of compositional bias plus pooled-cohort heterogeneity. The full resolution of the *C. scindens* signal requires within-ecotype stratification, which is the NB04 experiment (Pillar 2).
+**Implication**: the norm-N1 decision to re-analyze is justified. Pooled Mann-Whitney on relative abundance is systematically under-sensitive for protective-species depletion, an artifact of compositional bias plus pooled-cohort heterogeneity. *C. scindens* is not resolvable at this level — the resolution required a design that eliminates study confounding (see §5, NB04c's within-IBD-substudy CD-vs-nonIBD meta). Under that confound-free design *C. scindens* is CD↑, which is not a paradox but rather the expected behavior of a species that happens to be more prevalent in the IBD-cohort source studies than the healthy-cohort source studies in cMD.
 
 *(Notebook: NB00_data_audit.ipynb)*
 
-### 5. Within-ecotype DA resolves the *C. scindens* paradox and refines pathobiont targeting
+### 5. Within-ecotype × within-substudy meta-analysis defines ecotype-specific Tier-A (rigor-controlled)
 
-![H2c paradox-resolution heatmap — 14 curated species × 4 analysis levels](figures/NB04_h2c_paradox_resolution.png)
+> **Retraction and rigor repair — what NB04 claimed vs what this section presents**
+>
+> The original NB04 analysis (within-ecotype CD-vs-HC CLR Mann-Whitney, committed 2026-04-24 early, now superseded) made three headline claims, of which **two are retracted here**:
+>
+> 1. ~~**H2c — the *C. scindens* paradox is resolved by within-ecotype stratification.**~~ **Retracted.** Under the confound-free within-IBD-substudy CD-vs-nonIBD contrast, *C. scindens* is genuinely CD↑ (+1.18 CLR-Δ, FDR 1e-8, 4/4 sign-concordance across sub-studies); under leave-one-species-out refit, *C. scindens* is CD↑ within both E1 and E3 once it is not part of the clustering input. The NB04 within-ecotype n.s. call was a feature-leakage artifact (clustering samples on taxon abundance then testing the same taxon within cluster is selection-on-outcome confounding). The paradox was not a paradox.
+> 2. **H2b — target sets differ between ecotypes (Jaccard = 0.14).** ~~*Interpretation retained; statistic replaced.*~~ Jaccard 0.14 was near the random-overlap baseline (~0.10 for top-30 of ~300 filtered species). Under a permutation null (200 random-label permutations, null mean 0.785 ± 0.054), the observed Jaccard of 0.104 has empirical p = 0.000 — H2b survives strongly and the divergence is real, but the claim in NB04 rested on an effect size without a reference distribution, which is the wrong argument structure.
+> 3. ~~**NB04 Tier-A list (33 species: 18 E1, 15 E3).**~~ **Retracted.** The within-ecotype DA that produced this list was substantially driven by feature leakage (held-out-species sensitivity Jaccard: E1 = 0.230, E3 = 0.064, vs > 0.5 leakage-bounded threshold). When tested against an independent confound-free CD-vs-control contrast, 14 of 18 E1 candidates had *negative* within-substudy effects — they were ecotype-markers, not CD drivers.
+>
+> The rigor-repair pipeline that produced the replacement analysis in this section is NB04b (bootstrap CIs + leakage-bound sensitivity + LOO refit + Jaccard permutation null + ecotype stability) → NB04c (confound-free within-IBD-substudy CD-vs-nonIBD meta + LinDA in pure Python) → NB04d (rigor-controlled stopping rule) → NB04e (within-ecotype × within-substudy CD-vs-nonIBD meta). See `FAILURE_ANALYSIS.md` for the full arc. Two generalizable pitfalls from this repair are in `docs/pitfalls.md`: cMD substudy-nesting unidentifiability and feature leakage in cluster-stratified DA.
 
-Running CD-vs-HC DA at three stratification levels on 8,489 CMD samples (the same species set as NB00 for direct comparison):
+#### 5a. Confound-free design and why it works
 
-- Pooled raw Mann-Whitney — the preliminary report's method
-- Pooled CLR Mann-Whitney — what NB00 showed is strictly more sensitive for protective-species depletion
-- Within-ecotype CLR Mann-Whitney — stratified in E1 (n = 581 CD vs 759 HC) and E3 (n = 605 CD vs 114 HC), the two ecotypes with adequate disease + control sample sizes
+curatedMetagenomicData pools samples across ≈ 51 source studies. In the ecotype-assigned slice (8,489 samples), 45 sub-studies have ≥ 10 HC and 5 sub-studies have ≥ 10 CD, but **zero sub-studies contain both HC and CD**. CMD's healthy-cohort samples come from HC-only studies (LifeLinesDeep_2016, AsnicarF_2021, YachidaS_2019, …); CMD-IBD CD samples come from IBD-cohort studies (HallAB_2017, VilaAV_2018, LiJ_2014, IjazUZ_2017, NielsenHB_2014). A pooled CD-vs-HC LME with substudy random effect is therefore structurally unidentifiable (the random effect perfectly predicts diagnosis) — we verified empirically that `statsmodels.mixedlm` silently fails to converge on every battery species under this design.
 
-The heatmap above summarizes the result per curated species (8 protective + 6 reported-pathobiont + *A. rectalis* / *K. oxytoca* flagged NA where one side had insufficient data). Key signals:
+The confound-free contrast that *is* identifiable is **CD-vs-nonIBD within IBD sub-studies** — four cMD studies have ≥ 10 CD and ≥ 10 nonIBD (HallAB_2017: 89/73, LiJ_2014: 76/10, IjazUZ_2017: 56/38, NielsenHB_2014: 21/248). Within each sub-study, CLR-Δ is computed on the same samples processed the same way by the same group, with no study-level confound. Inverse-variance weighted meta-analysis across sub-studies combines into a cohort-level effect; stratifying the contrast by ecotype before meta-analysis produces the ecotype-specific effect. Because ecotype and CD-effect are computed on disjoint axes (samples partitioned by ecotype; CLR-Δ computed within each partition across sub-studies), there is no feature-leakage self-reference.
 
-**H2c supported — *C. scindens* paradox resolved**:
-- Pooled raw: CD↑ +4.3 (biologically implausible for a protective species)
-- Pooled CLR: CD↑ +1.0 (narrowed but not fixed)
-- E1 CLR: **n.s. −0.11** (FDR 0.10)
-- E3 CLR: **n.s. +0.32** (FDR 0.61)
+#### 5b. NB04c cohort-level within-substudy CD-vs-nonIBD meta recovers the canonical CD signature
 
-The pooled CD-enrichment came from CD patients being more common in E1/E3, where *C. scindens* prevalence happens to differ from E0/E2 — not from any within-ecotype CD effect. *R. intestinalis* shows a similar (but partial) resolution: pooled raw CD↑, pooled CLR CD↓, E1 n.s., E3 CD↑ +2.5 (so still CD-enriched within the severe-disease ecotype).
+Across the four IBD sub-studies (242 CD / 369 nonIBD pooled), the 14-species curated battery produces the expected canonical CD signature — pathobionts up, protective commensals down — with strong sign concordance:
 
-**Classical pathobiont reality check**:
+| Species | Pooled CLR-Δ | FDR | Sign concordance |
+|---|---:|---:|---:|
+| *Mediterraneibacter gnavus* | **+5.13** | ~0 | 4/4 |
+| *Eggerthella lenta* | +2.30 | 4e-9 | 4/4 |
+| *Escherichia coli* | +1.43 | 2e-4 | 3/4 |
+| ***Clostridium scindens*** | **+1.18** | 1e-8 | **4/4** |
+| *Enterocloster bolteae* | +1.09 | 3e-6 | 4/4 |
+| *Hungatella hathewayi* | +0.92 | 5e-4 | 3/4 |
+| *Bilophila wadsworthia* | +0.07 | n.s. | 3/4 |
+| *Lachnospira eligens* | −1.01 | 4e-3 | 3/4 |
+| *Roseburia intestinalis* | −1.14 | 2e-3 | 4/4 |
+| *Akkermansia muciniphila* | −1.30 | 3e-3 | 3/4 |
+| *Faecalibacterium prausnitzii* | −1.67 | 9e-8 | 4/4 |
+| *Roseburia hominis* | −1.77 | 4e-7 | 4/4 |
+| *Coprococcus eutactus* | −3.09 | 4e-15 | 4/4 |
 
-- *M. gnavus*: pooled CD↑ +2.2 CLR / E1 **CD↓ −2.7** / **E3 CD↑ +1.6** — opposite direction in different ecotypes. *Legitimately* an E3 target. Not an E1 target.
-- *E. bolteae*: pooled CD↑ +1.7 CLR / E1 CD↓ −1.6 / E3 n.s. +0.6. **The pooled CD↑ signal is not confirmed within any ecotype.**
-- *E. lenta*: pooled n.s. CLR / E1 CD↓ −2.4 / E3 CD↓ −0.8. **Not CD-enriched within ecotype at all.**
-- *H. hathewayi*: pooled CD↑ +0.9 CLR / E1 CD↓ −1.4 / E3 n.s. −0.1.
+This flatly contradicts NB04's within-ecotype calls for several species. NB04 called *F. prausnitzii* / *R. hominis* / *L. eligens* CD↑ within both E1 and E3 (the "Simpson's paradox" of the original section 5) — the confound-free analysis shows they are CD↓, consistent with their classical protective-commensal role. NB04's *C. scindens* "n.s." within both ecotypes is similarly contradicted. The within-ecotype DA in NB04 was producing direction reversals as a compound artifact of feature leakage plus the pooled-cohort substudy × diagnosis confound — both compositional-bias-aware DA methods we tried on the within-ecotype subsets (CLR-MW and LinDA) share the bias, so n_evidence from within-ecotype methods alone does not resolve it.
 
-This does not invalidate the classical pathobionts as phage targets — their engraftment evidence from donor 2708 (Pillar 2 A5 criterion) remains strong, and the strain-level biology (AIEC in *E. coli*, glucorhamnan in *M. gnavus*, *E. lenta* IBD-adaptation genes in the Kumbhari data) is intact. **It does mean the pooled-cohort DA signal is not the right tool for ranking targets.** The Tier-A scoring pipeline in NB05 will weight causal / mechanistic evidence alongside within-ecotype DA.
+![Permutation null for E1↔E3 Jaccard divergence (NB04b §4)](figures/NB04b_jaccard_null.png)
 
-**H2b supported** — **Jaccard(top-30 CD-enriched E1 vs E3) = 0.14**. Out of the top-30 Tier-A candidates in each ecotype, only 4 are shared (*D. longicatena*, *F. prausnitzii*, *R. faecis*, *E. rectale*). E1 has 14 unique top-targets (commensal-heavy: *B. caccae*, *C. comes*, *A. putredinis*, *D. longicatena*, *C. aerofaciens*, *R. hominis*, *L. eligens* — the Simpson's-paradox class). E3 has 11 unique top-targets (recognizable-disease: *A. hadrus*, *F. plautii*, *M. gnavus*, *B. fragilis*, *D. invisus*, *P. distasonis*).
+#### 5c. NB04e ecotype-specific Tier-A under within-ecotype × within-substudy meta
 
-![Top Tier-A CD-enriched per ecotype — CLR-Δ heatmap](figures/NB04_top_tier_a_per_ecotype.png)
+Stratifying the within-substudy CD-vs-nonIBD contrast by ecotype before meta-analysis tests whether the canonical CD signature differs by ecotype and produces ecotype-specific Tier-A lists that are structurally free of leakage. Three (substudy × ecotype) cells meet the ≥ 10 CD AND ≥ 10 nonIBD eligibility bar:
 
-**Tier-A candidate pool for NB05**:
-- E1: 18 species passing A1 (prevalence ≥ 50 % in CD within E1) + A2 (CLR-Δ > 0.5 AND FDR < 0.05) — `data/nb04_tier_a_candidates.tsv`.
-- E3: 15 species passing the same criteria.
+| Ecotype | Substudy | n_CD | n_nonIBD | Status |
+|---|---|---:|---:|---|
+| E1 | HallAB_2017 | 67 | 41 | eligible |
+| E1 | NielsenHB_2014 | 15 | 239 | eligible |
+| E3 | HallAB_2017 | 22 | 31 | eligible |
 
-These enter NB05 for filtering against A3 (literature mechanism via paperblast), A4 (protective-analog exclusion), A5 (engraftment from donor 2708 + Kumbhari strain-adaptation), A6 (BGC co-occurrence).
+E0 and E2 are not viable — these are the healthy-cohort ecotypes; no IBD-study nonIBD samples live in them. E1 is **meta-viable across two sub-studies**; E3 is **single-study-only** (HallAB_2017).
 
-*(Notebook: NB04_within_ecotype_DA.ipynb)*
+**E1 Tier-A (meta-analysis, 51 candidates, all 100 % sign-concordant across sub-studies, FDR < 0.10, pooled CLR-Δ > 0.5)**:
+
+| Rank | Species | CLR-Δ | FDR |
+|---:|---|---:|---:|
+| 1 | *Mediterraneibacter gnavus* | +4.85 | 2e-12 |
+| 2 | *Streptococcus salivarius* | +3.26 | 2e-9 |
+| 3 | *Streptococcus thermophilus* | +2.69 | 4e-6 |
+| 4 | *Erysipelatoclostridium innocuum* | +2.65 | 4e-7 |
+| 5 | *Streptococcus parasanguinis* | +2.44 | 2e-6 |
+| 6 | *Enterocloster asparagiformis* | +2.41 | 2e-9 |
+| 7 | *Intestinibacter bartlettii* | +2.36 | 3e-5 |
+| 8 | *Hungatella symbiosa* | +2.23 | 1e-5 |
+| 9 | *Gordonibacter pamelaeae* | +2.18 | 2e-5 |
+| 10 | *Erysipelatoclostridium ramosum* | +2.16 | 4e-6 |
+| … 41 additional candidates | | | |
+
+Full list: `data/nb04e_within_ecotype_meta.tsv`.
+
+**Biological coherence of the E1 Tier-A.** The rigor-controlled E1 list organizes into three biologically coherent groups that the retracted NB04 list did not:
+
+- **Oral-derived streptococci as ectopic colonizers (ranks 2, 3, 5)** — *S. salivarius*, *S. thermophilus*, *S. parasanguinis* are canonical oral-cavity species; their enrichment in CD stool is consistent with the "oral-gut axis" ectopic-colonization literature for IBD (Xiang 2024, PMID 39188957; Guo 2024, PMID 38545880; Tanwar 2023, PMID 37645044) and with the specific finding that *S. salivarius* is a salivary biomarker for orofacial granulomatosis co-occurring with CD (Goel 2019, PMID 30796823). Caveat: *S. thermophilus* appears in anti-inflammatory multi-strain probiotic formulations (Biagioli 2020, PMID 32629887) — its CD↑ signal at the species level does not automatically imply pathobiont status; strain-level evidence (A3 literature, A5 engraftment) is the NB05 disambiguation step.
+- **Vancomycin-resistant pathobionts (rank 4)** — *Erysipelatoclostridium innocuum* is specifically documented as a vancomycin-resistant pathobiome in IBD with clinically consequential phenotypes (creeping-fat formation and intestinal strictures in CD; reduced UC remission rates); FMT is under evaluation as an intervention (Le 2025, PMID 40074633). Of the E1 Tier-A, *E. innocuum* is the candidate with the strongest stand-alone clinical-association evidence independent of this project's data.
+- **Clostridiales-expansion pathobionts (ranks 6–10)** — *Enterocloster asparagiformis*, *Intestinibacter bartlettii*, *Hungatella symbiosa*, *Erysipelatoclostridium ramosum*, and the related clostridial reclassifications (*E. bolteae*, *E. clostridioformis*, *E. citroniae* in the lower-ranked list) are species in the Lachnospiraceae / Erysipelotrichaceae expansion characteristic of the Bacteroides-2 dysbiosis subtype (Vandeputte 2017) that defines E1. Their appearance in E1 Tier-A reflects the underlying ecology rather than being an ecotype-marker artifact — the within-substudy meta-analysis controls for the selection-on-outcome pattern that produced the original NB04 E1 list.
+- **Polyphenol-metabolism taxa as ambiguous CD-associated (rank 9)** — *Gordonibacter pamelaeae* produces urolithins from dietary ellagitannins (Selma 2014, PMID 24744017) and increases during microbiome recovery from dysbiosis-inducing insult (Tierney 2023, PMID 36840551), which makes its CD↑ signal in E1 difficult to interpret as pathobiont activity. Flag for Tier-A-A4 protective-analog exclusion in NB05.
+
+**E3 Tier-A (provisional, 40 candidates, single-study HallAB_2017)**: top candidates *H. symbiosa* (+4.64), *M. gnavus* (+4.46), *B. coccoides* (+4.22), *R. faecis* (+4.14), *C. spiroforme* (+4.11), *S. salivarius* (+4.04), *E. innocuum* (+3.68). *F. plautii* replicates at +2.26 (FDR 0.02). *Blautia wexlerae* does **not** replicate (+0.25, FDR 0.80) — the NB04d "rock-solid E3 triad" that included *B. wexlerae* relied on NB04c's cohort-level within-substudy evidence rather than the E3-restricted within-substudy evidence; under the stricter E3 × HallAB_2017 test, *B. wexlerae* is removed from the rock-solid set.
+
+The E3 list should be treated as provisional until a second cMD-IBD sub-study that populates E3 with ≥ 10 CD and ≥ 10 nonIBD samples becomes available (candidate: HMP2 once `PENDING_HMP2_RAW` is resolved).
+
+#### 5d. Classical pathobiont reality check (revised)
+
+Under the confound-free design, the classical engraftment pathobionts from donor 2708 → P1 → P2 are *unambiguously* CD-enriched — the opposite of what NB04's within-ecotype analysis suggested:
+
+| Species | Within-substudy CD-vs-nonIBD | NB04 within-ecotype (retracted) |
+|---|---|---|
+| *M. gnavus* | +5.13 (FDR 0, 4/4) | E1 CD↓ −2.7, E3 CD↑ +1.6 |
+| *E. lenta* | +2.30 (FDR 4e-9, 4/4) | E1 CD↓ −2.4, E3 CD↓ −0.8 |
+| *E. coli* | +1.43 (FDR 2e-4, 3/4) | E1 CD↓ −1.8, E3 CD↓ −0.9 |
+| *E. bolteae* | +1.09 (FDR 3e-6, 4/4) | E1 CD↓ −1.6, E3 n.s. +0.6 |
+| *H. hathewayi* | +0.92 (FDR 5e-4, 3/4) | E1 CD↓ −1.4, E3 n.s. −0.1 |
+| *K. oxytoca* | below prevalence filter | — |
+
+5 of 6 engraftment pathobionts pass the confound-free CD↑ test. The NB04 within-ecotype "these pathobionts are ecotype-markers, not CD drivers" narrative is retracted — they *are* CD drivers under any analysis that controls for study confounding; the within-ecotype DA was systematically reversing their sign because the HC samples in each ecotype came from entirely different source studies than the CD samples in the same ecotype.
+
+#### 5e. Stopping rule and NB05 input
+
+NB04d formalized a rigor-controlled stopping rule for NB05:
+
+| Criterion | Threshold | E1 | E3 |
+|---|---|---|---|
+| 1. Feature-leakage bound (held-out-species Jaccard) | > 0.5 | 0.230 ✗ | 0.064 ✗ |
+| 2. Ecotype-specific Tier-A (NB04e) | ≥ 3 | 51 ✓ | 40 ✓ (single-study) |
+| 3. Engraftment pathobionts under confound-free contrast | ≥ 3 of 6 | 5/5 tested ✓ (cohort-level) |
+| 4. Ecotype framework internal stability (bootstrap ARI) | > 0.30 | 0.16 ✗ |
+
+Criterion 1 fails in both ecotypes and documents that NB04's original within-ecotype Tier-A cannot be trusted directly — but NB04e's rigor-controlled within-ecotype × within-substudy meta is structurally immune to the leakage (clustering axis and DA axis are disjoint). Criterion 4 fails and documents that the ecotype framework is internally marginally stable (ARI 0.13–0.17 across 5 × 80 % subsamples); the framework is usable for downstream stratification (NB02 projection is deterministic once fit) but is not externally replicated and must be flagged.
+
+**Per-ecotype NB05 verdict**:
+
+- **E1** — PROCEED with the 51-candidate meta-viable Tier-A. Confound-free, multi-study support, canonical-pathobiont enrichment at the top.
+- **E3** — PROCEED WITH CAVEAT using the 40-candidate single-study Tier-A. Replication is the first follow-up (HMP2 ingestion is the unblock).
+- **Cross-ecotype** — the 5 engraftment-confirmed pathobionts are cross-ecotype candidates (NB04c §3).
+
+*(Notebooks: NB04_within_ecotype_DA.ipynb superseded; NB04b_analytical_rigor_repair.ipynb, NB04c_rigor_repair_completion.ipynb, NB04d_stopping_rule.ipynb, NB04e_option_A_viability.ipynb are the rigor-controlled pipeline.)*
 
 ### 6. Taxonomy synonymy layer is the project's reusable foundation
 
@@ -178,8 +261,9 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 - **DMM vs LDA**: Holmes et al. (2012) introduced Dirichlet multinomial mixtures as the canonical ecotype-discovery method. In practice LDA on pseudo-counts yields equivalent assignments on samples of this scale (Ding & Schloss 2014; we confirmed by cross-method ARI with an independent CLR-based GMM).
 - **Enterotype reproducibility**: Costea et al. (2018) argue that "discrete ecotypes" are better modeled as gradients than hard clusters. Our K = 4 assignments have 48.9 % between-method agreement — consistent with this (the microbiome continuum is real; we discretize for operational purposes).
 - **Pooled-cohort confounding**: Vujkovic-Cvijin et al. (2020) show that pooled multi-cohort microbiome DA is heavily confounded by host variables (age, diet, geography). Our H1c finding — that `is_ibd` dominates classifier AUC and collapses on a single-cohort test — is a concrete instance of the same problem.
-- **Compositional DA**: Gloor et al. (2017) and Lin & Peddada (2020) establish that raw Mann-Whitney on relative abundance is systematically biased by the sum-to-constant constraint. NB00 reproduces this directly on a curated battery.
-- **Pathobiont biology**: *R. gnavus* produces an inflammatory glucorhamnan polysaccharide (Henke et al. 2019); AIEC drives ileal CD mucosal invasion (Darfeuille-Michaud et al. 2004). These are the project's Tier-A candidate validation anchors.
+- **Compositional DA**: Gloor et al. (2017), Lin & Peddada (2020), and Tsilimigras & Fodor (2016) establish that raw Mann-Whitney on relative abundance is systematically biased by the sum-to-constant constraint. Zhou et al. (2022) introduce LinDA (linear CLR regression with bias correction) as a simple pure-Python-implementable alternative that we use as the second-method concordance check in NB04c §4. NB00 reproduces the compositional-bias result directly on a curated battery.
+- **Pathobiont biology**: *R. gnavus* produces an inflammatory glucorhamnan polysaccharide (Henke et al. 2019); AIEC drives ileal CD mucosal invasion (Darfeuille-Michaud et al. 2004). *E. innocuum* is a vancomycin-resistant CD-associated pathobiome correlated with creeping-fat and intestinal strictures (Le et al. 2025). These are the project's Tier-A candidate validation anchors.
+- **Oral-gut axis in IBD**: a growing literature (Xiang 2024, Guo 2024, Tanwar 2023, Zhou 2023) documents oral-cavity species as ectopic colonizers of the IBD gut and argues for an "oral-gut axis" in disease pathogenesis. The top E1 Tier-A candidates *S. salivarius*, *S. thermophilus*, and *S. parasanguinis* are all oral streptococci; their within-substudy CD-enrichment is consistent with this framework. *S. salivarius* is specifically reported as a salivary biomarker for orofacial granulomatosis co-occurring with CD (Goel 2019). This is a methodologically important consistency check — it is biology we would expect the rigor-controlled analysis to surface, which the leakage-contaminated NB04 analysis instead produced as "commensal Simpson's paradox" noise.
 
 ### Novel contributions
 
@@ -188,19 +272,24 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 3. **Kaiju ↔ MetaPhlAn3 projection asymmetry** — LDA robust, CLR+GMM fragile. Directly relevant to any multi-classifier microbiome pipeline.
 4. **Project-wide synonymy layer** as a reusable artifact for multi-cohort microbiome work.
 5. **Four-ecotype IBD framework with disease-stratifying signal** on 8.5 K samples — reproduces published enterotype structure with improved disease resolution (E1 transitional vs E3 severe within Bacteroides-dominant).
-6. **Within-ecotype DA dissolves most of the preliminary pooled "pathobiont" signal.** The standard pooled-cohort DA pipeline (Mann-Whitney on relative abundance) produces a target list that is *ecotype-distribution-driven*: species called CD-enriched are often species more prevalent in ecotypes where CD patients cluster, not species that differ between CD and HC within a shared ecotype. Stratification changes the call for ~4 / 6 of the preliminary report's top pathobionts. This is the direct methodological finding that justifies the project's per-ecotype cocktail-design structure.
-7. ***C. scindens* paradox documented with three-level attribution.** By running pooled raw, pooled CLR, and within-ecotype CLR on the same data, NB04 separates (a) compositional bias from (b) ecotype-heterogeneity confounding. *C. scindens* is a case of (b) alone; *R. intestinalis* is (a) + partial (b); *F. prausnitzii / R. hominis / L. eligens* are reversed-direction Simpson's-paradox cases where within-ecotype CD is actually enriched. The method-by-method contribution to each species's pooled-DA call is a generalizable audit for any multi-cohort microbiome DA.
+6. **cMD substudy × diagnosis nesting as a structural-unidentifiability finding**. In the ecotype-assigned slice of curatedMetagenomicData, 45 sub-studies have ≥ 10 HC samples and 5 have ≥ 10 CD samples, but **zero have both**. A pooled CD-vs-HC LME with substudy random effect is therefore structurally unidentifiable — empirically verified by `statsmodels.mixedlm` silently failing to converge on every battery species. The confound-free alternative is **within-IBD-substudy CD-vs-nonIBD** (4 cMD studies carry both groups). This pattern applies to any pooled public-dataset case-vs-control analysis where the case and control cohorts were collected by different groups. Documented in `docs/pitfalls.md`.
+7. **Feature leakage in cluster-stratified DA as a general methodological hazard.** Clustering samples by taxon abundance and then running DA on the same taxa within cluster is selection-on-outcome confounding — within-cluster effect sizes are mechanically inflated for cluster-defining taxa. Detectable via held-out-species sensitivity (bound: Jaccard > 0.5 = leakage bounded) or leave-one-species-out refit. Our NB04b measurements (E1 Jaccard 0.230, E3 Jaccard 0.064) confirmed the NB04 within-ecotype Tier-A was substantially leakage-driven. Analogous bug in single-cell DE: clustering on gene expression then testing gene DE within cluster. Documented in `docs/pitfalls.md`.
+8. **Within-ecotype × within-substudy meta-analysis as the confound-free stratified design**. NB04e establishes the analysis form that simultaneously (a) eliminates feature leakage (clustering axis and DA axis are disjoint — samples are partitioned by ecotype, CLR-Δ is computed across sub-studies within a partition) and (b) eliminates study confounding (within-substudy contrast has no study-level variation). The design fails gracefully when (substudy × ecotype × diagnosis) cells are too small and reports explicitly which ecotypes are meta-viable, single-study-only, or not viable. This is the methodological contribution most directly portable to other disease-microbiome projects.
+9. **Adversarial review as a required complement to `/berdl-review` on methodologically nuanced projects**. Two independent `/berdl-review` runs on the pre-rigor-repair NB04 state concluded "no critical issues"; an adversarial reviewer (general-purpose Agent with explicit "find flaws" framing) caught 5 critical + 6 important issues, all empirically confirmed by NB04b + NB04c. Full arc and methodology recommendations in `FAILURE_ANALYSIS.md` and `docs/discoveries.md`.
 
 ### Limitations
 
-- **HMP2 MetaPhlAn3 not yet ingested** (`PENDING_HMP2_RAW` in `lineage.yaml`). HMP2 projection and HMP2 serology × ecotype integration (plan H3e) are deferred until raw is reprocessed.
+- **Ecotype framework is internally marginally stable (bootstrap ARI 0.13–0.17; external replication pending)**. NB04b §7 (5 × 80 %-subsample LDA refits) yields median ARI 0.160, range [0.129, 0.169] — well below an ARI-> 0.30 bar. The framework is usable for downstream stratification (NB02 projection is deterministic once fit) and for the NB04e confound-free Tier-A (which does not depend on ecotype stability across resamples), but the "four reproducible ecotypes" framing should be qualified. External replication via MGnify projection is the priority unblock.
+- **E3 Tier-A is single-study evidence**. NB04e's E3 list (40 candidates) derives entirely from HallAB_2017 (22 CD / 31 nonIBD in E3). No second cMD-IBD sub-study populates E3 with ≥ 10 CD and ≥ 10 nonIBD; HMP2 ingestion (`PENDING_HMP2_RAW`) is the primary unblock for E3 replication.
+- **E0 and E2 have no viable Pillar 2 analysis in cMD**. These are the healthy-cohort ecotypes (E0 is 66.8 % of HC; E2 is the *P. copri* enterotype, almost entirely non-Western healthy). No IBD sub-study in cMD populates them with nonIBD controls, so the confound-free CD-vs-nonIBD contrast is not computable. If UC Davis has E0 patients (27 % of the cohort), the Tier-A for those patients must be drawn from cross-ecotype cohort-level evidence (the 5 engraftment-confirmed pathobionts) or from ecotype-agnostic within-substudy CD-vs-nonIBD.
+- **HMP2 MetaPhlAn3 not yet ingested** (`PENDING_HMP2_RAW` in `lineage.yaml`). HMP2 reingestion will (a) add a second IBD sub-study to the E3 stratification, unblocking Tier-A replication; (b) expand CMD + HMP2 to ≈ 11.5 K samples for a stability-improved ecotype refit; (c) enable HMP2 serology × ecotype integration (plan H3e).
 - **UC Davis n = 23 patients**. The per-patient cocktail drafts (Pillar 5) are informed by a small cohort; generalization requires validation on external CD cohorts.
-- **Kaiju vs MetaPhlAn3 classifier mismatch** (documented above). Limits confidence in UC Davis ecotype calls; LDA is more trustworthy than GMM here.
+- **Kaiju vs MetaPhlAn3 classifier mismatch** (NB02). Limits confidence in UC Davis ecotype calls; LDA is more trustworthy than GMM here. Documented in `docs/discoveries.md`.
 - **Within-ecotype disease-vs-HC training data is limited for E2 and E0 in the extended classifier subset** (3 and 11 samples respectively). The extended classifier is effectively an E1-vs-E3 binary in practice.
 - **Ecotype calls are hard cluster assignments** of an underlying continuum (Costea 2018). Soft probabilities are preserved in `data/ecotype_assignments.tsv` for downstream use; hard calls should be treated as operational labels, not biology.
-- **E3 HC sample size is small (n = 114)**. Within-ecotype DA in E3 has wider confidence intervals than in E1 (n = 759 HC). Effect sizes in E3 are robust where large (|CLR-Δ| > 2) but marginal calls (e.g., *M. gnavus* +1.6 in E3, *E. bolteae* +0.6 in E3) should be interpreted with caution. HMP2 reingestion (`PENDING_HMP2_RAW`) will increase the E3 HC count.
-- **Within-ecotype DA answers a different biological question than pooled DA**. NB04's Tier-A candidates include commensals (*F. prausnitzii*, *R. hominis*, *L. eligens*, *A. putredinis*, etc.) that appear CD-enriched within ecotype under the Simpson's-paradox pattern. These are **candidates for Pillar 2 scoring, not directly actionable as phage targets** — NB05 layers on causality (A5 engraftment), mechanism (A3 literature), and protective-analog exclusion (A4) before a Tier-A species becomes a Tier-A *target*.
-- **NB04 uses CLR + Mann-Whitney as the sole compositional-DA method**. Plan originally called for ANCOM-BC + MaAsLin2 + LinDA consensus. ANCOM-BC and MaAsLin2 are R-only; NB00 already validated CLR + MW on a curated battery. The three-method consensus would tighten statistical claims but is unlikely to change the qualitative H2b/H2c verdicts. Deferred to a publication-grade re-analysis via rpy2.
+- **Multi-method DA consensus is partial**. The plan called for ≥ 2 / 3 of {ANCOM-BC, MaAsLin2, LinDA} methods to agree. We implemented LinDA in pure Python (NB04c §4) to avoid the R/rpy2 dependency; the NB04c bootstrap-CI and NB04e within-substudy-meta outputs serve as additional independent evidence streams but are not drop-in ANCOM-BC / MaAsLin2 substitutes. A full three-method R-native consensus is a publication-grade follow-up.
+- **Bootstrap-stable within-ecotype DA shares the feature-leakage bias with CLR-MW**. Both CLR-MW (NB04) and LinDA (NB04c) operate on the same ecotype-defined subsamples and therefore share the selection-on-outcome bias. Only the within-substudy CD-vs-nonIBD contrast (NB04c §3, NB04e) is an independent evidence source. The NB04d Tier-A gating requires within-substudy concordance precisely because bootstrap + LinDA are not independent evidence streams.
+- **Pillar 2 cross-cohort replication is weak**. Single-study E3 evidence combined with marginal ecotype stability means the Tier-A list (particularly E3) should be treated as hypotheses for further experimental validation rather than established targets. Pillar 5 UC-Davis cocktail drafts will inherit this limitation; the NB15+ notebooks should annotate per-candidate cross-cohort support explicitly.
 
 ## Data
 
@@ -226,11 +315,24 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `data/ucdavis_patient_ecotype_summary.tsv` | 23 | Per-patient ecotype call merged with clinical covariates |
 | `data/ucdavis_clinical_ecotype_prediction.tsv` | 23 | Classifier-only ecotype predictions for agreement testing |
 | `data/nb00_protective_species_da_comparison.tsv` | 14 | Raw-MW vs CLR-MW calls for the protective-species battery |
-| `data/nb04_h2c_protective_battery.tsv` | 15 | Per-species verdict across pooled raw / pooled CLR / E1 CLR / E3 CLR |
-| `data/nb04_tier_a_candidates.tsv` | 33 | Tier-A A1 + A2 passing species per ecotype (E1: 18, E3: 15) |
-| `data/nb04_da_ecotype_1.tsv` | 248 | Full within-E1 CD-vs-HC CLR MW DA at FDR < 0.1 |
-| `data/nb04_da_ecotype_3.tsv` | 201 | Full within-E3 CD-vs-HC CLR MW DA at FDR < 0.1 |
+| `data/nb04_h2c_protective_battery.tsv` | 15 | **(superseded)** Per-species verdict across pooled raw / pooled CLR / E1 CLR / E3 CLR; kept for audit |
+| `data/nb04_tier_a_candidates.tsv` | 33 | **(retracted)** Original NB04 within-ecotype Tier-A; kept for audit |
+| `data/nb04_da_ecotype_1.tsv` | 248 | **(superseded)** Full within-E1 CD-vs-HC CLR-MW DA at FDR < 0.1 |
+| `data/nb04_da_ecotype_3.tsv` | 201 | **(superseded)** Full within-E3 CD-vs-HC CLR-MW DA at FDR < 0.1 |
 | `data/nb04_da_pooled_clr.tsv` | 321 | Pooled CLR MW for reference |
+| `data/nb04b_battery_bootstrap_ci.tsv` | 45 | 14-species battery × {pooled, E1, E3} bootstrap CIs with TOST-equivalence verdict |
+| `data/nb04b_battery_LOO.tsv` | 26 | Leave-one-species-out refit verdicts for the battery |
+| `data/nb04b_held_out_sensitivity.tsv` | 10 | Held-out-species sensitivity Jaccards (leakage bound) |
+| `data/nb04b_tier_a_refined.tsv` | 33 | NB04b bootstrap-CI refinement of NB04 Tier-A (intermediate) |
+| `data/nb04c_within_substudy_cd_nonibd.tsv` | 152 | Per species × substudy CD-vs-nonIBD bootstrap CI |
+| `data/nb04c_within_substudy_meta.tsv` | 38 | Cohort-level IVW meta-analysis across 4 IBD substudies |
+| `data/nb04c_linda.tsv` | 1,005 | LinDA bias-corrected per species × {pooled, E1, E3} |
+| `data/nb04c_lme.tsv` | 0 | Empty — documents that pooled CD-vs-HC LME is structurally unidentifiable |
+| `data/nb04c_tier_a_refined.tsv` | 33 | 3-way-evidence refinement (bootstrap + LinDA + within-substudy) |
+| `data/nb04d_stopping_rule_verdict.json` | — | Per-ecotype stopping-rule verdict + NB05 input set |
+| `data/nb04e_per_cell_DA.tsv` | 1,005 | Per (ecotype × substudy) cell within-ecotype × within-substudy DA |
+| `data/nb04e_within_ecotype_meta.tsv` | 670 | **Rigor-controlled Tier-A** — per-ecotype meta-analysis across eligible substudies |
+| `data/nb04e_option_A_viability.json` | — | Option A (within-ecotype × within-substudy) viability verdict |
 | `data/table_schemas.md` | — | Audit-committed schema documentation for the CrohnsPhage mart |
 
 ## Supporting Evidence
@@ -244,7 +346,11 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB01b_ecotype_refit.ipynb` | K = 4 consensus refit via cross-method ARI + parsimony |
 | `NB02_ecotype_projection.ipynb` | UC Davis Kuehl projection onto K = 4 (LDA primary, GMM advisory) |
 | `NB03_clinical_ecotype_classifier.ipynb` | H1c classifier (minimal + extended) with UC Davis translation test |
-| `NB04_within_ecotype_DA.ipynb` | Within-ecotype CD-vs-HC CLR DA for H2c / H2b; Tier-A A1+A2 scoring; *C. scindens* paradox resolution |
+| `NB04_within_ecotype_DA.ipynb` | **(superseded, kept for audit)** Original within-ecotype CD-vs-HC CLR DA; NB04 claims 1 and 2 retracted — see §5 retraction box |
+| `NB04b_analytical_rigor_repair.ipynb` | Bootstrap CIs + TOST-equivalence verdicts, held-out-species sensitivity (leakage bound), LOO refit, Jaccard permutation null (H2b), ecotype bootstrap stability |
+| `NB04c_rigor_repair_completion.ipynb` | Proper substudy resolution; confound-free within-IBD-substudy CD-vs-nonIBD meta; LinDA in pure Python; LME unidentifiability documentation; 3-way-evidence refined Tier-A |
+| `NB04d_stopping_rule.ipynb` | Formalized stopping rule for NB05 (4 criteria); per-ecotype verdict; NB05 input candidate set |
+| `NB04e_option_A_viability.ipynb` | Within-ecotype × within-substudy cell counts + DA; rigor-controlled E1 + E3 Tier-A via meta-analysis across eligible sub-studies |
 
 ### Figures
 
@@ -261,8 +367,9 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB02_ucdavis_ecotype_x_clinical.png` | UC Davis ecotype × Montreal location + ecotype × medication class |
 | `NB03_feature_importance.png` | Classifier feature importance, minimal vs extended |
 | `NB03_h1c_auc.png` | OvR AUCs per ecotype vs 0.70 threshold |
-| `NB04_h2c_paradox_resolution.png` | 14 curated species × pooled raw / pooled CLR / E1 CLR / E3 CLR — the H2c paradox-resolution heatmap |
-| `NB04_top_tier_a_per_ecotype.png` | Union of top-15 Tier-A CD-enriched species per ecotype, CLR-Δ heat |
+| `NB04_h2c_paradox_resolution.png` | **(superseded)** 14 curated species × pooled raw / pooled CLR / E1 CLR / E3 CLR — the NB04 heatmap; kept for audit |
+| `NB04_top_tier_a_per_ecotype.png` | **(superseded)** Union of top-15 NB04 within-ecotype Tier-A; kept for audit |
+| `NB04b_jaccard_null.png` | Permutation-null + observed Jaccard for H2b (200 perms; empirical p = 0.000) |
 
 Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatmap.png`, `NB01_*.png` (legacy K = 8 fit preserved for methodology audit).
 
@@ -270,18 +377,20 @@ Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatma
 
 Pillars 2–5 remain. Brief outline of what each will add, keyed to plan v1.3:
 
-- **Pillar 2 (NB04–NB06)** — within-ecotype compositional-aware DA (the H2c *C. scindens* paradox resolution experiment), Tier-A scoring pipeline for pathobiont candidates, co-occurrence network analysis per ecotype.
+- **Pillar 2 (NB04 superseded by NB04b+c+d+e; NB05–NB06 pending)** — confound-free within-IBD-substudy × within-ecotype meta-analysis establishes ecotype-specific Tier-A (rigor-controlled); NB05 Tier-A scoring pipeline consumes that list, NB06 runs co-occurrence network analysis per ecotype.
 - **Pillar 3 (NB07–NB11)** — within-ecotype pathway DA (CMD_IBD only per scope 1a), BGC / CB-ORF mechanism attribution, metabolomics untargeted + 35-compound cross-cohort bridge, strain-adaptation gene analysis (extending the *E. lenta* pattern to all 59 Kumbhari species), HMP2 serology × microbiome integration.
 - **Pillar 4 (NB12–NB14)** — pathobiont × phage coverage matrix (PhageFoundry + external phage DBs), CRISPR-Cas spacer analysis, endogenous phageome stratification per ecotype.
 - **Pillar 5 (NB15–NB17)** — UC Davis medication-class harmonization, per-patient pathobiont ranking and candidate phage cocktail draft, longitudinal stability check (patient 6967's E1 ↔ E3 shift will be a central test), cross-cutting synthesis.
 
 ## Future Directions
 
-1. **NB04 (immediate next step)** — does within-ecotype stratification fully resolve *C. scindens* and *R. intestinalis*? Test H2c.
-2. **HMP2 MetaPhlAn3 re-ingestion** — once `PENDING_HMP2_RAW` clears, refit ecotypes on CMD + HMP2 (≈ 10 K → 11.5 K samples), project Franzosa medication metadata through, and test whether the H1c classifier improves on the larger / better-covered cohort.
-3. **External cohort validation** — MGnify (`kescience_mgnify`) contains independent IBD-cohort studies. Project them onto the K = 4 embedding to test ecotype replication. Non-Western cohorts would also test E2 coverage beyond our single healthy cohort's contribution.
-4. **Ecotype-defining qPCR panel design** — if ecotypes are determined by a small set of defining species (the NB01b heatmap suggests yes: *F. prausnitzii*, *P. copri*, *P. vulgatus*, *B. fragilis* carry most of the discriminative load), a qPCR panel on these 4–6 species could enable rapid clinical ecotype assignment without full stool WGS. This would make clinical-trial screening viable without the H1c limitation.
-5. **Longitudinal ecotype dynamics** — the patient 6967 E1 ↔ E3 shift suggests ecosystem instability is a within-patient phenomenon. If Pillar 5 confirms this generalizes, cocktail dosing schedules may need to be state-dependent rather than fixed.
+1. **NB05 (immediate next step) — Tier-A scoring with rigor-controlled input set.** Proceed with the NB04e E1 (51 meta-viable) + E3 (40 provisional single-study) + 5 engraftment-confirmed cross-ecotype candidates (~ 70–90 unique species after dedup). Apply A3 (literature-mechanism via paperblast), A4 (protective-analog exclusion), A5 (engraftment from donor 2708 + Kumbhari strain-adaptation), A6 (BGC co-occurrence). Ecotype-specific scoring for E1 is robust; E3 scoring should carry the provisional-single-study flag.
+2. **HMP2 MetaPhlAn3 re-ingestion** — the primary unblock for Pillar 2 replication. Once `PENDING_HMP2_RAW` clears: (a) expands E3 from single-study to multi-study evidence via HallAB_2017 + HMP2; (b) refits ecotypes on ≈ 11.5 K samples, potentially stabilizing the bootstrap ARI beyond the current 0.13–0.17; (c) projects Franzosa medication metadata; (d) tests whether H1c clinical-classifier agreement improves.
+3. **External cohort validation (MGnify)** — project independent IBD-cohort studies from `kescience_mgnify` onto the K = 4 embedding to test ecotype replication. Non-Western cohorts additionally test E2 coverage. Cross-cohort ecotype reproducibility is the main unblocker for downgrading the "marginally stable" caveat.
+4. **E1 / E3 Option B fallback (pathway-level ecotypes)** — if HMP2 ingestion doesn't rescue E3 replication and ecotype stability remains marginal, refit ecotypes on a pathway-abundance matrix (`fact_pathway_abundance`) instead of taxon abundance. This structurally eliminates feature leakage (clustering features ≠ DA features) and may yield more stable ecotypes by collapsing taxonomic-level noise.
+5. **Within-substudy × within-ecotype design as publication material**. The NB04e confound-free meta design resolves both the feature-leakage and substudy-confounding pitfalls that the original NB04 hit. This is the methodologically portable contribution most worth writing up as a standalone methods paper.
+6. **Ecotype-defining qPCR panel design** — if rigor-controlled ecotypes are determined by a small set of defining species (the NB01b heatmap suggests *F. prausnitzii*, *P. copri*, *P. vulgatus*, *B. fragilis* carry most of the discriminative load), a qPCR panel on these 4–6 species could enable rapid clinical ecotype assignment. H1c showed clinical-covariate-only assignment is not viable; qPCR is the cheapest path to clinical-workflow ecotype assignment.
+7. **Longitudinal ecotype dynamics** — the patient 6967 E1 ↔ E3 shift (NB02) suggests ecosystem instability is a within-patient phenomenon. If Pillar 5 confirms this generalizes, cocktail dosing schedules may need to be state-dependent rather than fixed. Longitudinal sample availability in the UC Davis cohort is currently minimal (2 re-samples); expanding longitudinal sampling is a downstream follow-up.
 
 ## References
 
@@ -297,6 +406,15 @@ Pillars 2–5 remain. Brief outline of what each will add, keyed to plan v1.3:
 10. Vujkovic-Cvijin I et al. (2020). "Host variables confound gut microbiota studies of human disease." *Nature* 587(7834):448–454. PMID: 33149306.
 11. Elmassry MM et al. (2025). [BGC catalog in gut microbiome; *Cell Host & Microbe*]. (Referenced in project `ref_bgc_catalog` metadata; full citation in `dim_studies`.)
 12. Kumbhari A et al. (2024). [Strain-frequency / IBD adaptation]. (Source: `ref_kumbhari_s7_*` supplementary; full citation in `dim_studies`.)
+13. Zhou H, He K, Chen J, Zhang X. (2022). "LinDA: linear models for differential abundance analysis of microbiome compositional data." *Genome Biology* 23(1):95. PMID: 35421994. (Used in NB04c §4 as the second compositional DA method alongside CLR + Mann-Whitney; implemented in pure NumPy for this project.)
+14. Tsilimigras MC, Fodor AA. (2016). "Compositional data analysis of the microbiome: fundamentals, tools, and challenges." *Ann Epidemiol* 26(5):330–335. PMID: 27255738.
+15. Le PH et al. (2025). "Fecal microbiota transplantation for vancomycin-resistant Clostridium innocuum infection in inflammatory bowel disease: A pilot study evaluating safety and clinical and microbiota outcome." *J Microbiol Immunol Infect*. PMID: 40074633.
+16. Xiang B, Hu J, Zhang M, Zhi M. (2024). "The involvement of oral bacteria in inflammatory bowel disease." *Gastroenterol Rep (Oxf)* 12:goae076. PMID: 39188957.
+17. Guo Y et al. (2024). "Oral pathobiont-derived metabolites promote IBD." *Gut Microbes* 16(1):2333463. PMID: 38545880.
+18. Tanwar H et al. (2023). "Unraveling the link between periodontitis and inflammatory bowel disease: challenges and outlook." *Cells* 12. PMID: 37645044.
+19. Goel RM et al. (2019). "Streptococcus salivarius: A potential salivary biomarker for orofacial granulomatosis and Crohn's disease?" *Inflamm Bowel Dis*. PMID: 30796823.
+20. Selma MV et al. (2014). "Gordonibacter urolithinfaciens sp. nov., a urolithin-producing bacterium isolated from the human gut." *Int J Syst Evol Microbiol* 64:2346–2352. PMID: 24744017.
+21. Tierney BT et al. (2023). "Capacity of a microbial synbiotic to rescue the in vitro metabolic activity of the gut microbiome following perturbation with alcohol or antibiotics." *Appl Environ Microbiol* 89(3):e01880-22. PMID: 36840551.
 
 ## Authors
 

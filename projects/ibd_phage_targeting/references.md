@@ -22,7 +22,13 @@ Papers cited in `REPORT.md` and `RESEARCH_PLAN.md`, with identifiers for easy fo
    *Motivates CLR transformation and compositional-aware DA — the norm-N1 foundation.*
 
 6. **Lin H, Peddada SD. (2020).** "Analysis of compositions of microbiomes with bias correction." *Nat Commun* 11(1):3514. PMID: 32665548.  
-   *ANCOM-BC — one of the three compositional DA methods we will apply in NB04.*
+   *ANCOM-BC — one of the three compositional DA methods originally planned for NB04.*
+
+6b. **Tsilimigras MC, Fodor AA. (2016).** "Compositional data analysis of the microbiome: fundamentals, tools, and challenges." *Ann Epidemiol* 26(5):330–335. PMID: 27255738.  
+   *Compositional-data fundamentals; spurious-correlation warning. Motivates our layered CLR + permutation-null + independent-contrast design.*
+
+6c. **Zhou H, He K, Chen J, Zhang X. (2022).** "LinDA: linear models for differential abundance analysis of microbiome compositional data." *Genome Biology* 23(1):95. PMID: 35421994.  
+   *LinDA — linear CLR regression with median-based bias correction. Used in NB04c §4 as the second-method concordance check for within-ecotype DA. Implemented in pure NumPy for this project (~20 lines) to avoid the rpy2/R dependency that blocked our attempted ANCOM-BC run.*
 
 ## IBD multi-omics cohorts
 
@@ -35,10 +41,35 @@ Papers cited in `REPORT.md` and `RESEARCH_PLAN.md`, with identifiers for easy fo
 ## Pathobionts / mechanism
 
 9. **Henke MT et al. (2019).** "Ruminococcus gnavus, a member of the human gut microbiome associated with Crohn's disease, produces an inflammatory polysaccharide." *Proc Natl Acad Sci USA* 116(26):12672–12677. PMID: 31182571.  
-   *Molecular mechanism (glucorhamnan / TLR4 activation) for R. gnavus pathogenicity. Tier-A candidate anchor.*
+   *Molecular mechanism (glucorhamnan / TLR4 activation) for R. gnavus pathogenicity. Tier-A candidate anchor. M. gnavus is the top hit in E1 Tier-A (+4.85 CLR-Δ), E3 Tier-A (+4.46), and cross-ecotype engraftment-confirmed set (+5.13).*
 
 10. **Darfeuille-Michaud A et al. (2004).** "High prevalence of adherent-invasive Escherichia coli associated with ileal mucosa in Crohn's disease." *Gastroenterology* 127(2):412–421. PMID: 15300573.  
     *AIEC canonical clinical-association paper for ileal CD. Informs E. coli strain-level Tier-A scoring (NB05).*
+
+10b. **Le PH, Yeh YM, Chen YC, Chen CL, et al. (2025).** "Fecal microbiota transplantation for vancomycin-resistant Clostridium innocuum infection in inflammatory bowel disease: A pilot study evaluating safety and clinical and microbiota outcome." *J Microbiol Immunol Infect*. PMID: 40074633.  
+    *Establishes C. innocuum (= Erysipelatoclostridium innocuum) as a vancomycin-resistant IBD pathobiome with distinct CD and UC phenotypes (creeping-fat, strictures in CD; reduced UC remission). E. innocuum is rank 4 in our E1 Tier-A with independent clinical-association evidence — the candidate with the strongest standalone case for NB05 prioritization.*
+
+## Oral-gut axis in IBD (context for the E1 Tier-A streptococci)
+
+10c. **Xiang B, Hu J, Zhang M, Zhi M. (2024).** "The involvement of oral bacteria in inflammatory bowel disease." *Gastroenterol Rep (Oxf)* 12:goae076. PMID: 39188957.  
+    *Review of oral-derived gut colonization in IBD, including oral-gut axis, metabolic alterations, and ectopic colonization by oral species.*
+
+10d. **Guo Y, Kitamoto S, Caballero-Flores G, et al. (2024).** "Oral pathobiont-derived metabolites promote IBD." *Gut Microbes* 16(1):2333463. PMID: 38545880.  
+    *Mechanism paper for ectopic gut colonization by oral pathobionts in IBD pathogenesis.*
+
+10e. **Tanwar H, Gnanasekaran JM, Allison D, et al. (2023).** "Unraveling the link between periodontitis and inflammatory bowel disease: challenges and outlook." *Cells* 12. PMID: 37645044.  
+    *Oral-gut axis review — periodontitis ↔ IBD bidirectional relationship.*
+
+10f. **Goel RM, Prosdocimi EM, Amar A, et al. (2019).** "Streptococcus salivarius: A potential salivary biomarker for orofacial granulomatosis and Crohn's disease?" *Inflamm Bowel Dis*. PMID: 30796823.  
+    *Specific S. salivarius evidence in OFG + CD — the rank-2 candidate in our E1 Tier-A.*
+
+## Polyphenol / urolithin metabolism (context for ambiguous E1 candidate G. pamelaeae)
+
+10g. **Selma MV, Tomás-Barberán FA, Beltrán D, et al. (2014).** "Gordonibacter urolithinfaciens sp. nov., a urolithin-producing bacterium isolated from the human gut." *Int J Syst Evol Microbiol* 64:2346–2352. PMID: 24744017.  
+    *Establishes G. pamelaeae's urolithin-production role from ellagitannins.*
+
+10h. **Tierney BT, Van den Abbeele P, Al-Ghalith GA, et al. (2023).** "Capacity of a Microbial Synbiotic to Rescue the in vitro Metabolic Activity of the Gut Microbiome Following Perturbation with Alcohol or Antibiotics." *Appl Environ Microbiol* 89(3):e01880-22. PMID: 36840551.  
+    *G. pamelaeae increases during microbiome recovery from dysbiosis-inducing insults. Rationale for the "ambiguous CD-associated" flag on G. pamelaeae in our E1 Tier-A — CD↑ signal may reflect opportunity rather than pathobiont activity; requires NB05 A4 protective-analog exclusion.*
 
 ## Project-specific data sources (referenced in dim_studies)
 
@@ -48,4 +79,6 @@ Papers cited in `REPORT.md` and `RESEARCH_PLAN.md`, with identifiers for easy fo
 
 ## Still-to-be-read (will expand at project completion)
 
-The synthesis here covers Pillar 1. A full literature review over Pillars 2–5 — in particular published IBD pathobiont target lists, FMT response studies, phage therapy clinical trials (EcoActive / BiomX), and bile-acid / TMA/TMAO / sulfidogenesis mechanism papers — will be added in the next synthesis pass, after NB04–NB14.
+The synthesis here covers Pillar 1 + rigor-controlled Pillar 2. A full literature review over Pillars 3–5 — in particular published IBD pathobiont target lists, FMT response studies, phage therapy clinical trials (EcoActive / BiomX), and bile-acid / TMA/TMAO / sulfidogenesis mechanism papers — will be added in the next synthesis pass, after NB05–NB14.
+
+Pillar 2 literature grounding added in plan v1.4 post-NB04-rigor-repair synthesis: oral-gut axis (Xiang 2024, Guo 2024, Tanwar 2023), *E. innocuum* clinical association (Le 2025), *S. salivarius* salivary biomarker (Goel 2019), urolithin metabolism and ambiguous-CD-association flag (Selma 2014, Tierney 2023), compositional-data and LinDA methodology (Tsilimigras & Fodor 2016, Zhou 2022). Additional NB05-relevant papers on the Clostridiales-expansion candidates (*Intestinibacter bartlettii*, *Hungatella symbiosa*, *Enterocloster asparagiformis*) will land in a follow-up pass once NB05 A3 literature-grounding is run.

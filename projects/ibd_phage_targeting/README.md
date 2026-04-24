@@ -12,19 +12,27 @@ Three coupled deliverables:
 
 ## Status
 
-**In Progress** — Pillar 1 ecotype framework delivered. Plan v1.2:
+**In Progress** — Pillar 1 closed; Pillar 2 rigor-repaired (RESEARCH_PLAN v1.4). Next milestone: NB05 Tier-A scoring on the rigor-controlled Tier-A input set.
 
-- ✅ NB00 data audit + compositional-DA proof of concept (norm N1 justified; *C. scindens* paradox reproduced and partially explained)
+- ✅ NB00 data audit + compositional-DA proof of concept (norm N1 justified)
 - ✅ NB01 + NB01b ecotype training (K=4 consensus from cross-method ARI + parsimony):
   - **E0 (n=3,604)** — diverse healthy commensal (*F. prausnitzii* / *R. bromii* / *B. uniformis*); **66.8 % of HC**
   - **E1 (n=2,601)** — Bacteroides2 transitional disease/metabolic; 48 % CD, 58 % UC, 100 % T1D, 97 % T2D
   - **E2 (n=920)** — *Prevotella copri* enterotype; 16.9 % HC, almost no disease
   - **E3 (n=1,364)** — severe Bacteroides/fragilis-expanded; 50 % CD, 40 % UC, 67 % IBD acute, 38 % CDI
   - Reusable `data/species_synonymy.tsv` (2,417 aliases → 1,848 canonical species, GTDB r214+ renames)
+  - Bootstrap ARI stability: median 0.160 (range 0.129–0.169) — marginally stable; external MGnify replication pending
 - ✅ NB02 UC Davis projection (Kuehl_WGS Kaiju → K=4 via LDA primary / GMM advisory): **E0 27 %, E1 42 %, E2 0 %, E3 31 %**; χ² vs uniform p = 0.019 → **H1b supported**. Patient 6967 shows longitudinal E1 ↔ E3 shift — first H5d signal.
-- ✅ NB03 clinical-covariate classifier (H1c): macro AUC 0.799 (minimal) / 0.810 (extended) on pooled CMD — passes the 0.70 threshold on paper. **But only 41 % agreement with NB02 on UC Davis patients** — classifier collapses to "IBD → E1" because `is_ibd` dominates training. Revised: clinical features separate HC vs IBD trivially but *not* IBD ecotypes; metagenomics remains required for UC Davis-type patient assignment.
-- ⏳ NB04 within-ecotype compositional DA (the *C. scindens* paradox resolution, H2c)
-- ⏳ NB05–NB17 per the plan; HMP2 MetaPhlAn3 ingestion (`PENDING_HMP2_RAW`) will re-open an expanded NB02 projection when available
+- ✅ NB03 clinical-covariate classifier (H1c): macro AUC 0.799 (minimal) / 0.810 (extended) on pooled CMD — passes the 0.70 threshold on paper. **But only 41 % agreement with NB02 on UC Davis patients**. Revised: clinical features separate HC vs IBD trivially but *not* IBD ecotypes; metagenomics remains required.
+- ⚠️ **NB04 superseded** — within-ecotype DA committed (a325ce5) but retracted after adversarial review caught feature-leakage and confounder-non-adjustment issues that the standard `/berdl-review` missed twice. See `FAILURE_ANALYSIS.md`.
+- ✅ **NB04b + NB04c + NB04d + NB04e — Pillar 2 rigor-repair pipeline**:
+  - NB04b: bootstrap CIs, leakage-bound sensitivity (E1 Jaccard 0.230, E3 0.064 vs >0.5 threshold → leakage dominates NB04), LOO refit (*C. scindens* CD↑ in both E1 and E3 under LOO), Jaccard permutation null (observed 0.104 vs null 0.785 → **H2b supported, empirical p = 0.000**), ecotype bootstrap stability (ARI 0.16)
+  - NB04c: proper substudy resolution (51 sub-studies, 80.8 % coverage) + documented cMD substudy-nesting unidentifiability + confound-free within-IBD-substudy CD-vs-nonIBD meta (recovers canonical CD signature) + LinDA in pure Python
+  - NB04d: formalized rigor-controlled stopping rule for NB05 — E1 PROCEED, E3 PROCEED WITH CAVEAT
+  - NB04e: **within-ecotype × within-substudy meta** — E1 Tier-A **51 candidates** (meta-viable, 2 sub-studies, 100 % sign concord), E3 Tier-A **40 provisional candidates** (single-study HallAB_2017)
+  - Plus 5 engraftment-confirmed cross-ecotype pathobionts (*M. gnavus*, *E. lenta*, *E. coli*, *E. bolteae*, *H. hathewayi*) under NB04c §3 confound-free contrast
+  - **H2c retracted** (no paradox — *C. scindens* is CD↑ under confound-free design)
+- ⏳ NB05–NB17 per plan; HMP2 ingestion (`PENDING_HMP2_RAW`) is the primary unblock for E3 replication
 
 ## Context
 
@@ -72,8 +80,9 @@ This project integrates data from:
 
 ## Quick Links
 
-- [Research Plan](RESEARCH_PLAN.md) — hypotheses, pillar structure, four-tier criteria, BERDL query strategy, per-pillar analysis sketch, known-missing registry, reproduce-and-extend table
-- [Report](REPORT.md) — **interim synthesis** — Pillar 1 findings (ecotype framework, UC Davis projection, H1c classifier), interpretation, literature context. Pillars 2–5 pending.
+- [Research Plan](RESEARCH_PLAN.md) — hypotheses, pillar structure, four-tier criteria, BERDL query strategy, per-pillar analysis sketch, known-missing registry, reproduce-and-extend table (v1.4 — NB04 rigor-repair arc documented)
+- [Report](REPORT.md) — **interim synthesis** — Pillar 1 findings (ecotype framework, UC Davis projection, H1c classifier) + rigor-controlled Pillar 2 (Tier-A via within-ecotype × within-substudy meta); §5 opens with a retraction box for the superseded NB04 claims. Pillars 3–5 pending.
+- [Failure Analysis](FAILURE_ANALYSIS.md) — full arc of the NB04 rigor gap: adversarial review findings, repair notebooks, quantified cost (Tier-A 33 → 3 rock-solid → 51 E1 + 40 E3 under confound-free meta), methodology lessons
 - [References](references.md) — cited literature with PMIDs and project context
 
 ## Reproduction
