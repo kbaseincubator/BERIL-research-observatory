@@ -771,6 +771,68 @@ The bile-acid 7α-dehydroxylation network finding is **independently corroborate
 
 *(Script: `run_nb09c.py`. Builds on NB07c module-anchor × pathobiont species coupling + NB09a metabolite annotations. Per plan v1.9 no-raw-reads.)*
 
+### 14. NB10a — Kumbhari strain-adaptation gene predictor (H3b)
+
+The H3b hypothesis (per plan v1.7): **strain-adaptation gene content discriminates disease-dominant from health-dominant strains within Kumbhari, and the discriminating genes are biologically interpretable rather than housekeeping**. Per plan v1.7 H3b restriction, the test is restricted to the Kumbhari/LSS-PRISM cohort itself (the only project data with strain-level resolution). Per plan v1.9 (no raw reads), uses precomputed `ref_kumbhari_s7_gene_strain_inference` (219,121 gene × species rows; 59 species) cross-referenced with `fact_strain_competition` (15,520 strain × sample rows; 100 UHGG genome IDs in 94 LSS-PRISM participants).
+
+**Tier-A core intersection with Kumbhari**: only ***F. plautii*** is in the 59-species panel. The other 5 actionable Tier-A core (*H. hathewayi*, *M. gnavus*, *E. lenta*, *E. bolteae*, *E. coli*) are NOT in Kumbhari — Kumbhari focused on commensal strain heterogeneity, not pathobiont mechanism. The H3b test therefore evaluates the **methodology** of strain-adaptation gene inference on the 59 commensals; only one actionable Tier-A species is directly tested.
+
+**Falsifiability test result**: among the 23,579 FDR<0.10 strain-adaptation genes (12,159 IBD-biased + 11,420 health-biased across 59 species), the IBD-biased gene set is significantly:
+
+| Category | IBD-biased % | Background % | Fisher OR | p |
+|---|---:|---:|---:|---:|
+| **Adaptation** (7 subcategories) | **2.13 %** | 1.59 % | **1.38** | **2.4e-6** |
+| **Housekeeping** (6 subcategories) | 2.81 % | **4.36 %** | **0.62** | **6.4e-20** |
+| Unclassified | 95.06 % | 94.05 % | — | — |
+
+**The IBD-biased gene set is 1.38× ENRICHED for adaptation and 0.62× DEPLETED for housekeeping — the canonical SUPPORTED pattern**. The strict housekeeping-domination falsifiability bound is rejected at p=6.4e-20.
+
+**Adaptation subcategory breakdown (IBD-biased)**: mucin_glycan utilization (94 genes), two-component signaling (52), antibiotic resistance (35), membrane transport specialty (33), virulence/secretion (15), bile acid (15), oxidative stress response (15). The dominant IBD-adaptation theme is **mucin/glycan utilization** — consistent with the Kumbhari focus on commensal IBD-niche adaptation.
+
+**Cross-species shared IBD-adaptation KOs** — top KEGG KOs IBD-biased in 12-21 of 59 species:
+
+| KO | n_species | Function |
+|---|---:|---|
+| K03088 | 21 | Sigma factor (RpoE/RpoS — environmental stress response) |
+| K01990 | 20 | ABC transporter ATP-binding protein |
+| K06147 | 19 | ABC-2 type transport system |
+| K02529 | 18 | LacI/GalR family transcriptional regulator |
+| K07240 | 17 | TIM44-like protein |
+| K03424 | 17 | TatD-related deoxyribonuclease |
+| K08303 | 16 | SmpB (tmRNA-binding, translation rescue) |
+| K03466 | 15 | DNA topoisomerase |
+
+The cross-species pattern is dominated by **transport, regulation, stress response, and DNA repair** — classic niche-adaptation signatures. Top gene symbols include **corC** (Mg²⁺/Co²⁺ efflux), **luxQ** (autoinducer-2 quorum sensing), **pglA** / **rfbC** (capsule polysaccharide / LPS), **bepC** (efflux pump), **abgB** (aminobenzoyl-glutamate utilization) — consistent across 9-10 species each.
+
+***F. plautii* informative null**: zero FDR<0.10 strain-adaptation genes in the Kumbhari analysis (3,245 genes total tested in F. plautii). This is biologically meaningful given F. plautii has confirmed CD-association at species level (NB04e, NB05) and at the bile-acid 7α-dehydroxylation activity level (NB09c §13: ρ × cholate -0.26; ρ × lithocholate +0.15). The interpretation: ***F. plautii* CD-association operates through species-level abundance, not strain-level genomic adaptation**. The 7α-dehydroxylation activity is encoded by core *bai*-operon genes that are presumably present in essentially all *F. plautii* strains; the CD signal in NB04e + NB07b reflects how much *F. plautii* (any strain) is present in the sample, not which *F. plautii* strain is dominant. **Independent corroboration of NB07b within-carrier finding** (small per-pathway shifts within carriers; CD signal dominated by carriage prevalence).
+
+![NB10a — per-species gene counts + functional category × direction + F. plautii top genes](figures/NB10a_kumbhari_strain_adaptation.png)
+
+**H3b verdict: SUPPORTED.** The Kumbhari strain-adaptation gene-content analysis carries biologically interpretable signal that is statistically distinct from housekeeping artifact. The cross-species shared IBD-adaptation gene set (sigma factor, ABC transport, quorum sensing, capsule LPS, efflux) is consistent with a biologically real "IBD-niche" gene signature operating across multiple commensal species.
+
+**Caveats / limitations**:
+- One cohort only (Kumbhari/LSS-PRISM); cross-cohort sensitivity test was acknowledged-weak per plan v1.7.
+- 95 % of FDR-passing genes are unclassified by the gene-symbol regex — the curated 13-category classifier captures only annotated functional roles. The functional enrichment signal is at the *category-classified subset*, not the full gene set.
+- Per plan v1.7, the cross-cohort sensitivity test (NB10b — species-level prevalence-weighted strain-feature on cMD) was specified as sensitivity-only, not load-bearing. Per plan v1.9, the cross-cohort cMD path is dropped (raw reads not available); NB10b is therefore not executed in this project.
+- ***F. plautii* CD-association is species-abundance-mediated** — implies phage targeting of *F. plautii* would deplete BA 7α-dehydroxylation activity proportionally to abundance reduction (no strain-level escape route via gene-content selection within *F. plautii*).
+
+**Implications for project narrative**:
+1. The strain-level analysis methodology is validated on commensal species (H3b SUPPORTED). The actionable Tier-A coverage is single-species (F. plautii only); the analysis is informative for methodology but not for direct pathobiont-mechanism extension.
+2. ***F. plautii* CD-association is species-abundance-mediated**, confirming NB07b within-carrier reading independently.
+3. **Cross-species shared IBD-adaptation gene set** (sigma factor, ABC transport, quorum sensing, capsule LPS) is a real biological signature — bullet for the Pillar 4 / 5 hand-off discussion of bacterial fitness in the IBD gut.
+
+### Outputs
+
+- `data/nb10a_per_species_bias_counts.tsv` — 59 species × {IBD-biased, health-biased} gene counts
+- `data/nb10a_sig_genes_classified.tsv` — 23,579 FDR-passing genes × functional classification
+- `data/nb10a_cross_species_ibd_kos.tsv` — multi-species shared KEGG KO signal
+- `data/nb10a_cross_species_ibd_symbols.tsv` — multi-species shared gene-symbol signal
+- `data/nb10a_f_plautii_strain_adaptation.tsv` — *F. plautii* deep-dive (empty, no FDR-passing genes)
+- `data/nb10a_h3b_verdict.json` — formal verdict (SUPPORTED)
+- `figures/NB10a_kumbhari_strain_adaptation.png` — 3-panel summary
+
+*(Script: `run_nb10a.py`. Per plan v1.7 H3b + v1.9 no-raw-reads.)*
+
 ## Interpretation
 
 ### Why the four-ecotype framework matters for phage targeting
@@ -820,6 +882,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 15. **Pathway-level vs metabolite-level signal can diverge in direction (NB09a polyamine pool ≠ flux)**. v1.8 §9 found `06_polyamine_urea` was CD-DOWN at pathway-level (OR=0.42, biosynthesis flux); NB09a §12 found polyamines as a metabolite-class are CD-UP at OR=14.6 (the largest theme-level effect in the metabolomics analysis). Both are correct: the metabolite pool reflects the difference between production and consumption rates, plus dietary/host inputs. **Pool measurements and flux measurements are not interchangeable; both belong in the analysis when both are available**. This is generally true for any metabolite-class comparison — biosynthesis pathway DA and untargeted metabolomics DA can disagree without contradicting each other. Flag in `docs/discoveries.md` as a methodology note for any future BERIL multi-modal analysis.
 16. **Bile-acid coupling cost replaces metabolic-coupling cost as primary Pillar 4 ecological annotation (NB09c §13)**. The NB07c "metabolic-coupling cost" annotation was based on species-level co-occurrence; NB09c's paired sample-level test failed to identify a metabolic intermediate that supports cross-feeding (lactate has opposite signs between *A. caccae* and the pathobionts; only 7 strict triangles total). Instead, NB09c identifies the **bile-acid 7α-dehydroxylation network** as the dominant per-target ecological-cost axis: *F. plautii* / *E. lenta* / *E. bolteae* carry active 7α-dehydroxylation activity in HMP2 paired samples. Phage targeting of these species would shift the bile-acid pool toward inflammatory primary tauro-conjugated forms. This is a **mechanistically grounded cost annotation** (substrate-product signature is detectable at sample level) that is more rigorous than the original NB07c "coupling cost" framing.
 17. **Two independent six-line cross-corroboration narratives in the same project**. The iron-acquisition narrative (Novel Contribution #14) and the bile-acid 7α-dehydroxylation narrative (NB09c §13) are independent multi-line convergence stories in this dataset. Iron: NB05 §5g + NB07a §c + NB07 v1.8 §9 + NB07c §2 + NB08a §2 + AIEC literature → 6 lines. Bile-acid: NB07b F420-pathway + NB09a tauro-muricholate + NB09c paired ρ + NB05 actionable status + Franzosa 2019 + Devlin/Fischbach mechanism literature → 6 lines. **Project-level rigor signal**: any biological claim with multi-line convergence across granularities is robust against single-test failures. Two such narratives in the same dataset, each independently developed, validates the methodology pattern beyond a single example.
+18. **Species-abundance-mediated vs strain-content-mediated CD-association is a distinguishable mechanism axis (NB10a F. plautii informative null)**. NB10a finds zero FDR<0.10 strain-adaptation genes for *F. plautii* in Kumbhari (3,245 genes tested), despite *F. plautii* having confirmed CD-association at species level (NB04e + NB05) and at active-mechanism level (NB09c bile-acid 7α-dehydroxylation). This null is biologically meaningful: it tells us *F. plautii*'s CD-association is mediated by **how much** *F. plautii* is present, not by **which** *F. plautii* strain is dominant. The 7α-dehydroxylation activity is presumably encoded by core *bai*-operon genes that are present in essentially all strains. **Implication for Pillar 4 cocktail design**: phage targeting of species with this profile produces predictable depletion of the encoded activity (no within-species strain-content escape route via gene-content selection). This is a third granularity that distinguishes phage-target candidates beyond "actionable Tier-A score" (NB05) and "ecological coupling cost" (NB09c) — a *mechanism-resolution profile* that places each Tier-A pathobiont on a species-abundance-mediated ↔ strain-content-mediated axis. Independently corroborates NB07b within-carrier reading; methodology generalizable to any future strain-level analysis where the pre-test prediction is "if mechanism is genus-conserved, expect zero strain-adaptation signal."
 
 ### Limitations
 
@@ -918,6 +981,12 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `data/nb09c_cross_feeding_triangles.tsv` | 7 | Strict cross-feeding triangles (same-sign + |ρ|>0.20 + FDR<0.10) |
 | `data/nb09c_cross_feeding_panel.tsv` | varies | Curated 7-theme × 8 species direction-of-association panel |
 | `data/nb09c_cross_feeding_verdict.json` | — | Formal NB09c verdict (cross-feeding not supported; bile-acid 7α-dehydroxylation network identified) |
+| `data/nb10a_per_species_bias_counts.tsv` | 59 | Per Kumbhari species × IBD-biased + health-biased gene counts |
+| `data/nb10a_sig_genes_classified.tsv` | 23,579 | FDR<0.10 strain-adaptation genes × functional classification (13 categories) |
+| `data/nb10a_cross_species_ibd_kos.tsv` | varies | Cross-species IBD-biased KEGG KOs sorted by n_species |
+| `data/nb10a_cross_species_ibd_symbols.tsv` | varies | Cross-species IBD-biased gene symbols sorted by n_species |
+| `data/nb10a_f_plautii_strain_adaptation.tsv` | 0 | F. plautii FDR<0.10 strain-adaptation deep dive (empty — informative null) |
+| `data/nb10a_h3b_verdict.json` | — | Formal H3b verdict (SUPPORTED — adaptation enrichment, housekeeping depletion) |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_relative_abundance.tsv` | 582 | HMP2 MetaPhlAn3 relative abundance (taxa × samples) — out-of-project artifact |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_sample_metadata.tsv` | 1,627 | HMP2 sample metadata from cMD |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_taxon_metadata.tsv` | 585 | HMP2 per-taxon lineage metadata |
@@ -951,6 +1020,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB08a_bgc_pathobiont_enrichment.ipynb` | H3c genomic mechanism layer: BGC theme enrichment per Tier-A core + CB-ORF CD-up enrichment + ebf/ecf cohort meta. Iron-siderophore OR=44 (E. coli only); genotoxin OR=234; ebf/ecf p<1e-31 across 4 cohorts. Executed via `run_nb08a.py` + `build_nb08a_with_outputs.py`. |
 | `NB09a_metabolomics_cd_vs_nonibd.ipynb` | H3d-DA: HMP2 metabolomics CD-vs-nonIBD subject-level (50 vs 26 subjects) + 11-theme Fisher enrichment. SUPPORTED — 52 metabolites + 2 themes (polyamines OR=14.6, PUFAs OR=7.9). Tauro-muricholate confirms F. plautii 7α-dehydroxylation deficit. Executed via `run_nb09a.py` + `build_nb09a_with_outputs.py`. |
 | `NB09c_cross_feeding_disambiguation.ipynb` | NB07c cross-feeding disambiguation + bile-acid 7α-dehydroxylation network. 468 paired CSM* samples × 8 species × 583 metabolites. Cross-feeding NOT supported (only 7 strict triangles; lactate opposite-sign between A. caccae and pathobionts). Bile-acid 7α-dehydroxylation network IDENTIFIED: F. plautii / E. lenta / E. bolteae show predicted primary-tauro-BA-down + secondary-BA-up substrate-product signature. Reframes NB07c as shared-environment; introduces "bile-acid coupling cost" as primary Pillar 4 annotation. Executed via `run_nb09c.py` + `build_nb09c_with_outputs.py`. |
+| `NB10a_kumbhari_strain_adaptation.ipynb` | H3b Kumbhari strain-adaptation gene predictor. 23,579 FDR<0.10 genes across 59 species; falsifiability test on housekeeping vs adaptation. SUPPORTED — IBD-biased adaptation OR=1.38 (p=2.4e-6), housekeeping OR=0.62 (p=6.4e-20). F. plautii has 0 FDR-passing genes — informative null confirming species-abundance-mediated CD-association (corroborates NB07b within-carrier). Executed via `run_nb10a.py` + `build_nb10a_with_outputs.py`. |
 
 ### Figures
 
@@ -982,6 +1052,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB08a_bgc_pathobiont_enrichment.png` | 3-panel: Tier-A core BGC repertoire (Grouped Class stacked bar) + theme enrichment Fisher OR (iron+genotoxin+NRPS-PKS supported) + ebf/ecf RPKM CD-vs-HC by cohort (boxplot) |
 | `NB09a_metabolomics_cd_vs_nonibd.png` | 3-panel: volcano (cliff_delta vs -log10 FDR with key metabolites annotated) + 11-theme Fisher OR bar (polyamines + PUFAs supported) + top 15 CD-up + top 15 CD-down metabolites |
 | `NB09c_cross_feeding_disambiguation.png` | 2-panel: curated 7-theme cross-feeding panel × 8 species ρ heatmap (showing bile-acid 7α-dehydroxylation network) + top 25 cross-feeding-triangle candidates scatter (only 7 strict triangles) |
+| `NB10a_kumbhari_strain_adaptation.png` | 3-panel: per-species IBD-biased + health-biased gene counts (top 25) + functional category × direction (housekeeping vs adaptation log-scale bar) + F. plautii top genes panel (empty — informative null) |
 
 Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatmap.png`, `NB01_*.png` (legacy K = 8 fit preserved for methodology audit).
 
