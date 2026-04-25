@@ -1331,6 +1331,84 @@ NB14 closes Pillar 4 by adding the **in-vivo phage-community lens** to the curat
 
 *(Script: `run_nb14.py`. Per plan v1.7 NB14 endogenous phageome stratification + v1.9 no-raw-reads.)*
 
+### 22. NB15 — UC Davis per-patient profile + cocktail draft (Pillar 5 opener)
+
+NB15 assembles per-patient profiles for 23 UC Davis CD patients combining all Pillar 1-4 evidence and produces **concrete per-patient cocktail drafts** with components + caveats per patient. The Pillar-5 hand-off framework from REPORT § Pillar 4 closure (3 design strategies) is applied as a per-patient rule book.
+
+**Inputs per patient**: NB02 ecotype (E0/E1/E3/mixed) + demographics (Montreal, calprotectin, medication) + Kuehl_WGS Kaiju Tier-A pathobiont presence (≥0.001 relative abundance) + NB05 Tier-A score + Pillar-3 mechanism profile + Pillar-4 phage availability.
+
+**Per-target prescribing rate (across 23 patients)**:
+
+| Target | n present | % cohort |
+|---|---:|---:|
+| *M. gnavus* | 21 | 91 % |
+| *H. hathewayi* | 19 | 83 % |
+| *E. bolteae* | 19 | 83 % |
+| *F. plautii* | 18 | 78 % |
+| *E. lenta* | 16 | 70 % |
+| ***E. coli*** | **8** | **35 %** |
+
+***E. coli* present in only 8/23 patients (35 %)** — interesting given AIEC is canonically CD-associated. Implication: NB13's 5-phage AIEC cocktail directly applicable to ~35 % of cohort; *H. hathewayi* / *M. gnavus* near-universal carriage means their phage GAP (NB12) is the dominant unmet need.
+
+**Per-ecotype cocktail summary**:
+
+| Ecotype | n patients | Mean targets / patient | n with cocktail | n with concrete phage |
+|---|---:|---:|---:|---:|
+| **E0** | 7 | 1.71 | 7 | **0** (priority targets H. hathewayi + M. gnavus are GAP / temperate-only) |
+| **E1** | 9 | **4.89** | 9 | **9** (full Tier-A module + concrete cocktails) |
+| **E3** | 6 | 2.33 | 5 | 4 |
+| Mixed (6967) | 1 | 3.0 | 1 | 1 |
+| **Total** | **23** | **4.39** | **22** | **14** |
+
+**14 of 23 patients have concrete phage cocktail drafts**. All 9 E1 patients receive concrete cocktails (PMBT24 + PMBT5 + AIEC 5-phage if E. coli present); 4 of 6 E3 patients; 1 mixed (patient 6967); E0 patients lack concrete components because their priority targets (H. hathewayi, M. gnavus) are in Pillar-4 GAP / temperate-only.
+
+![NB15 — UC Davis per-patient cocktail draft (Pillar 5 opener)](figures/NB15_patient_cocktail_draft.png)
+
+**Per-patient stratification — 4 cocktail-design categories**:
+
+| Category | Description | Example patients | Strategy |
+|---|---|---|---|
+| **A** | Active disease + multiple targets | 3701 (calp 8000), 1835 (calp 3340), 5843 (calp 2150), 6434 (calp 251 + 6 targets) | **Highest priority Pillar-5**: full hybrid cocktail (phages + alternatives for GAP species) |
+| **B** | Active disease + few targets | E0 patients with limited pathobiont burden | Limited cocktail; consider deprioritizing |
+| **C** | Quiescent disease | 1112 (41), 2708 (3), 1492 (9), 1460 (7) | Reserve cocktail for flares; monitor calp |
+| **D** | Mixed ecotype (longitudinal drift) | 6967 (E1 ↔ E3) | **State-dependent dosing**; central per-patient stability test for Pillar 5 |
+
+**F. plautii BA-cost is the dominant E1 design constraint**: F. plautii present in 78 % of patients (18/23) AND has the HIGHEST BA-coupling cost (NB09c §13 active 7α-dehydroxylator). All 9 E1 patients carry F. plautii. Phage targeting shifts BA pool toward inflammatory primary tauro-conjugated forms; alternative is **deprioritize F. plautii from cocktail + co-administer UDCA / BA-binding agent**. F. plautii is also Pillar-4 GAP (not in ref_phage_biology), making it a "leave alone" target for Pillar 5.
+
+**E1 hybrid cocktail (9 patients)**: 3 strategies blended:
+- **Direct phage**: E. coli (if present, NB13 5-phage), E. bolteae (PMBT24), E. lenta (PMBT5)
+- **Alternative**: H. hathewayi (GAG-degrading enzyme inhibitors), F. plautii (BA-binding co-therapy or deprioritize)
+- **Limited**: M. gnavus (temperate-only; lytic-locked engineering OR biochemical glucorhamnan-synthesis target)
+
+Pure phage cocktail is **not feasible** for any E1 patient — only a hybrid with non-phage alternatives. The 3 GAP species require non-phage strategies; INPHARED + IMG/VR external DB queries for new gut-anaerobe phages are the highest-priority Pillar-4 follow-up before clinical translation.
+
+**Pillar 5 hand-off — concrete deliverables**:
+
+| Patient class | n | Recommended cocktail |
+|---|---:|---|
+| E1 + active calp + E. coli present | ~3 | Full Tier-1: NB13 5-phage E. coli + PMBT24 + PMBT5 + alternatives for F. plautii / H. hathewayi / M. gnavus |
+| E1 + active calp + no E. coli | ~5 | Tier-2: PMBT24 + PMBT5 + alternatives |
+| E1 + quiescent | 1-2 | Reserve cocktail for flares; calp monitor |
+| E0 + any | 7 | Limited (priority targets are GAP/temperate); consider deprioritizing |
+| E3 + E. coli | ~3 | NB13 5-phage E. coli + PMBT5 + alternatives |
+| E3 + no E. coli | ~3 | Limited (E. lenta + H. hathewayi only) |
+| Mixed (6967) | 1 | State-dependent dosing |
+
+**Limitations**:
+- 23-patient cohort is small — results are exemplars/templates, not statistically robust per-patient validation.
+- Kuehl_WGS uses Kaiju (not MetaPhlAn3) — Tier-A presence calls have lower confidence vs CMD analyses (NB02 classifier-mismatch asymmetry).
+- No per-patient bile-acid measurements; BA-cost is ecotype-level, not per-patient.
+- No patient-specific AIEC strain-resolution diagnostic for the 8 E. coli-positive patients; cocktail recommendation assumes AIEC subset prevalence per Dogan 2014.
+- F. plautii deprioritization is precautionary based on NB09c mechanism — clinical validation requires per-patient BA panels.
+
+**Output artifacts**:
+- `data/nb15_patient_profile.tsv` — 23 patients × full per-patient profile
+- `data/nb15_per_patient_cocktail_draft.tsv` — long-format per-patient × per-target cocktail breakdown
+- `data/nb15_pillar5_cocktail_verdict.json` — formal verdict + per-ecotype summary
+- `figures/NB15_patient_cocktail_draft.png` — 3-panel: presence heatmap + ecotype prescribing rate + calp × n_targets scatter
+
+*(Script: `run_nb15.py`. Pillar 5 opener; integrates NB02 + NB05 + NB06 + NB09c + NB10a + NB12-NB14 evidence into per-patient cocktail recommendations. Per plan v1.9 no-raw-reads.)*
+
 ## Interpretation
 
 ### Project narrative summary (Pillars 1–3 closed)
