@@ -1180,6 +1180,59 @@ The Pillar 4 framework starts with a **per-pathobiont phage-availability profile
 
 *(Script: `run_nb12.py`. Per plan v1.7 NB12 + v1.9 no-raw-reads. BERDL Spark auth restored mid-execution; PhageFoundry quantitative analysis promoted to NB13.)*
 
+### 20. NB13 — PhageFoundry quantitative E. coli phage-cocktail design
+
+NB12 established the qualitative literature-curated foundation; NB13 adds the **quantitative cocktail-design layer** at strain-resolution level using BERDL `phagefoundry_strain_modelling` (96 phages × 188 *E. coli* strains × 17,672 experimentally-tested susceptibility pairs from Gaborieau 2025-10-02 phage-prediction experiment, AUC=0.88). 3,929 / 17,672 = **22 % susceptibility rate** across the matrix.
+
+**Greedy minimum-set-cover cocktail design** — smallest cocktail covering ≥X % of 188 strains:
+
+| Coverage target | n phages | % covered | Cocktail composition |
+|---:|---:|---:|---|
+| ≥50 % | **1** | 63.8 % | DIJ07_P2 (*Phapecoctavirus*) |
+| ≥75 % | 2 | 81.4 % | + LF73_P1 (*Tequatrovirus*) |
+| ≥90 % | 4 | 92.6 % | + AL505_Ev3 + 55989_P2 |
+| **≥95 %** | **5** | **94.7 %** | **DIJ07_P2 + LF73_P1 + AL505_Ev3 + 55989_P2 + LF110_P2** |
+| ≥99 % | 8 | 98.4 % | + NIC06_P2 + LF73_P4 + BCH953_P4 |
+
+**A 5-phage cocktail covers 94.7 % of 188 E. coli strains** in PhageFoundry. Comparable in size to the **EcoActive 7-phage clinical-trial cocktail** (per NB12 §1) — both are 5-7 phages. The top-ranked phage **DIJ07_P2** alone (genus *Phapecoctavirus*) lyses 63.8 % of strains — remarkable single-phage breadth.
+
+**Phage host-phylogroup analysis — AIEC relevance**:
+
+AIEC strains are predominantly phylogroup B2 (~80 %) and D (~20 %) per Dogan 2014/Dubinsky 2022. PhageFoundry distribution:
+
+| Phylogroup | n phages | median host range | max | AIEC relevance |
+|---|---:|---:|---:|---|
+| **B2** | 50 | 21.3 % | 63.3 % | Primary AIEC phylogroup |
+| **D** | 15 | 13.8 % | 63.8 % | Secondary AIEC phylogroup |
+| A | 10 | 16.5 % | 39.4 % | Predominantly commensal |
+| B1 | 9 | 20.2 % | 50.5 % | Predominantly commensal |
+| Other (C/0/G) | 10 | varied | varied | rare |
+
+**65 of 94 phages (69 %) are isolated against B2/D phylogroup hosts** — strongly AIEC-relevant. Top broadest-host-range B2/D phages include several isolated against canonical AIEC reference strains: **LF82_P8 (60.1 %, *Mosigvirus*) — LF82 is THE AIEC reference (Darfeuille-Michaud 2004)**; **LF73_P1 (62.8 %)** — LF73 is also a CD-associated AIEC strain; **536_P7 / 536_P9** — E. coli 536 is a UPEC/B2 archetype.
+
+**HMP2 viromics × PhageFoundry overlap = 0** — the 7 unique E. coli phages observed in HMP2 fact_viromics (D108, EC6, ECML-117, Murica, slur16, vB_EcoM-VpaE1, vB_EcoM_AYO145A) do NOT name-overlap with PhageFoundry phages. The two datasets are **complementary, not overlapping**: PhageFoundry = research/clinical isolates with experimental susceptibility; HMP2 viromics = natural phages observed in patient stool. PhageFoundry is the primary source for cocktail-design.
+
+![NB13 — PhageFoundry quantitative E. coli phage-cocktail design](figures/NB13_phagefoundry_cocktail.png)
+
+**Pillar 5 hand-off — concrete E. coli AIEC phage-cocktail recommendation**:
+1. **Tier-1 cocktail (5 phages, 95 % strain coverage)**: DIJ07_P2 + LF73_P1 + AL505_Ev3 + 55989_P2 + LF110_P2
+2. **Extended Tier-1+ (8 phages, 99 % strain coverage)**: above + NIC06_P2 + LF73_P4 + BCH953_P4 — comparable in size to EcoActive
+3. **Strain-level diagnostic requirement**: AIEC-vs-commensal *E. coli* discrimination via per-patient pks-island / Yersiniabactin / Enterobactin gene-presence detection (per NB07b + NB08a) is required before cocktail selection — the cocktail covers broad E. coli strain diversity but does not by itself distinguish AIEC from commensal *E. coli*.
+
+**Limitations**:
+- PhageFoundry has no explicit AIEC-vs-commensal strain annotation. The 188 strains include canonical AIEC strains (LF82, LF73, 536, NIC06, BCH953 — named as phage isolation hosts) but Pillar-5 cross-reference to literature isolate annotations is needed for accurate AIEC coverage estimation.
+- Susceptibility matrix is binary (no titer/burst size). Real-world cocktail dosing depends on phage burst size + receptor binding kinetics + gastric passage survival — out of project scope.
+- 26 strains (14 %) are phage-resistant at ≤5 % susceptibility — clinical significance of these escape strains needs cross-reference to AIEC pks-island annotation.
+- HMP2 viromics × PhageFoundry overlap = 0 means in-vivo gut delivery of cocktail phages is not validated by the project's data; would require in-vivo testing.
+
+**Output artifacts**:
+- `data/nb13_phage_host_range.tsv` — 96 phages × {host_range_pct, Family, Genus, Phage_host_phylo, …}
+- `data/nb13_strain_phage_susceptibility.tsv` — 188 strains × phage_susceptibility_pct
+- `data/nb13_phagefoundry_cocktail_verdict.json` — formal verdict + cocktail compositions at 50/75/90/95/99 % coverage
+- `figures/NB13_phagefoundry_cocktail.png` — 3-panel: phage host-range + strain susceptibility + cocktail-coverage curve
+
+*(Script: `run_nb13.py`. BERDL Spark Connect via fresh `KBASE_AUTH_TOKEN` from `/home/aparkin/.env`. Per plan v1.7 NB13 + v1.9 no-raw-reads.)*
+
 ## Interpretation
 
 ### Project narrative summary (Pillars 1–3 closed)

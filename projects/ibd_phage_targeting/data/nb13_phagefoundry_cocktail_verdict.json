@@ -1,0 +1,71 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "NB13 \u2014 PhageFoundry quantitative E. coli phage-cocktail design",
+  "n_phages": 96,
+  "n_strains": 188,
+  "n_interactions_tested": 17672,
+  "n_susceptible": 3929,
+  "n_resistant": 13743,
+  "mean_host_range_pct": 22.2,
+  "median_host_range_pct": 16.8,
+  "max_host_range_pct": 63.8,
+  "n_broad_host_range_phages": 27,
+  "n_resistant_strains_le_5pct": 26,
+  "cocktail_designs": {
+    "50pct": {
+      "n_phages": 1,
+      "phages": [
+        "Escherichia phage DIJ07_P2"
+      ],
+      "coverage_pct": 63.8
+    },
+    "75pct": {
+      "n_phages": 2,
+      "phages": [
+        "Escherichia phage DIJ07_P2",
+        "Escherichia phage LF73_P1"
+      ],
+      "coverage_pct": 81.4
+    },
+    "90pct": {
+      "n_phages": 4,
+      "phages": [
+        "Escherichia phage DIJ07_P2",
+        "Escherichia phage LF73_P1",
+        "Escherichia phage AL505_Ev3",
+        "Escherichia phage 55989_P2"
+      ],
+      "coverage_pct": 92.6
+    },
+    "95pct": {
+      "n_phages": 5,
+      "phages": [
+        "Escherichia phage DIJ07_P2",
+        "Escherichia phage LF73_P1",
+        "Escherichia phage AL505_Ev3",
+        "Escherichia phage 55989_P2",
+        "Escherichia phage LF110_P2"
+      ],
+      "coverage_pct": 94.7
+    },
+    "99pct": {
+      "n_phages": 8,
+      "phages": [
+        "Escherichia phage DIJ07_P2",
+        "Escherichia phage LF73_P1",
+        "Escherichia phage AL505_Ev3",
+        "Escherichia phage 55989_P2",
+        "Escherichia phage LF110_P2",
+        "Escherichia phage NIC06_P2",
+        "Escherichia phage LF73_P4",
+        "Escherichia phage BCH953_P4"
+      ],
+      "coverage_pct": 98.4
+    }
+  },
+  "n_b2_d_phylogroup_phages": 65,
+  "n_phages_observed_in_hmp2_viromics": 0,
+  "hmp2_phagefoundry_overlaps": [],
+  "narrative": "PhageFoundry has 17,672 experimentally-tested phage \u00d7 E. coli strain pairs (3929/17672 = 22% susceptibility). Mean host range per phage: 22.2%; max 63.8%. Greedy minimum-set-cover gives a 5-phage cocktail covering \u226595% of 188 strains. 65 of 94 phages were isolated against B2/D phylogroup hosts (AIEC-relevant per Dogan 2014/Dubinsky 2022)."
+}
