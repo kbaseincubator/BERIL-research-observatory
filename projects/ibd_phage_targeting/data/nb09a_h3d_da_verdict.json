@@ -1,0 +1,27 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "H3d-DA \u2014 HMP2 metabolomics CD-vs-nonIBD per-metabolite differential abundance",
+  "n_subjects_cd": 50,
+  "n_subjects_nonibd": 26,
+  "n_metabolites_named_tested": 579,
+  "n_metabolites_passing_FDR10_cliff20": 52,
+  "n_cd_up": 50,
+  "n_cd_down": 2,
+  "themes_supported_count": 2,
+  "themes_supported": [
+    {
+      "theme": "polyamines",
+      "direction": "CD-up",
+      "odds_ratio": 14.583,
+      "fdr": 0.008412303066409374
+    },
+    {
+      "theme": "long_chain_PUFA",
+      "direction": "CD-up",
+      "odds_ratio": 7.879,
+      "fdr": 0.009298004766328563
+    }
+  ],
+  "h3d_da_verdict": "SUPPORTED"
+}

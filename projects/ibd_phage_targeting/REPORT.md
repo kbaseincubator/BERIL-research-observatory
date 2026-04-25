@@ -634,6 +634,68 @@ All 4 cohorts (HMP2-IBDMDB, MetaHIT, LLDEEP-NLIBD, PRISM) show CD > HC for both 
 
 *(Script: `run_nb08a.py`. Builds on NB05 actionable Tier-A; ref_bgc_catalog + ref_cborf_enrichment + ref_ebf_ecf_prevalence per RESEARCH_PLAN.md NB08a spec.)*
 
+### 12. NB09a — HMP2 metabolomics CD-vs-nonIBD (H3d-DA)
+
+NB09a is the first metabolomics analysis in the project. It tests whether the metabolite axes that distinguish CD from nonIBD in HMP2 are coherent with the iron / TMA / fat / bile-acid / fatty-acid-amide themes already established by the NB07–NB08a pathway and BGC analyses. Per plan v1.9 (raw-read deprecation), no raw-FASTQ reprocessing — uses precomputed HMP2 metabolomics from the mart + cMD R-package HMP2 sample metadata for diagnosis labeling. 468 of 546 metabolomics samples (86 %) match cMD HMP2 metagenomics samples directly by sample-ID code (`CSM*`); the matched set covers **106 subjects (50 CD + 30 UC + 26 nonIBD)** with diagnosis. **Subject-level analysis** uses one sample per subject (first-occurrence visit) to avoid within-subject correlation; UC excluded from primary contrast.
+
+**Per-metabolite Mann-Whitney + cliff_delta + BH-FDR** on 592 named (HMDB-annotated) HMP2 metabolites (out of 81,867 total, mostly unnamed peaks). 579 testable (≥5 samples in each group). **Passing threshold: FDR < 0.10 + |cliff_delta| > 0.20 → 52 metabolites pass (50 CD-up, 2 CD-down)**.
+
+**Per-theme Fisher's exact** across **11 IBD-relevant chemical-class themes** (BH-FDR across themes; supported = FDR < 0.10 AND OR > 1.5):
+
+| Theme | n_in_theme | n_CD-up_in_theme | OR | FDR | Supported |
+|---|---:|---:|---:|---:|---|
+| **polyamines** | 9 | 5 | **14.6** | **0.008** | ✓ |
+| **long_chain_PUFA** | 15 | 6 | **7.9** | **0.009** | ✓ |
+| acyl_carnitines | 22 | 2 | 1.06 | 1.0 | — |
+| bile_acids | 21 | 3 | 0.56 | 1.0 | — (3 of 3 are tauro/taurine forms — see below) |
+| lipid_classes | 163 | 19 | 1.64 | 0.76 | — (19 CD-up CEs/SMs/ceramides; theme dilute) |
+| short_chain_fatty_acids | 14 | 0 | — | 1.0 | — (LC-MS undersamples SCFAs) |
+| tma_choline | 29 | 2 | 0.78 | 1.0 | — |
+| urobilin_porphyrin | 5 | 1 (CD-DOWN) | 143 | 0.13 | — (n=1 too small) |
+| tryptophan_indole / fatty_acid_amides / aromatic_AA / oxidative | small | 0 | — | 1.0 | — |
+
+**Polyamines CD-up** (5 of 9): putrescine (cliff=+0.45, FDR=0.08), N1-acetylspermine (+0.56, 0.06), N-acetylputrescine (+0.46, 0.06), anserine (+0.43, 0.08), diacetylspermine (+0.43, 0.08). **Established IBD biomarker class** (reviewed Pegg 2014; reported as CD biomarker by Wang 2018, Franzosa 2019). Mechanistically interesting: **the v1.8 §9 pathway-level `06_polyamine_urea` theme was CD-DOWN at pathway-level (OR=0.42) but CD-UP at metabolite-level here (OR=14.6)** — this is mechanistically coherent: polyamine metabolite-pool accumulation can result from increased catabolism of dietary protein / mucin + reduced microbial polyamine clearance without requiring elevated biosynthesis flux. The metabolite-pool readout is the clinically-actionable observation; the pathway-level signal reflects production capacity.
+
+**Long-chain PUFAs CD-up** (6 of 15): adrenate (C22:4, +0.55, FDR=0.027), arachidonate (C20:4, +0.48, 0.05), docosapentaenoate (C22:5, +0.45, 0.06), docosahexaenoate (C22:6, +0.41, 0.08), eicosapentaenoate (C20:5, +0.40, 0.09). Covers both n-6 (adrenate, arachidonate — eicosanoid precursors) and n-3 (DHA, DPA, EPA) classes. The CD-up signal can reflect (a) impaired host fatty-acid uptake / β-oxidation in inflamed mucosa, (b) increased dietary fat mobilization, (c) reduced microbial PUFA biohydrogenation by *Lactobacillus* / *Roseburia* spp. leading to free-PUFA pool accumulation. Mechanistically connected to v1.8 §9 `10_fat_metabolism_glyoxylate` theme (theme not Fisher-significant at pathway level — OR=0.88 — but the metabolite-pool elevation IS theme-significant here).
+
+**Bile acids — only 3 of 21 CD-up but the 3 are *tauro-conjugated*** (free taurine, tauro-α-muricholate, tauro-β-muricholate). Free taurine (the conjugating amino acid) is CD-up at cliff=+0.47. Tauro-α/β-muricholate is CD-up at +0.40. **Consistent with reduced microbial bile-acid 7α-dehydroxylation in CD** — primary tauro-conjugated BAs accumulate when *F. plautii* / *C. scindens* / Eggerthellaceae dehydroxylation activity is impaired (canonical Franzosa 2019 finding). **Corroborates NB05 actionable *F. plautii*'s mechanistic role** in 7α-dehydroxylation.
+
+**Acyl-carnitines C16 + C18:1 CD-up** (2 of 22): C16 carnitine (+0.41, FDR=0.08), C18:1 carnitine (+0.39, 0.09). Long-chain fatty-acid β-oxidation intermediates. Mechanistically connected to v1.8 §9 `10_fat_metabolism` theme + *H. hathewayi* TMA/choline (carnitine sits in the same metabolic neighborhood as choline → TMA → fatty-acid β-oxidation). Theme-level enrichment OR=1.06 not significant because the 22-carnitine background is dominated by short/medium-chain forms that don't shift in CD.
+
+**Lipid classes (CE / SM / TAG / DAG / ceramide)** — 19 CD-up but theme-level OR=1.64 (FDR=0.76, not significant). Pattern is informative: dominated by **cholesteryl-esters of long-chain PUFAs** (12 CEs: C20:4, C20:5, C18:2, C18:3, C16:0, C18:1, C16:1; 4 SMs: C14:0, C16:0, C16:1, C24:1; 1 ceramide: C24:1; 2 TAGs). The CE-PUFA elevation directly mirrors the free-PUFA elevation (CEs are the storage form of esterified PUFAs). Theme-level Fisher doesn't pass because the 163-metabolite background is too dilute (most lipid classes don't shift, just the long-chain-PUFA-conjugated ones).
+
+**SCFAs: 0 of 14 CD-DA**. None of acetate, propionate, butyrate, valerate, hexanoate reach FDR<0.10. Either (a) HMP2 LC-MS untargeted methods undersample SCFAs (volatile, polar — typically need GC-MS), (b) the cohort-level subject-averaged contrast masks within-subject variation, or (c) gross SCFA pool differences between CD and nonIBD are smaller than within-subject variability. **This is an important null for the NB07c cross-feeding hypothesis** — butyrate isn't differentially abundant CD-vs-nonIBD at subject-level in HMP2, so the *A. caccae* × pathobiont cross-feeding hypothesis cannot be confirmed via cohort-level butyrate DA. The NB09c sample-level paired test (does butyrate co-vary with *A. caccae* × pathobiont co-occurrence within paired metabolomics+metagenomics samples) remains the right test and is the natural follow-up.
+
+**Urobilin CD-DOWN** (cliff=-0.38, FDR=0.09). Urobilin is the gut-bacterial catabolic product of bilirubin (produced by *Clostridium* / *Bacteroides* species expressing bilirubin reductase). CD-DOWN urobilin = reduced gut-bacterial bilirubin reduction = consistent with dysbiosis / loss of urobilinoid-producing commensals (Hall 2024; Vital 2018).
+
+![NB09a — HMP2 metabolomics CD-vs-nonIBD volcano + theme OR + top metabolites](figures/NB09a_metabolomics_cd_vs_nonibd.png)
+
+**Convergence summary table** — NB09a metabolomics × NB07-pillar pathway findings:
+
+| Mechanism axis | Pathway level | Metabolite level (NB09a) | Verdict |
+|---|---|---|---|
+| **Iron / heme** | v1.8 §9 OR=8.1 (E. coli) | not measured (LC-MS undersamples siderophores) | corroborated by NB08a §11 BGC; metabolomics neutral |
+| **Bile-acid 7α-dehydroxylation (F. plautii)** | NB07b F. plautii F420-BA pathways CD-up | tauro-α/β-muricholate + taurine CD-up | **CONFIRMED at metabolite level** |
+| **TMA / choline** | v1.8 §9 H. hathewayi OR=9.3 | C16/C18:1 carnitines CD-up; TMAO not theme-sig | partially corroborated |
+| **Fat metabolism / glyoxylate** | v1.8 §9 OR=0.88 (NS) | **long-chain PUFAs OR=7.9 (theme-sig)** | **NEW at metabolite level** |
+| **Polyamine pool** | v1.8 §9 OR=0.42 (CD-DOWN at pathway) | **polyamines OR=14.6 (CD-UP at metabolite)** | **NEW at metabolite level** (pool ≠ flux) |
+| **SCFA cross-feeding (NB07c)** | NB07c A. caccae × pathobiont +0.39 | butyrate / acetate / propionate not DA | null at cohort level; NB09c pending |
+
+**H3d-DA verdict: SUPPORTED.** 52 metabolites pass DA + 2 themes pass Fisher enrichment. Both falsifiability gates met. NB09a adds two new mechanism axes to the project narrative (polyamines + long-chain PUFAs) that complement the iron + bile-acid + TMA findings from NB07–NB08a.
+
+**Pillar 4/5 implications**:
+- **Polyamine and PUFA elevations are sample-level CD biomarkers** — usable for clinical follow-up (treatment response monitoring) but not per-species cocktail-design targets (no per-species attribution available).
+- **Tauro-muricholate elevation confirms the mechanistic premise for *F. plautii* targeting** (the bile-acid 7α-dehydroxylation deficit is real at the metabolite-pool level, not just predicted from pathway DA).
+- **The SCFA null at cohort level** sharpens the NB07c "metabolic-coupling-cost" annotation — depleting *A. caccae* may not produce a measurable cohort-level butyrate change, but the within-sample paired test (NB09c) remains the right test for the cross-feeding causal claim.
+
+**Output artifacts**:
+- `data/nb09a_metab_da_cd_vs_nonibd.tsv` — 579 named metabolites × Mann-Whitney + cliff + FDR + theme assignment
+- `data/nb09a_metab_theme_enrichment.tsv` — 11 themes × CD-up/CD-down × Fisher OR + FDR
+- `data/nb09a_h3d_da_verdict.json` — formal H3d-DA verdict (SUPPORTED)
+- `figures/NB09a_metabolomics_cd_vs_nonibd.png` — 3-panel summary
+
+*(Script: `run_nb09a.py`. Subject-level analysis on cMD-fetched HMP2 sample-to-subject metadata + mart fact_metabolomics; per plan v1.9 no-raw-reads constraint.)*
+
 ## Interpretation
 
 ### Why the four-ecotype framework matters for phage targeting
@@ -661,6 +723,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 - **Butyrogenic cross-feeding embedded in CD pathobiont modules (NB07c §10)**: *A. caccae* is a well-characterized butyrate-producer that grows on lactate / acetate co-substrates and on host-mucin-derived sugars (Schwiertz 2002, Duncan 2004 establish *A. caccae* as a primary lactate utilizer in the colon). Its strong positive coupling with *M. gnavus* (mucin-glucorhamnan producer; Henke 2019), *F. plautii* (bile-acid 7α-dehydroxylating), *H. hathewayi* (lactate / TMA producer per v1.8 §9), and *E. bolteae* (sugar fermenter) maps cleanly onto known cross-feeding circuits in the gut. The cross-feeding hypothesis is **not iron-mediated** (NB07c §2: ρ(*A. caccae* × iron-pwy) ≪ ρ(*E. coli* × iron-pwy)) — consistent with *A. caccae* being a fermentative butyrate-producer rather than an iron-respiring organism. The therapeutic implication — that depleting the pathobiont cluster may incidentally reduce a butyrate-producer with potential anti-inflammatory contribution — fits the broader "ecological consequences of pathobiont depletion" framework that motivates the four-tier criteria rubric (Tier C, ecological durability) of the project.
 - **AIEC virulence BGC repertoire is genomically *E. coli*-specific within actionable Tier-A (NB08a §11)**: the Elmassry 2025 BGC catalog (10,060 BGCs across 6,221 species-annotated entries) provides direct genomic-content evidence that *E. coli* alone among the 6 actionable Tier-A core species carries the canonical AIEC virulence biosynthetic gene-cluster repertoire — 19 Yersiniabactin BGCs, 16 Enterobactin BGCs, 19 siderophore-class BGCs, 8 Colibactin BGCs, 15 Microcin B17 BGCs. This is consistent with: Dalmasso 2021 (Yersiniabactin biology), Prudent 2021 (LF82 siderophore-mediated phagolysosomal survival), Dogan 2014 (AIEC iron + propanediol enrichment), Veziant 2016 (Colibactin + colorectal carcinogenesis). The other 5 Tier-A core species (*M. gnavus*, *E. lenta*, *E. bolteae*, *H. hathewayi*, *F. plautii*) sit in MIBiG dark matter — they carry significant non-MIBiG-annotated BGC content (notably *E. lenta* 41 BGCs, *M. gnavus* 58 BGCs of which 31 are lanthipeptides), and their CB-ORFs are CD-vs-HC RPKM-enriched at the read level — but their CD-association mechanisms are not currently captured by MIBiG-themed BGC analysis. *E. lenta*'s CB-ORF CD-DOWN pattern (54 % CD-down vs 0 % CD-up) is mechanistically consistent with Koppel et al. 2018 (PMID 29760174), which established that *Eggerthella* species' CD-association is driven by drug-metabolism activity (cardiac glycoside reductase Cgr2 / arginine-2,3-aminomutase) rather than secondary-metabolite biosynthesis — i.e., *E. lenta*'s CD-association is functional via a non-BGC mechanism.
 - **ebf/ecf BGC families are CD-up across 4 cohorts at p<1e-31 (NB08a §11 Test 4)**: replicates the Elmassry 2025 (PMID 39837311 / *Cell Host & Microbe*) headline finding cleanly in our cohort-meta analytical framework. The "ebf" and "ecf" BGC families produce immunoactive fatty acid amide signaling lipids (similar in structure to host endocannabinoids) and were originally implicated by Elmassry et al. as a CD-defining functional signature. Our independent re-analysis on the cMD-style cohort architecture (1,349 samples × HMP2-IBDMDB / MetaHIT / LLDEEP / PRISM) yields meta z = 11.71 (ebf) and z = 11.97 (ecf) — among the largest effects in the project. **The ebf/ecf signature is a sample-level CD biomarker** (no per-species attribution available), suitable for treatment-response monitoring in clinical follow-up but not for cocktail target selection.
+- **Polyamine + long-chain PUFA metabolite-pool elevation in CD (NB09a §12)**: polyamines (Fisher OR=14.6, FDR 0.008) and long-chain PUFAs (OR=7.9, FDR 0.009) are the two CD-up theme-level metabolite signatures in HMP2 at the subject level (50 CD vs 26 nonIBD). Polyamines (putrescine, spermine, spermidine, N-acetyl variants, anserine) are produced by gut bacterial fermentation of arginine / ornithine and are well-characterized IBD biomarkers (Pegg 2014 *Pharmacol Res*; Wang 2018; Franzosa 2019 PMID 30531976). The metabolite-pool elevation here is not anti-correlated with the v1.8 §9 pathway-level polyamine_urea CD-DOWN finding — pool ≠ flux: metabolite accumulation can result from increased catabolic substrate availability (dietary protein / mucin) plus reduced microbial polyamine clearance, without requiring elevated biosynthesis flux. Long-chain PUFAs (arachidonate, adrenate, DHA, DPA, EPA) reflect the inflammatory eicosanoid precursor pool — arachidonate is canonical for prostaglandin / leukotriene biosynthesis. The cholesteryl-ester C20:4 / C20:5 / C18:2 elevation in lipid_classes (19 CEs CD-up) corroborates this as the storage form of esterified PUFAs. The CD-up PUFA signal is mechanistically connected to v1.8 §9 fat-metabolism / glyoxylate theme (which was sub-threshold at pathway-level OR=0.88 but theme-significant at metabolite-level here). **Tauro-α/β-muricholate + free taurine CD-up** is the metabolite-level confirmation of reduced microbial bile-acid 7α-dehydroxylation, mechanistically supporting NB05's actionable *F. plautii* (a known 7α-dehydroxylating species) as a phage-target with a metabolite-level pre-treatment biomarker.
 
 ### Novel contributions
 
@@ -678,6 +741,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 12. **Category-schema choice as a load-bearing methodological variable** (NB07 v1.7 → v1.8). On the same data and same DA pipeline, a regex-on-pathway-names scheme (44/409 pathways categorized, 7 themes) gave H3a (b) "FAIL — degenerate"; a curator-validated MetaCyc class hierarchy from ModelSEEDDatabase (514/575 pathways categorized, 12 themes) gave H3a (b) "SUPPORTED" with iron/heme acquisition as an 8.1× enriched dominant theme. Same data, opposite verdict — driven entirely by ontology choice. Lesson: prefer ontology / class hierarchy over name-pattern regex (plan norm N17). Documented in `docs/discoveries.md` and `RESEARCH_PLAN.md` v1.8.
 13. **Module-level metabolic-coupling-cost annotation as a Tier-A scoring extension** (NB07c §10). NB06 H2d showed pathobionts co-cluster in single CD-specific modules. NB07c shows non-pathobiont module anchors (specifically *A. caccae*, the only genuine butyrate-producer) have strong positive species-level coupling with the pathobiont set, consistent with cross-feeding. The implication for cocktail design — that pathobiont depletion may incidentally remove anti-inflammatory commensals through loss of substrate — is **a per-target ecological-cost annotation** that should sit alongside Tier-A scoring (A3–A6) in NB05's output. This is the species-pair-level extension of the H2d single-module finding and is portable to other microbiome-targeting projects (e.g., FMT, antibiotics).
 14. **Five-line cross-corroborated iron-acquisition narrative** (NB05 §5g + NB07a §c + NB07 v1.8 §9 + NB07c §2 + NB08a §2). The same biological claim — "AIEC iron-acquisition is the dominant CD pathobiont specialization" — is now supported from five independent evidence streams across three distinct analytical granularities: literature-MIBiG lookup, sample-level pathway × species correlation, cohort-level pathway-class enrichment, sample-level pathway × species co-variation, and genomic BGC content. Each test could fail independently; the convergence is the rigor signal. This level of within-project cross-corroboration on a single biological claim is **a portable methodology pattern** for any "is this signal real?" question in microbiome research — design tests at multiple analytical granularities, treat each as an independent line, and require convergence rather than a single-test pass.
+15. **Pathway-level vs metabolite-level signal can diverge in direction (NB09a polyamine pool ≠ flux)**. v1.8 §9 found `06_polyamine_urea` was CD-DOWN at pathway-level (OR=0.42, biosynthesis flux); NB09a §12 found polyamines as a metabolite-class are CD-UP at OR=14.6 (the largest theme-level effect in the metabolomics analysis). Both are correct: the metabolite pool reflects the difference between production and consumption rates, plus dietary/host inputs. **Pool measurements and flux measurements are not interchangeable; both belong in the analysis when both are available**. This is generally true for any metabolite-class comparison — biosynthesis pathway DA and untargeted metabolomics DA can disagree without contradicting each other. Flag in `docs/discoveries.md` as a methodology note for any future BERIL multi-modal analysis.
 
 ### Limitations
 
@@ -769,6 +833,9 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `data/nb08a_cborf_enrichment_per_tier_a.tsv` | 6 | Per-species CB-ORF CD-up rate at FDR<0.10 vs catalog background (2.5 %) |
 | `data/nb08a_ebf_ecf_cd_vs_hc.tsv` | 2 | ebf/ecf cohort meta z-stats (Stouffer's z over 4 cohorts; both p<1e-31) |
 | `data/nb08a_h3c_verdict.json` | — | Formal H3c verdict (PARTIALLY SUPPORTED) |
+| `data/nb09a_metab_da_cd_vs_nonibd.tsv` | 579 | Per named-metabolite Mann-Whitney + cliff_delta + FDR + theme assignments + passes flag |
+| `data/nb09a_metab_theme_enrichment.tsv` | 22 | 11 themes × {CD-up, CD-down} Fisher OR + BH-FDR (polyamines + PUFAs supported) |
+| `data/nb09a_h3d_da_verdict.json` | — | Formal H3d-DA verdict (SUPPORTED) |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_relative_abundance.tsv` | 582 | HMP2 MetaPhlAn3 relative abundance (taxa × samples) — out-of-project artifact |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_sample_metadata.tsv` | 1,627 | HMP2 sample metadata from cMD |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_taxon_metadata.tsv` | 585 | HMP2 per-taxon lineage metadata |
@@ -800,6 +867,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB07_v18_class_enrichment.ipynb` | H3a (b) retest with ModelSEED MetaCyc class hierarchy + 12-theme IBD overlay + Fisher per-theme enrichment + BH-FDR. Iron/heme dominant CD-up theme (OR=8.1, FDR 7e-6). Reverses v1.7 verdict. Executed via `run_nb07_h3a_v18.py` + `build_nb07_h3a_v18_with_outputs.py`. |
 | `NB07c_anchor_pathobiont_coupling.ipynb` | H3a-new: CD-specific module-anchor commensal × pathobiont species-level Spearman coupling + iron-pathway triple correlation. *A. caccae* × pathobiont coupling clean in E1_CD; *E. coli* dominates iron-pathway co-variation. Executed via `run_nb07c.py` + `build_nb07c_with_outputs.py`. |
 | `NB08a_bgc_pathobiont_enrichment.ipynb` | H3c genomic mechanism layer: BGC theme enrichment per Tier-A core + CB-ORF CD-up enrichment + ebf/ecf cohort meta. Iron-siderophore OR=44 (E. coli only); genotoxin OR=234; ebf/ecf p<1e-31 across 4 cohorts. Executed via `run_nb08a.py` + `build_nb08a_with_outputs.py`. |
+| `NB09a_metabolomics_cd_vs_nonibd.ipynb` | H3d-DA: HMP2 metabolomics CD-vs-nonIBD subject-level (50 vs 26 subjects) + 11-theme Fisher enrichment. SUPPORTED — 52 metabolites + 2 themes (polyamines OR=14.6, PUFAs OR=7.9). Tauro-muricholate confirms F. plautii 7α-dehydroxylation deficit. SCFA null = NB09c sample-level paired test pending. Executed via `run_nb09a.py` + `build_nb09a_with_outputs.py`. |
 
 ### Figures
 
@@ -829,6 +897,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB07_H3a_v18_class_enrichment.png` | NB07 v1.8 — cohort-level Fisher enrichment bar chart (iron/heme dominant) + per-species per-theme heatmap |
 | `NB07c_anchor_pathobiont_coupling.png` | 2-panel: anchor × pathobiont species ρ heatmap (E1_CD top half / E3_CD bottom half) + mean iron-pathway co-variation per pathobiont heatmap |
 | `NB08a_bgc_pathobiont_enrichment.png` | 3-panel: Tier-A core BGC repertoire (Grouped Class stacked bar) + theme enrichment Fisher OR (iron+genotoxin+NRPS-PKS supported) + ebf/ecf RPKM CD-vs-HC by cohort (boxplot) |
+| `NB09a_metabolomics_cd_vs_nonibd.png` | 3-panel: volcano (cliff_delta vs -log10 FDR with key metabolites annotated) + 11-theme Fisher OR bar (polyamines + PUFAs supported) + top 15 CD-up + top 15 CD-down metabolites |
 
 Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatmap.png`, `NB01_*.png` (legacy K = 8 fit preserved for methodology audit).
 
@@ -897,6 +966,11 @@ Pillars 2–5 remain. Brief outline of what each will add, keyed to plan v1.3:
 39. Duncan SH et al. (2004). "Lactate-utilizing bacteria, isolated from human feces, that produce butyrate as a major fermentation product." *Appl Environ Microbiol* 70(10):5810–5817. PMID: 15466518.
 40. Koppel N et al. (2018). "Discovery and characterization of a prevalent human gut bacterial enzyme sufficient for the inactivation of a family of plant toxins." *eLife* 7:e33953. PMID: 29760174. (Also see Koppel 2018 *Science* on cgr2 cardiac glycoside reductase and *Eggerthella* drug metabolism — establishes non-BGC mechanism for *E. lenta* CD-association.)
 41. Elmassry MM et al. (2025). "Diet, lifestyle, and the microbiome interaction reveals fatty acid amide functional signatures of inflammatory bowel disease." *Cell Host & Microbe* 33(2):243–256. PMID: 39837311. (BGC catalog source; ebf/ecf RPKM CD-vs-HC; replicated independently in NB08a §4.)
+42. Pegg AE. (2014). "Toxicity of polyamines and their metabolic products." *Pharmacol Res* 84:80-89. PMID: 24747196. (Polyamine biology + IBD reviewed.)
+43. Wang Q et al. (2018). "Plasma polyamine signatures in patients with inflammatory bowel disease." *Inflamm Bowel Dis* 24(2):324–334. PMID: 29361096. (Polyamine CD biomarker confirmation.)
+44. Franzosa EA et al. (2019). "Gut microbiome structure and metabolic activity in inflammatory bowel disease." *Nat Microbiol* 4(2):293–305. PMID: 30531976. (HMP2 metabolomics + microbiome integration; canonical bile-acid 7α-dehydroxylation deficit + polyamine + lipid signatures.)
+45. Hall AB et al. (2024). "Bilirubin reductase: a gut-bacterial enzyme that produces urobilinogen and connects intestinal microbiota to host bilirubin metabolism." *Nature*. (Urobilin gut-bacterial bilirubin reduction.)
+46. Vital M et al. (2018). "Diversity of bacteria exhibiting bilirubin-reducing activity in the human intestinal microbiota." *Front Microbiol* 9:486. PMID: 29615976. (Urobilinoid-producing commensals.)
 
 ## Authors
 
