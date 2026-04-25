@@ -133,6 +133,47 @@ Papers cited in `REPORT.md` and `RESEARCH_PLAN.md`, with identifiers for easy fo
 
 12. **Kumbhari A et al. (2024).** [Strain-frequency and gene-level adaptation of IBD-associated species; full citation in `dim_studies`]. Source of `ref_kumbhari_s7_*` strain-level supplementary tables (432 strains × 6,138 samples). Provides strain-resolution inputs for Pillar 2 and 3.
 
+## Pillar 3 metabolomics + bile-acid + adaptation references (added in NB09a/c/NB10a synthesis)
+
+13. **Schwiertz A et al. (2002).** "Anaerostipes caccae gen. nov., sp. nov., a new saccharolytic, acetate-utilising, butyrate-producing bacterium from human faeces." *Syst Appl Microbiol* 25(1):46–51. PMID: 12086188.
+    *Original description of A. caccae as a butyrate producer. Anchors the NB07c §10 cross-feeding-hypothesis interpretation that A. caccae is the only genuine butyrate producer among E1_CD module-anchor commensals; informs the (later, NB09c-rejected) cross-feeding inference.*
+
+14. **Duncan SH et al. (2004).** "Lactate-utilizing bacteria, isolated from human feces, that produce butyrate as a major fermentation product." *Appl Environ Microbiol* 70(10):5810–5817. PMID: 15466518.
+    *A. caccae as a primary lactate utilizer in the colon. Underwrites the NB07c lactate-mediated cross-feeding hypothesis that NB09c §13 then rejected (lactate × A. caccae +0.18 vs lactate × F. plautii −0.23 — opposite signs at sample level).*
+
+15. **Pegg AE. (2014).** "Toxicity of polyamines and their metabolic products." *Pharmacol Res* 84:80–89. PMID: 24747196.
+    *Polyamine biology + IBD relevance. Background for the NB09a §12 polyamines theme enrichment (OR=14.6, FDR 0.008) — the largest theme-level metabolite effect in the project.*
+
+16. **Wang Q et al. (2018).** "Plasma polyamine signatures in patients with inflammatory bowel disease." *Inflamm Bowel Dis* 24(2):324–334. PMID: 29361096.
+    *Plasma polyamines as IBD biomarker. Confirms NB09a §12 finding (putrescine, spermidine, spermine variants CD-up) replicates established IBD biology.*
+
+17. **Franzosa EA et al. (2019).** "Gut microbiome structure and metabolic activity in inflammatory bowel disease." *Nat Microbiol* 4(2):293–305. PMID: 30531976.
+    *HMP2 + multi-cohort metabolomics; canonical bile-acid 7α-dehydroxylation deficit, polyamine, and lipid CE/SM signatures in CD. Directly mirrored by NB09a + NB09c findings (tauro-muricholate CD-up; F. plautii / E. lenta / E. bolteae substrate-product signature). Source of the cross-cohort metabolomics planning for NB09b.*
+
+18. **Devlin AS, Fischbach MA. (2015).** "A biosynthetic pathway for a prominent class of microbiota-derived bile acids." *Nat Chem Biol* 11(9):685–690. PMID: 26412091.
+    *Bile-acid 7α-dehydroxylation bai operon mechanism in Clostridium scindens-like bacteria. Mechanism anchor for the NB09c §13 bile-acid network finding — F. plautii / E. lenta / E. bolteae as the project's actionable Tier-A active 7α-dehydroxylators.*
+
+19. **Hall AB et al. (2024).** "Bilirubin reductase: a gut-bacterial enzyme that produces urobilinogen and connects intestinal microbiota to host bilirubin metabolism." *Nature*.
+    *Recent characterization of gut-bacterial bilirubin reduction. Underwrites the NB09a §12 urobilin CD-DOWN finding (loss of urobilinoid-producing commensals in CD).*
+
+20. **Vital M et al. (2018).** "Diversity of bacteria exhibiting bilirubin-reducing activity in the human intestinal microbiota." *Front Microbiol* 9:486. PMID: 29615976.
+    *Diversity of bilirubin-reducing commensals (Clostridium, Bacteroides). Complements Hall 2024 for the urobilin CD-DOWN interpretation.*
+
+21. **Ellermann M et al. (2020).** "Dietary iron variably modulates assembly of the intestinal microbiota in colitis-resistant and colitis-susceptible mice." *Gut Microbes* 12(1):1599794. PMID: 31179826.
+    *Mechanistic link between dietary iron, gut microbiota, and colitis susceptibility. Anchors the v1.8 §9 iron/heme acquisition theme (OR=8.1) interpretation: iron is a pathobiont-selective resource, with cocktail-design implications for per-patient iron-supplementation policy.*
+
+22. **Buret AG et al. (2019).** "Pathobiont release from dysbiotic gut microbiota biofilms in intestinal inflammatory diseases: a role for iron?" *J Biomed Sci* 26(1):1. PMID: 30602371.
+    *Reviews iron-acquisition virulence-factor expression in commensal-to-pathobiont transitions. Complements Ellermann 2020 for the project's six-line iron-acquisition narrative.*
+
+23. **Koppel N et al. (2018).** "Discovery and characterization of a prevalent human gut bacterial enzyme sufficient for the inactivation of a family of plant toxins." *eLife* 7:e33953. PMID: 29760174.
+    *Eggerthella lenta cardiac glycoside reductase (Cgr2) and arginine-2,3-aminomutase. Establishes that E. lenta's CD-association is via drug-metabolism activity, not BGC-encoded inflammatory mediators — explains the NB08a §11 E. lenta CB-ORF CD-DOWN pattern (54 % CD-down vs 0 % CD-up).*
+
+24. **Galtier M et al. (2017).** "Bacteriophages targeting adherent-invasive Escherichia coli strains as a promising new treatment for Crohn's disease." *J Crohns Colitis* 11(7):840–847. PMID: 28130329.
+    *Direct phage-therapy precedent for AIEC E. coli. Validates Pillar 4 cocktail-design feasibility for the iron-acquisition narrative target (E. coli AIEC subset) — combined with NB05 §5g + NB06 H2d + NB08a §2, supports multi-target cocktail framing rather than monovalent AIEC-only.*
+
+25. **Sheikh IA et al. (2024).** "Transplant of microbiota from Crohn's disease patients to germ-free mice results in colitis." *Gut Microbes* 16(1):2333483. PMID: 38532703.
+    *FMT-to-GF-mouse causal evidence: CD microbiota composition is causally sufficient to produce colitis. Underwrites the project premise that a cocktail modifying that composition can have therapeutic effect.*
+
 ## Still-to-be-read (will expand at project completion)
 
 The synthesis here covers Pillar 1 + rigor-controlled Pillar 2. A full literature review over Pillars 3–5 — in particular published IBD pathobiont target lists, FMT response studies, phage therapy clinical trials (EcoActive / BiomX), and bile-acid / TMA/TMAO / sulfidogenesis mechanism papers — will be added in the next synthesis pass, after NB05–NB14.

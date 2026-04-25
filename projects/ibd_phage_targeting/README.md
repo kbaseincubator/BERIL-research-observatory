@@ -12,7 +12,7 @@ Three coupled deliverables:
 
 ## Status
 
-**In Progress** — Pillar 1 closed; Pillar 2 rigor-repaired (RESEARCH_PLAN v1.4). Next milestone: NB05 Tier-A scoring on the rigor-controlled Tier-A input set.
+**In Progress** — **Pillar 1 closed; Pillar 2 fully closed; Pillar 3 substantially closed** (8 notebooks, 6 of 7 H3 hypotheses tested with verdicts; H3d-clust + H3e remain). Two cross-corroborated mechanism narratives established: (1) iron-acquisition as *E. coli* (AIEC subset) CD-pathobiont specialization (6 evidence streams); (2) bile-acid 7α-dehydroxylation network in *F. plautii* / *E. lenta* / *E. bolteae* (6 evidence streams). Pillars 4–5 and a small Pillar-3 tail (NB11 H3e serology, NB09d H3d-clust, NB07d MOFA+ pilot, NB09b cross-cohort metabolomics bridge) pending. RESEARCH_PLAN now at v1.9 (raw-read-dependent paths deprecated; the project's data scope is provably-sufficient for the science question).
 
 - ✅ NB00 data audit + compositional-DA proof of concept (norm N1 justified)
 - ✅ NB01 + NB01b ecotype training (K=4 consensus from cross-method ARI + parsimony):
@@ -95,7 +95,7 @@ This project integrates data from:
 ## Quick Links
 
 - [Research Plan](RESEARCH_PLAN.md) — hypotheses, pillar structure, four-tier criteria, BERDL query strategy, per-pillar analysis sketch, known-missing registry, reproduce-and-extend table (v1.4 — NB04 rigor-repair arc documented)
-- [Report](REPORT.md) — **interim synthesis** — Pillar 1 findings (ecotype framework, UC Davis projection, H1c classifier) + rigor-controlled Pillar 2 (Tier-A via within-ecotype × within-substudy meta); §5 opens with a retraction box for the superseded NB04 claims. Pillars 3–5 pending.
+- [Report](REPORT.md) — **interim synthesis (Pillars 1–3 substantially closed)** — Pillar 1 ecotype framework + UC Davis projection + H1c classifier; Pillar 2 rigor-controlled Tier-A via within-ecotype × within-substudy meta + NB05 scoring + NB06 co-occurrence networks; Pillar 3 H3a–H3d-DA + H3b verdicts across pathway / BGC / metabolite / strain granularities + two cross-corroborated mechanism narratives (iron-acquisition + bile-acid 7α-dehydroxylation). §5 opens with a retraction box for the superseded NB04 claims. Pillars 4–5 + Pillar-3 tail pending.
 - [Failure Analysis](FAILURE_ANALYSIS.md) — full arc of the NB04 rigor gap: adversarial review findings, repair notebooks, quantified cost (Tier-A 33 → 3 rock-solid → 51 E1 + 40 E3 under confound-free meta), methodology lessons
 - [References](references.md) — cited literature with PMIDs and project context
 

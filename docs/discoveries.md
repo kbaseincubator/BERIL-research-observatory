@@ -8,6 +8,29 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [meta] Multi-line cross-corroboration across analytical granularities is a portable project-rigor pattern
+
+The `ibd_phage_targeting` project produced two independent six-line cross-corroboration narratives from a single dataset, each demonstrating the same biological claim across multiple analytical granularities. Iron-acquisition: per-actionable MIBiG lookup → sample-level pathway × species attribution → cohort-level pathway-class enrichment → sample-level species × pathway co-variation → genomic BGC content → AIEC literature. Bile-acid 7α-dehydroxylation: within-carrier pathway DA → subject-level metabolite DA → paired sample-level direct substrate-product signature → strain-level informative null → mechanism literature.
+
+**Generalizable rule**: any biological claim with multi-line convergence across granularities is robust against single-test failures. Design tests at multiple analytical granularities (per-target lookup, cohort DA, sample-level correlation, genomic content, literature, strain-level), treat each as an independent line, and require convergence rather than a single-test pass. Two such narratives in the same dataset, each independently developed, validates the methodology pattern beyond a single example.
+
+**Applies to**: any "is this signal real?" question in microbiome research where multiple modalities are available (taxonomy + pathway + metabolomics + BGC + strain). The convergence is the rigor signal.
+
+### [ibd_phage_targeting] Pool ≠ flux — pathway-DA and metabolite-DA can diverge in direction without contradicting each other
+
+NB07 v1.8 §9 found `06_polyamine_urea` was CD-DOWN at pathway-level (OR=0.42); NB09a §12 found polyamines as a metabolite-class are CD-UP at OR=14.6 — the largest theme-level metabolite effect in the project. Both correct: the metabolite pool reflects the difference between production and consumption rates, plus dietary/host inputs. Pool measurements and flux measurements are not interchangeable; both belong in the analysis when both are available.
+
+**Generalizable rule** for any BERIL multi-modal analysis: do NOT treat biosynthesis-pathway DA and untargeted-metabolomics DA as redundant. They measure different things (production capacity vs steady-state pool size). Disagreement in direction is informative, not a contradiction.
+
+### [ibd_phage_targeting] Cocktail / FMT / antibiotic ecological-cost annotation: pair phage-target Tier-A scoring with bile-acid + species-abundance vs strain-content axis
+
+NB09c §13 + NB10a §14 establish that pathobiont-targeting interventions need three axes of per-target annotation alongside the headline Tier-A score:
+- **Iron/AIEC-mediated vs other CD specialization mechanism** (informs whether to target species broadly or AIEC-subset specifically)
+- **Bile-acid coupling cost** (does this pathobiont actively 7α-dehydroxylate? F. plautii / E. lenta / E. bolteae do; M. gnavus / E. coli do not — depleting active 7α-dehydroxylators shifts BA pool toward inflammatory primary tauro-conjugated forms)
+- **Species-abundance-mediated vs strain-content-mediated** (zero strain-adaptation gene signal in Kumbhari → species-abundance-mediated; phage targeting produces predictable activity depletion with no within-species strain-content escape route)
+
+**Generalizable rule** for any future microbiome-targeting project (FMT, antibiotics, phage cocktails, dietary intervention): do NOT treat "depletes target species" as the sole optimization criterion. The ecological-cost annotation prevents incidental loss of beneficial activity (e.g., 7α-dehydroxylation, butyrogenesis) and directly translates to net inflammatory balance — the actual clinical endpoint.
+
 ### [ibd_phage_targeting] Regex-on-pathway-names vs curator-validated class hierarchy: same data, opposite conclusion
 
 A NB07a H3a (b) test of "do CD-up pathways concentrate in IBD-mechanism themes" gave opposite verdicts depending on category-schema choice — same DA outputs, same statistical test, same nulls.
