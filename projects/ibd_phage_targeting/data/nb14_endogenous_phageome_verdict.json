@@ -1,0 +1,13 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "NB14 \u2014 HMP2 endogenous phageome \u00d7 ecotype \u00d7 diagnosis",
+  "n_viromics_samples_with_ecotype": 630,
+  "n_unique_phage_families": 21,
+  "n_ecotypes_tested": 4,
+  "n_ecotypes_with_passing_da": 2,
+  "n_total_da_tests": 85,
+  "n_passing_fdr_10": 3,
+  "n_pathobiont_phage_family_correlations_strong": 0,
+  "narrative": "HMP2 endogenous phageome maps onto the 4-ecotype framework via NB04h projection: 630 of 648 viromics samples have ecotype calls. Per-ecotype \u00d7 per-virus CD-vs-nonIBD MW DA produces 85 tests across 4 ecotypes; 2 ecotypes carry at least one passing virus at FDR<0.10. 0 species \u00d7 phage-family correlations at |rho|>0.30 across paired viromics+metaphlan3 samples."
+}

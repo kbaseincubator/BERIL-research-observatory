@@ -1233,6 +1233,62 @@ AIEC strains are predominantly phylogroup B2 (~80 %) and D (~20 %) per Dogan 201
 
 *(Script: `run_nb13.py`. BERDL Spark Connect via fresh `KBASE_AUTH_TOKEN` from `/home/aparkin/.env`. Per plan v1.7 NB13 + v1.9 no-raw-reads.)*
 
+### 21. NB14 — HMP2 endogenous phageome × ecotype × diagnosis
+
+NB14 closes Pillar 4 by adding the **in-vivo phage-community lens** to the curated-literature (NB12) + experimental-susceptibility (NB13) layers. HMP2 `fact_viromics` (3,039 sample-rows × 273 viruses × VirMAP taxonomic profile) cross-referenced with NB04h ecotype projections gives **630 of 648 viromics samples (97 %) with ecotype calls** — 27 (E0) + 484 (E1) + 55 (E2) + 50 (E3) samples spanning CD/UC/healthy.
+
+**Per-ecotype × per-virus CD-vs-nonIBD Mann-Whitney**: 85 DA tests across 4 ecotypes; 3 pass strict FDR<0.10:
+
+| Ecotype | Virus | Cliff δ | n_CD vs n_HC | FDR |
+|---|---|---:|---|---:|
+| **E1** | **Gokushovirus WZ-2015a** | **−0.358** | 231 vs 125 | **5e-7** |
+| E2 | Gokushovirus WZ-2015a | −0.471 | 21 vs 20 | 0.056 |
+| E2 | Human feces pecovirus | −0.300 | 21 vs 20 | 0.056 |
+
+***Gokushovirus WZ-2015a* is robustly CD-DOWN across multiple ecotypes**, with the strongest signal in E1 (cliff=-0.36, FDR=5e-7). This independently rediscovers the precomputed `ref_viromics_cd_vs_nonibd` top hit (log2fc=-2.7, FDR=1e-11). *Gokushovirus* is a *Microviridae* member (single-stranded DNA, ~5 kb genome; Gokushovirinae subfamily includes the canonical "crassphage-like" lineage that infects *Bacteroides* / *Prevotella* gut commensals) — CD-DOWN consistent with Norman 2015 / Clooney 2019 IBD-Microviridae depletion.
+
+**Tier-A pathobiont species × phage-family Spearman ρ** (n=630 paired viromics+metaphlan3 samples):
+
+| Species | Phage family | ρ | p |
+|---|---|---:|---:|
+| ***E. coli*** | **Podoviridae** | **+0.183** | **4e-6** |
+| H. hathewayi | Unknown | -0.150 | 2e-4 |
+| M. gnavus | Unknown | -0.134 | 7e-4 |
+| ***E. coli*** | **Myoviridae** | **+0.125** | 0.002 |
+| E. bolteae | Myoviridae | +0.119 | 0.003 |
+
+***E. coli*** **correlates positively with Podoviridae (+0.18) and Myoviridae (+0.13)** — both Caudovirales families that include T7-like + T4-like *E. coli* phages. This is a plausible endogenous phage-host correlation: when *E. coli* is abundant, *E. coli* phages tend to also be abundant (commensal phage carriage / lysogenic-state co-occurrence). All correlations |ρ|≤0.18 — **no strong (|ρ|>0.30) endogenous phage candidates targeting Tier-A pathobionts**.
+
+***H. hathewayi* and *M. gnavus*** correlate NEGATIVELY with the "Unknown" phage family (which captures 80 % of HMP2 viromics observations that VirMAP couldn't classify) — pathobiont blooms displace some unclassified phages, consistent with reduced phage diversity in CD dysbiosis.
+
+![NB14 — HMP2 endogenous phageome × ecotype × diagnosis](figures/NB14_endogenous_phageome.png)
+
+**Per-ecotype phage-family abundance** (Panel A) shows modest ecotype-specific variation: Anelloviridae E1-specific; Parvoviridae E2-elevated; Unknown family E2-dominant. The dominant signal is the "Unknown" classification (80 % of observations) — VirMAP family-level classification gap is the methodological limit, not biology.
+
+**Pillar 4 closure synthesis — three complementary phage-evidence layers**:
+
+| Notebook | Evidence layer | Key finding |
+|---|---|---|
+| **NB12** | Curated literature foundation | *E. coli* AIEC = clinical-trial-stage (EcoActive); *M. gnavus* = temperate-only; *H. hathewayi* + *F. plautii* = phage GAP |
+| **NB13** | PhageFoundry experimental susceptibility (96 phages × 188 strains × 17,672 pairs) | **5-phage cocktail covers 95 % of E. coli strains**; 69 % of phages AIEC-relevant phylogroup |
+| **NB14** | HMP2 in-vivo endogenous phageome (630 samples × 21 families) | **Gokushovirus CD-DOWN cross-ecotype (E1 FDR=5e-7)**; *E. coli* × Podoviridae/Myoviridae positive correlation (+0.18, +0.13); modest in-vivo phage signal |
+
+**Combined Pillar-4 verdict**: phage-therapy feasibility for *E. coli* is high (clinical cocktail + experimental susceptibility + in-vivo phage correlation all aligned); for *M. gnavus* / *H. hathewayi* / *F. plautii* the gap is confirmed across all three layers (no clinical phages, no PhageFoundry coverage, no HMP2 in-vivo Podoviridae/Myoviridae signal). External DB queries (INPHARED + IMG/VR) for the 3 gut-anaerobe gaps remain the highest-priority Pillar-4 follow-up before Pillar 5 cocktail drafts.
+
+**Limitations**:
+- VirMAP family-level classification gap: 80 % of phages classified as "Unknown" family — limits per-family DA + correlation power.
+- Per-ecotype DA asymmetric power: E1 has 231 CD samples, but E0/E2/E3 have 12-30 — limits within-ecotype detection in smaller ecotypes (Gokushovirus E0 cliff=-0.55 is biologically interesting but doesn't pass strict FDR<0.10 due to power).
+- No CRISPR-spacer-derived phage-host predictions in HMP2 viromics — would require IMG/VR cross-reference for Tier-A-host phage discovery.
+- "Unknown" family aggregation hides species-level signal; per-virus DA is more informative than per-family for IBD-relevant phages.
+
+**Output artifacts**:
+- `data/nb14_viromics_da_per_ecotype.tsv` — 85 (ecotype × virus) DA tests
+- `data/nb14_pathobiont_phage_family_corr.tsv` — 126 (Tier-A species × phage family) Spearman ρ
+- `data/nb14_endogenous_phageome_verdict.json` — formal verdict
+- `figures/NB14_endogenous_phageome.png` — 3-panel: ecotype × family abundance heatmap + top 12 DA viruses + species × family ρ heatmap
+
+*(Script: `run_nb14.py`. Per plan v1.7 NB14 endogenous phageome stratification + v1.9 no-raw-reads.)*
+
 ## Interpretation
 
 ### Project narrative summary (Pillars 1–3 closed)
