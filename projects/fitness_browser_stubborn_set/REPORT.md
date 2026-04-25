@@ -1,7 +1,6 @@
 # Report: The Fitness Browser Stubborn Set — Curator-Like Genes Left Unannotated
 
-> **Status**: in progress — pilot of 210 / 137,798 ranked genes (next round queued).
-> Numbers in this draft will update as more genes are walked.
+> **Status**: pilot complete — 310 of 137,798 ranked genes evaluated (~0.22% of the queue). Numbers below reflect this pilot. Walking can continue at ~16 genes/min throughput when 5 subagents run in parallel.
 
 ## Research Question
 
@@ -9,46 +8,47 @@ Of the ~137K Fitness Browser genes that were **not** in Price's curated `kescien
 
 We started with the question "which genes did Price's curators look at but couldn't improve?" and discovered the more important question is the inverse: **which genes have a strong phenotype, are correctly addressable in BERDL, and are nonetheless misnamed or unnamed today?**
 
-## Headline Findings (n = 210 of 137,798)
+## Headline Findings (n = 310 of 137,798)
 
 ### Verdict distribution
 
 | Verdict | n | % |
 |---|---:|---:|
-| already_correctly_named | 72 | 34% |
-| improvable_correction | 69 | 33% |
-| improvable_new | 52 | 25% |
-| recalcitrant | 17 | 8% |
+| improvable_correction | 111 | 36% |
+| already_correctly_named | 110 | 35% |
+| improvable_new | 60 | 19% |
+| recalcitrant | 29 | 9% |
 
-**121 of 210 (58%) top-ranked non-reannotated genes have evidence supporting an annotation improvement.** Roughly half are corrections to existing names (the gene already has a name, but the evidence supports a different or more specific function); the other half are new annotations for currently-hypothetical / DUF / vague-named genes.
+**171 of 310 (55%) top-ranked non-reannotated genes have evidence supporting an annotation improvement.** Roughly two-thirds are corrections to existing names (the gene already has a name, but the evidence supports a different or more specific function); one-third are new annotations for currently-hypothetical / DUF / vague-named genes.
 
-The recalcitrant rate (8%) is low and stable. The pool of genes with strong phenotypes that genuinely *cannot* be resolved from BERDL evidence is small — most apparent recalcitrance in earlier flag-based passes was solved by reading the literature.
+The recalcitrant rate (~9%) is low and stable across the depth walked so far. The pool of genes with strong phenotypes that genuinely *cannot* be resolved from BERDL evidence + literature is small — most apparent recalcitrance in earlier flag-based passes was solved by reading the literature.
 
 ### Confidence
 
-- **133 high-confidence verdicts (63%)** — evidence aligns and is internally consistent
-- 65 medium-confidence (31%)
-- 12 low-confidence (6%) — concentrated in the recalcitrant set
+- **196 high-confidence verdicts (63%)** — evidence aligns and is internally consistent
+- 93 medium-confidence (30%)
+- 21 low-confidence (7%) — concentrated in the recalcitrant set
 
 ### Literature consultation
 
-- **95 of 210 genes (45%) had paper consultation** during reasoning
-- **127 PMC full-text fetches** across **80 unique PMIDs**
+- **136 of 310 genes (44%) had paper consultation** during reasoning
+- **177 PMC full-text fetches** across **120 unique PMIDs**
 - Subagents reported **~30-40% of fetches *changed* the verdict** (vs. just confirming dossier evidence)
 
 ### Cross-gene cluster discoveries
 
-8 PMIDs were each cited by ≥3 genes during reasoning — a signal that the LLM reasoning, with literature in hand, recovered published functional clusters that the per-gene FB annotations miss:
+11 PMIDs were each cited by ≥3 genes during reasoning — a signal that the LLM reasoning, with literature in hand, recovered published functional clusters that the per-gene FB annotations miss:
 
 | PMID | n genes | Cluster |
 |---|---:|---|
 | 24795702 (Korte 2014) | 10 | DvH/Miya nitrate-tolerance cluster (NtrYX-like) |
 | 32934357 (Zhou 2020) | 9 | Same cluster, evolution evidence |
 | 34215744 (Cimermancic 2014) | 6 | PV4 aryl polyene biosynthesis (APE BGC) |
-| 18194565 (Visca 2008) | 5 | pseudo5 pyoverdine NRPS biosynthesis |
+| 18194565 (Visca 2008) | 5 | pseudo5 pyoverdine NRPS biosynthesis (5+ genes) |
 | 37865075 (Pellegrini 2024) | 3 | Ponti Tl/As resistance operon (metallophosphoesterase + ArsR + glyoxalase) |
 | 37239993 (Awasthi 2023) | 3 | Cross-organism SAM-methyltransferase tetracycline tolerance |
 | 38832093 (Yang 2024) | 3 | Pseudomonas MexT/MexEF HMF tolerance regulon |
+| (3 additional cluster PMIDs) | 3-5 each | see [data/cross_gene_clusters.md](data/cross_gene_clusters.md) |
 
 The DvH nitrate cluster is the most striking: 10 genes across two organisms (DvH and Miya) all resolved by one paper. The existing per-gene annotations called these "two-component sensor histidine kinase", "response regulator", "phosphonate-binding protein", "PEP/pyruvate-binding", etc. — all generic family-level names. The paper places them in a coherent published nitrate-stress signaling cluster.
 
