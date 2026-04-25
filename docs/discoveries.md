@@ -8,6 +8,19 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [ibd_phage_targeting] Cross-cohort m/z-bridge metabolomics requires explicit batch correction; taxonomic-feature ecotypes are naturally cross-cohort-portable
+
+NB09d found that pooling HMP2 + Franzosa metabolomics on the 122 m/z-bridge metabolite panel and clustering with PCA + K-means K=4 produces clusters that **separate completely by cohort, not by diagnosis**. PC1 explains 79 % of total variance and is essentially the cohort batch effect. Cross-cohort LOSO ARI = 0.000 vs the 0.113 taxonomic-ecotype LOSO baseline (NB04f).
+
+The taxonomic-feature ecotype framework was naturally cross-cohort-portable because MetaPhlAn3 relative-abundance values are unitless and compositionally constrained (sum-to-1 per sample) — that constraint creates a natural normalization that handles cohort differences. Metabolite-feature clustering inherits absolute-intensity scale differences between LC-MS runs (different instruments, ionization tuning, solvent batches) and requires explicit batch correction (ComBat / SVA / RUV / quantile normalization within method) prior to PCA + K-means.
+
+**Generalizable rule** for any future BERIL multi-cohort metabolomics project:
+- Compositional / relative-abundance feature spaces (taxonomy, pathway-fraction, MAG-fraction) are usually cross-cohort-portable as-is
+- Absolute-intensity feature spaces (mass-spec, RNA-seq counts, protein abundance) are NOT cross-cohort-portable without batch correction; the dominant axis of variation in pooled data will be batch, not biology
+- Within-pooled bootstrap stability metrics are misleading when batch dominates — they measure batch reproducibility, not biological reproducibility
+
+The within-cohort metabolite-feature ecotype framework may still be useful for clinical translation within a single laboratory's analytical pipeline; the failure here is specifically the cross-cohort-portability question.
+
 ### [meta] Multi-line cross-corroboration across analytical granularities is a portable project-rigor pattern
 
 The `ibd_phage_targeting` project produced two independent six-line cross-corroboration narratives from a single dataset, each demonstrating the same biological claim across multiple analytical granularities. Iron-acquisition: per-actionable MIBiG lookup → sample-level pathway × species attribution → cohort-level pathway-class enrichment → sample-level species × pathway co-variation → genomic BGC content → AIEC literature. Bile-acid 7α-dehydroxylation: within-carrier pathway DA → subject-level metabolite DA → paired sample-level direct substrate-product signature → strain-level informative null → mechanism literature.
