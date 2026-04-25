@@ -23,6 +23,12 @@ We started with the question "which genes did Price's curators look at but could
 
 The recalcitrant rate (~9%) is low and stable across the depth walked so far. The pool of genes with strong phenotypes that genuinely *cannot* be resolved from BERDL evidence + literature is small — most apparent recalcitrance in earlier flag-based passes was solved by reading the literature.
 
+![Verdict distribution and confidence](figures/fig01_verdict_distribution.png)
+
+![Verdict by existing annotation category](figures/fig02_verdict_by_category.png)
+
+![Verdict by rank](figures/fig03_verdict_by_rank.png)
+
 ### Confidence
 
 - **196 high-confidence verdicts (63%)** — evidence aligns and is internally consistent
