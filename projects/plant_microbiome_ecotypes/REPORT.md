@@ -567,10 +567,18 @@ Pairwise phylogenetic distances from `phylogenetic_tree_distance_pairs` (22.6M r
 | `data/gapmind_genus_pathways.csv` | 658,712 | Genus-level GapMind pathway aggregation |
 | `data/complementarity_network.csv` | 2,346 | Genus-pair complementarity scores |
 | `data/cohort_assignments.csv` | 25,660 | Final composite cohort assignments |
+| `data/bacdive_metabolites_genera.csv` | 137,599 | BacDive metabolite utilization records per genus (NB06 GapMind cross-validation) |
 | `data/genus_dossiers.csv` | 30 | Detailed genus-level dossiers |
 | `data/genus_dossiers_plant_only.csv` | 30 | Plant/soil-filtered genus dossiers (NB08) |
 | `data/species_family_taxonomy.csv` | 27,690 | Species-level GTDB family assignments (NB08) |
 | `data/pfam_investigation_cache.csv` | 36 | Pfam domain investigation results (NB08) |
+| `data/novel_og_annotations.csv` | 50 | Aggregate functional annotations for the 50 plant-enriched OGs (NB09) |
+| `data/novel_og_eggnog_annotations.csv` | 1,206,652 | eggNOG per-gene-cluster annotations contributing to the 50 OGs (NB09) |
+| `data/novel_og_bakta.csv` | 12,580 | Bakta gene/product annotations for the 50 OGs (NB09) |
+| `data/novel_og_interproscan.csv` | 4,455 | InterProScan domain hits per OG (NB09) |
+| `data/novel_og_domains.csv` | 4,455 | Consolidated per-OG domain assignments (NB09) |
+| `data/novel_og_go_terms.csv` | 1,544 | GO term annotations per OG (NB09) |
+| `data/novel_og_pathways.csv` | 2,317 | MetaCyc / KEGG pathway annotations per OG (NB09) |
 | `data/genome_host_species.csv` | 11,852 | Per-genome plant host species assignments (NB10) |
 | `data/species_marker_matrix_v2.csv` | 25,660 | Refined 17-marker species matrix with KEGG gating (NB10) |
 | `data/species_cohort_refined.csv` | 25,660 | Refined cohort assignments with taxonomy and host data (NB10) |
@@ -582,6 +590,8 @@ Pairwise phylogenetic distances from `phylogenetic_tree_distance_pairs` (22.6M r
 | `data/mgnify_mobilome.csv` | 17,323 | Mobile element annotations in pangenome genera (NB11) |
 | `data/mgnify_bgc_profiles.csv` | 8,089 | Biosynthetic gene cluster profiles by genus (NB11) |
 | `data/mgnify_kegg_biome_profiles.csv` | 2,630 | KEGG module distribution across biomes (NB11) |
+| `data/mgnify_rhizo_vs_soil_cog.csv` | 96 | COG-category counts per biome for rhizosphere-vs-soil contrast (NB11) |
+| `data/mgnify_soil_bgc_summary.csv` | 13,584 | Per-genus BGC summaries from MGnify soil biome (NB11) |
 | `data/species_subclade_definitions.csv` | 1,306 | Phylogenetic subclade assignments per genome (NB12) |
 | `data/subclade_og_enrichment.csv` | 6 | Subclade × plant-association enrichment tests (NB12) |
 | `data/subclade_host_mapping.csv` | 0 | Host × subclade mapping — insufficient data (NB12) |
