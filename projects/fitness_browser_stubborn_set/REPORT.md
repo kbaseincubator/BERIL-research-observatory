@@ -1,6 +1,6 @@
 # Report: The Fitness Browser Stubborn Set — Curator-Like Genes Left Unannotated
 
-> **Status**: pilot complete — 510 of 137,798 ranked genes evaluated (~0.37% of the queue). The verdict distribution has been remarkably stable across rounds (110, 210, 310, 410, 510 → percentages within ~3pp of one another).
+> **Status**: pilot complete — 610 of 137,798 ranked genes evaluated (~0.44% of the queue). The verdict distribution has been remarkably stable across rounds (110, 210, 310, 410, 510, 610 → percentages within ~4pp of one another).
 
 ## Research Question
 
@@ -8,20 +8,20 @@ Of the ~137K Fitness Browser genes that were **not** in Price's curated `kescien
 
 We started with the question "which genes did Price's curators look at but couldn't improve?" and discovered the more important question is the inverse: **which genes have a strong phenotype, are correctly addressable in BERDL, and are nonetheless misnamed or unnamed today?**
 
-## Headline Findings (n = 510 of 137,798)
+## Headline Findings (n = 610 of 137,798)
 
 ### Verdict distribution
 
 | Verdict | n | % |
 |---|---:|---:|
-| already_correctly_named | 193 | 38% |
-| improvable_correction | 171 | 34% |
-| improvable_new | 103 | 20% |
-| recalcitrant | 43 | 8% |
+| already_correctly_named | 231 | 38% |
+| improvable_correction | 195 | 32% |
+| improvable_new | 123 | 20% |
+| recalcitrant | 61 | 10% |
 
-**274 of 510 (54%) top-ranked non-reannotated genes have evidence supporting an annotation improvement.** Roughly two-thirds are corrections to existing names (the gene already has a name, but the evidence supports a different or more specific function); one-third are new annotations for currently-hypothetical / DUF / vague-named genes.
+**318 of 610 (52%) top-ranked non-reannotated genes have evidence supporting an annotation improvement.** Roughly 60% are corrections to existing names (the gene already has a name, but the evidence supports a different or more specific function); 40% are new annotations for currently-hypothetical / DUF / vague-named genes.
 
-**The verdict distribution is remarkably stable across rounds.** Walking from 110 → 210 → 310 → 410 → 510 produced consistent rates:
+**The verdict distribution is remarkably stable across rounds.** Walking from 110 → 210 → 310 → 410 → 510 → 610 produced consistent rates:
 
 | Round | already_named | improvable | recalcitrant |
 |---|---:|---:|---:|
@@ -30,8 +30,9 @@ We started with the question "which genes did Price's curators look at but could
 | 310 | 35% | 55% | 9% |
 | 410 | 37% | 55% | 8% |
 | 510 | 38% | 54% | 8% |
+| 610 | 38% | 52% | 10% |
 
-The 8% recalcitrant rate has been especially stable (8% across the last 4 rounds). This is the **base rate** of genes with strong primary phenotype that genuinely cannot be resolved from current BERDL + literature.
+Across all 610 genes, the rates settle at ~38% already-named, ~52% improvable, ~10% recalcitrant. The recalcitrant base rate is concentrated in two pools: (1) **prophage-region genes** (MR-1 LambdaSo and CP4So prophages account for ~15 of the 61 recalcitrant calls) where homologs themselves lack characterized function, and (2) **ionic-liquid / aminoglycoside-specific phenotypes** with sparse literature.
 
 ![Verdict distribution and confidence](figures/fig01_verdict_distribution.png)
 
@@ -41,19 +42,19 @@ The 8% recalcitrant rate has been especially stable (8% across the last 4 rounds
 
 ### Confidence
 
-- **333 high-confidence verdicts (65%)** — evidence aligns and is internally consistent
-- 144 medium-confidence (28%)
-- 33 low-confidence (6%) — concentrated in the recalcitrant set
+- **398 high-confidence verdicts (65%)** — evidence aligns and is internally consistent
+- 169 medium-confidence (28%)
+- 43 low-confidence (7%) — concentrated in the recalcitrant set
 
 ### Literature consultation
 
-- **246 of 510 genes (48%) had paper consultation** during reasoning
-- **334 PMC full-text fetches** across **246 unique PMIDs**
+- **280 of 610 genes (46%) had paper consultation** during reasoning
+- **382 PMC full-text fetches** across **274 unique PMIDs**
 - Subagents reported **~30-40% of fetches *changed* the verdict** (vs. just confirming dossier evidence)
 
 ### Cross-gene cluster discoveries
 
-19 PMIDs were each cited by ≥3 genes during reasoning — a signal that the LLM reasoning, with literature in hand, recovered published functional clusters that the per-gene FB annotations miss:
+24 PMIDs were each cited by ≥3 genes during reasoning — a signal that the LLM reasoning, with literature in hand, recovered published functional clusters that the per-gene FB annotations miss:
 
 | PMID | n genes | Cluster |
 |---|---:|---|
@@ -64,7 +65,7 @@ The 8% recalcitrant rate has been especially stable (8% across the last 4 rounds
 | 37865075 (Pellegrini 2024) | 3 | Ponti Tl/As resistance operon (metallophosphoesterase + ArsR + glyoxalase) |
 | 37239993 (Awasthi 2023) | 3 | Cross-organism SAM-methyltransferase tetracycline tolerance |
 | 38832093 (Yang 2024) | 3 | Pseudomonas MexT/MexEF HMF tolerance regulon |
-| (12 additional cluster PMIDs) | 3-5 each | see [data/cross_gene_clusters.md](data/cross_gene_clusters.md) |
+| (17 additional cluster PMIDs) | 3-5 each | see [data/cross_gene_clusters.md](data/cross_gene_clusters.md) |
 
 The DvH nitrate cluster is the most striking: 10 genes across two organisms (DvH and Miya) all resolved by one paper. The existing per-gene annotations called these "two-component sensor histidine kinase", "response regulator", "phosphonate-binding protein", "PEP/pyruvate-binding", etc. — all generic family-level names. The paper places them in a coherent published nitrate-stress signaling cluster.
 
