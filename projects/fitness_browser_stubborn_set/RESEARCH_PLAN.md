@@ -10,10 +10,11 @@ We ignore the 2018 paper's 456-gene TableS12 set. It is historical; the live cur
 
 - **H0**: The 1,762 reannotated genes do not separate from the rest of the Fitness Browser on primary fitness/cofitness evidence; ranking non-reannotated genes by curator-likeness produces a flat distribution where reannotation density does not decrease meaningfully with rank. NB02's secondary evidence applied chunk-by-chunk does not yield more improvable candidates near the top of the queue than at the bottom — implying curator decisions cannot be reconstructed from BERDL-native data alone.
 
-- **H1**: A logistic regression on six primary evidence features produces a useful **curator-likeness score**. When non-reannotated genes are ranked by this score, the strongest primary evidence sits at the top of the queue. Walking the queue top-down and reasoning over BERDL-native secondary evidence (conserved cofit, ortholog phenotype, informative domain, KEGG/SEED/MetaCyc) for each gene partitions visited genes into two outcomes:
-  - **improvable-now** — secondary evidence supports a concrete annotation proposal
-  - **recalcitrant** — strong primary evidence (high score) but secondary evidence does NOT support any meaningful annotation
-- We stop walking after the **recalcitrant set reaches 2,000 genes**. Because we walk highest-score first, those 2,000 are the genes with the strongest primary phenotype evidence that nonetheless resist reannotation — the most-difficult-to-improve genes in the Fitness Browser. Everything walked through with a successful proposal is the **improvable** list (its size emerges from the data; not predetermined).
+- **H1**: A logistic regression on six primary evidence features produces a useful **curator-likeness score**. When non-reannotated genes are ranked by this score, the strongest primary evidence sits at the top of the queue. Walking the queue top-down and reasoning over BERDL-native secondary evidence (conserved cofit, ortholog phenotype, informative domain, KEGG/SEED, **literature via PaperBLAST homologs**) for each gene partitions visited genes into **three** outcomes:
+  - **already_named_well** — existing `gene.desc` is already a concrete name (`named_enzyme` or `named_other` annotation category). The curator was right to leave it alone; no reannotation candidate.
+  - **improvable** — existing annotation is poor (`hypothetical`, `DUF`, or `vague`) AND BERDL-native evidence supplies BOTH a functional signal (informative domain / KEGG KO / KEGG EC / SEED desc / SwissProt hit ≥40% identity) AND a corroboration signal (conserved cofit / conserved specific phenotype / PaperBLAST papers).
+  - **recalcitrant** — existing annotation is poor AND the evidence lacks one or both of those signals.
+- We stop walking after the **recalcitrant tally reaches 2,000 genes**. Because we walk highest-score first, those 2,000 are the genes with the strongest primary phenotype evidence that nonetheless resist reannotation. Everything walked through with a successful improvable verdict is the improvable list; its size emerges from the data, not predetermined.
 
 ### Why a queue, not a threshold
 
@@ -55,18 +56,69 @@ Empirical observations from preliminary runs that motivate this approach:
 - 90% of reannotated are captured by rank ~19,700 in the full ranking
 - Top-1000 chunk (highest scores): 29% reann density; chunk 7: 6% density; bottom chunks: 0% density
 
-### Stage 2 — Walk the priority queue with secondary evidence (NB02)
+### Stage 2 — Walk the priority queue with full evidence dossier (NB02)
 
-NB02 walks the priority queue from rank 1 (highest score) down. For each gene, it computes the secondary evidence flags listed below and reasons over them to decide one of two outcomes:
+NB02 walks the priority queue from rank 1 (highest score) down. For each gene it builds a **full evidence dossier** (the same evidence a Price-2018 curator would have read) and applies a rule-based classifier with a triage step.
 
-- **improvable-now**: ≥1 conservation signal AND ≥1 informative functional signal — record the gene plus the proposed annotation rationale.
-- **recalcitrant**: no conservation OR no informative functional signal — record the gene plus what evidence was considered.
+**Triage**: if the gene's existing `gene.desc` already categorises as `named_enzyme` or `named_other`, mark `already_named_well` and **do not count toward improvable or recalcitrant**. Curators justifiably skip already-named genes; including them inflates the improvable list with non-actionable rows.
 
-**Stop condition**: when the recalcitrant tally reaches **2,000 genes**. Because the queue is sorted by curator-likeness descending, these 2,000 are the **strongest-evidence genes that nevertheless cannot be reannotated** — the answer to "which genes have strong phenotype but no resolvable function from existing evidence?" Everything walked through with a successful improvable verdict is the improvable list; its size emerges from the data.
+For genes with poor existing annotation (`hypothetical`, `DUF`, or `vague`):
+- **improvable**: at least one *functional signal* AND at least one *corroboration signal*
+  - functional signals: informative_domain, informative_kegg_ko, informative_kegg_ec, informative_seed, swissprot hit at ≥40% identity
+  - corroboration signals: conserved_cofit, conserved_spec_phenotype, paperblast Stage-1 papers (≥1), paperblast Stage-2 DIAMOND papers (≥3)
+- **recalcitrant**: missing one or both signal categories.
 
-The stopping rank (the queue position where the 2,000th recalcitrant gene lands) is the operational stubborn-set boundary. Genes below that rank in the queue have lower primary evidence and were not considered — we make no claim about them.
+**Stop condition**: recalcitrant tally == 2,000. Because the queue is sorted by curator-likeness descending, these 2,000 are the **strongest-evidence genes with poor existing annotation that nevertheless cannot be improved from BERDL evidence** — the project's answer to "which genes have strong phenotype but no resolvable function from existing evidence?"
 
-For each stubborn-set gene, compute a **second layer** of BERDL-native evidence flags that Price's curators could have consulted:
+The stopping rank is the operational stubborn-set boundary. Genes below that rank in the queue have lower primary evidence and were not considered.
+
+#### Per-gene evidence dossier — the inputs to classification
+
+For every visited gene the dossier (`notebooks/dossier.py::build_dossier`) joins:
+
+**A. Primary phenotype with conditions** (`phenotype_conditions.parquet`):
+top-10 strongest experiments per gene with `expGroup`, `condition_1`, `concentration_1`, fit, t — *the actual condition where the gene is sick*, not just an aggregate magnitude.
+
+**B. Cofitness partners with annotations** (`cofit_partners_top10.parquet`):
+top-10 cofit partners per gene, each with the partner's `gene.desc` and gene_symbol — guilt by association.
+
+**C. Genomic neighborhood / operon context** (`gene_neighborhood.parquet`):
+±5 positions on the same scaffold, each with the neighbor's `gene.desc` and strand — Price 2018 reannotation comments routinely cite operon context.
+
+**D. Sequence-based functional annotation** (text content, not just flags):
+- `swissprot_hits.parquet`: SwissProt RAPSearch2 hit (`besthitswissprot` joined to `swissprotdesc`) — accession, identity, curated description, organism. Same pipeline Price used.
+- `domain_hits.parquet`: top-5 PFam/TIGRFam domain hits per gene with `domainName`, `definition`, `ec`, score.
+- `kegg_hits.parquet`: best KEGG KO via two-hop join (`besthitkegg` → `keggmember` → `kgroupdesc` for description, `kgroupec.ecnum` for EC).
+- `seed_hits.parquet`: SEED `seed_desc` per gene.
+
+**E. Conservation flags** (`gene_secondary_evidence.parquet`):
+- `conserved_cofit` — cofit ≥ 0.6 in the gene pair AND in their orthologs
+- `conserved_spec_phenotype` — appears in `specog` with `nInOG ≥ 2` (multi-organism)
+
+**F. Literature via PaperBLAST** — two-stage:
+- *Stage 1* (`paperblast_via_swissprot.parquet`): direct ID join from `besthitswissprot.sprotAccession` to `kescience_paperblast.gene` → `genepaper`. Captures 16,479 FB genes.
+- *Stage 2* (`paperblast_via_diamond.parquet` + `fb_paperblast_hit_papers.parquet`): DIAMOND blastp of FB protein sequences (downloaded from `fit.genomics.lbl.gov/cgi_data/aaseqs`) vs PaperBLAST `uniq` (815K sequences, downloaded from BERDL MinIO at `s3a://cdm-lake/tenant-sql-warehouse/kescience/kescience_paperblast.db/uniq/`) at evalue 1e-5, identity ≥ 30%, qcov ≥ 50%. Captures 136,213 FB genes (99.3% of those have ≥1 paper attached, 332,976 (geneId, paper) tuples, 68,188 unique PMIDs).
+
+**G. Existing annotation as descriptive dimension**:
+`gene.desc` and gene-symbol categorised into {hypothetical, DUF, vague, named_enzyme, named_other}. **Used for triage** (skip named genes) AND **descriptive reporting** (the contingency grid in NB03), but never for classification of poorly-annotated genes.
+
+#### Why rule-based and not LLM-per-gene
+
+The dossier is structured enough that a simple two-condition rule (functional signal + corroboration signal) reproduces the curator's "is this proposable?" decision adequately. Walking ~16K genes with rule-based classification took 49 minutes on a laptop, vs. ~10 hours and substantial API cost for LLM-per-gene. Dossiers are saved as markdown for the top 100 of each non-skip bucket, so a follow-up LLM verification or human-curator review pass can run on a sample.
+
+#### Walk results (run on 2026-04-24)
+
+Visited 16,467 of 137,798 priority-queue genes before hitting the 2,000 recalcitrant target:
+
+| Outcome | Count | DUF | hypothetical | named_enzyme | named_other | vague |
+|---|---:|---:|---:|---:|---:|---:|
+| already_named_well | 13,062 | 0 | 0 | 8,538 | 4,524 | 0 |
+| improvable | 1,405 | 43 | 677 | 0 | 0 | 685 |
+| recalcitrant | 2,000 | 66 | 1,657 | 0 | 0 | 277 |
+
+So 79% of the high-curator-likeness top of the queue is already-named-well — curators correctly left them alone. The remaining 21% splits into 1,405 improvable (677 hypothetical, 685 vague, 43 DUF) and 2,000 recalcitrant (1,657 hypothetical, 277 vague, 66 DUF).
+
+#### Original v2 plan referenced six secondary-evidence flags via separate Spark queries:
 
 | Flag | Signal | Source |
 |---|---|---|
@@ -205,6 +257,11 @@ Cross-project reuse: in NB03 we will refer to `functional_dark_matter`'s 17,344-
 - **v3** (2026-04-24): Empirical finding from NB01 preliminary run — the 3-signal binary counting rule cannot hit both targets: score ≥ 1 gives 96% recall but 41K stubborn; score ≥ 2 gives 85% recall with 18K stubborn; no integer threshold hits ≥90% recall with <10K stubborn. Changed approach: fit a **weighted classifier** (logistic regression on the 6 continuous evidence features) in NB01, explicitly targeting **≥90% recall AND <10K stubborn**. Added hand-tuned compound rules as comparison points and a recall-vs-pool-size frontier figure. Refactored execution: heavy Spark work moved to a plain `.py` extract script (`notebooks/00_extract_gene_features.py`) producing a local pandas parquet; the analysis notebook is pandas-only to avoid Spark-Connect + nbconvert serialization failures (PlanMetrics is not JSON-serializable and breaks both `jupyter nbconvert` and `pandas.to_parquet` when attached via `df.attrs`). Also changed existing-annotation handling: categorise (`hypothetical`, `DUF`, `vague`, `named_enzyme`, `named_other`) as a **descriptive dimension**, not a filter. Added the `annotation-category × evidence-partition` contingency grid as the primary reporting output.
 - **v4** (2026-04-24): Confirmed empirically that the dual target (≥90% recall AND <10K stubborn) is not reachable from primary fitness+cofitness features alone. Best logistic operating point at 90% recall is ~18K stubborn (after restricting to the 36 curated organisms). Two-stage AND/OR stacking with the counting rule does not break the frontier. **Reframed NB01's deliverable from a thresholded stubborn-set to a ranked priority queue**: every non-reannotated gene gets a curator-likeness score, the queue is sorted, and per-chunk diagnostics expose where reannotation density falls off.
 - **v5** (2026-04-24): Concrete stopping rule for NB02. Walk the priority queue rank 1 → N (highest curator-likeness first). For each gene, reason over secondary BERDL-native evidence to decide improvable vs recalcitrant. **Stop when the recalcitrant tally reaches exactly 2,000 genes.** Because we walk highest-score first, those 2,000 are the strongest-primary-evidence genes that nevertheless resist reannotation — the bounded, well-defined "recalcitrant set" answering the original research question. The improvable set is whatever is walked-and-improved before hitting 2,000 recalcitrant; its size emerges from the data. The stopping rank is the operational stubborn-set boundary; genes below it in the queue are not considered.
+- **v6** (2026-04-24): NB02 implemented and run. Three architectural changes from v5:
+  (1) Added a third outcome **`already_named_well`** as a triage step. ~79% of high-curator-likeness genes already have a concrete `gene.desc` (`named_enzyme` like "3-oxoadipate CoA-transferase subunit A" or `named_other` like "type IV pilus assembly PilZ"). Curators justifiably leave these alone; counting them as improvable inflates the actionable list with non-actionable rows. The triage step skips them WITHOUT counting toward improvable or recalcitrant tallies.
+  (2) Added **literature evidence via PaperBLAST** as a corroboration signal — the missing piece from earlier versions. Implemented as two-stage: Stage 1 ID-based (FB `besthitswissprot.sprotAccession` → `kescience_paperblast.gene` → `genepaper`, 16K coverage) and Stage 2 sequence-based (DIAMOND blastp of FB AA sequences from `fit.genomics.lbl.gov/cgi_data/aaseqs` vs PaperBLAST `uniq` table downloaded from BERDL MinIO, 136K coverage at 30%/50% identity/qcov, 99.3% of those have ≥1 paper attached).
+  (3) Switched from "compute secondary flags inline during NB02 walk" to a **per-gene structured dossier** built lazily by `notebooks/dossier.py` from local parquets pulled by extracts 00, 02, 03, 05, 06, 07, 08. Dossier contains the actual TEXT content (phenotype-with-conditions, cofit-partners-with-annotations, gene-neighborhood, SwissProt curated desc, KEGG KO desc, domain definitions, top PaperBLAST homologs + papers) — what the curator actually reads, not aggregate flags. Rule-based classification on the structured dossier; full markdown dossiers saved for top-100 of improvable + recalcitrant buckets for follow-up LLM verification or human curator review.
+  Run completed 2026-04-24: visited 16,467 of 137,798, found 13,062 already_named_well + 1,405 improvable + 2,000 recalcitrant. Stopping rank 16,467. The 2,000 recalcitrant set is the project's answer.
 
 ## Authors
 - **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) — Lawrence Berkeley National Laboratory
