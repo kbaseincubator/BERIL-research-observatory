@@ -1,0 +1,12 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "NB09c \u2014 sample-level cross-feeding disambiguation for NB07c hypothesis",
+  "n_paired_samples": 468,
+  "n_metabolites_tested": 583,
+  "n_species_tested": 8,
+  "n_cross_feeding_triangles_strict": 7,
+  "butyrate_acaccae_rho": 0.101,
+  "lactate_acaccae_rho": 0.18,
+  "narrative": "WEAK cross-feeding-triangle support at strict thresholds. The NB07c species-level coupling does not strongly disambiguate from shared-environment."
+}
