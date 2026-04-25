@@ -502,6 +502,62 @@ This is a robust, multi-line-of-evidence-supported claim about CD pathobiont bio
 
 *(Script: `run_nb07_h3a_v18.py`. Builds on NB07a + NB07b pathway-DA outputs; adds class-based theme enrichment per plan v1.8.)*
 
+### 10. NB07c — Module-anchor commensal × pathobiont metabolic coupling (H3a-new)
+
+NB06 surfaced the H2d co-occurrence finding that 4–5 of 6 actionable Tier-A pathobionts co-cluster in a single CD-specific module per ecotype. The follow-up question — and the H3a-new test specified in plan v1.7 X4 fix — is whether the **non-pathobiont anchors** of these CD-specific modules show **metabolic coupling** with the pathobionts they sit beside. Two CD-specific modules from `data/nb06_module_hubs.tsv` provide the substrate:
+
+- **E1_CD module 0** (75 nodes): anchor commensals *Clostridiales bacterium 1_7_47FAA*, *Anaerostipes caccae* (the only genuine butyrate-producer in module-anchor commensals), *Bacteroides nordii*; with the 5 actionable Tier-A pathobionts of the E1_CD subnet (*H. hathewayi*, *F. plautii*, *E. bolteae*, *E. lenta*, *M. gnavus*).
+- **E3_CD module 1** (57 nodes): anchor commensals *Actinomyces sp.* oral-taxon-181, *Actinomyces sp.* HMSC035G02 (both oral cavity ectopic colonizers), *Lactonifactor longoviformis* (lactate utilizer); with 4 module pathobionts (*E. lenta*, *H. hathewayi*, *E. coli*, *M. gnavus*).
+
+Per (anchor, pathobiont) pair: within-IBD-substudy Spearman ρ across CMD_IBD samples; Fisher z-meta across the 3 robust substudies (ZellerG_2014, NielsenHB_2014, IjazUZ_2017); sign concordance. Plus an **iron-context layer**: triple correlation (anchor × pathobiont × iron-pathway) over the 15 v1.8 iron/heme pathways, to test whether the v1.8 iron-theme is a community-wide signature or pathobiont-specific.
+
+**E1_CD coupling — *A. caccae* shows clean strong-positive coupling with all 5 module pathobionts** (sign concordance 1.0 across all 3 substudies):
+
+| Pair | ρ_meta | Interpretation |
+|---|---:|---|
+| *A. caccae* × *E. bolteae* | **+0.39** | Strongest pair |
+| *A. caccae* × *H. hathewayi* | **+0.33** | |
+| *A. caccae* × *M. gnavus* | **+0.31** | |
+| *A. caccae* × *F. plautii* | **+0.29** | |
+| *A. caccae* × *E. lenta* | +0.08 | Weakest |
+| *B. nordii* × *M. gnavus* | **−0.21** | Niche competition (negative) |
+| *B. nordii* × *F. plautii* | **−0.20** | Niche competition (negative) |
+
+The *A. caccae* × pathobiont pattern is consistent with **butyrate-producer cross-feeding embedded in the CD pathobiont module** — pathobiont-released substrates (*M. gnavus* glucorhamnan / mucin sugars; *F. plautii* bile-acid metabolites; *H. hathewayi* lactate) feed *A. caccae*'s butyrogenic fermentation. The §2 iron-pathway layer rules against an iron-cross-feeding mechanism: ρ(*A. caccae* × iron-pwy) = +0.13 (mean over 15 iron pathways), much weaker than ρ(*E. coli* × iron-pwy) = +0.45. So the *A. caccae* coupling is **not iron-mediated** — most likely substrate / sugar / lactate mediated. Cross-feeding vs shared-environment disambiguation is deferred to NB09c (metabolite corroboration).
+
+The *B. nordii* negative coupling with *M. gnavus* / *F. plautii* is consistent with **niche competition** for similar polysaccharide substrates — *B. nordii* is a generalist *Bacteroides* that competes with the same mucin / glycan-degrading pathobionts, and CD selects one over the other.
+
+**E3_CD coupling — only Lactonifactor × E. lenta is strong** (ρ_meta = +0.27). The two oral *Actinomyces* anchors couple weakly (~ρ=0.17–0.19 with *M. gnavus* / *E. lenta*). Oral *Actinomyces* in the gut are **co-trafficked ectopic colonizers** under CD inflammation rather than metabolic partners; their NB06 module membership reflects shared inflammation-driven colonization, not metabolic coupling.
+
+**Iron-pathway co-variation concentrates on *E. coli*** — narrowing the v1.8 iron-theme interpretation:
+
+| Pathobiont | Mean ρ × 15 iron-pathways |
+|---|---:|
+| ***E. coli*** | **+0.45** |
+| *H. hathewayi* | +0.20 |
+| *F. plautii* | +0.17 |
+| *M. gnavus* | +0.16 |
+| *E. bolteae* | +0.09 |
+| *E. lenta* | +0.03 |
+
+The 15 iron pathways include ENTBACSYN-PWY (Enterobactin biosynthesis, *E. coli*-canonical), HEMESYN2-PWY (heme biosynthesis II), and 8 menaquinol-biosynthesis pathways. *E. coli*'s ρ = +0.45 across 2,674 CMD_IBD samples means iron-pathway abundance scales proportionally with *E. coli* abundance — i.e., **the iron-pathway signal is dominantly carried by *E. coli***. Other Tier-A core species show weak iron-pathway coupling, consistent with them having *other* CD specialization mechanisms (TMA / choline for *H. hathewayi* per v1.8 §9; bile-acid 7α-dehydroxylation for *F. plautii*; glucorhamnan / mucin for *M. gnavus*).
+
+**This narrows the v1.8 iron-theme interpretation**: rather than "all CD pathobionts have iron specialization," the more accurate framing is **"CD's *E. coli* (AIEC subset) drives the iron-acquisition theme; other Tier-A pathobionts have non-iron specializations."** This is mechanistically coherent with NB05 §5g (only *E. coli* of the actionable Tier-A had iron-siderophore MIBiG matches: Yersiniabactin + Enterobactin) and the NB07b within-carrier *E. coli* CD-DOWN per-pathway pattern (AIEC strain-level specialization at the cost of generalist metabolic capabilities).
+
+![NB07c module-anchor × pathobiont coupling (species ρ heatmap + iron-context heatmap)](figures/NB07c_anchor_pathobiont_coupling.png)
+
+**H3a-new verdict: PARTIALLY SUPPORTED.** *A. caccae* × pathobiont coupling is clean in E1_CD (4 strong-positive pairs, all sign-concordant); E3_CD anchors lack metabolic-coupling structure (oral-gut co-trafficking dominates). Cross-feeding vs shared-environment disambiguation deferred to NB09c (metabolite-level test).
+
+**Pillar 4 cocktail-design implication — metabolic-coupling cost.** The *A. caccae* × pathobiont coupling has a **direct clinical implication for cocktail design**: a phage cocktail that depletes *M. gnavus / F. plautii / H. hathewayi / E. bolteae* may **incidentally reduce *A. caccae* abundance** through loss of substrate. *A. caccae* is the only genuine butyrate-producer in the module-anchor commensals, and butyrate is anti-inflammatory; its incidental depletion could partially offset the cocktail's therapeutic benefit. **NB05 actionable Tier-A targets need a "metabolic-coupling cost" annotation** before cocktail finalization — for each candidate target, what beneficial commensals depend on it as a substrate source, and what is the predicted net inflammatory balance? This is the species-pair-level extension of the H2d concern surfaced in NB06 (single-pathobiont-module → cocktail-design implication).
+
+**Output artifacts**:
+- `data/nb07c_anchor_pathobiont_species_rho.tsv` — 27 (anchor × pathobiont) pairs with ρ_meta, per-substudy values, sign concordance
+- `data/nb07c_anchor_pathobiont_iron_triple.tsv` — 405 (anchor × pathobiont × iron-pathway) triples
+- `data/nb07c_h3a_new_verdict.json` — formal verdict
+- `figures/NB07c_anchor_pathobiont_coupling.png` — 2-panel heatmap
+
+*(Script: `run_nb07c.py`. Builds on NB06 module hubs + NB07_v1.8 iron-pathway list.)*
+
 ## Interpretation
 
 ### Why the four-ecotype framework matters for phage targeting
@@ -526,6 +582,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 - **Iron-acquisition as a pathobiont-fitness axis in IBD (NB07 v1.8 §9 dominant theme grounding)**: The v1.8 finding that iron/heme acquisition is the dominant CD-up MetaCyc class-enriched theme (OR=8.1, FDR 7e-6) is **causally consistent** with broader IBD-iron literature. Ellermann 2020 (PMID 31179826) directly demonstrated that dietary iron variably modulates intestinal microbiota assembly in colitis-resistant and colitis-susceptible mice — establishing a mechanistic link between intestinal iron availability and microbiota composition that is particularly relevant for the well-known clinical observation that **oral iron supplementation can exacerbate disease activity in a subset of IBD patients**. Buret 2019 (PMID 30602371) reviewed how **iron acquisition is associated with the expression of virulence factors in commensals that become pathobionts** in IBD and CRC. Combined with the project's NB05 §5g *E. coli* MIBiG matches to Yersiniabactin + Enterobactin (siderophores) and the AIEC-iron literature already cited (Dalmasso 2021, Prudent 2021, Dogan 2014), the v1.8 iron-theme enrichment slots into a coherent multi-decade narrative: **iron is not just a host nutrient but a pathobiont-selective resource, and CD pathobionts have systematically over-invested in iron-acquisition machinery** (siderophores, heme uptake, heme biosynthesis as a precursor for haem-containing iron uptake / regulation systems). Therapeutic implication: per-patient iron-supplementation decisions should account for ecotype-specific pathobiont iron-system expression; phage targeting could specifically deplete the iron-system-enriched AIEC subset without affecting iron-pathway-deficient commensals.
 - **TMA / choline metabolism in H. hathewayi (NB07 v1.8 §9 species-resolved theme)**: H. hathewayi's TMA/choline theme enrichment (OR=9.33, FDR=0.048) is mechanistically consistent with the canonical bacterial choline-degradation pathway — the **CutC glycyl radical enzyme** breaks down choline to TMA in human gut microbes (Timsina 2025, PMID 40853000), and TMA is converted by the host to TMAO with established cardiovascular and renal disease implications (Cheng 2025, PMID 39709651; Jiang 2024 on phosphatidylcholine → TMA → TMAO axis). H. hathewayi's CD-up phosphatidylcholine acyl editing (NB07a §c) and choline degradation (v1.8 §9 04_TMA_choline theme) suggest H. hathewayi is functionally a **TMA-producer pathobiont** in CD samples, contributing to the systemic-inflammation / cardiovascular-comorbidity axis well-documented in IBD patients.
 - **AIEC strain-level specialization (NB07b within-carrier *E. coli* CD-DOWN reading)**: NB07b found *E. coli* per-pathway abundance is CD-down within carriers (opposite of cohort-level CD-up), affecting allantoin degradation, propanediol degradation, octane oxidation, histidine degradation, phospholipid remodeling — i.e., **alternative-electron-acceptor + niche-specialization pathways**. This pattern is consistent with CD-associated *E. coli* being an AIEC-specialized subset that has invested in iron + adherent-invasion machinery at the cost of generalist metabolic capabilities. Dubinsky 2022 (PMID 35560165) established that IBD *E. coli* lineages have disease-specific genomic adaptations; the within-carrier CD-down per-pathway pattern is the metagenomic-level signature of that strain-level specialization. **Strain-resolution analysis (NB10) is the natural deeper test** of whether CD's *E. coli* are characterized by AIEC-pks-island-positive subset enrichment with reduced peripheral metabolic capability.
+- **Butyrogenic cross-feeding embedded in CD pathobiont modules (NB07c §10)**: *A. caccae* is a well-characterized butyrate-producer that grows on lactate / acetate co-substrates and on host-mucin-derived sugars (Schwiertz 2002, Duncan 2004 establish *A. caccae* as a primary lactate utilizer in the colon). Its strong positive coupling with *M. gnavus* (mucin-glucorhamnan producer; Henke 2019), *F. plautii* (bile-acid 7α-dehydroxylating), *H. hathewayi* (lactate / TMA producer per v1.8 §9), and *E. bolteae* (sugar fermenter) maps cleanly onto known cross-feeding circuits in the gut. The cross-feeding hypothesis is **not iron-mediated** (NB07c §2: ρ(*A. caccae* × iron-pwy) ≪ ρ(*E. coli* × iron-pwy)) — consistent with *A. caccae* being a fermentative butyrate-producer rather than an iron-respiring organism. The therapeutic implication — that depleting the pathobiont cluster may incidentally reduce a butyrate-producer with potential anti-inflammatory contribution — fits the broader "ecological consequences of pathobiont depletion" framework that motivates the four-tier criteria rubric (Tier C, ecological durability) of the project.
 
 ### Novel contributions
 
@@ -540,6 +597,8 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 9. **Adversarial review as a required complement to `/berdl-review` on methodologically nuanced projects**. Two independent `/berdl-review` runs on the pre-rigor-repair NB04 state concluded "no critical issues"; an adversarial reviewer (general-purpose Agent with explicit "find flaws" framing) caught 5 critical + 6 important issues, all empirically confirmed by NB04b + NB04c. Full arc and methodology recommendations in `FAILURE_ANALYSIS.md` and `docs/discoveries.md`.
 10. **LOSO ARI as a more honest ecotype stability metric than bootstrap ARI**. Bootstrap 80 %-subsample ARI (NB04b §7) reported 0.13–0.17 on this data; LOSO ARI across 8 independent sub-studies (NB04f) reported 0.00–0.28 with mean 0.113, revealing per-substudy variation that bootstrap masks. For any clustering framework intended for cross-cohort use, LOSO should be the reported stability metric.
 11. **Operationally-validated-Tier-A despite framework-variance pattern**. NB04f + NB04g show real cross-study and cross-feature-basis ecotype variance; NB04h shows the NB04e operational Tier-A replicates at 88.2 % sign concordance on HMP2 with high projection confidence. The generalization: framework stability and operational-claim replication are distinct properties that need separate tests. A project can have "shaky cluster boundaries but robust cluster-specific findings" — which is what this project has, and is what NB05 should operate on.
+12. **Category-schema choice as a load-bearing methodological variable** (NB07 v1.7 → v1.8). On the same data and same DA pipeline, a regex-on-pathway-names scheme (44/409 pathways categorized, 7 themes) gave H3a (b) "FAIL — degenerate"; a curator-validated MetaCyc class hierarchy from ModelSEEDDatabase (514/575 pathways categorized, 12 themes) gave H3a (b) "SUPPORTED" with iron/heme acquisition as an 8.1× enriched dominant theme. Same data, opposite verdict — driven entirely by ontology choice. Lesson: prefer ontology / class hierarchy over name-pattern regex (plan norm N17). Documented in `docs/discoveries.md` and `RESEARCH_PLAN.md` v1.8.
+13. **Module-level metabolic-coupling-cost annotation as a Tier-A scoring extension** (NB07c §10). NB06 H2d showed pathobionts co-cluster in single CD-specific modules. NB07c shows non-pathobiont module anchors (specifically *A. caccae*, the only genuine butyrate-producer) have strong positive species-level coupling with the pathobiont set, consistent with cross-feeding. The implication for cocktail design — that pathobiont depletion may incidentally remove anti-inflammatory commensals through loss of substrate — is **a per-target ecological-cost annotation** that should sit alongside Tier-A scoring (A3–A6) in NB05's output. This is the species-pair-level extension of the H2d single-module finding and is portable to other microbiome-targeting projects (e.g., FMT, antibiotics).
 
 ### Limitations
 
@@ -555,6 +614,9 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 - **Multi-method DA consensus is partial**. The plan called for ≥ 2 / 3 of {ANCOM-BC, MaAsLin2, LinDA} methods to agree. We implemented LinDA in pure Python (NB04c §4) to avoid the R/rpy2 dependency; the NB04c bootstrap-CI and NB04e within-substudy-meta outputs serve as additional independent evidence streams but are not drop-in ANCOM-BC / MaAsLin2 substitutes. A full three-method R-native consensus is a publication-grade follow-up.
 - **Bootstrap-stable within-ecotype DA shares the feature-leakage bias with CLR-MW**. Both CLR-MW (NB04) and LinDA (NB04c) operate on the same ecotype-defined subsamples and therefore share the selection-on-outcome bias. Only the within-substudy CD-vs-nonIBD contrast (NB04c §3, NB04e) is an independent evidence source. The NB04d Tier-A gating requires within-substudy concordance precisely because bootstrap + LinDA are not independent evidence streams.
 - **Pillar 2 cross-cohort replication is weak**. Single-study E3 evidence combined with marginal ecotype stability means the Tier-A list (particularly E3) should be treated as hypotheses for further experimental validation rather than established targets. Pillar 5 UC-Davis cocktail drafts will inherit this limitation; the NB15+ notebooks should annotate per-candidate cross-cohort support explicitly.
+- **NB07c cross-feeding inference is correlative, not causal.** The species-level Spearman ρ between *A. caccae* and the pathobiont set (peak +0.39 with *E. bolteae*) is consistent with cross-feeding *or* shared-environment co-response to the same CD-specific niche (low O₂, mucin-rich, inflammatory). Disambiguation requires metabolite-level data: does *A. caccae* × pathobiont co-variation co-vary with butyrate / lactate / mucin-degradation product abundance? **NB09c (deferred metabolite corroboration)** will use the HMP2 metabolomics data already in the mart to test this. Until NB09c lands, the cocktail-design implication ("targeting pathobionts may reduce *A. caccae*") is a *plausibility flag* not a confirmed mechanism.
+- **NB07c E3_CD module shows weaker coupling than E1_CD.** The two oral *Actinomyces* anchors of E3_CD module 1 couple weakly (~ρ=0.17–0.19) with module pathobionts. Consistent with E3 being characterized by inflammation-driven oral-gut ectopic colonization rather than metabolic structure — but means the cocktail-design implication from NB07c is E1-specific and may not transfer to E3 patients. UC Davis E3 patients (31 % of the cohort) may need a different module-anchor cocktail-design framework.
+- **Iron-theme narrowing to *E. coli*** (NB07c §10) **is correlation-based** — derived from species × pathway Spearman ρ across CMD_IBD samples. The genomic interpretation (E. coli owns the iron pathways) is consistent with the v1.8 finding that 8 of 15 iron pathways are menaquinol biosynthesis (canonical bacterial respiratory quinones, not strictly *E. coli*-specific) but the strongest signature pathways (ENTBACSYN-PWY, HEMESYN2-PWY) are *E. coli*-canonical. Per-pathway HUMAnN3 species-attribution (the auxiliary `*_genefamilies.tsv` output) would let us confirm which species genomically owns each iron pathway. This is deferred to NB10 (strain-resolution).
 
 ## Data
 
@@ -613,6 +675,13 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `data/nb06_modules.tsv` | ~20 | Per-subnet module summary with actionable + tier-B content |
 | `data/nb06_module_hubs.tsv` | ~15 | Top-3 hub species per module by degree |
 | `data/nb06_verdict.json` | — | NB06 summary + H2d verdict |
+| `data/nb07_h3a_v18_pathway_classes.tsv` | 575 | HUMAnN3 pathway × MetaCyc-classes × IBD-themes (audit trail for v1.8 schema) |
+| `data/nb07_h3a_v18_cohort_enrichment.tsv` | 12 | Per-theme Fisher enrichment cohort-level (iron/heme: OR=8.1, FDR 7e-6) |
+| `data/nb07_h3a_v18_species_enrichment.tsv` | varies | Per-species per-theme Fisher enrichment (*H. hathewayi*: 2 themes supported) |
+| `data/nb07_h3a_v18_verdict.json` | — | Formal v1.8 H3a (b) verdict (SUPPORTED) |
+| `data/nb07c_anchor_pathobiont_species_rho.tsv` | 27 | Anchor × pathobiont pairs with within-IBD-substudy ρ_meta + sign concordance |
+| `data/nb07c_anchor_pathobiont_iron_triple.tsv` | 405 | (Anchor, pathobiont, iron-pathway) triples — 27 pairs × 15 v1.8 iron-pathways |
+| `data/nb07c_h3a_new_verdict.json` | — | H3a-new verdict (PARTIAL — *A. caccae* coupling clean in E1_CD) |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_relative_abundance.tsv` | 582 | HMP2 MetaPhlAn3 relative abundance (taxa × samples) — out-of-project artifact |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_sample_metadata.tsv` | 1,627 | HMP2 sample metadata from cMD |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_taxon_metadata.tsv` | 585 | HMP2 per-taxon lineage metadata |
@@ -639,6 +708,10 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB04h_hmp2_external_replication.ipynb` | HMP_2019_ibdmdb pulled via `pull_hmp2_metaphlan3.R` against curatedMetagenomicData v3.18; 1,627 samples projected onto K=4 LDA; 88.2 % E1 Tier-A sign-concordance |
 | `NB05_tier_a_scoring.ipynb` | Tier-A A3–A6 scoring on 71 rigor-controlled candidates; 6 actionable targets for Pillar 4/5 (*H. hathewayi*, *M. gnavus*, *E. coli*, *E. lenta*, *F. plautii*, *E. bolteae*). Executed via `run_nb05.py` (nbconvert bypass for environment numpy.bool issue). |
 | `NB06_cooccurrence_networks.ipynb` | CLR + Spearman + Louvain community detection per-ecotype × CD/all subnet; H2d test. Finding: 5/6 actionable Tier-A form a single pathobiont module per subnet; multi-target cocktails appropriate. Executed via `run_nb06.py` (same nbconvert workaround). |
+| `NB07a_pathway_DA.ipynb` | Pillar 3 opener: within-IBD-substudy CD-vs-nonIBD pathway DA; H3a v1.7 three-clause falsifiability test (a + c PASS, b FAIL-degenerate). Executed via `run_nb07a.py` + `build_nb07a_with_outputs.py` (nbconvert workaround). |
+| `NB07b_stratified_pathway_DA.ipynb` | Stratified pathway DA per Tier-A core species; within-carrier CD-vs-nonIBD meta with single-substudy fallback. *H. hathewayi* biosynthesis-up + sugar-degradation-down; *E. coli* per-pathway CD-DOWN within carriers (AIEC strain-level specialization). Executed via `run_nb07b.py` + `build_nb07b_with_outputs.py`. |
+| `NB07_v18_class_enrichment.ipynb` | H3a (b) retest with ModelSEED MetaCyc class hierarchy + 12-theme IBD overlay + Fisher per-theme enrichment + BH-FDR. Iron/heme dominant CD-up theme (OR=8.1, FDR 7e-6). Reverses v1.7 verdict. Executed via `run_nb07_h3a_v18.py` + `build_nb07_h3a_v18_with_outputs.py`. |
+| `NB07c_anchor_pathobiont_coupling.ipynb` | H3a-new: CD-specific module-anchor commensal × pathobiont species-level Spearman coupling + iron-pathway triple correlation. *A. caccae* × pathobiont coupling clean in E1_CD; *E. coli* dominates iron-pathway co-variation. Executed via `run_nb07c.py` + `build_nb07c_with_outputs.py`. |
 
 ### Figures
 
@@ -663,6 +736,10 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB04h_hmp2_external_replication.png` | HMP2 external replication — ecotype × diagnosis stacked bar, projection confidence histogram, E1 Tier-A scatter (NB04e vs HMP2 effect) |
 | `NB05_tier_a_scored.png` | Top-30 A3–A6 scoring matrix heatmap + total-score bar chart with 2.5 actionable threshold |
 | `NB06_cooccurrence_networks.png` | Per-subnet spring-layout networks (E1_all, E1_CD, E3_all, E3_CD) with actionable Tier-A highlighted |
+| `NB07a_pathway_DA_h3a.png` | NB07a §a–c three-clause falsifiability dashboard: per-pathway CLR-Δ histogram + permutation null + top pathway-pathobiont attribution scatter |
+| `NB07b_stratified_pathway_DA.png` | Per-Tier-A-core species stratified pathway DA effect heatmap + per-species CD-up/down counts |
+| `NB07_H3a_v18_class_enrichment.png` | NB07 v1.8 — cohort-level Fisher enrichment bar chart (iron/heme dominant) + per-species per-theme heatmap |
+| `NB07c_anchor_pathobiont_coupling.png` | 2-panel: anchor × pathobiont species ρ heatmap (E1_CD top half / E3_CD bottom half) + mean iron-pathway co-variation per pathobiont heatmap |
 
 Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatmap.png`, `NB01_*.png` (legacy K = 8 fit preserved for methodology audit).
 
@@ -684,6 +761,9 @@ Pillars 2–5 remain. Brief outline of what each will add, keyed to plan v1.3:
 5. **Within-substudy × within-ecotype design as publication material**. The NB04e confound-free meta design resolves both the feature-leakage and substudy-confounding pitfalls that the original NB04 hit. This is the methodologically portable contribution most worth writing up as a standalone methods paper.
 6. **Ecotype-defining qPCR panel design** — if rigor-controlled ecotypes are determined by a small set of defining species (the NB01b heatmap suggests *F. prausnitzii*, *P. copri*, *P. vulgatus*, *B. fragilis* carry most of the discriminative load), a qPCR panel on these 4–6 species could enable rapid clinical ecotype assignment. H1c showed clinical-covariate-only assignment is not viable; qPCR is the cheapest path to clinical-workflow ecotype assignment.
 7. **Longitudinal ecotype dynamics** — the patient 6967 E1 ↔ E3 shift (NB02) suggests ecosystem instability is a within-patient phenomenon. If Pillar 5 confirms this generalizes, cocktail dosing schedules may need to be state-dependent rather than fixed. Longitudinal sample availability in the UC Davis cohort is currently minimal (2 re-samples); expanding longitudinal sampling is a downstream follow-up.
+8. **NB09c metabolite-level corroboration of NB07c cross-feeding hypothesis.** Use HMP2 metabolomics + the 35-compound cross-cohort metabolite battery (per plan v1.7) to test whether (a) butyrate co-varies with *A. caccae* × pathobiont co-occurrence, and (b) mucin-degradation products / lactate / bile-acid metabolites carry the cross-feeding substrate signal. This is the disambiguation NB07c flagged for deferral.
+9. **NB10 strain-resolution AIEC test.** Three converging lines of NB07-pillar evidence — NB05 §5g (Yersiniabactin/Enterobactin/Colibactin MIBiG), NB07b within-carrier *E. coli* CD-DOWN per-pathway, NB07c iron-pathway concentration on *E. coli* — point to AIEC as the metabolically-specialized CD-specific *E. coli* subset. Strain-resolution analysis (StrainPhlAn / inStrain on the cMD raw reads, or pks-island gene-presence query against `kbase_genomes`) is the natural test: does the AIEC-pks-positive subset show selective enrichment in CD vs nonIBD samples within the *E. coli*-positive subset? This generalizes the NB07b strain-specialization reading.
+10. **Per-target metabolic-coupling-cost annotation in NB05 Tier-A** (NB07c-driven). For each actionable Tier-A pathobiont, compute species-level coupling with module-anchor commensals + iron-pathway dependency + bile-acid-metabolism dependency, and annotate alongside the A3–A6 score. This converts the "Tier-A score = phage target priority" reading into "Tier-A score + ecological-cost flag = phage target priority modulated by collateral damage." Useful for both per-ecotype cocktail design and per-patient cocktail design (Pillar 5).
 
 ## References
 
