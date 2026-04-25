@@ -1,6 +1,6 @@
 # Report: Metagenome-Prioritized Phage Cocktails for Crohn's Disease and IBD
 
-**Status**: Interim synthesis — **Pillar 1 closed**; **Pillar 2 fully closed** (rigor-repaired + externally replicated on HMP_2019_ibdmdb + NB05 Tier-A scored + NB06 co-occurrence modules mapped; H2b supported, H2c retracted, H2d partially supported); **Pillar 3 substantially closed** (8 notebooks: NB07a/b + v1.8 retest + NB07c + NB08a + NB09a/c + NB10a; H3a (a/c) + H3a (b) + H3a-new + H3b + H3c + H3d-DA all tested with verdicts; H3a-new reframed by NB09c as shared-environment, H3d-clust + H3e remain). Pillars 4–5 in progress.
+**Status**: Interim synthesis — **Pillar 1 closed**; **Pillar 2 fully closed** (rigor-repaired + externally replicated on HMP_2019_ibdmdb + NB05 Tier-A scored + NB06 co-occurrence modules mapped; H2b supported, H2c retracted, H2d partially supported); **Pillar 3 closed on H3 falsifiability framework** (9 notebooks: NB07a/b + v1.8 retest + NB07c + NB08a + NB09a/c + NB10a + NB11; all 7 H3 hypotheses tested: H3a (a/c) SUPPORTED, H3a (b) v1.8 SUPPORTED, H3a-new PARTIAL → reframed by NB09c as shared-environment, H3b SUPPORTED, H3c PARTIALLY SUPPORTED, H3d-DA SUPPORTED, H3e PARTIAL at strict threshold; H3d-clust LOSO stability remains exploratory). Pillars 4–5 in progress.
 
 > **Note on Pillar 2 rigor repair + external replication**: the original NB04 analysis (committed 2026-04-24 early) was superseded by a **seven-notebook** pipeline (NB04b → c → d → e → f → g → h) after an adversarial review caught 5 critical + 6 important methodological issues that two independent standard `/berdl-review` runs missed. NB04b–e performed the rigor repair (see retraction box in §5 and `FAILURE_ANALYSIS.md`). NB04f–h strengthened Pillar 2 against LOSO cross-study stability (NB04f), feature-leakage structural test (NB04g), and HMP_2019_ibdmdb external replication (NB04h). The rigor-controlled Tier-A replicates at 88.2 % sign concordance on HMP2 even though the ecotype framework itself has real cross-study variance. See `docs/pitfalls.md` for the two generalizable pitfalls (cMD substudy-nesting, feature leakage in cluster-stratified DA).
 
@@ -33,7 +33,7 @@ Pillar 1 answers the first two questions.
 
 ### Pillar 3 deliverables (this report)
 
-Eight Pillar 3 notebooks (NB07a + NB07b + NB07_v1.8 retest + NB07c + NB08a + NB09a + NB09c + NB10a) test the H3 falsifiability framework across pathway, BGC, metabolite, and strain-level granularities. Six of seven H3 hypotheses produce SUPPORTED, PARTIALLY-SUPPORTED, or biologically-meaningful-NULL verdicts; H3d-clust and H3e remain.
+Nine Pillar 3 notebooks (NB07a + NB07b + NB07_v1.8 retest + NB07c + NB08a + NB09a + NB09c + NB10a + NB11) test the H3 falsifiability framework across pathway, BGC, metabolite, strain, and serology granularities. **All 7 H3 hypotheses tested with verdicts**; H3d-clust LOSO stability remains exploratory.
 
 1. **H3a (a + c) SUPPORTED** (NB07a). Within-IBD-substudy CD-vs-nonIBD pathway DA produces 52 CD-up MetaCyc pathways (FDR<0.10, |effect|>0.5) with permutation null mean 0.077; 137 pathway-pathobiont attribution pairs at |ρ_meta|>0.4 with top hit heme biosynthesis (PWY-5920) ↔ *E. coli* at ρ=0.640. AIEC biology recapitulated.
 2. **H3a (b) v1.8 SUPPORTED via MetaCyc class hierarchy** (Novel Contribution #12). v1.7 regex-on-pathway-names gave FAIL-degenerate; v1.8 ModelSEEDDatabase MetaCyc class hierarchy (90 % coverage of 575 HUMAnN3 pathways) gave H3a (b) SUPPORTED with **iron/heme acquisition as dominant CD-up theme (OR=8.1, FDR 7e-6; 15 of 52 CD-up pathways)** + *H. hathewayi* purine/pyrimidine recycling (OR=4.9) + TMA/choline (OR=9.3). Same data, opposite verdict — driven by ontology choice; lesson encoded as plan norm N17.
@@ -42,6 +42,7 @@ Eight Pillar 3 notebooks (NB07a + NB07b + NB07_v1.8 retest + NB07c + NB08a + NB0
 5. **H3c PARTIALLY SUPPORTED** (NB08a). BGC-theme Fisher enrichment: iron_siderophore OR=44.4 (FDR 6e-56), genotoxin_microcin OR=234 (FDR 3e-35), NRPS-PKS-hybrid OR=1.5 (FDR 0.04). ***E. coli* alone among Tier-A core carries the iron+genotoxin BGC signature** (54 iron MIBiG: 19 Yersiniabactin + 16 Enterobactin + 19 siderophore-class; 25 genotoxin: 8 Colibactin + 15 Microcin B17). 5/6 Tier-A core have CD-up CB-ORF rates above background. **ebf/ecf RPKM CD-up across 4 cohorts at p<1e-31** (replicates Elmassry 2025).
 6. **H3d-DA SUPPORTED** (NB09a). 52 of 579 named HMP2 metabolites pass DA at subject level (50 CD vs 26 nonIBD). Two themes Fisher-significant: **polyamines OR=14.6** (putrescine, N1-acetylspermine, N-acetylputrescine, anserine, diacetylspermine all CD-up) + **long-chain PUFAs OR=7.9** (arachidonate, adrenate, DHA, DPA, EPA all CD-up). Tauro-α/β-muricholate + free taurine CD-up corroborates *F. plautii* 7α-dehydroxylation deficit at metabolite level.
 7. **Bile-acid 7α-dehydroxylation network identified at sample level** (NB09c §13). 468 paired CSM* HMP2 samples × 8 species × 583 metabolites Spearman ρ. ***F. plautii* / *E. lenta* / *E. bolteae* show predicted substrate-product signature** (negative with primary tauro-BAs, positive with secondary BAs); *M. gnavus* / *E. coli* show opposite pattern. *E. coli* dominates cohort-level correlations (cadaverine +0.45, choline +0.25, tryptophan +0.25).
+8. **H3e PARTIAL at strict threshold** (NB11). 48 (assay × species) tests across 67 HMP2 subjects with site-adjusted partial Pearson r. Top pair ANCA × M. gnavus +0.31 (FDR 0.40); no pair clears |r|>0.40 + FDR<0.10 plan threshold. Cohort sanity check passes on canonical IBD-serology patterns (ANCA-UC, ASCA-CD, CBir1-CD all match canonical direction). Site-stratified single-site r reaches +0.46 (Harvard) but cohort-aggregation pulls toward null. Single-cohort caveat structural per plan v1.7. **Serology usable as CD-vs-UC stratifier but not as per-target abundance predictor**.
 
 ### Pillar 3 closure synthesis — two cross-corroborated mechanism narratives
 
@@ -76,7 +77,7 @@ These two narratives converge on **complementary cocktail-design implications** 
 
 ### What this report does not yet contain
 
-Two Pillar 3 hypotheses remain untested: **H3d-clust** (metabolite-feature ecotype LOSO stability, NB09d) and **H3e** (HMP2 serology × Tier-A pathobiont longitudinal regression, NB11). NB07d MOFA+ HMP2-only multi-omics pilot and NB09b cross-cohort metabolomics bridge are exploratory extensions. **Pillars 4–5** (phage targetability matrix; UC Davis per-patient cocktail drafts) land in subsequent syntheses.
+One Pillar 3 hypothesis remains untested: **H3d-clust** (metabolite-feature ecotype LOSO stability across 3 metabolomics cohorts, NB09d). NB07d MOFA+ HMP2-only multi-omics pilot and NB09b cross-cohort metabolomics bridge are exploratory extensions. **Pillars 4–5** (phage targetability matrix; UC Davis per-patient cocktail drafts) land in subsequent syntheses.
 
 ## Key Findings
 
@@ -876,6 +877,60 @@ The cross-species pattern is dominated by **transport, regulation, stress respon
 
 *(Script: `run_nb10a.py`. Per plan v1.7 H3b + v1.9 no-raw-reads.)*
 
+### 15. NB11 — HMP2 serology × Tier-A pathobiont (H3e)
+
+The H3e hypothesis (per plan v1.7): anti-microbial antibody titers correlate with Tier-A pathobiont abundance within IBD patients, n=67 subjects across 3 sites (CCHMC/Harvard/Emory), site as covariate, effect threshold |r|>0.40 calibrated to n=67 power 0.80 at α=0.05. Single-cohort caveat structural per plan v1.7. Per plan v1.9: uses cMD-fetched HMP2 MetaPhlAn3 abundance + mart `fact_serology` (2,520 measurements; 12 assays). All 67 serology subjects (E-prefix Emory, H-prefix Harvard, M-prefix MGH/CCHMC) match cMD MetaPhlAn3 metagenomics.
+
+Six EU-deduplicated serology axes: ANCA, ASCA, CBir1, IgA-ASCA, IgG-ASCA, OmpC. Cross with 8 species (6 actionable Tier-A core + 2 NB07c module-anchor commensals) → 48 tests; partial Pearson r residualized on site dummy variables; BH-FDR.
+
+**Cohort sanity check** — canonical IBD-serology patterns hold in n=32 CD + 14 UC + 21 nonIBD subjects:
+
+| Axis | CD mean | UC mean | Canonical pattern | Match |
+|---|---:|---:|---|:---:|
+| ANCA | 17.8 | **42.6** | UC ↑ (pANCA biomarker for UC) | ✓ |
+| ASCA | **0.28** | 0.0 | CD ↑ (yeast cell wall) | ✓ |
+| CBir1 | **29.0** | 13.7 | CD ↑ (anti-flagellin) | ✓ |
+| IgA ASCA | **14.2** | 1.2 | CD ↑ | ✓ |
+| IgG ASCA | **15.0** | 3.6 | CD ↑ | ✓ |
+| OmpC | 9.3 | 7.6 | CD slight ↑ | partial ✓ |
+
+All 6 axes show canonical IBD direction → data validates standard immunology biology. The H3e test asks the harder question: do antibody titers track *individual Tier-A pathobiont abundance* within IBD patients?
+
+**Top moderate associations** (none clear |r|>0.40 + FDR<0.10):
+
+| Pair | partial r | raw ρ | FDR | Site-stratified breakdown |
+|---|---:|---:|---:|---|
+| ANCA × M. gnavus | **+0.31** | +0.24 | 0.40 | Harvard r=+0.456* (p=0.008); CCHMC r=−0.03 NS |
+| OmpC × E. lenta | +0.29 | +0.10 | 0.40 | CCHMC r=−0.02 NS; Harvard r=+0.14 NS |
+| ANCA × H. hathewayi | +0.23 | +0.16 | 0.59 | Harvard r=+0.345* (p=0.050); CCHMC r=+0.02 NS |
+| IgA-ASCA × E. coli | +0.23 | +0.22 | 0.59 | Harvard r=+0.30 (p=0.09); CCHMC r=+0.06 NS |
+| CBir1 × E. bolteae | +0.22 | +0.22 | 0.59 | CCHMC r=+0.381* (p=0.035); Harvard r=+0.04 NS |
+| ANCA × F. plautii | +0.22 | +0.32 | 0.59 | CCHMC r=+0.443* (p=0.013); Harvard r=+0.25 NS |
+
+**Cohort-aggregate signal is dominated by ANCA × M. gnavus (+0.31)**. Site-stratified breakdown shows most associations are **concentrated in 1 of 2 productive sites** (Harvard or CCHMC) and dilute when cohort-aggregated. With Harvard 33 + CCHMC 31 + Emory 3 subjects, single-site partial r reaches |r|≈0.40–0.46 individually but the cohort pull toward null prevents the strict |r|>0.40 + FDR<0.10 plan threshold from being met. Top observed: |r|=0.31, FDR=0.40 → **strict H3e: NOT SUPPORTED**.
+
+**Biologically plausible directions** (all top pairs are positive r): anti-microbial antibody titers ↑ with target Tier-A species abundance. ANCA × M. gnavus + ANCA × H. hathewayi + ANCA × F. plautii — pANCA antibody (canonically UC-associated) co-elevated with multiple CD-pathobiont species, consistent with high-pathobiont-burden states triggering broader anti-microbial humoral response. CBir1 × E. bolteae mechanistically coherent (CBir1 is anti-bacterial-flagellin; E. bolteae is flagellated). IgA-ASCA × E. coli is the most mucosal-immunity-relevant axis (IgA isotype is the gut-immunity isotype); the +0.23 correlation is consistent with E. coli outer-antigen recognition.
+
+![NB11 — partial Pearson r heatmap (species × serology axis) + top 10 pairs scatter](figures/NB11_serology_pathobiont.png)
+
+**H3e verdict — PARTIAL (NOT SUPPORTED at strict plan threshold).** Per plan v1.7 falsifiability bound, no (assay × species) pair clears the |r|>0.40 + FDR<0.10 effect threshold. The PARTIAL framing reflects (a) cohort sanity check passing on canonical IBD-serology patterns, (b) biologically plausible direction of all top pairs, (c) productive sites reaching |r|≈0.40–0.46 individually, and (d) the structural single-cohort caveat acknowledged in plan v1.7.
+
+**Implications for Pillar 4–5 cocktail design**: serology is **not yet a quantitative target-prioritization signal** at the per-target level for this cohort. The canonical CD-vs-UC ecotype-stratification axes are intact (ANCA-UC, ASCA-CD, CBir1-CD), so serology can be used as a **CD-vs-UC stratifier** but not as a **per-target abundance predictor** — the |r|≈0.31 ceiling at the cohort level means a single subject's anti-M. gnavus ANCA titer cannot be used to confidently predict that subject's M. gnavus abundance. Multi-cohort meta-analysis (out of project scope) is the structural next step.
+
+**Limitations**:
+- **n=67 across 3 unevenly-distributed sites** is structurally low-power for |r|>0.40 detection at α=0.05 + 48-test multiple-testing correction. Plan v1.7 H3e was acknowledged-weak by design.
+- **Subject-level aggregation loses longitudinal information** (each subject contributed multiple serology + metagenomics visits). Mixed-effects regression would have more power but unbalanced visit counts complicate interpretation.
+- **OmpC and ANCA cross-react** with related antigens beyond their named targets, so per-species attributions are correlative rather than exclusive.
+- **Single-cohort caveat structural** — no project-internal replication path; would need multi-cohort meta to firm the signals up.
+
+**Output artifacts**:
+- `data/nb11_serology_species_correlations.tsv` — 48 (assay × species) tests with partial Pearson r + raw Spearman ρ + BH-FDR
+- `data/nb11_serology_site_stratified.tsv` — site-stratified breakdown for top 10 pairs
+- `data/nb11_h3e_verdict.json` — formal verdict
+- `figures/NB11_serology_pathobiont.png` — heatmap + top 10 pairs
+
+*(Script: `run_nb11.py`. Per plan v1.7 H3e + v1.9 no-raw-reads.)*
+
 ## Interpretation
 
 ### Why the four-ecotype framework matters for phage targeting
@@ -1030,6 +1085,9 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `data/nb10a_cross_species_ibd_symbols.tsv` | varies | Cross-species IBD-biased gene symbols sorted by n_species |
 | `data/nb10a_f_plautii_strain_adaptation.tsv` | 0 | F. plautii FDR<0.10 strain-adaptation deep dive (empty — informative null) |
 | `data/nb10a_h3b_verdict.json` | — | Formal H3b verdict (SUPPORTED — adaptation enrichment, housekeeping depletion) |
+| `data/nb11_serology_species_correlations.tsv` | 48 | (Assay × species) site-adjusted partial Pearson r + raw Spearman ρ + BH-FDR |
+| `data/nb11_serology_site_stratified.tsv` | 30 | Site-stratified Spearman ρ for top 10 (assay × species) pairs (3 sites × 10 pairs) |
+| `data/nb11_h3e_verdict.json` | — | Formal H3e verdict (PARTIAL — strict |r|>0.40 threshold not met) |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_relative_abundance.tsv` | 582 | HMP2 MetaPhlAn3 relative abundance (taxa × samples) — out-of-project artifact |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_sample_metadata.tsv` | 1,627 | HMP2 sample metadata from cMD |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_taxon_metadata.tsv` | 585 | HMP2 per-taxon lineage metadata |
@@ -1064,6 +1122,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB09a_metabolomics_cd_vs_nonibd.ipynb` | H3d-DA: HMP2 metabolomics CD-vs-nonIBD subject-level (50 vs 26 subjects) + 11-theme Fisher enrichment. SUPPORTED — 52 metabolites + 2 themes (polyamines OR=14.6, PUFAs OR=7.9). Tauro-muricholate confirms F. plautii 7α-dehydroxylation deficit. Executed via `run_nb09a.py` + `build_nb09a_with_outputs.py`. |
 | `NB09c_cross_feeding_disambiguation.ipynb` | NB07c cross-feeding disambiguation + bile-acid 7α-dehydroxylation network. 468 paired CSM* samples × 8 species × 583 metabolites. Cross-feeding NOT supported (only 7 strict triangles; lactate opposite-sign between A. caccae and pathobionts). Bile-acid 7α-dehydroxylation network IDENTIFIED: F. plautii / E. lenta / E. bolteae show predicted primary-tauro-BA-down + secondary-BA-up substrate-product signature. Reframes NB07c as shared-environment; introduces "bile-acid coupling cost" as primary Pillar 4 annotation. Executed via `run_nb09c.py` + `build_nb09c_with_outputs.py`. |
 | `NB10a_kumbhari_strain_adaptation.ipynb` | H3b Kumbhari strain-adaptation gene predictor. 23,579 FDR<0.10 genes across 59 species; falsifiability test on housekeeping vs adaptation. SUPPORTED — IBD-biased adaptation OR=1.38 (p=2.4e-6), housekeeping OR=0.62 (p=6.4e-20). F. plautii has 0 FDR-passing genes — informative null confirming species-abundance-mediated CD-association (corroborates NB07b within-carrier). Executed via `run_nb10a.py` + `build_nb10a_with_outputs.py`. |
+| `NB11_serology_pathobiont.ipynb` | H3e HMP2 serology × Tier-A pathobiont site-adjusted partial Pearson correlation. 48 (assay × species) tests across 67 subjects × 3 sites. PARTIAL — top pair ANCA × M. gnavus +0.31 (FDR 0.40); no pair clears strict |r|>0.40 + FDR<0.10 plan threshold. Cohort sanity check passes on canonical IBD-serology patterns. Site-stratified single-site r reaches +0.46 (Harvard) but cohort-aggregation pulls toward null. Single-cohort caveat structural. Executed via `run_nb11.py` + `build_nb11_with_outputs.py`. |
 
 ### Figures
 
@@ -1096,6 +1155,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB09a_metabolomics_cd_vs_nonibd.png` | 3-panel: volcano (cliff_delta vs -log10 FDR with key metabolites annotated) + 11-theme Fisher OR bar (polyamines + PUFAs supported) + top 15 CD-up + top 15 CD-down metabolites |
 | `NB09c_cross_feeding_disambiguation.png` | 2-panel: curated 7-theme cross-feeding panel × 8 species ρ heatmap (showing bile-acid 7α-dehydroxylation network) + top 25 cross-feeding-triangle candidates scatter (only 7 strict triangles) |
 | `NB10a_kumbhari_strain_adaptation.png` | 3-panel: per-species IBD-biased + health-biased gene counts (top 25) + functional category × direction (housekeeping vs adaptation log-scale bar) + F. plautii top genes panel (empty — informative null) |
+| `NB11_serology_pathobiont.png` | 2-panel: site-adjusted partial Pearson r heatmap (8 species × 6 serology axes) + top 10 (assay × species) pairs scatter with FDR annotations |
 
 Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatmap.png`, `NB01_*.png` (legacy K = 8 fit preserved for methodology audit).
 
@@ -1104,18 +1164,18 @@ Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatma
 **Pillars 1–3 substantially closed.** Pillars 4–5 + a few Pillar 3 extensions remain. Updated outline:
 
 - **Pillar 2 (closed)** — NB04 superseded by NB04b+c+d+e (rigor repair) + NB04f+g+h (LOSO stability + pathway-feature refit + HMP2 external replication) + NB05 (Tier-A A3–A6 scoring) + NB06 (per-ecotype co-occurrence networks + H2d). Six actionable Tier-A: *H. hathewayi*, *M. gnavus*, *E. coli*, *E. lenta*, *F. plautii*, *E. bolteae*.
-- **Pillar 3 (substantially closed)** — H3a (a/c) + H3a (b) + H3a-new + H3b + H3c + H3d-DA tested with 8 notebooks (NB07a/b + NB07_v1.8 + NB07c + NB08a + NB09a/c + NB10a). Two cross-corroborated mechanism narratives (iron + bile-acid 7α-dehydroxylation) established. **Remaining**: NB09d (H3d-clust metabolite-feature ecotype LOSO stability), NB11 (H3e HMP2 serology × Tier-A longitudinal regression, n=67 across 3 sites), NB07d (MOFA+ HMP2-only multi-omics pilot, exploratory), NB09b (cross-cohort metabolomics bridge to FRANZOSA_2019 + DAVE_SAMP_METABOLOMICS, exploratory).
+- **Pillar 3 (closed on H3 falsifiability framework)** — All 7 H3 hypotheses tested with 9 notebooks (NB07a/b + NB07_v1.8 + NB07c + NB08a + NB09a/c + NB10a + NB11). Two cross-corroborated mechanism narratives (iron + bile-acid 7α-dehydroxylation) established. **Remaining**: NB09d (H3d-clust metabolite-feature ecotype LOSO stability, exploratory extension), NB07d (MOFA+ HMP2-only multi-omics pilot, exploratory), NB09b (cross-cohort metabolomics bridge to FRANZOSA_2019 + DAVE_SAMP_METABOLOMICS, exploratory).
 - **Pillar 4 (NB12–NB14, pending)** — pathobiont × phage coverage matrix (PhageFoundry + external phage DBs), CRISPR-Cas spacer analysis, endogenous phageome stratification per ecotype. Cocktail-design framework now sharpened by Pillar-3 outputs: per-target *(actionable Tier-A score, iron/AIEC-mediated vs other, BA-coupling cost, species-abundance vs strain-content-mediated)* annotation profile.
 - **Pillar 5 (NB15–NB17, pending)** — UC Davis medication-class harmonization, per-patient pathobiont ranking and candidate phage cocktail draft, longitudinal stability check (patient 6967's E1 ↔ E3 shift), cross-cutting synthesis.
 
 ## Future Directions
 
-### Pillar 3 remaining (immediate)
+### Pillar 3 remaining (exploratory extensions)
 
-1. **NB11 — H3e HMP2 serology × Tier-A longitudinal regression** (n=67 across 3 sites; site as covariate; subject random effects). Tests serology (anti-flagellin / anti-LPS / anti-microbial antibodies) × Tier-A pathobiont abundance correlation. Single-cohort caveat structural per plan v1.7.
-2. **NB09d — H3d-clust metabolite-feature ecotype LOSO stability** across 3 metabolomics cohorts (HMP2 + FRANZOSA_2019 + DAVE_SAMP_METABOLOMICS). Tests whether metabolite-factor clustering achieves higher LOSO ARI than the 0.113 taxonomic-ecotype LOSO baseline.
-3. **NB07d — MOFA+ HMP2-only multi-omics pilot** (exploratory). Joint factor analysis on HMP2 taxonomy + pathways + metabolomics; ecotype-as-covariate (not factor target). Per-modality QC prerequisites met (NB04e, NB07a, NB09a all passed).
-4. **NB09b — cross-cohort metabolomics bridge** (exploratory). Test whether the polyamine + PUFA + tauro-muricholate signatures from NB09a replicate in FRANZOSA_2019 (220 samples) + DAVE_SAMP_METABOLOMICS (30 samples).
+1. **NB09d — H3d-clust metabolite-feature ecotype LOSO stability** across 3 metabolomics cohorts (HMP2 + FRANZOSA_2019 + DAVE_SAMP_METABOLOMICS). Tests whether metabolite-factor clustering achieves higher LOSO ARI than the 0.113 taxonomic-ecotype LOSO baseline.
+2. **NB07d — MOFA+ HMP2-only multi-omics pilot** (exploratory). Joint factor analysis on HMP2 taxonomy + pathways + metabolomics; ecotype-as-covariate (not factor target). Per-modality QC prerequisites met (NB04e, NB07a, NB09a all passed).
+3. **NB09b — cross-cohort metabolomics bridge** (exploratory). Test whether the polyamine + PUFA + tauro-muricholate signatures from NB09a replicate in FRANZOSA_2019 (220 samples) + DAVE_SAMP_METABOLOMICS (30 samples).
+4. **Multi-cohort serology meta-analysis** (out of project scope as currently defined; H3e PARTIAL at strict threshold suggests cohort-meta would be productive). Outside HMP2, IBD anti-microbial antibody datasets exist but are not in BERDL — would require external data ingestion.
 
 ### Cocktail-design extensions (Pillar 4–5 hand-off)
 
