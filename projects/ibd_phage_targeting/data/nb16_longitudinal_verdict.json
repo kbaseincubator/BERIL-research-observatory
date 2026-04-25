@@ -1,0 +1,20 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "NB16 \u2014 Patient 6967 longitudinal stability + state-dependent dosing strategy",
+  "n_multi_sample_patients": 4,
+  "patient_6967_ecotype_drift": "E1 \u2192 E3",
+  "patient_6967_visit1_n_targets": 5,
+  "patient_6967_visit2_n_targets": 3,
+  "patient_6967_cocktail_jaccard_visit1_visit2": 0.6,
+  "patient_6967_M_gnavus_fold_change_v2_v1": 13.96,
+  "patient_1112_tech_rep_spearman_rho": 1.0,
+  "narrative": "Patient 6967 shows clear E1\u2192E3 ecotype drift across 2 visits with M. gnavus 14\u00d7 expansion (0.53\u21927.45). Cocktail composition Jaccard between visits = 0.60. Patient 1112 technical replicates Spearman \u03c1 = 1.000 on Tier-A abundance \u2014 Kaiju calls reliable across reseq.",
+  "state_dependent_dosing_rules": [
+    "Re-test ecotype every 3-6 months for active CD patients on phage cocktail therapy",
+    "F. plautii inclusion is E1-specific; deprioritize on E1\u2192E3 transition",
+    "E. coli inclusion is E3-specific; deprioritize on E3\u2192E1 transition (subject to AIEC detection)",
+    "Universal Tier-1 (M. gnavus, H. hathewayi, E. lenta) span both ecotypes",
+    "M. gnavus 14\u00d7 expansion suggests qPCR M. gnavus monitoring as cheap ecotype-state indicator"
+  ]
+}
