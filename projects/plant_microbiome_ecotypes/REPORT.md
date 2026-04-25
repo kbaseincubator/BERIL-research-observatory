@@ -334,6 +334,28 @@ Composite scoring weighted PGP markers (40%), core fraction (20%), complementari
 
 *Phase 2 refresh (`data/genus_dossiers_v2.csv`, 2026-04-25, gap-2 close)*: a refreshed dossiers file was produced with 30 top plant-associated genera × 23 columns, joining refined Phase 2 cohort distribution, the continuous PGP-ratio discriminator, top-3 PGP and pathogen markers per genus, intersection with cluster-robust GLM marker survivors at the genus scale (NB14), MGnify mobilome and BGC profiles where available (19/30 genera have soil-biome MGnify data), and species-level H7/H6 significance per genus. Among the 30 dossier genera, **4 contain at least one species with significant subclade × plant-association segregation** (*Pseudomonas_E* via *P. avellanae*, *Mesorhizobium* via sp002294985, *Xanthomonas* via both *X. campestris* and *X. vasicola*, *Agrobacterium* via *A. pusense*) and **1 (Xanthomonas) has species with both H7 subclade and H6 host segregation** (*X. campestris* × Brassica, *X. vasicola* × *Zea mays*) — making *Xanthomonas* the genus where strain-level plant adaptation is both phylogenetically structured *and* host-specialized at the genomic level.
 
+The top 15 plant-associated genera (covering all 4 H7-significant genera) summarized inline:
+
+| Genus | n plant sp. | Cohort | PGP ratio | Cluster-robust markers | MGnify BGCs | H7-sig species | H6-sig species × host |
+|---|---:|---|---:|---|---:|---|---|
+| *Pseudomonas_E* | 82 | dual-nature | 0.53 | ACC, cellulase, pectinase, effector, phenazine, phosphate-sol, T3SS | 424 | *P. avellanae* | — |
+| *Rhizobium* | 52 | dual-nature | 0.34 | ACC, cellulase, pectinase, effector, N-fix, phenazine, phosphate-sol, T3SS | 39 | — | — |
+| *Mesorhizobium* | 47 | dual-nature | 0.52 | ACC, cellulase, pectinase, effector, N-fix, phenazine, phosphate-sol, T3SS | 14 | *M. sp002294985* | — |
+| *Bradyrhizobium* | 44 | dual-nature | 0.49 | ACC, cellulase, pectinase, effector, N-fix, phenazine, phosphate-sol, T3SS | 488 | — | — |
+| *Streptomyces* | 35 | dual-nature | 0.44 | cellulase, pectinase, effector, phenazine, phosphate-sol | 593 | — | — |
+| *Microbacterium* | 19 | dual-nature | 0.50 | cellulase, effector, phenazine, phosphate-sol | 84 | — | — |
+| *Sphingomonas* | 19 | dual-nature | 0.42 | cellulase, pectinase, effector, phenazine, phosphate-sol | 33 | — | — |
+| *Methylobacterium* | 17 | dual-nature | 0.41 | cellulase, pectinase, effector, phenazine, phosphate-sol | — | — | — |
+| *Paraburkholderia* | 14 | dual-nature | 0.49 | ACC, cellulase, pectinase, effector, N-fix, phenazine, phosphate-sol, T3SS | 61 | — | — |
+| *Curtobacterium* | 13 | dual-nature | 0.40 | cellulase, pectinase, phenazine | 10 | — | — |
+| *Xanthomonas* | 12 | dual-nature | 0.28 | cellulase, pectinase, effector, phenazine, phosphate-sol, T3SS | — | *X. campestris*; *X. vasicola* | *X. campestris* × Brassica; *X. vasicola* × *Zea mays* |
+| *Rathayibacter* | 11 | dual-nature | 0.43 | cellulase, pectinase, effector, phenazine, phosphate-sol | — | — | — |
+| *Chryseobacterium* | 11 | dual-nature | 0.23 | cellulase, pectinase, effector, phenazine | 8 | — | — |
+| *Frankia* | 10 | dual-nature | 0.60 | cellulase, pectinase, N-fix, phenazine, phosphate-sol | — | — | — |
+| *Agrobacterium* | 10 | dual-nature | 0.32 | cellulase, pectinase, effector, phenazine, phosphate-sol | — | *A. pusense* | — |
+
+*PGP ratio = sum(n_pgp) / sum(n_pgp + n_pathogen) across plant-associated species in the genus; values < 0.5 indicate the genus is more pathogen-marker-rich (e.g., Xanthomonas at 0.28, Chryseobacterium at 0.23) than PGP-marker-rich. Cluster-robust markers are those that survive the cluster-robust GLM at q < 0.05 BH-FDR (NB14, item 18). MGnify BGC counts are from the soil biome only (rhizosphere biomes have BGCs only for soil); "—" means the genus is not in MGnify soil. Full 30-genus dossier with all 23 columns in `data/genus_dossiers_v2.csv`.*
+
 Key mechanism hypotheses:
 
 | Mechanism | Cohort | Confidence |
