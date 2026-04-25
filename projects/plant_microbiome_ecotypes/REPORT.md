@@ -613,6 +613,8 @@ Pairwise phylogenetic distances from `phylogenetic_tree_distance_pairs` (22.6M r
 | `data/h1_compartment_dispersions.csv` | 3 | Per-compartment mean centroid distance (2026-04-25) |
 | `data/c1_cluster_robust.csv` | 17 | Cluster-robust GLM (cluster=genus) for 17 markers — proper Wald CIs without L1 shrinkage (2026-04-25) |
 | `data/h6_host_subclade_full.csv` | 18 | Subclade × host plant scan for the 18 species with phylo data (2026-04-25) |
+| `data/genus_dossiers_v2.csv` | 30 | Phase 2 refreshed genus dossiers — refined cohorts + cluster-robust markers + MGnify mobilome/BGC + H7/H6 significance (2026-04-25, NB15 gap-2 close) |
+| `data/cscore_refined_cohorts.csv` | 69 | C-score PGP-pathogen mutual-exclusion test on refined cohorts (verification #12; result: 0 PGP-only / 3 pathogen-only / 66 dual-or-mixed — same pattern as Phase 1, 2026-04-25) |
 
 ## Supporting Evidence
 

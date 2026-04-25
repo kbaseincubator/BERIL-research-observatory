@@ -238,9 +238,21 @@ Phase 1 used 91 markers including ubiquitous bacterial functions (flagella, chem
 The following planned safeguards were modified or deferred during Phase 1 execution:
 
 1. **Phylogenetic control level**: Genus-level fixed effects were computationally intractable with 27K species. Phylum-level control (28 phyla) was used in NB03; family-level was attempted in NB08 but showed insufficient within-family variation.
-2. **NB04 phylogenetic control**: Genus-level logistic regression in NB04 failed due to a code error (undefined `logit` import). H1 compartment enrichments lack phylogenetic control beyond PERMANOVA. Fixed in NB14.
+2. **NB04 phylogenetic control**: Genus-level logistic regression in NB04 failed due to a code error (undefined `logit` import — should have been `smf.logit` to match the `import statsmodels.formula.api as smf` line). H1 compartment enrichments lack phylogenetic control beyond PERMANOVA. Fixed in NB14 (cluster-robust GLM is the canonical replacement); the broken NB04 cell was rerouted to a markdown note pointing readers to NB14 (2026-04-25, gap-4 close).
 3. **Three safeguards deferred**: (a) sensitivity excluding top-3 genome-rich species, (b) within-genus label shuffling, (c) phylogeny vs. ecology variance decomposition. Executed in NB14.
 4. **NB08 added**: An adversarial revisions notebook (not in original plan) was added to address concerns about marker specificity, genome size confounding, negative controls, and HGT deep dive.
+
+## Execution Deviations (Phase 2 / Phase 2b)
+
+The following planned items were modified, deferred, or re-scoped during Phase 2 / Phase 2b execution:
+
+5. **NB13 re-scoped from network expansion to validation/Pfam/subclade fixes**: The originally-planned NB13 was a co-occurrence network expansion (`cooccurrence_matrix.csv`, `network_topology.csv` with Louvain modules and hub centrality, `abiotic_features.csv` from NMDC, partial Mantel test conditioned on phylogeny, NMDC `metabolomics_gold` integration, PGP-pathogen C-score re-test). When the paired adversarial review (`docs/adversarial_review_2026-04-24.md`) surfaced higher-priority methodological issues (tautological genus-level validation, Pfam silent omission in `bakta_pfam_domains`, subclade genome-ID prefix bug, circular novel-OG simulation), NB13 was repurposed entirely to close those issues. The complementarity sub-item from the original plan (`complementarity_v2.csv` with prevalence-weighted aggregation) was preserved and executed in NB14 Cell 5 — closing H3's I1 issue. The remaining sub-items (network topology, Mantel test, metabolomics, abiotic_features) were deferred as exploratory enhancements; the H3 verdict (redundancy not complementarity, |d|≈0.4 after Cohen's d formula correction) does not depend on them.
+
+6. **NB15 cohort_assignments_v2.csv naming**: the planned `data/cohort_assignments_v2.csv` was produced under the name `data/species_cohort_refined.csv` (the NB10 output). Functionally identical to the planned v2 output (refined 17-marker panel + KEGG-module gating + dual-nature class). Naming gap is cosmetic; REPORT.md and the data table consistently reference the actual filename.
+
+7. **NB15 genus_dossiers_v2.csv**: refreshed and saved as `data/genus_dossiers_v2.csv` on 2026-04-25 (gap-2 close). Joins `species_cohort_refined.csv`, `subclade_full_scan.csv`, `h6_host_subclade_full.csv`, `c1_cluster_robust.csv`, `mgnify_mobilome.csv`, and `mgnify_bgc_profiles.csv`. 30 top plant-associated genera; for each: refined cohort distribution, continuous PGP/(PGP+pathogen) ratio, top PGP/pathogen markers, cluster-robust marker survivors at the genus scale, MGnify mobilome and BGC summaries, H7-significant species (4 genera), H6-significant species (1 genus, *Xanthomonas*).
+
+8. **Verification check #12 (PGP-only genera in NMDC for C-score)** — formally re-tested on Phase 2 refined cohorts (2026-04-25, gap-3 close, `data/cscore_refined_cohorts.csv`). **Result: still NOT MET.** Of 69 NMDC co-occurring genera, refined cohorts give 0 PGP-dominant / 3 pathogen-dominant / 66 dual-or-mixed (vs Phase 1's 0 / 2 / 67). The dual-nature class swamps NMDC co-occurring genera regardless of marker-panel choice — this is itself the verification result, and is consistent with Phase 1 NB06's finding that the C-score test for PGP-pathogen mutual exclusion is not powered in this dataset. The H3 verdict (no metabolic complementarity, redundancy direction robust at |d|≈0.4) does not depend on this check.
 
 ## Key Constraints
 
