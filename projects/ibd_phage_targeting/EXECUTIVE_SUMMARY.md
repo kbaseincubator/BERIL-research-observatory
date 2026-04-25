@@ -1,7 +1,7 @@
 # Executive Summary — Metagenome-Prioritized Phage Cocktails for Crohn's Disease
 
 **Project**: `ibd_phage_targeting` (BERIL Research Observatory)
-**Status**: Pillars 1–4 fully closed; Pillar 5 opened with per-patient cocktail drafts for all 23 UC Davis CD patients
+**Status**: Pillars 1–5 substantially closed — per-patient cocktail drafts for all 23 UC Davis CD patients (NB15) + patient 6967 longitudinal E1→E3 drift validation + state-dependent dosing rule + clinical-translation workflow (NB16). NB17 cross-cutting synthesis remains.
 **Date**: 2026-04-25
 **Authors**: Adam Arkin (LBNL / UC Berkeley), with collaborators (Kuehl/Dave labs, Kumbhari et al.)
 
@@ -40,7 +40,7 @@ After rigorous compositional differential abundance (within-IBD-substudy meta on
 | **Active disease + multiple targets (E1)** — high priority | Hybrid 3-strategy cocktail: direct phages for E. coli (if present) + E. bolteae + E. lenta; alternatives for H. hathewayi (enzyme inhibitors) + F. plautii (BA-binding co-therapy) |
 | **Active disease + few targets (E0)** | Limited cocktail; consider non-phage strategies given E0's lower pathobiont burden |
 | **Quiescent disease (low calprotectin)** | Reserve cocktail for flares; calprotectin + ecotype-state monitoring |
-| **Mixed ecotype (longitudinal drift)** | State-dependent dosing — rebalance per-visit ecotype. Patient 6967 (E1↔E3) is the central per-patient stability test. |
+| **Mixed ecotype (longitudinal drift)** | State-dependent dosing — rebalance per-visit ecotype. Patient 6967 (NB16) shows clear E1→E3 drift with *M. gnavus* 14× expansion as dominant signature; cocktail Jaccard 0.60 between visits. Drop F. plautii on E1→E3; consider E. coli on E3→E1; universal Tier-1 trio (M. gnavus + H. hathewayi + E. lenta) is the cocktail backbone across both ecotypes. |
 
 ## Three biological narratives that guide cocktail design
 
@@ -58,26 +58,28 @@ The project produced two cross-corroborated mechanism narratives across 6 indepe
 - Per-patient cocktail drafts for 23 UC Davis patients (NB15 output)
 - F. plautii BA-coupling-cost annotation per actionable target (deprioritization rule)
 - 4-category patient stratification (Active+many, Active+few, Quiescent, Mixed)
+- **State-dependent dosing rule established (NB16)** — 5 concrete recommendations including 3-6 month ecotype re-test, F. plautii E1-specific / E. coli E3-specific inclusion, universal Tier-1 trio as cocktail backbone, and **clinical workflow** (initial visit + follow-up calp/qPCR + ecotype-shift decision tree)
 
 **Near-term (6–12 months)**:
 - **External DB queries (INPHARED + IMG/VR)** for *H. hathewayi*, *M. gnavus* lytic alternatives, *F. plautii* phages — closes the structural Pillar-4 gap before clinical translation
 - **AIEC strain-resolution diagnostic** for the 8 / 23 patients carrying *E. coli* (pks-island + Yersiniabactin + Enterobactin gene-presence detection via PCR or amplicon panel)
-- **Patient 6967 longitudinal stability test** (NB16) — does ecotype drift predict cocktail response heterogeneity?
+- ***M. gnavus* qPCR validation as cheap clinical proxy** for ecotype-state monitoring (NB16 hypothesis: 5-fold change triggers full ecotype re-test, avoiding routine metagenomics) — needs prospective cohort with paired qPCR + metagenomics across timepoints
 
 **Mid-term (12–24 months)**:
 - **Targeted qPCR ecotype panel** — 4–6 species (*F. prausnitzii*, *P. copri*, *P. vulgatus*, *B. fragilis*, *M. gnavus*) for rapid clinical ecotype assignment without full metagenomics
 - **Per-patient bile-acid panel** for F. plautii BA-cost monitoring
 - **Multi-cohort serology meta-analysis** to firm up the H3e signals (anti-microbial antibody × pathobiont abundance correlations marginal in HMP2 alone)
+- **Expanded longitudinal sampling** beyond patient 6967 to validate state-dependent dosing rule across more ecotype-drift trajectories
 
 **Long-term (24+ months)**:
-- **Clinical pilot** of hybrid 3-strategy cocktails in UC Davis CD cohort (per-ecotype + per-patient)
+- **Clinical pilot** of hybrid 3-strategy cocktails in UC Davis CD cohort (per-ecotype + per-patient + state-dependent dosing per NB16 workflow)
 - **Lytic-locked phage engineering** for *M. gnavus* if natural lytic phages remain unavailable
 - **GAG-degrading enzyme inhibitor** screening for *H. hathewayi* (alternative to phage)
 
 ## Methodology summary
 
 - **Five analytical pillars** spanning patient stratification (ecotypes), pathobiont identification (Tier-A scoring), functional drivers (pathway/BGC/metabolomics/strain/serology), phage targetability (3-layer evidence stack), and per-patient cocktail design.
-- **29 notebooks** with full saved outputs and reproducibility.
+- **30 notebooks** with full saved outputs and reproducibility.
 - **Confound-free within-IBD-substudy CD-vs-nonIBD meta-analysis** as the rigor-controlled DA design (resolves both feature leakage and substudy confounding).
 - **Adversarial review** caught 5 critical + 6 important methodological issues in the original NB04 analysis that two standard reviews missed; a 7-notebook rigor-repair pipeline (NB04b–h) restored validity. **Adversarial review is now the recommended review pattern** for any methodologically-nuanced microbiome project.
 - **Two cross-corroborated 6-line mechanism narratives** (iron-acquisition; bile-acid 7α-dehydroxylation) — each finding is supported across multiple analytical granularities (literature → pathway DA → species-correlation → genomic content → metabolite-level → in-vivo phageome). Convergence is the rigor signal.
@@ -91,7 +93,7 @@ The project produced two cross-corroborated mechanism narratives across 6 indepe
 - **No per-patient bile-acid measurements available**. F. plautii BA-coupling-cost annotation is ecotype-level, not per-patient — clinical translation requires per-patient bile-acid panels for monitoring.
 - **No per-patient AIEC strain-resolution diagnostic in the current cohort**. Cocktail recommendations for the 8 E. coli-positive patients assume AIEC subset prevalence per Dogan 2014 / Dubinsky 2022 but cannot be patient-specifically validated without strain-resolution sequencing.
 - **External cohort validation beyond HMP2 is limited**. Additional cMD sub-studies and non-Western IBD cohorts would strengthen the ecotype framework, particularly for E2 (Prevotella) which is absent in the active-disease UC Davis cohort.
-- **Patient 6967 longitudinal E1↔E3 drift is the only multi-timepoint patient currently analyzed**. Whether ecotype drift is common requires expanded longitudinal sampling.
+- **Patient 6967 longitudinal E1→E3 drift is n=1**. NB16 quantified the trajectory (M. gnavus 14× expansion; cocktail Jaccard 0.60) and patient 1112 tech replicates (Spearman ρ=1.000) validate the technical-noise floor, but the state-dependent dosing rule is **a hypothesis derived from a single trajectory** — prospective validation requires an expanded longitudinal cohort with paired qPCR + metagenomics. **No timing information** between the 2 patient 6967 visits — duration of the E1→E3 drift is unknown.
 
 ## Cohort facts (UC Davis CD)
 
@@ -103,7 +105,7 @@ The project produced two cross-corroborated mechanism narratives across 6 indepe
 
 ## Where to find more
 
-- **Full report**: [REPORT.md](REPORT.md) — ~2,000 lines covering all 23 numbered Novel Contributions, 29 notebooks with outputs, 50 figures, 70+ data files, full literature context
+- **Full report**: [REPORT.md](REPORT.md) — ~2,000 lines covering all 24 numbered Novel Contributions, 30 notebooks with outputs, 51 figures, 80+ data files, full literature context
 - **Research plan + revisions**: [RESEARCH_PLAN.md](RESEARCH_PLAN.md) — v1.0 → v1.9 with all 17 plan norms and 4 adversarial-review iterations
 - **Failure analysis**: [FAILURE_ANALYSIS.md](FAILURE_ANALYSIS.md) — full arc of NB04 rigor failure → 7-notebook repair pipeline → externally-replicated Tier-A
 - **References**: [references.md](references.md) — 47 cited papers with PMIDs and project-context annotations
