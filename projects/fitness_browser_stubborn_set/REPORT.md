@@ -67,6 +67,26 @@ The DvH nitrate cluster is the most striking: 10 genes across two organisms (DvH
 - **5 PV4 genes** flipped from "fatty acid synthesis" to "aryl polyene biosynthesis cluster" — they're not redundant FAS, they're a specialized BGC
 - **5 pseudo5 NRPS genes** all identified as pyoverdine biosynthesis components from one paper
 
+### Per-organism curation depth — the model-organism bias
+
+The visited 310-gene subset shows a sharp split between well-curated and less-curated FB organisms:
+
+| Organism | Total visited | already_named % | improvable % |
+|---|---:|---:|---:|
+| **Koxy** (*K. oxytoca*) | 21 | **81%** | 14% |
+| **Keio** (*E. coli* BW25113) | 14 | **71%** | 21% |
+| Kang | 7 | 71% | 14% |
+| pseudo6_N2E2 | 18 | 50% | 39% |
+| Marino | 15 | 27% | 53% |
+| WCS417 (*P. simiae*) | 17 | 29% | 59% |
+| **DvH** | 20 | 20% | **65%** |
+| **PV4** | 22 | 23% | **73%** |
+| **pseudo5_N2C3_1** | 24 | 21% | **75%** |
+| **Miya** | 9 | 22% | **78%** |
+| **BFirm** | 5 | 20% | **80%** |
+
+E. coli K-12 and *Klebsiella oxytoca* (which inherits much of the *E. coli* gene catalog) have ≥70% of top-ranked genes already correctly named. In contrast, less-studied organisms (*Pseudomonas* sp. PV4, *Pseudomonas* sp. pseudo5, *Desulfovibrio vulgaris*, *Methylotenera* MMSC, *Bacillus firmus*) have 65-80% of their top-ranked genes needing reannotation. This is unsurprising in retrospect — FB's curated reannotation pipeline naturally focuses on well-characterised model organisms — but quantifies the gap: **the most curator-actionable improvements are in the non-model organisms**, exactly where literature-anchored homology-driven proposals add the most value.
+
 ### Recalcitrant genes — why they resist
 
 Of the 17 recalcitrant genes, the failures cluster:
