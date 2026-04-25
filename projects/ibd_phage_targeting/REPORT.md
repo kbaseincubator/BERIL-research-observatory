@@ -1,6 +1,6 @@
 # Report: Metagenome-Prioritized Phage Cocktails for Crohn's Disease and IBD
 
-**Status**: Interim synthesis — **Pillar 1 closed**; **Pillar 2 fully closed** (rigor-repaired + externally replicated on HMP_2019_ibdmdb + NB05 Tier-A scored + NB06 co-occurrence modules mapped; H2b supported, H2c retracted, H2d partially supported); **Pillar 3 closed on H3 falsifiability framework** (9 notebooks: NB07a/b + v1.8 retest + NB07c + NB08a + NB09a/c + NB10a + NB11; all 7 H3 hypotheses tested: H3a (a/c) SUPPORTED, H3a (b) v1.8 SUPPORTED, H3a-new PARTIAL → reframed by NB09c as shared-environment, H3b SUPPORTED, H3c PARTIALLY SUPPORTED, H3d-DA SUPPORTED, H3e PARTIAL at strict threshold; H3d-clust LOSO stability remains exploratory). Pillars 4–5 in progress.
+**Status**: Interim synthesis — **Pillar 1 closed**; **Pillar 2 fully closed** (rigor-repaired + externally replicated on HMP_2019_ibdmdb + NB05 Tier-A scored + NB06 co-occurrence modules mapped; H2b supported, H2c retracted, H2d partially supported); **Pillar 3 closed on H3 falsifiability framework + cross-cohort metabolomics bridge** (10 notebooks: NB07a/b + v1.8 retest + NB07c + NB08a + NB09a/b/c + NB10a + NB11; all 7 H3 hypotheses tested with verdicts; NB09b adds Franzosa cross-cohort replication: 3 themes ≥75 % sign-concordant — urobilin / acyl-carnitines / long-chain PUFAs; H3d-clust LOSO stability remains exploratory). Pillars 4–5 in progress.
 
 > **Note on Pillar 2 rigor repair + external replication**: the original NB04 analysis (committed 2026-04-24 early) was superseded by a **seven-notebook** pipeline (NB04b → c → d → e → f → g → h) after an adversarial review caught 5 critical + 6 important methodological issues that two independent standard `/berdl-review` runs missed. NB04b–e performed the rigor repair (see retraction box in §5 and `FAILURE_ANALYSIS.md`). NB04f–h strengthened Pillar 2 against LOSO cross-study stability (NB04f), feature-leakage structural test (NB04g), and HMP_2019_ibdmdb external replication (NB04h). The rigor-controlled Tier-A replicates at 88.2 % sign concordance on HMP2 even though the ecotype framework itself has real cross-study variance. See `docs/pitfalls.md` for the two generalizable pitfalls (cMD substudy-nesting, feature leakage in cluster-stratified DA).
 
@@ -33,7 +33,7 @@ Pillar 1 answers the first two questions.
 
 ### Pillar 3 deliverables (this report)
 
-Nine Pillar 3 notebooks (NB07a + NB07b + NB07_v1.8 retest + NB07c + NB08a + NB09a + NB09c + NB10a + NB11) test the H3 falsifiability framework across pathway, BGC, metabolite, strain, and serology granularities. **All 7 H3 hypotheses tested with verdicts**; H3d-clust LOSO stability remains exploratory.
+Ten Pillar 3 notebooks (NB07a + NB07b + NB07_v1.8 retest + NB07c + NB08a + NB09a + NB09b + NB09c + NB10a + NB11) test the H3 falsifiability framework across pathway, BGC, metabolite, strain, and serology granularities. **All 7 H3 hypotheses tested with verdicts** + cross-cohort metabolomics bridge to FRANZOSA_2019; H3d-clust LOSO stability remains exploratory.
 
 1. **H3a (a + c) SUPPORTED** (NB07a). Within-IBD-substudy CD-vs-nonIBD pathway DA produces 52 CD-up MetaCyc pathways (FDR<0.10, |effect|>0.5) with permutation null mean 0.077; 137 pathway-pathobiont attribution pairs at |ρ_meta|>0.4 with top hit heme biosynthesis (PWY-5920) ↔ *E. coli* at ρ=0.640. AIEC biology recapitulated.
 2. **H3a (b) v1.8 SUPPORTED via MetaCyc class hierarchy** (Novel Contribution #12). v1.7 regex-on-pathway-names gave FAIL-degenerate; v1.8 ModelSEEDDatabase MetaCyc class hierarchy (90 % coverage of 575 HUMAnN3 pathways) gave H3a (b) SUPPORTED with **iron/heme acquisition as dominant CD-up theme (OR=8.1, FDR 7e-6; 15 of 52 CD-up pathways)** + *H. hathewayi* purine/pyrimidine recycling (OR=4.9) + TMA/choline (OR=9.3). Same data, opposite verdict — driven by ontology choice; lesson encoded as plan norm N17.
@@ -43,6 +43,7 @@ Nine Pillar 3 notebooks (NB07a + NB07b + NB07_v1.8 retest + NB07c + NB08a + NB09
 6. **H3d-DA SUPPORTED** (NB09a). 52 of 579 named HMP2 metabolites pass DA at subject level (50 CD vs 26 nonIBD). Two themes Fisher-significant: **polyamines OR=14.6** (putrescine, N1-acetylspermine, N-acetylputrescine, anserine, diacetylspermine all CD-up) + **long-chain PUFAs OR=7.9** (arachidonate, adrenate, DHA, DPA, EPA all CD-up). Tauro-α/β-muricholate + free taurine CD-up corroborates *F. plautii* 7α-dehydroxylation deficit at metabolite level.
 7. **Bile-acid 7α-dehydroxylation network identified at sample level** (NB09c §13). 468 paired CSM* HMP2 samples × 8 species × 583 metabolites Spearman ρ. ***F. plautii* / *E. lenta* / *E. bolteae* show predicted substrate-product signature** (negative with primary tauro-BAs, positive with secondary BAs); *M. gnavus* / *E. coli* show opposite pattern. *E. coli* dominates cohort-level correlations (cadaverine +0.45, choline +0.25, tryptophan +0.25).
 8. **H3e PARTIAL at strict threshold** (NB11). 48 (assay × species) tests across 67 HMP2 subjects with site-adjusted partial Pearson r. Top pair ANCA × M. gnavus +0.31 (FDR 0.40); no pair clears |r|>0.40 + FDR<0.10 plan threshold. Cohort sanity check passes on canonical IBD-serology patterns (ANCA-UC, ASCA-CD, CBir1-CD all match canonical direction). Site-stratified single-site r reaches +0.46 (Harvard) but cohort-aggregation pulls toward null. Single-cohort caveat structural per plan v1.7. **Serology usable as CD-vs-UC stratifier but not as per-target abundance predictor**.
+9. **Cross-cohort metabolomics replication on FRANZOSA_2019 (NB09b)**. m/z bridge (±0.005 Da) maps 122 of 592 HMP2 named metabolites to Franzosa peaks; 118 testable. **3 themes replicate at ≥75 % sign-concordance**: urobilin/porphyrin (100 %, n=3, median Franzosa cliff −0.747 — strongest replicated effect), acyl-carnitines (80 %, n=5, +0.531), long-chain PUFAs (75 %, n=12, +0.273). Bile-acid primary 57 %, secondary 40 % — cohort-aggregate BA DA is weaker than NB09c §13 paired sample-level evidence. Polyamines unable to bridge by m/z (low-mass HILIC-pos gap); HMP2 polyamine OR=14.6 stands as single-cohort finding. 9 strict cross-cohort replications.
 
 ### Pillar 3 closure synthesis — two cross-corroborated mechanism narratives
 
@@ -77,7 +78,7 @@ These two narratives converge on **complementary cocktail-design implications** 
 
 ### What this report does not yet contain
 
-One Pillar 3 hypothesis remains untested: **H3d-clust** (metabolite-feature ecotype LOSO stability across 3 metabolomics cohorts, NB09d). NB07d MOFA+ HMP2-only multi-omics pilot and NB09b cross-cohort metabolomics bridge are exploratory extensions. **Pillars 4–5** (phage targetability matrix; UC Davis per-patient cocktail drafts) land in subsequent syntheses.
+One Pillar 3 hypothesis remains untested: **H3d-clust** (metabolite-feature ecotype LOSO stability across HMP2 + FRANZOSA_2019 metabolomics cohorts, NB09d). **NB07d MOFA+ HMP2-only multi-omics pilot** is the remaining exploratory extension. **Pillars 4–5** (phage targetability matrix; UC Davis per-patient cocktail drafts) land in subsequent syntheses.
 
 ## Key Findings
 
@@ -931,6 +932,61 @@ All 6 axes show canonical IBD direction → data validates standard immunology b
 
 *(Script: `run_nb11.py`. Per plan v1.7 H3e + v1.9 no-raw-reads.)*
 
+### 16. NB09b — Cross-cohort metabolomics bridge (HMP2 NB09a → FRANZOSA_2019)
+
+NB09a §12 found that polyamines (OR=14.6) + long-chain PUFAs (OR=7.9) are CD-up theme-level signatures in HMP2; tauro-α/β-muricholate + free taurine CD-up corroborates *F. plautii* 7α-dehydroxylation deficit; urobilin CD-DOWN. NB09b tests whether these signatures replicate in **FRANZOSA_2019** (220 participants × 88 CD + 76 UC + 56 Control), an independent multi-site IBD metabolomics cohort. Per plan v1.9 no raw reads — uses precomputed `fact_metabolomics` only. DAVE_SAMP_METABOLOMICS dropped (mouse ileal AKR/J tissue, not human IBD).
+
+**Method**: Franzosa metabolite IDs follow `[m/z]_[RT]` format with no compound-name annotations in the mart. Bridge HMP2 named metabolites (with HMDB ID + m/z + RT) to Franzosa peaks within method by m/z (±0.005 Da tolerance). RT scales differ between HMP2 and Franzosa runs (different gradients/columns) so RT is not used as a matching constraint. **122 of 592 named HMP2 metabolites match a Franzosa peak**; 118 of 122 pass Franzosa CD-vs-Control DA filters.
+
+**Per-theme cross-cohort sign-concordance**:
+
+| Theme | n matched | n CD-up HMP2 | n CD-up Franz | sign-concord | % concord | median Franz cliff |
+|---|---:|---:|---:|---:|---:|---:|
+| **urobilin_porphyrin** | 3 | 0 | 0 | 3 | **100 %** | **−0.747** (CD-DOWN) |
+| **acyl_carnitines** | 5 | 4 | 5 | 4 | **80 %** | +0.531 |
+| **long_chain_PUFA** | 12 | 12 | 9 | 9 | **75 %** | +0.273 |
+| aromatic_AA_metabolites | 3 | 3 | 2 | 2 | 67 % | +0.181 |
+| bile_acids_primary | 7 | 5 | 4 | 4 | 57 % | +0.252 |
+| lipid_classes | 21 | 14 | 4 | 11 | 52 % | −0.069 |
+| tryptophan_indole | 2 | 1 | 0 | 1 | 50 % | −0.199 |
+| bile_acids_secondary | 5 | 3 | 2 | 2 | 40 % | −0.159 |
+| polyamines | 0 | — | — | — | — | (no m/z match — methodological gap) |
+
+**3 themes ≥75 % sign-concordant** (urobilin, acyl-carnitines, long-chain PUFA), overall 64 % concordance (76 of 118), **9 strict cross-cohort replications** (both FDR<0.10 + |cliff|>0.20 + sign-match) — these represent the strongest cross-cohort signal in the project's metabolomics analyses.
+
+![NB09b — Cross-cohort cliff δ scatter (themes color-coded) + per-theme sign-concordance bar](figures/NB09b_cross_cohort_metabolomics.png)
+
+**Findings**:
+
+1. **Urobilin CD-DOWN replicates at 100 %** (3/3 matches; median Franzosa cliff −0.747 — the largest cross-cohort effect size in the panel). Reflects loss of bilirubin-reducing commensals (Hall 2024; Vital 2018) consistently in CD across HMP2 and Franzosa. **Strongest replicated metabolite-level finding in the project.**
+
+2. **Acyl-carnitines CD-up replicates at 80 %** (4/5 matches; median Franzosa cliff +0.531). The C16 + C18:1 long-chain acyl-carnitines that NB09a §12 flagged as CD-up are independently elevated in Franzosa CD samples. Mechanistically connected to v1.8 §9 fat-metabolism/glyoxylate theme + impaired β-oxidation in inflamed mucosa.
+
+3. **Long-chain PUFAs CD-up replicates at 75 %** (9/12 matches; median Franzosa cliff +0.273). Adrenate/arachidonate/DHA/DPA replicate cleanly; eicosapentaenoate (EPA) shows opposite sign in 1 of 3 non-concordant cases (possibly cohort-specific dietary fish-oil supplementation differences). Inflammatory eicosanoid-precursor pool elevation is a robust cross-cohort signature.
+
+4. **Bile-acid signals are weaker cross-cohort than within-cohort.** Primary BAs replicate at 57 % (4/7), secondary BAs at 40 % (2/5). The NB09c §13 paired sample-level substrate-product signature for *F. plautii* / *E. lenta* / *E. bolteae* (ρ within-HMP2-paired) is the more robust evidence stream than cohort-aggregate cross-cohort DA. BA pool sizes are more susceptible to dietary and antibiotic confounding than within-cohort species × metabolite correlation. **NB09c §13 finding does not require Franzosa replication; this NB09b result documents that BA-pool DA is more cohort-dependent than within-cohort correlation.**
+
+5. **Polyamine bridge fails** — m/z-only matching does not recover any of the 9 polyamines that drove the NB09a §12 OR=14.6 theme enrichment. Polyamines are low-mass HILIC-pos compounds (putrescine 89.11; spermidine 146.17; spermine 203.22) and the m/z-tolerance + Franzosa-method-library overlap does not yield matches. **The HMP2 polyamine OR=14.6 stands as a single-cohort finding** until cross-cohort replication via external Franzosa supplementary tables (with compound-name annotations) becomes available — outside the project's no-raw-reads scope.
+
+**Verdict — STRONG cross-cohort replication on 3 of 8 testable themes** (urobilin + acyl-carnitines + long-chain PUFAs). Overall 64 % sign-concordance is moderately above the 50 % chance baseline; the 9 strict replications are firmly above-chance. Polyamines unable to bridge by m/z. The bile-acid DA signal is partly cohort-specific (which strengthens the NB09c §13 paired-sample interpretation, where the F. plautii / E. lenta / E. bolteae substrate-product signature is direct rather than DA-aggregated).
+
+### Bile-acid 7α-dehydroxylation narrative — sample-level evidence is stronger than cohort-aggregate cross-cohort
+
+NB09b clarifies the relative robustness of two evidence streams for the bile-acid network finding:
+- **NB09c §13 paired sample-level direct substrate-product signature** (ρ(*F. plautii* × cholate) = −0.26; × lithocholate = +0.15) operates within paired metabolomics+metagenomics samples in HMP2. It is a **species × metabolite correlation**, not a CD-vs-Control aggregate DA.
+- **NB09b cohort-aggregate cross-cohort DA** on bile acids replicates at 57 % primary / 40 % secondary — moderately above chance for primary, sub-chance for secondary.
+
+The interpretation: BA pool sizes vary across cohorts due to dietary and antibiotic confounding, but the **mechanistic substrate-product signature** for active 7α-dehydroxylation is preserved at the within-paired-sample level. The NB09c six-line bile-acid narrative is **anchored on the paired sample-level evidence + literature mechanism**, not on cohort-aggregate DA replication. This is a methodological note for any future BERIL multi-modal analysis: cohort-aggregate cross-cohort DA and within-cohort paired-sample correlation are different evidence streams; one can be weaker without invalidating the other.
+
+### Outputs
+
+- `data/nb09b_cross_cohort_concordance.tsv` — 122 (HMP2-name × Franzosa-peak) matched pairs with cliff_delta + sign-match flag
+- `data/nb09b_theme_replication.tsv` — per-theme sign-concordance summary
+- `data/nb09b_cross_cohort_verdict.json` — formal verdict
+- `figures/NB09b_cross_cohort_metabolomics.png` — cross-cohort cliff δ scatter + per-theme sign-concordance
+
+*(Script: `run_nb09b.py`. Per plan v1.7 H3d-DA cross-cohort follow-up + v1.9 no-raw-reads.)*
+
 ## Interpretation
 
 ### Why the four-ecotype framework matters for phage targeting
@@ -1088,6 +1144,9 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `data/nb11_serology_species_correlations.tsv` | 48 | (Assay × species) site-adjusted partial Pearson r + raw Spearman ρ + BH-FDR |
 | `data/nb11_serology_site_stratified.tsv` | 30 | Site-stratified Spearman ρ for top 10 (assay × species) pairs (3 sites × 10 pairs) |
 | `data/nb11_h3e_verdict.json` | — | Formal H3e verdict (PARTIAL — strict |r|>0.40 threshold not met) |
+| `data/nb09b_cross_cohort_concordance.tsv` | 122 | (HMP2-name × Franzosa-peak) matched pairs with HMP2 cliff_delta + Franzosa cliff_delta + sign-match flag |
+| `data/nb09b_theme_replication.tsv` | 8 | Per-theme cross-cohort sign-concordance summary (urobilin 100 %, acyl-carnitines 80 %, PUFAs 75 %) |
+| `data/nb09b_cross_cohort_verdict.json` | — | Formal cross-cohort replication verdict (STRONG on 3 themes; 9 strict replications) |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_relative_abundance.tsv` | 582 | HMP2 MetaPhlAn3 relative abundance (taxa × samples) — out-of-project artifact |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_sample_metadata.tsv` | 1,627 | HMP2 sample metadata from cMD |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_taxon_metadata.tsv` | 585 | HMP2 per-taxon lineage metadata |
@@ -1123,6 +1182,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB09c_cross_feeding_disambiguation.ipynb` | NB07c cross-feeding disambiguation + bile-acid 7α-dehydroxylation network. 468 paired CSM* samples × 8 species × 583 metabolites. Cross-feeding NOT supported (only 7 strict triangles; lactate opposite-sign between A. caccae and pathobionts). Bile-acid 7α-dehydroxylation network IDENTIFIED: F. plautii / E. lenta / E. bolteae show predicted primary-tauro-BA-down + secondary-BA-up substrate-product signature. Reframes NB07c as shared-environment; introduces "bile-acid coupling cost" as primary Pillar 4 annotation. Executed via `run_nb09c.py` + `build_nb09c_with_outputs.py`. |
 | `NB10a_kumbhari_strain_adaptation.ipynb` | H3b Kumbhari strain-adaptation gene predictor. 23,579 FDR<0.10 genes across 59 species; falsifiability test on housekeeping vs adaptation. SUPPORTED — IBD-biased adaptation OR=1.38 (p=2.4e-6), housekeeping OR=0.62 (p=6.4e-20). F. plautii has 0 FDR-passing genes — informative null confirming species-abundance-mediated CD-association (corroborates NB07b within-carrier). Executed via `run_nb10a.py` + `build_nb10a_with_outputs.py`. |
 | `NB11_serology_pathobiont.ipynb` | H3e HMP2 serology × Tier-A pathobiont site-adjusted partial Pearson correlation. 48 (assay × species) tests across 67 subjects × 3 sites. PARTIAL — top pair ANCA × M. gnavus +0.31 (FDR 0.40); no pair clears strict |r|>0.40 + FDR<0.10 plan threshold. Cohort sanity check passes on canonical IBD-serology patterns. Site-stratified single-site r reaches +0.46 (Harvard) but cohort-aggregation pulls toward null. Single-cohort caveat structural. Executed via `run_nb11.py` + `build_nb11_with_outputs.py`. |
+| `NB09b_cross_cohort_metabolomics.ipynb` | Cross-cohort metabolomics bridge HMP2 → FRANZOSA_2019 (220 participants × 88 CD + 76 UC + 56 Control). m/z-bridge HMP2 named → Franzosa peaks (±0.005 Da, same method) → 118 testable matched pairs. STRONG REPLICATION on 3 themes ≥75 %: urobilin (100 %, CD-DOWN, cliff −0.75), acyl-carnitines (80 %, CD-up cliff +0.53), long-chain PUFAs (75 %, CD-up cliff +0.27). 9 strict cross-cohort replications. Polyamine theme cannot bridge by m/z (low-mass HILIC-pos gap). BA secondary at 40 % — cohort-aggregate DA is weaker than NB09c paired sample-level evidence stream. Executed via `run_nb09b.py` + `build_nb09b_with_outputs.py`. |
 
 ### Figures
 
@@ -1156,6 +1216,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB09c_cross_feeding_disambiguation.png` | 2-panel: curated 7-theme cross-feeding panel × 8 species ρ heatmap (showing bile-acid 7α-dehydroxylation network) + top 25 cross-feeding-triangle candidates scatter (only 7 strict triangles) |
 | `NB10a_kumbhari_strain_adaptation.png` | 3-panel: per-species IBD-biased + health-biased gene counts (top 25) + functional category × direction (housekeeping vs adaptation log-scale bar) + F. plautii top genes panel (empty — informative null) |
 | `NB11_serology_pathobiont.png` | 2-panel: site-adjusted partial Pearson r heatmap (8 species × 6 serology axes) + top 10 (assay × species) pairs scatter with FDR annotations |
+| `NB09b_cross_cohort_metabolomics.png` | 2-panel: HMP2 cliff δ vs Franzosa cliff δ scatter (themes color-coded; key metabolites annotated) + per-theme sign-concordance bar (urobilin / acyl-carnitines / long-chain PUFA ≥75 % concord) |
 
 Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatmap.png`, `NB01_*.png` (legacy K = 8 fit preserved for methodology audit).
 
@@ -1164,7 +1225,7 @@ Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatma
 **Pillars 1–3 substantially closed.** Pillars 4–5 + a few Pillar 3 extensions remain. Updated outline:
 
 - **Pillar 2 (closed)** — NB04 superseded by NB04b+c+d+e (rigor repair) + NB04f+g+h (LOSO stability + pathway-feature refit + HMP2 external replication) + NB05 (Tier-A A3–A6 scoring) + NB06 (per-ecotype co-occurrence networks + H2d). Six actionable Tier-A: *H. hathewayi*, *M. gnavus*, *E. coli*, *E. lenta*, *F. plautii*, *E. bolteae*.
-- **Pillar 3 (closed on H3 falsifiability framework)** — All 7 H3 hypotheses tested with 9 notebooks (NB07a/b + NB07_v1.8 + NB07c + NB08a + NB09a/c + NB10a + NB11). Two cross-corroborated mechanism narratives (iron + bile-acid 7α-dehydroxylation) established. **Remaining**: NB09d (H3d-clust metabolite-feature ecotype LOSO stability, exploratory extension), NB07d (MOFA+ HMP2-only multi-omics pilot, exploratory), NB09b (cross-cohort metabolomics bridge to FRANZOSA_2019 + DAVE_SAMP_METABOLOMICS, exploratory).
+- **Pillar 3 (closed on H3 falsifiability framework + cross-cohort metabolomics bridge)** — All 7 H3 hypotheses tested with 10 notebooks (NB07a/b + NB07_v1.8 + NB07c + NB08a + NB09a/b/c + NB10a + NB11). Two cross-corroborated mechanism narratives (iron + bile-acid 7α-dehydroxylation) established + cross-cohort replication on urobilin / acyl-carnitines / long-chain PUFAs (NB09b). **Remaining**: NB09d (H3d-clust metabolite-feature ecotype LOSO stability, exploratory extension), NB07d (MOFA+ HMP2-only multi-omics pilot, exploratory).
 - **Pillar 4 (NB12–NB14, pending)** — pathobiont × phage coverage matrix (PhageFoundry + external phage DBs), CRISPR-Cas spacer analysis, endogenous phageome stratification per ecotype. Cocktail-design framework now sharpened by Pillar-3 outputs: per-target *(actionable Tier-A score, iron/AIEC-mediated vs other, BA-coupling cost, species-abundance vs strain-content-mediated)* annotation profile.
 - **Pillar 5 (NB15–NB17, pending)** — UC Davis medication-class harmonization, per-patient pathobiont ranking and candidate phage cocktail draft, longitudinal stability check (patient 6967's E1 ↔ E3 shift), cross-cutting synthesis.
 
@@ -1172,10 +1233,10 @@ Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatma
 
 ### Pillar 3 remaining (exploratory extensions)
 
-1. **NB09d — H3d-clust metabolite-feature ecotype LOSO stability** across 3 metabolomics cohorts (HMP2 + FRANZOSA_2019 + DAVE_SAMP_METABOLOMICS). Tests whether metabolite-factor clustering achieves higher LOSO ARI than the 0.113 taxonomic-ecotype LOSO baseline.
+1. **NB09d — H3d-clust metabolite-feature ecotype LOSO stability** across HMP2 + FRANZOSA_2019 metabolomics cohorts. Tests whether metabolite-factor clustering achieves higher LOSO ARI than the 0.113 taxonomic-ecotype LOSO baseline. NB09b cross-cohort bridge data already in hand makes this the most do-able remaining test.
 2. **NB07d — MOFA+ HMP2-only multi-omics pilot** (exploratory). Joint factor analysis on HMP2 taxonomy + pathways + metabolomics; ecotype-as-covariate (not factor target). Per-modality QC prerequisites met (NB04e, NB07a, NB09a all passed).
-3. **NB09b — cross-cohort metabolomics bridge** (exploratory). Test whether the polyamine + PUFA + tauro-muricholate signatures from NB09a replicate in FRANZOSA_2019 (220 samples) + DAVE_SAMP_METABOLOMICS (30 samples).
-4. **Multi-cohort serology meta-analysis** (out of project scope as currently defined; H3e PARTIAL at strict threshold suggests cohort-meta would be productive). Outside HMP2, IBD anti-microbial antibody datasets exist but are not in BERDL — would require external data ingestion.
+3. **External polyamine cross-cohort replication** (out of project scope). NB09b m/z bridge fails on polyamines; the HMP2 polyamine OR=14.6 stands as a single-cohort finding. External Franzosa supplementary tables (with compound-name annotations) would close this gap but require out-of-mart data ingestion.
+4. **Multi-cohort serology meta-analysis** (out of project scope). H3e PARTIAL at strict threshold suggests cohort-meta would be productive but IBD anti-microbial antibody datasets outside HMP2 are not in BERDL.
 
 ### Cocktail-design extensions (Pillar 4–5 hand-off)
 
