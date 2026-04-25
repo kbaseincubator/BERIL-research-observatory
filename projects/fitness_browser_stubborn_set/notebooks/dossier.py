@@ -44,7 +44,7 @@ def load_evidence() -> dict[str, pd.DataFrame]:
     print("Loading evidence artifacts...", file=sys.stderr)
     features  = _load("gene_evidence_features.parquet")
     secondary = _load("gene_secondary_evidence.parquet")
-    queue     = _load("priority_queue.parquet")
+    queue     = _load("ranked_genes.parquet")
     phenos    = _load("phenotype_conditions.parquet")
     partners  = _load("cofit_partners_top10.parquet")
     neighbors = _load("gene_neighborhood.parquet")
@@ -142,8 +142,7 @@ def build_dossier(orgId: str, locusId: str) -> dict[str, Any]:
     q_rows = _safe_get(ev["queue"], key)
     queue_info = (
         {"rank": int(q_rows.iloc[0]["rank"]),
-         "score": float(q_rows.iloc[0]["score"]),
-         "chunk": int(q_rows.iloc[0]["chunk"])}
+         "fit_x_t": float(q_rows.iloc[0]["fit_x_t"])}
         if len(q_rows) else None
     )
 
@@ -261,7 +260,6 @@ def build_dossier(orgId: str, locusId: str) -> dict[str, Any]:
     # Top homologs+papers from the long-format file (top 5 by evalue)
     pp = _safe_get(ev["pb_papers"], key)
     if len(pp):
-        # Get top homologs (lowest evalue), and top papers per homolog
         top_homologs = (
             pp.dropna(subset=["geneId"])
               .sort_values("evalue")
@@ -336,7 +334,7 @@ def dossier_to_markdown(d: dict[str, Any]) -> str:
     p = d["primary"]
     s = d["secondary_flags"]
     qi = d["queue"]
-    rank_str = f" rank {qi['rank']:,}, score {qi['score']:.3f}" if qi else ""
+    rank_str = f" rank {qi['rank']:,}, fit×t {qi['fit_x_t']:.0f}" if qi else ""
     reann = " **[REANNOTATED]**" if d["is_reannotated"] else ""
     lines.append(f"### {d['orgId']}::{d['locusId']}{rank_str}{reann}")
     lines.append(f"**Existing annotation**: `{a['gene_symbol']}` — *{a['gene_desc']}* (cat: {a['category']})\n")
@@ -394,10 +392,10 @@ def dossier_to_markdown(d: dict[str, Any]) -> str:
         lines.append(f"\n**PaperBLAST (DIAMOND)**: {ps2['n_hits']} homologs, {ps2['n_papers']} papers; "
                      f"best hit {ps2['best_sseqid']} @ {ps2['best_pident']}%")
     if d["paperblast_homologs"]:
-        lines.append("\n**Top PaperBLAST homologs + papers**:")
+        lines.append("\n**Top PaperBLAST homologs + papers** (fetch full text via PubMed MCP if useful):")
         for h in d["paperblast_homologs"]:
             lines.append(f"  - {h['geneId']} ({h['pb_organism']}) @ {h['pident']}% — *{h['pb_desc']}*")
-            for pp in h["papers"][:2]:
+            for pp in h["papers"][:3]:
                 lines.append(f"    - PMID {pp['pmid']} ({pp['year']}): {pp['title']}")
     return "\n".join(lines)
 
