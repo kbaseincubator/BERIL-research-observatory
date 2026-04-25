@@ -104,6 +104,8 @@ This project integrates data from:
 
 ## Quick Links
 
+- **[Executive Summary](EXECUTIVE_SUMMARY.md)** — clinical-collaborator brief (3 pages): per-patient cocktail framework, 4 design categories, clinical-translation roadmap, limitations
+
 - [Research Plan](RESEARCH_PLAN.md) — hypotheses, pillar structure, four-tier criteria, BERDL query strategy, per-pillar analysis sketch, known-missing registry, reproduce-and-extend table (v1.4 — NB04 rigor-repair arc documented)
 - [Report](REPORT.md) — **interim synthesis (Pillars 1–3 substantially closed)** — Pillar 1 ecotype framework + UC Davis projection + H1c classifier; Pillar 2 rigor-controlled Tier-A via within-ecotype × within-substudy meta + NB05 scoring + NB06 co-occurrence networks; Pillar 3 H3a–H3d-DA + H3b verdicts across pathway / BGC / metabolite / strain granularities + two cross-corroborated mechanism narratives (iron-acquisition + bile-acid 7α-dehydroxylation). §5 opens with a retraction box for the superseded NB04 claims. Pillars 4–5 + Pillar-3 tail pending.
 - [Failure Analysis](FAILURE_ANALYSIS.md) — full arc of the NB04 rigor gap: adversarial review findings, repair notebooks, quantified cost (Tier-A 33 → 3 rock-solid → 51 E1 + 40 E3 under confound-free meta), methodology lessons
