@@ -1,7 +1,7 @@
 project_id: fitness_browser_stubborn_set
-status: proposed
+status: analysis
 created_at: "2026-04-24T00:00:00Z"
-last_session_at: "2026-04-24T00:00:00Z"
+last_session_at: "2026-04-25T00:00:00Z"
 branch: projects/fitness_browser_stubborn_set
 engine:
   name: claude
@@ -12,5 +12,5 @@ authors:
 artifacts:
   readme: true
   research_plan: true
-  report: false
+  report: true
   review: false
