@@ -262,6 +262,29 @@ Cross-project reuse: in NB03 we will refer to `functional_dark_matter`'s 17,344-
   (2) Added **literature evidence via PaperBLAST** as a corroboration signal — the missing piece from earlier versions. Implemented as two-stage: Stage 1 ID-based (FB `besthitswissprot.sprotAccession` → `kescience_paperblast.gene` → `genepaper`, 16K coverage) and Stage 2 sequence-based (DIAMOND blastp of FB AA sequences from `fit.genomics.lbl.gov/cgi_data/aaseqs` vs PaperBLAST `uniq` table downloaded from BERDL MinIO, 136K coverage at 30%/50% identity/qcov, 99.3% of those have ≥1 paper attached).
   (3) Switched from "compute secondary flags inline during NB02 walk" to a **per-gene structured dossier** built lazily by `notebooks/dossier.py` from local parquets pulled by extracts 00, 02, 03, 05, 06, 07, 08. Dossier contains the actual TEXT content (phenotype-with-conditions, cofit-partners-with-annotations, gene-neighborhood, SwissProt curated desc, KEGG KO desc, domain definitions, top PaperBLAST homologs + papers) — what the curator actually reads, not aggregate flags. Rule-based classification on the structured dossier; full markdown dossiers saved for top-100 of improvable + recalcitrant buckets for follow-up LLM verification or human curator review.
   Run completed 2026-04-24: visited 16,467 of 137,798, found 13,062 already_named_well + 1,405 improvable + 2,000 recalcitrant. Stopping rank 16,467. The 2,000 recalcitrant set is the project's answer.
+- **v7** (2026-04-25): Architectural pivot. The v6 LR-curator-likeness queue produced a top-of-queue with 79% already-named-well — a flashing red light that the LR was learning "looks like reannotated genes" but reannotated set ⊂ "needs reannotation". The flag-based rule was also too coarse — it counted binary signals without reading the actual evidence (paper titles, SwissProt descriptions, phenotype-condition combinations). Replaced both with a simpler, more direct architecture:
+  **(1) Rank by primary fitness directly** (`01_rank_genes.py`): sort all 137,798 non-reannotated genes in the 35 curated orgs by `(in_specificphenotype DESC, max_abs_fit*max_abs_t DESC)`. No learned model. Specific-phenotype genes come first (Price's curators paid more attention to those), then strong-phenotype genes by signal-to-noise weighted magnitude.
+  **(2) Don't filter by annotation category** — ~60% of curator reannotations correct misnamed genes, not fill in hypotheticals. Filtering on category was backwards. Instead, the LLM reasoning step decides which existing annotations are correct, wrong, or insufficient.
+  **(3) LLM-reason per gene with paper fetching** (`02_prepare_batch.py` + Claude Code subagents). Each subagent gets a batch of 25 dossiers, reads the structured evidence, and **fetches PMC full text via the PubMed MCP** (`mcp__pubmed__convert_article_ids` → `mcp__pubmed__get_full_text_article`) for the most relevant 1-2 papers per gene where the dossier evidence is borderline or the existing name looks suspect. Subagents emit one of four verdicts per gene: `already_correctly_named` / `improvable_new` / `improvable_correction` / `recalcitrant`, plus a proposed annotation, EC number, rationale, confidence, and the list of PMIDs consulted. 5 subagents in parallel achieve ~16 genes/min throughput.
+  **(4) Stop on time/budget**, not a fixed recalcitrant count.
+
+  Pilot run completed 2026-04-25: 210 genes (ranks 1-210) reasoned by 9 parallel subagents in ~25 min wall. Distribution:
+  - already_correctly_named: 72 (34%)
+  - improvable_correction:   69 (33%)
+  - improvable_new:          52 (25%)
+  - recalcitrant:            17 (8%)
+  - 58% improvable in total (121 of 210)
+  - 95/210 genes (45%) had paper consults; 127 total PMC fetches; 80 unique PMIDs cited
+  - Subagents reported ~30-40% of paper fetches *changed* their verdict (vs. just confirming dossier evidence)
+
+  Notable cross-gene findings only resolvable through paper consultation:
+  - 4-6 DvH/Miya nitrate-cluster genes resolved via Korte 2014 (would have been recalcitrant on dossier alone)
+  - 5 PV4 genes flipped from generic "FAS" to "aryl polyene biosynthesis cluster" via Cimermancic 2014
+  - 5 pseudo5 NRPS genes correctly identified as pyoverdine biosynthesis components
+  - 3 cross-organism SAM-MTase tetracycline-resistance genes via Wood 2023
+  - "aspartyl beta-hydroxylase" → LpxO (lipid A 2-hydroxylase) via paper-level evidence
+  - "chemotaxis CheY" → GltR-2 (glucose response regulator) via paper-level evidence
+  - "aminodeoxychorismate lyase" → MltG (peptidoglycan lytic transglycosylase) — wrong family entirely
 
 ## Authors
 - **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) — Lawrence Berkeley National Laboratory
