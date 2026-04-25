@@ -258,6 +258,17 @@ After the paired adversarial review flagged the T3SS-narrative inconsistency, a 
 
 *(Notebooks: 13_validation_pfam_subclade.ipynb, 14_deferred_controls.ipynb, 15_final_synthesis.ipynb)*
 
+#### DESIGN-plan execution-deviations close-out (2026-04-25)
+
+Beyond the five paired-adversarial-review issues above, four planned-vs-executed gaps from the original DESIGN.md research plan were closed in commit `8f9086e`:
+
+- **Gap 4 — NB04 broken `logit` import**: the genus-level logistic-regression cell in NB04 used the bare name `logit(...)` while the import was `import statsmodels.formula.api as smf` (should have been `smf.logit(...)`). The cell was rerouted to a markdown reroute pointing readers to NB14's cluster-robust GLM as the canonical Phase 2b answer; original code preserved verbatim in a fenced block within the markdown for chronology. (Cosmetic close — does not change H1.)
+- **Gap 3 — verification #12 formal re-test**: the DESIGN-plan target "refined cohorts produce ≥5 PGP-only genera in NMDC for C-score analysis" was formally re-checked on Phase 2 refined cohorts (`data/cscore_refined_cohorts.csv`). Result: 0 PGP-dominant / 3 pathogen-dominant / 66 dual-or-mixed — same pattern as Phase 1, verification #12 NOT MET, the failure-as-result interpretation is made explicit. (Does not change H3.)
+- **Gap 2 — `genus_dossiers_v2.csv` refresh**: the planned NB15 deliverable was produced with 30 top plant-associated genera × 23 columns, integrating refined cohorts, cluster-robust marker survivors, MGnify mobilome/BGC, and species-level H7/H6 significance per genus. *Xanthomonas* surfaced as the lone genus with both H7 phylogenetic segregation and H6 host specialization at the genomic level. (Consumer-facing deliverable — does not change a verdict.)
+- **Gap 1 — NB13 scope-deviation documentation**: the originally-planned NB13 (co-occurrence network expansion: Louvain modules, hub centrality, partial Mantel, NMDC abiotic_features and metabolomics_gold integration) was re-scoped to validation/Pfam/subclade fixes when the paired adversarial review surfaced higher-priority methodological issues. The complementarity sub-item (`complementarity_v2.csv`) was preserved and executed in NB14 Cell 5 — closing H3's I1 issue. The remaining sub-items are deferred as exploratory enhancements (the H3 verdict does not depend on them). DESIGN.md "Execution Deviations (Phase 2 / Phase 2b)" section formally documents this scope reduction.
+
+All four DESIGN-plan gaps are now formally closed; the research plan is fully reconciled with actual execution.
+
 ## Results
 
 ### Genome Census (NB01)
@@ -315,11 +326,13 @@ NMDC taxonomy bridge matched 260 of 322 genera (80.7%) to GTDB. Of 69 genera in 
 
 ![Complementarity heatmap detail](figures/complementarity_heatmap_detail.png)
 
-C-score analysis for PGP-pathogen exclusion was not feasible: only 0 PGP-dominant and 2 pathogen-dominant genera were represented in NMDC co-occurrence data (the remaining 67 were dual-nature).
+C-score analysis for PGP-pathogen exclusion was not feasible: only 0 PGP-dominant and 2 pathogen-dominant genera were represented in NMDC co-occurrence data (the remaining 67 were dual-nature). *Phase 2b re-test on refined cohorts (`data/cscore_refined_cohorts.csv`, 2026-04-25, gap-3 close): 0 PGP-dominant / 3 pathogen-dominant / 66 dual-or-mixed of 69 NMDC co-occurring genera. The dual-nature class swamps the others regardless of whether the Phase 1 25-marker or the Phase 2 17-marker panel is used — the C-score test is structurally underpowered in this dataset, not a marker-panel artifact. Verification #12 in DESIGN.md (≥5 PGP-only genera) is therefore documented as NOT MET, with the failure-as-result interpretation made explicit.*
 
 ### Cohort Synthesis (NB07)
 
 Composite scoring weighted PGP markers (40%), core fraction (20%), complementarity (15%), metabolic breadth (10%), with pathogen penalty (15%). Adaptive thresholds (median of non-zero scores) classified species into four cohorts. The 30 genus dossiers revealed that plant-associated genera nearly universally carry both PGP and pathogenic markers.
+
+*Phase 2 refresh (`data/genus_dossiers_v2.csv`, 2026-04-25, gap-2 close)*: a refreshed dossiers file was produced with 30 top plant-associated genera × 23 columns, joining refined Phase 2 cohort distribution, the continuous PGP-ratio discriminator, top-3 PGP and pathogen markers per genus, intersection with cluster-robust GLM marker survivors at the genus scale (NB14), MGnify mobilome and BGC profiles where available (19/30 genera have soil-biome MGnify data), and species-level H7/H6 significance per genus. Among the 30 dossier genera, **4 contain at least one species with significant subclade × plant-association segregation** (*Pseudomonas_E* via *P. avellanae*, *Mesorhizobium* via sp002294985, *Xanthomonas* via both *X. campestris* and *X. vasicola*, *Agrobacterium* via *A. pusense*) and **1 (Xanthomonas) has species with both H7 subclade and H6 host segregation** (*X. campestris* × Brassica, *X. vasicola* × *Zea mays*) — making *Xanthomonas* the genus where strain-level plant adaptation is both phylogenetically structured *and* host-specialized at the genomic level.
 
 Key mechanism hypotheses:
 
