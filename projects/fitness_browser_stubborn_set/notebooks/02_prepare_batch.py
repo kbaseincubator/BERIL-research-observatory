@@ -28,17 +28,17 @@ import dossier as dossier_mod  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PROJECT_DATA = REPO_ROOT / "projects" / "fitness_browser_stubborn_set" / "data"
 
-RANKED_PATH = PROJECT_DATA / "ranked_genes.parquet"
-VERDICTS_PATH = PROJECT_DATA / "llm_verdicts.jsonl"
+DEFAULT_RANKED_PATH = PROJECT_DATA / "ranked_genes.parquet"
+DEFAULT_VERDICTS_PATH = PROJECT_DATA / "llm_verdicts.jsonl"
 BATCHES_DIR = PROJECT_DATA / "batches"
 
 
-def load_already_judged() -> set:
+def load_already_judged(verdicts_path: Path) -> set:
     """Return set of (orgId, locusId) tuples already in the verdicts JSONL."""
-    if not VERDICTS_PATH.exists():
+    if not verdicts_path.exists():
         return set()
     judged = set()
-    with open(VERDICTS_PATH) as fh:
+    with open(verdicts_path) as fh:
         for line in fh:
             line = line.strip()
             if not line:
@@ -54,15 +54,29 @@ def load_already_judged() -> set:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--batch-id", required=True, help="e.g. 001 or 001-A")
+    parser.add_argument("--batch-id", required=True, help="e.g. 001 or 001-A or R01")
     parser.add_argument("--n", type=int, default=10, help="genes per batch")
     parser.add_argument("--start-rank", type=int, default=1,
                         help="optional: start from this rank instead of top")
+    parser.add_argument("--ranked-file", default=str(DEFAULT_RANKED_PATH),
+                        help="parquet file with the ranked gene list "
+                             "(default: ranked_genes.parquet)")
+    parser.add_argument("--verdicts-file", default=str(DEFAULT_VERDICTS_PATH),
+                        help="JSONL file of already-judged verdicts to skip "
+                             "(default: llm_verdicts.jsonl)")
     args = parser.parse_args()
 
-    ranked = pd.read_parquet(RANKED_PATH).sort_values("rank")
-    already = load_already_judged()
-    print(f"Ranked: {len(ranked):,} | already judged: {len(already)}", file=sys.stderr)
+    ranked_path = Path(args.ranked_file)
+    if not ranked_path.is_absolute():
+        ranked_path = PROJECT_DATA / ranked_path
+    verdicts_path = Path(args.verdicts_file)
+    if not verdicts_path.is_absolute():
+        verdicts_path = PROJECT_DATA / verdicts_path
+
+    ranked = pd.read_parquet(ranked_path).sort_values("rank")
+    already = load_already_judged(verdicts_path)
+    print(f"Ranked file:  {ranked_path.name} ({len(ranked):,} rows)", file=sys.stderr)
+    print(f"Verdicts file: {verdicts_path.name} ({len(already)} already-judged)", file=sys.stderr)
 
     batch_dir = BATCHES_DIR / f"batch_{args.batch_id}"
     batch_dir.mkdir(parents=True, exist_ok=True)

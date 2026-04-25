@@ -12,16 +12,29 @@ from collections import Counter
 REPO_ROOT = Path(__file__).resolve().parents[3]
 PROJECT_DATA = REPO_ROOT / "projects" / "fitness_browser_stubborn_set" / "data"
 BATCHES_DIR = PROJECT_DATA / "batches"
-VERDICTS_PATH = PROJECT_DATA / "llm_verdicts.jsonl"
+DEFAULT_VERDICTS_PATH = PROJECT_DATA / "llm_verdicts.jsonl"
 
 
 def main() -> None:
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--verdicts-file", default=str(DEFAULT_VERDICTS_PATH),
+                        help="output JSONL (default: llm_verdicts.jsonl)")
+    parser.add_argument("--batch-prefix", default=None,
+                        help="if set, only aggregate batches whose dir name "
+                             "starts with batch_<prefix> (e.g. 'B' for priority, "
+                             "'R' for random sample)")
+    args = parser.parse_args()
+    verdicts_path = Path(args.verdicts_file)
+    if not verdicts_path.is_absolute():
+        verdicts_path = PROJECT_DATA / verdicts_path
+
     seen: set = set()
     rows: list = []
 
     # Pull existing aggregated file (preserve any manual edits)
-    if VERDICTS_PATH.exists():
-        with open(VERDICTS_PATH) as fh:
+    if verdicts_path.exists():
+        with open(verdicts_path) as fh:
             for line in fh:
                 line = line.strip()
                 if not line:
@@ -37,6 +50,9 @@ def main() -> None:
     new_count = 0
     if BATCHES_DIR.exists():
         for batch in sorted(BATCHES_DIR.iterdir()):
+            if args.batch_prefix is not None:
+                if not batch.name.startswith(f"batch_{args.batch_prefix}"):
+                    continue
             out = batch / "output.jsonl"
             if not out.exists():
                 continue
@@ -57,12 +73,12 @@ def main() -> None:
                     new_count += 1
 
     # Write back
-    with open(VERDICTS_PATH, "w") as fh:
+    with open(verdicts_path, "w") as fh:
         for r in rows:
             fh.write(json.dumps(r) + "\n")
 
     print(f"Total verdicts: {len(rows):,} (added {new_count} new)")
-    print(f"Wrote {VERDICTS_PATH}")
+    print(f"Wrote {verdicts_path}")
 
     # Outcome distribution
     print("\nOutcome distribution:")
