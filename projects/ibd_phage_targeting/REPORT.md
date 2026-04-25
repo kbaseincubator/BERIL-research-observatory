@@ -1137,6 +1137,49 @@ CC1 separates CD (+0.235) from nonIBD (−0.593) by ~0.83 SD on a single joint a
 
 *(Script: `run_nb07d.py`. Per plan v1.7 NB07d (scope-adjusted to 2-modality per v1.9) + N13 multi-modal QC prerequisite (NB04e + NB07a + NB09a all passed).)*
 
+### 19. NB12 — Pathobiont × phage targetability matrix (Pillar 4 opener)
+
+The Pillar 4 framework starts with a **per-pathobiont phage-availability profile (Tier-B in the project's 4-tier rubric)** layered on top of the NB05 actionable Tier-A scoring + Pillar-3 mechanism profile. NB12 builds the foundational matrix from `ref_phage_biology` (12-organism literature-curated synthesis from indicator_taxa_literature_review).
+
+**Phage-availability score (Tier-B)**, 0-3 ordinal scale: 0 = no known phages, 1 = temperate / limited, 2 = lytic literature, 3 = clinical trial / commercial cocktail.
+
+**Per-actionable Tier-A profile**:
+
+| Pathobiont | NB05 | Phage | Lifestyle | BA cost | Pillar-5 priority |
+|---|---:|---:|---|---|---|
+| ***H. hathewayi*** | **4.0** | **0** | none | low | **GAP**: highest NB05 but no known phages — external DB query (INPHARED + IMG/VR) priority |
+| ***M. gnavus*** | **3.8** | 1 | temperate | low | **Limited**: 6 known phages all temperate — lytic-locked engineering OR biochemical glucorhamnan-synthesis target |
+| ***E. coli*** (AIEC) | 3.6 | **3** | lytic + clinical | low | **Tier-1 clinical**: EcoActive cocktail (7 lytic phages, clinical trials); HER259 (FimH-targeting). Most advanced |
+| ***E. lenta*** | 3.3 | 2 | lytic literature | moderate | **Tier-2**: PMBT5 siphovirus characterized; non-BGC drug-metabolism mechanism (Koppel 2018) |
+| ***F. plautii*** | 3.3 | **0** | unknown (not in ref) | **HIGHEST** | **GAP + HIGH cost**: not in ref_phage_biology; HIGHEST BA-coupling cost — phage targeting deprioritized in favor of BA monitoring or biochemical alternatives |
+| ***E. bolteae*** | 2.8 | 2 | lytic literature | moderate | **Tier-2**: PMBT24 (virulent, 99,962 bp Kielviridae) — best-characterized lytic phage among gut-anaerobe Tier-A |
+
+**Stratification — 4 phage-availability classes among 6 actionable Tier-A**: Class 3 clinical (1: *E. coli*), Class 2 lytic literature (2: *E. lenta*, *E. bolteae*), Class 1 temperate-limited (1: *M. gnavus*), Class 0 gap (2: *H. hathewayi*, *F. plautii*).
+
+**Critical**: the 2 highest-NB05-scored species (*H. hathewayi* 4.0, *M. gnavus* 3.8) have the WEAKEST phage availability. *F. plautii* additionally has the HIGHEST BA-coupling cost — phage targeting may be deprioritized in favor of BA-binding co-therapy.
+
+![NB12 — Pillar-4 opener: pathobiont × phage targetability matrix](figures/NB12_phage_targetability.png)
+
+**Pillar 4 → Pillar 5 hand-off framework — 3 design strategies for the 6 actionable Tier-A**:
+1. **Direct phage targeting (Tier-1)**: *E. coli* (AIEC subset, EcoActive clinical-trial cocktail; require strain-resolution diagnostic per NB07b/NB08a).
+2. **Phage targeting with monitoring (Tier-2)**: *E. lenta* (PMBT5), *E. bolteae* (PMBT24); *M. gnavus* if lytic-locked engineering succeeds.
+3. **Phage GAP — alternative strategies needed**:
+   - *H. hathewayi*: highest priority for external DB query; if no phages, fall back to GAG-degrading enzyme inhibitors.
+   - *F. plautii*: lowest Pillar-5 priority due to highest BA-cost — consider deprioritizing or co-administering UDCA / BA-binding agent.
+   - *M. gnavus*: biochemical glucorhamnan-synthesis targets (Henke 2019) if lytic-locked engineering fails.
+
+**Output artifacts**:
+- `data/nb12_phage_targetability_matrix.tsv` — per-pathobiont scoring matrix with NB05 + phage + Pillar-5 class
+- `data/nb12_phage_targetability_verdict.json` — formal verdict + Pillar-4/5 hand-off + limitations
+- `figures/NB12_phage_targetability.png` — 2-panel: Tier-A × Tier-B scatter + Pillar-5 priority bar
+
+**Quantitative-augmentation data found during NB12 execution** (deferred to NB13):
+- **HMP2 fact_viromics** (3,039 sample-rows): direct phage observations in patient stool. 16 unique *E. coli* phages + 13 unique *Klebsiella* phages observed. **NO observations of phages targeting H. hathewayi / M. gnavus / F. plautii / E. lenta / E. bolteae** — confirms the gut-anaerobe phage coverage gap from the literature-curation side.
+- **PhageFoundry `phagefoundry_strain_modelling`** (BERDL): 96 phages × 188 *E. coli* strains × experimentally-tested susceptibility (17,672 pairs; 3,929 susceptible / 13,743 resistant; 22 % susceptibility rate). **The definitive E. coli AIEC phage-cocktail design dataset for this project**.
+- **ref_viromics_cd_vs_nonibd** (22 viruses pre-computed CD-vs-nonIBD DA): top hit Gokushovirus WZ-2015a CD-DOWN log2FC=-2.7, FDR=1e-11 (microvirus depleted in CD).
+
+*(Script: `run_nb12.py`. Per plan v1.7 NB12 + v1.9 no-raw-reads. BERDL Spark auth restored mid-execution; PhageFoundry quantitative analysis promoted to NB13.)*
+
 ## Interpretation
 
 ### Project narrative summary (Pillars 1–3 closed)
