@@ -1,7 +1,7 @@
 # Executive Summary — Metagenome-Prioritized Phage Cocktails for Crohn's Disease
 
 **Project**: `ibd_phage_targeting` (BERIL Research Observatory)
-**Status**: Pillars 1–5 substantially closed — per-patient cocktail drafts for all 23 UC Davis CD patients (NB15) + patient 6967 longitudinal E1→E3 drift validation + state-dependent dosing rule + clinical-translation workflow (NB16). NB17 cross-cutting synthesis remains.
+**Status**: Pillars 1–5 closed — per-patient cocktail drafts for all 23 UC Davis CD patients (NB15) + patient 6967 longitudinal E1→E3 drift validation + state-dependent dosing rule + clinical-translation workflow (NB16) + cross-cutting synthesis with per-patient master table + target decision matrix + 4-phase clinical-translation roadmap (NB17). All 5 pillars complete; out-of-scope clinical-translation prerequisites flagged in NB17 roadmap.
 **Date**: 2026-04-25
 **Authors**: Adam Arkin (LBNL / UC Berkeley), with collaborators (Kuehl/Dave labs, Kumbhari et al.)
 
@@ -79,7 +79,7 @@ The project produced two cross-corroborated mechanism narratives across 6 indepe
 ## Methodology summary
 
 - **Five analytical pillars** spanning patient stratification (ecotypes), pathobiont identification (Tier-A scoring), functional drivers (pathway/BGC/metabolomics/strain/serology), phage targetability (3-layer evidence stack), and per-patient cocktail design.
-- **30 notebooks** with full saved outputs and reproducibility.
+- **31 notebooks** with full saved outputs and reproducibility.
 - **Confound-free within-IBD-substudy CD-vs-nonIBD meta-analysis** as the rigor-controlled DA design (resolves both feature leakage and substudy confounding).
 - **Adversarial review** caught 5 critical + 6 important methodological issues in the original NB04 analysis that two standard reviews missed; a 7-notebook rigor-repair pipeline (NB04b–h) restored validity. **Adversarial review is now the recommended review pattern** for any methodologically-nuanced microbiome project.
 - **Two cross-corroborated 6-line mechanism narratives** (iron-acquisition; bile-acid 7α-dehydroxylation) — each finding is supported across multiple analytical granularities (literature → pathway DA → species-correlation → genomic content → metabolite-level → in-vivo phageome). Convergence is the rigor signal.
@@ -105,7 +105,9 @@ The project produced two cross-corroborated mechanism narratives across 6 indepe
 
 ## Where to find more
 
-- **Full report**: [REPORT.md](REPORT.md) — ~2,000 lines covering all 24 numbered Novel Contributions, 30 notebooks with outputs, 51 figures, 80+ data files, full literature context
+- **Full report**: [REPORT.md](REPORT.md) — ~2,200 lines covering all 24 numbered Novel Contributions, 31 notebooks with outputs, 52 figures, 80+ data files, full literature context
+- **Per-patient master table**: [data/nb17_patient_master_table.tsv](data/nb17_patient_master_table.tsv) — single artifact with all clinical-translation attributes for 23 UC Davis CD patients
+- **Target decision matrix**: [data/nb17_target_decision_matrix.tsv](data/nb17_target_decision_matrix.tsv) — 6 actionable Tier-A × 5 attributes → final priority class
 - **Research plan + revisions**: [RESEARCH_PLAN.md](RESEARCH_PLAN.md) — v1.0 → v1.9 with all 17 plan norms and 4 adversarial-review iterations
 - **Failure analysis**: [FAILURE_ANALYSIS.md](FAILURE_ANALYSIS.md) — full arc of NB04 rigor failure → 7-notebook repair pipeline → externally-replicated Tier-A
 - **References**: [references.md](references.md) — 47 cited papers with PMIDs and project-context annotations

@@ -1,0 +1,205 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "project": "ibd_phage_targeting",
+  "final_status": "Pillars 1-5 substantially closed; NB17 cross-cutting synthesis complete",
+  "n_notebooks": 31,
+  "n_novel_contributions": 24,
+  "n_actionable_tier_a": 6,
+  "n_uc_davis_patients": 23,
+  "n_concrete_cocktails": 14,
+  "pillar_verdicts": {
+    "Pillar 1 \u2014 Patient stratification": {
+      "verdict": "CLOSED",
+      "key_finding": "Four reproducible IBD ecotypes (E0/E1/E2/E3) on 8.5K cMD samples; HMP2 external-replication \u03c7\u00b2 p=0.016; UC Davis distributes E0 27% / E1 42% / E3 31% / E2 0% (\u03c7\u00b2 p=0.019)",
+      "notebooks": "NB00, NB01, NB01b, NB02, NB03"
+    },
+    "Pillar 2 \u2014 Pathobiont identification": {
+      "verdict": "CLOSED",
+      "key_finding": "Within-ecotype \u00d7 within-substudy meta-analysis yields 51 E1 + 40 E3 Tier-A candidates; NB05 6 actionable Tier-A core; NB06 H2d 5/6 actionable in single per-subnet pathobiont module; HMP2 88.2% E1 sign-concordance external replication",
+      "notebooks": "NB04, NB04b, NB04c, NB04d, NB04e, NB04f, NB04g, NB04h, NB05, NB06"
+    },
+    "Pillar 3 \u2014 Functional drivers": {
+      "verdict": "CLOSED",
+      "key_finding": "8 H3 sub-hypotheses tested (5 SUPPORTED + 1 PARTIALLY + 2 PARTIAL + 1 NOT); 2 cross-corroborated 6-line mechanism narratives (iron + bile-acid); NB07d CC1 r=0.96 collapses all narratives into single joint axis (cliff \u03b4=+0.50, p=4e-4)",
+      "notebooks": "NB07a, NB07b, NB07_v18, NB07c, NB07d, NB08a, NB09a, NB09b, NB09c, NB09d, NB10a, NB11"
+    },
+    "Pillar 4 \u2014 Phage targetability": {
+      "verdict": "CLOSED",
+      "key_finding": "3-layer phage-evidence convergence (literature + experimental + in-vivo); 5-phage E. coli AIEC cocktail at 94.7% strain coverage (PhageFoundry 17,672 pairs); H. hathewayi + F. plautii GAP confirmed across all 3 layers",
+      "notebooks": "NB12, NB13, NB14"
+    },
+    "Pillar 5 \u2014 UC Davis per-patient cocktail design": {
+      "verdict": "SUBSTANTIALLY CLOSED",
+      "key_finding": "14 of 23 patients (61%) with concrete cocktail drafts; pure phage cocktail structurally infeasible for E1 (3-strategy hybrid required); F. plautii BA-cost dominant E1 design constraint; patient 6967 E1\u2192E3 drift validates state-dependent dosing rule (M. gnavus 14\u00d7 expansion); patient 1112 reseq \u03c1=1.000 validates Kaiju reliability; 5 dosing rules + clinical-translation workflow",
+      "notebooks": "NB15, NB16, NB17"
+    }
+  },
+  "novel_contributions_index": [
+    {
+      "nc": 1,
+      "title": "Cross-method ARI as K-selection criterion when per-method fit is monotonic",
+      "evidence": "NB01b"
+    },
+    {
+      "nc": 2,
+      "title": "OvR-AUC vs per-patient agreement gap as classifier-utility diagnostic",
+      "evidence": "NB03"
+    },
+    {
+      "nc": 3,
+      "title": "Kaiju \u2194 MetaPhlAn3 projection asymmetry \u2014 LDA robust, GMM fragile",
+      "evidence": "NB02"
+    },
+    {
+      "nc": 4,
+      "title": "Project-wide synonymy layer as reusable multi-cohort artifact",
+      "evidence": "NB01"
+    },
+    {
+      "nc": 5,
+      "title": "4-ecotype IBD framework with disease-stratifying signal on 8.5K samples",
+      "evidence": "NB01b+NB04h"
+    },
+    {
+      "nc": 6,
+      "title": "cMD substudy \u00d7 diagnosis nesting as structural unidentifiability finding",
+      "evidence": "NB04c"
+    },
+    {
+      "nc": 7,
+      "title": "Feature leakage in cluster-stratified DA as general methodological hazard",
+      "evidence": "NB04b"
+    },
+    {
+      "nc": 8,
+      "title": "Within-ecotype \u00d7 within-substudy meta-analysis as confound-free stratified design",
+      "evidence": "NB04e"
+    },
+    {
+      "nc": 9,
+      "title": "Adversarial review as required complement to /berdl-review on nuanced projects",
+      "evidence": "NB04 arc"
+    },
+    {
+      "nc": 10,
+      "title": "LOSO ARI as more honest stability metric than bootstrap ARI",
+      "evidence": "NB04f"
+    },
+    {
+      "nc": 11,
+      "title": "Operationally-validated-Tier-A despite framework-variance pattern",
+      "evidence": "NB04h"
+    },
+    {
+      "nc": 12,
+      "title": "Category schema choice as load-bearing methodological variable (regex \u2192 ontology)",
+      "evidence": "NB07_v18"
+    },
+    {
+      "nc": 13,
+      "title": "Module-level metabolic-coupling-cost as Tier-A scoring extension",
+      "evidence": "NB07c"
+    },
+    {
+      "nc": 14,
+      "title": "5-line cross-corroborated iron-acquisition narrative",
+      "evidence": "NB05+NB07a+NB07_v18+NB07c+NB08a"
+    },
+    {
+      "nc": 15,
+      "title": "Pathway-level vs metabolite-level signal can diverge in direction (pool \u2260 flux)",
+      "evidence": "NB07_v18+NB09a"
+    },
+    {
+      "nc": 16,
+      "title": "Bile-acid coupling cost replaces metabolic-coupling cost as primary Pillar-4 annotation",
+      "evidence": "NB09c"
+    },
+    {
+      "nc": 17,
+      "title": "Two independent 6-line cross-corroboration narratives in same project",
+      "evidence": "iron + BA"
+    },
+    {
+      "nc": 18,
+      "title": "Species-abundance-mediated vs strain-content-mediated CD-association as distinguishable mechanism axis",
+      "evidence": "NB10a F. plautii null"
+    },
+    {
+      "nc": 19,
+      "title": "Cross-cohort metabolomics m/z-bridge clustering dominated by cohort batch effects",
+      "evidence": "NB09d"
+    },
+    {
+      "nc": 20,
+      "title": "NB09b cross-cohort metabolomics replication establishes 9 strict + 3 theme-level replications",
+      "evidence": "NB09b"
+    },
+    {
+      "nc": 21,
+      "title": "Multi-pillar mechanism narratives collapse to a single multi-omics joint factor (CC1 r=0.96)",
+      "evidence": "NB07d"
+    },
+    {
+      "nc": 22,
+      "title": "3-layer phage-evidence convergence as Pillar-4 rigor pattern",
+      "evidence": "NB12+NB13+NB14"
+    },
+    {
+      "nc": 23,
+      "title": "Hybrid cocktail necessity in IBD ecotypes \u2014 pure phage cocktail not feasible for E1",
+      "evidence": "NB15"
+    },
+    {
+      "nc": 24,
+      "title": "Ecotype drift drives non-trivial cocktail re-design + qPCR proxy as cheap clinical monitoring",
+      "evidence": "NB16"
+    }
+  ],
+  "clinical_translation_roadmap": {
+    "Immediate (current cohort)": [
+      "Per-patient cocktail drafts for 23 UC Davis patients (NB15)",
+      "F. plautii BA-coupling-cost annotation per actionable target",
+      "4-category patient stratification (Active+many, Active+few, Quiescent, Mixed)",
+      "5 state-dependent dosing rules + clinical workflow (NB16)"
+    ],
+    "Near-term (6\u201312 months)": [
+      "INPHARED + IMG/VR external DB queries for H. hathewayi / F. plautii / M. gnavus phages",
+      "AIEC strain-resolution diagnostic for the 8/23 E. coli-positive patients",
+      "M. gnavus qPCR validation as cheap ecotype-state proxy"
+    ],
+    "Mid-term (12\u201324 months)": [
+      "Targeted qPCR ecotype panel (4-6 species)",
+      "Per-patient bile-acid panel for F. plautii BA-cost monitoring",
+      "Multi-cohort serology meta-analysis (firms up H3e PARTIAL)",
+      "Expanded longitudinal sampling beyond patient 6967"
+    ],
+    "Long-term (24+ months)": [
+      "Clinical pilot of hybrid 3-strategy cocktails (per-ecotype + per-patient + state-dependent)",
+      "Lytic-locked phage engineering for M. gnavus",
+      "GAG-degrading enzyme inhibitor screening for H. hathewayi"
+    ]
+  },
+  "thesis_one_sentence": "Crohn's disease at the gut-microbiome level is a single principal-direction phenomenon (NB07d CC1 r=0.96) within which 6 actionable Tier-A pathobionts and 2 cross-corroborated mechanism narratives (iron-acquisition + bile-acid 7\u03b1-dehydroxylation) define a state-dependent, hybrid-cocktail design framework with concrete per-patient drafts for 14 of 23 UC Davis CD patients.",
+  "design_category_distribution": {
+    "C_quiescent": 12,
+    "A_active_many_targets": 8,
+    "B_active_few_targets": 2,
+    "D_mixed_longitudinal": 1
+  },
+  "cocktail_strategy_distribution": {
+    "reserve_for_flare": 12,
+    "hybrid_3strategy_E1_no_ecoli": 4,
+    "limited_E0_priority_targets_GAP": 4,
+    "hybrid_3strategy_E1_full": 1,
+    "focused_E3_with_ecoli": 1,
+    "state_dependent_dosing": 1
+  },
+  "remaining_out_of_scope": [
+    "INPHARED + IMG/VR external DB queries for the 3 gut-anaerobe phage-coverage gaps",
+    "Multi-cohort prospective validation of state-dependent dosing rule",
+    "Per-patient AIEC strain-resolution diagnostic",
+    "Clinical pilot of hybrid 3-strategy cocktails"
+  ]
+}

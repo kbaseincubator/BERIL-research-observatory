@@ -1,6 +1,6 @@
 # Report: Metagenome-Prioritized Phage Cocktails for Crohn's Disease and IBD
 
-## Thesis (Pillars 1–5 substantially closed)
+## Thesis (Pillars 1–5 closed)
 
 **Crohn's disease at the gut-microbiome level is a single principal-direction phenomenon in joint species-metabolite space**, not a many-axis manifold. The dominant cross-modality structure in HMP2 metagenomics + metabolomics is a canonical correlation pair (r = 0.96) on which: (a) all 6 actionable Tier-A core pathobionts (*H. hathewayi*, *M. gnavus*, *E. coli*, *E. lenta*, *F. plautii*, *E. bolteae*) load CD-positive; (b) ecotype-defining commensals (*R. bromii*, *A. putredinis*, *L. eligens*) load CD-negative; (c) urobilin and secondary bile acids load CD-negative; (d) polyamines, long-chain PUFAs, fatty-acid amides (ebf/ecf substrates), and *E. coli*-specific cadaverine load CD-positive. **A single composite axis stratifies CD from non-IBD subjects at cliff δ = +0.50 (p = 4×10⁻⁴)** — the project's separate per-modality analyses (NB07a/b pathway DA, NB08a BGC, NB09a/b metabolomics, NB09c paired species×metabolite, NB06 co-occurrence modules) all measure projections of this same axis. Two cross-corroborated 6-line mechanism narratives (iron-acquisition centred on *E. coli* AIEC; bile-acid 7α-dehydroxylation centred on *F. plautii* / *E. lenta* / *E. bolteae*) sit within this unified axis as orthogonal molecular sub-mechanisms.
 
@@ -10,7 +10,7 @@
 
 **Patient 6967 longitudinal validation (NB16)**: the only multi-timepoint UC Davis patient with biological-replicate samples shows clear **E1→E3 ecotype drift across 2 visits**, with ***M. gnavus* 14× expansion** (0.53 → 7.45 reads) as the dominant signature; cocktail Jaccard between visits = 0.60 (3 shared: H. hathewayi + M. gnavus + E. lenta = universal Tier-1 trio; 2 visit-1-only: E. bolteae + F. plautii = E1-specific). Patient 1112 technical replicate Spearman ρ = 1.000 on Tier-A — **Kaiju is reliable across reseq replicates**, validating the technical-noise floor. **5 state-dependent dosing rules** (Novel Contribution #24): re-test ecotype every 3-6 months; F. plautii inclusion is E1-specific (drop on E1→E3); E. coli inclusion is E3-specific (subject to AIEC strain detection); universal Tier-1 trio is the cocktail backbone for any active-disease CD patient; ***M. gnavus* qPCR as a cheap clinical proxy for ecotype-state monitoring** — a 5-fold change triggers full ecotype re-test, avoiding routine metagenomics. Pillar 5 closure deliverable: a complete **clinical-translation workflow** (initial visit ecotype assignment → ecotype-specific cocktail → 3-6 month follow-up calp + qPCR + ecotype-shift decision tree).
 
-**Status**: Interim synthesis — **Pillar 1 closed**; **Pillar 2 fully closed**; **Pillar 3 fully closed** (12 notebooks; all 8 H3 sub-hypotheses tested + cross-cohort metabolomics replication + multi-omics joint factor pilot CC1 r=0.96); **Pillar 4 fully closed** (3 notebooks NB12/NB13/NB14; 3-layer phage-evidence stack; concrete 5-phage E. coli cocktail; gut-anaerobe coverage gap confirmed across all 3 layers); **Pillar 5 substantially closed** (NB15 per-patient cocktail drafts; NB16 patient 6967 longitudinal validation + state-dependent dosing rule + clinical workflow). NB17 cross-cutting synthesis + clinical-translation roadmap remains. Pillar-4 follow-ups (INPHARED + IMG/VR external DB queries for the 3 gut-anaerobe phage-coverage gaps) remain out of scope but flagged as the highest-priority external-data extension.
+**Status**: **All 5 pillars closed**. **Pillar 1** closed (NB00–NB03); **Pillar 2** fully closed (NB04b–h + NB05 + NB06; HMP2 88.2 % Tier-A external-replication); **Pillar 3** fully closed (12 notebooks; all 8 H3 sub-hypotheses tested + cross-cohort metabolomics replication + multi-omics joint factor pilot CC1 r=0.96); **Pillar 4** fully closed (NB12/NB13/NB14; 3-layer phage-evidence stack; 5-phage E. coli AIEC cocktail; gut-anaerobe GAP confirmed across all 3 layers); **Pillar 5** closed (NB15 per-patient cocktail drafts; NB16 patient 6967 longitudinal validation + state-dependent dosing rule + clinical workflow; **NB17 cross-cutting synthesis + per-patient master table + target decision matrix + 4-phase clinical-translation roadmap**). 31 notebooks; 24 numbered Novel Contributions. Pillar-4 follow-ups (INPHARED + IMG/VR external DB queries) and multi-cohort prospective validation flagged in NB17 roadmap as out-of-scope clinical-translation prerequisites.
 
 > **Note on Pillar 2 rigor repair + external replication**: the original NB04 analysis (committed 2026-04-24 early) was superseded by a **seven-notebook** pipeline (NB04b → c → d → e → f → g → h) after an adversarial review caught 5 critical + 6 important methodological issues that two independent standard `/berdl-review` runs missed. NB04b–e performed the rigor repair (see retraction box in §5 and `FAILURE_ANALYSIS.md`). NB04f–h strengthened Pillar 2 against LOSO cross-study stability (NB04f), feature-leakage structural test (NB04g), and HMP_2019_ibdmdb external replication (NB04h). The rigor-controlled Tier-A replicates at 88.2 % sign concordance on HMP2 even though the ecotype framework itself has real cross-study variance. See `docs/pitfalls.md` for the two generalizable pitfalls (cMD substudy-nesting, feature leakage in cluster-stratified DA).
 
@@ -204,9 +204,62 @@ Follow-up visits (3-6 month):
       └─ Stable ecotype: continue current cocktail
 ```
 
+### Pillar 5 closure capstone (NB17) — cross-cutting synthesis
+
+NB17 consolidates Pillar 1-5 into three artifacts that constitute the project's clinical-translation deliverable.
+
+17. **NB17 — Per-patient master table + target decision matrix + clinical-translation roadmap**. Three deliverables: (a) **per-patient master table** for all 23 UC Davis CD patients combining NB02 ecotype + Montreal + calp + medication + Tier-A presence + design category + cocktail strategy + longitudinal status; (b) **target decision matrix** for 6 actionable Tier-A × 5 attributes (NB05 score, ecotype membership, BA-coupling cost, mediation mode, phage tier) → final priority class; (c) **4-phase clinical-translation roadmap** (Immediate / Near / Mid / Long term) with concrete milestones.
+
+**Per-patient cocktail-strategy distribution** (final per-patient breakdown):
+
+| Cocktail strategy | n patients | Components |
+|---|---:|---|
+| Reserve for flare (C category) | 12 | No active cocktail; calp monitor + M. gnavus qPCR |
+| E1 hybrid 3-strategy (no E. coli) | 4 | PMBT24 + PMBT5 + alternatives for H. hathewayi + F. plautii + M. gnavus + UDCA/BA-binding |
+| E0 limited (priority targets are GAP) | 4 | Limited cocktail; consider non-phage strategies |
+| E1 hybrid 3-strategy (full, with E. coli AIEC) | 1 | NB13 5-phage E. coli + PMBT24 + PMBT5 + alternatives + UDCA |
+| E3 focused (with E. coli) | 1 | NB13 5-phage E. coli + PMBT5 + alternatives |
+| State-dependent dosing | 1 | Patient 6967: cocktail rebalances on E1↔E3 ecotype shifts |
+
+**Concrete phage cocktail drafts: 14 of 23 patients (61 %)**. The 12 quiescent patients (calp < 250 or unmeasured) get the same Tier-A panel but as a "reserve for flare" rather than active cocktail.
+
+![NB17 — Cross-cutting synthesis: target decision matrix + per-patient design map + clinical-translation roadmap](figures/NB17_synthesis.png)
+
+**Target decision matrix — final priority class per actionable Tier-A**:
+
+| Species | NB05 | Ecotype | BA cost | Phage tier | UCD prev. | Final priority class |
+|---|---:|---|---|---|---:|---|
+| ***H. hathewayi*** | **4.0** | E1+E3 | none | **GAP** | 83 % | Tier-1 phage GAP — INPHARED/IMG-VR query priority |
+| ***M. gnavus*** | **3.8** | E1+E3 | none | temperate-only | **91 %** | Tier-1 limited — lytic-locked engineering OR biochemical glucorhamnan target |
+| ***E. coli*** | 3.6 | E3-specific | none | **clinical-trial** | 35 % | Tier-1 phage with strain-resolution — NB13 5-phage cocktail; AIEC diagnostic required |
+| ***E. lenta*** | 3.3 | universal Tier-1 | moderate | lytic (PMBT5) | 70 % | Tier-2 phage — PMBT5 with BA monitoring |
+| ***F. plautii*** | 3.3 | E1-specific | **HIGHEST** | **GAP** | 78 % | Tier-2 deprioritize — triple penalty; UDCA/BA-binding co-therapy |
+| ***E. bolteae*** | 2.8 | E1+E3 | moderate | lytic (PMBT24) | 83 % | Tier-2 phage — PMBT24 with BA monitoring |
+
+The matrix exposes the structural shape of the clinical-translation problem: the 2 highest-NB05-scored species (H. hathewayi, F. plautii) are both Pillar-4 GAP; the species with the most complete phage precedent (E. coli) is the rarest in UC Davis (35 % carriage); F. plautii has triple penalty and should be deprioritized despite NB05-actionable status; M. gnavus is near-universal but temperate-only.
+
+**4-phase clinical-translation roadmap** (concrete milestones):
+
+- **Immediate (current cohort)** — already delivered: 23 patient cocktail drafts; F. plautii BA-cost annotation; 4-category stratification; 5 state-dependent dosing rules + clinical workflow
+- **Near-term (6–12 months)** — feasible external-data extensions: INPHARED + IMG/VR external DB queries for 3 GAP species; AIEC strain-resolution diagnostic; M. gnavus qPCR validation
+- **Mid-term (12–24 months)** — additional cohort/assay generation: targeted qPCR ecotype panel; per-patient bile-acid panel; multi-cohort serology meta-analysis; expanded longitudinal sampling beyond patient 6967
+- **Long-term (24+ months)** — clinical pilot territory: hybrid 3-strategy cocktail clinical pilot; lytic-locked phage engineering for M. gnavus; GAG-degrading enzyme inhibitor screening for H. hathewayi
+
+**Final thesis (one sentence)**:
+
+> Crohn's disease at the gut-microbiome level is a single principal-direction phenomenon (NB07d CC1 r=0.96) within which 6 actionable Tier-A pathobionts and 2 cross-corroborated mechanism narratives (iron-acquisition + bile-acid 7α-dehydroxylation) define a state-dependent, hybrid-cocktail design framework with concrete per-patient drafts for 14 of 23 UC Davis CD patients.
+
+**Output artifacts**:
+- `data/nb17_patient_master_table.tsv` — 23 patients × full master attributes + design category + cocktail strategy + longitudinal status
+- `data/nb17_target_decision_matrix.tsv` — 6 actionable × 5 attributes + final priority class
+- `data/nb17_final_verdict.json` — per-pillar verdicts + 24 NC index + clinical-translation roadmap + thesis statement
+- `figures/NB17_synthesis.png` — 3-panel: target decision matrix + per-patient design map + clinical-translation timeline
+
+*(Script: `run_nb17.py`. Pillar 5 closure capstone; integrates NB02 + NB05 + NB06 + NB09c + NB10a + NB12 + NB15 + NB16 evidence into per-patient master table + target decision matrix + clinical-translation roadmap. Per plan v1.9 no-raw-reads.)*
+
 ### What this report does not yet contain
 
-**Pillar 5 remaining**: NB17 — cross-cutting synthesis + final clinical-translation roadmap that consolidates Pillar 1-5 into a single deliverable for clinical collaborators. **Pillar-4 follow-ups (out of scope but flagged)**: external-DB queries (INPHARED ~25K phages, IMG/VR ~3M UViGs) for the 3 gut-anaerobe coverage gaps (H. hathewayi, M. gnavus lytic alternatives, F. plautii) — closing the 2-of-6-actionable phage-GAP is the highest-priority external-data extension before clinical translation.
+**All 5 pillars closed**. The project's central science question is answered within plan v1.9 scope. **Pillar-4 follow-ups (out of scope but flagged for clinical-translation continuity)**: external-DB queries (INPHARED ~25K phages, IMG/VR ~3M UViGs) for the 3 gut-anaerobe coverage gaps (H. hathewayi, M. gnavus lytic alternatives, F. plautii). **Multi-cohort prospective validation** of the state-dependent dosing rule (n=1 patient 6967 trajectory) and **per-patient AIEC strain-resolution diagnostic** are flagged as required clinical-translation prerequisites in the NB17 roadmap (Near-term tier).
 
 ## Key Findings
 
@@ -1743,6 +1796,9 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `data/nb15_pillar5_cocktail_verdict.json` | — | Pillar 5 opener verdict + per-ecotype prescribing summary + 4 patient-design categories |
 | `data/nb16_p6967_tier_a_longitudinal.tsv` | 6 | Patient 6967 per-visit Tier-A abundance + fold change (visit 1 E1 → visit 2 E3; M. gnavus 14× expansion) |
 | `data/nb16_longitudinal_verdict.json` | — | Pillar 5 longitudinal verdict + cocktail Jaccard 0.60 + Spearman ρ=1.000 + 5 state-dependent dosing rules |
+| `data/nb17_patient_master_table.tsv` | 23 | Per UC Davis CD patient × full master attributes + design category + cocktail strategy + longitudinal status (Pillar 5 closure capstone) |
+| `data/nb17_target_decision_matrix.tsv` | 6 | 6 actionable Tier-A × 5 attributes (NB05 score, ecotype, BA cost, mediation, phage tier) → final priority class |
+| `data/nb17_final_verdict.json` | — | Per-pillar final verdicts + 24 NC index + 4-phase clinical-translation roadmap + thesis statement + design/strategy distributions |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_relative_abundance.tsv` | 582 | HMP2 MetaPhlAn3 relative abundance (taxa × samples) — out-of-project artifact |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_sample_metadata.tsv` | 1,627 | HMP2 sample metadata from cMD |
 | `/home/aparkin/data/CrohnsPhage_ext/hmp2_ibdmdb_taxon_metadata.tsv` | 585 | HMP2 per-taxon lineage metadata |
@@ -1786,6 +1842,7 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB14_phageome_ecotype.ipynb` | Pillar 4 in-vivo phageome closure — HMP2 fact_viromics 3,039 rows × 630 samples (97 % NB04h ecotype-call coverage). Gokushovirus WZ-2015a CD-DOWN cross-ecotype (Microviridae depletion; E1 cliff=-0.358 FDR=5e-7, n_CD=231 vs n_HC=125; consistent with Norman 2015 / Clooney 2019). E. coli × Podoviridae +0.18, × Myoviridae +0.13 endogenous correlations confirm in-vivo carriage. Executed via `run_nb14.py` + `build_nb14_with_outputs.py`. |
 | `NB15_patient_cocktail_draft.ipynb` | Pillar 5 opener — 23 UC Davis CD patients × per-patient profile (NB02 ecotype + Montreal + calp + medication + Tier-A presence) → concrete per-patient cocktail drafts. Per-target prescribing rate; per-ecotype cocktail summary (E0/E1/E3/mixed); 14 of 23 patients (61 %) with concrete phage cocktails; pure phage cocktail not feasible for E1 (3-strategy hybrid required); F. plautii BA-cost as dominant E1 design constraint; 4 patient-design categories (A. active+many / B. active+few / C. quiescent / D. mixed-ecotype). Executed via `run_nb15.py` + `build_nb15_with_outputs.py`. |
 | `NB16_longitudinal_dosing.ipynb` | Pillar 5 longitudinal — patient 6967 (only multi-timepoint UC Davis CD patient with biological-replicate samples) shows clear E1→E3 ecotype drift across 2 visits with M. gnavus 14× expansion (0.53 → 7.45) as dominant signature; cocktail Jaccard between visits = 0.60 (3 shared: H. hathewayi + M. gnavus + E. lenta = universal Tier-1 trio; 2 visit-1-only: E. bolteae + F. plautii). Patient 1112 tech-replicate Spearman ρ = 1.000 on Tier-A (Kaiju reliability validation). 5 state-dependent dosing rules (Novel Contribution #24): re-test ecotype 3-6 mo; F. plautii E1-specific; E. coli E3-specific; universal Tier-1 trio is cocktail backbone; M. gnavus qPCR as cheap clinical proxy (5-fold change triggers full ecotype re-test). Pillar 5 hand-off complete clinical workflow (initial visit + follow-up calp/qPCR + ecotype-shift decision tree). Executed via `run_nb16.py` + `build_nb16_with_outputs.py`. |
+| `NB17_synthesis.ipynb` | Pillar 5 closure capstone — cross-cutting synthesis. Three deliverables: (a) per-patient master table for 23 UC Davis CD patients combining all per-pillar attributes + design category + cocktail strategy + longitudinal status; (b) target decision matrix (6 actionable Tier-A × 5 attributes → final priority class); (c) 4-phase clinical-translation roadmap (Immediate / Near / Mid / Long term). 14 of 23 patients (61 %) with concrete phage cocktail drafts. Final per-pillar verdict: all 5 pillars closed; 31 notebooks; 24 Novel Contributions. Final thesis: "CD at the gut-microbiome level is a single principal-direction phenomenon (NB07d CC1 r=0.96) within which 6 actionable Tier-A pathobionts and 2 cross-corroborated mechanism narratives (iron + bile-acid 7α-dehydroxylation) define a state-dependent, hybrid-cocktail design framework with concrete per-patient drafts for 14 of 23 UC Davis CD patients." Executed via `run_nb17.py` + `build_nb17_with_outputs.py`. |
 
 ### Figures
 
@@ -1827,18 +1884,18 @@ A clinical trial that screens patients into phage-cocktail arms by ecotype assig
 | `NB14_phageome_ecotype.png` | 3-panel: per-phage-family CD-vs-HC by ecotype (Gokushovirus E1 cliff=-0.358 FDR=5e-7 highlighted) + Tier-A pathobiont × phage-family endogenous correlation heatmap (E. coli × Podo/Myo +0.18/+0.13) + family classification gap (80 % "Unknown") |
 | `NB15_patient_cocktail_draft.png` | 3-panel: 23 UC Davis patient × Tier-A presence heatmap (sorted by ecotype + calp) + per-ecotype prescribing rate bar (M. gnavus 91 %, E. coli 35 %) + calp × n_targets scatter (4 patient-design categories) |
 | `NB16_longitudinal_dosing.png` | 3-panel: patient 6967 per-visit Tier-A abundance (E1 → E3 transition; M. gnavus 14× expansion highlighted) + patient 1112 tech-replicate scatter (Spearman ρ=1.000) + cocktail composition shift Venn (visit 1 ∩ visit 2 = 3 universal Tier-1; Jaccard 0.60) |
+| `NB17_synthesis.png` | 3-panel: target decision matrix heatmap (6 actionable Tier-A × 4 attributes; green=favorable, red=unfavorable) + UC Davis per-patient cocktail-design map (4 design categories × 7 cocktail strategies; cell = n patients) + 4-phase clinical-translation roadmap timeline (Immediate / Near / Mid / Long term) |
 
 Additional supporting files: `NB00_cohort_summary.png`, `NB00_missingness_heatmap.png`, `NB01_*.png` (legacy K = 8 fit preserved for methodology audit).
 
 ## Work in Progress
 
-**Pillars 1–5 substantially closed.** Only NB17 cross-cutting synthesis + Pillar-4-followup external-DB queries remain. Updated outline:
+**All 5 pillars closed.** Only Pillar-4-followup external-DB queries remain (out of project scope, flagged for clinical-translation continuity in NB17 roadmap). Final outline:
 
 - **Pillar 2 (closed)** — NB04 superseded by NB04b+c+d+e (rigor repair) + NB04f+g+h (LOSO stability + pathway-feature refit + HMP2 external replication) + NB05 (Tier-A A3–A6 scoring) + NB06 (per-ecotype co-occurrence networks + H2d). Six actionable Tier-A: *H. hathewayi*, *M. gnavus*, *E. coli*, *E. lenta*, *F. plautii*, *E. bolteae*.
 - **Pillar 3 (fully closed)** — All 8 H3 sub-hypotheses tested with 12 notebooks. Two cross-corroborated mechanism narratives + cross-cohort replication on 3 themes + multi-omics joint factor pilot (NB07d CC1 r=0.96).
 - **Pillar 4 (closed)** — Three notebooks NB12 + NB13 + NB14 producing 3-layer phage-evidence stack. Concrete 5-phage E. coli AIEC cocktail at 95 % strain coverage; gut-anaerobe Tier-A coverage gap confirmed across all 3 layers.
-- **Pillar 5 (substantially closed)** — Two notebooks: NB15 (cohort-wide cross-section, per-patient profile + cocktail draft for all 23 UC Davis patients) + NB16 (longitudinal axis, patient 6967 E1→E3 drift validation + patient 1112 tech-replicate Kaiju reliability + 5 state-dependent dosing rules + clinical-translation workflow). 14 of 23 patients (61 %) have concrete cocktails; pure phage cocktail not feasible for E1 (3-strategy hybrid required); F. plautii BA-cost is dominant E1 design constraint; E. coli only in 35 % of cohort; *M. gnavus* qPCR proposed as cheap clinical proxy for ecotype-state monitoring (Novel Contribution #24).
-- **Pillar 5 remaining** — NB17 cross-cutting synthesis + final clinical-translation roadmap consolidating Pillar 1-5 deliverables for clinical collaborators.
+- **Pillar 5 (closed)** — Three notebooks: NB15 (cohort-wide per-patient profile + cocktail draft) + NB16 (longitudinal axis, patient 6967 E1→E3 drift validation + state-dependent dosing rules) + NB17 (cross-cutting synthesis: per-patient master table + target decision matrix + 4-phase clinical-translation roadmap). 14 of 23 patients (61 %) have concrete cocktails; pure phage cocktail not feasible for E1 (3-strategy hybrid required); F. plautii BA-cost is dominant E1 design constraint; E. coli only in 35 % of cohort; *M. gnavus* qPCR proposed as cheap clinical proxy for ecotype-state monitoring (Novel Contribution #24).
 
 ## Future Directions
 
