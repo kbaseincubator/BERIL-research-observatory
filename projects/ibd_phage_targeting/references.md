@@ -108,6 +108,25 @@ Papers cited in `REPORT.md` and `RESEARCH_PLAN.md`, with identifiers for easy fo
 10m. **Barbour A et al. (2023).** "Discovery of phosphorylated lantibiotics with proimmune activity that regulate the oral microbiome." *Proc Natl Acad Sci USA* 120(23):e2219392120. PMID: 37216534.  
      *Lantibiotic bacteriocin class regulates oral microbiome with proimmune activity. Relevant to NB05 Salivaricin MIBiG matches on S. salivarius — suggests the A6 signal has both antimicrobial (bacteriocin) and proimmune-modulation components.*
 
+## Iron-acquisition as IBD pathobiont fitness axis (v1.8 §9 dominant theme grounding)
+
+10n. **Ellermann M et al. (2020).** "Dietary iron variably modulates assembly of the intestinal microbiota in colitis-resistant and colitis-susceptible mice." *Gut Microbes* 12(1):1599794. PMID: 31179826.
+     *Direct demonstration that intestinal iron availability modulates microbiota assembly differently in colitis-resistant vs susceptible hosts. Mechanistic basis for the clinical observation that oral iron supplementation can exacerbate IBD disease activity. Underwrites the v1.8 finding that iron-acquisition is the dominant CD-up MetaCyc theme (OR=8.1).*
+
+10o. **Buret AG, Motta JP, Allain T, Ferraz J, Wallace JL. (2019).** "Pathobiont release from dysbiotic gut microbiota biofilms in intestinal inflammatory diseases: a role for iron?" *J Biomed Sci* 26(1):1. PMID: 30602371.
+     *Reviews iron acquisition → virulence factor expression in commensals-becoming-pathobionts in IBD and CRC. Provides the conceptual framework for v1.8's iron-theme dominance: the systemic CD-up iron-pathway enrichment is a pathobiont-fitness signature, not just an E. coli AIEC peculiarity.*
+
+## TMA / choline metabolism (H. hathewayi v1.8 §9 species-resolved theme)
+
+10p. **Timsina R, Gora RA, Ferguson DJ. (2025).** "Proteomic and metabolomic analysis reveals new insights into quaternary amine metabolism in [gut microbe]." *mSphere* 10(2):e00421-25. PMID: 40853000.
+     *Mechanism for the canonical bacterial choline → TMA pathway via CutC glycyl radical enzyme. Underwrites the v1.8 H. hathewayi 04_TMA_choline theme enrichment (OR=9.33) — H. hathewayi as a TMA-producer pathobiont in CD.*
+
+10q. **Cheng E, Hung SC, Lin TY. (2025).** "Association of trimethylamine N-oxide and metabolites with kidney function decline in patients with chronic kidney disease." *Clin Nutr* 44:18-25. PMID: 39709651.
+     *Establishes the gut-microbe TMA → host TMAO → cardiovascular/renal disease axis. The IBD ↔ cardiovascular comorbidity axis flows through the same metabolic pathway that v1.8 finds enriched in H. hathewayi.*
+
+10r. **Jiang C et al. (2024).** "Polyphenols from hickory nut reduce the occurrence of atherosclerosis in mice by improving intestinal microbiota and inhibiting trimethylamine N-oxide production." *Phytomedicine* 130:155349. PMID: 38522315.
+     *Phosphatidylcholine → TMA → TMAO → atherosclerosis axis. Phosphatidylcholine acyl editing (PWY-6803) was a top NB07a §c attribution to E. coli (ρ=0.725), and v1.8 confirms TMA/choline metabolism is enriched in H. hathewayi CD-up — both species feed into this systemic axis.*
+
 ## Project-specific data sources (referenced in dim_studies)
 
 11. **Elmassry MM et al. (2025).** [Biosynthetic Gene Cluster catalog of the human gut microbiome; Cell Host & Microbe — full citation in `dim_studies`]. Source of `ref_bgc_catalog` (10,060 BGCs) and `ref_cborf_enrichment` (5,157 CB-ORFs) used in Pillar 3.
