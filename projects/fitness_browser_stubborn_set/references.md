@@ -20,5 +20,23 @@ Price MN, Wetmore KM, Waters RJ, Callaghan M, Ray J, Liu H, Kuehl JV, Melnyk RA,
 
 ## BERDL data sources used
 
-- `kescience_fitnessbrowser.reannotation` — 1,762 curator-accumulated reannotations (36 organisms, 1,756 unique loci). Reference set.
-- `kescience_fitnessbrowser.genefitness`, `.experiment`, `.specificphenotype`, `.specog`, `.cofit`, `.ortholog`, `.genedomain`, `.besthitkegg`, `.keggmember`, `.kgroupdesc`, `.kgroupec`, `.seedannotation`, `.metacycpathway`, `.metacycreaction` — see [docs/schemas/fitnessbrowser.md](../../docs/schemas/fitnessbrowser.md).
+### `kescience_fitnessbrowser` (Fitness Browser)
+- `reannotation` — 1,762 curator-accumulated reannotations (36 organisms, 1,756 unique loci). Reference set.
+- Primary fitness/cofit: `genefitness`, `experiment`, `specificphenotype`, `specog`, `cofit`, `ortholog`, `gene`, `scaffoldseq`
+- Functional annotation text: `besthitswissprot`, `swissprotdesc`, `besthitkegg`, `keggmember`, `kgroupdesc`, `kgroupec`, `seedannotation`, `genedomain`
+- Schema: [docs/schemas/fitnessbrowser.md](../../docs/schemas/fitnessbrowser.md)
+
+### `kescience_paperblast` (PaperBLAST literature mining)
+- `uniq` — 815,571 unique protein sequences (used as DIAMOND target DB)
+- `gene` — 1.1M gene records with curated descriptions
+- `genepaper` — 3.2M (gene, paper) associations
+- `seqtoduplicate` — 284K sequence ID synonyms
+- Schema: see `.claude/skills/berdl/modules/paperblast.md`
+
+### External resources
+- **Fitness Browser AA sequences**: `https://fit.genomics.lbl.gov/cgi_data/aaseqs` (272K sequences, ~96 MB) — used as DIAMOND query set after filtering to 35 curated organisms
+- **PaperBLAST DIAMOND DB build**: 815,571 sequences from `kescience_paperblast.uniq` parquet downloaded from BERDL MinIO
+
+## Cited PMIDs
+
+The 120 unique PMIDs cited by subagents during reasoning are listed in [data/cited_pmids.tsv](data/cited_pmids.tsv) with citation counts and verdicts. The 11 cross-gene cluster PMIDs (cited by ≥3 genes each) are detailed in [data/cross_gene_clusters.md](data/cross_gene_clusters.md). All paper full text was fetched via the PubMed MCP (`mcp__pubmed__convert_article_ids` + `mcp__pubmed__get_full_text_article`) from PubMed Central.
