@@ -8,6 +8,19 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [ibd_phage_targeting] Regex-on-pathway-names vs curator-validated class hierarchy: same data, opposite conclusion
+
+A NB07a H3a (b) test of "do CD-up pathways concentrate in IBD-mechanism themes" gave opposite verdicts depending on category-schema choice — same DA outputs, same statistical test, same nulls.
+
+- **v1.7 (regex on pathway descriptive names)**: 7 a-priori IBD categories matched 44 of 409 prevalence-filtered pathways. CD-up = 52 pathways, of which only 3 in the 7-category set. "≤ 3 of 7 categories" test was structurally degenerate (null also at 100 % top-3). **Verdict: FAIL** — H3a (b) "not supported, structurally degenerate."
+- **v1.8 (MetaCyc class hierarchy from ModelSEEDDatabase MetaCyc_Pathways.tbl + 12-theme IBD overlay)**: 357/409 (87 %) of pathways had MetaCyc class data; 262/409 (64 %) assigned to ≥ 1 IBD theme. Per-theme Fisher's exact (CD-up × in-theme) with BH-FDR across 12 themes. **Verdict: SUPPORTED — iron/heme acquisition is the dominant CD-up theme (OR = 8.1, FDR 7e-6; 15 of 52 CD-up pathways)**. Drove a four-way convergence with NB05 *E. coli* Yersiniabactin/Enterobactin MIBiG matches, NB07a heme-biosynthesis attribution to *E. coli*, and AIEC-iron-acquisition literature.
+
+The reason v1.7 missed iron biology: regex on "PWY-5920: superpathway of heme biosynthesis from glycine" doesn't match "iron." MetaCyc's curator-validated class hierarchy correctly puts PWY-5920 under `HEME-SYN`, `Heme-b-Biosynthesis`, `Cofactor-Biosynthesis`, `Tetrapyrrole-Biosynthesis`. v1.7's "0_other" bucket was hiding 15+ heme/iron pathways.
+
+**Generalizable rule** (now plan norm N17 in `ibd_phage_targeting`): for any pathway / gene / metabolite category-enrichment test, prefer curator-validated ontology / class hierarchy over name-pattern regex when one is available. Regex on descriptive names becomes a sensitivity check, not the primary categorization. ModelSEEDDatabase ships a usable MetaCyc class hierarchy at `/global_share/KBaseUtilities/ModelSEEDDatabase/Biochemistry/Aliases/Provenance/MetaCyc_Pathways.tbl` (90 %+ coverage of HUMAnN3 outputs). KEGG BRITE and GO biological-process subontology cover analogous categorization needs for KEGG / EC-level data.
+
+**Operational lesson**: the v1.7 "FAIL — degenerate" verdict should have been read as a flag to revisit the schema, not a true refutation. NB07a/b correctly noted the structural underpoweredness — but the v1.7 verdict was technically correct given the v1.7 schema, even though the v1.8 schema reverses it. **A "structurally degenerate" verdict is an invitation to fix the schema, not to conclude on the science.**
+
 ### [meta] Adversarial review applies at plan-revision scope, not just notebook scope
 
 The NB04 → NB04b-h rigor-repair arc established that pairing standard `/berdl-review` with an adversarial reviewer (general-purpose Agent with explicit "find flaws" framing) is a project-hygiene rule for **notebook commits**. The `ibd_phage_targeting` v1.6 → v1.7 plan revision establishes the same pattern at the **plan-revision scope**:
