@@ -115,7 +115,61 @@ This project integrates data from:
 
 ## Reproduction
 
-*TBD — added after analysis is complete. Will cover: BERDL JupyterHub prerequisites, data-mart location, notebook execution order with runtime estimates, external-data dependencies (phage databases), and the medication-harmonization ETL step for the UC Davis cohort.*
+### Prerequisites
+
+- **BERDL JupyterHub access** with `KBASE_AUTH_TOKEN` set in environment (see `docs/pitfalls.md` for token retrieval). On-cluster Spark Connect URL is `sc://jupyter-aparkin.jupyterhub-prod:15002/;use_ssl=false;x-kbase-token=<TOKEN>`. Off-cluster requires SSH-tunnel + pproxy chain (see `.claude/skills/berdl-query/references/proxy-setup.md`).
+- **Python ≥ 3.10** with `requirements.txt` installed (`pip install -r projects/ibd_phage_targeting/requirements.txt`). The project uses `pyspark`, `pandas`, `numpy`, `scipy`, `scikit-learn`, `statsmodels`, `matplotlib`, `seaborn`, `nbformat`.
+- **R ≥ 4.3 + curatedMetagenomicData v3.18** for HMP2 MetaPhlAn3 fetch (NB04h external replication). One-time fetch script: `notebooks/pull_hmp2_metaphlan3.R`.
+- **Data mart**: `~/data/CrohnsPhage/` (33 tables, schema v2.4) — committed star schema with `dim_*`, `fact_*`, `ref_*` tables. Documented in `data/table_schemas.md`.
+- **External-data fetches**:
+  - HMP2 MetaPhlAn3 via curatedMetagenomicData (one-time R fetch → `~/data/CrohnsPhage_ext/hmp2_ibdmdb_*.tsv`)
+  - ModelSEEDDatabase MetaCyc_Pathways.tbl for NB07 v1.8 ontology (cloned from `https://github.com/ModelSEED/ModelSEEDDatabase`)
+  - Kuehl_WGS Kaiju per-sample reads (provided by Dave lab; UC Davis CD cohort)
+
+### Notebook execution order
+
+Notebooks must be run in numerical order; later notebooks consume earlier outputs from `data/`. Most analytical notebooks are paired with a `run_NB*.py` script and a `build_NB*_with_outputs.py` hydrator (workaround for `nbconvert` numpy.bool serialization issue documented in `docs/pitfalls.md`).
+
+| Pillar | Notebook | Approx. runtime | Inputs / outputs |
+|---|---|---:|---|
+| 0 | NB00 data audit | ~5 min | `~/data/CrohnsPhage/` mart → cohort summary + protective-species battery DA |
+| 1 | NB01 + NB01b ecotype training | ~15 min | `fact_taxon_abundance` → 4-ecotype framework + species_synonymy.tsv |
+| 1 | NB02 UC Davis projection | ~5 min | NB01b + Kuehl_WGS Kaiju → 23 patients × ecotype call |
+| 1 | NB03 clinical-covariate classifier | ~3 min | NB01b + clinical covariates → H1c verdict |
+| 2 | NB04b–h rigor repair pipeline | ~30 min total | NB01b + within-IBD-substudy meta + HMP2 external replication |
+| 2 | NB05 + NB06 Tier-A scoring + co-occurrence | ~10 min | NB04e → 6 actionable Tier-A core + per-ecotype modules |
+| 3 | NB07a/b/v18/c/d (pathway DA) | ~25 min total | `fact_pathway_abundance` + ModelSEEDDatabase → H3a-c verdicts |
+| 3 | NB08a (BGC) | ~5 min | `ref_bgc_catalog` (Elmassry 2025) → H3c verdict |
+| 3 | NB09a/b/c/d (metabolomics) | ~15 min total | `ref_hmp2_metabolomics` + Franzosa cross-cohort → H3d-DA + H3d-clust verdicts |
+| 3 | NB10a (strain-adaptation) | ~5 min | `ref_kumbhari_*` → H3b verdict |
+| 3 | NB11 (serology) | ~3 min | `ref_hmp2_serology` → H3e verdict |
+| 4 | NB12 + NB13 + NB14 (phage stack) | ~10 min total | `ref_phage_biology` + `phagefoundry_strain_modelling` + `fact_viromics` |
+| 5 | NB15 + NB16 + NB17 (per-patient + longitudinal + synthesis) | ~5 min total | All upstream → 23-patient master table + clinical-translation roadmap |
+
+Total end-to-end runtime: ≈ 2-3 hours on a JupyterHub node with on-cluster Spark.
+
+### One-shot run
+
+```bash
+cd projects/ibd_phage_targeting
+pip install -r requirements.txt
+# ensure ~/data/CrohnsPhage/ is populated (out-of-band step from prior projects)
+# fetch HMP2 (one-time):
+Rscript notebooks/pull_hmp2_metaphlan3.R
+# Then run all run_*.py scripts in numerical order:
+for f in notebooks/run_nb*.py; do python "$f"; done
+# After each, hydrate the corresponding notebook:
+for f in notebooks/build_nb*_with_outputs.py; do python "$f"; done
+```
+
+Outputs land in `data/`, figures in `figures/`. Verdicts (one per H-hypothesis or per-pillar) are in `data/nb*_verdict.json` files.
+
+### Known gotchas
+
+- **nbconvert numpy.bool serialization** — original NB04+ workflow used `jupyter nbconvert --execute --inplace`, which fails on np.bool serialization in newer numpy. Resolved by the `run_NB*.py` + `build_NB*_with_outputs.py` pattern (run script generates outputs in headless Python; hydrator builds notebook from saved logs + figure b64). See `docs/pitfalls.md`.
+- **Kaiju vs MetaPhlAn3 classifier mismatch** (NB02) — LDA is robust to feature-space gaps; GMM on CLR + PCA is fragile. LDA is primary; GMM is advisory.
+- **cMD substudy × diagnosis nesting** (NB04c) — pooled CD-vs-HC LME is structurally unidentifiable in cMD; use within-IBD-substudy meta-analysis instead. See `docs/pitfalls.md`.
+- **Feature leakage in cluster-stratified DA** (NB04b) — clustering on taxa then testing same taxa within cluster is selection-on-outcome confounding. Use within-substudy × within-ecotype design (NB04e). See `docs/pitfalls.md`.
 
 ## Authors
 
