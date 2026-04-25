@@ -17,6 +17,34 @@ The SSO 3×3 well grid (~6 m span) shows significant distance-decay (Mantel ρ=0
 ### [enigma_sso_asv_ecology] Nitrifier × iron oxidizer coupling (ρ=+0.95) at plume entry
 *Candidatus Nitrosotalea* (archaeal ammonia oxidizer) and *Sideroxydans* (iron oxidizer) co-occur almost perfectly across the 9 SSO wells (ρ=+0.95), concentrated at U3. Both are chemolithotrophs exploiting reduced compounds arriving in the contamination plume. This tight coupling suggests shared environmental niche at the oxic plume fringe.
 
+### [plant_microbiome_ecotypes] 60-85% of plant-associated bacteria are dual-nature, carrying both PGP and pathogenic markers
+
+Classification of 25,660 species into beneficial/pathogenic/dual-nature/neutral cohorts reveals that the majority of plant-associated bacterial species carry both plant growth-promoting (PGP) and pathogenic marker genes simultaneously. This challenges the binary beneficial/pathogenic classification framework and suggests that most plant-microbe interactions are context-dependent rather than fixed.
+
+### [plant_microbiome_ecotypes] Plant compartment explains 53% of variance in microbial functional profiles
+
+PERMANOVA analysis shows compartment (root, leaf, rhizosphere, etc.) explains 53% of variance in microbial functional profiles (R²=0.53, pseudo-F=235, p=0.001). Root is the most functionally specialized compartment. This establishes compartment as the dominant driver of plant-associated microbial functional differentiation.
+
+### [plant_microbiome_ecotypes] Beneficial (PGP) genes are more core than pathogenic genes
+
+Beneficial (PGP) genes are 64.6% core genome vs 45.2% for pathogenic genes (Mann-Whitney p=3.4e-125), suggesting beneficial functions are under stronger purifying selection. This implies that plant growth-promoting functions are more deeply embedded in bacterial evolutionary history than pathogenic capabilities.
+
+### [plant_microbiome_ecotypes] ACC deaminase is massively enriched in root-associated species
+
+ACC deaminase (acdS) shows the strongest compartment-specific enrichment of any single marker gene, with an odds ratio of 69.3 in root-associated species. This makes it the strongest single compartment-specific marker identified, consistent with its role in modulating plant ethylene signaling at the root interface.
+
+### [plant_microbiome_ecotypes] Co-occurring plant-associated genera show functional redundancy, not complementarity
+
+Co-occurring plant-associated genera show functional REDUNDANCY rather than complementarity (permutation p=1.0, Cohen's d=-7.54). Environmental filtering dominates over niche partitioning in assembling plant-associated microbial communities. This implies that plant compartments select for a common functional toolkit rather than assembling complementary specialists.
+
+### [plant_microbiome_ecotypes] 50 novel eggNOG OGs distinguish plant-associated species after phylogenetic control
+
+After phylogenetic control, 50 novel eggNOG ortholog groups distinguish plant-associated species from non-plant species. The top hit is COG3569 (OR=6.01 phylo-controlled). These represent candidate gene families for plant-microbe interaction functions that are not confounded by shared evolutionary history.
+
+### [plant_microbiome_ecotypes] Marker gene singletons co-locate with mobile element singletons
+
+Species carrying singleton marker gene clusters are 16x more likely to also carry transposase/integrase singletons (OR=15.95, p=8.8e-20). This strong co-localization suggests that recently acquired plant-interaction genes arrive via horizontal gene transfer on mobile genetic elements, consistent with the broader pangenome pattern of mobile element enrichment in singleton genes.
+
 ---
 
 ## 2026-03

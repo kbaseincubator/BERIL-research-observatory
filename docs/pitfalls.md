@@ -1550,6 +1550,97 @@ h1d_or, h1d_p = stats.fisher_exact(table_h1d)
 
 ---
 
+## BacDive (`kescience_bacdive`) Pitfalls
+
+### [plant_microbiome_ecotypes] BacDive JOIN type mismatch between sequence_info and isolation tables
+
+**Problem**: `kescience_bacdive.sequence_info.bacdive_id` is INT but `kescience_bacdive.isolation.bacdive_id` is STRING. A direct join returns zero rows because Spark does not implicitly cast across INT/STRING types.
+
+**Solution**: Use `CAST(si.bacdive_id AS STRING) = iso.bacdive_id` for cross-table joins:
+
+```sql
+-- WRONG: type mismatch, returns 0 rows
+SELECT * FROM kescience_bacdive.sequence_info si
+JOIN kescience_bacdive.isolation iso ON si.bacdive_id = iso.bacdive_id
+
+-- CORRECT: explicit cast
+SELECT * FROM kescience_bacdive.sequence_info si
+JOIN kescience_bacdive.isolation iso ON CAST(si.bacdive_id AS STRING) = iso.bacdive_id
+```
+
+---
+
+## Additional Spark / Python Pitfalls
+
+### [plant_microbiome_ecotypes] Spark driver memory overflow with large aggregations on eggnog_mapper_annotations
+
+**Problem**: The 93M row `eggnog_mapper_annotations` table can produce aggregated results exceeding `spark.driver.maxResultSize` (1024 MiB) when collecting species×OG matrices or similar large cross-tabulations to the driver.
+
+**Solution**: Compute Fisher test contingency inputs (counts per group) server-side rather than collecting species×OG matrices. Push aggregation into Spark SQL and collect only the summary counts needed for statistical tests:
+
+```python
+# WRONG: collect full species×OG matrix
+matrix = spark.sql("SELECT species, OG, COUNT(*) FROM ... GROUP BY species, OG").toPandas()
+
+# CORRECT: compute contingency counts server-side
+counts = spark.sql("""
+    SELECT OG,
+           SUM(CASE WHEN is_plant = 1 THEN 1 ELSE 0 END) AS plant_count,
+           SUM(CASE WHEN is_plant = 0 THEN 1 ELSE 0 END) AS non_plant_count
+    FROM ... GROUP BY OG
+""").toPandas()
+```
+
+### [plant_microbiome_ecotypes] statsmodels Python 3.13 compatibility — use formula API
+
+**Problem**: `import statsmodels.api as sm` fails on Python 3.13 due to a graphics import chain that triggers an ImportError.
+
+**Solution**: Use `import statsmodels.formula.api as smf` instead, which avoids the problematic graphics import path:
+
+```python
+# WRONG on Python 3.13
+import statsmodels.api as sm
+
+# CORRECT
+import statsmodels.formula.api as smf
+```
+
+### [plant_microbiome_ecotypes] bakta_pfam_domains query format — Pfam IDs may not match
+
+**Problem**: Querying `bakta_pfam_domains` with Pfam IDs like `'PF00771'` returned 0 hits across all 11 domains tested. The table may use a different ID format (e.g., domain names instead of accessions, or versioned accessions like `PF00771.1`) or require a different join logic.
+
+**Solution**: Investigate the actual values stored in the table before writing queries:
+
+```python
+# Check what format the table actually uses
+spark.sql("SELECT DISTINCT pfam_id FROM kbase_ke_pangenome.bakta_pfam_domains LIMIT 20").show()
+```
+
+This pitfall needs further investigation to determine the correct query format.
+
+### [plant_microbiome_ecotypes] GapMind core-level completeness scoring yields 0% across all compartments
+
+**Problem**: Using `gapmind_pathways` with `sequence_scope = 'core'` for broad taxonomic comparisons yields 0% completeness across all compartments. The core-level scoring threshold is too stringent for genus-level or cross-species comparisons where pathway genes may not be universally present.
+
+**Solution**: Use max-aggregation at the genus level instead of core-level scoring:
+
+```sql
+-- WRONG: core-level scoring too stringent for cross-species comparison
+SELECT pathway, AVG(score_simplified) FROM gapmind_pathways
+WHERE sequence_scope = 'core' GROUP BY pathway
+
+-- CORRECT: aggregate at genus level with max score per genome-pathway pair
+SELECT genus, pathway, AVG(max_score) FROM (
+    SELECT clade_name, pathway, MAX(score_simplified) AS max_score
+    FROM gapmind_pathways
+    GROUP BY clade_name, pathway
+) grouped
+JOIN taxonomy ON ...
+GROUP BY genus, pathway
+```
+
+---
+
 ## Quick Checklist
 
 Before running a query, verify:
