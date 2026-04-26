@@ -1,0 +1,26 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "H3d-clust \u2014 metabolite-feature ecotype LOSO stability vs taxonomic 0.113 baseline",
+  "pooled_n_subjects": 326,
+  "common_metabolite_features": 111,
+  "pca_n_components": 15,
+  "pca_var_explained": 0.9004372081109019,
+  "kmeans_K": 4,
+  "cluster_sizes": {
+    "2": 134,
+    "0": 86,
+    "1": 58,
+    "3": 48
+  },
+  "cross_cohort_LOSO_ARI_HMP2_held_out": 0.0,
+  "cross_cohort_LOSO_ARI_Franzosa_held_out": 0.0,
+  "mean_LOSO_ARI": 0.0,
+  "bootstrap_mean_ARI": 0.937,
+  "bootstrap_median_ARI": 0.945,
+  "taxonomic_NB04f_LOSO_ARI_baseline": 0.113,
+  "taxonomic_NB04b_bootstrap_ARI_baseline": 0.16,
+  "cluster_diagnosis_chi2": 88.284,
+  "cluster_diagnosis_p": 6.88287123155785e-17,
+  "h3d_clust_verdict": "NOT SUPPORTED \u2014 metabolite-feature LOSO ARI below taxonomic 0.113 baseline"
+}

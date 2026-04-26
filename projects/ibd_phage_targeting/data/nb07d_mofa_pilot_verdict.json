@@ -1,0 +1,56 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "NB07d \u2014 HMP2 multi-modality joint factor pilot (taxonomy + metabolomics; pathway not in mart)",
+  "n_subjects": 106,
+  "n_species_features": 130,
+  "n_metabolite_features": 582,
+  "n_pca_components_per_modality": 30,
+  "n_canonical_pairs": 4,
+  "canonical_correlations": [
+    0.964,
+    0.928,
+    0.911,
+    0.889
+  ],
+  "factor_diagnosis_associations": [
+    {
+      "cc": 1,
+      "cliff_cd_vs_nonibd": 0.498,
+      "mw_p": 0.00039711391617919224,
+      "mean_cd": 0.23493270384647796,
+      "mean_uc": 0.12279224911779044,
+      "mean_nonibd": -0.5934770256099082,
+      "canon_r": 0.964
+    },
+    {
+      "cc": 2,
+      "cliff_cd_vs_nonibd": 0.092,
+      "mw_p": 0.5147468843114728,
+      "mean_cd": -0.017143969864075636,
+      "mean_uc": 0.129826043278862,
+      "mean_nonibd": -0.11683010789084913,
+      "canon_r": 0.928
+    },
+    {
+      "cc": 3,
+      "cliff_cd_vs_nonibd": -0.146,
+      "mw_p": 0.300819115630794,
+      "mean_cd": -0.030175691981240406,
+      "mean_uc": -0.16648263246985995,
+      "mean_nonibd": 0.2501255220445315,
+      "canon_r": 0.911
+    },
+    {
+      "cc": 4,
+      "cliff_cd_vs_nonibd": -0.274,
+      "mw_p": 0.05196258362455934,
+      "mean_cd": -0.15200878386538272,
+      "mean_uc": -0.08201311715199043,
+      "mean_nonibd": 0.3869551041472633,
+      "canon_r": 0.889
+    }
+  ],
+  "pilot_verdict": "PILOT SUCCESSFUL \u2014 multi-modal joint factors capture cross-modality structure with diagnosis association",
+  "note": "HMP2 pathway abundance is NOT in the mart (fact_pathway_abundance contains CMD_IBD_PATHWAYS only); 3-modality MOFA+ as planned in v1.7 is not feasible per plan v1.9 no-raw-reads. Falls back to 2-modality (taxonomy + metabolomics)."
+}

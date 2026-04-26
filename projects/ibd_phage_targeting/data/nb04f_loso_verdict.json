@@ -1,0 +1,74 @@
+{
+  "date": "2026-04-24",
+  "test": "Leave-one-substudy-out ecotype stability",
+  "n_substudies_tested": 8,
+  "threshold_pass": 0.5,
+  "threshold_partial": 0.3,
+  "mean_ari": 0.113,
+  "median_ari": 0.108,
+  "ari_range": [
+    0.0,
+    0.282
+  ],
+  "mean_agreement": 0.55,
+  "nb04b_bootstrap_ari_median": 0.16,
+  "verdict": "FAIL \u2014 ecotype framework is study-dependent; stability claim must be retracted",
+  "per_substudy": [
+    {
+      "held_substudy": "VilaAV_2018",
+      "n_held": 355,
+      "n_train": 8134,
+      "ari_held": 0.282,
+      "agreement_held": 0.169
+    },
+    {
+      "held_substudy": "LifeLinesDeep_2016",
+      "n_held": 1133,
+      "n_train": 7356,
+      "ari_held": 0.211,
+      "agreement_held": 0.855
+    },
+    {
+      "held_substudy": "YachidaS_2019",
+      "n_held": 251,
+      "n_train": 8238,
+      "ari_held": 0.151,
+      "agreement_held": 0.526
+    },
+    {
+      "held_substudy": "HansenLBS_2018",
+      "n_held": 207,
+      "n_train": 8282,
+      "ari_held": 0.113,
+      "agreement_held": 0.652
+    },
+    {
+      "held_substudy": "HallAB_2017",
+      "n_held": 259,
+      "n_train": 8230,
+      "ari_held": 0.104,
+      "agreement_held": 0.537
+    },
+    {
+      "held_substudy": "LiJ_2014",
+      "n_held": 260,
+      "n_train": 8229,
+      "ari_held": 0.04,
+      "agreement_held": 0.665
+    },
+    {
+      "held_substudy": "NielsenHB_2014",
+      "n_held": 396,
+      "n_train": 8093,
+      "ari_held": 0.0,
+      "agreement_held": 0.614
+    },
+    {
+      "held_substudy": "AsnicarF_2021",
+      "n_held": 1098,
+      "n_train": 7391,
+      "ari_held": 0.0,
+      "agreement_held": 0.382
+    }
+  ]
+}

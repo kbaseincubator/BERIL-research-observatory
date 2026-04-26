@@ -8,6 +8,168 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [ibd_phage_targeting] Cross-cohort m/z-bridge metabolomics requires explicit batch correction; taxonomic-feature ecotypes are naturally cross-cohort-portable
+
+NB09d found that pooling HMP2 + Franzosa metabolomics on the 122 m/z-bridge metabolite panel and clustering with PCA + K-means K=4 produces clusters that **separate completely by cohort, not by diagnosis**. PC1 explains 79 % of total variance and is essentially the cohort batch effect. Cross-cohort LOSO ARI = 0.000 vs the 0.113 taxonomic-ecotype LOSO baseline (NB04f).
+
+The taxonomic-feature ecotype framework was naturally cross-cohort-portable because MetaPhlAn3 relative-abundance values are unitless and compositionally constrained (sum-to-1 per sample) — that constraint creates a natural normalization that handles cohort differences. Metabolite-feature clustering inherits absolute-intensity scale differences between LC-MS runs (different instruments, ionization tuning, solvent batches) and requires explicit batch correction (ComBat / SVA / RUV / quantile normalization within method) prior to PCA + K-means.
+
+**Generalizable rule** for any future BERIL multi-cohort metabolomics project:
+- Compositional / relative-abundance feature spaces (taxonomy, pathway-fraction, MAG-fraction) are usually cross-cohort-portable as-is
+- Absolute-intensity feature spaces (mass-spec, RNA-seq counts, protein abundance) are NOT cross-cohort-portable without batch correction; the dominant axis of variation in pooled data will be batch, not biology
+- Within-pooled bootstrap stability metrics are misleading when batch dominates — they measure batch reproducibility, not biological reproducibility
+
+The within-cohort metabolite-feature ecotype framework may still be useful for clinical translation within a single laboratory's analytical pipeline; the failure here is specifically the cross-cohort-portability question.
+
+### [meta] Multi-line cross-corroboration across analytical granularities is a portable project-rigor pattern
+
+The `ibd_phage_targeting` project produced two independent six-line cross-corroboration narratives from a single dataset, each demonstrating the same biological claim across multiple analytical granularities. Iron-acquisition: per-actionable MIBiG lookup → sample-level pathway × species attribution → cohort-level pathway-class enrichment → sample-level species × pathway co-variation → genomic BGC content → AIEC literature. Bile-acid 7α-dehydroxylation: within-carrier pathway DA → subject-level metabolite DA → paired sample-level direct substrate-product signature → strain-level informative null → mechanism literature.
+
+**Generalizable rule**: any biological claim with multi-line convergence across granularities is robust against single-test failures. Design tests at multiple analytical granularities (per-target lookup, cohort DA, sample-level correlation, genomic content, literature, strain-level), treat each as an independent line, and require convergence rather than a single-test pass. Two such narratives in the same dataset, each independently developed, validates the methodology pattern beyond a single example.
+
+**Applies to**: any "is this signal real?" question in microbiome research where multiple modalities are available (taxonomy + pathway + metabolomics + BGC + strain). The convergence is the rigor signal.
+
+### [ibd_phage_targeting] Pool ≠ flux — pathway-DA and metabolite-DA can diverge in direction without contradicting each other
+
+NB07 v1.8 §9 found `06_polyamine_urea` was CD-DOWN at pathway-level (OR=0.42); NB09a §12 found polyamines as a metabolite-class are CD-UP at OR=14.6 — the largest theme-level metabolite effect in the project. Both correct: the metabolite pool reflects the difference between production and consumption rates, plus dietary/host inputs. Pool measurements and flux measurements are not interchangeable; both belong in the analysis when both are available.
+
+**Generalizable rule** for any BERIL multi-modal analysis: do NOT treat biosynthesis-pathway DA and untargeted-metabolomics DA as redundant. They measure different things (production capacity vs steady-state pool size). Disagreement in direction is informative, not a contradiction.
+
+### [ibd_phage_targeting] Cocktail / FMT / antibiotic ecological-cost annotation: pair phage-target Tier-A scoring with bile-acid + species-abundance vs strain-content axis
+
+NB09c §13 + NB10a §14 establish that pathobiont-targeting interventions need three axes of per-target annotation alongside the headline Tier-A score:
+- **Iron/AIEC-mediated vs other CD specialization mechanism** (informs whether to target species broadly or AIEC-subset specifically)
+- **Bile-acid coupling cost** (does this pathobiont actively 7α-dehydroxylate? F. plautii / E. lenta / E. bolteae do; M. gnavus / E. coli do not — depleting active 7α-dehydroxylators shifts BA pool toward inflammatory primary tauro-conjugated forms)
+- **Species-abundance-mediated vs strain-content-mediated** (zero strain-adaptation gene signal in Kumbhari → species-abundance-mediated; phage targeting produces predictable activity depletion with no within-species strain-content escape route)
+
+**Generalizable rule** for any future microbiome-targeting project (FMT, antibiotics, phage cocktails, dietary intervention): do NOT treat "depletes target species" as the sole optimization criterion. The ecological-cost annotation prevents incidental loss of beneficial activity (e.g., 7α-dehydroxylation, butyrogenesis) and directly translates to net inflammatory balance — the actual clinical endpoint.
+
+### [ibd_phage_targeting] Regex-on-pathway-names vs curator-validated class hierarchy: same data, opposite conclusion
+
+A NB07a H3a (b) test of "do CD-up pathways concentrate in IBD-mechanism themes" gave opposite verdicts depending on category-schema choice — same DA outputs, same statistical test, same nulls.
+
+- **v1.7 (regex on pathway descriptive names)**: 7 a-priori IBD categories matched 44 of 409 prevalence-filtered pathways. CD-up = 52 pathways, of which only 3 in the 7-category set. "≤ 3 of 7 categories" test was structurally degenerate (null also at 100 % top-3). **Verdict: FAIL** — H3a (b) "not supported, structurally degenerate."
+- **v1.8 (MetaCyc class hierarchy from ModelSEEDDatabase MetaCyc_Pathways.tbl + 12-theme IBD overlay)**: 357/409 (87 %) of pathways had MetaCyc class data; 262/409 (64 %) assigned to ≥ 1 IBD theme. Per-theme Fisher's exact (CD-up × in-theme) with BH-FDR across 12 themes. **Verdict: SUPPORTED — iron/heme acquisition is the dominant CD-up theme (OR = 8.1, FDR 7e-6; 15 of 52 CD-up pathways)**. Drove a four-way convergence with NB05 *E. coli* Yersiniabactin/Enterobactin MIBiG matches, NB07a heme-biosynthesis attribution to *E. coli*, and AIEC-iron-acquisition literature.
+
+The reason v1.7 missed iron biology: regex on "PWY-5920: superpathway of heme biosynthesis from glycine" doesn't match "iron." MetaCyc's curator-validated class hierarchy correctly puts PWY-5920 under `HEME-SYN`, `Heme-b-Biosynthesis`, `Cofactor-Biosynthesis`, `Tetrapyrrole-Biosynthesis`. v1.7's "0_other" bucket was hiding 15+ heme/iron pathways.
+
+**Generalizable rule** (now plan norm N17 in `ibd_phage_targeting`): for any pathway / gene / metabolite category-enrichment test, prefer curator-validated ontology / class hierarchy over name-pattern regex when one is available. Regex on descriptive names becomes a sensitivity check, not the primary categorization. ModelSEEDDatabase ships a usable MetaCyc class hierarchy at `/global_share/KBaseUtilities/ModelSEEDDatabase/Biochemistry/Aliases/Provenance/MetaCyc_Pathways.tbl` (90 %+ coverage of HUMAnN3 outputs). KEGG BRITE and GO biological-process subontology cover analogous categorization needs for KEGG / EC-level data.
+
+**Operational lesson**: the v1.7 "FAIL — degenerate" verdict should have been read as a flag to revisit the schema, not a true refutation. NB07a/b correctly noted the structural underpoweredness — but the v1.7 verdict was technically correct given the v1.7 schema, even though the v1.8 schema reverses it. **A "structurally degenerate" verdict is an invitation to fix the schema, not to conclude on the science.**
+
+### [meta] Adversarial review applies at plan-revision scope, not just notebook scope
+
+The NB04 → NB04b-h rigor-repair arc established that pairing standard `/berdl-review` with an adversarial reviewer (general-purpose Agent with explicit "find flaws" framing) is a project-hygiene rule for **notebook commits**. The `ibd_phage_targeting` v1.6 → v1.7 plan revision establishes the same pattern at the **plan-revision scope**:
+
+- v1.6 was a careful Pillar 3 plan refresh after Pillar 2 closure, written by an experienced agent, sounded principled.
+- Adversarial review of v1.6 (general-purpose Agent reading the plan + REPORT + FAILURE_ANALYSIS + actual mart parquet inspection) found **4 critical + 10 important issues** structurally analogous to NB04's failure pattern: feature leakage in N14 dual-basis (same-axis ecotype basis is leakage-poisoned), "4-substudy meta-viable" inherited from NB04e without re-verification for pathway data (actually 3+1), H3a thresholds without null distributions, H3a-new mislabeled "butyrate-producer ↔ pathobiont" with 4 of 6 named anchors not actually butyrate producers, H3b strain-adaptation collapses to species-level on cMD by construction, H3e n=67 across 3 sites (not 130-subject HMP2). Every category of issue NB04 had at notebook scope, v1.6 had at plan scope.
+
+**Generalizable rule**: any plan revision whose downstream notebooks will be load-bearing for clinical / experimental / external claims should be reviewed by both a standard reviewer (mostly catches surface flaws) AND a paired adversarial reviewer (catches structural / inferential issues — feature leakage, missing nulls, hard-coded verdict logic, sample-size overclaims, label-vs-data mismatches). The cost of catching these issues at plan scope is much lower than catching them at notebook scope (NB04 → NB04b-h was 7 notebooks; v1.6 → v1.7 was a single plan-edit pass).
+
+**Operational pattern**: `bash tools/review.sh <project> --type plan` for the standard plan reviewer; `Agent(subagent_type=general-purpose, prompt=<find-flaws brief>)` for the adversarial; reconcile both before notebook execution. A `--type plan --adversarial` flag for `/berdl-review` would consolidate this into a single command.
+
+**Both NB04 and v1.6 had these recurring features that adversarial review caught and standard didn't**:
+- Effect-size thresholds without null distributions (NB04: Jaccard 0.14; v1.6: |ρ| > 0.4)
+- Substudy / cohort sample-size claims that don't match the data on inspection
+- Hypothesis labels that don't match the operationalized test (NB04: "H2c RESOLVED" treats n.s. as positive; v1.6: "butyrate-producer" anchors with mostly non-butyrate-producers)
+- Same-axis feature leakage in stratified analyses (NB04: cluster on taxa + test taxa; v1.6: stratify pathway DA by pathway-feature ecotype)
+- Falsifiability rules that pass under random data ("≤ 5 categories of 7" is loose enough to pass on random allocation)
+
+The pattern is mostly about pre-registration discipline: what's the actual sample size given the actual data, what's the null distribution against which any positive claim is being made, what does each operational threshold mean given that null. Standard review treats these as advanced questions; adversarial review treats them as the entry-level diligence.
+
+### [ibd_phage_targeting] NB04 rigor failure: 33 within-ecotype Tier-A candidates collapsed to 3 rock-solid candidates under independent-evidence gating
+
+**Quantified cost of feature leakage + confound non-adjustment in Pillar 2.** NB04 reported a 33-species within-ecotype Tier-A list (18 E1, 15 E3) with the H2c *C. scindens* paradox marked "RESOLVED by stratification." Two rigor-repair notebooks (NB04b + NB04c) applied three evidence filters to every candidate:
+
+1. Bootstrap CI lower-bound > 0.3 on within-ecotype CLR-Δ (repair for "n.s. → RESOLVED" decision-logic bug)
+2. LinDA (Zhou et al. 2022, pure-Python) CD↑ with FDR < 0.10 in the same ecotype (repair for single-method DA)
+3. Within-substudy CD-vs-nonIBD meta-analysis across 4 IBD sub-studies CD↑ AND ≥ 66 % sign concordance (confound-free independent check; see `docs/pitfalls.md` cMD substudy-nesting entry)
+
+Only evidence-stream (3) is independent of the ecotype definition that generated NB04. Results:
+
+- **E1**: 0 of 18 candidates passed all three filters. All 14 E1 candidates that passed (1) + (2) had *negative* effects under the confound-free contrast — they are ecotype-markers, not CD drivers. The within-ecotype DA "lifted" them to CD↑ via feature leakage + compositional bias compound.
+- **E3**: **3 of 15 candidates passed all three filters**: *Mediterraneibacter gnavus* (within-substudy CD↑ +5.13, LinDA E3 +1.64), *Flavonifractor plautii* (within-substudy +1.89, LinDA +2.91), *Blautia wexlerae* (within-substudy +0.91, LinDA +2.00). These are the trustworthy Tier-A.
+- **H2c (paradox resolution)**: directly contradicted. *C. scindens* is genuinely CD↑ under within-substudy confound-free analysis (pooled CLR-Δ +1.18, FDR 1e-8, 4/4 sign concordance). The NB04 within-ecotype n.s. call was a leakage self-selection artifact (LOO refit in NB04b showed *C. scindens* CD↑ in both E1 and E3 once ecotype definition excluded the test species).
+- **H2b (ecotype divergence)**: survives strongly. Permutation-null p = 0.000 (observed Jaccard 0.104 vs null mean 0.785 ± 0.054). Stratification divergence is a real effect; NB04's effect-size framing was the wrong statistic.
+
+**Implication for Pillar 2 scope**: per-ecotype Tier-A reduces from "33 candidates across both E1 and E3" to "3 candidates, E3 only." E1 needs a reformulated analytical approach before NB05 — the current within-ecotype DA is not a usable target list. Candidate approaches: (a) rebuild ecotypes on a functional (pathway / KEGG) feature matrix to break the taxonomic-feature leakage; (b) run within-IBD-substudy CD-vs-nonIBD stratified by ecotype as the primary analysis (requires substudy × ecotype × diagnosis cells with ≥ 10 samples each, needs checking); (c) broaden to UC-vs-HC + CD-vs-HC combined as IBD-vs-control for power.
+
+**Applies to**: the next three Pillar 2 deliverables in `ibd_phage_targeting` (Tier-A scoring, cocktail draft prep for UC Davis patients). The ecotype framework itself is still usable for patient stratification (NB02 H1b stands); only the within-ecotype DA has been invalidated for target-selection use.
+
+See `projects/ibd_phage_targeting/FAILURE_ANALYSIS.md` for the full arc and methodology lessons.
+
+### [meta] Standard `/berdl-review` is over-optimistic on methodologically nuanced projects — pair with adversarial review for high-stakes claims
+
+`tools/review.sh` (the reviewer behind `/berdl-review` and `/submit`) operates with a "find-strengths-and-suggestions" framing inherited from the system prompt at `.claude/reviewer/SYSTEM_PROMPT.md`. On the `ibd_phage_targeting` project, two reviewers ran on the same state of the project:
+
+- **Standard `/berdl-review`** (claude-sonnet-4): concluded "exceptional methodological sophistication," "no critical issues," and recommended proceeding to Pillars 3–5 with the existing Tier-A candidate list.
+- **Adversarial review** (general-purpose agent with explicit "find flaws, don't be diplomatic" framing on the same files): identified **5 critical issues + 6 important issues**, including (a) feature leakage in within-cluster DA — the analysis clustered samples on taxon abundances then tested the same taxa within cluster; (b) hard-coded "RESOLVED" verdict logic that treated `n.s.` results as positive evidence; (c) zero confounder adjustment despite citing Vujkovic-Cvijin 2020 which calls for it; (d) Jaccard 0.14 reported as supporting H2b without any null distribution; (e) ecotype framework with 48.9 % cross-method agreement and no external replication.
+
+The standard reviewer is excellent at catching surface flaws (missing sections, undocumented dependencies, broken figures, simple statistical errors) and is appropriate for routine submissions. It is **systematically weak** at structural / inferential issues — selection-on-outcome confounding, missing null distributions, post-hoc choice of decision rules, narrative-vs-evidence mismatch. These require an explicit adversarial framing that the default reviewer prompt does not invoke.
+
+**Recommendation**: for any project whose conclusions inform downstream decisions (clinical, experimental, computational), pair `/berdl-review` with a separately-spawned adversarial reviewer and reconcile the two outputs before final synthesis. A proposed enhancement to `/submit`: an optional `--adversarial` flag that runs both reviewers and produces a combined report. Until that lands, the manual pattern is `bash tools/review.sh <proj>` followed by `Agent(subagent_type=general-purpose, prompt=<adversarial brief>)`.
+
+**Applies to**: any BERDL project whose REPORT.md will be cited by downstream work, used to design experiments, or shared externally. The standard review remains the right default for in-progress / iteration-mode work.
+
+### [ibd_phage_targeting] OvR-AUC can overstate per-patient classifier usefulness when a cohort-axis variable dominates the feature set
+
+Training-cohort OvR-AUC is a weak proxy for "does this classifier help at the patient level" whenever the cohort includes a strong cohort-axis variable that is constant (or nearly so) on the held-out patients. Concrete observation from `ibd_phage_targeting` NB03:
+
+- Classifier trained on pooled HC + IBD samples to predict K=4 ecotype from {`is_ibd`, `sex`, `age`} achieves macro OvR AUC 0.80 in 5-fold CV — exceeds the 0.70 "passes" threshold.
+- Applied to UC Davis patients (100 % IBD, `is_ibd = 1` constant): only 41 % agreement with the metagenomic projection from NB02. The classifier predicts E1 for 19/22 patients because the dominant learned rule is "IBD → E1 most of the time" (the marginal mode among IBD training samples).
+- The AUC counted HC-vs-IBD separability toward its score; the UC Davis test requires the harder IBD-internal separability (E1 transitional vs E3 severe). These are not the same problem.
+
+**Generalizable fix**: before quoting a classifier AUC as a measure of clinical utility, apply the classifier to an independent cohort with the cohort-axis variable held fixed. The agreement rate on that cohort is the translation-honest metric. Applies to any project building clinical classifiers on pooled disease+control data.
+
+### [ibd_phage_targeting] Kaiju vs MetaPhlAn3 classifier-mismatch asymmetrically breaks CLR+GMM projection but not LDA projection
+
+When projecting a held-out cohort processed with a different taxonomic classifier (Kaiju NCBI-NR read classification) onto a reference embedding trained on a different classifier (MetaPhlAn3 marker-gene relative abundance), the two ecotype methods (LDA on pseudo-counts, GMM on CLR + PCA) behave very differently:
+
+- **LDA on pseudo-counts** is robust. Absence = not-detected; no Kaiju-vs-MetaPhlAn3 abundance-scale or feature-completeness mismatch forces a particular projection coordinate. UC Davis Kuehl samples project to E0, E1, E3 in plausible biological proportions (27 / 42 / 31 %).
+- **GMM on CLR + PCA** is fragile. Kuehl detects only 54 % of training species; 70 % of training species have no Kuehl detection. The CLR transform imputes these zeros with a small pseudocount, and when these sparse vectors go through PCA, they land consistently in the region of feature space occupied by one dominant Gaussian cluster — *regardless of actual biology*. All 26 Kuehl samples project to E3 at GMM confidence > 0.97, an artifact.
+
+**Implication**: when projecting across classifier namespaces, use pseudo-count / sparse-data-robust methods (LDA, MMvec, etc.) as primary; CLR-based methods (ANCOM-BC projection, GMM on CLR) as advisory at best. This generalizes beyond IBD — any project that trains on one microbiome classifier and projects another (MetaPhlAn ↔ Kraken, MetaPhlAn ↔ Kaiju, 16S ↔ WGS) faces this asymmetry.
+
+### [ibd_phage_targeting] Cross-method ARI is the right K-selection criterion for microbiome ecotype models
+
+Both LDA training perplexity (sklearn `LatentDirichletAllocation`) and GMM BIC (on CLR + PCA-20) are *monotone* with K on this data — they always prefer the largest K available. Held-out perplexity (5-fold) gives the same monotone signal at this sample size (~8.5K samples), so it doesn't help distinguish overfitting from genuine structure. The discriminating signal is **cross-method adjusted Rand index between LDA and GMM at each K**: it has structure (peaks, valleys) precisely because the two methods only agree on K's that reflect real data partitions, not method-specific artifacts. For `ibd_phage_targeting`, ARI peaks at K=7 (0.140) and K=4 (0.131); a parsimony rule (smallest K within 0.02 of the peak) selects K=4. This is the K that gives the most interpretable, biologically clean ecotypes (E0 healthy, E1 Bacteroides2 disease, E2 Prevotella, E3 severe Bacteroides). Generalizable to any project doing microbiome ecotype discovery with two different model families: prefer the K where they agree most, not the K each prefers individually.
+
+### [ibd_phage_targeting] Four-ecotype framework on curatedMetagenomicData IBD reproduces published structure with disease-stratifying signal
+
+K=4 LDA-GMM consensus on 8,489 CMD MetaPhlAn3 samples (5,333 HC + 3,156 IBD/other) yields four ecotypes that align with published gut-microbiome enterotype literature (Vandeputte 2017, Lloyd-Price 2019) and cleanly separate disease from healthy:
+
+| Ecotype | n | Defining species | Diagnosis pattern |
+|---|---|---|---|
+| E0 — Diverse commensal | 3,604 | F. prausnitzii / R. bromii / B. uniformis / Bifidobacterium balanced | 66.8 % of HC |
+| E1 — Bacteroides2 transitional | 2,601 | P. vulgatus / B. uniformis / B. dorei | 48 % CD, 58 % UC, 100 % T1D, 97 % T2D, 67 % nonIBD |
+| E2 — Prevotella copri enterotype | 920 | P. copri 28 % | 16.9 % of HC, ~0 % disease (non-Western healthy) |
+| E3 — Severe Bacteroides-expanded | 1,364 | P. vulgatus 14 % + B. fragilis 3.6 % | 50 % CD, 40 % UC, 67 % IBD acute flare, 38 % CDI |
+
+CD and UC patients distribute across E1 and E3 rather than concentrating in any single ecotype — this is the patient-stratification signal that downstream within-ecotype analyses will exploit. Healthy samples concentrate in E0 + E2 (84 % combined). The Bacteroides2 ecotype's correlation with metabolic disease (T1D, T2D) AND IBD echoes the broader "low-diversity disease state" hypothesis. **`data/ecotype_assignments.tsv` is the consumable artifact for downstream notebooks.**
+
+### [ibd_phage_targeting] `docs/collections.md` understates the BERDL catalog by several phage- and metagenome-relevant databases
+
+Live `SHOW DATABASES` against the lakehouse returned 138 databases; the committed `docs/collections.md` omits several that matter for gut-microbiome / phage work:
+
+- `kescience_mgnify` — EBI MGnify (metagenomics service), relevant for IBD-cohort cross-validation. This is also the answer to a mis-recalled `ke_science_magnify` — it's `mgnify`, not `magnify`.
+- `phagefoundry_ecoliphages_genomedepot` (plus a duplicate `_genomedepot` variant) — E. coli phage genome collection, directly relevant for AIEC targeting. PhageFoundry has 7 databases in the tenant, not the 5 documented.
+- `kescience_interpro` — InterPro domain annotations, primary source for virulence-factor classification.
+- `kescience_pubmed` — literature text mining (sibling to `kescience_paperblast`).
+- `pangenome_bakta` — a separate Bakta-pangenome slice distinct from `kbase_ke_pangenome`.
+- `arkinlab_microbeatlas` — 464K global 16S samples, useful prevalence / biogeography baseline.
+- `protect_integration` — second Protect-tenant database beyond `protect_genomedepot`.
+- `u_kazakov__klebsiella_genomedepot` and `u_kazakov__strain_modelling` — user-owned Klebsiella phage-host work worth checking with the owner.
+
+Recommend updating `docs/collections.md` with a full `SHOW DATABASES`-derived inventory; current coverage appears hand-curated and lags behind the live catalog.
+
+### [ibd_phage_targeting] `schema_overview.yaml` + per-table `*.yaml` dictionaries is a useful convention for large local data marts
+
+The UC Davis / Arkin CrohnsPhage data mart ships with a `lineage.yaml` (ETL provenance + changelog + known gaps), a `schema_overview.yaml` (table inventory by category), per-table `*.yaml` dictionaries (columns, dtypes, null counts, unique counts, sample values), and a `ref_missing_data_codes` table with sentinel codes (`PENDING_DAVE_LAB`, `PENDING_KUEHL`, `PENDING_HMP2_RAW`, etc.) that distinguish real NULLs from known-pending data. This pattern makes large local marts agent-readable without any live queries. Worth proposing as a BERIL convention for projects that accumulate their own data tables.
+
+### [ibd_phage_targeting] Preliminary cross-cohort DA flags *C. scindens* as CD-enriched — a compositional / stratification artifact, not biology
+
+The v2 preliminary IBD report (2026-03-28) called *C. scindens* CD-enriched at log₂FC = +2.67 from pooled Mann-Whitney DA. But *C. scindens* is a well-documented protective species (secondary bile-acid producer via 7α-dehydroxylation, TGR5 activator, ~79 % prevalence in healthy individuals, inhibits *C. difficile*). Three likely mechanisms produce this false call: (1) compositional / relative-abundance artifact — Ruminococcaceae loss in severe patients inflates relative abundance of surviving C. scindens strains; (2) strain heterogeneity — not all C. scindens strains carry the `bai` operon; species-level presence ≠ functional presence; (3) ecotype mixing — pooled analysis averages across patient subgroups with different microbiomes. Compositional-aware DA (ANCOM-BC / MaAsLin2 / LinDA) run *within* patient ecotypes is the proposed fix. This is the canonical example for why `ibd_phage_targeting` treats pre-computed `ref_*` tables as starting points requiring verification, not ground truth.
+
 ### [enigma_sso_asv_ecology] 16S community similarity maps contamination plume at meter scale
 The SSO 3×3 well grid (~6 m span) shows significant distance-decay (Mantel ρ=0.323, p=0.029) driven by the east-west axis rather than the hillslope gradient. A diagonal corridor of wells (U3-M6-L7) shares community composition along the NE→SW plume flow path. Genus-level functional inference maps the thermodynamic redox ladder (denitrification → iron reduction → fermentation) onto the physical grid. M5 hosts a *Rhodanobacter* denitrification hotspot (7.7%) at the plume mixing zone. GW communities are temporally stable (well R²=49.9%, date R²=0.8% over 9 days). This demonstrates that 16S community data can delineate subsurface contamination flow paths at sub-decameter resolution.
 

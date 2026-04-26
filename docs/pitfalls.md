@@ -54,6 +54,117 @@ obs["produced"] = obs["action"].isin(["I", "E"]).astype(int)
 
 **Applies to**: Any project touching `kescience_webofmicrobes.observation`.
 
+### [ibd_phage_targeting] Agent Sessions Sharing a Checkout — Verify `git branch --show-current` Before Every Commit
+
+**Problem**: Two Claude agent sessions (or any two processes) operating in the same repository clone share one `.git` directory and one working tree. A `git checkout` issued by one session silently reshapes the working tree for the other — files that exist on one branch but not the other simply *disappear* from the working tree, and subsequent `git commit` calls land on whichever branch HEAD is currently pointing at.
+
+**Example** (observed 2026-04-24, during `ibd_phage_targeting` NB00 work): a session working on `projects/ibd_phage_targeting` was operating concurrently with a second `claude` process (PID 22230) working on `projects/plant_microbiome_ecotypes`. During the first session's long `jupyter nbconvert --execute` run, the second session ran `git checkout projects/plant_microbiome_ecotypes`. The first session's subsequent `git commit` landed on the plant-microbiome branch (not ibd), and the user observed `README.md` and `RESEARCH_PLAN.md` "missing" from `projects/ibd_phage_targeting/` when they inspected the directory — both files were still safely in git on the ibd branch, but the checkout had swept them out of the working tree.
+
+**Fix — two layers**:
+
+1. **Defensive hygiene (any session)**:
+   - Call `git branch --show-current` immediately before every `git commit`. If the branch is not the one the session started on, investigate before committing.
+   - Capture the intended branch name at session start; verify `HEAD` before each commit.
+   - If the wrong branch was committed to: `git cherry-pick` onto the correct branch, then `git branch -f <stray> origin/<stray>` to reset the stray. No data loss as long as the stranded commit is recoverable via `git reflog`. Push the corrected branch immediately.
+
+2. **Structural isolation (for parallel sessions)** — use `git worktree add` to give each concurrent session its own working directory on a dedicated branch:
+
+```bash
+git worktree add ../repo-copy-for-branch-X projects/X
+# each session then works inside its own worktree directory
+```
+
+Each worktree has its own `HEAD` and working-tree state while sharing a single object store (cheap). A `git checkout` in one worktree does not affect the other. This is the clean fix for the drift scenario above and is the recommended practice whenever two agents work on the repo simultaneously.
+
+**User-visible symptom to watch for**: "file X is missing from the project directory" when the agent believed it had just committed file X — this is almost always a wrong-branch commit (or, equivalently, a background checkout swept it out of the tree) rather than a genuine deletion. Recovery is cheap if caught early; easier to prevent with worktree isolation.
+
+**Applies to**: Any agent session in this repository longer than a few minutes. Especially: scheduled remote agents, parallel user-started sessions, and auto-import hooks.
+
+### [ibd_phage_targeting] MetaPhlAn3 Cross-Cohort Taxon Names Need a Synonymy Layer, Not Just Format Normalization
+
+**Problem**: Cross-cohort microbiome analysis that pivots on `taxon_name_original` (or any string key) can silently segregate the same species into two non-overlapping rows when cohorts use different MetaPhlAn3 DB vintages / cMD-processing stages. Three divergences observed in the `~/data/CrohnsPhage` integrated mart:
+
+1. **Format** — short name (`Faecalibacterium prausnitzii`) vs. full lineage string (`k__Bacteria|p__Firmicutes|...|s__Faecalibacterium_prausnitzii`). Same database, different export format.
+2. **GTDB r214+ genus renames** — `Bacteroides vulgatus` (CMD_HEALTHY lineage) ↔ `Phocaeicola vulgatus` (CMD_IBD short name) are the same NCBI taxid, treated as separate species. Also affects *B. dorei / coprocola / plebeius / salanitronis / sartorii / massiliensis / coprophilus*, all now *Phocaeicola*.
+3. **Other reclassification splits** — `Eubacterium rectale` → `Agathobacter rectalis`, `E. eligens` → `Lachnospira eligens`, `E. hallii` → `Anaerobutyricum hallii`; `Ruminococcus gnavus` → `Mediterraneibacter gnavus`; `Clostridium bolteae / clostridioforme / symbiosum / innocuum / asparagiforme / hathewayi / citroniae / aldenense` → *Enterocloster* / *Hungatella* / *Erysipelatoclostridium*; `Lactobacillus mucosae / ruminis` → *Limosilactobacillus / Ligilactobacillus*.
+
+**Scale**: In the CrohnsPhage mart, CMD_IBD uses the modern names, CMD_HEALTHY uses legacy names — so a naive pivot gives log₂FC ≈ 28 (≈ 2.68 × 10⁸ fold) for every renamed species because one cohort's mean abundance collapses to pseudocount.
+
+**The committed `ref_taxonomy_crosswalk` does not fully resolve this**: legacy `Bacteroides_X` rows have `ncbi_taxid = NaN`, so joining through taxid leaves them orphaned. The crosswalk lists *B. vulgatus* and *P. vulgatus* as two separate rows with different `canonical_name` values.
+
+**Fix at three levels**:
+
+1. **Format normalization** — parse the `s__Genus_species` component from full lineage strings and strip brackets from short names to get a canonical `"Genus species"`.
+2. **Hand-curated synonym map** — enough for a targeted species battery. NB00 in `projects/ibd_phage_targeting/` ships a 23-entry `SYNONYM_MAP` covering the major renames above.
+3. **Systematic reconciliation** — an NCBI-taxid-backboned synonymy layer with GTDB-version-aware rename tables. Mandatory before any cross-cohort aggregation over the full taxonomy (not just a curated battery). This is an NB01 dependency in `ibd_phage_targeting`.
+
+**Applies to**: Any project using `fact_taxon_abundance` or any other MetaPhlAn3-derived table across multiple cohorts that may have been processed at different times (different mpa DB versions, different cMD releases). Also applies generally to merging MetaPhlAn outputs with GTDB-r214+ downstream analyses.
+
+### [ibd_phage_targeting] curatedMetagenomicData Sub-Studies Are Disjoint Between HC and Disease Cohorts — Pooled LME is Unidentifiable
+
+**Problem**: curatedMetagenomicData bundles samples from ~50+ published studies into `CMD_HEALTHY` and `CMD_IBD` buckets. The healthy and disease sub-studies **do not overlap** — every CMD_HEALTHY sample comes from a healthy-cohort study (LifeLinesDeep_2016, AsnicarF_2021, YachidaS_2019, HansenLBS_2018, …), every CMD_IBD CD sample comes from an IBD-cohort study (HallAB_2017, VilaAV_2018, LiJ_2014, IjazUZ_2017, NielsenHB_2014). **There is no sub-study that contains both CD and HC samples.**
+
+A pooled `log_abundance ~ diagnosis + (1 | substudy)` linear mixed-effects model on the CD-vs-HC contrast is therefore structurally unidentifiable: the substudy random effect perfectly predicts diagnosis, so the model either silently fails to converge or absorbs all of the CD effect into the random intercept. `statsmodels.mixedlm` with `lbfgs` fails silently (returns without error but with no usable fixed-effect estimate) on this design.
+
+**Scale**: In the `~/data/CrohnsPhage` integrated mart scoped to ecotype-assigned samples (8,489 total), 45 sub-studies have ≥ 10 HC samples, 5 sub-studies have ≥ 10 CD samples, and **0** sub-studies have both ≥ 10 of HC and ≥ 10 of CD. Vujkovic-Cvijin 2020 cites this kind of structural confounding as the reason to adjust; it cannot be adjusted via a standard random-effects model on the cMD pooled-cohort contrast.
+
+**Detect**:
+
+```python
+# After parsing substudy from dim_samples.external_ids.study + participant_id 2nd token:
+tbl = sample_meta.groupby('substudy').diagnosis.value_counts().unstack(fill_value=0)
+hc_studies = set(tbl[tbl.get('HC', 0) >= 10].index)
+cd_studies = set(tbl[tbl.get('CD', 0) >= 10].index)
+assert len(hc_studies & cd_studies) > 0, "cMD pooled CD-vs-HC is substudy-confounded"
+```
+
+**Fix** — two-track pattern:
+
+1. **Confound-free contrast: CD-vs-nonIBD within IBD sub-studies.** Four IBD sub-studies in cMD have both CD and nonIBD samples with ≥ 10 each (HallAB_2017, LiJ_2014, IjazUZ_2017, NielsenHB_2014; aggregate 242 CD / 369 nonIBD). Within each sub-study, run a within-study CLR-Δ or regression with no study-level confound. Combine across sub-studies via inverse-variance weighted meta-analysis. This is the clean CD-effect estimate.
+
+2. **Pooled contrast: explicitly flag as substudy-confounded.** If a pooled CD-vs-HC effect must be reported, do not rely on substudy random effects to "adjust" for it. Quote the effect as-is with an explicit caveat that study, cohort, sequencing center, and sample prep are all collinear with diagnosis in this design. The within-substudy meta-analysis in (1) is the benchmark the pooled effect should be sanity-checked against.
+
+3. **Proper substudy resolution**: participant_id format `CMD:HallAB_2017:SKST006` encodes substudy in the middle colon-separated token for IBD samples. For HC samples, the substudy lives in `dim_samples.external_ids` as a JSON blob with key `"study"` (e.g., `"AsnicarF_2021"`). Together these cover ≈ 80 % of cMD samples; short-prefix regex on sample IDs covers < 20 % and produces mostly noise categories.
+
+```python
+import json
+def resolve_substudy(row):
+    ext = row['external_ids']
+    if isinstance(ext, str):
+        try:
+            d = json.loads(ext)
+            if isinstance(d.get('study'), str): return d['study']
+        except Exception: pass
+    pid = row['participant_id']
+    if isinstance(pid, str):
+        parts = pid.split(':')
+        if len(parts) >= 3 and parts[0] in ('CMD', 'HMP2'): return parts[1]
+    return None
+```
+
+**Applies to**: any BERDL project that uses `fact_taxon_abundance` / cMD data for case-vs-control microbiome DA. Also generalizes to any pooled public-dataset analysis (SRA study inventories, Qiita studies, etc.) where the case and control cohorts were collected by different groups. The within-cohort CD-vs-nonIBD contrast is the design-consistent alternative.
+
+### [ibd_phage_targeting] Feature Leakage in Cluster-Stratified DA: Clustering on Taxa Then Testing the Same Taxa Within Cluster
+
+**Problem**: A common pattern in microbiome analysis is (i) define ecotypes / clusters by unsupervised partitioning of the taxon abundance matrix, then (ii) run differential abundance within each cluster. Step (i) selects samples on outcome — cluster membership is a function of the same taxon abundances step (ii) then tests. The result is **selection-on-outcome confounding**: within-cluster effect sizes are mechanically inflated for cluster-defining taxa, and the within-cluster top-N list is substantially the cluster definition itself.
+
+**Scale — observed in `ibd_phage_targeting` NB04**: K=4 LDA ecotypes trained on MetaPhlAn3 species abundances, then within-ecotype CD-vs-HC CLR-Mann-Whitney on the same species matrix. NB04 reported a 33-species within-ecotype Tier-A list with effect sizes +0.5 to +3.0 CLR-Δ. Two leakage checks post-hoc:
+
+- **Held-out-species sensitivity (NB04b §2)**: 5 random 50/50 species splits; refit LDA ecotypes on half A, re-test half B within refit-ecotypes; Jaccard between refit top-30 and original top-30 ∩ half-B. Bound: > 0.5 = leakage bounded, < 0.3 = leakage dominates. Observed: E1 = 0.230, E3 = 0.064.
+- **Leave-one-species-out refit (NB04b §3)**: per battery species, refit ecotypes on all-OTHER species, re-derive cluster labels, re-test held-out species. *C. scindens* went from NB04 "n.s. within both ecotypes" (the basis for the "paradox RESOLVED" claim) to CD↑ in both E1 (CI +0.68, +0.87) and E3 (CI +1.13, +1.71) under LOO — the within-ecotype n.s. call was a self-selection effect.
+
+Cross-check via an independent-design analysis (confound-free within-IBD-substudy CD-vs-nonIBD, see pitfall above) confirmed that most of the NB04 Tier-A E1 candidates had *negative* within-study effects — they are ecotype-markers, not CD-drivers.
+
+**Detect**: any analysis that first clusters on feature matrix `X` and then runs per-cluster DA on subsets of `X` should run at least one of:
+
+1. **Held-out-species sensitivity**: split features 50/50, cluster on one half, DA on the other, compare top-N against clusters-on-full-matrix top-N. Jaccard > 0.5 ⇒ leakage bounded.
+2. **Leave-one-feature-out**: for any feature whose DA call would lead to a decision, refit clusters without that feature and re-test.
+3. **Pathway-level clustering**: define clusters on a *functional* matrix (KEGG pathways, MetaCyc, EC numbers) then test *taxonomic* DA — the two matrices are genuinely different, so leakage is structural-impossible rather than empirical-bounded.
+
+**Fix**: in this project, the NB04c resolution was to gate the within-ecotype Tier-A with a confound-free independent-evidence stream (within-substudy CD-vs-nonIBD). Species that pass *both* within-ecotype DA (possibly leakage-contaminated) AND an independent CD-vs-control contrast are the trustworthy Tier-A. In NB04c this shrank the Tier-A from 33 to 3 rock-solid candidates. The alternative (rebuild Pillar 1 on a functional feature matrix) was flagged as future work.
+
+**Applies to**: any project using ecotype / enterotype / cluster stratification followed by within-stratum DA on the same features. Includes microbiome enterotypes, single-cell type-stratified DE (clustering on gene expression then testing gene DE within cluster is the single-cell analog of this bug), and any analysis where cluster labels are a function of the same features being tested.
+
 ### [genotype_to_phenotype_enigma] Fitness Browser KO Mapping Is a Two-Hop Join
 
 **Problem**: There is no single `(orgId, locusId) → KO` table in `kescience_fitnessbrowser`. Mapping a fitness-browser locus to its KEGG ortholog requires two joins:

@@ -1,0 +1,19 @@
+{
+  "date": "2026-04-25",
+  "plan_version": "v1.9",
+  "test": "H3b \u2014 Kumbhari strain-adaptation gene predictor (housekeeping vs adaptation falsifiability)",
+  "kumbhari_species_total": 59,
+  "tier_a_core_in_kumbhari": "F. plautii only (1 of 6 actionable)",
+  "fdr_passing_genes_total": 23579,
+  "ibd_biased_total": 12159,
+  "ibd_biased_housekeeping": 342,
+  "ibd_biased_adaptation": 259,
+  "ibd_biased_unclassified": 11558,
+  "fisher_or_ibd_x_adaptation": 1.378,
+  "fisher_p_ibd_x_adaptation": 2.423640665771888e-06,
+  "fisher_or_ibd_x_housekeeping": 0.621,
+  "fisher_p_ibd_x_housekeeping": 6.434437080064283e-20,
+  "h3b_verdict": "SUPPORTED \u2014 IBD-biased genes enriched for adaptation, depleted for housekeeping",
+  "f_plautii_n_ibd_biased": 0,
+  "f_plautii_n_health_biased": 0
+}
