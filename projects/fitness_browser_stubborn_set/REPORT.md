@@ -326,7 +326,23 @@ Of 500 Claude-`already_correctly_named` (all high confidence at intake), Codex w
 | `data/manuscript-summaries-positive.tsv` | Per-(paper, gene) summaries — positive set | **4,572** | same schema |
 | `data/codex_xcheck_positive/batch_P*/output.jsonl` | Codex cross-check verdicts for all 500 positive | 500 | per-gene Codex verdict |
 
+## Negative-set stratification (n = 755)
+
+Cross-cutting the four sub-tiers above by intake confidence and fitness strength sharpens which negatives are scientifically interesting:
+
+| Cut | n | Notes |
+|---|---:|---|
+| Orphan (zero PaperBLAST hits) | 582 | Easy negatives; "no homolog in the literature corpus" |
+| Hits but all summaries null | 89 | Homolog families with papers that never characterize the protein |
+| Hits with ≥1 real summary | **84** | Hardest negatives — literature was read; both LLMs still couldn't resolve |
+| Both Claude + Codex high-confidence | 204 | Quality filter — most-trustworthy "I cannot pin this down" |
+| **Strong phenotype** (\|fit\|≥2 & \|t\|≥5) | **42** | **Wet-lab targets** — strong fitness signal, no annotation possible from current evidence |
+
+The 42-gene strong-phenotype shortlist is the highest-value experimental cohort: fitness signal is unambiguous, evidence was thoroughly read, and neither LLM could name the function. Top by |fit|: `Caulo::CCNA_02030` (|fit|=6.98, |t|=23), `Caulo::CCNA_02021` (|fit|=3.69, |t|=16.2), `MR1::202102` (|fit|=3.27, |t|=24.8), `Pedo557::CA265_RS09335` (|fit|=3.23, |t|=16.2), `Btheta::349844` (|fit|=2.87, |t|=15.4).
+
+Outputs: `data/negatives_stratified.tsv` (all 755) and `data/negatives_strong_targets.tsv` (42), produced by `notebooks/19_stratify_negatives.py`.
+
 ## Outstanding work
 
-- Stratified analysis of the 755 negatives by reason (insufficient evidence vs literature silent vs unusual phenotype).
-- Manual spot-check of the 55 positive disagreements (improvable_* / recalcitrant) — these are candidates either for downgrading existing FB names or for promoting Codex's alternative.
+- Manual spot-check of the 55 positive disagreements (improvable_* / recalcitrant) — candidates to demote an existing FB name or promote Codex's alternative.
+- Wet-lab follow-up on the 42 strong-phenotype recalcitrants in `negatives_strong_targets.tsv`.
