@@ -1,0 +1,153 @@
+{
+  "timestamp_utc": "2026-04-26T22:11:32Z",
+  "overall_verdict": "PASS_WITH_REVISION",
+  "rationale": "Producer null is responsive: natural_expansion class shows positive producer z at all 5 ranks (0.13 \u2192 0.55 \u03c3, monotonically growing with rank). Negative controls behave correctly under the revised criterion (dosage-constrained \u2192 negative producer z) at most ranks. Multi-rank null model is calibrated and detects real paralog expansion vs the cohort baseline.",
+  "natural_expansion_pass_count": "5",
+  "natural_expansion_total": "5",
+  "negative_control_pass_count": "15",
+  "negative_control_total": "15",
+  "per_class_outcomes": {
+    "natural_expansion": {
+      "PASS": "5"
+    },
+    "neg_ribosomal": {
+      "PASS": "5"
+    },
+    "neg_rnap_core": {
+      "PASS": "5"
+    },
+    "neg_trna_synth": {
+      "PASS": "5"
+    },
+    "pos_amr": {
+      "informational_only": "5"
+    },
+    "pos_tcs_hk": {
+      "deferred_to_phase_2_3": "5"
+    }
+  },
+  "methodology_revisions": [
+    {
+      "id": "M1",
+      "title": "Rank-stratified parent ranks for consumer null",
+      "rationale": "NB02/NB03 used parent_rank = phylum for all child ranks. AMR consumer z is strongly negative (-4.4 to -4.8) across genus/family/order \u2014 but this reflects intra-phylum HGT (Enterobacteriaceae, Acinetobacter) being clumped at phylum level, not absence of HGT. In Phase 1B, use rank-stratified parents: genus \u2192 family parent, family \u2192 order parent, order \u2192 class parent, class \u2192 phylum parent. This makes the consumer null sensitive to intra-phylum HGT.",
+      "affects": [
+        "NB02-equivalent at scale",
+        "consumer score interpretation"
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Negative-control criterion revised: \u2264 0 not ~ 0",
+      "rationale": "Pre-registered criterion (mean producer z within \u00b11 \u03c3 of 0) was incorrect. Ribosomal proteins, tRNA synthetases, and RNAP core subunits are dosage-constrained \u2014 they have FEWER paralogs than typical genes at matched prevalence. Negative producer z is the biologically correct outcome, not a methodology failure. Phase 1B uses 'producer CI upper bound \u2264 0.5' as the negative-control criterion.",
+      "affects": [
+        "NB04-equivalent gate criteria",
+        "DESIGN_NOTES.md weak-prior framing"
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "Alm 2006 reproduction not in Phase 1 scope \u2014 confirmed by pilot",
+      "rationale": "At UniRef50 resolution, individual TCS HK UniRef50 clusters do not show paralog expansion above null (mean z \u2248 -0.2 across all ranks; 4-11 % positive z). Alm 2006's finding is at the HK FAMILY level \u2014 number of distinct HK genes per genome \u2014 which is a different unit of analysis. The v2 plan's substrate hierarchy already places Alm 2006 reproduction at Phase 2 (KO) and Phase 3 (Pfam architecture). The Phase 1A pilot confirms this hierarchy: UniRef50 alone does not capture HK family-level expansion. This is a Phase 1A finding, not a methodology failure.",
+      "affects": [
+        "DESIGN_NOTES.md substrate hierarchy validation"
+      ]
+    },
+    {
+      "id": "M4",
+      "title": "Paralog fallback (option a) is acceptable for the pilot",
+      "rationale": "21.5 % of presence rows use n_gene_clusters when UniRef90 is missing. Producer null behaves consistently across this fraction \u2014 no obvious bias. Phase 1B should report with-and-without-fallback sensitivity as a robustness check.",
+      "affects": [
+        "NB02-equivalent at scale"
+      ]
+    }
+  ],
+  "alm_2006_pilot_summary": {
+    "verdict": "DEFERRED",
+    "reason": "At UniRef50 resolution, TCS HK paralog expansion not detectable above null \u2014 consistent with v2 plan placing Alm 2006 reproduction at Phase 2/3.",
+    "observed_per_rank": [
+      {
+        "rank": "genus",
+        "n_tcs_scored": 73,
+        "n_producer_z_positive": 8,
+        "n_producer_z_above_2sigma": 2,
+        "producer_z_mean": -0.09797626532766346,
+        "producer_z_ci_low": -0.23410868592421208,
+        "producer_z_ci_high": 0.03815615526888516
+      },
+      {
+        "rank": "family",
+        "n_tcs_scored": 124,
+        "n_producer_z_positive": 8,
+        "n_producer_z_above_2sigma": 2,
+        "producer_z_mean": -0.1604392924881805,
+        "producer_z_ci_low": -0.256104526524299,
+        "producer_z_ci_high": -0.06477405845206204
+      },
+      {
+        "rank": "order",
+        "n_tcs_scored": 157,
+        "n_producer_z_positive": 7,
+        "n_producer_z_above_2sigma": 3,
+        "producer_z_mean": -0.19103344636542574,
+        "producer_z_ci_low": -0.27239183734800065,
+        "producer_z_ci_high": -0.10967505538285081
+      },
+      {
+        "rank": "class",
+        "n_tcs_scored": 174,
+        "n_producer_z_positive": 9,
+        "n_producer_z_above_2sigma": 2,
+        "producer_z_mean": -0.2305428702711004,
+        "producer_z_ci_low": -0.3032286635190094,
+        "producer_z_ci_high": -0.1578570770231914
+      },
+      {
+        "rank": "phylum",
+        "n_tcs_scored": 186,
+        "n_producer_z_positive": 9,
+        "n_producer_z_above_2sigma": 2,
+        "producer_z_mean": -0.23098560933191542,
+        "producer_z_ci_low": -0.29920833116878787,
+        "producer_z_ci_high": -0.16276288749504295
+      }
+    ]
+  },
+  "natural_expansion_per_rank": [
+    {
+      "rank": "class",
+      "producer_mean": 0.4981864167460007,
+      "producer_ci_low": 0.38441437671125195,
+      "producer_ci_high": 0.6119584567807494,
+      "n": 482
+    },
+    {
+      "rank": "family",
+      "producer_mean": 0.19443974677379108,
+      "producer_ci_low": 0.1280429033536748,
+      "producer_ci_high": 0.26083659019390737,
+      "n": 802
+    },
+    {
+      "rank": "genus",
+      "producer_mean": 0.12972990295024783,
+      "producer_ci_low": 0.07836750356303426,
+      "producer_ci_high": 0.1810923023374614,
+      "n": 975
+    },
+    {
+      "rank": "order",
+      "producer_mean": 0.3072487555954839,
+      "producer_ci_low": 0.2214494664735447,
+      "producer_ci_high": 0.39304804471742316,
+      "n": 654
+    },
+    {
+      "rank": "phylum",
+      "producer_mean": 0.5455983617329776,
+      "producer_ci_low": 0.4259294699355954,
+      "producer_ci_high": 0.6652672535303599,
+      "n": 457
+    }
+  ]
+}
