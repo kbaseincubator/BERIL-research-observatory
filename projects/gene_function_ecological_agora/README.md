@@ -8,21 +8,23 @@ Across the prokaryotic tree (GTDB r214; 293,059 genomes / 27,690 species), do cl
 
 ## Status
 
-In Progress — research plan and design notes written; awaiting Phase 1 data extraction.
+In Progress — research plan v2 and design notes v2 written (post-review synthesis); awaiting Phase 1A pilot data extraction.
 
 ## Overview
 
-A three-phase, multi-resolution atlas of clade-level functional innovation across GTDB r214. The atlas is built at three resolutions in a forced order: sequence-only (UniRef50), functional (KO), and architectural (Pfam multidomain architecture). Each phase's output gates and refines the next; the final synthesis cross-validates quadrant assignments across resolutions.
+A multi-phase, multi-resolution atlas of clade-level functional innovation across GTDB r214. The atlas is built at three resolutions in a forced order: sequence-only (UniRef50), functional (KO), and architectural (Pfam multidomain architecture). Each phase's output gates and refines the next; the final synthesis cross-validates assignments across resolutions.
 
-The atlas tests whether bacterial clades populate four quadrants — Closed Innovator, Broker, Sink, Open Innovator — for any function class, with three pre-registered weak-prior hypotheses spanning the regulatory-vs-metabolic divide:
+**At deep ranks (≥ family)** the atlas reports **Producer × Participation categories** (Innovator-Isolated / Innovator-Exchange / Sink/Broker-Exchange / Stable) — direction-agnostic because per-family DTL reconciliation is out of scope at full GTDB scale. **At genus rank** Phase 3 runs composition-based donor inference on the architectural deep-dive candidate set, producing the full four-quadrant labels (Open / Broker / Sink / Closed) on that subset.
 
-- **Phase 1** (UniRef50): Bacteroidota → Open Innovator on PUL CAZymes
-- **Phase 2** (KO): Mycobacteriota → Closed Innovator on mycolic-acid pathway
-- **Phase 3** (Pfam architecture): Cyanobacteria → Broker on PSII architectures
+Four pre-registered weak-prior hypotheses span the regulatory-vs-metabolic divide:
 
-The Alm 2006 two-component-system back-test is mandatory at Phases 2 and 3.
+- **Phase 1A pilot**: positive controls (AMR, CRISPR-Cas, Alm 2006 TCS) + negative controls (ribosomal, tRNA-synthetase, RNAP) validate methodology on 1K species × 1K UniRef50s
+- **Phase 1B** (UniRef50): Bacteroidota → Innovator-Exchange on PUL CAZymes (deep-rank)
+- **Phase 2** (KO): Mycobacteriota → Innovator-Isolated on mycolic-acid pathway (deep-rank)
+- **Phase 3** (Pfam architecture): Cyanobacteria → Broker on PSII architectures (genus-rank, with donor inference)
+- **Phases 2 & 3**: Alm 2006 two-component-system back-test (KO + architectural)
 
-Total budget ~16 agent-weeks with three natural stop-points (publishable at the end of each of Phases 1, 2, 3) plus a final synthesis (Phase 4).
+Total budget ~17 agent-weeks with four natural stop-points (Phase 1A pilot, Phase 1B, Phase 2, Phase 3) plus a final synthesis (Phase 4).
 
 ## Quick Links
 

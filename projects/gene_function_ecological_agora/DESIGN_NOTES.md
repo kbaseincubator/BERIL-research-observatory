@@ -1,8 +1,10 @@
 # Design Notes: Gene Function Ecological Agora
 
-This document captures the *reasoning behind* the research plan — the critique of the original brief, the through-line logical argument, the rejected alternatives, and the explicit acknowledgement that the pre-registered hypotheses are weak priors. It is written for future readers (human or agent) who need to understand *why* the plan is shaped this way.
+This document captures the *reasoning behind* the research plan — the critique of the original brief, the through-line logical argument, the rejected alternatives, the explicit acknowledgement that the pre-registered hypotheses are weak priors, and (added in v2) the trace of how each subsequent revision was raised and resolved. It is written for future readers (human or agent) who need to understand *why* the plan is shaped this way.
 
 `RESEARCH_PLAN.md` is the operational plan. This document is the design record. Read both.
+
+> **v2 (2026-04-26)**: Plan revised in response to two parallel reviews — `PLAN_REVIEW_1.md` (claude standard reviewer) and `ADVERSARIAL_PLAN_REVIEW_1.md` (BERIL adversarial reviewer). The most consequential revision is the **Producer × Participation reframe**: at family rank and above, full four-quadrant labels (Open / Broker / Sink / Closed) are not inferable without donor-recipient direction, so the atlas reports two scores (Producer, Participation) and a 2×2 cross-classification at deep ranks; the full quadrant labels apply only at genus rank in Phase 3. This downgrade is conservative and honest about what acquisition-only inference can claim. Other v2 revisions added a Phase 1A pilot, a hierarchical multiple-testing strategy with 4 pre-registered focal tests, positive/negative controls, KEGG BRITE B-level for category definitions, and corrected a misattributed Pfam pitfall citation. See "v2 Revision Trace" section below for the full decision record.
 
 ---
 
@@ -157,6 +159,108 @@ The Phase-1 stop-point is the most consequential. It can definitively kill the f
 
 ---
 
+## v2 Revision Trace (2026-04-26)
+
+This section documents how each v2 revision was raised, what it changed, and what alternative framings were considered and rejected. The trace is the key audit artifact — it lets a future reviewer ask "*why* does the plan have a Phase 1A pilot?" and find both the source of the concern (which review raised it) and the reasoning for the chosen response.
+
+### v2 Revision 1 (HIGH): Producer × Participation reframe at deep ranks
+
+**Raised by**: Adversarial review I3 — *"If outflow direction cannot be reliably determined, this discrimination [Open Innovator vs Broker, and Open Innovator vs Sink-with-paralogs] cannot be made."*
+
+**The concrete issue**: Without donor-recipient direction at deep ranks, "outflow from clade C" is not separable from "shared incongruent presence between C and other clades." Two distinct biological scenarios — "C donated to D" (Open Innovator) and "C and D both received from Z" (both Sink) — produce the same observable signal. Per the project's hard constraint that no per-family DTL reconciliation runs at full GTDB scale, direction at family rank and above is genuinely uninferable.
+
+**v1 was wrong about this**: v1 named "Open Innovator (high producer + high outflow)" and "Sink (high inflow)" as distinguishable quadrants at all ranks. v1 acknowledged the Open-vs-Broker confusion (via critique #3 in v1 DESIGN_NOTES) but missed the symmetrical Open-vs-Sink confusion. The adversarial reviewer caught it.
+
+**v2 response**: At family rank and above, the atlas reports **Producer × Participation categories** (Innovator-Isolated / Innovator-Exchange / Sink-Broker-Exchange / Stable). Full four-quadrant labels (Open / Broker / Sink / Closed) apply *only* at genus rank in Phase 3 where composition-based donor inference is run on the candidate set. Pre-registered hypotheses reframed:
+- Phase 1B: Bacteroidota → **Innovator-Exchange** (was Open Innovator at deep ranks; Open Innovator interpretation reserved for Phase 3 genus-rank confirmation)
+- Phase 2: Mycobacteriota → **Innovator-Isolated** (was Closed Innovator at deep ranks; Closed Innovator labeling reserved for Phase 3 genus-rank confirmation)
+- Phase 3: Cyanobacteria → **Sink/Broker-Exchange at deep ranks; Broker at genus rank** (the only phase where the full label applies, since Phase 3 runs the donor inference)
+
+**Alternatives considered and rejected**:
+- *Reject the adversarial critique and keep v1 framing*: rejected. The critique is structurally sound and v1's framing claimed a discrimination it could not make.
+- *Run per-family DTL reconciliation*: rejected. Out of scope per the original hard constraint; AleRax on principled subsamples is reserved for follow-up work.
+- *Restrict the entire atlas to genus rank*: rejected. Loses the deep-rank specialization claim entirely; the Producer × Participation framing is more honest *and* preserves the deep-rank atlas.
+
+**Cost of the revision**: Pre-registered hypotheses lose some sharpness (we cannot confirm "Open Innovator" at deep ranks, only "Innovator-Exchange"). This is the right cost; honesty matters more than the sharper-but-unsupportable claim.
+
+### v2 Revision 2 (HIGH): Hierarchical multiple-testing strategy
+
+**Raised by**: Adversarial review C3 — *"3.46+ billion statistical tests requiring FDR correction (Bonferroni-equivalent threshold: 1.44×10⁻¹¹)."*
+
+**The concrete issue**: Naive per-(clade × function × rank) testing across the atlas yields 10⁸–10¹⁰ tests after D4 filtering. Either Bonferroni correction at α=10⁻¹¹ (which gives the headline regulatory-vs-metabolic test no statistical power) or BH-FDR with no scientific anchor (which inflates false positives in atlas exploration).
+
+**v2 response**: Three-tier hierarchy. **Tier 1**: 1 headline test (regulatory-vs-metabolic at KEGG BRITE B-level) at FWER<0.05. **Tier 2**: 4 pre-registered focal tests (3 phase predictions + Alm 2006 back-test) at Bonferroni α=0.0125. **Tier 3**: per-tuple atlas exploration as **descriptive** effect-size + 95% CI; BH-FDR q<0.05 reported as exploratory annotation, not as confirmed claims. The atlas is a hypothesis-generating resource at the per-tuple level; per-tuple claims require independent validation.
+
+**Alternatives considered and rejected**:
+- *Per-test BH-FDR with effective-N cluster correction only*: rejected. Conflates atlas exploration with confirmation. The hierarchy enforces the distinction.
+- *Drop the per-tuple atlas reporting entirely*: rejected. The atlas is the deliverable; we want it generative.
+
+### v2 Revision 3 (HIGH): Phase 1A pilot
+
+**Raised by**: Adversarial review constructive recommendations — *"Phase 1 pilot on representative subset… reduce Phase 1 scope to 1,000 representative species and 1,000 UniRef50 clusters to validate methodology before full-scale execution."*
+
+**The concrete issue**: v1's Phase 1 went straight to GTDB-scale. If the null model fails, or the multiple-testing strategy is mis-specified, or the controls reveal calibration issues, the failure mode would only surface after weeks of compute on the full 27.7K-species substrate. The adversarial reviewer's S2 ("Phase 1 may fail for computational rather than biological reasons, terminating the entire project despite valid higher-resolution signals") makes this concrete.
+
+**v2 response**: Phase 1 split into Phase 1A (pilot, 1K species × 1K UniRef50s + Alm 2006 TCS validation) and Phase 1B (full scale). Phase 1A includes positive/negative controls and the Alm 2006 reproduction; Phase 1A → Phase 1B gate has explicit pass/recalibrate/stop criteria. Adds 1 week to the budget; buys insurance against the failure mode.
+
+**Alternatives considered and rejected**:
+- *Skip pilot, accept the risk*: rejected. The 1-week pilot cost is dwarfed by the 4-week full-scale cost, and a pilot failure that catches a null-model bug saves the project.
+
+### v2 Revision 4 (HIGH): Pfam pitfall citation correction
+
+**Raised by**: Adversarial review I5 — *"This pitfall does not exist in the current pitfalls documentation."*
+
+**The concrete issue**: v1 cited `docs/pitfalls.md [bakta_reannotation]` as the source for the "12/22 marker Pfams silently missing from `bakta_pfam_domains`" claim. The `[bakta_reannotation]` handle in pitfalls.md is in fact a MinIO tenant-naming pitfall, not a Pfam-completeness pitfall. The 12/22 claim came from project memory (`MEMORY.md → plant_microbiome_ecotypes`), and the closest matching pitfall is `[plant_microbiome_ecotypes] bakta_pfam_domains query format — Pfam IDs may not match` (pitfalls.md:1719), which the docs explicitly mark as "*This pitfall needs further investigation to determine the correct query format.*"
+
+**v2 response**: Citation corrected to `[plant_microbiome_ecotypes] bakta_pfam_domains query format`. Added Phase 2 spot-check sub-task on TCS HK Pfams + PSII Pfams to surface audit risk before Phase 3. The Phase 3 audit becomes *more* important because the cause (format mismatch vs true coverage gap) is unresolved.
+
+**This was a genuine error in v1**: the misattributed citation would have been confusing or misleading to anyone trying to chase the prior. The adversarial reviewer's catch is exactly what an external reviewer is for.
+
+### v2 Revision 5 (HIGH): Null model pseudocode + complexity
+
+**Raised by**: Adversarial review C4 — *"The plan commits to 'clade-matched neutral-family null' and 'phyletic-distribution permutation null' but provides no implementation details, no complexity estimates, and no validation against known systems."*
+
+**The concrete issue**: v1 named the null types but left implementation as TBD. The methodological core is precisely what cannot be vague.
+
+**v2 response**: Pseudocode for both nulls (producer score and consumer score), complexity estimates with reduction tricks for full-scale tractability, validation deferred to Phase 1A pilot (the pilot's gate criteria *include* whether the null model reproduces Alm 2006 at pilot scale). Added Participation score formal definition (the deep-rank surrogate for outflow per Revision 1).
+
+### v2 Revisions 6 & 7 (MEDIUM): Negative controls + KEGG BRITE categorization
+
+**Raised by**: Adversarial review constructive recommendations.
+
+**The concrete issue**: v1 had no negative controls. Without ribosomal-protein-style negatives, a positive headline result cannot be distinguished from a method that produces apparent specialization for everything. v1 also used "regulatory" and "metabolic" as ad hoc category labels; this was a poorly-defined baseline for the headline test.
+
+**v2 response**: Negative controls (ribosomal proteins, tRNA synthetases, RNAP core) and positive controls (AMR, CRISPR-Cas, Alm 2006 TCS HKs) added to every phase's bias-control stack. KEGG BRITE B-level (`09100 Metabolism`, `09120 Genetic Information Processing`, `09130 Environmental Information Processing`) replaces ad hoc category assignment.
+
+### v2 Revision 8 (MEDIUM): Quantitative phase gates
+
+**Raised by**: Both reviewers — *"≥30% off-diagonal needs effect-size threshold" (standard); "specialization operationally vague" (adversarial)*.
+
+**v2 response**: All phase gates have explicit Cohen's d / FWER / q-value thresholds with effect-size floors. Phase 1A gate (controls), Phase 1B gate (≥10% off-(low,low) at q<0.05 with d≥0.3), Phase 2 gate (Tier-1 FWER<0.05 + Tier-2 Bonferroni α=0.0125), Phase 3 gate (architectural-vs-KO concordance ≥60%).
+
+### v2 Revision 9 (MEDIUM): UniRef50→KO concordance threshold validated empirically
+
+**Raised by**: Adversarial review I6 — *"plan provides no assessment of whether the 80% threshold is achievable."*
+
+**v2 response**: Phase 1B NB07 measures the actual concordance distribution and adjusts the 80% threshold if needed. Threshold may be data-driven (e.g., the threshold at which 70% of UniRef50s pass).
+
+### v2 Revisions 10–13 (LOW): Operational sharpening
+
+**Raised by**: Standard reviewer mostly; Revision 12 raised by user during v2 drafting.
+
+- **Per-phase query pattern commitments** — Phase 1A → Pattern 1; Phase 1B → Pattern 2 per-species; Phase 2/3 → Pattern 1 IN-clause.
+- **Spark on-cluster import** — `spark = get_spark_session()` no import.
+- **Within-species genome sampling** — Quality filter (CheckM ≥95% complete, ≤5% contam) + ANI-stratified subsampling + GTDB-rep inclusion, capped at 500. Guards against clinical-isolate inflation in *E. coli* / *K. pneumoniae* / *S. aureus*.
+- **Species ID `--` handling** — Exact equality with quoted strings for known reps; LIKE prefix only for exploratory grouping.
+
+### Adversarial critiques considered and *not* incorporated
+
+- **C1 cite of Galperin 2018 (archaeal TCS differs)** — not relevant. Archaeal-bacterial inter-domain transfer is explicitly out of scope per the original hard constraint. The atlas is bacteria-only.
+- **S1 "sequence-only Phase 1 amplifies sampling bias toward well-annotated lineages"** — wrong. UniRef clustering depends on having a sequenced genome (which all GTDB genomes have by definition), not on having a high-quality annotation. Sequence-only is *less* sensitive to annotation quality, not more.
+- **C1 "theoretical foundation insufficient" (the broad form)** — partly fair, but DESIGN_NOTES.md v1 already explicitly acknowledged weak-prior framing, which the adversarial reviewer did not fully credit. The concrete sub-concerns (positive/negative controls) are addressed via Revision 6.
+
+---
+
 ## Authors
 
 - **Adam Arkin**
@@ -165,4 +269,5 @@ The Phase-1 stop-point is the most consequential. It can definitively kill the f
 
 ## Document History
 
-- **2026-04-26**: Initial design notes captured at project creation. Reflects the conversation reasoning leading to the three-phase plan, the weak-prior framing of pre-registered hypotheses, and the rejection of alternative atlas framings.
+- **2026-04-26 (v1)**: Initial design notes captured at project creation. Reflects the conversation reasoning leading to the three-phase plan, the weak-prior framing of pre-registered hypotheses, and the rejection of alternative atlas framings.
+- **2026-04-26 (v2)**: Added v2 Revision Trace section documenting the changes prompted by `PLAN_REVIEW_1.md` and `ADVERSARIAL_PLAN_REVIEW_1.md`. Most consequential change: Producer × Participation reframe at deep ranks. Within-species genome sampling strategy added in response to a user interjection during v2 drafting.
