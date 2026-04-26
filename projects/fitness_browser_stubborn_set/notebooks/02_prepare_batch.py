@@ -52,6 +52,32 @@ def load_already_judged(verdicts_path: Path) -> set:
     return judged
 
 
+def load_in_flight(batches_dir: Path, current_batch_id: str) -> set:
+    """Return set of (orgId, locusId) tuples already claimed by other batch manifests.
+
+    Lets multiple batches be prepared in a loop without re-picking the same genes.
+    Skips the current batch's own manifest so re-runs are idempotent.
+    """
+    claimed = set()
+    if not batches_dir.exists():
+        return claimed
+    for batch in sorted(batches_dir.iterdir()):
+        if not batch.is_dir():
+            continue
+        if batch.name == f"batch_{current_batch_id}":
+            continue
+        manifest = batch / "manifest.csv"
+        if not manifest.exists():
+            continue
+        try:
+            m = pd.read_csv(manifest)
+        except Exception:
+            continue
+        for _, r in m.iterrows():
+            claimed.add((r["orgId"], r["locusId"]))
+    return claimed
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--batch-id", required=True, help="e.g. 001 or 001-A or R01")
@@ -75,8 +101,11 @@ def main() -> None:
 
     ranked = pd.read_parquet(ranked_path).sort_values("rank")
     already = load_already_judged(verdicts_path)
+    in_flight = load_in_flight(BATCHES_DIR, args.batch_id)
+    skip = already | in_flight
     print(f"Ranked file:  {ranked_path.name} ({len(ranked):,} rows)", file=sys.stderr)
-    print(f"Verdicts file: {verdicts_path.name} ({len(already)} already-judged)", file=sys.stderr)
+    print(f"Verdicts file: {verdicts_path.name} ({len(already)} already-judged, "
+          f"{len(in_flight)} in-flight in other manifests)", file=sys.stderr)
 
     batch_dir = BATCHES_DIR / f"batch_{args.batch_id}"
     batch_dir.mkdir(parents=True, exist_ok=True)
@@ -85,7 +114,7 @@ def main() -> None:
     candidates = ranked[ranked["rank"] >= args.start_rank].copy()
     candidates = candidates[
         ~candidates.apply(
-            lambda r: (r["orgId"], r["locusId"]) in already, axis=1
+            lambda r: (r["orgId"], r["locusId"]) in skip, axis=1
         )
     ]
     chosen = candidates.head(args.n)

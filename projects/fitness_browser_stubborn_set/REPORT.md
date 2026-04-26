@@ -174,3 +174,125 @@ Subagents fetch full PMC text via the PubMed MCP for the most relevant 1-2 paper
 ## Authors
 
 - **Paramvir S. Dehal** (ORCID: [0000-0001-5810-2497](https://orcid.org/0000-0001-5810-2497)) — Lawrence Berkeley National Laboratory
+
+---
+
+# Phase 2 — Negative & Positive Training Set Construction (random sample + Codex cross-check)
+
+> **Status (April 2026):** Phase 2 walked 4,600 randomly sampled non-reannotated genes, applied two-LLM agreement (Claude + Codex with full-text paper summaries) to harden the verdicts, and produced training-ready JSONL artifacts for a downstream gene-function annotation agent.
+
+## Motivation
+
+The Phase 1 priority queue (top of `(in_specificphenotype DESC, max_abs_fit*max_abs_t DESC)`) is biased toward easy cases — strong, specific, high-confidence phenotypes. To train an agent that can learn **when not to update an annotation**, we needed two artifacts:
+
+1. **Negative training set**: genes with strong evidence signal but no defensible specific name (the "recalcitrant" class).
+2. **Positive training set**: genes whose existing annotation is supported by the evidence (the "already_correctly_named" class), especially the high-confidence subset where the name is clearly correct.
+
+The priority queue would over-represent improvable genes; a random sample better mirrors the distribution the agent will encounter in production.
+
+## Random sample track
+
+`01b_sample_random_genes.py` draws a fixed-seed (`20260425`) uniform random sample of **5,000 genes** from `ranked_genes.parquet`. Sampled genes are written to `data/random_sample_genes.parquet` and walked through the same dossier → subagent → verdict pipeline as Phase 1, with batches prefixed `batch_R*` (vs `batch_B*` for the priority queue).
+
+### Walk results (n = 4,600 of 5,000 sampled genes; 184 batches)
+
+| Verdict | n | % |
+|---|---:|---:|
+| already_correctly_named | 1,828 | 39.7% |
+| recalcitrant | **1,220** | **26.5%** |
+| improvable_correction | 726 | 15.8% |
+| improvable_new | 826 | 18.0% |
+
+The recalcitrant rate at random sampling (26.5%) is **~3× higher** than at the priority-queue top (~10%), confirming that priority-queue selection biases toward improvable cases.
+
+### Codex paper summarization (the manuscript-summaries.tsv pipeline)
+
+To re-run the verdicts with literature in hand — and to produce evidence in the format the downstream gene-function agent ingests — we generated per-(geneId, paper) summaries for every PaperBLAST DIAMOND homolog of every recalcitrant gene plus a 500-gene high-confidence positive subset.
+
+```
+06_build_paper_tasks.py     → (pmId, [gene_identifiers]) tasks for the recalcitrant set
+07_fetch_pmc.py             → NCBI E-utilities efetch → cached PMC XML (1,631 papers in PMC)
+08_run_codex_summarize.sh   → per-paper Codex (gpt-5.5) call w/ summarizer prompt
+                              → per-gene summary in TSV (manuscript_id, source_type, gene_identifier, summary)
+09_run_all_codex.sh         → parallel xargs (P=12) over all cached papers
+10_concat_summaries.py      → final manuscript-summaries.tsv (4-col agent schema)
+
+15_build_positive_paper_tasks.py → 500 high-conf already_correctly_named positive subset
+                                   → 3,353 unique papers, 5,015 (geneId, pmId) pairs
+                                   → re-run 07/08/09 with SUM_DIR override
+```
+
+Key design choices:
+- Summarizer prompt matches the gene-function agent's `summarizer_prompt` verbatim (4-col TSV output keyed on `(manuscript_id, gene_identifier)`).
+- Codex CLI invocation uses `--ephemeral --sandbox workspace-write` (matches `/review` skill pattern) to avoid session-state errors.
+- Two Codex CLI binaries supported via `CODEX_BIN` env var: personal account (`codex`) for the recalcitrant pass, enterprise (`codex-work`) for the positive pass.
+- PMC cache is shared across both passes (papers can appear in both sets).
+- Oversized papers (>700KB XML) hit Codex's 1MB context limit; resolved by truncating the XML head to ~300KB.
+
+### Final summary corpus
+
+| Metric | Recalcitrant pass | Positive pass | **Combined** |
+|---|---:|---:|---:|
+| Genes targeted | 1,220 | 500 | 1,720 |
+| Papers requested | 1,804 | 3,353 | 5,157 |
+| PMC XMLs cached | 1,631 (90%) | 3,001 (89%) | 4,632 |
+| Per-paper Codex TSVs written | 1,631 | 3,000 | 4,631 |
+| Non-null summaries (after concat + dedup) | — | — | **4,803** |
+| Final `data/manuscript-summaries.tsv` | — | — | **4.0 MB** |
+
+## Codex cross-check (two-LLM agreement on the recalcitrant set)
+
+The 1,220 Claude-recalcitrant verdicts were re-classified by Codex (`gpt-5.5`) given an **augmented dossier**: the original 8-layer evidence dossier **plus** the per-paper PaperBLAST literature summaries we just generated.
+
+```
+12_build_codex_xcheck_batches.py  → 49 batches × 25 augmented dossiers = data/codex_xcheck/batch_X*/input.md
+13_run_codex_xcheck.sh            → per-batch codex exec → output.jsonl (25 verdicts)
+14_run_all_xcheck.sh              → parallel xargs (P=12) over all 49 batches
+```
+
+### Cross-check results
+
+Of 1,220 Claude-recalcitrants, Codex (with literature in hand) said:
+
+| Codex verdict | n | % |
+|---|---:|---:|
+| **recalcitrant** (✓ both agree → final negative set) | **755** | **61.9%** |
+| already_correctly_named (Codex says existing name is fine) | 225 | 18.4% |
+| improvable_new (Codex named it from summaries) | 171 | 14.0% |
+| improvable_correction (Codex says fix the name) | 69 | 5.7% |
+
+**By Claude confidence at intake:**
+
+| Claude conf | survived | total | survival % |
+|---|---:|---:|---:|
+| high | 445 | 535 | **83%** |
+| low | 111 | 187 | 59% |
+| medium | 199 | 498 | 40% |
+
+Claude's *high*-confidence recalcitrants survived best (83%). Codex sees the augmented dossier and most often flips Claude's medium-confidence calls — exactly where two-LLM agreement adds the most signal.
+
+## Final training artifacts
+
+| File | Purpose | Rows | Schema |
+|---|---|---:|---|
+| `data/training_recalcitrant_final.jsonl` | Negative training set (Claude ∩ Codex agree recalcitrant) | **755** | orgId, locusId, Claude verdict + rationale, Codex verdict + rationale |
+| `data/training_recalcitrant.jsonl` | Pre-cross-check version (with full dossier_md + paperblast_hits + per-paper summaries inlined) | 1,220 | full evidence record per gene |
+| `data/manuscript-summaries.tsv` | Per-(paper, gene_identifier) summaries — the format the downstream agent ingests | **4,803** | manuscript_id, source_type, gene_identifier, summary |
+| `data/positive_sample_500.jsonl` | The 500 high-confidence already_correctly_named genes selected for the positive set | 500 | full Claude verdict + rationale |
+| `data/codex_summaries/` + `data/codex_summaries_positive/` | Per-paper Codex outputs (one TSV per pmId) + cached PMC XMLs | — | per-paper |
+| `data/codex_xcheck/batch_X*/output.jsonl` | Codex cross-check verdicts for all 1,220 recalcitrant | 1,220 | per-gene Codex verdict |
+
+### Negative-set quality breakdown (n = 755)
+
+| Sub-tier | n | Quality |
+|---|---:|---|
+| Both Claude & Codex high confidence | 204 | Gold-standard "I literally cannot pin this down" |
+| Has ≥1 real summary attached (literature available, both still recalcitrant) | 84 | Hardest negatives |
+| All summaries null but has DIAMOND hits | 89 | Homologs exist but uncharacterized |
+| Orphans (zero PaperBLAST hits) | 582 | Easy negatives ("nothing to look up") |
+
+## Outstanding work
+
+- Codex cross-check on the 500-gene positive set (xcheck batches not yet built/run).
+- Final positive training JSONL after Codex confirms / disconfirms each high-confidence already_correctly_named.
+- Stratified analysis of the 755 negatives by reason (insufficient evidence vs literature silent vs unusual phenotype).

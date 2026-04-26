@@ -1,0 +1,22 @@
+# Heavy Codex intermediates — regenerable from scripts + tasks.jsonl + NCBI efetch
+data/codex_summaries/pmc/
+data/codex_summaries_positive/pmc/
+
+# Per-paper log files (full Codex transcripts, multi-MB each, sometimes embedding the paper XML)
+data/codex_summaries/per_paper/*.log
+data/codex_summaries/per_paper/*.prompt.txt
+data/codex_summaries_positive/per_paper/*.log
+data/codex_summaries_positive/per_paper/*.prompt.txt
+
+# Cross-check intermediates
+data/codex_xcheck/batch_X*/log.txt
+data/codex_xcheck/batch_X*/prompt.txt
+data/codex_check/batch_C*/
+
+# Per-priority-batch intermediates that are too large
+data/batches/batch_*/prompt.txt
+
+# Plotting cache, etc.
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
