@@ -63,11 +63,11 @@ def add_code(source, cell_id, execute=True):
 # ═══════════════════════════════════════════════════════════════════
 add_md("""# NB14 — Deferred Statistical Controls
 
-**Goal**: Close phylogenetic control gaps (C1, C4) and execute DESIGN.md safeguards.
+**Goal**: Close phylogenetic control gaps (C1, C4) and execute RESEARCH_PLAN.md safeguards.
 
 - **C1 (partial)**: L1-regularized logistic regression with genus + genome size
 - **C4**: Genome size as covariate for 50 novel OGs
-- **DESIGN.md safeguards**: Sensitivity excluding top-3 species, label shuffling, COG1845 within Alphaproteobacteria
+- **RESEARCH_PLAN.md safeguards**: Sensitivity excluding top-3 species, label shuffling, COG1845 within Alphaproteobacteria
 - **I1**: GapMind prevalence-weighted complementarity re-test
 
 **Outputs**:
@@ -431,11 +431,11 @@ print(f'\\nSaved: {DATA}/genome_size_control.csv')"""
 add_code(gensize_code, "cell-gensize")
 
 # ═══════════════════════════════════════════════════════════════════
-# CELL 4: Sensitivity Analyses (DESIGN.md safeguards)
+# CELL 4: Sensitivity Analyses (RESEARCH_PLAN.md safeguards)
 # ═══════════════════════════════════════════════════════════════════
-add_md("""## 4. Sensitivity Analyses (DESIGN.md safeguards)
+add_md("""## 4. Sensitivity Analyses (RESEARCH_PLAN.md safeguards)
 
-Three deferred safeguards from DESIGN.md:
+Three deferred safeguards from RESEARCH_PLAN.md:
 1. **Exclude top-3 genome-rich species** per compartment → re-test H1 via PERMANOVA
 2. **Within-genus label shuffling** (1000 permutations) → compare to observed enrichments
 3. **COG1845 enrichment within Alphaproteobacteria** specifically (addresses M6)""", "cell-sensitivity-md")
