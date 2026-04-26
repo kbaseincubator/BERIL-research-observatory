@@ -342,7 +342,21 @@ The 42-gene strong-phenotype shortlist is the highest-value experimental cohort:
 
 Outputs: `data/negatives_stratified.tsv` (all 755) and `data/negatives_strong_targets.tsv` (42), produced by `notebooks/19_stratify_negatives.py`.
 
+## Distributable training set
+
+The clean, self-contained deliverable for downstream consumers (gene-function annotation agent training) lives in **[`data/training_set/`](data/training_set/)**:
+
+| File | Rows | Label |
+|---|---:|---|
+| `negatives.jsonl` | 755 | `recalcitrant` — both LLMs agree the gene cannot be annotated from current evidence |
+| `positives.jsonl` | 445 | `already_correctly_named` — both LLMs agree the existing FB annotation is correct |
+| `README.md` | — | Schema, category breakdown, usage notes, caveats |
+
+Each row carries Claude's verdict + rationale and Codex's verdict + rationale, plus (for negatives) `evidence_tier` and `strong_phenotype` so a consumer can filter without reading the project. See `data/training_set/README.md` — it is the intended entry point for anyone receiving this set in isolation.
+
 ## Outstanding work
 
-- Manual spot-check of the 55 positive disagreements (improvable_* / recalcitrant) — candidates to demote an existing FB name or promote Codex's alternative.
-- Wet-lab follow-up on the 42 strong-phenotype recalcitrants in `negatives_strong_targets.tsv`.
+See [TODO.md](TODO.md). Two open items:
+
+- Manual spot-check of the 55 positive disagreements (excluded from the distributable set).
+- Wet-lab analysis of the 42 strong-phenotype recalcitrants.
