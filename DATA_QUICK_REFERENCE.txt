@@ -1,0 +1,269 @@
+================================================================================
+BERIL RESEARCH OBSERVATORY - DATA QUICK REFERENCE (April 25, 2026)
+================================================================================
+
+PLANT MICROBIOME ECOTYPES - 73 CSV FILES, 873 MB TOTAL, 7.8M ROWS
+Location: /home/aparkin/BERIL-research-observatory/projects/plant_microbiome_ecotypes/data/
+
+Status: Phase 2b complete. All 8 hypotheses (H0-H7) have defensible verdicts;
+all five paired-adversarial-review issues closed (see REPORT.md §11 and
+docs/adversarial_review_2026-04-24.md).
+
+┌─ CORE REFERENCE DATASETS ────────────────────────────────────────────────────┐
+│                                                                              │
+│  genome_environment.csv          [65.9 MB]  293,059 rows                   │
+│  └─ Maps genomes → environment + plant-associated classification            │
+│                                                                              │
+│  cohort_assignments.csv           [3.0 MB]   25,660 rows (NB07 composite)   │
+│  └─ Phase 1 cohort: beneficial / neutral / pathogenic                       │
+│                                                                              │
+│  species_cohort_refined.csv       [2.5 MB]   25,660 rows (NB10 refined)     │
+│  └─ Phase 2 cohort: beneficial / pathogenic / dual-nature / neutral         │
+│  └─ Uses 17-marker plant-specific panel + KEGG module gating                │
+│  └─ NOTE: per Phase 2b validation, categorical labels are uninformative    │
+│           at species level — use continuous n_pgp_refined / n_pathogen_     │
+│           refined ratio for discrimination (Mann-Whitney p=0.027 on N=7+7)  │
+│                                                                              │
+│  hypothesis_verdicts_final.csv    [5.3 KB]    8 rows (canonical, NB15)      │
+│  └─ Final H0-H7 verdicts after Phase 2b corrections                        │
+│                                                                              │
+│  gapmind_plant_species.csv      [137.3 MB] 2.2M rows (metabolic pathways)   │
+│  └─ Species × pathway completeness (amino acids, carbon, cofactors)        │
+│                                                                              │
+│  bacdive_isolation.csv            [1.7 MB]   23,988 rows                   │
+│  └─ Curated isolation context (e.g., "Glycine max nodule")                 │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ FUNCTIONAL ANNOTATION DATASETS ─────────────────────────────────────────────┐
+│                                                                              │
+│  bakta_marker_hits.csv           [49.0 MB]  387,822 rows                   │
+│  └─ Phase 1 marker panel (91 markers) — bakta gene-name hits               │
+│                                                                              │
+│  interproscan_marker_hits.csv    [44.4 MB]  280,193 rows  (NB10)           │
+│  └─ Phase 2 InterProScan-based marker recovery                              │
+│  └─ Use this for T3SS/T4SS/T6SS — bakta_pfam_domains is unreliable         │
+│                                                                              │
+│  pfam_recovery_hits.csv           [1.5 MB]   19,364 rows  (NB13)           │
+│  └─ Recovered Pfam hits via LIKE query (versioned ID format)               │
+│                                                                              │
+│  pfam_bakta_ips_audit.csv         [0.7 KB]      22 rows  (NB13/Phase 2b)   │
+│  └─ Documents 12/22 marker Pfams silently missing from bakta_pfam_domains  │
+│  └─ See docs/pitfalls.md — important cross-project gotcha                  │
+│                                                                              │
+│  marker_gene_clusters.csv        [67.0 MB]  588,098 rows                   │
+│  └─ Full pangenome gene cluster membership                                  │
+│                                                                              │
+│  species_marker_matrix.csv        [5.2 MB]   25,660 rows                   │
+│  └─ Phase 1: species × 25 traits binary feature matrix                     │
+│                                                                              │
+│  species_marker_matrix_v2.csv     [2.3 MB]   25,660 rows  (NB10)           │
+│  └─ Phase 2 refined: species × 17 plant-specific traits + KEGG gating      │
+│                                                                              │
+│  genome_host_species.csv          [1.5 MB]   11,852 rows  (NB10)           │
+│  └─ Per-genome plant host assignments (rice, Arabidopsis, wheat, ...)      │
+│                                                                              │
+│  kegg_module_completeness.csv     [1.0 MB]   19,665 rows  (NB10)           │
+│  └─ KEGG module gene counts per species (used for T3SS gating, etc.)       │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ NOVEL-OG ANNOTATION (NB09) ─────────────────────────────────────────────────┐
+│                                                                              │
+│  novel_og_annotations.csv        [26.0 KB]      50 rows                    │
+│  └─ Aggregate per-OG annotations across all sources                         │
+│                                                                              │
+│  novel_og_eggnog_annotations.csv [275.5 MB] 1,206,652 rows                 │
+│  └─ Per-gene-cluster eggNOG annotations contributing to the 50 OGs         │
+│                                                                              │
+│  novel_og_bakta.csv              [681 KB]    12,580 rows                   │
+│  novel_og_interproscan.csv       [374 KB]     4,455 rows                   │
+│  novel_og_domains.csv            [383 KB]     4,455 rows                   │
+│  novel_og_go_terms.csv           [46.3 KB]    1,544 rows                   │
+│  novel_og_pathways.csv           [63.0 KB]    2,317 rows                   │
+│  └─ Per-OG functional annotations from each source                          │
+│                                                                              │
+│  top50_og_species.csv             [3.5 MB]   25,124 rows                   │
+│  └─ Species × 50 novel OGs presence/absence matrix                         │
+│                                                                              │
+│  enrichment_results.csv           [848 KB]    5,671 rows                   │
+│  └─ Genome-wide eggNOG OG enrichment (Phase 1 GWAS)                        │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ PHASE 2B STATISTICAL CONTROLS (Apr 24-25, 2026) ────────────────────────────┐
+│                                                                              │
+│  c1_cluster_robust.csv            [2.6 KB]    17 rows                      │
+│  └─ Cluster-robust GLM (cluster=genus) for 17 markers                      │
+│  └─ 8/14 markers significant at q<0.05 BH-FDR with proper Wald CIs         │
+│  └─ Replaces L1-bootstrap which had biased CIs near zero                   │
+│                                                                              │
+│  regularized_phylo_control.csv    [1.3 KB]    17 rows                      │
+│  └─ L1-regularized logit (Phase 2b draft, kept for comparison)             │
+│                                                                              │
+│  sensitivity_shuffle.csv          [1.2 KB]    15 rows                      │
+│  └─ Within-genus label shuffling — strictest species-level phylo null      │
+│  └─ 3/15 markers survive (N-fix, ACC deaminase, T3SS)                      │
+│                                                                              │
+│  genome_size_control.csv          [8.9 KB]    50 rows                      │
+│  └─ Real per-species genome-size + phylum control for novel OGs            │
+│  └─ 48/50 OGs survive at q<0.05 (cytochrome ox, Fe-S, ion transport)       │
+│                                                                              │
+│  h1_dbrda_results.csv             [0.2 KB]    1 row                        │
+│  h1_compartment_dispersions.csv   [0.2 KB]    3 rows                       │
+│  └─ PERMANOVA + PERMDISP + db-RDA for H1 location-vs-dispersion            │
+│  └─ Location-only R²=0.060 (84% of total); original 0.527 was an artifact  │
+│                                                                              │
+│  complementarity_v2.csv          [120 KB]    2,346 rows                    │
+│  └─ Prevalence-weighted GapMind complementarity                             │
+│  └─ |d|≈0.4 after correcting NB06's Cohen's d formula error                │
+│                                                                              │
+│  species_validation.csv           [2.3 KB]    18 rows                      │
+│  └─ Species-level validation against 18 model organisms                     │
+│  └─ Mann-Whitney p=0.027 on pathogen-ratio (continuous, not categorical)   │
+│                                                                              │
+│  subclade_full_scan.csv           [3.2 KB]    18 rows                      │
+│  └─ Full 65→18 species subclade × plant scan (item 19)                     │
+│  └─ 5/17 testable species pass Bonferroni-Fisher                           │
+│                                                                              │
+│  species_subclade_definitions_full.csv [216 KB] 2,414 rows                 │
+│  └─ Genome-level subclade assignments + MDS coords (18 species)            │
+│                                                                              │
+│  h6_host_subclade_full.csv        [2.6 KB]    18 rows                      │
+│  └─ Subclade × plant-host scan                                              │
+│  └─ 2/9 species robust: X. campestris × Brassica, X. vasicola × maize      │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ SUMMARY & AGGREGATION DATASETS ────────────────────────────────────────────┐
+│                                                                              │
+│  pangenome_stats.csv              [1.8 MB]   27,702 rows                   │
+│  └─ Pangenome "openness" = HGT burden indicator                             │
+│                                                                              │
+│  genus_dossiers.csv              [<0.1 MB]    30 rows                      │
+│  └─ Summarized genus phenotypes + marker lists                             │
+│                                                                              │
+│  complementarity_network.csv      [0.2 MB]    2,346 rows                   │
+│  └─ Genus-pair metabolic complementarity (NB06; superseded by v2 above)    │
+│                                                                              │
+│  genomic_architecture.csv         [2.5 KB]    23 rows                      │
+│  └─ Per-function genomic architecture summary (core/aux/singleton fracs)   │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ ECOLOGICAL VALIDATION DATASETS ────────────────────────────────────────────┐
+│                                                                              │
+│  nmdc_genus_abundance.csv         [2.2 MB]   49,279 rows                   │
+│  └─ Genus abundance in NMDC soil metagenomes (real-world validation)       │
+│                                                                              │
+│  nmdc_soil_file_ids.csv           [2.6 MB]   25,890 rows                   │
+│  └─ NMDC metagenome metadata (soil pH, organic matter, etc.)               │
+│                                                                              │
+│  species_compartment.csv          [2.5 MB]   26,511 rows                   │
+│  └─ Dominant ecological niche per species + compartment fractions          │
+│                                                                              │
+│  bacdive_metabolites_genera.csv   [3.9 MB]  137,599 rows                   │
+│  └─ Genus-level phenotypic traits (compound utilization)                   │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌─ MGNIFY CROSS-VALIDATION (NB11) ─────────────────────────────────────────────┐
+│                                                                              │
+│  mgnify_pangenome_bridge.csv     [854 KB]   20,473 rows                    │
+│  └─ MGnify species → GTDB taxonomy bridge                                   │
+│                                                                              │
+│  mgnify_host_specificity.csv      [16 KB]      265 rows                    │
+│  └─ Genus × rhizosphere biome presence (tomato/maize/barley/soil)          │
+│                                                                              │
+│  mgnify_mobilome.csv             [928 KB]   17,323 rows                    │
+│  └─ Mobile element annotations (IS, plasmid, prophage, viral)              │
+│                                                                              │
+│  mgnify_bgc_profiles.csv         [253 KB]    8,089 rows                    │
+│  └─ Biosynthetic gene cluster profiles by genus (NRP/PKS/etc.)             │
+│                                                                              │
+│  mgnify_kegg_biome_profiles.csv   [77 KB]    2,630 rows                    │
+│  mgnify_rhizo_vs_soil_cog.csv    [2.6 KB]       96 rows                    │
+│  mgnify_soil_bgc_summary.csv     [610 KB]   13,584 rows                    │
+│  └─ Cross-biome KEGG/COG/BGC summaries                                      │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+KEY JOINING COLUMNS:
+────────────────────
+  gtdb_species_clade_id    ← Universal species identifier (most tables)
+  genome_id                ← Genome-level data (genome_environment.csv, etc.)
+  genus                    ← Genus name (cohort_assignments.csv, etc.)
+  file_id                  ← NMDC metagenome sample ID
+  og_id                    ← eggNOG OG / COG identifier (novel_og_*, top50_og_species)
+
+
+PHASE 2B HEADLINE VERDICTS (see hypothesis_verdicts_final.csv):
+──────────────────────────────────────────────────────────────
+  H0  Partially rejected (3-tier: 3 species-level, 5 cassette, 6 not robust)
+  H1  Weakly supported (db-RDA R²=0.060; original 0.527 was a sampling artifact)
+  H2  Supported (PGP genes 64.6% core vs pathogenic 45.2%, p=3.4e-125)
+  H3  Not supported (small redundancy |d|≈0.4)
+  H4  Partially supported (mobilome enriched in plant genera, p=1.5e-5)
+  H5  Supported (48/50 plant-enriched OGs survive real per-species control)
+  H6  Supported in 2 species (X. campestris × Brassica, X. vasicola × maize)
+  H7  Weakly supported (5/17 testable species; 47/65 lack phylo trees)
+
+
+CROSS-PROJECT REUSABLE DATA:
+────────────────────────────
+  conservation_vs_fitness/data/fb_pangenome_link.tsv  [22 MB]
+    → Pangenome ↔ fitness browser linkage for ~30 organisms
+
+  functional_dark_matter/data/*.tsv  [145 MB]
+    → Uncharacterized ortholog biogeography
+
+  cf_formulation_design/data/asma_pa_virulence_profiles.tsv  [35 MB]
+    → Pseudomonas virulence marker validation
+
+  prophage_ecology/data/enriched_lineages.tsv  [1.4 GB]
+    → Defense system integration
+
+  phb_granule_ecology/data/nmdc_phb_prevalence.tsv  [38 MB]
+    → Stress tolerance marker data
+
+
+DATA USAGE RECOMMENDATIONS:
+──────────────────────────
+1. START WITH:  species_cohort_refined.csv + genome_environment.csv
+   (refined Phase 2 cohort labels; 25k species × environment)
+
+2. CHECK VERDICTS:  hypothesis_verdicts_final.csv
+   (canonical post-Phase-2b state for all 8 hypotheses)
+
+3. ADD METABOLIC:  gapmind_plant_species.csv
+   (filter by gtdb_species_clade_id first; 137 MB unfiltered)
+
+4. ADD ABUNDANCE:  nmdc_genus_abundance.csv
+   (validate predictions in real soil samples)
+
+5. ADD NETWORKS:  complementarity_v2.csv  (NOT complementarity_network.csv,
+   which has the Cohen's d formula error — see REPORT §11 "Prevalence-
+   weighted GapMind complementarity")
+
+
+QUICK FILE ACCESS:
+──────────────────
+python -c "import pandas as pd; df = pd.read_csv('/home/aparkin/BERIL-research-observatory/projects/plant_microbiome_ecotypes/data/species_cohort_refined.csv'); print(df.head()); print(df.shape)"
+
+python -c "import pandas as pd; df = pd.read_csv('/home/aparkin/BERIL-research-observatory/projects/plant_microbiome_ecotypes/data/hypothesis_verdicts_final.csv'); print(df[['id','final_verdict']].to_string(index=False))"
+
+
+STATUS:
+───────
+✓ plant_microbiome_ecotypes: 73 files ready, 873 MB, Phase 2b complete
+✓ Cross-project validation datasets available
+✓ All paired-adversarial-review issues closed (see docs/adversarial_review_2026-04-24.md)
+
+
+DOCUMENTATION:
+───────────────
+Full details         → /home/aparkin/BERIL-research-observatory/DATA_INVENTORY.md
+Project synthesis    → projects/plant_microbiome_ecotypes/REPORT.md (esp. §11)
+Pitfalls captured    → projects/plant_microbiome_ecotypes/docs/pitfalls.md
+
+================================================================================

@@ -1,0 +1,14 @@
+[project]
+name = "beril-cli"
+version = "0.1.0"
+description = "BERIL Research Observatory — CLI launcher and environment manager"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = []
+
+[project.scripts]
+beril = "beril_cli.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
