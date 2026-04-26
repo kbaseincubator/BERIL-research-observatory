@@ -8,7 +8,9 @@ Across the prokaryotic tree (GTDB r214; 293,059 genomes / 27,690 species), do cl
 
 ## Status
 
-In Progress — research plan v2 and design notes v2 written (post-review synthesis); awaiting Phase 1A pilot data extraction.
+**Phase 1A complete (2026-04-26): `PASS_WITH_REVISION`.** Methodology validated on a 1,000-species × 1,200-UniRef50 pilot. Producer null is responsive (natural_expansion class +0.13 → +0.55 σ across 5 ranks); negative controls behave biologically correctly (dosage-constrained → negative producer z); Alm 2006 reproduction at UniRef50 deferred to Phases 2/3 per v2 plan substrate hierarchy. Four methodology revisions (M1–M4) documented for Phase 1B. See [REPORT.md](REPORT.md) for the Phase 1A milestone report and [data/p1a_phase_gate_summary.md](data/p1a_phase_gate_summary.md) for the formal gate decision.
+
+**Phases 1B–4 in planning.**
 
 ## Overview
 
@@ -30,7 +32,8 @@ Total budget ~17 agent-weeks with four natural stop-points (Phase 1A pilot, Phas
 
 - [Research Plan](RESEARCH_PLAN.md) — operational plan: phases, axis positions, hypotheses, query strategy
 - [Design Notes](DESIGN_NOTES.md) — design record: critique of the brief, through-line argument, rejected alternatives, weak-prior acknowledgement
-- [Report](REPORT.md) — *(to be written at Phase 4 synthesis)*
+- [Report](REPORT.md) — Phase 1A milestone report; will expand as Phases 1B–4 land
+- [Phase 1A Gate Summary](data/p1a_phase_gate_summary.md) — formal Phase 1A → 1B gate decision with M1–M4 revisions
 
 ## Reproduction
 
