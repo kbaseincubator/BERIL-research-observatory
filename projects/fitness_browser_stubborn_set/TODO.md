@@ -10,3 +10,4 @@
 
 - Continue the random walk past 4,600 to grow the training set (~95% of the 137K queue is still untouched).
 - Re-run the cross-check after a future PaperBLAST refresh to detect "newly resolvable" negatives.
+- **Semantic recall@name analysis** on the calibration set. Token-set Jaccard ≥0.5 misses many semantically-equivalent name pairs (e.g. "Histidinol-phosphatase (EC:3.1.3.15)" vs "histidinol-phosphate phosphatase"). Run an LLM judge or sentence-embedding similarity on the 621 Claude `right_type_wrong_name` rows in `data/reann_calibration.tsv` to estimate the true semantic recall@name; expected to lift the headline 15.5% to >25%.
