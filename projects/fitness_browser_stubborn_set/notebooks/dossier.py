@@ -126,7 +126,7 @@ def categorise_desc(desc: str) -> str:
     return "named_other"
 
 
-def build_dossier(orgId: str, locusId: str) -> dict[str, Any]:
+def build_dossier(orgId: str, locusId: str, desc_override: str | None = None) -> dict[str, Any]:
     """Pull a full evidence dossier for one gene."""
     ev = load_evidence()
     key = (orgId, locusId)
@@ -293,10 +293,11 @@ def build_dossier(orgId: str, locusId: str) -> dict[str, Any]:
         "queue": queue_info,
         "annotation": {
             "gene_symbol": _clean(feat.get("gene_symbol")),
-            "gene_desc": _clean(feat.get("gene_desc")),
+            "gene_desc": desc_override if desc_override is not None else _clean(feat.get("gene_desc")),
             # features parquet does not carry annotation_category; derive on the fly
-            "category": _clean(feat.get("annotation_category"))
-                        or categorise_desc(_clean(feat.get("gene_desc"))),
+            "category": categorise_desc(desc_override) if desc_override is not None
+                        else (_clean(feat.get("annotation_category"))
+                              or categorise_desc(_clean(feat.get("gene_desc")))),
         },
         "primary": {
             "in_specificphenotype": int(feat.get("in_specificphenotype", 0)),
