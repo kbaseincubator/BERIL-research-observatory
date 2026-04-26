@@ -3,7 +3,7 @@
   "target_n_species": 1000,
   "target_n_uniref50": 1000,
   "phylum_floor": 5,
-  "timestamp_utc": "2026-04-26T20:56:22Z",
+  "timestamp_utc": "2026-04-26T21:27:08Z",
   "n_bacteria_species_total": 26525,
   "n_phyla": 125,
   "n_species_after_quality_filter": 18989,
@@ -103,6 +103,11 @@
     "neg_rnap_core": 770
   },
   "control_cap_per_class": 200,
+  "natural_expansion_cap": 200,
+  "natural_min_paralog": 3,
+  "natural_min_species": 5,
+  "n_natural_expansion_pool": 5537,
+  "n_natural_expansion_after_dedup": 5239,
   "control_sampled_class_counts": {
     "neg_ribosomal": 200,
     "neg_rnap_core": 200,
@@ -110,22 +115,33 @@
     "pos_amr": 200,
     "pos_tcs_hk": 200
   },
-  "n_pilot_uniref50": 1000,
+  "n_natural_expansion_sampled": 200,
+  "n_pilot_uniref50": 1200,
   "pilot_uniref50_class_counts": {
     "neg_ribosomal": 200,
     "neg_rnap_core": 200,
     "neg_trna_synth": 200,
     "pos_amr": 200,
-    "pos_tcs_hk": 200
+    "pos_tcs_hk": 200,
+    "natural_expansion": 200
   },
   "preflight_coverage": [
     {
+      "control_class": "natural_expansion",
+      "n_species_pool": 0,
+      "n_species_sampled": 736,
+      "n_pilot_species": 1000,
+      "pool_coverage_fraction": 0.0,
+      "sampled_coverage_fraction": 0.736,
+      "pool_passes_80pct": false
+    },
+    {
       "control_class": "neg_ribosomal",
       "n_species_pool": 1000,
-      "n_species_sampled": 785,
+      "n_species_sampled": 732,
       "n_pilot_species": 1000,
       "pool_coverage_fraction": 1.0,
-      "sampled_coverage_fraction": 0.785,
+      "sampled_coverage_fraction": 0.732,
       "pool_passes_80pct": true
     },
     {
@@ -140,31 +156,31 @@
     {
       "control_class": "neg_trna_synth",
       "n_species_pool": 1000,
-      "n_species_sampled": 501,
+      "n_species_sampled": 559,
       "n_pilot_species": 1000,
       "pool_coverage_fraction": 1.0,
-      "sampled_coverage_fraction": 0.501,
+      "sampled_coverage_fraction": 0.559,
       "pool_passes_80pct": true
     },
     {
       "control_class": "pos_amr",
       "n_species_pool": 688,
-      "n_species_sampled": 325,
+      "n_species_sampled": 331,
       "n_pilot_species": 1000,
       "pool_coverage_fraction": 0.688,
-      "sampled_coverage_fraction": 0.325,
+      "sampled_coverage_fraction": 0.331,
       "pool_passes_80pct": false
     },
     {
       "control_class": "pos_tcs_hk",
       "n_species_pool": 996,
-      "n_species_sampled": 232,
+      "n_species_sampled": 264,
       "n_pilot_species": 1000,
       "pool_coverage_fraction": 0.996,
-      "sampled_coverage_fraction": 0.232,
+      "sampled_coverage_fraction": 0.264,
       "pool_passes_80pct": true
     }
   ],
-  "n_extract_rows": 4084,
-  "completed_utc": "2026-04-26T21:04:31Z"
+  "n_extract_rows": 6638,
+  "completed_utc": "2026-04-26T21:33:35Z"
 }
