@@ -28,6 +28,14 @@ Literature cited in `RESEARCH_PLAN.md`, `DESIGN_NOTES.md`, and `REPORT.md` to da
 
   *Project context*: HGT bias toward specific function classes; informs the Phase 2 regulatory-vs-metabolic test design.
 
+- **Sichert, A., Cordero, O.X. (2021).** "Polysaccharide-Bacteria Interactions From the Lens of Evolutionary Ecology." *Frontiers in Microbiology* 12:705082. doi:10.3389/fmicb.2021.705082. PMC8531407.
+
+  *Project context*: surfaced by `ADVERSARIAL_REVIEW_1.md` bio-claim verification (added in v2.3). Reviews polysaccharide degradation system distribution: most systems exhibit taxonomic clustering at the family level, but cross-phylum HGT is documented for specific substrate specializations. **Phase 1B Bacteroidota PUL hypothesis context**: PUL CAZymes are the canonical example of family-level clustering with documented cross-phylum HGT to gut Firmicutes (Smillie 2011, supported by Sichert & Cordero 2021). This is the literature anchor for the Phase 1B pre-registered hypothesis (Bacteroidota → Innovator-Exchange on PUL CAZymes).
+
+- **Bonomo, R.A. (2017).** "β-Lactamases: a focus on current challenges." *Cold Spring Harbor Perspectives in Medicine* 7(1):a025239.
+
+  *Project context*: documents cross-phylum spread of β-lactamase families (TEM, CTX-M, NDM, OXA-48). Phase 1B HIGH 1: these families anchor the known-HGT positive control set for the consumer null.
+
 ### Mechanism of family expansion
 
 - **Treangen, T.J., Rocha, E.P.C. (2011).** "Horizontal transfer, not duplication, drives the expansion of protein families in prokaryotes." *PLoS Genetics* 7(1):e1001284. doi:10.1371/journal.pgen.1001284. PMC3029252.

@@ -165,10 +165,13 @@ Each phase produces a publishable artifact. Phase 1 alone, if structure is absen
 2. `02_p1a_null_model_construction.ipynb` — implement producer null + consumer null; calibrate on pilot subset; report null distributions
 3. `03_p1a_pilot_atlas.ipynb` — compute pilot clade × UniRef50 scores; control validation; Alm 2006 TCS pilot back-test
 4. `04_p1a_pilot_gate.ipynb` — Phase 1A → Phase 1B gate decision; null-model recalibration if needed
+4b. `04b_p1a_review_response.ipynb` — *(post-review appendix; addresses adversarial C3 + I2)* reproducibly compute raw paralog-count effect sizes per (rank, class) and Alm 2006 power analysis at pilot scale. Outputs feed REPORT.md v1.1 review-response section.
 5. `05_p1b_full_data_extraction.ipynb` — full GTDB-rep extraction (conditional on Phase 1A pass)
 6. `06_p1b_full_atlas.ipynb` — full clade × UniRef50 scores; KO-projection rail; rarefaction sensitivity
 7. `07_p1b_bacteroidota_pul_test.ipynb` — pre-registered hypothesis verdict
 8. `08_p1b_phase_gate.ipynb` — Phase 1B → Phase 2 gate decision
+
+*Numbering note*: 04b is a Phase 1A appendix iteration following the BERIL convention for in-phase sub-iterations (precedent: `ibd_phage_targeting`'s NB04b–h adversarial-review rescue cycle). Phase 1B numbering starts at NB05 as planned.
 
 ### Phase 1 Effort
 **Phase 1A pilot ~1 week + Phase 1B full ~4 weeks = ~5 weeks total.** The pilot adds 1 week to v1's 4-week budget; this is purchased insurance against the failure mode (computational issues masquerading as biological absence).
@@ -636,6 +639,36 @@ The v2 detection takes the **union** of eggNOG-name and InterProScan-accession p
 ## Revision History
 
 - **v1** (2026-04-26): Initial plan. Three-phase forced-order atlas; pre-registered hypotheses with weak-prior calibration; design reasoning captured separately in DESIGN_NOTES.md.
+
+- **v2.3** (2026-04-26, post-Phase-1A review synthesis): synthesized `REVIEW_1.md` (claude standard) and `ADVERSARIAL_REVIEW_1.md` (claude adversarial). Standard reviewer was uniformly positive (0 critical, 0 important, 6 forward-looking suggestions); adversarial reviewer flagged 3 critical + 4 important gaps. Five HIGH revisions baked into Phase 1B from this point forward, plus four MEDIUM items deferred with explicit roadmap:
+
+  - **HIGH 1: Known-HGT positive control set for consumer null** (addresses adversarial C2). The producer null is validated by `natural_expansion`. The consumer null lacks an analogous positive control: AMR was supposed to be it but the parent-phylum anchor masks intra-phylum HGT (M1 acknowledges). **Phase 1B adds** a known-cross-phylum-HGT positive control set:
+    - **β-lactamase families with documented cross-phylum spread** — `bla_TEM`, `bla_CTX-M`, `bla_NDM`, `bla_OXA-48` family Pfams (e.g., PF00144, PF13354), known to spread Pseudomonadota ↔ Bacillota via plasmids (literature: Forsberg 2012; Bonomo 2017).
+    - **Class-I CRISPR-Cas systems** — Cas3 family (PF18557), Cas7 family (PF09704), Cas8a (PF09827) — Metcalf et al 2014 documented cross-tree-of-life HGT for these.
+    Phase 1B's NB02 equivalent validates the consumer null can detect positive z (cross-phylum dispersion above null) for these classes at the appropriate ranks.
+
+  - **HIGH 2: Raw paralog-count effect sizes alongside z-scores** (addresses adversarial C3). All Phase 1B atlas tables in REPORT.md must include raw paralog count means, cohort means, raw differences, and percent-above-cohort alongside z-scores. Phase 1A REPORT v1.1 retroactively adds these; Phase 1B uses them as standard.
+
+  - **HIGH 3: PIC (phylogenetic independent contrasts) mandatory at Phase 1B** (addresses adversarial I1). Plan v2 listed PIC as a Phase 2 optional sensitivity test. **Plan v2.3 promotes PIC to Phase 1B mandatory** for both producer and consumer score reporting. Without PIC, species within clades are pseudo-replicated, and family/order/class/phylum-level statistics conflate genuine functional signal with shared evolutionary history. Implementation: per-(rank, function-class) producer-z and consumer-z reported with PIC-corrected variance estimates using GTDB rank scaffold as the contrast tree.
+
+  - **HIGH 4: Alm 2006 power analysis confirms substrate-hierarchy claim** (addresses adversarial I2). Phase 1A pilot has 81–99% power to detect a medium Alm 2006 effect (d=0.3) at all ranks except genus (where n=73 gives 81% power). At UniRef50, observed TCS HK z is *negative* (mean −0.20) — opposite of Alm 2006's positive paralog expansion. **The negative result is genuine substrate-hierarchy, not underpowering.** This empirically validates the v2 plan's Phase 2 (KO) / Phase 3 (Pfam architecture) substrate-hierarchy for Alm 2006 reproduction.
+
+  - **HIGH 5: M2 sharpening** (addresses adversarial I3). The pre-registered v2 negative-control criterion ("mean producer z within ±1σ of 0") was a pre-registration omission, not a target redefinition. The biological prior (dosage-constrained genes have *fewer* paralogs than typical genes at matched prevalence; Andersson 2009; Bratlie 2010) was correctly anticipated; its quantitative consequence (negative producer z, not zero) was not encoded into the criterion. **Phase 1B pre-registers the corrected expectation**: ribosomal / tRNA-synth / RNAP core controls show producer z significantly below 0 *and* CI not crossing strongly-positive territory.
+
+  Plus four MEDIUM revisions deferred to Phase 1B / 2 plan documents:
+
+  - **MEDIUM 6: Hierarchical multiple-testing implementation details** — BH-FDR variant + effective-N within KEGG BRITE × GTDB family clusters (addresses standard suggestion #4 + adversarial C1).
+  - **MEDIUM 7: Compute resource specification per phase** — memory + runtime + storage (addresses standard suggestion #2 + adversarial S2).
+  - **MEDIUM 8: Phase 2 mid-pilot KO-level validation step** before Phase 3 architectural deep-dive (addresses standard suggestion #3).
+  - **MEDIUM 9: Uncertainty propagation strategy for Phase 4 cross-resolution synthesis, documented in advance** (addresses standard suggestion #4).
+  - **MEDIUM 10: Cite Sichert & Cordero (2021) in references.md** for Phase 1B Bacteroidota PUL literature context.
+
+  Three adversarial critiques are not adopted as written, with reasoning documented in `REPORT.md` "Pushbacks":
+  - **C1 framing as "rendering meaningful discoveries impossible"** — overcalled given the hierarchical strategy in plan v2.1.
+  - **I4 "Substrate switching invalidates v1"** — v1 was iterated, not shipped. v2 IS the milestone.
+  - **H2 "Central project hypothesis unsupported"** — DESIGN_NOTES.md v1's weak-prior framing addresses this; reviewer didn't credit it.
+
+  Full review-synthesis narrative in `DESIGN_NOTES.md` v2.2 update.
 
 - **v2.2** (2026-04-26, post-Phase-1A staging alignment): Phase 1A completed with verdict `PASS_WITH_REVISION`. Four methodology revisions (M1–M4) baked into Phase 1B from this point forward:
 

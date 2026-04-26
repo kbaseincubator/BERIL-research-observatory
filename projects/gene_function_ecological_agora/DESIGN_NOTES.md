@@ -272,4 +272,41 @@ This section documents how each v2 revision was raised, what it changed, and wha
 - **2026-04-26 (v1)**: Initial design notes captured at project creation. Reflects the conversation reasoning leading to the three-phase plan, the weak-prior framing of pre-registered hypotheses, and the rejection of alternative atlas framings.
 - **2026-04-26 (v2)**: Added v2 Revision Trace section documenting the changes prompted by `PLAN_REVIEW_1.md` and `ADVERSARIAL_PLAN_REVIEW_1.md`. Most consequential change: Producer × Participation reframe at deep ranks. Within-species genome sampling strategy added in response to a user interjection during v2 drafting.
 
+- **2026-04-26 (v2.2 — Phase 1A staging alignment + post-review synthesis)**: Two related sub-revisions in this round.
+
+  **Sub-revision a — Phase 1A staging alignment** (after Phase 1A NB01–04 complete, gate verdict `PASS_WITH_REVISION`): RESEARCH_PLAN.md v2.2 captures the four methodology revisions (M1: rank-stratified parent ranks; M2: revised negative-control criterion; M3: Alm 2006 reproduction confirmed deferred; M4: paralog fallback acceptable) baked into Phase 1B. README.md status updates to "Phase 1A complete." REPORT.md v1.0 written as a Phase 1A milestone — *not* the full project synthesis (Phases 1B–4 still in planning). references.md created.
+
+  **Sub-revision b — Post-review synthesis** (after `REVIEW_1.md` + `ADVERSARIAL_REVIEW_1.md` landed): synthesized two reviews that diverged sharply on the project's quality. Standard claude reviewer was uniformly positive ("exceptionally well-designed"; 0 critical, 0 important, 6 forward-looking suggestions). Adversarial reviewer flagged 3 critical + 4 important gaps. The divergence is the canonical pattern documented in this BERIL install's memory: "standard reviewer is over-optimistic on structural issues; adversarial catches what standard misses."
+
+  **What the adversarial review caught that the standard missed**:
+  - **C2: Consumer null lacks a positive control.** The producer null is validated by `natural_expansion`. The consumer null has no equivalent. AMR was meant to be it but parent-phylum anchor masks intra-phylum HGT. *Real gap; addressed by Phase 1B HIGH 1: known-cross-phylum-HGT positive control set (β-lactamase families with documented cross-phylum spread + class-I CRISPR-Cas).*
+  - **C3: Effect sizes on biologically meaningful scales absent.** Z-scores reported; raw paralog count differences not. *Real gap; addressed by retroactively adding raw paralog count effect sizes to REPORT.md v1.1 (NB04b reproducibly computes them: natural_expansion at phylum is +39.5% above cohort; negative controls 11–16% below cohort; TCS HK 18% below — opposite direction from Alm 2006).*
+  - **I1: Pseudoreplication / phylogenetic correlation.** Species within clades not independent. *Real gap; addressed by Phase 1B HIGH 3: PIC mandatory at Phase 1B (was Phase 2 optional sensitivity).*
+  - **I2: Power analysis for the Alm 2006 negative result.** Adversarial asked if "deferred to Phases 2/3" hides underpowering. *Computed in NB04b: at pilot scale, 81–99% power to detect medium effect (d=0.3) at all ranks except genus. Observed mean z is negative across all ranks. Conclusion: the substrate-hierarchy claim holds; not underpowering. Caveat: small Alm 2006 effect at UniRef50 (d ≤ 0.1) could still be missed at genus rank.*
+  - **I3: Post-hoc revision of negative-control criterion (M2).** Pre-registration discipline concern. *Honest fix in REPORT.md v1.1: the M2 revision corrects a pre-registration omission, not redefines a target. The biological prior (dosage constraint → fewer paralogs) was correctly anticipated during plan v2 design but its quantitative consequence (negative producer z, not zero) was not encoded. Phase 1B pre-registers the corrected expectation.*
+
+  **Adversarial critiques not adopted as written** (with reasoning logged in REPORT.md "Pushbacks"):
+  - **C1 framing as "rendering meaningful discoveries impossible"** — overcalled. The hierarchical Tier-1 / Tier-2 / Tier-3 multiple-testing strategy is in plan v2.1; the reviewer didn't fully credit it. Implementation details (BH-FDR variant, effective-N for clusters) are TBD; that's a real Phase 1B gap captured as MEDIUM 6.
+  - **I4 "Substrate switching invalidates v1"** — overcalled. v1 was iterated, not shipped. v2 IS the milestone result. No v1 results were used in scientific claims.
+  - **H2 "Central project hypothesis unsupported"** — same as the earlier plan-adversarial review. DESIGN_NOTES v1's weak-prior framing addresses this; the framework is *testing* the regulatory-vs-metabolic asymmetry empirically, not assuming it. Reviewer conflates the project's null hypothesis with its starting hypothesis.
+
+  **Lessons captured for future BERIL projects**:
+  - *Run both standard AND adversarial review at each milestone* — they catch different things. Standard reviewer's over-optimism on structural issues is a documented BERIL pattern (memory note `feedback_review_pairing.md`); paired adversarial is the right counterweight.
+  - *Out-of-band quantitative analyses must be wrapped in a notebook for the audit trail* — addressed in this round by creating NB04b (the BERIL convention for in-phase appendix iterations, precedent: `ibd_phage_targeting`'s NB04b–h rescue cycle).
+  - *Pre-registration discipline requires biologically grounded criteria* — the M2 revision is a lesson: a pre-registered "near zero" criterion was wrong because the biological prior (dosage constraint) was not encoded into the criterion. Future phases pre-register criteria with explicit biological rationale.
+
+  **Phase 1B HIGH commitments from this synthesis**:
+  - **HIGH 1**: known-HGT positive control set for consumer null (β-lactamase families + class-I CRISPR-Cas)
+  - **HIGH 2**: raw paralog count effect sizes alongside z-scores in all atlas tables
+  - **HIGH 3**: PIC (phylogenetic independent contrasts) mandatory
+  - **HIGH 4**: Alm 2006 power-analysis scope verified empirically; substrate-hierarchy claim defensible
+  - **HIGH 5**: M2 sharpening — pre-register corrected expectation, not original
+
+  **Phase 1B MEDIUM (deferred to Phase 1B plan documents)**:
+  - **MEDIUM 6**: hierarchical multiple-testing implementation details (BH-FDR variant, effective-N within KEGG BRITE × GTDB family)
+  - **MEDIUM 7**: compute-resource specification per phase
+  - **MEDIUM 8**: Phase 2 mid-pilot KO-level validation step (pre-Phase-3 architectural deep-dive insurance)
+  - **MEDIUM 9**: uncertainty propagation strategy for Phase 4 cross-resolution synthesis, documented in advance
+  - **MEDIUM 10**: Sichert & Cordero (2021) added to references.md for Phase 1B Bacteroidota PUL literature context
+
 - **2026-04-26 (v2.1)**: Substrate-audit revision triggered by user question after 8 NB01 debug iterations. The user asked: *"are we sure we are getting all we can out of the KBase tenant and pangenome and kescience_iterpro?"* This was a load-bearing question because the iterations had been a mix of bug-fixes and structural fragility (Pfam-name string-matching for control detection had only caught 38K UniRef50 TCS HKs from the eggNOG `PFAMs` field, with no way to know what fraction was missed). Audit found we were using ~40 % of relevant `kbase_ke_pangenome` tables and 0 % of `kescience_*`. The most consequential miss was **`interproscan_domains`** (833 M rows; 146 M Pfam hits; 83.8 % cluster coverage) — the authoritative Pfam annotation source on BERDL. NB01 v2 control detection now uses InterProScan as primary (accession-based, reliable) with eggNOG `PFAMs` as cross-validation. Two new InterProScan tables (`interproscan_go`, `interproscan_pathways`) added as Phase 2 cross-validation substrate. Other under-used databases (`kescience_fitnessbrowser`, `kescience_alphafold`, `kescience_webofmicrobes`, `kescience_bacdive`, `genomad_mobile_elements` if ingested) are documented in the plan but deferred to specific later phases with explicit roadmap entries. **The audit demonstrated that NB01 fragility was structural (wrong substrate) not just operational (bugs); future phases should audit substrate before implementing rather than after debugging.**

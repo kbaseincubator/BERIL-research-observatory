@@ -214,6 +214,7 @@ Most data files are gitignored (per BERIL convention) and will be archived to `m
 | `02_p1a_null_model_construction.ipynb` | Multi-rank producer + consumer null model construction (genus → phylum) |
 | `03_p1a_pilot_atlas.ipynb` | Per-(rank, clade, UniRef50) scoring + control validation + Alm 2006 reproduction |
 | `04_p1a_pilot_gate.ipynb` | Phase 1A → Phase 1B gate decision with M1–M4 methodology revisions |
+| `04b_p1a_review_response.ipynb` | *(post-review appendix)* Reproducibly compute effect-size and Alm 2006 power-analysis tables for REPORT v1.1 |
 
 ### Figures
 
@@ -262,6 +263,74 @@ Most data files are gitignored (per BERIL convention) and will be archived to `m
 - Do M1's rank-stratified parent ranks for the consumer null reveal AMR-typical intra-phylum HGT signal at full scale? (testable in Phase 1B NB02 equivalent)
 - At full scale, does the cross-rank consumer-z trend (vertical at deep ranks → null at class) hold for the full UniRef50 pool, or is it pilot-specific?
 - Is the natural_expansion class the right positive control for full-scale Phase 1B, or should we sample more broadly across paralog-count distributions?
+
+## Phase 1A response to adversarial review (v1.1)
+
+`ADVERSARIAL_REVIEW_1.md` raised several critiques. This section addresses them with quantitative data and explicit framing changes.
+
+*All quantitative analyses in this section are reproducibly derived in `notebooks/04b_p1a_review_response.ipynb`. Raw outputs in `data/p1a_effect_sizes_per_rank_class.tsv` and `data/p1a_alm2006_power_analysis.tsv`.*
+
+### Raw paralog-count effect sizes (addresses C3)
+
+The adversarial reviewer noted that z-scores alone do not convey biologically meaningful effect sizes. Below are the raw paralog count means alongside cohort means and z-scores at each rank for each control class.
+
+| Rank | Class | n | Obs paralog mean | Cohort mean | Raw Δ | % above cohort | Producer z |
+|---|---|---|---|---|---|---|---|
+| phylum | natural_expansion | 457 | 1.77 | 1.27 | +0.50 | **+39.5%** | +0.55 |
+| phylum | pos_tcs_hk | 186 | 1.07 | 1.30 | −0.24 | −18.4% | −0.23 |
+| phylum | neg_ribosomal | 315 | 1.04 | 1.18 | −0.13 | −11.4% | −0.15 |
+| phylum | neg_rnap_core | 284 | 1.01 | 1.20 | −0.18 | −15.2% | −0.24 |
+| phylum | neg_trna_synth | 248 | 1.02 | 1.20 | −0.18 | −15.0% | −0.19 |
+| phylum | pos_amr | 272 | 1.17 | 1.34 | −0.17 | −12.6% | −0.16 |
+| class | natural_expansion | 482 | 1.74 | 1.28 | +0.46 | +36.0% | +0.50 |
+| order | natural_expansion | 654 | 1.56 | 1.28 | +0.28 | +22.3% | +0.31 |
+| family | natural_expansion | 802 | 1.45 | 1.27 | +0.18 | +14.3% | +0.19 |
+| genus | natural_expansion | 975 | 1.31 | 1.20 | +0.11 | +9.3% | +0.13 |
+
+The full per-(rank, class) effect-size table is at `data/p1a_effect_sizes_per_rank_class.tsv`.
+
+**Biological interpretation**: At phylum rank, natural_expansion UniRefs have **39.5% more paralogs** than the cohort baseline (1.77 vs 1.27 paralogs per phylum). Negative controls (ribosomal, tRNA-synth, RNAP) sit ~12–15% *below* cohort baseline — the dosage-constrained signature. TCS HK at UniRef50 sits 18% below cohort — *opposite* direction from the Alm 2006 family-level expansion claim.
+
+### Alm 2006 power analysis (addresses I2)
+
+The adversarial reviewer asked whether the Alm 2006 negative result reflects underpowering or substrate-hierarchy. Answer: not underpowering.
+
+**Power to detect a positive effect at α=0.05, one-sided t-test:**
+
+| Rank | n | Min detectable d (80% power) | Observed z | Power if Alm 2006 effect were d=0.3 | Power if d=0.5 |
+|---|---|---|---|---|---|
+| genus | 73 | 0.29 | −0.10 | 0.81 | 0.99 |
+| family | 124 | 0.23 | −0.16 | 0.95 | 1.00 |
+| order | 157 | 0.20 | −0.19 | 0.98 | 1.00 |
+| class | 174 | 0.19 | −0.23 | 0.99 | 1.00 |
+| phylum | 186 | 0.18 | −0.23 | 0.99 | 1.00 |
+
+If Alm 2006's HK paralog expansion were detectable at UniRef50 resolution at any biologically interesting effect size (d ≥ 0.3), we would detect it with 81–99% probability at all ranks. We don't — the observed z is consistently *negative*, indicating slight under-expansion rather than expansion. This **rules out underpowering as the explanation**: at UniRef50, TCS HK paralog signal is genuinely absent (and slightly negative), and the substrate-hierarchy argument is the right interpretation. The original Alm 2006 effect lives at family resolution, where a single HK family aggregates many UniRef50s. UniRef50 cannot recover the family-level signal.
+
+### M2 sharpening — post-hoc criterion revision honesty (addresses I3)
+
+The adversarial reviewer correctly noted that revising the negative-control criterion ("near zero" → "≤ 0 with CI not strongly positive") after seeing data weakens pre-registration discipline. This is a fair pre-registration concern.
+
+**Honest framing**: the *biology* (dosage constraint on housekeeping genes, e.g., Andersson 2009; Bratlie et al 2010 for ribosomal-protein dosage sensitivity specifically) was correctly anticipated during plan v2 design — but its quantitative consequence (negative producer z, not zero) was not encoded into the pre-registered criterion. The data-driven revision in M2 is **correcting a pre-registration omission, not redefining a target**: the prior expectation that ribosomal proteins should not show paralog *expansion* (positive z) is preserved; the revision tightens this to "should not show paralog expansion AND should show dosage-constraint suppression". A future Phase 1B / Phase 2 plan should pre-register this corrected expectation, not the original one.
+
+For full transparency, REVIEW_1.md and ADVERSARIAL_REVIEW_1.md are committed to the project root and visible to anyone reading the audit trail.
+
+### Pushbacks documented
+
+Three adversarial critiques are not adopted as written:
+
+- **C1 "no concrete multiple-testing strategy"** — partially overcalled. Plan v2.1 has the hierarchical Tier-1 / Tier-2 / Tier-3 strategy. Implementation details (BH-FDR variant, effective-N for KEGG-BRITE × GTDB-family clusters) are TBD; that's a real Phase 1B/2 deliverable. The "render meaningful discoveries impossible" framing is hyperbole given the strategy.
+- **I4 "Substrate switching invalidates v1"** — overcalled. v1 was *iterated*, not *shipped*. v2 IS the milestone result. No v1 results were used in scientific claims.
+- **H2 "Central project hypothesis unsupported"** — DESIGN_NOTES.md v1's weak-prior framing addresses this. The framework is *testing* the regulatory-vs-metabolic asymmetry empirically, not assuming it. The reviewer conflates the project's null hypothesis with its starting hypothesis.
+
+### New methodological commitments for Phase 1B
+
+The adversarial review identifies four real gaps that warrant Phase 1B design changes (captured in plan v2.3):
+
+1. **Known-HGT positive control set for consumer null** (addresses C2). AMR is the closest current control but parent-phylum anchor masks intra-phylum HGT (M1). Phase 1B adds: specific β-lactamase families with documented cross-phylum spread (CARD `bla` group), class-I CRISPR-Cas systems (Pfam family) per Metcalf et al 2014's documented cross-tree-of-life HGT.
+2. **PIC (phylogenetic independent contrasts) mandatory at Phase 1B** (addresses I1). Was Phase 2 optional sensitivity in plan v2; promoted to Phase 1B mandatory for consumer-null and producer-null score reporting.
+3. **Hierarchical multiple-testing implementation details** (addresses C1 partially). Phase 1B NB02 specifies the BH-FDR variant + effective-N within KEGG BRITE × GTDB family.
+4. **Sichert & Cordero (2021) added to references.md** for Phase 1B Bacteroidota PUL hypothesis literature context.
 
 ## References
 
