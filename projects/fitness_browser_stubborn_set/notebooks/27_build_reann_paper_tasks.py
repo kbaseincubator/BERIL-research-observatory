@@ -31,27 +31,39 @@ def main() -> None:
     keys = set(zip(reann["orgId"], reann["locusId"]))
     print(f"Reannotation genes: {len(keys)}", file=sys.stderr)
 
-    # Already-covered (geneId, pmId) pairs
-    have: set[tuple[str, str]] = set()
+    # Papers covered by ANY existing summary corpus (paper-level, not per-gene).
+    # Rationale: if we already have a summary of paper P for some homolog X,
+    # the existing summary still gives the agent useful paper-level context
+    # for any other homolog Y discussed in the same paper. We re-summarize
+    # only papers with zero coverage.
+    have_pmids: set[str] = set()
     with open(MERGED) as fh:
         next(fh, None)
         for line in fh:
             parts = line.rstrip("\n").split("\t")
             if len(parts) < 4:
                 continue
-            mid, _, gid = parts[0], parts[1], parts[2]
-            have.add((gid, mid))
-    print(f"Merged corpus pairs: {len(have):,}", file=sys.stderr)
+            mid = parts[0]
+            summ = "\t".join(parts[3:])
+            # Only count as "covered" if at least one row for this pmId is non-null
+            if summ.strip().lower() not in ("null", ""):
+                have_pmids.add(mid)
+    print(f"Merged corpus papers with ≥1 non-null summary: {len(have_pmids):,}", file=sys.stderr)
 
     hits = pd.read_parquet(HITS)
     hits["pmId"] = hits["pmId"].astype(str)
     sub = hits[hits.apply(lambda r: (r["orgId"], r["locusId"]) in keys, axis=1)].copy()
     print(f"PaperBLAST hits joined to reann: {len(sub):,}", file=sys.stderr)
 
-    # Drop pairs we already have
-    sub["covered"] = sub.apply(lambda r: (r["geneId"], r["pmId"]) in have, axis=1)
-    print(f"  already covered: {sub['covered'].sum():,}", file=sys.stderr)
-    print(f"  to summarize:    {(~sub['covered']).sum():,}", file=sys.stderr)
+    # Drop papers we already have
+    sub = sub[sub["pmId"].astype(str).str.len() > 0].copy()
+    sub["covered"] = sub["pmId"].isin(have_pmids)
+    n_unique_papers = sub["pmId"].nunique()
+    n_covered_papers = sub[sub["covered"]]["pmId"].nunique()
+    n_uncovered_papers = sub[~sub["covered"]]["pmId"].nunique()
+    print(f"  unique papers in reann hits: {n_unique_papers:,}", file=sys.stderr)
+    print(f"    already-covered papers:    {n_covered_papers:,}", file=sys.stderr)
+    print(f"    papers needing summary:    {n_uncovered_papers:,}", file=sys.stderr)
     sub = sub[~sub["covered"]].copy()
 
     # Group by pmId, collect unique geneIds

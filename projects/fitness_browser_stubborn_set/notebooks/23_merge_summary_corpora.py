@@ -24,6 +24,7 @@ SOURCES = [
     Path(os.path.expanduser("~/KBase/manuscript-summaries.tsv")),
     PROJECT_DATA / "manuscript-summaries.tsv",
     PROJECT_DATA / "manuscript-summaries-positive.tsv",
+    PROJECT_DATA / "manuscript-summaries-reann.tsv",
 ]
 OUT = PROJECT_DATA / "manuscript-summaries-merged.tsv"
 

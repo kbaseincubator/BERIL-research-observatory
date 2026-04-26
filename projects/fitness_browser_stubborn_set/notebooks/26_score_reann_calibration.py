@@ -86,6 +86,19 @@ def main() -> None:
     reann = pd.read_parquet(REANN).dropna(subset=["orgId", "locusId"]).reset_index(drop=True)
     print(f"Human reannotations: {len(reann)}", file=sys.stderr)
 
+    # Pull the actual desc shown to the LLM (and the BERDL gene.desc, which is
+    # the cleanest proxy for original_description) from the per-batch manifests.
+    manifest_lookup: dict[tuple[str, str], dict] = {}
+    for mp in sorted((PROJECT_DATA / "batches_reann").glob("batch_RA*/manifest.csv")):
+        m = pd.read_csv(mp, dtype={"orgId": str, "locusId": str})
+        for _, mr in m.iterrows():
+            manifest_lookup[(mr["orgId"], mr["locusId"])] = {
+                "desc_for_dossier": mr.get("desc_for_dossier") or "",
+                "desc_source": mr.get("desc_source") or "",
+                "current_gene_desc_in_berdl": mr.get("current_gene_desc_in_berdl") or "",
+            }
+    print(f"Manifest lookup: {len(manifest_lookup)} rows", file=sys.stderr)
+
     claude = load_verdicts(CLAUDE_GLOB)
     codex = load_verdicts(CODEX_GLOB)
     print(f"Claude verdicts: {len(claude)}", file=sys.stderr)
@@ -96,12 +109,16 @@ def main() -> None:
         k = (hr["orgId"], hr["locusId"])
         c = claude.get(k, {})
         x = codex.get(k, {})
+        m = manifest_lookup.get(k, {})
         human_ann = hr.get("new_annotation") or ""
         c_ann = c.get("proposed_annotation") or ""
         x_ann = x.get("proposed_annotation") or ""
         c_verdict = c.get("verdict") or "missing"
         x_verdict = x.get("verdict") or "missing"
-        human_cat = derive_human_category(hr.get("original_description") or "")
+        # Use the description that was actually shown to the LLM as the
+        # "original" the LLM reasoned over.
+        original_desc = m.get("desc_for_dossier") or m.get("current_gene_desc_in_berdl") or ""
+        human_cat = derive_human_category(original_desc)
 
         # Agreement classification
         c_match = name_match(human_ann, c_ann)
@@ -131,7 +148,8 @@ def main() -> None:
         rows.append({
             "orgId": k[0],
             "locusId": k[1],
-            "original_description": hr.get("original_description") or "",
+            "original_description": original_desc,
+            "desc_source": m.get("desc_source") or "",
             "human_annotation": human_ann,
             "human_category": human_cat,
             "human_comment": (hr.get("comment") or "").replace("\n", " ").replace("\t", " "),

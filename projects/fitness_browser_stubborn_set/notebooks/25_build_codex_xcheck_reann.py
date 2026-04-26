@@ -1,11 +1,14 @@
 """
 Build Codex cross-check batches for the reannotation calibration set, using
-augmented dossiers (8-layer evidence with original_description + per-paper
-PaperBLAST literature summaries from the merged corpus).
+augmented dossiers (same contamination-controlled gene_desc as the Claude
+batches in 22_prepare_reann_batches.py + per-paper PaperBLAST literature
+summaries from the merged corpus).
 
 Reads:
   data/reannotation_set.parquet
-  data/batches_reann/batch_RA*/output.jsonl   — Claude verdicts (one per gene)
+  data/batches_reann/batch_RA*/manifest.csv   — to reuse the same
+                                                desc_for_dossier resolved
+                                                in 22_prepare_reann_batches.py
   data/manuscript-summaries-merged.tsv
 
 Output:
@@ -45,10 +48,17 @@ def main() -> None:
     keys_in_order = list(reann[["orgId", "locusId"]].itertuples(index=False, name=None))
     print(f"Reannotation rows: {len(keys_in_order)}", file=sys.stderr)
 
-    orig_lookup = {
-        (r["orgId"], r["locusId"]): (r.get("original_description") or "").strip() or "(blank)"
-        for _, r in reann.iterrows()
-    }
+    # Reuse the contamination-controlled desc_for_dossier resolved by
+    # 22_prepare_reann_batches.py (BERDL gene.desc for clean rows;
+    # "uncharacterized protein" placeholder for the 100 contaminated rows).
+    orig_lookup: dict[tuple[str, str], str] = {}
+    for manifest_path in sorted(CLAUDE_BATCHES.glob("batch_RA*/manifest.csv")):
+        m = pd.read_csv(manifest_path, dtype={"orgId": str, "locusId": str})
+        for _, r in m.iterrows():
+            orig_lookup[(r["orgId"], r["locusId"])] = (r.get("desc_for_dossier") or "").strip() or "(blank)"
+    print(f"Loaded desc_for_dossier from {len(orig_lookup)} manifests", file=sys.stderr)
+    if len(orig_lookup) != len(reann):
+        print(f"WARNING: manifest coverage mismatch ({len(orig_lookup)} vs {len(reann)})", file=sys.stderr)
 
     hits = pd.read_parquet(HITS)
     keyset = set(keys_in_order)

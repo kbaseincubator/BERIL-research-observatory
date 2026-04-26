@@ -354,9 +354,49 @@ The clean, self-contained deliverable for downstream consumers (gene-function an
 
 Each row carries Claude's verdict + rationale and Codex's verdict + rationale, plus (for negatives) `evidence_tier` and `strong_phenotype` so a consumer can filter without reading the project. See `data/training_set/README.md` — it is the intended entry point for anyone receiving this set in isolation.
 
+## Calibration against human curators (n = 1,762)
+
+The Price-lab `kescience_fitnessbrowser.reannotation` table (1,762 expert-curated re-annotations across 36 organisms) is a gold-standard reference set. Running the same Claude + Codex pipeline against it tells us where the LLMs recover human calls, where they fail, and what the agreement filter actually buys.
+
+### Methodology
+
+- BERDL `kescience_fitnessbrowser.reannotation` pulled via `notebooks/21_pull_reannotation.py`. Schema is leaner than the 2018 FEBA paper file (only `orgId, locusId, new_annotation, comment`), so the pre-curation gene description was reconstructed.
+- **Contamination control**: BERDL `gene.desc` was used as the original description for the 1,662 rows where it differs from the curator's `new_annotation` (validated to match the FEBA `original_description` 99.8% of the time on 439 overlap rows). For 100 rows where BERDL had been updated to the curator's name, `"uncharacterized protein"` placeholder was substituted; other evidence layers (KEGG, SwissProt, SEED, Pfam, PaperBLAST) are sequence-derived and unaffected (`notebooks/22_prepare_reann_batches.py`).
+- Same N=10 dossier batches, same prompt schema, same Codex augmented-dossier cross-check methodology as the recalcitrant + positive runs.
+- Summary corpus: existing 11,461 rows (external + recalcitrant + positive) merged with 2,322 fresh rows from 1,709 newly-summarized PMC papers → 13,751 total, 11,600 non-null. 968 of 1,762 reann genes (55%) had ≥1 non-null literature summary attached to their cross-check dossier.
+
+### Headline metrics
+
+| Metric | Claude alone | Codex (xcheck) | Both agree |
+|---|---:|---:|---:|
+| **Recall@type** (LLM said improvable_*) | **50.7%** | 46.4% | 40.0% |
+| **Recall@name** (token-set Jaccard ≥0.5 OR EC equality) | **15.5%** | 11.4% | 8.1% |
+| False-negative (LLM said recalcitrant when human annotated) | 4.8% | 7.7% | 4.0% |
+| False-positive-named (LLM endorsed original; human reannotated) | 44.4% | 45.9% | — |
+
+### The big finding: LLMs distinguish hypotheticals from corrections
+
+Splitting by the original FB description's character:
+
+| Original was… | n | Claude recall@type | Claude recall@name |
+|---|---:|---:|---:|
+| **hypothetical / DUF / vague / blank** | 318 (18%) | **85.5%** | 34.0% |
+| **already a specific name** (curator's act was a *correction*) | 1,444 (82%) | 43.1% | 11.4% |
+
+LLMs are excellent at upgrading hypotheticals — they agree 85% of the time that a vague existing name needs improvement, and recover the curator's exact functional class 1/3 of the time. **But they rarely override an existing specific name**: when the FB description already said something like "ABC transporter, permease protein" and the curator corrected it to "ABC transporter for L-Histidine, permease component 1," the LLMs accepted the original 60% of the time. This is the dominant gap.
+
+### Implications for the 1,200 distributable training labels
+
+- **445 `already_correctly_named` positives**: these were Claude-high-confidence at intake and confirmed by Codex. Calibration against humans suggests our LLM-derived "already correctly named" calls have a non-trivial overlap with what humans would still want to refine — i.e., the existing name is *not wrong*, just *not the most specific possible*. The set is reliable as "name is plausibly defensible from the evidence dossier" but not as "no curator would change it."
+- **755 `recalcitrant` negatives**: false-negative rate against humans is ~4%, suggesting only ~30 of the 755 are genes a human curator could have annotated. The set is reliable as "neither the LLM nor a curator-level read of the literature could pin this down."
+- The token-set Jaccard for recall@name is conservative — sampled "right_type_wrong_name" cases include identical enzymes named slightly differently (e.g., "Histidinol-phosphatase (EC:3.1.3.15)" vs "histidinol-phosphate phosphatase"). Semantic recall@name is meaningfully higher than 15.5%.
+
+Outputs: `data/reann_calibration.tsv` (per-gene comparison), built by `notebooks/26_score_reann_calibration.py`.
+
 ## Outstanding work
 
-See [TODO.md](TODO.md). Two open items:
+See [TODO.md](TODO.md). Open items:
 
 - Manual spot-check of the 55 positive disagreements (excluded from the distributable set).
 - Wet-lab analysis of the 42 strong-phenotype recalcitrants.
+- Semantic (vs. token-set) recall@name analysis on the calibration set — likely raises Claude's recall@name from 15.5% to >25%.
