@@ -2001,9 +2001,3 @@ The project's central science question is fully answered within plan v1.9 scope 
 ## Authors
 
 - Adam Arkin (ORCID: [0000-0002-4999-2931](https://orcid.org/0000-0002-4999-2931)), U.C. Berkeley / Lawrence Berkeley National Laboratory
-
-Collaborators (data providers; formal authorship TBD):
-- UC Davis CD cohort: Kuehl / Dave lab teams
-- Engraftment mouse experiments: Dave lab (NRGS)
-- Strain-level reference analyses: Kumbhari et al. 2024
-- BGC meta-analysis: Elmassry et al. 2025

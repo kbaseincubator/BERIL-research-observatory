@@ -503,9 +503,3 @@ Tagged via `ref_missing_data_codes` sentinel codes. Does not block analysis but 
 ## Authors
 
 - Adam Arkin (ORCID: [0000-0002-4999-2931](https://orcid.org/0000-0002-4999-2931)), U.C. Berkeley / Lawrence Berkeley National Laboratory
-
-Collaborators (data providers, attribution here pending formal authorship):
-- UC Davis CD cohort: Kuehl / Dave lab
-- Engraftment mouse experiments: Dave lab (NRGS)
-- Strain-level reference analyses: Kumbhari et al. 2024 (PMID / source in `dim_studies`)
-- BGC meta-analysis: Elmassry et al. 2025 (Cell Host & Microbe)
