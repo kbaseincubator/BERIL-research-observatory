@@ -335,19 +335,32 @@ No new data extraction. Phase 4 joins Phase 1 / 2 / 3 outputs.
 ## Data Sources
 
 ### BERDL tables (`kbase_ke_pangenome` unless noted)
+
+**Core scaffold + sequence layer:**
 - `genome` (293K rows) — genome → gtdb_species_clade_id, has_sample
 - `gtdb_taxonomy_r214v1` (293K rows) — full lineage per genome
 - `gtdb_metadata` (293K rows) — CheckM completeness, contamination, GC%, assembly level
-- `gtdb_species_clade` (28K rows) — clade-level ANI stats
+- `gtdb_species_clade` (28K rows) — clade-level ANI stats; provides `representative_genome_id` for D1 dedup
+- `pangenome` (28K rows) — per-species pangenome stats (no_genomes, no_core, no_aux, no_singleton, no_gene_clusters)
+- `gene_cluster` (133M rows) — cluster representatives, faa_sequence, fna_sequence, isCore/isAccessory/isSingleton
 - `gene_genecluster_junction` (1B rows) — genome → gene_cluster_id (filter required, never full-scan)
-- `gene_cluster` (133M rows) — cluster representatives, faa_sequence, fna_sequence, isCore/isAccessory/isSingleton flags
-- `eggnog_mapper_annotations` (94M rows) — KO, COG, EC, KEGG, PFAM per cluster
-- `bakta_db_xrefs` (572M rows) — gene_cluster_id → UniRef50/UniRef90/UniRef100 (filter required, disable autoBroadcast on `kbase_uniprot.uniprot_identifier` joins)
-- `bakta_pfam_domains` (19M rows) — Pfam domains per gene_cluster_id (subject to completeness audit)
-- `kbase_uniref50` (100K rows) — UniRef50 cluster table
-- `kbase_uniref90` (100K rows) — UniRef90 cluster table
-- `genome_ANI` (421M rows) — pairwise within-species ANI (used for D4 within-species genome ranking)
-- `ncbi_env` (4M rows) — environmental metadata where genome.has_sample = true (advisory only)
+- `bakta_db_xrefs` (572M rows; UniRef tier = 242M of these) — gene_cluster_id → UniRef50/UniRef90/UniRef100 (split by accession prefix; `db = 'UniRef'` is a single value, tier embedded in `accession`); disable autoBroadcast on `kbase_uniprot.uniprot_identifier` joins
+- `bakta_amr` (83K rows) — AMR positive control source
+- `kbase_uniref50` / `kbase_uniref90` / `kbase_uniref100` (100K / 100K / 260K rows) — UniRef cluster reference tables; cluster size, representative, taxonomy
+
+**Functional annotation layer (v2 substrate audit, 2026-04-26):**
+- `eggnog_mapper_annotations` (94M rows) — KO, COG, EC, KEGG_Pathway, KEGG BRITE per cluster. **Caveat**: `PFAMs` column stores domain *names* (`HisKA`), not accessions (`PF00512`); per docs/pitfalls.md `[snipe_defense_system]`. Used for KO-anchored annotation; not authoritative for Pfam.
+- **`interproscan_domains` (833M rows; Pfam = 146M)** — *the authoritative Pfam annotation source on BERDL.* 18 member databases (Pfam, Gene3D, SUPERFAMILY, PANTHER, CDD, NCBIfam, etc.) with `signature_acc` (proper accession), `ipr_acc` (InterPro entry), `ipr_desc` (description). 83.8 % cluster coverage. **Primary source for Pfam-based control detection in NB01 v2 onward; primary source for Phase 3 architecture census.**
+- **`interproscan_go` (266M rows)** — deduplicated GO term assignments per cluster from InterPro and PANTHER. Used for Phase 2 cross-validation of regulatory-vs-metabolic at GO BP level.
+- **`interproscan_pathways` (287M rows)** — deduplicated MetaCyc + KEGG pathway assignments. Alternative pathway annotation independent of eggNOG.
+- `bakta_pfam_domains` (19M rows) — *fallback only.* Per docs/pitfalls.md `[plant_microbiome_ecotypes] bakta_pfam_domains query format`, this table has unresolved coverage/format issues. Used as audit comparison in Phase 3, not as primary source.
+- `bakta_annotations` — broader bakta annotation table; reserved for Phase 2/3 if needed.
+
+**Phase-2/3-reserved layers:**
+- `gapmind_pathways` (305M rows) — pathway profiles for amino acid biosynthesis and carbon utilization; Phase 2 metabolic-pathway annotation
+- `phylogenetic_tree` / `phylogentic_tree_distance_pairs` — per-species trees + within-species distances; D4 topology-support filter and Phase 4 atlas annotation
+- `genome_ANI` (421M rows) — pairwise within-species ANI; used for ANI-stratified within-species sampling per the Within-Species Genome Sampling Strategy section
+- `ncbi_env` (4M rows) — environmental metadata; advisory annotation only (per the rejected-alternative-framings section in DESIGN_NOTES.md, niche stratification is not a primary axis)
 
 ### External
 - **GTDB r214 species tree** (newick) — downloaded externally from `https://data.gtdb.ecogenomic.org/releases/release214/`. Loaded into project for topology-support filtering at the rank level. Not stored in BERDL.
@@ -528,19 +541,38 @@ Tests within the same KEGG BRITE B-level category, within the same GTDB family, 
 
 #### Negative controls (expected: low producer, low participation, on-diagonal across all clades)
 
-- **Ribosomal proteins**: Pfam clan CL0623 (small subunit), CL0626 (large subunit); KEGG ko03010 (`Ribosome`)
-- **tRNA synthetases**: KEGG `09183 Translation factors` aminoacyl-tRNA synthetase set
-- **RNA polymerase core subunits**: KEGG K03040 (rpoA), K03043 (rpoB), K03046 (rpoC)
+Each control set is detected via a **union** of two annotation paths to maximize recall:
+
+- **Ribosomal proteins**:
+  - **Primary**: `interproscan_domains` where `LOWER(ipr_desc) LIKE '%ribosomal protein%'` OR `LOWER(signature_desc) LIKE '%ribosomal protein%'` (catches all subunits across 18 InterPro member DBs)
+  - **Cross-check**: KEGG `ko03010` (Ribosome) via `eggnog_mapper_annotations.KEGG_ko`
+- **tRNA synthetases**:
+  - **Primary**: `interproscan_domains` where `LOWER(ipr_desc) LIKE '%aminoacyl-trna synthetase%'` OR `LOWER(signature_desc) LIKE '%trna ligase%'`
+  - **Cross-check**: KEGG K01866–K01890 (canonical aminoacyl-tRNA synthetase KOs)
+- **RNA polymerase core subunits**:
+  - **Primary**: `interproscan_domains` where `LOWER(ipr_desc) LIKE '%rna polymerase%alpha%'` OR `'%rna polymerase%beta%'`
+  - **Cross-check**: KEGG K03040 (rpoA), K03043 (rpoB), K03046 (rpoC)
 
 If any of these show producer score > 1 σ above the global mean in any major phylum, the method is over-detecting paralog expansion and the null model needs recalibration.
 
 #### Positive controls (expected: detectable acquisition signal in clades known to have acquired via HGT)
 
-- **Antibiotic-resistance gene families**: CARD-mapped UniRef50 clusters (via eggNOG annotation), expected to show high consumer / participation scores in clades with documented AMR HGT (Enterobacteriaceae, Acinetobacter, Pseudomonadaceae)
-- **CRISPR-Cas systems**: Pfam clan CL0114 (Cas family), expected to show clade-pair incongruent presence consistent with HGT (Metcalf et al. 2014)
-- **Alm 2006 TCS HKs**: Pfam PF00512 (HisKA) + PF00072 (Response_reg); the methodological gold standard
+- **Antibiotic-resistance gene families**: `bakta_amr.gene_cluster_id` join (curated AMRFinderPlus hits). Expected to show high consumer / participation scores in clades with documented AMR HGT (Enterobacteriaceae, Acinetobacter, Pseudomonadaceae). *Pool coverage in pilot is ~70 %, biologically expected since environmental and uncultivated lineages have less AMR.*
+- **Alm 2006 TCS HKs**: `interproscan_domains` filtered to `analysis = 'Pfam' AND signature_acc IN ('PF00512', 'PF07568', 'PF07730', 'PF06580', 'PF02518', 'PF13415', 'PF13581')` (HisKA family + HATPase + dimer domains). Cross-checked with `eggnog_mapper_annotations.PFAMs` domain-name match. The methodological gold standard for the back-test.
+- **CRISPR-Cas systems**: *dropped from v2 control set as primary* (Pfam-name detection too noisy across the heterogeneous Cas family). Will revisit at Phase 3 if needed.
 
 If any positive control fails to show acquisition signal in clades with documented HGT history, the consumer-score implementation is under-sensitive.
+
+#### Why the v2 substrate audit matters
+
+The v1 NB01 control detection used `eggnog_mapper_annotations.PFAMs` (domain *names*) for TCS HK detection. This was structurally fragile because the `PFAMs` column has a known name-vs-accession quirk and not every cluster has eggNOG annotation. The v2 switch to `interproscan_domains` provides:
+
+1. **Authoritative accession-based queries** (PF00512 not "HisKA")
+2. **146 M Pfam hits** vs `bakta_pfam_domains`'s 19M (the latter has known incomplete coverage per docs/pitfalls.md)
+3. **83.8 % cluster coverage** for any InterPro hit
+4. **Reusable substrate** for Phase 3 architecture census without reworking the control framework
+
+The v2 detection takes the **union** of eggNOG-name and InterProScan-accession paths so we maximize recall while preserving the v1 cross-validation signal.
 
 ## Analysis Plan
 
@@ -604,6 +636,8 @@ If any positive control fails to show acquisition signal in clades with document
 ## Revision History
 
 - **v1** (2026-04-26): Initial plan. Three-phase forced-order atlas; pre-registered hypotheses with weak-prior calibration; design reasoning captured separately in DESIGN_NOTES.md.
+
+- **v2.1** (2026-04-26, post-NB01 substrate audit): Audit of BERDL substrate utilization triggered by Adam's question after 8 NB01 debug iterations. Found that v1/v2 used ~40 % of the relevant `kbase_ke_pangenome` tables and 0 % of `kescience_*`. Most consequential miss: **`interproscan_domains` (833 M rows; 146 M Pfam hits across 132.5 M cluster reps; 83.8 % coverage) — the authoritative Pfam annotation source on BERDL.** v1 control detection used `eggnog_mapper_annotations.PFAMs` (domain *names*) which is fragile per the known `[snipe_defense_system]` pitfall; v2.1 switches to InterProScan as primary detection path. v2.1 also adds `interproscan_go` (266 M rows) and `interproscan_pathways` (287 M rows) as alternative function-class annotations for Phase 2 cross-validation. The Data Sources, Controls, and Phase 3 sections of this plan are updated accordingly. **Other under-used databases are documented but deferred** to later phases: `kescience_fitnessbrowser` (Phase 2/3 cross-validation), `kescience_alphafold`/`kescience_pdb` (Phase 3 architecture validation), `kescience_webofmicrobes`/`kescience_bacdive` (Phase 4 metabolic phenotype grounding), `genomad_mobile_elements` (Phase 2 MGE flag — verify ingestion first).
 
 - **v2** (2026-04-26): Synthesis of two reviews — `PLAN_REVIEW_1.md` (claude standard reviewer) and `ADVERSARIAL_PLAN_REVIEW_1.md` (BERIL adversarial reviewer, depth=standard). Revisions, with the review that raised each:
   - **HIGH 1: Direction-inference reframe (adversarial I3)** — At family rank and above, full four-quadrant labels (Open / Broker / Sink / Closed) are not inferable without donor-recipient direction. Plan now uses **Producer × Participation categories** (Innovator-Isolated / Innovator-Exchange / Sink/Broker-Exchange / Stable) at deep ranks, with full quadrant labels reserved for genus rank in Phase 3 only. Pre-registered hypotheses reframed to deep-rank Producer × Participation form. This downgrade is conservative and honest about what acquisition-only inference can claim.

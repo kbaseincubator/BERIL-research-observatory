@@ -3,7 +3,7 @@
   "target_n_species": 1000,
   "target_n_uniref50": 1000,
   "phylum_floor": 5,
-  "timestamp_utc": "2026-04-26T20:38:16Z",
+  "timestamp_utc": "2026-04-26T20:56:22Z",
   "n_bacteria_species_total": 26525,
   "n_phyla": 125,
   "n_species_after_quality_filter": 18989,
@@ -86,13 +86,21 @@
   "n_uniref50_xref_rows": 3842755,
   "n_uniref90_xref_rows": 2976743,
   "n_pilot_eggnog_annotated_clusters": 3417381,
+  "n_pilot_ips_domain_rows": 31291050,
+  "n_pilot_ips_distinct_clusters": 4114075,
+  "n_pilot_ips_go_rows": 9865309,
+  "n_pilot_ips_pathway_rows": 10537763,
+  "n_pilot_ips_tcs_hk_clusters": 92101,
+  "n_pilot_ips_ribosomal_clusters": 88694,
+  "n_pilot_ips_trna_synth_clusters": 34960,
+  "n_pilot_ips_rnap_clusters": 4553,
   "n_unique_uniref50_in_pilot_pool": 1548871,
   "control_pool_class_counts": {
-    "pos_tcs_hk": 38488,
-    "neg_ribosomal": 6480,
-    "neg_trna_synth": 5640,
-    "pos_amr": 966,
-    "neg_rnap_core": 716
+    "pos_tcs_hk": 43217,
+    "neg_ribosomal": 19389,
+    "neg_trna_synth": 8514,
+    "pos_amr": 958,
+    "neg_rnap_core": 770
   },
   "control_cap_per_class": 200,
   "control_sampled_class_counts": {
@@ -112,41 +120,51 @@
   },
   "preflight_coverage": [
     {
-      "control_class": "neg_rnap_core",
-      "n_species_with_at_least_one": 688,
+      "control_class": "neg_ribosomal",
+      "n_species_pool": 1000,
+      "n_species_sampled": 785,
       "n_pilot_species": 1000,
-      "coverage_fraction": 0.688,
-      "passes_80pct": false
+      "pool_coverage_fraction": 1.0,
+      "sampled_coverage_fraction": 0.785,
+      "pool_passes_80pct": true
     },
     {
-      "control_class": "neg_ribosomal",
-      "n_species_with_at_least_one": 683,
+      "control_class": "neg_rnap_core",
+      "n_species_pool": 1000,
+      "n_species_sampled": 712,
       "n_pilot_species": 1000,
-      "coverage_fraction": 0.683,
-      "passes_80pct": false
+      "pool_coverage_fraction": 1.0,
+      "sampled_coverage_fraction": 0.712,
+      "pool_passes_80pct": true
     },
     {
       "control_class": "neg_trna_synth",
-      "n_species_with_at_least_one": 442,
+      "n_species_pool": 1000,
+      "n_species_sampled": 501,
       "n_pilot_species": 1000,
-      "coverage_fraction": 0.442,
-      "passes_80pct": false
-    },
-    {
-      "control_class": "pos_tcs_hk",
-      "n_species_with_at_least_one": 279,
-      "n_pilot_species": 1000,
-      "coverage_fraction": 0.279,
-      "passes_80pct": false
+      "pool_coverage_fraction": 1.0,
+      "sampled_coverage_fraction": 0.501,
+      "pool_passes_80pct": true
     },
     {
       "control_class": "pos_amr",
-      "n_species_with_at_least_one": 346,
+      "n_species_pool": 688,
+      "n_species_sampled": 325,
       "n_pilot_species": 1000,
-      "coverage_fraction": 0.346,
-      "passes_80pct": false
+      "pool_coverage_fraction": 0.688,
+      "sampled_coverage_fraction": 0.325,
+      "pool_passes_80pct": false
+    },
+    {
+      "control_class": "pos_tcs_hk",
+      "n_species_pool": 996,
+      "n_species_sampled": 232,
+      "n_pilot_species": 1000,
+      "pool_coverage_fraction": 0.996,
+      "sampled_coverage_fraction": 0.232,
+      "pool_passes_80pct": true
     }
   ],
-  "n_extract_rows": 3934,
-  "completed_utc": "2026-04-26T20:38:52Z"
+  "n_extract_rows": 4084,
+  "completed_utc": "2026-04-26T21:04:31Z"
 }
