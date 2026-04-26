@@ -9,12 +9,13 @@ if [ "$1" = "--parallel" ]; then
 fi
 
 REPO_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
-XCHECK_DIR="$REPO_ROOT/projects/fitness_browser_stubborn_set/data/codex_xcheck"
+export XCHECK_DIR="${XCHECK_DIR:-$REPO_ROOT/projects/fitness_browser_stubborn_set/data/codex_xcheck}"
+BATCH_PREFIX="${BATCH_PREFIX:-batch_X}"
 
 # Build TODO list of batch IDs
 TODO=""
 SKIPPED=0
-for d in "$XCHECK_DIR"/batch_X*; do
+for d in "$XCHECK_DIR"/${BATCH_PREFIX}*; do
   bid=$(basename "$d" | sed 's/batch_//')
   if [ -f "$d/output.jsonl" ] && [ -s "$d/output.jsonl" ]; then
     SKIPPED=$((SKIPPED+1))

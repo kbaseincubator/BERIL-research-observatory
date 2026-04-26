@@ -9,7 +9,8 @@ ID="$1"
 if [ -z "$ID" ]; then echo "Usage: $0 <batch_id>"; exit 1; fi
 
 REPO_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
-DIR="$REPO_ROOT/projects/fitness_browser_stubborn_set/data/codex_xcheck/batch_$ID"
+XCHECK_DIR="${XCHECK_DIR:-$REPO_ROOT/projects/fitness_browser_stubborn_set/data/codex_xcheck}"
+DIR="$XCHECK_DIR/batch_$ID"
 INPUT="$DIR/input.md"
 OUT="$DIR/output.jsonl"
 PROMPT_FILE="$DIR/prompt.txt"

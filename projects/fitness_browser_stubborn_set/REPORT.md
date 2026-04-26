@@ -291,8 +291,42 @@ Claude's *high*-confidence recalcitrants survived best (83%). Codex sees the aug
 | All summaries null but has DIAMOND hits | 89 | Homologs exist but uncharacterized |
 | Orphans (zero PaperBLAST hits) | 582 | Easy negatives ("nothing to look up") |
 
+## Codex cross-check on the positive set (n = 500)
+
+The 500 high-confidence `already_correctly_named` genes were re-classified by Codex (`gpt-5.5`) using the same augmented-dossier methodology — original 8-layer dossier plus per-paper PaperBLAST literature summaries from the positive-set summarization run (3,000 papers summarized; `manuscript-summaries-positive.tsv`, 4,572 rows).
+
+```
+17_build_codex_xcheck_positive.py  → 20 batches × 25 dossiers = data/codex_xcheck_positive/batch_P*/input.md
+14_run_all_xcheck.sh (XCHECK_DIR=…codex_xcheck_positive BATCH_PREFIX=batch_P) → parallel xargs (P=8)
+18_build_training_positive_final.py → training_positive_final.jsonl + training_positive_xcheck.jsonl
+```
+
+### Cross-check results
+
+Of 500 Claude-`already_correctly_named` (all high confidence at intake), Codex with literature in hand said:
+
+| Codex verdict | n | % |
+|---|---:|---:|
+| **already_correctly_named** (✓ both agree → final positive set) | **445** | **89.0%** |
+| improvable_correction (Codex says fix the name) | 27 | 5.4% |
+| improvable_new (Codex names it differently) | 14 | 2.8% |
+| recalcitrant (Codex cannot confirm the name) | 14 | 2.8% |
+
+89% agreement is much higher than the recalcitrant cross-check's 62%, as expected: high-confidence positive calls anchor on direct evidence (matching SwissProt / KEGG / characterized homolog) and survive a second LLM read more often than recalcitrant judgments, which depend on absence-of-evidence reasoning.
+
+## Final training artifacts (updated)
+
+| File | Purpose | Rows | Schema |
+|---|---|---:|---|
+| `data/training_recalcitrant_final.jsonl` | Negative training set (Claude ∩ Codex agree recalcitrant) | **755** | Claude + Codex verdict + rationale |
+| `data/training_positive_final.jsonl` | Positive training set (Claude ∩ Codex agree already_correctly_named) | **445** | Claude + Codex verdict + rationale |
+| `data/training_recalcitrant.jsonl` | Pre-cross-check negative (with full dossier_md + paperblast_hits + per-paper summaries) | 1,220 | full evidence record per gene |
+| `data/training_positive_xcheck.jsonl` | Pre-cross-check positive (all 500 + Codex verdict merged) | 500 | flat per-gene record |
+| `data/manuscript-summaries.tsv` | Per-(paper, gene) summaries — recalcitrant set | **4,803** | manuscript_id, source_type, gene_identifier, summary |
+| `data/manuscript-summaries-positive.tsv` | Per-(paper, gene) summaries — positive set | **4,572** | same schema |
+| `data/codex_xcheck_positive/batch_P*/output.jsonl` | Codex cross-check verdicts for all 500 positive | 500 | per-gene Codex verdict |
+
 ## Outstanding work
 
-- Codex cross-check on the 500-gene positive set (xcheck batches not yet built/run).
-- Final positive training JSONL after Codex confirms / disconfirms each high-confidence already_correctly_named.
 - Stratified analysis of the 755 negatives by reason (insufficient evidence vs literature silent vs unusual phenotype).
+- Manual spot-check of the 55 positive disagreements (improvable_* / recalcitrant) — these are candidates either for downgrading existing FB names or for promoting Codex's alternative.

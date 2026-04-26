@@ -11,6 +11,8 @@ data/codex_summaries_positive/per_paper/*.prompt.txt
 # Cross-check intermediates
 data/codex_xcheck/batch_X*/log.txt
 data/codex_xcheck/batch_X*/prompt.txt
+data/codex_xcheck_positive/batch_P*/log.txt
+data/codex_xcheck_positive/batch_P*/prompt.txt
 data/codex_check/batch_C*/
 
 # Per-priority-batch intermediates that are too large
