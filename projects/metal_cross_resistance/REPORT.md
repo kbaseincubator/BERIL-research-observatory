@@ -83,7 +83,7 @@ NB05 identified 318 ortholog groups (OGs) that are metal-shared (important for �
 
 ![BacDive validation](figures/multimetal_validation.png)
 
-The multi-metal tolerance scores do not correlate with BacDive isolation from metal environments at the FB organism scale (n = 26 matched organisms, Spearman rho = -0.02, p = 0.93). This is expected: the 26 FB organisms were selected for experimental tractability, not ecological representativeness, and most have very few BacDive strains (median = 2). The prior `bacdive_metal_validation` project demonstrated that metal tolerance prediction requires pangenome-scale analysis (42K strains, Cohen's d = +1.0) to achieve statistical power. A proper H3 test would need the KEGG/PFAM mapping approach from the Metal Fitness Atlas applied to the cross-resistance gene signatures across 27K species.
+The multi-metal tolerance scores do not correlate with BacDive isolation from metal environments at the FB species scale (Spearman rho ~ -0.02, p > 0.8). After correcting the validation set to (a) exclude organisms without tier classification data (azobra, BFirm with <3 metals) and (b) collapse multiple FB strains of the same species to a single species-level entry (e.g., 5 *P. fluorescens* strains sharing the same BacDive pool), the effective sample size is ~20 independent species. This is expected to be underpowered: the prior `bacdive_metal_validation` project demonstrated that metal tolerance prediction requires pangenome-scale analysis (42K strains, Cohen's d = +1.0) to achieve statistical power. A proper H3 test would need the KEGG/PFAM mapping approach from the Metal Fitness Atlas applied to the cross-resistance gene signatures across 27K species.
 
 *(Notebook: 05_pangenome_prediction.ipynb)*
 
@@ -91,7 +91,7 @@ The multi-metal tolerance scores do not correlate with BacDive isolation from me
 
 ### Data Scale
 - **452 metal experiments** classified across 37 organisms and 14 metals (Al, Cd, Co, Cr, Cu, Fe, Hg, Mn, Mo, Ni, Se, U, W, Zn)
-- **119,561 genes** with metal fitness data extracted for 30 organisms with ≥3 metals
+- **119,561 genes** with metal fitness data extracted for 28 organisms with ≥3 metals (30 extracted; 2 excluded from analysis for having <3 metals)
 - **317 organism-pair observations** across 85 unique metal pairs
 - **8,162 metal-important genes** classified into three tiers
 - **318 conserved cross-resistance gene families** spanning ≥2 organisms

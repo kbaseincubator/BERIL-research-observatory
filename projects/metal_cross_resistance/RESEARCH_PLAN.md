@@ -128,9 +128,9 @@ GROUP BY gf.locusId, e.metal_type
 - **Goal**: For each gene, classify as general-stress / metal-shared / metal-specific based on fitness profiles. Test whether shared genes are more core than specific genes.
 - **Key analysis**:
   - Three-tier classification per gene:
-    - **General stress**: Important (fit < -1) in ≥50% of all conditions (metal + non-metal)
-    - **Metal-shared**: Important in ≥2 metals, <50% of non-metal conditions
-    - **Metal-specific**: Important in exactly 1 metal, <50% of non-metal conditions
+    - **General stress**: Important (fit < -1) in ≥1 metal AND sick rate ≥ 50% across non-metal experiments (pleiotropic)
+    - **Metal-shared**: Important in ≥2 metals, sick rate < 50% in non-metal experiments
+    - **Metal-specific**: Important in exactly 1 metal, sick rate < 50% in non-metal experiments
   - Map genes to pangenome core/accessory via ortholog groups (from essential_genome)
   - Test H2: core enrichment gradient — general > metal-shared > metal-specific
   - Identify the genes driving cross-resistance (metal-shared) — functional enrichment via COG/KEGG
