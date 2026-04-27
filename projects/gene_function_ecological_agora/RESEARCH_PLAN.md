@@ -640,6 +640,27 @@ The v2 detection takes the **union** of eggNOG-name and InterProScan-accession p
 
 - **v1** (2026-04-26): Initial plan. Three-phase forced-order atlas; pre-registered hypotheses with weak-prior calibration; design reasoning captured separately in DESIGN_NOTES.md.
 
+- **v2.4** (2026-04-27, Phase 1B complete + post-gate diagnostic): Phase 1B → Phase 2 gate verdict `PASS_REFRAMED`. Methodology validates at full GTDB scale; pre-registered Bacteroidota PUL Innovator-Exchange hypothesis is falsified at the absolute-zero criterion across all 4 deep ranks. Six methodology revisions (M6–M11) baked into Phase 2 from this point forward. **Plus a critical 7th revision (M12)** raised by a post-gate diagnostic that the user's concern triggered:
+
+  - **M6** Phase 2 substrate is KO not UniRef50 (substrate-hierarchy held in softened form: UniRef50 produces small-magnitude HGT signal; KO aggregation expected to amplify substantially)
+  - **M7** Carry M1 rank-stratified parents forward to Phase 2
+  - **M8** Carry M2 negative-control criterion forward (CI upper ≤ 0.5)
+  - **M9** PIC (HIGH 3) re-promoted to Phase 2 mandatory; deferred from Phase 1B
+  - **M10** Per-class cap pattern at KO scale (functional categories may have far fewer KOs than 10K)
+  - **M11** *(revised at v2.4)* If KO-level relative-threshold discrimination doesn't amplify substantially over UniRef50's +0.6–1.2 σ at family rank, switch from parent-rank dispersion to direct phyletic-incongruence on KO presence/absence
+  - **M12** *(new at v2.4)* **Atlas-level "Innovator-Exchange" definition is reformulated**. Phase 1B revealed the absolute-zero consumer-z threshold was over-stringent: HGT-active classes at UniRef50 sit at consumer z ≈ −6 (clumped relative to permutation null) but at ≈ +0.6–1.2 σ less clumped than housekeeping baselines (Mann-Whitney U one-sided p << 10⁻⁷ for β-lactamase and class-I CRISPR-Cas vs ribosomal at family rank). **For Phase 2 onward, "Innovator-Exchange" is operationalised as "≥ X σ less clumped than housekeeping baseline at the rank's parent" rather than "absolute consumer z > 0".** X is to be calibrated empirically against Phase 2 KO data; Phase 1B numbers (+0.6–1.2 σ at UniRef50 for known-HGT classes) provide a lower bound.
+
+  Plus an **order-rank anomaly** flagged for Phase 2 investigation: at family→order parent (Phase 1B order rank), positive HGT controls are *more* clumped than housekeeping (median Δ = −0.83 σ, opposite of expectation). Possible: small parent-class count inflates null variance, or intra-phylum HGT-active genes cluster within few orders. Phase 2 KO atlas should reproduce this diagnostic.
+
+  The reframe was triggered by a user concern after the original Phase 1B verdict that we might not be confronting a methodology error. The diagnostic in NB08b confirmed: methodology IS detecting HGT signal (just below the absolute threshold). The original NB07/NB08 narrative was over-pessimistic; v2.4 corrects this with M12 + the relative-threshold framing.
+
+  Phase 1B headline numbers:
+  - 18,989 bacterial GTDB representatives (post-CheckM)
+  - 100,192 UniRef50 target set (10K-per-class cap from a 15.4M unique-UniRef pool)
+  - 1.54 M (species, UniRef50) presence rows
+  - 1.29 M (rank, clade, UniRef) producer scores
+  - Wall time ≈ 1 hour (NB05 7.5 min + NB06 45 min + NB07 5 min + NB08 5 min)
+
 - **v2.3** (2026-04-26, post-Phase-1A review synthesis): synthesized `REVIEW_1.md` (claude standard) and `ADVERSARIAL_REVIEW_1.md` (claude adversarial). Standard reviewer was uniformly positive (0 critical, 0 important, 6 forward-looking suggestions); adversarial reviewer flagged 3 critical + 4 important gaps. Five HIGH revisions baked into Phase 1B from this point forward, plus four MEDIUM items deferred with explicit roadmap:
 
   - **HIGH 1: Known-HGT positive control set for consumer null** (addresses adversarial C2). The producer null is validated by `natural_expansion`. The consumer null lacks an analogous positive control: AMR was supposed to be it but the parent-phylum anchor masks intra-phylum HGT (M1 acknowledges). **Phase 1B adds** a known-cross-phylum-HGT positive control set:

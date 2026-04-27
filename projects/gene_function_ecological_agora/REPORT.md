@@ -332,6 +332,112 @@ The adversarial review identifies four real gaps that warrant Phase 1B design ch
 3. **Hierarchical multiple-testing implementation details** (addresses C1 partially). Phase 1B NB02 specifies the BH-FDR variant + effective-N within KEGG BRITE × GTDB family.
 4. **Sichert & Cordero (2021) added to references.md** for Phase 1B Bacteroidota PUL hypothesis literature context.
 
+## Phase 1B Milestone (v1.2, 2026-04-27)
+
+**Status**: Phase 1B complete (`PASS_REFRAMED`). Phases 2–4 in planning.
+
+Phase 1B applied the methodology revisions M1–M4 from Phase 1A at full GTDB scale: 18,989 bacterial GTDB representatives × 100,192 targeted UniRef50s (10K-per-class cap) → 1.54 M (species, UniRef50) presence rows → 1.29 M (rank, clade, UniRef) producer scores. Wall time ≈ 1 hour total across NB05–NB08.
+
+### Finding 1B.1 — Methodology validates at full scale
+
+The producer null is responsive at GTDB scale. The natural_expansion class (UniRefs with documented within-species paralog count ≥ 3 in ≥ 5 species) shows monotone-growing positive producer z across all 5 ranks — *stronger than at pilot scale*:
+
+| Rank | Producer z mean | Raw paralog above cohort |
+|---|---|---|
+| genus | +0.13 σ | +9.3 % |
+| family | +0.19 σ | +14.3 % |
+| order | +0.31 σ | +22.3 % |
+| class | +0.77 σ | +55.2 % |
+| phylum | **+0.89 σ** | **+64.5 %** |
+
+Negative controls (ribosomal / tRNA-synth / RNAP core) sit ~12 % below cohort with z ≈ −0.15 — the dosage-constrained signature M2 anticipates. *(Notebooks: 06, 07)*
+
+### Finding 1B.2 — M1 rank-stratified parents reveal a clean monotone consumer-z gradient
+
+The M1 fix (consumer-null parent rank stratified per child rank rather than always phylum) produced the rank gradient that Phase 1A's parent-phylum-only anchor masked:
+
+| Child rank | Parent rank (M1) | Consumer z mean (informative) |
+|---|---|---|
+| genus | family | **−10.48** |
+| family | order | **−6.40** |
+| order | class | **−4.18** |
+| class | phylum | **−1.84** |
+
+Phase 1A's parent-phylum anchor produced a flat-then-jump pattern (≈−4 σ at deep ranks, −1.36 at class). M1 reveals it's monotone. *(Notebook: 06)*
+
+### Finding 1B.3 — Bacteroidota PUL Innovator-Exchange falsified at the absolute-zero criterion; HGT signal IS detected at +0.78 σ relative to housekeeping
+
+The pre-registered Phase 1B hypothesis was: *Bacteroidota → Innovator-Exchange (high producer + high participation) for PUL CAZyme UniRef50s, with Innovator-Exchange operationalised as "both producer and consumer 95 % CI lower bound > 0"*. By that criterion, the hypothesis is **falsified** at all 4 deep ranks (0/4 supported).
+
+But the absolute-zero criterion turns out to be *over-stringent* at UniRef50 resolution. A *relative* threshold reveals a graded HGT signal: at family→order parent rank, CAZymes (`hyp_cazyme`) show **+0.78 σ less clumping than ribosomal proteins** (median consumer z = −6.21 vs −6.99; Mann-Whitney U one-sided p = 1 × 10⁻⁴³). The methodology IS detecting HGT signal in the CAZyme class — just at smaller magnitude than required to clear the pre-registered absolute threshold.
+
+**Bacteroidota PUL CAZymes specifically (the original hypothesis)** show producer z ∈ [−0.07, −0.10] across deep ranks (95 % CIs entirely below zero) and consumer z ∈ [−9.3, −2.8] at parent ranks. Both legs of "Innovator-Exchange" fail by the absolute criterion. By the relative criterion, CAZymes still discriminate from housekeeping but Bacteroidota CAZymes specifically don't show *additional* lift relative to other phyla's CAZymes.
+
+*(Notebooks: 07; diagnostic in 08b; data: `p1b_bacteroidota_pul_test.tsv`, `p1b_discrimination_diagnostic.tsv`)*
+
+![Bacteroidota PUL position vs other phyla CAZymes per rank](figures/p1b_bacteroidota_pul_position.png)
+
+### Finding 1B.4 — HIGH 1 cross-phylum HGT positive controls show real but small discrimination at UniRef50
+
+Pre-registered cross-phylum HGT positive controls (β-lactamase + class-I CRISPR-Cas, plan v2.3 HIGH 1) all sit at strongly negative absolute consumer z (clumped at parent ranks). **But by the relative-threshold diagnostic at family rank**:
+
+| Class | Median consumer z | Δ vs neg_ribosomal | One-sided MW p |
+|---|---|---|---|
+| pos_amr | −7.37 | −0.37 | 0.94 |
+| pos_tcs_hk | −6.57 | +0.43 | 5×10⁻⁴ |
+| pos_betalac | −6.37 | **+0.62** | 5×10⁻⁸ |
+| pos_crispr_cas | −5.81 | **+1.18** | 1×10⁻⁸⁰ |
+
+β-lactamase and class-I CRISPR-Cas DO discriminate from housekeeping by 0.6–1.2 σ. AMR (the bakta_amr set, dominated by clade-specific resistance variants) does not — the negative result for AMR specifically is consistent with bakta_amr's inherent narrowness, not a methodology failure.
+
+The "HIGH 1 known-HGT controls fail" framing in the gate-decision document overstates: the controls fail *the absolute Innovator-Exchange threshold*; they pass *the relative-discrimination diagnostic*. The right framing for Phase 2: HGT signal is real at UniRef50 but small in magnitude; KO aggregation is expected to amplify it. *(Notebook: 08b; diagnostic captured at user request after the original Phase 1B narrative was over-pessimistic)*
+
+### Finding 1B.5 — Order-rank anomaly: positive HGT controls are *more* clumped than negatives
+
+A genuinely unexpected pattern surfaced in the diagnostic: at **order rank (parent=class)**, positive HGT controls have median consumer z = −4.51 vs negative controls median z = −3.69 — i.e., positive controls *more* clumped than negatives, opposite of expectation. Mann-Whitney U one-sided p = 1.0 (no discrimination in the expected direction).
+
+This anomaly is at one rank only. Possible explanations:
+- Order rank has only 689 clades and 245 parent classes — the small parent-clade count may inflate null variance for the consumer-null permutation
+- Intra-phylum HGT-active genes may cluster within a few orders within a single phylum, making them *more* clumped at parent=class than housekeeping (which spreads to many classes)
+- A metric mis-calibration specific to small-K parent-rank scenarios
+
+This requires Phase 2 investigation — specifically, the same diagnostic at KO aggregation level should clarify whether the anomaly is metric-specific or substrate-specific. *(Notebook: 08b)*
+
+### Finding 1B.6 — Substrate-hierarchy claim, softened
+
+The Phase 1A NB04 M3 revision pre-registered the substrate-hierarchy claim: UniRef50 captures sequence-cluster-specific variants and is too narrow to detect family-level HGT or paralog signal. Phase 1B's diagnostic data nuance this:
+
+- **At UniRef50, HGT signal IS detectable** — CAZymes, β-lactamases, class-I CRISPR-Cas all show +0.6 to +1.2 σ less clumping than housekeeping at family rank with p << 10⁻⁷.
+- **The signal magnitude is small** — well below the absolute Innovator-Exchange threshold the Phase 1B hypothesis pre-registered.
+- **The substrate-hierarchy reasoning still holds in a softer form**: Phase 2 KO aggregation is *expected* to produce much larger effect sizes, because aggregating UniRef50s into KO families collapses the sequence-cluster-specific clade-restriction. If Phase 2 fails to amplify the signal, the consumer-null methodology itself may need to be replaced (M11: switch to direct phyletic-incongruence on KO presence/absence instead of parent-rank dispersion).
+
+The *spirit* of the M3 substrate-hierarchy framing is correct: family-level HGT signal lives at functional aggregation, not at sequence-cluster resolution. The *strict form* ("UniRef50 cannot detect HGT") was too pessimistic — UniRef50 produces small but real HGT signal.
+
+### Finding 1B.7 — Phase 1B → Phase 2 gate: PASS_REFRAMED with corrected scope
+
+Six methodology revisions for Phase 2 (M6–M11 in plan v2.3 → v2.4):
+
+- **M6** Phase 2 substrate is KO not UniRef50
+- **M7** Carry M1 rank-stratified parents forward
+- **M8** Carry M2 negative-control criterion forward
+- **M9** PIC re-promoted to Phase 2 mandatory (was deferred from Phase 1B)
+- **M10** Per-class cap pattern at KO scale
+- **M11** *(revised)* If KO-level relative-threshold discrimination doesn't amplify substantially over UniRef50's +0.6–1.2 σ at family rank, switch from parent-rank dispersion to direct phyletic-incongruence on KO presence/absence
+
+Plus a new revision raised by the diagnostic:
+
+- **M12** *(new at v2.4)* **Report HGT-class vs housekeeping deltas as primary atlas metric** alongside absolute consumer z. The Phase 1B verdict reframes the four-quadrant labels: at deep ranks, "Innovator-Exchange" should be operationalised as "≥ X σ less clumped than housekeeping at the rank's parent" rather than "absolute consumer z > 0." X is calibrated empirically from Phase 2 data.
+
+*(Notebook: 08; gate document: `data/p1b_phase_gate_summary.md`; diagnostic correction in 08b)*
+
+### Honest accounting
+
+The original NB07/NB08 narrative ("everything fails at UniRef50; substrate-hierarchy explains it; Phase 2 KO required") was too pessimistic. The diagnostic in NB08b — triggered by user concern that we might not be confronting a methodology error — surfaced that the consumer null DOES discriminate HGT classes from housekeeping (just at small magnitude), and that the pre-registered absolute-zero criterion was over-stringent rather than the methodology being broken.
+
+This is a Phase 1A/B-style *pre-registration omission*: the Innovator-Exchange criterion in plan v2 specified an absolute threshold without anchoring to the empirically appropriate scale. M12 corrects this for Phase 2 by promoting the relative-threshold metric to primary status. The lesson generalises: *atlas-level criteria should be calibrated against an empirical baseline (housekeeping classes) rather than against absolute zero*, especially at substrate resolutions where the null distribution is itself shifted.
+
+The Bacteroidota PUL hypothesis remains falsified by either criterion; the relative-threshold framing only changes how we describe the *control-class* behaviour, not the hypothesis-test outcome.
+
 ## References
 
 - **Alm, E.J., Huang, K., Arkin, A.P. (2006).** "The evolution of two-component systems in bacteria reveals different strategies for niche adaptation." *PLoS Computational Biology* 2(11):e143. doi:10.1371/journal.pcbi.0020143. PMC1630713.

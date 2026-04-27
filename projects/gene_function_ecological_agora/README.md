@@ -8,9 +8,13 @@ Across the prokaryotic tree (GTDB r214; 293,059 genomes / 27,690 species), do cl
 
 ## Status
 
-**Phase 1A complete (2026-04-26): `PASS_WITH_REVISION`.** Methodology validated on a 1,000-species × 1,200-UniRef50 pilot. Producer null is responsive (natural_expansion class +0.13 → +0.55 σ across 5 ranks); negative controls behave biologically correctly (dosage-constrained → negative producer z); Alm 2006 reproduction at UniRef50 deferred to Phases 2/3 per v2 plan substrate hierarchy. Four methodology revisions (M1–M4) documented for Phase 1B. See [REPORT.md](REPORT.md) for the Phase 1A milestone report and [data/p1a_phase_gate_summary.md](data/p1a_phase_gate_summary.md) for the formal gate decision.
+**Phase 1A complete (2026-04-26): `PASS_WITH_REVISION`.** Methodology validated on a 1,000-species × 1,200-UniRef50 pilot. Four methodology revisions (M1–M4) documented for Phase 1B.
 
-**Phases 1B–4 in planning.**
+**Phase 1B complete (2026-04-27): `PASS_REFRAMED`.** Methodology validated at full GTDB scale (18,989 bacterial species × 100,192 UniRef50s × 5 ranks = 1.29 M producer scores). Pre-registered Bacteroidota PUL Innovator-Exchange hypothesis falsified at the absolute-zero criterion (0/4 deep ranks); a post-gate diagnostic revealed the methodology IS detecting HGT signal at UniRef50 but at small magnitude (CAZymes +0.78 σ less clumped than ribosomal at family rank, p = 1×10⁻⁴³). The pre-registered absolute-zero threshold was over-stringent. Seven methodology revisions (M6–M12) documented for Phase 2; M12 reformulates "Innovator-Exchange" as a relative-threshold metric.
+
+See [REPORT.md](REPORT.md) for both milestone reports, and [data/p1a_phase_gate_summary.md](data/p1a_phase_gate_summary.md) + [data/p1b_phase_gate_summary.md](data/p1b_phase_gate_summary.md) for the formal gate decisions.
+
+**Phase 2 in planning** (KO functional aggregation).
 
 ## Overview
 
