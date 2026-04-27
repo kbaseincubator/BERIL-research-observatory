@@ -544,18 +544,22 @@ def build_table_stats(
         size_gb    = size_bytes / 1e9
         wait_note  = "  (large file — may take several minutes)" if size_gb > 10 else ""
         print(f"  {f.name}: {size_gb:.1f} GB{wait_note}", end=" ", flush=True)
-        total_lines = _count_lines(f)
-        data_lines  = max(total_lines - 1, 0)   # exclude header
 
         # Parquet uses Spark's native reader — pandas chunking is not supported.
+        # Row count comes from Parquet metadata, not newline counting.
         if f.suffix == ".parquet":
+            import pyarrow.parquet as pq
+            data_lines = pq.read_metadata(f).num_rows
             chunk_size, n_chunks = data_lines, 1
-        elif chunked_ingest and size_bytes > chunk_target_bytes and data_lines > 0:
-            chunk_size = max(1, round(data_lines * chunk_target_bytes / size_bytes))
-            n_chunks   = math.ceil(data_lines / chunk_size)
         else:
-            chunk_size = data_lines
-            n_chunks   = 1
+            total_lines = _count_lines(f)
+            data_lines  = max(total_lines - 1, 0)   # exclude header
+            if chunked_ingest and size_bytes > chunk_target_bytes and data_lines > 0:
+                chunk_size = max(1, round(data_lines * chunk_target_bytes / size_bytes))
+                n_chunks   = math.ceil(data_lines / chunk_size)
+            else:
+                chunk_size = data_lines
+                n_chunks   = 1
 
         table_stats[table] = {
             "path":       f,
