@@ -544,6 +544,7 @@ def build_table_stats(
         size_gb    = size_bytes / 1e9
         wait_note  = "  (large file — may take several minutes)" if size_gb > 10 else ""
         print(f"  {f.name}: {size_gb:.1f} GB{wait_note}", end=" ", flush=True)
+
         total_lines = _count_lines(f)
         data_lines  = max(total_lines - 1, 0)   # exclude header
 
@@ -1265,14 +1266,23 @@ def verify_ingest(
     spark.sql(f"SHOW TABLES IN `{namespace}`").show()
 
     progress_log = _load_progress_log(minio_client, bucket, progress_key)
-    all_match    = True
+    complete_from_log = {
+        e["table"]: e["total_rows"]
+        for e in progress_log
+        if e.get("status") == "complete" and "total_rows" in e
+    }
+    all_match = True
 
     print("Row counts (Delta vs expected):")
-    for table, stats in table_stats.items():
+    for table in table_stats:
+        if table not in complete_from_log:
+            print(f"  {table:<45s}  {'(not in progress log)':>32}  [INCOMPLETE]")
+            all_match = False
+            continue
         count    = spark.sql(
             f"SELECT COUNT(*) FROM `{namespace}`.`{table}`"
         ).collect()[0][0]
-        expected = stats["data_lines"]
+        expected = complete_from_log[table]
         match    = "OK" if count == expected else "MISMATCH"
         if count != expected:
             all_match = False
