@@ -1,7 +1,7 @@
 project_id: ecotype_functional_differentiation
-status: proposed
+status: complete
 created_at: "2026-04-27T00:00:00Z"
-last_session_at: "2026-04-27T00:00:00Z"
+last_session_at: "2026-04-27T23:40:00Z"
 branch: projects/ecotype_functional_differentiation
 engine:
   name: claude
@@ -12,5 +12,5 @@ authors:
 artifacts:
   readme: true
   research_plan: true
-  report: false
-  review: false
+  report: true
+  review: true
