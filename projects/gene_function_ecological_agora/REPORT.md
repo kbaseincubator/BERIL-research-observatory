@@ -438,6 +438,59 @@ This is a Phase 1A/B-style *pre-registration omission*: the Innovator-Exchange c
 
 The Bacteroidota PUL hypothesis remains falsified by either criterion; the relative-threshold framing only changes how we describe the *control-class* behaviour, not the hypothesis-test outcome.
 
+## Phase 1B Diagnostic Resolution (v1.3, 2026-04-27)
+
+After REPORT.md v1.2's Phase 1B section landed with a softened substrate-hierarchy claim, two further corrections fired:
+
+1. **Alm 2006 close-reading** (`docs/alm_2006_methodology_comparison.md`) revealed the project had been *misreading Alm 2006* in three load-bearing ways: the four-quadrant framework is our construction (not theirs); they worked at single-domain level (≈ UniRef50, not "family"); and they used phylogenetic-tree-aware reconciliation (not parent-rank dispersion). The substrate-hierarchy claim therefore needed reformulation: not "UniRef50 is too narrow, aggregate to KO" but "*we used the wrong metric on the right substrate*."
+
+2. **Diagnostic NB08c** (Sankoff parsimony on the GTDB-r214 tree) tested whether the order-rank anomaly is a metric artifact (parent-rank dispersion) or a methodology failure. **Result: metric artifact** — Sankoff recovers the expected direction (positive HGT > negative housekeeping at p = 2.1×10⁻⁵).
+
+### Headline diagnostic outcome (NB08c)
+
+![Per-class metric diagnostic panels (A–D)](figures/p1b_metric_diagnostic_panels.png)
+
+The four panels:
+- **A** (top-left, log-scale): K = n_clades_with at order rank per class. Both pos HGT and neg housekeeping have median K = 1 — UniRefs are clade-restricted regardless of class. Distributions differ statistically (p < 10⁻¹⁹) but the median is the same; K bias does not explain the order-rank anomaly.
+- **B** (bottom-left): within-Pseudomonadota dispersion (n_pseudo_families / n_pseudo_species). Positive controls show *lower* dispersion than negative housekeeping (pos median 0.25, neg median 0.33). **Metric is biased by class coverage**: housekeeping is pan-Pseudomonadota (in every family); HGT-active classes are clade-specific within phylum. Drop this metric.
+- **C** *(HEADLINE, bottom-right)*: Sankoff parsimony score / n_present_leaves per UniRef. Positive HGT classes (TCS HK, β-lactamase, CAZymes) sit above housekeeping (ribosomal, tRNA-synth, RNAP). **Direction recovered.** Cohen's d = 0.15 (small effect; p = 2.1×10⁻⁵).
+- **D** (top-right): Pseudomonadota fraction per UniRef. Only AMR is strongly Pseudomonadota-biased (median 50 %; 49 % of AMR UniRefs >50 % Pseudomonadota). All other classes ≤ 4 % median. **AMR detection bias confound** — bakta_amr is sourced from AMRFinderPlus's Pseudomonadota-heavy reference set.
+
+| Class | Median Sankoff/n_present | Notes |
+|---|---|---|
+| none (random atlas baseline) | 24.5 | top — random sparse-presence UniRefs require many gains |
+| pos_tcs_hk | 19.75 | ✓ above housekeeping |
+| pos_betalac | 19.0 | ✓ above housekeeping |
+| hyp_cazyme | 19.0 | ✓ above housekeeping |
+| neg_rnap_core | 17.5 | inversion — RNAP ranks above CRISPR-Cas (small) |
+| pos_crispr_cas | 17.0 | |
+| neg_trna_synth | 14.0 | |
+| neg_ribosomal | 12.8 | ✓ correctly lowest housekeeping |
+| pos_amr | **12.0** | **anomalously low — Pseudomonadota detection bias** |
+| natural_expansion | 4.5 | ✓ correctly lowest (broad conservation by selection) |
+
+*(Notebook: `08c_p1b_metric_diagnostic.ipynb`)*
+
+### What this resolves
+
+1. **Order-rank anomaly is a parent-rank-dispersion artifact.** Sankoff parsimony — the canonical Alm-2006-faithful tree-aware metric — recovers the expected direction. The methodology framework is not broken; the metric was wrong.
+2. **The framework is salvageable.** natural_expansion correctly shows lowest parsimony score (broadly-conserved UniRefs require few gain events), confirming the metric is biologically meaningful in direction.
+3. **AMR is a confounded positive control.** Pseudomonadota-detection-biased; should be excluded from Phase 2 positive-control panel. β-lactamase + CRISPR-Cas + TCS HK remain.
+
+### What this does *not* resolve
+
+1. **Effect size at UniRef50 remains small.** Cohen's d = 0.15 — well below the d ≥ 0.3 threshold the project pre-registered for atlas-grade discrimination. The "+0.6 to +1.2 σ less clumped than housekeeping" framing in REPORT.md v1.2 was on parent-rank z-units, not Cohen's d, and overstated effect magnitude.
+2. **The substrate-hierarchy softening from v1.2 still holds**: HGT signal at UniRef50 is real but small. Phase 2 KO aggregation is *expected* to amplify, but this is now an empirical claim Phase 2 must demonstrate, not a substrate-hierarchy guarantee.
+3. **The within-phylum dispersion metric (Diagnostic B) was wrong** — biased by class coverage, not HGT activity. The right within-phylum analog is per-phylum Sankoff parsimony.
+
+### Phase 2 commitments (M16–M18 in plan v2.6)
+
+- **M16** Sankoff parsimony on the GTDB-r214 tree topology is the **primary atlas metric** for Phase 2. Parent-rank dispersion drops to diagnostic only.
+- **M17** AMR (bakta_amr) excluded from Phase 2 positive-control panel due to Pseudomonadota detection bias. β-lactamase, CRISPR-Cas, TCS HK serve as positive controls; natural_expansion as paralog-signal sanity.
+- **M18** **Hard amplification gate**: Phase 2 KO atlas must demonstrate Cohen's d ≥ 0.3 on Sankoff parsimony for at least one positive HGT control vs negative housekeeping. UniRef50 baseline is d = 0.15. If Phase 2 fails to amplify to d ≥ 0.3, the substrate-hierarchy claim is falsified and **M11 redesign triggers** (switch from Sankoff to gene-tree-vs-species-tree reconciliation, per Phase 3's original sub-sample reservation).
+
+The amplification gate is the make-or-break test for the project's substrate-hierarchy reasoning. If Phase 2 amplifies to d ≥ 0.3, methodology recovery is complete and the project proceeds. If not, the methodology has a deeper limitation that aggregation alone cannot fix, and the project pivots to reconciliation-based methods.
+
 ## References
 
 - **Alm, E.J., Huang, K., Arkin, A.P. (2006).** "The evolution of two-component systems in bacteria reveals different strategies for niche adaptation." *PLoS Computational Biology* 2(11):e143. doi:10.1371/journal.pcbi.0020143. PMC1630713.

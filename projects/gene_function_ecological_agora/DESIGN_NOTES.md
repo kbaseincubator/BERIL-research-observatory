@@ -272,6 +272,22 @@ This section documents how each v2 revision was raised, what it changed, and wha
 - **2026-04-26 (v1)**: Initial design notes captured at project creation. Reflects the conversation reasoning leading to the three-phase plan, the weak-prior framing of pre-registered hypotheses, and the rejection of alternative atlas framings.
 - **2026-04-26 (v2)**: Added v2 Revision Trace section documenting the changes prompted by `PLAN_REVIEW_1.md` and `ADVERSARIAL_PLAN_REVIEW_1.md`. Most consequential change: Producer × Participation reframe at deep ranks. Within-species genome sampling strategy added in response to a user interjection during v2 drafting.
 
+- **2026-04-27 (v2.5 — NB08c metric diagnostic resolution: qualified pass)**: NB08c (Sankoff parsimony on GTDB-r214 tree, plus three other diagnostics) tested whether the Phase 1B order-rank anomaly is a metric artifact or a methodology failure. **Result: qualified pass.** Sankoff recovers the expected direction (positive HGT > negative housekeeping at p = 2.1×10⁻⁵), confirming that parent-rank dispersion was the source of the anomaly, not the framework. **But effect size remains small** (Cohen's d = 0.146, short of the d ≥ 0.3 threshold).
+
+  The user's decision to proceed to Phase 2 "banking on amplification" is honest about the residual uncertainty: methodology framework not broken, signal real, but small at UniRef50. Phase 2 KO aggregation is the test; if it fails to amplify to d ≥ 0.3 on Sankoff, M11 redesign triggers (switch to gene-tree reconciliation per AleRax).
+
+  Three additional findings from NB08c that change Phase 2 design:
+
+  1. **AMR is a confounded positive control.** Diagnostic D showed bakta_amr is Pseudomonadota-biased (median 50 % Pseudomonadota fraction; 49 % of AMR UniRefs >50 % Pseudomonadota). The AMRFinderPlus reference is documented Pseudomonadota-heavy. M17 excludes AMR from the Phase 2 positive-control panel; β-lactamase + CRISPR-Cas + TCS HK serve as positive controls.
+
+  2. **Within-Pseudomonadota dispersion (Diagnostic B) is biased by class coverage, not HGT.** Housekeeping is pan-Pseudomonadota (in every family); HGT-active classes are clade-specific within phylum. The within-phylum dispersion metric measures coverage uniformity, not exchange. Drop this metric. The right within-phylum analog is per-phylum Sankoff.
+
+  3. **natural_expansion validates the metric direction.** Lowest per-leaf parsimony score (4.5) of any class, correctly reflecting that broadly-conserved UniRefs require few gain events. Sanity-positive.
+
+  **Generalizable lesson for BERIL projects**: when an analysis produces an anomalous result (positive HGT controls more clumped than negatives), do *not* default to substrate-hierarchy explanations. First test whether the metric is faithful to the original methodology you're claiming to extend. NB08c took ~1 hour to write and ~70 seconds to run; it dispositively distinguished metric artifact from methodology failure. *That diagnostic should have been the first move, not the third.*
+
+  **Effect-size grammar correction**: REPORT.md v1.2's "+0.6 to +1.2 σ less clumped than housekeeping" used parent-rank z-units, not Cohen's d. Phase 2 standardizes on Cohen's d. The Phase 1B Sankoff baseline of d = 0.15 is the floor; the d ≥ 0.3 amplification gate at Phase 2 is the test of whether KO aggregation rescues the substrate-hierarchy framing.
+
 - **2026-04-27 (v2.4 — Alm 2006 close-reading discovery)**: Triggered by adversarial review flagging Cohen's d mismatch + the user asking "should we review the Alm paper?" Close read of the Alm 2006 paper (now memo'd at `docs/alm_2006_methodology_comparison.md`) revealed three load-bearing claims about Alm 2006 that this project had been getting *wrong*:
 
   **1. Alm 2006 does NOT use producer/consumer or four-quadrant categories.** Their actual finding is a correlation: r = 0.74 (p < 10⁻¹⁵, OLS) between HPK fraction in a genome and recent-LSE fraction; plus a threshold classification ("HPK-enriched" = ≥ 1.5 % of genes). The "Open Innovator / Broker / Sink / Closed" four-quadrant framework is *this project's construction*, not "Alm 2006's generalization". The central research question's framing — "is the producer/consumer asymmetry observed by Alm-Huang-Arkin 2006 a general feature of regulatory function classes?" — overstates the relationship to Alm 2006.

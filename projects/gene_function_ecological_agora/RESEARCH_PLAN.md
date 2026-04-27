@@ -642,6 +642,22 @@ The v2 detection takes the **union** of eggNOG-name and InterProScan-accession p
 
 - **v1** (2026-04-26): Initial plan. Three-phase forced-order atlas; pre-registered hypotheses with weak-prior calibration; design reasoning captured separately in DESIGN_NOTES.md.
 
+- **v2.6** (2026-04-27, NB08c diagnostic resolution): Sankoff parsimony on the GTDB-r214 tree (NB08c) confirmed M15: tree-aware metric recovers the expected direction (positive HGT > negative housekeeping at p = 2.1×10⁻⁵), where the parent-rank dispersion metric had produced the order-rank anomaly. **Methodology framework is not broken; the metric was wrong.**
+
+  But effect size at UniRef50 remains small (Cohen's d = 0.146, short of the d ≥ 0.3 threshold). The substrate-hierarchy softening (Phase 1B v1.2) holds: HGT signal is real but small at UniRef50; aggregation may amplify it at Phase 2. We proceed to Phase 2 *banking on amplification*. Three additional revisions baked in:
+
+  - **M16** *(Phase 2 primary metric)* — Sankoff parsimony on the GTDB-r214 tree topology is the **primary atlas metric** for Phase 2 onward. Parent-rank dispersion drops to secondary/diagnostic only. NB08c demonstrated parent-rank dispersion produces the order-rank anomaly that Sankoff resolves. Per-leaf Sankoff (gain events / n_present_leaves) is the comparison statistic; raw Sankoff score is reported alongside. PIC correction (M9, deferred again) is no longer needed in this form because Sankoff is intrinsically tree-aware.
+
+  - **M17** *(Phase 2 control panel)* — `pos_amr` (bakta_amr) is **excluded** from the Phase 2 positive-control panel. NB08c Diagnostic D demonstrated AMR has median 50 % Pseudomonadota fraction (vs ≤4 % for all other classes except natural_expansion). The AMRFinderPlus reference is documented Pseudomonadota-biased; AMR detection at scale is a substrate-bias confound, not a clean HGT-positive control. β-lactamase (`pos_betalac`), class-I CRISPR-Cas (`pos_crispr_cas`), and TCS HK (`pos_tcs_hk`) remain as positive controls. AMR is reported as informational.
+
+  - **M18** *(Phase 2 amplification gate)* — Phase 2 KO atlas must demonstrate **Cohen's d ≥ 0.3 on Sankoff parsimony / n_present** for at least one positive HGT control class vs negative housekeeping. NB08c established the UniRef50 baseline at d = 0.15. If Phase 2 KO does not amplify to d ≥ 0.3, the substrate-hierarchy claim is falsified and **M11 redesign triggers**: switch from Sankoff parsimony to a fundamentally different methodology (e.g., gene-tree-vs-species-tree reconciliation per AleRax sub-sampling, per the original v2 plan's Phase 3 reservation). The amplification gate is a hard test — if it fails, the project halts at Phase 2 for redesign.
+
+  Diagnostic B (within-Pseudomonadota dispersion) **dropped from the methodology**. NB08c showed it's biased by class coverage (housekeeping is pan-Pseudomonadota; HGT-active classes are clade-specific within phylum), not by HGT activity. The right within-phylum analog is per-phylum Sankoff parsimony on a phylum-pruned tree.
+
+  **NB08c also confirmed natural_expansion as a valid metric-direction sanity check**: it has the lowest per-leaf parsimony score (4.5 vs 14-25 for other classes), correctly reflecting that broadly-conserved UniRefs require few gain events to explain their presence pattern.
+
+  **Updated effect-size baseline**: Cohen's d = 0.15 at UniRef50 (Sankoff parsimony, pos HGT vs neg housekeeping) is the lower bound. The +0.6 to +1.2 σ "less clumped than housekeeping" framing in REPORT.md v1.2 used parent-rank dispersion z-scores and overstated effect magnitude on a Cohen's d basis. Plan v2.6 standardizes on Cohen's d as primary effect-size metric.
+
 - **v2.5** (2026-04-27, Alm 2006 close-reading + methodology correction): Triggered by adversarial review effect-size critique + user prompt to revisit the Alm 2006 paper. Close-reading the Alm 2006 paper (memo'd at `docs/alm_2006_methodology_comparison.md`) revealed three load-bearing misreadings of Alm 2006 that had structural consequences for the project:
 
   1. The four-quadrant framework (Open Innovator / Broker / Sink / Closed Innovator) is **our construction**, not Alm 2006's. Alm 2006 reported a correlation (r = 0.74) between HPK count and LSE fraction per genome, plus a threshold classification ("HPK-enriched" = ≥ 1.5 %). They never named "producer / consumer" / "pioneer / sapper" / four-quadrant categories.
