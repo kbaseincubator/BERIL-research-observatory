@@ -4,7 +4,9 @@
 
 ## Research Question
 
-Across the prokaryotic tree (GTDB r214; 293,059 genomes / 27,690 species), do clades specialize in the *kind* of functional innovation they produce, and is the producer/consumer asymmetry observed by Alm, Huang & Arkin (2006) for two-component systems a general feature of regulatory function classes but not metabolic ones?
+Across the prokaryotic tree (GTDB r214; 293,059 genomes / 27,690 species), do clades specialize in the *kind* of functional innovation they produce, and does the **HPK-count-vs-recent-LSE correlation** that Alm, Huang & Arkin (2006) reported for two-component systems (r = 0.74 in their 207-genome substrate) generalize to other function classes — particularly differing between regulatory and metabolic ones?
+
+*v2.5 reframe* (2026-04-27): the central question has been reformulated to faithfully reflect what Alm 2006 *actually claimed* (a correlation between HPK abundance and lineage-specific-expansion rate, plus a threshold classification of HPK-enriched genomes). The earlier framing — "the producer/consumer asymmetry observed by Alm 2006" — overstated Alm 2006's claims; they did not name producer/consumer or four-quadrant categories. The Producer × Participation / four-quadrant framework used in this project is *this project's construction*, Alm-2006-inspired but not Alm-2006-derived. See `docs/alm_2006_methodology_comparison.md` for the close-reading record and DESIGN_NOTES.md v2.4 for the design-trace of this correction.
 
 ## Hypothesis
 
@@ -639,6 +641,29 @@ The v2 detection takes the **union** of eggNOG-name and InterProScan-accession p
 ## Revision History
 
 - **v1** (2026-04-26): Initial plan. Three-phase forced-order atlas; pre-registered hypotheses with weak-prior calibration; design reasoning captured separately in DESIGN_NOTES.md.
+
+- **v2.5** (2026-04-27, Alm 2006 close-reading + methodology correction): Triggered by adversarial review effect-size critique + user prompt to revisit the Alm 2006 paper. Close-reading the Alm 2006 paper (memo'd at `docs/alm_2006_methodology_comparison.md`) revealed three load-bearing misreadings of Alm 2006 that had structural consequences for the project:
+
+  1. The four-quadrant framework (Open Innovator / Broker / Sink / Closed Innovator) is **our construction**, not Alm 2006's. Alm 2006 reported a correlation (r = 0.74) between HPK count and LSE fraction per genome, plus a threshold classification ("HPK-enriched" = ≥ 1.5 %). They never named "producer / consumer" / "pioneer / sapper" / four-quadrant categories.
+  2. Alm 2006 worked at the **single-domain level** (IPR005467) — directly comparable to our UniRef50 / Pfam-architecture detection. The M3 substrate-hierarchy claim ("UniRef50 too narrow because Alm 2006 worked at family level") was wrong. They got clean signal at the equivalent granularity to ours.
+  3. Alm 2006 used **phylogenetic-tree-aware reconciliation** to assign LSE vs HGT events. Our parent-rank dispersion permutation null does not measure the same thing.
+
+  Three corrections (M13–M15) baked into Phase 2 design:
+
+  - **M13** *(reframe)* — Project's relationship to Alm 2006 is "Alm-2006-inspired", not "Alm-2006-generalizing". The central research question's claim that "the producer/consumer asymmetry observed by Alm-Huang-Arkin 2006" generalizes overstates Alm 2006's actual finding (which is a correlation, not a four-quadrant taxonomy). The four-quadrant framework gets explicit ownership as this project's construction. The Alm 2006 back-test deliverable is reformulated to *"reproduce the r ≈ 0.74 correlation between HPK count per genome and recent-LSE fraction at full GTDB scale, using a tree-aware metric"* — a specific, falsifiable, faithful-to-the-original test.
+
+  - **M14** *(replace M3)* — The substrate-hierarchy claim from Phase 1A M3 (and reaffirmed at Phase 1B M6) collapses. Phase 1B's failure at UniRef50 is *not* explained by Alm 2006 working at family level (they didn't). The failure is a *metric* mismatch: parent-rank dispersion is a permutation-null proxy that does not measure tree-aware HGT signal. **Phase 2 KO aggregation is no longer the expected fix. The tree-aware metric (M15) is.** Phase 2 KO atlas remains useful for the regulatory-vs-metabolic comparison but is not required by the substrate-hierarchy logic anymore.
+
+  - **M15** *(promote Diagnostic C)* — Phyletic incongruence as **mandatory** for Phase 2 (and for the Phase 1B post-gate diagnostic NB08c). The lightweight tractable form at GTDB scale is **Sankoff parsimony score** (binary gain/loss) on the GTDB-r214 species tree topology — *not* full DTL reconciliation (out of scope at full scale per the original constraint, but tractable for hundreds-to-thousands of UniRefs). For each UniRef50: minimum number of gain events to explain its presence pattern given the GTDB tree. UniRefs with high parsimony scores indicate HGT; low scores indicate vertical inheritance. This is the closest faithful analog of Alm 2006's tree-reconciliation methodology at GTDB scale.
+
+  **Phase 1B post-gate diagnostic (NB08c)** plan revised. Instead of A + B + D (per-class K, per-phylum decomposition, annotation density), NB08c now includes **A + B + C + D** with C as the headline:
+
+  - **A** Per-class K (n_clades_with) distribution at order rank — checks whether positive HGT controls have systematically smaller K
+  - **B** Per-phylum decomposition — restrict each class to its dominant phylum, re-test consumer z within phylum
+  - **C** Sankoff parsimony score on the GTDB-r214 tree topology for a sampled subset (~500 UniRefs per class) — the canonical Alm-2006-style metric. **If the order-rank anomaly disappears under Sankoff parsimony, the parent-rank dispersion was the source of the anomaly. If the anomaly persists, the methodology has a deeper problem.**
+  - **D** Annotation density check — fraction of UniRefs in each class whose dominant phylum is Pseudomonadota (AMRFinderPlus reference bias)
+
+  **Lesson captured**: anchor papers cited as foundational must be close-read for *exact* methodology before building atlas infrastructure on extrapolations. Three pre-registration omissions in this project (M2, M12, M14) all share this pattern. Future BERIL projects building on canonical papers should treat "actually read the methods section in detail" as a Phase-0 deliverable.
 
 - **v2.4** (2026-04-27, Phase 1B complete + post-gate diagnostic): Phase 1B → Phase 2 gate verdict `PASS_REFRAMED`. Methodology validates at full GTDB scale; pre-registered Bacteroidota PUL Innovator-Exchange hypothesis is falsified at the absolute-zero criterion across all 4 deep ranks. Six methodology revisions (M6–M11) baked into Phase 2 from this point forward. **Plus a critical 7th revision (M12)** raised by a post-gate diagnostic that the user's concern triggered:
 
