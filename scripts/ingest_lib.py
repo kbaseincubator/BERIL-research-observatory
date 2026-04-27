@@ -545,21 +545,18 @@ def build_table_stats(
         wait_note  = "  (large file — may take several minutes)" if size_gb > 10 else ""
         print(f"  {f.name}: {size_gb:.1f} GB{wait_note}", end=" ", flush=True)
 
+        total_lines = _count_lines(f)
+        data_lines  = max(total_lines - 1, 0)   # exclude header
+
         # Parquet uses Spark's native reader — pandas chunking is not supported.
-        # Row count comes from Parquet metadata, not newline counting.
         if f.suffix == ".parquet":
-            import pyarrow.parquet as pq
-            data_lines = pq.read_metadata(f).num_rows
             chunk_size, n_chunks = data_lines, 1
+        elif chunked_ingest and size_bytes > chunk_target_bytes and data_lines > 0:
+            chunk_size = max(1, round(data_lines * chunk_target_bytes / size_bytes))
+            n_chunks   = math.ceil(data_lines / chunk_size)
         else:
-            total_lines = _count_lines(f)
-            data_lines  = max(total_lines - 1, 0)   # exclude header
-            if chunked_ingest and size_bytes > chunk_target_bytes and data_lines > 0:
-                chunk_size = max(1, round(data_lines * chunk_target_bytes / size_bytes))
-                n_chunks   = math.ceil(data_lines / chunk_size)
-            else:
-                chunk_size = data_lines
-                n_chunks   = 1
+            chunk_size = data_lines
+            n_chunks   = 1
 
         table_stats[table] = {
             "path":       f,
@@ -1269,14 +1266,23 @@ def verify_ingest(
     spark.sql(f"SHOW TABLES IN `{namespace}`").show()
 
     progress_log = _load_progress_log(minio_client, bucket, progress_key)
-    all_match    = True
+    complete_from_log = {
+        e["table"]: e["total_rows"]
+        for e in progress_log
+        if e.get("status") == "complete" and "total_rows" in e
+    }
+    all_match = True
 
     print("Row counts (Delta vs expected):")
-    for table, stats in table_stats.items():
+    for table in table_stats:
+        if table not in complete_from_log:
+            print(f"  {table:<45s}  {'(not in progress log)':>32}  [INCOMPLETE]")
+            all_match = False
+            continue
         count    = spark.sql(
             f"SELECT COUNT(*) FROM `{namespace}`.`{table}`"
         ).collect()[0][0]
-        expected = stats["data_lines"]
+        expected = complete_from_log[table]
         match    = "OK" if count == expected else "MISMATCH"
         if count != expected:
             all_match = False
