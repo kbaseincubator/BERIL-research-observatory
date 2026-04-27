@@ -1,5 +1,5 @@
 project_id: metal_cross_resistance
-status: proposed
+status: analysis
 created_at: "2026-04-27T00:00:00Z"
 last_session_at: "2026-04-27T00:00:00Z"
 branch: projects/metal_cross_resistance
@@ -12,5 +12,5 @@ authors:
 artifacts:
   readme: true
   research_plan: true
-  report: false
+  report: true
   review: false
