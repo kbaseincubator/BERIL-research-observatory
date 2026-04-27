@@ -1,0 +1,125 @@
+schema_name: dataset_metadata
+schema_version: 0.2.0
+description: Metadata required to track ingested datasets. One file per table.
+
+required:
+  - identifier
+  - tenant
+  - dataset
+  - namespace
+  - table
+  - title
+  - source
+  - date_accessed
+  - ingested_by
+  - ingest_started_at
+  - status
+
+fields:
+  schema_version:
+    type: string
+    description: >
+      Version of the dataset_metadata schema this file conforms to. Auto-filled
+      at generation time. Used to identify files that may need migration if the
+      schema changes in the future.
+
+  identifier:
+    type: string
+    format: uuid
+    description: >
+      UUID v4 uniquely identifying this ingest record. Auto-generated at ingest time.
+      A new ingest of the same table generates a new UUID (overwrite resets the identifier).
+
+  tenant:
+    type: string
+    description: Lakehouse tenant name (e.g., kescience). Auto-filled from ingest configuration.
+
+  dataset:
+    type: string
+    description: Dataset name within the tenant (e.g., mgnify). Auto-filled from ingest configuration.
+
+  namespace:
+    type: string
+    description: >
+      Full Lakehouse namespace combining tenant and dataset (e.g., kescience_mgnify).
+      Auto-filled. Matches the Silver database name.
+
+  table:
+    type: string
+    description: >
+      Name of the specific table this metadata file describes. Auto-filled.
+      One metadata file is created per table.
+
+  title:
+    type: string
+    description: >
+      Human-readable name of the dataset. Auto-inferred from the dataset directory name
+      and schema; the user should review and correct if needed.
+
+  source:
+    type: string
+    description: >
+      Location where the dataset was obtained (e.g., URL, file path, object storage URI).
+      Agent will attempt to infer but user confirmation is required.
+
+  date_accessed:
+    type: string
+    format: date
+    description: Date the dataset was accessed from its source. Auto-filled with today's date.
+
+  status:
+    type: string
+    enum:
+      - in_progress
+      - completed
+      - failed
+    description: >
+      Ingest status for this table. Auto-set to "in_progress" before ingest begins
+      and updated to "completed" or "failed" after the ingest finishes.
+      The metadata file is uploaded to MinIO twice: once before ingest (in_progress)
+      and once after (completed or failed).
+
+  ingested_by:
+    type: string
+    description: >
+      Primary user or system responsible for initiating the ingest.
+      Auto-inferred from git config or KBASE_AUTH_TOKEN user when available;
+      otherwise prompted.
+
+  ingest_started_at:
+    type: string
+    format: date-time
+    description: When the ingest process was initiated. Auto-filled at ingest start.
+
+  ingest_completed_at:
+    type: string
+    format: date-time
+    description: >
+      When this specific table's ingest completed. Auto-filled per table after the
+      ingest loop finishes for that table. Written on the second MinIO upload.
+
+  version:
+    type: string
+    description: >
+      Version of the dataset, if known (e.g., a release tag or date from the source).
+      Left blank by default; user should fill in if available.
+
+  description:
+    type: string
+    description: Optional short description of the dataset or this table's contents.
+
+  data_schema_location:
+    type: string
+    description: >
+      URI of the schema file describing this table's structure.
+      If a .sql schema file is present, auto-filled with its target MinIO bronze path
+      before the ingest upload — the path is deterministic even before the file is uploaded.
+      Null for Parquet sources (schema is embedded) or when no .sql file is present.
+
+  ingest_contributors:
+    type: array
+    description: >
+      Other people involved in the ingest process, excluding the primary ingestor.
+      Always filled in manually during the optional-fields step.
+    items:
+      type: string
