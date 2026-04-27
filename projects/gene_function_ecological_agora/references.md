@@ -36,6 +36,28 @@ Literature cited in `RESEARCH_PLAN.md`, `DESIGN_NOTES.md`, and `REPORT.md` to da
 
   *Project context*: documents cross-phylum spread of β-lactamase families (TEM, CTX-M, NDM, OXA-48). Phase 1B HIGH 1: these families anchor the known-HGT positive control set for the consumer null.
 
+### Methodology — tree-aware metrics (added in Phase 1B post-NB08c)
+
+- **Sankoff, D. (1975).** "Minimal mutation trees of sequences." *SIAM Journal on Applied Mathematics* 28(1):35–42. doi:10.1137/0128004.
+
+  *Project context*: original Sankoff parsimony algorithm for character-state minimization on phylogenetic trees. NB08c uses the binary-trait special case (Fitch-Hartigan) on the GTDB-r214 tree for HGT-vs-vertical discrimination.
+
+- **Fitch, W.M. (1971).** "Toward defining the course of evolution: minimum change for a specific tree topology." *Systematic Zoology* 20(4):406–416.
+
+  *Project context*: Fitch's algorithm for binary-trait parsimony — the form actually implemented in NB08c (post-order intersection / union counting).
+
+- **Mirkin, B.G., Fenner, T.I., Galperin, M.Y., Koonin, E.V. (2003).** "Algorithms for computing parsimonious evolutionary scenarios for genome evolution, the last universal common ancestor and dominance of horizontal gene transfer in the evolution of prokaryotes." *BMC Evolutionary Biology* 3:2. doi:10.1186/1471-2148-3-2.
+
+  *Project context*: the canonical reference for parsimony-based HGT inference at the genome scale. Justifies the tree-aware metric choice (M15) and provides a precedent for using parsimony as an HGT proxy at large scale where full DTL reconciliation is infeasible.
+
+- **Soucy, S.M., Huang, J., Gogarten, J.P. (2015).** "Horizontal gene transfer: building the web of life." *Nature Reviews Genetics* 16(8):472–482. doi:10.1038/nrg3962.
+
+  *Project context*: review of HGT depth distribution. *Already cited* — moved here for visibility under the methodology section. Informs the Phase 1B interpretation of the cross-rank consumer-z trend (vertical at deep ranks, weakens at class) and the order-rank anomaly investigation.
+
+- **Csurös, M. (2010).** "Count: evolutionary analysis of phylogenetic profiles with parsimony and likelihood." *Bioinformatics* 26(15):1910–1912. doi:10.1093/bioinformatics/btq315.
+
+  *Project context*: the Count software implements parsimony + likelihood-based ancestral state reconstruction at large scale. Reference implementation that justifies the lightweight Fitch approach in NB08c at GTDB scale.
+
 ### Mechanism of family expansion
 
 - **Treangen, T.J., Rocha, E.P.C. (2011).** "Horizontal transfer, not duplication, drives the expansion of protein families in prokaryotes." *PLoS Genetics* 7(1):e1001284. doi:10.1371/journal.pgen.1001284. PMC3029252.

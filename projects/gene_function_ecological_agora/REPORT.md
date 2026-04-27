@@ -438,6 +438,22 @@ This is a Phase 1A/B-style *pre-registration omission*: the Innovator-Exchange c
 
 The Bacteroidota PUL hypothesis remains falsified by either criterion; the relative-threshold framing only changes how we describe the *control-class* behaviour, not the hypothesis-test outcome.
 
+## Phase 1B closure summary
+
+For readers picking up the project cold, three findings define the Phase 1B closure:
+
+1. **Methodology framework: validated.** Multi-rank null-model construction works at full GTDB scale. M1 rank-stratified parent ranks reveal a clean monotone gradient in clumping signal. Producer null is responsive (natural_expansion class shows +64.5 % paralog above cohort at phylum, p ≈ 10⁻⁸⁰). Negative controls behave correctly under M2 (dosage-constrained signature). The framework can produce defensible scores at scale.
+
+2. **Pre-registered hypothesis: falsified.** Bacteroidota → Innovator-Exchange on PUL CAZymes fails at all 4 deep ranks under the pre-registered absolute-zero criterion. A relative-threshold diagnostic (NB08b) showed CAZymes do discriminate from housekeeping (+0.78 σ at family rank, p = 1×10⁻⁴³), but the discrimination is small in Cohen's d terms (≈ 0.07–0.09) — below biologically meaningful effect sizes. The pre-registered hypothesis is genuinely not supported at UniRef50 resolution; this is not a methodology save.
+
+3. **Substrate-hierarchy claim: partial confirmation.** A tree-aware metric (Sankoff parsimony, NB08c — the canonical Alm-2006-style approach) recovers the expected direction (positive HGT > negative housekeeping at p = 2.1×10⁻⁵). The order-rank anomaly under parent-rank dispersion is a metric artifact. **But effect size at UniRef50 is small** (Cohen's d = 0.146 on Sankoff). Phase 2 (KO aggregation) must amplify to d ≥ 0.3 to validate the substrate-hierarchy reasoning; if not, an M11 reconciliation-based redesign (gene-tree vs species-tree, AleRax sub-sampling) triggers.
+
+The Phase 1B verdict is `PASS_REFRAMED + qualified`: methodology not broken, but the substrate-hierarchy framing is now an *empirical bet* on Phase 2 amplification rather than an established conclusion. The project enters Phase 2 with a sharp falsifiable test.
+
+![Phase 1B per-rank null model distributions](figures/p1b_null_per_rank_distributions.png)
+
+![Phase 1B scores by control class per rank](figures/p1b_scores_by_class_per_rank.png)
+
 ## Phase 1B Diagnostic Resolution (v1.3, 2026-04-27)
 
 After REPORT.md v1.2's Phase 1B section landed with a softened substrate-hierarchy claim, two further corrections fired:
@@ -490,6 +506,40 @@ The four panels:
 - **M18** **Hard amplification gate**: Phase 2 KO atlas must demonstrate Cohen's d ≥ 0.3 on Sankoff parsimony for at least one positive HGT control vs negative housekeeping. UniRef50 baseline is d = 0.15. If Phase 2 fails to amplify to d ≥ 0.3, the substrate-hierarchy claim is falsified and **M11 redesign triggers** (switch from Sankoff to gene-tree-vs-species-tree reconciliation, per Phase 3's original sub-sample reservation).
 
 The amplification gate is the make-or-break test for the project's substrate-hierarchy reasoning. If Phase 2 amplifies to d ≥ 0.3, methodology recovery is complete and the project proceeds. If not, the methodology has a deeper limitation that aggregation alone cannot fix, and the project pivots to reconciliation-based methods.
+
+## Lessons captured (project-level epistemic discipline)
+
+Across Phases 1A and 1B, three pre-registration omissions surfaced and were corrected. Each is a generalizable pattern future BERIL projects should adopt as Phase-0 deliverables.
+
+### M2 — Dosage-constrained biology pre-registration (Phase 1A)
+
+The pre-registered v2 negative-control criterion specified "producer mean within ±1σ of zero" for housekeeping classes (ribosomal / tRNA-synthetase / RNAP core). The biological reality — dosage-constrained genes have *fewer* paralogs than typical genes at matched prevalence (Andersson 2009; Bratlie 2010) — was correctly anticipated during plan v2 design but not encoded into the criterion. The Phase 1A pilot showed all three negative controls at producer z ≈ −0.15 (CIs entirely below zero); the criterion was revised post-hoc to "CI upper bound ≤ 0.5". *Lesson: when a pre-registered criterion has a known biological prior, the criterion text should explicitly encode that prior, not the absolute-null value.*
+
+### M12 — Absolute-zero threshold pre-registration (Phase 1B)
+
+Plan v2 defined "Innovator-Exchange" as "both producer and consumer 95 % CI lower bound > 0" — an absolute-zero threshold. The Phase 1B test showed all positive controls (β-lactamase, CRISPR-Cas, AMR, TCS HK) at strongly negative consumer z, failing the absolute criterion. A post-gate diagnostic (NB08b) revealed positive HGT classes are nonetheless +0.6–1.2 σ less clumped than housekeeping at family rank (p << 10⁻⁷). The pre-registered absolute-zero threshold was over-stringent at UniRef50 resolution where the null distribution itself is shifted. M12 reformulated "Innovator-Exchange" as a relative-threshold metric ("≥ X σ less clumped than housekeeping baseline at the rank's parent"), with X calibrated empirically. *Lesson: atlas-level criteria should be calibrated against an empirical baseline (negative controls / housekeeping classes), not absolute zero, especially at substrate resolutions where the null distribution is shifted.*
+
+### M14 — Misreading of Alm 2006 (Phase 1B)
+
+The project's central research question framed the four-quadrant Open/Broker/Sink/Closed Innovator framework as a generalization of "the producer/consumer asymmetry observed by Alm-Huang-Arkin 2006." A close-reading of the original paper (`docs/alm_2006_methodology_comparison.md`) revealed three load-bearing misreadings: (i) Alm 2006 never named "producer/consumer" or four-quadrant categories — they reported a correlation r = 0.74 between HPK count and recent-LSE fraction; (ii) they worked at the *single-domain level* (IPR005467 / COG4582), comparable to our UniRef50, not at "family aggregation"; (iii) they used phylogenetic-tree-aware reconciliation, not parent-rank dispersion. The substrate-hierarchy claim that "Phase 2 KO aggregation will recover Alm 2006-style signal" was therefore based on a misreading. M14 reframed the project's relationship to Alm 2006 from "generalizing" to "Alm-2006-inspired", and M15 promoted Sankoff parsimony (lightweight tree-aware metric) to mandatory. *Lesson: anchor papers cited as foundational must be close-read for exact methodology before building infrastructure on extrapolations. "Actually read the methods section in detail" should be a Phase-0 deliverable for any BERIL project building on a canonical paper.*
+
+### The pattern across all three
+
+Each omission shared the structure: (a) a pre-registered criterion or framing that *seemed* well-grounded; (b) a failure of the data to behave as the criterion predicted; (c) a post-hoc diagnostic that revealed the criterion was wrong, not the methodology; (d) a corrected criterion baked into the next phase.
+
+The corrective discipline that emerged: when a result deviates from pre-registered expectations, **first run a focused diagnostic before invoking substrate / methodology / "we need more data" explanations.** NB04b (Phase 1A power analysis), NB08b (Phase 1B discrimination diagnostic), and NB08c (Phase 1B Sankoff diagnostic) collectively took ~3 hours to write and ran in seconds-to-minutes; they dispositively distinguished metric/criterion problems from methodology failures. Each saved the project from a wrong conclusion.
+
+This is the project's epistemic-discipline contribution beyond its scientific findings: *running cheap targeted diagnostics is the right first move when pre-registered tests fail*, not reframing the substrate or moving the goalposts. The pattern generalizes to any atlas-style project with weak priors.
+
+## Phase 1A pilot diagnostic figures
+
+For completeness, three additional pilot diagnostic figures from NB02:
+
+![Phase 1A pilot null producer distribution](figures/p1a_null_producer_distribution.png)
+
+![Phase 1A pilot null consumer distribution](figures/p1a_null_consumer_distribution.png)
+
+![Phase 1A pilot paralog count distribution by class](figures/p1a_paralog_count_distribution.png)
 
 ## References
 
