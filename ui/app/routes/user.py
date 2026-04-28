@@ -53,13 +53,16 @@ async def user_profile(
                 repo_project_ids.add(project.id)
                 break
 
-    # Also include projects the user created via the DB
+    # Also include projects the user created via the DB. Repo-imported rows
+    # (origin == "repo") share their slug with the corresponding repo_data
+    # project id, so dedup by slug to avoid showing the same project twice.
     beril_user_id = get_beril_user_id(request)
     if beril_user_id:
         db_projects = await get_projects_for_user(db, beril_user_id)
         for up in db_projects:
-            if up.id not in repo_project_ids:
-                owned_projects.append(user_project_to_model(up))
+            if up.slug in repo_project_ids:
+                continue
+            owned_projects.append(user_project_to_model(up))
 
     # Collections used across owned projects
     collections_used_ids: set[str] = set()

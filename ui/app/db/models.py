@@ -64,6 +64,9 @@ class UserProject(Base):
     """A research project owned by a BERIL user."""
 
     __tablename__ = "user_project"
+    __table_args__ = (
+        UniqueConstraint("owner_id", "slug", name="uq_user_project_owner_slug"),
+    )
 
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
     owner_id: Mapped[str] = mapped_column(

@@ -85,6 +85,15 @@ def upgrade() -> None:
         if not _column_exists("user_project", col):
             op.add_column("user_project", sa.Column(col, sa.Text, nullable=True))
 
+    # github_branch was added to the model after the pre-Alembic schema was
+    # frozen, so legacy databases (where the initial migration short-circuits)
+    # never received it. The ORM selects it on every UserProject query.
+    if not _column_exists("user_project", "github_branch"):
+        op.add_column(
+            "user_project",
+            sa.Column("github_branch", sa.String(256), nullable=True),
+        )
+
     if not _column_exists("user_project", "origin"):
         # The enum type must exist before it can be referenced in ADD COLUMN.
         # create_table auto-creates enums, but add_column does not.
@@ -112,14 +121,73 @@ def upgrade() -> None:
             sa.Column("last_updated_at", sa.DateTime(timezone=True), nullable=True),
         )
 
+    # `source` predates Alembic in the model, but databases created via the
+    # very first create_all (before `source` was added to ProjectFile) won't
+    # have the column or the enum type. Create both conditionally before
+    # extending the enum below.
+    if not _column_exists("project_file", "source"):
+        op.execute("""
+            DO $$ BEGIN
+                CREATE TYPE file_source AS ENUM ('upload', 'github');
+            EXCEPTION
+                WHEN duplicate_object THEN NULL;
+            END $$
+        """)
+        op.add_column(
+            "project_file",
+            sa.Column(
+                "source",
+                sa.Enum("upload", "github", name="file_source", create_type=False),
+                nullable=False,
+                server_default="upload",
+            ),
+        )
+
     # --- Add repo_import to the file_source enum ---
     # IF NOT EXISTS is safe to run repeatedly.
     op.execute("ALTER TYPE file_source ADD VALUE IF NOT EXISTS 'repo_import'")
+
+    # --- Unique (owner_id, slug) on user_project ---
+    # Storage paths are keyed by {owner_id}/{slug}, so duplicates would let
+    # two projects share files. Resolve any pre-existing collisions by
+    # suffixing later rows, then enforce uniqueness.
+    conn = op.get_bind()
+    constraint_exists = conn.execute(
+        sa.text(
+            "SELECT EXISTS ("
+            "  SELECT 1 FROM pg_constraint"
+            "  WHERE conname = 'uq_user_project_owner_slug'"
+            ")"
+        )
+    ).scalar()
+    if not constraint_exists:
+        # For each (owner_id, slug) duplicate, leave the earliest row alone
+        # and rewrite the others' slug with a short random suffix.
+        op.execute("""
+            WITH dups AS (
+                SELECT id,
+                       slug,
+                       ROW_NUMBER() OVER (
+                           PARTITION BY owner_id, slug ORDER BY created_at, id
+                       ) AS rn
+                FROM user_project
+            )
+            UPDATE user_project up
+            SET slug = dups.slug || '-' || substr(md5(up.id), 1, 6)
+            FROM dups
+            WHERE up.id = dups.id AND dups.rn > 1
+        """)
+        op.create_unique_constraint(
+            "uq_user_project_owner_slug",
+            "user_project",
+            ["owner_id", "slug"],
+        )
 
 
 def downgrade() -> None:
     # Remove repo_import from file_source enum is not directly supported in PG;
     # leave the enum value in place — it's harmless if unused.
+    op.drop_constraint("uq_user_project_owner_slug", "user_project", type_="unique")
     op.drop_column("project_file", "last_updated_at")
 
     op.drop_column("user_project", "origin")
@@ -139,6 +207,8 @@ def downgrade() -> None:
         "overview",
     ):
         op.drop_column("user_project", col)
+    # github_branch is only added by upgrade() on legacy DBs; leaving it in
+    # place on downgrade is safe since the initial schema also defines it.
 
     op.drop_index("ix_project_import_record_repo_path", table_name="project_import_record")
     op.drop_table("project_import_record")
