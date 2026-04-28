@@ -91,6 +91,59 @@ class TurnResult:
         return self.error is not None
 
 
+async def stream_turn(
+    db: AsyncSession,
+    *,
+    session: ChatSession,
+    user_message: str,
+    credentials: Credentials,
+) -> AsyncIterator[dict[str, Any]]:
+    """Run one chat turn and yield SSE-ready frames as events arrive.
+
+    Persistence semantics match :func:`run_turn`:
+      * user message saved before the provider is invoked,
+      * assistant message saved exactly once after the provider stream ends
+        (or after a client disconnect — see below).
+
+    If the caller's generator is closed early (e.g. the browser tab closes),
+    whatever assistant content accumulated so far is still persisted so a
+    resumed session doesn't lose partial work.
+    """
+    from app.chat.sse import event_to_frame, turn_complete_frame
+
+    await persist_user_message(db, session=session, user_message=user_message)
+
+    result = TurnResult()
+    text_parts: list[str] = []
+    persisted = False
+
+    try:
+        async for event in run_provider_turn(
+            db=db,
+            session=session,
+            user_message=user_message,
+            credentials=credentials,
+        ):
+            fold_event(event, text_parts, result)
+            yield event_to_frame(event)
+
+        result.assistant_text = "".join(text_parts)
+        assistant_row = await persist_assistant_message(
+            db, session=session, result=result
+        )
+        persisted = True
+        yield turn_complete_frame(assistant_message_id=assistant_row.id)
+    finally:
+        # Client disconnected or the generator was cancelled before the
+        # stream naturally ended: still persist whatever we accumulated so
+        # the transcript is coherent on resume.
+        if not persisted:
+            result.assistant_text = "".join(text_parts)
+            if result.error is None:
+                result.error = "stream interrupted"
+            await persist_assistant_message(db, session=session, result=result)
+
+
 async def run_turn(
     db: AsyncSession,
     *,
