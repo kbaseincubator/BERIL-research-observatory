@@ -49,6 +49,10 @@ class Settings(BaseSettings):
     # User project file storage (filesystem)
     user_projects_root: Path = ui_dir / "user_projects"
 
+    # Chat configuration
+    chat_config_path: Path = ui_dir / "config" / "chat_providers.yaml"
+    chat_max_concurrent_turns_per_user: int = 3
+
     # Derived paths
     @property
     def db_url(self) -> str:
@@ -109,6 +113,10 @@ class Settings(BaseSettings):
         # Resolve .env relative to the repo root (two levels up from this file)
         env_file=str(Path(__file__).parent.parent.parent / ".env"),
         env_file_encoding="utf-8",
+        # pydantic-settings 2.x defaults to "forbid"; the repo's .env contains
+        # non-BERIL_ vars (KBASE_AUTH_TOKEN, JLAB_API_TOKEN, etc.) that are not
+        # part of the app settings and must be ignored.
+        extra="ignore",
     )
 
 

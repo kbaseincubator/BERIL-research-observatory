@@ -1,0 +1,51 @@
+# Chat provider configuration.
+#
+# Admin-edited. Changes require app restart.
+#
+# Each provider has:
+#   display_name    — shown in the UI host picker
+#   wire_protocol   — which wire format the provider speaks
+#                     ('anthropic' covers Anthropic and Anthropic-compatible
+#                      endpoints such as CBORG)
+#   base_url        — HTTPS endpoint the SDK talks to
+#   auth_style      — how to present the key. 'api_key' sends the
+#                     'x-api-key' header (direct Anthropic). 'bearer' sends
+#                     Authorization: Bearer (CBORG and most proxies).
+#                     Default: 'api_key'.
+#   credential_fields — list of credential inputs the user must supply.
+#                       Each item: id, display_name, secret (bool, default true)
+#   models          — list of models exposed to the user. Each item:
+#                       id            — passed to the provider
+#                       display_name  — shown in the UI
+
+providers:
+  anthropic:
+    display_name: "Anthropic"
+    wire_protocol: anthropic
+    base_url: https://api.anthropic.com
+    auth_style: api_key
+    credential_fields:
+      - id: api_key
+        display_name: "API Key"
+        secret: true
+    models:
+      - id: claude-opus-4-7
+        display_name: "Claude Opus 4.7"
+      - id: claude-sonnet-4-6
+        display_name: "Claude Sonnet 4.6"
+
+  cborg:
+    display_name: "CBORG (LBNL)"
+    wire_protocol: anthropic
+    base_url: https://api.cborg.lbl.gov
+    auth_style: bearer
+    credential_fields:
+      - id: api_key
+        display_name: "CBORG API Key"
+        secret: true
+    models:
+      # TODO: replace with real CBORG model IDs
+      - id: anthropic/claude-opus
+        display_name: "Claude Opus (CBORG placeholder)"
+      - id: anthropic/claude-sonnet
+        display_name: "Claude Sonnet (CBORG placeholder)"
