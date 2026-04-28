@@ -385,6 +385,11 @@ async def user_github_sync(
     if project is None or project.owner_id != beril_user_id:
         return Response(status_code=403)
 
+    # The form submits an empty string when the optional branch field is
+    # blank, which bypasses the FastAPI Form("main") default. Coerce to "main"
+    # so we never persist an empty branch or call sync with branch="".
+    branch = branch.strip() or "main"
+
     await update_project_github_url(db, project_id, github_repo_url, github_branch=branch)
     # Re-fetch to get the updated record
     project = await get_project_by_id(db, project_id)

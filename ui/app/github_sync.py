@@ -149,6 +149,38 @@ async def sync_github_repo(
     return synced, actual_branch
 
 
+def _normalize_repo_url(url: str) -> str:
+    """Canonicalize a git remote URL for equality comparison.
+
+    Strips a trailing `.git`, trailing slash, and surrounding whitespace so
+    `https://github.com/o/r`, `https://github.com/o/r.git`, and `https://github.com/o/r/`
+    compare equal. Case-folded too: GitHub treats owner/repo as case-insensitive.
+    """
+    u = url.strip().casefold()
+    if u.endswith("/"):
+        u = u[:-1]
+    if u.endswith(".git"):
+        u = u[:-4]
+    return u
+
+
+def _cached_remote_url(local_path: Path) -> str | None:
+    """Return the `origin` remote URL of the cached checkout, or None if absent."""
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(local_path), "config", "--get", "remote.origin.url"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return None
+    if result.returncode != 0:
+        return None
+    url = result.stdout.strip()
+    return url or None
+
+
 async def _ensure_repo(repo_url: str, branch: str, local_path: Path) -> str:
     """Clone the repo if it doesn't exist, otherwise pull. Falls back main→master.
 
@@ -160,28 +192,40 @@ async def _ensure_repo(repo_url: str, branch: str, local_path: Path) -> str:
     """
     async with _git_lock:
         if local_path.exists() and (local_path / ".git").exists():
-            try:
-                await _git_pull(local_path, branch)
-                return branch
-            except Exception as exc:
-                if not _is_branch_error(exc):
-                    # Transient error (network, auth, disk) — do not silently switch
-                    # branches; re-raise so the caller can handle or retry.
-                    raise
-                fallback = _fallback_branch(branch)
-                if fallback is None:
-                    # Non-main/master branch with no automatic fallback — re-raise.
-                    raise
-                # The branch is missing from the single-branch cache; delete and
-                # reclone on the fallback branch.
-                logger.warning(
-                    "Pull on branch %r failed (branch not found), recloning on %r",
-                    branch,
-                    fallback,
+            # Re-clone if the cached checkout points at a different repository.
+            # Without this check, re-linking a project to a new GitHub URL would
+            # silently keep importing files from the old repo.
+            cached_url = _cached_remote_url(local_path)
+            if cached_url is not None and _normalize_repo_url(cached_url) != _normalize_repo_url(repo_url):
+                logger.info(
+                    "Cached remote %r != requested %r; recloning",
+                    cached_url,
+                    repo_url,
                 )
                 shutil.rmtree(local_path)
-                await _git_clone(repo_url, fallback, local_path)
-                return fallback
+            else:
+                try:
+                    await _git_pull(local_path, branch)
+                    return branch
+                except Exception as exc:
+                    if not _is_branch_error(exc):
+                        # Transient error (network, auth, disk) — do not silently switch
+                        # branches; re-raise so the caller can handle or retry.
+                        raise
+                    fallback = _fallback_branch(branch)
+                    if fallback is None:
+                        # Non-main/master branch with no automatic fallback — re-raise.
+                        raise
+                    # The branch is missing from the single-branch cache; delete and
+                    # reclone on the fallback branch.
+                    logger.warning(
+                        "Pull on branch %r failed (branch not found), recloning on %r",
+                        branch,
+                        fallback,
+                    )
+                    shutil.rmtree(local_path)
+                    await _git_clone(repo_url, fallback, local_path)
+                    return fallback
 
         # Clean up any stale/partial directory before cloning
         if local_path.exists():

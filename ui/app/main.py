@@ -188,9 +188,14 @@ async def projects_list(
     # Imported DB rows have UUID PKs but store repo_path = "projects/{slug}".
     # We exclude any DB row whose repo_path slug matches a live repo_data project,
     # preventing the same project from appearing twice in the list.
+    # /projects is a public catalog — only surface DB rows the owner has marked public.
     from sqlalchemy import select as _sa_select
     from app.db.models import UserProject as _UserProject
-    _raw = await db.execute(_sa_select(_UserProject).order_by(_UserProject.created_at.desc()))
+    _raw = await db.execute(
+        _sa_select(_UserProject)
+        .where(_UserProject.is_public.is_(True))
+        .order_by(_UserProject.created_at.desc())
+    )
     _raw_rows = _raw.scalars().all()
 
     repo_slugs = {p.id for p in repo_data.projects}
@@ -277,7 +282,12 @@ async def project_detail(
     if project is None:
         db_project = await get_project_by_id(db, project_id)
         if db_project is not None:
-            project = user_project_to_model(db_project)
+            # DB-backed projects default to private; this public route may only
+            # render rows that are public OR owned by the caller. Otherwise we'd
+            # leak private project metadata to anyone who guesses the UUID.
+            viewer_id = request.session.get("beril_user_id")
+            if db_project.is_public or db_project.owner_id == viewer_id:
+                project = user_project_to_model(db_project)
     if not project:
         context["error"] = f"Project '{project_id}' not found"
         return templates.TemplateResponse(
