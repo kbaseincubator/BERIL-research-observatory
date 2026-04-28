@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} — {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header" style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4);">
+  <div>
+    <div style="margin-bottom: var(--space-1);">
+      <a href="/user/data" class="text-muted text-small" style="text-decoration: none;">← My Projects</a>
+    </div>
+    <h1 class="page-title">{{ project.title }}</h1>
+    {% if project.research_question %}
+      <p class="text-muted">{{ project.research_question }}</p>
+    {% endif %}
+  </div>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: start;">
+
+  <!-- ── Section A: File List ── -->
+  <section>
+    <div class="section-header">
+      <h2 class="section-title">Files</h2>
+    </div>
+    <div class="card">
+      <div id="file-list">
+        {% if files %}
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+            <thead>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <th style="text-align:left; padding: 0.4rem 0.5rem 0.4rem 0; font-weight: 600;">Filename</th>
+                <th style="text-align:left; padding: 0.4rem 0.5rem; font-weight: 600;">Type</th>
+                <th style="text-align:left; padding: 0.4rem 0.5rem; font-weight: 600;">Size</th>
+                <th style="text-align:left; padding: 0.4rem 0; font-weight: 600;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="file-table-body">
+              {% for f in files %}
+                <tr id="file-row-{{ f.id }}">
+                  <td style="word-break: break-all; padding: 0.4rem 0.5rem 0.4rem 0;">{{ f.filename }}</td>
+                  <td style="padding: 0.4rem 0.5rem;">
+                    <span class="badge" style="background: rgba(57,212,230,0.1); color: #39d4e6; font-size: 0.7rem;">{{ f.file_type }}</span>
+                  </td>
+                  <td class="text-muted text-small" style="padding: 0.4rem 0.5rem; white-space: nowrap;" data-bytes="{{ f.size_bytes }}">{{ f.size_bytes }}</td>
+                  <td style="padding: 0.4rem 0; white-space: nowrap;">
+                    <a href="/api/data/{{ f.id }}?view=1" target="_blank" class="btn btn-sm btn-outline" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">View</a>
+                    <a href="/api/data/{{ f.id }}" download class="btn btn-sm btn-outline" style="font-size: 0.75rem; padding: 0.2rem 0.5rem; margin-left: 0.25rem;">Download</a>
+                    <button onclick="deleteFile('{{ f.id }}')" class="btn btn-sm" style="font-size: 0.75rem; padding: 0.2rem 0.5rem; margin-left: 0.25rem; background: rgba(255,80,80,0.1); color: #ff5050; border: 1px solid rgba(255,80,80,0.3);">Delete</button>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p class="text-muted text-small" id="empty-hint">No files yet. Upload some using the form.</p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Section B: Upload + GitHub Sync ── -->
+  <section>
+    <!-- Upload -->
+    <div class="section-header">
+      <h2 class="section-title">Upload Files</h2>
+    </div>
+    <div class="card" style="margin-bottom: var(--space-6);">
+      <form method="post" action="/user/data/upload-to-project" enctype="multipart/form-data">
+        <input type="hidden" name="project_id" value="{{ project.id }}">
+
+        <div class="mb-3">
+          <label for="file_type" class="form-label" style="font-weight: 600;">File type</label>
+          <select id="file_type" name="file_type" class="form-select">
+            <option value="data">Data</option>
+            <option value="notebook">Notebook</option>
+            <option value="visualization">Visualization</option>
+            <option value="readme">README</option>
+            <option value="research_plan">Research Plan</option>
+            <option value="report">Report</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" style="font-weight: 600;">Files</label>
+          <div style="display: flex; gap: var(--space-3); margin-bottom: var(--space-2);">
+            <label style="display: flex; align-items: center; gap: var(--space-1); cursor: pointer; font-size: 0.875rem;">
+              <input type="radio" name="upload_mode" value="files" checked onchange="setUploadMode('files')"> Files
+            </label>
+            <label style="display: flex; align-items: center; gap: var(--space-1); cursor: pointer; font-size: 0.875rem;">
+              <input type="radio" name="upload_mode" value="directory" onchange="setUploadMode('directory')"> Directory
+            </label>
+          </div>
+          <input id="files" name="files" type="file" class="form-control" multiple>
+          <div class="text-muted text-small" style="margin-top: var(--space-1);" id="files-hint">Hold Ctrl/Cmd to select multiple files.</div>
+        </div>
+
+        <div class="mb-4" style="display: flex; align-items: center; gap: var(--space-2);">
+          <input id="is_public" name="is_public" type="checkbox" value="true" style="width: 1rem; height: 1rem; cursor: pointer;">
+          <label for="is_public" class="form-label" style="margin: 0; cursor: pointer;">Make uploaded files publicly accessible</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </form>
+    </div>
+
+    <!-- GitHub Sync -->
+    <div class="section-header">
+      <h2 class="section-title">GitHub Sync</h2>
+    </div>
+    <div class="card">
+      <form method="post" action="/user/projects/{{ project.id }}/github-sync">
+        {% if project.github_repo_url %}
+          <p class="text-muted text-small" style="margin-bottom: var(--space-3);">
+            Currently linked: <a href="{{ project.github_repo_url }}" target="_blank" rel="noopener noreferrer" style="color: #39d4e6;">{{ project.github_repo_url }}</a>
+          </p>
+        {% endif %}
+
+        <div class="mb-3">
+          <label for="github_repo_url" class="form-label" style="font-weight: 600;">Repository URL</label>
+          <input id="github_repo_url" name="github_repo_url" type="url" class="form-control"
+            placeholder="https://github.com/owner/repo"
+            value="{{ project.github_repo_url or '' }}">
+        </div>
+
+        <div class="mb-4">
+          <label for="branch" class="form-label" style="font-weight: 600;">Branch <span class="text-muted" style="font-weight: 400;">(optional)</span></label>
+          <input id="branch" name="branch" type="text" class="form-control"
+            placeholder="main"
+            value="{{ project.github_branch or '' }}">
+        </div>
+
+        <button type="submit" class="btn btn-outline">Sync from GitHub</button>
+      </form>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function setUploadMode(mode) {
+  const input = document.getElementById('files');
+  const hint  = document.getElementById('files-hint');
+  if (!input) return;
+  if (mode === 'directory') {
+    input.setAttribute('webkitdirectory', '');
+    input.removeAttribute('multiple');
+    hint.textContent = 'Select a folder — all files inside will be uploaded.';
+  } else {
+    input.removeAttribute('webkitdirectory');
+    input.setAttribute('multiple', '');
+    hint.textContent = 'Hold Ctrl/Cmd to select multiple files.';
+  }
+  input.value = '';
+}
+
+function formatBytes(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// Format all size cells on load
+document.querySelectorAll('td[data-bytes]').forEach(function(td) {
+  td.textContent = formatBytes(parseInt(td.dataset.bytes, 10));
+});
+
+window.deleteFile = async function(fileId) {
+  if (!confirm('Delete this file?')) return;
+  const resp = await fetch('/user/data/' + fileId, { method: 'DELETE' });
+  if (resp.ok) {
+    const row = document.getElementById('file-row-' + fileId);
+    if (row) row.remove();
+    const tbody = document.getElementById('file-table-body');
+    if (tbody && tbody.children.length === 0) {
+      const list = document.getElementById('file-list');
+      list.innerHTML = '<p class="text-muted text-small">No files yet. Upload some using the form.</p>';
+    }
+  } else {
+    alert('Delete failed: ' + resp.status);
+  }
+};
+</script>
+{% endblock %}

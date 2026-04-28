@@ -12,6 +12,7 @@ from app.db.session import init_db, close_db, check_db
 from app.notebook_processors import PlotlyPreprocessor
 import nbformat
 from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request
+from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -25,12 +26,18 @@ from app.filters import (
     strip_images_filter,
 )
 
+from .routes.admin import ROUTER_ADMIN
 from .routes.auth import ROUTER_AUTH
+from .routes.data import ROUTER_USER_DATA
 from .routes.user import ROUTER_USER
 from .config import get_settings
+from .db.crud import get_project_by_id, user_project_to_model
+from .db.session import get_db
 from .dataloader import load_repository_data, RepositoryParser
 from .git_data_sync import pull_latest
+from .importer import run_full_migration
 from .models import CollectionCategory, RepositoryData
+from .storage import LocalFileStorage
 
 logging.basicConfig(
     level=logging.INFO,
@@ -77,9 +84,11 @@ def create_app() -> FastAPI:
         name="project-assets",
     )
 
+    app.include_router(ROUTER_ADMIN)
     app.include_router(ROUTER_AUTH)
     app.include_router(ROUTER_COLLECTIONS)
     app.include_router(ROUTER_USER)
+    app.include_router(ROUTER_USER_DATA)
     app.include_router(ROUTER_COMMUNITY)
     app.include_router(ROUTER_COSCIENTIST)
     app.include_router(ROUTER_DATA)
@@ -170,10 +179,35 @@ async def projects_list(
     dir: str = "",
     repo_data: RepositoryData = Depends(get_repo_data),
     context: dict = Depends(get_base_context),
+    db: AsyncSession = Depends(get_db),
 ):
     """Projects list page with sortable project grid."""
 
-    projects = list(repo_data.projects)  # copy to avoid mutating cached data
+    # Fetch raw UserProject rows so we can inspect repo_path for de-duplication.
+    # repo_data projects use the filesystem slug as their id (e.g. "my_project").
+    # Imported DB rows have UUID PKs but store repo_path = "projects/{slug}".
+    # We exclude any DB row whose repo_path slug matches a live repo_data project,
+    # preventing the same project from appearing twice in the list.
+    # /projects is a public catalog — only surface DB rows the owner has marked public.
+    from sqlalchemy import select as _sa_select
+    from app.db.models import UserProject as _UserProject
+    _raw = await db.execute(
+        _sa_select(_UserProject)
+        .where(_UserProject.is_public.is_(True))
+        .order_by(_UserProject.created_at.desc())
+    )
+    _raw_rows = _raw.scalars().all()
+
+    repo_slugs = {p.id for p in repo_data.projects}
+    db_projects = []
+    for row in _raw_rows:
+        # Extract slug from repo_path ("projects/slug" → "slug"); None for user-created rows.
+        row_slug = row.repo_path.split("/")[-1] if row.repo_path else None
+        if row_slug in repo_slugs:
+            continue  # already represented by live repo_data entry
+        db_projects.append(user_project_to_model(row))
+
+    projects = list(repo_data.projects) + db_projects
 
     # Default directions: recent=desc, others=asc
     default_dir = "desc" if sort == "recent" else "asc"
@@ -239,11 +273,21 @@ async def project_detail(
     project_id: str,
     repo_data: RepositoryData = Depends(get_repo_data),
     context: dict = Depends(get_base_context),
+    db: AsyncSession = Depends(get_db),
 ):
     """Project detail page."""
 
-    # Find project
+    # Find project — check repo first, then fall back to DB
     project = next((p for p in repo_data.projects if p.id == project_id), None)
+    if project is None:
+        db_project = await get_project_by_id(db, project_id)
+        if db_project is not None:
+            # DB-backed projects default to private; this public route may only
+            # render rows that are public OR owned by the caller. Otherwise we'd
+            # leak private project metadata to anyone who guesses the UUID.
+            viewer_id = request.session.get("beril_user_id")
+            if db_project.is_public or db_project.owner_id == viewer_id:
+                project = user_project_to_model(db_project)
     if not project:
         context["error"] = f"Project '{project_id}' not found"
         return templates.TemplateResponse(
@@ -626,13 +670,15 @@ async def about(
 # Webhook endpoint for data cache updates
 @ROUTER_GENERAL.post("/api/webhook/data-update")
 async def data_update_webhook(
-    request: Request, x_webhook_signature: str = Header(None)
+    request: Request,
+    x_webhook_signature: str = Header(None),
+    db: AsyncSession = Depends(get_db),
 ):
     """
     Webhook endpoint to receive data cache update notifications.
 
     Expected to be called by GitHub Actions after building new cache.
-    Validates signature and reloads data from the remote source.
+    Validates signature, reloads repo_data, and runs the project importer.
     """
     settings = get_settings()
 
@@ -673,6 +719,15 @@ async def data_update_webhook(
                 f"Data reloaded successfully. New last_updated: {request.app.state.repo_data.last_updated}"
             )
 
+            # Migrate updated project files from the freshly-pulled repo into the DB
+            storage = LocalFileStorage(settings.user_projects_root)
+            pulled_projects_dir = settings.data_repo_path / "projects"
+            summary = await run_full_migration(db, storage, pulled_projects_dir)
+            logger.info(
+                "Post-webhook import: %d imported, %d skipped, %d failed",
+                summary.imported, summary.skipped, summary.failed,
+            )
+
             return JSONResponse(
                 {
                     "status": "success",
@@ -680,6 +735,11 @@ async def data_update_webhook(
                     "last_updated": request.app.state.repo_data.last_updated.isoformat()
                     if request.app.state.repo_data.last_updated
                     else None,
+                    "import": {
+                        "imported": summary.imported,
+                        "skipped": summary.skipped,
+                        "failed": summary.failed,
+                    },
                 }
             )
         except Exception as e:

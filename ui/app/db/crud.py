@@ -9,6 +9,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.models import BerilUser, ProjectFile, UserApiToken, UserProject
+from app.models import Project, ProjectStatus
 
 
 async def get_user_by_orcid(db: AsyncSession, orcid_id: str) -> BerilUser | None:
@@ -63,15 +64,116 @@ async def get_projects_for_user(db: AsyncSession, user_id: str) -> list[UserProj
 
 
 async def update_project_github_url(
-    db: AsyncSession, project_id: str, github_repo_url: str | None
+    db: AsyncSession,
+    project_id: str,
+    github_repo_url: str | None,
+    github_branch: str | None = None,
 ) -> UserProject | None:
     project = await get_project_by_id(db, project_id)
     if project is None:
         return None
     project.github_repo_url = github_repo_url
+    if github_branch is not None:
+        project.github_branch = github_branch
     await db.commit()
     await db.refresh(project)
     return project
+
+async def create_user_project(
+    db: AsyncSession,
+    user_id: str,
+    *,
+    title: str,
+    research_question: str | None = None,
+    slug: str,
+    hypothesis: str | None = None,
+    approach: str | None = None,
+    findings: str | None = None,
+    is_public: bool = False,
+    status: str = "proposed",
+) -> UserProject:
+    project = UserProject(
+        owner_id=user_id,
+        title=title,
+        research_question=research_question,
+        slug=slug,
+        hypothesis=hypothesis,
+        approach=approach,
+        findings=findings,
+        is_public=is_public,
+        status=status,
+    )
+    db.add(project)
+    await db.commit()
+    await db.refresh(project)
+    return project
+
+
+async def update_user_project(
+    db: AsyncSession,
+    project_id: str,
+    *,
+    title: str | None = None,
+    research_question: str | None = None,
+    slug: str | None = None,
+    hypothesis: str | None = None,
+    approach: str | None = None,
+    findings: str | None = None,
+    is_public: bool | None = None,
+    status: str | None = None,
+) -> UserProject | None:
+    project = await get_project_by_id(db, project_id)
+    if project is None:
+        return None
+    if title is not None:
+        project.title = title
+    if research_question is not None:
+        project.research_question = research_question
+    if slug is not None:
+        project.slug = slug
+    if hypothesis is not None:
+        project.hypothesis = hypothesis
+    if approach is not None:
+        project.approach = approach
+    if findings is not None:
+        project.findings = findings
+    if is_public is not None:
+        project.is_public = is_public
+    if status is not None:
+        project.status = status
+    await db.commit()
+    await db.refresh(project)
+    return project
+
+
+_STATUS_MAP = {
+    "proposed": ProjectStatus.PROPOSED,
+    "in_progress": ProjectStatus.IN_PROGRESS,
+    "completed": ProjectStatus.COMPLETED,
+}
+
+
+def user_project_to_model(up: UserProject) -> Project:
+    """Convert a UserProject ORM row to the app-layer Project dataclass."""
+    return Project(
+        id=up.id,
+        title=up.title,
+        research_question=up.research_question or "",
+        status=_STATUS_MAP.get(up.status, ProjectStatus.PROPOSED),
+        hypothesis=up.hypothesis,
+        approach=up.approach,
+        findings=up.findings,
+        created_date=up.created_at,
+        updated_date=up.updated_at,
+    )
+
+
+async def get_all_db_projects(db: AsyncSession) -> list[Project]:
+    """Return all UserProject rows as Project dataclass instances, newest first."""
+    result = await db.execute(
+        select(UserProject).order_by(UserProject.created_at.desc())
+    )
+    return [user_project_to_model(up) for up in result.scalars().all()]
 
 
 # ---------------------------------------------------------------------------
@@ -91,6 +193,7 @@ async def create_project_file(
     title: str | None = None,
     description: str | None = None,
     is_public: bool = False,
+    source: str = "upload",
 ) -> ProjectFile:
     f = ProjectFile(
         project_id=project_id,
@@ -102,6 +205,7 @@ async def create_project_file(
         title=title,
         description=description,
         is_public=is_public,
+        source=source,
     )
     db.add(f)
     await db.commit()
@@ -114,6 +218,38 @@ async def get_files_for_project(db: AsyncSession, project_id: str) -> list[Proje
         select(ProjectFile).where(ProjectFile.project_id == project_id)
     )
     return list(result.scalars().all())
+
+
+async def get_github_files_for_project(
+    db: AsyncSession, project_id: str
+) -> list[ProjectFile]:
+    """Return only files synced from GitHub (source='github') for the given project."""
+    result = await db.execute(
+        select(ProjectFile).where(
+            ProjectFile.project_id == project_id,
+            ProjectFile.source == "github",
+        )
+    )
+    return list(result.scalars().all())
+
+
+async def get_upload_file_by_filename(
+    db: AsyncSession, project_id: str, filename: str
+) -> ProjectFile | None:
+    """Return the manually-uploaded ProjectFile for a project+filename, for upsert.
+
+    Uses .first() rather than .one_or_none() so that legacy databases with
+    pre-existing duplicate rows (before the uniqueness constraint was added)
+    return a row rather than raising MultipleResultsFound.
+    """
+    result = await db.execute(
+        select(ProjectFile).where(
+            ProjectFile.project_id == project_id,
+            ProjectFile.filename == filename,
+            ProjectFile.source == "upload",
+        )
+    )
+    return result.scalars().first()
 
 
 async def get_file_by_id(db: AsyncSession, file_id: str) -> ProjectFile | None:

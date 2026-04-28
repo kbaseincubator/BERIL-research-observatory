@@ -8,7 +8,8 @@ services:
       - .env
     restart: unless-stopped
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     develop:
       watch:
         - action: sync+restart
@@ -37,6 +38,11 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/18/docker
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U beril_user -d beril"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
     # Uncomment for local development to allow psql/GUI access from the host.
     # Do not expose in production.
     # ports:

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}My Projects — {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header" style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4);">
+  <div>
+    <h1 class="page-title">My Projects</h1>
+    <p class="text-muted">Manage your research projects and their files.</p>
+  </div>
+  <a href="/user/data/new" class="btn btn-primary" style="white-space: nowrap;">+ New Project</a>
+</div>
+
+{% if projects %}
+  <div style="display: flex; flex-direction: column; gap: var(--space-4);">
+    {% for project in projects %}
+      <div class="card" style="display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 0;">
+          <div style="display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-1);">
+            <span style="font-weight: 600; font-size: 1.05rem;">{{ project.title }}</span>
+            <span class="badge" style="background: rgba(57,212,230,0.1); color: #39d4e6; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;">{{ project.status }}</span>
+            {% if project.github_repo_url %}
+              <span class="badge" style="background: rgba(255,255,255,0.06); color: var(--color-text-muted); font-size: 0.7rem;">GitHub linked</span>
+            {% endif %}
+          </div>
+          {% if project.research_question %}
+            <p class="text-muted text-small" style="margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60ch;">{{ project.research_question }}</p>
+          {% endif %}
+        </div>
+        <a href="/user/projects/{{ project.id }}" class="btn btn-outline btn-sm" style="white-space: nowrap; flex-shrink: 0;">Manage Files</a>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="card" style="text-align: center; padding: var(--space-10) var(--space-6);">
+    <p class="text-muted" style="margin-bottom: var(--space-4);">You have no projects yet.</p>
+    <a href="/user/data/new" class="btn btn-primary">Create your first project</a>
+  </div>
+{% endif %}
+{% endblock %}

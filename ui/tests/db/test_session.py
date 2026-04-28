@@ -10,8 +10,11 @@ URL = "sqlite+aiosqlite:///:memory:"
 
 
 class TestInitDb:
-    async def test_creates_tables(self):
-        """init_db should create all ORM tables without error."""
+    async def test_initializes_engine(self):
+        """init_db should create the engine and session factory without error.
+
+        Schema creation is handled by Alembic migrations, not init_db.
+        """
         await init_db(URL)
         await close_db()
 

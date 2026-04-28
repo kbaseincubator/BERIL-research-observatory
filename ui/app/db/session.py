@@ -5,8 +5,6 @@ from collections.abc import AsyncGenerator
 
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
-from app.db.models import Base
-
 logger = logging.getLogger(__name__)
 
 # Module-level engine and session factory — initialized by init_db()
@@ -16,14 +14,20 @@ _db_url: str | None = None
 
 
 async def init_db(db_url: str) -> None:
-    """Create the async engine, session factory, and all tables."""
+    """Create the async engine and session factory.
+
+    Schema creation and migrations are handled by Alembic.
+    Run ``uv run alembic upgrade head`` before starting the application.
+    """
     global _engine, _async_session_factory, _db_url
 
     if _engine is not None:
         if db_url != _db_url:
             logger.warning(
-                f"init_db called again with a different URL (ignoring). "
-                f"Active: {_db_url!r}, requested: {db_url!r}"
+                "init_db called again with a different URL (ignoring). "
+                "Active: %r, requested: %r",
+                _db_url,
+                db_url,
             )
         else:
             logger.debug("init_db called again with same URL — already initialized, skipping")
@@ -31,12 +35,8 @@ async def init_db(db_url: str) -> None:
 
     _engine = create_async_engine(db_url, echo=False)
     _async_session_factory = async_sessionmaker(_engine, expire_on_commit=False)
-
-    async with _engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-
     _db_url = db_url
-    logger.info(f"Database initialized: {db_url}")
+    logger.info("Database initialized: %s", db_url)
 
 
 async def close_db() -> None:

@@ -425,10 +425,14 @@ class TestProjectCollection:
         await db_session.refresh(project)
 
         link1 = ProjectCollection(project_id=project.id, collection_id="coll_a")
-        link2 = ProjectCollection(project_id=project.id, collection_id="coll_a")
         db_session.add(link1)
         await db_session.commit()
 
+        # Expunge link1 from the identity map so SQLAlchemy can track link2
+        # (same composite PK) without raising an identity-conflict warning.
+        db_session.expunge(link1)
+
+        link2 = ProjectCollection(project_id=project.id, collection_id="coll_a")
         db_session.add(link2)
         with pytest.raises(IntegrityError):
             await db_session.commit()

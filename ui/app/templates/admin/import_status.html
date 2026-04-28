@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}Import Status — Admin — {{ app_name }}{% endblock %}
+
+{% block content %}
+<div class="page-header" style="display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--space-4);">
+  <div>
+    <h1 class="page-title">Import Status</h1>
+    <p class="text-muted">Repository project import state. {{ import_records | length }} tracked, {{ untracked_dirs | length }} untracked.</p>
+  </div>
+  <div style="display: flex; gap: var(--space-2);">
+    <button id="btn-run-all" class="btn btn-primary" onclick="runFullImport()">Run Full Import</button>
+  </div>
+</div>
+
+{% if untracked_dirs %}
+<div class="card" style="margin-bottom: var(--space-6); border-color: rgba(255,165,0,0.3);">
+  <h3 style="margin-top: 0; color: var(--color-warning, orange);">Untracked Directories ({{ untracked_dirs | length }})</h3>
+  <p class="text-muted text-small">These directories exist in the repo but have no import record yet.</p>
+  <ul style="margin: 0; padding-left: var(--space-4); font-family: monospace; font-size: 0.85rem;">
+    {% for path in untracked_dirs %}
+      <li>{{ path }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% if import_records %}
+<div class="card" style="overflow-x: auto;">
+  <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+    <thead>
+      <tr style="border-bottom: 1px solid var(--color-border, rgba(255,255,255,0.1));">
+        <th style="text-align: left; padding: var(--space-2) var(--space-3); color: var(--color-text-muted);">Repo Path</th>
+        <th style="text-align: left; padding: var(--space-2) var(--space-3); color: var(--color-text-muted);">Status</th>
+        <th style="text-align: left; padding: var(--space-2) var(--space-3); color: var(--color-text-muted);">Last Synced</th>
+        <th style="text-align: left; padding: var(--space-2) var(--space-3); color: var(--color-text-muted);">Error</th>
+        <th style="text-align: left; padding: var(--space-2) var(--space-3); color: var(--color-text-muted);">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rec in import_records %}
+      <tr id="row-{{ rec.repo_path | replace('/', '-') }}"
+          style="border-bottom: 1px solid var(--color-border, rgba(255,255,255,0.06));">
+        <td style="padding: var(--space-2) var(--space-3); font-family: monospace; font-size: 0.8rem;">
+          {{ rec.repo_path }}
+          {% if rec.project_id %}
+            <br><a href="/projects/{{ rec.project_id }}" class="text-small text-muted" style="font-family: inherit;">view ↗</a>
+          {% endif %}
+        </td>
+        <td style="padding: var(--space-2) var(--space-3);">
+          <span class="badge status-{{ rec.status }}"
+                style="{% if rec.status == 'imported' %}background: rgba(0,200,100,0.12); color: #00c864;
+                       {% elif rec.status == 'failed' %}background: rgba(220,50,50,0.12); color: #e05050;
+                       {% elif rec.status == 'stale' %}background: rgba(255,165,0,0.12); color: orange;
+                       {% else %}background: rgba(255,255,255,0.06); color: var(--color-text-muted);{% endif %}
+                       font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em;">
+            {{ rec.status }}
+          </span>
+        </td>
+        <td style="padding: var(--space-2) var(--space-3); color: var(--color-text-muted); font-size: 0.8rem;">
+          {% if rec.last_synced_at %}
+            {{ rec.last_synced_at.strftime('%Y-%m-%d %H:%M') }}
+          {% else %}
+            —
+          {% endif %}
+        </td>
+        <td style="padding: var(--space-2) var(--space-3); color: #e05050; font-size: 0.75rem; max-width: 24ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+            title="{{ rec.error_message or '' }}">
+          {{ rec.error_message or '' }}
+        </td>
+        <td style="padding: var(--space-2) var(--space-3);">
+          {% set slug = rec.repo_path.split('/')[-1] %}
+          <button class="btn btn-outline btn-sm"
+                  onclick="resyncProject('{{ slug }}', this)"
+                  style="font-size: 0.75rem; padding: 2px 8px;">
+            Resync
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="card" style="text-align: center; padding: var(--space-10) var(--space-6);">
+  <p class="text-muted">No import records yet. Run a full import to get started.</p>
+</div>
+{% endif %}
+
+<div id="status-bar" style="display: none; position: fixed; bottom: var(--space-4); right: var(--space-4);
+     background: var(--color-surface, #1a1a2e); border: 1px solid var(--color-border, rgba(255,255,255,0.15));
+     border-radius: 8px; padding: var(--space-3) var(--space-4); font-size: 0.875rem; max-width: 36rem;
+     box-shadow: 0 4px 24px rgba(0,0,0,0.4); z-index: 100;">
+</div>
+
+<script>
+  function showStatus(msg, isError) {
+    const bar = document.getElementById('status-bar');
+    bar.style.display = 'block';
+    bar.style.color = isError ? '#e05050' : '#00c864';
+    bar.textContent = msg;
+    if (!isError) setTimeout(() => { bar.style.display = 'none'; }, 5000);
+  }
+
+  async function runFullImport() {
+    const btn = document.getElementById('btn-run-all');
+    btn.disabled = true;
+    btn.textContent = 'Running…';
+    showStatus('Running full import…', false);
+    try {
+      const resp = await fetch('/admin/import/run', { method: 'POST' });
+      const data = await resp.json();
+      if (!resp.ok) {
+        showStatus(`Error: ${data.detail || resp.statusText}`, true);
+      } else {
+        showStatus(
+          `Done — ${data.imported} imported, ${data.skipped} skipped, ${data.failed} failed out of ${data.total}.`,
+          false
+        );
+        setTimeout(() => location.reload(), 2000);
+      }
+    } catch (e) {
+      showStatus(`Network error: ${e}`, true);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Run Full Import';
+    }
+  }
+
+  async function resyncProject(slug, btn) {
+    btn.disabled = true;
+    btn.textContent = '…';
+    try {
+      const resp = await fetch(`/admin/import/${slug}/resync`, { method: 'POST' });
+      const data = await resp.json();
+      if (!resp.ok) {
+        showStatus(`Error resyncing ${slug}: ${data.detail || resp.statusText}`, true);
+      } else {
+        showStatus(`${slug}: ${data.status} — ${data.message}`, data.status === 'failed');
+        setTimeout(() => location.reload(), 1500);
+      }
+    } catch (e) {
+      showStatus(`Network error: ${e}`, true);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Resync';
+    }
+  }
+</script>
+{% endblock %}

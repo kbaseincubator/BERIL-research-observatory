@@ -7,7 +7,6 @@ from fastapi import APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.auth import get_current_user  # noqa: F401 — re-exported for convenience
 from app.config import get_settings
 from app.db.crud import get_or_create_user
 from app.db.session import get_db
@@ -47,11 +46,12 @@ async def orcid_callback(
     db: AsyncSession = Depends(get_db),
 ):
     """Handle the ORCiD OAuth2 callback."""
-    if error:
-        logger.warning(f"ORCiD OAuth error: {error}")
-        return RedirectResponse(url="/?auth_error=1", status_code=302)
-
-    if not code:
+    if error or not code:
+        err_text = f"ORCiD OAuth error: {error}"
+        if not code:
+            err_text = "ORCiD OAuth return code not given"
+        logger.warning(err_text)
+        # TODO: show an error message (toast?) to the user
         return RedirectResponse(url="/?auth_error=1", status_code=302)
 
     settings = get_settings()
