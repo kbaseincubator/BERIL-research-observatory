@@ -28,6 +28,7 @@ from app.filters import (
 
 from .routes.admin import ROUTER_ADMIN
 from .routes.auth import ROUTER_AUTH
+from .routes.chat import ROUTER_CHAT
 from .routes.data import ROUTER_USER_DATA
 from .routes.user import ROUTER_USER
 from .config import get_settings
@@ -86,6 +87,7 @@ def create_app() -> FastAPI:
 
     app.include_router(ROUTER_ADMIN)
     app.include_router(ROUTER_AUTH)
+    app.include_router(ROUTER_CHAT)
     app.include_router(ROUTER_COLLECTIONS)
     app.include_router(ROUTER_USER)
     app.include_router(ROUTER_USER_DATA)
