@@ -34,10 +34,10 @@ Is the genetic architecture of metal cross-resistance conserved across phylogene
 ## Data Sources
 
 ### Primary: Fitness Browser metal experiments
-- **422 metal experiments** across **37 organisms** and **13 metals** (Al, Cd, Co, Cr, Cu, Fe, Hg, Mn, Mo, Ni, Se, U, W, Zn)
-- **30 organisms with ≥3 metals** — sufficient for cross-resistance matrices
+- **452 metal experiments** across **37 organisms** and **14 metals** (Al, Cd, Co, Cr, Cu, Fe, Hg, Mn, Mo, Ni, Se, U, W, Zn)
+- **28 organisms with ≥3 metals** — sufficient for cross-resistance matrices (2 organisms with only 2 metals excluded)
 - **12 organisms with ≥5 metals** — ideal for full cross-resistance network analysis
-- Best coverage: DvH (13 metals, 112 experiments), psRCH2 (6 metals), 10 organisms with 5 metals each
+- Best coverage: DvH (13 metals, 112 experiments), psRCH2 (8 metals), 10 organisms with 5 metals each
 
 ### Secondary: Existing observatory data products
 - Fitness matrices from `fitness_modules` project (32 organisms, genes × experiments)
@@ -149,10 +149,7 @@ GROUP BY gf.locusId, e.metal_type
 - **Expected output**: `data/species_multimetal_scores.csv`, `figures/bacdive_multimetal_validation.png`
 - **Environment**: BERDL JupyterHub (Spark for pangenome-scale annotation lookup)
 
-### Notebook 6: Summary Figures (`06_summary_figures.ipynb`)
-- **Goal**: Publication-quality figures summarizing key findings
-- **Expected output**: `figures/fig1_cross_resistance_network.png`, `figures/fig2_conservation_across_organisms.png`, `figures/fig3_core_enrichment_tiers.png`, `figures/fig4_pangenome_prediction.png`
-- **Environment**: Local
+*Note: NB06 (summary figures) was planned but not needed — all key figures are produced inline by NB01-NB05.*
 
 ## Expected Outcomes
 - **If H1 supported** (conserved cross-resistance): Metal cross-resistance is a universal property of metal chemistry, not organism-specific wiring. The consensus cross-resistance network becomes a predictive tool — knowing a species tolerates Co lets you predict its Ni tolerance. Practical implications for bioremediation site assessment.
