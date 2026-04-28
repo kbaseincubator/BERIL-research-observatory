@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BERIL Chat — Dev Preview</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --color-bg: #0b0b0f;
+        --color-bg-elevated: #15151b;
+        --color-text: #e6e6e6;
+        --color-text-muted: #9aa0a6;
+      }
+      body {
+        margin: 0;
+        background: var(--color-bg);
+        color: var(--color-text);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      }
+      #root {
+        max-width: 720px;
+        margin: 40px auto;
+        padding: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      import { mountChat } from "/src/main.tsx";
+
+      const PROVIDER_CATALOG = [
+        {
+          id: "anthropic",
+          display_name: "Anthropic",
+          credential_fields: [
+            { id: "api_key", display_name: "API Key", secret: true },
+          ],
+          models: [
+            { id: "claude-opus-4-7", display_name: "Claude Opus 4.7" },
+            { id: "claude-sonnet-4-6", display_name: "Claude Sonnet 4.6" },
+          ],
+        },
+      ];
+
+      mountChat(document.getElementById("root"), {
+        sessionId: "dev-session",
+        providerCatalog: PROVIDER_CATALOG,
+        currentProviderId: "anthropic",
+        currentModel: "claude-opus-4-7",
+        streamEndpoint: "/api/chat/dev-session/stream",
+        initialMessages: [],
+      });
+    </script>
+  </body>
+</html>

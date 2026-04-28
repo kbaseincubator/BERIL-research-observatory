@@ -87,6 +87,14 @@ ui/data/cache.json
 ui/data/indexdir/
 ui/user_projects/
 
+# Chat component build output (generated from ui/components/chat/)
+ui/app/static/chat/
+
+# Frontend build artifacts & deps
+node_modules/
+ui/components/*/dist/
+.vite/
+
 # Python virtual environments
 .venv/
 .venv-berdl/
