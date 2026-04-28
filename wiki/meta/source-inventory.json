@@ -1,0 +1,16 @@
+{
+  "generated_by": "Codex GPT-5",
+  "generated_on": "2026-04-28",
+  "phase": "0",
+  "source_roots": [
+    "projects/",
+    "docs/",
+    "ui/config/collections.yaml",
+    "data/"
+  ],
+  "topic_count": 8,
+  "notes": [
+    "This inventory is intentionally lightweight in Phase 0.",
+    "Phase 1 should generate a richer per-project and per-derived-product source map."
+  ]
+}

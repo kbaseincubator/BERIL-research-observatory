@@ -345,6 +345,70 @@ class ResearchIdea:
 
 
 @dataclass
+class WikiLink:
+    """A directed relationship between two wiki pages."""
+
+    source_id: str
+    target_id: str
+    relationship: str = "related"
+
+
+@dataclass
+class WikiPage:
+    """A markdown wiki page with structured frontmatter."""
+
+    id: str
+    title: str
+    type: str
+    status: str
+    summary: str
+    path: str
+    body: str
+    source_projects: list[str] = field(default_factory=list)
+    source_docs: list[str] = field(default_factory=list)
+    related_collections: list[str] = field(default_factory=list)
+    related_pages: list[str] = field(default_factory=list)
+    confidence: str = "medium"
+    generated_by: str = ""
+    last_reviewed: str = ""
+    section: str = ""
+    order: int = 100
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+    @property
+    def url(self) -> str:
+        """Browser URL for this wiki page."""
+        return f"/wiki/{self.path}"
+
+
+@dataclass
+class WikiIndex:
+    """Parsed wiki corpus and helper lookups."""
+
+    pages: list[WikiPage] = field(default_factory=list)
+    links: list[WikiLink] = field(default_factory=list)
+
+    def get_page_by_id(self, page_id: str) -> WikiPage | None:
+        """Get a wiki page by stable frontmatter ID."""
+        return next((p for p in self.pages if p.id == page_id), None)
+
+    def get_page_by_path(self, path: str) -> WikiPage | None:
+        """Get a wiki page by route path."""
+        route_path = path.strip("/")
+        if route_path.endswith(".md"):
+            route_path = route_path[:-3]
+        return next((p for p in self.pages if p.path == route_path), None)
+
+    def pages_by_type(self, page_type: str) -> list[WikiPage]:
+        """Get wiki pages of a specific type."""
+        return [p for p in self.pages if p.type == page_type]
+
+    def pages_by_section(self, section: str) -> list[WikiPage]:
+        """Get wiki pages in a top-level section."""
+        return [p for p in self.pages if p.section == section]
+
+
+@dataclass
 class CollectionEdge:
     """An edge between two collections, derived from explicit links or project co-usage."""
 
@@ -369,6 +433,7 @@ class RepositoryData:
     skills: list[Skill] = field(default_factory=list)
     research_areas: list[ResearchArea] = field(default_factory=list)
     collection_edges: list[CollectionEdge] = field(default_factory=list)
+    wiki_index: WikiIndex = field(default_factory=WikiIndex)
 
     # Computed stats
     total_notebooks: int = 0
