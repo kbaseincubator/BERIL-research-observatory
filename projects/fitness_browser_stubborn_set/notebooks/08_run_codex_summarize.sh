@@ -43,7 +43,7 @@ if [ ! -f "$XML" ]; then
 fi
 
 # Look up gene_identifiers for this paper from tasks.jsonl
-GENE_LIST=$(.venv-berdl/bin/python -c "
+GENE_LIST=$(python3 -c "
 import json, sys
 pmid = '$PMID'
 with open('$SUM_DIR/tasks.jsonl') as fh:
@@ -80,11 +80,37 @@ PROMPT_FILE="$PER_PAPER_DIR/${PMID}.prompt.txt"
   cat "$XML"
 } > "$PROMPT_FILE"
 
-# Run codex
-"${CODEX_BIN:-codex}" exec \
+# Run codex from an EMPTY working directory so its workspace-write sandbox
+# has nothing to grep/explore. Without this, codex spends minutes traversing
+# the project tree instead of summarizing the paper.
+CODEX_WORKDIR="${CODEX_WORKDIR:-/tmp/codex_summarize_workdir}"
+mkdir -p "$CODEX_WORKDIR"
+
+(cd "$CODEX_WORKDIR" && "${CODEX_BIN:-codex}" exec \
   --model gpt-5.5 \
   --sandbox workspace-write \
   --ephemeral \
+  --skip-git-repo-check \
   --output-last-message "$OUT_TSV" \
-  < "$PROMPT_FILE" > "$LOG" 2>&1
-echo "DONE $PMID"
+  < "$PROMPT_FILE" > "$LOG" 2>&1) &
+CPID=$!
+
+# Poll for completion or timeout. No backgrounded sleep => no orphan sleeps.
+TIMEOUT_S="${CODEX_TIMEOUT:-900}"
+WAITED=0
+while kill -0 $CPID 2>/dev/null; do
+  if [ $WAITED -ge $TIMEOUT_S ]; then
+    kill -9 $CPID 2>/dev/null
+    break
+  fi
+  sleep 5
+  WAITED=$((WAITED + 5))
+done
+wait $CPID 2>/dev/null
+
+if [ -s "$OUT_TSV" ]; then
+  echo "DONE $PMID"
+else
+  echo "FAILED $PMID" >&2
+  exit 1
+fi
