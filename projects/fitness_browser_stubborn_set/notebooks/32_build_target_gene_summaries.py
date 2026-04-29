@@ -196,6 +196,16 @@ def main() -> None:
     sub = hits[hits.apply(lambda r: (r["orgId"], r["locusId"]) in target_set, axis=1)].copy()
     print(f"  PaperBLAST hits joined to training set: {len(sub):,}", file=sys.stderr)
 
+    # Filter out orphan placeholder rows where the homolog itself is empty —
+    # these are parquet rows that exist for target genes with zero PaperBLAST
+    # hits and have geneId=None / everything blank.
+    # We KEEP rows with a real geneId but missing pmId; the agent at least
+    # sees the homolog citation exists, even if we have no paper-level
+    # bibliographic info to chase.
+    before = len(sub)
+    sub = sub[sub["geneId"].notna() & (sub["geneId"].astype(str) != "None")]
+    print(f"  after dropping phantom orphan rows:     {len(sub):,}  (dropped {before - len(sub)})", file=sys.stderr)
+
     # 6. Write
     print("Writing TSV...", file=sys.stderr)
     n_hm = n_null = n_miss = 0

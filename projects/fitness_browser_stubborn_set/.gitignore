@@ -14,6 +14,8 @@ data/codex_summaries_gapfill/per_paper/*.log
 data/codex_summaries_gapfill/per_paper/*.prompt.txt
 data/codex_summaries_abstracts/per_paper/*.log
 data/codex_summaries_abstracts/per_paper/*.prompt.txt
+data/codex_summaries_altsource/per_paper/*.log
+data/codex_summaries_altsource/per_paper/*.prompt.txt
 
 # Cross-check intermediates
 data/codex_xcheck/batch_X*/log.txt

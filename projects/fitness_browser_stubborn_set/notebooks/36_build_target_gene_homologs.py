@@ -63,6 +63,8 @@ def main() -> None:
     hits = pd.read_parquet(HITS)
     target_set = set(file_membership.keys())
     sub = hits[hits.apply(lambda r: (r["orgId"], r["locusId"]) in target_set, axis=1)].copy()
+    # Drop orphan placeholder rows where geneId is None (no PaperBLAST hit)
+    sub = sub[sub["geneId"].notna() & (sub["geneId"].astype(str) != "None")]
 
     # 4. Aggregate to one row per (target, homolog)
     grouped = (
