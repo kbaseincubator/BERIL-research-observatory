@@ -414,6 +414,49 @@ Observed in `[nmdc_community_metabolic_ecology]` NB03 cell-9 when checking `scor
 
 ---
 
+### Parquet `fixed_size_binary[16]` Causes Spark UUID Error
+
+**[obi_ontology_coverage]** Parquet files containing `fixed_size_binary[16]` columns (e.g. MD5 hashes stored as raw 16 bytes) cause Spark 4.x to fail with:
+
+```
+AnalysisException: [PARQUET_TYPE_ILLEGAL] Illegal Parquet type: FIXED_LEN_BYTE_ARRAY (UUID)
+```
+
+Spark interprets 16-byte fixed binary as a UUID logical type and rejects it.
+
+**Symptom**: `spark.read.parquet()` fails on a file that pandas/PyArrow reads fine.
+
+**Solution**: Pre-screen with PyArrow and convert to strings before uploading to bronze:
+
+```python
+import pyarrow.parquet as pq
+schema = pq.read_schema("file.parquet")
+for field in schema:
+    if "fixed_size_binary" in str(field.type):
+        # Re-export with pandas, casting bytes to hex strings
+        df[col] = df[col].apply(lambda x: x.hex() if isinstance(x, bytes) else x)
+```
+
+**Root cause**: DuckDB Parquet export stores hash columns as `fixed_size_binary` rather than `VARCHAR`. Fix upstream or handle during ingest schema detection.
+
+---
+
+### `/berdl-ingest` Skill Does Not Support On-Cluster Execution
+
+**[obi_ontology_coverage]** The `/berdl-ingest` skill and `scripts/ingest_lib.py` assume off-cluster execution. Running on the JupyterHub notebook server, `initialize()` fails immediately checking for SSH tunnels on ports 1337/1338.
+
+**Symptom**: `RuntimeError: SSH tunnel(s) not detected on port(s): [1337, 1338]` when running on the notebook server itself.
+
+**Workaround**: Bypass `ingest_lib` entirely. On-cluster, use:
+
+- `berdl_notebook_utils.setup_spark_session.get_spark_session()` for Spark
+- `minio.Minio()` with env vars (`MINIO_ENDPOINT_URL`, `MINIO_ACCESS_KEY`, `MINIO_SECRET_KEY`) for MinIO
+- Direct `spark.read.parquet()` / `sdf.write.format("delta")` for ingest
+
+**Fix needed**: `initialize()` should detect on-cluster via `os.environ.get("SPARK_CONNECT_MODE_ENABLED")` and use the native utilities instead of the proxy chain. See `projects/obi_ontology_coverage/INGEST_SESSION_REPORT.md` for full details.
+
+---
+
 ## Pangenome (`kbase_ke_pangenome`) Pitfalls
 
 ### Taxonomy Join: Use `genome_id`, NOT `gtdb_taxonomy_id`
