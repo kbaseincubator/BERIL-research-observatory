@@ -48,7 +48,8 @@ N_DOSSIERS=$(grep -c '^## Dossier ' "$INPUT")
 } > "$PROMPT_FILE"
 
 RAW="$DIR/raw.txt"
-claude -p --model sonnet --no-session-persistence < "$PROMPT_FILE" > "$RAW" 2> "$LOG"
+MODEL="${CLAUDE_MODEL:-sonnet}"
+claude -p --model "$MODEL" --no-session-persistence < "$PROMPT_FILE" > "$RAW" 2> "$LOG"
 
 # Strip markdown code fences and any non-JSON lines.
 # Keep only lines that look like JSONL ({...}).
