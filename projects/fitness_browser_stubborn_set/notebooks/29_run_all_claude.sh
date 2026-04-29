@@ -16,12 +16,13 @@ done
 
 REPO_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
 BATCHES_DIR="${BATCHES_DIR:-$REPO_ROOT/projects/fitness_browser_stubborn_set/data/batches_reann}"
+BATCH_PREFIX="${BATCH_PREFIX:-batch_RA}"
 RUNNER="$REPO_ROOT/projects/fitness_browser_stubborn_set/notebooks/28_run_claude_classify.sh"
 export BATCHES_DIR
 
 TODO=""
 SKIPPED=0
-for d in "$BATCHES_DIR"/batch_RA*; do
+for d in "$BATCHES_DIR"/${BATCH_PREFIX}*; do
   [ -d "$d" ] || continue
   bid=$(basename "$d" | sed 's/batch_//')
   if [ -f "$d/output.jsonl" ]; then
