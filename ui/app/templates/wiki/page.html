@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} - Wiki Atlas - {{ app_name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .wiki-layout {
+        display: grid;
+        grid-template-columns: minmax(190px, 260px) minmax(0, 1fr);
+        gap: var(--space-8);
+        align-items: start;
+    }
+
+    .wiki-sidebar {
+        position: sticky;
+        top: calc(var(--space-8) + 64px);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-md);
+        background: var(--surface-raised);
+        padding: var(--space-4);
+    }
+
+    .wiki-sidebar-title {
+        margin-bottom: var(--space-3);
+        color: var(--text-secondary);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .wiki-sidebar-link {
+        display: block;
+        border-radius: var(--radius-sm);
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        padding: var(--space-2);
+        text-decoration: none;
+    }
+
+    .wiki-sidebar-link:hover,
+    .wiki-sidebar-link.active {
+        background: var(--surface-overlay);
+        color: var(--text-primary);
+    }
+
+    .wiki-page-meta {
+        display: flex;
+        gap: var(--space-2);
+        flex-wrap: wrap;
+        margin-top: var(--space-4);
+    }
+
+    .wiki-provenance {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: var(--space-4);
+        margin-top: var(--space-8);
+    }
+
+    .wiki-provenance-panel {
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-md);
+        background: var(--surface-raised);
+        padding: var(--space-4);
+    }
+
+    .wiki-provenance-panel h3 {
+        font-size: 0.95rem;
+        margin-bottom: var(--space-3);
+    }
+
+    .wiki-chip-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+    }
+
+    .wiki-type {
+        background: var(--surface-overlay);
+        color: var(--text-secondary);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-sm);
+        padding: 2px 7px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0;
+    }
+
+    @media (max-width: 900px) {
+        .wiki-layout {
+            grid-template-columns: 1fr;
+        }
+
+        .wiki-sidebar {
+            position: static;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="wiki-layout">
+    <aside class="wiki-sidebar">
+        <div class="wiki-sidebar-title">{{ page.section | replace('-', ' ') | title }}</div>
+        <a href="/wiki" class="wiki-sidebar-link">Atlas</a>
+        {% for item in section_pages %}
+        <a href="{{ item.url }}" class="wiki-sidebar-link {% if item.id == page.id %}active{% endif %}">
+            {{ item.title }}
+        </a>
+        {% endfor %}
+    </aside>
+
+    <article>
+        <div class="page-header">
+            <div class="breadcrumbs" style="margin-bottom: var(--space-3);">
+                <a href="/wiki" class="text-muted">Wiki</a>
+                <span class="text-muted">/</span>
+                <span class="text-muted">{{ page.section }}</span>
+            </div>
+            <h1 class="page-title">{{ page.title }}</h1>
+            <p class="page-description">{{ page.summary }}</p>
+            <div class="wiki-page-meta">
+                <span class="wiki-type">{{ page.type | replace('_', ' ') }}</span>
+                <span class="badge">{{ page.status }}</span>
+                <span class="badge">{{ page.confidence }} confidence</span>
+                <span class="badge">Reviewed {{ page.last_reviewed }}</span>
+            </div>
+        </div>
+
+        <div class="markdown-content">
+            {{ page.body | markdown }}
+        </div>
+
+        <div class="wiki-provenance">
+            <div class="wiki-provenance-panel">
+                <h3>Source Projects</h3>
+                <div class="wiki-chip-list">
+                    {% for project in source_projects %}
+                    <a href="/projects/{{ project.id }}" class="badge badge-project">{{ project.title | strip_images | markdown_inline }}</a>
+                    {% endfor %}
+                    {% for project_id in missing_source_project_ids %}
+                    <span class="badge">{{ project_id }}</span>
+                    {% endfor %}
+                    {% if not source_project_ids %}
+                    <span class="text-muted text-small">No direct project sources.</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="wiki-provenance-panel">
+                <h3>Collections</h3>
+                <div class="wiki-chip-list">
+                    {% for collection in related_collections %}
+                    <a href="/collections/{{ collection.id }}" class="badge">{{ collection.name }}</a>
+                    {% endfor %}
+                    {% for collection_id in missing_related_collection_ids %}
+                    <span class="badge">{{ collection_id }}</span>
+                    {% endfor %}
+                    {% if not related_collection_ids %}
+                    <span class="text-muted text-small">No direct collection links.</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="wiki-provenance-panel">
+                <h3>Related Pages</h3>
+                <div class="wiki-chip-list">
+                    {% for related in related_pages %}
+                    <a href="{{ related.url }}" class="badge">{{ related.title }}</a>
+                    {% else %}
+                    <span class="text-muted text-small">No related pages declared.</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+{% endblock %}

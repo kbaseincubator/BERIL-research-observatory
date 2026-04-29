@@ -135,7 +135,7 @@ class TestContributorKey:
 
 class TestAggregateContributors:
     def _make_project(self, pid, contributors):
-        from app.models import Contributor, Project
+        from app.models import Project
         return Project(
             id=pid,
             title=pid,
@@ -617,6 +617,76 @@ class TestParseResearchIdeas:
         parser = RepositoryParser(repo_path=tmp_repo)
         ideas = parser.parse_research_ideas()
         assert ideas[0].status == IdeaStatus.IN_PROGRESS
+
+
+# ---------------------------------------------------------------------------
+# RepositoryParser.parse_wiki
+# ---------------------------------------------------------------------------
+
+
+class TestParseWiki:
+    def _write_wiki_page(self, tmp_repo, rel_path="topics/example.md", **overrides):
+        wiki_dir = tmp_repo / "wiki"
+        page_path = wiki_dir / rel_path
+        page_path.parent.mkdir(parents=True, exist_ok=True)
+        frontmatter = {
+            "id": "topic.example",
+            "title": "Example Topic",
+            "type": "topic",
+            "status": "draft",
+            "summary": "Example summary.",
+            "source_projects": ["alpha_project"],
+            "source_docs": ["docs/discoveries.md"],
+            "related_collections": ["kbase_ke_pangenome"],
+            "confidence": "medium",
+            "generated_by": "pytest",
+            "last_reviewed": "2026-04-28",
+            "related_pages": ["claim.example"],
+            "order": 7,
+        }
+        frontmatter.update(overrides)
+        yaml_text = "\n".join(
+            f"{key}: {json.dumps(value)}" for key, value in frontmatter.items()
+        )
+        page_path.write_text(f"---\n{yaml_text}\n---\n# Example Topic\n\nBody.")
+        return page_path
+
+    def test_no_wiki_dir_returns_empty_index(self, tmp_repo):
+        parser = RepositoryParser(repo_path=tmp_repo)
+        wiki = parser.parse_wiki()
+        assert wiki.pages == []
+        assert wiki.links == []
+
+    def test_parses_nested_wiki_page(self, tmp_repo):
+        self._write_wiki_page(tmp_repo)
+        parser = RepositoryParser(repo_path=tmp_repo)
+        wiki = parser.parse_wiki()
+        assert len(wiki.pages) == 1
+        page = wiki.pages[0]
+        assert page.id == "topic.example"
+        assert page.path == "topics/example"
+        assert page.section == "topics"
+        assert page.source_projects == ["alpha_project"]
+        assert wiki.links[0].target_id == "claim.example"
+
+    def test_skips_missing_frontmatter(self, tmp_repo):
+        wiki_dir = tmp_repo / "wiki"
+        wiki_dir.mkdir()
+        (wiki_dir / "bad.md").write_text("# Missing frontmatter")
+        parser = RepositoryParser(repo_path=tmp_repo)
+        assert parser.parse_wiki().pages == []
+
+    def test_skips_invalid_page_type(self, tmp_repo):
+        self._write_wiki_page(tmp_repo, type="unknown")
+        parser = RepositoryParser(repo_path=tmp_repo)
+        assert parser.parse_wiki().pages == []
+
+    def test_get_page_helpers(self, tmp_repo):
+        self._write_wiki_page(tmp_repo)
+        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
+        assert wiki.get_page_by_id("topic.example").title == "Example Topic"
+        assert wiki.get_page_by_path("topics/example.md").id == "topic.example"
+        assert wiki.pages_by_type("topic")[0].id == "topic.example"
 
 
 # ---------------------------------------------------------------------------

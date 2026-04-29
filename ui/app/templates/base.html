@@ -43,8 +43,9 @@
                     </ul>
                 </li>
                 <li class="nav-dropdown">
-                    <a href="/skills" class="{% if request.url.path.startswith('/skills') or request.url.path.startswith('/knowledge') %}active{% endif %}">Knowledge</a>
+                    <a href="/wiki" class="{% if request.url.path.startswith('/skills') or request.url.path.startswith('/knowledge') or request.url.path.startswith('/wiki') %}active{% endif %}">Knowledge</a>
                     <ul class="dropdown-menu">
+                        <li><a href="/wiki">Wiki Atlas</a></li>
                         <li><a href="/skills">Skills</a></li>
                         <li><a href="/knowledge/pitfalls">Memory: Pitfalls</a></li>
                         <li><a href="/knowledge/performance">Memory: Performance</a></li>
@@ -106,6 +107,7 @@
                 <h4>Knowledge</h4>
                 <ul class="footer-links">
                     <li><a href="/skills">Skills</a></li>
+                    <li><a href="/wiki">Wiki Atlas</a></li>
                     <li><a href="/knowledge/pitfalls">Pitfalls</a></li>
                     <li><a href="/knowledge/performance">Performance</a></li>
                     <li><a href="/knowledge/ideas">Research Ideas</a></li>

@@ -37,6 +37,9 @@ from .models import (
     Skill,
     Table,
     Visualization,
+    WikiIndex,
+    WikiLink,
+    WikiPage,
 )
 
 REPOSITORY_DATA_FILE = "data.pkl.gz"
@@ -198,6 +201,37 @@ def slugify(text: str) -> str:
 class RepositoryParser:
     """Parse git repository file system into structured data."""
 
+    REQUIRED_WIKI_FIELDS = {
+        "id",
+        "title",
+        "type",
+        "status",
+        "summary",
+        "source_projects",
+        "source_docs",
+        "related_collections",
+        "confidence",
+        "generated_by",
+        "last_reviewed",
+    }
+
+    WIKI_PAGE_TYPES = {
+        "atlas",
+        "topic",
+        "data_tenant",
+        "data_collection",
+        "data_type",
+        "derived_product",
+        "join_recipe",
+        "data_gap",
+        "claim",
+        "direction",
+        "hypothesis",
+        "person",
+        "method",
+        "meta",
+    }
+
     # Collection IDs to scan for in README text
     _COLLECTION_IDS = [
         "kbase_ke_pangenome",
@@ -228,6 +262,7 @@ class RepositoryParser:
         research_ideas = self.parse_research_ideas()
         collections = self.parse_collections()
         skills = self.parse_skills()
+        wiki_index = self.parse_wiki()
 
         # Aggregate unique contributors across all projects
         contributors = self._aggregate_contributors(projects)
@@ -255,6 +290,7 @@ class RepositoryParser:
             skills=skills,
             research_areas=research_areas,
             collection_edges=collection_edges,
+            wiki_index=wiki_index,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -1657,6 +1693,114 @@ class RepositoryParser:
             collections.append(collection)
 
         return collections
+
+    def parse_wiki(self) -> WikiIndex:
+        """Parse markdown pages from the wiki directory.
+
+        The parser is intentionally permissive: malformed pages are skipped so the
+        app can still boot, while app.wiki_lint reports actionable failures.
+        """
+        wiki_dir = self.repo_path / "wiki"
+        if not wiki_dir.exists():
+            return WikiIndex()
+
+        pages: list[WikiPage] = []
+        for wiki_file in sorted(wiki_dir.rglob("*.md")):
+            if any(
+                part.startswith(".") for part in wiki_file.relative_to(wiki_dir).parts
+            ):
+                continue
+            page = self._parse_wiki_file(wiki_file, wiki_dir)
+            if page:
+                pages.append(page)
+
+        pages.sort(key=lambda p: (p.section, p.order, p.title.lower()))
+        links = [
+            WikiLink(source_id=page.id, target_id=target_id)
+            for page in pages
+            for target_id in page.related_pages
+        ]
+        return WikiIndex(pages=pages, links=links)
+
+    @classmethod
+    def _parse_wiki_file(cls, wiki_file: Path, wiki_dir: Path) -> WikiPage | None:
+        """Parse one wiki markdown file with YAML frontmatter."""
+        try:
+            raw_content = wiki_file.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            return None
+
+        frontmatter_match = re.match(
+            r"^---\s*\n(.*?)\n---\s*\n?", raw_content, re.DOTALL
+        )
+        if not frontmatter_match:
+            return None
+
+        try:
+            frontmatter = yaml.safe_load(frontmatter_match.group(1)) or {}
+        except yaml.YAMLError:
+            return None
+        if not isinstance(frontmatter, dict):
+            return None
+
+        missing = cls.REQUIRED_WIKI_FIELDS - set(frontmatter)
+        if missing:
+            return None
+        if frontmatter.get("type") not in cls.WIKI_PAGE_TYPES:
+            return None
+
+        route_path = wiki_file.relative_to(wiki_dir).with_suffix("").as_posix()
+        body = raw_content[frontmatter_match.end() :].strip()
+        section = route_path.split("/", 1)[0] if "/" in route_path else "root"
+
+        known_keys = cls.REQUIRED_WIKI_FIELDS | {
+            "related_pages",
+            "order",
+            "section",
+        }
+        metadata = {k: v for k, v in frontmatter.items() if k not in known_keys}
+
+        return WikiPage(
+            id=str(frontmatter["id"]),
+            title=str(frontmatter["title"]),
+            type=str(frontmatter["type"]),
+            status=str(frontmatter["status"]),
+            summary=str(frontmatter["summary"]),
+            path=route_path,
+            body=cls._rewrite_wiki_body_links(body),
+            source_projects=cls._as_string_list(frontmatter.get("source_projects")),
+            source_docs=cls._as_string_list(frontmatter.get("source_docs")),
+            related_collections=cls._as_string_list(
+                frontmatter.get("related_collections")
+            ),
+            related_pages=cls._as_string_list(frontmatter.get("related_pages")),
+            confidence=str(frontmatter.get("confidence", "medium")),
+            generated_by=str(frontmatter.get("generated_by", "")),
+            last_reviewed=str(frontmatter.get("last_reviewed", "")),
+            section=str(frontmatter.get("section") or section),
+            order=int(frontmatter.get("order", 100)),
+            metadata=metadata,
+        )
+
+    @staticmethod
+    def _as_string_list(value) -> list[str]:
+        """Normalize a frontmatter scalar/list/null into a string list."""
+        if value is None:
+            return []
+        if isinstance(value, list):
+            return [str(v) for v in value if v is not None]
+        return [str(value)]
+
+    @staticmethod
+    def _rewrite_wiki_body_links(content: str) -> str:
+        """Rewrite common repo-relative wiki links to route links."""
+        content = re.sub(
+            r"\]\((?:\./)?([A-Za-z0-9_./-]+)\.md(#.*?)?\)",
+            r"](/wiki/\1\2)",
+            content,
+        )
+        content = re.sub(r"\]\((?:\./)?index(#.*?)?\)", r"](/wiki/index\1)", content)
+        return content
 
     def parse_skills(self) -> list[Skill]:
         """Parse skills from .claude/skills/*/SKILL.md frontmatter."""

@@ -1,8 +1,6 @@
 """Unit tests for app.models."""
 
-from datetime import datetime, date
-
-import pytest
+from datetime import datetime
 
 from app.models import (
     Collection,
@@ -29,6 +27,8 @@ from app.models import (
     Skill,
     Table,
     Visualization,
+    WikiIndex,
+    WikiPage,
     _slugify_name,
 )
 
@@ -440,6 +440,35 @@ class TestDataclassDefaults:
         ra = ResearchArea(id="area-1", name="Genomics")
         assert ra.project_ids == []
         assert ra.top_terms == []
+
+    def test_wiki_page_url(self):
+        page = WikiPage(
+            id="topic.test",
+            title="Test",
+            type="topic",
+            status="draft",
+            summary="Summary",
+            path="topics/test",
+            body="Body",
+        )
+        assert page.url == "/wiki/topics/test"
+
+    def test_wiki_index_helpers(self):
+        page = WikiPage(
+            id="topic.test",
+            title="Test",
+            type="topic",
+            status="draft",
+            summary="Summary",
+            path="topics/test",
+            body="Body",
+            section="topics",
+        )
+        index = WikiIndex(pages=[page])
+        assert index.get_page_by_id("topic.test") is page
+        assert index.get_page_by_path("topics/test.md") is page
+        assert index.pages_by_type("topic") == [page]
+        assert index.pages_by_section("topics") == [page]
 
     def test_derived_data_ref_defaults(self):
         ref = DerivedDataRef(source_project="essential_genome")

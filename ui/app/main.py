@@ -96,6 +96,7 @@ def create_app() -> FastAPI:
     app.include_router(ROUTER_KNOWLEDGE)
     app.include_router(ROUTER_PROJECTS)
     app.include_router(ROUTER_SKILLS)
+    app.include_router(ROUTER_WIKI)
 
     # Configure templates
     global templates
@@ -121,6 +122,7 @@ ROUTER_GENERAL = APIRouter(tags=["General"])
 ROUTER_KNOWLEDGE = APIRouter(tags=["Knowledge"])
 ROUTER_PROJECTS = APIRouter(tags=["Project"])
 ROUTER_SKILLS = APIRouter(tags=["Skills"])
+ROUTER_WIKI = APIRouter(tags=["Wiki"])
 
 
 # Routes
@@ -620,6 +622,93 @@ async def research_ideas(
     context["completed_ideas"] = [i for i in ideas if i.status.value == "COMPLETED"]
 
     return templates.TemplateResponse(request, "knowledge/ideas.html", context)
+
+
+@ROUTER_WIKI.get("/wiki", response_class=HTMLResponse)
+async def wiki_atlas(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
+    """Agent-built wiki atlas landing page."""
+    wiki_index = repo_data.wiki_index
+    atlas_page = wiki_index.get_page_by_path("atlas") or next(
+        (p for p in wiki_index.pages if p.type == "atlas"), None
+    )
+
+    data_pages = [
+        p for p in wiki_index.pages_by_section("data") if p.path != "data/index"
+    ]
+    claim_pages = wiki_index.pages_by_type("claim")
+    direction_pages = wiki_index.pages_by_type("direction")
+    hypothesis_pages = wiki_index.pages_by_type("hypothesis")
+    context.update(
+        {
+            "wiki_index": wiki_index,
+            "atlas_page": atlas_page,
+            "topic_pages": wiki_index.pages_by_type("topic"),
+            "data_pages": data_pages,
+            "claim_pages": claim_pages,
+            "direction_pages": direction_pages,
+            "hypothesis_pages": hypothesis_pages,
+            "research_primitive_pages": (
+                claim_pages + direction_pages + hypothesis_pages
+            ),
+        }
+    )
+    return templates.TemplateResponse(request, "wiki/index.html", context)
+
+
+@ROUTER_WIKI.get("/wiki/{wiki_path:path}", response_class=HTMLResponse)
+async def wiki_page(
+    request: Request,
+    wiki_path: str,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
+    """Render a wiki markdown page."""
+    wiki_index = repo_data.wiki_index
+    page = wiki_index.get_page_by_path(wiki_path)
+    if not page:
+        context["error"] = f"Wiki page '{wiki_path}' not found"
+        return templates.TemplateResponse(
+            request, "error.html", context, status_code=404
+        )
+
+    project_map = {p.id: p for p in repo_data.projects}
+    collection_map = {c.id: c for c in repo_data.collections}
+    source_projects = [
+        project_map[pid] for pid in page.source_projects if pid in project_map
+    ]
+    related_collections = [
+        collection_map[cid]
+        for cid in page.related_collections
+        if cid in collection_map
+    ]
+
+    context.update(
+        {
+            "page": page,
+            "wiki_index": wiki_index,
+            "section_pages": wiki_index.pages_by_section(page.section),
+            "related_pages": [
+                p
+                for p in (wiki_index.get_page_by_id(pid) for pid in page.related_pages)
+                if p
+            ],
+            "source_projects": source_projects,
+            "source_project_ids": page.source_projects,
+            "missing_source_project_ids": [
+                pid for pid in page.source_projects if pid not in project_map
+            ],
+            "related_collections": related_collections,
+            "related_collection_ids": page.related_collections,
+            "missing_related_collection_ids": [
+                cid for cid in page.related_collections if cid not in collection_map
+            ],
+        }
+    )
+    return templates.TemplateResponse(request, "wiki/page.html", context)
 
 
 @ROUTER_COMMUNITY.get("/community/contributors", response_class=HTMLResponse)

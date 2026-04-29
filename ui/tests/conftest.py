@@ -29,6 +29,9 @@ from app.models import (
     Review,
     SampleQuery,
     Skill,
+    WikiIndex,
+    WikiLink,
+    WikiPage,
 )
 
 
@@ -150,6 +153,41 @@ def repository_data(project, completed_project, collection):
         project_ids=["test_project", "completed_project"],
         top_terms=["gene", "fitness"],
     )
+    atlas_page = WikiPage(
+        id="atlas.test",
+        title="Test Wiki Atlas",
+        type="atlas",
+        status="draft",
+        summary="Test atlas summary.",
+        path="atlas",
+        body="# Test Wiki Atlas\n\nAtlas body.",
+        source_projects=[],
+        source_docs=["docs/discoveries.md"],
+        related_collections=[],
+        related_pages=["topic.test"],
+        confidence="medium",
+        generated_by="pytest",
+        last_reviewed="2026-04-28",
+        section="root",
+        order=1,
+    )
+    topic_page = WikiPage(
+        id="topic.test",
+        title="Test Wiki Topic",
+        type="topic",
+        status="draft",
+        summary="Test topic summary.",
+        path="topics/test",
+        body="# Test Wiki Topic\n\nTopic body.",
+        source_projects=["test_project"],
+        source_docs=[],
+        related_collections=["kbase_ke_pangenome"],
+        confidence="medium",
+        generated_by="pytest",
+        last_reviewed="2026-04-28",
+        section="topics",
+        order=10,
+    )
     return RepositoryData(
         projects=[project, completed_project],
         discoveries=[discovery],
@@ -160,6 +198,10 @@ def repository_data(project, completed_project, collection):
         contributors=[project.contributors[0]],
         skills=[skill],
         research_areas=[area],
+        wiki_index=WikiIndex(
+            pages=[atlas_page, topic_page],
+            links=[WikiLink(source_id="atlas.test", target_id="topic.test")],
+        ),
         total_notebooks=2,
         total_visualizations=3,
         total_data_files=1,
@@ -179,6 +221,7 @@ def app_data_context(repository_data: RepositoryData):
         "collection_count": len(repository_data.collections),
         "contributor_count": len(repository_data.contributors),
         "skill_count": len(repository_data.skills),
+        "wiki_count": len(repository_data.wiki_index.pages),
         "last_updated": repository_data.last_updated,
     }
 

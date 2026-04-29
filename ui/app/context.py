@@ -69,5 +69,6 @@ def generate_base_context(settings: Settings, repo_data: RepositoryData) -> dict
         "collection_count": len(repo_data.collections),
         "contributor_count": len(repo_data.contributors),
         "skill_count": len(repo_data.skills),
+        "wiki_count": len(repo_data.wiki_index.pages),
         "last_updated": repo_data.last_updated,
     }

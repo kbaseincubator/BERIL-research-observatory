@@ -158,6 +158,24 @@ class TestKnowledgeRoutes:
         assert response.status_code == 200
 
 
+class TestWikiRoutes:
+    def test_wiki_atlas_200(self, client):
+        response = client.get("/wiki")
+        assert response.status_code == 200
+        assert "Wiki Atlas" in response.text
+
+    def test_existing_wiki_page_200(self, client):
+        response = client.get("/wiki/topics/test")
+        assert response.status_code == 200
+        assert "Test Wiki Topic" in response.text
+        assert "/projects/test_project" in response.text
+        assert "/collections/kbase_ke_pangenome" in response.text
+
+    def test_missing_wiki_page_404(self, client):
+        response = client.get("/wiki/topics/missing")
+        assert response.status_code == 404
+
+
 class TestCommunityRoutes:
     def test_contributors_200(self, client):
         response = client.get("/community/contributors")

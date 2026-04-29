@@ -8,6 +8,7 @@ on:
       - 'ui/**'
       - 'projects/**'
       - 'docs/**'
+      - 'wiki/**'
       - 'Dockerfile'
       - '.github/workflows/build-image.yml'
   pull_request:
@@ -17,6 +18,7 @@ on:
       - 'ui/**'
       - 'projects/**'
       - 'docs/**'
+      - 'wiki/**'
       - 'Dockerfile'
       - '.github/workflows/build-image.yml'
   workflow_dispatch:

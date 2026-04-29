@@ -39,6 +39,7 @@ RUN uv pip install --system --no-cache -e ui/
 COPY projects ./projects
 COPY docs ./docs
 COPY data ./data
+COPY wiki ./wiki
 COPY ui/config ./ui/config
 
 # Expose port 8000
