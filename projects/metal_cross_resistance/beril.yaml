@@ -1,0 +1,16 @@
+project_id: metal_cross_resistance
+status: complete
+created_at: "2026-04-27T00:00:00Z"
+last_session_at: "2026-04-28T00:00:00Z"
+branch: projects/metal_cross_resistance
+engine:
+  name: claude
+authors:
+  - name: "Paramvir S. Dehal"
+    affiliation: "Lawrence Berkeley National Laboratory"
+    orcid: "0000-0001-5810-2497"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true
