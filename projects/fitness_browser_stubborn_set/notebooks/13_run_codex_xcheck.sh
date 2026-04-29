@@ -25,10 +25,11 @@ if [ -f "$OUT" ] && [ -s "$OUT" ]; then
 fi
 
 # Build prompt
+N_DOSSIERS=$(grep -c '^## Dossier ' "$INPUT")
 {
   cat "$INPUT"
   echo ""
-  echo "TASK: For EACH of the 25 dossiers above, output ONE JSONL line classifying the gene by annotation quality. Each dossier now includes per-paper PaperBLAST literature summaries (where available). Use those summaries as evidence."
+  echo "TASK: For EACH of the $N_DOSSIERS dossiers above, output ONE JSONL line classifying the gene by annotation quality. Each dossier now includes per-paper PaperBLAST literature summaries (where available). Use those summaries as evidence."
   echo ""
   echo "Output schema (one line per gene, no extra commentary, no preamble):"
   echo '{"orgId":"...","locusId":"...","verdict":"improvable_new|improvable_correction|already_correctly_named|recalcitrant","confidence":"high|medium|low","proposed_annotation":"...","rationale":"2-3 sentences citing specific evidence"}'
