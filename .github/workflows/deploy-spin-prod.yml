@@ -1,4 +1,4 @@
-name: Deploy to SPIN
+name: Deploy to SPIN production environment
 
 on:
   workflow_run:
@@ -12,8 +12,8 @@ on:
 env:
   RANCHER_URL: https://rancher2.spin.nersc.gov/v3
   RANCHER_CLI_VERSION: v2.13.2
-  RANCHER_NAMESPACE: knowledge-engine
-  DEPLOYMENT_NAME: beril-observatory
+  RANCHER_NAMESPACE: beril
+  DEPLOYMENT_NAME: observatory-ui
 
 jobs:
   deploy:
@@ -29,7 +29,7 @@ jobs:
 
       - name: Login to SPIN Rancher
         run: |
-          rancher login --token ${{ secrets.SPIN_RANCHER_API_KEY }} --context ${{ secrets.RANCHER_PROJECT_ID }} ${{ env.RANCHER_URL }}
+          rancher login --token ${{ secrets.SPIN_RANCHER_API_KEY }} --context ${{ secrets.RANCHER_PROD_PROJECT_ID }} ${{ env.RANCHER_URL }}
 
       - name: Restart deployment
         run: |
