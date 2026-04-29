@@ -116,6 +116,15 @@ class Collection:
     doi: str | None = None
     website: str | None = None
     provider: str | None = None
+    tenant_id: str | None = None
+    tenant_name: str | None = None
+    snapshot_source: str | None = None
+    discovered_at: str | None = None
+    schema_status: str = "curated"
+    curation_status: str = "curated"
+    parent_collection_id: str | None = None
+    group_ids: list[str] = field(default_factory=list)
+    discovery_errors: list[str] = field(default_factory=list)
 
 
 @dataclass

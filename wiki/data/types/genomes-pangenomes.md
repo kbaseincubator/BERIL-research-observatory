@@ -14,7 +14,7 @@ source_docs:
 related_collections:
   - kbase_ke_pangenome
   - kbase_genomes
-  - kbase_uniref
+  - kbase_uniref100
   - kbase_uniprot
 confidence: medium
 generated_by: Codex GPT-5

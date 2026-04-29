@@ -7,7 +7,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from fastapi.testclient import TestClient
 
-from app.db.models import BerilUser, ProjectImportRecord, UserRole
+from app.db.models import BerilUser, UserRole
 from app.db.session import get_db
 from app.main import create_app
 

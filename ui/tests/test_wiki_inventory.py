@@ -1,0 +1,42 @@
+"""Tests for wiki inventory maintenance reporting."""
+
+import json
+
+from app.models import WikiPage
+from app.wiki_inventory import build_wiki_inventory, inventory_to_markdown
+
+
+def test_inventory_reports_missing_collection_pages(repository_data):
+    inventory = build_wiki_inventory(repository_data)
+
+    assert inventory["counts"]["collections"] == 1
+    assert inventory["counts"]["missing_collection_pages"] == 1
+    assert inventory["missing_collection_pages"] == ["kbase_ke_pangenome"]
+
+
+def test_inventory_counts_data_collection_coverage(repository_data):
+    repository_data.wiki_index.pages.append(
+        WikiPage(
+            id="data.kbase-ke-pangenome",
+            title="Pangenome",
+            type="data_collection",
+            status="draft",
+            summary="Pangenome data.",
+            path="data/collections/kbase_ke_pangenome",
+            body="# Pangenome",
+            related_collections=["kbase_ke_pangenome"],
+        )
+    )
+
+    inventory = build_wiki_inventory(repository_data)
+
+    assert inventory["counts"]["covered_collections"] == 1
+    assert inventory["counts"]["missing_collection_pages"] == 0
+
+
+def test_inventory_markdown_and_json_are_serializable(repository_data):
+    inventory = build_wiki_inventory(repository_data)
+    markdown = inventory_to_markdown(inventory)
+
+    assert "Wiki Inventory" in markdown
+    assert json.loads(json.dumps(inventory))["counts"]["collections"] == 1

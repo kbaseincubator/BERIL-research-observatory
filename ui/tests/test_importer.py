@@ -5,8 +5,6 @@ import pytest
 from app.db.models import BerilUser, ProjectFile, ProjectImportRecord, UserProject
 from app.importer import (
     SENTINEL_ORCID,
-    ImportResult,
-    MigrationSummary,
     _get_import_record,
     _is_stale,
     _source_mtime,
@@ -222,7 +220,6 @@ class TestImportProject:
         assert result.project_id is not None
 
     async def test_creates_userproject_row(self, db_session, storage, projects_root):
-        from sqlalchemy import select
         d = _make_project_dir(
             projects_root, "beta",
             readme="# Beta\n\n## Research Question\nQ?\n",
@@ -403,7 +400,7 @@ class TestImportProject:
         d = _make_project_dir(projects_root, "broken", readme="")
         # Empty README leads to a no-title parse but should not crash — write a
         # real README but mock the parse to raise
-        from unittest.mock import patch, AsyncMock
+        from unittest.mock import patch
         (d / "README.md").write_text("# OK\n")
         with patch("app.importer.parse_project_fields", side_effect=RuntimeError("boom")):
             result = await import_project(db_session, storage, d, projects_root)

@@ -47,7 +47,23 @@ python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
 python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10"
 ```
 
-### 5. Export large results to MinIO
+### 5. Refresh the UI collection snapshot
+
+```bash
+.venv-berdl/bin/python scripts/discover_berdl_collections.py \
+  --source spark \
+  --no-ensure-hub \
+  --skip-schemas \
+  --output ui/config/berdl_collections_snapshot.json
+```
+
+This uses Spark SQL metadata from the BERDL JupyterHub/Spark Connect path and
+writes the tenant/database/table snapshot consumed by `/collections` and the
+wiki data atlas. `--skip-schemas` keeps the refresh bounded for the full live
+catalog; omit it when intentionally collecting `DESCRIBE TABLE` output for a
+small set of databases.
+
+### 6. Export large results to MinIO
 
 ```bash
 python scripts/export_sql.py \
@@ -58,7 +74,7 @@ python scripts/export_sql.py \
   --mode overwrite
 ```
 
-### 6. Work with MinIO
+### 7. Work with MinIO
 
 ```bash
 # Get credentials
@@ -83,6 +99,7 @@ mc cp --recursive berdl-minio/cdm-lake/.../my-export ./local/
 | `start_pproxy.sh` | Start the HTTP-to-SOCKS5 proxy bridge on port 8123 |
 | `run_sql.py` | Run SQL queries, return results as JSON |
 | `export_sql.py` | Run SQL queries, write results to MinIO (parquet/delta/csv/json) |
+| `discover_berdl_collections.py` | Build the UI's BERDL tenant/database snapshot from hub discovery endpoints |
 | `get_minio_creds.py` | Resolve MinIO credentials from `.env` or remote environment |
 | `configure_mc.sh` | Configure MinIO `mc` client alias |
 | `get_spark_session.py` | Drop-in replacement for JupyterHub `get_spark_session()` for local notebooks |

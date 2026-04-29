@@ -15,6 +15,7 @@ last_reviewed: 2026-04-28
 related_pages:
   - atlas.phase0
   - method.agent-maintenance
+  - meta.metrics-to-watch
 order: 1
 ---
 
@@ -26,7 +27,7 @@ Static agent-authored markdown atlas, UI browsing, frontmatter graph, and lint c
 
 ## Phase 1
 
-Drafting workflow that scans project outputs and proposes wiki diffs for review.
+Snapshot-backed BERDL collection atlas, expanded data pages, deterministic wiki inventory, stronger lint checks, and a direct agent-edit maintenance workflow.
 
 ## Phase 2
 

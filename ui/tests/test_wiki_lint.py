@@ -24,6 +24,26 @@ def _setup_repo(tmp_path: Path) -> Path:
     return tmp_path
 
 
+def _write_snapshot(tmp_path: Path, collection_ids: list[str]) -> None:
+    snapshot_path = tmp_path / "ui" / "config" / "berdl_collections_snapshot.json"
+    snapshot_path.write_text(
+        json.dumps(
+            {
+                "tenants": [
+                    {
+                        "id": "kbase",
+                        "name": "KBase",
+                        "collections": [
+                            {"id": collection_id, "tables": []}
+                            for collection_id in collection_ids
+                        ],
+                    }
+                ]
+            }
+        )
+    )
+
+
 def _write_page(tmp_path: Path, rel_path: str, **overrides) -> Path:
     page_path = tmp_path / "wiki" / rel_path
     page_path.parent.mkdir(parents=True, exist_ok=True)
@@ -90,3 +110,51 @@ def test_unknown_project_and_collection_are_reported(tmp_path):
     messages = "\n".join(issue.message for issue in lint_wiki(repo))
     assert "unknown source project: missing_project" in messages
     assert "unknown related collection: missing_collection" in messages
+
+
+def test_snapshot_requires_data_collection_pages(tmp_path):
+    repo = _setup_repo(tmp_path)
+    _write_snapshot(repo, ["kbase_ke_pangenome", "kbase_genomes"])
+    _write_page(repo, "data/collections/pangenome.md", type="data_collection")
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "missing data_collection page for discovered collection: kbase_genomes" in messages
+
+
+def test_data_type_needs_two_known_collections(tmp_path):
+    repo = _setup_repo(tmp_path)
+    _write_snapshot(repo, ["kbase_ke_pangenome", "kbase_genomes"])
+    _write_page(repo, "data/collections/pangenome.md", type="data_collection")
+    _write_page(
+        repo,
+        "data/collections/genomes.md",
+        id="data.genomes",
+        title="Genomes",
+        type="data_collection",
+        related_collections=["kbase_genomes"],
+    )
+    _write_page(
+        repo,
+        "data/types/one.md",
+        id="data.one",
+        title="One Data Type",
+        type="data_type",
+        related_collections=["kbase_ke_pangenome"],
+    )
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "data_type pages must reference at least 2 known collections" in messages
+
+
+def test_external_source_doc_is_allowed(tmp_path):
+    repo = _setup_repo(tmp_path)
+    _write_snapshot(repo, ["kbase_ke_pangenome"])
+    _write_page(
+        repo,
+        "data/collections/pangenome.md",
+        type="data_collection",
+        source_docs=["https://example.org/source"],
+    )
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "missing source doc" not in messages

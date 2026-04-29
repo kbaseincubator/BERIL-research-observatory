@@ -96,6 +96,103 @@ class TestLoadRepositoryData:
         assert isinstance(result, RepositoryData)
         mock_parser.parse_all.assert_called_once()
 
+
+# ---------------------------------------------------------------------------
+# RepositoryParser.parse_collections
+# ---------------------------------------------------------------------------
+
+
+class TestParseCollections:
+    def _write_config(self, repo: Path, yaml_text: str):
+        config_dir = repo / "ui" / "config"
+        config_dir.mkdir(parents=True, exist_ok=True)
+        (config_dir / "collections.yaml").write_text(yaml_text)
+
+    def _write_snapshot(self, repo: Path):
+        config_dir = repo / "ui" / "config"
+        config_dir.mkdir(parents=True, exist_ok=True)
+        (config_dir / "berdl_collections_snapshot.json").write_text(
+            json.dumps(
+                {
+                    "source_url": "https://hub.berdl.kbase.us/apis/mcp",
+                    "discovered_at": "2026-04-29T00:00:00+00:00",
+                    "tenants": [
+                        {
+                            "id": "kbase",
+                            "name": "KBase",
+                            "collections": [
+                                {
+                                    "id": "kbase_ke_pangenome",
+                                    "name": "Snapshot Pangenome",
+                                    "description": "Snapshot description.",
+                                    "tables": [
+                                        {
+                                            "name": "genome",
+                                            "description": "Genome table.",
+                                            "columns": [
+                                                {
+                                                    "name": "genome_id",
+                                                    "data_type": "string",
+                                                    "description": "Genome ID.",
+                                                }
+                                            ],
+                                        }
+                                    ],
+                                }
+                            ],
+                        }
+                    ],
+                }
+            )
+        )
+
+    def test_snapshot_loads_before_curated_overlay(self, tmp_path):
+        self._write_snapshot(tmp_path)
+        self._write_config(
+            tmp_path,
+            "collections:\n"
+            "  - id: kbase_ke_pangenome\n"
+            "    name: Curated Pangenome\n"
+            "    category: primary\n"
+            "    icon: X\n"
+            "    description: Curated description.\n",
+        )
+
+        collections = RepositoryParser(tmp_path).parse_collections()
+
+        assert len(collections) == 1
+        assert collections[0].id == "kbase_ke_pangenome"
+        assert collections[0].name == "Curated Pangenome"
+        assert collections[0].tenant_id == "kbase"
+        assert collections[0].schema_status == "discovered"
+        assert collections[0].curation_status == "curated"
+
+    def test_missing_snapshot_falls_back_to_curated_config(self, tmp_path):
+        self._write_config(
+            tmp_path,
+            "collections:\n"
+            "  - id: kbase_ke_pangenome\n"
+            "    name: Curated Pangenome\n"
+            "    category: primary\n"
+            "    icon: X\n"
+            "    description: Curated description.\n",
+        )
+
+        collections = RepositoryParser(tmp_path).parse_collections()
+
+        assert len(collections) == 1
+        assert collections[0].id == "kbase_ke_pangenome"
+        assert collections[0].tenant_id is None
+        assert collections[0].schema_status == "curated"
+
+    def test_snapshot_tables_are_available_as_schema_tables(self, tmp_path):
+        self._write_snapshot(tmp_path)
+
+        tables = RepositoryParser(tmp_path).parse_berdl_snapshot_tables()
+
+        assert tables["kbase_ke_pangenome"][0].name == "genome"
+        assert tables["kbase_ke_pangenome"][0].columns[0].name == "genome_id"
+
     def test_none_source_calls_parser(self):
         with patch("app.dataloader.get_parser") as mock_get_parser:
             mock_parser = MagicMock()

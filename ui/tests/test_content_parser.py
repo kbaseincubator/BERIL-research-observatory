@@ -1,13 +1,9 @@
 """Tests for app.content_parser — stateless markdown/notebook parsing."""
 
 import json
-from pathlib import Path
 
-import pytest
 
 from app.content_parser import (
-    ParsedContributor,
-    ParsedProjectFields,
     extract_collection_refs,
     extract_other_sections,
     extract_section,

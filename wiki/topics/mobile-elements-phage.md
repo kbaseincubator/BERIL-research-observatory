@@ -14,7 +14,7 @@ source_projects:
 source_docs:
   - docs/discoveries.md
 related_collections:
-  - phagefoundry
+  - phagefoundry_paeruginosa_genome_browser
   - kbase_ke_pangenome
   - protect_genomedepot
 confidence: low

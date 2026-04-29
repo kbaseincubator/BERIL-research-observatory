@@ -183,6 +183,11 @@
     <div class="collection-info">
         <h1 class="page-title" style="margin-bottom: var(--space-2);">{{ collection.name }}</h1>
         <p class="collection-id">{{ collection.id }}</p>
+        {% if collection.tenant_name %}
+        <p class="text-small text-muted" style="margin-top: var(--space-1);">
+            Tenant: {{ collection.tenant_name }}{% if collection.discovered_at %} · Snapshot {{ collection.discovered_at }}{% endif %}
+        </p>
+        {% endif %}
     </div>
     {% if collection.category.value == "primary" %}
     <span class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6;">Primary</span>
@@ -192,6 +197,35 @@
     <span class="badge" style="background: rgba(139, 148, 158, 0.15); color: #8b949e;">Reference</span>
     {% endif %}
 </div>
+
+{% if collection.schema_status or collection.curation_status or collection.snapshot_source %}
+<section class="section">
+    <div class="grid grid-3">
+        <div class="card">
+            <p class="text-muted text-small" style="margin-bottom: var(--space-1);">Schema status</p>
+            <strong>{{ collection.schema_status }}</strong>
+        </div>
+        <div class="card">
+            <p class="text-muted text-small" style="margin-bottom: var(--space-1);">Curation status</p>
+            <strong>{{ collection.curation_status }}</strong>
+        </div>
+        <div class="card">
+            <p class="text-muted text-small" style="margin-bottom: var(--space-1);">Source</p>
+            <span class="text-small">{{ collection.snapshot_source or "curated config" }}</span>
+        </div>
+    </div>
+    {% if collection.discovery_errors %}
+    <div class="card" style="margin-top: var(--space-4); border-left: 4px solid #f0b429;">
+        <h3 style="margin-bottom: var(--space-3);">Discovery Caveats</h3>
+        <ul>
+            {% for error in collection.discovery_errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</section>
+{% endif %}
 
 <!-- Philosophy -->
 {% if collection.philosophy %}
@@ -410,6 +444,21 @@
         <a href="/projects/{{ proj.id }}" class="card" style="text-decoration: none;">
             <h4 style="margin-bottom: var(--space-2); color: var(--text-primary);">{{ proj.title }}</h4>
             <p class="text-muted text-small" style="margin-bottom: 0;">{{ proj.research_question[:120] }}{% if proj.research_question|length > 120 %}...{% endif %}</p>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% if related_wiki_pages %}
+<section class="section">
+    <h2>Wiki Pages</h2>
+    <div class="grid grid-3">
+        {% for page in related_wiki_pages %}
+        <a href="{{ page.url }}" class="card" style="text-decoration: none;">
+            <span class="badge">{{ page.type | replace('_', ' ') }}</span>
+            <h4 style="margin-top: var(--space-3); margin-bottom: var(--space-2); color: var(--text-primary);">{{ page.title }}</h4>
+            <p class="text-muted text-small" style="margin-bottom: 0;">{{ page.summary }}</p>
         </a>
         {% endfor %}
     </div>

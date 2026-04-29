@@ -75,6 +75,14 @@
         <div class="text-small text-muted">Data pages</div>
     </div>
     <div class="wiki-stat">
+        <div class="wiki-stat-value">{{ wiki_inventory.counts.tenants }}</div>
+        <div class="text-small text-muted">BERDL tenants</div>
+    </div>
+    <div class="wiki-stat">
+        <div class="wiki-stat-value">{{ wiki_inventory.counts.covered_collections }}/{{ wiki_inventory.counts.collections }}</div>
+        <div class="text-small text-muted">Collection coverage</div>
+    </div>
+    <div class="wiki-stat">
         <div class="wiki-stat-value">{{ claim_pages|length }}</div>
         <div class="text-small text-muted">Claims</div>
     </div>
@@ -87,6 +95,22 @@
         <div class="text-small text-muted">Hypotheses</div>
     </div>
 </div>
+
+<section class="section">
+    <div class="wiki-section-header">
+        <h2 id="metrics">Metrics To Watch</h2>
+        <span class="text-small text-muted">Repo-native maintenance signals</span>
+    </div>
+    <div class="grid grid-3">
+        {% for metric in wiki_inventory.metrics_to_watch %}
+        <div class="card">
+            <div class="wiki-stat-value" style="font-size: 1.2rem;">{{ metric.value }}</div>
+            <h3 class="card-title" style="margin-top: var(--space-2);">{{ metric.label }}</h3>
+            <p class="text-small text-muted">{{ metric.detail }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
 {% if atlas_page %}
 <section class="section">
@@ -129,20 +153,32 @@
         <h2 id="data">Data</h2>
         <span class="text-small text-muted">Tenants, collections, data types, derived products, joins, and gaps</span>
     </div>
-    <div class="grid grid-3">
-        {% for page in data_pages[:12] %}
-        <a href="{{ page.url }}" class="card" style="text-decoration: none;">
-            <div class="card-header">
-                <span class="wiki-type">{{ page.type | replace('_', ' ') }}</span>
-                <span class="text-small text-muted">{{ page.status }}</span>
-            </div>
-            <h3 class="card-title" style="margin-top: var(--space-3);">{{ page.title }}</h3>
-            <p class="text-small text-muted">{{ page.summary }}</p>
-        </a>
-        {% else %}
-        <p class="text-muted">No data pages found.</p>
+
+    {% for group in [
+        ("Collections", data_page_groups.collections),
+        ("Data Types", data_page_groups.data_types),
+        ("Derived Products", data_page_groups.derived_products),
+        ("Joins", data_page_groups.joins),
+        ("Gaps", data_page_groups.gaps)
+    ] %}
+        {% set group_title = group[0] %}
+        {% set pages = group[1] %}
+        {% if pages %}
+        <h3 style="margin-top: var(--space-6); margin-bottom: var(--space-3);">{{ group_title }}</h3>
+        <div class="grid grid-3">
+            {% for page in pages[:12] %}
+            <a href="{{ page.url }}" class="card" style="text-decoration: none;">
+                <div class="card-header">
+                    <span class="wiki-type">{{ page.type | replace('_', ' ') }}</span>
+                    <span class="text-small text-muted">{{ page.status }}</span>
+                </div>
+                <h3 class="card-title" style="margin-top: var(--space-3);">{{ page.title }}</h3>
+                <p class="text-small text-muted">{{ page.summary }}</p>
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% endfor %}
-    </div>
 </section>
 
 <section class="section">

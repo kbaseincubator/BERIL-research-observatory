@@ -498,7 +498,6 @@ class TestUserApiToken:
         assert result.scalar_one_or_none() is None
 
     async def test_user_can_have_only_one_token(self, db_session, user):
-        from sqlalchemy import select
         from sqlalchemy.exc import IntegrityError
 
         db_session.add(UserApiToken(user_id=user.id, token_hash="hash0" * 10))

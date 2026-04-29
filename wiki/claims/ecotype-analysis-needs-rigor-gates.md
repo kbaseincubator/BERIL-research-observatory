@@ -12,7 +12,7 @@ source_docs:
   - docs/discoveries.md
   - docs/pitfalls.md
 related_collections:
-  - phagefoundry
+  - phagefoundry_paeruginosa_genome_browser
   - kbase_ke_pangenome
 confidence: high
 generated_by: Codex GPT-5

@@ -118,10 +118,14 @@ class TestCollectionsRoute:
     def test_collections_overview_200(self, client):
         response = client.get("/collections")
         assert response.status_code == 200
+        assert "KBase" in response.text
+        assert "kbase_ke_pangenome" in response.text
 
     def test_collection_detail_200(self, client):
         response = client.get("/collections/kbase_ke_pangenome")
         assert response.status_code == 200
+        assert "Schema status" in response.text
+        assert "Wiki Pages" in response.text
 
     def test_collection_detail_404_for_missing(self, client):
         response = client.get("/collections/nonexistent_collection")
@@ -163,6 +167,8 @@ class TestWikiRoutes:
         response = client.get("/wiki")
         assert response.status_code == 200
         assert "Wiki Atlas" in response.text
+        assert "Metrics To Watch" in response.text
+        assert "Collection coverage" in response.text
 
     def test_existing_wiki_page_200(self, client):
         response = client.get("/wiki/topics/test")
