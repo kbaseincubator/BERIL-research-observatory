@@ -229,6 +229,33 @@ class TestTurnTranslation:
         assert isinstance(terminal, TurnComplete)
         assert terminal.result_subtype == "end_turn"
 
+    async def test_result_message_is_error_yields_error_event(self):
+        """A terminal ResultMessage with is_error=True must surface as an
+        ErrorEvent so callers don't persist a partial response as success."""
+        provider = _make_provider()
+        err_result = ResultMessage(
+            subtype="error_max_turns",
+            duration_ms=0,
+            duration_api_ms=0,
+            is_error=True,
+            num_turns=1,
+            session_id="s",
+        )
+        messages = [_assistant([_FakeTextBlock("partial ")]), err_result]
+        with patch("app.chat.providers.anthropic_compatible.query", _fake_query(messages)):
+            events = await _collect(
+                provider.run_turn(
+                    user_message="x",
+                    credentials=Credentials({"api_key": "k"}),
+                    model="m1",
+                    cwd="/tmp",
+                    sdk_session_id=None,
+                )
+            )
+        assert isinstance(events[-1], ErrorEvent)
+        assert "error_max_turns" in events[-1].message
+        assert not any(isinstance(e, TurnComplete) for e in events)
+
     async def test_exception_surfaces_as_error_event(self):
         provider = _make_provider()
 
@@ -381,17 +408,22 @@ class TestOptionsWiring:
         )
         assert captured["options"].skills == "all"
 
-    async def test_missing_api_key_raises(self):
+    async def test_missing_api_key_yields_terminal_error_event(self):
+        """Missing credentials must surface as a terminal ErrorEvent, not
+        an exception. Route handlers consume providers as event streams and
+        rely on a normal terminal event for this user-input failure path."""
         provider = _make_provider()
-        with pytest.raises(ValueError, match="api_key"):
-            async for _ in provider.run_turn(
+        events = await _collect(
+            provider.run_turn(
                 user_message="hi",
                 credentials=Credentials({}),
                 model="m1",
                 cwd="/tmp",
                 sdk_session_id=None,
-            ):
-                pass
+            )
+        )
+        assert isinstance(events[-1], ErrorEvent)
+        assert "api_key" in events[-1].message
 
 
 # ---------------------------------------------------------------------------

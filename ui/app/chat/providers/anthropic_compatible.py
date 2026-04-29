@@ -61,33 +61,33 @@ class AnthropicCompatibleProvider:
         cwd: str,
         sdk_session_id: str | None,
     ) -> AsyncIterator[TurnEvent]:
-        api_key = credentials.require(_API_KEY_FIELD)
-
-        # Env is merged on top of os.environ in the SDK subprocess. The
-        # auth_style dictates which env var carries the key:
-        #   * api_key  → ANTHROPIC_API_KEY (sent as x-api-key header;
-        #                direct Anthropic endpoints require this).
-        #   * bearer   → ANTHROPIC_AUTH_TOKEN (sent as Authorization: Bearer;
-        #                OAuth-style proxies like CBORG require this).
-        # The unused var is blanked so any server-level default can't shadow
-        # the user's key with a stale value.
-        turn_env = {"ANTHROPIC_BASE_URL": self.config.base_url}
-        if self.config.auth_style == "bearer":
-            turn_env["ANTHROPIC_AUTH_TOKEN"] = api_key
-            turn_env["ANTHROPIC_API_KEY"] = ""
-        else:
-            turn_env["ANTHROPIC_API_KEY"] = api_key
-            turn_env["ANTHROPIC_AUTH_TOKEN"] = ""
-
-        options = ClaudeAgentOptions(
-            model=model,
-            cwd=cwd,
-            env=turn_env,
-            resume=sdk_session_id,
-            skills="all",
-        )
-
         try:
+            api_key = credentials.require(_API_KEY_FIELD)
+
+            # Env is merged on top of os.environ in the SDK subprocess. The
+            # auth_style dictates which env var carries the key:
+            #   * api_key  → ANTHROPIC_API_KEY (sent as x-api-key header;
+            #                direct Anthropic endpoints require this).
+            #   * bearer   → ANTHROPIC_AUTH_TOKEN (sent as Authorization: Bearer;
+            #                OAuth-style proxies like CBORG require this).
+            # The unused var is blanked so any server-level default can't shadow
+            # the user's key with a stale value.
+            turn_env = {"ANTHROPIC_BASE_URL": self.config.base_url}
+            if self.config.auth_style == "bearer":
+                turn_env["ANTHROPIC_AUTH_TOKEN"] = api_key
+                turn_env["ANTHROPIC_API_KEY"] = ""
+            else:
+                turn_env["ANTHROPIC_API_KEY"] = api_key
+                turn_env["ANTHROPIC_AUTH_TOKEN"] = ""
+
+            options = ClaudeAgentOptions(
+                model=model,
+                cwd=cwd,
+                env=turn_env,
+                resume=sdk_session_id,
+                skills="all",
+            )
+
             async for event in _stream_turn(user_message, options):
                 yield event
         except Exception as exc:  # noqa: BLE001 — top-level stream guard
@@ -125,6 +125,12 @@ def _translate(message: Any) -> list[TurnEvent]:
         return events
 
     if isinstance(message, ResultMessage):
+        if message.is_error:
+            return [
+                ErrorEvent(
+                    message=f"provider reported terminal error: {getattr(message, 'subtype', 'unknown')}"
+                )
+            ]
         return [TurnComplete(result_subtype=getattr(message, "subtype", None))]
 
     # UserMessage (tool_result echoes back through the SDK), partial-message
