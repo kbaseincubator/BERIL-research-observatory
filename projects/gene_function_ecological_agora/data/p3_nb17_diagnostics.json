@@ -1,0 +1,13 @@
+{
+  "phase": "3",
+  "notebook": "NB17",
+  "n_tcs_hk_kos": 292,
+  "n_tcs_hk_architectures": 3998,
+  "n_arch_rank_rows": 19990,
+  "concordance_producer_r": 0.093166947864192,
+  "concordance_consumer_r": 0.6726786507203988,
+  "concordance_producer_label": "exploratory",
+  "concordance_consumer_label": "confirmatory",
+  "concordance_threshold_v2_11": 0.6,
+  "completed_utc": "2026-04-28T02:57:46Z"
+}

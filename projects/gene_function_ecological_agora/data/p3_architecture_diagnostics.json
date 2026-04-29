@@ -1,0 +1,14 @@
+{
+  "phase": "3",
+  "notebook": "NB15",
+  "n_psii_kos": 25,
+  "n_tcs_hk_kos": 292,
+  "n_mycolic_kos": 11,
+  "n_mixed_top50_kos": 50,
+  "n_total_subset_kos": 376,
+  "n_gc_to_ko_edges": 3246590,
+  "n_unique_gene_clusters": 3116612,
+  "n_gc_with_pfam": 3023140,
+  "n_per_ko_arch_rows": 15264,
+  "completed_utc": "2026-04-28T02:47:29Z"
+}

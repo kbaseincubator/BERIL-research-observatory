@@ -1,0 +1,40 @@
+{
+  "phase": "4",
+  "deliverable": "NB28 Stage 2 \u2014 tree-based donor inference",
+  "n_genera_total": 4445,
+  "n_kos_total": 10692,
+  "n_genus_ko_tuples": 4061013,
+  "min_events_for_verdict": 5,
+  "quadrant_distribution": {
+    "Open-Innovator": 2383093,
+    "Insufficient-Data": 1343497,
+    "Sink": 181748,
+    "Broker": 152675
+  },
+  "confidence_distribution": {
+    "high": 1361091,
+    "insufficient": 1343497,
+    "low": 710653,
+    "medium": 645772
+  },
+  "mycobacteriaceae_quadrants": {
+    "Open-Innovator": 21365,
+    "Broker": 3701,
+    "Sink": 2619,
+    "Insufficient-Data": 704
+  },
+  "cyanobacteriia_quadrants": {
+    "Open-Innovator": 26158,
+    "Insufficient-Data": 24030,
+    "Sink": 2395,
+    "Broker": 1999
+  },
+  "bacteroidota_quadrants": {
+    "Open-Innovator": 248581,
+    "Insufficient-Data": 148112,
+    "Sink": 23612,
+    "Broker": 19663
+  },
+  "elapsed_s": 141.9,
+  "completed_utc": "2026-04-29T13:01:09Z"
+}

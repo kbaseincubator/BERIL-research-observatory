@@ -1,0 +1,30 @@
+{
+  "phase": "4",
+  "deliverable": "NB28e finalize \u2014 vectorized leaf_consistency merge",
+  "n_lookup_entries": 13750288,
+  "n_gains_with_leaf_consistency": 16699276,
+  "leaf_consistency_mean": 0.3078690758898375,
+  "leaf_consistency_median": 0.2,
+  "per_depth_bin_mean": {
+    "ancient": 0.20211631453237566,
+    "mid": 0.2572773682994986,
+    "older": 0.22545071846825465,
+    "older_recent": 0.30272635296779865,
+    "recent": 0.3396216774449381
+  },
+  "per_control_class_mean": {
+    "info_amr": 0.17192322734421125,
+    "neg_ribosomal": 0.4759596964853822,
+    "neg_ribosomal_strict": 0.7504552890315364,
+    "neg_rnap_core": 0.09822022682262614,
+    "neg_rnap_core_strict": 0.9258899574286611,
+    "neg_trna_synth": 0.3565684701719791,
+    "neg_trna_synth_strict": 0.6937321376889403,
+    "none": 0.3062009189650563,
+    "pos_betalac": 0.27754786658787767,
+    "pos_crispr_cas": 0.33830428943688245,
+    "pos_tcs_hk": 0.246088752513019
+  },
+  "elapsed_s": 35.8,
+  "completed_utc": "2026-04-29T14:17:53Z"
+}

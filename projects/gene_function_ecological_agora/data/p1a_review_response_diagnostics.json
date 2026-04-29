@@ -1,0 +1,10 @@
+{
+  "timestamp_utc": "2026-04-26T22:57:24Z",
+  "purpose": "reproducible derivation of effect-size and Alm 2006 power-analysis tables for REPORT.md v1.1",
+  "n_pilot_scores": 9201,
+  "effect_sizes_path": "p1a_effect_sizes_per_rank_class.tsv",
+  "effect_sizes_rows": 30,
+  "power_analysis_path": "p1a_alm2006_power_analysis.tsv",
+  "power_analysis_rows": 5,
+  "completed_utc": "2026-04-26T22:57:24Z"
+}

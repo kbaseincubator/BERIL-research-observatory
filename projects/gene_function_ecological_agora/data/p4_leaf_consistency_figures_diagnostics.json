@@ -1,0 +1,125 @@
+{
+  "phase": "4",
+  "deliverable": "NB28f \u2014 leaf_consistency figures",
+  "h3b_class_stats": [
+    {
+      "class": "pos_crispr_cas",
+      "n": 20678,
+      "recent_frac": 0.5933842731405359,
+      "mean_lc": 0.3383042894368825,
+      "median_lc": 0.29411764705882354
+    },
+    {
+      "class": "pos_betalac",
+      "n": 135504,
+      "recent_frac": 0.45292389892549295,
+      "mean_lc": 0.27754786658787767,
+      "median_lc": 0.16666666666666666
+    },
+    {
+      "class": "pos_tcs_hk",
+      "n": 507468,
+      "recent_frac": 0.45998762483545763,
+      "mean_lc": 0.246088752513019,
+      "median_lc": 0.13333333333333333
+    },
+    {
+      "class": "info_amr",
+      "n": 52753,
+      "recent_frac": 0.5599681534699449,
+      "mean_lc": 0.1719232273442113,
+      "median_lc": 0.1111111111111111
+    },
+    {
+      "class": "neg_ribosomal",
+      "n": 152983,
+      "recent_frac": 0.4075485511462058,
+      "mean_lc": 0.4759596964853822,
+      "median_lc": 0.46774193548387094
+    },
+    {
+      "class": "neg_ribosomal_strict",
+      "n": 76517,
+      "recent_frac": 0.402577205065541,
+      "mean_lc": 0.7504552890315364,
+      "median_lc": 0.9166666666666666
+    },
+    {
+      "class": "neg_trna_synth",
+      "n": 42715,
+      "recent_frac": 0.4036287018611729,
+      "mean_lc": 0.3565684701719791,
+      "median_lc": 0.21568627450980393
+    },
+    {
+      "class": "neg_trna_synth_strict",
+      "n": 14288,
+      "recent_frac": 0.26077827547592386,
+      "mean_lc": 0.6937321376889403,
+      "median_lc": 0.9444444444444444
+    },
+    {
+      "class": "neg_rnap_core",
+      "n": 6960,
+      "recent_frac": 0.37744252873563217,
+      "mean_lc": 0.09822022682262614,
+      "median_lc": 0.03333333333333333
+    },
+    {
+      "class": "neg_rnap_core_strict",
+      "n": 3970,
+      "recent_frac": 0.3967254408060453,
+      "mean_lc": 0.9258899574286611,
+      "median_lc": 0.9692307692307692
+    }
+  ],
+  "s7_per_hypothesis": {
+    "mycolic": {
+      "n": 33643,
+      "median": 0.15384615384615385
+    },
+    "psii": {
+      "n": 1005,
+      "median": 0.875
+    },
+    "pul": {
+      "n": 6070,
+      "median": 0.40625
+    },
+    "atlas_reference_median": 0.2
+  },
+  "s8_per_depth_bin": [
+    {
+      "depth_bin": "ancient",
+      "count": 396195,
+      "mean": 0.20211631453237566,
+      "median": 0.049723756906077346
+    },
+    {
+      "depth_bin": "mid",
+      "count": 1708611,
+      "mean": 0.2572773682994986,
+      "median": 0.10526315789473684
+    },
+    {
+      "depth_bin": "older",
+      "count": 1162183,
+      "mean": 0.22545071846825465,
+      "median": 0.07317073170731707
+    },
+    {
+      "depth_bin": "older_recent",
+      "count": 5485372,
+      "mean": 0.30272635296779865,
+      "median": 0.18032786885245902
+    },
+    {
+      "depth_bin": "recent",
+      "count": 7946915,
+      "mean": 0.3396216774449381,
+      "median": 0.2631578947368421
+    }
+  ],
+  "elapsed_s": 45.3,
+  "completed_utc": "2026-04-29T14:25:29Z"
+}

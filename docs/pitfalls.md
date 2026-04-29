@@ -954,6 +954,63 @@ See `~/data/genome_depot_enigma/preprocess.py` for a reference implementation (h
 
 ## Pandas-Specific Issues
 
+### [gene_function_ecological_agora] Spark-Connect driver result-size cap (1 GB serialized) — use MinIO staging for >200K-element joins
+
+**Problem**: When joining 1B-row tables (e.g., `kbase_genomes.feature` × `contig_x_feature` × `pangenome.gene_genecluster_junction`) filtered to >200K elements via broadcast, calling `.toPandas()` on the Spark Connect result hits `spark.driver.maxResultSize = 1024 MB` and throws `Total size of serialized results bigger than spark.driver.maxResultSize`. The cap can NOT be raised via `SET spark.driver.maxResultSize` at runtime — that property is read-only after session start.
+
+**Workaround**: write the Spark result to MinIO via `df.coalesce(N).write.mode("overwrite").parquet("s3a://cdm-lake/...")`, then read it back with `spark.read.parquet(path).toPandas()`. The read-back goes through Spark Connect's parquet streaming path which doesn't hit the result-size cap. Alternative: `pyarrow.parquet.read_table(path)` directly via s3fs if pyarrow is configured.
+
+**Scale where this matters**: filtered cxf table at 218K Bacteroidota contigs × ~140 features/contig = 30M+ rows × ~50 bytes serialized ≈ 1.5 GB. Standard pattern in any project doing genome-context cross-walks at >200 species.
+
+**Encountered in**: P4-D2 NB26b/c (per-cluster MGE-machinery atlas-wide), NB26h/k (PUL/mycolic gene-neighborhood at sampled scale).
+
+### [gene_function_ecological_agora] Pandas spatial-merge OOM at ~10M+ rows — batch processing or full-Spark required
+
+**Problem**: After Spark filters down to focal features, the in-pandas spatial-range merge (e.g., focal_features × contig_features on contig_id, then filter by `±NEIGHBOR_BP`) creates a Cartesian-product-then-filter pattern. For 80K focal × 21K contigs × ~105 features/contig avg, the merged DataFrame is ~24M rows × 9 columns ≈ 9 GB working set, OOMing on a 16 GB driver.
+
+**Workarounds** (in order of effort):
+1. Process focal features in batches of ~10K, merge per-batch, accumulate aggregate result
+2. Do the spatial-range filter in Spark (push the BETWEEN clause through), only collect the per-feature aggregate to driver
+3. Reduce scope (sample down focal-species set; restrict to canonical-marker KOs only)
+
+**Encountered in**: P4-D2 NB26h Bacteroidota PUL gene-neighborhood (723K focal × 210K contigs blew it; sampled to 309 species still OOM'd at 80K × 21K). PSII at 27K focal × 16K contigs × 16M-row merge fit; PUL/mycolic at full scale did not.
+
+### [gene_function_ecological_agora] `spark.sql.autoBroadcastJoinThreshold = -1` is HARMFUL, not protective — trust the optimizer
+
+**Problem**: A defensive setting carried over from prior projects (`spark.sql.autoBroadcastJoinThreshold = -1` to "force shuffle joins") caused an NB10 KO atlas job to hang for 17+ minutes on a 13.7M × 18K join. The job was waiting for shuffle that never materialized; the small-side table (18,989 species_tax) is well below the default 10MB broadcast threshold and would have been auto-broadcast had the setting been left at default.
+
+**Workaround**: REMOVE the autoBroadcast disable. Trust the optimizer for small-table joins. Use explicit `F.broadcast(small_df)` hints when the optimizer doesn't auto-detect.
+
+**Generalizable rule**: copy-pasted Spark configuration "defensive defaults" from prior projects can be actively counterproductive. Audit configuration before assuming a working setting.
+
+### [gene_function_ecological_agora] JupyterHub kernel idle-timeout (~17–25 min) silently kills long-running notebooks — convert to .py + nohup + checkpoints
+
+**Problem**: BERDL JupyterHub idle-times out kernels that haven't received user activity for ~17–25 minutes. Long-running notebook cells (Spark jobs that take 30+ min, like NB10 KO atlas construction or NB10b M22 attribution at 17M events) get silently killed mid-execution. The kernel disappears with no error message.
+
+**Workaround pattern**:
+1. Convert long-running notebook to standalone .py script (`jupytext --to py 10_p2_ko_atlas.ipynb`)
+2. Run via `nohup python3 -u <script>.py > /tmp/<name>.log 2>&1 &` from a terminal (not JupyterHub kernel)
+3. Write intermediate parquets at each stage so partial results are recoverable from disk
+4. Provide `_finalize.py` recovery scripts that load intermediates and complete from where the killed run stopped
+
+**Encountered in**: NB10 (atlas construction; required `10_finalize.py` + `10_finalize2.py` recovery), NB10b (M22 attribution; required `10b_finalize.py`), NB26b/c (P4-D2 atlas-wide MGE), NB28e (leaf_consistency build).
+
+### [gene_function_ecological_agora] Pandas `iterrows()` over 6M+ rows is dramatically slower than vectorized merge
+
+**Problem**: Stage 6 of the gene-neighborhood pipeline (NB26e) used `for _, row in focal_features.iterrows()` with per-row groupby lookup over 27K focal features × 218K contigs. The loop ran 30+ minutes without completing.
+
+**Workaround**: vectorized merge via `pd.merge(focal_features, contig_features, on="contig_id")` followed by boolean filter on the merged frame. Same operation completed in ~10 seconds.
+
+**Generalizable rule**: never use iterrows() for >10K rows; vectorize via merge + boolean filter or numpy array operations. The 1000× speedup is consistent across pandas use cases.
+
+### [gene_function_ecological_agora] Algebraic identity replaces explode() when explode would be O(N²) — `R_FK − self_recipient`
+
+**Problem**: NB28b tree-based donor inference (M26) computes per-(donor genus × KO) "donor candidate event" count by exploding 6.3M gain events × ~20 candidate-donor genera per event = 126M-row exploded DataFrame, ~19 GB. OOM.
+
+**Workaround** (algebraic identity): for each (family F × KO K) with R_FK total recipient events, every genus G in F that has K present is a candidate donor for (R_FK − recipient_events_for_G). Computable as a single join + subtraction, no explode. Stage 2b ran in 142s instead of OOMing.
+
+**Generalizable rule**: when an explode produces O(N×M) rows where M is bounded but large (e.g., genera-with-KO per family-KO), look for an algebraic identity that produces the same aggregate without enumerating all combinations. Sum-over-bins reformulations are typically what's needed.
+
 ### Unnecessary `.toPandas()` Calls
 
 **`.toPandas()` pulls all data from the Spark cluster to the driver node.** This is slow for large results and can cause out-of-memory errors. Do filtering, joins, and aggregations in Spark first.

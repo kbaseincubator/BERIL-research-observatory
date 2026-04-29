@@ -1,0 +1,15 @@
+{
+  "phase": "2",
+  "notebook": "NB10b",
+  "methodology": "M22",
+  "n_gains_attributed": 17073194,
+  "n_profile_rows": 7385920,
+  "depth_bin_counts": {
+    "recent": 7946915,
+    "older_recent": 5485372,
+    "mid": 1708611,
+    "older": 1162183,
+    "ancient": 770113
+  },
+  "completed_utc": "2026-04-27T20:00:34Z"
+}

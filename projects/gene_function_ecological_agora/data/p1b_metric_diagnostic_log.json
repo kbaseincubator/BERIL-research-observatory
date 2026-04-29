@@ -1,0 +1,104 @@
+{
+  "timestamp_utc": "2026-04-27T02:33:35Z",
+  "seed": 42,
+  "purpose": "Sankoff parsimony + 3 sanity diagnostics on Phase 1B order-rank anomaly",
+  "tree_n_leaves_full": 80789,
+  "tree_n_leaves_pruned": 18989,
+  "diag_A_pos_K_median": 1.0,
+  "diag_A_neg_K_median": 1.0,
+  "diag_A_p_two_sided": 7.538512485867886e-20,
+  "diag_D_summary": [
+    {
+      "control_class": "pos_amr",
+      "n_urefs": 3656,
+      "median_pseudo_fraction": 0.5,
+      "mean_pseudo_fraction": 0.489,
+      "frac_urefs_>50pct_pseudo": 0.492,
+      "frac_urefs_>90pct_pseudo": 0.418
+    },
+    {
+      "control_class": "natural_expansion",
+      "n_urefs": 10030,
+      "median_pseudo_fraction": 0.037,
+      "mean_pseudo_fraction": 0.452,
+      "frac_urefs_>50pct_pseudo": 0.455,
+      "frac_urefs_>90pct_pseudo": 0.416
+    },
+    {
+      "control_class": "hyp_cazyme",
+      "n_urefs": 9993,
+      "median_pseudo_fraction": 0.0,
+      "mean_pseudo_fraction": 0.174,
+      "frac_urefs_>50pct_pseudo": 0.171,
+      "frac_urefs_>90pct_pseudo": 0.162
+    },
+    {
+      "control_class": "neg_ribosomal",
+      "n_urefs": 10077,
+      "median_pseudo_fraction": 0.0,
+      "mean_pseudo_fraction": 0.222,
+      "frac_urefs_>50pct_pseudo": 0.218,
+      "frac_urefs_>90pct_pseudo": 0.202
+    },
+    {
+      "control_class": "neg_trna_synth",
+      "n_urefs": 10070,
+      "median_pseudo_fraction": 0.0,
+      "mean_pseudo_fraction": 0.264,
+      "frac_urefs_>50pct_pseudo": 0.26,
+      "frac_urefs_>90pct_pseudo": 0.238
+    },
+    {
+      "control_class": "neg_rnap_core",
+      "n_urefs": 3606,
+      "median_pseudo_fraction": 0.0,
+      "mean_pseudo_fraction": 0.22,
+      "frac_urefs_>50pct_pseudo": 0.213,
+      "frac_urefs_>90pct_pseudo": 0.179
+    },
+    {
+      "control_class": "none",
+      "n_urefs": 29790,
+      "median_pseudo_fraction": 0.0,
+      "mean_pseudo_fraction": 0.336,
+      "frac_urefs_>50pct_pseudo": 0.334,
+      "frac_urefs_>90pct_pseudo": 0.325
+    },
+    {
+      "control_class": "pos_betalac",
+      "n_urefs": 9917,
+      "median_pseudo_fraction": 0.0,
+      "mean_pseudo_fraction": 0.262,
+      "frac_urefs_>50pct_pseudo": 0.261,
+      "frac_urefs_>90pct_pseudo": 0.25
+    },
+    {
+      "control_class": "pos_crispr_cas",
+      "n_urefs": 2964,
+      "median_pseudo_fraction": 0.0,
+      "mean_pseudo_fraction": 0.361,
+      "frac_urefs_>50pct_pseudo": 0.359,
+      "frac_urefs_>90pct_pseudo": 0.338
+    },
+    {
+      "control_class": "pos_tcs_hk",
+      "n_urefs": 10089,
+      "median_pseudo_fraction": 0.0,
+      "mean_pseudo_fraction": 0.319,
+      "frac_urefs_>50pct_pseudo": 0.318,
+      "frac_urefs_>90pct_pseudo": 0.312
+    }
+  ],
+  "diag_B_pseudo_pos_median": 0.25,
+  "diag_B_pseudo_neg_median": 0.3333333333333333,
+  "diag_B_p_one_sided_greater": 0.9999999997810782,
+  "diag_C_sample_per_class": 500,
+  "diag_C_n_scored": 5000,
+  "diag_C_elapsed_s": 69.1399302482605,
+  "diag_C_pos_median": 16.0,
+  "diag_C_neg_median": 14.1465,
+  "diag_C_cohens_d": 0.1460637027092087,
+  "diag_C_mw_p": 2.1110067016635367e-05,
+  "diag_C_median_diff": 1.8535000000000004,
+  "completed_utc": "2026-04-27T02:34:50Z"
+}
