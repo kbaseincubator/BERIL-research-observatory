@@ -1,0 +1,116 @@
+{
+  "phase": "4",
+  "deliverable": "P4-D2 neighborhood \u2014 PSII",
+  "hypothesis": "Cyanobacteriia \u00d7 PSII",
+  "neighbor_window_bp": 5000,
+  "n_focal_features": 26864,
+  "n_neighbor_pairs": 218321,
+  "atlas_mge_neighbor_fraction": 0.017904483154090104,
+  "pct_features_with_any_mge_neighbor": 10.906789755807027,
+  "per_ko_summary": [
+    {
+      "focal_ko": "K02703",
+      "n_features": 4217,
+      "mean_mge_neighbor_fraction": 0.028208838260240846,
+      "pct_with_any_mge_neighbor": 13.730139909888548
+    },
+    {
+      "focal_ko": "K02704",
+      "n_features": 1794,
+      "mean_mge_neighbor_fraction": 0.025193960938108093,
+      "pct_with_any_mge_neighbor": 14.214046822742473
+    },
+    {
+      "focal_ko": "K02706",
+      "n_features": 2148,
+      "mean_mge_neighbor_fraction": 0.018517796346008635,
+      "pct_with_any_mge_neighbor": 9.404096834264433
+    },
+    {
+      "focal_ko": "K02707",
+      "n_features": 1644,
+      "mean_mge_neighbor_fraction": 0.008869714024823514,
+      "pct_with_any_mge_neighbor": 7.664233576642336
+    },
+    {
+      "focal_ko": "K02709",
+      "n_features": 1416,
+      "mean_mge_neighbor_fraction": 0.01634790292099614,
+      "pct_with_any_mge_neighbor": 9.675141242937853
+    },
+    {
+      "focal_ko": "K02710",
+      "n_features": 1188,
+      "mean_mge_neighbor_fraction": 0.029195787844777745,
+      "pct_with_any_mge_neighbor": 12.626262626262626
+    },
+    {
+      "focal_ko": "K02711",
+      "n_features": 1020,
+      "mean_mge_neighbor_fraction": 0.0067986425339366515,
+      "pct_with_any_mge_neighbor": 5.588235294117648
+    },
+    {
+      "focal_ko": "K02712",
+      "n_features": 1578,
+      "mean_mge_neighbor_fraction": 0.01704055872306823,
+      "pct_with_any_mge_neighbor": 13.878326996197718
+    },
+    {
+      "focal_ko": "K02713",
+      "n_features": 823,
+      "mean_mge_neighbor_fraction": 0.009217315019259126,
+      "pct_with_any_mge_neighbor": 7.7764277035236935
+    },
+    {
+      "focal_ko": "K02715",
+      "n_features": 1584,
+      "mean_mge_neighbor_fraction": 0.005104622860304679,
+      "pct_with_any_mge_neighbor": 4.22979797979798
+    },
+    {
+      "focal_ko": "K02716",
+      "n_features": 1386,
+      "mean_mge_neighbor_fraction": 0.005533249418530804,
+      "pct_with_any_mge_neighbor": 3.535353535353535
+    },
+    {
+      "focal_ko": "K02717",
+      "n_features": 1497,
+      "mean_mge_neighbor_fraction": 0.0179193959755082,
+      "pct_with_any_mge_neighbor": 12.291249164996659
+    },
+    {
+      "focal_ko": "K02718",
+      "n_features": 1500,
+      "mean_mge_neighbor_fraction": 0.028526701076701078,
+      "pct_with_any_mge_neighbor": 15.533333333333331
+    },
+    {
+      "focal_ko": "K02720",
+      "n_features": 1769,
+      "mean_mge_neighbor_fraction": 0.027553760227587248,
+      "pct_with_any_mge_neighbor": 22.10288298473714
+    },
+    {
+      "focal_ko": "K02722",
+      "n_features": 1572,
+      "mean_mge_neighbor_fraction": 0.007042966388498495,
+      "pct_with_any_mge_neighbor": 5.661577608142494
+    },
+    {
+      "focal_ko": "K02723",
+      "n_features": 251,
+      "mean_mge_neighbor_fraction": 0.005519336794237192,
+      "pct_with_any_mge_neighbor": 3.9840637450199203
+    },
+    {
+      "focal_ko": "K02724",
+      "n_features": 1477,
+      "mean_mge_neighbor_fraction": 0.01127960469531221,
+      "pct_with_any_mge_neighbor": 7.9891672308733925
+    }
+  ],
+  "elapsed_s": 320.9,
+  "completed_utc": "2026-04-29T03:01:18Z"
+}

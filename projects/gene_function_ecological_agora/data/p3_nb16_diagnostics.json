@@ -1,0 +1,151 @@
+{
+  "phase": "3",
+  "notebook": "NB16",
+  "hypothesis": "Cyanobacteria \u2192 Innovator-Exchange (donor-undistinguished per M25) on PSII at genus rank",
+  "n_psii_kos_in_atlas": 24,
+  "n_cyano_species": 331,
+  "n_cyano_orders": 19,
+  "n_cyano_families": 42,
+  "n_cyano_genera": 137,
+  "alpha_bonferroni": 0.0125,
+  "test_results": [
+    {
+      "rank": "genus",
+      "target_clades": "all-Cyano-genera-pooled",
+      "n_psii_kos_present": 2350,
+      "ref_producer_median": -0.2453,
+      "target_producer_median": -0.2986,
+      "ref_consumer_median": -11.1831,
+      "target_consumer_median": -15.204,
+      "producer_cohens_d": 0.0776,
+      "consumer_cohens_d": -0.5273,
+      "mw_p_producer_greater": 1.0,
+      "mw_p_consumer_greater": 1.0,
+      "producer_high": false,
+      "consumer_high": false,
+      "verdict": "STABLE (low producer + low participation; H1 falsified)"
+    },
+    {
+      "rank": "family",
+      "target_clades": "all-Cyano-families-pooled",
+      "n_psii_kos_present": 705,
+      "ref_producer_median": -0.2395,
+      "target_producer_median": -0.2612,
+      "ref_consumer_median": -5.2833,
+      "target_consumer_median": -9.5599,
+      "producer_cohens_d": 0.1994,
+      "consumer_cohens_d": -1.2793,
+      "mw_p_producer_greater": 0.967121,
+      "mw_p_consumer_greater": 1.0,
+      "producer_high": false,
+      "consumer_high": false,
+      "verdict": "STABLE (low producer + low participation; H1 falsified)"
+    },
+    {
+      "rank": "order",
+      "target_clades": "all-Cyano-orders-pooled",
+      "n_psii_kos_present": 301,
+      "ref_producer_median": -0.2453,
+      "target_producer_median": -0.2921,
+      "ref_consumer_median": -2.8765,
+      "target_consumer_median": -7.1131,
+      "producer_cohens_d": 0.1906,
+      "consumer_cohens_d": -1.4183,
+      "mw_p_producer_greater": 0.99097,
+      "mw_p_consumer_greater": 1.0,
+      "producer_high": false,
+      "consumer_high": false,
+      "verdict": "STABLE (low producer + low participation; H1 falsified)"
+    },
+    {
+      "rank": "class",
+      "target_clades": "Cyanobacteriia",
+      "n_psii_kos_present": 21,
+      "ref_producer_median": -0.2464,
+      "target_producer_median": 0.8491,
+      "ref_consumer_median": -1.8243,
+      "target_consumer_median": 0.1391,
+      "producer_cohens_d": 1.496,
+      "consumer_cohens_d": 0.6958,
+      "mw_p_producer_greater": 2.1e-05,
+      "mw_p_consumer_greater": 0.000183,
+      "producer_high": true,
+      "consumer_high": true,
+      "verdict": "INNOVATOR-EXCHANGE (H1 supported, donor-undistinguished per M25)"
+    },
+    {
+      "rank": "phylum",
+      "target_clades": "Cyanobacteriota",
+      "n_psii_kos_present": 21,
+      "ref_producer_median": -0.2486,
+      "target_producer_median": 0.9703,
+      "ref_consumer_median": NaN,
+      "target_consumer_median": NaN,
+      "producer_cohens_d": 1.6033,
+      "consumer_cohens_d": NaN,
+      "mw_p_producer_greater": 7e-06,
+      "mw_p_consumer_greater": NaN,
+      "producer_high": true,
+      "consumer_high": false,
+      "verdict": "INNOVATOR-ISOLATED (high producer + low participation; H1 falsified \u2014 opposite quadrant)"
+    }
+  ],
+  "pp_distribution_per_rank": {
+    "class": {
+      "Innovator-Exchange": 3,
+      "Innovator-Isolated": 7,
+      "Sink/Broker-Exchange": 11,
+      "Stable": 0,
+      "insufficient_data": 0,
+      "total": 21
+    },
+    "family": {
+      "Innovator-Exchange": 0,
+      "Innovator-Isolated": 94,
+      "Sink/Broker-Exchange": 0,
+      "Stable": 611,
+      "insufficient_data": 0,
+      "total": 705
+    },
+    "genus": {
+      "Innovator-Exchange": 0,
+      "Innovator-Isolated": 235,
+      "Sink/Broker-Exchange": 0,
+      "Stable": 2115,
+      "insufficient_data": 0,
+      "total": 2350
+    },
+    "order": {
+      "Innovator-Exchange": 0,
+      "Innovator-Isolated": 49,
+      "Sink/Broker-Exchange": 0,
+      "Stable": 252,
+      "insufficient_data": 0,
+      "total": 301
+    },
+    "phylum": {
+      "Innovator-Exchange": 0,
+      "Innovator-Isolated": 0,
+      "Sink/Broker-Exchange": 0,
+      "Stable": 0,
+      "insufficient_data": 21,
+      "total": 21
+    }
+  },
+  "cyano_psii_acquisition_depth_pct": {
+    "recent": 32.26,
+    "older_recent": 36.26,
+    "mid": 12.96,
+    "older": 16.47,
+    "ancient": 2.05
+  },
+  "all_psii_acquisition_depth_pct": {
+    "recent": 27.37,
+    "older_recent": 30.58,
+    "mid": 12.85,
+    "older": 14.31,
+    "ancient": 14.9
+  },
+  "n_psii_gains_to_cyano": 1026,
+  "completed_utc": "2026-04-28T02:53:17Z"
+}

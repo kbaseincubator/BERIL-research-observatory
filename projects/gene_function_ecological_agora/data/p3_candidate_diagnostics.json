@@ -1,0 +1,26 @@
+{
+  "phase": "3",
+  "notebook": "NB14",
+  "version": "v2 \u2014 atlas-only filter (architecture count deferred to NB15)",
+  "n_atlas_rows": 13739162,
+  "n_off_low_low_tuples": 1594809,
+  "n_candidate_kos": 10750,
+  "category_distribution": {
+    "metabolic": 4142,
+    "unannotated": 2255,
+    "mixed": 2126,
+    "regulatory": 1364,
+    "other": 863
+  },
+  "control_class_distribution": {
+    "none": 10049,
+    "pos_tcs_hk": 292,
+    "neg_ribosomal": 212,
+    "pos_betalac": 97,
+    "neg_trna_synth": 48,
+    "info_amr": 34,
+    "neg_rnap_core": 12,
+    "pos_crispr_cas": 6
+  },
+  "completed_utc": "2026-04-28T01:09:52Z"
+}

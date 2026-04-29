@@ -80,6 +80,10 @@ Literature cited in `RESEARCH_PLAN.md`, `DESIGN_NOTES.md`, and `REPORT.md` to da
 
   *Project context*: dosage cost on housekeeping genes; explains why ribosomal / tRNA-synthetase / RNAP core negative controls show negative producer z (M2 revision).
 
+- **Phillips, G., et al. (2012).** "Phylogenomics of Prokaryotic Ribosomal Proteins." *PLoS ONE* 7(5):e36972. doi:10.1371/journal.pone.0036972. PMID:22615862.
+
+  *Project context*: bacterial ribosomal proteins show low paralogy (geometric mean 1.02 paralogs per r-protein vs 1.63 for other universal genes) due to dosage balance. Cited at Phase 2 atlas synthesis (REPORT v1.8) — the M22 finding that tRNA-synth has low recent-acquisition (24.7%) extends Phillips' low-paralogy-under-dosage-constraint result to acquisition timing.
+
 ## Data substrate
 
 - **Parks, D.H., Chuvochina, M., Rinke, C., Mussig, A.J., Chaumeil, P.A., Hugenholtz, P. (2022).** "GTDB: an ongoing census of bacterial and archaeal diversity through a phylogenetically consistent, rank normalized and complete genome-based taxonomy." *Nucleic Acids Research* 50(D1):D785–D794. doi:10.1093/nar/gkab776.
@@ -113,9 +117,81 @@ The following references will become relevant at Phases 1B / 2 / 3 / 4 and are a
 - **Galperin, M.Y. (2018).** "What bacteria want." *Environmental Microbiology* 20(12):4221–4229. — TCS biology context for Phase 2/3 Alm 2006 reproduction.
 - **Pang, T.Y., Lercher, M.J. (2017).** "Each of 3,323 metabolic innovations in the evolution of E. coli arose through the horizontal transfer of a single DNA segment." *PNAS* 114(7):1650–1655. — atlas-style precedent for metabolic-innovation analysis at Phase 2.
 
+## Phase 2 hypothesis-test literature (added v2.2)
+
+- **Marrakchi, H., Lanéelle, M.A., Daffé, M. (2014).** "Mycolic acids: structures, biosynthesis, and beyond." *Chemistry & Biology* 21(1):67–85. doi:10.1016/j.chembiol.2013.11.011. PMID:24374164.
+
+  *Project context*: review of mycolic-acid biosynthesis pathway and biology. Cited at Phase 2 NB12 (REPORT v2.2) — supports the Mycobacteriaceae × mycolic-acid Innovator-Isolated H1 SUPPORTED finding. Marrakchi et al. document the mycolic-acid pathway as a major and specific lipid component of the mycobacterial cell envelope, essential for survival of *Mycobacterium* (causative agents of tuberculosis and leprosy). The autocatalytic cell-envelope-coupled biosynthesis explains the Innovator-Isolated phenotype recovered by NB12: high producer score (lineage-specific paralog expansion, including the *M. tuberculosis* PE/PPE family) + low participation (zero ancient or older-class gain events; cell-envelope coupling prevents cross-phylum HGT).
+
+## Foundational HGT methodology + complexity hypothesis (added v2.5)
+
+- **Bansal, M.S., Alm, E.J., Kellis, M. (2012).** "Efficient algorithms for the reconciliation problem with gene duplication, horizontal transfer and loss." *Bioinformatics* 28(12):i283–i291. doi:10.1093/bioinformatics/bts225. PMID:22689773. PMC3371857.
+
+  *Project context*: foundational DTL reconciliation algorithm framework. Cited at REPORT v2.5 — establishes the principled methodology against which our Sankoff parsimony approach is the lightweight tractable alternative at GTDB scale. Bansal et al. 2012 demonstrate up to 100,000-fold speed-up over prior DTL methods; per plan v2.6's Phase 3 reservation, AleRax/RangerDTL are available for sub-sample reconciliation but not at full GTDB scale (Phase 3 v2.11 reframe per M25 documents this constraint). Project methodology is therefore parsimony-based (Sankoff at scale), with DTL reconciliation reserved for Phase 4 P4-D3 deep-dive on the Mycobacteriaceae × mycolic-acid candidate set (deferred).
+
+- **Burch, C.L., Romanchuk, A., Kelly, M., Wu, Y., Jones, C.D. (2023).** "Empirical Evidence That Complexity Limits Horizontal Gene Transfer." *Genome Biology and Evolution* 15(6):evad089. doi:10.1093/gbe/evad089. PMID:37232518. PMC10267694.
+
+  *Project context*: empirical validation of the Jain 1999 complexity hypothesis using 74 prokaryotic genomes shotgun-libraries to *E. coli*. Three findings: (1) transferability declines as connectivity increases; (2) transferability declines as donor-recipient orthologs diverge; (3) the negative effect of divergence on transferability scales with connectivity. *Translational proteins span the widest connectivity range and show this effect most strongly.* Cited at REPORT v2.5 — directly supports NB11's H1 REFRAMED verdict (regulatory KOs *more clumped* than metabolic at small effect size, d=−0.21). Our GTDB-scale finding is the per-(clade × KO) instantiation of the per-(donor × E. coli) finding Burch et al. demonstrate empirically. Both find the predicted direction at sub-strong effect: the complexity hypothesis is real but its effect is small at the function-class level.
+
+- **Ślesak, I., Ślesak, H. (2024).** "From cyanobacteria and cyanophages to chloroplasts: the fate of the genomes of oxyphototrophs and the genes encoding photosystem II proteins." *New Phytologist* 242(3):1055–1067. doi:10.1111/nph.19633. PMID:38439684.
+
+  *Project context*: synonymous mutation rate analysis of psbA/psbD/psbO across cyanobacterial, chloroplast, and cyanophage genomes; psbA and psbD identified as ancient and conservative, arising early in the evolution of oxygenic photosynthesis. Cited at REPORT v2.5 — additional support for the Cyanobacteria-as-PSII-origin framing alongside Cardona et al. 2018. The conservatism of psbA/psbD across oxyphototroph lineages (low synonymous mutation rate, ancient origin) is consistent with NB16's donor-origin acquisition signature: Cyanobacteria's ancestor evolved the pathway; non-Cyano phyla received it via documented HGT.
+
+- **Denise, R., Abby, S.S., Rocha, E.P.C. (2019).** "Diversification of the type IV filament superfamily into machines for adhesion, protein secretion, DNA uptake, and motility." *PLoS Biology* 17(7):e3000390. doi:10.1371/journal.pbio.3000390. PMID:31323028. PMC6668835.
+
+  *Project context*: comparative genomics of the type IV filament (TFF) superfamily across Bacteria and Archaea. Key finding: *"systems encoded in fewer loci were more frequently exchanged between taxa. This may have contributed to their rapid evolution and spread."* Cited at REPORT v2.5 — provides a literature analog for the Phase 3 NB15 architectural-promiscuity finding. Denise et al. 2019's "fewer loci → more exchange" pattern is the genome-organization analog of our "more architectures per KO → more exchange" pattern. Both findings frame structural-organization simplicity as a driver of cross-clade flow at large evolutionary scales. Together they suggest that *modularity* — at either the locus-count or the architecture-count level — is the property that distinguishes mobile from constrained gene families.
+
+## Phase 3 hypothesis-test literature (added v2.4)
+
+- **Cardona, T., Sánchez-Baracaldo, P., Rutherford, A.W., Larkum, A.W. (2018).** "Early Archean origin of Photosystem II." *Geobiology* 17(2):127–150. doi:10.1111/gbi.12322. PMID:30411862. PMC6492235.
+
+  *Project context*: phylogenomic + Bayesian relaxed molecular clock analysis showing that a homodimeric photosystem capable of water oxidation appeared in the early Archean ~1 Gyr before the most recent common ancestor of all described Cyanobacteria, and well before the diversification of anoxygenic photosynthetic bacteria. Cited at Phase 3 NB16 (REPORT v2.4) — supports the Cyanobacteria-as-PSII-origin framing recovered by NB16's acquisition-depth signature (Cyanobacteria PSII gains: 2.05% ancient vs 14.9% atlas-wide). The 7× lower ancient fraction in Cyanobacteria PSII is the donor-origin signature: Cyanobacteria's ancestor evolved PSII; non-Cyano phyla received PSII via HGT (those gains are ancient *for the recipient*, contributing to the high atlas-wide ancient %); Cyanobacteria themselves don't receive ancient cross-phylum PSII transfers because they're the source. Cardona et al. 2018 provides the temporal-and-phylogenetic anchor for this interpretation.
+
+## Foundational HGT literature (added v2.3)
+
+- **Lawrence, J.G., Ochman, H. (1998).** "Molecular archaeology of the Escherichia coli genome." *Proceedings of the National Academy of Sciences USA* 95(16):9413–9417. doi:10.1073/pnas.95.16.9413. PMID:9689094. PMC21352.
+
+  *Project context*: foundational HGT-detection paper documenting that 755 of 4,288 ORFs (≈18% of the *E. coli* chromosome) were introduced via lateral transfer in ≥234 events since divergence from *Salmonella* 100 Myr ago. Composition-based codon-usage methodology (predates phylogenetic-tree-aware methods this project uses). Cited at REPORT v2.3 — establishes the historical methodology baseline against which our Sankoff-parsimony approach (M16, NB10) is the tree-aware successor. Lawrence & Ochman document HGT at single-organism scale; this project extends to the full GTDB tree.
+
+- **Jain, R., Rivera, M.C., Lake, J.A. (1999).** "Horizontal gene transfer among genomes: the complexity hypothesis." *Proceedings of the National Academy of Sciences USA* 96(7):3801–3806. doi:10.1073/pnas.96.7.3801. PMID:10097118. PMC22375.
+
+  *Project context*: the canonical reference for why regulatory ("informational") genes show *less* HGT than metabolic ("operational") genes — informational genes are typically members of large protein-protein-interaction systems, making horizontal transfer less probable. Cited at REPORT v2.3 — **NB11's T2 finding (regulatory KOs more phylogenetically clumped than metabolic, consumer z d=−0.211, p<10⁻¹⁵) is direction-consistent with the complexity hypothesis at small effect size.** The H1 REFRAMED verdict in NB11 is therefore not a contradiction of established literature but an extension: at GTDB scale across 6,524 KOs (regulatory + metabolic), the complexity-hypothesis effect is detectable but small (d ≈ 0.2) — meaningful at full-tree scale but below the strong-form d ≥ 0.3 threshold the project pre-registered for the asymmetry headline.
+
+## Adversarial review 9 literature (added v3.5)
+
+- **Williams, T.A., Davin, A.A., Szánthó, L.L., Stamatakis, A., Wahl, N.A., Woodcroft, B.J., Soo, R.M., Eme, L., Sheridan, P.O., Gubry-Rangin, C., Spang, A., Hugenholtz, P., Szöllősi, G.J. (2024).** "Phylogenetic reconciliation: making the most of genomes to understand microbial ecology and evolution." *The ISME Journal* 18(1):wrae129. doi:10.1093/ismejo/wrae129. PMID:39001714.
+
+  *Project context*: comprehensive review of modern phylogenetic reconciliation methods for microbial ecology and evolution. Documents recent computational advances making reconciliation feasible at hundreds-of-species scale, including ancestral gene content inference, species-tree rooting, and ecological-metadata integration. Cited at REPORT v3.5 (REVIEW_9 response) — provides the modern methodology baseline against which the project's Sankoff parsimony approximation should be compared. The project's "DTL doesn't scale to GTDB" framing is qualified by Williams 2024: principled DTL methods are scaling, just not yet to the full 18,989-leaf tree the project uses. Future cross-validation against representative GTDB subsets remains a defensible direction.
+
+- **López Sánchez, A., Scholz, G.E., Stadler, P.F., Lafond, M. (2026).** "From Small Parsimony to Horizontal Gene Transfer: Inferring Horizontal Transfer and Gene Loss for Single-Origin Characters." *Journal of Computational Biology* 33(4):535-557. doi:10.1177/15578666261426009. PMID:41955011.
+
+  *Project context*: presents a Sankoff-Rousseau-like algorithm for HGT inference using KEGG functions on bacterial species — **directly parallel methodology** to the project's M22 framework. Models small-parsimony-with-loss-and-transfer scenarios with user-defined penalization for losses vs transfers. The paper's case study on bacterial species + KEGG functions demonstrates that the approach is computationally tractable. Cited at REPORT v3.5 — represents a direct methodology peer to compare against. The project's M22 implementation is independent but conceptually similar; future work should benchmark M22 outputs against López Sánchez 2026's algorithm on a shared bacterial-KEGG substrate to assess methodological concordance.
+
+- **Gisriel, C.J., Bryant, D.A., Brudvig, G.W., Cardona, T. (2023).** "Molecular diversity and evolution of far-red light-acclimated photosystem I." *Frontiers in Plant Science* 14:1289199. doi:10.3389/fpls.2023.1289199. PMID:38053766.
+
+  *Project context*: phylogenetic analysis of FaRLiP (far-red light photoacclimation) photosystem I subunits across cyanobacteria. Documents that the order Nodosilineales (including Synechococcus sp. PCC 7335) could have obtained FaRLiP via horizontal gene transfer, with FaRLiP-specific PSI subunits arising relatively late in cyanobacterial evolution. Cited at REPORT v3.5 — qualifies the Cardona 2018 PSII donor-origin framing the project uses for NB16. The project's NB16 finding is about photosystem **II** at class rank, where the donor-origin framing holds (PSII evolved ~1 Gyr before Cyanobacteria diversified per Cardona 2018). Gisriel 2023 documents that photosystem **I** FaRLiP variants — a niche photosystem subset — can undergo within-Cyanobacteria HGT. The two findings are consistent: PSII core machinery is class-defining and donor-origin; FaRLiP variants of PSI are recent and HGT-mobile within Cyanobacteria. Adds nuance to the "Cyanobacteria photosystem evolution is purely vertical" oversimplification.
+
+## Phase 4 adversarial review 8 literature (added v3.1)
+
+- **Liu, J., Mawhorter, R., Liu, N., Libeskind-Hadas, R., Wu, Y.-C. (2021).** "Maximum parsimony reconciliation in the DTLOR model." *BMC Bioinformatics* 22(Suppl 10):394. doi:10.1186/s12859-021-04290-6. PMID:34348661.
+
+  *Project context*: introduces the DTLOR model (Duplication-Transfer-Loss-Origination-Rearrangement) extending standard DTL to handle two events common in microbial evolution: gene origin from outside the sampled species tree, and rearrangement of gene syntenic regions. Cited at REPORT v3.1 (REVIEW_8 response) — represents the modern DTL reconciliation methodology that the project's Sankoff parsimony approximation does NOT engage with. The project's defensible position is that Sankoff parsimony is computationally tractable at full GTDB scale (17M gain events on 18,989-leaf tree) where exact DTL methods are not; Liu et al. 2021 DTLOR remains a future cross-validation target on a representative GTDB subset.
+
+- **Kundu, S., Bansal, M.S. (2018).** "On the impact of uncertain gene tree rooting on duplication-transfer-loss reconciliation." *BMC Bioinformatics* 19(Suppl 9):290. doi:10.1186/s12859-018-2269-0. PMID:30367593.
+
+  *Project context*: documents that a large fraction of gene trees have multiple optimal rootings, and quantifies which aspects of DTL reconciliation are conserved across rootings on 4,500+ gene families from 100 species. Cited at REPORT v3.1 — directly applicable to project's Sankoff parsimony pipeline which lacks rooting-uncertainty quantification. Honest reportable limit: the M22 acquisition-depth attribution does not propagate gene-tree-rooting uncertainty into per-event uncertainty bounds.
+
+- **Benzerara, K., et al. (2026).** "Intracellular amorphous calcium carbonate biomineralization in methanotrophic gammaproteobacteria was acquired by horizontal gene transfer from cyanobacteria." *Environmental Microbiology* 28(3):e70270. doi:10.1111/1462-2920.70270.
+
+  *Project context*: provides direct phylogenetic evidence of recent Cyanobacteria → Gammaproteobacteria HGT for the *ccyA* gene (calcium carbonate biomineralization). Cited at REPORT v3.1 — independent example of Cyanobacteria functioning as HGT *donor* clade at recent ranks, supporting the project's NB16 interpretive framework that Cyanobacteria's role in PSII evolution is donor-origin (low ancient acquisition fraction within Cyanobacteria; PSII ancient *for recipient* phyla but not for the source). Validates the environmental-co-occurrence-drives-HGT framing.
+
+- **Yu, J., et al. (2025).** "Characterization of two novel species of the genus Flagellimonas reveals the key role of vertical inheritance in the evolution of alginate utilization loci." *Microbiology Spectrum* 13(4):e00917-25. doi:10.1128/spectrum.00917-25.
+
+  *Project context*: documents that vertical inheritance (not HGT) dominates Bacteroidota alginate utilization locus (AUL) evolution at the *Flagellimonas* genus level, with structural simplification of AUL leading to reduced alginate-degradation ability. Cited at REPORT v3.1 — *complicates* the simple "PUL = HGT-mediated" framing the project has implicitly carried since the v1 plan. The Phase 1B Bacteroidota PUL verdict (falsified at deep-rank absolute-zero criterion; recovered as small consumer-z signal at d=0.15 via Sankoff diagnostic NB08c) is *consistent* with Yu et al. 2025: within-Bacteroidota PUL evolution is more vertical than horizontal at fine taxonomic resolution. The project's Phase 1B "qualified pass" framing is honest; Yu et al. 2025 supports rather than contradicts that framing.
+
 ## Update protocol
 
-- **Phase 1B**: add references substantiating Bacteroidota PUL Innovator-Exchange test; add literature on CAZyme HGT specifically.
-- **Phase 2**: add full TCS biology (Galperin), mycolic-acid pathway literature (Marrakchi 2014, Bhatt 2007), KEGG BRITE methods.
+- **Phase 1B**: add references substantiating Bacteroidota PUL Innovator-Exchange test; add literature on CAZyme HGT specifically. *(closed)*
+- **Phase 2**: add full TCS biology (Galperin — already cited), mycolic-acid pathway literature (Marrakchi 2014 ✓ added at v2.2; Bhatt 2007 deferred), KEGG BRITE methods. *(NB12 result supported via Marrakchi 2014 at v2.2)*
 - **Phase 3**: add Pfam architecture literature, AleRax / DTL-recon references, photosystem-II HGT literature (Cardona 2018, Soo 2019).
-- **Phase 4**: add cross-resolution synthesis precedents, atlas-style review papers.
+- **Phase 4**: add cross-resolution synthesis precedents, atlas-style review papers; environmental ecology HGT (Anantharaman 2016 if verified, Cordero & Polz 2014 if verified — REVIEW_5 S1 suggestion).
