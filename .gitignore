@@ -64,6 +64,10 @@ data/mgnify_ingest/protein_db/
 data/mgnify_ingest/genome_catalogues/
 data/mgnify_ingest/sourmash_dbs/
 data/mgnify_ingest/logs/
+# fitness_browser_stubborn_set: large derived corpus stays out of git;
+# proper publishing is to MinIO (planned, not yet wired). Local working
+# tree is preserved on disk.
+projects/fitness_browser_stubborn_set/data/
 projects/*/data/**/*.csv
 projects/*/data/**/*.tsv
 projects/*/data/**/*.npy
