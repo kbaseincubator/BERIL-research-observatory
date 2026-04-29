@@ -20,6 +20,7 @@ from claude_agent_sdk import (
     ClaudeAgentOptions,
     ResultMessage,
     SystemMessage,
+    UserMessage,
     query,
 )
 
@@ -124,6 +125,18 @@ def _translate(message: Any) -> list[TurnEvent]:
             events.extend(_translate_block(block))
         return events
 
+    if isinstance(message, UserMessage):
+        # The SDK echoes tool-result content back as a UserMessage whose
+        # content is a list of ContentBlocks (per the Anthropic wire protocol,
+        # tool results are user-role). String content is the original user
+        # turn — already known to the caller, so ignore.
+        if not isinstance(message.content, list):
+            return []
+        events = []
+        for block in message.content:
+            events.extend(_translate_block(block))
+        return events
+
     if isinstance(message, ResultMessage):
         if message.is_error:
             return [
@@ -133,8 +146,7 @@ def _translate(message: Any) -> list[TurnEvent]:
             ]
         return [TurnComplete(result_subtype=getattr(message, "subtype", None))]
 
-    # UserMessage (tool_result echoes back through the SDK), partial-message
-    # events, and anything else we don't recognize: ignore.
+    # Partial-message events and anything else we don't recognize: ignore.
     return []
 
 

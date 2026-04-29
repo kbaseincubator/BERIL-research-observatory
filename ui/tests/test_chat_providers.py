@@ -7,7 +7,13 @@ from unittest.mock import patch
 
 import pytest
 
-from claude_agent_sdk import AssistantMessage, ResultMessage, SystemMessage
+from claude_agent_sdk import (
+    AssistantMessage,
+    ResultMessage,
+    SystemMessage,
+    ToolResultBlock,
+    UserMessage,
+)
 
 from app.chat.config import ProviderConfig
 from app.chat.providers import (
@@ -191,6 +197,60 @@ class TestTurnTranslation:
         assert len(results) == 1
         assert results[0].content == "3 rows returned"
         assert results[0].is_error is False
+
+    async def test_tool_result_from_user_message_translated(self):
+        """The SDK echoes tool results as UserMessages whose content is a
+        list of real ToolResultBlocks (per Anthropic wire protocol —
+        tool_result is user-role). The provider must translate those into
+        ToolResult events; otherwise tool outputs are silently dropped on
+        every tool-using turn."""
+        provider = _make_provider()
+        tool_result_block = ToolResultBlock(
+            tool_use_id="tu-7",
+            content="3 rows returned",
+            is_error=False,
+        )
+        messages = [
+            _assistant([_FakeToolUseBlock("berdl_query", {"sql": "SELECT 1"}, "tu-7")]),
+            UserMessage(content=[tool_result_block]),
+            _result(),
+        ]
+        with patch("app.chat.providers.anthropic_compatible.query", _fake_query(messages)):
+            events = await _collect(
+                provider.run_turn(
+                    user_message="run a query",
+                    credentials=Credentials({"api_key": "k"}),
+                    model="m1",
+                    cwd="/tmp",
+                    sdk_session_id=None,
+                )
+            )
+        results = [e for e in events if isinstance(e, ToolResult)]
+        assert len(results) == 1
+        assert results[0].tool_use_id == "tu-7"
+        assert results[0].content == "3 rows returned"
+        assert results[0].is_error is False
+
+    async def test_user_message_string_content_ignored(self):
+        """A UserMessage with plain string content is the user's turn echo —
+        not a tool result. It must not produce any TurnEvent."""
+        provider = _make_provider()
+        messages = [
+            UserMessage(content="hello"),
+            _result(),
+        ]
+        with patch("app.chat.providers.anthropic_compatible.query", _fake_query(messages)):
+            events = await _collect(
+                provider.run_turn(
+                    user_message="hello",
+                    credentials=Credentials({"api_key": "k"}),
+                    model="m1",
+                    cwd="/tmp",
+                    sdk_session_id=None,
+                )
+            )
+        # Only the terminal TurnComplete should be present.
+        assert [e.kind for e in events] == ["turn_complete"]
 
     async def test_tool_result_list_of_text_blocks_joined(self):
         provider = _make_provider()

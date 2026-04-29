@@ -12,7 +12,7 @@ that speaks an existing wire protocol is a config edit only.
 
 from __future__ import annotations
 
-from app.chat.config import ProviderConfig, get_chat_config
+from app.chat.config import ProviderConfig, get_chat_config, reset_chat_config_cache
 from app.chat.providers.anthropic_compatible import AnthropicCompatibleProvider
 from app.chat.providers.base import ChatProvider
 
@@ -44,9 +44,16 @@ def get_provider(provider_id: str) -> ChatProvider:
 
 
 def reset_providers_cache() -> None:
-    """Drop the cached registry. Tests only."""
+    """Drop the cached registry and the underlying chat config cache.
+
+    Tests only. Both layers must be cleared together: the registry holds
+    provider instances built from the cached :class:`ChatConfig`, so dropping
+    only the registry would still rebuild from a stale config when a test has
+    swapped the YAML or patched ``get_settings().chat_config_path``.
+    """
     global _registry
     _registry = None
+    reset_chat_config_cache()
 
 
 __all__ = [
