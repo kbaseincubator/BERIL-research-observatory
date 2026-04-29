@@ -1,4 +1,4 @@
-name: Deploy to SPIN production environment
+name: Deploy to SPIN development environment
 
 on:
   workflow_dispatch:
