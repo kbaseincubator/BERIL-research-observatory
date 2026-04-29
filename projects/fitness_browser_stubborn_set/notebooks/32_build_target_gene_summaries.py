@@ -39,12 +39,24 @@ Schema:
   paper_title                title of the paper
   paper_year                 publication year
   paper_journal              journal name
-  summary                    per-(homolog, paper) summary text (null if missing)
-  summary_status             "homolog_match" / "paper_only" / "missing"
-                             — homolog_match: summary is for THIS homolog × THIS paper
-                             — paper_only:    we have a summary of this paper, but
-                                              for a different homolog (paper context only)
-                             — missing:       no summary for this paper anywhere
+  summary                    per-(homolog, paper) summary text — homolog-specific
+                             only. Empty if no homolog-specific summary exists.
+  summary_status             "homolog_match" / "null_for_homolog" / "missing"
+                             — homolog_match:    summary is specifically about THIS
+                                                  homolog × THIS paper
+                             — null_for_homolog: codex was asked about THIS homolog
+                                                  in THIS paper and returned null
+                                                  (i.e. paper doesn't characterize
+                                                  this homolog). Summary is empty.
+                             — missing:          paper not in any summary corpus
+                                                  (no PMC available, etc.). Summary
+                                                  is empty. Title is in paper_title.
+
+NOTE on the rejected fallback: an earlier version used a "paper_only" status
+that re-used a summary written about a *different* homolog of the same paper.
+That was misleading — the agent reasoning about gene X would see a paragraph
+about gene Y. Removed; the agent should never see a non-homolog-specific
+summary masquerading as homolog evidence.
 """
 from __future__ import annotations
 
@@ -153,10 +165,16 @@ def main() -> None:
         else:
             desc_for_target[k] = feat_lookup.get(k) or ""
 
-    # 4. Load merged summaries — keyed by (gene_identifier, manuscript_id)
+    # 4. Load merged summaries — keyed by (gene_identifier, manuscript_id).
+    #    We ONLY use homolog-specific summaries. If we have a summary for
+    #    paper P about homolog Y but not about homolog X, we do NOT use the
+    #    Y summary as a fallback for X — that would mislead the agent into
+    #    thinking the paragraph describes X. Better to leave the row's
+    #    summary empty than to attach a paragraph about a different gene.
     print("Loading merged summaries...", file=sys.stderr)
     summary_by_pair: dict[tuple[str, str], str] = {}
-    summary_by_pmid: dict[str, str] = {}  # any summary for this paper, for fallback
+    asked_pair: set[tuple[str, str]] = set()  # codex was asked about this (X, P)
+    asked_pmid: set[str] = set()              # codex was asked about this paper for any homolog
     with open(SUMMARIES) as fh:
         next(fh)
         for line in fh:
@@ -165,11 +183,10 @@ def main() -> None:
                 continue
             mid, _, gid = parts[0], parts[1], parts[2]
             summ = "\t".join(parts[3:])
-            if summ.strip().lower() in ("null", ""):
-                continue
-            summary_by_pair[(gid, mid)] = summ
-            if mid not in summary_by_pmid:
-                summary_by_pmid[mid] = summ
+            asked_pair.add((gid, mid))
+            asked_pmid.add(mid)
+            if summ.strip().lower() not in ("null", ""):
+                summary_by_pair[(gid, mid)] = summ
 
     # 5. PaperBLAST hits restricted to training-set targets
     print("Loading PaperBLAST hits...", file=sys.stderr)
@@ -181,7 +198,7 @@ def main() -> None:
 
     # 6. Write
     print("Writing TSV...", file=sys.stderr)
-    n_hm = n_paper = n_miss = 0
+    n_hm = n_null = n_miss = 0
     with open(OUT, "w", newline="") as out:
         w = csv.writer(out, delimiter="\t", quoting=csv.QUOTE_MINIMAL)
         w.writerow([
@@ -200,19 +217,21 @@ def main() -> None:
             gid = r["geneId"]
             pmid = str(r["pmId"])
             pair_summ = summary_by_pair.get((gid, pmid))
-            paper_summ = summary_by_pmid.get(pmid)
             if pair_summ is not None:
                 summary = pair_summ
                 status = "homolog_match"
                 n_hm += 1
-            elif paper_summ is not None:
-                summary = paper_summ
-                status = "paper_only"
-                n_paper += 1
             else:
+                # No homolog-specific summary. Distinguish the two reasons:
+                #   null_for_homolog: codex was asked about (X, P) and returned null
+                #   missing:          we never had a chance to summarize (no PMC etc.)
                 summary = ""
-                status = "missing"
-                n_miss += 1
+                if (gid, pmid) in asked_pair:
+                    status = "null_for_homolog"
+                    n_null += 1
+                else:
+                    status = "missing"
+                    n_miss += 1
 
             human_ann = ""
             if k in reann_lookup:
@@ -240,12 +259,12 @@ def main() -> None:
             ])
             idx += 1
 
-    n_total = n_hm + n_paper + n_miss
+    n_total = n_hm + n_null + n_miss
     print(f"\nWrote {OUT}", file=sys.stderr)
-    print(f"  total rows:                 {n_total:,}", file=sys.stderr)
-    print(f"  homolog_match (best):       {n_hm:,}  ({100*n_hm/n_total:.1f}%)", file=sys.stderr)
-    print(f"  paper_only (paper context): {n_paper:,}  ({100*n_paper/n_total:.1f}%)", file=sys.stderr)
-    print(f"  missing (title only):       {n_miss:,}  ({100*n_miss/n_total:.1f}%)", file=sys.stderr)
+    print(f"  total rows:                                {n_total:,}", file=sys.stderr)
+    print(f"  homolog_match (have homolog-specific):     {n_hm:,}  ({100*n_hm/n_total:.1f}%)", file=sys.stderr)
+    print(f"  null_for_homolog (asked, codex said null): {n_null:,}  ({100*n_null/n_total:.1f}%)", file=sys.stderr)
+    print(f"  missing (paper not in any corpus):         {n_miss:,}  ({100*n_miss/n_total:.1f}%)", file=sys.stderr)
 
 
 if __name__ == "__main__":

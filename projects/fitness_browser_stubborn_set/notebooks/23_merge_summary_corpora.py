@@ -26,6 +26,7 @@ SOURCES = [
     PROJECT_DATA / "manuscript-summaries-positive.tsv",
     PROJECT_DATA / "manuscript-summaries-reann.tsv",
     PROJECT_DATA / "manuscript-summaries-gapfill.tsv",
+    PROJECT_DATA / "manuscript-summaries-abstracts.tsv",
 ]
 OUT = PROJECT_DATA / "manuscript-summaries-merged.tsv"
 
