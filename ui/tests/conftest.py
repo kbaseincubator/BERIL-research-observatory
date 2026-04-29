@@ -111,6 +111,12 @@ def collection():
             SampleQuery(title="Count genomes", query="SELECT COUNT(*) FROM genome")
         ],
         related_collections=["kbase_genomes"],
+        tenant_id="kbase",
+        tenant_name="KBase",
+        snapshot_source="test snapshot",
+        discovered_at="2026-04-29T00:00:00+00:00",
+        schema_status="discovered",
+        curation_status="curated",
     )
 
 

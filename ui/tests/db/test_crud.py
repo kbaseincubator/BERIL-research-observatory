@@ -378,7 +378,6 @@ class TestApiToken:
 
     async def test_lookup_updates_last_used_at(self, db_session, user):
         from sqlalchemy import select
-        from app.db.models import UserApiToken
 
         raw_token, record = await get_or_create_api_token(db_session, user.id)
         assert record.last_used_at is None

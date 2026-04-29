@@ -7,6 +7,7 @@ summary: Entry point for BERDL tenants, collections, data types, derived product
 source_projects: []
 source_docs:
   - ui/config/collections.yaml
+  - ui/config/berdl_collections_snapshot.json
   - docs/collections.md
   - docs/schemas/pangenome.md
   - docs/schemas/fitnessbrowser.md
@@ -21,6 +22,9 @@ last_reviewed: 2026-04-28
 related_pages:
   - data.kbase-tenant
   - data.kescience-tenant
+  - data.genes-proteins-annotations
+  - data.environment-geochemistry-ecology
+  - data.literature-reference-ontology
   - data.metal-tolerance-scores
   - data.genome-fitness-pangenome-join
 order: 1

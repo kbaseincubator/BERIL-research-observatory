@@ -2,7 +2,6 @@
 
 import os
 from collections.abc import AsyncGenerator
-from io import BytesIO
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
@@ -418,7 +417,7 @@ class TestUserDataDelete:
         await db_session.refresh(other_project)
 
         storage = LocalFileStorage(tmp_path)
-        path = f"other-user-00/other/uploads/x.csv"
+        path = "other-user-00/other/uploads/x.csv"
         await storage.save(b"data", path)
         record = await create_project_file(
             db_session,

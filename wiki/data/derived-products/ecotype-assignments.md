@@ -14,7 +14,7 @@ source_docs:
 related_collections:
   - kbase_ke_pangenome
   - nmdc_arkin
-  - phagefoundry
+  - phagefoundry_paeruginosa_genome_browser
 confidence: medium
 generated_by: Codex GPT-5
 last_reviewed: 2026-04-28

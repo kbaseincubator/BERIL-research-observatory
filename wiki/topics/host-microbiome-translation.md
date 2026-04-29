@@ -14,7 +14,7 @@ source_docs:
   - docs/discoveries.md
   - docs/pitfalls.md
 related_collections:
-  - phagefoundry
+  - phagefoundry_paeruginosa_genome_browser
   - kbase_ke_pangenome
   - kbase_msd_biochemistry
   - kescience_fitnessbrowser

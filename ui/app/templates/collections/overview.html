@@ -2,35 +2,86 @@
 
 {% block title %}Collections - {{ app_name }}{% endblock %}
 
+{% block extra_css %}
+<style>
+    .collection-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--space-3);
+        margin-bottom: var(--space-8);
+    }
+
+    .collection-stat {
+        background: var(--surface-raised);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-md);
+        padding: var(--space-4);
+    }
+
+    .collection-stat-value {
+        color: var(--accent-primary);
+        font-family: var(--font-mono);
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="page-header">
     <h1 class="page-title">BERDL Collections</h1>
     <p class="page-description">
-        Explore the data collections available in the KBase Data Lakehouse.
+        Tenant-organized database inventory discovered from BERDL and enriched with curated observatory context.
     </p>
+    {% if snapshot_discovered_at %}
+    <p class="text-small text-muted">
+        Snapshot: {{ snapshot_discovered_at }}{% if snapshot_source %} · {{ snapshot_source }}{% endif %}
+    </p>
+    {% endif %}
 </div>
 
-<!-- Primary Research Collections -->
-{% if primary_collections %}
+<div class="collection-stats">
+    <div class="collection-stat">
+        <div class="collection-stat-value">{{ tenant_groups|length }}</div>
+        <div class="text-small text-muted">Tenants</div>
+    </div>
+    <div class="collection-stat">
+        <div class="collection-stat-value">{{ collections|length }}</div>
+        <div class="text-small text-muted">Databases</div>
+    </div>
+    <div class="collection-stat">
+        <div class="collection-stat-value">{{ primary_collections|length }}</div>
+        <div class="text-small text-muted">Curated primary</div>
+    </div>
+    <div class="collection-stat">
+        <div class="collection-stat-value">{{ reference_collections|length }}</div>
+        <div class="text-small text-muted">Reference</div>
+    </div>
+</div>
+
+{% for tenant in tenant_groups %}
 <section class="section">
-    <h2>Primary Research Collections</h2>
+    <div class="section-header">
+        <h2>{{ tenant.name }}</h2>
+        <span class="text-small text-muted">{{ tenant.collections|length }} database{% if tenant.collections|length != 1 %}s{% endif %}</span>
+    </div>
     <div class="grid grid-3">
-        {% for coll in primary_collections %}
+        {% for coll in tenant.collections %}
         <a href="/collections/{{ coll.id }}" class="card">
             <div class="card-header">
                 <span style="font-size: 1.5rem;">{{ coll.icon | safe }}</span>
-                <span class="badge" style="background: rgba(57, 212, 230, 0.15); color: #39d4e6;">Primary</span>
+                <span class="badge">{{ coll.curation_status }}</span>
             </div>
             <h3 class="card-title" style="color: var(--text-primary);">{{ coll.name }}</h3>
             <p class="text-muted text-small" style="font-family: var(--font-mono);">{{ coll.id }}</p>
             <div class="card-content">
-                <p class="text-small">{{ coll.description[:200] }}{% if coll.description|length > 200 %}...{% endif %}</p>
+                <p class="text-small">{{ coll.description[:190] }}{% if coll.description|length > 190 %}...{% endif %}</p>
             </div>
             <div class="card-footer">
-                {% if coll.scale_stats.tables %}
-                <span class="text-small text-muted">{{ coll.scale_stats.tables }} tables</span>
-                {% elif coll.key_tables %}
-                <span class="text-small text-muted">{{ coll.key_tables|length }} tables</span>
+                {% if coll.key_tables %}
+                <span class="text-small text-muted">{{ coll.key_tables|length }} table{% if coll.key_tables|length != 1 %}s{% endif %}</span>
+                {% else %}
+                <span class="text-small text-muted">{{ coll.schema_status }} schema</span>
                 {% endif %}
                 <span class="text-small" style="color: var(--text-link);">Explore &rarr;</span>
             </div>
@@ -38,79 +89,18 @@
         {% endfor %}
     </div>
 </section>
-{% endif %}
+{% endfor %}
 
-<!-- Domain-Specific Collections -->
-{% if domain_collections %}
-<section class="section">
-    <h2>Domain-Specific Collections</h2>
-    <div class="grid grid-2">
-        {% for coll in domain_collections %}
-        <a href="/collections/{{ coll.id }}" class="card">
-            <div class="card-header">
-                <span style="font-size: 1.5rem;">{{ coll.icon | safe }}</span>
-                <span class="badge" style="background: rgba(163, 113, 247, 0.15); color: #a371f7;">Domain</span>
-            </div>
-            <h3 class="card-title" style="color: var(--text-primary);">{{ coll.name }}</h3>
-            <p class="text-muted text-small" style="font-family: var(--font-mono);">{{ coll.id }}</p>
-            <div class="card-content">
-                <p class="text-small">{{ coll.description[:200] }}{% if coll.description|length > 200 %}...{% endif %}</p>
-            </div>
-            <div class="card-footer">
-                {% if coll.sub_collections %}
-                <span class="text-small text-muted">{{ coll.sub_collections|length }} sub-collections</span>
-                {% endif %}
-                <span class="text-small" style="color: var(--text-link);">Explore &rarr;</span>
-            </div>
-        </a>
-        {% endfor %}
-    </div>
-</section>
-{% endif %}
-
-<!-- Reference Collections -->
-{% if reference_collections %}
-<section class="section">
-    <h2>Reference Collections</h2>
-    <p class="text-muted mb-8">Foundational reference data used across other collections.</p>
-
-    <div class="card">
-        <table class="data-table">
-            <thead>
-                <tr>
-                    <th>Collection</th>
-                    <th>ID</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for coll in reference_collections %}
-                <tr onclick="window.location='/collections/{{ coll.id }}'" style="cursor: pointer;">
-                    <td><a href="/collections/{{ coll.id }}" style="text-decoration: none; color: inherit;"><strong>{{ coll.name }}</strong></a></td>
-                    <td><code>{{ coll.id }}</code></td>
-                    <td>{{ coll.description[:100] }}{% if coll.description|length > 100 %}...{% endif %}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</section>
-{% endif %}
-
-<!-- Cross-Collection Analysis -->
 <section class="section">
     <div class="card" style="border-left: 4px solid var(--accent-secondary);">
         <h3 style="margin-bottom: var(--space-4);">Cross-Collection Analysis</h3>
         <p>
-            Many research questions benefit from combining data across collections. For example:
+            The collection pages show physical BERDL databases. The wiki data atlas adds interpretation:
+            data-type lenses, reusable joins, derived products, caveats, and missing complementary data.
         </p>
-        <ul style="margin-top: var(--space-4);">
-            <li><strong>Pangenome + Fitness</strong>: Which accessory genes show fitness effects under specific conditions?</li>
-            <li><strong>Pangenome + Biochemistry</strong>: What metabolic pathways are enriched in core vs accessory genomes?</li>
-            <li><strong>Fitness + Phenotype</strong>: How do gene fitness scores correlate with measured phenotypes?</li>
-        </ul>
         <p style="margin-top: var(--space-4);">
-            Check individual collection pages for documented cross-collection query patterns.
+            <a href="/wiki#data" class="btn btn-secondary">Open Wiki Data Atlas</a>
+            <a href="/data-explorer" class="btn btn-secondary">Open Collection Network</a>
         </p>
     </div>
 </section>

@@ -38,6 +38,7 @@ from .git_data_sync import pull_latest
 from .importer import run_full_migration
 from .models import CollectionCategory, RepositoryData
 from .storage import LocalFileStorage
+from .wiki_inventory import build_wiki_inventory
 
 logging.basicConfig(
     level=logging.INFO,
@@ -514,7 +515,29 @@ async def collections_overview(
 ):
     """Collections overview page - browse all BERDL collections."""
 
+    tenant_groups = {}
+    for collection in repo_data.collections:
+        tenant_id = collection.tenant_id or collection.category.value
+        tenant_groups.setdefault(
+            tenant_id,
+            {
+                "id": tenant_id,
+                "name": collection.tenant_name or tenant_id.replace("_", " ").title(),
+                "collections": [],
+            },
+        )
+        tenant_groups[tenant_id]["collections"].append(collection)
+
     context["collections"] = repo_data.collections
+    context["tenant_groups"] = sorted(
+        tenant_groups.values(), key=lambda group: group["name"].lower()
+    )
+    context["snapshot_discovered_at"] = next(
+        (c.discovered_at for c in repo_data.collections if c.discovered_at), None
+    )
+    context["snapshot_source"] = next(
+        (c.snapshot_source for c in repo_data.collections if c.snapshot_source), None
+    )
     context["primary_collections"] = repo_data.get_collections_by_category(
         CollectionCategory.PRIMARY
     )
@@ -557,6 +580,11 @@ async def collection_detail(
     # Find projects that reference this collection
     context["related_projects"] = [
         p for p in repo_data.projects if collection_id in p.related_collections
+    ]
+    context["related_wiki_pages"] = [
+        page
+        for page in repo_data.wiki_index.pages
+        if collection_id in page.related_collections
     ]
 
     return templates.TemplateResponse(request, "collections/detail.html", context)
@@ -639,15 +667,25 @@ async def wiki_atlas(
     data_pages = [
         p for p in wiki_index.pages_by_section("data") if p.path != "data/index"
     ]
+    data_page_groups = {
+        "collections": wiki_index.pages_by_type("data_collection"),
+        "data_types": wiki_index.pages_by_type("data_type"),
+        "derived_products": wiki_index.pages_by_type("derived_product"),
+        "joins": wiki_index.pages_by_type("join_recipe"),
+        "gaps": wiki_index.pages_by_type("data_gap"),
+    }
     claim_pages = wiki_index.pages_by_type("claim")
     direction_pages = wiki_index.pages_by_type("direction")
     hypothesis_pages = wiki_index.pages_by_type("hypothesis")
+    wiki_inventory = build_wiki_inventory(repo_data)
     context.update(
         {
             "wiki_index": wiki_index,
             "atlas_page": atlas_page,
             "topic_pages": wiki_index.pages_by_type("topic"),
             "data_pages": data_pages,
+            "data_page_groups": data_page_groups,
+            "wiki_inventory": wiki_inventory,
             "claim_pages": claim_pages,
             "direction_pages": direction_pages,
             "hypothesis_pages": hypothesis_pages,

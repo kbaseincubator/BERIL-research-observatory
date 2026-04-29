@@ -1,11 +1,13 @@
 """Repository parser - reads markdown files and extracts structured data."""
 
 import gzip
+import json
 import pickle
 import re
 import subprocess
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 import yaml
 
@@ -235,17 +237,44 @@ class RepositoryParser:
     # Collection IDs to scan for in README text
     _COLLECTION_IDS = [
         "kbase_ke_pangenome",
-        "kescience_fitnessbrowser",
-        "kbase_msd_biochemistry",
         "kbase_genomes",
-        "enigma_coral",
+        "kbase_msd_biochemistry",
         "kbase_phenotype",
-        "nmdc_arkin",
-        "phagefoundry",
-        "planetmicrobe",
-        "protect_genomedepot",
         "kbase_uniprot",
-        "kbase_uniref",
+        "kbase_uniref50",
+        "kbase_uniref90",
+        "kbase_uniref100",
+        "kbase_refseq_taxon_api",
+        "kbase_ontology_source",
+        "kescience_alphafold",
+        "kescience_pdb",
+        "kescience_structural_biology",
+        "kescience_fitnessbrowser",
+        "kescience_webofmicrobes",
+        "kescience_bacdive",
+        "kescience_paperblast",
+        "enigma_coral",
+        "nmdc_arkin",
+        "nmdc_ncbi_biosamples",
+        "phagefoundry_acinetobacter_genome_browser",
+        "phagefoundry_klebsiella_genome_browser_genomedepot",
+        "phagefoundry_paeruginosa_genome_browser",
+        "phagefoundry_pviridiflava_genome_browser",
+        "phagefoundry_strain_modelling",
+        "planetmicrobe_planetmicrobe",
+        "planetmicrobe_planetmicrobe_raw",
+        "protect_genomedepot",
+        "globalusers_demo_shared",
+        "globalusers_demo_test",
+        "globalusers_demo_test_1",
+        "globalusers_demo_test_2",
+        "globalusers_gapmind_pathways",
+        "globalusers_kepangenome_parquet_1",
+        "globalusers_nmdc_core_test",
+        "globalusers_nmdc_core_test2",
+        "globalusers_nmdc_core_test3",
+        "globalusers_phenotype_ontology_1",
+        "globalusers_phenotype_parquet_1",
     ]
 
     def __init__(self, repo_path: Path | None = None):
@@ -257,6 +286,9 @@ class RepositoryParser:
         projects = self.parse_projects()
         discoveries = self.parse_discoveries()
         tables = self.parse_schema()
+        for collection_id, snapshot_tables in self.parse_berdl_snapshot_tables().items():
+            if collection_id not in tables or not tables[collection_id]:
+                tables[collection_id] = snapshot_tables
         pitfalls = self.parse_pitfalls()
         performance_tips = self.parse_performance()
         research_ideas = self.parse_research_ideas()
@@ -1333,7 +1365,7 @@ class RepositoryParser:
         """Extract row counts from the Table Summary section."""
         row_counts: dict[str, int] = {}
         summary_match = re.search(
-            r"## Table Summary\s*\n(.*?)(?:\n---|\n## )",
+            r"## (?:Table Summary|Tables)\s*\n(.*?)(?:\n---|\n## )",
             content,
             re.DOTALL,
         )
@@ -1344,7 +1376,9 @@ class RepositoryParser:
             if not line.strip() or not line.startswith("|"):
                 continue
             # Skip header and separator rows
-            if "Table" in line and ("Row Count" in line or "Description" in line):
+            if "Table" in line and (
+                "Row Count" in line or "Rows" in line or "Description" in line
+            ):
                 continue
             if re.match(r"^\|[-\s|]+\|$", line):
                 continue
@@ -1374,11 +1408,11 @@ class RepositoryParser:
                 continue
 
             # First line contains table name in backticks
-            name_match = re.match(r"`(\w+)`", lines[0])
+            name_match = re.match(r"`(\w+)`|(\w+)$", lines[0].strip())
             if not name_match:
                 continue
 
-            table_name = name_match.group(1)
+            table_name = name_match.group(1) or name_match.group(2)
 
             # Get description (first paragraph after name)
             description = ""
@@ -1430,6 +1464,18 @@ class RepositoryParser:
                     columns=columns,
                 )
             )
+
+        parsed_names = {table.name for table in tables}
+        for table_name, row_count in row_counts.items():
+            if table_name not in parsed_names:
+                tables.append(
+                    Table(
+                        name=table_name,
+                        description="",
+                        row_count=row_count,
+                        columns=[],
+                    )
+                )
 
         return tables
 
@@ -1629,70 +1675,288 @@ class RepositoryParser:
 
         return ideas
 
+    def parse_berdl_snapshot_tables(self) -> dict[str, list[Table]]:
+        """Parse table schemas from the generated BERDL discovery snapshot."""
+        snapshot = self._load_berdl_snapshot()
+        tables_by_collection: dict[str, list[Table]] = {}
+        if not snapshot:
+            return tables_by_collection
+
+        for tenant in snapshot.get("tenants", []):
+            for coll_data in tenant.get("collections", []):
+                collection_id = str(coll_data.get("id", ""))
+                if not collection_id:
+                    continue
+                tables: list[Table] = []
+                for table_data in coll_data.get("tables", []):
+                    columns = [
+                        Column(
+                            name=str(col.get("name", "")),
+                            data_type=str(col.get("data_type") or col.get("type") or ""),
+                            description=col.get("description"),
+                        )
+                        for col in table_data.get("columns", [])
+                        if col.get("name")
+                    ]
+                    row_count = table_data.get("row_count") or 0
+                    try:
+                        row_count = int(row_count)
+                    except (TypeError, ValueError):
+                        row_count = 0
+                    tables.append(
+                        Table(
+                            name=str(table_data.get("name", "")),
+                            description=str(table_data.get("description", "")).strip(),
+                            row_count=row_count,
+                            columns=columns,
+                        )
+                    )
+                if tables:
+                    tables_by_collection[collection_id] = tables
+        return tables_by_collection
+
     def parse_collections(self) -> list[Collection]:
-        """Parse collections from config/collections.yaml."""
-        collections = []
-        config_path = get_settings().ui_dir / "config" / "collections.yaml"
+        """Parse BERDL collections from discovery snapshot plus curated overlays."""
+        curated = self._load_curated_collection_data()
+        snapshot = self._load_berdl_snapshot()
 
-        if not config_path.exists():
-            return collections
+        if not snapshot:
+            return [
+                self._collection_from_curated(coll_data)
+                for coll_data in curated.values()
+            ]
 
-        with open(config_path, "r") as f:
-            data = yaml.safe_load(f)
+        snapshot_source = str(snapshot.get("source_url") or snapshot.get("source") or "")
+        discovered_at = str(snapshot.get("discovered_at") or "")
+        snapshot_ids = {
+            str(coll.get("id"))
+            for tenant in snapshot.get("tenants", [])
+            for coll in tenant.get("collections", [])
+            if coll.get("id")
+        }
 
-        if not data or "collections" not in data:
-            return collections
-
-        for coll_data in data["collections"]:
-            # Parse category
-            category_str = coll_data.get("category", "primary")
-            try:
-                category = CollectionCategory(category_str)
-            except ValueError:
-                category = CollectionCategory.PRIMARY
-
-            # Parse key tables
-            key_tables = []
-            for table_data in coll_data.get("key_tables", []):
-                key_tables.append(
-                    CollectionTable(
-                        name=table_data.get("name", ""),
-                        description=table_data.get("description", ""),
-                        row_count=table_data.get("row_count"),
+        collections: list[Collection] = []
+        for tenant in snapshot.get("tenants", []):
+            tenant_id = str(tenant.get("id", "")).strip()
+            tenant_name = str(tenant.get("name") or tenant_id).strip()
+            for coll_data in tenant.get("collections", []):
+                collection_id = str(coll_data.get("id", "")).strip()
+                if not collection_id:
+                    continue
+                overlay = curated.get(collection_id, {})
+                group_overlays = self._matching_group_overlays(collection_id, curated)
+                collections.append(
+                    self._collection_from_snapshot(
+                        coll_data=coll_data,
+                        tenant_id=tenant_id,
+                        tenant_name=tenant_name,
+                        snapshot_source=snapshot_source,
+                        discovered_at=discovered_at,
+                        overlay=overlay,
+                        group_overlays=group_overlays,
+                        snapshot_ids=snapshot_ids,
                     )
                 )
-
-            # Parse sample queries
-            sample_queries = []
-            for query_data in coll_data.get("sample_queries", []):
-                sample_queries.append(
-                    SampleQuery(
-                        title=query_data.get("title", ""),
-                        query=query_data.get("query", ""),
-                    )
-                )
-
-            collection = Collection(
-                id=coll_data.get("id", ""),
-                name=coll_data.get("name", ""),
-                category=category,
-                icon=coll_data.get("icon", "&#128194;"),
-                description=coll_data.get("description", "").strip(),
-                philosophy=coll_data.get("philosophy", "").strip(),
-                data_sources=coll_data.get("data_sources", []),
-                scale_stats=coll_data.get("scale_stats", {}),
-                key_tables=key_tables,
-                sample_queries=sample_queries,
-                related_collections=coll_data.get("related_collections", []),
-                sub_collections=coll_data.get("sub_collections", []),
-                citation=coll_data.get("citation"),
-                doi=coll_data.get("doi"),
-                website=coll_data.get("website"),
-                provider=coll_data.get("provider"),
-            )
-            collections.append(collection)
 
         return collections
+
+    def _load_berdl_snapshot(self) -> dict[str, Any]:
+        snapshot_path = self.repo_path / "ui" / "config" / "berdl_collections_snapshot.json"
+        if not snapshot_path.exists():
+            return {}
+        try:
+            with open(snapshot_path) as f:
+                data = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            return {}
+        return data if isinstance(data, dict) else {}
+
+    def _load_curated_collection_data(self) -> dict[str, dict[str, Any]]:
+        config_path = self.repo_path / "ui" / "config" / "collections.yaml"
+        if not config_path.exists():
+            return {}
+        with open(config_path) as f:
+            data = yaml.safe_load(f)
+        if not data or "collections" not in data:
+            return {}
+        return {
+            str(coll_data.get("id", "")): coll_data
+            for coll_data in data["collections"]
+            if coll_data.get("id")
+        }
+
+    def _matching_group_overlays(
+        self, collection_id: str, curated: dict[str, dict[str, Any]]
+    ) -> list[dict[str, Any]]:
+        groups: list[dict[str, Any]] = []
+        for group_id, coll_data in curated.items():
+            if group_id == collection_id:
+                continue
+            for child_id in coll_data.get("sub_collections", []):
+                child_id = str(child_id)
+                if collection_id == child_id or collection_id.startswith(child_id):
+                    groups.append(coll_data)
+                    break
+        return groups
+
+    def _collection_from_curated(self, coll_data: dict[str, Any]) -> Collection:
+        return Collection(
+            id=coll_data.get("id", ""),
+            name=coll_data.get("name", ""),
+            category=self._collection_category(coll_data.get("category", "primary")),
+            icon=coll_data.get("icon", "&#128194;"),
+            description=coll_data.get("description", "").strip(),
+            philosophy=coll_data.get("philosophy", "").strip(),
+            data_sources=coll_data.get("data_sources", []),
+            scale_stats=coll_data.get("scale_stats", {}),
+            key_tables=self._collection_tables(coll_data.get("key_tables", [])),
+            sample_queries=self._sample_queries(coll_data.get("sample_queries", [])),
+            related_collections=coll_data.get("related_collections", []),
+            sub_collections=coll_data.get("sub_collections", []),
+            citation=coll_data.get("citation"),
+            doi=coll_data.get("doi"),
+            website=coll_data.get("website"),
+            provider=coll_data.get("provider"),
+            schema_status="curated",
+            curation_status="curated",
+        )
+
+    def _collection_from_snapshot(
+        self,
+        coll_data: dict[str, Any],
+        tenant_id: str,
+        tenant_name: str,
+        snapshot_source: str,
+        discovered_at: str,
+        overlay: dict[str, Any],
+        group_overlays: list[dict[str, Any]],
+        snapshot_ids: set[str],
+    ) -> Collection:
+        group_ids = [str(group.get("id")) for group in group_overlays if group.get("id")]
+        parent_collection_id = group_ids[0] if group_ids else None
+        name = overlay.get("name") or coll_data.get("name") or self._title_from_id(coll_data.get("id", ""))
+        description = (
+            overlay.get("description")
+            or coll_data.get("description")
+            or "Discovered BERDL database. Add curated description as this collection is used."
+        )
+        group_description = next(
+            (group.get("description", "").strip() for group in group_overlays if group.get("description")),
+            "",
+        )
+        if not overlay and group_description:
+            description = group_description
+
+        category = self._collection_category(
+            overlay.get("category")
+            or next((group.get("category") for group in group_overlays if group.get("category")), None)
+            or ("primary" if tenant_id == "kbase" else "domain")
+        )
+        key_tables = self._collection_tables(coll_data.get("tables", []))
+        if overlay.get("key_tables"):
+            key_tables = self._collection_tables(overlay.get("key_tables", []))
+
+        related = self._canonical_related_collections(
+            overlay.get("related_collections", []), snapshot_ids
+        )
+        if not related:
+            for group in group_overlays:
+                related.extend(
+                    self._canonical_related_collections(
+                        group.get("related_collections", []), snapshot_ids
+                    )
+                )
+        related = sorted(set(related))
+
+        errors = [
+            str(err)
+            for err in coll_data.get("discovery_errors", [])
+            if str(err).strip()
+        ]
+        schema_status = "discovered"
+        if errors:
+            schema_status = "partial"
+        if not coll_data.get("tables"):
+            schema_status = "missing"
+
+        return Collection(
+            id=str(coll_data.get("id", "")),
+            name=str(name),
+            category=category,
+            icon=overlay.get("icon")
+            or next((group.get("icon") for group in group_overlays if group.get("icon")), "&#128194;"),
+            description=str(description).strip(),
+            philosophy=str(overlay.get("philosophy") or "").strip(),
+            data_sources=overlay.get("data_sources", coll_data.get("data_sources", [])),
+            scale_stats=overlay.get("scale_stats", coll_data.get("scale_stats", {})),
+            key_tables=key_tables,
+            sample_queries=self._sample_queries(overlay.get("sample_queries", [])),
+            related_collections=related,
+            sub_collections=[],
+            citation=overlay.get("citation"),
+            doi=overlay.get("doi"),
+            website=overlay.get("website"),
+            provider=overlay.get("provider") or coll_data.get("provider"),
+            tenant_id=tenant_id,
+            tenant_name=tenant_name,
+            snapshot_source=snapshot_source,
+            discovered_at=discovered_at,
+            schema_status=schema_status,
+            curation_status="curated" if overlay else "discovered",
+            parent_collection_id=parent_collection_id,
+            group_ids=group_ids,
+            discovery_errors=errors,
+        )
+
+    @staticmethod
+    def _collection_category(value: str | None) -> CollectionCategory:
+        try:
+            return CollectionCategory(value or "primary")
+        except ValueError:
+            return CollectionCategory.PRIMARY
+
+    @staticmethod
+    def _collection_tables(table_data: list[dict[str, Any]]) -> list[CollectionTable]:
+        tables: list[CollectionTable] = []
+        for item in table_data:
+            row_count = item.get("row_count")
+            try:
+                row_count = int(row_count) if row_count is not None else None
+            except (TypeError, ValueError):
+                row_count = None
+            tables.append(
+                CollectionTable(
+                    name=str(item.get("name", "")),
+                    description=str(item.get("description", "")),
+                    row_count=row_count,
+                )
+            )
+        return tables
+
+    @staticmethod
+    def _sample_queries(query_data: list[dict[str, Any]]) -> list[SampleQuery]:
+        return [
+            SampleQuery(title=str(item.get("title", "")), query=str(item.get("query", "")))
+            for item in query_data
+        ]
+
+    @staticmethod
+    def _canonical_related_collections(
+        related_ids: list[str], snapshot_ids: set[str]
+    ) -> list[str]:
+        canonical: list[str] = []
+        for related_id in related_ids:
+            related_id = str(related_id)
+            if related_id in snapshot_ids:
+                canonical.append(related_id)
+                continue
+            matches = sorted(cid for cid in snapshot_ids if cid.startswith(related_id))
+            canonical.extend(matches)
+        return canonical
+
+    @staticmethod
+    def _title_from_id(collection_id: str) -> str:
+        return collection_id.replace("_", " ").title()
 
     def parse_wiki(self) -> WikiIndex:
         """Parse markdown pages from the wiki directory.

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 from dataclasses import dataclass
@@ -78,7 +79,9 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
         for p in (repo / "projects").iterdir()
         if p.is_dir() and not p.name.startswith(".")
     } if (repo / "projects").exists() else set()
-    collection_ids = _load_collection_ids(repo)
+    snapshot_collection_ids = _load_snapshot_collection_ids(repo)
+    collection_ids = snapshot_collection_ids or _load_collection_ids(repo)
+    data_collection_coverage: set[str] = set()
 
     for page in raw_pages:
         fm = page.frontmatter
@@ -135,8 +138,24 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
                         f"unknown related collection: {collection_id}",
                     )
                 )
+        if page_type == "data_collection":
+            data_collection_coverage.update(
+                collection_id
+                for collection_id in related_collections
+                if collection_id in collection_ids
+            )
+        if page_type == "data_type" and len(set(related_collections) & collection_ids) < 2:
+            issues.append(
+                WikiLintIssue(
+                    "error",
+                    rel_file,
+                    "data_type pages must reference at least 2 known collections",
+                )
+            )
 
         for source_doc in _as_list(fm.get("source_docs")):
+            if source_doc.startswith(("https://", "http://")):
+                continue
             source_path = source_doc.split("#", 1)[0]
             if source_path and not (repo / source_path).exists():
                 issues.append(WikiLintIssue("error", rel_file, f"missing source doc: {source_doc}"))
@@ -167,6 +186,15 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
 
         for href in _markdown_links(page.body):
             _check_link(href, page.file, wiki_dir, route_paths, issues, rel_file)
+
+    for missing_collection_id in sorted(snapshot_collection_ids - data_collection_coverage):
+        issues.append(
+            WikiLintIssue(
+                "error",
+                "wiki/data",
+                f"missing data_collection page for discovered collection: {missing_collection_id}",
+            )
+        )
 
     return issues
 
@@ -207,6 +235,22 @@ def _load_collection_ids(repo: Path) -> set[str]:
     with config_path.open(encoding="utf-8") as handle:
         data = yaml.safe_load(handle) or {}
     return {str(c["id"]) for c in data.get("collections", []) if "id" in c}
+
+
+def _load_snapshot_collection_ids(repo: Path) -> set[str]:
+    snapshot_path = repo / "ui" / "config" / "berdl_collections_snapshot.json"
+    if not snapshot_path.exists():
+        return set()
+    try:
+        data = json.loads(snapshot_path.read_text())
+    except json.JSONDecodeError:
+        return set()
+    return {
+        str(collection.get("id"))
+        for tenant in data.get("tenants", [])
+        for collection in tenant.get("collections", [])
+        if collection.get("id")
+    }
 
 
 def _as_list(value) -> list[str]:
