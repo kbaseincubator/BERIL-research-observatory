@@ -77,6 +77,7 @@ REANN = PROJECT_DATA / "reannotation_set.parquet"
 ORG_NAMES = PROJECT_DATA / "fb_organism_names.tsv"
 AASEQ_FASTA = REPO_ROOT / "data" / "fitness_browser" / "fb_aaseqs_all.fasta"
 TRAINING_SET = PROJECT_DATA / "training_set"
+TITLE_RESOLUTIONS = PROJECT_DATA / "codex_summaries_titlesearch" / "title_resolutions_relaxed.tsv"
 
 OUT = TRAINING_SET / "target_gene_paperblast_summaries.tsv"
 
@@ -165,6 +166,24 @@ def main() -> None:
         else:
             desc_for_target[k] = feat_lookup.get(k) or ""
 
+    # 4a. Load title→pmid resolutions for None-pmid rows
+    import re
+    def _clean_title(t: str) -> str:
+        t = re.sub(r"<[^>]+>", "", t or "")
+        t = re.sub(r"&[a-z]+;", " ", t)
+        t = re.sub(r"\s+", " ", t)
+        return t.strip()
+
+    title_to_pmid: dict[str, str] = {}
+    if TITLE_RESOLUTIONS.exists():
+        with open(TITLE_RESOLUTIONS) as fh:
+            for r in csv.DictReader(fh, delimiter="\t"):
+                pmid = r.get("resolved_pmid") or ""
+                title = _clean_title(r.get("original_title") or "")
+                if pmid and title:
+                    title_to_pmid[title] = pmid
+        print(f"  loaded {len(title_to_pmid)} title→pmid resolutions", file=sys.stderr)
+
     # 4. Load merged summaries — keyed by (gene_identifier, manuscript_id).
     #    We ONLY use homolog-specific summaries. If we have a summary for
     #    paper P about homolog Y but not about homolog X, we do NOT use the
@@ -226,6 +245,12 @@ def main() -> None:
             k = (r["orgId"], r["locusId"])
             gid = r["geneId"]
             pmid = str(r["pmId"])
+            # If pmid is None but the title is in our title-resolution map,
+            # swap in the resolved pmid for the summary lookup.
+            if pmid in ("None", "nan", ""):
+                t = _clean_title(r.get("title") or "")
+                if t in title_to_pmid:
+                    pmid = title_to_pmid[t]
             pair_summ = summary_by_pair.get((gid, pmid))
             if pair_summ is not None:
                 summary = pair_summ
