@@ -11,8 +11,6 @@ handles the divergence: detect it, and synthesize a DB-backed preamble so
 a cold-started session starts with the prior context intact.
 """
 
-from __future__ import annotations
-
 import os
 import re
 from pathlib import Path

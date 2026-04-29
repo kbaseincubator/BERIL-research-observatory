@@ -9,8 +9,6 @@ reconstruct prior context when an SDK transcript file goes missing. The
 session CRUD helpers used by the management UI land in a later PR.
 """
 
-from __future__ import annotations
-
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 

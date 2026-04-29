@@ -6,7 +6,7 @@ import asyncio
 
 import pytest
 
-from app.chat.concurrency import ChatConcurrencyManager, UserCapExceeded
+from app.chat.concurrency import ChatConcurrencyManager, UserChatConcurrencyExceeded
 
 
 class TestSessionLock:
@@ -62,7 +62,7 @@ class TestUserCap:
         await asyncio.sleep(0.01)
         assert mgr.active_turns_for("u1") == 2
 
-        with pytest.raises(UserCapExceeded):
+        with pytest.raises(UserChatConcurrencyExceeded):
             async with mgr.acquire(session_id="s3", user_id="u1"):
                 pass
 

@@ -4,8 +4,6 @@ Exposes non-streaming turn execution. A streaming (SSE) endpoint is
 layered on top in a later PR and shares the same service layer.
 """
 
-from __future__ import annotations
-
 import logging
 from typing import Any
 
@@ -16,7 +14,7 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth import get_current_user_session_or_token
-from app.chat.concurrency import UserCapExceeded, get_concurrency_manager
+from app.chat.concurrency import UserChatConcurrencyExceeded, get_concurrency_manager
 from app.chat.providers import get_provider
 from app.chat.providers.base import Credentials
 from app.chat.service import run_turn
@@ -77,9 +75,8 @@ async def chat_turn(
         return Response(status_code=401)
 
     session, err = await _load_session_for_user(db, session_id, user.id)
-    if err is not None:
+    if err is not None or session is None:
         return Response(status_code=err)
-    assert session is not None  # for the type checker
 
     try:
         credentials = _validate_credentials(session.provider_id, body.credentials)
@@ -95,7 +92,7 @@ async def chat_turn(
                 user_message=body.message,
                 credentials=credentials,
             )
-    except UserCapExceeded:
+    except UserChatConcurrencyExceeded:
         return JSONResponse(
             {"error": "concurrent-turn cap exceeded for this user"},
             status_code=429,

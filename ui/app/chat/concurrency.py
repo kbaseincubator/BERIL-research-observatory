@@ -25,7 +25,7 @@ from typing import AsyncIterator
 from app.config import get_settings
 
 
-class UserCapExceeded(Exception):
+class UserChatConcurrencyExceeded(Exception):
     """Raised when the per-user concurrent-turn cap would be exceeded."""
 
 
@@ -75,14 +75,14 @@ class ChatConcurrencyManager:
         """Acquire both the user-cap and session-lock for one turn.
 
         Non-blocking on the user cap: if the cap is already exhausted,
-        raises :class:`UserCapExceeded` immediately rather than queueing the
+        raises :class:`UserChatConcurrencyExceeded` immediately rather than queueing the
         caller. This lets the route return 429 to the browser quickly.
 
         Blocks on the session lock. Two turns in the same chat will serialize.
         """
         reserved = await self._try_reserve_user_slot(user_id)
         if not reserved:
-            raise UserCapExceeded(
+            raise UserChatConcurrencyExceeded(
                 f"user {user_id!r} has reached the concurrent-turn cap"
             )
         try:
@@ -105,6 +105,6 @@ def get_concurrency_manager() -> ChatConcurrencyManager:
 
 
 def reset_concurrency_manager() -> None:
-    """Tests only."""
+    """Used for tests only."""
     global _manager
     _manager = None
