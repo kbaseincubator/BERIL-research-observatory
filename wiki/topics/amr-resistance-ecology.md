@@ -24,6 +24,8 @@ related_pages:
   - claim.amr-is-environment-structured
   - direction.metal-amr-co-selection
   - hypothesis.metal-amr-co-selection
+  - data.amr-fitness-profiles
+  - conflict.metal-amr-co-selection-readiness
 order: 20
 ---
 
@@ -62,6 +64,10 @@ The overlap between metal biology and AMR ecology is a high-value research seam.
 - AMR annotations can mix mechanistic resistance, stress response, transport, and mobile-element context.
 - Environment metadata remains uneven across genomes.
 - Co-selection is plausible but must be tested against nulls and confounders.
+
+## Open Tensions
+
+- [Metal-AMR co-selection readiness](/atlas/conflicts/metal-amr-co-selection-readiness) keeps the metal co-selection idea framed as an unresolved analysis rather than a proven result.
 
 ## Reusable Claims
 

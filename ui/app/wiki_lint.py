@@ -52,6 +52,7 @@ WIKI_PAGE_TYPES = {
     "derived_product",
     "join_recipe",
     "data_gap",
+    "conflict",
     "claim",
     "direction",
     "hypothesis",
@@ -64,11 +65,28 @@ REQUIRED_SECTION_INDEXES = {
     "topics": "topics/index",
     "data": "data/index",
     "claims": "claims/index",
+    "conflicts": "conflicts/index",
     "directions": "directions/index",
     "hypotheses": "hypotheses/index",
 }
 
 EVIDENCE_REQUIRED_TYPES = {"claim", "direction", "hypothesis", "derived_product"}
+DERIVED_PRODUCT_REQUIRED_FIELDS = {
+    "product_kind",
+    "reuse_status",
+    "produced_by_projects",
+    "used_by_projects",
+    "output_artifacts",
+    "review_routes",
+}
+VALID_REUSE_STATUS = {"candidate", "promoted", "reviewed", "deprecated"}
+CONFLICT_REQUIRED_FIELDS = {
+    "conflict_status",
+    "evidence_sides",
+    "resolving_work",
+    "affected_pages",
+}
+VALID_CONFLICT_STATUS = {"unresolved", "partially_resolved", "resolved", "deprecated"}
 
 
 def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
@@ -206,6 +224,21 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
                 )
             )
 
+        if page_type == "derived_product":
+            _check_derived_product_metadata(fm, project_ids, repo, rel_file, issues)
+
+        if page_type == "conflict":
+            _check_conflict_metadata(fm, page_ids, raw_pages, rel_file, issues)
+
+        if page_type == "topic" and not _as_list(fm.get("related_pages")):
+            issues.append(
+                WikiLintIssue(
+                    "error",
+                    rel_file,
+                    "topic pages need related_pages for generated overview maps",
+                )
+            )
+
         for href in _markdown_links(page.body):
             _check_link(
                 href, page.file, wiki_dir, canonical_route_paths, issues, rel_file
@@ -303,6 +336,135 @@ def _has_evidence(frontmatter: dict) -> bool:
     if isinstance(evidence, list):
         return any(isinstance(item, dict) and item.get("support") for item in evidence)
     return bool(evidence)
+
+
+def _check_derived_product_metadata(
+    frontmatter: dict,
+    project_ids: set[str],
+    repo: Path,
+    rel_file: str,
+    issues: list[WikiLintIssue],
+) -> None:
+    missing = DERIVED_PRODUCT_REQUIRED_FIELDS - set(frontmatter)
+    for field in sorted(missing):
+        issues.append(
+            WikiLintIssue("error", rel_file, f"derived_product missing field: {field}")
+        )
+
+    reuse_status = str(frontmatter.get("reuse_status", ""))
+    if reuse_status and reuse_status not in VALID_REUSE_STATUS:
+        issues.append(
+            WikiLintIssue("error", rel_file, f"invalid reuse_status: {reuse_status}")
+        )
+
+    for field in ("produced_by_projects", "used_by_projects", "review_routes"):
+        for project_id in _as_list(frontmatter.get(field)):
+            if project_id not in project_ids:
+                issues.append(
+                    WikiLintIssue(
+                        "error",
+                        rel_file,
+                        f"unknown {field} project: {project_id}",
+                    )
+                )
+
+    artifacts = frontmatter.get("output_artifacts")
+    if "output_artifacts" in frontmatter and not _as_artifact_list(artifacts):
+        issues.append(
+            WikiLintIssue(
+                "error",
+                rel_file,
+                "derived_product output_artifacts must list at least one artifact",
+            )
+        )
+    for artifact in _as_artifact_list(artifacts):
+        path = artifact.get("path", "")
+        if not path or _is_external_artifact(path):
+            continue
+        if not (repo / path).exists():
+            issues.append(
+                WikiLintIssue("error", rel_file, f"missing output artifact: {path}")
+            )
+
+
+def _check_conflict_metadata(
+    frontmatter: dict,
+    page_ids: dict[str, _RawWikiPage],
+    raw_pages: list[_RawWikiPage],
+    rel_file: str,
+    issues: list[WikiLintIssue],
+) -> None:
+    missing = CONFLICT_REQUIRED_FIELDS - set(frontmatter)
+    for field in sorted(missing):
+        issues.append(WikiLintIssue("error", rel_file, f"conflict missing field: {field}"))
+
+    status = str(frontmatter.get("conflict_status", ""))
+    if status and status not in VALID_CONFLICT_STATUS:
+        issues.append(WikiLintIssue("error", rel_file, f"invalid conflict_status: {status}"))
+
+    sides = frontmatter.get("evidence_sides")
+    if not isinstance(sides, list) or len(sides) < 2:
+        issues.append(
+            WikiLintIssue(
+                "error",
+                rel_file,
+                "conflict pages require at least two evidence_sides",
+            )
+        )
+    else:
+        for idx, side in enumerate(sides, start=1):
+            if not isinstance(side, dict) or not side.get("support"):
+                issues.append(
+                    WikiLintIssue(
+                        "error",
+                        rel_file,
+                        f"conflict evidence_sides[{idx}] needs support text",
+                    )
+                )
+
+    resolving_work = frontmatter.get("resolving_work")
+    if not isinstance(resolving_work, list) or not resolving_work:
+        issues.append(
+            WikiLintIssue(
+                "error",
+                rel_file,
+                "conflict pages require resolving_work entries",
+            )
+        )
+
+    known_ids = set(page_ids) | {
+        str(page.frontmatter.get("id"))
+        for page in raw_pages
+        if page.frontmatter.get("id")
+    }
+    for affected_id in _as_list(frontmatter.get("affected_pages")):
+        if affected_id not in known_ids:
+            issues.append(
+                WikiLintIssue(
+                    "error",
+                    rel_file,
+                    f"unknown affected Atlas page id: {affected_id}",
+                )
+            )
+
+
+def _as_artifact_list(value) -> list[dict[str, str]]:
+    if value is None:
+        return []
+    items = value if isinstance(value, list) else [value]
+    artifacts = []
+    for item in items:
+        if isinstance(item, dict):
+            artifacts.append({"path": str(item.get("path", ""))})
+        else:
+            artifacts.append({"path": str(item)})
+    return artifacts
+
+
+def _is_external_artifact(path: str) -> bool:
+    return path.startswith(
+        ("https://", "http://", "minio://", "s3://", "external:", "planned:")
+    )
 
 
 def _markdown_links(markdown_body: str) -> list[str]:

@@ -810,6 +810,28 @@ class TestParseWiki:
         assert "/atlas/claims/example" in page.body
         assert "/wiki/claims/example" not in page.body
 
+    def test_parses_conflict_page_type_and_metadata(self, tmp_repo):
+        self._write_wiki_page(
+            tmp_repo,
+            rel_path="conflicts/example.md",
+            id="conflict.example",
+            title="Example Conflict",
+            type="conflict",
+            source_projects=["alpha_project", "beta_project"],
+            related_pages=["topic.example"],
+            conflict_status="unresolved",
+            affected_pages=["topic.example"],
+            evidence_sides=[
+                {"side": "one", "support": "One side."},
+                {"side": "two", "support": "Other side."},
+            ],
+            resolving_work=["Run a resolving analysis."],
+        )
+        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
+        page = wiki.get_page_by_id("conflict.example")
+        assert page.type == "conflict"
+        assert page.metadata["conflict_status"] == "unresolved"
+
 
 # ---------------------------------------------------------------------------
 # RepositoryParser._parse_row_counts

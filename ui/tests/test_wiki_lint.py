@@ -26,7 +26,7 @@ def _setup_repo(tmp_path: Path) -> Path:
 
 
 def _write_section_index_pages(tmp_path: Path) -> None:
-    for section in ("topics", "data", "claims", "directions", "hypotheses"):
+    for section in ("topics", "data", "claims", "conflicts", "directions", "hypotheses"):
         _write_page(
             tmp_path,
             f"{section}/index.md",
@@ -75,7 +75,7 @@ def _write_page(tmp_path: Path, rel_path: str, **overrides) -> Path:
         "confidence": "medium",
         "generated_by": "pytest",
         "last_reviewed": "2026-04-28",
-        "related_pages": [],
+        "related_pages": ["claims.index"],
     }
     frontmatter.update(overrides)
     yaml_text = "\n".join(
@@ -199,6 +199,85 @@ def test_evidence_metadata_required_for_reusable_pages(tmp_path):
     )
     messages = "\n".join(issue.message for issue in lint_wiki(repo))
     assert "claim pages require evidence metadata" not in messages
+
+
+def test_derived_product_reuse_metadata_is_validated(tmp_path):
+    repo = _setup_repo(tmp_path)
+    _write_page(
+        repo,
+        "data/derived-products/example.md",
+        id="data.example-product",
+        title="Example Product",
+        type="derived_product",
+        evidence=[{"source": "alpha_project", "support": "Test support."}],
+    )
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "derived_product missing field: product_kind" in messages
+
+    artifact = repo / "projects" / "alpha_project" / "product.tsv"
+    artifact.write_text("id\tvalue\n")
+    _write_page(
+        repo,
+        "data/derived-products/example.md",
+        id="data.example-product",
+        title="Example Product",
+        type="derived_product",
+        product_kind="score",
+        reuse_status="promoted",
+        produced_by_projects=["alpha_project"],
+        used_by_projects=["beta_project"],
+        output_artifacts=[{"path": "projects/alpha_project/product.tsv"}],
+        review_routes=["alpha_project"],
+        evidence=[{"source": "alpha_project", "support": "Test support."}],
+    )
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "derived_product missing field" not in messages
+    assert "missing output artifact" not in messages
+
+
+def test_conflict_pages_require_multiple_sides_and_resolution(tmp_path):
+    repo = _setup_repo(tmp_path)
+    _write_page(repo, "topics/example.md", id="topic.example")
+    _write_page(
+        repo,
+        "conflicts/example.md",
+        id="conflict.example",
+        title="Example Conflict",
+        type="conflict",
+        source_projects=["alpha_project", "beta_project"],
+        related_pages=["topic.example"],
+        affected_pages=["topic.example"],
+        conflict_status="unresolved",
+        evidence_sides=[{"side": "a", "support": "Only one side."}],
+        resolving_work=[],
+    )
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "conflict pages require at least two evidence_sides" in messages
+    assert "conflict pages require resolving_work entries" in messages
+
+    _write_page(
+        repo,
+        "conflicts/example.md",
+        id="conflict.example",
+        title="Example Conflict",
+        type="conflict",
+        source_projects=["alpha_project", "beta_project"],
+        related_pages=["topic.example"],
+        affected_pages=["topic.example"],
+        conflict_status="unresolved",
+        evidence_sides=[
+            {"side": "a", "support": "A"},
+            {"side": "b", "support": "B"},
+        ],
+        resolving_work=["Run a resolving analysis."],
+    )
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "conflict pages require at least two evidence_sides" not in messages
+    assert "conflict pages require resolving_work entries" not in messages
 
 
 def test_missing_section_index_is_reported(tmp_path):

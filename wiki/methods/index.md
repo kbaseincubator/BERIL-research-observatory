@@ -17,6 +17,7 @@ related_pages:
   - method.progressive-disclosure
   - method.evidence-grading
   - method.agent-maintenance
+  - method.reuse-and-tension-workflow
 order: 1
 ---
 

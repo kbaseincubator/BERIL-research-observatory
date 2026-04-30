@@ -39,4 +39,15 @@ def test_inventory_markdown_and_json_are_serializable(repository_data):
     markdown = inventory_to_markdown(inventory)
 
     assert "Atlas Inventory" in markdown
+    assert "Reuse edges" in markdown
     assert json.loads(json.dumps(inventory))["counts"]["collections"] == 1
+
+
+def test_inventory_reports_reuse_and_conflict_metrics(repository_data):
+    inventory = build_wiki_inventory(repository_data)
+
+    assert inventory["counts"]["derived_product_pages"] == 1
+    assert inventory["counts"]["derived_products_with_consumers"] == 1
+    assert inventory["counts"]["conflict_pages"] == 1
+    assert inventory["counts"]["unresolved_conflicts"] == 1
+    assert inventory["counts"]["reuse_edges"] > 0

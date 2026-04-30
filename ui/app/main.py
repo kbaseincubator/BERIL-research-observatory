@@ -26,6 +26,15 @@ from app.filters import (
     slugify_filter,
     strip_images_filter,
 )
+from app.atlas_graph import (
+    build_derived_product_context,
+    build_reuse_overview,
+    build_topic_overview_map,
+    collection_atlas_reuse,
+    conflicts_for_page,
+    project_atlas_reuse,
+    review_routes_for_page,
+)
 
 from .routes.admin import ROUTER_ADMIN
 from .routes.auth import ROUTER_AUTH
@@ -57,6 +66,7 @@ ATLAS_SECTIONS = [
     ("Topics", "topics", "/atlas/topics"),
     ("Data", "data", "/atlas/data"),
     ("Claims", "claims", "/atlas/claims"),
+    ("Tensions", "conflicts", "/atlas/conflicts"),
     ("Directions", "directions", "/atlas/directions"),
     ("Hypotheses", "hypotheses", "/atlas/hypotheses"),
     ("People", "people", "/atlas/people"),
@@ -344,6 +354,7 @@ async def project_detail(
     context["used_by_projects"] = [
         p for p in repo_data.projects if p.id in project.used_by
     ]
+    context["project_atlas_reuse"] = project_atlas_reuse(project.id, repo_data)
 
     return templates.TemplateResponse(request, "projects/detail.html", context)
 
@@ -602,6 +613,7 @@ async def collection_detail(
         for page in repo_data.wiki_index.pages
         if collection_id in page.related_collections
     ]
+    context["collection_atlas_reuse"] = collection_atlas_reuse(collection_id, repo_data)
 
     return templates.TemplateResponse(request, "collections/detail.html", context)
 
@@ -714,6 +726,7 @@ def _build_atlas_maps(repo_data: RepositoryData, wiki_inventory: dict[str, Any])
     directions = wiki_index.pages_by_type("direction")
     hypotheses = wiki_index.pages_by_type("hypothesis")
     derived_products = wiki_index.pages_by_type("derived_product")
+    conflicts = wiki_index.pages_by_type("conflict")
 
     collection_use = {
         collection.id: sum(
@@ -809,6 +822,12 @@ def _build_atlas_maps(repo_data: RepositoryData, wiki_inventory: dict[str, Any])
             "items": _page_refs(derived_products, limit=6),
             "fallback": f"{len(derived_products)} derived products are currently tracked from {len(data_pages)} data pages.",
         },
+        {
+            "title": "Tension and Resolution",
+            "claim": "Apparent conflicts are preserved as reviewable objects with evidence on multiple sides and resolving work.",
+            "items": _page_refs(conflicts, limit=6),
+            "fallback": f"{len(conflicts)} tension pages track where synthesis needs reconciliation.",
+        },
     ]
 
 
@@ -838,6 +857,8 @@ def _atlas_landing_context(repo_data: RepositoryData, context: dict) -> dict:
     claim_pages = wiki_index.pages_by_type("claim")
     direction_pages = wiki_index.pages_by_type("direction")
     hypothesis_pages = wiki_index.pages_by_type("hypothesis")
+    conflict_pages = wiki_index.pages_by_type("conflict")
+    reuse_overview = build_reuse_overview(repo_data)
     wiki_inventory = build_wiki_inventory(repo_data)
     context.update(
         {
@@ -852,6 +873,8 @@ def _atlas_landing_context(repo_data: RepositoryData, context: dict) -> dict:
             "claim_pages": claim_pages,
             "direction_pages": direction_pages,
             "hypothesis_pages": hypothesis_pages,
+            "conflict_pages": conflict_pages,
+            "reuse_overview": reuse_overview,
             "research_primitive_pages": (
                 claim_pages + direction_pages + hypothesis_pages
             ),
@@ -915,6 +938,15 @@ async def atlas_page(
         for p in (wiki_index.get_page_by_id(pid) for pid in page.related_pages)
         if p
     ]
+    derived_product_context = (
+        build_derived_product_context(page, repo_data)
+        if page.type == "derived_product"
+        else None
+    )
+    topic_overview_map = build_topic_overview_map(page, repo_data)
+    page_conflicts = conflicts_for_page(page, repo_data)
+    page_review_routes = review_routes_for_page(page, repo_data)
+    reuse_overview = build_reuse_overview(repo_data)
 
     context.update(
         {
@@ -924,6 +956,11 @@ async def atlas_page(
             "section_pages": wiki_index.pages_by_section(page.section),
             "related_pages": related_pages,
             "related_page_groups": _related_page_groups(related_pages),
+            "derived_product_context": derived_product_context,
+            "topic_overview_map": topic_overview_map,
+            "page_conflicts": page_conflicts,
+            "page_review_routes": page_review_routes,
+            "reuse_overview": reuse_overview,
             "source_projects": source_projects,
             "source_project_ids": page.source_projects,
             "missing_source_project_ids": [

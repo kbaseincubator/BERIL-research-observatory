@@ -24,6 +24,9 @@ last_reviewed: 2026-04-28
 related_pages:
   - claim.ecotype-analysis-needs-rigor-gates
   - hypothesis.ecotype-batch-correction
+  - data.ecotype-assignments
+  - data.cf-formulation-scores
+  - conflict.ecotype-translation-leakage
   - topic.mobile-elements-phage
 order: 60
 ---
@@ -63,6 +66,10 @@ The discoveries log records that taxonomic relative-abundance spaces and absolut
 - Same-axis feature leakage can inflate within-ecotype target lists.
 - Cross-cohort metabolomics requires explicit batch correction.
 - Species-level targeting can damage beneficial strain or pathway functions.
+
+## Open Tensions
+
+- [Ecotype labels versus translational leakage](/atlas/conflicts/ecotype-translation-leakage) records why clinical or target claims need stronger gates than exploratory stratification.
 
 ## Reusable Claims
 

@@ -21,6 +21,25 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.microbial-ecotypes-environment
   - topic.host-microbiome-translation
+  - conflict.ecotype-translation-leakage
+product_kind: label_set
+reuse_status: promoted
+produced_by_projects:
+  - ecotype_analysis
+  - ecotype_env_reanalysis
+used_by_projects:
+  - ibd_phage_targeting
+  - plant_microbiome_ecotypes
+output_artifacts:
+  - path: projects/ecotype_analysis/data/ecotype_correlation_results.csv
+    description: Ecotype-environment correlation results used as the reusable label/evidence substrate.
+    status: table
+  - path: projects/ecotype_env_reanalysis/data/species_env_classification.csv
+    description: Environmental reanalysis classifies species context for safer label reuse.
+    status: table
+review_routes:
+  - ecotype_analysis
+  - ecotype_env_reanalysis
 evidence:
   - source: ecotype_analysis
     support: Ecotype projects generate reusable labels that compress population or community structure for downstream tests.

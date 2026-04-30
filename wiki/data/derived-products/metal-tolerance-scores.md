@@ -21,6 +21,26 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.critical-minerals
   - direction.rare-earth-cross-metal-inference
+  - conflict.metal-specificity-vs-general-stress
+product_kind: score
+reuse_status: promoted
+produced_by_projects:
+  - metal_fitness_atlas
+  - metal_specificity
+used_by_projects:
+  - bacdive_metal_validation
+  - bacdive_phenotype_metal_tolerance
+  - metal_cross_resistance
+output_artifacts:
+  - path: projects/metal_fitness_atlas/figures/species_metal_score_distribution.png
+    description: Species-level score distribution used to summarize reusable tolerance signal.
+    status: figure
+  - path: projects/metal_fitness_atlas/figures/bioleaching_species_scores.png
+    description: Candidate taxa scored for bioleaching and biorecovery relevance.
+    status: figure
+review_routes:
+  - metal_fitness_atlas
+  - metal_specificity
 evidence:
   - source: metal_fitness_atlas
     support: Metal fitness screens provide the primary gene-condition signal used to derive tolerance scores.

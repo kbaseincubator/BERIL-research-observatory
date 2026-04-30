@@ -110,6 +110,63 @@
         margin-bottom: 0;
     }
 
+    .atlas-topic-map,
+    .atlas-special-panel {
+        background: var(--surface-raised);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-md);
+        margin-bottom: var(--space-6);
+        padding: var(--space-5);
+    }
+
+    .atlas-map-columns {
+        display: grid;
+        gap: var(--space-3);
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        margin-top: var(--space-4);
+    }
+
+    .atlas-map-column {
+        background: var(--surface-overlay);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-sm);
+        padding: var(--space-3);
+    }
+
+    .atlas-map-column h4,
+    .atlas-special-panel h3 {
+        font-size: 0.9rem;
+        letter-spacing: 0;
+        margin-bottom: var(--space-3);
+    }
+
+    .atlas-map-column a,
+    .atlas-panel-link {
+        display: block;
+        font-size: 0.82rem;
+        margin-bottom: var(--space-2);
+        text-decoration: none;
+    }
+
+    .atlas-panel-grid {
+        display: grid;
+        gap: var(--space-3);
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+    .atlas-mini-card {
+        background: var(--surface-overlay);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-sm);
+        padding: var(--space-3);
+    }
+
+    .atlas-artifact {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        overflow-wrap: anywhere;
+    }
+
     .page-title,
     .markdown-content h1,
     .markdown-content h2,
@@ -178,6 +235,131 @@
             </div>
         </div>
 
+        {% if topic_overview_map %}
+        <section class="atlas-topic-map" aria-label="Generated topic overview map">
+            <div class="card-header">
+                <div>
+                    <h2 style="margin-bottom: var(--space-1);">{{ topic_overview_map.title }}</h2>
+                    <p class="text-small text-muted" style="margin-bottom: 0;">{{ topic_overview_map.summary }}</p>
+                </div>
+                <span class="badge">generated map</span>
+            </div>
+            <div class="atlas-map-columns">
+                {% for column in topic_overview_map.columns %}
+                <div class="atlas-map-column">
+                    <h4>{{ column.label }}</h4>
+                    {% for item in column["items"][:6] %}
+                    <a href="{{ item.url }}">{{ item.title }}</a>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if page_conflicts %}
+        <section class="atlas-special-panel">
+            <h3>Open Tensions</h3>
+            <div class="atlas-panel-grid">
+                {% for conflict in page_conflicts %}
+                <a href="{{ conflict.url }}" class="atlas-mini-card" style="text-decoration: none;">
+                    <span class="atlas-type">{{ conflict.metadata.get("conflict_status", "unresolved") | replace("_", " ") }}</span>
+                    <h4 style="margin: var(--space-2) 0; color: var(--text-primary);">{{ conflict.title }}</h4>
+                    <p class="text-small text-muted" style="margin-bottom: 0;">{{ conflict.summary }}</p>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if derived_product_context %}
+        <section class="atlas-special-panel">
+            <div class="card-header" style="margin-bottom: var(--space-4);">
+                <h3 style="margin-bottom: 0;">Reuse Profile</h3>
+                <span class="badge">{{ derived_product_context.reuse_status | replace("_", " ") }}</span>
+            </div>
+            <div class="atlas-panel-grid">
+                <div class="atlas-mini-card">
+                    <h4>Produced By</h4>
+                    {% for project in derived_product_context.produced_by_projects %}
+                    <a href="/projects/{{ project.id }}" class="atlas-panel-link">{{ project.title | strip_images | markdown_inline }}</a>
+                    {% else %}
+                    <span class="text-small text-muted">No producing project declared.</span>
+                    {% endfor %}
+                </div>
+                <div class="atlas-mini-card">
+                    <h4>Reused By</h4>
+                    {% for project in derived_product_context.used_by_projects %}
+                    <a href="/projects/{{ project.id }}" class="atlas-panel-link">{{ project.title | strip_images | markdown_inline }}</a>
+                    {% else %}
+                    <span class="text-small text-muted">No downstream project declared yet.</span>
+                    {% endfor %}
+                </div>
+                <div class="atlas-mini-card">
+                    <h4>Artifacts</h4>
+                    {% for artifact in derived_product_context.output_artifacts[:5] %}
+                    <div class="atlas-artifact">{{ artifact.path }}</div>
+                    {% else %}
+                    <span class="text-small text-muted">No output artifact declared.</span>
+                    {% endfor %}
+                </div>
+                <div class="atlas-mini-card">
+                    <h4>Review Routes</h4>
+                    {% for route in derived_product_context.review_routes %}
+                    {% if route.project %}
+                    <a href="/projects/{{ route.project_id }}" class="atlas-panel-link">{{ route.project.title | strip_images | markdown_inline }}</a>
+                    {% else %}
+                    <span class="text-small text-muted">{{ route.project_id }}</span>
+                    {% endif %}
+                    {% else %}
+                    <span class="text-small text-muted">No review route declared.</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if page.path == "data/reuse" %}
+        <section class="atlas-special-panel">
+            <h3>Reuse Graph Snapshot</h3>
+            <div class="atlas-panel-grid" style="margin-bottom: var(--space-4);">
+                <div class="atlas-mini-card"><strong>{{ reuse_overview.counts.edges }}</strong><br><span class="text-small text-muted">reuse/provenance edges</span></div>
+                <div class="atlas-mini-card"><strong>{{ reuse_overview.counts.derived_products }}</strong><br><span class="text-small text-muted">derived products</span></div>
+                <div class="atlas-mini-card"><strong>{{ reuse_overview.counts.reused_products }}</strong><br><span class="text-small text-muted">products with consumers</span></div>
+                <div class="atlas-mini-card"><strong>{{ reuse_overview.counts.products_without_consumers }}</strong><br><span class="text-small text-muted">products needing downstream reuse</span></div>
+            </div>
+            <div class="atlas-panel-grid">
+                {% for product in reuse_overview.products[:9] %}
+                <a href="{{ product.page.url }}" class="atlas-mini-card" style="text-decoration: none;">
+                    <span class="atlas-type">{{ product.reuse_status }}</span>
+                    <h4 style="margin: var(--space-2) 0; color: var(--text-primary);">{{ product.page.title }}</h4>
+                    <p class="text-small text-muted" style="margin-bottom: 0;">{{ product.used_by_projects|length }} downstream projects</p>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
+        {% if page.section == "people" %}
+        <section class="atlas-special-panel">
+            <h3>Review Routing Snapshot</h3>
+            <div class="atlas-panel-grid">
+                {% for product in reuse_overview.unowned_products[:6] %}
+                <a href="{{ product.page.url }}" class="atlas-mini-card" style="text-decoration: none;">
+                    <span class="atlas-type">needs owner</span>
+                    <h4 style="margin: var(--space-2) 0; color: var(--text-primary);">{{ product.page.title }}</h4>
+                    <p class="text-small text-muted" style="margin-bottom: 0;">No producing project or review route is resolved.</p>
+                </a>
+                {% else %}
+                <div class="atlas-mini-card">
+                    <strong>All tracked products have a review route.</strong>
+                    <p class="text-small text-muted" style="margin-bottom: 0;">Routes are derived from declared project ownership.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
         <div class="markdown-content">
             {{ page.body | markdown }}
         </div>
@@ -227,6 +409,17 @@
                 {% else %}
                 <span class="text-muted text-small">No related pages declared.</span>
                 {% endfor %}
+            </div>
+
+            <div class="atlas-provenance-panel">
+                <h3>Review Routes</h3>
+                <div class="atlas-chip-list">
+                    {% for route in page_review_routes[:8] %}
+                    <a href="/projects/{{ route.project_id }}" class="badge">{{ route.reviewer_name }}</a>
+                    {% else %}
+                    <span class="text-muted text-small">No review routes resolved.</span>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </article>

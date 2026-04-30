@@ -20,6 +20,7 @@ generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
   - direction.metal-amr-co-selection
+  - conflict.metal-amr-co-selection-readiness
 evidence:
   - source: amr_environmental_resistome
     support: Environmental AMR composition provides the resistance-response side of the test.

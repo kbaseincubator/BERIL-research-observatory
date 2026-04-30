@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from .atlas_graph import build_atlas_reuse_edges, build_derived_product_contexts
 from .models import RepositoryData, WikiPage
 
 
@@ -50,6 +51,26 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
         page for page in evidence_required_pages if _has_evidence_metadata(page)
     ]
     derived_product_pages = pages_by_type.get("derived_product", [])
+    conflict_pages = pages_by_type.get("conflict", [])
+    reuse_edges = build_atlas_reuse_edges(repo_data)
+    derived_product_contexts = build_derived_product_contexts(repo_data)
+    derived_products_with_consumers = [
+        product for product in derived_product_contexts if product["used_by_projects"]
+    ]
+    derived_products_without_consumers = [
+        product for product in derived_product_contexts if not product["used_by_projects"]
+    ]
+    derived_products_without_owners = [
+        product
+        for product in derived_product_contexts
+        if not product["produced_by_projects"] and not product["review_routes"]
+    ]
+    unresolved_conflicts = [
+        page
+        for page in conflict_pages
+        if str(page.metadata.get("conflict_status", "unresolved"))
+        in {"unresolved", "partially_resolved"}
+    ]
     topic_pages = pages_by_type.get("topic", [])
     deep_topic_pages = [
         page
@@ -94,14 +115,38 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
             "low_confidence_pages": len(low_confidence_pages),
             "orphaned_pages": len(orphaned_pages),
             "derived_product_pages": len(derived_product_pages),
+            "derived_products_with_consumers": len(derived_products_with_consumers),
+            "derived_products_without_consumers": len(derived_products_without_consumers),
+            "derived_products_without_owners": len(derived_products_without_owners),
+            "reuse_edges": len(reuse_edges),
+            "conflict_pages": len(conflict_pages),
+            "unresolved_conflicts": len(unresolved_conflicts),
             "evidence_required_pages": len(evidence_required_pages),
             "evidence_backed_pages": len(evidence_backed_pages),
             "evidence_coverage": f"{len(evidence_backed_pages)}/{len(evidence_required_pages)}",
             "deep_topic_pages": len(deep_topic_pages),
+            "topic_visual_coverage": f"{len(deep_topic_pages)}/{len(topic_pages)}",
         },
         "missing_collection_pages": sorted(collection_ids - covered_collections),
         "low_confidence_pages": [_page_ref(page) for page in low_confidence_pages],
         "orphaned_pages": [_page_ref(page) for page in orphaned_pages],
+        "derived_products_without_consumers": [
+            _page_ref(product["page"]) for product in derived_products_without_consumers
+        ],
+        "derived_products_without_owners": [
+            _page_ref(product["page"]) for product in derived_products_without_owners
+        ],
+        "unresolved_conflicts": [_page_ref(page) for page in unresolved_conflicts],
+        "reuse_edges": [
+            {
+                "source_type": edge.source_type,
+                "source_id": edge.source_id,
+                "target_type": edge.target_type,
+                "target_id": edge.target_id,
+                "relationship": edge.relationship,
+            }
+            for edge in reuse_edges
+        ],
         "metrics_to_watch": [
             {
                 "label": "Collection Coverage",
@@ -134,6 +179,16 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
                 "detail": "Claims, directions, hypotheses, and derived products with evidence metadata.",
             },
             {
+                "label": "Derived Product Reuse",
+                "value": f"{len(derived_products_with_consumers)}/{len(derived_product_pages)}",
+                "detail": "Promoted derived products with at least one declared downstream project.",
+            },
+            {
+                "label": "Unresolved Tensions",
+                "value": len(unresolved_conflicts),
+                "detail": "Conflict pages still needing resolving analysis or experiments.",
+            },
+            {
                 "label": "Topic Drill-Down Depth",
                 "value": f"{len(deep_topic_pages)}/{len(topic_pages)}",
                 "detail": "Topic pages with enough sections and related links to support progressive disclosure.",
@@ -157,6 +212,11 @@ def inventory_to_markdown(inventory: dict[str, Any]) -> str:
         f"- Data type pages: {counts['data_type_pages']}",
         f"- Cross-collection projects: {counts['multi_collection_projects']}",
         f"- Derived product pages: {counts['derived_product_pages']}",
+        f"- Derived products with consumers: {counts['derived_products_with_consumers']}",
+        f"- Derived products without consumers: {counts['derived_products_without_consumers']}",
+        f"- Reuse edges: {counts['reuse_edges']}",
+        f"- Conflict pages: {counts['conflict_pages']}",
+        f"- Unresolved conflicts: {counts['unresolved_conflicts']}",
         f"- Evidence coverage: {counts['evidence_coverage']}",
         f"- Deep topic pages: {counts['deep_topic_pages']}",
         "",

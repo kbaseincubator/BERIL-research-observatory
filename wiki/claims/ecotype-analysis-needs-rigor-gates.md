@@ -20,6 +20,7 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.host-microbiome-translation
   - hypothesis.ecotype-batch-correction
+  - conflict.ecotype-translation-leakage
 evidence:
   - source: ibd_phage_targeting
     support: Target-list collapse under review showed that ecotype-derived translational claims need leakage, null, and confound checks.

@@ -31,6 +31,9 @@ related_pages:
   - hypothesis.lab-field-metal-tolerance
   - data.metal-tolerance-scores
   - data.rare-earth-fitness-gap
+  - conflict.metal-specificity-vs-general-stress
+  - conflict.lab-fitness-field-generalization
+  - conflict.metal-amr-co-selection-readiness
 order: 10
 ---
 
@@ -112,6 +115,12 @@ The valuable next layer is action: ranked gene targets, cross-metal inference fo
 - Locus ID attrition in `metal_specificity` means some model organisms remain under-covered.
 - Counter-ion stress can inflate or redirect apparent metal signals.
 - Field validation depends on metadata quality, especially site chemistry and isolation-context precision.
+
+## Open Tensions
+
+- [Metal specificity versus general stress](/atlas/conflicts/metal-specificity-vs-general-stress) separates true element-specific biology from broad sickness and counter-ion effects.
+- [Lab fitness signals versus field ecology](/atlas/conflicts/lab-fitness-field-generalization) defines what must be validated before field claims become general.
+- [Metal-AMR co-selection readiness](/atlas/conflicts/metal-amr-co-selection-readiness) marks co-selection as a high-value unresolved test rather than a settled result.
 
 ## Drill-Down Path
 

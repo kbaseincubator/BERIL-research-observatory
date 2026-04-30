@@ -372,6 +372,31 @@ class WikiHeading:
 
 
 @dataclass
+class AtlasReuseEdge:
+    """A deterministic reuse/provenance relationship in the Atlas graph."""
+
+    source_type: str
+    source_id: str
+    target_type: str
+    target_id: str
+    relationship: str
+    label: str = ""
+    detail: str = ""
+
+
+@dataclass
+class AtlasReviewRoute:
+    """A suggested human review route derived from explicit project context."""
+
+    page_id: str
+    page_title: str
+    reviewer_id: str
+    reviewer_name: str
+    project_id: str
+    basis: str
+
+
+@dataclass
 class WikiPage:
     """A markdown Atlas page with structured frontmatter."""
 

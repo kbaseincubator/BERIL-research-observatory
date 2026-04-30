@@ -33,7 +33,10 @@ The Atlas should become more useful as the observatory grows. Maintenance metric
 - **Caveat load**: low-confidence pages that need review before supporting major claims.
 - **Evidence coverage**: claims, directions, hypotheses, and derived products with evidence metadata.
 - **Topic drill-down depth**: topic pages with enough structure and links to support progressive disclosure.
+- **Derived product reuse**: promoted derived products with at least one declared downstream project.
+- **Unresolved tensions**: conflict pages still requiring resolving analysis or experiments.
+- **Topic visual coverage**: topic pages with enough metadata to render generated overview maps.
 
 ## How Agents Should Use This
 
-Agents should run `python -m app.wiki_inventory .. --format markdown` before proposing updates. The Atlas inventory report should guide whether the next edit should add a collection page, improve a data-type lens, record a missing join, or promote a reusable derived product.
+Agents should run `python -m app.wiki_inventory .. --format markdown` before proposing updates. The Atlas inventory report should guide whether the next edit should add a collection page, improve a data-type lens, record a missing join, promote a reusable derived product, or document a tension that needs resolving work.

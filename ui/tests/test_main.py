@@ -177,7 +177,14 @@ class TestAtlasRoutes:
         assert response.headers["location"] == "/atlas"
 
     def test_atlas_section_indexes_200(self, client):
-        for path in ("/atlas/topics", "/atlas/data", "/atlas/claims", "/atlas/directions", "/atlas/hypotheses"):
+        for path in (
+            "/atlas/topics",
+            "/atlas/data",
+            "/atlas/claims",
+            "/atlas/conflicts",
+            "/atlas/directions",
+            "/atlas/hypotheses",
+        ):
             response = client.get(path)
             assert response.status_code == 200
 
@@ -188,11 +195,18 @@ class TestAtlasRoutes:
         assert "On This Page" in response.text
         assert "/projects/test_project" in response.text
         assert "/collections/kbase_ke_pangenome" in response.text
+        assert "Generated topic overview map" in response.text
 
     def test_legacy_wiki_page_redirects(self, client):
         response = client.get("/wiki/topics/test", follow_redirects=False)
         assert response.status_code == 301
         assert response.headers["location"] == "/atlas/topics/test"
+
+    def test_atlas_reuse_page_200(self, client):
+        response = client.get("/atlas/data/reuse")
+        assert response.status_code == 200
+        assert "Reuse Graph Snapshot" in response.text
+        assert "Test Derived Product" in response.text
 
     def test_missing_atlas_page_404(self, client):
         response = client.get("/atlas/topics/missing")

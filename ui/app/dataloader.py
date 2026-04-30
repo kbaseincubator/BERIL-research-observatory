@@ -227,6 +227,7 @@ class RepositoryParser:
         "derived_product",
         "join_recipe",
         "data_gap",
+        "conflict",
         "claim",
         "direction",
         "hypothesis",
