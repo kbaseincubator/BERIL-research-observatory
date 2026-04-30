@@ -21,7 +21,7 @@ Within the GTDB phylum **Bacillota_B** (which contains *Desulfosporosinus*, the 
 
 ### H3 — Iron-reduction capacity (clay-project H3 IR-side correction)
 - **H0**: Deep-clay Bacillota_B do not carry multi-heme cytochrome iron-reduction potential at higher rates than soil baseline.
-- **H1**: Multi-heme cytochrome content (PFAM PF14537 Cytochrom_NNT + per-protein heme-binding motif `CXXCH` count ≥4) is enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B. **This corrects the clay_confined_subsurface H3 IR-side, which used K07811/K17324/K17323 — KOs that turn out to be TMAO reductase, glycerol ABC, and glycerol permease respectively, not iron-reduction markers.**
+- **H1**: Multi-heme cytochrome content is enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B. Detection method (v1.2 update — PF14537 confirmed silently absent from `bakta_pfam_domains`, the documented `plant_microbiome_ecotypes` pitfall): use **PF02085 Cytochrom_CIII** (3,203 hits in `bakta_pfam_domains`, multi-heme c-type) + **PF22678 Cytochrom_c_NrfB-like** (388 hits, multi-heme nitrite reductase) + **CXXCH heme-binding motif count ≥4 in `gene_cluster.faa_sequence`** (the canonical method since Methé et al. 2003 *Geobacter*). A genome scores positive for "multi-heme cytochrome IR potential" if it carries ≥1 cluster matching any of these three signals. **This corrects the clay_confined_subsurface H3 IR-side, which used K07811/K17324/K17323 — KOs that turn out to be TMAO reductase, glycerol ABC, and glycerol permease respectively, not iron-reduction markers.**
 
 ## Literature Context
 
@@ -47,9 +47,9 @@ Sources:
 
 Random sample from `kbase_ke_pangenome.gtdb_taxonomy_r214v1` filtered to `phylum = 'p__Bacillota_B'` joined to soil/sediment biosamples in `ncbi_env`. Excludes any clay-keyword-mentioning biosamples to avoid overlap with anchor.
 
-### Pangenome scale check
+### Pangenome scale check (v1.2 update)
 
-Quick `COUNT(*)` during plan-writing: BERDL pangenome contains roughly **6,700 Bacillota_B genomes** across all habitats. Filtering to soil/sediment-isolated gives the parent population for the baseline draw. NB01 will confirm exact counts.
+`COUNT(*)` confirmed at plan-revision time: BERDL pangenome contains exactly **334 Bacillota_B genomes** across all habitats — much smaller than the 6,700 estimate in v1.1 (which conflated multiple Firmicutes-derived phyla). With 5 known Mont Terri Opalinus Bacillota_B + BacDive expansion (~10–20 expected from clay sample_type × Bacillota_B genera) + a phylum-internal soil baseline (whatever fraction of the remaining ~310 are soil/sediment-isolated), the cohort sizes are tighter than originally planned. The cohort-size fallback in NB01 is now load-bearing rather than a sanity check.
 
 ## Query Strategy
 
@@ -90,11 +90,11 @@ All Spark queries (NB01 universe assembly, NB02 cluster-presence, NB04 cluster a
 
 ## Analysis Plan
 
-### NB01 — Bacillota_B universe + cohort assembly + Phase 1 data-availability gate (Spark)
-- **Goal**: Pull all Bacillota_B genomes from BERDL pangenome with QC + isolation_source. Identify deep-clay anchor (incl. BacDive expansion) and phylum-matched soil-baseline. **Also validate that `bakta_pfam_domains` actually contains PF14537 (Cytochrom_NNT) entries before NB06 commits to using it** — the `bakta_pfam_domains` "silent absence" pitfall (12/22 marker Pfams missing per `plant_microbiome_ecotypes` finding) is documented in `docs/pitfalls.md` and is a precondition for the Phase 1 IR correction.
-- **Inputs**: `gtdb_taxonomy_r214v1`, `genome`, `gtdb_metadata`, `ncbi_env`, `bacdive.isolation` + `taxonomy`, `bakta_pfam_domains` (PF14537 presence check).
-- **Outputs**: `data/bacillota_b_universe.tsv` (~6.7K genomes with metadata), `data/cohort_assignments.tsv` (anchor + baseline tagged), `data/pf14537_availability.tsv` (PF14537 row count + sample organism distribution — gate output for NB06).
-- **Cohort size fallback**: If BacDive linkage yields <10 deep-clay Bacillota_B beyond the 5 from the clay project, expand the anchor by including all clay-mentioning Bacillota_B in `ncbi_env` (relaxing the deep/shallow distinction for Bacillota_B since the within-phylum rate is small). Document the expanded definition in the cohort_assignments output. Minimum viable n=10 anchor for H1 OG-level Fisher tests; if even that isn't reached, document and proceed with descriptive analysis only.
+### NB01 — Bacillota_B universe + cohort assembly + IR-PFAM availability check (Spark)
+- **Goal**: Pull all 334 Bacillota_B genomes from BERDL pangenome with QC + isolation_source. Identify deep-clay anchor (incl. BacDive expansion) and phylum-matched soil-baseline. **Confirm that the IR-detection PFAMs we plan to use in NB06 (PF02085 Cytochrom_CIII, PF22678 Cytochrom_c_NrfB-like) are present in `bakta_pfam_domains` for Bacillota_B genomes specifically** (we verified the table-level row counts during plan-writing; NB01 confirms within-phylum availability so we don't run NB06 on a phylum where these PFAMs happen to also be silently absent).
+- **Inputs**: `gtdb_taxonomy_r214v1`, `genome`, `gtdb_metadata`, `ncbi_env`, `bacdive.isolation` + `taxonomy`, `bakta_pfam_domains` (PF02085 + PF22678 within-Bacillota_B count).
+- **Outputs**: `data/bacillota_b_universe.tsv` (334 genomes with metadata), `data/cohort_assignments.tsv` (anchor + baseline tagged), `data/ir_pfam_availability.tsv` (Bacillota_B-specific PF02085 and PF22678 row counts — gate output for NB06).
+- **Cohort size fallback**: With only 334 Bacillota_B genomes total, the soil-baseline draw is bounded above by however many soil/sediment-isolated genomes exist in this universe. If BacDive linkage yields <10 deep-clay Bacillota_B beyond the 5 from the clay project, expand the anchor by including all clay-mentioning Bacillota_B in `ncbi_env` (relaxing the deep/shallow distinction). Minimum viable n=10 anchor for H1 OG-level Fisher tests; if even that isn't reached, document and proceed with descriptive analysis only.
 
 ### NB02 — Genome × eggNOG-OG presence matrix (Spark + local)
 - **Goal**: For each cohort genome (anchor + baseline), pull its full set of `gene_cluster_id`s via `gene_genecluster_junction`, then map each cluster to its `eggNOG_OGs` value in `eggnog_mapper_annotations`. Aggregate to a sparse genome × OG boolean matrix (one row per (genome_id, og_id) presence).
@@ -114,12 +114,12 @@ All Spark queries (NB01 universe assembly, NB02 cluster-presence, NB04 cluster a
 - **Outputs**: `data/h2_compactness.tsv`, `figures/h2_genome_size.png`.
 
 ### NB06 — Phase 1 correction: clay_confined_subsurface H3 IR-side (Spark + local)
-- **Goal**: Re-do the clay project's iron-reduction analysis using PFAM PF14537 (Cytochrom_NNT) + heme-binding motif counting, and write a corrected H3 result.
-- **Method**:
-  1. Pull `bakta_pfam_domains` filtered to clay project's anchor + shallow + baseline genome IDs (re-loaded from `clay_confined_subsurface/data/cohort_assignments.tsv` and `baseline_features.parquet`).
-  2. Count PF14537 hits per genome.
-  3. (Optional, if time) For each cluster in the clay cohort, pull `bakta_annotations.amino_acid_sequence`, count `CXXCH` heme-binding motif occurrences per protein. Multi-heme cytochrome candidate = ≥4 CXXCH motifs.
-  4. Re-test the clay H3 hypothesis (deep clay vs shallow vs soil) with the corrected IR markers.
+- **Goal**: Re-do the clay project's iron-reduction analysis using a triple-signal multi-heme cytochrome detector (PF14537 was silently absent so it can't be used; alternatives confirmed available during plan-writing). Write a corrected H3 result.
+- **Method** (v1.2 revised — PF14537 silent absence forced this change):
+  1. Pull `bakta_pfam_domains` rows for PF02085 (Cytochrom_CIII) and PF22678 (Cytochrom_c_NrfB-like), restricted to clay project's anchor + shallow + baseline genome IDs (re-loaded from `clay_confined_subsurface/data/cohort_assignments.tsv` and `baseline_features.parquet`).
+  2. Pull `gene_cluster.faa_sequence` for all clusters belonging to the clay cohort genomes; count `CXXCH` heme-binding motif occurrences per protein in pandas (regex on the protein sequence). Multi-heme cytochrome candidate = ≥4 CXXCH motifs.
+  3. Per-genome IR-corrected score: `has_multiheme_cytochrome` = (genome carries ≥1 cluster with PF02085) OR (≥1 cluster with PF22678) OR (≥1 cluster with ≥4 CXXCH motifs in faa_sequence).
+  4. Re-test the clay H3 hypothesis (deep clay vs shallow vs soil) with the corrected IR marker.
   5. Write `clay_confined_subsurface/REPORT_CORRECTION.md` (or amend their REPORT.md inline) summarizing the correction and revised H3 verdict.
 - **Outputs**: `data/clay_h3_ir_corrected.tsv`, `figures/clay_h3_ir_corrected.png`, plus a commit on the `clay_confined_subsurface` project's branch (not on this branch — separate cherry-pick or PR).
 
@@ -144,6 +144,7 @@ All Spark queries (NB01 universe assembly, NB02 cluster-presence, NB04 cluster a
 
 - **v1** (2026-04-30): Initial plan. Builds on `clay_confined_subsurface` (H1/H2/H3) and `oak_ridge_cultivation_gap` (NB02/NB03 pyhmmer + KOfam annotation pipeline). Phase 1 corrects the clay project's IR marker bug surfaced during oak_ridge synthesis.
 - **v1.1** (2026-04-30): Addressed `PLAN_REVIEW_1.md` feedback. (a) Clarified unit of analysis is **eggNOG OG**, not species-specific `gene_cluster_id`, with explicit explanation of why and the new `eggNOG_OGs` field used for cross-species orthology. (b) Moved PF14537 availability validation from NB06 to NB01 as a precondition gate. (c) Added explicit execution-environment section. (d) Added BROADCAST-temp-view performance pattern for the 1B-row gene/junction join in NB02. (e) Added cohort-size fallback strategy if BacDive linkage yields <10 deep-clay Bacillota_B.
+- **v1.2** (2026-04-30): Pre-NB01 schema probe revealed two important data realities. (a) **PF14537 (Cytochrom_NNT) confirmed silently absent from `bakta_pfam_domains`** (0 hits in entire 132M-row table) — the documented `plant_microbiome_ecotypes` pitfall confirmed for our specific marker. NB06 IR-correction method revised: now uses PF02085 (Cytochrom_CIII, 3,203 hits, multi-heme c-type), PF22678 (Cytochrom_c_NrfB-like, 388 hits, multi-heme nitrite reductase), and CXXCH heme-binding motif counting on `gene_cluster.faa_sequence` (canonical Methé 2003 *Geobacter* method) as a triple-signal detector. (b) **Bacillota_B universe is 334 genomes, not the 6,700 estimated in v1.1** — the larger number conflated multiple Firmicutes-derived phyla. Cohort-size fallback is now load-bearing rather than a sanity check.
 
 ## Authors
 
