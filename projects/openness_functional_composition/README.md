@@ -11,7 +11,7 @@ Do species with open pangenomes show different COG functional enrichment pattern
 
 ## Status
 
-In Progress -- notebooks created, awaiting execution on BERDL JupyterHub.
+Analysis Complete -- H0 not rejected. The two-speed genome is universal and independent of pangenome openness. See [REPORT.md](REPORT.md).
 
 ## Overview
 

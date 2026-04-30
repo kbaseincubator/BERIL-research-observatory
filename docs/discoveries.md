@@ -8,6 +8,9 @@ Periodically refactor stable insights into the appropriate structured doc (schem
 
 ## 2026-04
 
+### [openness_functional_composition] The two-speed genome is universal and independent of pangenome openness
+
+The universal COG enrichment pattern (L +10.88%, V +2.83% in novel genes; J -4.65%, F -2.09% in core) from `cog_analysis` does NOT scale with pangenome openness. Across 40 species in 4 openness quartiles (n=457 species ≥50 genomes), 0/24 COG categories show significant Spearman correlation with openness after Bonferroni correction. L (mobile elements) shows a suggestive positive trend (Q1=0.080 → Q4=0.116, Cohen's d=0.756, p=0.052) that may reach significance at larger sample size, but all other categories are flat. **The functional cargo of HGT is consistent regardless of frequency** — whether a species rarely or constantly acquires foreign genes, the genes that arrive carry the same functional profile. This strengthens the `cog_analysis` finding by ruling out openness as a confound. Caveat: openness strongly correlates with genome count (rho=+0.717), so much of the apparent openness variation may reflect sampling depth.
 ### [ibd_phage_targeting] Cross-cohort m/z-bridge metabolomics requires explicit batch correction; taxonomic-feature ecotypes are naturally cross-cohort-portable
 
 NB09d found that pooling HMP2 + Franzosa metabolomics on the 122 m/z-bridge metabolite panel and clustering with PCA + K-means K=4 produces clusters that **separate completely by cohort, not by diagnosis**. PC1 explains 79 % of total variance and is essentially the cohort batch effect. Cross-cohort LOSO ARI = 0.000 vs the 0.113 taxonomic-ecotype LOSO baseline (NB04f).

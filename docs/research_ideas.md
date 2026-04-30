@@ -231,9 +231,10 @@
 ---
 
 ### [pangenome_openness + cog_analysis] Openness vs Functional Composition
-**Status**: PROPOSED
+**Status**: COMPLETED
 **Priority**: HIGH
 **Effort**: Low (1 week)
+**Results**: H0 not rejected. No COG category shows significant relationship with pangenome openness after Bonferroni correction (0/24 significant). L (mobile elements) shows a suggestive trend: Q1=0.080 → Q4=0.116 (d=0.756, p=0.052) but does not reach significance. V (defense) is flat (rho=+0.066, p=0.686). Metabolic categories (E, C, G) show no difference. The universal "two-speed genome" is truly universal — independent of genome fluidity. Openness strongly confounded with genome count (rho=+0.717). See `projects/openness_functional_composition/`.
 
 **Research Question**: Do "open" vs "closed" pangenomes show different COG enrichment patterns?
 
@@ -252,11 +253,6 @@
 **Dependencies**:
 - Existing: `projects/pangenome_openness/data/pangenome_stats.csv`
 - Can reuse COG analysis pipeline
-
-**Next Steps**:
-1. Merge pangenome stats with COG analysis results
-2. Stratify by openness quartile
-3. Statistical test for trend with openness
 
 ---
 

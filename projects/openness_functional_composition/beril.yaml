@@ -1,0 +1,15 @@
+project_id: openness_functional_composition
+status: analysis
+created_at: "2026-02-19T00:00:00Z"
+last_session_at: "2026-04-30T13:38:00Z"
+branch: projects/ecotype_functional_differentiation
+engine:
+  name: claude
+authors:
+  - name: "Justin Reese"
+    affiliation: "Lawrence Berkeley National Lab"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: false
