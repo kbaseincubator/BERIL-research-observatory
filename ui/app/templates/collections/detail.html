@@ -450,11 +450,11 @@
 </section>
 {% endif %}
 
-{% if related_wiki_pages %}
+{% if related_atlas_pages %}
 <section class="section">
-    <h2>Wiki Pages</h2>
+    <h2>Atlas Pages</h2>
     <div class="grid grid-3">
-        {% for page in related_wiki_pages %}
+        {% for page in related_atlas_pages %}
         <a href="{{ page.url }}" class="card" style="text-decoration: none;">
             <span class="badge">{{ page.type | replace('_', ' ') }}</span>
             <h4 style="margin-top: var(--space-3); margin-bottom: var(--space-2); color: var(--text-primary);">{{ page.title }}</h4>

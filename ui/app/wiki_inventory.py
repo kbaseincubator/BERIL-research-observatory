@@ -1,4 +1,4 @@
-"""Wiki maintenance inventory and coverage reporting."""
+"""Atlas maintenance inventory and coverage reporting."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ from .models import RepositoryData, WikiPage
 
 
 def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
-    """Build deterministic wiki coverage and maintenance signals."""
+    """Build deterministic Atlas coverage and maintenance signals."""
     collection_ids = {collection.id for collection in repo_data.collections}
     tenant_ids = {
         collection.tenant_id
@@ -40,6 +40,21 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
     }
     low_confidence_pages = [
         page for page in pages if page.confidence.lower() in {"low", "very low"}
+    ]
+    evidence_required_pages = [
+        page
+        for page in pages
+        if page.type in {"claim", "direction", "hypothesis", "derived_product"}
+    ]
+    evidence_backed_pages = [
+        page for page in evidence_required_pages if _has_evidence_metadata(page)
+    ]
+    derived_product_pages = pages_by_type.get("derived_product", [])
+    topic_pages = pages_by_type.get("topic", [])
+    deep_topic_pages = [
+        page
+        for page in topic_pages
+        if page.body.count("## ") >= 7 and len(page.related_pages) >= 2
     ]
     orphaned_pages = [
         page
@@ -70,7 +85,7 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
         "counts": {
             "tenants": len(tenant_ids),
             "collections": len(collection_ids),
-            "wiki_pages": len(pages),
+            "atlas_pages": len(pages),
             "data_collection_pages": len(data_collection_pages),
             "covered_collections": len(covered_collections),
             "missing_collection_pages": len(collection_ids - covered_collections),
@@ -78,6 +93,11 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
             "multi_collection_projects": len(multi_collection_projects),
             "low_confidence_pages": len(low_confidence_pages),
             "orphaned_pages": len(orphaned_pages),
+            "derived_product_pages": len(derived_product_pages),
+            "evidence_required_pages": len(evidence_required_pages),
+            "evidence_backed_pages": len(evidence_backed_pages),
+            "evidence_coverage": f"{len(evidence_backed_pages)}/{len(evidence_required_pages)}",
+            "deep_topic_pages": len(deep_topic_pages),
         },
         "missing_collection_pages": sorted(collection_ids - covered_collections),
         "low_confidence_pages": [_page_ref(page) for page in low_confidence_pages],
@@ -86,7 +106,7 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
             {
                 "label": "Collection Coverage",
                 "value": f"{len(covered_collections)}/{len(collection_ids)}",
-                "detail": "Canonical BERDL databases with data_collection wiki pages.",
+                "detail": "Canonical BERDL databases with data_collection Atlas pages.",
             },
             {
                 "label": "Cross-Collection Reuse",
@@ -106,7 +126,17 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
             {
                 "label": "Caveat Load",
                 "value": len(low_confidence_pages),
-                "detail": "Low-confidence wiki pages that need review before heavy reuse.",
+                "detail": "Low-confidence Atlas pages that need review before heavy reuse.",
+            },
+            {
+                "label": "Evidence Coverage",
+                "value": f"{len(evidence_backed_pages)}/{len(evidence_required_pages)}",
+                "detail": "Claims, directions, hypotheses, and derived products with evidence metadata.",
+            },
+            {
+                "label": "Topic Drill-Down Depth",
+                "value": f"{len(deep_topic_pages)}/{len(topic_pages)}",
+                "detail": "Topic pages with enough sections and related links to support progressive disclosure.",
             },
         ],
     }
@@ -115,7 +145,7 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
 def inventory_to_markdown(inventory: dict[str, Any]) -> str:
     counts = inventory["counts"]
     lines = [
-        "# Wiki Inventory",
+        "# Atlas Inventory",
         "",
         "## Coverage",
         "",
@@ -126,6 +156,9 @@ def inventory_to_markdown(inventory: dict[str, Any]) -> str:
         f"- Missing collection pages: {counts['missing_collection_pages']}",
         f"- Data type pages: {counts['data_type_pages']}",
         f"- Cross-collection projects: {counts['multi_collection_projects']}",
+        f"- Derived product pages: {counts['derived_product_pages']}",
+        f"- Evidence coverage: {counts['evidence_coverage']}",
+        f"- Deep topic pages: {counts['deep_topic_pages']}",
         "",
         "## Metrics To Watch",
         "",
@@ -147,6 +180,13 @@ def _pages_by_type(pages: list[WikiPage]) -> dict[str, list[WikiPage]]:
 
 def _page_ref(page: WikiPage) -> dict[str, str]:
     return {"id": page.id, "title": page.title, "path": page.path}
+
+
+def _has_evidence_metadata(page: WikiPage) -> bool:
+    evidence = page.metadata.get("evidence")
+    if isinstance(evidence, list):
+        return any(isinstance(item, dict) and item.get("support") for item in evidence)
+    return bool(evidence)
 
 
 def main(argv: list[str] | None = None) -> int:

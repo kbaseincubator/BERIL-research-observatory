@@ -3,7 +3,7 @@ id: direction.derived-data-product-catalog
 title: Derived data product catalog
 type: direction
 status: draft
-summary: Make high-value project outputs discoverable, reusable, and reviewable as first-class wiki/data objects.
+summary: Make high-value project outputs discoverable, reusable, and reviewable as first-class Atlas data objects.
 source_projects:
   - metal_fitness_atlas
   - ecotype_analysis
@@ -21,6 +21,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - data.index
   - hypothesis.derived-product-reuse-predicts-value
+evidence:
+  - source: metal_fitness_atlas
+    support: Metal tolerance outputs show how project-derived scores can become reusable cross-topic data products.
+  - source: docs/research_ideas.md
+    support: Research planning repeatedly depends on reusable intermediate products rather than raw project counts alone.
 order: 50
 ---
 
@@ -28,7 +33,7 @@ order: 50
 
 ## Direction
 
-Promote reusable outputs such as scores, labels, mappings, modules, and candidate lists into wiki-managed data product pages.
+Promote reusable outputs such as scores, labels, mappings, modules, and candidate lists into Atlas-managed data product pages.
 
 ## Why It Is High Value
 

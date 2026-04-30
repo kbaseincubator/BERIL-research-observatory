@@ -451,7 +451,8 @@ class TestDataclassDefaults:
             path="topics/test",
             body="Body",
         )
-        assert page.url == "/wiki/topics/test"
+        assert page.url == "/atlas/topics/test"
+        assert page.legacy_url == "/wiki/topics/test"
 
     def test_wiki_index_helpers(self):
         page = WikiPage(
@@ -467,7 +468,24 @@ class TestDataclassDefaults:
         index = WikiIndex(pages=[page])
         assert index.get_page_by_id("topic.test") is page
         assert index.get_page_by_path("topics/test.md") is page
+        assert index.get_page_by_path("topics") is None
         assert index.pages_by_type("topic") == [page]
+
+    def test_wiki_index_section_index_helper(self):
+        page = WikiPage(
+            id="topics.index",
+            title="Topics",
+            type="meta",
+            status="draft",
+            summary="Summary",
+            path="topics/index",
+            body="Body",
+            section="topics",
+        )
+        index = WikiIndex(pages=[page])
+        assert page.url == "/atlas/topics"
+        assert page.legacy_url == "/wiki/topics"
+        assert index.get_page_by_path("topics") is page
         assert index.pages_by_section("topics") == [page]
 
     def test_derived_data_ref_defaults(self):

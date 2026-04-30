@@ -24,6 +24,8 @@ confidence: medium
 generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
+  - claim.lab-fitness-predicts-field-ecology
+  - claim.metal-specific-genes-core-enriched
   - data.fitness-phenotypes
   - data.genome-fitness-pangenome-join
   - direction.fitness-validated-community-design
@@ -65,3 +67,22 @@ The observatory's strongest functional claims come from joining annotation, cons
 - Fitness screens cover specific lab conditions and organisms.
 - Essential genes invisible to transposon insertion can bias conservation comparisons.
 - Annotation upgrades can change what counts as "novel" or "dark."
+
+## Reusable Claims
+
+- [Lab fitness can predict field ecology](/atlas/claims/lab-fitness-predicts-field-ecology) supports reuse of fitness evidence beyond the assay when validation context exists.
+- [Metal-specific genes remain core-enriched](/atlas/claims/metal-specific-genes-core-enriched) is a concrete example of fitness evidence refining functional interpretation.
+
+## Data Dependencies
+
+- [Fitness and phenotypes](/atlas/data/types/fitness-phenotypes) define the measured evidence layer.
+- [Genome-fitness-pangenome joins](/atlas/data/joins/genome-fitness-pangenome) connect organism, family, annotation, and fitness effects.
+- UniProt, UniRef, and Bakta resources determine whether a "dark" gene is truly unknown or only behind current annotation.
+
+## Drill-Down Path
+
+Start with the fitness data type page, then open the community-design direction and genome-fitness-pangenome join recipe. That path turns functional synthesis into reusable analysis inputs.
+
+## How Agents Should Use This Page
+
+Use this topic when prioritizing genes, modules, or pathways for functional claims. Treat annotation-only evidence as weaker than fitness-supported evidence, and preserve condition specificity.

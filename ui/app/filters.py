@@ -11,7 +11,7 @@ def markdown_filter(text: str) -> Markup:
     # Convert markdown to HTML
     html = markdown.markdown(
         text,
-        extensions=["fenced_code", "tables", "nl2br"],
+        extensions=["fenced_code", "tables", "toc", "nl2br"],
     )
     return Markup(html)
 

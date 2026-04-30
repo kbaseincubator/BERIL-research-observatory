@@ -3,7 +3,7 @@ id: meta.metrics-to-watch
 title: Metrics To Watch
 type: meta
 status: draft
-summary: Maintenance signals for evaluating whether the wiki is becoming more useful to humans and agents.
+summary: Maintenance signals for evaluating whether the Atlas is becoming more useful to humans and agents.
 source_projects: []
 source_docs:
   - ui/config/berdl_collections_snapshot.json
@@ -22,7 +22,7 @@ order: 2
 
 ## Why This Page Exists
 
-The wiki should become more useful as the observatory grows. Maintenance metrics help agents notice where the corpus is strong, where coverage is thin, and where claims are accumulating caveats.
+The Atlas should become more useful as the observatory grows. Maintenance metrics help agents notice where the corpus is strong, where coverage is thin, and where claims are accumulating caveats.
 
 ## Signals
 
@@ -31,7 +31,9 @@ The wiki should become more useful as the observatory grows. Maintenance metrics
 - **Under-explored collections**: discovered databases with no parsed project references.
 - **Dark-matter metadata**: collections with weak curation, missing schemas, or discovery caveats.
 - **Caveat load**: low-confidence pages that need review before supporting major claims.
+- **Evidence coverage**: claims, directions, hypotheses, and derived products with evidence metadata.
+- **Topic drill-down depth**: topic pages with enough structure and links to support progressive disclosure.
 
 ## How Agents Should Use This
 
-Agents should run `python -m app.wiki_inventory .. --format markdown` before proposing updates. The report should guide whether the next edit should add a collection page, improve a data-type lens, record a missing join, or promote a reusable derived product.
+Agents should run `python -m app.wiki_inventory .. --format markdown` before proposing updates. The Atlas inventory report should guide whether the next edit should add a collection page, improve a data-type lens, record a missing join, or promote a reusable derived product.

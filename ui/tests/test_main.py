@@ -125,7 +125,7 @@ class TestCollectionsRoute:
         response = client.get("/collections/kbase_ke_pangenome")
         assert response.status_code == 200
         assert "Schema status" in response.text
-        assert "Wiki Pages" in response.text
+        assert "Atlas Pages" in response.text
 
     def test_collection_detail_404_for_missing(self, client):
         response = client.get("/collections/nonexistent_collection")
@@ -162,23 +162,40 @@ class TestKnowledgeRoutes:
         assert response.status_code == 200
 
 
-class TestWikiRoutes:
-    def test_wiki_atlas_200(self, client):
-        response = client.get("/wiki")
+class TestAtlasRoutes:
+    def test_atlas_landing_200(self, client):
+        response = client.get("/atlas")
         assert response.status_code == 200
-        assert "Wiki Atlas" in response.text
+        assert "BERIL Atlas" in response.text
         assert "Metrics To Watch" in response.text
         assert "Collection coverage" in response.text
+        assert "Phase 0 Agent-Built Wiki Atlas" not in response.text
 
-    def test_existing_wiki_page_200(self, client):
-        response = client.get("/wiki/topics/test")
+    def test_legacy_wiki_redirects_to_atlas(self, client):
+        response = client.get("/wiki", follow_redirects=False)
+        assert response.status_code == 301
+        assert response.headers["location"] == "/atlas"
+
+    def test_atlas_section_indexes_200(self, client):
+        for path in ("/atlas/topics", "/atlas/data", "/atlas/claims", "/atlas/directions", "/atlas/hypotheses"):
+            response = client.get(path)
+            assert response.status_code == 200
+
+    def test_existing_atlas_page_200(self, client):
+        response = client.get("/atlas/topics/test")
         assert response.status_code == 200
-        assert "Test Wiki Topic" in response.text
+        assert "Test Atlas Topic" in response.text
+        assert "On This Page" in response.text
         assert "/projects/test_project" in response.text
         assert "/collections/kbase_ke_pangenome" in response.text
 
-    def test_missing_wiki_page_404(self, client):
-        response = client.get("/wiki/topics/missing")
+    def test_legacy_wiki_page_redirects(self, client):
+        response = client.get("/wiki/topics/test", follow_redirects=False)
+        assert response.status_code == 301
+        assert response.headers["location"] == "/atlas/topics/test"
+
+    def test_missing_atlas_page_404(self, client):
+        response = client.get("/atlas/topics/missing")
         assert response.status_code == 404
 
 

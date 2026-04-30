@@ -1,9 +1,9 @@
 ---
-id: atlas.phase0
-title: Phase 0 Agent-Built Wiki Atlas
+id: atlas.beril
+title: BERIL Atlas
 type: atlas
 status: draft
-summary: Entry point for the Phase 0 markdown knowledge base over BERIL projects, data, claims, directions, hypotheses, methods, and people provenance.
+summary: Entry point for the BERIL Atlas over projects, data, claims, directions, hypotheses, methods, and contributor provenance.
 source_projects: []
 source_docs:
   - docs/discoveries.md
@@ -17,35 +17,39 @@ related_collections:
   - enigma_coral
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-04-30
 related_pages:
+  - topics.index
   - topic.critical-minerals
   - topic.amr-resistance-ecology
   - data.index
+  - claims.index
+  - directions.index
+  - hypotheses.index
   - method.progressive-disclosure
 order: 1
 ---
 
-# Phase 0 Agent-Built Wiki Atlas
+# BERIL Atlas
 
-This wiki is a curated semantic layer over the observatory. It does not replace project reports, notebooks, collections, or memory docs. It gives humans and agents a progressive path through them.
+The BERIL Atlas is a curated semantic layer over the observatory. It does not replace project reports, notebooks, BERDL collections, or memory docs. It gives humans and agents a progressive path through the landscape those sources create together.
 
-## What This Demonstrates
+## What The Atlas Connects
 
-The Phase 0 corpus shows that an agent can look across the current project set and build a first-pass atlas with breadth:
+The Atlas is organized around several kinds of maps:
 
-- science and application topics;
-- atomic claims that can be reused across topics;
-- high-value research directions;
-- concrete hypotheses that can become projects;
-- first-class data pages for tenants, collections, derived products, joins, and gaps;
-- practical people and reviewer-routing pages;
-- explicit maintenance and evidence-grading methods.
+- [Topics](/atlas/topics) synthesize science and application areas across projects.
+- [Data](/atlas/data) explains tenants, collections, data types, derived products, joins, and gaps.
+- [Claims](/atlas/claims) preserve reusable evidence-backed statements.
+- [Directions](/atlas/directions) identify high-value research programs.
+- [Hypotheses](/atlas/hypotheses) turn synthesis into testable units.
+- [People](/atlas/people) routes review by contributor context and ownership.
+- [Methods](/atlas/methods) define the maintenance and evidence rules.
 
 ## How To Read It
 
-Start with [topics](/wiki/topics/critical-minerals) when you want a narrative synthesis. Start with [data](/wiki/data/index) when you want reusable collections, joins, and derived products. Start with [claims](/wiki/claims/metal-specific-genes-core-enriched) or [hypotheses](/wiki/hypotheses/h-metal-amr-co-selection) when you want agent-sized reasoning units.
+Start with [topics](/atlas/topics) when you want narrative synthesis. Start with [data](/atlas/data) when you want reusable collections, joins, and derived products. Start with [claims](/atlas/claims/metal-specific-genes-core-enriched) or [hypotheses](/atlas/hypotheses/h-metal-amr-co-selection) when you want agent-sized reasoning units.
 
-## Phase 0 Boundary
+## Maintenance Boundary
 
-This is static, checked-in markdown. The agent-authored pages are intended to be reviewed, linted, and revised. Live LLM generation and automatic refresh are Phase 1 work.
+The Atlas is still static checked-in markdown. Agents can build, lint, inventory, and revise it, but the production UI reads the checked-in corpus and BERDL collection snapshot rather than calling a live LLM at request time.

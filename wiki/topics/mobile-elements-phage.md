@@ -21,6 +21,8 @@ confidence: low
 generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
+  - claim.pangenome-openness-shapes-function
+  - claim.ecotype-analysis-needs-rigor-gates
   - topic.host-microbiome-translation
   - topic.pangenome-architecture
 order: 80
@@ -61,3 +63,22 @@ PhageFoundry and host-microbiome projects make this topic actionable, especially
 - Mobile-element annotation depends heavily on tool coverage and thresholds.
 - Phage targeting needs strain-level validation.
 - Host range and beneficial ecological function can conflict.
+
+## Reusable Claims
+
+- [Pangenome openness shapes functional opportunity](/atlas/claims/pangenome-openness-shapes-function) explains why mobile and accessory context matters.
+- [Ecotype analyses need rigor gates before translation](/atlas/claims/ecotype-analysis-needs-rigor-gates) applies when phage targeting is inferred from stratified host data.
+
+## Data Dependencies
+
+- [Phage, mobile, and defense data](/atlas/data/types/phage-mobile-defense) provide the core data lens.
+- PhageFoundry, PROTECT, and pangenome collections provide host, genome, and defense-system context.
+- AMR and plant-microbiome topics provide downstream use cases for mobile-element interpretation.
+
+## Drill-Down Path
+
+Start with the pangenome openness claim, then move to host microbiome translation or plant microbiome function depending on whether the question is intervention or ecology.
+
+## How Agents Should Use This Page
+
+Use this topic for phage, defense, prophage, mobile element, or strain-plasticity work. Preserve strain-level validation needs and avoid treating mobile-element annotation as complete.

@@ -161,12 +161,12 @@ def repository_data(project, completed_project, collection):
     )
     atlas_page = WikiPage(
         id="atlas.test",
-        title="Test Wiki Atlas",
+        title="Test BERIL Atlas",
         type="atlas",
         status="draft",
         summary="Test atlas summary.",
         path="atlas",
-        body="# Test Wiki Atlas\n\nAtlas body.",
+        body="# Test BERIL Atlas\n\nAtlas body.",
         source_projects=[],
         source_docs=["docs/discoveries.md"],
         related_collections=[],
@@ -177,14 +177,40 @@ def repository_data(project, completed_project, collection):
         section="root",
         order=1,
     )
+    section_pages = [
+        WikiPage(
+            id=f"{section}.index",
+            title=title,
+            type="meta",
+            status="draft",
+            summary=f"{title} summary.",
+            path=f"{section}/index",
+            body=f"# {title}\n\nSection body.",
+            source_projects=[],
+            source_docs=["docs/discoveries.md"],
+            related_collections=[],
+            confidence="medium",
+            generated_by="pytest",
+            last_reviewed="2026-04-28",
+            section=section,
+            order=1,
+        )
+        for section, title in [
+            ("topics", "Topics"),
+            ("data", "Data"),
+            ("claims", "Claims"),
+            ("directions", "Directions"),
+            ("hypotheses", "Hypotheses"),
+        ]
+    ]
     topic_page = WikiPage(
         id="topic.test",
-        title="Test Wiki Topic",
+        title="Test Atlas Topic",
         type="topic",
         status="draft",
         summary="Test topic summary.",
         path="topics/test",
-        body="# Test Wiki Topic\n\nTopic body.",
+        body="# Test Atlas Topic\n\n## Synthesis\n\nTopic body.",
         source_projects=["test_project"],
         source_docs=[],
         related_collections=["kbase_ke_pangenome"],
@@ -205,7 +231,7 @@ def repository_data(project, completed_project, collection):
         skills=[skill],
         research_areas=[area],
         wiki_index=WikiIndex(
-            pages=[atlas_page, topic_page],
+            pages=[atlas_page, *section_pages, topic_page],
             links=[WikiLink(source_id="atlas.test", target_id="topic.test")],
         ),
         total_notebooks=2,
@@ -227,7 +253,7 @@ def app_data_context(repository_data: RepositoryData):
         "collection_count": len(repository_data.collections),
         "contributor_count": len(repository_data.contributors),
         "skill_count": len(repository_data.skills),
-        "wiki_count": len(repository_data.wiki_index.pages),
+        "atlas_count": len(repository_data.wiki_index.pages),
         "last_updated": repository_data.last_updated,
     }
 

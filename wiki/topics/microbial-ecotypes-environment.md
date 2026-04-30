@@ -24,6 +24,7 @@ generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
   - claim.lab-fitness-predicts-field-ecology
+  - claim.ecotype-analysis-needs-rigor-gates
   - data.ecotype-assignments
   - hypothesis.sso-geochemistry-closes-plume-model
 order: 50
@@ -64,3 +65,22 @@ The observatory is building a bridge from genomic variation to environmental nic
 - Environment metadata is sparse and uneven.
 - Ecotype definitions need leakage-resistant validation.
 - Field validation should separate geography, taxonomy, and chemistry effects.
+
+## Reusable Claims
+
+- [Lab fitness can predict field ecology](/atlas/claims/lab-fitness-predicts-field-ecology) is the central claim when moving from lab assays to field context.
+- [Ecotype analyses need rigor gates before translation](/atlas/claims/ecotype-analysis-needs-rigor-gates) protects ecotype reuse from leakage and confounding.
+
+## Data Dependencies
+
+- [Ecotype Assignments](/atlas/data/derived-products/ecotype-assignments) are the main reusable label product.
+- [Environment, geochemistry, and ecology](/atlas/data/types/environment-geochemistry-ecology) provide the validation context.
+- [Missing SSO geochemistry](/atlas/data/gaps/missing-sso-geochemistry) is a concrete complementary data gap.
+
+## Drill-Down Path
+
+Start with the lab-field ecology claim, then open the ecotype assignments product and SSO geochemistry hypothesis. That path moves from population structure to field validation and missing data.
+
+## How Agents Should Use This Page
+
+Use this topic for niche, environment, field-validation, or ecotype proposals. Always separate taxonomy, geography, chemistry, and sampling effects before treating ecotypes as biological mechanisms.

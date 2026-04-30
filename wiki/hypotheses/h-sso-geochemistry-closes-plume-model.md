@@ -19,6 +19,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - data.missing-sso-geochemistry
   - topic.microbial-ecotypes-environment
+evidence:
+  - source: enigma_sso_asv_ecology
+    support: SSO community gradients exist, but geochemistry ingestion is needed to separate spatial and chemical drivers.
+  - source: docs/schemas/enigma.md
+    support: ENIGMA schema documentation defines the expected join context for site-level validation.
 order: 80
 ---
 

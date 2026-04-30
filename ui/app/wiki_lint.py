@@ -1,4 +1,4 @@
-"""Non-mutating lint checks for the markdown wiki corpus."""
+"""Non-mutating lint checks for the markdown Atlas corpus."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ import yaml
 
 @dataclass
 class WikiLintIssue:
-    """A single wiki lint finding."""
+    """A single Atlas lint finding."""
 
     severity: str
     file: str
@@ -60,9 +60,19 @@ WIKI_PAGE_TYPES = {
     "meta",
 }
 
+REQUIRED_SECTION_INDEXES = {
+    "topics": "topics/index",
+    "data": "data/index",
+    "claims": "claims/index",
+    "directions": "directions/index",
+    "hypotheses": "hypotheses/index",
+}
+
+EVIDENCE_REQUIRED_TYPES = {"claim", "direction", "hypothesis", "derived_product"}
+
 
 def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
-    """Validate wiki frontmatter, provenance, and links."""
+    """Validate Atlas frontmatter, provenance, and links."""
     repo = Path(repo_path) if repo_path else Path(__file__).resolve().parents[2]
     wiki_dir = repo / "wiki"
     issues: list[WikiLintIssue] = []
@@ -74,6 +84,9 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
     page_ids: dict[str, _RawWikiPage] = {}
     titles: dict[str, str] = {}
     route_paths = {page.path for page in raw_pages}
+    canonical_route_paths = route_paths | {
+        path.removesuffix("/index") for path in route_paths if path.endswith("/index")
+    }
     project_ids = {
         p.name
         for p in (repo / "projects").iterdir()
@@ -99,7 +112,7 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
         page_id = fm.get("id")
         if page_id:
             if page_id in page_ids:
-                issues.append(WikiLintIssue("error", rel_file, f"duplicate wiki id: {page_id}"))
+                issues.append(WikiLintIssue("error", rel_file, f"duplicate Atlas id: {page_id}"))
             else:
                 page_ids[str(page_id)] = page
 
@@ -184,8 +197,19 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
                 )
             )
 
+        if page_type in EVIDENCE_REQUIRED_TYPES and not _has_evidence(fm):
+            issues.append(
+                WikiLintIssue(
+                    "error",
+                    rel_file,
+                    f"{page_type} pages require evidence metadata",
+                )
+            )
+
         for href in _markdown_links(page.body):
-            _check_link(href, page.file, wiki_dir, route_paths, issues, rel_file)
+            _check_link(
+                href, page.file, wiki_dir, canonical_route_paths, issues, rel_file
+            )
 
     for missing_collection_id in sorted(snapshot_collection_ids - data_collection_coverage):
         issues.append(
@@ -195,6 +219,19 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
                 f"missing data_collection page for discovered collection: {missing_collection_id}",
             )
         )
+
+    for section, index_path in sorted(REQUIRED_SECTION_INDEXES.items()):
+        has_section_pages = any(
+            page.path.startswith(f"{section}/") for page in raw_pages
+        )
+        if has_section_pages and index_path not in route_paths:
+            issues.append(
+                WikiLintIssue(
+                    "error",
+                    "wiki",
+                    f"missing Atlas section index page: {index_path}",
+                )
+            )
 
     return issues
 
@@ -261,6 +298,13 @@ def _as_list(value) -> list[str]:
     return [str(value)]
 
 
+def _has_evidence(frontmatter: dict) -> bool:
+    evidence = frontmatter.get("evidence")
+    if isinstance(evidence, list):
+        return any(isinstance(item, dict) and item.get("support") for item in evidence)
+    return bool(evidence)
+
+
 def _markdown_links(markdown_body: str) -> list[str]:
     return re.findall(r"(?<!!)\[[^\]]+\]\(([^)]+)\)", markdown_body)
 
@@ -280,12 +324,14 @@ def _check_link(
     path = parsed.path
     if not path:
         return
-    if path.startswith("/wiki/"):
-        route = path.removeprefix("/wiki/").strip("/")
+    if path.startswith(("/wiki/", "/atlas/")):
+        route = path.removeprefix("/wiki/").removeprefix("/atlas/").strip("/")
         if route.endswith(".md"):
             route = route[:-3]
         if route and route not in route_paths:
-            issues.append(WikiLintIssue("error", rel_file, f"broken wiki link: {href}"))
+            issues.append(
+                WikiLintIssue("error", rel_file, f"broken Atlas link: {href}")
+            )
         return
     if path.endswith(".md"):
         target = (source_file.parent / path).resolve()
@@ -311,7 +357,7 @@ def main(argv: list[str] | None = None) -> int:
     for issue in issues:
         print(f"{issue.severity}: {issue.file}: {issue.message}")
     if not issues:
-        print("wiki lint passed")
+        print("atlas lint passed")
     return 1 if issues else 0
 
 

@@ -26,7 +26,6 @@ from app.chat.providers.base import (
     ChatProvider,
     Credentials,
     ErrorEvent,
-    SessionInitialized,
     TextDelta,
     ToolCall,
     ToolResult,

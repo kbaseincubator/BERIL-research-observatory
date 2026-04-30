@@ -19,6 +19,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.critical-minerals
   - data.metal-tolerance-scores
+evidence:
+  - source: metal_specificity
+    support: Metal-important records passing a non-metal sick-rate screen remain enriched for core-genome genes.
+  - source: metal_fitness_atlas
+    support: Cross-organism metal fitness effects provide the base gene-metal evidence set.
 order: 10
 ---
 

@@ -20,6 +20,8 @@ confidence: medium
 generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
+  - claim.pangenome-openness-shapes-function
+  - claim.lab-fitness-predicts-field-ecology
   - topic.pangenome-architecture
   - topic.metabolic-capability-community-design
 order: 70
@@ -60,3 +62,22 @@ Functional redundancy among co-occurring genera suggests plant compartments sele
 - Marker genes are proxies, not direct phenotypes.
 - Plant compartment metadata needs consistent mapping.
 - Dual-nature interpretation should preserve host, site, and condition context.
+
+## Reusable Claims
+
+- [Pangenome openness shapes functional opportunity](/atlas/claims/pangenome-openness-shapes-function) supports interpretation of plant-interaction marker mobility and accessory function.
+- [Lab fitness can predict field ecology](/atlas/claims/lab-fitness-predicts-field-ecology) is relevant when plant-associated functions are tied to environmental validation.
+
+## Data Dependencies
+
+- [Genomes and pangenomes](/atlas/data/types/genomes-pangenomes) provide strain and gene-family context.
+- [Metabolism, biochemistry, and pathways](/atlas/data/types/metabolism-biochemistry-pathways) provide plant-growth and nutrient-cycling interpretation.
+- NMDC and plant-associated metadata provide compartment and environmental context.
+
+## Drill-Down Path
+
+Start with pangenome architecture, then move to metabolic community design for candidate consortia. That path connects marker genes to functional portfolios and design constraints.
+
+## How Agents Should Use This Page
+
+Use this topic for plant-associated microbiome, agricultural function, or PGP/pathogenicity work. Keep beneficial and pathogenic interpretations context-dependent unless phenotype evidence resolves them.

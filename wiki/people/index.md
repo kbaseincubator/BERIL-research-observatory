@@ -23,12 +23,12 @@ order: 1
 
 The people section is not a social directory. It helps humans and agents route questions, reviews, and derived-product ownership.
 
-## Current Phase 0 Use
+## Current Atlas Use
 
 - Identify likely reviewers by topic and source projects.
 - Preserve ownership of derived data products.
-- Make contributor context visible when a wiki page needs human review.
+- Make contributor context visible when an Atlas page needs human review.
 
 ## Boundary
 
-Phase 0 keeps this lightweight. It should not infer sensitive personal details or expertise beyond project authorship and explicit repository context.
+The Atlas keeps this lightweight. It should not infer sensitive personal details or expertise beyond project authorship and explicit repository context.

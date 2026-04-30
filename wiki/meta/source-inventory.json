@@ -1,16 +1,17 @@
 {
   "generated_by": "Codex GPT-5",
-  "generated_on": "2026-04-28",
-  "phase": "0",
+  "generated_on": "2026-04-30",
+  "phase": "2",
   "source_roots": [
     "projects/",
     "docs/",
     "ui/config/collections.yaml",
+    "ui/config/berdl_collections_snapshot.json",
     "data/"
   ],
-  "topic_count": 8,
+  "topic_count": 9,
   "notes": [
-    "This inventory is intentionally lightweight in Phase 0.",
-    "Phase 1 should generate a richer per-project and per-derived-product source map."
+    "This inventory is intentionally lightweight and should be superseded by Atlas inventory output from app.wiki_inventory.",
+    "Phase 2 adds Atlas routes, section indexes, evidence metadata, and generated overview maps."
   ]
 }

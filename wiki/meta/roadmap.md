@@ -1,9 +1,9 @@
 ---
 id: meta.roadmap
-title: Wiki Roadmap
+title: Atlas Roadmap
 type: meta
 status: draft
-summary: Roadmap from Phase 0 static atlas to agent-maintained knowledge base and retrieval layer.
+summary: Roadmap from static Atlas pages to agent-maintained synthesis, evidence maps, and retrieval layers.
 source_projects: []
 source_docs:
   - docs/research_ideas.md
@@ -13,13 +13,13 @@ confidence: medium
 generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
-  - atlas.phase0
+  - atlas.beril
   - method.agent-maintenance
   - meta.metrics-to-watch
 order: 1
 ---
 
-# Wiki Roadmap
+# Atlas Roadmap
 
 ## Phase 0
 
@@ -27,11 +27,11 @@ Static agent-authored markdown atlas, UI browsing, frontmatter graph, and lint c
 
 ## Phase 1
 
-Snapshot-backed BERDL collection atlas, expanded data pages, deterministic wiki inventory, stronger lint checks, and a direct agent-edit maintenance workflow.
+Snapshot-backed BERDL collection atlas, expanded data pages, deterministic Atlas inventory, stronger lint checks, and a direct agent-edit maintenance workflow.
 
 ## Phase 2
 
-Structured claim/evidence model, derived data product registry, and source coverage dashboards.
+BERIL Atlas naming, canonical `/atlas` routes, stronger navigation, topic drill-down depth, evidence metadata, derived data product registry, and generated overview maps.
 
 ## Phase 3
 

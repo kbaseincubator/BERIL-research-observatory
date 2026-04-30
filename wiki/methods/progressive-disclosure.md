@@ -3,7 +3,7 @@ id: method.progressive-disclosure
 title: Progressive Disclosure Method
 type: method
 status: draft
-summary: Wiki construction method that moves from atlas to topic, claim, direction, hypothesis, data product, and source evidence.
+summary: Atlas construction method that moves from overview to topic, claim, direction, hypothesis, data product, and source evidence.
 source_projects: []
 source_docs:
   - README.md
@@ -14,7 +14,7 @@ confidence: medium
 generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
-  - atlas.phase0
+  - atlas.beril
   - method.evidence-grading
   - method.agent-maintenance
 order: 1
@@ -24,7 +24,7 @@ order: 1
 
 ## Method
 
-Every wiki path should reveal only the next useful level of detail:
+Every Atlas path should reveal only the next useful level of detail:
 
 1. **Atlas**: what exists and why it matters.
 2. **Topic**: a narrative synthesis across projects.

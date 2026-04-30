@@ -41,6 +41,7 @@ from .models import (
     Visualization,
     WikiIndex,
     WikiLink,
+    WikiHeading,
     WikiPage,
 )
 
@@ -1959,7 +1960,7 @@ class RepositoryParser:
         return collection_id.replace("_", " ").title()
 
     def parse_wiki(self) -> WikiIndex:
-        """Parse markdown pages from the wiki directory.
+        """Parse markdown Atlas pages from the internal wiki directory.
 
         The parser is intentionally permissive: malformed pages are skipped so the
         app can still boot, while app.wiki_lint reports actionable failures.
@@ -1988,7 +1989,7 @@ class RepositoryParser:
 
     @classmethod
     def _parse_wiki_file(cls, wiki_file: Path, wiki_dir: Path) -> WikiPage | None:
-        """Parse one wiki markdown file with YAML frontmatter."""
+        """Parse one Atlas markdown file with YAML frontmatter."""
         try:
             raw_content = wiki_file.read_text(encoding="utf-8")
         except UnicodeDecodeError:
@@ -2044,6 +2045,7 @@ class RepositoryParser:
             section=str(frontmatter.get("section") or section),
             order=int(frontmatter.get("order", 100)),
             metadata=metadata,
+            headings=cls._extract_wiki_headings(body),
         )
 
     @staticmethod
@@ -2057,14 +2059,43 @@ class RepositoryParser:
 
     @staticmethod
     def _rewrite_wiki_body_links(content: str) -> str:
-        """Rewrite common repo-relative wiki links to route links."""
+        """Rewrite common repo-relative Atlas links to route links."""
         content = re.sub(
             r"\]\((?:\./)?([A-Za-z0-9_./-]+)\.md(#.*?)?\)",
-            r"](/wiki/\1\2)",
+            r"](/atlas/\1\2)",
             content,
         )
-        content = re.sub(r"\]\((?:\./)?index(#.*?)?\)", r"](/wiki/index\1)", content)
+        content = re.sub(r"\]\((?:\./)?index(#.*?)?\)", r"](/atlas\1)", content)
+        content = content.replace("(/wiki/", "(/atlas/")
         return content
+
+    @staticmethod
+    def _extract_wiki_headings(content: str) -> list[WikiHeading]:
+        """Extract markdown headings for page-level Atlas navigation."""
+        headings: list[WikiHeading] = []
+        seen: dict[str, int] = {}
+        for line in content.splitlines():
+            match = re.match(r"^(#{2,4})\s+(.+?)\s*$", line)
+            if not match:
+                continue
+            title = re.sub(r"`([^`]+)`", r"\1", match.group(2)).strip()
+            anchor = RepositoryParser._slugify_heading(title)
+            duplicate_count = seen.get(anchor, 0)
+            seen[anchor] = duplicate_count + 1
+            if duplicate_count:
+                anchor = f"{anchor}_{duplicate_count}"
+            headings.append(
+                WikiHeading(level=len(match.group(1)), title=title, anchor=anchor)
+            )
+        return headings
+
+    @staticmethod
+    def _slugify_heading(title: str) -> str:
+        """Mirror the markdown TOC extension's simple slug convention."""
+        slug = title.lower().strip()
+        slug = re.sub(r"[^\w\s-]", "", slug)
+        slug = re.sub(r"[\s_]+", "-", slug)
+        return slug
 
     def parse_skills(self) -> list[Skill]:
         """Parse skills from .claude/skills/*/SKILL.md frontmatter."""

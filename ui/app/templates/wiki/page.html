@@ -1,97 +1,140 @@
 {% extends "base.html" %}
 
-{% block title %}{{ page.title }} - Wiki Atlas - {{ app_name }}{% endblock %}
+{% block title %}{{ page.title }} - BERIL Atlas - {{ app_name }}{% endblock %}
 
 {% block extra_css %}
 <style>
-    .wiki-layout {
+    .atlas-page-layout {
         display: grid;
-        grid-template-columns: minmax(190px, 260px) minmax(0, 1fr);
+        grid-template-columns: minmax(180px, 240px) minmax(0, 1fr) minmax(170px, 220px);
         gap: var(--space-8);
         align-items: start;
     }
 
-    .wiki-sidebar {
-        position: sticky;
-        top: calc(var(--space-8) + 64px);
+    .atlas-sidebar,
+    .atlas-toc,
+    .atlas-provenance-panel {
         border: 1px solid var(--surface-border);
         border-radius: var(--radius-md);
         background: var(--surface-raised);
+    }
+
+    .atlas-sidebar,
+    .atlas-toc {
+        position: sticky;
+        top: calc(var(--space-8) + 64px);
         padding: var(--space-4);
     }
 
-    .wiki-sidebar-title {
-        margin-bottom: var(--space-3);
+    .atlas-sidebar-title,
+    .atlas-toc-title {
         color: var(--text-secondary);
         font-size: 0.75rem;
         font-weight: 600;
+        margin-bottom: var(--space-3);
         text-transform: uppercase;
     }
 
-    .wiki-sidebar-link {
-        display: block;
+    .atlas-sidebar-link,
+    .atlas-toc-link {
         border-radius: var(--radius-sm);
         color: var(--text-secondary);
+        display: block;
         font-size: 0.85rem;
         padding: var(--space-2);
         text-decoration: none;
     }
 
-    .wiki-sidebar-link:hover,
-    .wiki-sidebar-link.active {
+    .atlas-sidebar-link:hover,
+    .atlas-sidebar-link.active,
+    .atlas-toc-link:hover {
         background: var(--surface-overlay);
         color: var(--text-primary);
     }
 
-    .wiki-page-meta {
+    .atlas-toc-link.level-3 {
+        padding-left: var(--space-4);
+    }
+
+    .atlas-toc-link.level-4 {
+        padding-left: var(--space-6);
+        font-size: 0.8rem;
+    }
+
+    .atlas-page-meta {
         display: flex;
-        gap: var(--space-2);
         flex-wrap: wrap;
+        gap: var(--space-2);
         margin-top: var(--space-4);
     }
 
-    .wiki-provenance {
+    .atlas-provenance {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: var(--space-4);
         margin-top: var(--space-8);
     }
 
-    .wiki-provenance-panel {
-        border: 1px solid var(--surface-border);
-        border-radius: var(--radius-md);
-        background: var(--surface-raised);
+    .atlas-provenance-panel {
         padding: var(--space-4);
     }
 
-    .wiki-provenance-panel h3 {
+    .atlas-provenance-panel h3 {
         font-size: 0.95rem;
+        letter-spacing: 0;
         margin-bottom: var(--space-3);
     }
 
-    .wiki-chip-list {
+    .atlas-chip-list {
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-2);
     }
 
-    .wiki-type {
+    .atlas-type {
         background: var(--surface-overlay);
-        color: var(--text-secondary);
         border: 1px solid var(--surface-border);
         border-radius: var(--radius-sm);
-        padding: 2px 7px;
+        color: var(--text-secondary);
         font-size: 0.7rem;
+        letter-spacing: 0;
+        padding: 2px 7px;
         text-transform: uppercase;
+    }
+
+    .atlas-related-group {
+        margin-bottom: var(--space-4);
+    }
+
+    .atlas-related-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .page-title,
+    .markdown-content h1,
+    .markdown-content h2,
+    .markdown-content h3 {
         letter-spacing: 0;
     }
 
-    @media (max-width: 900px) {
-        .wiki-layout {
+    @media (max-width: 1100px) {
+        .atlas-page-layout {
+            grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+        }
+
+        .atlas-toc {
+            position: static;
+            grid-column: 1 / -1;
+            order: 3;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .atlas-page-layout {
             grid-template-columns: 1fr;
         }
 
-        .wiki-sidebar {
+        .atlas-sidebar {
             position: static;
         }
     }
@@ -99,28 +142,36 @@
 {% endblock %}
 
 {% block content %}
-<div class="wiki-layout">
-    <aside class="wiki-sidebar">
-        <div class="wiki-sidebar-title">{{ page.section | replace('-', ' ') | title }}</div>
-        <a href="/wiki" class="wiki-sidebar-link">Atlas</a>
+<div class="atlas-page-layout">
+    <aside class="atlas-sidebar" aria-label="Atlas navigation">
+        <div class="atlas-sidebar-title">BERIL Atlas</div>
+        {% for nav in atlas_nav %}
+        <a href="{{ nav.url }}" class="atlas-sidebar-link {% if nav.section == page.section or (page.type == 'atlas' and nav.section == 'root') %}active{% endif %}">
+            {{ nav.label }}
+        </a>
+        {% endfor %}
+
+        {% if section_pages %}
+        <div class="atlas-sidebar-title" style="margin-top: var(--space-5);">{{ page.section | replace('-', ' ') | title }}</div>
         {% for item in section_pages %}
-        <a href="{{ item.url }}" class="wiki-sidebar-link {% if item.id == page.id %}active{% endif %}">
+        <a href="{{ item.url }}" class="atlas-sidebar-link {% if item.id == page.id %}active{% endif %}">
             {{ item.title }}
         </a>
         {% endfor %}
+        {% endif %}
     </aside>
 
     <article>
         <div class="page-header">
             <div class="breadcrumbs" style="margin-bottom: var(--space-3);">
-                <a href="/wiki" class="text-muted">Wiki</a>
+                <a href="/atlas" class="text-muted">BERIL Atlas</a>
                 <span class="text-muted">/</span>
-                <span class="text-muted">{{ page.section }}</span>
+                <a href="/atlas/{{ page.section }}" class="text-muted">{{ page.section }}</a>
             </div>
             <h1 class="page-title">{{ page.title }}</h1>
             <p class="page-description">{{ page.summary }}</p>
-            <div class="wiki-page-meta">
-                <span class="wiki-type">{{ page.type | replace('_', ' ') }}</span>
+            <div class="atlas-page-meta">
+                <span class="atlas-type">{{ page.type | replace('_', ' ') }}</span>
                 <span class="badge">{{ page.status }}</span>
                 <span class="badge">{{ page.confidence }} confidence</span>
                 <span class="badge">Reviewed {{ page.last_reviewed }}</span>
@@ -131,10 +182,10 @@
             {{ page.body | markdown }}
         </div>
 
-        <div class="wiki-provenance">
-            <div class="wiki-provenance-panel">
+        <div class="atlas-provenance">
+            <div class="atlas-provenance-panel">
                 <h3>Source Projects</h3>
-                <div class="wiki-chip-list">
+                <div class="atlas-chip-list">
                     {% for project in source_projects %}
                     <a href="/projects/{{ project.id }}" class="badge badge-project">{{ project.title | strip_images | markdown_inline }}</a>
                     {% endfor %}
@@ -147,9 +198,9 @@
                 </div>
             </div>
 
-            <div class="wiki-provenance-panel">
+            <div class="atlas-provenance-panel">
                 <h3>Collections</h3>
-                <div class="wiki-chip-list">
+                <div class="atlas-chip-list">
                     {% for collection in related_collections %}
                     <a href="/collections/{{ collection.id }}" class="badge">{{ collection.name }}</a>
                     {% endfor %}
@@ -162,17 +213,31 @@
                 </div>
             </div>
 
-            <div class="wiki-provenance-panel">
-                <h3>Related Pages</h3>
-                <div class="wiki-chip-list">
-                    {% for related in related_pages %}
-                    <a href="{{ related.url }}" class="badge">{{ related.title }}</a>
-                    {% else %}
-                    <span class="text-muted text-small">No related pages declared.</span>
-                    {% endfor %}
+            <div class="atlas-provenance-panel">
+                <h3>Related Atlas Pages</h3>
+                {% for group_type, pages in related_page_groups.items() %}
+                <div class="atlas-related-group">
+                    <div class="text-small text-muted" style="margin-bottom: var(--space-2);">{{ group_type | replace('_', ' ') | title }}</div>
+                    <div class="atlas-chip-list">
+                        {% for related in pages %}
+                        <a href="{{ related.url }}" class="badge">{{ related.title }}</a>
+                        {% endfor %}
+                    </div>
                 </div>
+                {% else %}
+                <span class="text-muted text-small">No related pages declared.</span>
+                {% endfor %}
             </div>
         </div>
     </article>
+
+    <aside class="atlas-toc" aria-label="On this page">
+        <div class="atlas-toc-title">On This Page</div>
+        {% for heading in page.headings %}
+        <a href="#{{ heading.anchor }}" class="atlas-toc-link level-{{ heading.level }}">{{ heading.title }}</a>
+        {% else %}
+        <span class="text-muted text-small">No headings found.</span>
+        {% endfor %}
+    </aside>
 </div>
 {% endblock %}

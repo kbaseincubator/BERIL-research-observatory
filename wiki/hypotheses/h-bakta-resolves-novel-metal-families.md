@@ -18,6 +18,9 @@ generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
   - direction.gene-targets-critical-mineral-bioprocessing
+evidence:
+  - source: data/bakta_reannotation/README.md
+    support: Bakta reannotation provides updated family-level annotations that can be compared to older novel-family calls.
 order: 10
 ---
 

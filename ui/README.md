@@ -105,7 +105,7 @@ The UI will be available at [http://127.0.0.1:8000](http://127.0.0.1:8000)
 - **Projects**: Browse and explore research projects with rendered Jupyter notebooks
 - **Data Collections**: View available BERDL data collections and their schemas
 - **Skills**: Browse reusable AI co-scientist skills
-- **Knowledge Base**: Access shared discoveries, pitfalls, performance tips, and research ideas
+- **BERIL Atlas**: Browse synthesized topics, data pages, claims, directions, hypotheses, and shared research memory
 - **Community**: Contributor profiles with project and collection linkage
 - **User Accounts**: ORCiD-based login with persistent user profiles and project ownership stored in PostgreSQL
 - **Automatic Updates**: Webhook-based data refresh when repository content changes
@@ -305,4 +305,3 @@ docker build \
 We need a few pieces set up for running this on SPIN at NERSC. SPIN uses Rancher 2 for
 deployment, so if you know that pipeline, this should be familiar. If not, here's a 
 source for some SPIN documentation: https://docs.nersc.gov/services/spin/
-

@@ -19,6 +19,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.critical-minerals
   - data.rare-earth-fitness-gap
+evidence:
+  - source: metal_fitness_atlas
+    support: Cross-metal fitness patterns provide a starting matrix for inference across measured metals.
+  - source: counter_ion_effects
+    support: Counter-ion caveats define controls needed before extrapolating to rare-earth experiments.
 order: 30
 ---
 

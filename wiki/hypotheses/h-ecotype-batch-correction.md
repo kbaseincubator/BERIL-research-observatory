@@ -19,6 +19,11 @@ generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
   - claim.ecotype-analysis-needs-rigor-gates
+evidence:
+  - source: ibd_phage_targeting
+    support: Cross-cohort target analyses exposed sensitivity to cohort and feature-space effects.
+  - source: docs/pitfalls.md
+    support: Pitfall records capture batch and modality caveats for metabolite ecotype interpretation.
 order: 50
 ---
 

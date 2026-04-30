@@ -1,4 +1,4 @@
-"""Tests for wiki inventory maintenance reporting."""
+"""Tests for Atlas inventory maintenance reporting."""
 
 import json
 
@@ -38,5 +38,5 @@ def test_inventory_markdown_and_json_are_serializable(repository_data):
     inventory = build_wiki_inventory(repository_data)
     markdown = inventory_to_markdown(inventory)
 
-    assert "Wiki Inventory" in markdown
+    assert "Atlas Inventory" in markdown
     assert json.loads(json.dumps(inventory))["counts"]["collections"] == 1

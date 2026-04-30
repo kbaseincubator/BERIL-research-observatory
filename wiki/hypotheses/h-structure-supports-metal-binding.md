@@ -19,6 +19,11 @@ generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
   - direction.gene-targets-critical-mineral-bioprocessing
+evidence:
+  - source: metal_specificity
+    support: Top candidates such as UCP030820, YebC, and DUF1043/YhcB come from metal-specific fitness prioritization.
+  - source: docs/schemas/alphafold.md
+    support: Structure resources can test whether candidate families have metal-binding, transport, or topology evidence.
 order: 20
 ---
 

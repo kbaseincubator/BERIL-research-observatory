@@ -21,6 +21,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - claim.lab-fitness-predicts-field-ecology
   - data.metal-tolerance-scores
+evidence:
+  - source: bacdive_metal_validation
+    support: Metal tolerance scores can be compared to phenotype and isolation metadata.
+  - source: enigma_sso_asv_ecology
+    support: Contaminated-site community data offers field context for metal-tolerance enrichment tests.
 order: 40
 ---
 

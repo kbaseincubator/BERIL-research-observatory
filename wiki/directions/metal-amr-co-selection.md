@@ -23,6 +23,11 @@ related_pages:
   - topic.amr-resistance-ecology
   - topic.critical-minerals
   - hypothesis.metal-amr-co-selection
+evidence:
+  - source: amr_environmental_resistome
+    support: Resistance mechanism composition varies by environment and includes metal-resistance components.
+  - source: metal_fitness_atlas
+    support: Metal fitness and tolerance signals provide candidate microbial traits to compare against AMR burden.
 order: 20
 ---
 
