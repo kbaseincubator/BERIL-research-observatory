@@ -63,3 +63,22 @@ The discoveries log records that taxonomic relative-abundance spaces and absolut
 - Same-axis feature leakage can inflate within-ecotype target lists.
 - Cross-cohort metabolomics requires explicit batch correction.
 - Species-level targeting can damage beneficial strain or pathway functions.
+
+## Reusable Claims
+
+- [Ecotype analyses need rigor gates before translation](/atlas/claims/ecotype-analysis-needs-rigor-gates) is the primary reusable rule.
+- [AMR mechanism composition is environment-structured](/atlas/claims/amr-is-environment-structured) matters when intervention designs intersect resistance ecology.
+
+## Data Dependencies
+
+- [Ecotype Assignments](/atlas/data/derived-products/ecotype-assignments) are the reusable stratification product.
+- PhageFoundry and genome/pangenome resources provide strain and host-range context.
+- Biochemistry and fitness resources provide pathway, metabolite, and dependency context for intervention costs.
+
+## Drill-Down Path
+
+Start with the ecotype rigor claim, then open the batch-correction hypothesis and ecotype assignments derived product. That path separates useful stratification from unsupported translational targeting.
+
+## How Agents Should Use This Page
+
+Use this topic for host-associated microbiome or intervention proposals. Require leakage checks, batch checks, ecological-cost accounting, and independent evidence before presenting a target as actionable.

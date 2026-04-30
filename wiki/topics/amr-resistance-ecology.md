@@ -53,7 +53,7 @@ The overlap between metal biology and AMR ecology is a high-value research seam.
 
 ## High-Value Directions
 
-- [Metal-AMR co-selection at contaminated DOE sites](/wiki/directions/metal-amr-co-selection)
+- [Metal-AMR co-selection at contaminated DOE sites](/atlas/directions/metal-amr-co-selection)
 - Build a resistance-support module catalog from cofitness neighborhoods.
 - Compare clinical, soil, aquatic, and contaminated-site resistance architectures after phylogenetic control.
 
@@ -62,3 +62,22 @@ The overlap between metal biology and AMR ecology is a high-value research seam.
 - AMR annotations can mix mechanistic resistance, stress response, transport, and mobile-element context.
 - Environment metadata remains uneven across genomes.
 - Co-selection is plausible but must be tested against nulls and confounders.
+
+## Reusable Claims
+
+- [AMR mechanism composition is environment-structured](/atlas/claims/amr-is-environment-structured) is the core claim for this topic.
+- [Metal-specific genes remain core-enriched](/atlas/claims/metal-specific-genes-core-enriched) becomes relevant when resistance is evaluated alongside metal tolerance.
+
+## Data Dependencies
+
+- Pangenome collection pages provide genome and gene-family context for AMR clusters.
+- Fitness Browser provides costs and cofitness signals that distinguish present genes from functional burden.
+- ENIGMA and environmental metadata provide the contamination and habitat context needed for co-selection tests.
+
+## Drill-Down Path
+
+Start with the environment-structured AMR claim, then open the metal-AMR direction and the metal contamination co-selection hypothesis. That path moves from observed resistance ecology to a testable DOE-site analysis.
+
+## How Agents Should Use This Page
+
+Use this topic when proposing AMR, resistance ecology, mobile-element resistance, or contaminated-site co-selection work. Preserve confound controls for taxonomy, environment, mobile context, and annotation uncertainty.

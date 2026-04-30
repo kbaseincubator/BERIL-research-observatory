@@ -23,6 +23,8 @@ confidence: medium
 generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
+  - claim.lab-fitness-predicts-field-ecology
+  - claim.pangenome-openness-shapes-function
   - direction.fitness-validated-community-design
   - data.fitness-phenotypes
   - data.genomes-and-pangenomes
@@ -64,3 +66,22 @@ The applied target is minimal or robust communities chosen for tolerance, metabo
 - GapMind pathway completeness does not prove expression or flux.
 - Fitness dependency is condition-specific.
 - Community design needs interaction validation, not only genome capability.
+
+## Reusable Claims
+
+- [Lab fitness can predict field ecology](/atlas/claims/lab-fitness-predicts-field-ecology) supports cautious translation from measured dependency to environment.
+- [Pangenome openness shapes functional opportunity](/atlas/claims/pangenome-openness-shapes-function) helps explain why capability breadth varies by lineage.
+
+## Data Dependencies
+
+- [Metabolism, biochemistry, and pathways](/atlas/data/types/metabolism-biochemistry-pathways) provide pathway definitions and biochemical context.
+- [Fitness and phenotypes](/atlas/data/types/fitness-phenotypes) provide measured dependency and essentiality.
+- [Genome and pangenome data](/atlas/data/types/genomes-pangenomes) provide species and gene-family context for design candidates.
+
+## Drill-Down Path
+
+Start with the fitness-validated community design direction, then follow the fitness-phenotype data type and genome-fitness-pangenome join. That path moves from design concept to executable data joins.
+
+## How Agents Should Use This Page
+
+Use this topic when proposing remediation, formulation, or synthetic-community work. Separate encoded capability, measured dependency, environmental compatibility, and ecological risk before recommending organisms.

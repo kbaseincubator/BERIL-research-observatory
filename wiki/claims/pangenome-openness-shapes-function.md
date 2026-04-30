@@ -20,6 +20,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.pangenome-architecture
   - hypothesis.pangenome-openness-pathway-diversity
+evidence:
+  - source: pangenome_openness
+    support: Openness metrics quantify how gene-content space differs across species.
+  - source: openness_functional_composition
+    support: Functional composition analyses connect open and closed pangenome structure to biological roles.
 order: 50
 ---
 

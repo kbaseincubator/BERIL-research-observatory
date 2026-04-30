@@ -5,6 +5,7 @@ import hmac
 import logging
 from contextlib import asynccontextmanager
 from datetime import datetime
+from typing import Any
 
 import app.context as ctx
 from app.context import generate_base_context, get_base_context, get_repo_data, initialize_data
@@ -36,7 +37,7 @@ from .db.session import get_db
 from .dataloader import load_repository_data, RepositoryParser
 from .git_data_sync import pull_latest
 from .importer import run_full_migration
-from .models import CollectionCategory, RepositoryData
+from .models import CollectionCategory, RepositoryData, WikiPage
 from .storage import LocalFileStorage
 from .wiki_inventory import build_wiki_inventory
 
@@ -48,6 +49,19 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 templates = None
+
+
+ATLAS_SECTIONS = [
+    ("Overview", "root", "/atlas"),
+    ("Topics", "topics", "/atlas/topics"),
+    ("Data", "data", "/atlas/data"),
+    ("Claims", "claims", "/atlas/claims"),
+    ("Directions", "directions", "/atlas/directions"),
+    ("Hypotheses", "hypotheses", "/atlas/hypotheses"),
+    ("People", "people", "/atlas/people"),
+    ("Methods", "methods", "/atlas/methods"),
+    ("Meta", "meta", "/atlas/meta"),
+]
 
 
 
@@ -123,7 +137,7 @@ ROUTER_GENERAL = APIRouter(tags=["General"])
 ROUTER_KNOWLEDGE = APIRouter(tags=["Knowledge"])
 ROUTER_PROJECTS = APIRouter(tags=["Project"])
 ROUTER_SKILLS = APIRouter(tags=["Skills"])
-ROUTER_WIKI = APIRouter(tags=["Wiki"])
+ROUTER_WIKI = APIRouter(tags=["Atlas"])
 
 
 # Routes
@@ -581,7 +595,7 @@ async def collection_detail(
     context["related_projects"] = [
         p for p in repo_data.projects if collection_id in p.related_collections
     ]
-    context["related_wiki_pages"] = [
+    context["related_atlas_pages"] = [
         page
         for page in repo_data.wiki_index.pages
         if collection_id in page.related_collections
@@ -652,13 +666,158 @@ async def research_ideas(
     return templates.TemplateResponse(request, "knowledge/ideas.html", context)
 
 
-@ROUTER_WIKI.get("/wiki", response_class=HTMLResponse)
-async def wiki_atlas(
-    request: Request,
-    repo_data: RepositoryData = Depends(get_repo_data),
-    context: dict = Depends(get_base_context),
-):
-    """Agent-built wiki atlas landing page."""
+def _atlas_nav(wiki_index) -> list[dict[str, Any]]:
+    """Build global Atlas navigation with section counts."""
+    section_counts = {
+        section: len(
+            [
+                page
+                for page in wiki_index.pages_by_section(section)
+                if not page.path.endswith("/index")
+            ]
+        )
+        for _, section, _ in ATLAS_SECTIONS
+    }
+    section_counts["root"] = len(wiki_index.pages_by_section("root"))
+    return [
+        {"label": label, "section": section, "url": url, "count": section_counts[section]}
+        for label, section, url in ATLAS_SECTIONS
+    ]
+
+
+def _page_refs(pages: list[WikiPage], limit: int | None = None) -> list[dict[str, Any]]:
+    """Return compact page references for map panels."""
+    selected = pages[:limit] if limit else pages
+    return [
+        {
+            "title": page.title,
+            "url": page.url,
+            "summary": page.summary,
+            "type": page.type.replace("_", " "),
+            "source_count": len(page.source_projects),
+            "collection_count": len(page.related_collections),
+            "confidence": page.confidence,
+            "nodes": [],
+        }
+        for page in selected
+    ]
+
+
+def _build_atlas_maps(repo_data: RepositoryData, wiki_inventory: dict[str, Any]) -> list[dict[str, Any]]:
+    """Build deterministic overview maps from Atlas frontmatter and inventory."""
+    wiki_index = repo_data.wiki_index
+    topics = wiki_index.pages_by_type("topic")
+    data_pages = wiki_index.pages_by_section("data")
+    claims = wiki_index.pages_by_type("claim")
+    directions = wiki_index.pages_by_type("direction")
+    hypotheses = wiki_index.pages_by_type("hypothesis")
+    derived_products = wiki_index.pages_by_type("derived_product")
+
+    collection_use = {
+        collection.id: sum(
+            1
+            for page in wiki_index.pages
+            if collection.id in page.related_collections
+        )
+        for collection in repo_data.collections
+    }
+    top_collections = sorted(
+        repo_data.collections,
+        key=lambda collection: (-collection_use.get(collection.id, 0), collection.name.lower()),
+    )[:8]
+
+    topic_links = []
+    for topic in topics:
+        linked = [
+            page
+            for related_id in topic.related_pages
+            if (page := wiki_index.get_page_by_id(related_id))
+        ]
+        topic_links.append(
+            {
+                "title": topic.title,
+                "url": topic.url,
+                "summary": topic.summary,
+                "nodes": [page.title for page in linked[:4]],
+                "source_count": len(topic.source_projects),
+                "collection_count": len(topic.related_collections),
+            }
+        )
+
+    return [
+        {
+            "title": "Topic Landscape",
+            "claim": "Science topics are the first interpretive map: each one connects projects to reusable claims, directions, hypotheses, and data.",
+            "items": topic_links,
+            "fallback": f"{len(topics)} topics integrate {sum(len(t.source_projects) for t in topics)} project references.",
+        },
+        {
+            "title": "Data Landscape",
+            "claim": "Data pages separate physical BERDL collections from cross-collection analytical roles and reusable outputs.",
+            "items": [
+                {
+                    "title": collection.name,
+                    "url": f"/collections/{collection.id}",
+                    "summary": collection.description,
+                    "nodes": [collection.tenant_name or collection.tenant_id or "tenant"],
+                    "source_count": collection_use.get(collection.id, 0),
+                    "collection_count": len(collection.key_tables),
+                }
+                for collection in top_collections
+            ],
+            "fallback": (
+                f"{wiki_inventory['counts']['covered_collections']}/"
+                f"{wiki_inventory['counts']['collections']} collections have Atlas pages."
+            ),
+        },
+        {
+            "title": "Claim to Experiment Flow",
+            "claim": "The Atlas should let a reader move from synthesis to reusable claims, then into directions and concrete hypotheses.",
+            "items": [
+                {
+                    "title": "Claims",
+                    "url": "/atlas/claims",
+                    "summary": "Evidence-backed statements reused across topics.",
+                    "nodes": [page.title for page in claims[:4]],
+                    "source_count": len(claims),
+                    "collection_count": 0,
+                },
+                {
+                    "title": "Directions",
+                    "url": "/atlas/directions",
+                    "summary": "High-value research opportunities grounded in existing work.",
+                    "nodes": [page.title for page in directions[:4]],
+                    "source_count": len(directions),
+                    "collection_count": 0,
+                },
+                {
+                    "title": "Hypotheses",
+                    "url": "/atlas/hypotheses",
+                    "summary": "Testable units that can become projects or experiments.",
+                    "nodes": [page.title for page in hypotheses[:4]],
+                    "source_count": len(hypotheses),
+                    "collection_count": 0,
+                },
+            ],
+            "fallback": f"{len(claims)} claims, {len(directions)} directions, and {len(hypotheses)} hypotheses are currently indexed.",
+        },
+        {
+            "title": "Derived Product Reuse",
+            "claim": "Reusable scores, labels, mappings, and joins are the outputs most likely to compound across projects.",
+            "items": _page_refs(derived_products, limit=6),
+            "fallback": f"{len(derived_products)} derived products are currently tracked from {len(data_pages)} data pages.",
+        },
+    ]
+
+
+def _related_page_groups(related_pages: list[WikiPage]) -> dict[str, list[WikiPage]]:
+    groups: dict[str, list[WikiPage]] = {}
+    for page in related_pages:
+        groups.setdefault(page.type, []).append(page)
+    return dict(sorted(groups.items()))
+
+
+def _atlas_landing_context(repo_data: RepositoryData, context: dict) -> dict:
     wiki_index = repo_data.wiki_index
     atlas_page = wiki_index.get_page_by_path("atlas") or next(
         (p for p in wiki_index.pages if p.type == "atlas"), None
@@ -682,6 +841,8 @@ async def wiki_atlas(
         {
             "wiki_index": wiki_index,
             "atlas_page": atlas_page,
+            "atlas_nav": _atlas_nav(wiki_index),
+            "atlas_maps": _build_atlas_maps(repo_data, wiki_inventory),
             "topic_pages": wiki_index.pages_by_type("topic"),
             "data_pages": data_pages,
             "data_page_groups": data_page_groups,
@@ -694,21 +855,45 @@ async def wiki_atlas(
             ),
         }
     )
+    return context
+
+
+@ROUTER_WIKI.get("/wiki", include_in_schema=False)
+async def wiki_atlas_redirect():
+    """Redirect legacy wiki landing URL to the canonical Atlas route."""
+    return RedirectResponse("/atlas", status_code=301)
+
+
+@ROUTER_WIKI.get("/wiki/{wiki_path:path}", include_in_schema=False)
+async def wiki_page_redirect(wiki_path: str):
+    """Redirect legacy wiki page URLs to canonical Atlas routes."""
+    target = f"/atlas/{wiki_path.strip('/')}" if wiki_path.strip("/") else "/atlas"
+    return RedirectResponse(target, status_code=301)
+
+
+@ROUTER_WIKI.get("/atlas", response_class=HTMLResponse)
+async def atlas_landing(
+    request: Request,
+    repo_data: RepositoryData = Depends(get_repo_data),
+    context: dict = Depends(get_base_context),
+):
+    """BERIL Atlas landing page."""
+    context = _atlas_landing_context(repo_data, context)
     return templates.TemplateResponse(request, "wiki/index.html", context)
 
 
-@ROUTER_WIKI.get("/wiki/{wiki_path:path}", response_class=HTMLResponse)
-async def wiki_page(
+@ROUTER_WIKI.get("/atlas/{wiki_path:path}", response_class=HTMLResponse)
+async def atlas_page(
     request: Request,
     wiki_path: str,
     repo_data: RepositoryData = Depends(get_repo_data),
     context: dict = Depends(get_base_context),
 ):
-    """Render a wiki markdown page."""
+    """Render an Atlas markdown page."""
     wiki_index = repo_data.wiki_index
     page = wiki_index.get_page_by_path(wiki_path)
     if not page:
-        context["error"] = f"Wiki page '{wiki_path}' not found"
+        context["error"] = f"Atlas page '{wiki_path}' not found"
         return templates.TemplateResponse(
             request, "error.html", context, status_code=404
         )
@@ -723,17 +908,20 @@ async def wiki_page(
         for cid in page.related_collections
         if cid in collection_map
     ]
+    related_pages = [
+        p
+        for p in (wiki_index.get_page_by_id(pid) for pid in page.related_pages)
+        if p
+    ]
 
     context.update(
         {
             "page": page,
             "wiki_index": wiki_index,
+            "atlas_nav": _atlas_nav(wiki_index),
             "section_pages": wiki_index.pages_by_section(page.section),
-            "related_pages": [
-                p
-                for p in (wiki_index.get_page_by_id(pid) for pid in page.related_pages)
-                if p
-            ],
+            "related_pages": related_pages,
+            "related_page_groups": _related_page_groups(related_pages),
             "source_projects": source_projects,
             "source_project_ids": page.source_projects,
             "missing_source_project_ids": [

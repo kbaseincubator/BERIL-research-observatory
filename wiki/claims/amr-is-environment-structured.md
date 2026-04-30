@@ -19,6 +19,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.amr-resistance-ecology
   - direction.metal-amr-co-selection
+evidence:
+  - source: amr_environmental_resistome
+    support: Environmental resistome analyses report mechanism composition differences across soil, aquatic, and host-associated contexts.
+  - source: amr_pangenome_atlas
+    support: Pangenome-level AMR clustering makes resistance structure comparable across genome backgrounds.
 order: 30
 ---
 

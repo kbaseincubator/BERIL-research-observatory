@@ -59,7 +59,7 @@ python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM kbase_ke_pangenom
 
 This uses Spark SQL metadata from the BERDL JupyterHub/Spark Connect path and
 writes the tenant/database/table snapshot consumed by `/collections` and the
-wiki data atlas. `--skip-schemas` keeps the refresh bounded for the full live
+BERIL Atlas data section. `--skip-schemas` keeps the refresh bounded for the full live
 catalog; omit it when intentionally collecting `DESCRIBE TABLE` output for a
 small set of databases.
 

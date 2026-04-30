@@ -35,7 +35,7 @@ KBase collections provide the genome-scale substrate for most projects: genome i
 
 ## Main Collections
 
-- [Pangenome Collection](/wiki/data/collections/pangenome)
+- [Pangenome Collection](/atlas/data/collections/pangenome)
 - KBase Genomes
 - ModelSEED Biochemistry
 - Phenotype Collection

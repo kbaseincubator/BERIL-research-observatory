@@ -8,7 +8,7 @@
 2. **Analyze their own data** in the context of BERDL reference collections
 3. **Share discoveries**, lessons learned, pitfalls, and data products
 4. **Explore multiple collections** across the data lakehouse
-5. **Contribute** to a growing knowledge base with proper attribution
+5. **Contribute** to a growing BERIL Atlas with proper attribution
 
 The platform is **collection-agnostic** - it supports multiple BERDL databases and encourages cross-collection analysis.
 
@@ -72,7 +72,7 @@ BERIL Research Observatory
 │   ├── Project Detail           /projects/{id}
 │   └── Notebook Viewer          /projects/{id}/notebooks/{name}
 │
-├── Knowledge                    /knowledge
+├── Atlas                        /atlas
 │   ├── Discoveries              /knowledge/discoveries
 │   ├── Pitfalls                 /knowledge/pitfalls
 │   ├── Research Ideas           /knowledge/ideas
@@ -201,9 +201,9 @@ and contribute to shared scientific knowledge.
 
 ---
 
-### 4. Knowledge Section
+### 4. Atlas and Memory Section
 
-**Key principle:** Knowledge spans all collections. Entries are tagged with relevant collection(s).
+**Key principle:** Atlas synthesis spans all collections. Entries are tagged with relevant collection(s), while memory routes preserve pitfalls, performance notes, and research ideas.
 
 #### 4.1 Discoveries (`/knowledge/discoveries`)
 

@@ -20,6 +20,11 @@ generated_by: Codex GPT-5
 last_reviewed: 2026-04-28
 related_pages:
   - direction.derived-data-product-catalog
+evidence:
+  - source: docs/research_ideas.md
+    support: Planned work identifies reusable project outputs as observatory assets that can compound across later analyses.
+  - source: metal_fitness_atlas
+    support: Metal tolerance scores provide an early example of a derived product reused across topics.
 order: 70
 ---
 
@@ -31,7 +36,7 @@ The most valuable project outputs are those that become reusable primitives in l
 
 ## Testable With
 
-Project provenance, notebook data-dependency scans, wiki derived-product pages, and explicit downstream links.
+Project provenance, notebook data-dependency scans, Atlas derived-product pages, and explicit downstream links.
 
 ## Expected Output
 

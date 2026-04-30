@@ -29,9 +29,9 @@ order: 10
 
 Use source-project authorship as the first reviewer signal. If a page integrates multiple source projects, route review to at least one owner of the most load-bearing project and one reviewer from a neighboring topic.
 
-## Phase 0 Topic Routing
+## Atlas Topic Routing
 
-| Wiki Area | Likely Review Basis |
+| Atlas Area | Likely Review Basis |
 |---|---|
 | Critical minerals | Metal fitness, metal specificity, BacDive validation |
 | AMR ecology | AMR pangenome, environmental resistome, fitness cost |

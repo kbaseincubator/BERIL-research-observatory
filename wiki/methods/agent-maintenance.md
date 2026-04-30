@@ -3,7 +3,7 @@ id: method.agent-maintenance
 title: Agent Maintenance Workflow
 type: method
 status: draft
-summary: Rules for future agents maintaining the markdown wiki without turning it into an unstructured data dump.
+summary: Rules for future agents maintaining the markdown Atlas without turning it into an unstructured data dump.
 source_projects: []
 source_docs:
   - docs/discoveries.md
@@ -28,7 +28,7 @@ order: 20
 2. Decide whether the change affects a topic, claim, data page, direction, or hypothesis.
 3. Update the smallest page that captures the new knowledge.
 4. Preserve provenance and caveats.
-5. Run wiki lint.
+5. Run Atlas lint.
 6. Flag pages needing human review.
 
 ## Creativity Rule

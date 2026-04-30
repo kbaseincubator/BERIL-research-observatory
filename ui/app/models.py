@@ -355,7 +355,7 @@ class ResearchIdea:
 
 @dataclass
 class WikiLink:
-    """A directed relationship between two wiki pages."""
+    """A directed relationship between two Atlas pages."""
 
     source_id: str
     target_id: str
@@ -363,8 +363,17 @@ class WikiLink:
 
 
 @dataclass
+class WikiHeading:
+    """A markdown heading available for Atlas page navigation."""
+
+    level: int
+    title: str
+    anchor: str
+
+
+@dataclass
 class WikiPage:
-    """A markdown wiki page with structured frontmatter."""
+    """A markdown Atlas page with structured frontmatter."""
 
     id: str
     title: str
@@ -383,37 +392,60 @@ class WikiPage:
     section: str = ""
     order: int = 100
     metadata: dict[str, Any] = field(default_factory=dict)
+    headings: list[WikiHeading] = field(default_factory=list)
 
     @property
     def url(self) -> str:
-        """Browser URL for this wiki page."""
+        """Canonical browser URL for this Atlas page."""
+        if self.path == "atlas" or self.type == "atlas":
+            return "/atlas"
+        if self.path.endswith("/index"):
+            return f"/atlas/{self.path.removesuffix('/index')}"
+        return f"/atlas/{self.path}"
+
+    @property
+    def legacy_url(self) -> str:
+        """Legacy wiki URL kept for redirects and backwards compatibility."""
+        if self.path == "atlas" or self.type == "atlas":
+            return "/wiki"
+        if self.path.endswith("/index"):
+            return f"/wiki/{self.path.removesuffix('/index')}"
         return f"/wiki/{self.path}"
 
 
 @dataclass
 class WikiIndex:
-    """Parsed wiki corpus and helper lookups."""
+    """Parsed Atlas corpus and helper lookups."""
 
     pages: list[WikiPage] = field(default_factory=list)
     links: list[WikiLink] = field(default_factory=list)
 
     def get_page_by_id(self, page_id: str) -> WikiPage | None:
-        """Get a wiki page by stable frontmatter ID."""
+        """Get an Atlas page by stable frontmatter ID."""
         return next((p for p in self.pages if p.id == page_id), None)
 
     def get_page_by_path(self, path: str) -> WikiPage | None:
-        """Get a wiki page by route path."""
+        """Get an Atlas page by route path."""
         route_path = path.strip("/")
         if route_path.endswith(".md"):
             route_path = route_path[:-3]
-        return next((p for p in self.pages if p.path == route_path), None)
+        candidates = [route_path]
+        if route_path:
+            candidates.append(f"{route_path}/index")
+        else:
+            candidates.append("atlas")
+        for candidate in candidates:
+            page = next((p for p in self.pages if p.path == candidate), None)
+            if page:
+                return page
+        return None
 
     def pages_by_type(self, page_type: str) -> list[WikiPage]:
-        """Get wiki pages of a specific type."""
+        """Get Atlas pages of a specific type."""
         return [p for p in self.pages if p.type == page_type]
 
     def pages_by_section(self, section: str) -> list[WikiPage]:
-        """Get wiki pages in a top-level section."""
+        """Get Atlas pages in a top-level section."""
         return [p for p in self.pages if p.section == section]
 
 

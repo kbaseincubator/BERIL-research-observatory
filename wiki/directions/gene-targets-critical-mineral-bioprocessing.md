@@ -23,6 +23,11 @@ related_pages:
   - topic.critical-minerals
   - hypothesis.bakta-resolves-novel-metal-families
   - hypothesis.structure-supports-metal-binding
+evidence:
+  - source: metal_specificity
+    support: Strict metal-specificity screening identifies gene families more likely to represent target metal biology.
+  - source: fitness_modules
+    support: Module structure can prioritize co-regulated systems rather than isolated genes.
 order: 10
 ---
 
@@ -46,5 +51,5 @@ The observatory already has metal-specific candidate families, pangenome conserv
 
 ## First Hypotheses
 
-- [Bakta resolves novel metal families](/wiki/hypotheses/h-bakta-resolves-novel-metal-families)
-- [Structure supports metal binding](/wiki/hypotheses/h-structure-supports-metal-binding)
+- [Bakta resolves novel metal families](/atlas/hypotheses/h-bakta-resolves-novel-metal-families)
+- [Structure supports metal binding](/atlas/hypotheses/h-structure-supports-metal-binding)

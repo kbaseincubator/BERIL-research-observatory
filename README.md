@@ -12,7 +12,7 @@ Through the Microbial Discovery Forge, users can:
 - **Analyze their own data** in the context of BERDL reference collections
 - **Share discoveries**, lessons learned, pitfalls, and data products
 - **Explore multiple collections** across the data lakehouse
-- **Contribute** to a growing knowledge base with proper attribution
+- **Contribute** to a growing BERIL Atlas with proper attribution
 
 ## What is BERDL?
 
@@ -151,7 +151,7 @@ BERIL CLI commands (`beril doctor`, `beril setup`, `beril start`) handle environ
 ---
 
 ## Observatory UI
-A web application is available for browsing collections, projects, and the knowledge base.
+A web application is available for browsing collections, projects, and the BERIL Atlas.
 
 The hosted instance is available at: **[BERIL Observatory](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/)**
 
@@ -210,7 +210,7 @@ BERIL-research-observatory/
 │   ├── start.py                # Agent launcher
 │   └── config.py               # User config (~/.config/beril/config.toml)
 │
-├── docs/                       # Shared knowledge base
+├── docs/                       # Shared observatory memory and documentation
 │   ├── collections.md          # Overview of all BERDL databases & tenants
 │   ├── schemas/                # Per-collection schema documentation
 │   ├── overview.md             # Scientific context & data workflow

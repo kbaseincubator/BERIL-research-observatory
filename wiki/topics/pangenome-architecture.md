@@ -63,3 +63,22 @@ The pangenome collection makes core/accessory/singleton status queryable across 
 - Core/accessory calls can reflect sampling depth and phylogenetic imbalance.
 - Singletons can mix true novelty, fragmentation, and annotation artifacts.
 - Any openness claim needs genome-count controls.
+
+## Reusable Claims
+
+- [Pangenome openness shapes functional opportunity](/atlas/claims/pangenome-openness-shapes-function) is the core reusable claim.
+- [Metal-specific genes remain core-enriched](/atlas/claims/metal-specific-genes-core-enriched) shows how pangenome structure interacts with a specific biological domain.
+
+## Data Dependencies
+
+- [Genomes and pangenomes](/atlas/data/types/genomes-pangenomes) provide the backbone data type.
+- UniRef, COG, Bakta, and biochemistry resources provide functional interpretation.
+- Fitness Browser provides measured consequence for some conserved or accessory genes.
+
+## Drill-Down Path
+
+Start with the openness claim, then open the pangenome-openness pathway-diversity hypothesis and genome/pangenome data type. That path moves from architecture to functional opportunity.
+
+## How Agents Should Use This Page
+
+Use this topic whenever a project depends on core, accessory, singleton, openness, conservation, or gene-content classes. Always preserve sampling-depth and phylogenetic-control caveats.

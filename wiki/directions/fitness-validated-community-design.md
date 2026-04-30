@@ -22,6 +22,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.metabolic-capability-community-design
   - topic.fitness-validated-function
+evidence:
+  - source: metabolic_capability_dependency
+    support: Capability-versus-dependency analyses separate encoded function from measured need.
+  - source: lab_field_ecology
+    support: Lab fitness signals can be validated against field ecology when environmental metadata exists.
 order: 40
 ---
 

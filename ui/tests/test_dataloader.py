@@ -745,7 +745,7 @@ class TestParseWiki:
         yaml_text = "\n".join(
             f"{key}: {json.dumps(value)}" for key, value in frontmatter.items()
         )
-        page_path.write_text(f"---\n{yaml_text}\n---\n# Example Topic\n\nBody.")
+        page_path.write_text(f"---\n{yaml_text}\n---\n# Example Topic\n\n## Detail\n\nBody.")
         return page_path
 
     def test_no_wiki_dir_returns_empty_index(self, tmp_repo):
@@ -764,6 +764,7 @@ class TestParseWiki:
         assert page.path == "topics/example"
         assert page.section == "topics"
         assert page.source_projects == ["alpha_project"]
+        assert page.headings[0].title == "Detail"
         assert wiki.links[0].target_id == "claim.example"
 
     def test_skips_missing_frontmatter(self, tmp_repo):
@@ -784,6 +785,30 @@ class TestParseWiki:
         assert wiki.get_page_by_id("topic.example").title == "Example Topic"
         assert wiki.get_page_by_path("topics/example.md").id == "topic.example"
         assert wiki.pages_by_type("topic")[0].id == "topic.example"
+
+    def test_section_index_path_resolves_without_index_suffix(self, tmp_repo):
+        self._write_wiki_page(
+            tmp_repo,
+            rel_path="topics/index.md",
+            id="topics.index",
+            title="Topics",
+            type="meta",
+            related_pages=[],
+        )
+        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
+        assert wiki.get_page_by_path("topics").id == "topics.index"
+        assert wiki.get_page_by_path("topics/index").url == "/atlas/topics"
+
+    def test_rewrites_wiki_links_to_atlas_links(self, tmp_repo):
+        page_path = self._write_wiki_page(tmp_repo)
+        page_path.write_text(
+            page_path.read_text()
+            + "\n[Claim](/wiki/claims/example)\n[Relative](../claims/example.md)\n"
+        )
+        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
+        page = wiki.get_page_by_id("topic.example")
+        assert "/atlas/claims/example" in page.body
+        assert "/wiki/claims/example" not in page.body
 
 
 # ---------------------------------------------------------------------------

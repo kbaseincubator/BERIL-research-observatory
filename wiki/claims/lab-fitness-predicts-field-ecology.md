@@ -21,6 +21,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.microbial-ecotypes-environment
   - hypothesis.lab-field-metal-tolerance
+evidence:
+  - source: lab_field_ecology
+    support: Lab fitness signals were compared against environmental abundance or field context.
+  - source: bacdive_metal_validation
+    support: Metal tolerance predictions were checked against BacDive phenotype and isolation metadata.
 order: 20
 ---
 

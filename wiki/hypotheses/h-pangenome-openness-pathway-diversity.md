@@ -21,6 +21,11 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.pangenome-architecture
   - claim.pangenome-openness-shapes-function
+evidence:
+  - source: pangenome_openness
+    support: Openness metrics provide the predictor for pathway-diversity tests.
+  - source: metabolic_capability_dependency
+    support: Pathway capability and dependency resources provide functional outcomes to compare.
 order: 60
 ---
 

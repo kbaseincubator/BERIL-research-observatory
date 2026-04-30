@@ -1,4 +1,4 @@
-"""Tests for wiki lint checks."""
+"""Tests for Atlas lint checks."""
 
 import json
 from pathlib import Path
@@ -21,7 +21,23 @@ def _setup_repo(tmp_path: Path) -> Path:
         "    icon: ''\n"
         "    description: test\n"
     )
+    _write_section_index_pages(tmp_path)
     return tmp_path
+
+
+def _write_section_index_pages(tmp_path: Path) -> None:
+    for section in ("topics", "data", "claims", "directions", "hypotheses"):
+        _write_page(
+            tmp_path,
+            f"{section}/index.md",
+            id=f"{section}.index",
+            title=f"{section.title()} Index",
+            type="meta",
+            source_projects=[],
+            source_docs=["docs/discoveries.md"],
+            related_collections=[],
+            related_pages=[],
+        )
 
 
 def _write_snapshot(tmp_path: Path, collection_ids: list[str]) -> None:
@@ -92,11 +108,11 @@ def test_duplicate_id_and_broken_link_are_reported(tmp_path):
     _write_page(repo, "topics/example.md")
     _write_page(repo, "topics/duplicate.md", title="Different Title")
     page = repo / "wiki" / "topics" / "example.md"
-    page.write_text(page.read_text() + "\n[Broken](/wiki/missing/page)\n")
+    page.write_text(page.read_text() + "\n[Broken](/atlas/missing/page)\n")
 
     messages = "\n".join(issue.message for issue in lint_wiki(repo))
-    assert "duplicate wiki id" in messages
-    assert "broken wiki link" in messages
+    assert "duplicate Atlas id" in messages
+    assert "broken Atlas link" in messages
 
 
 def test_unknown_project_and_collection_are_reported(tmp_path):
@@ -158,3 +174,37 @@ def test_external_source_doc_is_allowed(tmp_path):
 
     messages = "\n".join(issue.message for issue in lint_wiki(repo))
     assert "missing source doc" not in messages
+
+
+def test_evidence_metadata_required_for_reusable_pages(tmp_path):
+    repo = _setup_repo(tmp_path)
+    _write_page(
+        repo,
+        "claims/example.md",
+        id="claim.example",
+        title="Example Claim",
+        type="claim",
+    )
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "claim pages require evidence metadata" in messages
+
+    _write_page(
+        repo,
+        "claims/example.md",
+        id="claim.example",
+        title="Example Claim",
+        type="claim",
+        evidence=[{"source": "alpha_project", "support": "Test support."}],
+    )
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "claim pages require evidence metadata" not in messages
+
+
+def test_missing_section_index_is_reported(tmp_path):
+    repo = _setup_repo(tmp_path)
+    (repo / "wiki" / "topics" / "index.md").unlink()
+    _write_page(repo, "topics/example.md")
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "missing Atlas section index page: topics/index" in messages
