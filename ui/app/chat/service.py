@@ -128,8 +128,13 @@ async def stream_turn(
             skip_message_id=user_row.id,
         ):
             fold_event(event, text_parts, result)
+            # Mark complete before yielding the terminal frame: if the
+            # client disconnects while consuming this last frame, the turn
+            # itself still finished, so don't tag the persisted row as
+            # interrupted.
+            if isinstance(event, (TurnComplete, ErrorEvent)):
+                stream_completed = True
             yield event_to_frame(event)
-        stream_completed = True
     finally:
         # Persist exactly once, whether the stream completed normally or
         # was cancelled mid-flight (browser closed, etc.). On interruption,
