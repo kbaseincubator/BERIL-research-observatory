@@ -13,6 +13,10 @@ class Settings(BaseSettings):
     # Test-only settings. These should be left False unless running tests.
     test_skip_lifespan: bool = False
 
+    # Image info. Only used for health endpoint when present
+    git_commit: str | None = None
+    build_date: str | None = None
+
     # Paths
     app_dir: Path = Path(__file__).parent
     ui_dir: Path = app_dir.parent
