@@ -103,7 +103,9 @@ async def run_turn(
     The session row is expected to be owned by the caller; auth happens at
     the route layer. This function does not validate ownership.
     """
-    await persist_user_message(db, session=session, user_message=user_message)
+    user_row = await persist_user_message(
+        db, session=session, user_message=user_message
+    )
 
     result = TurnResult()
     text_parts: list[str] = []
@@ -113,6 +115,7 @@ async def run_turn(
         session=session,
         user_message=user_message,
         credentials=credentials,
+        skip_message_id=user_row.id,
     ):
         fold_event(event, text_parts, result)
 
@@ -127,6 +130,7 @@ async def run_provider_turn(
     session: ChatSession,
     user_message: str,
     credentials: Credentials,
+    skip_message_id: str | None = None,
 ) -> AsyncIterator[TurnEvent]:
     """Resolve the provider and stream its events. No persistence.
 
@@ -152,7 +156,7 @@ async def run_provider_turn(
         prior = await list_messages_for_session(db, session.id)
         # Drop the just-persisted user message — it's already in
         # ``user_message`` and will be sent as the live prompt.
-        preamble_sources = [m for m in prior if m.content != {"text": user_message}]
+        preamble_sources = [m for m in prior if m.id != skip_message_id]
         preamble = build_resume_preamble(preamble_sources)
         outbound_message = preamble + user_message
         resume_id = None

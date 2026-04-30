@@ -85,12 +85,12 @@ class TestUserCap:
         mgr = ChatConcurrencyManager(per_user_cap=1)
         release = asyncio.Event()
 
-        async def held(user: str) -> None:
-            async with mgr.acquire(session_id="s", user_id=user):
+        async def held(user: str, sess: str) -> None:
+            async with mgr.acquire(session_id=sess, user_id=user):
                 await release.wait()
 
-        t1 = asyncio.create_task(held("u1"))
-        t2 = asyncio.create_task(held("u2"))
+        t1 = asyncio.create_task(held("u1", "s1"))
+        t2 = asyncio.create_task(held("u2", "s2"))
         await asyncio.sleep(0.01)
         assert mgr.active_turns_for("u1") == 1
         assert mgr.active_turns_for("u2") == 1

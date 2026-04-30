@@ -80,17 +80,17 @@ class ChatConcurrencyManager:
 
         Blocks on the session lock. Two turns in the same chat will serialize.
         """
-        reserved = await self._try_reserve_user_slot(user_id)
-        if not reserved:
-            raise UserChatConcurrencyExceeded(
-                f"user {user_id!r} has reached the concurrent-turn cap"
-            )
-        try:
-            lock = await self._get_session_lock(session_id)
-            async with lock:
+        lock = await self._get_session_lock(session_id)
+        async with lock:
+            reserved = await self._try_reserve_user_slot(user_id)
+            if not reserved:
+                raise UserChatConcurrencyExceeded(
+                    f"user {user_id!r} has reached the concurrent-turn cap"
+                )
+            try:
                 yield
-        finally:
-            await self._release_user_slot(user_id)
+            finally:
+                await self._release_user_slot(user_id)
 
 
 _manager: ChatConcurrencyManager | None = None

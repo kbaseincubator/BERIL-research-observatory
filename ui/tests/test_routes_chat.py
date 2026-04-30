@@ -154,7 +154,7 @@ def _events_ok() -> list[TurnEvent]:
 
 def _patched_provider(events: list[TurnEvent]):
     async def _fake(
-        *, db, session, user_message, credentials
+        *, db, session, user_message, credentials, **kwargs
     ) -> AsyncIterator[TurnEvent]:
         for e in events:
             yield e
