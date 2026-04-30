@@ -53,6 +53,14 @@ Quick `COUNT(*)` during plan-writing: BERDL pangenome contains roughly **6,700 B
 
 ## Query Strategy
 
+### Execution environment
+
+All Spark queries (NB01 universe assembly, NB02 cluster-presence, NB04 cluster annotation, NB06 PFAM pull) run on **BERDL JupyterHub on-cluster** with the kernel-injected `spark = get_spark_session()`. NB03 (Fisher per OG) and NB05 (compactness test) run locally in pandas/scipy on the parquet outputs.
+
+### Unit of analysis: eggNOG OG, NOT `gene_cluster_id`
+
+`kbase_ke_pangenome.gene_cluster.gene_cluster_id` is **species-specific** per the schema (`docs/schemas/pangenome.md`). Cluster IDs do not generalize across species, so a Fisher test on `gene_cluster_id` for a multi-species cohort would compare apples-to-oranges. Instead, **NB02 maps each genome's gene clusters to their `eggNOG_OGs` annotation** (from `eggnog_mapper_annotations.eggNOG_OGs`, which carries cross-species OG IDs at the appropriate taxonomic depth), and **NB03 runs Fisher's exact at OG level** (anchor presence vs baseline presence per OG, BH-FDR-corrected). The eggNOG OG namespace is the cross-species orthology surrogate.
+
 ### Tables Required
 
 | Table | Purpose | Rows | Filter |
@@ -82,21 +90,24 @@ Quick `COUNT(*)` during plan-writing: BERDL pangenome contains roughly **6,700 B
 
 ## Analysis Plan
 
-### NB01 — Bacillota_B universe + cohort assembly (Spark)
-- **Goal**: Pull all Bacillota_B genomes from BERDL pangenome with QC + isolation_source. Identify deep-clay anchor (incl. BacDive expansion) and phylum-matched soil-baseline.
-- **Outputs**: `data/bacillota_b_universe.tsv` (~6.7K genomes with metadata), `data/cohort_assignments.tsv` (anchor + baseline tagged).
+### NB01 — Bacillota_B universe + cohort assembly + Phase 1 data-availability gate (Spark)
+- **Goal**: Pull all Bacillota_B genomes from BERDL pangenome with QC + isolation_source. Identify deep-clay anchor (incl. BacDive expansion) and phylum-matched soil-baseline. **Also validate that `bakta_pfam_domains` actually contains PF14537 (Cytochrom_NNT) entries before NB06 commits to using it** — the `bakta_pfam_domains` "silent absence" pitfall (12/22 marker Pfams missing per `plant_microbiome_ecotypes` finding) is documented in `docs/pitfalls.md` and is a precondition for the Phase 1 IR correction.
+- **Inputs**: `gtdb_taxonomy_r214v1`, `genome`, `gtdb_metadata`, `ncbi_env`, `bacdive.isolation` + `taxonomy`, `bakta_pfam_domains` (PF14537 presence check).
+- **Outputs**: `data/bacillota_b_universe.tsv` (~6.7K genomes with metadata), `data/cohort_assignments.tsv` (anchor + baseline tagged), `data/pf14537_availability.tsv` (PF14537 row count + sample organism distribution — gate output for NB06).
+- **Cohort size fallback**: If BacDive linkage yields <10 deep-clay Bacillota_B beyond the 5 from the clay project, expand the anchor by including all clay-mentioning Bacillota_B in `ncbi_env` (relaxing the deep/shallow distinction for Bacillota_B since the within-phylum rate is small). Document the expanded definition in the cohort_assignments output. Minimum viable n=10 anchor for H1 OG-level Fisher tests; if even that isn't reached, document and proceed with descriptive analysis only.
 
-### NB02 — Cluster-presence matrix (Spark + local)
-- **Goal**: For each cohort genome (anchor + baseline), pull its full set of `gene_cluster_id`s via `gene_genecluster_junction`. Build a sparse genome × cluster boolean matrix.
-- **Outputs**: `data/cohort_cluster_presence.parquet` (long-format genome_id, gene_cluster_id pairs).
+### NB02 — Genome × eggNOG-OG presence matrix (Spark + local)
+- **Goal**: For each cohort genome (anchor + baseline), pull its full set of `gene_cluster_id`s via `gene_genecluster_junction`, then map each cluster to its `eggNOG_OGs` value in `eggnog_mapper_annotations`. Aggregate to a sparse genome × OG boolean matrix (one row per (genome_id, og_id) presence).
+- **Performance**: For ~250 cohort genomes against the 1B-row `gene_genecluster_junction`, use the BROADCAST-temp-view pattern (per `cofitness_coinheritance` pitfall in `docs/pitfalls.md`): create a small temp view of cohort `genome_id`s and broadcast it into the join. Then join eggnog annotations on the resulting cluster IDs (smaller intermediate). If `kbase_uniprot.uniprot_identifier` ends up in the join path (it shouldn't here), set `spark.sql.autoBroadcastJoinThreshold = -1` per the `bakta_reannotation` pitfall.
+- **Outputs**: `data/cohort_og_presence.parquet` (long-format genome_id, og_id pairs).
 
-### NB03 — Per-cluster enrichment test (local)
-- **Goal**: For each gene cluster present in any cohort genome, Fisher's exact test (anchor vs baseline). BH-FDR correct across clusters. Keep clusters with q<0.05 AND fold-difference ≥3 AND minimum support (≥3 anchor genomes).
-- **Outputs**: `data/cluster_enrichment.tsv` (one row per significant cluster, columns: gene_cluster_id, anchor_n, anchor_pos, baseline_n, baseline_pos, OR, p, p_BH, fold_diff).
+### NB03 — Per-OG enrichment test (local)
+- **Goal**: For each eggNOG OG present in any cohort genome, Fisher's exact test (anchor vs baseline). BH-FDR correct across all OGs tested. Keep OGs with q<0.05 AND fold-difference ≥3 AND minimum support (≥3 anchor genomes).
+- **Outputs**: `data/og_enrichment.tsv` (one row per significant OG, columns: og_id, anchor_n, anchor_pos, baseline_n, baseline_pos, OR, p, p_BH, fold_diff).
 
-### NB04 — Functional annotation of enriched clusters (Spark + local)
-- **Goal**: For the significant clusters from NB03, pull eggNOG annotations (KEGG_ko, COG_category, PFAM, Description) and bakta annotations. Group by functional category.
-- **Outputs**: `data/enriched_clusters_annotated.tsv`, `figures/h1_functional_categories.png`.
+### NB04 — Functional annotation of enriched OGs (Spark + local)
+- **Goal**: For the significant OGs from NB03, pull representative eggNOG annotations (KEGG_ko, COG_category, PFAM, Description) for clusters tagged with each OG. Group by functional category and per-OG-best annotation.
+- **Outputs**: `data/enriched_ogs_annotated.tsv`, `figures/h1_functional_categories.png`.
 
 ### NB05 — H2 genome-compactness test (local)
 - **Goal**: Compare genome size and gene count distributions (anchor vs baseline) after CheckM-completeness rescaling. Wilcoxon + Cohen's d.
@@ -132,6 +143,7 @@ Quick `COUNT(*)` during plan-writing: BERDL pangenome contains roughly **6,700 B
 ## Revision History
 
 - **v1** (2026-04-30): Initial plan. Builds on `clay_confined_subsurface` (H1/H2/H3) and `oak_ridge_cultivation_gap` (NB02/NB03 pyhmmer + KOfam annotation pipeline). Phase 1 corrects the clay project's IR marker bug surfaced during oak_ridge synthesis.
+- **v1.1** (2026-04-30): Addressed `PLAN_REVIEW_1.md` feedback. (a) Clarified unit of analysis is **eggNOG OG**, not species-specific `gene_cluster_id`, with explicit explanation of why and the new `eggNOG_OGs` field used for cross-species orthology. (b) Moved PF14537 availability validation from NB06 to NB01 as a precondition gate. (c) Added explicit execution-environment section. (d) Added BROADCAST-temp-view performance pattern for the 1B-row gene/junction join in NB02. (e) Added cohort-size fallback strategy if BacDive linkage yields <10 deep-clay Bacillota_B.
 
 ## Authors
 
