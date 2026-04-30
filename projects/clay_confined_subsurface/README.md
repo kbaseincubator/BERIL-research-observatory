@@ -1,18 +1,18 @@
-# Genomic Signatures of Clay-Confined Deep-Subsurface Life
+# Self-Sufficiency, Anaerobic Toolkit, and Cultivation Bias in Clay-Confined Cultured Bacterial Genomes
 
 ## Research Question
 
-Do bacterial isolates from clay-confined deep-subsurface environments (Opalinus Clay, bentonite formations, deep ENIGMA cores) carry a distinguishable genomic signature relative to surface soil/sediment microbes — and is there a shared "clay-confined core" gene set that recurs across these isolates regardless of phylogeny?
+Do BERDL's cultured bacterial genomes from clay-confined deep-subsurface environments recapitulate the genomic signatures the recent literature has identified — biosynthetic self-sufficiency (Beaver & Neufeld 2024; Becraft 2021), the H₂-driven anaerobic chemolithoautotrophy toolkit (Wood–Ljungdahl + group 1 [NiFe]-hydrogenase + dissimilatory sulfate reduction, per Bagnoud 2016), and a cultivation-driven porewater-vs-rock-attached signature dichotomy (Bagnoud 2016 vs Mitzscherling 2023) — relative to surface soil microbes?
 
 ## Status
 
-In Progress — research plan created, awaiting analysis.
+In Progress — literature review complete (see [references.md](references.md)); research plan written; awaiting cohort assembly.
 
 ## Overview
 
-Deep-subsurface clay formations (e.g., the Opalinus Clay host rock under evaluation for nuclear-waste repositories in Switzerland, bentonite engineered barriers, and the saturated clay zones of the ENIGMA Subsurface Science Observatory) impose a coherent set of selection pressures: anoxia, low organic carbon, mineral-confined diffusion, oligotrophy, and slow growth on inorganic electron acceptors. We compile the ~30–60 cultured genomes available in BERDL with documented origin in clay-confined deep-subsurface settings and ask whether they share gene-content signatures distinguishable from (i) shallow agricultural clay isolates and (ii) the broader soil/sediment baseline.
+Recent literature on the deep terrestrial subsurface (Beaver & Neufeld 2024 review; Bagnoud 2016 Mont Terri Opalinus; Mitzscherling 2023 Opalinus rock-attached communities; Engel 2019 Grimsel bentonite) generates testable predictions for what cultured bacterial genomes from clay-confined sites should encode: greater biosynthetic completeness ("self-sufficiency"), a recurring anaerobic-respiration toolkit, and — because cultivable porewater organisms differ qualitatively from rock-attached *Geobacter*/*Geothrix* lineages — a cultivation-driven porewater bias in any genome-resolved cohort. We test these predictions on the ~25–40 BERDL cultured genomes traceable to clay-confined origins (Mont Terri Opalinus boreholes, bentonite formations, kaolin lenses, BacDive deep-clay strains) versus a phylogenetically matched soil/sediment baseline drawn from the 5,151 species linked to soil biosamples in `kbase_ke_pangenome.ncbi_env`.
 
-This project is the **genome-resolved** complement to [`enigma_sso_asv_ecology`](../enigma_sso_asv_ecology/), which characterized in-situ subsurface community structure via 16S ASVs at Oak Ridge. Rather than community composition, we ask what cultured representatives of clay-confined niches actually *encode*.
+This project is the **genome-resolved** complement to [`enigma_sso_asv_ecology`](../enigma_sso_asv_ecology/), which characterized in-situ subsurface community structure via 16S ASVs at Oak Ridge.
 
 ## Quick Links
 
