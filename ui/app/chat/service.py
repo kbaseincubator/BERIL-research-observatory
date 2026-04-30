@@ -117,7 +117,7 @@ async def stream_turn(
 
     result = TurnResult()
     text_parts: list[str] = []
-    persisted = False
+    stream_completed = False
 
     try:
         async for event in run_provider_turn(
@@ -129,22 +129,19 @@ async def stream_turn(
         ):
             fold_event(event, text_parts, result)
             yield event_to_frame(event)
-
+        stream_completed = True
+    finally:
+        # Persist exactly once, whether the stream completed normally or
+        # was cancelled mid-flight (browser closed, etc.). On interruption,
+        # tag the partial row with an error so resume sees a coherent state.
         result.assistant_text = "".join(text_parts)
+        if not stream_completed and result.error is None:
+            result.error = "stream interrupted"
         assistant_row = await persist_assistant_message(
             db, session=session, result=result
         )
-        persisted = True
-        yield turn_complete_frame(assistant_message_id=assistant_row.id)
-    finally:
-        # Client disconnected or the generator was cancelled before the
-        # stream naturally ended: still persist whatever we accumulated so
-        # the transcript is coherent on resume.
-        if not persisted:
-            result.assistant_text = "".join(text_parts)
-            if result.error is None:
-                result.error = "stream interrupted"
-            await persist_assistant_message(db, session=session, result=result)
+        if stream_completed:
+            yield turn_complete_frame(assistant_message_id=assistant_row.id)
 
 
 async def run_turn(

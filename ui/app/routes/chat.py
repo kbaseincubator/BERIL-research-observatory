@@ -155,9 +155,16 @@ async def chat_stream(
             status_code=429,
         )
 
-    # Refresh after acquiring the lock so we see any sdk_session_id written
-    # by a turn that just finished on this same session.
-    await db.refresh(session)
+    # Anything between acquire and handoff to EventSourceResponse must
+    # release the guard manually; only the generator's finally fires once
+    # streaming starts.
+    try:
+        # Refresh after acquiring the lock so we see any sdk_session_id
+        # written by a turn that just finished on this same session.
+        await db.refresh(session)
+    except BaseException:
+        await turn_guard.__aexit__(None, None, None)
+        raise
 
     async def _event_generator():
         try:
