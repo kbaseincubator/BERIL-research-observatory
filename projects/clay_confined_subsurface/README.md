@@ -6,7 +6,9 @@ Do BERDL's cultured bacterial genomes from clay-confined deep-subsurface environ
 
 ## Status
 
-In Progress — literature review complete (see [references.md](references.md)); research plan written; awaiting cohort assembly.
+Complete — see [Report](REPORT.md) for findings.
+
+**Headline**: H3 (porewater-bias) strongly supported (SR enrichment vs Mitzscherling rock-attached null p=4×10⁻¹²); H2 (anaerobic toolkit) partially supported — only sulfate reduction survives phylogenetic control (within-Bacillota_B p_BH=0.04); H1 (self-sufficiency) not supported — cultivation bias means BERDL's cohort omits the *Ca.* Desulforudis audaxviator-type extreme self-sufficient lineages the Beaver & Neufeld (2024) synthesis describes.
 
 ## Overview
 
@@ -22,7 +24,33 @@ This project is the **genome-resolved** complement to [`enigma_sso_asv_ecology`]
 
 ## Reproduction
 
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+### Prerequisites
+
+- Python 3.10+ with `pandas`, `numpy`, `pyarrow`, `scipy`, `statsmodels`, `seaborn`, `matplotlib`
+- BERDL JupyterHub access (`berdl_notebook_utils.setup_spark_session.get_spark_session`) for NB01–03 (Spark queries)
+- `KBASE_AUTH_TOKEN` set in repo `.env`
+
+### Steps
+
+```bash
+cd projects/clay_confined_subsurface
+
+# Spark-dependent (run on BERDL JupyterHub or with proxy chain)
+jupyter nbconvert --to notebook --execute --inplace notebooks/01_cohort_assembly.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/02_genome_features.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/03_soil_baseline.ipynb
+
+# Local-only (read parquet outputs from above)
+jupyter nbconvert --to notebook --execute --inplace notebooks/04_h1_self_sufficiency.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/05_h2_anaerobic_toolkit.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/06_h3_porewater_bias.ipynb
+```
+
+NB01 takes ~2 min; NB02–03 take ~5–15 min each (1B-row gene/junction joins filtered to cohort genomes); NB04–06 are local pandas/scipy and run in seconds. Outputs land in `data/` (.tsv, .parquet) and `figures/` (.png).
+
+### Data Collections
+
+This project draws from `kbase_ke_pangenome` (NCBI env metadata, genome/taxonomy, gene clusters, eggNOG annotations, GapMind pathways).
 
 ## Authors
 
