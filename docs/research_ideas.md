@@ -637,3 +637,35 @@ _Capture half-baked ideas here for future refinement_
 
 **Location**: `projects/oak_ridge_cultivation_gap/` (to be created via /berdl_start)
 
+
+---
+
+### [bacillota_b_subsurface_accessory] What Accessory Gene Content Distinguishes Deep-Clay Bacillota_B from Soil Congeners?
+**Status**: PROPOSED
+**Priority**: HIGH
+**Effort**: Medium (3-4 weeks)
+
+**Research Question**: Within Bacillota_B (Desulfosporosinus, BRH-c8a Peptococcaceae, BRH-c4a Desulfotomaculales, etc.), what gene clusters are enriched in deep-clay-isolated genomes vs phylum-matched soil-baseline genomes — beyond the curated marker dictionary used in clay_confined_subsurface? Includes a Phase 1 correction to the clay project's IR-side analysis (which used KOs K07811/K17324/K17323 that turn out to be TMAO reductase / glycerol ABC / glycerol permease, not iron reduction).
+
+**Approach**:
+- NB01: pull all ~6700 Bacillota_B genomes from BERDL pangenome with isolation_source metadata; assemble deep-clay anchor (~15-25 from clay project + BacDive expansion) and phylum-matched soil-baseline (~100-200).
+- NB02: per-genome eggNOG-OG presence vector for the cohort (use OG IDs as cross-species orthology surrogate).
+- NB03: per-OG Fisher's exact (anchor vs baseline) with BH-FDR; retain OGs with q<0.05 AND fold≥3 AND ≥3 anchor genomes.
+- NB04: functional annotation of enriched OGs (eggNOG + bakta) — group into pre-registered categories (sporulation revival, anaerobic respiration accessories, mineral attachment EPS, osmoadaptation, anaerobic-niche regulators).
+- NB05: H2 genome-compactness test (anchor vs baseline genome size + gene count, CheckM-controlled).
+- NB06: Phase 1 correction — re-run clay H3 IR analysis using PFAM PF14537 multi-heme cytochrome + CXXCH heme-motif counting; commit corrected REPORT addendum to clay project.
+- NB07: synthesis.
+
+**Hypotheses**:
+- H1: ≥10 OGs are enriched in deep-clay Bacillota_B (Fisher BH-FDR q<0.05, fold≥3) and fall into pre-registered functional categories (sporulation, anaerobic respiration accessories, mineral attachment, osmoadaptation, regulators).
+- H2: Deep-clay Bacillota_B have smaller mean genome size + gene count than soil baseline (CheckM-controlled).
+- H3 (corrected): Deep-clay Bacillota_B carry PFAM PF14537 multi-heme cytochrome content at higher rates than soil baseline (this is the clay project's H3 IR-side, redone with correct markers).
+
+**Impact**: Gene-cluster-level (not curated-marker) characterization of subsurface Bacillota_B specialization. Provides target list for future biochemistry / fitness-screen work. Closes a real bug in clay_confined_subsurface's IR analysis (PR #231 already merged; correction needed).
+
+**Dependencies**:
+- Existing: clay_confined_subsurface (cohort tagging + within-Bacillota_B SR finding); oak_ridge_cultivation_gap (pyrodigal+pyhmmer KOfam annotation pipeline).
+- New: BacDive Bacillota_B clay-strain expansion via GCA→GTDB linkage.
+
+**Location**: `projects/bacillota_b_subsurface_accessory/`
+
