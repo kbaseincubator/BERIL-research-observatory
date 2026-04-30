@@ -86,6 +86,9 @@ async def chat_turn(
     manager = get_concurrency_manager()
     try:
         async with manager.acquire(session_id=session.id, user_id=user.id):
+            # Refresh after acquiring the lock so we see any sdk_session_id
+            # written by a turn that just finished on this same session.
+            await db.refresh(session)
             turn = await run_turn(
                 db,
                 session=session,
