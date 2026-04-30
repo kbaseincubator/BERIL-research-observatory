@@ -155,6 +155,10 @@ async def chat_stream(
             status_code=429,
         )
 
+    # Refresh after acquiring the lock so we see any sdk_session_id written
+    # by a turn that just finished on this same session.
+    await db.refresh(session)
+
     async def _event_generator():
         try:
             async for frame in stream_turn(

@@ -111,7 +111,9 @@ async def stream_turn(
     """
     from app.chat.sse import event_to_frame, turn_complete_frame
 
-    await persist_user_message(db, session=session, user_message=user_message)
+    user_row = await persist_user_message(
+        db, session=session, user_message=user_message
+    )
 
     result = TurnResult()
     text_parts: list[str] = []
@@ -123,6 +125,7 @@ async def stream_turn(
             session=session,
             user_message=user_message,
             credentials=credentials,
+            skip_message_id=user_row.id,
         ):
             fold_event(event, text_parts, result)
             yield event_to_frame(event)
