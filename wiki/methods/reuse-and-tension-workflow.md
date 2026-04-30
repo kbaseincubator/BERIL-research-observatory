@@ -15,6 +15,7 @@ last_reviewed: 2026-04-30
 related_pages:
   - data.reuse
   - conflicts.index
+  - opportunities.index
   - person.index
 order: 50
 ---
@@ -28,6 +29,10 @@ Promote an output when it has a name, producer, artifact, caveat trail, and like
 ## Record A Tension
 
 Create a `conflict` page when two results appear to disagree, when a caveat changes interpretation, or when a direction is plausible but unresolved. The page must record evidence on multiple sides and the analysis or experiment that would resolve the tension.
+
+## Record An Opportunity
+
+Create an `opportunity` page when a tension, data gap, or reusable product has a concrete next analysis. The page must record status, kind, impact, feasibility, readiness, evidence strength, target outputs, linked products or tensions when relevant, and review routes.
 
 ## Route Review
 

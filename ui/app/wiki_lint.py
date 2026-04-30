@@ -53,6 +53,7 @@ WIKI_PAGE_TYPES = {
     "join_recipe",
     "data_gap",
     "conflict",
+    "opportunity",
     "claim",
     "direction",
     "hypothesis",
@@ -66,11 +67,18 @@ REQUIRED_SECTION_INDEXES = {
     "data": "data/index",
     "claims": "claims/index",
     "conflicts": "conflicts/index",
+    "opportunities": "opportunities/index",
     "directions": "directions/index",
     "hypotheses": "hypotheses/index",
 }
 
-EVIDENCE_REQUIRED_TYPES = {"claim", "direction", "hypothesis", "derived_product"}
+EVIDENCE_REQUIRED_TYPES = {
+    "claim",
+    "direction",
+    "hypothesis",
+    "derived_product",
+    "opportunity",
+}
 DERIVED_PRODUCT_REQUIRED_FIELDS = {
     "product_kind",
     "reuse_status",
@@ -87,6 +95,28 @@ CONFLICT_REQUIRED_FIELDS = {
     "affected_pages",
 }
 VALID_CONFLICT_STATUS = {"unresolved", "partially_resolved", "resolved", "deprecated"}
+OPPORTUNITY_REQUIRED_FIELDS = {
+    "opportunity_status",
+    "opportunity_kind",
+    "impact",
+    "feasibility",
+    "readiness",
+    "evidence_strength",
+    "linked_conflicts",
+    "linked_products",
+    "target_outputs",
+    "review_routes",
+}
+VALID_OPPORTUNITY_STATUS = {"candidate", "active", "blocked", "completed", "deprecated"}
+VALID_OPPORTUNITY_KIND = {
+    "analysis",
+    "experiment",
+    "benchmark",
+    "validation",
+    "productization",
+    "curation",
+}
+VALID_OPPORTUNITY_SCORE = {"high", "medium", "low"}
 
 
 def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
@@ -96,7 +126,7 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
     issues: list[WikiLintIssue] = []
 
     if not wiki_dir.exists():
-        return [WikiLintIssue("error", "wiki", "wiki directory does not exist")]
+        return [WikiLintIssue("error", "wiki", "Atlas corpus directory does not exist")]
 
     raw_pages = _load_raw_pages(wiki_dir, issues)
     page_ids: dict[str, _RawWikiPage] = {}
@@ -229,6 +259,9 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
 
         if page_type == "conflict":
             _check_conflict_metadata(fm, page_ids, raw_pages, rel_file, issues)
+
+        if page_type == "opportunity":
+            _check_opportunity_metadata(fm, project_ids, raw_pages, rel_file, issues)
 
         if page_type == "topic" and not _as_list(fm.get("related_pages")):
             issues.append(
@@ -448,6 +481,86 @@ def _check_conflict_metadata(
             )
 
 
+def _check_opportunity_metadata(
+    frontmatter: dict,
+    project_ids: set[str],
+    raw_pages: list[_RawWikiPage],
+    rel_file: str,
+    issues: list[WikiLintIssue],
+) -> None:
+    missing = OPPORTUNITY_REQUIRED_FIELDS - set(frontmatter)
+    for field in sorted(missing):
+        issues.append(WikiLintIssue("error", rel_file, f"opportunity missing field: {field}"))
+
+    status = str(frontmatter.get("opportunity_status", ""))
+    if status and status not in VALID_OPPORTUNITY_STATUS:
+        issues.append(WikiLintIssue("error", rel_file, f"invalid opportunity_status: {status}"))
+
+    kind = str(frontmatter.get("opportunity_kind", ""))
+    if kind and kind not in VALID_OPPORTUNITY_KIND:
+        issues.append(WikiLintIssue("error", rel_file, f"invalid opportunity_kind: {kind}"))
+
+    for field in ("impact", "feasibility", "readiness", "evidence_strength"):
+        value = str(frontmatter.get(field, ""))
+        if value and value not in VALID_OPPORTUNITY_SCORE:
+            issues.append(WikiLintIssue("error", rel_file, f"invalid {field}: {value}"))
+
+    for project_id in _as_list(frontmatter.get("review_routes")):
+        if project_id not in project_ids:
+            issues.append(
+                WikiLintIssue(
+                    "error",
+                    rel_file,
+                    f"unknown review_routes project: {project_id}",
+                )
+            )
+
+    known_pages = {
+        str(page.frontmatter.get("id")): page
+        for page in raw_pages
+        if page.frontmatter.get("id")
+    }
+    for conflict_id in _as_list(frontmatter.get("linked_conflicts")):
+        linked = known_pages.get(conflict_id)
+        if not linked:
+            issues.append(
+                WikiLintIssue("error", rel_file, f"unknown linked conflict id: {conflict_id}")
+            )
+        elif linked.frontmatter.get("type") != "conflict":
+            issues.append(
+                WikiLintIssue("error", rel_file, f"linked_conflicts is not a conflict: {conflict_id}")
+            )
+
+    for product_id in _as_list(frontmatter.get("linked_products")):
+        linked = known_pages.get(product_id)
+        if not linked:
+            issues.append(
+                WikiLintIssue("error", rel_file, f"unknown linked product id: {product_id}")
+            )
+        elif linked.frontmatter.get("type") != "derived_product":
+            issues.append(
+                WikiLintIssue("error", rel_file, f"linked_products is not a derived_product: {product_id}")
+            )
+
+    if "target_outputs" in frontmatter and not _as_list(frontmatter.get("target_outputs")):
+        issues.append(
+            WikiLintIssue("error", rel_file, "opportunity target_outputs must list at least one output")
+        )
+
+    if not (
+        _as_list(frontmatter.get("linked_conflicts"))
+        or _as_list(frontmatter.get("linked_products"))
+        or _as_list(frontmatter.get("related_pages"))
+    ):
+        issues.append(
+            WikiLintIssue(
+                "error",
+                rel_file,
+                "opportunity pages need linked_conflicts, linked_products, or related_pages",
+            )
+        )
+
+
 def _as_artifact_list(value) -> list[dict[str, str]]:
     if value is None:
         return []
@@ -502,7 +615,7 @@ def _check_link(
         except ValueError:
             return
         if route not in route_paths:
-            issues.append(WikiLintIssue("error", rel_file, f"broken relative wiki link: {href}"))
+            issues.append(WikiLintIssue("error", rel_file, f"broken relative Atlas link: {href}"))
 
 
 def _rel(path: Path, repo: Path) -> str:

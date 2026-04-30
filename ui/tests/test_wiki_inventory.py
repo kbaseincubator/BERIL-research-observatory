@@ -50,4 +50,6 @@ def test_inventory_reports_reuse_and_conflict_metrics(repository_data):
     assert inventory["counts"]["derived_products_with_consumers"] == 1
     assert inventory["counts"]["conflict_pages"] == 1
     assert inventory["counts"]["unresolved_conflicts"] == 1
+    assert inventory["counts"]["opportunity_pages"] == 1
+    assert inventory["counts"]["blocked_opportunities"] == 0
     assert inventory["counts"]["reuse_edges"] > 0

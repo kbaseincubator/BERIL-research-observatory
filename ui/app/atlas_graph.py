@@ -107,6 +107,26 @@ def build_atlas_reuse_edges(repo_data: RepositoryData) -> list[AtlasReuseEdge]:
                     page.metadata.get("conflict_status", ""),
                 )
 
+        if page.type == "opportunity":
+            for conflict_id in _as_list(page.metadata.get("linked_conflicts")):
+                add(
+                    "opportunity",
+                    page.id,
+                    "conflict",
+                    conflict_id,
+                    "addresses_conflict",
+                    page.metadata.get("opportunity_status", ""),
+                )
+            for product_id in _as_list(page.metadata.get("linked_products")):
+                add(
+                    "opportunity",
+                    page.id,
+                    "derived_product",
+                    product_id,
+                    "uses_product",
+                    page.metadata.get("opportunity_kind", ""),
+                )
+
     return sorted(
         edges.values(),
         key=lambda edge: (
@@ -158,6 +178,55 @@ def build_derived_product_contexts(repo_data: RepositoryData) -> list[dict[str, 
         key=lambda item: (
             -len(item["used_by_projects"]),
             item["reuse_status"],
+            item["page"].title.lower(),
+        ),
+    )
+
+
+def build_opportunity_context(page: WikiPage, repo_data: RepositoryData) -> dict[str, Any]:
+    """Resolve an opportunity Atlas page into UI-friendly context."""
+    wiki_index = repo_data.wiki_index
+    linked_conflicts = [
+        conflict
+        for conflict_id in _as_list(page.metadata.get("linked_conflicts"))
+        if (conflict := wiki_index.get_page_by_id(conflict_id))
+    ]
+    linked_products = [
+        build_derived_product_context(product, repo_data)
+        for product_id in _as_list(page.metadata.get("linked_products"))
+        if (product := wiki_index.get_page_by_id(product_id))
+    ]
+    review_ids = _as_list(page.metadata.get("review_routes")) or page.source_projects
+    return {
+        "page": page,
+        "opportunity_status": str(page.metadata.get("opportunity_status", "candidate")),
+        "opportunity_kind": str(page.metadata.get("opportunity_kind", "analysis")),
+        "impact": str(page.metadata.get("impact", "medium")),
+        "feasibility": str(page.metadata.get("feasibility", "medium")),
+        "readiness": str(page.metadata.get("readiness", "medium")),
+        "evidence_strength": str(page.metadata.get("evidence_strength", "medium")),
+        "linked_conflicts": linked_conflicts,
+        "linked_products": linked_products,
+        "target_outputs": _as_list(page.metadata.get("target_outputs")),
+        "review_routes": _review_route_refs(review_ids, repo_data),
+    }
+
+
+def build_opportunity_contexts(repo_data: RepositoryData) -> list[dict[str, Any]]:
+    """Resolve all opportunity pages, sorted by transparent categorical priority."""
+    contexts = [
+        build_opportunity_context(page, repo_data)
+        for page in repo_data.wiki_index.pages_by_type("opportunity")
+    ]
+    score_order = {"high": 0, "medium": 1, "low": 2}
+    status_order = {"active": 0, "candidate": 1, "blocked": 2, "completed": 3, "deprecated": 4}
+    return sorted(
+        contexts,
+        key=lambda item: (
+            status_order.get(item["opportunity_status"], 9),
+            score_order.get(item["impact"], 9),
+            score_order.get(item["readiness"], 9),
+            score_order.get(item["feasibility"], 9),
             item["page"].title.lower(),
         ),
     )
@@ -232,6 +301,24 @@ def conflicts_for_page(page: WikiPage, repo_data: RepositoryData) -> list[WikiPa
     return sorted(conflicts, key=lambda item: (item.metadata.get("conflict_status", ""), item.title))
 
 
+def opportunities_for_page(page: WikiPage, repo_data: RepositoryData) -> list[dict[str, Any]]:
+    """Find opportunity pages that explicitly use or address a page."""
+    if page.type == "opportunity":
+        return []
+    contexts = []
+    for opportunity in repo_data.wiki_index.pages_by_type("opportunity"):
+        linked_conflicts = set(_as_list(opportunity.metadata.get("linked_conflicts")))
+        linked_products = set(_as_list(opportunity.metadata.get("linked_products")))
+        related_ids = set(opportunity.related_pages)
+        if (
+            page.id in linked_conflicts
+            or page.id in linked_products
+            or page.id in related_ids
+        ):
+            contexts.append(build_opportunity_context(opportunity, repo_data))
+    return contexts
+
+
 def build_topic_overview_map(topic: WikiPage, repo_data: RepositoryData) -> dict[str, Any] | None:
     """Build a metadata-driven overview map for a top-level topic page."""
     if topic.type != "topic":
@@ -246,6 +333,7 @@ def build_topic_overview_map(topic: WikiPage, repo_data: RepositoryData) -> dict
         if (page := wiki_index.get_page_by_id(related_id))
     ]
     conflicts = conflicts_for_page(topic, repo_data)
+    opportunities = opportunities_for_page(topic, repo_data)
 
     def refs(kind: str) -> list[dict[str, str]]:
         return [
@@ -282,6 +370,13 @@ def build_topic_overview_map(topic: WikiPage, repo_data: RepositoryData) -> dict
         {
             "label": "Tensions",
             "items": [{"title": page.title, "url": page.url} for page in conflicts],
+        },
+        {
+            "label": "Opportunities",
+            "items": [
+                {"title": item["page"].title, "url": item["page"].url}
+                for item in opportunities
+            ],
         },
     ]
 

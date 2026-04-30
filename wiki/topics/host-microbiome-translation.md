@@ -28,6 +28,8 @@ related_pages:
   - data.cf-formulation-scores
   - conflict.ecotype-translation-leakage
   - topic.mobile-elements-phage
+  - opportunity.ecotype-validation-benchmark
+  - opportunity.cf-formulation-reuse
 order: 60
 ---
 
@@ -81,6 +83,11 @@ The discoveries log records that taxonomic relative-abundance spaces and absolut
 - [Ecotype Assignments](/atlas/data/derived-products/ecotype-assignments) are the reusable stratification product.
 - PhageFoundry and genome/pangenome resources provide strain and host-range context.
 - Biochemistry and fitness resources provide pathway, metabolite, and dependency context for intervention costs.
+
+## Opportunity Hooks
+
+- [Ecotype Label Validation Benchmark](/atlas/opportunities/ecotype-validation-benchmark) defines when labels are safe enough for translational interpretation.
+- [CF Formulation Score Reuse Test](/atlas/opportunities/cf-formulation-reuse) asks whether a translational derived product changes a downstream design decision.
 
 ## Drill-Down Path
 

@@ -28,6 +28,8 @@ related_pages:
   - direction.fitness-validated-community-design
   - data.fitness-phenotypes
   - data.genomes-and-pangenomes
+  - opportunity.cf-formulation-reuse
+  - opportunity.functional-innovation-ko-reuse
 order: 90
 ---
 
@@ -77,6 +79,11 @@ The applied target is minimal or robust communities chosen for tolerance, metabo
 - [Metabolism, biochemistry, and pathways](/atlas/data/types/metabolism-biochemistry-pathways) provide pathway definitions and biochemical context.
 - [Fitness and phenotypes](/atlas/data/types/fitness-phenotypes) provide measured dependency and essentiality.
 - [Genome and pangenome data](/atlas/data/types/genomes-pangenomes) provide species and gene-family context for design candidates.
+
+## Opportunity Hooks
+
+- [CF Formulation Score Reuse Test](/atlas/opportunities/cf-formulation-reuse) tests whether formulation scores improve a concrete design decision.
+- [Functional Innovation KO Atlas Reuse Test](/atlas/opportunities/functional-innovation-ko-reuse) checks whether KO innovation signals explain pathway and capability variation beyond generic annotation summaries.
 
 ## Drill-Down Path
 
