@@ -119,6 +119,7 @@ async def stream_turn(
     text_parts: list[str] = []
     stream_completed = False
 
+    persist_started = False
     try:
         async for event in run_provider_turn(
             db=db,
@@ -135,18 +136,25 @@ async def stream_turn(
             if isinstance(event, (TurnComplete, ErrorEvent)):
                 stream_completed = True
             yield event_to_frame(event)
-    finally:
-        # Persist exactly once, whether the stream completed normally or
-        # was cancelled mid-flight (browser closed, etc.). On interruption,
-        # tag the partial row with an error so resume sees a coherent state.
+
+        # Happy-path persist + terminal frame. Doing this here (rather than
+        # in finally) keeps the generator from yielding during aclose(),
+        # which would raise RuntimeError on a client disconnect.
         result.assistant_text = "".join(text_parts)
-        if not stream_completed and result.error is None:
-            result.error = "stream interrupted"
+        persist_started = True
         assistant_row = await persist_assistant_message(
             db, session=session, result=result
         )
-        if stream_completed:
-            yield turn_complete_frame(assistant_message_id=assistant_row.id)
+        yield turn_complete_frame(assistant_message_id=assistant_row.id)
+    finally:
+        # Cancellation path: only persist if we never started the happy-path
+        # commit. If we did start it, don't write again — even on partial
+        # failure — to avoid duplicating the assistant row.
+        if not persist_started:
+            result.assistant_text = "".join(text_parts)
+            if not stream_completed and result.error is None:
+                result.error = "stream interrupted"
+            await persist_assistant_message(db, session=session, result=result)
 
 
 async def run_turn(
