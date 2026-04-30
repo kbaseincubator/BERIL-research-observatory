@@ -49,10 +49,29 @@ N_DOSSIERS=$(grep -c '^## Dossier ' "$INPUT")
 
 RAW="$DIR/raw.txt"
 MODEL="${CLAUDE_MODEL:-sonnet}"
-claude -p --model "$MODEL" --no-session-persistence < "$PROMPT_FILE" > "$RAW" 2> "$LOG"
+
+# Optional startup jitter to avoid concurrent claude -p instances
+# racing on local auth-token state at startup. Set CLAUDE_JITTER=N to
+# sleep a random 0..N seconds before invoking. Default off.
+if [ -n "${CLAUDE_JITTER:-}" ]; then
+  sleep $(awk -v max="$CLAUDE_JITTER" 'BEGIN{srand(); print int(rand()*max)}')
+fi
+
+# Tolerate non-zero exit from claude (limit-hit, transient 5xx, etc) —
+# the queue should keep moving and we'll re-run later for whatever didn't
+# produce output.jsonl content. With set -e at the top of this script,
+# `claude ... || true` is required to avoid killing the parent xargs.
+claude -p --model "$MODEL" --no-session-persistence < "$PROMPT_FILE" > "$RAW" 2> "$LOG" || true
 
 # Strip markdown code fences and any non-JSON lines.
 # Keep only lines that look like JSONL ({...}).
 grep -E '^[[:space:]]*\{.*\}[[:space:]]*$' "$RAW" > "$OUT" || true
 
-echo "DONE $ID  ($(wc -l < "$OUT") JSONL lines)"
+# If grep produced an empty output, remove it so the runner re-attempts
+# this batch on the next pass. (The runner skips when -s "$OUT" is true.)
+if [ ! -s "$OUT" ]; then
+  rm -f "$OUT"
+  echo "FAIL $ID  (no JSONL extracted; will retry)"
+else
+  echo "DONE $ID  ($(wc -l < "$OUT") JSONL lines)"
+fi

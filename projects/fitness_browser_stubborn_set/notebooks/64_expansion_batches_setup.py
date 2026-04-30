@@ -37,8 +37,9 @@ sr2 = import_module("60_sample_reclass_v2_setup")
 POOL = PROJECT_DATA / "random_sample_genes_expansion.parquet"
 HITS = PROJECT_DATA / "fb_paperblast_hit_papers.parquet"
 SUMMARIES = PROJECT_DATA / "manuscript-summaries-merged.tsv"
-INTERPRO = PROJECT_DATA / "training_set" / "target_gene_interpro_union.tsv"
-ORTHO = PROJECT_DATA / "training_set" / "target_gene_ortholog_fitness.tsv"
+# Expansion-specific InterPro + ortholog fitness extracts (notebook 63b)
+INTERPRO = PROJECT_DATA / "expansion" / "target_gene_interpro_union.tsv"
+ORTHO = PROJECT_DATA / "expansion" / "target_gene_ortholog_fitness.tsv"
 
 OUT_DIR = PROJECT_DATA / "expansion"
 CLAUDE_DIR = OUT_DIR / "batches_claude"
@@ -60,17 +61,8 @@ def main() -> None:
         w.writeheader()
         w.writerows(sample)
 
-    # IMPORTANT: the existing InterPro / ortholog TSVs are scoped to the
-    # training_set genes, NOT the expansion pool. If we want this evidence
-    # for expansion genes, those tables would need to be regenerated for
-    # the expansion (orgId, locusId) pairs first. For now, the InterPro and
-    # ortholog sections will mostly be empty for expansion rows -- the
-    # baseline 8-layer dossier still works fine, and paper summaries via
-    # the existing per-paper corpus also work for any FB gene.
-    print("\nWARNING: InterPro union and ortholog fitness TSVs cover only", file=sys.stderr)
-    print("the existing training_set; expansion genes will get those sections", file=sys.stderr)
-    print("only when their (orgId, locusId) overlaps. Re-extracting for the", file=sys.stderr)
-    print("expansion pool is a follow-up step if we use this expansion.\n", file=sys.stderr)
+    # InterPro union + ortholog fitness for the expansion keys were
+    # extracted by notebook 63b and live under data/expansion/.
 
     print("loading corpora...", file=sys.stderr)
     keyset = {(s["orgId"], s["locusId"]) for s in sample}
