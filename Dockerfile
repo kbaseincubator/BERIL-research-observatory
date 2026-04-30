@@ -50,5 +50,10 @@ WORKDIR /repo/ui
 
 USER beril
 
+ARG GIT_COMMIT
+ARG BUILD_DATE
+ENV BERIL_GIT_COMMIT=${GIT_COMMIT}
+ENV BERIL_BUILD_DATE=${BUILD_DATE}
+
 # Run the application
 CMD ["sh", "-c", "alembic upgrade head && uvicorn app.main:create_app --factory --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips=\"*\""]

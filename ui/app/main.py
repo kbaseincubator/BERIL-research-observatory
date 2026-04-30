@@ -890,11 +890,14 @@ async def health(
     status = "healthy"
     if db_status["status"] != "ok":
         status = "degraded"
+    settings = get_settings()
     return {
         "status": status,
         "services": {
             "database": db_status
         },
         "session": context,
-        "url_scheme": request.url.scheme
+        "url_scheme": request.url.scheme,
+        "git_commit": settings.git_commit,
+        "build_date": settings.build_date
     }
