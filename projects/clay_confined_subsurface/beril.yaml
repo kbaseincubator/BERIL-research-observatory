@@ -1,5 +1,5 @@
 project_id: clay_confined_subsurface
-status: analysis
+status: complete
 created_at: "2026-04-30T16:58:17+00:00"
 last_session_at: "2026-04-30T18:30:00+00:00"
 branch: projects/clay_confined_subsurface
@@ -13,4 +13,4 @@ artifacts:
   readme: true
   research_plan: true
   report: true
-  review: false
+  review: true
