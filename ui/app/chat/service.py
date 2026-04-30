@@ -152,8 +152,14 @@ async def stream_turn(
         # failure — to avoid duplicating the assistant row.
         if not persist_started:
             result.assistant_text = "".join(text_parts)
-            if not stream_completed and result.error is None:
-                result.error = "stream interrupted"
+            if not stream_completed:
+                # Don't promote a partial provider session to the resume
+                # handle — the next turn must rebuild from the DB transcript
+                # rather than resume from a conversation we only partially
+                # captured locally.
+                result.sdk_session_id = None
+                if result.error is None:
+                    result.error = "stream interrupted"
             await persist_assistant_message(db, session=session, result=result)
 
 
