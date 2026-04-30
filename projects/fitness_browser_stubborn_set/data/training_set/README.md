@@ -4,22 +4,42 @@ A self-contained training corpus for a gene-function annotation agent, built fro
 
 ## What's in this directory
 
-| File | Rows | Source of labels | Best use |
-|---|---:|---|---|
-| `human_validated.jsonl` | **1,762** | **Price-lab expert curators** (BERDL `kescience_fitnessbrowser.reannotation`) | **Strongest positive training signal** — every row is a human-validated function name with a written rationale |
-| `llm_vs_human_disagreements.jsonl` | 868 | Subset of `human_validated` where the LLM (Claude Sonnet 4.6) endorsed the original FB description or said `recalcitrant`, but the human curator went deeper | **Hard examples** — teaches the agent to refine when an LLM would have stopped |
-| `negatives.jsonl` | 755 | Two-LLM agreement that the gene cannot be annotated from current evidence | True negatives — examples of "no annotation is justified" |
-| `positives.jsonl` | 445 | Two-LLM agreement that the existing FB annotation is defensible | "Floor of LLM-defensible existing names" — see calibration notes for the right framing |
-| `target_gene_homologs.tsv` | 8,657 | Per (target gene × PaperBLAST homolog) deduplicated mapping | Lookup: "what homologs does my FB gene have?" + alignment statistics for ranking |
-| `target_gene_paperblast_summaries.tsv` | 16,618 | Per (target gene × PaperBLAST homolog × paper) flattened TSV with summaries | Companion file: lets the agent join target → homolog → paper → summary at runtime without rebuilding |
-| `target_gene_interpro_union.tsv` | 15,698 | Per (target gene × InterPro entry) consolidated across the three sources below; carries pangenome cluster metadata for every gene (`unknown` when the gene has no FB↔pangenome link) | **Default InterPro layer.** 82.6% gene coverage (2,447 / 2,962); 67% of rows have ≥ 2 corroborating sources |
-| `target_gene_ortholog_fitness.tsv` | 39,950 | Per (target gene × FB BBH ortholog) — for every cross-organism BBH partner of a target gene, the ortholog's own fitness profile + a gene-level (BBH ratio) and organism-level (shared GTDB ranks) distance signal | **Cross-organism fitness evidence.** Lets the agent reason "this target's ortholog in X shows phenotype on Y" — covers 80.9% of training genes |
-| `fb_organism_gtdb_lineage.tsv` | 36 | Per FB orgId — full GTDB lineage (domain through species), majority-vote of pangenome cluster placements from `fb_pangenome_link.tsv` joined to `kbase_ke_pangenome.gtdb_taxonomy_r214v1`; FB-fallback genus/species for orgs not in the pangenome | Lookup: full taxonomic context for each FB organism |
-| `target_gene_interpro.tsv` | 13,238 | UniProt-route audit trail — per (gene × InterPro entry) via `locusxref` → `kescience_interpro` | Audit / source-specific reuse |
-| `target_gene_interproscan.tsv` | 15,552 | MD5-route audit trail — bridged by MD5 sequence match against `kbase_ke_pangenome.interproscan_*` tables | Audit / source-specific reuse |
-| `target_gene_interpro_cluster.tsv` | 19,533 | Cluster-route audit trail — bridged via DIAMOND best-hit to pangenome cluster representative | Audit / source-specific reuse (raw alignment quality + per-hit conservation flags) |
+### Training-data files (JSONL with `dossier_md` + verdicts + signal_class)
 
-The four `.jsonl` files share a common base schema (`orgId`, `locusId`, `dossier_md`) plus per-file extensions documented below. The `.tsv` companion has a different shape — see the dedicated section below.
+| File | Rows | Role in training |
+|---|---:|---|
+| `human_validated.jsonl` | **1,762** | **Primary supervision** — Price-lab curators committed to a function name (`new_annotation`) with a written rationale (`comment`) for each gene. The strongest "predict-the-name" signal. |
+| `llm_vs_human_disagreements.jsonl` | 868 | **Hard examples** — subset of `human_validated` where the LLM stopped (said `recalcitrant` or endorsed the original) but the human curator went deeper. Teaches the agent to push past LLM-easy answers. |
+| `negatives_v3.jsonl` | **721** | **"Refuse to commit" supervision** — Opus + Codex 5.5 both said `recalcitrant` on the augmented dossier. Has 239 stubborn-grade rows (true stubborn negatives) and 482 no-signal rows (legitimate absence-of-evidence). |
+| `positives_v3.jsonl` | **1,011** | **"Confirm existing name" supervision** — Opus + Codex 5.5 both said `already_correctly_named` on the augmented dossier. All stubborn-grade by sampling construction. |
+| `negatives.jsonl` | 755 | v1 LLM-derived negatives, retained for archival (Sonnet 4.6 + Codex 5.5 on basic dossier). Tagged with `relabel_outcome` showing how each row fared under v3 relabel. **Not recommended for primary training**; superseded by `negatives_v3.jsonl`. |
+| `positives.jsonl` | 445 | v1 LLM-derived positives, retained for archival. Same caveat as above. |
+
+**Recommended training cohort — strict stubborn-grade (3,657 rows):**
+
+| Source | Stubborn rows |
+|---|---:|
+| `human_validated.jsonl` (filter `signal_class == "stubborn"`) | 1,618 |
+| `llm_vs_human_disagreements.jsonl` (filter `signal_class == "stubborn"`) | 789 |
+| `negatives_v3.jsonl` (filter `signal_class == "stubborn"`) | 239 |
+| `positives_v3.jsonl` (all) | 1,011 |
+
+The 482 no-signal rows in `negatives_v3.jsonl` and the v1 archival files are available if you want a permissive corpus that also teaches "no fitness data → don't annotate."
+
+### Companion evidence files (TSV — referenced by `dossier_md`, also usable as flat lookups)
+
+| File | Rows | Role |
+|---|---:|---|
+| `target_gene_homologs.tsv` | 8,657 | Per (target gene × PaperBLAST homolog) deduplicated mapping with alignment statistics |
+| `target_gene_paperblast_summaries.tsv` | 16,618 | Per (target gene × homolog × paper) Codex summaries |
+| `target_gene_interpro_union.tsv` | 15,698 | **Default InterPro layer.** Consolidated across UniProt + MD5 + cluster routes with pangenome conservation tier; 82.6% gene coverage |
+| `target_gene_ortholog_fitness.tsv` | 39,950 | Cross-organism BBH ortholog fitness profiles + BBH ratio + GTDB shared-rank distance; 80.9% gene coverage |
+| `fb_organism_gtdb_lineage.tsv` | 36 | Per FB orgId — full GTDB domain→species lineage |
+| `target_gene_interpro.tsv` | 13,238 | UniProt-route audit trail (source for `target_gene_interpro_union.tsv`) |
+| `target_gene_interproscan.tsv` | 15,552 | MD5-route audit trail (source for `target_gene_interpro_union.tsv`) |
+| `target_gene_interpro_cluster.tsv` | 19,533 | Cluster-route audit trail with per-hit conservation flags (source for `target_gene_interpro_union.tsv`) |
+
+The six `.jsonl` files share a common base schema (`orgId`, `locusId`, `dossier_md`, `signal_class`) plus per-file extensions documented below. The `.tsv` companions have different shapes — see the dedicated sections below.
 
 ## Source data
 
@@ -209,54 +229,83 @@ The v3 files retain v1 fields (`orgId`, `locusId`, `verdict`, `confidence`, `pro
 - **Curriculum** — start training on the easy `human_validated` rows where LLMs already agree, then escalate to these for fine-tuning the harder cases.
 - Filter `both_llms_disagreed == 1` for the strongest signal — both LLMs missed, so the human-LLM gap is robust.
 
-### `negatives.jsonl` (n = 755)
+### `negatives_v3.jsonl` (n = 721) — primary "refuse to commit" supervision
 
-**Source**: random walk over 4,600 of the ~5,000 sampled non-reannotated FB genes. Each was classified by Claude with the same 4-class verdict schema; the 1,220 Claude said were `recalcitrant` were re-classified by Codex (with augmented dossier including PaperBLAST per-paper summaries). The **755** where both LLMs agreed `recalcitrant` are this file.
+**Source**: capability-matched two-LLM agreement (**Claude Opus** + Codex 5.5) on the **augmented dossier** (basic 8 layers + paper summaries + InterPro union + ortholog fitness). Two provenance subsets:
 
-**Build pipeline**: see project's `REPORT.md` "Codex cross-check" section. Notebooks 01–18.
+- **514 v1-confirmed** — rows from `negatives.jsonl` (v1) where Opus + Codex on the augmented dossier still agreed `recalcitrant`. Of these, 32 are `signal_class == "stubborn"` and 482 are `signal_class == "no_signal"`.
+- **207 expansion-derived** — fresh stubborn-grade genes (sampled from the 25,523 FB genes with `n_strong_experiments ≥ 1` OR `in_specificphenotype == 1`) where Opus + Codex on the augmented dossier both said `recalcitrant`. All 207 are `signal_class == "stubborn"`.
+
+Total: **239 stubborn + 482 no-signal = 721 rows.**
 
 **Schema** (in addition to common fields):
 
 | Field | Type | Description |
 |---|---|---|
 | `verdict` | str | `recalcitrant` (constant, by construction) |
-| `confidence` | str | Claude's intake confidence — `high` / `medium` / `low` |
-| `proposed_annotation` | str / null | Usually null for recalcitrant |
-| `rationale` | str | Claude's reasoning |
-| `papers_consulted` | list[str] | PMIDs Claude cited |
-| `codex_verdict`, `codex_confidence`, `codex_rationale`, `codex_proposed_annotation` | | Codex's independent re-classification |
-| `evidence_tier` | str | `orphan` (no PaperBLAST hits, n=582) / `hits_no_summaries` (homologs but no useful papers, n=89) / `hits_with_summaries` (literature read, both LLMs still couldn't resolve, n=84) |
-| `n_paperblast_hits` | int | Number of PaperBLAST DIAMOND homologs |
-| `n_papers_with_summaries` | int | Number of homolog papers with non-null Codex summary |
-| `strong_phenotype` | int | 1 if `\|fit\|≥2 AND \|t\|≥5` — marks the 42 wet-lab targets |
-| `max_abs_fit`, `max_abs_t` | float | Strongest fitness signal across conditions |
+| `confidence` | str | Opus' confidence — `high` / `medium` / `low` |
+| `proposed_annotation` | str | Empty for recalcitrant |
+| `rationale` | str | Opus' reasoning |
+| `papers_consulted` | list[str] | PMIDs Opus cited |
+| `codex_verdict`, `codex_confidence`, `codex_rationale` | | Codex 5.5's independent verdict (also `recalcitrant`, with its own rationale) |
+| `signal_class` | str | `stubborn` (n=239) or `no_signal` (n=482) — see "Stubborn vs no-signal" |
+| `source` | str | `v1_confirmed_via_relabel` (n=514) or `v3_expansion` (n=207) |
+| `gene_desc`, `max_abs_fit`, `in_specificphenotype` | | Per-gene fitness features (expansion rows only) |
+| `dossier_md` | str | The full augmented dossier markdown that Opus + Codex saw |
 
-**Best use**: true negatives. False-negative rate against humans (measured on the calibration set) is ~4%, meaning ≤ ~30 of the 755 might be annotatable by an expert. Filter `strong_phenotype == 1` to surface the 42 wet-lab targets.
+**Best use**: "refuse to commit" supervision. Filter to `signal_class == "stubborn"` for the 239 genuinely stubborn cases (real phenotype, but evidence cannot pin function); the 482 `no_signal` rows are legitimate "no fitness data → don't guess" examples but represent a different failure mode.
 
-### `positives.jsonl` (n = 445)
+### `positives_v3.jsonl` (n = 1,011) — primary "confirm existing name" supervision
 
-**Source**: 500 high-confidence Claude `already_correctly_named` calls were re-classified by Codex with augmented dossier. The **445** where both LLMs agreed are this file.
+**Source**: from the same 2,000-gene v3 expansion; the **1,011** rows where Opus + Codex on the augmented dossier both said `already_correctly_named` with the same proposed annotation. **All 1,011 are `signal_class == "stubborn"`** by sampling construction.
 
-**Schema**:
+**Schema** (in addition to common fields):
 
 | Field | Type | Description |
 |---|---|---|
-| `verdict` | str | `already_correctly_named` (constant) |
-| `confidence` | str | Claude's intake confidence (all `high` for this set) |
-| `proposed_annotation` | str | The existing FB annotation Claude is confirming |
-| `ec_number` | str / null | EC number where applicable |
-| `rationale` | str | Claude's reasoning |
+| `verdict` | str | `already_correctly_named` (constant, by construction) |
+| `confidence` | str | Opus' confidence (predominantly `high`) |
+| `proposed_annotation` | str | The existing FB annotation Opus is confirming |
+| `rationale` | str | Opus' reasoning, typically citing InterPro/ortholog/paper evidence |
 | `papers_consulted` | list[str] | PMIDs cited |
-| `codex_verdict`, `codex_proposal`, `codex_confidence`, `codex_rationale` | | Codex's independent re-classification |
+| `codex_verdict`, `codex_confidence`, `codex_rationale` | | Codex 5.5's independent confirmation |
+| `signal_class` | str | `stubborn` (constant — sampling frame) |
+| `source` | str | `v3_expansion` (constant) |
+| `gene_desc`, `max_abs_fit`, `in_specificphenotype` | | Per-gene fitness features |
+| `dossier_md` | str | The full augmented dossier markdown |
 
-**Best use** — read carefully:
+**Best use** — same caveat as the v1 positives: this label means *"two frontier-tier LLMs reading the augmented dossier converged on confirming the existing name."* Calibration of v1 against humans showed Sonnet+Codex sometimes confirmed names that human curators would have refined. With Opus+Codex on richer evidence the false-positive rate is likely lower, but is not yet measured. Treat as a strong "floor" — if anything, augment with `llm_vs_human_disagreements.jsonl` to teach the contrast.
 
-The calibration showed that LLMs say `already_correctly_named` 44–46% of the time when humans actually re-annotated. So **these 445 rows are best framed as "name is plausibly defensible from the 8-layer dossier alone — the LLM cannot justify improving it without going beyond what the dossier shows"**, not as "no curator would change this." If you train an agent to mimic this label without further refinement, you train it to be **as conservative as the LLM** — which calibration tells us is more conservative than a human curator.
+### `negatives.jsonl` (v1, n = 755) — archival
 
-**Recommended uses**:
-- "Floor" examples — the agent should at least confirm the existing name when LLMs converge.
-- Negative training data for the agent's "decide whether to refine" head — these are exactly the cases where humans went deeper.
-- Pair with `llm_vs_human_disagreements.jsonl` to teach the contrast: same kind of input, but the right move is to refine.
+**Source**: random walk over 4,600 of the ~5,000 sampled non-reannotated FB genes. Each was classified by **Claude Sonnet 4.6** with the 4-class verdict schema; the 1,220 Claude said were `recalcitrant` were re-classified by Codex 5.5 (with paper-summary-only-augmented dossier, NO InterPro union or ortholog fitness). The **755** where both LLMs agreed `recalcitrant` are this file.
+
+The v1 candidate pool was uniform random across all 137,798 fitness-measured FB genes, so 91% are `signal_class == "no_signal"`. The relabel under v3 (Opus + Codex 5.5 on augmented dossier) showed:
+
+| `relabel_outcome` | n | meaning |
+|---|---:|---|
+| `confirmed_stubborn` | 514 | both v3 LLMs still agreed `recalcitrant` |
+| `flipped_agree` | 121 | both v3 LLMs agreed on a non-recalcitrant verdict — v1 label was likely wrong |
+| `inconclusive` | 120 | v3 LLMs disagreed — v1 label is unreliable |
+
+**Build pipeline**: see project's `REPORT.md` "Codex cross-check" section. Notebooks 01–18.
+
+**Schema** (in addition to common fields): same as the original v1 schema (`verdict`, `confidence`, `proposed_annotation`, `rationale`, `papers_consulted`, `codex_*`, `evidence_tier`, `n_paperblast_hits`, `n_papers_with_summaries`, `strong_phenotype`, `max_abs_fit`, `max_abs_t`) plus:
+
+| Field | Type | Description |
+|---|---|---|
+| `signal_class` | str | `stubborn` (n=65) / `no_signal` (n=690) |
+| `relabel_outcome` | str | `confirmed_stubborn` / `flipped_agree` / `inconclusive` — the v3 relabel verdict for this row |
+
+**Best use**: archival reference. Prefer `negatives_v3.jsonl` for primary training. If you must use v1, filter to `relabel_outcome == "confirmed_stubborn"` and you're effectively using the v3-confirmed v1 subset.
+
+### `positives.jsonl` (v1, n = 445) — archival
+
+**Source**: 500 high-confidence Claude Sonnet 4.6 `already_correctly_named` calls were re-classified by Codex 5.5 with paper-summary-only augmented dossier. The **445** where both LLMs agreed are this file. No v3 relabel was run on positives because v1's both-LLM positive flip rate stayed at 5% (under the 5% relabel threshold) under richer evidence.
+
+**Schema**: same v1 schema (`verdict`, `confidence`, `proposed_annotation`, `ec_number`, `rationale`, `papers_consulted`, `codex_*`) plus `signal_class` (129 stubborn / 316 no_signal).
+
+**Best use**: archival reference. Prefer `positives_v3.jsonl` (1,011 rows, all stubborn-grade, capability-matched LLMs on richer dossier) for primary training.
 
 ### `target_gene_homologs.tsv` (8,657 rows)
 
