@@ -19,6 +19,7 @@ last_reviewed: 2026-04-28
 related_pages:
   - topic.critical-minerals
   - data.metal-tolerance-scores
+  - conflict.metal-specificity-vs-general-stress
 evidence:
   - source: metal_specificity
     support: Metal-important records passing a non-metal sick-rate screen remain enriched for core-genome genes.

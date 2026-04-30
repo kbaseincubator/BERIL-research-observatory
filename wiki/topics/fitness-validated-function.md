@@ -28,7 +28,9 @@ related_pages:
   - claim.metal-specific-genes-core-enriched
   - data.fitness-phenotypes
   - data.genome-fitness-pangenome-join
+  - data.dark-gene-prioritization
   - direction.fitness-validated-community-design
+  - conflict.lab-fitness-field-generalization
 order: 40
 ---
 
@@ -67,6 +69,10 @@ The observatory's strongest functional claims come from joining annotation, cons
 - Fitness screens cover specific lab conditions and organisms.
 - Essential genes invisible to transposon insertion can bias conservation comparisons.
 - Annotation upgrades can change what counts as "novel" or "dark."
+
+## Open Tensions
+
+- [Lab fitness signals versus field ecology](/atlas/conflicts/lab-fitness-field-generalization) records where measured fitness transfers to field interpretation and where additional covariates are needed.
 
 ## Reusable Claims
 

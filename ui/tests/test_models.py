@@ -6,6 +6,8 @@ from app.models import (
     Collection,
     CollectionCategory,
     CollectionTable,
+    AtlasReuseEdge,
+    AtlasReviewRoute,
     Column,
     Contributor,
     DataFile,
@@ -440,6 +442,28 @@ class TestDataclassDefaults:
         ra = ResearchArea(id="area-1", name="Genomics")
         assert ra.project_ids == []
         assert ra.top_terms == []
+
+    def test_atlas_reuse_edge_defaults(self):
+        edge = AtlasReuseEdge(
+            source_type="project",
+            source_id="a",
+            target_type="derived_product",
+            target_id="b",
+            relationship="produces",
+        )
+        assert edge.label == ""
+        assert edge.detail == ""
+
+    def test_atlas_review_route(self):
+        route = AtlasReviewRoute(
+            page_id="data.product",
+            page_title="Product",
+            reviewer_id="alice",
+            reviewer_name="Alice",
+            project_id="alpha_project",
+            basis="explicit project authorship",
+        )
+        assert route.project_id == "alpha_project"
 
     def test_wiki_page_url(self):
         page = WikiPage(

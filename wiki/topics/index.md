@@ -29,6 +29,8 @@ order: 1
 
 Topics are narrative maps across projects. A topic should not summarize one report; it should explain what the observatory has collectively learned, what evidence supports that synthesis, and which claims, directions, hypotheses, and data products let a reader drill down.
 
+Each topic should also have enough frontmatter relationships to render a generated overview map. When results appear to disagree, link the topic to a tension page rather than burying the caveat in prose.
+
 ## How To Browse
 
 Start with a topic when you have a research question but not yet a specific collection or hypothesis. Use the layer structure to understand the arc, then follow the related claims and hypotheses when you need reusable reasoning units.

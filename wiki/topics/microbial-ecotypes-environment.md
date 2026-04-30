@@ -26,7 +26,10 @@ related_pages:
   - claim.lab-fitness-predicts-field-ecology
   - claim.ecotype-analysis-needs-rigor-gates
   - data.ecotype-assignments
+  - data.environment-harmonization
   - hypothesis.sso-geochemistry-closes-plume-model
+  - conflict.ecotype-translation-leakage
+  - conflict.lab-fitness-field-generalization
 order: 50
 ---
 
@@ -65,6 +68,11 @@ The observatory is building a bridge from genomic variation to environmental nic
 - Environment metadata is sparse and uneven.
 - Ecotype definitions need leakage-resistant validation.
 - Field validation should separate geography, taxonomy, and chemistry effects.
+
+## Open Tensions
+
+- [Ecotype labels versus translational leakage](/atlas/conflicts/ecotype-translation-leakage) defines the validation ladder before ecotype labels become target claims.
+- [Lab fitness signals versus field ecology](/atlas/conflicts/lab-fitness-field-generalization) captures where field validation needs stronger metadata and geochemistry.
 
 ## Reusable Claims
 

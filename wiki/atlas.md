@@ -23,10 +23,13 @@ related_pages:
   - topic.critical-minerals
   - topic.amr-resistance-ecology
   - data.index
+  - data.reuse
+  - conflicts.index
   - claims.index
   - directions.index
   - hypotheses.index
   - method.progressive-disclosure
+  - method.reuse-and-tension-workflow
 order: 1
 ---
 
@@ -40,7 +43,9 @@ The Atlas is organized around several kinds of maps:
 
 - [Topics](/atlas/topics) synthesize science and application areas across projects.
 - [Data](/atlas/data) explains tenants, collections, data types, derived products, joins, and gaps.
+- [Reuse](/atlas/data/reuse) shows how project outputs become reusable products and downstream inputs.
 - [Claims](/atlas/claims) preserve reusable evidence-backed statements.
+- [Tensions](/atlas/conflicts) preserve conflicts, caveats, and resolving analyses.
 - [Directions](/atlas/directions) identify high-value research programs.
 - [Hypotheses](/atlas/hypotheses) turn synthesis into testable units.
 - [People](/atlas/people) routes review by contributor context and ownership.

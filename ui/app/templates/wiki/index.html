@@ -223,6 +223,14 @@
                 <div class="atlas-stat-value">{{ wiki_inventory.counts.evidence_coverage }}</div>
                 <div class="text-small text-muted">Evidence-backed pages</div>
             </div>
+            <div class="atlas-stat">
+                <div class="atlas-stat-value">{{ reuse_overview.counts.reused_products }}/{{ reuse_overview.counts.derived_products }}</div>
+                <div class="text-small text-muted">Reused products</div>
+            </div>
+            <div class="atlas-stat">
+                <div class="atlas-stat-value">{{ conflict_pages|length }}</div>
+                <div class="text-small text-muted">Tracked tensions</div>
+            </div>
         </div>
 
         <section class="section" id="start">
@@ -247,10 +255,20 @@
                     <h3 class="atlas-card-title">Collections and reusable products</h3>
                     <p class="text-small text-muted">BERDL tenants, databases, data types, join recipes, derived products, reuse signals, and gaps.</p>
                 </a>
+                <a href="/atlas/data/reuse" class="atlas-card">
+                    <span class="atlas-type">Reuse</span>
+                    <h3 class="atlas-card-title">Project and derived-product graph</h3>
+                    <p class="text-small text-muted">Producers, consumers, artifacts, review routes, and products that need downstream use.</p>
+                </a>
                 <a href="/atlas/claims" class="atlas-card">
                     <span class="atlas-type">Claims</span>
                     <h3 class="atlas-card-title">Evidence-backed primitives</h3>
                     <p class="text-small text-muted">Reusable statements that preserve provenance and caveats for future humans and agents.</p>
+                </a>
+                <a href="/atlas/conflicts" class="atlas-card">
+                    <span class="atlas-type">Tensions</span>
+                    <h3 class="atlas-card-title">Conflicts and resolving work</h3>
+                    <p class="text-small text-muted">Places where results differ, caveats change interpretation, or new experiments are needed.</p>
                 </a>
                 <a href="/atlas/hypotheses" class="atlas-card">
                     <span class="atlas-type">Hypotheses</span>
@@ -337,7 +355,11 @@
         <section class="section" id="data">
             <div class="atlas-section-header">
                 <h2><a href="/atlas/data">Data</a></h2>
-                <a href="/atlas/data" class="text-small">View data atlas</a>
+                <div>
+                    <a href="/atlas/data/reuse" class="text-small">Reuse graph</a>
+                    <span class="text-muted text-small"> · </span>
+                    <a href="/atlas/data" class="text-small">View data atlas</a>
+                </div>
             </div>
 
             {% for group in [
@@ -369,6 +391,27 @@
                 </div>
                 {% endif %}
             {% endfor %}
+        </section>
+
+        <section class="section" id="conflicts">
+            <div class="atlas-section-header">
+                <h2><a href="/atlas/conflicts">Tensions</a></h2>
+                <a href="/atlas/conflicts" class="text-small">View all</a>
+            </div>
+            <div class="grid grid-3">
+                {% for page in conflict_pages[:9] %}
+                <a href="{{ page.url }}" class="atlas-card">
+                    <div class="card-header">
+                        <span class="atlas-type">{{ page.metadata.get("conflict_status", "unresolved") | replace("_", " ") }}</span>
+                        <span class="text-small text-muted">{{ page.confidence }}</span>
+                    </div>
+                    <h3 class="atlas-card-title">{{ page.title }}</h3>
+                    <p class="text-small text-muted">{{ page.summary }}</p>
+                </a>
+                {% else %}
+                <p class="text-muted">No tension pages found.</p>
+                {% endfor %}
+            </div>
         </section>
 
         <section class="section" id="research-primitives">

@@ -25,7 +25,12 @@ related_pages:
   - data.genes-proteins-annotations
   - data.environment-geochemistry-ecology
   - data.literature-reference-ontology
+  - data.reuse
   - data.metal-tolerance-scores
+  - data.ecotype-assignments
+  - data.environment-harmonization
+  - data.dark-gene-prioritization
+  - data.amr-fitness-profiles
   - data.genome-fitness-pangenome-join
 order: 1
 ---

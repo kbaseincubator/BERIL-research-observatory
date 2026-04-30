@@ -23,6 +23,7 @@ related_pages:
   - topic.amr-resistance-ecology
   - topic.critical-minerals
   - hypothesis.metal-amr-co-selection
+  - conflict.metal-amr-co-selection-readiness
 evidence:
   - source: amr_environmental_resistome
     support: Resistance mechanism composition varies by environment and includes metal-resistance components.
