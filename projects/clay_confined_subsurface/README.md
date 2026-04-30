@@ -17,6 +17,7 @@ This project is the **genome-resolved** complement to [`enigma_sso_asv_ecology`]
 ## Quick Links
 
 - [Research Plan](RESEARCH_PLAN.md) — hypotheses, cohort definition, query strategy, analysis plan
+- [References](references.md) — annotated bibliography (32 papers, 6 read in full)
 - [Report](REPORT.md) — findings, interpretation, supporting evidence (TBD)
 
 ## Reproduction
