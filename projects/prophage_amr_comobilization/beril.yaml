@@ -1,0 +1,16 @@
+project_id: prophage_amr_comobilization
+status: proposed
+created_at: "2026-04-30T00:00:00Z"
+last_session_at: "2026-04-30T00:00:00Z"
+branch: projects/prophage_amr_comobilization
+engine:
+  name: claude
+authors:
+  - name: "Justin Reese"
+    affiliation: "Lawrence Berkeley National Laboratory"
+    orcid: "0000-0002-2170-2250"
+artifacts:
+  readme: true
+  research_plan: true
+  report: false
+  review: false
