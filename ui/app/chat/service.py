@@ -157,6 +157,10 @@ async def run_provider_turn(
         # Drop the just-persisted user message — it's already in
         # ``user_message`` and will be sent as the live prompt.
         preamble_sources = [m for m in prior if m.id != skip_message_id]
+        # Trim trailing user messages left by a previous interrupted turn
+        # (crashed after persist_user_message but before persist_assistant_message).
+        while preamble_sources and preamble_sources[-1].role == "user":
+            preamble_sources.pop()
         preamble = build_resume_preamble(preamble_sources)
         outbound_message = preamble + user_message
         resume_id = None
