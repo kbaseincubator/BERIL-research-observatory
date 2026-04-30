@@ -228,6 +228,7 @@ class RepositoryParser:
         "join_recipe",
         "data_gap",
         "conflict",
+        "opportunity",
         "claim",
         "direction",
         "hypothesis",

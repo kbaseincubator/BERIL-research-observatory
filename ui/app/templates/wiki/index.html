@@ -231,6 +231,10 @@
                 <div class="atlas-stat-value">{{ conflict_pages|length }}</div>
                 <div class="text-small text-muted">Tracked tensions</div>
             </div>
+            <div class="atlas-stat">
+                <div class="atlas-stat-value">{{ opportunity_pages|length }}</div>
+                <div class="text-small text-muted">Opportunities</div>
+            </div>
         </div>
 
         <section class="section" id="start">
@@ -269,6 +273,11 @@
                     <span class="atlas-type">Tensions</span>
                     <h3 class="atlas-card-title">Conflicts and resolving work</h3>
                     <p class="text-small text-muted">Places where results differ, caveats change interpretation, or new experiments are needed.</p>
+                </a>
+                <a href="/atlas/opportunities" class="atlas-card">
+                    <span class="atlas-type">Opportunities</span>
+                    <h3 class="atlas-card-title">Next analyses to run</h3>
+                    <p class="text-small text-muted">Actionable analysis and experiment seeds grounded in tensions, products, data gaps, and claims.</p>
                 </a>
                 <a href="/atlas/hypotheses" class="atlas-card">
                     <span class="atlas-type">Hypotheses</span>
@@ -410,6 +419,33 @@
                 </a>
                 {% else %}
                 <p class="text-muted">No tension pages found.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="section" id="opportunities">
+            <div class="atlas-section-header">
+                <h2><a href="/atlas/opportunities">Opportunities</a></h2>
+                <a href="/atlas/opportunities" class="text-small">View all</a>
+            </div>
+            <div class="grid grid-3">
+                {% for opportunity in opportunity_contexts[:9] %}
+                {% set page = opportunity.page %}
+                <a href="{{ page.url }}" class="atlas-card">
+                    <div class="card-header">
+                        <span class="atlas-type">{{ opportunity.opportunity_status | replace("_", " ") }}</span>
+                        <span class="text-small text-muted">{{ opportunity.opportunity_kind }}</span>
+                    </div>
+                    <h3 class="atlas-card-title">{{ page.title }}</h3>
+                    <p class="text-small text-muted">{{ page.summary }}</p>
+                    <div class="atlas-card-meta">
+                        <span class="badge">impact {{ opportunity.impact }}</span>
+                        <span class="badge">readiness {{ opportunity.readiness }}</span>
+                        <span class="badge">{{ opportunity.linked_conflicts|length }} tensions</span>
+                    </div>
+                </a>
+                {% else %}
+                <p class="text-muted">No opportunity pages found.</p>
                 {% endfor %}
             </div>
         </section>

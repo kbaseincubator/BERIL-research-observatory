@@ -257,6 +257,25 @@
         </section>
         {% endif %}
 
+        {% if page_opportunities %}
+        <section class="atlas-special-panel">
+            <h3>Opportunity Hooks</h3>
+            <div class="atlas-panel-grid">
+                {% for opportunity in page_opportunities %}
+                <a href="{{ opportunity.page.url }}" class="atlas-mini-card" style="text-decoration: none;">
+                    <span class="atlas-type">{{ opportunity.opportunity_status | replace("_", " ") }}</span>
+                    <h4 style="margin: var(--space-2) 0; color: var(--text-primary);">{{ opportunity.page.title }}</h4>
+                    <p class="text-small text-muted" style="margin-bottom: var(--space-2);">{{ opportunity.page.summary }}</p>
+                    <div class="atlas-chip-list">
+                        <span class="badge">impact {{ opportunity.impact }}</span>
+                        <span class="badge">readiness {{ opportunity.readiness }}</span>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+
         {% if page_conflicts %}
         <section class="atlas-special-panel">
             <h3>Open Tensions</h3>
@@ -315,6 +334,70 @@
                     <span class="text-small text-muted">No review route declared.</span>
                     {% endfor %}
                 </div>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if opportunity_context %}
+        <section class="atlas-special-panel">
+            <div class="card-header" style="margin-bottom: var(--space-4);">
+                <h3 style="margin-bottom: 0;">Opportunity Profile</h3>
+                <span class="badge">{{ opportunity_context.opportunity_status | replace("_", " ") }}</span>
+            </div>
+            <div class="atlas-panel-grid">
+                <div class="atlas-mini-card">
+                    <h4>Priority Signals</h4>
+                    <div class="atlas-chip-list">
+                        <span class="badge">impact {{ opportunity_context.impact }}</span>
+                        <span class="badge">feasibility {{ opportunity_context.feasibility }}</span>
+                        <span class="badge">readiness {{ opportunity_context.readiness }}</span>
+                        <span class="badge">evidence {{ opportunity_context.evidence_strength }}</span>
+                    </div>
+                </div>
+                <div class="atlas-mini-card">
+                    <h4>Linked Tensions</h4>
+                    {% for conflict in opportunity_context.linked_conflicts %}
+                    <a href="{{ conflict.url }}" class="atlas-panel-link">{{ conflict.title }}</a>
+                    {% else %}
+                    <span class="text-small text-muted">No linked tensions declared.</span>
+                    {% endfor %}
+                </div>
+                <div class="atlas-mini-card">
+                    <h4>Reusable Products</h4>
+                    {% for product in opportunity_context.linked_products %}
+                    <a href="{{ product.page.url }}" class="atlas-panel-link">{{ product.page.title }}</a>
+                    {% else %}
+                    <span class="text-small text-muted">No linked derived products declared.</span>
+                    {% endfor %}
+                </div>
+                <div class="atlas-mini-card">
+                    <h4>Target Outputs</h4>
+                    {% for output in opportunity_context.target_outputs %}
+                    <div class="atlas-artifact">{{ output }}</div>
+                    {% else %}
+                    <span class="text-small text-muted">No target outputs declared.</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        {% endif %}
+
+        {% if page.path == "opportunities/index" %}
+        <section class="atlas-special-panel">
+            <h3>Opportunity Queue</h3>
+            <div class="atlas-panel-grid">
+                {% for opportunity in opportunity_contexts %}
+                <a href="{{ opportunity.page.url }}" class="atlas-mini-card" style="text-decoration: none;">
+                    <span class="atlas-type">{{ opportunity.opportunity_status | replace("_", " ") }}</span>
+                    <h4 style="margin: var(--space-2) 0; color: var(--text-primary);">{{ opportunity.page.title }}</h4>
+                    <p class="text-small text-muted" style="margin-bottom: var(--space-2);">{{ opportunity.page.summary }}</p>
+                    <div class="atlas-chip-list">
+                        <span class="badge">impact {{ opportunity.impact }}</span>
+                        <span class="badge">readiness {{ opportunity.readiness }}</span>
+                        <span class="badge">{{ opportunity.linked_products|length }} products</span>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
         </section>
         {% endif %}

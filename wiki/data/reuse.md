@@ -21,6 +21,7 @@ related_pages:
   - data.environment-harmonization
   - data.dark-gene-prioritization
   - data.amr-fitness-profiles
+  - opportunities.index
 order: 8
 ---
 
@@ -41,7 +42,7 @@ The Atlas should make reusable project outputs visible before they become instit
 
 ## How To Use It
 
-Start with products that have consumers when you need stable reusable inputs. Start with products without consumers when planning the next high-leverage project. Start with products that have unresolved tensions when designing validation work.
+Start with products that have consumers when you need stable reusable inputs. Start with products without consumers when planning the next high-leverage project. Start with products that have unresolved tensions when designing validation work. Start with [opportunities](/atlas/opportunities) when you want to see which product needs a first consumer, readiness burn-down, or validation analysis.
 
 ## Maintenance Rule
 

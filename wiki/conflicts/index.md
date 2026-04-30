@@ -17,6 +17,7 @@ related_pages:
   - conflict.ecotype-translation-leakage
   - conflict.metal-specificity-vs-general-stress
   - conflict.metal-amr-co-selection-readiness
+  - opportunities.index
 order: 1
 ---
 
@@ -28,7 +29,7 @@ The Atlas should not smooth over conflicting or seemingly conflicting results. T
 
 ## How To Use This Section
 
-Use these pages before reusing claims, derived products, or directions in proposals. If a tension affects a topic, the topic overview map and page panel should surface it.
+Use these pages before reusing claims, derived products, or directions in proposals. If a tension affects a topic, the topic overview map and page panel should surface it. If a tension has a clear next analysis, it should also have an opportunity page that records impact, feasibility, target outputs, and review routes.
 
 ## Maintenance Rule
 

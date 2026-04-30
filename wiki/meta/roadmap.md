@@ -3,7 +3,7 @@ id: meta.roadmap
 title: Atlas Roadmap
 type: meta
 status: draft
-summary: Roadmap from static Atlas pages to agent-maintained synthesis, evidence maps, and retrieval layers.
+summary: Roadmap from static Atlas pages to opportunity-centered synthesis, evidence maps, naming cleanup, and later agent-facing workflows.
 source_projects: []
 source_docs:
   - docs/research_ideas.md
@@ -15,6 +15,7 @@ last_reviewed: 2026-04-28
 related_pages:
   - atlas.beril
   - method.agent-maintenance
+  - opportunities.index
   - meta.metrics-to-watch
 order: 1
 ---
@@ -35,8 +36,12 @@ BERIL Atlas naming, canonical `/atlas` routes, stronger navigation, topic drill-
 
 ## Phase 3
 
-Agent maintenance loop with stale-page detection, review routing, and proposed updates.
+Reuse, review, and tension mapping: derived-product profiles, conflict pages, review routing, reuse graph panels, and generated topic overview maps.
 
 ## Phase 4
 
-Retrieval layer, backlinks, topic graph, and agent-facing APIs for planning and synthesis.
+Opportunity-centered Atlas expansion: concrete next analyses, categorical priority signals, opportunity panels, stronger content depth, and public-facing Atlas naming hardening while internal `wiki_*` implementation names remain stable.
+
+## Phase 5
+
+Naming reconciliation: decide whether to rename internal `wiki/`, `WikiPage`, `wiki_lint`, and `wiki_inventory` concepts to Atlas-oriented names, then either complete the compatibility-preserving refactor or explicitly document the permanent internal/public naming boundary.

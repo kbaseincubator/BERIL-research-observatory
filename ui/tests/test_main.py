@@ -182,6 +182,7 @@ class TestAtlasRoutes:
             "/atlas/data",
             "/atlas/claims",
             "/atlas/conflicts",
+            "/atlas/opportunities",
             "/atlas/directions",
             "/atlas/hypotheses",
         ):
@@ -196,6 +197,14 @@ class TestAtlasRoutes:
         assert "/projects/test_project" in response.text
         assert "/collections/kbase_ke_pangenome" in response.text
         assert "Generated topic overview map" in response.text
+        assert "Opportunity Hooks" in response.text
+
+    def test_existing_opportunity_page_200(self, client):
+        response = client.get("/atlas/opportunities/test")
+        assert response.status_code == 200
+        assert "Test Opportunity" in response.text
+        assert "Opportunity Profile" in response.text
+        assert "Test Derived Product" in response.text
 
     def test_legacy_wiki_page_redirects(self, client):
         response = client.get("/wiki/topics/test", follow_redirects=False)

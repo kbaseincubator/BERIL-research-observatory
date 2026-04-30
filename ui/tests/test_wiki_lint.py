@@ -26,7 +26,15 @@ def _setup_repo(tmp_path: Path) -> Path:
 
 
 def _write_section_index_pages(tmp_path: Path) -> None:
-    for section in ("topics", "data", "claims", "conflicts", "directions", "hypotheses"):
+    for section in (
+        "topics",
+        "data",
+        "claims",
+        "conflicts",
+        "opportunities",
+        "directions",
+        "hypotheses",
+    ):
         _write_page(
             tmp_path,
             f"{section}/index.md",
@@ -278,6 +286,87 @@ def test_conflict_pages_require_multiple_sides_and_resolution(tmp_path):
     messages = "\n".join(issue.message for issue in lint_wiki(repo))
     assert "conflict pages require at least two evidence_sides" not in messages
     assert "conflict pages require resolving_work entries" not in messages
+
+
+def test_opportunity_pages_validate_scores_and_links(tmp_path):
+    repo = _setup_repo(tmp_path)
+    _write_page(repo, "topics/example.md", id="topic.example")
+    _write_page(
+        repo,
+        "conflicts/example.md",
+        id="conflict.example",
+        title="Example Conflict",
+        type="conflict",
+        source_projects=["alpha_project", "beta_project"],
+        related_pages=["topic.example"],
+        affected_pages=["topic.example"],
+        conflict_status="unresolved",
+        evidence_sides=[
+            {"side": "a", "support": "A"},
+            {"side": "b", "support": "B"},
+        ],
+        resolving_work=["Run a resolving analysis."],
+    )
+    _write_page(
+        repo,
+        "data/derived-products/example.md",
+        id="data.example-product",
+        title="Example Product",
+        type="derived_product",
+        product_kind="score",
+        reuse_status="promoted",
+        produced_by_projects=["alpha_project"],
+        used_by_projects=["beta_project"],
+        output_artifacts=[{"path": "planned:test"}],
+        review_routes=["alpha_project"],
+        evidence=[{"source": "alpha_project", "support": "Test support."}],
+    )
+    _write_page(
+        repo,
+        "opportunities/example.md",
+        id="opportunity.example",
+        title="Example Opportunity",
+        type="opportunity",
+        related_pages=["topic.example"],
+        opportunity_status="candidate",
+        opportunity_kind="analysis",
+        impact="urgent",
+        feasibility="medium",
+        readiness="high",
+        evidence_strength="medium",
+        linked_conflicts=["conflict.example"],
+        linked_products=["data.example-product"],
+        target_outputs=["A ranked analysis plan."],
+        review_routes=["missing_project"],
+        evidence=[{"source": "alpha_project", "support": "Test support."}],
+    )
+
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "invalid impact: urgent" in messages
+    assert "unknown review_routes project: missing_project" in messages
+
+    _write_page(
+        repo,
+        "opportunities/example.md",
+        id="opportunity.example",
+        title="Example Opportunity",
+        type="opportunity",
+        related_pages=["topic.example"],
+        opportunity_status="candidate",
+        opportunity_kind="analysis",
+        impact="high",
+        feasibility="medium",
+        readiness="high",
+        evidence_strength="medium",
+        linked_conflicts=["conflict.example"],
+        linked_products=["data.example-product"],
+        target_outputs=["A ranked analysis plan."],
+        review_routes=["alpha_project"],
+        evidence=[{"source": "alpha_project", "support": "Test support."}],
+    )
+    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    assert "invalid impact" not in messages
+    assert "unknown review_routes project" not in messages
 
 
 def test_missing_section_index_is_reported(tmp_path):

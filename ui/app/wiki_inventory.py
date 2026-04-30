@@ -7,7 +7,11 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .atlas_graph import build_atlas_reuse_edges, build_derived_product_contexts
+from .atlas_graph import (
+    build_atlas_reuse_edges,
+    build_derived_product_contexts,
+    build_opportunity_contexts,
+)
 from .models import RepositoryData, WikiPage
 
 
@@ -45,13 +49,14 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
     evidence_required_pages = [
         page
         for page in pages
-        if page.type in {"claim", "direction", "hypothesis", "derived_product"}
+        if page.type in {"claim", "direction", "hypothesis", "derived_product", "opportunity"}
     ]
     evidence_backed_pages = [
         page for page in evidence_required_pages if _has_evidence_metadata(page)
     ]
     derived_product_pages = pages_by_type.get("derived_product", [])
     conflict_pages = pages_by_type.get("conflict", [])
+    opportunity_pages = pages_by_type.get("opportunity", [])
     reuse_edges = build_atlas_reuse_edges(repo_data)
     derived_product_contexts = build_derived_product_contexts(repo_data)
     derived_products_with_consumers = [
@@ -70,6 +75,21 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
         for page in conflict_pages
         if str(page.metadata.get("conflict_status", "unresolved"))
         in {"unresolved", "partially_resolved"}
+    ]
+    opportunity_contexts = build_opportunity_contexts(repo_data)
+    blocked_opportunities = [
+        item
+        for item in opportunity_contexts
+        if item["opportunity_status"] == "blocked"
+    ]
+    opportunities_without_review_routes = [
+        item for item in opportunity_contexts if not item["review_routes"]
+    ]
+    opportunities_without_conflicts = [
+        item for item in opportunity_contexts if not item["linked_conflicts"]
+    ]
+    opportunities_without_products = [
+        item for item in opportunity_contexts if not item["linked_products"]
     ]
     topic_pages = pages_by_type.get("topic", [])
     deep_topic_pages = [
@@ -121,6 +141,11 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
             "reuse_edges": len(reuse_edges),
             "conflict_pages": len(conflict_pages),
             "unresolved_conflicts": len(unresolved_conflicts),
+            "opportunity_pages": len(opportunity_pages),
+            "blocked_opportunities": len(blocked_opportunities),
+            "opportunities_without_review_routes": len(opportunities_without_review_routes),
+            "opportunities_without_conflicts": len(opportunities_without_conflicts),
+            "opportunities_without_products": len(opportunities_without_products),
             "evidence_required_pages": len(evidence_required_pages),
             "evidence_backed_pages": len(evidence_backed_pages),
             "evidence_coverage": f"{len(evidence_backed_pages)}/{len(evidence_required_pages)}",
@@ -137,6 +162,21 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
             _page_ref(product["page"]) for product in derived_products_without_owners
         ],
         "unresolved_conflicts": [_page_ref(page) for page in unresolved_conflicts],
+        "opportunities": [
+            {
+                **_page_ref(item["page"]),
+                "status": item["opportunity_status"],
+                "impact": item["impact"],
+                "feasibility": item["feasibility"],
+                "readiness": item["readiness"],
+                "evidence_strength": item["evidence_strength"],
+            }
+            for item in opportunity_contexts
+        ],
+        "blocked_opportunities": [_page_ref(item["page"]) for item in blocked_opportunities],
+        "opportunities_without_review_routes": [
+            _page_ref(item["page"]) for item in opportunities_without_review_routes
+        ],
         "reuse_edges": [
             {
                 "source_type": edge.source_type,
@@ -176,7 +216,7 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
             {
                 "label": "Evidence Coverage",
                 "value": f"{len(evidence_backed_pages)}/{len(evidence_required_pages)}",
-                "detail": "Claims, directions, hypotheses, and derived products with evidence metadata.",
+                "detail": "Claims, directions, hypotheses, derived products, and opportunities with evidence metadata.",
             },
             {
                 "label": "Derived Product Reuse",
@@ -187,6 +227,16 @@ def build_wiki_inventory(repo_data: RepositoryData) -> dict[str, Any]:
                 "label": "Unresolved Tensions",
                 "value": len(unresolved_conflicts),
                 "detail": "Conflict pages still needing resolving analysis or experiments.",
+            },
+            {
+                "label": "Opportunity Coverage",
+                "value": len(opportunity_pages),
+                "detail": "Concrete next analyses connected to Atlas evidence, products, and tensions.",
+            },
+            {
+                "label": "Blocked Opportunities",
+                "value": len(blocked_opportunities),
+                "detail": "Opportunity pages that cannot proceed until prerequisite data or review is available.",
             },
             {
                 "label": "Topic Drill-Down Depth",
@@ -217,6 +267,9 @@ def inventory_to_markdown(inventory: dict[str, Any]) -> str:
         f"- Reuse edges: {counts['reuse_edges']}",
         f"- Conflict pages: {counts['conflict_pages']}",
         f"- Unresolved conflicts: {counts['unresolved_conflicts']}",
+        f"- Opportunity pages: {counts['opportunity_pages']}",
+        f"- Blocked opportunities: {counts['blocked_opportunities']}",
+        f"- Opportunities without review routes: {counts['opportunities_without_review_routes']}",
         f"- Evidence coverage: {counts['evidence_coverage']}",
         f"- Deep topic pages: {counts['deep_topic_pages']}",
         "",

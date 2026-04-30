@@ -34,6 +34,9 @@ related_pages:
   - conflict.metal-specificity-vs-general-stress
   - conflict.lab-fitness-field-generalization
   - conflict.metal-amr-co-selection-readiness
+  - opportunity.rare-earth-rbtnseq-design
+  - opportunity.metal-amr-site-analysis
+  - opportunity.lab-field-fitness-transfer
 order: 10
 ---
 
@@ -121,6 +124,12 @@ The valuable next layer is action: ranked gene targets, cross-metal inference fo
 - [Metal specificity versus general stress](/atlas/conflicts/metal-specificity-vs-general-stress) separates true element-specific biology from broad sickness and counter-ion effects.
 - [Lab fitness signals versus field ecology](/atlas/conflicts/lab-fitness-field-generalization) defines what must be validated before field claims become general.
 - [Metal-AMR co-selection readiness](/atlas/conflicts/metal-amr-co-selection-readiness) marks co-selection as a high-value unresolved test rather than a settled result.
+
+## Opportunity Hooks
+
+- [Rare-Earth RB-TnSeq Design](/atlas/opportunities/rare-earth-rbtnseq-design) turns the rare-earth data gap into an experiment design using cross-metal evidence.
+- [Metal-AMR Site Co-Selection Analysis](/atlas/opportunities/metal-amr-site-analysis) tests whether metal tolerance and AMR structure remain linked after environmental and taxonomic controls.
+- [Lab-to-Field Fitness Transfer Audit](/atlas/opportunities/lab-field-fitness-transfer) defines when laboratory fitness can support field claims.
 
 ## Drill-Down Path
 

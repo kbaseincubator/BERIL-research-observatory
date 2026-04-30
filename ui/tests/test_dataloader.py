@@ -832,6 +832,33 @@ class TestParseWiki:
         assert page.type == "conflict"
         assert page.metadata["conflict_status"] == "unresolved"
 
+    def test_parses_opportunity_page_type_and_metadata(self, tmp_repo):
+        self._write_wiki_page(
+            tmp_repo,
+            rel_path="opportunities/example.md",
+            id="opportunity.example",
+            title="Example Opportunity",
+            type="opportunity",
+            source_projects=["alpha_project", "beta_project"],
+            related_pages=["topic.example"],
+            opportunity_status="candidate",
+            opportunity_kind="analysis",
+            impact="high",
+            feasibility="medium",
+            readiness="high",
+            evidence_strength="medium",
+            linked_conflicts=["conflict.example"],
+            linked_products=["data.example-product"],
+            target_outputs=["A ranked analysis plan."],
+            review_routes=["alpha_project"],
+            evidence=[{"source": "alpha_project", "support": "Test support."}],
+        )
+        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
+        page = wiki.get_page_by_id("opportunity.example")
+        assert page.type == "opportunity"
+        assert page.metadata["opportunity_status"] == "candidate"
+        assert page.metadata["impact"] == "high"
+
 
 # ---------------------------------------------------------------------------
 # RepositoryParser._parse_row_counts
