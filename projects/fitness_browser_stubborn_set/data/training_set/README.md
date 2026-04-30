@@ -119,6 +119,45 @@ The human-curated files are unambiguously stubborn-grade (92%) — exactly becau
 
 A future v3 expansion will explicitly sample only from the 26,437 stubborn-grade non-curated FB genes to refill the LLM-derived bucket. Until that lands, filter by `signal_class` for the cleanest training cut.
 
+## v3 expansion (Opus + Codex on stubborn-grade pool)
+
+The v3 expansion track corrects two methodological gaps in v1:
+
+1. **Capability-matched LLMs**: v1 used Claude Sonnet 4.6 + Codex gpt-5.5. Sonnet (mid-tier) was capability-mismatched against the gpt-5.5 frontier model; "both LLMs agree on `recalcitrant`" was partly false consensus driven by the smaller model. v3 uses **Claude Opus** + Codex gpt-5.5, both frontier-tier.
+2. **Stubborn-grade sampling**: v3 sampled 2,000 fresh genes from the 25,523 strong-fitness non-curated FB genes (filter `n_strong_experiments ≥ 1 OR in_specificphenotype == 1`), so by construction every expansion gene is stubborn-grade.
+
+v3 also runs the augmented dossier (paper summaries + InterPro union + ortholog fitness) that v1 did not have at classification time. The 2,000-gene expansion broke down as:
+
+| Both-LLM verdict | Count | % |
+|---|---:|---:|
+| Both `already_correctly_named` | **1,011** | 50.6% |
+| Both `recalcitrant` | **207** | 10.4% |
+| Both `improvable_new` | 202 | 10.1% |
+| Both `improvable_correction` | 187 | 9.4% |
+| Inconclusive (LLMs disagreed) | 392 | 19.6% |
+| Missing | 1 | — |
+
+The v1 negatives were also relabeled: of the 755 v1 `recalcitrant` calls, **514 were confirmed** (32 stubborn, 482 no-signal); 121 flipped under the augmented dossier; 120 became inconclusive.
+
+### v3 deliverable files
+
+| File | Total | Stubborn | No-signal | Source mix |
+|---|---:|---:|---:|---|
+| `negatives_v3.jsonl` | **721** | 239 | 482 | 32 v1-confirmed + 207 expansion (stubborn); 482 v1-confirmed (no-signal) |
+| `positives_v3.jsonl` | **1,011** | 1,011 | 0 | All from expansion (Opus + Codex agreed `already_correctly_named`) |
+
+**Strict stubborn-only training cohort** (recommended default for v3):
+
+| Source | Stubborn rows |
+|---|---:|
+| `human_validated.jsonl` | 1,618 |
+| `llm_vs_human_disagreements.jsonl` | 789 |
+| `negatives_v3.jsonl` (filter `signal_class == "stubborn"`) | 239 |
+| `positives_v3.jsonl` | 1,011 |
+| **Total** | **3,657** |
+
+The v3 files retain v1 fields (`orgId`, `locusId`, `verdict`, `confidence`, `proposed_annotation`, `rationale`, `papers_consulted`, plus `codex_*` mirrors) and add `signal_class` and `source` (`v1_confirmed_via_relabel` or `v3_expansion`). For v3 expansion rows the `dossier_md` field is empty and must be rebuilt by re-running `notebooks/dossier.py` with the augmented sections — the JSONL stores the keys + verdicts but not the input. v1-confirmed rows carry their original `dossier_md`.
+
 ## Per-file schema and provenance
 
 ### `human_validated.jsonl` (n = 1,762)
