@@ -54,7 +54,7 @@ Filter ops the OV vector index supports: `must` (eq/in on a metadata field), `ra
 
 ### `grep` — exact-pattern search
 
-Deterministic, exhaustive. Best for author/ID/ORCID/keyword lookups where `find` ranking would silently drop matches.
+Deterministic, exhaustive across **all ingested file content** under the `--uri` subtree. Best for keyword lookups where `find` ranking would silently drop matches. Note that matches include incidental mentions, not just structured fields — see § Workflows for the by-author caveat.
 
 ```bash
 $QUERY grep "Ada Lovelace" --uri viking://resources/projects/
@@ -63,7 +63,7 @@ $QUERY grep "TODO" --uri viking://resources/projects/alpha/ --node-limit 50
 $QUERY grep "deprecated" --uri viking://resources/ --exclude-uri viking://resources/docs/
 ```
 
-Flags: `-i/--case-insensitive`, `--node-limit N`, `--level-limit N`, `--exclude-uri <uri>`.
+Flags: `-i/--case-insensitive`, `--node-limit N`, `--exclude-uri <uri>`.
 
 ### `glob` — URI pattern enumeration
 
@@ -97,9 +97,11 @@ Relations are general OpenViking edges between any two URIs — they're not proj
 
 ```bash
 $QUERY relations viking://resources/projects/<id>/                # outgoing edges
-$QUERY link <from_uri> <to_uri> [<to_uri> ...] --reason "<why>"   # create
-$QUERY unlink <from_uri> <to_uri>                                 # remove one
+$QUERY link <from_uri> <to_uri> [<to_uri> ...] --reason "<why>"   # one or many targets
+$QUERY unlink <from_uri> <to_uri>                                 # remove one edge
 ```
+
+`link` accepts multiple target URIs in a single call — each becomes its own edge, all sharing the supplied `--reason`. `unlink` removes one edge at a time.
 
 Examples:
 
@@ -173,19 +175,22 @@ uv run knowledge/scripts/smoke_ingest_openviking.py
 
 ## Common workflows
 
-**"Find all projects by an author"** — exact, exhaustive:
+**"Find all projects by an author"** — `grep` is exhaustive but matches **all** file content, not just author rows. So expect false positives from incidental mentions in REPORT/README/references. To get an authoritative list, scope to the structured metadata file via post-filtering:
 
 ```bash
-$QUERY grep "Ada Lovelace" --uri viking://resources/projects/
+$QUERY grep "Ada Lovelace" --uri viking://resources/projects/ \
+  | jq '[.matches[] | select(.uri | endswith("/PROJECT_METADATA.md")) | (.uri | capture("projects/(?<id>[^/]+)/").id)] | unique'
 ```
 
-`find` won't reliably enumerate — top-K cuts off. `grep` reads the per-project `PROJECT_METADATA.md` rows deterministically.
+(`grep` always emits JSON, no `--json` flag needed.) The unfiltered `grep` is still useful as a starting set — the URI tells you whether the hit is in metadata vs prose.
 
-**"What changed in the last week?"**
+**"What changed in the last week?"** — `find` requires a non-empty query (server rejects `""`). Use a topic word or a broad term:
 
 ```bash
-$QUERY find "" --since 7d --time-field updated_at --limit 50 --json
+$QUERY find "BERIL" --since 7d --time-field updated_at --limit 50 --json
 ```
+
+For a truly content-agnostic recency view, prefer `ls` / `tree` / `stat` and read the `modTime` field.
 
 **"List every project"** — filesystem question, not a search question:
 
