@@ -652,7 +652,7 @@ _Capture half-baked ideas here for future refinement_
 - eggNOG `Preferred_name='mxaF'` with `KEGG_ko='ko:K00114'` is actually xoxF — disambiguate by KEGG_ko, not Preferred_name
 - `ncbi_env.content` regex matches need full-element-name anchoring to avoid Lepus europaeus / Salicornia europaea / Russia:Samara false positives
 
-**Location**: `projects/lanthanide_methylotrophy_atlas/` (branch: `projects/rare_earth_metals`)
+**Location**: `projects/lanthanide_methylotrophy_atlas/` (branch: `projects/lanthanide_methylotrophy_atlas`)
 
 ---
 
