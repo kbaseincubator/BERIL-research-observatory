@@ -25,6 +25,8 @@ related_pages:
   - claim.pangenome-openness-shapes-function
   - hypothesis.pangenome-openness-pathway-diversity
   - data.genomes-and-pangenomes
+  - opportunity.pangenome-openness-confounder-audit
+  - opportunity.functional-innovation-ko-reuse
 order: 30
 ---
 
@@ -74,6 +76,11 @@ The pangenome collection makes core/accessory/singleton status queryable across 
 - [Genomes and pangenomes](/atlas/data/types/genomes-pangenomes) provide the backbone data type.
 - UniRef, COG, Bakta, and biochemistry resources provide functional interpretation.
 - Fitness Browser provides measured consequence for some conserved or accessory genes.
+
+## Opportunity Hooks
+
+- [Pangenome Openness Confounder Audit](/atlas/opportunities/pangenome-openness-confounder-audit) tests whether openness-function relationships remain after sampling, taxonomy, and annotation controls.
+- [Functional Innovation KO Atlas Reuse Test](/atlas/opportunities/functional-innovation-ko-reuse) asks whether KO innovation adds explanatory value to pangenome architecture.
 
 ## Drill-Down Path
 

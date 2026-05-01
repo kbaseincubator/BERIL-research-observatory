@@ -19,6 +19,7 @@ related_pages:
   - topic.critical-minerals
   - topic.amr-resistance-ecology
   - topic.pangenome-architecture
+  - opportunities.index
   - method.progressive-disclosure
 order: 1
 ---
@@ -27,14 +28,14 @@ order: 1
 
 ## What This Section Is For
 
-Topics are narrative maps across projects. A topic should not summarize one report; it should explain what the observatory has collectively learned, what evidence supports that synthesis, and which claims, directions, hypotheses, and data products let a reader drill down.
+Topics are narrative maps across projects. A topic should not summarize one report; it should explain what the observatory has collectively learned, what evidence supports that synthesis, and which claims, directions, hypotheses, data products, and opportunities let a reader drill down.
 
 Each topic should also have enough frontmatter relationships to render a generated overview map. When results appear to disagree, link the topic to a tension page rather than burying the caveat in prose.
 
 ## How To Browse
 
-Start with a topic when you have a research question but not yet a specific collection or hypothesis. Use the layer structure to understand the arc, then follow the related claims and hypotheses when you need reusable reasoning units.
+Start with a topic when you have a research question but not yet a specific collection or hypothesis. Use the layer structure to understand the arc, then follow the related claims and hypotheses when you need reusable reasoning units. Follow opportunity hooks when you want the next concrete analysis or validation task.
 
 ## Quality Bar
 
-Each topic should contain a synthesis takeaway, learned layers, reusable claims, high-value directions, concrete hypotheses, data dependencies, caveats, and agent-use notes.
+Each topic should contain a synthesis takeaway, learned layers, reusable claims, high-value directions, concrete hypotheses, data dependencies, caveats, opportunity hooks, and agent-use notes.

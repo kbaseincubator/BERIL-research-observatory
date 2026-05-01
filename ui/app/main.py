@@ -28,10 +28,13 @@ from app.filters import (
 )
 from app.atlas_graph import (
     build_derived_product_context,
+    build_opportunity_context,
+    build_opportunity_contexts,
     build_reuse_overview,
     build_topic_overview_map,
     collection_atlas_reuse,
     conflicts_for_page,
+    opportunities_for_page,
     project_atlas_reuse,
     review_routes_for_page,
 )
@@ -67,6 +70,7 @@ ATLAS_SECTIONS = [
     ("Data", "data", "/atlas/data"),
     ("Claims", "claims", "/atlas/claims"),
     ("Tensions", "conflicts", "/atlas/conflicts"),
+    ("Opportunities", "opportunities", "/atlas/opportunities"),
     ("Directions", "directions", "/atlas/directions"),
     ("Hypotheses", "hypotheses", "/atlas/hypotheses"),
     ("People", "people", "/atlas/people"),
@@ -727,6 +731,7 @@ def _build_atlas_maps(repo_data: RepositoryData, wiki_inventory: dict[str, Any])
     hypotheses = wiki_index.pages_by_type("hypothesis")
     derived_products = wiki_index.pages_by_type("derived_product")
     conflicts = wiki_index.pages_by_type("conflict")
+    opportunities = wiki_index.pages_by_type("opportunity")
 
     collection_use = {
         collection.id: sum(
@@ -813,8 +818,16 @@ def _build_atlas_maps(repo_data: RepositoryData, wiki_inventory: dict[str, Any])
                     "source_count": len(hypotheses),
                     "collection_count": 0,
                 },
+                {
+                    "title": "Opportunities",
+                    "url": "/atlas/opportunities",
+                    "summary": "Concrete next analyses prioritized from Atlas evidence and reusable products.",
+                    "nodes": [page.title for page in opportunities[:4]],
+                    "source_count": len(opportunities),
+                    "collection_count": 0,
+                },
             ],
-            "fallback": f"{len(claims)} claims, {len(directions)} directions, and {len(hypotheses)} hypotheses are currently indexed.",
+            "fallback": f"{len(claims)} claims, {len(directions)} directions, {len(hypotheses)} hypotheses, and {len(opportunities)} opportunities are currently indexed.",
         },
         {
             "title": "Derived Product Reuse",
@@ -858,6 +871,8 @@ def _atlas_landing_context(repo_data: RepositoryData, context: dict) -> dict:
     direction_pages = wiki_index.pages_by_type("direction")
     hypothesis_pages = wiki_index.pages_by_type("hypothesis")
     conflict_pages = wiki_index.pages_by_type("conflict")
+    opportunity_pages = wiki_index.pages_by_type("opportunity")
+    opportunity_contexts = build_opportunity_contexts(repo_data)
     reuse_overview = build_reuse_overview(repo_data)
     wiki_inventory = build_wiki_inventory(repo_data)
     context.update(
@@ -874,6 +889,8 @@ def _atlas_landing_context(repo_data: RepositoryData, context: dict) -> dict:
             "direction_pages": direction_pages,
             "hypothesis_pages": hypothesis_pages,
             "conflict_pages": conflict_pages,
+            "opportunity_pages": opportunity_pages,
+            "opportunity_contexts": opportunity_contexts,
             "reuse_overview": reuse_overview,
             "research_primitive_pages": (
                 claim_pages + direction_pages + hypothesis_pages
@@ -943,10 +960,17 @@ async def atlas_page(
         if page.type == "derived_product"
         else None
     )
+    opportunity_context = (
+        build_opportunity_context(page, repo_data)
+        if page.type == "opportunity"
+        else None
+    )
     topic_overview_map = build_topic_overview_map(page, repo_data)
     page_conflicts = conflicts_for_page(page, repo_data)
+    page_opportunities = opportunities_for_page(page, repo_data)
     page_review_routes = review_routes_for_page(page, repo_data)
     reuse_overview = build_reuse_overview(repo_data)
+    opportunity_contexts = build_opportunity_contexts(repo_data)
 
     context.update(
         {
@@ -957,10 +981,13 @@ async def atlas_page(
             "related_pages": related_pages,
             "related_page_groups": _related_page_groups(related_pages),
             "derived_product_context": derived_product_context,
+            "opportunity_context": opportunity_context,
             "topic_overview_map": topic_overview_map,
             "page_conflicts": page_conflicts,
+            "page_opportunities": page_opportunities,
             "page_review_routes": page_review_routes,
             "reuse_overview": reuse_overview,
+            "opportunity_contexts": opportunity_contexts,
             "source_projects": source_projects,
             "source_project_ids": page.source_projects,
             "missing_source_project_ids": [

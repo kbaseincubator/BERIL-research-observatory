@@ -26,6 +26,7 @@ related_pages:
   - hypothesis.metal-amr-co-selection
   - data.amr-fitness-profiles
   - conflict.metal-amr-co-selection-readiness
+  - opportunity.metal-amr-site-analysis
 order: 20
 ---
 
@@ -79,6 +80,10 @@ The overlap between metal biology and AMR ecology is a high-value research seam.
 - Pangenome collection pages provide genome and gene-family context for AMR clusters.
 - Fitness Browser provides costs and cofitness signals that distinguish present genes from functional burden.
 - ENIGMA and environmental metadata provide the contamination and habitat context needed for co-selection tests.
+
+## Opportunity Hooks
+
+- [Metal-AMR Site Co-Selection Analysis](/atlas/opportunities/metal-amr-site-analysis) is the most direct next analysis for this topic because it tests whether AMR environment structure overlaps with metal contamination after controlling for taxonomy and habitat.
 
 ## Drill-Down Path
 

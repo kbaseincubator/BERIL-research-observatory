@@ -31,6 +31,8 @@ related_pages:
   - data.dark-gene-prioritization
   - direction.fitness-validated-community-design
   - conflict.lab-fitness-field-generalization
+  - opportunity.dark-gene-structure-prioritization
+  - opportunity.lab-field-fitness-transfer
 order: 40
 ---
 
@@ -84,6 +86,11 @@ The observatory's strongest functional claims come from joining annotation, cons
 - [Fitness and phenotypes](/atlas/data/types/fitness-phenotypes) define the measured evidence layer.
 - [Genome-fitness-pangenome joins](/atlas/data/joins/genome-fitness-pangenome) connect organism, family, annotation, and fitness effects.
 - UniProt, UniRef, and Bakta resources determine whether a "dark" gene is truly unknown or only behind current annotation.
+
+## Opportunity Hooks
+
+- [Dark Gene Structure Prioritization](/atlas/opportunities/dark-gene-structure-prioritization) converts dark-gene fitness evidence into reviewer-sized mechanistic packets.
+- [Lab-to-Field Fitness Transfer Audit](/atlas/opportunities/lab-field-fitness-transfer) tests how far fitness-validated function can travel into environmental interpretation.
 
 ## Drill-Down Path
 

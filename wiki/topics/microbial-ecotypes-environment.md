@@ -30,6 +30,8 @@ related_pages:
   - hypothesis.sso-geochemistry-closes-plume-model
   - conflict.ecotype-translation-leakage
   - conflict.lab-fitness-field-generalization
+  - opportunity.ecotype-validation-benchmark
+  - opportunity.lab-field-fitness-transfer
 order: 50
 ---
 
@@ -84,6 +86,11 @@ The observatory is building a bridge from genomic variation to environmental nic
 - [Ecotype Assignments](/atlas/data/derived-products/ecotype-assignments) are the main reusable label product.
 - [Environment, geochemistry, and ecology](/atlas/data/types/environment-geochemistry-ecology) provide the validation context.
 - [Missing SSO geochemistry](/atlas/data/gaps/missing-sso-geochemistry) is a concrete complementary data gap.
+
+## Opportunity Hooks
+
+- [Ecotype Label Validation Benchmark](/atlas/opportunities/ecotype-validation-benchmark) tests whether labels survive holdout, batch, and metadata stress tests.
+- [Lab-to-Field Fitness Transfer Audit](/atlas/opportunities/lab-field-fitness-transfer) records which lab fitness signals transfer to field ecology and which need stronger covariates.
 
 ## Drill-Down Path
 

@@ -27,7 +27,8 @@ Every markdown page needs `id`, `title`, `type`, `status`, `summary`, `source_pr
 - `source_projects` must match project directories.
 - `related_collections` must match configured UI collections.
 - Topic pages need breadth.
-- Claims, directions, hypotheses, and derived products need provenance and evidence metadata.
+- Claims, directions, hypotheses, derived products, and opportunities need provenance and evidence metadata.
+- Opportunities need status, kind, impact, feasibility, readiness, evidence strength, target outputs, linked tensions or products when relevant, and review routes.
 
 ## Link Rules
 

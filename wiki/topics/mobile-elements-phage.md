@@ -25,6 +25,7 @@ related_pages:
   - claim.ecotype-analysis-needs-rigor-gates
   - topic.host-microbiome-translation
   - topic.pangenome-architecture
+  - opportunity.phage-host-range-reuse-map
 order: 80
 ---
 
@@ -74,6 +75,10 @@ PhageFoundry and host-microbiome projects make this topic actionable, especially
 - [Phage, mobile, and defense data](/atlas/data/types/phage-mobile-defense) provide the core data lens.
 - PhageFoundry, PROTECT, and pangenome collections provide host, genome, and defense-system context.
 - AMR and plant-microbiome topics provide downstream use cases for mobile-element interpretation.
+
+## Opportunity Hooks
+
+- [Phage Host-Range Reuse Map](/atlas/opportunities/phage-host-range-reuse-map) asks which phage/mobile outputs are ready to become named reusable derived products.
 
 ## Drill-Down Path
 

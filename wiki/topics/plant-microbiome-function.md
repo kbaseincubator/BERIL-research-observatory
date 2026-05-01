@@ -24,6 +24,8 @@ related_pages:
   - claim.lab-fitness-predicts-field-ecology
   - topic.pangenome-architecture
   - topic.metabolic-capability-community-design
+  - opportunity.plant-microbiome-function-validation
+  - opportunity.ecotype-validation-benchmark
 order: 70
 ---
 
@@ -73,6 +75,11 @@ Functional redundancy among co-occurring genera suggests plant compartments sele
 - [Genomes and pangenomes](/atlas/data/types/genomes-pangenomes) provide strain and gene-family context.
 - [Metabolism, biochemistry, and pathways](/atlas/data/types/metabolism-biochemistry-pathways) provide plant-growth and nutrient-cycling interpretation.
 - NMDC and plant-associated metadata provide compartment and environmental context.
+
+## Opportunity Hooks
+
+- [Plant Microbiome Function Validation](/atlas/opportunities/plant-microbiome-function-validation) tests whether plant functional signals survive ecotype, taxonomy, study, and environment controls.
+- [Ecotype Label Validation Benchmark](/atlas/opportunities/ecotype-validation-benchmark) supplies the label-quality gate needed before plant ecotype claims are reused heavily.
 
 ## Drill-Down Path
 

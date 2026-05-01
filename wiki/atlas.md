@@ -25,6 +25,7 @@ related_pages:
   - data.index
   - data.reuse
   - conflicts.index
+  - opportunities.index
   - claims.index
   - directions.index
   - hypotheses.index
@@ -46,6 +47,7 @@ The Atlas is organized around several kinds of maps:
 - [Reuse](/atlas/data/reuse) shows how project outputs become reusable products and downstream inputs.
 - [Claims](/atlas/claims) preserve reusable evidence-backed statements.
 - [Tensions](/atlas/conflicts) preserve conflicts, caveats, and resolving analyses.
+- [Opportunities](/atlas/opportunities) turn tensions, gaps, and reusable products into concrete next analyses.
 - [Directions](/atlas/directions) identify high-value research programs.
 - [Hypotheses](/atlas/hypotheses) turn synthesis into testable units.
 - [People](/atlas/people) routes review by contributor context and ownership.
@@ -53,7 +55,7 @@ The Atlas is organized around several kinds of maps:
 
 ## How To Read It
 
-Start with [topics](/atlas/topics) when you want narrative synthesis. Start with [data](/atlas/data) when you want reusable collections, joins, and derived products. Start with [claims](/atlas/claims/metal-specific-genes-core-enriched) or [hypotheses](/atlas/hypotheses/h-metal-amr-co-selection) when you want agent-sized reasoning units.
+Start with [topics](/atlas/topics) when you want narrative synthesis. Start with [data](/atlas/data) when you want reusable collections, joins, and derived products. Start with [opportunities](/atlas/opportunities) when you want the next concrete analysis to run. Start with [claims](/atlas/claims/metal-specific-genes-core-enriched) or [hypotheses](/atlas/hypotheses/h-metal-amr-co-selection) when you want agent-sized reasoning units.
 
 ## Maintenance Boundary
 
