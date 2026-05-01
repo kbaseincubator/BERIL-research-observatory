@@ -37,7 +37,7 @@ by git. The API key belongs only in the ignored local config, not in
 With the server running in another terminal:
 
 ```bash
-uv run knowledge/scripts/smoke_ingest_openviking.py
+uv run --env-file .env knowledge/scripts/smoke_ingest_openviking.py
 ```
 
 By default this ingests the five most recently modified projects and prints up
@@ -48,10 +48,10 @@ to three query results for each.
 Run from the repo root:
 
 ```bash
-uv run knowledge/scripts/ingest_context.py --all
-uv run knowledge/scripts/ingest_context.py --changed
-uv run knowledge/scripts/ingest_context.py --project <project_id>
-uv run knowledge/scripts/ingest_context.py --docs
+uv run --env-file .env knowledge/scripts/ingest_context.py --all
+uv run --env-file .env knowledge/scripts/ingest_context.py --changed
+uv run --env-file .env knowledge/scripts/ingest_context.py --project <project_id>
+uv run --env-file .env knowledge/scripts/ingest_context.py --docs
 ```
 
 Use `--all` for initial setup, `--changed` for routine refreshes, `--project`
@@ -63,12 +63,12 @@ The ingest path uses batch-style OpenViking calls: resources are queued with
 ## Querying
 
 ```bash
-uv run knowledge/scripts/knowledge_query.py find "query terms"
-uv run knowledge/scripts/knowledge_query.py find "query terms" --project <project_id>
-uv run knowledge/scripts/knowledge_query.py find "query terms" --docs
-uv run knowledge/scripts/knowledge_query.py find "query terms" --metadata
-uv run knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
-uv run knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
+uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms"
+uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms" --project <project_id>
+uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms" --docs
+uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms" --metadata
+uv run --env-file .env knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
+uv run --env-file .env knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
 ```
 
 Target layout:
@@ -77,6 +77,9 @@ Target layout:
 - Central docs: `viking://resources/docs/<doc_slug>/`
 - Project metadata/index: `viking://resources/project_index/`
 
-`OPENVIKING_URL` defaults to `http://localhost:1933`. Set `OPENVIKING_API_KEY`
-only when the OpenViking server itself requires client authentication.
+Configuration lives in `.env` (copy `.env.example`): `OPENVIKING_URL` defaults
+to `http://127.0.0.1:1933` and matches the host/port in `ov.conf.example`.
+`OPENVIKING_API_KEY` is only needed when the OpenViking server itself enforces
+client authentication (typically remote/prod). Pass the file to scripts via
+`uv run --env-file .env ...`.
 

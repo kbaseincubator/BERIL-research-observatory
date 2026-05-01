@@ -14,9 +14,9 @@ Use the OpenViking context layer for fast recall across project reports, researc
 Use `knowledge/scripts/knowledge_query.py` from the repo root:
 
 ```bash
-uv run knowledge/scripts/knowledge_query.py find "query terms"
-uv run knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
-uv run knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
+uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms"
+uv run --env-file .env knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
+uv run --env-file .env knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
 ```
 
 - `find` searches for relevant context before manual file reads.
@@ -26,9 +26,9 @@ uv run knowledge/scripts/knowledge_query.py read viking://resources/projects/<pr
 Scope queries narrowly when possible:
 
 ```bash
-uv run knowledge/scripts/knowledge_query.py find "query terms" --project <project_id>
-uv run knowledge/scripts/knowledge_query.py find "query terms" --docs
-uv run knowledge/scripts/knowledge_query.py find "query terms" --metadata
+uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms" --project <project_id>
+uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms" --docs
+uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms" --metadata
 ```
 
 Use project scope for `projects/{id}` context, docs scope for central docs like pitfalls/discoveries/research ideas, and metadata scope when you need project status, authors, titles, branches, or manifest-level facts.
@@ -38,16 +38,16 @@ Use project scope for `projects/{id}` context, docs scope for central docs like 
 Run ingestion after durable context changes so OpenViking stays current:
 
 ```bash
-uv run knowledge/scripts/ingest_context.py --project <project_id>
-uv run knowledge/scripts/ingest_context.py --changed
-uv run knowledge/scripts/ingest_context.py --all
+uv run --env-file .env knowledge/scripts/ingest_context.py --project <project_id>
+uv run --env-file .env knowledge/scripts/ingest_context.py --changed
+uv run --env-file .env knowledge/scripts/ingest_context.py --all
 ```
 
 - Use `--project <project_id>` after updating one project.
 - Use `--changed` after mixed project/docs edits.
 - Use `--all` when the index may be stale or was never initialized.
 
-`OPENVIKING_URL` defaults to `http://localhost:1933`. Set `OPENVIKING_API_KEY` when the server requires an API key.
+Configure the OpenViking endpoint via `.env` (copy from `.env.example`): `OPENVIKING_URL` defaults to `http://127.0.0.1:1933`, and `OPENVIKING_API_KEY` is only needed when the server enforces auth (typically remote deployments). The scripts above read the file via `--env-file .env`.
 
 For a local OpenViking server, copy `knowledge/openviking/ov.conf.example` to `knowledge/openviking/ov.conf` and set the OpenRouter key in the embedding and VLM sections. The local `ov.conf` is ignored by git. Set `OPENVIKING_API_KEY` only when the OpenViking server itself is configured to require a client/user key.
 
