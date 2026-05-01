@@ -5,6 +5,7 @@ from typing import Any
 
 from .config import DOCS_TARGET_URI, PROJECT_INDEX_TARGET_URI, PROJECTS_TARGET_URI, ContextConfig
 from .manifest import (
+    Manifest,
     build_manifest,
     changed_targets,
     load_manifest,
@@ -30,17 +31,19 @@ def ingest_all(
     client: Any,
     *,
     observer: IngestObserver | None = None,
+    limit: int | None = None,
 ) -> None:
     obs = observer or NullObserver()
     project_dirs = iter_project_dirs(config.projects_dir)
-    docs = select_central_docs(config.repo_root)
-    obs.start(total=len(project_dirs) + len(docs) + 1)
+    selected = project_dirs[:limit] if limit else project_dirs
+    docs = [] if limit else select_central_docs(config.repo_root)
+    obs.start(total=len(selected) + len(docs) + 1)
 
     project_index = stage_project_index(project_dirs, config.staging_dir)
     _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
     obs.advance("project_index")
 
-    for project_dir in project_dirs:
+    for project_dir in selected:
         _ingest_project_dir(config, client, project_dir)
         obs.advance(project_dir.name)
 
@@ -49,9 +52,16 @@ def ingest_all(
         obs.advance(f"docs/{doc_path.name}")
 
     new_manifest = _current_manifest(config)
-    _remove_stale(client, config, new_manifest)
+    if limit:
+        ingested = {project_target_uri(p.name) for p in selected}
+        manifest_to_save = _partial_manifest(
+            load_manifest(_manifest_path(config)), new_manifest, ingested
+        )
+    else:
+        _remove_stale(client, config, new_manifest)
+        manifest_to_save = new_manifest
     obs.wait_processed(client)
-    save_manifest(_manifest_path(config), new_manifest)
+    save_manifest(_manifest_path(config), manifest_to_save)
     obs.done()
 
 
@@ -60,6 +70,7 @@ def ingest_changed(
     client: Any,
     *,
     observer: IngestObserver | None = None,
+    limit: int | None = None,
 ) -> None:
     obs = observer or NullObserver()
     old_manifest = load_manifest(_manifest_path(config))
@@ -68,8 +79,16 @@ def ingest_changed(
     removed = removed_targets(old_manifest, new_manifest)
     project_dirs = {path.name: path for path in iter_project_dirs(config.projects_dir)}
     docs = {docs_target_uri(path): path for path in select_central_docs(config.repo_root)}
-    project_targets_changed = False
 
+    if limit:
+        # Limit caps project ingests; skip docs and removals so a partial run
+        # never persists half-finished reconciliation.
+        targets = [t for t in targets if t.startswith(PROJECTS_TARGET_URI)][:limit]
+        removed = []
+        docs = {}
+
+    project_targets_changed = False
+    ingested_uris: set[str] = set()
     obs.start(total=max(len(targets) + len(removed), 1))
 
     for target_uri in targets:
@@ -78,13 +97,16 @@ def ingest_changed(
             if project_id in project_dirs:
                 project_targets_changed = True
                 _ingest_project_dir(config, client, project_dirs[project_id])
+                ingested_uris.add(target_uri)
                 obs.advance(project_id)
         elif target_uri in docs:
             _ingest_doc(config, client, docs[target_uri])
+            ingested_uris.add(target_uri)
             obs.advance(f"docs/{docs[target_uri].name}")
 
     for target_uri in removed:
         _remove_resource(client, target_uri)
+        ingested_uris.add(target_uri)
         obs.advance(f"removed: {target_uri}")
         if target_uri.startswith(PROJECTS_TARGET_URI):
             project_targets_changed = True
@@ -96,7 +118,11 @@ def ingest_changed(
 
     if targets or removed:
         obs.wait_processed(client)
-    save_manifest(_manifest_path(config), new_manifest)
+    if limit:
+        manifest_to_save = _partial_manifest(old_manifest, new_manifest, ingested_uris)
+    else:
+        manifest_to_save = new_manifest
+    save_manifest(_manifest_path(config), manifest_to_save)
     obs.done()
 
 
@@ -175,6 +201,16 @@ def _remove_stale(
     for target_uri in removed_targets(old_manifest, new_manifest):
         if prefix is None or target_uri.startswith(prefix):
             _remove_resource(client, target_uri)
+
+
+def _partial_manifest(old: Manifest, new: Manifest, touched: set[str]) -> Manifest:
+    merged = dict(old)
+    for uri in touched:
+        if uri in new:
+            merged[uri] = new[uri]
+        else:
+            merged.pop(uri, None)
+    return merged
 
 
 def _current_manifest(config: ContextConfig) -> dict[str, dict[str, str]]:

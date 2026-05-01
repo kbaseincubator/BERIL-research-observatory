@@ -38,12 +38,24 @@ def build_parser() -> argparse.ArgumentParser:
     mode.add_argument("--changed", action="store_true", help="Ingest changed selected sources")
     mode.add_argument("--project", help="Ingest one project ID")
     mode.add_argument("--docs", action="store_true", help="Ingest selected central docs")
+    parser.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Cap the number of projects ingested (only with --all or --changed); "
+        "writes a partial manifest so unprocessed projects remain pending",
+    )
     return parser
 
 
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
+    if args.limit is not None:
+        if not (args.all or args.changed):
+            parser.error("--limit can only be used with --all or --changed")
+        if args.limit < 1:
+            parser.error("--limit must be a positive integer")
     config = ContextConfig.from_env()
     if args.project:
         try:
@@ -57,9 +69,9 @@ def main() -> None:
     try:
         with RichIngestObserver(console=console) as observer:
             if args.all:
-                ingest_all(config, client, observer=observer)
+                ingest_all(config, client, observer=observer, limit=args.limit)
             elif args.changed:
-                ingest_changed(config, client, observer=observer)
+                ingest_changed(config, client, observer=observer, limit=args.limit)
             elif args.project:
                 ingest_project(config, client, args.project, observer=observer)
             elif args.docs:
