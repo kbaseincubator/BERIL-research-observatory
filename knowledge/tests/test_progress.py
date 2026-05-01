@@ -1,12 +1,44 @@
+from datetime import datetime, timezone
+
 from rich.console import Console
 
 from observatory_context.progress import (
     NullObserver,
     RichIngestObserver,
-    _summarise_queue,
+    _format_last_activity,
+    parse_last_llm_activity,
+    parse_queue_counts,
     render_status,
 )
 
+
+QUEUE_STATUS_TEXT = (
+    "+----------------+---------+-------------+-----------+----------+--------+-------+\n"
+    "|     Queue      | Pending | In Progress | Processed | Requeued | Errors | Total |\n"
+    "+----------------+---------+-------------+-----------+----------+--------+-------+\n"
+    "|   Embedding    |    0    |      2      |    187    |    0     |   1    |  189  |\n"
+    "|    Semantic    |    1    |      2      |     4     |    0     |   0    |   7   |\n"
+    "| Semantic-Nodes |    2    |      1      |     5     |    0     |   0    |   8   |\n"
+    "|     TOTAL      |    3    |      5      |    196    |    0     |   1    |  204  |\n"
+    "+----------------+---------+-------------+-----------+----------+--------+-------+"
+)
+
+MODELS_STATUS_TEXT = (
+    "VLM Models:\n"
+    "+----------------+----------+-------+--------+------------+--------+--------------------------+\n"
+    "|     Model      | Provider | Calls | Prompt | Completion | Total  |       Last Updated       |\n"
+    "+----------------+----------+-------+--------+------------+--------+--------------------------+\n"
+    "| gemini-3-flash |  openai  |  153  | 129611 |   198041   | 327652 | 2026-05-01T17:00:43.773Z |\n"
+    "+----------------+----------+-------+--------+------------+--------+--------------------------+\n"
+    "\n"
+    "Embedding Models:\n"
+    "+-------------------------------+----------+-------+\n"
+    "|             Model             | Provider | Calls |\n"
+    "+-------------------------------+----------+-------+\n"
+    "| openai/text-embedding-3-large |  openai  |  230  |\n"
+    "+-------------------------------+----------+-------+\n"
+    "Last call timestamps: vlm=2026-05-01T17:00:50.000Z embedding=2026-05-01T17:00:47.872Z"
+)
 
 HEALTHY_STATUS = {
     "is_healthy": True,
@@ -16,18 +48,19 @@ HEALTHY_STATUS = {
             "name": "queue",
             "is_healthy": True,
             "has_errors": False,
-            "status": (
-                "+----+---------+-------------+-----------+----------+--------+-------+\n"
-                "|Name| Pending | In Progress | Processed | Requeued | Errors | Total |\n"
-                "+----+---------+-------------+-----------+----------+--------+-------+\n"
-                "|TOTAL|    0    |      2      |    50     |    0     |   0    |  52  |"
-            ),
+            "status": QUEUE_STATUS_TEXT,
         },
         "lock": {
             "name": "lock",
             "is_healthy": True,
             "has_errors": False,
             "status": "no locks",
+        },
+        "models": {
+            "name": "models",
+            "is_healthy": True,
+            "has_errors": False,
+            "status": MODELS_STATUS_TEXT,
         },
     },
 }
@@ -67,15 +100,37 @@ def test_render_status_unhealthy_surfaces_errors_panel() -> None:
     assert "model gateway timeout" in output
 
 
-def test_summarise_queue_parses_total_line() -> None:
-    label = _summarise_queue(HEALTHY_STATUS)
-    assert "pending=0" in label
-    assert "in_progress=2" in label
-    assert "errors=0" in label
+def test_parse_queue_counts_returns_per_queue_dict_without_total() -> None:
+    counts = parse_queue_counts(HEALTHY_STATUS)
+    assert set(counts) == {"Embedding", "Semantic", "Semantic-Nodes"}
+    assert counts["Embedding"] == {
+        "pending": 0,
+        "in_progress": 2,
+        "processed": 187,
+        "requeued": 0,
+        "errors": 1,
+        "total": 189,
+    }
+    assert counts["Semantic"]["pending"] == 1
+    assert counts["Semantic-Nodes"]["processed"] == 5
 
 
-def test_summarise_queue_handles_missing_queue() -> None:
-    assert _summarise_queue({}) == "polling..."
+def test_parse_queue_counts_returns_empty_when_status_missing() -> None:
+    assert parse_queue_counts({}) == {}
+    assert parse_queue_counts({"components": {"queue": {"status": 42}}}) == {}
+
+
+def test_parse_last_llm_activity_returns_max_timestamp() -> None:
+    ts = parse_last_llm_activity(HEALTHY_STATUS)
+    assert ts == datetime(2026, 5, 1, 17, 0, 50, tzinfo=timezone.utc)
+
+
+def test_parse_last_llm_activity_handles_no_models() -> None:
+    assert parse_last_llm_activity({}) is None
+
+
+def test_format_last_activity_falls_back_when_missing() -> None:
+    assert _format_last_activity({}) == "last activity: —"
 
 
 def test_rich_observer_start_is_additive_across_repeated_calls() -> None:

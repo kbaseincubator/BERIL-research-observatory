@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import re
 import threading
 import time
+from datetime import datetime, timezone
 from typing import Any, Protocol
 
 
 QUEUE_POLL_INTERVAL_SECONDS = 1.0
+TRACKED_QUEUES: tuple[str, ...] = ("Embedding", "Semantic", "Semantic-Nodes")
+_TIMESTAMP_RE = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?")
 
 
 class IngestObserver(Protocol):
@@ -56,7 +60,6 @@ class RichIngestObserver:
             console=self.console,
         )
         self._task_id: int | None = None
-        self._wait_task_id: int | None = None
 
     def __enter__(self) -> "RichIngestObserver":
         self._progress.__enter__()
@@ -83,9 +86,12 @@ class RichIngestObserver:
 
     def wait_processed(self, client: Any) -> None:
         wait_id = self._progress.add_task(
-            "Waiting on OpenViking queue", total=None, label="pending=? in_progress=?"
+            "Waiting on OpenViking queue", total=None, label="last activity: ?"
         )
-        self._wait_task_id = wait_id
+        queue_ids: dict[str, int] = {
+            name: self._progress.add_task(name, total=0, completed=0, label="—")
+            for name in TRACKED_QUEUES
+        }
 
         result_holder: dict[str, Any] = {}
 
@@ -100,20 +106,48 @@ class RichIngestObserver:
         thread.start()
 
         while thread.is_alive():
-            label = _summarise_queue(_safe_status(client))
-            self._progress.update(wait_id, label=label)
+            status = _safe_status(client)
+            self._update_queue_tasks(wait_id, queue_ids, status)
             time.sleep(QUEUE_POLL_INTERVAL_SECONDS)
 
         thread.join()
-        self._progress.update(wait_id, label="done", completed=1, total=1)
+        # Final refresh so the user sees the terminal state before tasks vanish.
+        self._update_queue_tasks(wait_id, queue_ids, _safe_status(client))
         self._progress.remove_task(wait_id)
-        self._wait_task_id = None
+        for tid in queue_ids.values():
+            self._progress.remove_task(tid)
         if "error" in result_holder:
             raise result_holder["error"]
 
+    def _update_queue_tasks(
+        self,
+        wait_id: int,
+        queue_ids: dict[str, int],
+        status: dict[str, Any],
+    ) -> None:
+        counts = parse_queue_counts(status)
+        for name, task_id in queue_ids.items():
+            row = counts.get(name) or {}
+            processed = int(row.get("processed", 0))
+            in_progress = int(row.get("in_progress", 0))
+            pending = int(row.get("pending", 0))
+            errors = int(row.get("errors", 0))
+            total = processed + in_progress + pending
+            label = f"pending={pending} in_progress={in_progress} errors={errors}"
+            self._progress.update(
+                task_id,
+                completed=processed,
+                total=max(total, processed) or 1,
+                label=label,
+            )
+        self._progress.update(wait_id, label=_format_last_activity(status))
+
     def done(self) -> None:
         if self._task_id is not None:
-            self._progress.update(self._task_id, completed=self._progress.tasks[self._task_id].total)
+            self._progress.update(
+                self._task_id,
+                completed=self._progress.tasks[self._task_id].total,
+            )
 
 
 def _safe_status(client: Any) -> dict[str, Any]:
@@ -123,22 +157,96 @@ def _safe_status(client: Any) -> dict[str, Any]:
         return {}
 
 
-def _summarise_queue(status: dict[str, Any]) -> str:
-    queue = status.get("components", {}).get("queue", {}) if status else {}
-    counts = queue.get("counts") if isinstance(queue, dict) else None
-    if isinstance(counts, dict):
-        pending = counts.get("pending", "?")
-        in_progress = counts.get("in_progress", "?")
-        errors = counts.get("errors", 0)
-        return f"pending={pending} in_progress={in_progress} errors={errors}"
-    raw = queue.get("status") if isinstance(queue, dict) else None
-    if isinstance(raw, str):
-        for line in raw.splitlines():
-            if "TOTAL" in line:
-                parts = [p.strip() for p in line.strip("|").split("|")]
-                if len(parts) >= 6:
-                    return f"pending={parts[1]} in_progress={parts[2]} errors={parts[5]}"
-    return "polling..."
+def parse_queue_counts(status: dict[str, Any]) -> dict[str, dict[str, int]]:
+    """Parse the queue ASCII table from get_status() into per-queue counts.
+
+    Returns a dict like:
+        {"Embedding": {"pending": 0, "in_progress": 2, "processed": 187,
+                       "requeued": 0, "errors": 0, "total": 189}, ...}
+    The synthetic "TOTAL" row is omitted.
+    """
+    queue_component = (status or {}).get("components", {}).get("queue", {})
+    raw = queue_component.get("status") if isinstance(queue_component, dict) else None
+    if not isinstance(raw, str):
+        return {}
+    rows = _parse_pretty_table(raw)
+    out: dict[str, dict[str, int]] = {}
+    for row in rows:
+        name = row.get("Queue", "").strip()
+        if not name or name == "TOTAL":
+            continue
+        out[name] = {
+            "pending": _to_int(row.get("Pending")),
+            "in_progress": _to_int(row.get("In Progress")),
+            "processed": _to_int(row.get("Processed")),
+            "requeued": _to_int(row.get("Requeued")),
+            "errors": _to_int(row.get("Errors")),
+            "total": _to_int(row.get("Total")),
+        }
+    return out
+
+
+def parse_last_llm_activity(status: dict[str, Any]) -> datetime | None:
+    """Find the latest 'Last Updated' timestamp across the model usage tables."""
+    models_component = (status or {}).get("components", {}).get("models", {})
+    raw = models_component.get("status") if isinstance(models_component, dict) else None
+    if not isinstance(raw, str):
+        return None
+    latest: datetime | None = None
+    for match in _TIMESTAMP_RE.finditer(raw):
+        ts = _parse_iso(match.group(0))
+        if ts is None:
+            continue
+        if latest is None or ts > latest:
+            latest = ts
+    return latest
+
+
+def _format_last_activity(status: dict[str, Any]) -> str:
+    ts = parse_last_llm_activity(status)
+    if ts is None:
+        return "last activity: —"
+    delta = datetime.now(timezone.utc) - ts
+    seconds = max(int(delta.total_seconds()), 0)
+    return f"last LLM call: {seconds}s ago"
+
+
+def _parse_pretty_table(text: str) -> list[dict[str, str]]:
+    """Parse a tabulate "pretty" table into a list of {header: value} dicts."""
+    headers: list[str] | None = None
+    rows: list[dict[str, str]] = []
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("+"):
+            continue
+        if not stripped.startswith("|"):
+            continue
+        cells = [c.strip() for c in stripped.strip("|").split("|")]
+        if headers is None:
+            headers = cells
+            continue
+        if len(cells) != len(headers):
+            continue
+        rows.append(dict(zip(headers, cells)))
+    return rows
+
+
+def _to_int(value: Any) -> int:
+    try:
+        return int(str(value).strip())
+    except (TypeError, ValueError):
+        return 0
+
+
+def _parse_iso(text: str) -> datetime | None:
+    candidate = text.replace("Z", "+00:00")
+    try:
+        ts = datetime.fromisoformat(candidate)
+    except ValueError:
+        return None
+    if ts.tzinfo is None:
+        ts = ts.replace(tzinfo=timezone.utc)
+    return ts
 
 
 def render_status(status: dict[str, Any]) -> Any:
