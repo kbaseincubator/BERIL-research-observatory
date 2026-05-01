@@ -669,3 +669,12 @@ _Capture half-baked ideas here for future refinement_
 
 **Location**: `projects/bacillota_b_subsurface_accessory/`
 
+
+### [bacillota_b_subsurface_accessory] (COMPLETED 2026-05-01)
+Originally PROPOSED above. Completion summary:
+
+**H1 SUPPORTED**: 547 anchor-enriched OGs (q<0.05, fold≥3) — far above the ≥10 prediction. Hits across all 5 pre-registered functional categories (anaerobic respiration / sporulation revival / mineral attachment / regulators / osmoadaptation) plus substantial additional anaerobic-niche signal in the "other" bucket (COG1977 molybdopterin 10/10 anchor; DsrEFH 7/10 anchor; 4Fe-4S cluster 8/10 anchor).
+
+**H2 REJECTED, opposite direction**: deep-clay anchor Bacillota_B are 35% LARGER than soil-baseline (4.3 Mbp vs 3.2 Mbp CheckM-rescaled, d=+1.37, p=0.013). Streamlining is a Patescibacteria/CPR-specific adaptation; cultivable subsurface Firmicutes show gene-content expansion consistent with Beaver & Neufeld 2024 self-sufficiency.
+
+**Phase 1 clay correction**: clay_confined_subsurface H3 IR-side used K07811/K17324/K17323 — those are TMAO reductase / glycerol ABC / glycerol permease, not iron reduction. With corrected multi-heme cytochrome detection (PF02085 + PF22678 + CXXCH motif counting), no significant cohort difference (all Fisher p ≥ 0.46). The clay project's SR-side H3 stands; IR-side narrative needs withdrawal. See `projects/bacillota_b_subsurface_accessory/`.
