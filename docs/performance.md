@@ -2,7 +2,9 @@
 
 **Purpose**: Strategies for efficiently querying BERDL databases, especially billion-row tables.
 
-The guidance below is primarily based on experience with `kbase_ke_pangenome` but applies to any large BERDL database. See [collections.md](collections.md) for the full database inventory.
+The guidance below is primarily based on experience with `kbase_ke_pangenome`
+but applies to any large BERDL database. Use BERDL notebook helpers for live
+access-aware database and table discovery.
 
 ---
 

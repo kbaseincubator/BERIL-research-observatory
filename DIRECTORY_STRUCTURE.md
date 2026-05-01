@@ -7,7 +7,6 @@ BERIL-research-observatory/
 ├── .env                                # Authentication token (KBASE_AUTH_TOKEN)
 │
 ├── docs/                               # Shared knowledge base
-│   ├── collections.md                 # Overview of all BERDL databases & tenants
 │   ├── schemas/                       # Per-collection schema documentation
 │   │   ├── pangenome.md              # kbase_ke_pangenome (293K genomes, 1B genes)
 │   │   ├── fitnessbrowser.md         # kescience_fitnessbrowser (48 organisms)
@@ -103,7 +102,6 @@ BERIL-research-observatory/
 
 ### docs/
 Shared knowledge base that grows with discoveries:
-- **collections.md**: Master index of all 35 BERDL databases across 9 tenants
 - **schemas/**: Detailed per-collection schema documentation (table structures, relationships, query patterns)
 - Document SQL pitfalls, performance strategies, schema details
 - Capture research ideas and future directions as they emerge
@@ -143,9 +141,19 @@ Scratch space for ad-hoc analysis:
 
 ## Database Access
 
-**35 databases** across BERDL Delta Lakehouse (see [docs/collections.md](docs/collections.md))
-- Access via Spark SQL on JupyterHub or REST API
-- Major collections: pangenome (293K genomes), fitness browser (48 organisms), genomes (253M proteins), biochemistry (56K reactions), and more
+Use the access-aware BERDL notebook helpers to discover the databases and
+tables available to your account:
+
+```python
+from berdl_notebook_utils import get_databases, get_tables, get_table_schema
+
+databases = get_databases()
+tables = get_tables("kbase_ke_pangenome")
+schema = get_table_schema("kbase_ke_pangenome", "genome")
+```
+
+Run actual queries with native Spark SQL on JupyterHub or with
+`scripts/run_sql.py` for local Spark Connect.
 
 ## Workflow
 

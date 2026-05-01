@@ -4,7 +4,10 @@
 
 Use the **BERDL Data Lakehouse** and the AI co-scientist to pursue scientific questions across microbial genomics, ecology, metabolic modeling, and multi-omics analysis, while building shared documentation and reusable skills that accelerate future work.
 
-BERDL hosts **35 databases across 9 tenants** including pangenome data for 293K microbial genomes, mutant fitness data for 48 organisms, ModelSEED biochemistry, multi-omics from NMDC, and more. See [docs/collections.md](docs/collections.md) for the full inventory.
+BERDL hosts pangenome data for 293K microbial genomes, mutant fitness data for
+48 organisms, ModelSEED biochemistry, multi-omics from NMDC, and more. Use the
+access-aware BERDL notebook helpers to discover the databases and tables
+available to your account.
 
 ## Dual Goals
 
@@ -34,7 +37,6 @@ Discovered that only 83K/293K genomes have embeddings...
 
 | File | Purpose |
 |------|---------|
-| `docs/collections.md` | Overview of all BERDL databases and tenants |
 | `docs/schemas/` | Per-collection schema documentation |
 | `docs/overview.md` | Project goals, data workflow, scientific context |
 | `docs/pitfalls.md` | SQL gotchas, data sparsity, common errors |
@@ -171,16 +173,24 @@ Project data files are gitignored (too large for git) but are archived to the `m
 - **Shared** — accessible to all BERDL users via `mc cp` or Spark
 - **Downloadable** — any user can pull project data with `mc cp --recursive berdl-minio/cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/<project>/data/ ./`
 
-**Upload workflow**: When a project passes `/submit` review, run `python tools/lakehouse_upload.py <project_id>`. See [docs/collections.md](docs/collections.md) for the full collection details.
+**Upload workflow**: When a project passes `/submit` review, run `python tools/lakehouse_upload.py <project_id>`.
 
 ## Database Access
 
-- **Databases**: 35 databases across BERDL (see [docs/collections.md](docs/collections.md))
+- **Discovery**: Use access-aware BERDL notebook helpers for tenant and table access
 - **Auth**: Token in `.env` file (KBASE_AUTH_TOKEN)
 - **API**: `https://hub.berdl.kbase.us/apis/mcp/`
 - **Direct Spark**: Use JupyterHub for complex queries
 
 Use `/berdl` skill for BERDL queries. Read `docs/pitfalls.md` before your first query.
+
+```python
+from berdl_notebook_utils import get_databases, get_tables, get_table_schema
+
+databases = get_databases()
+tables = get_tables("kbase_ke_pangenome")
+schema = get_table_schema("kbase_ke_pangenome", "genome")
+```
 
 ### Local Spark Connect
 
@@ -194,7 +204,7 @@ bash scripts/bootstrap_client.sh   # creates .venv-berdl with required packages
 **Running queries:**
 ```bash
 source .venv-berdl/bin/activate
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
+python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok"
 ```
 
 **Prerequisites:**
@@ -282,4 +292,5 @@ plot_df = df_filtered.toPandas()
 3. AlphaEarth embeddings only cover 28% of genomes.
 4. Gene clusters are species-specific. Can't compare across species.
 5. Update docs when you learn something worth sharing!
-6. Check [docs/collections.md](docs/collections.md) for the full database inventory.
+6. Use the BERDL notebook helpers to discover the databases and tables your
+   account can access.
