@@ -86,14 +86,19 @@ WHERE g.ncbi_biosample_id IN (
 ```
 
 ### Performance Plan
-- **Tier**: BERDL JupyterHub (Spark) for NB01/NB02 extraction; local for NB03+ analysis
-- **Estimated complexity**: moderate — joins on `eggnog_mapper_annotations` (~1B rows) need per-marker filters before join; never full-scan `gene` (1B rows) without genome_id pruning
+- **Tier**: BERDL JupyterHub (Spark) for NB01/NB02/NB04/NB05/NB07 (any cell that hits `kbase_ke_pangenome` directly); local pandas for NB03/NB06 once cached parquet/CSV is in `data/`.
+- **Spark session import (matched to environment)**:
+  - **JupyterHub notebook (`.ipynb` rendered by JupyterLab)**: `spark = get_spark_session()` — no import needed; provided by the kernel.
+  - **JupyterHub CLI / scripts (`python script.py` on cluster)**: `from berdl_notebook_utils.setup_spark_session import get_spark_session; spark = get_spark_session()`.
+  - **Local machine off-cluster**: `from get_spark_session import get_spark_session` (requires `.venv-berdl` + SSH tunnels + pproxy chain — not used here since we're on-cluster).
+  - This project's notebooks will use the JupyterHub-notebook idiom (`spark = get_spark_session()` with no import) and document the alternative in their headers.
+- **Estimated complexity**: moderate — joins on `eggnog_mapper_annotations` (~1B rows) need per-marker filters (KEGG_ko or Preferred_name) before joining to `gene`; never full-scan `gene` (1B rows) without genome_id pruning. NB02/NB04 joins benefit from caching marker hits per-genome to a small table first.
 - **Known pitfalls**:
   - eggNOG `Preferred_name='lanM'` returns 337 false positives in gut bacteria (Blautia, Lachnospiraceae, Streptococcus) — these are unrelated proteins. **Use bakta `product='Lanmodulin'` as the trustworthy lanmodulin source.**
   - eggNOG `Preferred_name='mxaF'` with `KEGG_ko='ko:K00114'` is actually xoxF (KO is authoritative; Preferred_name is sometimes stale). Always disambiguate by KEGG_ko.
   - `ncbi_env.content` regex needs care: "Lepus europaeus", "Salicornia europaea", "Russia: Samara" all hit naive `samar|europ` patterns. Use full-element-name regex anchored on `\brare earth\b|\blanthan|\bcerium|\bytterb` etc., or restrict to `attribute_name='isolation_source'`.
   - String-typed numerics in `metal_concentration_value`-style columns may need CAST.
-- **Auth**: `KBASE_AUTH_TOKEN` already loaded from `.env`; on-cluster direct Spark.
+- **Auth**: `KBASE_AUTH_TOKEN` already loaded from `.env`; on-cluster direct Spark (verified via `python scripts/detect_berdl_environment.py`).
 
 ## Analysis Plan
 
@@ -132,14 +137,19 @@ WHERE g.ncbi_biosample_id IN (
 - **If H2 not supported**: suggests lanthanide-MDH presence is a phylogenetic accident decoupled from contemporary niche — interesting evolutionary question about ancestral cofactor preference.
 - **If H3 supported**: tightens lanmodulin's clade boundary; provides a curated reference set for lanmodulin biochemistry/structural follow-up.
 - **If H3 not supported**: identifies novel lanmodulin-bearing clades worth characterizing experimentally.
-- **Potential confounders**:
-  - Phylogenetic non-independence (handled with stratified analysis and family-level random effects)
-  - Annotation method variance between eggNOG and bakta (handled with cross-validation in NB01)
-  - REE-AMD anchor is a single bioproject (PRJNA…) — environmental anchor is descriptive, not statistical, for n=37
-  - AlphaEarth's 39.5% coverage on xoxF genomes still leaves 60.5% without env coordinates
+- **Potential confounders & limitations**:
+  - **Phylogenetic non-independence** — handled with stratified (within-phylum / within-family) analysis and, where statistical power allows, mixed-effects logistic regression with family as a random effect. Headline H1 statistics will be reported both naive and phylogeny-controlled; both required to claim support.
+  - **Annotation method variance** between eggNOG and bakta — handled by NB01 cross-validation and a "concordant-call" subset for the H1/H2 primary analyses; secondary "either-source" subset reported for robustness.
+  - **REE-AMD anchor is small (n=37) and from a single bioproject** — used as a *descriptive* environmental anchor rather than a statistical test in NB04. H2 tests are powered by the broad `ncbi_env` regex on isolation-source-like fields plus AlphaEarth-based niche distance, not by the REE-AMD bioproject alone. NB06 treats the 37 MAGs as a case study with its own narrative; statistical claims are restricted to descriptive enrichments (Fisher's exact for cassette presence vs. matched-phylum baselines) with explicit small-N caveats.
+  - **AlphaEarth's 39.5% coverage** on xoxF genomes leaves 60.5% without environmental coordinates. Two mitigations: (1) AlphaEarth-based environmental analyses are presented as a coverage-restricted *supplementary* axis to the `ncbi_env` text-mining primary analysis (mirroring the `amr_environmental_resistome` precedent); (2) coverage bias is reported per-clade so any genus-specific gaps are visible. AlphaEarth-restricted subset findings are not generalized to the full xoxF population without explicit caveat.
+  - **`ncbi_env` coverage** is heterogeneous — many biosamples lack rich environmental metadata. NB04 reports the fraction of xoxF-genome biosamples with usable `ncbi_env` content alongside any environmental claims.
+
+### Optional cross-validation with `metal_fitness_atlas` species scores
+Where the metal_fitness_atlas species-level metal-tolerance scores (Co, Ni, Cu, Zn, etc.) overlap with lanthanide-cassette-bearing species, we will report Spearman correlation as a supplementary check. Hypothesis: lanthanide-cassette presence is largely *orthogonal* to existing transition-metal tolerance scores (different chemistry, different niches), so a near-zero correlation is the expected and supportive outcome. A strong positive correlation would indicate confounding by general metal-rich environments and would prompt re-examination of H2.
 
 ## Revision History
 - **v1** (2026-04-30): Initial plan after pilot exploration confirmed all key quantitative inputs (3,690 xoxF genomes, 37 REE-AMD MAGs, 39.5% AlphaEarth coverage, eggNOG `lanM` false-positive caveat).
+- **v2** (2026-04-30): Addressed `PLAN_REVIEW_1.md` feedback. Clarified Spark-session execution environment per notebook (JupyterHub-notebook idiom). Sharpened limitations on REE-AMD n=37 anchor (now treated as descriptive/case-study, not inferential) and AlphaEarth 39.5% coverage (now framed as coverage-restricted supplementary axis with coverage-bias reporting per-clade). Added optional cross-validation with `metal_fitness_atlas` species scores as a confounding check (orthogonality is the expected outcome).
 
 ## Authors
 David Lyon (ORCID: [0000-0002-1927-3565](https://orcid.org/0000-0002-1927-3565)) — KBase
