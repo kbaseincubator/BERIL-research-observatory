@@ -1,7 +1,11 @@
 """Chat routes.
 
-Exposes non-streaming turn execution. A streaming (SSE) endpoint is
-layered on top in a later PR and shares the same service layer.
+Two turn endpoints:
+  * POST /api/chat/{id}/turn   — non-streaming, returns full JSON.
+  * POST /api/chat/{id}/stream — SSE-streamed, frames as the agent works.
+
+Both share auth, ownership, credential, and concurrency guards. Session
+CRUD endpoints and Jinja pages land in a later PR.
 """
 
 import logging
@@ -12,12 +16,13 @@ from fastapi.responses import JSONResponse, Response
 from pydantic import BaseModel, Field
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sse_starlette.sse import EventSourceResponse
 
 from app.auth import get_current_user_session_or_token
 from app.chat.concurrency import UserChatConcurrencyExceeded, get_concurrency_manager
 from app.chat.providers import get_provider
 from app.chat.providers.base import Credentials
-from app.chat.service import run_turn
+from app.chat.service import run_turn, stream_turn
 from app.db.models import ChatSession
 from app.db.session import get_db
 
@@ -27,7 +32,7 @@ ROUTER_CHAT = APIRouter(prefix="/api/chat", tags=["Chat"])
 
 
 class TurnRequest(BaseModel):
-    """JSON body for POST /api/chat/{session_id}/turn."""
+    """JSON body for POST /api/chat/{session_id}/turn and .../stream."""
 
     message: str = Field(min_length=1)
     # Credentials: {credential_field_id: value}. Keys must match the provider
@@ -67,8 +72,7 @@ async def chat_turn(
 ) -> Response:
     """Run one chat turn to completion and return the assistant's response.
 
-    Non-streaming. Returns JSON on both success and provider error. The
-    streaming variant (a later PR) will live at ``.../stream``.
+    Non-streaming. Returns JSON on both success and provider error.
     """
     user = await get_current_user_session_or_token(request, db)
     if user is None:
@@ -109,3 +113,69 @@ async def chat_turn(
     if turn.is_error:
         payload["error"] = turn.error
     return JSONResponse(payload)
+
+
+@ROUTER_CHAT.post("/{session_id}/stream")
+async def chat_stream(
+    session_id: str,
+    body: TurnRequest,
+    request: Request,
+    db: AsyncSession = Depends(get_db),
+) -> Response:
+    """Run one chat turn and stream events to the browser as SSE.
+
+    Pre-flight (auth, ownership, credential validation, concurrency cap) runs
+    synchronously and can return a plain JSON error response. Once the SSE
+    stream has started, errors surface as ``error`` events inside the stream.
+    """
+    user = await get_current_user_session_or_token(request, db)
+    if user is None:
+        return Response(status_code=401)
+
+    session, err = await _load_session_for_user(db, session_id, user.id)
+    if err is not None:
+        return Response(status_code=err)
+    assert session is not None
+
+    try:
+        credentials = _validate_credentials(session.provider_id, body.credentials)
+    except (KeyError, ValueError) as exc:
+        return JSONResponse({"error": str(exc)}, status_code=400)
+
+    manager = get_concurrency_manager()
+    # Reserve the user slot and session lock BEFORE returning the response,
+    # so a cap-exceeded case surfaces as a plain 429 rather than an opaque
+    # 200 with an embedded error frame.
+    try:
+        turn_guard = manager.acquire(session_id=session.id, user_id=user.id)
+        await turn_guard.__aenter__()
+    except UserChatConcurrencyExceeded:
+        return JSONResponse(
+            {"error": "concurrent-turn cap exceeded for this user"},
+            status_code=429,
+        )
+
+    # Anything between acquire and handoff to EventSourceResponse must
+    # release the guard manually; only the generator's finally fires once
+    # streaming starts.
+    try:
+        # Refresh after acquiring the lock so we see any sdk_session_id
+        # written by a turn that just finished on this same session.
+        await db.refresh(session)
+    except BaseException:
+        await turn_guard.__aexit__(None, None, None)
+        raise
+
+    async def _event_generator():
+        try:
+            async for frame in stream_turn(
+                db,
+                session=session,
+                user_message=body.message,
+                credentials=credentials,
+            ):
+                yield frame
+        finally:
+            await turn_guard.__aexit__(None, None, None)
+
+    return EventSourceResponse(_event_generator())
