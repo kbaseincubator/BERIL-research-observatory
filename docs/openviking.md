@@ -101,17 +101,62 @@ The ingest path uses batch-style OpenViking calls: resources are queued with
 
 ## Querying
 
+`knowledge_query.py` exposes the OpenViking surface needed for both fuzzy and
+deterministic lookups:
+
 ```bash
-uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms"
-uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms" --project <project_id>
-uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms" --docs
-uv run --env-file .env knowledge/scripts/knowledge_query.py find "query terms" --metadata
-uv run --env-file .env knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
-uv run --env-file .env knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
+# Semantic search
+QUERY=knowledge/scripts/knowledge_query.py
+uv run --env-file .env $QUERY find "query terms"
+uv run --env-file .env $QUERY find "query terms" --project <project_id>
+uv run --env-file .env $QUERY find "query terms" --docs
+
+# Filter / time-bounded find (pass an OV filter tree as JSON)
+uv run --env-file .env $QUERY find "query terms" --since 7d --time-field updated_at
+uv run --env-file .env $QUERY find "query terms" \
+  --filter '{"op":"must","field":"uri","conds":["viking://resources/projects/alpha/"]}'
+
+# Exact pattern (e.g. all projects mentioning an author)
+uv run --env-file .env $QUERY grep "Ada Lovelace" --uri viking://resources/projects/
+
+# URI enumeration / structural navigation
+uv run --env-file .env $QUERY glob "viking://resources/projects/*/"
+uv run --env-file .env $QUERY ls viking://resources/projects/ --simple
+uv run --env-file .env $QUERY tree viking://resources/projects/alpha/
+uv run --env-file .env $QUERY stat viking://resources/projects/alpha/
+
+# Relations between resources
+uv run --env-file .env $QUERY relations viking://resources/projects/alpha/
+uv run --env-file .env $QUERY link viking://resources/projects/alpha/ \
+  viking://resources/projects/beta/ --reason "shared cohort"
+uv run --env-file .env $QUERY unlink viking://resources/projects/alpha/ \
+  viking://resources/projects/beta/
+
+# Resource access
+uv run --env-file .env $QUERY overview viking://resources/projects/<project_id>/
+uv run --env-file .env $QUERY read viking://resources/projects/<project_id>/REPORT.md
 ```
 
 Target layout:
 
 - Projects: `viking://resources/projects/<project_id>/`
 - Central docs: `viking://resources/docs/<doc_slug>/`
-- Project metadata/index: `viking://resources/project_index/`
+
+Per-project metadata (id, title, status, authors, branch, engine, dates) is
+ingested as `PROJECT_METADATA.md` inside each project URI — search it with
+`find` or `grep` rather than a global index.
+
+## Project relations
+
+Each project's `beril.yaml` may declare cross-project links:
+
+```yaml
+related_projects:
+  - sister_project_id
+  - another_project_id
+```
+
+During `ingest_context.py`, those entries become OpenViking relations from the
+project's URI to the listed projects (missing IDs are skipped). Inspect with
+`knowledge_query.py relations <uri>` or manage them manually with
+`link`/`unlink`.

@@ -2,7 +2,6 @@ from pathlib import Path
 
 from observatory_context.metadata import (
     ProjectMetadata,
-    build_project_index,
     build_project_metadata,
 )
 
@@ -47,32 +46,17 @@ authors:
     assert "| Grace Hopper |  |  |" in metadata.markdown
 
 
-def test_readme_fallback_metadata_and_sorted_index(tmp_path: Path) -> None:
+def test_readme_fallback_metadata(tmp_path: Path) -> None:
     zeta_dir = tmp_path / "zeta"
-    alpha_dir = tmp_path / "alpha"
     zeta_dir.mkdir()
-    alpha_dir.mkdir()
     (zeta_dir / "README.md").write_text(
         "# Zeta Project\n\n## Status\n\nReady for review\n",
         encoding="utf-8",
     )
-    (alpha_dir / "beril.yaml").write_text(
-        "project_id: alpha\nstatus: active\nauthors:\n  - name: Lin Chen\n",
-        encoding="utf-8",
-    )
 
     metadata = build_project_metadata(zeta_dir)
-    index = build_project_index([zeta_dir, alpha_dir])
 
     assert metadata.project_id == "zeta"
     assert metadata.title == "Zeta Project"
     assert metadata.status == "Ready for review"
     assert metadata.author_names == []
-    assert index == (
-        "# BERIL Project Index\n"
-        "\n"
-        "| Project | Title | Authors | Status |\n"
-        "|---|---|---|---|\n"
-        "| alpha | alpha | Lin Chen | active |\n"
-        "| zeta | Zeta Project |  | Ready for review |"
-    )

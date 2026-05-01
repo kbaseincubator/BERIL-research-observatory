@@ -3,7 +3,7 @@ from __future__ import annotations
 import shutil
 from pathlib import Path
 
-from .metadata import build_project_index, build_project_metadata
+from .metadata import build_project_metadata
 from .selection import select_project_files
 
 
@@ -19,14 +19,6 @@ def stage_project(project_dir: Path, staging_dir: Path) -> Path:
     metadata = build_project_metadata(project_dir)
     (target / "PROJECT_METADATA.md").write_text(metadata.markdown, encoding="utf-8")
     return target
-
-
-def stage_project_index(project_dirs: list[Path], staging_dir: Path) -> Path:
-    target = staging_dir / "projects"
-    target.mkdir(parents=True, exist_ok=True)
-    path = target / "PROJECT_INDEX.md"
-    path.write_text(build_project_index(project_dirs), encoding="utf-8")
-    return path
 
 
 def stage_doc(doc_path: Path, staging_dir: Path) -> Path:

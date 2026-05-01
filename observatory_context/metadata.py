@@ -50,32 +50,6 @@ def build_project_metadata(project_dir: str | Path) -> ProjectMetadata:
     )
 
 
-def build_project_index(project_dirs: list[str | Path]) -> str:
-    rows = [
-        "# BERIL Project Index",
-        "",
-        "| Project | Title | Authors | Status |",
-        "|---|---|---|---|",
-    ]
-    for project_dir in sorted(
-        (Path(path) for path in project_dirs), key=lambda path: path.name
-    ):
-        metadata = build_project_metadata(project_dir)
-        rows.append(
-            "| "
-            + " | ".join(
-                [
-                    metadata.project_id,
-                    metadata.title,
-                    ", ".join(metadata.author_names),
-                    metadata.status,
-                ]
-            )
-            + " |"
-        )
-    return "\n".join(rows)
-
-
 def _read_beril_yaml(path: Path) -> dict[str, Any]:
     if not path.exists():
         return {}

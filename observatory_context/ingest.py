@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from .config import DOCS_TARGET_URI, PROJECT_INDEX_TARGET_URI, PROJECTS_TARGET_URI, ContextConfig
+from .config import DOCS_TARGET_URI, PROJECTS_TARGET_URI, ContextConfig
 from .manifest import (
     Manifest,
     build_manifest,
@@ -13,6 +13,7 @@ from .manifest import (
     save_manifest,
 )
 from .progress import IngestObserver, NullObserver
+from .relations import apply_project_relations
 from .selection import (
     docs_target_uri,
     iter_project_dirs,
@@ -20,7 +21,7 @@ from .selection import (
     select_central_docs,
     select_project_files,
 )
-from .staging import stage_doc, stage_project, stage_project_index
+from .staging import stage_doc, stage_project
 
 
 MANIFEST_FILENAME = "context_manifest.json"
@@ -37,11 +38,7 @@ def ingest_all(
     project_dirs = iter_project_dirs(config.projects_dir)
     selected = project_dirs[:limit] if limit else project_dirs
     docs = [] if limit else select_central_docs(config.repo_root)
-    obs.start(total=len(selected) + len(docs) + 1)
-
-    project_index = stage_project_index(project_dirs, config.staging_dir)
-    _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
-    obs.advance("project_index")
+    obs.start(total=len(selected) + len(docs))
 
     for project_dir in selected:
         _ingest_project_dir(config, client, project_dir)
@@ -87,7 +84,6 @@ def ingest_changed(
         removed = []
         docs = {}
 
-    project_targets_changed = False
     ingested_uris: set[str] = set()
     obs.start(total=max(len(targets) + len(removed), 1))
 
@@ -95,7 +91,6 @@ def ingest_changed(
         if target_uri.startswith(PROJECTS_TARGET_URI):
             project_id = target_uri.removeprefix(PROJECTS_TARGET_URI).strip("/")
             if project_id in project_dirs:
-                project_targets_changed = True
                 _ingest_project_dir(config, client, project_dirs[project_id])
                 ingested_uris.add(target_uri)
                 obs.advance(project_id)
@@ -108,13 +103,6 @@ def ingest_changed(
         _remove_resource(client, target_uri)
         ingested_uris.add(target_uri)
         obs.advance(f"removed: {target_uri}")
-        if target_uri.startswith(PROJECTS_TARGET_URI):
-            project_targets_changed = True
-
-    if project_targets_changed:
-        project_index = stage_project_index(list(project_dirs.values()), config.staging_dir)
-        _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
-        obs.advance("project_index")
 
     if targets or removed:
         obs.wait_processed(client)
@@ -145,14 +133,10 @@ def ingest_projects(
 ) -> None:
     obs = observer or NullObserver()
     project_dirs = [resolve_project_dir(config, project_id) for project_id in project_ids]
-    obs.start(total=len(project_dirs) + 1)
+    obs.start(total=len(project_dirs))
     for project_dir in project_dirs:
         _ingest_project_dir(config, client, project_dir)
         obs.advance(project_dir.name)
-
-    project_index = stage_project_index(iter_project_dirs(config.projects_dir), config.staging_dir)
-    _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
-    obs.advance("project_index")
 
     new_manifest = _current_manifest(config)
     _remove_stale(client, config, new_manifest)
@@ -225,6 +209,7 @@ def _current_manifest(config: ContextConfig) -> dict[str, dict[str, str]]:
 def _ingest_project_dir(config: ContextConfig, client: Any, project_dir: Path) -> None:
     staged = stage_project(project_dir, config.staging_dir)
     _add_resource(client, staged, project_target_uri(project_dir.name), f"BERIL project {project_dir.name}")
+    apply_project_relations(client, project_dir, config.projects_dir)
 
 
 def _ingest_doc(config: ContextConfig, client: Any, doc_path: Path) -> None:
