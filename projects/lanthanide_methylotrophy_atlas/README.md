@@ -4,7 +4,7 @@
 Across BERDL's 293K-genome pangenome, what is the phylogenomic distribution and cassette-completeness of the lanthanide-dependent methanol/ethanol oxidation system (xoxF / xoxJ / PQQ / lanmodulin), and does its presence correspond to environments containing rare earth elements?
 
 ## Status
-Complete — see [Report](REPORT.md) for findings. **H1 strongly supported** (xoxF:mxaF = 18.9 : 1, p = 7.6 × 10⁻²² vs 10:1 threshold). **H2 partially supported** — soil/sediment OR=1.92 (p_BH=6e-39); ree_impacted descriptively elevated (n=37, OR=3.51, p_BH=0.082). **H3a strongly supported** (lanmodulin 100% in target clades, p=9.8e-7); **H3b not formally supported** at the pre-registered 80% threshold (xoxF co-occurrence 79.0%, p=0.65).
+Complete — see [Report](REPORT.md) for findings. **H1 strongly supported** (xoxF:mxaF = 18.9 : 1 pooled, p = 7.6 × 10⁻²² vs 10:1 threshold; phylogeny-corrected GLMM ratio ~143 : 1 with `(1|phylum) + (1|family)` random intercepts; family-equal-weight bootstrap also above threshold). **H2 partially supported** — soil/sediment OR=1.92 (p_BH=6e-39); ree_impacted descriptively elevated (n=37, OR=3.51, p_BH=0.082). **H3a strongly supported** (lanmodulin 100% in target clades, p=9.8e-7); **H3b not formally supported** at the pre-registered 80% threshold (xoxF co-occurrence 79.0%, p=0.65).
 
 ## Data Collections
 - `kbase_ke_pangenome` — eggnog_mapper_annotations, bakta_annotations, gene, gene_genecluster_junction, gene_cluster, genome, gtdb_taxonomy_r214v1, ncbi_env
@@ -35,6 +35,7 @@ This project closes the **"Rare Earth Elements (Zero Coverage)" Priority 2 futur
 5. `notebooks/05_lanmodulin_h3_test.ipynb` — Local; H3a/H3b binomial tests (~10 sec).
 6. `notebooks/06_ree_amd_case_study.ipynb` — Spark for bakta product enrichment in 37 REE-AMD MAGs (~5 min).
 7. `notebooks/07_pqq_supply_asymmetry.ipynb` — Spark for bakta PQQ cross-check on the xoxF-without-eggnog-PQQ subset (~3 min).
+8. `notebooks/08_phylogenetic_validation.ipynb` — Local pandas + scipy + statsmodels.BinomialBayesMixedGLM; family-equal-weight bootstrap and Bayesian binomial GLMM with `(1|phylum) + (1|family)` random intercepts to validate H1 against phylogenetic non-independence (~30 sec).
 
 To re-execute via nbconvert (saves outputs in place):
 ```bash

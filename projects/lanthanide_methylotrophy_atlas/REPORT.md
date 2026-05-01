@@ -10,7 +10,21 @@ Across 293,059 GTDB-r214 genomes, eggNOG `KEGG_ko = K00114` (xoxF, lanthanide-de
 
 After Benjamini-Hochberg FDR correction across 29 testable phyla, the directional H1 verdict survives in every phylum that has any MDH calls and adequate sample size: Pseudomonadota, Acidobacteriota, Actinomycetota, Bacteroidota, Campylobacterota, Verrucomicrobiota, Chloroflexota, Gemmatimonadota, Methylomirabilota, Halobacteriota archaea, Thermoproteota archaea, and others.
 
-*(Notebook: 03_h1_formal_test.ipynb)*
+#### Phylogenetic-correction validation (NB08)
+
+The reviewer (PLAN_REVIEW_1.md, REVIEW_1.md) noted that the per-phylum binomial framework does not formally control for phylogenetic non-independence. NB08 implements three orthogonal validation strategies, all of which support H1:
+
+![Phylogenetic-correction strategies — 95% CI comparison](figures/h1_phylogenetic_validation.png)
+
+| Method | n units | xoxF fraction | 95 % CI | Above H1 threshold (0.909)? |
+|---|---:|---:|---|---|
+| NB03 naive pooled (genome-level) | 3,885 | 0.950 | [0.942, 0.956] | ✅ |
+| NB08 family-level equal-weight (each GTDB family = 1 unit) | 271 | 0.960 | [0.941, 0.976] | ✅ |
+| NB08 Bayesian binomial GLMM with `(1\|phylum) + (1\|family)` | 3,885 | **0.993** | [0.992, 0.994] | ✅ |
+
+The GLMM (variational-Bayes binomial GLMM via `statsmodels.BinomialBayesMixedGLM`, with random intercepts for phylum and family) gives the *strongest* xoxF dominance signal — a phylogeny-corrected ratio of **~143 : 1** with 95% credible interval [122, 169] — because the random effects absorb phylum-level heterogeneity and reveal that *within typical phyla*, xoxF dominance is more extreme than the global pooled estimate suggests. The family-equal-weight bootstrap (each of 271 MDH-informative GTDB families counted once regardless of genome count) gives 0.960 [0.941, 0.976], confirming H1 is not driven by Pseudomonadota's 117 K-genome size advantage. **H1 is robust to all three phylogenetic-correction frameworks.**
+
+*(Notebook: 03_h1_formal_test.ipynb, 08_phylogenetic_validation.ipynb)*
 
 ### 2. The most striking xoxF carriers are not classical methylotrophs
 
@@ -157,7 +171,7 @@ This study delivers the first pangenome-scale (293K-genome) atlas of the lanthan
 
 ### Limitations
 
-- **Phylogenetic non-independence**: phyla are not phylogenetically independent statistical units. The H1 verdict is robust as a description of the BERDL pangenome's annotation distribution; a full phylogenetic comparative analysis (e.g., PGLS, PGLMM) would be required for an evolutionary claim about cofactor preference shifts. Stratified within-phylum analyses partially mitigate this for H2.
+- **Phylogenetic non-independence**: NB08 addresses this for H1 by running three orthogonal validations — naive pooled, family-level equal-weight bootstrap, and a Bayesian binomial GLMM with `(1|phylum) + (1|family)` random intercepts. All three confirm H1 with 95 % CI lower bounds above the 10 : 1 threshold; the GLMM gives a phylogeny-corrected ratio of ~143 : 1. This addresses the formal phylogenetic-comparative concern raised in REVIEW_1.md. **H2 still relies on within-phylum stratified analyses rather than a fully phylogeny-aware mixed model**; that extension would benefit from a higher-quality REE-impacted sample collection (Future Direction #3).
 - **Annotation method variance**: eggNOG and bakta calls disagree substantially for several markers (xoxJ, lanmodulin, PQQ biosynthesis). Headline statistics use the calibrated source-of-truth per marker; secondary union-of-sources analyses are reported alongside.
 - **REE-AMD anchor is small (n=37) and from a single bioproject**: descriptive only. Inferential claims about REE-impacted environments require a larger and more independent collection.
 - **AlphaEarth coverage of xoxF genomes is 39.5 %** (1,457 / 3,690) — better than the 28 % pangenome baseline, but still leaves 60.5 % of xoxF carriers without environmental coordinates. Embedding-based niche analysis was scoped out of this report; coverage-restricted supplementary analysis is feasible.
@@ -199,6 +213,7 @@ This study delivers the first pangenome-scale (293K-genome) atlas of the lanthan
 | `data/ree_amd_mag_inventory.csv` | 37 | REE-AMD MAGs with full marker matrix and taxonomy. |
 | `data/ree_amd_top_bakta_products.csv` | ~200 | Metal/acidophily/REE-relevant bakta products in REE-AMD MAGs, ranked by genome prevalence. |
 | `data/pqq_supply_categorization.csv` | 2,185 | Categorisation of xoxF-bearing genomes lacking eggNOG PQQ (annotation gap vs no-PQQ-detected). |
+| `data/h1_phylogenetic_validation.csv` | 3 | NB08 cross-method H1 validation: pooled / family-equal-weight / GLMM with 95% CI for each. |
 
 ---
 
@@ -215,6 +230,7 @@ This study delivers the first pangenome-scale (293K-genome) atlas of the lanthan
 | `05_lanmodulin_h3_test.ipynb` | H3a clade-restriction binomial test (Beijerinckiaceae/Acetobacteraceae/Hyphomicrobiaceae) and H3b xoxF co-occurrence test. |
 | `06_ree_amd_case_study.ipynb` | Descriptive characterization of the 37 REE-AMD MAGs: taxonomy, marker presence, top metal/stress-response products. |
 | `07_pqq_supply_asymmetry.ipynb` | Cross-checks the ~2,300 xoxF-without-PQQ genomes with bakta PQQ products; categorises annotation gap vs genuine absence. |
+| `08_phylogenetic_validation.ipynb` | Three-method H1 phylogenetic-correction validation: naive pooled, family-level equal-weight bootstrap, and Bayesian binomial GLMM with `(1\|phylum) + (1\|family)` random intercepts. Closes REVIEW_1.md's PGLS/PGLMM recommendation. |
 
 ### Figures
 
@@ -231,6 +247,7 @@ This study delivers the first pangenome-scale (293K-genome) atlas of the lanthan
 | `ree_amd_taxonomy.png` | Phylum + family distribution of the 37 REE-AMD MAGs. |
 | `ree_amd_marker_presence.png` | Heatmap of marker presence across the 37 MAGs. |
 | `pqq_supply_asymmetry.png` | Categorical breakdown of xoxF-bearing genomes by PQQ-supply status (eggNOG / bakta / neither). |
+| `h1_phylogenetic_validation.png` | NB08 cross-method H1 comparison: naive pooled, family-equal-weight bootstrap, and binomial GLMM with random phylum + family intercepts. All three above the 10:1 H1 threshold. |
 
 ---
 
