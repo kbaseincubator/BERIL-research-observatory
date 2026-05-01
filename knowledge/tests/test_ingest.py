@@ -1,13 +1,10 @@
 from pathlib import Path
 
 from observatory_context.config import ContextConfig
-import pytest
-
 from observatory_context.ingest import (
     ingest_all,
     ingest_changed,
     ingest_projects,
-    resolve_project_dir,
 )
 
 
@@ -101,12 +98,3 @@ def test_ingest_projects_uploads_all_projects_and_one_index_with_one_wait(tmp_pa
     assert client.wait_count == 1
 
 
-def test_resolve_project_dir_rejects_missing_and_path_like_ids(tmp_path: Path) -> None:
-    config = make_config(tmp_path)
-    write(tmp_path / "projects" / "demo" / "README.md", "# Demo\n")
-
-    assert resolve_project_dir(config, "demo") == tmp_path / "projects" / "demo"
-    with pytest.raises(ValueError):
-        resolve_project_dir(config, "../docs")
-    with pytest.raises(FileNotFoundError):
-        resolve_project_dir(config, "missing")

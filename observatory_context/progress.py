@@ -1,13 +1,15 @@
 from __future__ import annotations
 
 import re
-import threading
 import time
 from datetime import datetime, timezone
 from typing import Any, Protocol
 
 
 QUEUE_POLL_INTERVAL_SECONDS = 1.0
+IDLE_TICKS_TO_FINISH = 3
+EMPTY_TICKS_TO_DECIDE_NO_WORK = 10
+WAIT_MAX_SECONDS = 60 * 60  # safety net: 1 hour
 TRACKED_QUEUES: tuple[str, ...] = ("Embedding", "Semantic", "Semantic-Nodes")
 _TIMESTAMP_RE = re.compile(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?Z?")
 
@@ -85,6 +87,10 @@ class RichIngestObserver:
         self._progress.console.log(message)
 
     def wait_processed(self, client: Any) -> None:
+        # Poll get_status() instead of calling client.wait_processed(): the SDK's
+        # wait endpoint is one big blocking POST that gets killed by httpx's read
+        # timeout long before slow LLM workloads finish. Polling is robust and
+        # also drives the per-queue progress bars below.
         wait_id = self._progress.add_task(
             "Waiting on OpenViking queue", total=None, label="last activity: ?"
         )
@@ -92,32 +98,15 @@ class RichIngestObserver:
             name: self._progress.add_task(name, total=0, completed=0, label="—")
             for name in TRACKED_QUEUES
         }
-
-        result_holder: dict[str, Any] = {}
-
-        def _wait() -> None:
-            try:
-                client.wait_processed()
-                result_holder["done"] = True
-            except Exception as exc:
-                result_holder["error"] = exc
-
-        thread = threading.Thread(target=_wait, daemon=True)
-        thread.start()
-
-        while thread.is_alive():
-            status = _safe_status(client)
-            self._update_queue_tasks(wait_id, queue_ids, status)
-            time.sleep(QUEUE_POLL_INTERVAL_SECONDS)
-
-        thread.join()
-        # Final refresh so the user sees the terminal state before tasks vanish.
-        self._update_queue_tasks(wait_id, queue_ids, _safe_status(client))
-        self._progress.remove_task(wait_id)
-        for tid in queue_ids.values():
-            self._progress.remove_task(tid)
-        if "error" in result_holder:
-            raise result_holder["error"]
+        try:
+            wait_for_queue_idle(
+                client,
+                on_tick=lambda status: self._update_queue_tasks(wait_id, queue_ids, status),
+            )
+        finally:
+            self._progress.remove_task(wait_id)
+            for tid in queue_ids.values():
+                self._progress.remove_task(tid)
 
     def _update_queue_tasks(
         self,
@@ -155,6 +144,62 @@ def _safe_status(client: Any) -> dict[str, Any]:
         return client.get_status()
     except Exception:
         return {}
+
+
+def wait_for_queue_idle(
+    client: Any,
+    *,
+    on_tick: Any = None,
+    poll_interval: float = QUEUE_POLL_INTERVAL_SECONDS,
+    idle_ticks: int = IDLE_TICKS_TO_FINISH,
+    max_empty_ticks: int = EMPTY_TICKS_TO_DECIDE_NO_WORK,
+    max_seconds: float = WAIT_MAX_SECONDS,
+) -> None:
+    """Poll client.get_status() until all tracked queues report idle.
+
+    A queue is idle when ``pending == 0`` and ``in_progress == 0`` for
+    ``idle_ticks`` consecutive observations after we have seen any activity.
+    If we never observe activity, exit after ``max_empty_ticks`` consecutive
+    empty observations (the queue had no work to do). ``on_tick`` is called
+    once per poll with the raw status dict, e.g. to update progress bars.
+    Raises ``TimeoutError`` if ``max_seconds`` elapses before the queue idles.
+    """
+    seen_activity = False
+    idle_streak = 0
+    empty_streak = 0
+    deadline = time.monotonic() + max_seconds
+    while True:
+        status = _safe_status(client)
+        if on_tick is not None:
+            try:
+                on_tick(status)
+            except Exception:
+                pass
+        counts = parse_queue_counts(status)
+        if counts:
+            active = sum(
+                int(c.get("pending", 0)) + int(c.get("in_progress", 0))
+                for c in counts.values()
+            )
+            if active > 0:
+                seen_activity = True
+                idle_streak = 0
+                empty_streak = 0
+            elif seen_activity:
+                idle_streak += 1
+            else:
+                empty_streak += 1
+        else:
+            idle_streak = 0
+        if seen_activity and idle_streak >= idle_ticks:
+            return
+        if empty_streak >= max_empty_ticks:
+            return
+        if time.monotonic() > deadline:
+            raise TimeoutError(
+                f"OpenViking queue did not idle within {max_seconds:.0f}s"
+            )
+        time.sleep(poll_interval)
 
 
 def parse_queue_counts(status: dict[str, Any]) -> dict[str, dict[str, int]]:

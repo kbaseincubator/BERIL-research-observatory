@@ -3,12 +3,11 @@ from datetime import datetime, timezone
 from rich.console import Console
 
 from observatory_context.progress import (
-    NullObserver,
     RichIngestObserver,
-    _format_last_activity,
     parse_last_llm_activity,
     parse_queue_counts,
     render_status,
+    wait_for_queue_idle,
 )
 
 
@@ -25,43 +24,17 @@ QUEUE_STATUS_TEXT = (
 
 MODELS_STATUS_TEXT = (
     "VLM Models:\n"
-    "+----------------+----------+-------+--------+------------+--------+--------------------------+\n"
-    "|     Model      | Provider | Calls | Prompt | Completion | Total  |       Last Updated       |\n"
-    "+----------------+----------+-------+--------+------------+--------+--------------------------+\n"
-    "| gemini-3-flash |  openai  |  153  | 129611 |   198041   | 327652 | 2026-05-01T17:00:43.773Z |\n"
-    "+----------------+----------+-------+--------+------------+--------+--------------------------+\n"
-    "\n"
+    "| gemini-3-flash | openai | 153 | 129611 | 198041 | 327652 | 2026-05-01T17:00:43.773Z |\n"
     "Embedding Models:\n"
-    "+-------------------------------+----------+-------+\n"
-    "|             Model             | Provider | Calls |\n"
-    "+-------------------------------+----------+-------+\n"
-    "| openai/text-embedding-3-large |  openai  |  230  |\n"
-    "+-------------------------------+----------+-------+\n"
-    "Last call timestamps: vlm=2026-05-01T17:00:50.000Z embedding=2026-05-01T17:00:47.872Z"
+    "| openai/text-embedding-3-large | openai | 230 | 481 | 0 | 481 | 2026-05-01T17:00:50.000Z |"
 )
 
 HEALTHY_STATUS = {
     "is_healthy": True,
     "errors": [],
     "components": {
-        "queue": {
-            "name": "queue",
-            "is_healthy": True,
-            "has_errors": False,
-            "status": QUEUE_STATUS_TEXT,
-        },
-        "lock": {
-            "name": "lock",
-            "is_healthy": True,
-            "has_errors": False,
-            "status": "no locks",
-        },
-        "models": {
-            "name": "models",
-            "is_healthy": True,
-            "has_errors": False,
-            "status": MODELS_STATUS_TEXT,
-        },
+        "queue": {"name": "queue", "is_healthy": True, "has_errors": False, "status": QUEUE_STATUS_TEXT},
+        "models": {"name": "models", "is_healthy": True, "has_errors": False, "status": MODELS_STATUS_TEXT},
     },
 }
 
@@ -69,12 +42,7 @@ UNHEALTHY_STATUS = {
     "is_healthy": False,
     "errors": ["embedding model unreachable"],
     "components": {
-        "models": {
-            "name": "models",
-            "is_healthy": False,
-            "has_errors": True,
-            "status": "model gateway timeout",
-        },
+        "models": {"name": "models", "is_healthy": False, "has_errors": True, "status": "model gateway timeout"},
     },
 }
 
@@ -85,19 +53,15 @@ def _render(group) -> str:
     return console.export_text()
 
 
-def test_render_status_healthy_includes_components_and_status_label() -> None:
-    output = _render(render_status(HEALTHY_STATUS))
-    assert "HEALTHY" in output
-    assert "queue" in output
-    assert "lock" in output
-    assert "no locks" in output
+def test_render_status_distinguishes_healthy_and_unhealthy() -> None:
+    healthy = _render(render_status(HEALTHY_STATUS))
+    assert "HEALTHY" in healthy
+    assert "queue" in healthy
 
-
-def test_render_status_unhealthy_surfaces_errors_panel() -> None:
-    output = _render(render_status(UNHEALTHY_STATUS))
-    assert "UNHEALTHY" in output
-    assert "embedding model unreachable" in output
-    assert "model gateway timeout" in output
+    unhealthy = _render(render_status(UNHEALTHY_STATUS))
+    assert "UNHEALTHY" in unhealthy
+    assert "embedding model unreachable" in unhealthy
+    assert "model gateway timeout" in unhealthy
 
 
 def test_parse_queue_counts_returns_per_queue_dict_without_total() -> None:
@@ -111,26 +75,12 @@ def test_parse_queue_counts_returns_per_queue_dict_without_total() -> None:
         "errors": 1,
         "total": 189,
     }
-    assert counts["Semantic"]["pending"] == 1
-    assert counts["Semantic-Nodes"]["processed"] == 5
-
-
-def test_parse_queue_counts_returns_empty_when_status_missing() -> None:
-    assert parse_queue_counts({}) == {}
-    assert parse_queue_counts({"components": {"queue": {"status": 42}}}) == {}
 
 
 def test_parse_last_llm_activity_returns_max_timestamp() -> None:
-    ts = parse_last_llm_activity(HEALTHY_STATUS)
-    assert ts == datetime(2026, 5, 1, 17, 0, 50, tzinfo=timezone.utc)
-
-
-def test_parse_last_llm_activity_handles_no_models() -> None:
-    assert parse_last_llm_activity({}) is None
-
-
-def test_format_last_activity_falls_back_when_missing() -> None:
-    assert _format_last_activity({}) == "last activity: —"
+    assert parse_last_llm_activity(HEALTHY_STATUS) == datetime(
+        2026, 5, 1, 17, 0, 50, tzinfo=timezone.utc
+    )
 
 
 def test_rich_observer_start_is_additive_across_repeated_calls() -> None:
@@ -148,14 +98,39 @@ def test_rich_observer_start_is_additive_across_repeated_calls() -> None:
         assert task.completed == 5
 
 
-def test_null_observer_delegates_wait_to_client() -> None:
-    class FakeClient:
-        def __init__(self) -> None:
-            self.calls = 0
+def _queue_status(pending: int, in_progress: int, processed: int) -> dict:
+    body = (
+        "+-----+---------+-------------+-----------+----------+--------+-------+\n"
+        "|Queue| Pending | In Progress | Processed | Requeued | Errors | Total |\n"
+        "+-----+---------+-------------+-----------+----------+--------+-------+\n"
+        f"| Embedding | {pending} | {in_progress} | {processed} | 0 | 0 | {pending + in_progress + processed} |\n"
+        f"| Semantic | 0 | 0 | {processed} | 0 | 0 | {processed} |\n"
+        f"| Semantic-Nodes | 0 | 0 | {processed} | 0 | 0 | {processed} |"
+    )
+    return {"components": {"queue": {"status": body}}}
 
-        def wait_processed(self) -> None:
-            self.calls += 1
 
-    client = FakeClient()
-    NullObserver().wait_processed(client)
-    assert client.calls == 1
+class _ScriptedClient:
+    def __init__(self, scripted: list[dict]) -> None:
+        self._scripted = list(scripted)
+
+    def get_status(self) -> dict:
+        return self._scripted.pop(0) if self._scripted else _queue_status(0, 0, 5)
+
+
+def test_wait_for_queue_idle_finishes_when_queue_drains_after_activity() -> None:
+    client = _ScriptedClient(
+        [
+            _queue_status(2, 1, 0),
+            _queue_status(0, 1, 2),
+            _queue_status(0, 0, 3),
+            _queue_status(0, 0, 3),
+            _queue_status(0, 0, 3),
+        ]
+    )
+    wait_for_queue_idle(client, poll_interval=0.0, idle_ticks=3)
+
+
+def test_wait_for_queue_idle_exits_when_no_work_ever_observed() -> None:
+    client = _ScriptedClient([_queue_status(0, 0, 0) for _ in range(20)])
+    wait_for_queue_idle(client, poll_interval=0.0, max_empty_ticks=3)

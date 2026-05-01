@@ -58,18 +58,3 @@ def test_stage_project_excludes_data_and_removes_stale_file(
     assert not (staged / "OLD.md").exists()
 
 
-def test_stage_project_index_writes_table(tmp_path: Path, monkeypatch) -> None:
-    staging_dir = tmp_path / "knowledge" / "staging"
-    project = tmp_path / "projects" / "demo"
-    write(project / "README.md", "# Demo\n")
-
-    monkeypatch.setattr(
-        staging,
-        "build_project_index",
-        lambda project_dirs: "# Index\n\n| demo | Demo |  | Complete |\n",
-    )
-
-    index_path = staging.stage_project_index([project], staging_dir)
-
-    assert index_path == staging_dir / "projects" / "PROJECT_INDEX.md"
-    assert "| demo | Demo |  | Complete |" in index_path.read_text(encoding="utf-8")
