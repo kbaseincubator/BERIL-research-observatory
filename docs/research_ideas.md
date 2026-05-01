@@ -453,6 +453,10 @@
 
 ## Completed Ideas
 
+### [lanthanide_methylotrophy_atlas] Lanthanide Methylotrophy Atlas — Distribution and Environmental Context of REE-Dependent Methanol Oxidation Across 293K Genomes
+**Status**: COMPLETED (2026-05-01)
+**Results**: 8 notebooks across 293K-genome BERDL pangenome. **H1 strongly supported** — global xoxF (KEGG K00114) : mxaF (K14028) ratio = **18.92 : 1** [95% CI 13.07, 27.69]; xoxF fraction 0.9498 with one-sided binomial p=7.6×10⁻²² against 10:1 threshold. NB08 phylogenetic-correction validation closes REVIEW_1.md's PGLS/PGLMM concern with three orthogonal frameworks: naive pooled (3,885 genomes), family-equal-weight + bootstrap (271 GTDB families, frac=0.960 [0.941, 0.976]), and Bayesian binomial GLMM with `(1|phylum) + (1|family)` random intercepts (frac=0.993 [0.992, 0.994] — phylogeny-corrected ratio ~143:1). All three CI lower bounds above 10:1. **H2 partially supported** — Fisher's exact tests on `ncbi_env`-classified environments: soil/sediment OR=1.92 (p_BH=6×10⁻³⁹, n=13,779), marine OR=1.31 (p_BH=8e-7), host_associated OR=0.058 (strong depletion), ree_impacted OR=3.51 (descriptive only at n=37, p_BH=0.082); within-Acidobacteriota stratification shows soil/marine signals survive. **H3a strongly supported** — bakta-validated `product='Lanmodulin'` is 100% restricted to Beijerinckiaceae/Acetobacteraceae/Hyphomicrobiaceae (62/62 genomes, p=9.8×10⁻⁷). **H3b not supported** at the pre-registered 80% threshold — lanmodulin × xoxF co-occurrence 79.0% (p=0.65). **REE-AMD case study (n=37 MAGs)**: niche dominated by acidophilic stress-response (Acidocella, Acidiphilium, Thiomonas, Metallibacterium, uncharacterized `f__REEB76`), only 4/37 carry xoxF; functional profile is acid-resistance + heavy-metal regulation + DNA-repair, not methylotrophy. **PQQ supply asymmetry resolved**: 59% of "xoxF-without-eggNOG-PQQ" cases are bakta-detected annotation gaps; 24% of all xoxF carriers genuinely lack PQQ from either source. **Novel calibration findings (docs/discoveries.md)**: eggNOG `Preferred_name='lanM'` is zero-information noise (505 false positives in gut Bacillota); KO `K02030` is non-specific for xoxJ; xoxF eggNOG K00114 vs bakta product show only 8% concordance — both reported. Closes the "Rare Earth Elements (Zero Coverage)" Priority 2 future direction from `metal_fitness_atlas`. Largest-published lanthanide-MDH genomic atlas (~3,690 xoxF carriers across 3,690 genomes; existing surveys 100-1000 genomes). High-rate xoxF carriers in unexpected phyla: **Acidobacteriota 28%**, **Gemmatimonadota 25%**, **Methylomirabilota 29%** — beyond the methylotroph canon. See `projects/lanthanide_methylotrophy_atlas/`.
+
 ### [clay_confined_subsurface] Self-Sufficiency, Anaerobic Toolkit, and Cultivation Bias in Clay-Confined Cultured Bacterial Genomes
 **Status**: COMPLETED (2026-04-30)
 **Results**: Three hypotheses tested on 9 BERDL deep-clay genomes (8 Mont Terri Opalinus borehole + 1 bentonite) vs 30 shallow-clay (Coalvale + Cerrado + agricultural) vs 150 phylum-stratified soil baseline. **H3 (porewater-bias) STRONGLY SUPPORTED**: anchor_deep is 5/9 SR vs 1/9 IR — Bagnoud (2016) Mont Terri porewater pattern, NOT Mitzscherling (2023) rock-attached pattern. Binomial vs rock-attached null (SRB ~0.2%, IRB ~7%) p=4×10⁻¹². Marker class: deep is "SR_only" dominant (5/9), shallow is "IR_only" dominant (15/30) — exact mirror image. **H2 (anaerobic toolkit) PARTIALLY SUPPORTED**: cohort-level Fisher (deep vs baseline) WL OR=10.4, NiFe OR=10.5, SR OR=33.8 all p_BH<0.005. Within-Bacillota_B phylum control: only SR survives (5/5 vs 4/19, OR=∞, p_BH=0.04); WL + NiFe are phylum-driven (5/5 vs 15/19 and 14/19, p=0.54). **H1 (self-sufficiency) NOT SUPPORTED**: deep aa-pathway completeness 90% < baseline 99% (within-Bacillota_B p=0.07, d=-0.13). Cultivation bias means BERDL omits the *Ca.* Desulforudis audaxviator-type extreme self-sufficient lineages. Direct lineage overlap with Bagnoud's published indigenous Mont Terri MAGs (BRH-c8a/Peptococcaceae, Desulfosporosinus). Novel: first quantitative SR/IR-marker cultivation-bias diagnostic transferable to any cultured-pangenome cohort. See `projects/clay_confined_subsurface/`.
@@ -607,52 +611,4 @@ _Capture half-baked ideas here for future refinement_
 - When an idea moves to IN_PROGRESS, create a project directory or notebook
 - Archive completed ideas with links to results
 
----
-
-## Newly Proposed Ideas
-
-### [lanthanide_methylotrophy_atlas] Lanthanide Methylotrophy Atlas — Distribution & Environmental Context of REE-Dependent Methanol Oxidation Across 293K Genomes
-**Status**: PROPOSED
-**Priority**: HIGH
-**Effort**: Medium (3-4 weeks)
-
-**Research Question**: Across BERDL's 293K-genome pangenome, what is the phylogenomic distribution and cassette-completeness of the lanthanide-dependent methanol/ethanol oxidation system (xoxF / xoxJ / PQQ / lanmodulin), and does its presence correspond to environments containing rare earth elements?
-
-**Approach**:
-- Build per-genome marker matrix for xoxF (KEGG K00114), mxaF (K14028), xoxJ, PQQ biosynthesis (pqqA-E), and lanmodulin, using both eggNOG (KEGG_ko) and bakta (`product`) to cross-validate
-- Phylogenomic atlas across GTDB families/genera; quantify the xoxF:mxaF dominance ratio (pilot: ~30:1)
-- Cassette-completeness scoring (xoxF only / xoxF+xoxJ / full cassette with PQQ)
-- Environmental association via `ncbi_env` (37 explicit REE-AMD samples confirmed) + AlphaEarth embeddings (39.5% coverage on xoxF genomes — above pangenome baseline) + BacDive methylotroph media as taxonomic anchor
-- Lanmodulin focal study: bakta-validated hits (10 species, dominated by Beijerinckiaceae) → fraction with co-located xoxF
-- 37 REE-AMD MAGs as small-N environmental anchor (only 4/37 carry xoxF — community is dominated by acidophiles incl. uncharacterized `f__REEB76`)
-
-**Hypotheses**:
-- **H1 (xoxF dominance)**: xoxF (K00114) is genome-frequent at ≥10× the rate of mxaF (K14028) across the BERDL pangenome, robust across phyla after phylogenetic controls
-- **H2 (environmental enrichment)**: Genomes with the full lanthanide-MDH cassette are over-represented in REE-impacted, mining, methylotrophic, and volcanic/geothermal environments vs. matched-phylogeny controls
-- **H3 (lanmodulin clade restriction)**: Bakta-validated lanmodulin hits are restricted to specific α-Proteobacterial methylotroph clades (Beijerinckiaceae, Acetobacteraceae, Hyphomicrobiaceae) and co-occur with xoxF in ≥80% of cases
-
-**Impact**: High — closes the **"Rare Earth Elements (Zero Coverage)" Priority 2 future direction** explicitly proposed in the `metal_fitness_atlas` REPORT. Produces the largest-published lanthanide-MDH genomic atlas (existing surveys are 100-1000 genomes; this is 293K). Resolves the field's working hypothesis (xoxF, not mxaF, is the dominant biological MDH) at unprecedented scale. Identifies novel candidate REE-utilizing taxa beyond canonical methylotrophs (Bradyrhizobium, Mesorhizobium, Marinobacter, Stutzerimonas, etc.). Direct DOE-mission relevance — REEs are top-priority US critical minerals.
-
-**Dependencies**:
-- Existing: `kbase_ke_pangenome` tables (eggnog_mapper_annotations, bakta_annotations, gene, gene_genecluster_junction, genome, gtdb_taxonomy_r214v1, ncbi_env, alphaearth_embeddings_all_years)
-- Existing: `kescience_bacdive.culture_condition`
-- Reuses methodology from `metal_fitness_atlas` (gene-presence atlas + environmental validation) and `amr_environmental_resistome` (bakta + ncbi_env + AlphaEarth join pattern)
-- No prior project required as input
-
-**Pilot data confirmed**:
-- 5,645 xoxF genes across 3,690 genomes (KEGG K00114)
-- 190 mxaF (K14028) — 30:1 ratio
-- 37/37 REE-AMD biosamples have MAGs in pangenome; only 4 carry xoxF
-- Bakta-validated lanmodulin in 10 species, dominated by *Methylobacterium extorquens* (22 genomes)
-- 1,457/3,690 (39.5%) xoxF genomes have AlphaEarth embeddings
-- 2,320 xoxF-bearing genomes lack canonical PQQ biosynthesis — interesting "PQQ-supply" question
-
-**Caveats discovered in pilot**:
-- eggNOG `Preferred_name='lanM'` produces 337 false positives in gut bacteria (Blautia, Streptococcus, Lachnospiraceae); use bakta `product='Lanmodulin'` for trustworthy lanmodulin
-- eggNOG `Preferred_name='mxaF'` with `KEGG_ko='ko:K00114'` is actually xoxF — disambiguate by KEGG_ko, not Preferred_name
-- `ncbi_env.content` regex matches need full-element-name anchoring to avoid Lepus europaeus / Salicornia europaea / Russia:Samara false positives
-
-**Location**: `projects/lanthanide_methylotrophy_atlas/` (branch: `projects/lanthanide_methylotrophy_atlas`)
-
----
 
