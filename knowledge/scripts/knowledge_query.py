@@ -1,10 +1,6 @@
 from __future__ import annotations
 
 import argparse
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from observatory_context.config import ContextConfig
 from observatory_context.openviking_client import create_client

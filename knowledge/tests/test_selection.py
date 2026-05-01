@@ -83,3 +83,9 @@ def test_central_docs_uris_config_defaults_and_project_dirs(
     monkeypatch.setenv("OPENVIKING_API_KEY", "secret")
 
     assert ContextConfig.from_env(repo_root=tmp_path).openviking_api_key == "secret"
+
+
+def test_default_config_repo_root_is_repository_root() -> None:
+    config = ContextConfig.from_env()
+
+    assert config.repo_root == Path(__file__).resolve().parents[2]

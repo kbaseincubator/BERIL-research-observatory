@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from knowledge.scripts.smoke_ingest_openviking import latest_project_dirs
+from observatory_context.smoke import latest_project_dirs
 
 
 def test_latest_project_dirs_returns_five_most_recent(tmp_path: Path) -> None:

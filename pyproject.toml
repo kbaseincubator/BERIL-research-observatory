@@ -16,8 +16,6 @@ knowledge = [
   "pytest",
 ]
 
-[tool.pytest.ini_options]
-pythonpath = ["knowledge"]
 
 [build-system]
 requires = ["hatchling"]

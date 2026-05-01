@@ -1,16 +1,13 @@
 from __future__ import annotations
 
 import argparse
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from observatory_context.config import ContextConfig
 from observatory_context.ingest import ingest_project
 from observatory_context.openviking_client import create_client
 from observatory_context.query import format_find_text
-from observatory_context.selection import iter_project_dirs, project_target_uri
+from observatory_context.selection import project_target_uri
+from observatory_context.smoke import latest_project_dirs
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -47,15 +44,6 @@ def main() -> None:
             print(format_find_text(result))
     finally:
         client.close()
-
-
-def latest_project_dirs(projects_dir: Path, count: int) -> list[Path]:
-    return sorted(
-        iter_project_dirs(projects_dir),
-        key=lambda path: (path.stat().st_mtime, path.name),
-        reverse=True,
-    )[:count]
-
 
 if __name__ == "__main__":
     main()

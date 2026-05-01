@@ -19,7 +19,7 @@ class ContextConfig:
 
     @classmethod
     def from_env(cls, repo_root: Path | None = None) -> "ContextConfig":
-        root = repo_root or Path(__file__).resolve().parents[2]
+        root = repo_root or Path(__file__).resolve().parents[1]
         return cls(
             repo_root=root,
             openviking_url=os.getenv("OPENVIKING_URL", DEFAULT_OPENVIKING_URL),

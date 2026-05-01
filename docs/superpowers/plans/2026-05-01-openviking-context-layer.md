@@ -4,7 +4,7 @@
 
 **Goal:** Build the first BERIL knowledge context layer by staging curated project Markdown/YAML into stable OpenViking resource targets, supporting initial/incremental ingestion and agent queries.
 
-**Architecture:** Keep repository-specific logic in `knowledge/observatory_context/`, thin command-line entry points in `knowledge/scripts/`, generated files under `knowledge/staging/`, and local change state under `knowledge/state/`. OpenViking owns parsing, L0/L1/L2 generation, vector indexing, and resource-tree incremental sync; this code only selects files, stages a filtered tree, calls the Python SDK, and formats query output.
+**Architecture:** Keep repository-specific logic in `observatory_context/`, thin command-line entry points in `knowledge/scripts/`, generated files under `knowledge/staging/`, and local change state under `knowledge/state/`. OpenViking owns parsing, L0/L1/L2 generation, vector indexing, and resource-tree incremental sync; this code only selects files, stages a filtered tree, calls the Python SDK, and formats query output.
 
 **Tech Stack:** Python 3.11+, `uv`, OpenViking Python SDK, PyYAML, pytest, OpenRouter-compatible `ov.conf` template.
 
@@ -12,23 +12,23 @@
 
 ## File Structure
 
-- Create `knowledge/observatory_context/__init__.py`
+- Create `observatory_context/__init__.py`
   - Package marker and exported version.
-- Create `knowledge/observatory_context/config.py`
+- Create `observatory_context/config.py`
   - Repository path discovery, OpenViking env config, target URI constants.
-- Create `knowledge/observatory_context/selection.py`
+- Create `observatory_context/selection.py`
   - Curated project/docs file selection and URI mapping.
-- Create `knowledge/observatory_context/metadata.py`
+- Create `observatory_context/metadata.py`
   - `beril.yaml` parsing plus generated `PROJECT_METADATA.md` and `PROJECT_INDEX.md` content.
-- Create `knowledge/observatory_context/manifest.py`
+- Create `observatory_context/manifest.py`
   - Hash selected source files and detect changed project/docs targets.
-- Create `knowledge/observatory_context/staging.py`
+- Create `observatory_context/staging.py`
   - Rebuild filtered staging trees from selected files plus generated metadata.
-- Create `knowledge/observatory_context/openviking_client.py`
+- Create `observatory_context/openviking_client.py`
   - Create/close `openviking.SyncHTTPClient`.
-- Create `knowledge/observatory_context/ingest.py`
+- Create `observatory_context/ingest.py`
   - Ingestion orchestration for all, changed, one project, and docs.
-- Create `knowledge/observatory_context/query.py`
+- Create `observatory_context/query.py`
   - Query/overview/read wrappers and text/JSON formatting.
 - Create `knowledge/scripts/ingest_context.py`
   - Thin ingestion CLI.
@@ -162,9 +162,9 @@ git commit -m "chore: add knowledge dependencies"
 ## Task 2: File Selection And URI Mapping
 
 **Files:**
-- Create: `knowledge/observatory_context/__init__.py`
-- Create: `knowledge/observatory_context/config.py`
-- Create: `knowledge/observatory_context/selection.py`
+- Create: `observatory_context/__init__.py`
+- Create: `observatory_context/config.py`
+- Create: `observatory_context/selection.py`
 - Test: `knowledge/tests/test_selection.py`
 
 - [ ] **Step 1: Write selection tests**
@@ -268,7 +268,7 @@ Expected: import failure for missing `observatory_context`.
 
 - [ ] **Step 3: Implement config and selection**
 
-Create `knowledge/observatory_context/__init__.py`:
+Create `observatory_context/__init__.py`:
 
 ```python
 """BERIL OpenViking context utilities."""
@@ -278,7 +278,7 @@ __all__ = ["__version__"]
 __version__ = "0.1.0"
 ```
 
-Create `knowledge/observatory_context/config.py`:
+Create `observatory_context/config.py`:
 
 ```python
 from __future__ import annotations
@@ -325,7 +325,7 @@ class ContextConfig:
         return self.repo_root / "knowledge" / "state"
 ```
 
-Create `knowledge/observatory_context/selection.py`:
+Create `observatory_context/selection.py`:
 
 ```python
 from __future__ import annotations
@@ -394,7 +394,7 @@ def docs_target_uri(doc_path: Path) -> str:
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests/test_selection.py -q
+uv run --group knowledge pytest knowledge/tests/test_selection.py -q
 ```
 
 Expected: `5 passed`.
@@ -402,14 +402,14 @@ Expected: `5 passed`.
 - [ ] **Step 5: Commit**
 
 ```bash
-git add knowledge/observatory_context knowledge/tests/test_selection.py
+git add observatory_context knowledge/tests/test_selection.py
 git commit -m "feat: select context source files"
 ```
 
 ## Task 3: Metadata Generation
 
 **Files:**
-- Create: `knowledge/observatory_context/metadata.py`
+- Create: `observatory_context/metadata.py`
 - Test: `knowledge/tests/test_metadata.py`
 
 - [ ] **Step 1: Write metadata tests**
@@ -490,14 +490,14 @@ def test_build_project_index_sorts_projects(tmp_path: Path) -> None:
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests/test_metadata.py -q
+uv run --group knowledge pytest knowledge/tests/test_metadata.py -q
 ```
 
 Expected: import failure for missing `metadata.py`.
 
 - [ ] **Step 3: Implement metadata generation**
 
-Create `knowledge/observatory_context/metadata.py`:
+Create `observatory_context/metadata.py`:
 
 ```python
 from __future__ import annotations
@@ -627,7 +627,7 @@ def _format_author(author: dict[str, Any]) -> str:
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests/test_metadata.py -q
+uv run --group knowledge pytest knowledge/tests/test_metadata.py -q
 ```
 
 Expected: `3 passed`.
@@ -635,15 +635,15 @@ Expected: `3 passed`.
 - [ ] **Step 5: Commit**
 
 ```bash
-git add knowledge/observatory_context/metadata.py knowledge/tests/test_metadata.py
+git add observatory_context/metadata.py knowledge/tests/test_metadata.py
 git commit -m "feat: generate project metadata context"
 ```
 
 ## Task 4: Manifest And Staging
 
 **Files:**
-- Create: `knowledge/observatory_context/manifest.py`
-- Create: `knowledge/observatory_context/staging.py`
+- Create: `observatory_context/manifest.py`
+- Create: `observatory_context/staging.py`
 - Test: `knowledge/tests/test_manifest.py`
 - Test: `knowledge/tests/test_staging.py`
 
@@ -759,14 +759,14 @@ def test_stage_project_index_writes_index(tmp_path: Path) -> None:
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests/test_manifest.py knowledge/tests/test_staging.py -q
+uv run --group knowledge pytest knowledge/tests/test_manifest.py knowledge/tests/test_staging.py -q
 ```
 
 Expected: import failures for missing modules.
 
 - [ ] **Step 4: Implement manifest**
 
-Create `knowledge/observatory_context/manifest.py`:
+Create `observatory_context/manifest.py`:
 
 ```python
 from __future__ import annotations
@@ -817,7 +817,7 @@ def _sha256(path: Path) -> str:
 
 - [ ] **Step 5: Implement staging**
 
-Create `knowledge/observatory_context/staging.py`:
+Create `observatory_context/staging.py`:
 
 ```python
 from __future__ import annotations
@@ -867,7 +867,7 @@ def stage_docs(doc_paths: list[Path], staging_dir: Path, repo_root: Path) -> Pat
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests/test_manifest.py knowledge/tests/test_staging.py -q
+uv run --group knowledge pytest knowledge/tests/test_manifest.py knowledge/tests/test_staging.py -q
 ```
 
 Expected: `6 passed`.
@@ -875,15 +875,15 @@ Expected: `6 passed`.
 - [ ] **Step 7: Commit**
 
 ```bash
-git add knowledge/observatory_context/manifest.py knowledge/observatory_context/staging.py knowledge/tests/test_manifest.py knowledge/tests/test_staging.py
+git add observatory_context/manifest.py observatory_context/staging.py knowledge/tests/test_manifest.py knowledge/tests/test_staging.py
 git commit -m "feat: stage curated context files"
 ```
 
 ## Task 5: OpenViking Client And Ingestion Orchestration
 
 **Files:**
-- Create: `knowledge/observatory_context/openviking_client.py`
-- Create: `knowledge/observatory_context/ingest.py`
+- Create: `observatory_context/openviking_client.py`
+- Create: `observatory_context/ingest.py`
 - Test: `knowledge/tests/test_ingest.py`
 
 - [ ] **Step 1: Write ingestion tests with a fake client**
@@ -956,14 +956,14 @@ def test_ingest_changed_only_adds_modified_project(tmp_path: Path) -> None:
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests/test_ingest.py -q
+uv run --group knowledge pytest knowledge/tests/test_ingest.py -q
 ```
 
 Expected: import failure for missing `ingest.py`.
 
 - [ ] **Step 3: Implement OpenViking client factory**
 
-Create `knowledge/observatory_context/openviking_client.py`:
+Create `observatory_context/openviking_client.py`:
 
 ```python
 from __future__ import annotations
@@ -983,7 +983,7 @@ def create_client(config: ContextConfig) -> Any:
 
 - [ ] **Step 4: Implement ingestion orchestration**
 
-Create `knowledge/observatory_context/ingest.py`:
+Create `observatory_context/ingest.py`:
 
 ```python
 from __future__ import annotations
@@ -1084,7 +1084,7 @@ def _manifest_file(config: ContextConfig) -> Path:
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests/test_ingest.py -q
+uv run --group knowledge pytest knowledge/tests/test_ingest.py -q
 ```
 
 Expected: `2 passed`.
@@ -1094,7 +1094,7 @@ Expected: `2 passed`.
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests -q
+uv run --group knowledge pytest knowledge/tests -q
 ```
 
 Expected: all tests pass.
@@ -1102,14 +1102,14 @@ Expected: all tests pass.
 - [ ] **Step 7: Commit**
 
 ```bash
-git add knowledge/observatory_context/openviking_client.py knowledge/observatory_context/ingest.py knowledge/tests/test_ingest.py
+git add observatory_context/openviking_client.py observatory_context/ingest.py knowledge/tests/test_ingest.py
 git commit -m "feat: ingest staged context into OpenViking"
 ```
 
 ## Task 6: Query Formatting And Query CLI Core
 
 **Files:**
-- Create: `knowledge/observatory_context/query.py`
+- Create: `observatory_context/query.py`
 - Test: `knowledge/tests/test_query.py`
 
 - [ ] **Step 1: Write query formatting tests**
@@ -1178,14 +1178,14 @@ def test_target_uri_for_find_supports_docs_and_raw_uri() -> None:
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests/test_query.py -q
+uv run --group knowledge pytest knowledge/tests/test_query.py -q
 ```
 
 Expected: import failure for missing `query.py`.
 
 - [ ] **Step 3: Implement query helpers**
 
-Create `knowledge/observatory_context/query.py`:
+Create `observatory_context/query.py`:
 
 ```python
 from __future__ import annotations
@@ -1255,7 +1255,7 @@ def result_to_json(result: Any) -> str:
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge pytest knowledge/tests/test_query.py -q
+uv run --group knowledge pytest knowledge/tests/test_query.py -q
 ```
 
 Expected: `3 passed`.
@@ -1263,7 +1263,7 @@ Expected: `3 passed`.
 - [ ] **Step 5: Commit**
 
 ```bash
-git add knowledge/observatory_context/query.py knowledge/tests/test_query.py
+git add observatory_context/query.py knowledge/tests/test_query.py
 git commit -m "feat: format OpenViking query results"
 ```
 
@@ -1308,7 +1308,7 @@ def test_query_parser_accepts_overview_uri() -> None:
 Run:
 
 ```bash
-PYTHONPATH=knowledge:. uv run --group knowledge pytest knowledge/tests/test_cli.py -q
+uv run --group knowledge pytest knowledge/tests/test_cli.py -q
 ```
 
 Expected: import failure for missing scripts.
@@ -1424,7 +1424,7 @@ if __name__ == "__main__":
 Run:
 
 ```bash
-PYTHONPATH=knowledge:. uv run --group knowledge pytest knowledge/tests/test_cli.py -q
+uv run --group knowledge pytest knowledge/tests/test_cli.py -q
 ```
 
 Expected: `3 passed`.
@@ -1434,7 +1434,7 @@ Expected: `3 passed`.
 Run:
 
 ```bash
-PYTHONPATH=knowledge:. uv run --group knowledge pytest knowledge/tests -q
+uv run --group knowledge pytest knowledge/tests -q
 ```
 
 Expected: all tests pass.
@@ -1475,26 +1475,26 @@ Use this skill when answering scientific or project-status questions that may de
 Use the thin wrapper:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/knowledge_query.py find "<query>"
+uv run --group knowledge python knowledge/scripts/knowledge_query.py find "<query>"
 ```
 
 Scope to a project:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/knowledge_query.py find "<query>" --project <project_id>
+uv run --group knowledge python knowledge/scripts/knowledge_query.py find "<query>" --project <project_id>
 ```
 
 Query metadata such as author or status:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/knowledge_query.py find "projects by <author>" --metadata
+uv run --group knowledge python knowledge/scripts/knowledge_query.py find "projects by <author>" --metadata
 ```
 
 Load deeper context progressively:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
+uv run --group knowledge python knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
+uv run --group knowledge python knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
 ```
 
 ## Ingest
@@ -1502,19 +1502,19 @@ PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/knowledge
 After changing project Markdown or `beril.yaml`, update that project:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/ingest_context.py --project <project_id>
+uv run --group knowledge python knowledge/scripts/ingest_context.py --project <project_id>
 ```
 
 Scheduled update:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/ingest_context.py --changed
+uv run --group knowledge python knowledge/scripts/ingest_context.py --changed
 ```
 
 Initial build:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/ingest_context.py --all
+uv run --group knowledge python knowledge/scripts/ingest_context.py --all
 ```
 
 ## Configuration
@@ -1557,7 +1557,7 @@ Add this bullet under `.claude/skills/suggest-research/SKILL.md` "Integration":
 Add this bullet under `.claude/skills/synthesize/SKILL.md` "Integration":
 
 ```markdown
-- **After report updates**: run or suggest `PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/ingest_context.py --project {project_id}` so OpenViking reflects the latest project findings.
+- **After report updates**: run or suggest `uv run --group knowledge python knowledge/scripts/ingest_context.py --project {project_id}` so OpenViking reflects the latest project findings.
 ```
 
 - [ ] **Step 5: Verify skill files mention knowledge context**
@@ -1587,7 +1587,7 @@ git commit -m "docs: add knowledge context skill"
 Run:
 
 ```bash
-PYTHONPATH=knowledge:. uv run --group knowledge pytest knowledge/tests -q
+uv run --group knowledge pytest knowledge/tests -q
 ```
 
 Expected: all tests pass.
@@ -1597,7 +1597,7 @@ Expected: all tests pass.
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge python -c "from observatory_context.config import ContextConfig; print(ContextConfig.from_env().openviking_url)"
+uv run --group knowledge python -c "from observatory_context.config import ContextConfig; print(ContextConfig.from_env().openviking_url)"
 ```
 
 Expected:
@@ -1611,8 +1611,8 @@ http://localhost:1933
 Run:
 
 ```bash
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/ingest_context.py --help
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/knowledge_query.py --help
+uv run --group knowledge python knowledge/scripts/ingest_context.py --help
+uv run --group knowledge python knowledge/scripts/knowledge_query.py --help
 ```
 
 Expected: both commands print help and exit successfully.
@@ -1627,8 +1627,8 @@ openviking-server doctor --config knowledge/openviking/ov.conf
 openviking-server --config knowledge/openviking/ov.conf
 export OPENVIKING_URL=http://localhost:1933
 uv run --group knowledge python knowledge/scripts/smoke_ingest_openviking.py
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/ingest_context.py --project metal_cross_resistance
-PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/knowledge_query.py find "metal cross resistance" --project metal_cross_resistance
+uv run --group knowledge python knowledge/scripts/ingest_context.py --project metal_cross_resistance
+uv run --group knowledge python knowledge/scripts/knowledge_query.py find "metal cross resistance" --project metal_cross_resistance
 ```
 
 Expected:
