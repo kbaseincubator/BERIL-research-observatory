@@ -87,8 +87,7 @@ Create `knowledge/openviking/ov.conf.example`:
 {
   "server": {
     "host": "127.0.0.1",
-    "port": 1933,
-    "root_api_key": "replace-with-local-dev-key"
+    "port": 1933
   },
   "storage": {
     "workspace": "~/.openviking/beril-context"
@@ -98,15 +97,15 @@ Create `knowledge/openviking/ov.conf.example`:
       "provider": "openai",
       "api_key": "replace-with-openrouter-api-key",
       "api_base": "https://openrouter.ai/api/v1",
-      "model": "openai/text-embedding-3-small",
-      "dimension": 1536
+      "model": "openai/text-embedding-3-large",
+      "dimension": 3072
     }
   },
   "vlm": {
     "provider": "openai",
     "api_key": "replace-with-openrouter-api-key",
     "api_base": "https://openrouter.ai/api/v1",
-    "model": "openai/gpt-4o-mini",
+    "model": "openai/gpt-5.4",
     "temperature": 0.0,
     "max_retries": 2,
     "extra_headers": {
@@ -1524,14 +1523,13 @@ The scripts connect to OpenViking through:
 
 ```bash
 export OPENVIKING_URL=http://localhost:1933
-export OPENVIKING_API_KEY=<server-root-api-key>
 ```
 
 For local OpenViking, copy `knowledge/openviking/ov.conf.example` to `~/.openviking/ov.conf`, add the OpenRouter API key, then run:
 
 ```bash
 openviking-server doctor
-openviking-server start
+openviking-server --config ~/.openviking/ov.conf
 ```
 ```
 

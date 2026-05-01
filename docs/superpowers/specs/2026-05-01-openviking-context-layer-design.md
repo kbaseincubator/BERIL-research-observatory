@@ -226,8 +226,7 @@ OpenViking's OpenAI-compatible provider support:
 {
   "server": {
     "host": "127.0.0.1",
-    "port": 1933,
-    "auth_mode": "api_key"
+    "port": 1933
   },
   "storage": {
     "workspace": "~/.openviking/beril-context"
@@ -237,15 +236,15 @@ OpenViking's OpenAI-compatible provider support:
       "provider": "openai",
       "api_key": "replace-with-api-key",
       "api_base": "https://openrouter.ai/api/v1",
-      "model": "openai/text-embedding-3-small",
-      "dimension": 1536
+      "model": "openai/text-embedding-3-large",
+      "dimension": 3072
     }
   },
   "vlm": {
     "provider": "openai",
     "api_key": "replace-with-api-key",
     "api_base": "https://openrouter.ai/api/v1",
-    "model": "openai/gpt-4o-mini",
+    "model": "openai/gpt-5.4",
     "temperature": 0.0,
     "max_retries": 2,
     "extra_headers": {
