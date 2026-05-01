@@ -51,11 +51,11 @@ Configure the OpenViking endpoint via `.env` (copy from `.env.example`): `OPENVI
 
 For a local OpenViking server, copy `knowledge/openviking/ov.conf.example` to `knowledge/openviking/ov.conf` and set the OpenRouter key in the embedding and VLM sections. The local `ov.conf` is ignored by git. Set `OPENVIKING_API_KEY` only when the OpenViking server itself is configured to require a client/user key.
 
-Validate local server configuration before ingesting:
+Validate local server configuration before ingesting (the `openviking-server` binary is provided by the `knowledge` dependency group, so it must be run via `uv run --group knowledge`):
 
 ```bash
-openviking-server doctor --config knowledge/openviking/ov.conf
-openviking-server --config knowledge/openviking/ov.conf
+uv run --group knowledge openviking-server doctor --config knowledge/openviking/ov.conf
+uv run --group knowledge openviking-server --config knowledge/openviking/ov.conf
 ```
 
 After the server is running, use the smoke test to ingest and query the five
