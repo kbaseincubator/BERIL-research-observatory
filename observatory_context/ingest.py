@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from .config import PROJECT_INDEX_TARGET_URI, PROJECTS_TARGET_URI, ContextConfig
+from .config import DOCS_TARGET_URI, PROJECT_INDEX_TARGET_URI, PROJECTS_TARGET_URI, ContextConfig
 from .manifest import (
     build_manifest,
     changed_targets,
@@ -35,8 +35,10 @@ def ingest_all(config: ContextConfig, client: Any) -> None:
     for doc_path in select_central_docs(config.repo_root):
         _ingest_doc(config, client, doc_path)
 
+    new_manifest = _current_manifest(config)
+    _remove_stale(client, config, new_manifest)
     client.wait_processed()
-    save_manifest(_manifest_path(config), _current_manifest(config))
+    save_manifest(_manifest_path(config), new_manifest)
 
 
 def ingest_changed(config: ContextConfig, client: Any) -> None:
@@ -76,8 +78,11 @@ def ingest_project(config: ContextConfig, client: Any, project_id: str) -> None:
     _ingest_project_dir(config, client, project_dir)
     project_index = stage_project_index(iter_project_dirs(config.projects_dir), config.staging_dir)
     _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
+
+    new_manifest = _current_manifest(config)
+    _remove_stale(client, config, new_manifest)
     client.wait_processed()
-    save_manifest(_manifest_path(config), _current_manifest(config))
+    save_manifest(_manifest_path(config), new_manifest)
 
 
 def resolve_project_dir(config: ContextConfig, project_id: str) -> Path:
@@ -92,8 +97,24 @@ def resolve_project_dir(config: ContextConfig, project_id: str) -> Path:
 def ingest_docs(config: ContextConfig, client: Any) -> None:
     for doc_path in select_central_docs(config.repo_root):
         _ingest_doc(config, client, doc_path)
+
+    new_manifest = _current_manifest(config)
+    _remove_stale(client, config, new_manifest, prefix=DOCS_TARGET_URI)
     client.wait_processed()
-    save_manifest(_manifest_path(config), _current_manifest(config))
+    save_manifest(_manifest_path(config), new_manifest)
+
+
+def _remove_stale(
+    client: Any,
+    config: ContextConfig,
+    new_manifest: dict[str, dict[str, str]],
+    *,
+    prefix: str | None = None,
+) -> None:
+    old_manifest = load_manifest(_manifest_path(config))
+    for target_uri in removed_targets(old_manifest, new_manifest):
+        if prefix is None or target_uri.startswith(prefix):
+            _remove_resource(client, target_uri)
 
 
 def _current_manifest(config: ContextConfig) -> dict[str, dict[str, str]]:

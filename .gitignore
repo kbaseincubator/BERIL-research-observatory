@@ -9,6 +9,7 @@
 .claude/projects/
 .claude/scheduled_tasks.lock
 .serena/
+docs/superpowers/
 
 # Large data files
 *.npy

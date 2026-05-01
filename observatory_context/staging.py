@@ -29,18 +29,6 @@ def stage_project_index(project_dirs: list[Path], staging_dir: Path) -> Path:
     return path
 
 
-def stage_docs(doc_paths: list[Path], staging_dir: Path, repo_root: Path) -> Path:
-    _ = repo_root
-    target = staging_dir / "docs"
-    if target.exists():
-        shutil.rmtree(target)
-    target.mkdir(parents=True, exist_ok=True)
-
-    for source in doc_paths:
-        shutil.copy2(source, target / source.name)
-    return target
-
-
 def stage_doc(doc_path: Path, staging_dir: Path) -> Path:
     target = staging_dir / "docs" / doc_path.stem
     if target.exists():

@@ -58,14 +58,10 @@ def test_stage_project_excludes_data_and_removes_stale_file(
     assert not (staged / "OLD.md").exists()
 
 
-def test_stage_docs_and_project_index(tmp_path: Path, monkeypatch) -> None:
+def test_stage_project_index_writes_table(tmp_path: Path, monkeypatch) -> None:
     staging_dir = tmp_path / "knowledge" / "staging"
     project = tmp_path / "projects" / "demo"
-    docs = tmp_path / "docs"
     write(project / "README.md", "# Demo\n")
-    write(docs / "pitfalls.md", "# Pitfalls\n")
-    write(docs / "discoveries.md", "# Discoveries\n")
-    write(staging_dir / "docs" / "OLD.md", "old")
 
     monkeypatch.setattr(
         staging,
@@ -73,14 +69,7 @@ def test_stage_docs_and_project_index(tmp_path: Path, monkeypatch) -> None:
         lambda project_dirs: "# Index\n\n| demo | Demo |  | Complete |\n",
     )
 
-    staged_docs = staging.stage_docs(
-        [docs / "pitfalls.md", docs / "discoveries.md"], staging_dir, tmp_path
-    )
     index_path = staging.stage_project_index([project], staging_dir)
 
-    assert staged_docs == staging_dir / "docs"
-    assert (staged_docs / "pitfalls.md").read_text(encoding="utf-8") == "# Pitfalls\n"
-    assert (staged_docs / "discoveries.md").is_file()
-    assert not (staged_docs / "OLD.md").exists()
     assert index_path == staging_dir / "projects" / "PROJECT_INDEX.md"
     assert "| demo | Demo |  | Complete |" in index_path.read_text(encoding="utf-8")
