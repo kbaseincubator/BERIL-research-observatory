@@ -2,7 +2,7 @@
 
 **Database**: `kbase_ke_pangenome`
 **Location**: On-prem Delta Lakehouse (BERDL - KBase BER Data Lakehouse)
-**Access**: Spark SQL via REST API at `https://hub.berdl.kbase.us/apis/mcp/`
+**Access**: Spark SQL on BERDL JupyterHub or through the local Spark wrapper
 **Tenant**: KBase
 **Last Updated**: 2026-03-18
 **Verified**: Direct Spark SQL queries on cluster (2026-03-18)
@@ -633,18 +633,9 @@ gtdb_species_clade (27,690)
 
 ## SQL Query Patterns
 
-### Authentication
-```bash
-AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
-```
-
-### Basic Query via API
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"query": "SELECT * FROM kbase_ke_pangenome.genome LIMIT 10", "limit": 1000}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/query
+### Basic Query via Spark
+```python
+spark.sql("SELECT * FROM kbase_ke_pangenome.genome LIMIT 10")
 ```
 
 ### Get Species with Pangenome Stats

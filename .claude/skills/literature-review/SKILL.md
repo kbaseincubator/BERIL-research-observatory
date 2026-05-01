@@ -242,15 +242,9 @@ RESEARCH QUESTION: [research_question]
 GENE/PROTEIN IDENTIFIERS: [list]
 ORGANISMS OF INTEREST: [organisms]
 
-AUTH SETUP:
-AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
-
-SQL via curl:
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"query": "<SQL>", "limit": 1000, "offset": 0}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/query
+SQL:
+Use the active BERDL Spark session and run bounded native Spark SQL:
+spark.sql("<SQL>")
 
 QUERIES (for each identifier):
 1. Gene lookup: SELECT geneId, organism, desc FROM kescience_paperblast.gene WHERE desc LIKE '%[name]%' OR geneId='[accession]' LIMIT 20

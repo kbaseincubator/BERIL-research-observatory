@@ -6,66 +6,51 @@ allowed-tools: Bash, Read, Write
 
 # BERDL Database Discovery Skill
 
-This skill introspects BERDL databases via API and generates documentation modules for use with the `berdl` skill.
+This skill introspects BERDL databases with access-aware notebook helpers and generates documentation modules for use with the `berdl` skill.
 
 ## Discovery Workflow
 
 When discovering a new database, follow these steps in order:
 
-### Step 1: Authenticate
+### Step 1: Start Spark
 
-```bash
-AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
+Use the correct Spark session pattern for the environment, then import helpers:
+
+```python
+import berdl_notebook_utils
 ```
 
-### Step 2: List All Databases
+### Step 2: List Accessible Databases
 
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"use_hms": true, "filter_by_namespace": true}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/databases/list | python3 -m json.tool
+```python
+databases = berdl_notebook_utils.get_databases()
+display(databases)
 ```
 
 ### Step 3: List Tables in Target Database
 
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"database": "DATABASE_NAME", "use_hms": true}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/databases/tables/list | python3 -m json.tool
+```python
+tables = berdl_notebook_utils.get_tables("DATABASE_NAME")
+display(tables)
 ```
 
 ### Step 4: Get Schema for Each Table
 
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"database": "DATABASE_NAME", "table": "TABLE_NAME"}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/databases/tables/schema | python3 -m json.tool
+```python
+schema = berdl_notebook_utils.get_table_schema("DATABASE_NAME", "TABLE_NAME")
+display(schema)
 ```
 
 ### Step 5: Get Row Counts
 
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"database": "DATABASE_NAME", "table": "TABLE_NAME"}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/count | python3 -m json.tool
+```python
+spark.sql("SELECT COUNT(*) AS n FROM DATABASE_NAME.TABLE_NAME")
 ```
 
 ### Step 6: Sample Data
 
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"database": "DATABASE_NAME", "table": "TABLE_NAME", "limit": 5}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/sample | python3 -m json.tool
+```python
+spark.sql("SELECT * FROM DATABASE_NAME.TABLE_NAME LIMIT 5")
 ```
 
 ### Step 7: Identify Relationships
@@ -177,9 +162,11 @@ Claude:
 ## Error Handling
 
 - **Authentication failure**: Check `.env` file exists and contains valid `KBASE_AUTH_TOKEN`
-- **Database not found**: List available databases and confirm spelling
+- **Database not found**: List accessible databases with `berdl_notebook_utils.get_databases()` and confirm spelling
 - **Timeout on large tables**: Skip row counts for tables > 100M rows, note in pitfalls
 - **Schema unavailable**: Mark table as "schema pending" and note in output
+
+Avoid raw `SHOW DATABASES` or `SHOW TABLES` SQL for discovery, and avoid MCP query operations such as `mcp_query_table`, `mcp_select_table`, `mcp_count_table`, `mcp_sample_table`, or REST `/delta/tables/query` for BERDL SQL execution.
 
 ## Pitfall Detection
 
