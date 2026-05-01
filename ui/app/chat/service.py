@@ -119,7 +119,6 @@ async def stream_turn(
     text_parts: list[str] = []
     stream_completed = False
 
-    persist_started = False
     try:
         async for event in run_provider_turn(
             db=db,
@@ -129,38 +128,29 @@ async def stream_turn(
             skip_message_id=user_row.id,
         ):
             fold_event(event, text_parts, result)
-            # Mark complete before yielding the terminal frame: if the
-            # client disconnects while consuming this last frame, the turn
-            # itself still finished, so don't tag the persisted row as
-            # interrupted.
+            # Mark complete on the terminal event so a disconnect during the
+            # final yield doesn't get tagged as interrupted on persist.
             if isinstance(event, (TurnComplete, ErrorEvent)):
                 stream_completed = True
             yield event_to_frame(event)
-
-        # Happy-path persist + terminal frame. Doing this here (rather than
-        # in finally) keeps the generator from yielding during aclose(),
-        # which would raise RuntimeError on a client disconnect.
+    finally:
+        # Persist exactly once. If the DB write itself fails the trace is
+        # lost, but a broken DB connection would also break any retry, so
+        # we accept that and keep the path simple.
         result.assistant_text = "".join(text_parts)
-        persist_started = True
+        if not stream_completed:
+            # Interrupted before a terminal event: don't promote a partial
+            # provider session handle so the next turn rebuilds from the
+            # DB transcript rather than resuming a half-captured turn.
+            result.sdk_session_id = None
+            if result.error is None:
+                result.error = "stream interrupted"
         assistant_row = await persist_assistant_message(
             db, session=session, result=result
         )
+
+    if stream_completed:
         yield turn_complete_frame(assistant_message_id=assistant_row.id)
-    finally:
-        # Cancellation path: only persist if we never started the happy-path
-        # commit. If we did start it, don't write again — even on partial
-        # failure — to avoid duplicating the assistant row.
-        if not persist_started:
-            result.assistant_text = "".join(text_parts)
-            if not stream_completed:
-                # Don't promote a partial provider session to the resume
-                # handle — the next turn must rebuild from the DB transcript
-                # rather than resume from a conversation we only partially
-                # captured locally.
-                result.sdk_session_id = None
-                if result.error is None:
-                    result.error = "stream interrupted"
-            await persist_assistant_message(db, session=session, result=result)
 
 
 async def run_turn(
