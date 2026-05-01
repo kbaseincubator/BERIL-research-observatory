@@ -17,17 +17,13 @@
   },
   "vlm": {
     "provider": "openai",
-    "api_key": "replace-with-openrouter-api-key",
-    "api_base": "https://openrouter.ai/api/v1",
-    "model": "google/gemini-3-flash-preview",
+    "api_key": "replace-with-cborg-api-key",
+    "api_base": "https://api.cborg.lbl.gov/v1",
+    "model": "gemini-3-flash",
     "temperature": 0.0,
-    "max_retries": 2,
-    "extra_headers": {
-      "HTTP-Referer": "https://github.com/kbaseincubator/BERIL-research-observatory",
-      "X-Title": "BERIL Research Observatory"
-    }
+    "max_retries": 2
   },
   "log": {
-    "level": "INFO"
+    "level": "ERROR"
   }
 }
