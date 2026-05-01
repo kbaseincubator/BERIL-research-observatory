@@ -40,8 +40,8 @@ Reuse, review, and tension mapping: derived-product profiles, conflict pages, re
 
 ## Phase 4
 
-Opportunity-centered Atlas expansion: concrete next analyses, categorical priority signals, opportunity panels, stronger content depth, and public-facing Atlas naming hardening while internal `wiki_*` implementation names remain stable.
+Opportunity-centered Atlas expansion: concrete next analyses, categorical priority signals, opportunity panels, stronger content depth, and public-facing Atlas naming hardening.
 
 ## Phase 5
 
-Naming reconciliation: decide whether to rename internal `wiki/`, `WikiPage`, `wiki_lint`, and `wiki_inventory` concepts to Atlas-oriented names, then either complete the compatibility-preserving refactor or explicitly document the permanent internal/public naming boundary.
+Naming reconciliation: move the corpus to `atlas/`, make Atlas model/parser/tooling names canonical, remove legacy compatibility routes, and keep maintainer workflows aligned with the public BERIL Atlas product name.

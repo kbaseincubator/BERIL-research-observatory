@@ -40,4 +40,4 @@ Use source projects and producer projects first. If a page combines multiple pro
 
 ## Maintenance Commands
 
-Run `python -m app.wiki_lint ..` and `python -m app.wiki_inventory .. --format markdown` after every Atlas maintenance pass.
+Run `python -m app.atlas_lint ..` and `python -m app.atlas_inventory .. --format markdown` after every Atlas maintenance pass.

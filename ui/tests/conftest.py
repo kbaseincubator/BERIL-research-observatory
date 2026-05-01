@@ -29,9 +29,9 @@ from app.models import (
     Review,
     SampleQuery,
     Skill,
-    WikiIndex,
-    WikiLink,
-    WikiPage,
+    AtlasIndex,
+    AtlasLink,
+    AtlasPage,
 )
 
 
@@ -159,7 +159,7 @@ def repository_data(project, completed_project, collection):
         project_ids=["test_project", "completed_project"],
         top_terms=["gene", "fitness"],
     )
-    atlas_page = WikiPage(
+    atlas_page = AtlasPage(
         id="atlas.test",
         title="Test BERIL Atlas",
         type="atlas",
@@ -178,7 +178,7 @@ def repository_data(project, completed_project, collection):
         order=1,
     )
     section_pages = [
-        WikiPage(
+        AtlasPage(
             id=f"{section}.index",
             title=title,
             type="meta",
@@ -205,7 +205,7 @@ def repository_data(project, completed_project, collection):
             ("hypotheses", "Hypotheses"),
         ]
     ]
-    topic_page = WikiPage(
+    topic_page = AtlasPage(
         id="topic.test",
         title="Test Atlas Topic",
         type="topic",
@@ -222,7 +222,7 @@ def repository_data(project, completed_project, collection):
         section="topics",
         order=10,
     )
-    reuse_page = WikiPage(
+    reuse_page = AtlasPage(
         id="data.reuse",
         title="Derived Data Reuse Graph",
         type="meta",
@@ -238,7 +238,7 @@ def repository_data(project, completed_project, collection):
         section="data",
         order=2,
     )
-    derived_page = WikiPage(
+    derived_page = AtlasPage(
         id="data.test-product",
         title="Test Derived Product",
         type="derived_product",
@@ -264,7 +264,7 @@ def repository_data(project, completed_project, collection):
             "evidence": [{"source": "test_project", "support": "Test support."}],
         },
     )
-    conflict_page = WikiPage(
+    conflict_page = AtlasPage(
         id="conflict.test",
         title="Test Tension",
         type="conflict",
@@ -291,7 +291,7 @@ def repository_data(project, completed_project, collection):
             "resolving_work": ["Test resolution."],
         },
     )
-    opportunity_page = WikiPage(
+    opportunity_page = AtlasPage(
         id="opportunity.test",
         title="Test Opportunity",
         type="opportunity",
@@ -332,7 +332,7 @@ def repository_data(project, completed_project, collection):
         contributors=[project.contributors[0]],
         skills=[skill],
         research_areas=[area],
-        wiki_index=WikiIndex(
+        atlas_index=AtlasIndex(
             pages=[
                 atlas_page,
                 *section_pages,
@@ -342,7 +342,7 @@ def repository_data(project, completed_project, collection):
                 conflict_page,
                 opportunity_page,
             ],
-            links=[WikiLink(source_id="atlas.test", target_id="topic.test")],
+            links=[AtlasLink(source_id="atlas.test", target_id="topic.test")],
         ),
         total_notebooks=2,
         total_visualizations=3,
@@ -363,7 +363,7 @@ def app_data_context(repository_data: RepositoryData):
         "collection_count": len(repository_data.collections),
         "contributor_count": len(repository_data.contributors),
         "skill_count": len(repository_data.skills),
-        "atlas_count": len(repository_data.wiki_index.pages),
+        "atlas_count": len(repository_data.atlas_index.pages),
         "last_updated": repository_data.last_updated,
     }
 

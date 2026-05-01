@@ -171,10 +171,9 @@ class TestAtlasRoutes:
         assert "Collection coverage" in response.text
         assert "Phase 0 Agent-Built Wiki Atlas" not in response.text
 
-    def test_legacy_wiki_redirects_to_atlas(self, client):
+    def test_legacy_wiki_landing_removed(self, client):
         response = client.get("/wiki", follow_redirects=False)
-        assert response.status_code == 301
-        assert response.headers["location"] == "/atlas"
+        assert response.status_code == 404
 
     def test_atlas_section_indexes_200(self, client):
         for path in (
@@ -206,10 +205,9 @@ class TestAtlasRoutes:
         assert "Opportunity Profile" in response.text
         assert "Test Derived Product" in response.text
 
-    def test_legacy_wiki_page_redirects(self, client):
+    def test_legacy_wiki_page_removed(self, client):
         response = client.get("/wiki/topics/test", follow_redirects=False)
-        assert response.status_code == 301
-        assert response.headers["location"] == "/atlas/topics/test"
+        assert response.status_code == 404
 
     def test_atlas_reuse_page_200(self, client):
         response = client.get("/atlas/data/reuse")

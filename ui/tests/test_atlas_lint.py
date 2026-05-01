@@ -1,9 +1,10 @@
 """Tests for Atlas lint checks."""
 
 import json
+import re
 from pathlib import Path
 
-from app.wiki_lint import lint_wiki
+from app.atlas_lint import lint_atlas
 
 
 def _setup_repo(tmp_path: Path) -> Path:
@@ -69,7 +70,7 @@ def _write_snapshot(tmp_path: Path, collection_ids: list[str]) -> None:
 
 
 def _write_page(tmp_path: Path, rel_path: str, **overrides) -> Path:
-    page_path = tmp_path / "wiki" / rel_path
+    page_path = tmp_path / "atlas" / rel_path
     page_path.parent.mkdir(parents=True, exist_ok=True)
     frontmatter = {
         "id": "topic.example",
@@ -93,21 +94,21 @@ def _write_page(tmp_path: Path, rel_path: str, **overrides) -> Path:
     return page_path
 
 
-def test_valid_wiki_passes(tmp_path):
+def test_valid_atlas_passes(tmp_path):
     repo = _setup_repo(tmp_path)
     _write_page(repo, "topics/example.md")
-    assert lint_wiki(repo) == []
+    assert lint_atlas(repo) == []
 
 
 def test_missing_required_field_is_reported(tmp_path):
     repo = _setup_repo(tmp_path)
     _write_page(repo, "topics/example.md", summary=None)
-    text = "\n".join(issue.message for issue in lint_wiki(repo))
+    text = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "empty required field: summary" in text
 
-    page = repo / "wiki" / "topics" / "example.md"
+    page = repo / "atlas" / "topics" / "example.md"
     page.write_text(page.read_text().replace("summary: null\n", ""))
-    text = "\n".join(issue.message for issue in lint_wiki(repo))
+    text = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "missing required field: summary" in text
 
 
@@ -115,12 +116,35 @@ def test_duplicate_id_and_broken_link_are_reported(tmp_path):
     repo = _setup_repo(tmp_path)
     _write_page(repo, "topics/example.md")
     _write_page(repo, "topics/duplicate.md", title="Different Title")
-    page = repo / "wiki" / "topics" / "example.md"
+    page = repo / "atlas" / "topics" / "example.md"
     page.write_text(page.read_text() + "\n[Broken](/atlas/missing/page)\n")
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "duplicate Atlas id" in messages
     assert "broken Atlas link" in messages
+
+
+def test_legacy_wiki_links_are_rejected(tmp_path):
+    repo = _setup_repo(tmp_path)
+    page = _write_page(repo, "topics/example.md")
+    page.write_text(page.read_text() + "\n[Legacy](/wiki/topics/example)\n")
+
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
+    assert "legacy /wiki link is not allowed" in messages
+
+
+def test_public_atlas_surface_has_no_wiki_naming_leaks():
+    repo = Path(__file__).resolve().parents[2]
+    scanned_files = [
+        *sorted((repo / "atlas").rglob("*.md")),
+        *sorted((repo / "ui" / "app" / "templates").rglob("*.html")),
+    ]
+    leaks = [
+        path.relative_to(repo).as_posix()
+        for path in scanned_files
+        if re.search(r"\bWiki\b|\bwiki\b|wiki_|/wiki", path.read_text(encoding="utf-8"))
+    ]
+    assert leaks == []
 
 
 def test_unknown_project_and_collection_are_reported(tmp_path):
@@ -131,7 +155,7 @@ def test_unknown_project_and_collection_are_reported(tmp_path):
         source_projects=["missing_project"],
         related_collections=["missing_collection"],
     )
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "unknown source project: missing_project" in messages
     assert "unknown related collection: missing_collection" in messages
 
@@ -141,7 +165,7 @@ def test_snapshot_requires_data_collection_pages(tmp_path):
     _write_snapshot(repo, ["kbase_ke_pangenome", "kbase_genomes"])
     _write_page(repo, "data/collections/pangenome.md", type="data_collection")
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "missing data_collection page for discovered collection: kbase_genomes" in messages
 
 
@@ -166,7 +190,7 @@ def test_data_type_needs_two_known_collections(tmp_path):
         related_collections=["kbase_ke_pangenome"],
     )
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "data_type pages must reference at least 2 known collections" in messages
 
 
@@ -180,7 +204,7 @@ def test_external_source_doc_is_allowed(tmp_path):
         source_docs=["https://example.org/source"],
     )
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "missing source doc" not in messages
 
 
@@ -194,7 +218,7 @@ def test_evidence_metadata_required_for_reusable_pages(tmp_path):
         type="claim",
     )
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "claim pages require evidence metadata" in messages
 
     _write_page(
@@ -205,7 +229,7 @@ def test_evidence_metadata_required_for_reusable_pages(tmp_path):
         type="claim",
         evidence=[{"source": "alpha_project", "support": "Test support."}],
     )
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "claim pages require evidence metadata" not in messages
 
 
@@ -220,7 +244,7 @@ def test_derived_product_reuse_metadata_is_validated(tmp_path):
         evidence=[{"source": "alpha_project", "support": "Test support."}],
     )
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "derived_product missing field: product_kind" in messages
 
     artifact = repo / "projects" / "alpha_project" / "product.tsv"
@@ -240,7 +264,7 @@ def test_derived_product_reuse_metadata_is_validated(tmp_path):
         evidence=[{"source": "alpha_project", "support": "Test support."}],
     )
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "derived_product missing field" not in messages
     assert "missing output artifact" not in messages
 
@@ -262,7 +286,7 @@ def test_conflict_pages_require_multiple_sides_and_resolution(tmp_path):
         resolving_work=[],
     )
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "conflict pages require at least two evidence_sides" in messages
     assert "conflict pages require resolving_work entries" in messages
 
@@ -283,7 +307,7 @@ def test_conflict_pages_require_multiple_sides_and_resolution(tmp_path):
         resolving_work=["Run a resolving analysis."],
     )
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "conflict pages require at least two evidence_sides" not in messages
     assert "conflict pages require resolving_work entries" not in messages
 
@@ -341,7 +365,7 @@ def test_opportunity_pages_validate_scores_and_links(tmp_path):
         evidence=[{"source": "alpha_project", "support": "Test support."}],
     )
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "invalid impact: urgent" in messages
     assert "unknown review_routes project: missing_project" in messages
 
@@ -364,15 +388,15 @@ def test_opportunity_pages_validate_scores_and_links(tmp_path):
         review_routes=["alpha_project"],
         evidence=[{"source": "alpha_project", "support": "Test support."}],
     )
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "invalid impact" not in messages
     assert "unknown review_routes project" not in messages
 
 
 def test_missing_section_index_is_reported(tmp_path):
     repo = _setup_repo(tmp_path)
-    (repo / "wiki" / "topics" / "index.md").unlink()
+    (repo / "atlas" / "topics" / "index.md").unlink()
     _write_page(repo, "topics/example.md")
 
-    messages = "\n".join(issue.message for issue in lint_wiki(repo))
+    messages = "\n".join(issue.message for issue in lint_atlas(repo))
     assert "missing Atlas section index page: topics/index" in messages

@@ -3,6 +3,7 @@
 import gzip
 import json
 import pickle
+import posixpath
 import re
 import subprocess
 from datetime import datetime
@@ -39,10 +40,10 @@ from .models import (
     Skill,
     Table,
     Visualization,
-    WikiIndex,
-    WikiLink,
-    WikiHeading,
-    WikiPage,
+    AtlasIndex,
+    AtlasLink,
+    AtlasHeading,
+    AtlasPage,
 )
 
 REPOSITORY_DATA_FILE = "data.pkl.gz"
@@ -204,7 +205,7 @@ def slugify(text: str) -> str:
 class RepositoryParser:
     """Parse git repository file system into structured data."""
 
-    REQUIRED_WIKI_FIELDS = {
+    REQUIRED_ATLAS_FIELDS = {
         "id",
         "title",
         "type",
@@ -218,7 +219,7 @@ class RepositoryParser:
         "last_reviewed",
     }
 
-    WIKI_PAGE_TYPES = {
+    ATLAS_PAGE_TYPES = {
         "atlas",
         "topic",
         "data_tenant",
@@ -297,7 +298,7 @@ class RepositoryParser:
         research_ideas = self.parse_research_ideas()
         collections = self.parse_collections()
         skills = self.parse_skills()
-        wiki_index = self.parse_wiki()
+        atlas_index = self.parse_atlas()
 
         # Aggregate unique contributors across all projects
         contributors = self._aggregate_contributors(projects)
@@ -325,7 +326,7 @@ class RepositoryParser:
             skills=skills,
             research_areas=research_areas,
             collection_edges=collection_edges,
-            wiki_index=wiki_index,
+            atlas_index=atlas_index,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -1961,39 +1962,39 @@ class RepositoryParser:
     def _title_from_id(collection_id: str) -> str:
         return collection_id.replace("_", " ").title()
 
-    def parse_wiki(self) -> WikiIndex:
-        """Parse markdown Atlas pages from the internal wiki directory.
+    def parse_atlas(self) -> AtlasIndex:
+        """Parse markdown Atlas pages from the Atlas corpus directory.
 
         The parser is intentionally permissive: malformed pages are skipped so the
-        app can still boot, while app.wiki_lint reports actionable failures.
+        app can still boot, while app.atlas_lint reports actionable failures.
         """
-        wiki_dir = self.repo_path / "wiki"
-        if not wiki_dir.exists():
-            return WikiIndex()
+        atlas_dir = self.repo_path / "atlas"
+        if not atlas_dir.exists():
+            return AtlasIndex()
 
-        pages: list[WikiPage] = []
-        for wiki_file in sorted(wiki_dir.rglob("*.md")):
+        pages: list[AtlasPage] = []
+        for atlas_file in sorted(atlas_dir.rglob("*.md")):
             if any(
-                part.startswith(".") for part in wiki_file.relative_to(wiki_dir).parts
+                part.startswith(".") for part in atlas_file.relative_to(atlas_dir).parts
             ):
                 continue
-            page = self._parse_wiki_file(wiki_file, wiki_dir)
+            page = self._parse_atlas_file(atlas_file, atlas_dir)
             if page:
                 pages.append(page)
 
         pages.sort(key=lambda p: (p.section, p.order, p.title.lower()))
         links = [
-            WikiLink(source_id=page.id, target_id=target_id)
+            AtlasLink(source_id=page.id, target_id=target_id)
             for page in pages
             for target_id in page.related_pages
         ]
-        return WikiIndex(pages=pages, links=links)
+        return AtlasIndex(pages=pages, links=links)
 
     @classmethod
-    def _parse_wiki_file(cls, wiki_file: Path, wiki_dir: Path) -> WikiPage | None:
+    def _parse_atlas_file(cls, atlas_file: Path, atlas_dir: Path) -> AtlasPage | None:
         """Parse one Atlas markdown file with YAML frontmatter."""
         try:
-            raw_content = wiki_file.read_text(encoding="utf-8")
+            raw_content = atlas_file.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             return None
 
@@ -2010,31 +2011,31 @@ class RepositoryParser:
         if not isinstance(frontmatter, dict):
             return None
 
-        missing = cls.REQUIRED_WIKI_FIELDS - set(frontmatter)
+        missing = cls.REQUIRED_ATLAS_FIELDS - set(frontmatter)
         if missing:
             return None
-        if frontmatter.get("type") not in cls.WIKI_PAGE_TYPES:
+        if frontmatter.get("type") not in cls.ATLAS_PAGE_TYPES:
             return None
 
-        route_path = wiki_file.relative_to(wiki_dir).with_suffix("").as_posix()
+        route_path = atlas_file.relative_to(atlas_dir).with_suffix("").as_posix()
         body = raw_content[frontmatter_match.end() :].strip()
         section = route_path.split("/", 1)[0] if "/" in route_path else "root"
 
-        known_keys = cls.REQUIRED_WIKI_FIELDS | {
+        known_keys = cls.REQUIRED_ATLAS_FIELDS | {
             "related_pages",
             "order",
             "section",
         }
         metadata = {k: v for k, v in frontmatter.items() if k not in known_keys}
 
-        return WikiPage(
+        return AtlasPage(
             id=str(frontmatter["id"]),
             title=str(frontmatter["title"]),
             type=str(frontmatter["type"]),
             status=str(frontmatter["status"]),
             summary=str(frontmatter["summary"]),
             path=route_path,
-            body=cls._rewrite_wiki_body_links(body),
+            body=cls._rewrite_atlas_body_links(body, route_path),
             source_projects=cls._as_string_list(frontmatter.get("source_projects")),
             source_docs=cls._as_string_list(frontmatter.get("source_docs")),
             related_collections=cls._as_string_list(
@@ -2047,7 +2048,7 @@ class RepositoryParser:
             section=str(frontmatter.get("section") or section),
             order=int(frontmatter.get("order", 100)),
             metadata=metadata,
-            headings=cls._extract_wiki_headings(body),
+            headings=cls._extract_atlas_headings(body),
         )
 
     @staticmethod
@@ -2060,21 +2061,30 @@ class RepositoryParser:
         return [str(value)]
 
     @staticmethod
-    def _rewrite_wiki_body_links(content: str) -> str:
+    def _rewrite_atlas_body_links(content: str, route_path: str) -> str:
         """Rewrite common repo-relative Atlas links to route links."""
+        source_dir = posixpath.dirname(route_path)
+
+        def _md_link(match: re.Match) -> str:
+            target = match.group(1)
+            anchor = match.group(2) or ""
+            target_route = posixpath.normpath(posixpath.join(source_dir, target))
+            if target_route == ".":
+                target_route = ""
+            return f"](/atlas/{target_route}{anchor})"
+
         content = re.sub(
             r"\]\((?:\./)?([A-Za-z0-9_./-]+)\.md(#.*?)?\)",
-            r"](/atlas/\1\2)",
+            _md_link,
             content,
         )
         content = re.sub(r"\]\((?:\./)?index(#.*?)?\)", r"](/atlas\1)", content)
-        content = content.replace("(/wiki/", "(/atlas/")
         return content
 
     @staticmethod
-    def _extract_wiki_headings(content: str) -> list[WikiHeading]:
+    def _extract_atlas_headings(content: str) -> list[AtlasHeading]:
         """Extract markdown headings for page-level Atlas navigation."""
-        headings: list[WikiHeading] = []
+        headings: list[AtlasHeading] = []
         seen: dict[str, int] = {}
         for line in content.splitlines():
             match = re.match(r"^(#{2,4})\s+(.+?)\s*$", line)
@@ -2087,7 +2097,7 @@ class RepositoryParser:
             if duplicate_count:
                 anchor = f"{anchor}_{duplicate_count}"
             headings.append(
-                WikiHeading(level=len(match.group(1)), title=title, anchor=anchor)
+                AtlasHeading(level=len(match.group(1)), title=title, anchor=anchor)
             )
         return headings
 
