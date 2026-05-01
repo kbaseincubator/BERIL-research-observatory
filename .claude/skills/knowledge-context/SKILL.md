@@ -55,4 +55,5 @@ Validate local server configuration before ingesting:
 
 ```bash
 openviking-server doctor
+openviking-server --config ~/.openviking/ov.conf
 ```

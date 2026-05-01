@@ -270,7 +270,7 @@ For local development:
 ```bash
 cp knowledge/openviking/ov.conf.example ~/.openviking/ov.conf
 openviking-server doctor
-openviking-server start
+openviking-server --config ~/.openviking/ov.conf
 export OPENVIKING_URL=http://localhost:1933
 ```
 
@@ -401,6 +401,7 @@ be documented for local OpenViking:
 
 ```bash
 openviking-server doctor
+openviking-server --config ~/.openviking/ov.conf
 uv run python knowledge/scripts/ingest_context.py --project metal_cross_resistance
 uv run python knowledge/scripts/knowledge_query.py find "metal cross resistance" --project metal_cross_resistance
 ```
