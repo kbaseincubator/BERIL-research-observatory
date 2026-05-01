@@ -119,8 +119,8 @@ uv run --env-file .env $QUERY find "query terms" \
 # Exact pattern (e.g. all projects mentioning an author)
 uv run --env-file .env $QUERY grep "Ada Lovelace" --uri viking://resources/projects/
 
-# URI enumeration / structural navigation
-uv run --env-file .env $QUERY glob "viking://resources/projects/*/"
+# URI enumeration / structural navigation (glob pattern is relative to --uri)
+uv run --env-file .env $QUERY glob '*' --uri viking://resources/projects/
 uv run --env-file .env $QUERY ls viking://resources/projects/ --simple
 uv run --env-file .env $QUERY tree viking://resources/projects/alpha/
 uv run --env-file .env $QUERY stat viking://resources/projects/alpha/

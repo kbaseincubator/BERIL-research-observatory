@@ -58,7 +58,6 @@ def build_parser() -> argparse.ArgumentParser:
     grep.add_argument("-i", "--case-insensitive", action="store_true")
     grep.add_argument("--exclude-uri", help="URI subtree to exclude")
     grep.add_argument("--node-limit", type=int, help="Max matching nodes")
-    grep.add_argument("--level-limit", type=int, default=5, help="Max recursion depth")
 
     glob = commands.add_parser("glob", help="URI pattern enumeration")
     glob.add_argument("pattern", help="Glob pattern (e.g. viking://resources/projects/*/)")
@@ -125,10 +124,7 @@ def main() -> None:
             )
             print(result_to_json(result) if args.json else format_find_text(result))
         elif args.command == "grep":
-            kwargs = {
-                "case_insensitive": args.case_insensitive,
-                "level_limit": args.level_limit,
-            }
+            kwargs = {"case_insensitive": args.case_insensitive}
             if args.node_limit is not None:
                 kwargs["node_limit"] = args.node_limit
             if args.exclude_uri:

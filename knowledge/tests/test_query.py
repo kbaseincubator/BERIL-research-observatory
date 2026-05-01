@@ -115,7 +115,7 @@ def test_run_find_omits_unset_kwargs() -> None:
     }
 
 
-def test_run_find_forwards_filter_and_time_bounds() -> None:
+def test_run_find_forwards_plain_filter_and_score_threshold() -> None:
     client = _RecordingClient()
     run_find(
         client,
@@ -124,9 +124,6 @@ def test_run_find_forwards_filter_and_time_bounds() -> None:
         5,
         filter={"op": "must", "field": "uri", "conds": ["x"]},
         score_threshold=0.4,
-        since="7d",
-        until="2026-05-01",
-        time_field="updated_at",
     )
     assert client.last_kwargs == {
         "query": "q",
@@ -134,7 +131,40 @@ def test_run_find_forwards_filter_and_time_bounds() -> None:
         "limit": 5,
         "filter": {"op": "must", "field": "uri", "conds": ["x"]},
         "score_threshold": 0.4,
-        "since": "7d",
-        "until": "2026-05-01",
-        "time_field": "updated_at",
     }
+
+
+def test_run_find_resolves_time_bounds_into_filter() -> None:
+    client = _RecordingClient()
+    run_find(
+        client,
+        "q",
+        "viking://resources/",
+        5,
+        since="2026-04-01",
+        until="2026-05-01",
+        time_field="updated_at",
+    )
+    sent = client.last_kwargs
+    assert "since" not in sent and "until" not in sent and "time_field" not in sent
+    assert sent["filter"]["op"] == "time_range"
+    assert sent["filter"]["field"] == "updated_at"
+    assert sent["filter"]["gte"].startswith("2026-04-01")
+    assert sent["filter"]["lte"].startswith("2026-05-01")
+
+
+def test_run_find_ands_time_bounds_with_existing_filter() -> None:
+    client = _RecordingClient()
+    base = {"op": "must", "field": "uri", "conds": ["viking://resources/projects/alpha/"]}
+    run_find(
+        client,
+        "q",
+        "viking://resources/",
+        5,
+        filter=base,
+        since="2026-04-01",
+    )
+    sent = client.last_kwargs["filter"]
+    assert sent["op"] == "and"
+    assert base in sent["conds"]
+    assert any(cond.get("op") == "time_range" for cond in sent["conds"])

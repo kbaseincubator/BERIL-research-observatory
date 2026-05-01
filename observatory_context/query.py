@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 from typing import Any
 
+from openviking.utils.search_filters import merge_time_filter
+
 from .config import DOCS_TARGET_URI, PROJECTS_TARGET_URI
 from .selection import project_target_uri
 
@@ -33,17 +35,12 @@ def run_find(
     until: str | None = None,
     time_field: str | None = None,
 ) -> Any:
+    resolved_filter = merge_time_filter(filter, since=since, until=until, time_field=time_field)
     kwargs: dict[str, Any] = {}
-    if filter is not None:
-        kwargs["filter"] = filter
+    if resolved_filter is not None:
+        kwargs["filter"] = resolved_filter
     if score_threshold is not None:
         kwargs["score_threshold"] = score_threshold
-    if since is not None:
-        kwargs["since"] = since
-    if until is not None:
-        kwargs["until"] = until
-    if time_field is not None:
-        kwargs["time_field"] = time_field
     return client.find(query=query, target_uri=target_uri, limit=limit, **kwargs)
 
 

@@ -67,10 +67,12 @@ Flags: `-i/--case-insensitive`, `--node-limit N`, `--level-limit N`, `--exclude-
 
 ### `glob` — URI pattern enumeration
 
+Pattern is **relative** to `--uri`. Defaults to `viking://`.
+
 ```bash
-$QUERY glob "viking://resources/projects/*/"
-$QUERY glob "viking://resources/projects/*/REPORT.md"
-$QUERY glob "viking://resources/docs/*/"
+$QUERY glob '*' --uri viking://resources/projects/                     # one project per row
+$QUERY glob '**/*.md' --uri viking://resources/projects/alpha/         # all .md files in a project
+$QUERY glob '**/REPORT.md' --uri viking://resources/projects/          # every project's REPORT.md
 ```
 
 ### `ls`, `tree`, `stat` — structural navigation
@@ -188,9 +190,9 @@ $QUERY find "" --since 7d --time-field updated_at --limit 50 --json
 **"List every project"** — filesystem question, not a search question:
 
 ```bash
-$QUERY glob "viking://resources/projects/*/"
-# or
 $QUERY ls viking://resources/projects/ --simple
+# or, glob (pattern is relative to --uri):
+$QUERY glob '*' --uri viking://resources/projects/
 ```
 
 **"What does this project relate to?"**
