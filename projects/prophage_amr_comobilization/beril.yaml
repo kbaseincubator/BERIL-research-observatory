@@ -1,7 +1,7 @@
 project_id: prophage_amr_comobilization
-status: active
+status: analysis
 created_at: "2026-04-30T00:00:00Z"
-last_session_at: "2026-04-30T00:00:00Z"
+last_session_at: "2026-04-30T12:00:00Z"
 branch: projects/prophage_amr_comobilization
 engine:
   name: claude
@@ -12,5 +12,5 @@ authors:
 artifacts:
   readme: true
   research_plan: true
-  report: false
+  report: true
   review: false

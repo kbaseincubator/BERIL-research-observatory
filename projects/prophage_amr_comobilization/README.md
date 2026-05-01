@@ -6,7 +6,7 @@ At pangenome scale (293K genomes, 27K species), are antibiotic resistance genes 
 
 ## Status
 
-In Progress — research plan created, awaiting analysis.
+Complete — see [Report](REPORT.md) for findings.
 
 ## Overview
 
@@ -15,7 +15,7 @@ Five completed AMR projects characterized resistance gene distribution, conserva
 ## Quick Links
 
 - [Research Plan](RESEARCH_PLAN.md) — hypothesis, approach, query strategy
-- [Report](REPORT.md) — findings, interpretation, supporting evidence (TBD)
+- [Report](REPORT.md) — findings, interpretation, supporting evidence
 
 ## Data Sources
 
@@ -29,7 +29,15 @@ Five completed AMR projects characterized resistance gene distribution, conserva
 
 ## Reproduction
 
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+1. Ensure access to BERDL Spark cluster (see root README for setup)
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run notebooks in order:
+   - `notebooks/01_amr_prophage_census.py` — Census of AMR and prophage markers
+   - `notebooks/02_gene_neighborhood_coloc.py` — Gene-level co-localization distances
+   - `notebooks/03_conservation_test.py` — H1: Fisher's exact test
+   - `notebooks/04_species_breadth_test.py` — H2: Regression analysis
+   - `notebooks/05_synthesis.py` — H3 attempt + synthesis
+4. Notebooks produce CSV/JSON files in `data/` and figures in `figures/`
 
 ## Authors
 
