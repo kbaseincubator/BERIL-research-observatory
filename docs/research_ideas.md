@@ -594,32 +594,18 @@ _Capture half-baked ideas here for future refinement_
 - Is functional diversity driver of ecotype formation?
 
 ### [amr_pangenome_atlas + prophage_ecology] Prophage-AMR Co-mobilization Atlas
-**Status**: IN_PROGRESS
+**Status**: COMPLETED
 **Priority**: HIGH
 **Effort**: Medium (3-4 weeks)
 
 **Research Question**: At pangenome scale (293K genomes, 27K species), are antibiotic resistance genes preferentially located within or adjacent to prophage regions, and does this co-localization predict AMR gene mobility and accessory-genome status?
 
-**Approach**:
-- Identify prophage markers via bakta_annotations product keywords + Pfam domains (genomad_mobile_elements not in BERDL)
-- Identify AMR genes via bakta_amr (83K curated hits)
-- Gene neighborhood co-localization analysis (±5/10/20 genes on same contig)
-- Test H1: prophage-proximal AMR genes are more likely accessory
-- Test H2: prophage-rich species have broader AMR repertoires (controlling for genome size + phylogeny)
-- Test H3: fitness cost differs for prophage-proximal vs distant AMR genes (FB organisms)
-
-**Hypotheses**:
-- Prophage-proximal AMR genes are more mobile (accessory) than distant AMR genes
-- Species with higher prophage burden carry more diverse AMR repertoires
-- Prophage-proximal AMR genes impose different fitness costs than distant ones
-
-**Impact**: High — first pangenome-scale quantification of prophage-AMR genomic co-occurrence; identifies which AMR genes are mobilization-prone (WHO priority)
-
-**Dependencies**:
-- Existing: amr_pangenome_atlas data (completed)
-- Existing: amr_strain_variation data (completed, 1,517 resistance islands)
-- Existing: prophage_ecology data (completed)
-- Existing: gene_function_ecological_agora gene neighborhood methodology (NB26 series)
+**Results**:
+- H1 (prophage-proximal AMR genes are more accessory): Weakly supported — OR=1.10, p=0.005, heterogeneous across species
+- H2 (prophage-rich species have broader AMR repertoires): Strongly supported — Spearman rho=0.572, R²=0.30, robust across all 5 major phyla, partial rho=0.464 after controlling for genome count
+- H3 (fitness cost differences): Not testable — fitness browser organisms do not overlap with GTDB species
+- 55.7% of AMR gene instances share contigs with prophage markers; 10.4% within 10 genes
+- Prophage density explains 30% of variance in AMR breadth across 4,770 species
 
 **Location**: `projects/prophage_amr_comobilization/`
 
