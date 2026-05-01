@@ -249,6 +249,7 @@ knowledge = [
     { name = "openviking" },
     { name = "pytest" },
     { name = "pyyaml" },
+    { name = "rich" },
 ]
 
 [package.metadata]
@@ -258,6 +259,7 @@ knowledge = [
     { name = "openviking" },
     { name = "pytest" },
     { name = "pyyaml" },
+    { name = "rich" },
 ]
 
 [[package]]

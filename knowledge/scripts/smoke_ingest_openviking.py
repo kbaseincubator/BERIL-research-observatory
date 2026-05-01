@@ -4,6 +4,7 @@
 # dependencies = [
 #     "openviking",
 #     "pyyaml",
+#     "rich",
 # ]
 # ///
 from __future__ import annotations
@@ -14,10 +15,15 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
+from rich.console import Console
+from rich.rule import Rule
+from rich.table import Table
+
 from observatory_context.config import ContextConfig
 from observatory_context.ingest import ingest_project
 from observatory_context.openviking_client import create_client
-from observatory_context.query import format_find_text
+from observatory_context.progress import RichIngestObserver
+from observatory_context.query import _field, _resources
 from observatory_context.selection import project_target_uri
 from observatory_context.smoke import latest_project_dirs
 
@@ -29,33 +35,56 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def render_results(console: Console, project: str, result: object, limit: int) -> None:
+    resources = _resources(result)
+    console.print(Rule(f"[bold]{project}[/bold]"))
+    if not resources:
+        console.print("[dim]no results[/dim]")
+        return
+    table = Table(show_lines=False, expand=True)
+    table.add_column("Score", justify="right", width=7, style="cyan")
+    table.add_column("Resource", overflow="fold")
+    table.add_column("Abstract", overflow="fold")
+    for resource in resources[:limit]:
+        score = float(_field(resource, "score", 0.0))
+        uri = str(_field(resource, "uri", ""))
+        abstract = str(_field(resource, "abstract", "")).strip().replace("\n", " ")
+        if len(abstract) > 240:
+            abstract = abstract[:237] + "..."
+        table.add_row(f"{score:.3f}", uri, abstract)
+    console.print(table)
+
+
 def main() -> None:
     args = build_parser().parse_args()
+    console = Console()
     config = ContextConfig.from_env()
     project_dirs = latest_project_dirs(config.projects_dir, args.count)
     if not project_dirs:
         raise SystemExit("No projects found")
 
-    print("Smoke test projects:")
+    console.print(Rule("[bold]Smoke test projects[/bold]"))
     for project_dir in project_dirs:
-        print(f"- {project_dir.name}")
+        console.print(f"  • {project_dir.name}")
 
     client = create_client(config)
     try:
-        for project_dir in project_dirs:
-            ingest_project(config, client, project_dir.name)
+        with RichIngestObserver(console=console) as observer:
+            for project_dir in project_dirs:
+                ingest_project(config, client, project_dir.name, observer=observer)
 
+        console.print()
+        console.print(Rule("[bold green]Query results[/bold green]"))
         for project_dir in project_dirs:
-            print()
-            print(f"## {project_dir.name}")
             result = client.find(
                 query=project_dir.name.replace("_", " "),
                 target_uri=project_target_uri(project_dir.name),
                 limit=args.limit,
             )
-            print(format_find_text(result))
+            render_results(console, project_dir.name, result, args.limit)
     finally:
         client.close()
+
 
 if __name__ == "__main__":
     main()

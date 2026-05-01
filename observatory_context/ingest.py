@@ -11,6 +11,7 @@ from .manifest import (
     removed_targets,
     save_manifest,
 )
+from .progress import IngestObserver, NullObserver
 from .selection import (
     docs_target_uri,
     iter_project_dirs,
@@ -24,24 +25,43 @@ from .staging import stage_doc, stage_project, stage_project_index
 MANIFEST_FILENAME = "context_manifest.json"
 
 
-def ingest_all(config: ContextConfig, client: Any) -> None:
+def ingest_all(
+    config: ContextConfig,
+    client: Any,
+    *,
+    observer: IngestObserver | None = None,
+) -> None:
+    obs = observer or NullObserver()
     project_dirs = iter_project_dirs(config.projects_dir)
+    docs = select_central_docs(config.repo_root)
+    obs.start(total=len(project_dirs) + len(docs) + 1)
+
     project_index = stage_project_index(project_dirs, config.staging_dir)
     _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
+    obs.advance("project_index")
 
     for project_dir in project_dirs:
         _ingest_project_dir(config, client, project_dir)
+        obs.advance(project_dir.name)
 
-    for doc_path in select_central_docs(config.repo_root):
+    for doc_path in docs:
         _ingest_doc(config, client, doc_path)
+        obs.advance(f"docs/{doc_path.name}")
 
     new_manifest = _current_manifest(config)
     _remove_stale(client, config, new_manifest)
-    client.wait_processed()
+    obs.wait_processed(client)
     save_manifest(_manifest_path(config), new_manifest)
+    obs.done()
 
 
-def ingest_changed(config: ContextConfig, client: Any) -> None:
+def ingest_changed(
+    config: ContextConfig,
+    client: Any,
+    *,
+    observer: IngestObserver | None = None,
+) -> None:
+    obs = observer or NullObserver()
     old_manifest = load_manifest(_manifest_path(config))
     new_manifest = _current_manifest(config)
     targets = changed_targets(old_manifest, new_manifest)
@@ -50,39 +70,57 @@ def ingest_changed(config: ContextConfig, client: Any) -> None:
     docs = {docs_target_uri(path): path for path in select_central_docs(config.repo_root)}
     project_targets_changed = False
 
+    obs.start(total=max(len(targets) + len(removed), 1))
+
     for target_uri in targets:
         if target_uri.startswith(PROJECTS_TARGET_URI):
             project_id = target_uri.removeprefix(PROJECTS_TARGET_URI).strip("/")
             if project_id in project_dirs:
                 project_targets_changed = True
                 _ingest_project_dir(config, client, project_dirs[project_id])
+                obs.advance(project_id)
         elif target_uri in docs:
             _ingest_doc(config, client, docs[target_uri])
+            obs.advance(f"docs/{docs[target_uri].name}")
 
     for target_uri in removed:
         _remove_resource(client, target_uri)
+        obs.advance(f"removed: {target_uri}")
         if target_uri.startswith(PROJECTS_TARGET_URI):
             project_targets_changed = True
 
     if project_targets_changed:
         project_index = stage_project_index(list(project_dirs.values()), config.staging_dir)
         _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
+        obs.advance("project_index")
 
     if targets or removed:
-        client.wait_processed()
+        obs.wait_processed(client)
     save_manifest(_manifest_path(config), new_manifest)
+    obs.done()
 
 
-def ingest_project(config: ContextConfig, client: Any, project_id: str) -> None:
+def ingest_project(
+    config: ContextConfig,
+    client: Any,
+    project_id: str,
+    *,
+    observer: IngestObserver | None = None,
+) -> None:
+    obs = observer or NullObserver()
     project_dir = resolve_project_dir(config, project_id)
+    obs.start(total=2)
     _ingest_project_dir(config, client, project_dir)
+    obs.advance(project_id)
     project_index = stage_project_index(iter_project_dirs(config.projects_dir), config.staging_dir)
     _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
+    obs.advance("project_index")
 
     new_manifest = _current_manifest(config)
     _remove_stale(client, config, new_manifest)
-    client.wait_processed()
+    obs.wait_processed(client)
     save_manifest(_manifest_path(config), new_manifest)
+    obs.done()
 
 
 def resolve_project_dir(config: ContextConfig, project_id: str) -> Path:
@@ -94,14 +132,24 @@ def resolve_project_dir(config: ContextConfig, project_id: str) -> Path:
     return project_dir
 
 
-def ingest_docs(config: ContextConfig, client: Any) -> None:
-    for doc_path in select_central_docs(config.repo_root):
+def ingest_docs(
+    config: ContextConfig,
+    client: Any,
+    *,
+    observer: IngestObserver | None = None,
+) -> None:
+    obs = observer or NullObserver()
+    docs = select_central_docs(config.repo_root)
+    obs.start(total=max(len(docs), 1))
+    for doc_path in docs:
         _ingest_doc(config, client, doc_path)
+        obs.advance(f"docs/{doc_path.name}")
 
     new_manifest = _current_manifest(config)
     _remove_stale(client, config, new_manifest, prefix=DOCS_TARGET_URI)
-    client.wait_processed()
+    obs.wait_processed(client)
     save_manifest(_manifest_path(config), new_manifest)
+    obs.done()
 
 
 def _remove_stale(
