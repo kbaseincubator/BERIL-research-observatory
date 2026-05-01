@@ -609,3 +609,50 @@ _Capture half-baked ideas here for future refinement_
 
 ---
 
+## Newly Proposed Ideas
+
+### [lanthanide_methylotrophy_atlas] Lanthanide Methylotrophy Atlas — Distribution & Environmental Context of REE-Dependent Methanol Oxidation Across 293K Genomes
+**Status**: PROPOSED
+**Priority**: HIGH
+**Effort**: Medium (3-4 weeks)
+
+**Research Question**: Across BERDL's 293K-genome pangenome, what is the phylogenomic distribution and cassette-completeness of the lanthanide-dependent methanol/ethanol oxidation system (xoxF / xoxJ / PQQ / lanmodulin), and does its presence correspond to environments containing rare earth elements?
+
+**Approach**:
+- Build per-genome marker matrix for xoxF (KEGG K00114), mxaF (K14028), xoxJ, PQQ biosynthesis (pqqA-E), and lanmodulin, using both eggNOG (KEGG_ko) and bakta (`product`) to cross-validate
+- Phylogenomic atlas across GTDB families/genera; quantify the xoxF:mxaF dominance ratio (pilot: ~30:1)
+- Cassette-completeness scoring (xoxF only / xoxF+xoxJ / full cassette with PQQ)
+- Environmental association via `ncbi_env` (37 explicit REE-AMD samples confirmed) + AlphaEarth embeddings (39.5% coverage on xoxF genomes — above pangenome baseline) + BacDive methylotroph media as taxonomic anchor
+- Lanmodulin focal study: bakta-validated hits (10 species, dominated by Beijerinckiaceae) → fraction with co-located xoxF
+- 37 REE-AMD MAGs as small-N environmental anchor (only 4/37 carry xoxF — community is dominated by acidophiles incl. uncharacterized `f__REEB76`)
+
+**Hypotheses**:
+- **H1 (xoxF dominance)**: xoxF (K00114) is genome-frequent at ≥10× the rate of mxaF (K14028) across the BERDL pangenome, robust across phyla after phylogenetic controls
+- **H2 (environmental enrichment)**: Genomes with the full lanthanide-MDH cassette are over-represented in REE-impacted, mining, methylotrophic, and volcanic/geothermal environments vs. matched-phylogeny controls
+- **H3 (lanmodulin clade restriction)**: Bakta-validated lanmodulin hits are restricted to specific α-Proteobacterial methylotroph clades (Beijerinckiaceae, Acetobacteraceae, Hyphomicrobiaceae) and co-occur with xoxF in ≥80% of cases
+
+**Impact**: High — closes the **"Rare Earth Elements (Zero Coverage)" Priority 2 future direction** explicitly proposed in the `metal_fitness_atlas` REPORT. Produces the largest-published lanthanide-MDH genomic atlas (existing surveys are 100-1000 genomes; this is 293K). Resolves the field's working hypothesis (xoxF, not mxaF, is the dominant biological MDH) at unprecedented scale. Identifies novel candidate REE-utilizing taxa beyond canonical methylotrophs (Bradyrhizobium, Mesorhizobium, Marinobacter, Stutzerimonas, etc.). Direct DOE-mission relevance — REEs are top-priority US critical minerals.
+
+**Dependencies**:
+- Existing: `kbase_ke_pangenome` tables (eggnog_mapper_annotations, bakta_annotations, gene, gene_genecluster_junction, genome, gtdb_taxonomy_r214v1, ncbi_env, alphaearth_embeddings_all_years)
+- Existing: `kescience_bacdive.culture_condition`
+- Reuses methodology from `metal_fitness_atlas` (gene-presence atlas + environmental validation) and `amr_environmental_resistome` (bakta + ncbi_env + AlphaEarth join pattern)
+- No prior project required as input
+
+**Pilot data confirmed**:
+- 5,645 xoxF genes across 3,690 genomes (KEGG K00114)
+- 190 mxaF (K14028) — 30:1 ratio
+- 37/37 REE-AMD biosamples have MAGs in pangenome; only 4 carry xoxF
+- Bakta-validated lanmodulin in 10 species, dominated by *Methylobacterium extorquens* (22 genomes)
+- 1,457/3,690 (39.5%) xoxF genomes have AlphaEarth embeddings
+- 2,320 xoxF-bearing genomes lack canonical PQQ biosynthesis — interesting "PQQ-supply" question
+
+**Caveats discovered in pilot**:
+- eggNOG `Preferred_name='lanM'` produces 337 false positives in gut bacteria (Blautia, Streptococcus, Lachnospiraceae); use bakta `product='Lanmodulin'` for trustworthy lanmodulin
+- eggNOG `Preferred_name='mxaF'` with `KEGG_ko='ko:K00114'` is actually xoxF — disambiguate by KEGG_ko, not Preferred_name
+- `ncbi_env.content` regex matches need full-element-name anchoring to avoid Lepus europaeus / Salicornia europaea / Russia:Samara false positives
+
+**Location**: `projects/lanthanide_methylotrophy_atlas/` (branch: `projects/rare_earth_metals`)
+
+---
+
