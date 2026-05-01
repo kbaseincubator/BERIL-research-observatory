@@ -40,7 +40,7 @@ def test_ingest_all_adds_index_project_and_docs(tmp_path: Path) -> None:
     ingest_all(make_config(tmp_path), client)
 
     targets = [target for _, target in client.added]
-    assert "viking://resources/projects/" in targets
+    assert "viking://resources/project_index/" in targets
     assert "viking://resources/projects/demo/" in targets
     assert "viking://resources/docs/pitfalls/" in targets
     assert client.wait_count == 1
@@ -62,7 +62,7 @@ def test_ingest_changed_skips_unchanged_then_ingests_modified(tmp_path: Path) ->
 
     assert [target for _, target in client.added] == [
         "viking://resources/projects/demo/",
-        "viking://resources/projects/",
+        "viking://resources/project_index/",
     ]
 
 
@@ -79,7 +79,7 @@ def test_ingest_changed_removes_deleted_project_and_refreshes_index(tmp_path: Pa
     ingest_changed(config, client)
 
     assert client.removed == [("viking://resources/projects/demo/", True)]
-    assert [target for _, target in client.added] == ["viking://resources/projects/"]
+    assert [target for _, target in client.added] == ["viking://resources/project_index/"]
 
 
 def test_resolve_project_dir_rejects_missing_and_path_like_ids(tmp_path: Path) -> None:

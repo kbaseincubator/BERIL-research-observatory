@@ -55,6 +55,7 @@ Use per-project stable targets:
 ```text
 viking://resources/projects/{project_id}/
 viking://resources/docs/{doc_slug}/
+viking://resources/project_index/
 ```
 
 This keeps incremental updates small and makes project-scoped queries explicit.
@@ -151,8 +152,10 @@ leaving them blank in the generated Markdown.
 |---|---|---|---|
 ```
 
-The index is ingested to `viking://resources/projects/` so broad metadata
-queries can retrieve a concentrated source before searching every project.
+The index is ingested to `viking://resources/project_index/` so broad metadata
+queries can retrieve a concentrated source before searching every project. This
+keeps the generated index target separate from `viking://resources/projects/`
+and avoids parent/child subtree lock overlap during batch ingestion.
 
 The source project files are not modified.
 
@@ -324,7 +327,7 @@ Defaults:
 - `find` targets `viking://resources/projects/`.
 - `--project {project_id}` targets `viking://resources/projects/{project_id}/`.
 - `--docs` targets `viking://resources/docs/`.
-- `--metadata` prioritizes `viking://resources/projects/PROJECT_INDEX.md` or the
+- `--metadata` prioritizes `viking://resources/project_index/` or the
   project metadata layer where possible.
 - `--target-uri` allows raw OpenViking URI targeting.
 

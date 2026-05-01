@@ -5,7 +5,11 @@ from types import SimpleNamespace
 
 import pytest
 
-from observatory_context.config import DOCS_TARGET_URI, PROJECTS_TARGET_URI
+from observatory_context.config import (
+    DOCS_TARGET_URI,
+    PROJECT_INDEX_TARGET_URI,
+    PROJECTS_TARGET_URI,
+)
 from observatory_context.query import (
     format_find_text,
     result_to_json,
@@ -26,7 +30,7 @@ def test_target_uri_for_find_prefers_raw_project_docs_then_projects_root() -> No
     )
     assert target_uri_for_find("alpha", True, True, None) == f"{PROJECTS_TARGET_URI}alpha/"
     assert target_uri_for_find(None, True, True, None) == DOCS_TARGET_URI
-    assert target_uri_for_find(None, False, True, None) == PROJECTS_TARGET_URI
+    assert target_uri_for_find(None, False, True, None) == PROJECT_INDEX_TARGET_URI
     assert target_uri_for_find(None, False, False, None) == PROJECTS_TARGET_URI
 
 

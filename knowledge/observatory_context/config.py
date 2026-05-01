@@ -7,6 +7,7 @@ from pathlib import Path
 
 DEFAULT_OPENVIKING_URL = "http://localhost:1933"
 PROJECTS_TARGET_URI = "viking://resources/projects/"
+PROJECT_INDEX_TARGET_URI = "viking://resources/project_index/"
 DOCS_TARGET_URI = "viking://resources/docs/"
 
 

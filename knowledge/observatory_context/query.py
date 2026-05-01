@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from typing import Any
 
-from .config import DOCS_TARGET_URI, PROJECTS_TARGET_URI
+from .config import DOCS_TARGET_URI, PROJECT_INDEX_TARGET_URI, PROJECTS_TARGET_URI
 from .selection import project_target_uri
 
 
@@ -20,7 +20,7 @@ def target_uri_for_find(
     if docs:
         return DOCS_TARGET_URI
     if metadata:
-        return PROJECTS_TARGET_URI
+        return PROJECT_INDEX_TARGET_URI
     return PROJECTS_TARGET_URI
 
 

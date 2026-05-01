@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from .config import PROJECTS_TARGET_URI, ContextConfig
+from .config import PROJECT_INDEX_TARGET_URI, PROJECTS_TARGET_URI, ContextConfig
 from .manifest import (
     build_manifest,
     changed_targets,
@@ -27,7 +27,7 @@ MANIFEST_FILENAME = "context_manifest.json"
 def ingest_all(config: ContextConfig, client: Any) -> None:
     project_dirs = iter_project_dirs(config.projects_dir)
     project_index = stage_project_index(project_dirs, config.staging_dir)
-    _add_resource(client, project_index, PROJECTS_TARGET_URI, "BERIL project index")
+    _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
 
     for project_dir in project_dirs:
         _ingest_project_dir(config, client, project_dir)
@@ -64,7 +64,7 @@ def ingest_changed(config: ContextConfig, client: Any) -> None:
 
     if project_targets_changed:
         project_index = stage_project_index(list(project_dirs.values()), config.staging_dir)
-        _add_resource(client, project_index, PROJECTS_TARGET_URI, "BERIL project index")
+        _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
 
     if targets or removed:
         client.wait_processed()
@@ -75,7 +75,7 @@ def ingest_project(config: ContextConfig, client: Any, project_id: str) -> None:
     project_dir = resolve_project_dir(config, project_id)
     _ingest_project_dir(config, client, project_dir)
     project_index = stage_project_index(iter_project_dirs(config.projects_dir), config.staging_dir)
-    _add_resource(client, project_index, PROJECTS_TARGET_URI, "BERIL project index")
+    _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
     client.wait_processed()
     save_manifest(_manifest_path(config), _current_manifest(config))
 

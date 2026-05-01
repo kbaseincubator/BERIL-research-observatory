@@ -1,6 +1,7 @@
 from observatory_context.config import (
     DEFAULT_OPENVIKING_URL,
     DOCS_TARGET_URI,
+    PROJECT_INDEX_TARGET_URI,
     PROJECTS_TARGET_URI,
     ContextConfig,
 )
@@ -16,6 +17,7 @@ __all__ = [
     "ContextConfig",
     "DEFAULT_OPENVIKING_URL",
     "DOCS_TARGET_URI",
+    "PROJECT_INDEX_TARGET_URI",
     "PROJECTS_TARGET_URI",
     "docs_target_uri",
     "iter_project_dirs",
