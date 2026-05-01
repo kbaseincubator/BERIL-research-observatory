@@ -105,7 +105,7 @@ Create `knowledge/openviking/ov.conf.example`:
     "provider": "openai",
     "api_key": "replace-with-openrouter-api-key",
     "api_base": "https://openrouter.ai/api/v1",
-    "model": "openai/gpt-5.4",
+    "model": "google/gemini-3-flash-preview",
     "temperature": 0.0,
     "max_retries": 2,
     "extra_headers": {
