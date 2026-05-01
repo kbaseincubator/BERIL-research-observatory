@@ -107,11 +107,23 @@ def ingest_project(
     *,
     observer: IngestObserver | None = None,
 ) -> None:
+    ingest_projects(config, client, [project_id], observer=observer)
+
+
+def ingest_projects(
+    config: ContextConfig,
+    client: Any,
+    project_ids: list[str],
+    *,
+    observer: IngestObserver | None = None,
+) -> None:
     obs = observer or NullObserver()
-    project_dir = resolve_project_dir(config, project_id)
-    obs.start(total=2)
-    _ingest_project_dir(config, client, project_dir)
-    obs.advance(project_id)
+    project_dirs = [resolve_project_dir(config, project_id) for project_id in project_ids]
+    obs.start(total=len(project_dirs) + 1)
+    for project_dir in project_dirs:
+        _ingest_project_dir(config, client, project_dir)
+        obs.advance(project_dir.name)
+
     project_index = stage_project_index(iter_project_dirs(config.projects_dir), config.staging_dir)
     _add_resource(client, project_index, PROJECT_INDEX_TARGET_URI, "BERIL project index")
     obs.advance("project_index")

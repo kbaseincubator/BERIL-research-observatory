@@ -20,7 +20,7 @@ from rich.rule import Rule
 from rich.table import Table
 
 from observatory_context.config import ContextConfig
-from observatory_context.ingest import ingest_project
+from observatory_context.ingest import ingest_projects
 from observatory_context.openviking_client import create_client
 from observatory_context.progress import RichIngestObserver
 from observatory_context.query import _field, _resources
@@ -70,8 +70,12 @@ def main() -> None:
     client = create_client(config)
     try:
         with RichIngestObserver(console=console) as observer:
-            for project_dir in project_dirs:
-                ingest_project(config, client, project_dir.name, observer=observer)
+            ingest_projects(
+                config,
+                client,
+                [project_dir.name for project_dir in project_dirs],
+                observer=observer,
+            )
 
         console.print()
         console.print(Rule("[bold green]Query results[/bold green]"))

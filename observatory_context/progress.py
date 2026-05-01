@@ -70,6 +70,9 @@ class RichIngestObserver:
             self._task_id = self._progress.add_task(
                 "Ingesting", total=max(total, 1), label=""
             )
+            return
+        existing = self._progress.tasks[self._task_id].total or 0
+        self._progress.update(self._task_id, total=existing + max(total, 0))
 
     def advance(self, label: str) -> None:
         if self._task_id is not None:
@@ -79,8 +82,6 @@ class RichIngestObserver:
         self._progress.console.log(message)
 
     def wait_processed(self, client: Any) -> None:
-        from rich.progress import TaskProgressColumn
-
         wait_id = self._progress.add_task(
             "Waiting on OpenViking queue", total=None, label="pending=? in_progress=?"
         )

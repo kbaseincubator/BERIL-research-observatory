@@ -2,6 +2,7 @@ from rich.console import Console
 
 from observatory_context.progress import (
     NullObserver,
+    RichIngestObserver,
     _summarise_queue,
     render_status,
 )
@@ -75,6 +76,21 @@ def test_summarise_queue_parses_total_line() -> None:
 
 def test_summarise_queue_handles_missing_queue() -> None:
     assert _summarise_queue({}) == "polling..."
+
+
+def test_rich_observer_start_is_additive_across_repeated_calls() -> None:
+    observer = RichIngestObserver(console=Console(record=True, file=open("/dev/null", "w")))
+    with observer:
+        observer.start(2)
+        observer.advance("a")
+        observer.advance("b")
+        observer.start(3)
+        observer.advance("c")
+        observer.advance("d")
+        observer.advance("e")
+        task = observer._progress.tasks[observer._task_id]
+        assert task.total == 5
+        assert task.completed == 5
 
 
 def test_null_observer_delegates_wait_to_client() -> None:

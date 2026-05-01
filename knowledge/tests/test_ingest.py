@@ -3,7 +3,12 @@ from pathlib import Path
 from observatory_context.config import ContextConfig
 import pytest
 
-from observatory_context.ingest import ingest_all, ingest_changed, resolve_project_dir
+from observatory_context.ingest import (
+    ingest_all,
+    ingest_changed,
+    ingest_projects,
+    resolve_project_dir,
+)
 
 
 class FakeClient:
@@ -80,6 +85,20 @@ def test_ingest_changed_removes_deleted_project_and_refreshes_index(tmp_path: Pa
 
     assert client.removed == [("viking://resources/projects/demo/", True)]
     assert [target for _, target in client.added] == ["viking://resources/project_index/"]
+
+
+def test_ingest_projects_uploads_all_projects_and_one_index_with_one_wait(tmp_path: Path) -> None:
+    write(tmp_path / "projects" / "alpha" / "README.md", "# A\n")
+    write(tmp_path / "projects" / "beta" / "README.md", "# B\n")
+    client = FakeClient()
+
+    ingest_projects(make_config(tmp_path), client, ["alpha", "beta"])
+
+    targets = [target for _, target in client.added]
+    assert "viking://resources/projects/alpha/" in targets
+    assert "viking://resources/projects/beta/" in targets
+    assert targets.count("viking://resources/project_index/") == 1
+    assert client.wait_count == 1
 
 
 def test_resolve_project_dir_rejects_missing_and_path_like_ids(tmp_path: Path) -> None:
