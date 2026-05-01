@@ -14,9 +14,9 @@ Use the OpenViking context layer for fast recall across project reports, researc
 Use `knowledge/scripts/knowledge_query.py` from the repo root:
 
 ```bash
-uv run --group knowledge python knowledge/scripts/knowledge_query.py find "query terms"
-uv run --group knowledge python knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
-uv run --group knowledge python knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
+uv run knowledge/scripts/knowledge_query.py find "query terms"
+uv run knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
+uv run knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
 ```
 
 - `find` searches for relevant context before manual file reads.
@@ -26,9 +26,9 @@ uv run --group knowledge python knowledge/scripts/knowledge_query.py read viking
 Scope queries narrowly when possible:
 
 ```bash
-uv run --group knowledge python knowledge/scripts/knowledge_query.py find "query terms" --project <project_id>
-uv run --group knowledge python knowledge/scripts/knowledge_query.py find "query terms" --docs
-uv run --group knowledge python knowledge/scripts/knowledge_query.py find "query terms" --metadata
+uv run knowledge/scripts/knowledge_query.py find "query terms" --project <project_id>
+uv run knowledge/scripts/knowledge_query.py find "query terms" --docs
+uv run knowledge/scripts/knowledge_query.py find "query terms" --metadata
 ```
 
 Use project scope for `projects/{id}` context, docs scope for central docs like pitfalls/discoveries/research ideas, and metadata scope when you need project status, authors, titles, branches, or manifest-level facts.
@@ -38,9 +38,9 @@ Use project scope for `projects/{id}` context, docs scope for central docs like 
 Run ingestion after durable context changes so OpenViking stays current:
 
 ```bash
-uv run --group knowledge python knowledge/scripts/ingest_context.py --project <project_id>
-uv run --group knowledge python knowledge/scripts/ingest_context.py --changed
-uv run --group knowledge python knowledge/scripts/ingest_context.py --all
+uv run knowledge/scripts/ingest_context.py --project <project_id>
+uv run knowledge/scripts/ingest_context.py --changed
+uv run knowledge/scripts/ingest_context.py --all
 ```
 
 - Use `--project <project_id>` after updating one project.
@@ -62,5 +62,5 @@ After the server is running, use the smoke test to ingest and query the five
 most recently modified projects:
 
 ```bash
-uv run --group knowledge python knowledge/scripts/smoke_ingest_openviking.py
+uv run knowledge/scripts/smoke_ingest_openviking.py
 ```

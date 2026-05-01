@@ -37,7 +37,7 @@ by git. The API key belongs only in the ignored local config, not in
 With the server running in another terminal:
 
 ```bash
-uv run --group knowledge python knowledge/scripts/smoke_ingest_openviking.py
+uv run knowledge/scripts/smoke_ingest_openviking.py
 ```
 
 By default this ingests the five most recently modified projects and prints up
@@ -48,10 +48,10 @@ to three query results for each.
 Run from the repo root:
 
 ```bash
-uv run --group knowledge python knowledge/scripts/ingest_context.py --all
-uv run --group knowledge python knowledge/scripts/ingest_context.py --changed
-uv run --group knowledge python knowledge/scripts/ingest_context.py --project <project_id>
-uv run --group knowledge python knowledge/scripts/ingest_context.py --docs
+uv run knowledge/scripts/ingest_context.py --all
+uv run knowledge/scripts/ingest_context.py --changed
+uv run knowledge/scripts/ingest_context.py --project <project_id>
+uv run knowledge/scripts/ingest_context.py --docs
 ```
 
 Use `--all` for initial setup, `--changed` for routine refreshes, `--project`
@@ -63,12 +63,12 @@ The ingest path uses batch-style OpenViking calls: resources are queued with
 ## Querying
 
 ```bash
-uv run --group knowledge python knowledge/scripts/knowledge_query.py find "query terms"
-uv run --group knowledge python knowledge/scripts/knowledge_query.py find "query terms" --project <project_id>
-uv run --group knowledge python knowledge/scripts/knowledge_query.py find "query terms" --docs
-uv run --group knowledge python knowledge/scripts/knowledge_query.py find "query terms" --metadata
-uv run --group knowledge python knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
-uv run --group knowledge python knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
+uv run knowledge/scripts/knowledge_query.py find "query terms"
+uv run knowledge/scripts/knowledge_query.py find "query terms" --project <project_id>
+uv run knowledge/scripts/knowledge_query.py find "query terms" --docs
+uv run knowledge/scripts/knowledge_query.py find "query terms" --metadata
+uv run knowledge/scripts/knowledge_query.py overview viking://resources/projects/<project_id>/
+uv run knowledge/scripts/knowledge_query.py read viking://resources/projects/<project_id>/REPORT.md
 ```
 
 Target layout:

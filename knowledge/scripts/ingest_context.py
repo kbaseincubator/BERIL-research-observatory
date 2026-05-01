@@ -1,6 +1,18 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#     "openviking",
+#     "pyyaml",
+# ]
+# ///
 from __future__ import annotations
 
 import argparse
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
 from observatory_context.config import ContextConfig
 from observatory_context.ingest import (
