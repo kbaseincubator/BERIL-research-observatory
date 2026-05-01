@@ -1619,7 +1619,8 @@ Expected: both commands print help and exit successfully.
 
 - [ ] **Step 4: Optional local OpenViking smoke test**
 
-Only run this if a local OpenViking server is configured and running:
+Only run this if a local OpenViking server is configured and running. The smoke
+test ingests and queries the five most recently modified projects:
 
 ```bash
 openviking-server doctor --config knowledge/openviking/ov.conf

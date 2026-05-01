@@ -58,8 +58,8 @@ openviking-server doctor --config knowledge/openviking/ov.conf
 openviking-server --config knowledge/openviking/ov.conf
 ```
 
-After the server is running, use the small smoke test before ingesting project
-content:
+After the server is running, use the smoke test to ingest and query the five
+most recently modified projects:
 
 ```bash
 uv run --group knowledge python knowledge/scripts/smoke_ingest_openviking.py

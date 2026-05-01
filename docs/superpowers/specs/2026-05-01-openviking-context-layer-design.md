@@ -398,7 +398,8 @@ Add focused tests for:
 - Query output formatting with mocked OpenViking result objects.
 
 Tests should not require a running OpenViking server. A manual smoke test should
-be documented for local OpenViking:
+be documented for local OpenViking. It should ingest and query the five most
+recently modified projects:
 
 ```bash
 openviking-server doctor --config knowledge/openviking/ov.conf

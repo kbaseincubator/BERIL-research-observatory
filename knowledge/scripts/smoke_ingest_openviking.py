@@ -7,67 +7,54 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from observatory_context.config import ContextConfig
+from observatory_context.ingest import ingest_project
 from observatory_context.openviking_client import create_client
 from observatory_context.query import format_find_text
-
-
-DEFAULT_TARGET_URI = "viking://resources/smoke/openviking_context/"
-SMOKE_FILENAME = "OPENVIKING_SMOKE.md"
+from observatory_context.selection import iter_project_dirs, project_target_uri
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Run a tiny OpenViking ingestion smoke test")
-    parser.add_argument("--target-uri", default=DEFAULT_TARGET_URI)
-    parser.add_argument("--timeout", type=float, default=300.0)
-    parser.add_argument("--keep", action="store_true", help="Keep the smoke target after the test")
+    parser = argparse.ArgumentParser(description="Ingest and query the latest BERIL projects")
+    parser.add_argument("--count", type=int, default=5, help="Number of latest projects to ingest")
+    parser.add_argument("--limit", type=int, default=3, help="Maximum query results per project")
     return parser
 
 
 def main() -> None:
     args = build_parser().parse_args()
     config = ContextConfig.from_env()
-    smoke_dir = config.staging_dir / "smoke"
-    smoke_dir.mkdir(parents=True, exist_ok=True)
-    smoke_path = smoke_dir / SMOKE_FILENAME
-    smoke_path.write_text(
-        "\n".join(
-            [
-                "# BERIL OpenViking smoke test",
-                "",
-                "This temporary document verifies local OpenViking ingestion.",
-                "Unique marker: beril-openviking-smoke-context-layer.",
-            ]
-        ),
-        encoding="utf-8",
-    )
+    project_dirs = latest_project_dirs(config.projects_dir, args.count)
+    if not project_dirs:
+        raise SystemExit("No projects found")
+
+    print("Smoke test projects:")
+    for project_dir in project_dirs:
+        print(f"- {project_dir.name}")
 
     client = create_client(config)
     try:
-        client.add_resource(
-            path=str(smoke_path),
-            to=args.target_uri,
-            reason="BERIL OpenViking smoke test",
-            wait=False,
-        )
-        client.wait_processed(timeout=args.timeout)
+        for project_dir in project_dirs:
+            ingest_project(config, client, project_dir.name)
 
-        smoke_uri = f"{args.target_uri.rstrip('/')}/{SMOKE_FILENAME}"
-        print(client.read(smoke_uri))
-        print()
-        print(
-            format_find_text(
-                client.find(
-                    query="beril openviking smoke context layer",
-                    target_uri=args.target_uri,
-                    limit=3,
-                )
+        for project_dir in project_dirs:
+            print()
+            print(f"## {project_dir.name}")
+            result = client.find(
+                query=project_dir.name.replace("_", " "),
+                target_uri=project_target_uri(project_dir.name),
+                limit=args.limit,
             )
-        )
-
-        if not args.keep:
-            client.rm(args.target_uri, recursive=True)
+            print(format_find_text(result))
     finally:
         client.close()
+
+
+def latest_project_dirs(projects_dir: Path, count: int) -> list[Path]:
+    return sorted(
+        iter_project_dirs(projects_dir),
+        key=lambda path: (path.stat().st_mtime, path.name),
+        reverse=True,
+    )[:count]
 
 
 if __name__ == "__main__":
