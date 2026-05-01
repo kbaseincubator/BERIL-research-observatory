@@ -49,11 +49,18 @@ uv run --group knowledge python knowledge/scripts/ingest_context.py --all
 
 `OPENVIKING_URL` defaults to `http://localhost:1933`. Set `OPENVIKING_API_KEY` when the server requires an API key.
 
-For a local OpenViking server, copy `knowledge/openviking/ov.conf.example` to `~/.openviking/ov.conf` and set the OpenRouter key in the embedding and VLM sections. Set `OPENVIKING_API_KEY` only when the server is configured to require a user key.
+For a local OpenViking server, copy `knowledge/openviking/ov.conf.example` to `knowledge/openviking/ov.conf` and set the OpenRouter key in the embedding and VLM sections. Set `OPENVIKING_API_KEY` only when the server is configured to require a user key.
 
 Validate local server configuration before ingesting:
 
 ```bash
-openviking-server doctor
-openviking-server --config ~/.openviking/ov.conf
+openviking-server doctor --config knowledge/openviking/ov.conf
+openviking-server --config knowledge/openviking/ov.conf
+```
+
+After the server is running, use the small smoke test before ingesting project
+content:
+
+```bash
+uv run --group knowledge python knowledge/scripts/smoke_ingest_openviking.py
 ```

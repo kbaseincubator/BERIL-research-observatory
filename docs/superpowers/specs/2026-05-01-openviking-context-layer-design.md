@@ -199,16 +199,16 @@ generation, vector indexing, semantic search, and incremental resource diffing.
 
 ## OpenViking Server Configuration
 
-OpenViking server configuration lives in `~/.openviking/ov.conf` at runtime.
-This file should not be committed with real API keys. The implementation should
-commit a template at:
+OpenViking server configuration lives in `knowledge/openviking/ov.conf` for
+local branch development. This file should not be committed with real API keys.
+The implementation should commit a template at:
 
 ```text
 knowledge/openviking/ov.conf.example
 ```
 
 The template should document the required settings and provide a working local
-shape that users can copy to `~/.openviking/ov.conf`.
+shape that users can copy to `knowledge/openviking/ov.conf`.
 
 OpenViking needs two model capabilities:
 
@@ -267,9 +267,9 @@ working `ov.conf`.
 For local development:
 
 ```bash
-cp knowledge/openviking/ov.conf.example ~/.openviking/ov.conf
-openviking-server doctor
-openviking-server --config ~/.openviking/ov.conf
+cp knowledge/openviking/ov.conf.example knowledge/openviking/ov.conf
+openviking-server doctor --config knowledge/openviking/ov.conf
+openviking-server --config knowledge/openviking/ov.conf
 export OPENVIKING_URL=http://localhost:1933
 ```
 
@@ -399,8 +399,9 @@ Tests should not require a running OpenViking server. A manual smoke test should
 be documented for local OpenViking:
 
 ```bash
-openviking-server doctor
-openviking-server --config ~/.openviking/ov.conf
+openviking-server doctor --config knowledge/openviking/ov.conf
+openviking-server --config knowledge/openviking/ov.conf
+uv run python knowledge/scripts/smoke_ingest_openviking.py
 uv run python knowledge/scripts/ingest_context.py --project metal_cross_resistance
 uv run python knowledge/scripts/knowledge_query.py find "metal cross resistance" --project metal_cross_resistance
 ```

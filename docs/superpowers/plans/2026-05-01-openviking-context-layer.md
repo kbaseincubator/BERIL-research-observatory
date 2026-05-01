@@ -1525,11 +1525,12 @@ The scripts connect to OpenViking through:
 export OPENVIKING_URL=http://localhost:1933
 ```
 
-For local OpenViking, copy `knowledge/openviking/ov.conf.example` to `~/.openviking/ov.conf`, add the OpenRouter API key, then run:
+For local OpenViking, copy `knowledge/openviking/ov.conf.example` to `knowledge/openviking/ov.conf`, add the OpenRouter API key, then run:
 
 ```bash
-openviking-server doctor
-openviking-server --config ~/.openviking/ov.conf
+openviking-server doctor --config knowledge/openviking/ov.conf
+openviking-server --config knowledge/openviking/ov.conf
+uv run --group knowledge python knowledge/scripts/smoke_ingest_openviking.py
 ```
 ```
 
@@ -1621,9 +1622,10 @@ Expected: both commands print help and exit successfully.
 Only run this if a local OpenViking server is configured and running:
 
 ```bash
-openviking-server doctor
+openviking-server doctor --config knowledge/openviking/ov.conf
+openviking-server --config knowledge/openviking/ov.conf
 export OPENVIKING_URL=http://localhost:1933
-export OPENVIKING_API_KEY=replace-with-local-dev-key
+uv run --group knowledge python knowledge/scripts/smoke_ingest_openviking.py
 PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/ingest_context.py --project metal_cross_resistance
 PYTHONPATH=knowledge uv run --group knowledge python knowledge/scripts/knowledge_query.py find "metal cross resistance" --project metal_cross_resistance
 ```
