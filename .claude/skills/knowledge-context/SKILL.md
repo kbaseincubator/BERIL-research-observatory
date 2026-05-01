@@ -58,6 +58,8 @@ uv run --group knowledge openviking-server doctor --config knowledge/openviking/
 uv run --group knowledge openviking-server --config knowledge/openviking/ov.conf
 ```
 
+The query/ingest scripts probe `OPENVIKING_URL` before running. If the server isn't reachable they exit cleanly with the start command above (for local URLs) or a "verify URL" hint (for remote URLs) — no Python traceback.
+
 After the server is running, use the smoke test to ingest and query the five
 most recently modified projects:
 
