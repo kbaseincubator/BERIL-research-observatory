@@ -2,7 +2,7 @@
   "server": {
     "host": "127.0.0.1",
     "port": 1933,
-    "root_api_key": "replace-with-local-dev-key"
+    "auth_mode": "api_key"
   },
   "storage": {
     "workspace": "~/.openviking/beril-context"

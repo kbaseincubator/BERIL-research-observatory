@@ -227,7 +227,7 @@ OpenViking's OpenAI-compatible provider support:
   "server": {
     "host": "127.0.0.1",
     "port": 1933,
-    "root_api_key": "replace-with-local-dev-key"
+    "auth_mode": "api_key"
   },
   "storage": {
     "workspace": "~/.openviking/beril-context"
@@ -272,7 +272,6 @@ cp knowledge/openviking/ov.conf.example ~/.openviking/ov.conf
 openviking-server doctor
 openviking-server start
 export OPENVIKING_URL=http://localhost:1933
-export OPENVIKING_API_KEY=replace-with-local-dev-key
 ```
 
 For production, OpenViking may run remotely. In that case, `ov.conf` belongs on
