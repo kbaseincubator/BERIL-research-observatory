@@ -4,7 +4,46 @@ This branch uses OpenViking as the BERIL knowledge context layer. It ingests
 curated project reports and central docs, then exposes `find`, `overview`, and
 `read` queries for agents and humans.
 
-## Local Setup
+## Client Configuration
+
+Copy the env template and edit if you need to point at a non-default server:
+
+```bash
+cp .env.example .env
+```
+
+The relevant entries:
+
+- `OPENVIKING_URL` — defaults to `http://127.0.0.1:1933`, matching the host and
+  port in `knowledge/openviking/ov.conf.example`.
+- `OPENVIKING_API_KEY` — leave commented for local dev; set it only when the
+  OpenViking server enforces client auth (typical for remote/prod deployments).
+
+The three context scripts (`ingest_context.py`, `knowledge_query.py`,
+`smoke_ingest_openviking.py`) are PEP 723 self-bootstrapping. Pass `.env` via
+`uv run --env-file .env ...` and the scripts install their own deps in an
+isolated venv — no `uv sync` or `--group knowledge` activation needed.
+
+### Remote OpenViking
+
+To query a remote server, point `OPENVIKING_URL` at it and set the API key the
+server expects:
+
+```bash
+# .env
+OPENVIKING_URL=https://openviking.prod.example
+OPENVIKING_API_KEY=<token>
+```
+
+`config.py::ContextConfig.from_env()` reads both via `os.getenv`, so any
+process loading `.env` (direnv, `--env-file`, `export`) routes the scripts to
+the remote endpoint without code changes. Read-only queries (`find`,
+`overview`, `read`) don't touch `knowledge/state/context_manifest.json`, so
+multiple clients can share a remote server safely. For ingestion, the manifest
+is per-machine; pick one host as the writer or accept that `--changed` may
+re-push files the server already has (idempotent, just wasted work).
+
+## Local Server Setup
 
 Create the local config:
 
@@ -76,10 +115,3 @@ Target layout:
 - Projects: `viking://resources/projects/<project_id>/`
 - Central docs: `viking://resources/docs/<doc_slug>/`
 - Project metadata/index: `viking://resources/project_index/`
-
-Configuration lives in `.env` (copy `.env.example`): `OPENVIKING_URL` defaults
-to `http://127.0.0.1:1933` and matches the host/port in `ov.conf.example`.
-`OPENVIKING_API_KEY` is only needed when the OpenViking server itself enforces
-client authentication (typically remote/prod). Pass the file to scripts via
-`uv run --env-file .env ...`.
-
