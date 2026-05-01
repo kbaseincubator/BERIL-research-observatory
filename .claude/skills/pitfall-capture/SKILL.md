@@ -105,6 +105,7 @@ Then **resume the original task** — pitfall capture should not derail the user
 
 ## Important Notes
 
+- **Knowledge Context Integration.** When a pitfall belongs to a specific project and that project has a durable documentation location, prefer project-local documentation so incremental `ingest_context.py` keeps OpenViking current. Otherwise document it in `docs/pitfalls.md`.
 - **Don't interrupt flow unnecessarily.** If the issue is minor and you already know the fix, apply the fix first, then ask about documenting it. The user's primary task always comes first.
 - **One pitfall at a time.** If multiple issues arise, handle each separately to avoid overwhelming the user.
 - **Be specific.** Vague entries like "queries can be slow" are not useful. Include the exact table, the exact error, the exact fix.

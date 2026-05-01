@@ -196,6 +196,7 @@ After completing the synthesis, tell the user:
 
 ## Integration
 
+- **Knowledge context**: After updating `REPORT.md`, `README.md`, or references, run or suggest `knowledge/scripts/ingest_context.py --project <project_id>` so OpenViking picks up the project changes incrementally.
 - **Reads from**: `data/*.csv`, `figures/`, `notebooks/*.ipynb`, `RESEARCH_PLAN.md`, `references.md`
 - **Calls**: `/literature-review` (for literature comparison)
 - **Produces**: `REPORT.md` (Key Findings, Results, Interpretation, Supporting Evidence, Future Directions, References); updated `README.md` (Status)

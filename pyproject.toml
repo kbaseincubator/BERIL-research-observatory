@@ -9,6 +9,16 @@ dependencies = []
 [project.scripts]
 beril = "beril_cli.cli:main"
 
+[dependency-groups]
+knowledge = [
+  "openviking",
+  "pyyaml",
+  "pytest",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["knowledge"]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"

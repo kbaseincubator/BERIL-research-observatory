@@ -1,0 +1,34 @@
+{
+  "server": {
+    "host": "127.0.0.1",
+    "port": 1933,
+    "root_api_key": "replace-with-local-dev-key"
+  },
+  "storage": {
+    "workspace": "~/.openviking/beril-context"
+  },
+  "embedding": {
+    "dense": {
+      "provider": "openai",
+      "api_key": "replace-with-openrouter-api-key",
+      "api_base": "https://openrouter.ai/api/v1",
+      "model": "openai/text-embedding-3-small",
+      "dimension": 1536
+    }
+  },
+  "vlm": {
+    "provider": "openai",
+    "api_key": "replace-with-openrouter-api-key",
+    "api_base": "https://openrouter.ai/api/v1",
+    "model": "openai/gpt-4o-mini",
+    "temperature": 0.0,
+    "max_retries": 2,
+    "extra_headers": {
+      "HTTP-Referer": "https://github.com/kbaseincubator/BERIL-research-observatory",
+      "X-Title": "BERIL Research Observatory"
+    }
+  },
+  "log": {
+    "level": "INFO"
+  }
+}

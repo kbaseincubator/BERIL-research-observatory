@@ -198,6 +198,7 @@ If no, leave no files modified.
 
 ## Integration
 
+- **Knowledge context**: `.claude/skills/knowledge-context/SKILL.md` and `knowledge/scripts/knowledge_query.py` may be used for a quick OpenViking-backed scan before manual file reads.
 - **Reads from**: `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `projects/*/README.md`, `projects/*/REPORT.md`
 - **Calls**: `/literature-review` (Step 9, for novelty check on top candidate); `/berdl_start` (Step 11, if user confirms the idea)
 - **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry only — never edits existing entries)
