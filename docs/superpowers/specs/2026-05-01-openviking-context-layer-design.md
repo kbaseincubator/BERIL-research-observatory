@@ -209,6 +209,8 @@ knowledge/openviking/ov.conf.example
 
 The template should document the required settings and provide a working local
 shape that users can copy to `knowledge/openviking/ov.conf`.
+The real `knowledge/openviking/ov.conf` and generated
+`knowledge/openviking/workspace/` should be ignored by git.
 
 OpenViking needs two model capabilities:
 
@@ -229,7 +231,7 @@ OpenViking's OpenAI-compatible provider support:
     "port": 1933
   },
   "storage": {
-    "workspace": "~/.openviking/beril-context"
+    "workspace": "knowledge/openviking/workspace"
   },
   "embedding": {
     "dense": {

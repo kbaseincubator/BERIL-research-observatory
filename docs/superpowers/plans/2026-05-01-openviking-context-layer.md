@@ -90,7 +90,7 @@ Create `knowledge/openviking/ov.conf.example`:
     "port": 1933
   },
   "storage": {
-    "workspace": "~/.openviking/beril-context"
+    "workspace": "knowledge/openviking/workspace"
   },
   "embedding": {
     "dense": {
