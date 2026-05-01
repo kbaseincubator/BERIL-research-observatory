@@ -6,7 +6,9 @@ Within the Bacillota_B phylum (Desulfosporosinus, BRH-c8a Peptococcaceae, BRH-c4
 
 ## Status
 
-In Progress — research plan written; cohort assembly (NB01) is the next step.
+Complete — see [Report](REPORT.md) for findings.
+
+**Headline**: H1 strongly supported (547 anchor-enriched eggNOG OGs falling into all 5 pre-registered functional categories). H2 not supported — opposite direction (anchor 35% LARGER, not smaller; +1.4 SD on genome size, p≤0.025), consistent with Beaver & Neufeld 2024 self-sufficiency. Phase 1 clay correction shows the original H3 IR-side analysis was artefactual (mismatched KOs) — corrected multi-heme cytochrome detection finds no significant cohort difference; clay project's SR-side H3 stands but IR-side narrative needs withdrawal.
 
 ## Overview
 
@@ -21,7 +23,32 @@ The companion `clay_confined_subsurface` project (PR #227, merged) found that wi
 
 ## Reproduction
 
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+### Prerequisites
+- Python 3.10+ with `pandas`, `numpy`, `pyarrow`, `scipy`, `statsmodels`, `matplotlib`
+- BERDL JupyterHub access (`berdl_notebook_utils.setup_spark_session.get_spark_session`) for NB01–04, NB06 (Spark queries against `kbase_ke_pangenome`)
+- `KBASE_AUTH_TOKEN` set in repo `.env`
+- Companion data from `clay_confined_subsurface/data/` (genome_features.parquet, baseline_features.parquet) for NB06 IR correction
+
+### Steps
+```bash
+cd projects/bacillota_b_subsurface_accessory
+
+# Spark-dependent (run on BERDL JupyterHub)
+jupyter nbconvert --to notebook --execute --inplace notebooks/01_cohort_assembly.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/02_og_presence.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/04_og_annotation.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/06_clay_h3_correction.ipynb
+
+# Local pandas/scipy
+jupyter nbconvert --to notebook --execute --inplace notebooks/03_og_enrichment.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/05_h2_compactness.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/07_synthesis.ipynb
+```
+NB01 ≈ 5 min, NB02 ≈ 10–15 min (1B-row gene/junction join), NB03 ≈ 1 min, NB04 ≈ 5 min, NB05 ≈ 30 sec, NB06 ≈ 10–15 min (CXXCH motif scan on ~190-genome cluster faa_sequences in Spark), NB07 ≈ 30 sec.
+
+### Data Collections
+
+This project draws from `kbase_ke_pangenome` (gene clusters, eggNOG annotations, bakta annotations + PFAM domains, protein sequences) and `kescience_bacdive` (clay-strain expansion). Companion project: [`clay_confined_subsurface`](../clay_confined_subsurface/).
 
 ## Authors
 
