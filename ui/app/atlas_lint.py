@@ -13,7 +13,7 @@ import yaml
 
 
 @dataclass
-class WikiLintIssue:
+class AtlasLintIssue:
     """A single Atlas lint finding."""
 
     severity: str
@@ -22,14 +22,14 @@ class WikiLintIssue:
 
 
 @dataclass
-class _RawWikiPage:
+class _RawAtlasPage:
     path: str
     file: Path
     frontmatter: dict
     body: str
 
 
-REQUIRED_WIKI_FIELDS = {
+REQUIRED_ATLAS_FIELDS = {
     "id",
     "title",
     "type",
@@ -43,7 +43,7 @@ REQUIRED_WIKI_FIELDS = {
     "last_reviewed",
 }
 
-WIKI_PAGE_TYPES = {
+ATLAS_PAGE_TYPES = {
     "atlas",
     "topic",
     "data_tenant",
@@ -119,17 +119,17 @@ VALID_OPPORTUNITY_KIND = {
 VALID_OPPORTUNITY_SCORE = {"high", "medium", "low"}
 
 
-def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
+def lint_atlas(repo_path: Path | str | None = None) -> list[AtlasLintIssue]:
     """Validate Atlas frontmatter, provenance, and links."""
     repo = Path(repo_path) if repo_path else Path(__file__).resolve().parents[2]
-    wiki_dir = repo / "wiki"
-    issues: list[WikiLintIssue] = []
+    atlas_dir = repo / "atlas"
+    issues: list[AtlasLintIssue] = []
 
-    if not wiki_dir.exists():
-        return [WikiLintIssue("error", "wiki", "Atlas corpus directory does not exist")]
+    if not atlas_dir.exists():
+        return [AtlasLintIssue("error", "atlas", "Atlas corpus directory does not exist")]
 
-    raw_pages = _load_raw_pages(wiki_dir, issues)
-    page_ids: dict[str, _RawWikiPage] = {}
+    raw_pages = _load_raw_pages(atlas_dir, issues)
+    page_ids: dict[str, _RawAtlasPage] = {}
     titles: dict[str, str] = {}
     route_paths = {page.path for page in raw_pages}
     canonical_route_paths = route_paths | {
@@ -147,26 +147,26 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
     for page in raw_pages:
         fm = page.frontmatter
         rel_file = _rel(page.file, repo)
-        missing = REQUIRED_WIKI_FIELDS - set(fm)
+        missing = REQUIRED_ATLAS_FIELDS - set(fm)
         for field in sorted(missing):
-            issues.append(WikiLintIssue("error", rel_file, f"missing required field: {field}"))
+            issues.append(AtlasLintIssue("error", rel_file, f"missing required field: {field}"))
         for field in sorted(
-            REQUIRED_WIKI_FIELDS
+            REQUIRED_ATLAS_FIELDS
             - {"source_projects", "source_docs", "related_collections"}
         ):
             if field in fm and (fm[field] is None or str(fm[field]).strip() == ""):
-                issues.append(WikiLintIssue("error", rel_file, f"empty required field: {field}"))
+                issues.append(AtlasLintIssue("error", rel_file, f"empty required field: {field}"))
 
         page_id = fm.get("id")
         if page_id:
             if page_id in page_ids:
-                issues.append(WikiLintIssue("error", rel_file, f"duplicate Atlas id: {page_id}"))
+                issues.append(AtlasLintIssue("error", rel_file, f"duplicate Atlas id: {page_id}"))
             else:
                 page_ids[str(page_id)] = page
 
         page_type = fm.get("type")
-        if page_type and page_type not in WIKI_PAGE_TYPES:
-            issues.append(WikiLintIssue("error", rel_file, f"invalid page type: {page_type}"))
+        if page_type and page_type not in ATLAS_PAGE_TYPES:
+            issues.append(AtlasLintIssue("error", rel_file, f"invalid page type: {page_type}"))
 
         title = fm.get("title")
         if title:
@@ -174,7 +174,7 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
             previous_id = titles.get(normalized_title)
             if previous_id and previous_id != page_id:
                 issues.append(
-                    WikiLintIssue(
+                    AtlasLintIssue(
                         "error",
                         rel_file,
                         f"duplicate title with conflicting ids: {title}",
@@ -186,14 +186,14 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
         for project_id in source_projects:
             if project_id not in project_ids:
                 issues.append(
-                    WikiLintIssue("error", rel_file, f"unknown source project: {project_id}")
+                    AtlasLintIssue("error", rel_file, f"unknown source project: {project_id}")
                 )
 
         related_collections = _as_list(fm.get("related_collections"))
         for collection_id in related_collections:
             if collection_id not in collection_ids:
                 issues.append(
-                    WikiLintIssue(
+                    AtlasLintIssue(
                         "error",
                         rel_file,
                         f"unknown related collection: {collection_id}",
@@ -207,7 +207,7 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
             )
         if page_type == "data_type" and len(set(related_collections) & collection_ids) < 2:
             issues.append(
-                WikiLintIssue(
+                AtlasLintIssue(
                     "error",
                     rel_file,
                     "data_type pages must reference at least 2 known collections",
@@ -219,15 +219,15 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
                 continue
             source_path = source_doc.split("#", 1)[0]
             if source_path and not (repo / source_path).exists():
-                issues.append(WikiLintIssue("error", rel_file, f"missing source doc: {source_doc}"))
+                issues.append(AtlasLintIssue("error", rel_file, f"missing source doc: {source_doc}"))
 
         for related_id in _as_list(fm.get("related_pages")):
             if related_id not in page_ids and not any(p.frontmatter.get("id") == related_id for p in raw_pages):
-                issues.append(WikiLintIssue("error", rel_file, f"unknown related page id: {related_id}"))
+                issues.append(AtlasLintIssue("error", rel_file, f"unknown related page id: {related_id}"))
 
         if page_type == "topic" and len(source_projects) < 3 and len(_as_list(fm.get("source_docs"))) < 1:
             issues.append(
-                WikiLintIssue(
+                AtlasLintIssue(
                     "error",
                     rel_file,
                     "topic pages need at least 3 source projects or supporting source docs",
@@ -238,7 +238,7 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
             source_projects or _as_list(fm.get("source_docs"))
         ):
             issues.append(
-                WikiLintIssue(
+                AtlasLintIssue(
                     "error",
                     rel_file,
                     f"{page_type} pages require project or document provenance",
@@ -247,7 +247,7 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
 
         if page_type in EVIDENCE_REQUIRED_TYPES and not _has_evidence(fm):
             issues.append(
-                WikiLintIssue(
+                AtlasLintIssue(
                     "error",
                     rel_file,
                     f"{page_type} pages require evidence metadata",
@@ -265,7 +265,7 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
 
         if page_type == "topic" and not _as_list(fm.get("related_pages")):
             issues.append(
-                WikiLintIssue(
+                AtlasLintIssue(
                     "error",
                     rel_file,
                     "topic pages need related_pages for generated overview maps",
@@ -274,14 +274,14 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
 
         for href in _markdown_links(page.body):
             _check_link(
-                href, page.file, wiki_dir, canonical_route_paths, issues, rel_file
+                href, page.file, atlas_dir, canonical_route_paths, issues, rel_file
             )
 
     for missing_collection_id in sorted(snapshot_collection_ids - data_collection_coverage):
         issues.append(
-            WikiLintIssue(
+            AtlasLintIssue(
                 "error",
-                "wiki/data",
+                "atlas/data",
                 f"missing data_collection page for discovered collection: {missing_collection_id}",
             )
         )
@@ -292,9 +292,9 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
         )
         if has_section_pages and index_path not in route_paths:
             issues.append(
-                WikiLintIssue(
+                AtlasLintIssue(
                     "error",
-                    "wiki",
+                    "atlas",
                     f"missing Atlas section index page: {index_path}",
                 )
             )
@@ -302,28 +302,28 @@ def lint_wiki(repo_path: Path | str | None = None) -> list[WikiLintIssue]:
     return issues
 
 
-def _load_raw_pages(wiki_dir: Path, issues: list[WikiLintIssue]) -> list[_RawWikiPage]:
-    pages: list[_RawWikiPage] = []
-    for wiki_file in sorted(wiki_dir.rglob("*.md")):
-        if any(part.startswith(".") for part in wiki_file.relative_to(wiki_dir).parts):
+def _load_raw_pages(atlas_dir: Path, issues: list[AtlasLintIssue]) -> list[_RawAtlasPage]:
+    pages: list[_RawAtlasPage] = []
+    for atlas_file in sorted(atlas_dir.rglob("*.md")):
+        if any(part.startswith(".") for part in atlas_file.relative_to(atlas_dir).parts):
             continue
-        raw = wiki_file.read_text(encoding="utf-8")
+        raw = atlas_file.read_text(encoding="utf-8")
         match = re.match(r"^---\s*\n(.*?)\n---\s*\n?", raw, re.DOTALL)
         if not match:
-            issues.append(WikiLintIssue("error", str(wiki_file), "missing YAML frontmatter"))
+            issues.append(AtlasLintIssue("error", str(atlas_file), "missing YAML frontmatter"))
             continue
         try:
             frontmatter = yaml.safe_load(match.group(1)) or {}
         except yaml.YAMLError as exc:
-            issues.append(WikiLintIssue("error", str(wiki_file), f"invalid YAML: {exc}"))
+            issues.append(AtlasLintIssue("error", str(atlas_file), f"invalid YAML: {exc}"))
             continue
         if not isinstance(frontmatter, dict):
-            issues.append(WikiLintIssue("error", str(wiki_file), "frontmatter must be a mapping"))
+            issues.append(AtlasLintIssue("error", str(atlas_file), "frontmatter must be a mapping"))
             continue
         pages.append(
-            _RawWikiPage(
-                path=wiki_file.relative_to(wiki_dir).with_suffix("").as_posix(),
-                file=wiki_file,
+            _RawAtlasPage(
+                path=atlas_file.relative_to(atlas_dir).with_suffix("").as_posix(),
+                file=atlas_file,
                 frontmatter=frontmatter,
                 body=raw[match.end() :],
             )
@@ -376,25 +376,25 @@ def _check_derived_product_metadata(
     project_ids: set[str],
     repo: Path,
     rel_file: str,
-    issues: list[WikiLintIssue],
+    issues: list[AtlasLintIssue],
 ) -> None:
     missing = DERIVED_PRODUCT_REQUIRED_FIELDS - set(frontmatter)
     for field in sorted(missing):
         issues.append(
-            WikiLintIssue("error", rel_file, f"derived_product missing field: {field}")
+            AtlasLintIssue("error", rel_file, f"derived_product missing field: {field}")
         )
 
     reuse_status = str(frontmatter.get("reuse_status", ""))
     if reuse_status and reuse_status not in VALID_REUSE_STATUS:
         issues.append(
-            WikiLintIssue("error", rel_file, f"invalid reuse_status: {reuse_status}")
+            AtlasLintIssue("error", rel_file, f"invalid reuse_status: {reuse_status}")
         )
 
     for field in ("produced_by_projects", "used_by_projects", "review_routes"):
         for project_id in _as_list(frontmatter.get(field)):
             if project_id not in project_ids:
                 issues.append(
-                    WikiLintIssue(
+                    AtlasLintIssue(
                         "error",
                         rel_file,
                         f"unknown {field} project: {project_id}",
@@ -404,7 +404,7 @@ def _check_derived_product_metadata(
     artifacts = frontmatter.get("output_artifacts")
     if "output_artifacts" in frontmatter and not _as_artifact_list(artifacts):
         issues.append(
-            WikiLintIssue(
+            AtlasLintIssue(
                 "error",
                 rel_file,
                 "derived_product output_artifacts must list at least one artifact",
@@ -416,29 +416,29 @@ def _check_derived_product_metadata(
             continue
         if not (repo / path).exists():
             issues.append(
-                WikiLintIssue("error", rel_file, f"missing output artifact: {path}")
+                AtlasLintIssue("error", rel_file, f"missing output artifact: {path}")
             )
 
 
 def _check_conflict_metadata(
     frontmatter: dict,
-    page_ids: dict[str, _RawWikiPage],
-    raw_pages: list[_RawWikiPage],
+    page_ids: dict[str, _RawAtlasPage],
+    raw_pages: list[_RawAtlasPage],
     rel_file: str,
-    issues: list[WikiLintIssue],
+    issues: list[AtlasLintIssue],
 ) -> None:
     missing = CONFLICT_REQUIRED_FIELDS - set(frontmatter)
     for field in sorted(missing):
-        issues.append(WikiLintIssue("error", rel_file, f"conflict missing field: {field}"))
+        issues.append(AtlasLintIssue("error", rel_file, f"conflict missing field: {field}"))
 
     status = str(frontmatter.get("conflict_status", ""))
     if status and status not in VALID_CONFLICT_STATUS:
-        issues.append(WikiLintIssue("error", rel_file, f"invalid conflict_status: {status}"))
+        issues.append(AtlasLintIssue("error", rel_file, f"invalid conflict_status: {status}"))
 
     sides = frontmatter.get("evidence_sides")
     if not isinstance(sides, list) or len(sides) < 2:
         issues.append(
-            WikiLintIssue(
+            AtlasLintIssue(
                 "error",
                 rel_file,
                 "conflict pages require at least two evidence_sides",
@@ -448,7 +448,7 @@ def _check_conflict_metadata(
         for idx, side in enumerate(sides, start=1):
             if not isinstance(side, dict) or not side.get("support"):
                 issues.append(
-                    WikiLintIssue(
+                    AtlasLintIssue(
                         "error",
                         rel_file,
                         f"conflict evidence_sides[{idx}] needs support text",
@@ -458,7 +458,7 @@ def _check_conflict_metadata(
     resolving_work = frontmatter.get("resolving_work")
     if not isinstance(resolving_work, list) or not resolving_work:
         issues.append(
-            WikiLintIssue(
+            AtlasLintIssue(
                 "error",
                 rel_file,
                 "conflict pages require resolving_work entries",
@@ -473,7 +473,7 @@ def _check_conflict_metadata(
     for affected_id in _as_list(frontmatter.get("affected_pages")):
         if affected_id not in known_ids:
             issues.append(
-                WikiLintIssue(
+                AtlasLintIssue(
                     "error",
                     rel_file,
                     f"unknown affected Atlas page id: {affected_id}",
@@ -484,31 +484,31 @@ def _check_conflict_metadata(
 def _check_opportunity_metadata(
     frontmatter: dict,
     project_ids: set[str],
-    raw_pages: list[_RawWikiPage],
+    raw_pages: list[_RawAtlasPage],
     rel_file: str,
-    issues: list[WikiLintIssue],
+    issues: list[AtlasLintIssue],
 ) -> None:
     missing = OPPORTUNITY_REQUIRED_FIELDS - set(frontmatter)
     for field in sorted(missing):
-        issues.append(WikiLintIssue("error", rel_file, f"opportunity missing field: {field}"))
+        issues.append(AtlasLintIssue("error", rel_file, f"opportunity missing field: {field}"))
 
     status = str(frontmatter.get("opportunity_status", ""))
     if status and status not in VALID_OPPORTUNITY_STATUS:
-        issues.append(WikiLintIssue("error", rel_file, f"invalid opportunity_status: {status}"))
+        issues.append(AtlasLintIssue("error", rel_file, f"invalid opportunity_status: {status}"))
 
     kind = str(frontmatter.get("opportunity_kind", ""))
     if kind and kind not in VALID_OPPORTUNITY_KIND:
-        issues.append(WikiLintIssue("error", rel_file, f"invalid opportunity_kind: {kind}"))
+        issues.append(AtlasLintIssue("error", rel_file, f"invalid opportunity_kind: {kind}"))
 
     for field in ("impact", "feasibility", "readiness", "evidence_strength"):
         value = str(frontmatter.get(field, ""))
         if value and value not in VALID_OPPORTUNITY_SCORE:
-            issues.append(WikiLintIssue("error", rel_file, f"invalid {field}: {value}"))
+            issues.append(AtlasLintIssue("error", rel_file, f"invalid {field}: {value}"))
 
     for project_id in _as_list(frontmatter.get("review_routes")):
         if project_id not in project_ids:
             issues.append(
-                WikiLintIssue(
+                AtlasLintIssue(
                     "error",
                     rel_file,
                     f"unknown review_routes project: {project_id}",
@@ -524,27 +524,27 @@ def _check_opportunity_metadata(
         linked = known_pages.get(conflict_id)
         if not linked:
             issues.append(
-                WikiLintIssue("error", rel_file, f"unknown linked conflict id: {conflict_id}")
+                AtlasLintIssue("error", rel_file, f"unknown linked conflict id: {conflict_id}")
             )
         elif linked.frontmatter.get("type") != "conflict":
             issues.append(
-                WikiLintIssue("error", rel_file, f"linked_conflicts is not a conflict: {conflict_id}")
+                AtlasLintIssue("error", rel_file, f"linked_conflicts is not a conflict: {conflict_id}")
             )
 
     for product_id in _as_list(frontmatter.get("linked_products")):
         linked = known_pages.get(product_id)
         if not linked:
             issues.append(
-                WikiLintIssue("error", rel_file, f"unknown linked product id: {product_id}")
+                AtlasLintIssue("error", rel_file, f"unknown linked product id: {product_id}")
             )
         elif linked.frontmatter.get("type") != "derived_product":
             issues.append(
-                WikiLintIssue("error", rel_file, f"linked_products is not a derived_product: {product_id}")
+                AtlasLintIssue("error", rel_file, f"linked_products is not a derived_product: {product_id}")
             )
 
     if "target_outputs" in frontmatter and not _as_list(frontmatter.get("target_outputs")):
         issues.append(
-            WikiLintIssue("error", rel_file, "opportunity target_outputs must list at least one output")
+            AtlasLintIssue("error", rel_file, "opportunity target_outputs must list at least one output")
         )
 
     if not (
@@ -553,7 +553,7 @@ def _check_opportunity_metadata(
         or _as_list(frontmatter.get("related_pages"))
     ):
         issues.append(
-            WikiLintIssue(
+            AtlasLintIssue(
                 "error",
                 rel_file,
                 "opportunity pages need linked_conflicts, linked_products, or related_pages",
@@ -587,9 +587,9 @@ def _markdown_links(markdown_body: str) -> list[str]:
 def _check_link(
     href: str,
     source_file: Path,
-    wiki_dir: Path,
+    atlas_dir: Path,
     route_paths: set[str],
-    issues: list[WikiLintIssue],
+    issues: list[AtlasLintIssue],
     rel_file: str,
 ) -> None:
     href = href.strip()
@@ -599,23 +599,28 @@ def _check_link(
     path = parsed.path
     if not path:
         return
-    if path.startswith(("/wiki/", "/atlas/")):
-        route = path.removeprefix("/wiki/").removeprefix("/atlas/").strip("/")
+    if path == "/wiki" or path.startswith("/wiki/"):
+        issues.append(
+            AtlasLintIssue("error", rel_file, f"legacy /wiki link is not allowed: {href}")
+        )
+        return
+    if path.startswith("/atlas/"):
+        route = path.removeprefix("/atlas/").strip("/")
         if route.endswith(".md"):
             route = route[:-3]
         if route and route not in route_paths:
             issues.append(
-                WikiLintIssue("error", rel_file, f"broken Atlas link: {href}")
+                AtlasLintIssue("error", rel_file, f"broken Atlas link: {href}")
             )
         return
     if path.endswith(".md"):
         target = (source_file.parent / path).resolve()
         try:
-            route = target.relative_to(wiki_dir.resolve()).with_suffix("").as_posix()
+            route = target.relative_to(atlas_dir.resolve()).with_suffix("").as_posix()
         except ValueError:
             return
         if route not in route_paths:
-            issues.append(WikiLintIssue("error", rel_file, f"broken relative Atlas link: {href}"))
+            issues.append(AtlasLintIssue("error", rel_file, f"broken relative Atlas link: {href}"))
 
 
 def _rel(path: Path, repo: Path) -> str:
@@ -628,7 +633,7 @@ def _rel(path: Path, repo: Path) -> str:
 def main(argv: list[str] | None = None) -> int:
     args = argv if argv is not None else sys.argv[1:]
     repo_path = Path(args[0]) if args else Path(__file__).resolve().parents[2]
-    issues = lint_wiki(repo_path)
+    issues = lint_atlas(repo_path)
     for issue in issues:
         print(f"{issue.severity}: {issue.file}: {issue.message}")
     if not issues:

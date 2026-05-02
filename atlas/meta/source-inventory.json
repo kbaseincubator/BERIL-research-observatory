@@ -11,7 +11,7 @@
   ],
   "topic_count": 9,
   "notes": [
-    "This inventory is intentionally lightweight and should be superseded by Atlas inventory output from app.wiki_inventory.",
+    "This inventory is intentionally lightweight and should be superseded by Atlas inventory output from app.atlas_inventory.",
     "Phase 2 adds Atlas routes, section indexes, evidence metadata, and generated overview maps."
   ]
 }

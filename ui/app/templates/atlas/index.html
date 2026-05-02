@@ -200,7 +200,7 @@
 
         <div class="atlas-stats">
             <div class="atlas-stat">
-                <div class="atlas-stat-value">{{ wiki_index.pages|length }}</div>
+                <div class="atlas-stat-value">{{ atlas_index.pages|length }}</div>
                 <div class="text-small text-muted">Atlas pages</div>
             </div>
             <div class="atlas-stat">
@@ -212,15 +212,15 @@
                 <div class="text-small text-muted">Data pages</div>
             </div>
             <div class="atlas-stat">
-                <div class="atlas-stat-value">{{ wiki_inventory.counts.tenants }}</div>
+                <div class="atlas-stat-value">{{ atlas_inventory.counts.tenants }}</div>
                 <div class="text-small text-muted">BERDL tenants</div>
             </div>
             <div class="atlas-stat">
-                <div class="atlas-stat-value">{{ wiki_inventory.counts.covered_collections }}/{{ wiki_inventory.counts.collections }}</div>
+                <div class="atlas-stat-value">{{ atlas_inventory.counts.covered_collections }}/{{ atlas_inventory.counts.collections }}</div>
                 <div class="text-small text-muted">Collection coverage</div>
             </div>
             <div class="atlas-stat">
-                <div class="atlas-stat-value">{{ wiki_inventory.counts.evidence_coverage }}</div>
+                <div class="atlas-stat-value">{{ atlas_inventory.counts.evidence_coverage }}</div>
                 <div class="text-small text-muted">Evidence-backed pages</div>
             </div>
             <div class="atlas-stat">
@@ -326,7 +326,7 @@
                 <a href="/atlas/meta/metrics-to-watch" class="text-small">Open metrics method</a>
             </div>
             <div class="grid grid-3">
-                {% for metric in wiki_inventory.metrics_to_watch %}
+                {% for metric in atlas_inventory.metrics_to_watch %}
                 <div class="atlas-card">
                     <div class="atlas-stat-value" style="font-size: 1.2rem;">{{ metric.value }}</div>
                     <h3 class="atlas-card-title">{{ metric.label }}</h3>

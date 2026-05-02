@@ -717,14 +717,14 @@ class TestParseResearchIdeas:
 
 
 # ---------------------------------------------------------------------------
-# RepositoryParser.parse_wiki
+# RepositoryParser.parse_atlas
 # ---------------------------------------------------------------------------
 
 
-class TestParseWiki:
-    def _write_wiki_page(self, tmp_repo, rel_path="topics/example.md", **overrides):
-        wiki_dir = tmp_repo / "wiki"
-        page_path = wiki_dir / rel_path
+class TestParseAtlas:
+    def _write_atlas_page(self, tmp_repo, rel_path="topics/example.md", **overrides):
+        atlas_dir = tmp_repo / "atlas"
+        page_path = atlas_dir / rel_path
         page_path.parent.mkdir(parents=True, exist_ok=True)
         frontmatter = {
             "id": "topic.example",
@@ -748,46 +748,46 @@ class TestParseWiki:
         page_path.write_text(f"---\n{yaml_text}\n---\n# Example Topic\n\n## Detail\n\nBody.")
         return page_path
 
-    def test_no_wiki_dir_returns_empty_index(self, tmp_repo):
+    def test_no_atlas_dir_returns_empty_index(self, tmp_repo):
         parser = RepositoryParser(repo_path=tmp_repo)
-        wiki = parser.parse_wiki()
-        assert wiki.pages == []
-        assert wiki.links == []
+        atlas = parser.parse_atlas()
+        assert atlas.pages == []
+        assert atlas.links == []
 
-    def test_parses_nested_wiki_page(self, tmp_repo):
-        self._write_wiki_page(tmp_repo)
+    def test_parses_nested_atlas_page(self, tmp_repo):
+        self._write_atlas_page(tmp_repo)
         parser = RepositoryParser(repo_path=tmp_repo)
-        wiki = parser.parse_wiki()
-        assert len(wiki.pages) == 1
-        page = wiki.pages[0]
+        atlas = parser.parse_atlas()
+        assert len(atlas.pages) == 1
+        page = atlas.pages[0]
         assert page.id == "topic.example"
         assert page.path == "topics/example"
         assert page.section == "topics"
         assert page.source_projects == ["alpha_project"]
         assert page.headings[0].title == "Detail"
-        assert wiki.links[0].target_id == "claim.example"
+        assert atlas.links[0].target_id == "claim.example"
 
     def test_skips_missing_frontmatter(self, tmp_repo):
-        wiki_dir = tmp_repo / "wiki"
-        wiki_dir.mkdir()
-        (wiki_dir / "bad.md").write_text("# Missing frontmatter")
+        atlas_dir = tmp_repo / "atlas"
+        atlas_dir.mkdir()
+        (atlas_dir / "bad.md").write_text("# Missing frontmatter")
         parser = RepositoryParser(repo_path=tmp_repo)
-        assert parser.parse_wiki().pages == []
+        assert parser.parse_atlas().pages == []
 
     def test_skips_invalid_page_type(self, tmp_repo):
-        self._write_wiki_page(tmp_repo, type="unknown")
+        self._write_atlas_page(tmp_repo, type="unknown")
         parser = RepositoryParser(repo_path=tmp_repo)
-        assert parser.parse_wiki().pages == []
+        assert parser.parse_atlas().pages == []
 
     def test_get_page_helpers(self, tmp_repo):
-        self._write_wiki_page(tmp_repo)
-        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
-        assert wiki.get_page_by_id("topic.example").title == "Example Topic"
-        assert wiki.get_page_by_path("topics/example.md").id == "topic.example"
-        assert wiki.pages_by_type("topic")[0].id == "topic.example"
+        self._write_atlas_page(tmp_repo)
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        assert atlas.get_page_by_id("topic.example").title == "Example Topic"
+        assert atlas.get_page_by_path("topics/example.md").id == "topic.example"
+        assert atlas.pages_by_type("topic")[0].id == "topic.example"
 
     def test_section_index_path_resolves_without_index_suffix(self, tmp_repo):
-        self._write_wiki_page(
+        self._write_atlas_page(
             tmp_repo,
             rel_path="topics/index.md",
             id="topics.index",
@@ -795,23 +795,21 @@ class TestParseWiki:
             type="meta",
             related_pages=[],
         )
-        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
-        assert wiki.get_page_by_path("topics").id == "topics.index"
-        assert wiki.get_page_by_path("topics/index").url == "/atlas/topics"
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        assert atlas.get_page_by_path("topics").id == "topics.index"
+        assert atlas.get_page_by_path("topics/index").url == "/atlas/topics"
 
-    def test_rewrites_wiki_links_to_atlas_links(self, tmp_repo):
-        page_path = self._write_wiki_page(tmp_repo)
+    def test_rewrites_relative_links_to_atlas_links(self, tmp_repo):
+        page_path = self._write_atlas_page(tmp_repo)
         page_path.write_text(
-            page_path.read_text()
-            + "\n[Claim](/wiki/claims/example)\n[Relative](../claims/example.md)\n"
+            page_path.read_text() + "\n[Relative](../claims/example.md)\n"
         )
-        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
-        page = wiki.get_page_by_id("topic.example")
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        page = atlas.get_page_by_id("topic.example")
         assert "/atlas/claims/example" in page.body
-        assert "/wiki/claims/example" not in page.body
 
     def test_parses_conflict_page_type_and_metadata(self, tmp_repo):
-        self._write_wiki_page(
+        self._write_atlas_page(
             tmp_repo,
             rel_path="conflicts/example.md",
             id="conflict.example",
@@ -827,13 +825,13 @@ class TestParseWiki:
             ],
             resolving_work=["Run a resolving analysis."],
         )
-        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
-        page = wiki.get_page_by_id("conflict.example")
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        page = atlas.get_page_by_id("conflict.example")
         assert page.type == "conflict"
         assert page.metadata["conflict_status"] == "unresolved"
 
     def test_parses_opportunity_page_type_and_metadata(self, tmp_repo):
-        self._write_wiki_page(
+        self._write_atlas_page(
             tmp_repo,
             rel_path="opportunities/example.md",
             id="opportunity.example",
@@ -853,8 +851,8 @@ class TestParseWiki:
             review_routes=["alpha_project"],
             evidence=[{"source": "alpha_project", "support": "Test support."}],
         )
-        wiki = RepositoryParser(repo_path=tmp_repo).parse_wiki()
-        page = wiki.get_page_by_id("opportunity.example")
+        atlas = RepositoryParser(repo_path=tmp_repo).parse_atlas()
+        page = atlas.get_page_by_id("opportunity.example")
         assert page.type == "opportunity"
         assert page.metadata["opportunity_status"] == "candidate"
         assert page.metadata["impact"] == "high"

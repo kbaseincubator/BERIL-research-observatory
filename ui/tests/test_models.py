@@ -29,8 +29,8 @@ from app.models import (
     Skill,
     Table,
     Visualization,
-    WikiIndex,
-    WikiPage,
+    AtlasIndex,
+    AtlasPage,
     _slugify_name,
 )
 
@@ -465,8 +465,8 @@ class TestDataclassDefaults:
         )
         assert route.project_id == "alpha_project"
 
-    def test_wiki_page_url(self):
-        page = WikiPage(
+    def test_atlas_page_url(self):
+        page = AtlasPage(
             id="topic.test",
             title="Test",
             type="topic",
@@ -476,10 +476,9 @@ class TestDataclassDefaults:
             body="Body",
         )
         assert page.url == "/atlas/topics/test"
-        assert page.legacy_url == "/wiki/topics/test"
 
-    def test_wiki_index_helpers(self):
-        page = WikiPage(
+    def test_atlas_index_helpers(self):
+        page = AtlasPage(
             id="topic.test",
             title="Test",
             type="topic",
@@ -489,14 +488,14 @@ class TestDataclassDefaults:
             body="Body",
             section="topics",
         )
-        index = WikiIndex(pages=[page])
+        index = AtlasIndex(pages=[page])
         assert index.get_page_by_id("topic.test") is page
         assert index.get_page_by_path("topics/test.md") is page
         assert index.get_page_by_path("topics") is None
         assert index.pages_by_type("topic") == [page]
 
-    def test_wiki_index_section_index_helper(self):
-        page = WikiPage(
+    def test_atlas_index_section_index_helper(self):
+        page = AtlasPage(
             id="topics.index",
             title="Topics",
             type="meta",
@@ -506,9 +505,8 @@ class TestDataclassDefaults:
             body="Body",
             section="topics",
         )
-        index = WikiIndex(pages=[page])
+        index = AtlasIndex(pages=[page])
         assert page.url == "/atlas/topics"
-        assert page.legacy_url == "/wiki/topics"
         assert index.get_page_by_path("topics") is page
         assert index.pages_by_section("topics") == [page]
 

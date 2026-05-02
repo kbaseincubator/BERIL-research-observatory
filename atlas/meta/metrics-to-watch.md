@@ -42,4 +42,4 @@ The Atlas should become more useful as the observatory grows. Maintenance metric
 
 ## How Agents Should Use This
 
-Agents should run `python -m app.wiki_inventory .. --format markdown` before proposing updates. The Atlas inventory report should guide whether the next edit should add a collection page, improve a data-type lens, record a missing join, promote a reusable derived product, document a tension that needs resolving work, or add an opportunity that turns existing synthesis into action.
+Agents should run `python -m app.atlas_inventory .. --format markdown` before proposing updates. The Atlas inventory report should guide whether the next edit should add a collection page, improve a data-type lens, record a missing join, promote a reusable derived product, document a tension that needs resolving work, or add an opportunity that turns existing synthesis into action.
