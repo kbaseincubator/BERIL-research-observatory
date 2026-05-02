@@ -609,3 +609,76 @@ _Capture half-baked ideas here for future refinement_
 
 ---
 
+
+---
+
+### [oak_ridge_cultivation_gap] What Metabolic Functions Does the Cultured Collection Miss at Oak Ridge?
+**Status**: PROPOSED
+**Priority**: HIGH
+**Effort**: Medium (3–4 weeks)
+
+**Research Question**: At Oak Ridge ENIGMA SFA, what metabolic functions does BERDL's cultured-isolate genome collection systematically under-represent compared to MAGs recovered from metagenomes of the same site? In plain terms: if a researcher only used the cultured genomes to characterize the metabolic potential of the Oak Ridge subsurface, what would they get wrong?
+
+**Approach**:
+- Inventory paired data in `enigma_coral`: 6,705 cultured `sdt_genome` rows + 623 `sdt_bin` MAG rows from the same site, plus newly released metagenomes (Lui 2025).
+- For each metabolic function in a curated marker dictionary (Wood–Ljungdahl, [NiFe]/[FeFe]-hydrogenases, dsr-apr-sat, mtrA-mtrC-omcS, narGHI/napAB, mcrA, glycine-betaine osmoprotectants, MGE/conjugation markers, CPR/DPANN-signature genes), compute the per-function presence rate in the cultured cohort vs the MAG cohort.
+- Report a per-function "cultivation-coverage" table with effect sizes, BH-FDR-adjusted p-values, and a one-line interpretation per row.
+- Validate against published ORFRC findings: Tian 2020 (Patescibacteria streamlining), Goff 2024 (HMR-laden MGEs in MAGs), Wu 2023 (depth-stratified C/N cycling).
+- Generalize: extend the methodology into a reusable module that future BERDL projects can call to flag whether their cohort is cultivation-biased before drawing conclusions.
+
+**Hypotheses**:
+- **H1**: Specific metabolic functions are significantly depleted in the cultured cohort relative to the MAG cohort at Oak Ridge — most prominently CPR/DPANN-signature genes (per Tian 2020), iron-reduction surface-electron-transfer genes (per Mitzscherling-style rock-attached pattern), and mobile-element/MGE-resident heavy metal resistance genes (per Goff 2024).
+- **H2**: A subset of functions is *enriched* in the cultured cohort (sulfate reduction, broad anaerobic respiration markers from cultivable Bacillota_B) — recapitulating the Mont Terri porewater-bias signature in a different subsurface system.
+- **H0**: Cultured and MAG gene-content distributions at Oak Ridge are statistically equivalent across the marker dictionary.
+
+**Impact**: Produces a per-function "cultivation-coverage" reference table that ORFRC researchers can use to decide which cultured-genome claims to caveat. Provides BERDL/KBase data team with a prioritized list of clades worth additional cultivation effort. Generalizes the H3 methodology from a single binary marker pair to a multi-function diagnostic, validated against an independent system with published ground truth. No quantitative cultivation-bias index currently exists in the literature (per Escudeiro 2022 review).
+
+**Dependencies**:
+- Existing: `clay_confined_subsurface` H3 framework (NB02/NB05/NB06 templates, marker dictionary)
+- Existing: ENIGMA `sdt_bin` / `sdt_genome` / `sdt_assembly` data in `enigma_coral`
+- New: MAG contig sequences in MinIO; bakta annotation of MAGs that lack eggNOG annotations (re-uses `bakta_reannotation` patterns documented in `docs/pitfalls.md`)
+- New: Cross-link MAGs to GTDB taxonomy (sourmash or single-copy-marker approach)
+
+**Location**: `projects/oak_ridge_cultivation_gap/` (to be created via /berdl_start)
+
+
+---
+
+### [bacillota_b_subsurface_accessory] What Accessory Gene Content Distinguishes Deep-Clay Bacillota_B from Soil Congeners?
+**Status**: PROPOSED
+**Priority**: HIGH
+**Effort**: Medium (3-4 weeks)
+
+**Research Question**: Within Bacillota_B (Desulfosporosinus, BRH-c8a Peptococcaceae, BRH-c4a Desulfotomaculales, etc.), what gene clusters are enriched in deep-clay-isolated genomes vs phylum-matched soil-baseline genomes — beyond the curated marker dictionary used in clay_confined_subsurface? Includes a Phase 1 correction to the clay project's IR-side analysis (which used KOs K07811/K17324/K17323 that turn out to be TMAO reductase / glycerol ABC / glycerol permease, not iron reduction).
+
+**Approach**:
+- NB01: pull all ~6700 Bacillota_B genomes from BERDL pangenome with isolation_source metadata; assemble deep-clay anchor (~15-25 from clay project + BacDive expansion) and phylum-matched soil-baseline (~100-200).
+- NB02: per-genome eggNOG-OG presence vector for the cohort (use OG IDs as cross-species orthology surrogate).
+- NB03: per-OG Fisher's exact (anchor vs baseline) with BH-FDR; retain OGs with q<0.05 AND fold≥3 AND ≥3 anchor genomes.
+- NB04: functional annotation of enriched OGs (eggNOG + bakta) — group into pre-registered categories (sporulation revival, anaerobic respiration accessories, mineral attachment EPS, osmoadaptation, anaerobic-niche regulators).
+- NB05: H2 genome-compactness test (anchor vs baseline genome size + gene count, CheckM-controlled).
+- NB06: Phase 1 correction — re-run clay H3 IR analysis using PFAM PF14537 multi-heme cytochrome + CXXCH heme-motif counting; commit corrected REPORT addendum to clay project.
+- NB07: synthesis.
+
+**Hypotheses**:
+- H1: ≥10 OGs are enriched in deep-clay Bacillota_B (Fisher BH-FDR q<0.05, fold≥3) and fall into pre-registered functional categories (sporulation, anaerobic respiration accessories, mineral attachment, osmoadaptation, regulators).
+- H2: Deep-clay Bacillota_B have smaller mean genome size + gene count than soil baseline (CheckM-controlled).
+- H3 (corrected): Deep-clay Bacillota_B carry PFAM PF14537 multi-heme cytochrome content at higher rates than soil baseline (this is the clay project's H3 IR-side, redone with correct markers).
+
+**Impact**: Gene-cluster-level (not curated-marker) characterization of subsurface Bacillota_B specialization. Provides target list for future biochemistry / fitness-screen work. Closes a real bug in clay_confined_subsurface's IR analysis (PR #231 already merged; correction needed).
+
+**Dependencies**:
+- Existing: clay_confined_subsurface (cohort tagging + within-Bacillota_B SR finding); oak_ridge_cultivation_gap (pyrodigal+pyhmmer KOfam annotation pipeline).
+- New: BacDive Bacillota_B clay-strain expansion via GCA→GTDB linkage.
+
+**Location**: `projects/bacillota_b_subsurface_accessory/`
+
+
+### [bacillota_b_subsurface_accessory] (COMPLETED 2026-05-01)
+Originally PROPOSED above. Completion summary:
+
+**H1 SUPPORTED**: 547 anchor-enriched OGs (q<0.05, fold≥3) — far above the ≥10 prediction. Hits across all 5 pre-registered functional categories (anaerobic respiration / sporulation revival / mineral attachment / regulators / osmoadaptation) plus substantial additional anaerobic-niche signal in the "other" bucket (COG1977 molybdopterin 10/10 anchor; DsrEFH 7/10 anchor; 4Fe-4S cluster 8/10 anchor).
+
+**H2 REJECTED, opposite direction**: deep-clay anchor Bacillota_B are 35% LARGER than soil-baseline (4.3 Mbp vs 3.2 Mbp CheckM-rescaled, d=+1.37, p=0.013). Streamlining is a Patescibacteria/CPR-specific adaptation; cultivable subsurface Firmicutes show gene-content expansion consistent with Beaver & Neufeld 2024 self-sufficiency.
+
+**Phase 1 clay correction**: clay_confined_subsurface H3 IR-side used K07811/K17324/K17323 — those are TMAO reductase / glycerol ABC / glycerol permease, not iron reduction. With corrected multi-heme cytochrome detection (PF02085 + PF22678 + CXXCH motif counting), no significant cohort difference (all Fisher p ≥ 0.46). The clay project's SR-side H3 stands; IR-side narrative needs withdrawal. See `projects/bacillota_b_subsurface_accessory/`.

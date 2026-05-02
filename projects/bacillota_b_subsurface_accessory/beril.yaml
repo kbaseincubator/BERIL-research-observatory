@@ -1,0 +1,16 @@
+project_id: bacillota_b_subsurface_accessory
+status: complete
+created_at: "2026-04-30T23:30:00+00:00"
+last_session_at: "2026-05-01T00:15:00+00:00"
+branch: projects/bacillota_b_subsurface_accessory
+engine:
+  name: claude
+authors:
+  - name: "David Lyon"
+    affiliation: "KBase"
+    orcid: "0000-0002-1927-3565"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true
