@@ -183,7 +183,6 @@ You can keep working on the project after submitting — submission is not a one
 - **Observatory UI**: [BERIL Observatory](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/)
 - **BERDL JupyterHub**: [hub.berdl.kbase.us](https://hub.berdl.kbase.us)
 - **CBORG (LBL users)**: [cborg.lbl.gov](https://cborg.lbl.gov/tools_claudecode/)
-- **Collections overview**: [docs/collections.md](collections.md)
 - **Query pitfalls**: [docs/pitfalls.md](pitfalls.md)
 - **Performance tips**: [docs/performance.md](performance.md)
 - **Schema documentation**: [docs/schemas/](schemas/)

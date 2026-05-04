@@ -175,11 +175,12 @@ CREATE TABLE my_table (
 
 ### Step 2: Choose tenant
 
-List existing tenants:
+List accessible databases with the access-aware helper:
 
-```bash
-source .venv-berdl/bin/activate
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
+```python
+import berdl_notebook_utils
+
+databases = berdl_notebook_utils.get_databases()
 ```
 
 Present the results. Tenants are the unique prefixes before the first `_` in each database name (e.g. `kescience`, `nmdc`, `gtdb`). Ask the user to choose one of the following options:
@@ -198,8 +199,9 @@ Present the results. Tenants are the unique prefixes before the first `_` in eac
 Ask for the dataset name. Suggest `DATA_DIR.name` (the directory's basename) as a default.
 Check whether the namespace already exists:
 
-```bash
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES LIKE '<tenant>_<dataset>'"
+```python
+namespace = "<tenant>_<dataset>"
+namespace_exists = namespace in berdl_notebook_utils.get_databases()
 ```
 
 The final namespace will be `{tenant}_{dataset}`.

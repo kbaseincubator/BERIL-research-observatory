@@ -2,7 +2,8 @@
 
 **Purpose**: Quick reference for avoiding common issues when querying BERDL databases.
 
-See [collections.md](collections.md) for the full database inventory and [schemas/](schemas/) for per-collection documentation.
+Use BERDL notebook helpers for live access-aware database and table discovery.
+See [schemas/](schemas/) for per-collection documentation.
 
 ---
 
@@ -1595,15 +1596,19 @@ the **biosample `sample_id`** (e.g., `nmdc:bsm-11-*`).
 
 **Solution**: Find a `file_id → sample_id` bridge table in `nmdc_arkin` before attempting
 to link classifier and metabolomics data. The `abiotic_features` table uses `sample_id` as
-its primary key; scan all tables in `nmdc_arkin` with `SHOW TABLES` + `DESCRIBE` to find
-any table that has **both** `file_id` and `sample_id` columns. NB02 of
+its primary key; use `get_tables("nmdc_arkin")` and
+`get_table_schema("nmdc_arkin", table_name)` to find any table that has
+**both** `file_id` and `sample_id` columns. NB02 of
 `nmdc_community_metabolic_ecology` does this scan systematically.
 
 ```python
+from berdl_notebook_utils import get_tables, get_table_schema
+
 # Scan all nmdc_arkin tables for file_id + sample_id
+all_tables = get_tables("nmdc_arkin")
 for tbl in all_tables:
-    schema = spark.sql(f'DESCRIBE nmdc_arkin.{tbl}').toPandas()
-    cols = set(schema['col_name'])
+    schema = get_table_schema("nmdc_arkin", tbl)
+    cols = {col["name"] for col in schema}
     if 'file_id' in cols and 'sample_id' in cols:
         print(f'Bridge candidate: {tbl}')
 ```

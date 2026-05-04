@@ -33,8 +33,7 @@ The **KBase BER Data Lakehouse (BERDL)** is an on-prem Delta Lakehouse (Spark SQ
 ```
 projects/           # Science projects (each has README.md + notebooks/ + data/)
 docs/               # Shared knowledge base
-  collections.md    # Full database inventory
-  schemas/          # Per-collection schema docs
+  schemas/          # Per-collection table/column docs
   pitfalls.md       # SQL gotchas, data sparsity, common errors
   performance.md    # Query strategies for large tables
   research_ideas.md # Future research directions
@@ -48,7 +47,7 @@ data/               # Shared data extracts reusable across projects
 
 | Skill | What it does |
 |-------|-------------|
-| `/berdl` | Query BERDL databases via REST API or Spark SQL |
+| `/berdl` | Discover BERDL data with access-aware helpers and query with Spark SQL |
 | `/berdl-query` | Run SQL queries locally with remote Spark compute (CLI tools + notebook support) |
 | `/berdl-minio` | Transfer files between BERDL MinIO and local machine |
 | `/berdl-discover` | Explore and document a new BERDL database |
@@ -108,6 +107,12 @@ This script automatically:
 
 **Present the output to the user** and help them resolve any issues before proceeding to Phase 2.
 
+**Route follow-up BERDL queries from the detected environment:**
+- If detection reports **on-cluster / BERDL JupyterHub**, use the active Spark
+  session and `spark.sql(query)` directly. Do not use `--berdl-proxy`.
+- If detection reports **off-cluster / local machine**, use `/berdl-query` or
+  `scripts/run_sql.py --berdl-proxy` after the proxy chain is ready.
+
 **Common resolutions:**
 - **Missing .venv-berdl**: `bash scripts/bootstrap_client.sh`
 - **Missing KBASE_AUTH_TOKEN**: Get token from https://narrative.kbase.us/#auth2/account and add to `.env`
@@ -148,7 +153,7 @@ When the user wants to start a new research project, the agent drives the entire
 **Required reading before anything else:**
 1. Read `PROJECT.md` — understand dual goals (science + knowledge capture), project structure requirements, reproducibility standards, JupyterHub workflow, Spark notebook patterns
 2. Read `docs/overview.md` — understand the data architecture, key tables, data generation workflow, known limitations
-3. Read `docs/collections.md` — full database inventory (35 databases, 9 tenants), what data is actually available
+3. Use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` for live access-aware database, table, and schema discovery. Read relevant `docs/schemas/` files for supporting table/column documentation.
 4. Read `docs/pitfalls.md` and `docs/performance.md` — **critical: read these before designing any queries or analysis**
 5. Read `docs/research_ideas.md` — check for existing ideas, avoid duplicating work
 
@@ -158,7 +163,7 @@ When the user wants to start a new research project, the agent drives the entire
 
 **Then engage with the user:**
 9. Chat with the user about their research interest
-10. Explore BERDL data (use `/berdl` queries) to check data availability, row counts, column types
+10. Explore BERDL data with helper discovery and `/berdl` queries to check data availability, row counts, column types
 11. Check existing projects (`ls projects/`) — read READMEs of related projects to understand what's been done
 12. Develop 2-3 testable hypotheses with H0/H1
 13. Search literature (use `/literature-review` internally) for context
@@ -226,11 +231,12 @@ After notebooks are executed and committed, **pause and present the key results 
 ### Path 2: Explore BERDL Data
 
 Read these files:
-- `docs/collections.md` — full database inventory
+- Relevant `docs/schemas/` files — supporting table/column documentation
 - `docs/pitfalls.md` — critical gotchas before querying
 
 Then:
-- Summarize what databases are available and their scale
+- Use `berdl_notebook_utils.get_databases()` to summarize accessible databases and their scale
+- Use `berdl_notebook_utils.get_tables()` and `get_table_schema()` before discussing table availability
 - Highlight cross-collection relationships (pangenome <-> genomes <-> biochemistry <-> fitness)
 - Suggest using `/berdl` to start querying
 - Suggest using `/berdl-discover` if they want to explore a database not yet documented in `docs/schemas/`
@@ -265,10 +271,11 @@ Steps:
 
 Read these files:
 - `PROJECT.md` — high-level goals and structure
-- `docs/collections.md` — database inventory
+- Relevant `docs/schemas/` files — table/column documentation
 - `docs/overview.md` — scientific context and data workflow
 
 Then:
+- Explain that current inventory and access should be discovered live with `berdl_notebook_utils.get_databases()`
 - Walk through the dual goals (science + knowledge capture)
 - Explain the documentation workflow (tag discoveries, update pitfalls)
 - Mention the UI can be browsed at the BERDL JupyterHub
@@ -279,7 +286,7 @@ Then:
 
 ## Key Principles (for the agent)
 
-1. **Read the docs first** — `PROJECT.md`, `docs/overview.md`, `docs/collections.md`, `docs/pitfalls.md`, and `docs/performance.md` before designing anything. Check existing `projects/` to avoid duplicating work.
+1. **Read the docs and discover live data first** — `PROJECT.md`, `docs/overview.md`, relevant `docs/schemas/`, `docs/pitfalls.md`, and `docs/performance.md` before designing anything. Use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` for current access and inventory. Check existing `projects/` to avoid duplicating work.
 2. **Notebooks are the audit trail** — numbered sequentially (01, 02, 03...), each self-contained with a clear purpose. Commit with saved outputs per `PROJECT.md` reproducibility standards.
 3. **Commit early and often** — after plan, after notebooks, after data extraction, after analysis, after synthesis.
 4. **Branch by default** — create a `projects/{project_id}` branch when starting a new project. Extended work on main causes merge difficulties and risks conflicting with other contributors. Tell the user what branch you're creating; if they explicitly prefer main, respect that.
@@ -336,7 +343,7 @@ Regardless of path chosen, surface these early:
 \```
 
 ### Performance Plan
-- **Tier**: {REST API / JupyterHub}
+- **Tier**: {local bounded Spark SQL / JupyterHub Spark SQL}
 - **Estimated complexity**: {simple / moderate / complex}
 - **Known pitfalls**: {list from pitfalls.md}
 

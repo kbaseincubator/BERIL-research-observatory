@@ -167,9 +167,21 @@ K=4 LDA-GMM consensus on 8,489 CMD MetaPhlAn3 samples (5,333 HC + 3,156 IBD/othe
 
 CD and UC patients distribute across E1 and E3 rather than concentrating in any single ecotype — this is the patient-stratification signal that downstream within-ecotype analyses will exploit. Healthy samples concentrate in E0 + E2 (84 % combined). The Bacteroides2 ecotype's correlation with metabolic disease (T1D, T2D) AND IBD echoes the broader "low-diversity disease state" hypothesis. **`data/ecotype_assignments.tsv` is the consumable artifact for downstream notebooks.**
 
-### [ibd_phage_targeting] `docs/collections.md` understates the BERDL catalog by several phage- and metagenome-relevant databases
+### [ibd_phage_targeting] Historical static collection inventories understated the BERDL catalog
 
-Live `SHOW DATABASES` against the lakehouse returned 138 databases; the committed `docs/collections.md` omits several that matter for gut-microbiome / phage work:
+Historical static inventory files lagged the live lakehouse catalog and omitted
+several databases that matter for gut-microbiome / phage work. Use the
+access-aware BERDL notebook helpers for current discovery:
+
+```python
+from berdl_notebook_utils import get_databases, get_tables, get_table_schema
+
+databases = get_databases()
+tables = get_tables("kbase_ke_pangenome")
+schema = get_table_schema("kbase_ke_pangenome", "genome")
+```
+
+The omitted databases observed at the time included:
 
 - `kescience_mgnify` — EBI MGnify (metagenomics service), relevant for IBD-cohort cross-validation. This is also the answer to a mis-recalled `ke_science_magnify` — it's `mgnify`, not `magnify`.
 - `phagefoundry_ecoliphages_genomedepot` (plus a duplicate `_genomedepot` variant) — E. coli phage genome collection, directly relevant for AIEC targeting. PhageFoundry has 7 databases in the tenant, not the 5 documented.
@@ -180,7 +192,9 @@ Live `SHOW DATABASES` against the lakehouse returned 138 databases; the committe
 - `protect_integration` — second Protect-tenant database beyond `protect_genomedepot`.
 - `u_kazakov__klebsiella_genomedepot` and `u_kazakov__strain_modelling` — user-owned Klebsiella phage-host work worth checking with the owner.
 
-Recommend updating `docs/collections.md` with a full `SHOW DATABASES`-derived inventory; current coverage appears hand-curated and lags behind the live catalog.
+Do not treat committed snapshots or historical inventory documents as the
+source of truth for access. Use helper discovery for tenant/table access, and
+keep durable notes in `docs/schemas/` when a collection is investigated.
 
 ### [ibd_phage_targeting] `schema_overview.yaml` + per-table `*.yaml` dictionaries is a useful convention for large local data marts
 

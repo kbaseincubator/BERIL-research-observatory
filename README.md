@@ -28,9 +28,13 @@ The **KBase BER Data Lakehouse (K-BERDL)** is a Delta Lakehouse containing curat
 | **PlanetMicrobe** | 2 | Marine microbial ecology (2K samples, 6K experiments) |
 | **PROTECT** | 1 | Pathogen genome browser |
 
-See [docs/collections.md](docs/collections.md) for the full inventory with schema links.
+Use the access-aware BERDL notebook helpers to discover the databases and
+tables available to your account. Schema documentation for commonly used
+collections lives in [docs/schemas/](docs/schemas/).
 
-Access is available via Spark SQL, REST API, or JupyterHub.
+Access-sensitive discovery uses the BERDL notebook helpers. Queries run through
+Spark SQL, either directly on JupyterHub or through the local Spark wrapper when
+off-cluster.
 
 ## Running the AI agent
 
@@ -196,7 +200,8 @@ Use the `/berdl-discover` skill to introspect a new database:
 
 1. Run `/berdl-discover` to generate schema documentation
 2. Create `docs/schemas/{name}.md` with the generated output
-3. Add the database to `docs/collections.md`
+3. Add or update curated display metadata in `ui/config/collections.yaml` if
+   the database should be highlighted in the Observatory UI
 4. Optionally create a skill module in `.claude/skills/berdl/modules/{name}.md`
 
 ## Project Structure
@@ -211,7 +216,6 @@ BERIL-research-observatory/
 │   └── config.py               # User config (~/.config/beril/config.toml)
 │
 ├── docs/                       # Shared observatory memory and documentation
-│   ├── collections.md          # Overview of all BERDL databases & tenants
 │   ├── schemas/                # Per-collection schema documentation
 │   ├── overview.md             # Scientific context & data workflow
 │   ├── pitfalls.md             # SQL gotchas & common errors
@@ -251,7 +255,6 @@ BERIL-research-observatory/
 - **BERDL JupyterHub**: [https://hub.berdl.kbase.us](https://hub.berdl.kbase.us)
 - **BERIL Observatory UI**: [http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/)
 - **KBase**: [https://www.kbase.us](https://www.kbase.us)
-- **Collections Overview**: [docs/collections.md](docs/collections.md)
 - **Schema Documentation**: [docs/schemas/](docs/schemas/)
 - **Query Pitfalls**: [docs/pitfalls.md](docs/pitfalls.md)
 

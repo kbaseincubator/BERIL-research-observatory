@@ -19,11 +19,11 @@ Before executing any query, verify ALL items:
 
 | Expected Result Size | Strategy | `.toPandas()` OK? |
 |---|---|---|
-| < 100K rows | Direct REST API query | Yes |
+| < 100K rows | Bounded Spark SQL through `spark.sql(query)` or local `scripts/run_sql.py` | Yes |
 | 100K – 10M rows | Filter first, aggregate in SQL, then retrieve | Only for final aggregated result |
 | > 10M rows | PySpark only on JupyterHub, no `.toPandas()`, use `.write.parquet()` | No — use PySpark DataFrame ops |
 
-**Rule**: Estimate result size BEFORE querying. Check row counts with `/count` endpoint first if uncertain.
+**Rule**: Estimate result size BEFORE querying. Check row counts with bounded Spark SQL first if uncertain.
 
 ## Query Templates
 
@@ -86,7 +86,7 @@ WHERE genome_id IN (
 ```
 
 **Safety rules**:
-- Up to ~100 items is fine in an IN clause via REST API
+- Up to ~100 items is fine in an IN clause through Spark SQL
 - For >100 items, use chunked queries (batch into groups of 50-100) or use temp views on JupyterHub
 - For >1000 items, switch to JupyterHub with Spark DataFrames
 
@@ -116,7 +116,7 @@ JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
 - For pangenome: filter by `gtdb_species_clade_id`
 - For fitnessbrowser: filter by `orgId`
 - For genomes: filter by genome or feature ID
-- Multi-table joins across large species (>500 genomes) may timeout via REST API — use JupyterHub
+- Multi-table joins across large species (>500 genomes) should use JupyterHub Spark
 
 ### Pattern: Aggregation Before Transfer
 
@@ -189,8 +189,8 @@ LIMIT 1000 OFFSET 1000
 
 **Safety rules**:
 - Always include ORDER BY for deterministic pagination
-- REST API max is typically 1000 rows per call
-- For very large result sets (>10K rows), consider JupyterHub instead
+- Keep local result pages bounded with explicit LIMIT values
+- For very large result sets (>10K rows), use JupyterHub Spark or export results
 
 ### Pattern: Existence Check Before Analysis
 
@@ -223,11 +223,11 @@ WHERE gc.gtdb_species_clade_id = '{species_id}'
 - Geographic coordinates: often NULL or malformed
 - Always check coverage BEFORE building an analysis around sparse data
 
-## API vs JupyterHub Decision Guide
+## Local vs JupyterHub Decision Guide
 
-| Scenario | Use REST API | Use JupyterHub Spark |
+| Scenario | Use local bounded Spark SQL | Use JupyterHub Spark |
 |---|---|---|
-| Quick schema check | Yes | — |
+| Quick schema check | Use helper discovery | — |
 | Single-species query (<1K rows) | Yes | — |
 | Multi-species aggregation | — | Yes |
 | Joining across large tables | — | Yes |
@@ -235,7 +235,9 @@ WHERE gc.gtdb_species_clade_id = '{species_id}'
 | Iterative analysis with intermediate results | — | Yes |
 | One-off count or sample | Yes | — |
 
-**REST API reliability**: May return 504/524/503 errors. Retry once, then switch to JupyterHub.
+Use the environment detected by `scripts/detect_berdl_environment.py`: on-cluster
+sessions should run `spark.sql(query)` directly, while off-cluster sessions can
+use `scripts/run_sql.py --berdl-proxy` after the proxy chain is ready.
 
 ## Common ID Formats
 

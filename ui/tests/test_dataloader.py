@@ -146,7 +146,7 @@ class TestParseCollections:
             )
         )
 
-    def test_snapshot_loads_before_curated_overlay(self, tmp_path):
+    def test_optional_generated_snapshot_loads_before_curated_overlay(self, tmp_path):
         self._write_snapshot(tmp_path)
         self._write_config(
             tmp_path,
@@ -185,7 +185,7 @@ class TestParseCollections:
         assert collections[0].tenant_id is None
         assert collections[0].schema_status == "curated"
 
-    def test_snapshot_tables_are_available_as_schema_tables(self, tmp_path):
+    def test_optional_generated_snapshot_tables_are_available_as_schema_tables(self, tmp_path):
         self._write_snapshot(tmp_path)
 
         tables = RepositoryParser(tmp_path).parse_berdl_snapshot_tables()

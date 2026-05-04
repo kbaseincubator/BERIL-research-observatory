@@ -15,45 +15,129 @@ def _load_script_module():
     return module
 
 
-def test_missing_auth_returns_clear_failure(tmp_path, monkeypatch, capsys):
+def test_missing_helpers_returns_clear_failure(monkeypatch, capsys):
     module = _load_script_module()
-    monkeypatch.delenv("KBASE_AUTH_TOKEN", raising=False)
+    monkeypatch.setattr(
+        module,
+        "_load_berdl_helpers",
+        lambda: (_ for _ in ()).throw(ImportError("missing helper")),
+    )
 
-    code = module.main(["--env-file", str(tmp_path / "missing.env")])
+    code = module.main([])
 
     assert code == 2
-    assert "KBASE_AUTH_TOKEN is required" in capsys.readouterr().err
+    assert "berdl_notebook_utils is required" in capsys.readouterr().err
 
 
-def test_discovery_groups_databases_and_keeps_schema_errors(monkeypatch):
+def test_discovery_uses_berdl_helpers_and_groups_schema(monkeypatch):
     module = _load_script_module()
+    calls = []
 
-    def fake_post_json(url, token, payload, timeout):
-        if url.endswith("/delta/databases/list"):
+    class Helpers:
+        @staticmethod
+        def get_databases():
+            calls.append(("get_databases",))
             return {"databases": ["kbase_ke_pangenome"]}
-        if url.endswith("/delta/databases/tables/list"):
+
+        @staticmethod
+        def get_tables(database):
+            calls.append(("get_tables", database))
             return {"tables": ["genome", "broken_table"]}
-        if payload["table"] == "broken_table":
-            raise RuntimeError("schema timeout")
-        return {
-            "columns": [
-                {
-                    "name": "genome_id",
-                    "type": "string",
-                    "description": "Genome identifier.",
-                }
-            ]
-        }
 
-    monkeypatch.setattr(module, "_post_json", fake_post_json)
+        @staticmethod
+        def get_table_schema(database, table):
+            calls.append(("get_table_schema", database, table))
+            if table == "broken_table":
+                raise RuntimeError("schema timeout")
+            return {
+                "columns": [
+                    {
+                        "name": "genome_id",
+                        "type": "string",
+                        "description": "Genome identifier.",
+                    }
+                ]
+            }
 
-    snapshot = module.discover_collections("token", "https://example.test/apis/mcp")
+    monkeypatch.setattr(module, "_load_berdl_helpers", lambda: Helpers)
 
+    snapshot = module.discover_collections(include_schemas=True)
+
+    assert snapshot["discovery_method"] == "berdl_notebook_utils"
+    assert snapshot["source_url"] == "berdl-notebook-utils"
     assert snapshot["tenants"][0]["id"] == "kbase"
     collection = snapshot["tenants"][0]["collections"][0]
     assert collection["id"] == "kbase_ke_pangenome"
     assert collection["tables"][0]["columns"][0]["name"] == "genome_id"
     assert "broken_table schema failed" in collection["discovery_errors"][0]
+    assert calls == [
+        ("get_databases",),
+        ("get_tables", "kbase_ke_pangenome"),
+        ("get_table_schema", "kbase_ke_pangenome", "genome"),
+        ("get_table_schema", "kbase_ke_pangenome", "broken_table"),
+    ]
+
+
+def test_discovery_can_skip_schema_helpers(monkeypatch):
+    module = _load_script_module()
+    calls = []
+
+    class Helpers:
+        @staticmethod
+        def get_databases():
+            return [{"database": "kbase_ke_pangenome"}]
+
+        @staticmethod
+        def get_tables(database):
+            calls.append(("get_tables", database))
+            return [("genome", "Genome table.")]
+
+        @staticmethod
+        def get_table_schema(database, table):
+            calls.append(("get_table_schema", database, table))
+            return []
+
+    monkeypatch.setattr(module, "_load_berdl_helpers", lambda: Helpers)
+
+    snapshot = module.discover_collections(include_schemas=False)
+
+    assert snapshot["tenants"][0]["collections"][0]["tables"] == [
+        {
+            "name": "genome",
+            "description": "Genome table.",
+            "row_count": None,
+            "columns": [],
+        }
+    ]
+    assert calls == [("get_tables", "kbase_ke_pangenome")]
+
+
+def test_cli_default_writes_snapshot_without_auth_token(tmp_path, monkeypatch):
+    module = _load_script_module()
+    output = tmp_path / "snapshot.json"
+    monkeypatch.delenv("KBASE_AUTH_TOKEN", raising=False)
+
+    class Helpers:
+        @staticmethod
+        def get_databases():
+            return ["kbase_genomes"]
+
+        @staticmethod
+        def get_tables(database):
+            return ["genomes"]
+
+        @staticmethod
+        def get_table_schema(database, table):
+            raise AssertionError("schemas should be skipped")
+
+    monkeypatch.setattr(module, "_load_berdl_helpers", lambda: Helpers)
+
+    code = module.main(["--output", str(output), "--skip-schemas"])
+
+    assert code == 0
+    snapshot = json.loads(output.read_text())
+    assert snapshot["discovery_method"] == "berdl_notebook_utils"
+    assert snapshot["tenants"][0]["collections"][0]["id"] == "kbase_genomes"
 
 
 def test_write_snapshot_atomic(tmp_path):

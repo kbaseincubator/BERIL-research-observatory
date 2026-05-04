@@ -10,6 +10,10 @@ description: Run SQL queries from a local machine against a provisioned BERDL Sp
 Use this skill to run BERDL Spark queries locally while computation runs on the remote BERDL cluster.
 Use this as the default query path for interactive analysis and API-like result retrieval.
 
+Do not use this proxy workflow when `scripts/detect_berdl_environment.py`
+reports an on-cluster / BERDL JupyterHub environment. On-cluster sessions should
+use the active Spark session and `spark.sql(query)` directly.
+
 ## Preconditions
 
 1. `KBASE_AUTH_TOKEN` set in environment or `.env`.
@@ -26,7 +30,7 @@ Use this as the default query path for interactive analysis and API-like result 
    - `source .venv-berdl/bin/activate`
 2. Verify proxy is running (check ports 1337, 1338, 8123). Start pproxy if needed.
 3. Execute a probe query:
-   - `python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"`
+   - `python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok"`
 4. Run the target SQL query with bounded result size:
    - `python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM db.table ORDER BY id" --limit 500 --output /tmp/query_result.json`
 5. If result size is large, use export mode in this same skill:
@@ -94,3 +98,4 @@ The proxy chain (SSH tunnels + pproxy) must be running.
 1. Always apply a limit for inline returns unless explicitly asked otherwise.
 2. Prefer `ORDER BY` in paginated queries.
 3. Use `scripts/export_sql.py` when response volume is large.
+4. Use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` for access-aware discovery. Avoid raw `SHOW DATABASES` or `SHOW TABLES` probes for discovery.

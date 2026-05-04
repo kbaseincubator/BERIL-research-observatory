@@ -14,30 +14,28 @@ Retrieve AlphaFold predicted structures from the EBI API and store them in MinIO
 
 Query `kescience_alphafold.alphafold_entries` to confirm the accession exists and get metadata:
 
-```bash
-AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
-
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "SELECT alphafold_id, first_residue, last_residue, model_version FROM kescience_alphafold.alphafold_entries WHERE uniprot_accession = '\''ACCESSION'\'' LIMIT 1",
-    "limit": 1
-  }' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/query
+```python
+spark.sql(
+    """
+    SELECT alphafold_id, first_residue, last_residue, model_version
+    FROM kescience_alphafold.alphafold_entries
+    WHERE uniprot_accession = 'ACCESSION'
+    LIMIT 1
+    """
+)
 ```
 
 Optionally check MSA depth for confidence:
 
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "query": "SELECT msa_depth FROM kescience_alphafold.alphafold_msa_depths WHERE uniprot_accession = '\''ACCESSION'\'' LIMIT 1",
-    "limit": 1
-  }' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/query
+```python
+spark.sql(
+    """
+    SELECT msa_depth
+    FROM kescience_alphafold.alphafold_msa_depths
+    WHERE uniprot_accession = 'ACCESSION'
+    LIMIT 1
+    """
+)
 ```
 
 ### Step 2: Retrieve Structure Files from EBI API
