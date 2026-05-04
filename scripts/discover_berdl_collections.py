@@ -5,12 +5,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import tempfile
+import urllib.error
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+
+DEFAULT_BASE_URL = "https://hub.berdl.kbase.us/apis/mcp"
 
 TENANT_NAMES = {
     "kbase": "KBase",
@@ -75,16 +80,119 @@ USER_FACING_DATABASE_IDS = {
 }
 
 
+def read_auth_token(env_path: Path | None = None) -> str | None:
+    """Read KBASE_AUTH_TOKEN from environment or a simple .env file."""
+    if os.environ.get("KBASE_AUTH_TOKEN"):
+        return os.environ["KBASE_AUTH_TOKEN"]
+    env_path = env_path or Path(".env")
+    if not env_path.exists():
+        return None
+    for line in env_path.read_text().splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        if key.strip() == "KBASE_AUTH_TOKEN":
+            return value.strip().strip('"').strip("'")
+    return None
+
+
+def _post_json(url: str, token: str, payload: dict[str, Any], timeout: float) -> Any:
+    data = json.dumps(payload).encode("utf-8")
+    request = urllib.request.Request(
+        url,
+        data=data,
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=timeout) as response:
+            body = response.read()
+    except urllib.error.HTTPError as exc:
+        raise RuntimeError(f"HTTP {exc.code} {exc.reason}") from exc
+    except urllib.error.URLError as exc:
+        raise RuntimeError(str(exc.reason)) from exc
+    try:
+        return json.loads(body.decode("utf-8"))
+    except json.JSONDecodeError as exc:
+        raise RuntimeError("invalid JSON response") from exc
+
+
+def _load_berdl_helpers() -> Any | None:
+    """Returns berdl_notebook_utils on-cluster, None off-cluster."""
+    try:
+        import berdl_notebook_utils
+        return berdl_notebook_utils
+    except ImportError:
+        return None
+
+
 def discover_collections(
     *,
     max_databases: int | None = None,
     include_schemas: bool = True,
+    token: str | None = None,
+    base_url: str = DEFAULT_BASE_URL,
+    timeout: float = 30.0,
 ) -> dict[str, Any]:
-    """Discover databases, tables, and schemas through berdl_notebook_utils."""
+    """Discover databases, tables, and schemas.
+
+    Uses berdl_notebook_utils on-cluster (access-aware).
+    Falls back to the REST API when berdl_notebook_utils is unavailable (off-cluster).
+    """
     helpers = _load_berdl_helpers()
-    databases = sorted(
-        _extract_databases(helpers.get_databases()), key=lambda item: item["id"]
-    )
+
+    if helpers is not None:
+        def _get_databases():
+            return _extract_databases(helpers.get_databases())
+
+        def _get_tables(db_id):
+            return _extract_tables(helpers.get_tables(db_id))
+
+        def _get_schema(db_id, table_name):
+            return _extract_columns(helpers.get_table_schema(db_id, table_name))
+
+        discovery_method = "berdl_notebook_utils"
+        source_url = "berdl-notebook-utils"
+    else:
+        if not token:
+            raise RuntimeError(
+                "berdl_notebook_utils is not available. "
+                "Set KBASE_AUTH_TOKEN for off-cluster REST discovery."
+            )
+        base_url = base_url.rstrip("/")
+
+        def _get_databases():
+            return _extract_databases(
+                _post_json(
+                    f"{base_url}/delta/databases/list", token,
+                    {"use_hms": True, "filter_by_namespace": True}, timeout,
+                )
+            )
+
+        def _get_tables(db_id):
+            return _extract_tables(
+                _post_json(
+                    f"{base_url}/delta/databases/tables/list", token,
+                    {"database": db_id, "use_hms": True}, timeout,
+                )
+            )
+
+        def _get_schema(db_id, table_name):
+            return _extract_columns(
+                _post_json(
+                    f"{base_url}/delta/databases/tables/schema", token,
+                    {"database": db_id, "table": table_name}, timeout,
+                )
+            )
+
+        discovery_method = "rest"
+        source_url = base_url
+
+    databases = sorted(_get_databases(), key=lambda item: item["id"])
     if max_databases is not None:
         databases = databases[:max_databases]
 
@@ -108,7 +216,7 @@ def discover_collections(
             "discovery_errors": [],
         }
         try:
-            tables = _extract_tables(helpers.get_tables(database["id"]))
+            tables = _get_tables(database["id"])
         except Exception as exc:
             collection["discovery_errors"].append(
                 f"table list failed: {_format_error(exc)}"
@@ -126,9 +234,7 @@ def discover_collections(
                 collection["tables"].append(table_record)
                 continue
             try:
-                table_record["columns"] = _extract_columns(
-                    helpers.get_table_schema(database["id"], table["name"])
-                )
+                table_record["columns"] = _get_schema(database["id"], table["name"])
             except Exception as exc:
                 collection["discovery_errors"].append(
                     f"{table['name']} schema failed: {_format_error(exc)}"
@@ -139,22 +245,11 @@ def discover_collections(
 
     return {
         "schema_version": 1,
-        "source_url": "berdl-notebook-utils",
-        "discovery_method": "berdl_notebook_utils",
+        "source_url": source_url,
+        "discovery_method": discovery_method,
         "discovered_at": datetime.now(timezone.utc).isoformat(),
         "tenants": list(tenants.values()),
     }
-
-
-def _load_berdl_helpers() -> Any:
-    """Load the live BERDL notebook helper module."""
-    try:
-        import berdl_notebook_utils
-    except ImportError as exc:  # pragma: no cover - depends on runtime image
-        raise ImportError(
-            "berdl_notebook_utils is required for BERDL collection discovery."
-        ) from exc
-    return berdl_notebook_utils
 
 
 def write_snapshot_atomic(snapshot: dict[str, Any], output: Path) -> None:
@@ -388,6 +483,15 @@ def main(argv: list[str] | None = None) -> int:
         help="Snapshot JSON output path.",
     )
     parser.add_argument(
+        "--base-url",
+        default=DEFAULT_BASE_URL,
+        help="BERDL MCP base URL (used for off-cluster REST fallback).",
+    )
+    parser.add_argument(
+        "--timeout", type=float, default=30.0,
+        help="REST request timeout in seconds (off-cluster only).",
+    )
+    parser.add_argument(
         "--max-databases",
         type=int,
         help="Optional debugging cap on discovered databases.",
@@ -402,19 +506,23 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Keep every discovered namespace instead of the curated user-facing set.",
     )
+    parser.add_argument(
+        "--env-file", type=Path, default=Path(".env"),
+        help="Path to .env file containing KBASE_AUTH_TOKEN (off-cluster fallback).",
+    )
     args = parser.parse_args(argv)
 
+    token = read_auth_token(args.env_file)
     try:
         snapshot = discover_collections(
             max_databases=args.max_databases,
             include_schemas=not args.skip_schemas,
+            token=token,
+            base_url=args.base_url,
+            timeout=args.timeout,
         )
-    except ImportError:
-        print(
-            "berdl_notebook_utils is required for BERDL collection discovery. "
-            "Install or run from a BERDL notebook environment.",
-            file=sys.stderr,
-        )
+    except RuntimeError as exc:
+        print(str(exc), file=sys.stderr)
         return 2
 
     if not args.include_non_user_facing:
