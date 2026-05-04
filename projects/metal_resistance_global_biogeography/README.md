@@ -1,0 +1,119 @@
+# Global Biogeography of Environmental Bacterial Metal Resistance and Spatial Sampling Gaps
+
+## Research Question
+
+Where on Earth are metal-resistant environmental bacteria most abundant, and where are
+the gaps in public metagenomic sampling that prevent us from knowing?
+
+## Status
+
+**Active** — NB01 data extraction complete; NB02 spatial analysis complete (11 hotspots,
+biome stratification, ENA gap analysis). Sampling effort correction and expedition
+clustering check pending. NB03 figures pending.
+
+Initiated: 2026-05-02. Source notebooks: `projects/misc_exploratory/exploratory/`.
+
+## Key Findings (Preliminary)
+
+- **22,356 environmental MAGs** with usable geospatial coordinates (from 30,497 total
+  environmental MAGs; 73.3% coordinate coverage).
+- **24,511 ENA sample records** retrieved via batch API; 16,964 (69.2%) have valid
+  lat/lon pairs — a 30.8% spatial data gap in public metagenomic archives.
+- Global map code drafted showing distribution of metal-resistant (n_metal_types > 0)
+  vs. susceptible (n_metal_types = 0) MAGs; coloured by metal diversity level.
+- MAGs with ≥1 metal resistance type are not uniformly distributed — clustering
+  expected in industrialised and geochemically active regions.
+
+## Distinction from `microbeatlas_metal_ecology`
+
+The existing `microbeatlas_metal_ecology` project analyses **OTU-level 16S rRNA data**
+from 464K samples, testing whether metal-resistant taxa are enriched near mines.
+This project analyses **genome-resolved MAGs** with explicit AMRFinderPlus metal
+resistance annotations and precise lat/lon coordinates, enabling:
+- Strain-level (not OTU-level) spatial resolution
+- Direct metal gene presence/absence (not AMR proxy via pangenome matching)
+- Quantification of where the public archive *lacks* data entirely
+
+These are complementary lines of evidence, not duplicates.
+
+## Analysis Plan
+
+| NB | Source Notebook | Status | Description |
+|---|---|---|---|
+| NB01 | `HM_Resistance/Global_Distribution.ipynb` | ✅ Done | 260K MAG extraction, ENA coordinate retrieval (24,511 samples, 16,964 with lat/lon) |
+| NB02 | `scripts/nb02_spatial_analysis.py` | ✅ Done | 11 hotspots (top: Atacama OR=9.8); biome stratification; ENA gap; expedition clustering check; sampling effort correction pending |
+| NB03 | `notebooks/03_figures.ipynb` | 🔲 Todo | Manuscript figures |
+
+### NB02 — Spatial Analysis Plan
+
+1. **Hotspot identification**
+   — Grid the globe at 5° resolution. For each cell, compute metal resistance prevalence
+   (fraction of MAGs with ≥1 type) and test enrichment vs. global baseline (Fisher's
+   exact, FDR corrected). Flag cells as hotspots (OR > 2, q < 0.05).
+
+2. **Spatial gap quantification (Project 9)**
+   — For each 5° cell with ≥1 sample in ENA, compute the fraction with valid coordinates.
+   Map cells with <50% coordinate coverage as "spatially blind" zones.
+   Overlay with biome type (forest, desert, arctic) to identify which ecosystems are
+   most underrepresented in public metagenomic archives.
+
+3. **Sampling effort correction**
+   — Many apparent hotspots reflect sequencing effort (Europe, USA, East Asia).
+   Apply rarefaction: normalise metal resistance prevalence by number of MAGs per cell.
+   Test whether hotspots persist after correction.
+
+4. **Biome-stratified prevalence**
+   — Compare metal resistance prevalence across biomes (marine sediment, soil, freshwater,
+   wastewater, rhizosphere) after spatial subsampling to equal representation.
+
+5. **Expedition-level clustering check**
+   — Test whether spatial clusters are driven by single expeditions (same study/run
+   accession). The Rockall Trough cluster (9 elite MAGs from `metal_diversity_niche_breadth`)
+   is a known example; check for others.
+
+## Reproduction
+
+**Prerequisites**: JupyterHub Spark access for NB01 (`kescience_mgnify` tables);
+Python ≥ 3.10 with packages in `requirements.txt` for NB02 local script.
+
+| Step | Where | Command / Action | Output |
+|---|---|---|---|
+| 1. MAG extraction + ENA retrieval | JupyterHub | Run `notebooks/01_global_distribution.ipynb` — queries `kescience_mgnify` via Spark; ENA batch API | `final_mags_geospatial_traits.csv`, `ena_sample_coordinates.csv` |
+| 2. Spatial analysis | Local | `python scripts/nb02_spatial_analysis.py` | `figures/fig_nb02_*.png`; hotspot table; biome table |
+| 3. Figures | Local | `jupyter nbconvert --to notebook --execute notebooks/03_figures.ipynb` | `figures/fig_*` |
+
+**Notes**:
+- NB01 requires JupyterHub Spark. The two output CSVs must be available before running
+  NB02 locally. Set `BERDL_DATA_DIR=/path/to/data` to point the script at them.
+- Sampling effort correction (step 2 item 3) and expedition clustering check (step 2
+  item 5) are implemented in NB02 script; hotspot results should be treated as
+  provisional until sampling effort normalisation is complete.
+- NB01 source notebook (`Global_Distribution.ipynb`) has a known matplotlib import
+  error in the map cell; the map figure is generated by NB02 instead.
+
+## Data Sources
+
+| Database | Tables Used | Access |
+|---|---|---|
+| `kescience_mgnify` | `genome`, `gene_amr`, `biome` | JupyterHub Spark |
+| ENA Portal API | `sample` (accession, lat, lon, country) | REST API (batch POST) |
+
+## Source Data
+
+```
+misc_exploratory/exploratory/data/
+  mgnify_mag_metal_traits.csv       # 260,652 MAGs with metal type counts + biome
+  ena_sample_coordinates.csv        # 16,964 coordinate pairs
+```
+
+## Relationship to Other Projects
+
+| Project | Relationship |
+|---|---|
+| `microbeatlas_metal_ecology` | OTU-level complement; that project uses 464K samples at species resolution, this uses genome-resolved MAGs with direct AMR annotations |
+| `metal_diversity_niche_breadth` | The 12 exemplar generalists can be mapped geospatially here |
+| `metal_resistance_genomic_signatures` | Spatial GC-content gradients could be overlaid on this map |
+
+## Authors
+
+Heather MacGregor
