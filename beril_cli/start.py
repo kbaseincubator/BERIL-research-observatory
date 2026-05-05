@@ -81,6 +81,10 @@ def run_start(
     if not skip_onboard and not extra_args:
         extra_args = ["/berdl_start"]
 
+    # Default to Opus model for Claude
+    if agent == "claude" and "--model" not in extra_args:
+        extra_args = ["--model", "opus", *extra_args]
+
     print(f"Launching {agent}...")
     # Replace the current process with the agent
     os.execvp(binary, [agent, *extra_args])
