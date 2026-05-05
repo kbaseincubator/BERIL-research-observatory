@@ -50,7 +50,10 @@ MANIFEST_FILENAME = "context_manifest.json"
 # OpenViking's temp tier (`viking://temp/default/<MMDDHHMM>_<hash>`) collides
 # under sustained back-to-back `add_resource` pressure, surfacing as
 # "Directory not found" / corrupt-zip errors mid-finalize. Drain the queue
-# every N projects so the server can flush temp before more pile up.
+# every N projects so the server can flush temp before more pile up. The
+# manifest is also checkpointed at each drain — only after `wait_processed`
+# confirms the queue is idle, so a manifest entry means "fully processed by
+# OV", not just "synchronously finalized".
 DRAIN_EVERY = 5
 
 # Transient temp-tier errors usually clear after a brief settle. Retry the
@@ -74,19 +77,20 @@ def ingest_all(
 
     new_manifest = _current_manifest(config)
 
+    pending_checkpoint: set[str] = set()
     for index, project_dir in enumerate(selected, start=1):
         target_uri = project_target_uri(project_dir.name)
         _ingest_project_dir(config, client, project_dir)
         obs.advance(project_dir.name)
-        _checkpoint_manifest(config, new_manifest, {target_uri})
+        pending_checkpoint.add(target_uri)
         if index % DRAIN_EVERY == 0 and index < len(selected):
             obs.wait_processed(client)
+            _checkpoint_manifest(config, new_manifest, pending_checkpoint)
+            pending_checkpoint.clear()
 
     for doc_path in docs:
-        doc_uri = docs_target_uri(doc_path)
         _ingest_doc(config, client, doc_path)
         obs.advance(f"docs/{doc_path.name}")
-        _checkpoint_manifest(config, new_manifest, {doc_uri})
 
     if limit:
         ingested = {project_target_uri(p.name) for p in selected}
@@ -127,6 +131,7 @@ def ingest_changed(
     obs.start(total=max(len(targets) + len(removed), 1))
 
     project_index = 0
+    pending_checkpoint: set[str] = set()
     for target_uri in targets:
         if target_uri.startswith(PROJECTS_TARGET_URI):
             project_id = target_uri.removeprefix(PROJECTS_TARGET_URI).strip("/")
@@ -134,15 +139,16 @@ def ingest_changed(
                 _ingest_project_dir(config, client, project_dirs[project_id])
                 ingested_uris.add(target_uri)
                 obs.advance(project_id)
-                _checkpoint_manifest(config, new_manifest, {target_uri})
+                pending_checkpoint.add(target_uri)
                 project_index += 1
                 if project_index % DRAIN_EVERY == 0:
                     obs.wait_processed(client)
+                    _checkpoint_manifest(config, new_manifest, pending_checkpoint)
+                    pending_checkpoint.clear()
         elif target_uri in docs:
             _ingest_doc(config, client, docs[target_uri])
             ingested_uris.add(target_uri)
             obs.advance(f"docs/{docs[target_uri].name}")
-            _checkpoint_manifest(config, new_manifest, {target_uri})
 
     for target_uri in removed:
         _remove_resource(client, target_uri)
@@ -179,13 +185,11 @@ def ingest_projects(
     obs = observer or NullObserver()
     project_dirs = [resolve_project_dir(config, project_id) for project_id in project_ids]
     obs.start(total=len(project_dirs))
-    new_manifest = _current_manifest(config)
     for project_dir in project_dirs:
-        target_uri = project_target_uri(project_dir.name)
         _ingest_project_dir(config, client, project_dir)
         obs.advance(project_dir.name)
-        _checkpoint_manifest(config, new_manifest, {target_uri})
 
+    new_manifest = _current_manifest(config)
     _remove_stale(client, config, new_manifest)
     obs.wait_processed(client)
     save_manifest(_manifest_path(config), new_manifest)
