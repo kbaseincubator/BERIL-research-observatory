@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import time
 from pathlib import Path
 from typing import Any
@@ -54,7 +55,11 @@ MANIFEST_FILENAME = "context_manifest.json"
 # manifest is also checkpointed at each drain — only after `wait_processed`
 # confirms the queue is idle, so a manifest entry means "fully processed by
 # OV", not just "synchronously finalized".
-DRAIN_EVERY = 5
+#
+# Default is 1 (slow-and-steady) to minimize CBORG/VLM rate-limit pressure;
+# bump via OV_INGEST_DRAIN_EVERY when the backend is healthy and you want
+# more throughput.
+DRAIN_EVERY = max(1, int(os.environ.get("OV_INGEST_DRAIN_EVERY", "1")))
 
 # Transient temp-tier errors usually clear after a brief settle. Retry the
 # same upload a few times with linear backoff before giving up.
