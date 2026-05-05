@@ -13,16 +13,28 @@ Pangenome data for 293,059 genomes across 27,690 microbial species from GTDB.
 | `genome` | 293,059 | Genome metadata and file paths |
 | `pangenome` | 27,690 | Per-species pangenome statistics |
 | `gtdb_species_clade` | 27,690 | Species taxonomy and ANI statistics |
-| `gene_cluster` | varies | Gene family classifications (core/accessory/singleton) |
-| `gene_genecluster_junction` | varies | Gene-to-cluster memberships |
-| `gene` | varies | Individual gene records |
-| `eggnog_mapper_annotations` | varies | Functional annotations (COG, GO, KEGG, EC, PFAM) |
-| `gapmind_pathways` | varies | Metabolic pathway predictions |
-| `genome_ani` | varies | Pairwise ANI values between genomes |
-| `gtdb_metadata` | varies | CheckM quality, assembly stats, GC% |
-| `gtdb_taxonomy_r214v1` | varies | GTDB taxonomy |
-| `sample` | varies | Sample metadata |
-| `ncbi_env` | varies | Environment metadata |
+| `gene_cluster` | 132,531,501 | Gene family classifications (core/accessory/singleton) |
+| `gene_genecluster_junction` | 1,011,650,762 | Gene-to-cluster memberships |
+| `gene` | 1,011,650,903 | Individual gene records |
+| `eggnog_mapper_annotations` | 93,558,330 | Functional annotations (COG, GO, KEGG, EC, PFAM) |
+| `gapmind_pathways` | 305,471,280 | Metabolic pathway predictions |
+| `genome_ani` | 421,218,641 | Pairwise ANI values between genomes |
+| `gtdb_metadata` | 293,059 | CheckM quality, assembly stats, GC% |
+| `gtdb_taxonomy_r214v1` | 293,059 | GTDB taxonomy |
+| `sample` | 293,059 | Sample metadata |
+| `ncbi_env` | 4,124,801 | Environment metadata |
+| `bakta_annotations` | 132,538,155 | Bakta reannotation of cluster representatives (gene names, EC, COG, KEGG, UniRef) |
+| `bakta_db_xrefs` | 572,376,477 | Bakta cross-references to external DBs (UniRef, RefSeq, etc.) |
+| `bakta_pfam_domains` | 18,807,208 | Pfam domain hits from Bakta |
+| `bakta_amr` | 83,008 | AMR gene calls from Bakta |
+| `interproscan_domains` | 833,303,130 | InterProScan domain hits across 18 member databases |
+| `interproscan_go` | 266,317,724 | GO term assignments via InterProScan |
+| `interproscan_pathways` | 287,228,475 | Pathway assignments via InterProScan (KEGG, MetaCyc, Reactome) |
+| `alphaearth_embeddings_all_years` | 83,287 | AlphaEarth satellite-imagery embeddings keyed to genome sample sites |
+| `phylogenetic_tree` | 343 | Per-species phylogenetic trees (Newick format) |
+| `phylogenetic_tree_distance_pairs` | 283,485,747 | Pairwise branch distances from species trees |
+
+For full schemas of the Bakta, InterProScan, AlphaEarth, and phylogenetic tables, see [`docs/schemas/pangenome.md`](../../../../docs/schemas/pangenome.md).
 
 ## Key Table Schemas
 
