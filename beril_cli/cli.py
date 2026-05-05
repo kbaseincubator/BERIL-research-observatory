@@ -29,6 +29,12 @@ def main(argv: list[str] | None = None) -> int:
         default=None,
         help="Agent to launch (default: from config, or claude)",
     )
+    start_parser.add_argument(
+        "--skip-onboard",
+        action="store_true",
+        default=False,
+        help="Skip the automatic /berdl_start onboarding prompt",
+    )
 
     args, remaining = parser.parse_known_args(argv)
 
@@ -49,7 +55,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "start":
         from beril_cli.start import run_start
 
-        return run_start(agent=args.agent, extra_args=remaining)
+        return run_start(agent=args.agent, extra_args=remaining, skip_onboard=args.skip_onboard)
 
     return 0
 
