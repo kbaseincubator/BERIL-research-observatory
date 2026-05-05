@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+import time
 from pathlib import Path
 from typing import Any
+
+from openviking_cli.exceptions import ProcessingError
 
 from .config import DOCS_TARGET_URI, PROJECTS_TARGET_URI, ContextConfig
 from .manifest import (
@@ -32,6 +35,11 @@ MANIFEST_FILENAME = "context_manifest.json"
 # every N projects so the server can flush temp before more pile up.
 DRAIN_EVERY = 5
 
+# Transient temp-tier errors usually clear after a brief settle. Retry the
+# same upload a few times with linear backoff before giving up.
+ADD_RESOURCE_RETRIES = 3
+ADD_RESOURCE_BACKOFF_SECONDS = 5.0
+
 
 def ingest_all(
     config: ContextConfig,
@@ -46,17 +54,22 @@ def ingest_all(
     docs = [] if limit else select_central_docs(config.repo_root)
     obs.start(total=len(selected) + len(docs))
 
+    new_manifest = _current_manifest(config)
+
     for index, project_dir in enumerate(selected, start=1):
+        target_uri = project_target_uri(project_dir.name)
         _ingest_project_dir(config, client, project_dir)
         obs.advance(project_dir.name)
+        _checkpoint_manifest(config, new_manifest, {target_uri})
         if index % DRAIN_EVERY == 0 and index < len(selected):
             obs.wait_processed(client)
 
     for doc_path in docs:
+        doc_uri = docs_target_uri(doc_path)
         _ingest_doc(config, client, doc_path)
         obs.advance(f"docs/{doc_path.name}")
+        _checkpoint_manifest(config, new_manifest, {doc_uri})
 
-    new_manifest = _current_manifest(config)
     if limit:
         ingested = {project_target_uri(p.name) for p in selected}
         manifest_to_save = _partial_manifest(
@@ -103,6 +116,7 @@ def ingest_changed(
                 _ingest_project_dir(config, client, project_dirs[project_id])
                 ingested_uris.add(target_uri)
                 obs.advance(project_id)
+                _checkpoint_manifest(config, new_manifest, {target_uri})
                 project_index += 1
                 if project_index % DRAIN_EVERY == 0:
                     obs.wait_processed(client)
@@ -110,6 +124,7 @@ def ingest_changed(
             _ingest_doc(config, client, docs[target_uri])
             ingested_uris.add(target_uri)
             obs.advance(f"docs/{docs[target_uri].name}")
+            _checkpoint_manifest(config, new_manifest, {target_uri})
 
     for target_uri in removed:
         _remove_resource(client, target_uri)
@@ -146,11 +161,13 @@ def ingest_projects(
     obs = observer or NullObserver()
     project_dirs = [resolve_project_dir(config, project_id) for project_id in project_ids]
     obs.start(total=len(project_dirs))
+    new_manifest = _current_manifest(config)
     for project_dir in project_dirs:
+        target_uri = project_target_uri(project_dir.name)
         _ingest_project_dir(config, client, project_dir)
         obs.advance(project_dir.name)
+        _checkpoint_manifest(config, new_manifest, {target_uri})
 
-    new_manifest = _current_manifest(config)
     _remove_stale(client, config, new_manifest)
     obs.wait_processed(client)
     save_manifest(_manifest_path(config), new_manifest)
@@ -230,7 +247,23 @@ def _ingest_doc(config: ContextConfig, client: Any, doc_path: Path) -> None:
 
 
 def _add_resource(client: Any, path: Path, target_uri: str, reason: str) -> None:
-    client.add_resource(path=str(path), to=target_uri, reason=reason, wait=False)
+    for attempt in range(1, ADD_RESOURCE_RETRIES + 1):
+        try:
+            client.add_resource(path=str(path), to=target_uri, reason=reason, wait=False)
+            return
+        except ProcessingError:
+            if attempt == ADD_RESOURCE_RETRIES:
+                raise
+            time.sleep(ADD_RESOURCE_BACKOFF_SECONDS * attempt)
+
+
+def _checkpoint_manifest(
+    config: ContextConfig, new_manifest: Manifest, touched: set[str]
+) -> None:
+    if not touched:
+        return
+    current = load_manifest(_manifest_path(config))
+    save_manifest(_manifest_path(config), _partial_manifest(current, new_manifest, touched))
 
 
 def _remove_resource(client: Any, target_uri: str) -> None:
