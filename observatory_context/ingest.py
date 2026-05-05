@@ -26,6 +26,12 @@ from .staging import stage_doc, stage_project
 
 MANIFEST_FILENAME = "context_manifest.json"
 
+# OpenViking's temp tier (`viking://temp/default/<MMDDHHMM>_<hash>`) collides
+# under sustained back-to-back `add_resource` pressure, surfacing as
+# "Directory not found" / corrupt-zip errors mid-finalize. Drain the queue
+# every N projects so the server can flush temp before more pile up.
+DRAIN_EVERY = 5
+
 
 def ingest_all(
     config: ContextConfig,
@@ -40,9 +46,11 @@ def ingest_all(
     docs = [] if limit else select_central_docs(config.repo_root)
     obs.start(total=len(selected) + len(docs))
 
-    for project_dir in selected:
+    for index, project_dir in enumerate(selected, start=1):
         _ingest_project_dir(config, client, project_dir)
         obs.advance(project_dir.name)
+        if index % DRAIN_EVERY == 0 and index < len(selected):
+            obs.wait_processed(client)
 
     for doc_path in docs:
         _ingest_doc(config, client, doc_path)
@@ -87,6 +95,7 @@ def ingest_changed(
     ingested_uris: set[str] = set()
     obs.start(total=max(len(targets) + len(removed), 1))
 
+    project_index = 0
     for target_uri in targets:
         if target_uri.startswith(PROJECTS_TARGET_URI):
             project_id = target_uri.removeprefix(PROJECTS_TARGET_URI).strip("/")
@@ -94,6 +103,9 @@ def ingest_changed(
                 _ingest_project_dir(config, client, project_dirs[project_id])
                 ingested_uris.add(target_uri)
                 obs.advance(project_id)
+                project_index += 1
+                if project_index % DRAIN_EVERY == 0:
+                    obs.wait_processed(client)
         elif target_uri in docs:
             _ingest_doc(config, client, docs[target_uri])
             ingested_uris.add(target_uri)
