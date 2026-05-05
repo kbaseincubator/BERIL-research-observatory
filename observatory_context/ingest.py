@@ -66,6 +66,11 @@ DRAIN_EVERY = max(1, int(os.environ.get("OV_INGEST_DRAIN_EVERY", "1")))
 ADD_RESOURCE_RETRIES = 3
 ADD_RESOURCE_BACKOFF_SECONDS = 5.0
 
+# wait_processed only confirms OV's queues are idle — CBORG/OpenAI rate-limit
+# windows are still ticking from the calls just made. Sleep between batches so
+# token buckets refill before the next round of VLM/embedding calls.
+INTER_BATCH_PAUSE_SECONDS = float(os.environ.get("OV_INGEST_INTER_BATCH_PAUSE", "3"))
+
 
 def ingest_all(
     config: ContextConfig,
@@ -92,6 +97,8 @@ def ingest_all(
             obs.wait_processed(client)
             _checkpoint_manifest(config, new_manifest, pending_checkpoint)
             pending_checkpoint.clear()
+            if INTER_BATCH_PAUSE_SECONDS > 0:
+                time.sleep(INTER_BATCH_PAUSE_SECONDS)
 
     for doc_path in docs:
         _ingest_doc(config, client, doc_path)
@@ -150,6 +157,8 @@ def ingest_changed(
                     obs.wait_processed(client)
                     _checkpoint_manifest(config, new_manifest, pending_checkpoint)
                     pending_checkpoint.clear()
+                    if INTER_BATCH_PAUSE_SECONDS > 0:
+                        time.sleep(INTER_BATCH_PAUSE_SECONDS)
         elif target_uri in docs:
             _ingest_doc(config, client, docs[target_uri])
             ingested_uris.add(target_uri)
