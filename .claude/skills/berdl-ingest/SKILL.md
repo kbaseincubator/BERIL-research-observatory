@@ -40,18 +40,38 @@ MinIO are directly accessible inside the cluster, no SSH tunnels, pproxy, or
 
 ### Step 0: Verify environment
 
-Check that `get_spark_session()` and `get_minio_client()` succeed before proceeding:
+`get_spark_session()` and `get_minio_client()` come from `scripts/ingest_lib.py` in
+the BERIL repo (not from `data_lakehouse_ingest` directly). The notebook bootstraps
+`ingest_lib` by walking up from the notebook's location to find `scripts/` and adding
+it to `sys.path` — the same approach as the remote skill.
+
+`ingest()` is imported directly from `data_lakehouse_ingest` (its only public export).
+
+Verify the environment is ready:
 
 ```python
-from data_lakehouse_ingest import get_spark_session, get_minio_client
+import sys
+from pathlib import Path
+
+_found = False
+for _p in [Path.cwd()] + list(Path.cwd().parents):
+    if (_p / "scripts" / "ingest_lib.py").exists():
+        sys.path.insert(0, str(_p / "scripts"))
+        _found = True
+        break
+if not _found:
+    raise RuntimeError("Could not find scripts/ingest_lib.py — run from within the BERIL repo.")
+
+from ingest_lib import get_spark_session, get_minio_client
+from data_lakehouse_ingest import ingest
 
 spark        = get_spark_session()
 minio_client = get_minio_client()
 print("Spark and MinIO ready.")
 ```
 
-If either raises, the JH environment is misconfigured — this is not a tunnel issue.
-Report the error message to the user and stop. Do not attempt workarounds.
+If either `get_spark_session()` or `get_minio_client()` raises, the JH environment is
+misconfigured — this is not a tunnel issue. Report the error verbatim and stop.
 
 ### Step 1: Ask for source directory
 
@@ -162,16 +182,15 @@ if objects:
 
 **Generate local metadata files:**
 
+Use the `BRONZE_PREFIX`, `NAMESPACE`, `TENANT`, `DATASET`, `BUCKET`, and `USER_TENANT`
+variables already set by the notebook config cell — do not recompute them here.
+Both shared-tenant and user-tenant paths are handled correctly by those variables.
+
 ```python
 import uuid, yaml
 from datetime import date, datetime, timezone
-from pathlib import Path
 
-DATA_DIR      = Path("<DATA_DIR>")
-TENANT        = "<TENANT>"
-DATASET       = "<DATASET>"
-BUCKET        = "cdm-lake"
-BRONZE_PREFIX = f"tenant-general-warehouse/{TENANT}/datasets/{DATASET}"
+# BRONZE_PREFIX, NAMESPACE, TENANT, DATASET, BUCKET, USER_TENANT already set by config cell
 
 tables        = [<list of table names>]
 ingested_by   = "<name>"
@@ -193,9 +212,9 @@ for table in tables:
     meta = {
         "schema_version":       "0.2.0",
         "identifier":           str(uuid.uuid4()),
-        "tenant":               TENANT,
+        "tenant":               None if USER_TENANT else TENANT,
         "dataset":              DATASET,
-        "namespace":            f"{TENANT}_{DATASET}",
+        "namespace":            NAMESPACE,
         "table":                table,
         "title":                table,
         "source":               source,

@@ -1,10 +1,10 @@
 ---
-name: berdl-ingest
-description: Ingest a local dataset into the BERDL Lakehouse from a local (off-cluster) machine. Handles data format detection and preparation, MinIO upload, and Delta table creation via the data_lakehouse_ingest pipeline. Use when a user wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace.
+name: berdl-ingest-remote
+description: Ingest a local dataset into the BERDL Lakehouse from a local (off-cluster) machine via SSH tunnels and pproxy. Handles data format detection and preparation, MinIO upload, and Delta table creation via the data_lakehouse_ingest pipeline. Use when a user wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace from their local machine (not from within JupyterHub). For in-cluster ingestion from within JupyterHub, use berdl-ingest instead.
 allowed-tools: Bash, Read, Write, Edit, Task
 ---
 
-# BERDL Local Ingest Skill
+# BERDL Remote (Off-Cluster) Ingest Skill
 
 ## Overview
 
