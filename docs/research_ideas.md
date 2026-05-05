@@ -57,9 +57,9 @@
 **Research Question**: Do pangenome characteristics (open vs. closed) correlate with metabolic pathway diversity and biogeographic distribution patterns?
 
 **Approach**:
-- Extract pangenome stats (27,690 species from `pangenome` table)
-- Aggregate gapmind pathway data to species level (305M rows → species summaries)
-- Calculate biogeographic metrics from AlphaEarth embeddings (83K genomes, 28% coverage)
+- Extract pangenome stats from the `pangenome` table
+- Aggregate gapmind pathway data to species level (large; aggregate in Spark)
+- Calculate biogeographic metrics from AlphaEarth embeddings (~28% genome coverage)
 - Test three hypotheses:
   1. Open pangenomes → greater pathway diversity
   2. Wider geographic distribution → more diverse metabolic capabilities
@@ -201,7 +201,7 @@
 - For the ~30 FB organisms with pangenome links, map GapMind pathway predictions to FB genes via the link table
 - For each predicted-complete pathway, aggregate fitness effects of the pathway genes
 - Classify pathways as: **active dependencies** (complete + fitness-important), **latent capabilities** (complete + fitness-neutral), or **missing** (incomplete)
-- Scale to all 27K species: study within-species pathway heterogeneity at the step level — which pathways are "core complete" vs "accessory"?
+- Scale to all species in the pangenome inventory: study within-species pathway heterogeneity at the step level — which pathways are "core complete" vs "accessory"?
 - Identify "metabolic ecotypes" — within-species clusters defined by metabolic capability profiles
 
 **Hypotheses**:
@@ -212,7 +212,7 @@
 **Impact**: High — bridges the gap between genome-level metabolic prediction and experimental fitness validation. Relevant to synthetic biology (minimal media design), microbiome ecology (cross-feeding dependencies), and drug target discovery (active dependencies are targets).
 
 **Dependencies**:
-- GapMind data extraction (305M rows in `kbase_ke_pangenome.gapmind_pathways`)
+- GapMind data extraction from `kbase_ke_pangenome.gapmind_pathways` (large table; aggregate in Spark)
 - Existing FB-pangenome link table from `conservation_vs_fitness`
 - Existing fitness data from `fitness_effects_conservation`
 
@@ -463,11 +463,11 @@
 
 ### [plant_microbiome_ecotypes] Plant Microbiome Ecotype Functional Classification
 **Status**: COMPLETED (Phase 2b finalized 2026-04-25)
-**Results**: 15 notebooks + 4 follow-up scripts on 293K genomes / 25,660 species. Headline post-Phase-2b verdicts: **H2 supported** — beneficial (PGP) genes are core 64.6% vs pathogenic 45.2%, p=3.4×10⁻¹²⁵. **H5 supported** — 48/50 plant-enriched eggNOG OGs survive real per-species phylum + log₁₀(genome_size) regression at q<0.05; cytochrome oxidase (COG1845) and Fe-S cluster biogenesis (COG0316) lead. **H6 supported in 2 species** — *Xanthomonas campestris* × Brassica (46/47 in best subclade, p=3.3×10⁻¹¹) and *X. vasicola* × *Zea mays* (47/52, p=1.7×10⁻¹⁰), confirming canonical pathovar-host specializations at the genomic level. **H1 weakly supported** — db-RDA location-only R²=0.060 + significant PERMDISP; the original PERMANOVA R²=0.527 was a panel + sampling artifact (86% loss after excluding top-3 species per compartment). **H3 not supported** — small redundancy |d|≈0.4 (NB06's reported −7.54 was a Cohen's d formula error). **H7 weakly supported** — 5/17 testable species pass Bonferroni-Fisher (47/65 candidates lack phylogenetic-tree coverage, a BERDL database limitation). **H0 partially rejected** — three-tier marker framing: 3 species-level (N-fix, ACC deaminase, T3SS), 5 cassette-level (phenazine, CWDEs, phosphate-sol, effector), 6 not robust. Methodological contributions: paired adversarial-review pattern (caught 5 critical issues the standard reviewer missed; documented in `docs/adversarial_review_2026-04-24.md`); bakta-vs-IPS Pfam audit (12/22 marker Pfams silently missing from `bakta_pfam_domains`, project-independent BERDL pitfall in `docs/pitfalls.md`); cluster-robust GLM at genus level as a tractable PGLMM analogue. See `projects/plant_microbiome_ecotypes/`.
+**Results**: 15 notebooks + 4 follow-up scripts spanning the BERDL pangenome inventory. Headline post-Phase-2b verdicts: **H2 supported** — beneficial (PGP) genes are core 64.6% vs pathogenic 45.2%, p=3.4×10⁻¹²⁵. **H5 supported** — 48/50 plant-enriched eggNOG OGs survive real per-species phylum + log₁₀(genome_size) regression at q<0.05; cytochrome oxidase (COG1845) and Fe-S cluster biogenesis (COG0316) lead. **H6 supported in 2 species** — *Xanthomonas campestris* × Brassica (46/47 in best subclade, p=3.3×10⁻¹¹) and *X. vasicola* × *Zea mays* (47/52, p=1.7×10⁻¹⁰), confirming canonical pathovar-host specializations at the genomic level. **H1 weakly supported** — db-RDA location-only R²=0.060 + significant PERMDISP; the original PERMANOVA R²=0.527 was a panel + sampling artifact (86% loss after excluding top-3 species per compartment). **H3 not supported** — small redundancy |d|≈0.4 (NB06's reported −7.54 was a Cohen's d formula error). **H7 weakly supported** — 5/17 testable species pass Bonferroni-Fisher (47/65 candidates lack phylogenetic-tree coverage, a BERDL database limitation). **H0 partially rejected** — three-tier marker framing: 3 species-level (N-fix, ACC deaminase, T3SS), 5 cassette-level (phenazine, CWDEs, phosphate-sol, effector), 6 not robust. Methodological contributions: paired adversarial-review pattern (caught 5 critical issues the standard reviewer missed; documented in `docs/adversarial_review_2026-04-24.md`); bakta-vs-IPS Pfam audit (12/22 marker Pfams silently missing from `bakta_pfam_domains`, project-independent BERDL pitfall in `docs/pitfalls.md`); cluster-robust GLM at genus level as a tractable PGLMM analogue. See `projects/plant_microbiome_ecotypes/`.
 
 ### [pgp_pangenome_ecology] PGP Gene Distribution Across Environments & Pangenomes
 **Status**: COMPLETED
-**Results**: H1 SUPPORTED — pqqC × acdS co-occur at OR = 7.24 (strongest pair), forming a vertically inherited rhizosphere module; nifH forms a separate ecological guild (negatively associated with pqqC, depleted in soil). H2 SUPPORTED — acdS (OR = 7.0) and pqqC (OR = 2.9) strongly enriched in soil/rhizosphere, surviving phylum fixed effects. H3 REJECTED — PGP genes are predominantly core (mean 29.7% accessory vs 53.2% genome-wide baseline), contra the HGT hypothesis. H4 PARTIALLY SUPPORTED — trp completeness predicts ipdC (OR = 2.81) but tyrosine "negative control" also significant (OR = 3.62) due to TyrR co-regulation; soil species show reversal (OR = 0.30). First pangenome-scale analysis across 293K genomes, 27K species. See `projects/pgp_pangenome_ecology/`.
+**Results**: H1 SUPPORTED — pqqC × acdS co-occur at OR = 7.24 (strongest pair), forming a vertically inherited rhizosphere module; nifH forms a separate ecological guild (negatively associated with pqqC, depleted in soil). H2 SUPPORTED — acdS (OR = 7.0) and pqqC (OR = 2.9) strongly enriched in soil/rhizosphere, surviving phylum fixed effects. H3 REJECTED — PGP genes are predominantly core (mean 29.7% accessory vs 53.2% genome-wide baseline), contra the HGT hypothesis. H4 PARTIALLY SUPPORTED — trp completeness predicts ipdC (OR = 2.81) but tyrosine "negative control" also significant (OR = 3.62) due to TyrR co-regulation; soil species show reversal (OR = 0.30). First pangenome-scale analysis spanning the full BERDL pangenome inventory. See `projects/pgp_pangenome_ecology/`.
 
 ### [bacdive_phenotype_metal_tolerance] BacDive Phenotype Signatures of Metal Tolerance
 **Status**: COMPLETED
@@ -620,7 +620,7 @@ _Capture half-baked ideas here for future refinement_
 **Research Question**: At Oak Ridge ENIGMA SFA, what metabolic functions does BERDL's cultured-isolate genome collection systematically under-represent compared to MAGs recovered from metagenomes of the same site? In plain terms: if a researcher only used the cultured genomes to characterize the metabolic potential of the Oak Ridge subsurface, what would they get wrong?
 
 **Approach**:
-- Inventory paired data in `enigma_coral`: 6,705 cultured `sdt_genome` rows + 623 `sdt_bin` MAG rows from the same site, plus newly released metagenomes (Lui 2025).
+- Inventory paired data in `enigma_coral`: cultured `sdt_genome` rows + `sdt_bin` MAG rows from the same site (run `SELECT COUNT(*)` against each table for current row counts), plus newly released metagenomes (Lui 2025).
 - For each metabolic function in a curated marker dictionary (Wood–Ljungdahl, [NiFe]/[FeFe]-hydrogenases, dsr-apr-sat, mtrA-mtrC-omcS, narGHI/napAB, mcrA, glycine-betaine osmoprotectants, MGE/conjugation markers, CPR/DPANN-signature genes), compute the per-function presence rate in the cultured cohort vs the MAG cohort.
 - Report a per-function "cultivation-coverage" table with effect sizes, BH-FDR-adjusted p-values, and a one-line interpretation per row.
 - Validate against published ORFRC findings: Tian 2020 (Patescibacteria streamlining), Goff 2024 (HMR-laden MGEs in MAGs), Wu 2023 (depth-stratified C/N cycling).

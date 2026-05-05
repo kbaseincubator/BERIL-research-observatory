@@ -194,7 +194,9 @@ The omitted databases observed at the time included:
 
 Do not treat committed snapshots or historical inventory documents as the
 source of truth for access. Use helper discovery for tenant/table access, and
-keep durable notes in `docs/schemas/` when a collection is investigated.
+keep durable non-derivable gotchas (ID formats, NULL conventions, JOIN-key
+surprises) under per-database H2 sections in `docs/pitfalls.md` when a
+collection is investigated.
 
 ### [ibd_phage_targeting] `schema_overview.yaml` + per-table `*.yaml` dictionaries is a useful convention for large local data marts
 

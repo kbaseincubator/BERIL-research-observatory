@@ -185,4 +185,4 @@ You can keep working on the project after submitting — submission is not a one
 - **CBORG (LBL users)**: [cborg.lbl.gov](https://cborg.lbl.gov/tools_claudecode/)
 - **Query pitfalls**: [docs/pitfalls.md](pitfalls.md)
 - **Performance tips**: [docs/performance.md](performance.md)
-- **Schema documentation**: [docs/schemas/](schemas/)
+- **Per-database gotchas**: [docs/pitfalls.md](pitfalls.md) (per-database H2 sections); for live schemas use `berdl_notebook_utils.get_table_schema(... return_json=False)`

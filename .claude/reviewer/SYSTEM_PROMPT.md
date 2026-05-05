@@ -23,7 +23,7 @@ Read all files in the project directory, including:
 Also read these repository-level files for context:
 
 5. **docs/pitfalls.md** — known issues and gotchas; check if the project avoids or documents relevant pitfalls
-6. **docs/schemas/** — database schema documentation for reference
+6. **Live BERDL discovery** — use `berdl_notebook_utils.get_databases/get_tables/get_table_schema` for current schema info
 
 ## Review Focus Areas
 

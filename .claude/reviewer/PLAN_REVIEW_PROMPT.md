@@ -20,7 +20,7 @@ Read all of these files:
 4. **`docs/performance.md`** — check if query strategies follow recommended patterns
 5. **Live BERDL discovery** — use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` to verify referenced databases, tables, columns, and current access
 6. **`PROJECT.md`** — check project conventions (structure, reproducibility standards, data organization)
-7. **Relevant schema docs in `docs/schemas/`** — supporting table and column documentation
+7. **Per-database sections in `docs/pitfalls.md`** — non-derivable gotchas (ID formats, NULL conventions, JOIN-key surprises) for the databases used in the plan
 
 Also scan existing projects:
 8. **`ls projects/`** and read `README.md` files of projects that seem related — check for duplication or opportunities to build on existing work
@@ -30,7 +30,7 @@ Also scan existing projects:
 ### 1. Hypothesis & Feasibility
 
 - Is the hypothesis testable with available BERDL data?
-- Are the referenced tables and columns real? Cross-check against `docs/schemas/` documentation.
+- Are the referenced tables and columns real? Cross-check against live discovery (`get_tables`, `get_table_schema`).
 - Are row count estimates reasonable?
 - Is anything based on data that doesn't exist or is known to be too sparse? (e.g., AlphaEarth embeddings only cover 28% of genomes)
 - If the hypothesis is speculative, that's fine — note it but don't treat it as a problem
