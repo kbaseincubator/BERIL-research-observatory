@@ -5,14 +5,23 @@ description: Run SQL queries from a local machine against a provisioned BERDL Sp
 
 # BERDL Query Skill
 
+## Step 0: Environment Check
+
+Run before anything else:
+
+```bash
+python scripts/berdl_env.py --check
+```
+
+This skill is for **off-cluster** execution. If `--check` reports `on-cluster`, you should be using the `berdl` skill with the active Spark session and `spark.sql(query)` directly — do not use `--berdl-proxy` on-cluster. If `--check` reports `off-cluster` and is not ready, follow the printed next steps.
+
+
 ## Overview
 
 Use this skill to run BERDL Spark queries locally while computation runs on the remote BERDL cluster.
 Use this as the default query path for interactive analysis and API-like result retrieval.
 
-Do not use this proxy workflow when `scripts/detect_berdl_environment.py`
-reports an on-cluster / BERDL JupyterHub environment. On-cluster sessions should
-use the active Spark session and `spark.sql(query)` directly.
+Do not use this proxy workflow when `scripts/berdl_env.py --check` reports an on-cluster / BERDL JupyterHub environment. On-cluster sessions should use the active Spark session and `spark.sql(query)` directly.
 
 ## Preconditions
 
@@ -90,6 +99,7 @@ The proxy chain (SSH tunnels + pproxy) must be running.
 ## References
 
 - `references/proxy-setup.md`: how to set up SSH tunnels and pproxy for local access.
+- `references/off-cluster-mechanics.md`: MinIO `mc` proxy variables, Spark Connect sidecar startup race, and the local-machine Spark session pattern.
 - `references/query-limits.md`: query tiering and fallback guidance.
 - `references/export-paths.md`: recommended MinIO path conventions and format choices.
 
@@ -98,4 +108,4 @@ The proxy chain (SSH tunnels + pproxy) must be running.
 1. Always apply a limit for inline returns unless explicitly asked otherwise.
 2. Prefer `ORDER BY` in paginated queries.
 3. Use `scripts/export_sql.py` when response volume is large.
-4. Use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` for access-aware discovery. Avoid raw `SHOW DATABASES` or `SHOW TABLES` probes for discovery.
+4. Use `berdl_notebook_utils` discovery helpers (`get_databases(return_json=False)`, `get_tables(..., return_json=False)`, `get_table_schema(..., return_json=False)`) for access-aware discovery. Avoid raw `SHOW DATABASES` or `SHOW TABLES` probes for discovery.

@@ -15,18 +15,9 @@ Present this information directly (no file reads needed):
 
 ### What is BERDL?
 
-The **KBase BER Data Lakehouse (BERDL)** is an on-prem Delta Lakehouse (Spark SQL) hosting **35 databases across 9 tenants**. Key collections:
+The **KBase BER Data Lakehouse (BERDL)** is an on-prem Delta Lakehouse (Spark SQL) hosting databases across multiple tenants. The exact database inventory and access depend on the authenticated user — discover it live in Phase 1.6 below.
 
-| Collection | Scale | What it contains |
-|------------|-------|------------------|
-| `kbase_ke_pangenome` | 293K genomes, 1B genes, 27K species | Species-level pangenomes from GTDB r214: gene clusters, ANI, functional annotations (eggNOG), pathway predictions (GapMind), environmental embeddings (AlphaEarth) |
-| `kbase_genomes` | 293K genomes, 253M proteins | Structural genomics (contigs, features, protein sequences) in CDM format |
-| `kbase_msd_biochemistry` | 56K reactions, 46K molecules | ModelSEED biochemical reactions and compounds for metabolic modeling |
-| `kescience_fitnessbrowser` | 48 organisms, 27M fitness scores | Genome-wide mutant fitness from RB-TnSeq experiments |
-| `enigma_coral` | 3K taxa, 7K genomes | ENIGMA SFA environmental microbiology |
-| `nmdc_arkin` | 48 studies, 3M+ metabolomics | NMDC multi-omics (annotations, embeddings, metabolomics, proteomics) |
-| PhageFoundry (5 DBs) | Various | Species-specific genome browsers for phage-host research |
-| `planetmicrobe_planetmicrobe` | 2K samples, 6K experiments | Marine microbial ecology |
+Collections currently span: pangenomes (GTDB-derived species pangenomes with functional annotations and pathway predictions), genome structural data, biochemistry (ModelSEED reactions and compounds), genome-wide fitness (RB-TnSeq), environmental microbiology, multi-omics (NMDC), phage-host data, and marine microbial samples. Always discover the exact set live — do not rely on this prose for current inventory.
 
 ### Repo Structure
 
@@ -85,38 +76,75 @@ projects/<name>/
 
 ## Phase 1.5: Environment Detection
 
-Before routing the user, run environment detection to ensure prerequisites are met:
+Run the canonical environment check:
 
-**Run the detection script:**
 ```bash
-python scripts/detect_berdl_environment.py
+python scripts/berdl_env.py --check
 ```
 
-This script automatically:
-1. **Detects location**: Tests connectivity to `spark.berdl.kbase.us:443` to determine if you're on-cluster (BERDL JupyterHub) or off-cluster (local machine)
-2. **On-cluster path**:
-   - Automatically retrieves `KBASE_AUTH_TOKEN` from the environment and saves it to `.env`
-   - Confirms direct access works (no proxy needed)
-   - Reports ready status
-3. **Off-cluster path**:
-   - Checks `.env` for `KBASE_AUTH_TOKEN`
-   - Checks `.venv-berdl` exists
-   - Checks SSH tunnels on ports 1337 and 1338
-   - Checks pproxy on port 8123
-   - Provides specific next steps for anything missing
+This wraps `scripts/detect_berdl_environment.py` with auto-recovery. It:
+1. Detects on-cluster vs off-cluster by testing connectivity to `spark.berdl.kbase.us:443`.
+2. On-cluster: confirms `KBASE_AUTH_TOKEN`, writes to `.env` if missing, reports ready.
+3. Off-cluster: checks `.env`, `.venv-berdl`, SSH tunnels (1337, 1338), pproxy (8123). Auto-starts pproxy if tunnels are up. Prints exact `ssh -f -N -D ...` commands if tunnels are missing.
 
-**Present the output to the user** and help them resolve any issues before proceeding to Phase 2.
+**Present the output to the user.** If exit code is non-zero, follow the printed next steps. Common cases:
+- "Start SSH tunnels" → ask the user to run the printed command in a terminal, then re-run `python scripts/berdl_env.py --check`.
+- "pproxy not running" → the helper auto-starts it; this should self-resolve.
+- "Missing .venv-berdl" → `bash scripts/bootstrap_client.sh`.
+- "Missing KBASE_AUTH_TOKEN" → get token from https://narrative.kbase.us/#auth2/account and add to `.env`.
 
-**Route follow-up BERDL queries from the detected environment:**
-- If detection reports **on-cluster / BERDL JupyterHub**, use the active Spark
-  session and `spark.sql(query)` directly. Do not use `--berdl-proxy`.
-- If detection reports **off-cluster / local machine**, use `/berdl-query` or
-  `scripts/run_sql.py --berdl-proxy` after the proxy chain is ready.
+**Route follow-up BERDL queries from the detected location:**
+- `on-cluster`: use the active Spark session and `spark.sql(query)` directly. Do not use `--berdl-proxy`.
+- `off-cluster`: use `/berdl-query` or `python scripts/run_sql.py --berdl-proxy` after the helper reports ready.
 
-**Common resolutions:**
-- **Missing .venv-berdl**: `bash scripts/bootstrap_client.sh`
-- **Missing KBASE_AUTH_TOKEN**: Get token from https://narrative.kbase.us/#auth2/account and add to `.env`
-- **Off-cluster without proxy**: User must start SSH tunnels (requires credentials). See `.claude/skills/berdl-query/references/proxy-setup.md` for full guide. Claude can start pproxy once tunnels are up.
+**Do not skip this step.** The location reported is what every subsequent skill in this session uses to choose its execution path.
+
+---
+
+## Phase 1.6: Live Inventory
+
+After Phase 1.5 reports ready, print the live database inventory grouped by tenant.
+
+**On-cluster (Python in JupyterHub):**
+
+```python
+import berdl_notebook_utils
+databases = berdl_notebook_utils.get_databases(return_json=False)  # → list[str]
+
+# Group by tenant prefix (the part before the first underscore)
+from collections import defaultdict
+by_tenant = defaultdict(list)
+for db in sorted(databases):
+    tenant = db.split("_", 1)[0] if "_" in db else "(other)"
+    by_tenant[tenant].append(db)
+
+for tenant, dbs in sorted(by_tenant.items()):
+    print(f"\n{tenant}:")
+    for db in dbs:
+        print(f"  - {db}")
+```
+
+**Off-cluster (CLI):**
+
+```bash
+python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES" --output /tmp/dbs.json
+python -c "
+import json
+from collections import defaultdict
+data = json.load(open('/tmp/dbs.json'))
+by_tenant = defaultdict(list)
+for row in data['data']:
+    db = row['namespace']
+    tenant = db.split('_', 1)[0] if '_' in db else '(other)'
+    by_tenant[tenant].append(db)
+for tenant, dbs in sorted(by_tenant.items()):
+    print(f'{tenant}:')
+    for db in sorted(dbs):
+        print(f'  - {db}')
+"
+```
+
+Print the result as a tenant-grouped list. **Do not include row counts** — they require expensive `COUNT(*)` queries and the user can ask for them on demand.
 
 ---
 
@@ -153,7 +181,7 @@ When the user wants to start a new research project, the agent drives the entire
 **Required reading before anything else:**
 1. Read `PROJECT.md` — understand dual goals (science + knowledge capture), project structure requirements, reproducibility standards, JupyterHub workflow, Spark notebook patterns
 2. Read `docs/overview.md` — understand the data architecture, key tables, data generation workflow, known limitations
-3. Use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` for live access-aware database, table, and schema discovery. Read relevant `docs/schemas/` files for supporting table/column documentation.
+3. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live access-aware database, table, and schema discovery. For database-specific gotchas, grep `docs/pitfalls.md` for the database name (e.g., `grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md`).
 4. Read `docs/pitfalls.md` and `docs/performance.md` — **critical: read these before designing any queries or analysis**
 5. Read `docs/research_ideas.md` — check for existing ideas, avoid duplicating work
 
@@ -231,15 +259,14 @@ After notebooks are executed and committed, **pause and present the key results 
 ### Path 2: Explore BERDL Data
 
 Read these files:
-- Relevant `docs/schemas/` files — supporting table/column documentation
-- `docs/pitfalls.md` — critical gotchas before querying
+- `docs/pitfalls.md` — critical gotchas (per-database H2 sections) before querying
 
 Then:
-- Use `berdl_notebook_utils.get_databases()` to summarize accessible databases and their scale
-- Use `berdl_notebook_utils.get_tables()` and `get_table_schema()` before discussing table availability
+- Use `berdl_notebook_utils.get_databases(return_json=False)` to summarize accessible databases
+- Use `berdl_notebook_utils.get_tables(... return_json=False)` and `get_table_schema(... detailed=True, return_json=False)` before discussing table availability
 - Highlight cross-collection relationships (pangenome <-> genomes <-> biochemistry <-> fitness)
 - Suggest using `/berdl` to start querying
-- Suggest using `/berdl-discover` if they want to explore a database not yet documented in `docs/schemas/`
+- Suggest using `/berdl-discover` if they want to explore a database not yet covered in `docs/pitfalls.md`
 - Warn about the key pitfalls (see Critical Pitfalls below)
 
 ### Path 3: Review Published Literature
@@ -271,11 +298,11 @@ Steps:
 
 Read these files:
 - `PROJECT.md` — high-level goals and structure
-- Relevant `docs/schemas/` files — table/column documentation
+- `docs/pitfalls.md` — per-database non-derivable gotchas
 - `docs/overview.md` — scientific context and data workflow
 
 Then:
-- Explain that current inventory and access should be discovered live with `berdl_notebook_utils.get_databases()`
+- Explain that current inventory and access should be discovered live with `berdl_notebook_utils.get_databases(return_json=False)`
 - Walk through the dual goals (science + knowledge capture)
 - Explain the documentation workflow (tag discoveries, update pitfalls)
 - Mention the UI can be browsed at the BERDL JupyterHub
@@ -286,7 +313,7 @@ Then:
 
 ## Key Principles (for the agent)
 
-1. **Read the docs and discover live data first** — `PROJECT.md`, `docs/overview.md`, relevant `docs/schemas/`, `docs/pitfalls.md`, and `docs/performance.md` before designing anything. Use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` for current access and inventory. Check existing `projects/` to avoid duplicating work.
+1. **Read the docs and discover live data first** — `PROJECT.md`, `docs/overview.md`, `docs/pitfalls.md`, and `docs/performance.md` before designing anything. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for current access and inventory. Check existing `projects/` to avoid duplicating work.
 2. **Notebooks are the audit trail** — numbered sequentially (01, 02, 03...), each self-contained with a clear purpose. Commit with saved outputs per `PROJECT.md` reproducibility standards.
 3. **Commit early and often** — after plan, after notebooks, after data extraction, after analysis, after synthesis.
 4. **Branch by default** — create a `projects/{project_id}` branch when starting a new project. Extended work on main causes merge difficulties and risks conflicting with other contributors. Tell the user what branch you're creating; if they explicitly prefer main, respect that.
@@ -299,14 +326,14 @@ Then:
 
 ## Critical Pitfalls (always mention)
 
-Regardless of path chosen, surface these early:
+Surface these early. Database-specific gotchas live in `docs/pitfalls.md` per-database H2 sections (`grep -A 20 "^## <database_name>$" docs/pitfalls.md`). Universal pitfalls:
 
 1. **Species IDs contain `--`** — This is fine inside quoted strings in SQL. Use exact equality (`WHERE id = 's__Escherichia_coli--RS_GCF_000005845.2'`), not LIKE patterns.
-2. **Large tables need filters** — Never full-scan `gene` (1B rows) or `genome_ani` (420M rows). Always filter by species or genome ID.
-3. **AlphaEarth embeddings cover only 28%** of genomes (83K/293K) — check coverage before relying on them.
-4. **Match Spark import to environment** — On JupyterHub notebooks: `spark = get_spark_session()` (no import). On JupyterHub CLI/scripts: `from berdl_notebook_utils.setup_spark_session import get_spark_session`. Locally: `from get_spark_session import get_spark_session` (requires `.venv-berdl` + proxy chain). See `docs/pitfalls.md` for details.
+2. **Large tables need filters** — Some tables are very large (e.g., `gene`, `genome_ani`, `reaction_similarity`). Always filter by a partitioned/indexed column. Check `docs/pitfalls.md` per-database section for the current list.
+3. **Annotation coverage varies** — Some annotation tables (e.g., AlphaEarth embeddings) cover only a fraction of genomes. Check coverage with `COUNT(DISTINCT id)` before relying on them.
+4. **Match Spark import to environment** — On JupyterHub notebooks: `spark = get_spark_session()` (no import). On JupyterHub CLI/scripts: `from berdl_notebook_utils.setup_spark_session import get_spark_session`. Locally: `from get_spark_session import get_spark_session` (requires `.venv-berdl` + proxy chain). See `.claude/skills/berdl-query/references/off-cluster-mechanics.md` for off-cluster setup.
 5. **Auth token** — stored in `.env` as `KBASE_AUTH_TOKEN` (not `KB_AUTH_TOKEN`).
-6. **String-typed numeric columns** — Many databases store numbers as strings. Always CAST before comparisons.
+6. **String-typed numeric columns** — Some databases store numbers as strings. Always CAST before comparisons; check `docs/pitfalls.md` per-database section.
 7. **Gene clusters are species-specific** — Cannot compare cluster IDs across species. Use COG/KEGG/PFAM for cross-species comparisons.
 8. **Avoid unnecessary `.toPandas()`** — `.toPandas()` pulls all data to the driver node and can be very slow or cause OOM errors. Use PySpark DataFrame operations for filtering, joins, and aggregations. Only convert to pandas for final small results (plotting, CSV export).
 

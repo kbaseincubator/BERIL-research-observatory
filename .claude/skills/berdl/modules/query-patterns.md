@@ -7,7 +7,7 @@ Reference module for constructing safe, performant BERDL queries. **Read this be
 Before executing any query, verify ALL items:
 
 - [ ] **Partitioned column filter**: Does the query filter on a partitioned/indexed column (e.g., `gtdb_species_clade_id`, `genome_id`, `orgId`)?
-- [ ] **Large table guard**: Are billion-row tables (`gene`, `gene_genecluster_junction`, `genome_ani`, `genefitness`) filtered before joining?
+- [ ] **Large table guard**: Are very-large tables filtered before joining? Check `docs/pitfalls.md` per-database section for the current list of tables that must always be filtered (commonly `gene`, `gene_genecluster_junction`, `genome_ani`, `genefitness`, `reaction_similarity`).
 - [ ] **Bounded results**: Is the result set bounded by LIMIT, aggregation, or a narrow WHERE clause?
 - [ ] **Type safety**: Are string-typed numeric columns CAST before comparison? (Affects: fitnessbrowser, genomes, some metadata)
 - [ ] **Species ID quoting**: Are species IDs with `--` inside single-quoted strings (not raw SQL)?
@@ -19,13 +19,17 @@ Before executing any query, verify ALL items:
 
 | Expected Result Size | Strategy | `.toPandas()` OK? |
 |---|---|---|
-| < 100K rows | Bounded Spark SQL through `spark.sql(query)` or local `scripts/run_sql.py` | Yes |
-| 100K – 10M rows | Filter first, aggregate in SQL, then retrieve | Only for final aggregated result |
-| > 10M rows | PySpark only on JupyterHub, no `.toPandas()`, use `.write.parquet()` | No — use PySpark DataFrame ops |
+| Small (fits comfortably in memory) | Bounded Spark SQL through `spark.sql(query)` or local `scripts/run_sql.py` | Yes |
+| Medium (filter/aggregate first) | Filter first, aggregate in SQL, then retrieve | Only for final aggregated result |
+| Large (won't fit in driver memory) | PySpark only on JupyterHub, no `.toPandas()`, use `.write.parquet()` | No — use PySpark DataFrame ops |
+
+See `docs/pitfalls.md` for current per-table size guidance.
 
 **Rule**: Estimate result size BEFORE querying. Check row counts with bounded Spark SQL first if uncertain.
 
 ## Query Templates
+
+> **Examples below use specific database/table names** (e.g. `kbase_ke_pangenome.genome`) for clarity. Run `get_databases(return_json=False)` to verify the database is accessible to you before adapting any example.
 
 ### Pattern: Safe Species Lookup
 
@@ -88,7 +92,7 @@ WHERE genome_id IN (
 **Safety rules**:
 - Up to ~100 items is fine in an IN clause through Spark SQL
 - For >100 items, use chunked queries (batch into groups of 50-100) or use temp views on JupyterHub
-- For >1000 items, switch to JupyterHub with Spark DataFrames
+- For very large lists, switch to JupyterHub with Spark DataFrames
 
 ### Pattern: Cross-Table Join (Small → Large)
 
@@ -103,7 +107,7 @@ JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
 WHERE gc.gtdb_species_clade_id = '{species_id}'
   AND ann.KEGG_Pathway != '-'
 
--- WRONG: Unfiltered join on billion-row tables
+-- WRONG: Unfiltered join on very-large tables (see docs/pitfalls.md)
 SELECT gc.gene_cluster_id, ann.KEGG_Pathway
 FROM kbase_ke_pangenome.gene_cluster gc
 JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
@@ -116,7 +120,7 @@ JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
 - For pangenome: filter by `gtdb_species_clade_id`
 - For fitnessbrowser: filter by `orgId`
 - For genomes: filter by genome or feature ID
-- Multi-table joins across large species (>500 genomes) should use JupyterHub Spark
+- Multi-table joins across large species should use JupyterHub Spark
 
 ### Pattern: Aggregation Before Transfer
 
@@ -190,7 +194,7 @@ LIMIT 1000 OFFSET 1000
 **Safety rules**:
 - Always include ORDER BY for deterministic pagination
 - Keep local result pages bounded with explicit LIMIT values
-- For very large result sets (>10K rows), use JupyterHub Spark or export results
+- For very large result sets that won't fit in driver memory, use JupyterHub Spark or export results
 
 ### Pattern: Existence Check Before Analysis
 
@@ -217,7 +221,7 @@ WHERE gc.gtdb_species_clade_id = '{species_id}'
 ```
 
 **Safety rules**:
-- AlphaEarth embeddings: only 28% coverage (83K/293K genomes)
+- AlphaEarth embeddings: partial coverage — see `docs/pitfalls.md` for current numbers
 - Functional annotations: ~40% of genes lack annotation
 - NCBI environment metadata: EAV format, sparse coverage
 - Geographic coordinates: often NULL or malformed
@@ -228,10 +232,10 @@ WHERE gc.gtdb_species_clade_id = '{species_id}'
 | Scenario | Use local bounded Spark SQL | Use JupyterHub Spark |
 |---|---|---|
 | Quick schema check | Use helper discovery | — |
-| Single-species query (<1K rows) | Yes | — |
+| Single-species query (small result) | Yes | — |
 | Multi-species aggregation | — | Yes |
 | Joining across large tables | — | Yes |
-| Billion-row tables (gene, genome_ani) | — | Yes |
+| Very-large tables (see `docs/pitfalls.md`) | — | Yes |
 | Iterative analysis with intermediate results | — | Yes |
 | One-off count or sample | Yes | — |
 

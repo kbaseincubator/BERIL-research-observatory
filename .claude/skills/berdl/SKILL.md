@@ -8,38 +8,39 @@ allowed-tools: Bash, Read
 
 Query the KBase BERDL Data Lakehouse containing pangenome and biochemistry data.
 
-## Available Databases
+## Step 0: Environment Check
 
-| Database | Module | Description |
-|----------|--------|-------------|
-| `kbase_ke_pangenome` | [pangenome.md](modules/pangenome.md) | 293K genomes, 27K species pangenomes |
-| `kbase_msd_biochemistry` | [biochemistry.md](modules/biochemistry.md) | ModelSEED reactions and compounds |
-| `kescience_fitnessbrowser` | See [docs/schemas/fitnessbrowser.md](../../../docs/schemas/fitnessbrowser.md) | 48 organisms, 27M fitness measurements |
-| `kbase_genomes` | See [docs/schemas/genomes.md](../../../docs/schemas/genomes.md) | 293K genomes, 253M protein sequences |
-| `microbialdiscoveryforge` (MinIO) | Use live discovery; see relevant docs in [docs/schemas/](../../../docs/schemas/) when available | Observatory project data on MinIO object storage |
+Run before anything else:
 
-**Cross-database patterns**: [cross-database.md](modules/cross-database.md) — joining pangenome ↔ biochemistry ↔ fitness ↔ NCBI
+```bash
+python scripts/berdl_env.py --check
+```
 
-Use live access-aware discovery for the current database inventory.
+If it exits non-zero, follow the printed next steps exactly. Do not proceed with any query until this passes. The location reported (`on-cluster` vs `off-cluster`) selects the execution path for every subsequent step.
 
-**Read the appropriate module** for database-specific tables, schemas, and query patterns.
-**Read [query-patterns.md](modules/query-patterns.md)** before writing any SQL — it contains mandatory safety rules and performance guidance.
+## Discovery (live)
 
-## Access-Aware Discovery
-
-Use `berdl_notebook_utils` helper functions to discover only what the current user can access:
+Run the canonical discovery flow before any query. The set of accessible databases depends on the authenticated user; do not assume from prose.
 
 ```python
 import berdl_notebook_utils
 
-databases = berdl_notebook_utils.get_databases()
-tables = berdl_notebook_utils.get_tables("DATABASE_NAME")
-schema = berdl_notebook_utils.get_table_schema("DATABASE_NAME", "TABLE_NAME")
+databases = berdl_notebook_utils.get_databases(return_json=False)            # → list[str]
+tables    = berdl_notebook_utils.get_tables("DATABASE", return_json=False)   # → list[str]
+schema    = berdl_notebook_utils.get_table_schema("DATABASE", "TABLE", detailed=True, return_json=False)  # → list[dict] with name, dataType, description, isPartition, ...
+
+# For table-level COMMENT and TBLPROPERTIES:
+spark.sql("DESCRIBE EXTENDED DATABASE.TABLE").toPandas()
 ```
 
-Use `docs/schemas/` only as supporting table/column documentation. Do not treat static docs as the source of truth for current access or inventory.
+> **Discovery returns JSON by default.** Always pass `return_json=False`. Without it you get a JSON *string*, and `in`, iteration, and `display()` will silently misbehave.
 
-Avoid using raw discovery SQL such as `spark.sql("SHOW DATABASES")` or `spark.sql("SHOW TABLES ...")`; those commands do not apply BERDL access-aware filtering.
+For pattern guidance, read [`modules/query-patterns.md`](modules/query-patterns.md) (universal SQL safety/perf rules) and [`modules/cross-database.md`](modules/cross-database.md) (cross-DB join recipes).
+
+For curated database-specific gotchas (NULL conventions, ID formats, missing-column workarounds, JOIN-key surprises, large-table guards), grep `docs/pitfalls.md` for the database name. Example: `grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md`.
+
+**Read the appropriate module** for database-specific tables, schemas, and query patterns.
+**Read [query-patterns.md](modules/query-patterns.md)** before writing any SQL — it contains mandatory safety rules and performance guidance.
 
 ## Query Execution
 
@@ -137,6 +138,27 @@ Before executing any query, verify against the checklist in [query-patterns.md](
 ## Adding New Databases
 
 Use the `/berdl-discover` skill to introspect new databases and generate module files.
+
+## Scripts
+
+The following scripts exist and are referenced by skills. **Do not invent script names** — only the paths below exist. If you need behavior not covered here, ask the user.
+
+| Script | Purpose |
+|---|---|
+| `scripts/berdl_env.py` | Canonical environment check (Step 0 of every BERDL skill) |
+| `scripts/detect_berdl_environment.py` | Underlying detector (called by `berdl_env.py`) |
+| `scripts/run_sql.py` | Bounded SQL via Spark Connect (`--berdl-proxy` for off-cluster) |
+| `scripts/export_sql.py` | SQL → MinIO export (`--berdl-proxy` for off-cluster) |
+| `scripts/get_minio_creds.py` | MinIO credential resolver |
+| `scripts/configure_mc.sh` | MinIO CLI alias setup |
+| `scripts/get_spark_session.py` | Local drop-in for the BERDL `get_spark_session()` |
+| `scripts/bootstrap_client.sh` | Create `.venv-berdl` and install query packages |
+| `scripts/bootstrap_ingest.sh` | Install ingest packages on top of `.venv-berdl` |
+| `scripts/ingest_lib.py` | JH-side ingest helpers |
+| `scripts/ingest_preflight.py` | Pre-flight ingest plan printer |
+| `scripts/start_pproxy.sh` | pproxy startup |
+| `scripts/discover_berdl_collections.py` | UI snapshot builder |
+| `scripts/build_data_cache.py` | UI data cache builder |
 
 ## Pitfall Detection
 

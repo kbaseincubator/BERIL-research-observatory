@@ -38,7 +38,15 @@ MinIO are directly accessible inside the cluster, no SSH tunnels, pproxy, or
 
 ## Workflow
 
-### Step 0: Verify environment
+### Step 0a: Environment Check
+
+```bash
+python scripts/berdl_env.py --check
+```
+
+This skill runs **in-cluster** (JupyterHub). If `--check` reports off-cluster, switch to `/berdl-ingest-remote`. Do not proceed with this skill off-cluster — Spark and MinIO are reachable directly only inside the cluster.
+
+### Step 0b: Verify ingest environment
 
 `get_spark_session()` and `get_minio_client()` come from `scripts/ingest_lib.py` in
 the BERIL repo (not from `data_lakehouse_ingest` directly). The notebook bootstraps
@@ -131,7 +139,7 @@ correct it before writing `<DATA_DIR>/schema.sql`. Flag any ambiguous columns.
 
 ```python
 import berdl_notebook_utils
-databases = berdl_notebook_utils.get_databases()
+databases = berdl_notebook_utils.get_databases(return_json=False)  # → list[str]
 ```
 
 Present results. Tenants are the unique prefixes before the first `_`. Ask the user:
@@ -148,7 +156,7 @@ already exists:
 
 ```python
 namespace        = f"{tenant}_{dataset}"
-namespace_exists = namespace in berdl_notebook_utils.get_databases()
+namespace_exists = namespace in berdl_notebook_utils.get_databases(return_json=False)
 ```
 
 If it exists, list tables and row counts, then ask:
@@ -304,6 +312,7 @@ upload in the MinIO browser (`https://minio.berdl.kbase.us`).
 ## References
 
 - `references/ingest_jh.ipynb`: notebook template for in-cluster ingest.
+- `references/on-cluster-bypass.md`: pattern for bypassing `ingest_lib.initialize()` when running inside JupyterHub.
 - `berdl-ingest-remote/SKILL.md`: off-cluster variant (requires SSH tunnels + pproxy).
 
 ## Progress Log Format
