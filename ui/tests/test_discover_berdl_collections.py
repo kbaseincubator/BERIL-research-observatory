@@ -17,16 +17,13 @@ def _load_script_module():
 
 def test_missing_helpers_returns_clear_failure(monkeypatch, capsys):
     module = _load_script_module()
-    monkeypatch.setattr(
-        module,
-        "_load_berdl_helpers",
-        lambda: (_ for _ in ()).throw(ImportError("missing helper")),
-    )
+    monkeypatch.setattr(module, "_load_berdl_helpers", lambda: None)
+    monkeypatch.setattr(module, "read_auth_token", lambda *_args, **_kwargs: None)
 
     code = module.main([])
 
     assert code == 2
-    assert "berdl_notebook_utils is required" in capsys.readouterr().err
+    assert "berdl_notebook_utils is not available" in capsys.readouterr().err
 
 
 def test_discovery_uses_berdl_helpers_and_groups_schema(monkeypatch):
