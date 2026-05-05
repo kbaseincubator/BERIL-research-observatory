@@ -3,24 +3,29 @@
 Database: `kescience_pdb`
 Location: On-prem Delta Lakehouse (BERDL)
 Tenant: kescience
-Last Updated: 2026-03-14
-Verified: Ingested 2026-03-14 (250,741 entries + 966,977 mappings)
+Last Updated: 2026-05-05
+Verified: Ingested 2026-03-14 (250,741 entries + 966,977 mappings + 5 extended tables)
 
 ## Overview
 
 Experimental structure metadata from the Protein Data Bank. Contains ~250K deposited structures with resolution, R-factors, experimental method, organism, and PDB→UniProt chain mapping from SIFTS. Enables cross-collection queries linking pangenome annotations and AlphaFold predictions to experimental structures.
 
 **Database**: `kescience_pdb`
-**Source**: RCSB PDB GraphQL API + EBI SIFTS
-**Scale**: 250,741 entries, 966,977 chain mappings
+**Source**: RCSB PDB GraphQL API + EBI SIFTS + RCSB CDN sequence clusters
+**Scale**: 8 tables, ~12.9M total rows
 
 ## Tables
 
-| Table | Rows (est.) | Description |
-|-------|-------------|-------------|
+| Table | Rows | Description |
+|-------|------|-------------|
 | `pdb_entries` | 250,741 | One row per PDB entry — core metadata |
 | `pdb_uniprot_mapping` | 966,977 | PDB chain → UniProt accession (from SIFTS) |
-| `pdb_validation` | ~250K | wwPDB validation metrics (clashscore, Ramachandran, rotamers) |
+| `pdb_validation` | 250,741 | wwPDB validation metrics (clashscore, Ramachandran, rotamers) |
+| `pdb_taxonomy` | 250,741 | NCBI taxonomy ID and organism per PDB entry |
+| `pdb_ligands` | 455,897 | Co-crystallized small molecules (ligand id, name, formula, weight) |
+| `pdb_citations` | 296,528 | Primary and secondary citations (PubMed IDs, DOIs, authors) |
+| `pdb_pfam` | 990,166 | PDB chain → Pfam domain mapping (from SIFTS) |
+| `pdb_sequence_clusters` | 9,532,482 | Pre-computed RCSB sequence clusters at 30/50/70/90/95/100% identity |
 
 ## Key Table Schemas
 
@@ -71,12 +76,76 @@ wwPDB validation metrics from RCSB GraphQL API (`pdbx_vrpt_summary_geometry`). O
 | `angles_rmsz` | FLOAT | RMS Z-score for bond angles |
 | `bonds_rmsz` | FLOAT | RMS Z-score for bond lengths |
 
+### pdb_taxonomy
+
+NCBI taxonomy assignment from RCSB GraphQL `rcsb_entity_source_organism`. One row per PDB entry.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `pdb_id` | STRING | PDB accession — FK to `pdb_entries.pdb_id` |
+| `taxonomy_id` | INT | NCBI taxonomy ID |
+| `organism` | STRING | Source organism scientific name |
+
+### pdb_ligands
+
+Co-crystallized small molecules and ions from RCSB GraphQL `nonpolymer_entities`. One row per (entry, ligand) pair.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `pdb_id` | STRING | PDB accession — FK to `pdb_entries.pdb_id` |
+| `ligand_id` | STRING | Three-letter chemical component ID (e.g., "HEM", "ATP") |
+| `ligand_name` | STRING | Human-readable name |
+| `ligand_type` | STRING | Component type (e.g., "non-polymer") |
+| `formula` | STRING | Chemical formula |
+| `formula_weight` | FLOAT | Molecular weight in Da |
+
+### pdb_citations
+
+Primary and secondary citations from RCSB GraphQL `citation`. Multiple rows per PDB entry.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `pdb_id` | STRING | PDB accession — FK to `pdb_entries.pdb_id` |
+| `citation_id` | STRING | Citation identifier within the entry |
+| `is_primary` | STRING | "true" if this is the primary citation |
+| `title` | STRING | Paper title |
+| `year` | INT | Publication year |
+| `journal` | STRING | Journal abbreviation |
+| `volume` | STRING | Journal volume |
+| `page_first` | STRING | First page |
+| `doi` | STRING | DOI |
+| `pubmed_id` | INT | PubMed ID |
+| `authors` | STRING | Author list (semicolon-separated) |
+
+### pdb_pfam
+
+PDB chain → Pfam domain mapping from SIFTS (`pdb_chain_pfam.tsv.gz`). Multiple rows per (entry, chain).
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `pdb_id` | STRING | PDB accession — FK to `pdb_entries.pdb_id` |
+| `chain_id` | STRING | Chain identifier |
+| `uniprot_accession` | STRING | UniProt accession (links to AlphaFold, bakta) |
+| `pfam_id` | STRING | Pfam family ID (e.g., "PF00001") |
+| `coverage` | FLOAT | Domain coverage fraction |
+
+### pdb_sequence_clusters
+
+RCSB pre-computed sequence clusters at six identity thresholds. One row per (cluster, entity) at each identity level.
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `cluster_id` | STRING | Cluster identifier |
+| `pdb_entity_id` | STRING | PDB entity ID (e.g., "1ABC_1") |
+| `identity_level` | INT | Identity threshold: 30, 50, 70, 90, 95, or 100 |
+
 ## Cross-Collection Links
 
 | Target Collection | Join Key | Notes |
 |-------------------|----------|-------|
 | `kescience_alphafold.alphafold_entries` | `pdb_uniprot_mapping.uniprot_accession = alphafold_entries.uniprot_accession` | Link experimental → predicted |
 | `kbase_ke_pangenome.bakta_annotations` | `pdb_uniprot_mapping.uniprot_accession = REPLACE(bakta_annotations.uniref100, 'UniRef100_', '')` | Link pangenome → experimental |
+| `kbase_ke_pangenome.bakta_annotations` (via Pfam) | `pdb_pfam.uniprot_accession = REPLACE(bakta_annotations.uniref100, 'UniRef100_', '')` | Domain-level link with Pfam ID |
 | `kescience_structural_biology.structure_projects` | `pdb_entries.pdb_id = structure_projects.pdb_id` | Link to Phenix projects |
 
 ## Example Queries
@@ -169,3 +238,5 @@ ORDER BY 1;
 ## Changelog
 
 - **2026-03-14**: Initial schema design, download, and ingestion. 250,741 PDB entries + 966,977 SIFTS mappings.
+- **2026-03-14**: Extended ingestion (commit `7845f8e`): 5 additional tables — `pdb_taxonomy`, `pdb_ligands`, `pdb_citations`, `pdb_pfam`, `pdb_sequence_clusters`. Doc was not updated at the time.
+- **2026-05-05**: Document the 5 extended tables ingested 2026-03-14.
