@@ -54,12 +54,26 @@ def run_setup() -> int:
 
     repo_root = _find_repo_root()
     if not repo_root:
-        print("Not inside the BERIL repository.")
-        print("Clone it first:")
-        print("  git clone https://github.com/kbaseincubator/BERIL-research-observatory.git")
-        print("  cd BERIL-research-observatory")
-        print("  beril setup")
-        return 1
+        print("  BERIL repository not found in current directory tree.")
+        clone_url = "https://github.com/kbaseincubator/BERIL-research-observatory.git"
+        if _confirm(f"  Clone it into {Path.cwd() / 'BERIL-research-observatory'}?"):
+            print(f"  Cloning {clone_url} ...")
+            result = subprocess.run(
+                ["git", "clone", clone_url],
+                check=False,
+            )
+            if result.returncode != 0:
+                print("  ERROR: git clone failed. Check your network and try again.")
+                return 1
+            repo_root = Path.cwd() / "BERIL-research-observatory"
+            os.chdir(repo_root)
+            print(f"  Cloned to: {repo_root}")
+        else:
+            print("  To set up manually:")
+            print(f"    git clone {clone_url}")
+            print("    cd BERIL-research-observatory")
+            print("    beril setup")
+            return 1
 
     print(f"  Found repo at: {repo_root}")
 
@@ -237,11 +251,11 @@ def run_setup() -> int:
     _step(8, "Launch")
 
     if agents_found and _confirm(f"  Launch {chosen} now?"):
-        print(f"\n  Starting {chosen}...\n")
+        print(f"\n  Starting {chosen} with /berdl_start...\n")
         binary = shutil.which(chosen)
         if binary:
             os.chdir(repo_root)
-            os.execvp(binary, [chosen])
+            os.execvp(binary, [chosen, "/berdl_start"])
         else:
             print(f"  Error: '{chosen}' not found on PATH.", file=sys.stderr)
             return 1
