@@ -67,9 +67,11 @@ ADD_RESOURCE_RETRIES = 3
 ADD_RESOURCE_BACKOFF_SECONDS = 5.0
 
 # wait_processed only confirms OV's queues are idle — CBORG/OpenAI rate-limit
-# windows are still ticking from the calls just made. Sleep between batches so
-# token buckets refill before the next round of VLM/embedding calls.
-INTER_BATCH_PAUSE_SECONDS = float(os.environ.get("OV_INGEST_INTER_BATCH_PAUSE", "3"))
+# windows are still ticking from the calls just made. CBORG's gemini-3-flash
+# is 20 req/min, and a single project can fire 5-10 VLM calls during semantic
+# extraction, so the pause needs to give the sliding window real time to
+# refill. Tune via OV_INGEST_INTER_BATCH_PAUSE; bump to 30+ if 429s persist.
+INTER_BATCH_PAUSE_SECONDS = float(os.environ.get("OV_INGEST_INTER_BATCH_PAUSE", "15"))
 
 
 def ingest_all(
