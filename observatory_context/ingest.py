@@ -4,7 +4,25 @@ import time
 from pathlib import Path
 from typing import Any
 
-from openviking_cli.exceptions import ProcessingError
+from openviking_cli.exceptions import (
+    DeadlineExceededError,
+    EmbeddingFailedError,
+    InternalError,
+    ProcessingError,
+    ResourceExhaustedError,
+    UnavailableError,
+    VLMFailedError,
+)
+
+TRANSIENT_OV_ERRORS: tuple[type[Exception], ...] = (
+    DeadlineExceededError,
+    EmbeddingFailedError,
+    InternalError,
+    ProcessingError,
+    ResourceExhaustedError,
+    UnavailableError,
+    VLMFailedError,
+)
 
 from .config import DOCS_TARGET_URI, PROJECTS_TARGET_URI, ContextConfig
 from .manifest import (
@@ -251,7 +269,7 @@ def _add_resource(client: Any, path: Path, target_uri: str, reason: str) -> None
         try:
             client.add_resource(path=str(path), to=target_uri, reason=reason, wait=False)
             return
-        except ProcessingError:
+        except TRANSIENT_OV_ERRORS:
             if attempt == ADD_RESOURCE_RETRIES:
                 raise
             time.sleep(ADD_RESOURCE_BACKOFF_SECONDS * attempt)
