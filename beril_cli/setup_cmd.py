@@ -239,23 +239,58 @@ def run_setup() -> int:
     else:
         chosen = default_agent or "claude"
 
+    # ── Step 8: BERIL Anthropic key (Google Vertex) ──
+    vertex_cfg: dict = {}
+    _VERTEX_CREDENTIALS = Path("/global_share/BERIL-setup/20260507_hackathon.json")
+    _VERTEX_PROJECT_ID = "beril-hackathon-2026"
+    _VERTEX_REGION = "global"
+
+    if chosen == "claude" and _VERTEX_CREDENTIALS.exists():
+        _step(8, "BERIL Anthropic key (Google Vertex)")
+        print("  A shared BERIL Anthropic API key is available via Google Vertex.")
+        print("  This lets you use Claude without a personal API key or subscription.")
+        if _confirm("  Use the BERIL Anthropic key?"):
+            vertex_cfg = {
+                "enabled": True,
+                "project_id": _VERTEX_PROJECT_ID,
+                "region": _VERTEX_REGION,
+                "credentials_file": str(_VERTEX_CREDENTIALS),
+            }
+            print("  Vertex enabled — Claude will use the shared BERIL key.")
+        else:
+            print("  Skipped — Claude will use your personal API key / subscription.")
+    elif chosen == "claude":
+        _step(8, "BERIL Anthropic key (Google Vertex)")
+        print("  Shared Vertex credentials not found at expected location.")
+        print("  Claude will use your personal API key / subscription.")
+
     # ── Save config ─────────────────────────────────
     cfg: dict = {}
     if user_cfg:
         cfg["user"] = user_cfg
     cfg["defaults"] = {"agent": chosen}
+    if vertex_cfg:
+        cfg["vertex"] = vertex_cfg
     config.save(cfg)
     print(f"\n  Config saved to {config.CONFIG_PATH}")
 
-    # ── Step 8: Launch ──────────────────────────────
-    _step(8, "Launch")
+    # ── Step 9: Launch ──────────────────────────────
+    _step(9, "Launch")
 
     if agents_found and _confirm(f"  Launch {chosen} now?"):
         print(f"\n  Starting {chosen} with /berdl_start...\n")
         binary = shutil.which(chosen)
         if binary:
             os.chdir(repo_root)
-            os.execvp(binary, [chosen, "/berdl_start"])
+            # Inject Vertex env vars if enabled
+            if chosen == "claude" and vertex_cfg.get("enabled"):
+                os.environ["CLAUDE_CODE_USE_VERTEX"] = "1"
+                os.environ["CLOUD_ML_REGION"] = vertex_cfg.get("region", "global")
+                os.environ["ANTHROPIC_VERTEX_PROJECT_ID"] = vertex_cfg.get("project_id", "")
+                os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = vertex_cfg.get("credentials_file", "")
+                os.environ["VERTEX_REGION_CLAUDE_HAIKU_4_5"] = "us-east5"
+                os.environ["ANTHROPIC_DEFAULT_HAIKU_MODEL"] = "claude-haiku-4-5@20251001"
+            os.execvp(binary, [chosen, "--model", "opus", "/berdl_start"])
         else:
             print(f"  Error: '{chosen}' not found on PATH.", file=sys.stderr)
             return 1
