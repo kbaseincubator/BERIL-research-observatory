@@ -103,48 +103,25 @@ This wraps `scripts/detect_berdl_environment.py` with auto-recovery. It:
 
 ## Phase 1.6: Live Inventory
 
-After Phase 1.5 reports ready, print the live database inventory grouped by tenant.
-
-**On-cluster (Python in JupyterHub):**
-
-```python
-import berdl_notebook_utils
-databases = berdl_notebook_utils.get_databases(return_json=False)  # → list[str]
-
-# Group by tenant prefix (the part before the first underscore)
-from collections import defaultdict
-by_tenant = defaultdict(list)
-for db in sorted(databases):
-    tenant = db.split("_", 1)[0] if "_" in db else "(other)"
-    by_tenant[tenant].append(db)
-
-for tenant, dbs in sorted(by_tenant.items()):
-    print(f"\n{tenant}:")
-    for db in dbs:
-        print(f"  - {db}")
-```
-
-**Off-cluster (CLI):**
+After Phase 1.5 reports ready, print the live database inventory:
 
 ```bash
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES" --output /tmp/dbs.json
-python -c "
-import json
-from collections import defaultdict
-data = json.load(open('/tmp/dbs.json'))
-by_tenant = defaultdict(list)
-for row in data['data']:
-    db = row['namespace']
-    tenant = db.split('_', 1)[0] if '_' in db else '(other)'
-    by_tenant[tenant].append(db)
-for tenant, dbs in sorted(by_tenant.items()):
-    print(f'{tenant}:')
-    for db in sorted(dbs):
-        print(f'  - {db}')
-"
+python scripts/berdl_inventory.py
 ```
 
-Print the result as a tenant-grouped list. **Do not include row counts** — they require expensive `COUNT(*)` queries and the user can ask for them on demand.
+This prints a markdown table grouped by tenant with database name, table count, and sample table names. Same command works on-cluster and off-cluster — on-cluster it uses access-aware `berdl_notebook_utils.get_db_structure()`; off-cluster it falls back to `SHOW DATABASES` + `SHOW TABLES` via the local Spark Connect drop-in (which auto-spawns the JH server on cold start).
+
+Useful flags:
+- `--sample 5` — show up to 5 table names per database (default: 3).
+- `--no-emoji` — plain-text output.
+- `--off-cluster` — force the off-cluster path.
+
+For deeper inspection, suggest the user run:
+- `DESCRIBE DATABASE EXTENDED <db>` — database-level description / location / properties.
+- `DESCRIBE EXTENDED <db>.<table>` — table-level description, columns, partitioning, storage.
+- `berdl_notebook_utils.get_table_schema(db, table, detailed=True, return_json=False)` — column-level info (name, type, nullable, description).
+
+**Do not run `COUNT(*)` per database in this phase** — it's expensive and not needed for orientation.
 
 ---
 

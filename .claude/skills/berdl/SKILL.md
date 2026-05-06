@@ -146,6 +146,7 @@ The following scripts exist and are referenced by skills. **Do not invent script
 | Script | Purpose |
 |---|---|
 | `scripts/berdl_env.py` | Canonical environment check (Step 0 of every BERDL skill) |
+| `scripts/berdl_inventory.py` | Pretty-printed inventory (tenant / database / table count / sample tables) |
 | `scripts/detect_berdl_environment.py` | Underlying detector (called by `berdl_env.py`) |
 | `scripts/run_sql.py` | Bounded SQL via Spark Connect (`--berdl-proxy` for off-cluster) |
 | `scripts/export_sql.py` | SQL → MinIO export (`--berdl-proxy` for off-cluster) |

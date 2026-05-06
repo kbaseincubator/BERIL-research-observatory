@@ -27,7 +27,7 @@ if grep -rn "berdl_notebook_utils\..*get_\(databases\|tables\|table_schema\)(" \
 fi
 
 echo "=== 3. No hallucinated script paths ==="
-known_scripts="berdl_env detect_berdl_environment run_sql export_sql get_minio_creds configure_mc get_spark_session bootstrap_client bootstrap_ingest ingest_lib ingest_preflight start_pproxy discover_berdl_collections build_data_cache"
+known_scripts="berdl_env berdl_inventory detect_berdl_environment run_sql export_sql get_minio_creds configure_mc get_spark_session bootstrap_client bootstrap_ingest ingest_lib ingest_preflight start_pproxy discover_berdl_collections build_data_cache"
 if grep -rEn "scripts/[a-z_]+\.(py|sh)" .claude/skills/ 2>/dev/null \
        | grep -oE "scripts/[a-z_]+\.(py|sh)" \
        | sort -u \
