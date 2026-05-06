@@ -68,23 +68,28 @@ def fetch_structure_on_cluster() -> dict[str, list[str]]:
 
 
 def fetch_tenants_on_cluster() -> list[TenantInfo]:
-    """Use berdl_notebook_utils.show_my_tenants + get_tenant_detail for tenant metadata.
+    """Use berdl_notebook_utils.list_tenants + get_tenant_detail for tenant metadata.
 
-    show_my_tenants() returns only the tenants the authenticated user is a member
-    or steward of — list_tenants() would return everything in the system, which
-    isn't appropriate for an access-aware inventory. Returns an empty list if
-    the helpers raise (e.g. permission issues).
+    list_tenants() returns every tenant in the system as data; the inventory
+    output stays access-aware because format_inventory only emits a section for
+    a tenant whose namespace_prefix matches at least one database in the
+    access-aware structure dict (filter_by_namespace=True at the database side).
+
+    Note: show_my_tenants() is a *display* helper (prints + returns None), so
+    it can't be used here. Returns [] if the helpers raise.
     """
     try:
-        from berdl_notebook_utils import show_my_tenants, get_tenant_detail
+        from berdl_notebook_utils import list_tenants, get_tenant_detail
     except ImportError:
         return []
 
     out: list[TenantInfo] = []
     try:
-        tenants = show_my_tenants()
+        tenants = list_tenants()
     except Exception as exc:  # noqa: BLE001 — surface but don't crash
-        print(f"# WARN: show_my_tenants() failed: {exc}", file=sys.stderr)
+        print(f"# WARN: list_tenants() failed: {exc}", file=sys.stderr)
+        return []
+    if tenants is None:
         return []
 
     for t in tenants:
