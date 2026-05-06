@@ -103,13 +103,19 @@ This wraps `scripts/detect_berdl_environment.py` with auto-recovery. It:
 
 ## Phase 1.6: Live Inventory
 
-After Phase 1.5 reports ready, print the live database inventory:
+After Phase 1.5 reports ready, print the live database inventory. **The invocation depends on the location Phase 1.5 reported:**
 
-```bash
-uv run scripts/berdl_inventory.py
-```
+- **`on-cluster`** → use the JupyterHub kernel's Python directly:
+  ```bash
+  python scripts/berdl_inventory.py
+  ```
+  Do NOT use `uv run` on-cluster. `uv run` creates an isolated venv that does not include the JH kernel's `berdl_notebook_utils` package, so the script can't reach the access-aware helpers — it would fall through to the off-cluster path and produce confused output. The script detects this case and exits with an error pointing at the right command, but pick the right one upfront.
 
-The script declares its dependencies inline (PEP 723), so `uv run` resolves them on first invocation — no `.venv-berdl` activation required off-cluster. On-cluster (JupyterHub), the kernel already has every import; run with the kernel's Python directly: `python scripts/berdl_inventory.py`.
+- **`off-cluster`** → use `uv run`:
+  ```bash
+  uv run scripts/berdl_inventory.py
+  ```
+  The script declares its dependencies inline (PEP 723), so `uv run` resolves `pyspark`, `spark_connect_remote`, and `berdl_remote` on first invocation — no `.venv-berdl` activation required.
 
 **Relay the full stdout of this command verbatim to the user in your reply.** The script outputs a complete markdown report — header, per-tenant H3 sections (with display name, description, website, organization, stewards, member counts), and one row per database (with table count and sample table names). Do NOT summarize, paraphrase, or replace the table with a one-line totals sentence. The user wants to see the actual tenant metadata, database names, table counts, and sample table names; truncating to "5 tenants, N databases" defeats the point of running the script. If the output is long (>50 lines), still include all of it — the user will scroll.
 

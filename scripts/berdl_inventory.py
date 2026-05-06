@@ -32,6 +32,7 @@ Output is a markdown report grouped by tenant. Examples:
 from __future__ import annotations
 
 import argparse
+import socket
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -62,6 +63,15 @@ class TenantInfo:
 def _split_tenant_prefix(database: str) -> str:
     """Fallback tenant key when no metadata is available."""
     return database.split("_", 1)[0] if "_" in database else "(other)"
+
+
+def _is_on_cluster(host: str = "spark.berdl.kbase.us", port: int = 443, timeout: float = 2.0) -> bool:
+    """Same connectivity probe scripts/detect_berdl_environment.py uses."""
+    try:
+        with socket.create_connection((host, port), timeout=timeout):
+            return True
+    except (socket.timeout, OSError):
+        return False
 
 
 def fetch_structure_on_cluster() -> dict[str, list[str]]:
@@ -355,6 +365,23 @@ def main(argv: list[str] | None = None) -> int:
             structure = fetch_structure_on_cluster()
             tenants = fetch_tenants_on_cluster()
         except ImportError:
+            # If we're on-cluster but berdl_notebook_utils isn't importable,
+            # the user almost certainly invoked us under `uv run`, which
+            # creates an isolated venv that doesn't include the JupyterHub
+            # kernel's pre-installed packages. Falling through to the
+            # off-cluster path here would silently produce broken output —
+            # surface the real fix instead.
+            if _is_on_cluster():
+                print(
+                    "[berdl_inventory] On-cluster, but berdl_notebook_utils "
+                    "isn't importable in this Python. You're probably running "
+                    "under `uv run`, which uses an isolated venv that doesn't "
+                    "see the JupyterHub kernel's packages.\n\n"
+                    "  → Re-run as: python scripts/berdl_inventory.py\n\n"
+                    "Reserve `uv run` for off-cluster invocations only.",
+                    file=sys.stderr,
+                )
+                return 2
             structure = None
     if structure is None:
         try:

@@ -217,7 +217,42 @@ def test_main_falls_back_to_off_cluster_on_import_error(capsys):
     with patch(
         "scripts.berdl_inventory.fetch_structure_on_cluster",
         side_effect=ImportError("no helper"),
-    ), patch("scripts.berdl_inventory.fetch_off_cluster", return_value=fake):
+    ), patch("scripts.berdl_inventory._is_on_cluster", return_value=False), patch(
+        "scripts.berdl_inventory.fetch_off_cluster", return_value=fake,
+    ):
+        from scripts.berdl_inventory import main
+        rc = main(["--no-emoji"])
+        assert rc == 0
+        assert "kbase_x" in capsys.readouterr().out
+
+
+def test_main_detects_uv_run_on_cluster_and_errors_clearly(capsys):
+    """If on-cluster but berdl_notebook_utils isn't importable (uv run case), error clearly."""
+    with patch(
+        "scripts.berdl_inventory.fetch_structure_on_cluster",
+        side_effect=ImportError("No module named 'berdl_notebook_utils'"),
+    ), patch("scripts.berdl_inventory._is_on_cluster", return_value=True), patch(
+        "scripts.berdl_inventory.fetch_off_cluster",
+    ) as off_cluster:
+        from scripts.berdl_inventory import main
+        rc = main([])
+        err = capsys.readouterr().err
+        assert rc == 2
+        assert "uv run" in err
+        assert "python scripts/berdl_inventory.py" in err
+        # Critical: must NOT have fallen through to the off-cluster path.
+        off_cluster.assert_not_called()
+
+
+def test_main_falls_back_off_cluster_when_truly_off_cluster(capsys):
+    """ImportError off-cluster (no berdl_notebook_utils locally) is the normal fallback path."""
+    fake = {"kbase_x": ["t1"]}
+    with patch(
+        "scripts.berdl_inventory.fetch_structure_on_cluster",
+        side_effect=ImportError("No module named 'berdl_notebook_utils'"),
+    ), patch("scripts.berdl_inventory._is_on_cluster", return_value=False), patch(
+        "scripts.berdl_inventory.fetch_off_cluster", return_value=fake,
+    ):
         from scripts.berdl_inventory import main
         rc = main(["--no-emoji"])
         assert rc == 0
@@ -228,8 +263,8 @@ def test_main_returns_nonzero_when_both_paths_fail(capsys):
     with patch(
         "scripts.berdl_inventory.fetch_structure_on_cluster",
         side_effect=ImportError("no helper"),
-    ), patch(
-        "scripts.berdl_inventory.fetch_off_cluster", side_effect=RuntimeError("auth")
+    ), patch("scripts.berdl_inventory._is_on_cluster", return_value=False), patch(
+        "scripts.berdl_inventory.fetch_off_cluster", side_effect=RuntimeError("auth"),
     ):
         from scripts.berdl_inventory import main
         rc = main([])
