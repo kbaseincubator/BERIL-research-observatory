@@ -109,7 +109,9 @@ After Phase 1.5 reports ready, print the live database inventory:
 python scripts/berdl_inventory.py
 ```
 
-This prints a markdown table grouped by tenant with database name, table count, and sample table names. Same command works on-cluster and off-cluster — on-cluster it uses access-aware `berdl_notebook_utils.get_db_structure()`; off-cluster it falls back to `SHOW DATABASES` + `SHOW TABLES` via the local Spark Connect drop-in (which auto-spawns the JH server on cold start).
+**Relay the full stdout of this command verbatim to the user in your reply.** The script outputs a complete markdown report — header, per-tenant H3 sections, and one row per database. Do NOT summarize, paraphrase, or replace the table with a one-line totals sentence. The user wants to see the actual tenant names, database names, table counts, and sample table names; truncating to "5 tenants, N databases" defeats the point of running the script. If the output is long (>50 lines), still include all of it — the user will scroll.
+
+Same command works on-cluster and off-cluster — on-cluster it uses access-aware `berdl_notebook_utils.get_db_structure()`; off-cluster it falls back to `SHOW DATABASES` + `SHOW TABLES` via the local Spark Connect drop-in (which auto-spawns the JH server on cold start).
 
 Useful flags:
 - `--sample 5` — show up to 5 table names per database (default: 3).
