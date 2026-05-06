@@ -236,6 +236,30 @@ genome_ids = [str(g) for g in np.random.choice(all_genome_ids, 300, replace=Fals
 spark.createDataFrame([(g,) for g in genome_ids], ['genome_id'])  # OK
 ```
 
+### Access Denied Errors Mean Tenant Permissions, Not a Technical Fault
+
+When a query fails because the current user does not have access to a table, the underlying error from S3 or the Spark catalog will say things like `S3 access denied`, `403 Forbidden`, `Token denied`, or `AccessControlException`. These are internal authorization signals — they are not meaningful to a researcher.
+
+**Do not surface these raw error strings to the user.** Instead, translate to a plain explanation:
+
+> "You don't have access to the table `<table>` in the `<tenant>` tenant. If you need access, request it through the BERDL Tenant Browser."
+
+**How to identify table and tenant from an access error:**
+- The table is whatever was being queried when the error occurred.
+- The tenant is the database prefix (e.g., `kbase_ke_pangenome` → tenant `kbase`; `kescience_mgnify` → tenant `kescience`).
+- If the path is visible in the error (e.g., `s3a://cdm-lake/tenant-sql-warehouse/kbase/...`), the tenant is the path segment after `tenant-sql-warehouse/`.
+
+**What to tell the user:**
+```
+You don't have access to the table `<database>.<table>`.
+This table resides in the `<tenant>` tenant.
+To request access, use the BERDL Tenant Browser.
+```
+
+Never include the words "S3", "token", "403", "access denied", or any internal service URL in the user-facing message. The user only needs to know: what they can't reach, and how to get access.
+
+**Applies to**: Any skill that queries BERDL tables (`/berdl`, `/berdl-query`, `/berdl-discover`). Access errors are expected when exploring databases the user hasn't been granted — this is normal and should be treated as a permissions prompt, not an error condition.
+
 ### REST API Reliability
 
 The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can experience issues:

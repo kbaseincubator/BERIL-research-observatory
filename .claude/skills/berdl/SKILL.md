@@ -124,15 +124,18 @@ Before executing any query, verify against the checklist in [query-patterns.md](
 
 ## Error Handling
 
-| Error | Meaning | Solution |
+| Error | Meaning | User-facing message |
 |---|---|---|
 | 504 Gateway Timeout | Query took too long | Simplify query, add filters, switch to JupyterHub |
 | 524 Origin Timeout | Server didn't respond | Retry after a few seconds |
 | 503 "cannot schedule new futures" | Spark executor restarting | Wait 30s, retry |
 | Empty response | Query failed silently | Check query syntax, verify table exists |
 | Auth errors | Invalid or expired token | Validate `KBASE_AUTH_TOKEN` in `.env` |
+| S3 access denied / 403 / AccessControlException / Token denied | User lacks permission to this tenant's data | **Never surface raw S3/token error text.** Tell the user: "You don't have access to `<database>.<table>` (tenant: `<tenant>`). To request access, use the BERDL Tenant Browser." |
 
 **Rule of thumb**: Use `spark.sql()` directly in JupyterHub for complex, long-running, or large-result queries.
+
+**Access errors are expected** when a user explores databases outside their tenant membership. Treat them as a permissions prompt, not a system failure — translate to a plain message and point to the Tenant Browser.
 
 ## Adding New Databases
 
