@@ -145,6 +145,63 @@ def test_format_inventory_omits_tenant_with_no_accessible_dbs():
     assert "No accessible databases" in out  # falls through to the empty message
 
 
+def test_format_inventory_hides_globalusers_databases():
+    """globalusers_* databases never appear in the rendered output, even if accessible."""
+    from scripts.berdl_inventory import format_inventory
+    structure = {
+        "kbase_genomes": ["t1"],
+        "globalusers_sandbox": ["t1", "t2"],
+        "globalusers_test_thing": ["t1"],
+    }
+    tenants = [
+        _tenant("kbase", prefix="kbase_"),
+        _tenant("globalusers", prefix="globalusers_"),
+    ]
+    out = format_inventory(structure, tenants=tenants, emoji=False)
+    assert "kbase_genomes" in out
+    assert "globalusers" not in out
+    assert "sandbox" not in out
+    # Header counts reflect only the visible databases.
+    assert "1 databases" in out
+
+
+def test_format_inventory_lists_other_tenants_without_access():
+    """Tenants the user has no accessible databases in show up in a brief footer."""
+    from scripts.berdl_inventory import format_inventory
+    structure = {"kbase_genomes": ["t1"]}
+    tenants = [
+        _tenant("kbase", prefix="kbase_"),
+        _tenant("nmdc", prefix="nmdc_"),
+        _tenant("planetmicrobe", prefix="planetmicrobe_"),
+    ]
+    out = format_inventory(structure, tenants=tenants, emoji=False)
+    assert "Other tenants in BERDL (no access): nmdc, planetmicrobe" in out
+
+
+def test_format_inventory_other_tenants_excludes_hidden():
+    """Hidden tenants (globalusers) don't appear in the 'other tenants' footer."""
+    from scripts.berdl_inventory import format_inventory
+    structure = {"kbase_genomes": ["t1"]}
+    tenants = [
+        _tenant("kbase", prefix="kbase_"),
+        _tenant("globalusers", prefix="globalusers_"),
+        _tenant("nmdc", prefix="nmdc_"),
+    ]
+    out = format_inventory(structure, tenants=tenants, emoji=False)
+    # nmdc is in the footer; globalusers is suppressed entirely.
+    assert "Other tenants in BERDL (no access): nmdc" in out
+    assert "globalusers" not in out
+
+
+def test_format_inventory_no_other_tenants_footer_when_only_user_tenants():
+    """When the user has access to every (non-hidden) tenant, no footer line appears."""
+    from scripts.berdl_inventory import format_inventory
+    structure = {"kbase_genomes": ["t1"]}
+    tenants = [_tenant("kbase", prefix="kbase_")]
+    out = format_inventory(structure, tenants=tenants, emoji=False)
+    assert "Other tenants in BERDL" not in out
+
+
 def test_main_off_cluster_exits_zero(capsys):
     fake = {"kbase_x": ["t1", "t2"]}
     with patch("scripts.berdl_inventory.fetch_off_cluster", return_value=fake):

@@ -37,6 +37,13 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 
 
+# Tenants that exist but should never appear in the user-facing inventory —
+# 'globalusers' is a shared sandbox space whose contents tend to be noise for
+# orientation. Filtered from both the database listing and the "other tenants"
+# footer.
+_HIDDEN_TENANTS = frozenset({"globalusers"})
+
+
 @dataclass
 class TenantInfo:
     """Metadata for a single tenant — populated on-cluster from berdl_notebook_utils."""
@@ -191,6 +198,24 @@ def format_inventory(
 ) -> str:
     """Render the inventory as a markdown report grouped by tenant."""
     tenants = tenants or []
+
+    # Drop databases whose tenant is in the hidden set (e.g. globalusers
+    # sandbox — contents are noise for orientation). Match both via
+    # namespace_prefix and the underscore-split fallback.
+    hidden_prefixes = tuple(
+        t.namespace_prefix
+        for t in tenants
+        if t.namespace_prefix and t.name in _HIDDEN_TENANTS
+    )
+    structure = {
+        db: tables
+        for db, tables in structure.items()
+        if not (
+            (hidden_prefixes and db.startswith(hidden_prefixes))
+            or _split_tenant_prefix(db) in _HIDDEN_TENANTS
+        )
+    }
+
     by_tenant = assign_databases_to_tenants(structure, tenants)
     tenant_meta = {t.name: t for t in tenants}
 
@@ -270,6 +295,21 @@ def format_inventory(
         else:
             lines.append("_(no accessible databases in this tenant)_")
         lines.append("")
+
+    # Brief footer: tenants in the system the user has no accessible databases
+    # in. Hidden tenants (e.g. globalusers) are excluded from this list too.
+    if tenants:
+        rendered = set(by_tenant)
+        other_names = sorted(
+            t.name
+            for t in tenants
+            if t.name not in rendered and t.name not in _HIDDEN_TENANTS
+        )
+        if other_names:
+            lines.append(
+                f"_Other tenants in BERDL (no access): {', '.join(other_names)}._"
+            )
+            lines.append("")
 
     lines.append(
         "> Run `DESCRIBE DATABASE EXTENDED <db>` for a database description, "
