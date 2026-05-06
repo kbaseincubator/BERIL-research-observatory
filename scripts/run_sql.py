@@ -135,6 +135,13 @@ def main() -> int:
         print(f"Cannot import spark_connect_remote: {exc}", file=sys.stderr)
         return 2
 
+    if args.berdl_proxy:
+        try:
+            from get_spark_session import ensure_hub
+            ensure_hub()
+        except Exception as exc:
+            print(f"[hub] auto-spawn skipped: {exc}", file=sys.stderr)
+
     try:
         spark = create_spark_session(
             host_template=host_template,

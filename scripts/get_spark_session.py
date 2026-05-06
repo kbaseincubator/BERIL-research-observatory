@@ -37,12 +37,18 @@ def _load_env() -> None:
             os.environ[key] = value
 
 
-def _ensure_hub() -> None:
+def ensure_hub() -> None:
     """Ensure the JupyterHub server is running, spawning it automatically if needed.
 
     Uses berdl-remote to login (if needed), check status, and spawn.
     No browser required — authentication is done via KBASE_AUTH_TOKEN.
+
+    Set BERDL_NO_AUTO_SPAWN=1 to skip this entirely (useful when the user
+    has already spawned the server manually or wants to debug a failure).
     """
+    if os.getenv("BERDL_NO_AUTO_SPAWN"):
+        return
+
     config_path = Path.home() / ".berdl" / "remote-config.yaml"
 
     if not config_path.exists():
@@ -76,6 +82,10 @@ def _ensure_hub() -> None:
     time.sleep(40)
 
 
+# Keep the private alias for any external caller that imported the underscored name.
+_ensure_hub = ensure_hub
+
+
 def get_spark_session(
     *,
     app_name: str = "berdl-local-notebook",
@@ -83,7 +93,7 @@ def get_spark_session(
     host_template: str | None = None,
     port: int | None = None,
     use_ssl: bool = True,
-    ensure_hub: bool = True,
+    auto_spawn: bool = True,
 ) -> "pyspark.sql.SparkSession":
     """Return a remote Spark session connected to the BERDL cluster.
 
@@ -92,7 +102,7 @@ def get_spark_session(
         spark = get_spark_session()
 
     When berdl_proxy=True (the default for local use), the JupyterHub server
-    is spawned automatically if it is not already running.  Set ensure_hub=False
+    is spawned automatically if it is not already running.  Set auto_spawn=False
     to skip this check (e.g. when you know the server is already up).
     """
     _load_env()
@@ -109,8 +119,8 @@ def get_spark_session(
         os.environ.setdefault("no_proxy", "localhost,127.0.0.1")
         if host_template is None:
             host_template = "metrics.berdl.kbase.us"
-        if ensure_hub:
-            _ensure_hub()
+        if auto_spawn:
+            ensure_hub()
 
     if host_template is None:
         host_template = os.getenv("BERDL_SPARK_HOST_TEMPLATE", "spark.berdl.kbase.us")
