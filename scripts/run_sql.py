@@ -1,5 +1,17 @@
-#!/usr/bin/env python3
-"""Run SQL on BERDL Spark Connect from a local machine."""
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "pyspark",
+#   "spark_connect_remote @ git+https://github.com/BERDataLakehouse/spark_connect_remote.git",
+#   "berdl_remote @ git+https://github.com/BERDataLakehouse/berdl_remote.git",
+# ]
+# ///
+"""Run SQL on BERDL Spark Connect from a local machine.
+
+Off-cluster: invoke as `uv run scripts/run_sql.py --berdl-proxy --query "..."`.
+uv resolves the PEP 723 dependencies above on first run, no `.venv-berdl`
+activation required."""
 
 from __future__ import annotations
 

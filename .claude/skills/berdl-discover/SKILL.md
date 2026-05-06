@@ -55,7 +55,7 @@ spark.sql("DESCRIBE EXTENDED DATABASE_NAME.TABLE_NAME").toPandas()
 
 Off-cluster:
 ```bash
-python scripts/run_sql.py --berdl-proxy \
+uv run scripts/run_sql.py --berdl-proxy \
   --query "DESCRIBE EXTENDED DATABASE_NAME.TABLE_NAME" \
   --output /tmp/desc.json
 ```

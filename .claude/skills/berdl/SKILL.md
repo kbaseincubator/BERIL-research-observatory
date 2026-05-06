@@ -58,7 +58,7 @@ df = spark.sql("SELECT * FROM database.table LIMIT 10")
 Off-cluster, use the bounded wrapper when appropriate:
 
 ```bash
-python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM database.table ORDER BY id" --limit 500 --output /tmp/query_result.json
+uv run scripts/run_sql.py --berdl-proxy --query "SELECT * FROM database.table ORDER BY id" --limit 500 --output /tmp/query_result.json
 ```
 
 Use SQL for counts and samples:

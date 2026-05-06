@@ -39,11 +39,11 @@ Do not use this proxy workflow when `scripts/berdl_env.py --check` reports an on
    - `source .venv-berdl/bin/activate`
 2. Verify proxy is running (check ports 1337, 1338, 8123). Start pproxy if needed.
 3. Execute a probe query:
-   - `python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok"`
+   - `uv run scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok"`
 4. Run the target SQL query with bounded result size:
-   - `python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM db.table ORDER BY id" --limit 500 --output /tmp/query_result.json`
+   - `uv run scripts/run_sql.py --berdl-proxy --query "SELECT * FROM db.table ORDER BY id" --limit 500 --output /tmp/query_result.json`
 5. If result size is large, use export mode in this same skill:
-   - `python scripts/export_sql.py --berdl-proxy --query "SELECT ..." --path "s3a://cdm-lake/users-general-warehouse/<user>/exports/<run_id>" --format parquet --mode overwrite`
+   - `uv run scripts/export_sql.py --berdl-proxy --query "SELECT ..." --path "s3a://cdm-lake/users-general-warehouse/<user>/exports/<run_id>" --format parquet --mode overwrite`
 
 ## Connection and Timeout Behavior
 

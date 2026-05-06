@@ -106,12 +106,14 @@ This wraps `scripts/detect_berdl_environment.py` with auto-recovery. It:
 After Phase 1.5 reports ready, print the live database inventory:
 
 ```bash
-python scripts/berdl_inventory.py
+uv run scripts/berdl_inventory.py
 ```
+
+The script declares its dependencies inline (PEP 723), so `uv run` resolves them on first invocation — no `.venv-berdl` activation required off-cluster. On-cluster (JupyterHub), the kernel already has every import; run with the kernel's Python directly: `python scripts/berdl_inventory.py`.
 
 **Relay the full stdout of this command verbatim to the user in your reply.** The script outputs a complete markdown report — header, per-tenant H3 sections (with display name, description, website, organization, stewards, member counts), and one row per database (with table count and sample table names). Do NOT summarize, paraphrase, or replace the table with a one-line totals sentence. The user wants to see the actual tenant metadata, database names, table counts, and sample table names; truncating to "5 tenants, N databases" defeats the point of running the script. If the output is long (>50 lines), still include all of it — the user will scroll.
 
-Same command works on-cluster and off-cluster — on-cluster it uses access-aware `berdl_notebook_utils.get_db_structure()` plus `list_tenants()` / `get_tenant_detail()` for tenant metadata; off-cluster it falls back to `SHOW DATABASES` + `SHOW TABLES` via the local Spark Connect drop-in (which auto-spawns the JH server on cold start). Tenant metadata is on-cluster only; off-cluster groups by the database's underscore prefix without descriptions.
+Same command works on-cluster and off-cluster — on-cluster it uses access-aware `berdl_notebook_utils.get_db_structure()` plus `show_my_tenants()` / `get_tenant_detail()` for tenant metadata. Off-cluster, `uv run` resolves the inline dependencies (`pyspark`, `spark_connect_remote`, `berdl_remote`) into an isolated cache, then the script falls back to `SHOW DATABASES` + `SHOW TABLES` via the local Spark Connect drop-in (which auto-spawns the JH server on cold start). Tenant metadata is on-cluster only; off-cluster groups by the database's underscore prefix without descriptions.
 
 Useful flags:
 - `--sample 5` — show up to 5 table names per database (default: 3).

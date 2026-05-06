@@ -1,4 +1,12 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "pyspark",
+#   "spark_connect_remote @ git+https://github.com/BERDataLakehouse/spark_connect_remote.git",
+#   "berdl_remote @ git+https://github.com/BERDataLakehouse/berdl_remote.git",
+# ]
+# ///
 """Print BERDL inventory: tenant metadata, databases, table counts, sample tables.
 
 On-cluster: uses berdl_notebook_utils for access-aware discovery and tenant
@@ -8,12 +16,17 @@ get_spark_session() drop-in (which auto-spawns the JH server). Tenant metadata
 is unavailable off-cluster — fallback groups by the prefix before the first
 underscore.
 
+Off-cluster invocation: `uv run scripts/berdl_inventory.py` — uv resolves the
+PEP 723 dependencies above into an isolated cache, no manual venv activation
+required. On-cluster, the BERDL JupyterHub kernel already has all imports;
+just run with the kernel's Python: `python scripts/berdl_inventory.py`.
+
 Output is a markdown report grouped by tenant. Examples:
 
-    python scripts/berdl_inventory.py                # auto-detect
-    python scripts/berdl_inventory.py --sample 5     # show up to 5 table names
-    python scripts/berdl_inventory.py --with-members # include steward / RW / RO lists
-    python scripts/berdl_inventory.py --no-emoji     # plain text
+    uv run scripts/berdl_inventory.py                # auto-detect
+    uv run scripts/berdl_inventory.py --sample 5     # show up to 5 table names
+    uv run scripts/berdl_inventory.py --with-members # include steward / RW / RO lists
+    uv run scripts/berdl_inventory.py --no-emoji     # plain text
 """
 
 from __future__ import annotations

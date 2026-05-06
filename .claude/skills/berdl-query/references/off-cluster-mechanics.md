@@ -87,7 +87,7 @@ off-cluster connections, or poll with retries:
 source .venv-berdl/bin/activate
 for i in $(seq 1 10); do
     echo "Attempt $i at $(date +%H:%M:%S)..."
-    result=$(python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok" 2>&1)
+    result=$(uv run scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok" 2>&1)
     if echo "$result" | grep -q '"ok"'; then
         echo "Connected!"
         break

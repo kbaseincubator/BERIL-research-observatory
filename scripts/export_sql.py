@@ -1,5 +1,17 @@
-#!/usr/bin/env python3
-"""Execute SQL on BERDL Spark and export the result to MinIO."""
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = [
+#   "pyspark",
+#   "spark_connect_remote @ git+https://github.com/BERDataLakehouse/spark_connect_remote.git",
+#   "berdl_remote @ git+https://github.com/BERDataLakehouse/berdl_remote.git",
+# ]
+# ///
+"""Execute SQL on BERDL Spark and export the result to MinIO.
+
+Off-cluster: invoke as `uv run scripts/export_sql.py --berdl-proxy ...`.
+uv resolves the PEP 723 dependencies above on first run, no `.venv-berdl`
+activation required."""
 
 from __future__ import annotations
 
