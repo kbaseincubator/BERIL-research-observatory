@@ -202,32 +202,140 @@ def test_format_inventory_no_other_tenants_footer_when_only_user_tenants():
     assert "Other tenants in BERDL" not in out
 
 
-def test_format_inventory_includes_agent_relay_banner():
-    """The output ends with an HTML-comment instruction telling the agent to relay verbatim.
+def test_format_inventory_no_longer_carries_agent_banner():
+    """The full report is written to a file now, so no in-band agent-relay banner.
 
-    This is a backstop against the Claude Code UI collapsing long bash output —
-    the agent reading the bash result sees the comment and is reminded to surface
-    the full report in its chat reply.
+    The banner moved to format_summary (the stdout output), where it's still
+    needed because the agent has to relay the summary verbatim.
     """
     from scripts.berdl_inventory import format_inventory
     out = format_inventory({"kbase_x": ["t1"]}, emoji=False)
+    assert "<!-- AGENT:" not in out
+
+
+def test_format_summary_compact_and_carries_agent_banner():
+    """format_summary is short, lists tenants but not per-database tables."""
+    from scripts.berdl_inventory import format_summary
+    structure = {
+        "kbase_genomes": ["feature", "contig"],
+        "kbase_ke_pangenome": ["gene"],
+        "kescience_fitnessbrowser": ["experiments", "scores", "fit"],
+    }
+    out = format_summary(structure, emoji=False)
+    assert "BERDL Inventory" in out
+    assert "2 tenants" in out
+    assert "3 databases" in out
+    assert "6 tables" in out
+    # Tenant rows present
+    assert "`kbase`" in out
+    assert "`kescience`" in out
+    # Per-database rows must NOT appear in the summary
+    assert "kbase_genomes" not in out
+    assert "kbase_ke_pangenome" not in out
+    # Agent banner reminds the LLM to paste the (short) summary verbatim
     assert "<!-- AGENT:" in out
-    assert "Relay this entire markdown report verbatim" in out
-    assert "Do NOT summarize" in out
 
 
-def test_main_off_cluster_exits_zero(capsys):
+def test_format_summary_includes_full_report_path_when_provided():
+    from scripts.berdl_inventory import format_summary
+    out = format_summary(
+        {"kbase_x": ["t"]},
+        emoji=False,
+        full_report_path="data/berdl_inventory.md",
+    )
+    assert "`data/berdl_inventory.md`" in out
+    assert "Full report" in out
+
+
+def test_format_summary_omits_path_line_when_no_path():
+    from scripts.berdl_inventory import format_summary
+    out = format_summary({"kbase_x": ["t"]}, emoji=False)
+    assert "Full report" not in out
+
+
+def test_format_summary_empty_message():
+    from scripts.berdl_inventory import format_summary
+    assert "No accessible databases" in format_summary({})
+
+
+def test_format_summary_uses_display_name_when_available():
+    from scripts.berdl_inventory import format_summary
+    structure = {"kbase_genomes": ["t1"]}
+    tenants = [_tenant("kbase", prefix="kbase_", display_name="KBase")]
+    out = format_summary(structure, tenants=tenants, emoji=False)
+    assert "| `kbase` | KBase |" in out
+
+
+def test_format_summary_stays_compact():
+    """Sanity: the summary for a typical 5-tenant inventory stays under ~30 lines.
+
+    The whole point of the summary is that it survives the Claude Code UI's
+    long-bash-output collapse. If this grows materially, revisit the design.
+    """
+    from scripts.berdl_inventory import format_summary
+    structure = {
+        f"tenant{i}_db{j}": [f"t{k}" for k in range(50)]
+        for i in range(5)
+        for j in range(4)
+    }
+    out = format_summary(
+        structure, full_report_path="data/berdl_inventory.md", emoji=False
+    )
+    assert out.count("\n") < 30
+
+
+def test_main_off_cluster_writes_file_and_prints_summary(tmp_path, capsys):
     fake = {"kbase_x": ["t1", "t2"]}
+    out_path = tmp_path / "inventory.md"
     with patch("scripts.berdl_inventory.fetch_off_cluster", return_value=fake):
         from scripts.berdl_inventory import main
-        rc = main(["--off-cluster", "--no-emoji"])
+        rc = main(["--off-cluster", "--no-emoji", "--output", str(out_path)])
         out = capsys.readouterr().out
         assert rc == 0
+        # Stdout: compact summary with tenant key, NOT per-database row
+        assert "`kbase`" in out
+        assert "kbase_x" not in out
+        # File: the full report, including per-database row
+        assert out_path.exists()
+        file_content = out_path.read_text()
+        assert "kbase_x" in file_content
+
+
+def test_main_full_flag_prints_full_report(tmp_path, capsys):
+    fake = {"kbase_x": ["t1", "t2"]}
+    out_path = tmp_path / "inventory.md"
+    with patch("scripts.berdl_inventory.fetch_off_cluster", return_value=fake):
+        from scripts.berdl_inventory import main
+        rc = main(
+            ["--off-cluster", "--no-emoji", "--full", "--output", str(out_path)]
+        )
+        out = capsys.readouterr().out
+        assert rc == 0
+        # --full puts the per-database row on stdout
         assert "kbase_x" in out
+        # File is still written
+        assert out_path.exists()
 
 
-def test_main_falls_back_to_off_cluster_on_import_error(capsys):
+def test_main_no_file_skips_write(tmp_path, capsys):
     fake = {"kbase_x": ["t1"]}
+    out_path = tmp_path / "inventory.md"
+    with patch("scripts.berdl_inventory.fetch_off_cluster", return_value=fake):
+        from scripts.berdl_inventory import main
+        rc = main(
+            ["--off-cluster", "--no-emoji", "--no-file", "--output", str(out_path)]
+        )
+        out = capsys.readouterr().out
+        assert rc == 0
+        assert not out_path.exists()
+        # Without --full, summary still goes to stdout (no per-database row)
+        assert "`kbase`" in out
+        assert "kbase_x" not in out
+
+
+def test_main_falls_back_to_off_cluster_on_import_error(tmp_path, capsys):
+    fake = {"kbase_x": ["t1"]}
+    out_path = tmp_path / "inventory.md"
     with patch(
         "scripts.berdl_inventory.fetch_structure_on_cluster",
         side_effect=ImportError("no helper"),
@@ -235,9 +343,12 @@ def test_main_falls_back_to_off_cluster_on_import_error(capsys):
         "scripts.berdl_inventory.fetch_off_cluster", return_value=fake,
     ):
         from scripts.berdl_inventory import main
-        rc = main(["--no-emoji"])
+        rc = main(["--no-emoji", "--output", str(out_path)])
         assert rc == 0
-        assert "kbase_x" in capsys.readouterr().out
+        out = capsys.readouterr().out
+        # Summary mentions the tenant grouping; full per-db detail goes to the file.
+        assert "`kbase`" in out
+        assert out_path.exists()
 
 
 def test_main_detects_uv_run_on_cluster_and_errors_clearly(capsys):
@@ -268,7 +379,9 @@ def test_main_falls_back_off_cluster_when_truly_off_cluster(capsys):
         "scripts.berdl_inventory.fetch_off_cluster", return_value=fake,
     ):
         from scripts.berdl_inventory import main
-        rc = main(["--no-emoji"])
+        # --full + --no-file so we get the per-database row on stdout without
+        # writing to the real repo.
+        rc = main(["--no-emoji", "--full", "--no-file"])
         assert rc == 0
         assert "kbase_x" in capsys.readouterr().out
 
@@ -287,7 +400,7 @@ def test_main_returns_nonzero_when_both_paths_fail(capsys):
 
 
 def test_main_passes_tenants_through_to_formatter(capsys):
-    """When on-cluster, tenants metadata is fetched and passed to format_inventory."""
+    """When on-cluster, tenants metadata is fetched and passed through to both renderers."""
     fake_structure = {"kbase_genomes": ["t1"]}
     fake_tenants = [
         _tenant("kbase", prefix="kbase_", display_name="KBase", description="Test desc")
@@ -298,8 +411,15 @@ def test_main_passes_tenants_through_to_formatter(capsys):
         "scripts.berdl_inventory.fetch_tenants_on_cluster", return_value=fake_tenants
     ):
         from scripts.berdl_inventory import main
-        rc = main(["--no-emoji"])
+        # --full + --no-file: full report on stdout, no file write.
+        rc = main(["--no-emoji", "--full", "--no-file"])
         out = capsys.readouterr().out
         assert rc == 0
         assert "### kbase — KBase" in out
         assert "Test desc" in out
+
+
+def test_main_default_output_path_resolves_under_repo_root():
+    """Sanity check that the default output path lives at <repo>/data/berdl_inventory.md."""
+    from scripts.berdl_inventory import _DEFAULT_OUTPUT, _REPO_ROOT
+    assert _DEFAULT_OUTPUT == _REPO_ROOT / "data" / "berdl_inventory.md"

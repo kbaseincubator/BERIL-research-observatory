@@ -29,11 +29,20 @@ get_spark_session() drop-in (which auto-spawns the JH server). Tenant metadata
 is unavailable off-cluster — fallback groups by the prefix before the first
 underscore.
 
-Output is a markdown report grouped by tenant. Examples:
+By default the script writes the full markdown report to `data/berdl_inventory.md`
+(repo-root-relative) and prints a compact tenant-level summary to stdout. The
+split exists because the Claude Code UI auto-collapses long bash output: a
+short summary survives display and the full report stays in a stable file the
+user can open in an editor regardless of how the chat surfaces stdout.
 
-    python scripts/berdl_inventory.py                # auto-detect
-    python scripts/berdl_inventory.py --sample 5     # show up to 5 table names
-    python scripts/berdl_inventory.py --with-members # include steward / RW / RO lists
+Examples:
+
+    python scripts/berdl_inventory.py                # summary to stdout, full report to data/berdl_inventory.md
+    python scripts/berdl_inventory.py --full         # print full report to stdout (still writes file unless --no-file)
+    python scripts/berdl_inventory.py --no-file      # skip the file; only stdout (use with --full to restore legacy)
+    python scripts/berdl_inventory.py --output PATH  # override the file path
+    python scripts/berdl_inventory.py --sample 5     # show up to 5 table names per database (in the full report)
+    python scripts/berdl_inventory.py --with-members # include steward / RW / RO lists in the full report
     python scripts/berdl_inventory.py --no-emoji     # plain text
 """
 
@@ -44,6 +53,13 @@ import socket
 import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
+from pathlib import Path
+
+# Default location for the full markdown report. Resolved against the repo root
+# (the parent of the scripts/ directory) so the path is stable regardless of
+# the user's CWD when invoking the script.
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+_DEFAULT_OUTPUT = _REPO_ROOT / "data" / "berdl_inventory.md"
 
 
 # Tenants that exist but should never appear in the user-facing inventory —
@@ -333,13 +349,96 @@ def format_inventory(
         "> Run `DESCRIBE DATABASE EXTENDED <db>` for a database description, "
         "`DESCRIBE EXTENDED <db>.<table>` for table-level comments / properties."
     )
+    return "\n".join(lines)
+
+
+def format_summary(
+    structure: dict[str, list[str]],
+    tenants: list[TenantInfo] | None = None,
+    full_report_path: str | None = None,
+    emoji: bool = True,
+) -> str:
+    """Compact one-line-per-tenant summary for stdout.
+
+    Short by design: the full per-database report goes to a file
+    (``full_report_path``) so the chat UI doesn't collapse this to
+    "+N lines (ctrl+o to expand)". The agent relays this verbatim and points
+    the user to the file for details.
+    """
+    tenants = tenants or []
+
+    hidden_prefixes = tuple(
+        t.namespace_prefix
+        for t in tenants
+        if t.namespace_prefix and t.name in _HIDDEN_TENANTS
+    )
+    structure = {
+        db: tables
+        for db, tables in structure.items()
+        if not (
+            (hidden_prefixes and db.startswith(hidden_prefixes))
+            or _split_tenant_prefix(db) in _HIDDEN_TENANTS
+        )
+    }
+
+    by_tenant = assign_databases_to_tenants(structure, tenants)
+    tenant_meta = {t.name: t for t in tenants}
+
+    if not by_tenant:
+        return (
+            "_No accessible databases. Check KBASE_AUTH_TOKEN and tenant membership._"
+        )
+
+    total_dbs = sum(len(v) for v in by_tenant.values())
+    total_tables = sum(len(t) for v in by_tenant.values() for _, t in v)
+    visible_tenants = len(by_tenant)
+
+    header_icon = "📦 " if emoji else ""
+
+    lines = [
+        f"## {header_icon}BERDL Inventory",
+        "",
+        f"_{visible_tenants} tenants · {total_dbs} databases · {total_tables} tables_",
+        "",
+        "| Tenant | Display name | # DBs | # Tables |",
+        "|--------|--------------|------:|---------:|",
+    ]
+
+    for tenant_key in sorted(by_tenant):
+        rows = by_tenant[tenant_key]
+        info = tenant_meta.get(tenant_key)
+        display = info.display_name if info and info.display_name else "—"
+        n_dbs = len(rows)
+        n_tables = sum(len(t) for _, t in rows)
+        lines.append(f"| `{tenant_key}` | {display} | {n_dbs} | {n_tables} |")
+
     lines.append("")
+
+    if tenants:
+        rendered = set(by_tenant)
+        other_names = sorted(
+            t.name
+            for t in tenants
+            if t.name not in rendered and t.name not in _HIDDEN_TENANTS
+        )
+        if other_names:
+            lines.append(
+                f"_Other tenants in BERDL (no access): {', '.join(other_names)}._"
+            )
+            lines.append("")
+
+    if full_report_path:
+        lines.append(
+            f"> Full report (per-database tables, tenant metadata, members) saved to "
+            f"`{full_report_path}`. Open it for details — the agent does not need to relay it."
+        )
+        lines.append("")
+
     lines.append(
-        "<!-- AGENT: Relay this entire markdown report verbatim to the user. "
-        "Do NOT summarize to a one-line totals sentence. The user wants to "
-        "see every tenant section, database row, and the 'other tenants' "
-        "footer. The terminal UI may collapse long bash output by default — "
-        "you must include the full report in your chat reply. -->"
+        "<!-- AGENT: Paste this entire summary into your chat reply. Do NOT "
+        "collapse it to a one-line totals sentence. The full per-database "
+        "report lives at the path above; point the user there rather than "
+        "trying to relay it. -->"
     )
     return "\n".join(lines)
 
@@ -350,12 +449,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--sample",
         type=int,
         default=3,
-        help="Number of sample table names to show per database (default: 3).",
+        help="Number of sample table names to show per database in the full report (default: 3).",
     )
     p.add_argument(
         "--with-members",
         action="store_true",
-        help="Include steward / read-write / read-only member lists per tenant.",
+        help="Include steward / read-write / read-only member lists per tenant in the full report.",
     )
     p.add_argument(
         "--no-emoji",
@@ -366,6 +465,22 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         "--off-cluster",
         action="store_true",
         help="Force off-cluster path (skip the on-cluster import attempt).",
+    )
+    p.add_argument(
+        "--output",
+        type=Path,
+        default=_DEFAULT_OUTPUT,
+        help=f"Where to write the full markdown report (default: {_DEFAULT_OUTPUT}).",
+    )
+    p.add_argument(
+        "--no-file",
+        action="store_true",
+        help="Skip writing the full report to a file (only print to stdout).",
+    )
+    p.add_argument(
+        "--full",
+        action="store_true",
+        help="Print the full report to stdout instead of the compact summary.",
     )
     return p.parse_args(argv)
 
@@ -427,15 +542,46 @@ def main(argv: list[str] | None = None) -> int:
             print(f"Failed to fetch inventory: {exc}", file=sys.stderr)
             return 1
 
-    print(
-        format_inventory(
-            structure,
-            tenants=tenants,
-            sample=args.sample,
-            emoji=not args.no_emoji,
-            with_members=args.with_members,
-        )
+    full_report = format_inventory(
+        structure,
+        tenants=tenants,
+        sample=args.sample,
+        emoji=not args.no_emoji,
+        with_members=args.with_members,
     )
+
+    written_path: Path | None = None
+    if not args.no_file:
+        try:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(full_report + "\n")
+            written_path = args.output
+        except OSError as exc:
+            print(
+                f"# WARN: could not write full report to {args.output}: {exc}",
+                file=sys.stderr,
+            )
+
+    if args.full:
+        print(full_report)
+        if written_path is not None:
+            print(f"\n_Full report also saved to `{written_path}`._")
+    else:
+        # Display path relative to repo root when possible — easier to copy/paste.
+        display_path: str | None = None
+        if written_path is not None:
+            try:
+                display_path = str(written_path.relative_to(_REPO_ROOT))
+            except ValueError:
+                display_path = str(written_path)
+        print(
+            format_summary(
+                structure,
+                tenants=tenants,
+                full_report_path=display_path,
+                emoji=not args.no_emoji,
+            )
+        )
     return 0
 
 

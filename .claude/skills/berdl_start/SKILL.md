@@ -116,13 +116,21 @@ This is plain `python` in **both** environments. It auto-detects on-cluster vs o
 
 Do **not** use a bare `uv run scripts/berdl_inventory.py` (without `--with`) — `uv run --script` would create an isolated venv that excludes both the JH kernel's `berdl_notebook_utils` (breaks on-cluster) and the off-cluster Spark deps. The script detects misuse and exits with an actionable message, but pick the right invocation upfront.
 
-**Critical — relay the full stdout of this command verbatim in your reply.** The Claude Code terminal UI collapses long bash output to "+N lines (ctrl+o to expand)" by default, but the user does not see what's collapsed. You must paste the entire markdown report into your response message — header, every per-tenant H3 section (with display name, description, website, organization, stewards, member counts), every database row (with table count and sample table names), and the "Other tenants" footer. Do NOT summarize, paraphrase, or replace it with a totals sentence; truncating to "5 tenants, N databases, N tables" defeats the point of running the script. The script's output ends with an `<!-- AGENT: ... -->` HTML comment reinforcing this — pay attention to it. If the output is long (>50 lines), include all of it anyway; the user will scroll.
+**Output contract:** the script prints a compact tenant-level summary (header + one row per tenant + "other tenants" footer) to stdout, and writes the full per-database markdown report to `data/berdl_inventory.md`. This split exists because the Claude Code UI auto-collapses long bash output to "+N lines (ctrl+o to expand)" — keeping stdout short means the summary actually surfaces, and the file gives the user a stable artifact they can open in their editor regardless of how the chat displays bash output.
+
+**What you need to do in your reply:**
+1. Paste the stdout summary verbatim (it's short — the AGENT comment at the end of the summary reinforces this).
+2. Tell the user the full per-database report is at `data/berdl_inventory.md`. Do NOT try to relay that file's contents into chat unless the user explicitly asks — they can open it directly.
+3. If the user asks for a specific tenant's databases, use `Read` on `data/berdl_inventory.md` and excerpt just that section, OR re-run with `python scripts/berdl_inventory.py --full` and quote the relevant block.
 
 Same command works on-cluster and off-cluster — on-cluster it uses access-aware `berdl_notebook_utils.get_db_structure()` plus `list_tenants()` / `get_tenant_detail()` for tenant metadata. Off-cluster (with `.venv-berdl` active), the script falls back to `SHOW DATABASES` + `SHOW TABLES` via the local Spark Connect drop-in (which auto-spawns the JH server on cold start). Tenant metadata is on-cluster only; off-cluster groups by the database's underscore prefix without descriptions.
 
 Useful flags:
-- `--sample 5` — show up to 5 table names per database (default: 3).
-- `--with-members` — list each tenant's read-write and read-only members (default: counts only).
+- `--full` — print the full report to stdout instead of the compact summary (also still writes the file unless `--no-file`).
+- `--no-file` — skip writing `data/berdl_inventory.md`.
+- `--output PATH` — override the file destination.
+- `--sample 5` — show up to 5 table names per database in the full report (default: 3).
+- `--with-members` — list each tenant's read-write and read-only members in the full report.
 - `--no-emoji` — plain-text output.
 - `--off-cluster` — force the off-cluster path.
 
