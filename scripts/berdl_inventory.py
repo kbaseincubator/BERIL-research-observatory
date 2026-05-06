@@ -82,6 +82,8 @@ class TenantInfo:
     stewards: list[str] = field(default_factory=list)
     members_rw: list[str] = field(default_factory=list)
     members_ro: list[str] = field(default_factory=list)
+    is_member: bool = False
+    is_steward: bool = False
 
 
 def _split_tenant_prefix(database: str) -> str:
@@ -140,6 +142,8 @@ def fetch_tenants_on_cluster() -> list[TenantInfo]:
             description=getattr(t, "description", "") or "",
             website=getattr(t, "website", "") or "",
             organization=getattr(t, "organization", "") or "",
+            is_member=bool(getattr(t, "is_member", False)),
+            is_steward=bool(getattr(t, "is_steward", False)),
         )
         try:
             detail = get_tenant_detail(info.name)
@@ -331,17 +335,33 @@ def format_inventory(
         lines.append("")
 
     # Brief footer: tenants in the system the user has no accessible databases
-    # in. Hidden tenants (e.g. globalusers) are excluded from this list too.
+    # in. Split into "member but no DBs registered" vs "no membership" so the
+    # footer doesn't mislabel tenants you can write to as inaccessible. Hidden
+    # tenants (e.g. globalusers) are excluded from both lists.
     if tenants:
         rendered = set(by_tenant)
-        other_names = sorted(
+        member_no_dbs = sorted(
             t.name
             for t in tenants
-            if t.name not in rendered and t.name not in _HIDDEN_TENANTS
+            if t.name not in rendered
+            and t.name not in _HIDDEN_TENANTS
+            and (t.is_member or t.is_steward)
         )
-        if other_names:
+        non_member = sorted(
+            t.name
+            for t in tenants
+            if t.name not in rendered
+            and t.name not in _HIDDEN_TENANTS
+            and not (t.is_member or t.is_steward)
+        )
+        if member_no_dbs:
             lines.append(
-                f"_Other tenants in BERDL (no access): {', '.join(other_names)}._"
+                f"_Tenants you can access (no databases yet): {', '.join(member_no_dbs)}._"
+            )
+            lines.append("")
+        if non_member:
+            lines.append(
+                f"_Other tenants in BERDL (no membership): {', '.join(non_member)}._"
             )
             lines.append("")
 
@@ -416,14 +436,28 @@ def format_summary(
 
     if tenants:
         rendered = set(by_tenant)
-        other_names = sorted(
+        member_no_dbs = sorted(
             t.name
             for t in tenants
-            if t.name not in rendered and t.name not in _HIDDEN_TENANTS
+            if t.name not in rendered
+            and t.name not in _HIDDEN_TENANTS
+            and (t.is_member or t.is_steward)
         )
-        if other_names:
+        non_member = sorted(
+            t.name
+            for t in tenants
+            if t.name not in rendered
+            and t.name not in _HIDDEN_TENANTS
+            and not (t.is_member or t.is_steward)
+        )
+        if member_no_dbs:
             lines.append(
-                f"_Other tenants in BERDL (no access): {', '.join(other_names)}._"
+                f"_Tenants you can access (no databases yet): {', '.join(member_no_dbs)}._"
+            )
+            lines.append("")
+        if non_member:
+            lines.append(
+                f"_Other tenants in BERDL (no membership): {', '.join(non_member)}._"
             )
             lines.append("")
 
