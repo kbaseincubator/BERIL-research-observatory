@@ -1,13 +1,26 @@
-#!/usr/bin/env -S uv run --script
-# /// script
-# requires-python = ">=3.11"
-# dependencies = [
-#   "pyspark",
-#   "spark_connect_remote @ git+https://github.com/BERDataLakehouse/spark_connect_remote.git",
-#   "berdl_remote @ git+https://github.com/BERDataLakehouse/berdl_remote.git",
-# ]
-# ///
+#!/usr/bin/env python3
 """Print BERDL inventory: tenant metadata, databases, table counts, sample tables.
+
+This script runs in both BERDL environments — invocation is plain `python` in
+either case:
+
+    On-cluster (JupyterHub):
+        python scripts/berdl_inventory.py
+        # The JH kernel has all imports pre-installed.
+
+    Off-cluster (local machine):
+        source .venv-berdl/bin/activate
+        python scripts/berdl_inventory.py
+        # OR ad-hoc without venv activation:
+        # uv run --with pyspark \\
+        #   --with "spark_connect_remote @ git+https://github.com/BERDataLakehouse/spark_connect_remote.git" \\
+        #   --with "berdl_remote @ git+https://github.com/BERDataLakehouse/berdl_remote.git" \\
+        #   scripts/berdl_inventory.py
+
+The script does NOT use a `uv run --script` shebang because uv would create an
+isolated venv that excludes the JH kernel's `berdl_notebook_utils`, breaking
+on-cluster invocation. Pure off-cluster CLIs that never need the JH kernel
+(`run_sql.py`, `export_sql.py`) can use `uv run` safely.
 
 On-cluster: uses berdl_notebook_utils for access-aware discovery and tenant
 metadata (display name, description, website, organization, stewards, members).
@@ -16,17 +29,12 @@ get_spark_session() drop-in (which auto-spawns the JH server). Tenant metadata
 is unavailable off-cluster — fallback groups by the prefix before the first
 underscore.
 
-Off-cluster invocation: `uv run scripts/berdl_inventory.py` — uv resolves the
-PEP 723 dependencies above into an isolated cache, no manual venv activation
-required. On-cluster, the BERDL JupyterHub kernel already has all imports;
-just run with the kernel's Python: `python scripts/berdl_inventory.py`.
-
 Output is a markdown report grouped by tenant. Examples:
 
-    uv run scripts/berdl_inventory.py                # auto-detect
-    uv run scripts/berdl_inventory.py --sample 5     # show up to 5 table names
-    uv run scripts/berdl_inventory.py --with-members # include steward / RW / RO lists
-    uv run scripts/berdl_inventory.py --no-emoji     # plain text
+    python scripts/berdl_inventory.py                # auto-detect
+    python scripts/berdl_inventory.py --sample 5     # show up to 5 table names
+    python scripts/berdl_inventory.py --with-members # include steward / RW / RO lists
+    python scripts/berdl_inventory.py --no-emoji     # plain text
 """
 
 from __future__ import annotations
@@ -366,19 +374,19 @@ def main(argv: list[str] | None = None) -> int:
             tenants = fetch_tenants_on_cluster()
         except ImportError:
             # If we're on-cluster but berdl_notebook_utils isn't importable,
-            # the user almost certainly invoked us under `uv run`, which
-            # creates an isolated venv that doesn't include the JupyterHub
-            # kernel's pre-installed packages. Falling through to the
-            # off-cluster path here would silently produce broken output —
-            # surface the real fix instead.
+            # the user is running in an isolated environment that doesn't
+            # include the JupyterHub kernel's pre-installed packages
+            # (e.g. they invoked us under `uv run`, or activated a private
+            # venv). Falling through to the off-cluster path here would
+            # silently produce broken output — surface the real fix instead.
             if _is_on_cluster():
                 print(
                     "[berdl_inventory] On-cluster, but berdl_notebook_utils "
-                    "isn't importable in this Python. You're probably running "
-                    "under `uv run`, which uses an isolated venv that doesn't "
-                    "see the JupyterHub kernel's packages.\n\n"
-                    "  → Re-run as: python scripts/berdl_inventory.py\n\n"
-                    "Reserve `uv run` for off-cluster invocations only.",
+                    "is not importable in this Python. The JupyterHub kernel "
+                    "has it pre-installed; an isolated venv (e.g. one started "
+                    "by `uv run` or a private virtualenv) does not.\n\n"
+                    "  → Re-run with the JH kernel's Python: "
+                    "python scripts/berdl_inventory.py",
                     file=sys.stderr,
                 )
                 return 2
@@ -386,6 +394,27 @@ def main(argv: list[str] | None = None) -> int:
     if structure is None:
         try:
             structure = fetch_off_cluster()
+        except ImportError as exc:
+            # Off-cluster path needs pyspark + spark_connect_remote, both
+            # installed by scripts/bootstrap_client.sh into .venv-berdl. If
+            # the user is running plain system Python, those aren't available.
+            missing = str(exc).split("'")
+            mod = missing[1] if len(missing) > 1 else "a required module"
+            print(
+                f"[berdl_inventory] Off-cluster, but {mod} is not installed.\n\n"
+                "  → Activate the BERDL venv:\n"
+                "      source .venv-berdl/bin/activate\n"
+                "      python scripts/berdl_inventory.py\n\n"
+                "  → Or run ad-hoc with uv:\n"
+                "      uv run --with pyspark \\\n"
+                "        --with 'spark_connect_remote @ git+https://github.com/BERDataLakehouse/spark_connect_remote.git' \\\n"
+                "        --with 'berdl_remote @ git+https://github.com/BERDataLakehouse/berdl_remote.git' \\\n"
+                "        scripts/berdl_inventory.py\n\n"
+                "If you have not yet bootstrapped the venv, run "
+                "`bash scripts/bootstrap_client.sh` first.",
+                file=sys.stderr,
+            )
+            return 2
         except Exception as exc:  # noqa: BLE001
             print(f"Failed to fetch inventory: {exc}", file=sys.stderr)
             return 1
