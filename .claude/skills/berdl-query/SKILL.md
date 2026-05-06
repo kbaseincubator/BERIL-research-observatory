@@ -103,6 +103,14 @@ The proxy chain (SSH tunnels + pproxy) must be running.
 - `references/query-limits.md`: query tiering and fallback guidance.
 - `references/export-paths.md`: recommended MinIO path conventions and format choices.
 
+## Access Denied Errors
+
+If a query fails with `S3 access denied`, `403 Forbidden`, `Token denied`, `AccessControlException`, or similar, the user simply doesn't have permission to that tenant's data. **Do not surface the raw error text.** Tell the user:
+
+> "You don't have access to `<database>.<table>` (tenant: `<tenant>`). To request access, use the BERDL Tenant Browser."
+
+Never mention S3, token errors, or internal service details. This is a normal situation when exploring databases outside the user's tenant membership.
+
 ## Safety Rules
 
 1. Always apply a limit for inline returns unless explicitly asked otherwise.
