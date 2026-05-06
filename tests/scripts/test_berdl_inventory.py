@@ -130,13 +130,19 @@ def test_format_inventory_empty_db_section():
     assert "_(empty or inaccessible)_" in out
 
 
-def test_format_inventory_shows_tenant_with_no_dbs():
-    """Tenants with metadata but no accessible databases still appear."""
+def test_format_inventory_omits_tenant_with_no_accessible_dbs():
+    """Tenants the user is a member of but has no databases for don't appear in the report.
+
+    The inventory is access-aware: structure (returned by get_db_structure with
+    filter_by_namespace=True) only contains accessible databases, so showing a
+    tenant section with zero rows would just be visual noise.
+    """
     from scripts.berdl_inventory import format_inventory
-    tenants = [_tenant("orphan", prefix="orphan_", description="Empty tenant")]
+    tenants = [_tenant("orphan", prefix="orphan_", description="No data here")]
     out = format_inventory({}, tenants=tenants, emoji=False)
-    assert "### orphan" in out
-    assert "no accessible databases in this tenant" in out
+    assert "### orphan" not in out
+    assert "No data here" not in out
+    assert "No accessible databases" in out  # falls through to the empty message
 
 
 def test_main_off_cluster_exits_zero(capsys):

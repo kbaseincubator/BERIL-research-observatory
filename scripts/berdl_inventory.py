@@ -55,21 +55,23 @@ def fetch_structure_on_cluster() -> dict[str, list[str]]:
 
 
 def fetch_tenants_on_cluster() -> list[TenantInfo]:
-    """Use berdl_notebook_utils.list_tenants + get_tenant_detail for tenant metadata.
+    """Use berdl_notebook_utils.show_my_tenants + get_tenant_detail for tenant metadata.
 
-    Returns an empty list if the helpers raise (e.g. permission issues).
+    show_my_tenants() returns only the tenants the authenticated user is a member
+    or steward of — list_tenants() would return everything in the system, which
+    isn't appropriate for an access-aware inventory. Returns an empty list if
+    the helpers raise (e.g. permission issues).
     """
     try:
-        import berdl_notebook_utils
-        from berdl_notebook_utils import list_tenants, get_tenant_detail
+        from berdl_notebook_utils import show_my_tenants, get_tenant_detail
     except ImportError:
         return []
 
     out: list[TenantInfo] = []
     try:
-        tenants = list_tenants()
+        tenants = show_my_tenants()
     except Exception as exc:  # noqa: BLE001 — surface but don't crash
-        print(f"# WARN: list_tenants() failed: {exc}", file=sys.stderr)
+        print(f"# WARN: show_my_tenants() failed: {exc}", file=sys.stderr)
         return []
 
     for t in tenants:
@@ -156,11 +158,9 @@ def assign_databases_to_tenants(
             matched = _split_tenant_prefix(db)
         by_tenant[matched].append((db, sorted_tables))
 
-    # Ensure tenants with metadata appear in the output even if they have no
-    # accessible databases (helps users see what other tenants exist).
-    for t in tenants:
-        by_tenant.setdefault(t.name, [])
-
+    # Only tenants with at least one accessible database appear in the output —
+    # showing tenants the user can't see anything in is noise, and the structure
+    # dict is already filtered by access (filter_by_namespace=True on-cluster).
     return by_tenant
 
 
@@ -172,12 +172,14 @@ def format_inventory(
     with_members: bool = False,
 ) -> str:
     """Render the inventory as a markdown report grouped by tenant."""
-    if not structure and not tenants:
-        return "_No accessible databases. Check KBASE_AUTH_TOKEN and tenant membership._"
-
     tenants = tenants or []
     by_tenant = assign_databases_to_tenants(structure, tenants)
     tenant_meta = {t.name: t for t in tenants}
+
+    if not by_tenant:
+        return (
+            "_No accessible databases. Check KBASE_AUTH_TOKEN and tenant membership._"
+        )
 
     total_dbs = sum(len(v) for v in by_tenant.values())
     total_tables = sum(len(t) for v in by_tenant.values() for _, t in v)
