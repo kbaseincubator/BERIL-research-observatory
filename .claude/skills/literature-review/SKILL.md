@@ -47,7 +47,7 @@ The `paper-search-mcp` from [openags/paper-search-mcp](https://github.com/openag
 
 ### PaperBLAST (BERDL local resource)
 
-The `kescience_paperblast` database (3.2M gene-paper associations, 1.9M text snippets from PMC full-text mining) links protein sequences to scientific literature. See `.claude/skills/berdl/modules/paperblast.md` for table schemas. Used in deep reviews when the research question involves specific genes, proteins, or pathways.
+The `kescience_paperblast` database (gene-paper associations and text snippets from PMC full-text mining) links protein sequences to scientific literature. Use `berdl_notebook_utils.get_tables`/`get_table_schema(... return_json=False)` for live schemas, and see the `kescience_paperblast` section of `docs/pitfalls.md` for non-derivable gotchas. Used in deep reviews when the research question involves specific genes, proteins, or pathways.
 
 ### Supported Sources
 
@@ -296,7 +296,7 @@ If the PaperBLAST subagent fails (auth missing, crash), proceed with discovery r
 
 > **Pitfall**: PaperBLAST `year` is stored as a string — always use `CAST(year AS INT)` for comparisons or ordering. Gene IDs span multiple namespaces (RefSeq NP_*, UniProt WP_*, VIMSS) — use `seqtoduplicate` table for cross-referencing.
 
-See `.claude/skills/berdl/modules/paperblast.md` for full table schemas and additional query patterns.
+Use `berdl_notebook_utils.get_table_schema(... return_json=False)` for live PaperBLAST table schemas, see the `kescience_paperblast` section of `docs/pitfalls.md` for non-derivable gotchas, and `.claude/skills/berdl/modules/query-patterns.md` for additional query patterns.
 
 ### Step 5: Deep Reading of Key Papers via Subagents *(Standard + Deep tiers only)*
 

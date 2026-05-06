@@ -33,7 +33,15 @@ exports data if needed, then executes a **two-phase ingest**:
 
 ## Workflow
 
-### Step 0: Ensure JupyterHub server is running
+### Step 0a: Environment Check
+
+```bash
+python scripts/berdl_env.py --check
+```
+
+This skill is **off-cluster only**. If `--check` reports on-cluster, switch to `/berdl-ingest`. If off-cluster and not ready, follow printed next steps; the existing Step 0 (JH server spawn) cannot succeed without tunnels and pproxy in place.
+
+### Step 0c: Ensure JupyterHub server is running
 
 Do this before anything else. The Spark Connect sidecar lives inside the JupyterHub pod —
 without it there is nothing to connect to.
@@ -180,7 +188,7 @@ List accessible databases with the access-aware helper:
 ```python
 import berdl_notebook_utils
 
-databases = berdl_notebook_utils.get_databases()
+databases = berdl_notebook_utils.get_databases(return_json=False)  # → list[str]
 ```
 
 Present the results. Tenants are the unique prefixes before the first `_` in each database name (e.g. `kescience`, `nmdc`, `gtdb`). Ask the user to choose one of the following options:
@@ -201,7 +209,7 @@ Check whether the namespace already exists:
 
 ```python
 namespace = "<tenant>_<dataset>"
-namespace_exists = namespace in berdl_notebook_utils.get_databases()
+namespace_exists = namespace in berdl_notebook_utils.get_databases(return_json=False)
 ```
 
 The final namespace will be `{tenant}_{dataset}`.

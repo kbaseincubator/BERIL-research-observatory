@@ -4,10 +4,10 @@
 
 Use the **BERDL Data Lakehouse** and the AI co-scientist to pursue scientific questions across microbial genomics, ecology, metabolic modeling, and multi-omics analysis, while building shared documentation and reusable skills that accelerate future work.
 
-BERDL hosts pangenome data for 293K microbial genomes, mutant fitness data for
-48 organisms, ModelSEED biochemistry, multi-omics from NMDC, and more. Use the
-access-aware BERDL notebook helpers to discover the databases and tables
-available to your account.
+BERDL hosts pangenome data, mutant fitness data, ModelSEED biochemistry,
+multi-omics from NMDC, and more. Run `berdl_notebook_utils.get_databases(return_json=False)`
+for the current access-aware inventory; row counts can be retrieved on demand with
+`SELECT COUNT(*)` or `DESCRIBE EXTENDED`.
 
 ## Dual Goals
 
@@ -30,7 +30,7 @@ When working on any science project, update `docs/` when you discover:
 **Tag each addition** with the project that uncovered it:
 ```markdown
 ### [ecotype_analysis] AlphaEarth coverage is only 28%
-Discovered that only 83K/293K genomes have embeddings...
+Discovered that only ~28% of genomes have embeddings...
 ```
 
 ## Documentation Files
@@ -196,21 +196,12 @@ schema = get_table_schema("kbase_ke_pangenome", "genome")
 
 Run queries locally while computation happens on the remote BERDL cluster. This avoids the JupyterHub web UI for interactive work.
 
-**One-time setup:**
-```bash
-bash scripts/bootstrap_client.sh   # creates .venv-berdl with required packages
-```
-
-**Running queries:**
-```bash
-source .venv-berdl/bin/activate
-python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok"
-```
-
 **Prerequisites:**
 - `KBASE_AUTH_TOKEN` set in `.env`
 - A JupyterHub session active (log in and open a notebook so your Spark Connect service is running)
-- BERDL proxy chain running (SSH SOCKS tunnels on ports 1337/1338 + pproxy on port 8123). BERDL services are not directly reachable from external networks. See `.claude/skills/berdl-query/references/proxy-setup.md` for setup instructions.
+- BERDL proxy chain running (SSH SOCKS tunnels on ports 1337/1338 + pproxy on port 8123). BERDL services are not directly reachable from external networks.
+
+For setup and execution mechanics (bootstrap script, virtualenv activation, proxy flags, run_sql.py invocation), see .claude/skills/berdl-query/references/off-cluster-mechanics.md and .claude/skills/berdl-query/references/proxy-setup.md.
 
 See the `/berdl-query` and `/berdl-minio` skills for full workflow details.
 

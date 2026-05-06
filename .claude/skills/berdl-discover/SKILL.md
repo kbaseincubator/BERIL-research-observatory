@@ -6,167 +6,94 @@ allowed-tools: Bash, Read, Write
 
 # BERDL Database Discovery Skill
 
-This skill introspects BERDL databases with access-aware notebook helpers and generates documentation modules for use with the `berdl` skill.
+This skill performs live discovery of BERDL databases using `berdl_notebook_utils` helpers and `DESCRIBE EXTENDED`. It does NOT generate module files. Curated database-specific gotchas live in `docs/pitfalls.md` (per-database H2 sections); structural facts come from the live system.
+
+## Step 0: Environment Check
+
+```bash
+python scripts/berdl_env.py --check
+```
+
+Do not proceed if not ready.
 
 ## Discovery Workflow
 
-When discovering a new database, follow these steps in order:
-
-### Step 1: Start Spark
-
-Use the correct Spark session pattern for the environment, then import helpers:
+### Step 1: List accessible databases
 
 ```python
 import berdl_notebook_utils
+databases = berdl_notebook_utils.get_databases(return_json=False)  # → list[str]
+print(databases)
 ```
 
-### Step 2: List Accessible Databases
+> Always pass `return_json=False`. The default returns a JSON *string*.
+
+### Step 2: List tables in the target database
 
 ```python
-databases = berdl_notebook_utils.get_databases()
-display(databases)
+tables = berdl_notebook_utils.get_tables("DATABASE_NAME", return_json=False)  # → list[str]
+print(tables)
 ```
 
-### Step 3: List Tables in Target Database
+### Step 3: Per-column schema
 
 ```python
-tables = berdl_notebook_utils.get_tables("DATABASE_NAME")
-display(tables)
+schema = berdl_notebook_utils.get_table_schema("DATABASE_NAME", "TABLE_NAME", detailed=True, return_json=False)
+# schema is list[dict] with keys: name, dataType, nullable, description, isPartition
+for col in schema:
+    print(col)
 ```
 
-### Step 4: Get Schema for Each Table
+The `description` field is the column COMMENT set at ingest. Legacy tables may have empty descriptions — that’s fine; do not fabricate.
 
+### Step 4: Table-level metadata via DESCRIBE EXTENDED
+
+On-cluster:
 ```python
-schema = berdl_notebook_utils.get_table_schema("DATABASE_NAME", "TABLE_NAME")
-display(schema)
+spark.sql("DESCRIBE EXTENDED DATABASE_NAME.TABLE_NAME").toPandas()
 ```
 
-### Step 5: Get Row Counts
+Off-cluster:
+```bash
+uv run scripts/run_sql.py --berdl-proxy \
+  --query "DESCRIBE EXTENDED DATABASE_NAME.TABLE_NAME" \
+  --output /tmp/desc.json
+```
+
+This returns table COMMENT, TBLPROPERTIES, storage location, format, owner, created date.
+
+### Step 5: Row counts (optional, on user request)
 
 ```python
 spark.sql("SELECT COUNT(*) AS n FROM DATABASE_NAME.TABLE_NAME")
 ```
 
-### Step 6: Sample Data
+Skip for tables flagged as large in `docs/pitfalls.md` (e.g. `gene`, `genome_ani`, `reaction_similarity`). The agent should ask before running `COUNT(*)` on any table without an existing pitfall entry.
+
+### Step 6: Identify cross-table relationships
+
+Inspect column names ending in `_id` and match against other tables’ primary keys. Sample 2–5 rows when needed:
 
 ```python
 spark.sql("SELECT * FROM DATABASE_NAME.TABLE_NAME LIMIT 5")
 ```
 
-### Step 7: Identify Relationships
+### Step 7: Propose pitfall additions
 
-Look for foreign key patterns:
-- Columns ending in `_id` that match other table names
-- Columns with consistent naming across tables
-- Sample data to confirm relationship patterns
+If discovery surfaces non-derivable knowledge (NULL convention, ID format, missing-column workaround, JOIN-key gotcha, large-table guard), propose appending it to `docs/pitfalls.md` under the matching `## DATABASE_NAME` H2 section. Do not write a separate module file.
 
-## Output: Module File Template
+## Output
 
-After discovery, generate a module file at `.claude/skills/berdl/modules/{database_short_name}.md`:
-
-```markdown
-# {Database Name} Module
-
-## Overview
-{Brief description of what this database contains}
-
-**Database**: `{database_name}`
-**Generated**: {YYYY-MM-DD}
-
-## Tables
-
-| Table | Rows | Description |
-|-------|------|-------------|
-| `table_name` | {count} | {description inferred from columns/data} |
-
-## Key Table Schemas
-
-### {table_name}
-| Column | Type | Description |
-|--------|------|-------------|
-| `column_name` | {type} | {description} |
-
-## Table Relationships
-
-{Describe foreign key relationships discovered}
-
-- `table1.column` -> `table2.column`
-
-## Common Query Patterns
-
-### {Pattern Name}
-{Brief description of what this query does}
-
-```sql
-SELECT ...
-FROM {database}.{table}
-...
-```
-
-## Pitfalls
-
-{Any gotchas, NULL handling, performance notes discovered during exploration}
-```
-
-## Output: collections.yaml Entry Template
-
-If the user wants to add the database to the UI, offer to update `ui/config/collections.yaml`:
-
-```yaml
-{database_short_name}:
-  name: "{Human Readable Name}"
-  description: "{Description}"
-  database: "{database_name}"
-  tables:
-    - name: "{table_name}"
-      description: "{description}"
-```
-
-## Instructions for Claude
-
-When the user invokes `/berdl-discover`:
-
-1. **Ask which database** to discover (or list available databases if unknown)
-2. **Execute discovery workflow** steps 1-7, collecting:
-   - Table list
-   - Schema for each table
-   - Row counts for key tables
-   - Sample data (2-5 rows per table)
-3. **Analyze relationships** by:
-   - Identifying `*_id` columns
-   - Matching column names across tables
-   - Confirming with sample data
-4. **Generate module file** using the template above
-5. **Write the file** to `.claude/skills/berdl/modules/{name}.md`
-6. **Offer to update** `ui/config/collections.yaml` if applicable
-
-## Example Session
-
-```
-User: "Discover the kescience_fitnessbrowser database"
-
-Claude:
-1. Lists tables in kescience_fitnessbrowser -> finds: experiments, genes, fitness_scores, conditions
-2. Gets schema for each table
-3. Gets row counts: experiments(500), genes(50000), fitness_scores(2M), conditions(1000)
-4. Samples data to understand structure
-5. Identifies relationships: fitness_scores.gene_id -> genes.id, fitness_scores.experiment_id -> experiments.id
-6. Generates .claude/skills/berdl/modules/fitness.md with:
-   - Table overview
-   - Schema details
-   - Query patterns for fitness analysis
-   - Pitfalls (e.g., "fitness_scores table is large, always filter by experiment_id")
-7. Asks: "Would you like me to add this to ui/config/collections.yaml?"
-```
+Present discovery results inline to the user: a compact summary of tables, schemas, and any new pitfalls proposed. Keep the output focused on what the user asked about — full structural snapshots are derivable on demand and need not be persisted.
 
 ## Error Handling
 
-- **Authentication failure**: Check `.env` file exists and contains valid `KBASE_AUTH_TOKEN`
-- **Database not found**: List accessible databases with `berdl_notebook_utils.get_databases()` and confirm spelling
-- **Timeout on large tables**: Skip row counts for tables > 100M rows, note in pitfalls
-- **Schema unavailable**: Mark table as "schema pending" and note in output
+- **`berdl_env.py --check` fails:** stop. Surface the error.
+- **`get_databases(return_json=False)` returns empty list:** the user has no DB access. Tell them; do not pretend.
+- **`DESCRIBE EXTENDED` fails:** surface the error verbatim. Common cause: typo in database/table name, or table dropped between `get_tables()` and `DESCRIBE`.
+- **Schema retrieval prints `Error retrieving schema for table ...`:** the underlying S3 files are missing for that table. Note in the user-facing output, do not crash.
 
-Avoid raw `SHOW DATABASES` or `SHOW TABLES` SQL for discovery, and avoid MCP query operations such as `mcp_query_table`, `mcp_select_table`, `mcp_count_table`, `mcp_sample_table`, or REST `/delta/tables/query` for BERDL SQL execution.
+Avoid raw `SHOW DATABASES` or `SHOW TABLES` for routine discovery — those bypass access-aware filtering. SHOW is allowed only for the off-cluster `/berdl_start` Phase 1.6 fallback when `berdl_notebook_utils` isn’t installed locally.
 
 ## Pitfall Detection
 
