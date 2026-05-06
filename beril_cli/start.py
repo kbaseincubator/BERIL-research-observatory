@@ -8,7 +8,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from beril_cli.config import get_default_agent
+from beril_cli.config import get_default_agent, get_vertex_config
 
 
 def _sync_auth_token(env_path: Path) -> None:
@@ -80,6 +80,26 @@ def run_start(
     # Auto-run the onboarding skill unless skipped or the user already passed a prompt
     if not skip_onboard and not extra_args:
         extra_args = ["/berdl_start"]
+
+    # Configure Google Vertex if enabled (shared BERIL Anthropic key)
+    if agent == "claude":
+        vertex = get_vertex_config()
+        if vertex.get("enabled"):
+            creds = vertex.get("credentials_file", "")
+            if creds and Path(creds).exists():
+                os.environ["CLAUDE_CODE_USE_VERTEX"] = "1"
+                os.environ["CLOUD_ML_REGION"] = vertex.get("region", "global")
+                os.environ["ANTHROPIC_VERTEX_PROJECT_ID"] = vertex.get("project_id", "")
+                os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = creds
+                os.environ["VERTEX_REGION_CLAUDE_HAIKU_4_5"] = "us-east5"
+                os.environ["ANTHROPIC_DEFAULT_HAIKU_MODEL"] = "claude-haiku-4-5@20251001"
+                print("Using BERIL Anthropic key (Google Vertex)")
+            else:
+                print(
+                    "Warning: Vertex enabled but credentials file not found. "
+                    "Falling back to personal API key.",
+                    file=sys.stderr,
+                )
 
     # Default to Opus model for Claude
     if agent == "claude" and "--model" not in extra_args:
