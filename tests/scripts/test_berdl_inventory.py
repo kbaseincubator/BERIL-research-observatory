@@ -202,6 +202,20 @@ def test_format_inventory_no_other_tenants_footer_when_only_user_tenants():
     assert "Other tenants in BERDL" not in out
 
 
+def test_format_inventory_includes_agent_relay_banner():
+    """The output ends with an HTML-comment instruction telling the agent to relay verbatim.
+
+    This is a backstop against the Claude Code UI collapsing long bash output —
+    the agent reading the bash result sees the comment and is reminded to surface
+    the full report in its chat reply.
+    """
+    from scripts.berdl_inventory import format_inventory
+    out = format_inventory({"kbase_x": ["t1"]}, emoji=False)
+    assert "<!-- AGENT:" in out
+    assert "Relay this entire markdown report verbatim" in out
+    assert "Do NOT summarize" in out
+
+
 def test_main_off_cluster_exits_zero(capsys):
     fake = {"kbase_x": ["t1", "t2"]}
     with patch("scripts.berdl_inventory.fetch_off_cluster", return_value=fake):
