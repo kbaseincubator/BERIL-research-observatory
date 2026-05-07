@@ -1,0 +1,2 @@
+analysis,response,predictor,n_taxa,lambda,beta,SE,t_stat,p_value
+prevalence_threshold_5pct,strict_mean_levins_B_std,mean_n_metal_types_z,379,0.5259851557651557,0.016634496162367868,0.009853784161656288,1.6881327913693447,0.09221272742456399
