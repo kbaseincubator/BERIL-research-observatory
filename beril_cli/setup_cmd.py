@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 
 from beril_cli import config
+from beril_cli.detect import detect_user_identity
 
 
 def _find_repo_root() -> Path | None:
@@ -202,9 +203,16 @@ def run_setup() -> int:
     existing_cfg = config.load()
     user_cfg = existing_cfg.get("user", {})
 
-    name = _prompt("  Your name", user_cfg.get("name", ""))
-    affiliation = _prompt("  Affiliation", user_cfg.get("affiliation", ""))
-    orcid = _prompt("  ORCID", user_cfg.get("orcid", ""))
+    detected = detect_user_identity()
+    auto_filled = [k for k in ("name", "affiliation", "orcid") if detected.get(k) and not user_cfg.get(k)]
+    if auto_filled:
+        print(
+            "  Auto-detected from JupyterHub / ORCID — press Enter to accept or type to override."
+        )
+
+    name = _prompt("  Your name", user_cfg.get("name") or detected.get("name", ""))
+    affiliation = _prompt("  Affiliation", user_cfg.get("affiliation") or detected.get("affiliation", ""))
+    orcid = _prompt("  ORCID", user_cfg.get("orcid") or detected.get("orcid", ""))
 
     user_cfg = {}
     if name:
