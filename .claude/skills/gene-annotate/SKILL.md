@@ -91,6 +91,26 @@ MKTIIALSYIFCLVFADYKNTXXXXXXX...
 
 When organism information is available, include it in the FASTA description line (text after the sequence ID on the `>` header line). This enables the `--description-is-organism` flag, which significantly improves annotation quality by providing taxonomic context to the LLM.
 
+**Organism lookup for non-pangenome proteins.** When proteins do not come from `kbase_ke_pangenome` (which provides GTDB clade names), attempt to resolve organism names before writing the FASTA:
+
+1. **Query `kescience_paperblast.gene` via Spark** — this table covers ~1.1M sequences including all VIMSS, WP_, NP_, XP_, YP_, and UniProt (Q/P/A/B/O/...) accessions. The `geneId` column matches the sequence ID directly and the `organism` column contains a full organism name (e.g., `"Agrobacterium tumefaciens str. C58 (Cereon)"`).
+
+   ```python
+   ids_sql = ", ".join(f"'{sid}'" for sid in sequence_ids)
+   df = spark.sql(f"""
+       SELECT geneId, organism
+       FROM kescience_paperblast.gene
+       WHERE geneId IN ({ids_sql})
+   """)
+   organism_map = {r["geneId"]: r["organism"] for r in df.collect()}
+   ```
+
+2. **Fall back to the FASTA description line** — if the input FASTA already contains descriptive text after the sequence ID (e.g., from a UniProt download), use that as the organism/description.
+
+3. **Leave blank if not resolvable** — for accession types not in PaperBLAST (e.g., `CAZy::*` IDs) and with no FASTA description, omit the organism field and do not use `--description-is-organism`.
+
+Use the organism name as-is from `kescience_paperblast.gene` — it already includes genus, species, and strain where available. Write it into the FASTA description line and set `--description-is-organism` when at least one sequence has a resolved organism.
+
 **Strip asterisks from all sequences before writing.** Pangenome sequences from BERDL (and any ORF-prediction tool output) may contain `*` stop-codon markers. InterProScan rejects any sequence containing `*` and aborts the entire run — not just the offending sequence. Always strip `*` from every sequence with `seq.replace("*", "")` before writing the FASTA file.
 
 **Write the prepared FASTA file** to the project directory or a temp location. Use a descriptive filename (e.g., `input_proteins.faa`).
