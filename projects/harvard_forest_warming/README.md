@@ -6,7 +6,7 @@ After ~25 years of +5°C experimental soil warming at the Harvard Forest Barre W
 
 ## Status
 
-Analysis complete — REPORT.md written. Pending review and `/submit`.
+**Complete** — see [REPORT.md](REPORT.md) for findings. Pending automated review via `/submit`.
 
 ## Overview
 
@@ -23,6 +23,10 @@ Tests three linked hypotheses on NMDC study `nmdc:sty-11-8ws97026` (Blanchard la
 - **Layers used**: metagenome KO/Pfam, metatranscriptome KO, kraken2 read taxonomy, GTDB MAG taxonomy, ChEBI metabolite identifications
 
 All data accessed via Spark SQL against the BERDL Lakehouse `nmdc` tenant. **Excluded**: `nmdc_arkin` tables.
+
+## Data Collections
+
+- `nmdc` — NMDC `nmdc_metadata` and `nmdc_results` tables in the BERDL Lakehouse
 
 ## Quick Links
 
