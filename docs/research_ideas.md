@@ -597,6 +597,22 @@ _Capture half-baked ideas here for future refinement_
 - Do open pangenomes have more ecotypes?
 - Is functional diversity driver of ecotype formation?
 
+### [amr_pangenome_atlas + prophage_ecology] Prophage-AMR Co-mobilization Atlas
+**Status**: COMPLETED
+**Priority**: HIGH
+**Effort**: Medium (3-4 weeks)
+
+**Research Question**: At pangenome scale (293K genomes, 27K species), are antibiotic resistance genes preferentially located within or adjacent to prophage regions, and does this co-localization predict AMR gene mobility and accessory-genome status?
+
+**Results**:
+- H1 (prophage-proximal AMR genes are more accessory): Weakly supported — OR=1.10, p=0.005, heterogeneous across species
+- H2 (prophage-rich species have broader AMR repertoires): Strongly supported — Spearman rho=0.572, R²=0.30, robust across all 5 major phyla, partial rho=0.464 after controlling for genome count
+- H3 (fitness cost differences): Not testable — fitness browser organisms do not overlap with GTDB species
+- 55.7% of AMR gene instances share contigs with prophage markers; 10.4% within 10 genes
+- Prophage density explains 30% of variance in AMR breadth across 4,770 species
+
+**Location**: `projects/prophage_amr_comobilization/`
+
 ---
 
 ## Notes

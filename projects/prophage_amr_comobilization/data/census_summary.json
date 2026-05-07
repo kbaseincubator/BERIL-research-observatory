@@ -1,0 +1,28 @@
+{
+  "amr": {
+    "total_clusters": 83008,
+    "mapped_to_species": 83008,
+    "unique_amr_genes": 1939,
+    "species_count": 14723,
+    "pct_core": 30.32478797224364,
+    "pct_accessory": 69.67521202775636,
+    "pct_singleton": 36.06519853508095
+  },
+  "prophage": {
+    "keyword_clusters": 3441191,
+    "pfam_clusters": 24053,
+    "overlap": 0,
+    "total_unique": 3465244,
+    "mapped_to_species": 3465244,
+    "species_count": 27397,
+    "pct_core": 16.15969899955097,
+    "pct_accessory": 83.84030100044903,
+    "pct_singleton": 53.76484311061501
+  },
+  "co_occurrence": {
+    "species_both": 14669,
+    "species_amr_only": 54,
+    "species_prophage_only": 12728,
+    "species_neither": 251
+  }
+}
