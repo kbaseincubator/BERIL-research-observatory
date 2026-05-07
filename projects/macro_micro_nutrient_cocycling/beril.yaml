@@ -1,0 +1,15 @@
+project_id: macro_micro_nutrient_cocycling
+status: analysis
+created_at: "2026-05-07T09:00:00-07:00"
+last_session_at: "2026-05-07T14:00:00-07:00"
+branch: projects/macro_micro_nutrient_cocycling
+engine:
+  name: claude
+authors:
+  - name: "Jing Tao"
+    affiliation: "Lawrence Berkeley National Laboratory"
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: false
