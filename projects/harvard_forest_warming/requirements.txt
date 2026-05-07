@@ -1,0 +1,14 @@
+# Core analysis dependencies for projects/harvard_forest_warming
+# Versions match the BERDL JupyterHub kernel where the notebooks were executed (2026-05).
+# These are loose lower bounds; later patch versions are expected to work.
+
+pandas>=2.2,<4
+numpy>=2.0,<3
+scipy>=1.13,<2
+matplotlib>=3.8,<4
+
+# Spark is only required for NB02 (heavy extraction). On the BERDL JupyterHub
+# kernel, pyspark is preinstalled and `get_spark_session()` is injected. For
+# local execution see PROJECT.md and .claude/skills/berdl-query for the
+# .venv-berdl + proxy chain setup.
+# pyspark>=3.5

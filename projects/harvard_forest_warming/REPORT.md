@@ -40,6 +40,15 @@ The originally proposed H1 (RNA composition shifts more than DNA under warming) 
 
 DNA and RNA pools show **comparable** treatment R² (10-13%). H1's premise that the transcript pool is more sensitive is not supported in this dataset.
 
+**Why might H1 fail after 25 years of warming?** Several explanations are consistent with the data:
+
+1. **Compositional turnover has caught up.** H1 is grounded in the assumption that regulatory response (transcript-level) precedes community turnover (genome-content). That asymmetry is plausible on weeks-to-years timescales but the Barre Woods plots have been heated since ~1991; 25 years is more than enough time for the genome content to fully reflect warming-selected lineages. DeAngelis et al. (2015) and Pold et al. (2016) document strong genome-content shifts at this site over the same period. Once the DNA-level community has equilibrated, the RNA / DNA ratio of warming sensitivity collapses toward 1.
+2. **Single-timepoint RNA carries diurnal and microspatial noise.** All samples were collected on a single date (2017-05-24). Transcript abundances respond to short-timescale conditions (moisture pulses, root exudate availability, diurnal temperature) that are not warming-related. The DNA pool integrates over years and is therefore a cleaner readout of the chronic +5°C signal in this design.
+3. **Compositional dilution in the transcript pool.** The metatranscriptome assembly recovered 14,302 distinct KOs vs 12,863 in the metagenome (Section "Why RNA more KOs than DNA" in NB02 commit message). The richer rare-organism functional repertoire in RNA increases per-KO variance under a relative-abundance framework and reduces statistical power for detecting treatment-level shifts in any single category.
+4. **Substrate depletion (Domeignoz-Horta et al. 2022) feeds back to RNA.** If chronic warming has reduced substrate quantity and quality, the active transcriptome may be down-shifted across many functional categories rather than redistributed. Such a "global down-regulation" pattern would produce no preferred axis of treatment-driven variance in the RNA pool, even as the underlying community continues to diverge.
+
+The clean comparable-R² verdict here therefore does not rule out an early transient where RNA leads DNA — it argues that on multi-decadal timescales, the two pools' warming responses converge in magnitude.
+
 *(Notebooks: `04_dna_vs_rna_divergence.ipynb`, `05_c_cycling_enrichment.ipynb`)*
 
 ### 3. H2 is partially supported — C-cycling KOs are enriched in heated DNA-organic; methanotrophy and glyoxylate genes UP in RNA
