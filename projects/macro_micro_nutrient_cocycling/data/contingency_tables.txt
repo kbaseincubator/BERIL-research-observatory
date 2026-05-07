@@ -1,0 +1,83 @@
+Group-Level 2x2 Contingency Tables
+============================================================
+Total species: 27682
+
+--- P_acquisition vs N_fixation ---
+              N_fixation=1    N_fixation=0
+  P_acquisition=1        4873     17316  | 22189
+  P_acquisition=0         999      4494  | 5493
+                 5872     21810  | 27682
+  Jaccard=0.2102  Phi=0.0368  OR=1.266  Fisher p=5.75e-10
+  Expected both=4706.8  Observed=4873  Enrichment=1.04x
+
+--- P_acquisition vs Metal_handling ---
+              Metal_handling=1    Metal_handling=0
+  P_acquisition=1       20683      1506  | 22189
+  P_acquisition=0        4704       789  | 5493
+                25387      2295  | 27682
+  Jaccard=0.7691  Phi=0.1096  OR=2.304  Fisher p=1.28e-65
+  Expected both=20349.4  Observed=20683  Enrichment=1.02x
+
+--- P_acquisition vs Phenazine ---
+              Phenazine=1    Phenazine=0
+  P_acquisition=1       10308     11881  | 22189
+  P_acquisition=0         786      4707  | 5493
+                11094     16588  | 27682
+  Jaccard=0.4487  Phi=0.2616  OR=5.196  Fisher p=0.00e+00
+  Expected both=8892.6  Observed=10308  Enrichment=1.16x
+
+--- P_acquisition vs Phenazine_operon ---
+              Phenazine_operon=1    Phenazine_operon=0
+  P_acquisition=1          63     22126  | 22189
+  P_acquisition=0           0      5493  | 5493
+                   63     27619  | 27682
+  Jaccard=0.0028  Phi=0.0238  OR=inf  Fisher p=1.52e-06
+  Expected both=50.5  Observed=63  Enrichment=1.25x
+
+--- N_fixation vs Metal_handling ---
+              Metal_handling=1    Metal_handling=0
+  N_fixation=1        5718       154  | 5872
+  N_fixation=0       19669      2141  | 21810
+                25387      2295  | 27682
+  Jaccard=0.2239  Phi=0.1067  OR=4.042  Fisher p=1.52e-87
+  Expected both=5385.2  Observed=5718  Enrichment=1.06x
+
+--- N_fixation vs Phenazine ---
+              Phenazine=1    Phenazine=0
+  N_fixation=1        2252      3620  | 5872
+  N_fixation=0        8842     12968  | 21810
+                11094     16588  | 27682
+  Jaccard=0.1531  Phi=-0.0183  OR=0.912  Fisher p=2.44e-03
+  Expected both=2353.3  Observed=2252  Enrichment=0.96x
+
+--- N_fixation vs Phenazine_operon ---
+              Phenazine_operon=1    Phenazine_operon=0
+  N_fixation=1           3      5869  | 5872
+  N_fixation=0          60     21750  | 21810
+                   63     27619  | 27682
+  Jaccard=0.0005  Phi=-0.0192  OR=0.185  Fisher p=5.27e-04
+  Expected both=13.4  Observed=3  Enrichment=0.22x
+
+--- Metal_handling vs Phenazine ---
+              Phenazine=1    Phenazine=0
+  Metal_handling=1       10632     14755  | 25387
+  Metal_handling=0         462      1833  | 2295
+                11094     16588  | 27682
+  Jaccard=0.4113  Phi=0.1224  OR=2.859  Fisher p=6.66e-100
+  Expected both=10174.2  Observed=10632  Enrichment=1.04x
+
+--- Metal_handling vs Phenazine_operon ---
+              Phenazine_operon=1    Phenazine_operon=0
+  Metal_handling=1          63     25324  | 25387
+  Metal_handling=0           0      2295  | 2295
+                   63     27619  | 27682
+  Jaccard=0.0025  Phi=0.0144  OR=inf  Fisher p=9.37e-03
+  Expected both=57.8  Observed=63  Enrichment=1.09x
+
+--- Phenazine vs Phenazine_operon ---
+              Phenazine_operon=1    Phenazine_operon=0
+  Phenazine=1          63     11031  | 11094
+  Phenazine=0           0     16588  | 16588
+                   63     27619  | 27682
+  Jaccard=0.0057  Phi=0.0584  OR=inf  Fisher p=8.63e-26
+  Expected both=25.2  Observed=63  Enrichment=2.50x

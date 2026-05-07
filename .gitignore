@@ -90,6 +90,9 @@ ui/data/cache.json
 ui/data/indexdir/
 ui/user_projects/
 
+# Memory logs (session-specific, not for version control)
+memory/
+PROJECT_CONTEXT.md
 # Python virtual environments
 .venv/
 .venv-berdl/
