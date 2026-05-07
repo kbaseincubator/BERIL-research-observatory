@@ -168,6 +168,7 @@ The Oak Ridge cultured collection is functionally more representative than expec
 ## Revision History
 
 - **v1** (2026-05-07): Initial plan, building on `clay_confined_subsurface` cultivation-bias framework and `lab_field_ecology` Oak Ridge context.
+- **v2** (2026-05-07): MAG cohort pivoted from CORAL's 623 ORFRC-specific MAGs to 2,279 QC-passing subsurface/groundwater MAGs from `kbase_ke_pangenome` (GTDB). Reason: CORAL assembly FASTAs (`/h/jmc/data/enigma/metagenomics/`) are on a cluster mount not accessible from the JupyterHub pod, and the MAGs lack functional annotations. The pangenome provides bakta KEGG annotations for 75,931 MAGs (ncbi_genome_category="derived from metagenome"), of which 2,279 originate from subsurface/groundwater/aquifer environments and pass QC (completeness≥50%, contamination≤10%). This broadens the comparison from ORFRC-specific to a general subsurface cultivation bias analysis, which is arguably more generalizable. NB01/NB02 (FASTA extraction, CTS bakta) are no longer needed; NB03 (cultured KO profiles) and NB04 (cultivation coverage) executed successfully.
 
 ## Authors
 
