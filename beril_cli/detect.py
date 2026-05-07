@@ -110,7 +110,8 @@ def detect_affiliation_from_orcid(orcid: str) -> str:
 
     if not candidates:
         return ""
-    candidates.sort(key=lambda x: x[0])
+    # ORCID renders highest display-index at the top — pick the user's preferred entry.
+    candidates.sort(key=lambda x: x[0], reverse=True)
     org = candidates[0][1].get("organization") or {}
     return (org.get("name") or "").strip()
 

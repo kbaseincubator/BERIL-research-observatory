@@ -167,12 +167,13 @@ def test_detect_affiliation_skips_ended(monkeypatch):
     assert detect.detect_affiliation_from_orcid("0000-0001-2345-6789") == "Current Lab"
 
 
-def test_detect_affiliation_picks_lowest_display_index(monkeypatch):
+def test_detect_affiliation_picks_highest_display_index(monkeypatch):
+    """ORCID renders highest display-index at the top — that's the preferred entry."""
     _stub_http(monkeypatch, {
         "https://pub.orcid.org/v3.0/0000-0001-2345-6789/employments": {
             "affiliation-group": [
-                _emp("Secondary Lab", display_index="2"),
-                _emp("Preferred Lab", display_index="0"),
+                _emp("Secondary Lab", display_index="0"),
+                _emp("Preferred Lab", display_index="2"),
             ],
         },
     })
