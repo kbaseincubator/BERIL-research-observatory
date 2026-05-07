@@ -36,6 +36,18 @@ def main(argv: list[str] | None = None) -> int:
         help="Skip the automatic /berdl_start onboarding prompt",
     )
 
+    # user
+    user_parser = sub.add_parser(
+        "user",
+        help="Show user identity from ~/.config/beril/config.toml",
+    )
+    user_parser.add_argument(
+        "--json",
+        action="store_true",
+        default=False,
+        help="Emit machine-readable JSON",
+    )
+
     args, remaining = parser.parse_known_args(argv)
 
     if args.command is None:
@@ -56,6 +68,11 @@ def main(argv: list[str] | None = None) -> int:
         from beril_cli.start import run_start
 
         return run_start(agent=args.agent, extra_args=remaining, skip_onboard=args.skip_onboard)
+
+    if args.command == "user":
+        from beril_cli.user_cmd import run_user
+
+        return run_user(args)
 
     return 0
 
