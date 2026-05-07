@@ -21,6 +21,14 @@ If no `<project_id>` argument is provided, detect from the current working direc
 
 ### Pass 1: Read Data and Draft Findings
 
+#### Step 0: Precondition check
+
+Read `projects/{project_id}/beril.yaml`. If `status: exploration`, **stop** and tell the user:
+
+> "This project is still in exploration — there's no `RESEARCH_PLAN.md` to synthesize against yet. Write the plan first (use `/berdl_start` to resume the workflow), then re-run `/synthesize`."
+
+Do not proceed. Synthesizing without a plan produces ungrounded interpretation. If `beril.yaml` is missing (pre-manifest project), skip this check and rely on the file-existence checks below.
+
 #### Step 1: Gather Project Context
 
 Read these project files:

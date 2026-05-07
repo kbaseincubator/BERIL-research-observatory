@@ -33,6 +33,7 @@ If no `<project_id>` argument is provided, detect from the current working direc
 Run these checks against the project directory and print a checklist summary:
 
 **Critical checks** (block submission on failure):
+- **Project status is past `exploration`**: read `projects/{project_id}/beril.yaml`. If `status: exploration`, FAIL with `FAIL  Project is in exploration status — write RESEARCH_PLAN.md before submitting`. Exploration projects have no formal hypothesis yet, so submission is meaningless. (If `beril.yaml` is missing entirely — pre-manifest project — skip this check and rely on the artifact checks below.)
 - `README.md` exists in `projects/{project_id}/`
 - `## Research Question` section is present and non-empty in README.md
 - `## Authors` section is present with at least one entry that is not a placeholder (e.g., not "Your Name")

@@ -47,7 +47,7 @@ data/               # Shared data extracts reusable across projects
 | `/submit` | Submit a project for automated review |
 | `/cts` | Run batch compute jobs on the CTS cluster |
 
-> **Note**: Hypothesis generation, research planning, and notebook creation are handled automatically as part of the research workflow (Path 1 below). You don't need to invoke them separately.
+> **Note**: Hypothesis generation, research planning, and notebook creation are handled automatically as part of the **Unified Project Workflow** below. You don't need to invoke them separately.
 
 ### Existing Projects
 
@@ -153,169 +153,233 @@ This is a non-blocking reminder. Move on to Phase 2 regardless.
 
 ---
 
-## Phase 2: Interactive Routing
+## Phase 2: Establish Project Context
 
-Ask the user which of these they want to do:
+Every BERIL session works inside a project — including ad-hoc exploration. This gives every artifact (queries, user data, notes, figures) a home from minute one, makes work resumable across sessions, and avoids loose `exploratory/` clutter.
 
-1. **Start a new research project**
-2. **Explore BERDL data**
-3. **Review published literature**
-4. **Continue an existing project**
-5. **Understand the system**
+Ask the user which of these applies:
 
-Then follow the appropriate path below.
+1. **Continue an existing project** — pick from `projects/*` (recommended if any work is in flight)
+2. **Start a new project** — name it now (e.g., `metal_cofitness`, `lanthanide_genomes`)
+3. **I'm just exploring** — agent uses `scratch_<YYYYMMDD>` (or `<topic>_scratch` if the user gives a keyword)
+
+There is no "no-project" door. If the user truly wants only to learn about the system without committing to a session, point them at the **Side Path** at the end of this skill — that's reading, not a session.
+
+Once a project context is established, the workflow is the same regardless of entry door:
+
+| Phase | Status (`beril.yaml`) | What happens |
+|---|---|---|
+| **Phase 0** — Scaffold | (unset → `exploration`) | Create dirs, beril.yaml, stub README; pick branch. Runs only for entry doors 2 and 3. |
+| **Phase A** — Orientation & Exploration | `exploration` | Read docs, explore data, accept `user_data`, develop hypotheses. |
+| **Phase B** — Research Plan | `exploration` → `proposed` | Write `RESEARCH_PLAN.md`. **STOP.** |
+| **Checkpoint** — Plan Review | `proposed` | Mandatory pause: approve, review, or iterate. Do not skip. |
+| **Phase C** — Analysis | `proposed` → `active` | Write & execute notebooks, save figures, capture pitfalls. |
+| **Phase D** — Synthesis | `active` → `analysis` | `/synthesize` → `REPORT.md`. |
+| **Phase E** — Submission | `analysis` → `review` → `complete` | `/berdl-review` (optional iteration), then `/submit`. |
+
+For entry door 1 (Continue existing): start at the phase matching the project's current `status`. For doors 2 and 3: start at Phase 0.
 
 ---
 
-### Path 1: Start a New Research Project (Orchestrated Workflow)
+### Unified Project Workflow
 
-When the user wants to start a new research project, the agent drives the entire process — from ideation through review — checking in with the user at natural decision points rather than requiring manual skill invocations.
+The flow below applies regardless of entry door. Doors 2 and 3 (new project, just exploring) start at **Phase 0**. Door 1 (continue existing) skips Phase 0 and resumes at the phase matching the project's current `status` in `beril.yaml`.
 
-#### Phase A: Orientation & Ideation
+#### Phase 0: Project Scaffold (entry doors 2 and 3 only)
 
-**Required reading before anything else:**
-1. Read `PROJECT.md` — understand dual goals (science + knowledge capture), project structure requirements, reproducibility standards, JupyterHub workflow, Spark notebook patterns
-2. Read `docs/overview.md` — understand the data architecture, key tables, data generation workflow, known limitations
-3. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live access-aware database, table, and schema discovery. For database-specific gotchas, grep `docs/pitfalls.md` for the database name (e.g., `grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md`).
-4. Read `docs/pitfalls.md` and `docs/performance.md` — **critical: read these before designing any queries or analysis**
-5. Read `docs/research_ideas.md` — check for existing ideas, avoid duplicating work
+Establish the project directory and manifest **before** any querying, planning, or user-data handoff. This guarantees every artifact has a home from the first command.
 
-**Additional setup (Phase 1.5 should have already checked KBASE_AUTH_TOKEN and proxy):**
-6. Check `gh auth status` — needed for creating branches, PRs, and pushing code. If not authenticated, prompt the user to run `gh auth login`
-7. Load author identity for the Authors section by running `beril user --json` via Bash. The CLI emits a JSON object with `name`, `affiliation`, and `orcid` keys, auto-populated from the JupyterHub `$ORCID` env var, KBase auth, and the ORCID public API on first `beril setup` and then persisted to `~/.config/beril/config.toml`. Exit 0 means all three fields are present — use them and do not prompt. Exit 1 means at least one is missing — parse the JSON anyway (any non-empty values are usable), prompt the user only for missing fields, then suggest they run `beril setup` to persist. Reuse for the rest of this session and across future projects.
+1. **Resolve project name**:
+   - Door 2 (new project): ask for a snake_case identifier (e.g., `metal_cofitness`, `lanthanide_genomes`).
+   - Door 3 (just exploring): default to `scratch_<YYYYMMDD>`. If the user mentioned a topic keyword (e.g., "metal cofitness"), use `<topic>_scratch`.
+2. **Verify uniqueness**: `projects/<id>/` must not already exist. If it does, ask whether to switch to door 1 (continue existing) or pick a new name.
+3. **Author identity**: run `beril user --json` via Bash. The JSON has `name`, `affiliation`, `orcid`. Exit 0 = all three present, use them. Exit 1 = at least one missing; parse the JSON anyway, prompt only for missing fields, then suggest `beril setup` to persist.
+4. **Create directories**: `projects/<id>/{notebooks,data,user_data,figures}` (empty).
+5. **Write `beril.yaml`** (template at the bottom of this file): `status: exploration`, `created_at` and `last_session_at` set to current ISO timestamp, `engine.name` set to the current agent (e.g., `claude`), authors from beril user, all `artifacts` flags false initially. `branch` is set in step 6.
+6. **Branch (recommended)**: offer to create branch `projects/<id>` and switch to it. Long-running projects on `main` create merge pain. If the user declines, leave on the current branch. Record the actual branch in `beril.yaml`.
+7. **Write a stub `README.md`** (template at the bottom): title (humanized from project_id), Status block reading "Exploration — research plan not yet written", authors from beril user, Quick Links pointing at `RESEARCH_PLAN.md` (TBD) and `REPORT.md` (TBD), Reproduction placeholder.
+8. **Update `beril.yaml`**: `artifacts.readme: true`.
+9. **Commit**: `feat(project): scaffold {id} (exploration phase)`.
+10. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch — useful for long-running or remote sessions where the connection may drop."
 
-**Then engage with the user:**
-9. Chat with the user about their research interest
-10. Explore BERDL data with helper discovery and `/berdl` queries to check data availability, row counts, column types
-11. Check existing projects (`ls projects/`) — read READMEs of related projects to understand what's been done
-12. Develop 2-3 testable hypotheses with H0/H1
-13. Search literature (use `/literature-review` internally) for context
+After Phase 0, **every artifact has a home**. User data → `projects/<id>/user_data/`. Exploration queries → `projects/<id>/notebooks/00_*.ipynb`. References → `projects/<id>/references.md`. Move on to Phase A.
+
+#### Phase A: Orientation & Exploration
+
+Status: `exploration`. Read context, explore data, accept user-supplied input, and develop hypotheses — all inside the project directory.
+
+**Required reading before designing any queries:**
+1. `PROJECT.md` — dual goals (science + knowledge capture), project structure, reproducibility standards, JupyterHub workflow, Spark notebook patterns.
+2. `docs/overview.md` — data architecture, key tables, generation workflow, known limitations.
+3. `docs/pitfalls.md` and `docs/performance.md` — **critical: read before any query design**.
+4. `docs/research_ideas.md` — check for related ideas; avoid duplicating work.
+5. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live access-aware discovery. For database-specific gotchas, grep `docs/pitfalls.md` for the database name (e.g., `grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md`).
+
+**Setup check (Phase 1.5 already verified KBASE_AUTH_TOKEN and proxy):**
+6. `gh auth status` — needed for branches/PRs. Prompt `gh auth login` if missing.
+
+**Engagement (status stays `exploration`):**
+- Discuss the user's research interest and goals.
+- **If the user has input data** (gene lists, phenotype tables, FASTAs, SQLite, etc.): drop it in `projects/<id>/user_data/`. Never leave user-supplied data in `~/` or the repo root.
+- Run exploratory queries with `/berdl`. For any query worth keeping, save it as a numbered exploration notebook (`projects/<id>/notebooks/00_exploration.ipynb`, then `00b_*.ipynb` if you need more). Even rough exploration gets a home.
+- Search literature with `/literature-review` if relevant. References go to `projects/<id>/references.md`.
+- Check related existing projects in `projects/` — read their READMEs to understand prior work.
+- Develop 2-3 testable hypotheses with H0/H1.
+
+When the user has a clear hypothesis and is ready to commit to a plan, transition to Phase B.
 
 #### Phase B: Research Plan
 
-14. Write `RESEARCH_PLAN.md` with: Research Question, Hypothesis, Literature Context, Approach, Data Sources, Query Strategy, Analysis Plan, Expected Outcomes, Revision History (v1)
-15. Write slim `README.md` with: Title, Research Question, Status (In Progress), Overview, Quick Links, Reproduction placeholder, Authors
-16. Create project directory structure: `notebooks/`, `data/`, `user_data/`, `figures/`
-17. Suggest naming this session to match the project: "Consider naming this session `{project_id}` to match the branch."
-18. Ask the user about branching: offer to create branch `projects/{project_id}` and switch to it. Working on a dedicated branch from the start avoids accumulating changes on main during long-running projects. If they prefer to stay on main, skip branch creation.
-19. Write `beril.yaml` project manifest (see Templates section below). Set `status: proposed`, `created_at` and `last_session_at` to the current ISO 8601 timestamp, `branch` to the **actual branch** (either `projects/{project_id}` if created, or the current branch if the user stayed on it), author info from the user, and `engine.name` to the current agent (e.g., `claude`). Set `artifacts.readme: true` and `artifacts.research_plan: true` after those files are written.
-20. Commit README + RESEARCH_PLAN + beril.yaml.
-20. **Optional: Research plan review** — Offer to run a quick review of the research plan before starting analysis. If the user accepts, invoke the plan reviewer via `tools/review.sh`:
+Status transition: `exploration` → `proposed`.
 
-    ```bash
-    bash tools/review.sh {project_id} --type plan [--reviewer claude|codex] [--model <model_id>]
-    ```
+1. Write `projects/<id>/RESEARCH_PLAN.md` (template at the bottom of this file): Research Question, Hypothesis (H0/H1), Literature Context, Approach, Data Sources, Query Strategy (tables, filter strategy, performance tier), Analysis Plan (numbered notebooks with goals + expected outputs), Expected Outcomes, Revision History (v1 with today's date), Authors.
+2. Update `projects/<id>/README.md` Status block to "Proposed — research plan written, awaiting analysis." Fill in any other sections that became clearer (Overview, Research Question).
+3. Update `beril.yaml`: `status: proposed`, `last_session_at` to now, `artifacts.research_plan: true`.
+4. Commit: `feat(project): research plan for {id}`.
 
-    This runs a CLI subprocess that reads the research plan, checks it against pitfalls/schemas/existing projects, and writes feedback to an auto-numbered file (`PLAN_REVIEW_1.md`, `PLAN_REVIEW_2.md`, etc.). The user can choose `--reviewer codex` for an alternative perspective. Default reviewer is `claude`.
+**STOP HERE.** The plan is the contract for what comes next. Do NOT write or execute notebooks yet. Proceed to the Checkpoint.
 
-    Present the suggestions to the user. They can address them, note them for later, or skip — this is advisory, not blocking.
+#### Checkpoint: Plan Review (mandatory pause)
+
+This pause is the key guard against the agent rushing from plan to compute without human or independent review. **Do not skip it.**
+
+Present the plan to the user concisely:
+- Title and refined research question
+- Hypothesis (H0/H1)
+- Query strategy summary (tables touched, filter strategy, estimated complexity)
+- Expected outcomes (what supports H1, what supports H0, potential confounders)
+
+Then ask explicitly:
+
+> "Plan ready to start analysis?
+> (a) Approve and continue to Phase C (Analysis)
+> (b) Run an independent review first — `bash tools/review.sh {project_id} --type plan` writes `PLAN_REVIEW_<n>.md`. Use `--reviewer codex` for a second opinion.
+> (c) Iterate on the plan"
+
+**Do not proceed to Phase C until the user picks (a).**
+
+- If (b): invoke the plan reviewer, present `PLAN_REVIEW_<n>.md` to the user, then re-ask. Reviewer output is advisory — the user has final say.
+- If (c): iterate on `RESEARCH_PLAN.md`. Record changes in Revision History as `- **v2** ({date}): {change description}`, then re-ask.
 
 #### Phase C: Analysis (Notebooks)
 
-20. Update `beril.yaml`: set `status: active` and `last_session_at` to current timestamp.
-21. Write numbered notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, etc.) following the analysis plan
-22. Notebooks are the primary audit trail — do as much work as possible in notebooks so humans can inspect intermediate results
-23. When parallel execution or complex pipelines are needed, write scripts in `src/` but call them from notebooks
-24. **Run notebooks** — execute cells, inspect outputs, iterate
-25. As new information emerges, update `RESEARCH_PLAN.md` with a revision tag: `- **v2** ({date}): {what changed and why}`
-26. **Check in code frequently** — commit after each major milestone (plan written, notebooks created, data extracted, analysis complete)
-27. Re-read `docs/pitfalls.md` when something doesn't work as expected
+Status transition: `proposed` → `active`.
 
-#### Checkpoint: Results Review
+- Update `beril.yaml`: `status: active`, `last_session_at` to now.
+- Write numbered analysis notebooks (`01_data_exploration.ipynb`, `02_analysis.ipynb`, ...) following the analysis plan in `RESEARCH_PLAN.md`.
+- Notebooks are the primary audit trail — do as much work as possible in notebooks so humans can inspect intermediate results.
+- When parallel execution or complex pipelines are needed, write scripts in `projects/<id>/src/` but call them from notebooks.
+- **Run notebooks** — execute cells, inspect outputs, iterate.
+- If new information emerges that changes the approach, update `RESEARCH_PLAN.md` Revision History as `- **v{n}** ({date}): {change}` before continuing.
+- **Commit frequently** — after each major milestone (notebook complete, data extracted, key result reproduced).
+- Re-read `docs/pitfalls.md` when something doesn't behave as expected.
 
-After notebooks are executed and committed, **pause and present the key results to the user** before moving to synthesis. This is a natural decision point — the user may want to inspect figures, question a result, or request additional analysis before the interpretation gets written.
+##### Checkpoint: Results Review
 
-28. Summarize the key results: main statistics, notable patterns, anything unexpected
-29. Ask: "Would you like to look at the notebooks/figures before I proceed with the writeup, or should I go ahead with `/synthesize`?"
-30. If the user wants to explore first, wait. If they want changes, iterate on the notebooks before proceeding.
+After notebooks are executed and committed, pause and present key results before synthesis.
+
+- Summarize the key results: main statistics, notable patterns, anything unexpected.
+- Ask: "Look at the notebooks/figures before I write up findings, or proceed with `/synthesize`?"
+- If the user wants to explore first, wait. If they want changes, iterate on the notebooks before proceeding.
 
 #### Phase D: Synthesis & Writeup
 
-31. Run `/synthesize` to create `REPORT.md` with findings, interpretation, supporting evidence
-32. Update `beril.yaml`: set `status: analysis`, `artifacts.report: true`, and update `last_session_at`.
-33. Commit the report and updated beril.yaml
-34. Chat with user about the report — revise if needed
+Status transition: `active` → `analysis`.
+
+- Run `/synthesize` to create `REPORT.md` with findings, interpretation, and supporting evidence.
+- Update `beril.yaml`: `status: analysis`, `artifacts.report: true`, `last_session_at` to now.
+- Commit the report and updated `beril.yaml`.
+- Discuss the report with the user — revise if needed.
 
 #### Phase E: Review & Submission
 
-35. **Optional: iterate with `/berdl-review`** — Run `/berdl-review {project_id}` to get feedback without the full submission checklist. This produces numbered reviews (`REVIEW_1.md`, `REVIEW_2.md`, ...) and is useful for iterating quickly. Use `--reviewer codex` for a second opinion. Address feedback, then review again until satisfied.
-36. Run `/submit` to validate documentation, generate the final canonical `REVIEW.md`, and handle lakehouse upload. `/submit` will present the review outcome and let the user decide: if clean, it proceeds automatically; if issues are found, the user can address them or override. See `/submit` skill for the full flow — it handles `beril.yaml` status updates and lakehouse upload internally.
-37. Chat with user about next steps
+Status transitions: `analysis` → `review` → `complete`.
 
-#### Throughout the Entire Workflow:
-- **Check in code often** — don't let work accumulate uncommitted
-- **Update `docs/discoveries.md`** when you find something interesting (tag with `[project_id]`)
-- **Update `docs/pitfalls.md`** when you hit a gotcha (follow pitfall-capture protocol from `.claude/skills/pitfall-capture/SKILL.md`)
-- **Update `docs/performance.md`** when you learn a query optimization
-- **Re-read `docs/pitfalls.md`** when debugging failures — the answer may already be documented
-- **Re-read `docs/performance.md`** when queries are slow — check for existing optimization patterns
-- **Follow `PROJECT.md` standards** — notebooks with saved outputs, figures as standalone PNGs, requirements.txt, Reproduction section in README
+- **Optional iteration**: `/berdl-review {project_id}` for advisory feedback without the full submission checklist. Produces numbered `REVIEW_<n>.md` files. Use `--reviewer codex` for a second opinion. Address feedback, then re-review until satisfied.
+- **Submit**: `/submit {project_id}` for the canonical review and lakehouse upload. The skill validates documentation, generates `REVIEW.md`, and handles upload. It owns the final `beril.yaml` status transitions (`review` → `complete`) and the lakehouse upload internally.
+- Discuss next steps with the user.
 
-### Path 2: Explore BERDL Data
+#### Throughout the Workflow
 
-Read these files:
-- `docs/pitfalls.md` — critical gotchas (per-database H2 sections) before querying
+- Commit code often — don't let work accumulate uncommitted.
+- Update `docs/discoveries.md` when you find something interesting (tag with `[project_id]`).
+- Update `docs/pitfalls.md` when you hit a gotcha (follow `.claude/skills/pitfall-capture/SKILL.md`).
+- Update `docs/performance.md` when you learn a query optimization.
+- Re-read `docs/pitfalls.md` when debugging failures — the answer may already be documented.
+- Re-read `docs/performance.md` when queries are slow — check for existing optimization patterns.
+- Follow `PROJECT.md` standards — notebooks with saved outputs, figures as standalone PNGs, `requirements.txt`, Reproduction section in README.
 
-Then:
-- Use `berdl_notebook_utils.get_databases(return_json=False)` to summarize accessible databases
-- Use `berdl_notebook_utils.get_tables(... return_json=False)` and `get_table_schema(... detailed=True, return_json=False)` before discussing table availability
-- Highlight cross-collection relationships (pangenome <-> genomes <-> biochemistry <-> fitness)
-- Suggest using `/berdl` to start querying
-- Suggest using `/berdl-discover` if they want to explore a database not yet covered in `docs/pitfalls.md`
-- Warn about the key pitfalls (see Critical Pitfalls below)
+---
 
-### Path 3: Review Published Literature
+### Entry Door 1: Continue an Existing Project (resumption)
 
-Suggest using `/literature-review` to search biological databases. This is useful for:
-- Checking what's already known about an organism or pathway before querying BERDL
-- Finding published pangenome analyses to compare against BERDL data
-- Supporting a hypothesis with existing citations
-- Discovering methods and approaches used in similar studies
+Phase 0 is skipped. Resume at the phase matching the project's current status.
 
-**MCP setup check**: The `paper-search-mcp` ([openags/paper-search-mcp](https://github.com/openags/paper-search-mcp)) is configured in `.mcp.json`. It runs via `uvx paper-search-mcp`. If it's not working:
-1. Ensure Python 3.10+ and [uv](https://docs.astral.sh/uv/) are installed
-2. Test: `uvx --from paper-search-mcp python -m paper_search_mcp.server`
-3. Optionally set `SEMANTIC_SCHOLAR_API_KEY` in your environment for enhanced Semantic Scholar features
-4. The skill falls back to WebSearch if the MCP server is unavailable
+1. Run `ls projects/` and list all projects.
+2. For each project, read `beril.yaml` (if present) and display: `status`, `last_session_at`, `branch`, and which `artifacts` are present/missing. If `beril.yaml` is missing (pre-manifest project), note "no manifest" — still works, just legacy.
+3. The user picks one. Read its `README.md`, `RESEARCH_PLAN.md`, and `REVIEW.md` (if present). Read `REPORT.md` if `artifacts.report` is true.
+4. Update `beril.yaml`: `last_session_at` to now.
+5. Resume at the phase matching the current `status`:
+   - `exploration` → Phase A (Orientation & Exploration)
+   - `proposed` → Checkpoint (re-present plan, ask the (a)/(b)/(c) question)
+   - `active` → Phase C (Analysis)
+   - `analysis` → Phase D (Synthesis), or back to Phase C if results need revisiting
+   - `review` → Phase E (address review feedback or re-submit)
+   - `complete` → ask the user: follow-up work, inspection, or just summarizing?
+   - missing/legacy → infer from artifacts present (RESEARCH_PLAN exists → C; REPORT exists → D/E).
+6. Suggest `/submit` when ready for canonical review.
 
-### Path 4: Continue an Existing Project
+---
 
-Steps:
-1. Run `ls projects/` and list all projects for the user to choose from
-2. For each project, check if `beril.yaml` exists. If it does, read it and display: status, last session date, branch, and which artifacts are present/missing. If it doesn't exist, note "no manifest" — the project still works, it just predates `beril.yaml`.
-3. Read the chosen project's `README.md`
-4. Check if a `REVIEW.md` exists in that project directory (read it if so)
-5. If `beril.yaml` exists, update `last_session_at` to the current timestamp
-6. Summarize where the project stands: what's done, what's next
-7. Suggest using `/submit` when the project is ready for review
+### Side Path: Understanding the System (no project)
 
-### Path 5: Understand the System
+If the user truly wants only to understand BERIL without committing to a session, point them at:
 
-Read these files:
-- `PROJECT.md` — high-level goals and structure
-- `docs/pitfalls.md` — per-database non-derivable gotchas
+- `PROJECT.md` — dual goals (science + knowledge capture), structure
 - `docs/overview.md` — scientific context and data workflow
+- `docs/pitfalls.md` — per-database non-derivable gotchas
+- `docs/research_ideas.md` — backlog and future directions
 
-Then:
-- Explain that current inventory and access should be discovered live with `berdl_notebook_utils.get_databases(return_json=False)`
-- Walk through the dual goals (science + knowledge capture)
-- Explain the documentation workflow (tag discoveries, update pitfalls)
-- Mention the UI can be browsed at the BERDL JupyterHub
-- List the available skills and what each does
-- Point to `docs/research_ideas.md` for future directions
+Also explain:
+- Current inventory and access should be discovered live with `berdl_notebook_utils.get_databases(return_json=False)`.
+- The documentation workflow (tag discoveries, update pitfalls) — captured in `PROJECT.md`.
+- The BERDL JupyterHub UI is browsable at https://hub.berdl.kbase.us.
+- The available skills and what each does (table at the top of this skill).
+
+This is reading, not a session. After reading, the user re-invokes `/berdl_start` to begin actual work — at which point Phase 2's three-door menu applies.
+
+---
+
+### Companion skills used during the workflow
+
+These are project-agnostic helpers — invoke them from inside any project at the right phase:
+
+- **`/berdl`** — query BERDL with Spark SQL. Use during Phase A and Phase C.
+- **`/berdl-query`** — local-machine variant for off-cluster work.
+- **`/berdl-discover`** — explore and document a new database that isn't yet in `docs/pitfalls.md`.
+- **`/berdl-minio`** — file transfer between BERDL MinIO and local.
+- **`/literature-review`** — search PubMed, bioRxiv, arXiv, Semantic Scholar, Google Scholar. Writes to `projects/<id>/references.md`.
+
+**MCP setup check** for `/literature-review`: the `paper-search-mcp` ([openags/paper-search-mcp](https://github.com/openags/paper-search-mcp)) is configured in `.mcp.json` and runs via `uvx paper-search-mcp`. If it fails:
+1. Ensure Python 3.10+ and [uv](https://docs.astral.sh/uv/) are installed.
+2. Test: `uvx --from paper-search-mcp python -m paper_search_mcp.server`.
+3. Optionally set `SEMANTIC_SCHOLAR_API_KEY` for enhanced Semantic Scholar features.
+4. The skill falls back to WebSearch if the MCP server is unavailable.
 
 ---
 
 ## Key Principles (for the agent)
 
-1. **Read the docs and discover live data first** — `PROJECT.md`, `docs/overview.md`, `docs/pitfalls.md`, and `docs/performance.md` before designing anything. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for current access and inventory. Check existing `projects/` to avoid duplicating work.
-2. **Notebooks are the audit trail** — numbered sequentially (01, 02, 03...), each self-contained with a clear purpose. Commit with saved outputs per `PROJECT.md` reproducibility standards.
-3. **Commit early and often** — after plan, after notebooks, after data extraction, after analysis, after synthesis.
-4. **Branch by default** — create a `projects/{project_id}` branch when starting a new project. Extended work on main causes merge difficulties and risks conflicting with other contributors. Tell the user what branch you're creating; if they explicitly prefer main, respect that.
-5. **Update the plan** — when the analysis reveals something that changes the approach, update RESEARCH_PLAN.md with a dated revision tag explaining what changed and why.
-6. **Don't stop and wait** — drive the process forward, checking in with the user at decision points rather than stopping after each step.
-7. **Document as you go** — discoveries go in `docs/discoveries.md`, pitfalls in `docs/pitfalls.md`, performance tips in `docs/performance.md` — captured in real-time, tagged with `[project_id]`.
-8. **Use Spark patterns from PROJECT.md** — `get_spark_session()`, PySpark-first, `.toPandas()` only for final small results.
+1. **Always start in a project** — every session establishes a project context (new, existing, or `scratch_<date>`) before doing any work. User data, queries, exploration notebooks, references — all live in `projects/<id>/`. Never leave artifacts loose in the repo root, `~/`, or `exploratory/`.
+2. **Read the docs and discover live data first** — `PROJECT.md`, `docs/overview.md`, `docs/pitfalls.md`, `docs/performance.md` before designing any queries. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live inventory.
+3. **Notebooks are the audit trail** — numbered sequentially (00 for exploration, 01+ for analysis), each self-contained with a clear purpose. Commit with saved outputs per `PROJECT.md` reproducibility standards.
+4. **Commit early and often** — after scaffold, after plan, after each notebook, after data extraction, after analysis, after synthesis.
+5. **Branch by default** — create a `projects/{project_id}` branch in Phase 0. Extended work on `main` causes merge pain and risks conflicting with other contributors. If the user explicitly prefers `main`, respect that.
+6. **Never skip the plan-review checkpoint** — after writing `RESEARCH_PLAN.md`, STOP. Do not write or execute analysis notebooks until the user explicitly chooses (a) Approve. This is the most important rule and the easiest to violate.
+7. **Update the plan when reality changes** — if analysis reveals something that changes the approach, update `RESEARCH_PLAN.md` Revision History before continuing. The plan is a contract; revisions are explicit, not silent.
+8. **Drive the process forward between checkpoints** — checkpoints are explicit pause-points (Plan Review, Results Review). Outside of those, keep moving — don't stop after every individual step asking permission.
+9. **Document as you go** — discoveries to `docs/discoveries.md`, pitfalls to `docs/pitfalls.md`, performance tips to `docs/performance.md` — tagged with `[project_id]`.
+10. **Use Spark patterns from PROJECT.md** — `get_spark_session()`, PySpark-first, `.toPandas()` only for final small results.
 
 ---
 
@@ -423,7 +487,7 @@ In Progress — research plan created, awaiting analysis.
 
 ```yaml
 project_id: {project_id}
-status: proposed          # proposed | active | analysis | review | complete
+status: exploration       # exploration | proposed | active | analysis | review | complete
 created_at: "{ISO 8601 timestamp}"
 last_session_at: "{ISO 8601 timestamp}"
 branch: projects/{project_id}
@@ -440,4 +504,4 @@ artifacts:
   review: false
 ```
 
-**Status transitions:** `proposed` → `active` (notebooks started) → `analysis` (report written) → `review` (submitted) → `complete` (review passed). Update `artifacts` flags as each file is created. Update `last_session_at` whenever resuming work on the project.
+**Status transitions:** `exploration` (project scaffolded, no plan yet) → `proposed` (RESEARCH_PLAN.md written) → `active` (notebooks started) → `analysis` (REPORT.md written) → `review` (`/submit` invoked) → `complete` (review passed). Downstream skills gate on these: `/submit` and `/synthesize` reject `exploration` status because no formal hypothesis exists yet. Update `artifacts` flags as each file is created. Update `last_session_at` whenever resuming work on the project.

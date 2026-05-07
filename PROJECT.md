@@ -59,6 +59,35 @@ Each science project in `projects/` should have:
 - `requirements.txt`: Python dependencies
 - `src/`: Reusable scripts (if applicable)
 
+## Project Lifecycle
+
+**Every BERIL session works inside a project — including ad-hoc exploration.** This gives every artifact a home from the first command, makes work resumable, and avoids loose accumulation. There is no "no-project" mode. The legacy `exploratory/` directory predates this discipline and should not receive new work; new exploration uses scratch projects (`projects/scratch_<YYYYMMDD>/` or `projects/<topic>_scratch/`) which are first-class — same structure, same templates, just a default name.
+
+### Status enum (`beril.yaml`)
+
+```
+exploration → proposed → active → analysis → review → complete
+```
+
+| Status | Meaning | Created by |
+|---|---|---|
+| `exploration` | Project scaffolded; no `RESEARCH_PLAN.md` yet. Queries, user data, exploration notebooks live here. | `/berdl_start` Phase 0 |
+| `proposed` | `RESEARCH_PLAN.md` written. Awaiting plan-review checkpoint approval. | `/berdl_start` Phase B |
+| `active` | Plan approved; analysis notebooks running. | `/berdl_start` Phase C |
+| `analysis` | `REPORT.md` written. | `/synthesize` |
+| `review` | `/submit` invoked; `REVIEW.md` produced. | `/submit` |
+| `complete` | Review passed and lakehouse upload done. | `/submit` |
+
+### Downstream gating
+
+- **`/submit`** rejects `status: exploration` (no formal hypothesis to validate against). Project must be at `analysis` or later for clean submission.
+- **`/synthesize`** rejects `status: exploration` (synthesis without a plan produces ungrounded interpretation).
+- **`/berdl-review`** is advisory and accepts any status with the appropriate `--type` flag (`--type plan` for plan review, etc.).
+
+### Mandatory plan-review checkpoint
+
+Between Phase B (writing `RESEARCH_PLAN.md`) and Phase C (executing analysis notebooks), `/berdl_start` enforces a stop. The agent must present the plan to the user and wait for an explicit approval/review/iterate decision. This is the principal guard against jumping from plan to compute without human or independent review.
+
 ## Reproducibility Standards
 
 Projects must be **followable by both humans and agents** without re-running anything. A reader cloning the repo should be able to understand the full analysis — data, methods, results, and conclusions — from the committed files alone.
