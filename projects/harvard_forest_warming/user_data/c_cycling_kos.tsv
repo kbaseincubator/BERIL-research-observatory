@@ -1,0 +1,63 @@
+ko	category	subcategory	name	rationale
+K01179	cazyme	cellulose	endoglucanase (EC 3.2.1.4)	Cellulose decomposition; primary CAZyme
+K01188	cazyme	cellulose	beta-glucosidase (EC 3.2.1.21)	Cellulose final step (cellobiose -> glucose)
+K01225	cazyme	cellulose	cellulose 1,4-beta-cellobiosidase / CBH (EC 3.2.1.91)	Cellulose CBH; key for crystalline cellulose
+K15920	cazyme	hemicellulose	beta-1,4-xylanase	Hemicellulose decomposition
+K01198	cazyme	hemicellulose	xylan 1,4-beta-xylosidase (EC 3.2.1.37)	Xylan -> xylose
+K01183	cazyme	chitin	chitinase (EC 3.2.1.14)	Chitin decomposition
+K01207	cazyme	chitin	beta-N-acetylhexosaminidase (EC 3.2.1.52)	Chitin -> N-acetylglucosamine
+K01209	cazyme	hemicellulose	alpha-N-arabinofuranosidase (EC 3.2.1.55)	Arabinoxylan
+K01211	cazyme	hemicellulose	alpha-glucuronidase (EC 3.2.1.139)	Glucuronoxylan
+K05349	cazyme	hemicellulose	beta-galactosidase (EC 3.2.1.23)	Galactan
+K01187	cazyme	starch	alpha-glucosidase (EC 3.2.1.20)	Starch -> glucose
+K01206	cazyme	hemicellulose	alpha-galactosidase (EC 3.2.1.22)	Galactomannan
+K01218	cazyme	pectin	beta-D-glucuronidase (EC 3.2.1.31)	Pectin and glycosaminoglycans
+K01193	cazyme	sucrose	beta-fructofuranosidase / invertase (EC 3.2.1.26)	Sucrose -> fructose+glucose
+K01192	cazyme	hemicellulose	alpha-mannosidase (EC 3.2.1.24)	Mannan
+K01362	peptidase	protease	trypsin-like serine protease (EC 3.4.21.4)	Protein decomposition
+K01392	peptidase	protease	elastase (EC 3.4.21.36)	Protein decomposition
+K01411	peptidase	dipeptidase	dipeptidyl-peptidase IV (EC 3.4.14.5)	Peptide cleavage
+K01405	peptidase	deacylase	amino acid acylase (EC 3.5.1.14)	Peptide / aa cleavage
+K01419	peptidase	aminopeptidase	leucyl aminopeptidase (EC 3.4.11.1)	Aminopeptidase
+K01267	peptidase	aminopeptidase	methionine aminopeptidase (EC 3.4.11.18)	Aminopeptidase
+K01253	peptidase	carboxypeptidase	microsomal dipeptidase (EC 3.4.13.19)	Dipeptide hydrolysis
+K01902	tca	tca_cycle	succinyl-CoA synthetase alpha (EC 6.2.1.5)	TCA cycle
+K01903	tca	tca_cycle	succinyl-CoA synthetase beta (EC 6.2.1.5)	TCA cycle
+K00031	tca	tca_cycle	isocitrate dehydrogenase NADP+ (EC 1.1.1.42)	TCA cycle
+K00030	tca	tca_cycle	isocitrate dehydrogenase NAD+ (EC 1.1.1.41)	TCA cycle
+K01679	tca	tca_cycle	fumarate hydratase class II (EC 4.2.1.2)	TCA cycle
+K01681	tca	tca_cycle	aconitate hydratase 1 (EC 4.2.1.3)	TCA cycle
+K01647	tca	tca_cycle	citrate synthase (EC 2.3.3.1)	TCA cycle
+K00382	tca	tca_cycle	dihydrolipoyl dehydrogenase (EC 1.8.1.4)	PDH/OGDH E3 component
+K00164	tca	tca_cycle	2-oxoglutarate dehydrogenase E1 (EC 1.2.4.2)	TCA cycle
+K00658	tca	tca_cycle	dihydrolipoamide succinyltransferase E2 (EC 2.3.1.61)	TCA cycle
+K00161	tca	tca_cycle	pyruvate dehydrogenase E1 alpha (EC 1.2.4.1)	Central C
+K00162	tca	tca_cycle	pyruvate dehydrogenase E1 beta (EC 1.2.4.1)	Central C
+K01958	tca	anaplerotic	pyruvate carboxylase (EC 6.4.1.1)	Anaplerotic
+K01637	tca	glyoxylate	isocitrate lyase (EC 4.1.3.1)	Glyoxylate cycle
+K01638	tca	glyoxylate	malate synthase (EC 2.3.3.9)	Glyoxylate cycle
+K00074	beta_oxidation	beta_oxidation	3-hydroxybutyryl-CoA dehydrogenase (EC 1.1.1.157)	Lipid oxidation
+K00248	beta_oxidation	beta_oxidation	butyryl-CoA dehydrogenase (EC 1.3.8.1)	Lipid oxidation
+K06445	beta_oxidation	beta_oxidation	long-chain acyl-CoA dehydrogenase (EC 1.3.8.8)	Lipid oxidation
+K01692	beta_oxidation	beta_oxidation	enoyl-CoA hydratase (EC 4.2.1.17)	Lipid oxidation
+K01825	beta_oxidation	beta_oxidation	3-hydroxyacyl-CoA dehydrogenase (EC 1.1.1.35)	Lipid oxidation
+K00626	beta_oxidation	beta_oxidation	acetyl-CoA acetyltransferase (EC 2.3.1.9)	Lipid oxidation final step
+K01856	aromatic	aromatic_catabolism	muconate cycloisomerase (EC 5.5.1.1)	Aromatic ring cleavage
+K00451	aromatic	aromatic_catabolism	4-hydroxyphenylpyruvate dioxygenase (EC 1.13.11.27)	Aromatic catabolism
+K00481	aromatic	aromatic_catabolism	homogentisate 1,2-dioxygenase (EC 1.13.11.5)	Aromatic catabolism
+K10221	aromatic	aromatic_catabolism	protocatechuate 3,4-dioxygenase (EC 1.13.11.3)	Aromatic ring cleavage
+K05549	aromatic	aromatic_catabolism	vanillate O-demethylase oxygenase (EC 1.14.13.82)	Lignin-derived aromatics
+K01821	aromatic	aromatic_catabolism	4-hydroxybenzoate 3-monooxygenase (EC 1.14.13.2)	Aromatic catabolism
+K10546	aromatic	aromatic_catabolism	benzoyl-CoA reductase alpha (EC 1.3.7.8)	Anaerobic aromatic
+K00399	methane	methanogenesis	methyl-coenzyme M reductase alpha (mcrA, EC 2.8.4.1)	Methanogenesis
+K00400	methane	methanogenesis	methyl-coenzyme M reductase beta (mcrB)	Methanogenesis
+K00401	methane	methanogenesis	methyl-coenzyme M reductase gamma (mcrG)	Methanogenesis
+K10944	methane	methanotrophy	particulate methane monooxygenase alpha (pmoA, EC 1.14.18.3)	Methanotrophy
+K10945	methane	methanotrophy	particulate methane monooxygenase beta (pmoB)	Methanotrophy
+K14080	methane	methylotrophy	methanol dehydrogenase (EC 1.1.99.8)	Methylotrophy
+K00114	methane	methylotrophy	xoxF methanol dehydrogenase (EC 1.1.2.10)	Lanthanide-MDH
+K14028	methane	methylotrophy	mxaF methanol dehydrogenase alpha	Methylotrophy
+K00121	c1	formate	formate dehydrogenase (NAD+) (EC 1.17.1.9)	Formate metabolism
+K01938	c1	formate	formate-tetrahydrofolate ligase (EC 6.3.4.3)	C1 metabolism
+K05299	c1	formate	formate dehydrogenase H (EC 1.17.1.10)	C1 metabolism
+K00148	c1	c1_metabolism	formaldehyde dehydrogenase (EC 1.2.1.46)	C1 metabolism
