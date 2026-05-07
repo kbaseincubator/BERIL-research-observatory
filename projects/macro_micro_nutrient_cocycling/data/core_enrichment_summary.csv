@@ -1,0 +1,4 @@
+nutrient_group,n_species_both,n_species_testable,nutrient_core_frac,metal_core_frac,stouffer_z,stouffer_p,median_OR,frac_enriched
+P_genes,20683,15600,0.7071,0.5122,68.304,0.0,,0.3
+N_genes,5718,2549,0.4614,0.4459,-4.853,1.213149068535202e-06,,0.144
+Phz_genes,10632,3796,0.6548,0.5329,2.636,0.00839202856306498,,0.175
