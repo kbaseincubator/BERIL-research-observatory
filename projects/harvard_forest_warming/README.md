@@ -6,7 +6,7 @@ After ~25 years of +5°C experimental soil warming at the Harvard Forest Barre W
 
 ## Status
 
-In Progress — research plan created, awaiting analysis.
+Analysis complete — REPORT.md written. Pending review and `/submit`.
 
 ## Overview
 
@@ -31,7 +31,25 @@ All data accessed via Spark SQL against the BERDL Lakehouse `nmdc` tenant. **Exc
 
 ## Reproduction
 
-*TBD — add prerequisites and step-by-step instructions after analysis is complete.*
+**Prerequisites**:
+- BERDL JupyterHub access with `nmdc` tenant read permissions
+- Python 3.10+, `pandas`, `numpy`, `scipy`, `matplotlib` (all in default JupyterHub kernel)
+- The curated `user_data/c_cycling_kos.tsv` is committed to the repo
+
+**Steps**:
+1. Open this project on the BERDL JupyterHub.
+2. Run notebooks in order:
+   - `01_sample_design.ipynb` — produces `data/sample_design.tsv` and `data/workflow_runs.tsv`.
+   - `02_extract_features.ipynb` — heavy Spark extraction (~5-10 min). Produces 5 feature TSVs in `data/`.
+   - `03_community_composition.ipynb` — kraken2 PERMANOVA + per-phylum tests.
+   - `04_dna_vs_rna_divergence.ipynb` — paired DNA∩RNA PERMANOVA (H1).
+   - `05_c_cycling_enrichment.ipynb` — H2 + H1 sensitivity check (no incubation confound).
+   - `06_horizon_interaction.ipynb` — H3 horizon × warming interaction.
+   - `07_metabolite_view.ipynb` — bonus ChEBI Fisher tests.
+   - `08_synthesis.ipynb` — final summary figure.
+3. Total runtime: ~15-20 min on JupyterHub.
+
+**Note**: All `data/*.tsv*` files are gitignored (regenerable). The committed inputs are the notebooks, the synthesis figure, the curated `c_cycling_kos.tsv`, and `RESEARCH_PLAN.md` / `REPORT.md`.
 
 ## Authors
 

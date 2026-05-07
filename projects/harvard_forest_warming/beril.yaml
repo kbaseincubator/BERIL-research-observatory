@@ -1,7 +1,7 @@
 project_id: harvard_forest_warming
-status: active
+status: analysis
 created_at: "2026-05-07T21:04:39Z"
-last_session_at: "2026-05-07T21:04:39Z"
+last_session_at: "2026-05-07T21:46:00Z"
 branch: projects/harvard_forest_warming
 engine:
   name: claude
@@ -12,5 +12,5 @@ authors:
 artifacts:
   readme: true
   research_plan: true
-  report: false
+  report: true
   review: false
