@@ -1,7 +1,7 @@
 project_id: thermodynamic_impact
-status: proposed
+status: analysis
 created_at: "2026-05-07T00:00:00Z"
-last_session_at: "2026-05-07T00:00:00Z"
+last_session_at: "2026-05-07T20:15:00Z"
 branch: projects/thermodynamic_impact
 engine:
   name: claude
@@ -12,5 +12,5 @@ authors:
 artifacts:
   readme: true
   research_plan: true
-  report: false
+  report: true
   review: false
