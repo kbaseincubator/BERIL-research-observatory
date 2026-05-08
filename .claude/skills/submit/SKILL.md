@@ -93,14 +93,20 @@ For projects with `beril.yaml`:
 
 ##### Status `complete` resolution
 
-  1. **First** recompute `sha256sum projects/{project_id}/REPORT.md` and compare to `beril.yaml.approval.report_hash`. If mismatch → trigger the **reopen prompt**:
+  1. **First** recompute the hashes of all approved content and compare to the values in `beril.yaml.approval`:
 
-     > "REPORT.md has changed since this project was approved ({approval.at}). The previous approval no longer reflects the current report. Demote status to `analysis`? Previous approval will be archived under `previous_approvals`; both `SUBMITTED.md` and `SUBMISSION_FAILED.md` will be removed (audit lives in `beril.yaml`)."
+     - `sha256sum projects/{project_id}/REPORT.md` vs `approval.report_hash`.
+     - `sha256sum projects/{project_id}/REVIEW.md` vs `approval.review_hash` (skip if `REVIEW.md` is missing — Phase 3a recreates it from the numbered review).
+     - `sha256sum projects/{project_id}/{approval.review}` (e.g. `REVIEW_3.md`) vs `approval.review_hash` (skip if the numbered file is missing — that's a separate "cannot recover" case handled by Phase 3a).
+
+     Any mismatch triggers the **reopen prompt** (same prompt regardless of which file drifted; phrase the explanation according to which one):
+
+     > "{REPORT.md | REVIEW.md | REVIEW_N.md} has changed since this project was approved ({approval.at}). The previous approval no longer reflects the current approved content. Demote status to `analysis`? Previous approval will be archived under `previous_approvals`; both `SUBMITTED.md` and `SUBMISSION_FAILED.md` will be removed (audit lives in `beril.yaml`)."
 
      - Yes → move `approval` to `previous_approvals: []` with an added `archived_at: "<now>"` field, set `status: analysis`, update `README.md` `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`.", delete `projects/{project_id}/REVIEW.md` (the canonical copy of the now-archived review is no longer current), and delete both marker files if present. Tell the user "/submit aborted; run `/berdl-review` to produce a current review, then `/submit` again." Stop.
      - No → leave alone, warn that the project is in an inconsistent state, abort `/submit`.
 
-     Markers are not consulted in this branch — the approved content no longer matches the report on disk.
+     Markers are not consulted in this branch — the approved content no longer matches what's on disk. Checking REVIEW.md and the numbered review here (rather than only in Phase 3a) avoids an infinite-retry loop where REVIEW drift is only detected mid-flight, after Phase 2 has been skipped: without an automated demote path, the user has no way out.
 
   2. **Then** branch on markers (`SUBMISSION_FAILED.md` always wins on conflict):
 
@@ -267,12 +273,14 @@ Markers and `beril.yaml.submissions[]` are managed exclusively by this step. `su
   - **Last attempt**: {iso}
   - **Error**: {error}
   - **Approved at**: {approval.at}    <!-- join key into beril.yaml -->
+  - **Archive key (partial)**: {archive_key}    <!-- only if upload exit was 2 or Phase 3b.5 detected drift; archive exists but is incomplete or content-drifted -->
 
   Status is `complete` (the approval is recorded in `beril.yaml`).
   Re-run `/submit` to retry the upload — it will skip the approval step
   and only retry the upload.
   ```
-- Append to `beril.yaml.submissions: []` with `status: failed`, `error: "..."`, `attempted_at`, `approved_at`.
+  Omit the `Archive key (partial)` line when the failure is a hard error (exit 1) with no archive written. Include it whenever the upload script emitted JSON containing `archive_key` (exit 0 but rehash-failed in Phase 3b.5, or exit 2 partial-success).
+- Append to `beril.yaml.submissions: []` with `status: failed`, `error: "..."`, `attempted_at`, `approved_at`, and `archive_key: "{archive_key}"` when known (same condition as the marker line — include for exit-2 and Phase-3b.5 failures, omit for hard exit-1 failures).
 - Status stays `complete`. Update `README.md` `## Status` to add a parenthetical:
   ```
   ## Status

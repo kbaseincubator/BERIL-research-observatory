@@ -210,7 +210,7 @@ def upload_project(project_id, base_path):
     project_path = base_path / "projects" / project_id
 
     if not project_path.exists():
-        print(f"ERROR: Project directory not found: {project_path}")
+        print(f"ERROR: Project directory not found: {project_path}", file=sys.stderr)
         return None
 
     if not _check_mc_alias():
@@ -242,7 +242,12 @@ def upload_project(project_id, base_path):
     try:
         rc, out, err = _mc("cp", "--recursive", f"{project_path}/", remote_path, capture=False)
         if rc != 0:
-            print(f"ERROR: mc cp failed for {project_id}")
+            # Send to stderr so /submit (and other automated callers that
+            # rely on the exit-1 contract documented in submit/SKILL.md) can
+            # reliably read the error from the failed-process stderr stream.
+            # mc's own progress/error output already streamed directly to
+            # the terminal because we passed capture=False.
+            print(f"ERROR: mc cp failed for {project_id} (rc={rc})", file=sys.stderr)
             return None
 
         # Validate upload

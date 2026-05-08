@@ -73,6 +73,7 @@ For `--type project` reviews against a project at `status: analysis` (or coming 
 
 - Update `projects/{project_id}/beril.yaml`:
   - `status: reviewed`
+  - `artifacts.review: true` (a review file now exists; this flag tracks the existence of any `REVIEW_N.md`, set here so it's true as soon as the first review lands rather than only after `/submit` writes the canonical `REVIEW.md`).
   - `last_session_at`: current ISO 8601 timestamp.
 - Update `projects/{project_id}/README.md` `## Status` to:
   ```
@@ -82,7 +83,7 @@ For `--type project` reviews against a project at `status: analysis` (or coming 
   ```
   (Replace `N` with the numbered review just produced.) This keeps the README's user-facing status in sync with `beril.yaml.status`. Without this, the demote-then-review path leaves README stuck on the `analysis` wording even though `beril.yaml` advances to `reviewed`.
 
-For `reviewed` starting status, refresh `README.md` `## Status` similarly (the `N` updates) but leave `beril.yaml.status` unchanged. For `complete` (matching hash) starting status, leave both `beril.yaml` and `README.md` unchanged — re-running `/berdl-review` against an approved project only adds another opinion file; the project remains complete. Plan reviews never touch `beril.yaml` or `README.md`.
+For `reviewed` starting status, refresh `README.md` `## Status` similarly (the `N` updates) and ensure `artifacts.review: true` is still set; leave `beril.yaml.status` unchanged. For `complete` (matching hash) starting status, leave both `beril.yaml` and `README.md` unchanged — re-running `/berdl-review` against an approved project only adds another opinion file; the project remains complete. Plan reviews never touch `beril.yaml` or `README.md`.
 
 ### Step 6: Present Summary
 
