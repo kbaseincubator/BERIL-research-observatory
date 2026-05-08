@@ -323,10 +323,10 @@ Phase 0 is skipped. Resume at the phase matching the project's current status.
    - `exploration` → Phase A (Orientation & Exploration)
    - `proposed` → Checkpoint (re-present plan, ask the (a)/(b)/(c) question)
    - `active` → Phase C (Analysis)
-   - `analysis` → Phase D (Synthesis), or back to Phase C if results need revisiting
+   - `analysis` → Phase E (Review & Submission) — `REPORT.md` is already written; default forward to `/berdl-review` or `/submit`. Only return to Phase D if the user explicitly wants to revise the report.
    - `review` → Phase E (address review feedback or re-submit)
    - `complete` → ask the user: follow-up work, inspection, or just summarizing?
-   - missing/legacy → infer from artifacts present (RESEARCH_PLAN exists → C; REPORT exists → D/E).
+   - missing/legacy → infer from artifacts present (REPORT exists → Phase E; RESEARCH_PLAN exists but no REPORT → Phase C).
 6. Suggest `/submit` when ready for canonical review.
 
 ---
