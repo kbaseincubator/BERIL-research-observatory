@@ -180,8 +180,18 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 - **References**: Always include references, even for well-known data sources. At minimum cite the primary data sources (e.g., Price et al. 2018 for Fitness Browser, Arkin et al. 2018 for KBase).
 
 Also update `projects/{project_id}/README.md`:
-- Update `## Status` to reflect completion (e.g., "Complete — see [Report](REPORT.md) for findings")
+- Update `## Status` to "Analysis — report drafted, awaiting `/submit` review" (the project is not yet `complete`; that comes after `/submit` passes review)
 - Preserve existing `## Research Question` and `## Authors` sections
+
+#### Step 7b: Update Manifest
+
+Update `projects/{project_id}/beril.yaml` (skip silently if the file is missing — pre-manifest project):
+
+- `status`: set to `analysis`, but **only if** the current value is `proposed` or `active`. Leave `review` or `complete` alone (don't downgrade after a finished review). The Step 0 precondition already rules out `exploration`.
+- `artifacts.report`: `true`
+- `last_session_at`: current ISO 8601 timestamp
+
+This makes `/synthesize` self-contained: when invoked directly (outside the `/berdl_start` orchestration), the manifest reflects the new state without a separate update.
 
 #### Step 8: Update References
 

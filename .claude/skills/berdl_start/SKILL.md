@@ -284,10 +284,9 @@ After notebooks are executed and committed, pause and present key results before
 
 #### Phase D: Synthesis & Writeup
 
-Status transition: `active` → `analysis`.
+Status transition: `active` → `analysis` (handled by `/synthesize` itself).
 
-- Run `/synthesize` to create `REPORT.md` with findings, interpretation, and supporting evidence.
-- Update `beril.yaml`: `status: analysis`, `artifacts.report: true`, `last_session_at` to now.
+- Run `/synthesize` to create `REPORT.md`. The skill updates `beril.yaml` automatically (`status: analysis`, `artifacts.report: true`, `last_session_at`) and updates `README.md` Status to "Analysis — report drafted, awaiting `/submit` review."
 - Commit the report and updated `beril.yaml`.
 - Discuss the report with the user — revise if needed.
 
