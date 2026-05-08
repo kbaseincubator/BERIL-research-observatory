@@ -67,15 +67,22 @@ After the reviewer subprocess completes:
 2. For project reviews, confirm the file ends with the `<!-- report_hash: sha256:... -->` footer (the script writes this; if it's missing, something is wrong).
 3. If the script aborted because of a TOCTOU mismatch, surface that error to the user and explain that REPORT.md changed during review — they should let the report stabilize and re-run.
 
-### Step 5: Update beril.yaml status (project reviews only)
+### Step 5: Update beril.yaml status and README (project reviews only)
 
 For `--type project` reviews against a project at `status: analysis` (or coming out of the `complete`-with-mismatch demote in Step 2), flip status to `reviewed` after the new review writes successfully:
 
-- Update `beril.yaml`:
+- Update `projects/{project_id}/beril.yaml`:
   - `status: reviewed`
   - `last_session_at`: current ISO 8601 timestamp.
+- Update `projects/{project_id}/README.md` `## Status` to:
+  ```
+  ## Status
 
-For `reviewed` and `complete` (matching hash) starting statuses, leave the manifest unchanged — re-running `/berdl-review` only adds another opinion file. Plan reviews never touch `beril.yaml`.
+  Reviewed — REVIEW_N.md drafted; awaiting /submit.
+  ```
+  (Replace `N` with the numbered review just produced.) This keeps the README's user-facing status in sync with `beril.yaml.status`. Without this, the demote-then-review path leaves README stuck on the `analysis` wording even though `beril.yaml` advances to `reviewed`.
+
+For `reviewed` starting status, refresh `README.md` `## Status` similarly (the `N` updates) but leave `beril.yaml.status` unchanged. For `complete` (matching hash) starting status, leave both `beril.yaml` and `README.md` unchanged — re-running `/berdl-review` against an approved project only adds another opinion file; the project remains complete. Plan reviews never touch `beril.yaml` or `README.md`.
 
 ### Step 6: Present Summary
 

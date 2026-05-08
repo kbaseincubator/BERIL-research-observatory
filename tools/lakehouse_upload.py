@@ -414,12 +414,27 @@ def main():
         # Emit a single-line JSON summary as the final line of stdout so
         # /submit (and other automated callers) can parse the upload result
         # without scraping freeform text.
-        print(json.dumps({
+        #
+        # Exit code contract for callers:
+        #   0  = full success; JSON has the success schema
+        #        (archive_key, file_count, byte_total, duration_seconds)
+        #   1  = hard failure; no JSON emitted (error already on stderr)
+        #   2  = partial success; JSON has the success schema PLUS an
+        #        "error" field describing the count mismatch. The archive
+        #        exists at archive_key but is incomplete; the caller should
+        #        treat this as a submission failure (write SUBMISSION_FAILED.md).
+        payload = {
             "archive_key": result["s3a_path"],
             "file_count": result["remote_files"],
             "byte_total": result["total_size_bytes"],
             "duration_seconds": result["duration_seconds"],
-        }))
+        }
+        if result["status"] != "ok":
+            payload["error"] = (
+                f"partial upload: {result['remote_files']} of "
+                f"{result['local_files']} local files present at archive_key"
+            )
+        print(json.dumps(payload))
         sys.exit(0 if result["status"] == "ok" else 2)
     else:
         parser.print_help()

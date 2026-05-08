@@ -104,9 +104,9 @@ For projects with `beril.yaml`:
 
   2. **Then** branch on markers (`SUBMISSION_FAILED.md` always wins on conflict):
 
-     - `SUBMITTED.md` present **and** `SUBMISSION_FAILED.md` absent → **verify the join key** before treating as idempotent. Parse `SUBMITTED.md`'s `**Approved at**: {iso}` line and compare to the current `beril.yaml.approval.at`. Match: idempotent. Print `INFO  Already submitted on {SUBMITTED.md submitted_at}; archive: {archive_key}; see SUBMITTED.md for details.` Exit 0. Mismatch (the marker is from a prior approval that should have been cleared during a re-open): treat `SUBMITTED.md` as stale, delete it, and fall through to the "both markers absent" branch below.
+     - `SUBMITTED.md` present **and** `SUBMISSION_FAILED.md` absent → **verify both the join key and the latest submissions entry** before treating as idempotent. (1) Parse `SUBMITTED.md`'s `**Approved at**: {iso}` line and compare to the current `beril.yaml.approval.at`; mismatch (the marker is from a prior approval that should have been cleared during a re-open) → treat `SUBMITTED.md` as stale, delete it, and fall through to the "both markers absent" branch below. (2) On match, also consult `beril.yaml.submissions[]` for the **most recent** entry with `approved_at == approval.at`. If that latest entry's `status: success` → idempotent. Print `INFO  Already submitted on {SUBMITTED.md submitted_at}; archive: {archive_key}; see SUBMITTED.md for details.` Exit 0. If the latest entry's `status: failed` (a stale `SUBMITTED.md` from an earlier success that was followed by a failed retry, plus the failure marker was then deleted somehow) → delete the stale `SUBMITTED.md` and proceed to Phase 3 only. If no submissions entry exists for this `approved_at` at all → recreate-from-marker case, accept idempotent.
      - `SUBMISSION_FAILED.md` present (regardless of `SUBMITTED.md`) → proceed to Phase 3 only (skip approval; approval is recorded and report hash is current). Phase 3's pre-upload normalization will clean up the marker conflict.
-     - Both markers absent → consult `beril.yaml.submissions[]` for an entry with `approved_at == approval.at` and `status: success`. If found → marker file was lost (manual deletion, filesystem mishap); recreate `SUBMITTED.md` from the recorded entry, report idempotent, exit 0. If not found → upload was never attempted (e.g., agent died between approval and Phase 3); proceed to Phase 3 only.
+     - Both markers absent → consult `beril.yaml.submissions[]` for the **most recent** entry with `approved_at == approval.at`. If that entry's `status: success` → marker file was lost (manual deletion, filesystem mishap); recreate `SUBMITTED.md` from the recorded entry, report idempotent, exit 0. If that entry's `status: failed`, or no entry exists → upload was never attempted or last attempt failed; proceed to Phase 3 only.
 
 #### 1b. Review-currency check (status: reviewed)
 
@@ -183,8 +183,8 @@ At this point the project is **approved locally** regardless of upload outcome. 
 Run unconditionally (including retry-only flows that entered Phase 3 directly from Phase 1 on `status: complete`):
 
 - **Recover from interrupted Phase 2 if needed**: check whether `projects/{project_id}/REVIEW.md` exists. If it does not (the previous run died between writing the approval block and copying the review file), recreate it: copy `projects/{project_id}/{approval.review}` (e.g., `REVIEW_3.md`) to `projects/{project_id}/REVIEW.md`. Then verify `sha256sum REVIEW.md == approval.review_hash`; mismatch means the underlying numbered review was edited since approval — abort with `Error: REVIEW_N.md changed since approval; cannot recover. Demote the project (rerun /berdl-review) and re-approve.`
-- Recompute `sha256sum REPORT.md` and `sha256sum REVIEW.md` (the canonical copy written in Phase 2c, possibly just recreated above). Compare to `approval.report_hash` and `approval.review_hash` in `beril.yaml`. If either has changed, abort with `Error: files changed since approval; please re-run /submit.` This guards retry paths and the brief window between Phase 2 and Phase 3.
-- Delete `SUBMISSION_FAILED.md` if present, and remove the `(Submission pending; see SUBMISSION_FAILED.md.)` parenthetical from `README.md` `## Status` if present. Failure markers represent the **previous** attempt's outcome and must not be archived as part of the current attempt.
+- **Verify both the canonical and numbered review hashes**. Recompute `sha256sum REPORT.md`, `sha256sum REVIEW.md` (the canonical copy), AND `sha256sum projects/{project_id}/{approval.review}` (the numbered file named in the approval, e.g. `REVIEW_3.md` — both files end up in the lakehouse archive). All three must match `approval.report_hash` / `approval.review_hash` / `approval.review_hash` respectively. If any has changed, abort with `Error: files changed since approval; please re-run /submit.` This guards retry paths and the brief window between Phase 2 and Phase 3, and catches the case where the canonical `REVIEW.md` is unchanged but the numbered `REVIEW_N.md` was edited.
+- **Clear both marker files** before upload, so the post-upload step (success or failure) writes a clean state and an interrupt mid-Phase-3 doesn't leave a stale marker that misleads the next `/submit` run. Delete both `SUBMITTED.md` and `SUBMISSION_FAILED.md` if present. Also remove the `(Submission pending; see SUBMISSION_FAILED.md.)` parenthetical from `README.md` `## Status` if present. The `beril.yaml.submissions[]` audit log retains history; markers are reconstituted by Phase 3c per outcome.
 
 #### 3b. Run upload
 
@@ -197,7 +197,19 @@ The script archives all project files to `s3a://cdm-lake/tenant-general-warehous
 mc alias set berdl-minio $MINIO_ENDPOINT_URL $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
 ```
 
-The script's **final stdout line is a single-line JSON object** with at minimum `{"archive_key": "...", "file_count": N, "byte_total": N, "duration_seconds": N}`. Parse this for the success record. The script's exit code is 0 on success, non-zero on failure.
+The script's **final stdout line is a single-line JSON object** describing the outcome. Exit-code contract:
+
+- **Exit 0** — full success. JSON schema: `{"archive_key", "file_count", "byte_total", "duration_seconds"}`. Use these values for the success record.
+- **Exit 1** — hard failure (mc alias not configured, `mc cp` returned non-zero, project directory missing). No JSON on stdout; the error is on stderr. Treat as Phase 3 failure with the stderr text as `error`.
+- **Exit 2** — partial success: the archive was written but `mc ls` shows fewer files than the local manifest. JSON has the success schema PLUS an `error` field describing the mismatch. The archive at `archive_key` exists but is incomplete — **treat as a Phase 3 failure** (write `SUBMISSION_FAILED.md` using the JSON's `error` field; do NOT write `SUBMITTED.md`). Surface `archive_key` in the failure marker for forensics.
+
+In all cases, parse the JSON if exit is 0 or 2; on exit 1 fall back to the stderr text.
+
+#### 3b.5. Post-upload integrity rehash
+
+If `lakehouse_upload.py` returned exit 0, recompute `sha256sum REPORT.md`, `sha256sum REVIEW.md`, AND `sha256sum projects/{project_id}/{approval.review}` once more, comparing against `approval.report_hash` / `approval.review_hash`. If any has changed since Phase 3a, the lakehouse archive may now contain content that doesn't match the recorded approval (the user edited a file during the upload window). **Treat as a Phase 3 failure**: do NOT write `SUBMITTED.md`; jump to Phase 3c failure handling with `error: "files changed during upload; archive may be inconsistent — re-run /submit"`.
+
+This is best-effort: by the time we detect drift, the archive already exists at `archive_key`. The failure marker tells the user to re-run, which will overwrite the archive with the (now hopefully stable) approved content. The advisory `.submit.lock` does not block file edits, only concurrent `/submit` runs — see Notes for the full limitation.
 
 #### 3c. Record outcome
 
@@ -282,7 +294,7 @@ After Phase 3 completes, exactly one of `SUBMITTED.md` or `SUBMISSION_FAILED.md`
 - `REVIEW.md` (no number) is the canonical copy of the approved review, written at Phase 2c. Don't edit it manually — it's overwritten on each successful approval.
 - `/submit` is idempotent on retries: re-running on `status: complete` with the existing approval is safe; the workflow recognizes which phase needs to run.
 - Reviews are advisory. You can approve a project with open critical or important issues — that's what the explicit y/n prompt is for. Approval is the responsible author's act of standing behind the work given everything they know.
-- `/submit` uses an advisory `.submit.lock` file to serialize concurrent invocations on the same project. It's skill-text-enforced, not OS-level — don't run two `/submit` invocations against the same project at the same time.
+- `/submit` uses an advisory `.submit.lock` file to serialize concurrent invocations on the same project. It's skill-text-enforced, not OS-level — don't run two `/submit` invocations against the same project at the same time. The lock does **not** prevent the user from editing project files during upload; Phase 3b.5 catches that case after the fact and marks the submission failed so a retry will re-archive the stable content.
 - The lakehouse archive's `beril.yaml.submissions[]` lags by one entry — the success record for the upload that created the archive itself is written locally after the upload completes. The archive's existence at `archive_key` is the proof of submission; the missing entry is metadata only. See `PROJECT.md` "Filesystem markers" for the full design rationale.
 
 ## Pitfall Detection
