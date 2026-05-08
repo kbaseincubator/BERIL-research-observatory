@@ -185,8 +185,10 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 - **References**: Always include references, even for well-known data sources. At minimum cite the primary data sources (e.g., Price et al. 2018 for Fitness Browser, Arkin et al. 2018 for KBase).
 
 Also update `projects/{project_id}/README.md`:
-- Update `## Status` to "Analysis — report drafted, awaiting `/submit` review" (the project is not yet `complete`; that comes after `/submit` passes review)
-- Preserve existing `## Research Question` and `## Authors` sections
+- **README Status update is conditional on this being a forward transition.** Read the current `beril.yaml` status:
+  - If it was `active` (the normal forward path that this skill advances to `analysis`), update `## Status` to "Analysis — report drafted, awaiting `/submit` review."
+  - If it was already `analysis`, `review`, or `complete` (re-synthesis to update an existing report after revision or feedback), **leave README Status untouched.** Re-synthesis must not downgrade a project's human-facing status — that would lie about state for projects that have already been reviewed or completed.
+- Preserve existing `## Research Question` and `## Authors` sections in all cases.
 
 #### Step 7b: Update Manifest
 

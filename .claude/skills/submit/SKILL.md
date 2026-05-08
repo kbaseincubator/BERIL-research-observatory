@@ -75,21 +75,11 @@ Pre-submission checklist for: {project_id}
 
 Use PASS/FAIL/WARN labels. If any critical check fails (FAIL), print the failures and stop — do not invoke the reviewer.
 
-### Step 3: Status Check
+### Step 3: Status consistency check (read-only)
 
-Before invoking the reviewer, read the `## Status` section in `projects/{project_id}/README.md`. If the status is not "Completed" (i.e., it still says "In Progress", "Proposed", or similar), ask the user:
+Before invoking the reviewer, verify the README `## Status` block is consistent with `beril.yaml`. With `status: analysis` (the expected pre-submit manifest state), the README should read something like "Analysis — report drafted, awaiting `/submit` review" (the form `/synthesize` writes). If they're out of sync, mention it to the user but **do not** rewrite either field at this step.
 
-> "The project status is currently '{current_status}'. Should I update it to 'Completed' before submitting?"
-
-If the user agrees, update the `## Status` section in README.md to "Completed" with a brief summary of findings (pull from the `## Key Findings` section of REPORT.md). For example:
-
-```
-## Status
-
-Completed — {one-line summary from Key Findings}.
-```
-
-If the user declines, proceed with the current status.
+The README is flipped to "Completed" only in Step 7, **after** the reviewer runs and the lakehouse upload succeeds. Marking it "Completed" before review would lie about the project's state if the reviewer flags issues and the workflow stops in `review`.
 
 ### Step 4: Invoke Reviewer
 
@@ -139,8 +129,15 @@ The AI reviewer's judgment is advisory, not authoritative. The human researcher 
 
 This step runs for clean reviews and for user-overridden reviews.
 
-1. If `beril.yaml` exists, set `status: complete`
-2. Upload the project to the lakehouse:
+1. If `beril.yaml` exists, set `status: complete` and `last_session_at` to now.
+2. Update `projects/{project_id}/README.md` `## Status` to:
+   ```
+   ## Status
+
+   Completed — {one-line summary from REPORT.md `## Key Findings`}.
+   ```
+   This is the canonical moment when the human-facing status flips to Completed — not before. If `REPORT.md` doesn't have a clear one-liner to pull from, write a brief summary based on the report's findings.
+3. Upload the project to the lakehouse:
    ```bash
    python tools/lakehouse_upload.py {project_id}
    ```
@@ -149,10 +146,8 @@ This step runs for clean reviews and for user-overridden reviews.
    mc alias set berdl-minio $MINIO_ENDPOINT_URL $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
    ```
    If the upload fails (e.g., mc not configured, network issue), print the error and continue — don't block the submission.
-3. Remind the user to mark the project as complete in these locations:
-   - `projects/{project_id}/README.md` — ensure `## Status` says "Completed" with a one-line summary
-   - `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary
-4. Suggest committing all changes
+4. Remind the user to update `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary.
+5. Suggest committing all changes.
 
 > **Note**: For final submission reviews, use the default frontier model (no `--model` flag). Use `--model` with faster/cheaper models for iterating on reviewer feedback.
 
