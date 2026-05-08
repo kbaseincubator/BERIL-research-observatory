@@ -59,6 +59,17 @@ Run these checks against the project directory and print a checklist summary:
 
 Print the checklist in PASS/FAIL/WARN/INFO format. If any critical check FAILs, print failures and stop — do not enter Phase 1.
 
+### Phase 0 — exclusion lock
+
+`/submit` mutates approval state and uploads to a shared remote, so two concurrent invocations on the same project would race. Use a project-local lock file to serialize:
+
+- Check for `projects/{project_id}/.submit.lock`. If it exists, abort with:
+  > `Error: another /submit run appears to be in progress for this project (lock at .submit.lock, created {file_mtime}). If no /submit is actually running, delete the file manually and retry.`
+- Otherwise, write the lock file with the current ISO timestamp as its only content (acts as a human-readable "when did this start"). Hold it through the whole `/submit` flow.
+- Delete `.submit.lock` at the end of Phase 3 (success path), at the end of Phase 3 (failure path), at any FAIL exit, and on the explicit reopen abort path. **Always** clean up — never leave the lock behind.
+
+The lock is advisory and skill-text-enforced, not OS-level. It defends against the common case (the user running `/submit` twice in quick succession) but a determined parallel run can still bypass it. Document the limitation rather than try to engineer around it.
+
 ### Phase 1 — pre-flight gates
 
 This phase performs no state changes *except* for the explicit reopen confirmation flow on hash mismatch (which has its own user prompt).
@@ -171,7 +182,8 @@ At this point the project is **approved locally** regardless of upload outcome. 
 
 Run unconditionally (including retry-only flows that entered Phase 3 directly from Phase 1 on `status: complete`):
 
-- Recompute `sha256sum REPORT.md` and `sha256sum REVIEW.md` (the canonical copy written in Phase 2c). Compare to `approval.report_hash` and `approval.review_hash` in `beril.yaml`. If either has changed, abort with `Error: files changed since approval; please re-run /submit.` This guards retry paths and the brief window between Phase 2 and Phase 3.
+- **Recover from interrupted Phase 2 if needed**: check whether `projects/{project_id}/REVIEW.md` exists. If it does not (the previous run died between writing the approval block and copying the review file), recreate it: copy `projects/{project_id}/{approval.review}` (e.g., `REVIEW_3.md`) to `projects/{project_id}/REVIEW.md`. Then verify `sha256sum REVIEW.md == approval.review_hash`; mismatch means the underlying numbered review was edited since approval — abort with `Error: REVIEW_N.md changed since approval; cannot recover. Demote the project (rerun /berdl-review) and re-approve.`
+- Recompute `sha256sum REPORT.md` and `sha256sum REVIEW.md` (the canonical copy written in Phase 2c, possibly just recreated above). Compare to `approval.report_hash` and `approval.review_hash` in `beril.yaml`. If either has changed, abort with `Error: files changed since approval; please re-run /submit.` This guards retry paths and the brief window between Phase 2 and Phase 3.
 - Delete `SUBMISSION_FAILED.md` if present, and remove the `(Submission pending; see SUBMISSION_FAILED.md.)` parenthetical from `README.md` `## Status` if present. Failure markers represent the **previous** attempt's outcome and must not be archived as part of the current attempt.
 
 #### 3b. Run upload
@@ -270,6 +282,8 @@ After Phase 3 completes, exactly one of `SUBMITTED.md` or `SUBMISSION_FAILED.md`
 - `REVIEW.md` (no number) is the canonical copy of the approved review, written at Phase 2c. Don't edit it manually — it's overwritten on each successful approval.
 - `/submit` is idempotent on retries: re-running on `status: complete` with the existing approval is safe; the workflow recognizes which phase needs to run.
 - Reviews are advisory. You can approve a project with open critical or important issues — that's what the explicit y/n prompt is for. Approval is the responsible author's act of standing behind the work given everything they know.
+- `/submit` uses an advisory `.submit.lock` file to serialize concurrent invocations on the same project. It's skill-text-enforced, not OS-level — don't run two `/submit` invocations against the same project at the same time.
+- The lakehouse archive's `beril.yaml.submissions[]` lags by one entry — the success record for the upload that created the archive itself is written locally after the upload completes. The archive's existence at `archive_key` is the proof of submission; the missing entry is metadata only. See `PROJECT.md` "Filesystem markers" for the full design rationale.
 
 ## Pitfall Detection
 

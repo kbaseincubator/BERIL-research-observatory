@@ -89,7 +89,9 @@ Two visible-from-`ls` files in `projects/<id>/` signal upload state. Exactly one
 | `SUBMITTED.md` | The most recent lakehouse upload succeeded. Contains archive key, timestamp, ORCID, file/byte counts, and the join key (`approved_at`) into `beril.yaml.submissions[]` for full history. |
 | `SUBMISSION_FAILED.md` | The most recent lakehouse upload failed. Contains the error and a "re-run `/submit`" hint. Cleared on next successful retry. |
 
-**The marker files are intentionally local-only.** They're written *after* the lakehouse upload returns, so they will not appear inside the lakehouse copy of the project. That's by design — they exist for human visibility on the user's machine ("did this submit?"), not as part of the archived artifact. The authoritative submission audit lives in `beril.yaml.submissions[]`, which is part of the project files and therefore is captured in the lakehouse archive on the *next* re-submit (if any). The current submission's success record is recorded locally only.
+**The marker files are intentionally local-only.** They're written *after* the lakehouse upload returns, so they will not appear inside the lakehouse copy of the project. That's by design — they exist for human visibility on the user's machine ("did this submit?"), not as part of the archived artifact.
+
+**The archive's `beril.yaml.submissions[]` lags by one entry.** The success record for the current submission is appended locally *after* the upload completes, so the archive's `beril.yaml` always lacks the entry for the upload that created the archive itself. This is acceptable: the archive's mere existence at `archive_key` is the proof that the submission happened — the entry is metadata, not the artifact. Any subsequent re-submit's archive will contain the previous success record. Implementations that need the current submission record archived can add a post-upload `mc cp beril.yaml` step, but `/submit` doesn't do this today.
 
 ### Downstream gating
 

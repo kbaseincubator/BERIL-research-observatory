@@ -236,21 +236,22 @@ def upload_project(project_id, base_path):
     # Time the upload step itself for the duration metric
     upload_start = time.monotonic()
 
-    # Upload entire project directory
-    rc, out, err = _mc("cp", "--recursive", f"{project_path}/", remote_path, capture=False)
-    if rc != 0:
-        print(f"ERROR: mc cp failed for {project_id}")
+    # Upload entire project directory. Always clean up the generated metadata
+    # file afterwards, regardless of upload outcome — leaving it behind on
+    # failure pollutes git status and confuses later retry manifests.
+    try:
+        rc, out, err = _mc("cp", "--recursive", f"{project_path}/", remote_path, capture=False)
+        if rc != 0:
+            print(f"ERROR: mc cp failed for {project_id}")
+            return None
+
+        # Validate upload
+        rc, out, _ = _mc("ls", "--recursive", remote_path)
+        remote_count = len([line for line in out.strip().split("\n") if line.strip()])
+
+        duration_seconds = round(time.monotonic() - upload_start, 2)
+    finally:
         metadata_path.unlink(missing_ok=True)
-        return None
-
-    # Validate upload
-    rc, out, _ = _mc("ls", "--recursive", remote_path)
-    remote_count = len([line for line in out.strip().split("\n") if line.strip()])
-
-    duration_seconds = round(time.monotonic() - upload_start, 2)
-
-    # Clean up local metadata file (it's now in the lakehouse)
-    metadata_path.unlink(missing_ok=True)
 
     result = {
         "project_id": project_id,
