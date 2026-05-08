@@ -32,6 +32,17 @@ If no `<project_id>` argument is provided, detect from the current working direc
 2. Validate that `projects/{project_id}/` exists in the repository root.
 3. If the directory does not exist, print an error and stop.
 
+### Phase 0 — exclusion lock
+
+`/submit` mutates approval state and uploads to a shared remote, so two concurrent invocations on the same project would race. Acquire the lock **before** any other workflow step (including the read-only checklist) so two agents running concurrently both see the second one's lock check fail rather than both passing the checks and racing into Phase 2.
+
+- Check for `projects/{project_id}/.submit.lock`. If it exists, abort with:
+  > `Error: another /submit run appears to be in progress for this project (lock at .submit.lock, created {file_mtime}). If no /submit is actually running, delete the file manually and retry.`
+- Otherwise, write the lock file with the current ISO timestamp as its only content (acts as a human-readable "when did this start"). Hold it through the whole `/submit` flow.
+- Delete `.submit.lock` at the end of Phase 3 (success path), at the end of Phase 3 (failure path), at any FAIL exit (including the pre-submission checklist), and on the explicit reopen abort path. **Always** clean up — never leave the lock behind.
+
+The lock is advisory and skill-text-enforced, not OS-level. It defends against the common case (the user running `/submit` twice in quick succession) but a determined parallel run can still bypass it. Document the limitation rather than try to engineer around it.
+
 ### Step 2: Pre-submission checklist
 
 Run these checks against the project directory and print a checklist summary:
@@ -57,18 +68,7 @@ Run these checks against the project directory and print a checklist summary:
 - **Reproduction guide**: README.md should contain a `## Reproduction` section.
 - **User-provided data**: if `user_data/` has content, print an `INFO` line with file count and total size.
 
-Print the checklist in PASS/FAIL/WARN/INFO format. If any critical check FAILs, print failures and stop — do not enter Phase 1.
-
-### Phase 0 — exclusion lock
-
-`/submit` mutates approval state and uploads to a shared remote, so two concurrent invocations on the same project would race. Use a project-local lock file to serialize:
-
-- Check for `projects/{project_id}/.submit.lock`. If it exists, abort with:
-  > `Error: another /submit run appears to be in progress for this project (lock at .submit.lock, created {file_mtime}). If no /submit is actually running, delete the file manually and retry.`
-- Otherwise, write the lock file with the current ISO timestamp as its only content (acts as a human-readable "when did this start"). Hold it through the whole `/submit` flow.
-- Delete `.submit.lock` at the end of Phase 3 (success path), at the end of Phase 3 (failure path), at any FAIL exit, and on the explicit reopen abort path. **Always** clean up — never leave the lock behind.
-
-The lock is advisory and skill-text-enforced, not OS-level. It defends against the common case (the user running `/submit` twice in quick succession) but a determined parallel run can still bypass it. Document the limitation rather than try to engineer around it.
+Print the checklist in PASS/FAIL/WARN/INFO format. If any critical check FAILs, print failures, **release the lock**, and stop — do not enter Phase 1.
 
 ### Phase 1 — pre-flight gates
 
@@ -93,20 +93,28 @@ For projects with `beril.yaml`:
 
 ##### Status `complete` resolution
 
-  1. **First** recompute the hashes of all approved content and compare to the values in `beril.yaml.approval`:
+  1. **First** validate the approved content against `beril.yaml.approval` along three axes:
+
+     **Existence checks** (a missing file is a recoverability question, not a hash-mismatch):
+
+     - `projects/{project_id}/REPORT.md` must exist. Missing → abort with `Error: REPORT.md is missing on a complete project; restore it from version control before re-running /submit.` (No automated demote path: the report is the project's primary artifact, and proceeding without it would silently archive an incomplete project.)
+     - `projects/{project_id}/REVIEW.md` may be missing — Phase 3a recreates it from the numbered review.
+     - `projects/{project_id}/{approval.review}` (the numbered file named in the approval, e.g. `REVIEW_3.md`) may be missing on its own (Phase 3a recovers from `REVIEW.md`), **but** if both `REVIEW.md` AND the numbered file are missing, the approved review content is unrecoverable. Treat as approved-content loss and offer the same demote prompt as the hash-mismatch branch (see below). Wording: "Both `REVIEW.md` and `{approval.review}` are missing on this complete project. The approved review content is unrecoverable. Demote to `analysis`? …"
+
+     **Hash checks** (only on files that exist):
 
      - `sha256sum projects/{project_id}/REPORT.md` vs `approval.report_hash`.
-     - `sha256sum projects/{project_id}/REVIEW.md` vs `approval.review_hash` (skip if `REVIEW.md` is missing — Phase 3a recreates it from the numbered review).
-     - `sha256sum projects/{project_id}/{approval.review}` (e.g. `REVIEW_3.md`) vs `approval.review_hash` (skip if the numbered file is missing — that's a separate "cannot recover" case handled by Phase 3a).
+     - `sha256sum projects/{project_id}/REVIEW.md` vs `approval.review_hash` (skip if missing).
+     - `sha256sum projects/{project_id}/{approval.review}` vs `approval.review_hash` (skip if missing).
 
-     Any mismatch triggers the **reopen prompt** (same prompt regardless of which file drifted; phrase the explanation according to which one):
+     Any hash mismatch OR the both-files-missing case triggers the **reopen prompt** (phrase the explanation according to which condition fired):
 
-     > "{REPORT.md | REVIEW.md | REVIEW_N.md} has changed since this project was approved ({approval.at}). The previous approval no longer reflects the current approved content. Demote status to `analysis`? Previous approval will be archived under `previous_approvals`; both `SUBMITTED.md` and `SUBMISSION_FAILED.md` will be removed (audit lives in `beril.yaml`)."
+     > "{REPORT.md changed | REVIEW.md changed | REVIEW_N.md changed | both REVIEW.md and REVIEW_N.md missing} since this project was approved ({approval.at}). The previous approval no longer reflects the current approved content. Demote status to `analysis`? Previous approval will be archived under `previous_approvals`; both `SUBMITTED.md` and `SUBMISSION_FAILED.md` will be removed (audit lives in `beril.yaml`)."
 
-     - Yes → move `approval` to `previous_approvals: []` with an added `archived_at: "<now>"` field, set `status: analysis`, update `README.md` `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`.", delete `projects/{project_id}/REVIEW.md` (the canonical copy of the now-archived review is no longer current), and delete both marker files if present. Tell the user "/submit aborted; run `/berdl-review` to produce a current review, then `/submit` again." Stop.
+     - Yes → move `approval` to `previous_approvals: []` with an added `archived_at: "<now>"` field, set `status: analysis`, update `README.md` `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`.", delete `projects/{project_id}/REVIEW.md` if present (the canonical copy of the now-archived review is no longer current), and delete both marker files if present. Tell the user "/submit aborted; run `/berdl-review` to produce a current review, then `/submit` again." Stop.
      - No → leave alone, warn that the project is in an inconsistent state, abort `/submit`.
 
-     Markers are not consulted in this branch — the approved content no longer matches what's on disk. Checking REVIEW.md and the numbered review here (rather than only in Phase 3a) avoids an infinite-retry loop where REVIEW drift is only detected mid-flight, after Phase 2 has been skipped: without an automated demote path, the user has no way out.
+     Markers are not consulted in this branch — the approved content no longer matches what's on disk. Doing these checks in Phase 1a (rather than only in Phase 3a) avoids an infinite-retry loop where review drift or loss is only detected mid-flight, after Phase 2 has been skipped: without an automated demote path, the user has no way out.
 
   2. **Then** branch on markers (`SUBMISSION_FAILED.md` always wins on conflict):
 
@@ -203,6 +211,8 @@ The script archives all project files to `s3a://cdm-lake/tenant-general-warehous
 mc alias set berdl-minio $MINIO_ENDPOINT_URL $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
 ```
 
+**Re-submission overwrite semantics**: the upload script pre-clears the remote prefix (`mc rm --recursive --force`) before `mc cp` whenever the prefix already has contents. This prevents stale files from a previous submission from contaminating the new archive when files are dropped or renamed between submissions. The brief mid-upload window during which the archive is empty is acceptable: a `complete + SUBMISSION_FAILED.md` state already signals "incomplete archive" to anyone consuming it. First-time submissions skip the clear because the remote prefix is empty.
+
 The script's **final stdout line is a single-line JSON object** describing the outcome. Exit-code contract:
 
 - **Exit 0** — full success. JSON schema: `{"archive_key", "file_count", "byte_total", "duration_seconds"}`. Use these values for the success record.
@@ -221,75 +231,84 @@ This is best-effort: by the time we detect drift, the archive already exists at 
 
 Markers and `beril.yaml.submissions[]` are managed exclusively by this step. `submissions[i].approved_at` is the **join key** linking each upload attempt to the corresponding `approval.at` (or `previous_approvals[*].at`).
 
+**Ordering invariant**: always write the `beril.yaml.submissions[]` entry **first**, then the marker file. `beril.yaml` is the source of truth for the audit log; the marker is a derived view for at-a-glance user visibility. If the run dies between the YAML write and the marker write, the next `/submit` invocation rebuilds the marker from `submissions[]` (Phase 1a's "both markers absent" branch already covers this for success entries; the failure-case reconstruction is documented at the end of this section).
+
 ##### On success
 
-- Write `projects/{project_id}/SUBMITTED.md`:
-  ```markdown
-  # Project Submitted
+1. **First**, append to `beril.yaml.submissions: []`:
+   ```yaml
+   submissions:
+     - status: success
+       attempted_at: "<iso>"
+       archive_key: "{archive_key}"
+       file_count: {file_count}
+       byte_total: {byte_total}
+       duration_seconds: {duration_seconds}
+       approved_at: "{approval.at}"
+   ```
+2. **Then**, write `projects/{project_id}/SUBMITTED.md`:
+   ```markdown
+   # Project Submitted
 
-  This project was successfully archived to the BERDL lakehouse.
+   This project was successfully archived to the BERDL lakehouse.
 
-  - **Project**: {project_id}
-  - **Archive**: {archive_key}
-  - **Submitted at**: {iso}
-  - **Submitted by**: {name} ({orcid})
-  - **Approved at**: {approval.at}    <!-- join key into beril.yaml -->
+   - **Project**: {project_id}
+   - **Archive**: {archive_key}
+   - **Submitted at**: {iso}
+   - **Submitted by**: {name} ({orcid})
+   - **Approved at**: {approval.at}    <!-- join key into beril.yaml -->
 
-  ## Stats
-  - Files: {file_count}, total {byte_total} bytes
-  - Upload duration: {duration_seconds}s
+   ## Stats
+   - Files: {file_count}, total {byte_total} bytes
+   - Upload duration: {duration_seconds}s
 
-  ## Approved content
-  - `REPORT.md` hash: {approval.report_hash}
-  - Review: `{approval.review}` (hash {approval.review_hash})
+   ## Approved content
+   - `REPORT.md` hash: {approval.report_hash}
+   - Review: `{approval.review}` (hash {approval.review_hash})
 
-  ## History
-  {M} previous submission(s) archived in `beril.yaml.submissions`.
-  ```
-- Append to `beril.yaml.submissions: []`:
-  ```yaml
-  submissions:
-    - status: success
-      attempted_at: "<iso>"
-      archive_key: "{archive_key}"
-      file_count: {file_count}
-      byte_total: {byte_total}
-      duration_seconds: {duration_seconds}
-      approved_at: "{approval.at}"
-  ```
-- Delete `SUBMISSION_FAILED.md` if present (it shouldn't be after Phase 3a's normalization, but defensive).
-- Remind the user about `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary.
-- Suggest committing all changes.
+   ## History
+   {M} previous submission(s) archived in `beril.yaml.submissions`.
+   ```
+3. **Then**, delete `SUBMISSION_FAILED.md` if present (defensive — should already be gone after Phase 3a's normalization).
+4. Remind the user about `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary.
+5. Suggest committing all changes.
 
 ##### On failure
 
-- Write `projects/{project_id}/SUBMISSION_FAILED.md`:
-  ```markdown
-  # Submission Pending
+1. **First**, append to `beril.yaml.submissions: []` with `status: failed`, `error: "..."`, `attempted_at`, `approved_at`, and `archive_key: "{archive_key}"` when known (include for exit-2 and Phase-3b.5 failures where the upload script emitted JSON containing `archive_key`; omit for hard exit-1 failures with no archive written).
+2. **Then**, write `projects/{project_id}/SUBMISSION_FAILED.md`:
+   ```markdown
+   # Submission Pending
 
-  The lakehouse upload for this project failed.
+   The lakehouse upload for this project failed.
 
-  - **Project**: {project_id}
-  - **Last attempt**: {iso}
-  - **Error**: {error}
-  - **Approved at**: {approval.at}    <!-- join key into beril.yaml -->
-  - **Archive key (partial)**: {archive_key}    <!-- only if upload exit was 2 or Phase 3b.5 detected drift; archive exists but is incomplete or content-drifted -->
+   - **Project**: {project_id}
+   - **Last attempt**: {iso}
+   - **Error**: {error}
+   - **Approved at**: {approval.at}    <!-- join key into beril.yaml -->
+   - **Archive key (partial)**: {archive_key}    <!-- only if upload exit was 2 or Phase 3b.5 detected drift; archive exists but is incomplete or content-drifted -->
 
-  Status is `complete` (the approval is recorded in `beril.yaml`).
-  Re-run `/submit` to retry the upload — it will skip the approval step
-  and only retry the upload.
-  ```
-  Omit the `Archive key (partial)` line when the failure is a hard error (exit 1) with no archive written. Include it whenever the upload script emitted JSON containing `archive_key` (exit 0 but rehash-failed in Phase 3b.5, or exit 2 partial-success).
-- Append to `beril.yaml.submissions: []` with `status: failed`, `error: "..."`, `attempted_at`, `approved_at`, and `archive_key: "{archive_key}"` when known (same condition as the marker line — include for exit-2 and Phase-3b.5 failures, omit for hard exit-1 failures).
-- Status stays `complete`. Update `README.md` `## Status` to add a parenthetical:
-  ```
-  ## Status
+   Status is `complete` (the approval is recorded in `beril.yaml`).
+   Re-run `/submit` to retry the upload — it will skip the approval step
+   and only retry the upload.
+   ```
+   Omit the `Archive key (partial)` line when the failure is a hard error (exit 1) with no archive written. Include it whenever the upload script emitted JSON containing `archive_key` (exit 0 but rehash-failed in Phase 3b.5, or exit 2 partial-success).
+3. Status stays `complete`. Update `README.md` `## Status` to add a parenthetical:
+   ```
+   ## Status
 
-  Completed — {summary}. (Submission pending; see SUBMISSION_FAILED.md.)
-  ```
-  On a subsequent successful retry, the parenthetical is removed by Phase 3a.
-- Delete `SUBMITTED.md` if present (a previous successful submission is no longer the latest state).
-- Print the error and tell the user how to fix the underlying issue (e.g., `mc alias` config, network) and to re-run `/submit`.
+   Completed — {summary}. (Submission pending; see SUBMISSION_FAILED.md.)
+   ```
+   On a subsequent successful retry, the parenthetical is removed by Phase 3a.
+4. Delete `SUBMITTED.md` if present (a previous successful submission is no longer the latest state).
+5. Print the error and tell the user how to fix the underlying issue (e.g., `mc alias` config, network) and to re-run `/submit`.
+
+##### Marker reconstruction from `submissions[]`
+
+If `/submit` is invoked and finds an inconsistent state where the audit log has a recent `submissions[]` entry whose marker is missing (because the run died after step 1 but before step 2 above), reconstruct the marker on the next pass:
+
+- Phase 1a's "both markers absent" branch reconstructs `SUBMITTED.md` from a `status: success` entry with matching `approved_at`. Already documented above.
+- For a missing failure marker (last `submissions[]` entry is `status: failed` matching current `approval.at` and both markers absent), the next `/submit` proceeds to Phase 3 anyway and will overwrite either marker with its outcome — no explicit reconstruction needed; the missing failure marker doesn't trap the user. The README's "Submission pending" parenthetical may be missing in this gap; Phase 3a's normalization handles it on the next attempt.
 
 ##### Marker invariant
 

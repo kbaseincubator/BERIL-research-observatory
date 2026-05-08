@@ -240,6 +240,27 @@ def upload_project(project_id, base_path):
     # file afterwards, regardless of upload outcome — leaving it behind on
     # failure pollutes git status and confuses later retry manifests.
     try:
+        # Re-submission contamination guard: if the remote prefix already has
+        # contents from a previous submission, clear them before uploading.
+        # `mc cp --recursive` overlays files but does not delete remote files
+        # absent from the new manifest, so a re-submit that drops files would
+        # leave stale objects in the archive. The pre-clear ensures the
+        # archive at archive_key contains *only* the current approved manifest.
+        # First-time submissions skip this (rc != 0 from `mc ls` on missing
+        # prefix is normal).
+        rc, ls_out, _ = _mc("ls", "--recursive", remote_path)
+        if rc == 0 and any(line.strip() for line in ls_out.split("\n")):
+            rc_rm, _, rm_err = _mc("rm", "--recursive", "--force", remote_path)
+            if rc_rm != 0:
+                print(
+                    f"ERROR: pre-upload clear of {remote_path} failed (rc={rc_rm}); "
+                    f"refusing to upload to avoid mixing with stale archive contents.",
+                    file=sys.stderr,
+                )
+                if rm_err:
+                    print(rm_err, file=sys.stderr)
+                return None
+
         rc, out, err = _mc("cp", "--recursive", f"{project_path}/", remote_path, capture=False)
         if rc != 0:
             # Send to stderr so /submit (and other automated callers that
