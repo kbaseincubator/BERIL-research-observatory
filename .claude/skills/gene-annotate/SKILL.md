@@ -7,7 +7,7 @@ user-invocable: true
 
 # Gene Annotation Skill
 
-Run the `gene-annotate` CLI to produce GeneRIF-style functional annotations for protein sequences. The tool integrates homology search (PaperBLAST via DIAMOND), phenotypic fitness data, InterProScan domain analysis, and LLM reasoning to generate evidence-tiered annotations.
+Run the `gene-annotate` CLI to produce GeneRIF-style functional annotations for protein sequences. The tool integrates four BERDL evidence layers — PaperBLAST homology (literature-curated), pangenome cluster annotations, Fitness Browser phenotypic data, and gene neighborhoods — plus InterProScan domain analysis and LLM reasoning to generate evidence-tiered annotations. Additional BERDL datasets can be layered on top via `--berdl-source-config`.
 
 ## When to Use
 
@@ -60,10 +60,24 @@ Pass `--api-key KEY` only to override with a literal key value.
 
 ### BERDL Evidence Layer
 
-BERDL is always used as an additional evidence source. Requires:
+When `--berdl-data-dir` is provided, five evidence sources are always included automatically:
+
+| Source | DIAMOND DB | Toolkit | Output column |
+|--------|-----------|---------|---------------|
+| PaperBLAST (literature-curated homologs) | `paperblast_uniq.dmnd` | `BatchBERDLPaperBLASTToolkit` | `berdl_paperblast_evidence` |
+| Pangenome cluster annotations | `pangenome_gene_cluster.dmnd` | `BatchBERDLPangenomeToolkit` | `berdl_pangenome_evidence` |
+| Fitness Browser co-fitness profiles | `fitnessbrowser_aaseqs.dmnd` | `BatchBERDLFitnessBrowserToolkit` | `berdl_fitness_evidence` |
+| Gene neighborhoods | *(same as Fitness Browser)* | `fetch_gene_neighborhood_batch` | `gene_neighborhoods` |
+| Fitness Browser gene annotations | `fitnessbrowser_aaseqs.dmnd` | `BatchBERDLGenericToolkit` (builtin) | `evidence_fitnessbrowser_aaseqs` |
+
+The fifth source (`evidence_fitnessbrowser_aaseqs`) is loaded automatically from `data_sources/configs/builtin_fitness_browser.yaml` — no flag required. It complements the co-fitness source by providing direct gene-level descriptions from the fitness browser annotation table, which enables convergent direct-naming evidence that the co-fitness profiles alone cannot provide.
+
+Config-driven sources from `--berdl-source-config` are **additive** — they run alongside the five defaults, not instead of them.
+
+Requires:
 - `KBASE_AUTH_TOKEN` set in `.env`
 - BERDL data directory (path above)
-- `--berdl-use-spark` for Spark-based queries
+- `--berdl-use-spark` for Spark-based annotation queries
 
 ## Workflow
 
@@ -115,6 +129,57 @@ Use the organism name as-is from `kescience_paperblast.gene` — it already incl
 
 **Write the prepared FASTA file** to the project directory or a temp location. Use a descriptive filename (e.g., `input_proteins.faa`).
 
+### Step 1.5: Discover and Select Additional BERDL Evidence Sources
+
+The user's BERDL tenant may contain protein-bearing tables beyond the three built-in sources (PaperBLAST, pangenome, Fitness Browser). Any table with both protein sequences AND per-protein annotation can be added as an extra evidence source. The CLI consumes these via `--berdl-source-config <YAML>` and emits one `evidence_<name>` column per active source plus a manifest preamble in the LLM prompt.
+
+**Skip this step if** the user has already provided a source-config YAML, has explicitly opted out, or this is a quick re-run. Otherwise:
+
+1. **Auto-discover candidates via Spark.** Iterate every database/table the user has access to and look for both a sequence column and an annotation column:
+
+   ```python
+   SEQ_COLS = {"sequence", "faa_sequence", "protein_sequence", "aa_sequence"}
+   ANN_COLS = {"description", "function", "ec", "ec_number", "product",
+               "preferred_name", "annotation", "kegg_ko", "cog_category",
+               "go", "gos"}
+   EXCLUDE = {("kescience_paperblast", "uniq"),
+              ("kbase_ke_pangenome", "gene_cluster"),
+              ("kescience_fitnessbrowser", "aaseqs")}  # covered by built-in sources
+
+   candidates = []
+   for db in [r["namespace"] for r in spark.sql("SHOW DATABASES").collect()]:
+       for t in spark.sql(f"SHOW TABLES IN {db}").collect():
+           tn = t.tableName
+           if (db, tn) in EXCLUDE:
+               continue
+           cols = spark.sql(f"DESCRIBE TABLE {db}.{tn}").collect()
+           col_names = {c.col_name.lower(): c.col_name for c in cols}
+           seq = col_names.keys() & SEQ_COLS
+           ann = col_names.keys() & ANN_COLS
+           if seq and ann:
+               candidates.append({"db": db, "table": tn,
+                                  "seq_col": col_names[next(iter(seq))],
+                                  "ann_cols": [col_names[a] for a in ann]})
+   ```
+
+2. **Present candidates** with `AskUserQuestion` (multi-select) when ≥1 candidate is found. Label each option as `{db}.{table} ({n} ann cols)` so the user can recognize them. If the list is long, group by source type heuristic (UniProt → curated, eggNOG/KEGG → computational, fitness/growth → experimental).
+
+3. **Generate `<output_dir>/berdl_sources.yaml`** for the selected datasets. One YAML doc per source. Field guide:
+
+   | YAML field | Value |
+   |---|---|
+   | `name` | `<db>_<table>` slugified (replace `.` and `-` with `_`) |
+   | `description` | Best one-liner describing the source — derive from db/table name; if unsure, ask the user |
+   | `evidence_type` | Heuristic: `curated` for UniProt/SwissProt, `experimental` for fitness/phenotype/biochem assay tables, `computational` for eggNOG/KEGG/InterPro/COG annotations, `literature` for PubMed/PMC-backed text |
+   | `diamond_db` | `/global_share/gene-annotation-predictor/data_sources/sequences/<name>.dmnd` |
+   | `organism_column` | Set when an organism / strain / GTDB column is present |
+   | `annotation_columns` | One `{column, label}` entry per `ANN_COLS` match; pick human-readable labels |
+   | `annotation_query` | `SELECT <id_col> AS id, <ann_col1>, <ann_col2>, ... FROM <db>.<table> WHERE <id_col> IN ({ids_placeholder})` |
+   | `annotation_query_temp_view` | Spark variant: same SELECT but `JOIN _berdl_ids ON <id_col> = _berdl_ids.id` instead of the IN clause |
+   | `build_from.sequence_query` | `SELECT <id_col> AS id, <seq_col> AS sequence FROM <db>.<table> WHERE <seq_col> IS NOT NULL` |
+
+   See `/global_share/gene-annotation-predictor/data_sources/configs/builtin_*.yaml` for working templates.
+
 ### Step 2: Check Environment
 
 Run these checks before building the command:
@@ -150,6 +215,44 @@ fi
 
 If any critical check fails, inform the user and suggest remediation before proceeding.
 
+### Step 2.5: Confirm DIAMOND DB Builds for New Sources
+
+Skip this step when no `--berdl-source-config` was generated in Step 1.5.
+
+For each source in `berdl_sources.yaml`, check whether its `diamond_db` file exists. If not, the CLI can build it under `--berdl-build-missing-dbs`, but builds can take 10–30 minutes for large tables — confirm before proceeding.
+
+**Spark session for standalone build scripts.** Any Python script that calls `get_spark_session()` outside a running notebook kernel must call `refresh_spark_environment()` first to start the local Spark Connect server. Without it, `get_spark_session()` will hang indefinitely. In JupyterHub the server is pre-started automatically; in CLI scripts it is not.
+
+```python
+from berdl_notebook_utils.refresh import refresh_spark_environment
+refresh_spark_environment()           # starts Spark Connect server + rotates MinIO creds
+
+from berdl_notebook_utils import get_spark_session
+spark = get_spark_session()           # now returns immediately
+
+from gene_annotation_predictor.tools.diamond_db_builder import estimate_db_build_cost
+n, est_min = estimate_db_build_cost(spark, source["build_from"]["sequence_query"])
+```
+
+**Large source tables (100M+ rows) take significant time to export.** A cross-table JOIN (e.g., filtering `entity` then joining `protein`) or an IN-clause scan on an unindexed 200M-row table both require full-table scans. For databases like `refdata_uniprot` or `kbase_uniprot_kb` where sequences and annotations are in separate tables:
+
+- Use a single query with a broadcast hint so Spark does an efficient hash join:
+  ```sql
+  SELECT /*+ BROADCAST(e) */ p.protein_id AS id, p.sequence
+  FROM refdata_uniprot.protein p
+  JOIN refdata_uniprot.entity e ON p.protein_id = e.entity_id
+  WHERE e.data_source = 'UniProt/Swiss-Prot'
+    AND p.sequence IS NOT NULL AND p.sequence != ''
+  ```
+- Expect 15–30 min for the initial scan of a 200M-row table (data volume, not a bug).
+- For very large exports that should survive session restarts, use the `/remote-compute` skill to submit the build as a CTS job instead of running it inline.
+
+Then ask via `AskUserQuestion`:
+> "Build DIAMOND DB for `<source_name>`? (~`<n>` sequences, est. `<est_min>` min)"
+> Options: **Build now** / **Skip this source**
+
+For each "Skip" answer, remove that source from `berdl_sources.yaml` before running Step 3. Pass `--berdl-build-missing-dbs` in Step 3 only when at least one source was approved for build.
+
 ### Step 3: Build and Run the Command
 
 Construct the command from the package directory using `poetry run`:
@@ -161,7 +264,7 @@ set -a && source /home/cjneely/repos/BERIL-research-observatory/.env 2>/dev/null
 
 PATH=./bin:$PATH poetry run gene-annotate \
   --input <FASTA_FILE(S)> \
-  --model gpt-5.2 \
+  --model gpt-5.4 \
   <API_KEY_FLAGS> \
   --berdl-data-dir /global_share/gene-annotation-predictor/data_sources/sequences/ \
   --summaries-parquet /global_share/gene-annotation-predictor/data_sources/sequences/manuscript-summaries.filtered.parquet \
@@ -182,6 +285,8 @@ PATH=./bin:$PATH poetry run gene-annotate \
 - `--evalue`, `--min-identity`, `--query-coverage`, `--subject-coverage` — DIAMOND thresholds
 - `--threads <N>` — override default 64
 - `--prompt-file <path>` — custom LLM prompt
+- `--berdl-source-config <output_dir>/berdl_sources.yaml` — include when Step 1.5 produced a YAML
+- `--berdl-build-missing-dbs` — include when at least one source from Step 2.5 was approved for build
 
 ### Step 4: Monitor Execution
 
@@ -241,10 +346,25 @@ For each row in the TSV, produce a block of this form:
 |--------|-------------|---------------|
 | `berdl_paperblast_evidence` | `PaperBLAST (BERDL)*` | Yes — literature-curated experimental characterizations |
 | `paperblast_evidence` | `PaperBLAST*` | Yes — literature-curated experimental characterizations |
-| `berdl_fitness_evidence` or `fitness_evidence` | `Fitness browser*` | Yes — experimental transposon fitness measurements |
+| `berdl_fitness_evidence` or `fitness_evidence` | `Fitness browser (co-fitness)*` | Yes — experimental transposon fitness co-fitness profiles |
 | `cofitness_evidence` | `Co-fitness*` | Yes — experimental co-fitness correlations |
+| `evidence_fitnessbrowser_aaseqs` | `Fitness browser (gene annotations)*` | Yes — direct gene descriptions from TnSeq-characterized loci |
+| `gene_neighborhoods` | `Gene neighborhoods` | No — genomic context from conserved gene order |
 | `berdl_pangenome_evidence` | `Pangenome` | No — comparative/computational clustering |
 | `ipr_annotations` | `InterProScan` | No — computational domain/family prediction |
+
+**Dynamic source columns.** When `--berdl-source-config` was used, the TSV contains additional `evidence_<source_name>` columns (one per active source). Discover them at read-time and look up each source's `description` and `evidence_type` from the YAML:
+
+```python
+import yaml, polars as pl
+sources_by_name = {c["name"]: c for c in yaml.safe_load(open("berdl_sources.yaml"))} \
+                  if Path("berdl_sources.yaml").exists() else {}
+df = pl.read_csv(output_tsv, separator="\t", infer_schema_length=0)
+dynamic_cols = [c for c in df.columns if c.startswith("evidence_")
+                and c not in {"evidence", "evidence_strategy"}]
+```
+
+For each dynamic column with non-empty content, label it as `<source_name> (<source_description>)` and mark with `*` when its `evidence_type` is `experimental` or `curated`. Add these to the condensed evidence line alongside the built-in sources.
 
 Any other BERDL dataset included in the evidence whose description mentions experimental derivation (e.g., phenotype assays, growth measurements, biochemical characterization) should also be marked with `*`.
 
@@ -300,7 +420,7 @@ After the per-protein output (or after reporting the summary file path for large
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
-| `--model` | `gpt-5.2` | LLM model: `gpt-5.1`, `gpt-5.2`, `claude-sonnet-4.5`, `claude-sonnet-4.6`, `claude-opus-4.5` |
+| `--model` | `gpt-5.4` | LLM model: `gpt-5.1`, `gpt-5.2`, `gpt-5.3`, `gpt-5.4`, `claude-sonnet-4.5`, `claude-sonnet-4.6`, `claude-opus-4.5` |
 | `--threads` | `64` | CPU threads for DIAMOND and InterProScan |
 | `--output-dir` | `./output` | Where to write results |
 | `--evalue` | `1e-3` | E-value cutoff for DIAMOND hits |
