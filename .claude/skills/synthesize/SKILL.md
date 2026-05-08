@@ -30,9 +30,14 @@ Read `projects/{project_id}/beril.yaml` and validate status. If `beril.yaml` is 
 - `status: proposed` — **stop**. Tell the user:
   > "This project has a research plan but no analysis yet. Run the analysis notebooks first (Phase C of the workflow) so `/synthesize` has results to interpret. Resume via `/berdl_start`."
 - `status: active` — proceed; this is the normal forward path (`active` → `analysis`).
-- `status: analysis`, `review`, `complete` — proceed (re-synthesis to update an existing report after revision or feedback). Step 7b will preserve the current status without downgrading.
+- `status: analysis` — proceed (re-synthesis on a project still pre-review; no status change).
+- `status: reviewed` — **silent demote**. Existing `REVIEW_N.md` files were against the previous `REPORT.md` and will go stale via hash mismatch. No prompt; just inform the user in the agent's reply: "Demoted to `analysis`; existing reviews are now stale. Run `/berdl-review` again before submitting." Then proceed.
+- `status: complete` — **explicit confirmation prompt** before proceeding:
+  > "This project is currently complete (approved {approval.at} by {approval.by}). Running /synthesize will overwrite `REPORT.md` and demote the project to `analysis`. The previous approval will be archived under `previous_approvals`. Continue? (y/n)"
+  - **Yes**: move the current `approval` block in `beril.yaml` to `previous_approvals: []` (append), set `status: analysis`, delete both `SUBMITTED.md` and `SUBMISSION_FAILED.md` if present (audit lives in `beril.yaml.previous_approvals` and `beril.yaml.submissions[]`). Then proceed.
+  - **No**: abort with no changes.
 
-Synthesizing without analysis outputs (the `exploration` and `proposed` cases) produces empty or fabricated findings, which is exactly what the new lifecycle is designed to prevent.
+Synthesizing without analysis outputs (the `exploration` and `proposed` cases) produces empty or fabricated findings, which is exactly what the new lifecycle is designed to prevent. The `reviewed`/`complete` demotes are how the iteration loop and reopen-and-resubmit flow stay honest.
 
 #### Step 1: Gather Project Context
 
@@ -185,16 +190,14 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 - **References**: Always include references, even for well-known data sources. At minimum cite the primary data sources (e.g., Price et al. 2018 for Fitness Browser, Arkin et al. 2018 for KBase).
 
 Also update `projects/{project_id}/README.md`:
-- **README Status update is conditional on this being a forward transition.** Read the current `beril.yaml` status:
-  - If it was `active` (the normal forward path that this skill advances to `analysis`), update `## Status` to "Analysis — report drafted, awaiting `/submit` review."
-  - If it was already `analysis`, `review`, or `complete` (re-synthesis to update an existing report after revision or feedback), **leave README Status untouched.** Re-synthesis must not downgrade a project's human-facing status — that would lie about state for projects that have already been reviewed or completed.
-- Preserve existing `## Research Question` and `## Authors` sections in all cases.
+- After Step 0, status is always either `active` (forward path) or `analysis` (re-synthesis path, possibly after a `reviewed`/`complete` demote). In both cases, set `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`." This is honest about the project's state: any prior approval was archived in Step 0, and any prior reviews are stale via hash mismatch.
+- Preserve existing `## Research Question` and `## Authors` sections.
 
 #### Step 7b: Update Manifest
 
 Update `projects/{project_id}/beril.yaml` (skip silently if the file is missing — pre-manifest project):
 
-- `status`: set to `analysis` **only if** the current value is `active`. Leave `analysis`, `review`, and `complete` unchanged — re-synthesis must not downgrade a project that's already past Phase D, and Step 0 already rejected `exploration` and `proposed` so they cannot reach this step.
+- `status`: set to `analysis`. (Step 0 already handled the demote cases for `reviewed`/`complete` and rejected `exploration`/`proposed`, so the only statuses that reach Step 7b are `active` — flipping forward — and `analysis` — already there, idempotent.)
 - `artifacts.report`: `true`
 - `last_session_at`: current ISO 8601 timestamp
 
@@ -215,9 +218,9 @@ If unexpected data patterns were found during interpretation (missing data, anom
 After completing the synthesis, tell the user:
 
 > "Findings drafted in `projects/{project_id}/REPORT.md`. Next steps:
-> 1. Review the Key Findings and Interpretation sections
-> 2. Use `/submit` to run pre-submission checks and get an automated review
-> 3. Address any review feedback and re-submit"
+> 1. Review the Key Findings and Interpretation sections.
+> 2. Run `/berdl-review` to produce a numbered review of the current report (`REVIEW_N.md`). Iterate as much as you want — each review embeds the report's hash so `/submit` knows which one is current.
+> 3. When you're ready to stand behind the project, run `/submit` to approve and archive it to the lakehouse."
 
 ## Integration
 

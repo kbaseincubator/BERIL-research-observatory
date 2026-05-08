@@ -19,6 +19,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -232,6 +233,9 @@ def upload_project(project_id, base_path):
     metadata_path = project_path / "project_metadata.json"
     metadata_path.write_text(json.dumps(metadata, indent=2, default=str))
 
+    # Time the upload step itself for the duration metric
+    upload_start = time.monotonic()
+
     # Upload entire project directory
     rc, out, err = _mc("cp", "--recursive", f"{project_path}/", remote_path, capture=False)
     if rc != 0:
@@ -243,6 +247,8 @@ def upload_project(project_id, base_path):
     rc, out, _ = _mc("ls", "--recursive", remote_path)
     remote_count = len([line for line in out.strip().split("\n") if line.strip()])
 
+    duration_seconds = round(time.monotonic() - upload_start, 2)
+
     # Clean up local metadata file (it's now in the lakehouse)
     metadata_path.unlink(missing_ok=True)
 
@@ -253,6 +259,7 @@ def upload_project(project_id, base_path):
         "total_size_bytes": total_size,
         "remote_path": remote_path,
         "s3a_path": f"{S3A_BASE}/{project_id}/",
+        "duration_seconds": duration_seconds,
         "status": "ok" if remote_count >= len(manifest) else "warning",
     }
 
@@ -400,7 +407,19 @@ def main():
     elif args.all:
         upload_all_projects(args.base_path)
     elif args.project_id:
-        upload_project(args.project_id, args.base_path)
+        result = upload_project(args.project_id, args.base_path)
+        if result is None:
+            sys.exit(1)
+        # Emit a single-line JSON summary as the final line of stdout so
+        # /submit (and other automated callers) can parse the upload result
+        # without scraping freeform text.
+        print(json.dumps({
+            "archive_key": result["s3a_path"],
+            "file_count": result["remote_files"],
+            "byte_total": result["total_size_bytes"],
+            "duration_seconds": result["duration_seconds"],
+        }))
+        sys.exit(0 if result["status"] == "ok" else 2)
     else:
         parser.print_help()
 

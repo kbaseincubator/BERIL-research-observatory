@@ -110,6 +110,20 @@ if [[ ! -d "$PROJECT_DIR" ]]; then
   exit 1
 fi
 
+# --- Pre-review REPORT.md hash (project reviews only) ---
+# Captured before invoking the reviewer so we can detect TOCTOU edits during
+# the run and embed the hash as a footer in the resulting REVIEW_N.md so
+# /submit can later verify the review covers the *current* report.
+REPORT_HASH_PRE=""
+REPORT_FILE="${PROJECT_DIR}/REPORT.md"
+if [[ "$REVIEW_TYPE" == "project" ]]; then
+  if [[ ! -f "$REPORT_FILE" ]]; then
+    echo "Error: REPORT.md not found at $REPORT_FILE — run /synthesize first" >&2
+    exit 1
+  fi
+  REPORT_HASH_PRE=$(sha256sum "$REPORT_FILE" | awk '{print $1}')
+fi
+
 # --- Resolve model ---
 if [[ -z "$MODEL" ]]; then
   if [[ "$REVIEWER" == "claude" ]]; then
@@ -233,6 +247,19 @@ if [[ ! -s "$OUTPUT_FILE" ]] || ! grep -q '^---' "$OUTPUT_FILE" 2>/dev/null; the
   fi
   rm -f "$OUTPUT_FILE"
   exit 1
+fi
+
+# --- TOCTOU check + report_hash footer (project reviews only) ---
+# If REPORT.md changed while the reviewer was running, the review no longer
+# describes the current report. Abort rather than write a footer that lies.
+if [[ "$REVIEW_TYPE" == "project" ]]; then
+  REPORT_HASH_POST=$(sha256sum "$REPORT_FILE" | awk '{print $1}')
+  if [[ "$REPORT_HASH_PRE" != "$REPORT_HASH_POST" ]]; then
+    echo "Error: REPORT.md changed during review. Discarding the review to avoid recording a hash that doesn't reflect the report the reviewer actually saw. Re-run after the report stabilizes." >&2
+    rm -f "$OUTPUT_FILE"
+    exit 1
+  fi
+  printf '\n<!-- report_hash: sha256:%s -->\n' "$REPORT_HASH_PRE" >> "$OUTPUT_FILE"
 fi
 
 echo "Review written to: $OUTPUT_FILE"
