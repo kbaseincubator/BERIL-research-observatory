@@ -129,6 +129,61 @@ Use the organism name as-is from `kescience_paperblast.gene` — it already incl
 
 **Write the prepared FASTA file** to the project directory or a temp location. Use a descriptive filename (e.g., `input_proteins.faa`).
 
+#### When pulling from `kbase_ke_pangenome` by organism name
+
+If the user named target organisms by common species name (e.g., "P. putida", "D. vulgaris", "B. subtilis") rather than by GTDB clade ID, **always do a name-to-clade resolution pass before pulling sequences**. Common species names do not map directly to GTDB clade IDs, and silent miss-matches will pull the wrong organism's data.
+
+Two failure modes to watch for:
+
+1. **GTDB has renamed the genus.** Several model DOE/biotech organisms are no longer in their classical genus:
+   - *Desulfovibrio vulgaris* Hildenborough → `s__Nitratidesulfovibrio_vulgaris--RS_GCF_000195755.1` (the genus *Desulfovibrio* in GTDB no longer contains the type strain)
+   - GTDB has split many *Pseudomonas* species into `Pseudomonas_E`, `Pseudomonas_A`, etc. Searching `Pseudomonas_xxx` may miss them.
+   - Searching by literal species name (`%vulgaris%`, `%putida%`) will silently skip these.
+
+2. **The species name in GTDB doesn't contain the lab strain you mean.** The clade *literally* named `Pseudomonas_E_putida` does not contain KT2440. KT2440 (`GCF_000007565.2`, the canonical lab strain that most people mean by "P. putida") is in `s__Pseudomonas_E_alloputida`. Likewise, `s__Bacillus_subtilis` (canonical) and `s__Bacillus_subtilis_G` are two different clades with very different accessory genome sizes.
+
+**Resolution procedure:**
+
+```python
+# Step A: search by name pattern AND by canonical lab strain genome accession
+df = spark.sql("""
+SELECT genome_id, gtdb_species_clade_id
+FROM kbase_ke_pangenome.genome
+WHERE genome_id LIKE '%000007565%'   -- known lab strain accession
+""")
+
+# Step B: also pull all clades containing the species name
+df2 = spark.sql("""
+SELECT gtdb_species_clade_id, GTDB_species
+FROM kbase_ke_pangenome.gtdb_species_clade
+WHERE GTDB_species LIKE '%putida%'
+   OR GTDB_species LIKE '%alloputida%'   -- include known GTDB renames
+""")
+```
+
+If the lab-strain lookup (Step A) returns a clade ID different from the literal-name lookup (Step B), surface the ambiguity to the user via `AskUserQuestion` before proceeding. List both clades and their core+hypothetical counts so the user can pick the intended one.
+
+When resolved, write a stable display name into the FASTA description (e.g., `Pseudomonas putida` even when the underlying clade is `Pseudomonas_E_alloputida`) — the LLM uses the description as taxonomic context, and the original common name is what the user expects.
+
+#### Sampling auxiliary pangenome clusters by prevalence
+
+When the user wants "the most prevalent N auxiliary clusters" of a species, **do NOT join through `gene_genecluster_junction` to count genome membership** — that table has ~1B rows and any unfiltered scan will be unsafe (per `docs/pitfalls.md`).
+
+Use `gene_cluster.likelihood` (a log-probability proxy for genome prevalence) as a rank-only substitute:
+
+```sql
+SELECT gene_cluster_id, faa_sequence, likelihood
+FROM kbase_ke_pangenome.gene_cluster gc
+JOIN kbase_ke_pangenome.bakta_annotations ba ON gc.gene_cluster_id = ba.gene_cluster_id
+WHERE gc.gtdb_species_clade_id = '{clade}'
+  AND gc.is_core = false
+  AND ba.hypothetical = true     -- or whatever annotation filter applies
+ORDER BY gc.likelihood DESC
+LIMIT 400
+```
+
+`likelihood` is on a log scale and core/aux are cleanly separated (cores are typically positive, aux are large negative numbers). It rank-orders aux clusters by how widely they're shared without paying for the junction-table scan. Validated across multiple pilots — the high-likelihood end of the aux distribution is reliably where homolog-recoverable Tier-A signal clusters.
+
 ### Step 1.5: Discover and Select Additional BERDL Evidence Sources
 
 The user's BERDL tenant may contain protein-bearing tables beyond the three built-in sources (PaperBLAST, pangenome, Fitness Browser). Any table with both protein sequences AND per-protein annotation can be added as an extra evidence source. The CLI consumes these via `--berdl-source-config <YAML>` and emits one `evidence_<name>` column per active source plus a manifest preamble in the LLM prompt.
@@ -253,6 +308,23 @@ Then ask via `AskUserQuestion`:
 
 For each "Skip" answer, remove that source from `berdl_sources.yaml` before running Step 3. Pass `--berdl-build-missing-dbs` in Step 3 only when at least one source was approved for build.
 
+### Step 2.6: Select Tier Filter
+
+Before launching the run, ask the user which evidence tiers to annotate. The CLI computes a conservative pre-LLM tier prediction from the collected evidence; sequences whose predicted tier is not in the selected set are skipped before any LLM call (recorded as `SKIPPED:` rows in the output TSV with zero token cost).
+
+Use `AskUserQuestion` (multi-select) so the user can pick any combination:
+
+> "Which evidence tiers should be annotated? (Default: all three.)"
+>
+> Options (multiSelect: true):
+> - **Tier A — Strong, actionable** (≥40% homolog with biochem characterization, specific fitness signal, or convergent ≥2 sources)
+> - **Tier B — Family/class-level** (low-identity homologs, pathway-only fitness, or named IPR enzyme without corroboration)
+> - **Tier C — Fold-only** (only IPR structural family info — broad superfamily stub)
+
+Default behavior: if the user picks all three (or skips the prompt), omit `--tier` from the Step 3 command — the CLI default is `A,B,C`. When the user picks a strict subset (e.g., A only, or A+B), pass `--tier <comma-list>` (e.g., `--tier A` or `--tier A,B`) in Step 3.
+
+When to skip this prompt: if the user has already specified tiers in their request (e.g., "only run Tier A on these sequences"), use that directly without asking. For quick re-runs in the same session where the tier choice was already made, reuse it.
+
 ### Step 3: Build and Run the Command
 
 Construct the command from the package directory using `poetry run`:
@@ -287,6 +359,7 @@ PATH=./bin:$PATH poetry run gene-annotate \
 - `--prompt-file <path>` — custom LLM prompt
 - `--berdl-source-config <output_dir>/berdl_sources.yaml` — include when Step 1.5 produced a YAML
 - `--berdl-build-missing-dbs` — include when at least one source from Step 2.5 was approved for build
+- `--tier <comma-list>` — include only when Step 2.6 produced a strict subset of `A,B,C` (e.g., `--tier A` or `--tier A,B`). Omit when all three tiers are selected (the CLI default is `A,B,C`).
 
 ### Step 4: Monitor Execution
 
@@ -299,7 +372,12 @@ The tool runs synchronously — it processes each sequence through the full evid
 
 After completion, read the output TSV from `<output-dir>/<output-dir-name>_annotations.tsv`.
 
-**Output file:** Always write the full Step 5 output to `<output-dir>/<output-dir-name>_summary.txt`. This file is the persistent record of the run — write it regardless of how many sequences were annotated or whether the analysis is shown in chat.
+**Two output files are always written** (regardless of how many sequences were annotated or whether the analysis is shown in chat):
+
+1. `<output-dir>/<output-dir-name>_summary.txt` — tier breakdown, per-protein blocks, run cost (this step)
+2. `<output-dir>/WRITEUP.md` — context-aware analysis tying the results back to the user's stated goal (Step 6)
+
+The summary is the data record; the writeup is the interpretation. Both are required outputs.
 
 **Large-run gate (> 10 sequences):** Before generating the per-protein Analysis fields, ask the user:
 > "The run produced N annotations. Generating the comparative analysis for each protein is LLM-intensive. Proceed with full analysis? Results will be written to `<summary-path>`."
@@ -416,6 +494,86 @@ After the per-protein output (or after reporting the summary file path for large
 - Literature review on annotated functions (`/literature-review`)
 - Include in project synthesis (`/synthesize`)
 
+### Step 6: Write the WRITEUP.md
+
+Always produce `<output-dir>/WRITEUP.md` after the summary file. This is the **interpretive** companion to the data summary — it ties the run back to the user's stated goal and surfaces what the results mean for that goal. Skip this step ONLY for runs of ≤ 5 sequences from a clearly ad-hoc input (a small pasted-sequence query with no broader question behind it).
+
+**Why this matters.** A summary.txt tells you what came out; a WRITEUP.md tells you whether what came out advances the user's actual question. Several pilots have shown that the headline numbers can be deeply misleading without context — e.g., 80% no-evidence is "bad" for a model organism but "expected" for a niche DOE organism with thin reference data; a low Tier-A count is "disappointing" if the user wanted novel discovery but "expected and validating" if the user is checking curation completeness. The writeup is where this framing happens.
+
+**Inputs you must consider** (from prior turns and the prompt that triggered this run):
+
+- **The user's stated selection criteria.** What did they actually search for? Was it organism-defined ("DOE-relevant sulfate reducers"), function-defined ("hypothetical proteins"), feature-defined ("predicted secreted"), or something else? Frame the analysis in that vocabulary.
+- **Prior runs in the same session/project.** If `WRITEUP.md` files exist for prior gene-annotate runs in nearby `data/` directories, read 1–2 of them to anchor cross-run comparisons. Do not invent comparisons that aren't supported by prior results.
+- **Project memory.** Check `memory/` for any `project_*` entries about ongoing initiatives that contextualize this run (e.g., "DOE hypothetical-protein collection initiative", "annotation curation feedback for Bakta").
+
+**Structure** (use this as a template, adapt section names to the run):
+
+```markdown
+# {Short title — describes what was annotated and the user's intent in one line}
+
+{One-paragraph framing: what this run is, what selection criteria produced the input set, what broader question it serves.
+If this is part of a series (e.g., per-organism pilots in a larger collection effort), explicitly say so and reference the prior runs by path.}
+
+## Data selection
+
+Source: {database / BERDL table / external accession set}.
+Selection rule: {the actual filter applied — quoted SQL or a one-sentence description}.
+{Any quirks: GTDB taxonomy resolution, sampling shortcut used, sequences excluded for technical reasons (e.g., * stripping), counts.}
+
+| Stratum / organism / category | N | Selection rule |
+|---|---:|---|
+| ... | ... | ... |
+
+## Pipeline
+
+`gene-annotate` ({model} via {API gateway}) with {N} evidence sources: {list}.
+{Any non-default flags or behaviors.}
+Run time: ~{N} min for {N} sequences. Total LLM cost: {N}M tokens.
+
+## Headline numbers
+
+| {primary stratum} | n | annotated | declined | no_ev | A | B | C |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| ... | ... | ... | ... | ... | ... | ... | ... |
+| **all** | ... | ... | ... | ... | ... | ... | ... |
+
+{If applicable: comparison to prior runs in the same project — "PA recovered X Tier-A from Y reps; this run recovered Z from W reps."}
+
+## Findings
+
+{2–4 numbered findings. Each one should:}
+{- State the finding in one sentence as a heading or lead}
+{- Back it with specific examples from the per-protein blocks (sequence IDs, named hits)}
+{- Explain WHY this is interesting given the user's selection criteria}
+{- Distinguish "expected" from "surprising" results explicitly}
+
+{Examples of the kind of analysis to surface:}
+{- Patterns in WHERE Tier-A signal came from (homology vs fitness vs convergent — the source mix matters for what kind of organisms benefit from this pipeline)}
+{- Categories of functions that appear (housekeeping Bakta misses vs mobile-element cargo vs phenotype-class annotations)}
+{- Per-stratum or per-organism contrasts when the input is heterogeneous}
+{- Whether the LLM-decline rate is structural (no evidence) or judgment-call (conflicting evidence) — these have different implications}
+
+## Implications for {the user's broader goal}
+
+{Concrete recommendations the user can act on. Examples from past runs:}
+{- "Stratify by core/auxiliary up front — they have qualitatively different recovery profiles"}
+{- "Add an upstream phage/MGE classifier for aux hypotheticals — half the Tier-A aux is mobile-element cargo, cheap to filter pre-LLM"}
+{- "Organisms with deep RB-TnSeq coverage pay off disproportionately — check the fitness browser organism list before scoping cost"}
+{- "The 5 Tier-A core hits are real Bakta misses — feed back into annotation curation"}
+{- "The N declined cases are the highest-value follow-up set — there is signal there, it just isn't decisive on its own"}
+
+{If a project memory was relevant, mention any updates worth making to it (e.g., "GTDB clade for X is non-canonical; record as project memory").}
+```
+
+**Tone and length guidance:**
+- Lead with what's interesting, not what's standard. The reader already knows how the pipeline works; tell them what these specific results mean.
+- Be specific — name sequence IDs, gene names, EC numbers, organisms. Vague summaries ("found some interesting hits") are useless.
+- Distinguish what's load-bearing for the user's goal from what's incidental. A Tier-A hit on a well-known protein is less interesting than a Tier-A phenotype assignment from fitness data — say so.
+- Compare to prior runs only when there IS a meaningful comparison; do not invent a comparison from a single data point.
+- 200–600 words is typical. Skip the writeup entirely if it would just restate the summary table — that means the run had no contextually interesting content (e.g., a 3-sequence ad-hoc query), and the summary file alone suffices.
+
+After writing the WRITEUP.md, report its path to the user along with the summary file path. For runs > 10 sequences (where chat output is truncated), the writeup IS the user-facing deliverable.
+
 ## Configurable Parameters
 
 | Parameter | Default | Description |
@@ -487,6 +645,9 @@ DIAMOND results, InterProScan output, and batch evidence files are cached under 
 5. **Always include `--summaries-parquet`** pointing to `/global_share/gene-annotation-predictor/data_sources/sequences/manuscript-summaries.filtered.parquet`.
 6. **After completion**, always read and summarize the output TSV — don't just report success.
 7. **For large inputs** (>50 sequences), warn the user about runtime and consider suggesting background execution.
+8. **When the input is from `kbase_ke_pangenome` and the user named organisms by common name**, do GTDB clade resolution (Step 1's "When pulling from kbase_ke_pangenome by organism name" subsection) BEFORE pulling sequences. Surface any clade ambiguity via `AskUserQuestion`.
+9. **Always produce both `summary.txt` and `WRITEUP.md`** (Step 5 and Step 6). The writeup is required for any run with a discernible user goal — skip it only for ≤ 5-sequence ad-hoc queries.
+10. **Prompt for tier selection before launching** (Step 2.6) using `AskUserQuestion` with `multiSelect: true`. Default is all three tiers. Pass `--tier <list>` in Step 3 only when the user picks a strict subset of `A,B,C`. Skip the prompt only when the user has already specified tiers in their request.
 
 ## Pitfall Detection
 
