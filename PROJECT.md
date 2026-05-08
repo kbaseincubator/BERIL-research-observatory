@@ -80,8 +80,8 @@ exploration → proposed → active → analysis → review → complete
 
 ### Downstream gating
 
-- **`/submit`** rejects `status: exploration` (no formal hypothesis to validate against). Project must be at `analysis` or later for clean submission.
-- **`/synthesize`** rejects `status: exploration` (synthesis without a plan produces ungrounded interpretation).
+- **`/submit`** requires `status: analysis` or later. It rejects `exploration` (no plan), `proposed` (no analysis), and `active` (no REPORT). Run `/synthesize` first to draft `REPORT.md` and flip status to `analysis`. Re-submission from `review` or `complete` (e.g., after addressing reviewer feedback) is allowed.
+- **`/synthesize`** requires `status: active` for the normal forward path (`active` → `analysis`). It rejects `exploration` (no plan to synthesize against) and `proposed` (no notebook outputs to interpret). `analysis`, `review`, and `complete` are accepted for re-synthesis (e.g., updating an existing report) and the status is preserved without downgrade.
 - **`/berdl-review`** is advisory and accepts any status with the appropriate `--type` flag (`--type plan` for plan review, etc.).
 
 ### Mandatory plan-review checkpoint
