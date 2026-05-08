@@ -1,5 +1,23 @@
 # Report: Self-Sufficiency, Anaerobic Toolkit, and Cultivation Bias in Clay-Confined Cultured Bacterial Genomes
 
+> ## ⚠️ Correction Notice (added 2026-05-01)
+>
+> The H3 (porewater-bias) IR-side analysis in this report — specifically the comparison of "anchor_deep" (1/9 IR-positive) vs "anchor_shallow" (15/30 IR-positive) used to argue that shallow clay shows a "Mitzscherling rock-attached IR-rich pattern" — was driven by **misidentified iron-reduction markers**. The KOs used (K07811, K17324, K17323) are **TMAO reductase, glycerol ABC transport ATP-binding, and glycerol ABC transport permease** respectively, NOT iron-reduction genes. KEGG has no canonical KO for the Geobacter omcS / Shewanella mtr operon multi-heme outer-surface cytochromes; the original analysis unknowingly substituted unrelated genes.
+>
+> A corrected analysis using a triple-signal multi-heme cytochrome detector (PFAM PF02085 Cytochrom_CIII + PFAM PF22678 Cytochrom_c_NrfB-like + CXXCH heme-binding motif counting on `gene_cluster.faa_sequence` ≥4 motifs) is in [`../bacillota_b_subsurface_accessory/notebooks/06_clay_h3_correction.ipynb`](../bacillota_b_subsurface_accessory/notebooks/06_clay_h3_correction.ipynb). With corrected detection:
+>
+> | Cohort | n | Original IR rate (wrong KOs) | Corrected IR rate (multi-heme cyt) |
+> |---|---|---|---|
+> | anchor_deep | 9 | 11.1% | **55.6%** |
+> | anchor_shallow | 30 | **50.0%** | 40.0% |
+> | soil_baseline | 149 | 20.1% | 40.9% |
+>
+> **The original "shallow >> deep IR" pattern reverses (deep is slightly higher than shallow) and none of the cohort comparisons are statistically significant after correction (all Fisher p ≥ 0.46).** The clay project's **SR-side H3 finding stands** (the SR markers K11180/K11181/K00394/K00395/K00958 were correctly identified, and the deep-cohort 5/9 SR-positive vs Mitzscherling rock-attached null p=4×10⁻¹² result is robust). The IR-side narrative (BERDL clay cohort diverges from Mitzscherling rock-attached because shallow clay shows the IR-rich pattern) **is withdrawn**.
+>
+> The "porewater bias" headline (Finding 1 below) holds via the SR-side alone; the rock-attached vs porewater dichotomy interpretation is half-supported (SR side) and half-unsupported (IR side, after marker correction).
+>
+> See the [`bacillota_b_subsurface_accessory`](../bacillota_b_subsurface_accessory/) project's REPORT for full details on the corrected detection method and re-analysis. Sister-project NB04 also independently flags the K-number bug as a systematic issue: KEGG KO assignment is unreliable for niche genes that don't have canonical KOs (omcS, mtrCAB, MGE-borne resistance cassettes), and KEGG-based marker mining for those genes will silently substitute unrelated functions.
+
 ## Key Findings
 
 ### Finding 1 — Cultured clay-confined genomes carry the Bagnoud Mont Terri porewater signature, not the Mitzscherling rock-attached signature (H3, supported)

@@ -182,7 +182,7 @@ When the user wants to start a new research project, the agent drives the entire
 
 **Additional setup (Phase 1.5 should have already checked KBASE_AUTH_TOKEN and proxy):**
 6. Check `gh auth status` — needed for creating branches, PRs, and pushing code. If not authenticated, prompt the user to run `gh auth login`
-7. Note the user's ORCID and affiliation for the Authors section — ask once, remember for future projects
+7. Load author identity for the Authors section by running `beril user --json` via Bash. The CLI emits a JSON object with `name`, `affiliation`, and `orcid` keys, auto-populated from the JupyterHub `$ORCID` env var, KBase auth, and the ORCID public API on first `beril setup` and then persisted to `~/.config/beril/config.toml`. Exit 0 means all three fields are present — use them and do not prompt. Exit 1 means at least one is missing — parse the JSON anyway (any non-empty values are usable), prompt the user only for missing fields, then suggest they run `beril setup` to persist. Reuse for the rest of this session and across future projects.
 
 **Then engage with the user:**
 9. Chat with the user about their research interest

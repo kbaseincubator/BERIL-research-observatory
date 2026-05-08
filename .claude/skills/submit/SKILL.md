@@ -45,6 +45,7 @@ Run these checks against the project directory and print a checklist summary:
 - Research plan documented — check if `projects/{project_id}/RESEARCH_PLAN.md` exists (or `research_plan.md` for legacy projects)
 - Interpretation documented — check if `projects/{project_id}/REPORT.md` exists and contains a `## Interpretation` section
 - References documented — check if `projects/{project_id}/references.md` exists (created by `/literature-review`)
+- **Author identity match**: Run `beril user --json`. If it exits 0 (or exits 1 but returns a non-empty `orcid`), verify that ORCID appears in the README's `## Authors` section. If found, print `PASS  Your ORCID present in README Authors`. If absent, print `WARN  Your ORCID ({orcid}) not found in README Authors — confirm intentional or update the README`. If `beril user` exits 1 with no `orcid`, skip this check silently (no PASS/WARN line) — there's nothing to cross-check.
 - Project files committed to git — run `git status --porcelain projects/{project_id}/` and warn if there are uncommitted or untracked changes
 - **Notebook outputs**: Check that notebooks have saved outputs (not just empty code cells). For each `.ipynb` in `notebooks/`, parse the JSON and count code cells with non-empty `outputs` arrays. Warn if any notebook has 0 cells with outputs.
 - **Figures**: Check that `figures/` directory exists and contains at least one PNG file. Warn if empty or missing.
