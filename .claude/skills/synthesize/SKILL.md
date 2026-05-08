@@ -23,11 +23,16 @@ If no `<project_id>` argument is provided, detect from the current working direc
 
 #### Step 0: Precondition check
 
-Read `projects/{project_id}/beril.yaml`. If `status: exploration`, **stop** and tell the user:
+Read `projects/{project_id}/beril.yaml` and validate status. If `beril.yaml` is missing (pre-manifest project), skip this check and rely on the file-existence checks below.
 
-> "This project is still in exploration — there's no `RESEARCH_PLAN.md` to synthesize against yet. Write the plan first (use `/berdl_start` to resume the workflow), then re-run `/synthesize`."
+- `status: exploration` — **stop**. Tell the user:
+  > "This project is still in exploration — there's no `RESEARCH_PLAN.md` to synthesize against yet. Write the plan first (use `/berdl_start` to resume the workflow), then re-run `/synthesize`."
+- `status: proposed` — **stop**. Tell the user:
+  > "This project has a research plan but no analysis yet. Run the analysis notebooks first (Phase C of the workflow) so `/synthesize` has results to interpret. Resume via `/berdl_start`."
+- `status: active` — proceed; this is the normal forward path (`active` → `analysis`).
+- `status: analysis`, `review`, `complete` — proceed (re-synthesis to update an existing report after revision or feedback). Step 7b will preserve the current status without downgrading.
 
-Do not proceed. Synthesizing without a plan produces ungrounded interpretation. If `beril.yaml` is missing (pre-manifest project), skip this check and rely on the file-existence checks below.
+Synthesizing without analysis outputs (the `exploration` and `proposed` cases) produces empty or fabricated findings, which is exactly what the new lifecycle is designed to prevent.
 
 #### Step 1: Gather Project Context
 
@@ -187,11 +192,11 @@ Also update `projects/{project_id}/README.md`:
 
 Update `projects/{project_id}/beril.yaml` (skip silently if the file is missing — pre-manifest project):
 
-- `status`: set to `analysis`, but **only if** the current value is `proposed` or `active`. Leave `review` or `complete` alone (don't downgrade after a finished review). The Step 0 precondition already rules out `exploration`.
+- `status`: set to `analysis` **only if** the current value is `active`. Leave `analysis`, `review`, and `complete` unchanged — re-synthesis must not downgrade a project that's already past Phase D, and Step 0 already rejected `exploration` and `proposed` so they cannot reach this step.
 - `artifacts.report`: `true`
 - `last_session_at`: current ISO 8601 timestamp
 
-This makes `/synthesize` self-contained: when invoked directly (outside the `/berdl_start` orchestration), the manifest reflects the new state without a separate update.
+This makes `/synthesize` self-contained: when invoked directly (outside the `/berdl_start` orchestration), the manifest reflects the correct state without bypassing the plan-review checkpoint or the `proposed` → `active` transition that Phase C owns.
 
 #### Step 8: Update References
 
