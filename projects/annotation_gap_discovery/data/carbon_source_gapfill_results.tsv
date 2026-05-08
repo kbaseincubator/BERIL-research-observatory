@@ -1,0 +1,575 @@
+orgId	carbon_source	cpd_id	observed_growth	status	growth_after_gf	n_gapfilled_rxns	gapfilled_rxns
+Btheta	Sodium pyruvate	cpd00020	False	not_observed	0.0	0	
+Btheta	Sodium D,L-Lactate	cpd00159	False	not_observed	0.0	0	
+Btheta	L-Glutamine	cpd00053	False	not_observed	0.0	0	
+Btheta	L-Malic acid disodium salt monohydrate	cpd00130	False	not_observed	0.0	0	
+Btheta	Sodium succinate dibasic hexahydrate	cpd00036	False	not_observed	0.0	0	
+Btheta	Sodium L-Lactate	cpd00159	False	not_observed	0.0	0	
+Btheta	D-Fructose	cpd00082	True	gapfilled	1.3327	13	EX_cpd15378_e0;rxn10213_c0;rxn05229_c0;rxn10204_c0;rxn12376_c0;rxn02303_c0;rxn09310_c0;rxn02288_c0;rxn00623_c0;rxn05464_c0;rxn00224_c0;rxn20627_c0;rxn00350_c0
+Btheta	D-Glucose	cpd00027	True	already_grows	1.3327	0	
+Btheta	Sodium D-Lactate	cpd00221	False	already_grows	0.6663	0	
+Btheta	N-Acetyl-D-Glucosamine	cpd00122	True	gapfilled	0.4216	3	rxn14178_c0;rxn15060_c0;rxn15270_c0
+Btheta	D-Maltose monohydrate	cpd00179	True	already_grows	2.7974	0	
+Btheta	Glycerol	cpd00100	False	already_grows	1.0541	0	
+Btheta	a-Ketoglutaric acid disodium salt hydrate	cpd00024	False	already_grows	0.4752	0	
+Btheta	D-Xylose	cpd00154	True	already_grows	1.3913	0	
+Btheta	L-Proline	cpd00129	False	already_grows	0.6359	0	
+Btheta	D-Trehalose dihydrate	cpd00794	True	already_grows	0.4216	0	
+Btheta	L-Fucose	cpd00751	True	already_grows	0.4216	0	
+Btheta	Trisodium citrate dihydrate	cpd00137	False	already_grows	0.5491	0	
+Btheta	Potassium acetate	cpd00029	False	already_grows	0.801	0	
+Btheta	L-Rhamnose monohydrate	cpd00396	True	already_grows	0.4216	0	
+Btheta	D-Sorbitol	cpd00588	False	already_grows	0.4216	0	
+Btheta	D-Galactose	cpd00108	True	already_grows	0.4216	0	
+Btheta	D-Cellobiose	cpd00158	False	already_grows	2.7554	0	
+Btheta	D-Mannose	cpd00138	True	already_grows	1.6021	0	
+Btheta	D-Gluconic Acid sodium salt	cpd00222	False	already_grows	0.4216	0	
+Btheta	D-Ribose	cpd00105	True	already_grows	1.4335	0	
+Btheta	D-Raffinose pentahydrate	cpd30716	True	already_grows	0.4216	0	
+Btheta	m-Inositol	cpd00121	False	already_grows	0.4216	0	
+Btheta	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	0.5395	0	
+Btheta	Sodium Fumarate dibasic	cpd00106	False	already_grows	0.9771	0	
+Btheta	Sodium propionate	cpd00141	False	already_grows	0.4216	0	
+Btheta	D-Glucosamine Hydrochloride	cpd00276	True	already_grows	0.4216	0	
+Btheta	a-Cyclodextrin	cpd24451	True	already_grows	0.4216	0	
+Btheta	Ethanol	cpd00363	False	already_grows	0.4216	0	
+Btheta	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	1.6611	0	
+Btheta	D-Galacturonic Acid monohydrate	cpd00280	True	already_grows	1.3997	0	
+Btheta	L-Alanine	cpd00035	False	already_grows	0.9697	0	
+Btheta	L-Asparagine	cpd00132	False	already_grows	0.9863	0	
+Btheta	Sodium butyrate	cpd00211	False	already_grows	0.4216	0	
+Btheta	L-Leucine	cpd00107	False	already_grows	0.4454	0	
+Btheta	L-Arabinose	cpd00224	True	already_grows	1.3997	0	
+Koxy	Sodium pyruvate	cpd00020	True	gapfilled	12.1199	7	rxn03436_c0;rxn00957_c0;rxn09310_c0;rxn12239_c0;rxn02185_c0;rxn05464_c0;rxn01520_c0
+Koxy	Sodium D,L-Lactate	cpd00159	True	already_grows	12.2353	0	
+Koxy	L-Glutamine	cpd00053	True	already_grows	12.5816	0	
+Koxy	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	12.2353	0	
+Koxy	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	12.3507	0	
+Koxy	Sodium L-Lactate	cpd00159	True	already_grows	12.2353	0	
+Koxy	D-Fructose	cpd00082	True	already_grows	12.9279	0	
+Koxy	D-Glucose	cpd00027	True	already_grows	12.9279	0	
+Koxy	Sodium D-Lactate	cpd00221	True	already_grows	12.2353	0	
+Koxy	N-Acetyl-D-Glucosamine	cpd00122	False	already_grows	13.3896	0	
+Koxy	D-Maltose monohydrate	cpd00179	True	already_grows	14.313	0	
+Koxy	Glycerol	cpd00100	True	already_grows	12.3507	0	
+Koxy	a-Ketoglutaric acid disodium salt hydrate	cpd00024	False	already_grows	12.4661	0	
+Koxy	D-Xylose	cpd00154	True	already_grows	12.697	0	
+Koxy	L-Proline	cpd00129	False	already_grows	12.8124	0	
+Koxy	D-Trehalose dihydrate	cpd00794	True	already_grows	14.313	0	
+Koxy	L-Fucose	cpd00751	True	already_grows	13.0433	0	
+Koxy	Trisodium citrate dihydrate	cpd00137	True	already_grows	12.5816	0	
+Koxy	Potassium acetate	cpd00029	True	already_grows	12.0044	0	
+Koxy	L-Rhamnose monohydrate	cpd00396	True	already_grows	13.0433	0	
+Koxy	D-Sorbitol	cpd00588	True	already_grows	13.0433	0	
+Koxy	D-Galactose	cpd00108	False	already_grows	11.5427	0	
+Koxy	D-Cellobiose	cpd00158	True	already_grows	14.313	0	
+Koxy	D-Mannose	cpd00138	False	already_grows	12.9279	0	
+Koxy	D-Gluconic Acid sodium salt	cpd00222	True	already_grows	12.8124	0	
+Koxy	D-Ribose	cpd00105	True	already_grows	12.697	0	
+Koxy	D-Raffinose pentahydrate	cpd30716	True	already_grows	11.5427	0	
+Koxy	m-Inositol	cpd00121	True	already_grows	11.5427	0	
+Koxy	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	12.5816	0	
+Koxy	Sodium Fumarate dibasic	cpd00106	False	already_grows	12.2353	0	
+Koxy	Sodium propionate	cpd00141	False	already_grows	11.7724	0	
+Koxy	D-Glucosamine Hydrochloride	cpd00276	True	already_grows	12.9279	0	
+Koxy	a-Cyclodextrin	cpd24451	True	already_grows	11.5427	0	
+Koxy	Ethanol	cpd00363	False	already_grows	12.2353	0	
+Koxy	D-Glucose-6-Phosphate sodium salt	cpd00079	True	already_grows	12.9279	0	
+Koxy	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	12.697	0	
+Koxy	L-Alanine	cpd00035	True	already_grows	12.2353	0	
+Koxy	L-Asparagine	cpd00132	False	already_grows	12.2353	0	
+Koxy	Sodium butyrate	cpd00211	False	already_grows	11.5427	0	
+Koxy	L-Leucine	cpd00107	False	already_grows	12.3439	0	
+Koxy	L-Arabinose	cpd00224	False	already_grows	12.697	0	
+Smeli	Sodium pyruvate	cpd00020	True	gapfilled	6.3812	16	EX_cpd15378_e0;DM_cpd02701_c0;rxn03436_c0;rxn12376_c0;rxn01539_c0;rxn02312_c0;rxn09310_c0;rxn02277_c0;rxn02185_c0;rxn05464_c0;rxn09149_c0;rxn16573_c0;rxn41452_c0;rxn21864_c0;rxn17731_c0;rxn20627_c0
+Smeli	Sodium D,L-Lactate	cpd00159	True	already_grows	6.4972	0	
+Smeli	L-Glutamine	cpd00053	True	already_grows	6.8452	0	
+Smeli	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	6.4972	0	
+Smeli	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	6.6132	0	
+Smeli	Sodium L-Lactate	cpd00159	True	already_grows	6.4972	0	
+Smeli	D-Fructose	cpd00082	True	already_grows	7.1933	0	
+Smeli	D-Glucose	cpd00027	True	already_grows	7.1933	0	
+Smeli	Sodium D-Lactate	cpd00221	False	already_grows	6.4972	0	
+Smeli	N-Acetyl-D-Glucosamine	cpd00122	True	already_grows	5.801	0	
+Smeli	D-Maltose monohydrate	cpd00179	True	already_grows	8.5855	0	
+Smeli	Glycerol	cpd00100	True	already_grows	6.6132	0	
+Smeli	a-Ketoglutaric acid disodium salt hydrate	cpd00024	False	already_grows	6.7292	0	
+Smeli	D-Xylose	cpd00154	True	already_grows	6.9613	0	
+Smeli	L-Proline	cpd00129	True	already_grows	7.0773	0	
+Smeli	D-Trehalose dihydrate	cpd00794	True	already_grows	8.5855	0	
+Smeli	L-Fucose	cpd00751	True	already_grows	5.801	0	
+Smeli	Trisodium citrate dihydrate	cpd00137	False	already_grows	6.8452	0	
+Smeli	Potassium acetate	cpd00029	False	already_grows	6.2651	0	
+Smeli	L-Rhamnose monohydrate	cpd00396	True	already_grows	5.801	0	
+Smeli	D-Sorbitol	cpd00588	True	already_grows	7.3093	0	
+Smeli	D-Galactose	cpd00108	True	already_grows	5.801	0	
+Smeli	D-Cellobiose	cpd00158	True	already_grows	5.801	0	
+Smeli	D-Mannose	cpd00138	True	already_grows	7.1933	0	
+Smeli	D-Gluconic Acid sodium salt	cpd00222	False	already_grows	7.0773	0	
+Smeli	D-Ribose	cpd00105	True	already_grows	6.9613	0	
+Smeli	D-Raffinose pentahydrate	cpd30716	True	already_grows	5.801	0	
+Smeli	m-Inositol	cpd00121	True	already_grows	5.801	0	
+Smeli	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	6.8452	0	
+Smeli	Sodium Fumarate dibasic	cpd00106	False	already_grows	6.4972	0	
+Smeli	Sodium propionate	cpd00141	False	already_grows	5.801	0	
+Smeli	D-Glucosamine Hydrochloride	cpd00276	True	already_grows	5.801	0	
+Smeli	a-Cyclodextrin	cpd24451	False	already_grows	5.801	0	
+Smeli	Ethanol	cpd00363	False	already_grows	6.4972	0	
+Smeli	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	7.1933	0	
+Smeli	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	5.801	0	
+Smeli	L-Alanine	cpd00035	False	already_grows	6.4972	0	
+Smeli	L-Asparagine	cpd00132	False	already_grows	5.8832	0	
+Smeli	Sodium butyrate	cpd00211	False	already_grows	5.801	0	
+Smeli	L-Leucine	cpd00107	True	already_grows	6.2059	0	
+Smeli	L-Arabinose	cpd00224	True	already_grows	5.801	0	
+Phaeo	Sodium pyruvate	cpd00020	True	gapfilled	0.7566	13	EX_cpd15378_e0;rxn03436_c0;rxn00340_c0;rxn10213_c0;rxn12376_c0;rxn01539_c0;rxn09310_c0;rxn00704_c0;rxn02185_c0;rxn05464_c0;rxn15949_c0;rxn15947_c0;rxn20627_c0
+Phaeo	Sodium D,L-Lactate	cpd00159	True	already_grows	0.7566	0	
+Phaeo	L-Glutamine	cpd00053	True	gapfilled	0.7756	1	rxn19346_c0
+Phaeo	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	0.7566	0	
+Phaeo	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	0.7566	0	
+Phaeo	Sodium L-Lactate	cpd00159	True	already_grows	0.7566	0	
+Phaeo	D-Fructose	cpd00082	True	already_grows	1.5132	0	
+Phaeo	D-Glucose	cpd00027	True	already_grows	1.5132	0	
+Phaeo	Sodium D-Lactate	cpd00221	True	already_grows	0.7566	0	
+Phaeo	N-Acetyl-D-Glucosamine	cpd00122	True	gapfilled	2.0176	1	rxn00892_c0
+Phaeo	D-Maltose monohydrate	cpd00179	False	already_grows	3.0264	0	
+Phaeo	Glycerol	cpd00100	True	already_grows	0.7566	0	
+Phaeo	a-Ketoglutaric acid disodium salt hydrate	cpd00024	True	already_grows	0.7756	0	
+Phaeo	D-Xylose	cpd00154	True	already_grows	1.261	0	
+Phaeo	L-Proline	cpd00129	True	already_grows	0.7756	0	
+Phaeo	D-Trehalose dihydrate	cpd00794	True	gapfilled	3.0264	1	rxn00007_c0
+Phaeo	L-Fucose	cpd00751	False	not_observed	0.0	0	
+Phaeo	Trisodium citrate dihydrate	cpd00137	True	gapfilled	0.7756	2	rxn00068_c0;rxn08474_c0
+Phaeo	Potassium acetate	cpd00029	True	gapfilled	0.5044	1	rxn11285_c0
+Phaeo	L-Rhamnose monohydrate	cpd00396	False	not_observed	0.0	0	
+Phaeo	D-Sorbitol	cpd00588	True	already_grows	1.5132	0	
+Phaeo	D-Galactose	cpd00108	False	not_observed	0.0	0	
+Phaeo	D-Cellobiose	cpd00158	True	already_grows	3.0264	0	
+Phaeo	D-Mannose	cpd00138	True	gapfilled	37.3941	4	DM_cpd15302_c0;rxn10348_c0;rxn09399_c0;rxn05740_c0
+Phaeo	D-Gluconic Acid sodium salt	cpd00222	False	already_grows	37.3941	0	
+Phaeo	D-Ribose	cpd00105	False	already_grows	37.7058	0	
+Phaeo	D-Raffinose pentahydrate	cpd30716	False	already_grows	37.3941	0	
+Phaeo	m-Inositol	cpd00121	True	already_grows	37.3941	0	
+Phaeo	L-Glutamic acid monopotassium salt monohydrate	cpd00023	True	already_grows	37.55	0	
+Phaeo	Sodium Fumarate dibasic	cpd00106	True	already_grows	37.55	0	
+Phaeo	Sodium propionate	cpd00141	True	already_grows	37.3941	0	
+Phaeo	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	37.3941	0	
+Phaeo	a-Cyclodextrin	cpd24451	False	already_grows	37.3941	0	
+Phaeo	Ethanol	cpd00363	False	already_grows	37.3941	0	
+Phaeo	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	37.7058	0	
+Phaeo	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	37.3941	0	
+Phaeo	L-Alanine	cpd00035	False	already_grows	37.3941	0	
+Phaeo	L-Asparagine	cpd00132	True	already_grows	37.6293	0	
+Phaeo	Sodium butyrate	cpd00211	True	already_grows	37.3941	0	
+Phaeo	L-Leucine	cpd00107	False	already_grows	37.3941	0	
+Phaeo	L-Arabinose	cpd00224	False	already_grows	37.3941	0	
+Keio	Sodium pyruvate	cpd00020	True	gapfilled	18.6578	8	EX_cpd15378_e0;rxn03436_c0;rxn12376_c0;rxn09310_c0;rxn02185_c0;rxn05464_c0;rxn15949_c0;rxn15947_c0
+Keio	Sodium D,L-Lactate	cpd00159	True	already_grows	18.6578	0	
+Keio	L-Glutamine	cpd00053	False	already_grows	19.0224	0	
+Keio	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	18.7186	0	
+Keio	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	18.7186	0	
+Keio	Sodium L-Lactate	cpd00159	False	already_grows	18.6578	0	
+Keio	D-Fructose	cpd00082	True	already_grows	19.2047	0	
+Keio	D-Glucose	cpd00027	True	already_grows	19.2655	0	
+Keio	Sodium D-Lactate	cpd00221	True	already_grows	18.6578	0	
+Keio	N-Acetyl-D-Glucosamine	cpd00122	True	already_grows	19.6302	0	
+Keio	D-Maltose monohydrate	cpd00179	True	already_grows	20.3595	0	
+Keio	Glycerol	cpd00100	True	already_grows	18.7186	0	
+Keio	a-Ketoglutaric acid disodium salt hydrate	cpd00024	True	already_grows	19.0832	0	
+Keio	D-Xylose	cpd00154	True	already_grows	19.0832	0	
+Keio	L-Proline	cpd00129	False	already_grows	19.0832	0	
+Keio	D-Trehalose dihydrate	cpd00794	True	already_grows	20.3595	0	
+Keio	L-Fucose	cpd00751	True	already_grows	19.144	0	
+Keio	Trisodium citrate dihydrate	cpd00137	False	already_grows	19.0832	0	
+Keio	Potassium acetate	cpd00029	True	already_grows	18.597	0	
+Keio	L-Rhamnose monohydrate	cpd00396	False	already_grows	19.144	0	
+Keio	D-Sorbitol	cpd00588	True	already_grows	19.2655	0	
+Keio	D-Galactose	cpd00108	True	already_grows	19.2655	0	
+Keio	D-Cellobiose	cpd00158	False	already_grows	20.3595	0	
+Keio	D-Mannose	cpd00138	True	already_grows	19.2655	0	
+Keio	D-Gluconic Acid sodium salt	cpd00222	True	already_grows	19.144	0	
+Keio	D-Ribose	cpd00105	True	already_grows	19.0224	0	
+Keio	D-Raffinose pentahydrate	cpd30716	False	already_grows	18.2324	0	
+Keio	m-Inositol	cpd00121	False	already_grows	18.2324	0	
+Keio	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	19.0832	0	
+Keio	Sodium Fumarate dibasic	cpd00106	False	already_grows	18.7186	0	
+Keio	Sodium propionate	cpd00141	False	already_grows	18.597	0	
+Keio	D-Glucosamine Hydrochloride	cpd00276	True	already_grows	19.2655	0	
+Keio	a-Cyclodextrin	cpd24451	False	already_grows	18.2324	0	
+Keio	Ethanol	cpd00363	False	already_grows	18.597	0	
+Keio	D-Glucose-6-Phosphate sodium salt	cpd00079	True	already_grows	19.3263	0	
+Keio	D-Galacturonic Acid monohydrate	cpd00280	True	already_grows	19.144	0	
+Keio	L-Alanine	cpd00035	False	already_grows	18.6578	0	
+Keio	L-Asparagine	cpd00132	False	already_grows	18.7414	0	
+Keio	Sodium butyrate	cpd00211	False	already_grows	18.2324	0	
+Keio	L-Leucine	cpd00107	False	already_grows	19.1484	0	
+Keio	L-Arabinose	cpd00224	False	already_grows	19.0832	0	
+HerbieS	Sodium pyruvate	cpd00020	True	gapfilled	0.6749	8	EX_cpd15378_e0;rxn03436_c0;rxn10030_c0;rxn12376_c0;rxn09310_c0;rxn02185_c0;rxn15949_c0;rxn15947_c0
+HerbieS	Sodium D,L-Lactate	cpd00159	True	already_grows	0.6749	0	
+HerbieS	L-Glutamine	cpd00053	True	gapfilled	0.7212	1	rxn00194_c0
+HerbieS	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	0.6749	0	
+HerbieS	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	0.6749	0	
+HerbieS	Sodium L-Lactate	cpd00159	True	already_grows	0.6749	0	
+HerbieS	D-Fructose	cpd00082	False	already_grows	1.3497	0	
+HerbieS	D-Glucose	cpd00027	True	gapfilled	1.491	2	rxn15060_c0;rxn15270_c0
+HerbieS	Sodium D-Lactate	cpd00221	True	already_grows	0.7737	0	
+HerbieS	N-Acetyl-D-Glucosamine	cpd00122	False	already_grows	1.9171	0	
+HerbieS	D-Maltose monohydrate	cpd00179	False	already_grows	2.9821	0	
+HerbieS	Glycerol	cpd00100	True	already_grows	0.7737	0	
+HerbieS	a-Ketoglutaric acid disodium salt hydrate	cpd00024	True	already_grows	0.8138	0	
+HerbieS	D-Xylose	cpd00154	True	gapfilled	0.8138	2	rxn01751_c0;rxn16048_c0
+HerbieS	L-Proline	cpd00129	True	already_grows	0.8138	0	
+HerbieS	D-Trehalose dihydrate	cpd00794	False	already_grows	2.9821	0	
+HerbieS	L-Fucose	cpd00751	True	gapfilled	4.1738	5	rxn04794_c0;rxn00541_c0;rxn25279_c0;rxn25278_c0;rxn17392_c0
+HerbieS	Trisodium citrate dihydrate	cpd00137	False	already_grows	5.4259	0	
+HerbieS	Potassium acetate	cpd00029	False	already_grows	4.5912	0	
+HerbieS	L-Rhamnose monohydrate	cpd00396	True	already_grows	4.1738	0	
+HerbieS	D-Sorbitol	cpd00588	True	already_grows	4.1738	0	
+HerbieS	D-Galactose	cpd00108	True	already_grows	4.1738	0	
+HerbieS	D-Cellobiose	cpd00158	False	already_grows	6.9228	0	
+HerbieS	D-Mannose	cpd00138	True	already_grows	5.7512	0	
+HerbieS	D-Gluconic Acid sodium salt	cpd00222	True	already_grows	5.7832	0	
+HerbieS	D-Ribose	cpd00105	True	already_grows	5.5382	0	
+HerbieS	D-Raffinose pentahydrate	cpd30716	False	already_grows	4.1738	0	
+HerbieS	m-Inositol	cpd00121	True	already_grows	4.1738	0	
+HerbieS	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	5.2177	0	
+HerbieS	Sodium Fumarate dibasic	cpd00106	False	already_grows	5.0085	0	
+HerbieS	Sodium propionate	cpd00141	False	already_grows	4.5912	0	
+HerbieS	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	5.7512	0	
+HerbieS	a-Cyclodextrin	cpd24451	False	already_grows	4.1738	0	
+HerbieS	Ethanol	cpd00363	False	already_grows	4.5912	0	
+HerbieS	D-Glucose-6-Phosphate sodium salt	cpd00079	True	already_grows	5.7512	0	
+HerbieS	D-Galacturonic Acid monohydrate	cpd00280	True	already_grows	4.1738	0	
+HerbieS	L-Alanine	cpd00035	False	already_grows	5.0085	0	
+HerbieS	L-Asparagine	cpd00132	True	already_grows	5.0085	0	
+HerbieS	Sodium butyrate	cpd00211	False	already_grows	4.1738	0	
+HerbieS	L-Leucine	cpd00107	False	already_grows	4.4524	0	
+HerbieS	L-Arabinose	cpd00224	True	already_grows	4.1738	0	
+Cup4G11	Sodium pyruvate	cpd00020	True	gapfilled	0.8304	7	EX_cpd15378_e0;rxn03436_c0;rxn10030_c0;rxn12376_c0;rxn09310_c0;rxn02185_c0;rxn41185_c0
+Cup4G11	Sodium D,L-Lactate	cpd00159	True	gapfilled	0.8304	1	rxn01057_c0
+Cup4G11	L-Glutamine	cpd00053	True	already_grows	0.8649	0	
+Cup4G11	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	0.8304	0	
+Cup4G11	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	0.8304	0	
+Cup4G11	Sodium L-Lactate	cpd00159	True	already_grows	0.8304	0	
+Cup4G11	D-Fructose	cpd00082	True	already_grows	1.6609	0	
+Cup4G11	D-Glucose	cpd00027	False	already_grows	1.6609	0	
+Cup4G11	Sodium D-Lactate	cpd00221	True	already_grows	0.8304	0	
+Cup4G11	N-Acetyl-D-Glucosamine	cpd00122	False	not_observed	0.0	0	
+Cup4G11	D-Maltose monohydrate	cpd00179	False	not_observed	0.0	0	
+Cup4G11	Glycerol	cpd00100	False	already_grows	0.8304	0	
+Cup4G11	a-Ketoglutaric acid disodium salt hydrate	cpd00024	True	already_grows	0.8649	0	
+Cup4G11	D-Xylose	cpd00154	False	not_observed	0.0	0	
+Cup4G11	L-Proline	cpd00129	True	already_grows	0.8649	0	
+Cup4G11	D-Trehalose dihydrate	cpd00794	False	already_grows	3.3218	0	
+Cup4G11	L-Fucose	cpd00751	False	not_observed	0.0	0	
+Cup4G11	Trisodium citrate dihydrate	cpd00137	True	already_grows	1.2457	0	
+Cup4G11	Potassium acetate	cpd00029	False	already_grows	0.4152	0	
+Cup4G11	L-Rhamnose monohydrate	cpd00396	False	not_observed	0.0	0	
+Cup4G11	D-Sorbitol	cpd00588	False	not_observed	0.0	0	
+Cup4G11	D-Galactose	cpd00108	False	not_observed	0.0	0	
+Cup4G11	D-Cellobiose	cpd00158	False	already_grows	3.3218	0	
+Cup4G11	D-Mannose	cpd00138	False	already_grows	1.6609	0	
+Cup4G11	D-Gluconic Acid sodium salt	cpd00222	True	already_grows	1.6609	0	
+Cup4G11	D-Ribose	cpd00105	False	not_observed	0.0	0	
+Cup4G11	D-Raffinose pentahydrate	cpd30716	False	not_observed	0.0	0	
+Cup4G11	m-Inositol	cpd00121	False	not_observed	0.0	0	
+Cup4G11	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	0.8649	0	
+Cup4G11	Sodium Fumarate dibasic	cpd00106	False	already_grows	0.8304	0	
+Cup4G11	Sodium propionate	cpd00141	True	already_grows	0.8304	0	
+Cup4G11	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	1.6609	0	
+Cup4G11	a-Cyclodextrin	cpd24451	False	not_observed	0.0	0	
+Cup4G11	Ethanol	cpd00363	True	already_grows	0.4152	0	
+Cup4G11	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	1.6609	0	
+Cup4G11	D-Galacturonic Acid monohydrate	cpd00280	False	not_observed	0.0	0	
+Cup4G11	L-Alanine	cpd00035	True	already_grows	0.8304	0	
+Cup4G11	L-Asparagine	cpd00132	True	already_grows	0.8304	0	
+Cup4G11	Sodium butyrate	cpd00211	True	gapfilled	40.5375	6	DM_cpd15302_c0;rxn06096_c0;rxn09952_c0;rxn09989_c0;rxn09399_c0;rxn05740_c0
+Cup4G11	L-Leucine	cpd00107	True	already_grows	40.794	0	
+Cup4G11	L-Arabinose	cpd00224	False	already_grows	40.5238	0	
+Dino	Sodium pyruvate	cpd00020	True	gapfilled	0.8348	22	EX_cpd15378_e0;DM_cpd02701_c0;rxn03436_c0;rxn00340_c0;rxn10030_c0;rxn01438_c0;rxn10213_c0;rxn01927_c0;rxn02402_c0;rxn12376_c0;rxn01539_c0;rxn02312_c0;rxn09310_c0;rxn02277_c0;rxn02185_c0;rxn16573_c0;rxn15949_c0;rxn41452_c0;rxn21864_c0;rxn15947_c0;rxn17731_c0;rxn20627_c0
+Dino	Sodium D,L-Lactate	cpd00159	True	already_grows	0.8348	0	
+Dino	L-Glutamine	cpd00053	True	gapfilled	1.6876	1	rxn11285_c0
+Dino	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	2.2262	0	
+Dino	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	2.2262	0	
+Dino	Sodium L-Lactate	cpd00159	True	already_grows	2.2262	0	
+Dino	D-Fructose	cpd00082	False	already_grows	3.061	0	
+Dino	D-Glucose	cpd00027	True	already_grows	3.061	0	
+Dino	Sodium D-Lactate	cpd00221	True	already_grows	2.2262	0	
+Dino	N-Acetyl-D-Glucosamine	cpd00122	False	already_grows	1.3914	0	
+Dino	D-Maltose monohydrate	cpd00179	True	already_grows	4.7306	0	
+Dino	Glycerol	cpd00100	True	already_grows	2.2262	0	
+Dino	a-Ketoglutaric acid disodium salt hydrate	cpd00024	True	already_grows	1.6876	0	
+Dino	D-Xylose	cpd00154	False	already_grows	2.7827	0	
+Dino	L-Proline	cpd00129	False	already_grows	1.6876	0	
+Dino	D-Trehalose dihydrate	cpd00794	True	already_grows	1.4394	0	
+Dino	L-Fucose	cpd00751	False	already_grows	1.3914	0	
+Dino	Trisodium citrate dihydrate	cpd00137	True	already_grows	2.6436	0	
+Dino	Potassium acetate	cpd00029	False	already_grows	1.8088	0	
+Dino	L-Rhamnose monohydrate	cpd00396	True	already_grows	1.3914	0	
+Dino	D-Sorbitol	cpd00588	False	already_grows	3.061	0	
+Dino	D-Galactose	cpd00108	False	already_grows	1.3914	0	
+Dino	D-Cellobiose	cpd00158	False	already_grows	4.7306	0	
+Dino	D-Mannose	cpd00138	False	already_grows	3.061	0	
+Dino	D-Gluconic Acid sodium salt	cpd00222	False	already_grows	1.3914	0	
+Dino	D-Ribose	cpd00105	False	already_grows	2.7827	0	
+Dino	D-Raffinose pentahydrate	cpd30716	False	already_grows	1.3914	0	
+Dino	m-Inositol	cpd00121	False	already_grows	1.3914	0	
+Dino	L-Glutamic acid monopotassium salt monohydrate	cpd00023	True	already_grows	1.6876	0	
+Dino	Sodium Fumarate dibasic	cpd00106	True	already_grows	2.2262	0	
+Dino	Sodium propionate	cpd00141	True	already_grows	1.3914	0	
+Dino	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	3.061	0	
+Dino	a-Cyclodextrin	cpd24451	False	already_grows	1.3914	0	
+Dino	Ethanol	cpd00363	False	already_grows	1.8088	0	
+Dino	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	3.061	0	
+Dino	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	1.3914	0	
+Dino	L-Alanine	cpd00035	False	already_grows	2.2262	0	
+Dino	L-Asparagine	cpd00132	False	already_grows	1.415	0	
+Dino	Sodium butyrate	cpd00211	False	already_grows	1.3914	0	
+Dino	L-Leucine	cpd00107	False	already_grows	1.4842	0	
+Dino	L-Arabinose	cpd00224	False	already_grows	1.3914	0	
+Marino	Sodium pyruvate	cpd00020	True	gapfilled	3.9003	13	EX_cpd15378_e0;rxn03436_c0;rxn02160_c0;rxn00656_c0;rxn12376_c0;rxn09310_c0;rxn00551_c0;rxn02185_c0;rxn00467_c0;rxn05464_c0;rxn15949_c0;rxn15947_c0;rxn20627_c0
+Marino	Sodium D,L-Lactate	cpd00159	True	already_grows	3.9003	0	
+Marino	L-Glutamine	cpd00053	False	already_grows	4.1576	0	
+Marino	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	3.9003	0	
+Marino	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	3.9003	0	
+Marino	Sodium L-Lactate	cpd00159	True	already_grows	3.9003	0	
+Marino	D-Fructose	cpd00082	False	already_grows	4.5504	0	
+Marino	D-Glucose	cpd00027	False	already_grows	4.8754	0	
+Marino	Sodium D-Lactate	cpd00221	True	already_grows	3.2503	0	
+Marino	N-Acetyl-D-Glucosamine	cpd00122	False	already_grows	3.2503	0	
+Marino	D-Maltose monohydrate	cpd00179	False	already_grows	6.5006	0	
+Marino	Glycerol	cpd00100	True	already_grows	3.9003	0	
+Marino	a-Ketoglutaric acid disodium salt hydrate	cpd00024	True	already_grows	4.1576	0	
+Marino	D-Xylose	cpd00154	False	already_grows	3.2503	0	
+Marino	L-Proline	cpd00129	True	already_grows	4.1576	0	
+Marino	D-Trehalose dihydrate	cpd00794	True	already_grows	3.2503	0	
+Marino	L-Fucose	cpd00751	False	already_grows	3.2503	0	
+Marino	Trisodium citrate dihydrate	cpd00137	True	already_grows	4.1576	0	
+Marino	Potassium acetate	cpd00029	True	already_grows	3.9003	0	
+Marino	L-Rhamnose monohydrate	cpd00396	False	already_grows	3.2503	0	
+Marino	D-Sorbitol	cpd00588	False	already_grows	3.2503	0	
+Marino	D-Galactose	cpd00108	False	already_grows	3.2503	0	
+Marino	D-Cellobiose	cpd00158	False	already_grows	3.2503	0	
+Marino	D-Mannose	cpd00138	False	already_grows	4.8754	0	
+Marino	D-Gluconic Acid sodium salt	cpd00222	False	already_grows	3.2503	0	
+Marino	D-Ribose	cpd00105	False	already_grows	3.2503	0	
+Marino	D-Raffinose pentahydrate	cpd30716	False	already_grows	3.2503	0	
+Marino	m-Inositol	cpd00121	False	already_grows	3.2503	0	
+Marino	L-Glutamic acid monopotassium salt monohydrate	cpd00023	True	already_grows	4.1576	0	
+Marino	Sodium Fumarate dibasic	cpd00106	True	already_grows	3.9003	0	
+Marino	Sodium propionate	cpd00141	False	already_grows	3.9003	0	
+Marino	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	4.8754	0	
+Marino	a-Cyclodextrin	cpd24451	False	already_grows	3.2503	0	
+Marino	Ethanol	cpd00363	True	already_grows	3.9003	0	
+Marino	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	4.8754	0	
+Marino	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	3.2503	0	
+Marino	L-Alanine	cpd00035	False	already_grows	3.9003	0	
+Marino	L-Asparagine	cpd00132	False	already_grows	3.2932	0	
+Marino	Sodium butyrate	cpd00211	False	already_grows	3.2503	0	
+Marino	L-Leucine	cpd00107	False	already_grows	3.5066	0	
+Marino	L-Arabinose	cpd00224	False	already_grows	3.2503	0	
+MR1	Sodium pyruvate	cpd00020	True	gapfilled	0.8378	7	EX_cpd15378_e0;rxn12376_c0;rxn09310_c0;rxn00467_c0;rxn05464_c0;rxn15949_c0;rxn15947_c0
+MR1	Sodium D,L-Lactate	cpd00159	True	gapfilled	4.1889	2	rxn17391_c0;rxn17392_c0
+MR1	L-Glutamine	cpd00053	True	already_grows	5.2374	0	
+MR1	L-Malic acid disodium salt monohydrate	cpd00130	False	already_grows	5.0267	0	
+MR1	Sodium succinate dibasic hexahydrate	cpd00036	False	already_grows	5.0267	0	
+MR1	Sodium L-Lactate	cpd00159	True	already_grows	4.1889	0	
+MR1	D-Fructose	cpd00082	False	already_grows	5.8645	0	
+MR1	D-Glucose	cpd00027	False	already_grows	5.8645	0	
+MR1	Sodium D-Lactate	cpd00221	False	already_grows	5.0267	0	
+MR1	N-Acetyl-D-Glucosamine	cpd00122	True	already_grows	6.2834	0	
+MR1	D-Maltose monohydrate	cpd00179	False	already_grows	4.1889	0	
+MR1	Glycerol	cpd00100	False	already_grows	5.0267	0	
+MR1	a-Ketoglutaric acid disodium salt hydrate	cpd00024	False	already_grows	5.2374	0	
+MR1	D-Xylose	cpd00154	False	already_grows	4.1889	0	
+MR1	L-Proline	cpd00129	False	already_grows	5.2374	0	
+MR1	D-Trehalose dihydrate	cpd00794	False	already_grows	4.1889	0	
+MR1	L-Fucose	cpd00751	False	already_grows	4.1889	0	
+MR1	Trisodium citrate dihydrate	cpd00137	False	already_grows	5.4456	0	
+MR1	Potassium acetate	cpd00029	False	already_grows	4.6078	0	
+MR1	L-Rhamnose monohydrate	cpd00396	False	already_grows	4.1889	0	
+MR1	D-Sorbitol	cpd00588	False	already_grows	4.1889	0	
+MR1	D-Galactose	cpd00108	False	already_grows	4.1889	0	
+MR1	D-Cellobiose	cpd00158	False	already_grows	4.1889	0	
+MR1	D-Mannose	cpd00138	False	already_grows	4.1889	0	
+MR1	D-Gluconic Acid sodium salt	cpd00222	False	already_grows	4.1889	0	
+MR1	D-Ribose	cpd00105	False	already_grows	5.5852	0	
+MR1	D-Raffinose pentahydrate	cpd30716	False	already_grows	4.1889	0	
+MR1	m-Inositol	cpd00121	False	already_grows	4.1889	0	
+MR1	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	5.2374	0	
+MR1	Sodium Fumarate dibasic	cpd00106	False	already_grows	5.0267	0	
+MR1	Sodium propionate	cpd00141	True	already_grows	4.1889	0	
+MR1	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	5.8645	0	
+MR1	a-Cyclodextrin	cpd24451	False	already_grows	4.1889	0	
+MR1	Ethanol	cpd00363	False	already_grows	4.6078	0	
+MR1	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	5.8645	0	
+MR1	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	4.1889	0	
+MR1	L-Alanine	cpd00035	False	already_grows	5.0267	0	
+MR1	L-Asparagine	cpd00132	False	already_grows	5.0267	0	
+MR1	Sodium butyrate	cpd00211	False	already_grows	4.1889	0	
+MR1	L-Leucine	cpd00107	False	already_grows	4.4697	0	
+MR1	L-Arabinose	cpd00224	False	already_grows	4.1889	0	
+azobra	Sodium pyruvate	cpd00020	True	gapfilled	3.1409	21	rxn00796_c0;rxn03436_c0;rxn00957_c0;rxn02159_c0;rxn10030_c0;rxn00747_c0;rxn00863_c0;rxn09310_c0;rxn12239_c0;rxn00693_c0;rxn02277_c0;rxn02185_c0;rxn00224_c0;rxn02914_c0;rxn16573_c0;rxn15949_c0;rxn41452_c0;rxn15947_c0;rxn30633_c0;rxn20627_c0;rxn16341_c0
+azobra	Sodium D,L-Lactate	cpd00159	True	already_grows	3.1409	0	
+azobra	L-Glutamine	cpd00053	True	already_grows	3.5057	0	
+azobra	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	3.3411	0	
+azobra	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	3.3411	0	
+azobra	Sodium L-Lactate	cpd00159	True	already_grows	3.1409	0	
+azobra	D-Fructose	cpd00082	True	already_grows	3.8657	0	
+azobra	D-Glucose	cpd00027	False	already_grows	3.8657	0	
+azobra	Sodium D-Lactate	cpd00221	True	already_grows	3.1409	0	
+azobra	N-Acetyl-D-Glucosamine	cpd00122	False	already_grows	4.3489	0	
+azobra	D-Maltose monohydrate	cpd00179	False	already_grows	5.3153	0	
+azobra	Glycerol	cpd00100	True	already_grows	3.1409	0	
+azobra	a-Ketoglutaric acid disodium salt hydrate	cpd00024	True	already_grows	3.5057	0	
+azobra	D-Xylose	cpd00154	False	already_grows	2.4161	0	
+azobra	L-Proline	cpd00129	True	already_grows	3.5057	0	
+azobra	D-Trehalose dihydrate	cpd00794	False	already_grows	5.3153	0	
+azobra	L-Fucose	cpd00751	False	already_grows	2.4161	0	
+azobra	Trisodium citrate dihydrate	cpd00137	False	already_grows	3.7706	0	
+azobra	Potassium acetate	cpd00029	False	already_grows	2.8993	0	
+azobra	L-Rhamnose monohydrate	cpd00396	False	already_grows	2.4161	0	
+azobra	D-Sorbitol	cpd00588	False	already_grows	2.4161	0	
+azobra	D-Galactose	cpd00108	False	already_grows	2.4161	0	
+azobra	D-Cellobiose	cpd00158	False	already_grows	5.3153	0	
+azobra	D-Mannose	cpd00138	False	already_grows	3.8657	0	
+azobra	D-Gluconic Acid sodium salt	cpd00222	True	already_grows	3.6241	0	
+azobra	D-Ribose	cpd00105	False	already_grows	2.4161	0	
+azobra	D-Raffinose pentahydrate	cpd30716	False	already_grows	2.4161	0	
+azobra	m-Inositol	cpd00121	False	already_grows	2.4161	0	
+azobra	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	3.5057	0	
+azobra	Sodium Fumarate dibasic	cpd00106	False	already_grows	3.3411	0	
+azobra	Sodium propionate	cpd00141	False	already_grows	2.4161	0	
+azobra	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	3.8657	0	
+azobra	a-Cyclodextrin	cpd24451	False	already_grows	2.4161	0	
+azobra	Ethanol	cpd00363	True	already_grows	2.8993	0	
+azobra	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	3.8657	0	
+azobra	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	3.8657	0	
+azobra	L-Alanine	cpd00035	False	already_grows	3.1409	0	
+azobra	L-Asparagine	cpd00132	False	already_grows	2.4638	0	
+azobra	Sodium butyrate	cpd00211	True	already_grows	2.4161	0	
+azobra	L-Leucine	cpd00107	True	already_grows	2.5796	0	
+azobra	L-Arabinose	cpd00224	False	already_grows	2.4161	0	
+PV4	Sodium pyruvate	cpd00020	True	gapfilled	0.8378	6	EX_cpd15378_e0;rxn05463_c0;rxn12376_c0;rxn09310_c0;rxn15949_c0;rxn15947_c0
+PV4	Sodium D,L-Lactate	cpd00159	True	gapfilled	4.1889	2	rxn17391_c0;rxn17392_c0
+PV4	L-Glutamine	cpd00053	True	already_grows	5.2374	0	
+PV4	L-Malic acid disodium salt monohydrate	cpd00130	True	already_grows	5.0267	0	
+PV4	Sodium succinate dibasic hexahydrate	cpd00036	True	already_grows	5.0267	0	
+PV4	Sodium L-Lactate	cpd00159	True	already_grows	4.1889	0	
+PV4	D-Fructose	cpd00082	False	already_grows	5.8645	0	
+PV4	D-Glucose	cpd00027	False	already_grows	5.8645	0	
+PV4	Sodium D-Lactate	cpd00221	False	already_grows	5.0267	0	
+PV4	N-Acetyl-D-Glucosamine	cpd00122	True	already_grows	6.2834	0	
+PV4	D-Maltose monohydrate	cpd00179	True	already_grows	4.1889	0	
+PV4	Glycerol	cpd00100	False	already_grows	5.0267	0	
+PV4	a-Ketoglutaric acid disodium salt hydrate	cpd00024	True	already_grows	5.2374	0	
+PV4	D-Xylose	cpd00154	False	already_grows	4.1889	0	
+PV4	L-Proline	cpd00129	False	already_grows	5.2374	0	
+PV4	D-Trehalose dihydrate	cpd00794	False	already_grows	4.1889	0	
+PV4	L-Fucose	cpd00751	False	already_grows	4.1889	0	
+PV4	Trisodium citrate dihydrate	cpd00137	False	already_grows	5.4456	0	
+PV4	Potassium acetate	cpd00029	True	already_grows	4.6078	0	
+PV4	L-Rhamnose monohydrate	cpd00396	False	already_grows	4.1889	0	
+PV4	D-Sorbitol	cpd00588	False	already_grows	4.1889	0	
+PV4	D-Galactose	cpd00108	False	already_grows	5.8645	0	
+PV4	D-Cellobiose	cpd00158	False	already_grows	4.1889	0	
+PV4	D-Mannose	cpd00138	False	already_grows	4.1889	0	
+PV4	D-Gluconic Acid sodium salt	cpd00222	False	already_grows	4.1889	0	
+PV4	D-Ribose	cpd00105	False	already_grows	5.5852	0	
+PV4	D-Raffinose pentahydrate	cpd30716	False	already_grows	4.1889	0	
+PV4	m-Inositol	cpd00121	False	already_grows	4.1889	0	
+PV4	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	5.2374	0	
+PV4	Sodium Fumarate dibasic	cpd00106	True	already_grows	5.0267	0	
+PV4	Sodium propionate	cpd00141	False	already_grows	4.1889	0	
+PV4	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	5.8645	0	
+PV4	a-Cyclodextrin	cpd24451	False	already_grows	4.1889	0	
+PV4	Ethanol	cpd00363	False	already_grows	4.6078	0	
+PV4	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	5.8645	0	
+PV4	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	4.1889	0	
+PV4	L-Alanine	cpd00035	False	already_grows	5.0267	0	
+PV4	L-Asparagine	cpd00132	False	already_grows	5.0267	0	
+PV4	Sodium butyrate	cpd00211	False	already_grows	4.1889	0	
+PV4	L-Leucine	cpd00107	False	already_grows	4.4697	0	
+PV4	L-Arabinose	cpd00224	False	already_grows	4.1889	0	
+Korea	Sodium pyruvate	cpd00020	False	not_observed	0.0	0	
+Korea	Sodium D,L-Lactate	cpd00159	False	not_observed	0.0	0	
+Korea	L-Glutamine	cpd00053	True	gapfilled	0.7215	13	EX_cpd00048_e0;rxn00958_c0;rxn10213_c0;rxn10204_c0;rxn00656_c0;rxn09310_c0;rxn05153_c0;rxn12239_c0;rxn00704_c0;rxn01790_c0;rxn00520_c0;rxn05464_c0;rxn20627_c0
+Korea	L-Malic acid disodium salt monohydrate	cpd00130	False	already_grows	0.6914	0	
+Korea	Sodium succinate dibasic hexahydrate	cpd00036	False	already_grows	0.6914	0	
+Korea	Sodium L-Lactate	cpd00159	False	already_grows	0.6914	0	
+Korea	D-Fructose	cpd00082	True	gapfilled	1.3828	1	rxn01492_c0
+Korea	D-Glucose	cpd00027	True	already_grows	1.3828	0	
+Korea	Sodium D-Lactate	cpd00221	False	already_grows	0.6914	0	
+Korea	N-Acetyl-D-Glucosamine	cpd00122	True	already_grows	2.0665	0	
+Korea	D-Maltose monohydrate	cpd00179	True	gapfilled	2.7655	1	rxn00607_c0
+Korea	Glycerol	cpd00100	False	already_grows	0.6914	0	
+Korea	a-Ketoglutaric acid disodium salt hydrate	cpd00024	False	already_grows	0.7215	0	
+Korea	D-Xylose	cpd00154	True	gapfilled	0.7215	2	rxn01753_c0;rxn16048_c0
+Korea	L-Proline	cpd00129	False	already_grows	0.7215	0	
+Korea	D-Trehalose dihydrate	cpd00794	False	not_observed	0.0	0	
+Korea	L-Fucose	cpd00751	False	not_observed	0.0	0	
+Korea	Trisodium citrate dihydrate	cpd00137	False	already_grows	0.7215	0	
+Korea	Potassium acetate	cpd00029	False	already_grows	0.4176	0	
+Korea	L-Rhamnose monohydrate	cpd00396	False	not_observed	0.0	0	
+Korea	D-Sorbitol	cpd00588	False	not_observed	0.0	0	
+Korea	D-Galactose	cpd00108	False	not_observed	0.0	0	
+Korea	D-Cellobiose	cpd00158	True	already_grows	2.7655	0	
+Korea	D-Mannose	cpd00138	False	already_grows	1.3828	0	
+Korea	D-Gluconic Acid sodium salt	cpd00222	False	not_observed	0.0	0	
+Korea	D-Ribose	cpd00105	False	already_grows	1.1523	0	
+Korea	D-Raffinose pentahydrate	cpd30716	True	gapfilled	29.3267	5	DM_cpd15302_c0;rxn10348_c0;rxn09399_c0;rxn05740_c0;rxn26127_c0
+Korea	m-Inositol	cpd00121	False	already_grows	29.3267	0	
+Korea	L-Glutamic acid monopotassium salt monohydrate	cpd00023	True	already_grows	29.7266	0	
+Korea	Sodium Fumarate dibasic	cpd00106	False	already_grows	29.5933	0	
+Korea	Sodium propionate	cpd00141	False	already_grows	29.3267	0	
+Korea	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	29.7266	0	
+Korea	a-Cyclodextrin	cpd24451	True	already_grows	29.3267	0	
+Korea	Ethanol	cpd00363	False	already_grows	29.46	0	
+Korea	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	29.9932	0	
+Korea	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	29.3267	0	
+Korea	L-Alanine	cpd00035	False	already_grows	29.46	0	
+Korea	L-Asparagine	cpd00132	False	already_grows	29.5638	0	
+Korea	Sodium butyrate	cpd00211	False	already_grows	29.3267	0	
+Korea	L-Leucine	cpd00107	False	already_grows	29.7266	0	
+Korea	L-Arabinose	cpd00224	False	already_grows	29.3267	0	
+Dyella79	Sodium pyruvate	cpd00020	True	gapfilled	0.8294	10	EX_cpd15378_e0;rxn08822_c0;rxn05211_c0;rxn12376_c0;rxn09310_c0;rxn05464_c0;rxn25042_c0;rxn19766_c0;rxn19764_c0;rxn20627_c0
+Dyella79	Sodium D,L-Lactate	cpd00159	False	already_grows	0.8294	0	
+Dyella79	L-Glutamine	cpd00053	False	not_observed	0.0	0	
+Dyella79	L-Malic acid disodium salt monohydrate	cpd00130	False	already_grows	0.8294	0	
+Dyella79	Sodium succinate dibasic hexahydrate	cpd00036	False	already_grows	0.8294	0	
+Dyella79	Sodium L-Lactate	cpd00159	False	already_grows	0.8294	0	
+Dyella79	D-Fructose	cpd00082	True	gapfilled	1.6587	1	rxn01492_c0
+Dyella79	D-Glucose	cpd00027	True	already_grows	1.6587	0	
+Dyella79	Sodium D-Lactate	cpd00221	False	already_grows	0.8294	0	
+Dyella79	N-Acetyl-D-Glucosamine	cpd00122	True	already_grows	2.0734	0	
+Dyella79	D-Maltose monohydrate	cpd00179	True	already_grows	3.3174	0	
+Dyella79	Glycerol	cpd00100	False	already_grows	0.8294	0	
+Dyella79	a-Ketoglutaric acid disodium salt hydrate	cpd00024	False	not_observed	0.0	0	
+Dyella79	D-Xylose	cpd00154	False	already_grows	1.3823	0	
+Dyella79	L-Proline	cpd00129	True	gapfilled	0.8637	1	rxn00203_c0
+Dyella79	D-Trehalose dihydrate	cpd00794	False	already_grows	3.3174	0	
+Dyella79	L-Fucose	cpd00751	False	not_observed	0.0	0	
+Dyella79	Trisodium citrate dihydrate	cpd00137	False	not_observed	0.0	0	
+Dyella79	Potassium acetate	cpd00029	False	already_grows	0.4147	0	
+Dyella79	L-Rhamnose monohydrate	cpd00396	False	not_observed	0.0	0	
+Dyella79	D-Sorbitol	cpd00588	False	not_observed	0.0	0	
+Dyella79	D-Galactose	cpd00108	True	gapfilled	1.6587	4	rxn00355_c0;rxn15121_c0;rxn30604_c0;rxn30623_c0
+Dyella79	D-Cellobiose	cpd00158	True	already_grows	3.3174	0	
+Dyella79	D-Mannose	cpd00138	False	already_grows	1.6587	0	
+Dyella79	D-Gluconic Acid sodium salt	cpd00222	False	already_grows	1.6587	0	
+Dyella79	D-Ribose	cpd00105	False	already_grows	1.3823	0	
+Dyella79	D-Raffinose pentahydrate	cpd30716	False	not_observed	0.0	0	
+Dyella79	m-Inositol	cpd00121	False	not_observed	0.0	0	
+Dyella79	L-Glutamic acid monopotassium salt monohydrate	cpd00023	False	already_grows	0.8637	0	
+Dyella79	Sodium Fumarate dibasic	cpd00106	False	already_grows	0.8294	0	
+Dyella79	Sodium propionate	cpd00141	False	not_observed	0.0	0	
+Dyella79	D-Glucosamine Hydrochloride	cpd00276	False	already_grows	1.6587	0	
+Dyella79	a-Cyclodextrin	cpd24451	True	gapfilled	37.6363	5	DM_cpd15302_c0;rxn10348_c0;rxn09399_c0;rxn05740_c0;rxn26127_c0
+Dyella79	Ethanol	cpd00363	False	already_grows	37.6363	0	
+Dyella79	D-Glucose-6-Phosphate sodium salt	cpd00079	False	already_grows	38.2188	0	
+Dyella79	D-Galacturonic Acid monohydrate	cpd00280	False	already_grows	37.6363	0	
+Dyella79	L-Alanine	cpd00035	True	already_grows	37.7035	0	
+Dyella79	L-Asparagine	cpd00132	False	already_grows	38.0076	0	
+Dyella79	Sodium butyrate	cpd00211	False	already_grows	37.6363	0	
+Dyella79	L-Leucine	cpd00107	False	already_grows	37.8379	0	
+Dyella79	L-Arabinose	cpd00224	False	already_grows	37.6363	0	
