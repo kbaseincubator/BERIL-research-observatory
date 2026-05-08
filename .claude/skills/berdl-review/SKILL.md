@@ -39,7 +39,7 @@ Read `projects/{project_id}/beril.yaml` (skip silently if missing — pre-manife
 
   > "REPORT.md has changed since this project was approved ({approval.at}). Producing a review against the new report will leave the project in a confusing state: `complete` with a fresh review for an unapproved report. Demote to `analysis` first (the previous approval will be archived under `previous_approvals`) before running the new review? (y/n)"
 
-  - **Yes**: move `approval` to `previous_approvals: []` (append), set `status: analysis`, delete both `SUBMITTED.md` and `SUBMISSION_FAILED.md` if present (audit lives in `beril.yaml`). Then continue to Step 3.
+  - **Yes**: move `approval` to `previous_approvals: []` (append) with an added `archived_at: "<now>"` field, set `status: analysis`, update `README.md` `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`.", delete `projects/{project_id}/REVIEW.md` (the canonical copy of the now-archived review), and delete both `SUBMITTED.md` and `SUBMISSION_FAILED.md` if present (audit lives in `beril.yaml`). Then continue to Step 3.
   - **No**: abort. Tell the user to re-run after deciding (either revert REPORT.md, or accept the demote next time).
 
 For `--type plan` reviews this precondition does not apply (plans are reviewed independent of the lifecycle).

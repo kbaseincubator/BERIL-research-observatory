@@ -89,6 +89,8 @@ Two visible-from-`ls` files in `projects/<id>/` signal upload state. Exactly one
 | `SUBMITTED.md` | The most recent lakehouse upload succeeded. Contains archive key, timestamp, ORCID, file/byte counts, and the join key (`approved_at`) into `beril.yaml.submissions[]` for full history. |
 | `SUBMISSION_FAILED.md` | The most recent lakehouse upload failed. Contains the error and a "re-run `/submit`" hint. Cleared on next successful retry. |
 
+**The marker files are intentionally local-only.** They're written *after* the lakehouse upload returns, so they will not appear inside the lakehouse copy of the project. That's by design — they exist for human visibility on the user's machine ("did this submit?"), not as part of the archived artifact. The authoritative submission audit lives in `beril.yaml.submissions[]`, which is part of the project files and therefore is captured in the lakehouse archive on the *next* re-submit (if any). The current submission's success record is recorded locally only.
+
 ### Downstream gating
 
 - **`/submit`** requires the project to be at `reviewed` (the normal forward path) or `complete` (for retries — see `/submit` skill for the marker-and-hash-driven branching). Earlier statuses fail with phase-specific messages: `exploration` → write the plan; `proposed` → run analysis notebooks; `active` → run `/synthesize`; `analysis` → run `/berdl-review`. Re-submission flows (after a re-open via `/synthesize` on a `complete` project) detect via `submissions[].success` and warn that the previously archived lakehouse copy will be replaced.
@@ -102,7 +104,7 @@ The lakehouse archive — not git — is the source of truth for "this project w
 `beril.yaml` records a structured audit trail:
 
 - `approval` — the current approval block (only present at `complete`). Fields: `by` (ORCID), `at` (ISO timestamp), `report_hash`, `review` (filename), `review_hash`.
-- `previous_approvals: []` — list of archived approvals from prior re-open cycles. Each entry has the same shape as `approval`, plus the moment it was archived.
+- `previous_approvals: []` — list of archived approvals from prior re-open cycles. Each entry has the same shape as `approval` plus an `archived_at` ISO timestamp recording when it was moved here. Demotion paths in `/synthesize`, `/submit`, `/berdl-review`, and `/berdl_start` resume detection all set this field.
 - `submissions: []` — list of upload attempts (success and failure). Each entry has `status` (`success` or `failed`), `attempted_at`, `approved_at` (the **join key** to a current or previous approval), and on success `archive_key`, `file_count`, `byte_total`, `duration_seconds`.
 
 **Re-open semantics**: if the user discovers an error in a `complete` project, running `/synthesize` triggers an explicit "re-running synthesis will demote this project to `analysis`" prompt. On confirmation, the current `approval` moves to `previous_approvals`, marker files are deleted (audit lives in `beril.yaml`), and `REPORT.md` is regenerated. After `/berdl-review` and `/submit`, the new approval prompt warns that approving will replace the existing lakehouse archive.

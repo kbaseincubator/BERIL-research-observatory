@@ -259,6 +259,14 @@ if [[ "$REVIEW_TYPE" == "project" ]]; then
     rm -f "$OUTPUT_FILE"
     exit 1
   fi
+  # Defensive: strip any pre-existing report_hash footer-like lines from the
+  # reviewer's output so the file ends with exactly one footer (the one we
+  # write below). /submit's parser requires the canonical line to be the
+  # final non-empty line and exactly one occurrence in the file.
+  if grep -qE '^<!--[[:space:]]*report_hash:[[:space:]]*sha256:' "$OUTPUT_FILE"; then
+    grep -vE '^<!--[[:space:]]*report_hash:[[:space:]]*sha256:' "$OUTPUT_FILE" > "${OUTPUT_FILE}.tmp" \
+      && mv "${OUTPUT_FILE}.tmp" "$OUTPUT_FILE"
+  fi
   printf '\n<!-- report_hash: sha256:%s -->\n' "$REPORT_HASH_PRE" >> "$OUTPUT_FILE"
 fi
 

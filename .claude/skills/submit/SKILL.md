@@ -65,7 +65,11 @@ This phase performs no state changes *except* for the explicit reopen confirmati
 
 #### 1a. Status gate
 
-Read `projects/{project_id}/beril.yaml`. If missing (pre-manifest project), skip the manifest-driven gates below and rely on the file-existence checks from Step 2 — but be aware no approval/submission tracking will be recorded.
+Read `projects/{project_id}/beril.yaml`. If it is missing (pre-manifest project), **reject submission**:
+
+> `FAIL  This project has no beril.yaml manifest. The new submission flow requires a manifest to record approval and submission history. Run /berdl_start on this project to scaffold a manifest (it will detect the existing artifacts), then re-run /submit.`
+
+Pre-manifest projects cannot go through approval/upload tracking until upgraded. (Migrating legacy projects to the new manifest format is a separate effort, not handled inline by `/submit`.)
 
 For projects with `beril.yaml`:
 
@@ -82,14 +86,14 @@ For projects with `beril.yaml`:
 
      > "REPORT.md has changed since this project was approved ({approval.at}). The previous approval no longer reflects the current report. Demote status to `analysis`? Previous approval will be archived under `previous_approvals`; both `SUBMITTED.md` and `SUBMISSION_FAILED.md` will be removed (audit lives in `beril.yaml`)."
 
-     - Yes → move `approval` to `previous_approvals: []`, set `status: analysis`, delete both marker files if present. Tell the user "/submit aborted; run /berdl-review to produce a current review, then /submit again." Stop.
+     - Yes → move `approval` to `previous_approvals: []` with an added `archived_at: "<now>"` field, set `status: analysis`, update `README.md` `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`.", delete `projects/{project_id}/REVIEW.md` (the canonical copy of the now-archived review is no longer current), and delete both marker files if present. Tell the user "/submit aborted; run `/berdl-review` to produce a current review, then `/submit` again." Stop.
      - No → leave alone, warn that the project is in an inconsistent state, abort `/submit`.
 
      Markers are not consulted in this branch — the approved content no longer matches the report on disk.
 
   2. **Then** branch on markers (`SUBMISSION_FAILED.md` always wins on conflict):
 
-     - `SUBMITTED.md` present **and** `SUBMISSION_FAILED.md` absent → idempotent. Print `INFO  Already submitted on {SUBMITTED.md submitted_at}; archive: {archive_key}; see SUBMITTED.md for details.` Exit 0.
+     - `SUBMITTED.md` present **and** `SUBMISSION_FAILED.md` absent → **verify the join key** before treating as idempotent. Parse `SUBMITTED.md`'s `**Approved at**: {iso}` line and compare to the current `beril.yaml.approval.at`. Match: idempotent. Print `INFO  Already submitted on {SUBMITTED.md submitted_at}; archive: {archive_key}; see SUBMITTED.md for details.` Exit 0. Mismatch (the marker is from a prior approval that should have been cleared during a re-open): treat `SUBMITTED.md` as stale, delete it, and fall through to the "both markers absent" branch below.
      - `SUBMISSION_FAILED.md` present (regardless of `SUBMITTED.md`) → proceed to Phase 3 only (skip approval; approval is recorded and report hash is current). Phase 3's pre-upload normalization will clean up the marker conflict.
      - Both markers absent → consult `beril.yaml.submissions[]` for an entry with `approved_at == approval.at` and `status: success`. If found → marker file was lost (manual deletion, filesystem mishap); recreate `SUBMITTED.md` from the recorded entry, report idempotent, exit 0. If not found → upload was never attempted (e.g., agent died between approval and Phase 3); proceed to Phase 3 only.
 
@@ -102,6 +106,7 @@ For projects with `beril.yaml`:
   - Latest review missing footer (legacy review predating hash tracking) → `FAIL  Review predates hash tracking — run /berdl-review for a current one`.
   - Hashes mismatch → `FAIL  Latest review (REVIEW_N.md) is on an older REPORT.md — run /berdl-review for a fresh one`.
   - Hashes match → proceed.
+- Also compute `sha256sum projects/{project_id}/REVIEW_N.md` (the file selected above). Hold both hashes (`REPORT_HASH_PHASE1`, `REVIEW_HASH_PHASE1`) for the Phase 2 TOCTOU re-check.
 
 #### 1c. Author identity check
 
@@ -132,7 +137,7 @@ Compute `last_success` = the most recent entry in `beril.yaml.submissions[]` (if
 
 #### 2b. TOCTOU re-check
 
-Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` and `sha256sum REVIEW_N.md` (the file selected in Phase 1b) and compare to the values captured during Phase 1. If either has changed, abort with `Error: files changed during /submit; please re-run.` This guards the brief window between Phase 1 inspection and Phase 2 write.
+Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` and `sha256sum REVIEW_N.md` (the file selected in Phase 1b). Compare against `REPORT_HASH_PHASE1` and `REVIEW_HASH_PHASE1` captured at the end of Phase 1b. If either has changed, abort with `Error: files changed during /submit; please re-run.` This guards the brief window between Phase 1 inspection and Phase 2 write.
 
 #### 2c. Write approval artifacts (local filesystem)
 

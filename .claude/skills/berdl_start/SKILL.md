@@ -341,8 +341,8 @@ Phase 0 is skipped. Resume at the phase matching the project's current status.
 3. The user picks one. Read its `README.md`, `RESEARCH_PLAN.md`, and `REVIEW.md` (if present). Read `REPORT.md` if `artifacts.report` is true.
 4. Update `beril.yaml`: `last_session_at` to now.
 5. **Resume detection on `reviewed` / `complete`**: before suggesting a phase, recompute hash currency:
-   - For `complete`: compare `sha256sum REPORT.md` to `approval.report_hash`. If mismatch → offer demote-to-`analysis` (archives approval to `previous_approvals`, deletes both marker files). User picks; if they decline, warn but leave alone.
-   - For `reviewed`: parse the latest `REVIEW_N.md` footer hash and compare to `sha256sum REPORT.md`. If mismatch → offer demote-to-`analysis` (existing reviews stale). User picks.
+   - For `complete`: compare `sha256sum REPORT.md` to `approval.report_hash`. If mismatch → offer demote-to-`analysis`. On Yes: move `approval` to `previous_approvals` (append) with an added `archived_at: "<now>"` field, set `status: analysis`, update README `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`.", delete `REVIEW.md` and both marker files. If user declines, warn but leave alone.
+   - For `reviewed`: parse the latest `REVIEW_N.md` footer hash and compare to `sha256sum REPORT.md`. If mismatch → offer demote-to-`analysis` (existing reviews stale). On Yes: set `status: analysis`, update README `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`." If user declines, warn but leave alone.
 6. Resume at the phase matching the (possibly demoted) status:
    - `exploration` → Phase A (Orientation & Exploration).
    - `proposed` → Checkpoint (re-present plan, ask the (a)/(b)/(c) question).
