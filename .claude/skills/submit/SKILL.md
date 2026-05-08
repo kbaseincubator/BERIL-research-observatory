@@ -127,17 +127,9 @@ The AI reviewer's judgment is advisory, not authoritative. The human researcher 
 
 ### Step 7: Complete & Upload
 
-This step runs for clean reviews and for user-overridden reviews.
+This step runs for clean reviews and for user-overridden reviews. The lifecycle defines `complete` as **review passed AND lakehouse upload succeeded**, so do the upload first and only mark complete on success.
 
-1. If `beril.yaml` exists, set `status: complete` and `last_session_at` to now.
-2. Update `projects/{project_id}/README.md` `## Status` to:
-   ```
-   ## Status
-
-   Completed — {one-line summary from REPORT.md `## Key Findings`}.
-   ```
-   This is the canonical moment when the human-facing status flips to Completed — not before. If `REPORT.md` doesn't have a clear one-liner to pull from, write a brief summary based on the report's findings.
-3. Upload the project to the lakehouse:
+1. **Upload the project to the lakehouse:**
    ```bash
    python tools/lakehouse_upload.py {project_id}
    ```
@@ -145,9 +137,24 @@ This step runs for clean reviews and for user-overridden reviews.
    ```bash
    mc alias set berdl-minio $MINIO_ENDPOINT_URL $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
    ```
-   If the upload fails (e.g., mc not configured, network issue), print the error and continue — don't block the submission.
-4. Remind the user to update `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary.
-5. Suggest committing all changes.
+
+2. **If the upload succeeded:**
+   - Set `beril.yaml` `status: complete` and `last_session_at` to now.
+   - Update `projects/{project_id}/README.md` `## Status` to:
+     ```
+     ## Status
+
+     Completed — {one-line summary from REPORT.md `## Key Findings`}.
+     ```
+     If `REPORT.md` doesn't have a clear one-liner to pull from, write a brief summary based on the report's findings.
+   - Remind the user to update `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary.
+
+3. **If the upload failed** (e.g., mc not configured, network outage, S3 error):
+   - Print the error.
+   - **Do not** flip `beril.yaml` to `status: complete` and **do not** rewrite the README to "Completed." A passed review alone is not enough — the project remains in `review` until the archive lands. Recording it as complete now would lie about the artifact's existence in the lakehouse.
+   - Tell the user to fix the upload issue (e.g., configure the `mc alias`), then re-run `/submit` to retry. `/submit` is idempotent: the existing `REVIEW.md` and any prior status updates remain valid.
+
+4. Suggest committing all changes (the new `REVIEW.md` plus any updated `beril.yaml` and `README.md`).
 
 > **Note**: For final submission reviews, use the default frontier model (no `--model` flag). Use `--model` with faster/cheaper models for iterating on reviewer feedback.
 
