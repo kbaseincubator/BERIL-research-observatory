@@ -14,7 +14,7 @@ source_projects:
   - metabolic_capability_dependency
 source_docs:
   - docs/discoveries.md
-  - docs/schemas/fitnessbrowser.md
+  - docs/schema.md
 related_collections:
   - kescience_fitnessbrowser
   - kbase_ke_pangenome

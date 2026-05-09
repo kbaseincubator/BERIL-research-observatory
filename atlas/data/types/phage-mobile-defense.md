@@ -7,7 +7,7 @@ summary: Host-specific phage browsers, pathogen genome views, and mobile-element
 source_projects:
   []
 source_docs:
-  - docs/collections.md
+  - ui/config/berdl_collections_snapshot.json
   - ui/config/berdl_collections_snapshot.json
 related_collections:
   - phagefoundry_acinetobacter_genome_browser

@@ -7,7 +7,7 @@ summary: Metabolomics, proteomics, trait profiles, embeddings, and other matrix-
 source_projects:
   []
 source_docs:
-  - docs/collections.md
+  - ui/config/berdl_collections_snapshot.json
   - ui/config/berdl_collections_snapshot.json
 related_collections:
   - nmdc_arkin

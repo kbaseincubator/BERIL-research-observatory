@@ -13,7 +13,7 @@ source_projects:
   - pseudomonas_carbon_ecology
 source_docs:
   - docs/discoveries.md
-  - docs/schemas/biochemistry.md
+  - docs/schema.md
 related_collections:
   - kbase_ke_pangenome
   - kbase_msd_biochemistry

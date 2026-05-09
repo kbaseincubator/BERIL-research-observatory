@@ -7,9 +7,9 @@ summary: "Curated microbial exometabolomics: metabolite production/excretion pro
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/webofmicrobes.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kescience_webofmicrobes
 confidence: low

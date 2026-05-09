@@ -14,7 +14,7 @@ source_projects:
   - bacillota_b_subsurface_accessory
 source_docs:
   - docs/discoveries.md
-  - docs/schemas/pangenome.md
+  - docs/schema.md
   - projects/bacillota_b_subsurface_accessory/REPORT.md
 related_collections:
   - kbase_ke_pangenome
