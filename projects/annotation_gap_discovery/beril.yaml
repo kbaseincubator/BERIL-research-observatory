@@ -1,0 +1,16 @@
+project_id: annotation_gap_discovery
+status: active
+created_at: "2026-05-07T00:00:00Z"
+last_session_at: "2026-05-09T00:00:00Z"
+branch: projects/annotation_gap_discovery
+engine:
+  name: claude
+authors:
+  - name: "Janaka N. Edirisinghe"
+    affiliation: "Data Science and Learning Division, Argonne National Laboratory, Lemont, IL, 60439, USA"
+    orcid: "0000-0003-2493-234X"
+artifacts:
+  readme: true
+  research_plan: true
+  report: false
+  review: false
