@@ -360,3 +360,134 @@ def test_prefix_helpers_typecheck():
         prefixed(123)  # type: ignore[arg-type]
     with pytest.raises(TypeError):
         unprefixed(None)  # type: ignore[arg-type]
+
+
+# -----------------------------------------------------------------------------
+# MIME bundle multiline normalization (display_data / execute_result)
+# -----------------------------------------------------------------------------
+
+
+def test_mime_bundle_text_plain_normalization(tmp_path):
+    """{"text/plain": ["a\\n", "b"]} and {"text/plain": "a\\nb"} should hash equal."""
+    out_a = [{"output_type": "execute_result", "data": {"text/plain": ["hello\n", "world"]}}]
+    out_b = [{"output_type": "execute_result", "data": {"text/plain": "hello\nworld"}}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) == hash_notebook(b)
+
+
+def test_mime_bundle_html_normalization(tmp_path):
+    out_a = [{"output_type": "display_data", "data": {"text/html": ["<p>", "hi", "</p>"]}}]
+    out_b = [{"output_type": "display_data", "data": {"text/html": "<p>hi</p>"}}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) == hash_notebook(b)
+
+
+def test_mime_bundle_non_string_passthrough(tmp_path):
+    """application/json with arbitrary objects should pass through unchanged
+    (not coerced to a string)."""
+    out_a = [{"output_type": "execute_result", "data": {"application/json": {"k": 1}}}]
+    out_b = [{"output_type": "execute_result", "data": {"application/json": {"k": 2}}}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+# -----------------------------------------------------------------------------
+# Unknown output types — preserve, don't silently drop
+# -----------------------------------------------------------------------------
+
+
+def test_unknown_output_type_preserves_fields(tmp_path):
+    """A future or extension output type with novel fields must affect the hash."""
+    out_a = [{"output_type": "future_kind", "novel_field": "a", "extra": [1, 2]}]
+    out_b = [{"output_type": "future_kind", "novel_field": "b", "extra": [1, 2]}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_unknown_output_type_normalizes_string_lists(tmp_path):
+    """Unknown output type with a string-or-list field still normalizes for autosave parity."""
+    out_a = [{"output_type": "future_kind", "text_field": ["a\n", "b"]}]
+    out_b = [{"output_type": "future_kind", "text_field": "a\nb"}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) == hash_notebook(b)
+
+
+# -----------------------------------------------------------------------------
+# CLI entrypoint
+# -----------------------------------------------------------------------------
+
+
+def _run_cli(*args, cwd=None):
+    """Invoke the script via subprocess so we exercise the real entrypoint."""
+    import subprocess
+
+    cmd = [sys.executable, str(ROOT / "tools" / "notebook_hash.py"), *args]
+    result = subprocess.run(cmd, capture_output=True, text=True, cwd=cwd)
+    return result
+
+
+def test_cli_compute_hashes_emits_prefixed_json(tmp_path):
+    project = _make_project(tmp_path)
+    nb = _make_notebook([_code_cell("x")])
+    _write(project / "notebooks" / "01.ipynb", nb)
+    result = _run_cli("compute-hashes", str(project))
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout)
+    assert set(payload.keys()) == {"notebooks/01.ipynb"}
+    assert payload["notebooks/01.ipynb"].startswith("sha256:")
+
+
+def test_cli_compute_hashes_empty_project(tmp_path):
+    project = tmp_path / "empty"
+    project.mkdir()
+    result = _run_cli("compute-hashes", str(project))
+    assert result.returncode == 0, result.stderr
+    assert json.loads(result.stdout) == {}
+
+
+def test_cli_works_from_subdir_cwd(tmp_path):
+    """The /submit skill may run from inside projects/<id>/. The CLI must work
+    with an absolute project path regardless of cwd."""
+    project = _make_project(tmp_path)
+    nb = _make_notebook([_code_cell("y")])
+    _write(project / "notebooks" / "01.ipynb", nb)
+    # Execute from inside the project itself.
+    result = _run_cli("compute-hashes", str(project), cwd=str(project))
+    assert result.returncode == 0, result.stderr
+    payload = json.loads(result.stdout)
+    assert "notebooks/01.ipynb" in payload
+
+
+def test_cli_hash_notebook_emits_prefixed_hex(tmp_path):
+    nb_path = tmp_path / "n.ipynb"
+    _write(nb_path, _make_notebook([_code_cell("z")]))
+    result = _run_cli("hash-notebook", str(nb_path))
+    assert result.returncode == 0, result.stderr
+    out = result.stdout.strip()
+    assert out.startswith("sha256:")
+    assert len(out) == len("sha256:") + 64
+
+
+def test_cli_invalid_project_dir_returns_1(tmp_path):
+    result = _run_cli("compute-hashes", str(tmp_path / "does_not_exist"))
+    assert result.returncode == 1
+    assert "not a directory" in result.stderr
+
+
+def test_cli_corrupt_notebook_returns_2(tmp_path):
+    nb_path = tmp_path / "broken.ipynb"
+    nb_path.write_text("{not valid", encoding="utf-8")
+    result = _run_cli("hash-notebook", str(nb_path))
+    assert result.returncode == 2
+    assert str(nb_path) in result.stderr
+
+
+def test_cli_unknown_command_returns_1(tmp_path):
+    result = _run_cli("frobnicate")
+    assert result.returncode == 1
+    assert "unknown command" in result.stderr

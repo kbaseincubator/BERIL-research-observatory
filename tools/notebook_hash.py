@@ -57,22 +57,76 @@ def _normalize_text(value):
     return value
 
 
+def _normalize_data_bundle(data):
+    """Apply multiline normalization recursively to a MIME-bundle ``data`` dict.
+
+    Notebook MIME bundles can serialize each value as either a plain string or
+    a list-of-strings (same convention as cell ``source``). For example
+    ``{"text/plain": ["a\\n", "b"]}`` and ``{"text/plain": "a\\nb"}`` are
+    equivalent and must hash equal.
+
+    We only touch top-level values (the MIME-keyed entries) and lists of
+    strings within those. Nested structures (e.g., ``application/json``
+    containing arbitrary objects) pass through unchanged — they're already
+    hashed structurally by the canonical JSON serializer.
+    """
+    if not isinstance(data, dict):
+        return data
+    out: dict = {}
+    for k, v in data.items():
+        if isinstance(v, list) and all(isinstance(x, str) for x in v):
+            out[k] = "".join(v)
+        else:
+            out[k] = v
+    return out
+
+
+# Known output types: each maps to the keys we preserve canonically. Unknown
+# output_types fall through to a "preserve everything verbatim" branch so an
+# integrity check doesn't silently miss content from future or extension-
+# defined output kinds.
+_KNOWN_OUTPUT_TYPES = frozenset({"stream", "display_data", "execute_result", "error"})
+
+
 def _canonical_output(output: dict) -> dict:
-    """Whitelist canonicalization for a single output cell entry."""
+    """Whitelist canonicalization for a single output cell entry.
+
+    For known output types (stream / display_data / execute_result / error)
+    keep only the content-bearing fields; for unknown types preserve the
+    full output dict so an integrity check can still detect changes (better
+    a noisy hash than a silent false negative if Jupyter or an extension
+    introduces a new output kind).
+    """
     out_type = output.get("output_type")
-    canonical: dict = {"output_type": out_type}
     if out_type == "stream":
-        canonical["name"] = output.get("name")
-        canonical["text"] = _normalize_text(output.get("text", ""))
-    elif out_type in ("display_data", "execute_result"):
-        canonical["data"] = output.get("data", {})
-    elif out_type == "error":
-        canonical["ename"] = output.get("ename")
-        canonical["evalue"] = output.get("evalue")
-        canonical["traceback"] = [_normalize_text(t) for t in output.get("traceback", [])]
-    # Unknown output types: just preserve output_type. Don't error — future
-    # nbformat versions may add new ones; we'd rather hash conservatively
-    # than fail on an unrecognized type.
+        return {
+            "output_type": out_type,
+            "name": output.get("name"),
+            "text": _normalize_text(output.get("text", "")),
+        }
+    if out_type in ("display_data", "execute_result"):
+        return {
+            "output_type": out_type,
+            "data": _normalize_data_bundle(output.get("data", {})),
+        }
+    if out_type == "error":
+        return {
+            "output_type": out_type,
+            "ename": output.get("ename"),
+            "evalue": output.get("evalue"),
+            "traceback": [_normalize_text(t) for t in output.get("traceback", [])],
+        }
+    # Unknown output type: preserve the entire output dict, but apply the
+    # text-normalization recursively wherever a string-or-list pattern shows
+    # up at top level so equivalent forms hash equal.
+    canonical: dict = {}
+    for key, value in output.items():
+        if isinstance(value, list) and all(isinstance(x, str) for x in value):
+            canonical[key] = "".join(value)
+        elif isinstance(value, dict):
+            canonical[key] = _normalize_data_bundle(value)
+        else:
+            canonical[key] = value
     return canonical
 
 
@@ -204,3 +258,77 @@ def unprefixed(h: str) -> str:
         algo = h.split(":", 1)[0]
         raise ValueError(f"unsupported hash algorithm: {algo}")
     return h
+
+
+def _cli(argv: list[str]) -> int:
+    """CLI entrypoint for skill text and shell scripts.
+
+    The /submit and /berdl_start skills can run from anywhere (including
+    inside ``projects/<id>/``), so importing ``tools.notebook_hash`` from
+    a Python one-liner is fragile (depends on cwd / PYTHONPATH). Instead
+    they invoke this script directly:
+
+        python /abs/path/to/tools/notebook_hash.py compute-hashes <project_dir>
+
+    Output: a single-line JSON object on stdout: ``{"<relpath>": "sha256:<hex>", ...}``.
+    Hashes are emitted with the ``sha256:`` prefix so the caller can write
+    them to YAML directly without further processing.
+
+    Exit codes:
+        0  on success (JSON written to stdout, even for empty result {}).
+        1  on bad usage or filesystem error.
+        2  on a corrupt notebook (the path is included in the stderr message).
+    """
+    import sys
+
+    if len(argv) < 2 or argv[1] in ("-h", "--help"):
+        sys.stderr.write(
+            "usage: notebook_hash.py compute-hashes <project_dir>\n"
+            "       notebook_hash.py hash-notebook <ipynb_path>\n"
+        )
+        return 0 if (len(argv) >= 2 and argv[1] in ("-h", "--help")) else 1
+
+    cmd = argv[1]
+    if cmd == "compute-hashes":
+        if len(argv) != 3:
+            sys.stderr.write("error: compute-hashes requires <project_dir>\n")
+            return 1
+        project_dir = Path(argv[2])
+        if not project_dir.is_dir():
+            sys.stderr.write(f"error: not a directory: {project_dir}\n")
+            return 1
+        try:
+            raw = compute_notebook_hashes(project_dir)
+        except ValueError as exc:
+            sys.stderr.write(f"error: {exc}\n")
+            return 2
+        prefixed_hashes = {k: prefixed(v) for k, v in raw.items()}
+        sys.stdout.write(json.dumps(prefixed_hashes, sort_keys=True))
+        sys.stdout.write("\n")
+        return 0
+
+    if cmd == "hash-notebook":
+        if len(argv) != 3:
+            sys.stderr.write("error: hash-notebook requires <ipynb_path>\n")
+            return 1
+        path = Path(argv[2])
+        if not path.is_file():
+            sys.stderr.write(f"error: not a file: {path}\n")
+            return 1
+        try:
+            h = hash_notebook(path)
+        except ValueError as exc:
+            sys.stderr.write(f"error: {exc}\n")
+            return 2
+        sys.stdout.write(prefixed(h))
+        sys.stdout.write("\n")
+        return 0
+
+    sys.stderr.write(f"error: unknown command: {cmd}\n")
+    return 1
+
+
+if __name__ == "__main__":
+    import sys
+
+    sys.exit(_cli(sys.argv))
