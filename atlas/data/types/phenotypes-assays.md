@@ -7,7 +7,7 @@ summary: Measured organism and gene behavior across laboratory conditions, inclu
 source_projects:
   []
 source_docs:
-  - docs/collections.md
+  - ui/config/berdl_collections_snapshot.json
   - ui/config/berdl_collections_snapshot.json
 related_collections:
   - kescience_fitnessbrowser

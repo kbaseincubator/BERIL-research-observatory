@@ -7,9 +7,9 @@ summary: Marine microbial ecology (campaigns, samples, metagenomics)
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/planetmicrobe.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - planetmicrobe_planetmicrobe
 confidence: medium

@@ -8,9 +8,8 @@ source_projects: []
 source_docs:
   - ui/config/collections.yaml
   - ui/config/berdl_collections_snapshot.json
-  - docs/collections.md
-  - docs/schemas/pangenome.md
-  - docs/schemas/fitnessbrowser.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kbase_ke_pangenome
   - kescience_fitnessbrowser

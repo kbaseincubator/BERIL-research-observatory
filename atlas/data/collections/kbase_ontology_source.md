@@ -7,7 +7,7 @@ summary: Ontology definitions (timed out during discovery)
 source_projects:
   []
 source_docs:
-  - docs/collections.md
+  - ui/config/berdl_collections_snapshot.json
   - ui/config/berdl_collections_snapshot.json
 related_collections:
   - kbase_ontology_source
