@@ -118,15 +118,19 @@ For projects with `beril.yaml`:
      - `projects/{project_id}/REVIEW.md` may be missing — Phase 3a recreates it from the numbered review.
      - `projects/{project_id}/{approval.review}` (the numbered file named in the approval, e.g. `REVIEW_3.md`) may be missing on its own (Phase 3a recovers from `REVIEW.md`), **but** if both `REVIEW.md` AND the numbered file are missing, the approved review content is unrecoverable. Treat as approved-content loss and offer the same demote prompt as the hash-mismatch branch (see below). Wording: "Both `REVIEW.md` and `{approval.review}` are missing on this complete project. The approved review content is unrecoverable. Demote to `analysis`? …"
 
-     **Hash checks** (only on files that exist):
+     **Hash checks** (only on files that exist; apply the prefix convention — `unprefixed(stored)` before comparing to `sha256sum` output):
 
      - `sha256sum projects/{project_id}/REPORT.md` vs `approval.report_hash`.
      - `sha256sum projects/{project_id}/REVIEW.md` vs `approval.review_hash` (skip if missing).
      - `sha256sum projects/{project_id}/{approval.review}` vs `approval.review_hash` (skip if missing).
+     - **Notebook hashes** (v5): compute current canonical hashes via `python -c "from tools.notebook_hash import compute_notebook_hashes; ..."` (or equivalent) and compare against `approval.notebook_hashes`. Three failure modes:
+       - A notebook in `approval.notebook_hashes` whose current hash differs (or the file is missing) → mismatch, mention the specific notebook.
+       - A `.ipynb` file in the current `notebooks/` set that is not in `approval.notebook_hashes` (a new notebook was added after approval) → drift, mention the specific notebook.
+       - `approval.notebook_hashes` is omitted or empty (legacy approval predating v5, or project with no notebooks) → skip notebook checks; the absence of the field doesn't fail validation.
 
-     Any hash mismatch OR the both-files-missing case triggers the **reopen prompt** (phrase the explanation according to which condition fired):
+     Any hash mismatch (REPORT, REVIEW, or notebooks) OR the both-review-files-missing case triggers the **reopen prompt** (phrase the explanation according to which condition fired):
 
-     > "{REPORT.md changed | REVIEW.md changed | REVIEW_N.md changed | both REVIEW.md and REVIEW_N.md missing} since this project was approved ({approval.at}). The previous approval no longer reflects the current approved content. Demote status to `analysis`? Previous approval will be archived under `previous_approvals`; both `SUBMITTED.md` and `SUBMISSION_FAILED.md` will be removed (audit lives in `beril.yaml`)."
+     > "{REPORT.md changed | REVIEW.md changed | REVIEW_N.md changed | both REVIEW.md and REVIEW_N.md missing | notebook(s) changed: <list of specific files>} since this project was approved ({approval.at}). The previous approval no longer reflects the current approved content. Demote status to `analysis`? Previous approval will be archived under `previous_approvals`; both `SUBMITTED.md` and `SUBMISSION_FAILED.md` will be removed (audit lives in `beril.yaml`)."
 
      - Yes → move `approval` to `previous_approvals: []` with an added `archived_at: "<now>"` field, set `status: analysis`, update `README.md` `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`.", delete `projects/{project_id}/REVIEW.md` if present (the canonical copy of the now-archived review is no longer current), and delete both marker files if present. Tell the user "/submit aborted; run `/berdl-review` to produce a current review, then `/submit` again." Stop.
      - No → leave alone, warn that the project is in an inconsistent state, abort `/submit`.
@@ -183,6 +187,7 @@ Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` a
 
 #### 2c. Write approval artifacts (local filesystem)
 
+- Compute notebook hashes (v5): call `compute_notebook_hashes(project_path)` from `tools.notebook_hash` to get a `{relpath: hex}` dict. The result is sorted by path, ready for stable YAML output. Empty dict for projects without `notebooks/`. Each value is raw hex; pass through `prefixed()` when writing to YAML.
 - Update `projects/{project_id}/beril.yaml`:
   ```yaml
   status: complete
@@ -193,6 +198,9 @@ Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` a
     report_hash: "sha256:<REPORT.md hex>"
     review: "REVIEW_N.md"
     review_hash: "sha256:<REVIEW_N.md hex>"
+    notebook_hashes:                              # v5; omit (or write {}) if no notebooks/
+      "notebooks/01_setup.ipynb": "sha256:<hex>"
+      "notebooks/02_analysis.ipynb": "sha256:<hex>"
   ```
   - If a previous `approval` block existed at this point, it should already have been moved to `previous_approvals` by the `/synthesize`-on-`complete` reopen step. `/submit` does not duplicate the archival.
 - Copy the approved `REVIEW_N.md` to `projects/{project_id}/REVIEW.md` (canonical filename for downstream tools / UI).
@@ -214,7 +222,8 @@ At this point the project is **approved locally** regardless of upload outcome. 
 Run unconditionally (including retry-only flows that entered Phase 3 directly from Phase 1 on `status: complete`):
 
 - **Recover from interrupted Phase 2 if needed**: check whether `projects/{project_id}/REVIEW.md` exists. If it does not (the previous run died between writing the approval block and copying the review file), recreate it: copy `projects/{project_id}/{approval.review}` (e.g., `REVIEW_3.md`) to `projects/{project_id}/REVIEW.md`. Then verify `sha256sum REVIEW.md == approval.review_hash`; mismatch means the underlying numbered review was edited since approval — abort with `Error: REVIEW_N.md changed since approval; cannot recover. Demote the project (rerun /berdl-review) and re-approve.`
-- **Verify both the canonical and numbered review hashes**. Recompute `sha256sum REPORT.md`, `sha256sum REVIEW.md` (the canonical copy), AND `sha256sum projects/{project_id}/{approval.review}` (the numbered file named in the approval, e.g. `REVIEW_3.md` — both files end up in the lakehouse archive). All three must match `approval.report_hash` / `approval.review_hash` / `approval.review_hash` respectively. If any has changed, abort with `Error: files changed since approval; please re-run /submit.` This guards retry paths and the brief window between Phase 2 and Phase 3, and catches the case where the canonical `REVIEW.md` is unchanged but the numbered `REVIEW_N.md` was edited.
+- **Verify the canonical and numbered review hashes**. Recompute `sha256sum REPORT.md`, `sha256sum REVIEW.md` (the canonical copy), AND `sha256sum projects/{project_id}/{approval.review}` (the numbered file named in the approval, e.g. `REVIEW_3.md` — both files end up in the lakehouse archive). All three must match `approval.report_hash` / `approval.review_hash` / `approval.review_hash` respectively (apply `unprefixed()` to the stored values). If any has changed, abort with `Error: files changed since approval; please re-run /submit.` This guards retry paths and the brief window between Phase 2 and Phase 3, and catches the case where the canonical `REVIEW.md` is unchanged but the numbered `REVIEW_N.md` was edited.
+- **Verify notebook hashes** (v5). Call `compute_notebook_hashes(project_path)` and compare against `approval.notebook_hashes` (apply `unprefixed()` to each stored value). Any mismatch, missing, or new notebook → abort with `Error: notebook(s) changed since approval: <list>; please re-run /submit.` If `approval.notebook_hashes` is omitted/empty (legacy approval or project without notebooks), skip this check.
 - **Clear both marker files** before upload, so the post-upload step (success or failure) writes a clean state and an interrupt mid-Phase-3 doesn't leave a stale marker that misleads the next `/submit` run. Delete both `SUBMITTED.md` and `SUBMISSION_FAILED.md` if present. Also remove the `(Submission pending; see SUBMISSION_FAILED.md.)` parenthetical from `README.md` `## Status` if present. The `beril.yaml.submissions[]` audit log retains history; markers are reconstituted by Phase 3c per outcome.
 
 #### 3b. Run upload
@@ -240,7 +249,7 @@ In all cases, parse the JSON if exit is 0 or 2; on exit 1 fall back to the stder
 
 #### 3b.5. Post-upload integrity rehash
 
-If `lakehouse_upload.py` returned exit 0, recompute `sha256sum REPORT.md`, `sha256sum REVIEW.md`, AND `sha256sum projects/{project_id}/{approval.review}` once more, comparing against `approval.report_hash` / `approval.review_hash`. If any has changed since Phase 3a, the lakehouse archive may now contain content that doesn't match the recorded approval (the user edited a file during the upload window). **Treat as a Phase 3 failure**: do NOT write `SUBMITTED.md`; jump to Phase 3c failure handling with `error: "files changed during upload; archive may be inconsistent — re-run /submit"`.
+If `lakehouse_upload.py` returned exit 0, repeat the Phase 3a verification once more: recompute `sha256sum REPORT.md`, `sha256sum REVIEW.md`, `sha256sum projects/{project_id}/{approval.review}`, AND `compute_notebook_hashes(project_path)`. Compare each against the corresponding stored values in `approval` (apply `unprefixed()` to stored values). If any has changed since Phase 3a, the lakehouse archive may now contain content that doesn't match the recorded approval (the user edited a file during the upload window). **Treat as a Phase 3 failure**: do NOT write `SUBMITTED.md`; jump to Phase 3c failure handling with `error: "files changed during upload; archive may be inconsistent — re-run /submit"` (mention which file(s) drifted).
 
 This is best-effort: by the time we detect drift, the archive already exists at `archive_key`. The failure marker tells the user to re-run, which will overwrite the archive with the (now hopefully stable) approved content. The advisory `.submit.lock` does not block file edits, only concurrent `/submit` runs — see Notes for the full limitation.
 

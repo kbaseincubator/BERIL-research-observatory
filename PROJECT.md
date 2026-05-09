@@ -105,7 +105,7 @@ The lakehouse archive — not git — is the source of truth for "this project w
 
 `beril.yaml` records a structured audit trail:
 
-- `approval` — the current approval block (only present at `complete`). Fields: `by` (ORCID), `at` (ISO timestamp), `report_hash`, `review` (filename), `review_hash`.
+- `approval` — the current approval block (only present at `complete`). Fields: `by` (ORCID), `at` (ISO timestamp), `report_hash`, `review` (filename), `review_hash`, and `notebook_hashes` (a `{relative_path: "sha256:<hex>"}` mapping covering each `.ipynb` under `notebooks/`, computed via canonical hashing in `tools/notebook_hash.py` so JupyterLab autosave noise doesn't trigger spurious mismatches but cell source/output changes do — catches accidental notebook re-execution between approval and upload). Hash values are stored with a `sha256:` prefix; comparison sites strip the prefix via `tools.notebook_hash.unprefixed()` before matching against raw `sha256sum` output.
 - `previous_approvals: []` — list of archived approvals from prior re-open cycles. Each entry has the same shape as `approval` plus an `archived_at` ISO timestamp recording when it was moved here. Demotion paths in `/synthesize`, `/submit`, `/berdl-review`, and `/berdl_start` resume detection all set this field.
 - `submissions: []` — list of upload attempts (success and failure). Each entry has `status` (`success` or `failed`), `attempted_at`, `approved_at` (the **join key** to a current or previous approval), and on success `archive_key`, `file_count`, `byte_total`, `duration_seconds`.
 
