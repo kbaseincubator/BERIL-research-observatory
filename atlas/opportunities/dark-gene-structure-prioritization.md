@@ -19,7 +19,7 @@ related_collections:
   - kescience_interpro
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.fitness-validated-function
   - data.dark-gene-prioritization
@@ -56,6 +56,25 @@ order: 70
 ## Why It Matters
 
 Dark genes are where the Atlas can create new biological value, but only if prioritization is disciplined. This opportunity turns a broad unknown set into a ranked review queue that combines multiple evidence modes.
+
+## Review Brief
+
+What changed: the dark-gene derived product now has a broader review brief, so this opportunity should specify the first actionable characterization packet.
+
+Why review matters: reviewers should decide which dark-gene candidates deserve scarce structural, genetic, or biochemical follow-up.
+
+Evidence to inspect:
+
+- [Dark Gene Prioritization Tables](/atlas/data/derived-products/dark-gene-prioritization) for candidate rankings.
+- `functional_dark_matter`, `truly_dark_genes`, and `cofitness_coinheritance` for evidence components.
+- AlphaFold, InterPro, UniProt, and pangenome context for annotation and structural priors.
+
+Questions for reviewers:
+
+- Which evidence mix is sufficient for a first characterization packet?
+- Are structural hints being presented as hypotheses rather than function calls?
+- Which candidates are likely annotation lag and should be routed to curation?
+- What experiment or analysis would resolve the top candidate's function?
 
 ## Evidence Base
 

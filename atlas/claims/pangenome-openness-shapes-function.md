@@ -16,7 +16,7 @@ related_collections:
   - kbase_uniref100
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - topic.pangenome-architecture
   - hypothesis.pangenome-openness-pathway-diversity
@@ -33,6 +33,25 @@ order: 50
 ## Claim
 
 Open and closed pangenomes differ in the functional opportunities they create for adaptation, niche breadth, and gene-content turnover.
+
+## Review Brief
+
+What changed: this older premise now supports multiple topic pages and derived-product candidates, so its caveats need to be review-visible.
+
+Why review matters: reviewers should decide whether openness is strong enough as an explanatory feature or should remain a descriptive covariate until confounder audits pass.
+
+Evidence to inspect:
+
+- `pangenome_openness` for metric construction.
+- `openness_functional_composition` and `cog_analysis` for functional composition.
+- [Pangenome Openness Metrics](/atlas/data/derived-products/pangenome-openness-metrics) for reusable product readiness.
+
+Questions for reviewers:
+
+- Is openness being interpreted after adequate genome-count and phylogeny controls?
+- Which functions are truly associated with openness rather than sampling or annotation effects?
+- Should the claim be narrowed to "openness is associated with" rather than "shapes"?
+- What audit result would make this claim ready to promote?
 
 ## Why It Matters
 
