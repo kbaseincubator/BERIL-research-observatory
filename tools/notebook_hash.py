@@ -1,0 +1,206 @@
+"""Canonical hashing for Jupyter notebooks (and SHA-256 prefix helpers).
+
+Used by `/submit` to record a stable hash of each notebook in the approval
+block, so accidental drift between approval and lakehouse upload (e.g., the
+author re-runs a cell while debugging) is detected before publication.
+
+Canonicalization tolerates JupyterLab autosave (UI metadata mutations don't
+invalidate the hash) but detects content changes (source edits or output
+changes from re-execution).
+
+Canonical JSON serialization rule (must be reproduced byte-for-byte by any
+re-implementation):
+
+    json.dumps(canonical, sort_keys=True, separators=(",", ":"),
+               ensure_ascii=False).encode("utf-8")
+
+Whitelisted fields (everything else is dropped):
+
+Notebook-level:
+    - nbformat, nbformat_minor
+    - metadata.kernelspec.name
+    - metadata.language_info.name, .mimetype
+    - cells (with per-cell canonicalization below)
+
+Cell-level (for every cell_type):
+    - cell_type
+    - source (normalized: list-of-strings → joined; string → unchanged)
+    - metadata.tags (papermill / nbgrader directives — content-bearing)
+
+Code cells additionally:
+    - outputs (with per-output canonicalization below)
+
+Per-output (by output_type):
+    - stream:                 output_type, name, text (normalized)
+    - display_data, execute_result: output_type, data
+    - error:                  output_type, ename, evalue, traceback (normalized)
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+import os
+from pathlib import Path
+
+NOTEBOOKS_SUBDIR = "notebooks"
+CHECKPOINTS_DIR = ".ipynb_checkpoints"
+NOTEBOOK_SUFFIX = ".ipynb"
+
+
+def _normalize_text(value):
+    """Notebook spec allows a multiline string to be either ``"a\\nb"`` or
+    ``["a\\n", "b"]``. Normalize to a single string so equivalent notebooks
+    hash equal regardless of which form was written."""
+    if isinstance(value, list):
+        return "".join(str(x) for x in value)
+    return value
+
+
+def _canonical_output(output: dict) -> dict:
+    """Whitelist canonicalization for a single output cell entry."""
+    out_type = output.get("output_type")
+    canonical: dict = {"output_type": out_type}
+    if out_type == "stream":
+        canonical["name"] = output.get("name")
+        canonical["text"] = _normalize_text(output.get("text", ""))
+    elif out_type in ("display_data", "execute_result"):
+        canonical["data"] = output.get("data", {})
+    elif out_type == "error":
+        canonical["ename"] = output.get("ename")
+        canonical["evalue"] = output.get("evalue")
+        canonical["traceback"] = [_normalize_text(t) for t in output.get("traceback", [])]
+    # Unknown output types: just preserve output_type. Don't error — future
+    # nbformat versions may add new ones; we'd rather hash conservatively
+    # than fail on an unrecognized type.
+    return canonical
+
+
+def _canonical_cell(cell: dict) -> dict:
+    """Whitelist canonicalization for a single cell."""
+    cell_type = cell.get("cell_type")
+    canonical: dict = {
+        "cell_type": cell_type,
+        "source": _normalize_text(cell.get("source", "")),
+    }
+    cell_meta = cell.get("metadata", {}) or {}
+    if "tags" in cell_meta:
+        canonical["metadata"] = {"tags": cell_meta["tags"]}
+    if cell_type == "code":
+        canonical["outputs"] = [
+            _canonical_output(o) for o in cell.get("outputs", []) or []
+        ]
+    return canonical
+
+
+def _canonical_notebook(nb: dict) -> dict:
+    """Whitelist canonicalization for a notebook dict."""
+    notebook_meta = nb.get("metadata", {}) or {}
+    canonical_meta: dict = {}
+    kernelspec = notebook_meta.get("kernelspec")
+    if isinstance(kernelspec, dict) and "name" in kernelspec:
+        canonical_meta["kernelspec"] = {"name": kernelspec["name"]}
+    language_info = notebook_meta.get("language_info")
+    if isinstance(language_info, dict):
+        keep = {k: language_info[k] for k in ("name", "mimetype") if k in language_info}
+        if keep:
+            canonical_meta["language_info"] = keep
+
+    canonical: dict = {
+        "nbformat": nb.get("nbformat"),
+        "nbformat_minor": nb.get("nbformat_minor"),
+        "cells": [_canonical_cell(c) for c in nb.get("cells", []) or []],
+    }
+    if canonical_meta:
+        canonical["metadata"] = canonical_meta
+    return canonical
+
+
+def canonicalize_ipynb(path: Path) -> bytes:
+    """Read a notebook from `path` and return its canonical JSON bytes.
+
+    Raises ValueError on invalid JSON, with the path included in the message
+    so the caller can identify which notebook failed.
+    """
+    path = Path(path)
+    try:
+        with path.open("r", encoding="utf-8") as f:
+            nb = json.load(f)
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"invalid notebook JSON at {path}: {exc}") from exc
+    canonical = _canonical_notebook(nb)
+    return json.dumps(
+        canonical, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    ).encode("utf-8")
+
+
+def hash_notebook(path: Path) -> str:
+    """Return the SHA-256 hex digest of `path`'s canonical form.
+
+    The returned string is raw hex (no ``sha256:`` prefix). Use ``prefixed()``
+    when writing to YAML; comparisons should pass the stored value through
+    ``unprefixed()`` first.
+    """
+    return hashlib.sha256(canonicalize_ipynb(path)).hexdigest()
+
+
+def compute_notebook_hashes(project_path: Path) -> dict[str, str]:
+    """Walk ``{project_path}/notebooks/`` and return ``{relpath: hex}``.
+
+    - Excludes ``.ipynb_checkpoints/`` (any depth).
+    - Recurses into subdirectories.
+    - Returns POSIX-style relative paths (forward slashes on all platforms).
+    - Returns an empty dict if ``notebooks/`` is missing or empty.
+    - Result is sorted by path for stable YAML output.
+    """
+    project_path = Path(project_path)
+    notebooks_dir = project_path / NOTEBOOKS_SUBDIR
+    if not notebooks_dir.is_dir():
+        return {}
+
+    hashes: dict[str, str] = {}
+    for root, dirs, files in os.walk(notebooks_dir):
+        # Prune checkpoint dirs in-place so os.walk doesn't descend.
+        dirs[:] = sorted(d for d in dirs if d != CHECKPOINTS_DIR)
+        for fname in sorted(files):
+            if not fname.endswith(NOTEBOOK_SUFFIX):
+                continue
+            full = Path(root) / fname
+            rel = full.relative_to(project_path).as_posix()
+            hashes[rel] = hash_notebook(full)
+    # Re-sort by relpath: the os.walk order above is per-directory, but we
+    # want a single global lex order so YAML output is stable across reruns.
+    return {k: hashes[k] for k in sorted(hashes)}
+
+
+def prefixed(h: str) -> str:
+    """Return ``h`` annotated with ``sha256:`` prefix.
+
+    Idempotent: ``prefixed("sha256:abc") == "sha256:abc"``.
+    Rejects other algorithms: ``prefixed("sha512:abc")`` raises ValueError.
+    Bare hex passes through with prefix added.
+    """
+    if not isinstance(h, str):
+        raise TypeError(f"prefixed expected str, got {type(h).__name__}")
+    if h.startswith("sha256:"):
+        return h
+    if ":" in h:
+        algo = h.split(":", 1)[0]
+        raise ValueError(f"unsupported hash algorithm: {algo}")
+    return f"sha256:{h}"
+
+
+def unprefixed(h: str) -> str:
+    """Strip the ``sha256:`` prefix if present, returning raw hex.
+
+    Bare hex passes through unchanged.
+    Rejects other algorithms: ``unprefixed("sha512:abc")`` raises ValueError.
+    """
+    if not isinstance(h, str):
+        raise TypeError(f"unprefixed expected str, got {type(h).__name__}")
+    if h.startswith("sha256:"):
+        return h[len("sha256:") :]
+    if ":" in h:
+        algo = h.split(":", 1)[0]
+        raise ValueError(f"unsupported hash algorithm: {algo}")
+    return h
