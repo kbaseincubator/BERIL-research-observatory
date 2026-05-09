@@ -11,8 +11,16 @@ source_projects:
   - amr_pangenome_atlas
   - amr_fitness_cost
   - enigma_sso_asv_ecology
+  - microbeatlas_metal_ecology
+  - prophage_amr_comobilization
+  - soil_metal_functional_genomics
+  - t4ss_cazy_environmental_hgt
 source_docs:
   - docs/discoveries.md
+  - projects/microbeatlas_metal_ecology/REPORT.md
+  - projects/prophage_amr_comobilization/REPORT.md
+  - projects/soil_metal_functional_genomics/REPORT.md
+  - projects/t4ss_cazy_environmental_hgt/REPORT.md
 related_collections:
   - kescience_fitnessbrowser
   - kbase_ke_pangenome
@@ -20,10 +28,11 @@ related_collections:
   - enigma_coral
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.critical-minerals
   - topic.amr-resistance-ecology
+  - topic.mobile-elements-phage
   - direction.metal-amr-co-selection
   - hypothesis.metal-amr-co-selection
   - data.amr-fitness-profiles
@@ -31,6 +40,7 @@ conflict_status: unresolved
 affected_pages:
   - topic.critical-minerals
   - topic.amr-resistance-ecology
+  - topic.mobile-elements-phage
   - direction.metal-amr-co-selection
   - hypothesis.metal-amr-co-selection
   - data.amr-fitness-profiles
@@ -40,16 +50,24 @@ evidence_sides:
       - metal_fitness_atlas
       - amr_environmental_resistome
       - enigma_sso_asv_ecology
+      - microbeatlas_metal_ecology
     support: Metal tolerance, AMR profiles, and contaminated-site ecology are present in the observatory and can be joined.
   - side: not_yet_resolved
     sources:
       - amr_fitness_cost
       - metal_specificity
-    support: Co-selection requires distinguishing direct metal selection, AMR mechanism ecology, fitness cost, linkage, and site covariates.
+      - soil_metal_functional_genomics
+    support: Co-selection requires distinguishing direct metal selection, AMR mechanism ecology, fitness cost, linkage, co-contamination, and site covariates.
+  - side: mobile_context
+    sources:
+      - prophage_amr_comobilization
+      - t4ss_cazy_environmental_hgt
+    support: Mobile-element burden predicts AMR breadth and appears linked to some metal-associated environmental HGT hubs, but this can confound selection claims unless modeled explicitly.
 resolving_work:
   - Build a site-level join of metal/geochemistry, AMR mechanism profiles, metal tolerance scores, taxonomy, and metadata quality.
   - Test metal-AMR association after controlling for phylogeny, environment label, and sampling depth.
   - Prioritize cases where AMR and metal-tolerance signals are genetically linked or co-occur in the same taxa.
+  - Add prophage density, plasmid/ICE/T4SS markers, metal co-contamination, and spatial proximity sensitivity as covariates.
 order: 40
 ---
 
@@ -65,4 +83,4 @@ Use this as a direction and hypothesis seed. Do not cite it as a resolved co-sel
 
 ## Resolving Analysis
 
-The resolving analysis is a controlled contaminated-site benchmark that joins metal exposure, AMR profiles, metal tolerance scores, and environmental covariates.
+The resolving analysis is a controlled contaminated-site benchmark that joins metal exposure, AMR profiles, metal tolerance scores, mobile-element context, and environmental covariates.

@@ -11,23 +11,28 @@ source_projects:
   - fw300_metabolic_consistency
   - nmdc_community_metabolic_ecology
   - pseudomonas_carbon_ecology
+  - harvard_forest_warming
 source_docs:
   - docs/discoveries.md
   - docs/schema.md
+  - projects/harvard_forest_warming/REPORT.md
 related_collections:
   - kbase_ke_pangenome
   - kbase_msd_biochemistry
   - kescience_fitnessbrowser
   - nmdc_arkin
+  - nmdc_metadata
+  - nmdc_results
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - claim.lab-fitness-predicts-field-ecology
   - claim.pangenome-openness-shapes-function
   - direction.fitness-validated-community-design
   - data.fitness-phenotypes
   - data.genomes-and-pangenomes
+  - data.multi-omics-embeddings
   - opportunity.cf-formulation-reuse
   - opportunity.functional-innovation-ko-reuse
 order: 90
@@ -53,6 +58,8 @@ Fitness data distinguishes pathways that matter under tested conditions from lat
 
 NMDC and environmental projects add community composition, pathway potential, and site context.
 
+`harvard_forest_warming` adds a useful caution: encoded or observed functional shifts should be interpreted with sample design and omics layer in view. In that project, long-term warming produces comparable DNA and RNA functional-pool treatment effects after a horizon-by-incubation confound is removed, while specific C-cycling signals such as pmoA/pmoB and glyoxylate-cycle genes remain biologically informative.
+
 ### Layer 4 - Design
 
 The applied target is minimal or robust communities chosen for tolerance, metabolism, low risk, and complementary function.
@@ -68,6 +75,7 @@ The applied target is minimal or robust communities chosen for tolerance, metabo
 - GapMind pathway completeness does not prove expression or flux.
 - Fitness dependency is condition-specific.
 - Community design needs interaction validation, not only genome capability.
+- Omics-layer functional profiles can converge or diverge depending on time scale and design confounds.
 
 ## Reusable Claims
 
@@ -79,6 +87,7 @@ The applied target is minimal or robust communities chosen for tolerance, metabo
 - [Metabolism, biochemistry, and pathways](/atlas/data/types/metabolism-biochemistry-pathways) provide pathway definitions and biochemical context.
 - [Fitness and phenotypes](/atlas/data/types/fitness-phenotypes) provide measured dependency and essentiality.
 - [Genome and pangenome data](/atlas/data/types/genomes-pangenomes) provide species and gene-family context for design candidates.
+- [Multi-omics, embeddings, and molecular profiles](/atlas/data/types/multi-omics-embeddings) provide sample-level context for deciding whether a capability is present, active, or changing with perturbation.
 
 ## Opportunity Hooks
 

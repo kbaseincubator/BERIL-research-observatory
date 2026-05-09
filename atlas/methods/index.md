@@ -12,12 +12,13 @@ source_docs:
 related_collections: []
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - method.progressive-disclosure
   - method.evidence-grading
   - method.agent-maintenance
   - method.reuse-and-tension-workflow
+  - method.new-project-integration
 order: 1
 ---
 
@@ -32,4 +33,5 @@ Methods pages define how agents and humans should build, review, and maintain th
 - Reveal detail progressively from topic to claim to direction to hypothesis to data and source evidence.
 - Preserve provenance and caveats on every reusable statement.
 - Update the smallest page that captures the new knowledge.
+- Integrate new projects by updating synthesis, claims, conflicts, opportunities, or data gaps only where the project changes the Atlas.
 - Run lint and inventory before proposing changes.

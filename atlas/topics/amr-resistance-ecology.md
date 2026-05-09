@@ -11,18 +11,25 @@ source_projects:
   - amr_cofitness_networks
   - amr_strain_variation
   - resistance_hotspots
+  - prophage_amr_comobilization
+  - microbeatlas_metal_ecology
 source_docs:
   - docs/discoveries.md
+  - projects/prophage_amr_comobilization/REPORT.md
+  - projects/microbeatlas_metal_ecology/REPORT.md
 related_collections:
   - kbase_ke_pangenome
   - kescience_fitnessbrowser
   - enigma_coral
+  - arkinlab_microbeatlas
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - claim.amr-is-environment-structured
   - claim.metal-specific-genes-core-enriched
+  - claim.prophage-density-predicts-amr-breadth
+  - claim.metal-type-diversity-predicts-niche-breadth
   - direction.metal-amr-co-selection
   - hypothesis.metal-amr-co-selection
   - data.amr-fitness-profiles
@@ -68,23 +75,29 @@ The overlap between metal biology and AMR ecology is a high-value research direc
 
 The current evidence supports readiness, not closure: the Atlas has metal tolerance scores, AMR clusters, environmental metadata, and DOE-site context. The next useful product is a co-selection model that can say where metal tolerance and AMR move together after the obvious confounders are removed.
 
-### Layer 5 - Mobile Context And Strain Variation
+### Layer 5 - Prophage Context And Strain Variation
 
-Mobile elements, plasmids, phage, and strain-specific accessory regions can make AMR look environment-structured even when the immediate driver is horizontal transfer. The mobile context should therefore be a required follow-up for strong AMR claims, especially claims about contaminated environments.
+Mobile elements, plasmids, phage, and strain-specific accessory regions can make AMR look environment-structured even when the immediate driver is horizontal transfer. `prophage_amr_comobilization` turns that caveat into a measurable covariate: prophage density strongly predicts AMR repertoire breadth across species, while direct AMR-prophage proximity is weaker and threshold-sensitive.
 
-This layer should connect AMR pages to phage/mobile-element topics as those pages mature. Until then, AMR claims should keep mobility as an explicit caveat.
+The synthesis should therefore distinguish two statements. First, prophage burden marks genomes and species with broader AMR repertoires. Second, the evidence for direct phage cargo transfer is more nuanced and still needs dedicated prophage callers, base-pair distances, and plasmid/ICE partitioning.
+
+### Layer 6 - Metal Resistance Breadth And Niche Breadth
+
+`microbeatlas_metal_ecology` adds a field-ecology layer to AMR. Metal type diversity, not raw AMR burden, predicts genus-level niche breadth after phylogenetic correction. This supports the idea that the breadth of resistance mechanisms matters for ecological range and for contaminated-site co-selection analyses.
 
 ## What Would Change This Synthesis
 
 - A controlled DOE-site analysis showing no association between metal contamination and AMR after taxonomy and habitat controls would weaken the co-selection direction.
 - A mobile-element analysis showing that the strongest environment signals are entirely plasmid or phage driven would shift emphasis from environmental selection to transfer ecology.
 - Fitness screens showing that common AMR determinants have no measurable burden in relevant hosts would weaken cost-based prioritization.
+- A dedicated prophage/plasmid/ICE partition showing that prophage density is only a proxy for general genome openness would narrow the prophage-AMR claim.
 
 ## High-Value Directions
 
 - [Metal-AMR co-selection at contaminated DOE sites](/atlas/directions/metal-amr-co-selection)
 - Build a resistance-support module catalog from cofitness neighborhoods.
 - Compare clinical, soil, aquatic, and contaminated-site resistance architectures after phylogenetic control.
+- Add prophage density, metal type diversity, and mobile-element burden as explicit covariates in co-selection models.
 
 ## Open Caveats
 
@@ -92,6 +105,7 @@ This layer should connect AMR pages to phage/mobile-element topics as those page
 - Environment metadata remains uneven across genomes.
 - Co-selection is plausible but must be tested against nulls and confounders.
 - Strain variation can create strong signals even when species-level summaries look stable.
+- Prophage marker density is not the same as proven phage-mediated AMR transfer.
 
 ## Open Tensions
 
@@ -101,12 +115,15 @@ This layer should connect AMR pages to phage/mobile-element topics as those page
 
 - [AMR mechanism composition is environment-structured](/atlas/claims/amr-is-environment-structured) is the core claim for this topic.
 - [Metal-specific genes remain core-enriched](/atlas/claims/metal-specific-genes-core-enriched) becomes relevant when resistance is evaluated alongside metal tolerance.
+- [Prophage density predicts AMR repertoire breadth](/atlas/claims/prophage-density-predicts-amr-breadth) makes mobile context a concrete AMR covariate.
+- [Metal type diversity predicts ecological niche breadth](/atlas/claims/metal-type-diversity-predicts-niche-breadth) connects resistance breadth to field ecology.
 
 ## Data Dependencies
 
 - Pangenome collection pages provide genome and gene-family context for AMR clusters.
 - Fitness Browser provides costs and cofitness signals that distinguish present genes from functional burden.
 - ENIGMA and environmental metadata provide the contamination and habitat context needed for co-selection tests.
+- Mobile-element and phage markers provide a transfer-context layer that should be joined before interpreting environment structure as direct selection.
 
 ## Opportunity Hooks
 
@@ -114,7 +131,7 @@ This layer should connect AMR pages to phage/mobile-element topics as those page
 
 ## Drill-Down Path
 
-Start with the environment-structured AMR claim, then open the metal-AMR direction and the metal contamination co-selection hypothesis. From there, inspect the AMR fitness profiles and metal tolerance scores before treating co-selection as a project proposal.
+Start with the environment-structured AMR claim, then open the prophage-density claim, the metal-AMR direction, and the metal contamination co-selection hypothesis. From there, inspect AMR fitness profiles, metal tolerance scores, and mobile-element covariates before treating co-selection as a project proposal.
 
 ## How Agents Should Use This Page
 

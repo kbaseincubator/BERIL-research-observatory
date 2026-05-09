@@ -10,6 +10,7 @@ source_docs:
   - docs/research_ideas.md
   - atlas/meta/metrics-to-watch.md
   - atlas/methods/reuse-and-tension-workflow.md
+  - atlas/methods/new-project-integration.md
   - projects/bacillota_b_subsurface_accessory/REPORT.md
 related_collections:
   - kbase_ke_pangenome
@@ -17,11 +18,12 @@ related_collections:
   - enigma_coral
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-05-01
+last_reviewed: 2026-05-08
 related_pages:
   - meta.metrics-to-watch
   - method.agent-maintenance
   - method.reuse-and-tension-workflow
+  - method.new-project-integration
   - topic.critical-minerals
   - topic.amr-resistance-ecology
   - topic.fitness-validated-function
@@ -94,6 +96,8 @@ Review task:
 4. Add a derived product only when the output has artifact paths and likely reuse.
 
 Recent example: `bacillota_b_subsurface_accessory` strengthens the pangenome topic by showing subsurface Bacillota_B gene-content expansion and by documenting a marker-correction lesson for redox interpretation.
+
+Current batch example: [New Project Integration Pattern](/atlas/methods/new-project-integration) records how the May 2026 project batch was triaged into topic updates, reusable claims, caveats, and data-gap signals.
 
 ## Review Routes
 
