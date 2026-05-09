@@ -8,22 +8,28 @@ source_projects:
   - metal_fitness_atlas
   - metal_specificity
   - counter_ion_effects
+  - lanthanide_methylotrophy_atlas
+  - soil_metal_functional_genomics
 source_docs:
   - docs/discoveries.md
+  - projects/lanthanide_methylotrophy_atlas/REPORT.md
+  - projects/soil_metal_functional_genomics/REPORT.md
 related_collections:
   - kescience_fitnessbrowser
   - kbase_ke_pangenome
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.critical-minerals
   - claim.metal-specific-genes-core-enriched
+  - claim.lanthanide-methylotrophy-widespread
   - data.metal-tolerance-scores
 conflict_status: partially_resolved
 affected_pages:
   - topic.critical-minerals
   - claim.metal-specific-genes-core-enriched
+  - claim.lanthanide-methylotrophy-widespread
   - data.metal-tolerance-scores
 evidence_sides:
   - side: conserved_metal_signal
@@ -35,11 +41,18 @@ evidence_sides:
     sources:
       - metal_specificity
       - counter_ion_effects
-    support: Some apparent metal hits reflect general sickness, counter-ion effects, osmotic stress, or assay context rather than metal-specific mechanism.
+      - soil_metal_functional_genomics
+    support: Some apparent metal hits reflect general sickness, counter-ion effects, osmotic stress, co-contamination, or assay context rather than metal-specific mechanism.
+  - side: marker_source_uncertainty
+    sources:
+      - lanthanide_methylotrophy_atlas
+    support: Rare-earth marker interpretation can change by annotation source; lanmodulin and xoxJ require calibrated marker choices before functional claims are reused.
 resolving_work:
   - Pair each metal condition with counter-ion and osmotic controls.
   - Report non-metal sick-rate for every candidate family.
   - Promote only candidates with specificity, conservation, and independent annotation or structural support.
+  - For field associations, report partial metal models and effect sizes rather than only FDR-ranked COG-metal links.
+  - For rare-earth markers, record marker-source choice and known false-positive modes.
 order: 30
 ---
 

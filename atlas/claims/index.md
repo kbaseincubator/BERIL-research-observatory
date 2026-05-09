@@ -12,11 +12,14 @@ related_collections:
   - kescience_fitnessbrowser
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - claim.metal-specific-genes-core-enriched
   - claim.lab-fitness-predicts-field-ecology
   - claim.pangenome-openness-shapes-function
+  - claim.lanthanide-methylotrophy-widespread
+  - claim.prophage-density-predicts-amr-breadth
+  - claim.metal-type-diversity-predicts-niche-breadth
   - method.evidence-grading
 order: 1
 ---
@@ -34,3 +37,9 @@ Use a claim when a topic or proposal needs a stable premise. If the claim is low
 ## Maintenance Rule
 
 Claims should be revised when new projects change the evidence balance, add conflicting results, or improve the underlying data joins.
+
+## Newly Promoted Claims
+
+- [Lanthanide-dependent methylotrophy is widespread and soil-linked](/atlas/claims/lanthanide-methylotrophy-widespread)
+- [Prophage density predicts AMR repertoire breadth](/atlas/claims/prophage-density-predicts-amr-breadth)
+- [Metal type diversity predicts ecological niche breadth](/atlas/claims/metal-type-diversity-predicts-niche-breadth)

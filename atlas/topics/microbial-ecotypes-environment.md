@@ -12,19 +12,34 @@ source_projects:
   - field_vs_lab_fitness
   - enigma_sso_asv_ecology
   - genotype_to_phenotype_enigma
+  - harvard_forest_warming
+  - microbeatlas_metal_ecology
+  - metal_resistance_global_biogeography
+  - soil_frontier_genomics
+  - soil_metal_functional_genomics
 source_docs:
   - docs/discoveries.md
+  - projects/harvard_forest_warming/REPORT.md
+  - projects/microbeatlas_metal_ecology/REPORT.md
+  - projects/metal_resistance_global_biogeography/REPORT.md
+  - projects/soil_frontier_genomics/REPORT.md
+  - projects/soil_metal_functional_genomics/REPORT.md
 related_collections:
   - kbase_ke_pangenome
   - enigma_coral
   - nmdc_arkin
+  - nmdc_metadata
+  - nmdc_results
   - planetmicrobe_planetmicrobe
+  - arkinlab_microbeatlas
+  - kescience_mgnify
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - claim.lab-fitness-predicts-field-ecology
   - claim.ecotype-analysis-needs-rigor-gates
+  - claim.metal-type-diversity-predicts-niche-breadth
   - data.ecotype-assignments
   - data.environment-harmonization
   - hypothesis.sso-geochemistry-closes-plume-model
@@ -37,9 +52,13 @@ order: 50
 
 # Microbial Ecotypes, Environment, and Field Validation
 
-## One-Line Takeaway
+## Synthesis Takeaway
 
 The observatory is building a bridge from genomic variation to environmental niche and field behavior, but the bridge is only as strong as its metadata and validation datasets.
+
+## Why This Topic Changed
+
+The new project batch adds true field-scale tests rather than only environmental labels. Harvard Forest provides a long-term warming case where DNA and RNA functional pools converge after a design confound is removed. MicrobeAtlas and MGnify projects expose global niche breadth, geospatial coverage, and soil-metal covariates. Together they make environmental synthesis more useful and more caveat-heavy.
 
 ## What We Have Learned
 
@@ -59,17 +78,34 @@ The observatory is building a bridge from genomic variation to environmental nic
 
 `enigma_sso_asv_ecology` shows that community composition can map subsurface contamination structure, while also exposing missing geochemistry ingestion.
 
+### Layer 5 - Long-Term Perturbation And Omics Layers
+
+`harvard_forest_warming` shows why environmental validation needs careful experimental design. A first-pass DNA/RNA comparison suggested one story, but after removing a horizon-by-incubation confound the DNA and RNA functional pools responded comparably to long-term warming. The project also recovers published Actinobacteria-up and Acidobacteria-down signals and finds specific carbon-cycling responses such as pmoA/pmoB and glyoxylate-cycle upregulation.
+
+The Atlas lesson is that omics layer does not automatically define sensitivity. Time scale, sampling design, incubation status, horizon, and multiple-testing burden can all change the interpretation.
+
+### Layer 6 - Global Niche Breadth And Sampling Bias
+
+`microbeatlas_metal_ecology` links metal resistance type diversity to genus-level ecological niche breadth after phylogenetic control. `metal_resistance_global_biogeography` and `soil_frontier_genomics` add the cautionary side: global maps are limited by coordinate completeness, sampling effort, and reference-genome gaps. The soil-frontier project also shows that a compact discovery index can be useful for triage but needs uncertainty, rarefaction, and bias checks before becoming a settled metric.
+
+### Layer 7 - Environmental Chemistry As Covariate, Not Explanation
+
+`soil_metal_functional_genomics` reports strong metal-COG associations and high conditional db-RDA R2 after project effects are removed. That is useful evidence that chemistry can structure functional profiles, but the project also records unresolved issues around co-contamination, spatial proximity thresholds, and conditional versus total variance explained.
+
 ## High-Value Directions
 
 - Build reusable ecotype assignments as derived data.
 - Link ecotypes to environmental embeddings, pathways, and fitness dependencies.
 - Use missing SSO geochemistry as a concrete data gap to close.
+- Build an Atlas-ready field-validation checklist for omics-layer confounds, spatial coordinates, phylogenetic control, and sampling effort.
 
 ## Open Caveats
 
 - Environment metadata is sparse and uneven.
 - Ecotype definitions need leakage-resistant validation.
 - Field validation should separate geography, taxonomy, and chemistry effects.
+- Omics-layer comparisons can be confounded by sample processing, horizon, and time scale.
+- Global maps should report coordinate coverage and sampling-effort sensitivity before interpreting hotspots.
 
 ## Open Tensions
 
@@ -80,12 +116,14 @@ The observatory is building a bridge from genomic variation to environmental nic
 
 - [Lab fitness can predict field ecology](/atlas/claims/lab-fitness-predicts-field-ecology) is the central claim when moving from lab assays to field context.
 - [Ecotype analyses need rigor gates before translation](/atlas/claims/ecotype-analysis-needs-rigor-gates) protects ecotype reuse from leakage and confounding.
+- [Metal type diversity predicts ecological niche breadth](/atlas/claims/metal-type-diversity-predicts-niche-breadth) is the strongest new field-ecology claim from the project batch.
 
 ## Data Dependencies
 
 - [Ecotype Assignments](/atlas/data/derived-products/ecotype-assignments) are the main reusable label product.
 - [Environment, geochemistry, and ecology](/atlas/data/types/environment-geochemistry-ecology) provide the validation context.
 - [Missing SSO geochemistry](/atlas/data/gaps/missing-sso-geochemistry) is a concrete complementary data gap.
+- NMDC metadata/results, MicrobeAtlas, MGnify, and soil geochemistry joins now need to be treated as reusable field-validation layers with explicit coverage caveats.
 
 ## Opportunity Hooks
 
@@ -94,7 +132,7 @@ The observatory is building a bridge from genomic variation to environmental nic
 
 ## Drill-Down Path
 
-Start with the lab-field ecology claim, then open the ecotype assignments product and SSO geochemistry hypothesis. That path moves from population structure to field validation and missing data.
+Start with the lab-field ecology claim, then open the ecotype assignments product, the metal type diversity claim, and the SSO geochemistry hypothesis. That path moves from population structure to field validation, environmental covariates, and missing data.
 
 ## How Agents Should Use This Page
 

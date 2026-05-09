@@ -11,18 +11,30 @@ source_projects:
   - bacdive_metal_validation
   - bacdive_phenotype_metal_tolerance
   - enigma_sso_asv_ecology
+  - lanthanide_methylotrophy_atlas
+  - microbeatlas_metal_ecology
+  - metal_resistance_global_biogeography
+  - soil_metal_functional_genomics
 source_docs:
   - docs/discoveries.md
   - data/bakta_reannotation/README.md
+  - projects/lanthanide_methylotrophy_atlas/REPORT.md
+  - projects/microbeatlas_metal_ecology/REPORT.md
+  - projects/metal_resistance_global_biogeography/REPORT.md
+  - projects/soil_metal_functional_genomics/REPORT.md
 related_collections:
   - kescience_fitnessbrowser
   - kbase_ke_pangenome
   - enigma_coral
+  - arkinlab_microbeatlas
+  - kescience_mgnify
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - claim.metal-specific-genes-core-enriched
+  - claim.lanthanide-methylotrophy-widespread
+  - claim.metal-type-diversity-predicts-niche-breadth
   - direction.gene-targets-critical-mineral-bioprocessing
   - direction.metal-amr-co-selection
   - direction.rare-earth-cross-metal-inference
@@ -82,13 +94,27 @@ This caveat is productive rather than limiting. It defines which candidate famil
 
 The current synthesis is cautious but useful: lab fitness and tolerance scores can predict field or isolation patterns when metadata is structured enough. The field layer also exposes missing complementary data, especially site chemistry and rare-earth fitness measurements.
 
-### Layer 6 - Critical-Mineral Research Directions
+### Layer 6 - Rare-Earth Genomic Context
+
+`lanthanide_methylotrophy_atlas` changes the rare-earth story. Direct REE fitness assays are still missing, but BERIL now has pangenome-scale evidence that xoxF is widespread, soil/sediment-linked, and much more common than mxaF. The same project also adds important marker-calibration knowledge: eggNOG `lanM` preferred-name calls are unreliable, xoxJ KO calls are non-specific, and Bakta is the stronger source for lanmodulin.
+
+The resulting synthesis is sharper: rare-earth biology is not a blank space, but rare-earth fitness remains a blank experimental layer. Agents should use the lanthanide atlas to choose taxa, markers, environments, and annotation sources, then use the rare-earth fitness gap to design validation experiments.
+
+### Layer 7 - Field Scale And Ecological Breadth
+
+`microbeatlas_metal_ecology`, `metal_resistance_global_biogeography`, and `soil_metal_functional_genomics` move metal biology from organism-level fitness and annotation into field-scale ecology. They add three distinct lessons: metal type diversity predicts genus-level niche breadth after phylogenetic control, global MAG maps expose metal-resistance hotspots and coordinate gaps, and soil metal concentrations explain functional shifts only with careful treatment of project/batch effects and co-contamination.
+
+This layer is high value because it tells the Atlas what not to overstate. Metal resistance ecology is real enough to generate reusable claims, but site-level and global claims need spatial validation, metal-specific partial models, sampling-effort correction, and clear separation between conditional and total variance explained.
+
+### Layer 8 - Critical-Mineral Research Directions
 
 The valuable next layer is action: ranked gene targets, cross-metal inference for unmeasured elements, metal-AMR co-selection tests at contaminated sites, and engineered community design. These are not separate ideas; they are downstream uses of the same joined evidence stack.
 
 ## Reusable Claims
 
 - [Metal-specific genes remain core-enriched](/atlas/claims/metal-specific-genes-core-enriched) is the core biological premise.
+- [Lanthanide-dependent methylotrophy is widespread and soil-linked](/atlas/claims/lanthanide-methylotrophy-widespread) updates the rare-earth evidence layer while preserving the direct fitness gap.
+- [Metal type diversity predicts ecological niche breadth](/atlas/claims/metal-type-diversity-predicts-niche-breadth) links metal resistance repertoire breadth to field ecology after phylogenetic control.
 - [Lab fitness can predict field ecology](/atlas/claims/lab-fitness-predicts-field-ecology) supports field validation when environmental metadata is adequate.
 - [AMR mechanism composition is environment-structured](/atlas/claims/amr-is-environment-structured) becomes relevant when metal contamination may co-select resistance.
 
@@ -110,14 +136,18 @@ The valuable next layer is action: ranked gene targets, cross-metal inference fo
 - Fitness Browser provides gene-condition fitness effects.
 - Pangenome and Bakta resources provide conservation, family, and annotation context.
 - BacDive and ENIGMA resources provide phenotype, isolation, and contaminated-site validation context.
+- MicrobeAtlas, MGnify, NMDC, and soil geochemistry resources provide field-scale ecology and sampling-bias context.
 - [Rare-earth fitness data](/atlas/data/gaps/rare-earth-fitness-data) remains a critical gap.
 
 ## Open Caveats
 
 - Rare-earth fitness data appears absent, so REE claims must be framed as predictions.
+- Rare-earth marker evidence now exists, but marker source choice can reverse interpretation.
 - Locus ID attrition in `metal_specificity` means some model organisms remain under-covered.
 - Counter-ion stress can inflate or redirect apparent metal signals.
 - Field validation depends on metadata quality, especially site chemistry and isolation-context precision.
+- Global metal-resistance maps require coordinate completeness, sampling-effort correction, and expedition-level hotspot checks.
+- Soil metal-function associations must separate co-contaminating metals, project effects, spatial proximity thresholds, and effect size from statistical significance.
 
 ## Open Tensions
 
@@ -130,10 +160,11 @@ The valuable next layer is action: ranked gene targets, cross-metal inference fo
 - [Rare-Earth RB-TnSeq Design](/atlas/opportunities/rare-earth-rbtnseq-design) turns the rare-earth data gap into an experiment design using cross-metal evidence.
 - [Metal-AMR Site Co-Selection Analysis](/atlas/opportunities/metal-amr-site-analysis) tests whether metal tolerance and AMR structure remain linked after environmental and taxonomic controls.
 - [Lab-to-Field Fitness Transfer Audit](/atlas/opportunities/lab-field-fitness-transfer) defines when laboratory fitness can support field claims.
+- A global metal ecology review packet should decide which of the new field projects is ready to become a promoted derived product and which should remain a caveated opportunity.
 
 ## Drill-Down Path
 
-Read this page first for the conceptual map. Then open the metal-specific core claim, the gene-target direction, the Bakta and structure hypotheses, and the metal tolerance derived product. That path moves from synthesis to evidence, target prioritization, concrete tests, and reusable data.
+Read this page first for the conceptual map. Then open the metal-specific core claim, the lanthanide methylotrophy claim, the metal type diversity claim, the gene-target direction, the rare-earth direction, and the metal tolerance derived product. That path moves from synthesis to evidence, target prioritization, concrete tests, and reusable data.
 
 ## How Agents Should Use This Page
 
