@@ -2,7 +2,8 @@
 
 **This file has been superseded.** Schema documentation has been reorganized into per-collection files.
 
-- **Collections overview**: [collections.md](collections.md)
+- **Access-aware collection discovery**: use `berdl_notebook_utils.get_databases()`,
+  `get_tables()`, and `get_table_schema()` in a BERDL notebook environment
 - **Per-collection schemas**: [schemas/](schemas/)
   - [Pangenome](schemas/pangenome.md) (`kbase_ke_pangenome`)
   - [Fitness Browser](schemas/fitnessbrowser.md) (`kescience_fitnessbrowser`)

@@ -2,7 +2,8 @@
 
 **Purpose**: Quick reference for avoiding common issues when querying BERDL databases.
 
-See [collections.md](collections.md) for the full database inventory and [schemas/](schemas/) for per-collection documentation.
+Use BERDL notebook helpers for live access-aware database and table discovery.
+See [schemas/](schemas/) for per-collection documentation.
 
 ---
 
@@ -235,6 +236,30 @@ genome_ids = [str(g) for g in np.random.choice(all_genome_ids, 300, replace=Fals
 spark.createDataFrame([(g,) for g in genome_ids], ['genome_id'])  # OK
 ```
 
+### Access Denied Errors Mean Tenant Permissions, Not a Technical Fault
+
+When a query fails because the current user does not have access to a table, the underlying error from S3 or the Spark catalog will say things like `S3 access denied`, `403 Forbidden`, `Token denied`, or `AccessControlException`. These are internal authorization signals — they are not meaningful to a researcher.
+
+**Do not surface these raw error strings to the user.** Instead, translate to a plain explanation:
+
+> "You don't have access to the table `<table>` in the `<tenant>` tenant. If you need access, request it through the BERDL Tenant Browser."
+
+**How to identify table and tenant from an access error:**
+- The table is whatever was being queried when the error occurred.
+- The tenant is the database prefix (e.g., `kbase_ke_pangenome` → tenant `kbase`; `kescience_mgnify` → tenant `kescience`).
+- If the path is visible in the error (e.g., `s3a://cdm-lake/tenant-sql-warehouse/kbase/...`), the tenant is the path segment after `tenant-sql-warehouse/`.
+
+**What to tell the user:**
+```
+You don't have access to the table `<database>.<table>`.
+This table resides in the `<tenant>` tenant.
+To request access, use the BERDL Tenant Browser.
+```
+
+Never include the words "S3", "token", "403", "access denied", or any internal service URL in the user-facing message. The user only needs to know: what they can't reach, and how to get access.
+
+**Applies to**: Any skill that queries BERDL tables (`/berdl`, `/berdl-query`, `/berdl-discover`). Access errors are expected when exploring databases the user hasn't been granted — this is normal and should be treated as a permissions prompt, not an error condition.
+
 ### REST API Reliability
 
 The REST API at `https://hub.berdl.kbase.us/apis/mcp/` can experience issues:
@@ -279,25 +304,7 @@ token = (Path.home() / ".berdl_kbase_session").read_text().strip()
 
 ### MinIO Upload Requires Proxy (Off-Cluster)
 
-**[essential_metabolome]** When uploading projects to the lakehouse via `python tools/lakehouse_upload.py`, the `mc` (MinIO client) commands will timeout if proxy environment variables are not set.
-
-**Symptom**: Upload fails with:
-```
-Get 'https://minio.berdl.kbase.us/cdm-lake/?location=': dial tcp 140.221.43.167:443: i/o timeout
-```
-
-**Root cause**: MinIO server (minio.berdl.kbase.us:443) is only reachable from within the BERDL cluster or through the proxy chain.
-
-**Solution**: Set proxy environment variables before running the upload script:
-```bash
-export https_proxy=http://127.0.0.1:8123
-export no_proxy=localhost,127.0.0.1
-python3 tools/lakehouse_upload.py <project_id>
-```
-
-**Prerequisites**: SSH tunnels (ports 1337, 1338) and pproxy (port 8123) must be running. See `.claude/skills/berdl-minio/SKILL.md` for setup details.
-
-**Note**: This applies to ALL `mc` commands when off-cluster, not just uploads. The `lakehouse_upload.py` script should be updated to set these variables automatically, but for now they must be set manually.
+**[essential_metabolome]** When using `mc` (MinIO client) off-cluster, proxy environment variables must be set or commands time out. **For full off-cluster `mc` setup (proxy env vars, alias config, prerequisites), see `.claude/skills/berdl-query/references/off-cluster-mechanics.md`.**
 
 ### String-Typed Numeric Columns
 
@@ -821,7 +828,7 @@ There are three environments with different import patterns. Using the wrong one
 |---|---|---|
 | **BERDL JupyterHub notebooks** | `spark = get_spark_session()` (no import) | Injected by `/configs/ipython_startup/00-notebookutils.py` |
 | **BERDL JupyterHub CLI/scripts** | `from berdl_notebook_utils.setup_spark_session import get_spark_session` | Same module, explicit import. **[fitness_modules]** discovered this works from regular Python scripts, not just notebooks. |
-| **Local machine** | `from get_spark_session import get_spark_session` | Uses `scripts/get_spark_session.py`, requires `.venv-berdl` + proxy chain |
+| **Local machine** | `from get_spark_session import get_spark_session` | see `.claude/skills/berdl-query/references/off-cluster-mechanics.md` |
 
 **Common mistakes**:
 - Using `from get_spark_session import get_spark_session` on the BERDL cluster → `ImportError` (that module is `scripts/get_spark_session.py`, only on local machines)
@@ -836,36 +843,7 @@ There are three environments with different import patterns. Using the wrong one
 
 ### Spark Connect Sidecar Startup Race (Off-Cluster Access)
 
-**Context**: Off-cluster access via `scripts/get_spark_session.py` + proxy chain.
-
-**Problem**: After restarting the JupyterHub kernel, the Python kernel becomes ready almost immediately, but the Spark Connect gRPC sidecar (the Java process on port 15002) takes an additional 20–60 seconds to start and register with the BERDL gateway. During this window, any connection attempt from outside the cluster fails with:
-
-```
-SparkConnectGrpcException: FAILED_PRECONDITION
-  "Spark Connect server at jupyter-<username>.jupyterhub-prod.svc.cluster.local:15002
-   is not reachable. Please ensure you have logged in to BERDL JupyterHub and your
-   notebook's Spark Connect service is running."
-```
-
-This is misleading — the session *is* running, the sidecar just hasn't finished starting. The error looks identical to a "not logged in" error, so it's easy to mistake for an authentication problem and keep resetting the kernel unnecessarily.
-
-**Solution**: After restarting the kernel, wait ~30–60 seconds before attempting off-cluster connections, or poll with retries:
-
-```bash
-source .venv-berdl/bin/activate
-for i in $(seq 1 10); do
-    echo "Attempt $i at $(date +%H:%M:%S)..."
-    result=$(python scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok" 2>&1)
-    if echo "$result" | grep -q '"ok"'; then
-        echo "Connected!"
-        break
-    fi
-    echo "  Not ready — retrying in 20s"
-    sleep 20
-done
-```
-
-**Do not** reset the kernel repeatedly — this just restarts the race. One reset is enough; then wait and retry from the local side.
+**Off-cluster Spark setup and kernel-restart polling.** For local-machine Spark Connect setup, `.venv-berdl` activation, and kernel-restart retry patterns, see `.claude/skills/berdl-query/references/off-cluster-mechanics.md`.
 
 ### Running Notebooks from CLI
 
@@ -902,39 +880,7 @@ python3 -u run_ingest.py > ingest.log 2>&1
 
 ### `/berdl-ingest` Skill Assumes Off-Cluster — Adapt for On-Cluster Use
 
-**[genome_depot_enigma]** The `/berdl-ingest` skill's `initialize()` (in `scripts/ingest_lib.py`) requires SSH tunnels on ports 1337/1338, pproxy on 8123, and `berdl-remote login`/`spawn` — all specific to running from a laptop. Running it from inside BERDL JupyterHub fails at Step 0 (`berdl-remote status` → "Configuration file not found"), even though Spark Connect is directly reachable at `sc://jupyter-<user>.jupyterhub-prod:15002`.
-
-**On-cluster pattern**: Build your own Spark + MinIO clients and reuse the rest of `ingest_lib` unchanged. The library's helpers (`detect_source_files`, `parse_sql_schema`, `build_table_stats`, `upload_files`, `run_ingest`, `verify_ingest`) are infrastructure-agnostic — only `initialize()` is off-cluster-only.
-
-```python
-import os, sys
-sys.path.insert(0, "/home/aparkin/BERIL-research-observatory/scripts")
-import ingest_lib
-from ingest_lib import (detect_source_files, parse_sql_schema, build_table_stats,
-                       upload_files, run_ingest, verify_ingest)
-from pyspark.sql import SparkSession
-from minio import Minio
-
-# Direct Spark Connect (on-cluster URL, no tunnels/pproxy)
-token = os.environ["KBASE_AUTH_TOKEN"]
-spark_url = f"sc://jupyter-{os.environ['USER']}.jupyterhub-prod:15002/;use_ssl=false;x-kbase-token={token}"
-spark = SparkSession.builder.remote(spark_url).getOrCreate()
-
-# Direct MinIO (env vars are pre-set on-cluster)
-endpoint = os.environ["MINIO_ENDPOINT_URL"].replace("https://","").replace("http://","")
-minio_client = Minio(endpoint,
-    access_key=os.environ["MINIO_ACCESS_KEY"],
-    secret_key=os.environ["MINIO_SECRET_KEY"],
-    secure=os.environ.get("MINIO_SECURE","true").lower()=="true")
-
-# Register with the berdl_notebook_utils stubs that ingest_lib sets up on import
-sys.modules["berdl_notebook_utils.setup_spark_session"].get_spark_session = lambda **kw: spark
-sys.modules["berdl_notebook_utils.clients"].get_minio_client = lambda **kw: minio_client
-
-# Then use the rest of ingest_lib helpers exactly as off-cluster.
-```
-
-**Solution**: Skip the skill's Step 0/0b entirely when on-cluster. Use the pattern above in place of `ingest_lib.initialize()`. The rest of the workflow — schema parsing, plan, upload, ingest, verify — works unchanged.
+**`/berdl-ingest` `initialize()` is off-cluster-only.** On JupyterHub, bypass `initialize()` and build Spark/MinIO clients directly. See `.claude/skills/berdl-ingest/references/on-cluster-bypass.md`.
 
 ### MySQL `mysqldump` Exports Aren't Standard TSV/CSV
 
@@ -1595,15 +1541,19 @@ the **biosample `sample_id`** (e.g., `nmdc:bsm-11-*`).
 
 **Solution**: Find a `file_id → sample_id` bridge table in `nmdc_arkin` before attempting
 to link classifier and metabolomics data. The `abiotic_features` table uses `sample_id` as
-its primary key; scan all tables in `nmdc_arkin` with `SHOW TABLES` + `DESCRIBE` to find
-any table that has **both** `file_id` and `sample_id` columns. NB02 of
+its primary key; use `get_tables("nmdc_arkin")` and
+`get_table_schema("nmdc_arkin", table_name)` to find any table that has
+**both** `file_id` and `sample_id` columns. NB02 of
 `nmdc_community_metabolic_ecology` does this scan systematically.
 
 ```python
+from berdl_notebook_utils import get_tables, get_table_schema
+
 # Scan all nmdc_arkin tables for file_id + sample_id
+all_tables = get_tables("nmdc_arkin")
 for tbl in all_tables:
-    schema = spark.sql(f'DESCRIBE nmdc_arkin.{tbl}').toPandas()
-    cols = set(schema['col_name'])
+    schema = get_table_schema("nmdc_arkin", tbl)
+    cols = {col["name"] for col in schema}
     if 'file_id' in cols and 'sample_id' in cols:
         print(f'Bridge candidate: {tbl}')
 ```
@@ -1877,3 +1827,113 @@ WHERE bt.name LIKE '%aeruginosa%'
 - [ ] eggNOG PFAMs column searched by domain NAME, not accession
 - [ ] Auth token is fresh (check `~/.berdl_kbase_session` if `.env` token fails)
 - [ ] Checked ALL databases for a project prefix (e.g., both GenomeDepot and strain_modelling for PhageFoundry)
+
+---
+
+# Per-Database Pitfalls
+
+The sections below were extracted from `docs/schemas/` before deletion. Each section covers non-derivable gotchas for a single database — NULL conventions, ID formats, missing-column workarounds, JOIN-key surprises, large-table guards.
+
+## kbase_ke_pangenome
+- ID format: `gtdb_species_clade_id` is `s__<Genus_species>--<RS_GCF_XXXXXXXXX.X | GB_GCA_XXXXXXXXX.X>` (e.g., `s__Escherichia_coli--RS_GCF_000005845.2`).
+- The `--` in species clade IDs is parsed as a SQL line comment inside `IN (...)` clauses — use `LIKE 's__Genus_species%'` patterns instead of equality / `IN` for these IDs.
+- `genome_id` format: `RS_GCF_XXXXXXXXX.X` (RefSeq) or `GB_GCA_XXXXXXXXX.X` (GenBank) — exact equality only.
+- `eggnog_mapper_annotations.query_name` joins to `gene_cluster.gene_cluster_id`, NOT to `gene.gene_id`.
+- Bakta/InterProScan tables (`bakta_*`, `interproscan_*`) join on `gene_cluster_id`, not on `gene_id` — annotations are at cluster-rep level, not per-gene.
+- `gene` and `gene_genecluster_junction` are ~1B rows each; `genome_ani` ~421M; `eggnog_mapper_annotations` ~93M; `interproscan_domains` ~833M; `bakta_db_xrefs` ~572M; `gapmind_pathways` ~305M — never full-scan; always pre-filter by `gtdb_species_clade_id` (or `genome_id`) before joining.
+- `genome_ani` only contains within-species comparisons — cross-species ANI is not stored.
+- `gene_cluster` flags `is_core`, `is_auxiliary`, `is_singleton` are mutually exclusive within their definitions, but singletons are a subset of auxiliary in counts (Core + Auxiliary = total clusters, singletons sit inside auxiliary).
+- `alphaearth_embeddings_all_years` covers only ~28% of genomes (~83K/293K) — use `LEFT JOIN` and check coverage; sparse lat/lon at NCBI is the cause.
+- `pangenome` references 12 species clades that are not in `gtdb_species_clade` (orphan single-genome species/symbionts) — anti-join may be needed.
+- `gene_genecluster_junction` has 141 orphan genes vs `gene` — `INNER JOIN` will silently drop them.
+- `ncbi_env` is EAV (entity-attribute-value): pivot or filter by `harmonized_name`, do not assume one row per sample.
+- `pangenome_build_protocol`, `genomad_mobile_elements`, `IMG_env` are referenced by other tables / project docs but do not exist in BERDL — `protocol_id` is a dangling reference.
+- Pagination requires `ORDER BY`; `LIMIT/OFFSET` without ordering returns inconsistent results.
+- REST API returns transient 503 ("cannot schedule new futures after shutdown") and 504 errors on large queries — retry, or break into per-species batches.
+
+## kbase_msd_biochemistry
+- No EC-number column on `reaction` — EC → reaction mapping does not exist in BERDL. Bridge via eggNOG `KEGG_ko` / `KEGG_Reaction` to `reaction.abbreviation` (KEGG R-numbers), or use GapMind pathways for pathway-level analysis.
+- `reaction.abbreviation` holds KEGG R-numbers but only ~80% of reactions populate it (44,904 / 56,012) — the other 20% have no external ID at all.
+- ID format: ModelSEED IDs use a prefix-colon form: `seed.reaction:rxn00001`, `seed.compound:cpd00001` — not bare `rxnNNNNN`.
+- `reaction_similarity` is ~671M rows — always filter by `reaction_1` or `reaction_2`.
+- `deltag` has extreme outlier values; filter with a sanity bound like `deltag > -10000000` for any aggregation.
+- Many `molecule` rows lack SMILES / InChIKey — `LEFT JOIN` to `structure`, do not `INNER JOIN`.
+- `BiGG_Reaction` is referenced by eggNOG annotations but is not present in ModelSEED tables — there is no biochemistry-side BiGG mapping.
+
+## kescience_fitnessbrowser
+- Numeric columns (`fit`, `t`, `begin`, `end`, `cofit`, `rank`, `ratio`, `protein_length`, etc.) are stored as STRING — `CAST(fit AS FLOAT)` before any numeric comparison or `ORDER BY`.
+- `orgId` is case-sensitive — use exact case (e.g., `'Keio'`, not `'keio'`).
+- `genefitness` ~27M rows and `cofit` ~13.6M rows — always filter by `orgId` (and ideally `locusId`) before scanning.
+- Per-organism `fitbyexp_{orgId}` tables (e.g., `fitbyexp_keio`, `fitbyexp_dvh`) exist as pre-pivoted convenience tables and have non-standard schemas — discover per organism if used.
+- Joins on `(orgId, locusId)` are composite — joining on `locusId` alone collides across organisms.
+
+## kescience_alphafold
+- UniRef100 → UniProt join requires stripping the `UniRef100_` prefix: `REPLACE(uniref100, 'UniRef100_', '') = uniprot_accession`. This is a per-row string op — for large joins consider materializing a mapping table.
+- ~9% of entries have MSA depth < 30 (low-confidence predictions) — filter by `msa_depth` for structure-based analyses.
+- All entries are model version v6 — the `model_version` column exists but currently has no variation.
+- Coverage is UniProt-only — proteins absent from UniProt have no AlphaFold entry, and pLDDT (per-residue confidence) is in the structure files, not in this metadata.
+
+## kescience_pdb
+- `r_work` and `r_free` are NULL for non-X-ray methods (EM, NMR); `resolution` is NULL for NMR — apply method-specific filters before averaging.
+- `pdb_uniprot_mapping.pdb_beg` / `pdb_end` are STRING and can literally be the string `"None"` for unmapped regions — coerce / filter before casting.
+- `pdb_entries.organism` reflects only the first polymer entity — multi-organism complexes appear as single-organism here.
+- SIFTS coverage is SwissProt/TrEMBL only — some PDB chains have no UniProt mapping at all.
+- Use `pdb_uniprot_mapping` for chain-level data; `pdb_entries` is one row per entry, not per chain.
+
+## kescience_structural_biology
+- All four tables start empty and grow with Phenix agent usage — cross-project queries return nothing until projects accumulate.
+- `refinement_cycles` X-ray metrics (`r_work`, `r_free`, `r_gap`) are NULL for cryo-EM rows; cryo-EM metric (`map_model_cc`) is NULL for X-ray rows — filter by `method` first or expect lots of NULLs.
+- `parameters_json` is a STRING column containing JSON — querying inner fields requires JSON parsing functions, not column access.
+
+## kescience_bacdive
+- Taxonomy columns are renamed to avoid SQL reserved words: use `tax_class` and `tax_order` (not `class` / `order`).
+- Sequence accession format mismatch with pangenome: BacDive `sequence_info.accession` is `GCA_*`, but pangenome `genome_id` uses `GB_GCA_*` or `RS_GCF_*` — prefix-match or strip prefixes before joining.
+- NCBI taxid linking to fitnessbrowser is species-level, not strain-level — many-to-one ambiguity.
+- Physiology fields are sparsely populated (Gram stain ~15K/97K, oxygen ~23K/97K) — `IS NOT NULL` filters are usually required.
+- Metabolite test panel is biased (trehalose, arginine, glucose dominate) — frequency-based ranking is misleading.
+
+## kescience_paperblast
+- `year` is a STRING — always `CAST(year AS INT)` for comparisons or `ORDER BY`.
+- `protein_length` in `curatedgene` and `uniq` is a STRING — cast for numeric ops.
+- `isOpen` in `genepaper` is mostly NULL — do not use it to filter for open-access papers.
+- `genepaper` is ~3.2M rows — filter by `geneId` or `pmId`, not full-scan.
+- `geneId` spans multiple namespaces (RefSeq `NP_*`, UniProt-ish `WP_*`, VIMSS, etc.) — cross-namespace queries must go through `seqtoduplicate`.
+- `snippet.snippet` is raw PMC text with formatting artifacts and partial sentences — do not display unfiltered.
+
+## kescience_webofmicrobes
+- Action codes differ between controls and organisms: for the "The Environment" control (organism_id = 1), `D`=Detected, `N`=Not detected; for organisms, `I`=Increased, `E`=Emerged (de novo), `N`=No change. Mixing these without the actor distinction is wrong.
+- E and I are mutually exclusive across organism observations (zero overlap).
+- No "Decreased" / consumption action exists in this 2018 snapshot — absence of consumption data is by design, not a query bug.
+- ~56% of `compound.compound_name` values are unidentified (`Unk_*` prefix) — filter these out for named-metabolite analyses.
+- 2018 frozen snapshot — newer data lives elsewhere (GNPS2), not here.
+
+## kbase_genomes
+- All primary keys are CDM UUIDs, not human-readable — to map an external `gene_id` (e.g., a pangenome `gene_id`) to internal IDs, go through the `name` table (`name.name = '<external_id>'` → `name.entity_id`).
+- No direct `genome_id` column — genomes are identified by `contig_collection_id`; cross-reference via `name` or `gtdb_taxon_id`.
+- Numeric columns (`length`, `start`, `end`, `gc_content`, coordinates) are stored as STRING — cast before comparing.
+- `feature`, `encoded_feature`, and the `*_x_*` junction tables are all ~1B rows — never scan without filtering on a key first.
+- `protein` is deduplicated (253M unique sequences for ~1B features) — many features share the same `protein_id`.
+
+## nmdc_arkin
+- `abiotic_features` numeric measurement columns (e.g., `annotations_ammonium_has_numeric_value`, `annotations_ph`, `annotations_temp_has_numeric_value`) are STRING — cast before numeric comparison.
+- `trait_features` exposes ~90 functional groups as individual `functional_group:*` columns rather than rows — pivoting/long-form requires `stack(...)`, not `GROUP BY`.
+- Embedding dimensions vary across tables (`embeddings_v1` is 256-dim; abiotic / biochemical / taxonomy / trait embeddings differ) — do not assume a fixed dimensionality.
+
+## enigma_coral
+- Tables follow a strict prefix scheme: `sdt_*` are scientific data, `ddt_*` are numerical bricks/arrays, `sys_*` are system/metadata — `sys_*` are not primary scientific data and should not be queried for biology.
+- `ddt_brick*` columns are numerical arrays (non-tabular shape) — standard SQL projections may not work as expected.
+- Many tables timed out during introspection at ingest; expect partial schemas — confirm with `DESCRIBE EXTENDED` before writing queries.
+
+## phagefoundry_*_genome_browser
+- Five databases (`phagefoundry_acinetobacter_genome_browser`, `phagefoundry_klebsiella_genome_browser_genomedepot`, `phagefoundry_paeruginosa_genome_browser`, `phagefoundry_pviridiflava_genome_browser`, `phagefoundry_strain_modelling`) — the four genome browsers share the same GenomeDepot schema; `phagefoundry_strain_modelling` is separate with an unknown schema.
+- Cross-species queries require running the same SQL once per database (no unified table).
+
+## protect_genomedepot
+- Uses "sampled" table variants (`browser_gene_sampled`, `browser_annotation_sampled`) instead of full tables — query the sampled tables, not the un-suffixed names.
+
+## kbase_uniref50 / kbase_uniref90 / kbase_uniref100
+- These are partial / sample datasets, not the full UniRef releases (which would be hundreds of millions of clusters). Do not assume completeness for any cluster lookup.
+
+## planetmicrobe_planetmicrobe / planetmicrobe_planetmicrobe_raw
+- `project` and `library` tables are empty (count=0) — joining through them returns nothing.
+- The `_raw` database mirrors the curated one structurally — pick one explicitly per query.

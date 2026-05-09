@@ -167,9 +167,21 @@ K=4 LDA-GMM consensus on 8,489 CMD MetaPhlAn3 samples (5,333 HC + 3,156 IBD/othe
 
 CD and UC patients distribute across E1 and E3 rather than concentrating in any single ecotype — this is the patient-stratification signal that downstream within-ecotype analyses will exploit. Healthy samples concentrate in E0 + E2 (84 % combined). The Bacteroides2 ecotype's correlation with metabolic disease (T1D, T2D) AND IBD echoes the broader "low-diversity disease state" hypothesis. **`data/ecotype_assignments.tsv` is the consumable artifact for downstream notebooks.**
 
-### [ibd_phage_targeting] `docs/collections.md` understates the BERDL catalog by several phage- and metagenome-relevant databases
+### [ibd_phage_targeting] Historical static collection inventories understated the BERDL catalog
 
-Live `SHOW DATABASES` against the lakehouse returned 138 databases; the committed `docs/collections.md` omits several that matter for gut-microbiome / phage work:
+Historical static inventory files lagged the live lakehouse catalog and omitted
+several databases that matter for gut-microbiome / phage work. Use the
+access-aware BERDL notebook helpers for current discovery:
+
+```python
+from berdl_notebook_utils import get_databases, get_tables, get_table_schema
+
+databases = get_databases()
+tables = get_tables("kbase_ke_pangenome")
+schema = get_table_schema("kbase_ke_pangenome", "genome")
+```
+
+The omitted databases observed at the time included:
 
 - `kescience_mgnify` — EBI MGnify (metagenomics service), relevant for IBD-cohort cross-validation. This is also the answer to a mis-recalled `ke_science_magnify` — it's `mgnify`, not `magnify`.
 - `phagefoundry_ecoliphages_genomedepot` (plus a duplicate `_genomedepot` variant) — E. coli phage genome collection, directly relevant for AIEC targeting. PhageFoundry has 7 databases in the tenant, not the 5 documented.
@@ -180,7 +192,11 @@ Live `SHOW DATABASES` against the lakehouse returned 138 databases; the committe
 - `protect_integration` — second Protect-tenant database beyond `protect_genomedepot`.
 - `u_kazakov__klebsiella_genomedepot` and `u_kazakov__strain_modelling` — user-owned Klebsiella phage-host work worth checking with the owner.
 
-Recommend updating `docs/collections.md` with a full `SHOW DATABASES`-derived inventory; current coverage appears hand-curated and lags behind the live catalog.
+Do not treat committed snapshots or historical inventory documents as the
+source of truth for access. Use helper discovery for tenant/table access, and
+keep durable non-derivable gotchas (ID formats, NULL conventions, JOIN-key
+surprises) under per-database H2 sections in `docs/pitfalls.md` when a
+collection is investigated.
 
 ### [ibd_phage_targeting] `schema_overview.yaml` + per-table `*.yaml` dictionaries is a useful convention for large local data marts
 
@@ -926,3 +942,15 @@ The Bagnoud (2016) Mont Terri Opalinus porewater paradigm and Mitzscherling (202
 ### [clay_confined_subsurface] Bacillota_B carries the "anaerobic toolkit" at high background rates in soil — phylum control changes which signals survive
 
 Cohort-level toolkit-score enrichment (deep 1.89 vs baseline 0.39) looks like a strong "deep-clay vs soil" signal. But the Bacillota_B phylum (which contains Desulfosporosinus, BRH-c4a, BRH-c8a — the lineages that dominate cultured clay isolates) carries Wood-Ljungdahl + group 1 [NiFe]-hydrogenase at high background rates *even in soil samples* (Bacillota_B baseline mean toolkit 1.65). Within-Bacillota_B comparisons reveal that Wood-Ljungdahl (5/5 vs 15/19, p=0.54) and NiFe-hydrogenase (5/5 vs 14/19, p=0.54) are NOT enriched in deep-clay isolates beyond their phylum congeners; only sulfate reduction (5/5 vs 4/19, p_BH=0.04) survives the phylogenetic control. This is a methodological warning for any subsurface comparative genomics study: an apparent habitat signal at cohort level may be a phylum-level signature picked up by biased habitat sampling.
+
+### [lanthanide_methylotrophy_atlas] eggNOG `Preferred_name='lanM'` is essentially noise — zero concordance with bakta `product='Lanmodulin'`
+
+NB01 calibration on 134K BERDL pangenome genomes shows that the two annotation sources for lanmodulin disagree completely. Bakta `product='Lanmodulin'` flags 62 genomes (all in α-Proteobacterial methylotroph clades — Beijerinckiaceae *Methylobacterium*, Acetobacteraceae BOG-930, Hyphomicrobiaceae). eggNOG `Preferred_name='lanM'` flags 505 *additional* genomes — none of which are also bakta-validated — and these are concentrated in unrelated gut Bacillota (*Streptococcus pneumoniae* 10, *Blautia_A wexlerae* 9, *Enterococcus faecalis* 8, *Ruminococcus_B gnavus* 8). The eggNOG `Preferred_name` for lanmodulin appears to be a stale or seed-ortholog mislabeling, not a true homology call. **Practical guidance**: for BERDL pangenome lanmodulin analyses, use bakta `product='Lanmodulin'` exclusively. Treat eggNOG `Preferred_name='lanM'` as zero-information.
+
+### [lanthanide_methylotrophy_atlas] eggNOG KO `K02030` is non-specific — do NOT use it as a xoxJ marker
+
+`K02030` is the KEGG ortholog "amino acid ABC transporter substrate-binding protein," a generic family. Filtering eggNOG by `KEGG_ko LIKE '%K02030%'` returns 46,369 hits across nearly every phylum — almost none of which are xoxJ. The bakta `product` field has the specific call ("rare earth element methanol dehydrogenase accessory protein XoxJ") and matches just 61 genomes. **Practical guidance**: for xoxJ analyses, use bakta product or eggNOG `Preferred_name='xoxJ'` (more specific despite the generic KO). KO `K02030` should never be used as a xoxJ proxy.
+
+### [lanthanide_methylotrophy_atlas] xoxF: KEGG `K00114` is broader than bakta `product` — they capture different subsets
+
+NB01 found that of 5,092 genomes carrying any xoxF marker, only 418 (8%) hit both eggNOG `K00114` and bakta `Lanthanide-dependent methanol dehydrogenase`-family products. The eggNOG-only set (3,272 genomes) appears to include bakta entries labeled `Putative dehydrogenase XoxF` (which our regex didn't match) and other generic dehydrogenases that hit the K00114 KO. The bakta-only set (1,402) includes lanthanide-dependent *ethanol* dehydrogenase variants that the KEGG KO filter excludes. Practical guidance for downstream xoxF analyses: report results both ways (eggNOG-K00114 set as primary, either-source as inclusive) and disclose the gap. Don't claim a single "xoxF count" without specifying the source.

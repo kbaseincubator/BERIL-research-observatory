@@ -293,7 +293,7 @@
             <h3>Tables ({% if tables %}{{ tables|length }}{% elif collection.key_tables %}{{ collection.key_tables|length }}{% else %}0{% endif %})</h3>
 
             {% if tables %}
-                {# Use the detailed schema from docs/schemas/ #}
+                {# Use the detailed schema from the BERDL discovery snapshot #}
                 {% for table in tables %}
                 <a href="?table={{ table.name }}#schema" class="table-list-item {% if request.query_params.get('table') == table.name %}active{% endif %}">
                     <span>{{ table.name }}</span>

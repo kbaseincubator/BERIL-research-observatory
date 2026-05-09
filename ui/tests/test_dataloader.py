@@ -146,7 +146,7 @@ class TestParseCollections:
             )
         )
 
-    def test_snapshot_loads_before_curated_overlay(self, tmp_path):
+    def test_optional_generated_snapshot_loads_before_curated_overlay(self, tmp_path):
         self._write_snapshot(tmp_path)
         self._write_config(
             tmp_path,
@@ -185,7 +185,7 @@ class TestParseCollections:
         assert collections[0].tenant_id is None
         assert collections[0].schema_status == "curated"
 
-    def test_snapshot_tables_are_available_as_schema_tables(self, tmp_path):
+    def test_optional_generated_snapshot_tables_are_available_as_schema_tables(self, tmp_path):
         self._write_snapshot(tmp_path)
 
         tables = RepositoryParser(tmp_path).parse_berdl_snapshot_tables()
@@ -856,34 +856,6 @@ class TestParseAtlas:
         assert page.type == "opportunity"
         assert page.metadata["opportunity_status"] == "candidate"
         assert page.metadata["impact"] == "high"
-
-
-# ---------------------------------------------------------------------------
-# RepositoryParser._parse_row_counts
-# ---------------------------------------------------------------------------
-
-
-class TestParseRowCounts:
-    def setup_method(self):
-        self.parser = RepositoryParser.__new__(RepositoryParser)
-
-    def test_parses_row_counts(self):
-        content = (
-            "## Table Summary\n\n"
-            "| Table | Row Count | Description |\n"
-            "|-------|-----------|-------------|\n"
-            "| genome | 293,059 | Genome rows |\n"
-            "| feature | 1,500,000 | Gene features |\n"
-            "\n---\n"
-        )
-        result = self.parser._parse_row_counts(content)
-        assert result["genome"] == 293059
-        assert result["feature"] == 1500000
-
-    def test_no_summary_section(self):
-        content = "## Overview\n\nNo table summary here.\n"
-        result = self.parser._parse_row_counts(content)
-        assert result == {}
 
 
 # ---------------------------------------------------------------------------

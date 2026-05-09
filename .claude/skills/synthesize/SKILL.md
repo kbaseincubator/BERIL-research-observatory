@@ -21,6 +21,19 @@ If no `<project_id>` argument is provided, detect from the current working direc
 
 ### Pass 1: Read Data and Draft Findings
 
+#### Step 0: Precondition check
+
+Read `projects/{project_id}/beril.yaml` and validate status. If `beril.yaml` is missing (pre-manifest project), skip this check and rely on the file-existence checks below.
+
+- `status: exploration` — **stop**. Tell the user:
+  > "This project is still in exploration — there's no `RESEARCH_PLAN.md` to synthesize against yet. Write the plan first (use `/berdl_start` to resume the workflow), then re-run `/synthesize`."
+- `status: proposed` — **stop**. Tell the user:
+  > "This project has a research plan but no analysis yet. Run the analysis notebooks first (Phase C of the workflow) so `/synthesize` has results to interpret. Resume via `/berdl_start`."
+- `status: active` — proceed; this is the normal forward path (`active` → `analysis`).
+- `status: analysis`, `review`, `complete` — proceed (re-synthesis to update an existing report after revision or feedback). Step 7b will preserve the current status without downgrading.
+
+Synthesizing without analysis outputs (the `exploration` and `proposed` cases) produces empty or fabricated findings, which is exactly what the new lifecycle is designed to prevent.
+
 #### Step 1: Gather Project Context
 
 Read these project files:
@@ -172,8 +185,20 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 - **References**: Always include references, even for well-known data sources. At minimum cite the primary data sources (e.g., Price et al. 2018 for Fitness Browser, Arkin et al. 2018 for KBase).
 
 Also update `projects/{project_id}/README.md`:
-- Update `## Status` to reflect completion (e.g., "Complete — see [Report](REPORT.md) for findings")
-- Preserve existing `## Research Question` and `## Authors` sections
+- **README Status update is conditional on this being a forward transition.** Read the current `beril.yaml` status:
+  - If it was `active` (the normal forward path that this skill advances to `analysis`), update `## Status` to "Analysis — report drafted, awaiting `/submit` review."
+  - If it was already `analysis`, `review`, or `complete` (re-synthesis to update an existing report after revision or feedback), **leave README Status untouched.** Re-synthesis must not downgrade a project's human-facing status — that would lie about state for projects that have already been reviewed or completed.
+- Preserve existing `## Research Question` and `## Authors` sections in all cases.
+
+#### Step 7b: Update Manifest
+
+Update `projects/{project_id}/beril.yaml` (skip silently if the file is missing — pre-manifest project):
+
+- `status`: set to `analysis` **only if** the current value is `active`. Leave `analysis`, `review`, and `complete` unchanged — re-synthesis must not downgrade a project that's already past Phase D, and Step 0 already rejected `exploration` and `proposed` so they cannot reach this step.
+- `artifacts.report`: `true`
+- `last_session_at`: current ISO 8601 timestamp
+
+This makes `/synthesize` self-contained: when invoked directly (outside the `/berdl_start` orchestration), the manifest reflects the correct state without bypassing the plan-review checkpoint or the `proposed` → `active` transition that Phase C owns.
 
 #### Step 8: Update References
 

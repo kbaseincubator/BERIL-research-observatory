@@ -1262,7 +1262,6 @@ def verify_ingest(
     print("=" * 60)
     print("VERIFICATION")
     print("=" * 60)
-    spark.sql(f"SHOW TABLES IN `{namespace}`").show()
 
     progress_log = _load_progress_log(minio_client, bucket, progress_key)
     all_match    = True

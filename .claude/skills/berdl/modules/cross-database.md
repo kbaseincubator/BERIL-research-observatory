@@ -22,6 +22,8 @@ gtdb_species_clade
   .GTDB_species ────────────► NCBI Taxonomy (name lookup)
 ```
 
+> **Examples below use specific database/table names** (e.g. `kbase_ke_pangenome.gene_cluster`) for clarity. Run `get_databases(return_json=False)` to verify the database is accessible to you before adapting any example.
+
 ## Pangenome ↔ Biochemistry Joins
 
 ### Link Gene Clusters to Reactions via EC Numbers
@@ -145,7 +147,7 @@ LIMIT 50
 
 ### Link Pangenome Genomes to Structural Data
 
-The `kbase_genomes` database contains structural genomic data (contigs, features, protein sequences) for the same 293K genomes.
+The `kbase_genomes` database contains structural genomic data (contigs, features, protein sequences) for the same set of genomes covered by the pangenome database.
 
 ```sql
 -- Pangenome genome IDs map to genome accessions
@@ -157,7 +159,7 @@ The `kbase_genomes` database contains structural genomic data (contigs, features
 
 **Limitations**:
 - kbase_genomes uses UUID-based identifiers — requires the `name` table for ID mapping
-- Junction tables in kbase_genomes have ~1B rows — never query without filters
+- Junction tables in kbase_genomes can be very large — never query without filters (see `docs/pitfalls.md` for the kbase_genomes section)
 - This join is complex and should be done on JupyterHub, not via REST API
 
 ## NCBI Entrez Integration Patterns

@@ -18,9 +18,9 @@ Read all of these files:
 2. **`projects/{id}/README.md`** — project overview
 3. **`docs/pitfalls.md`** — identify which pitfalls are relevant to the planned queries and tables
 4. **`docs/performance.md`** — check if query strategies follow recommended patterns
-5. **`docs/collections.md`** — verify referenced databases exist and are accessible
+5. **Live BERDL discovery** — use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` to verify referenced databases, tables, columns, and current access
 6. **`PROJECT.md`** — check project conventions (structure, reproducibility standards, data organization)
-7. **Relevant schema docs in `docs/schemas/`** — verify that table and column names referenced in the plan actually exist
+7. **Per-database sections in `docs/pitfalls.md`** — non-derivable gotchas (ID formats, NULL conventions, JOIN-key surprises) for the databases used in the plan
 
 Also scan existing projects:
 8. **`ls projects/`** and read `README.md` files of projects that seem related — check for duplication or opportunities to build on existing work
@@ -30,7 +30,7 @@ Also scan existing projects:
 ### 1. Hypothesis & Feasibility
 
 - Is the hypothesis testable with available BERDL data?
-- Are the referenced tables and columns real? Cross-check against `docs/schemas/` documentation.
+- Are the referenced tables and columns real? Cross-check against live discovery (`get_tables`, `get_table_schema`).
 - Are row count estimates reasonable?
 - Is anything based on data that doesn't exist or is known to be too sparse? (e.g., AlphaEarth embeddings only cover 28% of genomes)
 - If the hypothesis is speculative, that's fine — note it but don't treat it as a problem
@@ -47,7 +47,7 @@ This is one of the most valuable things you can provide. Read `docs/pitfalls.md`
 
 - Does the plan involve large tables (gene, genome_ani) without filter strategies?
 - Are the filter strategies appropriate per `docs/performance.md`?
-- Is the choice of REST API vs direct Spark appropriate for the planned query complexity?
+- Is the choice of local bounded Spark SQL vs JupyterHub Spark appropriate for the planned query complexity?
 - Are there `toPandas()` calls on potentially large intermediate results?
 
 ### 4. Spark Session Correctness

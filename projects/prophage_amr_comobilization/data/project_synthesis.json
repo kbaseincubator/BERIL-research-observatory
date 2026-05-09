@@ -1,0 +1,42 @@
+{
+  "project": "prophage_amr_comobilization",
+  "n_species_census": 14669,
+  "n_species_coloc": 100,
+  "hypotheses": {
+    "H1": {
+      "description": "Prophage-proximal AMR genes are disproportionately accessory",
+      "result": "weakly_supported",
+      "odds_ratio": 1.1009,
+      "p_value": 0.004717115776981306,
+      "effect_size": "small",
+      "notes": "Overall effect significant but per-species results heterogeneous (33/74 show OR>1)"
+    },
+    "H2": {
+      "description": "Species with higher prophage burden carry broader AMR repertoires",
+      "result": "strongly_supported",
+      "rho": 0.5722,
+      "p_value": 0.0,
+      "effect_size": "large",
+      "notes": "Robust across all 5 major phyla, persists after controlling for genome count"
+    },
+    "H3": {
+      "description": "Prophage-proximal AMR genes show different fitness signatures",
+      "result": "not_tested",
+      "notes": "Insufficient overlap between fitness browser organisms and AMR analysis species"
+    }
+  },
+  "key_findings": [
+    "55.7% of AMR gene instances share contigs with strict prophage markers",
+    "10.4% of AMR genes are within 10 genes of a prophage marker",
+    "Prophage density explains 30% of variance in AMR breadth across 4,770 species",
+    "Association robust: partial rho=0.46 after controlling for genome count",
+    "Physical proximity effect modest (OR=1.10) but consistent at broader thresholds"
+  ],
+  "limitations": [
+    "Gene position from gene_id parsing (ordinal, not bp distance)",
+    "Prophage markers from keyword/Pfam matching, not dedicated prophage prediction",
+    "20 genomes sampled per species for co-localization (not exhaustive)",
+    "Core/accessory labels species-specific; same gene may differ across species",
+    "Fitness browser covers only 48 organisms; H3 not fully testable"
+  ]
+}

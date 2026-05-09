@@ -8,103 +8,67 @@ allowed-tools: Bash, Read
 
 Query the KBase BERDL Data Lakehouse containing pangenome and biochemistry data.
 
-## Available Databases
+## Step 0: Environment Check
 
-| Database | Module | Description |
-|----------|--------|-------------|
-| `kbase_ke_pangenome` | [pangenome.md](modules/pangenome.md) | 293K genomes, 27K species pangenomes |
-| `kbase_msd_biochemistry` | [biochemistry.md](modules/biochemistry.md) | ModelSEED reactions and compounds |
-| `kescience_fitnessbrowser` | See [docs/schemas/fitnessbrowser.md](../../../docs/schemas/fitnessbrowser.md) | 48 organisms, 27M fitness measurements |
-| `kbase_genomes` | See [docs/schemas/genomes.md](../../../docs/schemas/genomes.md) | 293K genomes, 253M protein sequences |
-| `microbialdiscoveryforge` (MinIO) | See [docs/collections.md](../../../docs/collections.md) | Observatory project data on MinIO object storage |
+Run before anything else:
 
-**Cross-database patterns**: [cross-database.md](modules/cross-database.md) — joining pangenome ↔ biochemistry ↔ fitness ↔ NCBI
+```bash
+python scripts/berdl_env.py --check
+```
 
-For the full inventory of 35 databases across 9 tenants, see [docs/collections.md](../../../docs/collections.md).
+If it exits non-zero, follow the printed next steps exactly. Do not proceed with any query until this passes. The location reported (`on-cluster` vs `off-cluster`) selects the execution path for every subsequent step.
+
+## Discovery (live)
+
+Run the canonical discovery flow before any query. The set of accessible databases depends on the authenticated user; do not assume from prose.
+
+```python
+import berdl_notebook_utils
+
+databases = berdl_notebook_utils.get_databases(return_json=False)            # → list[str]
+tables    = berdl_notebook_utils.get_tables("DATABASE", return_json=False)   # → list[str]
+schema    = berdl_notebook_utils.get_table_schema("DATABASE", "TABLE", detailed=True, return_json=False)  # → list[dict] with name, dataType, description, isPartition, ...
+
+# For table-level COMMENT and TBLPROPERTIES:
+spark.sql("DESCRIBE EXTENDED DATABASE.TABLE").toPandas()
+```
+
+> **Discovery returns JSON by default.** Always pass `return_json=False`. Without it you get a JSON *string*, and `in`, iteration, and `display()` will silently misbehave.
+
+For pattern guidance, read [`modules/query-patterns.md`](modules/query-patterns.md) (universal SQL safety/perf rules) and [`modules/cross-database.md`](modules/cross-database.md) (cross-DB join recipes).
+
+For curated database-specific gotchas (NULL conventions, ID formats, missing-column workarounds, JOIN-key surprises, large-table guards), grep `docs/pitfalls.md` for the database name. Example: `grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md`.
 
 **Read the appropriate module** for database-specific tables, schemas, and query patterns.
 **Read [query-patterns.md](modules/query-patterns.md)** before writing any SQL — it contains mandatory safety rules and performance guidance.
 
-## Authentication
+## Query Execution
 
-All API requests require the token from `.env`:
+Choose the query path from the environment detected by `scripts/detect_berdl_environment.py`:
 
-```bash
-AUTH_TOKEN=$(grep "KBASE_AUTH_TOKEN" .env | cut -d'"' -f2)
+- **On-cluster / BERDL JupyterHub**: use the active Spark session directly. Do not add `--berdl-proxy`.
+- **Off-cluster / local machine**: use `/berdl-query` or the local `scripts/run_sql.py --berdl-proxy` wrapper.
+
+On-cluster, execute actual SQL with native Spark SQL:
+
+```python
+df = spark.sql("SELECT * FROM database.table LIMIT 10")
 ```
 
-## API Endpoints
+Off-cluster, use the bounded wrapper when appropriate:
 
-**Base URL**: `https://hub.berdl.kbase.us/apis/mcp/`
-
-### List Databases
 ```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"use_hms": true, "filter_by_namespace": true}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/databases/list
+uv run scripts/run_sql.py --berdl-proxy --query "SELECT * FROM database.table ORDER BY id" --limit 500 --output /tmp/query_result.json
 ```
 
-### List Tables
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"database": "DATABASE_NAME", "use_hms": true}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/databases/tables/list
+Use SQL for counts and samples:
+
+```sql
+SELECT COUNT(*) AS n FROM database.table;
+SELECT * FROM database.table LIMIT 5;
 ```
 
-### Get Schema
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"database": "DATABASE_NAME", "table": "TABLE_NAME"}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/databases/tables/schema
-```
-
-### Count Rows
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"database": "DATABASE_NAME", "table": "TABLE_NAME"}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/count
-```
-
-### Sample Data
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"database": "DATABASE_NAME", "table": "TABLE_NAME", "limit": 5}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/sample
-```
-
-### Execute SQL Query
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"query": "SELECT * FROM database.table LIMIT 10", "limit": 1000, "offset": 0}' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/query
-```
-
-### Structured SELECT (SQL-injection safe)
-```bash
-curl -s -X POST \
-  -H "Authorization: Bearer $AUTH_TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "database": "DATABASE_NAME",
-    "table": "TABLE_NAME",
-    "columns": [{"column": "col1"}, {"column": "col2"}],
-    "order_by": [{"column": "col1", "direction": "DESC"}],
-    "limit": 20
-  }' \
-  https://hub.berdl.kbase.us/apis/mcp/delta/tables/select
-```
+Avoid BERDL MCP query operations for SQL execution, including `mcp_query_table`, `mcp_select_table`, `mcp_count_table`, `mcp_sample_table`, and REST `/delta/tables/query`.
 
 ## Common Patterns
 
@@ -132,9 +96,9 @@ LIMIT 1000 OFFSET 1000  -- Second page
 2. **Read [query-patterns.md](modules/query-patterns.md)** — contains mandatory validation checklist and performance tiers
 3. **Read the appropriate module** for the target database (pangenome, biochemistry, etc.)
 4. **Read [cross-database.md](modules/cross-database.md)** if the query spans multiple databases
-5. **Start with schema exploration** if unfamiliar with table structure
-6. **Check row counts** with `/count` endpoint before querying large tables
-7. **Use appropriate endpoint**: `/sample` for inspection, `/count` for counts, `/query` for SQL
+5. **Start with helper discovery** if unfamiliar with available databases, tables, or schemas
+6. **Check row counts** with bounded Spark SQL before querying large tables
+7. **Use Spark SQL** through `spark.sql(query)` or `scripts/run_sql.py`
 8. **Run the validation checklist** from query-patterns.md before executing any SQL query
 9. **Handle pagination** for large result sets
 10. **Include ORDER BY** in queries for consistent pagination
@@ -155,25 +119,50 @@ Before executing any query, verify against the checklist in [query-patterns.md](
 
 | Expected Result Size | Strategy |
 |---|---|
-| < 100K rows | REST API, `.toPandas()` OK |
+| < 100K rows | Bounded Spark SQL, `.toPandas()` OK |
 | 100K – 10M rows | Filter + aggregate in SQL first |
 | > 10M rows | PySpark on JupyterHub only |
 
 ## Error Handling
 
-| Error | Meaning | Solution |
+| Error | Meaning | User-facing message |
 |---|---|---|
 | 504 Gateway Timeout | Query took too long | Simplify query, add filters, switch to JupyterHub |
 | 524 Origin Timeout | Server didn't respond | Retry after a few seconds |
 | 503 "cannot schedule new futures" | Spark executor restarting | Wait 30s, retry |
 | Empty response | Query failed silently | Check query syntax, verify table exists |
 | Auth errors | Invalid or expired token | Validate `KBASE_AUTH_TOKEN` in `.env` |
+| S3 access denied / 403 / AccessControlException / Token denied | User lacks permission to this tenant's data | **Never surface raw S3/token error text.** Tell the user: "You don't have access to `<database>.<table>` (tenant: `<tenant>`). To request access, use the BERDL Tenant Browser." |
 
-**Rule of thumb**: If the REST API fails twice, switch to JupyterHub with `spark.sql()`.
+**Rule of thumb**: Use `spark.sql()` directly in JupyterHub for complex, long-running, or large-result queries.
+
+**Access errors are expected** when a user explores databases outside their tenant membership. Treat them as a permissions prompt, not a system failure — translate to a plain message and point to the Tenant Browser.
 
 ## Adding New Databases
 
 Use the `/berdl-discover` skill to introspect new databases and generate module files.
+
+## Scripts
+
+The following scripts exist and are referenced by skills. **Do not invent script names** — only the paths below exist. If you need behavior not covered here, ask the user.
+
+| Script | Purpose |
+|---|---|
+| `scripts/berdl_env.py` | Canonical environment check (Step 0 of every BERDL skill) |
+| `scripts/berdl_inventory.py` | Pretty-printed inventory (tenant / database / table count / sample tables) |
+| `scripts/detect_berdl_environment.py` | Underlying detector (called by `berdl_env.py`) |
+| `scripts/run_sql.py` | Bounded SQL via Spark Connect (`--berdl-proxy` for off-cluster) |
+| `scripts/export_sql.py` | SQL → MinIO export (`--berdl-proxy` for off-cluster) |
+| `scripts/get_minio_creds.py` | MinIO credential resolver |
+| `scripts/configure_mc.sh` | MinIO CLI alias setup |
+| `scripts/get_spark_session.py` | Local drop-in for the BERDL `get_spark_session()` |
+| `scripts/bootstrap_client.sh` | Create `.venv-berdl` and install query packages |
+| `scripts/bootstrap_ingest.sh` | Install ingest packages on top of `.venv-berdl` |
+| `scripts/ingest_lib.py` | JH-side ingest helpers |
+| `scripts/ingest_preflight.py` | Pre-flight ingest plan printer |
+| `scripts/start_pproxy.sh` | pproxy startup |
+| `scripts/discover_berdl_collections.py` | UI snapshot builder |
+| `scripts/build_data_cache.py` | UI data cache builder |
 
 ## Pitfall Detection
 

@@ -171,7 +171,7 @@ fi
 if [[ "$REVIEW_TYPE" == "project" ]]; then
   REVIEW_PROMPT="Review the project at ${PROJECT_DIR}/. Read all files in the project directory — especially README.md, RESEARCH_PLAN.md, and REPORT.md. Also read docs/pitfalls.md for known issues. Write your review to ${OUTPUT_FILE}. In the Review Metadata section, set the Reviewer line to: **Reviewer**: BERIL Automated Review (${REVIEWER_LABEL}, ${MODEL}). In the YAML frontmatter, set reviewer to: BERIL Automated Review (${REVIEWER_LABEL}, ${MODEL})."
 else
-  REVIEW_PROMPT="Review the research plan at ${PROJECT_DIR}/. Read ${PROJECT_DIR}/RESEARCH_PLAN.md and ${PROJECT_DIR}/README.md. Also read docs/pitfalls.md, docs/performance.md, docs/collections.md, and PROJECT.md. Check docs/schemas/ for any tables referenced in the plan. Read README.md files of related existing projects to check for overlap. Write your plan review to ${OUTPUT_FILE}. At the end, note: Plan reviewed by ${REVIEWER_LABEL} (${MODEL})."
+  REVIEW_PROMPT="Review the research plan at ${PROJECT_DIR}/. Read ${PROJECT_DIR}/RESEARCH_PLAN.md and ${PROJECT_DIR}/README.md. Also read docs/pitfalls.md (per-database H2 sections cover non-derivable gotchas), docs/performance.md, and PROJECT.md. Use BERDL notebook helper discovery (get_databases/get_tables/get_table_schema) for live database/table access for any tables referenced in the plan. Read README.md files of related existing projects to check for overlap. Write your plan review to ${OUTPUT_FILE}. At the end, note: Plan reviewed by ${REVIEWER_LABEL} (${MODEL})."
 fi
 
 # --- Invoke reviewer ---

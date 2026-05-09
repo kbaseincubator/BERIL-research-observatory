@@ -72,8 +72,8 @@ Should show a Python process listening.
 Once the SSH tunnels and pproxy are running, all BERDL scripts work with `--berdl-proxy`:
 
 ```bash
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
-python scripts/export_sql.py --berdl-proxy --query "SELECT ..." --path "s3a://..."
+uv run scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok"
+uv run scripts/export_sql.py --berdl-proxy --query "SELECT ..." --path "s3a://..."
 bash scripts/configure_mc.sh --berdl-proxy
 ```
 

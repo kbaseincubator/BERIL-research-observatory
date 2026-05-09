@@ -65,7 +65,7 @@ These often represent high-value starting points that are not yet in `research_i
 
 ### Step 5: Understand Available Data
 
-Read `docs/collections.md` to inventory the BERDL data collections. For each collection, note:
+Use `berdl_notebook_utils.get_databases(return_json=False)` for the live access-aware BERDL database inventory. Use `berdl_notebook_utils.get_tables(return_json=False)` and `get_table_schema(..., return_json=False)` for likely candidate databases, and consult per-database H2 sections in `docs/pitfalls.md` for non-derivable gotchas. Always pass `return_json=False` so the helpers return live Python objects you can iterate or `display()` directly. For each collection, note:
 - Collection name and identifier
 - What organism/scale/data type it covers
 - Whether it has been heavily used (cross-reference with reports) or is underexplored
@@ -198,7 +198,7 @@ If no, leave no files modified.
 
 ## Integration
 
-- **Reads from**: `docs/research_ideas.md`, `docs/discoveries.md`, `docs/collections.md`, `projects/*/README.md`, `projects/*/REPORT.md`
+- **Reads from**: `docs/research_ideas.md`, `docs/discoveries.md`, `docs/pitfalls.md` (per-database H2 sections), `projects/*/README.md`, `projects/*/REPORT.md`
 - **Calls**: `/literature-review` (Step 9, for novelty check on top candidate); `/berdl_start` (Step 11, if user confirms the idea)
 - **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry only — never edits existing entries)
 - **Consumed by**: `/literature-review`, `/synthesize`

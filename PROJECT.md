@@ -4,7 +4,10 @@
 
 Use the **BERDL Data Lakehouse** and the AI co-scientist to pursue scientific questions across microbial genomics, ecology, metabolic modeling, and multi-omics analysis, while building shared documentation and reusable skills that accelerate future work.
 
-BERDL hosts **35 databases across 9 tenants** including pangenome data for 293K microbial genomes, mutant fitness data for 48 organisms, ModelSEED biochemistry, multi-omics from NMDC, and more. See [docs/collections.md](docs/collections.md) for the full inventory.
+BERDL hosts pangenome data, mutant fitness data, ModelSEED biochemistry,
+multi-omics from NMDC, and more. Run `berdl_notebook_utils.get_databases(return_json=False)`
+for the current access-aware inventory; row counts can be retrieved on demand with
+`SELECT COUNT(*)` or `DESCRIBE EXTENDED`.
 
 ## Dual Goals
 
@@ -27,14 +30,13 @@ When working on any science project, update `docs/` when you discover:
 **Tag each addition** with the project that uncovered it:
 ```markdown
 ### [ecotype_analysis] AlphaEarth coverage is only 28%
-Discovered that only 83K/293K genomes have embeddings...
+Discovered that only ~28% of genomes have embeddings...
 ```
 
 ## Documentation Files
 
 | File | Purpose |
 |------|---------|
-| `docs/collections.md` | Overview of all BERDL databases and tenants |
 | `docs/schemas/` | Per-collection schema documentation |
 | `docs/overview.md` | Project goals, data workflow, scientific context |
 | `docs/pitfalls.md` | SQL gotchas, data sparsity, common errors |
@@ -56,6 +58,35 @@ Each science project in `projects/` should have:
 - `figures/`: Key visualizations saved as PNG files
 - `requirements.txt`: Python dependencies
 - `src/`: Reusable scripts (if applicable)
+
+## Project Lifecycle
+
+**Every BERIL session works inside a project — including ad-hoc exploration.** This gives every artifact a home from the first command, makes work resumable, and avoids loose accumulation. There is no "no-project" mode. The legacy `exploratory/` directory predates this discipline and should not receive new work; new exploration uses scratch projects (`projects/scratch_<YYYYMMDD>/` or `projects/<topic>_scratch/`) which are first-class — same structure, same templates, just a default name.
+
+### Status enum (`beril.yaml`)
+
+```
+exploration → proposed → active → analysis → review → complete
+```
+
+| Status | Meaning | Created by |
+|---|---|---|
+| `exploration` | Project scaffolded; no `RESEARCH_PLAN.md` yet. Queries, user data, exploration notebooks live here. | `/berdl_start` Phase 0 |
+| `proposed` | `RESEARCH_PLAN.md` written. Awaiting plan-review checkpoint approval. | `/berdl_start` Phase B |
+| `active` | Plan approved; analysis notebooks running. | `/berdl_start` Phase C |
+| `analysis` | `REPORT.md` written. | `/synthesize` |
+| `review` | `/submit` invoked; `REVIEW.md` produced. | `/submit` |
+| `complete` | Review passed and lakehouse upload done. | `/submit` |
+
+### Downstream gating
+
+- **`/submit`** requires `status: analysis` or later. It rejects `exploration` (no plan), `proposed` (no analysis), and `active` (no REPORT). Run `/synthesize` first to draft `REPORT.md` and flip status to `analysis`. Re-submission from `review` or `complete` (e.g., after addressing reviewer feedback) is allowed.
+- **`/synthesize`** requires `status: active` for the normal forward path (`active` → `analysis`). It rejects `exploration` (no plan to synthesize against) and `proposed` (no notebook outputs to interpret). `analysis`, `review`, and `complete` are accepted for re-synthesis (e.g., updating an existing report) and the status is preserved without downgrade.
+- **`/berdl-review`** is advisory and accepts any status with the appropriate `--type` flag (`--type plan` for plan review, etc.).
+
+### Mandatory plan-review checkpoint
+
+Between Phase B (writing `RESEARCH_PLAN.md`) and Phase C (executing analysis notebooks), `/berdl_start` enforces a stop. The agent must present the plan to the user and wait for an explicit approval/review/iterate decision. This is the principal guard against jumping from plan to compute without human or independent review.
 
 ## Reproducibility Standards
 
@@ -171,36 +202,35 @@ Project data files are gitignored (too large for git) but are archived to the `m
 - **Shared** — accessible to all BERDL users via `mc cp` or Spark
 - **Downloadable** — any user can pull project data with `mc cp --recursive berdl-minio/cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/<project>/data/ ./`
 
-**Upload workflow**: When a project passes `/submit` review, run `python tools/lakehouse_upload.py <project_id>`. See [docs/collections.md](docs/collections.md) for the full collection details.
+**Upload workflow**: When a project passes `/submit` review, run `python tools/lakehouse_upload.py <project_id>`.
 
 ## Database Access
 
-- **Databases**: 35 databases across BERDL (see [docs/collections.md](docs/collections.md))
+- **Discovery**: Use access-aware BERDL notebook helpers for tenant and table access
 - **Auth**: Token in `.env` file (KBASE_AUTH_TOKEN)
 - **API**: `https://hub.berdl.kbase.us/apis/mcp/`
 - **Direct Spark**: Use JupyterHub for complex queries
 
 Use `/berdl` skill for BERDL queries. Read `docs/pitfalls.md` before your first query.
 
+```python
+from berdl_notebook_utils import get_databases, get_tables, get_table_schema
+
+databases = get_databases()
+tables = get_tables("kbase_ke_pangenome")
+schema = get_table_schema("kbase_ke_pangenome", "genome")
+```
+
 ### Local Spark Connect
 
 Run queries locally while computation happens on the remote BERDL cluster. This avoids the JupyterHub web UI for interactive work.
 
-**One-time setup:**
-```bash
-bash scripts/bootstrap_client.sh   # creates .venv-berdl with required packages
-```
-
-**Running queries:**
-```bash
-source .venv-berdl/bin/activate
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
-```
-
 **Prerequisites:**
 - `KBASE_AUTH_TOKEN` set in `.env`
 - A JupyterHub session active (log in and open a notebook so your Spark Connect service is running)
-- BERDL proxy chain running (SSH SOCKS tunnels on ports 1337/1338 + pproxy on port 8123). BERDL services are not directly reachable from external networks. See `.claude/skills/berdl-query/references/proxy-setup.md` for setup instructions.
+- BERDL proxy chain running (SSH SOCKS tunnels on ports 1337/1338 + pproxy on port 8123). BERDL services are not directly reachable from external networks.
+
+For setup and execution mechanics (bootstrap script, virtualenv activation, proxy flags, run_sql.py invocation), see .claude/skills/berdl-query/references/off-cluster-mechanics.md and .claude/skills/berdl-query/references/proxy-setup.md.
 
 See the `/berdl-query` and `/berdl-minio` skills for full workflow details.
 
@@ -282,4 +312,5 @@ plot_df = df_filtered.toPandas()
 3. AlphaEarth embeddings only cover 28% of genomes.
 4. Gene clusters are species-specific. Can't compare across species.
 5. Update docs when you learn something worth sharing!
-6. Check [docs/collections.md](docs/collections.md) for the full database inventory.
+6. Use the BERDL notebook helpers to discover the databases and tables your
+   account can access.

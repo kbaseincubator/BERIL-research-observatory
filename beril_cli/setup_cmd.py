@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 
 from beril_cli import config
+from beril_cli.detect import detect_user_identity
 
 
 def _find_repo_root() -> Path | None:
@@ -54,12 +55,26 @@ def run_setup() -> int:
 
     repo_root = _find_repo_root()
     if not repo_root:
-        print("Not inside the BERIL repository.")
-        print("Clone it first:")
-        print("  git clone https://github.com/kbaseincubator/BERIL-research-observatory.git")
-        print("  cd BERIL-research-observatory")
-        print("  beril setup")
-        return 1
+        print("  BERIL repository not found in current directory tree.")
+        clone_url = "https://github.com/kbaseincubator/BERIL-research-observatory.git"
+        if _confirm(f"  Clone it into {Path.cwd() / 'BERIL-research-observatory'}?"):
+            print(f"  Cloning {clone_url} ...")
+            result = subprocess.run(
+                ["git", "clone", clone_url],
+                check=False,
+            )
+            if result.returncode != 0:
+                print("  ERROR: git clone failed. Check your network and try again.")
+                return 1
+            repo_root = Path.cwd() / "BERIL-research-observatory"
+            os.chdir(repo_root)
+            print(f"  Cloned to: {repo_root}")
+        else:
+            print("  To set up manually:")
+            print(f"    git clone {clone_url}")
+            print("    cd BERIL-research-observatory")
+            print("    beril setup")
+            return 1
 
     print(f"  Found repo at: {repo_root}")
 
@@ -188,9 +203,16 @@ def run_setup() -> int:
     existing_cfg = config.load()
     user_cfg = existing_cfg.get("user", {})
 
-    name = _prompt("  Your name", user_cfg.get("name", ""))
-    affiliation = _prompt("  Affiliation", user_cfg.get("affiliation", ""))
-    orcid = _prompt("  ORCID", user_cfg.get("orcid", ""))
+    detected = detect_user_identity()
+    auto_filled = [k for k in ("name", "affiliation", "orcid") if detected.get(k) and not user_cfg.get(k)]
+    if auto_filled:
+        print(
+            "  Auto-detected from JupyterHub / ORCID — press Enter to accept or type to override."
+        )
+
+    name = _prompt("  Your name", user_cfg.get("name") or detected.get("name", ""))
+    affiliation = _prompt("  Affiliation", user_cfg.get("affiliation") or detected.get("affiliation", ""))
+    orcid = _prompt("  ORCID", user_cfg.get("orcid") or detected.get("orcid", ""))
 
     user_cfg = {}
     if name:
@@ -225,23 +247,58 @@ def run_setup() -> int:
     else:
         chosen = default_agent or "claude"
 
+    # ── Step 8: BERIL Anthropic key (Google Vertex) ──
+    vertex_cfg: dict = {}
+    _VERTEX_CREDENTIALS = Path("/global_share/BERIL-setup/20260507_hackathon.json")
+    _VERTEX_PROJECT_ID = "beril-hackathon-2026"
+    _VERTEX_REGION = "global"
+
+    if chosen == "claude" and _VERTEX_CREDENTIALS.exists():
+        _step(8, "BERIL Anthropic key (Google Vertex)")
+        print("  A shared BERIL Anthropic API key is available via Google Vertex.")
+        print("  This lets you use Claude without a personal API key or subscription.")
+        if _confirm("  Use the BERIL Anthropic key?"):
+            vertex_cfg = {
+                "enabled": True,
+                "project_id": _VERTEX_PROJECT_ID,
+                "region": _VERTEX_REGION,
+                "credentials_file": str(_VERTEX_CREDENTIALS),
+            }
+            print("  Vertex enabled — Claude will use the shared BERIL key.")
+        else:
+            print("  Skipped — Claude will use your personal API key / subscription.")
+    elif chosen == "claude":
+        _step(8, "BERIL Anthropic key (Google Vertex)")
+        print("  Shared Vertex credentials not found at expected location.")
+        print("  Claude will use your personal API key / subscription.")
+
     # ── Save config ─────────────────────────────────
     cfg: dict = {}
     if user_cfg:
         cfg["user"] = user_cfg
     cfg["defaults"] = {"agent": chosen}
+    if vertex_cfg:
+        cfg["vertex"] = vertex_cfg
     config.save(cfg)
     print(f"\n  Config saved to {config.CONFIG_PATH}")
 
-    # ── Step 8: Launch ──────────────────────────────
-    _step(8, "Launch")
+    # ── Step 9: Launch ──────────────────────────────
+    _step(9, "Launch")
 
     if agents_found and _confirm(f"  Launch {chosen} now?"):
-        print(f"\n  Starting {chosen}...\n")
+        print(f"\n  Starting {chosen} with /berdl_start...\n")
         binary = shutil.which(chosen)
         if binary:
             os.chdir(repo_root)
-            os.execvp(binary, [chosen])
+            # Inject Vertex env vars if enabled
+            if chosen == "claude" and vertex_cfg.get("enabled"):
+                os.environ["CLAUDE_CODE_USE_VERTEX"] = "1"
+                os.environ["CLOUD_ML_REGION"] = vertex_cfg.get("region", "global")
+                os.environ["ANTHROPIC_VERTEX_PROJECT_ID"] = vertex_cfg.get("project_id", "")
+                os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = vertex_cfg.get("credentials_file", "")
+                os.environ["VERTEX_REGION_CLAUDE_HAIKU_4_5"] = "us-east5"
+                os.environ["ANTHROPIC_DEFAULT_HAIKU_MODEL"] = "claude-haiku-4-5@20251001"
+            os.execvp(binary, [chosen, "--model", "opus", "/berdl_start"])
         else:
             print(f"  Error: '{chosen}' not found on PATH.", file=sys.stderr)
             return 1
