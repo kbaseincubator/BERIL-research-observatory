@@ -429,12 +429,40 @@ def test_mime_bundle_vendor_plus_json_is_structural(tmp_path):
 
 
 def test_mime_bundle_svg_normalized(tmp_path):
-    """image/svg+xml is text-like under nbformat — normalize like text/*."""
+    """image/svg+xml is non-JSON under nbformat — normalize like text/*."""
     out_a = [{"output_type": "display_data", "data": {
         "image/svg+xml": ["<svg>", "...</svg>"],
     }}]
     out_b = [{"output_type": "display_data", "data": {
         "image/svg+xml": "<svg>...</svg>",
+    }}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) == hash_notebook(b)
+
+
+def test_mime_bundle_image_png_list_normalized(tmp_path):
+    """Per the nbformat v4 schema, every non-JSON MIME entry can be
+    string-or-list-of-strings — including base64-encoded binary types
+    like image/png. List-form and joined-form should hash equal."""
+    out_a = [{"output_type": "display_data", "data": {
+        "image/png": ["iVBORw0K", "GgoAAAA"],
+    }}]
+    out_b = [{"output_type": "display_data", "data": {
+        "image/png": "iVBORw0KGgoAAAA",
+    }}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) == hash_notebook(b)
+
+
+def test_mime_bundle_pdf_list_normalized(tmp_path):
+    """application/pdf is non-JSON binary; same convention as image/png."""
+    out_a = [{"output_type": "display_data", "data": {
+        "application/pdf": ["JVBERi0", "x", "MS40Cg=="],
+    }}]
+    out_b = [{"output_type": "display_data", "data": {
+        "application/pdf": "JVBERi0xMS40Cg==",
     }}]
     a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
     b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
@@ -472,7 +500,7 @@ def test_unknown_output_type_string_list_preserved_structurally(tmp_path):
 
 def test_unknown_output_type_nested_data_dict_normalized(tmp_path):
     """If an unknown output type happens to nest a `data: {...}` MIME bundle
-    (mirroring display_data shape), apply text-MIME normalization to that
+    (mirroring display_data shape), apply MIME normalization to that
     nested dict. text/plain list-vs-string still hashes equal; JSON arrays
     stay structural."""
     out_a = [{"output_type": "future_kind", "data": {"text/plain": ["a\n", "b"]}}]
@@ -480,6 +508,25 @@ def test_unknown_output_type_nested_data_dict_normalized(tmp_path):
     a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
     b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
     assert hash_notebook(a) == hash_notebook(b)
+
+
+def test_unknown_output_type_non_data_dict_not_recursed(tmp_path):
+    """Recursion is limited to the `data` key. A dict under any other key
+    (e.g., `metadata`, arbitrary extension fields) must NOT be recursed
+    into for MIME normalization — a key that happens to look like a MIME
+    type inside an unrelated dict shouldn't trigger the multiline-string
+    convention."""
+    out_a = [{
+        "output_type": "future_kind",
+        "extension_payload": {"text/plain": ["a\n", "b"]},
+    }]
+    out_b = [{
+        "output_type": "future_kind",
+        "extension_payload": {"text/plain": "a\nb"},
+    }]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) != hash_notebook(b)
 
 
 # -----------------------------------------------------------------------------

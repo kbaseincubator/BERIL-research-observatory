@@ -57,46 +57,47 @@ def _normalize_text(value):
     return value
 
 
-def _is_text_mime(mime: str) -> bool:
-    """Return True if ``mime`` is a notebook MIME type whose value can be
-    serialized as either a plain string or a list-of-strings (i.e., a
-    multiline-text field per the nbformat spec).
+def _is_json_mime(mime: str) -> bool:
+    """Return True if ``mime`` is a JSON-bearing MIME type whose value is
+    structural JSON (not a chunked-text representation).
 
-    Per nbformat, the multiline-string convention applies to text-bearing
-    MIME types (``text/*``, ``image/svg+xml``, ``application/javascript``).
-    Structured types like ``application/json`` and vendor ``*+json`` carry
-    real JSON values where a list of strings is a legitimate JSON array,
-    not a chunked text representation — those must be preserved
-    structurally.
+    Per the nbformat v4 schema, the MIME bundle pattern is:
+
+        "^application/(.*\\+)?json$": {} (any JSON value)
+        "^(?!application/(.*\\+)?json).*": multiline_string
+
+    Everything that is NOT JSON is allowed to be ``string | string[]`` —
+    that includes binary types (``image/png`` as base64 chunks), text
+    types (``text/plain``, ``text/html``), SVG, and JavaScript. JSON and
+    vendor ``*+json`` types carry real JSON values where a list of
+    strings is a legitimate JSON array and must NOT be collapsed.
     """
     if not isinstance(mime, str):
         return False
-    if mime.startswith("text/"):
-        return True
-    if mime in ("image/svg+xml", "application/javascript", "application/x-javascript"):
-        return True
-    return False
+    if not mime.startswith("application/"):
+        return False
+    return mime == "application/json" or mime.endswith("+json")
 
 
 def _normalize_data_bundle(data):
     """Apply multiline normalization to a MIME-bundle ``data`` dict.
 
-    Notebook MIME bundles for text-bearing types can serialize values as
-    either a plain string or a list-of-strings (same convention as cell
-    ``source``). For example ``{"text/plain": ["a\\n", "b"]}`` and
-    ``{"text/plain": "a\\nb"}`` are equivalent and must hash equal.
+    Per the nbformat v4 schema, every MIME entry except ``application/json``
+    and vendor ``*+json`` may be serialized as either a plain string or a
+    list-of-strings (chunked for diff-friendliness). This includes text
+    types (``text/plain``, ``text/html``), SVG, JavaScript, and binary
+    types like ``image/png`` (base64 chunks). For each such entry we join
+    list-of-strings to a single string so equivalent forms hash equal.
 
-    We only normalize values for known text-bearing MIME keys. Structural
-    types (``application/json``, vendor ``*+json``, binary image types)
-    are passed through verbatim — a JSON array of strings is real content
-    and must not be collapsed.
+    JSON and vendor ``*+json`` values pass through verbatim — a JSON
+    array of strings is real content there, not a save-format artifact.
     """
     if not isinstance(data, dict):
         return data
     out: dict = {}
     for k, v in data.items():
         if (
-            _is_text_mime(k)
+            not _is_json_mime(k)
             and isinstance(v, list)
             and all(isinstance(x, str) for x in v)
         ):
@@ -144,10 +145,15 @@ def _canonical_output(output: dict) -> dict:
     # Unknown output type: preserve the entire output dict structurally.
     # We don't auto-join string-list fields here because we don't know the
     # field's semantics — a list of strings could be a real JSON array, not
-    # a chunked multiline-text representation. Apply data-bundle
-    # normalization only to dict values that look like MIME bundles (so a
-    # future kind that nests a `data: {...}` field gets the same text-MIME
-    # treatment as known kinds).
+    # a chunked multiline-text representation.
+    #
+    # If the unknown output happens to use the `data: {...}` MIME-bundle
+    # convention from known display kinds (display_data, execute_result),
+    # apply the same MIME normalization to that key — but ONLY that key.
+    # Don't recurse into other dict-valued fields like `metadata` or
+    # arbitrary extension data; a key happening to look like a MIME type
+    # inside an unrelated dict shouldn't accidentally trigger the
+    # multiline-string convention.
     #
     # Trade-off: if a future Jupyter output type defines a field whose
     # value is "multiline-string-or-list", a list-form save and a string-
@@ -156,7 +162,7 @@ def _canonical_output(output: dict) -> dict:
     # negative.
     canonical: dict = {}
     for key, value in output.items():
-        if isinstance(value, dict):
+        if key == "data" and isinstance(value, dict):
             canonical[key] = _normalize_data_bundle(value)
         else:
             canonical[key] = value
