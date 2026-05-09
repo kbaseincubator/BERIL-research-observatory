@@ -24,6 +24,23 @@ The lakehouse archive is the source of truth for "this project was submitted." L
 
 If no `<project_id>` argument is provided, detect from the current working directory (if inside `projects/{id}/`).
 
+## Hash comparison convention
+
+All hash values stored in `beril.yaml.approval.*` and in REVIEW footer lines are prefixed with `sha256:` (e.g., `"sha256:abcdef..."`). Hash values produced by `sha256sum` (or `hashlib.sha256(...).hexdigest()`) are raw hex without the prefix. **Never compare these forms directly** — that's a category error that produces false-positive mismatches.
+
+Use the helpers in `tools/notebook_hash.py`:
+
+- `unprefixed(stored_value)` strips the `sha256:` prefix and returns raw hex. Bare-hex inputs pass through unchanged. Other algorithm prefixes (`sha512:` etc.) raise `ValueError`.
+- `prefixed(raw_hex)` adds the `sha256:` prefix. Idempotent if input already has it.
+
+Comparison rule, applied at every hash check site in this skill:
+
+```
+computed_hex == unprefixed(stored_value)
+```
+
+When this skill text says "compare to `approval.report_hash`" or "verify `sha256sum X == approval.foo_hash`", read it as the rule above — pass the stored value through `unprefixed()` first.
+
 ## Workflow
 
 ### Step 1: Resolve Project
