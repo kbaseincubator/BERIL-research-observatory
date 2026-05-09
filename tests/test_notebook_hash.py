@@ -394,6 +394,53 @@ def test_mime_bundle_non_string_passthrough(tmp_path):
     assert hash_notebook(a) != hash_notebook(b)
 
 
+def test_mime_bundle_json_string_list_is_structural(tmp_path):
+    """application/json values that happen to be a JSON array of strings must
+    NOT be collapsed into a single string. ``["a", "b"]`` is real JSON content,
+    not a chunked text representation, so it must hash differently from
+    ``"ab"``."""
+    out_array = [{"output_type": "execute_result", "data": {"application/json": ["a", "b"]}}]
+    out_string = [{"output_type": "execute_result", "data": {"application/json": "ab"}}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_array)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_string)]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_mime_bundle_json_empty_array_distinct_from_empty_string(tmp_path):
+    """Same regression class: ``[]`` and ``""`` are distinct JSON values."""
+    out_empty_array = [{"output_type": "execute_result", "data": {"application/json": []}}]
+    out_empty_string = [{"output_type": "execute_result", "data": {"application/json": ""}}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_empty_array)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_empty_string)]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_mime_bundle_vendor_plus_json_is_structural(tmp_path):
+    """Vendor-specific *+json types are structural (e.g., Jupyter widget state)."""
+    out_a = [{"output_type": "display_data", "data": {
+        "application/vnd.jupyter.widget-view+json": ["a", "b"],
+    }}]
+    out_b = [{"output_type": "display_data", "data": {
+        "application/vnd.jupyter.widget-view+json": "ab",
+    }}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_mime_bundle_svg_normalized(tmp_path):
+    """image/svg+xml is text-like under nbformat — normalize like text/*."""
+    out_a = [{"output_type": "display_data", "data": {
+        "image/svg+xml": ["<svg>", "...</svg>"],
+    }}]
+    out_b = [{"output_type": "display_data", "data": {
+        "image/svg+xml": "<svg>...</svg>",
+    }}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
+    assert hash_notebook(a) == hash_notebook(b)
+
+
 # -----------------------------------------------------------------------------
 # Unknown output types — preserve, don't silently drop
 # -----------------------------------------------------------------------------
@@ -408,10 +455,28 @@ def test_unknown_output_type_preserves_fields(tmp_path):
     assert hash_notebook(a) != hash_notebook(b)
 
 
-def test_unknown_output_type_normalizes_string_lists(tmp_path):
-    """Unknown output type with a string-or-list field still normalizes for autosave parity."""
-    out_a = [{"output_type": "future_kind", "text_field": ["a\n", "b"]}]
-    out_b = [{"output_type": "future_kind", "text_field": "a\nb"}]
+def test_unknown_output_type_string_list_preserved_structurally(tmp_path):
+    """Unknown output type list-of-strings fields are preserved as JSON arrays,
+    NOT auto-joined. Without knowing the field's semantics we don't know
+    whether the list is a chunked multiline-text save or a real JSON array
+    — preserve structurally so a real array isn't silently collapsed.
+
+    The trade-off is a noisy false positive (different save format produces
+    different hash) instead of a silent false negative."""
+    out_list = [{"output_type": "future_kind", "novel_field": ["a", "b"]}]
+    out_string = [{"output_type": "future_kind", "novel_field": "ab"}]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_list)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_string)]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_unknown_output_type_nested_data_dict_normalized(tmp_path):
+    """If an unknown output type happens to nest a `data: {...}` MIME bundle
+    (mirroring display_data shape), apply text-MIME normalization to that
+    nested dict. text/plain list-vs-string still hashes equal; JSON arrays
+    stay structural."""
+    out_a = [{"output_type": "future_kind", "data": {"text/plain": ["a\n", "b"]}}]
+    out_b = [{"output_type": "future_kind", "data": {"text/plain": "a\nb"}}]
     a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_a)]))
     b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_b)]))
     assert hash_notebook(a) == hash_notebook(b)

@@ -57,24 +57,49 @@ def _normalize_text(value):
     return value
 
 
+def _is_text_mime(mime: str) -> bool:
+    """Return True if ``mime`` is a notebook MIME type whose value can be
+    serialized as either a plain string or a list-of-strings (i.e., a
+    multiline-text field per the nbformat spec).
+
+    Per nbformat, the multiline-string convention applies to text-bearing
+    MIME types (``text/*``, ``image/svg+xml``, ``application/javascript``).
+    Structured types like ``application/json`` and vendor ``*+json`` carry
+    real JSON values where a list of strings is a legitimate JSON array,
+    not a chunked text representation — those must be preserved
+    structurally.
+    """
+    if not isinstance(mime, str):
+        return False
+    if mime.startswith("text/"):
+        return True
+    if mime in ("image/svg+xml", "application/javascript", "application/x-javascript"):
+        return True
+    return False
+
+
 def _normalize_data_bundle(data):
-    """Apply multiline normalization recursively to a MIME-bundle ``data`` dict.
+    """Apply multiline normalization to a MIME-bundle ``data`` dict.
 
-    Notebook MIME bundles can serialize each value as either a plain string or
-    a list-of-strings (same convention as cell ``source``). For example
-    ``{"text/plain": ["a\\n", "b"]}`` and ``{"text/plain": "a\\nb"}`` are
-    equivalent and must hash equal.
+    Notebook MIME bundles for text-bearing types can serialize values as
+    either a plain string or a list-of-strings (same convention as cell
+    ``source``). For example ``{"text/plain": ["a\\n", "b"]}`` and
+    ``{"text/plain": "a\\nb"}`` are equivalent and must hash equal.
 
-    We only touch top-level values (the MIME-keyed entries) and lists of
-    strings within those. Nested structures (e.g., ``application/json``
-    containing arbitrary objects) pass through unchanged — they're already
-    hashed structurally by the canonical JSON serializer.
+    We only normalize values for known text-bearing MIME keys. Structural
+    types (``application/json``, vendor ``*+json``, binary image types)
+    are passed through verbatim — a JSON array of strings is real content
+    and must not be collapsed.
     """
     if not isinstance(data, dict):
         return data
     out: dict = {}
     for k, v in data.items():
-        if isinstance(v, list) and all(isinstance(x, str) for x in v):
+        if (
+            _is_text_mime(k)
+            and isinstance(v, list)
+            and all(isinstance(x, str) for x in v)
+        ):
             out[k] = "".join(v)
         else:
             out[k] = v
@@ -116,14 +141,22 @@ def _canonical_output(output: dict) -> dict:
             "evalue": output.get("evalue"),
             "traceback": [_normalize_text(t) for t in output.get("traceback", [])],
         }
-    # Unknown output type: preserve the entire output dict, but apply the
-    # text-normalization recursively wherever a string-or-list pattern shows
-    # up at top level so equivalent forms hash equal.
+    # Unknown output type: preserve the entire output dict structurally.
+    # We don't auto-join string-list fields here because we don't know the
+    # field's semantics — a list of strings could be a real JSON array, not
+    # a chunked multiline-text representation. Apply data-bundle
+    # normalization only to dict values that look like MIME bundles (so a
+    # future kind that nests a `data: {...}` field gets the same text-MIME
+    # treatment as known kinds).
+    #
+    # Trade-off: if a future Jupyter output type defines a field whose
+    # value is "multiline-string-or-list", a list-form save and a string-
+    # form save will hash differently. That's a noisy false positive (user
+    # sees drift on a save format change), preferable to a silent false
+    # negative.
     canonical: dict = {}
     for key, value in output.items():
-        if isinstance(value, list) and all(isinstance(x, str) for x in value):
-            canonical[key] = "".join(value)
-        elif isinstance(value, dict):
+        if isinstance(value, dict):
             canonical[key] = _normalize_data_bundle(value)
         else:
             canonical[key] = value
