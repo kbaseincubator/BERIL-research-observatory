@@ -17,7 +17,7 @@ related_collections:
   - nmdc_metadata
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.critical-minerals
   - topic.fitness-validated-function
@@ -54,6 +54,26 @@ order: 10
 ## Tension
 
 The Atlas uses lab fitness as a strong evidence layer, but the field is not a larger version of the lab. Fitness effects can transfer to ecology when the trait and metadata align; they can also fail when site chemistry, community interactions, or metadata gaps dominate.
+
+## Review Brief
+
+What changed: field-validation pages now draw more heavily on environmental metadata, geochemistry, and multi-omics interpretation. That makes this conflict the review checkpoint for any page that wants to move from lab signal to field claim.
+
+Why review matters: lab fitness is one of BERIL's strongest evidence layers, but overgeneralizing it would weaken the Atlas. Reviewers should decide where it is a prior, where it is validated, and where it is insufficient.
+
+Evidence to inspect:
+
+- `lab_field_ecology` and `field_vs_lab_fitness` for transfer successes and limits.
+- `bacdive_metal_validation` for phenotype/isolation-context validation.
+- `enigma_sso_asv_ecology` for site-level ecology and missing geochemistry.
+- Data completeness in [Environment Harmonization](/atlas/data/derived-products/environment-harmonization).
+
+Questions for reviewers:
+
+- Which field claims should require measured geochemistry instead of environment labels?
+- Are lab fitness scores being used as priors or as direct predictors?
+- What metadata-quality threshold should be required before field validation is considered strong?
+- Should failure cases become a separate derived benchmark rather than caveat text?
 
 ## Current Interpretation
 

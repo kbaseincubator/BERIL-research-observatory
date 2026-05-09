@@ -11,6 +11,7 @@ source_docs:
   - atlas/meta/metrics-to-watch.md
   - atlas/methods/reuse-and-tension-workflow.md
   - atlas/methods/new-project-integration.md
+  - atlas/methods/review-briefs.md
   - projects/bacillota_b_subsurface_accessory/REPORT.md
 related_collections:
   - kbase_ke_pangenome
@@ -24,6 +25,7 @@ related_pages:
   - method.agent-maintenance
   - method.reuse-and-tension-workflow
   - method.new-project-integration
+  - method.review-briefs
   - topic.critical-minerals
   - topic.amr-resistance-ecology
   - topic.fitness-validated-function
@@ -50,6 +52,18 @@ The Atlas now has enough structure that maintenance should be driven by review q
 - **New completed projects** should be checked against existing claims before they become isolated project summaries.
 
 ## Priority Update Packets
+
+### Packet 0 - Human Review Briefs
+
+Target pages:
+
+- [Critical Minerals and Metal Biology](/atlas/topics/critical-minerals)
+- [AMR, Resistance Ecology, and Co-selection](/atlas/topics/amr-resistance-ecology)
+- [Mobile Elements, Phage, and Genome Plasticity](/atlas/topics/mobile-elements-phage)
+- [Microbial Ecotypes, Environment, and Field Validation](/atlas/topics/microbial-ecotypes-environment)
+- Newly promoted claim pages and unresolved conflict pages
+
+Review task: each page should tell reviewers what changed, which evidence carries the claim, what caveats matter most, and what feedback would change the page. Use [Review Briefs](/atlas/methods/review-briefs) as the template.
 
 ### Packet 1 - Flagship Topic Depth
 

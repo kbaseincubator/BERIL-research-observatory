@@ -58,6 +58,26 @@ order: 10
 
 The observatory has moved from "which genes are metal-sensitive" to a layered model of metal biology: conserved fitness architecture, specificity filters, experimental caveats, field validation, and critical-mineral hypotheses. The useful product is no longer a list of hits; it is a ranked and caveated map of genes, taxa, environments, and missing experiments.
 
+## Review Brief
+
+What changed: recent Atlas updates added rare-earth methylotrophy genomics, MicrobeAtlas niche-breadth evidence, global MAG biogeography, and soil metal-function associations to a topic that was previously centered on RB-TnSeq metal fitness and BacDive/ENIGMA validation.
+
+Why review matters: this page now sits at the boundary between mature fitness-derived claims and newer field-scale claims. Reviewers should decide which statements are ready to promote, which should stay as draft synthesis, and which should become explicit opportunities or conflicts.
+
+Evidence to inspect:
+
+- `metal_fitness_atlas`, `metal_specificity`, and `counter_ion_effects` for the fitness and specificity base layer.
+- `lanthanide_methylotrophy_atlas` for rare-earth marker evidence and annotation-source caveats.
+- `microbeatlas_metal_ecology`, `metal_resistance_global_biogeography`, and `soil_metal_functional_genomics` for field-scale metal ecology.
+- [Metal specificity versus general stress](/atlas/conflicts/metal-specificity-vs-general-stress) and [Metal-AMR co-selection readiness](/atlas/conflicts/metal-amr-co-selection-readiness) for the main unresolved tensions.
+
+Questions for reviewers:
+
+- Is "metal type diversity predicts niche breadth" strong enough to influence proposals, or should it remain a caveated field-ecology signal?
+- Does the rare-earth section correctly separate pangenome marker evidence from the still-missing REE fitness experiments?
+- Which field-scale project is closest to producing a reusable derived product rather than remaining a project-specific result?
+- Are there site-chemistry or counter-ion controls that should be mandatory before any claim is promoted?
+
 ## Why This Topic Exists
 
 Metal tolerance is one of the clearest DOE-relevant arcs in BERIL. Fitness screens identify gene-metal effects, pangenomes show which families are conserved or accessory, specificity analyses separate metal biology from generic sickness, BacDive and ENIGMA connect lab predictions to environment, and the absence of rare-earth fitness data points to the next high-value experiment.
@@ -109,6 +129,14 @@ This layer is high value because it tells the Atlas what not to overstate. Metal
 ### Layer 8 - Critical-Mineral Research Directions
 
 The valuable next layer is action: ranked gene targets, cross-metal inference for unmeasured elements, metal-AMR co-selection tests at contaminated sites, and engineered community design. These are not separate ideas; they are downstream uses of the same joined evidence stack.
+
+## Evidence Detail For Review
+
+The mature evidence stack is the metal fitness stack. It includes direct perturbation measurements, cross-organism conservation, and explicit filters for non-metal sickness. A reviewer can ask whether a proposed target is metal-specific, conserved enough to be broadly useful, and annotated or structured enough to support a mechanism.
+
+The newer evidence stack is environmental and should be read more cautiously. Lanthanide methylotrophy has strong marker-scale prevalence evidence but lacks direct REE fitness assays. MicrobeAtlas niche breadth and global MAG biogeography add ecological scale, but they depend on phylogenetic control, metadata coverage, coordinate quality, and sampling-effort sensitivity. Soil metal-function associations are useful because they point to chemistry-linked functional shifts, but co-contaminating metals and project effects remain load-bearing.
+
+The review decision is therefore not "is metal biology important?" That is settled enough for the Atlas. The decision is which layer can be reused for engineering or proposal claims, and which layer should only guide the next experiment.
 
 ## Reusable Claims
 

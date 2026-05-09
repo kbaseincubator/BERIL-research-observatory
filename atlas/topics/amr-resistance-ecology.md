@@ -45,6 +45,26 @@ order: 20
 
 BERIL treats antimicrobial resistance as an ecological system, not a flat clinical annotation list. Across the current AMR projects, resistance genes become more interpretable when they are placed in genome background, environment, mobile context, and measured fitness cost. That makes metal co-selection a concrete DOE-site analysis rather than a loose analogy.
 
+## Review Brief
+
+What changed: prophage density and metal type diversity are now explicit covariates for AMR ecology. That makes the co-selection question more testable, but also harder to interpret without mobile-element and taxonomy controls.
+
+Why review matters: this topic can easily overstate co-selection. Human feedback should decide whether the page is appropriately framed as "ready to test" rather than "already proven."
+
+Evidence to inspect:
+
+- `amr_environmental_resistome`, `amr_pangenome_atlas`, and `resistance_hotspots` for environment-structured AMR.
+- `amr_fitness_cost` and `amr_cofitness_networks` for functional burden and support modules.
+- `prophage_amr_comobilization` for the difference between species-level prophage burden and gene-level proximity.
+- `microbeatlas_metal_ecology` for metal type diversity and ecological breadth.
+
+Questions for reviewers:
+
+- Are taxonomy, habitat, genome count, and mobile-element burden the right minimum controls before claiming metal-AMR co-selection?
+- Should prophage density be treated as a confound, a mechanism candidate, or both?
+- Are AMR burden, AMR mechanism composition, and metal type diversity being kept distinct enough?
+- What result would move the co-selection hypothesis from draft to reviewed?
+
 ## Why This Topic Exists
 
 AMR appears in projects that do not start as AMR projects: metal tolerance, environmental resistomes, mobile elements, pangenomes, and cofitness analyses all touch the same biological space. This topic gives humans and agents a place to connect those views while keeping the strongest caveats visible.
@@ -84,6 +104,14 @@ The synthesis should therefore distinguish two statements. First, prophage burde
 ### Layer 6 - Metal Resistance Breadth And Niche Breadth
 
 `microbeatlas_metal_ecology` adds a field-ecology layer to AMR. Metal type diversity, not raw AMR burden, predicts genus-level niche breadth after phylogenetic correction. This supports the idea that the breadth of resistance mechanisms matters for ecological range and for contaminated-site co-selection analyses.
+
+## Evidence Detail For Review
+
+The strongest reusable AMR evidence is not a single gene table. It is the agreement between mechanism composition, pangenome context, measured cost, cofitness support, and environmental structure. If those layers point in different directions, the Atlas should record the disagreement rather than collapsing it into a broad resistance claim.
+
+The prophage result is especially useful for review because it names a measurable covariate that can explain AMR breadth without proving direct gene transfer. A reviewer should check whether any future co-selection model includes prophage density or a better mobile-element partition before interpreting AMR-environment associations as selection by metal exposure.
+
+The metal type diversity result is similarly useful but observational. It supports the idea that resistance-spectrum breadth matters, while leaving open whether breadth is caused by environmental exposure, lineage history, mobile elements, or sampling coverage.
 
 ## What Would Change This Synthesis
 

@@ -19,6 +19,7 @@ related_pages:
   - method.agent-maintenance
   - method.reuse-and-tension-workflow
   - method.new-project-integration
+  - method.review-briefs
 order: 1
 ---
 
@@ -34,4 +35,5 @@ Methods pages define how agents and humans should build, review, and maintain th
 - Preserve provenance and caveats on every reusable statement.
 - Update the smallest page that captures the new knowledge.
 - Integrate new projects by updating synthesis, claims, conflicts, opportunities, or data gaps only where the project changes the Atlas.
+- Add review briefs to pages where human feedback should change claim strength, caveats, reviewer routing, or next analyses.
 - Run lint and inventory before proposing changes.
