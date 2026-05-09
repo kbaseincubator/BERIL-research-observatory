@@ -22,7 +22,7 @@ related_collections:
   - kbase_uniref100
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - claim.lab-fitness-predicts-field-ecology
   - claim.metal-specific-genes-core-enriched
@@ -41,6 +41,26 @@ order: 40
 ## Synthesis Takeaway
 
 The observatory's strongest functional claims come from joining annotation, conservation, and actual fitness measurements rather than relying on any one evidence stream.
+
+## Review Brief
+
+What changed: this page is now the review entry point for deciding when fitness evidence can promote a gene, module, dependency, or dark-gene candidate beyond annotation-only interpretation.
+
+Why review matters: fitness data are one of BERIL's strongest differentiators, but they are condition-specific. Reviewers should make sure the Atlas does not overgeneralize a measured phenotype beyond organism, condition, and validation scope.
+
+Evidence to inspect:
+
+- `essential_genome`, `essential_metabolome`, and `metabolic_capability_dependency` for essentiality and dependency scope.
+- `fitness_modules` and `module_conservation` for module-level reuse.
+- `functional_dark_matter` and `truly_dark_genes` for prioritizing unknown biology.
+- [Dark Gene Prioritization Tables](/atlas/data/derived-products/dark-gene-prioritization) and [Lab-to-Field Fitness Transfer Audit](/atlas/opportunities/lab-field-fitness-transfer) for reviewable outputs.
+
+Questions for reviewers:
+
+- Which fitness-derived statements are ready to become reviewed claims rather than topic synthesis?
+- Are condition, organism, media, and assay limits visible enough on every downstream reuse path?
+- Should module-level products be promoted before individual-gene products when modules have stronger mechanistic support?
+- What evidence separates truly unknown genes from annotation lag?
 
 ## Why This Topic Exists
 

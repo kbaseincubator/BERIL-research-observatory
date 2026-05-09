@@ -19,7 +19,7 @@ related_collections:
   - kescience_bacdive
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.critical-minerals
   - direction.rare-earth-cross-metal-inference
@@ -58,6 +58,26 @@ order: 10
 ## Why It Matters
 
 The Atlas has metal fitness breadth but not rare-earth direct measurements. That makes rare-earth biology a high-value gap: the first experiment can be designed from existing cross-metal structure rather than starting from an arbitrary gene list.
+
+## Review Brief
+
+What changed: the lanthanide methylotrophy claim adds genomic marker context, so this opportunity can now combine cross-metal inference with rare-earth marker calibration.
+
+Why review matters: this is an experiment-design page. Reviewers should decide whether the candidate ranking and controls are strong enough to justify a concrete RB-TnSeq proposal.
+
+Evidence to inspect:
+
+- [Lanthanide-dependent methylotrophy is widespread and soil-linked](/atlas/claims/lanthanide-methylotrophy-widespread) for marker context.
+- [Rare Earth Fitness Data Gap](/atlas/data/gaps/rare-earth-fitness-data) for the missing direct assay.
+- [Metal specificity versus general stress](/atlas/conflicts/metal-specificity-vs-general-stress) for controls.
+- `metal_specificity`, `counter_ion_effects`, and Bakta/AlphaFold evidence for candidate selection.
+
+Questions for reviewers:
+
+- Which REE conditions and counter-ion controls are most important for a first experiment?
+- Which taxa have both relevant biology and usable mutant libraries?
+- Should xoxF/lanmodulin marker evidence shape organism choice, candidate genes, or both?
+- What minimum result would move rare-earth inference from prediction to validation?
 
 ## Evidence Base
 

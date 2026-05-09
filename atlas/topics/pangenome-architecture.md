@@ -22,7 +22,7 @@ related_collections:
   - kbase_uniref100
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - claim.pangenome-openness-shapes-function
   - hypothesis.pangenome-openness-pathway-diversity
@@ -39,6 +39,26 @@ order: 30
 ## Synthesis Takeaway
 
 Pangenome structure is the substrate beneath many observatory findings: it determines what is conserved, variable, functionally enriched, environmentally flexible, and reusable as a comparative unit.
+
+## Review Brief
+
+What changed: this page now carries both the original openness/conservation synthesis and the newer subsurface Bacillota_B correction, where subsurface adaptation looks like expansion and self-sufficiency rather than simple streamlining.
+
+Why review matters: pangenome terms are reused across the Atlas. Reviewers should decide whether openness, core/accessory status, and singleton enrichment are being used as biological evidence or only as descriptors that need downstream validation.
+
+Evidence to inspect:
+
+- `pangenome_openness`, `openness_functional_composition`, and `cog_analysis` for openness and functional composition.
+- `conservation_vs_fitness` and `conservation_fitness_synthesis` for links between conservation and measured consequence.
+- `bacillota_b_subsurface_accessory` for the marker-correction lesson and subsurface expansion model.
+- [Pangenome Openness Metrics](/atlas/data/derived-products/pangenome-openness-metrics) and [Functional Innovation KO Atlas](/atlas/data/derived-products/functional-innovation-ko-atlas) for reusable product candidates.
+
+Questions for reviewers:
+
+- Are genome count, phylogeny, assembly quality, and annotation controls explicit enough before openness is interpreted biologically?
+- Should subsurface expansion become a promoted claim, or remain a caveated topic-layer finding until replicated in more clades?
+- Which pangenome metrics are stable enough to reuse across topics without recomputing per project?
+- Are marker-dictionary corrections being preserved strongly enough in downstream redox and respiration interpretations?
 
 ## Why This Topic Exists
 

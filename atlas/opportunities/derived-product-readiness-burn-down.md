@@ -19,7 +19,7 @@ related_collections:
   - kbase_msd_biochemistry
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - data.reuse
   - method.reuse-and-tension-workflow
@@ -57,6 +57,25 @@ order: 110
 ## Why It Matters
 
 Derived products are where BERIL outputs compound. The Atlas now tracks them, but product readiness needs active burn-down: consumers, artifacts, caveats, and review routes should be explicit before a product becomes a default input.
+
+## Review Brief
+
+What changed: many derived-product pages now include review briefs, making this burn-down opportunity more actionable.
+
+Why review matters: reviewers should decide which products are promoted assets, which are candidates, which lack consumers, and which need deprecation or narrower scope.
+
+Evidence to inspect:
+
+- [Reuse Graph](/atlas/data/reuse) for producer, consumer, and source edges.
+- Candidate products such as [CF Formulation Scores](/atlas/data/derived-products/cf-formulation-scores) and [Functional Innovation KO Atlas](/atlas/data/derived-products/functional-innovation-ko-atlas).
+- [Review Briefs](/atlas/methods/review-briefs) for expected human-feedback structure.
+
+Questions for reviewers:
+
+- Which products have a real consumer versus only a plausible future use?
+- Which products need table artifacts rather than figures or diagnostics?
+- Which products have no clear owner route?
+- What product should be promoted, narrowed, or deprecated first?
 
 ## Evidence Base
 

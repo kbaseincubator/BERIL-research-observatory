@@ -40,9 +40,29 @@ order: 90
 
 # Metabolic Capability, Dependency, and Community Design
 
-## One-Line Takeaway
+## Synthesis Takeaway
 
 Encoded metabolic capability is not the same as active dependency; the observatory can turn that distinction into community design rules and reusable metabolic derived products.
+
+## Review Brief
+
+What changed: this page now links capability, measured dependency, multi-omics interpretation, and community design in one review surface.
+
+Why review matters: community design can look rigorous while still depending on unvalidated capability calls. Reviewers should check whether design proposals separate encoded potential, measured dependency, activity, compatibility, and ecological risk.
+
+Evidence to inspect:
+
+- `metabolic_capability_dependency`, `pathway_capability_dependency`, and `essential_metabolome` for capability versus dependency.
+- `nmdc_community_metabolic_ecology`, `pseudomonas_carbon_ecology`, and `harvard_forest_warming` for community and perturbation context.
+- [CF Formulation Scores](/atlas/data/derived-products/cf-formulation-scores) and [Functional Innovation KO Atlas](/atlas/data/derived-products/functional-innovation-ko-atlas) for reusable design substrates.
+- [Multi-omics, embeddings, and molecular profiles](/atlas/data/types/multi-omics-embeddings) for activity and sample-context caveats.
+
+Questions for reviewers:
+
+- Which design claims rely only on encoded capability and need measured dependency or activity evidence?
+- Are condition-specific fitness dependencies being generalized too broadly?
+- What minimal validation should be required before recommending a community or formulation?
+- Which derived product would most improve repeatable community-design decisions?
 
 ## What We Have Learned
 

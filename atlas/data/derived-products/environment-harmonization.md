@@ -18,7 +18,7 @@ related_collections:
   - enigma_coral
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.microbial-ecotypes-environment
   - data.environment-geochemistry-ecology
@@ -53,6 +53,26 @@ order: 95
 ## Reusable Object
 
 This product turns free-text environment and coordinate metadata into a reusable set of categories, coverage flags, and quality caveats. It is most useful when a project needs to compare ecology across BERDL collections without treating raw isolation strings as stable labels.
+
+## Review Brief
+
+What changed: more Atlas pages now depend on environment labels, coordinate quality, and metadata completeness for field claims.
+
+Why review matters: environment harmonization can either reduce confusion or create false confidence. Reviewers should confirm that label provenance, missingness, and coordinate quality remain visible in every reuse path.
+
+Evidence to inspect:
+
+- `env_embedding_explorer` for category and coverage diagnostics.
+- `ecotype_env_reanalysis` for environment-label sensitivity.
+- `enigma_sso_asv_ecology` for site-level ecology needs.
+- [Lab fitness signals versus field ecology](/atlas/conflicts/lab-fitness-field-generalization) for transfer caveats.
+
+Questions for reviewers:
+
+- Are harmonized labels good enough for enrichment tests, or only for triage?
+- Which metadata fields should be required before field validation claims are promoted?
+- Should coordinate quality and source-field provenance become required columns?
+- What missing environment labels most block high-value Atlas claims?
 
 ## Why It Is High Value
 

@@ -62,6 +62,26 @@ order: 30
 
 Metal screens are rich, but not every metal hit is metal biology. The useful synthesis depends on separating conserved metal-specific mechanisms from broad stress or assay context.
 
+## Review Brief
+
+What changed: this conflict now covers not only RB-TnSeq specificity and counter-ion effects, but also rare-earth marker uncertainty and field-scale co-contamination from soil metal analyses.
+
+Why review matters: metal targets are only useful if reviewers trust that they are not generic stress artifacts. This page should define the minimum evidence needed before a candidate becomes an engineering target or promoted claim.
+
+Evidence to inspect:
+
+- Non-metal sick-rate filtering from `metal_specificity`.
+- Counter-ion and osmotic-control needs from `counter_ion_effects`.
+- Marker-source uncertainty from `lanthanide_methylotrophy_atlas`.
+- Co-contaminating metals and conditional R2 interpretation from `soil_metal_functional_genomics`.
+
+Questions for reviewers:
+
+- Is the current specificity filter strict enough for engineering target prioritization?
+- Which counter-ion or osmotic controls should be mandatory for new metal assays?
+- Should rare-earth marker calibration be handled here, or split into a separate conflict?
+- What evidence is required to promote a field metal-function association to a reusable claim?
+
 ## Current Interpretation
 
 Metal tolerance scores should be reused with specificity labels and counter-ion caveats attached. The strongest engineering candidates survive both filters.

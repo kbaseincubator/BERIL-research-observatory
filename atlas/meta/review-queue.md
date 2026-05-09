@@ -11,6 +11,7 @@ source_docs:
   - atlas/meta/metrics-to-watch.md
   - atlas/methods/reuse-and-tension-workflow.md
   - atlas/methods/new-project-integration.md
+  - atlas/methods/review-briefs.md
   - projects/bacillota_b_subsurface_accessory/REPORT.md
 related_collections:
   - kbase_ke_pangenome
@@ -24,6 +25,7 @@ related_pages:
   - method.agent-maintenance
   - method.reuse-and-tension-workflow
   - method.new-project-integration
+  - method.review-briefs
   - topic.critical-minerals
   - topic.amr-resistance-ecology
   - topic.fitness-validated-function
@@ -50,6 +52,21 @@ The Atlas now has enough structure that maintenance should be driven by review q
 - **New completed projects** should be checked against existing claims before they become isolated project summaries.
 
 ## Priority Update Packets
+
+### Packet 0 - Human Review Briefs
+
+Target pages:
+
+- [Critical Minerals and Metal Biology](/atlas/topics/critical-minerals)
+- [AMR, Resistance Ecology, and Co-selection](/atlas/topics/amr-resistance-ecology)
+- [Pangenome Architecture and Gene-Content Evolution](/atlas/topics/pangenome-architecture)
+- [Fitness-Validated Gene Function](/atlas/topics/fitness-validated-function)
+- [Mobile Elements, Phage, and Genome Plasticity](/atlas/topics/mobile-elements-phage)
+- [Microbial Ecotypes, Environment, and Field Validation](/atlas/topics/microbial-ecotypes-environment)
+- [Host Microbiome Translation](/atlas/topics/host-microbiome-translation), [Plant Microbiome Function and Agriculture](/atlas/topics/plant-microbiome-function), and [Metabolic Capability, Dependency, and Community Design](/atlas/topics/metabolic-capability-community-design)
+- Reused claim pages, unresolved conflict pages, promoted/candidate derived-product pages, and opportunity pages that are ready for human go/no-go review
+
+Review task: each page should tell reviewers what changed, which evidence carries the claim, what caveats matter most, and what feedback would change the page. Use [Review Briefs](/atlas/methods/review-briefs) as the template. The goal is not longer pages by default; it is review-shaped detail that can produce a narrower claim, a promotion decision, a new conflict, a derived-product consumer, or a concrete analysis.
 
 ### Packet 1 - Flagship Topic Depth
 

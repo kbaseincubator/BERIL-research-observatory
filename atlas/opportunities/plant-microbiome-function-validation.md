@@ -19,7 +19,7 @@ related_collections:
   - kbase_msd_biochemistry
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.plant-microbiome-function
   - topic.microbial-ecotypes-environment
@@ -58,6 +58,25 @@ order: 100
 ## Why It Matters
 
 Plant microbiome synthesis is useful only if functional signals remain interpretable across study, host, taxonomy, and environment. This opportunity makes that validation explicit.
+
+## Review Brief
+
+What changed: plant microbiome function is now treated as a reviewable validation problem rather than a marker-list topic.
+
+Why review matters: reviewers should decide whether plant-associated functional signals survive ecotype, taxonomy, compartment, and environment controls strongly enough to support reuse.
+
+Evidence to inspect:
+
+- [Plant Microbiome Function and Agriculture](/atlas/topics/plant-microbiome-function) for topic synthesis.
+- [Ecotype Assignments](/atlas/data/derived-products/ecotype-assignments) and [Functional Innovation KO Atlas](/atlas/data/derived-products/functional-innovation-ko-atlas) for input products.
+- `plant_microbiome_ecotypes`, `pgp_pangenome_ecology`, and `nmdc_community_metabolic_ecology` for source evidence.
+
+Questions for reviewers:
+
+- Which plant function signals are robust after study and taxonomy controls?
+- Are PGP/pathogenicity markers being interpreted too literally?
+- What metadata is missing for host compartment or environment comparisons?
+- Which validated signal should become the first plant-focused derived product?
 
 ## Evidence Base
 

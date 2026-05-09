@@ -77,6 +77,26 @@ order: 40
 
 The Atlas can now formulate the co-selection question, but formulation is not proof. The current evidence says the test is high value, not that the result is already known.
 
+## Review Brief
+
+What changed: new project evidence added metal type diversity, prophage density, soil metal-function associations, and T4SS/CAZy/metal co-enrichment to the co-selection question.
+
+Why review matters: this conflict is the guardrail against turning a good DOE-site analysis into a premature claim. Reviewers should decide whether the resolving analysis has the right covariates and whether any side of the tension is missing.
+
+Evidence to inspect:
+
+- Metal tolerance and specificity evidence from `metal_fitness_atlas` and `metal_specificity`.
+- AMR environment and fitness-cost evidence from the AMR project set.
+- Mobile-context evidence from `prophage_amr_comobilization` and `t4ss_cazy_environmental_hgt`.
+- Site and chemistry covariates from ENIGMA, NMDC, and soil metal projects.
+
+Questions for reviewers:
+
+- Are the proposed controls sufficient: taxonomy, habitat, sampling depth, metal co-contamination, mobile-element burden, and metadata quality?
+- Should mobile-element burden be treated as a covariate, a mediator, or a separate mechanism?
+- Which site or collection is ready enough for the first co-selection benchmark?
+- What result would resolve the conflict rather than merely add another correlation?
+
 ## Current Interpretation
 
 Use this as a direction and hypothesis seed. Do not cite it as a resolved co-selection finding until site-level joins and controls are complete.

@@ -15,7 +15,7 @@ related_collections:
   - enigma_coral
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - topic.amr-resistance-ecology
   - direction.metal-amr-co-selection
@@ -32,6 +32,26 @@ order: 30
 ## Claim
 
 Resistance mechanisms vary systematically by environment. Soil and aquatic contexts show much stronger metal-resistance components than human-gut contexts.
+
+## Review Brief
+
+What changed: this claim is now part of the metal-AMR co-selection path and must travel with stronger taxonomy, habitat, and mobile-context caveats.
+
+Why review matters: reviewers should confirm that environment structure is not being treated as direct causation or contaminant selection without controls.
+
+Evidence to inspect:
+
+- `amr_environmental_resistome` for environment composition.
+- `amr_pangenome_atlas` for AMR family and genome-background structure.
+- `resistance_hotspots` for contaminated-site relevance.
+- [Metal-AMR co-selection readiness](/atlas/conflicts/metal-amr-co-selection-readiness) for required controls.
+
+Questions for reviewers:
+
+- Are soil, aquatic, host-associated, and contaminated environments defined consistently?
+- Which taxonomy or sampling controls are required before reuse?
+- Does metal-resistance composition imply exposure, ecology, mobile-element history, or all three?
+- Should this claim link explicitly to prophage/mobile covariates?
 
 ## Why It Matters
 

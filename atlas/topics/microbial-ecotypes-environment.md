@@ -56,6 +56,26 @@ order: 50
 
 The observatory is building a bridge from genomic variation to environmental niche and field behavior, but the bridge is only as strong as its metadata and validation datasets.
 
+## Review Brief
+
+What changed: this topic now includes long-term warming, global niche breadth, metal-resistance biogeography, soil frontier gaps, and soil metal-function associations in addition to the earlier ecotype and lab-field fitness layers.
+
+Why review matters: environmental pages can become persuasive while still being confounded. Reviewers should check whether the page separates biological signal from taxonomy, geography, sampling effort, project effects, and metadata completeness.
+
+Evidence to inspect:
+
+- `lab_field_ecology` and `field_vs_lab_fitness` for lab-to-field transfer.
+- `harvard_forest_warming` for omics-layer interpretation under long-term perturbation.
+- `microbeatlas_metal_ecology` and `metal_resistance_global_biogeography` for niche breadth and spatial coverage.
+- `soil_frontier_genomics` and `soil_metal_functional_genomics` for sampling gaps and chemistry-linked functional shifts.
+
+Questions for reviewers:
+
+- Does the page make the right distinction between environment label, measured chemistry, geography, and phylogeny?
+- Are the Harvard Forest lessons framed as a design caution rather than a universal DNA/RNA rule?
+- Should global biogeography and soil frontier signals feed a new opportunity page, or stay as caveats until coverage metrics improve?
+- What metadata field or collection join would most increase confidence in field-validation claims?
+
 ## Why This Topic Changed
 
 The new project batch adds true field-scale tests rather than only environmental labels. Harvard Forest provides a long-term warming case where DNA and RNA functional pools converge after a design confound is removed. MicrobeAtlas and MGnify projects expose global niche breadth, geospatial coverage, and soil-metal covariates. Together they make environmental synthesis more useful and more caveat-heavy.
@@ -91,6 +111,12 @@ The Atlas lesson is that omics layer does not automatically define sensitivity. 
 ### Layer 7 - Environmental Chemistry As Covariate, Not Explanation
 
 `soil_metal_functional_genomics` reports strong metal-COG associations and high conditional db-RDA R2 after project effects are removed. That is useful evidence that chemistry can structure functional profiles, but the project also records unresolved issues around co-contamination, spatial proximity thresholds, and conditional versus total variance explained.
+
+## Evidence Detail For Review
+
+This topic is not trying to prove that every environmental label is mechanistic. It is trying to identify which labels, covariates, and measurements survive enough controls to be reused. Ecotype labels need leakage-resistant validation. Lab-field transfer needs site metadata and matched taxa. Long-term warming signals need design-aware interpretation. Global maps need coordinate and sampling-effort accounting.
+
+The strongest future version of this page would connect field claims to explicit reusable data products: ecotype assignments, environmental harmonization, geochemistry joins, coordinate-quality metrics, and validation benchmarks. Until then, some field-scale results should remain high-value but low-promotability.
 
 ## High-Value Directions
 

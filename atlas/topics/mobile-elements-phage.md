@@ -42,6 +42,26 @@ order: 80
 
 Mobile elements explain a large fraction of why pangenomes stay open, resistance varies by strain, plant-interaction markers move, and phage interventions require careful host-range context. The new project batch makes this topic more concrete: prophage density predicts AMR breadth, and T4SS neighborhoods point to chromosomal or integrative transfer of CAZy and metal-associated functions.
 
+## Review Brief
+
+What changed: this topic now has two new mechanism-adjacent signals: prophage density predicts AMR breadth, and T4SS-associated neighborhoods are enriched for GT2 CAZy and metal-resistance context in environmental MAGs.
+
+Why review matters: mobile-element pages are prone to mechanism overclaiming. Reviewers should decide which signals are strong enough to guide downstream analyses and which need better caller support, synteny checks, or experimental validation.
+
+Evidence to inspect:
+
+- `prophage_amr_comobilization` for species-level AMR breadth versus gene-neighborhood proximity.
+- `t4ss_cazy_environmental_hgt` for T4SS, GT2 CAZy neighborhoods, HGT calls, and metal-resistance co-enrichment.
+- `pangenome_openness`, `amr_strain_variation`, and `snipe_defense_system` for the broader accessory-genome and defense context.
+- [Phage, mobile, and defense data](/atlas/data/types/phage-mobile-defense) for the cross-collection data lens.
+
+Questions for reviewers:
+
+- Are prophage markers and T4SS markers being used as screening signals rather than final mechanism calls?
+- Which mobile-element partition should become standard in future Atlas analyses: prophage, plasmid, ICE/IME, T4SS, or a combined burden score?
+- Does the T4SS-CAZy-metal association deserve a new claim, or should it remain caveated until validation improves?
+- What evidence would connect mobile context to an actionable phage-host or resistance-ecology derived product?
+
 ## What We Have Learned
 
 ### Layer 1 - Genome Plasticity
@@ -65,6 +85,12 @@ Pangenome openness and singleton enrichment provide a genome-scale view of mobil
 ### Layer 5 - Applied Targeting
 
 PhageFoundry and host-microbiome projects make this topic actionable, especially for AIEC/pathobiont targeting.
+
+## Evidence Detail For Review
+
+The key distinction is association versus mechanism. Prophage density can explain AMR breadth at the species level even if individual AMR genes are not proven prophage cargo. T4SS neighborhoods can identify likely HGT hubs even if the exact transfer event or element boundary remains uncertain.
+
+That distinction matters for reuse. Association-level signals are useful as covariates and prioritization features. Mechanism-level claims require better element boundaries, base-pair distances, synteny validation, gene-tree support, and ideally independent caller agreement.
 
 ## High-Value Directions
 
