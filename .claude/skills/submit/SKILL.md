@@ -123,10 +123,10 @@ For projects with `beril.yaml`:
      - `sha256sum projects/{project_id}/REPORT.md` vs `approval.report_hash`.
      - `sha256sum projects/{project_id}/REVIEW.md` vs `approval.review_hash` (skip if missing).
      - `sha256sum projects/{project_id}/{approval.review}` vs `approval.review_hash` (skip if missing).
-     - **Notebook hashes** (v5): compute current canonical hashes via the CLI — `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` (use absolute paths; the skill may run from inside `projects/{id}/`, so don't rely on cwd or `PYTHONPATH`). Output is a single-line JSON object `{"<relpath>": "sha256:<hex>", ...}`. Compare against `approval.notebook_hashes` (apply the prefix convention to both sides). Three failure modes:
+     - **Notebook hashes** (v5): compute current canonical hashes via the CLI — `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` (use absolute paths; the skill may run from inside `projects/{id}/`, so don't rely on cwd or `PYTHONPATH`). Output is a single-line JSON object `{"<relpath>": "sha256:<hex>", ...}`. Compare against `approval.notebook_hashes` (apply the prefix convention to both sides). Distinguish **field missing** (legacy pre-v5 approval) from **field present but empty `{}`** (v5 approval recorded with no notebooks). Failure modes:
        - A notebook in `approval.notebook_hashes` whose current hash differs (or the file is missing) → mismatch, mention the specific notebook.
-       - A `.ipynb` file in the current `notebooks/` set that is not in `approval.notebook_hashes` (a new notebook was added after approval) → drift, mention the specific notebook.
-       - `approval.notebook_hashes` is omitted or empty (legacy approval predating v5, or project with no notebooks) → skip notebook checks; the absence of the field doesn't fail validation.
+       - A `.ipynb` file in the current `notebooks/` set that is not in `approval.notebook_hashes` — including the case where the approval recorded `{}` and a `.ipynb` has since been added — → drift, mention the specific notebook(s).
+       - `approval.notebook_hashes` key is **omitted entirely** from the approval block (legacy pre-v5 approval) → skip notebook checks; the absence of the field doesn't fail validation. **Empty `{}` does NOT trigger this skip** — `{}` is an approved empty state and any current `.ipynb` files are unapproved drift per the rule above.
 
      Any hash mismatch (REPORT, REVIEW, or notebooks) OR the both-review-files-missing case triggers the **reopen prompt** (phrase the explanation according to which condition fired):
 
@@ -217,7 +217,7 @@ Phase 2c is split into a **pre-write validation pass** (no state mutation) follo
     report_hash: "sha256:<REPORT.md hex>"
     review: "REVIEW_N.md"
     review_hash: "sha256:<REVIEW_N.md hex>"
-    notebook_hashes:                              # v5; omit (or write {}) if no notebooks/
+    notebook_hashes:                              # v5; always write this field for v5 approvals — `{}` when the project has no notebooks. Field omission is reserved for legacy pre-v5 approvals.
       "notebooks/01_setup.ipynb": "sha256:<hex>"
       "notebooks/02_analysis.ipynb": "sha256:<hex>"
   ```
@@ -253,7 +253,7 @@ Run unconditionally (including retry-only flows that entered Phase 3 directly fr
 
 - **Recover from interrupted Phase 2 if needed**: check whether `projects/{project_id}/REVIEW.md` exists. If it does not (the previous run died between writing the approval block and copying the review file), recreate it: copy `projects/{project_id}/{approval.review}` (e.g., `REVIEW_3.md`) to `projects/{project_id}/REVIEW.md`. Then verify `sha256sum REVIEW.md == approval.review_hash`; mismatch means the underlying numbered review was edited since approval — abort with `Error: REVIEW_N.md changed since approval; cannot recover. Demote the project (rerun /berdl-review) and re-approve.`
 - **Verify the canonical and numbered review hashes**. Recompute `sha256sum REPORT.md`, `sha256sum REVIEW.md` (the canonical copy), AND `sha256sum projects/{project_id}/{approval.review}` (the numbered file named in the approval, e.g. `REVIEW_3.md` — both files end up in the lakehouse archive). All three must match `approval.report_hash` / `approval.review_hash` / `approval.review_hash` respectively (apply `unprefixed()` to the stored values). If any has changed, abort with `Error: files changed since approval; please re-run /submit.` This guards retry paths and the brief window between Phase 2 and Phase 3, and catches the case where the canonical `REVIEW.md` is unchanged but the numbered `REVIEW_N.md` was edited.
-- **Verify notebook hashes** (v5). Re-run `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` and compare against `approval.notebook_hashes`. Any mismatch, missing, or new notebook → abort with `Error: notebook(s) changed since approval: <list>; restore the original file from version control, or run /synthesize to demote and re-approve.` If `approval.notebook_hashes` is omitted/empty (legacy approval or project without notebooks), skip this check.
+- **Verify notebook hashes** (v5). Re-run `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` and compare against `approval.notebook_hashes`. Any mismatch, missing, or new notebook (including a current `.ipynb` not present when the approval recorded `{}`) → abort with `Error: notebook(s) changed since approval: <list>; restore the original file from version control, or run /synthesize to demote and re-approve.` Skip this check **only when `approval.notebook_hashes` is omitted entirely** (legacy pre-v5 approval). An explicit empty `{}` is an approved empty state and does NOT bypass the check — current `.ipynb` files would be unapproved drift.
 - **Clear both marker files** before upload, so the post-upload step (success or failure) writes a clean state and an interrupt mid-Phase-3 doesn't leave a stale marker that misleads the next `/submit` run. Delete both `SUBMITTED.md` and `SUBMISSION_FAILED.md` if present. Also remove the `(Submission pending; see SUBMISSION_FAILED.md.)` parenthetical from `README.md` `## Status` if present. The `beril.yaml.submissions[]` audit log retains history; markers are reconstituted by Phase 3c per outcome.
 
 #### 3b. Run upload
