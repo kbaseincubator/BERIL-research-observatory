@@ -279,6 +279,15 @@ def upload_project(project_id, base_path):
     finally:
         metadata_path.unlink(missing_ok=True)
 
+    # `manifest` was captured BEFORE we generated and wrote
+    # `project_metadata.json`, so it does not include the metadata file.
+    # `mc cp --recursive` uploads the entire project directory including
+    # the just-written metadata, so the remote listing DOES include it.
+    # Without the +1, a real project file failing to upload while metadata
+    # succeeds would still satisfy `remote_count >= len(manifest)` and we'd
+    # mark an incomplete archive as `status: ok`.
+    expected_remote_count = len(manifest) + 1  # +1 for project_metadata.json
+
     result = {
         "project_id": project_id,
         "local_files": len(manifest),
@@ -287,12 +296,12 @@ def upload_project(project_id, base_path):
         "remote_path": remote_path,
         "s3a_path": f"{S3A_BASE}/{project_id}/",
         "duration_seconds": duration_seconds,
-        "status": "ok" if remote_count >= len(manifest) else "warning",
+        "status": "ok" if remote_count >= expected_remote_count else "warning",
     }
 
     print(f"  Result: {remote_count} files uploaded")
-    if remote_count < len(manifest):
-        print(f"  WARNING: expected {len(manifest)}, got {remote_count}")
+    if remote_count < expected_remote_count:
+        print(f"  WARNING: expected {expected_remote_count} (manifest + project_metadata.json), got {remote_count}")
 
     return result
 
@@ -456,8 +465,12 @@ def main():
             "duration_seconds": result["duration_seconds"],
         }
         if result["status"] != "ok":
+            # `remote_files` counts everything at archive_key including the
+            # generated `project_metadata.json`; subtract 1 so the message
+            # reflects how many of the local manifest files actually landed.
+            present_manifest = max(0, result["remote_files"] - 1)
             payload["error"] = (
-                f"partial upload: {result['remote_files']} of "
+                f"partial upload: {present_manifest} of "
                 f"{result['local_files']} local files present at archive_key"
             )
         print(json.dumps(payload))
