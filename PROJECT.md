@@ -56,6 +56,7 @@ Each science project in `projects/` should have:
 - `data/`: Agent-derived data from queries and analysis (gitignore large files)
 - `user_data/`: User-provided input data — gene lists, phenotype tables, external databases (gitignore large files)
 - `figures/`: Key visualizations saved as PNG files
+- `memories/`: Per-project captured knowledge that the OpenViking layer will eventually ingest for cross-project retrieval. Currently used by `/pitfall-capture` to record gotchas hit during this project's work (`pitfalls.md`). Created on demand the first time something is captured. Central `docs/pitfalls.md` is now a frozen historical archive — new pitfalls go here.
 - `requirements.txt`: Python dependencies
 - `src/`: Reusable scripts (if applicable)
 
