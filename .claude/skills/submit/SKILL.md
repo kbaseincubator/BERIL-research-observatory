@@ -187,7 +187,26 @@ Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` a
 
 #### 2c. Write approval artifacts (local filesystem)
 
-- Compute notebook hashes (v5): invoke `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` to get a JSON dict of `{relpath: "sha256:<hex>"}`. Result is sorted by path, ready for stable YAML output. Empty dict for projects without `notebooks/`. Values are already `sha256:`-prefixed and can be written to YAML verbatim.
+Phase 2c is split into a **pre-write validation pass** (no state mutation) followed by the **write pass**. All inputs that can fail validation are checked before any file is mutated, so a malformed REPORT.md leaves the project at `status: reviewed` with zero partial state.
+
+##### 2c-pre. Validate inputs and stage memory extractions (no writes yet)
+
+- **Compute notebook hashes (v5)**: invoke `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` to get a JSON dict of `{relpath: "sha256:<hex>"}`. Result is sorted by path, ready for stable YAML output. Empty dict for projects without `notebooks/`. Values are already `sha256:`-prefixed and can be written to YAML verbatim. (Read-only; safe to do here.)
+- **Stage memory extractions** from `REPORT.md`. This is how reviewed-and-approved discoveries/performance claims become OV-ingestible memories without contaminating the layer with unvetted synthesizer output. Validate and capture in memory only — no files are written or deleted in this pre-pass.
+
+  For each section name in `["Discoveries", "Performance Notes"]` (mapping to `discoveries.md` and `performance.md` respectively):
+
+  1. **Detect duplicates first.** If the same `## {SectionName}` heading appears more than once in `REPORT.md` (lines matching `^## {SectionName}\s*$`, case-sensitive, exact match modulo trailing whitespace), **abort with**: `Error: REPORT.md has duplicate '## {SectionName}' headings; cannot extract memory unambiguously. Fix REPORT.md and re-run /submit.` Don't guess which section to use; this indicates a malformed REPORT. Phase 2c stops here; the project remains at `status: reviewed` with no files modified (this check runs before any write below).
+  2. **Find the section.** Locate the single matching `^## {SectionName}\s*$` line. Capture content from the line *after* the heading until the next `^## ` heading or EOF.
+  3. **Trim whitespace.** Strip leading and trailing whitespace from the captured content. `### subheadings` and `#### sub-subheadings` inside the captured range are preserved verbatim — they're part of the section.
+  4. **Classify the staged action** (record this in memory; execute in 2c-write below):
+     - **Section absent from REPORT.md, OR present but empty after trimming** → staged action: `delete-if-exists` for `projects/{project_id}/memories/{discoveries|performance}.md`. The live memory must match the approved state; an absent or empty section in the latest approval means there are no current claims of that kind.
+     - **Section present and non-empty after trimming** → staged action: `write` with the captured trimmed content.
+
+  After this pre-pass, you have: notebook hashes, plus a list of staged memory actions (per section: `delete-if-exists` or `write` with content). No filesystem changes have occurred. From here on, only filesystem operations remain — they should not fail in normal operation.
+
+##### 2c-write. Apply approval mutations
+
 - Update `projects/{project_id}/beril.yaml`:
   ```yaml
   status: complete
@@ -211,24 +230,17 @@ Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` a
   Completed — {one-line summary from REPORT.md `## Key Findings`}.
   ```
   If `REPORT.md` doesn't have a clear one-liner, write a brief summary based on the report's findings.
-- **Extract approved memories** from `REPORT.md` into per-project memory files. This is how reviewed-and-approved discoveries/performance claims become OV-ingestible memories without contaminating the layer with unvetted synthesizer output.
+- **Apply staged memory actions** captured in 2c-pre:
+  - For each `delete-if-exists` action → if `projects/{project_id}/memories/{kind}.md` exists, delete it. (`mkdir -p projects/{project_id}/memories` is unnecessary in this branch.) Don't write a tombstone or empty file.
+  - For each `write` action → create `projects/{project_id}/memories/` if needed, then write `projects/{project_id}/memories/{kind}.md`:
+    ```markdown
+    # {SectionName} — {project_id}
 
-  For each section name in `["Discoveries", "Performance Notes"]` (mapping to `discoveries.md` and `performance.md` respectively):
+    <!-- [{project_id}] {approval.at}  approved-report extraction (REVIEW: {approval.review}) -->
 
-  1. **Find the section.** Locate lines matching `^## {SectionName}\s*$` in `REPORT.md` (case-sensitive, exact match modulo trailing whitespace). Capture content from the line *after* the heading until the next `^## ` heading or EOF.
-  2. **Detect duplicates.** If the same `## {SectionName}` heading appears more than once in `REPORT.md`, abort with: `Error: REPORT.md has duplicate '## {SectionName}' headings; cannot extract memory unambiguously. Fix REPORT.md and re-run /submit.` Don't guess which section to use; this indicates a malformed REPORT. Phase 2c stops; the project remains at `reviewed`.
-  3. **Trim whitespace.** Strip leading and trailing whitespace from the captured content. `### subheadings` and `#### sub-subheadings` inside the captured range are preserved verbatim — they're part of the section.
-  4. **Decide write or delete:**
-     - **Section absent from REPORT.md, OR present but empty after trimming** → if `projects/{project_id}/memories/{discoveries|performance}.md` exists from a prior approval, **delete it**. The live memory must match the approved state; an absent or empty section in the latest approval means there are no current claims of that kind. Don't write a tombstone or empty file. (`mkdir -p projects/{project_id}/memories` is unnecessary in this branch.)
-     - **Section present and non-empty after trimming** → write `projects/{project_id}/memories/{discoveries|performance}.md` (creating `projects/{project_id}/memories/` if needed):
-       ```markdown
-       # {SectionName} — {project_id}
-
-       <!-- [{project_id}] {approval.at}  approved-report extraction (REVIEW: {approval.review}) -->
-
-       {trimmed captured content}
-       ```
-       The HTML-comment provenance line keeps the file readable as plain markdown while making the generation context unambiguous (project tag, approval timestamp, source review). Overwrite the file if it exists from a prior approval.
+    {trimmed captured content}
+    ```
+    The HTML-comment provenance line keeps the file readable as plain markdown while making the generation context unambiguous (project tag, approval timestamp, source review). Overwrite the file if it exists from a prior approval.
 - **Do NOT pre-clear** existing `SUBMITTED.md` or `SUBMISSION_FAILED.md`. Markers are managed exclusively by Phase 3 success/failure handlers. This avoids ambiguity if Phase 3 is interrupted.
 
 At this point the project is **approved locally** regardless of upload outcome. The user can `git add` and commit if they want git history to reflect the approval.
