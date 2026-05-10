@@ -31,9 +31,14 @@ LAKEHOUSE_BASE = f"{MC_ALIAS}/{BUCKET}/{TENANT_PATH}/projects"
 # S3a path for documentation and Spark references
 S3A_BASE = f"s3a://{BUCKET}/{TENANT_PATH}/projects"
 
-# Files/directories to skip during upload
+# Files/directories to skip during upload. `.submit.lock` is held by
+# /submit through Phase 3, so the upload runs while the lock file is
+# still present in the project directory; without skipping it, every
+# successful submission would archive a transient lock file in the
+# canonical lakehouse copy.
 SKIP_PATTERNS = {
     "__pycache__", ".ipynb_checkpoints", ".DS_Store", "Thumbs.db",
+    ".submit.lock",
 }
 
 

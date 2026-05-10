@@ -185,6 +185,70 @@ def test_metadata_tags_preserved(tmp_path):
     assert hash_notebook(a) != hash_notebook(b)
 
 
+def test_output_metadata_image_dimensions_change_changes_hash(tmp_path):
+    """display_data / execute_result outputs carry a `metadata` dict beside
+    `data`. Image dimensions under a MIME-typed sub-key affect the rendered
+    representation; a dimension change must change the hash."""
+    out_a = [{
+        "output_type": "display_data",
+        "data": {"image/png": "iVBORw0KGgoAAAA="},
+        "metadata": {"image/png": {"width": 320, "height": 240}},
+    }]
+    out_b = [{
+        "output_type": "display_data",
+        "data": {"image/png": "iVBORw0KGgoAAAA="},  # same bytes
+        "metadata": {"image/png": {"width": 800, "height": 600}},  # changed
+    }]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("plot()", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("plot()", outputs=out_b)]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_output_metadata_present_vs_absent_changes_hash(tmp_path):
+    """Adding output metadata to a previously-bare output is a content change."""
+    out_bare = [{"output_type": "execute_result", "data": {"text/plain": "1"}}]
+    out_with_meta = [{
+        "output_type": "execute_result",
+        "data": {"text/plain": "1"},
+        "metadata": {"scrolled": True},
+    }]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_bare)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_with_meta)]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_output_metadata_empty_dict_equals_absent(tmp_path):
+    """An explicit empty `metadata: {}` (some kernels emit it) must hash the
+    same as omitting the field — empty == no metadata."""
+    out_no_field = [{"output_type": "display_data", "data": {"text/plain": "x"}}]
+    out_empty_meta = [{
+        "output_type": "display_data",
+        "data": {"text/plain": "x"},
+        "metadata": {},
+    }]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("x", outputs=out_no_field)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("x", outputs=out_empty_meta)]))
+    assert hash_notebook(a) == hash_notebook(b)
+
+
+def test_output_metadata_widget_view_state_changes_hash(tmp_path):
+    """Widget view state (e.g. ipywidgets) is part of the rendered output;
+    changing it without changing data must still change the hash."""
+    out_a = [{
+        "output_type": "display_data",
+        "data": {"application/vnd.jupyter.widget-view+json": {"model_id": "abc", "version_major": 2, "version_minor": 0}},
+        "metadata": {"jupyter": {"source_hidden": False}},
+    }]
+    out_b = [{
+        "output_type": "display_data",
+        "data": {"application/vnd.jupyter.widget-view+json": {"model_id": "abc", "version_major": 2, "version_minor": 0}},
+        "metadata": {"jupyter": {"source_hidden": True}},  # toggled
+    }]
+    a = _write(tmp_path / "a.ipynb", _make_notebook([_code_cell("w", outputs=out_a)]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([_code_cell("w", outputs=out_b)]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
 def test_attachment_present_changes_hash(tmp_path):
     """A markdown cell with an embedded image must hash differently from one
     without — otherwise an attachment swap or removal would silently slip past

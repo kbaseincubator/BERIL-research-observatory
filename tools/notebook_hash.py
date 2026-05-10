@@ -34,7 +34,9 @@ Code cells additionally:
 
 Per-output (by output_type):
     - stream:                 output_type, name, text (normalized)
-    - display_data, execute_result: output_type, data
+    - display_data, execute_result: output_type, data, metadata (preserved
+      verbatim when non-empty — image dimensions, widget view state, etc.
+      affect the rendered representation)
     - error:                  output_type, ename, evalue, traceback (normalized)
 """
 
@@ -133,10 +135,24 @@ def _canonical_output(output: dict) -> dict:
             "text": _normalize_text(output.get("text", "")),
         }
     if out_type in ("display_data", "execute_result"):
-        return {
+        canonical: dict = {
             "output_type": out_type,
             "data": _normalize_data_bundle(output.get("data", {})),
         }
+        # Per nbformat, `display_data` / `execute_result` outputs may carry
+        # a `metadata` dict alongside `data`. It commonly holds rendering
+        # info that *changes the rendered representation* — image width
+        # and height under MIME-typed sub-keys (`{"image/png": {...}}`),
+        # widget view state, scrollability, etc. Dropping it would let a
+        # re-rendered figure with different dimensions or a widget state
+        # change slip past the integrity boundary unchanged. Preserve it
+        # verbatim — the values are structured (dicts/scalars) rather
+        # than the multiline-string-or-list convention used for `data`,
+        # so the bundle normalization doesn't apply here.
+        meta = output.get("metadata")
+        if isinstance(meta, dict) and meta:
+            canonical["metadata"] = meta
+        return canonical
     if out_type == "error":
         return {
             "output_type": out_type,
