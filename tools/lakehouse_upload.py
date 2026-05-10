@@ -31,11 +31,15 @@ LAKEHOUSE_BASE = f"{MC_ALIAS}/{BUCKET}/{TENANT_PATH}/projects"
 # S3a path for documentation and Spark references
 S3A_BASE = f"s3a://{BUCKET}/{TENANT_PATH}/projects"
 
-# Files/directories to skip during upload. `.submit.lock` is held by
-# /submit through Phase 3, so the upload runs while the lock file is
-# still present in the project directory; without skipping it, every
-# successful submission would archive a transient lock file in the
-# canonical lakehouse copy.
+# Files/directories to skip during the manifest walk. The manifest is the
+# source of truth for what gets uploaded — upload_project iterates the
+# manifest directly rather than `mc cp --recursive`, so any name in this
+# set is guaranteed to stay out of the lakehouse archive regardless of
+# mc's exclude semantics.
+#
+# `.submit.lock` is held by /submit through Phase 3, so the upload runs
+# while the lock file is still present in the project directory. Without
+# this entry it would be archived in every successful submission.
 SKIP_PATTERNS = {
     "__pycache__", ".ipynb_checkpoints", ".DS_Store", "Thumbs.db",
     ".submit.lock",
@@ -266,14 +270,34 @@ def upload_project(project_id, base_path):
                     print(rm_err, file=sys.stderr)
                 return None
 
-        rc, out, err = _mc("cp", "--recursive", f"{project_path}/", remote_path, capture=False)
-        if rc != 0:
-            # Send to stderr so /submit (and other automated callers that
-            # rely on the exit-1 contract documented in submit/SKILL.md) can
-            # reliably read the error from the failed-process stderr stream.
-            # mc's own progress/error output already streamed directly to
-            # the terminal because we passed capture=False.
-            print(f"ERROR: mc cp failed for {project_id} (rc={rc})", file=sys.stderr)
+        # Upload only the files we explicitly want in the archive: the
+        # SKIP_PATTERNS-filtered manifest, plus the just-written
+        # `project_metadata.json`. Per-file uploads (rather than
+        # `mc cp --recursive`) ensure transient files like `.submit.lock`
+        # — which `/submit` holds in the project directory through
+        # Phase 3 — never enter the canonical lakehouse copy. SKIP_PATTERNS
+        # is honored by the manifest walker; relying on `mc cp`'s
+        # `--exclude` would couple correctness to mc's glob semantics
+        # across versions, which we'd rather not bet the integrity
+        # boundary on.
+        upload_list = [
+            (Path(f["file_path"]), f["relative_path"]) for f in manifest
+        ]
+        upload_list.append((metadata_path, "project_metadata.json"))
+
+        upload_failures = []
+        for local, rel in upload_list:
+            target = f"{remote_path}{rel}"
+            rc, _, _ = _mc("cp", str(local), target, capture=False)
+            if rc != 0:
+                upload_failures.append(rel)
+        if upload_failures:
+            print(
+                f"ERROR: mc cp failed for {project_id} on "
+                f"{len(upload_failures)} file(s): {upload_failures[:5]}"
+                f"{'...' if len(upload_failures) > 5 else ''}",
+                file=sys.stderr,
+            )
             return None
 
         # Validate upload
@@ -284,13 +308,11 @@ def upload_project(project_id, base_path):
     finally:
         metadata_path.unlink(missing_ok=True)
 
-    # `manifest` was captured BEFORE we generated and wrote
-    # `project_metadata.json`, so it does not include the metadata file.
-    # `mc cp --recursive` uploads the entire project directory including
-    # the just-written metadata, so the remote listing DOES include it.
-    # Without the +1, a real project file failing to upload while metadata
-    # succeeds would still satisfy `remote_count >= len(manifest)` and we'd
-    # mark an incomplete archive as `status: ok`.
+    # We uploaded the manifest plus the generated `project_metadata.json`,
+    # so the expected remote count is len(manifest) + 1. Without the +1,
+    # a real project file failing to upload while metadata succeeds would
+    # still satisfy `remote_count >= len(manifest)` and we'd mark an
+    # incomplete archive as `status: ok`.
     expected_remote_count = len(manifest) + 1  # +1 for project_metadata.json
 
     result = {
