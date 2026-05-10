@@ -11,6 +11,7 @@ import os
 import re
 import urllib.error
 import urllib.request
+from pathlib import Path
 
 ORCID_PUB_API = "https://pub.orcid.org/v3.0"
 KBASE_ME_PATH = "/api/V2/me"
@@ -122,3 +123,39 @@ def detect_user_identity() -> dict[str, str]:
     name = detect_name_from_orcid(orcid) or detect_name_from_kbase()
     affiliation = detect_affiliation_from_orcid(orcid)
     return {"name": name, "affiliation": affiliation, "orcid": orcid}
+
+
+def is_on_jupyterhub() -> bool:
+    """True when running inside a JupyterHub-spawned single-user session."""
+    return bool(os.environ.get("JUPYTERHUB_USER"))
+
+
+def print_jupyterhub_path_hint(repo_root) -> None:
+    """If on JupyterHub, print a path/navigation hint so users know where to
+    look in the JupyterLab file browser. No-op off-hub.
+
+    Users on JupyterHub commonly miss that they need to navigate the left-side
+    file browser to actually see their work. The clone path is in their home
+    directory, but the file browser opens at home by default and shows many
+    sibling files; the BERIL repo isn't visually obvious. A path-with-arrows
+    hint costs nothing and saves a real support burden.
+    """
+    if not is_on_jupyterhub():
+        return
+    repo_root = Path(repo_root)
+    home = Path.home()
+    try:
+        rel = repo_root.relative_to(home)
+        display_path = f"~/{rel}"
+        breadcrumb_parts = list(rel.parts)
+    except ValueError:
+        display_path = str(repo_root)
+        breadcrumb_parts = list(repo_root.parts)
+    breadcrumb = "  →  ".join([*breadcrumb_parts, "projects", "<your_project>"])
+    print()
+    print("  You're on JupyterHub. Your work lives at:")
+    print(f"    {display_path}")
+    print()
+    print("  In the JupyterLab file browser (left sidebar), navigate to:")
+    print(f"    {breadcrumb}")
+    print()
