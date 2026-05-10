@@ -40,9 +40,20 @@ S3A_BASE = f"s3a://{BUCKET}/{TENANT_PATH}/projects"
 # `.submit.lock` is held by /submit through Phase 3, so the upload runs
 # while the lock file is still present in the project directory. Without
 # this entry it would be archived in every successful submission.
+#
+# `project_metadata.json` is generated fresh on every upload and added
+# explicitly to the upload list (see `upload_project`). Skipping it from
+# the walk avoids two failure modes: (1) `generate_metadata`'s self-listing
+# would otherwise include the previous run's stale metadata in the new
+# `files[]` array, and (2) if a previous run died between writing the
+# metadata file and the cleanup `unlink`, the stale file would appear in
+# the new manifest, the upload list would then have the same relative
+# path twice, and `expected_remote_count = len(manifest) + 1` would
+# expect two when only one lands — turning a successful retry into a
+# false partial-upload failure.
 SKIP_PATTERNS = {
     "__pycache__", ".ipynb_checkpoints", ".DS_Store", "Thumbs.db",
-    ".submit.lock",
+    ".submit.lock", "project_metadata.json",
 }
 
 

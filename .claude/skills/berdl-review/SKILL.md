@@ -35,7 +35,7 @@ Read `projects/{project_id}/beril.yaml` (skip silently if missing — pre-manife
 
 - **Allowed starting statuses**: `analysis`, `reviewed`, `complete`. Earlier statuses are rejected — there's no `REPORT.md` to review yet.
   - `exploration` / `proposed` / `active` → `FAIL  No REPORT.md to review yet — run /synthesize first (resume via /berdl_start)`.
-- **`complete` precondition**: recompute `sha256sum projects/{project_id}/REPORT.md` and compare to `approval.report_hash` in `beril.yaml`. If mismatch:
+- **`complete` precondition**: recompute `sha256sum projects/{project_id}/REPORT.md` and compare to `approval.report_hash` in `beril.yaml`. The stored hash uses the `sha256:<hex>` prefix convention (see `/submit`); apply `unprefixed()` to the stored value before comparing to the bare hex from `sha256sum`, otherwise every approved project will look changed and trigger an unnecessary demote prompt. If mismatch:
 
   > "REPORT.md has changed since this project was approved ({approval.at}). Producing a review against the new report will leave the project in a confusing state: `complete` with a fresh review for an unapproved report. Demote to `analysis` first (the previous approval will be archived under `previous_approvals`) before running the new review? (y/n)"
 
