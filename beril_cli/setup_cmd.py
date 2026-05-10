@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 from beril_cli import config
-from beril_cli.detect import detect_user_identity
+from beril_cli.detect import detect_user_identity, print_jupyterhub_path_hint
 
 
 def _find_repo_root() -> Path | None:
@@ -287,6 +287,7 @@ def run_setup() -> int:
 
     if agents_found and _confirm(f"  Launch {chosen} now?"):
         print(f"\n  Starting {chosen} with /berdl_start...\n")
+        print_jupyterhub_path_hint(repo_root)
         binary = shutil.which(chosen)
         if binary:
             os.chdir(repo_root)
@@ -304,6 +305,7 @@ def run_setup() -> int:
             return 1
 
     print("\n  Setup complete! Run 'beril start' when you're ready.\n")
+    print_jupyterhub_path_hint(repo_root)
     return 0
 
 

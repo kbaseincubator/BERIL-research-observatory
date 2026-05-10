@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 
 from beril_cli.config import get_default_agent, get_vertex_config
+from beril_cli.detect import print_jupyterhub_path_hint
 
 
 def _sync_auth_token(env_path: Path) -> None:
@@ -106,6 +107,7 @@ def run_start(
         extra_args = ["--model", "opus", *extra_args]
 
     print(f"Launching {agent}...")
+    print_jupyterhub_path_hint(repo_root)
     # Replace the current process with the agent
     os.execvp(binary, [agent, *extra_args])
 
