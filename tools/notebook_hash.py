@@ -26,6 +26,8 @@ Cell-level (for every cell_type):
     - cell_type
     - source (normalized: list-of-strings → joined; string → unchanged)
     - metadata.tags (papermill / nbgrader directives — content-bearing)
+    - attachments (markdown/raw cells; each attachment's MIME bundle
+      normalized the same way as output data bundles)
 
 Code cells additionally:
     - outputs (with per-output canonicalization below)
@@ -179,6 +181,18 @@ def _canonical_cell(cell: dict) -> dict:
     cell_meta = cell.get("metadata", {}) or {}
     if "tags" in cell_meta:
         canonical["metadata"] = {"tags": cell_meta["tags"]}
+    # Attachments — markdown/raw cells can embed images/files inline via
+    # the nbformat ``attachments`` field: ``{filename: {mime_type: data}}``.
+    # Each filename's value is a MIME bundle that follows the same
+    # multiline-string-or-list serialization rules as output data bundles,
+    # so apply ``_normalize_data_bundle`` to each. Without this an embedded
+    # image could be replaced or removed without changing the hash.
+    attachments = cell.get("attachments")
+    if isinstance(attachments, dict) and attachments:
+        canonical["attachments"] = {
+            name: _normalize_data_bundle(bundle)
+            for name, bundle in attachments.items()
+        }
     if cell_type == "code":
         canonical["outputs"] = [
             _canonical_output(o) for o in cell.get("outputs", []) or []

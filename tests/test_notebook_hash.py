@@ -185,6 +185,97 @@ def test_metadata_tags_preserved(tmp_path):
     assert hash_notebook(a) != hash_notebook(b)
 
 
+def test_attachment_present_changes_hash(tmp_path):
+    """A markdown cell with an embedded image must hash differently from one
+    without — otherwise an attachment swap or removal would silently slip past
+    the integrity check."""
+    plain = _markdown_cell("![diagram](attachment:image.png)")
+    with_attachment = _markdown_cell(
+        "![diagram](attachment:image.png)",
+        attachments={"image.png": {"image/png": "AAAAbase64data=="}},
+    )
+    a = _write(tmp_path / "a.ipynb", _make_notebook([plain]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([with_attachment]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_attachment_data_change_changes_hash(tmp_path):
+    """Replacing the bytes of an embedded attachment must change the hash."""
+    cell_a = _markdown_cell(
+        "![](attachment:img.png)",
+        attachments={"img.png": {"image/png": "AAAAfirst=="}},
+    )
+    cell_b = _markdown_cell(
+        "![](attachment:img.png)",
+        attachments={"img.png": {"image/png": "BBBBsecond=="}},
+    )
+    a = _write(tmp_path / "a.ipynb", _make_notebook([cell_a]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([cell_b]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_attachment_filename_change_changes_hash(tmp_path):
+    """Renaming the attachment filename in the bundle is a content change."""
+    cell_a = _markdown_cell(
+        "![](attachment:a.png)",
+        attachments={"a.png": {"image/png": "AAAA=="}},
+    )
+    cell_b = _markdown_cell(
+        "![](attachment:b.png)",
+        attachments={"b.png": {"image/png": "AAAA=="}},
+    )
+    a = _write(tmp_path / "a.ipynb", _make_notebook([cell_a]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([cell_b]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_attachment_multiline_string_normalization(tmp_path):
+    """Per nbformat schema, MIME bundle values inside attachments may be
+    serialized as a string OR a list-of-strings (chunked for diffing). The
+    two forms must hash equal — same content, different save format."""
+    string_form = _markdown_cell(
+        "![](attachment:i.png)",
+        attachments={"i.png": {"image/png": "AAAABBBBCCCC"}},
+    )
+    list_form = _markdown_cell(
+        "![](attachment:i.png)",
+        attachments={"i.png": {"image/png": ["AAAA", "BBBB", "CCCC"]}},
+    )
+    a = _write(tmp_path / "a.ipynb", _make_notebook([string_form]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([list_form]))
+    assert hash_notebook(a) == hash_notebook(b)
+
+
+def test_attachment_json_mime_not_collapsed(tmp_path):
+    """Inside attachment MIME bundles, JSON / vendor *+json values pass
+    through verbatim (a JSON array is real content, not a save artifact)."""
+    cell_list = _markdown_cell(
+        "see attachment",
+        attachments={
+            "data.json": {"application/json": ["alpha", "beta"]}
+        },
+    )
+    cell_string = _markdown_cell(
+        "see attachment",
+        attachments={
+            "data.json": {"application/json": "alphabeta"}
+        },
+    )
+    a = _write(tmp_path / "a.ipynb", _make_notebook([cell_list]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([cell_string]))
+    assert hash_notebook(a) != hash_notebook(b)
+
+
+def test_empty_attachments_dict_does_not_affect_hash(tmp_path):
+    """An ``attachments: {}`` written by some editors must not differ from a
+    cell that simply omits the field — empty bundle == no attachments."""
+    no_field = _markdown_cell("hello")
+    empty_dict = _markdown_cell("hello", attachments={})
+    a = _write(tmp_path / "a.ipynb", _make_notebook([no_field]))
+    b = _write(tmp_path / "b.ipynb", _make_notebook([empty_dict]))
+    assert hash_notebook(a) == hash_notebook(b)
+
+
 def test_kernelspec_display_name_not_preserved(tmp_path):
     nb_a = _make_notebook([_code_cell("x")])
     nb_b = _make_notebook(
