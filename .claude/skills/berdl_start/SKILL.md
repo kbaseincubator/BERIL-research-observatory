@@ -214,9 +214,9 @@ Status: `exploration`. Read context, explore data, accept user-supplied input, a
 **Required reading before designing any queries:**
 1. `PROJECT.md` — dual goals (science + knowledge capture), project structure, reproducibility standards, JupyterHub workflow, Spark notebook patterns.
 2. `docs/overview.md` — data architecture, key tables, generation workflow, known limitations.
-3. `docs/pitfalls.md` and `docs/performance.md` — **critical: read before any query design**.
+3. `docs/pitfalls.md` and `docs/performance.md` — **critical: read before any query design**. These are the frozen historical archives; per-project pitfalls hit by recent projects also live in `projects/*/memories/pitfalls.md` (worth a scan, especially for projects on the same database family).
 4. `docs/research_ideas.md` — check for related ideas; avoid duplicating work.
-5. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live access-aware discovery. For database-specific gotchas, grep `docs/pitfalls.md` for the database name (e.g., `grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md`).
+5. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live access-aware discovery. For database-specific gotchas, grep `docs/pitfalls.md` for the database name (e.g., `grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md`); also check `projects/*/memories/pitfalls.md` for any project-tagged entries on the same database.
 
 **Setup check (Phase 1.5 already verified KBASE_AUTH_TOKEN and proxy):**
 6. `gh auth status` — needed for branches/PRs. Prompt `gh auth login` if missing.
@@ -323,11 +323,10 @@ If the user discovers an error after submission and wants to revise: run `/synth
 #### Throughout the Workflow
 
 - Commit code often — don't let work accumulate uncommitted.
-- Update `docs/discoveries.md` when you find something interesting (tag with `[project_id]`).
-- Update `docs/pitfalls.md` when you hit a gotcha (follow `.claude/skills/pitfall-capture/SKILL.md`).
-- Update `docs/performance.md` when you learn a query optimization.
-- Re-read `docs/pitfalls.md` when debugging failures — the answer may already be documented.
-- Re-read `docs/performance.md` when queries are slow — check for existing optimization patterns.
+- **Capture pitfalls as you go**: when something goes wrong, follow `.claude/skills/pitfall-capture/SKILL.md` — it appends to `projects/<id>/memories/pitfalls.md` (per-project, append-only with corrections). Don't write to the central `docs/pitfalls.md`; it's a frozen historical archive.
+- **Capture discoveries and performance notes in REPORT.md**: when you find something worth surfacing across projects, draft it in the optional `## Discoveries` section of `REPORT.md` (added by `/synthesize`). Project-specific tuning observations go in `## Performance Notes`. These flow through `/berdl-review` and get extracted into `projects/<id>/memories/{discoveries,performance}.md` by `/submit` at approval — only after review and approval, so the memories layer reflects vetted content.
+- **When debugging or designing queries**, check both layers: grep `docs/pitfalls.md` (historical archive — still has most of the canonical gotchas) AND scan `projects/*/memories/pitfalls.md` for recent gotchas hit by related projects (especially the same database family).
+- Re-read `docs/performance.md` when queries are slow — it's still the canonical reference for table-size strategies and anti-patterns. Project-specific tuning hits captured at past approvals live in `projects/*/memories/performance.md`.
 - Follow `PROJECT.md` standards — notebooks with saved outputs, figures as standalone PNGs, `requirements.txt`, Reproduction section in README.
 
 ---
@@ -411,14 +410,14 @@ These are project-agnostic helpers — invoke them from inside any project at th
 6. **Never skip the plan-review checkpoint** — after writing `RESEARCH_PLAN.md`, STOP. Do not write or execute analysis notebooks until the user explicitly chooses (a) Approve. This is the most important rule and the easiest to violate.
 7. **Update the plan when reality changes** — if analysis reveals something that changes the approach, update `RESEARCH_PLAN.md` Revision History before continuing. The plan is a contract; revisions are explicit, not silent.
 8. **Drive the process forward between checkpoints** — checkpoints are explicit pause-points (Plan Review, Results Review). Outside of those, keep moving — don't stop after every individual step asking permission.
-9. **Document as you go** — discoveries to `docs/discoveries.md`, pitfalls to `docs/pitfalls.md`, performance tips to `docs/performance.md` — tagged with `[project_id]`.
+9. **Document as you go** — pitfalls live-captured to `projects/<id>/memories/pitfalls.md` via `/pitfall-capture`; discoveries and performance notes drafted in REPORT.md `## Discoveries` / `## Performance Notes` sections (extracted by `/submit` to per-project memories at approval). The central `docs/{pitfalls,discoveries,performance}.md` files are frozen historical archives — don't write to them.
 10. **Use Spark patterns from PROJECT.md** — `get_spark_session()`, PySpark-first, `.toPandas()` only for final small results.
 
 ---
 
 ## Critical Pitfalls (always mention)
 
-Surface these early. Database-specific gotchas live in `docs/pitfalls.md` per-database H2 sections (`grep -A 20 "^## <database_name>$" docs/pitfalls.md`). Universal pitfalls:
+Surface these early. Database-specific gotchas live in `docs/pitfalls.md` per-database H2 sections (frozen historical archive; `grep -A 20 "^## <database_name>$" docs/pitfalls.md`). Per-project pitfalls hit by recent projects on the same database family also live in `projects/*/memories/pitfalls.md` and are worth a scan. Universal pitfalls:
 
 1. **Species IDs contain `--`** — This is fine inside quoted strings in SQL. Use exact equality (`WHERE id = 's__Escherichia_coli--RS_GCF_000005845.2'`), not LIKE patterns.
 2. **Large tables need filters** — Some tables are very large (e.g., `gene`, `genome_ani`, `reaction_similarity`). Always filter by a partitioned/indexed column. Check `docs/pitfalls.md` per-database section for the current list.
