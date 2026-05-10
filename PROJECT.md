@@ -16,33 +16,36 @@ for the current access-aware inventory; row counts can be retrieved on demand wi
 
 ## Documentation Workflow
 
-When working on any science project, update `docs/` when you discover:
+When working on a science project, capture learnings in **per-project memory files** under `projects/{project_id}/memories/`:
 
-| Discovery Type | Add To |
-|----------------|--------|
-| Query pitfall or gotcha | `docs/pitfalls.md` |
-| Performance issue or strategy | `docs/performance.md` |
-| Data limitation or coverage gap | `docs/pitfalls.md` |
-| Useful insight about data structure | `docs/schemas/{collection}.md` |
-| Any other learning worth sharing | `docs/discoveries.md` |
-| Research idea or future direction | `docs/research_ideas.md` |
+| Discovery Type | Where it goes | When it's written |
+|----------------|---------------|-------------------|
+| Query pitfall or gotcha hit during this project | `projects/{id}/memories/pitfalls.md` | **Live** — `/pitfall-capture` appends in-the-moment |
+| Non-trivial finding worth surfacing across projects | `projects/{id}/memories/discoveries.md` | **Approval-gated** — `/synthesize` writes a `## Discoveries` section in `REPORT.md`; `/submit` Phase 2c extracts to memory after review + approval |
+| Project-specific query timing, optimization, or anti-pattern | `projects/{id}/memories/performance.md` | **Approval-gated** — same path, via `## Performance Notes` section in `REPORT.md` |
+| Useful insight about data structure | `docs/schemas/{collection}.md` | Curated reference (manual edit) |
+| Research idea or future direction | `docs/research_ideas.md` | Curated planning artifact |
 
-**Tag each addition** with the project that uncovered it:
-```markdown
-### [ecotype_analysis] AlphaEarth coverage is only 28%
-Discovered that only ~28% of genomes have embeddings...
-```
+**Empirical vs. interpretive split.** Pitfalls are time-sensitive operational observations — the incident is empirical, capture-in-the-moment context is the load-bearing value, and live capture is right. Discoveries and performance claims are interpretive — exactly the kind of content review can refine or overturn — so they flow through `/berdl-review` (the reviewer evaluates them as part of the report) and `/submit` extracts the approved-and-reviewed content into memories at approval time. This keeps the OV-ingestible layer tied to content that survived review.
+
+**Append-only with corrections** for `pitfalls.md`. Never edit a historical entry; if later understanding refines or contradicts an earlier pitfall, append a `### Correction to "<earlier title>"` entry that references the original. Preserves the audit trail of evolving understanding.
+
+**Re-approval semantics** for `discoveries.md` / `performance.md`. The live memory file always matches the latest approved REPORT. Re-approval (after `/synthesize`-on-complete demote) overwrites the memory with the new section content. If the new approved REPORT removes the section entirely, `/submit` deletes the memory file — stale claims must not survive a re-approval. Previous content remains in git history.
+
+**Each memory entry is project-tagged.** A `[{project_id}]` tag at the start of an entry makes the OV ingestion uniform and enables cross-project search later.
+
+**The central `docs/{pitfalls,discoveries,performance}.md` files are a frozen historical archive.** They predate the per-project memory pattern. Skills still read them (as background context), but no skill writes to them anymore. Retroactive migration of their content into per-project memories is deferred until the OpenViking ingestion layer + UI are in place — at which point the central files can be ingested into OV's memory store and optionally archived.
 
 ## Documentation Files
 
 | File | Purpose |
 |------|---------|
-| `docs/schemas/` | Per-collection schema documentation |
+| `docs/schemas/` | Per-collection schema documentation (curated reference) |
 | `docs/overview.md` | Project goals, data workflow, scientific context |
-| `docs/pitfalls.md` | SQL gotchas, data sparsity, common errors |
-| `docs/performance.md` | Query strategies for large tables |
-| `docs/discoveries.md` | Running log of insights (low-friction capture) |
-| `docs/research_ideas.md` | Future research directions, project ideas |
+| `docs/pitfalls.md` | **Frozen archive.** Pre-redirect SQL gotchas, data sparsity, common errors. New pitfalls go in `projects/{id}/memories/pitfalls.md`. |
+| `docs/performance.md` | **Frozen archive + ongoing curated reference.** Query strategies for large tables. Project-specific tuning observations now go in `projects/{id}/memories/performance.md`; truly general/canonical patterns continue to live here (manual curation only). |
+| `docs/discoveries.md` | **Frozen archive.** Pre-redirect log of insights. New discoveries flow through `## Discoveries` in `REPORT.md` → `projects/{id}/memories/discoveries.md` at approval. |
+| `docs/research_ideas.md` | Future research directions, project ideas (planning artifact, not a memory) |
 
 ## Project Structure
 
@@ -56,7 +59,7 @@ Each science project in `projects/` should have:
 - `data/`: Agent-derived data from queries and analysis (gitignore large files)
 - `user_data/`: User-provided input data — gene lists, phenotype tables, external databases (gitignore large files)
 - `figures/`: Key visualizations saved as PNG files
-- `memories/`: Per-project captured knowledge that the OpenViking layer will eventually ingest for cross-project retrieval. Currently used by `/pitfall-capture` to record gotchas hit during this project's work (`pitfalls.md`). Created on demand the first time something is captured. Central `docs/pitfalls.md` is now a frozen historical archive — new pitfalls go here.
+- `memories/`: Per-project captured knowledge that the OpenViking layer will eventually ingest for cross-project retrieval. Three kinds: `pitfalls.md` (live-captured by `/pitfall-capture`, append-only with corrections), `discoveries.md` and `performance.md` (approval-gated; written by `/submit` Phase 2c from approved `REPORT.md` sections). Created on demand. The central `docs/pitfalls.md` / `docs/discoveries.md` / `docs/performance.md` files are now frozen historical archives.
 - `requirements.txt`: Python dependencies
 - `src/`: Reusable scripts (if applicable)
 

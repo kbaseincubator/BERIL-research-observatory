@@ -72,8 +72,8 @@ Run these checks against the project directory and print a checklist summary:
 
 **Advisory checks** (warn but allow submission):
 - `beril.yaml` exists — if present, check that `status` field is set and that `artifacts` flags are consistent with actual file existence.
-- Discoveries documented in `docs/discoveries.md` — search for `[{project_id}]` tag.
-- Pitfalls documented in `docs/pitfalls.md` — search for the project name or id.
+- Discoveries documented — pass if `projects/{project_id}/memories/discoveries.md` exists, OR `REPORT.md` has a non-empty `## Discoveries` section (which Phase 2c will extract on approval), OR `docs/discoveries.md` (historical archive) contains a `[{project_id}]` tag. Otherwise warn.
+- Pitfalls documented — pass if `projects/{project_id}/memories/pitfalls.md` exists, OR `docs/pitfalls.md` (historical archive) mentions the project name or id. Otherwise warn (not a blocker — many projects don't hit pitfalls worth recording).
 - Research plan documented — `projects/{project_id}/RESEARCH_PLAN.md` exists.
 - Interpretation documented — `REPORT.md` contains a `## Interpretation` section.
 - References documented — `projects/{project_id}/references.md` exists.
@@ -211,6 +211,24 @@ Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` a
   Completed — {one-line summary from REPORT.md `## Key Findings`}.
   ```
   If `REPORT.md` doesn't have a clear one-liner, write a brief summary based on the report's findings.
+- **Extract approved memories** from `REPORT.md` into per-project memory files. This is how reviewed-and-approved discoveries/performance claims become OV-ingestible memories without contaminating the layer with unvetted synthesizer output.
+
+  For each section name in `["Discoveries", "Performance Notes"]` (mapping to `discoveries.md` and `performance.md` respectively):
+
+  1. **Find the section.** Locate lines matching `^## {SectionName}\s*$` in `REPORT.md` (case-sensitive, exact match modulo trailing whitespace). Capture content from the line *after* the heading until the next `^## ` heading or EOF.
+  2. **Detect duplicates.** If the same `## {SectionName}` heading appears more than once in `REPORT.md`, abort with: `Error: REPORT.md has duplicate '## {SectionName}' headings; cannot extract memory unambiguously. Fix REPORT.md and re-run /submit.` Don't guess which section to use; this indicates a malformed REPORT. Phase 2c stops; the project remains at `reviewed`.
+  3. **Trim whitespace.** Strip leading and trailing whitespace from the captured content. `### subheadings` and `#### sub-subheadings` inside the captured range are preserved verbatim — they're part of the section.
+  4. **Decide write or delete:**
+     - **Section absent from REPORT.md, OR present but empty after trimming** → if `projects/{project_id}/memories/{discoveries|performance}.md` exists from a prior approval, **delete it**. The live memory must match the approved state; an absent or empty section in the latest approval means there are no current claims of that kind. Don't write a tombstone or empty file. (`mkdir -p projects/{project_id}/memories` is unnecessary in this branch.)
+     - **Section present and non-empty after trimming** → write `projects/{project_id}/memories/{discoveries|performance}.md` (creating `projects/{project_id}/memories/` if needed):
+       ```markdown
+       # {SectionName} — {project_id}
+
+       <!-- [{project_id}] {approval.at}  approved-report extraction (REVIEW: {approval.review}) -->
+
+       {trimmed captured content}
+       ```
+       The HTML-comment provenance line keeps the file readable as plain markdown while making the generation context unambiguous (project tag, approval timestamp, source review). Overwrite the file if it exists from a prior approval.
 - **Do NOT pre-clear** existing `SUBMITTED.md` or `SUBMISSION_FAILED.md`. Markers are managed exclusively by Phase 3 success/failure handlers. This avoids ambiguity if Phase 3 is interrupted.
 
 At this point the project is **approved locally** regardless of upload outcome. The user can `git add` and commit if they want git history to reflect the approval.
