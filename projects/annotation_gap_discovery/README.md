@@ -6,7 +6,7 @@ Can we systematically identify and resolve metabolic annotation gaps in bacteria
 
 ## Status
 
-In Progress — research plan created, awaiting analysis.
+Complete — see [Report](REPORT.md) for findings. H1 supported: 47.8% of gapfilled reactions resolved via evidence triangulation (EC match + Bakta + BLAST homology + fitness + pangenome conservation).
 
 ## Overview
 
