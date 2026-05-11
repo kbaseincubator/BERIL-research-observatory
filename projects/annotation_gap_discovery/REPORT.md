@@ -86,7 +86,7 @@ Of 104 GapMind-gapfill pathway pairings, GapMind pathway predictions partially c
 
 ### Study Design
 
-Fourteen organisms from the Fitness Browser with rich carbon-source RB-TnSeq coverage were selected. Draft metabolic models were built using ModelSEED/RAST annotations and COBRApy. Baseline FBA across 574 organism-carbon source combinations yielded 42.5% accuracy (all 244 true-positive cases predicted growth correctly, but 330 false-positive predictions arose from overly permissive models). Conditional gapfilling on 38 false-negative cases (observed growth, predicted no-growth) added 219 reactions (201 enzymatic, 14 transport, 12 exchange), averaging 5.8 reactions per case.
+Fourteen organisms from the Fitness Browser with rich carbon-source RB-TnSeq coverage were selected. Draft metabolic models were built using ModelSEED/RAST annotations and COBRApy. Baseline FBA across 574 organism-carbon source combinations yielded 42.5% overall accuracy — but this masks asymmetric performance: recall (sensitivity) was 86.5% (244 of 282 growth-positive conditions correctly predicted), while precision was only 42.5% (244 of 574 growth predictions were correct) due to 330 false positives from overly permissive draft models. Conditional gapfilling on 38 false-negative cases (observed growth, predicted no-growth) added 219 reactions (201 enzymatic, 14 transport, 12 exchange), averaging 5.8 reactions per case.
 
 ### Evidence Integration Pipeline
 

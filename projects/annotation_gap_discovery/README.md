@@ -18,7 +18,7 @@ Genome-scale metabolic models built from automated annotation pipelines routinel
 4. **Pangenome** gene co-occurrence links candidates to known pathway genes
 5. **DIAMOND BLAST** against exemplar sequences confirms sequence homology
 
-By triangulating these evidence types, we assign confidence-scored gene-reaction links to previously orphan gapfilled reactions, improving metabolic model accuracy and reducing annotation debt.
+By triangulating these evidence types, we assign confidence-scored gene-reaction links to previously orphan gapfilled reactions, improving metabolic model accuracy and reducing annotation debt. The study covers 14 organisms (selected from 48 Fitness Browser organisms based on carbon-source experiment coverage, taxonomic diversity, and successful model building) across 18 carbon sources.
 
 ## Quick Links
 
@@ -45,7 +45,7 @@ Notebooks must run sequentially — each reads outputs from prior notebooks.
 
 | Notebook | Requires | Runtime | Description |
 |---|---|---|---|
-| NB01 | Spark | ~15 min | Genome and carbon source selection |
+| NB01 | Spark | ~15 min | Genome and carbon source selection (25 → 14 after model QC) |
 | NB02 | Spark + ModelSEEDpy | ~2-4 hours | Model building, baseline FBA, gapfilling |
 | NB03 | Spark | ~30 min | EC-based gene candidate identification |
 | NB04 | Spark | ~20 min | GapMind decomposition, Bakta alternatives |
