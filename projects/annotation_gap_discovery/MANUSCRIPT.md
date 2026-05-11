@@ -18,13 +18,13 @@ Genome-scale metabolic models built from automated annotation pipelines routinel
 
 ## 1. Introduction
 
-The construction of genome-scale metabolic models (GEMs) from sequenced bacterial genomes has become a cornerstone of computational systems biology, enabling predictions of growth phenotypes, metabolic flux distributions, and gene essentiality (Henry et al., 2010; Thiele and Palsson, 2010). However, the accuracy of these models is fundamentally limited by the quality of the underlying genome annotations. Automated annotation pipelines such as RAST (Aziz et al., 2008), Prokka (Seemann, 2014), and Bakta (Schwengers et al., 2021) assign functions to 60–80% of predicted genes, leaving substantial fractions of the proteome functionally unannotated.
+The construction of genome-scale metabolic models (GEMs) from sequenced bacterial genomes has become a cornerstone of computational systems biology, enabling predictions of growth phenotypes, metabolic flux distributions, and gene essentiality [1, 2]. However, the accuracy of these models is fundamentally limited by the quality of the underlying genome annotations. Automated annotation pipelines such as RAST [3], Prokka [4], and Bakta [5] assign functions to 60–80% of predicted genes, leaving substantial fractions of the proteome functionally unannotated.
 
-When a metabolic model built from such annotations fails to predict an experimentally observed growth phenotype — for example, when an organism grows on a carbon source that the model predicts it cannot utilize — the discrepancy is typically resolved through *gapfilling*: the computational addition of biochemical reactions from a reference database to restore model-phenotype concordance (Orth and Palsson, 2010; Kumar et al., 2007). Each gapfilled reaction represents a function that the organism performs but for which no gene has been identified — an "annotation gap."
+When a metabolic model built from such annotations fails to predict an experimentally observed growth phenotype — for example, when an organism grows on a carbon source that the model predicts it cannot utilize — the discrepancy is typically resolved through *gapfilling*: the computational addition of biochemical reactions from a reference database to restore model-phenotype concordance [6, 7]. Each gapfilled reaction represents a function that the organism performs but for which no gene has been identified — an "annotation gap."
 
-The scale of this problem is significant. A typical draft bacterial GEM may require 10–50 gapfilled reactions to match observed growth profiles, and across the approximately 300,000 bacterial genomes with pangenome representation in GTDB-derived databases, the total number of annotation gaps likely numbers in the millions. While many gapfilled reactions may reflect genuine biological novelty — novel enzyme families, moonlighting proteins, or non-homologous isofunctional enzymes (NISEs) (Omelchenko et al., 2010) — a substantial fraction likely represents recoverable annotation failures: genes that encode the required function but were missed or misannotated by automated pipelines.
+The scale of this problem is significant. A typical draft bacterial GEM may require 10–50 gapfilled reactions to match observed growth profiles, and across the approximately 300,000 bacterial genomes with pangenome representation in GTDB-derived databases, the total number of annotation gaps likely numbers in the millions. While many gapfilled reactions may reflect genuine biological novelty — novel enzyme families, moonlighting proteins, or non-homologous isofunctional enzymes (NISEs) [8] — a substantial fraction likely represents recoverable annotation failures: genes that encode the required function but were missed or misannotated by automated pipelines.
 
-Several approaches have been developed to address annotation gaps individually. Fitness-based methods leverage high-throughput transposon mutagenesis (RB-TnSeq) to identify genes whose disruption affects growth under specific conditions (Wetmore et al., 2015; Price et al., 2018). The Fitness Browser database now contains genome-wide fitness data for 48 organisms across thousands of conditions, providing a rich resource for functional gene discovery (Price et al., 2018). GapMind provides independent pathway completeness predictions for carbon and amino acid utilization pathways (Price et al., 2020). Likelihood-based approaches use sequence homology to assign probabilistic gene-reaction associations during gap filling (Benedict et al., 2014). The gapseq tool combines curated pathway databases with informed gap-filling for metabolic model reconstruction (Zimmermann et al., 2021).
+Several approaches have been developed to address annotation gaps individually. Fitness-based methods leverage high-throughput transposon mutagenesis (RB-TnSeq) to identify genes whose disruption affects growth under specific conditions [9, 10]. The Fitness Browser database now contains genome-wide fitness data for 48 organisms across thousands of conditions, providing a rich resource for functional gene discovery [10]. GapMind provides independent pathway completeness predictions for carbon and amino acid utilization pathways [11]. Likelihood-based approaches use sequence homology to assign probabilistic gene-reaction associations during gap filling [12]. The gapseq tool combines curated pathway databases with informed gap-filling for metabolic model reconstruction [13]. More recently, machine-learning approaches have been applied to RB-TnSeq fitness data to identify functional gene modules [14].
 
 However, no prior study has systematically integrated all of these evidence types — gapfilling, fitness data, pangenome conservation, pathway predictions, and sequence homology — to resolve annotation gaps at scale across multiple organisms. Each evidence type alone has limited resolution power: sequence homology fails for divergent orthologs, fitness data requires condition-specific experiments, and pangenome conservation cannot distinguish functional from non-functional gene copies. By triangulating multiple independent evidence streams, we hypothesized that a substantially larger fraction of annotation gaps could be resolved with confidence.
 
@@ -36,15 +36,15 @@ Here, we present a multi-evidence triangulation pipeline that integrates five da
 
 ### 2.1 Data Sources
 
-This study integrates data from three primary database collections within the KBase BER Data Lakehouse (BERDL), an on-premises Delta Lakehouse accessible via Apache Spark SQL on a JupyterHub compute environment.
+This study integrates data from three primary database collections within the KBase BER Data Lakehouse (BERDL) [15], an on-premises Delta Lakehouse accessible via Apache Spark SQL on a JupyterHub compute environment.
 
-**Fitness Browser** (`kescience_fitnessbrowser`): Contains genome-wide RB-TnSeq fitness data for 48 bacterial organisms across approximately 27 million fitness measurements. Key tables include `organism` (organism metadata), `experiment` (experimental conditions, filtered by `expGroup = 'carbon source'` for this study), `genefitness` (per-gene fitness scores per experiment), and `gene` (gene annotations including locus IDs and descriptions). Fitness and t-statistic columns are stored as STRING type and require explicit CAST to DOUBLE for numerical operations.
+**Fitness Browser** (`kescience_fitnessbrowser`): Contains genome-wide RB-TnSeq fitness data for 48 bacterial organisms across approximately 27 million fitness measurements [9, 10]. Key tables include `organism` (organism metadata), `experiment` (experimental conditions, filtered by `expGroup = 'carbon source'` for this study), `genefitness` (per-gene fitness scores per experiment), and `gene` (gene annotations including locus IDs and descriptions). Fitness and t-statistic columns are stored as STRING type and require explicit CAST to DOUBLE for numerical operations.
 
-**KBase Pangenome** (`kbase_ke_pangenome`): Contains GTDB-derived species pangenomes spanning approximately 293,000 genomes and 132 million gene clusters. Tables used include `genome` (genome metadata with GTDB taxonomy), `gene_cluster` (gene families with core/accessory/singleton classification), `gene_genecluster_junction` (gene-to-cluster mapping, approximately 1 billion rows), `eggnog_mapper_annotations` (EC, KEGG, COG annotations per gene cluster), `bakta_annotations` (alternative EC, UniRef, and product annotations), and `gapmind_pathways` (GapMind pathway completeness predictions per genome). GapMind `genome_id` values lack the RS_/GB_ prefix present in other tables, and multiple rows per genome-pathway pair require MAX aggregation.
+**KBase Pangenome** (`kbase_ke_pangenome`): Contains GTDB-derived species pangenomes spanning approximately 293,000 genomes and 132 million gene clusters. Tables used include `genome` (genome metadata with GTDB taxonomy), `gene_cluster` (gene families with core/accessory/singleton classification), `gene_genecluster_junction` (gene-to-cluster mapping, approximately 1 billion rows), `eggnog_mapper_annotations` (EC, KEGG, COG annotations per gene cluster), `bakta_annotations` (alternative EC, UniRef, and product annotations) [5], and `gapmind_pathways` (GapMind pathway completeness predictions per genome) [11]. GapMind `genome_id` values lack the RS_/GB_ prefix present in other tables, and multiple rows per genome-pathway pair require MAX aggregation.
 
-**ModelSEED Biochemistry** (`kbase_msd_biochemistry`): Contains 56,000 reactions and 46,000 compounds with full stoichiometry, used as the reference biochemistry for model building and gapfilling.
+**ModelSEED Biochemistry** (`kbase_msd_biochemistry`): Contains 56,000 reactions and 46,000 compounds with full stoichiometry [1], used as the reference biochemistry for model building and gapfilling.
 
-**External resources**: Swiss-Prot reviewed protein sequences were retrieved from the UniProt REST API for DIAMOND BLAST analysis. DIAMOND v2.1.16 (Buchfink et al., 2015) was used for sequence homology searches.
+**External resources**: Swiss-Prot reviewed protein sequences were retrieved from the UniProt REST API for DIAMOND BLAST analysis. DIAMOND v2.1.16 [16] was used for sequence homology searches.
 
 ### 2.2 Organism and Carbon Source Selection
 
@@ -54,13 +54,13 @@ Carbon sources were drawn from Fitness Browser experiment metadata. A total of 1
 
 ### 2.3 Metabolic Model Building and Baseline FBA
 
-Draft genome-scale metabolic models were constructed for each organism using ModelSEEDpy from RAST genome annotations. Models were exported in SBML format and analyzed using COBRApy (Ebrahim et al., 2013). For each organism-carbon source combination, flux balance analysis (FBA) was performed on minimal media containing the target carbon source as the sole carbon and energy source, with standard mineral salts and cofactors. Growth was predicted as positive if the objective flux (biomass production) exceeded 0.001 mmol/gDW/h.
+Draft genome-scale metabolic models were constructed for each organism using ModelSEEDpy from RAST genome annotations [1, 3]. Models were exported in SBML format and analyzed using COBRApy [17]. For each organism-carbon source combination, flux balance analysis (FBA) was performed on minimal media containing the target carbon source as the sole carbon and energy source, with standard mineral salts and cofactors. Growth was predicted as positive if the objective flux (biomass production) exceeded 0.001 mmol/gDW/h.
 
 Baseline FBA predictions were compared against observed growth phenotypes from Fitness Browser experiments, where growth was inferred from the presence of fitness data under each carbon source condition. The baseline confusion matrix showed recall (sensitivity) of 86.5% (244 of 282 growth-positive conditions correctly predicted) but precision of only 42.5% (244 of 574 total predictions), reflecting systematic over-prediction of growth by draft models.
 
 ### 2.4 Conditional Gapfilling
 
-For each false-negative case (observed growth, predicted no-growth), conditional gapfilling was performed using ModelSEEDpy's gapfilling algorithm, which identifies a minimal set of reactions from the ModelSEED reference database whose addition to the model enables growth. The gapfilling was conditioned on the specific carbon source medium, ensuring that added reactions are necessary for utilization of that substrate.
+For each false-negative case (observed growth, predicted no-growth), conditional gapfilling was performed using ModelSEEDpy's gapfilling algorithm [1], which identifies a minimal set of reactions from the ModelSEED reference database whose addition to the model enables growth. The gapfilling was conditioned on the specific carbon source medium, ensuring that added reactions are necessary for utilization of that substrate.
 
 Gapfilling was applied to 38 false-negative cases across 14 organisms and 18 carbon sources, yielding 219 gapfilled reactions. Of these, 201 were classified as enzymatic (metabolic), 14 as transport, and 4 as exchange/demand reactions. The 201 enzymatic reactions constitute the annotation gap candidates analyzed in subsequent steps. These reactions involve 94 unique ModelSEED reaction IDs, of which 75% (151/201 instances) had EC number annotations in the ModelSEED database and 25% (50/201) had no EC assignment ("dark reactions").
 
@@ -74,15 +74,15 @@ For each gapfilled reaction with a known EC number, candidate genes were identif
 
 Candidate genes were those in the same organism whose EC annotation matched the gapfilled reaction's EC number. This yielded 107 gene candidates across 51 of 201 reaction-organism pairs (25.4% resolution at the NB03 stage).
 
-Fitness evidence was layered onto candidates by querying the `genefitness` table for candidate genes under relevant carbon source experiments. Genes with fitness scores below -2.0 and |t-statistic| above 4.0 were classified as "strong" fitness candidates; those below -1.0 and |t| above 3.0 as "moderate."
+Fitness evidence was layered onto candidates by querying the `genefitness` table for candidate genes under relevant carbon source experiments [9, 10]. Genes with fitness scores below -2.0 and |t-statistic| above 4.0 were classified as "strong" fitness candidates; those below -1.0 and |t| above 3.0 as "moderate."
 
 Pangenome conservation was assessed by querying eggNOG EC annotations for gene clusters in each organism's GTDB species clade, classifying each EC as "core" (present in core gene clusters), "accessory," or "absent."
 
 ### 2.6 Evidence Stream 2: GapMind Pathway Decomposition and Bakta Annotations (NB04)
 
-GapMind pathway completeness predictions were retrieved for all 14 focal genomes and their clade relatives. For 31 of 38 gapfilled cases with mappable GapMind pathways (via a manually curated carbon-source-to-pathway mapping), concordance between GapMind incompleteness and gapfilling requirements was assessed.
+GapMind pathway completeness predictions [11] were retrieved for all 14 focal genomes and their clade relatives. For 31 of 38 gapfilled cases with mappable GapMind pathways (via a manually curated carbon-source-to-pathway mapping), concordance between GapMind incompleteness and gapfilling requirements was assessed.
 
-For reactions not resolved by EC matching (including the 50 dark reactions), Bakta annotations were queried as an alternative functional annotation source. Bakta annotations include EC numbers, KEGG orthology assignments, and product descriptions derived from independent annotation pipelines. This yielded 1,459 Bakta EC candidate entries and resolved an additional 22 reaction-organism pairs (10.9% incremental resolution). UniRef identifiers extracted from Bakta annotations (54,549 entries) were used to seed exemplar sequence retrieval for BLAST analysis.
+For reactions not resolved by EC matching (including the 50 dark reactions), Bakta annotations [5] were queried as an alternative functional annotation source. Bakta annotations include EC numbers, KEGG orthology assignments, and product descriptions derived from independent annotation pipelines. This yielded 1,459 Bakta EC candidate entries and resolved an additional 22 reaction-organism pairs (10.9% incremental resolution). UniRef identifiers extracted from Bakta annotations (54,549 entries) were used to seed exemplar sequence retrieval for BLAST analysis.
 
 ### 2.7 Evidence Stream 3: Pangenome Conservation and Fitness Profiling (NB05)
 
@@ -92,7 +92,7 @@ Expanded fitness profiling was performed for all 107 NB03 candidate genes across
 
 ### 2.8 Evidence Stream 4: Swiss-Prot Exemplar BLAST (NB06)
 
-For each unique EC number associated with gapfilled reactions, up to 5 reviewed bacterial Swiss-Prot sequences were retrieved from the UniProt REST API, yielding 328 exemplar sequences covering 75 of 84 unique ECs (9 ECs had no Swiss-Prot representation). Target proteomes from all 14 organisms (67,377 total protein sequences from RAST annotations) were concatenated into a single FASTA file with organism-prefixed headers and indexed as a DIAMOND database.
+For each unique EC number associated with gapfilled reactions, up to 5 reviewed bacterial Swiss-Prot sequences were retrieved from the UniProt REST API, yielding 328 exemplar sequences covering 75 of 84 unique ECs (9 ECs had no Swiss-Prot representation). Target proteomes from all 14 organisms (67,377 total protein sequences from RAST annotations) were concatenated into a single FASTA file with organism-prefixed headers and indexed as a DIAMOND database [16].
 
 DIAMOND blastp was run with parameters: `--evalue 1e-5 --max-target-seqs 20 --id 25 --query-cover 50 --outfmt 6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qcovhsp --threads 4`. The search yielded 2,990 raw hits, of which 154 mapped to gapfilled reaction-organism pairs across 70 unique pairs.
 
@@ -109,17 +109,17 @@ All evidence streams were combined for each of the 201 enzymatic reaction-organi
 
 ### 2.10 Validation
 
-Two validation approaches were applied:
+Three validation approaches were applied:
 
 **Cross-validation**: Leave-one-out analysis removed each evidence stream in turn (NB03, NB04, BLAST) and recomputed resolution rates. Single-stream analysis computed resolution using each stream alone.
 
-**Gene knockout simulation**: For 23 high/medium-confidence NB03 candidates, gene-protein-reaction (GPR) rules were inserted into the SBML models. Single-gene knockout simulations were performed using COBRApy to test whether removing the candidate gene eliminated growth on the target carbon source. Results were inconclusive due to the circular dependency: the gapfilled reactions are themselves required for growth on carbon source minimal media, so wildtype growth was zero on these media even before knockout.
+**Gene knockout simulation**: For 23 high/medium-confidence NB03 candidates, gene-protein-reaction (GPR) rules were inserted into the SBML models. Single-gene knockout simulations were performed using COBRApy [17] to test whether removing the candidate gene eliminated growth on the target carbon source. Results were inconclusive due to the circular dependency: the gapfilled reactions are themselves required for growth on carbon source minimal media, so wildtype growth was zero on these media even before knockout.
 
-**Threshold sensitivity analysis**: The full pipeline was re-run under 240 combinations of fitness thresholds (FIT_THRESHOLD in {-1.0, -1.5, -2.0, -2.5, -3.0}; T_THRESHOLD in {3.0, 4.0, 5.0}) and BLAST quality thresholds (minimum identity in {25%, 30%, 35%, 40%}; minimum coverage in {50%, 60%, 70%, 80%}) to assess robustness of the resolution rate to parameter choice.
+**Threshold sensitivity analysis**: The full pipeline was re-run under 240 combinations of fitness thresholds (FIT_THRESHOLD in {-1.0, -1.5, -2.0, -2.5, -3.0}; T_THRESHOLD in {3.0, 4.0, 5.0}) and BLAST quality thresholds (minimum identity in {25%, 30%, 35%, 40%}; minimum coverage in {50%, 60%, 70%, 80%}) to assess robustness of the resolution rate to parameter choice (Supplementary Figure S1).
 
 ### 2.11 Computational Environment
 
-All Spark SQL queries (NB01–NB05) were executed on the BERDL JupyterHub cluster with direct access to the Delta Lakehouse. Local analysis (NB06–NB08, supplementary notebook) was performed using Python 3.10+ with COBRApy 0.29.0, ModelSEEDpy, pandas, numpy, matplotlib, seaborn, and DIAMOND 2.1.16. Complete analysis requires approximately 5 hours of compute time (2–4 hours for model building, ~45 minutes for BLAST, remainder for queries and analysis).
+All Spark SQL queries (NB01–NB05) were executed on the BERDL JupyterHub cluster with direct access to the Delta Lakehouse [15]. Local analysis (NB06–NB08, supplementary notebook) was performed using Python 3.10+ with COBRApy 0.29.0 [17], ModelSEEDpy, pandas, numpy, matplotlib, seaborn, and DIAMOND 2.1.16 [16]. Complete analysis requires approximately 5 hours of compute time (2–4 hours for model building, ~45 minutes for BLAST, remainder for queries and analysis).
 
 ---
 
@@ -129,11 +129,15 @@ All Spark SQL queries (NB01–NB05) were executed on the BERDL JupyterHub cluste
 
 The multi-evidence triangulation pipeline resolved 96 of 201 gapfilled enzymatic reaction-organism pairs (47.8%), exceeding the pre-specified H1 threshold of 30% (Figure 1). Resolution progressed through three stages: NB03 EC-based matching resolved 51 pairs (25.4%), NB04 Bakta annotations added 22 pairs (cumulative 36.3%), and NB06 BLAST homology added 23 pairs (cumulative 47.8%).
 
+![**Figure 1. Annotation gap resolution overview.** Left panel: Cumulative resolution rate across evidence integration stages, showing progression from NB03 EC-based matching (25.4%) through NB04 Bakta annotations (36.3%) to NB06 BLAST homology (47.8%). Right panel: Confidence distribution of the 201 reaction-organism pairs — 44 high confidence (21.9%), 19 medium (9.5%), 33 low (16.4%), and 105 unresolved (52.2%). The dashed line indicates the pre-specified H1 threshold of 30%.](figures/fig1_resolution_overview.png)
+
 The 96 resolved pairs were distributed across confidence tiers: 44 high confidence (21.9%), 19 medium confidence (9.5%), and 33 low confidence (16.4%). The remaining 105 pairs (52.2%) were unresolved — no evidence stream identified a convincing gene candidate. The high-confidence fraction (21.9%) closely matches the 15–25% range predicted in the research plan.
 
 ### 3.2 Evidence Stream Contributions
 
 Leave-one-out cross-validation demonstrated that each evidence stream contributes uniquely to the final resolution rate (Figure 2). Removing BLAST evidence had the largest impact, reducing resolution from 47.8% to 36.3% (11.5 percentage point decrease). Removing NB04 Bakta annotations reduced resolution to 39.8%, and removing NB03 EC matching reduced it to 42.8%.
+
+![**Figure 2. Cross-validation of evidence stream contributions.** Left panel: Leave-one-out analysis showing the resolution rate when each evidence stream is removed in turn. Right panel: Single-stream resolution rates showing each stream's independent contribution. BLAST alone achieves 34.8% — the highest single-stream performance — but the full pipeline adds 13 percentage points through evidence integration. Removing any single stream still keeps resolution above 36%, demonstrating robustness.](figures/fig2_cross_validation.png)
 
 When used in isolation, BLAST alone achieved 34.8% resolution — the highest single-stream performance but still 13 percentage points below the full pipeline. NB03 alone achieved 25.4%, and NB04 alone 10.9%. Critically, removing any single stream kept overall resolution above 36%, demonstrating robustness to individual stream failures.
 
@@ -142,6 +146,8 @@ Of the 96 resolved pairs, 47 (49%) had evidence from two or more streams, while 
 ### 3.3 Organism-Level Resolution
 
 Resolution rates varied 3.5-fold across organisms, ranging from 20% for *Bacteroides thetaiotaomicron* (3 of 15 pairs) to 71% for *Klebsiella michiganensis* (5 of 7 pairs) (Figure 3; Table 1).
+
+![**Figure 3. Per-organism resolution rates.** Stacked bar chart showing the number of gapfilled reaction-organism pairs resolved at each confidence level (high, medium, low) and the number remaining unresolved for each of the 14 organisms. Organisms are ordered by decreasing resolution rate. The Bacteroidetes representative *B. thetaiotaomicron* shows the lowest resolution (20%), consistent with its phylogenetic distance from the Proteobacteria-dominated reference databases.](figures/fig3_organism_resolution.png)
 
 **Table 1.** Per-organism resolution rates.
 
@@ -164,31 +170,35 @@ Resolution rates varied 3.5-fold across organisms, ranging from 20% for *Bactero
 
 The low resolution for *B. thetaiotaomicron* — the only Bacteroidetes in the study — reflects its phylogenetic distance from the Proteobacteria-dominated reference databases. Its metabolic pathway repertoire includes many Bacteroidetes-specific enzymes that lack close Swiss-Prot exemplars and have limited representation in eggNOG/Bakta annotations calibrated primarily on Proteobacterial genomes.
 
-### 3.4 Dominant Resolved Reactions
+### 3.4 Dominant Resolved Reactions and BLAST Hit Quality
 
-Two reactions dominated the high-confidence assignments (Figure 4). Reaction rxn02185 (2-acetolactate pyruvate-lyase, EC 2.2.1.6, branched-chain amino acid biosynthesis) and rxn03436 (acetohydroxy acid isomeroreductase, EC 1.1.1.86, valine/isoleucine biosynthesis) were each resolved with high confidence in 9 of 14 organisms. These enzymes catalyze sequential steps in the same biosynthetic pathway (the IlvB and IlvC steps of valine/isoleucine biosynthesis). Their consistent co-resolution validates the triangulation approach: when the BLAST homolog for one pathway step is identified, the adjacent step's homolog is typically found in the same genomic neighborhood with comparable confidence.
+Two reactions dominated the high-confidence assignments. Reaction rxn02185 (2-acetolactate pyruvate-lyase, EC 2.2.1.6, branched-chain amino acid biosynthesis) and rxn03436 (acetohydroxy acid isomeroreductase, EC 1.1.1.86, valine/isoleucine biosynthesis) were each resolved with high confidence in 9 of 14 organisms. These enzymes catalyze sequential steps in the same biosynthetic pathway (the IlvB and IlvC steps of valine/isoleucine biosynthesis). Their consistent co-resolution validates the triangulation approach: when the BLAST homolog for one pathway step is identified, the adjacent step's homolog is typically found in the same genomic neighborhood with comparable confidence.
+
+![**Figure 4. BLAST hit quality and top resolved reactions.** Left panel: Scatter plot of BLAST percent identity versus query coverage for 154 hits mapping to gapfilled reactions, colored by quality tier (high: identity >= 30%, coverage >= 70%, e-value <= 1e-10; medium: identity >= 25%, coverage >= 50%, e-value <= 1e-5). High-quality hits cluster in the upper-right quadrant. Right panel: Top 10 reactions by number of high-confidence BLAST hits, showing that branched-chain amino acid biosynthesis (rxn02185, rxn03436) and polyamine metabolism (rxn15947) dominate.](figures/fig4_blast_quality.png)
 
 Other frequently resolved reactions include rxn15947 (carboxyspermidine decarboxylase, polyamine metabolism), rxn25279 (2-methylaconitate isomerase), and rxn14178 (pyruvate:ferredoxin oxidoreductase), all of which encode well-characterized enzymes with broad phylogenetic distribution in bacteria.
 
-### 3.5 Dark Reactions Resist Resolution
-
-Of the 201 gapfilled reactions, 50 (24.9%) had no EC number assigned by ModelSEED — so-called "dark reactions" whose functions are described only by stoichiometry. Only 8 of these 50 (16%) were resolved, compared to 88 of 151 (58.3%) for EC-annotated reactions (Figure 6). This 3.6-fold difference in resolution rate is expected: without an EC number, neither the EC-based gene matching (NB03) nor the Swiss-Prot exemplar retrieval (NB06) can proceed through standard pathways, leaving only Bakta product-name matching and indirect pangenome evidence.
-
-Dark reactions include NCAIR synthetase/mutase (rxn05229), thiazole phosphate synthesis (rxn09310), biotin synthase (rxn00796), and several unannotated transport reactions. These represent the frontier of metabolic annotation — functions known to exist from stoichiometric modeling but not yet associated with characterized enzyme families.
-
-### 3.6 GapMind Concordance
-
-GapMind pathway predictions showed partial concordance with gapfilling results (Figure 5). Of 104 GapMind-pathway pairings (31 gapfilled cases mapped to GapMind pathways across multiple organisms), GapMind identified pathways as incomplete for many of the same carbon sources where ModelSEED required gapfilling. However, quantitative concordance was limited by GapMind's pathway-level granularity: it reports step counts (nHi, nMed, nLo) but individual step identities are not available in the BERDL-hosted table, preventing direct matching of specific missing steps to specific gapfilled reactions.
-
-Clade-level GapMind analysis (168 clade-pathway combinations) revealed that some pathways are universally incomplete across a species clade (suggesting genuine annotation gaps shared at the clade level), while others are incomplete only in the focal genome (suggesting strain-specific deletions or annotation errors).
-
-### 3.7 BLAST Hit Quality
-
-The 154 BLAST hits mapping to gapfilled reactions showed a bimodal quality distribution (Figure 4). High-quality hits (123 hits meeting identity >= 30%, coverage >= 70%, e-value <= 1e-10) were concentrated in well-characterized enzyme families with broad phylogenetic distribution: branched-chain amino acid biosynthesis (EC 2.2.1.6, EC 1.1.1.86), polyamine metabolism (EC 4.1.1.-), and central carbon metabolism (EC 1.2.7.1). Medium-quality hits (31 hits) tended to represent more divergent homologs, often to enzyme families with known sequence variability.
+The 154 BLAST hits mapping to gapfilled reactions showed a bimodal quality distribution (Figure 4). High-quality hits (123 hits) were concentrated in well-characterized enzyme families with broad phylogenetic distribution: branched-chain amino acid biosynthesis (EC 2.2.1.6, EC 1.1.1.86), polyamine metabolism (EC 4.1.1.-), and central carbon metabolism (EC 1.2.7.1). Medium-quality hits (31 hits) tended to represent more divergent homologs, often to enzyme families with known sequence variability.
 
 The BLAST-only resolution rate (34.8%) establishes a floor for what sequence homology alone can achieve. The 13-percentage-point improvement from evidence integration (to 47.8%) demonstrates that fitness data and pangenome conservation provide complementary information that cannot be captured by sequence similarity searches alone.
 
-### 3.8 Threshold Sensitivity Analysis
+### 3.5 GapMind Concordance
+
+GapMind pathway predictions [11] showed partial concordance with gapfilling results (Figure 5). Of 104 GapMind-pathway pairings (31 gapfilled cases mapped to GapMind pathways across multiple organisms), GapMind identified pathways as incomplete for many of the same carbon sources where ModelSEED required gapfilling. However, quantitative concordance was limited by GapMind's pathway-level granularity: it reports step counts (nHi, nMed, nLo) but individual step identities are not available in the BERDL-hosted table, preventing direct matching of specific missing steps to specific gapfilled reactions.
+
+![**Figure 5. GapMind concordance with gapfilling.** Left panel: Distribution of GapMind score categories across focal genomes for carbon source pathways, showing the proportion of pathways classified as complete, likely complete, steps missing (low/medium), or not present. Right panel: Concordance between GapMind pathway incompleteness and ModelSEED gapfilling requirements, with each point representing a carbon source-organism pairing.](figures/fig5_gapmind_concordance.png)
+
+Clade-level GapMind analysis (168 clade-pathway combinations) revealed that some pathways are universally incomplete across a species clade (suggesting genuine annotation gaps shared at the clade level), while others are incomplete only in the focal genome (suggesting strain-specific deletions or annotation errors).
+
+### 3.6 Dark Reactions Resist Resolution
+
+Of the 201 gapfilled reactions, 50 (24.9%) had no EC number assigned by ModelSEED — so-called "dark reactions" whose functions are described only by stoichiometry. Only 8 of these 50 (16%) were resolved, compared to 88 of 151 (58.3%) for EC-annotated reactions (Figure 6). This 3.6-fold difference in resolution rate is expected: without an EC number, neither the EC-based gene matching (NB03) nor the Swiss-Prot exemplar retrieval (NB06) can proceed through standard pathways, leaving only Bakta product-name matching and indirect pangenome evidence.
+
+![**Figure 6. EC conservation and dark reaction analysis.** Histogram showing the distribution of EC number conservation across the 14 organisms. EC numbers present in many organisms (high conservation) tend to be well-resolved, while dark reactions (no EC number, shown separately) have a resolution rate of only 16% compared to 58.3% for EC-annotated reactions. This 3.6-fold difference highlights that dark reactions represent the frontier of metabolic annotation.](figures/fig6_conservation.png)
+
+Dark reactions include NCAIR synthetase/mutase (rxn05229), thiazole phosphate synthesis (rxn09310), biotin synthase (rxn00796), and several unannotated transport reactions. These represent the frontier of metabolic annotation — functions known to exist from stoichiometric modeling but not yet associated with characterized enzyme families.
+
+### 3.7 Threshold Sensitivity Analysis
 
 The full pipeline was re-run under 240 combinations of fitness and BLAST thresholds. Resolution rates ranged from 42.8% (most stringent: minimum identity 40%, minimum coverage 80%) to 47.8% (baseline and most permissive), with a mean of 46.0% and standard deviation of 1.9%. Critically, all 240 combinations exceeded both the H1 threshold (30%) and the 40% mark, demonstrating that the conclusion is robust to reasonable threshold variations (Supplementary Figure S1).
 
@@ -208,13 +218,13 @@ The complementarity of evidence streams is particularly notable. BLAST identifie
 
 ### 4.2 Comparison to Prior Work
 
-Our approach extends several prior efforts in fitness-guided gene annotation. Price et al. (2022) used Fitness Browser data to fill gaps in bacterial catabolic pathways, annotating 716 proteins across diverse bacteria. Our study differs by systematically integrating fitness evidence with gapfilling predictions from metabolic models, providing a model-centric rather than pathway-centric framework. This enables the identification of annotation gaps that are specific to individual organisms and growth conditions, rather than relying on predefined pathway definitions.
+Our approach extends several prior efforts in fitness-guided gene annotation. Price et al. [18] used Fitness Browser data to fill gaps in bacterial catabolic pathways, annotating 716 proteins across diverse bacteria. Our study differs by systematically integrating fitness evidence with gapfilling predictions from metabolic models, providing a model-centric rather than pathway-centric framework. This enables the identification of annotation gaps that are specific to individual organisms and growth conditions, rather than relying on predefined pathway definitions.
 
-Benedict et al. (2014) developed likelihood-based gene annotations for gap filling using sequence homology, demonstrating that probabilistic approaches improve metabolic model quality. Our confidence scoring framework similarly weights multiple evidence types, but extends beyond sequence homology by incorporating fitness and pangenome data that Benedict et al. did not consider.
+Benedict et al. [12] developed likelihood-based gene annotations for gap filling using sequence homology, demonstrating that probabilistic approaches improve metabolic model quality. Our confidence scoring framework similarly weights multiple evidence types, but extends beyond sequence homology by incorporating fitness and pangenome data that Benedict et al. did not consider.
 
-The gapseq tool (Zimmermann et al., 2021) represents the closest methodological comparator. Gapseq uses curated pathway databases and informed gap-filling to build metabolic models with reduced gapfill burden. However, gapseq focuses on improving initial model reconstruction rather than resolving remaining annotation gaps post-hoc. Our pipeline is complementary: gapseq could reduce the number of gapfilled reactions requiring investigation (our Future Direction 3), while our triangulation approach resolves the remaining gaps.
+The gapseq tool [13] represents the closest methodological comparator. Gapseq uses curated pathway databases and informed gap-filling to build metabolic models with reduced gapfill burden. However, gapseq focuses on improving initial model reconstruction rather than resolving remaining annotation gaps post-hoc. Our pipeline is complementary: gapseq could reduce the number of gapfilled reactions requiring investigation, while our triangulation approach resolves the remaining gaps.
 
-Borchert et al. (2024) applied independent component analysis to RB-TnSeq fitness data from *Pseudomonas putida*, identifying 84 functional gene modules. Their machine-learning approach to fitness data complements our per-gene, per-condition analysis and represents a promising avenue for extending our pipeline (our Future Direction 6).
+Borchert et al. [14] applied independent component analysis to RB-TnSeq fitness data from *Pseudomonas putida*, identifying 84 functional gene modules. Their machine-learning approach to fitness data complements our per-gene, per-condition analysis and represents a promising avenue for extending our pipeline.
 
 ### 4.3 Phylogenetic Bias and Generalizability
 
@@ -226,21 +236,21 @@ Extending the pipeline to more phylogenetically diverse organisms — particular
 
 The 50 EC-less gapfilled reactions represent the most challenging annotation gaps. Their 16% resolution rate (versus 58.3% for EC-annotated reactions) reflects the fundamental difficulty of assigning functions to reactions that lack even enzyme classification. These dark reactions include both known enzyme types that are simply missing EC annotations in the ModelSEED database and potentially novel enzyme activities not yet captured by EC nomenclature.
 
-Tools for *de novo* enzyme function prediction from protein structure and sequence — such as DeepEC (Ryu et al., 2019), CLEAN (Yu et al., 2023), and structure-based approaches leveraging AlphaFold2 predictions — could address this frontier. Integrating such predictions as an additional evidence stream in our triangulation framework is a promising extension.
+Tools for *de novo* enzyme function prediction from protein structure and sequence — such as DeepEC [19], CLEAN [20], and structure-based approaches leveraging AlphaFold2 predictions — could address this frontier. Integrating such predictions as an additional evidence stream in our triangulation framework is a promising extension.
 
 ### 4.5 Limitations
 
 Several limitations should be considered when interpreting these results:
 
-1. **Model quality**: Draft models built from automated RAST annotations have limited precision (42.5%), dominated by false-positive growth predictions. This inflates the denominator of growth-positive conditions and may cause some true-negative cases to be misclassified as false negatives requiring gapfilling.
+1. **Model quality**: Draft models built from automated RAST annotations [3] have limited precision (42.5%), dominated by false-positive growth predictions. This inflates the denominator of growth-positive conditions and may cause some true-negative cases to be misclassified as false negatives requiring gapfilling.
 
-2. **Gapfilling non-uniqueness**: ModelSEED gapfilling minimizes the number of added reactions but does not guarantee biological optimality. Alternative gapfill solutions may exist that require different reaction sets, potentially leading to different annotation gap identities.
+2. **Gapfilling non-uniqueness**: ModelSEED gapfilling [1] minimizes the number of added reactions but does not guarantee biological optimality. Alternative gapfill solutions may exist that require different reaction sets, potentially leading to different annotation gap identities.
 
 3. **Carbon source mapping**: The manual curation of 109 carbon source name mappings to ModelSEED compound identifiers introduces potential errors. Ambiguous mappings (e.g., "Sodium D,L-Lactate" mapped to the L-lactate compound) may cause false-negative FBA predictions.
 
-4. **Fitness threshold sensitivity**: While our threshold sensitivity analysis demonstrates robustness of the overall resolution rate, the confidence tier assignments for individual pairs can shift with threshold choice. The fitness threshold primarily affects whether a pair is classified as high versus medium/low confidence, not whether it is resolved at all.
+4. **Fitness threshold sensitivity**: While our threshold sensitivity analysis demonstrates robustness of the overall resolution rate (Supplementary Figure S1), the confidence tier assignments for individual pairs can shift with threshold choice. The fitness threshold primarily affects whether a pair is classified as high versus medium/low confidence, not whether it is resolved at all.
 
-5. **GapMind scope**: GapMind covers approximately 80 carbon and amino acid utilization pathways, not full metabolism. Many gapfilled reactions fall outside GapMind's pathway coverage, limiting its contribution as an independent evidence stream.
+5. **GapMind scope**: GapMind [11] covers approximately 80 carbon and amino acid utilization pathways, not full metabolism. Many gapfilled reactions fall outside GapMind's pathway coverage, limiting its contribution as an independent evidence stream.
 
 6. **Knockout validation**: The FBA gene knockout validation was inconclusive due to a circular dependency: gapfilled reactions are required for the model to grow on carbon source minimal media, so wildtype growth is zero before knockout. A more informative validation would test knockout effects on alternative carbon sources where the gapfilled reaction is not required.
 
@@ -250,9 +260,9 @@ Several limitations should be considered when interpreting these results:
 
 ## 5. Conclusions
 
-We have demonstrated that systematic integration of five evidence types — metabolic model gapfilling, GapMind pathway predictions, RB-TnSeq fitness data, pangenome gene cluster conservation, and DIAMOND BLAST sequence homology — resolves 47.8% of annotation gaps in bacterial metabolic models, significantly exceeding the 30% pre-specified hypothesis threshold. This result is robust across 240 threshold parameter combinations (range: 42.8%–47.8%) and is supported by leave-one-out cross-validation showing unique contributions from each evidence stream.
+We have demonstrated that systematic integration of five evidence types — metabolic model gapfilling [1], GapMind pathway predictions [11], RB-TnSeq fitness data [9, 10], pangenome gene cluster conservation, and DIAMOND BLAST sequence homology [16] — resolves 47.8% of annotation gaps in bacterial metabolic models, significantly exceeding the 30% pre-specified hypothesis threshold. This result is robust across 240 threshold parameter combinations (range: 42.8%–47.8%) and is supported by leave-one-out cross-validation showing unique contributions from each evidence stream.
 
-The 44 high-confidence gene-reaction assignments represent directly testable hypotheses for experimental validation, with the branched-chain amino acid biosynthesis pathway (rxn02185, rxn03436) providing particularly strong multi-organism targets. The 105 unresolved pairs — including 50 dark reactions — define the current frontier of metabolic annotation and represent high-priority targets for experimental enzyme characterization and computational enzyme function prediction.
+The 44 high-confidence gene-reaction assignments represent directly testable hypotheses for experimental validation, with the branched-chain amino acid biosynthesis pathway (rxn02185, rxn03436) providing particularly strong multi-organism targets. The 105 unresolved pairs — including 50 dark reactions — define the current frontier of metabolic annotation and represent high-priority targets for experimental enzyme characterization and computational enzyme function prediction [19, 20].
 
 The pipeline described here is generalizable to any organism with fitness data, pangenome context, and a draft metabolic model. As the Fitness Browser expands beyond its current 48 organisms and as pangenome databases grow to encompass more diverse lineages, the resolution power of multi-evidence triangulation will continue to improve. This work contributes both specific gene-reaction assignments for 14 bacteria and a reproducible computational framework for systematic annotation gap resolution.
 
@@ -260,9 +270,10 @@ The pipeline described here is generalizable to any organism with fitness data, 
 
 ## 6. Data Availability
 
-All analysis notebooks (NB01–NB08 plus supplementary sensitivity analysis), generated data files (29 TSV/JSON datasets), and publication figures are available in the BERIL Research Observatory at `projects/annotation_gap_discovery/`. Notebooks are committed with saved outputs for reproducibility without re-execution. The pipeline requires BERDL Spark access for NB01–NB05 and DIAMOND for NB06; NB07–NB08 and the supplementary notebook run locally with standard Python packages.
+All analysis notebooks (NB01–NB08 plus supplementary sensitivity analysis), generated data files (29 TSV/JSON datasets), and publication figures are available in the BERIL Research Observatory at `projects/annotation_gap_discovery/`. Notebooks are committed with saved outputs for reproducibility without re-execution. The pipeline requires BERDL Spark access for NB01–NB05 and DIAMOND [16] for NB06; NB07–NB08 and the supplementary notebook run locally with standard Python packages.
 
 Key datasets:
+
 - `data/reaction_gene_candidates.tsv` — Master table: 201 reaction-organism pairs with all evidence columns and confidence scores
 - `data/blast_hits.tsv` — 154 DIAMOND BLAST hits against Swiss-Prot exemplar sequences
 - `data/threshold_sensitivity.tsv` — 240 threshold combinations with resolution rates
@@ -271,55 +282,55 @@ Key datasets:
 
 ## 7. Acknowledgments
 
-This work used resources of the KBase BER Data Lakehouse (BERDL) and the Fitness Browser maintained by Adam Deutschbauer, Morgan Price, and Adam Arkin at Lawrence Berkeley National Laboratory. Pangenome data was derived from GTDB-based species pangenomes constructed by the KBase team. ModelSEED biochemistry data was provided by the ModelSEED project.
+This work used resources of the KBase BER Data Lakehouse (BERDL) [15] and the Fitness Browser maintained by Adam Deutschbauer, Morgan Price, and Adam Arkin at Lawrence Berkeley National Laboratory [9, 10]. Pangenome data was derived from GTDB-based species pangenomes constructed by the KBase team. ModelSEED biochemistry data was provided by the ModelSEED project [1].
 
 ---
 
 ## 8. References
 
-Arkin AP, Cottingham RW, Henry CS, et al. (2018). KBase: The United States Department of Energy Systems Biology Knowledgebase. *Nature Biotechnology*, 36(7):566–569. PMID: 29979655.
+[1] Henry CS, DeJongh M, Best AA, Frybarger PM, Linsay B, Stevens RL. High-throughput generation, optimization and analysis of genome-scale metabolic models. *Nature Biotechnology*. 2010;28(9):977–982. doi:10.1038/nbt.1672. PMID: 20802497.
 
-Aziz RK, Bartels D, Best AA, et al. (2008). The RAST Server: Rapid Annotations using Subsystems Technology. *BMC Genomics*, 9:75. PMID: 18261238.
+[2] Thiele I, Palsson BO. A protocol for generating a high-quality genome-scale metabolic reconstruction. *Nature Protocols*. 2010;5(1):93–121. doi:10.1038/nprot.2009.203. PMID: 20057383.
 
-Benedict MN, Mundy MB, Henry CS, Ber A, Thiele I. (2014). Likelihood-based gene annotations for gap filling and quality assessment in genome-scale metabolic models. *PLoS Computational Biology*, 10(10):e1003882. PMID: 25329157.
+[3] Aziz RK, Bartels D, Best AA, et al. The RAST Server: Rapid Annotations using Subsystems Technology. *BMC Genomics*. 2008;9:75. doi:10.1186/1471-2164-9-75. PMID: 18261238.
 
-Borchert AJ, Bleem AC, Lim HG, et al. (2024). Machine learning analysis of RB-TnSeq fitness data predicts functional gene modules in *Pseudomonas putida* KT2440. *mSystems*, 9(3):e00942-23. DOI: 10.1128/msystems.00942-23. PMID: 38323821.
+[4] Seemann T. Prokka: rapid prokaryotic genome annotation. *Bioinformatics*. 2014;30(14):2068–2069. doi:10.1093/bioinformatics/btu153. PMID: 24642063.
 
-Buchfink B, Xie C, Huson DH. (2015). Fast and sensitive protein alignment using DIAMOND. *Nature Methods*, 12(1):59–60. PMID: 25402007.
+[5] Schwengers O, Jelonek L, Diber MA, Fees D, Usadel B, Goesmann A. Bakta: rapid and standardized annotation of bacterial genomes via a comprehensive and curated database. *Microbial Genomics*. 2021;7(11):000685. doi:10.1099/mgen.0.000685. PMID: 34739369.
 
-Deutschbauer A, Price MN, Wetmore KM, et al. (2011). Evidence-based annotation of gene function in *Shewanella oneidensis* MR-1 using genome-wide fitness profiling across 121 conditions. *PLoS Genetics*, 7(11):e1002385. PMID: 22125499.
+[6] Orth JD, Palsson BO. Systematizing the generation of missing metabolic knowledge. *Biotechnology and Bioengineering*. 2010;107(3):403–412. doi:10.1002/bit.22844. PMID: 20589842.
 
-Ebrahim A, Lerman JA, Palsson BO, Hyduke DR. (2013). COBRApy: COnstraints-Based Reconstruction and Analysis for Python. *BMC Systems Biology*, 7:74. PMID: 23927696.
+[7] Kumar VS, Dasika MS, Maranas CD. Optimization based automated curation of metabolic reconstructions. *BMC Bioinformatics*. 2007;8:212. doi:10.1186/1471-2105-8-212. PMID: 17584497.
 
-Henry CS, DeJongh M, Best AA, Frybarger PM, Linsay B, Stevens RL. (2010). High-throughput generation, optimization and analysis of genome-scale metabolic models. *Nature Biotechnology*, 28(9):977–982. PMID: 20802497.
+[8] Omelchenko MV, Galperin MY, Wolf YI, Koonin EV. Non-homologous isofunctional enzymes: a systematic analysis of alternative solutions in enzyme evolution. *Biology Direct*. 2010;5:31. doi:10.1186/1745-6150-5-31. PMID: 20433725.
 
-Karp PD, Weaver D, Latendresse M. (2018). How accurate is automated gap filling of metabolic models? *BMC Systems Biology*, 12:73. PMID: 29973189.
+[9] Wetmore KM, Price MN, Waters RJ, et al. Rapid quantification of mutant fitness in diverse bacteria by sequencing randomly bar-coded transposons. *mBio*. 2015;6(3):e00306-15. doi:10.1128/mBio.00306-15. PMID: 25968644.
 
-Kumar VS, Dasika MS, Maranas CD. (2007). Optimization based automated curation of metabolic reconstructions. *BMC Bioinformatics*, 8:212. PMID: 17584497.
+[10] Price MN, Wetmore KM, Waters RJ, et al. Mutant phenotypes for thousands of bacterial genes of unknown function. *Nature*. 2018;557(7706):503–509. doi:10.1038/s41586-018-0124-0. PMID: 29769716.
 
-Omelchenko MV, Galperin MY, Wolf YI, Koonin EV. (2010). Non-homologous isofunctional enzymes: a systematic analysis of alternative solutions in enzyme evolution. *Biology Direct*, 5:31. PMID: 20433725.
+[11] Price MN, Deutschbauer AM, Arkin AP. GapMind: automated annotation of amino acid biosynthesis. *mSystems*. 2020;5(3):e00291-20. doi:10.1128/mSystems.00291-20. PMID: 32518168.
 
-Orth JD, Palsson BO. (2010). Systematizing the generation of missing metabolic knowledge. *Biotechnology and Bioengineering*, 107(3):403–412. PMID: 20589842.
+[12] Benedict MN, Mundy MB, Henry CS, Ber A, Thiele I. Likelihood-based gene annotations for gap filling and quality assessment in genome-scale metabolic models. *PLoS Computational Biology*. 2014;10(10):e1003882. doi:10.1371/journal.pcbi.1003882. PMID: 25329157.
 
-Price MN, Deutschbauer AM, Arkin AP. (2020). GapMind: automated annotation of amino acid biosynthesis. *mSystems*, 5(3):e00291-20. PMID: 32518168.
+[13] Zimmermann J, Kaleta C, Waschina S. gapseq: informed prediction of bacterial metabolic pathways and reconstruction of accurate metabolic models. *Genome Biology*. 2021;22:81. doi:10.1186/s13059-021-02295-1. PMID: 33691770.
 
-Price MN, Deutschbauer AM, Arkin AP. (2022). Filling gaps in bacterial catabolic pathways with computation and high-throughput genetics. *PLoS Genetics*, 18(4):e1010156. PMID: 35417454.
+[14] Borchert AJ, Bleem AC, Lim HG, et al. Machine learning analysis of RB-TnSeq fitness data predicts functional gene modules in *Pseudomonas putida* KT2440. *mSystems*. 2024;9(3):e00942-23. doi:10.1128/msystems.00942-23. PMID: 38323821.
 
-Price MN, Wetmore KM, Waters RJ, et al. (2018). Mutant phenotypes for thousands of bacterial genes of unknown function. *Nature*, 557(7706):503–509. PMID: 29769716.
+[15] Arkin AP, Cottingham RW, Henry CS, et al. KBase: The United States Department of Energy Systems Biology Knowledgebase. *Nature Biotechnology*. 2018;36(7):566–569. doi:10.1038/nbt.4163. PMID: 29979655.
 
-Ryu JY, Kim HU, Lee SY. (2019). Deep learning enables high-quality and high-throughput prediction of enzyme commission numbers. *Proceedings of the National Academy of Sciences*, 116(28):13996–14001. PMID: 31235599.
+[16] Buchfink B, Xie C, Huson DH. Fast and sensitive protein alignment using DIAMOND. *Nature Methods*. 2015;12(1):59–60. doi:10.1038/nmeth.3176. PMID: 25402007.
 
-Schwengers O, Jelonek L, Giber MA, Underminer F, By KJ, By K, Modern L, Modern R, By P, Goesmann A. (2021). Bakta: rapid and standardized annotation of bacterial genomes via a comprehensive and curated database. *Microbial Genomics*, 7(11):000685. PMID: 34739369.
+[17] Ebrahim A, Lerman JA, Palsson BO, Hyduke DR. COBRApy: COnstraints-Based Reconstruction and Analysis for Python. *BMC Systems Biology*. 2013;7:74. doi:10.1186/1752-0509-7-74. PMID: 23927696.
 
-Seemann T. (2014). Prokka: rapid prokaryotic genome annotation. *Bioinformatics*, 30(14):2068–2069. PMID: 24642063.
+[18] Price MN, Deutschbauer AM, Arkin AP. Filling gaps in bacterial catabolic pathways with computation and high-throughput genetics. *PLoS Genetics*. 2022;18(4):e1010156. doi:10.1371/journal.pgen.1010156. PMID: 35417454.
 
-Thiele I, Palsson BO. (2010). A protocol for generating a high-quality genome-scale metabolic reconstruction. *Nature Protocols*, 5(1):93–121. PMID: 20057383.
+[19] Ryu JY, Kim HU, Lee SY. Deep learning enables high-quality and high-throughput prediction of enzyme commission numbers. *Proceedings of the National Academy of Sciences*. 2019;116(28):13996–14001. doi:10.1073/pnas.1821905116. PMID: 31235599.
 
-Wetmore KM, Price MN, Waters RJ, et al. (2015). Rapid quantification of mutant fitness in diverse bacteria by sequencing randomly bar-coded transposons. *mBio*, 6(3):e00306-15. DOI: 10.1128/mBio.00306-15. PMID: 25968644.
+[20] Yu T, Cui H, Li JC, et al. Enzyme function prediction using contrastive learning. *Science*. 2023;379(6639):1358–1363. doi:10.1126/science.adf2465. PMID: 36996195.
 
-Yu T, Cui H, Li JC, et al. (2023). Enzyme function prediction using contrastive learning. *Science*, 379(6639):1358–1363. PMID: 36996195.
+[21] Deutschbauer A, Price MN, Wetmore KM, et al. Evidence-based annotation of gene function in *Shewanella oneidensis* MR-1 using genome-wide fitness profiling across 121 conditions. *PLoS Genetics*. 2011;7(11):e1002385. doi:10.1371/journal.pgen.1002385. PMID: 22125499.
 
-Zimmermann J, Kaleta C, Waschina S. (2021). gapseq: informed prediction of bacterial metabolic pathways and reconstruction of accurate metabolic models. *Genome Biology*, 22:81. DOI: 10.1186/s13059-021-02295-1. PMID: 33691770.
+[22] Karp PD, Weaver D, Latendresse M. How accurate is automated gap filling of metabolic models? *BMC Systems Biology*. 2018;12:73. doi:10.1186/s12918-018-0593-7. PMID: 29973189.
 
 ---
 
@@ -327,21 +338,39 @@ Zimmermann J, Kaleta C, Waschina S. (2021). gapseq: informed prediction of bacte
 
 ### Supplementary Figure S1: Threshold Sensitivity Analysis
 
-Four-panel figure showing: (A) Resolution rate as a function of fitness threshold for different t-statistic cutoffs; (B) BLAST threshold sensitivity heatmap (identity vs coverage); (C) High-confidence assignment count vs fitness threshold; (D) Distribution of resolution rates across all 240 parameter combinations. All combinations exceed the H1 threshold of 30%, with the baseline (47.8%) near the upper bound.
+![**Supplementary Figure S1. Threshold sensitivity analysis across 240 parameter combinations.** (A) Resolution rate as a function of fitness threshold (FIT_THRESHOLD) for three t-statistic cutoffs (|t| > 3.0, 4.0, 5.0), averaged over all BLAST threshold combinations. Fitness thresholds have negligible impact on overall resolution. (B) BLAST threshold sensitivity heatmap showing resolution rate at each combination of minimum percent identity and minimum query coverage, at baseline fitness thresholds (FIT_THRESHOLD = -2.0, T_THRESHOLD = 4.0). The red box marks the baseline (30% identity, 70% coverage). BLAST identity is the dominant parameter affecting resolution. (C) Number of high-confidence assignments as a function of fitness threshold at baseline BLAST thresholds. High-confidence counts range from 35 to 47 across all tested parameter combinations. (D) Histogram of resolution rates across all 240 threshold combinations, with the baseline (47.8%, red dashed line) and H1 threshold (30%, orange dotted line) indicated. All 240 combinations exceed both thresholds, confirming that the conclusion is robust to parameter choice.](figures/supplement_threshold_sensitivity.png)
 
-See `figures/supplement_threshold_sensitivity.png` and `notebooks/supplement_threshold_sensitivity.ipynb`.
+### Supplementary Figure S2: NB03 Annotation Gap Resolution Heatmap
+
+![**Supplementary Figure S2. EC-based annotation gap resolution across organisms and carbon sources (NB03 stage).** Heatmap showing the percentage of gapfilled reactions with identified gene candidates for each organism-carbon source combination after NB03 EC-based matching. Darker colors indicate higher resolution rates. Many organism-carbon source combinations show 0% resolution at the NB03 stage, demonstrating the need for additional evidence streams (NB04 Bakta annotations and NB06 BLAST homology) to achieve the final 47.8% resolution rate.](figures/annotation_gap_resolution_heatmap.png)
+
+### Supplementary Figure S3: Evidence Distribution from NB03
+
+![**Supplementary Figure S3. NB03 candidate gene evidence classification.** Left panel: Confidence distribution of 107 gene candidates identified by EC matching, showing 12 high-confidence, 11 medium, and 84 low-confidence candidates. Right panel: Fitness evidence classification showing 33 candidates with strong fitness support (fitness < -2.0, |t| > 4.0), 5 moderate, 54 non-significant, and 36 with no fitness data available.](figures/evidence_distribution.png)
+
+### Supplementary Figure S4: GapMind Score Categories
+
+![**Supplementary Figure S4. GapMind pathway score category distribution for focal genomes.** Bar chart showing the distribution of GapMind pathway completeness categories (complete, likely complete, steps missing low/medium, not present) across the 14 focal organisms. This provides context for the GapMind concordance analysis in Figure 5 — pathways scored as "not present" or "steps missing" represent independent evidence for annotation gaps.](figures/gapmind_score_categories.png)
+
+### Supplementary Figure S5: NB04 Candidate Evidence Sources
+
+![**Supplementary Figure S5. Evidence source breakdown from NB04 Bakta annotation analysis.** Distribution of newly identified gene candidates by evidence source (Bakta EC match, Bakta product-name match, GapMind concordance). NB04 added 22 newly resolved reaction-organism pairs (10.9% incremental resolution) primarily through alternative EC annotations from the Bakta pipeline, demonstrating the value of cross-referencing multiple annotation sources.](figures/nb04_candidate_sources.png)
+
+### Supplementary Figure S6: Fitness Specificity Analysis
+
+![**Supplementary Figure S6. Fitness specificity z-score distribution from NB05 expanded profiling.** Distribution of fitness specificity z-scores for 71 candidate genes across all available carbon source experiments. Genes with high absolute z-scores show carbon-source-specific fitness defects (stronger candidates for specific pathway gaps), while those near zero show general fitness effects (weaker candidates). Four genes showed strong carbon-source-specific fitness defects.](figures/nb05_fitness_specificity.png)
+
+### Supplementary Figure S7: NB06 Triangulated Evidence Summary
+
+![**Supplementary Figure S7. Final evidence triangulation summary from NB06.** Left panel: Resolution rate progression from NB03 EC matching (25.4%) through NB03+NB04 (36.3%) to the full pipeline including BLAST (47.8%). Center panel: Evidence source distribution showing the number of pairs resolved by single versus multiple evidence streams. Right panel: Final confidence pie chart showing 44 high (22%), 19 medium (9%), 33 low (16%), and 105 unresolved (52%).](figures/nb06_triangulated_evidence.png)
 
 ### Supplementary Table S1: Complete Threshold Sensitivity Results
 
-240 rows covering all combinations of fitness thresholds (5 FIT_THRESHOLD values x 3 T_THRESHOLD values) and BLAST thresholds (4 identity values x 4 coverage values). Each row reports: resolved count, percent resolved, high/medium/low/unresolved counts.
-
-See `data/threshold_sensitivity.tsv`.
+240 rows covering all combinations of fitness thresholds (5 FIT_THRESHOLD values x 3 T_THRESHOLD values) and BLAST thresholds (4 identity values x 4 coverage values). Each row reports: resolved count, percent resolved, high/medium/low/unresolved counts. See `data/threshold_sensitivity.tsv`.
 
 ### Supplementary Table S2: Per-Organism Resolution Summary
 
-14 rows with total gaps, resolved count, high/medium/low confidence breakdown, and percent resolved per organism.
-
-See `data/organism_resolution_summary.tsv`.
+14 rows with total gaps, resolved count, high/medium/low confidence breakdown, and percent resolved per organism. See `data/organism_resolution_summary.tsv`.
 
 ---
 
