@@ -78,7 +78,7 @@ Of 104 GapMind-gapfill pathway pairings, GapMind pathway predictions partially c
 
 ![BLAST hit quality distribution](figures/fig4_blast_quality.png)
 
-154 BLAST hits were identified using DIAMOND against Swiss-Prot exemplar sequences. Hits meeting high-confidence thresholds (>=30% identity, >=70% coverage, e-value <=1e-10) were concentrated in branched-chain amino acid biosynthesis and polyamine metabolism reactions. The top reactions by BLAST hit count (rxn02185, rxn03436, rxn15947) all encode well-characterized enzymes with broad phylogenetic distribution.
+154 BLAST hits were identified using DIAMOND v2.1.16 blastp (`--evalue 1e-5 --max-target-seqs 20 --id 25 --query-cover 50 --outfmt 6`) against Swiss-Prot exemplar sequences (328 reviewed bacterial sequences for 75/84 unique ECs, retrieved from UniProt REST API). Hits meeting high-confidence thresholds (>=30% identity, >=70% coverage, e-value <=1e-10) were concentrated in branched-chain amino acid biosynthesis and polyamine metabolism reactions. Medium-confidence thresholds were >=25% identity, >=50% coverage, e-value <=1e-5. The top reactions by BLAST hit count (rxn02185, rxn03436, rxn15947) all encode well-characterized enzymes with broad phylogenetic distribution.
 
 *(Notebook: 06_exemplar_blast.ipynb)*
 

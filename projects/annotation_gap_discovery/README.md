@@ -25,26 +25,42 @@ By triangulating these evidence types, we assign confidence-scored gene-reaction
 - [Research Plan](RESEARCH_PLAN.md) — hypothesis, approach, query strategy
 - [Report](REPORT.md) — findings, interpretation, supporting evidence
 
-## Data Sources
+## Data Collections
 
-- **Fitness Browser**: 48 organisms, 27M fitness scores, carbon source experiments
-- **BacDive**: 988K metabolite utilization records (+/- growth calls)
-- **GapMind**: Pathway completeness predictions for 293K genomes
-- **ModelSEED Biochemistry**: 56K reactions, 46K molecules
-- **Pangenome**: 293K genomes, 132M gene clusters with protein sequences
-- **eggNOG/Bakta**: EC, KEGG, COG, UniRef annotations
+- `kescience_fitnessbrowser` — 48 organisms, 27M fitness scores, carbon source RB-TnSeq experiments
+- `kbase_ke_pangenome` — 293K genomes, 132M gene clusters, Bakta/eggNOG annotations, GapMind pathways
+- `kbase_msd_biochemistry` — 56K reactions, 46K molecules (ModelSEED reference biochemistry)
 
 ## Reproduction
 
 ### Prerequisites
-- Python 3.10+
-- BERDL access with `KBASE_AUTH_TOKEN`
-- Packages: `cobra`, `modelseedpy`, `diamond` (bioconda), plus standard scientific Python stack
+- Python 3.10+ with packages from `requirements.txt`
+- BERDL JupyterHub access with `KBASE_AUTH_TOKEN` (for NB01-05)
+- DIAMOND (`conda install -c bioconda diamond`) for NB06
+- COBRApy + ModelSEEDpy for NB02/NB07
+
+### Execution Order and Runtimes
+
+Notebooks must run sequentially — each reads outputs from prior notebooks.
+
+| Notebook | Requires | Runtime | Description |
+|---|---|---|---|
+| NB01 | Spark | ~15 min | Genome and carbon source selection |
+| NB02 | Spark + ModelSEEDpy | ~2-4 hours | Model building, baseline FBA, gapfilling |
+| NB03 | Spark | ~30 min | EC-based gene candidate identification |
+| NB04 | Spark | ~20 min | GapMind decomposition, Bakta alternatives |
+| NB05 | Spark | ~15 min | Pangenome conservation, fitness profiling |
+| NB06 | Local (DIAMOND) | ~45 min | Swiss-Prot BLAST, evidence triangulation |
+| NB07 | Local (COBRApy) | ~5 min | Validation, cross-validation, hypothesis test |
+| NB08 | Local (matplotlib) | ~2 min | Publication figures and summary tables |
 
 ### Steps
-1. Install dependencies: `pip install -r requirements.txt` and `conda install -c bioconda diamond`
-2. Run NB01-02 on BERDL JupyterHub (requires Spark)
-3. Run NB03-08 locally or on JupyterHub
+1. On BERDL JupyterHub: run NB01 through NB05 in order
+2. Download `data/` directory for local execution
+3. Install DIAMOND: `conda install -c bioconda diamond`
+4. Locally: run NB06 through NB08 in order
+
+All notebooks are committed with saved outputs. Re-running regenerates figures and TSV files in `data/`. Full re-execution requires BERDL Spark access; read-only review is possible from saved outputs.
 
 ## Authors
 
