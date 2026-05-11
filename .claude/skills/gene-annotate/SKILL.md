@@ -7,7 +7,7 @@ user-invocable: true
 
 # Gene Annotation Skill
 
-Run the `gene-annotate` CLI to produce GeneRIF-style functional annotations for protein sequences. The tool integrates four BERDL evidence layers — PaperBLAST homology (literature-curated), pangenome cluster annotations, Fitness Browser phenotypic data, and gene neighborhoods — plus InterProScan domain analysis and LLM reasoning to generate evidence-tiered annotations. Additional BERDL datasets can be layered on top via `--berdl-source-config`.
+Run the `gene-annotate` CLI to produce GeneRIF-style functional annotations for protein sequences. The tool integrates five BERDL evidence layers — PaperBLAST homology (literature-curated), pangenome cluster annotations, Fitness Browser phenotypic data, fitness-browser gene neighborhoods, and pangenome gene neighborhoods (syntenic context across the GTDB clade) — plus InterProScan domain analysis and LLM reasoning to generate evidence-tiered annotations. Additional BERDL datasets can be layered on top via `--berdl-source-config`.
 
 ## When to Use
 
@@ -60,19 +60,22 @@ Pass `--api-key KEY` only to override with a literal key value.
 
 ### BERDL Evidence Layer
 
-When `--berdl-data-dir` is provided, five evidence sources are always included automatically:
+When `--berdl-data-dir` is provided, six evidence sources are always included automatically:
 
 | Source | DIAMOND DB | Toolkit | Output column |
 |--------|-----------|---------|---------------|
 | PaperBLAST (literature-curated homologs) | `paperblast_uniq.dmnd` | `BatchBERDLPaperBLASTToolkit` | `berdl_paperblast_evidence` |
 | Pangenome cluster annotations | `pangenome_gene_cluster.dmnd` | `BatchBERDLPangenomeToolkit` | `berdl_pangenome_evidence` |
 | Fitness Browser co-fitness profiles | `fitnessbrowser_aaseqs.dmnd` | `BatchBERDLFitnessBrowserToolkit` | `berdl_fitness_evidence` |
-| Gene neighborhoods | *(same as Fitness Browser)* | `fetch_gene_neighborhood_batch` | `gene_neighborhoods` |
+| Gene neighborhoods (fitness browser) | *(same as Fitness Browser)* | `fetch_gene_neighborhood_batch` | `gene_neighborhoods` |
+| Pangenome gene neighborhoods | `pangenome_gene_cluster.dmnd` | `BatchBERDLPangenomeNeighborhoodToolkit` | `pangenome_neighborhoods` |
 | Fitness Browser gene annotations | `fitnessbrowser_aaseqs.dmnd` | `BatchBERDLGenericToolkit` (builtin) | `evidence_fitnessbrowser_aaseqs` |
 
-The fifth source (`evidence_fitnessbrowser_aaseqs`) is loaded automatically from `data_sources/configs/builtin_fitness_browser.yaml` — no flag required. It complements the co-fitness source by providing direct gene-level descriptions from the fitness browser annotation table, which enables convergent direct-naming evidence that the co-fitness profiles alone cannot provide.
+The fitness-browser annotations source (`evidence_fitnessbrowser_aaseqs`) is loaded automatically from `data_sources/configs/builtin_fitness_browser.yaml` — no flag required. It complements the co-fitness source by providing direct gene-level descriptions from the fitness browser annotation table, which enables convergent direct-naming evidence that the co-fitness profiles alone cannot provide.
 
-Config-driven sources from `--berdl-source-config` are **additive** — they run alongside the five defaults, not instead of them.
+The pangenome neighborhood source (`pangenome_neighborhoods`) provides syntenic/operon context across the GTDB clade by retrieving the ±5 flanking genes around each cluster representative's home genome (top hit per matched clade). Each neighbor carries the bakta consensus annotation for its own pangenome cluster, which often surfaces operon membership that the fitness-browser neighborhoods (single experimental organism) miss. **Requires `--berdl-use-spark`** — the multi-column temp-view join is not available via the REST client; the source is silently skipped without Spark.
+
+Config-driven sources from `--berdl-source-config` are **additive** — they run alongside the six defaults, not instead of them.
 
 Requires:
 - `KBASE_AUTH_TOKEN` set in `.env`
@@ -427,7 +430,8 @@ For each row in the TSV, produce a block of this form:
 | `berdl_fitness_evidence` or `fitness_evidence` | `Fitness browser (co-fitness)*` | Yes — experimental transposon fitness co-fitness profiles |
 | `cofitness_evidence` | `Co-fitness*` | Yes — experimental co-fitness correlations |
 | `evidence_fitnessbrowser_aaseqs` | `Fitness browser (gene annotations)*` | Yes — direct gene descriptions from TnSeq-characterized loci |
-| `gene_neighborhoods` | `Gene neighborhoods` | No — genomic context from conserved gene order |
+| `gene_neighborhoods` | `Gene neighborhoods (fitness browser)` | No — genomic context from conserved gene order in TnSeq organisms |
+| `pangenome_neighborhoods` | `Gene neighborhoods (pangenome)` | No — syntenic context across GTDB clade, bakta-annotated flanks |
 | `berdl_pangenome_evidence` | `Pangenome` | No — comparative/computational clustering |
 | `ipr_annotations` | `InterProScan` | No — computational domain/family prediction |
 
@@ -493,6 +497,12 @@ After the per-protein output (or after reporting the summary file path for large
 - Cross-reference with BERDL data (`/berdl`)
 - Literature review on annotated functions (`/literature-review`)
 - Include in project synthesis (`/synthesize`)
+
+**Mandatory recommendation for discovery-class hits.** If any annotation reads as "novel," "unexpected," "extends biology beyond X," "first report of Y in organism Z," or otherwise frames the hit as a discovery rather than a curation correction, **explicitly recommend `/literature-review` before the user acts on the framing.** Phrasing template:
+
+> "The hit on `<sequence_id>` (`<annotation>` in `<organism>`) is framed as discovery-class. Run `/literature-review` on this finding before treating it as novel — past pilots have shown that these claims often have published precedent at the system level (e.g., metabolomic detection of the metabolite already exists), and the pipeline's actual contribution is usually at the molecular-mechanism layer rather than the system level. The lit-review will (a) check whether the system-level claim already exists, (b) calibrate how much weight the percent-identity supports for the specific functional call, and (c) reframe the finding accurately for the WRITEUP."
+
+This is not optional — the cost of an over-confident "discovery" claim that turns out to be already-published is high (wasted curation, mis-attributed credit, embarrassed follow-up). The cost of running a 5–15-minute lit review is low.
 
 ### Step 6: Write the WRITEUP.md
 
@@ -572,6 +582,15 @@ Run time: ~{N} min for {N} sequences. Total LLM cost: {N}M tokens.
 - Compare to prior runs only when there IS a meaningful comparison; do not invent a comparison from a single data point.
 - 200–600 words is typical. Skip the writeup entirely if it would just restate the summary table — that means the run had no contextually interesting content (e.g., a 3-sequence ad-hoc query), and the summary file alone suffices.
 
+**Discovery-class framing requires literature verification.** Before writing any sentence in the WRITEUP that frames a hit as "discovery," "novel," "unexpected," "first report," "extends biology beyond X," or similar, **prompt the user to run `/literature-review` on that specific hit first**. Use `AskUserQuestion`:
+
+> "The annotation `<annotation>` on `<sequence_id>` (`<organism>`) reads as discovery-class biology. Before I frame it that way in the WRITEUP, I'd recommend running `/literature-review` on this finding to verify the system-level novelty claim. Past pilots have produced 'novel' framings that turned out to have published precedent (e.g., the S. stutzeri PqsH hit was already corroborated by Ma et al. 2024 reporting HHQ production in environmental P. stutzeri). Run lit-review now?"
+> Options: **Run lit-review first (recommended)** / **Skip and frame as tentative** / **Skip and frame as discovery anyway (user takes responsibility)**
+
+If the user picks lit-review, run `/literature-review` on the specific hit before drafting that section of the WRITEUP. Use the lit-review findings to calibrate the framing — distinguish *system-level* novelty (often already published) from *molecular-mechanism* novelty (where the pipeline more often contributes). Save the references file as a sibling of the WRITEUP (e.g., `references_<gene>.md`) and cite it from the WRITEUP.
+
+If the user skips, default to tentative framing ("at X% identity, candidate for...", "consistent with family Y but substrate-specificity not established at this identity") rather than discovery framing. Note in the WRITEUP that no literature verification was performed and any system-level novelty claim is unverified.
+
 After writing the WRITEUP.md, report its path to the user along with the summary file path. For runs > 10 sequences (where chat output is truncated), the writeup IS the user-facing deliverable.
 
 ## Configurable Parameters
@@ -648,6 +667,7 @@ DIAMOND results, InterProScan output, and batch evidence files are cached under 
 8. **When the input is from `kbase_ke_pangenome` and the user named organisms by common name**, do GTDB clade resolution (Step 1's "When pulling from kbase_ke_pangenome by organism name" subsection) BEFORE pulling sequences. Surface any clade ambiguity via `AskUserQuestion`.
 9. **Always produce both `summary.txt` and `WRITEUP.md`** (Step 5 and Step 6). The writeup is required for any run with a discernible user goal — skip it only for ≤ 5-sequence ad-hoc queries.
 10. **Prompt for tier selection before launching** (Step 2.6) using `AskUserQuestion` with `multiSelect: true`. Default is all three tiers. Pass `--tier <list>` in Step 3 only when the user picks a strict subset of `A,B,C`. Skip the prompt only when the user has already specified tiers in their request.
+11. **Gate discovery-class framing on `/literature-review`** (Steps 5d and 6). Before writing or saying that any hit "extends biology beyond X," is "novel," "unexpected," or "discovery-class," prompt the user to run `/literature-review` on that hit first. The system-level claim is often already published; the pipeline's actual contribution is usually at the molecular-mechanism layer. Use the lit-review output to calibrate framing in the WRITEUP. Skip only when the user explicitly opts out, in which case default to tentative ("candidate for...", "consistent with family Y but substrate-specificity not established") rather than discovery framing.
 
 ## Pitfall Detection
 
