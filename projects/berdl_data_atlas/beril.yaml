@@ -1,8 +1,8 @@
-project_id: scratch_20260512
+project_id: berdl_data_atlas
 status: exploration
 created_at: "2026-05-12T17:16:36Z"
 last_session_at: "2026-05-12T17:16:36Z"
-branch: projects/scratch_20260512
+branch: projects/berdl_data_atlas
 engine:
   name: claude
 authors:
