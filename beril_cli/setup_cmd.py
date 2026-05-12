@@ -10,6 +10,7 @@ from pathlib import Path
 
 from beril_cli import config
 from beril_cli.detect import detect_user_identity, print_jupyterhub_path_hint
+from beril_cli.repo_sync import GitSyncError, sync_repo_to_latest_ref
 
 
 def _find_repo_root() -> Path | None:
@@ -77,6 +78,11 @@ def run_setup() -> int:
             return 1
 
     print(f"  Found repo at: {repo_root}")
+    try:
+        sync_message = sync_repo_to_latest_ref(repo_root)
+        print(f"  {sync_message}")
+    except GitSyncError as exc:
+        print(f"  Warning: {exc}. Continuing with the current checkout.")
 
     # ── Step 2: .env creation + credential sync ─────
     _step(2, "Environment file (.env)")

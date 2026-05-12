@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import os
 import shutil
-import subprocess
 import sys
 from pathlib import Path
 
 from beril_cli.config import get_default_agent, get_vertex_config
 from beril_cli.detect import print_jupyterhub_path_hint
+from beril_cli.repo_sync import GitSyncError, sync_repo_to_latest_ref
 
 
 def _sync_auth_token(env_path: Path) -> None:
@@ -65,15 +65,12 @@ def run_start(
         print("Error: BERIL repository not found. Run 'beril setup' first.", file=sys.stderr)
         return 1
 
-    # Pull latest changes (repo is under active development)
-    result = subprocess.run(
-        ["git", "pull", "--ff-only"],
-        capture_output=True, text=True, check=False,
-    )
-    if result.returncode == 0 and "Already up to date" not in result.stdout:
-        print(f"Updated: {result.stdout.strip()}")
-    elif result.returncode != 0:
-        print("Warning: git pull failed (you may have local changes). Continuing anyway.", file=sys.stderr)
+    # Use the latest published GitHub release when available, not main's tip.
+    try:
+        sync_message = sync_repo_to_latest_ref(repo_root)
+        print(f"Updated: {sync_message}")
+    except GitSyncError as exc:
+        print(f"Warning: {exc}. Continuing anyway.", file=sys.stderr)
 
     # Refresh KBASE_AUTH_TOKEN in .env from live environment (tokens expire)
     _sync_auth_token(repo_root / ".env")
