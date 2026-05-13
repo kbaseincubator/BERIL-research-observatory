@@ -17,7 +17,7 @@ related_collections:
   - enigma_coral
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - topic.critical-minerals
   - direction.rare-earth-cross-metal-inference
@@ -54,6 +54,25 @@ order: 80
 ## Reusable Object
 
 Metal tolerance scores convert thousands of gene-condition fitness effects into a research primitive: candidate tolerant taxa, genes, and families that can be compared to environments or engineered systems.
+
+## Review Brief
+
+What changed: this product is already promoted, but newer rare-earth and field-scale metal ecology pages now depend on it as a reusable evidence layer.
+
+Why review matters: reviewers should confirm that the score can support cross-project reuse without hiding metal identity, organism coverage, specificity filters, or counter-ion caveats.
+
+Evidence to inspect:
+
+- `metal_fitness_atlas` and `metal_specificity` for score construction and specificity filtering.
+- `bacdive_metal_validation` and `bacdive_phenotype_metal_tolerance` for validation.
+- [Metal specificity versus general stress](/atlas/conflicts/metal-specificity-vs-general-stress) for caveats that must travel with reuse.
+
+Questions for reviewers:
+
+- Are the output artifacts sufficient for reuse, or does this need a table artifact in addition to figures?
+- Should every score expose metal, organism, specificity, and validation-status fields?
+- Are rare-earth extrapolations clearly labeled as predictions until direct REE fitness exists?
+- What downstream page should own score-version changes?
 
 ## Source Collections
 

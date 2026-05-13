@@ -7,9 +7,9 @@ summary: Structural genomics data (contigs, features, protein sequences) in CDM 
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/genomes.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kbase_genomes
 confidence: medium

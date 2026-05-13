@@ -17,7 +17,7 @@ related_collections:
   - phagefoundry_paeruginosa_genome_browser
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - topic.microbial-ecotypes-environment
   - topic.host-microbiome-translation
@@ -53,6 +53,26 @@ order: 90
 ## Reusable Object
 
 Ecotype assignments are labels that compress high-dimensional compositional or genomic structure into cohorts for downstream comparison.
+
+## Review Brief
+
+What changed: ecotype assignments are now used across environment, host, and plant pages, so their validation status needs to be visible to reviewers.
+
+Why review matters: these labels are useful for stratification but risky for translational claims. Reviewers should decide which labels are exploratory, domain-reusable, or safe for downstream hypothesis tests.
+
+Evidence to inspect:
+
+- `ecotype_analysis` and `ecotype_env_reanalysis` for label construction and environmental checks.
+- `ibd_phage_targeting` for a translational failure mode.
+- `plant_microbiome_ecotypes` for cross-domain reuse.
+- [Ecotype labels versus translational leakage](/atlas/conflicts/ecotype-translation-leakage) for the main guardrail.
+
+Questions for reviewers:
+
+- Do the artifacts identify label version, training features, and intended reuse scope?
+- Which labels have held-out validation and which are exploratory?
+- Should every downstream use carry a leakage-risk or validation-tier field?
+- Is this product ready for broad reuse outside the original ecotype projects?
 
 ## Why It Is High Value
 

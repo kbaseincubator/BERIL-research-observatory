@@ -7,7 +7,7 @@ summary: Gene and protein identifiers, functional annotation, literature coverag
 source_projects:
   []
 source_docs:
-  - docs/collections.md
+  - ui/config/berdl_collections_snapshot.json
   - ui/config/berdl_collections_snapshot.json
 related_collections:
   - kbase_ke_pangenome

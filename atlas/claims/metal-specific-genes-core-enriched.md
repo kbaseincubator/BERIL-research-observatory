@@ -15,7 +15,7 @@ related_collections:
   - kbase_ke_pangenome
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - topic.critical-minerals
   - data.metal-tolerance-scores
@@ -33,6 +33,26 @@ order: 10
 ## Claim
 
 Genes classified as metal-specific are not merely general stress genes, but they still remain strongly core-enriched relative to baseline genes.
+
+## Review Brief
+
+What changed: this claim is now reused by critical-minerals, AMR co-selection, and metal ecology pages, so reviewers need a precise view of threshold and coverage caveats.
+
+Why review matters: this is one of the most important premises for engineering target selection. If it is too broad, downstream pages may over-prioritize conserved stress genes.
+
+Evidence to inspect:
+
+- `metal_specificity` for non-metal sick-rate thresholds.
+- `metal_fitness_atlas` for cross-organism metal fitness evidence.
+- `conservation_vs_fitness` for conservation and measured consequence.
+- [Metal specificity versus general stress](/atlas/conflicts/metal-specificity-vs-general-stress) for unresolved controls.
+
+Questions for reviewers:
+
+- Is the 5% non-metal sick-rate threshold appropriate for claim reuse?
+- Are core-enriched targets being separated from generic housekeeping stress?
+- Which missing organisms or locus-ID gaps could change the claim?
+- Should this claim require counter-ion evidence before promotion?
 
 ## Evidence
 

@@ -33,6 +33,11 @@ If no `<project_id>` argument is provided, detect from the current working direc
 Run these checks against the project directory and print a checklist summary:
 
 **Critical checks** (block submission on failure):
+- **Project status is `analysis` or later**: read `projects/{project_id}/beril.yaml`. The new lifecycle requires `/synthesize` to flip status to `analysis` before submission, so any earlier status must FAIL. If `beril.yaml` is missing entirely (pre-manifest project), skip this check and rely on the artifact checks below. Otherwise:
+  - `status: exploration` → `FAIL  Project is in exploration status — write RESEARCH_PLAN.md (resume /berdl_start) before submitting`
+  - `status: proposed` → `FAIL  Project is in proposed status — run analysis notebooks (Phase C of /berdl_start) before submitting`
+  - `status: active` → `FAIL  Project is in active status — run /synthesize to draft REPORT.md before submitting`
+  - `status: analysis`, `review`, or `complete` → proceed (re-submission after review feedback is fine)
 - `README.md` exists in `projects/{project_id}/`
 - `## Research Question` section is present and non-empty in README.md
 - `## Authors` section is present with at least one entry that is not a placeholder (e.g., not "Your Name")
@@ -70,21 +75,11 @@ Pre-submission checklist for: {project_id}
 
 Use PASS/FAIL/WARN labels. If any critical check fails (FAIL), print the failures and stop — do not invoke the reviewer.
 
-### Step 3: Status Check
+### Step 3: Status consistency check (read-only)
 
-Before invoking the reviewer, read the `## Status` section in `projects/{project_id}/README.md`. If the status is not "Completed" (i.e., it still says "In Progress", "Proposed", or similar), ask the user:
+Before invoking the reviewer, verify the README `## Status` block is consistent with `beril.yaml`. With `status: analysis` (the expected pre-submit manifest state), the README should read something like "Analysis — report drafted, awaiting `/submit` review" (the form `/synthesize` writes). If they're out of sync, mention it to the user but **do not** rewrite either field at this step.
 
-> "The project status is currently '{current_status}'. Should I update it to 'Completed' before submitting?"
-
-If the user agrees, update the `## Status` section in README.md to "Completed" with a brief summary of findings (pull from the `## Key Findings` section of REPORT.md). For example:
-
-```
-## Status
-
-Completed — {one-line summary from Key Findings}.
-```
-
-If the user declines, proceed with the current status.
+The README is flipped to "Completed" only in Step 7, **after** the reviewer runs and the lakehouse upload succeeds. Marking it "Completed" before review would lie about the project's state if the reviewer flags issues and the workflow stops in `review`.
 
 ### Step 4: Invoke Reviewer
 
@@ -132,10 +127,9 @@ The AI reviewer's judgment is advisory, not authoritative. The human researcher 
 
 ### Step 7: Complete & Upload
 
-This step runs for clean reviews and for user-overridden reviews.
+This step runs for clean reviews and for user-overridden reviews. The lifecycle defines `complete` as **review passed AND lakehouse upload succeeded**, so do the upload first and only mark complete on success.
 
-1. If `beril.yaml` exists, set `status: complete`
-2. Upload the project to the lakehouse:
+1. **Upload the project to the lakehouse:**
    ```bash
    python tools/lakehouse_upload.py {project_id}
    ```
@@ -143,11 +137,24 @@ This step runs for clean reviews and for user-overridden reviews.
    ```bash
    mc alias set berdl-minio $MINIO_ENDPOINT_URL $MINIO_ACCESS_KEY $MINIO_SECRET_KEY
    ```
-   If the upload fails (e.g., mc not configured, network issue), print the error and continue — don't block the submission.
-3. Remind the user to mark the project as complete in these locations:
-   - `projects/{project_id}/README.md` — ensure `## Status` says "Completed" with a one-line summary
-   - `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary
-4. Suggest committing all changes
+
+2. **If the upload succeeded:**
+   - Set `beril.yaml` `status: complete` and `last_session_at` to now.
+   - Update `projects/{project_id}/README.md` `## Status` to:
+     ```
+     ## Status
+
+     Completed — {one-line summary from REPORT.md `## Key Findings`}.
+     ```
+     If `REPORT.md` doesn't have a clear one-liner to pull from, write a brief summary based on the report's findings.
+   - Remind the user to update `docs/research_ideas.md` — move the project entry from "High/Medium Priority Ideas" to "Completed Ideas" with a results summary.
+
+3. **If the upload failed** (e.g., mc not configured, network outage, S3 error):
+   - Print the error.
+   - **Do not** flip `beril.yaml` to `status: complete` and **do not** rewrite the README to "Completed." A passed review alone is not enough — the project remains in `review` until the archive lands. Recording it as complete now would lie about the artifact's existence in the lakehouse.
+   - Tell the user to fix the upload issue (e.g., configure the `mc alias`), then re-run `/submit` to retry. `/submit` is idempotent: the existing `REVIEW.md` and any prior status updates remain valid.
+
+4. Suggest committing all changes (the new `REVIEW.md` plus any updated `beril.yaml` and `README.md`).
 
 > **Note**: For final submission reviews, use the default frontier model (no `--model` flag). Use `--model` with faster/cheaper models for iterating on reviewer feedback.
 

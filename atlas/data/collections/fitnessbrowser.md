@@ -10,7 +10,7 @@ source_projects:
   - fitness_modules
 source_docs:
   - ui/config/collections.yaml
-  - docs/schemas/fitnessbrowser.md
+  - docs/schema.md
 related_collections:
   - kescience_fitnessbrowser
   - kbase_ke_pangenome

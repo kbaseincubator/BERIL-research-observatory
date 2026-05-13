@@ -11,7 +11,7 @@ source_projects:
   - metabolic_capability_dependency
 source_docs:
   - docs/research_ideas.md
-  - docs/schemas/pangenome.md
+  - docs/schema.md
 related_collections:
   - kbase_ke_pangenome
   - kbase_msd_biochemistry

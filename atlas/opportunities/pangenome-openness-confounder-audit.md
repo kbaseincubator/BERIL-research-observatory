@@ -18,7 +18,7 @@ related_collections:
   - pangenome_bakta
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.pangenome-architecture
   - claim.pangenome-openness-shapes-function
@@ -55,6 +55,25 @@ order: 80
 ## Why It Matters
 
 Pangenome openness is a useful organizing concept, but it can be confounded by taxonomy, sampling depth, genome quality, and annotation completeness. A clear audit makes the claim stronger where it survives and narrower where it does not.
+
+## Review Brief
+
+What changed: openness now appears in more claims, topics, and derived products, making a confounder audit more urgent.
+
+Why review matters: reviewers should define the minimum controls required before openness can be reused as an explanatory variable.
+
+Evidence to inspect:
+
+- [Pangenome openness shapes functional opportunity](/atlas/claims/pangenome-openness-shapes-function) for the core claim.
+- [Pangenome Openness Metrics](/atlas/data/derived-products/pangenome-openness-metrics) for reusable inputs.
+- `pangenome_openness`, `openness_functional_composition`, and `conservation_vs_fitness` for source evidence.
+
+Questions for reviewers:
+
+- Which confounder is most likely to change current conclusions: genome count, taxonomy, quality, or annotation density?
+- Should the audit produce revised caveat labels or revised metrics?
+- What effect size is large enough to preserve after controls?
+- Which downstream pages should be updated if openness weakens after adjustment?
 
 ## Evidence Base
 

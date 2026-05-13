@@ -20,7 +20,7 @@ related_collections:
   - kescience_fitnessbrowser
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - claim.ecotype-analysis-needs-rigor-gates
   - hypothesis.ecotype-batch-correction
@@ -35,9 +35,29 @@ order: 60
 
 # Host Microbiome Translation
 
-## One-Line Takeaway
+## Synthesis Takeaway
 
 Host-associated microbiome projects are where observatory outputs become intervention logic, but they demand stronger rigor gates because confounding, batch effects, and ecological costs can reverse naive conclusions.
+
+## Review Brief
+
+What changed: this page is now explicitly a high-scrutiny review surface for intervention-oriented claims, not just a summary of host microbiome projects.
+
+Why review matters: translational pages can create the strongest external expectations. Reviewers should decide whether each target, formulation, or phage idea has enough independent evidence, leakage control, and ecological-cost accounting.
+
+Evidence to inspect:
+
+- `ibd_phage_targeting` and its failure analysis for leakage, target-list collapse, and review lessons.
+- `cf_formulation_design` for formulation scoring and strict safety filters.
+- `webofmicrobes_explorer`, `paperblast_explorer`, and `metabolic_capability_dependency` for pathway and literature context.
+- [Ecotype labels versus translational leakage](/atlas/conflicts/ecotype-translation-leakage) and [CF Formulation Scores](/atlas/data/derived-products/cf-formulation-scores) for reviewable outputs.
+
+Questions for reviewers:
+
+- Does every intervention-oriented statement have leakage checks, nulls, and independent support?
+- Are phage, formulation, antibiotic, and FMT-like ideas carrying explicit ecological-cost caveats?
+- Should any target list remain unpublished inside Atlas until a validation benchmark passes?
+- Which derived product is closest to changing a real downstream design decision?
 
 ## What We Have Learned
 

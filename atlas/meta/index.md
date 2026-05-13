@@ -16,6 +16,7 @@ related_pages:
   - meta.roadmap
   - meta.lint-rules
   - meta.metrics-to-watch
+  - meta.review-queue
 order: 1
 ---
 
@@ -32,3 +33,7 @@ The maintenance loop should watch collection coverage, evidence coverage, topic 
 ## Maintenance Rule
 
 Use inventory output to decide whether the next edit should deepen a topic, add collection context, promote a derived product, document a join, or mark a caveat.
+
+## Review Queue
+
+[Atlas Review Queue](/atlas/meta/review-queue) turns inventory signals into concrete packets for topic depth, derived-product promotion, tension resolution, and new project integration.

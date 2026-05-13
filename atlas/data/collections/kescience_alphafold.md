@@ -7,9 +7,9 @@ summary: "AlphaFold protein structure metadata: UniProt→structure mapping and 
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/alphafold.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kescience_alphafold
 confidence: low

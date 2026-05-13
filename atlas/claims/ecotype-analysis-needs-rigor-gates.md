@@ -16,7 +16,7 @@ related_collections:
   - kbase_ke_pangenome
 confidence: high
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - topic.host-microbiome-translation
   - hypothesis.ecotype-batch-correction
@@ -34,6 +34,26 @@ order: 40
 ## Claim
 
 Ecotype analyses are useful for stratification, but target-selection claims need leakage checks, null distributions, confound adjustment, and independent evidence gates.
+
+## Review Brief
+
+What changed: this claim is now a general review rule for host, plant, and environment pages that use ecotype labels.
+
+Why review matters: reviewers should enforce the distinction between exploratory stratification and downstream intervention or target claims.
+
+Evidence to inspect:
+
+- `ibd_phage_targeting` failure analysis for target-list collapse.
+- `ecotype_analysis` and `ecotype_env_reanalysis` for label construction.
+- `docs/pitfalls.md` for modality and cohort caveats.
+- [Ecotype Label Validation Benchmark](/atlas/opportunities/ecotype-validation-benchmark) for the next validation path.
+
+Questions for reviewers:
+
+- Which downstream pages use ecotypes for stratification versus action?
+- Are null models and held-out validations required before every translational claim?
+- Should ecotype-derived products carry a validation-tier field?
+- What evidence would let a specific ecotype claim move from cautionary to reviewed?
 
 ## Evidence
 

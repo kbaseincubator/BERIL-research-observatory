@@ -9,8 +9,7 @@ source_projects:
   - openness_functional_composition
   - plant_microbiome_ecotypes
 source_docs:
-  - docs/schemas/pangenome.md
-  - docs/schemas/genomes.md
+  - docs/schema.md
 related_collections:
   - kbase_ke_pangenome
   - kbase_genomes

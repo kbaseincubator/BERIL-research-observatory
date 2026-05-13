@@ -10,8 +10,7 @@ source_projects:
   - metal_specificity
   - metabolic_capability_dependency
 source_docs:
-  - docs/schemas/pangenome.md
-  - docs/schemas/fitnessbrowser.md
+  - docs/schema.md
 related_collections:
   - kbase_ke_pangenome
   - kescience_fitnessbrowser

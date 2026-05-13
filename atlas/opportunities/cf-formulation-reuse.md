@@ -17,7 +17,7 @@ related_collections:
   - kbase_msd_biochemistry
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.metabolic-capability-community-design
   - topic.host-microbiome-translation
@@ -53,6 +53,25 @@ order: 50
 ## Why It Matters
 
 The Atlas already tracks CF formulation scores, but inventory marks the product as needing downstream reuse. A first consumer would show whether the score is a reusable asset or only a project-local artifact.
+
+## Review Brief
+
+What changed: the paired derived-product page now asks whether formulation scores are generalizable enough to reuse.
+
+Why review matters: this opportunity is the decision point for promoting, narrowing, or retiring the candidate product.
+
+Evidence to inspect:
+
+- [CF Formulation Scores](/atlas/data/derived-products/cf-formulation-scores) for score components and artifacts.
+- `cf_formulation_design` for strict-safety filters.
+- `pseudomonas_carbon_ecology` and `webofmicrobes_explorer` for candidate consumer contexts.
+
+Questions for reviewers:
+
+- What is the smallest downstream design question that would prove reuse value?
+- Which score components are cohort-specific versus generalizable?
+- What baseline should the formulation score beat?
+- Should the score remain candidate until experimental validation exists?
 
 ## Evidence Base
 
