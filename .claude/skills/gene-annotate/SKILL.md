@@ -132,6 +132,28 @@ Use the organism name as-is from `kescience_paperblast.gene` — it already incl
 
 **Write the prepared FASTA file** to the project directory or a temp location. Use a descriptive filename (e.g., `input_proteins.faa`).
 
+**Combining multiple input sets into one job.** When the user asks to annotate more than one protein set from the same organism or source in the same request (e.g., "all core hypotheticals AND the top-500 aux hypotheticals"), **always combine them into a single FASTA and run one `gene-annotate` job** — do not launch separate jobs. One job shares the DIAMOND search, InterProScan, and evidence-gathering pass across all sequences, which is significantly more efficient than running the same evidence pipeline twice.
+
+To allow post-hoc stratification of results, **prefix each sequence ID with a stratum tag** before combining:
+
+```python
+def write_combined_fasta(sets, path):
+    with open(path, "w") as f:
+        for stratum, rows, organism in sets:
+            for r in rows:
+                seq = r["faa_sequence"].replace("*", "")
+                if not seq:
+                    continue
+                f.write(f">{stratum}__{r['gene_cluster_id']} {organism}\n{seq}\n")
+
+write_combined_fasta([
+    ("core", core_rows, "Pseudomonas syringae"),
+    ("aux",  aux_rows,  "Pseudomonas syringae"),
+], "data/ps_syringae_hyp.faa")
+```
+
+After the run, split the output TSV by the prefix on `sequence_id` (e.g., rows where `sequence_id.startswith("core__")`) to report per-stratum statistics.
+
 #### When pulling from `kbase_ke_pangenome` by organism name
 
 If the user named target organisms by common species name (e.g., "P. putida", "D. vulgaris", "B. subtilis") rather than by GTDB clade ID, **always do a name-to-clade resolution pass before pulling sequences**. Common species names do not map directly to GTDB clade IDs, and silent miss-matches will pull the wrong organism's data.
@@ -354,8 +376,9 @@ PATH=./bin:$PATH poetry run gene-annotate \
 
 **`--description-is-organism`**: Include this flag when organism names were placed in the FASTA description lines during input preparation (Step 1) — i.e., when the FASTA was prepared with organism context in the header descriptions. Omit when no organism information is available for any sequence.
 
+**`--model` is a required CLI flag** — always include it. Use `gpt-5.4` (matching prior pilots) unless the user requests a different model. The CLI has no compiled-in default and will exit with an error if omitted. Do not prefix with `openai/` — the CLI accepts the short form only (`gpt-5.4`, not `openai/gpt-5.4`); the CBORG gateway adds the provider prefix internally.
+
 **Optional flags** (include only if user requested):
-- `--model <model>` — override default `gpt-5.2`
 - `--description-is-organism` — include when FASTA descriptions contain organism names
 - `--evalue`, `--min-identity`, `--query-coverage`, `--subject-coverage` — DIAMOND thresholds
 - `--threads <N>` — override default 64
