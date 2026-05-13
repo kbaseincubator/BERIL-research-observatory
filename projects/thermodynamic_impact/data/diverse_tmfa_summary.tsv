@@ -1,0 +1,11 @@
+organism	name	total_reactions	flux_changed_by_tmfa	pct_changed	newly_blocked	newly_active	direction_reversed	marvin_vs_opam2_diffs
+ecoli	Escherichia coli K-12 MG1655	1765	18	1.019830028328612	4	12	2	25
+bsubtilis	Bacillus subtilis 168	1345	0	0.0	0	0	0	0
+pputida	Pseudomonas putida KT2440	1494	24	1.606425702811245	14	9	0	17
+saureus	Staphylococcus aureus NCTC 8325	1128	0	0.0	0	0	0	8
+senterica	Salmonella enterica Typhimurium LT2	1683	20	1.1883541295306002	3	13	4	10
+mtb	Mycobacterium tuberculosis H37Rv	1150	0	0.0	0	0	0	0
+cace	Clostridium acetobutylicum ATCC 824	1066	10	0.9380863039399625	4	6	0	0
+synechocystis	Synechocystis sp. PCC 6803 substr. GT-I	980	0	0.0	0	0	0	0
+kpneumoniae	Klebsiella pneumoniae HS11286	1793	6	0.33463469046291133	0	5	1	6
+dradiodurans	Deinococcus radiodurans ATCC 13939	1070	5	0.4672897196261682	0	4	1	0
