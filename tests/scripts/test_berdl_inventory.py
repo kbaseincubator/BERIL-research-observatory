@@ -166,7 +166,7 @@ def test_format_inventory_hides_globalusers_databases():
 
 
 def test_format_inventory_lists_other_tenants_without_access():
-    """Tenants the user has no accessible databases in show up in a brief footer."""
+    """Non-member tenants the user has no access to show up in a brief footer."""
     from scripts.berdl_inventory import format_inventory
     structure = {"kbase_genomes": ["t1"]}
     tenants = [
@@ -175,7 +175,7 @@ def test_format_inventory_lists_other_tenants_without_access():
         _tenant("planetmicrobe", prefix="planetmicrobe_"),
     ]
     out = format_inventory(structure, tenants=tenants, emoji=False)
-    assert "Other tenants in BERDL (no access): nmdc, planetmicrobe" in out
+    assert "Other tenants in BERDL (no membership): nmdc, planetmicrobe" in out
 
 
 def test_format_inventory_other_tenants_excludes_hidden():
@@ -189,8 +189,25 @@ def test_format_inventory_other_tenants_excludes_hidden():
     ]
     out = format_inventory(structure, tenants=tenants, emoji=False)
     # nmdc is in the footer; globalusers is suppressed entirely.
-    assert "Other tenants in BERDL (no access): nmdc" in out
+    assert "Other tenants in BERDL (no membership): nmdc" in out
     assert "globalusers" not in out
+
+
+def test_format_inventory_separates_member_no_dbs_from_non_member():
+    """Member-with-no-databases tenants get their own footer line, separate from non-members."""
+    from scripts.berdl_inventory import format_inventory
+    structure = {"kbase_genomes": ["t1"]}
+    tenants = [
+        _tenant("kbase", prefix="kbase_"),
+        _tenant("microbialdiscoveryforge", prefix="microbialdiscoveryforge_", is_member=True),
+        _tenant("nmdc", prefix="nmdc_"),
+    ]
+    out = format_inventory(structure, tenants=tenants, emoji=False)
+    assert "Tenants you can access (no databases yet): microbialdiscoveryforge" in out
+    assert "Other tenants in BERDL (no membership): nmdc" in out
+    # The member-but-no-DBs tenant must NOT be lumped into the non-membership line.
+    assert "no membership): microbialdiscoveryforge" not in out
+    assert "no membership): nmdc, microbialdiscoveryforge" not in out
 
 
 def test_format_inventory_no_other_tenants_footer_when_only_user_tenants():
