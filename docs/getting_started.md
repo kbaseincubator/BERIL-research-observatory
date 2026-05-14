@@ -148,7 +148,7 @@ git commit -m "Add initial analysis notebook"
 git push
 ```
 
-Others can see work in progress on the [Observatory UI](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/). Pushing early and often makes your work visible and lets collaborators build on it.
+Others can see work in progress on the [Observatory UI](https://beril.kbase.us/). Pushing early and often makes your work visible and lets collaborators build on it.
 
 ## Step 8: Submit for review when ready
 
@@ -180,7 +180,7 @@ You can keep working on the project after submitting — submission is not a one
 
 ## Resources
 
-- **Observatory UI**: [BERIL Observatory](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/)
+- **Observatory UI**: [BERIL Observatory](https://beril.kbase.us/)
 - **BERDL JupyterHub**: [hub.berdl.kbase.us](https://hub.berdl.kbase.us)
 - **CBORG (LBL users)**: [cborg.lbl.gov](https://cborg.lbl.gov/tools_claudecode/)
 - **Query pitfalls**: [docs/pitfalls.md](pitfalls.md)
