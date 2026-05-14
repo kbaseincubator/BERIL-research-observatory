@@ -2,7 +2,7 @@
 
 ![Architecture](docs/figures/architecture_dark.png)
 
-The **Microbial Discovery Forge** is an AI co-scientist and research observatory, enabling researchers to interface with large-scale biological data through natural language, reusable skills, and shared knowledge.  You can browse the Forge through the [Observatory UI](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/), or engage with it through an AI agent.
+The **Microbial Discovery Forge** is an AI co-scientist and research observatory, enabling researchers to interface with large-scale biological data through natural language, reusable skills, and shared knowledge.  You can browse the Forge through the [Observatory UI](https://beril.kbase.us/), or engage with it through an AI agent.
 
 Currently, it connects to the KBase BER Data Lakehouse (K-BERDL), a curated Delta Lakehouse spanning pangenomics, fitness, biochemistry, metagenomics, and more.
 
@@ -157,7 +157,7 @@ BERIL CLI commands (`beril doctor`, `beril setup`, `beril start`) handle environ
 ## Observatory UI
 A web application is available for browsing collections, projects, and the BERIL Atlas.
 
-The hosted instance is available at: **[BERIL Observatory](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/)**
+The hosted instance is available at: **[BERIL Observatory](https://beril.kbase.us/)**
 
 If you want to run it locally:
 
@@ -253,7 +253,7 @@ BERIL-research-observatory/
 ## Resources
 
 - **BERDL JupyterHub**: [https://hub.berdl.kbase.us](https://hub.berdl.kbase.us)
-- **BERIL Observatory UI**: [http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/](http://beril-observatory.knowledge-engine.development.svc.spin.nersc.org/)
+- **BERIL Observatory UI**: [https://beril.kbase.us/](https://beril.kbase.us/)
 - **KBase**: [https://www.kbase.us](https://www.kbase.us)
 - **Schema Documentation**: [docs/schemas/](docs/schemas/)
 - **Query Pitfalls**: [docs/pitfalls.md](docs/pitfalls.md)
