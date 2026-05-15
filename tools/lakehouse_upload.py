@@ -19,6 +19,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -30,9 +31,29 @@ LAKEHOUSE_BASE = f"{MC_ALIAS}/{BUCKET}/{TENANT_PATH}/projects"
 # S3a path for documentation and Spark references
 S3A_BASE = f"s3a://{BUCKET}/{TENANT_PATH}/projects"
 
-# Files/directories to skip during upload
+# Files/directories to skip during the manifest walk. The manifest is the
+# source of truth for what gets uploaded — upload_project iterates the
+# manifest directly rather than `mc cp --recursive`, so any name in this
+# set is guaranteed to stay out of the lakehouse archive regardless of
+# mc's exclude semantics.
+#
+# `.submit.lock` is held by /submit through Phase 3, so the upload runs
+# while the lock file is still present in the project directory. Without
+# this entry it would be archived in every successful submission.
+#
+# `project_metadata.json` is generated fresh on every upload and added
+# explicitly to the upload list (see `upload_project`). Skipping it from
+# the walk avoids two failure modes: (1) `generate_metadata`'s self-listing
+# would otherwise include the previous run's stale metadata in the new
+# `files[]` array, and (2) if a previous run died between writing the
+# metadata file and the cleanup `unlink`, the stale file would appear in
+# the new manifest, the upload list would then have the same relative
+# path twice, and `expected_remote_count = len(manifest) + 1` would
+# expect two when only one lands — turning a successful retry into a
+# false partial-upload failure.
 SKIP_PATTERNS = {
     "__pycache__", ".ipynb_checkpoints", ".DS_Store", "Thumbs.db",
+    ".submit.lock", "project_metadata.json",
 }
 
 
@@ -209,7 +230,7 @@ def upload_project(project_id, base_path):
     project_path = base_path / "projects" / project_id
 
     if not project_path.exists():
-        print(f"ERROR: Project directory not found: {project_path}")
+        print(f"ERROR: Project directory not found: {project_path}", file=sys.stderr)
         return None
 
     if not _check_mc_alias():
@@ -232,19 +253,78 @@ def upload_project(project_id, base_path):
     metadata_path = project_path / "project_metadata.json"
     metadata_path.write_text(json.dumps(metadata, indent=2, default=str))
 
-    # Upload entire project directory
-    rc, out, err = _mc("cp", "--recursive", f"{project_path}/", remote_path, capture=False)
-    if rc != 0:
-        print(f"ERROR: mc cp failed for {project_id}")
+    # Time the upload step itself for the duration metric
+    upload_start = time.monotonic()
+
+    # Upload entire project directory. Always clean up the generated metadata
+    # file afterwards, regardless of upload outcome — leaving it behind on
+    # failure pollutes git status and confuses later retry manifests.
+    try:
+        # Re-submission contamination guard: if the remote prefix already has
+        # contents from a previous submission, clear them before uploading.
+        # `mc cp --recursive` overlays files but does not delete remote files
+        # absent from the new manifest, so a re-submit that drops files would
+        # leave stale objects in the archive. The pre-clear ensures the
+        # archive at archive_key contains *only* the current approved manifest.
+        # First-time submissions skip this (rc != 0 from `mc ls` on missing
+        # prefix is normal).
+        rc, ls_out, _ = _mc("ls", "--recursive", remote_path)
+        if rc == 0 and any(line.strip() for line in ls_out.split("\n")):
+            rc_rm, _, rm_err = _mc("rm", "--recursive", "--force", remote_path)
+            if rc_rm != 0:
+                print(
+                    f"ERROR: pre-upload clear of {remote_path} failed (rc={rc_rm}); "
+                    f"refusing to upload to avoid mixing with stale archive contents.",
+                    file=sys.stderr,
+                )
+                if rm_err:
+                    print(rm_err, file=sys.stderr)
+                return None
+
+        # Upload only the files we explicitly want in the archive: the
+        # SKIP_PATTERNS-filtered manifest, plus the just-written
+        # `project_metadata.json`. Per-file uploads (rather than
+        # `mc cp --recursive`) ensure transient files like `.submit.lock`
+        # — which `/submit` holds in the project directory through
+        # Phase 3 — never enter the canonical lakehouse copy. SKIP_PATTERNS
+        # is honored by the manifest walker; relying on `mc cp`'s
+        # `--exclude` would couple correctness to mc's glob semantics
+        # across versions, which we'd rather not bet the integrity
+        # boundary on.
+        upload_list = [
+            (Path(f["file_path"]), f["relative_path"]) for f in manifest
+        ]
+        upload_list.append((metadata_path, "project_metadata.json"))
+
+        upload_failures = []
+        for local, rel in upload_list:
+            target = f"{remote_path}{rel}"
+            rc, _, _ = _mc("cp", str(local), target, capture=False)
+            if rc != 0:
+                upload_failures.append(rel)
+        if upload_failures:
+            print(
+                f"ERROR: mc cp failed for {project_id} on "
+                f"{len(upload_failures)} file(s): {upload_failures[:5]}"
+                f"{'...' if len(upload_failures) > 5 else ''}",
+                file=sys.stderr,
+            )
+            return None
+
+        # Validate upload
+        rc, out, _ = _mc("ls", "--recursive", remote_path)
+        remote_count = len([line for line in out.strip().split("\n") if line.strip()])
+
+        duration_seconds = round(time.monotonic() - upload_start, 2)
+    finally:
         metadata_path.unlink(missing_ok=True)
-        return None
 
-    # Validate upload
-    rc, out, _ = _mc("ls", "--recursive", remote_path)
-    remote_count = len([line for line in out.strip().split("\n") if line.strip()])
-
-    # Clean up local metadata file (it's now in the lakehouse)
-    metadata_path.unlink(missing_ok=True)
+    # We uploaded the manifest plus the generated `project_metadata.json`,
+    # so the expected remote count is len(manifest) + 1. Without the +1,
+    # a real project file failing to upload while metadata succeeds would
+    # still satisfy `remote_count >= len(manifest)` and we'd mark an
+    # incomplete archive as `status: ok`.
+    expected_remote_count = len(manifest) + 1  # +1 for project_metadata.json
 
     result = {
         "project_id": project_id,
@@ -253,12 +333,13 @@ def upload_project(project_id, base_path):
         "total_size_bytes": total_size,
         "remote_path": remote_path,
         "s3a_path": f"{S3A_BASE}/{project_id}/",
-        "status": "ok" if remote_count >= len(manifest) else "warning",
+        "duration_seconds": duration_seconds,
+        "status": "ok" if remote_count >= expected_remote_count else "warning",
     }
 
     print(f"  Result: {remote_count} files uploaded")
-    if remote_count < len(manifest):
-        print(f"  WARNING: expected {len(manifest)}, got {remote_count}")
+    if remote_count < expected_remote_count:
+        print(f"  WARNING: expected {expected_remote_count} (manifest + project_metadata.json), got {remote_count}")
 
     return result
 
@@ -400,7 +481,38 @@ def main():
     elif args.all:
         upload_all_projects(args.base_path)
     elif args.project_id:
-        upload_project(args.project_id, args.base_path)
+        result = upload_project(args.project_id, args.base_path)
+        if result is None:
+            sys.exit(1)
+        # Emit a single-line JSON summary as the final line of stdout so
+        # /submit (and other automated callers) can parse the upload result
+        # without scraping freeform text.
+        #
+        # Exit code contract for callers:
+        #   0  = full success; JSON has the success schema
+        #        (archive_key, file_count, byte_total, duration_seconds)
+        #   1  = hard failure; no JSON emitted (error already on stderr)
+        #   2  = partial success; JSON has the success schema PLUS an
+        #        "error" field describing the count mismatch. The archive
+        #        exists at archive_key but is incomplete; the caller should
+        #        treat this as a submission failure (write SUBMISSION_FAILED.md).
+        payload = {
+            "archive_key": result["s3a_path"],
+            "file_count": result["remote_files"],
+            "byte_total": result["total_size_bytes"],
+            "duration_seconds": result["duration_seconds"],
+        }
+        if result["status"] != "ok":
+            # `remote_files` counts everything at archive_key including the
+            # generated `project_metadata.json`; subtract 1 so the message
+            # reflects how many of the local manifest files actually landed.
+            present_manifest = max(0, result["remote_files"] - 1)
+            payload["error"] = (
+                f"partial upload: {present_manifest} of "
+                f"{result['local_files']} local files present at archive_key"
+            )
+        print(json.dumps(payload))
+        sys.exit(0 if result["status"] == "ok" else 2)
     else:
         parser.print_help()
 
