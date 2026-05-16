@@ -34,7 +34,7 @@ When working on a science project, capture learnings in **per-project memory fil
 
 **Each memory entry is project-tagged.** A `[{project_id}]` tag at the start of an entry makes the OV ingestion uniform and enables cross-project search later.
 
-**The central `docs/{pitfalls,discoveries,performance}.md` files are a frozen historical archive.** They predate the per-project memory pattern. Skills still read them (as background context), but no skill writes to them anymore. Retroactive migration of their content into per-project memories is deferred until the OpenViking ingestion layer + UI are in place — at which point the central files can be ingested into OV's memory store and optionally archived.
+**Source-of-truth contract.** `projects/*/memories/*.md` is the raw/provenance memory layer: it records what a specific project captured, reviewed, and approved. The central `docs/{pitfalls,discoveries,performance}.md` files are read-only for this PR: today they are the frozen pre-redirect archive, and long term they should become a processed/curated handbook layer derived from project memories plus human synthesis. Skills may still read `docs/` as background context, but no skill writes raw project memory there anymore. Retroactive migration and curated `docs/` regeneration are deferred until the OpenViking ingestion layer + UI are in place.
 
 ## Documentation Files
 
@@ -59,7 +59,7 @@ Each science project in `projects/` should have:
 - `data/`: Agent-derived data from queries and analysis (gitignore large files)
 - `user_data/`: User-provided input data — gene lists, phenotype tables, external databases (gitignore large files)
 - `figures/`: Key visualizations saved as PNG files
-- `memories/`: Per-project captured knowledge that the OpenViking layer will eventually ingest for cross-project retrieval. Three kinds: `pitfalls.md` (live-captured by `/pitfall-capture`, append-only with corrections), `discoveries.md` and `performance.md` (approval-gated; written by `/submit` Phase 2c from approved `REPORT.md` sections). Created on demand. The central `docs/pitfalls.md` / `docs/discoveries.md` / `docs/performance.md` files are now frozen historical archives.
+- `memories/`: Per-project captured knowledge that the OpenViking layer will eventually ingest for cross-project retrieval. Three kinds: `pitfalls.md` (live-captured by `/pitfall-capture`, append-only with corrections), `discoveries.md` and `performance.md` (approval-gated; written by `/submit` Phase 2c from approved `REPORT.md` sections). Created on demand. These files are the raw/provenance source of truth; central `docs/pitfalls.md` / `docs/discoveries.md` / `docs/performance.md` are read-only in this PR and can evolve later into the processed/curated layer.
 - `requirements.txt`: Python dependencies
 - `src/`: Reusable scripts (if applicable)
 
@@ -342,6 +342,6 @@ plot_df = df_filtered.toPandas()
 2. Large tables (gene, genome_ani) need filters. Never full-scan.
 3. AlphaEarth embeddings only cover 28% of genomes.
 4. Gene clusters are species-specific. Can't compare across species.
-5. Update docs when you learn something worth sharing!
+5. Capture project-specific learnings in `projects/<id>/memories/`; reserve `docs/` for curated, processed guidance.
 6. Use the BERDL notebook helpers to discover the databases and tables your
    account can access.
