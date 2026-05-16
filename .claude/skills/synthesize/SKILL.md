@@ -129,6 +129,19 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 
 *(Notebook: {notebook_name}.ipynb)*
 
+## Discoveries
+
+(Optional section — include only if the analysis surfaced non-trivial findings worth elevating across projects. Skip the section entirely if there's nothing material to capture; an absent section is the natural representation of "no claims of this kind." Each entry is a self-contained insight a reader from another project could learn from.)
+
+- {One-line discovery 1, e.g., "Pangenome openness correlates with environmental breadth in soil-associated genera (rho=0.38, p<0.01)."}
+- {One-line discovery 2 (if applicable)}
+
+## Performance Notes
+
+(Optional section — include only if this project hit non-obvious query timings, optimizations, or anti-patterns that future projects on similar data should know. Skip the section entirely if there's nothing material to capture.)
+
+- {One-line performance observation, e.g., "Joining `species_pangenome_genes` to `species_function_genes` via `species_id` is 3x faster than via `cluster_id` for queries spanning >100 species."}
+
 ## Results
 {Detailed results with embedded figures and markdown tables}
 
@@ -188,6 +201,7 @@ Create or update `projects/{project_id}/REPORT.md` with the following sections:
 - **Collection IDs**: Use the exact BERDL collection identifier (e.g., `kescience_fitnessbrowser`, `kbase_ke_pangenome`) in the Sources table. These IDs link to the collection detail pages on the Research Observatory, which include citation and attribution information for data providers.
 - **README update**: Ensure the collection IDs appear somewhere in the README.md text so the UI can auto-detect and display Data Collections links on the project page.
 - **References**: Always include references, even for well-known data sources. At minimum cite the primary data sources (e.g., Price et al. 2018 for Fitness Browser, Arkin et al. 2018 for KBase).
+- **Discoveries / Performance Notes sections**: optional. Populate when there's something material to capture. **Do not write to per-project memory files directly** — these sections flow through `/berdl-review` (the reviewer evaluates them as part of the report), then `/submit` extracts the approved-and-reviewed content into `projects/{project_id}/memories/{discoveries,performance}.md` at approval time. Writing memories at synthesize time would propagate unvetted claims; the approval-gated path keeps OV-ingestible memories tied to content that survived review. If a section has no entries, omit it from REPORT.md entirely (don't write an empty `## Discoveries` heading); `/submit` treats absent + empty identically and won't write a memory file.
 
 Also update `projects/{project_id}/README.md`:
 - After Step 0, status is always either `active` (forward path) or `analysis` (re-synthesis path, possibly after a `reviewed`/`complete` demote). In both cases, set `## Status` to "Analysis — report drafted, awaiting `/berdl-review` and `/submit`." This is honest about the project's state: any prior approval was archived in Step 0, and any prior reviews are stale via hash mismatch.
@@ -231,4 +245,4 @@ After completing the synthesis, tell the user:
 
 ## Pitfall Detection
 
-When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to the active project's `projects/<id>/memories/pitfalls.md`.

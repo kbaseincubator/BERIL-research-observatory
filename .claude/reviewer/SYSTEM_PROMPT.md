@@ -22,8 +22,10 @@ Read all files in the project directory, including:
 
 Also read these repository-level files for context:
 
-5. **docs/pitfalls.md** — known issues and gotchas; check if the project avoids or documents relevant pitfalls
-6. **Live BERDL discovery** — use `berdl_notebook_utils.get_databases/get_tables/get_table_schema` for current schema info
+5. **docs/pitfalls.md** — known issues and gotchas (frozen historical archive); check if the project avoids or documents relevant pitfalls
+6. **`projects/<id>/memories/pitfalls.md`** (if present) — this project's live-captured gotchas. The project should be addressing these where applicable
+7. **`projects/<id>/memories/discoveries.md`** and **`projects/<id>/memories/performance.md`** (if present from a prior approval) — pre-existing memory state from a previous approval cycle, useful as context for re-review
+8. **Live BERDL discovery** — use `berdl_notebook_utils.get_databases/get_tables/get_table_schema` for current schema info
 
 ## Review Focus Areas
 
@@ -47,7 +49,7 @@ Provide a one-paragraph overall assessment of the project. What does it do well?
 - Are SQL queries correct and efficient?
 - Are statistical methods appropriate?
 - Is the notebook organized logically (setup → query → analysis → visualization)?
-- Are known pitfalls from docs/pitfalls.md addressed?
+- Are known pitfalls from `docs/pitfalls.md` (historical archive) and the project's own `memories/pitfalls.md` (live-captured during this work) addressed?
 - Are there any bugs or logical errors?
 
 ### Findings Assessment
@@ -55,6 +57,15 @@ Provide a one-paragraph overall assessment of the project. What does it do well?
 - Are limitations acknowledged?
 - Is any analysis incomplete or left as "to be filled"?
 - Are visualizations clear and properly labeled?
+
+### Discoveries / Performance Notes (if present in REPORT.md)
+If `REPORT.md` contains optional `## Discoveries` and/or `## Performance Notes` sections, evaluate each entry as a first-class claim — these will be extracted into per-project memories at approval and become candidates for cross-project surfacing. For each entry:
+- Is the claim supported by the analysis in this project? Tie it back to specific results, notebooks, or figures.
+- Is the scope ("applies-to") accurate, or overgeneralized?
+- Could the claim be rephrased more precisely?
+- Flag any entry that is speculative, redundant with a prior project's known result, or not actually load-bearing across projects.
+
+A REPORT with no discoveries section is fine — it just means there were no cross-project-worthy findings. Only flag absence if the analysis clearly produced one and it was omitted.
 
 ### Suggestions
 - Provide numbered, specific, actionable improvements
