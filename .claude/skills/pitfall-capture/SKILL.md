@@ -8,6 +8,12 @@ allowed-tools: Read, Write, Edit, Bash, AskUserQuestion
 
 This skill is not user-invocable. It is referenced by BERDL skills (berdl, berdl-discover, hypothesis, submit) and should be followed whenever an issue is encountered during BERDL work.
 
+## Where pitfalls live
+
+Pitfalls discovered during a specific project's work go in **`projects/<id>/memories/pitfalls.md`** — that project's own memory file, append-only. The central `docs/pitfalls.md` is a frozen historical archive of pre-redirect content; it's still useful for grep/reference when checking for known gotchas, but new pitfalls are NOT written there. The future plan is for OpenViking to ingest `projects/*/memories/pitfalls.md` files for cross-project semantic retrieval; until then, agents can grep both locations.
+
+If a pitfall genuinely doesn't belong to any specific project (e.g., a global BERDL gotcha encountered during free exploration with no current project), prefer to either (a) attach it to the most-relevant active project's memory file, or (b) ask the user where it should live. Don't write to `docs/pitfalls.md`.
+
 ## When to Trigger
 
 Activate this protocol when any of the following occur:
@@ -23,9 +29,13 @@ Activate this protocol when any of the following occur:
 
 ### Step 1: Check for Duplicates
 
-Read `docs/pitfalls.md` and determine whether this issue is already documented.
+Check both locations, in order:
 
-- **If already documented:** Tell the user: "This is a known pitfall — see the '[Section Name]' section in `docs/pitfalls.md`." Quote or summarize the relevant guidance so the user can apply it immediately. **Stop here** — do not proceed to Step 2.
+1. **Project-local first**: read `projects/<id>/memories/pitfalls.md` (if it exists) and look for a matching entry. Iteration on the same project commonly hits the same gotcha twice — checking the project's own memory first catches that.
+2. **Central archive second**: grep `docs/pitfalls.md` for the same issue — many gotchas were captured there pre-redirect.
+
+- **If already documented (in either location):** Tell the user: "This is a known pitfall — see {path}, '[Section Name]' section." Quote or summarize the relevant guidance so the user can apply it immediately. **Stop here** — do not proceed to Step 2.
+- **If the user already has a related entry that's slightly off** (e.g., the original entry's framing has been refined by later understanding, or a fix has been improved): proceed to Step 2 but draft a **follow-up/correction entry** rather than a new pitfall (see Step 3 below).
 - **If not documented:** Proceed to Step 2.
 
 ### Step 2: Ask the User
@@ -41,20 +51,14 @@ Wait for the user's response.
 
 ### Step 3: Draft the Entry
 
-Write a draft pitfall entry following the format conventions in `docs/pitfalls.md`. The entry must include:
+Write a draft pitfall entry. Two shapes depending on whether this is a new pitfall or a correction to an earlier one:
 
-1. **A descriptive heading** (### level)
-2. **A project tag** in bold if the issue arose in a specific project context, e.g., `**[project_name]**`
-3. **Brief explanation** of what the issue is and why it's a problem
-4. **Code example** showing the wrong approach and the correct approach (SQL, Python, or shell as appropriate)
-5. **Solution line** with actionable guidance
-
-Use this template:
+**New pitfall** — use this template:
 
 ```markdown
 ### [Descriptive Title]
 
-**[project_tag]** Explanation of the issue — what goes wrong and why.
+**[project_id]** Explanation of the issue — what goes wrong and why.
 
 ```sql
 -- WRONG: Description of the incorrect approach
@@ -67,39 +71,49 @@ Use this template:
 **Solution**: One-sentence actionable fix.
 ```
 
-Adapt the template as needed — not every pitfall involves SQL. Some may be about Python, environment setup, or data interpretation. The code block language and content should match the actual issue.
+**Correction or follow-up to an existing entry** — use this template (append-only; never edit a prior entry directly):
+
+```markdown
+### Correction to "[earlier entry's title]" ({earlier_entry_date_or_marker})
+
+**[project_id]** What we got wrong before, or what we now know that refines the earlier guidance.
+
+```sql
+-- Updated approach (replaces the earlier "CORRECT" example):
+<refined code>
+```
+
+**Updated solution**: One-sentence actionable fix that supersedes the earlier solution.
+```
+
+The correction entry references the earlier entry by title (and date if helpful), but the earlier entry stays in the file unchanged. This preserves the audit trail of "what we thought when, and how our understanding evolved" — important for future readers/agents and for OV ingestion later.
+
+Adapt the templates as needed — not every pitfall involves SQL. Some may be about Python, environment setup, or data interpretation. The code block language and content should match the actual issue.
 
 ### Step 4: Determine Placement
 
-Identify which section of `docs/pitfalls.md` the entry belongs under. The current sections are:
+The destination file is `projects/<id>/memories/pitfalls.md` for the active project.
 
-- **General BERDL Pitfalls** — REST API, auth, schema introspection, string-typed columns
-- **Pangenome (`kbase_ke_pangenome`) Pitfalls** — SQL syntax, ID formats, species-specific issues
-- **Data Sparsity Issues** — Coverage gaps, EAV format, coordinate quality
-- **Foreign Key Gotchas** — Orphan records, join key mismatches
-- **Data Interpretation Issues** — Flag definitions, count relationships
-- **JupyterHub Environment Issues** — Spark session, Java processes, CLI execution
-- **Pandas-Specific Issues** — `.toPandas()`, NaN handling, type conversion
-- **Fitness Browser Pitfalls** — String columns, case sensitivity, large tables
-- **Genomes Pitfalls** — UUID identifiers, billion-row tables
+If `projects/<id>/memories/` doesn't exist, create it (mkdir -p). If `projects/<id>/memories/pitfalls.md` doesn't exist, the entry is the file's first content — start with a brief one-line preamble (e.g., "# Pitfalls — <project name>") and then the entry.
 
-If the issue doesn't fit any existing section, propose a new section heading.
+If the file does exist, append the new entry at the end. There's no rigid section structure required for a per-project file (it's much smaller than the central archive); but if the project has accumulated a meaningful number of entries (~10+), it's reasonable to add `## Section` groupings at that point.
 
 ### Step 5: Present for Review
 
 Show the user:
 1. The drafted entry text (full markdown)
-2. Where it will be placed (which section of pitfalls.md, after which existing entry)
+2. The destination path: `projects/<id>/memories/pitfalls.md`
+3. Whether it's a new entry or a correction-to-existing
 
-Ask: "Here's the draft entry. Does this look accurate? Should I add it to `docs/pitfalls.md` under the [Section Name] section?"
+Ask: "Here's the draft entry. Does this look accurate? Should I add it to `projects/<id>/memories/pitfalls.md`?"
 
 Wait for approval. If the user wants changes, revise and re-present.
 
-### Step 6: Write to pitfalls.md
+### Step 6: Write to per-project memories
 
-On approval, append the entry to the appropriate section in `docs/pitfalls.md` using the Edit tool. Place it at the end of the relevant section (before the `---` separator or the next section heading).
+On approval, append the entry to `projects/<id>/memories/pitfalls.md` using the Edit tool (or Write if the file is being created).
 
-After writing, confirm: "Added to `docs/pitfalls.md` under [Section Name]."
+After writing, confirm: "Added to `projects/<id>/memories/pitfalls.md`."
 
 Then **resume the original task** — pitfall capture should not derail the user's workflow.
 
@@ -108,5 +122,6 @@ Then **resume the original task** — pitfall capture should not derail the user
 - **Don't interrupt flow unnecessarily.** If the issue is minor and you already know the fix, apply the fix first, then ask about documenting it. The user's primary task always comes first.
 - **One pitfall at a time.** If multiple issues arise, handle each separately to avoid overwhelming the user.
 - **Be specific.** Vague entries like "queries can be slow" are not useful. Include the exact table, the exact error, the exact fix.
-- **Include the project tag** when the pitfall was discovered in the context of a specific project. This helps with traceability.
-- **Update the Quick Checklist** at the bottom of pitfalls.md if the new pitfall warrants a new checklist item.
+- **Always include the project tag** (`[project_id]`) at the start of the entry. The per-project memory file is implicitly project-scoped, but the explicit tag keeps OV ingestion and cross-project search consistent.
+- **Append-only.** Never edit historical entries — write a follow-up "Correction to ..." entry instead. Preserves the audit trail of evolving understanding.
+- **Don't write to the central `docs/pitfalls.md`** — it's a frozen archive. New writes always go per-project.

@@ -72,8 +72,8 @@ Run these checks against the project directory and print a checklist summary:
 
 **Advisory checks** (warn but allow submission):
 - `beril.yaml` exists — if present, check that `status` field is set and that `artifacts` flags are consistent with actual file existence.
-- Discoveries documented in `docs/discoveries.md` — search for `[{project_id}]` tag.
-- Pitfalls documented in `docs/pitfalls.md` — search for the project name or id.
+- Discoveries documented — pass if `projects/{project_id}/memories/discoveries.md` exists, OR `REPORT.md` has a non-empty `## Discoveries` section (which Phase 2c will extract on approval), OR `docs/discoveries.md` (historical archive) contains a `[{project_id}]` tag. Otherwise warn.
+- Pitfalls documented — pass if `projects/{project_id}/memories/pitfalls.md` exists, OR `docs/pitfalls.md` (historical archive) mentions the project name or id. Otherwise warn (not a blocker — many projects don't hit pitfalls worth recording).
 - Research plan documented — `projects/{project_id}/RESEARCH_PLAN.md` exists.
 - Interpretation documented — `REPORT.md` contains a `## Interpretation` section.
 - References documented — `projects/{project_id}/references.md` exists.
@@ -123,10 +123,10 @@ For projects with `beril.yaml`:
      - `sha256sum projects/{project_id}/REPORT.md` vs `approval.report_hash`.
      - `sha256sum projects/{project_id}/REVIEW.md` vs `approval.review_hash` (skip if missing).
      - `sha256sum projects/{project_id}/{approval.review}` vs `approval.review_hash` (skip if missing).
-     - **Notebook hashes** (v5): compute current canonical hashes via the CLI — `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` (use absolute paths; the skill may run from inside `projects/{id}/`, so don't rely on cwd or `PYTHONPATH`). Output is a single-line JSON object `{"<relpath>": "sha256:<hex>", ...}`. Compare against `approval.notebook_hashes` (apply the prefix convention to both sides). Three failure modes:
+     - **Notebook hashes** (v5): compute current canonical hashes via the CLI — `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` (use absolute paths; the skill may run from inside `projects/{id}/`, so don't rely on cwd or `PYTHONPATH`). Output is a single-line JSON object `{"<relpath>": "sha256:<hex>", ...}`. Compare against `approval.notebook_hashes` (apply the prefix convention to both sides). Distinguish **field missing** (legacy pre-v5 approval) from **field present but empty `{}`** (v5 approval recorded with no notebooks). Failure modes:
        - A notebook in `approval.notebook_hashes` whose current hash differs (or the file is missing) → mismatch, mention the specific notebook.
-       - A `.ipynb` file in the current `notebooks/` set that is not in `approval.notebook_hashes` (a new notebook was added after approval) → drift, mention the specific notebook.
-       - `approval.notebook_hashes` is omitted or empty (legacy approval predating v5, or project with no notebooks) → skip notebook checks; the absence of the field doesn't fail validation.
+       - A `.ipynb` file in the current `notebooks/` set that is not in `approval.notebook_hashes` — including the case where the approval recorded `{}` and a `.ipynb` has since been added — → drift, mention the specific notebook(s).
+       - `approval.notebook_hashes` key is **omitted entirely** from the approval block (legacy pre-v5 approval) → skip notebook checks; the absence of the field doesn't fail validation. **Empty `{}` does NOT trigger this skip** — `{}` is an approved empty state and any current `.ipynb` files are unapproved drift per the rule above.
 
      Any hash mismatch (REPORT, REVIEW, or notebooks) OR the both-review-files-missing case triggers the **reopen prompt** (phrase the explanation according to which condition fired):
 
@@ -137,7 +137,15 @@ For projects with `beril.yaml`:
 
      Markers are not consulted in this branch — the approved content no longer matches what's on disk. Doing these checks in Phase 1a (rather than only in Phase 3a) avoids an infinite-retry loop where review drift or loss is only detected mid-flight, after Phase 2 has been skipped: without an automated demote path, the user has no way out.
 
-  2. **Then** branch on markers (`SUBMISSION_FAILED.md` always wins on conflict):
+  2. **Then recover/reconcile approval-gated memory files before any marker-based early exit.** Re-run the same 2c-pre memory extraction logic against the approved `REPORT.md` and apply the same staged memory actions from 2c-write for `projects/{project_id}/memories/{discoveries,performance}.md`. This is intentionally idempotent:
+
+     - A staged `write` overwrites the corresponding memory file with the approved section content and the current `approval.at` / `approval.review` provenance line.
+     - A staged `delete-if-exists` removes the corresponding memory file if it exists.
+     - Existing matching files are fine; rewriting them is acceptable.
+
+     Do this even when `SUBMITTED.md` is present and the run would otherwise exit as already submitted. This closes the retry gap where a previous `/submit` wrote `status: complete` and `approval` but was interrupted before applying `memories/{discoveries,performance}.md`. If duplicate section validation somehow fails here, abort with the same duplicate-heading error as 2c-pre; the approved report is malformed and must be demoted/re-reviewed rather than guessed.
+
+  3. **Then** branch on markers (`SUBMISSION_FAILED.md` always wins on conflict):
 
      - `SUBMITTED.md` present **and** `SUBMISSION_FAILED.md` absent → **verify both the join key and the latest submissions entry** before treating as idempotent. (1) Parse `SUBMITTED.md`'s `**Approved at**: {iso}` line and compare to the current `beril.yaml.approval.at`; mismatch (the marker is from a prior approval that should have been cleared during a re-open) → treat `SUBMITTED.md` as stale, delete it, and fall through to the "both markers absent" branch below. (2) On match, also consult `beril.yaml.submissions[]` for the **most recent** entry with `approved_at == approval.at`. If that latest entry's `status: success` → idempotent. Print `INFO  Already submitted on {SUBMITTED.md submitted_at}; archive: {archive_key}; see SUBMITTED.md for details.` Exit 0. If the latest entry's `status: failed` (a stale `SUBMITTED.md` from an earlier success that was followed by a failed retry, plus the failure marker was then deleted somehow) → delete the stale `SUBMITTED.md` and proceed to Phase 3 only. If no submissions entry exists for this `approved_at` at all → recreate-from-marker case, accept idempotent.
      - `SUBMISSION_FAILED.md` present (regardless of `SUBMITTED.md`) → proceed to Phase 3 only (skip approval; approval is recorded and report hash is current). Phase 3's pre-upload normalization will clean up the marker conflict.
@@ -187,7 +195,26 @@ Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` a
 
 #### 2c. Write approval artifacts (local filesystem)
 
-- Compute notebook hashes (v5): invoke `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` to get a JSON dict of `{relpath: "sha256:<hex>"}`. Result is sorted by path, ready for stable YAML output. Empty dict for projects without `notebooks/`. Values are already `sha256:`-prefixed and can be written to YAML verbatim.
+Phase 2c is split into a **pre-write validation pass** (no state mutation) followed by the **write pass**. All inputs that can fail validation are checked before any file is mutated, so a malformed REPORT.md leaves the project at `status: reviewed` with zero partial state.
+
+##### 2c-pre. Validate inputs and stage memory extractions (no writes yet)
+
+- **Compute notebook hashes (v5)**: invoke `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` to get a JSON dict of `{relpath: "sha256:<hex>"}`. Result is sorted by path, ready for stable YAML output. Empty dict for projects without `notebooks/`. Values are already `sha256:`-prefixed and can be written to YAML verbatim. (Read-only; safe to do here.)
+- **Stage memory extractions** from `REPORT.md`. This is how reviewed-and-approved discoveries/performance claims become OV-ingestible memories without contaminating the layer with unvetted synthesizer output. Validate and capture in memory only — no files are written or deleted in this pre-pass.
+
+  For each section name in `["Discoveries", "Performance Notes"]` (mapping to `discoveries.md` and `performance.md` respectively):
+
+  1. **Detect duplicates first.** If the same `## {SectionName}` heading appears more than once in `REPORT.md` (lines matching `^## {SectionName}\s*$`, case-sensitive, exact match modulo trailing whitespace), **abort with**: `Error: REPORT.md has duplicate '## {SectionName}' headings; cannot extract memory unambiguously. Fix REPORT.md and re-run /submit.` Don't guess which section to use; this indicates a malformed REPORT. Phase 2c stops here; the project remains at `status: reviewed` with no files modified (this check runs before any write below).
+  2. **Find the section.** Locate the single matching `^## {SectionName}\s*$` line. Capture content from the line *after* the heading until the next `^## ` heading or EOF.
+  3. **Trim whitespace.** Strip leading and trailing whitespace from the captured content. `### subheadings` and `#### sub-subheadings` inside the captured range are preserved verbatim — they're part of the section.
+  4. **Classify the staged action** (record this in memory; execute in 2c-write below):
+     - **Section absent from REPORT.md, OR present but empty after trimming** → staged action: `delete-if-exists` for `projects/{project_id}/memories/{discoveries|performance}.md`. The live memory must match the approved state; an absent or empty section in the latest approval means there are no current claims of that kind.
+     - **Section present and non-empty after trimming** → staged action: `write` with the captured trimmed content.
+
+  After this pre-pass, you have: notebook hashes, plus a list of staged memory actions (per section: `delete-if-exists` or `write` with content). No filesystem changes have occurred. From here on, only filesystem operations remain — they should not fail in normal operation.
+
+##### 2c-write. Apply approval mutations
+
 - Update `projects/{project_id}/beril.yaml`:
   ```yaml
   status: complete
@@ -198,7 +225,7 @@ Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` a
     report_hash: "sha256:<REPORT.md hex>"
     review: "REVIEW_N.md"
     review_hash: "sha256:<REVIEW_N.md hex>"
-    notebook_hashes:                              # v5; omit (or write {}) if no notebooks/
+    notebook_hashes:                              # v5; always write this field for v5 approvals — `{}` when the project has no notebooks. Field omission is reserved for legacy pre-v5 approvals.
       "notebooks/01_setup.ipynb": "sha256:<hex>"
       "notebooks/02_analysis.ipynb": "sha256:<hex>"
   ```
@@ -211,6 +238,17 @@ Immediately before writing approval artifacts, recompute `sha256sum REPORT.md` a
   Completed — {one-line summary from REPORT.md `## Key Findings`}.
   ```
   If `REPORT.md` doesn't have a clear one-liner, write a brief summary based on the report's findings.
+- **Apply staged memory actions** captured in 2c-pre:
+  - For each `delete-if-exists` action → if `projects/{project_id}/memories/{kind}.md` exists, delete it. (`mkdir -p projects/{project_id}/memories` is unnecessary in this branch.) Don't write a tombstone or empty file.
+  - For each `write` action → create `projects/{project_id}/memories/` if needed, then write `projects/{project_id}/memories/{kind}.md`:
+    ```markdown
+    # {SectionName} — {project_id}
+
+    <!-- [{project_id}] {approval.at}  approved-report extraction (REVIEW: {approval.review}) -->
+
+    {trimmed captured content}
+    ```
+    The HTML-comment provenance line keeps the file readable as plain markdown while making the generation context unambiguous (project tag, approval timestamp, source review). Overwrite the file if it exists from a prior approval.
 - **Do NOT pre-clear** existing `SUBMITTED.md` or `SUBMISSION_FAILED.md`. Markers are managed exclusively by Phase 3 success/failure handlers. This avoids ambiguity if Phase 3 is interrupted.
 
 At this point the project is **approved locally** regardless of upload outcome. The user can `git add` and commit if they want git history to reflect the approval.
@@ -222,8 +260,9 @@ At this point the project is **approved locally** regardless of upload outcome. 
 Run unconditionally (including retry-only flows that entered Phase 3 directly from Phase 1 on `status: complete`):
 
 - **Recover from interrupted Phase 2 if needed**: check whether `projects/{project_id}/REVIEW.md` exists. If it does not (the previous run died between writing the approval block and copying the review file), recreate it: copy `projects/{project_id}/{approval.review}` (e.g., `REVIEW_3.md`) to `projects/{project_id}/REVIEW.md`. Then verify `sha256sum REVIEW.md == approval.review_hash`; mismatch means the underlying numbered review was edited since approval — abort with `Error: REVIEW_N.md changed since approval; cannot recover. Demote the project (rerun /berdl-review) and re-approve.`
+- **Recover approval-gated memory files if needed**: Phase 1a already reconciles `projects/{project_id}/memories/{discoveries,performance}.md` for complete projects before marker handling. If Phase 3 is reached directly from the normal reviewed path after Phase 2c, the 2c-write memory actions have already been applied. Do not add a second, divergent memory recovery path here; keep Phase 3's memory invariant tied to Phase 1a/2c so retry behavior and fresh approvals use the same extraction rules.
 - **Verify the canonical and numbered review hashes**. Recompute `sha256sum REPORT.md`, `sha256sum REVIEW.md` (the canonical copy), AND `sha256sum projects/{project_id}/{approval.review}` (the numbered file named in the approval, e.g. `REVIEW_3.md` — both files end up in the lakehouse archive). All three must match `approval.report_hash` / `approval.review_hash` / `approval.review_hash` respectively (apply `unprefixed()` to the stored values). If any has changed, abort with `Error: files changed since approval; please re-run /submit.` This guards retry paths and the brief window between Phase 2 and Phase 3, and catches the case where the canonical `REVIEW.md` is unchanged but the numbered `REVIEW_N.md` was edited.
-- **Verify notebook hashes** (v5). Re-run `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` and compare against `approval.notebook_hashes`. Any mismatch, missing, or new notebook → abort with `Error: notebook(s) changed since approval: <list>; restore the original file from version control, or run /synthesize to demote and re-approve.` If `approval.notebook_hashes` is omitted/empty (legacy approval or project without notebooks), skip this check.
+- **Verify notebook hashes** (v5). Re-run `python {repo_root}/tools/notebook_hash.py compute-hashes {project_path}` and compare against `approval.notebook_hashes`. Any mismatch, missing, or new notebook (including a current `.ipynb` not present when the approval recorded `{}`) → abort with `Error: notebook(s) changed since approval: <list>; restore the original file from version control, or run /synthesize to demote and re-approve.` Skip this check **only when `approval.notebook_hashes` is omitted entirely** (legacy pre-v5 approval). An explicit empty `{}` is an approved empty state and does NOT bypass the check — current `.ipynb` files would be unapproved drift.
 - **Clear both marker files** before upload, so the post-upload step (success or failure) writes a clean state and an interrupt mid-Phase-3 doesn't leave a stale marker that misleads the next `/submit` run. Delete both `SUBMITTED.md` and `SUBMISSION_FAILED.md` if present. Also remove the `(Submission pending; see SUBMISSION_FAILED.md.)` parenthetical from `README.md` `## Status` if present. The `beril.yaml.submissions[]` audit log retains history; markers are reconstituted by Phase 3c per outcome.
 
 #### 3b. Run upload
@@ -352,4 +391,4 @@ After Phase 3 completes, exactly one of `SUBMITTED.md` or `SUBMISSION_FAILED.md`
 
 ## Pitfall Detection
 
-When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to the active project's `projects/<id>/memories/pitfalls.md`.

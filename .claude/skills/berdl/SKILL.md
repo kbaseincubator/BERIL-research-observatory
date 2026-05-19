@@ -37,7 +37,14 @@ spark.sql("DESCRIBE EXTENDED DATABASE.TABLE").toPandas()
 
 For pattern guidance, read [`modules/query-patterns.md`](modules/query-patterns.md) (universal SQL safety/perf rules) and [`modules/cross-database.md`](modules/cross-database.md) (cross-DB join recipes).
 
-For curated database-specific gotchas (NULL conventions, ID formats, missing-column workarounds, JOIN-key surprises, large-table guards), grep `docs/pitfalls.md` for the database name. Example: `grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md`.
+For curated database-specific gotchas (NULL conventions, ID formats, missing-column workarounds, JOIN-key surprises, large-table guards), grep both the central archive and per-project memories:
+
+```bash
+grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md         # frozen historical archive
+grep -l kbase_ke_pangenome projects/*/memories/pitfalls.md     # per-project gotchas (recent)
+```
+
+The central file is the historical archive; per-project memories may contain newer or project-specific gotchas hit during analysis.
 
 **Read the appropriate module** for database-specific tables, schemas, and query patterns.
 **Read [query-patterns.md](modules/query-patterns.md)** before writing any SQL — it contains mandatory safety rules and performance guidance.
@@ -166,4 +173,4 @@ The following scripts exist and are referenced by skills. **Do not invent script
 
 ## Pitfall Detection
 
-When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to the active project's `projects/<id>/memories/pitfalls.md`.
