@@ -66,23 +66,50 @@ Each science project in `projects/` should have:
 ### Status enum (`beril.yaml`)
 
 ```
-exploration → proposed → active → analysis → review → complete
+exploration → proposed → active → analysis → reviewed → complete
 ```
 
-| Status | Meaning | Created by |
+| Status | Meaning | Set by |
 |---|---|---|
 | `exploration` | Project scaffolded; no `RESEARCH_PLAN.md` yet. Queries, user data, exploration notebooks live here. | `/berdl_start` Phase 0 |
 | `proposed` | `RESEARCH_PLAN.md` written. Awaiting plan-review checkpoint approval. | `/berdl_start` Phase B |
 | `active` | Plan approved; analysis notebooks running. | `/berdl_start` Phase C |
 | `analysis` | `REPORT.md` written. | `/synthesize` |
-| `review` | `/submit` invoked; `REVIEW.md` produced. | `/submit` |
-| `complete` | Review passed and lakehouse upload done. | `/submit` |
+| `reviewed` | At least one `REVIEW_N.md` exists with a footer hash matching the current `REPORT.md`. | `/berdl-review` |
+| `complete` | Human PI has approved via `/submit`. Approval recorded in `beril.yaml.approval`. Independent of upload outcome. | `/submit` |
+
+`complete` is decoupled from the lakehouse upload outcome. Upload state is tracked via filesystem markers (see "Filesystem markers" below), not status.
+
+### Filesystem markers
+
+Two visible-from-`ls` files in `projects/<id>/` signal upload state. Exactly one is present after a `/submit` Phase 3 run; never both. If both are seen later (manual edits or partial failures outside `/submit`'s control), `SUBMISSION_FAILED.md` always wins — it represents the more recent attempt's outcome.
+
+| File | Meaning |
+|---|---|
+| `SUBMITTED.md` | The most recent lakehouse upload succeeded. Contains archive key, timestamp, ORCID, file/byte counts, and the join key (`approved_at`) into `beril.yaml.submissions[]` for full history. |
+| `SUBMISSION_FAILED.md` | The most recent lakehouse upload failed. Contains the error and a "re-run `/submit`" hint. Cleared on next successful retry. |
+
+**The marker files are intentionally local-only.** They're written *after* the lakehouse upload returns, so they will not appear inside the lakehouse copy of the project. That's by design — they exist for human visibility on the user's machine ("did this submit?"), not as part of the archived artifact.
+
+**The archive's `beril.yaml.submissions[]` lags by one entry.** The success record for the current submission is appended locally *after* the upload completes, so the archive's `beril.yaml` always lacks the entry for the upload that created the archive itself. This is acceptable: the archive's mere existence at `archive_key` is the proof that the submission happened — the entry is metadata, not the artifact. Any subsequent re-submit's archive will contain the previous success record. Implementations that need the current submission record archived can add a post-upload `mc cp beril.yaml` step, but `/submit` doesn't do this today.
 
 ### Downstream gating
 
-- **`/submit`** requires `status: analysis` or later. It rejects `exploration` (no plan), `proposed` (no analysis), and `active` (no REPORT). Run `/synthesize` first to draft `REPORT.md` and flip status to `analysis`. Re-submission from `review` or `complete` (e.g., after addressing reviewer feedback) is allowed.
-- **`/synthesize`** requires `status: active` for the normal forward path (`active` → `analysis`). It rejects `exploration` (no plan to synthesize against) and `proposed` (no notebook outputs to interpret). `analysis`, `review`, and `complete` are accepted for re-synthesis (e.g., updating an existing report) and the status is preserved without downgrade.
-- **`/berdl-review`** is advisory and accepts any status with the appropriate `--type` flag (`--type plan` for plan review, etc.).
+- **`/submit`** requires the project to be at `reviewed` (the normal forward path) or `complete` (for retries — see `/submit` skill for the marker-and-hash-driven branching). Earlier statuses fail with phase-specific messages: `exploration` → write the plan; `proposed` → run analysis notebooks; `active` → run `/synthesize`; `analysis` → run `/berdl-review`. Re-submission flows (after a re-open via `/synthesize` on a `complete` project) detect via `submissions[].success` and warn that the previously archived lakehouse copy will be replaced.
+- **`/synthesize`** requires `status: active` for the normal forward path (`active` → `analysis`). It rejects `exploration` (no plan to synthesize against) and `proposed` (no notebook outputs to interpret). `analysis` is preserved (re-synthesis on a pre-review project). `reviewed` is **silently demoted** to `analysis` (the natural iteration loop — existing reviews go stale via hash mismatch). `complete` requires explicit confirmation, archives the existing approval to `previous_approvals`, and demotes to `analysis`.
+- **`/berdl-review`** is the only review tool. It writes numbered `REVIEW_N.md` files via `tools/review.sh`, which embeds a `<!-- report_hash: sha256:<hex> -->` footer (the hash of `REPORT.md` at review time). Allowed starting statuses: `analysis`, `reviewed`, `complete` (for `complete`, requires a hash-mismatch demote-or-abort confirmation up front). It rejects earlier statuses with a "no REPORT.md to review yet" message. `--type plan` reviews are independent of the lifecycle.
+
+### Approval, submission, and re-open
+
+The lakehouse archive — not git — is the source of truth for "this project was submitted." Local files (`beril.yaml`, marker files) tell the user what's happened on their machine; git history is convenience.
+
+`beril.yaml` records a structured audit trail:
+
+- `approval` — the current approval block (only present at `complete`). Fields: `by` (ORCID), `at` (ISO timestamp), `report_hash`, `review` (filename), `review_hash`, and `notebook_hashes` (a `{relative_path: "sha256:<hex>"}` mapping covering each `.ipynb` under `notebooks/`, computed via canonical hashing in `tools/notebook_hash.py` so JupyterLab autosave noise doesn't trigger spurious mismatches but cell source/output changes do — catches accidental notebook re-execution between approval and upload). Hash values are stored with a `sha256:` prefix; comparison sites strip the prefix via `tools.notebook_hash.unprefixed()` before matching against raw `sha256sum` output.
+- `previous_approvals: []` — list of archived approvals from prior re-open cycles. Each entry has the same shape as `approval` plus an `archived_at` ISO timestamp recording when it was moved here. Demotion paths in `/synthesize`, `/submit`, `/berdl-review`, and `/berdl_start` resume detection all set this field.
+- `submissions: []` — list of upload attempts (success and failure). Each entry has `status` (`success` or `failed`), `attempted_at`, `approved_at` (the **join key** to a current or previous approval), and on success `archive_key`, `file_count`, `byte_total`, `duration_seconds`.
+
+**Re-open semantics**: if the user discovers an error in a `complete` project, running `/synthesize` triggers an explicit "re-running synthesis will demote this project to `analysis`" prompt. On confirmation, the current `approval` moves to `previous_approvals`, marker files are deleted (audit lives in `beril.yaml`), and `REPORT.md` is regenerated. After `/berdl-review` and `/submit`, the new approval prompt warns that approving will replace the existing lakehouse archive.
 
 ### Mandatory plan-review checkpoint
 
