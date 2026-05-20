@@ -1,7 +1,7 @@
 project_id: oak_ridge_cultivation_gap
 status: complete
 created_at: "2026-05-07T16:50:00Z"
-last_session_at: "2026-05-07T23:30:00Z"
+last_session_at: "2026-05-20T00:00:00Z"
 branch: projects/oak_ridge_cultivation_gap
 engine:
   name: claude
