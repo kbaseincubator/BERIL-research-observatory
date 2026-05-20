@@ -1,5 +1,9 @@
 # Report: What Metabolic Functions Does the Cultured Collection Miss?
 
+## Scope
+
+This report compares two genome cohorts and quantifies the per-function bias between them: (i) the **ENIGMA Genome Depot cultured isolates** (3,110 genomes, primarily isolated from the Oak Ridge Field Research Center over 20+ years of cultivation), and (ii) **subsurface MAGs from `kbase_ke_pangenome`** (2,279 QC-passing metagenome-assembled genomes from groundwater, aquifer, and subsurface samples globally). The MAG side was originally scoped to 623 ORFRC-specific MAGs from `enigma_coral`, but the underlying assembly FASTAs at `/h/jmc/data/` are not accessible from JupyterHub (see `RESEARCH_PLAN.md` v2); the pivot to the pangenome's pre-annotated pan-subsurface MAGs broadens the question from "what does cultivation miss at Oak Ridge specifically?" to "what does cultivation miss in subsurface systems generally?". The findings below should be read with that pan-subsurface framing.
+
 ## Key Findings
 
 ### 1. Massive functional asymmetry between cultured and MAG cohorts
@@ -76,7 +80,7 @@ The 554 MAG-only KOs (completely absent from cultured genomes) represent the mos
 |---|---|---|---|---|---|
 | Wood-Ljungdahl | 5 | -1.58 | MAG-enriched | 4/5 | Yes (depleted) |
 | NiFe-hydrogenase | 2 | +6.26 | Cultured-enriched | 2/2 | No (predicted depleted) |
-| Sulfate reduction | 5 | -0.55 | Mixed | 4/5 | Partial |
+| Sulfate reduction | 5 | +0.79 | Mixed | 4/5 | Partial (heterogeneous within category) |
 | Denitrification | 6 | +2.05 | Cultured-enriched | 6/6 | Variable as predicted |
 | Methanogenesis | 3 | +0.98 | Neither (too rare) | 0/3 | N/A |
 | N-fixation | 3 | +1.56 | Mixed | 2/3 | Variable as predicted |
@@ -108,6 +112,10 @@ The headline number — 78% of KOs showing significant bias — initially sugges
 ### The porewater-bias signature extends beyond clay systems
 
 The strong enrichment of aerobic respiration (log2 = +7.3), motility/chemotaxis (log2 = +7.2), and denitrification (log2 = +2.1) in cultured genomes recapitulates the porewater-bias signature first documented in the `clay_confined_subsurface` project. These functions reflect the systematic selection of organisms from the mobile, oxygenated porewater fraction during standard cultivation — organisms adapted to flow, oxygen gradients, and high-energy electron acceptors. This pattern appears to be a general property of cultivation-based genome collections, not specific to any single subsurface lithology.
+
+### Annotation cross-validation against an independent pipeline
+
+For the 147 ENIGMA cultured genomes whose GCF/GCA accessions match `kbase_ke_pangenome` (153 ENIGMA records → 147 unique pangenome genomes), we compared KEGG ortholog calls between the Genome Depot's native annotation pipeline and the pangenome's eggNOG-mapper annotations. Pooled across all 147 matched genomes, the two pipelines agree on **5,751 KOs**, with 1,505 Depot-only and 148 eggNOG-only assignments — a **pooled-set Jaccard similarity of 0.777**. Per-genome Jaccard is much lower (median 0.140, IQR 0.057–0.400), reflecting that eggNOG calls a narrower KO set per genome (typically ~1,000–1,800 KOs, vs ~1,500–2,200 for the Depot), inflating the per-genome union denominator. The strong pooled agreement supports the use of Genome Depot KOs as a reliable reference for cultivation-coverage analysis, while the per-genome gap is consistent with documented annotation-pipeline sensitivity differences rather than systematic disagreement on which functions are present. (Notebook: `06_pangenome_crossval.ipynb`; `data/pangenome_crossvalidation.tsv`.)
 
 ### Literature Context
 

@@ -10,9 +10,11 @@ Complete — see [Report](REPORT.md) for findings. Analysis identifies a massive
 
 ## Overview
 
-BERDL contains both cultured isolate genomes (ENIGMA Genome Depot, 3,110 genomes with rich KO/COG/Pfam annotations) and metagenome-assembled genomes (623 MAGs from 15 ORFRC wells) from the Oak Ridge subsurface. This project directly compares the functional gene content of these two collections to produce a per-function "cultivation-coverage" table — identifying which metabolic capabilities are well-represented by culture and which require MAG-based analysis.
+BERDL contains both cultured isolate genomes (ENIGMA Genome Depot, 3,110 genomes with rich KO/COG/Pfam annotations) and metagenome-assembled genomes from subsurface environments. This project directly compares the functional gene content of these two collections to produce a per-function "cultivation-coverage" table — identifying which metabolic capabilities are well-represented by culture and which require MAG-based analysis.
 
-The approach extends the porewater-bias diagnostic developed in `clay_confined_subsurface` to a contaminated basalt-hosted subsurface system, using a literature-grounded marker dictionary spanning anaerobic respiration, C/N cycling, metal resistance, mobile genetic elements, and CPR/DPANN-signature functions. The comparison framework is packaged as a reusable module for future BERDL projects.
+**Cohort scope.** The cultured cohort is the ENIGMA Genome Depot (predominantly Oak Ridge Field Research Center isolates). The MAG cohort was originally scoped to 623 ORFRC-specific MAGs from `enigma_coral`, but the parent assembly FASTAs at `/h/jmc/data/` are not accessible from JupyterHub; the analysis pivoted (RESEARCH_PLAN v2) to 2,279 QC-passing subsurface/groundwater MAGs from `kbase_ke_pangenome` with pre-existing bakta KEGG annotations. The comparison therefore answers "what does cultivation miss in subsurface systems generally?" rather than an ORFRC-only question — broader, but not site-matched.
+
+The approach extends the porewater-bias diagnostic developed in `clay_confined_subsurface` to a wider subsurface context, using a literature-grounded marker dictionary spanning anaerobic respiration, C/N cycling, metal resistance, mobile genetic elements, and CPR/DPANN-signature functions. The comparison framework is packaged as a reusable module for future BERDL projects.
 
 ## Quick Links
 
