@@ -18,7 +18,7 @@ related_collections:
   - kbase_uniref90
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.pangenome-architecture
   - topic.plant-microbiome-function
@@ -56,6 +56,25 @@ order: 60
 ## Why It Matters
 
 The Functional Innovation KO Atlas is exactly the kind of derived product that should compound across projects if it is useful. It needs a first reuse test that asks whether it changes interpretation, not just whether it can be joined.
+
+## Review Brief
+
+What changed: the paired product page now asks whether stable artifacts and downstream consumers exist.
+
+Why review matters: this opportunity should decide whether the KO atlas is a reusable layer or a project-specific synthesis.
+
+Evidence to inspect:
+
+- [Functional Innovation KO Atlas](/atlas/data/derived-products/functional-innovation-ko-atlas) for artifacts and caveats.
+- [Pangenome Openness Metrics](/atlas/data/derived-products/pangenome-openness-metrics) for a likely join partner.
+- `pangenome_pathway_ecology`, `pangenome_pathway_geography`, and `pathway_capability_dependency` for consumer contexts.
+
+Questions for reviewers:
+
+- What downstream analysis would fail or improve because this product exists?
+- Which resolution should the first reuse test use?
+- Does KO innovation add signal beyond baseline pathway counts?
+- What artifact needs to exist before this product can be promoted?
 
 ## Evidence Base
 

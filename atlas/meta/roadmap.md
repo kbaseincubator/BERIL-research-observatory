@@ -17,6 +17,7 @@ related_pages:
   - method.agent-maintenance
   - opportunities.index
   - meta.metrics-to-watch
+  - meta.review-queue
 order: 1
 ---
 
@@ -45,3 +46,7 @@ Opportunity-centered Atlas expansion: concrete next analyses, categorical priori
 ## Phase 5
 
 Naming reconciliation: move the corpus to `atlas/`, make Atlas model/parser/tooling names canonical, remove legacy compatibility routes, and keep maintainer workflows aligned with the public BERIL Atlas product name.
+
+## Phase 6
+
+Content quality and review discipline: deepen flagship topics, use inventory signals as review packets, integrate new project results into existing synthesis, and keep derived-product promotion tied to reuse, ownership, caveats, and downstream opportunities.

@@ -9,8 +9,7 @@ source_projects:
   - metal_fitness_atlas
   - functional_dark_matter
 source_docs:
-  - docs/schemas/alphafold.md
-  - docs/schemas/uniprot.md
+  - docs/schema.md
 related_collections:
   - kbase_uniprot
   - kbase_ke_pangenome
@@ -22,7 +21,7 @@ related_pages:
 evidence:
   - source: metal_specificity
     support: Top candidates such as UCP030820, YebC, and DUF1043/YhcB come from metal-specific fitness prioritization.
-  - source: docs/schemas/alphafold.md
+  - source: docs/schema.md
     support: Structure resources can test whether candidate families have metal-binding, transport, or topology evidence.
 order: 20
 ---

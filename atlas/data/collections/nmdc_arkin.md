@@ -7,9 +7,9 @@ summary: Multi-omics analysis data (annotations, embeddings, metabolomics, prote
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/nmdc.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - nmdc_arkin
 confidence: medium

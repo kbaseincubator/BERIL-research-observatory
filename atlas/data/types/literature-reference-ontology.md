@@ -7,7 +7,7 @@ summary: Reference layers that connect sequence-level observations to papers, st
 source_projects:
   []
 source_docs:
-  - docs/collections.md
+  - ui/config/berdl_collections_snapshot.json
   - ui/config/berdl_collections_snapshot.json
 related_collections:
   - kescience_paperblast

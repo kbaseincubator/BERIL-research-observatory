@@ -19,7 +19,7 @@ related_collections:
   - nmdc_metadata
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.microbial-ecotypes-environment
   - topic.host-microbiome-translation
@@ -59,6 +59,25 @@ order: 30
 ## Why It Matters
 
 Ecotype labels are useful only if they transfer beyond the conditions that produced them. The Atlas already records the tension: labels can support ecological synthesis, but they can also encode batch, host, or metadata artifacts.
+
+## Review Brief
+
+What changed: ecotype assignments are being reused across host, plant, and environment pages, so validation needs to become a first-class benchmark rather than page-level caveat text.
+
+Why review matters: reviewers should decide what validation tier is required before ecotypes support intervention, target, or broad ecology claims.
+
+Evidence to inspect:
+
+- [Ecotype Assignments](/atlas/data/derived-products/ecotype-assignments) for reusable labels.
+- [Ecotype labels versus translational leakage](/atlas/conflicts/ecotype-translation-leakage) for failure modes.
+- `ecotype_env_reanalysis`, `plant_microbiome_ecotypes`, and `ibd_phage_targeting` for cross-domain reuse.
+
+Questions for reviewers:
+
+- Which holdout split matters most: study, host, geography, environment, or cohort?
+- Should every ecotype label receive a validation tier?
+- What leakage checks are mandatory before translational reuse?
+- Which downstream page should be updated first if labels fail validation?
 
 ## Evidence Base
 

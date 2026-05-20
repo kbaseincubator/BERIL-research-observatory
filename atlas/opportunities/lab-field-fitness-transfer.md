@@ -19,7 +19,7 @@ related_collections:
   - nmdc_metadata
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.fitness-validated-function
   - topic.microbial-ecotypes-environment
@@ -59,6 +59,26 @@ order: 40
 ## Why It Matters
 
 The Atlas increasingly uses laboratory fitness to support ecological interpretation. That is valuable, but it needs an audit trail: which fitness signals transfer, under what metadata conditions, and where field covariates dominate?
+
+## Review Brief
+
+What changed: more topics now use lab-to-field logic, including metal validation, ecotype/environment pages, and long-term perturbation interpretation.
+
+Why review matters: reviewers should define when lab fitness is a strong prior, when it is validated field evidence, and when missing covariates block interpretation.
+
+Evidence to inspect:
+
+- [Lab fitness signals versus field ecology](/atlas/conflicts/lab-fitness-field-generalization) for the guardrail.
+- [Environment Harmonization Labels](/atlas/data/derived-products/environment-harmonization) for field metadata quality.
+- `lab_field_ecology`, `field_vs_lab_fitness`, and `bacdive_metal_validation` for known transfer cases.
+- `harvard_forest_warming` for a design-confound caution around omics interpretation.
+
+Questions for reviewers:
+
+- Which lab phenotypes transfer well enough to support field claims?
+- What metadata completeness threshold should be required?
+- Should failed or blocked transfer cases become a derived benchmark?
+- Which missing geochemistry or environment fields would unlock the most claims?
 
 ## Evidence Base
 

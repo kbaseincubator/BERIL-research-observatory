@@ -20,7 +20,7 @@ related_collections:
   - nmdc_metadata
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.critical-minerals
   - topic.amr-resistance-ecology
@@ -60,6 +60,26 @@ order: 20
 ## Why It Matters
 
 The Atlas currently treats metal-AMR co-selection as plausible but unresolved. This opportunity turns the tension into a concrete analysis: do metal-associated taxa, genes, or environments also show enriched AMR mechanisms after controlling for taxonomy and habitat?
+
+## Review Brief
+
+What changed: the analysis now needs to account for prophage density, metal type diversity, soil metal co-contamination, and mobile-element burden in addition to the original metal and AMR profiles.
+
+Why review matters: this opportunity is ready enough to execute, but only if the design distinguishes co-selection from correlated habitat, taxonomy, sampling, and mobile-element effects.
+
+Evidence to inspect:
+
+- [Metal-AMR co-selection readiness](/atlas/conflicts/metal-amr-co-selection-readiness) for unresolved controls.
+- [AMR Fitness Profiles](/atlas/data/derived-products/amr-fitness-profiles) and [Metal Tolerance Scores](/atlas/data/derived-products/metal-tolerance-scores) for reusable inputs.
+- `prophage_amr_comobilization` and `microbeatlas_metal_ecology` for new covariates.
+- ENIGMA/NMDC metadata and soil metal projects for site context.
+
+Questions for reviewers:
+
+- What is the right first benchmark: ENIGMA sites, global MAGs, soil metal datasets, or a smaller matched subset?
+- Which null model would convince reviewers that co-selection is not just taxonomy or habitat?
+- Should mobile-element burden be modeled before or after metal exposure?
+- What negative result would be useful enough to record as a claim-narrowing outcome?
 
 ## Evidence Base
 

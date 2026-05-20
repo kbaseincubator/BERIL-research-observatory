@@ -10,9 +10,7 @@ source_projects:
   - metabolic_capability_dependency
 source_docs:
   - ui/config/collections.yaml
-  - docs/schemas/pangenome.md
-  - docs/schemas/genomes.md
-  - docs/schemas/biochemistry.md
+  - docs/schema.md
 related_collections:
   - kbase_ke_pangenome
   - kbase_genomes

@@ -7,9 +7,9 @@ summary: Experimental phenotype data (growth conditions and measurements)
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/phenotype.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kbase_phenotype
 confidence: medium

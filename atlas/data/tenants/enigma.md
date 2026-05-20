@@ -10,7 +10,7 @@ source_projects:
   - enigma_contamination_functional_potential
 source_docs:
   - ui/config/collections.yaml
-  - docs/schemas/enigma.md
+  - docs/schema.md
   - docs/discoveries.md
 related_collections:
   - enigma_coral

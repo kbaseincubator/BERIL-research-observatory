@@ -7,9 +7,9 @@ summary: Harmonized NCBI BioSample metadata
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/nmdc.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - nmdc_ncbi_biosamples
 confidence: medium

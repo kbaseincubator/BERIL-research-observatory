@@ -31,6 +31,7 @@ related_pages:
   - hypotheses.index
   - method.progressive-disclosure
   - method.reuse-and-tension-workflow
+  - meta.review-queue
 order: 1
 ---
 
@@ -52,6 +53,7 @@ The Atlas is organized around several kinds of maps:
 - [Hypotheses](/atlas/hypotheses) turn synthesis into testable units.
 - [People](/atlas/people) routes review by contributor context and ownership.
 - [Methods](/atlas/methods) define the maintenance and evidence rules.
+- [Maintenance](/atlas/meta/review-queue) turns Atlas inventory signals into concrete review packets.
 
 ## How To Read It
 

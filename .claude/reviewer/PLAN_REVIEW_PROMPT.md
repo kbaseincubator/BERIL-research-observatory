@@ -16,11 +16,12 @@ Read all of these files:
 
 1. **`projects/{id}/RESEARCH_PLAN.md`** — the plan being reviewed
 2. **`projects/{id}/README.md`** — project overview
-3. **`docs/pitfalls.md`** — identify which pitfalls are relevant to the planned queries and tables
-4. **`docs/performance.md`** — check if query strategies follow recommended patterns
-5. **Live BERDL discovery** — use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` to verify referenced databases, tables, columns, and current access
-6. **`PROJECT.md`** — check project conventions (structure, reproducibility standards, data organization)
-7. **Per-database sections in `docs/pitfalls.md`** — non-derivable gotchas (ID formats, NULL conventions, JOIN-key surprises) for the databases used in the plan
+3. **`docs/pitfalls.md`** (frozen historical archive) — identify which pitfalls are relevant to the planned queries and tables
+4. **`projects/*/memories/pitfalls.md`** — recent project-specific pitfalls hit by other projects on the same databases. Per-project memories take precedence over central archive entries tagged with that same project id (the central tagged entry is a stale duplicate the project now owns)
+5. **`docs/performance.md`** (frozen historical archive) and **`projects/*/memories/performance.md`** (per-project performance notes from approved reports) — check if query strategies follow recommended patterns
+6. **Live BERDL discovery** — use `berdl_notebook_utils.get_databases()`, `get_tables()`, and `get_table_schema()` to verify referenced databases, tables, columns, and current access
+7. **`PROJECT.md`** — check project conventions (structure, reproducibility standards, data organization)
+8. **Per-database sections in `docs/pitfalls.md`** — non-derivable gotchas (ID formats, NULL conventions, JOIN-key surprises) for the databases used in the plan
 
 Also scan existing projects:
 8. **`ls projects/`** and read `README.md` files of projects that seem related — check for duplication or opportunities to build on existing work
@@ -37,16 +38,18 @@ Also scan existing projects:
 
 ### 2. Relevant Pitfalls
 
-This is one of the most valuable things you can provide. Read `docs/pitfalls.md` thoroughly and identify **specific entries** that apply to the planned tables, queries, or approach:
+This is one of the most valuable things you can provide. Read **both** `docs/pitfalls.md` (frozen historical archive) **and** the per-project memories at `projects/*/memories/pitfalls.md` for any project that worked on the same databases or tables — these may have newer or more specific gotchas than the central archive. Identify **specific entries** that apply to the planned tables, queries, or approach:
 
 - Quote the relevant pitfall heading and briefly explain how it affects this plan
+- Cite the source (central archive vs which project's memory)
 - Flag any planned queries that would hit known gotchas (e.g., string-typed numeric columns, species ID format, large table scans)
 - If the plan already accounts for a pitfall, note that positively
+- **Precedence rule**: if a central archive entry is tagged with a project id (`[<project_id>]`) AND that project has its own `memories/pitfalls.md`, prefer the per-project memory — the central tagged entry is a stale duplicate
 
 ### 3. Performance Considerations
 
 - Does the plan involve large tables (gene, genome_ani) without filter strategies?
-- Are the filter strategies appropriate per `docs/performance.md`?
+- Are the filter strategies appropriate per `docs/performance.md` (historical archive) and any relevant `projects/*/memories/performance.md` entries (per-project tuning notes)?
 - Is the choice of local bounded Spark SQL vs JupyterHub Spark appropriate for the planned query complexity?
 - Are there `toPandas()` calls on potentially large intermediate results?
 
@@ -95,8 +98,8 @@ Return a concise list of suggestions. Start with a one-sentence overall assessme
 **Optional** (nice-to-have):
 1. {issue + suggestion}
 
-**Relevant pitfalls from docs/pitfalls.md**:
-- {pitfall heading}: {how it applies to this plan}
+**Relevant pitfalls** (cite source — central archive or specific project's memory):
+- {pitfall heading} [`docs/pitfalls.md` | `projects/<id>/memories/pitfalls.md`]: {how it applies to this plan}
 ```
 
 Omit any priority section that has no items. Keep each suggestion to 1-2 sentences.

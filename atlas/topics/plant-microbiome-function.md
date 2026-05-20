@@ -18,7 +18,7 @@ related_collections:
   - kbase_msd_biochemistry
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-28
+last_reviewed: 2026-05-08
 related_pages:
   - claim.pangenome-openness-shapes-function
   - claim.lab-fitness-predicts-field-ecology
@@ -31,9 +31,29 @@ order: 70
 
 # Plant Microbiome Function and Agriculture
 
-## One-Line Takeaway
+## Synthesis Takeaway
 
 Plant-associated microbes are not cleanly beneficial or pathogenic; they carry context-dependent functional portfolios shaped by compartment, pangenome structure, and ecological filtering.
+
+## Review Brief
+
+What changed: this page is being prepared for review as a context-sensitive topic rather than a simple plant-growth-promoting marker summary.
+
+Why review matters: plant microbiome claims are easy to overstate because marker genes, host compartment, pangenome context, and environment can all point in different directions. Reviewers should decide which functions are robust across study and taxonomy controls.
+
+Evidence to inspect:
+
+- `plant_microbiome_ecotypes` for dual beneficial/pathogenic marker interpretation.
+- `pgp_pangenome_ecology` and `pangenome_pathway_ecology` for pangenome and pathway context.
+- `nmdc_community_metabolic_ecology` and `phb_granule_ecology` for community-scale functional interpretation.
+- [Plant Microbiome Function Validation](/atlas/opportunities/plant-microbiome-function-validation) for the next validation path.
+
+Questions for reviewers:
+
+- Are beneficial and pathogenic labels kept context-dependent enough?
+- Which plant compartment, host, or environment metadata should be mandatory before functional claims are reused?
+- Should mobile-element context be required when interpreting plant-interaction marker mobility?
+- What result would make a plant functional signal ready for a reusable derived product?
 
 ## What We Have Learned
 

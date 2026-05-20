@@ -18,7 +18,7 @@ related_collections:
   - kescience_bacdive
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.pangenome-architecture
   - topic.metabolic-capability-community-design
@@ -47,6 +47,26 @@ order: 97
 ## Reusable Object
 
 This product captures clade-level functional innovation and acquisition-depth patterns. It is intended as a reusable substrate for projects asking where gene function is conserved, exchanged, recently gained, or ecologically anchored.
+
+## Review Brief
+
+What changed: this candidate product is now explicitly part of the review queue because it has broad potential but no declared downstream consumers.
+
+Why review matters: functional innovation outputs could become a reusable Atlas layer, but only if reviewers trust the exported tables, resolution choices, and diagnostics.
+
+Evidence to inspect:
+
+- `gene_function_ecological_agora` for multi-resolution innovation outputs.
+- `pangenome_pathway_ecology` and `pangenome_pathway_geography` for possible downstream consumers.
+- KO extraction diagnostics and synthesis figures listed as artifacts.
+- [Functional Innovation KO Atlas Reuse Test](/atlas/opportunities/functional-innovation-ko-reuse) for the consumer decision.
+
+Questions for reviewers:
+
+- Are stable table artifacts available, or only diagnostics and figures?
+- Which resolution should be canonical: KO, UniRef, Pfam architecture, clade, or acquisition depth?
+- What downstream analysis would prove the product is worth promoting?
+- Are phenotype and environment checks strong enough to prevent overinterpreting annotation patterns?
 
 ## Why It Is High Value
 

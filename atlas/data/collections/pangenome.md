@@ -10,7 +10,7 @@ source_projects:
   - conservation_vs_fitness
 source_docs:
   - ui/config/collections.yaml
-  - docs/schemas/pangenome.md
+  - docs/schema.md
 related_collections:
   - kbase_ke_pangenome
   - kbase_genomes

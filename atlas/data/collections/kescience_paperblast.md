@@ -7,9 +7,9 @@ summary: Gene-to-literature links and curated sequence annotation coverage from 
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/paperblast.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kescience_paperblast
 confidence: low
@@ -44,4 +44,4 @@ High-value derived products include literature-coverage scores, understudied-fam
 
 ## Caveats
 
-Discovery caveat: included from schema docs; absent from the 2026-03-14 `docs/collections.md` seed snapshot. Refresh from live BERDL discovery before treating this page as complete.
+Discovery caveat: included from schema docs; absent from the 2026-03-14 `ui/config/berdl_collections_snapshot.json` seed snapshot. Refresh from live BERDL discovery before treating this page as complete.

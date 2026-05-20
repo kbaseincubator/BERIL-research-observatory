@@ -7,9 +7,9 @@ summary: Pathogen genome browser (GenomeDepot format)
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/protect.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - protect_genomedepot
 confidence: medium

@@ -18,7 +18,7 @@ related_collections:
   - kbase_uniprot
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.fitness-validated-function
   - data.genome-fitness-pangenome-join
@@ -51,6 +51,26 @@ order: 96
 ## Reusable Object
 
 These tables are ranked candidate lists for unknown or poorly annotated genes. They compress multi-source evidence into reusable priorities for characterization, module interpretation, and experiment design.
+
+## Review Brief
+
+What changed: this product is a promoted review queue for unknown biology rather than just a ranked table.
+
+Why review matters: a high dark-gene rank should trigger characterization, not imply function. Reviewers should confirm that each candidate carries enough evidence components and caveats to support action.
+
+Evidence to inspect:
+
+- `functional_dark_matter` for integrated prioritization.
+- `truly_dark_genes` for separating annotation lag from genuine unknowns.
+- `fitness_modules` for module and neighborhood context.
+- [Dark Gene Structure Prioritization](/atlas/opportunities/dark-gene-structure-prioritization) for next-step review packets.
+
+Questions for reviewers:
+
+- Are score components transparent enough to explain why each candidate is ranked?
+- Which candidates are likely annotation lag and need curation rather than experiments?
+- Should structural priors, module membership, or ecological recurrence be required before promotion?
+- What ownership route should review candidate updates as annotations improve?
 
 ## Why It Is High Value
 

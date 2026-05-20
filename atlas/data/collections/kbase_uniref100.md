@@ -7,9 +7,9 @@ summary: UniRef protein clusters at 100% identity
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/uniref.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kbase_uniref100
 confidence: medium

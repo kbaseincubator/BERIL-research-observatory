@@ -19,7 +19,7 @@ related_collections:
   - kescience_webofmicrobes
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - data.index
   - data.literature-reference-ontology
@@ -54,6 +54,25 @@ order: 120
 ## Why It Matters
 
 Inventory currently reports many low-confidence Atlas pages, especially collection pages that were generated from discovery snapshots. Not all low confidence is scientific uncertainty; some is missing curation. This opportunity separates those cases.
+
+## Review Brief
+
+What changed: review briefs now make low-confidence pages easier to triage by asking whether the issue is evidence, curation, provenance, or missing data.
+
+Why review matters: reviewers should avoid treating every low-confidence page as a scientific weakness. Some need schemas, examples, or clearer utility statements.
+
+Evidence to inspect:
+
+- BERDL collection snapshot for schema and discovery status.
+- [Metrics to Watch](/atlas/meta/metrics-to-watch) for caveat-load and dark-matter metadata counts.
+- `paperblast_explorer`, `bacdive_metal_validation`, and `env_embedding_explorer` for high-value low-confidence examples.
+
+Questions for reviewers:
+
+- Which low-confidence collection pages are blocking actual Atlas reuse?
+- Is confidence low because the collection is poorly described or because the scientific evidence is weak?
+- What sample join or utility statement would most improve the page?
+- Which collection pages deserve human curation before new science pages are expanded?
 
 ## Evidence Base
 

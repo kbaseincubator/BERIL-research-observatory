@@ -9,7 +9,7 @@ source_projects:
   - genotype_to_phenotype_enigma
 source_docs:
   - docs/discoveries.md
-  - docs/schemas/enigma.md
+  - docs/schema.md
 related_collections:
   - enigma_coral
 confidence: medium

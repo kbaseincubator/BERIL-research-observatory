@@ -7,9 +7,9 @@ summary: UniProt protein identifier cross-references
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/uniprot.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kbase_uniprot
 confidence: medium

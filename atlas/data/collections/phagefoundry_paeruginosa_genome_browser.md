@@ -7,9 +7,9 @@ summary: P. aeruginosa genome browser
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/phagefoundry.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - phagefoundry_paeruginosa_genome_browser
 confidence: low

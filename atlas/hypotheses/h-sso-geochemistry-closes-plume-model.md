@@ -10,7 +10,7 @@ source_projects:
   - enigma_contamination_functional_potential
 source_docs:
   - docs/discoveries.md
-  - docs/schemas/enigma.md
+  - docs/schema.md
 related_collections:
   - enigma_coral
 confidence: medium
@@ -22,7 +22,7 @@ related_pages:
 evidence:
   - source: enigma_sso_asv_ecology
     support: SSO community gradients exist, but geochemistry ingestion is needed to separate spatial and chemical drivers.
-  - source: docs/schemas/enigma.md
+  - source: docs/schema.md
     support: ENIGMA schema documentation defines the expected join context for site-level validation.
 order: 80
 ---

@@ -7,9 +7,9 @@ summary: Environmental microbiology data from the ENIGMA SFA (samples, genomes, 
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/enigma.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - enigma_coral
 confidence: medium

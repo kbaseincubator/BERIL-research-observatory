@@ -19,7 +19,7 @@ related_collections:
   - kbase_ke_pangenome
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.host-microbiome-translation
   - topic.metabolic-capability-community-design
@@ -50,6 +50,26 @@ order: 101
 ## Reusable Object
 
 This product captures ranked candidate microbial formulations and supporting score components for CF airway community design.
+
+## Review Brief
+
+What changed: this candidate product now needs a clearer human decision about whether the formulation score changes downstream design or remains an internal project output.
+
+Why review matters: CF formulation is translationally sensitive. Reviewers should confirm that safety filters, cohort provenance, validation limits, and ecological-cost assumptions are explicit before reuse.
+
+Evidence to inspect:
+
+- `cf_formulation_design` for score components and strict safety filtering.
+- `pseudomonas_carbon_ecology` for Pseudomonas competition context.
+- `webofmicrobes_explorer` for metabolic interaction evidence.
+- [CF Formulation Score Reuse Test](/atlas/opportunities/cf-formulation-reuse) for the downstream consumer question.
+
+Questions for reviewers:
+
+- Does the score change a concrete formulation decision?
+- Are strict-safety filters visible enough for translational review?
+- Should this remain candidate until an independent validation or consumer exists?
+- Which score components are generalizable beyond the source cohort?
 
 ## Why It Is High Value
 

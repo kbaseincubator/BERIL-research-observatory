@@ -7,7 +7,7 @@ summary: Biochemical reference data and predicted or measured metabolic capabili
 source_projects:
   []
 source_docs:
-  - docs/collections.md
+  - ui/config/berdl_collections_snapshot.json
   - ui/config/berdl_collections_snapshot.json
 related_collections:
   - kbase_msd_biochemistry

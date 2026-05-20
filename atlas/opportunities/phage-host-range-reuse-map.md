@@ -19,7 +19,7 @@ related_collections:
   - kbase_ke_pangenome
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.mobile-elements-phage
   - data.phage-mobile-defense
@@ -53,6 +53,25 @@ order: 90
 ## Why It Matters
 
 Mobile-element and phage work is represented in the Atlas, but it has not yet produced a named reusable product comparable to metal scores or ecotype labels. This opportunity asks what the first reusable phage/mobile product should be.
+
+## Review Brief
+
+What changed: prophage-AMR and T4SS/CAZy work make the need for a reusable mobile-context product more concrete.
+
+Why review matters: reviewers should decide whether the first product should be host range, defense context, mobile-element burden, or mechanism-partitioned transfer features.
+
+Evidence to inspect:
+
+- [Mobile Elements, Phage, and Genome Plasticity](/atlas/topics/mobile-elements-phage) for topic synthesis.
+- [Phage, mobile, and defense data](/atlas/data/types/phage-mobile-defense) for data substrate.
+- `prophage_amr_comobilization`, `prophage_ecology`, `ibd_phage_targeting`, and `snipe_defense_system` for candidate outputs.
+
+Questions for reviewers:
+
+- Which product would have the most immediate consumers across AMR, host, and pangenome topics?
+- Are current phage/mobile annotations strong enough for promotion, or only for screening?
+- Should host-range and mobile-element burden be separate products?
+- What validation would make a phage/mobile product reusable outside its source project?
 
 ## Evidence Base
 

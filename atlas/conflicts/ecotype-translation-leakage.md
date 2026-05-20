@@ -18,7 +18,7 @@ related_collections:
   - nmdc_arkin
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.microbial-ecotypes-environment
   - topic.host-microbiome-translation
@@ -52,6 +52,26 @@ order: 20
 ## Tension
 
 Ecotype labels are valuable because they simplify complex biological structure. The same compression becomes risky when the label is trained on information too close to the claimed outcome.
+
+## Review Brief
+
+What changed: Atlas review is now using ecotype pages as both reusable data products and cautionary examples for downstream translation.
+
+Why review matters: ecotype labels can help organize biology, but target or intervention claims need stronger validation than stratification claims. Reviewers should make sure those use cases stay separated.
+
+Evidence to inspect:
+
+- `ecotype_analysis` and `ecotype_env_reanalysis` for label construction and environment structure.
+- `plant_microbiome_ecotypes` for ecological stratification use.
+- `ibd_phage_targeting` failure analysis for leakage, null models, and target-list collapse.
+- [Ecotype Assignments](/atlas/data/derived-products/ecotype-assignments) for derived-product reuse.
+
+Questions for reviewers:
+
+- Are label-training features separated from outcome-testing features?
+- Which Atlas pages are using ecotypes only for stratification, and which imply translational action?
+- What validation ladder should be mandatory before ecotype-derived target claims are allowed?
+- Should each ecotype-derived product carry an explicit leakage-risk label?
 
 ## Current Interpretation
 

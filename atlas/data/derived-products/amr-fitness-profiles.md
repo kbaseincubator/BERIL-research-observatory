@@ -17,7 +17,7 @@ related_collections:
   - nmdc_metadata
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.amr-resistance-ecology
   - direction.metal-amr-co-selection
@@ -52,6 +52,25 @@ order: 98
 ## Reusable Object
 
 This product brings AMR gene family, mechanism, conservation, environment, and no-antibiotic fitness evidence into one reusable profile concept.
+
+## Review Brief
+
+What changed: AMR profiles now need to interoperate with metal tolerance, prophage density, and environmental metadata rather than serving only as AMR summaries.
+
+Why review matters: this product is central to co-selection work. Reviewers should check that it preserves mechanism class, conservation, environment, and cost instead of collapsing them into a single resistance score.
+
+Evidence to inspect:
+
+- `amr_pangenome_atlas` for AMR family and mechanism structure.
+- `amr_fitness_cost` for cost and stratification evidence.
+- [Metal-AMR co-selection readiness](/atlas/conflicts/metal-amr-co-selection-readiness) for the main downstream tension.
+
+Questions for reviewers:
+
+- Which fields are mandatory before AMR profiles can be joined to metal tolerance scores?
+- Should mobile-element context be part of this product or a separate derived product?
+- Are antibiotic-free fitness costs being kept distinct from resistance mechanism prevalence?
+- What consumer project should be added before the product status moves beyond promoted draft?
 
 ## Why It Is High Value
 

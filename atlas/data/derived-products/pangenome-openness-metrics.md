@@ -16,7 +16,7 @@ related_collections:
   - kescience_fitnessbrowser
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-30
+last_reviewed: 2026-05-08
 related_pages:
   - topic.pangenome-architecture
   - claim.pangenome-openness-shapes-function
@@ -50,6 +50,26 @@ order: 99
 ## Reusable Object
 
 This product packages species and clade-level openness, conservation, and functional enrichment metrics for later reuse.
+
+## Review Brief
+
+What changed: openness metrics are now connected to broader topic synthesis and to confounder-audit opportunities.
+
+Why review matters: openness is attractive as a single number, but reviewers should confirm that sampling and phylogeny controls are included before downstream pages treat it as a biological driver.
+
+Evidence to inspect:
+
+- `pangenome_openness` for metric construction.
+- `openness_functional_composition` for function-by-openness enrichment.
+- `conservation_vs_fitness` for links to measured consequence.
+- [Pangenome Openness Confounder Audit](/atlas/opportunities/pangenome-openness-confounder-audit) for required controls.
+
+Questions for reviewers:
+
+- Which openness metric should be canonical across Atlas pages?
+- Are genome count, assembly quality, and phylogenetic imbalance represented in the product?
+- Should this stay candidate until table artifacts are more explicit?
+- Which downstream analyses already consume the metric and can validate reuse?
 
 ## Why It Is High Value
 

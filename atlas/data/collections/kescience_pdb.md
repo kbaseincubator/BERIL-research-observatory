@@ -7,9 +7,9 @@ summary: Protein Data Bank experimental structure metadata (resolution, R-factor
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/pdb.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kescience_pdb
 confidence: low

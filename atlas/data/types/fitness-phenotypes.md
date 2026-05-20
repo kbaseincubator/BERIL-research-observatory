@@ -10,7 +10,7 @@ source_projects:
   - metal_specificity
   - amr_cofitness_networks
 source_docs:
-  - docs/schemas/fitnessbrowser.md
+  - docs/schema.md
 related_collections:
   - kescience_fitnessbrowser
   - kbase_ke_pangenome

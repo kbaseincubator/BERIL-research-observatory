@@ -5,10 +5,12 @@ type: data_type
 status: draft
 summary: Host-specific phage browsers, pathogen genome views, and mobile-element signals used to reason about host range, defense, resistance, and engineered interventions.
 source_projects:
-  []
+  - prophage_amr_comobilization
+  - t4ss_cazy_environmental_hgt
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
+  - projects/prophage_amr_comobilization/REPORT.md
+  - projects/t4ss_cazy_environmental_hgt/REPORT.md
 related_collections:
   - phagefoundry_acinetobacter_genome_browser
   - phagefoundry_klebsiella_genome_browser_genomedepot
@@ -16,11 +18,15 @@ related_collections:
   - phagefoundry_pviridiflava_genome_browser
   - phagefoundry_strain_modelling
   - protect_genomedepot
+  - kbase_ke_pangenome
+  - kescience_mgnify
 confidence: medium
 generated_by: Codex GPT-5
-last_reviewed: 2026-04-29
+last_reviewed: 2026-05-08
 related_pages:
   - data.index
+  - topic.mobile-elements-phage
+  - claim.prophage-density-predicts-amr-breadth
 order: 75
 ---
 
@@ -43,12 +49,15 @@ Tenant and database boundaries do not match how scientists or agents plan analys
 
 Use this lens to find reusable source data before choosing a specific collection. It is especially useful for agents that need to identify complementary data, select join keys, or explain why a derived product is reusable across projects.
 
+Recent project use: `prophage_amr_comobilization` uses pangenome AMR and prophage markers to make prophage burden a covariate for resistance ecology, while `t4ss_cazy_environmental_hgt` uses environmental MAGs to connect T4SS neighborhoods, CAZy HGT, and metal-resistance enrichment.
+
 ## Metrics To Watch
 
 - Evidence traces: which projects already used these collections.
 - Reuse: whether derived products exist beyond a single project.
 - Under-explored combinations: collection pairs with obvious scientific value but few projects.
 - Caveat load: schema gaps, identifier mismatches, sampling bias, and staging status.
+- Mechanism partitioning: whether a signal is prophage, plasmid, ICE/IME, T4SS, or generic genome openness.
 
 ## Caveats
 

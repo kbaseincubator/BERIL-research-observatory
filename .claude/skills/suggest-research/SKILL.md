@@ -56,7 +56,13 @@ For every finished project identified in Step 2:
 
 ### Step 4: Read the Discoveries Log
 
-Read `docs/discoveries.md`. Extract:
+Discoveries live in two places under v5:
+1. **Per-project memories** (canonical, current): walk `projects/*/memories/discoveries.md` — these are review-vetted, approved findings that came through `/synthesize` → `/berdl-review` → `/submit`.
+2. **Central historical archive**: `docs/discoveries.md` — pre-redirect content from before the per-project pattern.
+
+**Precedence rule for dedup**: per-project memory wins. If a project has any per-project `memories/discoveries.md`, suppress matches in `docs/discoveries.md` tagged with that same `[<project_id>]` (those are stale duplicates the project already owns). Central entries tagged with project ids that have NO per-project memory are still considered (legacy projects). Untagged central entries are background context — always included.
+
+Extract from the combined view:
 - Serendipitous findings not yet formalized into a project
 - Patterns noted across multiple analyses
 - Data anomalies flagged for follow-up
@@ -65,7 +71,7 @@ These often represent high-value starting points that are not yet in `research_i
 
 ### Step 5: Understand Available Data
 
-Use `berdl_notebook_utils.get_databases(return_json=False)` for the live access-aware BERDL database inventory. Use `berdl_notebook_utils.get_tables(return_json=False)` and `get_table_schema(..., return_json=False)` for likely candidate databases, and consult per-database H2 sections in `docs/pitfalls.md` for non-derivable gotchas. Always pass `return_json=False` so the helpers return live Python objects you can iterate or `display()` directly. For each collection, note:
+Use `berdl_notebook_utils.get_databases(return_json=False)` for the live access-aware BERDL database inventory. Use `berdl_notebook_utils.get_tables(return_json=False)` and `get_table_schema(..., return_json=False)` for likely candidate databases. Consult per-database H2 sections in `docs/pitfalls.md` (frozen historical archive) for non-derivable gotchas, and scan `projects/*/memories/pitfalls.md` for any project-tagged gotchas hit on the same database. Always pass `return_json=False` so the helpers return live Python objects you can iterate or `display()` directly. For each collection, note:
 - Collection name and identifier
 - What organism/scale/data type it covers
 - Whether it has been heavily used (cross-reference with reports) or is underexplored
@@ -198,11 +204,11 @@ If no, leave no files modified.
 
 ## Integration
 
-- **Reads from**: `docs/research_ideas.md`, `docs/discoveries.md`, `docs/pitfalls.md` (per-database H2 sections), `projects/*/README.md`, `projects/*/REPORT.md`
+- **Reads from**: `docs/research_ideas.md`, `projects/*/memories/discoveries.md` (canonical, review-vetted), `docs/discoveries.md` (frozen historical archive), `projects/*/memories/pitfalls.md`, `docs/pitfalls.md` per-database H2 sections (frozen historical archive), `projects/*/memories/performance.md`, `projects/*/README.md`, `projects/*/REPORT.md`. Per-project memories take precedence over central archive entries with the same `[<project_id>]` tag (per the precedence rule in Step 4).
 - **Calls**: `/literature-review` (Step 9, for novelty check on top candidate); `/berdl_start` (Step 11, if user confirms the idea)
 - **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry only — never edits existing entries)
 - **Consumed by**: `/literature-review`, `/synthesize`
 
 ## Pitfall Detection
 
-When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to `docs/pitfalls.md`.
+When you encounter errors, unexpected results, retry cycles, performance issues, or data surprises during this task, follow the pitfall-capture protocol. Read `.claude/skills/pitfall-capture/SKILL.md` and follow its instructions to determine whether the issue should be added to the active project's `projects/<id>/memories/pitfalls.md`.

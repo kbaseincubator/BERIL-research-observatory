@@ -7,7 +7,7 @@ summary: Maintenance signals for evaluating whether the Atlas is becoming more u
 source_projects: []
 source_docs:
   - ui/config/berdl_collections_snapshot.json
-  - docs/collections.md
+  - ui/config/berdl_collections_snapshot.json
 related_collections: []
 confidence: medium
 generated_by: Codex GPT-5

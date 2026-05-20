@@ -7,9 +7,9 @@ summary: "Bacterial diversity metadatabase: phenotypes, growth conditions, isola
 source_projects:
   []
 source_docs:
-  - docs/collections.md
   - ui/config/berdl_collections_snapshot.json
-  - docs/schemas/bacdive.md
+  - ui/config/berdl_collections_snapshot.json
+  - docs/schema.md
 related_collections:
   - kescience_bacdive
 confidence: low
