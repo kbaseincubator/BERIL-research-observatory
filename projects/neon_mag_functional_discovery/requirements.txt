@@ -1,0 +1,13 @@
+# Core analysis dependencies for projects/neon_mag_functional_discovery
+# Versions match the BERDL JupyterHub kernel (2026-05). Lower bounds are loose.
+
+pandas>=2.2,<4
+numpy>=2.0,<3
+scipy>=1.13,<2
+matplotlib>=3.8,<4
+seaborn>=0.13,<1
+scikit-learn>=1.4,<2
+
+# Spark is provided by the BERDL JupyterHub kernel (`get_spark_session()` is injected).
+# For local execution see .claude/skills/berdl-query for the .venv-berdl + proxy chain setup.
+# pyspark>=3.5

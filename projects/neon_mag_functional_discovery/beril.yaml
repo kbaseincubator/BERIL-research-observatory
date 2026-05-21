@@ -1,0 +1,16 @@
+project_id: neon_mag_functional_discovery
+status: planning
+created_at: "2026-05-21T00:00:00Z"
+last_session_at: "2026-05-21T00:00:00Z"
+branch: projects/neon_mag_functional_discovery
+engine:
+  name: claude
+authors:
+  - name: "Chris Mungall"
+    affiliation: "LBNL"
+    orcid: "0000-0002-6601-2165"
+artifacts:
+  readme: true
+  research_plan: true
+  report: false
+  review: false

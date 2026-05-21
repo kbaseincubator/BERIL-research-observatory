@@ -1,0 +1,11 @@
+# Regenerable data products — keep notebooks + plan + small summaries committed only.
+data/*.tsv
+data/*.tsv.gz
+data/*.parquet
+data/*.csv
+# Discovery JSON is committed (small, anchors the plan)
+!data/biosample_field_coverage.json
+!data/discovery_summary.md
+
+# Jupyter checkpoints
+**/.ipynb_checkpoints/
