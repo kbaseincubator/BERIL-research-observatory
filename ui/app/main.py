@@ -39,8 +39,8 @@ from app.atlas_graph import (
     review_routes_for_page,
 )
 
+from .auth_providers import load_providers
 from .routes.admin import ROUTER_ADMIN
-from .routes.auth import ROUTER_AUTH
 from .routes.chat import ROUTER_CHAT, ROUTER_CHAT_PAGES
 from .routes.data import ROUTER_USER_DATA
 from .routes.user import ROUTER_USER
@@ -114,8 +114,11 @@ def create_app() -> FastAPI:
         name="project-assets",
     )
 
+    auth_providers = load_providers(settings)
+    app.state.auth_providers = auth_providers
+    auth_providers.identity.install_routes(app)
+
     app.include_router(ROUTER_ADMIN)
-    app.include_router(ROUTER_AUTH)
     app.include_router(ROUTER_CHAT)
     app.include_router(ROUTER_CHAT_PAGES)
     app.include_router(ROUTER_COLLECTIONS)
