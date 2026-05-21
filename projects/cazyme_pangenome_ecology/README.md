@@ -4,10 +4,10 @@
 At pan-bacterial scale (27K species, 293K genomes), are carbohydrate-active enzymes (CAZymes) preferentially accessory, and do CAZyme profiles distinguish environmental niches?
 
 ## Status
-Exploration — research plan not yet written.
+Proposed — research plan written, awaiting analysis.
 
 ## Overview
-This project uses the untouched `arkinlab.dbcan` database (dbCAN CAZyme annotations) to systematically characterize carbohydrate-active enzyme distribution across the BERDL pangenome. We test whether CAZymes are enriched in the accessory genome (consistent with niche-specific carbohydrate exploitation and HGT) and whether CAZyme family composition distinguishes environmental niches (soil, gut, marine, etc.). Existing studies are single-species; this is the first pan-bacterial scale analysis.
+This project uses the MGnify Genomes catalog in BERDL (`kescience_mgnify`) to characterize carbohydrate-active enzyme (CAZyme) distribution across 49K genomes spanning 18 biomes. We test whether CAZyme class composition differs systematically across environments (H1) and whether CAZyme gene density correlates with pangenome openness (H2). Exploratory analysis already reveals rumen/soil genomes carry 2.5x more GH than marine genomes and soil genomes have 2x more GT than any other biome. Existing studies are single-species or single-biome; this is the first genome-resolved analysis at this scale.
 
 ## Quick Links
 - [Research Plan](RESEARCH_PLAN.md) — TBD
