@@ -710,11 +710,13 @@ Originally PROPOSED above. Completion summary:
 ---
 
 ### [cazyme_pangenome_ecology] CAZyme Pangenome Ecology — Carbohydrate Metabolism Distribution Across 27K Species
-**Status**: PROPOSED
+**Status**: COMPLETED
 **Priority**: HIGH
 **Effort**: Low (1-2 weeks)
 
 **Research Question**: At pan-bacterial scale (27K species, 293K genomes), are carbohydrate-active enzymes (CAZymes) preferentially accessory, and do CAZyme profiles distinguish environmental niches?
+
+**Results**: H1 strongly supported — CAZyme class composition (GH, GT) differs 3–4× across 18 biomes (49K genomes, KW H > 7,000, all p ≈ 0), surviving genome-size and phylogenetic controls. The GT/GH ratio emerged as a novel ecological indicator: marine genomes are biosynthesis-dominant (71% GT > GH) while rumen genomes are degradation-dominant (74% GH > GT). Bacteroidota in soil carry 2.8× their cross-biome GH average. H2 (CAZyme density–pangenome openness correlation) weakly supported (partial ρ = 0.101), concentrated in Bacillota_A, Bacteroidota, and Firmicutes_A; genome_count severely confounds cloud_fraction (ρ = 0.913). Used `kescience_mgnify` (MGnify Genomes catalog) rather than `arkinlab.dbcan` — the MGnify data provided broader biome coverage for the ecological question.
 
 **Approach**:
 - Extract `arkinlab.dbcan` CAZyme annotations (dbcan_integrated_results, fam_substrate_mapping, dbcan_pul) and join to `kbase_ke_pangenome` gene clusters
@@ -735,4 +737,4 @@ Originally PROPOSED above. Completion summary:
 - Existing: pangenome conservation patterns from `cog_analysis`, `conservation_vs_fitness`, `openness_functional_composition`
 - Existing: environment metadata from `ncbi_env`
 
-**Location**: `projects/cazyme_pangenome_ecology/` (to be created via /berdl_start)
+**Location**: `projects/cazyme_pangenome_ecology/`

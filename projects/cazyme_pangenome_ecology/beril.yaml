@@ -1,7 +1,7 @@
 project_id: cazyme_pangenome_ecology
-status: active
+status: complete
 created_at: "2026-05-21T18:00:00Z"
-last_session_at: "2026-05-21T18:00:00Z"
+last_session_at: "2026-05-21T23:00:00Z"
 branch: projects/cazyme_pangenome_ecology
 engine:
   name: claude
@@ -12,5 +12,24 @@ authors:
 artifacts:
   readme: true
   research_plan: true
-  report: false
-  review: false
+  report: true
+  review: true
+approval:
+  by: "0000-0002-2170-2250"
+  at: "2026-05-21T23:00:00Z"
+  report_hash: "sha256:1ce54ec75c76a907e66fb3384355bc52bed7225dc2b7b0ae857f63fc93273712"
+  review: "REVIEW_2.md"
+  review_hash: "sha256:584ea66c83422ab5bdbaec3bd5521d341895ac5748127700888eddc6d5e7a22b"
+  notebook_hashes:
+    "notebooks/01_data_extraction.ipynb": "sha256:6e36ea9b598e5c79cc79648ced6a20eae4ca17d555aa117b4eda7ee897f64960"
+    "notebooks/02_cazy_biome_composition.ipynb": "sha256:2605047250aff241a8183d333b9094279afdea3bc4104f7ecfad7095ba65b565"
+    "notebooks/03_cazy_pangenome_openness.ipynb": "sha256:80efb33298c9260a7344cd8a1f3a4336ade3125460081f9331cb35be7e4411fa"
+    "notebooks/04_phylogenetic_distribution.ipynb": "sha256:7d6b5717b6eafb383c8e43060f6088ecfc13e170ba86688b3a6eb2eac75b699c"
+submissions:
+  - status: success
+    attempted_at: "2026-05-22T00:15:00Z"
+    archive_key: "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/cazyme_pangenome_ecology/"
+    file_count: 31
+    byte_total: 16441176
+    duration_seconds: 6.21
+    approved_at: "2026-05-21T23:00:00Z"
