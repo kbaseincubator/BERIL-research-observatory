@@ -41,14 +41,14 @@ def load_providers(settings: Settings) -> ProviderRegistry:
     return ProviderRegistry(identity=identity, tokens=tokens)
 
 
-def get_kbase_token(request: Request) -> str | None:
+async def get_kbase_token(request: Request) -> str | None:
     """Convenience accessor — returns None if the provider is not enabled
     or the user has no KBase session cookie."""
     registry: ProviderRegistry | None = getattr(request.app.state, "auth_providers", None)
     if registry is None:
         return None
     provider = registry.tokens.get("kbase")
-    return provider.get_token(request) if provider else None
+    return await provider.get_token(request) if provider else None
 
 
 __all__ = [

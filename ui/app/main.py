@@ -39,7 +39,7 @@ from app.atlas_graph import (
     review_routes_for_page,
 )
 
-from .auth_providers import load_providers
+from .auth_providers import get_kbase_token, load_providers
 from .routes.admin import ROUTER_ADMIN
 from .routes.chat import ROUTER_CHAT, ROUTER_CHAT_PAGES
 from .routes.data import ROUTER_USER_DATA
@@ -1136,6 +1136,7 @@ async def health(
     if db_status["status"] != "ok":
         status = "degraded"
     settings = get_settings()
+    kbase_token = await get_kbase_token(request)
     return {
         "status": status,
         "services": {
@@ -1144,5 +1145,6 @@ async def health(
         "session": context,
         "url_scheme": request.url.scheme,
         "git_commit": settings.git_commit,
-        "build_date": settings.build_date
+        "build_date": settings.build_date,
+        "kbase_status": kbase_token is not None
     }

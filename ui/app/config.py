@@ -48,6 +48,8 @@ class Settings(BaseSettings):
     # Name of the cookie KBase auth writes to the shared *.kbase.us domain.
     # Read on every request by KBaseTokenProvider when the provider is enabled.
     kbase_auth_cookie: str = "kbase_session_backup"
+    kbase_auth_url: str = "https://ci.kbase.us/services/auth"
+    kbase_auth_mfa: bool = True
 
     # Session configuration
     session_secret_key: str = "change-me-in-production"  # Signs session cookies

@@ -31,6 +31,6 @@ class IdentityProvider(Protocol):
 class TokenProvider(Protocol):
     name: str
 
-    def get_token(self, request: Request) -> str | None:
+    async def get_token(self, request: Request) -> str | None:
         """Return the credential for this request, or None if unavailable."""
         ...

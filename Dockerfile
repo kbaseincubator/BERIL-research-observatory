@@ -1,4 +1,4 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # Add SPIN user id. `--home` + `--shell` give the account a real, writable
 # HOME — without these, `adduser --system` defaults to HOME=/nonexistent,
