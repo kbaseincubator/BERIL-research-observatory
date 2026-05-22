@@ -39,6 +39,22 @@ class Settings(BaseSettings):
     data_repo_path: Path = Path("/tmp/beril_data_cache")  # Local clone path
     force_local_data: bool = False
 
+    # BERDL MinIO lakehouse source configuration (consumed by BERDLLakehouse).
+    # The service-account access/secret keys are read from env (BERIL_BERDL_MINIO_*)
+    # in prod via a Kubernetes secret; locally they live in .env. Both are
+    # required when lakehouse_source="berdl"; sync() raises on startup otherwise.
+    # See PR-2 (BERDLLakehouse) for the contract.
+    berdl_minio_endpoint: str = "https://minio.berdl.kbase.us"
+    berdl_minio_access_key: str | None = None
+    berdl_minio_secret_key: str | None = None
+    berdl_minio_bucket: str = "cdm-lake"
+    # The submit skill writes here; this is the path the lakehouse source reads.
+    # Trailing slash matters for the S3 list_objects_v2 prefix to scope correctly.
+    berdl_projects_prefix: str = "tenant-general-warehouse/microbialdiscoveryforge/projects/"
+    # Optional HTTPS proxy for off-cluster dev (e.g. http://host.docker.internal:8123).
+    # In prod (beril.kbase.us), leave unset so direct connectivity is used.
+    berdl_https_proxy: str | None = None
+
     plotly_cdn_url: str = "https://cdn.plot.ly/plotly-3.4.0.min.js"
 
     # Webhook configuration

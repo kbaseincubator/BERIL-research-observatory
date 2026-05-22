@@ -12,6 +12,7 @@ in to the new abstraction keep working unchanged.
 
 from app.config import Settings
 from app.lakehouses.base import LakehouseSource, SyncResult
+from app.lakehouses.berdl import BERDLLakehouse
 from app.lakehouses.git_legacy import GitLegacyLakehouse
 
 
@@ -20,6 +21,8 @@ def get_lakehouse_source(settings: Settings) -> LakehouseSource:
     name = settings.lakehouse_source
     if name == "git":
         return GitLegacyLakehouse(settings)
+    if name == "berdl":
+        return BERDLLakehouse(settings)
     # Fail loud on unknown names rather than silently falling back — a typo
     # here would otherwise quietly downgrade prod to a different data flow.
     raise ValueError(f"Unknown lakehouse source: {name!r}")
