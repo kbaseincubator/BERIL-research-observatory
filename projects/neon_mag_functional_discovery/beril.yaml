@@ -1,7 +1,7 @@
 project_id: neon_mag_functional_discovery
-status: planning
+status: complete
 created_at: "2026-05-21T00:00:00Z"
-last_session_at: "2026-05-21T00:00:00Z"
+last_session_at: "2026-05-22T15:35:00Z"
 branch: projects/neon_mag_functional_discovery
 engine:
   name: claude
@@ -12,5 +12,26 @@ authors:
 artifacts:
   readme: true
   research_plan: true
-  report: false
-  review: false
+  report: true
+  review: true
+approval:
+  by: "0000-0002-6601-2165"
+  at: "2026-05-22T15:35:00Z"
+  report_hash: "sha256:a4bb7071930d6a46f2a824c1d675cf1ceb2dcdeab50b3b8fadd929d124cb80eb"
+  review: "REVIEW_2.md"
+  review_hash: "sha256:6c94dfc1b0d9fd882c35a641d96a73b3da0f37ca960aa9f00b5165e9a657d68d"
+  notebook_hashes:
+    "notebooks/01_discovery_and_sample_design.ipynb": "sha256:c082f6c3bc6cba6df5d3756aa9f99895ef6f225c42348b6bd4359e7cd814e915"
+    "notebooks/02_lineage_novelty_map.ipynb": "sha256:11ae050e82936982ed26dbcc77461af798d0f005ef7ba7ad0dd620520c0564f2"
+    "notebooks/03_sample_functional_profiles.ipynb": "sha256:6f731e86561d68c1aaad872bfa97d2610564658fb474a641f747b97635f68bd0"
+    "notebooks/04_pangenome_accessory_contrast.ipynb": "sha256:ad968d8d5200474e2807609d9656496d0fa01cfcd235caef3b1fd928fef213ed"
+    "notebooks/04b_per_mag_accessory_contrast.ipynb": "sha256:ebb8a0593691b14bf52deabe7041b647ea0a9f3cebd22f3a85be5b23594dcf3f"
+    "notebooks/05_synthesis.ipynb": "sha256:273cd33a819d24ce5148521970ec158ae502743ed0a663a1488bdca35381087b"
+submissions:
+  - status: success
+    attempted_at: "2026-05-22T15:36:00Z"
+    archive_key: "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/neon_mag_functional_discovery/"
+    file_count: 55
+    byte_total: 26544009
+    duration_seconds: 9.71
+    approved_at: "2026-05-22T15:35:00Z"

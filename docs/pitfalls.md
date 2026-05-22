@@ -1666,6 +1666,41 @@ h1c_or, h1c_p = stats.fisher_exact(table_h1c)
 h1d_or, h1d_p = stats.fisher_exact(table_h1d)
 ```
 
+### [neon_mag_functional_discovery] Per-gene NMDC annotation tables are partial and habitat-biased
+
+**Problem**: `nmdc_results.annotation_kegg_orthology` (1.83 B rows), `pfam_annotation_gff` (2.68 B rows), and `annotation_enzyme_commission` (1.23 B rows) **do not cover every MetagenomeAnnotation workflow** that has a row in `nmdc_metadata.functional_annotation_agg`. On NEON specifically, only **1,799 of 3,137 NEON MetagenomeAnnotation workflows (57%)** have any rows in `annotation_kegg_orthology`. The 43% gap is non-random — it is **strongly correlated with habitat and genus**:
+
+| Habitat / genus class | Per-gene KO coverage |
+|---|---|
+| Surface-water cyanobacteria (Planktothrix, Dolichospermum, Rubrivivax) | 100% |
+| Benthic generalists (Ferruginibacter, Flavobacterium, UBA953) | ~85% |
+| Soil acidobacteria (Sulfotelmatobacter, Palsa-465, Palsa-1447) | ~30% |
+| Soil cultured genera (Mycobacterium, Bradyrhizobium, Acidoferrum) | ~10% |
+| Soil unculturable / novel (Acidocella, BOG-234, Pseudolabrys, Pseudonocardia, Reyranella) | **0%** |
+
+**Why it matters**: Any per-MAG functional analysis that requires the per-gene tables (e.g., per-MAG KO content via the `members_id` → `gene_id` chain) silently drops the genera with zero coverage. In `neon_mag_functional_discovery` NB04b, the H4 cohort of 246 cohort MAGs collapsed to 73 MAGs across 19 genera, with the surviving set biased toward water habitats. The KEGG module enrichment that followed was driven heavily by cyanobacterial photosystem modules — partly real biology, partly habitat-skewed cohort. The five 100%-attrition soil genera are exactly the kind of novel-lineage MAGs whose KO content would be most interesting to inspect.
+
+**Workaround for per-MAG analyses**:
+
+1. **Document the coverage gap up front** — query coverage per study and per habitat before staking a hypothesis on per-MAG resolution. Treat downstream effect sizes as cohort-conditional and qualify the report.
+2. **Prefer `functional_annotation_agg`** (in `nmdc_metadata`) for *sample-level* / *workflow-level* KO/COG/Pfam analysis — it is far more complete (covers essentially every workflow that has any annotation output). Use it for habitat-vs-chemistry analysis, PCoA, and PERMANOVA, where per-gene resolution is not required.
+3. **Use per-gene tables only when per-MAG resolution is actually load-bearing** (e.g., H4-style per-MAG vs cultured-pangenome contrasts), and explicitly report the cohort attrition.
+4. Do not assume `pfam_annotation_gff` fills the gap left by `annotation_kegg_orthology`. Bounded queries against either table on a single specific `workflow_run_id` time out at scan-only cost (the tables are 2–3 B rows and `workflow_run_id` does not partition-prune cleanly via `WHERE … IN (…)` from a bounded SQL query). Confirming pfam coverage for a specific workflow set requires JupyterHub PySpark, not `nbconvert`-bounded execution.
+
+**Detection query** (run on JupyterHub, not via bounded `nbconvert`):
+
+```sql
+-- coverage check: distinct NEON annotation workflows with per-gene KO data
+SELECT COUNT(DISTINCT akg.workflow_run_id) AS n_with_kegg,
+       (SELECT COUNT(DISTINCT workflow_run_id)
+        FROM nmdc_metadata.workflow_execution_set
+        WHERE type = 'nmdc:MetagenomeAnnotation') AS n_total
+FROM nmdc_results.annotation_kegg_orthology akg
+JOIN <stage of NEON workflow IDs> n ON n.wf_id = akg.workflow_run_id
+```
+
+**Applies to**: Any NMDC project doing per-MAG functional content from `members_id` → `gene_id` joins; any project that pivots cultured-vs-environmental gene-content comparisons on the per-gene tables; any cross-study NMDC functional analysis where the per-gene-table footprint differs from the `functional_annotation_agg` footprint.
+
 ---
 
 ## BacDive (`kescience_bacdive`) Pitfalls

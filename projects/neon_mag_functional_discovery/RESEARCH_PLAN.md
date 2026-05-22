@@ -6,10 +6,25 @@ Across the three NEON metagenome studies in NMDC (soil, surface water, benthic s
 
 ## Hypotheses
 
-### H1 — Lineage novelty concentrates at chemistry extremes
-- **H0**: The fraction of MAGs with no GTDB genus assignment is uniform across soil pH bins.
-- **H1**: Novel-lineage fraction is elevated at low pH (acidic peat/bog soils) compared to neutral grassland soils.
-- **Falsification**: A Mann–Kendall trend test on (novel-fraction vs pH bin) with p > 0.05, or a flat distribution within ±5 percentage points across pH 3.5–7.5.
+### H1 — Lineage novelty is driven by soil pH
+- **H0**: Per-MAG probability of having no GTDB genus assignment does not depend on soil pH.
+- **H1**: Per-MAG probability of no-genus-call scales monotonically with soil pH (direction not pre-specified).
+- **Falsification**: Logistic regression (or OLS as a sign-check) of per-MAG novelty on raw soil pH yields slope p ≥ 0.05, **or** the novel-fraction varies by less than 5 percentage points across the observed soil pH range (≈ 3.5–8).
+- **Statistical-method note**: An earlier draft of this plan called for a Mann–Kendall / Kendall-τ trend test on novel-fraction aggregated into 4 pH bins. With only 4 (bin, fraction) points the test's smallest achievable two-sided exact p is **2/4! = 1/12 ≈ 0.083**, so even a perfect τ = 1.0 cannot clear α = 0.05 — the test is structurally underpowered against that binning. We therefore evaluate H1 on the raw per-record data, where n is in the thousands. The aggregated table and Kendall τ are still reported in NB02 as a descriptive monotonicity check.
+
+  **Kendall-τ power floor by bin count** (smallest achievable two-sided exact p for monotone trend; computed in `data/kendall_power_floor.tsv`):
+
+  | n bins | min two-sided p | Clears α = 0.05? | Clears α = 0.01? |
+  |---|---|---|---|
+  | 3 | 0.333 | no | no |
+  | 4 | 0.083 | no | no |
+  | 5 | 0.017 | **yes** | no |
+  | 6 | 0.0028 | yes | **yes** |
+  | 7 | 4.0 × 10⁻⁴ | yes | yes |
+  | 8 | 5.0 × 10⁻⁵ | yes | yes |
+  | 10 | 5.5 × 10⁻⁷ | yes | yes |
+
+  Rule of thumb: **use ≥ 5 bins for Kendall-style aggregated trend tests** with α = 0.05. NEON soil n = 3,161 records over pH 3.23–9.13 would support 5–8 bins comfortably (~400–600 records per bin). The 4-bin choice was a pre-registration mistake; either use 5+ bins or apply the per-record OLS / logistic regression as the primary test (what NB02 does). This pitfall is generic to any "aggregate-then-rank-test" workflow.
 
 ### H2 — Habitat-discriminating KOs are enriched in expected biogeochemistry
 - **H0**: KOs differentially abundant between habitats are a random sample of KEGG.

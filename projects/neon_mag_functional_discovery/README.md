@@ -6,7 +6,7 @@ Across the three NEON metagenome studies in NMDC (soil, surface water, benthic s
 
 ## Status
 
-**Planning** — discovery queries complete, scope locked, scaffold ready. Next: NB01 sample-design extraction.
+Completed — soil-pH drives MAG lineage novelty (direction reversed from prior), three NEON habitats functionally distinct, ε-lactone hydrolase from sub-Arctic Acidobacteriota identified as cold-active biocatalyst candidate.
 
 ## Overview
 
