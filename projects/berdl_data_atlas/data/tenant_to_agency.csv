@@ -1,0 +1,16 @@
+tenant,agency,program,primary_funder
+arkinlab,DOE/Academic,LBNL Arkin Lab,DOE-BER + multi
+enigma,DOE-BER,ENIGMA SFA,DOE-BER
+ese,DOE-BER,OPAL platform,DOE-BER
+globalusers,Multi,Shared/global user namespace,mixed
+kbase,DOE-BER,KBase,DOE-BER
+kescience,DOE-BER,KBase Knowledge Engine,DOE-BER
+msyscolo,Academic,Microbial Ecosystems Lab (CSU),NSF/USDA (likely)
+netl,DOE-FE,NETL Produced Water DNA,DOE-FE
+nmdc,DOE-BER,NMDC,DOE-BER
+phagefoundry,Defense/HHS,Phage Foundry,DOD/HHS (likely)
+planetmicrobe,NSF,Planet Microbe,NSF
+protect,ARPA-H,PROTECT,ARPA-H
+refdata,DOE-BER,KBase Reference Data,DOE-BER
+u,User,User personal namespace,n/a
+usgs,DOI,USGS Produced Waters / River Geochem,DOI

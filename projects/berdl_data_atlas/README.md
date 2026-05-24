@@ -7,7 +7,7 @@ combined? Build a depiction that serves both KBase users picking what to
 analyze and funders / PIs evaluating cross-agency, cross-program synergies.
 
 ## Status
-Proposed — research plan written, awaiting analysis.
+Active — analysis in progress.
 
 ## Overview
 KBase BERDL hosts 1,531 tables across 14 tenants (NMDC, ENIGMA, PROTECT, NETL,
