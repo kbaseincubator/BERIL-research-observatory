@@ -5,10 +5,10 @@ ese,DOE-BER,OPAL platform,DOE-BER
 globalusers,Multi,Shared/global user namespace,mixed
 kbase,DOE-BER,KBase,DOE-BER
 kescience,DOE-BER,KBase Knowledge Engine,DOE-BER
-msyscolo,Academic,Microbial Ecosystems Lab (CSU),NSF/USDA (likely)
+msyscolo,DOE/NSF,Microbial Ecosystems Lab (CSU),DOE + NSF
 netl,DOE-FE,NETL Produced Water DNA,DOE-FE
 nmdc,DOE-BER,NMDC,DOE-BER
-phagefoundry,Defense/HHS,Phage Foundry,DOD/HHS (likely)
+phagefoundry,DOE,BRaVE (Phage Foundry),DOE
 planetmicrobe,NSF,Planet Microbe,NSF
 protect,ARPA-H,PROTECT,ARPA-H
 refdata,DOE-BER,KBase Reference Data,DOE-BER

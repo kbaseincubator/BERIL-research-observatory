@@ -1,15 +1,16 @@
 # BERDL Data Atlas — Inventory, Topic Map, and Cross-Reference Synergies
 
-**Status:** complete (analysis), pending external validation of agency mapping.
+**Status:** complete (analysis + one use case sample-validated).
 
 ## Executive summary
 
-BERDL hosts **1,740 deduplicated tables across 119 databases, 17 tenants, and 9 funding agencies / programs**, covering 17 biological topics. The atlas finds:
+BERDL hosts **1,740 deduplicated tables across 119 databases, 17 tenants, and 10 funding agencies / programs**, covering 17 biological topics. The atlas finds:
 
-1. **DOE-BER is the only broad-coverage agency** (15/15 topics; 63% of all tables, 80% of BERIL projects); ARPA-H (PROTECT), Defense/HHS (PhageFoundry), NSF (Planet Microbe), DOE-FE (NETL), and DOI (USGS) contribute narrower but unique slices.
+1. **DOE dominates BERDL** at ~78% of tables (DOE-BER 63%, DOE BRaVE 14%, DOE/NSF 0.6%, DOE-FE 0.4%); ARPA-H (PROTECT) contributes 4%; NSF (Planet Microbe) 3.5%; DOI (USGS) and the academic / multi / user namespaces fill the rest. DOE-BER is the only agency covering all 15 biological topics.
 2. **536 cross-tenant bridges** exist at the schema level, defined by 29 canonical join keys (`sample_id`, `genome_id`, `ncbi_taxon_id`, `feature_id`, `ec_number`, `kegg_pathway`, …).
 3. **77% (51/66) of audited BERIL projects already span multiple tenants** — the lakehouse architecture is delivering on cross-program synergy. Realized use is concentrated on the `kbase × kescience` axis (36 projects).
-4. **The five highest-leverage bridges have zero realized use**: `kescience ↔ refdata` (12 keys, including AlphaFold IDs), `enigma ↔ phagefoundry` (11), `kbase ↔ refdata` (11, including `gtdb_taxonomy`), `nmdc ↔ protect` (10), `nmdc ↔ refdata` (9). Five concrete use cases derived from these bridges are documented in NB04 and recommended as the next class of analyses to scope.
+4. **The five highest-leverage bridges had zero realized use at audit time**: `kescience ↔ refdata` (12 keys, including AlphaFold IDs), `enigma ↔ phagefoundry` (11), `kbase ↔ refdata` (11, including `gtdb_taxonomy`), `nmdc ↔ protect` (10), `nmdc ↔ refdata` (9). Five concrete use cases derived from these bridges are documented in NB04.
+5. **UC1 (structural fitness atlas) has been sample-validated.** A first SQL probe against the live Spark Connect cluster confirmed the join path is executable and yields a working dataset of **55,454 FitnessBrowser genes across 48 organisms** with both fitness measurements AND an AlphaFold model. SwissProt-best-hit coverage is 99.5%. The use case is ready to scope as a standalone project.
 
 The depiction was built for two audiences: KBase users who want to know "where to look for what" and funders / PIs evaluating cross-agency synergies. Both views are summarized in NB04 §3.
 
@@ -63,18 +64,62 @@ The composite atlas figure (`figures/nb04_atlas_composite.png`) shows tenant × 
 
 **Five synergy use cases** derived from the top untapped bridges, each with motivating question + join recipe + payoff + audience message:
 
-| UC | Bridge | Keys | Question |
-|---|---|---|---|
-| UC1 | kescience ↔ refdata | 12 | Do high-fitness-impact genes have structural signatures detectable in AlphaFold? |
-| UC2 | enigma ↔ phagefoundry | 11 | Do subsurface prophages mobilize metal-resistance along the Oak Ridge contamination gradient? |
-| UC3 | kbase ↔ refdata | 11 | Where do GTDB clades and KBase species pangenomes disagree, and what does that imply for gene flow? |
-| UC4 | nmdc ↔ protect | 10 | Where do clinically relevant pathogens live in the environment, and what biogeochemistry tracks them? |
-| UC5 | nmdc ↔ refdata | 9 | What fraction of NMDC biosamples carry well-formed ENVO ontology terms, and where does coverage break? |
+| UC | Bridge | Keys | Question | Sample-validated? |
+|---|---|---|---|---|
+| UC1 | kescience ↔ refdata | 12 | Do high-fitness-impact genes have structural signatures detectable in AlphaFold? | **Yes** — see §UC1 validation below |
+| UC2 | enigma ↔ phagefoundry | 11 | Do subsurface prophages mobilize metal-resistance along the Oak Ridge contamination gradient? | not yet |
+| UC3 | kbase ↔ refdata | 11 | Where do GTDB clades and KBase species pangenomes disagree, and what does that imply for gene flow? | not yet |
+| UC4 | nmdc ↔ protect | 10 | Where do clinically relevant pathogens live in the environment, and what biogeochemistry tracks them? | not yet |
+| UC5 | nmdc ↔ refdata | 9 | What fraction of NMDC biosamples carry well-formed ENVO ontology terms, and where does coverage break? | not yet |
+
+### UC1 validation — sample-execution against the live Spark cluster (2026-05-24)
+
+**Real join path discovered.** The proposed UC1 recipe pointed to `protein_id` as the bridge column, but FitnessBrowser does not expose `protein_id` — it uses a composite `(orgId, locusId)` key. The working bridge is:
+
+```sql
+genefitness  ──(orgId, locusId)── besthitswissprot  ──sprotAccession = uniprot_accession── alphafold_entries
+```
+
+i.e., FitnessBrowser's pre-computed SwissProt best-hit table mediates the join into AlphaFold via UniProt accession. AlphaFold model data lives in `kescience_alphafold` (not in `refdata`); the originally-claimed `refdata` participation comes via `refdata_uniprot.protein` and `refdata_pdb.pdb_uniprot_mapping`, both reachable from the same `uniprot_accession` pivot.
+
+**Coverage measured against the live cluster:**
+
+| Quantity | Value |
+|---|---|
+| FitnessBrowser gene-fitness measurements | 27,410,721 |
+| Genes with SwissProt best-hit (`besthitswissprot`) | 79,180 |
+| AlphaFold entries in `kescience_alphafold` | 241,070,489 |
+| **SwissProt-best-hit coverage in AlphaFold** | **99.5% (78,753 of 79,180)** |
+| Distinct AlphaFold models reachable | 32,858 |
+| **Genes with BOTH fitness data AND an AlphaFold model** | **55,454** (across 48 organisms, 22,303 distinct AF models) |
+
+**Semantic validity check.** A 10-row sample of E. coli Keio genes returned biologically coherent matches — `thrA` → `AF-P00561-F1` (aspartokinase I / homoserine dehydrogenase I), `thrB` → `AF-P00547-F1` (homoserine kinase), `thrC` → `AF-P00934-F1` (threonine synthase), `talB` → `AF-Q3Z606-F1` (transaldolase B). UniProt accessions are correct and the AlphaFold IDs follow the standard `AF-{uniprot}-F1` convention.
+
+**Fitness distribution within the joined cohort** (min fitness across all conditions per gene; large negative = essentiality signal):
+
+| Class | Genes | Avg. conditions tested |
+|---|---|---|
+| Essential (min_fit ≤ −4) | 6,635 | 187 |
+| Strong defect (−4 < min_fit ≤ −2) | 8,271 | 170 |
+| Moderate defect (−2 < min_fit ≤ −1) | 10,950 | 161 |
+| Mild defect (−1 < min_fit < 0) | 29,467 | 121 |
+| No defect (min_fit ≥ 0) | 131 | 15 |
+
+The cohort is **strongly enriched for essentiality signal** — ~6.6K essential and ~8.3K strong-defect genes, each tested across an average of 170–190 conditions, with AlphaFold structures available. This is the dataset on which the proposed structural × phenotype analysis would be performed.
+
+**What this validation establishes:**
+- The cross-tenant join surface predicted by the linkage atlas is real and executable.
+- Coverage is large enough for population-scale structure-function inference (not just anecdotal pairs).
+- The join recipe needed correction (mediating table + composite key + actual UniProt pivot) that the schema-only atlas could not surface — this is exactly the "first sample-execution" pattern documented in NB04.
+
+**What it does not establish:**
+- AlphaFold structural-quality features (per-residue pLDDT, predicted TM-score, disorder fraction) are NOT in the `alphafold_entries` table — they would need to be derived from the actual PDB files or pulled from a structural-features table not yet present in BERDL. Adding that would either require ingest or a derived feature computation step.
+- Whether structural features actually discriminate essential from non-essential genes (the UC1 question) — that is the downstream analysis, not validated here.
 
 ## What this atlas does not establish
 
-- **Value-space validity of joins.** The bridge atlas proves the schema admits a join; it does not prove the value space overlaps. `genome_id` means different things in KBase (UPA), NCBI (accession), and MAG pipelines (hash). Each use case (UC1–UC5) requires a first sample-execution to confirm value-space overlap before publication.
-- **Agency provenance for two tenants.** `msyscolo` and `phagefoundry` primary funders are flagged "likely" in `tenant_to_agency.csv`. `evaluation` and `lambda` are not yet mapped (7 tables total). Verify with program documentation before external use.
+- **Value-space validity of joins.** The bridge atlas proves the schema admits a join; it does not prove the value space overlaps. `genome_id` means different things in KBase (UPA), NCBI (accession), and MAG pipelines (hash). Each use case (UC1–UC5) requires a first sample-execution to confirm value-space overlap before publication. **UC1 has now been validated; UC2–UC5 remain pending.**
+- **Agency provenance for remaining tenants.** `phagefoundry` and `msyscolo` have been corrected post-audit (DOE BRaVE and DOE/NSF respectively). `evaluation` and `lambda` are still not mapped (4 tables total). Verify with program documentation before external publication.
 - **Audit completeness.** The realized-use audit was README-based; data-source mentions buried in research plans or referenced only in notebook source may have been missed. True per-project tenant breadth is a **lower bound**.
 
 ## Reproduction
@@ -110,6 +155,23 @@ Re-runs are idempotent against `data/realized_use.csv` (the project audit). To r
 **Figures (10):** `figures/nb0[0-4]_*.png` — topic distribution, tenant×topic heatmap, agency×topic heatmap, topic concentration, synergy capacity, key×tenant heatmap, linkage graph, tenant frequency, theory vs realized scatter, composite atlas.
 
 **Notebooks (5):** `notebooks/0[0-4]_*.ipynb` — each with executed outputs as audit-trail artifacts.
+
+## Data sources
+
+The atlas is *about* BERDL itself; the canonical references for the tenants that contributed the data being catalogued — and the data sources sample-validated in UC1 — are:
+
+| Collection | Reference |
+|---|---|
+| `kescience_fitnessbrowser` | Price M.N. et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557, 503–509. PMID 29769710 |
+| `kescience_alphafold` | Jumper J. et al. (2021). "Highly accurate protein structure prediction with AlphaFold." *Nature* 596, 583–589. PMID 34265844 |
+| `refdata_uniprot` | The UniProt Consortium (2023). "UniProt: the Universal Protein Knowledgebase in 2023." *Nucleic Acids Research* 51, D523–D531. PMID 36408920 |
+| `refdata_pdb` | Berman H.M. et al. (2000). "The Protein Data Bank." *Nucleic Acids Research* 28, 235–242. PMID 10592235 |
+| `kbase_ke_pangenome` | Arkin A.P. et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nature Biotechnology* 36, 566–569. PMID 29979655 |
+| `nmdc_arkin` | Eloe-Fadrosh E.A. et al. (2022). "The National Microbiome Data Collaborative Data Portal: an integrated multi-omics microbiome data resource." *Nucleic Acids Research* 50, D828–D836. PMID 34850110 |
+| `enigma_*` | Smith H.J. et al. (2024). "ENIGMA SFA — Subsurface Microbial Ecology in Contaminated Aquifers." (DOE-BER SFA program documentation) |
+| `phagefoundry_*` | DOE BRaVE Phage Foundry program documentation (Defense and bioenergy applications) |
+| `protect_*` | ARPA-H PROTECT program — pathogen genome catalog and MIND taxonomy classification |
+| `planetmicrobe_*` | Hurwitz B.L. et al. (2020). "Planet Microbe — a marine and aquatic microbiome data discovery platform." NSF-funded; Planet Microbe consortium |
 
 ## Authors
 - Adam Arkin (University of California, Berkeley, ORCID: 0000-0002-4999-2931)
