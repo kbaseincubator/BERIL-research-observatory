@@ -6,11 +6,12 @@
 
 BERDL hosts **1,740 deduplicated tables across 119 databases, 17 tenants, and 10 funding agencies / programs**, covering 17 biological topics. The atlas finds:
 
-1. **DOE dominates BERDL** at ~78% of tables (DOE-BER 63%, DOE BRaVE 14%, DOE/NSF 0.6%, DOE-FE 0.4%); ARPA-H (PROTECT) contributes 4%; NSF (Planet Microbe) 3.5%; DOI (USGS) and the academic / multi / user namespaces fill the rest. DOE-BER is the only agency covering all 15 biological topics.
-2. **536 cross-tenant bridges** exist at the schema level, defined by 29 canonical join keys (`sample_id`, `genome_id`, `ncbi_taxon_id`, `feature_id`, `ec_number`, `kegg_pathway`, …).
-3. **77% (51/66) of audited BERIL projects already span multiple tenants** — the lakehouse architecture is delivering on cross-program synergy. Realized use is concentrated on the `kbase × kescience` axis (36 projects).
-4. **The five highest-leverage bridges had zero realized use at audit time**: `kescience ↔ refdata` (12 keys, including AlphaFold IDs), `enigma ↔ phagefoundry` (11), `kbase ↔ refdata` (11, including `gtdb_taxonomy`), `nmdc ↔ protect` (10), `nmdc ↔ refdata` (9). Five concrete use cases derived from these bridges are documented in NB04.
-5. **UC1 (structural fitness atlas) has been sample-validated.** A first SQL probe against the live Spark Connect cluster confirmed the join path is executable and yields a working dataset of **55,454 FitnessBrowser genes across 48 organisms** with both fitness measurements AND an AlphaFold model. SwissProt-best-hit coverage is 99.5%. The use case is ready to scope as a standalone project.
+1. **Depth is at the billion-row scale.** BERDL holds ~1.01 billion KBase pangenome genes (across 293K genomes / 27.7K species pangenomes), 241M AlphaFold predicted structures, 475M UniRef100 clusters, 261M MicrobeAtlas 16S OTU-count rows, 132.5M KBase gene clusters, 75M metatranscriptomic abundance rows, 27.4M FitnessBrowser measurements, 24.4M+15.7M viral sequence records, 40M PubMed records, plus reference layers for biochemistry, mass spec, growth phenotype, and environmental embeddings. See §Depth (NB05) for the full per-class breakdown.
+2. **DOE dominates BERDL** at ~78% of tables (DOE-BER 63%, DOE BRaVE 14%, DOE/NSF 0.6%, DOE-FE 0.4%); ARPA-H (PROTECT) contributes 4%; NSF (Planet Microbe) 3.5%; DOI (USGS) and the academic / multi / user namespaces fill the rest. DOE-BER is the only agency covering all 15 biological topics.
+3. **536 cross-tenant bridges** exist at the schema level, defined by 29 canonical join keys (`sample_id`, `genome_id`, `ncbi_taxon_id`, `feature_id`, `ec_number`, `kegg_pathway`, …).
+4. **77% (51/66) of audited BERIL projects already span multiple tenants** — the lakehouse architecture is delivering on cross-program synergy. Realized use is concentrated on the `kbase × kescience` axis (36 projects).
+5. **The five highest-leverage bridges had zero realized use at audit time**: `kescience ↔ refdata` (12 keys, including AlphaFold IDs), `enigma ↔ phagefoundry` (11), `kbase ↔ refdata` (11, including `gtdb_taxonomy`), `nmdc ↔ protect` (10), `nmdc ↔ refdata` (9). Five concrete use cases derived from these bridges are documented in NB04.
+6. **UC1 (structural fitness atlas) has been sample-validated.** A first SQL probe against the live Spark Connect cluster confirmed the join path is executable and yields a working dataset of **55,454 FitnessBrowser genes across 48 organisms** with both fitness measurements AND an AlphaFold model. SwissProt-best-hit coverage is 99.5%. The use case is ready to scope as a standalone project.
 
 The depiction was built for two audiences: KBase users who want to know "where to look for what" and funders / PIs evaluating cross-agency synergies. Both views are summarized in NB04 §3.
 
@@ -25,10 +26,12 @@ The atlas was built in three layers, each delivered as a Jupyter notebook with s
 | Linkage atlas (29 join keys, 536 bridges) | NB02 | `data/join_keys.json`, `data/cross_tenant_bridges.csv`, `data/join_key_coverage.csv` |
 | Realized-use audit (66 projects) | NB03 | `data/realized_use.csv`, `data/theoretical_vs_realized.csv`, `data/untapped_bridges.csv` |
 | Synthesis + 5 synergy use cases | NB04 | Composite atlas figure + use-case spec |
+| Per-entity depth inventory (65 headline tables) | NB05 | `data/data_volume.csv`, two figures (per-class rollup + per-table) |
 
 Supporting code lives in `src/`:
 - `build_inventory.py` — parallel schema walker (16 workers, ~95 s for 1,740 tables). Filters out dotted-namespace duplicates the Spark Connect catalog exposes alongside legacy underscored names.
 - `topic_tags.py` — ordered regex rules over `(db, table, columns)`, plus the tenant → agency / program / funder map.
+- `data_volume.py` — curated `ENTITIES` list (~65 headline `(entity_class, table)` pairs) and a runner that issues `COUNT(*)` / `COUNT(DISTINCT)` per entry against the live Spark cluster.
 
 ## Key findings
 
@@ -37,6 +40,58 @@ Supporting code lives in `src/`:
 - **1,740 tables / 119 dbs / 17 tenants** is the canonical scale.
 - A first walk reported 3,587 tables; the Spark Connect catalog exposes every Delta table under two names (`enigma.coral` AND `enigma_coral`). `walk_inventory()` now drops dotted duplicates by default.
 - Topic-distribution highlights: `field_observational` 40%, `mobile_phage` 14%, `fitness_phenotype` 11%, `genome` 6.4%, then everything else <4%. Unclassified residual is 0.9% (16 rows), all personal-namespace / one-off survey data.
+
+### Depth — what BERDL actually contains, in the units biologists think in (NB05)
+
+The breadth-first views (tables, tenants, topics, bridges) understate how much *biological mass* lives in the lakehouse. NB05 hits 65 curated headline tables on the live cluster with `COUNT(*)` (or `COUNT(DISTINCT key)` where rows are repeated). Selected headlines:
+
+**Genomes and pangenomes**
+- 293,059 KBase pangenome genomes, organized into 27,690 species-level GTDB pangenomes
+- 132,531,501 KBase pangenome gene clusters
+- 1,011,650,903 KBase pangenome gene records (≈3.4K genes × 293K genomes on average)
+- 1,158,553 SPIRE MAGs + 52,515 JGI GEM-MAGs in refdata
+- 3,110 ENIGMA genomes (depot) + 6,705 ENIGMA SDT genomes
+- 4,923 PROTECT MIND pathogen genomes
+- ~1,950 PhageFoundry host genomes across 5 host species
+
+**Proteins and structures**
+- 215,130,942 UniProt proteins
+- 475,217,233 UniRef100 / 188,848,220 UniRef90 / 60,315,044 UniRef50 clusters (2026-01)
+- 241,070,489 AlphaFold predicted structures
+- ~253K PDB experimental structures (refdata + kescience copies)
+
+**Phenotype, fitness, growth**
+- 27,410,721 FitnessBrowser per-gene fitness measurements across 7,552 experiments and 228,709 genes
+- 97,334 BacDive strain phenotype profiles
+- 57,302 globalusers carbon-source phenotype measurements
+- 10,744 Web of Microbes growth observations across 37 organisms
+
+**Field samples and environmental data**
+- 463,972 MicrobeAtlas 16S samples (98,919 OTUs, 260,831,135 OTU-count rows)
+- 114,943 USGS produced-water samples (curated + national)
+- 16,640 NMDC biosamples
+- 5,438 NETL produced-water DNA samples
+- 4,346 ENIGMA SDT samples (plus 579 multidimensional DDT measurement 'bricks')
+- 2,371 Planet Microbe samples
+- 218,510 ENIGMA SDT ASVs
+- 83,287 AlphaEarth environment embeddings indexed to KBase genomes
+
+**Community-level multi-omics**
+- 75,119,498 metatranscriptomic abundance rows (NMDC GOLD)
+- 29,023,980 kraken + 482,669 gottcha taxonomic profile rows (NMDC GOLD)
+- 9,928,244 NOM mass spec assignments (NMDC GOLD)
+
+**Phage / virus / mobile**
+- 24,435,662 MetaVR + 15,677,623 IMG/VR viral sequence records (refdata)
+- 933,103 PhageFoundry strain-modelling gene records
+
+**Biochemistry, ontology, literature**
+- 56,012 ModelSEED reactions + 45,708 compounds + 17,783 Rhea reactions
+- 48,196 GO terms + 8,813 EC terms (NMDC integrated)
+- 255,096 PaperBLAST curated genes
+- 39,994,988 PubMed article records
+
+**Why this matters for the audience.** BERDL is not one deep dataset; it is **simultaneously deep across 10+ biological dimensions** — genome reference, computed pangenome, protein/structure reference, lab-derived phenotype, field-derived community profiles, geospatial environment, mass spec, viral genomes, biochemical reference, literature, ontology. Few biological data systems combine even three of those at this scale. The per-class rollup figure (`figures/nb05_volume_by_entity_class.png`) and per-table breakdown (`figures/nb05_volume_per_table.png`) make the diversity story visible at a glance.
 
 ### Topic map (NB01)
 
@@ -130,9 +185,21 @@ The cohort is **strongly enriched for essentiality signal** — ~6.6K essential 
 # 1. Rebuild the catalog (~95 s; parallel Spark Connect schema walk)
 python -m projects.berdl_data_atlas.src.build_inventory
 
-# 2. Re-execute the four notebooks in order
+# 2. Refresh the per-entity volume counts (~60 s, 65 COUNT queries against Spark)
+python -c "
+import csv, sys
+sys.path.insert(0, 'projects/berdl_data_atlas/src')
+from data_volume import collect_volumes
+from berdl_notebook_utils import get_spark_session
+rows = collect_volumes(get_spark_session())
+with open('projects/berdl_data_atlas/data/data_volume.csv', 'w', newline='') as fh:
+    w = csv.DictWriter(fh, fieldnames=['entity_class','table','count_col','rows','label','error'])
+    w.writeheader(); w.writerows(rows)
+"
+
+# 3. Re-execute the six notebooks in order
 cd projects/berdl_data_atlas/notebooks
-for nb in 00_inventory_audit 01_topic_map 02_linkage_atlas 03_realized_use_audit 04_synthesis_and_use_cases; do
+for nb in 00_inventory_audit 01_topic_map 02_linkage_atlas 03_realized_use_audit 04_synthesis_and_use_cases 05_data_volume; do
     jupyter nbconvert --to notebook --execute --inplace ${nb}.ipynb
 done
 ```
@@ -151,10 +218,11 @@ Re-runs are idempotent against `data/realized_use.csv` (the project audit). To r
 - `data/theoretical_vs_realized.csv` — bridge overlay (72 tenant pairs).
 - `data/untapped_bridges.csv` — 20 prioritized unrealized bridges.
 - `data/tenant_reuse_frequency.csv` — per-tenant project count.
+- `data/data_volume.csv` — 65 headline tables × `(entity_class, table, count_col, rows, label)` from NB05.
 
-**Figures (10):** `figures/nb0[0-4]_*.png` — topic distribution, tenant×topic heatmap, agency×topic heatmap, topic concentration, synergy capacity, key×tenant heatmap, linkage graph, tenant frequency, theory vs realized scatter, composite atlas.
+**Figures (12):** `figures/nb0[0-5]_*.png` — topic distribution, tenant×topic heatmap, agency×topic heatmap, topic concentration, synergy capacity, key×tenant heatmap, linkage graph, tenant frequency, theory vs realized scatter, composite atlas, per-entity-class volume rollup, per-headline-table volume.
 
-**Notebooks (5):** `notebooks/0[0-4]_*.ipynb` — each with executed outputs as audit-trail artifacts.
+**Notebooks (6):** `notebooks/0[0-5]_*.ipynb` — each with executed outputs as audit-trail artifacts.
 
 ## Data sources
 
