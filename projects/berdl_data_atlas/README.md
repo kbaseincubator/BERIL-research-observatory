@@ -7,7 +7,7 @@ combined? Build a depiction that serves both KBase users picking what to
 analyze and funders / PIs evaluating cross-agency, cross-program synergies.
 
 ## Status
-Complete (analysis); pending external validation of two tenant→agency mappings.
+Completed — BERDL Lakehouse mapped end-to-end: 1,740 tables, 17 tenants, 10 funders, 17 topics, billion-row depth; 536 cross-tenant bridges identified; 77% of 66 BERIL projects already cross-tenant; UC1 (structural fitness) sample-validated against the live cluster.
 See [Report](REPORT.md) for full findings.
 
 ## Overview
