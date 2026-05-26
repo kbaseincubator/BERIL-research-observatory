@@ -1,7 +1,7 @@
 project_id: cultivability_index
-status: proposed
+status: active
 created_at: "2026-05-26T00:00:00Z"
-last_session_at: "2026-05-26T00:00:00Z"
+last_session_at: "2026-05-26T19:00:00Z"
 branch: projects/cultivability_index
 engine:
   name: claude
