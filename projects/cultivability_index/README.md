@@ -4,7 +4,7 @@
 Can metabolic self-sufficiency, measured as the completeness of GapMind-annotated amino acid biosynthesis and carbon utilization pathways across a genome, predict which uncultured species in the BERDL `kbase_ke_pangenome` are most likely to be cultivable in pure culture?
 
 ## Status
-Analysis — report drafted, awaiting `/berdl-review` and `/submit`.
+Reviewed — REVIEW_1.md drafted; awaiting /submit.
 
 ## Overview
 The cultured fraction of the bacterial pangenome is small (<1% of GTDB families have any isolate) and ecologically biased — `clay_confined_subsurface` and `oak_ridge_cultivation_gap` demonstrated that cultured isolates misrepresent native community composition. A practical question for experimentalists is which uncultured genomes are tractable targets for cultivation.
