@@ -1,0 +1,16 @@
+project_id: enigma_papers_research
+status: proposed
+created_at: "2026-05-26T00:00:00+00:00"
+last_session_at: "2026-05-26T00:00:00+00:00"
+branch: projects/enigma_papers_research
+engine:
+  name: claude
+authors:
+  - name: "John-Marc Chandonia"
+    affiliation: "Lawrence Berkeley National Laboratory"
+    orcid: "0000-0002-5153-9079"
+artifacts:
+  readme: true
+  research_plan: true
+  report: false
+  review: false
