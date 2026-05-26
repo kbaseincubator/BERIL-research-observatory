@@ -4,7 +4,7 @@
 Can metabolic self-sufficiency, measured as the completeness of GapMind-annotated amino acid biosynthesis and carbon utilization pathways across a genome, predict which uncultured species in the BERDL `kbase_ke_pangenome` are most likely to be cultivable in pure culture?
 
 ## Status
-Reviewed — REVIEW_1.md drafted; awaiting /submit.
+Completed — A pangenome-scale L1-LR classifier on 80 GapMind pathways across 235,671 HQ-filtered genomes (208K isolates, 27.6K MAGs) recapitulates the cultivation gap with held-out-family AUC 0.748 (pathway-only) and 0.883 (with quality covariates). The biological discovery is an amino-acid vs carbon reversal — carbon utilization is isolate-predictive while most amino-acid biosynthesis pathways are MAG-predictive, consistent with lab media supplementing AAs for auxotrophic isolates. The deliverable is a 256-MAG strict candidate list of uncultured genera in cultivated families.
 
 ## Overview
 The cultured fraction of the bacterial pangenome is small (<1% of GTDB families have any isolate) and ecologically biased — `clay_confined_subsurface` and `oak_ridge_cultivation_gap` demonstrated that cultured isolates misrepresent native community composition. A practical question for experimentalists is which uncultured genomes are tractable targets for cultivation.
