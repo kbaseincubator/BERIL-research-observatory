@@ -705,3 +705,42 @@ Originally PROPOSED above. Completion summary:
 **H2 REJECTED, opposite direction**: deep-clay anchor Bacillota_B are 35% LARGER than soil-baseline (4.3 Mbp vs 3.2 Mbp CheckM-rescaled, d=+1.37, p=0.013). Streamlining is a Patescibacteria/CPR-specific adaptation; cultivable subsurface Firmicutes show gene-content expansion consistent with Beaver & Neufeld 2024 self-sufficiency.
 
 **Phase 1 clay correction**: clay_confined_subsurface H3 IR-side used K07811/K17324/K17323 — those are TMAO reductase / glycerol ABC / glycerol permease, not iron reduction. With corrected multi-heme cytochrome detection (PF02085 + PF22678 + CXXCH motif counting), no significant cohort difference (all Fisher p ≥ 0.46). The clay project's SR-side H3 stands; IR-side narrative needs withdrawal. See `projects/bacillota_b_subsurface_accessory/`.
+
+---
+
+### [pangenome_selective_landscape] The Selective Landscape of Pangenome Architecture — Which Environmental Pressures Drive Gene Gain and Loss?
+**Status**: PROPOSED
+**Priority**: HIGH
+**Effort**: Low-Medium (2-3 weeks)
+
+**Research Question**: Across 48 Fitness Browser organisms with pangenome links, does the *type* of lab condition under which a gene is important (metal stress, carbon source, antibiotic, nitrogen, osmotic) predict whether that gene resides in the core or accessory genome?
+
+**Approach**:
+- Classify the 350 FB conditions into ~8 categories (metal, carbon, nitrogen, antibiotic, osmotic, oxidative, temperature, other) using existing `expGroup` / `condition_1` metadata
+- For each category, compute % core for genes specifically important under that condition type (|fitness| > 1)
+- For each gene, count condition types where it's important (condition breadth); correlate with core/accessory status
+- Test cross-organism consistency: is the pattern universal or species-specific?
+- Multivariable model: does condition type predict conservation beyond fitness magnitude?
+
+**Hypotheses**:
+- **H1**: Genes important under metal stress are significantly more accessory than genes important under carbon sources — metals are sporadic pressures driving gain/loss; carbon metabolism is more universal
+- **H2**: Antibiotic-important genes are the most accessory category — consistent with prophage_amr_comobilization (55.7% on mobile elements) and arms-race dynamics
+- **H3**: Condition breadth (number of condition types where important) inversely correlates with accessory status — proposes a mechanism for core genome assembly: genes become core by being important under many conditions
+- **H0**: Condition type does not predict core/accessory status beyond fitness magnitude alone
+
+**Impact**: First systematic analysis of which *environmental pressures* shape pangenome architecture. Proposes a testable mechanism for core genome assembly (multi-condition importance → fixation). Bridges fitness-conservation literature with pangenome ecology literature. Existing single-organism studies (Lv 2025 *Xanthomonas*, Senior 2017 *Yersinia*) examine condition-specific essentiality but never cross-organism by condition category.
+
+**Dependencies**:
+- Existing: FB-pangenome link tables from `conservation_vs_fitness`
+- Existing: condition metadata in `kescience_fitnessbrowser.experiment` (`expGroup`, `condition_1`)
+- Existing: core/accessory classification in `kbase_ke_pangenome`
+
+**Builds on**:
+- `fitness_effects_conservation` (16pp gradient by magnitude — adds condition-type dimension)
+- `core_gene_tradeoffs` (core genes are costly — tests by condition type)
+- `conservation_vs_fitness` (FB-pangenome link tables)
+- `metal_cross_resistance` (three-tier metal architecture — tests core/accessory mapping)
+- `prophage_amr_comobilization` (AMR-mobile element coupling)
+- `lab_field_ecology` (61.7% lab-field concordance — generalizes to all condition types)
+
+**Location**: `projects/pangenome_selective_landscape/`
