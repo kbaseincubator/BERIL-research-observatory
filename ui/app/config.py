@@ -54,6 +54,11 @@ class Settings(BaseSettings):
     # Optional HTTPS proxy for off-cluster dev (e.g. http://host.docker.internal:8123).
     # In prod (beril.kbase.us), leave unset so direct connectivity is used.
     berdl_https_proxy: str | None = None
+    # S3 addressing style. "path" (endpoint/bucket/key) is what MinIO and Ceph
+    # RadosGW both expect; "virtual" (bucket.endpoint/key) is AWS-S3's default
+    # and what boto3 sometimes guesses from the endpoint URL. Pin to "path" so
+    # the same client code works against either backend without surprises.
+    berdl_s3_addressing_style: str = "path"
 
     plotly_cdn_url: str = "https://cdn.plot.ly/plotly-3.4.0.min.js"
 

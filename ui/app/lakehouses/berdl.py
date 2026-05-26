@@ -130,7 +130,13 @@ class BERDLLakehouse:
         """List every object under ``prefix`` and download in parallel into
         ``dest``. Preserves the relative path from ``prefix``."""
         s = self._settings
-        config = AioConfig(proxies={"https": s.berdl_https_proxy}) if s.berdl_https_proxy else None
+        # Compose proxy + addressing-style config. Addressing style is always
+        # set so it's not left to boto3's endpoint-URL sniffing; proxy is added
+        # only when configured.
+        config_kwargs: dict = {"s3": {"addressing_style": s.berdl_s3_addressing_style}}
+        if s.berdl_https_proxy:
+            config_kwargs["proxies"] = {"https": s.berdl_https_proxy}
+        config = AioConfig(**config_kwargs)
 
         async with self._session.client(
             "s3",

@@ -11,6 +11,7 @@ from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
+from aiobotocore.config import AioConfig
 
 from app.config import Settings
 from app.lakehouses import get_lakehouse_source
@@ -36,6 +37,7 @@ def _settings(tmp_path: Path, **overrides) -> Settings:
         "berdl_minio_bucket": "cdm-lake",
         "berdl_projects_prefix": "tenant-general-warehouse/microbialdiscoveryforge/projects/",
         "berdl_https_proxy": None,
+        "berdl_s3_addressing_style": "path",
         # Pin repo_dir to a tmp tree with the local subdirs the parser needs;
         # individual tests can override or pre-create as needed.
         "repo_dir": tmp_path / "repo",
@@ -275,17 +277,23 @@ class TestFailures:
 
 
 # ---------------------------------------------------------------------------
-# Proxy configuration
+# Client configuration (proxy + addressing style)
 # ---------------------------------------------------------------------------
 
 
-class TestProxy:
+def _client_config(provider: BERDLLakehouse) -> AioConfig:
+    """Extract the AioConfig object that sync() passed to session.client.
+    Both proxy and addressing-style live there."""
+    provider._session.client.assert_called_once()
+    return provider._session.client.call_args.kwargs["config"]
+
+
+class TestClientConfig:
     @pytest.mark.asyncio
-    async def test_proxy_passed_to_client(self, tmp_path: Path):
-        """When berdl_https_proxy is set, it must be threaded into the
-        aioboto3 client config — dev MinIO access goes through pproxy."""
+    async def test_proxy_passed_when_set(self, tmp_path: Path):
+        """When berdl_https_proxy is set, the AioConfig carries the proxy
+        mapping — dev MinIO/Ceph access goes through pproxy."""
         _make_repo_dir(tmp_path)
-        prefix = "tenant-general-warehouse/microbialdiscoveryforge/projects/"
         s3, _ = _mock_s3_client(pages=[[]])
 
         provider = BERDLLakehouse(_settings(
@@ -296,19 +304,18 @@ class TestProxy:
         with _patch_parser():
             await provider.sync()
 
-        # Inspect the kwargs passed to session.client to confirm config carried
-        # the proxy. The session is a MagicMock so .client is a MagicMock too.
-        provider._session.client.assert_called_once()
         kwargs = provider._session.client.call_args.kwargs
         assert kwargs["aws_access_key_id"] == "test-access"
         assert kwargs["aws_secret_access_key"] == "test-secret"
         assert kwargs["endpoint_url"] == "https://minio.example.invalid"
-        # The config object is internal to aiobotocore; just verify one was
-        # passed (the no-proxy case passes None).
-        assert kwargs["config"] is not None
+
+        config = _client_config(provider)
+        assert config.proxies == {"https": "http://127.0.0.1:8123"}
 
     @pytest.mark.asyncio
-    async def test_no_proxy_passes_none_config(self, tmp_path: Path):
+    async def test_no_proxy_omits_proxy_mapping(self, tmp_path: Path):
+        """No proxy configured — AioConfig should not declare one. Config is
+        still built (for addressing style), it just has no proxies key."""
         _make_repo_dir(tmp_path)
         s3, _ = _mock_s3_client(pages=[[]])
 
@@ -317,8 +324,43 @@ class TestProxy:
         with _patch_parser():
             await provider.sync()
 
-        kwargs = provider._session.client.call_args.kwargs
-        assert kwargs["config"] is None
+        config = _client_config(provider)
+        # AioConfig().proxies defaults to None when not provided.
+        assert config.proxies is None
+
+    @pytest.mark.asyncio
+    async def test_default_addressing_style_is_path(self, tmp_path: Path):
+        """Default must be 'path' — works for MinIO today and Ceph RadosGW
+        after migration. Pinning this so a future config refactor can't
+        silently downgrade to 'virtual' (boto3's AWS default)."""
+        _make_repo_dir(tmp_path)
+        s3, _ = _mock_s3_client(pages=[[]])
+
+        provider = BERDLLakehouse(_settings(tmp_path))
+        provider._session = _patch_session(s3)
+        with _patch_parser():
+            await provider.sync()
+
+        config = _client_config(provider)
+        assert config.s3["addressing_style"] == "path"
+
+    @pytest.mark.asyncio
+    async def test_addressing_style_is_configurable(self, tmp_path: Path):
+        """Override via BERIL_BERDL_S3_ADDRESSING_STYLE — relevant if we ever
+        hit a backend that demands virtual-hosted style."""
+        _make_repo_dir(tmp_path)
+        s3, _ = _mock_s3_client(pages=[[]])
+
+        provider = BERDLLakehouse(_settings(
+            tmp_path,
+            berdl_s3_addressing_style="virtual",
+        ))
+        provider._session = _patch_session(s3)
+        with _patch_parser():
+            await provider.sync()
+
+        config = _client_config(provider)
+        assert config.s3["addressing_style"] == "virtual"
 
 
 # ---------------------------------------------------------------------------
