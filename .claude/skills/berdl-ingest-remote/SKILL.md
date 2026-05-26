@@ -1,6 +1,6 @@
 ---
 name: berdl-ingest-remote
-description: Ingest a local dataset into the BERDL Lakehouse from a local (off-cluster) machine via SSH tunnels and pproxy. Handles data format detection and preparation, MinIO upload, and Delta table creation via the data_lakehouse_ingest pipeline. Use when a user wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace from their local machine (not from within JupyterHub). For in-cluster ingestion from within JupyterHub, use berdl-ingest instead.
+description: Ingest a local dataset into the BERDL Lakehouse from a local (off-cluster) machine via SSH tunnels and pproxy. Handles data format detection and preparation, MinIO upload, and Iceberg table creation via the data_lakehouse_ingest pipeline. Use when a user wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace from their local machine (not from within JupyterHub). For in-cluster ingestion from within JupyterHub, use berdl-ingest instead.
 allowed-tools: Bash, Read, Write, Edit, Task
 ---
 
@@ -13,7 +13,7 @@ from a local machine via the off-cluster proxy chain. Detects source format, par
 exports data if needed, then executes a **two-phase ingest**:
 
 1. **Upload** — all source files uploaded to MinIO bronze in full before any ingest begins.
-2. **Ingest** — Delta tables written to silver. Tables larger than `CHUNK_TARGET_GB` (default 20 GB)
+2. **Ingest** — Iceberg tables written to silver. Tables larger than `CHUNK_TARGET_GB` (default 20 GB)
    are streamed from the local file in line-count chunks to avoid Spark session timeouts.
    A JSONL progress log is written to MinIO after every chunk so interrupted jobs can resume.
 
@@ -208,15 +208,15 @@ Ask for the dataset name. Suggest `DATA_DIR.name` (the directory's basename) as 
 Check whether the namespace already exists:
 
 ```python
-namespace = "<tenant>_<dataset>"
+namespace = "<tenant>.<dataset>"
 namespace_exists = namespace in berdl_notebook_utils.get_databases(return_json=False)
 ```
 
-The final namespace will be `{tenant}_{dataset}`.
+The final namespace will be `{tenant}.{dataset}`.
 
 **If the namespace already exists**, list its current tables and row counts, then ask the user:
 
-- **Overwrite** — existing Delta tables are replaced. Use `MODE = "overwrite"`.
+- **Overwrite** — existing Iceberg tables are replaced. Use `MODE = "overwrite"`.
 - **Append** — new rows are added to existing tables. Use `MODE = "append"`.
 
 If the user chooses append, confirm which tables they want to append to. For any table to skip,
@@ -336,7 +336,7 @@ for table in tables:
         "identifier":          str(uuid.uuid4()),
         "tenant":              TENANT,
         "dataset":             DATASET,
-        "namespace":           f"{TENANT}_{DATASET}",
+        "namespace":           f"{TENANT}.{DATASET}",
         "table":               table,
         "title":               table,
         "source":              source,
@@ -451,14 +451,14 @@ python scripts/ingest_preflight.py \
 
 When `--user-tenant` is passed, the script resolves the KBase username from
 `~/.mc/config.json` (the MinIO access key equals the KBase username) and displays the
-exact destination namespace: `u_<username>__<dataset>`. This line appears at the top of
+exact destination namespace: `my.<dataset>`. This line appears at the top of
 the plan output — include it verbatim in the chat summary so the user sees precisely where
 their data will land.
 
 **Present the plan output to the user in chat**, formatted as a clear markdown summary:
 
-- **Destination**: namespace name — `u_<username>__<dataset>` for user-tenant space,
-  `<tenant>_<dataset>` for shared tenants. Always show this prominently.
+- **Destination**: namespace name — `my.<dataset>` for user-tenant space,
+  `<tenant>.<dataset>` for shared tenants. Always show this prominently.
 - **Upload**: each table name, file size (GB), and total upload size
 - **Ingest**: for each table — single ingest or number of chunks × lines per chunk
 
@@ -537,19 +537,19 @@ tables are small enough to ingest without timeout risk.
 ### Step 5: Confirm results
 
 Report to the user:
-- Namespace created: `{tenant}_{dataset}` for shared tenants, or `u_{username}__{dataset}`
+- Namespace created: `{tenant}.{dataset}` for shared tenants, or `my.{dataset}`
   for user-tenant space — use the value resolved during Step 4 (printed by the config cell
   and the pre-flight script). Always show the full namespace name explicitly.
 - Tables ingested and row counts (from notebook verification cell output)
 
 For **shared tenant** ingests:
 - Bronze: `s3a://cdm-lake/tenant-general-warehouse/{tenant}/datasets/{dataset}/`
-- Silver: `s3a://cdm-lake/tenant-sql-warehouse/{tenant}/{tenant}_{dataset}.db`
+- Silver (Iceberg warehouse): `s3a://cdm-lake/tenant-sql-warehouse/{tenant}/iceberg/`
 - Progress log: `s3a://cdm-lake/tenant-general-warehouse/{tenant}/datasets/{dataset}/_ingest_progress.jsonl`
 
-For **user-tenant space** ingests (use `username` and `u_{username}__{dataset}` from Step 4):
+For **user-tenant space** ingests (use `username` and `my.{dataset}` from Step 4):
 - Bronze: `s3a://cdm-lake/users-general-warehouse/{username}/data/{dataset}/`
-- Silver: `s3a://cdm-lake/users-sql-warehouse/{username}/u_{username}__{dataset}.db`
+- Silver (Iceberg warehouse): `s3a://cdm-lake/users-sql-warehouse/{username}/iceberg/`
 - Progress log: `s3a://cdm-lake/users-general-warehouse/{username}/data/{dataset}/_ingest_progress.jsonl`
 
 Confirm row counts match expected line counts. If there is a mismatch, the progress log
@@ -605,7 +605,7 @@ Each line is one JSON object. There are three entry types:
 ```
 
 `start_line` and `end_line` are 1-indexed data line numbers (header excluded). If a row
-count mismatch is found, use these to cross-check against the Delta table's last row.
+count mismatch is found, use these to cross-check against the Iceberg table's last row.
 
 On restart, resume logic uses all three entry types: an `uploaded`-only chunk triggers a
 MinIO size verification before re-ingesting; an `ingested` chunk is skipped entirely.

@@ -1,6 +1,6 @@
 ---
 name: berdl-ingest
-description: Ingest a dataset into the BERDL Lakehouse from within JupyterHub (in-cluster). Data may live on the JH filesystem or a global shared filesystem. Handles schema detection, MinIO upload via Python client, and Delta table creation via the data_lakehouse_ingest pipeline. Use when a user is already working inside JupyterHub and wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace. For off-cluster ingestion from a local machine, use berdl-ingest-remote instead.
+description: Ingest a dataset into the BERDL Lakehouse from within JupyterHub (in-cluster). Data may live on the JH filesystem or a global shared filesystem. Handles schema detection, MinIO upload via Python client, and Iceberg table creation via the data_lakehouse_ingest pipeline. Use when a user is already working inside JupyterHub and wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace. For off-cluster ingestion from a local machine, use berdl-ingest-remote instead.
 allowed-tools: Bash, Read, Write, Edit, Task
 ---
 
@@ -16,7 +16,7 @@ MinIO are directly accessible inside the cluster, no SSH tunnels, pproxy, or
 2. Detect source format and parse schema.
 3. Collect dataset metadata.
 4. Upload source files to MinIO bronze via `minio_client.fput_object()`.
-5. Call `ingest()` per table — Spark reads from bronze and writes Delta to silver.
+5. Call `ingest()` per table — Spark reads from bronze and writes Iceberg to silver.
 6. Verify row counts.
 7. Report the bronze and silver paths to the user.
 
@@ -147,7 +147,7 @@ Present results. Tenants are the unique prefixes before the first `_`. Ask the u
 1. **Existing tenant** — choose from the list
 2. **New tenant name** — a new namespace will be created
 3. **User-tenant space (private)** — set `USER_TENANT = True` in the notebook config;
-   namespace becomes `u_<JUPYTERHUB_USER>__<dataset>`.
+   namespace becomes `my.<dataset>`.
 
 ### Step 3: Choose dataset name and write mode
 
@@ -155,12 +155,12 @@ Suggest `DATA_DIR.name` as the dataset name default. Check whether the namespace
 already exists:
 
 ```python
-namespace        = f"{tenant}_{dataset}"
+namespace        = f"{tenant}.{dataset}"
 namespace_exists = namespace in berdl_notebook_utils.get_databases(return_json=False)
 ```
 
 If it exists, list tables and row counts, then ask:
-- **Overwrite** — `MODE = "overwrite"` (replaces existing Delta tables)
+- **Overwrite** — `MODE = "overwrite"` (replaces existing Iceberg tables)
 - **Append** — `MODE = "append"` (adds rows to existing tables)
 
 ### Step 3b: Collect dataset metadata

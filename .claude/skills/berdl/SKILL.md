@@ -40,8 +40,8 @@ For pattern guidance, read [`modules/query-patterns.md`](modules/query-patterns.
 For curated database-specific gotchas (NULL conventions, ID formats, missing-column workarounds, JOIN-key surprises, large-table guards), grep both the central archive and per-project memories:
 
 ```bash
-grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md         # frozen historical archive
-grep -l kbase_ke_pangenome projects/*/memories/pitfalls.md     # per-project gotchas (recent)
+grep -A 20 "^## kbase\.ke_pangenome$" docs/pitfalls.md         # frozen historical archive
+grep -l "kbase\.ke_pangenome" projects/*/memories/pitfalls.md  # per-project gotchas (recent)
 ```
 
 The central file is the historical archive; per-project memories may contain newer or project-specific gotchas hit during analysis.
