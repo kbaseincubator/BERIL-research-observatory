@@ -63,6 +63,13 @@ KNOWN_COLLECTION_IDS: list[str] = [
     "globalusers_phenotype_parquet_1",
 ]
 
+# Dotted Iceberg form → canonical underscore slug (built from KNOWN_COLLECTION_IDS).
+# Allows project text that references kbase.ke_pangenome (new catalog.namespace form)
+# to resolve to the same collection page as kbase_ke_pangenome.
+_DOTTED_ALIASES: dict[str, str] = {
+    cid.replace("_", ".", 1): cid for cid in KNOWN_COLLECTION_IDS if "_" in cid
+}
+
 _KNOWN_REPORT_SECTIONS = {
     "Key Findings",
     "Results",
@@ -175,8 +182,16 @@ def extract_other_sections(content: str, known_sections: set[str]) -> list[tuple
 
 
 def extract_collection_refs(text: str) -> list[str]:
-    """Return known collection IDs found anywhere in text."""
-    return [cid for cid in KNOWN_COLLECTION_IDS if cid in text]
+    """Return known collection IDs found anywhere in text.
+
+    Recognises both underscore form (kbase_ke_pangenome) and Iceberg dotted form
+    (kbase.ke_pangenome); dotted matches are normalised to the canonical underscore slug.
+    """
+    found: set[str] = {cid for cid in KNOWN_COLLECTION_IDS if cid in text}
+    for dotted, canonical in _DOTTED_ALIASES.items():
+        if dotted in text:
+            found.add(canonical)
+    return list(found)
 
 
 def rewrite_md_links(content: str | None, project_id: str) -> str | None:

@@ -281,6 +281,10 @@ class RepositoryParser:
         "globalusers_phenotype_parquet_1",
     ]
 
+    _DOTTED_ALIASES: dict[str, str] = {
+        cid.replace("_", ".", 1): cid for cid in _COLLECTION_IDS if "_" in cid
+    }
+
     def __init__(self, repo_path: Path | None = None):
         """Initialize parser with repository path."""
         self.repo_path = repo_path or get_settings().repo_dir
@@ -880,8 +884,16 @@ class RepositoryParser:
         return content
 
     def _extract_collection_refs(self, readme_content: str) -> list[str]:
-        """Extract BERDL collection IDs mentioned in README text."""
-        return [cid for cid in self._COLLECTION_IDS if cid in readme_content]
+        """Extract BERDL collection IDs mentioned in README text.
+
+        Recognises both underscore form (kbase_ke_pangenome) and Iceberg dotted form
+        (kbase.ke_pangenome); dotted matches are normalised to the canonical underscore slug.
+        """
+        found: set[str] = {cid for cid in self._COLLECTION_IDS if cid in readme_content}
+        for dotted, canonical in self._DOTTED_ALIASES.items():
+            if dotted in readme_content:
+                found.add(canonical)
+        return list(found)
 
     def _parse_contributors(
         self, readme_content: str, project_id: str
