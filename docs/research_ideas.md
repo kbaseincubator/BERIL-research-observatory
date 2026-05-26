@@ -744,3 +744,45 @@ Originally PROPOSED above. Completion summary:
 - `lab_field_ecology` (61.7% lab-field concordance — generalizes to all condition types)
 
 **Location**: `projects/pangenome_selective_landscape/`
+
+**Note (2026-05-26)**: SUPERSEDED before scaffolding executed. Pre-implementation review found that `fitness_effects_conservation` (NB03 `breadth_vs_conservation`, fig `conservation_by_condition_type.png`, data `fitness_stats_by_condition.tsv`) and `core_gene_tradeoffs` (fig `burden_by_condition.png`, Selection Signature Matrix) already covered the breadth and condition-type axes. Pivoted to `cultivability_index` (next entry).
+
+---
+
+### [cultivability_index] Metabolic Self-Sufficiency Index — Predicting Cultivability from Pangenome Pathway Completeness
+**Status**: PROPOSED
+**Priority**: HIGH
+**Effort**: Medium (3-4 weeks)
+
+**Research Question**: Can metabolic self-sufficiency, measured as the completeness of essential biosynthesis and energy pathways across a genome's annotated metabolic capability (GapMind), predict which uncultured species in the BERDL pangenome are most likely to be cultivable in pure culture?
+
+**Approach**:
+- Define a per-genome cultivability index from GapMind pathway completeness across essential amino acids, vitamins/cofactors, central carbon, and energy pathways — possibly weighted by category importance
+- Calibrate against ground-truth cultured-vs-uncultured labels: GTDB cultured status flags, MGnify isolate-vs-MAG metadata, RefSeq genome representation, and NCBI BioSample isolate descriptions
+- Phylogenetically-stratified train/test split (hold out whole families) to avoid leakage
+- Model: logistic regression and gradient-boosted decision trees on pathway-completeness features + genome size + GC%; benchmark against taxonomy-only baseline
+- Validation against `clay_confined_subsurface` (the cultivated Bacillota_B were 35% LARGER than soil baseline — does the index recover that signal?) and `oak_ridge_cultivation_gap` (cultured vs MAG cohort comparison)
+- Deliverable: ranked candidate list of "most cultivable" uncultured MAGs from BERDL with confidence scores, biased toward environmentally-interesting taxa (subsurface, soil, plant-associated)
+
+**Hypotheses**:
+- **H1**: Cultivability index is significantly higher in cultured genomes than in MAGs of the same family (phylogenetically-controlled comparison) — supports the prediction that self-sufficiency is necessary (though not sufficient) for cultivability
+- **H2**: Patescibacteria/CPR, DPANN, and other known auxotroph-rich lineages have the lowest cultivability scores, recapitulating the known cultivation gap
+- **H3**: Within candidate uncultured MAGs scoring high on the index, the top 100 are enriched for taxa not yet attempted at major culture collections (DSMZ, ATCC, JCM) — i.e., the index identifies tractable but unattempted targets
+- **H0**: Pathway completeness adds no predictive value beyond taxonomic identity, genome size, and GC content
+
+**Impact**: First quantitative cultivability prediction from pangenome data. Directly actionable for experimental microbiologists: a ranked candidate list of MAGs likely to yield to standard cultivation efforts. Bridges genomic self-sufficiency concepts (Beaver & Neufeld 2024) with the cultivation-bias problem (Lewis 2021, Mitzscherling 2023). Validates the approach against the BERDL-internal anchor of clay/Oak Ridge cultivation-bias findings.
+
+**Dependencies**:
+- Existing: `kbase_ke_pangenome.gapmind_pathways` (pathway completeness; aggregate in Spark per gotchas in `docs/pitfalls.md`)
+- Existing: `kbase_ke_pangenome.genome` (genome metadata, size, GC, taxonomy)
+- Existing: GTDB metadata and ncbi_env environment classifications
+- Methodology overlap: `metabolic_capability_dependency` (pathway completeness extraction patterns), `clay_confined_subsurface` and `oak_ridge_cultivation_gap` (cultivation-bias frameworks)
+- New: cultivability ground-truth label harmonization across GTDB, MGnify, RefSeq, NCBI BioSample
+
+**Builds on**:
+- `clay_confined_subsurface` (anchored cultivation-bias signal — cultivated genomes 35% larger)
+- `oak_ridge_cultivation_gap` (cultured vs MAG cohort comparison framework)
+- `metabolic_capability_dependency` (GapMind pathway-completeness extraction)
+- `pgp_pangenome_ecology` (per-genome pathway-completeness as ecology predictor)
+
+**Location**: `projects/cultivability_index/`

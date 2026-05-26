@@ -1,8 +1,8 @@
-project_id: pangenome_selective_landscape
+project_id: cultivability_index
 status: exploration
 created_at: "2026-05-26T00:00:00Z"
 last_session_at: "2026-05-26T00:00:00Z"
-branch: projects/pangenome_selective_landscape
+branch: projects/cultivability_index
 engine:
   name: claude
 authors:
