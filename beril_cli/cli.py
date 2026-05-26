@@ -35,6 +35,12 @@ def main(argv: list[str] | None = None) -> int:
         default=False,
         help="Skip the automatic /berdl_start onboarding prompt",
     )
+    start_parser.add_argument(
+        "--version",
+        default=None,
+        metavar="VERSION",
+        help="Pin to a specific release tag (e.g. v0.3.4.5). Defaults to the latest tag.",
+    )
 
     # user
     user_parser = sub.add_parser(
@@ -67,7 +73,12 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "start":
         from beril_cli.start import run_start
 
-        return run_start(agent=args.agent, extra_args=remaining, skip_onboard=args.skip_onboard)
+        return run_start(
+            agent=args.agent,
+            extra_args=remaining,
+            skip_onboard=args.skip_onboard,
+            version=args.version,
+        )
 
     if args.command == "user":
         from beril_cli.user_cmd import run_user

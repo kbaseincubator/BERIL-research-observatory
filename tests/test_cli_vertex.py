@@ -134,6 +134,7 @@ def test_start_injects_vertex_env(tmp_path, tmp_config, monkeypatch):
 
     monkeypatch.setattr(os, "execvp", fake_execvp)
     monkeypatch.setattr("shutil.which", lambda cmd: f"/usr/bin/{cmd}")
+    monkeypatch.setattr(start, "_checkout_release", lambda *_a, **_kw: 0)
 
     start.run_start(agent="claude", extra_args=["/berdl_start"])
 
@@ -166,6 +167,7 @@ def test_start_skips_vertex_when_disabled(tmp_path, tmp_config, monkeypatch):
 
     monkeypatch.setattr(os, "execvp", fake_execvp)
     monkeypatch.setattr("shutil.which", lambda cmd: f"/usr/bin/{cmd}")
+    monkeypatch.setattr(start, "_checkout_release", lambda *_a, **_kw: 0)
 
     start.run_start(agent="claude", extra_args=["/berdl_start"])
 
@@ -199,6 +201,7 @@ def test_start_warns_missing_creds(tmp_path, tmp_config, monkeypatch, capsys):
 
     monkeypatch.setattr(os, "execvp", fake_execvp)
     monkeypatch.setattr("shutil.which", lambda cmd: f"/usr/bin/{cmd}")
+    monkeypatch.setattr(start, "_checkout_release", lambda *_a, **_kw: 0)
     monkeypatch.delenv("CLAUDE_CODE_USE_VERTEX", raising=False)
 
     start.run_start(agent="claude", extra_args=["/berdl_start"])
