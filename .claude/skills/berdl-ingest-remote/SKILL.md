@@ -191,7 +191,7 @@ import berdl_notebook_utils
 databases = berdl_notebook_utils.get_databases(return_json=False)  # → list[str]
 ```
 
-Present the results. Tenants are the unique prefixes before the first `_` in each database name (e.g. `kescience`, `nmdc`, `gtdb`). Ask the user to choose one of the following options:
+Present the results. Tenants are the unique prefixes before the first `.` in each dotted namespace, e.g. `kescience.alphafold` → `kescience` (other tenants include `nmdc`, `gtdb`). Ask the user to choose one of the following options:
 
 1. **An existing tenant** — pick from the list above
 2. **A new tenant name** — provide a new name (a new tenant namespace will be created)

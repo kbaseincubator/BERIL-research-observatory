@@ -142,7 +142,7 @@ import berdl_notebook_utils
 databases = berdl_notebook_utils.get_databases(return_json=False)  # → list[str]
 ```
 
-Present results. Tenants are the unique prefixes before the first `_`. Ask the user:
+Present results. Tenants are the unique prefixes before the first `.` in each dotted namespace (e.g. `kescience.alphafold` → `kescience`). Ask the user:
 
 1. **Existing tenant** — choose from the list
 2. **New tenant name** — a new namespace will be created
