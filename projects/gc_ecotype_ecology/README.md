@@ -4,7 +4,7 @@
 Does within-species GC content vary systematically with environmental niche after controlling for phylogenetic distance?
 
 ## Status
-Analysis — report drafted, awaiting `/berdl-review` and `/submit`.
+Reviewed — REVIEW_1.md drafted; awaiting /submit.
 
 ## Headline Result
 40 of 108 well-sampled bacterial species (37%) show within-species GC content variation significantly associated with isolation source after ANI-cluster phylogenetic control (FDR<0.05). 39/40 (98%) survive label-permutation null; 59% of jointly-testable species are independently confirmed by an AlphaEarth continuous environmental embeddings test. Effect sizes small (0.1–0.9% GC shifts) but reproducible across two orthogonal definitions of environment.
