@@ -4,7 +4,7 @@
 Does within-species GC content vary systematically with environmental niche after controlling for phylogenetic distance?
 
 ## Status
-Proposed — research plan written, awaiting analysis.
+Active — analysis in progress.
 
 ## Overview
 This project tests whether bacterial genomes from distinct environmental niches show systematic GC content shifts within species, using pangenome-scale data across hundreds of species in BERDL. Prior work (ecotype_analysis) showed phylogeny dominates gene content similarity — this project asks the complementary question about nucleotide composition.
