@@ -5,7 +5,7 @@ Patterns for joining data across BERDL databases and linking to external resourc
 ## Database Linking Overview
 
 ```
-kbase_ke_pangenome          kbase_msd_biochemistry       External (NCBI Entrez)
+kbase.ke_pangenome          kbase.msd_biochemistry       External (NCBI Entrez)
 ────────────────────        ──────────────────────       ──────────────────────
 eggnog_mapper_annotations   reaction                     NCBI Taxonomy
   .EC ──────────────────────► .abbreviation (pattern)    NCBI Gene
@@ -22,7 +22,7 @@ gtdb_species_clade
   .GTDB_species ────────────► NCBI Taxonomy (name lookup)
 ```
 
-> **Examples below use specific database/table names** (e.g. `kbase_ke_pangenome.gene_cluster`) for clarity. Run `get_databases(return_json=False)` to verify the database is accessible to you before adapting any example.
+> **Examples below use specific database/table names** (e.g. `kbase.ke_pangenome.gene_cluster`) for clarity. Run `get_databases(return_json=False)` to verify the database is accessible to you before adapting any example.
 
 ## Pangenome ↔ Biochemistry Joins
 
@@ -33,8 +33,8 @@ The most reliable cross-database link. EC numbers in pangenome annotations can b
 ```sql
 -- Step 1: Get EC numbers for a species' gene clusters
 SELECT gc.gene_cluster_id, gc.is_core, ann.EC, ann.Description
-FROM kbase_ke_pangenome.gene_cluster gc
-JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
+FROM kbase.ke_pangenome.gene_cluster gc
+JOIN kbase.ke_pangenome.eggnog_mapper_annotations ann
   ON gc.gene_cluster_id = ann.query_name
 WHERE gc.gtdb_species_clade_id = '{species_id}'
   AND ann.EC != '-' AND ann.EC IS NOT NULL
@@ -42,7 +42,7 @@ WHERE gc.gtdb_species_clade_id = '{species_id}'
 -- Step 2: Find matching ModelSEED reactions by EC pattern
 -- (EC numbers appear in reaction abbreviations)
 SELECT id, name, abbreviation, deltag, reversibility
-FROM kbase_msd_biochemistry.reaction
+FROM kbase.msd_biochemistry.reaction
 WHERE abbreviation LIKE '%2.7.1.1%'
 ```
 
@@ -57,8 +57,8 @@ WHERE abbreviation LIKE '%2.7.1.1%'
 ```sql
 -- Get KEGG reaction IDs from pangenome annotations
 SELECT gc.gene_cluster_id, gc.is_core, ann.KEGG_Reaction, ann.KEGG_Pathway
-FROM kbase_ke_pangenome.gene_cluster gc
-JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
+FROM kbase.ke_pangenome.gene_cluster gc
+JOIN kbase.ke_pangenome.eggnog_mapper_annotations ann
   ON gc.gene_cluster_id = ann.query_name
 WHERE gc.gtdb_species_clade_id = '{species_id}'
   AND ann.KEGG_Reaction != '-' AND ann.KEGG_Reaction IS NOT NULL
@@ -79,8 +79,8 @@ SELECT
   ann.KEGG_ko,
   ann.Description,
   COUNT(*) as cluster_count
-FROM kbase_ke_pangenome.gene_cluster gc
-JOIN kbase_ke_pangenome.eggnog_mapper_annotations ann
+FROM kbase.ke_pangenome.gene_cluster gc
+JOIN kbase.ke_pangenome.eggnog_mapper_annotations ann
   ON gc.gene_cluster_id = ann.query_name
 WHERE gc.gtdb_species_clade_id = '{species_id}'
   AND (ann.EC != '-' OR ann.KEGG_Pathway != '-')
@@ -93,7 +93,7 @@ Then look up the EC numbers in biochemistry to get thermodynamic data:
 ```sql
 -- For each EC number found, get reaction thermodynamics
 SELECT id, name, deltag, deltagerr, reversibility, is_transport
-FROM kbase_msd_biochemistry.reaction
+FROM kbase.msd_biochemistry.reaction
 WHERE abbreviation LIKE '%{ec_number}%'
   AND deltag > -10000000  -- Filter deltaG outliers
 ```
@@ -107,9 +107,9 @@ SELECT
   m.name as compound, m.formula,
   rg.stoichiometry,
   CASE WHEN rg.stoichiometry < 0 THEN 'reactant' ELSE 'product' END as role
-FROM kbase_msd_biochemistry.reaction r
-JOIN kbase_msd_biochemistry.reagent rg ON r.id = rg.reaction_id
-JOIN kbase_msd_biochemistry.molecule m ON rg.molecule_id = m.id
+FROM kbase.msd_biochemistry.reaction r
+JOIN kbase.msd_biochemistry.reagent rg ON r.id = rg.reaction_id
+JOIN kbase.msd_biochemistry.molecule m ON rg.molecule_id = m.id
 WHERE r.abbreviation LIKE '%{ec_number}%'
 ORDER BY r.id, rg.stoichiometry
 ```
@@ -126,12 +126,12 @@ No direct foreign key exists between pangenome and fitness browser. Linking requ
 ```sql
 -- Step 1: Find the fitness browser organism
 SELECT DISTINCT orgId, organism
-FROM kescience_fitnessbrowser.organism
+FROM kescience.fitnessbrowser.organism
 WHERE organism LIKE '%Escherichia%'
 
 -- Step 2: Get fitness data for specific genes
 SELECT locusId, sysName, gene_name, CAST(fit AS FLOAT) as fitness, CAST(t AS FLOAT) as t_score
-FROM kescience_fitnessbrowser.genefitness
+FROM kescience.fitnessbrowser.genefitness
 WHERE orgId = '{orgId}'
   AND CAST(fit AS FLOAT) < -2
 ORDER BY CAST(fit AS FLOAT) ASC

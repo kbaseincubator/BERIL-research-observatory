@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Run Delta Lake ingestion for bakta reannotation tables.
+Run Iceberg ingestion for bakta reannotation tables.
 
 Files are already on MinIO at the user staging area:
   s3a://cdm-lake/users-general-warehouse/psdehal/data/bakta_reannotation/
