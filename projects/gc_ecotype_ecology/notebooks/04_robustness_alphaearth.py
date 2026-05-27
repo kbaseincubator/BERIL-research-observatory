@@ -1,3 +1,4 @@
+# %%
 """
 Notebook 04: Robustness Checks + AlphaEarth Secondary Signal
 
@@ -17,6 +18,7 @@ Outputs:
   - figures/04_alphaearth_signal.png
 """
 
+# %%
 import os
 import warnings
 import matplotlib
@@ -29,18 +31,23 @@ from scipy.sparse.csgraph import connected_components
 from scipy import stats as scistats
 from sklearn.decomposition import PCA
 
+# %%
 from berdl_notebook_utils.setup_spark_session import get_spark_session
 
+# %%
 warnings.filterwarnings("ignore")
 
+# %%
 PROJECT_DIR = "/home/justaddcoffee/BERIL-research-observatory/projects/gc_ecotype_ecology"
 DATA_DIR = os.path.join(PROJECT_DIR, "data")
 FIG_DIR = os.path.join(PROJECT_DIR, "figures")
 
+# %%
 ANI_THRESHOLD = 99.0
 MIN_TOTAL = 50
 MIN_PER_CAT = 10
 
+# %%
 # Reuse helper functions
 def design_categorical(s):
     cats = pd.Categorical(s)
@@ -53,11 +60,13 @@ def design_categorical(s):
         X[codes == j, j - 1] = 1.0
     return X
 
+# %%
 def design(*blocks):
     parts = [np.ones((blocks[0].shape[0], 1))]
     parts.extend(blocks)
     return np.hstack(parts)
 
+# %%
 def ols_rss(X, y):
     beta, *_ = np.linalg.lstsq(X, y, rcond=None)
     resid = y - X @ beta
@@ -65,6 +74,7 @@ def ols_rss(X, y):
     rank = int(np.linalg.matrix_rank(X))
     return rss, len(y) - rank, rank
 
+# %%
 def partial_F(X_null, X_alt, y):
     rss_null, df_null, rank_null = ols_rss(X_null, y)
     rss_alt,  df_alt,  rank_alt  = ols_rss(X_alt,  y)
@@ -75,6 +85,7 @@ def partial_F(X_null, X_alt, y):
     p = float(scistats.f.sf(f, df_diff, df_alt))
     return float(f), p
 
+# %%
 def cluster_by_ani(genome_ids, ani_pairs):
     id_to_idx = {g: i for i, g in enumerate(genome_ids)}
     n = len(genome_ids)
@@ -95,6 +106,7 @@ def cluster_by_ani(genome_ids, ani_pairs):
     return labels
 
 
+# %%
 # -----------------------------------------------------------------------------
 # Load data
 # -----------------------------------------------------------------------------
@@ -103,12 +115,14 @@ res = pd.read_csv(os.path.join(DATA_DIR, "03_within_species_results.csv"))
 sig = pd.read_csv(os.path.join(DATA_DIR, "03_significant_species.csv"))
 spark = get_spark_session()
 
+# %%
 # -----------------------------------------------------------------------------
 # (A) Permutation null on the significant species
 # -----------------------------------------------------------------------------
 print("=== (A) Permutation null test ===")
 sig_species = sig["species"].tolist()
 
+# %%
 def perm_test_species(sp, n_perm=200):
     sub = df[(df["gtdb_species_clade_id"] == sp) & df["iso_category"].notna()].copy()
     sub = sub[sub["iso_category"] != "other"]
@@ -171,6 +185,7 @@ def perm_test_species(sp, n_perm=200):
         "n_perm": n_perm,
     }
 
+# %%
 perm_results = []
 print(f"Permutation testing {len(sig_species)} significant species (200 perms each)...")
 for i, sp in enumerate(sig_species):
@@ -180,6 +195,7 @@ for i, sp in enumerate(sig_species):
     if (i + 1) % 5 == 0:
         print(f"  {i+1}/{len(sig_species)} done")
 
+# %%
 perm_df = pd.DataFrame(perm_results)
 print(f"\nPermutation results: {len(perm_df)} species")
 if len(perm_df) > 0:
@@ -188,6 +204,7 @@ if len(perm_df) > 0:
 perm_df.to_csv(os.path.join(DATA_DIR, "04_permutation_results.csv"), index=False)
 
 
+# %%
 # -----------------------------------------------------------------------------
 # (B) AlphaEarth secondary signal
 # -----------------------------------------------------------------------------
@@ -204,10 +221,12 @@ ae_q = pd.DataFrame({c: ae_q[c].to_numpy() for c in ae_q.columns})
 ae = ae_q.groupby("genome_id")[ae_cols].mean().reset_index()
 print(f"  Per-genome AE embeddings: {len(ae):,}")
 
+# %%
 # Merge with master table
 df_ae = df.merge(ae, on="genome_id", how="inner")
 print(f"  Genomes with both GC and AE: {len(df_ae):,}")
 
+# %%
 # Per-species residual GC test
 ae_species_results = []
 print("  Testing per-species: residual GC ~ top AE PCs (after ANI control)...")
@@ -215,6 +234,7 @@ candidate_species = df_ae["gtdb_species_clade_id"].value_counts()
 candidate_species = candidate_species[candidate_species >= 30].index.tolist()
 print(f"  {len(candidate_species)} species have >= 30 AE-bearing genomes")
 
+# %%
 for sp in candidate_species:
     sub = df_ae[df_ae["gtdb_species_clade_id"] == sp].copy()
     if len(sub) > 2000:
@@ -283,6 +303,7 @@ for sp in candidate_species:
         "expl_var_pc1": float(pca.explained_variance_ratio_[0]) if pcs.shape[1] >= 1 else float("nan"),
     })
 
+# %%
 ae_df = pd.DataFrame(ae_species_results)
 print(f"\nAlphaEarth results: {len(ae_df)} species tested")
 if len(ae_df) > 0:
@@ -300,6 +321,7 @@ if len(ae_df) > 0:
     print(f"  Species with FDR<0.05 |best_r| (any of 5 PCs): {n_sig} / {len(ae_df)}")
     ae_df.to_csv(os.path.join(DATA_DIR, "04_alphaearth_results.csv"), index=False)
 
+# %%
 # -----------------------------------------------------------------------------
 # Figures
 # -----------------------------------------------------------------------------
@@ -318,6 +340,7 @@ if len(perm_df) > 0:
     plt.savefig(os.path.join(FIG_DIR, "04_permutation_null.png"), dpi=150)
     plt.close()
 
+# %%
 if len(ae_df) > 0:
     fig, ax = plt.subplots(figsize=(8, 5))
     x = ae_df["best_r"].abs()
@@ -334,4 +357,5 @@ if len(ae_df) > 0:
     plt.savefig(os.path.join(FIG_DIR, "04_alphaearth_signal.png"), dpi=150)
     plt.close()
 
+# %%
 print("\nNotebook 04 complete.")

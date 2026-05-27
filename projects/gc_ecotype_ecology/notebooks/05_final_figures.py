@@ -1,3 +1,4 @@
+# %%
 """
 Notebook 05: Final figures and summary tables for REPORT.md.
 
@@ -7,6 +8,7 @@ Produces:
   - data/05_final_summary_table.csv  — clean table of significant species
 """
 
+# %%
 import os
 import matplotlib
 matplotlib.use("Agg")
@@ -14,16 +16,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+# %%
 PROJECT_DIR = "/home/justaddcoffee/BERIL-research-observatory/projects/gc_ecotype_ecology"
 DATA_DIR = os.path.join(PROJECT_DIR, "data")
 FIG_DIR = os.path.join(PROJECT_DIR, "figures")
 
+# %%
 df = pd.read_parquet(os.path.join(DATA_DIR, "genome_gc_env_categorized.parquet"))
 sig = pd.read_csv(os.path.join(DATA_DIR, "03_significant_species.csv"))
 res = pd.read_csv(os.path.join(DATA_DIR, "03_within_species_results.csv"))
 ae = pd.read_csv(os.path.join(DATA_DIR, "04_alphaearth_results.csv"))
 perm = pd.read_csv(os.path.join(DATA_DIR, "04_permutation_results.csv"))
 
+# %%
 # -----------------------------------------------------------------------------
 # Final summary table
 # -----------------------------------------------------------------------------
@@ -44,12 +49,14 @@ summary = summary.sort_values("partial_r2_iso", ascending=False)
 summary.to_csv(os.path.join(DATA_DIR, "05_final_summary_table.csv"), index=False)
 print(f"Saved final summary table ({len(summary)} significant species)")
 
+# %%
 # -----------------------------------------------------------------------------
 # 4-panel summary figure
 # -----------------------------------------------------------------------------
 fig = plt.figure(figsize=(15, 11))
 gs = fig.add_gridspec(2, 2, hspace=0.4, wspace=0.3)
 
+# %%
 # Panel A: cross-species GC vs isolation source (sanity check)
 ax = fig.add_subplot(gs[0, 0])
 qual = df[df["passes_quality"] & df["gc_pct"].notna() & df["iso_category"].notna()]
@@ -64,6 +71,7 @@ ax.set_ylabel("GC content (%)")
 ax.set_title("A. Cross-species: GC tracks environment (literature replication)")
 ax.tick_params(axis="x", rotation=35, labelsize=8)
 
+# %%
 # Panel B: Volcano for within-species iso effect
 ax = fig.add_subplot(gs[0, 1])
 res_p = res[res["p_iso_given_ani"].notna()]
@@ -84,6 +92,7 @@ for _, row in top.iterrows():
                 fontsize=7, alpha=0.8)
 ax.legend()
 
+# %%
 # Panel C: Permutation null robustness
 ax = fig.add_subplot(gs[1, 0])
 ax.hist(-np.log10(perm["emp_p_value"].clip(lower=1e-3)), bins=18,
@@ -95,6 +104,7 @@ n_robust = int((perm["emp_p_value"] < 0.05).sum())
 ax.set_title(f"C. Robustness: {n_robust}/{len(perm)} species survive label-permutation null")
 ax.legend()
 
+# %%
 # Panel D: AlphaEarth independent line — |r| distribution
 ax = fig.add_subplot(gs[1, 1])
 ae_sig = ae[ae["q_value_bh"] < 0.05]
@@ -108,11 +118,13 @@ ax.set_ylabel("-log10(p)")
 ax.set_title(f"D. Independent: {len(ae_sig)}/{len(ae)} species show continuous env\nsignal (AlphaEarth embeddings)")
 ax.legend()
 
+# %%
 fig.suptitle("Within-species GC content tracks environmental niche after phylogenetic control\n(BERDL pangenome, 293K bacterial genomes)", fontsize=13, y=0.995)
 plt.savefig(os.path.join(FIG_DIR, "05_summary_panel.png"), dpi=150, bbox_inches="tight")
 plt.close()
 print("Saved summary panel")
 
+# %%
 # -----------------------------------------------------------------------------
 # Case study: Burkholderia vietnamiensis (env + AE both significant)
 # -----------------------------------------------------------------------------
@@ -152,5 +164,6 @@ if len(sp_case):
     plt.close()
     print("Saved Burkholderia case study figure")
 
+# %%
 print("\nNotebook 05 complete.")
 print(f"Top species by effect (R²): {summary.head(10)['species_short'].tolist()}")

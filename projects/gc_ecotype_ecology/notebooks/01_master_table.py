@@ -1,3 +1,4 @@
+# %%
 """
 Notebook 01: Master Table Construction
 
@@ -13,6 +14,7 @@ Outputs:
   - figures/01_field_coverage.png
 """
 
+# %%
 import os
 import sys
 import matplotlib
@@ -23,14 +25,17 @@ import pandas as pd
 from pyspark.sql import functions as F
 from berdl_notebook_utils.setup_spark_session import get_spark_session
 
+# %%
 PROJECT_DIR = "/home/justaddcoffee/BERIL-research-observatory/projects/gc_ecotype_ecology"
 DATA_DIR = os.path.join(PROJECT_DIR, "data")
 FIG_DIR = os.path.join(PROJECT_DIR, "figures")
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(FIG_DIR, exist_ok=True)
 
+# %%
 spark = get_spark_session()
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 1: Build core genome table with GC, size, quality
 # -----------------------------------------------------------------------------
@@ -54,6 +59,7 @@ n_with_gc = core.where(F.col("gc_pct").isNotNull()).count()
 print(f"  Total genomes: {n_total:,}")
 print(f"  With GC: {n_with_gc:,} ({100*n_with_gc/n_total:.1f}%)")
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 2: Pivot ncbi_env to wide form on the fields we care about
 # -----------------------------------------------------------------------------
@@ -83,6 +89,7 @@ env_wide = (
 )
 print(f"  Distinct biosamples with at least one env field: {env_wide.count():,}")
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 3: AlphaEarth presence flag
 # -----------------------------------------------------------------------------
@@ -93,6 +100,7 @@ ae = spark.sql("""
 """)
 print(f"  Genomes with AlphaEarth: {ae.count():,}")
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 4: Join everything
 # -----------------------------------------------------------------------------
@@ -105,12 +113,14 @@ master = (
     .fillna(0, subset=["has_alphaearth"])
 )
 
+# %%
 # Apply quality filter: keep all rows for now, flag quality so we can subset later
 master = master.withColumn(
     "passes_quality",
     (F.col("checkm_completeness") >= 90) & (F.col("checkm_contamination") <= 5)
 )
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 5: Collect to pandas (small — 293K rows × ~15 cols) and save
 # -----------------------------------------------------------------------------
@@ -125,6 +135,7 @@ out_path = os.path.join(DATA_DIR, "genome_gc_env.parquet")
 df.to_parquet(out_path, index=False)
 print(f"  Wrote {out_path}")
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 6: Summary statistics
 # -----------------------------------------------------------------------------
@@ -143,6 +154,7 @@ summary["pct"] = (100 * summary["n_nonnull"] / len(df)).round(1)
 print(summary.to_string(index=False))
 summary.to_csv(os.path.join(DATA_DIR, "01_field_coverage.csv"), index=False)
 
+# %%
 # Species with most genomes
 print("\n=== Top 20 species by genome count (quality-filtered) ===")
 top_species = (
@@ -155,12 +167,14 @@ top_species = (
 print(top_species.to_string())
 top_species.to_csv(os.path.join(DATA_DIR, "01_top_species.csv"))
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 7: Figures
 # -----------------------------------------------------------------------------
 print("\nStep 7: Figures...")
 qual = df[df["passes_quality"] & df["gc_pct"].notna()]
 
+# %%
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.hist(qual["gc_pct"], bins=80, color="#4c72b0", edgecolor="white")
 ax.set_xlabel("GC content (%)")
@@ -173,6 +187,7 @@ plt.tight_layout()
 plt.savefig(os.path.join(FIG_DIR, "01_gc_distribution_overall.png"), dpi=150)
 plt.close()
 
+# %%
 fig, ax = plt.subplots(figsize=(9, 5))
 summary_plot = summary.set_index("field")["pct"].sort_values(ascending=True)
 ax.barh(summary_plot.index, summary_plot.values, color="#55a868")
@@ -185,6 +200,7 @@ plt.tight_layout()
 plt.savefig(os.path.join(FIG_DIR, "01_field_coverage.png"), dpi=150)
 plt.close()
 
+# %%
 print("\nNotebook 01 complete.")
 print(f"Outputs:")
 print(f"  {out_path}")

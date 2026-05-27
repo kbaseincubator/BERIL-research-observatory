@@ -1,3 +1,4 @@
+# %%
 """
 Notebook 03: Within-Species GC vs Environment (Core Analysis)
 
@@ -23,6 +24,7 @@ Outputs:
   - figures/03_top_species_panels.png
 """
 
+# %%
 import os
 import warnings
 import matplotlib
@@ -35,6 +37,7 @@ from scipy.sparse.csgraph import connected_components
 from scipy import stats as scistats
 
 
+# %%
 def benjamini_hochberg(pvals):
     """BH-FDR adjusted q-values."""
     p = np.asarray(pvals, dtype=float)
@@ -50,6 +53,7 @@ def benjamini_hochberg(pvals):
     return out
 
 
+# %%
 def design_categorical(series):
     """Return a one-hot dummy matrix (n x k-1 + intercept) like statsmodels."""
     cats = pd.Categorical(series)
@@ -64,12 +68,14 @@ def design_categorical(series):
     return X
 
 
+# %%
 def design(*blocks):
     parts = [np.ones((blocks[0].shape[0], 1))]
     parts.extend(blocks)
     return np.hstack(parts)
 
 
+# %%
 def ols_rss(X, y):
     """Fit OLS via least-squares; return (rss, df_resid, rank)."""
     beta, *_ = np.linalg.lstsq(X, y, rcond=None)
@@ -82,6 +88,7 @@ def ols_rss(X, y):
     return rss, df_resid, rank
 
 
+# %%
 def partial_F(X_null, X_alt, y):
     """Nested-model partial F-test. X_alt must contain X_null as subspace."""
     rss_null, df_null, rank_null = ols_rss(X_null, y)
@@ -93,30 +100,37 @@ def partial_F(X_null, X_alt, y):
     p = float(scistats.f.sf(f, df_diff, df_alt))
     return float(f), p, rss_null, rss_alt
 
+# %%
 from berdl_notebook_utils.setup_spark_session import get_spark_session
 
+# %%
 warnings.filterwarnings("ignore")
 
+# %%
 PROJECT_DIR = "/home/justaddcoffee/BERIL-research-observatory/projects/gc_ecotype_ecology"
 DATA_DIR = os.path.join(PROJECT_DIR, "data")
 FIG_DIR = os.path.join(PROJECT_DIR, "figures")
 
+# %%
 ANI_THRESHOLD = 99.0          # clone-cluster threshold
 MIN_TOTAL_GENOMES = 50
 MIN_PER_CATEGORY = 10
 MIN_CATEGORIES = 2
 MAX_GENOMES_PER_SPECIES = 5000  # subsample very large species for tractability
 
+# %%
 # -----------------------------------------------------------------------------
 # Load categorized master table
 # -----------------------------------------------------------------------------
 df = pd.read_parquet(os.path.join(DATA_DIR, "genome_gc_env_categorized.parquet"))
 print(f"Loaded {len(df):,} quality-passing genomes")
 
+# %%
 # Restrict to genomes with a categorical iso assignment
 df = df[df["iso_category"].notna() & (df["iso_category"] != "other")]
 print(f"After dropping 'other' / NaN iso_category: {len(df):,}")
 
+# %%
 # -----------------------------------------------------------------------------
 # Pick candidate species
 # -----------------------------------------------------------------------------
@@ -141,11 +155,13 @@ print(f"\nCandidate species (>= {MIN_TOTAL_GENOMES} genomes across >= {MIN_CATEG
 print(f"  {len(cand_df)} species")
 cand_df.to_csv(os.path.join(DATA_DIR, "03_candidate_species.csv"), index=False)
 
+# %%
 # -----------------------------------------------------------------------------
 # Per-species analysis loop
 # -----------------------------------------------------------------------------
 spark = get_spark_session()
 
+# %%
 def cluster_by_ani(genome_ids, ani_pairs, threshold=ANI_THRESHOLD):
     """Connected components of the ANI graph at the given threshold."""
     id_to_idx = {g: i for i, g in enumerate(genome_ids)}
@@ -167,6 +183,7 @@ def cluster_by_ani(genome_ids, ani_pairs, threshold=ANI_THRESHOLD):
     return labels
 
 
+# %%
 def fit_species(species, sub):
     """Returns dict of results for one species."""
     # Filter to qualifying categories only
@@ -256,6 +273,7 @@ def fit_species(species, sub):
         return {"species": species, "error": f"model_failed: {e}"[:200]}
 
 
+# %%
 results = []
 species_to_run = cand_df["species"].tolist()
 print(f"\nRunning OLS pipeline on {len(species_to_run)} species...")
@@ -268,11 +286,13 @@ for i, sp in enumerate(species_to_run):
     if (i + 1) % 25 == 0:
         print(f"  {i+1}/{len(species_to_run)} processed")
 
+# %%
 res = pd.DataFrame(results)
 print(f"\nResults rows: {len(res)}")
 # Save raw results
 res.to_csv(os.path.join(DATA_DIR, "03_within_species_results.csv"), index=False)
 
+# %%
 # Multiple-testing correction on species that have a valid p-value
 has_p = res["p_iso_given_ani"].notna() if "p_iso_given_ani" in res.columns else pd.Series([False]*len(res))
 res_p = res[has_p].copy()
@@ -340,4 +360,5 @@ if len(res_p) > 0:
         plt.savefig(os.path.join(FIG_DIR, "03_top_species_panels.png"), dpi=150)
         plt.close()
 
+# %%
 print("\nNotebook 03 complete.")

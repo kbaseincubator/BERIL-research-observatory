@@ -22,6 +22,12 @@ WHERE harmonized_name IN ('isolation_source', 'host', ...)
 
 The ANI column is uppercase `ANI`, not `ani`. Spark Connect's case sensitivity sometimes accepts lowercase silently, sometimes not — always use `ANI`.
 
+## kbase_ke_pangenome.phylogenetic_tree_distance_pairs: spelled correctly + bare accession IDs (2026-05-27)
+
+Internal docs at `docs/overview.md` reference the table as `phylogentic_tree_distance_pairs` (missing the second `e`), but the actual table is correctly spelled `phylogenetic_tree_distance_pairs`. Columns: `phylogenetic_tree_id, genome1_id, genome2_id, branch_distance`. 283M rows.
+
+**Critical**: this table uses **bare accessions** (e.g., `GCF_000667545.1`, `GCA_000820225.1`) — without the `RS_` or `GB_` prefixes that the rest of `kbase_ke_pangenome` uses (e.g., `genome.genome_id` is `RS_GCF_*` or `GB_GCA_*`). Joining naively returns zero rows. Strip `RS_` / `GB_` from your genome IDs before querying, then remap on the way back. The companion table `phylogenetic_tree` (singular) holds the tree metadata.
+
 ## CAST is needed for many "numeric" columns (2026-05-27)
 
 `gtdb_metadata.gc_percentage`, `genome_size`, `checkm_completeness`, `checkm_contamination` are all `string`-typed. Always `CAST(... AS DOUBLE)` / `CAST(... AS BIGINT)` before numeric operations or comparisons.

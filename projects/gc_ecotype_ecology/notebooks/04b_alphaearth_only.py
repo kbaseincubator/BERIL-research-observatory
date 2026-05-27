@@ -1,3 +1,4 @@
+# %%
 """
 Notebook 04b: AlphaEarth-only re-run (part A succeeded; just need part B with fixed col names)
 """
@@ -14,12 +15,14 @@ from scipy import stats as scistats
 from sklearn.decomposition import PCA
 from berdl_notebook_utils.setup_spark_session import get_spark_session
 
+# %%
 warnings.filterwarnings("ignore")
 PROJECT_DIR = "/home/justaddcoffee/BERIL-research-observatory/projects/gc_ecotype_ecology"
 DATA_DIR = os.path.join(PROJECT_DIR, "data")
 FIG_DIR = os.path.join(PROJECT_DIR, "figures")
 ANI_THRESHOLD = 99.0
 
+# %%
 def cluster_by_ani(genome_ids, ani_pairs):
     id_to_idx = {g: i for i, g in enumerate(genome_ids)}
     n = len(genome_ids)
@@ -37,9 +40,11 @@ def cluster_by_ani(genome_ids, ani_pairs):
     _, labels = connected_components(g, directed=False)
     return labels
 
+# %%
 df = pd.read_parquet(os.path.join(DATA_DIR, "genome_gc_env_categorized.parquet"))
 spark = get_spark_session()
 
+# %%
 ae_cols = [f"A{i:02d}" for i in range(64)]
 ae_select = ", ".join(ae_cols)
 print("Pulling AlphaEarth embeddings...")
@@ -48,13 +53,16 @@ ae_q = pd.DataFrame({c: ae_q[c].to_numpy() for c in ae_q.columns})
 ae = ae_q.groupby("genome_id")[ae_cols].mean().reset_index()
 print(f"Per-genome AE: {len(ae):,}")
 
+# %%
 df_ae = df.merge(ae, on="genome_id", how="inner")
 print(f"Genomes with both GC and AE: {len(df_ae):,}")
 
+# %%
 candidate_species = df_ae["gtdb_species_clade_id"].value_counts()
 candidate_species = candidate_species[candidate_species >= 30].index.tolist()
 print(f"{len(candidate_species)} species with >= 30 AE-bearing genomes")
 
+# %%
 ae_species_results = []
 for i, sp in enumerate(candidate_species):
     sub = df_ae[df_ae["gtdb_species_clade_id"] == sp].copy()
@@ -119,6 +127,7 @@ for i, sp in enumerate(candidate_species):
     if (i + 1) % 25 == 0:
         print(f"  {i+1}/{len(candidate_species)} processed")
 
+# %%
 ae_df = pd.DataFrame(ae_species_results)
 print(f"\nAlphaEarth results: {len(ae_df)} species tested")
 if len(ae_df) > 0:
@@ -150,6 +159,7 @@ if len(ae_df) > 0:
     plt.savefig(os.path.join(FIG_DIR, "04_alphaearth_signal.png"), dpi=150)
     plt.close()
 
+# %%
 # Also produce the permutation null figure now (it was last in the script)
 perm_df = pd.read_csv(os.path.join(DATA_DIR, "04_permutation_results.csv"))
 fig, ax = plt.subplots(figsize=(8, 5))
@@ -165,4 +175,5 @@ plt.tight_layout()
 plt.savefig(os.path.join(FIG_DIR, "04_permutation_null.png"), dpi=150)
 plt.close()
 
+# %%
 print("Done.")

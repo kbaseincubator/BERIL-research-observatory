@@ -1,3 +1,4 @@
+# %%
 """
 Notebook 02: Across-Species GC Patterns (Sanity Check)
 
@@ -19,6 +20,7 @@ Outputs:
   - figures/02_gc_vs_genome_size.png  (Wallace's "GC ~ genome size" classic)
 """
 
+# %%
 import os
 import re
 import matplotlib
@@ -27,15 +29,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+# %%
 PROJECT_DIR = "/home/justaddcoffee/BERIL-research-observatory/projects/gc_ecotype_ecology"
 DATA_DIR = os.path.join(PROJECT_DIR, "data")
 FIG_DIR = os.path.join(PROJECT_DIR, "figures")
 
+# %%
 df = pd.read_parquet(os.path.join(DATA_DIR, "genome_gc_env.parquet"))
 print(f"Loaded {len(df):,} genomes")
 qual = df[df["passes_quality"] & df["gc_pct"].notna()].copy()
 print(f"After quality filter: {len(qual):,}")
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 1: Harmonize isolation_source into broad categories
 # -----------------------------------------------------------------------------
@@ -57,6 +62,7 @@ CATEGORY_RULES = [
     ("gut_environmental", r"\b(gut|fecal|feces|faec|caecum|cecum|intestin|rumen|colon|gastrointestinal)\b"),
 ]
 
+# %%
 def categorize(text):
     if pd.isna(text) or not isinstance(text, str):
         return None
@@ -69,9 +75,11 @@ def categorize(text):
             return cat
     return "other"
 
+# %%
 qual["iso_category"] = qual["isolation_source"].apply(categorize)
 qual["env_broad_simple"] = qual["env_broad_scale"].apply(categorize)
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 2: Distribution of isolation_source categories
 # -----------------------------------------------------------------------------
@@ -80,6 +88,7 @@ print("\n=== Isolation source category coverage (genome-level) ===")
 print(iso_counts.to_string())
 iso_counts.to_csv(os.path.join(DATA_DIR, "02_isolation_source_categories.csv"))
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 3: GC by isolation_source category (genome-level)
 # -----------------------------------------------------------------------------
@@ -94,6 +103,7 @@ print("\n=== GC% by isolation_source category (genome-level) ===")
 print(gc_by_iso.to_string())
 gc_by_iso.to_csv(os.path.join(DATA_DIR, "02_gc_by_isolation_source.csv"))
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 4: GC by env_broad_scale (raw + simplified)
 # -----------------------------------------------------------------------------
@@ -111,6 +121,7 @@ print("\n=== GC% by env_broad_scale (top 40 with N >= 30) ===")
 print(gc_by_envb.to_string())
 gc_by_envb.to_csv(os.path.join(DATA_DIR, "02_gc_by_env_broad_scale.csv"))
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 5: Species-level test — collapse to per-species mean GC × dominant category
 # -----------------------------------------------------------------------------
@@ -142,6 +153,7 @@ print(gc_by_iso_sp.to_string())
 gc_by_iso_sp.to_csv(os.path.join(DATA_DIR, "02_gc_by_iso_species_level.csv"))
 sp_df.to_csv(os.path.join(DATA_DIR, "02_species_summary.csv"), index=False)
 
+# %%
 # -----------------------------------------------------------------------------
 # Step 6: Figures
 # -----------------------------------------------------------------------------
@@ -163,6 +175,7 @@ plt.tight_layout()
 plt.savefig(os.path.join(FIG_DIR, "02_gc_vs_isolation_source.png"), dpi=150)
 plt.close()
 
+# %%
 # Fig 2: Species-level boxplot
 fig, ax = plt.subplots(figsize=(11, 5))
 order = gc_by_iso_sp.index.tolist()
@@ -178,6 +191,7 @@ plt.tight_layout()
 plt.savefig(os.path.join(FIG_DIR, "02_gc_vs_iso_species_level.png"), dpi=150)
 plt.close()
 
+# %%
 # Fig 3: GC vs genome size — classic Wallace pattern
 fig, ax = plt.subplots(figsize=(8, 6))
 ax.scatter(qual["genome_size"] / 1e6, qual["gc_pct"], s=2, alpha=0.05, color="#444")
@@ -189,6 +203,7 @@ plt.tight_layout()
 plt.savefig(os.path.join(FIG_DIR, "02_gc_vs_genome_size.png"), dpi=150)
 plt.close()
 
+# %%
 # Save categorized master for downstream notebooks
 qual.to_parquet(os.path.join(DATA_DIR, "genome_gc_env_categorized.parquet"), index=False)
 print("\nNotebook 02 complete.")
