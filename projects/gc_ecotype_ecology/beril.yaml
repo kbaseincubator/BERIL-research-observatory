@@ -1,7 +1,7 @@
 project_id: gc_ecotype_ecology
-status: reviewed
+status: complete
 created_at: "2026-05-27T00:00:00Z"
-last_session_at: "2026-05-27T00:00:00Z"
+last_session_at: "2026-05-27T17:23:33Z"
 branch: projects/gc_ecotype_ecology
 engine:
   name: claude
@@ -14,3 +14,25 @@ artifacts:
   research_plan: true
   report: true
   review: true
+approval:
+  by: "0000-0002-2170-2250"
+  at: "2026-05-27T17:23:33Z"
+  report_hash: "sha256:f773608a1dd497c1ffa1608a83b6cc60f67d2e65041b491508a5d0dcc30163d6"
+  review: "REVIEW_2.md"
+  review_hash: "sha256:33042ec35ab4dbfd352e9f416821c7fcef01bfb96440ae206002ae8594cd2233"
+  notebook_hashes:
+    "notebooks/01_master_table.ipynb": "sha256:c131f23b6bb214b517cedf6f3e8ef6679a03e7a1ff46e518adb31b5b71afb4c1"
+    "notebooks/02_across_species_gc.ipynb": "sha256:3cf1402c62cd46cbfa7b90a28d9201cf64132151072df7e7fce82dd48961ff11"
+    "notebooks/03_within_species_gc.ipynb": "sha256:a99422a00de0f5465eb175e754eb820ecb1a9232126bb0b0e2aaa3aedc691366"
+    "notebooks/04_robustness_alphaearth.ipynb": "sha256:6bdf1c32a40ed566a288f713cac476d8418b9d2d8fafd4cf8fe77059c57f31cd"
+    "notebooks/04b_alphaearth_only.ipynb": "sha256:f93fd80e57dd1313df19be5561168f0ebd380983a508eaba81547e4165968192"
+    "notebooks/05_final_figures.ipynb": "sha256:10c60e8ea1e7a64fbe16dae06c39dda1c247457401383c5750918cddcb977c6c"
+    "notebooks/06_addressing_review.ipynb": "sha256:8fea922e4e4a7cf34e45b83d684c346734dc6afab6b21e27e345f2a2df78cfc1"
+submissions:
+  - status: success
+    attempted_at: "2026-05-27T17:24:34Z"
+    archive_key: "s3a://cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/gc_ecotype_ecology/"
+    file_count: 60
+    byte_total: 24868156
+    duration_seconds: 8.96
+    approved_at: "2026-05-27T17:23:33Z"
