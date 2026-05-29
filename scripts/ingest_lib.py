@@ -38,12 +38,11 @@ upload_files(minio_client, bucket, table_stats, bronze_prefix, file_ext)
     their chunk files are uploaded one-by-one during ingest.
 
 run_ingest(spark, minio_client, table_stats, schemas, schema_defs, namespace,
-           tenant, dataset, bucket, bronze_prefix, silver_base, mode, file_ext,
+           tenant, dataset, bucket, bronze_prefix, mode, file_ext,
            delimiter, progress_key)
     Ingest all tables into Iceberg silver. Returns the (possibly reconnected) spark.
 
-verify_ingest(spark, namespace, table_stats, minio_client, bucket,
-              progress_key, silver_base)
+verify_ingest(spark, namespace, table_stats, minio_client, bucket, progress_key)
     Query row counts and compare against expected. Prints results.
 """
 
@@ -89,7 +88,7 @@ for _name in _STUB_MODULES:
         sys.modules[_name] = ModuleType(_name)
 
 
-def _create_namespace_if_not_exists(spark, namespace=None, append_target=True, tenant_name=None):
+def _create_namespace_if_not_exists(spark, namespace=None, append_target=True, tenant_name=None, iceberg=True):
     if tenant_name:
         ns = f"{tenant_name}.{namespace}"
         spark.sql(f"CREATE NAMESPACE IF NOT EXISTS {ns}")
@@ -104,7 +103,10 @@ sys.modules["berdl_notebook_utils.spark.database"].create_namespace_if_not_exist
     _create_namespace_if_not_exists
 )
 sys.modules["berdl_notebook_utils.setup_spark_session"].get_spark_session = None
+# data_lakehouse_ingest's core imports get_s3_client (renamed from get_minio_client in
+# the Iceberg migration); both attributes must exist on the stub so the import succeeds.
 sys.modules["berdl_notebook_utils.clients"].get_minio_client = None
+sys.modules["berdl_notebook_utils.clients"].get_s3_client = None
 
 from data_lakehouse_ingest import ingest as _lakehouse_ingest  # noqa: E402
 from get_spark_session import get_spark_session  # noqa: E402
@@ -292,6 +294,7 @@ def initialize():
     spark = _connect_spark()
     minio_client = _build_minio_client()
     sys.modules["berdl_notebook_utils.clients"].get_minio_client = lambda **kw: minio_client
+    sys.modules["berdl_notebook_utils.clients"].get_s3_client = lambda **kw: minio_client
     print("Spark and MinIO clients ready.")
     return spark, minio_client
 
@@ -777,7 +780,7 @@ def _verify_chunk_upload(
 
 
 def _build_dataset_config(
-    tenant, dataset, bucket, bronze_prefix, silver_base,
+    tenant, dataset, bucket, bronze_prefix,
     table_stats, schemas, schema_defs, mode, file_ext, delimiter,
     user_tenant: bool = False,
     username: str | None = None,
@@ -790,7 +793,10 @@ def _build_dataset_config(
     )
     cfg = {}
     if user_tenant:
-        cfg["dataset"] = f"my.{dataset}"
+        # Pass the bare dataset and omit tenant; the pipeline's
+        # create_namespace_if_not_exists() prepends the personal "my" catalog,
+        # yielding my.{dataset}. (Prefixing here too would give my.my.{dataset}.)
+        cfg["dataset"] = dataset
     else:
         cfg["dataset"] = dataset
         cfg["tenant"] = tenant
@@ -802,7 +808,6 @@ def _build_dataset_config(
     cfg["paths"] = {
         "data_plane":  data_plane,
         "bronze_base": f"s3a://{bucket}/{bronze_prefix}/",
-        "silver_base": silver_base,
     }
     cfg["defaults"] = defaults
     cfg["tables"] = [
@@ -889,7 +894,6 @@ def _build_chunk_config(
     tenant: str,
     dataset: str,
     bucket: str,
-    silver_base: str,
     schema_defs: dict,
     table: str,
     chunk_bronze_path: str,
@@ -909,7 +913,8 @@ def _build_chunk_config(
     )
     cfg: dict = {}
     if user_tenant:
-        cfg["dataset"] = f"my.{dataset}"
+        # Bare dataset (no "my." prefix) — the pipeline adds the personal catalog.
+        cfg["dataset"] = dataset
         data_plane = f"s3a://{bucket}/users-general-warehouse/{username}/"
     else:
         cfg["dataset"] = dataset
@@ -919,7 +924,6 @@ def _build_chunk_config(
     cfg["paths"]    = {
         "data_plane":  data_plane,
         "bronze_base": f"s3a://{bucket}/{bronze_prefix}/",
-        "silver_base": silver_base,
     }
     cfg["defaults"] = defaults
     cfg["tables"]   = [{
@@ -943,7 +947,6 @@ def _ingest_chunked(
     stats: dict,
     schemas: dict,
     schema_defs: dict,
-    silver_base: str,
     tenant: str,
     dataset: str,
     bronze_prefix: str,
@@ -1046,7 +1049,7 @@ def _ingest_chunked(
         # ── Ingest via upstream pipeline ───────────────────────────────────────
         chunk_mode = mode if chunk_index == 0 else "append"
         chunk_cfg  = _build_chunk_config(
-            tenant, dataset, bucket, silver_base, schema_defs,
+            tenant, dataset, bucket, schema_defs,
             table, f"s3a://{bucket}/{chunk_key}", file_ext, delimiter, chunk_mode,
             bronze_prefix=bronze_prefix,
             user_tenant=user_tenant, username=username,
@@ -1109,7 +1112,6 @@ def run_ingest(
     dataset: str,
     bucket: str,
     bronze_prefix: str,
-    silver_base: str,
     mode: str,
     file_ext: str,
     delimiter: str,
@@ -1172,7 +1174,7 @@ def run_ingest(
             print(f"  {t}: {s['data_lines']:,} rows | {s['size_bytes'] / 1e9:.1f} GB")
 
         cfg = _build_dataset_config(
-            tenant, dataset, bucket, bronze_prefix, silver_base,
+            tenant, dataset, bucket, bronze_prefix,
             pending_non_chunked, schemas, schema_defs, mode, file_ext, delimiter,
             user_tenant=user_tenant, username=username,
         )
@@ -1225,7 +1227,6 @@ def run_ingest(
             stats=stats,
             schemas=schemas,
             schema_defs=schema_defs,
-            silver_base=silver_base,
             tenant=tenant,
             dataset=dataset,
             bronze_prefix=bronze_prefix,
@@ -1256,7 +1257,6 @@ def verify_ingest(
     minio_client,
     bucket: str,
     progress_key: str,
-    silver_base: str,
 ) -> None:
     """Query row counts from Iceberg and compare against expected line counts.
 
@@ -1269,10 +1269,14 @@ def verify_ingest(
     progress_log = _load_progress_log(minio_client, bucket, progress_key)
     all_match    = True
 
-    print("Row counts (Delta vs expected):")
+    print("Row counts (Iceberg vs expected):")
     for table, stats in table_stats.items():
+        # Quote each segment of a (possibly dotted, multi-level Iceberg) namespace
+        # separately — backtick-quoting the whole "tenant.dataset" as one identifier
+        # makes Spark look for a schema literally named "tenant.dataset".
+        fqn      = ".".join(f"`{p}`" for p in namespace.split(".") + [table])
         count    = spark.sql(
-            f"SELECT COUNT(*) FROM `{namespace}`.`{table}`"
+            f"SELECT COUNT(*) FROM {fqn}"
         ).collect()[0][0]
         expected = stats["data_lines"]
         match    = "OK" if count == expected else "MISMATCH"
@@ -1289,9 +1293,8 @@ def verify_ingest(
     print()
     if all_match:
         print("All row counts match. Ingest successful.")
-        print(f"Namespace : {namespace}")
-        print(f"Silver    : {silver_base}")
+        print(f"Namespace : {namespace}   (query this in BERDL)")
     else:
         print("Row count mismatch detected.")
+        print(f"  Namespace    : {namespace}")
         print(f"  Progress log : s3a://{bucket}/{progress_key}")
-        print(f"  Quarantine   : {silver_base}/quarantine/")

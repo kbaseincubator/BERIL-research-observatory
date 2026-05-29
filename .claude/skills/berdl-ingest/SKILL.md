@@ -48,17 +48,19 @@ This skill runs **in-cluster** (JupyterHub). If `--check` reports off-cluster, s
 
 ### Step 0b: Verify ingest environment
 
-`get_spark_session()` and `get_minio_client()` come from `scripts/ingest_lib.py` in
-the BERIL repo (not from `data_lakehouse_ingest` directly). The notebook bootstraps
-`ingest_lib` by walking up from the notebook's location to find `scripts/` and adding
-it to `sys.path` — the same approach as the remote skill.
+Inside JupyterHub, Spark Connect is reachable directly and the MinIO credentials are
+pre-set as environment variables, so the notebook builds **both clients itself** rather
+than using `ingest_lib`'s `get_spark_session()` (which is the off-cluster version that
+connects through the laptop proxy chain). Importing `ingest_lib` is still needed: it
+installs the lightweight `berdl_notebook_utils` stubs and exposes the
+infrastructure-agnostic helpers (`parse_sql_schema`, `export_sqlite`). `ingest()` is
+imported from `data_lakehouse_ingest`.
 
-`ingest()` is imported directly from `data_lakehouse_ingest` (its only public export).
-
-Verify the environment is ready:
+This is the in-cluster bypass pattern (see `references/on-cluster-bypass.md`); the
+notebook's Setup cell performs it. Verify the environment is ready:
 
 ```python
-import sys
+import sys, os
 from pathlib import Path
 
 _found = False
@@ -70,16 +72,32 @@ for _p in [Path.cwd()] + list(Path.cwd().parents):
 if not _found:
     raise RuntimeError("Could not find scripts/ingest_lib.py — run from within the BERIL repo.")
 
-from ingest_lib import get_spark_session, get_minio_client
+import ingest_lib  # installs the berdl_notebook_utils stubs on import
 from data_lakehouse_ingest import ingest
+from pyspark.sql import SparkSession
+from minio import Minio
 
-spark        = get_spark_session()
-minio_client = get_minio_client()
+token        = os.environ["KBASE_AUTH_TOKEN"]
+spark_url    = f"sc://jupyter-{os.environ['USER']}.jupyterhub-prod:15002/;use_ssl=false;x-kbase-token={token}"
+spark        = SparkSession.builder.remote(spark_url).getOrCreate()
+
+endpoint     = os.environ["MINIO_ENDPOINT_URL"].replace("https://", "").replace("http://", "")
+minio_client = Minio(endpoint,
+    access_key=os.environ["MINIO_ACCESS_KEY"],
+    secret_key=os.environ["MINIO_SECRET_KEY"],
+    secure=os.environ.get("MINIO_SECURE", "true").lower() == "true")
+
+# The Iceberg build of data_lakehouse_ingest looks up get_s3_client (renamed from
+# get_minio_client) — register both names on the stubs, plus the Spark session.
+sys.modules["berdl_notebook_utils.setup_spark_session"].get_spark_session = lambda **kw: spark
+sys.modules["berdl_notebook_utils.clients"].get_minio_client = lambda **kw: minio_client
+sys.modules["berdl_notebook_utils.clients"].get_s3_client    = lambda **kw: minio_client
 print("Spark and MinIO ready.")
 ```
 
-If either `get_spark_session()` or `get_minio_client()` raises, the JH environment is
-misconfigured — this is not a tunnel issue. Report the error verbatim and stop.
+If building the Spark session or MinIO client raises, the JH environment is
+misconfigured (missing env vars or sidecar) — this is not a tunnel issue. Report the
+error verbatim and stop.
 
 ### Step 1: Ask for source directory
 
@@ -299,10 +317,9 @@ is read at the start of the cell — completed tables are skipped automatically.
 
 After the notebook completes, report:
 
-- **Namespace:** `{NAMESPACE}`
+- **Namespace:** `{NAMESPACE}` — query this in BERDL (Polaris manages the physical location)
 - **Tables ingested** and row counts
 - **Bronze path:** `s3a://cdm-lake/{BRONZE_PREFIX}/`
-- **Silver path:** `{SILVER_BASE}`
 - **Progress log:** `s3a://cdm-lake/{PROGRESS_KEY}`
 - **Metadata:** `s3a://cdm-lake/{METADATA_PREFIX}/`
 
@@ -335,15 +352,16 @@ On re-run, the ingest cell reads the log and skips any table with `"status": "co
 - **`data_lakehouse_ingest` not importable:** Package not installed in this JH
   environment. Ask the user to check their environment setup — do not attempt to pip
   install without confirmation.
-- **`get_spark_session()` fails:** The JH environment or Spark sidecar is not
-  configured correctly. Report the error verbatim and stop — this is not a tunnel
-  issue and cannot be fixed by the agent.
-- **`get_minio_client()` fails:** MinIO credentials are not configured in this JH
-  environment. Report the error and ask the user to check with a BERDL admin.
+- **Spark Connect build fails:** The JH environment or Spark sidecar is not configured
+  correctly, or `KBASE_AUTH_TOKEN` / `USER` is unset. Report the error verbatim and stop
+  — this is not a tunnel issue and cannot be fixed by the agent.
+- **MinIO client build fails:** The `MINIO_ENDPOINT_URL` / `MINIO_ACCESS_KEY` /
+  `MINIO_SECRET_KEY` env vars are not set in this JH environment. Report the error and
+  ask the user to check with a BERDL admin.
 - **`ingest()` returns `success: false`:** Raise immediately — do not silently continue
   to the next table. Show the `errors` list from the report.
 - **Row count mismatch:** Check `s3a://cdm-lake/{BRONZE_PREFIX}/_ingest_progress.jsonl`
-  and the quarantine path at `{SILVER_BASE}/quarantine/`.
+  for the per-table completion entries to locate the gap.
 - **Source file not found:** Verify `DATA_DIR` is accessible from the JH pod. Global
   share paths (e.g. `/clusterfs/`) may require the server to be spawned with the
   correct mount options.
