@@ -4,6 +4,8 @@ from observatory_context.config import ContextConfig
 from observatory_context.ingest import (
     ingest_all,
     ingest_changed,
+    ingest_docs,
+    ingest_project,
     ingest_projects,
 )
 
@@ -99,6 +101,44 @@ def test_ingest_projects_uploads_only_listed_projects(tmp_path: Path) -> None:
     assert "viking://resources/projects/beta/" in targets
     assert "viking://resources/projects/gamma/" not in targets
     assert client.wait_count == 1
+
+
+def test_ingest_project_keeps_other_pending_changes_visible_to_changed(tmp_path: Path) -> None:
+    write(tmp_path / "projects" / "alpha" / "README.md", "# A\n")
+    write(tmp_path / "projects" / "beta" / "README.md", "# B\n")
+    write(tmp_path / "docs" / "pitfalls.md", "# P\n")
+    config = make_config(tmp_path)
+    ingest_all(config, FakeClient())
+
+    # Edit beta and the central doc, then ingest ONLY alpha.
+    write(tmp_path / "projects" / "beta" / "README.md", "# B changed\n")
+    write(tmp_path / "docs" / "pitfalls.md", "# P changed\n")
+    ingest_project(config, FakeClient(), "alpha")
+
+    followup = FakeClient()
+    ingest_changed(config, followup)
+    targets = [target for _, target in followup.added]
+
+    assert "viking://resources/projects/beta/" in targets
+    assert "viking://resources/docs/pitfalls/" in targets
+    # alpha was just ingested; its manifest entry is current, so it is not re-done.
+    assert "viking://resources/projects/alpha/" not in targets
+
+
+def test_ingest_docs_keeps_pending_project_changes_visible_to_changed(tmp_path: Path) -> None:
+    write(tmp_path / "projects" / "alpha" / "README.md", "# A\n")
+    write(tmp_path / "docs" / "pitfalls.md", "# P\n")
+    config = make_config(tmp_path)
+    ingest_all(config, FakeClient())
+
+    write(tmp_path / "projects" / "alpha" / "README.md", "# A changed\n")
+    ingest_docs(config, FakeClient())
+
+    followup = FakeClient()
+    ingest_changed(config, followup)
+    targets = [target for _, target in followup.added]
+
+    assert "viking://resources/projects/alpha/" in targets
 
 
 def test_ingest_all_with_limit_ingests_first_n_projects_and_skips_docs(tmp_path: Path) -> None:

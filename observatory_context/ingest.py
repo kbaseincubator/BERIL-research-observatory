@@ -206,10 +206,18 @@ def ingest_projects(
         _ingest_project_dir(config, client, project_dir)
         obs.advance(project_dir.name)
 
+    # Targeted ingest: only the listed project targets were touched, so update
+    # only their manifest entries. Persisting the full manifest here would
+    # falsely mark untouched projects/docs as current and make a later
+    # `--changed` run skip their pending edits. Deletion reconciliation is left
+    # to `--changed`/`--all`.
+    touched = {project_target_uri(project_dir.name) for project_dir in project_dirs}
     new_manifest = _current_manifest(config)
-    _remove_stale(client, config, new_manifest)
     obs.wait_processed(client)
-    save_manifest(_manifest_path(config), new_manifest)
+    manifest_to_save = _partial_manifest(
+        load_manifest(_manifest_path(config)), new_manifest, touched
+    )
+    save_manifest(_manifest_path(config), manifest_to_save)
     obs.done()
 
 
@@ -235,10 +243,21 @@ def ingest_docs(
         _ingest_doc(config, client, doc_path)
         obs.advance(f"docs/{doc_path.name}")
 
+    # Docs-only ingest reconciles the full docs namespace (ingest all + remove
+    # stale docs) but must leave project manifest entries untouched — persisting
+    # the full manifest would mask pending project edits from a later
+    # `--changed`. Update only the DOCS-prefixed slice of the manifest.
+    old_manifest = load_manifest(_manifest_path(config))
     new_manifest = _current_manifest(config)
     _remove_stale(client, config, new_manifest, prefix=DOCS_TARGET_URI)
     obs.wait_processed(client)
-    save_manifest(_manifest_path(config), new_manifest)
+    touched = {
+        uri
+        for uri in set(old_manifest) | set(new_manifest)
+        if uri.startswith(DOCS_TARGET_URI)
+    }
+    manifest_to_save = _partial_manifest(old_manifest, new_manifest, touched)
+    save_manifest(_manifest_path(config), manifest_to_save)
     obs.done()
 
 
