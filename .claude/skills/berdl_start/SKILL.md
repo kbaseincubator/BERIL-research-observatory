@@ -53,6 +53,8 @@ data/               # Shared data extracts reusable across projects
 
 Discover projects dynamically — run `ls projects/` to list them. Read the first line of each `projects/*/README.md` to get titles. Present the list to the user so they can see what's been done.
 
+When the user describes a topic or goal, also consult the knowledge layer to surface what's already been done on it instead of reading every README — see `knowledge-context` for the query toolkit and retrieval loop. Seed: `uv run --env-file .env knowledge/scripts/knowledge_query.py find "<user's topic>"`. (Falls back to local search if OpenViking is down.)
+
 ### How Projects Work
 
 Each project lives in `projects/<name>/` with a three-file structure plus supporting directories:
@@ -217,6 +219,7 @@ Status: `exploration`. Read context, explore data, accept user-supplied input, a
 3. `docs/pitfalls.md` and `docs/performance.md` — **critical: read before any query design**. These are the frozen historical archives; per-project pitfalls hit by recent projects also live in `projects/*/memories/pitfalls.md` (worth a scan, especially for projects on the same database family).
 4. `docs/research_ideas.md` — check for related ideas; avoid duplicating work.
 5. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live access-aware discovery. For database-specific gotchas, grep `docs/pitfalls.md` for the database name (e.g., `grep -A 20 "^## kbase\.ke_pangenome$" docs/pitfalls.md`); also check `projects/*/memories/pitfalls.md` for any project-tagged entries on the same database.
+6. For "what's already known" on the research topic across projects, query the knowledge layer rather than scanning REPORTs by hand — see `knowledge-context`. Seed: `knowledge_query.py find "<topic>"` for concepts, or `grep "<exact db/term>" --uri viking://resources/` for the database's documented gotchas; then `read` the strongest hits.
 
 **Setup check (Phase 1.5 already verified KBASE_AUTH_TOKEN and proxy):**
 6. `gh auth status` — needed for branches/PRs. Prompt `gh auth login` if missing.

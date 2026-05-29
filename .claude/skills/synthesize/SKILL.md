@@ -106,6 +106,8 @@ For each key finding, assess:
 | Is this novel? | Identify what BERDL data adds that wasn't known before |
 | Are there caveats? | Data coverage, confounders, methodological limitations |
 
+Also compare against **prior observatory work**, not just published literature: query the knowledge layer for related findings to agree with, extend, or contrast — see `knowledge-context`. Seed: `uv run --env-file .env knowledge/scripts/knowledge_query.py find "<finding's key concept>"`, then `read` related projects' REPORT/FINDINGS and cite them alongside the papers. (Falls back to local search if OpenViking is down.)
+
 #### Step 7: Produce Synthesis
 
 Create or update `projects/{project_id}/REPORT.md` with the following sections:

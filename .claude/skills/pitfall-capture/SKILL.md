@@ -33,6 +33,7 @@ Check both locations, in order:
 
 1. **Project-local first**: read `projects/<id>/memories/pitfalls.md` (if it exists) and look for a matching entry. Iteration on the same project commonly hits the same gotcha twice — checking the project's own memory first catches that.
 2. **Central archive second**: grep `docs/pitfalls.md` for the same issue — many gotchas were captured there pre-redirect.
+3. **Cross-project check**: to catch the same gotcha documented under *another* project, query the knowledge layer instead of grepping every memory file — see `knowledge-context`. Seed: `uv run --env-file .env knowledge/scripts/knowledge_query.py grep "<exact error or table>" --uri viking://resources/ -i` (exact tokens beat semantic here), then `read` any hit. (Falls back to local search if OpenViking is down.)
 
 - **If already documented (in either location):** Tell the user: "This is a known pitfall — see {path}, '[Section Name]' section." Quote or summarize the relevant guidance so the user can apply it immediately. **Stop here** — do not proceed to Step 2.
 - **If the user already has a related entry that's slightly off** (e.g., the original entry's framing has been refined by later understanding, or a fix has been improved): proceed to Step 2 but draft a **follow-up/correction entry** rather than a new pitfall (see Step 3 below).

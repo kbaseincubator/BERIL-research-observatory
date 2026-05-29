@@ -15,8 +15,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
+from observatory_context import fallback
 from observatory_context.config import ContextConfig
-from observatory_context.openviking_client import create_client
+from observatory_context.openviking_client import create_client, server_reachable
 from observatory_context.query import (
     format_find_text,
     parse_filter_arg,
@@ -100,9 +101,43 @@ def _print_json(value) -> None:
     print(json.dumps(value, indent=2, default=str))
 
 
+def _run_fallback(args, config: ContextConfig) -> None:
+    print(fallback.BANNER.format(url=config.openviking_url), file=sys.stderr)
+    if args.command == "find":
+        target_uri = target_uri_for_find(
+            project=args.project, docs=args.docs, target_uri=args.target_uri
+        )
+        result = fallback.local_find(config, args.query, target_uri, args.limit)
+        print(json.dumps(result, default=str) if args.json else format_find_text(result))
+    elif args.command == "grep":
+        print(
+            json.dumps(
+                fallback.local_grep(
+                    config,
+                    args.pattern,
+                    args.uri,
+                    case_insensitive=args.case_insensitive,
+                    exclude_uri=args.exclude_uri,
+                    node_limit=args.node_limit,
+                ),
+                indent=2,
+                default=str,
+            )
+        )
+    elif args.command == "read":
+        print(fallback.local_read(config, args.uri))
+    elif args.command == "overview":
+        print(fallback.local_overview(config, args.uri))
+    else:
+        print(fallback.DEGRADED_NOTICE.format(command=args.command), file=sys.stderr)
+
+
 def main() -> None:
     args = build_parser().parse_args()
     config = ContextConfig.from_env()
+    if not server_reachable(config):
+        _run_fallback(args, config)
+        return
     client = create_client(config)
     try:
         if args.command == "find":

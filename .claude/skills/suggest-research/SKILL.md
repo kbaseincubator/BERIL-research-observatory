@@ -54,6 +54,8 @@ For every finished project identified in Step 2:
    - **Novel Contribution** — what made the project scientifically unique
 3. Note any cross-project patterns: recurring organisms, pathways, themes, or data gaps that appear in multiple reports
 
+To find cross-project patterns and gaps without reading every REPORT, query the knowledge layer — see `knowledge-context` for the toolkit and retrieval loop. Seed: `uv run --env-file .env knowledge/scripts/knowledge_query.py find "<candidate theme or organism>"`, then `read` the strongest hits. Use it to surface prior art before proposing; the manual reads above remain the source of truth for findings you cite.
+
 ### Step 4: Read the Discoveries Log
 
 Discoveries live in two places under v5:

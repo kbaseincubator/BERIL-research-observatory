@@ -32,6 +32,72 @@ QUERY="uv run --env-file .env knowledge/scripts/knowledge_query.py"
 | Walk a subtree | `tree` | Hierarchical view |
 | Cross-resource links | `relations` | See § Relations |
 
+This is a toolkit, not a single command — use it like you use bash: pick a
+primitive, look at what comes back, and **follow up**. The sections below
+(`§ Using the toolkit with judgment`) cover when `find` is the wrong tool, how
+to refine a query, and how to drill from a pointer into the source. The
+per-command reference is further down.
+
+## Using the toolkit with judgment
+
+### When `find` is *not* the right tool
+
+`find` is semantic top-K — best for exploring an unfamiliar concept ("anything
+about phage timing?"). Reach for something else when:
+
+- You need **exhaustiveness** (every hit, no ranking cutoff) → `grep`.
+- You know the **exact token** — a gene ID, ORCID, error string, table name →
+  `grep` (semantic ranking can bury an exact string).
+- You need to **enumerate** ("list every project", "which projects have a
+  REPORT") → `glob` / `ls`. Embeddings can't enumerate.
+- You want a resource's **neighbors** → `relations`.
+- You already know the URI and just want the content → `overview` / `read`.
+
+### The retrieval loop
+
+A first query is a starting point, not the answer. Read the result, then move:
+
+- **Too many / vague hits** → tighten the query terms, add
+  `--score-threshold 0.5`, or scope with `--project <id>` / `--target-uri`.
+- **Too few / zero hits** → broaden the terms, drop the threshold, widen the
+  scope, or switch `find` → `grep` on a single defining token.
+- **A promising hit** → `overview` it for the gist, then `read` the specific
+  file; follow `relations` to walk to neighbors.
+- **Stop** when you can name the source files that answer the question, or when
+  two refinements surface nothing new. Don't keep querying past sufficiency.
+
+Search results are a **map**, not the source of truth — once a hit looks right,
+`read` the underlying file before editing or citing it.
+
+### Drill-down chains (worked examples)
+
+```bash
+# "What's known about X?"  broad find -> read the strongest hit -> walk neighbors
+$QUERY find "metal resistance biogeography" --limit 5
+$QUERY read viking://resources/projects/<top_hit>/REPORT.md
+$QUERY relations viking://resources/projects/<top_hit>/
+$QUERY read viking://resources/projects/<neighbor>/FINDINGS.md
+
+# "Has anyone already done Y?"  find -> if vague, grep a defining term -> confirm
+$QUERY find "carbon formulation scoring"
+$QUERY grep "CF formulation" --uri viking://resources/projects/ -i
+$QUERY glob '*' --uri viking://resources/projects/   # confirm the project exists
+
+# "Pitfalls for database Z?"  grep the exact name across archive + per-project memories
+$QUERY grep "kbase.ke_pangenome" --uri viking://resources/docs/pitfalls/
+$QUERY grep "kbase.ke_pangenome" --uri viking://resources/projects/ -i   # memories too
+```
+
+### Degraded mode (knowledge layer unreachable)
+
+If OpenViking is down, `find` / `grep` / `read` / `overview` automatically fall
+back to **local keyword search** over the same project/doc/memory corpus, and
+print a banner: `⚠ knowledge layer unavailable … used local keyword search`.
+When you see it: local search is keyword-only (no semantics), so **prefer exact
+tokens**, treat recall as **partial**, and still read the source. `relations`,
+`glob`, `ls`, `tree`, `stat` have no local equivalent and report unavailable —
+start the server for those.
+
 ### `find` — semantic search
 
 ```bash
@@ -165,7 +231,7 @@ uv run --group knowledge openviking-server doctor --config knowledge/openviking/
 uv run --group knowledge openviking-server --config knowledge/openviking/ov.conf
 ```
 
-Both `ingest_context.py` and `knowledge_query.py` probe `OPENVIKING_URL` before opening a client and exit cleanly with a hint when the server isn't reachable — no Python traceback.
+Both scripts probe `OPENVIKING_URL` before opening a client. `ingest_context.py` (the write path) exits cleanly with a start hint when the server is unreachable. `knowledge_query.py` instead falls back to local keyword search for `find`/`grep`/`read`/`overview` (see § Degraded mode) so read queries never hard-fail — neither path produces a Python traceback.
 
 After the server is running, smoke-test ingest + query for the five most-recently-modified projects:
 
@@ -213,3 +279,20 @@ $QUERY overview viking://resources/projects/<id>/
 $QUERY link viking://resources/projects/<id>/ \
   viking://resources/docs/pitfalls/ --reason "<short why>"
 ```
+
+## For other skills
+
+Any skill that reads project files to answer a **cross-project** question
+("what's known", "what's been done", "is this already documented", "what
+relates to X") should consult the knowledge layer first instead of scanning
+`projects/*` by hand. The convention:
+
+1. Run a query from `§ Using the toolkit with judgment` with a topic-specific
+   seed (each calling skill supplies its own starter query).
+2. Treat results as a **map** — `read` the underlying file before citing.
+3. Iterate per the retrieval loop; stop at sufficiency.
+4. If the degraded banner appears, the layer fell back to local search — proceed
+   but verify; recall is partial.
+
+Skills should reference this skill rather than embedding the loop, so the
+guidance stays in one place.

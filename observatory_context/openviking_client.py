@@ -32,15 +32,34 @@ def create_client(config: ContextConfig) -> Any:
     return client
 
 
-def _ensure_reachable(url: str) -> None:
+def server_reachable(config: ContextConfig) -> bool:
+    """Probe the configured OpenViking server without raising.
+
+    Used by the query CLI to decide between online queries and the local
+    fallback. Ingest still uses ``create_client``/``_ensure_reachable`` so its
+    write path fails cleanly when the server is down.
+    """
+    return _probe(config.openviking_url)
+
+
+def _probe(url: str) -> bool:
     parsed = urlparse(url)
     host = parsed.hostname
-    port = parsed.port or (443 if parsed.scheme == "https" else 80)
     if host is None:
-        raise SystemExit(f"Invalid OPENVIKING_URL: {url!r}")
+        return False
+    port = parsed.port or (443 if parsed.scheme == "https" else 80)
     try:
         with socket.create_connection((host, port), timeout=PROBE_TIMEOUT_SECONDS):
-            return
+            return True
     except OSError:
-        template = LOCAL_START_HINT if host in LOCAL_HOSTS else REMOTE_HINT
-        raise SystemExit(template.format(url=url))
+        return False
+
+
+def _ensure_reachable(url: str) -> None:
+    if urlparse(url).hostname is None:
+        raise SystemExit(f"Invalid OPENVIKING_URL: {url!r}")
+    if _probe(url):
+        return
+    host = urlparse(url).hostname
+    template = LOCAL_START_HINT if host in LOCAL_HOSTS else REMOTE_HINT
+    raise SystemExit(template.format(url=url))
