@@ -13,6 +13,7 @@ from observatory_context.selection import (
     project_target_uri,
     select_central_docs,
     select_project_files,
+    select_project_memories,
 )
 
 
@@ -40,6 +41,28 @@ def test_select_project_files_includes_curated_top_level_only(tmp_path: Path) ->
         project_dir / "references.md",
         project_dir / "beril.yaml",
     ]
+
+
+def test_select_project_memories_returns_sorted_markdown_only(tmp_path: Path) -> None:
+    project_dir = tmp_path / "demo"
+    memories_dir = project_dir / "memories"
+    memories_dir.mkdir(parents=True)
+
+    for name in ("pitfalls.md", "discoveries.md", "performance.md", "notes.txt"):
+        (memories_dir / name).write_text(name)
+
+    assert select_project_memories(project_dir) == [
+        memories_dir / "discoveries.md",
+        memories_dir / "performance.md",
+        memories_dir / "pitfalls.md",
+    ]
+
+
+def test_select_project_memories_empty_without_memories_dir(tmp_path: Path) -> None:
+    project_dir = tmp_path / "demo"
+    project_dir.mkdir()
+
+    assert select_project_memories(project_dir) == []
 
 
 def test_central_docs_uris_config_defaults_and_project_dirs(

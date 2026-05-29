@@ -42,6 +42,7 @@ from .selection import (
     project_target_uri,
     select_central_docs,
     select_project_files,
+    select_project_memories,
 )
 from .staging import stage_doc, stage_project
 
@@ -267,7 +268,9 @@ def _partial_manifest(old: Manifest, new: Manifest, touched: set[str]) -> Manife
 def _current_manifest(config: ContextConfig) -> dict[str, dict[str, str]]:
     target_sources: dict[str, list[Path]] = {}
     for project_dir in iter_project_dirs(config.projects_dir):
-        target_sources[project_target_uri(project_dir.name)] = select_project_files(project_dir)
+        target_sources[project_target_uri(project_dir.name)] = select_project_files(
+            project_dir
+        ) + select_project_memories(project_dir)
     for doc_path in select_central_docs(config.repo_root):
         target_sources[docs_target_uri(doc_path)] = [doc_path]
     return build_manifest(target_sources, config.repo_root)

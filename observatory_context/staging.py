@@ -4,7 +4,7 @@ import shutil
 from pathlib import Path
 
 from .metadata import build_project_metadata
-from .selection import select_project_files
+from .selection import MEMORY_DIR_NAME, select_project_files, select_project_memories
 
 
 def stage_project(project_dir: Path, staging_dir: Path) -> Path:
@@ -15,6 +15,13 @@ def stage_project(project_dir: Path, staging_dir: Path) -> Path:
 
     for source in select_project_files(project_dir):
         shutil.copy2(source, target / source.name)
+
+    memories = select_project_memories(project_dir)
+    if memories:
+        memories_target = target / MEMORY_DIR_NAME
+        memories_target.mkdir(parents=True, exist_ok=True)
+        for source in memories:
+            shutil.copy2(source, memories_target / source.name)
 
     metadata = build_project_metadata(project_dir)
     (target / "PROJECT_METADATA.md").write_text(metadata.markdown, encoding="utf-8")

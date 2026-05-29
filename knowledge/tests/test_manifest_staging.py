@@ -58,3 +58,27 @@ def test_stage_project_excludes_data_and_removes_stale_file(
     assert not (staged / "OLD.md").exists()
 
 
+def test_stage_project_includes_per_project_memories(tmp_path: Path, monkeypatch) -> None:
+    project = tmp_path / "projects" / "demo"
+    staging_dir = tmp_path / "knowledge" / "staging"
+    write(project / "README.md", "# Demo\n")
+    write(project / "memories" / "pitfalls.md", "# Pitfalls\n")
+    write(project / "memories" / "discoveries.md", "# Discoveries\n")
+
+    monkeypatch.setattr(
+        staging,
+        "select_project_files",
+        lambda project_dir: [project_dir / "README.md"],
+    )
+    monkeypatch.setattr(
+        staging,
+        "build_project_metadata",
+        lambda project_dir: SimpleNamespace(markdown="# Metadata\n"),
+    )
+
+    staged = staging.stage_project(project, staging_dir)
+
+    assert (staged / "memories" / "pitfalls.md").read_text(encoding="utf-8") == "# Pitfalls\n"
+    assert (staged / "memories" / "discoveries.md").is_file()
+
+

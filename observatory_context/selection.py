@@ -28,6 +28,12 @@ CENTRAL_DOC_NAMES = (
 
 DOC_SOURCE_PATHS = [f"docs/{name}" for name in CENTRAL_DOC_NAMES]
 
+# Per-project canonical knowledge (pitfalls/discoveries/performance) lives in
+# projects/<id>/memories/*.md (see /pitfall-capture, /synthesize). Ingest them
+# alongside the project's curated docs so OpenViking carries cross-project
+# semantic recall.
+MEMORY_DIR_NAME = "memories"
+
 
 def select_project_files(project_dir: Path) -> list[Path]:
     project_path = Path(project_dir)
@@ -36,6 +42,13 @@ def select_project_files(project_dir: Path) -> list[Path]:
         for name in PROJECT_CURATED_NAMES
         if (project_path / name).is_file()
     ]
+
+
+def select_project_memories(project_dir: Path) -> list[Path]:
+    memories_dir = Path(project_dir) / MEMORY_DIR_NAME
+    if not memories_dir.is_dir():
+        return []
+    return sorted(path for path in memories_dir.glob("*.md") if path.is_file())
 
 
 def select_central_docs(repo_root: Path) -> list[Path]:
