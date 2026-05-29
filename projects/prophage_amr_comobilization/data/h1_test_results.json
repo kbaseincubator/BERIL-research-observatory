@@ -1,0 +1,89 @@
+{
+  "hypothesis": "H1: Prophage-proximal AMR genes are disproportionately accessory",
+  "proximity_threshold_genes": 10,
+  "total_amr_instances": 36041,
+  "testable_instances": 36041,
+  "contingency_table": {
+    "proximal_accessory": 2523,
+    "proximal_core": 1208,
+    "distal_accessory": 21158,
+    "distal_core": 11152
+  },
+  "fisher_exact": {
+    "odds_ratio": 1.1009,
+    "p_value": 0.004717115776981306,
+    "significant_005": true
+  },
+  "proportions": {
+    "pct_accessory_proximal": 67.6,
+    "pct_accessory_distal": 65.5
+  },
+  "bootstrap_ci": {
+    "median_or": 1.101,
+    "ci_95_lo": 1.024,
+    "ci_95_hi": 1.185
+  },
+  "threshold_sensitivity": [
+    {
+      "threshold": 3,
+      "n_proximal": 1263,
+      "n_distal": 34778,
+      "pct_accessory_proximal": 60.0,
+      "odds_ratio": 0.776,
+      "p_value": 0.9999921928407072
+    },
+    {
+      "threshold": 5,
+      "n_proximal": 1991,
+      "n_distal": 34050,
+      "pct_accessory_proximal": 63.9,
+      "odds_ratio": 0.921,
+      "p_value": 0.9581614279455374
+    },
+    {
+      "threshold": 10,
+      "n_proximal": 3731,
+      "n_distal": 32310,
+      "pct_accessory_proximal": 67.6,
+      "odds_ratio": 1.101,
+      "p_value": 0.004717115776981306
+    },
+    {
+      "threshold": 15,
+      "n_proximal": 5548,
+      "n_distal": 30493,
+      "pct_accessory_proximal": 68.9,
+      "odds_ratio": 1.188,
+      "p_value": 1.7692569625224846e-08
+    },
+    {
+      "threshold": 20,
+      "n_proximal": 7137,
+      "n_distal": 28904,
+      "pct_accessory_proximal": 68.5,
+      "odds_ratio": 1.168,
+      "p_value": 1.7421202751048308e-08
+    },
+    {
+      "threshold": 30,
+      "n_proximal": 9497,
+      "n_distal": 26544,
+      "pct_accessory_proximal": 68.4,
+      "odds_ratio": 1.176,
+      "p_value": 1.0129370415542201e-10
+    },
+    {
+      "threshold": 50,
+      "n_proximal": 12026,
+      "n_distal": 24015,
+      "pct_accessory_proximal": 69.3,
+      "odds_ratio": 1.277,
+      "p_value": 4.4018447846549535e-25
+    }
+  ],
+  "per_species_summary": {
+    "n_testable": 74,
+    "n_significant_005": 16,
+    "median_or": 0.851
+  }
+}

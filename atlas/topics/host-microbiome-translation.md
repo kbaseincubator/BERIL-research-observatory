@@ -1,0 +1,118 @@
+---
+id: topic.host-microbiome-translation
+title: Host Microbiome Translation
+type: topic
+status: draft
+summary: Synthesis of IBD phage targeting, formulation design, metabolomics caveats, patient stratification, and intervention cost accounting.
+source_projects:
+  - ibd_phage_targeting
+  - cf_formulation_design
+  - webofmicrobes_explorer
+  - paperblast_explorer
+  - metabolic_capability_dependency
+source_docs:
+  - docs/discoveries.md
+  - docs/pitfalls.md
+related_collections:
+  - phagefoundry_paeruginosa_genome_browser
+  - kbase_ke_pangenome
+  - kbase_msd_biochemistry
+  - kescience_fitnessbrowser
+confidence: medium
+generated_by: Codex GPT-5
+last_reviewed: 2026-05-08
+related_pages:
+  - claim.ecotype-analysis-needs-rigor-gates
+  - hypothesis.ecotype-batch-correction
+  - data.ecotype-assignments
+  - data.cf-formulation-scores
+  - conflict.ecotype-translation-leakage
+  - topic.mobile-elements-phage
+  - opportunity.ecotype-validation-benchmark
+  - opportunity.cf-formulation-reuse
+order: 60
+---
+
+# Host Microbiome Translation
+
+## Synthesis Takeaway
+
+Host-associated microbiome projects are where observatory outputs become intervention logic, but they demand stronger rigor gates because confounding, batch effects, and ecological costs can reverse naive conclusions.
+
+## Review Brief
+
+What changed: this page is now explicitly a high-scrutiny review surface for intervention-oriented claims, not just a summary of host microbiome projects.
+
+Why review matters: translational pages can create the strongest external expectations. Reviewers should decide whether each target, formulation, or phage idea has enough independent evidence, leakage control, and ecological-cost accounting.
+
+Evidence to inspect:
+
+- `ibd_phage_targeting` and its failure analysis for leakage, target-list collapse, and review lessons.
+- `cf_formulation_design` for formulation scoring and strict safety filters.
+- `webofmicrobes_explorer`, `paperblast_explorer`, and `metabolic_capability_dependency` for pathway and literature context.
+- [Ecotype labels versus translational leakage](/atlas/conflicts/ecotype-translation-leakage) and [CF Formulation Scores](/atlas/data/derived-products/cf-formulation-scores) for reviewable outputs.
+
+Questions for reviewers:
+
+- Does every intervention-oriented statement have leakage checks, nulls, and independent support?
+- Are phage, formulation, antibiotic, and FMT-like ideas carrying explicit ecological-cost caveats?
+- Should any target list remain unpublished inside Atlas until a validation benchmark passes?
+- Which derived product is closest to changing a real downstream design decision?
+
+## What We Have Learned
+
+### Layer 1 - Patient Stratification
+
+`ibd_phage_targeting` uses ecotype and pathway stratification to move beyond pooled case-control comparisons.
+
+### Layer 2 - Mechanistic Targeting
+
+Phage, BGC, metabolite, and pathway evidence can converge on actionable targets, but every target needs ecological-cost annotation.
+
+### Layer 3 - Batch And Modality Caveats
+
+The discoveries log records that taxonomic relative-abundance spaces and absolute metabolomics spaces behave differently across cohorts. This is now a reusable analysis rule.
+
+### Layer 4 - Intervention Design
+
+`cf_formulation_design` and metabolic dependency work suggest a path from observational microbiome structure to formulation or community design.
+
+## High-Value Directions
+
+- Convert ecotype assignments and target lists into reviewed derived products.
+- Build intervention-cost annotations for phage, FMT, antibiotic, and formulation design.
+- Maintain adversarial review for clinical or translational claims.
+
+## Open Caveats
+
+- Same-axis feature leakage can inflate within-ecotype target lists.
+- Cross-cohort metabolomics requires explicit batch correction.
+- Species-level targeting can damage beneficial strain or pathway functions.
+
+## Open Tensions
+
+- [Ecotype labels versus translational leakage](/atlas/conflicts/ecotype-translation-leakage) records why clinical or target claims need stronger gates than exploratory stratification.
+
+## Reusable Claims
+
+- [Ecotype analyses need rigor gates before translation](/atlas/claims/ecotype-analysis-needs-rigor-gates) is the primary reusable rule.
+- [AMR mechanism composition is environment-structured](/atlas/claims/amr-is-environment-structured) matters when intervention designs intersect resistance ecology.
+
+## Data Dependencies
+
+- [Ecotype Assignments](/atlas/data/derived-products/ecotype-assignments) are the reusable stratification product.
+- PhageFoundry and genome/pangenome resources provide strain and host-range context.
+- Biochemistry and fitness resources provide pathway, metabolite, and dependency context for intervention costs.
+
+## Opportunity Hooks
+
+- [Ecotype Label Validation Benchmark](/atlas/opportunities/ecotype-validation-benchmark) defines when labels are safe enough for translational interpretation.
+- [CF Formulation Score Reuse Test](/atlas/opportunities/cf-formulation-reuse) asks whether a translational derived product changes a downstream design decision.
+
+## Drill-Down Path
+
+Start with the ecotype rigor claim, then open the batch-correction hypothesis and ecotype assignments derived product. That path separates useful stratification from unsupported translational targeting.
+
+## How Agents Should Use This Page
+
+Use this topic for host-associated microbiome or intervention proposals. Require leakage checks, batch checks, ecological-cost accounting, and independent evidence before presenting a target as actionable.

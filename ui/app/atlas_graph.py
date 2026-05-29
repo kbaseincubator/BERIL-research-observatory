@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from .models import AtlasReuseEdge, AtlasReviewRoute, RepositoryData, WikiPage
+from .models import AtlasReuseEdge, AtlasReviewRoute, RepositoryData, AtlasPage
 
 
 REUSE_STATUS_VALUES = {"candidate", "promoted", "reviewed", "deprecated"}
@@ -61,7 +61,7 @@ def build_atlas_reuse_edges(repo_data: RepositoryData) -> list[AtlasReuseEdge]:
                 "collection use",
             )
 
-    for page in repo_data.wiki_index.pages:
+    for page in repo_data.atlas_index.pages:
         for project_id in page.source_projects:
             add("project", project_id, "atlas_page", page.id, "source_for", page.title)
         for collection_id in page.related_collections:
@@ -139,7 +139,7 @@ def build_atlas_reuse_edges(repo_data: RepositoryData) -> list[AtlasReuseEdge]:
     )
 
 
-def build_derived_product_context(page: WikiPage, repo_data: RepositoryData) -> dict[str, Any]:
+def build_derived_product_context(page: AtlasPage, repo_data: RepositoryData) -> dict[str, Any]:
     """Resolve a derived-product Atlas page into UI-friendly context."""
     project_map = {project.id: project for project in repo_data.projects}
     produced_ids = _as_list(page.metadata.get("produced_by_projects"))
@@ -171,7 +171,7 @@ def build_derived_product_contexts(repo_data: RepositoryData) -> list[dict[str, 
     """Resolve all derived products, sorted by visible reuse."""
     contexts = [
         build_derived_product_context(page, repo_data)
-        for page in repo_data.wiki_index.pages_by_type("derived_product")
+        for page in repo_data.atlas_index.pages_by_type("derived_product")
     ]
     return sorted(
         contexts,
@@ -183,18 +183,18 @@ def build_derived_product_contexts(repo_data: RepositoryData) -> list[dict[str, 
     )
 
 
-def build_opportunity_context(page: WikiPage, repo_data: RepositoryData) -> dict[str, Any]:
+def build_opportunity_context(page: AtlasPage, repo_data: RepositoryData) -> dict[str, Any]:
     """Resolve an opportunity Atlas page into UI-friendly context."""
-    wiki_index = repo_data.wiki_index
+    atlas_index = repo_data.atlas_index
     linked_conflicts = [
         conflict
         for conflict_id in _as_list(page.metadata.get("linked_conflicts"))
-        if (conflict := wiki_index.get_page_by_id(conflict_id))
+        if (conflict := atlas_index.get_page_by_id(conflict_id))
     ]
     linked_products = [
         build_derived_product_context(product, repo_data)
         for product_id in _as_list(page.metadata.get("linked_products"))
-        if (product := wiki_index.get_page_by_id(product_id))
+        if (product := atlas_index.get_page_by_id(product_id))
     ]
     review_ids = _as_list(page.metadata.get("review_routes")) or page.source_projects
     return {
@@ -216,7 +216,7 @@ def build_opportunity_contexts(repo_data: RepositoryData) -> list[dict[str, Any]
     """Resolve all opportunity pages, sorted by transparent categorical priority."""
     contexts = [
         build_opportunity_context(page, repo_data)
-        for page in repo_data.wiki_index.pages_by_type("opportunity")
+        for page in repo_data.atlas_index.pages_by_type("opportunity")
     ]
     score_order = {"high": 0, "medium": 1, "low": 2}
     status_order = {"active": 0, "candidate": 1, "blocked": 2, "completed": 3, "deprecated": 4}
@@ -237,7 +237,7 @@ def build_review_routes(repo_data: RepositoryData) -> list[AtlasReviewRoute]:
     routes: list[AtlasReviewRoute] = []
     project_map = {project.id: project for project in repo_data.projects}
 
-    for page in repo_data.wiki_index.pages:
+    for page in repo_data.atlas_index.pages:
         project_ids = _as_list(page.metadata.get("review_routes"))
         if not project_ids:
             project_ids = _as_list(page.metadata.get("produced_by_projects"))
@@ -283,17 +283,17 @@ def build_review_routes(repo_data: RepositoryData) -> list[AtlasReviewRoute]:
     return routes
 
 
-def review_routes_for_page(page: WikiPage, repo_data: RepositoryData) -> list[AtlasReviewRoute]:
+def review_routes_for_page(page: AtlasPage, repo_data: RepositoryData) -> list[AtlasReviewRoute]:
     """Return review routes for one Atlas page."""
     return [route for route in build_review_routes(repo_data) if route.page_id == page.id]
 
 
-def conflicts_for_page(page: WikiPage, repo_data: RepositoryData) -> list[WikiPage]:
+def conflicts_for_page(page: AtlasPage, repo_data: RepositoryData) -> list[AtlasPage]:
     """Find conflict/tension pages that explicitly affect a page."""
     if page.type == "conflict":
         return []
     conflicts = []
-    for conflict in repo_data.wiki_index.pages_by_type("conflict"):
+    for conflict in repo_data.atlas_index.pages_by_type("conflict"):
         affected_ids = set(_as_list(conflict.metadata.get("affected_pages")))
         related_ids = set(conflict.related_pages)
         if page.id in affected_ids or page.id in related_ids:
@@ -301,12 +301,12 @@ def conflicts_for_page(page: WikiPage, repo_data: RepositoryData) -> list[WikiPa
     return sorted(conflicts, key=lambda item: (item.metadata.get("conflict_status", ""), item.title))
 
 
-def opportunities_for_page(page: WikiPage, repo_data: RepositoryData) -> list[dict[str, Any]]:
+def opportunities_for_page(page: AtlasPage, repo_data: RepositoryData) -> list[dict[str, Any]]:
     """Find opportunity pages that explicitly use or address a page."""
     if page.type == "opportunity":
         return []
     contexts = []
-    for opportunity in repo_data.wiki_index.pages_by_type("opportunity"):
+    for opportunity in repo_data.atlas_index.pages_by_type("opportunity"):
         linked_conflicts = set(_as_list(opportunity.metadata.get("linked_conflicts")))
         linked_products = set(_as_list(opportunity.metadata.get("linked_products")))
         related_ids = set(opportunity.related_pages)
@@ -319,18 +319,18 @@ def opportunities_for_page(page: WikiPage, repo_data: RepositoryData) -> list[di
     return contexts
 
 
-def build_topic_overview_map(topic: WikiPage, repo_data: RepositoryData) -> dict[str, Any] | None:
+def build_topic_overview_map(topic: AtlasPage, repo_data: RepositoryData) -> dict[str, Any] | None:
     """Build a metadata-driven overview map for a top-level topic page."""
     if topic.type != "topic":
         return None
 
-    wiki_index = repo_data.wiki_index
+    atlas_index = repo_data.atlas_index
     project_map = {project.id: project for project in repo_data.projects}
     collection_map = {collection.id: collection for collection in repo_data.collections}
     related_pages = [
         page
         for related_id in topic.related_pages
-        if (page := wiki_index.get_page_by_id(related_id))
+        if (page := atlas_index.get_page_by_id(related_id))
     ]
     conflicts = conflicts_for_page(topic, repo_data)
     opportunities = opportunities_for_page(topic, repo_data)
@@ -434,7 +434,7 @@ def project_atlas_reuse(project_id: str, repo_data: RepositoryData) -> dict[str,
     ]
     conflicts = [
         conflict
-        for conflict in repo_data.wiki_index.pages_by_type("conflict")
+        for conflict in repo_data.atlas_index.pages_by_type("conflict")
         if project_id in conflict.source_projects
     ]
     return {"produced": produced, "used": used, "sourced": sourced, "conflicts": conflicts}
@@ -449,7 +449,7 @@ def collection_atlas_reuse(collection_id: str, repo_data: RepositoryData) -> dic
     ]
     conflicts = [
         conflict
-        for conflict in repo_data.wiki_index.pages_by_type("conflict")
+        for conflict in repo_data.atlas_index.pages_by_type("conflict")
         if collection_id in conflict.related_collections
     ]
     return {"derived_products": products, "conflicts": conflicts}

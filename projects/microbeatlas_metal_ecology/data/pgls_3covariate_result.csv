@@ -1,0 +1,4 @@
+"model","n_taxa","lambda","predictor","beta","SE","t_stat","p_value"
+"B_std~types_z+log_n_species_z+log_genome_size_z",527,0.62784109291168,"mean_n_metal_types_z2",0.0217978202714775,0.00606272782475877,3.59538163373593,0.000354599003188527
+"B_std~types_z+log_n_species_z+log_genome_size_z",527,0.62784109291168,"log_n_species_z",0.00519025300688491,0.0057381004353086,0.904524601024305,0.366133758981772
+"B_std~types_z+log_n_species_z+log_genome_size_z",527,0.62784109291168,"log_genome_size_z",0.0255214654528305,0.00693594908809339,3.67959238579792,0.000257821467768851

@@ -251,6 +251,9 @@ knowledge = [
     { name = "pyyaml" },
     { name = "rich" },
 ]
+test = [
+    { name = "pytest" },
+]
 
 [package.metadata]
 
@@ -261,6 +264,7 @@ knowledge = [
     { name = "pyyaml" },
     { name = "rich" },
 ]
+test = [{ name = "pytest", specifier = ">=8" }]
 
 [[package]]
 name = "certifi"

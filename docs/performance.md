@@ -2,7 +2,9 @@
 
 **Purpose**: Strategies for efficiently querying BERDL databases, especially billion-row tables.
 
-The guidance below is primarily based on experience with `kbase_ke_pangenome` but applies to any large BERDL database. See [collections.md](collections.md) for the full database inventory.
+The guidance below is primarily based on experience with `kbase_ke_pangenome`
+but applies to any large BERDL database. Use BERDL notebook helpers for live
+access-aware database and table discovery.
 
 ---
 
@@ -331,32 +333,7 @@ arginine = spark.sql("""
 
 **How to get a Spark session:**
 
-There are three environments, each with a different import pattern:
-
-**1. BERDL JupyterHub notebooks** (no import needed):
-
-```python
-# Built-in — injected by /configs/ipython_startup/00-notebookutils.py
-spark = get_spark_session()
-```
-
-**2. BERDL JupyterHub CLI / Python scripts** (explicit import):
-
-```python
-from berdl_notebook_utils.setup_spark_session import get_spark_session
-spark = get_spark_session()
-```
-
-**3. Local machine** (requires `.venv-berdl` + proxy chain):
-
-```python
-from get_spark_session import get_spark_session  # scripts/get_spark_session.py
-spark = get_spark_session()
-```
-
-The local `scripts/get_spark_session.py` creates a remote Spark Connect session through the proxy chain. See `scripts/README.md` and `.claude/skills/berdl-query/SKILL.md` for setup.
-
-**Common mistake**: Using `from get_spark_session import get_spark_session` on the BERDL cluster (ImportError) or using `berdl_notebook_utils` locally (not installed). Match the import to the environment.
+For off-cluster execution mechanics (proxy chain, the `.venv-berdl` virtualenv, the `--berdl-proxy` flag), see .claude/skills/berdl-query/references/off-cluster-mechanics.md. This document focuses on query strategy and is environment-agnostic.
 
 ```python
 spark = get_spark_session()

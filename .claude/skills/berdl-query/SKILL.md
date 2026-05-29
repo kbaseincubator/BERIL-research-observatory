@@ -5,10 +5,23 @@ description: Run SQL queries from a local machine against a provisioned BERDL Sp
 
 # BERDL Query Skill
 
+## Step 0: Environment Check
+
+Run before anything else:
+
+```bash
+python scripts/berdl_env.py --check
+```
+
+This skill is for **off-cluster** execution. If `--check` reports `on-cluster`, you should be using the `berdl` skill with the active Spark session and `spark.sql(query)` directly — do not use `--berdl-proxy` on-cluster. If `--check` reports `off-cluster` and is not ready, follow the printed next steps.
+
+
 ## Overview
 
 Use this skill to run BERDL Spark queries locally while computation runs on the remote BERDL cluster.
 Use this as the default query path for interactive analysis and API-like result retrieval.
+
+Do not use this proxy workflow when `scripts/berdl_env.py --check` reports an on-cluster / BERDL JupyterHub environment. On-cluster sessions should use the active Spark session and `spark.sql(query)` directly.
 
 ## Preconditions
 
@@ -26,11 +39,11 @@ Use this as the default query path for interactive analysis and API-like result 
    - `source .venv-berdl/bin/activate`
 2. Verify proxy is running (check ports 1337, 1338, 8123). Start pproxy if needed.
 3. Execute a probe query:
-   - `python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"`
+   - `uv run scripts/run_sql.py --berdl-proxy --query "SELECT 1 AS ok"`
 4. Run the target SQL query with bounded result size:
-   - `python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM db.table ORDER BY id" --limit 500 --output /tmp/query_result.json`
+   - `uv run scripts/run_sql.py --berdl-proxy --query "SELECT * FROM db.table ORDER BY id" --limit 500 --output /tmp/query_result.json`
 5. If result size is large, use export mode in this same skill:
-   - `python scripts/export_sql.py --berdl-proxy --query "SELECT ..." --path "s3a://cdm-lake/users-general-warehouse/<user>/exports/<run_id>" --format parquet --mode overwrite`
+   - `uv run scripts/export_sql.py --berdl-proxy --query "SELECT ..." --path "s3a://cdm-lake/users-general-warehouse/<user>/exports/<run_id>" --format parquet --mode overwrite`
 
 ## Connection and Timeout Behavior
 
@@ -86,11 +99,21 @@ The proxy chain (SSH tunnels + pproxy) must be running.
 ## References
 
 - `references/proxy-setup.md`: how to set up SSH tunnels and pproxy for local access.
+- `references/off-cluster-mechanics.md`: MinIO `mc` proxy variables, Spark Connect sidecar startup race, and the local-machine Spark session pattern.
 - `references/query-limits.md`: query tiering and fallback guidance.
 - `references/export-paths.md`: recommended MinIO path conventions and format choices.
+
+## Access Denied Errors
+
+If a query fails with `S3 access denied`, `403 Forbidden`, `Token denied`, `AccessControlException`, or similar, the user simply doesn't have permission to that tenant's data. **Do not surface the raw error text.** Tell the user:
+
+> "You don't have access to `<database>.<table>` (tenant: `<tenant>`). To request access, use the BERDL Tenant Browser."
+
+Never mention S3, token errors, or internal service details. This is a normal situation when exploring databases outside the user's tenant membership.
 
 ## Safety Rules
 
 1. Always apply a limit for inline returns unless explicitly asked otherwise.
 2. Prefer `ORDER BY` in paginated queries.
 3. Use `scripts/export_sql.py` when response volume is large.
+4. Use `berdl_notebook_utils` discovery helpers (`get_databases(return_json=False)`, `get_tables(..., return_json=False)`, `get_table_schema(..., return_json=False)`) for access-aware discovery. Avoid raw `SHOW DATABASES` or `SHOW TABLES` probes for discovery.

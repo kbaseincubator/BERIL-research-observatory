@@ -40,7 +40,7 @@ upload_files(minio_client, bucket, table_stats, bronze_prefix, file_ext)
 run_ingest(spark, minio_client, table_stats, schemas, schema_defs, namespace,
            tenant, dataset, bucket, bronze_prefix, silver_base, mode, file_ext,
            delimiter, progress_key)
-    Ingest all tables into Delta silver. Returns the (possibly reconnected) spark.
+    Ingest all tables into Iceberg silver. Returns the (possibly reconnected) spark.
 
 verify_ingest(spark, namespace, table_stats, minio_client, bucket,
               progress_key, silver_base)
@@ -90,10 +90,13 @@ for _name in _STUB_MODULES:
 
 
 def _create_namespace_if_not_exists(spark, namespace=None, append_target=True, tenant_name=None):
-    ns = f"{tenant_name}_{namespace}" if tenant_name else namespace
-    location = f"s3a://cdm-lake/tenant-sql-warehouse/{tenant_name}/{ns}.db"
-    spark.sql(f"CREATE DATABASE IF NOT EXISTS `{ns}` LOCATION '{location}'")
-    print(f"Namespace {ns} ready at {location}")
+    if tenant_name:
+        ns = f"{tenant_name}.{namespace}"
+        spark.sql(f"CREATE NAMESPACE IF NOT EXISTS {ns}")
+    else:
+        ns = f"my.{namespace}"
+        spark.sql(f"CREATE NAMESPACE IF NOT EXISTS {ns}")
+    print(f"Namespace {ns} ready")
     return ns
 
 
@@ -709,7 +712,7 @@ def print_preflight_plan(
     print(f"  {'TOTAL':<45s}  {total_gb:>7.1f} GB")
 
     display_ns = user_namespace or namespace
-    print(f"\nSTEP 2 -- Spark Ingest into Delta  (namespace: {display_ns})")
+    print(f"\nSTEP 2 -- Spark Ingest into Iceberg  (namespace: {display_ns})")
     for table, s in table_stats.items():
         if s["chunked"]:
             chunk_gb = s["size_bytes"] / s["n_chunks"] / 1e9
@@ -787,7 +790,7 @@ def _build_dataset_config(
     )
     cfg = {}
     if user_tenant:
-        cfg["dataset"] = f"u_{username}__{dataset}"
+        cfg["dataset"] = f"my.{dataset}"
     else:
         cfg["dataset"] = dataset
         cfg["tenant"] = tenant
@@ -906,7 +909,7 @@ def _build_chunk_config(
     )
     cfg: dict = {}
     if user_tenant:
-        cfg["dataset"] = f"u_{username}__{dataset}"
+        cfg["dataset"] = f"my.{dataset}"
         data_plane = f"s3a://{bucket}/users-general-warehouse/{username}/"
     else:
         cfg["dataset"] = dataset
@@ -1115,7 +1118,7 @@ def run_ingest(
     user_tenant: bool = False,
     username: str | None = None,
 ):
-    """Ingest all tables into Delta silver.
+    """Ingest all tables into Iceberg silver.
 
     Non-chunked tables are batched into a single _lakehouse_ingest() call using a
     merged config uploaded to config_key in MinIO.
@@ -1140,7 +1143,7 @@ def run_ingest(
     else:
         print("No prior progress — ingesting all tables from scratch.")
 
-    spark.sql(f"CREATE DATABASE IF NOT EXISTS `{namespace}` LOCATION '{silver_base}'")
+    spark.sql(f"CREATE NAMESPACE IF NOT EXISTS {namespace}")
     print(f"Namespace {namespace} ready.\n")
 
     # Split pending tables into non-chunked (pipeline) and chunked (streaming)
@@ -1255,14 +1258,13 @@ def verify_ingest(
     progress_key: str,
     silver_base: str,
 ) -> None:
-    """Query row counts from Delta and compare against expected line counts.
+    """Query row counts from Iceberg and compare against expected line counts.
 
     Prints a pass/fail summary for each table and flags any mismatches.
     """
     print("=" * 60)
     print("VERIFICATION")
     print("=" * 60)
-    spark.sql(f"SHOW TABLES IN `{namespace}`").show()
 
     progress_log = _load_progress_log(minio_client, bucket, progress_key)
     all_match    = True

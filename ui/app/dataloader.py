@@ -3,6 +3,7 @@
 import gzip
 import json
 import pickle
+import posixpath
 import re
 import subprocess
 from datetime import datetime
@@ -39,10 +40,10 @@ from .models import (
     Skill,
     Table,
     Visualization,
-    WikiIndex,
-    WikiLink,
-    WikiHeading,
-    WikiPage,
+    AtlasIndex,
+    AtlasLink,
+    AtlasHeading,
+    AtlasPage,
 )
 
 REPOSITORY_DATA_FILE = "data.pkl.gz"
@@ -204,7 +205,7 @@ def slugify(text: str) -> str:
 class RepositoryParser:
     """Parse git repository file system into structured data."""
 
-    REQUIRED_WIKI_FIELDS = {
+    REQUIRED_ATLAS_FIELDS = {
         "id",
         "title",
         "type",
@@ -218,7 +219,7 @@ class RepositoryParser:
         "last_reviewed",
     }
 
-    WIKI_PAGE_TYPES = {
+    ATLAS_PAGE_TYPES = {
         "atlas",
         "topic",
         "data_tenant",
@@ -280,6 +281,10 @@ class RepositoryParser:
         "globalusers_phenotype_parquet_1",
     ]
 
+    _DOTTED_ALIASES: dict[str, str] = {
+        cid.replace("_", ".", 1): cid for cid in _COLLECTION_IDS if "_" in cid
+    }
+
     def __init__(self, repo_path: Path | None = None):
         """Initialize parser with repository path."""
         self.repo_path = repo_path or get_settings().repo_dir
@@ -288,16 +293,15 @@ class RepositoryParser:
         """Parse entire repository into structured data."""
         projects = self.parse_projects()
         discoveries = self.parse_discoveries()
-        tables = self.parse_schema()
+        tables: dict[str, list[Table]] = {}
         for collection_id, snapshot_tables in self.parse_berdl_snapshot_tables().items():
-            if collection_id not in tables or not tables[collection_id]:
-                tables[collection_id] = snapshot_tables
+            tables[collection_id] = snapshot_tables
         pitfalls = self.parse_pitfalls()
         performance_tips = self.parse_performance()
         research_ideas = self.parse_research_ideas()
         collections = self.parse_collections()
         skills = self.parse_skills()
-        wiki_index = self.parse_wiki()
+        atlas_index = self.parse_atlas()
 
         # Aggregate unique contributors across all projects
         contributors = self._aggregate_contributors(projects)
@@ -325,7 +329,7 @@ class RepositoryParser:
             skills=skills,
             research_areas=research_areas,
             collection_edges=collection_edges,
-            wiki_index=wiki_index,
+            atlas_index=atlas_index,
             total_notebooks=total_notebooks,
             total_visualizations=total_visualizations,
             total_data_files=total_data_files,
@@ -880,8 +884,16 @@ class RepositoryParser:
         return content
 
     def _extract_collection_refs(self, readme_content: str) -> list[str]:
-        """Extract BERDL collection IDs mentioned in README text."""
-        return [cid for cid in self._COLLECTION_IDS if cid in readme_content]
+        """Extract BERDL collection IDs mentioned in README text.
+
+        Recognises both underscore form (kbase_ke_pangenome) and Iceberg dotted form
+        (kbase.ke_pangenome); dotted matches are normalised to the canonical underscore slug.
+        """
+        found: set[str] = {cid for cid in self._COLLECTION_IDS if cid in readme_content}
+        for dotted, canonical in self._DOTTED_ALIASES.items():
+            if dotted in readme_content:
+                found.add(canonical)
+        return list(found)
 
     def _parse_contributors(
         self, readme_content: str, project_id: str
@@ -1311,176 +1323,6 @@ class RepositoryParser:
                 discoveries.append(discovery)
 
         return discoveries
-
-    def parse_schema(self) -> dict[str, list[Table]]:
-        """Parse tables from all docs/schemas/*.md files.
-
-        Returns a dict keyed by database/collection ID mapping to parsed tables.
-        Each schema doc is keyed by its database ID (from the **Database** line)
-        and also by the filename stem. Multi-database docs store under each
-        listed database ID plus the filename stem.
-        """
-        all_tables: dict[str, list[Table]] = {}
-        schemas_dir = self.repo_path / "docs" / "schemas"
-
-        if not schemas_dir.exists():
-            return all_tables
-
-        for schema_file in sorted(schemas_dir.glob("*.md")):
-            content = schema_file.read_text()
-            filename_key = schema_file.stem
-
-            # Extract database ID(s)
-            db_ids: list[str] = []
-            singular = re.search(r"\*\*Database\*\*:\s*`([^`]+)`", content)
-            if singular:
-                db_ids = [singular.group(1)]
-            else:
-                # Multi-database: extract all backtick IDs from the Databases section
-                plural_match = re.search(
-                    r"\*\*Databases?\*\*:?\s*(.*?)(?:\n\*\*|\n---)",
-                    content,
-                    re.DOTALL,
-                )
-                if plural_match:
-                    db_ids = re.findall(r"`([^`]+)`", plural_match.group(1))
-
-            # Parse row counts from Table Summary
-            row_counts = self._parse_row_counts(content)
-
-            # Parse individual table schemas
-            tables = self._parse_table_sections(content, row_counts)
-
-            if not tables:
-                continue
-
-            # Store under filename stem (always)
-            all_tables[filename_key] = tables
-
-            # Also store under each extracted database ID
-            for db_id in db_ids:
-                if db_id != filename_key:
-                    all_tables[db_id] = tables
-
-        return all_tables
-
-    def _parse_row_counts(self, content: str) -> dict[str, int]:
-        """Extract row counts from the Table Summary section."""
-        row_counts: dict[str, int] = {}
-        summary_match = re.search(
-            r"## (?:Table Summary|Tables)\s*\n(.*?)(?:\n---|\n## )",
-            content,
-            re.DOTALL,
-        )
-        if not summary_match:
-            return row_counts
-
-        for line in summary_match.group(1).split("\n"):
-            if not line.strip() or not line.startswith("|"):
-                continue
-            # Skip header and separator rows
-            if "Table" in line and (
-                "Row Count" in line or "Rows" in line or "Description" in line
-            ):
-                continue
-            if re.match(r"^\|[-\s|]+\|$", line):
-                continue
-            cols = [c.strip() for c in line.split("|") if c.strip()]
-            if len(cols) >= 2:
-                table_name = cols[0].strip("`")
-                try:
-                    row_count = int(cols[1].replace(",", ""))
-                    row_counts[table_name] = row_count
-                except ValueError:
-                    pass
-
-        return row_counts
-
-    def _parse_table_sections(
-        self, content: str, row_counts: dict[str, int]
-    ) -> list[Table]:
-        """Parse individual table schemas from ### headings."""
-        tables: list[Table] = []
-
-        # Match both numbered (### 1. `genome`) and unnumbered (### `organism`)
-        table_sections = re.split(r"\n###\s+(?:\d+\.\s+)?", content)
-
-        for section in table_sections[1:]:  # Skip intro
-            lines = section.split("\n")
-            if not lines:
-                continue
-
-            # First line contains table name in backticks
-            name_match = re.match(r"`(\w+)`|(\w+)$", lines[0].strip())
-            if not name_match:
-                continue
-
-            table_name = name_match.group(1) or name_match.group(2)
-
-            # Get description (first paragraph after name)
-            description = ""
-            for line in lines[1:]:
-                if (
-                    line.strip()
-                    and not line.startswith("|")
-                    and not line.startswith("-")
-                ):
-                    description = line.strip()
-                    break
-
-            # Parse columns from markdown table
-            columns = []
-            in_table = False
-            for line in lines:
-                if line.startswith("| Column"):
-                    in_table = True
-                    continue
-                if in_table and line.startswith("|"):
-                    if line.startswith("|--") or line.startswith("| --"):
-                        continue
-                    cols = [c.strip() for c in line.split("|") if c.strip()]
-                    if len(cols) >= 3:
-                        col_name = cols[0].strip("`")
-                        col_type = cols[1]
-                        col_desc = cols[2] if len(cols) > 2 else ""
-
-                        is_pk = "Primary Key" in col_desc
-                        is_fk = "FK" in col_desc or "→" in col_desc
-
-                        columns.append(
-                            Column(
-                                name=col_name,
-                                data_type=col_type,
-                                description=col_desc,
-                                is_primary_key=is_pk,
-                                is_foreign_key=is_fk,
-                            )
-                        )
-                elif in_table and not line.startswith("|"):
-                    in_table = False
-
-            tables.append(
-                Table(
-                    name=table_name,
-                    description=description,
-                    row_count=row_counts.get(table_name, 0),
-                    columns=columns,
-                )
-            )
-
-        parsed_names = {table.name for table in tables}
-        for table_name, row_count in row_counts.items():
-            if table_name not in parsed_names:
-                tables.append(
-                    Table(
-                        name=table_name,
-                        description="",
-                        row_count=row_count,
-                        columns=[],
-                    )
-                )
-
-        return tables
 
     def parse_pitfalls(self) -> list[Pitfall]:
         """Parse pitfalls from docs/pitfalls.md."""
@@ -1961,39 +1803,39 @@ class RepositoryParser:
     def _title_from_id(collection_id: str) -> str:
         return collection_id.replace("_", " ").title()
 
-    def parse_wiki(self) -> WikiIndex:
-        """Parse markdown Atlas pages from the internal wiki directory.
+    def parse_atlas(self) -> AtlasIndex:
+        """Parse markdown Atlas pages from the Atlas corpus directory.
 
         The parser is intentionally permissive: malformed pages are skipped so the
-        app can still boot, while app.wiki_lint reports actionable failures.
+        app can still boot, while app.atlas_lint reports actionable failures.
         """
-        wiki_dir = self.repo_path / "wiki"
-        if not wiki_dir.exists():
-            return WikiIndex()
+        atlas_dir = self.repo_path / "atlas"
+        if not atlas_dir.exists():
+            return AtlasIndex()
 
-        pages: list[WikiPage] = []
-        for wiki_file in sorted(wiki_dir.rglob("*.md")):
+        pages: list[AtlasPage] = []
+        for atlas_file in sorted(atlas_dir.rglob("*.md")):
             if any(
-                part.startswith(".") for part in wiki_file.relative_to(wiki_dir).parts
+                part.startswith(".") for part in atlas_file.relative_to(atlas_dir).parts
             ):
                 continue
-            page = self._parse_wiki_file(wiki_file, wiki_dir)
+            page = self._parse_atlas_file(atlas_file, atlas_dir)
             if page:
                 pages.append(page)
 
         pages.sort(key=lambda p: (p.section, p.order, p.title.lower()))
         links = [
-            WikiLink(source_id=page.id, target_id=target_id)
+            AtlasLink(source_id=page.id, target_id=target_id)
             for page in pages
             for target_id in page.related_pages
         ]
-        return WikiIndex(pages=pages, links=links)
+        return AtlasIndex(pages=pages, links=links)
 
     @classmethod
-    def _parse_wiki_file(cls, wiki_file: Path, wiki_dir: Path) -> WikiPage | None:
+    def _parse_atlas_file(cls, atlas_file: Path, atlas_dir: Path) -> AtlasPage | None:
         """Parse one Atlas markdown file with YAML frontmatter."""
         try:
-            raw_content = wiki_file.read_text(encoding="utf-8")
+            raw_content = atlas_file.read_text(encoding="utf-8")
         except UnicodeDecodeError:
             return None
 
@@ -2010,31 +1852,31 @@ class RepositoryParser:
         if not isinstance(frontmatter, dict):
             return None
 
-        missing = cls.REQUIRED_WIKI_FIELDS - set(frontmatter)
+        missing = cls.REQUIRED_ATLAS_FIELDS - set(frontmatter)
         if missing:
             return None
-        if frontmatter.get("type") not in cls.WIKI_PAGE_TYPES:
+        if frontmatter.get("type") not in cls.ATLAS_PAGE_TYPES:
             return None
 
-        route_path = wiki_file.relative_to(wiki_dir).with_suffix("").as_posix()
+        route_path = atlas_file.relative_to(atlas_dir).with_suffix("").as_posix()
         body = raw_content[frontmatter_match.end() :].strip()
         section = route_path.split("/", 1)[0] if "/" in route_path else "root"
 
-        known_keys = cls.REQUIRED_WIKI_FIELDS | {
+        known_keys = cls.REQUIRED_ATLAS_FIELDS | {
             "related_pages",
             "order",
             "section",
         }
         metadata = {k: v for k, v in frontmatter.items() if k not in known_keys}
 
-        return WikiPage(
+        return AtlasPage(
             id=str(frontmatter["id"]),
             title=str(frontmatter["title"]),
             type=str(frontmatter["type"]),
             status=str(frontmatter["status"]),
             summary=str(frontmatter["summary"]),
             path=route_path,
-            body=cls._rewrite_wiki_body_links(body),
+            body=cls._rewrite_atlas_body_links(body, route_path),
             source_projects=cls._as_string_list(frontmatter.get("source_projects")),
             source_docs=cls._as_string_list(frontmatter.get("source_docs")),
             related_collections=cls._as_string_list(
@@ -2047,7 +1889,7 @@ class RepositoryParser:
             section=str(frontmatter.get("section") or section),
             order=int(frontmatter.get("order", 100)),
             metadata=metadata,
-            headings=cls._extract_wiki_headings(body),
+            headings=cls._extract_atlas_headings(body),
         )
 
     @staticmethod
@@ -2060,21 +1902,30 @@ class RepositoryParser:
         return [str(value)]
 
     @staticmethod
-    def _rewrite_wiki_body_links(content: str) -> str:
+    def _rewrite_atlas_body_links(content: str, route_path: str) -> str:
         """Rewrite common repo-relative Atlas links to route links."""
+        source_dir = posixpath.dirname(route_path)
+
+        def _md_link(match: re.Match) -> str:
+            target = match.group(1)
+            anchor = match.group(2) or ""
+            target_route = posixpath.normpath(posixpath.join(source_dir, target))
+            if target_route == ".":
+                target_route = ""
+            return f"](/atlas/{target_route}{anchor})"
+
         content = re.sub(
             r"\]\((?:\./)?([A-Za-z0-9_./-]+)\.md(#.*?)?\)",
-            r"](/atlas/\1\2)",
+            _md_link,
             content,
         )
         content = re.sub(r"\]\((?:\./)?index(#.*?)?\)", r"](/atlas\1)", content)
-        content = content.replace("(/wiki/", "(/atlas/")
         return content
 
     @staticmethod
-    def _extract_wiki_headings(content: str) -> list[WikiHeading]:
+    def _extract_atlas_headings(content: str) -> list[AtlasHeading]:
         """Extract markdown headings for page-level Atlas navigation."""
-        headings: list[WikiHeading] = []
+        headings: list[AtlasHeading] = []
         seen: dict[str, int] = {}
         for line in content.splitlines():
             match = re.match(r"^(#{2,4})\s+(.+?)\s*$", line)
@@ -2087,7 +1938,7 @@ class RepositoryParser:
             if duplicate_count:
                 anchor = f"{anchor}_{duplicate_count}"
             headings.append(
-                WikiHeading(level=len(match.group(1)), title=title, anchor=anchor)
+                AtlasHeading(level=len(match.group(1)), title=title, anchor=anchor)
             )
         return headings
 

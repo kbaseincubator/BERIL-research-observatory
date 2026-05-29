@@ -29,6 +29,30 @@ def main(argv: list[str] | None = None) -> int:
         default=None,
         help="Agent to launch (default: from config, or claude)",
     )
+    start_parser.add_argument(
+        "--skip-onboard",
+        action="store_true",
+        default=False,
+        help="Skip the automatic /berdl_start onboarding prompt",
+    )
+    start_parser.add_argument(
+        "--version",
+        default=None,
+        metavar="VERSION",
+        help="Pin to a specific release tag (e.g. v0.3.4.5). Defaults to the latest tag.",
+    )
+
+    # user
+    user_parser = sub.add_parser(
+        "user",
+        help="Show user identity from ~/.config/beril/config.toml",
+    )
+    user_parser.add_argument(
+        "--json",
+        action="store_true",
+        default=False,
+        help="Emit machine-readable JSON",
+    )
 
     args, remaining = parser.parse_known_args(argv)
 
@@ -49,7 +73,17 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "start":
         from beril_cli.start import run_start
 
-        return run_start(agent=args.agent, extra_args=remaining)
+        return run_start(
+            agent=args.agent,
+            extra_args=remaining,
+            skip_onboard=args.skip_onboard,
+            version=args.version,
+        )
+
+    if args.command == "user":
+        from beril_cli.user_cmd import run_user
+
+        return run_user(args)
 
     return 0
 

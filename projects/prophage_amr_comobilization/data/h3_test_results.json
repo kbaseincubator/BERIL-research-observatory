@@ -1,0 +1,7 @@
+{
+  "tested": false,
+  "reason": "Insufficient overlap between fitness browser organisms and AMR analysis species",
+  "n_amr_genera": 31,
+  "n_fitness_genera": 0,
+  "n_overlapping_genera": 0
+}

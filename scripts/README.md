@@ -43,25 +43,35 @@ lsof -i :1337 -i :1338 -i :8123 | grep LISTEN
 
 ```bash
 source .venv-berdl/bin/activate
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
 python scripts/run_sql.py --berdl-proxy --query "SELECT * FROM kbase_ke_pangenome.pangenome LIMIT 10"
+```
+
+Use native Spark SQL via `spark.sql(query)` in notebooks, or
+`scripts/run_sql.py` for local SQL execution. For access-aware discovery of
+databases, tables, and schemas, use the BERDL notebook helpers:
+
+```python
+from berdl_notebook_utils import get_databases, get_tables, get_table_schema
+
+databases = get_databases()
+tables = get_tables("kbase_ke_pangenome")
+schema = get_table_schema("kbase_ke_pangenome", "genome")
 ```
 
 ### 5. Refresh the UI collection snapshot
 
 ```bash
 .venv-berdl/bin/python scripts/discover_berdl_collections.py \
-  --source spark \
-  --no-ensure-hub \
   --skip-schemas \
   --output ui/config/berdl_collections_snapshot.json
 ```
 
-This uses Spark SQL metadata from the BERDL JupyterHub/Spark Connect path and
-writes the tenant/database/table snapshot consumed by `/collections` and the
-BERIL Atlas data section. `--skip-schemas` keeps the refresh bounded for the full live
-catalog; omit it when intentionally collecting `DESCRIBE TABLE` output for a
-small set of databases.
+This uses `berdl_notebook_utils.get_databases()`, `get_tables()`, and
+`get_table_schema()` and writes the tenant/database/table snapshot consumed by
+the UI. The committed snapshot is a UI display/fallback artifact; live helper
+results remain the source of truth for tenant/table access. `--skip-schemas`
+keeps the run bounded for the full live catalog; omit it when intentionally
+collecting schema output for a small set of databases.
 
 ### 6. Export large results to MinIO
 
@@ -99,7 +109,7 @@ mc cp --recursive berdl-minio/cdm-lake/.../my-export ./local/
 | `start_pproxy.sh` | Start the HTTP-to-SOCKS5 proxy bridge on port 8123 |
 | `run_sql.py` | Run SQL queries, return results as JSON |
 | `export_sql.py` | Run SQL queries, write results to MinIO (parquet/delta/csv/json) |
-| `discover_berdl_collections.py` | Build the UI's BERDL tenant/database snapshot from hub discovery endpoints |
+| `discover_berdl_collections.py` | Generate an optional local BERDL tenant/database snapshot |
 | `get_minio_creds.py` | Resolve MinIO credentials from `.env` or remote environment |
 | `configure_mc.sh` | Configure MinIO `mc` client alias |
 | `get_spark_session.py` | Drop-in replacement for JupyterHub `get_spark_session()` for local notebooks |

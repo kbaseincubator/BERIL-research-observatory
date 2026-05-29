@@ -354,7 +354,7 @@ class ResearchIdea:
 
 
 @dataclass
-class WikiLink:
+class AtlasLink:
     """A directed relationship between two Atlas pages."""
 
     source_id: str
@@ -363,7 +363,7 @@ class WikiLink:
 
 
 @dataclass
-class WikiHeading:
+class AtlasHeading:
     """A markdown heading available for Atlas page navigation."""
 
     level: int
@@ -397,7 +397,7 @@ class AtlasReviewRoute:
 
 
 @dataclass
-class WikiPage:
+class AtlasPage:
     """A markdown Atlas page with structured frontmatter."""
 
     id: str
@@ -417,7 +417,7 @@ class WikiPage:
     section: str = ""
     order: int = 100
     metadata: dict[str, Any] = field(default_factory=dict)
-    headings: list[WikiHeading] = field(default_factory=list)
+    headings: list[AtlasHeading] = field(default_factory=list)
 
     @property
     def url(self) -> str:
@@ -428,28 +428,19 @@ class WikiPage:
             return f"/atlas/{self.path.removesuffix('/index')}"
         return f"/atlas/{self.path}"
 
-    @property
-    def legacy_url(self) -> str:
-        """Legacy wiki URL kept for redirects and backwards compatibility."""
-        if self.path == "atlas" or self.type == "atlas":
-            return "/wiki"
-        if self.path.endswith("/index"):
-            return f"/wiki/{self.path.removesuffix('/index')}"
-        return f"/wiki/{self.path}"
-
 
 @dataclass
-class WikiIndex:
+class AtlasIndex:
     """Parsed Atlas corpus and helper lookups."""
 
-    pages: list[WikiPage] = field(default_factory=list)
-    links: list[WikiLink] = field(default_factory=list)
+    pages: list[AtlasPage] = field(default_factory=list)
+    links: list[AtlasLink] = field(default_factory=list)
 
-    def get_page_by_id(self, page_id: str) -> WikiPage | None:
+    def get_page_by_id(self, page_id: str) -> AtlasPage | None:
         """Get an Atlas page by stable frontmatter ID."""
         return next((p for p in self.pages if p.id == page_id), None)
 
-    def get_page_by_path(self, path: str) -> WikiPage | None:
+    def get_page_by_path(self, path: str) -> AtlasPage | None:
         """Get an Atlas page by route path."""
         route_path = path.strip("/")
         if route_path.endswith(".md"):
@@ -465,11 +456,11 @@ class WikiIndex:
                 return page
         return None
 
-    def pages_by_type(self, page_type: str) -> list[WikiPage]:
+    def pages_by_type(self, page_type: str) -> list[AtlasPage]:
         """Get Atlas pages of a specific type."""
         return [p for p in self.pages if p.type == page_type]
 
-    def pages_by_section(self, section: str) -> list[WikiPage]:
+    def pages_by_section(self, section: str) -> list[AtlasPage]:
         """Get Atlas pages in a top-level section."""
         return [p for p in self.pages if p.section == section]
 
@@ -499,7 +490,7 @@ class RepositoryData:
     skills: list[Skill] = field(default_factory=list)
     research_areas: list[ResearchArea] = field(default_factory=list)
     collection_edges: list[CollectionEdge] = field(default_factory=list)
-    wiki_index: WikiIndex = field(default_factory=WikiIndex)
+    atlas_index: AtlasIndex = field(default_factory=AtlasIndex)
 
     # Computed stats
     total_notebooks: int = 0

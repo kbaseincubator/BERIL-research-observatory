@@ -91,6 +91,68 @@ class TurnResult:
         return self.error is not None
 
 
+async def stream_turn(
+    db: AsyncSession,
+    *,
+    session: ChatSession,
+    user_message: str,
+    credentials: Credentials,
+) -> AsyncIterator[dict[str, Any]]:
+    """Run one chat turn and yield SSE-ready frames as events arrive.
+
+    Persistence semantics match :func:`run_turn`:
+      * user message saved before the provider is invoked,
+      * assistant message saved exactly once after the provider stream ends
+        (or after a client disconnect — see below).
+
+    If the caller's generator is closed early (e.g. the browser tab closes),
+    whatever assistant content accumulated so far is still persisted so a
+    resumed session doesn't lose partial work.
+    """
+    from app.chat.sse import event_to_frame, turn_complete_frame
+
+    user_row = await persist_user_message(
+        db, session=session, user_message=user_message
+    )
+
+    result = TurnResult()
+    text_parts: list[str] = []
+    stream_completed = False
+
+    try:
+        async for event in run_provider_turn(
+            db=db,
+            session=session,
+            user_message=user_message,
+            credentials=credentials,
+            skip_message_id=user_row.id,
+        ):
+            fold_event(event, text_parts, result)
+            # Mark complete on the terminal event so a disconnect during the
+            # final yield doesn't get tagged as interrupted on persist.
+            if isinstance(event, (TurnComplete, ErrorEvent)):
+                stream_completed = True
+            yield event_to_frame(event)
+    finally:
+        # Persist exactly once. If the DB write itself fails the trace is
+        # lost, but a broken DB connection would also break any retry, so
+        # we accept that and keep the path simple.
+        result.assistant_text = "".join(text_parts)
+        if not stream_completed:
+            # Interrupted before a terminal event: don't promote a partial
+            # provider session handle so the next turn rebuilds from the
+            # DB transcript rather than resuming a half-captured turn.
+            result.sdk_session_id = None
+            if result.error is None:
+                result.error = "stream interrupted"
+        assistant_row = await persist_assistant_message(
+            db, session=session, result=result
+        )
+
+    if stream_completed:
+        yield turn_complete_frame(assistant_message_id=assistant_row.id)
+
+
 async def run_turn(
     db: AsyncSession,
     *,

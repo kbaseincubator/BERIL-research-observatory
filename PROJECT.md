@@ -4,7 +4,10 @@
 
 Use the **BERDL Data Lakehouse** and the AI co-scientist to pursue scientific questions across microbial genomics, ecology, metabolic modeling, and multi-omics analysis, while building shared documentation and reusable skills that accelerate future work.
 
-BERDL hosts **35 databases across 9 tenants** including pangenome data for 293K microbial genomes, mutant fitness data for 48 organisms, ModelSEED biochemistry, multi-omics from NMDC, and more. See [docs/collections.md](docs/collections.md) for the full inventory.
+BERDL hosts pangenome data, mutant fitness data, ModelSEED biochemistry,
+multi-omics from NMDC, and more. Run `berdl_notebook_utils.get_databases(return_json=False)`
+for the current access-aware inventory; row counts can be retrieved on demand with
+`SELECT COUNT(*)` or `DESCRIBE EXTENDED`.
 
 ## Dual Goals
 
@@ -13,34 +16,36 @@ BERDL hosts **35 databases across 9 tenants** including pangenome data for 293K 
 
 ## Documentation Workflow
 
-When working on any science project, update `docs/` when you discover:
+When working on a science project, capture learnings in **per-project memory files** under `projects/{project_id}/memories/`:
 
-| Discovery Type | Add To |
-|----------------|--------|
-| Query pitfall or gotcha | `docs/pitfalls.md` |
-| Performance issue or strategy | `docs/performance.md` |
-| Data limitation or coverage gap | `docs/pitfalls.md` |
-| Useful insight about data structure | `docs/schemas/{collection}.md` |
-| Any other learning worth sharing | `docs/discoveries.md` |
-| Research idea or future direction | `docs/research_ideas.md` |
+| Discovery Type | Where it goes | When it's written |
+|----------------|---------------|-------------------|
+| Query pitfall or gotcha hit during this project | `projects/{id}/memories/pitfalls.md` | **Live** — `/pitfall-capture` appends in-the-moment |
+| Non-trivial finding worth surfacing across projects | `projects/{id}/memories/discoveries.md` | **Approval-gated** — `/synthesize` writes a `## Discoveries` section in `REPORT.md`; `/submit` Phase 2c extracts to memory after review + approval |
+| Project-specific query timing, optimization, or anti-pattern | `projects/{id}/memories/performance.md` | **Approval-gated** — same path, via `## Performance Notes` section in `REPORT.md` |
+| Useful insight about data structure | `docs/schemas/{collection}.md` | Curated reference (manual edit) |
+| Research idea or future direction | `docs/research_ideas.md` | Curated planning artifact |
 
-**Tag each addition** with the project that uncovered it:
-```markdown
-### [ecotype_analysis] AlphaEarth coverage is only 28%
-Discovered that only 83K/293K genomes have embeddings...
-```
+**Empirical vs. interpretive split.** Pitfalls are time-sensitive operational observations — the incident is empirical, capture-in-the-moment context is the load-bearing value, and live capture is right. Discoveries and performance claims are interpretive — exactly the kind of content review can refine or overturn — so they flow through `/berdl-review` (the reviewer evaluates them as part of the report) and `/submit` extracts the approved-and-reviewed content into memories at approval time. This keeps the OV-ingestible layer tied to content that survived review.
+
+**Append-only with corrections** for `pitfalls.md`. Never edit a historical entry; if later understanding refines or contradicts an earlier pitfall, append a `### Correction to "<earlier title>"` entry that references the original. Preserves the audit trail of evolving understanding.
+
+**Re-approval semantics** for `discoveries.md` / `performance.md`. The live memory file always matches the latest approved REPORT. Re-approval (after `/synthesize`-on-complete demote) overwrites the memory with the new section content. If the new approved REPORT removes the section entirely, `/submit` deletes the memory file — stale claims must not survive a re-approval. Previous content remains in git history.
+
+**Each memory entry is project-tagged.** A `[{project_id}]` tag at the start of an entry makes the OV ingestion uniform and enables cross-project search later.
+
+**Source-of-truth contract.** `projects/*/memories/*.md` is the raw/provenance memory layer: it records what a specific project captured, reviewed, and approved. The central `docs/{pitfalls,discoveries,performance}.md` files are read-only for this PR: today they are the frozen pre-redirect archive, and long term they should become a processed/curated handbook layer derived from project memories plus human synthesis. Skills may still read `docs/` as background context, but no skill writes raw project memory there anymore. Retroactive migration and curated `docs/` regeneration are deferred until the OpenViking ingestion layer + UI are in place.
 
 ## Documentation Files
 
 | File | Purpose |
 |------|---------|
-| `docs/collections.md` | Overview of all BERDL databases and tenants |
-| `docs/schemas/` | Per-collection schema documentation |
+| `docs/schemas/` | Per-collection schema documentation (curated reference) |
 | `docs/overview.md` | Project goals, data workflow, scientific context |
-| `docs/pitfalls.md` | SQL gotchas, data sparsity, common errors |
-| `docs/performance.md` | Query strategies for large tables |
-| `docs/discoveries.md` | Running log of insights (low-friction capture) |
-| `docs/research_ideas.md` | Future research directions, project ideas |
+| `docs/pitfalls.md` | **Frozen archive.** Pre-redirect SQL gotchas, data sparsity, common errors. New pitfalls go in `projects/{id}/memories/pitfalls.md`. |
+| `docs/performance.md` | **Frozen archive + ongoing curated reference.** Query strategies for large tables. Project-specific tuning observations now go in `projects/{id}/memories/performance.md`; truly general/canonical patterns continue to live here (manual curation only). |
+| `docs/discoveries.md` | **Frozen archive.** Pre-redirect log of insights. New discoveries flow through `## Discoveries` in `REPORT.md` → `projects/{id}/memories/discoveries.md` at approval. |
+| `docs/research_ideas.md` | Future research directions, project ideas (planning artifact, not a memory) |
 
 ## Project Structure
 
@@ -54,8 +59,65 @@ Each science project in `projects/` should have:
 - `data/`: Agent-derived data from queries and analysis (gitignore large files)
 - `user_data/`: User-provided input data — gene lists, phenotype tables, external databases (gitignore large files)
 - `figures/`: Key visualizations saved as PNG files
+- `memories/`: Per-project captured knowledge that the OpenViking layer will eventually ingest for cross-project retrieval. Three kinds: `pitfalls.md` (live-captured by `/pitfall-capture`, append-only with corrections), `discoveries.md` and `performance.md` (approval-gated; written by `/submit` Phase 2c from approved `REPORT.md` sections). Created on demand. These files are the raw/provenance source of truth; central `docs/pitfalls.md` / `docs/discoveries.md` / `docs/performance.md` are read-only in this PR and can evolve later into the processed/curated layer.
 - `requirements.txt`: Python dependencies
 - `src/`: Reusable scripts (if applicable)
+
+## Project Lifecycle
+
+**Every BERIL session works inside a project — including ad-hoc exploration.** This gives every artifact a home from the first command, makes work resumable, and avoids loose accumulation. There is no "no-project" mode. The legacy `exploratory/` directory predates this discipline and should not receive new work; new exploration uses scratch projects (`projects/scratch_<YYYYMMDD>/` or `projects/<topic>_scratch/`) which are first-class — same structure, same templates, just a default name.
+
+### Status enum (`beril.yaml`)
+
+```
+exploration → proposed → active → analysis → reviewed → complete
+```
+
+| Status | Meaning | Set by |
+|---|---|---|
+| `exploration` | Project scaffolded; no `RESEARCH_PLAN.md` yet. Queries, user data, exploration notebooks live here. | `/berdl_start` Phase 0 |
+| `proposed` | `RESEARCH_PLAN.md` written. Awaiting plan-review checkpoint approval. | `/berdl_start` Phase B |
+| `active` | Plan approved; analysis notebooks running. | `/berdl_start` Phase C |
+| `analysis` | `REPORT.md` written. | `/synthesize` |
+| `reviewed` | At least one `REVIEW_N.md` exists with a footer hash matching the current `REPORT.md`. | `/berdl-review` |
+| `complete` | Human PI has approved via `/submit`. Approval recorded in `beril.yaml.approval`. Independent of upload outcome. | `/submit` |
+
+`complete` is decoupled from the lakehouse upload outcome. Upload state is tracked via filesystem markers (see "Filesystem markers" below), not status.
+
+### Filesystem markers
+
+Two visible-from-`ls` files in `projects/<id>/` signal upload state. Exactly one is present after a `/submit` Phase 3 run; never both. If both are seen later (manual edits or partial failures outside `/submit`'s control), `SUBMISSION_FAILED.md` always wins — it represents the more recent attempt's outcome.
+
+| File | Meaning |
+|---|---|
+| `SUBMITTED.md` | The most recent lakehouse upload succeeded. Contains archive key, timestamp, ORCID, file/byte counts, and the join key (`approved_at`) into `beril.yaml.submissions[]` for full history. |
+| `SUBMISSION_FAILED.md` | The most recent lakehouse upload failed. Contains the error and a "re-run `/submit`" hint. Cleared on next successful retry. |
+
+**The marker files are intentionally local-only.** They're written *after* the lakehouse upload returns, so they will not appear inside the lakehouse copy of the project. That's by design — they exist for human visibility on the user's machine ("did this submit?"), not as part of the archived artifact.
+
+**The archive's `beril.yaml.submissions[]` lags by one entry.** The success record for the current submission is appended locally *after* the upload completes, so the archive's `beril.yaml` always lacks the entry for the upload that created the archive itself. This is acceptable: the archive's mere existence at `archive_key` is the proof that the submission happened — the entry is metadata, not the artifact. Any subsequent re-submit's archive will contain the previous success record. Implementations that need the current submission record archived can add a post-upload `mc cp beril.yaml` step, but `/submit` doesn't do this today.
+
+### Downstream gating
+
+- **`/submit`** requires the project to be at `reviewed` (the normal forward path) or `complete` (for retries — see `/submit` skill for the marker-and-hash-driven branching). Earlier statuses fail with phase-specific messages: `exploration` → write the plan; `proposed` → run analysis notebooks; `active` → run `/synthesize`; `analysis` → run `/berdl-review`. Re-submission flows (after a re-open via `/synthesize` on a `complete` project) detect via `submissions[].success` and warn that the previously archived lakehouse copy will be replaced.
+- **`/synthesize`** requires `status: active` for the normal forward path (`active` → `analysis`). It rejects `exploration` (no plan to synthesize against) and `proposed` (no notebook outputs to interpret). `analysis` is preserved (re-synthesis on a pre-review project). `reviewed` is **silently demoted** to `analysis` (the natural iteration loop — existing reviews go stale via hash mismatch). `complete` requires explicit confirmation, archives the existing approval to `previous_approvals`, and demotes to `analysis`.
+- **`/berdl-review`** is the only review tool. It writes numbered `REVIEW_N.md` files via `tools/review.sh`, which embeds a `<!-- report_hash: sha256:<hex> -->` footer (the hash of `REPORT.md` at review time). Allowed starting statuses: `analysis`, `reviewed`, `complete` (for `complete`, requires a hash-mismatch demote-or-abort confirmation up front). It rejects earlier statuses with a "no REPORT.md to review yet" message. `--type plan` reviews are independent of the lifecycle.
+
+### Approval, submission, and re-open
+
+The lakehouse archive — not git — is the source of truth for "this project was submitted." Local files (`beril.yaml`, marker files) tell the user what's happened on their machine; git history is convenience.
+
+`beril.yaml` records a structured audit trail:
+
+- `approval` — the current approval block (only present at `complete`). Fields: `by` (ORCID), `at` (ISO timestamp), `report_hash`, `review` (filename), `review_hash`, and `notebook_hashes` (a `{relative_path: "sha256:<hex>"}` mapping covering each `.ipynb` under `notebooks/`, computed via canonical hashing in `tools/notebook_hash.py` so JupyterLab autosave noise doesn't trigger spurious mismatches but cell source/output changes do — catches accidental notebook re-execution between approval and upload). Hash values are stored with a `sha256:` prefix; comparison sites strip the prefix via `tools.notebook_hash.unprefixed()` before matching against raw `sha256sum` output.
+- `previous_approvals: []` — list of archived approvals from prior re-open cycles. Each entry has the same shape as `approval` plus an `archived_at` ISO timestamp recording when it was moved here. Demotion paths in `/synthesize`, `/submit`, `/berdl-review`, and `/berdl_start` resume detection all set this field.
+- `submissions: []` — list of upload attempts (success and failure). Each entry has `status` (`success` or `failed`), `attempted_at`, `approved_at` (the **join key** to a current or previous approval), and on success `archive_key`, `file_count`, `byte_total`, `duration_seconds`.
+
+**Re-open semantics**: if the user discovers an error in a `complete` project, running `/synthesize` triggers an explicit "re-running synthesis will demote this project to `analysis`" prompt. On confirmation, the current `approval` moves to `previous_approvals`, marker files are deleted (audit lives in `beril.yaml`), and `REPORT.md` is regenerated. After `/berdl-review` and `/submit`, the new approval prompt warns that approving will replace the existing lakehouse archive.
+
+### Mandatory plan-review checkpoint
+
+Between Phase B (writing `RESEARCH_PLAN.md`) and Phase C (executing analysis notebooks), `/berdl_start` enforces a stop. The agent must present the plan to the user and wait for an explicit approval/review/iterate decision. This is the principal guard against jumping from plan to compute without human or independent review.
 
 ## Reproducibility Standards
 
@@ -171,36 +233,35 @@ Project data files are gitignored (too large for git) but are archived to the `m
 - **Shared** — accessible to all BERDL users via `mc cp` or Spark
 - **Downloadable** — any user can pull project data with `mc cp --recursive berdl-minio/cdm-lake/tenant-general-warehouse/microbialdiscoveryforge/projects/<project>/data/ ./`
 
-**Upload workflow**: When a project passes `/submit` review, run `python tools/lakehouse_upload.py <project_id>`. See [docs/collections.md](docs/collections.md) for the full collection details.
+**Upload workflow**: When a project passes `/submit` review, run `python tools/lakehouse_upload.py <project_id>`.
 
 ## Database Access
 
-- **Databases**: 35 databases across BERDL (see [docs/collections.md](docs/collections.md))
+- **Discovery**: Use access-aware BERDL notebook helpers for tenant and table access
 - **Auth**: Token in `.env` file (KBASE_AUTH_TOKEN)
 - **API**: `https://hub.berdl.kbase.us/apis/mcp/`
 - **Direct Spark**: Use JupyterHub for complex queries
 
 Use `/berdl` skill for BERDL queries. Read `docs/pitfalls.md` before your first query.
 
+```python
+from berdl_notebook_utils import get_databases, get_tables, get_table_schema
+
+databases = get_databases()
+tables = get_tables("kbase_ke_pangenome")
+schema = get_table_schema("kbase_ke_pangenome", "genome")
+```
+
 ### Local Spark Connect
 
 Run queries locally while computation happens on the remote BERDL cluster. This avoids the JupyterHub web UI for interactive work.
 
-**One-time setup:**
-```bash
-bash scripts/bootstrap_client.sh   # creates .venv-berdl with required packages
-```
-
-**Running queries:**
-```bash
-source .venv-berdl/bin/activate
-python scripts/run_sql.py --berdl-proxy --query "SHOW DATABASES"
-```
-
 **Prerequisites:**
 - `KBASE_AUTH_TOKEN` set in `.env`
 - A JupyterHub session active (log in and open a notebook so your Spark Connect service is running)
-- BERDL proxy chain running (SSH SOCKS tunnels on ports 1337/1338 + pproxy on port 8123). BERDL services are not directly reachable from external networks. See `.claude/skills/berdl-query/references/proxy-setup.md` for setup instructions.
+- BERDL proxy chain running (SSH SOCKS tunnels on ports 1337/1338 + pproxy on port 8123). BERDL services are not directly reachable from external networks.
+
+For setup and execution mechanics (bootstrap script, virtualenv activation, proxy flags, run_sql.py invocation), see .claude/skills/berdl-query/references/off-cluster-mechanics.md and .claude/skills/berdl-query/references/proxy-setup.md.
 
 See the `/berdl-query` and `/berdl-minio` skills for full workflow details.
 
@@ -281,5 +342,6 @@ plot_df = df_filtered.toPandas()
 2. Large tables (gene, genome_ani) need filters. Never full-scan.
 3. AlphaEarth embeddings only cover 28% of genomes.
 4. Gene clusters are species-specific. Can't compare across species.
-5. Update docs when you learn something worth sharing!
-6. Check [docs/collections.md](docs/collections.md) for the full database inventory.
+5. Capture project-specific learnings in `projects/<id>/memories/`; reserve `docs/` for curated, processed guidance.
+6. Use the BERDL notebook helpers to discover the databases and tables your
+   account can access.

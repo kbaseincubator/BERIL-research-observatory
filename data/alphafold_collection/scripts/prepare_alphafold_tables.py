@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Parse AlphaFold EBI metadata CSVs into headerized TSVs for Delta Lake ingestion.
+Parse AlphaFold EBI metadata CSVs into headerized TSVs for Iceberg ingestion.
 
 Input files (from EBI FTP, no headers):
   accession_ids.csv — 5 columns: uniprot_accession, first_residue, last_residue, alphafold_id, version
@@ -125,7 +125,7 @@ def parse_msa_depths(input_path, output_path, sample_n=0):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Prepare AlphaFold metadata for Delta Lake ingestion"
+        description="Prepare AlphaFold metadata for Iceberg ingestion"
     )
     parser.add_argument(
         "--input-dir",

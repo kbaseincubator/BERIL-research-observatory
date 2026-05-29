@@ -1,0 +1,169 @@
+{
+  "hypothesis": "H2: Species with more prophage carry broader AMR repertoires",
+  "n_species_analyzed": 4770,
+  "spearman_prophage_amr_breadth": {
+    "rho": 0.5722,
+    "p_value": 0.0
+  },
+  "spearman_prophage_amr_clusters": {
+    "rho": 0.5633,
+    "p_value": 0.0
+  },
+  "spearman_per_genome": {
+    "rho": 0.6076,
+    "p_value": 0.0
+  },
+  "linear_regression_log_log": {
+    "slope": 0.8229,
+    "intercept": 1.8294,
+    "r_squared": 0.3007,
+    "p_value": 0.0,
+    "slope_se": 0.0182,
+    "slope_ci_95": [
+      0.7873,
+      0.8585
+    ]
+  },
+  "partial_spearman_ctrl_genomes": {
+    "rho": 0.4643,
+    "p_value": 1.022796666401986e-253
+  },
+  "partial_pearson_ctrl_genomes": {
+    "r": 0.4563,
+    "p_value": 5.0856473651730504e-244
+  },
+  "phylum_results": [
+    {
+      "phylum": "p__Pseudomonadota",
+      "n_species": 1703,
+      "rho": 0.5378,
+      "p_value": 2.6645149738389015e-128
+    },
+    {
+      "phylum": "p__Bacillota_A",
+      "n_species": 827,
+      "rho": 0.5475,
+      "p_value": 7.499749275667089e-66
+    },
+    {
+      "phylum": "p__Bacillota",
+      "n_species": 591,
+      "rho": 0.3978,
+      "p_value": 7.685544179234675e-24
+    },
+    {
+      "phylum": "p__Bacteroidota",
+      "n_species": 566,
+      "rho": 0.5872,
+      "p_value": 9.16639334910454e-54
+    },
+    {
+      "phylum": "p__Actinomycetota",
+      "n_species": 542,
+      "rho": 0.2918,
+      "p_value": 4.218979279933209e-12
+    },
+    {
+      "phylum": "p__Bacillota_C",
+      "n_species": 55,
+      "rho": 0.3186,
+      "p_value": 0.017767928762645106
+    },
+    {
+      "phylum": "p__Campylobacterota",
+      "n_species": 54,
+      "rho": 0.1601,
+      "p_value": 0.24751278165437324
+    },
+    {
+      "phylum": "p__Spirochaetota",
+      "n_species": 44,
+      "rho": 0.2592,
+      "p_value": 0.08935381873433237
+    },
+    {
+      "phylum": "p__Cyanobacteriota",
+      "n_species": 43,
+      "rho": 0.2194,
+      "p_value": 0.15740336596326615
+    },
+    {
+      "phylum": "p__Chloroflexota",
+      "n_species": 38,
+      "rho": 0.3221,
+      "p_value": 0.048609482360552785
+    },
+    {
+      "phylum": "p__Verrucomicrobiota",
+      "n_species": 31,
+      "rho": 0.4214,
+      "p_value": 0.018240854345102163
+    },
+    {
+      "phylum": "p__Acidobacteriota",
+      "n_species": 26,
+      "rho": -0.1454,
+      "p_value": 0.47854649020332396
+    },
+    {
+      "phylum": "p__Gemmatimonadota",
+      "n_species": 19,
+      "rho": 0.2428,
+      "p_value": 0.31658856336326063
+    },
+    {
+      "phylum": "p__Fusobacteriota",
+      "n_species": 17,
+      "rho": -0.1169,
+      "p_value": 0.654922677514008
+    },
+    {
+      "phylum": "p__Thermoplasmatota",
+      "n_species": 16,
+      "rho": 0.2258,
+      "p_value": 0.4004430873143221
+    },
+    {
+      "phylum": "p__Halobacteriota",
+      "n_species": 16,
+      "rho": 0.3303,
+      "p_value": 0.2115123373597776
+    },
+    {
+      "phylum": "p__Myxococcota",
+      "n_species": 15,
+      "rho": 0.7987,
+      "p_value": 0.0003558337578334394
+    },
+    {
+      "phylum": "p__Patescibacteria",
+      "n_species": 13,
+      "rho": NaN,
+      "p_value": NaN
+    },
+    {
+      "phylum": "p__Desulfobacterota",
+      "n_species": 13,
+      "rho": 0.6491,
+      "p_value": 0.016361632200957703
+    },
+    {
+      "phylum": "p__Bacillota_B",
+      "n_species": 10,
+      "rho": 0.037,
+      "p_value": 0.9190786880314891
+    },
+    {
+      "phylum": "p__Deinococcota",
+      "n_species": 10,
+      "rho": -0.0495,
+      "p_value": 0.8918810962768806
+    },
+    {
+      "phylum": "p__Planctomycetota",
+      "n_species": 10,
+      "rho": NaN,
+      "p_value": NaN
+    }
+  ]
+}

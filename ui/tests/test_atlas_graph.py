@@ -65,7 +65,7 @@ def test_derived_product_context_resolves_projects(repository_data):
 
 
 def test_review_routes_and_conflicts_resolve_for_topic(repository_data):
-    topic = repository_data.wiki_index.get_page_by_id("topic.test")
+    topic = repository_data.atlas_index.get_page_by_id("topic.test")
 
     assert review_routes_for_page(topic, repository_data)
     assert conflicts_for_page(topic, repository_data)[0].id == "conflict.test"
@@ -73,7 +73,7 @@ def test_review_routes_and_conflicts_resolve_for_topic(repository_data):
 
 
 def test_topic_overview_map_uses_related_metadata(repository_data):
-    topic = repository_data.wiki_index.get_page_by_id("topic.test")
+    topic = repository_data.atlas_index.get_page_by_id("topic.test")
     overview = build_topic_overview_map(topic, repository_data)
 
     assert overview is not None

@@ -162,6 +162,35 @@ def _patched_provider(events: list[TurnEvent]):
     return _fake
 
 
+def _parse_sse(raw: str) -> list[dict]:
+    """Parse an SSE response body into a list of ``{event, data}`` dicts."""
+    import json as _json
+
+    frames: list[dict] = []
+    current_event: str | None = None
+    current_data: list[str] = []
+    for line in raw.replace("\r\n", "\n").split("\n"):
+        if line == "":
+            if current_event or current_data:
+                frames.append(
+                    {
+                        "event": current_event,
+                        "data": _json.loads("\n".join(current_data))
+                        if current_data
+                        else None,
+                    }
+                )
+                current_event = None
+                current_data = []
+            continue
+        if line.startswith("event:"):
+            current_event = line[len("event:") :].strip()
+        elif line.startswith("data:"):
+            current_data.append(line[len("data:") :].strip())
+        # other SSE fields (id:, retry:, :comment) ignored
+    return frames
+
+
 # ---------------------------------------------------------------------------
 # Auth
 # ---------------------------------------------------------------------------
@@ -392,3 +421,213 @@ class TestConcurrency:
             )
         assert resp.status_code == 429
         assert "cap" in resp.json()["error"]
+
+
+# ---------------------------------------------------------------------------
+# Streaming endpoint
+# ---------------------------------------------------------------------------
+
+
+class TestStreamAuth:
+    def test_unauthenticated_returns_401(self, client, session_row):
+        resp = client.post(
+            f"/api/chat/{session_row.id}/stream",
+            json={"message": "hi", "credentials": {"api_key": "k"}},
+        )
+        assert resp.status_code == 401
+
+    def test_other_user_gets_403(self, client, session_row, other_user):
+        _login(client, OTHER_TOKEN)
+        resp = client.post(
+            f"/api/chat/{session_row.id}/stream",
+            json={"message": "hi", "credentials": {"api_key": "k"}},
+        )
+        assert resp.status_code == 403
+
+    def test_unknown_session_returns_404(self, client, user):
+        _login(client)
+        resp = client.post(
+            "/api/chat/does-not-exist/stream",
+            json={"message": "hi", "credentials": {"api_key": "k"}},
+        )
+        assert resp.status_code == 404
+
+
+class TestStreamValidation:
+    def test_missing_credential_returns_400(self, client, session_row, user):
+        _login(client)
+        resp = client.post(
+            f"/api/chat/{session_row.id}/stream",
+            json={"message": "hi", "credentials": {}},
+        )
+        assert resp.status_code == 400
+
+    def test_cap_exceeded_returns_429(self, client, session_row, user):
+        from app.chat import concurrency as c
+        from app.chat.concurrency import ChatConcurrencyManager
+
+        c._manager = ChatConcurrencyManager(per_user_cap=1)
+        asyncio.get_event_loop().run_until_complete(
+            c._manager._try_reserve_user_slot(user.id)
+        )
+
+        _login(client)
+        with patch(
+            "app.chat.service.run_provider_turn", _patched_provider(_events_ok())
+        ):
+            resp = client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "hi", "credentials": {"api_key": "k"}},
+            )
+        assert resp.status_code == 429
+
+
+class TestStreamHappyPath:
+    def test_emits_expected_sse_frames(self, client, session_row, user):
+        _login(client)
+        with patch(
+            "app.chat.service.run_provider_turn", _patched_provider(_events_ok())
+        ):
+            resp = client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "hi", "credentials": {"api_key": "k"}},
+            )
+        assert resp.status_code == 200
+        assert resp.headers["content-type"].startswith("text/event-stream")
+
+        frames = _parse_sse(resp.text)
+        kinds = [f["event"] for f in frames]
+        # Order should be: session_initialized, text_delta, text_delta,
+        # tool_call, tool_result, turn_complete, turn_persisted.
+        assert kinds[0] == "session_initialized"
+        assert kinds.count("text_delta") == 2
+        assert "tool_call" in kinds
+        assert "tool_result" in kinds
+        assert "turn_complete" in kinds
+        assert kinds[-1] == "turn_persisted"
+
+    def test_text_deltas_carry_content(self, client, session_row, user):
+        _login(client)
+        with patch(
+            "app.chat.service.run_provider_turn", _patched_provider(_events_ok())
+        ):
+            resp = client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "hi", "credentials": {"api_key": "k"}},
+            )
+        frames = _parse_sse(resp.text)
+        texts = [f["data"]["text"] for f in frames if f["event"] == "text_delta"]
+        assert texts == ["Hello ", "world"]
+
+    async def test_persists_messages(self, client, session_row, user, db_session):
+        _login(client)
+        with patch(
+            "app.chat.service.run_provider_turn", _patched_provider(_events_ok())
+        ):
+            resp = client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "streamed hi", "credentials": {"api_key": "k"}},
+            )
+        assert resp.status_code == 200
+
+        result = await db_session.execute(
+            select(ChatMessage).where(ChatMessage.session_id == session_row.id)
+        )
+        msgs = list(result.scalars())
+        assert [m.role for m in msgs] == ["user", "assistant"]
+        assert msgs[0].content["text"] == "streamed hi"
+        assert msgs[1].content["text"] == "Hello world"
+
+    async def test_sdk_session_id_captured(
+        self, client, session_row, user, db_session
+    ):
+        _login(client)
+        with patch(
+            "app.chat.service.run_provider_turn", _patched_provider(_events_ok())
+        ):
+            client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "hi", "credentials": {"api_key": "k"}},
+            )
+        await db_session.refresh(session_row)
+        assert session_row.sdk_session_id == "sdk-abc"
+
+    def test_turn_persisted_carries_assistant_message_id(
+        self, client, session_row, user
+    ):
+        _login(client)
+        with patch(
+            "app.chat.service.run_provider_turn", _patched_provider(_events_ok())
+        ):
+            resp = client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "hi", "credentials": {"api_key": "k"}},
+            )
+        frames = _parse_sse(resp.text)
+        final = frames[-1]
+        assert final["event"] == "turn_persisted"
+        assert final["data"]["assistant_message_id"]  # non-empty uuid
+
+
+class TestStreamErrorPath:
+    def test_provider_error_surfaces_as_error_frame(self, client, session_row, user):
+        events: list[TurnEvent] = [
+            SessionInitialized(sdk_session_id="sdk-x"),
+            ErrorEvent(message="upstream 500"),
+        ]
+        _login(client)
+        with patch("app.chat.service.run_provider_turn", _patched_provider(events)):
+            resp = client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "hi", "credentials": {"api_key": "k"}},
+            )
+        frames = _parse_sse(resp.text)
+        kinds = [f["event"] for f in frames]
+        assert "error" in kinds
+        err_frame = next(f for f in frames if f["event"] == "error")
+        assert err_frame["data"]["message"] == "upstream 500"
+
+    async def test_provider_error_still_persists_assistant_message(
+        self, client, session_row, user, db_session
+    ):
+        events: list[TurnEvent] = [ErrorEvent(message="timeout")]
+        _login(client)
+        with patch("app.chat.service.run_provider_turn", _patched_provider(events)):
+            client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "hi", "credentials": {"api_key": "k"}},
+            )
+        result = await db_session.execute(
+            select(ChatMessage)
+            .where(ChatMessage.session_id == session_row.id)
+            .where(ChatMessage.role == "assistant")
+        )
+        msg = result.scalar_one()
+        assert msg.content["error"] == "timeout"
+
+
+class TestStreamConcurrency:
+    def test_stream_releases_user_slot(self, client, session_row, user):
+        """After a stream finishes, the user's slot is free for the next turn."""
+        from app.chat.concurrency import get_concurrency_manager
+
+        mgr = get_concurrency_manager()
+        assert mgr.active_turns_for(user.id) == 0
+
+        _login(client)
+        with patch(
+            "app.chat.service.run_provider_turn", _patched_provider(_events_ok())
+        ):
+            resp1 = client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "hi", "credentials": {"api_key": "k"}},
+            )
+            assert resp1.status_code == 200
+            # Slot freed.
+            assert mgr.active_turns_for(user.id) == 0
+
+            resp2 = client.post(
+                f"/api/chat/{session_row.id}/stream",
+                json={"message": "again", "credentials": {"api_key": "k"}},
+            )
+            assert resp2.status_code == 200

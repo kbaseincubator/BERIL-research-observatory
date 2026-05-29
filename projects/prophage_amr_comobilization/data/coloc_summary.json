@@ -1,0 +1,16 @@
+{
+  "total_amr_instances": 36041,
+  "unique_species": 100,
+  "unique_genomes": 1953,
+  "genomes_sampled_per_species": 20,
+  "on_prophage_contig": 20073,
+  "on_prophage_contig_pct": 55.7,
+  "no_prophage_contig": 15968,
+  "median_distance_genes": 34.0,
+  "mean_distance_genes": 83.2,
+  "proximal_5": 1991,
+  "proximal_10": 3731,
+  "proximal_20": 7137,
+  "proximal_50": 12026,
+  "strict_prophage_clusters_used": 1261929
+}
