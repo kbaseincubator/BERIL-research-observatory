@@ -9,6 +9,7 @@
 .claude/projects/
 .claude/scheduled_tasks.lock
 .serena/
+docs/plans/
 docs/superpowers/
 
 # Large data files
