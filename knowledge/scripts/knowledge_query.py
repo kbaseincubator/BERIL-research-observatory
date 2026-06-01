@@ -20,9 +20,7 @@ from observatory_context.config import ContextConfig
 from observatory_context.openviking_client import create_client, server_reachable
 from observatory_context.query import (
     format_find_text,
-    parse_filter_arg,
-    result_to_json,
-    run_find,
+    run_command,
     target_uri_for_find,
 )
 
@@ -97,10 +95,6 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def _print_json(value) -> None:
-    print(json.dumps(value, indent=2, default=str))
-
-
 def _run_fallback(args, config: ContextConfig) -> None:
     print(fallback.BANNER.format(url=config.openviking_url), file=sys.stderr)
     if args.command == "find":
@@ -140,55 +134,12 @@ def main() -> None:
         return
     client = create_client(config)
     try:
-        if args.command == "find":
-            target_uri = target_uri_for_find(
-                project=args.project,
-                docs=args.docs,
-                target_uri=args.target_uri,
-            )
-            result = run_find(
-                client,
-                args.query,
-                target_uri,
-                args.limit,
-                filter=parse_filter_arg(args.filter),
-                score_threshold=args.score_threshold,
-                since=args.since,
-                until=args.until,
-                time_field=args.time_field,
-            )
-            print(result_to_json(result) if args.json else format_find_text(result))
-        elif args.command == "grep":
-            kwargs = {"case_insensitive": args.case_insensitive}
-            if args.node_limit is not None:
-                kwargs["node_limit"] = args.node_limit
-            if args.exclude_uri:
-                kwargs["exclude_uri"] = args.exclude_uri
-            _print_json(client.grep(args.uri, args.pattern, **kwargs))
-        elif args.command == "glob":
-            _print_json(client.glob(args.pattern, uri=args.uri))
-        elif args.command == "ls":
-            _print_json(
-                client.ls(args.uri, simple=args.simple, recursive=args.recursive)
-            )
-        elif args.command == "tree":
-            _print_json(client.tree(args.uri, node_limit=args.node_limit))
-        elif args.command == "stat":
-            _print_json(client.stat(args.uri))
-        elif args.command == "relations":
-            _print_json(client.relations(args.uri))
-        elif args.command == "link":
-            client.link(args.from_uri, args.to_uris, reason=args.reason)
-        elif args.command == "unlink":
-            client.unlink(args.from_uri, args.to_uri)
-        elif args.command == "overview":
-            print(client.overview(args.uri))
-        elif args.command == "read":
-            print(client.read(args.uri))
+        code = run_command(args, client)
     finally:
         close = getattr(client, "close", None)
         if close:
             close()
+    sys.exit(code)
 
 
 if __name__ == "__main__":

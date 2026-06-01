@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import json
+import sys
 from typing import Any
 
 from openviking.utils.search_filters import merge_time_filter
+from openviking_cli.exceptions import OpenVikingError
 
 from .config import DOCS_TARGET_URI, PROJECTS_TARGET_URI
 from .selection import project_target_uri
@@ -102,3 +104,76 @@ def _field(value: Any, name: str, default: Any) -> Any:
     if isinstance(value, dict):
         return value.get(name, default)
     return getattr(value, name, default)
+
+
+def _print_json(value: Any, out: Any) -> None:
+    print(json.dumps(value, indent=2, default=str), file=out)
+
+
+def dispatch_command(args: Any, client: Any, out: Any) -> None:
+    """Run one parsed query subcommand against the OpenViking client.
+
+    Raises OpenVikingError / ValueError for the caller to map to a clean
+    message; this function does no error handling of its own.
+    """
+    if args.command == "find":
+        target_uri = target_uri_for_find(
+            project=args.project, docs=args.docs, target_uri=args.target_uri
+        )
+        result = run_find(
+            client,
+            args.query,
+            target_uri,
+            args.limit,
+            filter=parse_filter_arg(args.filter),
+            score_threshold=args.score_threshold,
+            since=args.since,
+            until=args.until,
+            time_field=args.time_field,
+        )
+        print(
+            result_to_json(result) if args.json else format_find_text(result),
+            file=out,
+        )
+    elif args.command == "grep":
+        kwargs: dict[str, Any] = {"case_insensitive": args.case_insensitive}
+        if args.node_limit is not None:
+            kwargs["node_limit"] = args.node_limit
+        if args.exclude_uri:
+            kwargs["exclude_uri"] = args.exclude_uri
+        _print_json(client.grep(args.uri, args.pattern, **kwargs), out)
+    elif args.command == "glob":
+        _print_json(client.glob(args.pattern, uri=args.uri), out)
+    elif args.command == "ls":
+        _print_json(
+            client.ls(args.uri, simple=args.simple, recursive=args.recursive), out
+        )
+    elif args.command == "tree":
+        _print_json(client.tree(args.uri, node_limit=args.node_limit), out)
+    elif args.command == "stat":
+        _print_json(client.stat(args.uri), out)
+    elif args.command == "relations":
+        _print_json(client.relations(args.uri), out)
+    elif args.command == "link":
+        client.link(args.from_uri, args.to_uris, reason=args.reason)
+    elif args.command == "unlink":
+        client.unlink(args.from_uri, args.to_uri)
+    elif args.command == "overview":
+        print(client.overview(args.uri), file=out)
+    elif args.command == "read":
+        print(client.read(args.uri), file=out)
+
+
+def run_command(args: Any, client: Any, *, out: Any = None, err: Any = None) -> int:
+    """Dispatch a query subcommand, mapping expected errors to a clean message.
+
+    Returns 0 on success, 1 if an OpenViking or argument/parse error was caught.
+    """
+    out = out if out is not None else sys.stdout
+    err = err if err is not None else sys.stderr
+    try:
+        dispatch_command(args, client, out)
+        return 0
+    except (OpenVikingError, ValueError) as exc:
+        print(f"error: {exc}", file=err)
+        return 1

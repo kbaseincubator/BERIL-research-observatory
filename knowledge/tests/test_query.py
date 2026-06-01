@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import io
 import json
 from types import SimpleNamespace
 
@@ -13,9 +14,11 @@ from observatory_context.query import (
     format_find_text,
     parse_filter_arg,
     result_to_json,
+    run_command,
     run_find,
     target_uri_for_find,
 )
+from openviking_cli.exceptions import InvalidArgumentError, NotFoundError
 
 
 def test_target_uri_for_find_prefers_raw_project_docs_then_projects_root() -> None:
@@ -168,3 +171,110 @@ def test_run_find_ands_time_bounds_with_existing_filter() -> None:
     assert sent["op"] == "and"
     assert base in sent["conds"]
     assert any(cond.get("op") == "time_range" for cond in sent["conds"])
+
+
+def _find_args(**overrides):
+    base = dict(
+        command="find",
+        query="microbial",
+        project=None,
+        docs=False,
+        target_uri=None,
+        limit=5,
+        filter=None,
+        score_threshold=None,
+        since=None,
+        until=None,
+        time_field=None,
+        json=False,
+    )
+    base.update(overrides)
+    return SimpleNamespace(**base)
+
+
+class _DispatchClient:
+    def __init__(self, *, find_exc=None, read_exc=None):
+        self._find_exc = find_exc
+        self._read_exc = read_exc
+        self.calls: list = []
+
+    def find(self, **kwargs):
+        self.calls.append(("find", kwargs))
+        if self._find_exc is not None:
+            raise self._find_exc
+        return SimpleNamespace(
+            total=1,
+            resources=[SimpleNamespace(uri="viking://x/", score=0.5, abstract="A")],
+        )
+
+    def read(self, uri):
+        self.calls.append(("read", uri))
+        if self._read_exc is not None:
+            raise self._read_exc
+        return "file body"
+
+
+def test_run_command_find_success_returns_zero_and_prints():
+    out, err = io.StringIO(), io.StringIO()
+    client = _DispatchClient()
+    code = run_command(_find_args(), client, out=out, err=err)
+    assert code == 0
+    assert "1 result(s)" in out.getvalue()
+    assert err.getvalue() == ""
+
+
+def test_run_command_maps_invalid_argument_to_clean_error():
+    out, err = io.StringIO(), io.StringIO()
+    client = _DispatchClient(
+        find_exc=InvalidArgumentError("Search query must not be empty.")
+    )
+    code = run_command(_find_args(query=""), client, out=out, err=err)
+    assert code == 1
+    assert out.getvalue() == ""
+    assert err.getvalue().startswith("error: ")
+    assert "must not be empty" in err.getvalue()
+    assert "Traceback" not in err.getvalue()
+
+
+def test_run_command_maps_not_found_to_clean_error():
+    out, err = io.StringIO(), io.StringIO()
+    client = _DispatchClient(read_exc=NotFoundError("File not found: viking://x/"))
+    args = SimpleNamespace(command="read", uri="viking://x/")
+    code = run_command(args, client, out=out, err=err)
+    assert code == 1
+    assert "error: " in err.getvalue()
+    assert "not found" in err.getvalue().lower()
+    assert "Traceback" not in err.getvalue()
+
+
+def test_run_command_maps_malformed_filter_to_clean_error_without_calling_client():
+    out, err = io.StringIO(), io.StringIO()
+    client = _DispatchClient()
+    code = run_command(
+        _find_args(filter="{not valid json"), client, out=out, err=err
+    )
+    assert code == 1
+    assert err.getvalue().startswith("error: ")
+    assert client.calls == []  # parse fails before the client is touched
+
+
+def test_run_command_maps_bad_since_to_clean_error():
+    out, err = io.StringIO(), io.StringIO()
+    client = _DispatchClient()
+    code = run_command(
+        _find_args(since="not-a-duration", time_field="updated_at"),
+        client,
+        out=out,
+        err=err,
+    )
+    assert code == 1
+    assert err.getvalue().startswith("error: ")
+
+
+def test_run_command_read_success_prints_body():
+    out, err = io.StringIO(), io.StringIO()
+    client = _DispatchClient()
+    args = SimpleNamespace(command="read", uri="viking://x/")
+    code = run_command(args, client, out=out, err=err)
+    assert code == 0
+    assert "file body" in out.getvalue()
