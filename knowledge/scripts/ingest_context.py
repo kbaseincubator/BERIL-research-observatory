@@ -57,7 +57,7 @@ def main() -> None:
         if args.limit < 1:
             parser.error("--limit must be a positive integer")
     config = ContextConfig.from_env()
-    if args.project:
+    if args.project is not None:
         try:
             resolve_project_dir(config, args.project)
         except (FileNotFoundError, ValueError) as exc:
@@ -72,7 +72,7 @@ def main() -> None:
                 ingest_all(config, client, observer=observer, limit=args.limit)
             elif args.changed:
                 ingest_changed(config, client, observer=observer, limit=args.limit)
-            elif args.project:
+            elif args.project is not None:
                 ingest_project(config, client, args.project, observer=observer)
             elif args.docs:
                 ingest_docs(config, client, observer=observer)
