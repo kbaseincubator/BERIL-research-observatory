@@ -150,6 +150,20 @@ sqlite3 /tmp/<dataset>.db < <dump>.sql
   head -6 <DATA_DIR>/<file>.tsv
   ```
 
+**Header detection (TSV/CSV):** Determine whether each file's first line is a header
+row. This is critical because `data_lakehouse_ingest` defaults to `header: False` when
+no `defaults` block is provided in the ingest config.
+
+Heuristic: inspect the first line — if every field is a plausible column name
+(non-numeric, no special characters beyond `_`), it's a header. If the first line
+contains numeric values or looks like data, it's headerless. When a `.sql` schema file
+is present, compare the first line's fields against the schema's column names — an
+exact match confirms a header row.
+
+Set `HAS_HEADER = True` or `HAS_HEADER = False` based on detection, and present the
+finding to the user for confirmation. This value is passed into the notebook config
+cell and used in the `defaults.csv.header` key of the ingest config.
+
 Present the proposed schema as a draft `.sql` file and ask the user to confirm or
 correct it before writing `<DATA_DIR>/schema.sql`. Flag any ambiguous columns.
 
@@ -285,7 +299,9 @@ cp .claude/skills/berdl-ingest/references/ingest_jh.ipynb <DATA_DIR>/<dataset>_i
 ```
 
 Edit the configuration cell (`jh0003`) with the absolute `DATA_DIR`, `TENANT`,
-`DATASET`, `MODE`, and `USER_TENANT` values.
+`DATASET`, `MODE`, `USER_TENANT`, and `HAS_HEADER` values. `HAS_HEADER` was determined
+in Step 1b — it controls whether `data_lakehouse_ingest` treats the first row of
+TSV/CSV files as column names or data.
 
 **Present the ingest plan to the user before running** — list each table, its file
 size, and source path. Ask:
@@ -295,9 +311,16 @@ size, and source path. Ask:
 
 Do not run the notebook until the user explicitly confirms.
 
-After confirmation, the user runs the notebook interactively in JupyterHub (cell by
-cell, or Run All). Unlike the remote skill, there is no `jupyter nbconvert` subprocess
-— execution happens directly in the JH kernel.
+After confirmation, tell the user the notebook was created and where, and that they can
+run it themselves in JupyterHub or Claude can execute it directly (preferred). If the
+user confirms or doesn't object, execute it:
+
+```bash
+set -a && source .env 2>/dev/null; set +a && jupyter nbconvert --to notebook --execute --inplace <DATA_DIR>/<dataset>_ingest.ipynb
+```
+
+If the user prefers to run it manually, they can open it in JupyterHub and run cells
+interactively.
 
 **What the notebook does:**
 
