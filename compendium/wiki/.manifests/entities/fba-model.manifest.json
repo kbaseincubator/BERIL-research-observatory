@@ -1,0 +1,27 @@
+{
+  "cited_statement_ids": [
+    "stmt:adp1-explorer-discordance-opportunity",
+    "stmt:adp1-explorer-gapfilling-caveat",
+    "stmt:adp1-triple-aromatic-discordance-finding",
+    "stmt:adp1-triple-aromatic-media-opportunity",
+    "stmt:adp1-triple-fba-growth-caveat"
+  ],
+  "member_hash": "hash:ebc6de22f211ede7",
+  "model": "codex-gpt-5",
+  "page_id": "entity:fba_model",
+  "page_plan_hash": "hash:c021f0d29ef5dfeb",
+  "page_type": "entity",
+  "prompt_hash": "prompt:kg-generate-wiki-2026-06-02",
+  "repo_commit": "",
+  "section_hashes": {
+    "backlinks": "hash:ebc6de22f211ede7",
+    "claims": "hash:e4a6a0577479b2b4",
+    "conflicts_and_caveats": "hash:211136bcc60650e8",
+    "findings": "hash:ccdb5ce42c64e228",
+    "opportunities_and_directions": "hash:7af5821072442bfa",
+    "topic_topic-adp1-carbon-fitness": "hash:bc6a47f9ced29cec",
+    "topic_topic-adp1-model-quality": "hash:ebc6de22f211ede7"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -74,7 +74,7 @@ def generate_tracer_artifacts(
     This helper is intentionally offline. It composes the deterministic graph,
     page-plan, page-context, quality, dashboard, and review-queue primitives
     without calling synthesis skills or model-backed services. If authored
-    pages are supplied, it also publishes the Markdown wiki.
+    wiki pages are supplied, it also validates them and refreshes graph.md.
     """
     card_list = list(cards)
     out_dir = Path(output_dir)
@@ -106,10 +106,9 @@ def generate_tracer_artifacts(
     markdown_wiki_dir = None
     markdown_wiki_paths = []
     if authored_pages_dir is not None:
-        markdown_wiki_dir = out_dir / "wiki"
+        markdown_wiki_dir = Path(authored_pages_dir)
         markdown_wiki_paths = render_markdown_wiki(
             page_plans,
-            authored_pages_dir,
             markdown_wiki_dir,
             statement_graph=graph,
         )

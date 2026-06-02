@@ -227,8 +227,8 @@ def dispatch(args) -> int:
             tracer_kwargs["fixture_path"] = args.project_kg
         if args.source_root:
             tracer_kwargs["source_root"] = args.source_root
-        if args.pages:
-            tracer_kwargs["authored_pages_dir"] = args.pages
+        if args.wiki:
+            tracer_kwargs["authored_pages_dir"] = args.wiki
         artifacts = generate_adp1_tracer_artifacts(args.out, **tracer_kwargs)
         print(f"[compendium] tracer artifacts -> {artifacts.output_dir.resolve()}")
         print(f"[compendium] page contexts -> {artifacts.page_context_dir.resolve()}")
@@ -310,7 +310,6 @@ def dispatch(args) -> int:
         out_dir = Path(args.out).resolve()
         rendered = render_markdown_wiki(
             plan_pages(cards),
-            args.pages,
             out_dir,
             statement_graph=graph,
         )

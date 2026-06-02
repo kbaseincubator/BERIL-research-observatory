@@ -164,7 +164,7 @@ The `kg-ingest-project` skill:
 3. validates outputs with deterministic scripts;
 4. retries invalid or weak outputs;
 5. writes project KG artifacts;
-6. rebuilds graph/pages/quality reports.
+6. rebuilds graph/wiki/quality reports.
 
 The Python core must never call a model directly. Skills call deterministic scripts, use LLMs for
 extraction/synthesis, then validate and write artifacts.
@@ -225,9 +225,8 @@ Input: page ID or page seed.
 
 Outputs:
 
-- `compendium/pages/<page_id>.md` or generated page artifact;
-- `page_plan.yaml`;
-- synthesis manifest with model/prompt/member hash.
+- `compendium/wiki/<page_path>.md` as the human-facing generated page artifact;
+- synthesis manifest under `compendium/wiki/.manifests/` with model/prompt/member hash.
 
 ### `kg-curate`
 
@@ -276,13 +275,14 @@ compendium/
       nodes.tsv
       edges.tsv
       graph.json
-  pages/
-    home.md
+  wiki/
+    index.md
     topics/
     claims/
     conflicts/
     opportunities/
     directions/
+    .manifests/
     hypotheses/
     projects/
     entities/

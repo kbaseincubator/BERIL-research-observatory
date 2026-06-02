@@ -14,7 +14,7 @@ running this skill, not by Python scripts.
 
 - Required: one statement-card KG file, usually `compendium/kg/<project_id>.kg.yaml` or a merged fixture.
 - Required: source project root, usually `projects/`, so page contexts can include bounded source excerpts.
-- Optional: existing authored page directory, usually `compendium/pages/`, for unchanged page reuse.
+- Optional: existing authored wiki directory, usually `compendium/wiki/`, for unchanged page reuse.
 - Optional: page id filter for regenerating one page.
 
 Stop if the KG fails validation, page planning fails, or source excerpts cannot be built for the intended
@@ -22,9 +22,9 @@ scope.
 
 ## Outputs
 
-- `compendium/page-contexts/**/*.context.json` and `.prompt.md` for deterministic LLM inputs.
-- `compendium/pages/**/*.md` plus `.manifest.json` for LLM-authored and validated page artifacts.
+- `compendium/out/page-contexts/**/*.context.json` and `.prompt.md` for deterministic LLM inputs.
 - `compendium/wiki/**/*.md` as the connected human-facing Markdown wiki.
+- `compendium/wiki/.manifests/**/*.manifest.json` for validated LLM-authored page provenance.
 - Quality/review artifacts under `compendium/out/`.
 
 ## Workflow
@@ -35,10 +35,11 @@ scope.
    uv run compendium validate-project-kg <kg-path>
    uv run compendium statement-graph <kg-path> --out out/wiki-statement-graph.json --artifacts-dir out/wiki-graph
    uv run compendium plan-pages <kg-path> --out out/wiki-page-plans.json
-   uv run compendium wiki-contexts <kg-path> --source-root ../projects --out page-contexts
+   uv run compendium wiki-contexts <kg-path> --source-root ../projects --out out/page-contexts
    ```
 2. Determine changed pages by comparing each context page `member_hash` with any existing
-   `pages/**/*.manifest.json`. Reuse pages whose member hash and prompt/model contract still match.
+   `wiki/.manifests/**/*.manifest.json`. Reuse wiki pages whose member hash and prompt/model contract
+   still match. Do not delete or rewrite unchanged wiki pages.
 3. For each changed page context, write the page with the LLM. Prefer parallel subagents when several
    pages changed. Each subagent gets exactly one `.context.json` and `.prompt.md`.
 4. The LLM-authored page must:
@@ -51,14 +52,14 @@ scope.
 5. Persist each draft through the validator:
    ```bash
    cd compendium
-   uv run compendium page-artifact <kg-path> --page-id <page_id> --markdown <draft.md> --out pages --model <model-id> --prompt-hash <prompt-hash>
+   uv run compendium page-artifact <kg-path> --page-id <page_id> --markdown <draft.md> --out wiki --model <model-id> --prompt-hash <prompt-hash>
    ```
 6. If `page-artifact` fails, retry the page at most twice. On retry, provide the validator error and the
    exact allowed statement id list from the context. Do not change page membership to make prose pass.
 7. Publish the connected Markdown wiki:
    ```bash
    cd compendium
-   uv run compendium render-markdown <kg-path> --pages pages --out wiki
+   uv run compendium render-markdown <kg-path> --out wiki
    uv run compendium quality-synthesis <kg-path> --source-root ../projects --out out/wiki-quality.json --dashboard-out out/wiki-quality.html
    uv run compendium review-queue <kg-path> --source-root ../projects --out out/wiki-review-queue.json
    ```

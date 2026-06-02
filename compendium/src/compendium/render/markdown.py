@@ -3,45 +3,38 @@
 from __future__ import annotations
 
 from pathlib import Path
-import shutil
 from typing import Any
 
 from compendium.models import PagePlan
-from compendium.pages.artifact import page_artifact_path, wiki_page_path
+from compendium.pages.artifact import page_manifest_path, wiki_page_path
 
 
 def render_markdown_wiki(
     page_plans: list[PagePlan],
-    authored_pages_dir: str | Path,
-    out_dir: str | Path,
+    wiki_dir: str | Path,
     *,
     statement_graph: dict[str, list[dict[str, Any]]] | None = None,
 ) -> list[Path]:
-    """Publish an authored Markdown wiki with deterministic links and graph page.
+    """Validate authored Markdown wiki pages and refresh deterministic graph page.
 
-    Scientific prose must already exist in ``authored_pages_dir``. This function
-    does not synthesize prose; it only copies page artifacts into the canonical
-    wiki folder and writes deterministic navigation support files.
+    Scientific prose must already exist in ``wiki_dir``. This function does not
+    synthesize prose and does not copy pages from a second Markdown tree.
     """
-    authored_path = Path(authored_pages_dir)
-    out_path = Path(out_dir)
-    out_path.mkdir(parents=True, exist_ok=True)
+    wiki_path = Path(wiki_dir)
+    wiki_path.mkdir(parents=True, exist_ok=True)
 
     page_paths = _page_paths(page_plans)
     written: list[Path] = []
     for plan in sorted(page_plans, key=_plan_sort_key):
-        source = authored_path / page_artifact_path(plan)
-        if not source.is_file():
-            raise ValueError(f"missing authored page for {plan.id}: {source}")
-        manifest = source.with_suffix(".manifest.json")
+        page = wiki_path / page_paths[plan.id]
+        if not page.is_file():
+            raise ValueError(f"missing wiki page for {plan.id}: {page}")
+        manifest = wiki_path / page_manifest_path(plan)
         if not manifest.is_file():
             raise ValueError(f"missing page manifest for {plan.id}: {manifest}")
-        target = out_path / page_paths[plan.id]
-        target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(source, target)
-        written.append(target)
+        written.append(page)
 
-    graph_path = out_path / "graph.md"
+    graph_path = wiki_path / "graph.md"
     graph_path.write_text(
         _render_graph(page_plans, page_paths, statement_graph),
         encoding="utf-8",

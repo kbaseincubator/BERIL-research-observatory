@@ -1,0 +1,29 @@
+{
+  "cited_statement_ids": [
+    "stmt:adp1-explorer-berdl-connectivity-finding",
+    "stmt:adp1-explorer-condition-fitness-finding",
+    "stmt:adp1-explorer-database-bridge-claim",
+    "stmt:adp1-explorer-discordance-opportunity",
+    "stmt:adp1-explorer-gapfilling-caveat",
+    "stmt:adp1-explorer-multiomics-finding",
+    "stmt:adp1-explorer-pangenome-bridge-finding",
+    "stmt:adp1-explorer-urea-deep-dive-opportunity"
+  ],
+  "member_hash": "hash:c482dbec10112341",
+  "model": "codex-gpt-5",
+  "page_id": "project:acinetobacter_adp1_explorer",
+  "page_plan_hash": "hash:05c3bce43a5852ca",
+  "page_type": "project",
+  "prompt_hash": "prompt:kg-generate-wiki-2026-06-02",
+  "repo_commit": "",
+  "section_hashes": {
+    "claims": "hash:592b5628754414cb",
+    "conflicts_and_caveats": "hash:f519bfa632c1968a",
+    "findings": "hash:059d5ea4cff09c9d",
+    "opportunities_and_directions": "hash:da61fd5743291ffc",
+    "products_and_methods": "hash:e4a6a0577479b2b4",
+    "summary": "hash:c482dbec10112341"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

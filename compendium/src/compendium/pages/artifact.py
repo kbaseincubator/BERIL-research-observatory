@@ -25,7 +25,7 @@ _CITATION_RE = re.compile(r"\[(stmt:[^;\]\s]+);[^\]]+\]")
 
 
 def page_artifact_path(plan: PagePlan) -> Path:
-    """Return the authored Markdown path for a generated page artifact."""
+    """Return the stable manifest/context path for a generated page artifact."""
     if plan.id == "home" or plan.type == "home":
         return Path("home.md")
     stem = _slug(plan.id.split(":", 1)[1] if ":" in plan.id else plan.id)
@@ -38,6 +38,11 @@ def wiki_page_path(plan: PagePlan) -> Path:
     if plan.id == "home" or plan.type == "home":
         return Path("index.md")
     return page_artifact_path(plan)
+
+
+def page_manifest_path(plan: PagePlan) -> Path:
+    """Return the manifest path inside the human-facing wiki directory."""
+    return Path(".manifests") / page_artifact_path(plan).with_suffix(".manifest.json")
 
 
 def build_page_context(
@@ -59,8 +64,8 @@ def build_page_context(
     return {
         "page": {
             **plan.to_dict(),
-            "artifact_path": page_artifact_path(plan).as_posix(),
             "wiki_path": wiki_page_path(plan).as_posix(),
+            "manifest_path": page_manifest_path(plan).as_posix(),
         },
         "link_map": _link_map(plan, page_paths),
         "sections": [
@@ -148,9 +153,10 @@ def write_page_artifact(
         repo_commit=repo_commit,
         timestamp=timestamp,
     )
-    markdown_path = Path(out_dir) / page_artifact_path(plan)
-    manifest_path = markdown_path.with_suffix(".manifest.json")
+    markdown_path = Path(out_dir) / wiki_page_path(plan)
+    manifest_path = Path(out_dir) / page_manifest_path(plan)
     markdown_path.parent.mkdir(parents=True, exist_ok=True)
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
     markdown_path.write_text(markdown.rstrip() + "\n", encoding="utf-8")
     manifest_path.write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n",

@@ -1,0 +1,26 @@
+{
+  "cited_statement_ids": [
+    "stmt:adp1-explorer-berdl-connectivity-finding",
+    "stmt:adp1-explorer-database-bridge-claim",
+    "stmt:adp1-explorer-discordance-opportunity",
+    "stmt:adp1-explorer-multiomics-finding",
+    "stmt:adp1-explorer-pangenome-bridge-finding"
+  ],
+  "member_hash": "hash:a1d3cb530bff6c02",
+  "model": "codex-gpt-5",
+  "page_id": "topic:adp1-data-integration",
+  "page_plan_hash": "hash:ec126bc869abeaa1",
+  "page_type": "topic",
+  "prompt_hash": "prompt:kg-generate-wiki-2026-06-02",
+  "repo_commit": "",
+  "section_hashes": {
+    "conflicts_and_caveats": "hash:e4a6a0577479b2b4",
+    "findings": "hash:7eef8a0cd1a5951a",
+    "key_claims": "hash:592b5628754414cb",
+    "opportunities_and_directions": "hash:3f98049716aac339",
+    "overview": "hash:a1d3cb530bff6c02",
+    "products_and_methods": "hash:e4a6a0577479b2b4"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,24 @@
+{
+  "cited_statement_ids": [
+    "stmt:adp1-triple-aromatic-discordance-finding",
+    "stmt:adp1-triple-aromatic-media-opportunity"
+  ],
+  "member_hash": "hash:c70f8169e9c68d32",
+  "model": "codex-gpt-5",
+  "page_id": "entity:aromatic_degradation",
+  "page_plan_hash": "hash:2946d02097382a6f",
+  "page_type": "entity",
+  "prompt_hash": "prompt:kg-generate-wiki-2026-06-02",
+  "repo_commit": "",
+  "section_hashes": {
+    "backlinks": "hash:c70f8169e9c68d32",
+    "claims": "hash:e4a6a0577479b2b4",
+    "conflicts_and_caveats": "hash:e4a6a0577479b2b4",
+    "findings": "hash:ccdb5ce42c64e228",
+    "opportunities_and_directions": "hash:bc6a47f9ced29cec",
+    "topic_topic-adp1-carbon-fitness": "hash:bc6a47f9ced29cec",
+    "topic_topic-adp1-model-quality": "hash:c70f8169e9c68d32"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

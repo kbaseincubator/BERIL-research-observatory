@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:adp1-explorer-database-bridge-claim",
+    "stmt:adp1-explorer-discordance-opportunity",
+    "stmt:adp1-explorer-gapfilling-caveat",
+    "stmt:adp1-triple-aromatic-discordance-finding",
+    "stmt:adp1-triple-aromatic-media-opportunity",
+    "stmt:adp1-triple-continuous-fitness-claim",
+    "stmt:adp1-triple-fba-growth-caveat",
+    "stmt:adp1-triple-fitness-predictor-finding",
+    "stmt:adp1-triple-proteomics-finding"
+  ],
+  "member_hash": "hash:58c83104bd799e05",
+  "model": "codex-gpt-5",
+  "page_id": "topic:adp1-model-quality",
+  "page_plan_hash": "hash:ec9efbb592952931",
+  "page_type": "topic",
+  "prompt_hash": "prompt:kg-generate-wiki-2026-06-02",
+  "repo_commit": "",
+  "section_hashes": {
+    "conflicts_and_caveats": "hash:211136bcc60650e8",
+    "findings": "hash:3f0a48fc517b50a0",
+    "key_claims": "hash:119b599f53a65c29",
+    "opportunities_and_directions": "hash:7af5821072442bfa",
+    "overview": "hash:58c83104bd799e05",
+    "products_and_methods": "hash:e4a6a0577479b2b4"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

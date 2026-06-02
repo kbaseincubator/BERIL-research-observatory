@@ -28,16 +28,17 @@ audit -> context-pack -> validate cards -> assemble graph -> plan pages -> rende
 
 ```bash
 uv run --directory compendium --group test pytest
+uv run --directory compendium compendium page-artifact \
+    fixtures/statement_cards/adp1_three_project_ingestion.yaml \
+    --page-id home --markdown out/drafts/home.md --out wiki \
+    --model <model-id> --prompt-hash <prompt-hash>
+# Repeat page-artifact for every changed page context, reusing unchanged wiki pages.
 uv run --directory compendium compendium render-markdown \
     fixtures/statement_cards/adp1_three_project_ingestion.yaml --out wiki
-uv run --directory compendium compendium render-synthesis \
-    fixtures/statement_cards/adp1_three_project_ingestion.yaml --out site
 open compendium/wiki/index.md                               # linked Markdown wiki
-open compendium/site/index.html                             # matching static HTML wiki
 
 uv run --directory compendium compendium tracer --out out/adp1-tracer
-open compendium/out/adp1-tracer/wiki/index.md               # full artifact bundle's Markdown wiki
-open compendium/out/adp1-tracer/site/index.html             # optional static HTML render
+open compendium/out/adp1-tracer/page-contexts/home.prompt.md # deterministic prompt/context bundle
 
 uv run --directory compendium compendium all \
     --projects acinetobacter_adp1_explorer adp1_deletion_phenotypes \
@@ -62,6 +63,8 @@ statement-card validation, page planning, and skills-first ingestion commands.
 | `render/` | deterministic static site (Cytoscape preset + Mermaid) |
 | `quality/` | KG + wiki quality metrics |
 | `skills/` | LLM orchestration: ingest, synthesize pages, curate, backfill, review queue |
+| `wiki/` | single human-facing Markdown wiki; page manifests live under `wiki/.manifests/` |
+| `out/page-contexts/` | ignored deterministic page contexts/prompts for LLM page synthesis |
 
 ## Status (tracer)
 

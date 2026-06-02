@@ -1,0 +1,27 @@
+{
+  "cited_statement_ids": [
+    "stmt:adp1-deletion-carbon-tier-finding",
+    "stmt:adp1-deletion-condition-independence-finding",
+    "stmt:adp1-deletion-continuum-claim",
+    "stmt:adp1-deletion-expand-carbon-panel-opportunity",
+    "stmt:adp1-deletion-quinate-module-finding",
+    "stmt:adp1-explorer-gapfilling-caveat",
+    "stmt:adp1-triple-fba-growth-caveat"
+  ],
+  "member_hash": "hash:56b2a850671cb68d",
+  "model": "codex-gpt-5",
+  "page_id": "claim:adp1-deletion-continuum-claim",
+  "page_plan_hash": "hash:5a4c99412eb6cad2",
+  "page_type": "claim",
+  "prompt_hash": "prompt:kg-generate-wiki-2026-06-02",
+  "repo_commit": "",
+  "section_hashes": {
+    "caveats": "hash:35ac65154e8223dd",
+    "claim": "hash:146547fdd91bba2e",
+    "downstream_uses": "hash:0ba1e6f9918ea6c6",
+    "refutations": "hash:e4a6a0577479b2b4",
+    "supporting_evidence": "hash:de29989bce48661d"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

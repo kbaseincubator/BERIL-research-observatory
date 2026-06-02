@@ -3,6 +3,7 @@
 from .artifact import (
     build_page_context,
     page_artifact_path,
+    page_manifest_path,
     wiki_page_path,
     write_page_artifact,
     write_page_context,
@@ -13,6 +14,7 @@ __all__ = [
     "build_page_context",
     "member_hash",
     "page_artifact_path",
+    "page_manifest_path",
     "page_id_for_statement",
     "wiki_page_path",
     "plan_pages",

@@ -1,0 +1,27 @@
+{
+  "cited_statement_ids": [
+    "stmt:adp1-explorer-berdl-connectivity-finding",
+    "stmt:adp1-explorer-database-bridge-claim",
+    "stmt:adp1-explorer-discordance-opportunity",
+    "stmt:adp1-explorer-gapfilling-caveat",
+    "stmt:adp1-explorer-multiomics-finding",
+    "stmt:adp1-explorer-pangenome-bridge-finding",
+    "stmt:adp1-triple-fba-growth-caveat"
+  ],
+  "member_hash": "hash:36d3d99b69e8f5e9",
+  "model": "codex-gpt-5",
+  "page_id": "claim:adp1-explorer-database-bridge-claim",
+  "page_plan_hash": "hash:36faa984881af334",
+  "page_type": "claim",
+  "prompt_hash": "prompt:kg-generate-wiki-2026-06-02",
+  "repo_commit": "",
+  "section_hashes": {
+    "caveats": "hash:6fcc29e214cb48ee",
+    "claim": "hash:592b5628754414cb",
+    "downstream_uses": "hash:3f98049716aac339",
+    "refutations": "hash:e4a6a0577479b2b4",
+    "supporting_evidence": "hash:7eef8a0cd1a5951a"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

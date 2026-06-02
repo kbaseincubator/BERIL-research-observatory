@@ -74,8 +74,8 @@ compendium/
       nodes.tsv
       edges.tsv
       graph.json
-  pages/
-    home.md
+  wiki/
+    index.md
     topics/
     claims/
     conflicts/
@@ -84,6 +84,12 @@ compendium/
     hypotheses/
     projects/
     entities/
+    .manifests/
+      topics/
+      claims/
+      projects/
+  out/
+    page-contexts/
   skills/
     kg-ingest-project/
     kg-synthesize-page/
@@ -292,7 +298,8 @@ class PagePlan(BaseModel):
 - [x] Require citations to statement IDs/source projects.
 - [x] Write prose sections from member cards; do not invent unsupported claims.
 - [x] Store synthesis manifest with model, prompt hash, page-plan hash, member hash.
-- [x] Write generated page artifact under `compendium/pages/`.
+- [x] Write generated page artifact under `compendium/wiki/` with manifests under
+  `compendium/wiki/.manifests/`.
 - [x] Demonstrate on home and ADP1 topic pages.
 
 **Acceptance:** Generated prose is readable, cited, and reproducible via unchanged member hashes.

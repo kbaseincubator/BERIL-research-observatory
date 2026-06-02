@@ -28,8 +28,8 @@ def test_page_context_contains_bounded_llm_inputs() -> None:
     )
 
     assert context["page"]["id"] == "topic:carbon-source-essentiality"
-    assert context["page"]["artifact_path"] == "topics/carbon-source-essentiality.md"
     assert context["page"]["wiki_path"] == "topics/carbon-source-essentiality.md"
+    assert context["page"]["manifest_path"] == ".manifests/topics/carbon-source-essentiality.manifest.json"
     assert context["member_statements"][0]["id"].startswith("stmt:")
     assert context["sections"][0]["statements"]
     assert "outgoing" in context["link_map"]
@@ -81,7 +81,7 @@ def test_write_page_artifact_requires_authored_markdown_and_writes_manifest(
     )
 
     assert markdown_path == tmp_path / "claims" / "c1.md"
-    assert manifest_path == tmp_path / "claims" / "c1.manifest.json"
+    assert manifest_path == tmp_path / ".manifests" / "claims" / "c1.manifest.json"
     assert markdown_path.is_file()
     import json
 

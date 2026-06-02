@@ -132,7 +132,7 @@ def test_page_context_command_writes_context_and_prompt(tmp_path: Path) -> None:
 
 def test_page_artifact_command_validates_authored_markdown(tmp_path: Path) -> None:
     draft = tmp_path / "draft.md"
-    out_dir = tmp_path / "pages"
+    out_dir = tmp_path / "wiki"
     draft.write_text(
         "# Topic: ADP1 Carbon Fitness\n\n"
         "ADP1 essentiality should be read through cited project evidence "
@@ -158,7 +158,7 @@ def test_page_artifact_command_validates_authored_markdown(tmp_path: Path) -> No
     ) == 0
 
     page = out_dir / "topics" / "adp1-carbon-fitness.md"
-    manifest = out_dir / "topics" / "adp1-carbon-fitness.manifest.json"
+    manifest = out_dir / ".manifests" / "topics" / "adp1-carbon-fitness.manifest.json"
     assert page.is_file()
     assert manifest.is_file()
     assert json.loads(manifest.read_text(encoding="utf-8"))["cited_statement_ids"] == [
@@ -168,15 +168,12 @@ def test_page_artifact_command_validates_authored_markdown(tmp_path: Path) -> No
 
 def test_render_markdown_command_writes_linked_markdown_wiki(tmp_path: Path) -> None:
     out_dir = tmp_path / "wiki"
-    pages_dir = tmp_path / "pages"
-    _write_authored_pages(STATEMENT_FIXTURE, pages_dir)
+    _write_authored_pages(STATEMENT_FIXTURE, out_dir)
 
     assert main(
         [
             "render-markdown",
             str(STATEMENT_FIXTURE),
-            "--pages",
-            str(pages_dir),
             "--out",
             str(out_dir),
         ]
