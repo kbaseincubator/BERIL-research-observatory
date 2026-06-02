@@ -59,6 +59,11 @@ outside the allowed member set.
    - source statement list;
    - outgoing links and backlinks from the plan;
    - synthesis manifest reference.
+   The deterministic fallback/artifact writer is:
+   ```bash
+   cd compendium
+   uv run compendium synthesize-page kg/<project_id>.kg.yaml --page-id <page_id> --out pages --model <model-id> --prompt-hash <prompt-hash>
+   ```
 7. Validate and rebuild the affected outputs:
    ```bash
    cd compendium

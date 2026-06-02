@@ -6,6 +6,7 @@ import csv
 import io
 import json
 import pathlib
+import re
 from collections.abc import Iterable
 from typing import Any
 
@@ -13,6 +14,47 @@ from .. import ids
 from ..models import EvidenceAnchor, StatementCard
 
 GraphDict = dict[str, list[dict[str, Any]]]
+
+_CURIE_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_.-]*:[^\s:][^\s]*$")
+_NON_ENTITY_CURIE_PREFIXES = {
+    "conflict",
+    "derived_product",
+    "edge",
+    "evidence",
+    "figure",
+    "notebook",
+    "product",
+    "project",
+    "source_doc",
+    "source_section",
+    "statement",
+    "stmt",
+    "topic",
+}
+_ENTITY_QUALIFIER_KEYS = {
+    "condition",
+    "compound",
+    "dataset",
+    "enzyme",
+    "environment",
+    "function",
+    "gene",
+    "genes",
+    "ko",
+    "locus",
+    "locus_tag",
+    "metabolite",
+    "organism",
+    "ortholog",
+    "ortholog_group",
+    "pathway",
+    "phenotype",
+    "protein",
+    "publication",
+    "species",
+    "strain",
+    "substrate",
+}
 
 
 def build_statement_graph(cards: Iterable[StatementCard]) -> GraphDict:
@@ -22,6 +64,10 @@ def build_statement_graph(cards: Iterable[StatementCard]) -> GraphDict:
     unresolved statement-link targets are materialized as endpoint nodes so emitted edges do
     not dangle.
     """
+    sorted_cards = sorted(cards, key=lambda c: c.id)
+    entity_index = _build_entity_index(sorted_cards)
+    conflicts = _explicit_conflicts(sorted_cards)
+
     nodes: dict[str, dict[str, Any]] = {}
     edges: dict[tuple[str, str, str, str, str], dict[str, Any]] = {}
 
@@ -89,8 +135,12 @@ def build_statement_graph(cards: Iterable[StatementCard]) -> GraphDict:
             existing["provenance"].append(provenance)
             existing["provenance"].sort()
 
-    for card in sorted(cards, key=lambda c: c.id):
+    for card in sorted_cards:
         source_project = card.evidence.source_project
+        about_entities = sorted({_canonical_entity_id(entity_id) for entity_id in card.about.entities})
+        qualifier_entities = sorted(_qualifier_entity_ids(card.qualifiers))
+        original_about_entities = sorted(set(card.about.entities))
+        qualifiers = _canonical_qualifiers(card.qualifiers)
         add_node(
             card.id,
             "statement_card",
@@ -102,15 +152,21 @@ def build_statement_graph(cards: Iterable[StatementCard]) -> GraphDict:
                 "confidence": card.confidence,
                 "statement": card.statement,
                 "about": {
-                    "entities": sorted(set(card.about.entities)),
+                    "entities": about_entities,
                     "topics": sorted(set(card.about.topics)),
                 },
-                "qualifiers": _stable_attrs(card.qualifiers),
+                "original_about": {
+                    "entities": original_about_entities,
+                },
+                "qualifier_entities": qualifier_entities,
+                "qualifiers": _stable_attrs(qualifiers),
+                "original_qualifiers": _stable_attrs(card.qualifiers),
             },
         )
 
-        for entity_id in sorted(set(card.about.entities)):
-            add_node(entity_id, "entity")
+        for entity_id in sorted(set(about_entities + qualifier_entities)):
+            entity_meta = entity_index.get(entity_id, _entity_metadata(entity_id, {entity_id}))
+            add_node(entity_id, "entity", entity_meta["label"], entity_meta["attrs"])
             add_edge(
                 card.id,
                 "about_entity",
@@ -134,6 +190,9 @@ def build_statement_graph(cards: Iterable[StatementCard]) -> GraphDict:
         for link_kind in ("supports", "contradicts", "motivates", "refines"):
             for target_id in sorted(set(getattr(card.links, link_kind))):
                 add_node(target_id, "statement_reference")
+                edge_attrs = None
+                if link_kind == "contradicts":
+                    edge_attrs = {"conflict_id": _conflict_node_id(card.id, target_id)}
                 add_edge(
                     card.id,
                     link_kind,
@@ -141,6 +200,7 @@ def build_statement_graph(cards: Iterable[StatementCard]) -> GraphDict:
                     "scientific_edge",
                     card.id,
                     source_project,
+                    edge_attrs,
                 )
 
         for target_id in sorted(set(card.links.requires_validation)):
@@ -156,6 +216,41 @@ def build_statement_graph(cards: Iterable[StatementCard]) -> GraphDict:
             )
 
         _add_evidence_subgraph(card, add_node, add_edge)
+
+    for conflict_id in sorted(conflicts):
+        conflict = conflicts[conflict_id]
+        statement_ids = conflict["statement_ids"]
+        links = conflict["contradiction_links"]
+        add_node(
+            conflict_id,
+            "conflict",
+            f"Explicit contradiction: {' <-> '.join(statement_ids)}",
+            {
+                "kind": "explicit_contradiction",
+                "statement_ids": statement_ids,
+                "contradiction_links": links,
+                "requires_review": True,
+            },
+        )
+        for statement_id in statement_ids:
+            add_node(statement_id, "statement_reference")
+        for link in links:
+            source_id = link["source_statement_id"]
+            target_id = link["target_statement_id"]
+            source_project = link["source_project"]
+            for statement_id in sorted({source_id, target_id}):
+                add_edge(
+                    statement_id,
+                    "needs_review",
+                    conflict_id,
+                    "review_edge",
+                    source_id,
+                    source_project,
+                    {
+                        "conflict_id": conflict_id,
+                        "review_reason": "explicit_contradiction",
+                    },
+                )
 
     return {
         "nodes": [nodes[node_id] for node_id in sorted(nodes)],
@@ -306,6 +401,177 @@ def _source_doc_node_id(evidence: EvidenceAnchor) -> str:
 
 def _source_section_node_id(evidence: EvidenceAnchor) -> str:
     return f"source_section:{evidence.source_project}:{evidence.source_doc}:{evidence.source_section}"
+
+
+def _build_entity_index(cards: list[StatementCard]) -> dict[str, dict[str, Any]]:
+    aliases_by_id: dict[str, set[str]] = {}
+    original_ids_by_id: dict[str, set[str]] = {}
+    labels_by_id: dict[str, set[str]] = {}
+    curies_by_id: dict[str, set[str]] = {}
+
+    for card in cards:
+        for entity_id in card.about.entities:
+            canonical_id = _canonical_entity_id(entity_id)
+            aliases_by_id.setdefault(canonical_id, set()).add(entity_id)
+            original_ids_by_id.setdefault(canonical_id, set()).add(entity_id)
+            label = _entity_label(entity_id)
+            if label:
+                labels_by_id.setdefault(canonical_id, set()).add(label)
+            curie = _entity_curie(entity_id)
+            if curie:
+                curies_by_id.setdefault(canonical_id, set()).add(curie)
+
+        for value in _entity_qualifier_values(card.qualifiers):
+            canonical_id = _canonical_entity_id(value)
+            aliases_by_id.setdefault(canonical_id, set()).add(value)
+            label = _entity_label(value)
+            if label:
+                labels_by_id.setdefault(canonical_id, set()).add(label)
+            curie = _entity_curie(value)
+            if curie:
+                curies_by_id.setdefault(canonical_id, set()).add(curie)
+
+    return {
+        canonical_id: _entity_metadata(
+            canonical_id,
+            aliases,
+            original_ids_by_id.get(canonical_id, set()),
+            labels_by_id.get(canonical_id, set()),
+            curies_by_id.get(canonical_id, set()),
+        )
+        for canonical_id, aliases in aliases_by_id.items()
+    }
+
+
+def _entity_metadata(
+    canonical_id: str,
+    aliases: set[str],
+    original_ids: set[str] | None = None,
+    labels: set[str] | None = None,
+    curies: set[str] | None = None,
+) -> dict[str, Any]:
+    label = _canonical_entity_label(canonical_id, labels or set())
+    attrs: dict[str, Any] = {
+        "aliases": sorted(aliases),
+        "canonical_id": canonical_id,
+        "original_ids": sorted(original_ids or aliases),
+    }
+    if curies:
+        attrs["curies"] = sorted(curies)
+    return {"label": label, "attrs": attrs}
+
+
+def _canonical_entity_id(entity_ref: str) -> str:
+    value = entity_ref.strip()
+    if value.startswith("entity:"):
+        value = value.removeprefix("entity:").strip()
+    if _is_curie_like(value):
+        prefix, identifier = value.split(":", 1)
+        return f"entity:{prefix.strip().lower()}:{_entity_slug(identifier)}"
+    return f"entity:{_entity_slug(value)}"
+
+
+def _canonical_qualifiers(qualifiers: dict[str, str]) -> dict[str, str]:
+    return {
+        key: _canonical_entity_id(value) if _qualifier_value_is_entity(key, value) else value
+        for key, value in qualifiers.items()
+    }
+
+
+def _qualifier_entity_ids(qualifiers: dict[str, str]) -> set[str]:
+    return {_canonical_entity_id(value) for value in _entity_qualifier_values(qualifiers)}
+
+
+def _entity_qualifier_values(qualifiers: dict[str, str]) -> list[str]:
+    return [
+        value
+        for key, value in qualifiers.items()
+        if _qualifier_value_is_entity(key, value)
+    ]
+
+
+def _qualifier_value_is_entity(key: str, value: str) -> bool:
+    if not value:
+        return False
+    if value.strip().startswith("entity:"):
+        return True
+    if _is_curie_like(value):
+        return value.split(":", 1)[0].lower() not in _NON_ENTITY_CURIE_PREFIXES
+    normalized_key = key.lower().replace("-", "_")
+    return normalized_key in _ENTITY_QUALIFIER_KEYS
+
+
+def _is_curie_like(value: str) -> bool:
+    return bool(_CURIE_RE.match(value.strip()))
+
+
+def _entity_slug(value: str) -> str:
+    normalized = ids.normalize(value)
+    return normalized.replace(" ", "-")
+
+
+def _entity_label(entity_ref: str) -> str | None:
+    value = entity_ref.strip()
+    if not value:
+        return None
+    if value.startswith("entity:"):
+        return None
+    if _is_curie_like(value):
+        return value
+    return value
+
+
+def _entity_curie(entity_ref: str) -> str | None:
+    value = entity_ref.strip()
+    if value.startswith("entity:"):
+        value = value.removeprefix("entity:").strip()
+    if not _is_curie_like(value):
+        return None
+    prefix, identifier = value.split(":", 1)
+    return f"{prefix.strip()}:{identifier.strip()}"
+
+
+def _canonical_entity_label(canonical_id: str, labels: set[str]) -> str:
+    if labels:
+        return sorted(labels, key=lambda value: (ids.normalize(value), value))[0]
+    return canonical_id
+
+
+def _explicit_conflicts(cards: list[StatementCard]) -> dict[str, dict[str, Any]]:
+    conflicts: dict[str, dict[str, Any]] = {}
+    for card in cards:
+        for target_id in sorted(set(card.links.contradicts)):
+            conflict_id = _conflict_node_id(card.id, target_id)
+            pair = sorted({card.id, target_id})
+            conflict = conflicts.setdefault(
+                conflict_id,
+                {
+                    "statement_ids": pair,
+                    "contradiction_links": [],
+                },
+            )
+            conflict["contradiction_links"].append(
+                {
+                    "source_project": card.evidence.source_project,
+                    "source_statement_id": card.id,
+                    "target_statement_id": target_id,
+                }
+            )
+
+    for conflict in conflicts.values():
+        conflict["contradiction_links"].sort(
+            key=lambda link: (
+                link["source_statement_id"],
+                link["target_statement_id"],
+                link["source_project"],
+            )
+        )
+    return conflicts
+
+
+def _conflict_node_id(source_id: str, target_id: str) -> str:
+    pair = sorted({source_id, target_id})
+    return "conflict:" + ids.content_hash("explicit_contradiction", *pair, n=16)
 
 
 def _stable_attrs(attrs: dict[str, Any]) -> dict[str, Any]:

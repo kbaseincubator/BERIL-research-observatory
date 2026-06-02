@@ -53,7 +53,7 @@ def render_synthesis_site(
     for plan in sorted(page_plans, key=_plan_sort_key):
         path = out_dir / page_paths[plan.id]
         html = template.render(
-            page=_page_view(plan, card_by_id, page_paths, graph_href),
+            page=_page_view(plan, card_by_id, page_paths, graph_href, statement_graph),
             generated_index=False,
         )
         path.write_text(html, encoding="utf-8")
@@ -101,6 +101,7 @@ def _page_view(
     card_by_id: dict[str, StatementCard],
     page_paths: dict[str, str],
     graph_href: str | None,
+    statement_graph: dict[str, list[dict[str, Any]]] | None,
 ) -> dict[str, Any]:
     member_ids = _unique_preserving_order(plan.member_statement_ids)
     member_cards = [_statement_view(card_by_id[sid], page_paths) for sid in member_ids if sid in card_by_id]
@@ -122,6 +123,7 @@ def _page_view(
         "backlinks": _page_links(plan.backlinks, page_paths),
         "all_pages": _page_links(page_paths, page_paths),
         "graph_href": graph_href,
+        "local_graph": _local_graph_view(plan, statement_graph, page_paths),
     }
 
 
@@ -153,6 +155,7 @@ def _index_view(
         "backlinks": [],
         "all_pages": _page_links(page_paths, page_paths),
         "graph_href": graph_href,
+        "local_graph": None,
     }
 
 
@@ -176,8 +179,75 @@ def _graph_view(
         "nodes": nodes,
         "statement_nodes": [node for node in nodes if node["type"] == "statement_card"],
         "edges": edges,
+        "edge_filters": _edge_filter_views(edges, "graph-edge-class"),
         "all_pages": _page_links(page_paths, page_paths),
     }
+
+
+def _local_graph_view(
+    plan: PagePlan,
+    statement_graph: dict[str, list[dict[str, Any]]] | None,
+    page_paths: dict[str, str],
+) -> dict[str, Any] | None:
+    if statement_graph is None:
+        return None
+
+    local_ids = {plan.id, *_unique_preserving_order(plan.member_statement_ids)}
+    nodes = [
+        _graph_node_view(node, page_paths)
+        for node in sorted(statement_graph.get("nodes", []), key=_graph_node_sort_key)
+    ]
+    node_by_id = {node["id"]: node for node in nodes}
+    edges = [
+        _graph_edge_view(edge, node_by_id)
+        for edge in sorted(statement_graph.get("edges", []), key=_graph_edge_sort_key)
+        if _edge_touches_any(edge, local_ids)
+    ]
+    return {
+        "edge_count": len(edges),
+        "edge_filters": _edge_filter_views(edges, "local-edge-class"),
+    }
+
+
+def _edge_touches_any(edge: dict[str, Any], local_ids: set[str]) -> bool:
+    edge_ids = {
+        str(edge.get("s", "")),
+        str(edge.get("o", "")),
+        *(str(statement_id) for statement_id in edge.get("statement_ids", [])),
+    }
+    return bool(edge_ids & local_ids)
+
+
+def _edge_filter_views(
+    edges: list[dict[str, Any]],
+    anchor_prefix: str,
+) -> list[dict[str, Any]]:
+    by_class: dict[str, dict[str, list[dict[str, Any]]]] = {}
+    for edge in edges:
+        by_predicate = by_class.setdefault(edge["edge_class"], {})
+        by_predicate.setdefault(edge["predicate"], []).append(edge)
+
+    return [
+        {
+            "edge_class": edge_class,
+            "edge_class_css": _safe_css_class(edge_class),
+            "anchor": f"{anchor_prefix}-{_safe_fragment(edge_class)}",
+            "count": sum(len(predicate_edges) for predicate_edges in by_predicate.values()),
+            "predicates": [
+                {
+                    "predicate": predicate,
+                    "anchor": (
+                        f"{anchor_prefix}-{_safe_fragment(edge_class)}-"
+                        f"{_safe_fragment(predicate)}"
+                    ),
+                    "count": len(predicate_edges),
+                    "edges": predicate_edges,
+                }
+                for predicate, predicate_edges in sorted(by_predicate.items())
+            ],
+        }
+        for edge_class, by_predicate in sorted(by_class.items())
+    ]
 
 
 def _graph_node_view(node: dict[str, Any], page_paths: dict[str, str]) -> dict[str, Any]:

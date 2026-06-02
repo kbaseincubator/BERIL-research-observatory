@@ -23,7 +23,7 @@ from compendium.corrections import load_corrections
 from compendium.extract.structural import extract_project
 from compendium.ground.grounder import ground
 from compendium.models import ProjectKG, StatementCard
-from compendium.pages import plan_pages
+from compendium.pages import plan_pages, write_page_artifact
 from compendium.quality.kg_quality import assess_kg
 from compendium.quality.review_queue import build_review_queue
 from compendium.quality.synthesis_dashboard import render_synthesis_quality_dashboard_html
@@ -186,6 +186,22 @@ def dispatch(args) -> int:
     if args.cmd == "plan-pages":
         cards = _load_statement_cards(args.path)
         _write_json_or_stdout([plan.to_dict() for plan in plan_pages(cards)], args.out)
+        return 0
+    if args.cmd == "synthesize-page":
+        cards = _load_statement_cards(args.path)
+        plans = {plan.id: plan for plan in plan_pages(cards)}
+        plan = plans.get(args.page_id)
+        if plan is None:
+            raise ValueError(f"unknown page id {args.page_id!r}")
+        markdown_path, manifest_path = write_page_artifact(
+            plan,
+            cards,
+            Path(args.out).resolve(),
+            model=args.model,
+            prompt_hash=args.prompt_hash,
+        )
+        print(f"[compendium] page artifact: {markdown_path}")
+        print(f"[compendium] manifest: {manifest_path}")
         return 0
     if args.cmd == "render-synthesis":
         cards = _load_statement_cards(args.path)

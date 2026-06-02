@@ -102,6 +102,34 @@ def test_plan_pages_command_writes_page_plan_json(tmp_path: Path) -> None:
     assert all(plan["member_hash"].startswith("hash:") for plan in plans)
 
 
+def test_synthesize_page_command_writes_markdown_and_manifest(tmp_path: Path) -> None:
+    out_dir = tmp_path / "pages"
+
+    assert main(
+        [
+            "synthesize-page",
+            str(STATEMENT_FIXTURE),
+            "--page-id",
+            "topic:adp1-carbon-fitness",
+            "--out",
+            str(out_dir),
+            "--model",
+            "test-model",
+            "--prompt-hash",
+            "prompt:test",
+        ]
+    ) == 0
+
+    markdown = out_dir / "topics" / "adp1-carbon-fitness.md"
+    manifest = out_dir / "topics" / "adp1-carbon-fitness.manifest.json"
+    assert markdown.is_file()
+    assert manifest.is_file()
+    assert "[stmt:adp1-continuum-claim; adp1_deletion_phenotypes]" in markdown.read_text(
+        encoding="utf-8"
+    )
+    assert json.loads(manifest.read_text(encoding="utf-8"))["model"] == "test-model"
+
+
 def test_render_synthesis_command_writes_static_site(tmp_path: Path) -> None:
     out_dir = tmp_path / "site"
 

@@ -10,6 +10,8 @@
     header { border-bottom: 1px solid #d8dee4; margin-bottom: 1.5rem; padding-bottom: 1rem; }
     h1 { font-size: 2rem; line-height: 1.15; margin: 0.5rem 0; }
     h2 { border-bottom: 1px solid #d8dee4; font-size: 1.25rem; margin-top: 2rem; padding-bottom: 0.25rem; }
+    h3 { font-size: 1rem; margin: 1.25rem 0 0.4rem; }
+    h4 { color: #57606a; font-size: 0.9rem; margin: 1rem 0 0.25rem; }
     nav { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
     code { background: #f6f8fa; border-radius: 0.25rem; padding: 0.1rem 0.25rem; }
     table { border-collapse: collapse; width: 100%; }
@@ -25,6 +27,9 @@
     .edge-class-navigation_edge { border-color: #0969da; color: #0969da; }
     .edge-class-review_edge { border-color: #bf8700; color: #9a6700; }
     .edge-class-derivation_edge { border-color: #cf222e; color: #cf222e; }
+    .filter-list { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0.5rem 0 1rem; }
+    .filter-link { border: 1px solid #d0d7de; border-radius: 0.35rem; color: #24292f; display: inline-block; padding: 0.25rem 0.45rem; text-decoration: none; }
+    .filter-link:hover { background: #f6f8fa; }
     .node-label { font-weight: 650; }
     .nowrap { white-space: nowrap; }
   </style>
@@ -64,38 +69,61 @@
 
     <h2>Typed Edges</h2>
     {% if graph.edges %}
-      <table>
-        <thead>
-          <tr>
-            <th>class</th>
-            <th>predicate</th>
-            <th>source</th>
-            <th>target</th>
-            <th>statements</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for edge in graph.edges %}
-            <tr>
-              <td class="nowrap"><span class="badge edge-badge edge-class-{{ edge.edge_class_css }}">{{ edge.edge_class }}</span></td>
-              <td><code>{{ edge.predicate }}</code></td>
-              <td>
-                {% if edge.source.href %}<a href="{{ edge.source.href }}">{{ edge.source.label }}</a>{% else %}<span class="node-label">{{ edge.source.label }}</span>{% endif %}
-                <div class="meta"><code>{{ edge.source.id }}</code> &middot; {{ edge.source.type }}</div>
-              </td>
-              <td>
-                {% if edge.target.href %}<a href="{{ edge.target.href }}">{{ edge.target.label }}</a>{% else %}<span class="node-label">{{ edge.target.label }}</span>{% endif %}
-                <div class="meta"><code>{{ edge.target.id }}</code> &middot; {{ edge.target.type }}</div>
-              </td>
-              <td>
-                {% for statement_id in edge.statement_ids %}
-                  <code>{{ statement_id }}</code>{% if not loop.last %}<br />{% endif %}
-                {% endfor %}
-              </td>
-            </tr>
+      <h3>Edge Filters</h3>
+      <div class="filter-list">
+        {% for edge_class in graph.edge_filters %}
+          <a class="filter-link" href="#{{ edge_class.anchor }}"><span class="badge edge-badge edge-class-{{ edge_class.edge_class_css }}">{{ edge_class.edge_class }}</span>{{ edge_class.count }} edges</a>
+        {% endfor %}
+      </div>
+
+      {% for edge_class in graph.edge_filters %}
+        <section id="{{ edge_class.anchor }}">
+          <h3><span class="badge edge-badge edge-class-{{ edge_class.edge_class_css }}">{{ edge_class.edge_class }}</span>{{ edge_class.count }} edges</h3>
+          <div class="filter-list">
+            {% for predicate in edge_class.predicates %}
+              <a class="filter-link" href="#{{ predicate.anchor }}"><code>{{ predicate.predicate }}</code> {{ predicate.count }} edges</a>
+            {% endfor %}
+          </div>
+
+          {% for predicate in edge_class.predicates %}
+            <section id="{{ predicate.anchor }}">
+              <h4><code>{{ predicate.predicate }}</code> &middot; {{ predicate.count }} edges</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th>class</th>
+                    <th>predicate</th>
+                    <th>source</th>
+                    <th>target</th>
+                    <th>statements</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for edge in predicate.edges %}
+                    <tr>
+                      <td class="nowrap"><span class="badge edge-badge edge-class-{{ edge.edge_class_css }}">{{ edge.edge_class }}</span></td>
+                      <td><code>{{ edge.predicate }}</code></td>
+                      <td>
+                        {% if edge.source.href %}<a href="{{ edge.source.href }}">{{ edge.source.label }}</a>{% else %}<span class="node-label">{{ edge.source.label }}</span>{% endif %}
+                        <div class="meta"><code>{{ edge.source.id }}</code> &middot; {{ edge.source.type }}</div>
+                      </td>
+                      <td>
+                        {% if edge.target.href %}<a href="{{ edge.target.href }}">{{ edge.target.label }}</a>{% else %}<span class="node-label">{{ edge.target.label }}</span>{% endif %}
+                        <div class="meta"><code>{{ edge.target.id }}</code> &middot; {{ edge.target.type }}</div>
+                      </td>
+                      <td>
+                        {% for statement_id in edge.statement_ids %}
+                          <code>{{ statement_id }}</code>{% if not loop.last %}<br />{% endif %}
+                        {% endfor %}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </section>
           {% endfor %}
-        </tbody>
-      </table>
+        </section>
+      {% endfor %}
     {% else %}
       <p class="muted">No edges in this graph.</p>
     {% endif %}

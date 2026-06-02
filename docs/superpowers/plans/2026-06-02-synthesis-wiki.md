@@ -253,9 +253,9 @@ class PagePlan(BaseModel):
 - [x] Convert statement cards into graph nodes.
 - [x] Convert `about`, `links`, `qualifiers`, and evidence into typed edge classes:
   `scientific_edge`, `provenance_edge`, `navigation_edge`, `derivation_edge`, `review_edge`.
-- [ ] Canonicalize entities by deterministic IDs/CURIEs.
+- [x] Canonicalize entities by deterministic IDs/CURIEs.
 - [x] Keep statement-card IDs stable across re-ingestion.
-- [ ] Detect conflicts from explicit contradictions and opposing claims.
+- [x] Detect conflicts from explicit contradictions and opposing claims.
 - [x] Emit sorted graph artifacts: `nodes.tsv`, `edges.tsv`, `graph.json`.
 - [x] Idempotency test under shuffled project/card/correction order.
 
@@ -291,9 +291,9 @@ class PagePlan(BaseModel):
 - [x] Input is a `PagePlan` and referenced statement cards only.
 - [x] Require citations to statement IDs/source projects.
 - [x] Write prose sections from member cards; do not invent unsupported claims.
-- [ ] Store synthesis manifest with model, prompt hash, page-plan hash, member hash.
-- [ ] Write generated page artifact under `compendium/pages/`.
-- [ ] Demonstrate on home and ADP1 topic pages.
+- [x] Store synthesis manifest with model, prompt hash, page-plan hash, member hash.
+- [x] Write generated page artifact under `compendium/pages/`.
+- [x] Demonstrate on home and ADP1 topic pages.
 
 **Acceptance:** Generated prose is readable, cited, and reproducible via unchanged member hashes.
 
@@ -314,7 +314,7 @@ class PagePlan(BaseModel):
   - outgoing links;
   - local graph/neighborhood;
   - provenance links.
-- [ ] Add graph view with typed edge filters.
+- [x] Add graph view with typed edge filters.
 - [x] Vendor/pin frontend assets; do not depend on CDN for core render.
 - [x] Test no broken internal links.
 
@@ -328,14 +328,14 @@ class PagePlan(BaseModel):
 
 **Files:** `corrections.py`, `skills/kg-curate/SKILL.md`, tests.
 
-- [ ] Correction kinds:
+- [x] Correction kinds:
   `retract`, `fix-statement`, `fix-qualifier`, `reground-entity`, `force-merge`, `force-split`,
   `promote`, `demote`, `mark-conflict`, `resolve-conflict`.
-- [ ] Apply corrections deterministically before graph assembly.
-- [ ] Preserve retracted statements for provenance but exclude from normal synthesis.
+- [x] Apply corrections deterministically before graph assembly.
+- [x] Preserve retracted statements for provenance but exclude from normal synthesis.
 - [ ] Skill writes append-only correction records.
-- [ ] Corrections become regression fixtures.
-- [ ] Test corrections survive re-extraction by stable statement IDs.
+- [x] Corrections become regression fixtures.
+- [x] Test corrections survive re-extraction by stable statement IDs.
 
 **Acceptance:** A correction to an ADP1 statement survives re-ingestion and updates affected pages only.
 

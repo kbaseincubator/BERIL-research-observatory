@@ -154,11 +154,34 @@ def test_render_creates_statement_graph_page(tmp_path: Path) -> None:
     assert "Synthesis Graph" in graph
     assert "Statement Cards" in graph
     assert "Typed Edges" in graph
+    assert "Edge Filters" in graph
     assert "scientific_edge" in graph
+    assert 'href="#graph-edge-class-scientific_edge"' in graph
+    assert 'href="#graph-edge-class-scientific_edge-supports"' in graph
     assert "<code>supports</code>" in graph
     assert "ADP1 has a reusable carbon-source essentiality landscape." in graph
     assert "claim_c1.html" in graph
     assert "graph.html" in claim
+
+
+def test_render_includes_local_neighborhood_sections(tmp_path: Path) -> None:
+    cards = _cards()
+    render_synthesis_site(
+        cards,
+        plan_pages(cards),
+        tmp_path,
+        statement_graph=build_statement_graph(cards),
+    )
+
+    claim = (tmp_path / "claim_c1.html").read_text(encoding="utf-8")
+
+    assert "Local Neighborhood" in claim
+    assert "statement-graph edges near this page" in claim
+    assert 'href="#local-edge-class-scientific_edge"' in claim
+    assert 'href="#local-edge-class-scientific_edge-supports"' in claim
+    assert "<code>supports</code>" in claim
+    assert "ADP1 carbon sources define condition-specific essentiality." in claim
+    assert 'href="graph.html">full graph</a>' in claim
 
 
 def test_render_has_no_broken_internal_links(tmp_path: Path) -> None:

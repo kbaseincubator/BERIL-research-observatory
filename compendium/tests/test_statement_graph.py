@@ -51,6 +51,7 @@ def _card(
     entities: list[str] | None = None,
     topics: list[str] | None = None,
     links: StatementLinks | None = None,
+    qualifiers: dict[str, str] | None = None,
     evidence: EvidenceAnchor | None = None,
 ) -> StatementCard:
     return StatementCard(
@@ -65,7 +66,7 @@ def _card(
             topics=topics or ["topic:carbon-source-essentiality"],
         ),
         links=links or StatementLinks(),
-        qualifiers={"organism": "entity:adp1", "method": "RB-TnSeq"},
+        qualifiers=qualifiers or {"organism": "entity:adp1", "method": "RB-TnSeq"},
         evidence=evidence or _evidence(),
         extraction=_manifest(),
     )
@@ -162,13 +163,88 @@ def test_statement_graph_has_no_dangling_edge_endpoints() -> None:
     assert _node_by_id(graph, "stmt:missing-review-target")["type"] == "statement_reference"
 
 
+def test_entity_ids_are_canonicalized_with_aliases_preserved() -> None:
+    card = _card(
+        "stmt:carbon",
+        statement="ADP1 growth varies by carbon source.",
+        entities=["ADP1", "entity:ADP1", "entity:adp1"],
+        qualifiers={"organism": "entity:ADP1", "method": "RB-TnSeq"},
+    )
+
+    graph = build_statement_graph([card])
+
+    assert _node_by_id(graph, "stmt:carbon")["attrs"]["about"]["entities"] == ["entity:adp1"]
+    assert _node_by_id(graph, "stmt:carbon")["attrs"]["qualifiers"]["organism"] == "entity:adp1"
+    assert _edge(graph["edges"], "stmt:carbon", "about_entity", "entity:adp1")
+
+    entity = _node_by_id(graph, "entity:adp1")
+    assert entity["type"] == "entity"
+    assert entity["label"] == "ADP1"
+    assert entity["attrs"]["canonical_id"] == "entity:adp1"
+    assert entity["attrs"]["aliases"] == ["ADP1", "entity:ADP1", "entity:adp1"]
+    assert entity["attrs"]["original_ids"] == ["ADP1", "entity:ADP1", "entity:adp1"]
+
+
+def test_curie_like_entity_qualifiers_materialize_entity_nodes() -> None:
+    card = _card(
+        "stmt:carbon",
+        statement="ADP1 growth varies by carbon source.",
+        entities=["entity:adp1"],
+        qualifiers={"organism": "NCBITaxon:62977", "method": "RB-TnSeq"},
+    )
+
+    graph = build_statement_graph([card])
+
+    statement = _node_by_id(graph, "stmt:carbon")
+    assert statement["attrs"]["qualifier_entities"] == ["entity:ncbitaxon:62977"]
+    assert statement["attrs"]["qualifiers"]["organism"] == "entity:ncbitaxon:62977"
+    assert statement["attrs"]["original_qualifiers"]["organism"] == "NCBITaxon:62977"
+
+    entity = _node_by_id(graph, "entity:ncbitaxon:62977")
+    assert entity["label"] == "NCBITaxon:62977"
+    assert entity["attrs"]["aliases"] == ["NCBITaxon:62977"]
+    assert entity["attrs"]["curies"] == ["NCBITaxon:62977"]
+    assert _edge(graph["edges"], "stmt:carbon", "about_entity", "entity:ncbitaxon:62977")
+
+
+def test_explicit_contradictions_materialize_conflict_review_structure() -> None:
+    source = _card(
+        "stmt:a",
+        statement="ADP1 grows on quinate.",
+        links=StatementLinks(contradicts=["stmt:b"]),
+    )
+    target = _card("stmt:b", statement="ADP1 does not grow on quinate.")
+
+    graph = build_statement_graph([target, source])
+
+    contradicts = _edge(graph["edges"], "stmt:a", "contradicts", "stmt:b")
+    conflict_id = contradicts["attrs"]["conflict_id"]
+    conflict = _node_by_id(graph, conflict_id)
+    assert conflict["type"] == "conflict"
+    assert conflict["attrs"]["kind"] == "explicit_contradiction"
+    assert conflict["attrs"]["statement_ids"] == ["stmt:a", "stmt:b"]
+    assert conflict["attrs"]["contradiction_links"] == [
+        {
+            "source_project": "adp1_deletion_phenotypes",
+            "source_statement_id": "stmt:a",
+            "target_statement_id": "stmt:b",
+        }
+    ]
+
+    for statement_id in ("stmt:a", "stmt:b"):
+        review_edge = _edge(graph["edges"], statement_id, "needs_review", conflict_id)
+        assert review_edge["edge_class"] == "review_edge"
+        assert review_edge["attrs"]["review_reason"] == "explicit_contradiction"
+
+
 def test_statement_graph_artifacts_are_byte_stable_across_card_shuffles(tmp_path: Path) -> None:
     first = _card(
         "stmt:a",
         statement="ADP1 growth varies by carbon source.",
-        entities=["entity:z", "entity:a"],
+        entities=["entity:Z", "A"],
         topics=["topic:z", "topic:a"],
-        links=StatementLinks(supports=["stmt:c", "stmt:b"]),
+        links=StatementLinks(supports=["stmt:c", "stmt:b"], contradicts=["stmt:b"]),
+        qualifiers={"organism": "NCBITaxon:62977", "method": "RB-TnSeq"},
     )
     second = _card(
         "stmt:b",
