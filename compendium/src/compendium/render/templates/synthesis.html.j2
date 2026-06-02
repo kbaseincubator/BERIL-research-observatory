@@ -1,0 +1,31 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ node.label }}{% endblock %}
+{% block body %}
+  <h1>{{ node.type }} <span class="badge {{ badge.color }} tier">{{ badge.label }}</span></h1>
+  <p>{{ node.label }}</p>
+  <p class="muted">id: <code>{{ node.id }}</code></p>
+
+  <h2>Linked entities</h2>
+  {% if facts %}
+  <ul>
+    {% for f in facts %}
+      <li>
+        {{ f.predicate }}:
+        {% if f.neighbor_safe %}<a href="{{ f.neighbor_safe }}.html">{{ f.neighbor_label }}</a>{% else %}{{ f.neighbor_label }}{% endif %}
+        <span class="badge {{ f.badge.color }} tier">{{ f.badge.label }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">No linked entities.</p>
+  {% endif %}
+
+  {% if narration %}
+  <h2>Synthesis</h2>
+  <p>{{ narration }}</p>
+  {% endif %}
+
+  <h2>Provenance</h2>
+  <p class="muted">projects: {{ node.provenance | join(", ") if node.provenance else "(none)" }}</p>
+  <p class="muted">fact hash: <code>{{ fact_hash }}</code></p>
+{% endblock %}
