@@ -20,6 +20,19 @@ def main(argv: list[str] | None = None) -> int:
     context_pack = sub.add_parser("context-pack")
     context_pack.add_argument("project")
     context_pack.add_argument("--out", required=True)
+    statement_graph = sub.add_parser("statement-graph")
+    statement_graph.add_argument("path")
+    statement_graph.add_argument("--out")
+    plan_pages = sub.add_parser("plan-pages")
+    plan_pages.add_argument("path")
+    plan_pages.add_argument("--out")
+    render_synthesis = sub.add_parser("render-synthesis")
+    render_synthesis.add_argument("path")
+    render_synthesis.add_argument("--out", required=True)
+    quality_synthesis = sub.add_parser("quality-synthesis")
+    quality_synthesis.add_argument("path")
+    quality_synthesis.add_argument("--source-root")
+    quality_synthesis.add_argument("--out")
     validate_card = sub.add_parser("validate-card")
     validate_card.add_argument("path")
     validate_project_kg = sub.add_parser("validate-project-kg")
@@ -36,7 +49,11 @@ def main(argv: list[str] | None = None) -> int:
     except Exception:  # pragma: no cover - stub before Task 10
         print(f"[compendium] '{args.cmd}' not yet wired; build the pipeline (Task 10).", file=sys.stderr)
         return 2
-    return pipeline.dispatch(args)
+    try:
+        return pipeline.dispatch(args)
+    except (OSError, ValueError) as exc:
+        print(f"[compendium] error: {exc}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":  # pragma: no cover

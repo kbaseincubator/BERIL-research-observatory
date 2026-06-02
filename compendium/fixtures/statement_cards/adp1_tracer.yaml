@@ -1,0 +1,262 @@
+project:
+  id: adp1_tracer
+  title: ADP1 carbon-fitness synthesis tracer
+statements:
+  - id: stmt:adp1-carbon-tier-finding
+    kind: finding
+    statement: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers.
+    scope: project_local
+    tier: grounded
+    confidence: high
+    about:
+      entities:
+        - entity:adp1
+      topics:
+        - topic:adp1-carbon-fitness
+    links:
+      supports:
+        - stmt:adp1-continuum-claim
+      contradicts: []
+      motivates: []
+      refines: []
+      requires_validation: []
+    qualifiers:
+      organism: entity:adp1
+      condition: eight carbon sources
+      method: deletion mutant growth ratios
+      data_collection: collection:adp1_deletion_phenotypes
+    evidence:
+      source_project: adp1_deletion_phenotypes
+      source_doc: REPORT.md
+      source_section: Key Findings
+      exact: The 8 carbon sources partition into demanding, moderate, and robust tiers based on the fraction of genes showing growth defects.
+      prefix: ""
+      suffix: ""
+      notebook: 01_data_extraction.ipynb
+      figure: figures/condition_boxplots.png
+      p_value: null
+    extraction:
+      agent_type: llm_extractor
+      skill: kg-ingest-project
+      model: gpt-5-codex-worker-i
+      prompt_hash: prompt:adp1-tracer-fixture
+      context_pack_hash: context:adp1-tracer-fixture
+      repo_commit: eaade21
+      timestamp: "2026-06-02T00:00:00Z"
+
+  - id: stmt:adp1-condition-independence-finding
+    kind: finding
+    statement: ADP1 carbon-source growth assays provide several independent phenotypic dimensions rather than one shared growth-sensitivity axis.
+    scope: project_local
+    tier: grounded
+    confidence: high
+    about:
+      entities:
+        - entity:adp1
+      topics:
+        - topic:adp1-carbon-fitness
+    links:
+      supports:
+        - stmt:adp1-continuum-claim
+      contradicts: []
+      motivates:
+        - stmt:adp1-aromatic-media-opportunity
+      refines: []
+      requires_validation: []
+    qualifiers:
+      organism: entity:adp1
+      condition: eight carbon sources
+      method: PCA and condition correlation analysis
+      data_collection: collection:adp1_deletion_phenotypes
+    evidence:
+      source_project: adp1_deletion_phenotypes
+      source_doc: REPORT.md
+      source_section: Results
+      exact: The low pairwise correlations (median Pearson r = 0.25, maximum r = 0.58) demonstrate that each carbon source imposes a largely independent set of gene requirements.
+      prefix: ""
+      suffix: ""
+      notebook: 02_condition_structure.ipynb
+      figure: figures/condition_clustermap.png
+      p_value: null
+    extraction:
+      agent_type: llm_extractor
+      skill: kg-ingest-project
+      model: gpt-5-codex-worker-i
+      prompt_hash: prompt:adp1-tracer-fixture
+      context_pack_hash: context:adp1-tracer-fixture
+      repo_commit: eaade21
+      timestamp: "2026-06-02T00:00:00Z"
+
+  - id: stmt:adp1-continuum-claim
+    kind: claim
+    statement: ADP1 condition-dependent essentiality should be treated as a continuous phenotype landscape, with quinate degradation as a discrete exception rather than the rule.
+    scope: cross_project
+    tier: grounded
+    confidence: high
+    about:
+      entities:
+        - entity:adp1
+      topics:
+        - topic:adp1-carbon-fitness
+    links:
+      supports:
+        - stmt:adp1-carbon-tier-finding
+        - stmt:adp1-condition-independence-finding
+      contradicts: []
+      motivates:
+        - stmt:adp1-aromatic-media-opportunity
+      refines: []
+      requires_validation: []
+    qualifiers:
+      organism: entity:adp1
+      condition: eight carbon sources
+      method: hierarchical clustering and specificity analysis
+      data_collection: collection:adp1_deletion_phenotypes
+    evidence:
+      source_project: adp1_deletion_phenotypes
+      source_doc: REPORT.md
+      source_section: Key Findings
+      exact: This indicates that gene essentiality varies continuously across conditions rather than falling into discrete functional categories.
+      prefix: ""
+      suffix: ""
+      notebook: 03_gene_modules.ipynb
+      figure: figures/gene_heatmap.png
+      p_value: null
+    extraction:
+      agent_type: llm_extractor
+      skill: kg-ingest-project
+      model: gpt-5-codex-worker-i
+      prompt_hash: prompt:adp1-tracer-fixture
+      context_pack_hash: context:adp1-tracer-fixture
+      repo_commit: eaade21
+      timestamp: "2026-06-02T00:00:00Z"
+
+  - id: stmt:adp1-continuous-fitness-claim
+    kind: claim
+    statement: Continuous ADP1 fitness measurements are more informative for essentiality synthesis than binary essentiality-fraction thresholds.
+    scope: cross_project
+    tier: grounded
+    confidence: high
+    about:
+      entities:
+        - entity:adp1
+      topics:
+        - topic:adp1-carbon-fitness
+    links:
+      supports: []
+      contradicts: []
+      motivates:
+        - stmt:adp1-method-ground-truth-caveat
+      refines:
+        - stmt:adp1-continuum-claim
+      requires_validation: []
+    qualifiers:
+      organism: entity:adp1
+      condition: rich and minimal media
+      method: RB-TnSeq fitness ROC analysis
+      data_collection: collection:adp1_triple_essentiality
+    evidence:
+      source_project: adp1_triple_essentiality
+      source_doc: REPORT.md
+      source_section: Integrated Discussion
+      exact: Continuous fitness values (AUC=0.70-0.73) outperform binary essentiality_fraction (AUC=0.34-0.40).
+      prefix: ""
+      suffix: ""
+      notebook: 04_roc_analysis.ipynb
+      figure: figures/roc_comprehensive.png
+      p_value: null
+    extraction:
+      agent_type: llm_extractor
+      skill: kg-ingest-project
+      model: gpt-5-codex-worker-i
+      prompt_hash: prompt:adp1-tracer-fixture
+      context_pack_hash: context:adp1-tracer-fixture
+      repo_commit: eaade21
+      timestamp: "2026-06-02T00:00:00Z"
+
+  - id: stmt:adp1-aromatic-media-opportunity
+    kind: opportunity
+    statement: Refine ADP1 FBA media assumptions by adding trace aromatic compounds and testing whether aromatic-degradation discordance resolves.
+    scope: cross_project
+    tier: grounded
+    confidence: medium
+    about:
+      entities:
+        - entity:adp1
+      topics:
+        - topic:adp1-carbon-fitness
+    links:
+      supports: []
+      contradicts: []
+      motivates: []
+      refines: []
+      requires_validation:
+        - stmt:adp1-continuum-claim
+    qualifiers:
+      organism: entity:adp1
+      condition: minimal media
+      method: FBA model refinement
+      data_collection: collection:adp1_triple_essentiality
+      target_output: dataset:adp1-aromatic-media-validation-matrix
+    evidence:
+      source_project: adp1_triple_essentiality
+      source_doc: REPORT.md
+      source_section: Recommendations
+      exact: Model refinement should add trace aromatic compounds to media definition
+      prefix: ""
+      suffix: ""
+      notebook: null
+      figure: null
+      p_value: null
+    extraction:
+      agent_type: llm_extractor
+      skill: kg-ingest-project
+      model: gpt-5-codex-worker-i
+      prompt_hash: prompt:adp1-tracer-fixture
+      context_pack_hash: context:adp1-tracer-fixture
+      repo_commit: eaade21
+      timestamp: "2026-06-02T00:00:00Z"
+
+  - id: stmt:adp1-method-ground-truth-caveat
+    kind: caveat
+    statement: ADP1 synthesis pages should avoid treating any one essentiality assay or model as complete ground truth.
+    scope: cross_project
+    tier: grounded
+    confidence: high
+    about:
+      entities:
+        - entity:adp1
+      topics:
+        - topic:adp1-carbon-fitness
+    links:
+      supports: []
+      contradicts: []
+      motivates:
+        - stmt:adp1-aromatic-media-opportunity
+      refines:
+        - stmt:adp1-continuum-claim
+        - stmt:adp1-continuous-fitness-claim
+      requires_validation: []
+    qualifiers:
+      organism: entity:adp1
+      condition: cross-assay essentiality comparison
+      method: FBA, KO, RB-TnSeq, proteomics, and growth assays
+      data_collection: collection:adp1_triple_essentiality
+    evidence:
+      source_project: adp1_triple_essentiality
+      source_doc: REPORT.md
+      source_section: Integrated Conclusions
+      exact: No single method is ground truth
+      prefix: ""
+      suffix: ""
+      notebook: null
+      figure: null
+      p_value: null
+    extraction:
+      agent_type: llm_extractor
+      skill: kg-ingest-project
+      model: gpt-5-codex-worker-i
+      prompt_hash: prompt:adp1-tracer-fixture
+      context_pack_hash: context:adp1-tracer-fixture
+      repo_commit: eaade21
+      timestamp: "2026-06-02T00:00:00Z"

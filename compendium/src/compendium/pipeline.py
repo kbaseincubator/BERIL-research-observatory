@@ -9,6 +9,7 @@ Deterministic; no LLM on this path. ``dispatch`` is called by ``compendium.cli``
 from __future__ import annotations
 
 import json
+import sys
 from dataclasses import asdict
 from pathlib import Path
 
@@ -16,14 +17,18 @@ import yaml
 
 from compendium import audit as audit_mod
 from compendium.build.assemble import build, to_kgx
+from compendium.build.statement_graph import build_statement_graph
 from compendium.context_pack import build_context_pack, context_pack_bytes
 from compendium.corrections import load_corrections
 from compendium.extract.structural import extract_project
 from compendium.ground.grounder import ground
-from compendium.models import ProjectKG
+from compendium.models import ProjectKG, StatementCard
+from compendium.pages import plan_pages
 from compendium.quality.kg_quality import assess_kg
+from compendium.quality.synthesis_quality import assess_synthesis_quality
 from compendium.quality.wiki_quality import assess_wiki
 from compendium.render.render import render_site
+from compendium.render.synthesis import render_synthesis_site
 from compendium.validate import (
     validate_page_plan_file,
     validate_project_kg_file,
@@ -63,6 +68,43 @@ def _write_kg_yaml(pkgs: list[ProjectKG], out_kg_dir: Path) -> None:
     for pkg in pkgs:
         text = yaml.safe_dump(pkg.to_dict(), sort_keys=True, allow_unicode=True)
         (out_kg_dir / f"{pkg.project.id}.kg.yaml").write_text(text)
+
+
+def _load_statement_cards(path: str) -> list[StatementCard]:
+    result = validate_project_kg_file(path)
+    return [record for record in result.records if isinstance(record, StatementCard)]
+
+
+def _write_json_or_stdout(payload: dict | list, out: str | None) -> None:
+    text = json.dumps(payload, indent=2, sort_keys=True)
+    if out:
+        out_path = Path(out).resolve()
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(text + "\n", encoding="utf-8")
+        print(f"[compendium] wrote {out_path}")
+        return
+    print(text)
+
+
+def _synthesis_quality_failed(metrics: dict) -> bool:
+    evidence = metrics["evidence_resolution"]
+    page = metrics["page_integrity"]
+    links = metrics["link_integrity"]
+    opportunities = metrics["opportunity_targets"]
+    statement_links = metrics["statement_link_integrity"]
+    return any(
+        (
+            metrics["graph_integrity"]["dangling_edges"],
+            evidence["checked"] and evidence["unresolved"],
+            links["broken_outgoing_link_count"],
+            links["broken_backlink_count"],
+            links["backlink_mismatch_count"],
+            page["unknown_page_members"],
+            page["unknown_section_members"],
+            opportunities["missing_target_output_statement_ids"],
+            statement_links["unresolved_statement_link_count"],
+        )
+    )
 
 
 def run_all(projects, projects_dir: str, out: str, corrections_dir: str | None = None) -> dict:
@@ -129,6 +171,35 @@ def dispatch(args) -> int:
         out_path.write_bytes(context_pack_bytes(pack))
         print(f"[compendium] context pack: {project_dir.name} -> {out_path}")
         print(f"[compendium] hash: {pack['context_pack_hash']}")
+        return 0
+    if args.cmd == "statement-graph":
+        cards = _load_statement_cards(args.path)
+        _write_json_or_stdout(build_statement_graph(cards), args.out)
+        return 0
+    if args.cmd == "plan-pages":
+        cards = _load_statement_cards(args.path)
+        _write_json_or_stdout([plan.to_dict() for plan in plan_pages(cards)], args.out)
+        return 0
+    if args.cmd == "render-synthesis":
+        cards = _load_statement_cards(args.path)
+        out_dir = Path(args.out).resolve()
+        rendered = render_synthesis_site(cards, plan_pages(cards), out_dir)
+        print(f"[compendium] rendered {len(rendered)} synthesis pages -> {out_dir}")
+        return 0
+    if args.cmd == "quality-synthesis":
+        cards = _load_statement_cards(args.path)
+        graph = build_statement_graph(cards)
+        plans = plan_pages(cards)
+        metrics = assess_synthesis_quality(
+            cards,
+            graph,
+            plans,
+            source_root=args.source_root,
+        )
+        _write_json_or_stdout(metrics, args.out)
+        if _synthesis_quality_failed(metrics):
+            print("[compendium] synthesis quality checks failed", file=sys.stderr)
+            return 1
         return 0
 
     projects = args.projects or []

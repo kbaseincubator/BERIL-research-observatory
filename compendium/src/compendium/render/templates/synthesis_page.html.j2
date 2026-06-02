@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title }}</title>
+  <style>
+    body { color: #1f2428; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; margin: 0 auto; max-width: 72rem; padding: 1.5rem; }
+    a { color: #0757a8; text-decoration-thickness: 0.08em; text-underline-offset: 0.15em; }
+    header { border-bottom: 1px solid #d8dee4; margin-bottom: 1.5rem; padding-bottom: 1rem; }
+    h1 { font-size: 2rem; line-height: 1.15; margin: 0.5rem 0; }
+    h2 { border-bottom: 1px solid #d8dee4; font-size: 1.25rem; margin-top: 2rem; padding-bottom: 0.25rem; }
+    h3 { font-size: 1rem; margin: 1rem 0 0.25rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+    code { background: #f6f8fa; border-radius: 0.25rem; padding: 0.1rem 0.25rem; }
+    blockquote { border-left: 3px solid #d0d7de; color: #57606a; margin: 0.5rem 0; padding-left: 0.75rem; }
+    .meta, .muted { color: #57606a; font-size: 0.875rem; }
+    .badge { border: 1px solid #d0d7de; border-radius: 999px; color: #24292f; display: inline-block; font-size: 0.78rem; margin-right: 0.35rem; padding: 0.05rem 0.45rem; }
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+    .panel { border: 1px solid #d8dee4; border-radius: 0.5rem; padding: 0.85rem; }
+    .statement { border-top: 1px solid #d8dee4; padding: 1rem 0; }
+    .statement:first-child { border-top: 0; }
+    .statement-title { font-weight: 650; margin: 0 0 0.35rem; }
+    ul { padding-left: 1.3rem; }
+    li { margin: 0.2rem 0; }
+  </style>
+</head>
+<body>
+  <nav class="meta">
+    <a href="index.html">home</a>
+    {% for link in page.all_pages %}
+      {% if link.id != "home" %}
+        <a href="{{ link.href }}">{{ link.id }}</a>
+      {% endif %}
+    {% endfor %}
+  </nav>
+
+  <header>
+    <div class="meta">{{ page.type }} page</div>
+    <h1>{{ page.title }}</h1>
+    <div class="meta">id: <code>{{ page.id }}</code>{% if page.member_hash %} · member hash: <code>{{ page.member_hash }}</code>{% endif %}</div>
+  </header>
+
+  {% if generated_index %}
+    <p class="muted">No home page plan was provided, so this index lists the rendered page plans.</p>
+  {% endif %}
+
+  <main>
+    {% if page.sections %}
+      <h2>Sections</h2>
+      {% for section in page.sections %}
+        <section id="{{ section.id }}">
+          <h3>{{ section.heading }}</h3>
+          <div class="meta">member hash: <code>{{ section.member_hash }}</code></div>
+          {% if section.statements or section.missing_members %}
+            <ul>
+              {% for statement in section.statements %}
+                <li>
+                  <span class="badge">{{ statement.kind }}</span>
+                  {% if statement.href %}<a href="{{ statement.href }}">{{ statement.statement }}</a>{% else %}<a href="#{{ statement.anchor }}">{{ statement.statement }}</a>{% endif %}
+                  <span class="meta"><code>{{ statement.id }}</code></span>
+                </li>
+              {% endfor %}
+              {% for statement_id in section.missing_members %}
+                <li class="muted">Missing statement <code>{{ statement_id }}</code></li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="muted">No statements selected for this section.</p>
+          {% endif %}
+        </section>
+      {% endfor %}
+    {% endif %}
+
+    <h2>Source Projects</h2>
+    {% if page.source_projects %}
+      <div class="grid">
+        {% for project in page.source_projects %}
+          <div class="panel">
+            <div>{% if project.href %}<a href="{{ project.href }}">{{ project.id }}</a>{% else %}<code>{{ project.id }}</code>{% endif %}</div>
+            <div class="meta">{{ project.statement_count }} statements · {{ project.documents | join(", ") }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="muted">No source projects for this page.</p>
+    {% endif %}
+
+    <div class="grid">
+      <section>
+        <h2>Outgoing Links</h2>
+        {% if page.outgoing_links %}
+          <ul>
+            {% for link in page.outgoing_links %}
+              <li>{% if link.href %}<a href="{{ link.href }}">{{ link.id }}</a>{% else %}<code>{{ link.id }}</code> <span class="muted">(missing page)</span>{% endif %}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="muted">No outgoing links.</p>
+        {% endif %}
+      </section>
+
+      <section>
+        <h2>Backlinks</h2>
+        {% if page.backlinks %}
+          <ul>
+            {% for link in page.backlinks %}
+              <li>{% if link.href %}<a href="{{ link.href }}">{{ link.id }}</a>{% else %}<code>{{ link.id }}</code> <span class="muted">(missing page)</span>{% endif %}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="muted">No backlinks.</p>
+        {% endif %}
+      </section>
+    </div>
+
+    <h2>Member Statements</h2>
+    {% if page.statements or page.missing_members %}
+      {% for statement in page.statements %}
+        <article class="statement" id="{{ statement.anchor }}">
+          <p class="statement-title">{{ statement.statement }}</p>
+          <div class="meta">
+            <span class="badge">{{ statement.kind }}</span>
+            <span class="badge">{{ statement.tier }}</span>
+            <span class="badge">{{ statement.confidence }}</span>
+            <code>{{ statement.id }}</code>
+          </div>
+          <p class="meta">scope: {{ statement.scope }}</p>
+
+          {% if statement.topics %}
+            <p class="meta">topics:
+              {% for topic in statement.topics %}
+                {% if topic.href %}<a href="{{ topic.href }}">{{ topic.id }}</a>{% else %}<code>{{ topic.id }}</code>{% endif %}{% if not loop.last %}, {% endif %}
+              {% endfor %}
+            </p>
+          {% endif %}
+
+          {% if statement.entities %}
+            <p class="meta">entities:
+              {% for entity in statement.entities %}
+                {% if entity.href %}<a href="{{ entity.href }}">{{ entity.id }}</a>{% else %}<code>{{ entity.id }}</code>{% endif %}{% if not loop.last %}, {% endif %}
+              {% endfor %}
+            </p>
+          {% endif %}
+
+          {% if statement.qualifiers %}
+            <p class="meta">qualifiers:
+              {% for key, value in statement.qualifiers %}
+                {{ key }}=<code>{{ value }}</code>{% if not loop.last %}; {% endif %}
+              {% endfor %}
+            </p>
+          {% endif %}
+
+          {% if statement.links %}
+            <p class="meta">statement links:
+              {% for group in statement.links %}
+                {{ group.kind }}:
+                {% for target in group.targets %}
+                  {% if target.href %}<a href="{{ target.href }}">{{ target.id }}</a>{% else %}<code>{{ target.id }}</code>{% endif %}{% if not loop.last %}, {% endif %}
+                {% endfor %}{% if not loop.last %}; {% endif %}
+              {% endfor %}
+            </p>
+          {% endif %}
+
+          <h3>Evidence</h3>
+          <p class="meta">
+            project:
+            {% if statement.evidence.source_project_href %}<a href="{{ statement.evidence.source_project_href }}">{{ statement.evidence.source_project }}</a>{% else %}<code>{{ statement.evidence.source_project }}</code>{% endif %}
+            · document: <code>{{ statement.evidence.source_doc }}</code>
+            {% if statement.evidence.source_section %} · section: {{ statement.evidence.source_section }}{% endif %}
+            {% if statement.evidence.notebook %} · notebook: <code>{{ statement.evidence.notebook }}</code>{% endif %}
+            {% if statement.evidence.figure %} · figure: <code>{{ statement.evidence.figure }}</code>{% endif %}
+            {% if statement.evidence.p_value is not none %} · p={{ statement.evidence.p_value }}{% endif %}
+          </p>
+          <blockquote>{{ statement.evidence.exact }}</blockquote>
+          <p class="meta">extracted by {{ statement.extraction.skill }} using {{ statement.extraction.model }} at {{ statement.extraction.timestamp }} · commit <code>{{ statement.extraction.repo_commit }}</code></p>
+        </article>
+      {% endfor %}
+      {% for statement_id in page.missing_members %}
+        <p class="muted">Missing statement <code>{{ statement_id }}</code></p>
+      {% endfor %}
+    {% else %}
+      <p class="muted">No member statements.</p>
+    {% endif %}
+  </main>
+</body>
+</html>
