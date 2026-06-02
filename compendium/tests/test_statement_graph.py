@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
-from compendium.build.statement_graph import build_statement_graph
+from compendium.build.statement_graph import build_statement_graph, export_statement_graph_artifacts
 from compendium.models import (
     AboutRefs,
     EvidenceAnchor,
@@ -159,6 +160,52 @@ def test_statement_graph_has_no_dangling_edge_endpoints() -> None:
 
     assert _node_by_id(graph, "stmt:missing-support")["type"] == "statement_reference"
     assert _node_by_id(graph, "stmt:missing-review-target")["type"] == "statement_reference"
+
+
+def test_statement_graph_artifacts_are_byte_stable_across_card_shuffles(tmp_path: Path) -> None:
+    first = _card(
+        "stmt:a",
+        statement="ADP1 growth varies by carbon source.",
+        entities=["entity:z", "entity:a"],
+        topics=["topic:z", "topic:a"],
+        links=StatementLinks(supports=["stmt:c", "stmt:b"]),
+    )
+    second = _card(
+        "stmt:b",
+        statement="Quinate growth motivates a follow-up assay.",
+        evidence=_evidence(project="acinetobacter_adp1_explorer", exact="Quinate growth was observed"),
+    )
+
+    graph_a = build_statement_graph([first, second])
+    graph_b = build_statement_graph([second, first])
+    graph_b["nodes"] = list(reversed(graph_b["nodes"]))
+    graph_b["edges"] = list(reversed(graph_b["edges"]))
+
+    out_a = tmp_path / "a"
+    out_b = tmp_path / "b"
+    export_statement_graph_artifacts(graph_a, out_a)
+    export_statement_graph_artifacts(graph_b, out_b)
+
+    for filename in ("graph.json", "nodes.tsv", "edges.tsv"):
+        assert (out_a / filename).read_bytes() == (out_b / filename).read_bytes()
+
+
+def test_statement_graph_artifacts_export_first_class_statement_nodes(tmp_path: Path) -> None:
+    card = _card(
+        "stmt:carbon",
+        statement="Carbon sources define a three-tier essentiality landscape in ADP1.",
+    )
+
+    export_statement_graph_artifacts(build_statement_graph([card]), tmp_path)
+
+    graph = json.loads((tmp_path / "graph.json").read_text(encoding="utf-8"))
+    node = _node_by_id(graph, "stmt:carbon")
+    assert node["type"] == "statement_card"
+    assert node["label"] == card.statement
+
+    nodes_tsv = (tmp_path / "nodes.tsv").read_text(encoding="utf-8")
+    assert nodes_tsv.startswith("id\ttype\tlabel\tattrs\n")
+    assert f"stmt:carbon\tstatement_card\t{card.statement}\t" in nodes_tsv
 
 
 def _node_by_id(graph: dict, node_id: str) -> dict:

@@ -67,13 +67,26 @@ def test_cli_validation_errors_return_without_traceback(tmp_path: Path, capsys) 
 
 def test_statement_graph_command_writes_graph_json(tmp_path: Path) -> None:
     out = tmp_path / "statement-graph.json"
+    artifacts_dir = tmp_path / "graph-artifacts"
 
-    assert main(["statement-graph", str(STATEMENT_FIXTURE), "--out", str(out)]) == 0
+    assert main(
+        [
+            "statement-graph",
+            str(STATEMENT_FIXTURE),
+            "--out",
+            str(out),
+            "--artifacts-dir",
+            str(artifacts_dir),
+        ]
+    ) == 0
 
     graph = json.loads(out.read_text(encoding="utf-8"))
     assert any(node["id"] == "stmt:adp1-continuum-claim" for node in graph["nodes"])
     assert any(edge["p"] == "has_evidence" for edge in graph["edges"])
     assert any(edge["p"] == "about_entity" for edge in graph["edges"])
+    assert (artifacts_dir / "graph.json").is_file()
+    assert (artifacts_dir / "nodes.tsv").is_file()
+    assert (artifacts_dir / "edges.tsv").is_file()
 
 
 def test_plan_pages_command_writes_page_plan_json(tmp_path: Path) -> None:
@@ -103,6 +116,7 @@ def test_render_synthesis_command_writes_static_site(tmp_path: Path) -> None:
 
 def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
     out = tmp_path / "quality.json"
+    dashboard = tmp_path / "quality.html"
 
     assert main(
         [
@@ -112,6 +126,8 @@ def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
             str(ROOT / "projects"),
             "--out",
             str(out),
+            "--dashboard-out",
+            str(dashboard),
         ]
     ) == 0
 
@@ -122,6 +138,7 @@ def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
     assert metrics["link_integrity"]["broken_outgoing_link_count"] == 0
     assert metrics["statement_link_integrity"]["unresolved_statement_link_count"] == 0
     assert metrics["opportunity_targets"]["missing_target_output_statement_ids"] == []
+    assert "Synthesis Quality Dashboard" in dashboard.read_text(encoding="utf-8")
 
 
 def test_quality_synthesis_command_fails_quality_gate_but_writes_metrics(tmp_path: Path) -> None:

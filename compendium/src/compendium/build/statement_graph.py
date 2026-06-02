@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+import csv
+import io
+import json
+import pathlib
 from collections.abc import Iterable
 from typing import Any
 
@@ -165,6 +169,30 @@ def build_statement_graph(cards: Iterable[StatementCard]) -> GraphDict:
     }
 
 
+def canonical_statement_graph(graph: GraphDict) -> GraphDict:
+    """Return a deterministically sorted v4 statement graph dict."""
+    nodes = [_canonical_value(node) for node in graph.get("nodes", [])]
+    edges = [_canonical_value(edge) for edge in graph.get("edges", [])]
+    return {
+        "nodes": sorted(nodes, key=_node_sort_key),
+        "edges": sorted(edges, key=_edge_sort_key),
+    }
+
+
+def export_statement_graph_artifacts(graph: GraphDict, out_dir: pathlib.Path | str) -> None:
+    """Write deterministic ``graph.json``, ``nodes.tsv``, and ``edges.tsv`` artifacts."""
+    out_path = pathlib.Path(out_dir)
+    out_path.mkdir(parents=True, exist_ok=True)
+
+    sorted_graph = canonical_statement_graph(graph)
+    (out_path / "graph.json").write_text(
+        json.dumps(sorted_graph, sort_keys=True, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    (out_path / "nodes.tsv").write_text(_nodes_tsv(sorted_graph["nodes"]), encoding="utf-8")
+    (out_path / "edges.tsv").write_text(_edges_tsv(sorted_graph["edges"]), encoding="utf-8")
+
+
 def _add_evidence_subgraph(
     card: StatementCard,
     add_node: Any,
@@ -289,3 +317,77 @@ def _attrs_key(attrs: dict[str, Any]) -> str:
     for key in sorted(attrs):
         parts.append(f"{key}={attrs[key]}")
     return "|".join(parts)
+
+
+def _canonical_value(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {key: _canonical_value(value[key]) for key in sorted(value)}
+    if isinstance(value, list):
+        return [_canonical_value(item) for item in value]
+    return value
+
+
+def _node_sort_key(node: dict[str, Any]) -> tuple[str, str, str]:
+    return (str(node.get("id", "")), str(node.get("type", "")), str(node.get("label", "")))
+
+
+def _edge_sort_key(edge: dict[str, Any]) -> tuple[str, str, str, str, str]:
+    return (
+        str(edge.get("s", "")),
+        str(edge.get("p", "")),
+        str(edge.get("o", "")),
+        str(edge.get("edge_class", "")),
+        str(edge.get("id", "")),
+    )
+
+
+def _nodes_tsv(nodes: list[dict[str, Any]]) -> str:
+    return _tsv_text(
+        ["id", "type", "label", "attrs"],
+        [
+            [
+                _tsv_value(node.get("id", "")),
+                _tsv_value(node.get("type", "")),
+                _tsv_value(node.get("label", "")),
+                _tsv_value(node.get("attrs", {})),
+            ]
+            for node in nodes
+        ],
+    )
+
+
+def _edges_tsv(edges: list[dict[str, Any]]) -> str:
+    return _tsv_text(
+        ["id", "s", "p", "o", "edge_class", "statement_ids", "provenance", "attrs"],
+        [
+            [
+                _tsv_value(edge.get("id", "")),
+                _tsv_value(edge.get("s", "")),
+                _tsv_value(edge.get("p", "")),
+                _tsv_value(edge.get("o", "")),
+                _tsv_value(edge.get("edge_class", "")),
+                _tsv_value(edge.get("statement_ids", [])),
+                _tsv_value(edge.get("provenance", [])),
+                _tsv_value(edge.get("attrs", {})),
+            ]
+            for edge in edges
+        ],
+    )
+
+
+def _tsv_text(headers: list[str], rows: list[list[str]]) -> str:
+    output = io.StringIO()
+    writer = csv.writer(output, delimiter="\t", lineterminator="\n")
+    writer.writerow(headers)
+    writer.writerows(rows)
+    return output.getvalue()
+
+
+def _tsv_value(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, list):
+        return "|".join(str(item) for item in value)
+    if isinstance(value, dict):
+        return json.dumps(_canonical_value(value), sort_keys=True, separators=(",", ":"))
+    return str(value)

@@ -48,8 +48,8 @@ def build_context_pack(project_dir: Path) -> dict[str, Any]:
     project_dir = Path(project_dir)
     audit = audit_project(project_dir)
     kg = extract_project(project_dir, audit=audit)
-    source_files = _source_files(project_dir)
-    source_sections = _source_sections(project_dir, source_files)
+    source_files = audit["source_files"]
+    source_sections = audit["source_sections"]
 
     pack: dict[str, Any] = {
         "context_pack_version": 1,
@@ -63,6 +63,7 @@ def build_context_pack(project_dir: Path) -> dict[str, Any]:
         },
         "source_files": source_files,
         "source_sections": source_sections,
+        "source_anchors": audit["source_anchors"],
         "deterministic_entities": _entities(kg),
         "deterministic_mentions": _mentions(kg),
         "evidence_anchors": _evidence_anchors(kg),

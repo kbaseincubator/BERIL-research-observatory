@@ -28,6 +28,7 @@ def test_basic_fixture_context_pack_contains_required_scaffold() -> None:
     assert {source["path"] for source in pack["source_files"]} == {"REPORT.md", "README.md"}
     assert all(source["sha256"].startswith("sha256:") for source in pack["source_files"])
     assert any(section["heading"] == "Key Findings" for section in pack["source_sections"])
+    assert any(anchor["kind"] == "notebook" for anchor in pack["source_anchors"])
     assert any(entity["label"] == "Acinetobacter baylyi ADP1" for entity in pack["deterministic_entities"])
     assert any(hint["label"] == "kescience_fitnessbrowser" for hint in pack["dataset_hints"])
     assert any(anchor["assertion_kind"] == "finding" for anchor in pack["evidence_anchors"])

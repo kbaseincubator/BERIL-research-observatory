@@ -174,12 +174,12 @@ class PagePlan(BaseModel):
 
 **Files:** `audit.py`, `extract/structural.py`, tests.
 
-- [ ] Parse project canonical files: `REPORT.md`, `RESEARCH_PLAN.md`, `REVIEW.md`, `README.md`, `beril.yaml`.
-- [ ] Emit source sections with stable IDs, headings, exact text hashes, and line/char metadata.
-- [ ] Extract deterministic source anchors: datasets, notebooks, figures, PMIDs/DOIs, explicit project links.
-- [ ] Extract deterministic identifier-like entities: KOs, Pfams, COGs, GTDB/genome IDs.
-- [ ] Add tests on fixture projects.
-- [ ] Verify no LLM/model/API calls in this path.
+- [x] Parse project canonical files: `REPORT.md`, `RESEARCH_PLAN.md`, `REVIEW.md`, `README.md`, `beril.yaml`.
+- [x] Emit source sections with stable IDs, headings, exact text hashes, and line/char metadata.
+- [x] Extract deterministic source anchors: datasets, notebooks, figures, PMIDs/DOIs, explicit project links.
+- [x] Extract deterministic identifier-like entities: KOs, Pfams, COGs, GTDB/genome IDs.
+- [x] Add tests on fixture projects.
+- [x] Verify no LLM/model/API calls in this path.
 
 **Acceptance:** The two ADP1 projects produce stable source-section inventories and source anchors.
 
@@ -256,8 +256,8 @@ class PagePlan(BaseModel):
 - [ ] Canonicalize entities by deterministic IDs/CURIEs.
 - [x] Keep statement-card IDs stable across re-ingestion.
 - [ ] Detect conflicts from explicit contradictions and opposing claims.
-- [ ] Emit sorted graph artifacts: `nodes.tsv`, `edges.tsv`, `graph.json`.
-- [ ] Idempotency test under shuffled project/card/correction order.
+- [x] Emit sorted graph artifacts: `nodes.tsv`, `edges.tsv`, `graph.json`.
+- [x] Idempotency test under shuffled project/card/correction order.
 
 **Acceptance:** Graph output is byte-stable and statement cards remain queryable as first-class nodes.
 
@@ -359,7 +359,7 @@ class PagePlan(BaseModel):
   - broken links and dangling edges;
   - synthesis pages regenerated in last build.
 - [ ] Add CLI `compendium quality`.
-- [ ] Render quality dashboard page.
+- [x] Render quality dashboard page.
 - [x] Tests for metric correctness on small graphs.
 
 **Acceptance:** Quality report catches missing evidence, dangling links, and orphan synthesis pages.
