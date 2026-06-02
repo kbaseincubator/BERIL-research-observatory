@@ -1,0 +1,832 @@
+project:
+  id: adp1_three_project_ingestion_tracer
+  title: ADP1 three-project ingestion tracer
+statements:
+- id: stmt:adp1-deletion-carbon-tier-finding
+  kind: finding
+  statement: ADP1 deletion phenotypes across eight carbon sources separate into demanding,
+    moderate, and robust growth-defect tiers.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    topics:
+    - topic:adp1-carbon-fitness
+  links:
+    supports:
+    - stmt:adp1-deletion-continuum-claim
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    condition: eight carbon sources
+    method: deletion mutant growth ratios
+    data_collection: collection:adp1_deletion_phenotypes
+  evidence:
+    source_project: adp1_deletion_phenotypes
+    source_doc: REPORT.md
+    source_section: Key Findings
+    exact: The 8 carbon sources partition into demanding, moderate, and robust tiers
+      based on the fraction of genes showing growth defects.
+    prefix: ''
+    suffix: ''
+    notebook: 01_data_extraction.ipynb
+    figure: figures/condition_boxplots.png
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:e907c5d021a85b7348a4f86ec1ba1293bb58d468b9daae72b892db9b8791f5d5
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-deletion-condition-independence-finding
+  kind: finding
+  statement: ADP1 carbon-source assays provide multiple independent phenotypic dimensions
+    rather than one shared growth-sensitivity axis.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    topics:
+    - topic:adp1-carbon-fitness
+  links:
+    supports:
+    - stmt:adp1-deletion-continuum-claim
+    contradicts: []
+    motivates:
+    - stmt:adp1-deletion-expand-carbon-panel-opportunity
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    condition: eight carbon sources
+    method: PCA and pairwise condition correlation analysis
+    data_collection: collection:adp1_deletion_phenotypes
+  evidence:
+    source_project: adp1_deletion_phenotypes
+    source_doc: REPORT.md
+    source_section: Results
+    exact: The low pairwise correlations (median Pearson r = 0.25, maximum r = 0.58)
+      demonstrate that each carbon source imposes a largely independent set of gene
+      requirements.
+    prefix: ''
+    suffix: ''
+    notebook: 02_condition_structure.ipynb
+    figure: figures/condition_clustermap.png
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:e907c5d021a85b7348a4f86ec1ba1293bb58d468b9daae72b892db9b8791f5d5
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-deletion-continuum-claim
+  kind: claim
+  statement: ADP1 condition-dependent essentiality should be modeled as a continuous
+    phenotype landscape with quinate degradation as a discrete exception.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    topics:
+    - topic:adp1-carbon-fitness
+  links:
+    supports: []
+    contradicts: []
+    motivates:
+    - stmt:adp1-deletion-expand-carbon-panel-opportunity
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    condition: eight carbon sources
+    method: clustering, PCA, and condition-specificity analysis
+    data_collection: collection:adp1_deletion_phenotypes
+  evidence:
+    source_project: adp1_deletion_phenotypes
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    exact: The quinate degradation pathway is the sole exception, forming the only
+      discrete phenotypic module.
+    prefix: ''
+    suffix: ''
+    notebook: 03_gene_modules.ipynb
+    figure: figures/gene_heatmap.png
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:e907c5d021a85b7348a4f86ec1ba1293bb58d468b9daae72b892db9b8791f5d5
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-deletion-expand-carbon-panel-opportunity
+  kind: opportunity
+  statement: Expanding ADP1 deletion phenotyping beyond eight carbon sources could
+    test whether the observed independent dimensions increase with condition coverage.
+  scope: project_local
+  tier: grounded
+  confidence: medium
+  about:
+    entities:
+    - entity:adp1
+    topics:
+    - topic:adp1-carbon-fitness
+  links:
+    supports: []
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation:
+    - stmt:adp1-deletion-continuum-claim
+  qualifiers:
+    organism: entity:adp1
+    condition: expanded carbon-source panel
+    method: deletion mutant growth profiling
+    target_output: dataset:adp1-expanded-carbon-source-growth-matrix
+  evidence:
+    source_project: adp1_deletion_phenotypes
+    source_doc: REPORT.md
+    source_section: Limitations
+    exact: Only 8 carbon sources were tested. The ~5 independent dimensions may increase
+      with more conditions.
+    prefix: ''
+    suffix: ''
+    notebook: null
+    figure: null
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:e907c5d021a85b7348a4f86ec1ba1293bb58d468b9daae72b892db9b8791f5d5
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-deletion-quinate-module-finding
+  kind: finding
+  statement: Quinate degradation is the main discrete exception to the otherwise continuous
+    ADP1 carbon-fitness landscape.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    - entity:quinate
+    topics:
+    - topic:adp1-carbon-fitness
+  links:
+    supports:
+    - stmt:adp1-deletion-continuum-claim
+    contradicts: []
+    motivates:
+    - stmt:adp1-deletion-expand-carbon-panel-opportunity
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    condition: quinate
+    method: hierarchical clustering and specificity scoring
+    data_collection: collection:adp1_deletion_phenotypes
+  evidence:
+    source_project: adp1_deletion_phenotypes
+    source_doc: REPORT.md
+    source_section: Key Findings
+    exact: The one exception is a small module of 24 genes with extreme quinate-specific
+      defects (mean z-score = -7.28 on quinate, near-zero on other conditions).
+    prefix: ''
+    suffix: ''
+    notebook: 03_gene_modules.ipynb
+    figure: figures/module_profiles.png
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:e907c5d021a85b7348a4f86ec1ba1293bb58d468b9daae72b892db9b8791f5d5
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-explorer-berdl-connectivity-finding
+  kind: finding
+  statement: The ADP1 database connects strongly to BERDL through genomes, reactions,
+    compounds, and pangenome clusters.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    - entity:berdl
+    topics:
+    - topic:adp1-data-integration
+  links:
+    supports:
+    - stmt:adp1-explorer-database-bridge-claim
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: BERDL connection scan
+    data_collection: collection:adp1_multiomics_database
+  evidence:
+    source_project: acinetobacter_adp1_explorer
+    source_doc: REPORT.md
+    source_section: Key Findings
+    exact: Querying BERDL via Spark validated that the ADP1 database connects strongly
+      to BERDL collections
+    prefix: ''
+    suffix: ''
+    notebook: 02_berdl_connection_scan.ipynb
+    figure: null
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3bbdedfdc2cfa9628650f6bb87a9ef4a7e7762ba69fe0cca884a2dd7451ff912
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-explorer-condition-fitness-finding
+  kind: finding
+  statement: ADP1 mutant growth fitness shows condition-specific structure, with urea
+    and quinate behaving as outlier conditions.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    - entity:quinate
+    - entity:urea
+    topics:
+    - topic:adp1-carbon-fitness
+  links:
+    supports: []
+    contradicts: []
+    motivates:
+    - stmt:adp1-explorer-urea-deep-dive-opportunity
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    condition: eight carbon sources
+    method: mutant growth fitness correlation analysis
+    data_collection: collection:adp1_multiomics_database
+  evidence:
+    source_project: acinetobacter_adp1_explorer
+    source_doc: REPORT.md
+    source_section: Key Findings
+    exact: Urea fitness is nearly uncorrelated with quinate (r = 0.11) and weakly
+      correlated with all other conditions (r = 0.12-0.28), suggesting that urea catabolism
+      involves a largely independent set of genes.
+    prefix: ''
+    suffix: ''
+    notebook: 04_gene_essentiality_and_fitness.ipynb
+    figure: figures/growth_condition_correlation.png
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3bbdedfdc2cfa9628650f6bb87a9ef4a7e7762ba69fe0cca884a2dd7451ff912
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-explorer-database-bridge-claim
+  kind: claim
+  statement: The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1
+    synthesis pages.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    - entity:berdl
+    topics:
+    - topic:adp1-data-integration
+  links:
+    supports: []
+    contradicts: []
+    motivates:
+    - stmt:adp1-explorer-discordance-opportunity
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: multi-omics database integration
+    data_collection: collection:adp1_multiomics_database
+  evidence:
+    source_project: acinetobacter_adp1_explorer
+    source_doc: REPORT.md
+    source_section: Interpretation
+    exact: This exploration project demonstrates that a comprehensive user-provided
+      database for *A. baylyi* ADP1 integrates deeply with BERDL collections.
+    prefix: ''
+    suffix: ''
+    notebook: null
+    figure: null
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3bbdedfdc2cfa9628650f6bb87a9ef4a7e7762ba69fe0cca884a2dd7451ff912
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-explorer-discordance-opportunity
+  kind: opportunity
+  statement: FBA-TnSeq discordant genes in ADP1 should be prioritized for metabolic
+    model refinement.
+  scope: project_local
+  tier: grounded
+  confidence: medium
+  about:
+    entities:
+    - entity:adp1
+    - entity:fba_model
+    topics:
+    - topic:adp1-model-quality
+  links:
+    supports: []
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation:
+    - stmt:adp1-explorer-database-bridge-claim
+  qualifiers:
+    organism: entity:adp1
+    method: discordance analysis
+    target_output: dataset:adp1-fba-tnseq-discordance-prioritization
+  evidence:
+    source_project: acinetobacter_adp1_explorer
+    source_doc: REPORT.md
+    source_section: Research Questions Answered
+    exact: The 227 genes where FBA and TnSeq disagree on essentiality could guide
+      metabolic model refinement
+    prefix: ''
+    suffix: ''
+    notebook: null
+    figure: null
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3bbdedfdc2cfa9628650f6bb87a9ef4a7e7762ba69fe0cca884a2dd7451ff912
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-explorer-gapfilling-caveat
+  kind: caveat
+  statement: ADP1 model-based growth predictions are quality-limited by heavy dependence
+    on gapfilled reactions.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    - entity:fba_model
+    topics:
+    - topic:adp1-model-quality
+  links:
+    supports: []
+    contradicts: []
+    motivates:
+    - stmt:adp1-explorer-discordance-opportunity
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: FBA growth phenotype prediction audit
+    data_collection: collection:adp1_multiomics_database
+  evidence:
+    source_project: acinetobacter_adp1_explorer
+    source_doc: REPORT.md
+    source_section: Key Findings
+    exact: Of 121,519 growth phenotype predictions across 14 genomes, 105,376 (87%)
+      require at least one gapfilled reaction.
+    prefix: ''
+    suffix: ''
+    notebook: 05_metabolic_model_and_phenotypes.ipynb
+    figure: figures/gapfilling_impact.png
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3bbdedfdc2cfa9628650f6bb87a9ef4a7e7762ba69fe0cca884a2dd7451ff912
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-explorer-multiomics-finding
+  kind: finding
+  statement: The ADP1 database integrates six molecular and phenotype data modalities
+    for Acinetobacter baylyi ADP1.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    - collection:adp1_multiomics_database
+    topics:
+    - topic:adp1-data-integration
+  links:
+    supports:
+    - stmt:adp1-explorer-database-bridge-claim
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: SQLite database inventory
+    data_collection: collection:adp1_multiomics_database
+  evidence:
+    source_project: acinetobacter_adp1_explorer
+    source_doc: REPORT.md
+    source_section: Key Findings
+    exact: The user-provided SQLite database contains 15 tables with 461,522 total
+      rows and 135 MB of data for *Acinetobacter baylyi* ADP1 and 13 related genomes.
+    prefix: ''
+    suffix: ''
+    notebook: 01_database_exploration.ipynb
+    figure: figures/data_coverage_by_modality.png
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3bbdedfdc2cfa9628650f6bb87a9ef4a7e7762ba69fe0cca884a2dd7451ff912
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-explorer-pangenome-bridge-finding
+  kind: finding
+  statement: A gene-junction bridge maps BERDL pangenome clusters to ADP1-style cluster
+    IDs with complete gene-level coverage.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    - entity:berdl
+    topics:
+    - topic:adp1-data-integration
+  links:
+    supports:
+    - stmt:adp1-explorer-database-bridge-claim
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: pangenome cluster ID mapping
+    data_collection: collection:adp1_multiomics_database
+    target_output: dataset:cluster_id_mapping
+  evidence:
+    source_project: acinetobacter_adp1_explorer
+    source_doc: REPORT.md
+    source_section: Key Findings
+    exact: All 4,891 BERDL clusters mapped successfully to 4,081 unique ADP1 clusters
+      (100% gene-level match across 43,754 genes).
+    prefix: ''
+    suffix: ''
+    notebook: 03_cluster_id_mapping.ipynb
+    figure: null
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3bbdedfdc2cfa9628650f6bb87a9ef4a7e7762ba69fe0cca884a2dd7451ff912
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-explorer-urea-deep-dive-opportunity
+  kind: opportunity
+  statement: ADP1 urea-specific fitness genes and their pangenome conservation should
+    be analyzed as an independent metabolism module.
+  scope: project_local
+  tier: grounded
+  confidence: medium
+  about:
+    entities:
+    - entity:adp1
+    - entity:urea
+    topics:
+    - topic:adp1-carbon-fitness
+  links:
+    supports: []
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation:
+    - stmt:adp1-explorer-condition-fitness-finding
+  qualifiers:
+    organism: entity:adp1
+    condition: urea
+    method: pangenome conservation analysis
+    target_output: dataset:adp1-urea-specific-gene-conservation
+  evidence:
+    source_project: acinetobacter_adp1_explorer
+    source_doc: REPORT.md
+    source_section: Research Questions Answered
+    exact: The near-zero correlation between urea fitness and other carbon sources
+      (r = 0.11-0.28) suggests a largely independent gene set.
+    prefix: ''
+    suffix: ''
+    notebook: null
+    figure: null
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3bbdedfdc2cfa9628650f6bb87a9ef4a7e7762ba69fe0cca884a2dd7451ff912
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-triple-aromatic-discordance-finding
+  kind: finding
+  statement: Aromatic degradation genes are enriched among ADP1 FBA-discordant genes,
+    indicating systematic model gaps.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    - entity:fba_model
+    - entity:aromatic_degradation
+    topics:
+    - topic:adp1-model-quality
+  links:
+    supports:
+    - stmt:adp1-triple-continuous-fitness-claim
+    contradicts: []
+    motivates:
+    - stmt:adp1-triple-aromatic-media-opportunity
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: RAST functional enrichment of discordant genes
+    data_collection: collection:adp1_triple_essentiality
+  evidence:
+    source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Key Findings
+    exact: '**Aromatic degradation genes** are enriched among FBA-discordant genes
+      (OR=9.7), revealing systematic model gaps'
+    prefix: ''
+    suffix: ''
+    notebook: null
+    figure: figures/rast_enrichment_discordant.png
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3b6f0f9d70dc85d615a574d806adededed9d2ee5049830c0d9717ccee506e38f
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-triple-aromatic-media-opportunity
+  kind: opportunity
+  statement: ADP1 FBA media definitions should be refined with trace aromatic compounds
+    and retested against aromatic-degradation discordance.
+  scope: project_local
+  tier: grounded
+  confidence: medium
+  about:
+    entities:
+    - entity:adp1
+    - entity:fba_model
+    - entity:aromatic_degradation
+    topics:
+    - topic:adp1-model-quality
+    - topic:adp1-carbon-fitness
+  links:
+    supports: []
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation:
+    - stmt:adp1-triple-continuous-fitness-claim
+  qualifiers:
+    organism: entity:adp1
+    condition: minimal media
+    method: FBA model refinement
+    target_output: dataset:adp1-aromatic-media-validation-matrix
+  evidence:
+    source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Recommendations
+    exact: Model refinement should add trace aromatic compounds to media definition
+    prefix: ''
+    suffix: ''
+    notebook: null
+    figure: null
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3b6f0f9d70dc85d615a574d806adededed9d2ee5049830c0d9717ccee506e38f
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-triple-continuous-fitness-claim
+  kind: claim
+  statement: ADP1 essentiality synthesis should prioritize continuous fitness and
+    orthogonal evidence over binary essentiality thresholds alone.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    topics:
+    - topic:adp1-carbon-fitness
+    - topic:adp1-model-quality
+  links:
+    supports: []
+    contradicts: []
+    motivates:
+    - stmt:adp1-triple-aromatic-media-opportunity
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: FBA, KO, RB-TnSeq, proteomics, and growth assay comparison
+    data_collection: collection:adp1_triple_essentiality
+  evidence:
+    source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Recommendations
+    exact: '**Use continuous fitness values** from TnSeq rather than binary essentiality_fraction'
+    prefix: ''
+    suffix: ''
+    notebook: null
+    figure: null
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3b6f0f9d70dc85d615a574d806adededed9d2ee5049830c0d9717ccee506e38f
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-triple-fba-growth-caveat
+  kind: caveat
+  statement: FBA class does not predict which TnSeq-dispensable ADP1 genes have measured
+    growth defects.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    - entity:fba_model
+    topics:
+    - topic:adp1-model-quality
+  links:
+    supports: []
+    contradicts: []
+    motivates:
+    - stmt:adp1-triple-aromatic-media-opportunity
+    refines:
+    - stmt:adp1-triple-continuous-fitness-claim
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: FBA class vs growth defect association
+    data_collection: collection:adp1_triple_essentiality
+  evidence:
+    source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Key Findings
+    exact: FBA's binary classification of genes as essential, variable, or blocked
+      does not predict which TnSeq-dispensable genes have measurable growth defects.
+    prefix: ''
+    suffix: ''
+    notebook: null
+    figure: figures/fba_growth_concordance.png
+    p_value: 0.63
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3b6f0f9d70dc85d615a574d806adededed9d2ee5049830c0d9717ccee506e38f
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-triple-fitness-predictor-finding
+  kind: finding
+  statement: Continuous fitness values outperform binary essentiality fractions for
+    predicting ADP1 essentiality.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    topics:
+    - topic:adp1-carbon-fitness
+    - topic:adp1-model-quality
+  links:
+    supports:
+    - stmt:adp1-triple-continuous-fitness-claim
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: ROC analysis
+    data_collection: collection:adp1_triple_essentiality
+  evidence:
+    source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Integrated Discussion
+    exact: Continuous fitness values (AUC=0.70-0.73) outperform binary essentiality_fraction
+      (AUC=0.34-0.40).
+    prefix: ''
+    suffix: ''
+    notebook: 04_roc_analysis.ipynb
+    figure: figures/roc_comprehensive.png
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3b6f0f9d70dc85d615a574d806adededed9d2ee5049830c0d9717ccee506e38f
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'
+- id: stmt:adp1-triple-proteomics-finding
+  kind: finding
+  statement: Proteomics is a strong ADP1 essentiality signal and performs comparably
+    to continuous fitness in ROC analysis.
+  scope: project_local
+  tier: grounded
+  confidence: high
+  about:
+    entities:
+    - entity:adp1
+    topics:
+    - topic:adp1-model-quality
+  links:
+    supports:
+    - stmt:adp1-triple-continuous-fitness-claim
+    contradicts: []
+    motivates: []
+    refines: []
+    requires_validation: []
+  qualifiers:
+    organism: entity:adp1
+    method: proteomics essentiality ROC analysis
+    data_collection: collection:adp1_triple_essentiality
+  evidence:
+    source_project: adp1_triple_essentiality
+    source_doc: REPORT.md
+    source_section: Integrated Conclusions
+    exact: Proteomics validates essentiality (AUC=0.74)
+    prefix: ''
+    suffix: ''
+    notebook: null
+    figure: null
+    p_value: null
+  extraction:
+    agent_type: llm_extractor
+    skill: kg-ingest-project
+    model: gpt-5-codex
+    prompt_hash: prompt:kg-ingest-project-v1
+    context_pack_hash: sha256:3b6f0f9d70dc85d615a574d806adededed9d2ee5049830c0d9717ccee506e38f
+    repo_commit: 62e64b2
+    timestamp: '2026-06-02T00:00:00Z'

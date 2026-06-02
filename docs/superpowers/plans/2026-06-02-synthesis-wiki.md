@@ -238,7 +238,7 @@ class PagePlan(BaseModel):
   - summarize extracted cards and diffs.
 - [x] Require evidence anchors for every non-retracted statement.
 - [x] Forbid uncited claims and free-form relation types.
-- [ ] Demonstrate on one fixture/tracer project.
+- [x] Demonstrate on one fixture/tracer project.
 
 **Acceptance:** Running the skill on one ADP1 project writes validated statement cards and a manifest.
 
@@ -401,7 +401,7 @@ class PagePlan(BaseModel):
 
 **Goal:** Prove the full workflow on the two ADP1 projects.
 
-- [ ] Run `kg-ingest-project` for each tracer project.
+- [x] Run `kg-ingest-project` for each tracer project.
 - [x] Build graph and page plans.
 - [x] Run `kg-synthesize-page` for home, ADP1 topic, claims, opportunity, projects, and organism page.
 - [x] Render the site.

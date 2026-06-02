@@ -1,5 +1,6 @@
 .venv/
 out/
+context-packs/
 __pycache__/
 *.pyc
 .pytest_cache/
