@@ -20,6 +20,7 @@ from compendium.quality.synthesis_dashboard import (
     render_synthesis_quality_dashboard_html,
 )
 from compendium.quality.synthesis_quality import assess_synthesis_quality
+from compendium.render.markdown import render_markdown_wiki
 from compendium.render.synthesis import render_synthesis_site
 from compendium.validate import validate_project_kg_file
 
@@ -43,6 +44,8 @@ class TracerArtifacts:
     page_artifact_dir: Path
     page_markdown_paths: list[Path]
     page_manifest_paths: list[Path]
+    markdown_wiki_dir: Path
+    markdown_wiki_paths: list[Path]
     site_dir: Path
     rendered_site_paths: list[Path]
     quality_json: Path
@@ -98,6 +101,14 @@ def generate_tracer_artifacts(
         page_markdown_paths.append(markdown_path)
         page_manifest_paths.append(manifest_path)
 
+    markdown_wiki_dir = out_dir / "wiki"
+    markdown_wiki_paths = render_markdown_wiki(
+        card_list,
+        page_plans,
+        markdown_wiki_dir,
+        statement_graph=graph,
+    )
+
     site_dir = out_dir / "site"
     rendered_site_paths = render_synthesis_site(
         card_list,
@@ -144,6 +155,8 @@ def generate_tracer_artifacts(
         page_artifact_dir=page_artifact_dir,
         page_markdown_paths=page_markdown_paths,
         page_manifest_paths=page_manifest_paths,
+        markdown_wiki_dir=markdown_wiki_dir,
+        markdown_wiki_paths=markdown_wiki_paths,
         site_dir=site_dir,
         rendered_site_paths=rendered_site_paths,
         quality_json=quality_json,

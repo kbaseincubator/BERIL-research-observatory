@@ -30,6 +30,7 @@ from compendium.quality.synthesis_dashboard import (
     render_synthesis_quality_dashboard_html,
 )
 from compendium.quality.synthesis_quality import assess_synthesis_quality
+from compendium.render.markdown import render_markdown_wiki
 from compendium.quality.wiki_quality import assess_wiki
 from compendium.render.render import render_site
 from compendium.render.synthesis import render_synthesis_site
@@ -272,6 +273,18 @@ def dispatch(args) -> int:
             statement_graph=graph,
         )
         print(f"[compendium] rendered {len(rendered)} synthesis pages -> {out_dir}")
+        return 0
+    if args.cmd == "render-markdown":
+        cards = _load_statement_cards(args.path)
+        graph = build_statement_graph(cards)
+        out_dir = Path(args.out).resolve()
+        rendered = render_markdown_wiki(
+            cards,
+            plan_pages(cards),
+            out_dir,
+            statement_graph=graph,
+        )
+        print(f"[compendium] rendered {len(rendered)} markdown wiki pages -> {out_dir}")
         return 0
     if args.cmd == "quality-synthesis":
         cards = _load_statement_cards(args.path)

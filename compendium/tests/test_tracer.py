@@ -19,6 +19,7 @@ def test_adp1_tracer_generation_writes_expected_artifacts(tmp_path: Path) -> Non
     assert artifacts.quality_dashboard_json.is_file()
     assert artifacts.quality_dashboard_html.is_file()
     assert artifacts.review_queue_json.is_file()
+    assert artifacts.markdown_wiki_dir.is_dir()
 
     assert (artifacts.page_artifact_dir / "home.md").is_file()
     assert (artifacts.page_artifact_dir / "topics" / "adp1-carbon-fitness.md").is_file()
@@ -30,6 +31,10 @@ def test_adp1_tracer_generation_writes_expected_artifacts(tmp_path: Path) -> Non
     assert (artifacts.site_dir / "topic_adp1-carbon-fitness.html").is_file()
     assert (artifacts.site_dir / "entity_adp1.html").is_file()
     assert (artifacts.site_dir / "graph.html").is_file()
+    assert (artifacts.markdown_wiki_dir / "index.md").is_file()
+    assert (artifacts.markdown_wiki_dir / "topics" / "adp1-carbon-fitness.md").is_file()
+    assert (artifacts.markdown_wiki_dir / "entities" / "adp1.md").is_file()
+    assert (artifacts.markdown_wiki_dir / "graph.md").is_file()
 
     plan_ids = {plan.id for plan in artifacts.page_plans}
     assert "home" in plan_ids
@@ -43,6 +48,18 @@ def test_adp1_tracer_generation_writes_expected_artifacts(tmp_path: Path) -> Non
     assert "project_adp1_triple_essentiality.html" in entity_html
     assert "project:adp1_deletion_phenotypes" in entity_html
     assert "project:adp1_triple_essentiality" in entity_html
+
+    home_markdown = (artifacts.markdown_wiki_dir / "index.md").read_text(encoding="utf-8")
+    topic_markdown = (
+        artifacts.markdown_wiki_dir / "topics" / "adp1-carbon-fitness.md"
+    ).read_text(encoding="utf-8")
+    entity_markdown = (artifacts.markdown_wiki_dir / "entities" / "adp1.md").read_text(
+        encoding="utf-8"
+    )
+    assert "[Adp1 Carbon Fitness](topics/adp1-carbon-fitness.md)" in home_markdown
+    assert "[Graph](graph.md)" in home_markdown
+    assert "[Adp1](../entities/adp1.md)" in topic_markdown
+    assert "[Adp1 Deletion Phenotypes](../projects/adp1-deletion-phenotypes.md)" in entity_markdown
 
     quality = artifacts.quality
     assert quality["graph_integrity"]["dangling_edges"] == 0

@@ -48,6 +48,12 @@ def test_three_project_ingestion_fixture_meets_quality_bar(tmp_path: Path) -> No
     assert (artifacts.site_dir / "topic_adp1-model-quality.html").is_file()
     assert (artifacts.site_dir / "entity_adp1.html").is_file()
     assert (artifacts.site_dir / "graph.html").is_file()
+    assert (artifacts.markdown_wiki_dir / "index.md").is_file()
+    assert (artifacts.markdown_wiki_dir / "topics" / "adp1-carbon-fitness.md").is_file()
+    assert (artifacts.markdown_wiki_dir / "topics" / "adp1-data-integration.md").is_file()
+    assert (artifacts.markdown_wiki_dir / "topics" / "adp1-model-quality.md").is_file()
+    assert (artifacts.markdown_wiki_dir / "entities" / "adp1.md").is_file()
+    assert (artifacts.markdown_wiki_dir / "graph.md").is_file()
     assert sum(plan.type == "project" for plan in artifacts.page_plans) == 3
     assert sum(plan.type == "claim" for plan in artifacts.page_plans) == 3
     assert sum(plan.type == "opportunity" for plan in artifacts.page_plans) == 4

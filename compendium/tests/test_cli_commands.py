@@ -142,6 +142,26 @@ def test_render_synthesis_command_writes_static_site(tmp_path: Path) -> None:
     assert "ADP1 condition-dependent essentiality" in claim_page.read_text(encoding="utf-8")
 
 
+def test_render_markdown_command_writes_linked_markdown_wiki(tmp_path: Path) -> None:
+    out_dir = tmp_path / "wiki"
+
+    assert main(["render-markdown", str(STATEMENT_FIXTURE), "--out", str(out_dir)]) == 0
+
+    home = out_dir / "index.md"
+    topic = out_dir / "topics" / "adp1-carbon-fitness.md"
+    entity = out_dir / "entities" / "adp1.md"
+    graph = out_dir / "graph.md"
+    assert home.is_file()
+    assert topic.is_file()
+    assert entity.is_file()
+    assert graph.is_file()
+    assert "[Adp1 Carbon Fitness](topics/adp1-carbon-fitness.md)" in home.read_text(
+        encoding="utf-8"
+    )
+    assert "[Graph](graph.md)" in home.read_text(encoding="utf-8")
+    assert "[Adp1](../entities/adp1.md)" in topic.read_text(encoding="utf-8")
+
+
 def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
     out = tmp_path / "quality.json"
     dashboard = tmp_path / "quality.html"

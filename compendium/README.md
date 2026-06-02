@@ -29,7 +29,8 @@ audit -> context-pack -> validate cards -> assemble graph -> plan pages -> rende
 ```bash
 uv run --directory compendium --group test pytest
 uv run --directory compendium compendium tracer --out out/adp1-tracer
-open compendium/out/adp1-tracer/site/index.html             # statement-card tracer wiki
+open compendium/out/adp1-tracer/wiki/index.md               # linked Markdown wiki
+open compendium/out/adp1-tracer/site/index.html             # optional static HTML render
 
 uv run --directory compendium compendium all \
     --projects acinetobacter_adp1_explorer adp1_deletion_phenotypes \
