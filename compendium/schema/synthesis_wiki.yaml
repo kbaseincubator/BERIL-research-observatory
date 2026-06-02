@@ -1,0 +1,217 @@
+id: https://w3id.org/beril/synthesis-wiki
+name: synthesis_wiki
+title: BERIL synthesis wiki statement-card schema
+description: >-
+  Statement-card centered schema for the BERIL synthesis wiki. Statement cards are the
+  source of truth for synthesis pages, evidence trails, and typed graph assembly.
+license: MIT
+default_prefix: synthesis_wiki
+default_range: string
+
+prefixes:
+  synthesis_wiki: https://w3id.org/beril/synthesis-wiki/
+  linkml: https://w3id.org/linkml/
+
+imports:
+  - linkml:types
+
+enums:
+  StatementKindEnum:
+    permissible_values:
+      finding: {}
+      claim: {}
+      caveat: {}
+      conflict: {}
+      hypothesis: {}
+      opportunity: {}
+      direction: {}
+      method_note: {}
+      derived_product: {}
+  StatementScopeEnum:
+    permissible_values:
+      project_local: {}
+      cross_project: {}
+      corpus_level: {}
+      hypothesis: {}
+  StatementTierEnum:
+    permissible_values:
+      asserted: {description: extracted and evidence-bearing, but not manually reviewed}
+      grounded: {description: source span resolves and referenced entities are grounded}
+      reviewed: {description: human-accepted statement or generated synthesis section}
+      conflict: {description: contradiction or unresolved tension detected across statement cards}
+      retracted: {description: preserved for provenance but excluded from normal synthesis}
+  ConfidenceEnum:
+    permissible_values:
+      low: {}
+      medium: {}
+      high: {}
+  PageTypeEnum:
+    permissible_values:
+      home: {}
+      topic: {}
+      claim: {}
+      conflict: {}
+      opportunity: {}
+      direction: {}
+      hypothesis: {}
+      derived_product: {}
+      method: {}
+      project: {}
+      finding: {}
+      source_section: {}
+      dataset: {}
+      notebook: {}
+      publication: {}
+      entity: {}
+      organism: {}
+      gene: {}
+      KO: {}
+      ortholog_group: {}
+      pathway: {}
+      phenotype: {}
+      condition: {}
+      environment: {}
+      data_collection: {}
+  EdgeClassEnum:
+    permissible_values:
+      scientific_edge: {}
+      provenance_edge: {}
+      navigation_edge: {}
+      derivation_edge: {}
+      review_edge: {}
+  ScientificEdgeKindEnum:
+    permissible_values:
+      supports: {}
+      contradicts: {}
+      refines: {}
+      generalizes: {}
+      narrows: {}
+      motivates: {}
+      tests: {}
+  ProvenanceEdgeKindEnum:
+    permissible_values:
+      has_evidence: {}
+      extracted_from: {}
+      cites: {}
+      uses_dataset: {}
+      uses_notebook: {}
+  NavigationEdgeKindEnum:
+    permissible_values:
+      about_entity: {}
+      related_page: {}
+      member_of_topic: {}
+      backlink: {}
+      next_read: {}
+  DerivationEdgeKindEnum:
+    permissible_values:
+      produced_by: {}
+      reused_by: {}
+      depends_on: {}
+      derived_from: {}
+  ReviewEdgeKindEnum:
+    permissible_values:
+      needs_review: {}
+      caveat_for: {}
+      resolves_conflict: {}
+      supersedes: {}
+      retracted_by: {}
+  EdgeKindEnum:
+    permissible_values:
+      supports: {}
+      contradicts: {}
+      refines: {}
+      generalizes: {}
+      narrows: {}
+      motivates: {}
+      tests: {}
+      has_evidence: {}
+      extracted_from: {}
+      cites: {}
+      uses_dataset: {}
+      uses_notebook: {}
+      about_entity: {}
+      related_page: {}
+      member_of_topic: {}
+      backlink: {}
+      next_read: {}
+      produced_by: {}
+      reused_by: {}
+      depends_on: {}
+      derived_from: {}
+      needs_review: {}
+      caveat_for: {}
+      resolves_conflict: {}
+      supersedes: {}
+      retracted_by: {}
+
+classes:
+  AboutRefs:
+    attributes:
+      entities: {multivalued: true}
+      topics: {multivalued: true}
+  StatementLinks:
+    attributes:
+      supports: {multivalued: true}
+      contradicts: {multivalued: true}
+      motivates: {multivalued: true}
+      refines: {multivalued: true}
+      requires_validation: {multivalued: true}
+  EvidenceAnchor:
+    attributes:
+      source_project: {required: true}
+      source_doc: {required: true}
+      source_section: {}
+      exact: {required: true}
+      prefix: {}
+      suffix: {}
+      notebook: {}
+      figure: {}
+      p_value: {range: float}
+  ExtractionManifest:
+    attributes:
+      agent_type: {required: true}
+      skill: {required: true}
+      model: {required: true}
+      prompt_hash: {required: true}
+      context_pack_hash: {required: true}
+      repo_commit: {required: true}
+      timestamp: {required: true}
+  StatementCard:
+    tree_root: true
+    attributes:
+      id: {identifier: true}
+      kind: {range: StatementKindEnum, required: true}
+      statement: {required: true}
+      scope: {range: StatementScopeEnum, required: true}
+      tier: {range: StatementTierEnum, required: true}
+      confidence: {range: ConfidenceEnum, required: true}
+      about: {range: AboutRefs, inlined: true, required: true}
+      links: {range: StatementLinks, inlined: true, required: true}
+      qualifiers: {}
+      evidence: {range: EvidenceAnchor, inlined: true, required: true}
+      extraction: {range: ExtractionManifest, inlined: true, required: true}
+  StatementEdge:
+    attributes:
+      s: {required: true}
+      p: {range: EdgeKindEnum, required: true}
+      o: {required: true}
+      edge_class: {range: EdgeClassEnum, required: true}
+      statement_ids: {multivalued: true}
+      provenance: {multivalued: true}
+      attrs: {}
+  PageSectionPlan:
+    attributes:
+      id: {required: true}
+      heading: {required: true}
+      member_statement_ids: {multivalued: true}
+      member_hash: {}
+  PagePlan:
+    attributes:
+      id: {identifier: true}
+      type: {range: PageTypeEnum, required: true}
+      title: {required: true}
+      member_statement_ids: {multivalued: true}
+      sections: {multivalued: true, range: PageSectionPlan, inlined_as_list: true}
+      outgoing_links: {multivalued: true}
+      backlinks: {multivalued: true}
+      member_hash: {required: true}

@@ -16,6 +16,7 @@ import yaml
 
 from compendium import audit as audit_mod
 from compendium.build.assemble import build, to_kgx
+from compendium.context_pack import build_context_pack, context_pack_bytes
 from compendium.corrections import load_corrections
 from compendium.extract.structural import extract_project
 from compendium.ground.grounder import ground
@@ -23,6 +24,11 @@ from compendium.models import ProjectKG
 from compendium.quality.kg_quality import assess_kg
 from compendium.quality.wiki_quality import assess_wiki
 from compendium.render.render import render_site
+from compendium.validate import (
+    validate_page_plan_file,
+    validate_project_kg_file,
+    validate_statement_card_file,
+)
 from compendium.verify.verifier import verify
 
 PKG_DIR = Path(__file__).resolve().parent
@@ -103,6 +109,28 @@ def run_all(projects, projects_dir: str, out: str, corrections_dir: str | None =
 
 
 def dispatch(args) -> int:
+    if args.cmd == "validate-card":
+        result = validate_statement_card_file(args.path)
+        print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
+        return 0
+    if args.cmd == "validate-project-kg":
+        result = validate_project_kg_file(args.path)
+        print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
+        return 0
+    if args.cmd == "validate-page-plan":
+        result = validate_page_plan_file(args.path)
+        print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
+        return 0
+    if args.cmd == "context-pack":
+        project_dir = Path(args.project).resolve()
+        pack = build_context_pack(project_dir)
+        out_path = Path(args.out).resolve()
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_bytes(context_pack_bytes(pack))
+        print(f"[compendium] context pack: {project_dir.name} -> {out_path}")
+        print(f"[compendium] hash: {pack['context_pack_hash']}")
+        return 0
+
     projects = args.projects or []
     if args.cmd in ("build", "render", "quality", "all") and not projects:
         print("[compendium] provide --projects <id ...> (this build does not ingest all projects).")

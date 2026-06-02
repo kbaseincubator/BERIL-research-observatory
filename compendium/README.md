@@ -1,25 +1,28 @@
 # Compendium
 
-A **deterministic, knowledge-graph-centered scientific aggregation wiki** distilled from the BERIL
-Research Observatory `projects/` corpus — distinct from the hand-authored `atlas/`.
+A **statement-card-centered synthesis wiki** distilled from the BERIL Research Observatory
+`projects/` corpus. It replaces the current generated `atlas/` shape with a richer KG-backed
+human wiki.
 
-Design spec: [`docs/kg-wiki/2026-06-01-kg-wiki-design.md`](../docs/kg-wiki/2026-06-01-kg-wiki-design.md) ·
-Plan: [`docs/superpowers/plans/2026-06-01-compendium.md`](../docs/superpowers/plans/2026-06-01-compendium.md)
+Design spec: [`docs/kg-wiki/2026-06-02-synthesis-wiki-design.md`](../docs/kg-wiki/2026-06-02-synthesis-wiki-design.md) ·
+Plan: [`docs/superpowers/plans/2026-06-02-synthesis-wiki.md`](../docs/superpowers/plans/2026-06-02-synthesis-wiki.md)
 
 ## What it is
 
-The **deterministic core** (pure Python, no LLM, runs headless) turns project REPORTs into a typed,
-content-addressed knowledge graph and renders a static wiki:
+The deterministic Python core never calls an LLM. It builds context packs, validates statement cards,
+assembles the graph, plans pages, renders the static site, and reports quality. Skills orchestrate
+LLM extraction and prose synthesis on top of those deterministic scripts.
 
 ```
-audit -> extract (Stage-1) -> ground -> verify (tiers) -> canonicalize -> assemble (KGX) -> render -> quality
+audit -> context-pack -> validate cards -> assemble graph -> plan pages -> render -> quality
 ```
 
-- **Content-addressed identity** (`ids.py`): node id = `n:hash(label|type)`, relation assertion id =
-  `a:hash(s|p|o|polarity)` — stable across re-extraction, so the build is idempotent and corrections re-bind.
-- **Honest entities-only tiers** (`grounded` / `asserted` / `conflict`) — no tier claims a relation is *true*.
+- **Statement cards** are the extraction, correction, graph, and synthesis unit.
+- **Synthesis pages** are the primary human reading path: home, topics, claims, conflicts,
+  opportunities, directions, hypotheses, projects, and entities.
+- **Typed edge classes** separate scientific, provenance, navigation, derivation, and review links.
 - **Reproducible build**: same inputs → byte-identical KGX (idempotency test shuffles ingest order & merge timing).
-- **LLM steps are skills** (`skills/`) that dispatch subagents (subscription tokens), never on the render path.
+- **LLM steps are skills** (`skills/`) that publish validated extraction/prose artifacts, never live render calls.
 
 ## Run
 
@@ -31,14 +34,15 @@ uv run --directory compendium compendium all \
 open compendium/out/site/index.html                         # the wiki
 ```
 
-Outputs: `out/nodes.tsv`, `out/edges.tsv` (KGX), `out/site/` (static wiki + `wiki/graph.json`),
-`out/quality.json` (KG + wiki quality), `kg/<project>.kg.yaml` (per-project KG).
+Current commands still support the earlier deterministic tracer. The v4 plan adds context-pack,
+statement-card validation, page planning, and skills-first ingestion commands.
 
 ## Layout
 
 | Path | Responsibility |
 |---|---|
 | `src/compendium/models.py`, `ids.py` | shared data contracts + identity/canonicalization |
+| `context_pack.py` | deterministic context packs for ingestion skills |
 | `audit.py` | Phase-0 corpus-structure audit |
 | `extract/structural.py` | Stage-1 deterministic parser → `ProjectKG` |
 | `ground/` | dictionary + regex grounder (Gilda/OGER = future swap-in) |
@@ -46,10 +50,10 @@ Outputs: `out/nodes.tsv`, `out/edges.tsv` (KGX), `out/site/` (static wiki + `wik
 | `build/`, `corrections.py` | canonicalize, assemble (KGX), layout, correction overlay |
 | `render/` | deterministic static site (Cytoscape preset + Mermaid) |
 | `quality/` | KG + wiki quality metrics |
-| `skills/` | LLM steps: `kg-extract`, `kg-synthesize`, `kg-correct`, `kg-narrate` |
+| `skills/` | LLM orchestration: ingest, synthesize pages, curate, backfill, review queue |
 
 ## Status (tracer)
 
-Deterministic core complete & tested on 2 ADP1 projects (29 nodes / 42 edges, 0 orphans / dangling /
-broken links, shared ADP1 organism hub, 100% edge evidence). Deferred (clear seams): real Gilda/OGER
-grounding, full corpus backfill, FastAPI integration, `/submit` hook, hypothesis overlay.
+The older deterministic core is a useful scaffold, but future work follows the v4 statement-card
+plan. Initial implementation target: two ADP1 projects with generated home/topic/claim/opportunity/
+project/entity pages and a typed graph with no dangling edges or broken links.

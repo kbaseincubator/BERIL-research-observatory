@@ -1,8 +1,8 @@
-"""Compendium: a deterministic, knowledge-graph-centered scientific aggregation wiki.
+"""Compendium: BERIL's deterministic, statement-card-centered synthesis wiki.
 
-Pipeline: audit -> extract (Stage-1, deterministic) -> ground -> verify -> canonicalize
--> assemble (KGX) -> render (static site). LLM steps live in ``compendium/skills`` and never
-sit on the render path. See docs/kg-wiki/2026-06-01-kg-wiki-design.md.
+Deterministic scripts build context packs, validate statement cards, assemble the graph,
+plan pages, render the static site, and report quality. Skills orchestrate LLM extraction
+and synthesis on top of those scripts. See docs/kg-wiki/2026-06-02-synthesis-wiki-design.md.
 """
 
 __version__ = "0.1.0"
