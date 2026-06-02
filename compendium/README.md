@@ -28,8 +28,12 @@ audit -> context-pack -> validate cards -> assemble graph -> plan pages -> rende
 
 ```bash
 uv run --directory compendium --group test pytest
+uv run --directory compendium compendium render-markdown \
+    fixtures/statement_cards/adp1_three_project_ingestion.yaml --out wiki
+open compendium/wiki/index.md                               # linked Markdown wiki
+
 uv run --directory compendium compendium tracer --out out/adp1-tracer
-open compendium/out/adp1-tracer/wiki/index.md               # linked Markdown wiki
+open compendium/out/adp1-tracer/wiki/index.md               # full artifact bundle's Markdown wiki
 open compendium/out/adp1-tracer/site/index.html             # optional static HTML render
 
 uv run --directory compendium compendium all \
