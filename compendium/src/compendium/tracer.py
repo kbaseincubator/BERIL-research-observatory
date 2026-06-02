@@ -12,7 +12,7 @@ from compendium.build.statement_graph import (
     export_statement_graph_artifacts,
 )
 from compendium.models import PagePlan, StatementCard
-from compendium.pages import write_page_artifact
+from compendium.pages import write_page_context
 from compendium.pages.plan import plan_pages
 from compendium.quality.review_queue import build_review_queue
 from compendium.quality.synthesis_dashboard import (
@@ -40,10 +40,10 @@ class TracerArtifacts:
     nodes_tsv: Path
     edges_tsv: Path
     page_plan_json: Path
-    page_artifact_dir: Path
-    page_markdown_paths: list[Path]
-    page_manifest_paths: list[Path]
-    markdown_wiki_dir: Path
+    page_context_dir: Path
+    page_context_paths: list[Path]
+    page_prompt_paths: list[Path]
+    markdown_wiki_dir: Path | None
     markdown_wiki_paths: list[Path]
     quality_json: Path
     quality_dashboard_json: Path
@@ -67,12 +67,14 @@ def generate_tracer_artifacts(
     output_dir: str | Path,
     *,
     source_root: str | Path | None = None,
+    authored_pages_dir: str | Path | None = None,
 ) -> TracerArtifacts:
-    """Write deterministic graph, page, wiki, quality, and review artifacts.
+    """Write deterministic graph, page context, quality, and review artifacts.
 
     This helper is intentionally offline. It composes the deterministic graph,
-    page-plan, page-artifact, wiki render, quality, dashboard, and review-queue
-    primitives without calling synthesis skills or model-backed services.
+    page-plan, page-context, quality, dashboard, and review-queue primitives
+    without calling synthesis skills or model-backed services. If authored
+    pages are supplied, it also publishes the Markdown wiki.
     """
     card_list = list(cards)
     out_dir = Path(output_dir)
@@ -86,25 +88,31 @@ def generate_tracer_artifacts(
     page_plan_json = out_dir / "page-plans.json"
     _write_json([plan.to_dict() for plan in page_plans], page_plan_json)
 
-    page_artifact_dir = out_dir / "page-artifacts"
-    page_markdown_paths = []
-    page_manifest_paths = []
+    page_context_dir = out_dir / "page-contexts"
+    page_context_paths = []
+    page_prompt_paths = []
     for plan in sorted(page_plans, key=lambda item: item.id):
-        markdown_path, manifest_path = write_page_artifact(
+        context_path, prompt_path = write_page_context(
             plan,
             card_list,
-            page_artifact_dir,
+            page_context_dir,
+            page_plans=page_plans,
+            statement_graph=graph,
+            source_root=source_root,
         )
-        page_markdown_paths.append(markdown_path)
-        page_manifest_paths.append(manifest_path)
+        page_context_paths.append(context_path)
+        page_prompt_paths.append(prompt_path)
 
-    markdown_wiki_dir = out_dir / "wiki"
-    markdown_wiki_paths = render_markdown_wiki(
-        card_list,
-        page_plans,
-        markdown_wiki_dir,
-        statement_graph=graph,
-    )
+    markdown_wiki_dir = None
+    markdown_wiki_paths = []
+    if authored_pages_dir is not None:
+        markdown_wiki_dir = out_dir / "wiki"
+        markdown_wiki_paths = render_markdown_wiki(
+            page_plans,
+            authored_pages_dir,
+            markdown_wiki_dir,
+            statement_graph=graph,
+        )
 
     quality = assess_synthesis_quality(
         card_list,
@@ -141,9 +149,9 @@ def generate_tracer_artifacts(
         nodes_tsv=graph_dir / "nodes.tsv",
         edges_tsv=graph_dir / "edges.tsv",
         page_plan_json=page_plan_json,
-        page_artifact_dir=page_artifact_dir,
-        page_markdown_paths=page_markdown_paths,
-        page_manifest_paths=page_manifest_paths,
+        page_context_dir=page_context_dir,
+        page_context_paths=page_context_paths,
+        page_prompt_paths=page_prompt_paths,
         markdown_wiki_dir=markdown_wiki_dir,
         markdown_wiki_paths=markdown_wiki_paths,
         quality_json=quality_json,
@@ -163,12 +171,14 @@ def generate_adp1_tracer_artifacts(
     *,
     fixture_path: str | Path = ADP1_TRACER_FIXTURE,
     source_root: str | Path = ADP1_SOURCE_ROOT,
+    authored_pages_dir: str | Path | None = None,
 ) -> TracerArtifacts:
     """Build all deterministic artifacts for the committed ADP1 tracer fixture."""
     return generate_tracer_artifacts(
         load_statement_cards(fixture_path),
         output_dir,
         source_root=source_root,
+        authored_pages_dir=authored_pages_dir,
     )
 
 

@@ -19,18 +19,18 @@ def test_adp1_tracer_generation_writes_expected_artifacts(tmp_path: Path) -> Non
     assert artifacts.quality_dashboard_json.is_file()
     assert artifacts.quality_dashboard_html.is_file()
     assert artifacts.review_queue_json.is_file()
-    assert artifacts.markdown_wiki_dir.is_dir()
+    assert artifacts.page_context_dir.is_dir()
 
-    assert (artifacts.page_artifact_dir / "home.md").is_file()
-    assert (artifacts.page_artifact_dir / "topics" / "adp1-carbon-fitness.md").is_file()
-    assert (artifacts.page_artifact_dir / "entities" / "adp1.md").is_file()
-    assert len(artifacts.page_markdown_paths) == len(artifacts.page_plans)
-    assert len(artifacts.page_manifest_paths) == len(artifacts.page_plans)
+    assert (artifacts.page_context_dir / "home.context.json").is_file()
+    assert (
+        artifacts.page_context_dir / "topics" / "adp1-carbon-fitness.context.json"
+    ).is_file()
+    assert (artifacts.page_context_dir / "entities" / "adp1.context.json").is_file()
+    assert len(artifacts.page_context_paths) == len(artifacts.page_plans)
+    assert len(artifacts.page_prompt_paths) == len(artifacts.page_plans)
 
-    assert (artifacts.markdown_wiki_dir / "index.md").is_file()
-    assert (artifacts.markdown_wiki_dir / "topics" / "adp1-carbon-fitness.md").is_file()
-    assert (artifacts.markdown_wiki_dir / "entities" / "adp1.md").is_file()
-    assert (artifacts.markdown_wiki_dir / "graph.md").is_file()
+    assert artifacts.markdown_wiki_dir is None
+    assert artifacts.markdown_wiki_paths == []
 
     plan_ids = {plan.id for plan in artifacts.page_plans}
     assert "home" in plan_ids
@@ -39,21 +39,12 @@ def test_adp1_tracer_generation_writes_expected_artifacts(tmp_path: Path) -> Non
     assert sum(plan.type == "claim" for plan in artifacts.page_plans) >= 2
     assert sum(plan.type == "opportunity" for plan in artifacts.page_plans) >= 1
 
-    home_markdown = (artifacts.markdown_wiki_dir / "index.md").read_text(encoding="utf-8")
-    topic_markdown = (
-        artifacts.markdown_wiki_dir / "topics" / "adp1-carbon-fitness.md"
+    topic_context = (
+        artifacts.page_context_dir / "topics" / "adp1-carbon-fitness.context.json"
     ).read_text(encoding="utf-8")
-    entity_markdown = (artifacts.markdown_wiki_dir / "entities" / "adp1.md").read_text(
-        encoding="utf-8"
-    )
-    assert "[Adp1 Carbon Fitness](topics/adp1-carbon-fitness.md)" in home_markdown
-    assert "[Graph](graph.md)" in home_markdown
-    assert "## Introduction" in home_markdown
-    assert "## Synthesis" in home_markdown
-    assert "[Adp1](../entities/adp1.md)" in topic_markdown
-    assert "This topic summarizes" in topic_markdown
-    assert "Reusable claims frame this page" in topic_markdown
-    assert "[Adp1 Deletion Phenotypes](../projects/adp1-deletion-phenotypes.md)" in entity_markdown
+    assert "topic:adp1-carbon-fitness" in topic_context
+    assert "member_statements" in topic_context
+    assert "local_graph" in topic_context
 
     quality = artifacts.quality
     assert quality["graph_integrity"]["dangling_edges"] == 0

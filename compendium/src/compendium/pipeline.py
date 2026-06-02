@@ -22,7 +22,7 @@ from compendium.corrections import load_corrections
 from compendium.extract.structural import extract_project
 from compendium.ground.grounder import ground
 from compendium.models import ProjectKG, StatementCard
-from compendium.pages import plan_pages, write_page_artifact
+from compendium.pages import plan_pages, write_page_artifact, write_page_context
 from compendium.quality.kg_quality import assess_kg
 from compendium.quality.review_queue import build_review_queue
 from compendium.quality.synthesis_dashboard import (
@@ -227,9 +227,13 @@ def dispatch(args) -> int:
             tracer_kwargs["fixture_path"] = args.project_kg
         if args.source_root:
             tracer_kwargs["source_root"] = args.source_root
+        if args.pages:
+            tracer_kwargs["authored_pages_dir"] = args.pages
         artifacts = generate_adp1_tracer_artifacts(args.out, **tracer_kwargs)
         print(f"[compendium] tracer artifacts -> {artifacts.output_dir.resolve()}")
-        print(f"[compendium] wiki -> {artifacts.markdown_wiki_dir.resolve()}")
+        print(f"[compendium] page contexts -> {artifacts.page_context_dir.resolve()}")
+        if artifacts.markdown_wiki_dir is not None:
+            print(f"[compendium] wiki -> {artifacts.markdown_wiki_dir.resolve()}")
         print(f"[compendium] quality -> {artifacts.quality_json.resolve()}")
         return 0
     if args.cmd == "statement-graph":
@@ -245,10 +249,47 @@ def dispatch(args) -> int:
         cards = _load_statement_cards(args.path)
         _write_json_or_stdout([plan.to_dict() for plan in plan_pages(cards)], args.out)
         return 0
-    if args.cmd == "synthesize-page":
+    if args.cmd == "page-context":
         cards = _load_statement_cards(args.path)
+        graph = build_statement_graph(cards)
         page_plans = plan_pages(cards)
         plans = {plan.id: plan for plan in page_plans}
+        plan = plans.get(args.page_id)
+        if plan is None:
+            raise ValueError(f"unknown page id {args.page_id!r}")
+        context_path, prompt_path = write_page_context(
+            plan,
+            cards,
+            Path(args.out).resolve(),
+            page_plans=page_plans,
+            statement_graph=graph,
+            source_root=args.source_root,
+        )
+        print(f"[compendium] page context: {context_path}")
+        print(f"[compendium] page prompt: {prompt_path}")
+        return 0
+    if args.cmd == "wiki-contexts":
+        cards = _load_statement_cards(args.path)
+        graph = build_statement_graph(cards)
+        page_plans = plan_pages(cards)
+        out_dir = Path(args.out).resolve()
+        written = []
+        for plan in sorted(page_plans, key=lambda item: item.id):
+            written.extend(
+                write_page_context(
+                    plan,
+                    cards,
+                    out_dir,
+                    page_plans=page_plans,
+                    statement_graph=graph,
+                    source_root=args.source_root,
+                )
+            )
+        print(f"[compendium] wrote {len(written)} page context artifacts -> {out_dir}")
+        return 0
+    if args.cmd == "page-artifact":
+        cards = _load_statement_cards(args.path)
+        plans = {plan.id: plan for plan in plan_pages(cards)}
         plan = plans.get(args.page_id)
         if plan is None:
             raise ValueError(f"unknown page id {args.page_id!r}")
@@ -256,7 +297,7 @@ def dispatch(args) -> int:
             plan,
             cards,
             Path(args.out).resolve(),
-            page_plans=page_plans,
+            markdown=Path(args.markdown).read_text(encoding="utf-8"),
             model=args.model,
             prompt_hash=args.prompt_hash,
         )
@@ -268,8 +309,8 @@ def dispatch(args) -> int:
         graph = build_statement_graph(cards)
         out_dir = Path(args.out).resolve()
         rendered = render_markdown_wiki(
-            cards,
             plan_pages(cards),
+            args.pages,
             out_dir,
             statement_graph=graph,
         )

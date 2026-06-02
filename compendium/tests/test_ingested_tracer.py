@@ -42,18 +42,22 @@ def test_three_project_ingestion_fixture_meets_quality_bar(tmp_path: Path) -> No
 
     artifacts = generate_tracer_artifacts(cards, tmp_path / "wiki", source_root=SOURCE_ROOT)
 
-    assert (artifacts.markdown_wiki_dir / "index.md").is_file()
-    assert (artifacts.markdown_wiki_dir / "topics" / "adp1-carbon-fitness.md").is_file()
-    assert (artifacts.markdown_wiki_dir / "topics" / "adp1-data-integration.md").is_file()
-    assert (artifacts.markdown_wiki_dir / "topics" / "adp1-model-quality.md").is_file()
-    assert (artifacts.markdown_wiki_dir / "entities" / "adp1.md").is_file()
-    assert (artifacts.markdown_wiki_dir / "graph.md").is_file()
-    topic_markdown = (
-        artifacts.markdown_wiki_dir / "topics" / "adp1-carbon-fitness.md"
+    assert (artifacts.page_context_dir / "home.context.json").is_file()
+    assert (
+        artifacts.page_context_dir / "topics" / "adp1-carbon-fitness.context.json"
+    ).is_file()
+    assert (
+        artifacts.page_context_dir / "topics" / "adp1-data-integration.context.json"
+    ).is_file()
+    assert (
+        artifacts.page_context_dir / "topics" / "adp1-model-quality.context.json"
+    ).is_file()
+    assert (artifacts.page_context_dir / "entities" / "adp1.context.json").is_file()
+    topic_context = (
+        artifacts.page_context_dir / "topics" / "adp1-carbon-fitness.context.json"
     ).read_text(encoding="utf-8")
-    assert "## Introduction" in topic_markdown
-    assert "## Synthesis" in topic_markdown
-    assert "The evidence base is anchored by" in topic_markdown
+    assert "member_statements" in topic_context
+    assert "local_graph" in topic_context
     assert sum(plan.type == "project" for plan in artifacts.page_plans) == 3
     assert sum(plan.type == "claim" for plan in artifacts.page_plans) == 3
     assert sum(plan.type == "opportunity" for plan in artifacts.page_plans) == 4

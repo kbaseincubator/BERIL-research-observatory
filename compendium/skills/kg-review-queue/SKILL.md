@@ -46,7 +46,9 @@ Rank higher when a statement has one or more of these properties:
    uv run compendium validate-project-kg kg/<project_id>.kg.yaml
    uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
    uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
-   uv run compendium render-markdown kg/<project_id>.kg.yaml --out wiki
+   uv run compendium wiki-contexts kg/<project_id>.kg.yaml --source-root ../projects --out page-contexts
+   # Run kg-synthesize-page/LLM for changed contexts to write authored pages
+   uv run compendium render-markdown kg/<project_id>.kg.yaml --pages pages --out wiki
    uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
 2. Generate the review queue from the project KG and deterministic artifacts:

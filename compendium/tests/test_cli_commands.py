@@ -8,6 +8,8 @@ from pathlib import Path
 import yaml
 
 from compendium.cli import main
+from compendium.pages import plan_pages, write_page_artifact
+from compendium.tracer import load_statement_cards
 
 from .test_validate import _statement_card_dict
 
@@ -102,15 +104,50 @@ def test_plan_pages_command_writes_page_plan_json(tmp_path: Path) -> None:
     assert all(plan["member_hash"].startswith("hash:") for plan in plans)
 
 
-def test_synthesize_page_command_writes_markdown_and_manifest(tmp_path: Path) -> None:
-    out_dir = tmp_path / "pages"
+def test_page_context_command_writes_context_and_prompt(tmp_path: Path) -> None:
+    out_dir = tmp_path / "contexts"
 
     assert main(
         [
-            "synthesize-page",
+            "page-context",
             str(STATEMENT_FIXTURE),
             "--page-id",
             "topic:adp1-carbon-fitness",
+            "--source-root",
+            str(ROOT / "projects"),
+            "--out",
+            str(out_dir),
+        ]
+    ) == 0
+
+    context = out_dir / "topics" / "adp1-carbon-fitness.context.json"
+    prompt = out_dir / "topics" / "adp1-carbon-fitness.prompt.md"
+    assert context.is_file()
+    assert prompt.is_file()
+    context_payload = json.loads(context.read_text(encoding="utf-8"))
+    assert context_payload["page"]["id"] == "topic:adp1-carbon-fitness"
+    assert context_payload["member_statements"]
+    assert "only allowed scientific context" in prompt.read_text(encoding="utf-8")
+
+
+def test_page_artifact_command_validates_authored_markdown(tmp_path: Path) -> None:
+    draft = tmp_path / "draft.md"
+    out_dir = tmp_path / "pages"
+    draft.write_text(
+        "# Topic: ADP1 Carbon Fitness\n\n"
+        "ADP1 essentiality should be read through cited project evidence "
+        "[stmt:adp1-continuum-claim; adp1_deletion_phenotypes].\n",
+        encoding="utf-8",
+    )
+
+    assert main(
+        [
+            "page-artifact",
+            str(STATEMENT_FIXTURE),
+            "--page-id",
+            "topic:adp1-carbon-fitness",
+            "--markdown",
+            str(draft),
             "--out",
             str(out_dir),
             "--model",
@@ -120,21 +157,30 @@ def test_synthesize_page_command_writes_markdown_and_manifest(tmp_path: Path) ->
         ]
     ) == 0
 
-    markdown = out_dir / "topics" / "adp1-carbon-fitness.md"
+    page = out_dir / "topics" / "adp1-carbon-fitness.md"
     manifest = out_dir / "topics" / "adp1-carbon-fitness.manifest.json"
-    assert markdown.is_file()
+    assert page.is_file()
     assert manifest.is_file()
-    markdown_text = markdown.read_text(encoding="utf-8")
-    assert "## Introduction" in markdown_text
-    assert "## Synthesis" in markdown_text
-    assert "[stmt:adp1-continuum-claim; adp1_deletion_phenotypes]" in markdown_text
-    assert json.loads(manifest.read_text(encoding="utf-8"))["model"] == "test-model"
+    assert json.loads(manifest.read_text(encoding="utf-8"))["cited_statement_ids"] == [
+        "stmt:adp1-continuum-claim"
+    ]
 
 
 def test_render_markdown_command_writes_linked_markdown_wiki(tmp_path: Path) -> None:
     out_dir = tmp_path / "wiki"
+    pages_dir = tmp_path / "pages"
+    _write_authored_pages(STATEMENT_FIXTURE, pages_dir)
 
-    assert main(["render-markdown", str(STATEMENT_FIXTURE), "--out", str(out_dir)]) == 0
+    assert main(
+        [
+            "render-markdown",
+            str(STATEMENT_FIXTURE),
+            "--pages",
+            str(pages_dir),
+            "--out",
+            str(out_dir),
+        ]
+    ) == 0
 
     home = out_dir / "index.md"
     topic = out_dir / "topics" / "adp1-carbon-fitness.md"
@@ -144,11 +190,11 @@ def test_render_markdown_command_writes_linked_markdown_wiki(tmp_path: Path) -> 
     assert topic.is_file()
     assert entity.is_file()
     assert graph.is_file()
-    assert "[Adp1 Carbon Fitness](topics/adp1-carbon-fitness.md)" in home.read_text(
+    assert "# State Of The Science" in home.read_text(encoding="utf-8")
+    assert "[Topic: Adp1 Carbon Fitness](topics/adp1-carbon-fitness.md)" in graph.read_text(
         encoding="utf-8"
     )
-    assert "[Graph](graph.md)" in home.read_text(encoding="utf-8")
-    assert "[Adp1](../entities/adp1.md)" in topic.read_text(encoding="utf-8")
+    assert "# Topic: Adp1 Carbon Fitness" in topic.read_text(encoding="utf-8")
 
 
 def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
@@ -258,10 +304,33 @@ def test_tracer_command_writes_full_adp1_artifact_bundle(tmp_path: Path) -> None
 
     assert (out_dir / "graph" / "graph.json").is_file()
     assert (out_dir / "page-plans.json").is_file()
-    assert (out_dir / "page-artifacts" / "home.md").is_file()
-    assert (out_dir / "wiki" / "index.md").is_file()
-    assert (out_dir / "wiki" / "entities" / "adp1.md").is_file()
-    assert (out_dir / "wiki" / "graph.md").is_file()
+    assert (out_dir / "page-contexts" / "home.context.json").is_file()
+    assert (out_dir / "page-contexts" / "home.prompt.md").is_file()
     assert (out_dir / "quality.json").is_file()
     assert (out_dir / "quality-dashboard.html").is_file()
     assert (out_dir / "review-queue.json").is_file()
+
+
+def _write_authored_pages(statement_fixture: Path, pages_dir: Path) -> None:
+    cards = load_statement_cards(statement_fixture)
+    card_by_id = {card.id: card for card in cards}
+    for plan in plan_pages(cards):
+        cited_card = card_by_id[plan.member_statement_ids[0]]
+        write_page_artifact(
+            plan,
+            cards,
+            pages_dir,
+            model="test-model",
+            prompt_hash="prompt:test",
+            markdown="\n".join(
+                (
+                    f"# {plan.title}",
+                    "",
+                    "## Introduction",
+                    "",
+                    f"This authored test page cites {cited_card.id} "
+                    f"[{cited_card.id}; {cited_card.evidence.source_project}].",
+                    "",
+                )
+            ),
+        )

@@ -45,7 +45,9 @@ Stop if no explicit project list or tracer preset was provided. Do not infer "al
    uv run compendium validate-project-kg kg/<project_id>.kg.yaml
    uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
    uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
-   uv run compendium render-markdown kg/<project_id>.kg.yaml --out wiki
+   uv run compendium wiki-contexts kg/<project_id>.kg.yaml --source-root ../projects --out page-contexts
+   # Run kg-synthesize-page/LLM for changed contexts to write authored pages
+   uv run compendium render-markdown kg/<project_id>.kg.yaml --pages pages --out wiki
    uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
 8. Write the batch summary with:
@@ -57,14 +59,16 @@ Stop if no explicit project list or tracer preset was provided. Do not infer "al
 
 ## Validation Commands
 
-Run these per project after `kg-ingest-project` writes its artifact:
+Run these per project after `kg-ingest-project` writes its KG artifact:
 
 ```bash
 cd compendium
 uv run compendium validate-project-kg kg/<project_id>.kg.yaml
 uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
 uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
-uv run compendium render-markdown kg/<project_id>.kg.yaml --out wiki
+uv run compendium wiki-contexts kg/<project_id>.kg.yaml --source-root ../projects --out page-contexts
+# Run kg-synthesize-page/LLM for changed contexts to write authored pages
+uv run compendium render-markdown kg/<project_id>.kg.yaml --pages pages --out wiki
 uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
 ```
 
