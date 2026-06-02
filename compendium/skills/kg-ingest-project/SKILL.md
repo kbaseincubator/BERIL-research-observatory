@@ -25,8 +25,7 @@ Stop if the project path does not exist or if no source document can supply evid
 - `compendium/kg/<project_id>.kg.yaml`.
 - Extraction manifest embedded in the project KG with skill name, model id, prompt hash, context-pack
   hash, schema hash, repo commit, timestamp, retries, and fragment hashes.
-- Rebuilt statement graph, page plans, rendered Markdown wiki, and quality diff, or a recorded
-  validation failure if the deterministic checks cannot pass.
+- Validated statement graph/page-plan readiness for `kg-generate-wiki`, or a recorded validation failure.
 
 ## Workflow
 
@@ -57,14 +56,13 @@ Stop if the project path does not exist or if no source document can supply evid
    uv run compendium validate-project-kg kg/<project_id>.kg.yaml
    uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
    uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
-   uv run compendium wiki-contexts kg/<project_id>.kg.yaml --source-root ../projects --out page-contexts
-   # Run kg-synthesize-page/LLM for changed contexts to write authored pages
-   uv run compendium render-markdown kg/<project_id>.kg.yaml --pages pages --out wiki
    uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
-7. Retry invalid fragments as described below, then write the final YAML with sorted statement cards and
+7. Run `kg-generate-wiki` after one or more project KGs are ready; do not generate prose from this ingest
+   skill.
+8. Retry invalid fragments as described below, then write the final YAML with sorted statement cards and
    stable key ordering.
-8. Summarize card counts by kind/tier, new or changed entities, proposed conflicts/opportunities, failed
+9. Summarize card counts by kind/tier, new or changed entities, proposed conflicts/opportunities, failed
    fragments, and graph/quality diffs.
 
 ## Retry Rules

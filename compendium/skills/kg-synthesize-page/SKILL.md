@@ -5,9 +5,10 @@ description: Generate one prose-rich synthesis wiki page from a fixed PagePlan a
 
 # kg-synthesize-page
 
-Use this skill after deterministic graph assembly and page planning. Deterministic code may choose page
-membership, links, and context packs; the page prose itself must be written by an LLM/subagent from the
-fixed context. This skill does not choose page membership and does not create new scientific claims.
+Use this skill as an internal page-level helper from `kg-generate-wiki`, not as the main user-facing wiki
+entry point. Deterministic code may choose page membership, links, and context packs; the page prose itself
+must be written by an LLM/subagent from the fixed context. This skill does not choose page membership and
+does not create new scientific claims.
 
 ## Inputs
 
