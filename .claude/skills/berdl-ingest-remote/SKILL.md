@@ -544,17 +544,17 @@ Report to the user:
 
 For **shared tenant** ingests:
 - Bronze: `s3a://cdm-lake/tenant-general-warehouse/{tenant}/datasets/{dataset}/`
-- Silver (Iceberg warehouse): `s3a://cdm-lake/tenant-sql-warehouse/{tenant}/iceberg/`
+- Silver (Iceberg): query as `{tenant}.{dataset}.{table}` — Polaris manages the physical location
 - Progress log: `s3a://cdm-lake/tenant-general-warehouse/{tenant}/datasets/{dataset}/_ingest_progress.jsonl`
 
 For **user-tenant space** ingests (use `username` and `my.{dataset}` from Step 4):
 - Bronze: `s3a://cdm-lake/users-general-warehouse/{username}/data/{dataset}/`
-- Silver (Iceberg warehouse): `s3a://cdm-lake/users-sql-warehouse/{username}/iceberg/`
+- Silver (Iceberg): query as `my.{dataset}.{table}` — Polaris manages the physical location
 - Progress log: `s3a://cdm-lake/users-general-warehouse/{username}/data/{dataset}/_ingest_progress.jsonl`
 
 Confirm row counts match expected line counts. If there is a mismatch, the progress log
 records `start_line`, `end_line`, and `rows_written` per chunk — the user can query the last
-ingested row in Delta and compare against the logged line range to locate the gap.
+ingested row in the Iceberg table and compare against the logged line range to locate the gap.
 
 The notebook's final cell performs the **metadata second push**: it updates each table's
 local `.yaml` with `ingest_completed_at` and `status: completed` (or `failed`), then
@@ -669,9 +669,9 @@ MinIO size verification before re-ingesting; an `ingested` chunk is skipped enti
   `uploaded` but MinIO shows a size mismatch or the file is missing, `_ingest_chunked()`
   automatically re-uploads the chunk from the local temp file before ingesting.
 - **Namespace already exists**: confirm with user before re-ingesting; `MODE = "overwrite"`
-  on chunk 0 will replace the existing Delta table; subsequent chunks use `append`.
+  on chunk 0 will replace the existing Iceberg table; subsequent chunks use `append`.
 - **Row count mismatch**: inspect the progress log for `start_line`/`end_line` of the last
-  ingested chunk and check the quarantine path at `{SILVER_BASE}/quarantine/` for rejected rows.
+  ingested chunk to locate the gap.
 - **Schema type errors**: recheck `.sql` parsing output in the schema cell and adjust column
   types in the config cell before re-running the ingest cell.
 
