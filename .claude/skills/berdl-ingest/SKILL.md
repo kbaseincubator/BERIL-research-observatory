@@ -164,6 +164,11 @@ Set `HAS_HEADER = True` or `HAS_HEADER = False` based on detection, and present 
 finding to the user for confirmation. This value is passed into the notebook config
 cell and used in the `defaults.csv.header` key of the ingest config.
 
+**SQLite sources:** skip detection — `export_sqlite()` always writes a header row to the
+exported TSV, so the notebook pins `HAS_HEADER = True` right after the export. Leaving it
+`False` would ingest the column-name row as data, and verify would still pass (the source
+line count is inflated by the same row), masking the off-by-one.
+
 Present the proposed schema as a draft `.sql` file and ask the user to confirm or
 correct it before writing `<DATA_DIR>/schema.sql`. Flag any ambiguous columns.
 
