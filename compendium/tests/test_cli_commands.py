@@ -169,6 +169,34 @@ def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
     assert "Synthesis Quality Dashboard" in dashboard.read_text(encoding="utf-8")
 
 
+def test_quality_command_writes_statement_quality_bundle(tmp_path: Path) -> None:
+    out_dir = tmp_path / "quality"
+
+    assert main(
+        [
+            "quality",
+            "--statement-kg",
+            str(STATEMENT_FIXTURE),
+            "--source-root",
+            str(ROOT / "projects"),
+            "--out",
+            str(out_dir),
+        ]
+    ) == 0
+
+    metrics = json.loads((out_dir / "quality.json").read_text(encoding="utf-8"))
+    dashboard = json.loads(
+        (out_dir / "quality-dashboard.json").read_text(encoding="utf-8")
+    )
+    queue = json.loads((out_dir / "review-queue.json").read_text(encoding="utf-8"))
+    assert metrics["evidence_resolution"]["resolved"] == 6
+    assert dashboard["summary"]["statement_total"] == 6
+    assert isinstance(queue, list)
+    assert "Synthesis Quality Dashboard" in (
+        out_dir / "quality-dashboard.html"
+    ).read_text(encoding="utf-8")
+
+
 def test_quality_synthesis_command_fails_quality_gate_but_writes_metrics(tmp_path: Path) -> None:
     project_path = tmp_path / "project.yaml"
     out = tmp_path / "quality.json"
@@ -212,3 +240,19 @@ def test_review_queue_command_writes_ranked_json(tmp_path: Path) -> None:
     assert len(queue) <= 2
     assert all("statement_id" in item for item in queue)
     assert all("reasons" in item for item in queue)
+
+
+def test_tracer_command_writes_full_adp1_artifact_bundle(tmp_path: Path) -> None:
+    out_dir = tmp_path / "tracer"
+
+    assert main(["tracer", "--out", str(out_dir)]) == 0
+
+    assert (out_dir / "graph" / "graph.json").is_file()
+    assert (out_dir / "page-plans.json").is_file()
+    assert (out_dir / "page-artifacts" / "home.md").is_file()
+    assert (out_dir / "site" / "index.html").is_file()
+    assert (out_dir / "site" / "entity_adp1.html").is_file()
+    assert (out_dir / "site" / "graph.html").is_file()
+    assert (out_dir / "quality.json").is_file()
+    assert (out_dir / "quality-dashboard.html").is_file()
+    assert (out_dir / "review-queue.json").is_file()

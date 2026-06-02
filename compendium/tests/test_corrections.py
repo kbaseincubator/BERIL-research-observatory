@@ -3,7 +3,7 @@
 import json
 
 from compendium import ids
-from compendium.corrections import apply_corrections, load_corrections
+from compendium.corrections import append_correction, apply_corrections, load_corrections
 from compendium.build import build
 from compendium.models import (
     TIER_ASSERTED,
@@ -168,6 +168,111 @@ def test_load_corrections_reads_yaml_and_json_sorted(tmp_path):
 
 def test_load_corrections_missing_dir_returns_empty(tmp_path):
     assert load_corrections(tmp_path / "nope") == []
+
+
+def test_append_correction_preserves_yaml_records_and_loads_sorted(tmp_path):
+    path = tmp_path / "scope.yaml"
+    existing = (
+        "- id: cor_3\n"
+        "  kind: retract\n"
+        "  targets: [a:zzz]\n"
+        "- id: cor_1\n"
+        "  kind: reground-entity\n"
+        "  targets: [n:abc]\n"
+    )
+    path.write_text(existing, encoding="utf-8")
+
+    append_correction(
+        path,
+        Correction(
+            id="cor_2",
+            kind="reground",
+            targets=["n:abc"],
+            value={"curie": "NCBITaxon:1"},
+        ),
+    )
+
+    assert path.read_text(encoding="utf-8").startswith(existing)
+    corrections = load_corrections(tmp_path)
+    assert [c.id for c in corrections] == ["cor_1", "cor_2", "cor_3"]
+    assert corrections[1].value == {"curie": "NCBITaxon:1"}
+
+
+def test_append_correction_round_trips_json_log(tmp_path):
+    path = tmp_path / "scope.json"
+    path.write_text(
+        json.dumps(
+            [Correction(id="cor_2", kind="retract", targets=["a:2"]).to_dict()]
+        ),
+        encoding="utf-8",
+    )
+
+    append_correction(path, Correction(id="cor_1", kind="promote", targets=["a:1"]))
+
+    records = json.loads(path.read_text(encoding="utf-8"))
+    assert [record["id"] for record in records] == ["cor_2", "cor_1"]
+    corrections = load_corrections(tmp_path)
+    assert [c.id for c in corrections] == ["cor_1", "cor_2"]
+    assert [c.kind for c in corrections] == ["promote", "retract"]
+
+
+def test_append_correction_round_trips_v4_kinds(tmp_path):
+    path = tmp_path / "scope.yaml"
+    kinds = [
+        "retract",
+        "fix-statement",
+        "fix-qualifier",
+        "reground-entity",
+        "force-merge",
+        "force-split",
+        "promote",
+        "demote",
+        "mark-conflict",
+        "resolve-conflict",
+    ]
+
+    for index, kind in enumerate(kinds):
+        append_correction(
+            path,
+            Correction(id=f"cor_{index:02d}", kind=kind, targets=[f"target:{index}"]),
+        )
+
+    assert [c.kind for c in load_corrections(tmp_path)] == kinds
+
+
+def test_appended_corrections_rebind_across_rebuilds(tmp_path):
+    org_node = ids.node_id("ADP1", "Organism")
+    finding_id = ids.assertion_id(statement="benA is essential", project="proj_a")
+    path = tmp_path / "scope.yaml"
+
+    append_correction(
+        path,
+        Correction(
+            id="cor_2",
+            kind="fix-statement",
+            targets=[finding_id],
+            value={"statement": "benA is conditionally essential"},
+        ),
+    )
+    append_correction(
+        path,
+        Correction(
+            id="cor_1",
+            kind="reground-entity",
+            targets=[org_node],
+            value={"curie": "NCBITaxon:62977"},
+        ),
+    )
+
+    corrections = load_corrections(tmp_path)
+    assert [c.id for c in corrections] == ["cor_1", "cor_2"]
+
+    for _ in range(2):
+        graph = build([_make_pkg_with_finding()], corrections)
+        org = next(n for n in graph.nodes if n.type == "Organism")
+        finding = next(n for n in graph.nodes if n.id == finding_id)
+        assert org.curie == "NCBITaxon:62977"
+        assert finding.label == "benA is conditionally essential"
 
 
 def test_apply_retract_drops_assertion():

@@ -38,6 +38,7 @@ def _card(
     exact: str = "ADP1 grows on quinate.",
     links: StatementLinks | None = None,
     qualifiers: dict[str, str] | None = None,
+    topics: list[str] | None = None,
 ) -> StatementCard:
     return StatementCard(
         id=id_,
@@ -46,7 +47,10 @@ def _card(
         scope="project_local",
         tier=tier,
         confidence="high",
-        about=AboutRefs(entities=["entity:adp1"], topics=["topic:carbon"]),
+        about=AboutRefs(
+            entities=["entity:adp1"],
+            topics=["topic:carbon"] if topics is None else topics,
+        ),
         links=links or StatementLinks(),
         qualifiers=qualifiers or {"organism": "entity:adp1"},
         evidence=EvidenceAnchor(
@@ -139,6 +143,26 @@ def test_synthesis_quality_counts_evidence_opportunities_and_conflicts(
     assert metrics["evidence_resolution"]["resolved"] == 5
     assert metrics["evidence_resolution"]["rate"] == 5 / 6
     assert metrics["evidence_resolution"]["unresolved_statement_ids"] == ["stmt:missing_evidence"]
+    assert metrics["topic_coverage"]["topic_statement_counts"] == {"topic:carbon": 6}
+    assert metrics["topic_coverage"]["topics_without_pages"] == ["topic:carbon"]
+    assert metrics["claim_balance"] == {
+        "total_claims": 1,
+        "supported_claims": 1,
+        "refuted_claims": 0,
+        "unsupported_claim_statement_ids": [],
+        "support_link_count": 1,
+        "refutation_link_count": 0,
+        "net_support_balance": 1,
+        "claims": [
+            {
+                "statement_id": "stmt:asserted",
+                "support_count": 1,
+                "refutation_count": 0,
+                "supporting_statement_ids": ["stmt:finding"],
+                "refuting_statement_ids": [],
+            }
+        ],
+    }
     assert metrics["opportunity_targets"]["with_target_outputs"] == 1
     assert metrics["opportunity_targets"]["opportunities"] == [
         {"statement_id": "stmt:opportunity", "target_outputs": ["stmt:product"]}
@@ -204,6 +228,10 @@ def test_synthesis_quality_reports_graph_and_page_integrity() -> None:
         "topic": 1,
     }
     assert metrics["page_integrity"]["orphan_pages"] == ["orphan:page"]
+    assert metrics["page_integrity"]["weakly_connected_pages"] == [
+        {"page_id": "opportunity:b", "link_degree": 0, "member_count": 2},
+        {"page_id": "orphan:page", "link_degree": 0, "member_count": 0},
+    ]
     assert metrics["page_integrity"]["unknown_page_members"] == [
         {"page_id": "opportunity:b", "member_statement_id": "stmt:unknown"}
     ]
@@ -223,6 +251,83 @@ def test_synthesis_quality_reports_graph_and_page_integrity() -> None:
     assert metrics["opportunity_targets"]["opportunities"] == [
         {"statement_id": "stmt:b", "target_outputs": ["dataset:carbon_table"]}
     ]
+
+
+def test_synthesis_quality_reports_topic_coverage_claim_balance_and_page_changes() -> None:
+    cards = [
+        _card(
+            "stmt:support",
+            links=StatementLinks(supports=["stmt:claim"]),
+            topics=["topic:carbon"],
+        ),
+        _card(
+            "stmt:refute",
+            links=StatementLinks(contradicts=["stmt:claim"]),
+            topics=["topic:missing"],
+        ),
+        _card("stmt:claim", kind="claim", tier="asserted", topics=["topic:carbon"]),
+        _card("stmt:untopiced", topics=[]),
+    ]
+    topic_page = _page(
+        "topic:carbon",
+        type_="topic",
+        members=["stmt:support", "stmt:claim"],
+        outgoing=["claim:claim"],
+        backlinks=["home"],
+    )
+    claim_page = _page(
+        "claim:claim",
+        type_="claim",
+        members=["stmt:claim"],
+        outgoing=[],
+        backlinks=["topic:carbon"],
+    )
+    setattr(topic_page, "regenerated", True)
+    setattr(claim_page, "changed", True)
+
+    metrics = assess_synthesis_quality(
+        cards,
+        graph={"nodes": [{"id": card.id} for card in cards], "edges": []},
+        page_plans=[topic_page, claim_page],
+    )
+
+    assert metrics["topic_coverage"] == {
+        "topic_count": 2,
+        "topic_page_count": 1,
+        "covered_topic_count": 1,
+        "coverage_rate": 0.5,
+        "topics_without_pages": ["topic:missing"],
+        "topic_pages_without_statements": [],
+        "statements_with_topics": 3,
+        "statements_without_topics": ["stmt:untopiced"],
+        "topic_statement_counts": {"topic:carbon": 2, "topic:missing": 1},
+    }
+    assert metrics["claim_balance"] == {
+        "total_claims": 1,
+        "supported_claims": 1,
+        "refuted_claims": 1,
+        "unsupported_claim_statement_ids": [],
+        "support_link_count": 1,
+        "refutation_link_count": 1,
+        "net_support_balance": 0,
+        "claims": [
+            {
+                "statement_id": "stmt:claim",
+                "support_count": 1,
+                "refutation_count": 1,
+                "supporting_statement_ids": ["stmt:support"],
+                "refuting_statement_ids": ["stmt:refute"],
+            }
+        ],
+    }
+    assert metrics["synthesis_page_changes"] == {
+        "available": True,
+        "tracked_page_count": 2,
+        "regenerated": 1,
+        "changed": 1,
+        "regenerated_page_ids": ["topic:carbon"],
+        "changed_page_ids": ["claim:claim"],
+    }
 
 
 def test_synthesis_quality_reports_unresolved_statement_links() -> None:
@@ -278,3 +383,26 @@ def test_synthesis_quality_ignores_retracted_opportunity_target_products() -> No
             "target_statement_id": "stmt:product",
         }
     ]
+
+
+def test_synthesis_quality_ignores_retracted_cards_for_evidence_resolution(
+    tmp_path: pathlib.Path,
+) -> None:
+    source_dir = tmp_path / "proj_a"
+    source_dir.mkdir()
+    (source_dir / "REPORT.md").write_text("ADP1 grows on quinate.", encoding="utf-8")
+    cards = [
+        _card("stmt:published"),
+        _card("stmt:retracted", tier=TIER_RETRACTED, exact="Missing retracted span."),
+    ]
+
+    metrics = assess_synthesis_quality(
+        cards,
+        graph={"nodes": [{"id": card.id} for card in cards], "edges": []},
+        page_plans=[_page("home", type_="home", members=["stmt:published"])],
+        source_root=tmp_path,
+    )
+
+    assert metrics["evidence_resolution"]["total"] == 1
+    assert metrics["evidence_resolution"]["resolved"] == 1
+    assert metrics["evidence_resolution"]["unresolved_statement_ids"] == []

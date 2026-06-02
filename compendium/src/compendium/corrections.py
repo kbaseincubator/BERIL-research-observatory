@@ -30,8 +30,63 @@ _KIND_ALIASES = {
 }
 
 
+_CORRECTION_LOG_SUFFIXES = {".json", ".yaml", ".yml"}
+
+
 def _normalized_kind(kind: str) -> str:
     return _KIND_ALIASES.get(kind, kind)
+
+
+def _read_correction_log(path: pathlib.Path) -> list[dict]:
+    text = path.read_text(encoding="utf-8")
+    data = json.loads(text) if path.suffix == ".json" else yaml.safe_load(text)
+    if data is None:
+        return []
+    if not isinstance(data, list):
+        raise ValueError(f"Correction log must contain a list: {path}")
+    return data
+
+
+def _dump_yaml_record(correction: Correction) -> str:
+    return yaml.safe_dump([correction.to_dict()], sort_keys=True)
+
+
+def _dump_json_record(correction: Correction) -> str:
+    record = json.dumps(correction.to_dict(), indent=2, sort_keys=True)
+    return "\n".join(f"  {line}" for line in record.splitlines())
+
+
+def append_correction(path: pathlib.Path, correction: Correction) -> None:
+    """Append *correction* to a YAML or JSON correction log.
+
+    Existing records are preserved in file order. ``load_corrections`` remains
+    responsible for returning corrections sorted by id across logs.
+    """
+    path = pathlib.Path(path)
+    if path.suffix not in _CORRECTION_LOG_SUFFIXES:
+        raise ValueError(f"Unsupported correction log suffix: {path.suffix}")
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    text = path.read_text(encoding="utf-8") if path.exists() else ""
+    if not text.strip():
+        if path.suffix == ".json":
+            path.write_text(f"[\n{_dump_json_record(correction)}\n]\n", encoding="utf-8")
+        else:
+            path.write_text(_dump_yaml_record(correction), encoding="utf-8")
+        return
+
+    records = _read_correction_log(path)
+    if path.suffix == ".json":
+        end = text.rfind("]")
+        if len(records) == 0:
+            new_text = f"[\n{_dump_json_record(correction)}\n]\n"
+        else:
+            new_text = f"{text[:end]},\n{_dump_json_record(correction)}\n{text[end:]}"
+        path.write_text(new_text, encoding="utf-8")
+        return
+
+    separator = "" if text.endswith("\n") else "\n"
+    path.write_text(f"{text}{separator}{_dump_yaml_record(correction)}", encoding="utf-8")
 
 
 def _record_retraction(pkg: ProjectKG, correction: Correction, assertion: Assertion) -> None:

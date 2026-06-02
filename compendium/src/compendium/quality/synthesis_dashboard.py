@@ -37,6 +37,8 @@ def build_synthesis_quality_dashboard(
     """
     statement_counts = _mapping(metrics.get("statement_counts"))
     evidence = _mapping(metrics.get("evidence_resolution"))
+    topics = _mapping(metrics.get("topic_coverage"))
+    claim_balance = _mapping(metrics.get("claim_balance"))
     graph = _mapping(metrics.get("graph_integrity"))
     pages = _mapping(metrics.get("page_integrity"))
     links = _mapping(metrics.get("link_integrity"))
@@ -44,10 +46,12 @@ def build_synthesis_quality_dashboard(
     opportunities = _mapping(metrics.get("opportunity_targets"))
     conflicts = _mapping(metrics.get("active_conflicts"))
     high_centrality = _records(metrics.get("high_centrality_asserted_statements"))
+    page_changes = _mapping(metrics.get("synthesis_page_changes"))
 
     failure_counts = {
         "graph_dangling_edges": _int(graph.get("dangling_edges")),
         "orphan_pages": len(_items(pages.get("orphan_pages"))),
+        "weakly_connected_pages": len(_items(pages.get("weakly_connected_pages"))),
         "unknown_page_members": len(_items(pages.get("unknown_page_members"))),
         "unknown_section_members": len(_items(pages.get("unknown_section_members"))),
         "statements_without_page_membership": len(
@@ -67,9 +71,15 @@ def build_synthesis_quality_dashboard(
         "summary": {
             "statement_total": _int(statement_counts.get("total")),
             "evidence_resolution_rate": evidence.get("rate"),
+            "topic_coverage_rate": topics.get("coverage_rate"),
+            "unsupported_claim_count": len(
+                _items(claim_balance.get("unsupported_claim_statement_ids"))
+            ),
             "opportunity_target_rate": opportunities.get("rate"),
             "active_conflict_count": _int(conflicts.get("count")),
             "high_centrality_asserted_statement_count": len(high_centrality),
+            "synthesis_pages_regenerated": _int(page_changes.get("regenerated")),
+            "synthesis_pages_changed": _int(page_changes.get("changed")),
             "failure_counts": failure_counts,
         },
         "statement_counts": _normalize(statement_counts),
@@ -83,6 +93,35 @@ def build_synthesis_quality_dashboard(
                 evidence.get("unresolved_statement_ids")
             ),
         },
+        "topic_coverage": {
+            "topic_count": _int(topics.get("topic_count")),
+            "topic_page_count": _int(topics.get("topic_page_count")),
+            "covered_topic_count": _int(topics.get("covered_topic_count")),
+            "coverage_rate": topics.get("coverage_rate"),
+            "topics_without_pages": _strings(topics.get("topics_without_pages")),
+            "topic_pages_without_statements": _strings(
+                topics.get("topic_pages_without_statements")
+            ),
+            "statements_with_topics": _int(topics.get("statements_with_topics")),
+            "statements_without_topics": _strings(
+                topics.get("statements_without_topics")
+            ),
+            "topic_statement_counts": _normalize(
+                _mapping(topics.get("topic_statement_counts"))
+            ),
+        },
+        "claim_balance": {
+            "total_claims": _int(claim_balance.get("total_claims")),
+            "supported_claims": _int(claim_balance.get("supported_claims")),
+            "refuted_claims": _int(claim_balance.get("refuted_claims")),
+            "unsupported_claim_statement_ids": _strings(
+                claim_balance.get("unsupported_claim_statement_ids")
+            ),
+            "support_link_count": _int(claim_balance.get("support_link_count")),
+            "refutation_link_count": _int(claim_balance.get("refutation_link_count")),
+            "net_support_balance": _int(claim_balance.get("net_support_balance")),
+            "claims": _records(claim_balance.get("claims")),
+        },
         "failures": {
             "graph": {
                 "node_count": _int(graph.get("node_count")),
@@ -94,6 +133,9 @@ def build_synthesis_quality_dashboard(
                 "page_count": _int(pages.get("page_count")),
                 "pages_by_type": _normalize(_mapping(pages.get("pages_by_type"))),
                 "orphan_pages": _strings(pages.get("orphan_pages")),
+                "weakly_connected_pages": _records(
+                    pages.get("weakly_connected_pages")
+                ),
                 "unknown_page_members": _records(pages.get("unknown_page_members")),
                 "unknown_section_members": _records(
                     pages.get("unknown_section_members")
@@ -129,6 +171,14 @@ def build_synthesis_quality_dashboard(
                 opportunities.get("missing_target_output_statement_ids")
             ),
         },
+        "synthesis_page_changes": {
+            "available": bool(page_changes.get("available", False)),
+            "tracked_page_count": _int(page_changes.get("tracked_page_count")),
+            "regenerated": _int(page_changes.get("regenerated")),
+            "changed": _int(page_changes.get("changed")),
+            "regenerated_page_ids": _strings(page_changes.get("regenerated_page_ids")),
+            "changed_page_ids": _strings(page_changes.get("changed_page_ids")),
+        },
         "active_conflicts": {
             "count": _int(conflicts.get("count")),
             "conflict_statement_ids": _strings(conflicts.get("conflict_statement_ids")),
@@ -163,12 +213,16 @@ def render_synthesis_quality_dashboard_html(
     cards = [
         ("Statements", summary["statement_total"]),
         ("Evidence rate", _rate(summary["evidence_resolution_rate"])),
+        ("Topic coverage", _rate(summary["topic_coverage_rate"])),
+        ("Unsupported claims", summary["unsupported_claim_count"]),
         ("Opportunity rate", _rate(summary["opportunity_target_rate"])),
         ("Active conflicts", summary["active_conflict_count"]),
         (
             "High-centrality asserted",
             summary["high_centrality_asserted_statement_count"],
         ),
+        ("Pages regenerated", summary["synthesis_pages_regenerated"]),
+        ("Pages changed", summary["synthesis_pages_changed"]),
         ("Review highlights", dashboard["review_queue"]["highlight_count"]),
     ]
     failure_rows = [

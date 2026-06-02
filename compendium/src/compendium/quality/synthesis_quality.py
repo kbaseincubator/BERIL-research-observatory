@@ -60,7 +60,9 @@ def assess_synthesis_quality(
 
     return {
         "statement_counts": _statement_counts(card_list),
-        "evidence_resolution": _evidence_resolution(card_list, source_root),
+        "evidence_resolution": _evidence_resolution(active_cards, source_root),
+        "topic_coverage": _topic_coverage(active_cards, plans),
+        "claim_balance": _claim_balance(active_cards),
         "graph_integrity": _graph_integrity(graph),
         "page_integrity": _page_integrity(plans, active_card_ids),
         "link_integrity": _link_integrity(plans),
@@ -71,6 +73,7 @@ def assess_synthesis_quality(
             active_cards,
             graph,
         ),
+        "synthesis_page_changes": _synthesis_page_changes(plans),
     }
 
 
@@ -133,6 +136,78 @@ def _evidence_anchor_resolves(root: Path, card: StatementCard) -> bool:
         if needle in text:
             return True
     return False
+
+
+def _topic_coverage(cards: list[StatementCard], plans: list[PagePlan]) -> dict[str, Any]:
+    topic_statement_counts = Counter(
+        topic_id
+        for card in cards
+        for topic_id in sorted(set(card.about.topics))
+    )
+    topic_ids = set(topic_statement_counts)
+    topic_page_ids = {plan.id for plan in plans if plan.type == "topic"}
+    covered_topics = topic_ids & topic_page_ids
+    statements_without_topics = sorted(
+        card.id for card in cards if not card.about.topics
+    )
+
+    return {
+        "topic_count": len(topic_ids),
+        "topic_page_count": len(topic_page_ids),
+        "covered_topic_count": len(covered_topics),
+        "coverage_rate": len(covered_topics) / len(topic_ids) if topic_ids else 0.0,
+        "topics_without_pages": sorted(topic_ids - topic_page_ids),
+        "topic_pages_without_statements": sorted(topic_page_ids - topic_ids),
+        "statements_with_topics": len(cards) - len(statements_without_topics),
+        "statements_without_topics": statements_without_topics,
+        "topic_statement_counts": {
+            topic_id: topic_statement_counts[topic_id]
+            for topic_id in sorted(topic_statement_counts)
+        },
+    }
+
+
+def _claim_balance(cards: list[StatementCard]) -> dict[str, Any]:
+    active_card_ids = {card.id for card in cards}
+    claim_ids = {card.id for card in cards if card.kind == "claim"}
+    support_by_claim: dict[str, set[str]] = {claim_id: set() for claim_id in claim_ids}
+    refutation_by_claim: dict[str, set[str]] = {claim_id: set() for claim_id in claim_ids}
+
+    for card in cards:
+        for target_id in card.links.supports:
+            if target_id in support_by_claim:
+                support_by_claim[target_id].add(card.id)
+        for target_id in card.links.contradicts:
+            if target_id in refutation_by_claim:
+                refutation_by_claim[target_id].add(card.id)
+            if card.id in refutation_by_claim and target_id in active_card_ids:
+                refutation_by_claim[card.id].add(target_id)
+
+    claims = [
+        {
+            "statement_id": claim_id,
+            "support_count": len(support_by_claim[claim_id]),
+            "refutation_count": len(refutation_by_claim[claim_id]),
+            "supporting_statement_ids": sorted(support_by_claim[claim_id]),
+            "refuting_statement_ids": sorted(refutation_by_claim[claim_id]),
+        }
+        for claim_id in sorted(claim_ids)
+    ]
+    support_link_count = sum(item["support_count"] for item in claims)
+    refutation_link_count = sum(item["refutation_count"] for item in claims)
+
+    return {
+        "total_claims": len(claims),
+        "supported_claims": sum(1 for item in claims if item["support_count"]),
+        "refuted_claims": sum(1 for item in claims if item["refutation_count"]),
+        "unsupported_claim_statement_ids": [
+            item["statement_id"] for item in claims if not item["support_count"]
+        ],
+        "support_link_count": support_link_count,
+        "refutation_link_count": refutation_link_count,
+        "net_support_balance": support_link_count - refutation_link_count,
+        "claims": claims,
+    }
 
 
 def _graph_integrity(graph: dict[str, list[dict[str, Any]]]) -> dict[str, Any]:
@@ -202,12 +277,22 @@ def _page_integrity(plans: list[PagePlan], active_card_ids: set[str]) -> dict[st
         and not plan.outgoing_links
         and not plan.backlinks
     )
+    weakly_connected_pages = [
+        {
+            "page_id": plan.id,
+            "link_degree": len(set(plan.outgoing_links)) + len(set(plan.backlinks)),
+            "member_count": len(set(plan.member_statement_ids)),
+        }
+        for plan in plans
+        if plan.id != "home" and len(set(plan.outgoing_links)) + len(set(plan.backlinks)) <= 1
+    ]
     statements_without_page_membership = sorted(active_card_ids - member_page_ids)
 
     return {
         "page_count": len(plans),
         "pages_by_type": pages_by_type,
         "orphan_pages": orphan_pages,
+        "weakly_connected_pages": weakly_connected_pages,
         "unknown_page_members": unknown_page_members,
         "unknown_section_members": unknown_section_members,
         "statements_without_page_membership": statements_without_page_membership,
@@ -335,7 +420,9 @@ def _active_conflicts(cards: list[StatementCard]) -> dict[str, Any]:
     contradiction_links = []
     for card in cards:
         for target_id in sorted(set(card.links.contradicts)):
-            contradiction_links.append({"source_statement_id": card.id, "target_statement_id": target_id})
+            contradiction_links.append(
+                {"source_statement_id": card.id, "target_statement_id": target_id}
+            )
 
     return {
         "count": len(conflict_statement_ids) + len(contradiction_links),
@@ -367,6 +454,59 @@ def _high_centrality_asserted_statements(
         for statement_id in sorted(degree)
         if degree[statement_id] >= threshold
     ]
+
+
+def _synthesis_page_changes(plans: list[PagePlan]) -> dict[str, Any]:
+    tracked_page_ids = []
+    regenerated_page_ids = []
+    changed_page_ids = []
+
+    for plan in plans:
+        regenerated = _optional_bool(
+            plan,
+            ("regenerated", "was_regenerated", "page_regenerated"),
+        )
+        changed = _optional_bool(
+            plan,
+            (
+                "changed",
+                "was_changed",
+                "content_changed",
+                "member_hash_changed",
+                "page_changed",
+            ),
+        )
+        if regenerated is not None or changed is not None:
+            tracked_page_ids.append(plan.id)
+        if regenerated:
+            regenerated_page_ids.append(plan.id)
+        if changed:
+            changed_page_ids.append(plan.id)
+
+    return {
+        "available": bool(tracked_page_ids),
+        "tracked_page_count": len(tracked_page_ids),
+        "regenerated": len(regenerated_page_ids),
+        "changed": len(changed_page_ids),
+        "regenerated_page_ids": sorted(regenerated_page_ids),
+        "changed_page_ids": sorted(changed_page_ids),
+    }
+
+
+def _optional_bool(item: Any, field_names: tuple[str, ...]) -> bool | None:
+    for field_name in field_names:
+        if hasattr(item, field_name):
+            value = getattr(item, field_name)
+            if isinstance(value, bool):
+                return value
+            if isinstance(value, str):
+                normalized = value.strip().lower()
+                if normalized in {"true", "1", "yes", "changed", "regenerated"}:
+                    return True
+                if normalized in {"false", "0", "no", "unchanged", "stable"}:
+                    return False
+            return bool(value)
+    return None
 
 
 def _counter_dict(values: Iterable[str]) -> dict[str, int]:

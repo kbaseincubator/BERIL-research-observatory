@@ -52,7 +52,7 @@ No other correction kind is valid.
    pages as needed.
 2. Present ambiguous target candidates before writing anything. Include statement id, statement text,
    source project, tier, confidence, and affected pages.
-3. Write one append-only correction record with:
+3. Write one append-only correction record via `compendium.corrections.append_correction` with:
    ```yaml
    id: corr:<stable-id>
    kind: <allowed-kind>

@@ -307,7 +307,7 @@ class PagePlan(BaseModel):
 
 - [x] Render synthesis pages as the primary pages.
 - [x] Render project and entity pages.
-- [ ] Each page includes:
+- [x] Each page includes:
   - readable prose;
   - source statement list;
   - backlinks;
@@ -333,7 +333,7 @@ class PagePlan(BaseModel):
   `promote`, `demote`, `mark-conflict`, `resolve-conflict`.
 - [x] Apply corrections deterministically before graph assembly.
 - [x] Preserve retracted statements for provenance but exclude from normal synthesis.
-- [ ] Skill writes append-only correction records.
+- [x] Skill writes append-only correction records.
 - [x] Corrections become regression fixtures.
 - [x] Test corrections survive re-extraction by stable statement IDs.
 
@@ -347,7 +347,7 @@ class PagePlan(BaseModel):
 
 **Files:** `quality/`, tests, rendered dashboard page.
 
-- [ ] Metrics:
+- [x] Metrics:
   - statement count by kind/tier/source project;
   - evidence resolution rate;
   - topic coverage;
@@ -358,7 +358,7 @@ class PagePlan(BaseModel):
   - orphan pages and weakly connected pages;
   - broken links and dangling edges;
   - synthesis pages regenerated in last build.
-- [ ] Add CLI `compendium quality`.
+- [x] Add CLI `compendium quality`.
 - [x] Render quality dashboard page.
 - [x] Tests for metric correctness on small graphs.
 
@@ -403,10 +403,10 @@ class PagePlan(BaseModel):
 
 - [ ] Run `kg-ingest-project` for each tracer project.
 - [x] Build graph and page plans.
-- [ ] Run `kg-synthesize-page` for home, ADP1 topic, claims, opportunity, projects, and organism page.
+- [x] Run `kg-synthesize-page` for home, ADP1 topic, claims, opportunity, projects, and organism page.
 - [x] Render the site.
 - [x] Run quality checks.
-- [ ] Confirm outputs:
+- [x] Confirm outputs:
   - home page exists;
   - ADP1 topic page exists;
   - ADP1 organism page has backlinks from both projects;

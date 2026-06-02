@@ -27,11 +27,14 @@ audit -> context-pack -> validate cards -> assemble graph -> plan pages -> rende
 ## Run
 
 ```bash
-uv run --directory compendium --group test pytest          # 58 tests
+uv run --directory compendium --group test pytest
+uv run --directory compendium compendium tracer --out out/adp1-tracer
+open compendium/out/adp1-tracer/site/index.html             # statement-card tracer wiki
+
 uv run --directory compendium compendium all \
     --projects acinetobacter_adp1_explorer adp1_deletion_phenotypes \
     --projects-dir ../projects --out out
-open compendium/out/site/index.html                         # the wiki
+open compendium/out/site/index.html                         # legacy deterministic tracer wiki
 ```
 
 Current commands still support the earlier deterministic tracer. The v4 plan adds context-pack,

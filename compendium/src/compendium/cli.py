@@ -12,11 +12,15 @@ import sys
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="compendium", description="Deterministic KG-centered scientific wiki")
     sub = parser.add_subparsers(dest="cmd")
+    shared = {}
     for name in ("audit", "build", "render", "quality", "all"):
         sp = sub.add_parser(name)
+        shared[name] = sp
         sp.add_argument("--projects", nargs="*", default=None)
         sp.add_argument("--projects-dir", default="../projects")
         sp.add_argument("--out", default="out")
+    shared["quality"].add_argument("--statement-kg")
+    shared["quality"].add_argument("--source-root")
     context_pack = sub.add_parser("context-pack")
     context_pack.add_argument("project")
     context_pack.add_argument("--out", required=True)
@@ -46,6 +50,10 @@ def main(argv: list[str] | None = None) -> int:
     review_queue.add_argument("--source-root")
     review_queue.add_argument("--limit", type=int)
     review_queue.add_argument("--out")
+    tracer = sub.add_parser("tracer")
+    tracer.add_argument("--project-kg")
+    tracer.add_argument("--source-root")
+    tracer.add_argument("--out", required=True)
     validate_card = sub.add_parser("validate-card")
     validate_card.add_argument("path")
     validate_project_kg = sub.add_parser("validate-project-kg")
