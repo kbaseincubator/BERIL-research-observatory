@@ -6,8 +6,8 @@ description: Ingest one project into the BERIL synthesis wiki statement-card KG.
 # kg-ingest-project
 
 Use this skill for one project at a time, usually `projects/<project_id>`. The output is a validated
-statement-card project KG, not prose. Python code and deterministic scripts must never call a model;
-this skill is the orchestration layer that may use an LLM/subagent.
+statement-card project KG, not prose. Python commands are deterministic and must never call a model;
+this skill may use an LLM/subagent only after the fixed context pack has been generated.
 
 ## Inputs
 
@@ -22,10 +22,11 @@ Stop if the project path does not exist or if no source document can supply evid
 ## Outputs
 
 - `compendium/context-packs/<project_id>.json`.
-- `compendium/kg/projects/<project_id>.yaml`.
+- `compendium/kg/<project_id>.kg.yaml`.
 - Extraction manifest embedded in the project KG with skill name, model id, prompt hash, context-pack
   hash, schema hash, repo commit, timestamp, retries, and fragment hashes.
-- Rebuilt graph/page-plan/quality diff, or a recorded validation failure if the rebuild cannot pass.
+- Rebuilt statement graph, page plans, rendered synthesis site, and quality diff, or a recorded
+  validation failure if the deterministic checks cannot pass.
 
 ## Workflow
 
@@ -36,9 +37,7 @@ Stop if the project path does not exist or if no source document can supply evid
    uv run compendium audit --projects <project_id> --projects-dir ../projects --out out
    uv run compendium context-pack ../projects/<project_id> --out context-packs/<project_id>.json
    ```
-   If `context-pack` is not wired yet, use the Task 2 builder command once available; do not hand-author
-   context packs.
-3. Hash the context pack and schema. If `compendium/kg/projects/<project_id>.yaml` already has the same
+3. Hash the context pack and schema. If `compendium/kg/<project_id>.kg.yaml` already has the same
    context-pack hash, schema hash, skill version, and prompt hash, skip extraction and rebuild only if
    downstream artifacts are missing.
 4. Ask the LLM/subagent to emit only structured YAML/JSON matching the statement-card project KG contract:
@@ -55,14 +54,11 @@ Stop if the project path does not exist or if no source document can supply evid
 6. Validate the draft:
    ```bash
    cd compendium
-   uv run compendium validate-project-kg kg/projects/<project_id>.yaml
-   uv run compendium build --projects <project_id> --projects-dir ../projects --out out
-   uv run compendium quality --projects <project_id> --projects-dir ../projects --out out
-   ```
-   Until Task 3 validator commands exist, also run the currently wired deterministic check:
-   ```bash
-   cd compendium
-   uv run compendium all --projects <project_id> --projects-dir ../projects --out out
+   uv run compendium validate-project-kg kg/<project_id>.kg.yaml
+   uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
+   uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
+   uv run compendium render-synthesis kg/<project_id>.kg.yaml --out out/synthesis-site
+   uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
 7. Retry invalid fragments as described below, then write the final YAML with sorted statement cards and
    stable key ordering.

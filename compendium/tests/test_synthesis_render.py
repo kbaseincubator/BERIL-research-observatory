@@ -7,6 +7,7 @@ from pathlib import Path
 
 import pytest
 
+from compendium.build.statement_graph import build_statement_graph
 from compendium.models import (
     AboutRefs,
     EvidenceAnchor,
@@ -136,9 +137,38 @@ def test_render_includes_sections_sources_and_navigation(tmp_path: Path) -> None
     assert "entity_adp1.html" in claim
 
 
+def test_render_creates_statement_graph_page(tmp_path: Path) -> None:
+    cards = _cards()
+    paths = render_synthesis_site(
+        cards,
+        plan_pages(cards),
+        tmp_path,
+        statement_graph=build_statement_graph(cards),
+    )
+
+    graph_path = tmp_path / "graph.html"
+    graph = graph_path.read_text(encoding="utf-8")
+    claim = (tmp_path / "claim_c1.html").read_text(encoding="utf-8")
+
+    assert graph_path in paths
+    assert "Synthesis Graph" in graph
+    assert "Statement Cards" in graph
+    assert "Typed Edges" in graph
+    assert "scientific_edge" in graph
+    assert "<code>supports</code>" in graph
+    assert "ADP1 has a reusable carbon-source essentiality landscape." in graph
+    assert "claim_c1.html" in graph
+    assert "graph.html" in claim
+
+
 def test_render_has_no_broken_internal_links(tmp_path: Path) -> None:
     cards = _cards()
-    render_synthesis_site(cards, plan_pages(cards), tmp_path)
+    render_synthesis_site(
+        cards,
+        plan_pages(cards),
+        tmp_path,
+        statement_graph=build_statement_graph(cards),
+    )
 
     for html_file in tmp_path.rglob("*.html"):
         for href in _hrefs(html_file):
@@ -152,8 +182,18 @@ def test_render_output_is_deterministic(tmp_path: Path) -> None:
     out_a = tmp_path / "a"
     out_b = tmp_path / "b"
 
-    paths_a = render_synthesis_site(cards, plans, out_a)
-    paths_b = render_synthesis_site(list(reversed(cards)), list(reversed(plans)), out_b)
+    paths_a = render_synthesis_site(
+        cards,
+        plans,
+        out_a,
+        statement_graph=build_statement_graph(cards),
+    )
+    paths_b = render_synthesis_site(
+        list(reversed(cards)),
+        list(reversed(plans)),
+        out_b,
+        statement_graph=build_statement_graph(reversed(cards)),
+    )
 
     rel_a = sorted(path.relative_to(out_a).as_posix() for path in paths_a)
     rel_b = sorted(path.relative_to(out_b).as_posix() for path in paths_b)

@@ -95,6 +95,7 @@ def test_render_synthesis_command_writes_static_site(tmp_path: Path) -> None:
     assert main(["render-synthesis", str(STATEMENT_FIXTURE), "--out", str(out_dir)]) == 0
 
     assert (out_dir / "index.html").is_file()
+    assert (out_dir / "graph.html").is_file()
     claim_page = out_dir / "claim_adp1-continuum-claim.html"
     assert claim_page.is_file()
     assert "ADP1 condition-dependent essentiality" in claim_page.read_text(encoding="utf-8")
@@ -144,3 +145,25 @@ def test_quality_synthesis_command_fails_quality_gate_but_writes_metrics(tmp_pat
 
     metrics = json.loads(out.read_text(encoding="utf-8"))
     assert metrics["evidence_resolution"]["unresolved"] == 1
+
+
+def test_review_queue_command_writes_ranked_json(tmp_path: Path) -> None:
+    out = tmp_path / "review-queue.json"
+
+    assert main(
+        [
+            "review-queue",
+            str(STATEMENT_FIXTURE),
+            "--source-root",
+            str(ROOT / "projects"),
+            "--limit",
+            "2",
+            "--out",
+            str(out),
+        ]
+    ) == 0
+
+    queue = json.loads(out.read_text(encoding="utf-8"))
+    assert len(queue) <= 2
+    assert all("statement_id" in item for item in queue)
+    assert all("reasons" in item for item in queue)

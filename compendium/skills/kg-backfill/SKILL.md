@@ -7,6 +7,8 @@ description: Batch wrapper for BERIL synthesis wiki ingestion. Iterates project-
 
 Use this skill for controlled batch ingestion. During tracer work, default to the two ADP1 projects only:
 `projects/acinetobacter_adp1_explorer` and `projects/adp1_deletion_phenotypes`.
+This wrapper is deterministic except for the delegated `kg-ingest-project` extraction step, which may call
+an LLM only after each project's fixed context pack exists.
 
 ## Inputs
 
@@ -21,7 +23,7 @@ Stop if no explicit project list or tracer preset was provided. Do not infer "al
 
 - Batch manifest under `compendium/out/backfill/<batch_id>.yaml`.
 - Per-project status: skipped, succeeded, failed validation, failed extraction, or failed rebuild.
-- Links to each written `compendium/kg/projects/<project_id>.yaml`.
+- Links to each written `compendium/kg/<project_id>.kg.yaml`.
 - Batch diff and quality summary with statement counts, failure reasons, broken links, dangling edges,
   active conflicts, and pages changed.
 
@@ -36,12 +38,15 @@ Stop if no explicit project list or tracer preset was provided. Do not infer "al
 5. After each project, append status to the batch manifest immediately so interrupted runs are resumable.
 6. Continue after a failed project unless the failure is a shared schema/validator failure affecting every
    project.
-7. After the queue completes, run deterministic rebuild and quality checks:
+7. After the queue completes, run deterministic graph, page-plan, render, and quality checks for each
+   written project KG:
    ```bash
    cd compendium
-   uv run compendium build --out out
-   uv run compendium render --out out
-   uv run compendium quality --out out
+   uv run compendium validate-project-kg kg/<project_id>.kg.yaml
+   uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
+   uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
+   uv run compendium render-synthesis kg/<project_id>.kg.yaml --out out/synthesis-site
+   uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
 8. Write the batch summary with:
    - project count by status;
@@ -56,18 +61,11 @@ Run these per project after `kg-ingest-project` writes its artifact:
 
 ```bash
 cd compendium
-uv run compendium validate-project-kg kg/projects/<project_id>.yaml
-uv run compendium build --projects <project_id> --projects-dir ../projects --out out
-uv run compendium quality --projects <project_id> --projects-dir ../projects --out out
-```
-
-Run these once for the batch:
-
-```bash
-cd compendium
-uv run compendium build --out out
-uv run compendium render --out out
-uv run compendium quality --out out
+uv run compendium validate-project-kg kg/<project_id>.kg.yaml
+uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
+uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
+uv run compendium render-synthesis kg/<project_id>.kg.yaml --out out/synthesis-site
+uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
 ```
 
 ## Retry Rules

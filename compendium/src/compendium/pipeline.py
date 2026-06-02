@@ -25,6 +25,7 @@ from compendium.ground.grounder import ground
 from compendium.models import ProjectKG, StatementCard
 from compendium.pages import plan_pages
 from compendium.quality.kg_quality import assess_kg
+from compendium.quality.review_queue import build_review_queue
 from compendium.quality.synthesis_quality import assess_synthesis_quality
 from compendium.quality.wiki_quality import assess_wiki
 from compendium.render.render import render_site
@@ -182,8 +183,14 @@ def dispatch(args) -> int:
         return 0
     if args.cmd == "render-synthesis":
         cards = _load_statement_cards(args.path)
+        graph = build_statement_graph(cards)
         out_dir = Path(args.out).resolve()
-        rendered = render_synthesis_site(cards, plan_pages(cards), out_dir)
+        rendered = render_synthesis_site(
+            cards,
+            plan_pages(cards),
+            out_dir,
+            statement_graph=graph,
+        )
         print(f"[compendium] rendered {len(rendered)} synthesis pages -> {out_dir}")
         return 0
     if args.cmd == "quality-synthesis":
@@ -200,6 +207,25 @@ def dispatch(args) -> int:
         if _synthesis_quality_failed(metrics):
             print("[compendium] synthesis quality checks failed", file=sys.stderr)
             return 1
+        return 0
+    if args.cmd == "review-queue":
+        cards = _load_statement_cards(args.path)
+        graph = build_statement_graph(cards)
+        plans = plan_pages(cards)
+        metrics = assess_synthesis_quality(
+            cards,
+            graph,
+            plans,
+            source_root=args.source_root,
+        )
+        queue = build_review_queue(
+            cards,
+            graph,
+            plans,
+            unresolved_statement_links=metrics,
+            limit=args.limit,
+        )
+        _write_json_or_stdout(queue, args.out)
         return 0
 
     projects = args.projects or []

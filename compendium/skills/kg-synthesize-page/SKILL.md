@@ -7,7 +7,8 @@ description: Generate one prose-rich synthesis wiki page from a fixed PagePlan a
 
 Use this skill after deterministic graph assembly and page planning. The LLM may write prose, but it may
 only use the fixed `PagePlan` member set and the referenced statement cards. This skill does not choose
-page membership and does not create new scientific claims.
+page membership and does not create new scientific claims. Python commands are deterministic; call the
+LLM only after `plan-pages` has fixed the page plan and member hashes.
 
 ## Inputs
 
@@ -34,10 +35,12 @@ outside the allowed member set.
 ## Workflow
 
 1. Load the deterministic page plan and collect only `member_statement_ids`.
-2. Validate the plan before writing:
+2. Refresh the deterministic statement graph and page plans before writing:
    ```bash
    cd compendium
-   uv run compendium validate-page-plan <page_plan.yaml>
+   uv run compendium validate-project-kg kg/<project_id>.kg.yaml
+   uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
+   uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
    ```
 3. Compute the page-plan hash and each section fact/member hash. Reuse cached prose for unchanged
    section hashes.
@@ -60,8 +63,8 @@ outside the allowed member set.
    ```bash
    cd compendium
    uv run compendium validate-page-plan <page_plan.yaml>
-   uv run compendium render --out out
-   uv run compendium quality --out out
+   uv run compendium render-synthesis kg/<project_id>.kg.yaml --out out/synthesis-site
+   uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
 8. Summarize changed sections, reused sections, cited statements, and affected rendered pages.
 

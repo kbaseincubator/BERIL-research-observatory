@@ -28,6 +28,9 @@
 <body>
   <nav class="meta">
     <a href="index.html">home</a>
+    {% if page.graph_href %}
+      <a href="{{ page.graph_href }}">graph</a>
+    {% endif %}
     {% for link in page.all_pages %}
       {% if link.id != "home" %}
         <a href="{{ link.href }}">{{ link.id }}</a>

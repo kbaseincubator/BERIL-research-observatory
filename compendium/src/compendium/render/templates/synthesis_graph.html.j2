@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ graph.title }}</title>
+  <style>
+    body { color: #1f2428; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.5; margin: 0 auto; max-width: 86rem; padding: 1.5rem; }
+    a { color: #0757a8; text-decoration-thickness: 0.08em; text-underline-offset: 0.15em; }
+    header { border-bottom: 1px solid #d8dee4; margin-bottom: 1.5rem; padding-bottom: 1rem; }
+    h1 { font-size: 2rem; line-height: 1.15; margin: 0.5rem 0; }
+    h2 { border-bottom: 1px solid #d8dee4; font-size: 1.25rem; margin-top: 2rem; padding-bottom: 0.25rem; }
+    nav { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+    code { background: #f6f8fa; border-radius: 0.25rem; padding: 0.1rem 0.25rem; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border-bottom: 1px solid #d8dee4; padding: 0.45rem 0.5rem; text-align: left; vertical-align: top; }
+    th { color: #57606a; font-size: 0.78rem; font-weight: 650; text-transform: uppercase; }
+    ul { padding-left: 1.3rem; }
+    li { margin: 0.2rem 0; }
+    .meta, .muted { color: #57606a; font-size: 0.875rem; }
+    .badge { border: 1px solid #d0d7de; border-radius: 999px; color: #24292f; display: inline-block; font-size: 0.78rem; margin-right: 0.35rem; padding: 0.05rem 0.45rem; white-space: nowrap; }
+    .edge-badge { border-color: #8c959f; }
+    .edge-class-scientific_edge { border-color: #1a7f37; color: #1a7f37; }
+    .edge-class-provenance_edge { border-color: #8250df; color: #8250df; }
+    .edge-class-navigation_edge { border-color: #0969da; color: #0969da; }
+    .edge-class-review_edge { border-color: #bf8700; color: #9a6700; }
+    .edge-class-derivation_edge { border-color: #cf222e; color: #cf222e; }
+    .node-label { font-weight: 650; }
+    .nowrap { white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <nav class="meta">
+    <a href="index.html">home</a>
+    <span>graph</span>
+    {% for link in graph.all_pages %}
+      {% if link.id != "home" %}
+        <a href="{{ link.href }}">{{ link.id }}</a>
+      {% endif %}
+    {% endfor %}
+  </nav>
+
+  <header>
+    <div class="meta">statement graph</div>
+    <h1>{{ graph.title }}</h1>
+    <div class="meta">{{ graph.node_count }} nodes &middot; {{ graph.edge_count }} edges</div>
+  </header>
+
+  <main>
+    <h2>Statement Cards</h2>
+    {% if graph.statement_nodes %}
+      <ul>
+        {% for node in graph.statement_nodes %}
+          <li>
+            <span class="badge">{{ node.kind or node.type }}</span>
+            {% if node.href %}<a href="{{ node.href }}">{{ node.label }}</a>{% else %}<span class="node-label">{{ node.label }}</span>{% endif %}
+            <span class="meta"><code>{{ node.id }}</code>{% if node.confidence %} &middot; {{ node.confidence }} confidence{% endif %}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="muted">No statement cards in this graph.</p>
+    {% endif %}
+
+    <h2>Typed Edges</h2>
+    {% if graph.edges %}
+      <table>
+        <thead>
+          <tr>
+            <th>class</th>
+            <th>predicate</th>
+            <th>source</th>
+            <th>target</th>
+            <th>statements</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for edge in graph.edges %}
+            <tr>
+              <td class="nowrap"><span class="badge edge-badge edge-class-{{ edge.edge_class_css }}">{{ edge.edge_class }}</span></td>
+              <td><code>{{ edge.predicate }}</code></td>
+              <td>
+                {% if edge.source.href %}<a href="{{ edge.source.href }}">{{ edge.source.label }}</a>{% else %}<span class="node-label">{{ edge.source.label }}</span>{% endif %}
+                <div class="meta"><code>{{ edge.source.id }}</code> &middot; {{ edge.source.type }}</div>
+              </td>
+              <td>
+                {% if edge.target.href %}<a href="{{ edge.target.href }}">{{ edge.target.label }}</a>{% else %}<span class="node-label">{{ edge.target.label }}</span>{% endif %}
+                <div class="meta"><code>{{ edge.target.id }}</code> &middot; {{ edge.target.type }}</div>
+              </td>
+              <td>
+                {% for statement_id in edge.statement_ids %}
+                  <code>{{ statement_id }}</code>{% if not loop.last %}<br />{% endif %}
+                {% endfor %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">No edges in this graph.</p>
+    {% endif %}
+
+    <h2>Nodes</h2>
+    {% if graph.nodes %}
+      <table>
+        <thead>
+          <tr>
+            <th>type</th>
+            <th>label</th>
+            <th>id</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for node in graph.nodes %}
+            <tr>
+              <td><span class="badge">{{ node.type }}</span></td>
+              <td>{% if node.href %}<a href="{{ node.href }}">{{ node.label }}</a>{% else %}<span class="node-label">{{ node.label }}</span>{% endif %}</td>
+              <td><code>{{ node.id }}</code></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">No nodes in this graph.</p>
+    {% endif %}
+  </main>
+</body>
+</html>

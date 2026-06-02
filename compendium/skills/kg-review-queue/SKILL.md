@@ -7,7 +7,9 @@ description: Generate and act on a prioritized human review queue for high-value
 
 Use this skill after graph assembly and quality checks. It identifies statements where limited human review
 has the most leverage: central asserted statements, low-confidence statements used in synthesis, conflicts,
-and cards with evidence or grounding concerns.
+and cards with evidence or grounding concerns. Python commands are deterministic; this skill should not
+call an LLM unless it is summarizing a fixed queue item from generated graph, page-plan, and quality
+artifacts.
 
 ## Inputs
 
@@ -15,7 +17,7 @@ and cards with evidence or grounding concerns.
 - Quality report metrics.
 - Optional scope: page id, project id, topic id, entity id, statement kind, or maximum item count.
 
-Stop if graph artifacts are missing; run the build/quality commands first.
+Stop if graph, page-plan, or quality artifacts are missing; run the deterministic commands first.
 
 ## Outputs
 
@@ -38,19 +40,20 @@ Rank higher when a statement has one or more of these properties:
 
 ## Workflow
 
-1. Rebuild the graph and quality artifacts:
+1. Rebuild the graph, page-plan, render, and quality artifacts for the scoped project KG:
    ```bash
    cd compendium
-   uv run compendium build --out out
-   uv run compendium quality --out out
+   uv run compendium validate-project-kg kg/<project_id>.kg.yaml
+   uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
+   uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
+   uv run compendium render-synthesis kg/<project_id>.kg.yaml --out out/synthesis-site
+   uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
-2. Generate the review queue from committed artifacts:
+2. Generate the review queue from the project KG and deterministic artifacts:
    ```bash
    cd compendium
-   uv run compendium review-queue --out out
+   uv run compendium review-queue kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-review-queue.json
    ```
-   Until the Task 12 command is wired, derive the queue from `kg/projects/*.yaml`, `kg/graph/graph.json`,
-   `out/quality.json`, and page plans without changing source artifacts.
 3. For each queued item, write a brief containing:
    - statement id and text;
    - kind, tier, confidence, scope;
@@ -64,8 +67,10 @@ Rank higher when a statement has one or more of these properties:
 5. Rebuild and rerun quality after accepted curation actions:
    ```bash
    cd compendium
-   uv run compendium build --out out
-   uv run compendium quality --out out
+   uv run compendium validate-project-kg kg/<project_id>.kg.yaml
+   uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
+   uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
+   uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
 6. Summarize queue size, top reasons, actions taken, and remaining high-priority items.
 

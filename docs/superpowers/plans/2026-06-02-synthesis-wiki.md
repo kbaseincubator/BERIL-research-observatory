@@ -67,8 +67,7 @@ compendium/
   context-packs/
     <project_id>.json
   kg/
-    projects/
-      <project_id>.yaml
+    <project_id>.kg.yaml
     corrections/
       *.yaml
     graph/
@@ -159,11 +158,11 @@ class PagePlan(BaseModel):
 **Files:** `compendium/src/compendium/models.py`, `compendium/schema/synthesis_wiki.yaml`,
 `compendium/README.md`, tests.
 
-- [ ] Add `StatementCard`, `EvidenceAnchor`, `ExtractionManifest`, `PagePlan`, and edge-class models.
-- [ ] Keep existing entity/assertion models only if needed for transition; mark them as lower-level graph records.
-- [ ] Add tests for statement card serialization and evidence anchor validation.
-- [ ] Update README to point to the v4 design.
-- [ ] Verify: `cd compendium && uv run pytest -q`.
+- [x] Add `StatementCard`, `EvidenceAnchor`, `ExtractionManifest`, `PagePlan`, and edge-class models.
+- [x] Keep existing entity/assertion models only if needed for transition; mark them as lower-level graph records.
+- [x] Add tests for statement card serialization and evidence anchor validation.
+- [x] Update README to point to the v4 design.
+- [x] Verify: `cd compendium && uv run pytest -q`.
 
 **Acceptance:** A statement card can round-trip through YAML/JSON and validate required evidence.
 
@@ -192,12 +191,12 @@ class PagePlan(BaseModel):
 
 **Files:** `context_pack.py`, CLI dispatch, tests.
 
-- [ ] Implement `build_context_pack(project_dir) -> ContextPack`.
-- [ ] Include project metadata, source hashes, source sections, deterministic entities, dataset hints, and allowed vocabularies.
-- [ ] Add optional field for OpenViking context references, but do not require them in this branch.
-- [ ] Hash the full context pack and expose the hash for extraction manifests.
-- [ ] CLI: `compendium context-pack projects/<id> --out compendium/context-packs/<id>.json`.
-- [ ] Test deterministic byte output across repeated runs.
+- [x] Implement `build_context_pack(project_dir) -> ContextPack`.
+- [x] Include project metadata, source hashes, source sections, deterministic entities, dataset hints, and allowed vocabularies.
+- [x] Add optional field for OpenViking context references, but do not require them in this branch.
+- [x] Hash the full context pack and expose the hash for extraction manifests.
+- [x] CLI: `compendium context-pack projects/<id> --out compendium/context-packs/<id>.json`.
+- [x] Test deterministic byte output across repeated runs.
 
 **Acceptance:** Both ADP1 context packs are byte-stable and contain enough source text for extraction.
 
@@ -209,14 +208,14 @@ class PagePlan(BaseModel):
 
 **Files:** `schema/synthesis_wiki.yaml`, `validate.py`, tests.
 
-- [ ] Define LinkML schema or pydantic schema for statement cards, evidence anchors, entities, edge classes, page plans, corrections.
-- [ ] Add validator commands:
+- [x] Define LinkML schema or pydantic schema for statement cards, evidence anchors, entities, edge classes, page plans, corrections.
+- [x] Add validator commands:
   - `compendium validate-card <file>`;
   - `compendium validate-project-kg <file>`;
   - `compendium validate-page-plan <file>`.
-- [ ] Validate evidence anchor shape and required statement fields.
-- [ ] Validate controlled vocabularies for statement kinds, tiers, edge classes, page types.
-- [ ] Add tests for invalid missing evidence, invalid edge kind, unknown tier, and valid card.
+- [x] Validate evidence anchor shape and required statement fields.
+- [x] Validate controlled vocabularies for statement kinds, tiers, edge classes, page types.
+- [x] Add tests for invalid missing evidence, invalid edge kind, unknown tier, and valid card.
 
 **Acceptance:** Invalid LLM outputs cannot enter graph assembly.
 
@@ -228,17 +227,17 @@ class PagePlan(BaseModel):
 
 **Files:** `compendium/skills/kg-ingest-project/SKILL.md`, support prompts/templates if needed.
 
-- [ ] Create skill instructions.
-- [ ] Skill workflow:
+- [x] Create skill instructions.
+- [x] Skill workflow:
   - run audit/context-pack;
   - extract statement cards, entities, proposed links, caveats, conflicts, and opportunities;
   - validate output;
   - retry invalid sections;
-  - write `compendium/kg/projects/<project_id>.yaml`;
+  - write `compendium/kg/<project_id>.kg.yaml`;
   - rebuild graph/page plans/quality;
   - summarize extracted cards and diffs.
-- [ ] Require evidence anchors for every non-retracted statement.
-- [ ] Forbid uncited claims and free-form relation types.
+- [x] Require evidence anchors for every non-retracted statement.
+- [x] Forbid uncited claims and free-form relation types.
 - [ ] Demonstrate on one fixture/tracer project.
 
 **Acceptance:** Running the skill on one ADP1 project writes validated statement cards and a manifest.
@@ -251,11 +250,11 @@ class PagePlan(BaseModel):
 
 **Files:** `build/assemble.py`, `build/canonicalize.py`, `ids.py`, tests.
 
-- [ ] Convert statement cards into graph nodes.
-- [ ] Convert `about`, `links`, `qualifiers`, and evidence into typed edge classes:
+- [x] Convert statement cards into graph nodes.
+- [x] Convert `about`, `links`, `qualifiers`, and evidence into typed edge classes:
   `scientific_edge`, `provenance_edge`, `navigation_edge`, `derivation_edge`, `review_edge`.
 - [ ] Canonicalize entities by deterministic IDs/CURIEs.
-- [ ] Keep statement-card IDs stable across re-ingestion.
+- [x] Keep statement-card IDs stable across re-ingestion.
 - [ ] Detect conflicts from explicit contradictions and opposing claims.
 - [ ] Emit sorted graph artifacts: `nodes.tsv`, `edges.tsv`, `graph.json`.
 - [ ] Idempotency test under shuffled project/card/correction order.
@@ -270,13 +269,13 @@ class PagePlan(BaseModel):
 
 **Files:** `pages/plan.py`, tests.
 
-- [ ] Generate page plans for home, topics, claims, opportunities, projects, and entities.
-- [ ] Home page plan includes top topics, strong claims, conflicts, opportunities, reusable data/products, recent changes, browse lanes.
-- [ ] Topic page plans use statement membership by topic plus related claims/conflicts/opportunities.
-- [ ] Claim page plans include support/refutation/caveats/downstream uses.
-- [ ] Entity page plans include backlinks grouped by statement kind and topic.
-- [ ] Compute `member_hash` per page and section.
-- [ ] Test page-plan determinism.
+- [x] Generate page plans for home, topics, claims, opportunities, projects, and entities.
+- [x] Home page plan includes top topics, strong claims, conflicts, opportunities, reusable data/products, recent changes, browse lanes.
+- [x] Topic page plans use statement membership by topic plus related claims/conflicts/opportunities.
+- [x] Claim page plans include support/refutation/caveats/downstream uses.
+- [x] Entity page plans include backlinks grouped by statement kind and topic.
+- [x] Compute `member_hash` per page and section.
+- [x] Test page-plan determinism.
 
 **Acceptance:** The ADP1 tracer produces deterministic page plans with sensible backlinks/outlinks.
 
@@ -288,10 +287,10 @@ class PagePlan(BaseModel):
 
 **Files:** `compendium/skills/kg-synthesize-page/SKILL.md`, page templates.
 
-- [ ] Create skill instructions.
-- [ ] Input is a `PagePlan` and referenced statement cards only.
-- [ ] Require citations to statement IDs/source projects.
-- [ ] Write prose sections from member cards; do not invent unsupported claims.
+- [x] Create skill instructions.
+- [x] Input is a `PagePlan` and referenced statement cards only.
+- [x] Require citations to statement IDs/source projects.
+- [x] Write prose sections from member cards; do not invent unsupported claims.
 - [ ] Store synthesis manifest with model, prompt hash, page-plan hash, member hash.
 - [ ] Write generated page artifact under `compendium/pages/`.
 - [ ] Demonstrate on home and ADP1 topic pages.
@@ -306,8 +305,8 @@ class PagePlan(BaseModel):
 
 **Files:** `render/`, templates, static assets, tests.
 
-- [ ] Render synthesis pages as the primary pages.
-- [ ] Render project and entity pages.
+- [x] Render synthesis pages as the primary pages.
+- [x] Render project and entity pages.
 - [ ] Each page includes:
   - readable prose;
   - source statement list;
@@ -316,8 +315,8 @@ class PagePlan(BaseModel):
   - local graph/neighborhood;
   - provenance links.
 - [ ] Add graph view with typed edge filters.
-- [ ] Vendor/pin frontend assets; do not depend on CDN for core render.
-- [ ] Test no broken internal links.
+- [x] Vendor/pin frontend assets; do not depend on CDN for core render.
+- [x] Test no broken internal links.
 
 **Acceptance:** The generated ADP1 site is navigable by home, topic, claim, project, entity, and graph.
 
@@ -361,7 +360,7 @@ class PagePlan(BaseModel):
   - synthesis pages regenerated in last build.
 - [ ] Add CLI `compendium quality`.
 - [ ] Render quality dashboard page.
-- [ ] Tests for metric correctness on small graphs.
+- [x] Tests for metric correctness on small graphs.
 
 **Acceptance:** Quality report catches missing evidence, dangling links, and orphan synthesis pages.
 
@@ -373,11 +372,11 @@ class PagePlan(BaseModel):
 
 **Files:** `skills/kg-backfill/SKILL.md`, optional helper scripts.
 
-- [ ] Skill iterates project-by-project and calls `kg-ingest-project`.
-- [ ] Records failed projects and validation failures.
-- [ ] Produces batch diff and quality summary.
-- [ ] Supports `--limit`, explicit project list, and resume from previous run.
-- [ ] Does not ingest all projects by default during tracer work.
+- [x] Skill iterates project-by-project and calls `kg-ingest-project`.
+- [x] Records failed projects and validation failures.
+- [x] Produces batch diff and quality summary.
+- [x] Supports `--limit`, explicit project list, and resume from previous run.
+- [x] Does not ingest all projects by default during tracer work.
 
 **Acceptance:** Backfill can process the two ADP1 projects as a batch and report extracted cards/pages.
 
@@ -389,10 +388,10 @@ class PagePlan(BaseModel):
 
 **Files:** `skills/kg-review-queue/SKILL.md`, `quality/review_queue.py`, tests.
 
-- [ ] Rank statements by centrality, low confidence, conflict status, synthesis use, and missing review.
-- [ ] Generate review briefs with source evidence and affected pages.
-- [ ] Support actions via `kg-curate`.
-- [ ] Test ranking on a fixture graph.
+- [x] Rank statements by centrality, low confidence, conflict status, synthesis use, and missing review.
+- [x] Generate review briefs with source evidence and affected pages.
+- [x] Support actions via `kg-curate`.
+- [x] Test ranking on a fixture graph.
 
 **Acceptance:** The queue identifies the most important asserted/conflicted ADP1 statements.
 
@@ -403,10 +402,10 @@ class PagePlan(BaseModel):
 **Goal:** Prove the full workflow on the two ADP1 projects.
 
 - [ ] Run `kg-ingest-project` for each tracer project.
-- [ ] Build graph and page plans.
+- [x] Build graph and page plans.
 - [ ] Run `kg-synthesize-page` for home, ADP1 topic, claims, opportunity, projects, and organism page.
-- [ ] Render the site.
-- [ ] Run quality checks.
+- [x] Render the site.
+- [x] Run quality checks.
 - [ ] Confirm outputs:
   - home page exists;
   - ADP1 topic page exists;

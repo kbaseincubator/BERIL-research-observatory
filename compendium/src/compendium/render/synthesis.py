@@ -12,6 +12,7 @@ from compendium.models import PagePlan, PageSectionPlan, StatementCard
 from compendium.pages import page_id_for_statement
 
 _TEMPLATES = Path(__file__).parent / "templates"
+_GRAPH_FILENAME = "graph.html"
 _LINK_FIELDS = (
     "supports",
     "contradicts",
@@ -25,6 +26,7 @@ def render_synthesis_site(
     cards: list[StatementCard],
     page_plans: list[PagePlan],
     out_dir: Path,
+    statement_graph: dict[str, list[dict[str, Any]]] | None = None,
 ) -> list[Path]:
     """Render v4 ``PagePlan`` and ``StatementCard`` artifacts to static HTML.
 
@@ -39,13 +41,19 @@ def render_synthesis_site(
     plan_by_id = _unique_by_id(page_plans, "page plan")
     page_paths = _page_paths(plan_by_id)
     env = _env()
+    graph_href = _GRAPH_FILENAME if statement_graph is not None else None
+    if graph_href in page_paths.values():
+        raise ValueError(
+            f"graph view renders to the same filename {graph_href!r} as a page plan"
+        )
+
     template = env.get_template("synthesis_page.html.j2")
 
     rendered: list[Path] = []
     for plan in sorted(page_plans, key=_plan_sort_key):
         path = out_dir / page_paths[plan.id]
         html = template.render(
-            page=_page_view(plan, card_by_id, page_paths),
+            page=_page_view(plan, card_by_id, page_paths, graph_href),
             generated_index=False,
         )
         path.write_text(html, encoding="utf-8")
@@ -54,11 +62,18 @@ def render_synthesis_site(
     if "home" not in plan_by_id:
         index_path = out_dir / "index.html"
         html = template.render(
-            page=_index_view(page_plans, page_paths),
+            page=_index_view(page_plans, page_paths, graph_href),
             generated_index=True,
         )
         index_path.write_text(html, encoding="utf-8")
         rendered.insert(0, index_path)
+
+    if statement_graph is not None:
+        graph_path = out_dir / _GRAPH_FILENAME
+        graph_template = env.get_template("synthesis_graph.html.j2")
+        html = graph_template.render(graph=_graph_view(statement_graph, page_paths))
+        graph_path.write_text(html, encoding="utf-8")
+        rendered.append(graph_path)
 
     return rendered
 
@@ -85,6 +100,7 @@ def _page_view(
     plan: PagePlan,
     card_by_id: dict[str, StatementCard],
     page_paths: dict[str, str],
+    graph_href: str | None,
 ) -> dict[str, Any]:
     member_ids = _unique_preserving_order(plan.member_statement_ids)
     member_cards = [_statement_view(card_by_id[sid], page_paths) for sid in member_ids if sid in card_by_id]
@@ -105,10 +121,15 @@ def _page_view(
         "outgoing_links": _page_links(plan.outgoing_links, page_paths),
         "backlinks": _page_links(plan.backlinks, page_paths),
         "all_pages": _page_links(page_paths, page_paths),
+        "graph_href": graph_href,
     }
 
 
-def _index_view(page_plans: list[PagePlan], page_paths: dict[str, str]) -> dict[str, Any]:
+def _index_view(
+    page_plans: list[PagePlan],
+    page_paths: dict[str, str],
+    graph_href: str | None,
+) -> dict[str, Any]:
     return {
         "id": "home",
         "type": "index",
@@ -131,6 +152,78 @@ def _index_view(page_plans: list[PagePlan], page_paths: dict[str, str]) -> dict[
         ],
         "backlinks": [],
         "all_pages": _page_links(page_paths, page_paths),
+        "graph_href": graph_href,
+    }
+
+
+def _graph_view(
+    statement_graph: dict[str, list[dict[str, Any]]],
+    page_paths: dict[str, str],
+) -> dict[str, Any]:
+    nodes = [
+        _graph_node_view(node, page_paths)
+        for node in sorted(statement_graph.get("nodes", []), key=_graph_node_sort_key)
+    ]
+    node_by_id = {node["id"]: node for node in nodes}
+    edges = [
+        _graph_edge_view(edge, node_by_id)
+        for edge in sorted(statement_graph.get("edges", []), key=_graph_edge_sort_key)
+    ]
+    return {
+        "title": "Synthesis Graph",
+        "node_count": len(nodes),
+        "edge_count": len(edges),
+        "nodes": nodes,
+        "statement_nodes": [node for node in nodes if node["type"] == "statement_card"],
+        "edges": edges,
+        "all_pages": _page_links(page_paths, page_paths),
+    }
+
+
+def _graph_node_view(node: dict[str, Any], page_paths: dict[str, str]) -> dict[str, Any]:
+    node_id = str(node["id"])
+    attrs = node.get("attrs", {})
+    return {
+        "id": node_id,
+        "type": str(node["type"]),
+        "label": str(node.get("label") or node_id),
+        "href": _graph_node_href(node_id, page_paths),
+        "kind": attrs.get("kind"),
+        "confidence": attrs.get("confidence"),
+    }
+
+
+def _graph_edge_view(
+    edge: dict[str, Any],
+    node_by_id: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    source_id = str(edge["s"])
+    target_id = str(edge["o"])
+    source = node_by_id.get(source_id, _graph_endpoint_fallback(source_id))
+    target = node_by_id.get(target_id, _graph_endpoint_fallback(target_id))
+    edge_class = str(edge["edge_class"])
+    predicate = str(edge["p"])
+    return {
+        "id": str(edge["id"]),
+        "edge_class": edge_class,
+        "edge_class_css": _safe_css_class(edge_class),
+        "predicate": predicate,
+        "source": source,
+        "target": target,
+        "statement_ids": sorted(
+            str(statement_id) for statement_id in edge.get("statement_ids", [])
+        ),
+    }
+
+
+def _graph_endpoint_fallback(node_id: str) -> dict[str, Any]:
+    return {
+        "id": node_id,
+        "type": "missing",
+        "label": node_id,
+        "href": None,
+        "kind": None,
+        "confidence": None,
     }
 
 
@@ -223,6 +316,14 @@ def _statement_link(target_id: str, page_paths: dict[str, str]) -> dict[str, str
     }
 
 
+def _graph_node_href(node_id: str, page_paths: dict[str, str]) -> str | None:
+    if href := page_paths.get(node_id):
+        return href
+    if not node_id.startswith("stmt:"):
+        return None
+    return _statement_link(node_id, page_paths)["href"]
+
+
 def _source_projects(member_cards: list[dict[str, Any]], page_paths: dict[str, str]) -> list[dict[str, Any]]:
     grouped: dict[str, dict[str, Any]] = {}
     for card in member_cards:
@@ -307,3 +408,21 @@ def _unique_preserving_order(values: Iterable[str]) -> list[str]:
 
 def _plan_sort_key(plan: PagePlan) -> tuple[int, str]:
     return (0 if plan.id == "home" else 1, plan.id)
+
+
+def _graph_node_sort_key(node: dict[str, Any]) -> tuple[str, str]:
+    return (str(node.get("type", "")), str(node.get("id", "")))
+
+
+def _graph_edge_sort_key(edge: dict[str, Any]) -> tuple[str, str, str, str, str]:
+    return (
+        str(edge.get("edge_class", "")),
+        str(edge.get("p", "")),
+        str(edge.get("s", "")),
+        str(edge.get("o", "")),
+        str(edge.get("id", "")),
+    )
+
+
+def _safe_css_class(value: str) -> str:
+    return _safe_page_id(value).replace(" ", "_")
