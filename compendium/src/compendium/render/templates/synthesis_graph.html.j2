@@ -36,7 +36,7 @@
 </head>
 <body>
   <nav class="meta">
-    <a href="index.html">home</a>
+    <a href="{{ graph.home_href }}">home</a>
     <span>graph</span>
     {% for link in graph.all_pages %}
       {% if link.id != "home" %}

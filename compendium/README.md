@@ -30,7 +30,10 @@ audit -> context-pack -> validate cards -> assemble graph -> plan pages -> rende
 uv run --directory compendium --group test pytest
 uv run --directory compendium compendium render-markdown \
     fixtures/statement_cards/adp1_three_project_ingestion.yaml --out wiki
+uv run --directory compendium compendium render-synthesis \
+    fixtures/statement_cards/adp1_three_project_ingestion.yaml --out site
 open compendium/wiki/index.md                               # linked Markdown wiki
+open compendium/site/index.html                             # matching static HTML wiki
 
 uv run --directory compendium compendium tracer --out out/adp1-tracer
 open compendium/out/adp1-tracer/wiki/index.md               # full artifact bundle's Markdown wiki

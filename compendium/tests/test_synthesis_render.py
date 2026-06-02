@@ -107,9 +107,11 @@ def test_render_home_topic_entity_and_claim_pages(tmp_path: Path) -> None:
     render_synthesis_site(cards, plan_pages(cards), tmp_path)
 
     home = (tmp_path / "index.html").read_text(encoding="utf-8")
-    topic = (tmp_path / "topic_carbon-source-essentiality.html").read_text(encoding="utf-8")
-    entity = (tmp_path / "entity_adp1.html").read_text(encoding="utf-8")
-    claim = (tmp_path / "claim_c1.html").read_text(encoding="utf-8")
+    topic = (tmp_path / "topics" / "carbon-source-essentiality.html").read_text(
+        encoding="utf-8"
+    )
+    entity = (tmp_path / "entities" / "adp1.html").read_text(encoding="utf-8")
+    claim = (tmp_path / "claims" / "c1.html").read_text(encoding="utf-8")
 
     assert "State Of The Science" in home
     assert "home page" in home
@@ -125,7 +127,7 @@ def test_render_includes_sections_sources_and_navigation(tmp_path: Path) -> None
     cards = _cards()
     render_synthesis_site(cards, plan_pages(cards), tmp_path)
 
-    claim = (tmp_path / "claim_c1.html").read_text(encoding="utf-8")
+    claim = (tmp_path / "claims" / "c1.html").read_text(encoding="utf-8")
 
     assert "Supporting Evidence" in claim
     assert "Source Projects" in claim
@@ -133,8 +135,8 @@ def test_render_includes_sections_sources_and_navigation(tmp_path: Path) -> None
     assert "REPORT.md" in claim
     assert "Outgoing Links" in claim
     assert "Backlinks" in claim
-    assert "topic_carbon-source-essentiality.html" in claim
-    assert "entity_adp1.html" in claim
+    assert "../topics/carbon-source-essentiality.html" in claim
+    assert "../entities/adp1.html" in claim
 
 
 def test_render_creates_statement_graph_page(tmp_path: Path) -> None:
@@ -148,7 +150,7 @@ def test_render_creates_statement_graph_page(tmp_path: Path) -> None:
 
     graph_path = tmp_path / "graph.html"
     graph = graph_path.read_text(encoding="utf-8")
-    claim = (tmp_path / "claim_c1.html").read_text(encoding="utf-8")
+    claim = (tmp_path / "claims" / "c1.html").read_text(encoding="utf-8")
 
     assert graph_path in paths
     assert "Synthesis Graph" in graph
@@ -160,8 +162,8 @@ def test_render_creates_statement_graph_page(tmp_path: Path) -> None:
     assert 'href="#graph-edge-class-scientific_edge-supports"' in graph
     assert "<code>supports</code>" in graph
     assert "ADP1 has a reusable carbon-source essentiality landscape." in graph
-    assert "claim_c1.html" in graph
-    assert "graph.html" in claim
+    assert "claims/c1.html" in graph
+    assert "../graph.html" in claim
 
 
 def test_render_includes_local_neighborhood_sections(tmp_path: Path) -> None:
@@ -173,7 +175,7 @@ def test_render_includes_local_neighborhood_sections(tmp_path: Path) -> None:
         statement_graph=build_statement_graph(cards),
     )
 
-    claim = (tmp_path / "claim_c1.html").read_text(encoding="utf-8")
+    claim = (tmp_path / "claims" / "c1.html").read_text(encoding="utf-8")
 
     assert "Local Neighborhood" in claim
     assert "statement-graph edges near this page" in claim
@@ -181,7 +183,7 @@ def test_render_includes_local_neighborhood_sections(tmp_path: Path) -> None:
     assert 'href="#local-edge-class-scientific_edge-supports"' in claim
     assert "<code>supports</code>" in claim
     assert "ADP1 carbon sources define condition-specific essentiality." in claim
-    assert 'href="graph.html">full graph</a>' in claim
+    assert 'href="../graph.html">full graph</a>' in claim
 
 
 def test_render_has_no_broken_internal_links(tmp_path: Path) -> None:

@@ -137,7 +137,9 @@ def test_render_synthesis_command_writes_static_site(tmp_path: Path) -> None:
 
     assert (out_dir / "index.html").is_file()
     assert (out_dir / "graph.html").is_file()
-    claim_page = out_dir / "claim_adp1-continuum-claim.html"
+    assert (out_dir / "topics" / "adp1-carbon-fitness.html").is_file()
+    assert (out_dir / "entities" / "adp1.html").is_file()
+    claim_page = out_dir / "claims" / "adp1-continuum-claim.html"
     assert claim_page.is_file()
     assert "ADP1 condition-dependent essentiality" in claim_page.read_text(encoding="utf-8")
 
@@ -271,7 +273,7 @@ def test_tracer_command_writes_full_adp1_artifact_bundle(tmp_path: Path) -> None
     assert (out_dir / "page-plans.json").is_file()
     assert (out_dir / "page-artifacts" / "home.md").is_file()
     assert (out_dir / "site" / "index.html").is_file()
-    assert (out_dir / "site" / "entity_adp1.html").is_file()
+    assert (out_dir / "site" / "entities" / "adp1.html").is_file()
     assert (out_dir / "site" / "graph.html").is_file()
     assert (out_dir / "quality.json").is_file()
     assert (out_dir / "quality-dashboard.html").is_file()

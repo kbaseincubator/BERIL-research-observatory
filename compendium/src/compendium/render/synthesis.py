@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Iterable
 from pathlib import Path
+import re
 from typing import Any
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -13,6 +14,16 @@ from compendium.pages import page_id_for_statement
 
 _TEMPLATES = Path(__file__).parent / "templates"
 _GRAPH_FILENAME = "graph.html"
+_PAGE_DIRS = {
+    "topic": "topics",
+    "claim": "claims",
+    "conflict": "conflicts",
+    "opportunity": "opportunities",
+    "direction": "directions",
+    "hypothesis": "hypotheses",
+    "project": "projects",
+    "entity": "entities",
+}
 _LINK_FIELDS = (
     "supports",
     "contradicts",
@@ -30,9 +41,9 @@ def render_synthesis_site(
 ) -> list[Path]:
     """Render v4 ``PagePlan`` and ``StatementCard`` artifacts to static HTML.
 
-    The home page is written to ``index.html``. Other page ids are written to a
-    stable, filesystem-safe filename in ``out_dir``. Output is byte-stable for
-    a fixed set of cards and page plans.
+    The home page is written to ``index.html``. Other page ids are written into
+    stable page-type folders such as ``topics/`` and ``claims/``. Output is
+    byte-stable for a fixed set of cards and page plans.
     """
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -41,28 +52,38 @@ def render_synthesis_site(
     plan_by_id = _unique_by_id(page_plans, "page plan")
     page_paths = _page_paths(plan_by_id)
     env = _env()
-    graph_href = _GRAPH_FILENAME if statement_graph is not None else None
-    if graph_href in page_paths.values():
+    graph_path = _GRAPH_FILENAME if statement_graph is not None else None
+    if graph_path in page_paths.values():
         raise ValueError(
-            f"graph view renders to the same filename {graph_href!r} as a page plan"
+            f"graph view renders to the same filename {graph_path!r} as a page plan"
         )
 
     template = env.get_template("synthesis_page.html.j2")
 
     rendered: list[Path] = []
     for plan in sorted(page_plans, key=_plan_sort_key):
-        path = out_dir / page_paths[plan.id]
+        current_path = page_paths[plan.id]
+        path = out_dir / current_path
+        path.parent.mkdir(parents=True, exist_ok=True)
         html = template.render(
-            page=_page_view(plan, card_by_id, page_paths, graph_href, statement_graph),
+            page=_page_view(
+                plan,
+                card_by_id,
+                page_paths,
+                current_path,
+                graph_path,
+                statement_graph,
+            ),
             generated_index=False,
         )
         path.write_text(html, encoding="utf-8")
         rendered.append(path)
 
     if "home" not in plan_by_id:
-        index_path = out_dir / "index.html"
+        current_path = "index.html"
+        index_path = out_dir / current_path
         html = template.render(
-            page=_index_view(page_plans, page_paths, graph_href),
+            page=_index_view(page_plans, page_paths, current_path, graph_path),
             generated_index=True,
         )
         index_path.write_text(html, encoding="utf-8")
@@ -71,7 +92,9 @@ def render_synthesis_site(
     if statement_graph is not None:
         graph_path = out_dir / _GRAPH_FILENAME
         graph_template = env.get_template("synthesis_graph.html.j2")
-        html = graph_template.render(graph=_graph_view(statement_graph, page_paths))
+        html = graph_template.render(
+            graph=_graph_view(statement_graph, page_paths, _GRAPH_FILENAME)
+        )
         graph_path.write_text(html, encoding="utf-8")
         rendered.append(graph_path)
 
@@ -100,43 +123,51 @@ def _page_view(
     plan: PagePlan,
     card_by_id: dict[str, StatementCard],
     page_paths: dict[str, str],
-    graph_href: str | None,
+    current_path: str,
+    graph_path: str | None,
     statement_graph: dict[str, list[dict[str, Any]]] | None,
 ) -> dict[str, Any]:
     member_ids = _unique_preserving_order(plan.member_statement_ids)
-    member_cards = [_statement_view(card_by_id[sid], page_paths) for sid in member_ids if sid in card_by_id]
+    member_cards = [
+        _statement_view(card_by_id[sid], page_paths, current_path)
+        for sid in member_ids
+        if sid in card_by_id
+    ]
     missing_members = [sid for sid in member_ids if sid not in card_by_id]
     return {
         "id": plan.id,
         "type": plan.type,
         "title": plan.title,
-        "path": page_paths[plan.id],
+        "path": current_path,
+        "home_href": _relative_href(current_path, page_paths.get("home", "index.html")),
         "member_hash": plan.member_hash,
         "sections": [
-            _section_view(section, card_by_id, page_paths)
+            _section_view(section, card_by_id, page_paths, current_path)
             for section in plan.sections
         ],
         "statements": member_cards,
         "missing_members": missing_members,
-        "source_projects": _source_projects(member_cards, page_paths),
-        "outgoing_links": _page_links(plan.outgoing_links, page_paths),
-        "backlinks": _page_links(plan.backlinks, page_paths),
-        "all_pages": _page_links(page_paths, page_paths),
-        "graph_href": graph_href,
-        "local_graph": _local_graph_view(plan, statement_graph, page_paths),
+        "source_projects": _source_projects(member_cards, page_paths, current_path),
+        "outgoing_links": _page_links(plan.outgoing_links, page_paths, current_path),
+        "backlinks": _page_links(plan.backlinks, page_paths, current_path),
+        "all_pages": _page_links(page_paths, page_paths, current_path),
+        "graph_href": _relative_href(current_path, graph_path) if graph_path else None,
+        "local_graph": _local_graph_view(plan, statement_graph, page_paths, current_path),
     }
 
 
 def _index_view(
     page_plans: list[PagePlan],
     page_paths: dict[str, str],
-    graph_href: str | None,
+    current_path: str,
+    graph_path: str | None,
 ) -> dict[str, Any]:
     return {
         "id": "home",
         "type": "index",
         "title": "Synthesis Wiki",
-        "path": "index.html",
+        "path": current_path,
+        "home_href": _relative_href(current_path, "index.html"),
         "member_hash": "",
         "sections": [],
         "statements": [],
@@ -147,14 +178,14 @@ def _index_view(
                 "id": plan.id,
                 "title": plan.title,
                 "type": plan.type,
-                "href": page_paths[plan.id],
+                "href": _relative_href(current_path, page_paths[plan.id]),
                 "missing": False,
             }
             for plan in sorted(page_plans, key=_plan_sort_key)
         ],
         "backlinks": [],
-        "all_pages": _page_links(page_paths, page_paths),
-        "graph_href": graph_href,
+        "all_pages": _page_links(page_paths, page_paths, current_path),
+        "graph_href": _relative_href(current_path, graph_path) if graph_path else None,
         "local_graph": None,
     }
 
@@ -162,9 +193,10 @@ def _index_view(
 def _graph_view(
     statement_graph: dict[str, list[dict[str, Any]]],
     page_paths: dict[str, str],
+    current_path: str,
 ) -> dict[str, Any]:
     nodes = [
-        _graph_node_view(node, page_paths)
+        _graph_node_view(node, page_paths, current_path)
         for node in sorted(statement_graph.get("nodes", []), key=_graph_node_sort_key)
     ]
     node_by_id = {node["id"]: node for node in nodes}
@@ -180,7 +212,8 @@ def _graph_view(
         "statement_nodes": [node for node in nodes if node["type"] == "statement_card"],
         "edges": edges,
         "edge_filters": _edge_filter_views(edges, "graph-edge-class"),
-        "all_pages": _page_links(page_paths, page_paths),
+        "home_href": _relative_href(current_path, page_paths.get("home", "index.html")),
+        "all_pages": _page_links(page_paths, page_paths, current_path),
     }
 
 
@@ -188,13 +221,14 @@ def _local_graph_view(
     plan: PagePlan,
     statement_graph: dict[str, list[dict[str, Any]]] | None,
     page_paths: dict[str, str],
+    current_path: str,
 ) -> dict[str, Any] | None:
     if statement_graph is None:
         return None
 
     local_ids = {plan.id, *_unique_preserving_order(plan.member_statement_ids)}
     nodes = [
-        _graph_node_view(node, page_paths)
+        _graph_node_view(node, page_paths, current_path)
         for node in sorted(statement_graph.get("nodes", []), key=_graph_node_sort_key)
     ]
     node_by_id = {node["id"]: node for node in nodes}
@@ -250,14 +284,18 @@ def _edge_filter_views(
     ]
 
 
-def _graph_node_view(node: dict[str, Any], page_paths: dict[str, str]) -> dict[str, Any]:
+def _graph_node_view(
+    node: dict[str, Any],
+    page_paths: dict[str, str],
+    current_path: str,
+) -> dict[str, Any]:
     node_id = str(node["id"])
     attrs = node.get("attrs", {})
     return {
         "id": node_id,
         "type": str(node["type"]),
         "label": str(node.get("label") or node_id),
-        "href": _graph_node_href(node_id, page_paths),
+        "href": _graph_node_href(node_id, page_paths, current_path),
         "kind": attrs.get("kind"),
         "confidence": attrs.get("confidence"),
     }
@@ -301,6 +339,7 @@ def _section_view(
     section: PageSectionPlan,
     card_by_id: dict[str, StatementCard],
     page_paths: dict[str, str],
+    current_path: str,
 ) -> dict[str, Any]:
     member_ids = _unique_preserving_order(section.member_statement_ids)
     return {
@@ -308,7 +347,7 @@ def _section_view(
         "heading": section.heading,
         "member_hash": section.member_hash,
         "statements": [
-            _statement_ref(card_by_id[sid], page_paths)
+            _statement_ref(card_by_id[sid], page_paths, current_path)
             for sid in member_ids
             if sid in card_by_id
         ],
@@ -316,7 +355,11 @@ def _section_view(
     }
 
 
-def _statement_view(card: StatementCard, page_paths: dict[str, str]) -> dict[str, Any]:
+def _statement_view(
+    card: StatementCard,
+    page_paths: dict[str, str],
+    current_path: str,
+) -> dict[str, Any]:
     evidence = card.evidence
     source_project_page_id = f"project:{evidence.source_project}"
     return {
@@ -327,14 +370,14 @@ def _statement_view(card: StatementCard, page_paths: dict[str, str]) -> dict[str
         "scope": card.scope,
         "tier": card.tier,
         "confidence": card.confidence,
-        "topics": _page_links(card.about.topics, page_paths),
-        "entities": _page_links(card.about.entities, page_paths),
+        "topics": _page_links(card.about.topics, page_paths, current_path),
+        "entities": _page_links(card.about.entities, page_paths, current_path),
         "qualifiers": sorted(card.qualifiers.items()),
         "links": [
             {
                 "kind": field_name.replace("_", " "),
                 "targets": [
-                    _statement_link(target_id, page_paths)
+                    _statement_link(target_id, page_paths, current_path)
                     for target_id in sorted(set(getattr(card.links, field_name)))
                 ],
             }
@@ -343,7 +386,11 @@ def _statement_view(card: StatementCard, page_paths: dict[str, str]) -> dict[str
         ],
         "evidence": {
             "source_project": evidence.source_project,
-            "source_project_href": page_paths.get(source_project_page_id),
+            "source_project_href": _page_href(
+                source_project_page_id,
+                page_paths,
+                current_path,
+            ),
             "source_doc": evidence.source_doc,
             "source_section": evidence.source_section,
             "exact": evidence.exact,
@@ -360,9 +407,13 @@ def _statement_view(card: StatementCard, page_paths: dict[str, str]) -> dict[str
     }
 
 
-def _statement_ref(card: StatementCard, page_paths: dict[str, str]) -> dict[str, str | None]:
+def _statement_ref(
+    card: StatementCard,
+    page_paths: dict[str, str],
+    current_path: str,
+) -> dict[str, str | None]:
     statement_page_id = page_id_for_statement(card)
-    href = page_paths.get(statement_page_id) if statement_page_id else None
+    href = _page_href(statement_page_id, page_paths, current_path) if statement_page_id else None
     return {
         "id": card.id,
         "kind": card.kind,
@@ -372,12 +423,16 @@ def _statement_ref(card: StatementCard, page_paths: dict[str, str]) -> dict[str,
     }
 
 
-def _statement_link(target_id: str, page_paths: dict[str, str]) -> dict[str, str | None]:
+def _statement_link(
+    target_id: str,
+    page_paths: dict[str, str],
+    current_path: str,
+) -> dict[str, str | None]:
     href = None
     if ":" in target_id:
         suffix = target_id.split(":", 1)[1]
         for prefix in ("claim", "opportunity"):
-            if prefix_href := page_paths.get(f"{prefix}:{suffix}"):
+            if prefix_href := _page_href(f"{prefix}:{suffix}", page_paths, current_path):
                 href = prefix_href
                 break
     return {
@@ -386,15 +441,23 @@ def _statement_link(target_id: str, page_paths: dict[str, str]) -> dict[str, str
     }
 
 
-def _graph_node_href(node_id: str, page_paths: dict[str, str]) -> str | None:
-    if href := page_paths.get(node_id):
+def _graph_node_href(
+    node_id: str,
+    page_paths: dict[str, str],
+    current_path: str,
+) -> str | None:
+    if href := _page_href(node_id, page_paths, current_path):
         return href
     if not node_id.startswith("stmt:"):
         return None
-    return _statement_link(node_id, page_paths)["href"]
+    return _statement_link(node_id, page_paths, current_path)["href"]
 
 
-def _source_projects(member_cards: list[dict[str, Any]], page_paths: dict[str, str]) -> list[dict[str, Any]]:
+def _source_projects(
+    member_cards: list[dict[str, Any]],
+    page_paths: dict[str, str],
+    current_path: str,
+) -> list[dict[str, Any]]:
     grouped: dict[str, dict[str, Any]] = {}
     for card in member_cards:
         evidence = card["evidence"]
@@ -403,7 +466,7 @@ def _source_projects(member_cards: list[dict[str, Any]], page_paths: dict[str, s
             project_id,
             {
                 "id": project_id,
-                "href": page_paths.get(f"project:{project_id}"),
+                "href": _page_href(f"project:{project_id}", page_paths, current_path),
                 "statement_count": 0,
                 "documents": set(),
             },
@@ -421,12 +484,16 @@ def _source_projects(member_cards: list[dict[str, Any]], page_paths: dict[str, s
     ]
 
 
-def _page_links(page_ids: Iterable[str] | dict[str, str], page_paths: dict[str, str]) -> list[dict[str, Any]]:
+def _page_links(
+    page_ids: Iterable[str] | dict[str, str],
+    page_paths: dict[str, str],
+    current_path: str,
+) -> list[dict[str, Any]]:
     ids = page_ids.keys() if isinstance(page_ids, dict) else page_ids
     return [
         {
             "id": page_id,
-            "href": page_paths.get(page_id),
+            "href": _page_href(page_id, page_paths, current_path),
             "missing": page_id not in page_paths,
         }
         for page_id in sorted(set(ids))
@@ -437,7 +504,7 @@ def _page_paths(plan_by_id: dict[str, PagePlan]) -> dict[str, str]:
     page_paths: dict[str, str] = {}
     filename_to_page_id: dict[str, str] = {}
     for page_id in sorted(plan_by_id):
-        filename = _page_filename(page_id)
+        filename = _page_filename(plan_by_id[page_id])
         if existing_page_id := filename_to_page_id.get(filename):
             raise ValueError(
                 f"page ids {existing_page_id!r} and {page_id!r} render to the same filename {filename!r}"
@@ -447,14 +514,42 @@ def _page_paths(plan_by_id: dict[str, PagePlan]) -> dict[str, str]:
     return page_paths
 
 
-def _page_filename(page_id: str) -> str:
-    if page_id == "home":
+def _page_filename(plan: PagePlan) -> str:
+    if plan.id == "home":
         return "index.html"
-    return f"{_safe_page_id(page_id)}.html"
+    stem = _slug(plan.id.split(":", 1)[1] if ":" in plan.id else plan.id)
+    directory = _PAGE_DIRS.get(plan.type, f"{_slug(plan.type)}s")
+    return f"{directory}/{stem}.html"
+
+
+def _page_href(
+    page_id: str | None,
+    page_paths: dict[str, str],
+    current_path: str,
+) -> str | None:
+    if page_id is None:
+        return None
+    if target_path := page_paths.get(page_id):
+        return _relative_href(current_path, target_path)
+    return None
+
+
+def _relative_href(current_path: str, target_path: str | None) -> str:
+    if not target_path:
+        return ""
+    current_parent = Path(current_path).parent
+    if str(current_parent) == ".":
+        return target_path
+    return Path(*([".."] * len(current_parent.parts)), target_path).as_posix()
 
 
 def _safe_page_id(page_id: str) -> str:
     return page_id.replace(":", "_").replace("/", "_")
+
+
+def _slug(value: str) -> str:
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", value.lower()).strip("-")
+    return slug or "page"
 
 
 def _safe_fragment(value: str) -> str:
