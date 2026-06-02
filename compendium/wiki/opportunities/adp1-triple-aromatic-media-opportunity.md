@@ -10,6 +10,43 @@ member_hash: hash:dc34d41f06a3d578
 - Member hash: `hash:dc34d41f06a3d578`
 - Graph: [Graph](../graph.md)
 
+## Introduction
+
+This opportunity proposes a concrete next step: ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. [stmt:adp1-triple-aromatic-media-opportunity; adp1_triple_essentiality]. The surrounding links identify the claims or findings that motivate the work and the project context that would make the work actionable.
+
+## Synthesis
+
+Reusable claims frame this page. [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md) states that ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. [stmt:adp1-deletion-continuum-claim; adp1_deletion_phenotypes]. [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md) states that The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. [stmt:adp1-explorer-database-bridge-claim; acinetobacter_adp1_explorer]. [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md) states that ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. [stmt:adp1-triple-continuous-fitness-claim; adp1_triple_essentiality].
+The evidence base is anchored by one finding. `stmt:adp1-triple-aromatic-discordance-finding` states that Aromatic degradation genes are enriched among ADP1 FBA-discordant genes, indicating systematic model gaps. [stmt:adp1-triple-aromatic-discordance-finding; adp1_triple_essentiality].
+The synthesis should be read with one caveat. `stmt:adp1-triple-fba-growth-caveat` states that FBA class does not predict which TnSeq-dispensable ADP1 genes have measured growth defects. [stmt:adp1-triple-fba-growth-caveat; adp1_triple_essentiality].
+The most direct follow-up work is a concrete opportunity. [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md) states that ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. [stmt:adp1-triple-aromatic-media-opportunity; adp1_triple_essentiality].
+
+## Navigation Context
+
+This page links out to 15 related pages and has 13 backlinks. Use those links to move between the prose note, the underlying evidence, and the graph neighborhood.
+
+## Structured Evidence Summary
+
+### Motivating Evidence
+
+- `stmt:adp1-triple-aromatic-discordance-finding`: Aromatic degradation genes are enriched among ADP1 FBA-discordant genes, indicating systematic model gaps. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+- `stmt:adp1-triple-fba-growth-caveat`: FBA class does not predict which TnSeq-dispensable ADP1 genes have measured growth defects. `caveat` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Opportunity
+
+- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
+
+### Related Claims
+
+- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Required Validation
+
+- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
 ## Outgoing Links
 
 - [Adp1 Deletion Continuum Claim](../claims/adp1-deletion-continuum-claim.md)
@@ -43,26 +80,6 @@ member_hash: hash:dc34d41f06a3d578
 - [Adp1 Triple Essentiality](../projects/adp1-triple-essentiality.md)
 - [Adp1 Carbon Fitness](../topics/adp1-carbon-fitness.md)
 - [Adp1 Model Quality](../topics/adp1-model-quality.md)
-
-## Motivating Evidence
-
-- `stmt:adp1-triple-aromatic-discordance-finding`: Aromatic degradation genes are enriched among ADP1 FBA-discordant genes, indicating systematic model gaps. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-- `stmt:adp1-triple-fba-growth-caveat`: FBA class does not predict which TnSeq-dispensable ADP1 genes have measured growth defects. `caveat` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Opportunity
-
-- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
-
-## Related Claims
-
-- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Required Validation
-
-- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
 
 ## Source Statements
 

@@ -9,6 +9,7 @@ from typing import Any
 
 from compendium import ids
 from compendium.models import PagePlan, StatementCard
+from compendium.render.markdown import render_markdown_page
 
 _PAGE_DIRS = {
     "topic": "topics",
@@ -35,6 +36,7 @@ def build_page_artifact(
     plan: PagePlan,
     cards: list[StatementCard],
     *,
+    page_plans: list[PagePlan] | None = None,
     model: str = "deterministic-section-list",
     prompt_hash: str = "prompt:deterministic-section-list",
     repo_commit: str = "",
@@ -59,7 +61,7 @@ def build_page_artifact(
     )
     return {
         "path": page_artifact_path(plan).as_posix(),
-        "markdown": _markdown(plan, card_by_id, manifest),
+        "markdown": _markdown(plan, cards, page_plans, manifest),
         "manifest": manifest,
     }
 
@@ -112,54 +114,20 @@ def _manifest(
 
 def _markdown(
     plan: PagePlan,
-    card_by_id: dict[str, StatementCard],
+    cards: list[StatementCard],
+    page_plans: list[PagePlan] | None,
     manifest: dict[str, Any],
 ) -> str:
-    lines = [
-        "---",
-        f"page_id: {json.dumps(plan.id)}",
-        f"page_type: {json.dumps(plan.type)}",
-        f"member_hash: {json.dumps(plan.member_hash)}",
-        f"manifest: {json.dumps(page_artifact_path(plan).with_suffix('.manifest.json').as_posix())}",
-        "---",
-        "",
-        f"# {plan.title}",
-        "",
-    ]
-
-    for section in plan.sections:
-        lines.extend([f"## {section.heading}", ""])
-        section_cards = [
-            card_by_id[sid]
-            for sid in section.member_statement_ids
-            if sid in card_by_id
-        ]
-        if not section_cards:
-            lines.extend(["No statements selected for this section.", ""])
-            continue
-        for card in section_cards:
-            lines.append(
-                "- "
-                f"{card.statement} "
-                f"[{card.id}; {card.evidence.source_project}]"
-            )
-        lines.append("")
-
-    lines.extend(
-        [
-            "## Source Statements",
-            "",
-        ]
+    markdown = render_markdown_page(plan, cards, page_plans=page_plans)
+    manifest_line = (
+        f"manifest: "
+        f"{json.dumps(page_artifact_path(plan).with_suffix('.manifest.json').as_posix())}"
     )
-    for statement_id in manifest["cited_statement_ids"]:
-        card = card_by_id[statement_id]
-        lines.append(
-            "- "
-            f"`{card.id}` {card.kind}/{card.tier}/{card.confidence}: "
-            f"{card.evidence.source_project}/{card.evidence.source_doc}"
-        )
-    lines.append("")
-    return "\n".join(lines)
+    return markdown.replace(
+        f"member_hash: {plan.member_hash}\n",
+        f"member_hash: {plan.member_hash}\n{manifest_line}\n",
+        1,
+    )
 
 
 def _slug(value: str) -> str:

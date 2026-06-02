@@ -8,7 +8,7 @@ import re
 from typing import Any
 
 from compendium.models import PagePlan, StatementCard
-from compendium.pages import page_id_for_statement
+from compendium.pages.plan import page_id_for_statement
 
 _PAGE_DIRS = {
     "topic": "topics",
@@ -61,12 +61,33 @@ def render_markdown_wiki(
     return written
 
 
+def render_markdown_page(
+    plan: PagePlan,
+    cards: list[StatementCard],
+    *,
+    page_plans: list[PagePlan] | None = None,
+    statement_graph: dict[str, list[dict[str, Any]]] | None = None,
+) -> str:
+    """Render one prose-first Markdown wiki page from a fixed page plan."""
+    plans = list(page_plans) if page_plans is not None else [plan]
+    if plan.id not in {item.id for item in plans}:
+        plans.append(plan)
+    card_by_id = {card.id: card for card in cards}
+    return _render_page(plan, card_by_id, _page_paths(plans), statement_graph)
+
+
 def _render_page(
     plan: PagePlan,
     card_by_id: dict[str, StatementCard],
     page_paths: dict[str, Path],
     statement_graph: dict[str, list[dict[str, Any]]] | None,
 ) -> str:
+    current_path = page_paths[plan.id]
+    member_cards = [
+        card_by_id[statement_id]
+        for statement_id in plan.member_statement_ids
+        if statement_id in card_by_id
+    ]
     lines = [
         "---",
         f"page_id: {plan.id}",
@@ -82,11 +103,11 @@ def _render_page(
         "",
     ]
 
-    lines.extend(_page_link_section("Outgoing Links", plan.outgoing_links, page_paths, page_paths[plan.id]))
-    lines.extend(_page_link_section("Backlinks", plan.backlinks, page_paths, page_paths[plan.id]))
+    lines.extend(_narrative_sections(plan, member_cards, page_paths, current_path))
 
+    lines.extend(["## Structured Evidence Summary", ""])
     for section in sorted(plan.sections, key=lambda item: item.id):
-        lines.extend([f"## {section.heading}", ""])
+        lines.extend([f"### {section.heading}", ""])
         section_cards = [
             card_by_id[statement_id]
             for statement_id in section.member_statement_ids
@@ -99,11 +120,9 @@ def _render_page(
             lines.append(_statement_summary(card, page_paths, page_paths[plan.id]))
         lines.append("")
 
-    member_cards = [
-        card_by_id[statement_id]
-        for statement_id in plan.member_statement_ids
-        if statement_id in card_by_id
-    ]
+    lines.extend(_page_link_section("Outgoing Links", plan.outgoing_links, page_paths, current_path))
+    lines.extend(_page_link_section("Backlinks", plan.backlinks, page_paths, current_path))
+
     lines.extend(["## Source Statements", ""])
     for card in sorted(member_cards, key=lambda item: item.id):
         lines.extend(_statement_detail(card, page_paths, page_paths[plan.id]))
@@ -121,6 +140,247 @@ def _render_page(
         lines.append("No local statement-graph edges.")
     lines.append("")
     return "\n".join(lines)
+
+
+def _narrative_sections(
+    plan: PagePlan,
+    member_cards: list[StatementCard],
+    page_paths: dict[str, Path],
+    current_path: Path,
+) -> list[str]:
+    if not member_cards:
+        return [
+            "## Introduction",
+            "",
+            (
+                "This page exists in the synthesis graph but currently has no selected "
+                "statement cards. It is retained as a navigation target until future "
+                "ingestion adds evidence-backed content."
+            ),
+            "",
+        ]
+
+    projects = sorted({card.evidence.source_project for card in member_cards})
+    kinds = _cards_by_kind(member_cards)
+    citations = ", ".join(_citation(card) for card in member_cards[:4])
+    if len(member_cards) > 4:
+        citations += f", and {len(member_cards) - 4} more"
+
+    lines = ["## Introduction", ""]
+    if plan.type == "home":
+        topic_links = _links_for_page_type("topic", page_paths, current_path)
+        project_links = _links_for_page_type("project", page_paths, current_path)
+        lines.extend(
+            [
+                (
+                    f"This wiki synthesizes {len(member_cards)} evidence-backed statement "
+                    f"cards from {len(projects)} source projects into a connected reading "
+                    "surface. It is organized around reusable claims, topic pages, project "
+                    "pages, opportunities for follow-up work, and entity backlink pages."
+                ),
+                "",
+                (
+                    "A useful reading path is to start with the topic pages "
+                    f"({', '.join(topic_links)}) and then follow the claim and opportunity "
+                    f"links back to the contributing projects ({', '.join(project_links)})."
+                ),
+                "",
+            ]
+        )
+    elif plan.type == "topic":
+        lines.extend(
+            [
+                (
+                    f"This topic summarizes {len(member_cards)} statements from "
+                    f"{_project_phrase(projects)}. The page combines findings, reusable "
+                    "claims, caveats, and future work so readers can understand the state "
+                    "of the topic without opening each source project first."
+                ),
+                "",
+            ]
+        )
+    elif plan.type == "claim":
+        claim = _first_kind(kinds, "claim") or member_cards[0]
+        lines.extend(
+            [
+                (
+                    f"This claim page evaluates the statement: {claim.statement} "
+                    f"{_citation(claim)}. It collects supporting findings, caveats, and "
+                    "downstream uses selected by the deterministic page plan."
+                ),
+                "",
+            ]
+        )
+    elif plan.type == "opportunity":
+        opportunity = _first_kind(kinds, "opportunity") or member_cards[0]
+        lines.extend(
+            [
+                (
+                    f"This opportunity proposes a concrete next step: {opportunity.statement} "
+                    f"{_citation(opportunity)}. The surrounding links identify the claims "
+                    "or findings that motivate the work and the project context that would "
+                    "make the work actionable."
+                ),
+                "",
+            ]
+        )
+    elif plan.type == "project":
+        lines.extend(
+            [
+                (
+                    f"This project page summarizes the extractable scientific contribution "
+                    f"from `{projects[0]}`. It records {len(member_cards)} statement cards "
+                    "and connects them to shared topics, entities, claims, and opportunities "
+                    "elsewhere in the wiki."
+                ),
+                "",
+            ]
+        )
+    elif plan.type == "entity":
+        lines.extend(
+            [
+                (
+                    f"This entity page is a backlink hub for {plan.title}. It gathers "
+                    f"{len(member_cards)} statements from {_project_phrase(projects)} and "
+                    "shows how the entity participates in findings, claims, caveats, and "
+                    "opportunities across the wiki."
+                ),
+                "",
+            ]
+        )
+    else:
+        lines.extend(
+            [
+                (
+                    f"This page synthesizes {len(member_cards)} statements from "
+                    f"{_project_phrase(projects)}. The content below is constrained to "
+                    "the selected statement cards and their evidence anchors."
+                ),
+                "",
+            ]
+        )
+
+    lines.extend(["## Synthesis", ""])
+    claim_cards = kinds.get("claim", [])
+    finding_cards = kinds.get("finding", [])
+    caveat_cards = kinds.get("caveat", []) + kinds.get("conflict", [])
+    opportunity_cards = kinds.get("opportunity", [])
+
+    if claim_cards:
+        lines.append(_prose_sentence("The central claim is", claim_cards, page_paths, current_path))
+    if finding_cards:
+        lines.append(_prose_sentence("The main evidence base is", finding_cards, page_paths, current_path))
+    if caveat_cards:
+        lines.append(_prose_sentence("The page should be read with the following caveat", caveat_cards, page_paths, current_path))
+    if opportunity_cards:
+        lines.append(_prose_sentence("The most direct follow-up work is", opportunity_cards, page_paths, current_path))
+    if not any((claim_cards, finding_cards, caveat_cards, opportunity_cards)):
+        lines.append(
+            f"The selected evidence is represented by {citations}. These statements are "
+            "kept together because the page plan links them through shared topics, entities, "
+            "or statement relationships."
+        )
+    lines.append("")
+
+    lines.extend(["## Navigation Context", ""])
+    lines.append(
+        f"This page links out to {len(plan.outgoing_links)} related pages and has "
+        f"{len(plan.backlinks)} backlinks. Use those links to move between the prose note, "
+        "the underlying evidence, and the graph neighborhood."
+    )
+    lines.append("")
+    return lines
+
+
+def _prose_sentence(
+    lead: str,
+    cards: list[StatementCard],
+    page_paths: dict[str, Path],
+    current_path: Path,
+) -> str:
+    shown = cards[:3]
+    clauses = [
+        (
+            f"{_statement_page_link(card, page_paths, current_path)} "
+            f"states that {card.statement} {_citation(card)}."
+        )
+        for card in shown
+    ]
+    extra = "" if len(cards) <= 3 else f" {len(cards) - 3} additional statements support this reading."
+    if lead == "The central claim is":
+        intro = _count_intro(
+            cards,
+            singular="A central reusable claim frames this page.",
+            plural="Reusable claims frame this page.",
+        )
+    elif lead == "The main evidence base is":
+        intro = _count_intro(
+            cards,
+            singular="The evidence base is anchored by one finding.",
+            plural="The evidence base is anchored by several findings.",
+        )
+    elif lead == "The page should be read with the following caveat":
+        intro = _count_intro(
+            cards,
+            singular="The synthesis should be read with one caveat.",
+            plural="The synthesis should be read with several caveats.",
+        )
+    else:
+        intro = _count_intro(
+            cards,
+            singular="The most direct follow-up work is a concrete opportunity.",
+            plural="The most direct follow-up work spans several opportunities.",
+        )
+    return f"{intro} {' '.join(clauses)}{extra}"
+
+
+def _count_intro(
+    cards: list[StatementCard],
+    *,
+    singular: str,
+    plural: str,
+) -> str:
+    return singular if len(cards) == 1 else plural
+
+
+def _cards_by_kind(cards: list[StatementCard]) -> dict[str, list[StatementCard]]:
+    grouped: dict[str, list[StatementCard]] = {}
+    for card in sorted(cards, key=lambda item: item.id):
+        grouped.setdefault(card.kind, []).append(card)
+    return grouped
+
+
+def _first_kind(
+    grouped: dict[str, list[StatementCard]],
+    kind: str,
+) -> StatementCard | None:
+    cards = grouped.get(kind)
+    return cards[0] if cards else None
+
+
+def _citation(card: StatementCard) -> str:
+    return f"[{card.id}; {card.evidence.source_project}]"
+
+
+def _project_phrase(projects: list[str]) -> str:
+    if len(projects) == 1:
+        return f"`{projects[0]}`"
+    if len(projects) == 2:
+        return f"`{projects[0]}` and `{projects[1]}`"
+    return ", ".join(f"`{project}`" for project in projects[:-1]) + f", and `{projects[-1]}`"
+
+
+def _links_for_page_type(
+    page_type: str,
+    page_paths: dict[str, Path],
+    current_path: Path,
+) -> list[str]:
+    links = [
+        _link(_title(page_id), path, current_path)
+        for page_id, path in sorted(page_paths.items())
+        if page_id.startswith(f"{page_type}:")
+    ]
+    return links or [f"no {page_type} pages yet"]
 
 
 def _render_graph(

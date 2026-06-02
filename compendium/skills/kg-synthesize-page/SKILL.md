@@ -49,15 +49,21 @@ outside the allowed member set.
    - member statement text;
    - statement kind/tier/confidence;
    - evidence source project and source document;
-   - outgoing/backlink targets selected by the plan.
+   - outgoing/backlink targets selected by the plan;
+   - graph neighborhood context: local entities, claims supported/refined/motivated by the members,
+     upstream evidence pages, downstream opportunity pages, and source-project coverage.
 5. Require citations in every factual paragraph using statement ids and source projects, for example
    `[stmt:abc123; acinetobacter_adp1_explorer]`.
 6. Write page markdown with:
    - title and page metadata;
-   - readable synthesis sections;
+   - an `Introduction` section that frames why the page exists and what question it answers;
+   - a prose `Synthesis` section that connects the selected findings/claims/caveats into a readable
+     academic note rather than a bullet list;
+   - a `Navigation Context` section that explains how outgoing links/backlinks/graph neighbors should
+     be used;
    - caveats/conflicts when present in the member set;
-   - source statement list;
-   - outgoing links and backlinks from the plan;
+   - source statement list and evidence anchors after the prose;
+   - outgoing links and backlinks from the plan as navigation support, not as the page lead;
    - synthesis manifest reference.
    The deterministic fallback/artifact writer is:
    ```bash
@@ -77,13 +83,17 @@ outside the allowed member set.
 
 - `home`: state-of-the-science overview, topic map, strongest reusable claims, active conflicts,
   opportunities/directions, reusable products, recent changes, and browse lanes.
-- `topic`: cross-project synthesis, key claims, caveats, conflicts, next actions, and project coverage.
-- `claim`: claim statement, supporting/refuting cards, scope, caveats, and downstream uses.
+- `topic`: cross-project synthesis with an opening overview, key claims in prose, caveats/conflicts,
+  next actions, and project coverage.
+- `claim`: claim statement in prose, why it matters, supporting/refuting cards, scope, caveats, and
+  downstream uses.
 - `conflict`: sides, evidence, affected pages, and resolving work.
 - `opportunity`/`direction`/`hypothesis`: motivating evidence, required data, target output, and readiness
   or success criteria.
-- `project`: extracted statement summary and source trail.
-- `entity`: backlink/local graph page grouped by statement kind and topic, not a full narrative hub.
+- `project`: academic summary of the project's contribution, then extracted statement summary and source
+  trail.
+- `entity`: backlink/local graph page with a short prose overview of how the entity participates in the
+  wiki, then groups by statement kind and topic.
 
 ## Retry Rules
 

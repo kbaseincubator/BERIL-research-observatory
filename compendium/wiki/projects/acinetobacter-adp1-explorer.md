@@ -10,6 +10,58 @@ member_hash: hash:c482dbec10112341
 - Member hash: `hash:c482dbec10112341`
 - Graph: [Graph](../graph.md)
 
+## Introduction
+
+This project page summarizes the extractable scientific contribution from `acinetobacter_adp1_explorer`. It records 8 statement cards and connects them to shared topics, entities, claims, and opportunities elsewhere in the wiki.
+
+## Synthesis
+
+A central reusable claim frames this page. [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md) states that The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. [stmt:adp1-explorer-database-bridge-claim; acinetobacter_adp1_explorer].
+The evidence base is anchored by several findings. `stmt:adp1-explorer-berdl-connectivity-finding` states that The ADP1 database connects strongly to BERDL through genomes, reactions, compounds, and pangenome clusters. [stmt:adp1-explorer-berdl-connectivity-finding; acinetobacter_adp1_explorer]. `stmt:adp1-explorer-condition-fitness-finding` states that ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. [stmt:adp1-explorer-condition-fitness-finding; acinetobacter_adp1_explorer]. `stmt:adp1-explorer-multiomics-finding` states that The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. [stmt:adp1-explorer-multiomics-finding; acinetobacter_adp1_explorer]. 1 additional statements support this reading.
+The synthesis should be read with one caveat. `stmt:adp1-explorer-gapfilling-caveat` states that ADP1 model-based growth predictions are quality-limited by heavy dependence on gapfilled reactions. [stmt:adp1-explorer-gapfilling-caveat; acinetobacter_adp1_explorer].
+The most direct follow-up work spans several opportunities. [stmt:adp1-explorer-discordance-opportunity](../opportunities/adp1-explorer-discordance-opportunity.md) states that FBA-TnSeq discordant genes in ADP1 should be prioritized for metabolic model refinement. [stmt:adp1-explorer-discordance-opportunity; acinetobacter_adp1_explorer]. [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md) states that ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. [stmt:adp1-explorer-urea-deep-dive-opportunity; acinetobacter_adp1_explorer].
+
+## Navigation Context
+
+This page links out to 12 related pages and has 17 backlinks. Use those links to move between the prose note, the underlying evidence, and the graph neighborhood.
+
+## Structured Evidence Summary
+
+### Claims
+
+- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Conflicts And Caveats
+
+- `stmt:adp1-explorer-gapfilling-caveat`: ADP1 model-based growth predictions are quality-limited by heavy dependence on gapfilled reactions. `caveat` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Findings
+
+- `stmt:adp1-explorer-berdl-connectivity-finding`: The ADP1 database connects strongly to BERDL through genomes, reactions, compounds, and pangenome clusters. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- `stmt:adp1-explorer-pangenome-bridge-finding`: A gene-junction bridge maps BERDL pangenome clusters to ADP1-style cluster IDs with complete gene-level coverage. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Opportunities And Directions
+
+- [stmt:adp1-explorer-discordance-opportunity](../opportunities/adp1-explorer-discordance-opportunity.md): FBA-TnSeq discordant genes in ADP1 should be prioritized for metabolic model refinement. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Reusable Products And Methods
+
+No statements selected for this section.
+
+### Statement Summary
+
+- `stmt:adp1-explorer-berdl-connectivity-finding`: The ADP1 database connects strongly to BERDL through genomes, reactions, compounds, and pangenome clusters. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-explorer-discordance-opportunity](../opportunities/adp1-explorer-discordance-opportunity.md): FBA-TnSeq discordant genes in ADP1 should be prioritized for metabolic model refinement. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
+- `stmt:adp1-explorer-gapfilling-caveat`: ADP1 model-based growth predictions are quality-limited by heavy dependence on gapfilled reactions. `caveat` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- `stmt:adp1-explorer-pangenome-bridge-finding`: A gene-junction bridge maps BERDL pangenome clusters to ADP1-style cluster IDs with complete gene-level coverage. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
+
 ## Outgoing Links
 
 - [Adp1 Explorer Database Bridge Claim](../claims/adp1-explorer-database-bridge-claim.md)
@@ -44,41 +96,6 @@ member_hash: hash:c482dbec10112341
 - [Adp1 Carbon Fitness](../topics/adp1-carbon-fitness.md)
 - [Adp1 Data Integration](../topics/adp1-data-integration.md)
 - [Adp1 Model Quality](../topics/adp1-model-quality.md)
-
-## Claims
-
-- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Conflicts And Caveats
-
-- `stmt:adp1-explorer-gapfilling-caveat`: ADP1 model-based growth predictions are quality-limited by heavy dependence on gapfilled reactions. `caveat` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Findings
-
-- `stmt:adp1-explorer-berdl-connectivity-finding`: The ADP1 database connects strongly to BERDL through genomes, reactions, compounds, and pangenome clusters. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- `stmt:adp1-explorer-pangenome-bridge-finding`: A gene-junction bridge maps BERDL pangenome clusters to ADP1-style cluster IDs with complete gene-level coverage. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Opportunities And Directions
-
-- [stmt:adp1-explorer-discordance-opportunity](../opportunities/adp1-explorer-discordance-opportunity.md): FBA-TnSeq discordant genes in ADP1 should be prioritized for metabolic model refinement. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Reusable Products And Methods
-
-No statements selected for this section.
-
-## Statement Summary
-
-- `stmt:adp1-explorer-berdl-connectivity-finding`: The ADP1 database connects strongly to BERDL through genomes, reactions, compounds, and pangenome clusters. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-explorer-discordance-opportunity](../opportunities/adp1-explorer-discordance-opportunity.md): FBA-TnSeq discordant genes in ADP1 should be prioritized for metabolic model refinement. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
-- `stmt:adp1-explorer-gapfilling-caveat`: ADP1 model-based growth predictions are quality-limited by heavy dependence on gapfilled reactions. `caveat` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- `stmt:adp1-explorer-pangenome-bridge-finding`: A gene-junction bridge maps BERDL pangenome clusters to ADP1-style cluster IDs with complete gene-level coverage. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
 
 ## Source Statements
 

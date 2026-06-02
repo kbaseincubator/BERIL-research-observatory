@@ -48,6 +48,8 @@ def test_adp1_tracer_generation_writes_expected_artifacts(tmp_path: Path) -> Non
     assert "../projects/adp1-triple-essentiality.html" in entity_html
     assert "project:adp1_deletion_phenotypes" in entity_html
     assert "project:adp1_triple_essentiality" in entity_html
+    assert "Introduction" in entity_html
+    assert "Synthesis" in entity_html
 
     home_markdown = (artifacts.markdown_wiki_dir / "index.md").read_text(encoding="utf-8")
     topic_markdown = (
@@ -58,7 +60,11 @@ def test_adp1_tracer_generation_writes_expected_artifacts(tmp_path: Path) -> Non
     )
     assert "[Adp1 Carbon Fitness](topics/adp1-carbon-fitness.md)" in home_markdown
     assert "[Graph](graph.md)" in home_markdown
+    assert "## Introduction" in home_markdown
+    assert "## Synthesis" in home_markdown
     assert "[Adp1](../entities/adp1.md)" in topic_markdown
+    assert "This topic summarizes" in topic_markdown
+    assert "Reusable claims frame this page" in topic_markdown
     assert "[Adp1 Deletion Phenotypes](../projects/adp1-deletion-phenotypes.md)" in entity_markdown
 
     quality = artifacts.quality

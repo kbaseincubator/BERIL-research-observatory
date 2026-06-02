@@ -10,6 +10,47 @@ member_hash: hash:810fc059ecbda754
 - Member hash: `hash:810fc059ecbda754`
 - Graph: [Graph](../graph.md)
 
+## Introduction
+
+This entity page is a backlink hub for Entity: Quinate. It gathers 2 statements from `acinetobacter_adp1_explorer` and `adp1_deletion_phenotypes` and shows how the entity participates in findings, claims, caveats, and opportunities across the wiki.
+
+## Synthesis
+
+The evidence base is anchored by several findings. `stmt:adp1-deletion-quinate-module-finding` states that Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. [stmt:adp1-deletion-quinate-module-finding; adp1_deletion_phenotypes]. `stmt:adp1-explorer-condition-fitness-finding` states that ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. [stmt:adp1-explorer-condition-fitness-finding; acinetobacter_adp1_explorer].
+
+## Navigation Context
+
+This page links out to 8 related pages and has 9 backlinks. Use those links to move between the prose note, the underlying evidence, and the graph neighborhood.
+
+## Structured Evidence Summary
+
+### Backlinks
+
+- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Claims
+
+No statements selected for this section.
+
+### Conflicts And Caveats
+
+No statements selected for this section.
+
+### Findings
+
+- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Opportunities And Directions
+
+No statements selected for this section.
+
+### Topic: Adp1 Carbon Fitness
+
+- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
 ## Outgoing Links
 
 - [Adp1 Deletion Continuum Claim](../claims/adp1-deletion-continuum-claim.md)
@@ -32,33 +73,6 @@ member_hash: hash:810fc059ecbda754
 - [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md)
 - [Adp1 Deletion Phenotypes](../projects/adp1-deletion-phenotypes.md)
 - [Adp1 Carbon Fitness](../topics/adp1-carbon-fitness.md)
-
-## Backlinks
-
-- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Claims
-
-No statements selected for this section.
-
-## Conflicts And Caveats
-
-No statements selected for this section.
-
-## Findings
-
-- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Opportunities And Directions
-
-No statements selected for this section.
-
-## Topic: Adp1 Carbon Fitness
-
-- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
 
 ## Source Statements
 

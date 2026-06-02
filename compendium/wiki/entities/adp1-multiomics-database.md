@@ -10,6 +10,44 @@ member_hash: hash:240fdf71c40f0a84
 - Member hash: `hash:240fdf71c40f0a84`
 - Graph: [Graph](../graph.md)
 
+## Introduction
+
+This entity page is a backlink hub for Entity: Adp1 Multiomics Database. It gathers 1 statements from `acinetobacter_adp1_explorer` and shows how the entity participates in findings, claims, caveats, and opportunities across the wiki.
+
+## Synthesis
+
+The evidence base is anchored by one finding. `stmt:adp1-explorer-multiomics-finding` states that The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. [stmt:adp1-explorer-multiomics-finding; acinetobacter_adp1_explorer].
+
+## Navigation Context
+
+This page links out to 4 related pages and has 5 backlinks. Use those links to move between the prose note, the underlying evidence, and the graph neighborhood.
+
+## Structured Evidence Summary
+
+### Backlinks
+
+- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Claims
+
+No statements selected for this section.
+
+### Conflicts And Caveats
+
+No statements selected for this section.
+
+### Findings
+
+- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Opportunities And Directions
+
+No statements selected for this section.
+
+### Topic: Adp1 Data Integration
+
+- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
 ## Outgoing Links
 
 - [Adp1 Explorer Database Bridge Claim](../claims/adp1-explorer-database-bridge-claim.md)
@@ -24,30 +62,6 @@ member_hash: hash:240fdf71c40f0a84
 - [Home](../index.md)
 - [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md)
 - [Adp1 Data Integration](../topics/adp1-data-integration.md)
-
-## Backlinks
-
-- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Claims
-
-No statements selected for this section.
-
-## Conflicts And Caveats
-
-No statements selected for this section.
-
-## Findings
-
-- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Opportunities And Directions
-
-No statements selected for this section.
-
-## Topic: Adp1 Data Integration
-
-- `stmt:adp1-explorer-multiomics-finding`: The ADP1 database integrates six molecular and phenotype data modalities for Acinetobacter baylyi ADP1. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
 
 ## Source Statements
 

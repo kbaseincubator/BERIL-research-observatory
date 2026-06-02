@@ -10,6 +10,42 @@ member_hash: hash:a89bffc675e3bf8a
 - Member hash: `hash:a89bffc675e3bf8a`
 - Graph: [Graph](../graph.md)
 
+## Introduction
+
+This opportunity proposes a concrete next step: Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. [stmt:adp1-deletion-expand-carbon-panel-opportunity; adp1_deletion_phenotypes]. The surrounding links identify the claims or findings that motivate the work and the project context that would make the work actionable.
+
+## Synthesis
+
+Reusable claims frame this page. [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md) states that ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. [stmt:adp1-deletion-continuum-claim; adp1_deletion_phenotypes]. [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md) states that The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. [stmt:adp1-explorer-database-bridge-claim; acinetobacter_adp1_explorer]. [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md) states that ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. [stmt:adp1-triple-continuous-fitness-claim; adp1_triple_essentiality].
+The evidence base is anchored by several findings. `stmt:adp1-deletion-condition-independence-finding` states that ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. [stmt:adp1-deletion-condition-independence-finding; adp1_deletion_phenotypes]. `stmt:adp1-deletion-quinate-module-finding` states that Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. [stmt:adp1-deletion-quinate-module-finding; adp1_deletion_phenotypes].
+The most direct follow-up work is a concrete opportunity. [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md) states that Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. [stmt:adp1-deletion-expand-carbon-panel-opportunity; adp1_deletion_phenotypes].
+
+## Navigation Context
+
+This page links out to 14 related pages and has 9 backlinks. Use those links to move between the prose note, the underlying evidence, and the graph neighborhood.
+
+## Structured Evidence Summary
+
+### Motivating Evidence
+
+- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+
+### Opportunity
+
+- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
+
+### Related Claims
+
+- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Required Validation
+
+- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+
 ## Outgoing Links
 
 - [Adp1 Deletion Continuum Claim](../claims/adp1-deletion-continuum-claim.md)
@@ -38,26 +74,6 @@ member_hash: hash:a89bffc675e3bf8a
 - [Adp1 Triple Aromatic Media Opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md)
 - [Adp1 Deletion Phenotypes](../projects/adp1-deletion-phenotypes.md)
 - [Adp1 Carbon Fitness](../topics/adp1-carbon-fitness.md)
-
-## Motivating Evidence
-
-- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-
-## Opportunity
-
-- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
-
-## Related Claims
-
-- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Required Validation
-
-- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
 
 ## Source Statements
 

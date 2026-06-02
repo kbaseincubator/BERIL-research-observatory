@@ -64,8 +64,19 @@
   {% endif %}
 
   <main>
+    {% if page.narrative %}
+      {% for section in page.narrative %}
+        <section>
+          <h2>{{ section.heading }}</h2>
+          {% for paragraph in section.paragraphs %}
+            <p>{{ paragraph }}</p>
+          {% endfor %}
+        </section>
+      {% endfor %}
+    {% endif %}
+
     {% if page.sections %}
-      <h2>Sections</h2>
+      <h2>Structured Evidence Summary</h2>
       {% for section in page.sections %}
         <section id="{{ section.id }}">
           <h3>{{ section.heading }}</h3>

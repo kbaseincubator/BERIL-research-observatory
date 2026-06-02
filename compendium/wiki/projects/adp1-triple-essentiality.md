@@ -10,6 +10,54 @@ member_hash: hash:24522de741c33b62
 - Member hash: `hash:24522de741c33b62`
 - Graph: [Graph](../graph.md)
 
+## Introduction
+
+This project page summarizes the extractable scientific contribution from `adp1_triple_essentiality`. It records 6 statement cards and connects them to shared topics, entities, claims, and opportunities elsewhere in the wiki.
+
+## Synthesis
+
+A central reusable claim frames this page. [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md) states that ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. [stmt:adp1-triple-continuous-fitness-claim; adp1_triple_essentiality].
+The evidence base is anchored by several findings. `stmt:adp1-triple-aromatic-discordance-finding` states that Aromatic degradation genes are enriched among ADP1 FBA-discordant genes, indicating systematic model gaps. [stmt:adp1-triple-aromatic-discordance-finding; adp1_triple_essentiality]. `stmt:adp1-triple-fitness-predictor-finding` states that Continuous fitness values outperform binary essentiality fractions for predicting ADP1 essentiality. [stmt:adp1-triple-fitness-predictor-finding; adp1_triple_essentiality]. `stmt:adp1-triple-proteomics-finding` states that Proteomics is a strong ADP1 essentiality signal and performs comparably to continuous fitness in ROC analysis. [stmt:adp1-triple-proteomics-finding; adp1_triple_essentiality].
+The synthesis should be read with one caveat. `stmt:adp1-triple-fba-growth-caveat` states that FBA class does not predict which TnSeq-dispensable ADP1 genes have measured growth defects. [stmt:adp1-triple-fba-growth-caveat; adp1_triple_essentiality].
+The most direct follow-up work is a concrete opportunity. [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md) states that ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. [stmt:adp1-triple-aromatic-media-opportunity; adp1_triple_essentiality].
+
+## Navigation Context
+
+This page links out to 7 related pages and has 13 backlinks. Use those links to move between the prose note, the underlying evidence, and the graph neighborhood.
+
+## Structured Evidence Summary
+
+### Claims
+
+- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Conflicts And Caveats
+
+- `stmt:adp1-triple-fba-growth-caveat`: FBA class does not predict which TnSeq-dispensable ADP1 genes have measured growth defects. `caveat` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Findings
+
+- `stmt:adp1-triple-aromatic-discordance-finding`: Aromatic degradation genes are enriched among ADP1 FBA-discordant genes, indicating systematic model gaps. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+- `stmt:adp1-triple-fitness-predictor-finding`: Continuous fitness values outperform binary essentiality fractions for predicting ADP1 essentiality. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+- `stmt:adp1-triple-proteomics-finding`: Proteomics is a strong ADP1 essentiality signal and performs comparably to continuous fitness in ROC analysis. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Opportunities And Directions
+
+- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
+
+### Reusable Products And Methods
+
+No statements selected for this section.
+
+### Statement Summary
+
+- `stmt:adp1-triple-aromatic-discordance-finding`: Aromatic degradation genes are enriched among ADP1 FBA-discordant genes, indicating systematic model gaps. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
+- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+- `stmt:adp1-triple-fba-growth-caveat`: FBA class does not predict which TnSeq-dispensable ADP1 genes have measured growth defects. `caveat` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+- `stmt:adp1-triple-fitness-predictor-finding`: Continuous fitness values outperform binary essentiality fractions for predicting ADP1 essentiality. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+- `stmt:adp1-triple-proteomics-finding`: Proteomics is a strong ADP1 essentiality signal and performs comparably to continuous fitness in ROC analysis. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
 ## Outgoing Links
 
 - [Adp1 Triple Continuous Fitness Claim](../claims/adp1-triple-continuous-fitness-claim.md)
@@ -35,37 +83,6 @@ member_hash: hash:24522de741c33b62
 - [Adp1 Triple Aromatic Media Opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md)
 - [Adp1 Carbon Fitness](../topics/adp1-carbon-fitness.md)
 - [Adp1 Model Quality](../topics/adp1-model-quality.md)
-
-## Claims
-
-- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Conflicts And Caveats
-
-- `stmt:adp1-triple-fba-growth-caveat`: FBA class does not predict which TnSeq-dispensable ADP1 genes have measured growth defects. `caveat` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Findings
-
-- `stmt:adp1-triple-aromatic-discordance-finding`: Aromatic degradation genes are enriched among ADP1 FBA-discordant genes, indicating systematic model gaps. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-- `stmt:adp1-triple-fitness-predictor-finding`: Continuous fitness values outperform binary essentiality fractions for predicting ADP1 essentiality. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-- `stmt:adp1-triple-proteomics-finding`: Proteomics is a strong ADP1 essentiality signal and performs comparably to continuous fitness in ROC analysis. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Opportunities And Directions
-
-- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
-
-## Reusable Products And Methods
-
-No statements selected for this section.
-
-## Statement Summary
-
-- `stmt:adp1-triple-aromatic-discordance-finding`: Aromatic degradation genes are enriched among ADP1 FBA-discordant genes, indicating systematic model gaps. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
-- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-- `stmt:adp1-triple-fba-growth-caveat`: FBA class does not predict which TnSeq-dispensable ADP1 genes have measured growth defects. `caveat` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-- `stmt:adp1-triple-fitness-predictor-finding`: Continuous fitness values outperform binary essentiality fractions for predicting ADP1 essentiality. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-- `stmt:adp1-triple-proteomics-finding`: Proteomics is a strong ADP1 essentiality signal and performs comparably to continuous fitness in ROC analysis. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
 
 ## Source Statements
 

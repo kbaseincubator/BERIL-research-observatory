@@ -10,6 +10,52 @@ member_hash: hash:ff1b53e506e0b9bc
 - Member hash: `hash:ff1b53e506e0b9bc`
 - Graph: [Graph](../graph.md)
 
+## Introduction
+
+This project page summarizes the extractable scientific contribution from `adp1_deletion_phenotypes`. It records 5 statement cards and connects them to shared topics, entities, claims, and opportunities elsewhere in the wiki.
+
+## Synthesis
+
+A central reusable claim frames this page. [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md) states that ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. [stmt:adp1-deletion-continuum-claim; adp1_deletion_phenotypes].
+The evidence base is anchored by several findings. `stmt:adp1-deletion-carbon-tier-finding` states that ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. [stmt:adp1-deletion-carbon-tier-finding; adp1_deletion_phenotypes]. `stmt:adp1-deletion-condition-independence-finding` states that ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. [stmt:adp1-deletion-condition-independence-finding; adp1_deletion_phenotypes]. `stmt:adp1-deletion-quinate-module-finding` states that Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. [stmt:adp1-deletion-quinate-module-finding; adp1_deletion_phenotypes].
+The most direct follow-up work is a concrete opportunity. [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md) states that Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. [stmt:adp1-deletion-expand-carbon-panel-opportunity; adp1_deletion_phenotypes].
+
+## Navigation Context
+
+This page links out to 5 related pages and has 9 backlinks. Use those links to move between the prose note, the underlying evidence, and the graph neighborhood.
+
+## Structured Evidence Summary
+
+### Claims
+
+- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+
+### Conflicts And Caveats
+
+No statements selected for this section.
+
+### Findings
+
+- `stmt:adp1-deletion-carbon-tier-finding`: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+
+### Opportunities And Directions
+
+- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
+
+### Reusable Products And Methods
+
+No statements selected for this section.
+
+### Statement Summary
+
+- `stmt:adp1-deletion-carbon-tier-finding`: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+
 ## Outgoing Links
 
 - [Adp1 Deletion Continuum Claim](../claims/adp1-deletion-continuum-claim.md)
@@ -29,36 +75,6 @@ member_hash: hash:ff1b53e506e0b9bc
 - [Adp1 Explorer Urea Deep Dive Opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md)
 - [Adp1 Triple Aromatic Media Opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md)
 - [Adp1 Carbon Fitness](../topics/adp1-carbon-fitness.md)
-
-## Claims
-
-- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-
-## Conflicts And Caveats
-
-No statements selected for this section.
-
-## Findings
-
-- `stmt:adp1-deletion-carbon-tier-finding`: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-
-## Opportunities And Directions
-
-- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
-
-## Reusable Products And Methods
-
-No statements selected for this section.
-
-## Statement Summary
-
-- `stmt:adp1-deletion-carbon-tier-finding`: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
 
 ## Source Statements
 

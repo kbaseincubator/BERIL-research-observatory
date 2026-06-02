@@ -124,9 +124,10 @@ def test_synthesize_page_command_writes_markdown_and_manifest(tmp_path: Path) ->
     manifest = out_dir / "topics" / "adp1-carbon-fitness.manifest.json"
     assert markdown.is_file()
     assert manifest.is_file()
-    assert "[stmt:adp1-continuum-claim; adp1_deletion_phenotypes]" in markdown.read_text(
-        encoding="utf-8"
-    )
+    markdown_text = markdown.read_text(encoding="utf-8")
+    assert "## Introduction" in markdown_text
+    assert "## Synthesis" in markdown_text
+    assert "[stmt:adp1-continuum-claim; adp1_deletion_phenotypes]" in markdown_text
     assert json.loads(manifest.read_text(encoding="utf-8"))["model"] == "test-model"
 
 

@@ -248,7 +248,8 @@ def dispatch(args) -> int:
         return 0
     if args.cmd == "synthesize-page":
         cards = _load_statement_cards(args.path)
-        plans = {plan.id: plan for plan in plan_pages(cards)}
+        page_plans = plan_pages(cards)
+        plans = {plan.id: plan for plan in page_plans}
         plan = plans.get(args.page_id)
         if plan is None:
             raise ValueError(f"unknown page id {args.page_id!r}")
@@ -256,6 +257,7 @@ def dispatch(args) -> int:
             plan,
             cards,
             Path(args.out).resolve(),
+            page_plans=page_plans,
             model=args.model,
             prompt_hash=args.prompt_hash,
         )

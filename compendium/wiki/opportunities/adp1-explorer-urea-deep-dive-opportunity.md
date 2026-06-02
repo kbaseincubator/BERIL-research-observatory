@@ -10,6 +10,40 @@ member_hash: hash:6196a38a404b0934
 - Member hash: `hash:6196a38a404b0934`
 - Graph: [Graph](../graph.md)
 
+## Introduction
+
+This opportunity proposes a concrete next step: ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. [stmt:adp1-explorer-urea-deep-dive-opportunity; acinetobacter_adp1_explorer]. The surrounding links identify the claims or findings that motivate the work and the project context that would make the work actionable.
+
+## Synthesis
+
+Reusable claims frame this page. [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md) states that ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. [stmt:adp1-deletion-continuum-claim; adp1_deletion_phenotypes]. [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md) states that The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. [stmt:adp1-explorer-database-bridge-claim; acinetobacter_adp1_explorer]. [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md) states that ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. [stmt:adp1-triple-continuous-fitness-claim; adp1_triple_essentiality].
+The evidence base is anchored by one finding. `stmt:adp1-explorer-condition-fitness-finding` states that ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. [stmt:adp1-explorer-condition-fitness-finding; acinetobacter_adp1_explorer].
+The most direct follow-up work is a concrete opportunity. [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md) states that ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. [stmt:adp1-explorer-urea-deep-dive-opportunity; acinetobacter_adp1_explorer].
+
+## Navigation Context
+
+This page links out to 16 related pages and has 6 backlinks. Use those links to move between the prose note, the underlying evidence, and the graph neighborhood.
+
+## Structured Evidence Summary
+
+### Motivating Evidence
+
+- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Opportunity
+
+- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
+
+### Related Claims
+
+- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Required Validation
+
+- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+
 ## Outgoing Links
 
 - [Adp1 Deletion Continuum Claim](../claims/adp1-deletion-continuum-claim.md)
@@ -37,24 +71,6 @@ member_hash: hash:6196a38a404b0934
 - [Home](../index.md)
 - [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md)
 - [Adp1 Carbon Fitness](../topics/adp1-carbon-fitness.md)
-
-## Motivating Evidence
-
-- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Opportunity
-
-- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
-
-## Related Claims
-
-- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-explorer-database-bridge-claim](../claims/adp1-explorer-database-bridge-claim.md): The ADP1 data explorer can serve as a BERDL bridge for downstream ADP1 synthesis pages. `claim` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Required Validation
-
-- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
 
 ## Source Statements
 

@@ -10,6 +10,62 @@ member_hash: hash:539e4efbb73027f3
 - Member hash: `hash:539e4efbb73027f3`
 - Graph: [Graph](../graph.md)
 
+## Introduction
+
+This topic summarizes 10 statements from `acinetobacter_adp1_explorer`, `adp1_deletion_phenotypes`, and `adp1_triple_essentiality`. The page combines findings, reusable claims, caveats, and future work so readers can understand the state of the topic without opening each source project first.
+
+## Synthesis
+
+Reusable claims frame this page. [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md) states that ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. [stmt:adp1-deletion-continuum-claim; adp1_deletion_phenotypes]. [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md) states that ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. [stmt:adp1-triple-continuous-fitness-claim; adp1_triple_essentiality].
+The evidence base is anchored by several findings. `stmt:adp1-deletion-carbon-tier-finding` states that ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. [stmt:adp1-deletion-carbon-tier-finding; adp1_deletion_phenotypes]. `stmt:adp1-deletion-condition-independence-finding` states that ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. [stmt:adp1-deletion-condition-independence-finding; adp1_deletion_phenotypes]. `stmt:adp1-deletion-quinate-module-finding` states that Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. [stmt:adp1-deletion-quinate-module-finding; adp1_deletion_phenotypes]. 2 additional statements support this reading.
+The most direct follow-up work spans several opportunities. [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md) states that Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. [stmt:adp1-deletion-expand-carbon-panel-opportunity; adp1_deletion_phenotypes]. [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md) states that ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. [stmt:adp1-explorer-urea-deep-dive-opportunity; acinetobacter_adp1_explorer]. [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md) states that ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. [stmt:adp1-triple-aromatic-media-opportunity; adp1_triple_essentiality].
+
+## Navigation Context
+
+This page links out to 14 related pages and has 16 backlinks. Use those links to move between the prose note, the underlying evidence, and the graph neighborhood.
+
+## Structured Evidence Summary
+
+### Conflicts And Caveats
+
+No statements selected for this section.
+
+### Findings
+
+- `stmt:adp1-deletion-carbon-tier-finding`: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- `stmt:adp1-triple-fitness-predictor-finding`: Continuous fitness values outperform binary essentiality fractions for predicting ADP1 essentiality. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Key Claims
+
+- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Opportunities And Directions
+
+- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
+
+### Overview
+
+- `stmt:adp1-deletion-carbon-tier-finding`: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
+- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
+- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
+- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+- `stmt:adp1-triple-fitness-predictor-finding`: Continuous fitness values outperform binary essentiality fractions for predicting ADP1 essentiality. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
+
+### Reusable Products And Methods
+
+No statements selected for this section.
+
 ## Outgoing Links
 
 - [Adp1 Deletion Continuum Claim](../claims/adp1-deletion-continuum-claim.md)
@@ -45,46 +101,6 @@ member_hash: hash:539e4efbb73027f3
 - [Adp1 Deletion Phenotypes](../projects/adp1-deletion-phenotypes.md)
 - [Adp1 Triple Essentiality](../projects/adp1-triple-essentiality.md)
 - [Adp1 Model Quality](../topics/adp1-model-quality.md)
-
-## Conflicts And Caveats
-
-No statements selected for this section.
-
-## Findings
-
-- `stmt:adp1-deletion-carbon-tier-finding`: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- `stmt:adp1-triple-fitness-predictor-finding`: Continuous fitness values outperform binary essentiality fractions for predicting ADP1 essentiality. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Key Claims
-
-- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Opportunities And Directions
-
-- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
-
-## Overview
-
-- `stmt:adp1-deletion-carbon-tier-finding`: ADP1 deletion phenotypes across eight carbon sources separate into demanding, moderate, and robust growth-defect tiers. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-deletion-condition-independence-finding`: ADP1 carbon-source assays provide multiple independent phenotypic dimensions rather than one shared growth-sensitivity axis. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-deletion-continuum-claim](../claims/adp1-deletion-continuum-claim.md): ADP1 condition-dependent essentiality should be modeled as a continuous phenotype landscape with quinate degradation as a discrete exception. `claim` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- [stmt:adp1-deletion-expand-carbon-panel-opportunity](../opportunities/adp1-deletion-expand-carbon-panel-opportunity.md): Expanding ADP1 deletion phenotyping beyond eight carbon sources could test whether the observed independent dimensions increase with condition coverage. `opportunity` `grounded` `medium` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-deletion-quinate-module-finding`: Quinate degradation is the main discrete exception to the otherwise continuous ADP1 carbon-fitness landscape. `finding` `grounded` `high` (adp1_deletion_phenotypes/REPORT.md)
-- `stmt:adp1-explorer-condition-fitness-finding`: ADP1 mutant growth fitness shows condition-specific structure, with urea and quinate behaving as outlier conditions. `finding` `grounded` `high` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-explorer-urea-deep-dive-opportunity](../opportunities/adp1-explorer-urea-deep-dive-opportunity.md): ADP1 urea-specific fitness genes and their pangenome conservation should be analyzed as an independent metabolism module. `opportunity` `grounded` `medium` (acinetobacter_adp1_explorer/REPORT.md)
-- [stmt:adp1-triple-aromatic-media-opportunity](../opportunities/adp1-triple-aromatic-media-opportunity.md): ADP1 FBA media definitions should be refined with trace aromatic compounds and retested against aromatic-degradation discordance. `opportunity` `grounded` `medium` (adp1_triple_essentiality/REPORT.md)
-- [stmt:adp1-triple-continuous-fitness-claim](../claims/adp1-triple-continuous-fitness-claim.md): ADP1 essentiality synthesis should prioritize continuous fitness and orthogonal evidence over binary essentiality thresholds alone. `claim` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-- `stmt:adp1-triple-fitness-predictor-finding`: Continuous fitness values outperform binary essentiality fractions for predicting ADP1 essentiality. `finding` `grounded` `high` (adp1_triple_essentiality/REPORT.md)
-
-## Reusable Products And Methods
-
-No statements selected for this section.
 
 ## Source Statements
 

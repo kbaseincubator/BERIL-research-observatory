@@ -115,6 +115,11 @@ def test_render_home_topic_entity_and_claim_pages(tmp_path: Path) -> None:
 
     assert "State Of The Science" in home
     assert "home page" in home
+    assert "Introduction" in topic
+    assert "Synthesis" in topic
+    assert "This topic summarizes" in topic
+    assert "claim frames this page" in topic
+    assert "The evidence base is anchored by" in topic
     assert "Topic: Carbon Source Essentiality" in topic
     assert "topic page" in topic
     assert "Entity: Adp1" in entity
@@ -129,6 +134,7 @@ def test_render_includes_sections_sources_and_navigation(tmp_path: Path) -> None
 
     claim = (tmp_path / "claims" / "c1.html").read_text(encoding="utf-8")
 
+    assert "Structured Evidence Summary" in claim
     assert "Supporting Evidence" in claim
     assert "Source Projects" in claim
     assert "adp1_deletion_phenotypes" in claim

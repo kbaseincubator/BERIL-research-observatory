@@ -25,8 +25,11 @@ def test_page_artifact_has_manifest_hashes_and_citations() -> None:
 
     assert artifact["path"] == "topics/carbon-source-essentiality.md"
     assert "# Topic: Carbon Source Essentiality" in artifact["markdown"]
+    assert "## Introduction" in artifact["markdown"]
+    assert "## Synthesis" in artifact["markdown"]
+    assert "This topic summarizes" in artifact["markdown"]
     assert "[stmt:c1; adp1_deletion_phenotypes]" in artifact["markdown"]
-    assert "`stmt:c1` claim/grounded/high" in artifact["markdown"]
+    assert "Kind/tier/confidence: `claim` / `grounded` / `high`" in artifact["markdown"]
     assert artifact["manifest"]["skill"] == "kg-synthesize-page"
     assert artifact["manifest"]["model"] == "test-model"
     assert artifact["manifest"]["prompt_hash"] == "prompt:test"

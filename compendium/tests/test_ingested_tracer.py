@@ -54,6 +54,12 @@ def test_three_project_ingestion_fixture_meets_quality_bar(tmp_path: Path) -> No
     assert (artifacts.markdown_wiki_dir / "topics" / "adp1-model-quality.md").is_file()
     assert (artifacts.markdown_wiki_dir / "entities" / "adp1.md").is_file()
     assert (artifacts.markdown_wiki_dir / "graph.md").is_file()
+    topic_markdown = (
+        artifacts.markdown_wiki_dir / "topics" / "adp1-carbon-fitness.md"
+    ).read_text(encoding="utf-8")
+    assert "## Introduction" in topic_markdown
+    assert "## Synthesis" in topic_markdown
+    assert "The evidence base is anchored by" in topic_markdown
     assert sum(plan.type == "project" for plan in artifacts.page_plans) == 3
     assert sum(plan.type == "claim" for plan in artifacts.page_plans) == 3
     assert sum(plan.type == "opportunity" for plan in artifacts.page_plans) == 4

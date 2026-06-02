@@ -145,6 +145,7 @@ def _page_view(
             _section_view(section, card_by_id, page_paths, current_path)
             for section in plan.sections
         ],
+        "narrative": _narrative_view(plan, member_cards),
         "statements": member_cards,
         "missing_members": missing_members,
         "source_projects": _source_projects(member_cards, page_paths, current_path),
@@ -170,6 +171,7 @@ def _index_view(
         "home_href": _relative_href(current_path, "index.html"),
         "member_hash": "",
         "sections": [],
+        "narrative": [],
         "statements": [],
         "missing_members": [],
         "source_projects": [],
@@ -282,6 +284,157 @@ def _edge_filter_views(
         }
         for edge_class, by_predicate in sorted(by_class.items())
     ]
+
+
+def _narrative_view(
+    plan: PagePlan,
+    member_cards: list[dict[str, Any]],
+) -> list[dict[str, list[str] | str]]:
+    if not member_cards:
+        return [
+            {
+                "heading": "Introduction",
+                "paragraphs": [
+                    (
+                        "This page exists in the synthesis graph but currently has no "
+                        "selected statement cards."
+                    )
+                ],
+            }
+        ]
+
+    projects = sorted({card["evidence"]["source_project"] for card in member_cards})
+    by_kind: dict[str, list[dict[str, Any]]] = {}
+    for card in sorted(member_cards, key=lambda item: item["id"]):
+        by_kind.setdefault(card["kind"], []).append(card)
+
+    return [
+        {
+            "heading": "Introduction",
+            "paragraphs": [_introduction_paragraph(plan, member_cards, projects)],
+        },
+        {
+            "heading": "Synthesis",
+            "paragraphs": _synthesis_paragraphs(by_kind),
+        },
+        {
+            "heading": "Navigation Context",
+            "paragraphs": [
+                (
+                    f"This page links to {len(plan.outgoing_links)} related pages and has "
+                    f"{len(plan.backlinks)} backlinks. Use those links to move between the "
+                    "prose note, source statements, and graph neighborhood."
+                )
+            ],
+        },
+    ]
+
+
+def _introduction_paragraph(
+    plan: PagePlan,
+    member_cards: list[dict[str, Any]],
+    projects: list[str],
+) -> str:
+    project_text = _project_phrase(projects)
+    if plan.type == "home":
+        return (
+            f"This wiki synthesizes {len(member_cards)} evidence-backed statement cards "
+            f"from {len(projects)} source projects into a connected reading surface."
+        )
+    if plan.type == "topic":
+        return (
+            f"This topic summarizes {len(member_cards)} statements from {project_text}. "
+            "It combines findings, reusable claims, caveats, and future work so readers "
+            "can understand the topic without opening each source project first."
+        )
+    if plan.type == "claim":
+        return (
+            "This claim page evaluates a reusable scientific statement and collects the "
+            f"supporting evidence selected by the page plan from {project_text}."
+        )
+    if plan.type == "opportunity":
+        return (
+            "This opportunity page describes a concrete next step and the evidence that "
+            f"motivates it from {project_text}."
+        )
+    if plan.type == "project":
+        return (
+            f"This project page summarizes the extractable scientific contribution from "
+            f"{project_text} and connects it to shared topics, entities, and claims."
+        )
+    if plan.type == "entity":
+        return (
+            f"This entity page is a backlink hub for {plan.title}, gathering "
+            f"{len(member_cards)} statements from {project_text}."
+        )
+    return f"This page synthesizes {len(member_cards)} statements from {project_text}."
+
+
+def _synthesis_paragraphs(by_kind: dict[str, list[dict[str, Any]]]) -> list[str]:
+    paragraphs = []
+    if claims := by_kind.get("claim"):
+        paragraphs.append(_cards_paragraph("The central claim is", claims))
+    if findings := by_kind.get("finding"):
+        paragraphs.append(_cards_paragraph("The main evidence base is", findings))
+    caveats = by_kind.get("caveat", []) + by_kind.get("conflict", [])
+    if caveats:
+        paragraphs.append(_cards_paragraph("The page should be read with this caveat", caveats))
+    if opportunities := by_kind.get("opportunity"):
+        paragraphs.append(_cards_paragraph("The most direct follow-up work is", opportunities))
+    return paragraphs or ["The selected statements are connected by shared page membership and graph links."]
+
+
+def _cards_paragraph(lead: str, cards: list[dict[str, Any]]) -> str:
+    clauses = [
+        (
+            f"{card['id']} states that {card['statement']} "
+            f"[{card['id']}; {card['evidence']['source_project']}]."
+        )
+        for card in cards[:3]
+    ]
+    extra = "" if len(cards) <= 3 else f" {len(cards) - 3} additional statements support this reading."
+    if lead == "The central claim is":
+        intro = _count_intro(
+            cards,
+            singular="A central reusable claim frames this page.",
+            plural="Reusable claims frame this page.",
+        )
+    elif lead == "The main evidence base is":
+        intro = _count_intro(
+            cards,
+            singular="The evidence base is anchored by one finding.",
+            plural="The evidence base is anchored by several findings.",
+        )
+    elif lead == "The page should be read with this caveat":
+        intro = _count_intro(
+            cards,
+            singular="The synthesis should be read with one caveat.",
+            plural="The synthesis should be read with several caveats.",
+        )
+    else:
+        intro = _count_intro(
+            cards,
+            singular="The most direct follow-up work is a concrete opportunity.",
+            plural="The most direct follow-up work spans several opportunities.",
+        )
+    return f"{intro} {' '.join(clauses)}{extra}"
+
+
+def _count_intro(
+    cards: list[Any],
+    *,
+    singular: str,
+    plural: str,
+) -> str:
+    return singular if len(cards) == 1 else plural
+
+
+def _project_phrase(projects: list[str]) -> str:
+    if len(projects) == 1:
+        return projects[0]
+    if len(projects) == 2:
+        return f"{projects[0]} and {projects[1]}"
+    return ", ".join(projects[:-1]) + f", and {projects[-1]}"
 
 
 def _graph_node_view(
