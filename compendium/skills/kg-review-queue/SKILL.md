@@ -40,13 +40,13 @@ Rank higher when a statement has one or more of these properties:
 
 ## Workflow
 
-1. Rebuild the graph, page-plan, render, and quality artifacts for the scoped project KG:
+1. Rebuild the graph, page-plan, Markdown wiki, and quality artifacts for the scoped project KG:
    ```bash
    cd compendium
    uv run compendium validate-project-kg kg/<project_id>.kg.yaml
    uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
    uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
-   uv run compendium render-synthesis kg/<project_id>.kg.yaml --out out/synthesis-site
+   uv run compendium render-markdown kg/<project_id>.kg.yaml --out wiki
    uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
 2. Generate the review queue from the project KG and deterministic artifacts:

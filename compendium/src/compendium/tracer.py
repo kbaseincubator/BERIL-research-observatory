@@ -21,7 +21,6 @@ from compendium.quality.synthesis_dashboard import (
 )
 from compendium.quality.synthesis_quality import assess_synthesis_quality
 from compendium.render.markdown import render_markdown_wiki
-from compendium.render.synthesis import render_synthesis_site
 from compendium.validate import validate_project_kg_file
 
 PKG_DIR = Path(__file__).resolve().parent
@@ -46,8 +45,6 @@ class TracerArtifacts:
     page_manifest_paths: list[Path]
     markdown_wiki_dir: Path
     markdown_wiki_paths: list[Path]
-    site_dir: Path
-    rendered_site_paths: list[Path]
     quality_json: Path
     quality_dashboard_json: Path
     quality_dashboard_html: Path
@@ -71,10 +68,10 @@ def generate_tracer_artifacts(
     *,
     source_root: str | Path | None = None,
 ) -> TracerArtifacts:
-    """Write deterministic graph, page, site, quality, and review artifacts.
+    """Write deterministic graph, page, wiki, quality, and review artifacts.
 
     This helper is intentionally offline. It composes the deterministic graph,
-    page-plan, page-artifact, render, quality, dashboard, and review-queue
+    page-plan, page-artifact, wiki render, quality, dashboard, and review-queue
     primitives without calling synthesis skills or model-backed services.
     """
     card_list = list(cards)
@@ -106,14 +103,6 @@ def generate_tracer_artifacts(
         card_list,
         page_plans,
         markdown_wiki_dir,
-        statement_graph=graph,
-    )
-
-    site_dir = out_dir / "site"
-    rendered_site_paths = render_synthesis_site(
-        card_list,
-        page_plans,
-        site_dir,
         statement_graph=graph,
     )
 
@@ -157,8 +146,6 @@ def generate_tracer_artifacts(
         page_manifest_paths=page_manifest_paths,
         markdown_wiki_dir=markdown_wiki_dir,
         markdown_wiki_paths=markdown_wiki_paths,
-        site_dir=site_dir,
-        rendered_site_paths=rendered_site_paths,
         quality_json=quality_json,
         quality_dashboard_json=quality_dashboard_json,
         quality_dashboard_html=quality_dashboard_html,

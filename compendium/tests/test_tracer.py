@@ -27,10 +27,6 @@ def test_adp1_tracer_generation_writes_expected_artifacts(tmp_path: Path) -> Non
     assert len(artifacts.page_markdown_paths) == len(artifacts.page_plans)
     assert len(artifacts.page_manifest_paths) == len(artifacts.page_plans)
 
-    assert (artifacts.site_dir / "index.html").is_file()
-    assert (artifacts.site_dir / "topics" / "adp1-carbon-fitness.html").is_file()
-    assert (artifacts.site_dir / "entities" / "adp1.html").is_file()
-    assert (artifacts.site_dir / "graph.html").is_file()
     assert (artifacts.markdown_wiki_dir / "index.md").is_file()
     assert (artifacts.markdown_wiki_dir / "topics" / "adp1-carbon-fitness.md").is_file()
     assert (artifacts.markdown_wiki_dir / "entities" / "adp1.md").is_file()
@@ -42,14 +38,6 @@ def test_adp1_tracer_generation_writes_expected_artifacts(tmp_path: Path) -> Non
     assert "entity:adp1" in plan_ids
     assert sum(plan.type == "claim" for plan in artifacts.page_plans) >= 2
     assert sum(plan.type == "opportunity" for plan in artifacts.page_plans) >= 1
-
-    entity_html = (artifacts.site_dir / "entities" / "adp1.html").read_text(encoding="utf-8")
-    assert "../projects/adp1-deletion-phenotypes.html" in entity_html
-    assert "../projects/adp1-triple-essentiality.html" in entity_html
-    assert "project:adp1_deletion_phenotypes" in entity_html
-    assert "project:adp1_triple_essentiality" in entity_html
-    assert "Introduction" in entity_html
-    assert "Synthesis" in entity_html
 
     home_markdown = (artifacts.markdown_wiki_dir / "index.md").read_text(encoding="utf-8")
     topic_markdown = (

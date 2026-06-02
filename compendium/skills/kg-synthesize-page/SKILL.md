@@ -74,7 +74,7 @@ outside the allowed member set.
    ```bash
    cd compendium
    uv run compendium validate-page-plan <page_plan.yaml>
-   uv run compendium render-synthesis kg/<project_id>.kg.yaml --out out/synthesis-site
+   uv run compendium render-markdown kg/<project_id>.kg.yaml --out wiki
    uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
 8. Summarize changed sections, reused sections, cited statements, and affected rendered pages.

@@ -25,7 +25,7 @@ Stop if the project path does not exist or if no source document can supply evid
 - `compendium/kg/<project_id>.kg.yaml`.
 - Extraction manifest embedded in the project KG with skill name, model id, prompt hash, context-pack
   hash, schema hash, repo commit, timestamp, retries, and fragment hashes.
-- Rebuilt statement graph, page plans, rendered synthesis site, and quality diff, or a recorded
+- Rebuilt statement graph, page plans, rendered Markdown wiki, and quality diff, or a recorded
   validation failure if the deterministic checks cannot pass.
 
 ## Workflow
@@ -57,7 +57,7 @@ Stop if the project path does not exist or if no source document can supply evid
    uv run compendium validate-project-kg kg/<project_id>.kg.yaml
    uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/<project_id>-statement-graph.json
    uv run compendium plan-pages kg/<project_id>.kg.yaml --out out/<project_id>-page-plans.json
-   uv run compendium render-synthesis kg/<project_id>.kg.yaml --out out/synthesis-site
+   uv run compendium render-markdown kg/<project_id>.kg.yaml --out wiki
    uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
    ```
 7. Retry invalid fragments as described below, then write the final YAML with sorted statement cards and

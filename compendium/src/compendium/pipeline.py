@@ -33,7 +33,6 @@ from compendium.quality.synthesis_quality import assess_synthesis_quality
 from compendium.render.markdown import render_markdown_wiki
 from compendium.quality.wiki_quality import assess_wiki
 from compendium.render.render import render_site
-from compendium.render.synthesis import render_synthesis_site
 from compendium.validate import (
     validate_page_plan_file,
     validate_project_kg_file,
@@ -230,7 +229,7 @@ def dispatch(args) -> int:
             tracer_kwargs["source_root"] = args.source_root
         artifacts = generate_adp1_tracer_artifacts(args.out, **tracer_kwargs)
         print(f"[compendium] tracer artifacts -> {artifacts.output_dir.resolve()}")
-        print(f"[compendium] site -> {artifacts.site_dir.resolve()}")
+        print(f"[compendium] wiki -> {artifacts.markdown_wiki_dir.resolve()}")
         print(f"[compendium] quality -> {artifacts.quality_json.resolve()}")
         return 0
     if args.cmd == "statement-graph":
@@ -263,18 +262,6 @@ def dispatch(args) -> int:
         )
         print(f"[compendium] page artifact: {markdown_path}")
         print(f"[compendium] manifest: {manifest_path}")
-        return 0
-    if args.cmd == "render-synthesis":
-        cards = _load_statement_cards(args.path)
-        graph = build_statement_graph(cards)
-        out_dir = Path(args.out).resolve()
-        rendered = render_synthesis_site(
-            cards,
-            plan_pages(cards),
-            out_dir,
-            statement_graph=graph,
-        )
-        print(f"[compendium] rendered {len(rendered)} synthesis pages -> {out_dir}")
         return 0
     if args.cmd == "render-markdown":
         cards = _load_statement_cards(args.path)
