@@ -3,6 +3,7 @@
 from compendium import ids
 from compendium.build import build
 from compendium.models import (
+    TIER_CONFLICT,
     TIER_GROUNDED,
     Assertion,
     Entity,
@@ -56,3 +57,59 @@ def test_shared_curie_collapses_to_one_organism_with_both_findings():
     # every about edge points at the single canonical organism
     assert all(e.o == org.id for e in about_edges)
     assert {e.s for e in about_edges} == {f.id for f in findings}
+
+
+def test_opposing_polarities_create_conflict_node():
+    org_node = ids.node_id("ADP1", "Organism")
+    phenotype_node = ids.node_id("quinate growth", "Phenotype")
+    entities = [
+        Entity(node=org_node, type="Organism", label="ADP1", curie=CURIE, tier=TIER_GROUNDED),
+        Entity(
+            node=phenotype_node,
+            type="Phenotype",
+            label="quinate growth",
+            curie="BERILPhenotype:quinate_growth",
+            tier=TIER_GROUNDED,
+        ),
+    ]
+    pos = Assertion(
+        id=ids.assertion_id(
+            s=org_node, p="has_phenotype", o=phenotype_node, polarity="positive"
+        ),
+        kind="relation",
+        s=org_node,
+        p="has_phenotype",
+        o=phenotype_node,
+        polarity="positive",
+        tier=TIER_GROUNDED,
+    )
+    neg = Assertion(
+        id=ids.assertion_id(
+            s=org_node, p="has_phenotype", o=phenotype_node, polarity="negative"
+        ),
+        kind="relation",
+        s=org_node,
+        p="has_phenotype",
+        o=phenotype_node,
+        polarity="negative",
+        tier=TIER_GROUNDED,
+    )
+    graph = build(
+        [
+            ProjectKG(
+                project=ProjectMeta(id="proj_a", title="A"),
+                entities=entities,
+                assertions=[pos],
+            ),
+            ProjectKG(
+                project=ProjectMeta(id="proj_b", title="B"),
+                entities=entities,
+                assertions=[neg],
+            ),
+        ]
+    )
+
+    relation_edges = [e for e in graph.edges if e.p == "has_phenotype"]
+    assert {e.polarity for e in relation_edges} == {"positive", "negative"}
+    assert all(e.tier == TIER_CONFLICT for e in relation_edges)
+    assert any(n.type == "Conflict" and n.tier == TIER_CONFLICT for n in graph.nodes)

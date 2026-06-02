@@ -39,12 +39,15 @@ def test_project_meta(kg: ProjectKG) -> None:
 def test_coverage_from_audit() -> None:
     kg = extract_project(FIXTURE, audit={"stage1_coverage": 0.42})
     assert kg.project.stage1_coverage == 0.42
+    kg = extract_project(FIXTURE, audit={"coverage": 0.75})
+    assert kg.project.stage1_coverage == 0.75
 
 
 def test_project_entity(kg: ProjectKG) -> None:
     projects = _entities(kg, "Project")
     assert len(projects) == 1
     assert projects[0].label == "Acinetobacter baylyi ADP1 Demo Study"
+    assert projects[0].curie == "BERILProject:proj_demo"
 
 
 def test_findings(kg: ProjectKG) -> None:
@@ -56,6 +59,7 @@ def test_findings(kg: ProjectKG) -> None:
         assert a.evidence is not None
         assert a.evidence.span is not None
         assert a.evidence.span.heading == "Key Findings"
+        assert any(_entities(kg, "Organism")[0].node == ent for ent in a.entities)
         assert a.tier == "asserted"
 
 
@@ -79,6 +83,8 @@ def test_dataset_uses_relations(kg: ProjectKG) -> None:
     for a in rels:
         assert a.id.startswith("a:")
         assert a.s and a.o
+        assert a.evidence is not None
+        assert a.evidence.span is not None
 
 
 def test_organism_canonicalized(kg: ProjectKG) -> None:

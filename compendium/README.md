@@ -15,8 +15,8 @@ content-addressed knowledge graph and renders a static wiki:
 audit -> extract (Stage-1) -> ground -> verify (tiers) -> canonicalize -> assemble (KGX) -> render -> quality
 ```
 
-- **Content-addressed identity** (`ids.py`): node id = `n:hash(label|type)`, assertion id =
-  `a:hash(s|p|o)` — stable across re-extraction, so the build is idempotent and corrections re-bind.
+- **Content-addressed identity** (`ids.py`): node id = `n:hash(label|type)`, relation assertion id =
+  `a:hash(s|p|o|polarity)` — stable across re-extraction, so the build is idempotent and corrections re-bind.
 - **Honest entities-only tiers** (`grounded` / `asserted` / `conflict`) — no tier claims a relation is *true*.
 - **Reproducible build**: same inputs → byte-identical KGX (idempotency test shuffles ingest order & merge timing).
 - **LLM steps are skills** (`skills/`) that dispatch subagents (subscription tokens), never on the render path.
@@ -24,7 +24,7 @@ audit -> extract (Stage-1) -> ground -> verify (tiers) -> canonicalize -> assemb
 ## Run
 
 ```bash
-uv run --directory compendium --group test pytest          # 57 tests
+uv run --directory compendium --group test pytest          # 58 tests
 uv run --directory compendium compendium all \
     --projects acinetobacter_adp1_explorer adp1_deletion_phenotypes \
     --projects-dir ../projects --out out
@@ -50,6 +50,6 @@ Outputs: `out/nodes.tsv`, `out/edges.tsv` (KGX), `out/site/` (static wiki + `wik
 
 ## Status (tracer)
 
-Deterministic core complete & tested on 2 ADP1 projects (29 nodes / 29 edges, 0 orphans / dangling /
-broken links, shared ADP1 organism hub, 100% provenance). Deferred (clear seams): real Gilda/OGER
+Deterministic core complete & tested on 2 ADP1 projects (29 nodes / 42 edges, 0 orphans / dangling /
+broken links, shared ADP1 organism hub, 100% edge evidence). Deferred (clear seams): real Gilda/OGER
 grounding, full corpus backfill, FastAPI integration, `/submit` hook, hypothesis overlay.

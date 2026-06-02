@@ -5,9 +5,12 @@ from __future__ import annotations
 import pathlib
 from typing import Optional
 
+from .. import ids
 from ..corrections import apply_corrections
 from ..models import (
+    TIER_ASSERTED,
     TIER_CONFLICT,
+    TIER_GROUNDED,
     Correction,
     Edge,
     Graph,
@@ -27,6 +30,15 @@ _SYNTHESIS_KINDS = {
 }
 
 
+def _merged_tier(a: str, b: str) -> str:
+    """Combine duplicate-edge tiers deterministically, preserving the weakest support."""
+    if TIER_CONFLICT in (a, b):
+        return TIER_CONFLICT
+    if TIER_ASSERTED in (a, b):
+        return TIER_ASSERTED
+    return TIER_GROUNDED
+
+
 def build(
     pkgs: list[ProjectKG],
     corrections: Optional[list[Correction]] = None,
@@ -38,8 +50,8 @@ def build(
 
     nodes_by_id: dict[str, Node] = {n.id: n for n in nodes}
 
-    # (1) relation assertions -> edges, deduped by (s, p, o)
-    edge_map: dict[tuple[str, str, str], Edge] = {}
+    # (1) relation assertions -> edges, deduped by (s, p, o, polarity)
+    edge_map: dict[tuple[str, str, str, str], Edge] = {}
     for pkg in pkgs:
         pid = pkg.project.id
         for a in pkg.assertions:
@@ -47,7 +59,7 @@ def build(
                 continue
             s = cmap.get(a.s, a.s)
             o = cmap.get(a.o, a.o)
-            key = (s, a.p, o)
+            key = (s, a.p, o, a.polarity or "")
             existing = edge_map.get(key)
             if existing is None:
                 edge_map[key] = Edge(
@@ -60,6 +72,7 @@ def build(
                     provenance=[pid],
                 )
             else:
+                existing.tier = _merged_tier(existing.tier, a.tier)
                 if a.id not in existing.evidence:
                     existing.evidence.append(a.id)
                 if pid not in existing.provenance:
@@ -109,7 +122,7 @@ def build(
             pair = (s, p, o)
             if pair not in seen_conflict_pairs:
                 seen_conflict_pairs.add(pair)
-                cid = "c:" + p + ":" + s + ":" + o
+                cid = "c:" + ids.content_hash(s, p, o, n=12)
                 cnode = Node(
                     id=cid,
                     type="Conflict",
@@ -118,6 +131,17 @@ def build(
                     provenance=sorted({pid for e in group for pid in e.provenance}),
                 )
                 conflict_nodes.append(cnode)
+                for endpoint in (s, o):
+                    edges.append(
+                        Edge(
+                            s=cid,
+                            p="about",
+                            o=endpoint,
+                            tier=TIER_CONFLICT,
+                            evidence=sorted({aid for e in group for aid in e.evidence}),
+                            provenance=cnode.provenance,
+                        )
+                    )
     nodes.extend(conflict_nodes)
 
     graph = Graph(nodes=nodes, edges=edges)
@@ -127,7 +151,7 @@ def build(
 
     # (5) deterministic sort
     graph.nodes.sort(key=lambda n: n.id)
-    graph.edges.sort(key=lambda e: (e.s, e.p, e.o))
+    graph.edges.sort(key=lambda e: (e.s, e.p, e.o, e.polarity or ""))
     return graph
 
 
@@ -154,8 +178,11 @@ def to_kgx(graph: Graph, out_dir: pathlib.Path) -> None:
     (out_dir / "nodes.tsv").write_text(nodes_text, encoding="utf-8")
 
     edge_rows = sorted(
-        "\t".join([e.s, e.p, e.o, e.tier, "|".join(e.provenance)]) for e in graph.edges
+        "\t".join(
+            [e.s, e.p, e.o, e.polarity or "", e.tier, "|".join(e.provenance)]
+        )
+        for e in graph.edges
     )
-    edges_text = "subject\tpredicate\tobject\ttier\tprovenance\n"
+    edges_text = "subject\tpredicate\tobject\tpolarity\ttier\tprovenance\n"
     edges_text += "".join(row + "\n" for row in edge_rows)
     (out_dir / "edges.tsv").write_text(edges_text, encoding="utf-8")

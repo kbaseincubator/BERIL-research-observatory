@@ -37,8 +37,8 @@ def assess_kg(graph: Graph) -> dict:
     grounded = sum(1 for n in biology_nodes if n.curie)
     grounding_rate = grounded / len(biology_nodes) if biology_nodes else 0.0
 
-    # provenance_completeness: fraction of edges with >= 1 provenance entry.
-    with_prov = sum(1 for e in graph.edges if e.provenance)
+    # provenance_completeness: fraction of edges with >= 1 backing assertion/evidence id.
+    with_prov = sum(1 for e in graph.edges if e.evidence)
     provenance_completeness = with_prov / len(graph.edges) if graph.edges else 0.0
 
     # orphan_nodes: node ids that are not an endpoint of any edge.

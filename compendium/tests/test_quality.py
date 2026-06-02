@@ -28,7 +28,7 @@ def _small_graph() -> Graph:
             ),
         ],
         edges=[
-            Edge(s="n:org", p="about", o="n:topic", provenance=["proj_a"]),
+            Edge(s="n:org", p="about", o="n:topic", evidence=["a:1"], provenance=["proj_a"]),
         ],
     )
 
@@ -118,6 +118,8 @@ def test_assess_wiki_coverage_and_links_exact(tmp_path: pathlib.Path):
     assert m["broken_internal_links"] == 1
     assert m["orphan_pages"] == 0
     assert m["pages_by_type"] == {"Organism": 1, "Topic": 1}
+    assert m["pages_by_tier"] == {"asserted": 2}
+    assert m["provenance_section_rate"] == 0.0
 
 
 def test_assess_wiki_orphan_and_partial_coverage(tmp_path: pathlib.Path):

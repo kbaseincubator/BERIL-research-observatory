@@ -76,18 +76,25 @@ def assess_wiki(site_dir: pathlib.Path, graph: Graph) -> dict:
 
     # pages_by_type: count pages by the type of the node they represent.
     stem_to_type = {safe(n.id): n.type for n in graph.nodes}
+    stem_to_tier = {safe(n.id): n.tier for n in graph.nodes}
     pages_by_type: dict[str, int] = {}
+    pages_by_tier: dict[str, int] = {}
     for stem in page_stems:
         node_type = stem_to_type.get(stem, "Unknown")
         pages_by_type[node_type] = pages_by_type.get(node_type, 0) + 1
+        node_tier = stem_to_tier.get(stem, "Unknown")
+        pages_by_tier[node_tier] = pages_by_tier.get(node_tier, 0) + 1
 
     # orphan_pages: rendered html files with no corresponding graph node.
     orphan_pages = sum(1 for stem in page_stems if stem not in node_stems)
 
     # broken_internal_links: internal hrefs whose target file is missing under site_dir.
     broken_internal_links = 0
+    pages_with_provenance = 0
     for page in html_files:
         html = page.read_text(encoding="utf-8")
+        if "Provenance" in html and "projects:" in html:
+            pages_with_provenance += 1
         for href in _extract_hrefs(html):
             if not _is_internal(href):
                 continue
@@ -99,7 +106,9 @@ def assess_wiki(site_dir: pathlib.Path, graph: Graph) -> dict:
     return {
         "page_count": len(html_files),
         "pages_by_type": pages_by_type,
+        "pages_by_tier": pages_by_tier,
         "coverage": coverage,
         "broken_internal_links": broken_internal_links,
         "orphan_pages": orphan_pages,
+        "provenance_section_rate": pages_with_provenance / len(html_files) if html_files else 0.0,
     }

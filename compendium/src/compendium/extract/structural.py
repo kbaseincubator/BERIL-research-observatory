@@ -107,7 +107,8 @@ def extract_project(project_dir: pathlib.Path, audit: dict | None = None) -> Pro
     title = _parse_title(report_text, fallback=pid)
 
     beril = _load_beril(project_dir)
-    coverage = float((audit or {}).get("stage1_coverage", 0.0))
+    audit = audit or {}
+    coverage = float(audit.get("stage1_coverage", audit.get("coverage", 0.0)))
     meta = ProjectMeta(
         id=pid,
         title=title,
@@ -143,6 +144,7 @@ def extract_project(project_dir: pathlib.Path, audit: dict | None = None) -> Pro
 
     # Project entity (label only — node id is canonical).
     add_entity(title, "Project")
+    entities[project_node].curie = f"BERILProject:{pid}"
 
     sections = _sections(report_text)
 
@@ -203,7 +205,8 @@ def extract_project(project_dir: pathlib.Path, audit: dict | None = None) -> Pro
             if _ARTIFACT_RE.search(name):
                 continue
             dnode = add_entity(name, "Dataset")
-            add_mention(name, "Dataset", Span(file="REPORT.md", heading="Data", char=(s_off, e_off), quote=name))
+            span = Span(file="REPORT.md", heading="Data", char=(s_off, e_off), quote=name)
+            add_mention(name, "Dataset", span)
             add_assertion(
                 Assertion(
                     id=ids.assertion_id(s=project_node, p="uses", o=dnode),
@@ -211,6 +214,7 @@ def extract_project(project_dir: pathlib.Path, audit: dict | None = None) -> Pro
                     s=project_node,
                     p="uses",
                     o=dnode,
+                    evidence=Evidence(span=span),
                     tier=TIER_ASSERTED,
                 )
             )
@@ -231,13 +235,17 @@ def extract_project(project_dir: pathlib.Path, audit: dict | None = None) -> Pro
     # the documented future swap-in; until then we favor precision over recall.
     org_dict = _load_organism_dict()
     normalized_report = ids.normalize(report_text)
+    organism_nodes: list[str] = []
     for alias, info in org_dict.items():
         if alias and alias in normalized_report:
             canonical = info.get("label", alias)
             onode = add_entity(canonical, "Organism")
+            organism_nodes.append(onode)
             mloc = re.search(re.escape(alias), report_text, re.IGNORECASE)
+            span = Span(file="REPORT.md")
             if mloc:
-                add_mention(canonical, "Organism", Span(file="REPORT.md", char=(mloc.start(), mloc.end()), quote=mloc.group(0)))
+                span = Span(file="REPORT.md", char=(mloc.start(), mloc.end()), quote=mloc.group(0))
+                add_mention(canonical, "Organism", span)
             # Link the project to the organism it studies -> the organism becomes the
             # cross-project hub (a single canonical node reached from every project that studies it).
             add_assertion(
@@ -247,9 +255,17 @@ def extract_project(project_dir: pathlib.Path, audit: dict | None = None) -> Pro
                     s=project_node,
                     p="studies",
                     o=onode,
+                    evidence=Evidence(span=span),
                     tier=TIER_ASSERTED,
                 )
             )
+
+    if organism_nodes:
+        for assertion in assertions:
+            if assertion.kind in {"finding", "opportunity"}:
+                for onode in organism_nodes:
+                    if onode not in assertion.entities:
+                        assertion.entities.append(onode)
 
     # --- Gene / ortholog ids via regex --------------------------------------------
     for regex, type_ in ((_KO_RE, "KO"), (_COG_RE, "OrthologGroup"), (_PF_RE, "Gene")):
