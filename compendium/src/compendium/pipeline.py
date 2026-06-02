@@ -78,8 +78,12 @@ def run_all(projects, projects_dir: str, out: str, corrections_dir: str | None =
     graph = build(pkgs, corrections=corrections, layout_seed=0)
 
     to_kgx(graph, out_dir)
+    # Cross-project synthesis narratives (produced offline by the kg-synthesize skill) are injected
+    # into the deterministic render if present — never generated on the render path.
+    narration_path = kg_dir / "narration.json"
+    narration = json.loads(narration_path.read_text()) if narration_path.exists() else None
     site_dir = out_dir / "site"
-    render_site(graph, site_dir)
+    render_site(graph, site_dir, narration=narration)
 
     kgq = assess_kg(graph)
     wikiq = assess_wiki(site_dir, graph)
