@@ -46,13 +46,13 @@ No other correction kind is valid.
 1. Resolve targets from committed artifacts:
    ```bash
    cd compendium
-   uv run compendium build --out out
+   uv run compendium statement-graph kg/<project_id>.kg.yaml --out out/statement-graph.json --artifacts-dir out/graph
    ```
-   Inspect `kg/projects/*.yaml`, `kg/graph/graph.json`, `out/nodes.tsv`, `out/edges.tsv`, and rendered
-   pages as needed.
+   Inspect `kg/<project_id>.kg.yaml`, `out/graph/graph.json`, `out/graph/nodes.tsv`, `out/graph/edges.tsv`,
+   and the rendered `wiki/` pages as needed.
 2. Present ambiguous target candidates before writing anything. Include statement id, statement text,
    source project, tier, confidence, and affected pages.
-3. Write one append-only correction record via `compendium.corrections.append_correction` with:
+3. Append one correction record (newest last) to `compendium/kg/corrections/<scope>.yaml`:
    ```yaml
    id: corr:<stable-id>
    kind: <allowed-kind>
@@ -72,13 +72,15 @@ No other correction kind is valid.
 7. For `promote` or `demote`, require reviewer rationale. Only promote to `reviewed` when the reviewer
    explicitly accepted the statement or generated synthesis section.
 8. For `mark-conflict` or `resolve-conflict`, record both sides and affected pages.
-9. Validate and rebuild:
+9. Validate and rebuild the affected statement-card wiki:
    ```bash
    cd compendium
-   uv run compendium validate-project-kg kg/projects/<project_id>.yaml
-   uv run compendium build --out out
-   uv run compendium quality --out out
+   uv run compendium validate-project-kg kg/<project_id>.kg.yaml
+   uv run compendium render-markdown kg/<project_id>.kg.yaml --out wiki
+   uv run compendium quality-synthesis kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-synthesis-quality.json
+   uv run compendium review-queue kg/<project_id>.kg.yaml --source-root ../projects --out out/<project_id>-review-queue.json
    ```
+   Regenerate any pages whose `member_hash` changed via `kg-generate-wiki`/`kg-synthesize-page` before `render-markdown`.
 10. Summarize the correction id, targets, affected pages, and regression fixture created.
 
 ## Retry Rules

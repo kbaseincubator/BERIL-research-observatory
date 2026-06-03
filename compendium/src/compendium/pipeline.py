@@ -1,7 +1,8 @@
-"""End-to-end Compendium pipeline wiring (Task 10).
+"""Compendium pipeline wiring for the statement-card synthesis wiki.
 
-audit -> extract (Stage-1) -> ground -> verify -> build (canonicalize+assemble+layout)
--> KGX export -> render (static site) -> quality assessment.
+context-pack / audit (deterministic ingestion inputs) -> statement-graph -> plan-pages
+-> wiki-contexts -> page-artifact (LLM-authored prose, validated) -> render-markdown
+-> quality-synthesis / review-queue.
 
 Deterministic; no LLM on this path. ``dispatch`` is called by ``compendium.cli``.
 """
@@ -12,18 +13,11 @@ import json
 import sys
 from pathlib import Path
 
-import yaml
-
 from compendium import audit as audit_mod
-from compendium.build.assemble import build, to_kgx
 from compendium.build.statement_graph import build_statement_graph, export_statement_graph_artifacts
 from compendium.context_pack import build_context_pack, context_pack_bytes
-from compendium.corrections import load_corrections
-from compendium.extract.structural import extract_project
-from compendium.ground.grounder import ground
-from compendium.models import ProjectKG, StatementCard
+from compendium.models import StatementCard
 from compendium.pages import plan_pages, write_page_artifact, write_page_context
-from compendium.quality.kg_quality import assess_kg
 from compendium.quality.review_queue import build_review_queue
 from compendium.quality.synthesis_dashboard import (
     build_synthesis_quality_dashboard,
@@ -31,14 +25,11 @@ from compendium.quality.synthesis_dashboard import (
 )
 from compendium.quality.synthesis_quality import assess_synthesis_quality
 from compendium.render.markdown import render_markdown_wiki
-from compendium.quality.wiki_quality import assess_wiki
-from compendium.render.render import render_site
 from compendium.validate import (
     validate_page_plan_file,
     validate_project_kg_file,
     validate_statement_card_file,
 )
-from compendium.verify.verifier import verify
 
 PKG_DIR = Path(__file__).resolve().parent
 COMPENDIUM_DIR = PKG_DIR.parents[1]   # .../compendium
@@ -53,25 +44,6 @@ def _resolve_projects_dir(projects_dir: str) -> Path:
         if cand.exists():
             return cand
     return p.resolve()
-
-
-def _project_kgs(projects, projects_dir: Path, corpus_audit: dict) -> list[ProjectKG]:
-    pkgs: list[ProjectKG] = []
-    for pid in projects:
-        pdir = projects_dir / pid
-        a = corpus_audit.get("projects", {}).get(pid)
-        pkg = extract_project(pdir, audit=a)
-        pkg = ground(pkg)
-        pkg = verify(pkg, pdir)
-        pkgs.append(pkg)
-    return pkgs
-
-
-def _write_kg_yaml(pkgs: list[ProjectKG], out_kg_dir: Path) -> None:
-    out_kg_dir.mkdir(parents=True, exist_ok=True)
-    for pkg in pkgs:
-        text = yaml.safe_dump(pkg.to_dict(), sort_keys=True, allow_unicode=True)
-        (out_kg_dir / f"{pkg.project.id}.kg.yaml").write_text(text)
 
 
 def _load_statement_cards(path: str) -> list[StatementCard]:
@@ -169,49 +141,6 @@ def _run_statement_quality(path: str, out: str, source_root: str | None = None) 
     return 0
 
 
-def run_all(projects, projects_dir: str, out: str, corrections_dir: str | None = None) -> dict:
-    pdir = _resolve_projects_dir(projects_dir)
-    out_dir = Path(out).resolve()
-    out_dir.mkdir(parents=True, exist_ok=True)
-    kg_dir = COMPENDIUM_DIR / "kg"
-    corr_dir = Path(corrections_dir) if corrections_dir else (COMPENDIUM_DIR / "corrections")
-
-    # audit (Phase-0 premise check) restricted to the chosen projects when given
-    corpus_audit = {"projects": {}, "rollup": {}}
-    for pid in projects:
-        corpus_audit["projects"][pid] = audit_mod.audit_project(pdir / pid)
-
-    pkgs = _project_kgs(projects, pdir, corpus_audit)
-    _write_kg_yaml(pkgs, kg_dir)
-
-    corrections = load_corrections(corr_dir)
-    graph = build(pkgs, corrections=corrections, layout_seed=0)
-
-    to_kgx(graph, out_dir)
-    # Cross-project synthesis narratives (produced offline by the kg-synthesize skill) are injected
-    # into the deterministic render if present — never generated on the render path.
-    narration_path = kg_dir / "narration.json"
-    narration = json.loads(narration_path.read_text()) if narration_path.exists() else None
-    site_dir = out_dir / "site"
-    render_site(graph, site_dir, narration=narration)
-
-    kgq = assess_kg(graph)
-    wikiq = assess_wiki(site_dir, graph)
-    quality = {"projects": list(projects), "kg": kgq, "wiki": wikiq,
-               "audit": {pid: corpus_audit["projects"][pid].get("coverage") for pid in projects}}
-    (out_dir / "quality.json").write_text(json.dumps(quality, indent=2, sort_keys=True))
-
-    print(f"[compendium] projects: {', '.join(projects)}")
-    print(f"[compendium] KG: {kgq['n_nodes']} nodes, {kgq['n_edges']} edges; "
-          f"grounding_rate={kgq['grounding_rate']:.2f}; cross_project_edges={kgq['cross_project_edges']}; "
-          f"dangling_edges={kgq['dangling_edges']}")
-    print(f"[compendium] node tiers: {kgq['node_tier_distribution']}")
-    print(f"[compendium] wiki: {wikiq['page_count']} pages; coverage={wikiq['coverage']:.2f}; "
-          f"broken_links={wikiq['broken_internal_links']}")
-    print(f"[compendium] artifacts: {out_dir}/nodes.tsv, edges.tsv, site/, quality.json; kg/ -> {kg_dir}")
-    return quality
-
-
 def dispatch(args) -> int:
     if args.cmd == "validate-card":
         result = validate_statement_card_file(args.path)
@@ -234,7 +163,7 @@ def dispatch(args) -> int:
         print(f"[compendium] context pack: {project_dir.name} -> {out_path}")
         print(f"[compendium] hash: {pack['context_pack_hash']}")
         return 0
-    if args.cmd == "quality" and args.statement_kg:
+    if args.cmd == "quality":
         return _run_statement_quality(args.statement_kg, args.out, args.source_root)
     if args.cmd == "tracer":
         from compendium.tracer import generate_adp1_tracer_artifacts
@@ -382,10 +311,6 @@ def dispatch(args) -> int:
         _write_json_or_stdout(queue, args.out)
         return 0
 
-    projects = args.projects or []
-    if args.cmd in ("build", "render", "quality", "all") and not projects:
-        print("[compendium] provide --projects <id ...> (this build does not ingest all projects).")
-        return 2
     if args.cmd == "audit":
         pdir = _resolve_projects_dir(args.projects_dir)
         rep = audit_mod.audit_corpus(pdir)
@@ -394,6 +319,6 @@ def dispatch(args) -> int:
         out_dir.mkdir(parents=True, exist_ok=True)
         (out_dir / "audit.json").write_text(json.dumps(rep, indent=2, sort_keys=True))
         return 0
-    # build / render / quality / all currently share the full deterministic pipeline
-    run_all(projects, args.projects_dir, args.out)
-    return 0
+
+    print(f"[compendium] unknown command {args.cmd!r}")
+    return 2

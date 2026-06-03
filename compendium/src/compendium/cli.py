@@ -1,6 +1,9 @@
-"""Compendium CLI — ``compendium audit|build|render|quality|all``.
+"""Compendium CLI — deterministic statement-card synthesis-wiki commands.
 
-Foundation stub; the ``all`` end-to-end pipeline is wired in Task 10 once modules land.
+The statement-card pipeline is the single workflow: ``audit`` and ``context-pack``
+for ingestion inputs, then ``statement-graph`` -> ``plan-pages`` -> ``wiki-contexts``
+-> ``page-artifact`` -> ``render-markdown`` -> ``quality-synthesis``/``review-queue``.
+``dispatch`` is implemented in :mod:`compendium.pipeline`.
 """
 
 from __future__ import annotations
@@ -12,15 +15,14 @@ import sys
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="compendium", description="Deterministic KG-centered scientific wiki")
     sub = parser.add_subparsers(dest="cmd")
-    shared = {}
-    for name in ("audit", "build", "render", "quality", "all"):
-        sp = sub.add_parser(name)
-        shared[name] = sp
-        sp.add_argument("--projects", nargs="*", default=None)
-        sp.add_argument("--projects-dir", default="../projects")
-        sp.add_argument("--out", default="out")
-    shared["quality"].add_argument("--statement-kg")
-    shared["quality"].add_argument("--source-root")
+    audit = sub.add_parser("audit")
+    audit.add_argument("--projects", nargs="*", default=None)
+    audit.add_argument("--projects-dir", default="../projects")
+    audit.add_argument("--out", default="out")
+    quality = sub.add_parser("quality")
+    quality.add_argument("--statement-kg", required=True)
+    quality.add_argument("--source-root")
+    quality.add_argument("--out", default="out")
     context_pack = sub.add_parser("context-pack")
     context_pack.add_argument("project")
     context_pack.add_argument("--out", required=True)
@@ -75,11 +77,10 @@ def main(argv: list[str] | None = None) -> int:
     if not args.cmd:
         parser.print_help()
         return 0
-    # Dispatch is completed in Task 10 (pipeline wiring).
     try:
         from compendium import pipeline  # noqa: WPS433
-    except Exception:  # pragma: no cover - stub before Task 10
-        print(f"[compendium] '{args.cmd}' not yet wired; build the pipeline (Task 10).", file=sys.stderr)
+    except Exception:  # pragma: no cover - import guard
+        print(f"[compendium] '{args.cmd}' could not load the pipeline module.", file=sys.stderr)
         return 2
     try:
         return pipeline.dispatch(args)

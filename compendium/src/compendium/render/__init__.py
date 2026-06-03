@@ -1,5 +1,5 @@
-"""Deterministic static site render (Jinja2, no LLM)."""
+"""Deterministic Markdown wiki publisher (no LLM)."""
 
-from compendium.render.render import render_site, safe
+from compendium.render.markdown import render_markdown_wiki
 
-__all__ = ["render_site", "safe"]
+__all__ = ["render_markdown_wiki"]

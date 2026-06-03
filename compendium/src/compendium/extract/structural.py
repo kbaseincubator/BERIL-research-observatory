@@ -26,7 +26,7 @@ from compendium.models import (
     TIER_ASSERTED,
 )
 
-_DICT_PATH = pathlib.Path(__file__).resolve().parent.parent / "ground" / "dictionary.yaml"
+_DICT_PATH = pathlib.Path(__file__).resolve().parent / "dictionary.yaml"
 
 # Section headings (## ...).
 _SECTION_RE = re.compile(r"^##\s+(.+?)\s*$", re.MULTILINE)

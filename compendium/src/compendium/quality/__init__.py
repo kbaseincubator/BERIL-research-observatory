@@ -1,8 +1,14 @@
-"""Deterministic quality assessment for the canonical KG and rendered wiki."""
+"""Deterministic quality assessment for the statement-card synthesis wiki."""
 
 from __future__ import annotations
 
-from .kg_quality import assess_kg
-from .wiki_quality import assess_wiki
+from .review_queue import build_review_queue
+from .synthesis_dashboard import build_synthesis_quality_dashboard, render_synthesis_quality_dashboard_html
+from .synthesis_quality import assess_synthesis_quality
 
-__all__ = ["assess_kg", "assess_wiki"]
+__all__ = [
+    "assess_synthesis_quality",
+    "build_review_queue",
+    "build_synthesis_quality_dashboard",
+    "render_synthesis_quality_dashboard_html",
+]

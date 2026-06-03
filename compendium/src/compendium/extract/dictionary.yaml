@@ -1,7 +1,6 @@
-# Seed grounding dictionary (tracer). Keys are NORMALIZED labels (lowercase, punctuation->space,
-# collapsed whitespace — see ids.normalize). Used by the Stage-1 extractor to canonicalize known
-# organism aliases to one label, and by the grounder to assign CURIEs. Real grounding (Gilda/OGER)
-# swaps in later; gene/ortholog ids (K#####, COG####, PF#####, PMID:#) are handled by regex in the grounder.
+# Seed organism dictionary (tracer). Keys are NORMALIZED labels (lowercase, punctuation->space,
+# collapsed whitespace — see ids.normalize). Used by the Stage-1 structural extractor to admit and
+# canonicalize known organism aliases to one label/CURIE. Real organism NER (Gilda/OGER) swaps in later.
 organisms:
   "acinetobacter baylyi adp1": {label: "Acinetobacter baylyi ADP1", curie: "NCBITaxon:62977"}
   "acinetobacter baylyi": {label: "Acinetobacter baylyi ADP1", curie: "NCBITaxon:62977"}

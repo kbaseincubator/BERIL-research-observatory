@@ -1,7 +1,5 @@
-"""Determinism core: canonicalize entities, assemble the canonical graph, lay it out."""
+"""Deterministic statement-card graph assembly (no LLM)."""
 
-from .assemble import build, to_kgx
-from .canonicalize import canonicalize
-from .layout import layout
+from .statement_graph import build_statement_graph, export_statement_graph_artifacts
 
-__all__ = ["build", "to_kgx", "canonicalize", "layout"]
+__all__ = ["build_statement_graph", "export_statement_graph_artifacts"]
