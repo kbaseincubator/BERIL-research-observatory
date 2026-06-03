@@ -5,7 +5,6 @@ date: 2026-06-02
 branch: feat/kg-wiki
 supersedes:
   - docs/kg-wiki/2026-06-01-kg-wiki-design.md
-companion_plan: docs/superpowers/plans/2026-06-02-synthesis-wiki.md
 ---
 
 # BERIL Synthesis Wiki — Statement-Card KG Design

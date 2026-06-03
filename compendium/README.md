@@ -4,8 +4,7 @@ A **statement-card-centered synthesis wiki** distilled from the BERIL Research O
 `projects/` corpus. It replaces the current generated `atlas/` shape with a richer KG-backed
 human wiki.
 
-Design spec: [`docs/kg-wiki/2026-06-02-synthesis-wiki-design.md`](../docs/kg-wiki/2026-06-02-synthesis-wiki-design.md) ·
-Plan: [`docs/superpowers/plans/2026-06-02-synthesis-wiki.md`](../docs/superpowers/plans/2026-06-02-synthesis-wiki.md)
+Design spec: [`docs/kg-wiki/2026-06-02-synthesis-wiki-design.md`](../docs/kg-wiki/2026-06-02-synthesis-wiki-design.md)
 
 ## What it is
 
