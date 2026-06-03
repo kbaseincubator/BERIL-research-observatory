@@ -95,6 +95,23 @@ def _write_json_file(payload: dict | list, path: Path) -> None:
     path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
+def _clean_page_context_artifacts(out_dir: Path) -> None:
+    if not out_dir.exists():
+        return
+    for pattern in ("*.context.json", "*.prompt.md"):
+        for path in sorted(out_dir.rglob(pattern)):
+            path.unlink()
+    for path in sorted(
+        (item for item in out_dir.rglob("*") if item.is_dir()),
+        key=lambda item: len(item.parts),
+        reverse=True,
+    ):
+        try:
+            path.rmdir()
+        except OSError:
+            pass
+
+
 def _synthesis_quality_failed(metrics: dict) -> bool:
     evidence = metrics["evidence_resolution"]
     page = metrics["page_integrity"]
@@ -273,6 +290,7 @@ def dispatch(args) -> int:
         graph = build_statement_graph(cards)
         page_plans = plan_pages(cards)
         out_dir = Path(args.out).resolve()
+        _clean_page_context_artifacts(out_dir)
         written = []
         for plan in sorted(page_plans, key=lambda item: item.id):
             written.extend(

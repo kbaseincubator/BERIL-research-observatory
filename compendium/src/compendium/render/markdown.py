@@ -24,6 +24,7 @@ def render_markdown_wiki(
     wiki_path.mkdir(parents=True, exist_ok=True)
 
     page_paths = _page_paths(page_plans)
+    _reject_stale_artifacts(wiki_path, page_plans, page_paths)
     written: list[Path] = []
     for plan in sorted(page_plans, key=_plan_sort_key):
         page = wiki_path / page_paths[plan.id]
@@ -41,6 +42,42 @@ def render_markdown_wiki(
     )
     written.append(graph_path)
     return written
+
+
+def _reject_stale_artifacts(
+    wiki_path: Path,
+    page_plans: list[PagePlan],
+    page_paths: dict[str, Path],
+) -> None:
+    expected_pages = {Path("graph.md"), *page_paths.values()}
+    stale_pages = sorted(
+        path.relative_to(wiki_path)
+        for path in wiki_path.rglob("*.md")
+        if path.relative_to(wiki_path) not in expected_pages
+    )
+    if stale_pages:
+        raise ValueError(
+            "stale wiki markdown pages: "
+            + ", ".join(path.as_posix() for path in stale_pages)
+        )
+
+    manifest_root = wiki_path / ".manifests"
+    if not manifest_root.exists():
+        return
+    expected_manifests = {
+        page_manifest_path(plan)
+        for plan in page_plans
+    }
+    stale_manifests = sorted(
+        path.relative_to(wiki_path)
+        for path in manifest_root.rglob("*.manifest.json")
+        if path.relative_to(wiki_path) not in expected_manifests
+    )
+    if stale_manifests:
+        raise ValueError(
+            "stale wiki manifests: "
+            + ", ".join(path.as_posix() for path in stale_manifests)
+        )
 
 
 def _render_graph(

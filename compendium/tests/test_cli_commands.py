@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
 import yaml
 
 from compendium.cli import main
@@ -130,6 +131,31 @@ def test_page_context_command_writes_context_and_prompt(tmp_path: Path) -> None:
     assert "only allowed scientific context" in prompt.read_text(encoding="utf-8")
 
 
+def test_wiki_contexts_command_removes_stale_context_artifacts(tmp_path: Path) -> None:
+    out_dir = tmp_path / "contexts"
+    stale_context = out_dir / "claims" / "stale.context.json"
+    stale_prompt = out_dir / "claims" / "stale.prompt.md"
+    stale_context.parent.mkdir(parents=True)
+    stale_context.write_text("{}", encoding="utf-8")
+    stale_prompt.write_text("# stale\n", encoding="utf-8")
+
+    assert main(
+        [
+            "wiki-contexts",
+            str(STATEMENT_FIXTURE),
+            "--source-root",
+            str(ROOT / "projects"),
+            "--out",
+            str(out_dir),
+        ]
+    ) == 0
+
+    assert not stale_context.exists()
+    assert not stale_prompt.exists()
+    assert (out_dir / "home.context.json").is_file()
+    assert (out_dir / "home.prompt.md").is_file()
+
+
 def test_page_artifact_command_validates_authored_markdown(tmp_path: Path) -> None:
     draft = tmp_path / "draft.md"
     out_dir = tmp_path / "wiki"
@@ -192,6 +218,31 @@ def test_render_markdown_command_writes_linked_markdown_wiki(tmp_path: Path) -> 
         encoding="utf-8"
     )
     assert "# Topic: Adp1 Carbon Fitness" in topic.read_text(encoding="utf-8")
+
+
+def test_render_markdown_command_rejects_stale_wiki_pages_and_manifests(
+    tmp_path: Path,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    out_dir = tmp_path / "wiki"
+    _write_authored_pages(STATEMENT_FIXTURE, out_dir)
+    stale_page = out_dir / "claims" / "stale.md"
+    stale_manifest = out_dir / ".manifests" / "claims" / "stale.manifest.json"
+    stale_page.write_text("# Stale\n\nOld generated page.\n", encoding="utf-8")
+    stale_manifest.write_text('{"page_id":"claim:stale"}\n', encoding="utf-8")
+
+    assert main(
+        [
+            "render-markdown",
+            str(STATEMENT_FIXTURE),
+            "--out",
+            str(out_dir),
+        ]
+    ) == 2
+
+    captured = capsys.readouterr()
+    assert "stale wiki markdown pages" in captured.err
+    assert "claims/stale.md" in captured.err
 
 
 def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
