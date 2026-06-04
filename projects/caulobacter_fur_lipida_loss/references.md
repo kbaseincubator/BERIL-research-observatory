@@ -81,6 +81,11 @@ No published iModulon decomposition of *Caulobacter* exists. PRECISE-style ICA h
 
 36. **Skerker JM, Perchuk BS, … Goulian M, Laub MT.** (2008). "Rewiring the specificity of two-component signal transduction systems." *Cell* 133(6):1043. PMID 18555780. PMC2453690. — context for the Caulobacter TCS regulatory landscape.
 
+### Added after adversarial review (round 1)
+
+37. **Tan WB, Chng SS.** (2025). "Primary role of the Tol-Pal complex in bacterial outer membrane lipid homeostasis." *Nature Communications* 16(1):2293. PMID 40055349. PMC11889096. DOI: 10.1038/s41467-025-57630-y. — Tol-Pal's primary function redefined as **retrograde phospholipid transport for OM lipid homeostasis**, not LPS-Pal structural anchoring. Basis for the revised Pal-upregulation interpretation. Discovered by adversarial review via WebSearch.
+38. **Yeh YC, Comolli LR, Downing KH, Shapiro L, McAdams HH.** (2010). "The Caulobacter Tol-Pal complex is essential for outer membrane integrity and the positioning of a polar localization factor." *Journal of Bacteriology* 192(19):4847-4858. PMID 20693330. PMC2944545. DOI: 10.1128/JB.00607-10. — Caulobacter-specific Tol-Pal context; complex is essential for OM constriction at cell division (unlike E. coli Tol-Pal).
+
 ---
 
 ## Hypothesis evaluation against the literature (informs RESEARCH_PLAN.md)
@@ -106,3 +111,4 @@ Given the published mechanism, the value-add this dataset can provide is:
 - PubMed `find_related_articles` returned API_ERROR for all 8 attempted top-10 PMIDs. Snowballing was completed via Google Scholar related-work instead.
 - Direct bioRxiv search returned unrelated neuroscience content for every query — Scholar surfaced the Uchendu 2026 preprint.
 - arXiv had zero hits for iModulon queries (methods aren't on arXiv).
+- The standard-tier literature review missed the Tan & Chng 2025 *Nat Commun* paper on Tol-Pal function, which was directly relevant to interpreting the Pal upregulation finding. The adversarial reviewer found it via WebSearch on the "Tol-Pal LPS Mg2+ stacking" claim. Lesson: when a mechanistic interpretation isn't cited from a specific paper, verify the underlying biology against recent literature before writing it into the REPORT.

@@ -4,46 +4,68 @@
 
 ![Master synthesis figure — 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)
 
-### Finding 1 — Δ*fur* Δ*sspB* is a dual-release switch, not a Fur-only perturbation
+### Finding 1 — Δ*fur* Δ*sspB* is a dual-release switch (Δ*fur* arm statistically supported; Δ*sspB* arm hypothesis-only)
 
-The 4584-vs-4580 contrast (Δ*fur* Δ*sspB* Δ*rsaA* vs Δ*rsaA*) correlates with Leaden 2018's Δ*fur* signal at Spearman ρ = 0.315, p = 2.08e-03 over 93 Leaden Δ*fur* DEGs, with 71% sign concordance — confirming Fur derepression as a major driver. But 53 of those 93 Leaden Δ*fur* DEGs are *buffered* in our data (logFC ~0 in 4584-vs-4580 despite -5 to -9 in Leaden), and the buffered set is dominated by the **cbb3 / cyd / *fix*-NOPQ micro-aerobic respiratory operon** (CCNA_01466-01476, *ccoNOPQ*, *cydCDA*, *fixG/H/I*). The Δ*sspB* co-deletion is not a confound — it actively releases the respiratory chain from Fur-mediated repression that normally accompanies Δ*fur*.
+The 4584-vs-4580 contrast (Δ*fur* Δ*sspB* Δ*rsaA* vs Δ*rsaA*) correlates with Leaden 2018's Δ*fur* signal at Spearman ρ = 0.315, p = 2.08e-03 over 93 Leaden Δ*fur* DEGs, with 71% sign concordance — confirming Fur derepression as a major driver. 53 of those 93 Leaden Δ*fur* DEGs are *buffered* in our data (logFC ~0 in 4584-vs-4580 despite -5 to -9 in Leaden), and the buffered set is dominated by the **cbb3 / cyd / *fix*-NOPQ micro-aerobic respiratory operon** (CCNA_01466-01476, *ccoNOPQ*, *cydCDA*, *fixG/H/I*). The transcript-level Δ*sspB* buffering effect on the respiratory chain is real, but **whether these specific genes are mechanistically critical for the Δ*lpxc* rescue is not established by the fitness data alone** (see Finding 2 and Limitations). The "dual-release switch" framing should be read as: Δ*fur*-arm = supported; Δ*sspB*-arm respiratory protection = plausible hypothesis, not statistically distinguished from genome background.
 
 *(Notebook: 01_leaden2018_fur_signature.ipynb)*
 
-### Finding 2 — A specific Fur-released subset has strong envelope-stress fitness phenotypes (H2 supported)
+### Finding 2 — Fur-released TBDT subset shows marginal enrichment for envelope-stress phenotypes; SspB-buffered set does NOT exceed background (H2 partially supported)
 
-Caulobacter RB-TnSeq fitness data (`kescience_fitnessbrowser`, orgId=`Caulo`, 198 experiments) ranks the Fur-released gene set by phenotypic importance. The **concordant_strong** subset (32 genes whose Fur derepression is preserved across both Leaden Δ*fur* and our 4584-vs-4580 contrast) shows **17/32 = 53.1% phenotype-bearing** (|fitness *t*| > 4 in ≥ 2 envelope-stress experiments) — 5.3× the pre-registered 10% threshold. The strongest signal is **ChvT (CCNA_03108)** with \|*t*\| = 43.7 under envelope stress, followed by other Fur-derepressed TBDTs (CCNA_02910, 00210, 02048, 00028) with \|*t*\| 9-28. The complementary **SspB-buffered** set (26 genes including cytochrome oxidases *ccoNOP*, *cydCDA*, *fixG*) shows **9/26 = 34.6% phenotype-bearing**, with respiratory chain genes carrying *negative* fitness (knockouts harmful under envelope stress) — opposite sign from the Fur-released TBDTs. *Pre-registered iron-limitation arm could not be tested* — Caulobacter FB compendium contains zero iron-limitation experiments; H2 was descoped to envelope-axis-only per the plan's preflight rule.
+Caulobacter RB-TnSeq fitness data (`kescience_fitnessbrowser`, orgId=`Caulo`, 198 experiments) ranks the Fur-released gene sets by phenotypic importance under envelope stress (the iron-limitation arm could not be tested — zero iron-limitation experiments in the compendium; H2 was descoped to envelope-axis-only per the plan's preflight rule).
+
+The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in ≥ 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered ≥10% threshold sits below this background rate, so threshold-passing is by itself uninformative about *specific* mechanistic importance. Hypergeometric enrichment against the background:
+
+| Gene set | n | phenotype-bearing | % | Background-corrected enrichment | Verdict |
+|---|---|---|---|---|---|
+| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60×, p = 0.016** | marginally enriched |
+| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04×, p = 0.515 | **indistinguishable from background** |
+
+**Path A** (Fur-released TBDTs and iron-uptake systems) shows marginal but real enrichment, with **ChvT (CCNA_03108)** \|*t*\| = 43.7 under envelope stress and other Fur-derepressed TBDTs (CCNA_02910, 00210, 02048, 00028) \|*t*\| 9-28. **Path B (the SspB-buffered respiratory chain) shows no enrichment relative to background.** The Δ*sspB*-buffering effect on these genes is real at the transcript level (NB01) but the fitness data do not provide independent support that this specific set is mechanistically critical for the Δ*lpxc* rescue. The "respiratory ATP required" framing in earlier drafts of this report has been demoted from established finding to working hypothesis.
 
 *(Notebook: 02_caulo_fitness_ranking.ipynb)*
 
 ### Finding 3 — ChvI engages in two phases: early cooperator + late consequence (H1 supported)
 
-The published ChvI regulons (Stein 2021 + Quintero-Yanes 2022; union = 488 ChvI-induced genes in the tested universe) partition cleanly into:
-- **early-cooperator** — 30 genes induced in 4584-vs-4580 (before Δ*lpxc* is added), including ChvI itself (CCNA_00237 logFC +1.45 — **autoregulation**), the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS DNA polymerase +1.5 (corroborating Leaden 2018's SOS-activation finding under Δ*fur*).
+The published ChvI regulons (Stein 2021 + Quintero-Yanes 2022; union = 488 ChvI-induced genes in the tested universe) partition into three disjoint sets:
+- **unique-to-early** — 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS DNA polymerase +1.5 (corroborating Leaden 2018's SOS-activation finding under Δ*fur*).
+- **both phases** — 10 genes induced in both contrasts (cooperative continuation); includes **ChvI itself (CCNA_00237, logFC +1.45 in 4584-vs-4580)** — autoregulation — the SIMPL family CCNA_02378 (+1.9 → +3.9) and the **amelogenin/CpxP-related CCNA_03997** (CpxP being the *E. coli* envelope-stress chaperone partner of CpxA).
 - **late-consequence** — 49 genes induced *only* after lipid A is lost in 4599-vs-4584, including the **LolA-family OM lipoprotein carrier CCNA_03820 (+2.89)** — exactly the gene Uchendu et al. 2026 showed induced under Δ*spt* (sphingolipid loss); seeing it under Δ*lpxc* (lipid A loss) too means LolA is a generic OM-stress response in Caulobacter — plus the **Pal-like CCNA_00784 (+2.08)** of the Tol-Pal envelope-integrity complex, *zot*-like membrane perturber, *osrP* stress protein, multiple TBDTs.
-- **both phases** — 10 genes that begin in 4584 and continue rising in 4599, including the SIMPL family CCNA_02378 (+1.9 → +3.9) and the **amelogenin/CpxP-related CCNA_03997** — CpxP being the *E. coli* envelope-stress chaperone partner of CpxA.
+
+(Note: the "early" label in earlier drafts conflated the 20 unique-to-early genes with the 10 both-phase genes, summing to 30. The disjoint partition is 20 + 10 + 49 = 79 ChvI-induced genes engaged in our data.)
 
 Pre-registered phase-structure threshold (≥10 genes per cohort) passes strongly. The reframed SigU coherence check on the late cohort returned 24.5% envelope/transport/regulator enrichment — below the 50% relaxed criterion. **Caulobacter SigU is uncharacterized in the published literature** (PaperBLAST scout returned zero substantive snippets for CCNA_02977); the late cohort's biological coherence cannot be validated against a non-existent gold standard. Phase-structure half of H1 is supported; SigU-as-driver is partial pending future SigU-induction RNA-seq.
 
 *(Notebook: 03_chvi_phase_partition_sigU.ipynb)*
 
-### Finding 4 — Sphingolipid biosynthesis is constitutive; canonical Lpt apparatus is maintained or upregulated; *lptC2* protein induced post-transcriptionally (H3 partially supported, with novel finding)
+### Finding 4 — Sphingolipid biosynthesis is constitutive; transcript-level Lpt apparatus stable/up with protein-level discordance; CtpA rejected at pre-registered bar; *lptC2* pilot observation (H3 partially supported)
 
-H3 was tested against three pre-registered sub-claims:
+H3 was tested against three pre-registered sub-claims. The CtpA verdict has been corrected from earlier draft "BORDERLINE" to **REJECTED at the pre-registered bar** in response to adversarial review:
 
 | Sub-claim | Result | Verdict |
 |---|---|---|
-| CtpA / CCNA_03113 upregulation in 4599-vs-4584 | logFC +0.58, FDR 0.11 (transcript); cumulative 4599-vs-4580 FDR 0.035; not in OM proteome | BORDERLINE (rejected at strict bar) |
+| CtpA / CCNA_03113 upregulation in 4599-vs-4584 | logFC +0.58, pvalue=0.048, FDR=0.109 (transcript); NOT detected in OM proteome | **REJECTED at pre-registered bar** |
 | Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |
-| Canonical Lpt apparatus maintained | 0 components DOWN; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED strongly |
+| Canonical Lpt apparatus maintained (transcript) | 0 components DOWN at transcript; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED at transcript level (but see protein-level discordance below) |
 
-**Novel post-hoc finding**: the Uchendu 2026 Caulobacter-specific sphingolipid IM transporter ***lptC2* / CCNA_01226 shows transcript -0.60 (FDR 0.034) but PROTEIN log2(4672/4659) = +1.08 (>2-fold up)**. Direct evidence of post-transcriptional regulation — the sphingolipid-specific permease accumulates at the IM when LpxC is absent, despite its mRNA going down. CCNA_01217 (Zik 2022 sphingolipid biosynthesis required for CHIR-090 tolerance) also shows protein log2 = +0.77 in 4672 vs 4659. Mechanism consistent with: when LPS-trafficking demand on the shared LptB ATPase disappears, the sphingolipid-specific permease is stabilized.
+The pre-registered CtpA BORDERLINE criterion required *both* `0.05 < pvalue < 0.15` AND protein detected. Observed pvalue = 0.048 (fails lower bound), and CtpA was not detected in OM proteome — so BORDERLINE was *not* met. The notebook itself outputs `CTPA VERDICT: REJECTED`. The cumulative 4599-vs-4580 contrast (logFC +0.76, FDR 0.035) is significant but **conflates Δ*fur* + Δ*sspB* and Δ*lpxc* effects**, whereas the pre-registered 4599-vs-4584 contrast was designed to isolate the Δ*lpxc*-specific response. The cumulative finding is reported here as a supplemental observation consistent with CtpA being Fur-regulated; it is not evidence for lipid-A-loss-driven CtpA induction.
+
+**Protein-level discordance for the Lpt apparatus.** Of the canonical Lpt components actually detected in the OM proteome — **LptD** and **LptE** — both *decline* in the rescued strain relative to the intermediate AND to WT baseline:
+
+| Protein | log2(4672/4659) | log2(4672/4580) |
+|---|---|---|
+| LptD (CCNA_01760) | **−0.47** | −0.62 |
+| LptE (CCNA_03866) | **−0.78** | −0.68 |
+
+MsbA-like CCNA_00307 was detected only in the rescued strain (abundance 300 in 4672, NaN in others) — direction relative to WT is uncomputable. **The transcript upregulation of MsbA-like and LptC-related is consistent with the Uchendu 2026 shared-component model, but the two Lpt proteins directly measured go in the opposite direction.** Single-replicate OM proteome cannot resolve this; replicated proteomics are required to determine whether the canonical Lpt apparatus is functionally maintained, replaced, or downregulated at the protein level in the Δ*lpxc* state.
+
+***lptC2* pilot observation (single replicate, requires replication)**: the Uchendu 2026 Caulobacter-specific sphingolipid IM transporter CCNA_01226 shows transcript -0.60 (FDR 0.034) but PROTEIN log2(4672/4659) = +1.08. **Importantly, lptC2 protein was already DOWN −0.42 log2 in the intermediate strain (4659/4580), so the net protein change in the rescued strain versus WT baseline is +0.66 log2 (≈1.58×), not +1.08.** The 4672/4659 step is partially a recovery from a prior decrease. CCNA_01217 (Zik 2022 sphingolipid biosynthesis required for CHIR-090 tolerance) shows protein log2 = +0.77 in 4672 vs 4659 (or +0.74 vs WT). These are single-replicate observations consistent with — but not statistically establishing — post-transcriptional stabilization of sphingolipid-transport machinery when LpxC competition for the shared LptB ATPase disappears. Status: *suggestive pilot observation requiring replicated proteomics*.
 
 *(Notebook: 04_sphingolipid_lpt_panel.ipynb)*
 
-### Finding 5 — Coordinated peptidoglycan remodeling: lytic activity engaged, basal machinery shut down (H4 supported)
+### Finding 5 — Peptidoglycan remodeling: specific lytic engagement + broad basal shutdown (H4 supported; framing tightened post-review)
 
-The pre-registered PG-remodeling gene set (53 loci, locked before DE analysis) shows **31 genes meeting the H4 threshold** (≥3 required) — 26 transcript-significant in 4599-vs-4584 (FDR<0.05) plus 7 OM-proteome \|log2\|>1. Direction is split 8 UP / 23 DOWN, indicating coordinated *reorganization*, not blanket induction.
+The pre-registered PG-remodeling gene set (53 loci, locked before DE analysis) shows **28 genes meeting the H4 threshold** (≥3 required) — 25 transcript-significant in 4599-vs-4584 (FDR<0.05) plus 6 OM-proteome \|log2\|>1, deduplicated to 28 unique loci. Direction is **predominantly downregulation (20 DOWN) punctuated by specific inductions (5 UP transcript + 3 UP protein)** — earlier draft framing of "coordinated bidirectional reorganization" overstated the bidirectionality. Two members of the gene set are likely regex false-positives (CCNA_00565 γ-glutamyltranspeptidase — a glutathione enzyme, matched on "transpeptidase"; CCNA_01833 glucosylceramidase — a ceramide enzyme, matched because "ceramidase" contains "amidase"). Their inclusion does not change the H4 verdict (well above the ≥3 threshold) but they are flagged here so downstream interpretation does not rest on them.
 
 **UP (specific activities engaged in 4599)**:
 - **SdpA CCNA_01252 +4.8 log2 protein** — soluble lytic murein transglycosylase
@@ -74,19 +96,20 @@ Comparative PaperBLAST presence/absence across *C. crescentus*, *A. baumannii*, 
 
 | Hypothesis | Sub-claim | Pre-registered threshold | Observed | Verdict |
 |---|---|---|---|---|
-| **H1** ChvI cooperator + consequence | Phase structure | ≥10 genes per cohort | early=30, late=49 | PASS |
-| **H1** | SigU drives late cohort | ≥50% envelope/transport/regulator + Fisher p<1e-3 | 24.5% (literature gap) | PARTIAL |
-| **H2** Critical Fur regulon subset | Path A (concordant_strong) | ≥10% phenotype-bearing | 17/32 = 53% | PASS strongly |
-| **H2** | Path B (SspB-buffered) | ≥10% phenotype-bearing | 9/26 = 35% | PASS |
+| **H1** ChvI cooperator + consequence | Phase structure | ≥10 genes per cohort | unique-early=20, both=10, late=49 | PASS |
+| **H1** | SigU drives late cohort | ≥50% envelope/transport/regulator + Fisher p<1e-3 | 24.5% (literature gap, reframed) | PARTIAL |
+| **H2** Critical Fur regulon subset | Path A (concordant_strong) | ≥10% phenotype-bearing | 17/32 = 53% (fold 1.60×, p=0.016 vs background 33.25%) | PASS (marginal enrichment) |
+| **H2** | Path B (SspB-buffered) | ≥10% phenotype-bearing | 9/26 = 35% (fold 1.04×, p=0.515 — NOT enriched vs background) | THRESHOLD-PASSED but **not enriched**; arm demoted to hypothesis |
 | **H2 (preflight)** | iron-limitation experiments ≥3 | ≥3 in Caulo FB | 0 | FAIL → descoped to envelope-only |
-| **H3** Sphingolipid + Lpt repurposing | CtpA upregulation in 4599-vs-4584 | FDR<0.05 OR ≥2x protein | logFC +0.58 FDR 0.11; not in OM proteome | BORDERLINE |
+| **H3** Sphingolipid + Lpt repurposing | CtpA upregulation in 4599-vs-4584 | FDR<0.05 OR ≥2× protein; BORDERLINE = 0.05<pvalue<0.15 AND protein detected | logFC +0.58, pvalue=0.048, FDR=0.109; protein NOT detected | **REJECTED at pre-registered bar** (cumulative 4599-vs-4580 FDR=0.035 noted as supplemental) |
 | **H3** | Sphingolipid pathway constitutive | 0 biosynthesis gene UP at FDR<0.05 | 0 up; spt/sphk slightly DOWN | PASS strongly |
-| **H3** | Canonical Lpt maintained | 0 components DOWN at FDR<0.05 | 0 down; MsbA-like and LptC-related UP | PASS strongly |
-| **H3** | (novel) *lptC2* protein induction | (post-hoc) | transcript -0.60 (FDR 0.034); protein log2 +1.08 | NOVEL FINDING |
-| **H4** PG remodeling | ≥3 enzymes engaged | ≥3 FDR<0.05 transcript OR \|log2\|>1 protein | 31 (26 transcript, 7 protein) | PASS strongly |
-| **H4** | (novel) Pal-Tol engagement | (post-hoc) | Pal +2.08 transcript, +2.84 protein | NOVEL FINDING |
-| **Comparative** | Sphingolipid pathway Caulobacter-unique | (presence/absence) | spt/bcerS/sphk absent in A.b./N.m./M.c. | CONFIRMED |
-| **Comparative** | ChvG-ChvI alphaproteobacterial only | (presence/absence) | absent in A.b./N.m./M.c. | CONFIRMED |
+| **H3** | Canonical Lpt maintained (transcript) | 0 components DOWN at FDR<0.05 | 0 down; MsbA-like and LptC-related UP at transcript | PASS at transcript |
+| **H3** | Canonical Lpt at protein level (post-hoc check) | (not pre-registered) | LptD log2(4672/4659) = −0.47; LptE = −0.78 | DISCORDANT with transcript; single replicate |
+| **H3** | (pilot) *lptC2* protein induction | (post-hoc) | transcript -0.60 (FDR 0.034); protein log2 +1.08 vs intermediate, +0.66 vs WT — single replicate | PILOT OBSERVATION (needs replication) |
+| **H4** PG remodeling | ≥3 enzymes engaged | ≥3 FDR<0.05 transcript OR \|log2\|>1 protein | 28 unique loci (25 transcript, 6 protein) | PASS strongly |
+| **H4** | (post-hoc) Pal-Tol engagement | (post-hoc) | Pal +2.08 transcript, +2.84 protein | NOTABLE FINDING — interpretation see I5 reframe |
+| **Comparative** | Sphingolipid pathway Caulobacter-unique | (presence/absence via PaperBLAST) | spt/bcerS/sphk PaperBLAST hits = 0 in A.b./N.m./M.c. | SUPPORTED by independent literature; **NB06 measurement has ~50% false-negative rate for known C.c. essentials, NCBI fallback not yet executed** |
+| **Comparative** | ChvG-ChvI alphaproteobacterial only | (presence/absence) | absent in A.b./N.m./M.c. (consistent with Greenwich 2023) | CONFIRMED |
 
 ### Phase A — orientation findings (NB00) that motivated the analysis plan
 
@@ -104,11 +127,11 @@ The scatter shows the dramatic asymmetry between our amplified Fur-derepression 
 
 ### NB02 — Fitness data leverage
 
-The Caulobacter compendium covers 95 stress experiments (envelope-, drug-, metal-related stresses), 46 nitrogen-source, 42 carbon-source, 10 PYE control, plus 5 others. Zero pure iron-limitation experiments. The envelope-stress subset (22 experiments) is large enough to discriminate phenotype-bearing Fur-released genes at the pre-registered threshold.
+The Caulobacter compendium covers 95 stress experiments (envelope-, drug-, metal-related stresses), 46 nitrogen-source, 42 carbon-source, 10 PYE control, plus 5 others. Zero pure iron-limitation experiments. The envelope-stress subset (22 experiments) is large enough to compare gene-set phenotype-bearing rates against the genome background (33.25%). **The pre-registered ≥10% threshold sits below background — it is essentially a presence test rather than an enrichment test. Hypergeometric enrichment against background is the formal H2 verdict in the revised report (see Limitations).** Path A clears the background rate marginally (1.60×, p=0.016); Path B does not (1.04×, p=0.515).
 
 ### NB03 — ChvI phase partition
 
-ChvI itself (CCNA_00237) is in the **early** cohort with logFC +1.45 in 4584-vs-4580 — direct evidence of ChvG-ChvI **autoregulation** during the Fur+SspB release phase. Theme distribution shifts from regulator-rich early (6.7% regulator/TCS) to envelope-structural late (10.2% envelope/OM, 12.2% TBDT, plus lipid/membrane, PG/cell wall categories that are 0% in early).
+ChvI itself (CCNA_00237) is in the **both-phases** set with logFC +1.45 in 4584-vs-4580 and continued induction in 4599-vs-4584 — direct evidence of ChvG-ChvI **autoregulation** during the Fur+SspB release phase. (Earlier draft mis-labeled this as "early cohort"; ChvI is in the 10-gene both-phases subset.) Theme distribution shifts from regulator-rich early (6.7% regulator/TCS in the unique-to-early 20) to envelope-structural late (10.2% envelope/OM, 12.2% TBDT in the late 49, with lipid/membrane and PG/cell wall categories at 0% in early). The Fisher exact test of envelope/transport/regulator enrichment in late vs unique-to-early is not significant (p=0.243), so the "regulator → structural" shift is suggestive but not statistically discriminated.
 
 ### NB04 — Sphingolipid, CtpA, Lpt panel
 
@@ -124,25 +147,31 @@ ChvI itself (CCNA_00237) is in the **early** cohort with logFC +1.45 in 4584-vs-
 
 ### NB06 — Comparative species presence/absence
 
-The PaperBLAST presence matrix shows the four-species pattern. M. catarrhalis is under-annotated (162 genes in PaperBLAST) so its 0000 rows are advisory only. Even allowing for that, the sphingolipid biosynthesis pathway is robustly Caulobacter-unique (these genes are biologically not present in the other three, independently confirmed by Olea-Ozuna 2020/2024).
+The PaperBLAST presence matrix shows the four-species pattern. **Important methodological caveat: PaperBLAST description-text matching has a ~50% false-negative rate even for known Caulobacter essential genes** — LpxA, LpxC (the gene this study deletes!), LptA, LptB, LptD, LptE all score 0 PaperBLAST hits in *C. crescentus* despite being unambiguously present. The plan v2 NCBI BLAST fallback was specified for exactly this contingency but **has not yet been executed**. Until it is, the analytical demonstration of "sphingolipid pathway absent in A.b./N.m./M.c." in NB06 should be read as advisory; the *biological* claim is independently well-established by phylogenetic distribution (none of the three are alphaproteobacteria or Bacteroidetes, the lineages where bacterial sphingolipid biosynthesis is known) and by the Olea-Ozuna 2020/2024 characterization of the Caulobacter cluster. M. catarrhalis is under-annotated in PaperBLAST (162 genes total), further weakening its rows specifically.
 
 ## Interpretation
 
-### Mechanistic synthesis: a dual-release switch
+### Mechanistic synthesis: what the data support vs what remains hypothesis
 
-The combined evidence supports a multi-layer mechanism for *Caulobacter crescentus* Δ*fur* Δ*sspB*-permitted Δ*lpxc* viability:
+The combined evidence supports a multi-layer model for *Caulobacter crescentus* Δ*fur* Δ*sspB*-permitted Δ*lpxc* viability. After adversarial review, the layers are stated at their actual evidence levels:
 
-1. **Δ*fur* derepresses TBDT and iron-uptake systems** — the "Path A" subset (32 genes, 53% phenotype-bearing) provides pre-existing outer-membrane transport machinery whose normal job is iron acquisition. In the rescued state, this machinery is structurally available to participate in **sphingolipid (CPG) trafficking via the canonical Lpt apparatus**, per Uchendu 2026's shared-component model.
+1. **Δ*fur* derepresses TBDT and iron-uptake systems** *(SUPPORTED)*. The Path A concordant_strong subset (32 genes) is marginally enriched for envelope-stress phenotype-bearing (53% observed vs 33% background; fold 1.60×, hypergeometric p=0.016). Top hits ChvT, HutA, and the FrpB cluster encode OM transport machinery whose normal job is iron acquisition. In the rescued state, this machinery is *plausibly* available to participate in sphingolipid (CPG) trafficking via shared Lpt apparatus (Uchendu 2026), although that participation is not directly demonstrated here.
 
-2. **Δ*sspB* preserves the cbb3 / cyd / *fix*-NOPQ micro-aerobic respiratory chain** — the "Path B" set (26 genes, 35% phenotype-bearing) carries strongly negative fitness when knocked out under envelope stress. Respiratory ATP is required to perform the envelope-remodeling work demanded by lipid-A loss. Without SspB, the SOS-ClpXP-controlled respiratory program would shut down upon Fur loss (as it does in Leaden 2018); with SspB removed, respiratory function is preserved through the perturbation.
+2. **Δ*sspB* buffers the cbb3 / cyd / *fix*-NOPQ micro-aerobic respiratory chain transcript-level decline** *(HYPOTHESIS, not statistically supported as mechanistically critical)*. The transcript-level buffering is real (NB01 concordance — 53/93 Leaden Δ*fur* DEGs blunted in our data, dominated by the cbb3/*fix* operon). But the Path B fitness phenotype-bearing rate (34.6%) is **indistinguishable from the genome background** (33.25%, hypergeometric p=0.515). The fitness data therefore do not selectively support the cbb3/*fix* genes as more critical than randomly drawn Caulobacter genes under envelope stress. "Respiratory ATP required to perform envelope-remodeling work" remains a mechanistically plausible model but is not established by the data presented here.
 
-3. **ChvI engages in two temporally distinct phases** — autoregulating in the early phase (regulator-rich, includes *imuB* SOS, lasso peptide cyclase, ApbE iron-sulfur repair) and deploying structural envelope machinery in the late phase (envelope/OM-rich, includes LolA, Pal-Tol, TBDTs, EF-hand calcium-binding proteins). The cell makes a regulatory commitment before lipid-A loss occurs and follows up with envelope deployment after.
+3. **ChvI engages in two phases plus a cooperative continuation** *(PARTIALLY SUPPORTED)*. Phase structure is real (20 unique-to-early, 10 both-phase, 49 late). ChvI itself sits in the both-phase set with logFC +1.45 in the early contrast — direct autoregulation evidence. The "regulator-rich early → envelope-structural late" theme shift is suggestive but not statistically discriminated (Fisher p=0.243).
 
-4. **Sphingolipid biosynthesis is constitutive — rescue is post-transcriptional**. The existing CPG pool suffices. Rescue operates by flux redirection (no LpxC competition for shared substrates) plus the borderline-supported CtpA-mediated processing step (Zik 2022's predicted LpxF substitute). **The canonical Lpt apparatus is maintained or upregulated (MsbA-like +0.89, LptC-related +0.56) consistent with Uchendu 2026's shared-component model**. The most striking single piece of new evidence: **the Uchendu Caulobacter-specific lptC2 sphingolipid IM transporter accumulates at the protein level >2-fold when LpxC is absent, despite transcript downregulation** — direct evidence of post-transcriptional stabilization, exactly the mechanism class H3 predicts.
+4. **Sphingolipid biosynthesis is constitutive — rescue does NOT require biosynthesis upregulation** *(SUPPORTED strongly)*. Zero biosynthesis genes are significantly UP; *spt* and *sphk* are mildly DOWN. The existing CPG pool suffices. CtpA's specific role as the LpxF-equivalent processing step (Zik 2022's prediction) is **not supported** by our data at the pre-registered bar (CtpA transcript pvalue=0.048 in 4599-vs-4584, FDR=0.109, protein not detected); the cumulative 4599-vs-4580 contrast is significant (FDR=0.035) but confounds Δ*fur* and Δ*lpxc* effects. CtpA's LpxF-substitute hypothesis (Zik 2022) remains untested.
 
-5. **Peptidoglycan remodeling participates**: shutdown of basal division/elongation machinery (FtsI, PbpZ, MurD, multiple endopeptidases and amidases) combined with engagement of lytic transglycosylases (SdpA at OM protein, PleA, PbpX) and **Pal-Tol envelope-integrity factors (Pal up at both transcript and protein)**. Pal upregulation likely compensates for loss of LPS-mediated Mg²⁺-bridged OM-LPS-Pal stacking. This is mechanistically distinct from but biologically analogous to the *A. baumannii* PBP1A/Ldt route (Kang 2021).
+5. **Lpt apparatus repurposing in the Δ*lpxc* state shows transcript-protein discordance** *(MIXED)*. At the transcript level: MsbA-like CCNA_00307 +0.89 (FDR 0.01) and LptC-related CCNA_03716 +0.56 (FDR 0.005) are significantly upregulated, consistent with Uchendu 2026's shared-component model. At the protein level: the two canonical Lpt proteins actually detected — LptD and LptE — *decline* in the rescued strain (LptD log2(4672/4659)=−0.47, LptE=−0.78). Whether this reflects reduced demand for LPS-specific transport (canonical Lpt being substrate-limited in absence of LPS) or contradicts the shared-component model cannot be resolved by single-replicate proteomics.
 
-6. **Cross-species check confirms structural unavailability** for the other three lipid-A-loss-tolerant species. *A. baumannii*, *N. meningitidis*, *M. catarrhalis* don't encode the sphingolipid biosynthesis pathway; they don't have ChvG-ChvI; and they evolved alternative rescue mechanisms aligned with what their genomes encode.
+6. **Sphingolipid-specific *lptC2* protein induction** *(PILOT, requires replication)*. Single-replicate OM proteome shows lptC2 (CCNA_01226) protein log2(4672/4659) = +1.08 despite transcript -0.60 (FDR 0.034). Net change vs WT baseline is more modest (+0.66 log2, ≈1.58×) because lptC2 was already DOWN -0.42 in the intermediate strain. Suggestive of post-transcriptional stabilization but not statistically established; requires the replicated proteomics scheduled for summer 2026.
+
+7. **Peptidoglycan reorganization: specific lytic engagement on a backdrop of broad basal shutdown** *(SUPPORTED)*. Shutdown dominates (20 of the 28 H4 hits are DOWN — FtsI, PbpZ, MurD, multiple endopeptidases and amidases). Against that backdrop, SdpA at +4.8 log2 OM protein, PleA, PbpX, and the Pal-Tol envelope-integrity factor Pal stand out as specific inductions.
+
+8. **Pal-Tol upregulation has a parsimonious mechanistic interpretation distinct from the earlier draft** *(REFRAMED)*. Earlier drafts attributed Pal upregulation to "compensation for LPS-mediated Mg²⁺-bridged OM-LPS-Pal stacking" — a claim with no cited support. **Tan & Chng 2025 (Nat Commun 16:2293, PMID 40055349) established that the primary function of the Tol-Pal complex is retrograde phospholipid transport to maintain OM lipid homeostasis**, not LPS-Pal structural anchoring. A mechanistically supported interpretation: in Δ*lpxc*, OM lipid asymmetry is disrupted (loss of LPS in the outer leaflet); upregulation of the Tol-Pal complex (including Pal itself) is consistent with increased retrograde PL transport to restore OM lipid homeostasis. Direct Pal-PG contacts (Yeh et al. 2010, PMID 20693330) may contribute additionally, particularly because Caulobacter Tol-Pal is essential for OM constriction at cell division.
+
+9. **Cross-species check** *(BIOLOGICAL CLAIM SUPPORTED, NB06 measurement fragile)*. *A. baumannii*, *N. meningitidis*, *M. catarrhalis* do not encode the sphingolipid biosynthesis pathway — independently established by phylogenetic distribution (none are alphaproteobacteria or Bacteroidetes) and by Olea-Ozuna 2020/2024 characterizing the Caulobacter cluster. ChvG-ChvI is alphaproteobacterial-restricted (Greenwich 2023). The NB06 PaperBLAST measurement of these absences is fragile (~50% false-negative rate for known Caulobacter essentials) and the planned NCBI BLAST fallback should be executed before this finding is leaned on.
 
 ### Literature Context
 
@@ -164,29 +193,41 @@ The combined evidence supports a multi-layer mechanism for *Caulobacter crescent
 
 - **Olea-Ozuna et al. 2020/2024** (PMIDs 33063925, 39093898) — independent confirmation that Caulobacter encodes a sphingolipid biosynthesis pathway absent in the other three Gram-negatives.
 
+- **Tan WB & Chng SS 2025** (PMID 40055349, *Nat Commun* 16:2293) — establishes the primary function of the Tol-Pal complex as **retrograde phospholipid transport for OM lipid homeostasis**, not LPS-Pal structural anchoring as earlier draft of this report supposed. This 2025 paper grounds the revised mechanistic interpretation of the Pal upregulation finding (Mechanistic Synthesis §8).
+
+- **Yeh YC, Comolli LR, Downing KH, et al. 2010** (PMID 20693330, *J Bacteriol* 192:4847) — establishes that the Caulobacter Tol-Pal complex is essential for OM constriction at cell division (Caulobacter Tol-Pal is essential unlike E. coli Tol-Pal). Relevant context for the Pal upregulation finding, particularly because the rescued strain must complete division with no LPS.
+
 ### Novel Contribution
 
-This project adds five substantive contributions beyond the published baseline:
+After adversarial review, the substantive contributions are reframed to match the actual evidence level:
 
-1. **The Δ*sspB* co-deletion is mechanistic, not confound**. NB01 shows ~57% of Leaden's Δ*fur* DEG signal is buffered in our background — specifically the cbb3/*fix*-NOPQ micro-aerobic respiratory operon. NB02 shows the buffered set carries strong (negative) fitness phenotypes under envelope stress. Implication: rescued strain viability requires both arms of the dual-release switch, not Δ*fur* alone.
+1. **The Δ*sspB* co-deletion buffers a specific transcript-level program** that Δ*fur* alone would otherwise repress — chiefly the cbb3/*fix*-NOPQ micro-aerobic respiratory operon (NB01: 53 of 93 Leaden Δ*fur* DEGs blunted; dominated by CCNA_01466–01476). This is a clean novel transcriptomic observation that depended on comparing Δ*fur* Δ*sspB* to Leaden's Δ*fur*-alone. *Mechanistic significance for the Δ*lpxc* rescue remains hypothesis: the Path B fitness data do not statistically discriminate these genes from the genome background under envelope stress.*
 
-2. **The canonical Lpt apparatus is maintained or upregulated in the Δ*lpxc* rescue state**. NB04 shows MsbA-like CCNA_00307 +0.89 FDR=0.01 and LptC-related CCNA_03716 +0.56 FDR=0.005. The shared-component model predicted by Uchendu 2026 in WT background is now empirically supported in the Δ*lpxc* state, where the apparatus would otherwise have no LPS substrate.
+2. **The canonical Lpt apparatus shows transcript upregulation with protein-level discordance in the Δ*lpxc* state** (NB04). MsbA-like CCNA_00307 +0.89 (FDR=0.01) and LptC-related CCNA_03716 +0.56 (FDR=0.005) at transcript level support Uchendu 2026's shared-component prediction. The two canonical Lpt proteins actually detected (LptD, LptE) decline at the protein level in the rescued strain (-0.47, -0.78 log2). Replicated proteomics are needed to resolve whether the apparatus is functionally maintained, substrate-limited, or downregulated at the protein level.
 
-3. **The Uchendu lptC2 protein accumulates post-transcriptionally**. NB04 finds transcript -0.60 (FDR 0.034) but protein log2 +1.08 (>2× up). First evidence of post-transcriptional regulation of the sphingolipid-specific permease — likely stabilization due to lack of LPS competition for the shared ATPase.
+3. **The sphingolipid biosynthesis pathway is constitutive rather than induced** in the Δ*lpxc* rescue (NB04). *spt* and *sphk* are mildly DOWN, not UP, at transcript level. The cell does not respond to lipid-A loss by making more CPG-biosynthesis transcript — rescue must be flux-driven or post-transcriptional. This rules out the "Δ*fur* derepresses sphingolipid biosynthesis" framing.
 
-4. **The ChvI envelope-stress regulon engages in two temporally distinct phases**, with **ChvI itself participating in autoregulation** (NB03 early cohort, logFC +1.45 in 4584-vs-4580 before Δ*lpxc* is added). Demonstrates that envelope-stress activation precedes rather than responds to lipid-A loss.
+4. **The ChvI envelope-stress regulon engages in two phases with cooperative continuation** (NB03). The partition: 20 unique-to-early, 10 both-phase, 49 late. ChvI itself sits in the both-phase set with logFC +1.45 in the early contrast — autoregulation evidence. The full disjoint partition was not previously characterized.
 
-5. **Pal-Tol envelope-integrity engagement** (NB03 late cohort + NB05 PG-remodeling): Pal CCNA_00784 +2.08 transcript + 2.84 protein. Likely compensates for loss of LPS-mediated OM-IM cohesion via direct protein anchoring. Suggests a structural model in which Tol-Pal protein-protein contacts substitute for the lipid-based architecture of the wild-type cell envelope.
+5. **Suggestive (single-replicate) post-transcriptional sphingolipid-transporter induction**. lptC2 (CCNA_01226) shows transcript -0.60 (FDR 0.034) and protein log2 = +1.08 vs intermediate (+0.66 vs WT) — single replicate, requires the proteome replication scheduled for summer 2026.
+
+6. **Pal-Tol upregulation in the Δ*lpxc* state, with revised mechanistic interpretation**. Pal CCNA_00784 +2.08 transcript + 2.84 protein (NB05 + NB03 late cohort). Following Tan & Chng 2025 (PMID 40055349), the parsimonious interpretation is that Pal upregulation supports increased retrograde phospholipid transport for OM lipid homeostasis (Tol-Pal's primary function), not LPS-Pal structural anchoring as earlier draft proposed.
+
+7. **A general methodological lesson** (added in adversarial review): pre-registered fitness-phenotype thresholds in BERIL Fitness Browser projects must be calibrated against the genome-wide background rate rather than a fixed percentage. A ≥10% threshold against a 33% background passes any random gene set. The plan's H2 threshold structure should be revised in future projects to use fold-enrichment over background.
 
 ### Limitations
 
-- **OM proteome is a single replicate per strain** — direction is interpretable but no per-protein statistics are possible. The colleague indicates more proteome replicates expected summer 2026. The novel *lptC2* protein-induction finding and the Pal-Tol upregulation should be confirmed with replicates before publication.
-- **Single growth condition** (PYE rich-medium routine) — the Fur signal is constitutive Δ*fur* derepression, not a real iron-limitation response. The BERDL fitness data supplied multi-condition resolution for H2 but iron-limitation experiments specifically are unavailable in the Caulobacter FB compendium.
-- **CtpA borderline at the strict pre-registered bar** (FDR 0.11 in 4599-vs-4584 transcript; not detected in single-replicate OM proteome). The cumulative 4599-vs-4580 contrast is significant (FDR 0.035), and the CPM rises monotonically across the strain series — but a replicated proteome would be needed to claim CtpA upregulation at full rigor. Reported here as borderline-rejected at the strict bar with the supporting cumulative finding flagged.
-- **SigU regulon literature gap** — Caulobacter SigU (CCNA_02977) is uncharacterized in PaperBLAST. The H1 SigU-as-driver test was reframed from a literature overlap to a functional coherence check on the late cohort. Targeted SigU induction RNA-seq would resolve the cohort attribution.
-- **PaperBLAST description matching for comparative arm has known false negatives** — essential genes (LpxA/C/D/K) appear absent in Caulobacter because PaperBLAST `desc` is heterogeneous and our regex didn't catch all variants. The robust findings are the sphingolipid biosynthesis pathway and ChvG-ChvI being uniquely Caulobacter — these are independently confirmed in the literature.
-- **M. catarrhalis is under-annotated in PaperBLAST** (162 genes). Treat its presence/absence rows as advisory; the published Gao 2008 alternative route is well-established literature.
-- **Fitness-browser iron-limitation experiments are absent** in the Caulobacter compendium. H2 was descoped to envelope-stress axis per the plan's preflight rule. Iron-axis testing requires either additional RB-TnSeq experiments or a cross-walk to the Leaden 2018 published Δ*fur* phenotype.
+- **CtpA is REJECTED at the pre-registered bar.** The 4599-vs-4584 transcript test yielded pvalue=0.048 (fails BORDERLINE lower bound of 0.05), FDR=0.109 (fails PASS bar of 0.05), and CtpA was not detected in the single-replicate OM proteome. The cumulative 4599-vs-4580 contrast FDR=0.035 is significant but conflates Δ*fur* + Δ*sspB* and Δ*lpxc* effects; the pre-registered 4599-vs-4584 contrast was designed to isolate the Δ*lpxc*-specific response. CtpA's hypothesized LpxF-substitute role (Zik 2022) remains untested by this work. Earlier drafts mis-labeled this as BORDERLINE; corrected here.
+- **OM proteome is single-replicate per strain** — no per-protein statistics; only direction is interpretable. The *lptC2* protein-induction finding, the Pal-Tol upregulation, the LptD/LptE protein-level decline, and the CCNA_01217 protein increase all need the replicated proteomics scheduled for summer 2026 before being claimed at publication rigor.
+- **Path B (SspB-buffered) fitness phenotype-bearing rate is indistinguishable from genome background.** The "respiratory ATP required" arm of the dual-release switch model is therefore a working hypothesis, not an established finding. The pre-registered ≥10% threshold sat below the 33.25% background rate — a methodological miscalibration that the adversarial review surfaced and that has been recorded as a learned pattern (see Novel Contribution §7).
+- **Single growth condition** (PYE rich-medium routine) for the transcriptome — the Fur signal is constitutive Δ*fur* derepression, not a real iron-limitation response. BERDL fitness data supplied multi-condition resolution for H2's envelope arm but iron-limitation experiments specifically are unavailable in the Caulobacter FB compendium.
+- **Pal upregulation interpretation depends on Tan & Chng 2025**, not on the project's data alone. The data show Pal up; the *mechanistic interpretation* (retrograde PL transport for OM lipid homeostasis) is grounded in the cited paper's redefinition of Tol-Pal function and remains an inference, not a direct measurement. Earlier drafts proposed an "LPS-Mg²⁺-bridged stacking" mechanism that was uncited and inconsistent with current Tol-Pal biology; this has been replaced.
+- **SigU regulon literature gap** — Caulobacter SigU (CCNA_02977) is uncharacterized in PaperBLAST. The H1 SigU-as-driver test was reframed from a literature overlap to a functional coherence check on the late cohort; even the relaxed criterion did not pass (Fisher p=0.243). Targeted SigU-induction RNA-seq would resolve the cohort attribution.
+- **NB06 PaperBLAST has ~50% false-negative rate** for known Caulobacter essential genes (LpxA, LpxC, LptA, LptB, LptD, LptE all score 0 hits). The plan v2 NCBI BLAST fallback (named accessions GCF_000196795.1, GCF_000008805.1, GCF_000092265.1) has not yet been executed. The biological claims (sphingolipid pathway absent in A.b./N.m./M.c.; ChvG-ChvI alphaproteobacterial-restricted) are independently supported by literature (Olea-Ozuna 2020/2024; Greenwich 2023) and phylogenetic distribution, but the *NB06 analytical demonstration* should be qualified accordingly.
+- **M. catarrhalis is under-annotated in PaperBLAST** (162 genes total). Treat its presence/absence rows as advisory only.
+- **Fitness-browser iron-limitation experiments are absent** in the Caulobacter compendium (zero of 198 experiments). H2's iron-limitation arm was descoped to exploratory per the plan's preflight rule. Iron-axis testing requires either additional RB-TnSeq experiments under bipyridyl chelation or a cross-walk to Leaden 2018's published Δ*fur* phenotype.
+- **NB03 cohort double-counting in earlier drafts**: the previous report described an "early cohort of 30 genes" that included the 10 both-phase genes. Corrected here as a disjoint partition (20 unique-to-early + 10 both-phase + 49 late). The phase-structure verdict is unchanged.
+- **NB05 PG-remodeling regex false positives**: CCNA_00565 (γ-glutamyltranspeptidase, a glutathione enzyme) and CCNA_01833 (glucosylceramidase, a ceramide enzyme) entered the pre-curated set via description-text matching. They are present in the union of significant hits but do not change the H4 verdict (well above the ≥3 threshold). Flagged here so downstream interpretation does not lean on them.
 
 ## Data
 
@@ -265,7 +306,11 @@ This project adds five substantive contributions beyond the published baseline:
 
 6. **Iron-axis fitness experiments**. The Caulobacter RB-TnSeq compendium has zero iron-limitation experiments, so the iron-flux arm of H2 was untestable here. A small targeted set of RB-TnSeq fitness experiments under bipyridyl chelation, ferric salt supplementation, and hemin would close the H2 iron axis and test whether the same Fur-released subset that scores phenotype-bearing under envelope stress also scores under iron limitation.
 
-7. **Tol-Pal complex structural studies**. The Pal protein-protein anchoring model is testable by AFM or cryo-EM of the rescued strain envelope. The prediction is increased Tol-Pal-PG contact density and reduced LPS-Pal contacts in the rescued OM-IM interface.
+7. **Tol-Pal retrograde phospholipid-transport assay in the rescued strain**. The revised Pal interpretation (Tan & Chng 2025) predicts that the Tol-Pal complex in the Δ*lpxc* state should have increased retrograde phospholipid-transport activity to maintain OM lipid homeostasis. Pulse-chase lipidomics following exogenous fluorescent phospholipid loading would directly test this. Tol-Pal essentiality in Caulobacter (Yeh 2010) complicates depletion experiments but is testable in conditional-depletion strains.
+
+8. **Execute the planned NCBI BLAST fallback for the comparative arm** (NB06). The plan v2 specified Pfam-HMM searches against named RefSeq accessions (GCF_000196795.1 *A. baumannii* ATCC 17978, GCF_000008805.1 *N. meningitidis* MC58, GCF_000092265.1 *M. catarrhalis* BBH18) for the sphingolipid biosynthesis Pfam HMMs (PF00155 serine palmitoyltransferase, PF03331 LpxC, PF01475 Fur). Until executed, the NB06 sphingolipid-absence finding rests on independent literature rather than the analytical demonstration. Estimated 2-4 hours via CTS.
+
+9. **Re-run NB02 with hypergeometric-enrichment threshold** (or equivalent fold-enrichment over background). The pre-registered ≥10% phenotype-bearing threshold was below the 33.25% background rate and therefore near-trivially passed. Future Fitness Browser-derived phenotype tests in BERIL projects should pre-register a fold-enrichment threshold (e.g., ≥1.5× background) or treat the hypergeometric p-value as the formal verdict. This learning is recorded in the adversarial reviewer's state and applies to other BERIL projects.
 
 ## References
 
@@ -290,6 +335,8 @@ This project adds five substantive contributions beyond the published baseline:
 - Price MN, Wetmore KM, Waters RJ, Callaghan M, Ray J, Liu H, Kuehl JV, Melnyk RA, Lamson JS, Suh Y, et al. (2018). "Mutant phenotypes for thousands of bacterial genes of unknown function." *Nature* 557(7706):503. PMID 29769718. — primary citation for the BERDL `kescience_fitnessbrowser` data source.
 - Price MN, Deutschbauer AM, Arkin AP. (2021). "PaperBLAST: Text Mining Papers for Information about Homologs." *mSystems* 6(1):e00185-19. PMID 33531404. — primary citation for the BERDL `kescience_paperblast` data source.
 - Arkin AP, Cottingham RW, Henry CS, Harris NL, et al. (2018). "KBase: The United States Department of Energy Systems Biology Knowledgebase." *Nature Biotechnology* 36(7):566-569. PMID 29979655. — primary citation for the KBase infrastructure.
+- Tan WB, Chng SS. (2025). "Primary role of the Tol-Pal complex in bacterial outer membrane lipid homeostasis." *Nature Communications* 16(1):2293. PMID 40055349. DOI: 10.1038/s41467-025-57630-y. — basis for the revised Pal-upregulation interpretation (Mechanistic Synthesis §8); identified by the adversarial review as a missing citation.
+- Yeh YC, Comolli LR, Downing KH, Shapiro L, McAdams HH. (2010). "The Caulobacter Tol-Pal complex is essential for outer membrane integrity and the positioning of a polar localization factor." *Journal of Bacteriology* 192(19):4847-4858. PMID 20693330. DOI: 10.1128/JB.00607-10. — Caulobacter-specific Tol-Pal context (essentiality and division-associated role).
 
 See `references.md` for the full bibliography with PMCIDs, DOIs, and theme-grouping.
 
