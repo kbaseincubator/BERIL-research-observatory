@@ -1,0 +1,109 @@
+{
+  "schema_version": "adversarial-review-paper.v3",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1",
+  "project_id": "caulobacter_fur_lipida_loss",
+  "draft_number": 1,
+  "reviewed_at": "2026-06-04T12:00:00Z",
+  "reviewer_model": "claude-sonnet-4-6",
+  "prompt_version": "adversarial_paper.v3",
+  "tier": "STRONG",
+  "summary": {
+    "total_findings": 8,
+    "by_severity": {"P0": 1, "P1": 4, "P2": 2, "info": 1},
+    "by_class": {
+      "missing_section": 2,
+      "citation_reality": 2,
+      "claim_evidence": 1,
+      "abstract_body_mismatch": 1,
+      "section_arc": 1,
+      "central_objection": 1
+    }
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "class": "missing_section",
+      "severity": "P0",
+      "confidence": "high",
+      "section": "Data and code availability",
+      "issue": "Data Availability section states that RNA-seq raw reads will be deposited to GEO and proteomics spectra to ProteomeXchange/PRIDE 'prior to journal submission,' with accession numbers to be 'added at that time.' No accession numbers are present. Most journals that would receive this paper (Cell Reports, mBio, PLoS Genetics, eLife) require valid GEO and PRIDE accession numbers at submission as a condition of review. Without them, peer reviewers cannot access the primary data, and the reproducibility claim in the abstract cannot be verified. This is a hard submission blocker.",
+      "fix_target": "07_data_availability.md",
+      "fix_hint": "Deposit RNA-seq raw reads to NCBI GEO and proteomics raw spectra to ProteomeXchange/PRIDE before submission. Replace the placeholder sentence with actual accession numbers, e.g., 'RNA-seq data are deposited at NCBI GEO under accession GSEnnnnnn. Proteomics raw spectra are deposited at ProteomeXchange via PRIDE under accession PXDnnnnnn.'"
+    },
+    {
+      "id": "F002",
+      "class": "citation_reality",
+      "severity": "P1",
+      "confidence": "high",
+      "issue": "citation_map.md is materially incomplete. Five in-text citations in the manuscript body have no corresponding entry in citation_map.md: [Olea-Ozuna2021] (Introduction line 20, Results lines 111 and 175), [Olea-Ozuna2024] (Introduction line 20, Results lines 111 and 175), [Hernandez-Ortiz2025] (Introduction line 22), [de2016] (Introduction line 22), and [Dos2024] (Introduction line 22). All five have valid bibliography entries in references.md, but references.md mislabels Olea-Ozuna2021 and Olea-Ozuna2024 as 'Uncited (in pool but not yet cited in prose)' despite body citations at manuscript line 20. Additionally, citation_map.md entries 28 and 29 (Balhesteros2017 and Silva2019) record 'first cited: references, paragraph 16' and 'references, paragraph 17' respectively, but both are actually first cited in the manuscript body at Introduction line 22. None of the nine affected citations are fabricated — all have bibliography entries — but the incomplete tracking means a consumer of citation_map.md cannot reliably locate where specific claims are supported.",
+      "citation_id": "Olea-Ozuna2021, Olea-Ozuna2024, Hernandez-Ortiz2025, de2016, Dos2024, Balhesteros2017, Silva2019",
+      "fix_target": "references.v1.md",
+      "fix_hint": "Add entries for all five missing body-cited references to citation_map.md with their actual first-citation locations and the claims they support. Move Olea-Ozuna2021 and Olea-Ozuna2024 from the 'Uncited' pool in references.md to the numbered bibliography. Correct the 'first cited' field for Balhesteros2017 and Silva2019 from 'references, paragraph 16/17' to 'introduction, paragraph 5.'"
+    },
+    {
+      "id": "F003",
+      "class": "claim_evidence",
+      "severity": "P1",
+      "confidence": "high",
+      "section": "Results",
+      "line_range": "L163-165",
+      "paragraph_quote": "Presence and absence of focal gene families across the four Gram-negative species capable of lipid A loss, assessed by PaperBLAST text mining [Price2017] and confirmed by NCBI annotation.",
+      "issue": "Figure 6 caption states the figure shows data 'assessed by PaperBLAST text mining and confirmed by NCBI annotation.' The figure file is NB06_comparative_heatmap.png, whose entry in figures_inventory.md reads 'Title: Focal gene presence/absence (1=present, 0=absent in PaperBLAST)' — this is PaperBLAST-only. The NCBI annotation confirmation (NB06b) produced Table 3 (manuscript lines 154-161), not Figure 6. A reader who examines Figure 6 expecting NCBI-confirmed data sees only PaperBLAST data. The caption attributes two-source confirmation to a figure that shows one source.",
+      "report_evidence": [
+        {"section": "Finding 6 / NB06 + NB06b", "quote": "The original NB06 used PaperBLAST description-text matching. NB06b (added post-review) re-ran the comparative panel against NCBI's protein database via Biopython Entrez, which uses curated genome annotation rather than text matching"},
+        {"section": "Finding 6 / NB06 + NB06b", "quote": "Biological claims CONFIRMED by NCBI annotation (where NB06 and NB06b agree, pattern 1000 = Caulobacter only)"}
+      ],
+      "fix_target": "results.v1.md",
+      "fix_hint": "Revise the Figure 6 caption to: 'Presence and absence of focal gene families across the four Gram-negative species capable of lipid A loss, assessed by PaperBLAST text mining [Price2017]. NCBI annotation confirmation is shown in Table 3.' Alternatively, generate a separate NB06b NCBI figure and embed it as Figure 6B with an accurate caption."
+    },
+    {
+      "id": "F004",
+      "class": "abstract_body_mismatch",
+      "severity": "P1",
+      "confidence": "high",
+      "issue": "Abstract (line 12) describes the Lpt transcript-protein discordance as 'striking': the canonical Lpt apparatus 'exhibits a striking transcript-protein discordance.' The body's Discussion (line 132) hedges the same observation: 'This transcript-protein discordance represents a notable finding: it may reflect post-translational regulation... Resolution requires the replicated outer membrane proteomics planned for the originating laboratory.' The Limitations section states: 'The outer membrane proteome is single-replicate per strain, precluding formal statistical testing of protein-level claims.' REPORT marks the Lpt protein observations as 'DISCORDANT with transcript; single replicate' and requires 'replicated proteomics' for resolution. The word 'striking' in the abstract signals a robust, replicated observation to readers who read only the abstract; the body is appropriately tentative. The abstract overclaims the protein-level evidence quality relative to the body.",
+      "fix_target": "abstract.v1.md",
+      "fix_hint": "Replace 'exhibits a striking transcript-protein discordance' with 'exhibits an apparent transcript-protein discordance in single-replicate outer membrane proteomics.' This brings the abstract into register with the body's hedging and accurately signals that the protein-level observations require replication."
+    },
+    {
+      "id": "F005",
+      "class": "missing_section",
+      "severity": "P1",
+      "confidence": "high",
+      "section": "Limitations",
+      "issue": "Methods section 'Software and reproducibility' (line 62) discloses: 'the R and edgeR version values reported in the SeqCenter run report (R 4.0.2 and edgeR 1.14.5) are mutually inconsistent — edgeR 1.14.5 dates to circa 2010 and is not installable on R 4.0.2 — so we treat the differential-expression statistics as reported by the upstream pipeline without independently re-running edgeR.' This is a material reproducibility limitation: all primary DE statistics — logFC, p-values, and FDRs for both contrasts (4584-vs-4580 and 4599-vs-4584) — underlying every H1-H4 verdict were accepted from a pipeline whose tool versions cannot be verified. The Limitations section lists the single-replicate proteome, single growth condition, absent iron-limitation experiments, CtpA rejection, and the SigU regulon gap, but says nothing about the unverifiable upstream DE pipeline. A reviewer who reads both sections will notice the omission.",
+      "fix_target": "limitations.v1.md",
+      "fix_hint": "Add a Limitations bullet: 'The primary differential expression statistics (logFC, p-value, FDR) were produced by SeqCenter's upstream pipeline. The pipeline's reported tool versions (R 4.0.2 and edgeR 1.14.5) are mutually inconsistent and cannot be independently reproduced from the reported version string. The hypothesis verdicts therefore depend on the reported statistics being correct; independent re-analysis from the deposited raw counts is recommended before final publication.'"
+    },
+    {
+      "id": "F006",
+      "class": "section_arc",
+      "severity": "P2",
+      "confidence": "high",
+      "section": "Results",
+      "issue": "Results section opens (line 66-68): 'The integrated analysis yielded findings across five partially independent lines of evidence, summarized in Figure 1.' Figure 1 has four panels (A: Fur signature concordance, B: ChvI phase distribution, C: sphingolipid/Lpt expression, D: PG remodeling). The fifth line of evidence — comparative genomics showing sphingolipid pathway and ChvG-ChvI absence in three comparator species — is not in Figure 1; it appears as Figure 6. The Figure 1 caption says 'Overview of the five mechanistic layers' but names only four panels A-D. The opening sentence overstates what Figure 1 contains.",
+      "fix_target": "results.v1.md",
+      "fix_hint": "Either (a) revise the opening sentence to 'summarized in Figures 1 and 6' and update the Figure 1 caption to say 'four of the five mechanistic layers (comparative genomics shown in Figure 6)'; or (b) add a panel E to Figure 1 with the comparative heatmap so that Figure 1 genuinely summarizes all five layers."
+    },
+    {
+      "id": "F007",
+      "class": "citation_reality",
+      "severity": "P2",
+      "confidence": "high",
+      "section": "References",
+      "citation_id": "Dhakephalkar2023, Dhakephalkar2025, Olea-Ozuna2021, Olea-Ozuna2024",
+      "issue": "references.md places Dhakephalkar2023, Dhakephalkar2025, Olea-Ozuna2021, and Olea-Ozuna2024 under 'Uncited (in pool but not yet cited in prose).' All four are cited inline in the manuscript body: Olea-Ozuna2021 and Olea-Ozuna2024 appear at Introduction line 20 and Results lines 111 and 175; Dhakephalkar2023 and Dhakephalkar2025 appear at Results line 111. The 'Uncited' label is factually wrong. No bibliography entry is missing (no fabrication), but the mislabeling corrupts the bibliography's organization and will confuse downstream tooling or any reviewer who reads references.md to identify which sources were actually used in the paper.",
+      "fix_target": "references.v1.md",
+      "fix_hint": "Move Dhakephalkar2023, Dhakephalkar2025, Olea-Ozuna2021, and Olea-Ozuna2024 from the 'Uncited' section into the numbered bibliography, assigned citation numbers in order of first appearance in the body text (Olea-Ozuna2021/2024 first appear at Introduction line 20; Dhakephalkar2023/2025 first appear at Results line 111)."
+    },
+    {
+      "id": "F008",
+      "class": "central_objection",
+      "severity": "info",
+      "confidence": "high",
+      "issue": "The paper's title ('Lpt apparatus repurposing') and abstract position Lpt apparatus repurposing for sphingolipid trafficking as a central contribution, citing transcript upregulation of MsbA-like CCNA_00307 (+0.89 log2, FDR 0.01) and LptC-related CCNA_03716 (+0.56, FDR 0.005) as consistent with the Uchendu 2026 shared-component model. But the two canonical Lpt components actually measured at the protein level in the rescued strain — LptD (log2 rescued/intermediate = −0.47) and LptE (−0.78) — decline. LptD and LptE are the outer-membrane-inserting components of the Lpt translocon that deposit lipid A into the outer leaflet; their protein-level decline in a strain lacking LPS substrate is the most parsimonious outcome of substrate-limited complex disassembly, not repurposing for a new cargo. A hostile reviewer will write: 'Your own single-replicate proteomics show the OM-facing Lpt translocon components declining in the strain you claim repurposes Lpt for sphingolipid transport. Transcript upregulation of two inner-membrane-proximal Lpt-like genes is consistent with multiple explanations besides sphingolipid transport. You have described a discordance, not a function. The word repurposing in the title and abstract is not supported by the data you present.' The Discussion (paragraph 4) offers three non-exclusive hypotheses for the discordance, including substrate limitation, but does not acknowledge that substrate-limited Lpt disassembly is the simplest explanation for the LptD/LptE decline and cannot be ruled out with single-replicate proteomics. No section explicitly states that repurposing remains an inference rather than a demonstrated function.",
+      "fix_target": "discussion.v1.md",
+      "fix_hint": "Strengthen the Discussion to explicitly state that the transcript evidence is consistent with Uchendu 2026 shared-component repurposing AND consistent with substrate-limited Lpt disassembly, that these cannot be distinguished without replicated proteomics and functional transport assays, and that 'repurposing' is a working hypothesis. Weaken the title and abstract claim from 'Lpt apparatus repurposing' to 'potential Lpt apparatus involvement' or 'evidence for Lpt apparatus repurposing' to accurately signal the evidence level to readers who read only the title and abstract."
+    }
+  ]
+}
