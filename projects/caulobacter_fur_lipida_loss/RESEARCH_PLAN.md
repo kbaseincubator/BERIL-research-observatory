@@ -129,6 +129,16 @@ See `references.md` for the full bibliography. Anchors used by this plan:
   - `kescience_paperblast.year` is a string → `CAST(year AS INT)`.
 - **Universal**: filter big tables before joining; avoid `.toPandas()` until the result is small.
 
+### Execution environment
+
+All notebooks run **on-cluster** in BERDL JupyterHub (confirmed via `scripts/berdl_env.py --check` at session start).
+
+- **JupyterHub notebook kernel** (default for NB02–NB07): use `spark = get_spark_session()` directly — no import required; the kernel pre-loads `berdl_notebook_utils`.
+- **JupyterHub CLI / scripts** (if NB01's CTS-orchestrator script needs it): `from berdl_notebook_utils.setup_spark_session import get_spark_session; spark = get_spark_session()`.
+- **Off-cluster** would require the `--berdl-proxy` chain; not applicable for this project.
+
+Every notebook starts with an environment check cell that asserts `spark.sql("SELECT 1").collect()[0][0] == 1` before any data work.
+
 ## Analysis Plan
 
 Notebooks are numbered, executed in JupyterHub with outputs committed (per `PROJECT.md`). Each notebook saves figures to `figures/NB{n}_*.png` and small derived tables to `data/NB{n}_*.csv` (excluded from git by the project gitignore rule; re-derived from the notebook on demand).
@@ -136,22 +146,37 @@ Notebooks are numbered, executed in JupyterHub with outputs committed (per `PROJ
 ### NB01 — Leaden 2018 SRP136695 re-analysis (Fur-only DEG signature)
 
 - **Goal**: Produce a clean Δ*fur*-only DEG signature (no Δ*sspB*, no Δ*rsaA*) to disambiguate Fur-specific vs SspB-specific effects in 4584-vs-4580.
-- **Approach**:
-  1. Submit a CTS task: `prefetch SRP136695 && fasterq-dump *.sra && fastp → HISAT2 (NA1000 ref, --very-sensitive) → featureCounts -Q 20 → edgeR TMM + glmQLFTest`.
-  2. Bring DEG tables back to JupyterHub for join with the colleague's `fact_differential.csv`.
+- **Approach** (preflight first to avoid wasted compute):
+  1. **Preflight (NB01a, in-notebook, fast)** — try to find a pre-published DEG table before re-analyzing from raw reads:
+     a. Fetch Frontiers in Microbiology PMC supplementary files for PMC6120978 (`https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6120978/`) via WebFetch / `wget` — Frontiers typically attaches Supplementary Table S1 (DEG matrix) directly.
+     b. Check GEO at `https://www.ncbi.nlm.nih.gov/geo/?term=SRP136695` for an author-provided processed-count or DEG table.
+     c. If a DEG table is found, normalize it to (locustag, logFC, pvalue, fdr) and skip step 2.
+  2. **Re-analysis (CTS, only if preflight fails)**:
+     - **CTS budget dry-run**: submit a 1-sample SRA prefetch test first (~10 min). Confirm runtime and storage extrapolate within quota (estimated full job: 6 samples × ~30 min HISAT2 = ~3 h wall, ~150 GB transient).
+     - Full pipeline: `prefetch SRP136695 → fasterq-dump → fastp → HISAT2 (NA1000 ref, --very-sensitive) → featureCounts -Q 20 → edgeR TMM + glmQLFTest`.
+  3. Bring DEG tables back to JupyterHub for join with the colleague's `fact_differential.csv`.
 - **Outputs**:
   - `data/NB01_leaden2018_de_full.csv` — Fur-only DEGs at colleague's conventions
   - `data/NB01_fur_only_signature.csv` — high-confidence subset (|logFC|>1, FDR<0.05)
+  - `data/NB01_source_provenance.md` — records whether preflight succeeded (preferred) or CTS re-analysis was required, plus pipeline versions.
   - Comparison plot: scatter of 4584-vs-4580 logFC vs Leaden Δ*fur* logFC, colored by Fur regulon membership
   - `figures/NB01_fur_signature_scatter.png`
 
 ### NB02 — Fur-released gene fitness ranking via BERDL RB-TnSeq
 
 - **Goal**: Rank Fur-released genes from NB01 (and from 4584-vs-4580) by phenotypic importance — i.e., which knockouts have strong fitness defects under iron limitation, oxidative stress, envelope-disrupting conditions, or carbon-restricted media. Tests H2.
-- **Approach**:
-  1. From `kescience_fitnessbrowser.experiment` with `orgId='Caulo'`, classify the 198 experiments by `expGroup` and the metadata condition strings. Tag the iron-limitation, oxidative-stress, envelope-stress, and carbon-shift conditions.
-  2. Join `fitbyexp_caulo` to per-condition fitness summary statistics — mean, max-magnitude, and t-significance per gene per condition class.
-  3. For each Fur-released gene from NB01 (and Phase A): compute the "phenotype rank" within the Fur regulon.
+- **Approach** (condition-coverage preflight first):
+  1. **Preflight — condition coverage**:
+     ```sql
+     SELECT expGroup, COUNT(*) AS n
+     FROM kescience_fitnessbrowser.experiment
+     WHERE orgId = 'Caulo'
+     GROUP BY expGroup ORDER BY n DESC;
+     ```
+     plus an inspection of `condition_1` / `concentration_1` strings for iron-, peroxide-, vancomycin-, bacitracin-, detergent-related terms. **If fewer than 3 envelope-stress experiments AND fewer than 3 iron-limitation experiments, H2 cannot be tested at the originally planned resolution** — drop H2 to "exploratory" status and document; otherwise proceed.
+  2. From `kescience_fitnessbrowser.experiment` with `orgId='Caulo'`, classify the 198 experiments by `expGroup` and condition strings. Tag the iron-limitation, oxidative-stress, envelope-stress, and carbon-shift conditions.
+  3. Join `fitbyexp_caulo` to per-condition fitness summary statistics — mean, max-magnitude, and t-significance per gene per condition class (`CAST(fit AS DOUBLE)`, `CAST(t AS DOUBLE)`).
+  4. For each Fur-released gene from NB01 (and Phase A): compute the "phenotype rank" within the Fur regulon.
 - **Outputs**:
   - `data/NB02_caulo_fitness_summary.csv` — per-gene fitness statistics per condition class
   - `data/NB02_fur_regulon_phenotype_rank.csv` — Fur-released genes ranked by phenotype magnitude
@@ -200,11 +225,25 @@ Notebooks are numbered, executed in JupyterHub with outputs committed (per `PROJ
 
 - **Goal**: Why is this route uniquely Caulobacter? Catalogue presence/absence of the sphingolipid biosynthesis + transport locus, CtpA-like LpxF substitute, and the relevant Fur-released "critical" genes (from NB02) across *N. meningitidis*, *A. baumannii*, *M. catarrhalis*.
 - **Approach**:
-  1. Inventory BERDL genomes for the four species (`kbase_ke_pangenome` or similar — confirm in NB06).
-  2. Build a presence/absence matrix for the focal gene sets (sphingolipid pathway, CtpA, Lpt apparatus, Fur-critical subset).
-  3. Compare to the published alternative routes: *A. baumannii* PBP1A/LdtJ-LdtK (Kang 2021), *N. meningitidis* phospholipid + capsule (Steeghs 2001), *M. catarrhalis* late-acyltransferase (Gao 2008).
+  1. **BERDL coverage preflight** — query each pangenome database for species coverage:
+     ```sql
+     SELECT DISTINCT species, COUNT(*) AS n_genomes
+     FROM <pangenome>.gtdb_species_clade
+     WHERE lower(species) LIKE '%baumannii%' OR lower(species) LIKE '%meningitidis%' OR lower(species) LIKE '%catarrhalis%' OR lower(species) LIKE '%caulobacter%'
+     GROUP BY species;
+     ```
+     Try `kbase_ke_pangenome`, `kbase_uniprot` (any species-keyed table), and `phagefoundry.acinetobacter` for A. baumannii specifically.
+  2. **NCBI fallback (executed if BERDL coverage of any of the 4 species is missing)**: download reference genomes via `datasets download genome accession` for:
+     - *A. baumannii* ATCC 17978 (GCF_000196795.1) and ACICU (GCF_000018445.1)
+     - *N. meningitidis* MC58 (GCF_000008805.1) and 8013 (GCF_000026965.1)
+     - *M. catarrhalis* BBH18 (GCF_000092265.1) and RH4 (GCF_000176855.1)
+     - *C. crescentus* NA1000 (GCF_000022005.1) as the reference query genome
+     Then run `hmmsearch` (HMMER 3) for each focal gene family (Pfam HMMs for serine-palmitoyltransferase PF00155, LptF/G PF03739, LpxC PF03331, Fur PF01475, CtpA C-terminal protease PF00574), tabulate hits per genome.
+  3. Build a presence/absence matrix for the focal gene sets (sphingolipid pathway, CtpA, Lpt apparatus, Fur-critical subset from NB02).
+  4. Compare to the published alternative routes: *A. baumannii* PBP1A/LdtJ-LdtK (Kang 2021), *N. meningitidis* phospholipid + capsule (Steeghs 2001), *M. catarrhalis* late-acyltransferase (Gao 2008).
 - **Outputs**:
   - `data/NB06_comparative_presence_absence.csv`
+  - `data/NB06_genome_sources.md` — records whether BERDL or NCBI provided each species' genome and the accession
   - `figures/NB06_comparative_heatmap.png`
 
 ### NB07 — Figures and synthesis for REPORT.md
@@ -214,9 +253,30 @@ Notebooks are numbered, executed in JupyterHub with outputs committed (per `PROJ
 
 ### Stop condition
 
-Notebook execution proceeds through NB01 → NB06 → NB07. Plan revision triggered if NB01 (Fur-only signature) shows substantial disagreement with 4584-vs-4580 (e.g., the "Fur-released" signal we attributed to Δ*fur* is mostly Δ*sspB*), or if NB02 reveals no Fur-released gene with meaningful fitness phenotype (would weaken H2 substantially).
+Notebook execution proceeds through NB01 → NB06 → NB07. Plan revision (return to checkpoint) triggered by any of:
+
+1. **NB01 disagreement**: less than 30% Spearman concordance between Leaden Δ*fur* logFC and our 4584-vs-4580 logFC (over genes with |logFC|>1 in either set). Would indicate Δ*sspB* dominates the signal, requiring reframe of H2 as a Fur+SspB combined effect.
+2. **NB02 null result**: fewer than 10% of Fur-released genes (from NB01 or 4584-vs-4580) reach the H2 phenotype-bearing threshold (`|fitness t-score|>4 in ≥2 envelope-stress or iron-limitation experiments`). Would substantially weaken H2.
+3. **NB02 preflight failure**: fewer than 3 envelope-stress AND fewer than 3 iron-limitation experiments in Caulo fitness data — H2 drops to exploratory status (don't trigger revision; just descope).
+4. **NB04 contradiction**: sphingolipid biosynthesis pathway (any of *spt*, *bcerS*, *acp*, *cerR*, *acps*) significantly induced (logFC>1, FDR<0.05) in 4584-vs-4580 OR 4599-vs-4584. Would force H3 reframe back to biosynthesis-induction.
 
 ## Expected Outcomes
+
+### Pre-registered significance thresholds (committed before any Phase C analysis)
+
+To prevent post-hoc threshold drift, the rules below are fixed for v2 of this plan. Any change requires a v3 revision committed to git *before* the relevant notebook executes.
+
+| Hypothesis | Threshold for "supported" | Threshold for "borderline — needs corroboration" | Threshold for "rejected" |
+|---|---|---|---|
+| **H1 ChvI engagement** | Hypergeometric p<1e-5 for ChvI-induced ∩ up-DEG in either contrast (Stein OR QY set). Phase A already meets this for both. | p<0.05 but p>1e-5 (one regulon source) | p≥0.05 (both regulon sources, both contrasts) |
+| **H1 phase structure** | ChvI-induced genes partition into early-cohort (induced in 4584-vs-4580) and late-cohort (induced only in 4599-vs-4584) with ≥10 genes in each; SigU regulon overlaps the late-cohort at hypergeometric p<1e-3. | One cohort ≥10 genes, other 5–9 | Both cohorts <5 genes OR SigU overlap p>0.05 |
+| **H2 critical Fur subset** | ≥10% of Fur-released DEGs (from NB01 or 4584-vs-4580) score "phenotype-bearing" — `|fitness t-score|>4 in ≥2 envelope-stress OR iron-limitation experiments`. | 5–10% | <5% |
+| **H3 CtpA upregulation** | CCNA_03113 logFC>0 AND FDR<0.05 in 4599-vs-4584 (transcript) OR ≥2-fold up in 4672 vs 4659 (protein). | logFC>0, 0.05<p<0.15 (transcript) with protein detected | logFC≤0 OR p>0.15 with no protein detection |
+| **H3 sphingolipid pathway constitutive** | No sphingolipid biosynthesis gene (spt, bcerS, sphk, acp, cerR, acps) significantly up (logFC>1, FDR<0.05) in either 4584-vs-4580 or 4599-vs-4584. Phase A already meets this. | One gene marginally up (0.5<logFC<1) | ≥1 gene significantly up |
+| **H3 Lpt apparatus maintained** | Canonical Lpt apparatus (MsbA-like, LptD, LptF, LptG, LptE, LptC-related) shows no gene with logFC<-0.5 and FDR<0.05 in 4599-vs-4584. Phase A already meets this. | One gene marginally down | ≥1 gene significantly down |
+| **H4 PG remodeling** | ≥3 PG-remodeling enzymes (from pre-curated set in NB05) with FDR<0.05 in 4599-vs-4584 (transcript) OR |log2|>1 in 4672 vs 4659 (protein). | 2 enzymes meeting bar | <2 enzymes |
+
+The **pre-curated PG-remodeling gene set** for H4 (NB05) is defined as the union of all `dim_feature` rows matching one of: gene symbol in {`murA`,`murB`,`murC`,`murD`,`murE`,`murF`,`murG`,`murI`,`murJ`,`pbpA`,`pbpB`,`pbpC`,`pbpD`,`pbpE`,`pbpG`,`mrcA`,`mrcB`,`mrdA`,`mrdB`,`dacA`,`dacB`,`dacC`,`dacD`,`ldtA`,`ldtB`,`ldtC`,`ldtD`,`ldtE`,`sdpA`,`sdpB`,`mltA`,`mltB`,`mltC`,`mltD`,`mltE`,`mltG`,`mepA`,`mepK`,`mepM`,`mepS`,`amiA`,`amiB`,`amiC`,`spr`} OR `description` matching `'transglycosylase|transpeptidase|penicillin.binding|peptidoglycan|ld.transpeptidase|D,D-carboxypeptidase|cell.wall|murein|lytic.transglycosylase'`. This set is **finalized at the start of NB05** and saved as `data/NB05_pg_gene_set.csv` *before* DE analysis to prevent cherry-picking.
 
 ### Per hypothesis
 
@@ -244,6 +304,7 @@ Notebook execution proceeds through NB01 → NB06 → NB07. Plan revision trigge
 ## Revision History
 
 - **v1** (2026-06-04): Initial plan. Reframed from the original "discover the mechanism" framing after Phase A literature review revealed Zik 2022 (PMID 35649364) as the published mechanism and identified `krr@berkeley.edu` as Kathleen R. Ryan, the senior author. H3 reframed from hopanoid substitution (PaperBLAST confirmed no Caulobacter hopanoid genes) to anionic-sphingolipid substitution (CPG). H4 added to capture peptidoglycan remodeling observed in NB00 (SdpA +4.8 log2 OM protein). Caulobacter RB-TnSeq fitness arm enabled (`kescience_fitnessbrowser` orgId='Caulo', 198 experiments).
+- **v2** (2026-06-04): Refinements in response to Claude plan review (`PLAN_REVIEW_1.md`). (1) Added a "Pre-registered significance thresholds" table for all four hypotheses, committed before any Phase C analysis runs. (2) Added an "Execution environment" subsection specifying Spark session import patterns per environment. (3) NB01 now starts with a preflight to look for a Frontiers/GEO supplementary DEG table for Leaden 2018 before falling back to CTS re-analysis; CTS budget includes a single-sample dry-run before the full job. (4) NB02 now starts with a condition-coverage preflight; H2 drops to exploratory if envelope/iron-limitation coverage is insufficient. (5) NB05 finalizes its PG-remodeling gene set *before* DE analysis to prevent cherry-picking. (6) NB06 has an explicit NCBI fallback with named accessions for *A. baumannii*, *N. meningitidis*, *M. catarrhalis*, and *C. crescentus*. (7) Stop conditions made quantitative (Spearman concordance for NB01, percentage threshold for NB02, biosynthesis-induction threshold for NB04). Codex second-opinion review was attempted but cancelled per user direction (auth issue not resolved this session). No hypotheses changed; only methodology guardrails added.
 
 ## Authors
 
