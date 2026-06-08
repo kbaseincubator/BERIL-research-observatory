@@ -1,0 +1,33 @@
+{
+  "findings_revised": [
+    "F001",
+    "F002"
+  ],
+  "findings_added": [
+    "F003"
+  ],
+  "findings_skipped": [
+    "F007",
+    "F008",
+    "F009",
+    "F010",
+    "F011",
+    "F004",
+    "F005",
+    "F006",
+    "CO001",
+    "CO002",
+    "CO003",
+    "CO004",
+    "CO005"
+  ],
+  "findings_failed": [],
+  "findings_invariance_violated": [],
+  "retries_per_slide": {
+    "7": 1,
+    "1": 1
+  },
+  "cost_usd_cumulative": 0.0,
+  "started_at": "2026-06-08T23:37:36Z",
+  "finished_at": "2026-06-08T23:45:33Z"
+}

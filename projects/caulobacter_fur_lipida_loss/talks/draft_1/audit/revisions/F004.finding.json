@@ -1,0 +1,24 @@
+{
+  "id": "F004",
+  "class": "claim_evidence",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 7,
+  "slide_position": 7,
+  "slide_layout": "data_figure",
+  "substory_id": "S1",
+  "title_quote": "Sphingolipid locus log2(CPM+1) heatmap (WT, \u0394fur \u0394sspb, intermediate, rescued); pathway is constitutive \u2014 neither induced nor suppressed \u2014 ruling out Fur-driven sphingolipid biosynthesis upregulation.",
+  "issue": "Caption asserts the NB00 figure 'rul[es] out Fur-driven sphingolipid biosynthesis upregulation'. The figure is CPM-normalised and descriptive only \u2014 the speaker_notes for this very slide admit 'this orientation figure uses CPM normalization from NB00 and is descriptive rather than statistically DE-tested.' The actual statistical evidence (spt \u22120.64 FDR 0.002; sphk \u22120.40 FDR 0.02; 0/6 biosynthesis genes UP at FDR<0.05) lives in REPORT \u00a7Finding 4 and is presented on slides 16 and 18. A CPM heatmap cannot 'rule out' anything; only the FDR-tested NB04 panel can. The slide audience (who does not see speaker_notes) sees a strong rule-out claim that the visualised data do not license.",
+  "report_evidence": [
+    {
+      "section": "\u00a7Finding 4 table",
+      "quote": "Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly"
+    },
+    {
+      "section": "\u00a7Phase A NB00",
+      "quote": "the sphingolipid biosynthesis pathway is *not induced* (rejecting the initial '\u0394fur derepresses sphingolipid biosynthesis' framing)"
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Soften caption to 'pathway is flat across strains in NB00 orientation (CPM-descriptive); FDR-tested formal verdict on slide 16 (0/6 UP; spt \u22120.64 FDR 0.002)'. Or \u2014 preferred \u2014 replace this whole slide per F003 and move the orientation observation to a one-line bullet on slide 6."
+}

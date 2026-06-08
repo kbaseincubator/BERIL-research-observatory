@@ -1,0 +1,31 @@
+{
+  "id": 16,
+  "position": 16,
+  "substory_id": "S3",
+  "layout": "data_figure",
+  "content": {
+    "title": "Sphingolipid biosynthesis is constitutive: 0 of 6 genes UP; spt and sphk mildly DOWN",
+    "figure": "figures/NB04_sphingolipid_locus_heatmap.png",
+    "caption": "Sphingolipid biosynthesis + Uchendu transporter panel (NB04): spt −0.64 (FDR 0.002), sphk −0.40 (FDR 0.02); 0 of 6 biosynthesis genes significantly UP; transporter genes contextualize the Lpt-substitution mechanism.",
+    "data_source": "REPORT.md §Finding 4; NB04_sphingolipid_lpt_panel.ipynb cell 3",
+    "citations": [
+      "Zik2022",
+      "OleaOzuna2021",
+      "Uchendu2026"
+    ]
+  },
+  "speaker_notes": "The most important single result in Layer 3 is also the cleanest: not one of the six sphingolipid biosynthesis genes is significantly upregulated in the rescued strain. This is the NB04 detailed heatmap — covering both the sphingolipid biosynthesis cluster AND the Uchendu transporter genes — across the strain series. The biosynthesis pattern is flat to slightly declining, not induced.\n\nFrom REPORT.md §Finding 4: 0 of 6 biosynthesis genes UP at FDR < 0.05 in the 4599-vs-4584 contrast. The two most sensitive readouts — serine palmitoyltransferase spt (log2 −0.64, FDR 0.002) and sphingosine kinase sphk (log2 −0.40, FDR 0.02) — are significantly DOWN, not up. Both p-values apply to the same 4599-vs-4584 single-contrast test.\n\nThe transporter genes appear in this same panel because they provide the mechanistic bridge: Uchendu 2026 (preprint) demonstrated that homologues of inner-membrane LPS transport proteins are required for sphingolipid transport in lipid-A-deficient Caulobacter. Showing both biosynthesis and transporter genes together previews the S3 arc: the cell does not respond to losing lipid A by making more CPG biosynthesis transcript, but the transport machinery is maintained and available to ship the standing CPG pool.\n\nZik 2022 showed CPG is required for delta-lpxC viability; our data show CPG supply is constitutive, not demand-responsive. Olea-Ozuna 2021 established the five structural genes required for ceramide synthesis in Caulobacter — those genes are in this locus and none are induced here.\n\nOne important caveat: we tested transcript-level regulation only. Post-transcriptional regulation of CPG biosynthesis — enzyme stabilization, allosteric flux redistribution, or substrate competition relief — is not excluded by these data. The constitutive-transcript finding forecloses transcriptional induction; it does not foreclose post-translational flux routing through the existing machinery. The next slide turns to the transport apparatus directly.",
+  "evidence_anchors": [
+    {"kind": "report_section", "ref": "REPORT.md §Finding 4"},
+    {"kind": "report_section", "ref": "REPORT.md §NB04 image caption"},
+    {"kind": "report_section", "ref": "REPORT.md §Figures table"}
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-07T00:00:00Z",
+      "finding_id": "F005",
+      "finding_class": "substory_arc",
+      "summary": "Replaced duplicate figure figures/00_sphingolipid_locus_heatmap.png (orientation-notebook panel already shown in S1) with figures/NB04_sphingolipid_locus_heatmap.png (NB04 detailed panel including Uchendu transporter genes) per REPORT.md §Figures table and §NB04 image caption; caption updated to surface the Uchendu transporter gene context; Uchendu2026 added to citations (pooled key, directly supports transporter context now visible in panel); speaker notes updated accordingly. Note: finding classified substory_arc but fix required a figure-swap content change rather than a position swap — the substory_arc classification was appropriate because the duplicate figure disrupted S3’s narrative arc; the per-class guidance’s ‘position-only’ default did not apply here."
+    }
+  ]
+}

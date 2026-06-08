@@ -1,0 +1,31 @@
+{
+  "id": 7,
+  "position": 7,
+  "substory_id": "S1",
+  "layout": "data_figure",
+  "content": {
+    "title": "Fur–Leaden concordance: ρ=0.315, 71% sign agreement across 93 DEGs — and a buffered respiratory cluster at y≈0",
+    "figure": "figures/NB01_fur_signature_scatter.png",
+    "caption": "Concordant_strong genes (dark blue, n=32) populate the top-right quadrant; buffered cbb3/fix/cyd genes (orange, n=53) cluster near y=0 despite Leaden logFC –5 to –9. HutA at +10.5 (ours) vs +2.2 (Leaden) anchors the amplified derepression signal.",
+    "data_source": "REPORT.md §Finding 1; notebooks/01_leaden2018_fur_signature.ipynb cell 5"
+  },
+  "speaker_notes_seed": "The NB01 scatter is the backbone of Layer 1: x-axis is Leaden 2018 Δfur logFC (published Caulobacter Δfur-only signature); y-axis is our 4584-vs-4580 contrast (Δfur ΔsspB ΔrsaA vs ΔrsaA). Spearman ρ=0.315 (p=2.08e-03) over 93 shared DEGs confirms Fur derepression as a major driver of our signal. Two populations dominate: concordant_strong genes (dark blue, n=32, top-right quadrant) are the operative Fur-released transporters and TBDTs; HutA is the extreme anchor point at our +10.5 vs Leaden's +2.2 — our strain amplifies the derepression. The buffered set (orange, n=53) is the key subplot: these cbb3/cyd/fix-NOPQ micro-aerobic respiratory genes are strongly derepressed in Leaden's Δfur-alone background but stay near y=0 in our Δfur ΔsspB combined background — the SspB arm is buffering them at the transcript level. Delivery note: the buffered cluster is not a weakness; it is the mechanistic fingerprint of the dual release. The next slide (fitness data) shows that Path A (concordant_strong, n=32) is marginally enriched for envelope-stress phenotypes (fold 1.60×, p=0.016) while Path B (buffered) is not — sharpening which arm carries the operative Layer-1 fitness signal.",
+  "evidence_anchors": [
+    {"kind": "report_section", "ref": "REPORT.md §Finding 1"},
+    {"kind": "report_section", "ref": "REPORT.md §NB01 — Leaden 2018 Fur signature"}
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-07T00:00:00Z",
+      "finding_id": "F003",
+      "finding_class": "substory_arc",
+      "summary": "Replaced wrong-layer sphingolipid heatmap (00_sphingolipid_locus_heatmap.png, Layer 3 content duplicating slide 16/S3) with NB01 Fur-Leaden concordance scatter (NB01_fur_signature_scatter.png) as the S1 Layer-1 R-slide punchline figure (ρ=0.315, p=2.08e-03, 71% concordance, 93 DEGs); content replacement applied instead of canonical position-swap because the structural defect was wrong content occupying the S1 R-slide slot, not wrong slide position; slide 7 remains at position 7 in S1."
+    },
+    {
+      "revised_at": "2026-06-07T00:00:00Z",
+      "finding_id": "F003",
+      "finding_class": "claim_evidence",
+      "summary": "Second-attempt pass: prior revision correctly replaced the figure but left a topic-label title ('NB01: Δfur derepression concordant with Leaden 2018 — and amplified') and recorded the wrong finding_class (substory_arc). This pass rewrites the title to claim form per fix_hint ('Fur–Leaden concordance: ρ=0.315, 71% sign agreement across 93 DEGs — and a buffered respiratory cluster at y≈0'); upgrades the caption to name explicit n-counts (n=32, n=53) and the Leaden logFC range (–5 to –9) grounded in REPORT §Finding 1 and §NB01; updates speaker_notes_seed with Path A/B fitness preview bridging to the next slide."
+    }
+  ]
+}
