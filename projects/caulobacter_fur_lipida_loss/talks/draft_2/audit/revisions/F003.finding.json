@@ -1,0 +1,15 @@
+{
+  "id": "F003",
+  "class": "missing_slide",
+  "severity": "P1",
+  "confidence": "high",
+  "issue": "The deck promises to name which Fur targets matter but never shows them. Goal slide 3 asks 'Which of the 93 Fur-released DEGs are operationally required\u2014not merely incidentally derepressed?' and the S2 punchline is 'only the Fur-released Path A enriches for envelope-stress fitness.' But the only S2 result slide (11) is an enrichment statistics table (Path A 1.60\u00d7 p=0.016 vs Path B 1.04\u00d7 p=0.515) \u2014 it never names the operationally-important genes. The single highest-priority functional target, ChvT (CCNA_03108) at |t|=43.7 under envelope stress, appears ONLY in the Q&A answer_detail (slide 32), which the audience sees only if someone asks. A peer audience that buys the Path A enrichment immediately asks 'which genes, and what do they do?' and there is no slide to point at.",
+  "report_evidence": [
+    {
+      "section": "\u00a7Finding 2",
+      "quote": "ChvT (CCNA_03108) at |t|=43.7 under envelope stress is the highest-priority functional follow-up target"
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Add one claim_evidence slide in S2 (between slide 11 and slide 12) naming the top Path A genes with functions \u2014 ChvT (CCNA_03108, |t|=43.7) and the leading TonB-dependent transporters \u2014 so the 'which targets matter' question posed on slide 3 is answered on a visible slide, not buried in Q&A."
+}

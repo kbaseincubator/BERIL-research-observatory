@@ -1,0 +1,73 @@
+tenant_a,tenant_b,theoretical_keys,realized_projects,keys
+kbase,kescience,15,36,"cazy, cog, compound_id, ec_number, eggnog, feature_id, gene_cluster_id, genome_id"
+kbase,nmdc,11,5,"biosample_id, cog, compound_id, ec_number, feature_id, genus, kegg_ko, kegg_pathway"
+enigma,kbase,9,4,"cazy, cog, ec_number, eggnog, feature_id, genome_id, kegg_pathway, ncbi_taxon_id"
+kbase,phagefoundry,9,4,"cazy, cog, ec_number, eggnog, feature_id, genome_id, kegg_pathway, ncbi_taxon_id"
+arkinlab,kbase,5,4,"ec_number, feature_id, genome_id, genus, species"
+enigma,kescience,9,3,"cazy, cog, ec_number, eggnog, feature_id, genome_id, kegg_pathway, ncbi_taxon_id"
+kescience,phagefoundry,9,3,"cazy, cog, ec_number, eggnog, feature_id, genome_id, kegg_pathway, ncbi_taxon_id"
+kbase,protect,12,2,"cazy, cog, ec_number, eggnog, feature_id, genome_id, genus, kegg_ko"
+kescience,protect,12,2,"cazy, cog, ec_number, eggnog, feature_id, genome_id, genus, kegg_ko"
+phagefoundry,protect,11,2,"cazy, cog, ec_number, eggnog, feature_id, genome_id, kegg_pathway, ncbi_taxon_id"
+arkinlab,kescience,7,2,"ec_number, feature_id, genome_id, genus, lat_lon, pmid_doi, species"
+kescience,nmdc,10,1,"cog, compound_id, ec_number, feature_id, genus, kegg_ko, kegg_pathway, ncbi_taxon_id"
+nmdc,phagefoundry,7,1,"cog, ec_number, feature_id, kegg_pathway, ncbi_taxon_id, reaction_id, sample_id"
+arkinlab,protect,6,1,"ec_number, feature_id, genome_id, genus, sample_id, species"
+arkinlab,enigma,4,1,"ec_number, feature_id, genome_id, sample_id"
+arkinlab,phagefoundry,4,1,"ec_number, feature_id, genome_id, sample_id"
+arkinlab,globalusers,0,1,
+enigma,globalusers,0,1,
+globalusers,kbase,0,1,
+globalusers,kescience,0,1,
+kescience,refdata,12,0,"alphafold_pdb, ec_number, feature_id, gene_cluster_id, genome_id, genus, lat_lon, ncbi_taxon_id"
+enigma,phagefoundry,11,0,"cazy, cog, ec_number, eggnog, feature_id, genome_id, kegg_pathway, ncbi_taxon_id"
+enigma,protect,11,0,"cazy, cog, ec_number, eggnog, feature_id, genome_id, kegg_pathway, ncbi_taxon_id"
+kbase,refdata,11,0,"biosample_id, ec_number, feature_id, gene_cluster_id, genome_id, genus, gtdb_taxonomy, ncbi_taxon_id"
+nmdc,protect,10,0,"cog, ec_number, feature_id, genus, kegg_ko, kegg_pathway, ncbi_taxon_id, reaction_id"
+nmdc,refdata,9,0,"biosample_id, ec_number, envo, feature_id, genus, ncbi_taxon_id, pfam, sample_id"
+arkinlab,refdata,8,0,"ec_number, feature_id, genome_id, genus, lat_lon, pmid_doi, sample_id, species"
+protect,refdata,8,0,"ec_number, feature_id, genome_id, genus, ncbi_taxon_id, protein_id, sample_id, species"
+enigma,nmdc,7,0,"cog, ec_number, feature_id, kegg_pathway, ncbi_taxon_id, reaction_id, sample_id"
+enigma,refdata,6,0,"ec_number, feature_id, genome_id, ncbi_taxon_id, protein_id, sample_id"
+phagefoundry,refdata,6,0,"ec_number, feature_id, genome_id, ncbi_taxon_id, protein_id, sample_id"
+arkinlab,nmdc,5,0,"ec_number, feature_id, genus, sample_id, species"
+msyscolo,refdata,5,0,"genome_id, genus, gtdb_taxonomy, lat_lon, species"
+arkinlab,msyscolo,4,0,"genome_id, genus, lat_lon, species"
+kbase,msyscolo,4,0,"genome_id, genus, gtdb_taxonomy, species"
+kescience,msyscolo,4,0,"genome_id, genus, lat_lon, species"
+netl,refdata,4,0,"gtdb_taxonomy, lat_lon, pmid_doi, sample_id"
+arkinlab,netl,3,0,"lat_lon, pmid_doi, sample_id"
+msyscolo,protect,3,0,"genome_id, genus, species"
+nmdc,planetmicrobe,3,0,"ncbi_taxon_id, pfam, sample_id"
+planetmicrobe,refdata,3,0,"ncbi_taxon_id, pfam, sample_id"
+arkinlab,ese,2,0,"pmid_doi, sample_id"
+enigma,planetmicrobe,2,0,"ncbi_taxon_id, sample_id"
+ese,netl,2,0,"pmid_doi, sample_id"
+ese,refdata,2,0,"pmid_doi, sample_id"
+kbase,planetmicrobe,2,0,"ncbi_taxon_id, pfam"
+kescience,netl,2,0,"lat_lon, pmid_doi"
+kescience,planetmicrobe,2,0,"ncbi_taxon_id, pfam"
+msyscolo,netl,2,0,"gtdb_taxonomy, lat_lon"
+msyscolo,nmdc,2,0,"genus, species"
+phagefoundry,planetmicrobe,2,0,"ncbi_taxon_id, sample_id"
+planetmicrobe,protect,2,0,"ncbi_taxon_id, sample_id"
+arkinlab,planetmicrobe,1,0,sample_id
+arkinlab,usgs,1,0,lat_lon
+enigma,ese,1,0,sample_id
+enigma,msyscolo,1,0,genome_id
+enigma,netl,1,0,sample_id
+ese,kescience,1,0,pmid_doi
+ese,nmdc,1,0,sample_id
+ese,phagefoundry,1,0,sample_id
+ese,planetmicrobe,1,0,sample_id
+ese,protect,1,0,sample_id
+kbase,netl,1,0,gtdb_taxonomy
+kescience,usgs,1,0,lat_lon
+msyscolo,phagefoundry,1,0,genome_id
+msyscolo,usgs,1,0,lat_lon
+netl,nmdc,1,0,sample_id
+netl,phagefoundry,1,0,sample_id
+netl,planetmicrobe,1,0,sample_id
+netl,protect,1,0,sample_id
+netl,usgs,1,0,lat_lon
+refdata,usgs,1,0,lat_lon

@@ -1,0 +1,7 @@
+{
+  "schema_version": "visual-qa.v1",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1",
+  "n_slides_reviewed": 0,
+  "findings": [],
+  "note": "visual-QA toolchain incomplete (missing: soffice (LibreOffice), pdftoppm (Poppler)); install LibreOffice + Poppler + Claude Code CLI to enable."
+}

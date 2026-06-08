@@ -1,0 +1,127 @@
+{
+  "schema_version": "compose-fragment.v2",
+  "substory_id": "S4",
+  "substory_punchline": "Without lipid A, constitutive sphingolipids and reorganized peptidoglycan hold the envelope together.",
+  "throughline_id": "TL1",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "section_divider",
+      "content": {
+        "punchline": "Without lipid A, constitutive sphingolipids and reorganized peptidoglycan hold the envelope together.",
+        "substory_number": 4
+      },
+      "speaker_notes": "Section 3 left us with a biphasic ChvI response whose late-cohort driver remains unidentified — an open question in the signaling layer. Section 4 moves from signaling to structure: what physically holds the outer membrane together when lipid A is absent? The experimental lens is the rescued strain 4599, carrying the four deletions delta-fur, delta-sspB, delta-lpxc, and delta-rsaA, compared against the immediate precursor 4584 that has not yet lost LpxC.\n\nZik et al. 2022 established that anionic sphingolipid ceramide phosphoglycerate is required for rescue, and that Fur-regulated processes — not iron status — are the permissive condition. Our work asks which specific molecular components explain structural viability without lipid A. The data yield two well-supported answers and two partially supported ones. The clear supports are sphingolipid constitutivity and peptidoglycan reorganization, both grounded in replicated transcriptomics. The partial answers are Lpt apparatus repurposing, where transcript and protein signals disagree, and the CtpA processing step, which is explicitly rejected at the pre-registered bar.\n\nThe punchline — constitutive sphingolipids and reorganized peptidoglycan hold the envelope together — is deliberately compressed. We are not claiming the full mechanism is understood; we are claiming the structural direction is supported at two layers. The outer membrane proteomics that would sharpen the picture are single-replicate and will be repeated in summer 2026. Keep those caveats in mind: this section's strength is knowing which layers are established and which are still open.\n\nThe next slide frames how we measured all of this before we turn to the results.",
+      "evidence_anchors": []
+    },
+    {
+      "position": 1,
+      "layout": "methods_summary",
+      "content": {
+        "title": "Measuring the structural-effector response: transcript panel and single-replicate OM proteome",
+        "bullets": [
+          "Strain contrast: 4599 (delta-fur delta-sspB delta-lpxc delta-rsaA) vs 4584 (delta-fur delta-sspB delta-rsaA) — isolates the delta-lpxc-specific response net of Fur and SspB co-deletions",
+          "Transcriptomics: edgeR differential expression, FDR < 0.05 threshold; 3,943 Caulobacter protein-coding genes tested",
+          "Sphingolipid panel: 6 core biosynthesis genes (spt, sphk, cerS, cerR, cpgB, cpgD) + 3 Uchendu 2026 IM transporter genes (lptG2/F2/C2) tested for induction vs constitutivity",
+          "Canonical Lpt apparatus: 6 transport components (MsbA, LptA-G) checked for maintenance vs remodeling in delta-lpxc state",
+          "PG remodeling gene set: 53 loci pre-curated before DE analysis (transpeptidase, transglycosylase, amidase, hydrolase families); 28 meet H4 threshold (FDR < 0.05 OR |log2| > 1 at protein)",
+          "OM proteome: single-replicate mass-spectrometry per strain (4580 WT, 4584 intermediate, 4672 rescued); direction interpretable, no per-protein statistics",
+          "CtpA test: pre-registered BORDERLINE criterion (0.05 < pvalue < 0.15 AND protein detected in OM proteome) applied to 4599-vs-4584 contrast exclusively"
+        ],
+        "tools_versions": [
+          {"tool": "edgeR", "version": "unknown"}
+        ],
+        "see_notes_footer": true
+      },
+      "speaker_notes": "The measurements in this section come from two modalities. The primary is replicated transcriptomics using the 4599-vs-4584 contrast — delta-fur delta-sspB delta-lpxc delta-rsaA versus delta-fur delta-sspB delta-rsaA — designed to isolate the delta-lpxc-specific transcriptional response net of the Fur and SspB co-deletions that Sections 1 and 2 characterized. Differential expression was computed with edgeR across all 3,943 Caulobacter protein-coding genes at an FDR < 0.05 threshold. Three pre-registered gene sets were tested against this contrast: the sphingolipid biosynthesis panel of six core genes plus three Uchendu 2026 inner-membrane transporter genes, the canonical Lpt apparatus panel of six components, and the PG remodeling gene set of 53 loci locked before DE analysis to avoid circular selection.\n\nThe secondary modality is a single-replicate outer membrane proteome from three strains: 4580 wild-type, 4584 intermediate, and 4672 rescued. Because this is a single replicate, the proteome supports directional interpretation only — no per-protein statistics are available. The LptD and LptE protein declines and the lptC2 protein accumulation we will see are therefore pilot-grade observations requiring the replicated proteomics scheduled for summer 2026.\n\nThe CtpA sub-claim had its own pre-registered BORDERLINE criterion written before we ran the analysis: both a borderline transcript p-value between 0.05 and 0.15 AND protein detection in the OM proteome were required; failing either condition alone constitutes REJECTED. Understanding that criterion — and why CtpA fails it — is essential context for the dedicated CtpA slide. The methods here divide cleanly into what is statistically established (replicated transcript DE) and what is directional-only (the single-replicate proteome). We will label each finding accordingly throughout this section.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 4"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 5"},
+        {"kind": "notebook", "ref": "notebooks/04_sphingolipid_lpt_panel.ipynb cells 1-7"},
+        {"kind": "notebook", "ref": "notebooks/05_pg_remodeling.ipynb cells 1-6"}
+      ]
+    },
+    {
+      "position": 2,
+      "layout": "data_figure",
+      "content": {
+        "title": "Sphingolipid biosynthesis is constitutive: 0 of 6 pathway genes induced when lipid A is lost",
+        "figure": "figures/NB04_sphingolipid_locus_heatmap.png",
+        "caption": "Sphingolipid biosynthesis and Uchendu transporter expression across strain series; spt (-0.64, FDR 0.002) and sphk (-0.40, FDR 0.02) are mildly DOWN; 0 of 6 core biosynthesis genes is significantly upregulated.",
+        "data_source": "REPORT.md §Finding 4; notebooks/04_sphingolipid_lpt_panel.ipynb cell 4"
+      },
+      "speaker_notes": "The heatmap shows the sphingolipid biosynthesis cluster across our strain series. The headline is simple: zero of the six core biosynthesis genes is significantly upregulated. Two pathway members — spt, the serine palmitoyltransferase at the first committed step, logFC -0.64 at FDR 0.002, and sphk, sphingosine kinase, logFC -0.40 at FDR 0.02 — are mildly but significantly DOWN in the lipid A-deficient rescued state. The remaining four biosynthesis genes are flat across the strain series.\n\nThis rules out the original hypothesis from this project's inception: that delta-fur derepresses sphingolipid biosynthesis, driving ceramide phosphoglycerate production that substitutes for lipid A. The transcript data say the opposite. The rescue is therefore flux-driven or post-transcriptional — the existing CPG pool suffices without any biosynthesis upregulation. Olea-Ozuna 2020 and 2024 established that this pathway is required for Caulobacter stationary-phase survival and membrane stability; Dhakephalkar 2023 and 2025 characterized the enzymatic steps CpgB ceramide kinase and CpgD cytidylyltransferase biochemically. Both biochemical studies are consistent with constitutive production — they characterize enzymes whose expression level is not required to increase in order to produce CPG at sufficient flux.\n\nThe three Uchendu 2026 inner-membrane transporter genes — lptG2, lptF2, lptC2 (CCNA_01213, CCNA_01214, CCNA_01226) — show a more complex pattern. One, lptC2, is slightly DOWN at transcript (-0.60, FDR 0.034) despite accumulating at the protein level — the pilot observation we will unpack in the Lpt slide.\n\nOne scope caveat: these measurements come from a single PYE rich-medium growth condition. Whether the sphingolipid pathway responds differently under iron-limiting or envelope-stress conditions is not tested here. The constitutivity claim is solid within this condition. The transition is from lipid production to transport: if the CPG pool is already made, how does the Lpt apparatus handle both CPG delivery and the disappearance of its canonical LPS cargo?",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 4"},
+        {"kind": "notebook", "ref": "notebooks/04_sphingolipid_lpt_panel.ipynb cell 4"},
+        {"kind": "citation_pool_key", "ref": "OleaOzuna2021"}
+      ]
+    },
+    {
+      "position": 3,
+      "layout": "two_column_compare",
+      "content": {
+        "title": "Lpt apparatus in delta-lpxc: transcripts stable or up, but detected proteins decline",
+        "left_col_title": "Transcript level (4599-vs-4584, replicated)",
+        "left_col_content": [
+          "0 of 6 canonical Lpt components significantly DOWN at FDR < 0.05",
+          "MsbA-like CCNA_00307: +0.89 log2 (FDR 0.01) — consistent with Uchendu 2026 shared-component model",
+          "LptC-related CCNA_03716: +0.56 log2 (FDR 0.005)",
+          "lptC2 CCNA_01226: -0.60 log2 (FDR 0.034) — transcript down despite protein accumulation"
+        ],
+        "right_col_title": "Protein level (single replicate, direction only)",
+        "right_col_content": [
+          "LptD CCNA_01760: -0.47 log2 vs intermediate; -0.62 log2 vs WT baseline",
+          "LptE CCNA_03866: -0.78 log2 vs intermediate; -0.68 log2 vs WT baseline",
+          "lptC2 CCNA_01226 protein: +1.08 log2 vs intermediate (+0.66 vs WT after prior decrease in 4584)",
+          "Cannot discriminate substrate-limitation from downregulation — replicated proteomics required"
+        ]
+      },
+      "speaker_notes": "The Lpt apparatus is the canonical system for transporting lipopolysaccharide from the inner membrane to the outer leaflet of the outer membrane. Uchendu et al. 2026 showed that in Caulobacter, homologs of the inner-membrane Lpt proteins — lptG2, lptF2, lptC2 — are required for sphingolipid transport and share the canonical LptB ATPase with LPS transport. The shared-component model predicts that when LPS disappears from the rescued strain, the Lpt machinery should be maintained or upregulated to handle the remaining sphingolipid cargo.\n\nThe transcript data are consistent with that prediction. MsbA-like CCNA_00307 is up +0.89 log2 at FDR 0.01; LptC-related CCNA_03716 is up +0.56 log2 at FDR 0.005; zero canonical Lpt components are significantly DOWN at the transcript level. So far, this supports Uchendu 2026.\n\nThe protein level tells a different story. The two canonical Lpt proteins actually detected — LptD at CCNA_01760 and LptE at CCNA_03866 — both decline in the rescued strain: LptD log2(4672/4659) equals -0.47, and log2(4672/4580) equals -0.62. LptE is -0.78 versus the intermediate and -0.68 versus WT. The lptC2 Uchendu transporter protein shows the opposite direction: +1.08 log2 versus the intermediate, though the net change versus WT baseline is more modest at +0.66 log2 after accounting for a prior decrease in the intermediate strain.\n\nWhether the LptD and LptE protein decline reflects reduced demand for LPS-specific transport when no LPS substrate remains — a substrate-limitation interpretation — or reflects genuine downregulation of the canonical apparatus, cannot be discriminated from single-replicate data. This is the key limitation for this analysis. Both the transcript and protein directions are interpretable as direction; statistical discrimination requires the replicated proteomics scheduled for summer 2026. The partial-support grade on this analysis (A14) reflects exactly this gap. The discordance is real and should not be papered over — it is an honest readout of a system in transition that we have not yet resolved at protein resolution.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 4"},
+        {"kind": "notebook", "ref": "notebooks/04_sphingolipid_lpt_panel.ipynb cells 4 & 6"},
+        {"kind": "citation_pool_key", "ref": "Uchendu2026"}
+      ]
+    },
+    {
+      "position": 4,
+      "layout": "claim_evidence",
+      "content": {
+        "title": "CtpA as LpxF-equivalent processing step: not supported at the pre-registered bar",
+        "bullets": [
+          "Pre-registered 4599-vs-4584 contrast: logFC +0.58, p=0.048, FDR=0.109 — FDR fails 0.05 PASS threshold; p=0.048 also fails the BORDERLINE lower bound of 0.05, so BORDERLINE verdict is not met",
+          "CtpA not detected in the single-replicate OM proteome — BORDERLINE requires both borderline transcript AND protein detection; protein absence alone triggers REJECTED",
+          "Cumulative 4599-vs-4580 FDR=0.035 is significant but conflates delta-fur, delta-sspB, and delta-lpxc effects; reported as supplemental observation consistent with Fur regulation, not as evidence for lipid-A-loss-specific CtpA induction"
+        ],
+        "figure": "figures/NB04_ctpA_per_strain.png",
+        "figure_caption": "CtpA CCNA_03113 CPM per strain: monotonic rise 37->42->63 CPM, suggestive but pre-registered 4599-vs-4584 FDR=0.109 and OM proteome absence yield REJECTED verdict.",
+        "citations": ["Zik2022"]
+      },
+      "speaker_notes": "Zik et al. 2022 predicted that CtpA — CCNA_03113 — serves as a Caulobacter LpxF-equivalent processing step, catalyzing a headgroup modification to ceramide phosphoglycerate that allows CPG to functionally substitute for lipid A. This was a specific mechanistic prediction: CtpA should be induced in the lipid A-deficient rescued state because demand for CPG headgroup processing would rise. We tested this prediction using the pre-registered 4599-vs-4584 contrast — designed before analysis to isolate the delta-lpxc-specific response — with a BORDERLINE criterion that required both a borderline transcript p-value between 0.05 and 0.15 AND protein detection in the OM proteome.\n\nThe transcript p-value in the 4599-vs-4584 contrast is 0.048, with logFC +0.58 and FDR 0.109. The notebook itself outputs the string CTPA VERDICT: REJECTED. Two reasons for rejection: first, the p-value of 0.048 is below the BORDERLINE lower bound of 0.05 — falling outside the borderline range — while the FDR of 0.109 fails the PASS bar of 0.05. Second, and definitively, CtpA was not detected in the single-replicate OM proteome. The BORDERLINE criterion requires both conditions simultaneously; protein absence alone is sufficient to trigger REJECTED regardless of transcript behavior.\n\nThe figure shows the monotonic CPM rise across strains — 37 in 4580 wild-type, 42 in 4584 intermediate, 63 in 4599 rescued. The pattern is suggestive of gradual induction. However, the pre-registered contrast was 4599-vs-4584, the one agreed before analysis as the clean delta-lpxc test, and it does not pass. There is a cumulative 4599-vs-4580 contrast with FDR 0.035, but this conflates all three co-deletions and is not a clean test of lipid-A-loss-driven CtpA induction; we report it as supplemental, consistent with Fur regulation of CtpA.\n\nThe conclusion: the Zik 2022 hypothesis that CtpA serves as the LpxF-equivalent processing step is not supported by these data at the evidence standard we pre-registered. The hypothesis is not refuted — it remains untested at protein resolution — and is the highest-priority mechanistic question for replicated proteomics. Audiences often push back here: why not just call FDR=0.109 a trend? Because we set the bar before we looked, and honoring that bar is the discipline this entire project rests on.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 4"},
+        {"kind": "notebook", "ref": "notebooks/04_sphingolipid_lpt_panel.ipynb cell 5"},
+        {"kind": "citation_pool_key", "ref": "Zik2022"}
+      ]
+    },
+    {
+      "position": 5,
+      "layout": "data_figure",
+      "content": {
+        "title": "PG remodeling: SdpA lytic transglycosylase and Pal-Tol engage as broad synthesis shuts down",
+        "figure": "figures/NB05_pg_remodeling_heatmap.png",
+        "caption": "PG-remodeling enzymes (28 of 53 pre-curated loci meeting H4 threshold); 20 DOWN (division and elongation machinery); specific inductions: SdpA +4.8 log2 protein, Pal +2.08 transcript and +2.84 protein.",
+        "data_source": "REPORT.md §Finding 5; notebooks/05_pg_remodeling.ipynb cells 5-6"
+      },
+      "speaker_notes": "The peptidoglycan remodeling heatmap reveals a two-part story. The dominant pattern is shutdown: 20 of the 28 loci meeting the H4 threshold are significantly DOWN. These are the normal housekeeping enzymes of PG turnover during growth and division — FtsI penicillin-binding protein, PbpZ, PbpC, the D,D-transpeptidase, MurD and MurJ biosynthesis and flippase genes, multiple LdpD, LdpE, and LdpF M23-family endopeptidases, and amiC amidase. The cell is suppressing the PG metabolism it uses for normal division and elongation.\n\nAgainst that shutdown, three specific inductions stand out. SdpA — CCNA_01252, a soluble lytic murein transglycosylase — shows +4.8 log2 at the protein level. This is the most dramatic single protein-level signal in the entire delta-lpxc response dataset and appears specifically in the rescued strain. Pal — CCNA_00784, the peptidoglycan-associated outer membrane lipoprotein of the Tol-Pal envelope-integrity complex — is up +2.08 log2 at transcript and +2.84 at protein. Crucially, this signal appears in both NB05 PG analysis and as a top late-cohort ChvI gene from NB03, providing strong cross-notebook convergence for the specificity of Pal induction.\n\nTan and Chng 2025 established the primary function of the Tol-Pal complex as retrograde phospholipid transport for outer membrane lipid homeostasis, independent of its role at the division plane. In the delta-lpxc rescued strain, the outer leaflet has lost LPS and must maintain lipid homeostasis with sphingolipid instead; Pal upregulation is parsimoniously interpreted as increased retrograde phospholipid transport demand. Yeh et al. 2010 established that the Caulobacter Tol-Pal complex is essential for division-plane outer membrane constriction — unlike E. coli where it is dispensable — making the Pal upregulation mechanistically load-bearing: the rescued strain must complete cell division without LPS.\n\nThe single-replicate caveat (A20) applies to the protein-level signals: SdpA +4.8 and Pal +2.84 at protein are directionally strong but lack statistical uncertainty estimates. The transcript-level evidence for Pal +2.08 is replicated and statistically robust. Kang et al. 2021 showed that A. baumannii uses a distinct PG-remodeling route when it loses LPS — PBP1A loss plus ld-transpeptidases, not the Fur-sphingolipid path; Caulobacter's SdpA-mediated lytic route is mechanistically distinct. The next and final section will show how far this Caulobacter-specific structural machinery extends across related species.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 5"},
+        {"kind": "notebook", "ref": "notebooks/05_pg_remodeling.ipynb cells 5-6"},
+        {"kind": "citation_pool_key", "ref": "Tan2025"}
+      ]
+    }
+  ]
+}

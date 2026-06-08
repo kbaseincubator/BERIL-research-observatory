@@ -1,0 +1,25 @@
+{
+  "id": 17,
+  "position": 17,
+  "substory_id": "S3",
+  "layout": "data_figure",
+  "content": {
+    "title": "Lpt apparatus maintained at transcript; LptD/LptE protein decline reveals Layer 3 tension",
+    "figure": "figures/NB04_lpt_apparatus_heatmap.png",
+    "caption": "Canonical Lpt CPM heatmap: MsbA-like CCNA_00307 UP (+0.89, FDR 0.01) and LptC-related CCNA_03716 UP (+0.56, FDR 0.005) at transcript; LptD protein −0.47 and LptE −0.78 against transcript. Single-replicate OM proteome; discordance unresolved.",
+    "data_source": "REPORT.md §Finding 4; NB04_sphingolipid_lpt_panel.ipynb cells 3,5,6"
+  },
+  "speaker_notes_seed": "The NB04_lpt_apparatus_heatmap shows CPM (log2) for canonical Lpt components across the strain series. The visual story is asymmetric: MsbA-like CCNA_00307 (+0.89 transcript, FDR 0.01) and LptC-related CCNA_03716 (+0.56, FDR 0.005) are the upward outliers in the rescued strain — consistent with Uchendu 2026’s shared-component model for inner-membrane sphingolipid transport. No canonical Lpt component is significantly down at transcript level.\n\nThe tension lives in the single-replicate OM proteome (REPORT §Finding 4 protein table): LptD (CCNA_01760) log2(4672/4659) = −0.47 and LptE (CCNA_03866) = −0.78 — both decline at protein level despite stable/up transcripts. A parsimonious interpretation: with no LPS substrate, canonical LPS-specific Lpt machinery may be less occupied or actively turned over. But single-replicate proteomics cannot discriminate substrate-limitation from active downregulation; the verdict is DISCORDANT, not PASS.\n\nPilot signals not shown in the figure (speaker background): lptC2 (CCNA_01226) transcript −0.60 FDR 0.034, protein log2(4672/4659) = +1.08 vs intermediate (+0.66 vs WT baseline after accounting for prior −0.42 step) — labeled PILOT, requires replication. CCNA_01217 protein +0.77 vs intermediate, +0.74 vs WT — a second directional pilot datum. CtpA (CCNA_03113) REJECTED at pre-registered bar: FDR 0.109 (fails lower bound of 0.05), protein not detected in OM proteome.",
+  "evidence_anchors": [
+    {"kind": "report_section", "ref": "REPORT.md §Finding 4"},
+    {"kind": "report_section", "ref": "REPORT.md §NB04 image caption"}
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-07T00:00:00Z",
+      "finding_id": "F006",
+      "finding_class": "substory_arc",
+      "summary": "Converted layout from data_table to data_figure using NB04_lpt_apparatus_heatmap.png; title and caption reframed around A14/A15 (Lpt transcript maintained/up vs LptD/LptE protein discordance); pilot data (lptC2/CCNA_01217 PILOTs, CtpA REJECTED) moved to speaker_notes_seed; restores S3 substory plan’s data_figure slot for A14/A15 as specified in 02_substories.md."
+    }
+  ]
+}

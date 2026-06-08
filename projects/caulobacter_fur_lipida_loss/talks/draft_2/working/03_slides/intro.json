@@ -1,0 +1,61 @@
+{
+  "schema_version": "compose-fragment.v1",
+  "kind": "intro",
+  "throughline_id": "TL1",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "n_intro_slides_target": 3,
+  "slides": [
+    {
+      "position": 0,
+      "layout": "big_idea",
+      "content": {
+        "title": "Lipid A is essential in most Gram-negatives; *Caulobacter* tolerates its loss only if Δ*fur*"
+      },
+      "speaker_notes_seed": "Lipid A is a defining component of the outer leaflet in Gram-negative bacteria; LpxC, which catalyzes the first committed step of lipid A biosynthesis, is essential in virtually all species tested. Zik et al. 2022 showed a striking exception: in Caulobacter crescentus NA1000, deleting lpxC is viable when fur is co-deleted—and when the cell's anionic sphingolipid (ceramide phosphoglycerate, CPG) pathway is intact. The published statement is explicit: 'Fur-regulated processes, not iron status per se, underlie viability.' But which of the ~250 Fur-regulated genes actually carry that requirement? How does the cell hold its outer membrane together structurally without LPS? And why is this route available only to Caulobacter among the four Gram-negatives known to tolerate lipid A loss? These are the questions this work addresses. The experimental handle is a strain series designed by Kathleen Ryan's lab: 4580 (the ΔrsaA baseline, equivalent to wild-type for this comparison), 4584 (additionally Δfur ΔsspB—the permissive state enabling eventual lipid A loss), and 4599 (additionally Δlpxc—the fully rescued lipid-A-deficient state). All three strains were subjected to transcriptomics; the rescued pair (4659/4672) was also subjected to a single-replicate outer-membrane proteome.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "RESEARCH_PLAN.md §How this question landed here"},
+        {"kind": "report_section", "ref": "REPORT.md §Literature Context (Zik 2022, PMID 35649364)"}
+      ],
+      "intro_role": "background"
+    },
+    {
+      "position": 1,
+      "layout": "claim_evidence",
+      "content": {
+        "title": "Goal: identify which Fur regulon components constitute the Δ*lpxc* rescue and why only *Caulobacter* has them",
+        "bullets": [
+          "Which of the 93 Fur-released DEGs are operationally required—not merely incidentally derepressed?",
+          "Do constitutive sphingolipids and a repurposed Lpt apparatus suffice, or does rescue require new biosynthesis?",
+          "Why can *A. baumannii*, *N. meningitidis*, and *M. catarrhalis* not use the same route?"
+        ]
+      },
+      "speaker_notes_seed": "The project translates the Zik 2022 high-level observation into three answerable questions using the strain series alongside two independent evidence sources. The first question asks which of the 93 Fur-released DEGs identified by Leaden 2018 are mechanistically required for the Δlpxc rescue—not merely incidentally derepressed because Fur is gone. Of the ~250 genes in the Fur regulon, the subset that actually matters for lipid A dispensability is the central unknown. The second question asks whether the constitutive sphingolipid biosynthesis pathway suffices without induction, and whether the canonical Lpt apparatus is repurposed for sphingolipid trafficking as Uchendu 2026 predicts but did not test in a Δlpxc strain. The third asks why A. baumannii, N. meningitidis, and M. catarrhalis cannot use the same route—each tolerates lipid A loss, but via orthogonal mechanisms (PBP1A/Ldt, capsule substitution, and late-acyltransferase truncation, respectively). This project carries pre-registered significance thresholds committed before any analysis ran; the H1–H4 scorecard (18 rows) is a central deliverable, and negatives are reported as first-class findings.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "RESEARCH_PLAN.md §Refined research question"},
+        {"kind": "report_section", "ref": "RESEARCH_PLAN.md §Hypotheses (H1–H4)"},
+        {"kind": "report_section", "ref": "REPORT.md §Results / Hypothesis scorecard"}
+      ],
+      "intro_role": "goal"
+    },
+    {
+      "position": 2,
+      "layout": "claim_evidence",
+      "content": {
+        "title": "Three evidence streams trace the Δ*fur* signal from regulon to envelope rescue",
+        "bullets": [
+          "Fur-signal isolation: 4580→4584→4599 strain contrast cross-referenced to Leaden 2018 Δ*fur* RNA-seq (ρ=0.315, 93 DEGs)",
+          "Regulon triage: hypergeometric fitness enrichment of the 32-gene Fur-released subset against 33.25% genome-background rate (198 Caulobacter RB-TnSeq experiments)",
+          "Envelope characterization: transcript DE + single-replicate OM proteome + NCBI annotation-presence across 4 species, each claim evaluated at pre-registered bars"
+        ]
+      },
+      "speaker_notes_seed": "Three evidence streams converge on the throughline. First, the Fur signal is isolated by comparing the Δfur ΔsspB strain (4584-vs-4580) against Leaden 2018's published Δfur-alone RNA-seq—re-analyzed from the supplementary table rather than from raw reads, saving compute. Spearman ρ=0.315 over 93 DEGs confirms Fur derepression as a major component of the signal; the comparison also reveals which genes are buffered by the ΔsspB co-deletion (the cbb3/fix respiratory operon, 53 of the 93 Leaden DEGs). Second, the 32-gene concordant-strong Fur-released subset is ranked for envelope-stress fitness against the Caulobacter compendium (198 experiments, 22 envelope-stress conditions), using hypergeometric enrichment calibrated against the genome-background phenotype-bearing rate of 33.25%. This distinguishes operationally required genes from incidentally derepressed bystanders—and the calibration itself is a methodological contribution (the pre-registered ≥10% threshold sat below background). Third, the envelope structural response is characterized using transcript differential expression (edgeR, three contrasts), a single-replicate outer-membrane proteome, and NCBI annotation-presence across four Gram-negative species—every claim evaluated at a pre-registered bar before results were examined.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 1 (Leaden concordance ρ=0.315, 93 DEGs)"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 2 (33.25% genome-background rate, 198 experiments, Path A 32-gene subset)"},
+        {"kind": "report_section", "ref": "RESEARCH_PLAN.md §Analysis Plan (NB01–NB06 approach overview)"}
+      ],
+      "intro_role": "approach"
+    }
+  ]
+}
