@@ -184,5 +184,55 @@ column**. Two consequences:
   was reframed to an honest SSO field-occurrence atlas (Zhou Lab 16S, `enigma_coral`
   bricks) instead of fabricating a confounded source contrast.
 
+- **v5** (2026-06-09): Post-review hardening + deepening, in response to
+  ADVERSARIAL_REVIEW_1.md and a user content-gap audit. Two scopes:
+
+  **Scope A — corrective re-runs (close two review findings):**
+  - **I1 — "callable" must include every Tier-1 measured fitness.** NB02's
+    compound→Fitness-Browser carbon-source match used acid/conjugate-base name strings and
+    missed measured RB-TnSeq fitness (canonical miss: **lauric acid**, T1_measured yet
+    flagged `callable=False`, `organism_dark_reason=only_biosynthetic_signatures`). Fix:
+    resolve FB carbon-source names → PubChem CID → InChIKey and match on InChIKey (skeleton
+    block) against the resolved compound table, so any compound with a Tier-1 measured
+    carbon-source experiment is `callable=True` regardless of pathway-channel darkness.
+    Re-emit `census_master_summary.tsv`. *Honesty flag:* FB carbon sources are mostly
+    common metabolites, so the realistic payoff is **modest** (likely lauric acid + a small
+    number of aromatics); report the delta plainly, do not imply it rescues the dark
+    fraction. **I1 must run before any callable-vs-dark content analysis** (it moves the
+    boundary).
+  - **I4 — quantify co-occurrence effect size, no Spark re-run.** NB05 saved n11/n10/n01
+    per block in `cooccurrence_matrix.tsv`; the missing cell is derivable
+    (`n00 = 3109 − n11 − n10 − n01`, NGEN=3109 from build_nb05.py). Add Haldane-corrected
+    **odds ratio + CI** and **Jaccard** per block by arithmetic only. Keep the v4 verdict
+    (**no broad cross-module modularity**); foreground the concrete "≈25/3109 genomes carry
+    both an aromatic and a non-aromatic catabolic capacity" rather than φ alone.
+
+  **Scope B — NB09 deepening notebook (surface analysis already latent in the data):**
+  the review and user audit agreed the report under-uses NB00 chemistry and never shows the
+  utilizer→compound transpose, conservation, or a dark-matter taxonomy. NB09 adds, with
+  figures, and folds into a re-synthesized REPORT.md:
+  1. **Physicochemistry / bioavailability profiling** — MW/LogP/charge/solubility class
+     from NB00/identity resolution; contrast **callable vs dark** and **groundwater vs
+     necromass** property distributions. Frame bioavailability as a **ceiling on the
+     environmental atlas** (a sorbed/insoluble compound's abundance signal ≠ flux).
+  2. **Utilizer→compound transpose** — invert the per-compound predictions to a
+     per-organism capacity profile; identify **generalist vs specialist chassis**; annotate
+     each utilizer→compound inference with **catabolic-vs-biosynthetic provenance**
+     (reversible-reaction heuristic, *not* proof of flux — carry the caveat).
+  3. **Phylogenetic conservation of utilization** — per-clade prevalence of each catabolic
+     capacity (how conserved vs sporadic across the GTDB tree), from `phylo_utilizer_map.tsv`.
+  4. **Dark-matter leveling-up** — taxonomy of the 75 dark compounds:
+     **biosynthesis-known-but-catabolism-unknown** (e.g., `only_biosynthetic_signatures`,
+     `only_generic_rxns`) vs **fully orphan** (`no_kegg`, `kegg_no_rxn_in_genomes`); flag
+     MIBiG as the external biosynthesis check (out-of-lakehouse, named not queried);
+     report **source-stratified dark fraction** (groundwater vs necromass). Special
+     properties of dark vs consumable matter feed back into point 1.
+
+  *Pervasive honesty flags carried through Scope B:* **n=8 callable underpowers every
+  callable-vs-dark contrast** — all such contrasts are descriptive/directional only, no
+  inferential claims; catabolic direction is a reversible-reaction heuristic; "high
+  certainty" tiers are not comparable across compounds. Execution order:
+  **I1 → I4 → NB09 → re-synthesize → /berdl-review.**
+
 ## Authors
 - Adam Arkin (University of California, Berkeley; ORCID 0000-0002-4999-2931)

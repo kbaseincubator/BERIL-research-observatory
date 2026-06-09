@@ -9,7 +9,7 @@ organisms — and which ENIGMA isolates or environmentally observed organisms ar
 likely utilizers of each compound?
 
 ## Status
-Analysis — report drafted, awaiting `/berdl-review` and `/submit`.
+Completed — a tiered knowledge census of 83 ENIGMA Carbon Census compounds; ~89% (74/83) are organism-dark (no isolate utilizer call), with callable catabolism phylogenetically concentrated in Burkholderiales.
 
 ## Overview
 The Carbon Census selected 83 compounds (59 from SSO groundwater, 24 from necromass)
@@ -39,10 +39,18 @@ catabolic annotations); `enigma` (SSO field 16S); `kbase.nmdc_arkin` +
 ## Reproduction
 Prerequisites: on-cluster BERDL JupyterHub (Spark Connect) with `KBASE_AUTH_TOKEN`
 in `../../.env`; Python deps in `requirements.txt`; internet for PubChem PUG-REST
-(NB01) and enviPath (NB02). Run notebooks in order `00 → 01 → 02 → 02b → 03 → 04 →
-05 → 06 → 07 → 07b → 08`; each is built/executed by the matching
-`notebooks/build_nb*.py` (run from `notebooks/`). Outputs land in `data/` and
-`figures/`; the master census table is `data/census_master_summary.tsv`.
+(NB01, NB02c) and enviPath (NB02). Run notebooks in order
+`00 → 01 → 02 → 02b → 02c → 03 → 04 → 05 → 05b → 06 → 07 → 07b → 08 → 09`; each is
+built/executed by the matching `notebooks/build_nb*.py` (run from `notebooks/`).
+
+Spark-vs-local requirements (lowers the barrier for off-cluster collaborators, who
+can run the local stages while provisioning cluster access):
+- **🌩 Spark Connect required:** NB03, NB04, NB05, NB06, NB07, NB07b, NB08.
+- **💻 local / external-API only:** NB00, NB01, NB02, NB02b, NB02c, NB05b, NB09
+  (NB05b and NB09 recompute from cached `data/*.tsv`; no Spark re-run).
+
+Outputs land in `data/` and `figures/`; the master census table is
+`data/census_master_summary.tsv`.
 
 ## Authors
 - Adam Arkin (University of California, Berkeley; ORCID 0000-0002-4999-2931)

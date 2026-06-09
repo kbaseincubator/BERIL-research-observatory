@@ -419,6 +419,16 @@ ORDER BY n DESC
 
 Observed in `[nmdc_community_metabolic_ecology]` NB03 cell-9 when checking `score_category` value distribution in `gapmind_pathways`.
 
+### [enigma_carbon_census_1] NMDC/Planet Microbe `taxonomy.name` Is Species-Level — Genus Abundance Needs a species→genus Rollup
+
+**Problem**: Both the NMDC `covstats_taxonomy_rollup` and Planet Microbe `run_to_taxonomy` abundance tables key on a `taxonomy.name` that is **species-level**, not genus-level. Filtering those tables by a bare genus name (e.g., `WHERE name = 'Pseudomonas'`) silently matches only the near-zero rows that happen to carry the genus rank as a literal name — it does **not** sum the abundance of all species in that genus. The symptom is deceptively clean: a query returns rows and non-null numbers, so nothing errors, but the abundances are ~0 and entire genera look absent.
+
+**Manifestation**: In `enigma_carbon_census_1` an initial marine-abundance contrast showed 0/68 genera present in Planet Microbe — not because they were absent, but because the genus-name filter matched only genus-rank reference rows instead of aggregating their constituent species.
+
+**Solution**: Aggregate species→genus **before** filtering. Parse/derive the genus from the species `name`, `GROUP BY genus`, and `SUM(abundance)`; only then filter to the genera of interest. Never filter these tables by a bare genus string and trust the result.
+
+**Rule of thumb**: Any project doing genus-level abundance over `covstats_taxonomy_rollup` (NMDC) or `run_to_taxonomy` (Planet Microbe) must do the species→genus rollup first. A genus filter that returns rows is not evidence the rollup happened.
+
 ---
 
 ## Pangenome (`kbase_ke_pangenome`) Pitfalls
