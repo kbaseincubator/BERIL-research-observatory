@@ -69,13 +69,13 @@ column**. Two consequences:
 
 ## Data Sources
 **In-lakehouse (backbone):**
-- **GapMind** — per-genome carbon-source + amino-acid utilization, per-step gene mapping; runs on all pangenome genomes. *Tier 2.*
+- **GapMind** — per-genome carbon-source + amino-acid utilization, per-step gene mapping; runs on all pangenome genomes. *Tier 2 — but its ~50–60-pathway catalog is common sugars/amino acids/organic acids, so it is expected to contribute **near-zero** coverage for these secondary metabolites; ModelSEED carries Tier 2. NB02 opens with a catalog-overlap check to quantify the gap.* (`metabolic_category` values are `'carbon'`/`'aa'`, not display names; `score_simplified` is binary 0/1.)
 - **ModelSEED biochemistry** — compound → reaction → enzyme. *Tier 2/3.*
 - **Pangenome functional annotations** (eggNOG/KEGG/EC) — enzyme presence across GTDB species pangenomes. *Tier 3.*
 - **Fitness Browser / RB-TnSeq** — measured carbon-source experiments (~30 organisms linked to pangenome via `fb_pangenome_link.tsv`). *Tier 1.*
 - **ENIGMA genome_depot** (`enigma_genome_depot_enigma`, 32 GenomeDepot tables) — **primary substrate for deliverable (a)**. `browser_protein` ↔ `browser_protein_kegg_reactions`/`_kegg_pathways`/`_kegg_orthologs`/`_ec_numbers`/`_cazy_families` give catabolic annotations *directly on ENIGMA isolate proteins*; `browser_gene`→`browser_genome`→`browser_strain`→`browser_taxon` chains genes to strains and to `browser_taxon.taxonomy_id` (**NCBI taxid**) + `eggnog_taxid` + `name` — the crosswalk for phylogeny placement and for joining environmental datasets (which key on NCBI taxids). *Tier 3 directly on isolates, no pangenome bridge needed.*
 - **ENIGMA environmental observations** — `enigma` tenant (725 tables) for where isolates/taxa are seen in the field.
-- **Environmental sources** — MGnify (`kescience_mgnify`), SPIRE (`refdata_spire`), NMDC (`nmdc_metadata`/`nmdc_results`/`nmdc_ncbi_biosamples` + `kbase.nmdc_arkin`), Planet Microbe (`planetmicrobe` tenant), pangenome env metadata. For deliverable (c).
+- **Environmental sources** — MGnify (`kescience_mgnify`), SPIRE (**`refdata.spire`**, dot-notation: `FROM refdata.spire.<table>`), NMDC (`nmdc_metadata`/`nmdc_results`/`nmdc_ncbi_biosamples` + **`kbase.nmdc_arkin`**, dot-notation), Planet Microbe (**`planetmicrobe.planetmicrobe`**), pangenome env metadata. For deliverable (c). *(DB names verified by live discovery in PLAN_REVIEW_1; dot-notation DBs require `tenant.db.table` SQL.)*
 
 **External (supplementary, for compound→pathway linkage):**
 - **PubChem** — name → CID → InChIKey/SMILES + KEGG/ChEBI/ModelSEED/MetaCyc cross-refs (PUG-REST). *Foundational identity resolution.*
@@ -110,17 +110,28 @@ column**. Two consequences:
   channel). If coverage is too thin to support downstream mapping, pause and re-scope.
 - **03_organism_mapping** — pathway/enzyme → organisms. Two substrates: (i) **ENIGMA
   genome_depot** protein↔KO/EC/pathway/reaction tables for direct isolate calls; (ii)
-  pangenome annotations + GapMind per-genome + ModelSEED for the broad reference set.
-  *Output:* `data/compound_organism_predictions.tsv` with tier + pathway completeness.
+  pangenome annotations + ModelSEED for the broad reference set (GapMind only where catalog
+  overlaps). *Note: genome_depot junction tables store **FK integer ids**, not strings — a
+  3-hop join through the lookup tables (`browser_protein_kegg_orthologs`→`browser_kegg_ortholog`,
+  `_ec_numbers`→`browser_ec_number`, `_kegg_reactions`→`browser_kegg_reaction`, etc.) is
+  required to recover K-numbers/EC strings.* *Output:* `data/compound_organism_predictions.tsv`
+  with tier + pathway completeness.
 - **04_enigma_utilizers** — assemble per-compound ENIGMA-isolate predictions from
-  genome_depot, joined to `browser_taxon` (NCBI taxid + name) and ENIGMA environmental
-  observations. **Deliverable (a).** *Output:* `data/enigma_utilizer_predictions.tsv`.
+  genome_depot, joined `browser_gene.genome_id`→`browser_genome.strain_id`→
+  `browser_strain.taxon_id`→`browser_taxon.id` (NCBI taxid in `taxonomy_id`, name in `name`)
+  and ENIGMA environmental observations. **Deliverable (a).**
+  *Output:* `data/enigma_utilizer_predictions.tsv`.
 - **05_cooccurrence** — within-genome (metabolic-versatility profiles) and across-genome
   (modularity, phylogenetic clustering) pathway co-occurrence; tests H2. *Output:* figures + matrix.
 - **06_phylo_maps** — per-compound utilizer maps on the GTDB tree with certainty scores.
-  **Deliverable (b).** *Output:* per-compound figures + tree data.
+  **Deliverable (b).** *Bridge genome_depot strains→pangenome via assembly accession
+  (`browser_genome.external_id`), NOT short strain names (collision pitfall); cross-check
+  genus after any NCBI-taxid join.* *Output:* per-compound figures + tree data.
 - **07_environmental_atlas** — MGnify/SPIRE/NMDC/Planet Microbe/pangenome env distributions
-  for implicated taxa+pathways; tests H3. **Deliverable (c).** *Output:* figures + tables.
+  for implicated taxa+pathways; tests H3. **Deliverable (c).** *H3 resolves at **genus level**
+  at best — ENIGMA CORAL field community data is genus-level only. Run as a standalone `.py`
+  (`nohup` + checkpoint parquet): the env-table scans exceed the ~20-min JupyterHub kernel
+  idle-timeout.* *Output:* figures + tables.
 - **08_synthesis** — assemble the three deliverables; per-compound knowledge-census summary
   (incl. Tier-0 gap list for enrichment design).
 
@@ -152,6 +163,13 @@ column**. Two consequences:
   carries NCBI taxid + eggnog_taxid + name. Deliverable (a) now maps **directly on
   genome_depot**, mapping isolates via NCBI id / taxonomic name and avoiding the coarse
   pangenome bridge. Tiers renumbered (taxonomic-prior is now Tier 6).
+- **v3** (2026-06-09): Incorporated PLAN_REVIEW_1 (independent review, live discovery).
+  Corrected DB names (SPIRE `refdata.spire`, Planet Microbe `planetmicrobe.planetmicrobe`,
+  `kbase.nmdc_arkin` — all dot-notation). Noted genome_depot junction tables are FK ids
+  needing a 3-hop lookup join for KO/EC strings. Reframed GapMind Tier 2 as expected
+  near-zero (ModelSEED carries Tier 2) with a catalog-overlap check opening NB02. Added
+  NB06 assembly-accession bridge (avoid short-name collision), NB07 genus-level H3 caveat
+  + `.py`/nohup fallback for the idle-timeout-prone env scan.
 
 ## Authors
 - Adam Arkin (University of California, Berkeley; ORCID 0000-0002-4999-2931)

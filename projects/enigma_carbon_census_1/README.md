@@ -21,7 +21,7 @@ isolate collection and environmental data — to guide enrichment design and
 genetic-determinant discovery.
 
 ## Quick Links
-- [Research Plan](RESEARCH_PLAN.md) — hypothesis, approach, query strategy *(TBD)*
+- [Research Plan](RESEARCH_PLAN.md) — hypothesis, approach, query strategy
 - [Report](REPORT.md) — findings, interpretation, supporting evidence *(TBD)*
 
 ## Input Data
