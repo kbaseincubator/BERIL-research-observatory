@@ -1,0 +1,69 @@
+compound_id	name	npc_pathway	kegg_id	best_tier	organism_dark_reason
+Cc1_29	harman	Alkaloids	C09209	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_102	1_prop_2_en_1_yl__1H_indole_3_carboxylic_acid	Alkaloids		T0_dark	no_kegg
+Cc1_22	2-hydroxy-4,7,8-trimethylquinoline	Alkaloids		T0_dark	no_kegg
+Cc1_46	3,6-dimethylchromone	Polyketides		T0_dark	no_kegg
+Cc1_39	7-hydroxy-4,8-dimethylchromen-2-one	Shikimates and Phenylpropanoids		T0_dark	no_kegg
+Cc1_71	Fraxetin	Shikimates and Phenylpropanoids	C09265	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_34	2',5'-dihydroxychalcone	Shikimates and Phenylpropanoids		T0_dark	no_kegg
+Cc1_60	Phthalic acid mono-2-ethylhexyl ester	Shikimates and Phenylpropanoids	C03343	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_106	2-Isopropyl-5-methylcyclohexanamine	Terpenoids		T0_dark	no_kegg
+CECREIRZLPLYDM-UHFFFAOYSA-N	Manool	Terpenoids		T2_3_reaction	no_kegg
+KWILGNNWGSNMPA-UHFFFAOYSA-N	Mellein / Ochracin	Shikimates and Phenylpropanoids		T5_lit	no_kegg
+Cc1_216	(-)-Perillyl alcohol	Terpenoids	C02452	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_12	choline sulfate / choline o-sulfuric acid	Amino acids and Peptides	C00919	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_25	5,6-Dimethylbenzimidazole	Alkaloids	C03114	T2_3_reaction	only_generic_rxns
+Cc1_23	acridone	Alkaloids	C20142	T3_kegg	kegg_no_rxn_in_genomes
+Cc1_121	BIOTIN	Alkaloids	C00120	T2_3_reaction	only_generic_rxns
+Cc1_266	Triacetonamine	Alkaloids		T0_dark	no_kegg
+Cc1_122	Cadaverine	Alkaloids	C01672	T2_3_reaction	only_generic_rxns
+Cc1_96	4,6,8-trimethylhydroquinolin-2-one	Alkaloids		T0_dark	no_kegg
+Cc1_147	Indole-3-butyric acid	Alkaloids	D78109	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_72	indole-3-acetonitrile	Alkaloids	C02938	T2_3_reaction	only_generic_rxns
+Cc1_42	4-hydroxy-1-methyl-2-quinolone	Alkaloids		T0_dark	no_kegg
+Cc1_24	1,4-dimethylquinolin-2(1h)-one	Alkaloids		T0_dark	no_kegg
+Cc1_41	2-hydroxyquinoline	Alkaloids	C06338	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_110	3-Indoleacrylic acid	Alkaloids, Shikimates and Phenylpropanoids	C21283	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_69	DODECANEDIOIC ACID	Fatty acids	C02678	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_87	TETRADECANEDIOIC ACID	Fatty acids		T2_3_reaction	no_kegg
+Cc1_76	Decanedioic acid/Sebacic acid	Fatty acids	C08277	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_66	Brassylic acid	Fatty acids		T0_dark	no_kegg
+Cc1_54	Hexadecanedioic acid	Fatty acids	C19615	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_8	alpha-hydroxyisobutyric acid	Fatty acids	C21297	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_53	12-Hydroxydodecanoic acid	Fatty acids	C08317	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_17	sn-glycero-3-phosphocholine	Fatty acids	D07349	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_44	6-methylchromone	Polyketides	D76209	T3_kegg	kegg_no_rxn_in_genomes
+Cc1_109	3-hydroxybenzyl alcohol	Shikimates and Phenylpropanoids	C03351	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_172	4-(4-Hydroxyphenyl)butan-2-one	Shikimates and Phenylpropanoids	D70581	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_30	zingerone	Shikimates and Phenylpropanoids	C17497	T3_kegg	kegg_no_rxn_in_genomes
+Cc1_108	3-(2-Hydroxyphenyl)propionic acid	Shikimates and Phenylpropanoids	C01198	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_113	6-aminochromen-2-one	Shikimates and Phenylpropanoids		T0_dark	no_kegg
+Cc1_220	2-Hydroxychalcone 	Shikimates and Phenylpropanoids	D90823	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_33	7-hydroxyflavanone	Shikimates and Phenylpropanoids	D90988	T3_kegg	kegg_no_rxn_in_genomes
+Cc1_58	2-Hydroxyphenylacetic acid	Shikimates and Phenylpropanoids	C05852	T2_3_reaction	only_generic_rxns
+Cc1_142	guaiacol	Shikimates and Phenylpropanoids	C01502	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_118	ANETHOLE	Shikimates and Phenylpropanoids	D02377	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_175	Benzylideneacetone	Shikimates and Phenylpropanoids	D70186	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_104	(±)-Dihydroactinidiolide	Terpenoids		T0_dark	no_kegg
+Cc1_100	(S)-(-)-Perillic acid	Terpenoids	C13419	T2_3_reaction	kegg_no_rxn_in_genomes
+Cc1_126	CARVEOL	Terpenoids	D77822	T3_kegg	kegg_no_rxn_in_genomes
+Cc1_99	(1R)-(-)-Nopol	Terpenoids		T0_dark	no_kegg
+Cc1_36	ketopinic acid	Terpenoids		T0_dark	no_kegg
+Cc1_49	(+)-Nootkatone	Terpenoids	C17914	T2_3_reaction	kegg_no_rxn_in_genomes
+ZJTJUVIJVLLGSP-UHFFFAOYSA-N	lumichrome	Alkaloids		T2_3_reaction	no_kegg
+GDNYELSKMFYCBB-UHFFFAOYSA-N	2,3-dihydro-1H-indole-7-carboxylic acid	Alkaloids		T0_dark	no_kegg
+OLNJUISKUQQNIM-UHFFFAOYSA-N	INDOLE-3-CARBOXALDEHYDE	Alkaloids	C08493	T2_3_reaction	kegg_no_rxn_in_genomes
+OVYWMEWYEJLIER-UHFFFAOYSA-N	6-Hydroxyquinoline	Alkaloids		T2_3_reaction	no_kegg
+QNRXNRGSOJZINA-UHFFFAOYSA-N	(2S)indoline-2-carboxylic acid	Alkaloids		T0_dark	no_kegg
+FVMDYYGIDFPZAX-UHFFFAOYSA-N	3-Hydroxyphenylacetic acid	Shikimates and Phenylpropanoids	C05593	T2_3_reaction	only_generic_rxns
+DSSYKIVIOFKYAU-XCBNKYQSSA-N	D-camphor	Terpenoids	C00808	T2_3_reaction	kegg_no_rxn_in_genomes
+FQTLCLSUCSAZDY-SDNWHVSQSA-N	NEROLIDOL	Terpenoids		T2_3_reaction	no_kegg
+RGZSQWQPBWRIAQ-UHFFFAOYSA-N	Bisabolol	Terpenoids		T2_3_reaction	no_kegg
+VZJHQHUOVIDRCF-DGMCESFYSA-N	(-)-Isolongifolol	Terpenoids		T0_dark	no_kegg
+NVEQFIOZRFFVFW-UHFFFAOYSA-N	b-Caryophyllene oxide	Terpenoids		T0_dark	no_kegg
+XVULBTBTFGYVRC-HHUCQEJWSA-N	Sclareol	Terpenoids	C09183	T2_3_reaction	kegg_no_rxn_in_genomes
+IBRKLUSXDYATLG-LURJTMIESA-N	SALSOLINOL	Alkaloids	C09642	T2_3_reaction	kegg_no_rxn_in_genomes
+QWJIWJWEGVAMEB-UHFFFAOYSA-N	1H-pyrrolo[3,2-b]pyridine-5-carboxylic acid	Alkaloids		T0_dark	no_kegg
+WJJMNDUMQPNECX-UHFFFAOYSA-N	2,6-Pyridinedicarboxylic acid	Alkaloids		T2_3_reaction	no_kegg
+WVMBPWMAQDVZCM-UHFFFAOYSA-N	N-methylanthranilic acid 	Alkaloids	C03005	T2_3_reaction	kegg_no_rxn_in_genomes
+AFDXODALSZRGIH-QPJJXVBHSA-N	4-Methoxycinnamic acid	Shikimates and Phenylpropanoids		T0_dark	no_kegg
