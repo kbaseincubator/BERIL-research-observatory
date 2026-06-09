@@ -1,0 +1,84 @@
+compound_id	name	npc_pathway	resolved_via	cid	inchikey	molecular_formula	smiles	iupac_name	kegg_id	chebi_id
+Cc1_29	harman	Alkaloids	name	5281404	PSFDQSOCUJVVGF-UHFFFAOYSA-N	C12H10N2	CC1=NC=CC2=C1NC3=CC=CC=C23	1-methyl-9H-pyrido[3,4-b]indole	C09209	CHEBI:5623
+Cc1_102	1_prop_2_en_1_yl__1H_indole_3_carboxylic_acid	Alkaloids	name	28599882	NBSNSQJYXCXGLK-UHFFFAOYSA-N	C12H11NO2	C=CCN1C=C(C2=CC=CC=C21)C(=O)O	1-prop-2-enylindole-3-carboxylic acid		
+Cc1_22	2-hydroxy-4,7,8-trimethylquinoline	Alkaloids	name	864589	QRSYDKNRNVBMFQ-UHFFFAOYSA-N	C12H13NO	CC1=C(C2=C(C=C1)C(=CC(=O)N2)C)C	4,7,8-trimethyl-1H-quinolin-2-one		
+Cc1_46	3,6-dimethylchromone	Polyketides	name	688894	CNWMARIMEBTYMR-UHFFFAOYSA-N	C11H10O2	CC1=CC2=C(C=C1)OC=C(C2=O)C	3,6-dimethylchromen-4-one		
+Cc1_39	7-hydroxy-4,8-dimethylchromen-2-one	Shikimates and Phenylpropanoids	name	5356597	MVMMGVPSTRNMSV-UHFFFAOYSA-N	C11H10O3	CC1=CC(=O)OC2=C1C=CC(=C2C)O	7-hydroxy-4,8-dimethylchromen-2-one		
+Cc1_71	Fraxetin	Shikimates and Phenylpropanoids	name	5273569	HAVWRBANWNTOJX-UHFFFAOYSA-N	C10H8O5	COC1=C(C(=C2C(=C1)C=CC(=O)O2)O)O	7,8-dihydroxy-6-methoxychromen-2-one	C09265	CHEBI:5169
+Cc1_34	2',5'-dihydroxychalcone	Shikimates and Phenylpropanoids	name	3526360	PZVRZRARFZZBCA-UHFFFAOYSA-N	C15H12O3	C1=CC=C(C=C1)C=CC(=O)C2=C(C=CC(=C2)O)O	1-(2,5-dihydroxyphenyl)-3-phenylprop-2-en-1-one		
+Cc1_60	Phthalic acid mono-2-ethylhexyl ester	Shikimates and Phenylpropanoids	name	20393	DJDSLBVSSOQSLW-UHFFFAOYSA-N	C16H22O4	CCCCC(CC)COC(=O)C1=CC=CC=C1C(=O)O	2-(2-ethylhexoxycarbonyl)benzoic acid	C03343	CHEBI:17243
+Cc1_106	2-Isopropyl-5-methylcyclohexanamine	Terpenoids	name	89497	RBMUAGDCCJDQLE-UHFFFAOYSA-N	C10H21N	CC1CCC(C(C1)N)C(C)C	5-methyl-2-propan-2-ylcyclohexan-1-amine		
+CECREIRZLPLYDM-UHFFFAOYSA-N	Manool	Terpenoids	inchikey	238792	CECREIRZLPLYDM-UHFFFAOYSA-N	C20H34O	CC1(CCCC2(C1CCC(=C)C2CCC(C)(C=C)O)C)C	5-(5,5,8a-trimethyl-2-methylidene-3,4,4a,6,7,8-hexahydro-1H-naphthalen-1-yl)-3-methylpent-1-en-3-ol		
+KWILGNNWGSNMPA-UHFFFAOYSA-N	Mellein / Ochracin	Shikimates and Phenylpropanoids	inchikey	28516	KWILGNNWGSNMPA-UHFFFAOYSA-N	C10H10O3	CC1CC2=C(C(=CC=C2)O)C(=O)O1	8-hydroxy-3-methyl-3,4-dihydroisochromen-1-one		CHEBI:38760
+Cc1_216	(-)-Perillyl alcohol	Terpenoids	name	369312	NDTYTMIUWGWIMO-SNVBAGLBSA-N	C10H16O	CC(=C)[C@H]1CCC(=CC1)CO	[(4S)-4-prop-1-en-2-ylcyclohexen-1-yl]methanol	C02452	CHEBI:10782
+Cc1_256	Tyramine	Alkaloids	name	5610	DZGWFCGJZKJUFP-UHFFFAOYSA-N	C8H11NO	C1=CC(=CC=C1CCN)O	4-(2-aminoethyl)phenol	C00483	CHEBI:15760
+Cc1_12	choline sulfate / choline o-sulfuric acid	Amino acids and Peptides	name	485	WXCQAWGXWVRCGP-UHFFFAOYSA-N	C5H13NO4S	C[N+](C)(C)CCOS(=O)(=O)[O-]	2-(trimethylazaniumyl)ethyl sulfate	C00919	CHEBI:16822
+Cc1_25	5,6-Dimethylbenzimidazole	Alkaloids	name	675	LJUQGASMPRMWIW-UHFFFAOYSA-N	C9H10N2	CC1=CC2=C(C=C1C)N=CN2	5,6-dimethyl-1H-benzimidazole	C03114	CHEBI:15890
+Cc1_23	acridone	Alkaloids	name	2015	FZEYVTFCMJSGMP-UHFFFAOYSA-N	C13H9NO	C1=CC=C2C(=C1)C(=O)C3=CC=CC=C3N2	10H-acridin-9-one	C20142	CHEBI:50756
+Cc1_121	BIOTIN	Alkaloids	name	171548	YBJHBAHKTGYVGT-ZKWXMUAHSA-N	C10H16N2O3S	C1[C@H]2[C@@H]([C@@H](S1)CCCCC(=O)O)NC(=O)N2	5-[(3aS,4S,6aR)-2-oxo-1,3,3a,4,6,6a-hexahydrothieno[3,4-d]imidazol-4-yl]pentanoic acid	C00120	CHEBI:15956
+Cc1_266	Triacetonamine	Alkaloids	name	13220	JWUXJYZVKZKLTJ-UHFFFAOYSA-N	C9H17NO	CC1(CC(=O)CC(N1)(C)C)C	2,2,6,6-tetramethylpiperidin-4-one		CHEBI:177813
+Cc1_9	xanthine	Alkaloids	name	1188	LRFVTYWOQMYALW-UHFFFAOYSA-N	C5H4N4O2	C1=NC2=C(N1)C(=O)NC(=O)N2	3,7-dihydropurine-2,6-dione	C00385	CHEBI:15318
+Cc1_122	Cadaverine	Alkaloids	name	273	VHRGRCVQAFMJIZ-UHFFFAOYSA-N	C5H14N2	C(CCN)CCN	pentane-1,5-diamine	C01672	CHEBI:18127
+Cc1_96	4,6,8-trimethylhydroquinolin-2-one	Alkaloids	name	268329	UHXASMSNKAVYHU-UHFFFAOYSA-N	C12H13NO	CC1=CC(=C2C(=C1)C(=CC(=O)N2)C)C	4,6,8-trimethyl-1H-quinolin-2-one		
+Cc1_147	Indole-3-butyric acid	Alkaloids	name	8617	JTEDVYBZBROSJT-UHFFFAOYSA-N	C12H13NO2	C1=CC=C2C(=C1)C(=CN2)CCCC(=O)O	4-(1H-indol-3-yl)butanoic acid	D78109	CHEBI:33070
+Cc1_72	indole-3-acetonitrile	Alkaloids	name	351795	DMCPFOBLJMLSNX-UHFFFAOYSA-N	C10H8N2	C1=CC=C2C(=C1)C(=CN2)CC#N	2-(1H-indol-3-yl)acetonitrile	C02938	CHEBI:17566
+Cc1_42	4-hydroxy-1-methyl-2-quinolone	Alkaloids	name	54686436	RTNPPPQVXREFKX-UHFFFAOYSA-N	C10H9NO2	CN1C2=CC=CC=C2C(=CC1=O)O	4-hydroxy-1-methylquinolin-2-one		CHEBI:227249
+Cc1_24	1,4-dimethylquinolin-2(1h)-one	Alkaloids	name	97252	CEONKCOBRZOYJS-UHFFFAOYSA-N	C11H11NO	CC1=CC(=O)N(C2=CC=CC=C12)C	1,4-dimethylquinolin-2-one		
+Cc1_41	2-hydroxyquinoline	Alkaloids	name	6038	LISFMEBWQUVKPJ-UHFFFAOYSA-N	C9H7NO	C1=CC=C2C(=C1)C=CC(=O)N2	1H-quinolin-2-one	C06338	CHEBI:18289
+Cc1_208	Phenylethylamine	Alkaloids	name	1001	BHHGXPLMPWCGHP-UHFFFAOYSA-N	C8H11N	C1=CC=C(C=C1)CCN	2-phenylethanamine	C05332	CHEBI:18397
+Cc1_110	3-Indoleacrylic acid	Alkaloids, Shikimates and Phenylpropanoids	name	5375048	PLVPPLCLBIEYEA-AATRIKPKSA-N	C11H9NO2	C1=CC=C2C(=C1)C(=CN2)/C=C/C(=O)O	(E)-3-(1H-indol-3-yl)prop-2-enoic acid	C21283	CHEBI:132244
+Cc1_143	GUANIDINEACETIC ACID	Amino acids and Peptides	name	763	BPMFZUMJYQTVII-UHFFFAOYSA-N	C3H7N3O2	C(C(=O)O)N=C(N)N	2-(diaminomethylideneamino)acetic acid	C00581	CHEBI:16344
+Cc1_69	DODECANEDIOIC ACID	Fatty acids	name	12736	TVIDDXQYHWJXFK-UHFFFAOYSA-N	C12H22O4	C(CCCCCC(=O)O)CCCCC(=O)O	dodecanedioic acid	C02678	CHEBI:4676
+Cc1_87	TETRADECANEDIOIC ACID	Fatty acids	name	13185	HQHCYKULIHKCEB-UHFFFAOYSA-N	C14H26O4	C(CCCCCCC(=O)O)CCCCCC(=O)O	tetradecanedioic acid		CHEBI:76308
+Cc1_76	Decanedioic acid/Sebacic acid	Fatty acids	name	5192	CXMXRPHRNRROMY-UHFFFAOYSA-N	C10H18O4	C(CCCCC(=O)O)CCCC(=O)O	decanedioic acid	C08277	CHEBI:41865
+Cc1_66	Brassylic acid	Fatty acids	name	10458	DXNCZXXFRKPEPY-UHFFFAOYSA-N	C13H24O4	C(CCCCCC(=O)O)CCCCCC(=O)O	tridecanedioic acid		CHEBI:73718
+Cc1_54	Hexadecanedioic acid	Fatty acids	name	10459	QQHJDPROMQRDLA-UHFFFAOYSA-N	C16H30O4	C(CCCCCCCC(=O)O)CCCCCCC(=O)O	hexadecanedioic acid	C19615	CHEBI:73722
+Cc1_8	alpha-hydroxyisobutyric acid	Fatty acids	name	11671	BWLBGMIXKSTLSX-UHFFFAOYSA-N	C4H8O3	CC(C)(C(=O)O)O	2-hydroxy-2-methylpropanoic acid	C21297	CHEBI:50129
+Cc1_53	12-Hydroxydodecanoic acid	Fatty acids	name	79034	ZDHCZVWCTKTBRY-UHFFFAOYSA-N	C12H24O3	C(CCCCCC(=O)O)CCCCCO	12-hydroxydodecanoic acid	C08317	CHEBI:39567
+Cc1_17	sn-glycero-3-phosphocholine	Fatty acids	name	657272	SUHOQUVVVLNYQR-MRVPVSSYSA-N	C8H20NO6P	C[N+](C)(C)CCOP(=O)([O-])OC[C@@H](CO)O	[(2R)-2,3-dihydroxypropyl] 2-(trimethylazaniumyl)ethyl phosphate	D07349	CHEBI:16870
+Cc1_44	6-methylchromone	Polyketides	name	594810	HTXQVFXXVXOLCF-UHFFFAOYSA-N	C10H8O2	CC1=CC2=C(C=C1)OC=CC2=O	6-methylchromen-4-one	D76209	
+Cc1_109	3-hydroxybenzyl alcohol	Shikimates and Phenylpropanoids	name	102	OKVJCVWFVRATSG-UHFFFAOYSA-N	C7H8O2	C1=CC(=CC(=C1)O)CO	3-(hydroxymethyl)phenol	C03351	CHEBI:17069
+Cc1_172	4-(4-Hydroxyphenyl)butan-2-one	Shikimates and Phenylpropanoids	name	21648	NJGBTKGETPDVIK-UHFFFAOYSA-N	C10H12O2	CC(=O)CCC1=CC=C(C=C1)O	4-(4-hydroxyphenyl)butan-2-one	D70581	CHEBI:68656
+Cc1_30	zingerone	Shikimates and Phenylpropanoids	name	31211	OJYLAHXKWMRDGS-UHFFFAOYSA-N	C11H14O3	CC(=O)CCC1=CC(=C(C=C1)O)OC	4-(4-hydroxy-3-methoxyphenyl)butan-2-one	C17497	CHEBI:68657
+Cc1_108	3-(2-Hydroxyphenyl)propionic acid	Shikimates and Phenylpropanoids	name	873	CJBDUOMQLFKVQC-UHFFFAOYSA-N	C9H10O3	C1=CC=C(C(=C1)CCC(=O)O)O	3-(2-hydroxyphenyl)propanoic acid	C01198	CHEBI:16104
+Cc1_113	6-aminochromen-2-one	Shikimates and Phenylpropanoids	name	46153	ZOJAINJCZSVZGW-UHFFFAOYSA-N	C9H7NO2	C1=CC2=C(C=CC(=O)O2)C=C1N	6-aminochromen-2-one		
+Cc1_220	2-Hydroxychalcone 	Shikimates and Phenylpropanoids	name	5367146	UDOOPSJCRMKSGL-ZHACJKMWSA-N	C15H12O2	C1=CC=C(C=C1)C(=O)/C=C/C2=CC=CC=C2O	(E)-3-(2-hydroxyphenyl)-1-phenylprop-2-en-1-one	D90823	
+Cc1_33	7-hydroxyflavanone	Shikimates and Phenylpropanoids	name	1890	SWAJPHCXKPCPQZ-UHFFFAOYSA-N	C15H12O3	C1C(OC2=C(C1=O)C=CC(=C2)O)C3=CC=CC=C3	7-hydroxy-2-phenyl-2,3-dihydrochromen-4-one	D90988	CHEBI:34483
+Cc1_112	4-hydroxybenzaldehyde	Shikimates and Phenylpropanoids	name	126	RGHHSNMVTDWUBI-UHFFFAOYSA-N	C7H6O2	C1=CC(=CC=C1C=O)O	4-hydroxybenzaldehyde	C00633	CHEBI:17597
+Cc1_38	salicylic acid	Shikimates and Phenylpropanoids	name	338	YGSDEFSMJLZEOE-UHFFFAOYSA-N	C7H6O3	C1=CC=C(C(=C1)C(=O)O)O	2-hydroxybenzoic acid	C00805	CHEBI:16914
+Cc1_10	3-hydroxybenzoic acid	Shikimates and Phenylpropanoids	name	7420	IJFXRHURBJZNAO-UHFFFAOYSA-N	C7H6O3	C1=CC(=CC(=C1)O)C(=O)O	3-hydroxybenzoic acid	C00587	CHEBI:30764
+Cc1_58	2-Hydroxyphenylacetic acid	Shikimates and Phenylpropanoids	name	11970	CCVYRRGZDBSHFU-UHFFFAOYSA-N	C8H8O3	C1=CC=C(C(=C1)CC(=O)O)O	2-(2-hydroxyphenyl)acetic acid	C05852	CHEBI:28478
+Cc1_142	guaiacol	Shikimates and Phenylpropanoids	name	460	LHGVFZTZFXWLCP-UHFFFAOYSA-N	C7H8O2	COC1=CC=CC=C1O	2-methoxyphenol	C01502	CHEBI:28591
+Cc1_129	Cinnamic acid	Shikimates and Phenylpropanoids	name	444539	WBYWAXJHAXSJNI-VOTSOKGWSA-N	C9H8O2	C1=CC=C(C=C1)/C=C/C(=O)O	(E)-3-phenylprop-2-enoic acid	C00423	CHEBI:27386
+Cc1_3	caffeic acid	Shikimates and Phenylpropanoids	name	689043	QAIPRVGONGVQAS-DUXPYHPUSA-N	C9H8O4	C1=CC(=C(C=C1/C=C/C(=O)O)O)O	(E)-3-(3,4-dihydroxyphenyl)prop-2-enoic acid	C01197	CHEBI:36281
+Cc1_118	ANETHOLE	Shikimates and Phenylpropanoids	name	637563	RUVINXPYWBROJD-ONEGZZNKSA-N	C10H12O	C/C=C/C1=CC=C(C=C1)OC	1-methoxy-4-[(E)-prop-1-enyl]benzene	D02377	CHEBI:2716
+Cc1_175	Benzylideneacetone	Shikimates and Phenylpropanoids	name	637759	BWHOZHOGCMHOBV-BQYQJAHWSA-N	C10H10O	CC(=O)/C=C/C1=CC=CC=C1	(E)-4-phenylbut-3-en-2-one	D70186	CHEBI:217301
+Cc1_104	(±)-Dihydroactinidiolide	Terpenoids	name	6432173	IMKHDCBNRDRUEB-LLVKDONJSA-N	C11H16O2	C[C@@]12CCCC(C1=CC(=O)O2)(C)C	(7aR)-4,4,7a-trimethyl-6,7-dihydro-5H-1-benzofuran-2-one		
+Cc1_117	Abscisic acid	Terpenoids	name	5280896	JLIDBLDQVAYHNE-YKALOCIXSA-N	C15H20O4	CC1=CC(=O)CC([C@]1(/C=C/C(=C\C(=O)O)/C)O)(C)C	(2Z,4E)-5-[(1S)-1-hydroxy-2,6,6-trimethyl-4-oxocyclohex-2-en-1-yl]-3-methylpenta-2,4-dienoic acid	C06082	CHEBI:2365
+Cc1_100	(S)-(-)-Perillic acid	Terpenoids	name	2724160	CDSMSBUVCWHORP-MRVPVSSYSA-N	C10H14O2	CC(=C)[C@H]1CCC(=CC1)C(=O)O	(4S)-4-prop-1-en-2-ylcyclohexene-1-carboxylic acid	C13419	
+Cc1_126	CARVEOL	Terpenoids	name	7438	BAVONGHXFVOKBV-UHFFFAOYSA-N	C10H16O	CC1=CCC(CC1O)C(=C)C	2-methyl-5-prop-1-en-2-ylcyclohex-2-en-1-ol	D77822	CHEBI:23046
+Cc1_99	(1R)-(-)-Nopol	Terpenoids	name	1272250	ROKSAUSPJGWCSM-UWVGGRQHSA-N	C11H18O	CC1([C@H]2CC=C([C@@H]1C2)CCO)C	2-[(1R,5S)-6,6-dimethyl-2-bicyclo[3.1.1]hept-2-enyl]ethanol		CHEBI:171826
+Cc1_36	ketopinic acid	Terpenoids	name	297888	WDODWBQJVMBHCO-UHFFFAOYSA-N	C10H14O3	CC1(C2CCC1(C(=O)C2)C(=O)O)C	7,7-dimethyl-2-oxobicyclo[2.2.1]heptane-1-carboxylic acid		
+Cc1_49	(+)-Nootkatone	Terpenoids	name	1268142	WTOYNNBCKUYIKC-JMSVASOKSA-N	C15H22O	C[C@@H]1CC(=O)C=C2[C@]1(C[C@@H](CC2)C(=C)C)C	(4R,4aS,6R)-4,4a-dimethyl-6-prop-1-en-2-yl-3,4,5,6,7,8-hexahydronaphthalen-2-one	C17914	CHEBI:81377
+ZJTJUVIJVLLGSP-UHFFFAOYSA-N	lumichrome	Alkaloids	inchikey	506	ZJTJUVIJVLLGSP-UHFFFAOYSA-N	C12H10N4O2	CC1=CC2=C(C=C1C)N=C3C(=NC(=O)NC3=O)N2	7,8-dimethyl-10H-benzo[g]pteridine-2,4-dione		
+GDNYELSKMFYCBB-UHFFFAOYSA-N	2,3-dihydro-1H-indole-7-carboxylic acid	Alkaloids	inchikey	12701147	GDNYELSKMFYCBB-UHFFFAOYSA-N	C9H9NO2	C1CNC2=C1C=CC=C2C(=O)O	2,3-dihydro-1H-indole-7-carboxylic acid		
+OLNJUISKUQQNIM-UHFFFAOYSA-N	INDOLE-3-CARBOXALDEHYDE	Alkaloids	inchikey	10256	OLNJUISKUQQNIM-UHFFFAOYSA-N	C9H7NO	C1=CC=C2C(=C1)C(=CN2)C=O	1H-indole-3-carbaldehyde	C08493	CHEBI:28238
+OVYWMEWYEJLIER-UHFFFAOYSA-N	6-Hydroxyquinoline	Alkaloids	inchikey	11374	OVYWMEWYEJLIER-UHFFFAOYSA-N	C9H7NO	C1=CC2=C(C=CC(=C2)O)N=C1	quinolin-6-ol		CHEBI:48994
+QNRXNRGSOJZINA-UHFFFAOYSA-N	(2S)indoline-2-carboxylic acid	Alkaloids	inchikey	86074	QNRXNRGSOJZINA-UHFFFAOYSA-N	C9H9NO2	C1C(NC2=CC=CC=C21)C(=O)O	2,3-dihydro-1H-indole-2-carboxylic acid		CHEBI:167001
+IPCSVZSSVZVIGE-UHFFFAOYSA-N	Palmitic Acid	Fatty acids	inchikey	985	IPCSVZSSVZVIGE-UHFFFAOYSA-N	C16H32O2	CCCCCCCCCCCCCCCC(=O)O	hexadecanoic acid	C00249	CHEBI:15756
+POULHZVOKOAJMA-UHFFFAOYSA-N	lauric acid	Fatty acids	inchikey	3893	POULHZVOKOAJMA-UHFFFAOYSA-N	C12H24O2	CCCCCCCCCCCC(=O)O	dodecanoic acid	C02679	CHEBI:30805
+FVMDYYGIDFPZAX-UHFFFAOYSA-N	3-Hydroxyphenylacetic acid	Shikimates and Phenylpropanoids	inchikey	12122	FVMDYYGIDFPZAX-UHFFFAOYSA-N	C8H8O3	C1=CC(=CC(=C1)O)CC(=O)O	2-(3-hydroxyphenyl)acetic acid	C05593	CHEBI:17445
+KKEYFWRCBNTPAC-UHFFFAOYSA-N	TEREPHTHALIC ACID	Shikimates and Phenylpropanoids	inchikey	7489	KKEYFWRCBNTPAC-UHFFFAOYSA-N	C8H6O4	C1=CC(=CC=C1C(=O)O)C(=O)O	terephthalic acid	C06337	CHEBI:15702
+XNGIFLGASWRNHJ-UHFFFAOYSA-N	phthalic acid	Shikimates and Phenylpropanoids	inchikey	1017	XNGIFLGASWRNHJ-UHFFFAOYSA-N	C8H6O4	C1=CC=C(C(=C1)C(=O)O)C(=O)O	phthalic acid	C01606	CHEBI:29069
+CRDAMVZIKSXKFV-YFVJMOTDSA-N	Farnesol	Terpenoids	inchikey	445070	CRDAMVZIKSXKFV-YFVJMOTDSA-N	C15H26O	CC(=CCC/C(=C/CC/C(=C/CO)/C)/C)C	(2E,6E)-3,7,11-trimethyldodeca-2,6,10-trien-1-ol	C01126	CHEBI:16619
+DSSYKIVIOFKYAU-XCBNKYQSSA-N	D-camphor	Terpenoids	inchikey	159055	DSSYKIVIOFKYAU-XCBNKYQSSA-N	C10H16O	C[C@@]12CC[C@@H](C1(C)C)CC2=O	(1R,4R)-1,7,7-trimethylbicyclo[2.2.1]heptan-2-one	C00808	CHEBI:15396
+FQTLCLSUCSAZDY-SDNWHVSQSA-N	NEROLIDOL	Terpenoids	inchikey	5284507	FQTLCLSUCSAZDY-SDNWHVSQSA-N	C15H26O	CC(=CCC/C(=C/CCC(C)(C=C)O)/C)C	(6E)-3,7,11-trimethyldodeca-1,6,10-trien-3-ol		CHEBI:7524
+RGZSQWQPBWRIAQ-UHFFFAOYSA-N	Bisabolol	Terpenoids	inchikey	10586	RGZSQWQPBWRIAQ-UHFFFAOYSA-N	C15H26O	CC1=CCC(CC1)C(C)(CCC=C(C)C)O	6-methyl-2-(4-methylcyclohex-3-en-1-yl)hept-5-en-2-ol		CHEBI:167422
+VZJHQHUOVIDRCF-DGMCESFYSA-N	(-)-Isolongifolol	Terpenoids	inchikey	16217350	VZJHQHUOVIDRCF-DGMCESFYSA-N	C15H26O	C[C@@]12CCCC([C@@H]3[C@H]1CC[C@@H]3[C@@H]2CO)(C)C	[(1R,2S,7R,8S,9S)-3,3,7-trimethyl-8-tricyclo[5.4.0.02,9]undecanyl]methanol		
+NVEQFIOZRFFVFW-UHFFFAOYSA-N	b-Caryophyllene oxide	Terpenoids	inchikey	14350	NVEQFIOZRFFVFW-UHFFFAOYSA-N	C15H24O	CC1(CC2C1CCC3(C(O3)CCC2=C)C)C	4,12,12-trimethyl-9-methylidene-5-oxatricyclo[8.2.0.04,6]dodecane		CHEBI:156179
+XVULBTBTFGYVRC-HHUCQEJWSA-N	Sclareol	Terpenoids	inchikey	163263	XVULBTBTFGYVRC-HHUCQEJWSA-N	C20H36O2	C[C@]12CCCC([C@@H]1CC[C@@]([C@@H]2CC[C@](C)(C=C)O)(C)O)(C)C	(1R,2R,4aS,8aS)-1-[(3R)-3-hydroxy-3-methylpent-4-enyl]-2,5,5,8a-tetramethyl-3,4,4a,6,7,8-hexahydro-1H-naphthalen-2-ol	C09183	CHEBI:9053
+IBRKLUSXDYATLG-LURJTMIESA-N	SALSOLINOL	Alkaloids	inchikey	91588	IBRKLUSXDYATLG-LURJTMIESA-N	C10H13NO2	C[C@H]1C2=CC(=C(C=C2CCN1)O)O	(1S)-1-methyl-1,2,3,4-tetrahydroisoquinoline-6,7-diol	C09642	CHEBI:113
+QWJIWJWEGVAMEB-UHFFFAOYSA-N	1H-pyrrolo[3,2-b]pyridine-5-carboxylic acid	Alkaloids	inchikey	26076443	QWJIWJWEGVAMEB-UHFFFAOYSA-N	C8H6N2O2	C1=CC(=NC2=C1NC=C2)C(=O)O	1H-pyrrolo[3,2-b]pyridine-5-carboxylic acid		
+WJJMNDUMQPNECX-UHFFFAOYSA-N	2,6-Pyridinedicarboxylic acid	Alkaloids	inchikey	10367	WJJMNDUMQPNECX-UHFFFAOYSA-N	C7H5NO4	C1=CC(=NC(=C1)C(=O)O)C(=O)O	pyridine-2,6-dicarboxylic acid		CHEBI:46837
+WVMBPWMAQDVZCM-UHFFFAOYSA-N	N-methylanthranilic acid 	Alkaloids	inchikey	67069	WVMBPWMAQDVZCM-UHFFFAOYSA-N	C8H9NO2	CNC1=CC=CC=C1C(=O)O	2-(methylamino)benzoic acid	C03005	CHEBI:16394
+AFDXODALSZRGIH-QPJJXVBHSA-N	4-Methoxycinnamic acid	Shikimates and Phenylpropanoids	inchikey	699414	AFDXODALSZRGIH-QPJJXVBHSA-N	C10H10O3	COC1=CC=C(C=C1)/C=C/C(=O)O	(E)-3-(4-methoxyphenyl)prop-2-enoic acid		CHEBI:48541
