@@ -171,5 +171,18 @@ column**. Two consequences:
   NB06 assembly-accession bridge (avoid short-name collision), NB07 genus-level H3 caveat
   + `.py`/nohup fallback for the idle-timeout-prone env scan.
 
+- **v4** (2026-06-09): Analysis complete (NB01–NB08). Two execution deviations recorded.
+  (1) **Catabolic-direction filter** added at NB03: a genome-prevalence-<10% signature
+  reaction is kept only if it is catabolic *for the compound* (member of a KEGG
+  degradation/catabolism-named map, or on a 3-reaction curated allowlist: R02107
+  xanthine→urate, R02612 phenethylamine→phenylacetaldehyde, R07202 abscisate→8'-OH);
+  reactions that *produce* the compound are excluded. This collapsed callable compounds
+  15→8 and is the reason the dark fraction is 90%. (2) **H3 (source-tracking) reported
+  UNTESTABLE/CONFOUNDED**, not run as a statistic: of 8 callable compounds only 2 are
+  necromass (terephthalic + phthalic acid), both phthalate-class aromatics with
+  Actinomycetota-heavy utilizers — source is inseparable from chemical class, n=2. NB07
+  was reframed to an honest SSO field-occurrence atlas (Zhou Lab 16S, `enigma_coral`
+  bricks) instead of fabricating a confounded source contrast.
+
 ## Authors
 - Adam Arkin (University of California, Berkeley; ORCID 0000-0002-4999-2931)

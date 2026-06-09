@@ -1,7 +1,7 @@
 project_id: enigma_carbon_census_1
-status: proposed          # exploration | proposed | active | analysis | review | complete
+status: active            # exploration | proposed | active | analysis | review | complete
 created_at: "2026-06-08T23:56:16Z"
-last_session_at: "2026-06-09T00:30:00Z"
+last_session_at: "2026-06-09T03:17:00Z"
 branch: projects/enigma_carbon_census_1
 engine:
   name: claude
