@@ -55,10 +55,17 @@ column**. Two consequences:
 |---|---|---|
 | **1** | *Measured* growth/fitness on the compound as carbon source | Fitness Browser RB-TnSeq carbon-source experiments |
 | **2** | Gene-complete catabolic pathway reconstructed in the genome | GapMind per-genome calls; ModelSEED model |
-| **3** | Key catabolic enzyme(s) present by annotation | Pangenome eggNOG/KEGG/EC annotations |
+| **3** | Key catabolic enzyme(s) present by annotation | ENIGMA genome_depot protein↔KO/EC/pathway annotations; pangenome eggNOG/KEGG/EC |
 | **4** | Biotransformation-rule inferred degradability + rule-enzyme presence | enviPath (EAWAG-BBD/SOIL) rules |
-| **5** | Taxonomic prior only (relatives known to degrade the class) | Literature / DB taxon associations |
+| **5** | Literature-curated catabolic gene/enzyme for the compound or close analog | PaperBLAST, PubMed/bioRxiv mining (esp. alkaloid/terpenoid classes) |
+| **6** | Taxonomic prior only (relatives known to degrade the class) | Literature / DB taxon associations |
 | **0** | No linkage found | — (flagged as knowledge gap) |
+
+> Tier 5 (literature) is deliberately elevated as a first-class channel: curated
+> biodegradation DBs miss most **alkaloids and terpenoids**, but their catabolism *is*
+> described in primary literature. Literature-curated enzymes/KOs/Pfams are then searched
+> back into the genomes — a literature hit with a matching genomic enzyme effectively
+> promotes a prediction to Tier 3.
 
 ## Data Sources
 **In-lakehouse (backbone):**
@@ -66,12 +73,14 @@ column**. Two consequences:
 - **ModelSEED biochemistry** — compound → reaction → enzyme. *Tier 2/3.*
 - **Pangenome functional annotations** (eggNOG/KEGG/EC) — enzyme presence across GTDB species pangenomes. *Tier 3.*
 - **Fitness Browser / RB-TnSeq** — measured carbon-source experiments (~30 organisms linked to pangenome via `fb_pangenome_link.tsv`). *Tier 1.*
-- **ENIGMA isolate genomes** — `enigma.genome` (32 tables) for deliverable (a); `enigma` tenant (725) for environmental observations.
+- **ENIGMA genome_depot** (`enigma_genome_depot_enigma`, 32 GenomeDepot tables) — **primary substrate for deliverable (a)**. `browser_protein` ↔ `browser_protein_kegg_reactions`/`_kegg_pathways`/`_kegg_orthologs`/`_ec_numbers`/`_cazy_families` give catabolic annotations *directly on ENIGMA isolate proteins*; `browser_gene`→`browser_genome`→`browser_strain`→`browser_taxon` chains genes to strains and to `browser_taxon.taxonomy_id` (**NCBI taxid**) + `eggnog_taxid` + `name` — the crosswalk for phylogeny placement and for joining environmental datasets (which key on NCBI taxids). *Tier 3 directly on isolates, no pangenome bridge needed.*
+- **ENIGMA environmental observations** — `enigma` tenant (725 tables) for where isolates/taxa are seen in the field.
 - **Environmental sources** — MGnify (`kescience_mgnify`), SPIRE (`refdata_spire`), NMDC (`nmdc_metadata`/`nmdc_results`/`nmdc_ncbi_biosamples` + `kbase.nmdc_arkin`), Planet Microbe (`planetmicrobe` tenant), pangenome env metadata. For deliverable (c).
 
 **External (supplementary, for compound→pathway linkage):**
 - **PubChem** — name → CID → InChIKey/SMILES + KEGG/ChEBI/ModelSEED/MetaCyc cross-refs (PUG-REST). *Foundational identity resolution.*
 - **enviPath** — free public REST API, anonymous read, `enviPath-python` package; EAWAG-BBD package (`32de3cf4-e3e6-4168-956e-32fa5ddb0ce1`) + EAWAG-SOIL. *Tier 4, pollutant-adjacent subset only.*
+- **Literature mining** — PaperBLAST (gene↔paper), PubMed + bioRxiv/arXiv via the `pubmed` and `paper-search` MCP servers, and `/literature-review`. **Targeted at alkaloid and terpenoid catabolism**, which the curated DBs miss. *Tier 5; promotes to Tier 3 when the literature enzyme is found in a genome.*
 - OASIS / BioSysMO — no programmatic access; manual reference only if a specific compound demands it.
 
 ## Query Strategy
@@ -94,14 +103,17 @@ column**. Two consequences:
   (how many resolved, by class).
 - **02_pathway_linkage** — multi-channel compound→pathway/enzyme mapping: ModelSEED,
   KEGG/MetaCyc, enviPath rules, GapMind carbon-source catalog overlap, Fitness Browser
-  carbon-source experiment matches. Assign evidence channel + tier per link.
+  carbon-source experiment matches, **and literature mining (PaperBLAST + PubMed/bioRxiv)
+  focused on alkaloid/terpenoid catabolism**. Assign evidence channel + tier per link.
   *Output:* `data/compound_pathway_links.tsv`.
-  → **PHASE-1 STOP-GATE:** report linkage coverage by class. If coverage is too thin to
-  support downstream mapping, pause and re-scope with the user before continuing.
-- **03_organism_mapping** — pathway/enzyme → organisms across pangenome genomes
-  (annotations, GapMind per-genome, ModelSEED). *Output:* `data/compound_organism_predictions.tsv`
-  with tier + pathway completeness.
-- **04_enigma_utilizers** — project predictions onto ENIGMA isolate genomes + environmental
+  → **PHASE-1 STOP-GATE:** report linkage coverage by class (with/without the literature
+  channel). If coverage is too thin to support downstream mapping, pause and re-scope.
+- **03_organism_mapping** — pathway/enzyme → organisms. Two substrates: (i) **ENIGMA
+  genome_depot** protein↔KO/EC/pathway/reaction tables for direct isolate calls; (ii)
+  pangenome annotations + GapMind per-genome + ModelSEED for the broad reference set.
+  *Output:* `data/compound_organism_predictions.tsv` with tier + pathway completeness.
+- **04_enigma_utilizers** — assemble per-compound ENIGMA-isolate predictions from
+  genome_depot, joined to `browser_taxon` (NCBI taxid + name) and ENIGMA environmental
   observations. **Deliverable (a).** *Output:* `data/enigma_utilizer_predictions.tsv`.
 - **05_cooccurrence** — within-genome (metabolic-versatility profiles) and across-genome
   (modularity, phylogenetic clustering) pathway co-occurrence; tests H2. *Output:* figures + matrix.
@@ -124,13 +136,22 @@ column**. Two consequences:
   predictions above Tier 4.
 - **Confounders:** identity-resolution failures (exotic names → no CID); biodegradation-DB
   xenobiotic bias inflating coverage for aromatics; GapMind catalog not overlapping our
-  compound set (would collapse Tier 2 onto ModelSEED only); pangenome↔ENIGMA taxonomic
-  bridge being too coarse (known limitation) for species-level isolate calls.
+  compound set (would collapse Tier 2 onto ModelSEED only). The pangenome↔ENIGMA
+  taxonomic-bridge limitation is now *avoided* for deliverable (a) by mapping directly on
+  genome_depot annotations; it remains relevant only when transferring GapMind/pangenome
+  Tier-2 reconstructions onto isolates lacking genome_depot coverage.
 
 ## Revision History
 - **v1** (2026-06-08): Initial plan. Tiered-confidence-atlas design; biodegradation-DB
   landscape assessed (enviPath usable, others reference-only); three deliverables and
   four hypotheses fixed; Phase-1 stop-gate after pathway linkage.
+- **v2** (2026-06-09): Per user feedback. (1) Added **literature mining** as a first-class
+  evidence channel (new Tier 5; PaperBLAST + PubMed/bioRxiv) targeted at alkaloid/terpenoid
+  catabolism that curated DBs miss. (2) Verified `enigma_genome_depot_enigma` schema:
+  catabolic annotations sit directly on ENIGMA isolate proteins, and `browser_taxon`
+  carries NCBI taxid + eggnog_taxid + name. Deliverable (a) now maps **directly on
+  genome_depot**, mapping isolates via NCBI id / taxonomic name and avoiding the coarse
+  pangenome bridge. Tiers renumbered (taxonomic-prior is now Tier 6).
 
 ## Authors
 - Adam Arkin (University of California, Berkeley; ORCID 0000-0002-4999-2931)
