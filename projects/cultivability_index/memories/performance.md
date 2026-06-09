@@ -1,0 +1,8 @@
+# Performance Notes — cultivability_index
+
+<!-- [cultivability_index] 2026-05-26T14:54:40Z  approved-report extraction (REVIEW: REVIEW_1.md) -->
+
+- **GapMind aggregation rule**: `MAX(score_simplified) GROUP BY genome_id, pathway, metabolic_category, sequence_scope` on `kbase_ke_pangenome.gapmind_pathways` reduces the 305M-row table to a per-genome × per-pathway binary matrix. `score_simplified` is binary (0.0 / 1.0) on `sequence_scope='all'`, so `MAX` returns 1.0 iff *any* scoring rule for the pathway is complete — the appropriate "can the organism do this" reduction. Total wall time end-to-end on the on-cluster Spark session: ~25s for the aggregation, ~40s for the full feature-matrix build pipeline.
+- **ID-format fracture**: `kbase_ke_pangenome.gtdb_metadata.accession` uses `RS_` / `GB_` prefixes (e.g., `RS_GCF_000246985.2`); `gapmind_pathways.genome_id` and most other GapMind-derived tables use bare accessions (`GCF_000246985.2`). Strip with `REGEXP_REPLACE(accession, '^(RS_|GB_)', '')` on the metadata side. This affects every metadata × GapMind join.
+- **Taxonomy join key**: must be `genome_id`, NOT `gtdb_taxonomy_id`. The `genome` table truncates `gtdb_taxonomy_id` at the genus rank, while `gtdb_taxonomy_r214v1` retains the full species-level string; joining on the latter returns zero rows (already documented in `docs/pitfalls.md` per `[prophage_ecology]`).
+- **Statsmodels `StratifiedTable` expects (2, 2, n_strata) shape**: building a list of 2×2 tables and casting to `np.array` produces `(n_strata, 2, 2)` and silently fails. Transpose with `.transpose(1, 2, 0)` before passing to `StratifiedTable`.

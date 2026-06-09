@@ -713,3 +713,84 @@ Originally PROPOSED above. Completion summary:
 **H2 REJECTED, opposite direction**: deep-clay anchor Bacillota_B are 35% LARGER than soil-baseline (4.3 Mbp vs 3.2 Mbp CheckM-rescaled, d=+1.37, p=0.013). Streamlining is a Patescibacteria/CPR-specific adaptation; cultivable subsurface Firmicutes show gene-content expansion consistent with Beaver & Neufeld 2024 self-sufficiency.
 
 **Phase 1 clay correction**: clay_confined_subsurface H3 IR-side used K07811/K17324/K17323 — those are TMAO reductase / glycerol ABC / glycerol permease, not iron reduction. With corrected multi-heme cytochrome detection (PF02085 + PF22678 + CXXCH motif counting), no significant cohort difference (all Fisher p ≥ 0.46). The clay project's SR-side H3 stands; IR-side narrative needs withdrawal. See `projects/bacillota_b_subsurface_accessory/`.
+
+---
+
+### [pangenome_selective_landscape] The Selective Landscape of Pangenome Architecture — Which Environmental Pressures Drive Gene Gain and Loss?
+**Status**: PROPOSED
+**Priority**: HIGH
+**Effort**: Low-Medium (2-3 weeks)
+
+**Research Question**: Across 48 Fitness Browser organisms with pangenome links, does the *type* of lab condition under which a gene is important (metal stress, carbon source, antibiotic, nitrogen, osmotic) predict whether that gene resides in the core or accessory genome?
+
+**Approach**:
+- Classify the 350 FB conditions into ~8 categories (metal, carbon, nitrogen, antibiotic, osmotic, oxidative, temperature, other) using existing `expGroup` / `condition_1` metadata
+- For each category, compute % core for genes specifically important under that condition type (|fitness| > 1)
+- For each gene, count condition types where it's important (condition breadth); correlate with core/accessory status
+- Test cross-organism consistency: is the pattern universal or species-specific?
+- Multivariable model: does condition type predict conservation beyond fitness magnitude?
+
+**Hypotheses**:
+- **H1**: Genes important under metal stress are significantly more accessory than genes important under carbon sources — metals are sporadic pressures driving gain/loss; carbon metabolism is more universal
+- **H2**: Antibiotic-important genes are the most accessory category — consistent with prophage_amr_comobilization (55.7% on mobile elements) and arms-race dynamics
+- **H3**: Condition breadth (number of condition types where important) inversely correlates with accessory status — proposes a mechanism for core genome assembly: genes become core by being important under many conditions
+- **H0**: Condition type does not predict core/accessory status beyond fitness magnitude alone
+
+**Impact**: First systematic analysis of which *environmental pressures* shape pangenome architecture. Proposes a testable mechanism for core genome assembly (multi-condition importance → fixation). Bridges fitness-conservation literature with pangenome ecology literature. Existing single-organism studies (Lv 2025 *Xanthomonas*, Senior 2017 *Yersinia*) examine condition-specific essentiality but never cross-organism by condition category.
+
+**Dependencies**:
+- Existing: FB-pangenome link tables from `conservation_vs_fitness`
+- Existing: condition metadata in `kescience_fitnessbrowser.experiment` (`expGroup`, `condition_1`)
+- Existing: core/accessory classification in `kbase_ke_pangenome`
+
+**Builds on**:
+- `fitness_effects_conservation` (16pp gradient by magnitude — adds condition-type dimension)
+- `core_gene_tradeoffs` (core genes are costly — tests by condition type)
+- `conservation_vs_fitness` (FB-pangenome link tables)
+- `metal_cross_resistance` (three-tier metal architecture — tests core/accessory mapping)
+- `prophage_amr_comobilization` (AMR-mobile element coupling)
+- `lab_field_ecology` (61.7% lab-field concordance — generalizes to all condition types)
+
+**Location**: `projects/pangenome_selective_landscape/`
+
+**Note (2026-05-26)**: SUPERSEDED before scaffolding executed. Pre-implementation review found that `fitness_effects_conservation` (NB03 `breadth_vs_conservation`, fig `conservation_by_condition_type.png`, data `fitness_stats_by_condition.tsv`) and `core_gene_tradeoffs` (fig `burden_by_condition.png`, Selection Signature Matrix) already covered the breadth and condition-type axes. Pivoted to `cultivability_index` (next entry).
+
+---
+
+### [cultivability_index] Metabolic Self-Sufficiency Index — Predicting Cultivability from Pangenome Pathway Completeness
+**Status**: PROPOSED
+**Priority**: HIGH
+**Effort**: Medium (3-4 weeks)
+
+**Research Question**: Can metabolic self-sufficiency, measured as the completeness of essential biosynthesis and energy pathways across a genome's annotated metabolic capability (GapMind), predict which uncultured species in the BERDL pangenome are most likely to be cultivable in pure culture?
+
+**Approach**:
+- Define a per-genome cultivability index from GapMind pathway completeness across essential amino acids, vitamins/cofactors, central carbon, and energy pathways — possibly weighted by category importance
+- Calibrate against ground-truth cultured-vs-uncultured labels: GTDB cultured status flags, MGnify isolate-vs-MAG metadata, RefSeq genome representation, and NCBI BioSample isolate descriptions
+- Phylogenetically-stratified train/test split (hold out whole families) to avoid leakage
+- Model: logistic regression and gradient-boosted decision trees on pathway-completeness features + genome size + GC%; benchmark against taxonomy-only baseline
+- Validation against `clay_confined_subsurface` (the cultivated Bacillota_B were 35% LARGER than soil baseline — does the index recover that signal?) and `oak_ridge_cultivation_gap` (cultured vs MAG cohort comparison)
+- Deliverable: ranked candidate list of "most cultivable" uncultured MAGs from BERDL with confidence scores, biased toward environmentally-interesting taxa (subsurface, soil, plant-associated)
+
+**Hypotheses**:
+- **H1**: Cultivability index is significantly higher in cultured genomes than in MAGs of the same family (phylogenetically-controlled comparison) — supports the prediction that self-sufficiency is necessary (though not sufficient) for cultivability
+- **H2**: Patescibacteria/CPR, DPANN, and other known auxotroph-rich lineages have the lowest cultivability scores, recapitulating the known cultivation gap
+- **H3**: Within candidate uncultured MAGs scoring high on the index, the top 100 are enriched for taxa not yet attempted at major culture collections (DSMZ, ATCC, JCM) — i.e., the index identifies tractable but unattempted targets
+- **H0**: Pathway completeness adds no predictive value beyond taxonomic identity, genome size, and GC content
+
+**Impact**: First quantitative cultivability prediction from pangenome data. Directly actionable for experimental microbiologists: a ranked candidate list of MAGs likely to yield to standard cultivation efforts. Bridges genomic self-sufficiency concepts (Beaver & Neufeld 2024) with the cultivation-bias problem (Lewis 2021, Mitzscherling 2023). Validates the approach against the BERDL-internal anchor of clay/Oak Ridge cultivation-bias findings.
+
+**Dependencies**:
+- Existing: `kbase_ke_pangenome.gapmind_pathways` (pathway completeness; aggregate in Spark per gotchas in `docs/pitfalls.md`)
+- Existing: `kbase_ke_pangenome.genome` (genome metadata, size, GC, taxonomy)
+- Existing: GTDB metadata and ncbi_env environment classifications
+- Methodology overlap: `metabolic_capability_dependency` (pathway completeness extraction patterns), `clay_confined_subsurface` and `oak_ridge_cultivation_gap` (cultivation-bias frameworks)
+- New: cultivability ground-truth label harmonization across GTDB, MGnify, RefSeq, NCBI BioSample
+
+**Builds on**:
+- `clay_confined_subsurface` (anchored cultivation-bias signal — cultivated genomes 35% larger)
+- `oak_ridge_cultivation_gap` (cultured vs MAG cohort comparison framework)
+- `metabolic_capability_dependency` (GapMind pathway-completeness extraction)
+- `pgp_pangenome_ecology` (per-genome pathway-completeness as ecology predictor)
+
+**Location**: `projects/cultivability_index/`
