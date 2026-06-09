@@ -9,7 +9,7 @@ organisms — and which ENIGMA isolates or environmentally observed organisms ar
 likely utilizers of each compound?
 
 ## Status
-Exploration — research plan not yet written.
+Proposed — research plan written, awaiting analysis.
 
 ## Overview
 The Carbon Census selected 83 compounds (59 from SSO groundwater, 24 from necromass)
