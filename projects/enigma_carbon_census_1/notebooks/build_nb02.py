@@ -1,0 +1,265 @@
+from _build import build_and_run
+
+cells = [
+    ("md", "# NB02 — Multi-Channel Pathway Linkage (Phase-1 stop-gate)\n\n"
+           "For each of the 83 structurally-resolved compounds, ask **\"is there any route "
+           "to a candidate degradation pathway / gene?\"** across independent evidence "
+           "channels, then report **linkage coverage by chemical class**. This is the "
+           "Phase-1 decision artifact: it tells us which classes are tractable and which "
+           "are *dark* (no database linkage) before we invest in heavy organism/environment "
+           "mapping (NB03-07).\n\n"
+           "**Channels (each maps to an evidence tier):**\n"
+           "- **T1 measured** — compound appears as an RB-TnSeq *carbon source* in the "
+           "Fitness Browser (`kescience_fitnessbrowser.experiment`, expGroup='carbon source'). "
+           "Strongest evidence: a real organism's genome-wide fitness under growth on it.\n"
+           "- **T2/3 reaction** — compound's InChIKey matches a ModelSEED metabolite that "
+           "participates in ≥1 reaction (`kbase_msd_biochemistry`).\n"
+           "- **T3 KEGG** — compound carries a KEGG C-number (entry point into KEGG "
+           "reactions/modules; expanded in NB02b/NB03).\n"
+           "- **T5 literature** — compound name appears in a PaperBLAST *curated* gene "
+           "description (`kescience_paperblast.curatedgene`), low-precision, manual-review "
+           "flagged.\n"
+           "- **T4 enviPath** — biotransformation-rule prediction from SMILES. The EAWAG-BBD "
+           "package is reachable but per-compound prediction is slow/unreliable for 83 "
+           "compounds; **deferred** to a focused notebook. Recorded as not-yet-run, not as "
+           "absence of evidence.\n\n"
+           "GapMind's carbon catalog (sugars / amino acids / organic acids) is expected to "
+           "have near-zero overlap with these NP secondary metabolites; the FB carbon-source "
+           "channel is the empirical proxy for that expectation."),
+
+    ("code",
+     "import os, re, json\n"
+     "import pandas as pd\n"
+     "from pathlib import Path\n"
+     "from pyspark.sql import SparkSession, functions as F\n"
+     "\n"
+     "DATA = Path('../data'); FIG = Path('../figures')\n"
+     "pd.set_option('display.max_columns', 40); pd.set_option('display.width', 200)\n"
+     "\n"
+     "res = pd.read_csv(DATA / 'resolved_compounds.tsv', sep='\\t')\n"
+     "print('resolved compounds:', len(res))\n"
+     "res['ik14'] = res['inchikey'].str.slice(0, 14)  # connectivity block (stereo-insensitive)\n"
+     "res[['compound_id', 'name', 'npc_pathway', 'inchikey', 'kegg_id']].head()"),
+
+    ("code",
+     "# On-cluster Spark Connect (token from env; never printed)\n"
+     "_tok = os.environ['KBASE_AUTH_TOKEN']\n"
+     "spark = SparkSession.builder.remote(\n"
+     "    f'sc://jupyter-aparkin.jupyterhub-prod:15002/;use_ssl=false;x-kbase-token={_tok}'\n"
+     ").getOrCreate()\n"
+     "print('spark connected')"),
+
+    ("md", "## Channel T1 — Fitness Browser carbon-source experiments (measured)\n"
+           "`condition_1` is free-text; normalize both sides (lowercase, strip stereo "
+           "descriptors and salt/hydrate words, drop non-alphanumerics) and match on the "
+           "normalized core."),
+
+    ("code",
+     "SALT_WORDS = ['hydrochloride', 'monohydrate', 'dihydrate', 'sodium salt', 'lithium salt',\n"
+     "              'potassium salt', 'sodium', 'potassium', 'lithium', 'hydrate', 'hcl',\n"
+     "              'acid', 'salt']\n"
+     "STEREO = re.compile(r'\\([^)]*\\)|\\b[dlrs]\\b|±|\\+/-|rac-', re.IGNORECASE)\n"
+     "def norm(s):\n"
+     "    s = str(s).lower()\n"
+     "    s = STEREO.sub(' ', s)\n"
+     "    for w in SALT_WORDS:\n"
+     "        s = s.replace(w, ' ')\n"
+     "    return re.sub(r'[^a-z0-9]', '', s)\n"
+     "\n"
+     "# pull distinct carbon-source conditions with the organisms that used them\n"
+     "fb = (spark.table('kescience_fitnessbrowser.experiment')\n"
+     "      .filter(F.lower('expGroup') == 'carbon source')\n"
+     "      .filter(F.col('condition_1').isNotNull())\n"
+     "      .groupBy('condition_1').agg(\n"
+     "          F.countDistinct('orgId').alias('n_orgs'),\n"
+     "          F.count('*').alias('n_exps'),\n"
+     "          F.concat_ws(',', F.collect_set('orgId')).alias('orgs'))\n"
+     "      .toPandas())\n"
+     "fb['norm'] = fb['condition_1'].map(norm)\n"
+     "print('distinct FB carbon-source conditions:', len(fb))\n"
+     "fb_by_norm = fb.groupby('norm').agg(\n"
+     "    fb_conditions=('condition_1', lambda x: ' | '.join(sorted(set(x)))),\n"
+     "    fb_n_orgs=('n_orgs', 'sum'), fb_n_exps=('n_exps', 'sum'),\n"
+     "    fb_orgs=('orgs', lambda x: ','.join(sorted(set(','.join(x).split(',')))))).reset_index()"),
+
+    ("code",
+     "# build normalized match keys for our compounds: name + slash alternates\n"
+     "def name_norms(name):\n"
+     "    parts = [p.strip() for p in str(name).split('/')] if '/' in str(name) else [str(name)]\n"
+     "    return sorted({norm(p) for p in parts if norm(p)})\n"
+     "res['name_norms'] = res['name'].map(name_norms)\n"
+     "fbmap = dict(zip(fb_by_norm['norm'], fb_by_norm.index))\n"
+     "def fb_match(norms):\n"
+     "    for nm in norms:\n"
+     "        if nm in fbmap:\n"
+     "            return fb_by_norm.loc[fbmap[nm]]\n"
+     "    return None\n"
+     "t1 = []\n"
+     "for _, r in res.iterrows():\n"
+     "    m = fb_match(r['name_norms'])\n"
+     "    t1.append(dict(compound_id=r['compound_id'],\n"
+     "                   fb_carbon=m is not None,\n"
+     "                   fb_conditions=m['fb_conditions'] if m is not None else None,\n"
+     "                   fb_n_orgs=int(m['fb_n_orgs']) if m is not None else 0,\n"
+     "                   fb_n_exps=int(m['fb_n_exps']) if m is not None else 0,\n"
+     "                   fb_orgs=m['fb_orgs'] if m is not None else None))\n"
+     "t1 = pd.DataFrame(t1)\n"
+     "print('compounds matched to FB carbon source (T1 measured):', int(t1['fb_carbon'].sum()))\n"
+     "print(t1[t1['fb_carbon']][['compound_id', 'fb_conditions', 'fb_n_orgs', 'fb_n_exps']].to_string(index=False))"),
+
+    ("md", "## Channel T2/3 — ModelSEED reactions (InChIKey join)\n"
+           "Exact InChIKey first, then 14-char connectivity-block fallback (stereo-insensitive)."),
+
+    ("code",
+     "mol = (spark.table('kbase_msd_biochemistry.molecule')\n"
+     "       .select('id', 'inchikey', F.col('name').alias('msd_name'))\n"
+     "       .filter(F.col('inchikey').isNotNull()))\n"
+     "mol = mol.withColumn('ik14', F.substring('inchikey', 1, 14)).toPandas()\n"
+     "# reaction participation counts per molecule id\n"
+     "reag = (spark.table('kbase_msd_biochemistry.reagent')\n"
+     "        .groupBy('molecule_id').agg(F.countDistinct('reaction_id').alias('n_rxn'))\n"
+     "        .toPandas())\n"
+     "rxn_by_mol = dict(zip(reag['molecule_id'], reag['n_rxn']))\n"
+     "ik_exact = {ik: i for i, ik in zip(mol['id'], mol['inchikey'])}\n"
+     "ik14_map = mol.groupby('ik14')['id'].apply(list).to_dict()\n"
+     "def msd_lookup(ik, ik14):\n"
+     "    mid = ik_exact.get(ik)\n"
+     "    how = 'inchikey' if mid else None\n"
+     "    if not mid and ik14 in ik14_map:\n"
+     "        mid = ik14_map[ik14][0]; how = 'connectivity'\n"
+     "    if not mid:\n"
+     "        return None, 0, None\n"
+     "    return mid, int(rxn_by_mol.get(mid, 0)), how\n"
+     "t2 = []\n"
+     "for _, r in res.iterrows():\n"
+     "    mid, nrxn, how = msd_lookup(r['inchikey'], r['ik14'])\n"
+     "    t2.append(dict(compound_id=r['compound_id'], msd_cpd=mid,\n"
+     "                   msd_match=how, msd_n_rxn=nrxn))\n"
+     "t2 = pd.DataFrame(t2)\n"
+     "print('compounds matched to a ModelSEED metabolite:', int(t2['msd_cpd'].notna().sum()))\n"
+     "print('  of those, with >=1 reaction:', int((t2['msd_n_rxn'] > 0).sum()))\n"
+     "print(t2['msd_match'].value_counts(dropna=False).to_string())"),
+
+    ("md", "## Channel T5 — PaperBLAST curated-gene literature mentions (low-precision)\n"
+           "Substring match of the compound name in curated gene descriptions. Generic "
+           "one-word names (indole, choline, ...) are flagged; counts are a coarse signal "
+           "requiring manual review, not a confirmed gene assignment."),
+
+    ("code",
+     "GENERIC = {'indole', 'choline', 'biotin', 'xanthine', 'tyramine', 'cadaverine',\n"
+     "           'guaiacol', 'anethole', 'acridone', 'manool', 'carveol'}\n"
+     "# search terms: full name (and slash alternates), len>=5\n"
+     "terms = []\n"
+     "for _, r in res.iterrows():\n"
+     "    seen = set()\n"
+     "    for p in (str(r['name']).split('/') if '/' in str(r['name']) else [str(r['name'])]):\n"
+     "        t = p.strip().lower()\n"
+     "        if len(t) >= 5 and t not in seen:\n"
+     "            seen.add(t)\n"
+     "            terms.append((r['compound_id'], t, t in GENERIC))\n"
+     "terms_df = spark.createDataFrame(pd.DataFrame(terms, columns=['compound_id', 'term', 'generic']))\n"
+     "cur = spark.table('kescience_paperblast.curatedgene').select(\n"
+     "    F.lower('desc').alias('descl'), 'desc')\n"
+     "print('curatedgene rows:', cur.count())\n"
+     "hits = (terms_df.join(cur, F.col('descl').contains(F.col('term')))\n"
+     "        .groupBy('compound_id', 'generic')\n"
+     "        .agg(F.count('*').alias('lit_hits'),\n"
+     "             F.first('desc').alias('lit_example'))\n"
+     "        .toPandas())\n"
+     "t5 = hits.groupby('compound_id').agg(\n"
+     "    lit_hits=('lit_hits', 'sum'),\n"
+     "    lit_generic=('generic', 'max'),\n"
+     "    lit_example=('lit_example', 'first')).reset_index()\n"
+     "print('compounds with >=1 curated literature mention:', len(t5))\n"
+     "print('  (of those, name is generic/low-precision):', int(t5['lit_generic'].sum()))"),
+
+    ("md", "## Assemble the linkage matrix"),
+
+    ("code",
+     "link = res[['compound_id', 'name', 'npc_pathway', 'inchikey', 'kegg_id', 'chebi_id']].copy()\n"
+     "link['has_kegg'] = link['kegg_id'].notna()  # T3 entry point\n"
+     "link = link.merge(t1, on='compound_id', how='left')\n"
+     "link = link.merge(t2, on='compound_id', how='left')\n"
+     "link = link.merge(t5, on='compound_id', how='left')\n"
+     "link['fb_carbon'] = link['fb_carbon'].fillna(False)\n"
+     "link['msd_rxn'] = link['msd_n_rxn'].fillna(0) > 0\n"
+     "link['lit'] = link['lit_hits'].fillna(0) > 0\n"
+     "link['lit_strong'] = link['lit'] & ~link['lit_generic'].fillna(False)\n"
+     "# any linkage = any channel fired (literature counts even if low-precision)\n"
+     "link['any_linkage'] = link[['fb_carbon', 'msd_rxn', 'has_kegg', 'lit']].any(axis=1)\n"
+     "# best tier (most specific evidence available)\n"
+     "def best_tier(r):\n"
+     "    if r['fb_carbon']: return 'T1_measured'\n"
+     "    if r['msd_rxn']:   return 'T2_3_reaction'\n"
+     "    if r['has_kegg']:  return 'T3_kegg'\n"
+     "    if r['lit_strong']:return 'T5_lit'\n"
+     "    if r['lit']:       return 'T5_lit_lowprec'\n"
+     "    return 'T0_dark'\n"
+     "link['best_tier'] = link.apply(best_tier, axis=1)\n"
+     "print(link['best_tier'].value_counts().to_string())\n"
+     "print('\\nany linkage:', int(link['any_linkage'].sum()), '/', len(link))\n"
+     "print('DARK (no linkage):', int((~link['any_linkage']).sum()))"),
+
+    ("md", "## STOP-GATE: linkage coverage by chemical class"),
+
+    ("code",
+     "g = link.groupby('npc_pathway')\n"
+     "cov = pd.DataFrame({\n"
+     "    'n': g.size(),\n"
+     "    'T1_fb': g['fb_carbon'].sum(),\n"
+     "    'T2_3_msd_rxn': g['msd_rxn'].sum(),\n"
+     "    'T3_kegg': g['has_kegg'].sum(),\n"
+     "    'T5_lit_any': g['lit'].sum(),\n"
+     "    'any': g['any_linkage'].sum(),\n"
+     "}).astype(int)\n"
+     "cov['dark'] = cov['n'] - cov['any']\n"
+     "cov['pct_any'] = (100 * cov['any'] / cov['n']).round(0).astype(int)\n"
+     "cov = cov.sort_values('n', ascending=False)\n"
+     "print(cov.to_string())\n"
+     "print('\\nTOTAL any-linkage: %d/%d (%d%%)' % (\n"
+     "    link['any_linkage'].sum(), len(link),\n"
+     "    round(100*link['any_linkage'].sum()/len(link))))"),
+
+    ("code",
+     "# the dark compounds — explicit knowledge-gap list\n"
+     "dark = link[~link['any_linkage']][['compound_id', 'name', 'npc_pathway', 'inchikey']]\n"
+     "print('DARK compounds (T0 — no database linkage on any channel):', len(dark))\n"
+     "print(dark.to_string(index=False))"),
+
+    ("md", "## Figure + save linkage matrix"),
+
+    ("code",
+     "import matplotlib\n"
+     "matplotlib.use('Agg')\n"
+     "import matplotlib.pyplot as plt\n"
+     "import numpy as np\n"
+     "chan = ['T1_fb', 'T2_3_msd_rxn', 'T3_kegg', 'T5_lit_any']\n"
+     "labels = ['T1 FB carbon', 'T2/3 ModelSEED rxn', 'T3 KEGG', 'T5 literature']\n"
+     "classes = cov.index.tolist()\n"
+     "M = cov[chan].div(cov['n'], axis=0).values * 100\n"
+     "fig, ax = plt.subplots(figsize=(8, 4.8))\n"
+     "im = ax.imshow(M, cmap='viridis', aspect='auto', vmin=0, vmax=100)\n"
+     "ax.set_xticks(range(len(labels))); ax.set_xticklabels(labels, rotation=20, ha='right')\n"
+     "ax.set_yticks(range(len(classes)))\n"
+     "ax.set_yticklabels([f'{c} (n={cov.loc[c,\"n\"]})' for c in classes])\n"
+     "for i in range(len(classes)):\n"
+     "    for j in range(len(chan)):\n"
+     "        ax.text(j, i, f'{int(cov[chan].values[i,j])}', ha='center', va='center',\n"
+     "                color='w' if M[i, j] < 60 else 'k', fontsize=9)\n"
+     "ax.set_title('Carbon Census: pathway-linkage coverage by class\\n(cell = # compounds; color = % of class)')\n"
+     "fig.colorbar(im, label='% of class'); fig.tight_layout()\n"
+     "fig.savefig(FIG / '02_linkage_coverage.png', dpi=150); plt.close(fig)\n"
+     "print('saved 02_linkage_coverage.png')"),
+
+    ("code",
+     "out_cols = ['compound_id', 'name', 'npc_pathway', 'inchikey', 'kegg_id', 'chebi_id',\n"
+     "            'fb_carbon', 'fb_conditions', 'fb_n_orgs', 'fb_orgs',\n"
+     "            'msd_cpd', 'msd_match', 'msd_n_rxn', 'msd_rxn',\n"
+     "            'has_kegg', 'lit', 'lit_hits', 'lit_generic', 'lit_strong', 'lit_example',\n"
+     "            'any_linkage', 'best_tier']\n"
+     "link[out_cols].to_csv(DATA / 'compound_linkage.tsv', sep='\\t', index=False)\n"
+     "print('wrote data/compound_linkage.tsv', link.shape)\n"
+     "link[['compound_id', 'name', 'npc_pathway', 'best_tier', 'any_linkage']].head(15)"),
+]
+
+build_and_run("02_pathway_linkage.ipynb", cells, timeout=2400)
