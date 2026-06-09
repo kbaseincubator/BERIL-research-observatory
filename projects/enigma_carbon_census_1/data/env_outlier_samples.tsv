@@ -1,0 +1,250 @@
+genus	relab	sample_id	macro_env	env_medium	env_broad	gold_ecosystem_type	gold_specific	lat	lon	n_compounds	pathways
+Nocardioides	0.4285900220087382	nmdc:bsm-12-h26y9x12	periphyton	epipsammon	freshwater river biome			39.758206	-102.447148	1	Shikimates and Phenylpropanoids
+Hydrogenophaga	0.27763462226196695	nmdc:bsm-12-4xrt8184	periphyton	epiphyton	freshwater river biome			39.758206	-102.447148	4	Shikimates and Phenylpropanoids
+Mycobacterium	0.22039949907699224	nmdc:bsm-11-wwkbjm31	soil	soil	terrestrial biome	Soil	Bulk soil	42.427091	-72.229737	1	Shikimates and Phenylpropanoids
+Mycobacterium	0.21181295636857475	nmdc:bsm-11-55yy5h50	soil	soil	terrestrial biome	Soil	Unclassified	45.850153	-121.989672	1	Shikimates and Phenylpropanoids
+Mycobacterium	0.19594938158689448	nmdc:bsm-11-268k4561	soil	soil	terrestrial biome	Soil	Unclassified	42.478565	-72.259572	1	Shikimates and Phenylpropanoids
+Variovorax	0.18812465499061615	nmdc:bsm-12-7bht5w61	freshwater	stream water	freshwater stream biome			39.890674	-105.911293	4	Shikimates and Phenylpropanoids
+Sphingomonas	0.184527751143444	nmdc:bsm-11-cp8crw45	soil			Soil	Desert	28.72122816	83.91438789	1	Shikimates and Phenylpropanoids
+Mucilaginibacter	0.1839327379498756	nmdc:bsm-11-mrymeq51	soil			Soil	Unclassified	40.7988	-76.33928	2	Alkaloids,Shikimates and Phenylpropanoids
+Pseudomonas	0.17590123165450472	nmdc:bsm-12-jvz5b207	periphyton	epilithon	freshwater river biome			68.669753	-149.143018	3	Shikimates and Phenylpropanoids
+Polaromonas	0.15579259630824427	nmdc:bsm-12-2072vp28	periphyton	epilithon	freshwater river biome			68.669753	-149.143018	4	Shikimates and Phenylpropanoids
+Streptomyces	0.15196735891119084	nmdc:bsm-11-anbvsb66	other			Volcanic	Unclassified	19.389305	-155.2485	2	Shikimates and Phenylpropanoids
+Sphingomonas	0.1465958430030345	nmdc:bsm-11-e90czr72	soil			Soil	Desert	-13.773333	-71.071389	1	Shikimates and Phenylpropanoids
+Polaromonas	0.1374464488694128	nmdc:bsm-12-8jx26682	periphyton	epilithon	freshwater river biome			65.153224	-147.503973	4	Shikimates and Phenylpropanoids
+Polaromonas	0.1208572079942435	nmdc:bsm-12-vs8yyb35	periphyton	epilithon	freshwater river biome			65.153224	-147.503973	4	Shikimates and Phenylpropanoids
+Streptomyces	0.11936185382573693	nmdc:bsm-11-3agf7q54	soil	soil	terrestrial biome	Soil	Unclassified	37.082813	-119.743324	2	Shikimates and Phenylpropanoids
+Hydrogenophaga	0.1170368758926848	nmdc:bsm-12-sx9xm190	periphyton	epiphyton	freshwater river biome			39.758206	-102.447148	4	Shikimates and Phenylpropanoids
+Pseudomonas	0.10605704320617479	nmdc:bsm-12-5p6w0758	periphyton	epilithon	freshwater river biome			68.669753	-149.143018	3	Shikimates and Phenylpropanoids
+Curvibacter	0.09947179387793074	nmdc:bsm-12-xrqxg668	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	1	Alkaloids
+Burkholderia	0.09924386637027502	nmdc:bsm-12-7bht5w61	freshwater	stream water	freshwater stream biome			39.890674	-105.911293	4	Alkaloids,Shikimates and Phenylpropanoids
+Rhizobacter	0.09897116673544583	nmdc:bsm-12-ytt3gd26	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	1	Shikimates and Phenylpropanoids
+Pseudomonas	0.09644730511667789	nmdc:bsm-12-spm8c909	periphyton	epilithon	freshwater river biome			68.669753	-149.143018	3	Shikimates and Phenylpropanoids
+Sphingomonas	0.09627451916845041	nmdc:bsm-12-6nry3463	other	epixylon	freshwater river biome			35.957378	-84.279251	1	Shikimates and Phenylpropanoids
+Rhizobacter	0.08660542290168763	nmdc:bsm-12-1j0ykg32	periphyton	epilithon	freshwater river biome			40.034962	-105.544164	1	Shikimates and Phenylpropanoids
+Rhizobacter	0.08490264004556539	nmdc:bsm-12-y3fkh689	periphyton	epilithon	freshwater river biome			40.034962	-105.544164	1	Shikimates and Phenylpropanoids
+Reyranella	0.08406563727185304	nmdc:bsm-12-vs8yyb35	periphyton	epilithon	freshwater river biome			65.153224	-147.503973	2	Shikimates and Phenylpropanoids
+Methylibium	0.07914329668068135	nmdc:bsm-12-ytt3gd26	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	2	Alkaloids,Shikimates and Phenylpropanoids
+Variovorax	0.07491025171104462	nmdc:bsm-12-pd2xkw94	periphyton	epilithon	freshwater river biome			33.750993	-111.508091	4	Shikimates and Phenylpropanoids
+Nocardioides	0.07421953078082198	nmdc:bsm-11-29d9a657	soil			Soil	Bulk soil	38.920487572	-106.948785516	1	Shikimates and Phenylpropanoids
+Streptomyces	0.07291153963212141	nmdc:bsm-11-8s8j4g78	soil			Soil	Agricultural land	1.435145214	103.7113599	2	Shikimates and Phenylpropanoids
+Terriglobus	0.07129206194303077	nmdc:bsm-12-rh6bk825	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	1	Shikimates and Phenylpropanoids
+Nitrobacter	0.0701900552358598	nmdc:bsm-11-8s8j4g78	soil			Soil	Agricultural land	1.435145214	103.7113599	1	Shikimates and Phenylpropanoids
+Nocardioides	0.06829959683271472	nmdc:bsm-11-38kptn16	soil	soil	terrestrial biome	Soil	Unclassified	47.136134	-99.232896	1	Shikimates and Phenylpropanoids
+Variovorax	0.06654407149460198	nmdc:bsm-12-16z3kh85	periphyton	epilithon	freshwater river biome			38.945861	-96.443022	4	Shikimates and Phenylpropanoids
+Rhodoferax	0.06538546350115351	nmdc:bsm-12-kzfen933	periphyton	epilithon	freshwater river biome			44.95011	-110.58715	3	Shikimates and Phenylpropanoids
+Hydrogenophaga	0.06531658740867216	nmdc:bsm-12-qzn8aj54	periphyton	epiphyton	freshwater river biome			39.758206	-102.447148	4	Shikimates and Phenylpropanoids
+Methylibium	0.06494263617859872	nmdc:bsm-12-czm55566	periphyton	epipsammon	freshwater river biome			39.891366	-105.915395	2	Alkaloids,Shikimates and Phenylpropanoids
+Caulobacter	0.06319127425250126	nmdc:bsm-12-8k0st921	freshwater	stream water	freshwater stream biome			35.692201	-83.504427	3	Alkaloids,Shikimates and Phenylpropanoids
+Methylibium	0.05975317045471228	nmdc:bsm-12-jefz6z20	periphyton	epipsammon	freshwater river biome			39.891366	-105.915395	2	Alkaloids,Shikimates and Phenylpropanoids
+Herbaspirillum	0.05937548211539949	nmdc:bsm-12-kxmx6b22	periphyton	epipsammon	freshwater river biome			33.750993	-111.508091	2	Shikimates and Phenylpropanoids
+Novosphingobium	0.05714997346797204	nmdc:bsm-13-w2cwcx50	other			Sand microcosm	Unclassified	46.37228379	-119.2717467	1	Shikimates and Phenylpropanoids
+Burkholderia	0.056124906688475834	nmdc:bsm-11-jghcvb50	soil	soil	terrestrial biome	Soil	Unclassified	31.840609	-110.917189	4	Alkaloids,Shikimates and Phenylpropanoids
+Novosphingobium	0.05529161628028397	nmdc:bsm-13-4jtymw61	other			Sand microcosm	Unclassified	46.37228379	-119.2717467	1	Shikimates and Phenylpropanoids
+Novosphingobium	0.05427362474123277	nmdc:bsm-13-fw3n4813	other			Sand microcosm	Unclassified	46.37228379	-119.2717467	1	Shikimates and Phenylpropanoids
+Massilia	0.04817314279077861	nmdc:bsm-11-p2nnmv96	soil	soil	terrestrial biome	Soil	Unclassified	42.45243	-72.250472	1	Shikimates and Phenylpropanoids
+Rhodanobacter	0.04785048172864879	nmdc:bsm-11-nyaw3p87	soil	soil	terrestrial biome	Soil	Unclassified	63.831139	-145.747612	1	Shikimates and Phenylpropanoids
+Massilia	0.04620514674062659	nmdc:bsm-12-kxmx6b22	periphyton	epipsammon	freshwater river biome			33.750993	-111.508091	1	Shikimates and Phenylpropanoids
+Reyranella	0.044588027300563174	nmdc:bsm-11-cbs2ss75	soil	soil	terrestrial biome	Soil	Unclassified	45.825842	-121.960125	2	Shikimates and Phenylpropanoids
+Rhodoferax	0.04342145991346526	nmdc:bsm-12-2mjmy131	periphyton	epilithon	freshwater river biome			39.105061	-96.603829	3	Shikimates and Phenylpropanoids
+Rhodoferax	0.0422208748974114	nmdc:bsm-12-xrqxg668	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	3	Shikimates and Phenylpropanoids
+Reyranella	0.04215085410609007	nmdc:bsm-11-6qgwc522	plant			Roots	Unclassified	35.8443	-83.9607	2	Shikimates and Phenylpropanoids
+Paraburkholderia	0.04156545311193646	nmdc:bsm-11-hj945k50	soil	soil	terrestrial biome	Soil	Bulk soil	65.174447	-147.478155	5	Alkaloids,Shikimates and Phenylpropanoids
+Rhodanobacter	0.041546957309730896	nmdc:bsm-11-hj945k50	soil	soil	terrestrial biome	Soil	Bulk soil	65.174447	-147.478155	1	Shikimates and Phenylpropanoids
+Paraburkholderia	0.04138755033387977	nmdc:bsm-11-yqbvt475	soil			Soil	Unclassified	40.798	-76.341133	5	Alkaloids,Shikimates and Phenylpropanoids
+Mesorhizobium	0.040578446202266485	nmdc:bsm-11-bja22k98	plant			Roots	Unclassified	35.8444	-83.9599	1	Alkaloids
+Pseudoxanthomonas	0.039797914673078014	nmdc:bsm-11-e90czr72	soil			Soil	Desert	-13.773333	-71.071389	1	Shikimates and Phenylpropanoids
+Magnetospirillum	0.03860511040785381	nmdc:bsm-12-zcfkaz45	other	epixylon	freshwater river biome			35.957378	-84.279251	1	Shikimates and Phenylpropanoids
+Afipia	0.0379029879018243	nmdc:bsm-13-3p3ehg08	other			Sand microcosm	Unclassified	46.37228379	-119.2717467	1	Alkaloids
+Mesorhizobium	0.03350223914156736	nmdc:bsm-11-dx4vst02	soil	soil	terrestrial biome	Soil	Unclassified	44.041571	-71.28692	1	Alkaloids
+Burkholderia	0.03346963533345161	nmdc:bsm-12-vkxx8d53	other	epixylon	freshwater river biome			32.960365	-87.407688	4	Alkaloids,Shikimates and Phenylpropanoids
+Mesorhizobium	0.03124848734059943	nmdc:bsm-12-e36jqk24	periphyton	epilithon	freshwater river biome			39.891366	-105.915395	1	Alkaloids
+Brevundimonas	0.031204648300771614	nmdc:bsm-12-2k8h8655	periphyton	epilithon	freshwater river biome			34.444218	-96.624201	1	Shikimates and Phenylpropanoids
+Paraburkholderia	0.031039944053906317	nmdc:bsm-11-tvhbxs22	soil	soil	terrestrial biome	Soil	Unclassified	42.45243	-72.250472	5	Alkaloids,Shikimates and Phenylpropanoids
+Rhodanobacter	0.030693508211902726	nmdc:bsm-11-j7mtz083	soil			Soil	Bulk soil	65.16166658	-147.4864426	1	Shikimates and Phenylpropanoids
+Pedobacter	0.03059409638091703	nmdc:bsm-11-mrymeq51	soil			Soil	Unclassified	40.7988	-76.33928	1	Shikimates and Phenylpropanoids
+Afipia	0.02789704736964965	nmdc:bsm-13-4jtymw61	other			Sand microcosm	Unclassified	46.37228379	-119.2717467	1	Alkaloids
+Ramlibacter	0.027308799924495572	nmdc:bsm-12-q6ydka19	periphyton	epilithon	freshwater river biome			38.945861	-96.443022	2	Shikimates and Phenylpropanoids
+Sphingopyxis	0.026456511722485247	nmdc:bsm-12-pd2xkw94	periphyton	epilithon	freshwater river biome			33.750993	-111.508091	1	Shikimates and Phenylpropanoids
+Rhizobium	0.025960580376724687	nmdc:bsm-11-bja22k98	plant			Roots	Unclassified	35.8444	-83.9599	2	Alkaloids,Shikimates and Phenylpropanoids
+Massilia	0.02552936885540608	nmdc:bsm-12-x4wqda06	periphyton	epilithon	freshwater river biome			68.669753	-149.143018	1	Shikimates and Phenylpropanoids
+Escherichia	0.02540950766051442	nmdc:bsm-12-kvbxw112	freshwater	stream water	freshwater stream biome			32.961588	-87.408223	1	Shikimates and Phenylpropanoids
+Arthrobacter	0.025247300537109375	nmdc:bsm-11-h8mpw025	soil	soil	terrestrial biome	Soil	Unclassified	37.033983	-119.250835	2	Shikimates and Phenylpropanoids
+Afipia	0.02401619704731975	nmdc:bsm-11-9t9j3p04	soil	soil	terrestrial biome	Soil	Unclassified	63.831139	-145.747612	1	Alkaloids
+Rhizobium	0.023651483274969257	nmdc:bsm-11-b2w6cr26	plant			Roots	Unclassified	35.8444	-83.9599	2	Alkaloids,Shikimates and Phenylpropanoids
+Cellvibrio	0.02289947350727562	nmdc:bsm-12-d2aqjm16	freshwater	stream water	freshwater stream biome			44.258957	-122.165861	1	Shikimates and Phenylpropanoids
+Caballeronia	0.02249173639401876	nmdc:bsm-12-4b4kz682	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	3	Alkaloids,Shikimates and Phenylpropanoids
+Duganella	0.022383008650683767	nmdc:bsm-12-kxmx6b22	periphyton	epipsammon	freshwater river biome			33.750993	-111.508091	2	Shikimates and Phenylpropanoids
+Ramlibacter	0.022227955420055068	nmdc:bsm-12-kzfen933	periphyton	epilithon	freshwater river biome			44.95011	-110.58715	2	Shikimates and Phenylpropanoids
+Janthinobacterium	0.021627100871540923	nmdc:bsm-12-kxmx6b22	periphyton	epipsammon	freshwater river biome			33.750993	-111.508091	1	Shikimates and Phenylpropanoids
+Caulobacter	0.02144600911499873	nmdc:bsm-12-7hvc8132	other	epixylon	freshwater river biome			32.960365	-87.407688	3	Alkaloids,Shikimates and Phenylpropanoids
+Mucilaginibacter	0.021019113708510315	nmdc:bsm-11-d3kwey28	soil	soil	terrestrial biome	Soil	Unclassified	40.043663	-105.569904	2	Alkaloids,Shikimates and Phenylpropanoids
+Ramlibacter	0.020513968149976334	nmdc:bsm-12-xrqxg668	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	2	Shikimates and Phenylpropanoids
+Cellvibrio	0.020352538197113777	nmdc:bsm-12-fg2c7t30	freshwater	stream water	freshwater stream biome			18.110265	-66.986411	1	Shikimates and Phenylpropanoids
+Mucilaginibacter	0.020042974410925726	nmdc:bsm-11-hj945k50	soil	soil	terrestrial biome	Soil	Bulk soil	65.174447	-147.478155	2	Alkaloids,Shikimates and Phenylpropanoids
+Terriglobus	0.019945566425728093	nmdc:bsm-11-2zyckv39	soil	soil	terrestrial biome	Soil	Unclassified	31.870334	-110.856598	1	Shikimates and Phenylpropanoids
+Roseateles	0.018978998575699763	nmdc:bsm-12-8ad2jj17	periphyton	epilithon	freshwater river biome			39.105061	-96.603829	2	Shikimates and Phenylpropanoids
+Caulobacter	0.01890447194319746	nmdc:bsm-11-p2nnmv96	soil	soil	terrestrial biome	Soil	Unclassified	42.45243	-72.250472	3	Alkaloids,Shikimates and Phenylpropanoids
+Rhizobium	0.01871585955759919	nmdc:bsm-11-k1twxb65	plant			Roots	Unclassified	35.8443	-83.9607	2	Alkaloids,Shikimates and Phenylpropanoids
+Rugosibacter	0.018662267276765582	nmdc:bsm-13-4jtymw61	other			Sand microcosm	Unclassified	46.37228379	-119.2717467	2	Shikimates and Phenylpropanoids
+Sphingobium	0.018068839273008896	nmdc:bsm-12-sx9xm190	periphyton	epiphyton	freshwater river biome			39.758206	-102.447148	2	Shikimates and Phenylpropanoids
+Cellvibrio	0.01803627144053305	nmdc:bsm-12-qr3qfn72	periphyton	epiphyton	freshwater river biome			39.758206	-102.447148	1	Shikimates and Phenylpropanoids
+Sphingobium	0.017913318938499043	nmdc:bsm-12-ptpq5430	periphyton	epilithon	freshwater river biome			65.153224	-147.503973	2	Shikimates and Phenylpropanoids
+Curvibacter	0.017362043019615362	nmdc:bsm-12-4b4kz682	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	1	Alkaloids
+Collimonas	0.017070392275770396	nmdc:bsm-12-kxmx6b22	periphyton	epipsammon	freshwater river biome			33.750993	-111.508091	3	Shikimates and Phenylpropanoids
+Pseudoxanthomonas	0.016252137985473897	nmdc:bsm-12-asmkhd16	periphyton	epilithon	freshwater river biome			38.945861	-96.443022	1	Shikimates and Phenylpropanoids
+Acidovorax	0.015977426038397864	nmdc:bsm-12-kzfen933	periphyton	epilithon	freshwater river biome			44.95011	-110.58715	5	Alkaloids,Shikimates and Phenylpropanoids
+Roseateles	0.014253565952269724	nmdc:bsm-12-1cvvb960	periphyton	epilithon	freshwater river biome			38.89431	-78.147258	2	Shikimates and Phenylpropanoids
+Roseateles	0.01411267070508232	nmdc:bsm-12-n41etz05	other	epixylon	freshwater river biome			32.960365	-87.407688	2	Shikimates and Phenylpropanoids
+Sphingopyxis	0.01363289534697687	nmdc:bsm-12-ptpq5430	periphyton	epilithon	freshwater river biome			65.153224	-147.503973	1	Shikimates and Phenylpropanoids
+Magnetospirillum	0.013311829488898167	nmdc:bsm-11-bx86p094	soil			Soil	Shrubland	44.60695	-123.238343	1	Shikimates and Phenylpropanoids
+Rugosibacter	0.013289499318796178	nmdc:bsm-12-3hemqc29	periphyton	epipsammon	freshwater river biome			33.750993	-111.508091	2	Shikimates and Phenylpropanoids
+Terriglobus	0.013069360045589028	nmdc:bsm-11-f44cm251	soil	soil	terrestrial biome	Soil	Unclassified	42.424246	-72.258285	1	Shikimates and Phenylpropanoids
+Tardiphaga	0.013010569918600475	nmdc:bsm-11-p2nnmv96	soil	soil	terrestrial biome	Soil	Unclassified	42.45243	-72.250472	1	Shikimates and Phenylpropanoids
+Arthrobacter	0.012341437979242111	nmdc:bsm-11-z74kbw36	soil	soil	terrestrial biome	Soil	Unclassified	40.810934	-104.729248	2	Shikimates and Phenylpropanoids
+Acidovorax	0.01227201053174523	nmdc:bsm-12-xrqxg668	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	5	Alkaloids,Shikimates and Phenylpropanoids
+Acidovorax	0.012018608026092937	nmdc:bsm-12-vs8yyb35	periphyton	epilithon	freshwater river biome			65.153224	-147.503973	5	Alkaloids,Shikimates and Phenylpropanoids
+Curvibacter	0.011960507329182054	nmdc:bsm-12-kzfen933	periphyton	epilithon	freshwater river biome			44.95011	-110.58715	1	Alkaloids
+Brevundimonas	0.01182662356619203	nmdc:bsm-12-vs8yyb35	periphyton	epilithon	freshwater river biome			65.153224	-147.503973	1	Shikimates and Phenylpropanoids
+Xylophilus	0.011754750919166255	nmdc:bsm-12-dk153f06	periphyton	epipsammon	freshwater river biome			35.690428	-83.50379	1	Shikimates and Phenylpropanoids
+Sphingobium	0.011711925636514891	nmdc:bsm-12-59hfe214	periphyton	epilithon	freshwater river biome			18.11352	-66.98676	2	Shikimates and Phenylpropanoids
+Microbacterium	0.011563316856399736	nmdc:bsm-12-8y296978	periphyton	epipsammon	freshwater river biome			40.783934	-111.797887	2	Shikimates and Phenylpropanoids,Terpenoids
+Microbacterium	0.011457256281171389	nmdc:bsm-11-jvtvhn02	soil			Soil	Bulk soil	38.920405996	-106.948286622	2	Shikimates and Phenylpropanoids,Terpenoids
+Tardiphaga	0.01136975878351086	nmdc:bsm-11-ynzbdm36	soil	soil	terrestrial biome	Soil	Unclassified	31.806908	-88.193888	1	Shikimates and Phenylpropanoids
+Chitinophaga	0.011346979113098957	nmdc:bsm-11-vbchye78	soil			Soil	Bulk soil	65.16140744	-147.4859707	1	Shikimates and Phenylpropanoids
+Escherichia	0.011250686541291372	nmdc:bsm-11-106c8d05	soil	soil	terrestrial biome	Soil	Unclassified	38.897609	-78.152007	1	Shikimates and Phenylpropanoids
+Sphingopyxis	0.010558855297290018	nmdc:bsm-12-59hfe214	periphyton	epilithon	freshwater river biome			18.11352	-66.98676	1	Shikimates and Phenylpropanoids
+Microbacterium	0.010359113026339108	nmdc:bsm-11-tq2k2z77	soil			Soil	Bulk soil	38.920576363	-106.948748019	2	Shikimates and Phenylpropanoids,Terpenoids
+Tardiphaga	0.01034480126574287	nmdc:bsm-11-p37dc885	soil			Soil	Bulk soil	65.16121249	-147.4844485	1	Shikimates and Phenylpropanoids
+Brevundimonas	0.010333583454043001	nmdc:bsm-12-rk824t31	periphyton	epilithon	freshwater river biome			34.444218	-96.624201	1	Shikimates and Phenylpropanoids
+Chitinophaga	0.01005995714139678	nmdc:bsm-11-223nqw71	soil	soil	terrestrial biome	Soil	Unclassified	37.127266	-119.759842	1	Shikimates and Phenylpropanoids
+Caballeronia	0.009875407855008988	nmdc:bsm-11-d3kwey28	soil	soil	terrestrial biome	Soil	Unclassified	40.043663	-105.569904	3	Alkaloids,Shikimates and Phenylpropanoids
+Caballeronia	0.009154927752707038	nmdc:bsm-11-j7mtz083	soil			Soil	Bulk soil	65.16166658	-147.4864426	3	Alkaloids,Shikimates and Phenylpropanoids
+Pseudoxanthomonas	0.008882559776919326	nmdc:bsm-12-gya3vr51	periphyton	epilithon	freshwater river biome			38.945861	-96.443022	1	Shikimates and Phenylpropanoids
+Arthrobacter	0.008577966940900909	nmdc:bsm-11-p71ap597	soil	soil	terrestrial biome	Soil	Unclassified	71.281245	-156.603377	2	Shikimates and Phenylpropanoids
+Chitinophaga	0.008520570463057126	nmdc:bsm-12-syvyxa88	periphyton	epilithon	freshwater river biome			42.471941	-72.329526	1	Shikimates and Phenylpropanoids
+Rugosibacter	0.00840091828717763	nmdc:bsm-13-2jy0tr02	other			Sand microcosm	Unclassified	46.37228379	-119.2717467	2	Shikimates and Phenylpropanoids
+Azonexus	0.00804549943016577	nmdc:bsm-12-rw9fh624	other	epipelon	freshwater river biome			39.095637	-77.983216	1	Shikimates and Phenylpropanoids
+Pseudarthrobacter	0.007974415893554687	nmdc:bsm-11-h8mpw025	soil	soil	terrestrial biome	Soil	Unclassified	37.033983	-119.250835	1	Shikimates and Phenylpropanoids
+Nitrobacter	0.007762343614071744	nmdc:bsm-11-ncna5c73	soil	soil	terrestrial biome	Soil	Unclassified	38.883308	-78.120371	1	Shikimates and Phenylpropanoids
+Magnetospirillum	0.007668553648159287	nmdc:bsm-12-za7a4t49	other	epixylon	freshwater river biome			32.960365	-87.407688	1	Shikimates and Phenylpropanoids
+Collimonas	0.007438043934416928	nmdc:bsm-11-2ah5z651	soil			Soil	Bulk soil	65.16124063	-147.4846048	3	Shikimates and Phenylpropanoids
+Escherichia	0.007415248093392244	nmdc:bsm-12-fbcfxp14	periphyton	epilithon	freshwater river biome			34.444218	-96.624201	1	Shikimates and Phenylpropanoids
+Janthinobacterium	0.007184054698900477	nmdc:bsm-11-bx86p094	soil			Soil	Shrubland	44.60695	-123.238343	1	Shikimates and Phenylpropanoids
+Janthinobacterium	0.007058843141183296	nmdc:bsm-11-p2nnmv96	soil	soil	terrestrial biome	Soil	Unclassified	42.45243	-72.250472	1	Shikimates and Phenylpropanoids
+Duganella	0.006826905767031436	nmdc:bsm-11-nv0bq792	soil	soil	terrestrial biome	Soil	Unclassified	31.187671	-84.45585	2	Shikimates and Phenylpropanoids
+Alcaligenes	0.006722708192478313	nmdc:bsm-12-5b4vkq87	freshwater	lake water	freshwater lake biome			29.677479	-82.00771	3	Alkaloids,Shikimates and Phenylpropanoids
+Duganella	0.0066014863309164125	nmdc:bsm-12-s676a041	other	epixylon	freshwater river biome			32.960365	-87.407688	2	Shikimates and Phenylpropanoids
+Leifsonia	0.006298055166555583	nmdc:bsm-11-2ah5z651	soil			Soil	Bulk soil	65.16124063	-147.4846048	1	Shikimates and Phenylpropanoids
+Pedobacter	0.006239590770927535	nmdc:bsm-12-syvyxa88	periphyton	epilithon	freshwater river biome			42.471941	-72.329526	1	Shikimates and Phenylpropanoids
+Candidimonas	0.006152332518780233	nmdc:bsm-11-hncxy943	soil			Soil	Bulk soil	44.230556	-122.191464	1	Shikimates and Phenylpropanoids
+Azonexus	0.006024727105534411	nmdc:bsm-12-yvwgwe56	other	epipelon	freshwater river biome			39.095637	-77.983216	1	Shikimates and Phenylpropanoids
+Azonexus	0.0058682212890360155	nmdc:bsm-12-k8nk8654	other	epipelon	freshwater river biome			39.095637	-77.983216	1	Shikimates and Phenylpropanoids
+Cupriavidus	0.00559860962494973	nmdc:bsm-12-eyh68p15	freshwater	stream water	freshwater stream biome			32.961588	-87.408223	5	Alkaloids,Shikimates and Phenylpropanoids
+Nitrobacter	0.0054731821208888936	nmdc:bsm-11-2ah5z651	soil			Soil	Bulk soil	65.16124063	-147.4846048	1	Shikimates and Phenylpropanoids
+Pedobacter	0.005447542375792783	nmdc:bsm-12-c5c6ce17	periphyton	epilithon	freshwater river biome			44.95011	-110.58715	1	Shikimates and Phenylpropanoids
+Pandoraea	0.005420963203628974	nmdc:bsm-12-jzx7gn33	freshwater	lake water	freshwater lake biome			68.630699	-149.611405	1	Shikimates and Phenylpropanoids
+Ensifer	0.005390994263929213	nmdc:bsm-11-2zwg9712	soil	soil	terrestrial biome	Soil	Unclassified	38.883308	-78.120371	2	Shikimates and Phenylpropanoids
+Cupriavidus	0.0051949199212408545	nmdc:bsm-11-hncxy943	soil			Soil	Bulk soil	44.230556	-122.191464	5	Alkaloids,Shikimates and Phenylpropanoids
+Klebsiella	0.005178192876071566	nmdc:bsm-11-4x2qkj21	soil	soil	terrestrial biome	Soil	Unclassified	44.041571	-71.28692	1	Shikimates and Phenylpropanoids
+Intrasporangium	0.004989969714379957	nmdc:bsm-11-y2x26s57	soil	soil	terrestrial biome	Soil	Unclassified	40.818931	-104.748858	1	Alkaloids
+Asticcacaulis	0.004891880518411245	nmdc:bsm-12-nqxz1w54	periphyton	epiphyton	freshwater river biome			39.758206	-102.447148	1	Shikimates and Phenylpropanoids
+Cupriavidus	0.00488382088506548	nmdc:bsm-12-18a1tv89	other	epipelon	freshwater river biome			39.095637	-77.983216	5	Alkaloids,Shikimates and Phenylpropanoids
+Ensifer	0.004814868651755997	nmdc:bsm-11-hncxy943	soil			Soil	Bulk soil	44.230556	-122.191464	2	Shikimates and Phenylpropanoids
+Ensifer	0.004778259268813227	nmdc:bsm-11-ncna5c73	soil	soil	terrestrial biome	Soil	Unclassified	38.883308	-78.120371	2	Shikimates and Phenylpropanoids
+Asticcacaulis	0.004761260225427033	nmdc:bsm-12-kvbxw112	freshwater	stream water	freshwater stream biome			32.961588	-87.408223	1	Shikimates and Phenylpropanoids
+Candidimonas	0.004679119129201369	nmdc:bsm-11-y2x26s57	soil	soil	terrestrial biome	Soil	Unclassified	40.818931	-104.748858	1	Shikimates and Phenylpropanoids
+Alcaligenes	0.004456958010974862	nmdc:bsm-12-8fe35m91	periphyton	epipsammon	freshwater river biome			39.891366	-105.915395	3	Alkaloids,Shikimates and Phenylpropanoids
+Pusillimonas	0.004362806673644289	nmdc:bsm-11-n0kmyd38	soil			Soil	Unclassified	40.8008	-76.3414833	2	Shikimates and Phenylpropanoids
+Klebsiella	0.004323918183691156	nmdc:bsm-12-b3q7rm85	periphyton	epiphyton	freshwater river biome			39.758206	-102.447148	1	Shikimates and Phenylpropanoids
+Collimonas	0.00428145458984375	nmdc:bsm-11-h8mpw025	soil	soil	terrestrial biome	Soil	Unclassified	37.033983	-119.250835	3	Shikimates and Phenylpropanoids
+Pusillimonas	0.0042436186399112735	nmdc:bsm-11-ec3gfh22	soil	soil	terrestrial biome	Soil	Unclassified	42.537308	-72.179312	2	Shikimates and Phenylpropanoids
+Asticcacaulis	0.004182738760819338	nmdc:bsm-11-p065np87	soil	soil	terrestrial biome	Soil	Unclassified	40.463078	-103.03289	1	Shikimates and Phenylpropanoids
+Achromobacter	0.00417524962283107	nmdc:bsm-12-nkqy0t66	periphyton	epilithon	freshwater river biome			45.790835	-121.933788	3	Alkaloids,Shikimates and Phenylpropanoids
+Aminobacter	0.003988892182480822	nmdc:bsm-12-e36jqk24	periphyton	epilithon	freshwater river biome			39.891366	-105.915395	1	Shikimates and Phenylpropanoids
+Leifsonia	0.0039227673311112545	nmdc:bsm-11-30npyx54	soil			Soil	Unclassified	40.8008	-76.34145	1	Shikimates and Phenylpropanoids
+Staphylococcus	0.003919751712094529	nmdc:bsm-11-g3a6t898	soil	soil	terrestrial biome	Soil	Unclassified	63.887138	-149.301221	2	Shikimates and Phenylpropanoids
+Achromobacter	0.003879338872396573	nmdc:bsm-12-sch2y947	freshwater	stream water	freshwater stream biome			35.692201	-83.504427	3	Alkaloids,Shikimates and Phenylpropanoids
+Comamonas	0.00387132866658927	nmdc:bsm-12-k6zv3c87	periphyton	epipsammon	freshwater river biome			33.378517	-97.782312	3	Alkaloids,Shikimates and Phenylpropanoids
+Leifsonia	0.0036917568599490113	nmdc:bsm-11-223nqw71	soil	soil	terrestrial biome	Soil	Unclassified	37.127266	-119.759842	1	Shikimates and Phenylpropanoids
+Citrobacter	0.003557916064657321	nmdc:bsm-12-e9tm8r60	periphyton	epilithon	freshwater river biome			39.095637	-77.983216	1	Shikimates and Phenylpropanoids
+Achromobacter	0.0034825648854630666	nmdc:bsm-12-kxmx6b22	periphyton	epipsammon	freshwater river biome			33.750993	-111.508091	3	Alkaloids,Shikimates and Phenylpropanoids
+Candidimonas	0.0033665878921661017	nmdc:bsm-11-89q03t84	soil			Soil	Agricultural land	1.294588	103.776828	1	Shikimates and Phenylpropanoids
+Pigmentiphaga	0.0033587572099758943	nmdc:bsm-11-407zcq77	soil			Soil	Agricultural land	1.435343635	103.7115584	3	Shikimates and Phenylpropanoids
+Alcaligenes	0.0032668742689738843	nmdc:bsm-12-yytfs289	freshwater	stream water	freshwater stream biome			44.953606	-110.589396	3	Alkaloids,Shikimates and Phenylpropanoids
+Pigmentiphaga	0.0030456267067536912	nmdc:bsm-11-30npyx54	soil			Soil	Unclassified	40.8008	-76.34145	3	Shikimates and Phenylpropanoids
+Micrococcus	0.003030065909091604	nmdc:bsm-11-ec3gfh22	soil	soil	terrestrial biome	Soil	Unclassified	42.537308	-72.179312	1	Shikimates and Phenylpropanoids
+Ferrovibrio	0.002990717040650547	nmdc:bsm-11-hncxy943	soil			Soil	Bulk soil	44.230556	-122.191464	1	Shikimates and Phenylpropanoids
+Pigmentiphaga	0.00293430245682888	nmdc:bsm-12-xrqxg668	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	3	Shikimates and Phenylpropanoids
+Herbaspirillum	0.002906577481270229	nmdc:bsm-12-xrqxg668	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	2	Shikimates and Phenylpropanoids
+Comamonas	0.002886476187305311	nmdc:bsm-12-yk221594	freshwater	stream water	freshwater stream biome			39.758359	-102.448595	3	Alkaloids,Shikimates and Phenylpropanoids
+Comamonas	0.002761903059651703	nmdc:bsm-12-kvbxw112	freshwater	stream water	freshwater stream biome			32.961588	-87.408223	3	Alkaloids,Shikimates and Phenylpropanoids
+Filimonas	0.002672248143010323	nmdc:bsm-12-zcfkaz45	other	epixylon	freshwater river biome			35.957378	-84.279251	1	Shikimates and Phenylpropanoids
+Rhizorhabdus	0.002665006675771046	nmdc:bsm-12-59hfe214	periphyton	epilithon	freshwater river biome			18.11352	-66.98676	1	Shikimates and Phenylpropanoids
+Staphylococcus	0.0025692136245365925	nmdc:bsm-11-v08hbc47	soil	soil	terrestrial biome	Soil	Unclassified	31.194314	-84.477077	2	Shikimates and Phenylpropanoids
+Pusillimonas	0.002564534790626038	nmdc:bsm-11-72f2yc02	soil			Soil	Agricultural land	1.294588	103.776828	2	Shikimates and Phenylpropanoids
+Aminobacter	0.0025389831505776613	nmdc:bsm-11-y3vbkk56	soil	soil	terrestrial biome	Soil	Unclassified	38.897609	-78.152007	1	Shikimates and Phenylpropanoids
+Alteromonas	0.0025114648442865067	nmdc:bsm-11-x2xvvc38	soil	soil	terrestrial biome	Soil	Unclassified	47.131002	-99.242763	1	Shikimates and Phenylpropanoids
+Pandoraea	0.0024662397466582277	nmdc:bsm-11-72f2yc02	soil			Soil	Agricultural land	1.294588	103.776828	1	Shikimates and Phenylpropanoids
+Intrasporangium	0.0024078233277564126	nmdc:bsm-11-p71ap597	soil	soil	terrestrial biome	Soil	Unclassified	71.281245	-156.603377	1	Alkaloids
+Shinella	0.0022888972186479424	nmdc:bsm-11-c7daje72	soil	soil	terrestrial biome	Soil	Bulk soil	32.922166	-87.428895	1	Shikimates and Phenylpropanoids
+Starkeya	0.0022625252657928157	nmdc:bsm-11-tvhbxs22	soil	soil	terrestrial biome	Soil	Unclassified	42.45243	-72.250472	2	Shikimates and Phenylpropanoids
+Intrasporangium	0.0021754096640850384	nmdc:bsm-11-ncna5c73	soil	soil	terrestrial biome	Soil	Unclassified	38.883308	-78.120371	1	Alkaloids
+Herbaspirillum	0.002131846237219056	nmdc:bsm-12-18a1tv89	other	epipelon	freshwater river biome			39.095637	-77.983216	2	Shikimates and Phenylpropanoids
+Aminobacter	0.0020889236845118508	nmdc:bsm-12-g36ma920	periphyton	epilithon	freshwater river biome			38.89431	-78.147258	1	Shikimates and Phenylpropanoids
+Filimonas	0.0020812634930367736	nmdc:bsm-11-p2nnmv96	soil	soil	terrestrial biome	Soil	Unclassified	42.45243	-72.250472	1	Shikimates and Phenylpropanoids
+Pandoraea	0.0020136258643573095	nmdc:bsm-12-jnhhhq74	freshwater	stream water	freshwater stream biome			36.955224	-119.023553	1	Shikimates and Phenylpropanoids
+Filimonas	0.0019467213478982937	nmdc:bsm-12-s676a041	other	epixylon	freshwater river biome			32.960365	-87.407688	1	Shikimates and Phenylpropanoids
+Rhizorhabdus	0.0019257911985541573	nmdc:bsm-11-yf1w8w09	soil	soil	terrestrial biome	Soil	Unclassified	31.194504	-84.460062	1	Shikimates and Phenylpropanoids
+Rhizorhabdus	0.0018945514563827582	nmdc:bsm-11-cp8crw45	soil			Soil	Desert	28.72122816	83.91438789	1	Shikimates and Phenylpropanoids
+Staphylococcus	0.0018893338680416479	nmdc:bsm-11-yh8qdb53	soil	soil	terrestrial biome	Soil	Unclassified	38.883308	-78.120371	2	Shikimates and Phenylpropanoids
+Pseudarthrobacter	0.001826274743835263	nmdc:bsm-11-p71ap597	soil	soil	terrestrial biome	Soil	Unclassified	71.281245	-156.603377	1	Shikimates and Phenylpropanoids
+Hylemonella	0.001820731926481516	nmdc:bsm-12-3y4xcp84	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	2	Shikimates and Phenylpropanoids
+Xylophilus	0.0017771346473510567	nmdc:bsm-12-8ad2jj17	periphyton	epilithon	freshwater river biome			39.105061	-96.603829	1	Shikimates and Phenylpropanoids
+Citrobacter	0.0016913847640892647	nmdc:bsm-12-m6cnke49	periphyton	epilithon	freshwater river biome			38.89431	-78.147258	1	Shikimates and Phenylpropanoids
+Paenarthrobacter	0.001674213743365368	nmdc:bsm-11-rvbmgd94	soil	soil	terrestrial biome	Soil	Unclassified	33.414259	-97.597098	1	Shikimates and Phenylpropanoids
+Hylemonella	0.001653823423665289	nmdc:bsm-12-xrqxg668	periphyton	epipsammon	freshwater river biome			37.059719	-119.257549	2	Shikimates and Phenylpropanoids
+Roseococcus	0.0016506718729850196	nmdc:bsm-11-tvhbxs22	soil	soil	terrestrial biome	Soil	Unclassified	42.45243	-72.250472	1	Shikimates and Phenylpropanoids
+Pseudarthrobacter	0.0016231447193584478	nmdc:bsm-11-ew5t0k44	soil	soil	terrestrial biome	Soil	Unclassified	39.124964	-96.647329	1	Shikimates and Phenylpropanoids
+Xylophilus	0.0015536706578400158	nmdc:bsm-12-kzfen933	periphyton	epilithon	freshwater river biome			44.95011	-110.58715	1	Shikimates and Phenylpropanoids
+Hylemonella	0.00155021434756416	nmdc:bsm-12-kzfen933	periphyton	epilithon	freshwater river biome			44.95011	-110.58715	2	Shikimates and Phenylpropanoids
+Roseococcus	0.001539697005468034	nmdc:bsm-12-wfjzxk89	other	epixylon	freshwater river biome			32.960365	-87.407688	1	Shikimates and Phenylpropanoids
+Alteromonas	0.0014951148637838431	nmdc:bsm-12-pg1br178	freshwater	stream water	freshwater stream biome			40.783659	-111.798106	1	Shikimates and Phenylpropanoids
+Roseococcus	0.0014797154330648296	nmdc:bsm-11-4b8h0j70	other			Volcanic	Unclassified	19.389305	-155.2485	1	Shikimates and Phenylpropanoids
+Rhodospirillum	0.0014692861410712762	nmdc:bsm-12-vnn1w979	periphyton	epilithon	freshwater river biome			39.105061	-96.603829	1	Shikimates and Phenylpropanoids
+Starkeya	0.0014408601055530836	nmdc:bsm-11-pd0av537	soil	soil	terrestrial biome	Soil	Unclassified	31.196458	-84.461913	2	Shikimates and Phenylpropanoids
+Citrobacter	0.001376863893618453	nmdc:bsm-12-vkxx8d53	other	epixylon	freshwater river biome			32.960365	-87.407688	1	Shikimates and Phenylpropanoids
+Starkeya	0.0013709636835799693	nmdc:bsm-11-p37dc885	soil			Soil	Bulk soil	65.16121249	-147.4844485	2	Shikimates and Phenylpropanoids
+Paenarthrobacter	0.001338749508286897	nmdc:bsm-11-1ymf2v75	soil	soil	terrestrial biome	Soil	Unclassified	39.215958	-96.594339	1	Shikimates and Phenylpropanoids
+Pseudacidovorax	0.0013178553575557035	nmdc:bsm-12-w9rb7k53	periphyton	epilithon	freshwater river biome			39.105061	-96.603829	1	Shikimates and Phenylpropanoids
+Pseudacidovorax	0.0011420836179549408	nmdc:bsm-11-dbr4yn11	soil			Soil	Bulk soil	65.1612536	-147.4846824	1	Shikimates and Phenylpropanoids
+Castellaniella	0.001112670655954353	nmdc:bsm-11-pksg9b77	soil	soil	terrestrial biome	Soil	Bulk soil	45.834307	-90.085088	1	Shikimates and Phenylpropanoids
+Ferrovibrio	0.0010886149910981442	nmdc:bsm-11-g3a6t898	soil	soil	terrestrial biome	Soil	Unclassified	63.887138	-149.301221	1	Shikimates and Phenylpropanoids
+Ferrovibrio	0.0010861815039878552	nmdc:bsm-11-823zf212	soil			Soil	Agricultural land	1.294588	103.776828	1	Shikimates and Phenylpropanoids
+Klebsiella	0.0010645765044819712	nmdc:bsm-12-e5jx0g04	periphyton	epilithon	freshwater river biome			45.790835	-121.933788	1	Shikimates and Phenylpropanoids
+Rhodospirillum	0.0010600803039202778	nmdc:bsm-12-za7a4t49	other	epixylon	freshwater river biome			32.960365	-87.407688	1	Shikimates and Phenylpropanoids
+Pseudacidovorax	0.0010196320213796287	nmdc:bsm-12-1cwnj150	periphyton	epilithon	freshwater river biome			39.105061	-96.603829	1	Shikimates and Phenylpropanoids
+Shinella	0.0009962654584973714	nmdc:bsm-12-e36jqk24	periphyton	epilithon	freshwater river biome			39.891366	-105.915395	1	Shikimates and Phenylpropanoids
+Cytobacillus	0.0009914548947169632	nmdc:bsm-11-zhxzwt61	soil	soil	terrestrial biome	Soil	Unclassified	40.205921	-112.430276	1	Shikimates and Phenylpropanoids
+Cytobacillus	0.0009866705332051634	nmdc:bsm-11-pcvbhg47	soil	soil	terrestrial biome	Soil	Unclassified	44.041571	-71.28692	1	Shikimates and Phenylpropanoids
+Rhodospirillum	0.0008951340672929592	nmdc:bsm-11-1frj0t76	soil	soil	terrestrial biome	Soil	Unclassified	40.850866	-104.699535	1	Shikimates and Phenylpropanoids
+Paenarthrobacter	0.0008722976378595919	nmdc:bsm-11-yf1w8w09	soil	soil	terrestrial biome	Soil	Unclassified	31.194504	-84.460062	1	Shikimates and Phenylpropanoids
+Shinella	0.0008392009426314175	nmdc:bsm-12-w9rb7k53	periphyton	epilithon	freshwater river biome			39.105061	-96.603829	1	Shikimates and Phenylpropanoids
+Cytobacillus	0.0006924400633497729	nmdc:bsm-11-dbr4yn11	soil			Soil	Bulk soil	65.1612536	-147.4846824	1	Shikimates and Phenylpropanoids
+Micrococcus	0.0006472661128960666	nmdc:bsm-11-bne5j332	soil	soil	terrestrial biome	Soil	Unclassified	39.108366	-96.614399	1	Shikimates and Phenylpropanoids
+Micrococcus	0.000541478103561269	nmdc:bsm-11-v790dw64	soil	soil	terrestrial biome	Soil	Unclassified	40.473273	-103.018333	1	Shikimates and Phenylpropanoids
+Alteromonas	0.00047370129431394603	nmdc:bsm-11-nv0bq792	soil	soil	terrestrial biome	Soil	Unclassified	31.187671	-84.45585	1	Shikimates and Phenylpropanoids
+Bernardetia	0.0004023161845189195	nmdc:bsm-12-syvyxa88	periphyton	epilithon	freshwater river biome			42.471941	-72.329526	1	Shikimates and Phenylpropanoids
+Bernardetia	0.0003917698668357566	nmdc:bsm-11-jyywj745	soil			Soil	Bulk soil	65.16098469	-147.4826055	1	Shikimates and Phenylpropanoids
+Castellaniella	0.0003764480132022695	nmdc:bsm-11-jyywj745	soil			Soil	Bulk soil	65.16098469	-147.4826055	1	Shikimates and Phenylpropanoids
+Bernardetia	0.0003606315017133882	nmdc:bsm-12-mwph2h39	periphyton	epipsammon	freshwater river biome			40.034962	-105.544164	1	Shikimates and Phenylpropanoids
+Castellaniella	0.0003085769043345431	nmdc:bsm-11-pgh5ma40	soil	soil	terrestrial biome	Soil	Bulk soil	29.702914	-82.008881	1	Shikimates and Phenylpropanoids
+Calidifontibacillus	0.00019561155688147452	nmdc:bsm-11-r6s2q213	soil	soil	terrestrial biome	Soil	Unclassified	40.175366	-112.453933	1	Shikimates and Phenylpropanoids
+Dinoroseobacter	0.00019031369002002135	nmdc:bsm-11-zq2aws57	soil			Soil	Agricultural land	1.43492266	103.7112946	1	Shikimates and Phenylpropanoids
+Calidifontibacillus	0.00017566676313277425	nmdc:bsm-11-55phes60	soil	soil	terrestrial biome	Soil	Unclassified	31.198433	-84.467178	1	Shikimates and Phenylpropanoids
+Calidifontibacillus	0.0001490237426472151	nmdc:bsm-11-eztc1c19	soil	soil	terrestrial biome	Soil	Unclassified	44.932467	-110.634896	1	Shikimates and Phenylpropanoids
+Dinoroseobacter	8.474926757974147e-05	nmdc:bsm-12-59hfe214	periphyton	epilithon	freshwater river biome			18.11352	-66.98676	1	Shikimates and Phenylpropanoids
+Scandinavium	7.862803639434363e-05	nmdc:bsm-12-2072vp28	periphyton	epilithon	freshwater river biome			68.669753	-149.143018	1	Alkaloids
+Scandinavium	7.366232311831464e-05	nmdc:bsm-11-zk18dr96	soil	soil	terrestrial biome	Soil	Unclassified	31.187671	-84.45585	1	Alkaloids
+Scandinavium	7.332280721831078e-05	nmdc:bsm-11-k89brw70	soil	soil	terrestrial biome	Soil	Unclassified	47.118581	-99.239944	1	Alkaloids
+Dinoroseobacter	7.3083786073819e-05	nmdc:bsm-11-mqj1tx68	soil	soil	terrestrial biome	Soil	Unclassified	40.17372	-112.456712	1	Shikimates and Phenylpropanoids
