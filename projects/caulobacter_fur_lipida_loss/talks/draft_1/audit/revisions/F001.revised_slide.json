@@ -1,0 +1,26 @@
+{
+  "id": 1,
+  "position": 1,
+  "substory_id": null,
+  "layout": "title",
+  "content": {
+    "title": "A single envelope catastrophe: five adaptive layers of Caulobacter Δlpxc tolerance",
+    "subtitle": "A single envelope catastrophe — lipid A loss — triggers five partially independent adaptive layers (Fur-released transport, ChvI two-phase signaling, constitutive sphingolipid substitution, peptidoglycan remodeling, and cross-species structural unavailability) that together explain how and why Caulobacter alone tolerates the deletion.",
+    "presenter": "A. Parkin",
+    "affiliation": "Lawrence Berkeley National Laboratory",
+    "date": "2026-06-07"
+  },
+  "speaker_notes_seed": "Open by orienting the audience to the central puzzle: Caulobacter crescentus tolerates deletion of lpxC — the essential enzyme for lipid A biosynthesis — while every other Gram-negative tested cannot survive this deletion. Lipid A is the anchor of LPS; its loss should be lethal. Explain that this talk maps five partially independent adaptive layers that together explain both how and why Caulobacter uniquely tolerates the Δlpxc deletion. The five layers — Fur-released transport relief, ChvI two-phase signaling, constitutive sphingolipid substitution, peptidoglycan remodeling, and cross-species structural unavailability — are backed by RNA-seq across three strain contrasts, OM proteomics, RB-TnSeq fitness data, and cross-species comparative genomics. Each layer is presented at its actual evidence level, including two arms (SspB-buffered respiratory and SigU-as-driver) that were demoted to hypothesis during analysis. Confirm presenter full first name before delivery; ‘A. Parkin’ was inferred from the aparkin@lbl.gov username convention.",
+  "evidence_anchors": [
+    {"kind": "report_section", "ref": "REPORT.md §Key Findings"},
+    {"kind": "report_section", "ref": "REPORT.md §Interpretation — Mechanistic synthesis: what the data support vs what remains hypothesis"}
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-07T00:00:00Z",
+      "finding_id": "F001",
+      "finding_class": "claim_evidence",
+      "summary": "Rewrote title from project-slug 'Caulobacter Fur Lipida Loss' (typo 'Lipida'→'Lipid A'; topic-label form) to declarative claim form per fix_hint; de-truncated subtitle to the full throughline punchline from 00_throughline.md; filled affiliation as 'Lawrence Berkeley National Laboratory' (derived from lbl.gov email domain); set presenter to 'A. Parkin' (inferred from aparkin username convention — full first name should be confirmed before delivery)."
+    }
+  ]
+}

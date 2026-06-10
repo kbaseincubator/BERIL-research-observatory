@@ -156,10 +156,10 @@ To find which pangenome proteins have AlphaFold structures:
 ```sql
 SELECT b.gene_cluster_id, b.product, b.uniref100,
        a.alphafold_id, m.msa_depth
-FROM kbase_ke_pangenome.bakta_annotations b
-JOIN kescience_alphafold.alphafold_entries a
+FROM kbase.ke_pangenome.bakta_annotations b
+JOIN kescience.alphafold.alphafold_entries a
   ON a.uniprot_accession = REPLACE(b.uniref100, 'UniRef100_', '')
-LEFT JOIN kescience_alphafold.alphafold_msa_depths m
+LEFT JOIN kescience.alphafold.alphafold_msa_depths m
   ON m.uniprot_accession = a.uniprot_accession
 WHERE b.species_id = 'SPECIES_ID'
   AND b.uniref100 IS NOT NULL

@@ -1,0 +1,27 @@
+{
+  "id": 4,
+  "position": 4,
+  "substory_id": null,
+  "layout": "claim_evidence",
+  "content": {
+    "title": "Approach: fitness ranking, transcript/proteome panel, and cross-species annotation screen — five mechanism layers",
+    "bullets": [
+      "RB-TnSeq fitness ranking across 198 Caulobacter experiments + Leaden 2018 Δ*fur* concordance → operative Fur-released subset (vs 33.25% genome background)",
+      "Transcript + proteome panel across 3 strain contrasts → ChvI phase structure, constitutive sphingolipid state, candidate Lpt repurposing (transcript-up, protein discordant), and PG remodel (28 loci)",
+      "NCBI annotation screen across *A. baumannii*, *N. meningitidis*, *M. catarrhalis* → structural absence of sphingolipid pathway and ChvG-ChvI confirmed"
+    ]
+  },
+  "speaker_notes_seed": "This Approach slide maps the five mechanism layers the deck will deliver. When presenting bullet 2, flag the Lpt language explicitly: say 'transcript is consistent with Lpt maintenance and possible repurposing — MsbA-like CCNA_00307 and LptC-related CCNA_03716 are both significantly up at the transcript level. However, the two canonical Lpt proteins we actually measured — LptD and LptE — decline in the rescued strain (−0.47 and −0.78 log2 respectively). The data are mixed, so we call this candidate repurposing.' Do not say the Lpt apparatus is maintained or repurposed without the qualifier. The replicated proteomics scheduled for summer 2026 are needed to resolve the transcript-protein discordance. This framing matches the evidence-leveling used on the Layer-3 detail slide and in Q&A appendix slide 32.",
+  "evidence_anchors": [
+    {"kind": "report_section", "ref": "REPORT.md §Interpretation §5"},
+    {"kind": "report_section", "ref": "REPORT.md §Finding 4 protein table"}
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-07T00:00:00Z",
+      "finding_id": "F002",
+      "finding_class": "claim_evidence",
+      "summary": "Bullet 2 rephrased from 'Lpt repurposing' to 'candidate Lpt repurposing (transcript-up, protein discordant)' so the Approach slide does not over-promise what the body must walk back; matches REPORT §Interpretation §5 MIXED verdict and §Finding 4 protein table (LptD −0.47, LptE −0.78 decline at protein level); speaker notes instruct presenter to lead with the discordance caveat."
+    }
+  ]
+}

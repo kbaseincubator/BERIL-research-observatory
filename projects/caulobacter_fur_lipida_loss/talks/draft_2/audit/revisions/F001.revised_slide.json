@@ -1,0 +1,25 @@
+{
+  "id": 7,
+  "position": 7,
+  "substory_id": "S1",
+  "layout": "data_figure",
+  "content": {
+    "title": "Spearman ρ=0.315 (p=2.08e-03, 71% sign concordance) confirms Fur derepression as a major component of our signal (n=93 Leaden DEGs)",
+    "figure": "figures/NB01_fur_signature_scatter.png",
+    "caption": "Leaden Δfur logFC vs our 4584-vs-4580 logFC; concordant_strong in dark blue, SspB-buffered set in orange, discordant in red; n=93 Δfur DEGs, Spearman ρ=0.315, p=2.08e-03.",
+    "data_source": "Leaden 2018 (PMID 30210482); NB01_leaden2018_fur_signature.ipynb cell 5"
+  },
+  "speaker_notes_seed": "This scatter is the central evidence for S1’s driver claim. X-axis: Leaden 2018 Δfur logFC across 93 DEGs (PMID 30210482, supp. Table 2). Y-axis: our 4584-vs-4580 logFC for the same 93 genes. Spearman ρ=0.315, p=2.08e-03, 71% sign concordance: REPORT §Finding 1 frames this as ‘confirming Fur derepression as a major component of our signal’ — not the sole driver, not a full explanation. The concordant-strong cluster (dark blue, top-right) shows amplified derepression relative to Leaden; HutA at +10.5 vs Leaden’s +2.2 is the extreme outlier reflecting the combined dual-release effect. The orange buffered cluster (n=53) near y≈0 spans Leaden’s full −9 to −5 range — ΔsspB is shielding the cbb3/fix respiratory operon at the transcript level.\n\nThis slide claims Fur derepression is a major component of our signal. It does NOT yet claim the signal is constitutive rather than iron-status — that discrimination is on the next slide (slide 8), where Leaden’s own iron-limitation comparison and the Zik 2022 genetic anchoring actually appear. For a ‘ρ=0.315 is modest’ challenge: this is one of several converging lines of evidence, deliberately scoped.",
+  "evidence_anchors": [
+    {"kind": "report_section", "ref": "REPORT.md §Finding 1"},
+    {"kind": "report_section", "ref": "REPORT.md §Literature Context (Leaden 2018)"}
+  ],
+  "revision_log": [
+    {
+      "revised_at": "2026-06-08T00:00:00Z",
+      "finding_id": "F001",
+      "finding_class": "register_drift",
+      "summary": "Removed 'constitutive derepression' from title (claim belongs on slide 8 with the iron-discrimination evidence, not here); replaced with 'Fur derepression as a major component of our signal' (verbatim REPORT §Literature Context, Leaden 2018 entry); added p=2.08e-03 and 71% sign concordance inline so the ρ=0.315 claim is self-hedged; caption and data_source unchanged; speaker notes updated to make the constitutive-vs-iron hand-off to slide 8 explicit."
+    }
+  ]
+}

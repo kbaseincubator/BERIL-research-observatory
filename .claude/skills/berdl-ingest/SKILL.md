@@ -1,6 +1,6 @@
 ---
 name: berdl-ingest
-description: Ingest a dataset into the BERDL Lakehouse from within JupyterHub (in-cluster). Data may live on the JH filesystem or a global shared filesystem. Handles schema detection, MinIO upload via Python client, and Delta table creation via the data_lakehouse_ingest pipeline. Use when a user is already working inside JupyterHub and wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace. For off-cluster ingestion from a local machine, use berdl-ingest-remote instead.
+description: Ingest a dataset into the BERDL Lakehouse from within JupyterHub (in-cluster). Data may live on the JH filesystem or a global shared filesystem. Handles schema detection, MinIO upload via Python client, and Iceberg table creation via the data_lakehouse_ingest pipeline. Use when a user is already working inside JupyterHub and wants to load a new dataset — SQLite, TSV, CSV, Parquet, or other tabular formats — into a Lakehouse namespace. For off-cluster ingestion from a local machine, use berdl-ingest-remote instead.
 allowed-tools: Bash, Read, Write, Edit, Task
 ---
 
@@ -16,7 +16,7 @@ MinIO are directly accessible inside the cluster, no SSH tunnels, pproxy, or
 2. Detect source format and parse schema.
 3. Collect dataset metadata.
 4. Upload source files to MinIO bronze via `minio_client.fput_object()`.
-5. Call `ingest()` per table — Spark reads from bronze and writes Delta to silver.
+5. Call `ingest()` per table — Spark reads from bronze and writes Iceberg to silver.
 6. Verify row counts.
 7. Report the bronze and silver paths to the user.
 
@@ -48,17 +48,19 @@ This skill runs **in-cluster** (JupyterHub). If `--check` reports off-cluster, s
 
 ### Step 0b: Verify ingest environment
 
-`get_spark_session()` and `get_minio_client()` come from `scripts/ingest_lib.py` in
-the BERIL repo (not from `data_lakehouse_ingest` directly). The notebook bootstraps
-`ingest_lib` by walking up from the notebook's location to find `scripts/` and adding
-it to `sys.path` — the same approach as the remote skill.
+Inside JupyterHub, Spark Connect is reachable directly and the MinIO credentials are
+pre-set as environment variables, so the notebook builds **both clients itself** rather
+than using `ingest_lib`'s `get_spark_session()` (which is the off-cluster version that
+connects through the laptop proxy chain). Importing `ingest_lib` is still needed: it
+installs the lightweight `berdl_notebook_utils` stubs and exposes the
+infrastructure-agnostic helpers (`parse_sql_schema`, `export_sqlite`). `ingest()` is
+imported from `data_lakehouse_ingest`.
 
-`ingest()` is imported directly from `data_lakehouse_ingest` (its only public export).
-
-Verify the environment is ready:
+This is the in-cluster bypass pattern (see `references/on-cluster-bypass.md`); the
+notebook's Setup cell performs it. Verify the environment is ready:
 
 ```python
-import sys
+import sys, os
 from pathlib import Path
 
 _found = False
@@ -70,16 +72,32 @@ for _p in [Path.cwd()] + list(Path.cwd().parents):
 if not _found:
     raise RuntimeError("Could not find scripts/ingest_lib.py — run from within the BERIL repo.")
 
-from ingest_lib import get_spark_session, get_minio_client
+import ingest_lib  # installs the berdl_notebook_utils stubs on import
 from data_lakehouse_ingest import ingest
+from pyspark.sql import SparkSession
+from minio import Minio
 
-spark        = get_spark_session()
-minio_client = get_minio_client()
+token        = os.environ["KBASE_AUTH_TOKEN"]
+spark_url    = f"sc://jupyter-{os.environ['USER']}.jupyterhub-prod:15002/;use_ssl=false;x-kbase-token={token}"
+spark        = SparkSession.builder.remote(spark_url).getOrCreate()
+
+endpoint     = os.environ["MINIO_ENDPOINT_URL"].replace("https://", "").replace("http://", "")
+minio_client = Minio(endpoint,
+    access_key=os.environ["MINIO_ACCESS_KEY"],
+    secret_key=os.environ["MINIO_SECRET_KEY"],
+    secure=os.environ.get("MINIO_SECURE", "true").lower() == "true")
+
+# The Iceberg build of data_lakehouse_ingest looks up get_s3_client (renamed from
+# get_minio_client) — register both names on the stubs, plus the Spark session.
+sys.modules["berdl_notebook_utils.setup_spark_session"].get_spark_session = lambda **kw: spark
+sys.modules["berdl_notebook_utils.clients"].get_minio_client = lambda **kw: minio_client
+sys.modules["berdl_notebook_utils.clients"].get_s3_client    = lambda **kw: minio_client
 print("Spark and MinIO ready.")
 ```
 
-If either `get_spark_session()` or `get_minio_client()` raises, the JH environment is
-misconfigured — this is not a tunnel issue. Report the error verbatim and stop.
+If building the Spark session or MinIO client raises, the JH environment is
+misconfigured (missing env vars or sidecar) — this is not a tunnel issue. Report the
+error verbatim and stop.
 
 ### Step 1: Ask for source directory
 
@@ -132,6 +150,25 @@ sqlite3 /tmp/<dataset>.db < <dump>.sql
   head -6 <DATA_DIR>/<file>.tsv
   ```
 
+**Header detection (TSV/CSV):** Determine whether each file's first line is a header
+row. This is critical because `data_lakehouse_ingest` defaults to `header: False` when
+no `defaults` block is provided in the ingest config.
+
+Heuristic: inspect the first line — if every field is a plausible column name
+(non-numeric, no special characters beyond `_`), it's a header. If the first line
+contains numeric values or looks like data, it's headerless. When a `.sql` schema file
+is present, compare the first line's fields against the schema's column names — an
+exact match confirms a header row.
+
+Set `HAS_HEADER = True` or `HAS_HEADER = False` based on detection, and present the
+finding to the user for confirmation. This value is passed into the notebook config
+cell and used in the `defaults.csv.header` key of the ingest config.
+
+**SQLite sources:** skip detection — `export_sqlite()` always writes a header row to the
+exported TSV, so the notebook pins `HAS_HEADER = True` right after the export. Leaving it
+`False` would ingest the column-name row as data, and verify would still pass (the source
+line count is inflated by the same row), masking the off-by-one.
+
 Present the proposed schema as a draft `.sql` file and ask the user to confirm or
 correct it before writing `<DATA_DIR>/schema.sql`. Flag any ambiguous columns.
 
@@ -142,12 +179,12 @@ import berdl_notebook_utils
 databases = berdl_notebook_utils.get_databases(return_json=False)  # → list[str]
 ```
 
-Present results. Tenants are the unique prefixes before the first `_`. Ask the user:
+Present results. Tenants are the unique prefixes before the first `.` in each dotted namespace (e.g. `kescience.alphafold` → `kescience`). Ask the user:
 
 1. **Existing tenant** — choose from the list
 2. **New tenant name** — a new namespace will be created
 3. **User-tenant space (private)** — set `USER_TENANT = True` in the notebook config;
-   namespace becomes `u_<JUPYTERHUB_USER>__<dataset>`.
+   namespace becomes `my.<dataset>`.
 
 ### Step 3: Choose dataset name and write mode
 
@@ -155,12 +192,12 @@ Suggest `DATA_DIR.name` as the dataset name default. Check whether the namespace
 already exists:
 
 ```python
-namespace        = f"{tenant}_{dataset}"
+namespace        = f"{tenant}.{dataset}"
 namespace_exists = namespace in berdl_notebook_utils.get_databases(return_json=False)
 ```
 
 If it exists, list tables and row counts, then ask:
-- **Overwrite** — `MODE = "overwrite"` (replaces existing Delta tables)
+- **Overwrite** — `MODE = "overwrite"` (replaces existing Iceberg tables)
 - **Append** — `MODE = "append"` (adds rows to existing tables)
 
 ### Step 3b: Collect dataset metadata
@@ -267,7 +304,9 @@ cp .claude/skills/berdl-ingest/references/ingest_jh.ipynb <DATA_DIR>/<dataset>_i
 ```
 
 Edit the configuration cell (`jh0003`) with the absolute `DATA_DIR`, `TENANT`,
-`DATASET`, `MODE`, and `USER_TENANT` values.
+`DATASET`, `MODE`, `USER_TENANT`, and `HAS_HEADER` values. `HAS_HEADER` was determined
+in Step 1b — it controls whether `data_lakehouse_ingest` treats the first row of
+TSV/CSV files as column names or data.
 
 **Present the ingest plan to the user before running** — list each table, its file
 size, and source path. Ask:
@@ -277,9 +316,16 @@ size, and source path. Ask:
 
 Do not run the notebook until the user explicitly confirms.
 
-After confirmation, the user runs the notebook interactively in JupyterHub (cell by
-cell, or Run All). Unlike the remote skill, there is no `jupyter nbconvert` subprocess
-— execution happens directly in the JH kernel.
+After confirmation, tell the user the notebook was created and where, and that they can
+run it themselves in JupyterHub or Claude can execute it directly (preferred). If the
+user confirms or doesn't object, execute it:
+
+```bash
+set -a && source .env 2>/dev/null; set +a && jupyter nbconvert --to notebook --execute --inplace <DATA_DIR>/<dataset>_ingest.ipynb
+```
+
+If the user prefers to run it manually, they can open it in JupyterHub and run cells
+interactively.
 
 **What the notebook does:**
 
@@ -299,10 +345,9 @@ is read at the start of the cell — completed tables are skipped automatically.
 
 After the notebook completes, report:
 
-- **Namespace:** `{NAMESPACE}`
+- **Namespace:** `{NAMESPACE}` — query this in BERDL (Polaris manages the physical location)
 - **Tables ingested** and row counts
 - **Bronze path:** `s3a://cdm-lake/{BRONZE_PREFIX}/`
-- **Silver path:** `{SILVER_BASE}`
 - **Progress log:** `s3a://cdm-lake/{PROGRESS_KEY}`
 - **Metadata:** `s3a://cdm-lake/{METADATA_PREFIX}/`
 
@@ -335,15 +380,16 @@ On re-run, the ingest cell reads the log and skips any table with `"status": "co
 - **`data_lakehouse_ingest` not importable:** Package not installed in this JH
   environment. Ask the user to check their environment setup — do not attempt to pip
   install without confirmation.
-- **`get_spark_session()` fails:** The JH environment or Spark sidecar is not
-  configured correctly. Report the error verbatim and stop — this is not a tunnel
-  issue and cannot be fixed by the agent.
-- **`get_minio_client()` fails:** MinIO credentials are not configured in this JH
-  environment. Report the error and ask the user to check with a BERDL admin.
+- **Spark Connect build fails:** The JH environment or Spark sidecar is not configured
+  correctly, or `KBASE_AUTH_TOKEN` / `USER` is unset. Report the error verbatim and stop
+  — this is not a tunnel issue and cannot be fixed by the agent.
+- **MinIO client build fails:** The `MINIO_ENDPOINT_URL` / `MINIO_ACCESS_KEY` /
+  `MINIO_SECRET_KEY` env vars are not set in this JH environment. Report the error and
+  ask the user to check with a BERDL admin.
 - **`ingest()` returns `success: false`:** Raise immediately — do not silently continue
   to the next table. Show the `errors` list from the report.
 - **Row count mismatch:** Check `s3a://cdm-lake/{BRONZE_PREFIX}/_ingest_progress.jsonl`
-  and the quarantine path at `{SILVER_BASE}/quarantine/`.
+  for the per-table completion entries to locate the gap.
 - **Source file not found:** Verify `DATA_DIR` is accessible from the JH pod. Global
   share paths (e.g. `/clusterfs/`) may require the server to be spawned with the
   correct mount options.

@@ -216,7 +216,7 @@ Status: `exploration`. Read context, explore data, accept user-supplied input, a
 2. `docs/overview.md` — data architecture, key tables, generation workflow, known limitations.
 3. `docs/pitfalls.md` and `docs/performance.md` — **critical: read before any query design**. These are the frozen historical archives; per-project pitfalls hit by recent projects also live in `projects/*/memories/pitfalls.md` (worth a scan, especially for projects on the same database family).
 4. `docs/research_ideas.md` — check for related ideas; avoid duplicating work.
-5. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live access-aware discovery. For database-specific gotchas, grep `docs/pitfalls.md` for the database name (e.g., `grep -A 20 "^## kbase_ke_pangenome$" docs/pitfalls.md`); also check `projects/*/memories/pitfalls.md` for any project-tagged entries on the same database.
+5. Use `berdl_notebook_utils.get_databases(return_json=False)`, `get_tables(... return_json=False)`, and `get_table_schema(... detailed=True, return_json=False)` for live access-aware discovery. For database-specific gotchas, grep `docs/pitfalls.md` for the database name (e.g., `grep -A 20 "^## kbase\.ke_pangenome$" docs/pitfalls.md`); also check `projects/*/memories/pitfalls.md` for any project-tagged entries on the same database.
 
 **Setup check (Phase 1.5 already verified KBASE_AUTH_TOKEN and proxy):**
 6. `gh auth status` — needed for branches/PRs. Prompt `gh auth login` if missing.

@@ -1,0 +1,23 @@
+{
+  "id": "CO001",
+  "class": "content_overflow",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 30,
+  "slide_position": 30,
+  "slide_layout": "deck_close",
+  "substory_id": null,
+  "title_quote": "slide title (methods_summary): 336 chars at base 28pt in 9.32\u00d70.63 in box requires sub-floor shrink; clamped at 60%; tit",
+  "issue": "slide title (methods_summary): 336 chars at base 28pt in 9.32\u00d70.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+  "report_evidence": [],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be \u2264120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+  "_content_overflow_origin": {
+    "slot_kind": "title",
+    "chars": 336,
+    "base_pt": 28,
+    "box_width_emu": 8520600,
+    "box_height_emu": 572700,
+    "computed_scale": 60000
+  }
+}

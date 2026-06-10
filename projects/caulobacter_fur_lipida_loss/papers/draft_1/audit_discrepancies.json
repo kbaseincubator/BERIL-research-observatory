@@ -1,0 +1,130 @@
+{
+  "discrepancies": [
+    {
+      "entry_id": "D-001",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "Then run hmmsearch (HMMER 3) for each focal gene family (Pfam HMMs for serine-palmitoyltransferase PF00155, LptF/G PF03739, LpxC PF03331, Fur PF01475, CtpA C-terminal protease PF00574), tabulate hits per genome.",
+      "plan_section": "NB06 — Comparative-species arm, step 2 (NCBI fallback)",
+      "execution_citation": "notebook 06_comparative_species.ipynb uses PaperBLAST description-based regex matching (26 focal gene families queried by text pattern across 4 species) instead of Pfam HMM profile searches. ~50% false-negative rate for essential C. crescentus lipid-A genes detected in adversarial review.",
+      "severity": "load-bearing",
+      "recommendation": "The text-based annotation search missed divergent homologs that sequence-profile methods would detect. NB06b partially corrects this with NCBI Entrez keyword searches but still does not use hmmsearch. Verify that no comparative claims rely on absence calls that could be false negatives from the text-based method."
+    },
+    {
+      "entry_id": "D-002",
+      "type_": "executed-not-prescribed",
+      "plan_quote": "—",
+      "plan_section": "—",
+      "execution_citation": "notebook 06b_ncbi_annotation_presence.ipynb was added post-review to correct NB06's PaperBLAST false negatives. Uses NCBI Entrez esearch protein keyword queries (28 focal families × 4 species) with species-specific taxid filters. Produces NB06b_ncbi_presence_counts.csv, NB06b_ncbi_presence_bool.csv, NB06b_paperblast_vs_ncbi_comparison.csv.",
+      "severity": "load-bearing",
+      "recommendation": "NB06b corrects NB06's false negatives and the revised presence/absence matrix now underpins the comparative arm's conclusions. However, this notebook was not in the original plan and its NCBI keyword method still differs from the prescribed hmmsearch. Confirm the revised matrix is used consistently in NB07 synthesis and manuscript claims."
+    },
+    {
+      "entry_id": "D-003",
+      "type_": "executed-not-prescribed",
+      "plan_quote": "—",
+      "plan_section": "—",
+      "execution_citation": "notebook 02_caulo_fitness_ranking.ipynb splits Fur-released genes into Path A (concordant_strong: up in both Leaden Δfur and 4584-vs-4580, 32 genes) and Path B (SspB-buffered: up only in 4584-vs-4580, 26 genes). Each path is scored independently for phenotype-bearing status. This A/B stratification was not prescribed in the plan.",
+      "severity": "load-bearing",
+      "recommendation": "The Path A/B split reveals that only Path A genes (Fur-concordant) show enriched phenotypes (53.1% vs 33.25% background), while Path B genes do not (34.6%). This changes the H2 interpretation from 'a subset of Fur-released genes is critical' to 'only the Fur-concordant subset is critical; SspB-buffered genes are not.' Verify this reframing is justified and explicitly discussed."
+    },
+    {
+      "entry_id": "D-004",
+      "type_": "executed-not-prescribed",
+      "plan_quote": "—",
+      "plan_section": "—",
+      "execution_citation": "notebook 02b_h2_hypergeometric_verdict.ipynb adds a post-hoc hypergeometric enrichment test (scipy.stats.hypergeom.sf) comparing phenotype-bearing rates in Path A and Path B against genome background. Introduces a new threshold (fold≥1.5× AND p<0.05) not present in RESEARCH_PLAN.md v2 pre-registered thresholds.",
+      "severity": "load-bearing",
+      "recommendation": "The plan explicitly states: 'Any change requires a v3 revision committed to git before the relevant notebook executes.' No v3 revision was committed. The new fold-enrichment threshold (≥1.5×, p<0.05) should be flagged as post-hoc in the manuscript or a v3 plan revision should be filed retroactively."
+    },
+    {
+      "entry_id": "D-005",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "Join fitbyexp_caulo to per-condition fitness summary statistics — mean, max-magnitude, and t-significance per gene per condition class ... Outputs: NB02_caulo_fitness_summary.csv — per-gene fitness statistics per condition class; NB02_fur_regulon_phenotype_rank.csv — Fur-released genes ranked by phenotype magnitude",
+      "plan_section": "NB02 — Fur-released gene fitness ranking via BERDL RB-TnSeq, steps 3–4 and Outputs",
+      "execution_citation": "NB02 outputs NB02_caulo_experiments.csv (experiment metadata), NB02_pathA_concordant_strong_scoring.csv, and NB02_pathB_buffered_scoring.csv. The planned per-condition-class fitness summary and unified phenotype rank across all Fur-released genes were not produced.",
+      "severity": "load-bearing",
+      "recommendation": "The per-condition-class breakdown (iron-limitation, oxidative-stress, envelope-stress, carbon-shift) was part of the analysis logic (condition classification regexes are present in NB02) but was not exported as a standalone table. Readers cannot inspect which specific conditions drive the phenotype-bearing calls. Consider producing the planned NB02_caulo_fitness_summary.csv or adding per-condition detail to the supplementary data."
+    },
+    {
+      "entry_id": "D-006",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "Identify Caulobacter SigU regulon members (literature + paperBLAST query) and test overlap with the late/consequence subset. ... Outputs: NB03_sigU_overlap.csv — SigU regulon ∩ late ChvI subset",
+      "plan_section": "NB03 — ChvI regulon dissection and SigU as the operational driver, step 3 and Outputs",
+      "execution_citation": "NB03 outputs NB03_chvi_phase_cohorts.csv and NB03_phase_cohort_themes.csv. No dedicated NB03_sigU_overlap.csv was produced. The SigU overlap verdict in NB07 scorecard is 'PARTIAL' (Fisher p=0.243, above the pre-registered hypergeometric p<1e-3 threshold).",
+      "severity": "unclear",
+      "recommendation": "Verify whether the SigU regulon was formally defined from literature + PaperBLAST before testing overlap (as prescribed), or whether SigU membership was inferred from keyword matching on descriptions. If the latter, the SigU overlap test may not be comparable to the pre-registered hypergeometric threshold."
+    },
+    {
+      "entry_id": "D-007",
+      "type_": "executed-not-prescribed",
+      "plan_quote": "—",
+      "plan_section": "—",
+      "execution_citation": "notebook 03_chvi_phase_partition_sigU.ipynb cell 10 uses scipy.stats.fisher_exact (alternative='greater') for late-cohort theme enrichment. The pre-registered threshold for H1 phase structure specifies 'SigU regulon overlaps the late-cohort at hypergeometric p<1e-3.'",
+      "severity": "cosmetic",
+      "recommendation": "Fisher's exact test on a 2×2 contingency table with fixed marginals is mathematically equivalent to a one-sided hypergeometric test. The substitution does not change the p-value or the conclusion (p=0.243, well above the 1e-3 threshold in either formulation). No action needed unless the universe size framing differs between the two test setups."
+    },
+    {
+      "entry_id": "D-008",
+      "type_": "executed-not-prescribed",
+      "plan_quote": "—",
+      "plan_section": "—",
+      "execution_citation": "notebook 03_chvi_phase_partition_sigU.ipynb uses keyword-based regex matching on gene descriptions (8 functional theme categories) for functional annotation of ChvI early/late cohorts. The plan prescribed 'Functional annotation enrichment of each partition (use existing GO terms file + paperBLAST where useful).'",
+      "severity": "cosmetic",
+      "recommendation": "Keyword regex on descriptions is a reasonable substitute for formal GO enrichment when no Caulobacter GO annotation file is available. Verify that no manuscript claim uses the phrase 'GO enrichment' to describe this analysis."
+    },
+    {
+      "entry_id": "D-009",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "Cross-reference the A. baumannii PBP1A and LdtJ/LdtK orthologs in Caulobacter (paperBLAST + BLAST against canonical sequences).",
+      "plan_section": "NB05 — Peptidoglycan remodeling (H4), step 3",
+      "execution_citation": "NB05 outputs NB05_pg_gene_set.csv (pre-locked Caulobacter PG gene set) and NB05_pg_significant_hits.csv. No A. baumannii ortholog cross-reference is present in NB05 outputs. The comparison may have been partially addressed in NB06/NB06b (PBP1A/MrcA listed in comparative presence/absence matrix) but without a dedicated BLAST-based orthology assignment.",
+      "severity": "unclear",
+      "recommendation": "Verify whether the NB06/NB06b presence/absence matrix for PBP1A adequately substitutes for the planned BLAST-based ortholog identification. If the manuscript claims specific Caulobacter orthologs of A. baumannii LdtJ/LdtK, confirm the evidence basis."
+    },
+    {
+      "entry_id": "D-010",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "Outputs: NB02_fur_regulon_phenotype_heatmap.png; NB02_top_fur_genes_volcano.png",
+      "plan_section": "NB02 — Fur-released gene fitness ranking via BERDL RB-TnSeq, Outputs",
+      "execution_citation": "No figures were generated by NB02. The figures/ directory contains no NB02_*.png files.",
+      "severity": "cosmetic",
+      "recommendation": "The heatmap and volcano plot were planned as supporting visualizations. If equivalent visualizations appear in NB07_synthesis_master.png, no action needed. Otherwise, consider generating them for supplementary materials."
+    },
+    {
+      "entry_id": "D-011",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "Outputs: NB03_chvi_phase_heatmap.png; NB03_sigU_regulon_volcano.png",
+      "plan_section": "NB03 — ChvI regulon dissection and SigU, Outputs",
+      "execution_citation": "No figures were generated by NB03. The figures/ directory contains no NB03_*.png files.",
+      "severity": "cosmetic",
+      "recommendation": "Verify that ChvI phase-partition results are adequately visualized in NB07_synthesis_master.png. The SigU volcano plot was intended to show the SigU regulon in the context of 4599-vs-4584 DEGs — if SigU coherence is reported as 'PARTIAL', a supporting figure would strengthen the claim."
+    },
+    {
+      "entry_id": "D-012",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "Outputs: NB06_genome_sources.md — records whether BERDL or NCBI provided each species' genome and the accession",
+      "plan_section": "NB06 — Comparative-species arm, Outputs",
+      "execution_citation": "NB06_genome_sources.md was not produced. NB06b_paperblast_vs_ncbi_comparison.csv partially serves this provenance role by recording which method found each gene family, but does not record genome accessions.",
+      "severity": "cosmetic",
+      "recommendation": "Produce a data provenance file recording which source (PaperBLAST, NCBI Entrez, or both) provided each species' gene family calls, and which reference genome accessions were used for NCBI queries. This is required for reproducibility."
+    },
+    {
+      "entry_id": "D-013",
+      "type_": "executed-not-prescribed",
+      "plan_quote": "—",
+      "plan_section": "—",
+      "execution_citation": "notebook 01_leaden2018_fur_signature.ipynb extracts and analyzes Leaden 2018 iron-limitation (2h dipyridyl) DEGs in addition to the planned Δfur DEGs. Produces NB01_leaden_iron_de.csv and NB01_leaden_iron_vs_fur.png (Δfur vs iron-limitation scatter).",
+      "severity": "cosmetic",
+      "recommendation": "The iron-limitation DEG analysis is a useful QC addition (confirms Δfur constitutive derepression overlaps genuine iron-limitation response). Ensure it is described in the Methods section if referenced in the manuscript."
+    },
+    {
+      "entry_id": "D-014",
+      "type_": "plan-prescribed-not-executed",
+      "plan_quote": "BERDL coverage preflight — query each pangenome database for species coverage: SELECT DISTINCT species, COUNT(*) AS n_genomes FROM <pangenome>.gtdb_species_clade ... Try kbase_ke_pangenome, kbase_uniprot (any species-keyed table), and phagefoundry.acinetobacter for A. baumannii specifically.",
+      "plan_section": "NB06 — Comparative-species arm, step 1",
+      "execution_citation": "NB06 queried kescience_paperblast (a BERDL text-annotation database) rather than kbase_ke_pangenome or other pangenome databases. The pangenome preflight SQL query in the plan was not executed. PaperBLAST returns description-level annotations, not genomic presence/absence from assembled genomes.",
+      "severity": "unclear",
+      "recommendation": "Verify whether the PaperBLAST-derived gene counts (C. crescentus 4,270; A. baumannii 6,285; N. meningitidis 3,839; M. catarrhalis 162) represent genomic locus inventories or literature-derived annotation counts. If the latter, absence in PaperBLAST does not imply absence from the genome, which undermines the 'uniquely Caulobacter' argument."
+    }
+  ]
+}

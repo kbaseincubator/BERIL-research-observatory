@@ -1,0 +1,340 @@
+{
+  "schema_version": "adversarial-review-presentation.v3",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1",
+  "project_id": "caulobacter_fur_lipida_loss",
+  "draft_number": 1,
+  "reviewed_at": "2026-06-07T00:00:00Z",
+  "reviewer_model": "opus",
+  "prompt_version": "adversarial_presentation.v3",
+  "tier": "STRONG",
+  "summary": {
+    "by_severity": {
+      "P1": 13,
+      "P0": 1,
+      "info": 1
+    },
+    "by_class": {
+      "claim_evidence": 5,
+      "substory_arc": 2,
+      "qa_softball": 1,
+      "throughline": 1,
+      "missing_slide": 1,
+      "central_objection": 1,
+      "content_overflow": 4
+    }
+  },
+  "findings": [
+    {
+      "id": "F001",
+      "class": "claim_evidence",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 1,
+      "slide_position": 1,
+      "slide_layout": "title",
+      "substory_id": null,
+      "title_quote": "Caulobacter Fur Lipida Loss",
+      "issue": "Title slide is the project-slug verbatim and contains a typo: 'Lipida Loss' instead of 'Lipid A Loss'. The subtitle is the throughline punchline truncated mid-word with an ellipsis ('Fur-released…'). Presenter and affiliation are 'TBD'. For a peer-audience STRONG-tier talk this is amateur-hour. The first thing the audience reads is the speaker telegraphing 'I did not finish this'.",
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Rewrite to e.g. 'A single envelope catastrophe: five adaptive layers of Caulobacter Δlpxc tolerance' with a non-truncated subtitle and the real presenter/affiliation. At minimum fix 'Lipida'→'Lipid A' and de-truncate the subtitle."
+    },
+    {
+      "id": "F002",
+      "class": "claim_evidence",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "substory_id": null,
+      "title_quote": "Approach: fitness ranking, transcript/proteome panel, and cross-species annotation screen — five mechanism layers",
+      "issue": "Bullet 2 names the things the panel investigates as 'ChvI phase structure, constitutive sphingolipid state, Lpt repurposing, and PG remodel (28 loci)'. The phrase 'Lpt repurposing' is asserted as a topic the deck delivers, but REPORT §Finding 4 protein table and §Interpretation §5 explicitly classify the Lpt arm as MIXED with transcript-protein discordance (LptD −0.47, LptE −0.78), and the deck's own Q&A slide 32 instructs the speaker: 'Do not say Lpt is maintained — say transcript is consistent with Lpt maintenance; protein requires replication.' The Approach slide commits to delivering 'repurposing' that the body of the deck then has to walk back.",
+      "report_evidence": [
+        {
+          "section": "§Interpretation §5",
+          "quote": "Lpt apparatus repurposing in the Δ*lpxc* state shows transcript-protein discordance *(MIXED)*"
+        },
+        {
+          "section": "§Finding 4 protein table",
+          "quote": "LptD log2(4672/4659) = −0.47; LptE = −0.78 (decline)"
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Rephrase bullet 2 ending to: '...constitutive sphingolipid state, candidate Lpt repurposing (transcript-up, protein discordant), and PG remodel (28 loci)' — the same parenthetical the deck uses on slide 17, applied here so the Approach slide does not over-promise."
+    },
+    {
+      "id": "F003",
+      "class": "claim_evidence",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "substory_id": "S1",
+      "title_quote": "NB00: sphingolipid biosynthesis is constitutive across the rescue strain series",
+      "issue": "Slide 7 is the S1 data_figure slot. S1's substory plan (02_substories.md, S1 'Slide kinds anticipated') explicitly calls for 'data_figure (R-slide — Fur–Leaden concordance scatter, A1)' — i.e. figures/NB01_fur_signature_scatter.png, which directly visualizes the Spearman ρ=0.315 concordance that anchors Layer 1. Instead this slide shows the NB00 sphingolipid locus heatmap, whose substantive content is an S3 finding (constitutive sphingolipid pool). S1's defining quantitative finding (the Fur–Leaden concordance) has NO figure backing it anywhere in the deck — slide 9 (the S1 claim slide) is bullets-only. Meanwhile the same NB00 figure is shown AGAIN on slide 16 (see F005), so the deck recycles an S3-belonging figure across two substories and never shows the figure that S1 actually needs.",
+      "report_evidence": [
+        {
+          "section": "§NB01 image caption",
+          "quote": "Leaden Δfur logFC vs our 4584-vs-4580 logFC; concordant_strong in dark blue, buffered set in orange, discordant in red"
+        },
+        {
+          "section": "§NB01 — Leaden 2018 Fur signature",
+          "quote": "The scatter shows the dramatic asymmetry between our amplified Fur-derepression cohort (top-right quadrant, exceeding Leaden's logFC) and the buffered cohort (cluster near y=0 spanning Leaden's full -9 to -5 range)"
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Replace slide 7's figure with figures/NB01_fur_signature_scatter.png; rewrite title to 'Fur–Leaden concordance: ρ=0.315, 71% sign agreement across 93 DEGs — and a buffered respiratory cluster at y≈0'; rewrite caption to describe the concordant_strong vs buffered partition the figure visualizes. The NB00 sphingolipid orientation point can be reduced to one bullet on slide 6 (methods) since slide 16 already carries it."
+    },
+    {
+      "id": "F004",
+      "class": "claim_evidence",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "substory_id": "S1",
+      "title_quote": "Sphingolipid locus log2(CPM+1) heatmap (WT, Δfur Δsspb, intermediate, rescued); pathway is constitutive — neither induced nor suppressed — ruling out Fur-driven sphingolipid biosynthesis upregulation.",
+      "issue": "Caption asserts the NB00 figure 'rul[es] out Fur-driven sphingolipid biosynthesis upregulation'. The figure is CPM-normalised and descriptive only — the speaker_notes for this very slide admit 'this orientation figure uses CPM normalization from NB00 and is descriptive rather than statistically DE-tested.' The actual statistical evidence (spt −0.64 FDR 0.002; sphk −0.40 FDR 0.02; 0/6 biosynthesis genes UP at FDR<0.05) lives in REPORT §Finding 4 and is presented on slides 16 and 18. A CPM heatmap cannot 'rule out' anything; only the FDR-tested NB04 panel can. The slide audience (who does not see speaker_notes) sees a strong rule-out claim that the visualised data do not license.",
+      "report_evidence": [
+        {
+          "section": "§Finding 4 table",
+          "quote": "Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly"
+        },
+        {
+          "section": "§Phase A NB00",
+          "quote": "the sphingolipid biosynthesis pathway is *not induced* (rejecting the initial 'Δfur derepresses sphingolipid biosynthesis' framing)"
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Soften caption to 'pathway is flat across strains in NB00 orientation (CPM-descriptive); FDR-tested formal verdict on slide 16 (0/6 UP; spt −0.64 FDR 0.002)'. Or — preferred — replace this whole slide per F003 and move the orientation observation to a one-line bullet on slide 6."
+    },
+    {
+      "id": "F005",
+      "class": "substory_arc",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 16,
+      "slide_position": 16,
+      "slide_layout": "data_figure",
+      "substory_id": "S3",
+      "title_quote": "Sphingolipid biosynthesis is constitutive: 0 of 6 genes UP; spt and sphk mildly DOWN",
+      "issue": "Slide 16 uses figures/00_sphingolipid_locus_heatmap.png — the same image already shown on slide 7. The audience sees the identical heatmap twice in a 30-slide deck. Worse, REPORT and the S3 substory plan explicitly call for a DIFFERENT figure here: figures/NB04_sphingolipid_locus_heatmap.png ('Sphingolipid biosynthesis + Uchendu transporters detailed heatmap', per REPORT §Figures table and 02_substories.md S3 'Slide kinds anticipated'). The NB04 figure includes the Uchendu transporter genes — the load-bearing detail that distinguishes S3's substitute-mechanism claim from S1's orientation observation. The deck has both figures available on disk but uses neither correctly.",
+      "report_evidence": [
+        {
+          "section": "§Figures table",
+          "quote": "figures/NB04_sphingolipid_locus_heatmap.png | Sphingolipid biosynthesis + Uchendu transporters detailed heatmap"
+        },
+        {
+          "section": "§NB04 image caption",
+          "quote": "Sphingolipid biosynthesis cluster heatmap — flat-to-slightly-decreasing across strain series"
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Replace slide 16 figure with figures/NB04_sphingolipid_locus_heatmap.png (the detailed NB04 panel including the Uchendu transporters). After F003 reassigns slide 7 to the NB01 scatter, no audience member sees the same image twice."
+    },
+    {
+      "id": "F006",
+      "class": "substory_arc",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 17,
+      "slide_position": 17,
+      "slide_layout": "data_table",
+      "substory_id": "S3",
+      "title_quote": "Lpt transcript upregulated; LptD/LptE protein decline and CtpA absence define the layer's limits",
+      "issue": "S3's substory plan explicitly calls for this slot to be a 'data_figure (R-slide — Lpt transcript maintained vs protein discordance, A14/A15)' — the NB04 Lpt apparatus CPM heatmap, figures/NB04_lpt_apparatus_heatmap.png. The deck instead emits a data_table with no figure. The Lpt apparatus heatmap exists on disk (REPORT §Figures table; REPORT §NB04 image caption: 'Canonical LPS-transport apparatus heatmap — MsbA-like CCNA_00307 visibly UP in 4599 vs others'). The visual that would let the audience SEE the MsbA-like upregulation against the LptD/LptE decline — i.e., the central tension of Layer 3 — is absent. The table conveys numbers but not the strain-by-strain pattern.",
+      "report_evidence": [
+        {
+          "section": "§Figures table",
+          "quote": "figures/NB04_lpt_apparatus_heatmap.png | Canonical Lpt apparatus CPM heatmap"
+        },
+        {
+          "section": "§NB04 image caption",
+          "quote": "Canonical LPS-transport apparatus heatmap — MsbA-like CCNA_00307 visibly UP in 4599 vs others"
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Split slide 17 into a data_figure (NB04_lpt_apparatus_heatmap.png with the 'maintained transcript vs protein decline' framing in the caption) immediately followed by a smaller data_table for the lptC2/CtpA pilots and REJECTED verdicts. Or convert slide 17 in-place to data_figure and demote the table to slide 17's caption/footer."
+    },
+    {
+      "id": "F007",
+      "class": "claim_evidence",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 25,
+      "slide_position": 25,
+      "slide_layout": "data_figure",
+      "substory_id": "S5",
+      "title_quote": "Sphingolipid pathway and ChvG-ChvI absent in all three comparators (NCBI-confirmed)",
+      "issue": "Title asserts 'NCBI-confirmed', but the figure is figures/NB06_comparative_heatmap.png — the PaperBLAST screen (NB06), not the NCBI confirmation (NB06b). The caption fig-references both ('PaperBLAST screen (NB06) ... NCBI annotation (NB06b) confirms key absences') but the visual the audience sees is the very method REPORT §NB06b documents as ~80% false-negative for known Caulobacter lipid A genes. The audience reads 'NCBI-confirmed' in the title and is shown PaperBLAST data — exactly the figure-undermines-title pattern. A hostile reviewer asks 'why does your NCBI-confirmed claim use a PaperBLAST heatmap?' and the speaker has no clean answer.",
+      "report_evidence": [
+        {
+          "section": "§Finding 6 / NB06b table",
+          "quote": "PaperBLAST false negatives in C. crescentus confirmed (NB06b vs NB06 for genes that PaperBLAST said 0 and NCBI confirms present): LpxA 0→11, LpxC 0→15, LpxD 0→15, LpxB 1→18, LpxK 0→18"
+        },
+        {
+          "section": "§NB06",
+          "quote": "The original NB06 should now be read as a screen; NB06b is the authoritative comparative measurement for the headline claim."
+        }
+      ],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Either (a) replace figure with an NB06b NCBI presence/absence heatmap (data exists in data/NB06b_ncbi_presence_bool.csv — would need to render); or (b) keep the NB06 heatmap but rewrite title to 'Sphingolipid pathway and ChvG-ChvI absent in three comparators (PaperBLAST screen, NCBI-confirmed in NB06b)' and add a footer bullet citing the NB06b NCBI numbers (spt 7,0,0,0; ChvG 5,0,0,0)."
+    },
+    {
+      "id": "F008",
+      "class": "qa_softball",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 33,
+      "slide_position": 33,
+      "slide_layout": "qa_anticipated",
+      "substory_id": null,
+      "title_quote": "Every layer was characterized in PYE rich medium in one engineered Δfur Δsspb Δlpxc strain background. Does this five-layer mechanism operate under iron limitation, minimal medium, or in naturally isolated Caulobacter strains that achieve lipid A dispensability without the engineered deletions?",
+      "issue": "Q&A 2 is the closest the deck gets to the deck's central weakness — but it ducks the sharpest version. The throughline punchline asserts 'five PARTIALLY INDEPENDENT adaptive layers'. The Q&A asks about generalisability (growth condition, natural suppressors, other alphaproteobacteria) but never names the load-bearing missing experiment: REPORT §Future Directions §3, the dual-release genetic reconstruction (does Δlpxc survive in Δfur-alone? in Δsspb-alone?), which is exactly the test that would distinguish 'partially independent layers' from 'five co-occurring facets of one engineered strain'. A hostile reviewer asks 'how do you know these are partially INDEPENDENT layers and not co-correlated features of a single strain you built?' and the deck has no anticipated answer. The Q&A answer mentions the genetic reconstruction inside Axis 2 prose but does not land it as the operative concession.",
+      "report_evidence": [
+        {
+          "section": "§Future Directions §3",
+          "quote": "Test the dual-release-switch model genetically. The model predicts: (a) Δ*lpxc* should NOT be viable on a Δ*fur* alone background... (b) Δ*lpxc* should NOT be viable on a Δ*sspB* alone background... Both predictions are testable in the existing Ryan-lab strain background."
+        }
+      ],
+      "fix_target": "qa_anticipated.v1.md",
+      "fix_hint": "Add a 4th Q&A slide whose question is the killshot directly: 'You frame the rescue as five PARTIALLY INDEPENDENT adaptive layers, but every layer was measured in the same engineered Δfur Δsspb Δlpxc strain. How do you distinguish partial independence from five correlated facets of one strain?' Answer: concede that independence is hypothesis pending the dual-release reconstruction (Future Direction §3), name the prediction (Δlpxc must fail in Δfur-alone AND in Δsspb-alone), and note Layer 5's NCBI absences as the only independence evidence that doesn't depend on this strain. Inoculation, not evasion."
+    },
+    {
+      "id": "F009",
+      "class": "throughline",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 27,
+      "slide_position": 27,
+      "slide_layout": "section_divider",
+      "substory_id": "S6",
+      "title_quote": "Five partially independent layers compose one *Caulobacter*-specific program for surviving lipid A loss.",
+      "issue": "The throughline punchline (carried verbatim onto the title slide subtitle, slide 27 divider, slide 30 deck_close, and 04 substory bullets) asserts 'PARTIALLY INDEPENDENT' adaptive layers. REPORT establishes that each of the five layers is supported as a layer against its own pre-registered threshold, but no analysis in the project demonstrates that any one layer COULD FAIL while others continue to support viability. The experiment that would establish partial independence — the dual-release genetic reconstruction — is listed in §Future Directions §3 as NOT YET DONE. Layers 1–4 were all measured in the SAME engineered Δfur Δsspb Δlpxc strain, so 'partial independence' is a hypothesis about the data, not a finding of the data. The slide 27 speaker_notes go further: 'Any one layer could fail without necessarily collapsing the others' — flatly hypothesis-as-fact. The throughline is doing rhetorical work the evidence does not back.",
+      "report_evidence": [
+        {
+          "section": "§Future Directions §3",
+          "quote": "The model predicts: (a) Δ*lpxc* should NOT be viable on a Δ*fur* alone background (sspB intact)... (b) Δ*lpxc* should NOT be viable on a Δ*sspB* alone background (fur intact)... Both predictions are testable in the existing Ryan-lab strain background."
+        },
+        {
+          "section": "§Interpretation §1",
+          "quote": "this machinery is *plausibly* available to participate in sphingolipid (CPG) trafficking via shared Lpt apparatus (Uchendu 2026), although that participation is not directly demonstrated here."
+        }
+      ],
+      "fix_target": "00_throughline.md",
+      "fix_hint": "Replace 'partially independent' with a verb the data support — e.g. 'five distinct adaptive layers' or 'five mechanistically distinct layers (independence pending genetic reconstruction, Future Direction §3)'. Propagate the same edit to slide 1 subtitle, slide 27 divider, slide 30 deck_close, and slide 27 speaker_notes ('any one layer could fail' → 'each layer is hypothesised to be independently dispensable; the dual-release genetic test is forthcoming')."
+    },
+    {
+      "id": "F010",
+      "class": "missing_slide",
+      "severity": "P0",
+      "confidence": "high",
+      "issue": "The 4-panel master synthesis figure (figures/NB07_synthesis_master.png) is absent from the deck. The throughline evidence map (00_throughline.md) lists '4-panel synthesis master figure (maps the five layers) | REPORT.md §Key Findings; NB 07_synthesis.ipynb | ✓ direct' — it is the explicit visualisation of the throughline's five-layer architecture. The S6 substory plan calls for 'data_figure (R-slide — 4-panel synthesis master figure + hypothesis scorecard, A26)' as the closing R-slide. REPORT §Figures table marks it 'recommended Figure 1 for the manuscript' and REPORT §Key Findings opens with this figure. The deck has slide 29 (the scorecard table) and slide 30 (deck_close bullets) but no visual that unifies the five layers. The figure exists on disk (figures/NB07_synthesis_master.png) and was named as load-bearing — it is simply not emitted as a slide. The audience never sees the architectural picture the entire 30-slide arc was supposedly building toward.",
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "Insert one data_figure slide between current slide 28 (S6 methods) and slide 29 (scorecard table) with figure=figures/NB07_synthesis_master.png; title='Five-layer integrated mechanism: how and why Caulobacter alone tolerates Δlpxc'; caption naming the four panels and which substory (S1–S5) each panel maps to. The scorecard table (slide 29) then reads as the evidence ledger SUPPORTING the visual; today it stands alone."
+    },
+    {
+      "id": "F011",
+      "class": "central_objection",
+      "severity": "info",
+      "confidence": "high",
+      "issue": "The deck's central weakness is the load-bearing word 'PARTIALLY INDEPENDENT' in the throughline punchline. The five layers are characterised in ONE engineered strain (Δfur Δsspb Δlpxc) under ONE growth condition (PYE rich medium). The data design therefore establishes that the five layers CO-OCCUR in this strain; it does NOT establish that any layer could fail while the others sustain viability. The single dataset that would test independence — the dual-release genetic reconstruction (Δlpxc on Δfur-alone vs Δsspb-alone) — is listed in REPORT §Future Directions §3 as not yet performed. Only Layer 5 (cross-species NCBI absences) provides evidence that doesn't depend on this strain. A hostile senior reviewer asks: 'You have shown five co-occurring features of one engineered Caulobacter strain. What entitles you to call them PARTIALLY INDEPENDENT layers rather than five correlated facets of a single stress response? The Δfur-alone and Δsspb-alone reconstructions are listed in your own future directions — until they are done, the architecture is a hypothesis you have not tested.' The deck does NOT preempt this: Q&A 2 touches strain-background in passing (Axis 2) but never lands the operative concession, and the 'partially independent' phrase is reasserted in the deck_close. The audience extracts the killshot themselves and the architecture claim collapses to a single-strain mechanistic description.",
+      "fix_target": "00_throughline.md",
+      "fix_hint": "Two-step fix: (1) per F009, retire 'partially independent' from the throughline punchline and its echoes on slides 1, 27, 30 — replace with 'mechanistically distinct' (a defensible adjective the data support). (2) per F008, add a 4th Q&A slide that names the dual-release genetic reconstruction as the experiment that would establish independence, conceding that the current data co-observe the layers in one strain. With both fixes the deck honestly closes on 'five mechanistically distinct layers identified; independence test forthcoming' instead of inviting the killshot."
+    },
+    {
+      "id": "CO001",
+      "class": "content_overflow",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "deck_close",
+      "substory_id": null,
+      "title_quote": "slide title (methods_summary): 336 chars at base 28pt in 9.32×0.63 in box requires sub-floor shrink; clamped at 60%; tit",
+      "issue": "slide title (methods_summary): 336 chars at base 28pt in 9.32×0.63 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "report_evidence": [],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be ≤120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+      "_content_overflow_origin": {
+        "slot_kind": "title",
+        "chars": 336,
+        "base_pt": 28,
+        "box_width_emu": 8520600,
+        "box_height_emu": 572700,
+        "computed_scale": 60000
+      }
+    },
+    {
+      "id": "CO002",
+      "class": "content_overflow",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "substory_id": null,
+      "title_quote": "slide title (qa_anticipated): 292 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; titl",
+      "issue": "slide title (qa_anticipated): 292 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "report_evidence": [],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be ≤120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+      "_content_overflow_origin": {
+        "slot_kind": "title",
+        "chars": 292,
+        "base_pt": 28,
+        "box_width_emu": 8521700,
+        "box_height_emu": 1188720,
+        "computed_scale": 60000
+      }
+    },
+    {
+      "id": "CO003",
+      "class": "content_overflow",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 33,
+      "slide_position": 33,
+      "slide_layout": "qa_anticipated",
+      "substory_id": null,
+      "title_quote": "slide title (qa_anticipated): 295 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; titl",
+      "issue": "slide title (qa_anticipated): 295 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "report_evidence": [],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be ≤120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+      "_content_overflow_origin": {
+        "slot_kind": "title",
+        "chars": 295,
+        "base_pt": 28,
+        "box_width_emu": 8521700,
+        "box_height_emu": 1188720,
+        "computed_scale": 60000
+      }
+    },
+    {
+      "id": "CO004",
+      "class": "content_overflow",
+      "severity": "P1",
+      "confidence": "high",
+      "slide_id": 34,
+      "slide_position": 34,
+      "slide_layout": "qa_anticipated",
+      "substory_id": null,
+      "title_quote": "slide title (qa_anticipated): 313 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; titl",
+      "issue": "slide title (qa_anticipated): 313 chars at base 28pt in 9.32×1.30 in box requires sub-floor shrink; clamped at 60%; title-length cap recommended (G.10-C content_overflow)",
+      "report_evidence": [],
+      "fix_target": "slide_compose.v1.md",
+      "fix_hint": "The slide's title overflows its slot at the 60% projection-legibility floor. Edit the title field (content.title, or content.unified_point / content.headline / content.question depending on layout) to be ≤120 chars for talk-30 mode. Preserve the substantive claim; cut hedges, qualifiers, parenthetical asides. A title is one tight clause, not a summary paragraph.",
+      "_content_overflow_origin": {
+        "slot_kind": "title",
+        "chars": 313,
+        "base_pt": 28,
+        "box_width_emu": 8521700,
+        "box_height_emu": 1188720,
+        "computed_scale": 60000
+      }
+    }
+  ]
+}

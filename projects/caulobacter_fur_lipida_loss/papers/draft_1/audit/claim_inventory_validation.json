@@ -1,0 +1,15 @@
+{
+  "exit_status": 0,
+  "input_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/papers/draft_1/claim_inventory.tsv",
+  "project_root": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss",
+  "repaired_notebooks": {},
+  "rows_already_marked_unresolved": 0,
+  "rows_repaired_this_run": 0,
+  "rows_updated_this_run": 0,
+  "rows_with_source_notebook": 106,
+  "timestamp": "2026-06-04T05:04:59Z",
+  "tool": "validate_claim_inventory",
+  "total_rows": 106,
+  "unique_invalid_notebooks": [],
+  "version": "0.2.0-stage3-tierI"
+}

@@ -1,0 +1,10 @@
+{
+  "audience": "peer",
+  "audience_explicit": false,
+  "mode": "talk-30",
+  "mode_explicit": true,
+  "schema_version": "user-intent.v1",
+  "tier": "STRONG",
+  "tier_explicit": true,
+  "written_at": "2026-06-08T17:42:51Z"
+}

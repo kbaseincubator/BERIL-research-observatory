@@ -1,0 +1,16 @@
+{
+  "schema_version": "deck-reconciliation.v1",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_1",
+  "n_findings": 1,
+  "findings": [
+    {
+      "kind": "duplicate_figure",
+      "severity": "warning",
+      "detail": "figure 'figures/00_sphingolipid_locus_heatmap.png' is used on 2 slides: [7, 16]. A curated figure should carry one slide; reuse usually means two composers independently reached for the same asset.",
+      "slide_ids": [
+        7,
+        16
+      ]
+    }
+  ]
+}

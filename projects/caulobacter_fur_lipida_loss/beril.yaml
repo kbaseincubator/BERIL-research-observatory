@@ -1,0 +1,19 @@
+project_id: caulobacter_fur_lipida_loss
+status: complete
+created_at: "2026-06-04T01:13:56Z"
+last_session_at: "2026-06-04T04:53:27Z"
+branch: projects/caulobacter_fur_lipida_loss
+engine:
+  name: claude
+authors:
+  - name: "Adam Arkin"
+    affiliation: "University of California, Berkeley"
+    orcid: "0000-0002-4999-2931"
+  - name: "Kathleen R. Ryan"
+    affiliation: "University of California, Berkeley"
+    orcid: ""
+artifacts:
+  readme: true
+  research_plan: true
+  report: true
+  review: true

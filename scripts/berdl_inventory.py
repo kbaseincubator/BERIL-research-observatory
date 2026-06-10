@@ -175,20 +175,41 @@ def fetch_tenants_on_cluster() -> list[TenantInfo]:
 
 
 def fetch_off_cluster() -> dict[str, list[str]]:
-    """Fall back to SHOW DATABASES + SHOW TABLES IN <db>. Auto-spawns JH server."""
+    """Fall back to per-catalog SHOW NAMESPACES + SHOW TABLES. Auto-spawns JH server.
+
+    With Polaris/Iceberg each tenant is a separate catalog, so SHOW DATABASES is
+    insufficient.  We enumerate catalogs via SHOW CATALOGS, then list namespaces
+    and tables inside each one.
+    """
     from get_spark_session import get_spark_session  # local drop-in
 
     spark = get_spark_session()
-    db_rows = spark.sql("SHOW DATABASES").collect()
-    databases = [row["namespace"] for row in db_rows]
+
+    # Collect catalog names. Spark Connect surfaces these via SHOW CATALOGS;
+    # fall back to SHOW DATABASES for legacy compatibility if the command fails.
+    try:
+        catalog_rows = spark.sql("SHOW CATALOGS").collect()
+        catalogs = [row[0] for row in catalog_rows]
+    except Exception:  # noqa: BLE001
+        catalog_rows = spark.sql("SHOW DATABASES").collect()
+        catalogs = [row["namespace"] for row in catalog_rows]
+
     structure: dict[str, list[str]] = {}
-    for db in databases:
+    for catalog in catalogs:
         try:
-            rows = spark.sql(f"SHOW TABLES IN `{db}`").collect()
-            structure[db] = [row["tableName"] for row in rows]
+            ns_rows = spark.sql(f"SHOW NAMESPACES IN {catalog}").collect()
+            namespaces = [row[0] for row in ns_rows]
         except Exception as exc:  # noqa: BLE001
-            print(f"# WARN: could not list tables for {db}: {exc}", file=sys.stderr)
-            structure[db] = []
+            print(f"# WARN: could not list namespaces in catalog {catalog}: {exc}", file=sys.stderr)
+            continue
+        for ns in namespaces:
+            qualified = f"{catalog}.{ns}"
+            try:
+                tbl_rows = spark.sql(f"SHOW TABLES IN {qualified}").collect()
+                structure[qualified] = [row["tableName"] for row in tbl_rows]
+            except Exception as exc:  # noqa: BLE001
+                print(f"# WARN: could not list tables for {qualified}: {exc}", file=sys.stderr)
+                structure[qualified] = []
     return structure
 
 

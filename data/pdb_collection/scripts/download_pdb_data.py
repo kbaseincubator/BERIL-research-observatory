@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Download PDB metadata from RCSB and SIFTS for Delta Lake ingestion.
+Download PDB metadata from RCSB and SIFTS for Iceberg ingestion.
 
 Strategy:
   1. Fetch all current PDB IDs from RCSB holdings API (~250K IDs)
