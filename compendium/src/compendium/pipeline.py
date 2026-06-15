@@ -2,7 +2,7 @@
 
 context-pack / audit (deterministic ingestion inputs) -> statement-graph -> plan-pages
 -> wiki-contexts -> page-artifact (LLM-authored prose, validated) -> render-markdown
--> quality-synthesis / review-queue.
+-> quality-synthesis.
 
 Deterministic; no LLM on this path. ``dispatch`` is called by ``compendium.cli``.
 """
@@ -146,10 +146,6 @@ def dispatch(args) -> int:
         result = validate_statement_card_file(args.path)
         print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
         return 0
-    if args.cmd == "validate-project-kg":
-        result = validate_project_kg_file(args.path)
-        print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
-        return 0
     if args.cmd == "validate-page-plan":
         result = validate_page_plan_file(args.path)
         print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
@@ -272,43 +268,10 @@ def dispatch(args) -> int:
             plans,
             source_root=args.source_root,
         )
-        if args.dashboard_out:
-            queue = build_review_queue(
-                cards,
-                graph,
-                plans,
-                unresolved_statement_links=metrics,
-            )
-            dashboard_path = Path(args.dashboard_out).resolve()
-            dashboard_path.parent.mkdir(parents=True, exist_ok=True)
-            dashboard_path.write_text(
-                render_synthesis_quality_dashboard_html(metrics, queue),
-                encoding="utf-8",
-            )
-            print(f"[compendium] dashboard: {dashboard_path}")
         _write_json_or_stdout(metrics, args.out)
         if _synthesis_quality_failed(metrics):
             print("[compendium] synthesis quality checks failed", file=sys.stderr)
             return 1
-        return 0
-    if args.cmd == "review-queue":
-        cards = _load_statement_cards(args.path)
-        graph = build_statement_graph(cards)
-        plans = plan_pages(cards)
-        metrics = assess_synthesis_quality(
-            cards,
-            graph,
-            plans,
-            source_root=args.source_root,
-        )
-        queue = build_review_queue(
-            cards,
-            graph,
-            plans,
-            unresolved_statement_links=metrics,
-            limit=args.limit,
-        )
-        _write_json_or_stdout(queue, args.out)
         return 0
 
     if args.cmd == "audit":

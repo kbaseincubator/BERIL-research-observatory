@@ -2,7 +2,7 @@
 
 The statement-card pipeline is the single workflow: ``audit`` and ``context-pack``
 for ingestion inputs, then ``statement-graph`` -> ``plan-pages`` -> ``wiki-contexts``
--> ``page-artifact`` -> ``render-markdown`` -> ``quality-synthesis``/``review-queue``.
+-> ``page-artifact`` -> ``render-markdown`` -> ``quality-synthesis``.
 ``dispatch`` is implemented in :mod:`compendium.pipeline`.
 """
 
@@ -56,12 +56,6 @@ def main(argv: list[str] | None = None) -> int:
     quality_synthesis.add_argument("path")
     quality_synthesis.add_argument("--source-root")
     quality_synthesis.add_argument("--out")
-    quality_synthesis.add_argument("--dashboard-out")
-    review_queue = sub.add_parser("review-queue")
-    review_queue.add_argument("path")
-    review_queue.add_argument("--source-root")
-    review_queue.add_argument("--limit", type=int)
-    review_queue.add_argument("--out")
     tracer = sub.add_parser("tracer")
     tracer.add_argument("--project-kg")
     tracer.add_argument("--source-root")
@@ -69,8 +63,6 @@ def main(argv: list[str] | None = None) -> int:
     tracer.add_argument("--out", required=True)
     validate_card = sub.add_parser("validate-card")
     validate_card.add_argument("path")
-    validate_project_kg = sub.add_parser("validate-project-kg")
-    validate_project_kg.add_argument("path")
     validate_page_plan = sub.add_parser("validate-page-plan")
     validate_page_plan.add_argument("path")
     args = parser.parse_args(argv)

@@ -2,7 +2,7 @@
 
 Every module codes against these dataclasses. They are plain stdlib dataclasses (no third-party
 runtime dep) with ``to_dict``/``from_dict`` for YAML/JSON round-tripping. The LinkML schema in
-``compendium/schema/compendium.yaml`` is the canonical type spec; these mirror it at runtime.
+``compendium/schema/synthesis_wiki.yaml`` is the canonical type spec; these mirror it at runtime.
 
 Tier vocabulary (deterministic, entities-only — no tier claims the *relation* is true):
   - ``grounded``: all referenced entities are grounded (CURIE) and the evidence span is located.

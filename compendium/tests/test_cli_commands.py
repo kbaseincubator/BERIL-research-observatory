@@ -29,13 +29,11 @@ def test_context_pack_command_writes_canonical_json(tmp_path: Path) -> None:
     assert '"proj_demo"' in text
 
 
-def test_validate_commands_accept_statement_project_and_page_plan(tmp_path: Path) -> None:
+def test_validate_commands_accept_statement_card_and_page_plan(tmp_path: Path) -> None:
     card = _statement_card_dict()
     card_path = tmp_path / "card.yaml"
-    project_path = tmp_path / "project.yaml"
     page_path = tmp_path / "page.yaml"
     card_path.write_text(yaml.safe_dump(card, sort_keys=True), encoding="utf-8")
-    project_path.write_text(yaml.safe_dump({"statements": [card]}, sort_keys=True), encoding="utf-8")
     page_path.write_text(
         yaml.safe_dump(
             {
@@ -54,7 +52,6 @@ def test_validate_commands_accept_statement_project_and_page_plan(tmp_path: Path
     )
 
     assert main(["validate-card", str(card_path)]) == 0
-    assert main(["validate-project-kg", str(project_path)]) == 0
     assert main(["validate-page-plan", str(page_path)]) == 0
 
 
@@ -247,7 +244,6 @@ def test_render_markdown_command_rejects_stale_wiki_pages_and_manifests(
 
 def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
     out = tmp_path / "quality.json"
-    dashboard = tmp_path / "quality.html"
 
     assert main(
         [
@@ -257,8 +253,6 @@ def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
             str(ROOT / "projects"),
             "--out",
             str(out),
-            "--dashboard-out",
-            str(dashboard),
         ]
     ) == 0
 
@@ -269,7 +263,6 @@ def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
     assert metrics["link_integrity"]["broken_outgoing_link_count"] == 0
     assert metrics["statement_link_integrity"]["unresolved_statement_link_count"] == 0
     assert metrics["opportunity_targets"]["missing_target_output_statement_ids"] == []
-    assert "Synthesis Quality Dashboard" in dashboard.read_text(encoding="utf-8")
 
 
 def test_quality_command_writes_statement_quality_bundle(tmp_path: Path) -> None:
@@ -321,28 +314,6 @@ def test_quality_synthesis_command_fails_quality_gate_but_writes_metrics(tmp_pat
 
     metrics = json.loads(out.read_text(encoding="utf-8"))
     assert metrics["evidence_resolution"]["unresolved"] == 1
-
-
-def test_review_queue_command_writes_ranked_json(tmp_path: Path) -> None:
-    out = tmp_path / "review-queue.json"
-
-    assert main(
-        [
-            "review-queue",
-            str(STATEMENT_FIXTURE),
-            "--source-root",
-            str(ROOT / "projects"),
-            "--limit",
-            "2",
-            "--out",
-            str(out),
-        ]
-    ) == 0
-
-    queue = json.loads(out.read_text(encoding="utf-8"))
-    assert len(queue) <= 2
-    assert all("statement_id" in item for item in queue)
-    assert all("reasons" in item for item in queue)
 
 
 def test_tracer_command_writes_full_adp1_artifact_bundle(tmp_path: Path) -> None:

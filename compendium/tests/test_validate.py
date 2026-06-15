@@ -9,7 +9,6 @@ import yaml
 
 from compendium.validate import (
     validate_page_plan_file,
-    validate_project_kg_file,
     validate_statement_card_file,
 )
 
@@ -102,29 +101,3 @@ def test_validate_page_plan_file_rejects_invalid_page_type(tmp_path: Path) -> No
 
     with pytest.raises(ValueError, match="type must be one of"):
         validate_page_plan_file(path)
-
-
-def test_validate_project_kg_file_accepts_statement_list(tmp_path: Path) -> None:
-    path = _write_yaml(
-        tmp_path / "project.yaml",
-        [_statement_card_dict("stmt:abc123"), _statement_card_dict("stmt:def456")],
-    )
-
-    result = validate_project_kg_file(path)
-
-    assert result.artifact_type == "project_kg"
-    assert result.count == 2
-    assert result.ids == ["stmt:abc123", "stmt:def456"]
-
-
-def test_validate_project_kg_file_accepts_statement_dict_shape(tmp_path: Path) -> None:
-    path = _write_yaml(
-        tmp_path / "project.yaml",
-        {"project": {"id": "adp1_deletion_phenotypes"}, "statements": [_statement_card_dict()]},
-    )
-
-    result = validate_project_kg_file(path)
-
-    assert result.artifact_type == "project_kg"
-    assert result.count == 1
-    assert result.ids == ["stmt:abc123"]
