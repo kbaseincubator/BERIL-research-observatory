@@ -29,7 +29,7 @@ def build_collection_index(
     ids that no project cites are omitted.
     """
     index: dict[str, CollectionRecord] = {}
-    for coll_id in canonical:
+    for coll_id in sorted(canonical):  # sorted -> deterministic key order
         projects = sorted(pid for pid, mentions in cited.items() if coll_id in mentions)
         if projects:
             index[coll_id] = CollectionRecord(id=coll_id, projects=projects)
