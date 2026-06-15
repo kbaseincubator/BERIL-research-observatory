@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 import yaml
 
+import compendium.pipeline as _pipeline
 from compendium.cli import main
 from compendium.models import StatementCard
 from compendium.pages import plan_pages, write_page_artifact
@@ -18,6 +19,19 @@ from .test_validate import _statement_card_dict
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURE = ROOT / "compendium" / "fixtures" / "proj_demo"
 STATEMENT_FIXTURE = ROOT / "compendium" / "fixtures" / "statement_cards" / "adp1_tracer.yaml"
+
+
+@pytest.fixture(autouse=True)
+def _isolate_registry(monkeypatch, tmp_path_factory):
+    """Isolate CLI tests from a committed ``registry.yaml``.
+
+    These tests assert identity (raw-slug) page ids; registry canonicalization is covered by
+    ``test_page_planner`` with an explicit ``Registry``. Point ``REGISTRY_PATH`` at a missing file
+    so ``plan_pages`` uses identity resolution regardless of the repo's registry.
+    """
+    monkeypatch.setattr(
+        _pipeline, "REGISTRY_PATH", tmp_path_factory.mktemp("noreg") / "registry.yaml"
+    )
 
 
 def test_context_pack_command_writes_canonical_json(tmp_path: Path) -> None:
