@@ -1,9 +1,0 @@
-# Seed organism dictionary (tracer). Keys are NORMALIZED labels (lowercase, punctuation->space,
-# collapsed whitespace — see ids.normalize). Used by the Stage-1 structural extractor to admit and
-# canonicalize known organism aliases to one label/CURIE. Real organism NER (Gilda/OGER) swaps in later.
-organisms:
-  "acinetobacter baylyi adp1": {label: "Acinetobacter baylyi ADP1", curie: "NCBITaxon:62977"}
-  "acinetobacter baylyi": {label: "Acinetobacter baylyi ADP1", curie: "NCBITaxon:62977"}
-  "adp1": {label: "Acinetobacter baylyi ADP1", curie: "NCBITaxon:62977"}
-  "escherichia coli": {label: "Escherichia coli", curie: "NCBITaxon:562"}
-  "pseudomonas fluorescens": {label: "Pseudomonas fluorescens", curie: "NCBITaxon:294"}
