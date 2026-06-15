@@ -1,4 +1,10 @@
-"""Deterministic PagePlan generation from statement cards."""
+"""Deterministic PagePlan generation from statement cards.
+
+Emits the four reader page types (home / topic / data / author). Topics and entities are
+canonicalized through the additive ``Registry`` before grouping; author and data pages join in
+the zero-LLM author and shared-collection indexes. Claims/conflicts/opportunities are *sections*
+inside topic pages, not standalone pages.
+"""
 
 from __future__ import annotations
 
@@ -14,10 +20,9 @@ from compendium.models import (
     TIER_RETRACTED,
 )
 
-_SYNTHESIS_PAGE_KINDS = {"claim", "opportunity"}
 _CONFLICT_KINDS = {"caveat", "conflict"}
 _OPPORTUNITY_KINDS = {"opportunity", "direction", "hypothesis"}
-_PRODUCT_KINDS = {"derived_product", "method_note"}
+_LINKED_TOPIC_KINDS = {"claim", "conflict", "opportunity", "caveat"}
 _STATEMENT_LINK_FIELDS = (
     "supports",
     "contradicts",
@@ -42,82 +47,65 @@ def member_hash(member_statement_ids: Iterable[str]) -> str:
     return "hash:" + ids.content_hash(*_unique_sorted(member_statement_ids), n=16)
 
 
-def page_id_for_statement(card: StatementCard) -> str | None:
-    """Return the synthesis-page id for statement kinds with standalone pages."""
-    if card.kind not in _SYNTHESIS_PAGE_KINDS:
-        return None
-    suffix = card.id.split(":", 1)[1] if ":" in card.id else _slug(card.id)
-    return f"{card.kind}:{suffix}"
+def plan_pages(
+    cards: Iterable[StatementCard],
+    *,
+    registry=None,
+    authors: dict | None = None,
+    collections: dict | None = None,
+) -> list[PagePlan]:
+    """Generate deterministic page plans (home/topic/data/author) from statement cards.
 
-
-def plan_pages(cards: Iterable[StatementCard]) -> list[PagePlan]:
-    """Generate deterministic page plans from statement cards.
-
-    Retracted cards are preserved elsewhere for provenance, but excluded from
-    normal synthesis-page membership.
+    Topics and entities are canonicalized through ``registry`` (identity when None) before
+    grouping. ``authors`` is a ``{key: AuthorRecord}`` index and ``collections`` is a
+    ``{collection_id: CollectionRecord}`` index; author/data pages are emitted only for records
+    whose projects appear among the active cards. Retracted cards are excluded from membership.
     """
+    authors = authors or {}
+    collections = collections or {}
     active_cards = sorted(
         (card for card in cards if card.tier != TIER_RETRACTED),
         key=_card_sort_key,
     )
     card_by_id = {card.id: card for card in active_cards}
 
+    # Canonical topic/entity keys per card (registry None -> identity passthrough).
+    card_topics = {card.id: _canonical_topics(card, registry) for card in active_cards}
+
     project_members: dict[str, list[str]] = {}
     topic_members: dict[str, list[str]] = {}
-    entity_members: dict[str, list[str]] = {}
+    project_topics: dict[str, set[str]] = {}
     for card in active_cards:
-        project_members.setdefault(card.evidence.source_project, []).append(card.id)
-        for topic_id in card.about.topics:
-            topic_members.setdefault(topic_id, []).append(card.id)
-        for entity_id in _card_entities(card):
-            entity_members.setdefault(entity_id, []).append(card.id)
-
-    incoming_links = _incoming_links(active_cards)
-    statement_page_ids = {
-        card.id: page_id
-        for card in active_cards
-        if (page_id := page_id_for_statement(card)) is not None
-    }
+        project = card.evidence.source_project
+        project_members.setdefault(project, []).append(card.id)
+        for topic_key in card_topics[card.id]:
+            topic_members.setdefault(topic_key, []).append(card.id)
+            project_topics.setdefault(project, set()).add(topic_key)
 
     drafts: dict[str, _PageDraft] = {}
     all_member_ids = [card.id for card in active_cards]
-    _add_draft(drafts, _home_plan(active_cards, all_member_ids))
+    _add_draft(drafts, _home_plan(active_cards, all_member_ids, card_topics))
 
-    for project_id in sorted(project_members):
-        _add_draft(
-            drafts,
-            _project_plan(project_id, project_members[project_id], card_by_id),
-        )
+    for topic_key in sorted(topic_members):
+        member_ids = _topic_member_ids(topic_members[topic_key], card_by_id)
+        _add_draft(drafts, _topic_plan(topic_key, member_ids, card_by_id))
 
-    for topic_id in sorted(topic_members):
-        member_ids = _topic_member_ids(topic_members[topic_id], card_by_id)
-        _add_draft(drafts, _topic_plan(topic_id, member_ids, card_by_id))
+    collection_drafts = _data_plans(collections, project_members, card_by_id)
+    for draft in collection_drafts:
+        _add_draft(drafts, draft)
 
-    for entity_id in sorted(entity_members):
-        _add_draft(
-            drafts,
-            _entity_plan(entity_id, entity_members[entity_id], card_by_id),
-        )
+    author_drafts = _author_plans(authors, project_members, card_by_id)
+    for draft in author_drafts:
+        _add_draft(drafts, draft)
 
-    for card in active_cards:
-        page_id = statement_page_ids.get(card.id)
-        if page_id is None:
-            continue
-        _add_draft(
-            drafts,
-            _statement_plan(card, card_by_id, incoming_links),
-        )
-
-    all_page_ids = set(drafts)
-    for draft in drafts.values():
-        if draft.id == "home":
-            draft.outgoing_links.update(pid for pid in all_page_ids if pid != "home")
-        else:
-            draft.outgoing_links.update(
-                _page_links_for_members(draft.member_statement_ids, card_by_id, statement_page_ids)
-            )
-        draft.outgoing_links.discard(draft.id)
-        draft.outgoing_links.intersection_update(all_page_ids)
+    _wire_cross_links(
+        drafts,
+        card_topics=card_topics,
+        project_topics=project_topics,
+        project_members=project_members,
+        collections=collections,
+        authors=authors,
+    )
 
     backlinks: dict[str, set[str]] = {page_id: set() for page_id in drafts}
     for page_id, draft in drafts.items():
@@ -139,38 +127,16 @@ def plan_pages(cards: Iterable[StatementCard]) -> list[PagePlan]:
     ]
 
 
-def _home_plan(cards: list[StatementCard], member_ids: list[str]) -> _PageDraft:
+def _home_plan(
+    cards: list[StatementCard],
+    member_ids: list[str],
+    card_topics: dict[str, list[str]],
+) -> _PageDraft:
     sections = [
         _section("overview", "Cross-Project Overview", member_ids),
-        _section("topic_map", "Topic Map", _ids_with_topics(cards)),
-        _section(
-            "strong_claims",
-            "Strong Reusable Claims",
-            [
-                card.id
-                for card in cards
-                if card.kind == "claim"
-                and card.confidence == "high"
-                and card.tier in {"grounded", "reviewed"}
-            ],
-        ),
-        _section(
-            "conflicts_and_caveats",
-            "Active Conflicts And Caveats",
-            [card.id for card in cards if card.kind in _CONFLICT_KINDS or card.tier == "conflict"],
-        ),
-        _section(
-            "opportunities_and_directions",
-            "High-Value Opportunities And Directions",
-            [card.id for card in cards if card.kind in _OPPORTUNITY_KINDS],
-        ),
-        _section(
-            "reusable_data_products",
-            "Reusable Data And Products",
-            [card.id for card in cards if card.kind in _PRODUCT_KINDS],
-        ),
-        _section("recent_changes", "Recently Changed Projects And Pages", _recent_card_ids(cards)),
-        _section("browse_lanes", "Browse Lanes", member_ids),
+        _section("topic_map", "Topic Map", [c.id for c in cards if card_topics[c.id]]),
+        _section("author_map", "Author Map", member_ids),
+        _section("data_map", "Data Map", member_ids),
     ]
     return _PageDraft(
         id="home",
@@ -181,162 +147,155 @@ def _home_plan(cards: list[StatementCard], member_ids: list[str]) -> _PageDraft:
     )
 
 
-def _project_plan(project_id: str, member_ids: list[str], card_by_id: dict[str, StatementCard]) -> _PageDraft:
+def _topic_plan(topic_key: str, member_ids: list[str], card_by_id: dict[str, StatementCard]) -> _PageDraft:
     sorted_ids = _sort_card_ids(member_ids, card_by_id)
     return _PageDraft(
-        id=f"project:{project_id}",
-        type="project",
-        title=f"Project: {_title(project_id)}",
-        member_statement_ids=sorted_ids,
-        sections=[
-            _section("summary", "Statement Summary", sorted_ids),
-            _section("findings", "Findings", _ids_of_kinds(sorted_ids, card_by_id, {"finding"})),
-            _section("claims", "Claims", _ids_of_kinds(sorted_ids, card_by_id, {"claim"})),
-            _section(
-                "conflicts_and_caveats",
-                "Conflicts And Caveats",
-                _ids_of_kinds(sorted_ids, card_by_id, _CONFLICT_KINDS),
-            ),
-            _section(
-                "opportunities_and_directions",
-                "Opportunities And Directions",
-                _ids_of_kinds(sorted_ids, card_by_id, _OPPORTUNITY_KINDS),
-            ),
-            _section(
-                "products_and_methods",
-                "Reusable Products And Methods",
-                _ids_of_kinds(sorted_ids, card_by_id, _PRODUCT_KINDS),
-            ),
-        ],
-    )
-
-
-def _topic_plan(topic_id: str, member_ids: list[str], card_by_id: dict[str, StatementCard]) -> _PageDraft:
-    sorted_ids = _sort_card_ids(member_ids, card_by_id)
-    return _PageDraft(
-        id=topic_id,
+        id=topic_key,
         type="topic",
-        title=f"Topic: {_title(topic_id)}",
+        title=f"Topic: {_title(topic_key)}",
         member_statement_ids=sorted_ids,
         sections=[
             _section("overview", "Overview", sorted_ids),
-            _section("findings", "Findings", _ids_of_kinds(sorted_ids, card_by_id, {"finding"})),
             _section("key_claims", "Key Claims", _ids_of_kinds(sorted_ids, card_by_id, {"claim"})),
             _section(
                 "conflicts_and_caveats",
-                "Conflicts And Caveats",
-                _ids_of_kinds(sorted_ids, card_by_id, _CONFLICT_KINDS),
+                "Conflicts & Caveats",
+                _ids_for_conflicts(sorted_ids, card_by_id),
             ),
             _section(
-                "opportunities_and_directions",
-                "Opportunities And Directions",
+                "open_directions",
+                "Open Directions",
                 _ids_of_kinds(sorted_ids, card_by_id, _OPPORTUNITY_KINDS),
-            ),
-            _section(
-                "products_and_methods",
-                "Reusable Products And Methods",
-                _ids_of_kinds(sorted_ids, card_by_id, _PRODUCT_KINDS),
             ),
         ],
     )
 
 
-def _entity_plan(entity_id: str, member_ids: list[str], card_by_id: dict[str, StatementCard]) -> _PageDraft:
-    sorted_ids = _sort_card_ids(member_ids, card_by_id)
-    topic_ids = sorted({topic for sid in sorted_ids for topic in card_by_id[sid].about.topics})
-    sections = [
-        _section("backlinks", "Backlinks", sorted_ids),
-        _section("findings", "Findings", _ids_of_kinds(sorted_ids, card_by_id, {"finding"})),
-        _section("claims", "Claims", _ids_of_kinds(sorted_ids, card_by_id, {"claim"})),
-        _section(
-            "conflicts_and_caveats",
-            "Conflicts And Caveats",
-            _ids_of_kinds(sorted_ids, card_by_id, _CONFLICT_KINDS),
-        ),
-        _section(
-            "opportunities_and_directions",
-            "Opportunities And Directions",
-            _ids_of_kinds(sorted_ids, card_by_id, _OPPORTUNITY_KINDS),
-        ),
-    ]
-    sections.extend(
-        _section(f"topic_{_slug(topic_id)}", f"Topic: {_title(topic_id)}", _ids_for_topic(sorted_ids, card_by_id, topic_id))
-        for topic_id in topic_ids
-    )
-    return _PageDraft(
-        id=entity_id,
-        type="entity",
-        title=f"Entity: {_title(entity_id)}",
-        member_statement_ids=sorted_ids,
-        sections=sections,
-    )
-
-
-def _statement_plan(
-    card: StatementCard,
+def _data_plans(
+    collections: dict,
+    project_members: dict[str, list[str]],
     card_by_id: dict[str, StatementCard],
-    incoming_links: dict[str, dict[str, list[str]]],
-) -> _PageDraft:
-    if card.kind == "claim":
-        sections = _claim_sections(card, card_by_id, incoming_links)
-    else:
-        sections = _opportunity_sections(card, card_by_id, incoming_links)
-    member_ids = _sort_card_ids(
-        {sid for section in sections for sid in section.member_statement_ids},
-        card_by_id,
-    )
-    return _PageDraft(
-        id=page_id_for_statement(card) or card.id,
-        type=card.kind,
-        title=card.statement,
-        member_statement_ids=member_ids,
-        sections=sections,
-    )
+) -> list[_PageDraft]:
+    drafts: list[_PageDraft] = []
+    for collection_id in sorted(collections):
+        record = collections[collection_id]
+        present_projects = [p for p in record.projects if p in project_members]
+        if not present_projects:
+            continue
+        member_ids = _members_for_projects(present_projects, project_members)
+        sorted_ids = _sort_card_ids(member_ids, card_by_id)
+        title = getattr(record, "label", None) or _title(collection_id)
+        drafts.append(
+            _PageDraft(
+                id=f"data:{collection_id}",
+                type="data",
+                title=title,
+                member_statement_ids=sorted_ids,
+                sections=[
+                    _section("overview", "Overview", sorted_ids),
+                    _section("projects", "Projects Using This Collection", sorted_ids),
+                ],
+            )
+        )
+    return drafts
 
 
-def _claim_sections(
-    card: StatementCard,
+def _author_plans(
+    authors: dict,
+    project_members: dict[str, list[str]],
     card_by_id: dict[str, StatementCard],
-    incoming_links: dict[str, dict[str, list[str]]],
-) -> list[PageSectionPlan]:
-    incoming = incoming_links.get(card.id, {})
-    linked = _linked_statement_ids(card)
-    refutations = set(incoming.get("contradicts", [])) | set(card.links.contradicts)
-    downstream = set(card.links.supports) | set(card.links.motivates) | set(card.links.refines)
-    caveats = set(incoming.get("requires_validation", [])) | set(card.links.requires_validation)
-    caveats.update(
-        other.id
-        for other in card_by_id.values()
-        if other.kind == "caveat" and _shares_context(card, other)
-    )
-    return [
-        _section("claim", "Claim", [card.id]),
-        _section("supporting_evidence", "Supporting Evidence", incoming.get("supports", [])),
-        _section("refutations", "Refutations", refutations),
-        _section("caveats", "Caveats", caveats),
-        _section("downstream_uses", "Downstream Uses", downstream | (linked & set(incoming.get("motivates", [])))),
-    ]
+) -> list[_PageDraft]:
+    drafts: list[_PageDraft] = []
+    for record in sorted(authors.values(), key=lambda r: _author_slug(r)):
+        present_projects = [p for p in record.projects if p in project_members]
+        if not present_projects:
+            continue
+        member_ids = _members_for_projects(present_projects, project_members)
+        sorted_ids = _sort_card_ids(member_ids, card_by_id)
+        drafts.append(
+            _PageDraft(
+                id=f"author:{_author_slug(record)}",
+                type="author",
+                title=record.name,
+                member_statement_ids=sorted_ids,
+                sections=[
+                    _section("overview", "Overview", sorted_ids),
+                    _section("projects", "Projects", sorted_ids),
+                    _section("topics", "Topics", sorted_ids),
+                ],
+            )
+        )
+    return drafts
 
 
-def _opportunity_sections(
-    card: StatementCard,
-    card_by_id: dict[str, StatementCard],
-    incoming_links: dict[str, dict[str, list[str]]],
-) -> list[PageSectionPlan]:
-    incoming = incoming_links.get(card.id, {})
-    motivating = set(incoming.get("motivates", [])) | set(incoming.get("supports", []))
-    validation = set(incoming.get("requires_validation", [])) | set(card.links.requires_validation)
-    related_claims = {
-        other.id
-        for other in card_by_id.values()
-        if other.kind == "claim" and (_shares_context(card, other) or card.id in _linked_statement_ids(other))
+def _wire_cross_links(
+    drafts: dict[str, _PageDraft],
+    *,
+    card_topics: dict[str, list[str]],
+    project_topics: dict[str, set[str]],
+    project_members: dict[str, list[str]],
+    collections: dict,
+    authors: dict,
+) -> None:
+    all_page_ids = set(drafts)
+
+    # Reverse lookups from project -> data/author page ids that are actually present.
+    project_data_pages: dict[str, set[str]] = {}
+    for collection_id, record in collections.items():
+        page_id = f"data:{collection_id}"
+        if page_id not in all_page_ids:
+            continue
+        for project in record.projects:
+            project_data_pages.setdefault(project, set()).add(page_id)
+    project_author_pages: dict[str, set[str]] = {}
+    for record in authors.values():
+        page_id = f"author:{_author_slug(record)}"
+        if page_id not in all_page_ids:
+            continue
+        for project in record.projects:
+            project_author_pages.setdefault(project, set()).add(page_id)
+
+    for draft in drafts.values():
+        if draft.type == "home":
+            draft.outgoing_links.update(pid for pid in all_page_ids if pid != "home")
+        elif draft.type == "topic":
+            member_projects = _member_projects(draft.member_statement_ids, project_members)
+            # Adjacent topics (share >=1 source project) + data + author pages of those projects.
+            for project in member_projects:
+                for other_topic in project_topics.get(project, set()):
+                    if other_topic != draft.id:
+                        draft.outgoing_links.add(other_topic)
+                draft.outgoing_links.update(project_data_pages.get(project, set()))
+                draft.outgoing_links.update(project_author_pages.get(project, set()))
+        elif draft.type == "data":
+            member_projects = _member_projects(draft.member_statement_ids, project_members)
+            for project in member_projects:
+                draft.outgoing_links.update(project_topics.get(project, set()))
+                draft.outgoing_links.update(project_author_pages.get(project, set()))
+        elif draft.type == "author":
+            member_projects = _member_projects(draft.member_statement_ids, project_members)
+            for project in member_projects:
+                draft.outgoing_links.update(project_topics.get(project, set()))
+                draft.outgoing_links.update(project_data_pages.get(project, set()))
+        draft.outgoing_links.discard(draft.id)
+        draft.outgoing_links.intersection_update(all_page_ids)
+
+
+def _members_for_projects(
+    projects: Iterable[str], project_members: dict[str, list[str]]
+) -> list[str]:
+    return [sid for project in projects for sid in project_members.get(project, [])]
+
+
+def _member_projects(
+    member_ids: Iterable[str], project_members: dict[str, list[str]]
+) -> set[str]:
+    member_set = set(member_ids)
+    return {
+        project
+        for project, ids_ in project_members.items()
+        if member_set & set(ids_)
     }
-    return [
-        _section("opportunity", "Opportunity", [card.id]),
-        _section("motivating_evidence", "Motivating Evidence", motivating),
-        _section("required_validation", "Required Validation", validation),
-        _section("related_claims", "Related Claims", related_claims),
-    ]
 
 
 def _topic_member_ids(member_ids: list[str], card_by_id: dict[str, StatementCard]) -> list[str]:
@@ -345,42 +304,15 @@ def _topic_member_ids(member_ids: list[str], card_by_id: dict[str, StatementCard
         card = card_by_id[sid]
         for linked_id in _linked_statement_ids(card):
             linked_card = card_by_id.get(linked_id)
-            if linked_card and linked_card.kind in {"claim", "conflict", "opportunity", "caveat"}:
+            if linked_card and linked_card.kind in _LINKED_TOPIC_KINDS:
                 related.add(linked_id)
     return _sort_card_ids(related, card_by_id)
 
 
-def _page_links_for_members(
-    member_ids: Iterable[str],
-    card_by_id: dict[str, StatementCard],
-    statement_page_ids: dict[str, str],
-) -> set[str]:
-    links: set[str] = set()
-    for sid in member_ids:
-        card = card_by_id.get(sid)
-        if card is None:
-            continue
-        links.add(f"project:{card.evidence.source_project}")
-        links.update(card.about.topics)
-        links.update(_card_entities(card))
-        if statement_page_id := statement_page_ids.get(sid):
-            links.add(statement_page_id)
-        for linked_id in _linked_statement_ids(card):
-            if statement_page_id := statement_page_ids.get(linked_id):
-                links.add(statement_page_id)
-    return links
-
-
-def _incoming_links(cards: list[StatementCard]) -> dict[str, dict[str, list[str]]]:
-    incoming: dict[str, dict[str, list[str]]] = {}
-    for card in cards:
-        for field_name in _STATEMENT_LINK_FIELDS:
-            for target in getattr(card.links, field_name):
-                incoming.setdefault(target, {}).setdefault(field_name, []).append(card.id)
-    for field_map in incoming.values():
-        for field_name, source_ids in field_map.items():
-            field_map[field_name] = _unique_sorted(source_ids)
-    return incoming
+def _canonical_topics(card: StatementCard, registry) -> list[str]:
+    if registry is None:
+        return _unique_sorted(card.about.topics)
+    return _unique_sorted(registry.topic_key(topic) for topic in card.about.topics)
 
 
 def _linked_statement_ids(card: StatementCard) -> set[str]:
@@ -391,34 +323,6 @@ def _linked_statement_ids(card: StatementCard) -> set[str]:
     }
 
 
-def _shares_context(left: StatementCard, right: StatementCard) -> bool:
-    return bool(
-        set(left.about.topics) & set(right.about.topics)
-        or set(_card_entities(left)) & set(_card_entities(right))
-    )
-
-
-def _card_entities(card: StatementCard) -> list[str]:
-    entity_ids = set(card.about.entities)
-    entity_ids.update(value for value in card.qualifiers.values() if value.startswith("entity:"))
-    return sorted(entity_ids)
-
-
-def _ids_with_topics(cards: list[StatementCard]) -> list[str]:
-    return _unique_sorted(card.id for card in cards if card.about.topics)
-
-
-def _recent_card_ids(cards: list[StatementCard]) -> list[str]:
-    return [
-        card.id
-        for card in sorted(
-            cards,
-            key=lambda item: (item.extraction.timestamp, item.evidence.source_project, item.id),
-            reverse=True,
-        )
-    ]
-
-
 def _ids_of_kinds(
     member_ids: Iterable[str],
     card_by_id: dict[str, StatementCard],
@@ -427,12 +331,18 @@ def _ids_of_kinds(
     return _sort_card_ids((sid for sid in member_ids if card_by_id[sid].kind in kinds), card_by_id)
 
 
-def _ids_for_topic(
+def _ids_for_conflicts(
     member_ids: Iterable[str],
     card_by_id: dict[str, StatementCard],
-    topic_id: str,
 ) -> list[str]:
-    return _sort_card_ids((sid for sid in member_ids if topic_id in card_by_id[sid].about.topics), card_by_id)
+    return _sort_card_ids(
+        (
+            sid
+            for sid in member_ids
+            if card_by_id[sid].kind in _CONFLICT_KINDS or card_by_id[sid].tier == "conflict"
+        ),
+        card_by_id,
+    )
 
 
 def _section(section_id: str, heading: str, member_ids: Iterable[str]) -> PageSectionPlan:
@@ -459,6 +369,10 @@ def _unique_sorted(values: Iterable[str]) -> list[str]:
 
 def _card_sort_key(card: StatementCard) -> tuple[str, str, str, str]:
     return (card.kind, card.evidence.source_project, card.statement, card.id)
+
+
+def _author_slug(record) -> str:
+    return _slug(record.orcid or record.name)
 
 
 def _title(value: str) -> str:

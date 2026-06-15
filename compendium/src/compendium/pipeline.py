@@ -14,11 +14,13 @@ import sys
 from pathlib import Path
 
 from compendium import audit as audit_mod
+from compendium import data_index, people
 from compendium.build.statement_graph import build_statement_graph, export_statement_graph_artifacts
 from compendium.context_pack import build_context_pack, context_pack_bytes
 from compendium.models import StatementCard
 from compendium.pages import plan_pages, write_page_artifact, write_page_context
 from compendium.quality.synthesis_quality import assess_synthesis_quality
+from compendium.registry import Registry
 from compendium.render.markdown import render_markdown_wiki
 from compendium.validate import (
     validate_page_plan_file,
@@ -28,6 +30,8 @@ from compendium.validate import (
 
 PKG_DIR = Path(__file__).resolve().parent
 COMPENDIUM_DIR = PKG_DIR.parents[1]   # .../compendium
+REGISTRY_PATH = COMPENDIUM_DIR / "registry.yaml"
+COLLECTIONS_PATH = COMPENDIUM_DIR.parent / "ui" / "config" / "collections.yaml"
 
 
 def _resolve_projects_dir(projects_dir: str) -> Path:
@@ -44,6 +48,39 @@ def _resolve_projects_dir(projects_dir: str) -> Path:
 def _load_statement_cards(path: str) -> list[StatementCard]:
     result = validate_project_kg_file(path)
     return [record for record in result.records if isinstance(record, StatementCard)]
+
+
+def _build_plan_inputs(source_root: str | None) -> dict:
+    """Assemble ``registry`` / ``authors`` / ``collections`` for ``plan_pages``.
+
+    Each input is optional: ``registry.yaml`` is loaded when present (else None, identity
+    resolution); the author and collection indexes are built from ``source_root`` READMEs and the
+    corpus ``collections.yaml`` when those exist (else ``{}``). Pages just omit author/data when
+    their inputs are absent, so the planner still works on bare cards.
+    """
+    registry = Registry.from_yaml(REGISTRY_PATH) if REGISTRY_PATH.is_file() else None
+
+    authors: dict = {}
+    collections: dict = {}
+    root = _resolve_projects_dir(source_root) if source_root else None
+    if root is not None and root.is_dir():
+        project_to_readme = {
+            child.name: (child / "README.md").read_text(encoding="utf-8", errors="replace")
+            for child in sorted(root.iterdir())
+            if child.is_dir() and (child / "README.md").is_file()
+        }
+        authors = people.build_author_index(project_to_readme)
+
+        if COLLECTIONS_PATH.is_file():
+            canonical = data_index.load_canonical_ids(COLLECTIONS_PATH)
+            cited = {
+                child.name: data_index.cited_collections(child, canonical)
+                for child in sorted(root.iterdir())
+                if child.is_dir()
+            }
+            collections = data_index.build_collection_index(cited, canonical)
+
+    return {"registry": registry, "authors": authors, "collections": collections}
 
 
 def _write_json_or_stdout(payload: dict | list, out: str | None) -> None:
@@ -124,12 +161,15 @@ def dispatch(args) -> int:
         return 0
     if args.cmd == "plan-pages":
         cards = _load_statement_cards(args.path)
-        _write_json_or_stdout([plan.to_dict() for plan in plan_pages(cards)], args.out)
+        plan_inputs = _build_plan_inputs(getattr(args, "source_root", None))
+        _write_json_or_stdout(
+            [plan.to_dict() for plan in plan_pages(cards, **plan_inputs)], args.out
+        )
         return 0
     if args.cmd == "page-context":
         cards = _load_statement_cards(args.path)
         graph = build_statement_graph(cards)
-        page_plans = plan_pages(cards)
+        page_plans = plan_pages(cards, **_build_plan_inputs(args.source_root))
         plans = {plan.id: plan for plan in page_plans}
         plan = plans.get(args.page_id)
         if plan is None:
@@ -148,7 +188,7 @@ def dispatch(args) -> int:
     if args.cmd == "wiki-contexts":
         cards = _load_statement_cards(args.path)
         graph = build_statement_graph(cards)
-        page_plans = plan_pages(cards)
+        page_plans = plan_pages(cards, **_build_plan_inputs(args.source_root))
         out_dir = Path(args.out).resolve()
         _clean_page_context_artifacts(out_dir)
         written = []
@@ -167,7 +207,8 @@ def dispatch(args) -> int:
         return 0
     if args.cmd == "page-artifact":
         cards = _load_statement_cards(args.path)
-        plans = {plan.id: plan for plan in plan_pages(cards)}
+        plan_inputs = _build_plan_inputs(getattr(args, "source_root", None))
+        plans = {plan.id: plan for plan in plan_pages(cards, **plan_inputs)}
         plan = plans.get(args.page_id)
         if plan is None:
             raise ValueError(f"unknown page id {args.page_id!r}")
@@ -184,19 +225,17 @@ def dispatch(args) -> int:
         return 0
     if args.cmd == "render-markdown":
         cards = _load_statement_cards(args.path)
-        graph = build_statement_graph(cards)
         out_dir = Path(args.out).resolve()
         rendered = render_markdown_wiki(
-            plan_pages(cards),
+            plan_pages(cards, **_build_plan_inputs(getattr(args, "source_root", None))),
             out_dir,
-            statement_graph=graph,
         )
         print(f"[compendium] rendered {len(rendered)} markdown wiki pages -> {out_dir}")
         return 0
     if args.cmd == "quality-synthesis":
         cards = _load_statement_cards(args.path)
         graph = build_statement_graph(cards)
-        plans = plan_pages(cards)
+        plans = plan_pages(cards, **_build_plan_inputs(args.source_root))
         metrics = assess_synthesis_quality(
             cards,
             graph,

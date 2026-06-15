@@ -92,14 +92,21 @@ def test_statement_graph_command_writes_graph_json(tmp_path: Path) -> None:
 
 def test_plan_pages_command_writes_page_plan_json(tmp_path: Path) -> None:
     out = tmp_path / "pages.json"
+    empty_root = tmp_path / "no-projects"
+    empty_root.mkdir()
 
-    assert main(["plan-pages", str(STATEMENT_FIXTURE), "--out", str(out)]) == 0
+    assert main(
+        ["plan-pages", str(STATEMENT_FIXTURE), "--source-root", str(empty_root), "--out", str(out)]
+    ) == 0
 
     plans = json.loads(out.read_text(encoding="utf-8"))
     plan_ids = {plan["id"] for plan in plans}
+    plan_types = {plan["type"] for plan in plans}
     assert "home" in plan_ids
     assert "topic:adp1-carbon-fitness" in plan_ids
-    assert "claim:adp1-continuum-claim" in plan_ids
+    # New 4-type model: no per-claim/entity/project standalone pages.
+    assert "claim:adp1-continuum-claim" not in plan_ids
+    assert plan_types <= {"home", "topic", "data", "author"}
     assert all(plan["member_hash"].startswith("hash:") for plan in plans)
 
 
@@ -192,12 +199,16 @@ def test_page_artifact_command_validates_authored_markdown(tmp_path: Path) -> No
 
 def test_render_markdown_command_writes_linked_markdown_wiki(tmp_path: Path) -> None:
     out_dir = tmp_path / "wiki"
-    _write_authored_pages(STATEMENT_FIXTURE, out_dir)
+    empty_root = tmp_path / "no-projects"
+    empty_root.mkdir()
+    _write_authored_pages(STATEMENT_FIXTURE, out_dir, source_root=empty_root)
 
     assert main(
         [
             "render-markdown",
             str(STATEMENT_FIXTURE),
+            "--source-root",
+            str(empty_root),
             "--out",
             str(out_dir),
         ]
@@ -205,16 +216,11 @@ def test_render_markdown_command_writes_linked_markdown_wiki(tmp_path: Path) -> 
 
     home = out_dir / "index.md"
     topic = out_dir / "topics" / "adp1-carbon-fitness.md"
-    entity = out_dir / "entities" / "adp1.md"
-    graph = out_dir / "graph.md"
     assert home.is_file()
     assert topic.is_file()
-    assert entity.is_file()
-    assert graph.is_file()
+    # graph.md is no longer a reader page.
+    assert not (out_dir / "graph.md").exists()
     assert "# State Of The Science" in home.read_text(encoding="utf-8")
-    assert "[Topic: Adp1 Carbon Fitness](topics/adp1-carbon-fitness.md)" in graph.read_text(
-        encoding="utf-8"
-    )
     assert "# Topic: Adp1 Carbon Fitness" in topic.read_text(encoding="utf-8")
 
 
@@ -223,16 +229,20 @@ def test_render_markdown_command_rejects_stale_wiki_pages_and_manifests(
     capsys: pytest.CaptureFixture[str],
 ) -> None:
     out_dir = tmp_path / "wiki"
-    _write_authored_pages(STATEMENT_FIXTURE, out_dir)
-    stale_page = out_dir / "claims" / "stale.md"
-    stale_manifest = out_dir / ".manifests" / "claims" / "stale.manifest.json"
+    empty_root = tmp_path / "no-projects"
+    empty_root.mkdir()
+    _write_authored_pages(STATEMENT_FIXTURE, out_dir, source_root=empty_root)
+    stale_page = out_dir / "topics" / "stale.md"
+    stale_manifest = out_dir / ".manifests" / "topics" / "stale.manifest.json"
     stale_page.write_text("# Stale\n\nOld generated page.\n", encoding="utf-8")
-    stale_manifest.write_text('{"page_id":"claim:stale"}\n', encoding="utf-8")
+    stale_manifest.write_text('{"page_id":"topic:stale"}\n', encoding="utf-8")
 
     assert main(
         [
             "render-markdown",
             str(STATEMENT_FIXTURE),
+            "--source-root",
+            str(empty_root),
             "--out",
             str(out_dir),
         ]
@@ -240,7 +250,7 @@ def test_render_markdown_command_rejects_stale_wiki_pages_and_manifests(
 
     captured = capsys.readouterr()
     assert "stale wiki markdown pages" in captured.err
-    assert "claims/stale.md" in captured.err
+    assert "topics/stale.md" in captured.err
 
 
 def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
@@ -289,11 +299,16 @@ def test_quality_synthesis_command_fails_quality_gate_but_writes_metrics(tmp_pat
     assert metrics["evidence_resolution"]["unresolved"] == 1
 
 
-def _write_authored_pages(statement_fixture: Path, pages_dir: Path) -> None:
+def _write_authored_pages(
+    statement_fixture: Path, pages_dir: Path, *, source_root: Path | None = None
+) -> None:
+    from compendium.pipeline import _build_plan_inputs
+
     result = validate_project_kg_file(statement_fixture)
     cards = [record for record in result.records if isinstance(record, StatementCard)]
     card_by_id = {card.id: card for card in cards}
-    for plan in plan_pages(cards):
+    plan_inputs = _build_plan_inputs(str(source_root) if source_root else None)
+    for plan in plan_pages(cards, **plan_inputs):
         cited_card = card_by_id[plan.member_statement_ids[0]]
         write_page_artifact(
             plan,

@@ -1,7 +1,8 @@
-"""Tests for deterministic synthesis-wiki page planning."""
+"""Tests for deterministic synthesis-wiki page planning (topic/data/author/home model)."""
 
 from __future__ import annotations
 
+from compendium.data_index import CollectionRecord
 from compendium.models import (
     AboutRefs,
     EvidenceAnchor,
@@ -9,13 +10,15 @@ from compendium.models import (
     StatementCard,
     StatementLinks,
 )
-from compendium.pages import page_id_for_statement, plan_pages
+from compendium.pages import build_page_context, plan_pages, write_page_artifact
+from compendium.people import AuthorRecord
+from compendium.registry import Registry
 
 
 def _manifest(timestamp: str = "2026-06-02T00:00:00Z") -> ExtractionManifest:
     return ExtractionManifest(
         agent_type="llm_extractor",
-        skill="kg-ingest-project",
+        skill="kg-extract",
         model="test-model",
         prompt_hash="prompt:abc",
         context_pack_hash="context:def",
@@ -46,7 +49,7 @@ def _card(
         confidence=confidence,
         about=AboutRefs(entities=entities, topics=topics),
         links=links or StatementLinks(),
-        qualifiers={"organism": "entity:adp1"},
+        qualifiers={},
         evidence=EvidenceAnchor(
             source_project=project,
             source_doc="REPORT.md",
@@ -57,161 +60,274 @@ def _card(
     )
 
 
+# Two raw topic slugs (`topic:metal-resistance` and `topic:Metal-Resistance`) that the small
+# registry's case-folding merges into one canonical key; a second topic (`topic:pangenome`)
+# stays distinct.
 def _cards() -> list[StatementCard]:
-    carbon = "topic:carbon-source-essentiality"
-    genetics = "topic:genetics"
-    adp1 = "entity:adp1"
     return [
         _card(
-            id_="stmt:f1",
+            id_="stmt:m1",
             kind="finding",
-            statement="ADP1 carbon sources define condition-specific essentiality.",
-            project="adp1_deletion_phenotypes",
-            topics=[carbon],
-            entities=[adp1],
-            links=StatementLinks(supports=["stmt:c1"], motivates=["stmt:o1"]),
-            timestamp="2026-06-02T00:00:01Z",
+            statement="Metal fitness atlas maps cross-metal resistance genes.",
+            project="metal_fitness_atlas",
+            topics=["topic:metal-resistance"],
+            entities=["entity:adp1"],
         ),
         _card(
-            id_="stmt:c1",
+            id_="stmt:m2",
             kind="claim",
-            statement="ADP1 has a reusable carbon-source essentiality landscape.",
-            project="adp1_deletion_phenotypes",
-            topics=[carbon],
-            entities=[adp1],
+            statement="Metal resistance is largely shared across the tested strains.",
+            project="metal_fitness_atlas",
+            topics=["topic:Metal-Resistance"],  # case variant -> merges with m1's topic
+            entities=["entity:a_baylyi_adp1"],  # entity alias -> adp1
             confidence="high",
-            links=StatementLinks(motivates=["stmt:o1"]),
-            timestamp="2026-06-02T00:00:02Z",
         ),
         _card(
-            id_="stmt:o1",
-            kind="opportunity",
-            statement="Compare ADP1 essential genes across additional carbon sources.",
-            project="adp1_deletion_phenotypes",
-            topics=[carbon],
-            entities=[adp1],
-        ),
-        _card(
-            id_="stmt:f2",
-            kind="finding",
-            statement="ADP1 project data connects genotype and phenotype evidence.",
-            project="acinetobacter_adp1_explorer",
-            topics=[carbon, genetics],
-            entities=[adp1],
-            links=StatementLinks(supports=["stmt:c1"]),
-        ),
-        _card(
-            id_="stmt:v1",
+            id_="stmt:m3",
             kind="caveat",
-            statement="Carbon-source conclusions depend on tested growth conditions.",
-            project="acinetobacter_adp1_explorer",
-            topics=[carbon],
-            entities=[adp1],
-            links=StatementLinks(contradicts=["stmt:c1"]),
+            statement="Cross-metal resistance conclusions depend on the metal panel tested.",
+            project="metal_cross_resistance",
+            topics=["topic:Metal-Resistance"],
+            entities=["entity:adp1"],
         ),
         _card(
-            id_="stmt:d1",
-            kind="derived_product",
-            statement="A reusable ADP1 carbon-source table is available.",
-            project="adp1_deletion_phenotypes",
-            topics=[carbon],
-            entities=[adp1],
+            id_="stmt:m4",
+            kind="opportunity",
+            statement="Extend the metal panel to rare-earth elements.",
+            project="metal_cross_resistance",
+            topics=["topic:metal-resistance"],
+            entities=["entity:adp1"],
+        ),
+        _card(
+            id_="stmt:p1",
+            kind="finding",
+            statement="Pangenome openness varies with accessory-gene turnover.",
+            project="pangenome_openness",
+            topics=["topic:pangenome"],
+            entities=["entity:adp1"],
         ),
     ]
 
 
-def _plan_map(cards: list[StatementCard]) -> dict[str, object]:
-    return {plan.id: plan for plan in plan_pages(cards)}
+def _registry() -> Registry:
+    return Registry(
+        {
+            "topics": {
+                "topic:metal-resistance": {
+                    "label": "Metal Resistance & Critical Minerals",
+                    "definition": "x",
+                    "projects": [],
+                },
+                "topic:pangenome": {
+                    "label": "Pangenome Architecture",
+                    "definition": "x",
+                    "projects": [],
+                },
+            },
+            "entities": {
+                "entity:adp1": {
+                    "label": "Acinetobacter baylyi ADP1",
+                    "kind": "organism",
+                    "aliases": ["entity:a_baylyi_adp1"],
+                }
+            },
+        }
+    )
+
+
+def _authors() -> dict[str, AuthorRecord]:
+    return {
+        "0000-0001-5810-2497": AuthorRecord(
+            name="Paramvir S. Dehal",
+            orcid="0000-0001-5810-2497",
+            projects=["metal_fitness_atlas", "metal_cross_resistance"],
+        ),
+        "0009-0007-0287-2979": AuthorRecord(
+            name="Beril Admin",
+            orcid="0009-0007-0287-2979",
+            projects=["pangenome_openness"],
+        ),
+    }
+
+
+def _collections() -> dict[str, CollectionRecord]:
+    return {
+        "kbase_ke_pangenome": CollectionRecord(
+            id="kbase_ke_pangenome",
+            projects=["metal_fitness_atlas", "pangenome_openness"],
+        ),
+        "kescience_fitnessbrowser": CollectionRecord(
+            id="kescience_fitnessbrowser",
+            projects=["metal_fitness_atlas", "metal_cross_resistance"],
+        ),
+        # A collection no present project cites -> must be omitted.
+        "enigma_coral": CollectionRecord(id="enigma_coral", projects=["unrelated_project"]),
+    }
+
+
+def _plans(**overrides):
+    kwargs = {
+        "registry": _registry(),
+        "authors": _authors(),
+        "collections": _collections(),
+    }
+    kwargs.update(overrides)
+    return {plan.id: plan for plan in plan_pages(_cards(), **kwargs)}
 
 
 def test_page_plans_are_deterministic_for_shuffled_cards() -> None:
     cards = _cards()
-
-    forward = [plan.to_dict() for plan in plan_pages(cards)]
-    backward = [plan.to_dict() for plan in plan_pages(list(reversed(cards)))]
-
+    inputs = {"registry": _registry(), "authors": _authors(), "collections": _collections()}
+    forward = [plan.to_dict() for plan in plan_pages(cards, **inputs)]
+    backward = [plan.to_dict() for plan in plan_pages(list(reversed(cards)), **inputs)]
     assert forward == backward
 
 
-def test_home_plan_has_task_6_lanes_and_hashes() -> None:
-    home = _plan_map(_cards())["home"]
+def test_only_home_topic_data_author_page_types_exist() -> None:
+    plans = _plans()
+    types = {plan.type for plan in plans.values()}
+    assert types == {"home", "topic", "data", "author"}
+    # No legacy standalone page types.
+    assert not any(
+        plan.type in {"project", "claim", "conflict", "opportunity", "entity"}
+        for plan in plans.values()
+    )
+    assert not any(pid.startswith(("project:", "claim:", "opportunity:")) for pid in plans)
 
-    assert home.type == "home"
-    assert set(home.member_statement_ids) == {"stmt:c1", "stmt:d1", "stmt:v1", "stmt:f2", "stmt:f1", "stmt:o1"}
-    assert [section.id for section in home.sections] == [
-        "overview",
-        "topic_map",
-        "strong_claims",
-        "conflicts_and_caveats",
-        "opportunities_and_directions",
-        "reusable_data_products",
-        "recent_changes",
-        "browse_lanes",
+
+def test_topic_canonicalization_merges_raw_slugs() -> None:
+    plans = _plans()
+    # Both raw slugs (metal-resistance / metal_resistance) collapse into one topic page.
+    assert "topic:metal-resistance" in plans
+    assert "topic:metal_resistance" not in plans
+    metal = plans["topic:metal-resistance"]
+    assert set(metal.member_statement_ids) == {"stmt:m1", "stmt:m2", "stmt:m3", "stmt:m4"}
+    assert [section.heading for section in metal.sections] == [
+        "Overview",
+        "Key Claims",
+        "Conflicts & Caveats",
+        "Open Directions",
     ]
-    sections = {section.id: section for section in home.sections}
-    assert sections["strong_claims"].member_statement_ids == ["stmt:c1"]
-    assert sections["conflicts_and_caveats"].member_statement_ids == ["stmt:v1"]
-    assert sections["opportunities_and_directions"].member_statement_ids == ["stmt:o1"]
-    assert sections["reusable_data_products"].member_statement_ids == ["stmt:d1"]
-    assert home.member_hash.startswith("hash:")
-    assert all(section.member_hash.startswith("hash:") for section in home.sections)
+    sections = {s.id: s for s in metal.sections}
+    assert sections["key_claims"].member_statement_ids == ["stmt:m2"]
+    assert sections["conflicts_and_caveats"].member_statement_ids == ["stmt:m3"]
+    assert sections["open_directions"].member_statement_ids == ["stmt:m4"]
 
 
-def test_project_entity_and_topic_membership() -> None:
-    plans = _plan_map(_cards())
-    carbon_topic = plans["topic:carbon-source-essentiality"]
-    entity = plans["entity:adp1"]
-    deletion_project = plans["project:adp1_deletion_phenotypes"]
-
-    assert set(carbon_topic.member_statement_ids) == {
-        "stmt:c1",
-        "stmt:d1",
-        "stmt:v1",
-        "stmt:f2",
-        "stmt:f1",
-        "stmt:o1",
-    }
-    assert entity.member_statement_ids == carbon_topic.member_statement_ids
-    assert deletion_project.member_statement_ids == ["stmt:c1", "stmt:d1", "stmt:f1", "stmt:o1"]
-
-    entity_sections = {section.id: section for section in entity.sections}
-    assert entity_sections["claims"].member_statement_ids == ["stmt:c1"]
-    assert set(entity_sections["topic_topic-carbon-source-essentiality"].member_statement_ids) == {
-        "stmt:c1",
-        "stmt:d1",
-        "stmt:v1",
-        "stmt:f2",
-        "stmt:f1",
-        "stmt:o1",
-    }
+def test_home_page_has_moc_sections_and_links_every_page() -> None:
+    plans = _plans()
+    home = plans["home"]
+    assert home.type == "home"
+    assert [section.heading for section in home.sections] == [
+        "Cross-Project Overview",
+        "Topic Map",
+        "Author Map",
+        "Data Map",
+    ]
+    assert set(home.outgoing_links) == {pid for pid in plans if pid != "home"}
 
 
-def test_outgoing_links_and_backlinks_are_page_ids() -> None:
-    cards = _cards()
-    plans = _plan_map(cards)
-    claim_page_id = page_id_for_statement(cards[1])
-    opportunity_page_id = page_id_for_statement(cards[2])
-    assert claim_page_id == "claim:c1"
-    assert opportunity_page_id == "opportunity:o1"
+def test_data_and_author_pages_have_expected_ids_types_and_paths() -> None:
+    from compendium.pages import wiki_page_path
 
-    topic = plans["topic:carbon-source-essentiality"]
-    claim = plans[claim_page_id]
-    opportunity = plans[opportunity_page_id]
+    plans = _plans()
+    # Data pages: only collections with a present project; enigma_coral omitted.
+    assert "data:kbase_ke_pangenome" in plans
+    assert "data:kescience_fitnessbrowser" in plans
+    assert "data:enigma_coral" not in plans
+    data = plans["data:kbase_ke_pangenome"]
+    assert data.type == "data"
+    assert wiki_page_path(data).as_posix() == "data/kbase-ke-pangenome.md"
+    assert [s.heading for s in data.sections] == ["Overview", "Projects Using This Collection"]
 
-    assert set(topic.outgoing_links) >= {
-        "claim:c1",
-        "entity:adp1",
-        "opportunity:o1",
-        "project:acinetobacter_adp1_explorer",
-        "project:adp1_deletion_phenotypes",
-    }
-    assert set(claim.outgoing_links) >= {
-        "entity:adp1",
-        "opportunity:o1",
-        "project:adp1_deletion_phenotypes",
-        "topic:carbon-source-essentiality",
-    }
-    assert "home" in claim.backlinks
-    assert "topic:carbon-source-essentiality" in claim.backlinks
-    assert "claim:c1" in opportunity.backlinks
-    assert all(link in plans for link in claim.outgoing_links)
+    # Author pages keyed by ORCID slug.
+    author_id = "author:0000-0001-5810-2497"
+    assert author_id in plans
+    author = plans[author_id]
+    assert author.type == "author"
+    assert author.title == "Paramvir S. Dehal"
+    assert wiki_page_path(author).as_posix() == "authors/0000-0001-5810-2497.md"
+    assert [s.heading for s in author.sections] == ["Overview", "Projects", "Topics"]
+
+
+def test_topic_links_to_its_data_and_author_pages() -> None:
+    plans = _plans()
+    metal = plans["topic:metal-resistance"]
+    # metal projects (metal_fitness_atlas, metal_cross_resistance) cite both collections
+    # and are authored by Dehal.
+    assert "data:kbase_ke_pangenome" in metal.outgoing_links
+    assert "data:kescience_fitnessbrowser" in metal.outgoing_links
+    assert "author:0000-0001-5810-2497" in metal.outgoing_links
+    # Adjacent topic: pangenome_openness does not share a project with metal topic, so the
+    # metal topic should not link the pangenome topic.
+    assert "topic:pangenome" not in metal.outgoing_links
+
+
+def test_author_links_to_its_topics() -> None:
+    plans = _plans()
+    dehal = plans["author:0000-0001-5810-2497"]
+    assert "topic:metal-resistance" in dehal.outgoing_links
+    beril = plans["author:0009-0007-0287-2979"]
+    assert "topic:pangenome" in beril.outgoing_links
+
+
+def test_data_page_links_to_topic_and_author_pages() -> None:
+    plans = _plans()
+    pangenome_coll = plans["data:kbase_ke_pangenome"]
+    # Cited by metal_fitness_atlas (metal topic, Dehal) and pangenome_openness (pangenome, Beril).
+    assert "topic:metal-resistance" in pangenome_coll.outgoing_links
+    assert "topic:pangenome" in pangenome_coll.outgoing_links
+    assert "author:0000-0001-5810-2497" in pangenome_coll.outgoing_links
+    assert "author:0009-0007-0287-2979" in pangenome_coll.outgoing_links
+
+
+def test_backlinks_are_exact_reverse_of_outgoing() -> None:
+    plans = _plans()
+    for plan in plans.values():
+        for target in plan.outgoing_links:
+            assert plan.id in plans[target].backlinks
+        for source in plan.backlinks:
+            assert plan.id in plans[source].outgoing_links
+
+
+def test_identity_passthrough_without_registry() -> None:
+    # No registry -> raw topic slugs are not merged (case variants stay distinct).
+    plans = {plan.id: plan for plan in plan_pages(_cards())}
+    assert "topic:metal-resistance" in plans
+    assert "topic:Metal-Resistance" in plans  # distinct without canonicalization
+    # No authors/collections -> no data/author pages.
+    assert {plan.type for plan in plans.values()} == {"home", "topic"}
+
+
+def test_plan_then_context_then_authored_page_round_trips(tmp_path) -> None:
+    plans = _plans()
+    page_plans = list(plans.values())
+    topic = plans["topic:metal-resistance"]
+
+    context = build_page_context(topic, _cards(), page_plans=page_plans)
+    assert context["page"]["id"] == "topic:metal-resistance"
+    assert context["page"]["wiki_path"] == "topics/metal-resistance.md"
+    member_ids = {s["id"] for s in context["member_statements"]}
+    assert "stmt:m2" in member_ids
+    # Cross-links to data + author pages surface in the link map.
+    outgoing_ids = {ref["id"] for ref in context["link_map"]["outgoing"]}
+    assert "data:kbase_ke_pangenome" in outgoing_ids
+    assert "author:0000-0001-5810-2497" in outgoing_ids
+
+    # A hand-authored page citing one member statement validates clean.
+    markdown = (
+        "# Topic: Metal Resistance\n\n"
+        "Metal resistance is largely shared across the tested strains.\n\n"
+        "## Sources\n\n"
+        "- [stmt:m2; metal_fitness_atlas]\n"
+    )
+    markdown_path, manifest_path = write_page_artifact(
+        topic,
+        _cards(),
+        tmp_path,
+        markdown=markdown,
+        model="test-model",
+        prompt_hash="prompt:test",
+    )
+    assert markdown_path == tmp_path / "topics" / "metal-resistance.md"
+    assert manifest_path.is_file()

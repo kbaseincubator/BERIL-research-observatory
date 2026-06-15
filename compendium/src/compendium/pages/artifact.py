@@ -11,16 +11,7 @@ from typing import Any
 from compendium import ids
 from compendium.models import PagePlan, StatementCard
 
-_PAGE_DIRS = {
-    "topic": "topics",
-    "claim": "claims",
-    "conflict": "conflicts",
-    "opportunity": "opportunities",
-    "direction": "directions",
-    "hypothesis": "hypotheses",
-    "project": "projects",
-    "entity": "entities",
-}
+_PAGE_DIRS = {"topic": "topics", "data": "data", "author": "authors"}
 _CITATION_RE = re.compile(r"\[(stmt:[^;\]\s]+);[^\]]+\]")
 
 

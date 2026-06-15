@@ -30,11 +30,13 @@ STATEMENT_KINDS = (
 )
 STATEMENT_SCOPES = ("project_local", "cross_project", "corpus_level", "hypothesis")
 CONFIDENCE_LEVELS = ("low", "medium", "high")
+# The reader wiki emits only home/topic/data/author pages; the remaining values are retained
+# so the (Phase-5-bound) synthesis-quality fixtures that still construct legacy PagePlans keep
+# validating. PagePlan validation must stay a superset of the four live page types.
 PAGE_TYPES = (
-    "home", "topic", "claim", "conflict", "opportunity", "direction", "hypothesis",
-    "derived_product", "method", "project", "finding", "source_section", "dataset",
-    "notebook", "publication", "entity", "organism", "gene", "KO", "ortholog_group",
-    "pathway", "phenotype", "condition", "environment", "data_collection",
+    "home", "topic", "data", "author",
+    "claim", "conflict", "opportunity", "direction", "hypothesis",
+    "derived_product", "method", "project", "finding", "entity",
 )
 
 SCIENTIFIC_EDGE_KINDS = (

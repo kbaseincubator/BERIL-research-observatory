@@ -40,3 +40,23 @@ def load_canonical_ids(collections_yaml_path: Path) -> set[str]:
     """Read the ``collections[].id`` set from ``ui/config/collections.yaml``."""
     data = yaml.safe_load(Path(collections_yaml_path).read_text(encoding="utf-8"))
     return {c["id"] for c in data["collections"]}
+
+
+_SOURCE_DOCS = ("REPORT.md", "README.md")
+
+
+def cited_collections(project_dir: Path, canonical: set[str]) -> set[str]:
+    """Return the canonical collection ids a project cites in its REPORT/README.
+
+    Substring-scans ``REPORT.md`` and ``README.md`` for each canonical id (the corpus cites
+    collections by their backticked id, e.g. ``` `kbase_ke_pangenome` ```, not the ``BERDL
+    collection`` phrase). Returns the subset of ``canonical`` whose id appears as a literal
+    substring of either document. Missing files are skipped.
+    """
+    project_dir = Path(project_dir)
+    text = ""
+    for doc in _SOURCE_DOCS:
+        path = project_dir / doc
+        if path.is_file():
+            text += path.read_text(encoding="utf-8", errors="replace")
+    return {coll_id for coll_id in canonical if coll_id in text}
