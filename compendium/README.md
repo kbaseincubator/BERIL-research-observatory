@@ -85,5 +85,7 @@ build the author/collection indexes from `--source-root` + `ui/config/collection
 | `skills/` | LLM orchestration: `kg-extract`, `kg-reconcile`, `kg-write`, `kg-wiki` |
 | `wiki/` | the human-facing Markdown wiki (entry point `wiki/index.md`); manifests under `wiki/.manifests/` |
 
-This README is the single source of truth for the pipeline; design rationale and decisions live in
+This README is the single source of truth for the pipeline. The ideology and methodology (why a topic-MOC
+instead of a formal KG, what a topic is, the two-pass reconciliation) live in
+`../docs/kg-wiki/methodology.md`; the design decisions and build history live in
 `../docs/kg-wiki/2026-06-15-kg-wiki-redesign.md`.

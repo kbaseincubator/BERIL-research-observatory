@@ -1,5 +1,8 @@
 # KG-Wiki Redesign: Topic-MOC over a Thin Link Layer — Design + Implementation Plan
 
+> This is the design-decision + build-history record. For the timeless ideology and methodology reference,
+> see [`methodology.md`](methodology.md). For how to run the pipeline, see `compendium/README.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Replace the formal/typed knowledge-graph machinery in `compendium/` with a lightweight,
