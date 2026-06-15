@@ -12,19 +12,17 @@
     "stmt:adp1-triple-fitness-predictor-finding"
   ],
   "member_hash": "hash:539e4efbb73027f3",
-  "model": "codex-gpt-5",
-  "page_id": "topic:adp1-carbon-fitness",
-  "page_plan_hash": "hash:656d820c33ec6a8e",
+  "model": "claude-opus-4-8",
+  "page_id": "adp1-carbon-fitness",
+  "page_plan_hash": "hash:2151c7da3d6e5cd2",
   "page_type": "topic",
-  "prompt_hash": "prompt:kg-generate-wiki-2026-06-03",
+  "prompt_hash": "prompt:kg-write-v1",
   "repo_commit": "",
   "section_hashes": {
     "conflicts_and_caveats": "hash:e4a6a0577479b2b4",
-    "findings": "hash:dec5dbed7124e12d",
     "key_claims": "hash:18267ccc81136199",
-    "opportunities_and_directions": "hash:263806bebc620ddb",
-    "overview": "hash:539e4efbb73027f3",
-    "products_and_methods": "hash:e4a6a0577479b2b4"
+    "open_directions": "hash:263806bebc620ddb",
+    "overview": "hash:539e4efbb73027f3"
   },
   "skill": "kg-synthesize-page",
   "timestamp": ""

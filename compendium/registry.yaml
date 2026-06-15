@@ -1,0 +1,47 @@
+topics:
+  adp1-carbon-fitness:
+    label: ADP1 Carbon Fitness
+    definition: Condition-dependent gene fitness and essentiality of A. baylyi ADP1 across carbon sources.
+    aliases:
+    - topic:adp1-carbon-fitness
+  adp1-data-integration:
+    label: ADP1 Data Integration
+    definition: Integrating the ADP1 multi-omics database with BERDL collections via genome, reaction, compound, and pangenome bridges.
+    aliases:
+    - topic:adp1-data-integration
+  adp1-model-quality:
+    label: ADP1 Model Quality
+    definition: Quality and refinement of ADP1 metabolic models, including FBA-TnSeq discordance and gapfilling dependence.
+    aliases:
+    - topic:adp1-model-quality
+entities:
+  adp1:
+    label: Acinetobacter baylyi ADP1
+    kind: organism
+    aliases:
+    - entity:adp1
+  berdl:
+    label: BERDL
+    kind: dataset
+    aliases:
+    - entity:berdl
+  fba-model:
+    label: ADP1 FBA metabolic model
+    kind: method
+    aliases:
+    - entity:fba_model
+  aromatic-degradation:
+    label: Aromatic degradation
+    kind: gene
+    aliases:
+    - entity:aromatic_degradation
+  quinate:
+    label: Quinate
+    kind: gene
+    aliases:
+    - entity:quinate
+  urea:
+    label: Urea
+    kind: gene
+    aliases:
+    - entity:urea

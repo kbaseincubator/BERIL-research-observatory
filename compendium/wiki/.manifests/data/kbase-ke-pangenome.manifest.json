@@ -12,26 +12,18 @@
     "stmt:adp1-explorer-gapfilling-caveat",
     "stmt:adp1-explorer-multiomics-finding",
     "stmt:adp1-explorer-pangenome-bridge-finding",
-    "stmt:adp1-explorer-urea-deep-dive-opportunity",
-    "stmt:adp1-triple-aromatic-discordance-finding",
-    "stmt:adp1-triple-aromatic-media-opportunity",
-    "stmt:adp1-triple-continuous-fitness-claim",
-    "stmt:adp1-triple-fba-growth-caveat",
-    "stmt:adp1-triple-fitness-predictor-finding",
-    "stmt:adp1-triple-proteomics-finding"
+    "stmt:adp1-explorer-urea-deep-dive-opportunity"
   ],
-  "member_hash": "hash:054b7e08bfb16c51",
+  "member_hash": "hash:6b8dda969bab1991",
   "model": "claude-opus-4-8",
-  "page_id": "home",
-  "page_plan_hash": "hash:8a542ff1a6f9ba8d",
-  "page_type": "home",
+  "page_id": "data:kbase_ke_pangenome",
+  "page_plan_hash": "hash:5897a81830e2c807",
+  "page_type": "data",
   "prompt_hash": "prompt:kg-write-v1",
   "repo_commit": "",
   "section_hashes": {
-    "author_map": "hash:054b7e08bfb16c51",
-    "data_map": "hash:054b7e08bfb16c51",
-    "overview": "hash:054b7e08bfb16c51",
-    "topic_map": "hash:054b7e08bfb16c51"
+    "overview": "hash:6b8dda969bab1991",
+    "projects": "hash:6b8dda969bab1991"
   },
   "skill": "kg-synthesize-page",
   "timestamp": ""

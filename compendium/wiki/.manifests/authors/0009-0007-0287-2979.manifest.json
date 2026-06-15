@@ -1,0 +1,26 @@
+{
+  "cited_statement_ids": [
+    "stmt:adp1-explorer-berdl-connectivity-finding",
+    "stmt:adp1-explorer-condition-fitness-finding",
+    "stmt:adp1-explorer-database-bridge-claim",
+    "stmt:adp1-explorer-discordance-opportunity",
+    "stmt:adp1-explorer-gapfilling-caveat",
+    "stmt:adp1-explorer-multiomics-finding",
+    "stmt:adp1-explorer-pangenome-bridge-finding",
+    "stmt:adp1-explorer-urea-deep-dive-opportunity"
+  ],
+  "member_hash": "hash:c482dbec10112341",
+  "model": "claude-opus-4-8",
+  "page_id": "author:0009-0007-0287-2979",
+  "page_plan_hash": "hash:5b5a920c9e7ed51c",
+  "page_type": "author",
+  "prompt_hash": "prompt:kg-write-v1",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:c482dbec10112341",
+    "projects": "hash:c482dbec10112341",
+    "topics": "hash:c482dbec10112341"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}
