@@ -29,3 +29,25 @@ def test_resolves_topic_alias_to_canonical_key():
     reg = Registry(RAW)
     assert reg.topic_key("metal_fitness") == "metal-resistance"
     assert reg.topic_key("Critical-Minerals") == "metal-resistance"  # alias, case-insensitive
+
+
+def test_registry_keeps_entity_definitions_and_urls(tmp_path):
+    path = tmp_path / "registry.yaml"
+    path.write_text(
+        """
+topics: {}
+entities:
+  adp1:
+    label: Acinetobacter baylyi ADP1
+    kind: organism
+    definition: A naturally competent soil bacterium.
+    aliases: [entity:adp1]
+    url: https://example.org/adp1
+""",
+        encoding="utf-8",
+    )
+
+    registry = Registry.from_yaml(path)
+
+    assert registry.entities["adp1"]["definition"] == "A naturally competent soil bacterium."
+    assert registry.entities["adp1"]["url"] == "https://example.org/adp1"

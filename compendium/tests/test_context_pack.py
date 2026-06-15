@@ -58,7 +58,7 @@ def test_basic_fixture_context_pack_contains_required_scaffold() -> None:
 
     vocab = pack["allowed_vocabularies"]
     assert "claim" in vocab["statement_kinds"]
-    assert "supports" in vocab["scientific_links"]
+    assert "supports" in vocab["statement_links"]
     # Legacy vocabularies were trimmed out.
     assert "edge_classes" not in vocab
     assert "entity_types" not in vocab

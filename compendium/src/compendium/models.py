@@ -1,73 +1,22 @@
-"""Shared data contracts for the Compendium pipeline.
+"""Small runtime contracts for the Compendium topic wiki.
 
-Every module codes against these dataclasses. They are plain stdlib dataclasses (no third-party
-runtime dep) with ``to_dict``/``from_dict`` for YAML/JSON round-tripping. The LinkML schema in
-``compendium/schema/synthesis_wiki.yaml`` is the canonical type spec; these mirror it at runtime.
-
-Tier vocabulary (deterministic, entities-only — no tier claims the *relation* is true):
-  - ``grounded``: all referenced entities are grounded (CURIE) and the evidence span is located.
-  - ``asserted``: ungrounded entity / weak-or-missing span / low confidence -> flagged in the wiki.
-  - ``conflict``: a grounded assertion that contradicts another grounded assertion.
+These dataclasses mirror the hand-written YAML contract in ``compendium/SCHEMA.md``.
+They intentionally avoid LinkML/Biolink-style graph machinery: the graph exists only to
+build bounded page contexts for human-readable wiki synthesis.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
-from typing import Any, Optional
+from dataclasses import asdict, dataclass, field
+from typing import Any
 
-# --- vocabularies -----------------------------------------------------------------
-TIER_GROUNDED = "grounded"
-TIER_ASSERTED = "asserted"
-TIER_CONFLICT = "conflict"
-TIER_REVIEWED = "reviewed"
-TIER_RETRACTED = "retracted"
-TIERS = (TIER_GROUNDED, TIER_ASSERTED, TIER_CONFLICT)
-STATEMENT_TIERS = (TIER_ASSERTED, TIER_GROUNDED, TIER_REVIEWED, TIER_CONFLICT, TIER_RETRACTED)
-
-STATEMENT_KINDS = (
-    "finding", "claim", "caveat", "conflict", "hypothesis", "opportunity",
-    "direction", "method_note", "derived_product",
-)
-STATEMENT_SCOPES = ("project_local", "cross_project", "corpus_level", "hypothesis")
+STATEMENT_KINDS = ("finding", "claim", "caveat", "opportunity")
 CONFIDENCE_LEVELS = ("low", "medium", "high")
-# The reader wiki emits only home/topic/data/author pages; the remaining values are retained
-# so the (Phase-5-bound) synthesis-quality fixtures that still construct legacy PagePlans keep
-# validating. PagePlan validation must stay a superset of the four live page types.
-PAGE_TYPES = (
-    "home", "topic", "data", "author",
-    "claim", "conflict", "opportunity", "direction", "hypothesis",
-    "derived_product", "method", "project", "finding", "entity",
-)
-
-SCIENTIFIC_EDGE_KINDS = (
-    "supports", "contradicts", "refines", "generalizes", "narrows", "motivates", "tests",
-)
-PROVENANCE_EDGE_KINDS = (
-    "has_evidence", "extracted_from", "cites", "uses_dataset", "uses_notebook",
-)
-NAVIGATION_EDGE_KINDS = (
-    "about_entity",
-    "related_page",
-    "member_of_topic",
-    "backlink",
-    "next_read",
-)
-DERIVATION_EDGE_KINDS = ("produced_by", "reused_by", "depends_on", "derived_from")
-REVIEW_EDGE_KINDS = (
-    "needs_review", "caveat_for", "resolves_conflict", "supersedes", "retracted_by",
-)
-EDGE_CLASS_PREDICATES = {
-    "scientific_edge": SCIENTIFIC_EDGE_KINDS,
-    "provenance_edge": PROVENANCE_EDGE_KINDS,
-    "navigation_edge": NAVIGATION_EDGE_KINDS,
-    "derivation_edge": DERIVATION_EDGE_KINDS,
-    "review_edge": REVIEW_EDGE_KINDS,
-}
-EDGE_CLASSES = tuple(EDGE_CLASS_PREDICATES)
-EDGE_KINDS = tuple(p for predicates in EDGE_CLASS_PREDICATES.values() for p in predicates)
+LINK_KINDS = ("supports", "contradicts", "refines")
+PAGE_TYPES = ("home", "topic", "data", "author", "organism")
 
 
-def _require_nonempty(value: str, field_name: str) -> None:
+def _require_nonempty(value: str | None, field_name: str) -> None:
     if not value or not value.strip():
         raise ValueError(f"{field_name} is required")
 
@@ -77,100 +26,74 @@ def _validate_in(value: str, allowed: tuple[str, ...], field_name: str) -> None:
         raise ValueError(f"{field_name} must be one of {allowed}; got {value!r}")
 
 
-# --- statement-card KG -------------------------------------------------------------
-@dataclass
-class AboutRefs:
-    entities: list[str] = field(default_factory=list)
-    topics: list[str] = field(default_factory=list)
-
-    def to_dict(self) -> dict:
-        return asdict(self)
-
-    @classmethod
-    def from_dict(cls, d: dict) -> "AboutRefs":
-        return cls(entities=list(d.get("entities", [])), topics=list(d.get("topics", [])))
-
-
-@dataclass
-class StatementLinks:
-    supports: list[str] = field(default_factory=list)
-    contradicts: list[str] = field(default_factory=list)
-    motivates: list[str] = field(default_factory=list)
-    refines: list[str] = field(default_factory=list)
-    requires_validation: list[str] = field(default_factory=list)
-
-    def to_dict(self) -> dict:
-        return asdict(self)
-
-    @classmethod
-    def from_dict(cls, d: dict) -> "StatementLinks":
-        return cls(
-            supports=list(d.get("supports", [])),
-            contradicts=list(d.get("contradicts", [])),
-            motivates=list(d.get("motivates", [])),
-            refines=list(d.get("refines", [])),
-            requires_validation=list(d.get("requires_validation", [])),
-        )
+def _as_string_list(value: Any) -> list[str]:
+    if value is None:
+        return []
+    if not isinstance(value, list):
+        raise ValueError("expected a list")
+    return [str(item) for item in value]
 
 
 @dataclass
 class EvidenceAnchor:
     source_project: str
     source_doc: str
-    exact: str
-    source_section: Optional[str] = None
-    prefix: str = ""
-    suffix: str = ""
-    notebook: Optional[str] = None
-    figure: Optional[str] = None
-    p_value: Optional[float] = None
+    quote: str
+    source_section: str | None = None
+    notebook: str | None = None
+    figure: str | None = None
 
     def __post_init__(self) -> None:
         _require_nonempty(self.source_project, "source_project")
         _require_nonempty(self.source_doc, "source_doc")
-        _require_nonempty(self.exact, "exact")
+        _require_nonempty(self.quote, "quote")
 
-    def to_dict(self) -> dict:
-        return asdict(self)
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "source_project": self.source_project,
+            "source_doc": self.source_doc,
+            "source_section": self.source_section,
+            "quote": self.quote,
+            "notebook": self.notebook,
+            "figure": self.figure,
+        }
 
     @classmethod
-    def from_dict(cls, d: dict) -> "EvidenceAnchor":
+    def from_dict(cls, d: dict[str, Any]) -> "EvidenceAnchor":
+        quote = d.get("quote", d.get("exact"))
         return cls(
             source_project=d["source_project"],
             source_doc=d["source_doc"],
             source_section=d.get("source_section"),
-            exact=d["exact"],
-            prefix=d.get("prefix", ""),
-            suffix=d.get("suffix", ""),
+            quote=quote,
             notebook=d.get("notebook"),
             figure=d.get("figure"),
-            p_value=d.get("p_value"),
         )
 
 
 @dataclass
-class ExtractionManifest:
-    agent_type: str
-    skill: str
-    model: str
-    prompt_hash: str
-    context_pack_hash: str
-    repo_commit: str
-    timestamp: str
+class StatementLinks:
+    supports: list[str] = field(default_factory=list)
+    contradicts: list[str] = field(default_factory=list)
+    refines: list[str] = field(default_factory=list)
 
-    def to_dict(self) -> dict:
-        return asdict(self)
+    def to_dict(self) -> dict[str, list[str]]:
+        return {
+            "supports": list(self.supports),
+            "contradicts": list(self.contradicts),
+            "refines": list(self.refines),
+        }
 
     @classmethod
-    def from_dict(cls, d: dict) -> "ExtractionManifest":
+    def from_dict(cls, d: dict[str, Any] | None) -> "StatementLinks":
+        d = d or {}
+        unsupported = sorted(set(d) - set(LINK_KINDS) - {"motivates", "requires_validation"})
+        if unsupported:
+            raise ValueError(f"unsupported statement link field(s): {unsupported}")
         return cls(
-            agent_type=d["agent_type"],
-            skill=d["skill"],
-            model=d["model"],
-            prompt_hash=d["prompt_hash"],
-            context_pack_hash=d["context_pack_hash"],
-            repo_commit=d["repo_commit"],
-            timestamp=d["timestamp"],
+            supports=_as_string_list(d.get("supports", [])),
+            contradicts=_as_string_list(d.get("contradicts", [])),
+            refines=_as_string_list(d.get("refines", [])),
         )
 
 
@@ -178,85 +101,50 @@ class ExtractionManifest:
 class StatementCard:
     id: str
     kind: str
-    statement: str
-    scope: str
-    tier: str
+    text: str
     confidence: str
-    about: AboutRefs
-    links: StatementLinks
-    qualifiers: dict[str, str]
-    evidence: EvidenceAnchor
-    extraction: ExtractionManifest
+    topics: list[str]
+    entities: list[str]
+    evidence: list[EvidenceAnchor]
+    links: StatementLinks = field(default_factory=StatementLinks)
 
     def __post_init__(self) -> None:
         _require_nonempty(self.id, "id")
-        _require_nonempty(self.statement, "statement")
+        _require_nonempty(self.text, "text")
         _validate_in(self.kind, STATEMENT_KINDS, "kind")
-        _validate_in(self.scope, STATEMENT_SCOPES, "scope")
-        _validate_in(self.tier, STATEMENT_TIERS, "tier")
         _validate_in(self.confidence, CONFIDENCE_LEVELS, "confidence")
-        if self.evidence is None:
+        if not self.evidence:
             raise ValueError("evidence is required")
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "id": self.id,
             "kind": self.kind,
-            "statement": self.statement,
-            "scope": self.scope,
-            "tier": self.tier,
+            "text": self.text,
             "confidence": self.confidence,
-            "about": self.about.to_dict(),
+            "topics": list(self.topics),
+            "entities": list(self.entities),
             "links": self.links.to_dict(),
-            "qualifiers": dict(self.qualifiers),
-            "evidence": self.evidence.to_dict(),
-            "extraction": self.extraction.to_dict(),
+            "evidence": [anchor.to_dict() for anchor in self.evidence],
         }
 
     @classmethod
-    def from_dict(cls, d: dict) -> "StatementCard":
+    def from_dict(cls, d: dict[str, Any]) -> "StatementCard":
+        about = d.get("about", {})
+        raw_evidence = d["evidence"]
+        if isinstance(raw_evidence, dict):
+            raw_evidence = [raw_evidence]
+        if not isinstance(raw_evidence, list):
+            raise ValueError("evidence must be a list")
         return cls(
             id=d["id"],
             kind=d["kind"],
-            statement=d["statement"],
-            scope=d["scope"],
-            tier=d["tier"],
+            text=d.get("text", d.get("statement")),
             confidence=d["confidence"],
-            about=AboutRefs.from_dict(d["about"]),
-            links=StatementLinks.from_dict(d["links"]),
-            qualifiers=dict(d.get("qualifiers", {})),
-            evidence=EvidenceAnchor.from_dict(d["evidence"]),
-            extraction=ExtractionManifest.from_dict(d["extraction"]),
-        )
-
-
-@dataclass
-class StatementEdge:
-    s: str
-    p: str
-    o: str
-    edge_class: str
-    statement_ids: list[str] = field(default_factory=list)
-    provenance: list[str] = field(default_factory=list)
-    attrs: dict[str, Any] = field(default_factory=dict)
-
-    def __post_init__(self) -> None:
-        _validate_in(self.edge_class, EDGE_CLASSES, "edge_class")
-        _validate_in(self.p, EDGE_CLASS_PREDICATES[self.edge_class], "p")
-
-    def to_dict(self) -> dict:
-        return asdict(self)
-
-    @classmethod
-    def from_dict(cls, d: dict) -> "StatementEdge":
-        return cls(
-            s=d["s"],
-            p=d["p"],
-            o=d["o"],
-            edge_class=d["edge_class"],
-            statement_ids=list(d.get("statement_ids", [])),
-            provenance=list(d.get("provenance", [])),
-            attrs=dict(d.get("attrs", {})),
+            topics=_as_string_list(d.get("topics", about.get("topics", []))),
+            entities=_as_string_list(d.get("entities", about.get("entities", []))),
+            links=StatementLinks.from_dict(d.get("links")),
+            evidence=[EvidenceAnchor.from_dict(item) for item in raw_evidence],
         )
 
 
@@ -267,11 +155,11 @@ class PageSectionPlan:
     member_statement_ids: list[str] = field(default_factory=list)
     member_hash: str = ""
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
     @classmethod
-    def from_dict(cls, d: dict) -> "PageSectionPlan":
+    def from_dict(cls, d: dict[str, Any]) -> "PageSectionPlan":
         return cls(
             id=d["id"],
             heading=d["heading"],
@@ -296,29 +184,27 @@ class PagePlan:
         _require_nonempty(self.title, "title")
         _validate_in(self.type, PAGE_TYPES, "type")
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "id": self.id,
             "type": self.type,
             "title": self.title,
             "member_statement_ids": list(self.member_statement_ids),
-            "sections": [s.to_dict() for s in self.sections],
+            "sections": [section.to_dict() for section in self.sections],
             "outgoing_links": list(self.outgoing_links),
             "backlinks": list(self.backlinks),
             "member_hash": self.member_hash,
         }
 
     @classmethod
-    def from_dict(cls, d: dict) -> "PagePlan":
+    def from_dict(cls, d: dict[str, Any]) -> "PagePlan":
         return cls(
             id=d["id"],
             type=d["type"],
             title=d["title"],
             member_statement_ids=list(d.get("member_statement_ids", [])),
-            sections=[PageSectionPlan.from_dict(x) for x in d.get("sections", [])],
+            sections=[PageSectionPlan.from_dict(item) for item in d.get("sections", [])],
             outgoing_links=list(d.get("outgoing_links", [])),
             backlinks=list(d.get("backlinks", [])),
             member_hash=d["member_hash"],
         )
-
-

@@ -17,11 +17,9 @@ import yaml
 from compendium.audit import audit_project
 from compendium.models import (
     CONFIDENCE_LEVELS,
+    LINK_KINDS,
     PAGE_TYPES,
-    SCIENTIFIC_EDGE_KINDS,
     STATEMENT_KINDS,
-    STATEMENT_SCOPES,
-    STATEMENT_TIERS,
 )
 from compendium.people import parse_authors
 
@@ -147,9 +145,9 @@ def _extraction_instructions() -> dict[str, Any]:
         "purpose": "Extract statement cards with exact evidence anchors from this deterministic context pack.",
         "requirements": [
             "Use only source text and hints present in this context pack.",
-            "Every non-retracted statement card must include an evidence anchor.",
+            "Every statement card must include an evidence anchor with a verbatim quote.",
             "Use allowed vocabularies exactly as provided.",
-            "Do not invent source documents, datasets, entities, relation types, or measurements.",
+            "Do not invent source documents, datasets, entities, or relation types.",
         ],
     }
 
@@ -157,10 +155,8 @@ def _extraction_instructions() -> dict[str, Any]:
 def _allowed_vocabularies() -> dict[str, list[str]]:
     return {
         "statement_kinds": list(STATEMENT_KINDS),
-        "statement_scopes": list(STATEMENT_SCOPES),
-        "statement_tiers": list(STATEMENT_TIERS),
         "confidence": list(CONFIDENCE_LEVELS),
-        "scientific_links": list(SCIENTIFIC_EDGE_KINDS),
+        "statement_links": list(LINK_KINDS),
         "page_types": list(PAGE_TYPES),
     }
 

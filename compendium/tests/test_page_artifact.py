@@ -31,10 +31,18 @@ def test_page_context_contains_bounded_llm_inputs() -> None:
         context["page"]["manifest_path"]
         == ".manifests/topics/metal-resistance.manifest.json"
     )
-    assert context["member_statements"][0]["id"].startswith("stmt:")
-    assert context["sections"][0]["statements"]
-    assert "outgoing" in context["link_map"]
-    assert "Write the full page body" in context["instructions"]["prose"]
+    assert context["statements"][0]["id"].startswith("stmt:")
+    assert context["projects"]
+    assert context["topics"]
+    assert context["entities"]
+    assert context["adjacent_pages"]
+    assert context["allowed_citations"]
+    assert context["narrative"]["lead"]
+    assert [section["heading"] for section in context["narrative"]["section_plan"]][:2] == [
+        "Overview",
+        "What the Corpus Shows",
+    ]
+    assert "statement-by-statement" in context["instructions"]["body_rule"]
 
 
 def test_page_artifact_paths_are_stable_by_page_type() -> None:
@@ -126,7 +134,7 @@ def _author_one_member(plan, cards) -> str:
         cited = card_by_id[members[0]]
         body.append(
             f"This page cites project evidence "
-            f"[{cited.id}; {cited.evidence.source_project}]."
+            f"[{cited.id}; {cited.evidence[0].source_project}]."
         )
     else:
         body.append("This page has no member statements.")

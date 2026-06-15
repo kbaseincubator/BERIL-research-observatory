@@ -18,9 +18,16 @@ shared data by collection) into page contexts, and an LLM `write` step authors t
 pages. A deterministic `check` step enforces link + citation integrity. The entire flow is driven by
 skills (see §2.4) so Claude Code or Codex can run it end-to-end.
 
-**Tech Stack:** Python 3.13 + `uv` (deterministic core, `pytest`), LinkML (one trimmed schema), Markdown
-wiki output, Claude Code/Codex skills for extraction, reconciliation, and page authoring, plus a
-top-level orchestrator skill that chains the deterministic CLI steps.
+**Tech Stack:** Python 3.13 + `uv` (deterministic core, `pytest`), a small hand-written YAML contract,
+Markdown wiki output, Claude Code/Codex skills for extraction, reconciliation, and page authoring, plus
+a top-level orchestrator skill that chains the deterministic CLI steps.
+
+**Simplification update:** v1 now treats the wiki as the product and the KG as a small page-context
+graph. The maintained artifact contract is `compendium/SCHEMA.md` plus Python validation, not
+LinkML/Biolink/KGX. Durable graph concepts are statements, topics, recurring entities, projects,
+authors, data collections, evidence anchors, and `supports`/`contradicts`/`refines` links. Page contexts
+include a narrative scaffold so `kg-write` produces introductions, synthesized sections, useful
+cross-links, caveats, open directions, and sources instead of statement dumps.
 
 ---
 

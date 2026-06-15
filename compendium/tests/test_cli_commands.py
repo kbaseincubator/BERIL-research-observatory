@@ -67,42 +67,18 @@ def test_validate_commands_accept_statement_card_and_page_plan(tmp_path: Path) -
     )
 
     assert main(["validate-card", str(card_path)]) == 0
+    assert main(["validate-kg", str(STATEMENT_FIXTURE)]) == 0
     assert main(["validate-page-plan", str(page_path)]) == 0
 
 
 def test_cli_validation_errors_return_without_traceback(tmp_path: Path, capsys) -> None:
     missing = tmp_path / "missing.yaml"
 
-    assert main(["statement-graph", str(missing)]) == 2
+    assert main(["plan-pages", str(missing)]) == 2
 
     captured = capsys.readouterr()
     assert "[compendium] error:" in captured.err
     assert "Traceback" not in captured.err
-
-
-def test_statement_graph_command_writes_graph_json(tmp_path: Path) -> None:
-    out = tmp_path / "statement-graph.json"
-    artifacts_dir = tmp_path / "graph-artifacts"
-
-    assert main(
-        [
-            "statement-graph",
-            str(STATEMENT_FIXTURE),
-            "--out",
-            str(out),
-            "--artifacts-dir",
-            str(artifacts_dir),
-        ]
-    ) == 0
-
-    graph = json.loads(out.read_text(encoding="utf-8"))
-    assert any(node["id"] == "stmt:adp1-continuum-claim" for node in graph["nodes"])
-    assert any(edge["p"] == "has_evidence" for edge in graph["edges"])
-    assert any(edge["p"] == "about_entity" for edge in graph["edges"])
-    assert (artifacts_dir / "graph.json").is_file()
-    assert (artifacts_dir / "nodes.tsv").is_file()
-    assert (artifacts_dir / "edges.tsv").is_file()
-
 
 def test_plan_pages_command_writes_page_plan_json(tmp_path: Path) -> None:
     out = tmp_path / "pages.json"
@@ -146,7 +122,8 @@ def test_page_context_command_writes_context_and_prompt(tmp_path: Path) -> None:
     assert prompt.is_file()
     context_payload = json.loads(context.read_text(encoding="utf-8"))
     assert context_payload["page"]["id"] == "topic:adp1-carbon-fitness"
-    assert context_payload["member_statements"]
+    assert context_payload["statements"]
+    assert context_payload["narrative"]["lead"]
     assert "only allowed scientific context" in prompt.read_text(encoding="utf-8")
 
 
@@ -267,52 +244,6 @@ def test_render_markdown_command_rejects_stale_wiki_pages_and_manifests(
     assert "topics/stale.md" in captured.err
 
 
-def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
-    out = tmp_path / "quality.json"
-
-    assert main(
-        [
-            "quality-synthesis",
-            str(STATEMENT_FIXTURE),
-            "--source-root",
-            str(ROOT / "projects"),
-            "--out",
-            str(out),
-        ]
-    ) == 0
-
-    metrics = json.loads(out.read_text(encoding="utf-8"))
-    assert metrics["statement_counts"]["total"] == 6
-    assert metrics["evidence_resolution"]["resolved"] == 6
-    assert metrics["graph_integrity"]["dangling_edges"] == 0
-    assert metrics["link_integrity"]["broken_outgoing_link_count"] == 0
-    assert metrics["statement_link_integrity"]["unresolved_statement_link_count"] == 0
-    assert metrics["opportunity_targets"]["missing_target_output_statement_ids"] == []
-
-
-def test_quality_synthesis_command_fails_quality_gate_but_writes_metrics(tmp_path: Path) -> None:
-    project_path = tmp_path / "project.yaml"
-    out = tmp_path / "quality.json"
-    project_path.write_text(
-        yaml.safe_dump({"statements": [_statement_card_dict()]}, sort_keys=True),
-        encoding="utf-8",
-    )
-
-    assert main(
-        [
-            "quality-synthesis",
-            str(project_path),
-            "--source-root",
-            str(tmp_path / "empty-source-root"),
-            "--out",
-            str(out),
-        ]
-    ) == 1
-
-    metrics = json.loads(out.read_text(encoding="utf-8"))
-    assert metrics["evidence_resolution"]["unresolved"] == 1
-
-
 def test_check_command_exits_zero_on_clean_and_nonzero_on_broken_wiki(tmp_path: Path) -> None:
     clean = tmp_path / "clean"
     (clean / "topics").mkdir(parents=True)
@@ -352,7 +283,7 @@ def _write_authored_pages(
                     "## Introduction",
                     "",
                     f"This authored test page cites {cited_card.id} "
-                    f"[{cited_card.id}; {cited_card.evidence.source_project}].",
+                    f"[{cited_card.id}; {cited_card.evidence[0].source_project}].",
                     "",
                 )
             ),

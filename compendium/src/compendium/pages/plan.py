@@ -17,19 +17,12 @@ from compendium.models import (
     PagePlan,
     PageSectionPlan,
     StatementCard,
-    TIER_RETRACTED,
 )
 
-_CONFLICT_KINDS = {"caveat", "conflict"}
-_OPPORTUNITY_KINDS = {"opportunity", "direction", "hypothesis"}
-_LINKED_TOPIC_KINDS = {"claim", "conflict", "opportunity", "caveat"}
-_STATEMENT_LINK_FIELDS = (
-    "supports",
-    "contradicts",
-    "motivates",
-    "refines",
-    "requires_validation",
-)
+_CONFLICT_KINDS = {"caveat"}
+_OPPORTUNITY_KINDS = {"opportunity"}
+_LINKED_TOPIC_KINDS = {"claim", "opportunity", "caveat"}
+_STATEMENT_LINK_FIELDS = ("supports", "contradicts", "refines")
 
 
 @dataclass
@@ -59,14 +52,11 @@ def plan_pages(
     Topics are canonicalized through ``registry`` (identity when None) before grouping.
     ``authors`` is a ``{key: AuthorRecord}`` index and ``collections`` is a
     ``{collection_id: CollectionRecord}`` index; author/data pages are emitted only for records
-    whose projects appear among the active cards. Retracted cards are excluded from membership.
+    whose projects appear among the cards.
     """
     authors = authors or {}
     collections = collections or {}
-    active_cards = sorted(
-        (card for card in cards if card.tier != TIER_RETRACTED),
-        key=_card_sort_key,
-    )
+    active_cards = sorted(cards, key=_card_sort_key)
     card_by_id = {card.id: card for card in active_cards}
 
     # Canonical topic keys per card (registry None -> identity passthrough).
@@ -76,7 +66,7 @@ def plan_pages(
     topic_members: dict[str, list[str]] = {}
     project_topics: dict[str, set[str]] = {}
     for card in active_cards:
-        project = card.evidence.source_project
+        project = _card_project(card)
         project_members.setdefault(project, []).append(card.id)
         for topic_key in card_topics[card.id]:
             topic_members.setdefault(topic_key, []).append(card.id)
@@ -156,17 +146,30 @@ def _topic_plan(topic_key: str, member_ids: list[str], card_by_id: dict[str, Sta
         member_statement_ids=sorted_ids,
         sections=[
             _section("overview", "Overview", sorted_ids),
-            _section("key_claims", "Key Claims", _ids_of_kinds(sorted_ids, card_by_id, {"claim"})),
             _section(
-                "conflicts_and_caveats",
-                "Conflicts & Caveats",
-                _ids_for_conflicts(sorted_ids, card_by_id),
+                "what_the_corpus_shows",
+                "What the Corpus Shows",
+                sorted_ids,
             ),
             _section(
-                "open_directions",
-                "Open Directions",
-                _ids_of_kinds(sorted_ids, card_by_id, _OPPORTUNITY_KINDS),
+                "projects_and_evidence",
+                "Projects and Evidence",
+                sorted_ids,
             ),
+            _section(
+                "connections",
+                "Connections",
+                sorted_ids,
+            ),
+            _section(
+                "caveats_and_open_directions",
+                "Caveats and Open Directions",
+                [
+                    *_ids_for_conflicts(sorted_ids, card_by_id),
+                    *_ids_of_kinds(sorted_ids, card_by_id, _OPPORTUNITY_KINDS),
+                ],
+            ),
+            _section("sources", "Sources", sorted_ids),
         ],
     )
 
@@ -311,8 +314,8 @@ def _topic_member_ids(member_ids: list[str], card_by_id: dict[str, StatementCard
 
 def _canonical_topics(card: StatementCard, registry) -> list[str]:
     if registry is None:
-        return _unique_sorted(card.about.topics)
-    return _unique_sorted(registry.topic_key(topic) for topic in card.about.topics)
+        return _unique_sorted(card.topics)
+    return _unique_sorted(registry.topic_key(topic) for topic in card.topics)
 
 
 def _linked_statement_ids(card: StatementCard) -> set[str]:
@@ -339,7 +342,7 @@ def _ids_for_conflicts(
         (
             sid
             for sid in member_ids
-            if card_by_id[sid].kind in _CONFLICT_KINDS or card_by_id[sid].tier == "conflict"
+            if card_by_id[sid].kind in _CONFLICT_KINDS
         ),
         card_by_id,
     )
@@ -368,7 +371,11 @@ def _unique_sorted(values: Iterable[str]) -> list[str]:
 
 
 def _card_sort_key(card: StatementCard) -> tuple[str, str, str, str]:
-    return (card.kind, card.evidence.source_project, card.statement, card.id)
+    return (card.kind, _card_project(card), card.text, card.id)
+
+
+def _card_project(card: StatementCard) -> str:
+    return card.evidence[0].source_project
 
 
 def _author_slug(record) -> str:

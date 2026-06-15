@@ -18,30 +18,37 @@ entities:
   adp1:
     label: Acinetobacter baylyi ADP1
     kind: organism
+    definition: A naturally competent soil bacterium used as a model system for metabolism and genetics.
     aliases:
     - entity:adp1
+    url: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=62977
   berdl:
     label: BERDL
     kind: dataset
+    definition: The BER Data Lakehouse collection layer used to connect project data across the corpus.
     aliases:
     - entity:berdl
   fba-model:
     label: ADP1 FBA metabolic model
     kind: method
+    definition: A flux balance analysis model used to predict ADP1 metabolic growth behavior.
     aliases:
     - entity:fba_model
   aromatic-degradation:
     label: Aromatic degradation
-    kind: gene
+    kind: gene_or_pathway
+    definition: The gene/pathway context for degrading aromatic compounds such as quinate.
     aliases:
     - entity:aromatic_degradation
   quinate:
     label: Quinate
-    kind: gene
+    kind: compound
+    definition: A plant-derived aromatic compound tested as a carbon source in ADP1 fitness assays.
     aliases:
     - entity:quinate
   urea:
     label: Urea
-    kind: gene
+    kind: compound
+    definition: A nitrogen-containing compound tested as a condition in ADP1 phenotyping.
     aliases:
     - entity:urea

@@ -16,6 +16,8 @@ class Registry:
     """Resolve raw entity/topic slugs to canonical registry keys (case-insensitive)."""
 
     def __init__(self, raw: dict):
+        self.entities = dict(raw.get("entities") or {})
+        self.topics = dict(raw.get("topics") or {})
         self._entities = _alias_map(raw.get("entities"))
         self._topics = _alias_map(raw.get("topics"))
 

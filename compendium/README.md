@@ -21,8 +21,8 @@ projects/* ─[D] context-pack ─▶ context-packs/   (audit + source excerpts 
               ─[D] render-markdown + check ─▶ published wiki + integrity gate
 ```
 
-- **Deterministic (no model):** `context-pack`, `plan-pages`, `wiki-contexts`, `page-context`,
-  `render-markdown`, `check`, `validate-card`, `validate-page-plan`, `quality-synthesis`. The author and
+- **Deterministic (no model):** `context-pack`, `validate-kg`, `plan-pages`, `wiki-contexts`,
+  `page-context`, `render-markdown`, `check`, `validate-card`, `validate-page-plan`. The author and
   shared-data connections are deterministic too (no LLM): authors join on ORCID from README `## Authors`
   blocks; shared data joins on the canonical collection ids in `ui/config/collections.yaml`.
 - **LLM steps are skills** under `skills/`: `kg-extract` (per project), `kg-reconcile` (once, global,
@@ -32,11 +32,11 @@ projects/* ─[D] context-pack ─▶ context-packs/   (audit + source excerpts 
 
 ## Data model
 
-One statement-card schema (`schema/synthesis_wiki.yaml`) plus a global `registry.yaml`:
+One small YAML contract (`SCHEMA.md`) plus a global `registry.yaml`:
 
-- **Statement card** (`kg/<project>.kg.yaml`): `id`, `kind`, `statement`, `confidence`, `about.{entities,
-  topics}` (raw per-project slugs), `links.{supports,contradicts,refines,…}`, an evidence anchor, and an
-  extraction manifest.
+- **Statement card** (`kg/<project>.kg.yaml`): `id`, `kind`, `text`, `confidence`, raw per-project
+  `topics`/`entities`, simple `links.{supports,contradicts,refines}`, and evidence anchors with exact
+  source quotes.
 - **Registry** (`registry.yaml`): canonical `topics` and `entities`, each with `aliases`. The raw
   per-project topic slugs map onto ~12 canonical themes through topic aliases — this is the cross-project
   merge. The registry is **additive**: `plan` resolves slugs via `compendium.registry.Registry`; cards are
@@ -57,6 +57,7 @@ uv run --directory compendium --group test pytest        # deterministic core (n
 # End-to-end is driven by the kg-wiki skill in Claude Code / Codex. The deterministic steps it shells out to:
 cd compendium
 uv run compendium context-pack ../projects/<id> --out context-packs/<id>.json     # → kg-extract authors cards
+uv run compendium validate-kg fixtures/statement_cards/adp1_tracer.yaml
 uv run compendium plan-pages <kg> --source-root ../projects --out out/plans.json   # 4 page types
 uv run compendium wiki-contexts <kg> --source-root ../projects --out out/page-contexts
 #   → kg-write authors each wiki/<page>.md from its context, published via page-artifact
@@ -77,13 +78,14 @@ build the author/collection indexes from `--source-root` + `ui/config/collection
 | `src/compendium/people.py` | author index (ORCID) from README `## Authors` |
 | `src/compendium/data_index.py` | shared-collection index from `ui/config/collections.yaml` |
 | `src/compendium/registry.py` | additive canonical topic/entity resolution from `registry.yaml` |
-| `src/compendium/build/statement_graph.py` | typed statement-card graph (in-memory, for page planning) |
 | `src/compendium/pages/` | deterministic page plans (topic/data/author/home) + bounded page contexts + authored-page validation |
 | `src/compendium/render/markdown.py` | Markdown wiki publisher (validates authored pages) |
 | `src/compendium/check.py` | link + citation integrity check (the final gate) |
-| `src/compendium/quality/synthesis_quality.py` | statement-card synthesis quality metrics |
 | `skills/` | LLM orchestration: `kg-extract`, `kg-reconcile`, `kg-write`, `kg-wiki` |
 | `wiki/` | the human-facing Markdown wiki (entry point `wiki/index.md`); manifests under `wiki/.manifests/` |
+
+`tests/test_wiki_readability.py` is a smoke test, not a prose judge. It guards against obvious
+regressions: missing introductions, missing sources, missing wiki links, and leaked graph jargon.
 
 This README is the single source of truth for the pipeline. The ideology and methodology (why a topic-MOC
 instead of a formal KG, what a topic is, the two-pass reconciliation) live in

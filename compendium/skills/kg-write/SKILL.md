@@ -16,11 +16,10 @@ clean academic prose like the Atlas, **not** inline machine citations in every p
 - Required: a page id (e.g. `home`, `topic:metal-resistance`, `data:kescience_fitnessbrowser`,
   `author:0000-0001-5810-2497`) and the merged corpus KG file used by the orchestrator.
 - Required: the deterministic page context `out/page-contexts/**/<id>.context.json` (+ `.prompt.md`)
-  from `page-context`. It carries `page` (plan), `member_statements` (the only citable statements
-  with their `evidence` + `source_excerpt`), `link_map` (outgoing/backlinks with wiki paths),
-  `local_graph`, and `wiki_path`.
+  from `page-context`. It carries `page`, `statements`, `projects`, `topics`, `entities`,
+  `adjacent_pages`, `narrative`, and `allowed_citations`.
 
-Stop if the page context references statements absent from `member_statements` or the context cannot
+Stop if the page context references statements absent from `statements` or the context cannot
 be built.
 
 ## Outputs
@@ -38,15 +37,32 @@ be built.
    uv run compendium page-context <merged-kg> --page-id <page-id> --source-root ../projects --out out/page-contexts
    ```
 2. Read the `<id>.context.json`. Write the page markdown from **only** that context, using
-   `member_statements` text + `source_excerpt` for framing and `link_map` paths for navigation.
+   `statements` text + `source_excerpt` for framing, `narrative.section_plan` for page shape,
+   and `adjacent_pages` paths for navigation.
+
+   Reader contract:
+   - Write for a scientist-engineer who understands biology and data analysis but may not know this
+     exact project niche.
+   - The page must read as synthesized prose, not a list of extracted claims.
+   - The first paragraph must define the page subject in plain language and state why the page exists
+     in the wiki.
+   - Each body section must combine related statements into a reasoned paragraph. Do not make one
+     bullet per statement.
+   - When an entity in the page context has a `definition`, use that definition naturally the first
+     time the entity matters.
+   - Define specialist terms in prose when they first appear. Examples: FBA, gapfilling, quinate,
+     condition-dependent essentiality, TnSeq.
+   - Explain connections: when linking another page, say why that page is adjacent.
+   - Include caveats or uncertainty when the page context contains caveats, contradictions, low
+     confidence statements, or thin evidence.
+
    Topic pages follow the MOC template (clean human-readable prose, not bullet dumps):
    - `# <title>`
    - `## Overview`
-   - `## Projects in this topic`
-   - `## Adjacent topics`
-   - `## Shared data`
-   - `## Cited literature`
-   - `## Open directions`
+   - `## What the Corpus Shows`
+   - `## Projects and Evidence`
+   - `## Connections`
+   - `## Caveats and Open Directions`
 
    Data / author / home pages use their natural sections (e.g. home: topic map, author map, data
    map; data: projects using this collection; author: projects, topics).
@@ -55,8 +71,8 @@ be built.
    `- [stmt:adp1-deletion-continuum-claim; adp1_deletion_phenotypes]`. The validator (`page-artifact`
    / `check`) matches `[stmt:id; project]` anywhere in the page, so a consolidated Sources section
    satisfies it. A page with member statements MUST cite at least one of them, and may cite ONLY
-   ids present in `member_statements`.
-4. Insert relative Markdown links to related pages using the `link_map` paths (so `check`'s
+   ids present in `allowed_citations`.
+4. Insert relative Markdown links to related pages using the `adjacent_pages` paths (so `check`'s
    dangling-link guard passes).
 5. Publish and validate (this is where citations are enforced):
    ```bash
@@ -67,16 +83,16 @@ be built.
    ```
    `page-artifact` rejects the page if it cites a non-member id or (when members exist) cites none.
 6. On rejection, retry the page at most twice using the validator error and the exact
-   `member_statements` id list; never change membership to force prose through. If the page/member
+   `statements` id list; never change membership to force prose through. If the page/member
    hash matches an existing manifest, reuse the cached page instead of regenerating.
 7. Summarize the published page path, cited statement ids, and any uncertainty.
 
 ## Prohibitions
 
-- Cite only member statements; never cite a statement id absent from this page's context.
+- Cite only allowed statements; never cite a statement id absent from this page's context.
 - A `[stmt:...; project]` ref must name a real project; do not cite a project without a statement
   id.
 - One page per run.
 - Make no new scientific claims and add no statements, entities, topics, links, or page members.
 - Use no source documents, literature, or web facts outside the deterministic page context.
-- Do not edit `kg/*.kg.yaml`, `registry.yaml`, page plans, Python code, tests, schema, or docs.
+- Do not edit `kg/*.kg.yaml`, `registry.yaml`, page plans, Python code, tests, or docs.

@@ -1,7 +1,7 @@
 [project]
 name = "compendium"
 version = "0.1.0"
-description = "Compendium — deterministic KG-centered scientific aggregation wiki for the BERIL Research Observatory"
+description = "Compendium — lightweight topic-MOC synthesis wiki for the BERIL Research Observatory"
 requires-python = ">=3.11"
 dependencies = [
     "pyyaml>=6",

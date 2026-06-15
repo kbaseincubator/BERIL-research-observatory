@@ -47,7 +47,7 @@ already authored, so `kg-write` must run before it. This skill absorbs the old b
    is requested.
 
 2. **Reconcile once (global).** After all in-scope `kg/*.kg.yaml` exist, dispatch `kg-reconcile`
-   exactly once. It reads every raw `about.entities`/`about.topics` slug and writes/extends
+   exactly once. It reads every raw `entities`/`topics` slug and writes/extends
    `compendium/registry.yaml` (append-only). No human gate.
 
 3. **Build the merged corpus KG.** `plan-pages`/`wiki-contexts`/`render-markdown` take a single KG
@@ -108,4 +108,4 @@ projects' KGs, `registry.yaml`, manifests, tests, or unrelated wiki pages.
 - Do not author prose from Python; prose comes only from `kg-write` subagents.
 - Do not skip the final `compendium check` — it is the acceptance gate.
 - Do not run `kg-reconcile` more than once per orchestration pass.
-- Do not edit Python code, tests, schema, or docs from this skill.
+- Do not edit Python code, tests, or docs from this skill.

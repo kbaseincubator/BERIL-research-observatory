@@ -4,9 +4,7 @@ from __future__ import annotations
 
 from compendium.data_index import CollectionRecord
 from compendium.models import (
-    AboutRefs,
     EvidenceAnchor,
-    ExtractionManifest,
     StatementCard,
     StatementLinks,
 )
@@ -15,48 +13,33 @@ from compendium.people import AuthorRecord
 from compendium.registry import Registry
 
 
-def _manifest(timestamp: str = "2026-06-02T00:00:00Z") -> ExtractionManifest:
-    return ExtractionManifest(
-        agent_type="llm_extractor",
-        skill="kg-extract",
-        model="test-model",
-        prompt_hash="prompt:abc",
-        context_pack_hash="context:def",
-        repo_commit="abc123",
-        timestamp=timestamp,
-    )
-
-
 def _card(
     *,
     id_: str,
     kind: str,
-    statement: str,
+    text: str,
     project: str,
     topics: list[str],
     entities: list[str],
     confidence: str = "medium",
-    tier: str = "grounded",
     links: StatementLinks | None = None,
-    timestamp: str = "2026-06-02T00:00:00Z",
 ) -> StatementCard:
     return StatementCard(
         id=id_,
         kind=kind,
-        statement=statement,
-        scope="cross_project" if kind == "claim" else "project_local",
-        tier=tier,
+        text=text,
         confidence=confidence,
-        about=AboutRefs(entities=entities, topics=topics),
+        topics=topics,
+        entities=entities,
         links=links or StatementLinks(),
-        qualifiers={},
-        evidence=EvidenceAnchor(
-            source_project=project,
-            source_doc="REPORT.md",
-            source_section="Key Findings",
-            exact=statement,
-        ),
-        extraction=_manifest(timestamp),
+        evidence=[
+            EvidenceAnchor(
+                source_project=project,
+                source_doc="REPORT.md",
+                source_section="Key Findings",
+                quote=text,
+            )
+        ],
     )
 
 
@@ -68,7 +51,7 @@ def _cards() -> list[StatementCard]:
         _card(
             id_="stmt:m1",
             kind="finding",
-            statement="Metal fitness atlas maps cross-metal resistance genes.",
+            text="Metal fitness atlas maps cross-metal resistance genes.",
             project="metal_fitness_atlas",
             topics=["topic:metal-resistance"],
             entities=["entity:adp1"],
@@ -76,7 +59,7 @@ def _cards() -> list[StatementCard]:
         _card(
             id_="stmt:m2",
             kind="claim",
-            statement="Metal resistance is largely shared across the tested strains.",
+            text="Metal resistance is largely shared across the tested strains.",
             project="metal_fitness_atlas",
             topics=["topic:Metal-Resistance"],  # case variant -> merges with m1's topic
             entities=["entity:a_baylyi_adp1"],  # entity alias -> adp1
@@ -85,7 +68,7 @@ def _cards() -> list[StatementCard]:
         _card(
             id_="stmt:m3",
             kind="caveat",
-            statement="Cross-metal resistance conclusions depend on the metal panel tested.",
+            text="Cross-metal resistance conclusions depend on the metal panel tested.",
             project="metal_cross_resistance",
             topics=["topic:Metal-Resistance"],
             entities=["entity:adp1"],
@@ -93,7 +76,7 @@ def _cards() -> list[StatementCard]:
         _card(
             id_="stmt:m4",
             kind="opportunity",
-            statement="Extend the metal panel to rare-earth elements.",
+            text="Extend the metal panel to rare-earth elements.",
             project="metal_cross_resistance",
             topics=["topic:metal-resistance"],
             entities=["entity:adp1"],
@@ -101,7 +84,7 @@ def _cards() -> list[StatementCard]:
         _card(
             id_="stmt:p1",
             kind="finding",
-            statement="Pangenome openness varies with accessory-gene turnover.",
+            text="Pangenome openness varies with accessory-gene turnover.",
             project="pangenome_openness",
             topics=["topic:pangenome"],
             entities=["entity:adp1"],
@@ -204,14 +187,17 @@ def test_topic_canonicalization_merges_raw_slugs() -> None:
     assert set(metal.member_statement_ids) == {"stmt:m1", "stmt:m2", "stmt:m3", "stmt:m4"}
     assert [section.heading for section in metal.sections] == [
         "Overview",
-        "Key Claims",
-        "Conflicts & Caveats",
-        "Open Directions",
+        "What the Corpus Shows",
+        "Projects and Evidence",
+        "Connections",
+        "Caveats and Open Directions",
+        "Sources",
     ]
     sections = {s.id: s for s in metal.sections}
-    assert sections["key_claims"].member_statement_ids == ["stmt:m2"]
-    assert sections["conflicts_and_caveats"].member_statement_ids == ["stmt:m3"]
-    assert sections["open_directions"].member_statement_ids == ["stmt:m4"]
+    assert set(sections["caveats_and_open_directions"].member_statement_ids) == {
+        "stmt:m3",
+        "stmt:m4",
+    }
 
 
 def test_home_page_has_moc_sections_and_links_every_page() -> None:
@@ -307,12 +293,13 @@ def test_plan_then_context_then_authored_page_round_trips(tmp_path) -> None:
     context = build_page_context(topic, _cards(), page_plans=page_plans)
     assert context["page"]["id"] == "topic:metal-resistance"
     assert context["page"]["wiki_path"] == "topics/metal-resistance.md"
-    member_ids = {s["id"] for s in context["member_statements"]}
+    member_ids = {s["id"] for s in context["statements"]}
     assert "stmt:m2" in member_ids
     # Cross-links to data + author pages surface in the link map.
-    outgoing_ids = {ref["id"] for ref in context["link_map"]["outgoing"]}
+    outgoing_ids = {ref["id"] for ref in context["adjacent_pages"]}
     assert "data:kbase_ke_pangenome" in outgoing_ids
     assert "author:0000-0001-5810-2497" in outgoing_ids
+    assert context["narrative"]["lead"]
 
     # A hand-authored page citing one member statement validates clean.
     markdown = (

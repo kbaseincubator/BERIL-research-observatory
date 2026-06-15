@@ -38,6 +38,9 @@ navigation surface.
   are allowed to; the build fails if they don't.
 - **Simplicity is the feature.** One person should be able to hold the whole pipeline in their head. When
   a piece of machinery isn't visible in the output and isn't load-bearing, it gets cut.
+- **The wiki is the product.** The graph is a context graph for page writing, not a public ontology. Page
+  contexts must help the writer produce introductions, synthesized sections, useful cross-links, caveats,
+  open directions, and auditable sources.
 
 ## 2. The conceptual model
 
@@ -48,14 +51,13 @@ Three artifacts carry everything:
 One YAML file per project (`compendium/kg/<project>.kg.yaml`) holds **statement cards**: small, sourced
 assertions extracted from the project's report. A card carries:
 
-- `statement` — one scientific sentence;
+- `text` — one scientific sentence;
 - `kind` (e.g. `finding`, `claim`, `opportunity`) and `confidence`;
-- `about.entities` / `about.topics` — **raw, per-project** slugs the extractor chose (e.g.
+- `entities` / `topics` — **raw, per-project** slugs the extractor chose (e.g.
   `topic:adp1-carbon-fitness`, `entity:adp1`);
-- `links` — typed cross-statement edges (`supports`, `contradicts`, `refines`, …) that let conflicts and
+- `links` — typed cross-statement edges (`supports`, `contradicts`, `refines`) that let conflicts and
   support chains surface automatically;
 - `evidence` — an anchor (source document, section, and the exact quoted span) so the claim is verifiable;
-- an extraction manifest (skill, model, prompt hash, context-pack hash) for reproducibility.
 
 Cards are the unit of extraction and provenance. They are **immutable once written** — the global layer
 never rewrites them.
@@ -74,8 +76,10 @@ topics:
 entities:
   adp1:
     label: Acinetobacter baylyi ADP1
-    kind: organism            # organism | dataset | gene | method
+    kind: organism
+    definition: A naturally competent soil bacterium used as a model system for metabolism and genetics.
     aliases: [entity:adp1, a_baylyi_adp1, acinetobacter_baylyi]
+    url: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=62977
 ```
 
 Resolution is **additive and case-insensitive**: `Registry.topic_key` / `entity_key` map any alias to its
@@ -135,9 +139,12 @@ invokes. Each step:
 4. **plan** (deterministic). Join cards + registry + the author/data indexes into page plans and page
    contexts. Topic slugs are canonicalized *before* grouping, so cards from different projects land on one
    topic page. Same inputs always produce identical plans.
-5. **write** (LLM — `kg-write`). Author one wiki page from its deterministic context. Clean, human-readable
-   prose (like a good Atlas page), not templates or link lists. Provenance goes in one trailing `Sources`
-   section as `[stmt:id; project]` footnote refs — not inline in the prose.
+5. **write** (LLM — `kg-write`). Author one wiki page from its deterministic context. Clean,
+   human-readable prose (like a good Atlas page), not templates, graph dumps, or statement lists. The
+   context includes a small narrative scaffold (`lead`, `section_plan`, adjacent pages, and allowed
+   citations) so the writer can synthesize a page with an introduction, reasoned sections, connections,
+   caveats, open directions, and auditable sources. Provenance goes in one trailing `Sources` section as
+   `[stmt:id; project]` footnote refs — not inline in the prose.
 6. **check** (deterministic). The final gate: every relative wiki link must resolve, and every citation
    must reference a statement the page is allowed to cite. Non-zero exit on any problem.
 
@@ -207,6 +214,8 @@ out rather than re-summarizing.
 ## 8. What this deliberately is *not*
 
 - Not a formal/typed knowledge graph, and not Biolink/ontology-grounded. The link layer is lightweight.
+- Not schema-first: v1 uses a small documented YAML contract (`compendium/SCHEMA.md`) and Python
+  validation instead of maintaining parallel LinkML/generated-model machinery.
 - Not human-gated: topic creation and page authoring are autonomous (guarded by deterministic checks).
 - Not a re-statement of project reports: no per-project synthesis pages.
 - Not (yet) a literature synthesizer. Cited PMIDs/DOIs can be rolled up deterministically per topic;

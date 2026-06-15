@@ -1,11 +1,4 @@
-"""Compendium pipeline wiring for the statement-card synthesis wiki.
-
-context-pack / audit (deterministic ingestion inputs) -> statement-graph -> plan-pages
--> wiki-contexts -> page-artifact (LLM-authored prose, validated) -> render-markdown
--> quality-synthesis.
-
-Deterministic; no LLM on this path. ``dispatch`` is called by ``compendium.cli``.
-"""
+"""Compendium pipeline wiring for the lightweight topic-MOC wiki."""
 
 from __future__ import annotations
 
@@ -15,12 +8,10 @@ from pathlib import Path
 
 from compendium import audit as audit_mod
 from compendium import data_index, people
-from compendium.build.statement_graph import build_statement_graph, export_statement_graph_artifacts
 from compendium.check import check_wiki
 from compendium.context_pack import build_context_pack, context_pack_bytes
 from compendium.models import StatementCard
 from compendium.pages import plan_pages, write_page_artifact, write_page_context
-from compendium.quality.synthesis_quality import assess_synthesis_quality
 from compendium.registry import Registry
 from compendium.render.markdown import render_markdown_wiki
 from compendium.validate import (
@@ -112,30 +103,13 @@ def _clean_page_context_artifacts(out_dir: Path) -> None:
             pass
 
 
-def _synthesis_quality_failed(metrics: dict) -> bool:
-    evidence = metrics["evidence_resolution"]
-    page = metrics["page_integrity"]
-    links = metrics["link_integrity"]
-    opportunities = metrics["opportunity_targets"]
-    statement_links = metrics["statement_link_integrity"]
-    return any(
-        (
-            metrics["graph_integrity"]["dangling_edges"],
-            evidence["checked"] and evidence["unresolved"],
-            links["broken_outgoing_link_count"],
-            links["broken_backlink_count"],
-            links["backlink_mismatch_count"],
-            page["unknown_page_members"],
-            page["unknown_section_members"],
-            opportunities["missing_target_output_statement_ids"],
-            statement_links["unresolved_statement_link_count"],
-        )
-    )
-
-
 def dispatch(args) -> int:
     if args.cmd == "validate-card":
         result = validate_statement_card_file(args.path)
+        print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
+        return 0
+    if args.cmd == "validate-kg":
+        result = validate_project_kg_file(args.path)
         print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
         return 0
     if args.cmd == "validate-page-plan":
@@ -151,15 +125,6 @@ def dispatch(args) -> int:
         print(f"[compendium] context pack: {project_dir.name} -> {out_path}")
         print(f"[compendium] hash: {pack['context_pack_hash']}")
         return 0
-    if args.cmd == "statement-graph":
-        cards = _load_statement_cards(args.path)
-        graph = build_statement_graph(cards)
-        _write_json_or_stdout(graph, args.out)
-        if args.artifacts_dir:
-            artifacts_dir = Path(args.artifacts_dir).resolve()
-            export_statement_graph_artifacts(graph, artifacts_dir)
-            print(f"[compendium] graph artifacts -> {artifacts_dir}")
-        return 0
     if args.cmd == "plan-pages":
         cards = _load_statement_cards(args.path)
         plan_inputs = _build_plan_inputs(getattr(args, "source_root", None))
@@ -169,7 +134,6 @@ def dispatch(args) -> int:
         return 0
     if args.cmd == "page-context":
         cards = _load_statement_cards(args.path)
-        graph = build_statement_graph(cards)
         page_plans = plan_pages(cards, **_build_plan_inputs(args.source_root))
         plans = {plan.id: plan for plan in page_plans}
         plan = plans.get(args.page_id)
@@ -180,7 +144,6 @@ def dispatch(args) -> int:
             cards,
             Path(args.out).resolve(),
             page_plans=page_plans,
-            statement_graph=graph,
             source_root=args.source_root,
         )
         print(f"[compendium] page context: {context_path}")
@@ -188,7 +151,6 @@ def dispatch(args) -> int:
         return 0
     if args.cmd == "wiki-contexts":
         cards = _load_statement_cards(args.path)
-        graph = build_statement_graph(cards)
         page_plans = plan_pages(cards, **_build_plan_inputs(args.source_root))
         out_dir = Path(args.out).resolve()
         _clean_page_context_artifacts(out_dir)
@@ -200,7 +162,6 @@ def dispatch(args) -> int:
                     cards,
                     out_dir,
                     page_plans=page_plans,
-                    statement_graph=graph,
                     source_root=args.source_root,
                 )
             )
@@ -233,22 +194,6 @@ def dispatch(args) -> int:
         )
         print(f"[compendium] rendered {len(rendered)} markdown wiki pages -> {out_dir}")
         return 0
-    if args.cmd == "quality-synthesis":
-        cards = _load_statement_cards(args.path)
-        graph = build_statement_graph(cards)
-        plans = plan_pages(cards, **_build_plan_inputs(args.source_root))
-        metrics = assess_synthesis_quality(
-            cards,
-            graph,
-            plans,
-            source_root=args.source_root,
-        )
-        _write_json_or_stdout(metrics, args.out)
-        if _synthesis_quality_failed(metrics):
-            print("[compendium] synthesis quality checks failed", file=sys.stderr)
-            return 1
-        return 0
-
     if args.cmd == "check":
         problems = check_wiki(Path(args.wiki).resolve())
         for problem in problems:

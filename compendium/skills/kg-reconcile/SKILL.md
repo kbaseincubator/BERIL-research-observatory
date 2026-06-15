@@ -1,6 +1,6 @@
 ---
 name: kg-reconcile
-description: Global autonomous second pass that builds compendium/registry.yaml. Reads every raw about.entities/about.topics slug across all kg/*.kg.yaml and emits canonical topics + entities with aliases. No human approval gate; acceptance is the deterministic plan + check pass.
+description: Global autonomous second pass that builds compendium/registry.yaml. Reads every raw entities/topics slug across all kg/*.kg.yaml and emits canonical topics + broad recurring entities with aliases and plain definitions. No human approval gate; acceptance is the deterministic plan + check pass.
 ---
 
 # kg-reconcile
@@ -13,7 +13,7 @@ the registry maps raw per-project slugs onto canonical keys through `aliases`.
 
 ## Inputs
 
-- All `compendium/kg/*.kg.yaml` — read every card's `about.entities` and `about.topics`, dedupe to
+- All `compendium/kg/*.kg.yaml` — read every card's `entities` and `topics`, dedupe to
   one flat list of raw slugs (a few hundred strings).
 - The seed topic themes below — an **optional prior** the LLM may revise, merge, split, or rename.
   Not a fixed vocabulary. (Canonical source: `../docs/kg-wiki/2026-06-15-kg-wiki-redesign.md` §5,
@@ -42,8 +42,10 @@ A project belongs to 1–3 topics; the overlap is the cross-project connection s
   entities:
     adp1:
       label: Acinetobacter baylyi ADP1
-      kind: organism            # organism | dataset | gene | method
+      kind: organism
+      definition: A naturally competent soil bacterium used as a model system for metabolism and genetics.
       aliases: [entity:adp1, a_baylyi_adp1, acinetobacter_baylyi, adp1]
+      url: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=62977
   ```
 
 `projects:` lists are filled deterministically by `plan`; you do not need to populate them.
@@ -55,15 +57,17 @@ A project belongs to 1–3 topics; the overlap is the cross-project connection s
    cd compendium
    for f in kg/*.kg.yaml; do uv run compendium plan-pages "$f" --out /tmp/_r.plan.json >/dev/null; done
    ```
-   (any traversal of the YAML works; the goal is the full deduped `about.entities` +
-   `about.topics` set.)
+   (any traversal of the YAML works; the goal is the full deduped `entities` + `topics` set.)
 2. For **topics**: cluster the raw topic slugs into canonical themes guided by D5 (a topic spans
    ≥2, ideally ≥3 projects; aim for ~12 topics across the corpus). Use the §5 seed list as a prior.
    Each raw topic slug must map into exactly one canonical theme via that theme's `aliases`. Give
    each canonical topic a one-line `definition`.
-3. For **entities**: group obvious synonyms of the same organism/dataset/gene/method under one
-   canonical key with `kind` and an `aliases` list. Leave a slug unmapped (no entry) when it has no
-   confident canonical home — `Registry` passes unknown slugs through unchanged, which is safe.
+3. For **entities**: keep only broad, recurring, page-useful nodes. Prefer concepts that help the
+   writer define the page subject or connect pages. Use this small kind set: `organism`,
+   `compound`, `gene_or_pathway`, `method`, `dataset`, `place`, `concept`. Add a one-sentence
+   plain-language `definition` for every entity. Add `url` only when a stable public page is obvious.
+   Leave a slug unmapped (no entry) when it has no confident canonical home — `Registry` passes
+   unknown slugs through unchanged, which is safe.
 4. When extending an existing `registry.yaml`: keep every existing canonical key and its current
    aliases; only add new keys or append new aliases. Never rename or remove a canonical key.
 5. Write `compendium/registry.yaml`.
@@ -85,5 +89,6 @@ A project belongs to 1–3 topics; the overlap is the cross-project connection s
 - Never delete or rename an existing canonical key (append/extend only, so keys stay stable across
   runs).
 - Never invent an entity or topic that is absent from the input slug list.
+- Do not create exhaustive ontology-like entity lists. The registry should stay small enough to read.
 - Do not author wiki pages, page plans, or statement cards. Output is `registry.yaml` only.
-- Do not edit Python code, tests, schema, or docs.
+- Do not edit Python code, tests, or docs.

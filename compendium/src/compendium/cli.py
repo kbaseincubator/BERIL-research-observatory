@@ -1,10 +1,4 @@
-"""Compendium CLI — deterministic statement-card synthesis-wiki commands.
-
-The statement-card pipeline is the single workflow: ``audit`` and ``context-pack``
-for ingestion inputs, then ``statement-graph`` -> ``plan-pages`` -> ``wiki-contexts``
--> ``page-artifact`` -> ``render-markdown`` -> ``quality-synthesis``.
-``dispatch`` is implemented in :mod:`compendium.pipeline`.
-"""
+"""Compendium CLI for the lightweight topic-MOC wiki."""
 
 from __future__ import annotations
 
@@ -13,7 +7,7 @@ import sys
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(prog="compendium", description="Deterministic KG-centered scientific wiki")
+    parser = argparse.ArgumentParser(prog="compendium", description="Lightweight topic-MOC synthesis wiki")
     sub = parser.add_subparsers(dest="cmd")
     audit = sub.add_parser("audit")
     audit.add_argument("--projects", nargs="*", default=None)
@@ -22,10 +16,6 @@ def main(argv: list[str] | None = None) -> int:
     context_pack = sub.add_parser("context-pack")
     context_pack.add_argument("project")
     context_pack.add_argument("--out", required=True)
-    statement_graph = sub.add_parser("statement-graph")
-    statement_graph.add_argument("path")
-    statement_graph.add_argument("--out")
-    statement_graph.add_argument("--artifacts-dir")
     plan_pages = sub.add_parser("plan-pages")
     plan_pages.add_argument("path")
     plan_pages.add_argument("--source-root", default="../projects")
@@ -51,14 +41,12 @@ def main(argv: list[str] | None = None) -> int:
     render_markdown.add_argument("path")
     render_markdown.add_argument("--source-root", default="../projects")
     render_markdown.add_argument("--out", required=True)
-    quality_synthesis = sub.add_parser("quality-synthesis")
-    quality_synthesis.add_argument("path")
-    quality_synthesis.add_argument("--source-root", default="../projects")
-    quality_synthesis.add_argument("--out")
     check = sub.add_parser("check")
     check.add_argument("--wiki", required=True)
     validate_card = sub.add_parser("validate-card")
     validate_card.add_argument("path")
+    validate_kg = sub.add_parser("validate-kg")
+    validate_kg.add_argument("path")
     validate_page_plan = sub.add_parser("validate-page-plan")
     validate_page_plan.add_argument("path")
     args = parser.parse_args(argv)

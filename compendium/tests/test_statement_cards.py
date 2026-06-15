@@ -1,4 +1,4 @@
-"""Tests for synthesis-wiki statement-card contracts."""
+"""Tests for the simple statement-card contracts."""
 
 from __future__ import annotations
 
@@ -8,27 +8,12 @@ import pytest
 import yaml
 
 from compendium.models import (
-    AboutRefs,
     EvidenceAnchor,
-    ExtractionManifest,
     PagePlan,
     PageSectionPlan,
     StatementCard,
-    StatementEdge,
     StatementLinks,
 )
-
-
-def _manifest() -> ExtractionManifest:
-    return ExtractionManifest(
-        agent_type="llm_extractor",
-        skill="kg-ingest-project",
-        model="test-model",
-        prompt_hash="prompt:abc",
-        context_pack_hash="context:def",
-        repo_commit="abc123",
-        timestamp="2026-06-02T00:00:00Z",
-    )
 
 
 def _evidence() -> EvidenceAnchor:
@@ -36,9 +21,7 @@ def _evidence() -> EvidenceAnchor:
         source_project="adp1_deletion_phenotypes",
         source_doc="REPORT.md",
         source_section="Key Findings",
-        exact="Carbon sources define a three-tier essentiality landscape",
-        prefix="The deletion screen showed that ",
-        suffix=" across tested conditions.",
+        quote="Carbon sources define a three-tier essentiality landscape",
     )
 
 
@@ -46,25 +29,12 @@ def _card() -> StatementCard:
     return StatementCard(
         id="stmt:abc123",
         kind="finding",
-        statement="Carbon sources define a three-tier essentiality landscape in ADP1.",
-        scope="project_local",
-        tier="asserted",
+        text="Carbon sources define a three-tier essentiality landscape in ADP1.",
         confidence="medium",
-        about=AboutRefs(
-            entities=["entity:adp1"],
-            topics=["topic:carbon-source-essentiality"],
-        ),
-        links=StatementLinks(
-            supports=["stmt:def456"],
-            motivates=["stmt:ghi789"],
-        ),
-        qualifiers={
-            "organism": "entity:adp1",
-            "condition": "quinate",
-            "method": "RB-TnSeq",
-        },
-        evidence=_evidence(),
-        extraction=_manifest(),
+        topics=["topic:carbon-source-essentiality"],
+        entities=["entity:adp1"],
+        links=StatementLinks(supports=["stmt:def456"]),
+        evidence=[_evidence()],
     )
 
 
@@ -78,48 +48,64 @@ def test_statement_card_round_trips_through_json_and_yaml() -> None:
     assert StatementCard.from_dict(yaml_payload).to_dict() == card.to_dict()
 
 
-def test_statement_card_requires_exact_evidence_text() -> None:
-    with pytest.raises(ValueError, match="exact is required"):
+def test_statement_card_requires_evidence_quote() -> None:
+    with pytest.raises(ValueError, match="quote is required"):
         EvidenceAnchor(
             source_project="adp1_deletion_phenotypes",
             source_doc="REPORT.md",
-            exact="",
+            quote="",
         )
 
     with pytest.raises(ValueError, match="evidence is required"):
         StatementCard(
             id="stmt:abc123",
             kind="finding",
-            statement="ADP1 grows on quinate.",
-            scope="project_local",
-            tier="asserted",
+            text="ADP1 grows on quinate.",
             confidence="medium",
-            about=AboutRefs(),
+            topics=[],
+            entities=[],
             links=StatementLinks(),
-            qualifiers={},
-            evidence=None,  # type: ignore[arg-type]
-            extraction=_manifest(),
+            evidence=[],
         )
 
 
-def test_statement_edge_validates_class_vocabulary() -> None:
-    edge = StatementEdge(
-        s="stmt:abc123",
-        p="supports",
-        o="stmt:def456",
-        edge_class="scientific_edge",
-        statement_ids=["stmt:abc123"],
-    )
+def test_statement_card_rejects_legacy_kind() -> None:
+    payload = _card().to_dict()
+    payload["kind"] = "derived_product"
 
-    assert StatementEdge.from_dict(edge.to_dict()).to_dict() == edge.to_dict()
+    with pytest.raises(ValueError, match="kind must be one of"):
+        StatementCard.from_dict(payload)
 
-    with pytest.raises(ValueError, match="p must be one of"):
-        StatementEdge(
-            s="stmt:abc123",
-            p="supports",
-            o="stmt:def456",
-            edge_class="provenance_edge",
-        )
+
+def test_statement_links_reject_unknown_link_fields() -> None:
+    payload = _card().to_dict()
+    payload["links"]["requires_human_review"] = ["stmt:future"]
+
+    with pytest.raises(ValueError, match="unsupported statement link"):
+        StatementCard.from_dict(payload)
+
+
+def test_statement_card_reads_legacy_field_names_for_migration() -> None:
+    payload = {
+        "id": "stmt:legacy",
+        "kind": "finding",
+        "statement": "Legacy statement text.",
+        "confidence": "high",
+        "about": {"topics": ["topic:x"], "entities": ["entity:y"]},
+        "links": {"supports": [], "contradicts": [], "refines": []},
+        "evidence": {
+            "source_project": "proj",
+            "source_doc": "REPORT.md",
+            "exact": "Legacy evidence text.",
+        },
+    }
+
+    card = StatementCard.from_dict(payload)
+
+    assert card.text == "Legacy statement text."
+    assert card.topics == ["topic:x"]
+    assert card.entities == ["entity:y"]
+    assert card.evidence[0].quote == "Legacy evidence text."
 
 
 def test_page_plan_round_trips() -> None:
@@ -136,7 +122,7 @@ def test_page_plan_round_trips() -> None:
                 member_hash="hash:section",
             )
         ],
-        outgoing_links=["claim:carbon-source-essentiality"],
+        outgoing_links=["topic:carbon-source-essentiality"],
         backlinks=["home"],
         member_hash="hash:page",
     )

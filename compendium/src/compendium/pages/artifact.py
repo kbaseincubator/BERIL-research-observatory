@@ -41,7 +41,7 @@ def build_page_context(
     cards: list[StatementCard],
     *,
     page_plans: list[PagePlan],
-    statement_graph: dict[str, list[dict[str, Any]]] | None = None,
+    registry=None,
     source_root: str | Path | None = None,
 ) -> dict[str, Any]:
     """Build the deterministic bounded context an LLM should use for one page."""
@@ -52,43 +52,27 @@ def build_page_context(
         for statement_id in plan.member_statement_ids
         if statement_id in card_by_id
     ]
+    statements = [_statement_context(card, source_root) for card in member_cards]
     return {
         "page": {
             **plan.to_dict(),
             "wiki_path": wiki_page_path(plan).as_posix(),
             "manifest_path": page_manifest_path(plan).as_posix(),
         },
-        "link_map": _link_map(plan, page_paths),
-        "sections": [
-            {
-                **section.to_dict(),
-                "statements": [
-                    _statement_context(card_by_id[statement_id], source_root)
-                    for statement_id in section.member_statement_ids
-                    if statement_id in card_by_id
-                ],
-            }
-            for section in plan.sections
-        ],
-        "member_statements": [
-            _statement_context(card, source_root) for card in member_cards
-        ],
-        "local_graph": _local_graph_context(plan, statement_graph),
-        "all_page_paths": page_paths,
+        "statements": statements,
+        "projects": _projects(statements),
+        "topics": _topics(member_cards, registry),
+        "entities": _entities(member_cards, registry),
+        "authors": [],
+        "data_collections": [],
+        "adjacent_pages": _page_refs(plan.outgoing_links, page_paths),
+        "allowed_citations": _allowed_citations(member_cards),
+        "narrative": _narrative(plan, registry),
         "instructions": {
-            "prose": (
-                "Write the full page body as human-readable academic prose. Use the "
-                "statement cards, local graph, link map, and project evidence excerpts as "
-                "context; do not use template prose or list-only summaries."
-            ),
-            "citations": (
-                "Every factual paragraph must cite statement ids and source projects in "
-                "the form [stmt:id; source_project]. Only cite member statements."
-            ),
-            "links": (
-                "Use Markdown links from link_map for related pages. Keep structured "
-                "evidence/source material after the prose, not as the page lead."
-            ),
+            "audience": "scientist-engineer new to this specific niche",
+            "style": "human-readable Obsidian-style synthesis page",
+            "body_rule": "synthesize across statements; do not emit statement-by-statement summaries",
+            "citations": "Put allowed statement citations in one trailing Sources section.",
         },
     }
 
@@ -107,7 +91,6 @@ def write_page_context(
         plan,
         cards,
         page_plans=page_plans,
-        statement_graph=statement_graph,
         source_root=source_root,
     )
     context_path = Path(out_dir) / page_artifact_path(plan).with_suffix(".context.json")
@@ -160,18 +143,16 @@ def _statement_context(
     card: StatementCard,
     source_root: str | Path | None,
 ) -> dict[str, Any]:
-    evidence = card.evidence
+    evidence = card.evidence[0]
     return {
         "id": card.id,
         "kind": card.kind,
-        "scope": card.scope,
-        "tier": card.tier,
         "confidence": card.confidence,
-        "statement": card.statement,
-        "about": card.about.to_dict(),
+        "text": card.text,
+        "topics": list(card.topics),
+        "entities": list(card.entities),
         "links": card.links.to_dict(),
-        "qualifiers": dict(sorted(card.qualifiers.items())),
-        "evidence": evidence.to_dict(),
+        "evidence": [anchor.to_dict() for anchor in card.evidence],
         "source_excerpt": _source_excerpt(evidence.to_dict(), source_root),
     }
 
@@ -188,20 +169,13 @@ def _source_excerpt(
     if not source_path.is_file():
         return ""
     text = source_path.read_text(encoding="utf-8", errors="replace")
-    exact = evidence["exact"]
-    index = text.find(exact)
+    quote = evidence["quote"]
+    index = text.find(quote)
     if index < 0:
-        return exact
+        return quote
     start = max(0, index - radius)
-    end = min(len(text), index + len(exact) + radius)
+    end = min(len(text), index + len(quote) + radius)
     return text[start:end].strip()
-
-
-def _link_map(plan: PagePlan, page_paths: dict[str, str]) -> dict[str, list[dict[str, str]]]:
-    return {
-        "outgoing": _page_refs(plan.outgoing_links, page_paths),
-        "backlinks": _page_refs(plan.backlinks, page_paths),
-    }
 
 
 def _page_refs(page_ids: Iterable[str], page_paths: dict[str, str]) -> list[dict[str, str]]:
@@ -210,34 +184,6 @@ def _page_refs(page_ids: Iterable[str], page_paths: dict[str, str]) -> list[dict
         for page_id in sorted(set(page_ids))
         if page_id in page_paths
     ]
-
-
-def _local_graph_context(
-    plan: PagePlan,
-    statement_graph: dict[str, list[dict[str, Any]]] | None,
-) -> dict[str, Any]:
-    if statement_graph is None:
-        return {"nodes": [], "edges": []}
-    local_ids = {plan.id, *plan.member_statement_ids}
-    edges = [
-        edge
-        for edge in sorted(statement_graph.get("edges", []), key=_edge_sort_key)
-        if {
-            str(edge.get("s", "")),
-            str(edge.get("o", "")),
-            *(str(statement_id) for statement_id in edge.get("statement_ids", [])),
-        }
-        & local_ids
-    ]
-    node_ids = {
-        str(edge.get("s", "")) for edge in edges
-    } | {str(edge.get("o", "")) for edge in edges}
-    nodes = [
-        node
-        for node in sorted(statement_graph.get("nodes", []), key=lambda item: str(item.get("id", "")))
-        if str(node.get("id", "")) in node_ids
-    ]
-    return {"nodes": nodes, "edges": edges}
 
 
 def _prompt(context: dict[str, Any]) -> str:
@@ -249,21 +195,18 @@ def _prompt(context: dict[str, Any]) -> str:
             "Use the adjacent `.context.json` as the only allowed scientific context.",
             "",
             "Requirements:",
-            "- Write a full prose-rich academic wiki page, not a template and not a link list.",
-            "- Include Markdown links to related wiki pages using `link_map` paths.",
-            "- Cite every factual paragraph as `[stmt:id; source_project]`.",
-            "- Only cite statement ids present in `member_statements`.",
+            "- Write synthesized prose, not a statement-by-statement summary.",
+            "- Follow `narrative.section_plan` unless it would create an empty section.",
+            "- Include Markdown links to related wiki pages using `adjacent_pages` paths.",
+            "- Cite only ids present in `allowed_citations`.",
             "- Use source excerpts from `projects/` to improve readability and scientific framing.",
-            "- Keep structured evidence/source details after the prose.",
+            "- Put statement citations in one trailing `## Sources` section.",
             "",
             "Suggested shape:",
             "- `# <page title>`",
-            "- `## Introduction`",
-            "- `## Synthesis`",
-            "- caveats/conflicts if relevant",
-            "- future steps/opportunities if relevant",
-            "- `## Source Statements`",
-            "- navigation links/backlinks as support material",
+            "- `## Overview`",
+            "- narrative sections from `narrative.section_plan`",
+            "- `## Sources`",
             "",
         ]
     )
@@ -320,11 +263,66 @@ def _slug(value: str) -> str:
     return slug or "page"
 
 
-def _edge_sort_key(edge: dict[str, Any]) -> tuple[str, str, str, str, str]:
-    return (
-        str(edge.get("edge_class", "")),
-        str(edge.get("p", "")),
-        str(edge.get("s", "")),
-        str(edge.get("o", "")),
-        str(edge.get("id", "")),
+def _projects(statements: list[dict[str, Any]]) -> list[str]:
+    return sorted(
+        {
+            evidence["source_project"]
+            for statement in statements
+            for evidence in statement["evidence"]
+        }
     )
+
+
+def _topics(cards: list[StatementCard], registry) -> list[dict[str, str]]:
+    topic_ids = sorted({topic for card in cards for topic in card.topics})
+    return [_registry_record(topic_id, registry, "topics") for topic_id in topic_ids]
+
+
+def _entities(cards: list[StatementCard], registry) -> list[dict[str, str]]:
+    entity_ids = sorted({entity for card in cards for entity in card.entities})
+    return [_registry_record(entity_id, registry, "entities") for entity_id in entity_ids]
+
+
+def _registry_record(raw_id: str, registry, collection: str) -> dict[str, str]:
+    key = raw_id
+    if registry is not None:
+        key = registry.topic_key(raw_id) if collection == "topics" else registry.entity_key(raw_id)
+    record = getattr(registry, collection, {}).get(key, {}) if registry is not None else {}
+    return {
+        "id": key,
+        "label": record.get("label", _title(key)),
+        "definition": record.get("definition", ""),
+        "kind": record.get("kind", ""),
+        "url": record.get("url", ""),
+    }
+
+
+def _allowed_citations(cards: list[StatementCard]) -> list[dict[str, str]]:
+    return [
+        {"statement_id": card.id, "source_project": card.evidence[0].source_project}
+        for card in sorted(cards, key=lambda item: item.id)
+    ]
+
+
+def _narrative(plan: PagePlan, registry) -> dict[str, Any]:
+    return {
+        "lead": _lead(plan, registry),
+        "section_plan": [
+            {"id": section.id, "heading": section.heading}
+            for section in plan.sections
+        ],
+    }
+
+
+def _lead(plan: PagePlan, registry) -> str:
+    if plan.type == "topic" and registry is not None:
+        record = registry.topics.get(registry.topic_key(plan.id), {})
+        if record.get("definition"):
+            return record["definition"]
+    if plan.type == "data":
+        return "Explain what this shared data collection is and why it connects these projects."
+    if plan.type == "author":
+        return "Summarize this contributor's project and topic footprint using only the page context."
+    if plan.type == "home":
+        return "Introduce the synthesis wiki as a map of cross-project topics, shared data, and authors."
+    return "Introduce the page subject and explain why it matters in this synthesis wiki."
