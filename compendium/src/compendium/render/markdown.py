@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
 
 from compendium.models import PagePlan
 from compendium.pages.artifact import page_manifest_path, wiki_page_path
@@ -12,17 +11,14 @@ from compendium.pages.artifact import page_manifest_path, wiki_page_path
 def render_markdown_wiki(
     page_plans: list[PagePlan],
     wiki_dir: str | Path,
-    *,
-    statement_graph: dict[str, list[dict[str, Any]]] | None = None,
 ) -> list[Path]:
     """Validate LLM-authored Markdown wiki pages and their manifests.
 
     Scientific prose must already exist in ``wiki_dir``; this function does not synthesize prose
     or copy from a second tree. It rejects stale pages/manifests and requires every planned page
-    to have both a published Markdown file and a manifest. ``statement_graph`` is accepted for
-    call-site compatibility but unused (no ``graph.md`` build artifact is emitted).
+    to have both a published Markdown file and a manifest. No ``graph.md`` build artifact is
+    emitted.
     """
-    del statement_graph  # graph.md is no longer a reader page
     wiki_path = Path(wiki_dir)
     wiki_path.mkdir(parents=True, exist_ok=True)
 

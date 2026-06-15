@@ -299,6 +299,21 @@ def test_quality_synthesis_command_fails_quality_gate_but_writes_metrics(tmp_pat
     assert metrics["evidence_resolution"]["unresolved"] == 1
 
 
+def test_check_command_exits_zero_on_clean_and_nonzero_on_broken_wiki(tmp_path: Path) -> None:
+    clean = tmp_path / "clean"
+    (clean / "topics").mkdir(parents=True)
+    (clean / "index.md").write_text("# Home\n\n[x](topics/x.md)\n", encoding="utf-8")
+    (clean / "topics" / "x.md").write_text("# X\n\nBody.\n", encoding="utf-8")
+
+    assert main(["check", "--wiki", str(clean)]) == 0
+
+    broken = tmp_path / "broken"
+    broken.mkdir()
+    (broken / "index.md").write_text("# Home\n\n[gone](topics/gone.md)\n", encoding="utf-8")
+
+    assert main(["check", "--wiki", str(broken)]) == 1
+
+
 def _write_authored_pages(
     statement_fixture: Path, pages_dir: Path, *, source_root: Path | None = None
 ) -> None:

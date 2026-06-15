@@ -1,9 +1,9 @@
 """Deterministic PagePlan generation from statement cards.
 
-Emits the four reader page types (home / topic / data / author). Topics and entities are
-canonicalized through the additive ``Registry`` before grouping; author and data pages join in
-the zero-LLM author and shared-collection indexes. Claims/conflicts/opportunities are *sections*
-inside topic pages, not standalone pages.
+Emits the four reader page types (home / topic / data / author). Topics are canonicalized
+through the additive ``Registry`` before grouping; author and data pages join in the zero-LLM
+author and shared-collection indexes. Claims/conflicts/opportunities are *sections* inside topic
+pages, not standalone pages.
 """
 
 from __future__ import annotations
@@ -56,8 +56,8 @@ def plan_pages(
 ) -> list[PagePlan]:
     """Generate deterministic page plans (home/topic/data/author) from statement cards.
 
-    Topics and entities are canonicalized through ``registry`` (identity when None) before
-    grouping. ``authors`` is a ``{key: AuthorRecord}`` index and ``collections`` is a
+    Topics are canonicalized through ``registry`` (identity when None) before grouping.
+    ``authors`` is a ``{key: AuthorRecord}`` index and ``collections`` is a
     ``{collection_id: CollectionRecord}`` index; author/data pages are emitted only for records
     whose projects appear among the active cards. Retracted cards are excluded from membership.
     """
@@ -69,7 +69,7 @@ def plan_pages(
     )
     card_by_id = {card.id: card for card in active_cards}
 
-    # Canonical topic/entity keys per card (registry None -> identity passthrough).
+    # Canonical topic keys per card (registry None -> identity passthrough).
     card_topics = {card.id: _canonical_topics(card, registry) for card in active_cards}
 
     project_members: dict[str, list[str]] = {}

@@ -16,6 +16,7 @@ from pathlib import Path
 from compendium import audit as audit_mod
 from compendium import data_index, people
 from compendium.build.statement_graph import build_statement_graph, export_statement_graph_artifacts
+from compendium.check import check_wiki
 from compendium.context_pack import build_context_pack, context_pack_bytes
 from compendium.models import StatementCard
 from compendium.pages import plan_pages, write_page_artifact, write_page_context
@@ -246,6 +247,16 @@ def dispatch(args) -> int:
         if _synthesis_quality_failed(metrics):
             print("[compendium] synthesis quality checks failed", file=sys.stderr)
             return 1
+        return 0
+
+    if args.cmd == "check":
+        problems = check_wiki(Path(args.wiki).resolve())
+        for problem in problems:
+            print(problem)
+        if problems:
+            print(f"[compendium] wiki integrity check found {len(problems)} problem(s)", file=sys.stderr)
+            return 1
+        print("[compendium] wiki integrity check passed")
         return 0
 
     if args.cmd == "audit":
