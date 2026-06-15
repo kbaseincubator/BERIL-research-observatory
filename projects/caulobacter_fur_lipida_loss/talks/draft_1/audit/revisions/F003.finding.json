@@ -1,0 +1,24 @@
+{
+  "id": "F003",
+  "class": "claim_evidence",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 7,
+  "slide_position": 7,
+  "slide_layout": "data_figure",
+  "substory_id": "S1",
+  "title_quote": "NB00: sphingolipid biosynthesis is constitutive across the rescue strain series",
+  "issue": "Slide 7 is the S1 data_figure slot. S1's substory plan (02_substories.md, S1 'Slide kinds anticipated') explicitly calls for 'data_figure (R-slide \u2014 Fur\u2013Leaden concordance scatter, A1)' \u2014 i.e. figures/NB01_fur_signature_scatter.png, which directly visualizes the Spearman \u03c1=0.315 concordance that anchors Layer 1. Instead this slide shows the NB00 sphingolipid locus heatmap, whose substantive content is an S3 finding (constitutive sphingolipid pool). S1's defining quantitative finding (the Fur\u2013Leaden concordance) has NO figure backing it anywhere in the deck \u2014 slide 9 (the S1 claim slide) is bullets-only. Meanwhile the same NB00 figure is shown AGAIN on slide 16 (see F005), so the deck recycles an S3-belonging figure across two substories and never shows the figure that S1 actually needs.",
+  "report_evidence": [
+    {
+      "section": "\u00a7NB01 image caption",
+      "quote": "Leaden \u0394fur logFC vs our 4584-vs-4580 logFC; concordant_strong in dark blue, buffered set in orange, discordant in red"
+    },
+    {
+      "section": "\u00a7NB01 \u2014 Leaden 2018 Fur signature",
+      "quote": "The scatter shows the dramatic asymmetry between our amplified Fur-derepression cohort (top-right quadrant, exceeding Leaden's logFC) and the buffered cohort (cluster near y=0 spanning Leaden's full -9 to -5 range)"
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Replace slide 7's figure with figures/NB01_fur_signature_scatter.png; rewrite title to 'Fur\u2013Leaden concordance: \u03c1=0.315, 71% sign agreement across 93 DEGs \u2014 and a buffered respiratory cluster at y\u22480'; rewrite caption to describe the concordant_strong vs buffered partition the figure visualizes. The NB00 sphingolipid orientation point can be reduced to one bullet on slide 6 (methods) since slide 16 already carries it."
+}

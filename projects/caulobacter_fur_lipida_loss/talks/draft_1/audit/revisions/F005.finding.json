@@ -1,0 +1,24 @@
+{
+  "id": "F005",
+  "class": "substory_arc",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 16,
+  "slide_position": 16,
+  "slide_layout": "data_figure",
+  "substory_id": "S3",
+  "title_quote": "Sphingolipid biosynthesis is constitutive: 0 of 6 genes UP; spt and sphk mildly DOWN",
+  "issue": "Slide 16 uses figures/00_sphingolipid_locus_heatmap.png \u2014 the same image already shown on slide 7. The audience sees the identical heatmap twice in a 30-slide deck. Worse, REPORT and the S3 substory plan explicitly call for a DIFFERENT figure here: figures/NB04_sphingolipid_locus_heatmap.png ('Sphingolipid biosynthesis + Uchendu transporters detailed heatmap', per REPORT \u00a7Figures table and 02_substories.md S3 'Slide kinds anticipated'). The NB04 figure includes the Uchendu transporter genes \u2014 the load-bearing detail that distinguishes S3's substitute-mechanism claim from S1's orientation observation. The deck has both figures available on disk but uses neither correctly.",
+  "report_evidence": [
+    {
+      "section": "\u00a7Figures table",
+      "quote": "figures/NB04_sphingolipid_locus_heatmap.png | Sphingolipid biosynthesis + Uchendu transporters detailed heatmap"
+    },
+    {
+      "section": "\u00a7NB04 image caption",
+      "quote": "Sphingolipid biosynthesis cluster heatmap \u2014 flat-to-slightly-decreasing across strain series"
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Replace slide 16 figure with figures/NB04_sphingolipid_locus_heatmap.png (the detailed NB04 panel including the Uchendu transporters). After F003 reassigns slide 7 to the NB01 scatter, no audience member sees the same image twice."
+}

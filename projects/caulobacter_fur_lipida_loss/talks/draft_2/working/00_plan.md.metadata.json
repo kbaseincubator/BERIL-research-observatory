@@ -1,0 +1,9 @@
+{
+  "elapsed_seconds": 275,
+  "input_tokens": 14,
+  "output_tokens": 16671,
+  "cache_read_tokens": 519396,
+  "cache_creation_tokens": 260582,
+  "estimated_cost_usd": 6.9155415,
+  "model": "opus"
+}

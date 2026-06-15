@@ -1,0 +1,4167 @@
+{
+  "schema_version": "quantitative-grounding.v1",
+  "draft_dir": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/talks/draft_2",
+  "report_path": "/home/aparkin/BERIL-research-observatory/projects/caulobacter_fur_lipida_loss/REPORT.md",
+  "summary": {
+    "total_numbers_found": 265,
+    "total_grounded": 236,
+    "total_ungrounded": 10,
+    "total_skipped_years": 19
+  },
+  "findings": [
+    {
+      "slide_id": 26,
+      "slide_position": 26,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "287",
+        "canonical": "287",
+        "kind": "integer",
+        "context_before": "ess does not hold: ncbi finds ",
+        "context_after": "hits outside *caulobacter* (ad"
+      },
+      "severity": "medium",
+      "note": "Number '287' (context: 'ess does not hold: ncbi finds '/'hits outside *caulobacter* (ad') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1.598",
+        "canonical": "1.598",
+        "kind": "decimal",
+        "context_before": "dependently recalculated fold ",
+        "context_after": "\u00d7, p=0.0156, confirmed bonferr"
+      },
+      "severity": "medium",
+      "note": "Number '1.598' (context: 'dependently recalculated fold '/'\u00d7, p=0.0156, confirmed bonferr') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1.598",
+        "canonical": "1.598",
+        "kind": "decimal",
+        "context_before": "port data and obtained fold = ",
+        "context_after": "\u00d7, p = 0.0156 (00_plan.md \u00a7tie"
+      },
+      "severity": "medium",
+      "note": "Number '1.598' (context: 'port data and obtained fold = '/'\u00d7, p = 0.0156 (00_plan.md \u00a7tie') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1.598",
+        "canonical": "1.598",
+        "kind": "decimal",
+        "context_before": "independent replication: fold ",
+        "context_after": "\u00d7, p=0.0156, bonferroni-robust"
+      },
+      "severity": "medium",
+      "note": "Number '1.598' (context: 'independent replication: fold '/'\u00d7, p=0.0156, bonferroni-robust') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.0156",
+        "canonical": "0.0156",
+        "kind": "decimal",
+        "context_before": "y recalculated fold 1.598\u00d7, p=",
+        "context_after": ", confirmed bonferroni-robust."
+      },
+      "severity": "medium",
+      "note": "Number '0.0156' (context: 'y recalculated fold 1.598\u00d7, p='/', confirmed bonferroni-robust.') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.0156",
+        "canonical": "0.0156",
+        "kind": "decimal",
+        "context_before": "d obtained fold = 1.598\u00d7, p = ",
+        "context_after": "(00_plan.md \u00a7tier verdict: 'ex"
+      },
+      "severity": "medium",
+      "note": "Number '0.0156' (context: 'd obtained fold = 1.598\u00d7, p = '/\"(00_plan.md \u00a7tier verdict: 'ex\") does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.0156",
+        "canonical": "0.0156",
+        "kind": "decimal",
+        "context_before": "d is p < 0.025, path a at p = ",
+        "context_after": "survives. this is independent "
+      },
+      "severity": "medium",
+      "note": "Number '0.0156' (context: 'd is p < 0.025, path a at p = '/'survives. this is independent ') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.0156",
+        "canonical": "0.0156",
+        "kind": "decimal",
+        "context_before": "t replication: fold 1.598\u00d7, p=",
+        "context_after": ", bonferroni-robust); nb 02b_h"
+      },
+      "severity": "medium",
+      "note": "Number '0.0156' (context: 't replication: fold 1.598\u00d7, p='/', bonferroni-robust); nb 02b_h') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1.05",
+        "canonical": "1.05",
+        "kind": "decimal",
+        "context_before": "idence interval spans roughly ",
+        "context_after": "\u00d7 to 2.1\u00d7. the true effect siz"
+      },
+      "severity": "medium",
+      "note": "Number '1.05' (context: 'idence interval spans roughly '/'\u00d7 to 2.1\u00d7. the true effect siz') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.025",
+        "canonical": "0.025",
+        "kind": "decimal",
+        "context_before": ", bonferroni threshold is p < ",
+        "context_after": ", path a at p = 0.0156 survive"
+      },
+      "severity": "medium",
+      "note": "Number '0.025' (context: ', bonferroni threshold is p < '/', path a at p = 0.0156 survive') does not appear in REPORT.md in any normalized form. Either add the number to REPORT.md, mark this finding as advisory (a derived/cited number), or revise the slide."
+    }
+  ],
+  "hits": [
+    {
+      "slide_id": 3,
+      "slide_position": 3,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "93",
+        "canonical": "93",
+        "kind": "integer",
+        "context_before": "bacter* has them\nwhich of the ",
+        "context_after": "fur-released degs are operatio"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "4580",
+        "canonical": "4580",
+        "kind": "integer",
+        "context_before": " rescue\nfur-signal isolation: ",
+        "context_after": "\u21924584\u21924599 strain contrast cro"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "bi annotation-presence across ",
+        "context_after": "species, each claim evaluated "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "ue\nfur-signal isolation: 4580\u2192",
+        "context_after": "\u21924599 strain contrast cross-re"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "4599",
+        "canonical": "4599",
+        "kind": "integer",
+        "context_before": "r-signal isolation: 4580\u21924584\u2192",
+        "context_after": "strain contrast cross-referenc"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.315",
+        "canonical": "0.315",
+        "kind": "decimal",
+        "context_before": "leaden 2018 \u03b4*fur* rna-seq (\u03c1=",
+        "context_after": ", 93 degs)\nregulon triage: hyp"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "93",
+        "canonical": "93",
+        "kind": "integer",
+        "context_before": "2018 \u03b4*fur* rna-seq (\u03c1=0.315, ",
+        "context_after": "degs)\nregulon triage: hypergeo"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "32",
+        "canonical": "32",
+        "kind": "integer",
+        "context_before": "ric fitness enrichment of the ",
+        "context_after": "-gene fur-released subset agai"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "33.25%",
+        "canonical": "33.25",
+        "kind": "percent",
+        "context_before": "e fur-released subset against ",
+        "context_after": " genome-background rate (198 c"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 4,
+      "slide_position": 4,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "198",
+        "canonical": "198",
+        "kind": "integer",
+        "context_before": "3.25% genome-background rate (",
+        "context_after": "caulobacter rb-tnseq experimen"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 15,
+        "line_quote": "Caulobacter RB-TnSeq fitness data (`kescience_fitnessbrowser`, orgId=`Caulo`, 198 experiments) ranks the Fur-released gene sets by phenotypic importance under envelope stress (the iron-limitation a..."
+      }
+    },
+    {
+      "slide_id": 6,
+      "slide_position": 6,
+      "slide_layout": "workflow_diagram",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "+ \u03b4sspb: dual-release switch; ",
+        "context_after": "-vs-4580 = fur arm\n\u03b4lpxc: lipi"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 6,
+      "slide_position": 6,
+      "slide_layout": "workflow_diagram",
+      "number": {
+        "raw": "4580",
+        "canonical": "4580",
+        "kind": "integer",
+        "context_before": " dual-release switch; 4584-vs-",
+        "context_after": "= fur arm\n\u03b4lpxc: lipid a-defic"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "0.315",
+        "canonical": "0.315",
+        "kind": "decimal",
+        "context_before": "spearman \u03c1=",
+        "context_after": "concordance with leaden \u03b4fur s"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "0.315",
+        "canonical": "0.315",
+        "kind": "decimal",
+        "context_before": "d; n=93 \u03b4fur degs, spearman \u03c1=",
+        "context_after": ", p=2.08e-03.\nleaden 2018 (pmi"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "5",
+        "canonical": "5",
+        "kind": "integer",
+        "context_before": "2018_fur_signature.ipynb cell ",
+        "context_after": ""
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "n=93",
+        "canonical": "93",
+        "kind": "n_eq",
+        "context_before": "ms constitutive derepression (",
+        "context_after": " degs)\nleaden \u03b4fur logfc vs ou"
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "n=93",
+        "canonical": "93",
+        "kind": "n_eq",
+        "context_before": "in orange, discordant in red; ",
+        "context_after": " \u03b4fur degs, spearman \u03c1=0.315, "
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "egs)\nleaden \u03b4fur logfc vs our ",
+        "context_after": "-vs-4580 logfc; concordant_str"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "4580",
+        "canonical": "4580",
+        "kind": "integer",
+        "context_before": "den \u03b4fur logfc vs our 4584-vs-",
+        "context_after": "logfc; concordant_strong in da"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "2.08e-03",
+        "canonical": "2.08e-03",
+        "kind": "scientific",
+        "context_before": "fur degs, spearman \u03c1=0.315, p=",
+        "context_after": ".\nleaden 2018 (pmid 30210482);"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 7,
+      "slide_position": 7,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "30210482",
+        "canonical": "30210482",
+        "kind": "integer",
+        "context_before": "p=2.08e-03.\nleaden 2018 (pmid ",
+        "context_after": "); nb01_leaden2018_fur_signatu"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 208,
+        "line_quote": "- **Leaden et al. 2018** (PMID 30210482) \u2014 published Caulobacter \u0394*fur* RNA-seq. Our NB01 re-analyzed their supplementary Table 2 to provide a clean Fur-only DEG signature. The Spearman \u03c1 = 0.315 c..."
+      }
+    },
+    {
+      "slide_id": 8,
+      "slide_position": 8,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "53/93",
+        "canonical": "53/93",
+        "kind": "ratio",
+        "context_before": "ondition replication pending)\n",
+        "context_after": " leaden \u03b4fur degs buffered in "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 186,
+        "line_quote": "2. **\u0394*sspB* buffers the cbb3 / cyd / *fix*-NOPQ micro-aerobic respiratory chain transcript-level decline** *(HYPOTHESIS, not statistically supported as mechanistically critical)*. The transcript-l..."
+      }
+    },
+    {
+      "slide_id": 8,
+      "slide_position": 8,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "01476",
+        "canonical": "01476",
+        "kind": "integer",
+        "context_before": "espiratory operon (ccna_01466\u2013",
+        "context_after": ": cconopq, cydcda, fixghi) \u2014 s"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 8,
+      "slide_position": 8,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "35649364",
+        "canonical": "35649364",
+        "kind": "integer",
+        "context_before": "anscript level\nzik 2022 (pmid ",
+        "context_after": "): \u03b4lpxc viability requires \u03b4f"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 204,
+        "line_quote": "- **Zik et al. 2022** (PMID 35649364) \u2014 the foundational paper, authored by this project's data provider K.R. Ryan. Establishes that \u0394*lpxc* viability in *C. crescentus* requires both \u0394*fur* and an..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "n=3943",
+        "canonical": "3943",
+        "kind": "n_eq",
+        "context_before": "kground calibration: k=1311 / ",
+        "context_after": " = 33.25% phenotype-bearing ac"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "iterion: |fitness t| > 4 in \u2265 ",
+        "context_after": "envelope-stress experiments\nge"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "198",
+        "canonical": "198",
+        "kind": "integer",
+        "context_before": "lobacter rb-tnseq compendium, ",
+        "context_after": "experiments (kescience_fitness"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 15,
+        "line_quote": "Caulobacter RB-TnSeq fitness data (`kescience_fitnessbrowser`, orgId=`Caulo`, 198 experiments) ranks the Fur-released gene sets by phenotypic importance under envelope stress (the iron-limitation a..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "198",
+        "canonical": "198",
+        "kind": "integer",
+        "context_before": "stress subset selected: 22 of ",
+        "context_after": "experiments; iron-limitation e"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 15,
+        "line_quote": "Caulobacter RB-TnSeq fitness data (`kescience_fitnessbrowser`, orgId=`Caulo`, 198 experiments) ranks the Fur-released gene sets by phenotypic importance under envelope stress (the iron-limitation a..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "0",
+        "canonical": "0",
+        "kind": "integer",
+        "context_before": "iron-limitation experiments = ",
+        "context_after": "in compendium \u2014 h2 iron arm de"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "22",
+        "canonical": "22",
+        "kind": "integer",
+        "context_before": "elope-stress subset selected: ",
+        "context_after": "of 198 experiments; iron-limit"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 30,
+        "line_quote": "The published ChvI regulons (Stein 2021 + Quintero-Yanes 2022; union = 488 ChvI-induced genes in the tested universe) partition into three disjoint sets:"
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "ring criterion: |fitness t| > ",
+        "context_after": "in \u2265 2 envelope-stress experim"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "1311",
+        "canonical": "1311",
+        "kind": "integer",
+        "context_before": "ome background calibration: k=",
+        "context_after": "/ n=3943 = 33.25% phenotype-be"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "33.25%",
+        "canonical": "33.25",
+        "kind": "percent",
+        "context_before": "alibration: k=1311 / n=3943 = ",
+        "context_after": " phenotype-bearing across all "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "33.25%",
+        "canonical": "33.25",
+        "kind": "percent",
+        "context_before": "red \u226510% threshold sits below ",
+        "context_after": " background \u2014 threshold-passin"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "10%",
+        "canonical": "10",
+        "kind": "percent",
+        "context_before": "obacter genes\npre-registered \u2265",
+        "context_after": " threshold sits below 33.25% b"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "1.5",
+        "canonical": "1.5",
+        "kind": "decimal",
+        "context_before": " background, requiring fold \u2265 ",
+        "context_after": "\u00d7 and p < 0.05\ntwo arms tested"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "0.05",
+        "canonical": "0.05",
+        "kind": "decimal",
+        "context_before": "requiring fold \u2265 1.5\u00d7 and p < ",
+        "context_after": "two arms tested: path a (32 co"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 51,
+        "line_quote": "The pre-registered CtpA BORDERLINE criterion required *both* `0.05 < pvalue < 0.15` AND protein detected. Observed pvalue = 0.048 (fails lower bound), and CtpA was not detected in OM proteome \u2014 so ..."
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "32",
+        "canonical": "32",
+        "kind": "integer",
+        "context_before": "0.05\ntwo arms tested: path a (",
+        "context_after": "concordant_strong fur-released"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 10,
+      "slide_position": 10,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "26",
+        "canonical": "26",
+        "kind": "integer",
+        "context_before": "ur-released genes) vs path b (",
+        "context_after": "sspb-buffered cbb3/fix genes)"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 11,
+      "slide_position": 11,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "n=3943",
+        "canonical": "3943",
+        "kind": "n_eq",
+        "context_before": "me background: 33.25% (k=1311/",
+        "context_after": "). hypergeometric test vs back"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 11,
+      "slide_position": 11,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "1.60",
+        "canonical": "1.60",
+        "kind": "decimal",
+        "context_before": "path a enriched ",
+        "context_after": "\u00d7 over genome background; path"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 11,
+      "slide_position": 11,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "33.25%",
+        "canonical": "33.25",
+        "kind": "percent",
+        "context_before": "background\ngenome background: ",
+        "context_after": " (k=1311/n=3943). hypergeometr"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 11,
+      "slide_position": 11,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "ackground.\nreport.md \u00a7finding ",
+        "context_after": "; notebooks/02b_h2_hypergeomet"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 11,
+      "slide_position": 11,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "rgeometric_verdict.ipynb cell ",
+        "context_after": ""
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 11,
+      "slide_position": 11,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "1311",
+        "canonical": "1311",
+        "kind": "integer",
+        "context_before": "\ngenome background: 33.25% (k=",
+        "context_after": "/n=3943). hypergeometric test "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 11,
+      "slide_position": 11,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "02",
+        "canonical": "02",
+        "kind": "integer",
+        "context_before": "port.md \u00a7finding 2; notebooks/",
+        "context_after": "b_h2_hypergeometric_verdict.ip"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 24,
+        "line_quote": "**Path A** (Fur-released TBDTs and iron-uptake systems) shows marginal but real enrichment, with **ChvT (CCNA_03108)** \\|*t*\\| = 43.7 under envelope stress and other Fur-derepressed TBDTs (CCNA_029..."
+      }
+    },
+    {
+      "slide_id": 12,
+      "slide_position": 12,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "n=26",
+        "canonical": "26",
+        "kind": "n_eq",
+        "context_before": "icro-aerobic respiratory arm, ",
+        "context_after": "): 34.6% phenotype-bearing \u2014 f"
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 12,
+      "slide_position": 12,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "34.6%",
+        "canonical": "34.6",
+        "kind": "percent",
+        "context_before": "robic respiratory arm, n=26): ",
+        "context_after": " phenotype-bearing \u2014 fold 1.04"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 12,
+      "slide_position": 12,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "1.04",
+        "canonical": "1.04",
+        "kind": "decimal",
+        "context_before": "4.6% phenotype-bearing \u2014 fold ",
+        "context_after": "\u00d7, p=0.515, indistinguishable "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 12,
+      "slide_position": 12,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.515",
+        "canonical": "0.515",
+        "kind": "decimal",
+        "context_before": "otype-bearing \u2014 fold 1.04\u00d7, p=",
+        "context_after": ", indistinguishable from genom"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 12,
+      "slide_position": 12,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "33.25%",
+        "canonical": "33.25",
+        "kind": "percent",
+        "context_before": "hable from genome background (",
+        "context_after": ")\ntranscript-level sspb buffer"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 12,
+      "slide_position": 12,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "53/93",
+        "canonical": "53/93",
+        "kind": "ratio",
+        "context_before": "sspb buffering is real (nb01: ",
+        "context_after": " leaden \u03b4fur degs blunted, dom"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 186,
+        "line_quote": "2. **\u0394*sspB* buffers the cbb3 / cyd / *fix*-NOPQ micro-aerobic respiratory chain transcript-level decline** *(HYPOTHESIS, not statistically supported as mechanistically critical)*. The transcript-l..."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "34124942",
+        "canonical": "34124942",
+        "kind": "integer",
+        "context_before": "on: union of stein 2021 (pmid ",
+        "context_after": ") + quintero-yanes 2022 (pmid "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 210,
+        "line_quote": "- **Stein et al. 2021** (PMID 34124942) and **Quintero-Yanes et al. 2022** (PMID 36480504) \u2014 published Caulobacter ChvI regulons used as reference sets for the H1 partition test. **Greenwich et al...."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "36480504",
+        "canonical": "36480504",
+        "kind": "integer",
+        "context_before": ") + quintero-yanes 2022 (pmid ",
+        "context_after": ") \u2014 488 chvi-induced genes in "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 210,
+        "line_quote": "- **Stein et al. 2021** (PMID 34124942) and **Quintero-Yanes et al. 2022** (PMID 36480504) \u2014 published Caulobacter ChvI regulons used as reference sets for the H1 partition test. **Greenwich et al...."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "488",
+        "canonical": "488",
+        "kind": "integer",
+        "context_before": "-yanes 2022 (pmid 36480504) \u2014 ",
+        "context_after": "chvi-induced genes in the c. c"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 30,
+        "line_quote": "The published ChvI regulons (Stein 2021 + Quintero-Yanes 2022; union = 488 ChvI-induced genes in the tested universe) partition into three disjoint sets:"
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "10",
+        "canonical": "10",
+        "kind": "integer",
+        "context_before": "d phase-structure threshold: \u2265",
+        "context_after": "genes per cohort required for "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "niverse\nearly-phase contrast (",
+        "context_after": "-vs-4580): \u03b4fur \u03b4sspb \u03b4rsaa vs"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "\nlate-phase contrast (4599-vs-",
+        "context_after": "): \u03b4lpxc rescue vs dual-releas"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4580",
+        "canonical": "4580",
+        "kind": "integer",
+        "context_before": "early-phase contrast (4584-vs-",
+        "context_after": "): \u03b4fur \u03b4sspb \u03b4rsaa vs \u03b4rsaa \u2014"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4599",
+        "canonical": "4599",
+        "kind": "integer",
+        "context_before": " present\nlate-phase contrast (",
+        "context_after": "-vs-4584): \u03b4lpxc rescue vs dua"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "79",
+        "canonical": "79",
+        "kind": "integer",
+        "context_before": " two cohorts; total engaged = ",
+        "context_after": "genes\npre-registered phase-str"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "50%",
+        "canonical": "50",
+        "kind": "percent",
+        "context_before": "-to-early; relaxed pass bar = ",
+        "context_after": " enrichment + p<1e-3\nchvr srna"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 37,
+        "line_quote": "Pre-registered phase-structure threshold (\u226510 genes per cohort) passes strongly. The reframed SigU coherence check on the late cohort returned 24.5% envelope/transport/regulator enrichment \u2014 below ..."
+      }
+    },
+    {
+      "slide_id": 14,
+      "slide_position": 14,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "1e-3",
+        "canonical": "1e-3",
+        "kind": "scientific",
+        "context_before": "pass bar = 50% enrichment + p<",
+        "context_after": "\nchvr srna (fr\u00f6hlich 2018; adv"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 100,
+        "line_quote": "| **H1** | SigU drives late cohort | \u226550% envelope/transport/regulator + Fisher p<1e-3 | 24.5% (literature gap, reframed) | PARTIAL |"
+      }
+    },
+    {
+      "slide_id": 15,
+      "slide_position": 15,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "79",
+        "canonical": "79",
+        "kind": "integer",
+        "context_before": "hort\ndisjoint chvi partition (",
+        "context_after": "total); all cohorts clear \u226510-"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 15,
+      "slide_position": 15,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "7",
+        "canonical": "7",
+        "kind": "integer",
+        "context_before": "ase_partition_sigu.ipynb cell ",
+        "context_after": ""
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 15,
+      "slide_position": 15,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "10",
+        "canonical": "10",
+        "kind": "integer",
+        "context_before": "79 total); all cohorts clear \u2265",
+        "context_after": "-gene threshold. both-phase ro"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 15,
+      "slide_position": 15,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "1.45",
+        "canonical": "1.45",
+        "kind": "decimal",
+        "context_before": ": chvi autoregulation (logfc +",
+        "context_after": ") and cpxp-like chaperone enga"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 32,
+        "line_quote": "- **both phases** \u2014 10 genes induced in both contrasts (cooperative continuation); includes **ChvI itself (CCNA_00237, logFC +1.45 in 4584-vs-4580)** \u2014 autoregulation \u2014 the SIMPL family CCNA_02378 ..."
+      }
+    },
+    {
+      "slide_id": 15,
+      "slide_position": 15,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "3",
+        "canonical": "3",
+        "kind": "integer",
+        "context_before": "effectors.\nreport.md \u00a7finding ",
+        "context_after": "; nb 03_chvi_phase_partition_s"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 15,
+      "slide_position": 15,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "03",
+        "canonical": "03",
+        "kind": "integer",
+        "context_before": "ors.\nreport.md \u00a7finding 3; nb ",
+        "context_after": "_chvi_phase_partition_sigu.ipy"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 16,
+      "slide_position": 16,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "24.5%",
+        "canonical": "24.5",
+        "kind": "percent",
+        "context_before": "fails the pre-registered bar (",
+        "context_after": ", p=0.243); late-cohort driver"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 37,
+        "line_quote": "Pre-registered phase-structure threshold (\u226510 genes per cohort) passes strongly. The reframed SigU coherence check on the late cohort returned 24.5% envelope/transport/regulator enrichment \u2014 below ..."
+      }
+    },
+    {
+      "slide_id": 16,
+      "slide_position": 16,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "24.5%",
+        "canonical": "24.5",
+        "kind": "percent",
+        "context_before": "rence in late 49-gene cohort: ",
+        "context_after": " envelope/transport/regulator "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 37,
+        "line_quote": "Pre-registered phase-structure threshold (\u226510 genes per cohort) passes strongly. The reframed SigU coherence check on the late cohort returned 24.5% envelope/transport/regulator enrichment \u2014 below ..."
+      }
+    },
+    {
+      "slide_id": 16,
+      "slide_position": 16,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "n rna-seq (future directions \u00a7",
+        "context_after": ") is the pre-planned next step"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 16,
+      "slide_position": 16,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.243",
+        "canonical": "0.243",
+        "kind": "decimal",
+        "context_before": " pre-registered bar (24.5%, p=",
+        "context_after": "); late-cohort driver unassign"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 137,
+        "line_quote": "ChvI itself (CCNA_00237) is in the **both-phases** set with logFC +1.45 in 4584-vs-4580 and continued induction in 4599-vs-4584 \u2014 direct evidence of ChvG-ChvI **autoregulation** during the Fur+SspB..."
+      }
+    },
+    {
+      "slide_id": 16,
+      "slide_position": 16,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.243",
+        "canonical": "0.243",
+        "kind": "decimal",
+        "context_before": "egulator enrichment, fisher p=",
+        "context_after": "\u2014 below both the 50% relaxed c"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 137,
+        "line_quote": "ChvI itself (CCNA_00237) is in the **both-phases** set with logFC +1.45 in 4584-vs-4580 and continued induction in 4599-vs-4584 \u2014 direct evidence of ChvG-ChvI **autoregulation** during the Fur+SspB..."
+      }
+    },
+    {
+      "slide_id": 16,
+      "slide_position": 16,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "49",
+        "canonical": "49",
+        "kind": "integer",
+        "context_before": "signed\nsigu coherence in late ",
+        "context_after": "-gene cohort: 24.5% envelope/t"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 33,
+        "line_quote": "- **late-consequence** \u2014 49 genes induced *only* after lipid A is lost in 4599-vs-4584, including the **LolA-family OM lipoprotein carrier CCNA_03820 (+2.89)** \u2014 exactly the gene Uchendu et al. 202..."
+      }
+    },
+    {
+      "slide_id": 16,
+      "slide_position": 16,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "50%",
+        "canonical": "50",
+        "kind": "percent",
+        "context_before": "sher p=0.243 \u2014 below both the ",
+        "context_after": " relaxed criterion and statist"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 37,
+        "line_quote": "Pre-registered phase-structure threshold (\u226510 genes per cohort) passes strongly. The reframed SigU coherence check on the late cohort returned 24.5% envelope/transport/regulator enrichment \u2014 below ..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4599",
+        "canonical": "4599",
+        "kind": "integer",
+        "context_before": " om proteome\nstrain contrast: ",
+        "context_after": "(delta-fur delta-sspb delta-lp"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4599",
+        "canonical": "4599",
+        "kind": "integer",
+        "context_before": "ed in om proteome) applied to ",
+        "context_after": "-vs-4584 contrast exclusively"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "spb delta-lpxc delta-rsaa) vs ",
+        "context_after": "(delta-fur delta-sspb delta-rs"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "trometry per strain (4580 wt, ",
+        "context_after": "intermediate, 4672 rescued); d"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": " proteome) applied to 4599-vs-",
+        "context_after": "contrast exclusively"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "0.05",
+        "canonical": "0.05",
+        "kind": "decimal",
+        "context_before": "ifferential expression, fdr < ",
+        "context_after": "threshold; 3,943 caulobacter p"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 51,
+        "line_quote": "The pre-registered CtpA BORDERLINE criterion required *both* `0.05 < pvalue < 0.15` AND protein detected. Observed pvalue = 0.048 (fails lower bound), and CtpA was not detected in OM proteome \u2014 so ..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "0.05",
+        "canonical": "0.05",
+        "kind": "decimal",
+        "context_before": "; 28 meet h4 threshold (fdr < ",
+        "context_after": "or |log2| > 1 at protein)\nom p"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 51,
+        "line_quote": "The pre-registered CtpA BORDERLINE criterion required *both* `0.05 < pvalue < 0.15` AND protein detected. Observed pvalue = 0.048 (fails lower bound), and CtpA was not detected in OM proteome \u2014 so ..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "0.05",
+        "canonical": "0.05",
+        "kind": "decimal",
+        "context_before": "istered borderline criterion (",
+        "context_after": "< pvalue < 0.15 and protein de"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 51,
+        "line_quote": "The pre-registered CtpA BORDERLINE criterion required *both* `0.05 < pvalue < 0.15` AND protein detected. Observed pvalue = 0.048 (fails lower bound), and CtpA was not detected in OM proteome \u2014 so ..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "3,943",
+        "canonical": "3943",
+        "kind": "integer",
+        "context_before": "ession, fdr < 0.05 threshold; ",
+        "context_after": " caulobacter protein-coding ge"
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "3",
+        "canonical": "3",
+        "kind": "integer",
+        "context_before": "hk, cers, cerr, cpgb, cpgd) + ",
+        "context_after": "uchendu 2026 im transporter ge"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "6",
+        "canonical": "6",
+        "kind": "integer",
+        "context_before": "es tested\nsphingolipid panel: ",
+        "context_after": "core biosynthesis genes (spt, "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "6",
+        "canonical": "6",
+        "kind": "integer",
+        "context_before": "vity\ncanonical lpt apparatus: ",
+        "context_after": "transport components (msba, lp"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "53",
+        "canonical": "53",
+        "kind": "integer",
+        "context_before": "state\npg remodeling gene set: ",
+        "context_after": "loci pre-curated before de ana"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "28",
+        "canonical": "28",
+        "kind": "integer",
+        "context_before": "amidase, hydrolase families); ",
+        "context_after": "meet h4 threshold (fdr < 0.05 "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 24,
+        "line_quote": "**Path A** (Fur-released TBDTs and iron-uptake systems) shows marginal but real enrichment, with **ChvT (CCNA_03108)** \\|*t*\\| = 43.7 under envelope stress and other Fur-derepressed TBDTs (CCNA_029..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "1",
+        "canonical": "1",
+        "kind": "integer",
+        "context_before": "shold (fdr < 0.05 or |log2| > ",
+        "context_after": "at protein)\nom proteome: singl"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 7,
+        "line_quote": "### Finding 1 \u2014 \u0394*fur* \u0394*sspB* is a dual-release switch (\u0394*fur* arm statistically supported; \u0394*sspB* arm hypothesis-only)"
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4580",
+        "canonical": "4580",
+        "kind": "integer",
+        "context_before": "mass-spectrometry per strain (",
+        "context_after": "wt, 4584 intermediate, 4672 re"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "4672",
+        "canonical": "4672",
+        "kind": "integer",
+        "context_before": " (4580 wt, 4584 intermediate, ",
+        "context_after": "rescued); direction interpreta"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 55,
+        "line_quote": "| Protein | log2(4672/4659) | log2(4672/4580) |"
+      }
+    },
+    {
+      "slide_id": 18,
+      "slide_position": 18,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "0.15",
+        "canonical": "0.15",
+        "kind": "decimal",
+        "context_before": "ne criterion (0.05 < pvalue < ",
+        "context_after": "and protein detected in om pro"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 51,
+        "line_quote": "The pre-registered CtpA BORDERLINE criterion required *both* `0.05 < pvalue < 0.15` AND protein detected. Observed pvalue = 0.048 (fails lower bound), and CtpA was not detected in OM proteome \u2014 so ..."
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "0",
+        "canonical": "0",
+        "kind": "integer",
+        "context_before": "biosynthesis is constitutive: ",
+        "context_after": "of 6 pathway genes induced whe"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "0",
+        "canonical": "0",
+        "kind": "integer",
+        "context_before": "0, fdr 0.02) are mildly down; ",
+        "context_after": "of 6 core biosynthesis genes i"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "6",
+        "canonical": "6",
+        "kind": "integer",
+        "context_before": "nthesis is constitutive: 0 of ",
+        "context_after": "pathway genes induced when lip"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "6",
+        "canonical": "6",
+        "kind": "integer",
+        "context_before": "r 0.02) are mildly down; 0 of ",
+        "context_after": "core biosynthesis genes is sig"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "0.64",
+        "canonical": "0.64",
+        "kind": "decimal",
+        "context_before": "n across strain series; spt (-",
+        "context_after": ", fdr 0.002) and sphk (-0.40, "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 48,
+        "line_quote": "| Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |"
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "regulated.\nreport.md \u00a7finding ",
+        "context_after": "; notebooks/04_sphingolipid_lp"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "ngolipid_lpt_panel.ipynb cell ",
+        "context_after": ""
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "0.002",
+        "canonical": "0.002",
+        "kind": "decimal",
+        "context_before": "train series; spt (-0.64, fdr ",
+        "context_after": ") and sphk (-0.40, fdr 0.02) a"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 48,
+        "line_quote": "| Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |"
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "0.40",
+        "canonical": "0.40",
+        "kind": "decimal",
+        "context_before": "(-0.64, fdr 0.002) and sphk (-",
+        "context_after": ", fdr 0.02) are mildly down; 0"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 48,
+        "line_quote": "| Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |"
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "0.02",
+        "canonical": "0.02",
+        "kind": "decimal",
+        "context_before": "r 0.002) and sphk (-0.40, fdr ",
+        "context_after": ") are mildly down; 0 of 6 core"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 48,
+        "line_quote": "| Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |"
+      }
+    },
+    {
+      "slide_id": 19,
+      "slide_position": 19,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "04",
+        "canonical": "04",
+        "kind": "integer",
+        "context_before": "port.md \u00a7finding 4; notebooks/",
+        "context_after": "_sphingolipid_lpt_panel.ipynb "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "4599",
+        "canonical": "4599",
+        "kind": "integer",
+        "context_before": "registered bar\npre-registered ",
+        "context_after": "-vs-4584 contrast: logfc +0.58"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "4599",
+        "canonical": "4599",
+        "kind": "integer",
+        "context_before": " triggers rejected\ncumulative ",
+        "context_after": "-vs-4580 fdr=0.035 is signific"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "ed bar\npre-registered 4599-vs-",
+        "context_after": "contrast: logfc +0.58, p=0.048"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.58",
+        "canonical": "0.58",
+        "kind": "decimal",
+        "context_before": "4599-vs-4584 contrast: logfc +",
+        "context_after": ", p=0.048, fdr=0.109 \u2014 fdr fai"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 47,
+        "line_quote": "| CtpA / CCNA_03113 upregulation in 4599-vs-4584 | logFC +0.58, pvalue=0.048, FDR=0.109 (transcript); NOT detected in OM proteome | **REJECTED at pre-registered bar** |"
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.048",
+        "canonical": "0.048",
+        "kind": "decimal",
+        "context_before": "4584 contrast: logfc +0.58, p=",
+        "context_after": ", fdr=0.109 \u2014 fdr fails 0.05 p"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 47,
+        "line_quote": "| CtpA / CCNA_03113 upregulation in 4599-vs-4584 | logFC +0.58, pvalue=0.048, FDR=0.109 (transcript); NOT detected in OM proteome | **REJECTED at pre-registered bar** |"
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.048",
+        "canonical": "0.048",
+        "kind": "decimal",
+        "context_before": " fails 0.05 pass threshold; p=",
+        "context_after": "also fails the borderline lowe"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 47,
+        "line_quote": "| CtpA / CCNA_03113 upregulation in 4599-vs-4584 | logFC +0.58, pvalue=0.048, FDR=0.109 (transcript); NOT detected in OM proteome | **REJECTED at pre-registered bar** |"
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.109",
+        "canonical": "0.109",
+        "kind": "decimal",
+        "context_before": "st: logfc +0.58, p=0.048, fdr=",
+        "context_after": "\u2014 fdr fails 0.05 pass threshol"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 47,
+        "line_quote": "| CtpA / CCNA_03113 upregulation in 4599-vs-4584 | logFC +0.58, pvalue=0.048, FDR=0.109 (transcript); NOT detected in OM proteome | **REJECTED at pre-registered bar** |"
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.05",
+        "canonical": "0.05",
+        "kind": "decimal",
+        "context_before": "=0.048, fdr=0.109 \u2014 fdr fails ",
+        "context_after": "pass threshold; p=0.048 also f"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 51,
+        "line_quote": "The pre-registered CtpA BORDERLINE criterion required *both* `0.05 < pvalue < 0.15` AND protein detected. Observed pvalue = 0.048 (fails lower bound), and CtpA was not detected in OM proteome \u2014 so ..."
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.05",
+        "canonical": "0.05",
+        "kind": "decimal",
+        "context_before": "the borderline lower bound of ",
+        "context_after": ", so borderline verdict is not"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 51,
+        "line_quote": "The pre-registered CtpA BORDERLINE criterion required *both* `0.05 < pvalue < 0.15` AND protein detected. Observed pvalue = 0.048 (fails lower bound), and CtpA was not detected in OM proteome \u2014 so ..."
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "4580",
+        "canonical": "4580",
+        "kind": "integer",
+        "context_before": "s rejected\ncumulative 4599-vs-",
+        "context_after": "fdr=0.035 is significant but c"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 21,
+      "slide_position": 21,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0.035",
+        "canonical": "0.035",
+        "kind": "decimal",
+        "context_before": "d\ncumulative 4599-vs-4580 fdr=",
+        "context_after": "is significant but conflates d"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 51,
+        "line_quote": "The pre-registered CtpA BORDERLINE criterion required *both* `0.05 < pvalue < 0.15` AND protein detected. Observed pvalue = 0.048 (fails lower bound), and CtpA was not detected in OM proteome \u2014 so ..."
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "28",
+        "canonical": "28",
+        "kind": "integer",
+        "context_before": "s down\npg-remodeling enzymes (",
+        "context_after": "of 53 pre-curated loci meeting"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 24,
+        "line_quote": "**Path A** (Fur-released TBDTs and iron-uptake systems) shows marginal but real enrichment, with **ChvT (CCNA_03108)** \\|*t*\\| = 43.7 under envelope stress and other Fur-derepressed TBDTs (CCNA_029..."
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "53",
+        "canonical": "53",
+        "kind": "integer",
+        "context_before": "\npg-remodeling enzymes (28 of ",
+        "context_after": "pre-curated loci meeting h4 th"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "5",
+        "canonical": "5",
+        "kind": "integer",
+        "context_before": "4 protein.\nreport.md \u00a7finding ",
+        "context_after": "; notebooks/05_pg_remodeling.i"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "5",
+        "canonical": "5",
+        "kind": "integer",
+        "context_before": "/05_pg_remodeling.ipynb cells ",
+        "context_after": "-6"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "20",
+        "canonical": "20",
+        "kind": "integer",
+        "context_before": "d loci meeting h4 threshold); ",
+        "context_after": "down (division and elongation "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "4.8",
+        "canonical": "4.8",
+        "kind": "decimal",
+        "context_before": "); specific inductions: sdpa +",
+        "context_after": "log2 protein, pal +2.08 transc"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 71,
+        "line_quote": "- **SdpA CCNA_01252 +4.8 log2 protein** \u2014 soluble lytic murein transglycosylase"
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "2.08",
+        "canonical": "2.08",
+        "kind": "decimal",
+        "context_before": " sdpa +4.8 log2 protein, pal +",
+        "context_after": "transcript and +2.84 protein.\n"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "2.84",
+        "canonical": "2.84",
+        "kind": "decimal",
+        "context_before": "in, pal +2.08 transcript and +",
+        "context_after": "protein.\nreport.md \u00a7finding 5;"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 72,
+        "line_quote": "- **Pal CCNA_00784 +2.08 transcript AND +2.84 protein** \u2014 peptidoglycan-associated OM lipoprotein (Tol-Pal envelope-integrity complex). **Also a top late-cohort ChvI gene from NB03** \u2014 strong cross..."
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "05",
+        "canonical": "05",
+        "kind": "integer",
+        "context_before": "port.md \u00a7finding 5; notebooks/",
+        "context_after": "_pg_remodeling.ipynb cells 5-6"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 49,
+        "line_quote": "| Canonical Lpt apparatus maintained (transcript) | 0 components DOWN at transcript; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED at transcript l..."
+      }
+    },
+    {
+      "slide_id": 22,
+      "slide_position": 22,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "6",
+        "canonical": "6",
+        "kind": "integer",
+        "context_before": "5_pg_remodeling.ipynb cells 5-",
+        "context_after": ""
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 24,
+      "slide_position": 24,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "0",
+        "canonical": "0",
+        "kind": "integer",
+        "context_before": " lipid a genes (lpxa/c/d/b/k: ",
+        "context_after": "pb hits vs. 11-18 ncbi each)\nn"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 24,
+      "slide_position": 24,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "17978",
+        "canonical": "17978",
+        "kind": "integer",
+        "context_before": "tus na1000, a. baumannii atcc ",
+        "context_after": ", n. meningitidis mc58, m. cat"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 343,
+        "line_quote": "8. **Sequence-based homology search for the comparative arm** (deeper than NB06b annotation). NB06b's NCBI annotation re-test confirmed the headline biological claims, but annotation-based search m..."
+      }
+    },
+    {
+      "slide_id": 24,
+      "slide_position": 24,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "18",
+        "canonical": "18",
+        "kind": "integer",
+        "context_before": "pxa/c/d/b/k: 0 pb hits vs. 11-",
+        "context_after": "ncbi each)\nnb06b (authoritativ"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 24,
+      "slide_position": 24,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "80%",
+        "canonical": "80",
+        "kind": "percent",
+        "context_before": ": paperblast text-matching \u2014 ~",
+        "context_after": " false-negative rate for caulo"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 113,
+        "line_quote": "| **Method check** | NB06 PaperBLAST false-negative rate | (NB06b NCBI cross-check) | LpxA/C/D/B/K all 0 in PB Cc, 11-18 in NCBI Cc | **PB false-negative rate ~80% for Caulobacter lipid A genes**; ..."
+      }
+    },
+    {
+      "slide_id": 24,
+      "slide_position": 24,
+      "slide_layout": "methods_summary",
+      "number": {
+        "raw": "11",
+        "canonical": "11",
+        "kind": "integer",
+        "context_before": " (lpxa/c/d/b/k: 0 pb hits vs. ",
+        "context_after": "-18 ncbi each)\nnb06b (authorit"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 25,
+      "slide_position": 25,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "0",
+        "canonical": "0",
+        "kind": "integer",
+        "context_before": "nnotation hit counts (nb06b); ",
+        "context_after": "hits in all three comparators "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 25,
+      "slide_position": 25,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "06",
+        "canonical": "06",
+        "kind": "integer",
+        "context_before": "port.md \u00a7finding 6; notebooks/",
+        "context_after": "b_ncbi_annotation_presence.ipy"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 91,
+        "line_quote": "*(Notebook: 06_comparative_species.ipynb)*"
+      }
+    },
+    {
+      "slide_id": 25,
+      "slide_position": 25,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "6",
+        "canonical": "6",
+        "kind": "integer",
+        "context_before": " families.\nreport.md \u00a7finding ",
+        "context_after": "; notebooks/06b_ncbi_annotatio"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 25,
+      "slide_position": 25,
+      "slide_layout": "data_table",
+      "number": {
+        "raw": "5",
+        "canonical": "5",
+        "kind": "integer",
+        "context_before": "nnotation_presence.ipynb cell ",
+        "context_after": ""
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 26,
+      "slide_position": 26,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "0",
+        "canonical": "0",
+        "kind": "integer",
+        "context_before": "lobacter lipid a genes (lpxc: ",
+        "context_after": "pb hits, 15 ncbi) \u2014 nb06b conf"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 26,
+      "slide_position": 26,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "15",
+        "canonical": "15",
+        "kind": "integer",
+        "context_before": "pid a genes (lpxc: 0 pb hits, ",
+        "context_after": "ncbi) \u2014 nb06b confirms compara"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 26,
+      "slide_position": 26,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "8",
+        "canonical": "8",
+        "kind": "integer",
+        "context_before": "ep (report future directions \u00a7",
+        "context_after": ")\npaperblast false-negative ra"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 26,
+      "slide_position": 26,
+      "slide_layout": "claim_evidence",
+      "number": {
+        "raw": "80%",
+        "canonical": "80",
+        "kind": "percent",
+        "context_before": "perblast false-negative rate ~",
+        "context_after": " for caulobacter lipid a genes"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 113,
+        "line_quote": "| **Method check** | NB06 PaperBLAST false-negative rate | (NB06b NCBI cross-check) | LpxA/C/D/B/K all 0 in PB Cc, 11-18 in NCBI Cc | **PB false-negative rate ~80% for Caulobacter lipid A genes**; ..."
+      }
+    },
+    {
+      "slide_id": 27,
+      "slide_position": 27,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "1",
+        "canonical": "1",
+        "kind": "integer",
+        "context_before": "orecard) and \u00a7interpretation \u00a7",
+        "context_after": "-9; notebooks/07_synthesis.ipy"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 7,
+        "line_quote": "### Finding 1 \u2014 \u0394*fur* \u0394*sspB* is a dual-release switch (\u0394*fur* arm statistically supported; \u0394*sspB* arm hypothesis-only)"
+      }
+    },
+    {
+      "slide_id": 27,
+      "slide_position": 27,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "9",
+        "canonical": "9",
+        "kind": "integer",
+        "context_before": "ecard) and \u00a7interpretation \u00a71-",
+        "context_after": "; notebooks/07_synthesis.ipynb"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 27,
+      "slide_position": 27,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "07",
+        "canonical": "07",
+        "kind": "integer",
+        "context_before": "nterpretation \u00a71-9; notebooks/",
+        "context_after": "_synthesis.ipynb cell 2"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 27,
+      "slide_position": 27,
+      "slide_layout": "data_figure",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "books/07_synthesis.ipynb cell ",
+        "context_after": ""
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 28,
+      "slide_position": 28,
+      "slide_layout": "deck_close",
+      "number": {
+        "raw": "00",
+        "canonical": "00",
+        "kind": "integer",
+        "context_before": "lot) + s5 (c-slot); narrative/",
+        "context_after": "_throughline.md; report.md \u00a7fu"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 24,
+        "line_quote": "**Path A** (Fur-released TBDTs and iron-uptake systems) shows marginal but real enrichment, with **ChvT (CCNA_03108)** \\|*t*\\| = 43.7 under envelope stress and other Fur-derepressed TBDTs (CCNA_029..."
+      }
+    },
+    {
+      "slide_id": 29,
+      "slide_position": 29,
+      "slide_layout": "cross_tenant_integration",
+      "number": {
+        "raw": "6",
+        "canonical": "6",
+        "kind": "integer",
+        "context_before": "this work integrates ",
+        "context_after": "k-berdl databases + 1 external"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 29,
+      "slide_position": 29,
+      "slide_layout": "cross_tenant_integration",
+      "number": {
+        "raw": "1",
+        "canonical": "1",
+        "kind": "integer",
+        "context_before": "egrates 6 k-berdl databases + ",
+        "context_after": "external reference catalog (re"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 7,
+        "line_quote": "### Finding 1 \u2014 \u0394*fur* \u0394*sspB* is a dual-release switch (\u0394*fur* arm statistically supported; \u0394*sspB* arm hypothesis-only)"
+      }
+    },
+    {
+      "slide_id": 29,
+      "slide_position": 29,
+      "slide_layout": "cross_tenant_integration",
+      "number": {
+        "raw": "10",
+        "canonical": "10",
+        "kind": "integer",
+        "context_before": "rence catalog (refseq) across ",
+        "context_after": "notebooks within a single tena"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "oth \u03b4fur and iron-limitation (",
+        "context_after": ",2'-dipyridyl chelation) condi"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "h \u03b4fur and iron-limitation (2,",
+        "context_after": "'-dipyridyl chelation) conditi"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4599",
+        "canonical": "4599",
+        "kind": "integer",
+        "context_before": "downstream analysis using the ",
+        "context_after": "-vs-4584 and 4584-vs-4580 tran"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "report.md \u00a7limitations bullet ",
+        "context_after": "(single growth condition, pye "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "am analysis using the 4599-vs-",
+        "context_after": "and 4584-vs-4580 transcriptome"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4584",
+        "canonical": "4584",
+        "kind": "integer",
+        "context_before": "is using the 4599-vs-4584 and ",
+        "context_after": "-vs-4580 transcriptomes collec"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4580",
+        "canonical": "4580",
+        "kind": "integer",
+        "context_before": " the 4599-vs-4584 and 4584-vs-",
+        "context_after": "transcriptomes collected under"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "01",
+        "canonical": "01",
+        "kind": "integer",
+        "context_before": "n-vs-\u03b4fur discrimination); nb ",
+        "context_after": "_leaden2018_fur_signature.ipyn"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1",
+        "canonical": "1",
+        "kind": "integer",
+        "context_before": "pye rich); report.md \u00a7finding ",
+        "context_after": "(leaden concordance and iron-v"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 7,
+        "line_quote": "### Finding 1 \u2014 \u0394*fur* \u0394*sspB* is a dual-release switch (\u0394*fur* arm statistically supported; \u0394*sspB* arm hypothesis-only)"
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "7",
+        "canonical": "7",
+        "kind": "integer",
+        "context_before": "leaden et al. 2018 (nb01 cell ",
+        "context_after": ", figures/nb01_leaden_iron_vs_"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "7",
+        "canonical": "7",
+        "kind": "integer",
+        "context_before": "2018_fur_signature.ipynb cell ",
+        "context_after": "(iron-vs-\u03b4fur internal compari"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "93",
+        "canonical": "93",
+        "kind": "integer",
+        "context_before": " membership: whether the same ",
+        "context_after": "leaden degs overlap with condi"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "79",
+        "canonical": "79",
+        "kind": "integer",
+        "context_before": "tested.\n- chvi partition: all ",
+        "context_after": "engaged chvi genes were called"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 31,
+        "line_quote": "- **unique-to-early** \u2014 20 genes induced in 4584-vs-4580 but NOT 4599-vs-4584; includes the lasso peptide cyclase CCNA_02794 +8.6, the ApbE iron-sulfur cluster repair protein +3.8, and *imuB* SOS D..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.64",
+        "canonical": "0.64",
+        "kind": "decimal",
+        "context_before": "ngolipid constitutivity: spt \u2212",
+        "context_after": "(fdr 0.002), sphk \u22120.40 (fdr 0"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 48,
+        "line_quote": "| Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |"
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "6",
+        "canonical": "6",
+        "kind": "integer",
+        "context_before": "ep (report future directions \u00a7",
+        "context_after": ": iron-axis fitness experiment"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.002",
+        "canonical": "0.002",
+        "kind": "decimal",
+        "context_before": "onstitutivity: spt \u22120.64 (fdr ",
+        "context_after": "), sphk \u22120.40 (fdr 0.02) are s"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 48,
+        "line_quote": "| Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |"
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.40",
+        "canonical": "0.40",
+        "kind": "decimal",
+        "context_before": " spt \u22120.64 (fdr 0.002), sphk \u2212",
+        "context_after": "(fdr 0.02) are small downregul"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 48,
+        "line_quote": "| Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |"
+      }
+    },
+    {
+      "slide_id": 30,
+      "slide_position": 30,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.02",
+        "canonical": "0.02",
+        "kind": "decimal",
+        "context_before": " (fdr 0.002), sphk \u22120.40 (fdr ",
+        "context_after": ") are small downregulations th"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 48,
+        "line_quote": "| Sphingolipid biosynthesis pathway constitutive (not induced) | 0/6 biosynthesis genes UP; *spt* DOWN -0.64 FDR 0.002; *sphk* DOWN -0.40 FDR 0.02 | SUPPORTED strongly |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "y unresolved (report \u00a7finding ",
+        "context_after": ", \u00a7limitations). two interpret"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": " numbers from report \u00a7finding ",
+        "context_after": ": lptd (ccna_01760) log2(4672/"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "or claims.\nreport.md \u00a7finding ",
+        "context_after": "(lpt apparatus protein table: "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "golipid_lpt_panel.ipynb cells ",
+        "context_after": "& 6"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1",
+        "canonical": "1",
+        "kind": "integer",
+        "context_before": "tions). two interpretations: (",
+        "context_after": ") substrate limitation \u2014 with "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 7,
+        "line_quote": "### Finding 1 \u2014 \u0394*fur* \u0394*sspB* is a dual-release switch (\u0394*fur* arm statistically supported; \u0394*sspB* arm hypothesis-only)"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1",
+        "canonical": "1",
+        "kind": "integer",
+        "context_before": "d.\n\nthe two interpretations:\n\n",
+        "context_after": ". substrate limitation: lptd a"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 7,
+        "line_quote": "### Finding 1 \u2014 \u0394*fur* \u0394*sspB* is a dual-release switch (\u0394*fur* arm statistically supported; \u0394*sspB* arm hypothesis-only)"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1",
+        "canonical": "1",
+        "kind": "integer",
+        "context_before": "e: 'we present interpretation ",
+        "context_after": "as the most parsimonious readi"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 7,
+        "line_quote": "### Finding 1 \u2014 \u0394*fur* \u0394*sspB* is a dual-release switch (\u0394*fur* arm statistically supported; \u0394*sspB* arm hypothesis-only)"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": " abundance adjusts downward; (",
+        "context_after": ") genuine downregulation, whic"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "26's shared-component model.\n\n",
+        "context_after": ". genuine downregulation: the "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "report.md \u00a7limitations bullet ",
+        "context_after": "(single-replicate om proteome,"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "6",
+        "canonical": "6",
+        "kind": "integer",
+        "context_before": "pid_lpt_panel.ipynb cells 4 & ",
+        "context_after": ""
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4672/4659",
+        "canonical": "4672/4659",
+        "kind": "ratio",
+        "context_before": "ing 4: lptd (ccna_01760) log2(",
+        "context_after": ") = \u22120.47, log2(4672/4580) = \u2212"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 55,
+        "line_quote": "| Protein | log2(4672/4659) | log2(4672/4580) |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4672/4659",
+        "canonical": "4672/4659",
+        "kind": "ratio",
+        "context_before": "\u22120.62. lpte (ccna_03866) log2(",
+        "context_after": ") = \u22120.78, log2(4672/4580) = \u2212"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 55,
+        "line_quote": "| Protein | log2(4672/4659) | log2(4672/4580) |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.47",
+        "canonical": "0.47",
+        "kind": "decimal",
+        "context_before": "cna_01760) log2(4672/4659) = \u2212",
+        "context_after": ", log2(4672/4580) = \u22120.62. lpt"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 57,
+        "line_quote": "| LptD (CCNA_01760) | **\u22120.47** | \u22120.62 |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.47",
+        "canonical": "0.47",
+        "kind": "decimal",
+        "context_before": "tus protein table: lptd log2 \u2212",
+        "context_after": "/\u22120.62, lpte log2 \u22120.78/\u22120.68;"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 57,
+        "line_quote": "| LptD (CCNA_01760) | **\u22120.47** | \u22120.62 |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4672/4580",
+        "canonical": "4672/4580",
+        "kind": "ratio",
+        "context_before": "log2(4672/4659) = \u22120.47, log2(",
+        "context_after": ") = \u22120.62. lpte (ccna_03866) l"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 55,
+        "line_quote": "| Protein | log2(4672/4659) | log2(4672/4580) |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4672/4580",
+        "canonical": "4672/4580",
+        "kind": "ratio",
+        "context_before": "log2(4672/4659) = \u22120.78, log2(",
+        "context_after": ") = \u22120.68. these are the only "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 55,
+        "line_quote": "| Protein | log2(4672/4659) | log2(4672/4580) |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.62",
+        "canonical": "0.62",
+        "kind": "decimal",
+        "context_before": ") = \u22120.47, log2(4672/4580) = \u2212",
+        "context_after": ". lpte (ccna_03866) log2(4672/"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 57,
+        "line_quote": "| LptD (CCNA_01760) | **\u22120.47** | \u22120.62 |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.62",
+        "canonical": "0.62",
+        "kind": "decimal",
+        "context_before": "otein table: lptd log2 \u22120.47/\u2212",
+        "context_after": ", lpte log2 \u22120.78/\u22120.68; msba-"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 57,
+        "line_quote": "| LptD (CCNA_01760) | **\u22120.47** | \u22120.62 |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.78",
+        "canonical": "0.78",
+        "kind": "decimal",
+        "context_before": "cna_03866) log2(4672/4659) = \u2212",
+        "context_after": ", log2(4672/4580) = \u22120.68. the"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 58,
+        "line_quote": "| LptE (CCNA_03866) | **\u22120.78** | \u22120.68 |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.78",
+        "canonical": "0.78",
+        "kind": "decimal",
+        "context_before": " log2 \u22120.47/\u22120.62, lpte log2 \u2212",
+        "context_after": "/\u22120.68; msba-like +0.89 fdr 0."
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 58,
+        "line_quote": "| LptE (CCNA_03866) | **\u22120.78** | \u22120.68 |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.68",
+        "canonical": "0.68",
+        "kind": "decimal",
+        "context_before": ") = \u22120.78, log2(4672/4580) = \u2212",
+        "context_after": ". these are the only two canon"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 58,
+        "line_quote": "| LptE (CCNA_03866) | **\u22120.78** | \u22120.68 |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.68",
+        "canonical": "0.68",
+        "kind": "decimal",
+        "context_before": "\u22120.47/\u22120.62, lpte log2 \u22120.78/\u2212",
+        "context_after": "; msba-like +0.89 fdr 0.01, lp"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 58,
+        "line_quote": "| LptE (CCNA_03866) | **\u22120.78** | \u22120.68 |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.89",
+        "canonical": "0.89",
+        "kind": "decimal",
+        "context_before": "ike ccna_00307 transcript is +",
+        "context_after": "(fdr 0.01) and lptc-related cc"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 49,
+        "line_quote": "| Canonical Lpt apparatus maintained (transcript) | 0 components DOWN at transcript; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED at transcript l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.89",
+        "canonical": "0.89",
+        "kind": "decimal",
+        "context_before": " log2 \u22120.78/\u22120.68; msba-like +",
+        "context_after": "fdr 0.01, lptc-related +0.56 f"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 49,
+        "line_quote": "| Canonical Lpt apparatus maintained (transcript) | 0 components DOWN at transcript; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED at transcript l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.01",
+        "canonical": "0.01",
+        "kind": "decimal",
+        "context_before": "0307 transcript is +0.89 (fdr ",
+        "context_after": ") and lptc-related ccna_03716 "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.01",
+        "canonical": "0.01",
+        "kind": "decimal",
+        "context_before": "78/\u22120.68; msba-like +0.89 fdr ",
+        "context_after": ", lptc-related +0.56 fdr 0.005"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.56",
+        "canonical": "0.56",
+        "kind": "decimal",
+        "context_before": "ted ccna_03716 transcript is +",
+        "context_after": "(fdr 0.005) \u2014 both significant"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 49,
+        "line_quote": "| Canonical Lpt apparatus maintained (transcript) | 0 components DOWN at transcript; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED at transcript l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.56",
+        "canonical": "0.56",
+        "kind": "decimal",
+        "context_before": "+0.89 fdr 0.01, lptc-related +",
+        "context_after": "fdr 0.005); report.md \u00a7limitat"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 49,
+        "line_quote": "| Canonical Lpt apparatus maintained (transcript) | 0 components DOWN at transcript; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED at transcript l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.005",
+        "canonical": "0.005",
+        "kind": "decimal",
+        "context_before": "3716 transcript is +0.56 (fdr ",
+        "context_after": ") \u2014 both significantly upregul"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 49,
+        "line_quote": "| Canonical Lpt apparatus maintained (transcript) | 0 components DOWN at transcript; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED at transcript l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.005",
+        "canonical": "0.005",
+        "kind": "decimal",
+        "context_before": " 0.01, lptc-related +0.56 fdr ",
+        "context_after": "); report.md \u00a7limitations bull"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 49,
+        "line_quote": "| Canonical Lpt apparatus maintained (transcript) | 0 components DOWN at transcript; **MsbA-like CCNA_00307 +0.89 FDR 0.01**, **LptC-related CCNA_03716 +0.56 FDR 0.005** | SUPPORTED at transcript l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.60",
+        "canonical": "0.60",
+        "kind": "decimal",
+        "context_before": "s interpretation: transcript \u2212",
+        "context_after": "(fdr 0.034) but protein +1.08 "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 62,
+        "line_quote": "***lptC2* pilot observation (single replicate, requires replication)**: the Uchendu 2026 Caulobacter-specific sphingolipid IM transporter CCNA_01226 shows transcript -0.60 (FDR 0.034) but PROTEIN l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.034",
+        "canonical": "0.034",
+        "kind": "decimal",
+        "context_before": "tation: transcript \u22120.60 (fdr ",
+        "context_after": ") but protein +1.08 log2 versu"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 62,
+        "line_quote": "***lptC2* pilot observation (single replicate, requires replication)**: the Uchendu 2026 Caulobacter-specific sphingolipid IM transporter CCNA_01226 shows transcript -0.60 (FDR 0.034) but PROTEIN l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1.08",
+        "canonical": "1.08",
+        "kind": "decimal",
+        "context_before": "0.60 (fdr 0.034) but protein +",
+        "context_after": "log2 versus intermediate (net "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 62,
+        "line_quote": "***lptC2* pilot observation (single replicate, requires replication)**: the Uchendu 2026 Caulobacter-specific sphingolipid IM transporter CCNA_01226 shows transcript -0.60 (FDR 0.034) but PROTEIN l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.66",
+        "canonical": "0.66",
+        "kind": "decimal",
+        "context_before": "og2 versus intermediate (net +",
+        "context_after": "log2 vs wt baseline after prio"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 62,
+        "line_quote": "***lptC2* pilot observation (single replicate, requires replication)**: the Uchendu 2026 Caulobacter-specific sphingolipid IM transporter CCNA_01226 shows transcript -0.60 (FDR 0.034) but PROTEIN l..."
+      }
+    },
+    {
+      "slide_id": 31,
+      "slide_position": 31,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "04",
+        "canonical": "04",
+        "kind": "integer",
+        "context_before": "proteome, direction only); nb ",
+        "context_after": "_sphingolipid_lpt_panel.ipynb "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1",
+        "canonical": "1",
+        "kind": "integer",
+        "context_before": "effect size could be close to ",
+        "context_after": ".\n\nthe adversarial reviewer re"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 7,
+        "line_quote": "### Finding 1 \u2014 \u0394*fur* \u0394*sspB* is a dual-release switch (\u0394*fur* arm statistically supported; \u0394*sspB* arm hypothesis-only)"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "n=26",
+        "canonical": "26",
+        "kind": "n_eq",
+        "context_before": "internal control is path b at ",
+        "context_after": " (comparable size), which retu"
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "n=26",
+        "canonical": "26",
+        "kind": "n_eq",
+        "context_before": "ve interpretation. path b has ",
+        "context_after": " (versus path a n=32) \u2014 compar"
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "26",
+        "canonical": "26",
+        "kind": "integer",
+        "context_before": "ndistinguishable from drawing ",
+        "context_after": "random caulobacter genes. if p"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "tablished.\nreport.md \u00a7finding ",
+        "context_after": "(enrichment table: path a fold"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "2",
+        "canonical": "2",
+        "kind": "integer",
+        "context_before": "rgeometric_verdict.ipynb cell ",
+        "context_after": ""
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 9,
+        "line_quote": "The 4584-vs-4580 contrast (\u0394*fur* \u0394*sspB* \u0394*rsaA* vs \u0394*rsaA*) correlates with Leaden 2018's \u0394*fur* signal at Spearman \u03c1 = 0.315, p = 2.08e-03 over 93 Leaden \u0394*fur* DEGs, with 71% sign concordance \u2014..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.515",
+        "canonical": "0.515",
+        "kind": "decimal",
+        "context_before": "arable size), which returns p=",
+        "context_after": ", fold 1.04\u00d7 \u2014 if path a's sig"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.515",
+        "canonical": "0.515",
+        "kind": "decimal",
+        "context_before": "4 criterion. path b returns p=",
+        "context_after": ", fold=1.04\u00d7 \u2014 statistically i"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.515",
+        "canonical": "0.515",
+        "kind": "decimal",
+        "context_before": "is cleanly null. the 0.016 vs ",
+        "context_after": "contrast between two comparabl"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.515",
+        "canonical": "0.515",
+        "kind": "decimal",
+        "context_before": " 33.25%; path b fold 1.04\u00d7, p=",
+        "context_after": "); 00_plan.md \u00a7tier verdict (a"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1.04",
+        "canonical": "1.04",
+        "kind": "decimal",
+        "context_before": ", which returns p=0.515, fold ",
+        "context_after": "\u00d7 \u2014 if path a's signal were sa"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1.04",
+        "canonical": "1.04",
+        "kind": "decimal",
+        "context_before": " path b returns p=0.515, fold=",
+        "context_after": "\u00d7 \u2014 statistically indistinguis"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1.04",
+        "canonical": "1.04",
+        "kind": "decimal",
+        "context_before": "ackground 33.25%; path b fold ",
+        "context_after": "\u00d7, p=0.515); 00_plan.md \u00a7tier "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 22,
+        "line_quote": "| Path B (SspB-buffered, cbb3/*fix*-rich) | 26 | 9 | 34.6% | fold = 1.04\u00d7, p = 0.515 | **indistinguishable from background** |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "-stress experiments, same |t|>",
+        "context_after": "criterion. path b returns p=0."
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "4",
+        "canonical": "4",
+        "kind": "integer",
+        "context_before": "on (report future directions \u00a7",
+        "context_after": ") before being claimed as esta"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 5,
+        "line_quote": "![Master synthesis figure \u2014 4-panel summary of all five mechanism layers](figures/NB07_synthesis_master.png)"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "n=32",
+        "canonical": "32",
+        "kind": "n_eq",
+        "context_before": "wer concern is legitimate. at ",
+        "context_after": ", k_obs=17, the 95% confidence"
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "n=32",
+        "canonical": "32",
+        "kind": "n_eq",
+        "context_before": "ath b has n=26 (versus path a ",
+        "context_after": ") \u2014 comparable sample sizes, i"
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "17",
+        "canonical": "17",
+        "kind": "integer",
+        "context_before": "is legitimate. at n=32, k_obs=",
+        "context_after": ", the 95% confidence interval "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "95%",
+        "canonical": "95",
+        "kind": "percent",
+        "context_before": "imate. at n=32, k_obs=17, the ",
+        "context_after": " confidence interval on the ob"
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 133,
+        "line_quote": "The Caulobacter compendium covers 95 stress experiments (envelope-, drug-, metal-related stresses), 46 nitrogen-source, 42 carbon-source, 10 PYE control, plus 5 others. Zero pure iron-limitation ex..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "53.1%",
+        "canonical": "53.1",
+        "kind": "percent",
+        "context_before": "l on the observed proportion (",
+        "context_after": ") by clopper-pearson runs appr"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "35%",
+        "canonical": "35",
+        "kind": "percent",
+        "context_before": "er-pearson runs approximately ",
+        "context_after": "\u201370%. mapped against the 33.25"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 102,
+        "line_quote": "| **H2** | Path B (SspB-buffered) | \u226510% phenotype-bearing | 9/26 = 35% (fold 1.04\u00d7, p=0.515 \u2014 NOT enriched vs background) | THRESHOLD-PASSED but **not enriched**; arm demoted to hypothesis |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "70%",
+        "canonical": "70",
+        "kind": "percent",
+        "context_before": "earson runs approximately 35%\u2013",
+        "context_after": ". mapped against the 33.25% ba"
+      },
+      "match": {
+        "match_form": "comma_normalized",
+        "line_number": 210,
+        "line_quote": "- **Stein et al. 2021** (PMID 34124942) and **Quintero-Yanes et al. 2022** (PMID 36480504) \u2014 published Caulobacter ChvI regulons used as reference sets for the H1 partition test. **Greenwich et al...."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "33.25%",
+        "canonical": "33.25",
+        "kind": "percent",
+        "context_before": "y 35%\u201370%. mapped against the ",
+        "context_after": " background, the fold-enrichme"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "33.25%",
+        "canonical": "33.25",
+        "kind": "percent",
+        "context_before": " were sampling noise from the ",
+        "context_after": " background, a similarly-sized"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "33.25%",
+        "canonical": "33.25",
+        "kind": "percent",
+        "context_before": " 1.60\u00d7, p=0.016 vs background ",
+        "context_after": "; path b fold 1.04\u00d7, p=0.515);"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 17,
+        "line_quote": "The **genome background** phenotype-bearing rate (|fitness *t*| > 4 in \u2265 2 envelope-stress experiments) is **33.25%** (n=3943 Caulobacter genes; K=1311 phenotype-bearing). The pre-registered \u226510% t..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "2.1",
+        "canonical": "2.1",
+        "kind": "decimal",
+        "context_before": "terval spans roughly 1.05\u00d7 to ",
+        "context_after": "\u00d7. the true effect size could "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 347,
+        "line_quote": "- Zik JJ, Yoon SH, Guan Z, et al., Klein EA, Ryan KR. (2022). \"Caulobacter lipid A is conditionally dispensable in the absence of *fur* and in the presence of anionic sphingolipids.\" *Cell Reports*..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "00",
+        "canonical": "00",
+        "kind": "integer",
+        "context_before": "ed fold = 1.598\u00d7, p = 0.0156 (",
+        "context_after": "_plan.md \u00a7tier verdict: 'exter"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 24,
+        "line_quote": "**Path A** (Fur-released TBDTs and iron-uptake systems) shows marginal but real enrichment, with **ChvT (CCNA_03108)** \\|*t*\\| = 43.7 under envelope stress and other Fur-derepressed TBDTs (CCNA_029..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "00",
+        "canonical": "00",
+        "kind": "integer",
+        "context_before": " path b fold 1.04\u00d7, p=0.515); ",
+        "context_after": "_plan.md \u00a7tier verdict (advers"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 24,
+        "line_quote": "**Path A** (Fur-released TBDTs and iron-uptake systems) shows marginal but real enrichment, with **ChvT (CCNA_03108)** \\|*t*\\| = 43.7 under envelope stress and other Fur-derepressed TBDTs (CCNA_029..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "02",
+        "canonical": "02",
+        "kind": "integer",
+        "context_before": ".0156, bonferroni-robust); nb ",
+        "context_after": "b_h2_hypergeometric_verdict.ip"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 24,
+        "line_quote": "**Path A** (Fur-released TBDTs and iron-uptake systems) shows marginal but real enrichment, with **ChvT (CCNA_03108)** \\|*t*\\| = 43.7 under envelope stress and other Fur-derepressed TBDTs (CCNA_029..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "22",
+        "canonical": "22",
+        "kind": "integer",
+        "context_before": " identical fitness data, same ",
+        "context_after": "envelope-stress experiments, s"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 30,
+        "line_quote": "The published ChvI regulons (Stein 2021 + Quintero-Yanes 2022; union = 488 ChvI-induced genes in the tested universe) partition into three disjoint sets:"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.016",
+        "canonical": "0.016",
+        "kind": "decimal",
+        "context_before": "lobacter genes. if path a's p=",
+        "context_after": "were sampling noise from the 3"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.016",
+        "canonical": "0.016",
+        "kind": "decimal",
+        "context_before": ", path b is cleanly null. the ",
+        "context_after": "vs 0.515 contrast between two "
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "0.016",
+        "canonical": "0.016",
+        "kind": "decimal",
+        "context_before": "t table: path a fold 1.60\u00d7, p=",
+        "context_after": "vs background 33.25%; path b f"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "43.7",
+        "canonical": "43.7",
+        "kind": "decimal",
+        "context_before": "ing. chvt (ccna_03108) at |t|=",
+        "context_after": "under envelope stress is the h"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 24,
+        "line_quote": "**Path A** (Fur-released TBDTs and iron-uptake systems) shows marginal but real enrichment, with **ChvT (CCNA_03108)** \\|*t*\\| = 43.7 under envelope stress and other Fur-derepressed TBDTs (CCNA_029..."
+      }
+    },
+    {
+      "slide_id": 32,
+      "slide_position": 32,
+      "slide_layout": "qa_anticipated",
+      "number": {
+        "raw": "1.60",
+        "canonical": "1.60",
+        "kind": "decimal",
+        "context_before": "enrichment table: path a fold ",
+        "context_after": "\u00d7, p=0.016 vs background 33.25"
+      },
+      "match": {
+        "match_form": "verbatim",
+        "line_number": 21,
+        "line_quote": "| Path A (concordant_strong, clean Fur signature) | 32 | 17 | 53.1% | **fold = 1.60\u00d7, p = 0.016** | marginally enriched |"
+      }
+    }
+  ]
+}

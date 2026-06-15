@@ -1,0 +1,24 @@
+{
+  "id": "F002",
+  "class": "claim_evidence",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 4,
+  "slide_position": 4,
+  "slide_layout": "claim_evidence",
+  "substory_id": null,
+  "title_quote": "Approach: fitness ranking, transcript/proteome panel, and cross-species annotation screen \u2014 five mechanism layers",
+  "issue": "Bullet 2 names the things the panel investigates as 'ChvI phase structure, constitutive sphingolipid state, Lpt repurposing, and PG remodel (28 loci)'. The phrase 'Lpt repurposing' is asserted as a topic the deck delivers, but REPORT \u00a7Finding 4 protein table and \u00a7Interpretation \u00a75 explicitly classify the Lpt arm as MIXED with transcript-protein discordance (LptD \u22120.47, LptE \u22120.78), and the deck's own Q&A slide 32 instructs the speaker: 'Do not say Lpt is maintained \u2014 say transcript is consistent with Lpt maintenance; protein requires replication.' The Approach slide commits to delivering 'repurposing' that the body of the deck then has to walk back.",
+  "report_evidence": [
+    {
+      "section": "\u00a7Interpretation \u00a75",
+      "quote": "Lpt apparatus repurposing in the \u0394*lpxc* state shows transcript-protein discordance *(MIXED)*"
+    },
+    {
+      "section": "\u00a7Finding 4 protein table",
+      "quote": "LptD log2(4672/4659) = \u22120.47; LptE = \u22120.78 (decline)"
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Rephrase bullet 2 ending to: '...constitutive sphingolipid state, candidate Lpt repurposing (transcript-up, protein discordant), and PG remodel (28 loci)' \u2014 the same parenthetical the deck uses on slide 17, applied here so the Approach slide does not over-promise."
+}

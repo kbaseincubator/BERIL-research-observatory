@@ -1,0 +1,257 @@
+{
+  "schema_version": "image-decisions.v1",
+  "tier": "STRONG",
+  "mode": "talk-30",
+  "user_opt_in_exploratory": false,
+  "llm_judgment_used": true,
+  "decisions": [
+    {
+      "slide_id": "S1-pos0",
+      "substory_id": "S1",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S1-pos1",
+      "substory_id": "S1",
+      "position": 1,
+      "layout": "workflow_diagram",
+      "emit": false,
+      "reason": "LLM-judged: workflow_diagram layout already encodes the three-strain ladder visually and an illustration would compete with rather than supplement the step-by-step structure."
+    },
+    {
+      "slide_id": "S1-pos2",
+      "substory_id": "S1",
+      "position": 2,
+      "layout": "data_figure",
+      "emit": false,
+      "reason": "data_figure carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S1-pos3",
+      "substory_id": "S1",
+      "position": 3,
+      "layout": "claim_evidence",
+      "emit": false,
+      "reason": "LLM-judged: the three-way distinction (\u0394fur allele derepression vs iron-limitation vs \u0394sspB masking) is too specific to transcript-level regulatory logic for a domain-anchored illustration to represent without becoming a generic gene-regulation arrow diagram indistinguishable from any other."
+    },
+    {
+      "slide_id": "S2-pos0",
+      "substory_id": "S2",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S2-pos1",
+      "substory_id": "S2",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S2-pos2",
+      "substory_id": "S2",
+      "position": 2,
+      "layout": "data_table",
+      "emit": false,
+      "reason": "data_table carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S2-pos3",
+      "substory_id": "S2",
+      "position": 3,
+      "layout": "claim_evidence",
+      "emit": false,
+      "reason": "LLM-judged: the slide demotes a hypothesis rather than presenting a mechanism to grasp, and the core contrast (fitness enrichment indistinguishable from background) is a statistical abstraction with no domain-anchored visual element beyond generic respiratory-chain cartoons already familiar to the audience."
+    },
+    {
+      "slide_id": "S3-pos0",
+      "substory_id": "S3",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S3-pos1",
+      "substory_id": "S3",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S3-pos2",
+      "substory_id": "S3",
+      "position": 2,
+      "layout": "data_table",
+      "emit": false,
+      "reason": "data_table carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S3-pos3",
+      "substory_id": "S3",
+      "position": 3,
+      "layout": "claim_evidence",
+      "emit": false,
+      "reason": "LLM-judged: the slide reports a failed statistical test with open regulatory attribution \u2014 any illustration would reduce to unlabeled gene-network arrows or abstract sigma-factor shapes with no specific domain anchor the audience would recognize."
+    },
+    {
+      "slide_id": "S4-pos0",
+      "substory_id": "S4",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S4-pos1",
+      "substory_id": "S4",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S4-pos2",
+      "substory_id": "S4",
+      "position": 2,
+      "layout": "data_figure",
+      "emit": false,
+      "reason": "data_figure carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S4-pos3",
+      "substory_id": "S4",
+      "position": 3,
+      "layout": "two_column_compare",
+      "emit": false,
+      "reason": "LLM-judged: the slide compares transcript vs protein levels for specific genes and any illustration would compete with or duplicate the quantitative comparison the layout already carries."
+    },
+    {
+      "slide_id": "S4-pos4",
+      "substory_id": "S4",
+      "position": 4,
+      "layout": "claim_evidence",
+      "emit": false,
+      "reason": "LLM-judged: the slide is a pure statistical verdict with no mechanism concept to anchor an illustration \u2014 any image would be unlabeled significance-threshold shapes or a generic gene-expression cartoon disconnected from the rejection logic."
+    },
+    {
+      "slide_id": "S4-pos5",
+      "substory_id": "S4",
+      "position": 5,
+      "layout": "data_figure",
+      "emit": false,
+      "reason": "data_figure carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S5-pos0",
+      "substory_id": "S5",
+      "position": 0,
+      "layout": "section_divider",
+      "emit": false,
+      "reason": "section_divider is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S5-pos1",
+      "substory_id": "S5",
+      "position": 1,
+      "layout": "methods_summary",
+      "emit": false,
+      "reason": "methods_summary is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "S5-pos2",
+      "substory_id": "S5",
+      "position": 2,
+      "layout": "data_table",
+      "emit": false,
+      "reason": "data_table carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "S5-pos3",
+      "substory_id": "S5",
+      "position": 3,
+      "layout": "claim_evidence",
+      "emit": false,
+      "reason": "LLM-judged: the slide is a specificity-and-caveat audit of database search methods (PaperBLAST false-negative rates, NCBI hit counts, Pfam HMM coverage) with no mechanism or framework a domain-anchored illustration could represent without becoming a generic search-tool diagram."
+    },
+    {
+      "slide_id": "S5-pos4",
+      "substory_id": "S5",
+      "position": 4,
+      "layout": "data_figure",
+      "emit": false,
+      "reason": "data_figure carries its own figure; no AI image needed"
+    },
+    {
+      "slide_id": "pos0",
+      "substory_id": "",
+      "position": 0,
+      "layout": "cross_tenant_integration",
+      "emit": false,
+      "reason": "cross_tenant_integration is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "pos0",
+      "substory_id": "",
+      "position": 0,
+      "layout": "deck_close",
+      "emit": false,
+      "reason": "deck_close is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "intro-pos0",
+      "substory_id": "intro",
+      "position": 0,
+      "layout": "big_idea",
+      "emit": true,
+      "reason": "LLM-judged: a cartoon of a Gram-negative cell envelope showing Lipid A in the outer membrane alongside a \u0394fur mutant cell lacking Lipid A but retaining viability anchors the genetic-metabolic claim visually."
+    },
+    {
+      "slide_id": "intro-pos1",
+      "substory_id": "intro",
+      "position": 1,
+      "layout": "claim_evidence",
+      "emit": true,
+      "reason": "LLM-judged: a three-column comparison cartoon anchored to named organisms (Caulobacter, A. baumannii, N. meningitidis) with Lpt-apparatus arrows and sphingolipid membrane patches would concretize the \"why only Caulobacter\" question."
+    },
+    {
+      "slide_id": "intro-pos2",
+      "substory_id": "intro",
+      "position": 2,
+      "layout": "claim_evidence",
+      "emit": true,
+      "reason": "LLM-judged: a 3-panel strip anchoring Fur-regulon \u2192 RB-TnSeq fitness enrichment \u2192 outer-membrane proteome would give domain-specific visual structure to the three evidence streams."
+    },
+    {
+      "slide_id": "pos0",
+      "substory_id": "",
+      "position": 0,
+      "layout": "qa_anticipated",
+      "emit": false,
+      "reason": "qa_anticipated is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "pos1",
+      "substory_id": "",
+      "position": 1,
+      "layout": "qa_anticipated",
+      "emit": false,
+      "reason": "qa_anticipated is structural; no AI image affordance"
+    },
+    {
+      "slide_id": "pos2",
+      "substory_id": "",
+      "position": 2,
+      "layout": "qa_anticipated",
+      "emit": false,
+      "reason": "qa_anticipated is structural; no AI image affordance"
+    }
+  ]
+}

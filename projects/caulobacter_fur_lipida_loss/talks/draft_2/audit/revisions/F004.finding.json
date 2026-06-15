@@ -1,0 +1,20 @@
+{
+  "id": "F004",
+  "class": "citation_reality",
+  "severity": "P1",
+  "confidence": "high",
+  "slide_id": 34,
+  "slide_position": 34,
+  "slide_layout": "references",
+  "substory_id": null,
+  "citation_id": "Leaden2018",
+  "issue": "The audience-facing references slide (34) omits the keystone citation of the entire deck. Leaden 2018 (PMID 30210482) is pinned in-text on slides 4, 7, and 8 and is the source of the \u03c1=0.315 concordance that the whole S1 driver claim rests on \u2014 yet it is NOT in refs_short. Also absent: Price2018 (cited slide 12), QuinteroYanes2022 (cited slide 16), and Greenwich2023 (cited slides 16, 26). The slide sets 'full_pool_in_speaker_notes': true, i.e. the complete reference list is in speaker notes the audience never sees. A peer who wants to look up the foundational Leaden concordance cannot find it on the references slide.",
+  "report_evidence": [
+    {
+      "section": "\u00a7Finding 1 / Literature",
+      "quote": "Leaden et al. 2018 (PMID 30210482) \u2014 published Caulobacter \u0394*fur* RNA-seq ... The Spearman \u03c1 = 0.315 concordance with our 4584-vs-4580 confirms Fur derepression as a major component of our signal."
+    }
+  ],
+  "fix_target": "slide_compose.v1.md",
+  "fix_hint": "Add the four in-text-cited-but-unlisted keys to refs_short on slide 34 \u2014 at minimum Leaden 2018 (PMID 30210482), Price et al. 2018 (Fitness Browser), Quintero-Yanes 2022, Greenwich 2023. Do not rely on 'full_pool_in_speaker_notes' for citations the audience sees referenced on content slides."
+}

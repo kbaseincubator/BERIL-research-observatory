@@ -1,0 +1,122 @@
+{
+  "schema_version": "compose-fragment.v2",
+  "substory_id": "S1",
+  "substory_punchline": "Δfur derepression, not iron limitation, drives the lipid A-loss-permissive envelope state.",
+  "throughline_id": "TL1",
+  "mode": "talk-30",
+  "tier": "STRONG",
+  "slides": [
+    {
+      "position": 0,
+      "layout": "section_divider",
+      "content": {
+        "punchline": "Δfur derepression, not iron limitation, drives the lipid A-loss-permissive envelope state.",
+        "substory_number": 1
+      },
+      "speaker_notes": "This section establishes the load-bearing premise of the entire talk: the Fur transcription factor, not an iron-starvation response, is the driver of the envelope state that permits lipid A loss in Caulobacter crescentus. Our primary evidence is a cross-study concordance between our Δfur ΔsspB transcriptome and Leaden et al. 2018's published Δfur RNA-seq — 93 DEGs, Spearman ρ = 0.315, p = 2.08e-03, 71% sign concordance. That signal is the fingerprint of a Fur-derepression program, not an iron-limitation response.\n\nThree analyses underpin this section. First, the strain design — strains 4580, 4584, 4599 — was built to isolate the Fur signal step by step, and then to test whether lipid A can be removed on top of it. Second, Leaden's own internal comparison of Δfur to iron-limitation RNA-seq shows the two responses are correlated but distinct, telling us the Fur derepression we observe is constitutive — it is the genetic effect of removing Fur protein, not an iron-status readout. Third, Zik et al. 2022 established that Δfur is a necessary precondition for Δlpxc rescue: 'Fur-regulated processes, not iron status per se, underlie the ability to survive when lipid A synthesis is blocked.'\n\nOne honest scope note: our transcriptome was collected under a single PYE-rich growth condition. The Fur derepression we see is constitutive to the Δfur allele, but its magnitude under iron-deplete or nitrogen-limiting conditions has not been measured. That single-condition caveat applies most directly to the Leaden discrimination result and will be stated explicitly on the section's closing slide.\n\nThe next three slides walk through the experimental design first — so the audience understands the strain logic before they see the concordance figure — then the Leaden scatter, and finally the iron-limitation discrimination and Zik's genetic anchor. By the end of this section, the audience should hold: Fur derepression is the demonstrable driver; iron limitation is ruled out as the primary explanation; and the SspB arm buffers the respiratory operon at the transcript level.",
+      "evidence_anchors": []
+    },
+    {
+      "position": 1,
+      "layout": "workflow_diagram",
+      "content": {
+        "title": "Three-strain series isolates the Δfur derepression signal in the lipid A-loss state",
+        "diagram": {
+          "kind": "boxes_and_arrows",
+          "nodes": [
+            {
+              "id": "s4580",
+              "label": "4580 ΔrsaA (reference baseline)",
+              "shape": "parallelogram",
+              "x": 0.9,
+              "y": 1.8,
+              "w": 2.47,
+              "h": 0.9
+            },
+            {
+              "id": "s4584",
+              "label": "4584 Δfur ΔsspB ΔrsaA (dual-release, lipid A-replete)",
+              "shape": "rectangle",
+              "x": 3.77,
+              "y": 1.8,
+              "w": 2.47,
+              "h": 0.9
+            },
+            {
+              "id": "s4599",
+              "label": "4599 + ΔlpxC (lipid A-deficient rescue)",
+              "shape": "parallelogram",
+              "x": 6.64,
+              "y": 1.8,
+              "w": 2.47,
+              "h": 0.9
+            }
+          ],
+          "edges": [
+            {
+              "from": "s4580",
+              "to": "s4584",
+              "kind": "straight",
+              "label": "4584 vs 4580 = Fur arm"
+            },
+            {
+              "from": "s4584",
+              "to": "s4599",
+              "kind": "straight",
+              "label": "4599 vs 4584 = ΔlpxC arm"
+            }
+          ]
+        },
+        "step_caption": [
+          "Baseline: ΔrsaA removes surface layer; Fur/SspB intact",
+          "Δfur + ΔsspB: dual-release switch; 4584-vs-4580 = Fur arm",
+          "ΔlpxC: lipid A-deficient; Zik 2022 Δfur required precondition"
+        ]
+      },
+      "speaker_notes": "The talk's entire argument rests on a carefully constructed strain series. The genetic logic is worth making explicit before we look at any concordance data, because every subsequent contrast — S1 through S4 — derives from these three genotypes.\n\nStrain 4580 is our reference. It carries ΔrsaA, which removes the crystalline surface-layer protein that normally dominates the outer membrane. This gives us a cleaner transcriptomic and proteomic background, but leaves Fur and SspB intact and lipid A synthesis fully functional. Strain 4580 is the denominator in every contrast we will discuss.\n\nStrain 4584 adds Δfur and ΔsspB on top of the ΔrsaA background. Δfur constitutively releases the Fur regulon — primarily TonB-dependent transporters and iron-uptake systems that Fur normally represses under iron-replete conditions. ΔsspB removes the ClpXP adaptor that degrades SspB-tagged substrates; this protects the cbb3/fix respiratory operon at the transcript level, as we will see in the concordance scatter. Critically, 4584 is still lipid A-replete — the organism is viable and growing normally with an intact outer membrane. The 4584-vs-4580 transcriptomic contrast is the clean read of the Δfur derepression arm.\n\nStrain 4599 adds ΔlpxC to the 4584 background, deleting the committed step in lipid A biosynthesis. Zik et al. 2022 established that this genotype is only viable in a Δfur background — wild-type Fur strains with ΔlpxC are inviable. The 4599-vs-4584 contrast captures the ΔlpxC-specific envelope response layered on the Fur-set state, and that contrast is the substrate for substories S3 and S4.\n\nOne caveat on the design: both OM proteome contrasts are single-replicate per strain, so per-protein statistics are unavailable at the proteome level. Transcript-level DE (edgeR) is the more reliable layer for this section. Proteome findings arrive in S4 and will be explicitly labeled as direction-only, not statistically replicated. The next slide is the core S1 result: how the 4584-vs-4580 transcriptome maps onto Leaden's published Δfur signature.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Methods"},
+        {"kind": "report_section", "ref": "REPORT.md §Finding 1"},
+        {"kind": "citation_pool_key", "ref": "Zik2022"}
+      ]
+    },
+    {
+      "position": 2,
+      "layout": "data_figure",
+      "content": {
+        "title": "Spearman ρ=0.315 concordance with Leaden Δfur signal confirms constitutive derepression (n=93 DEGs)",
+        "figure": "figures/NB01_fur_signature_scatter.png",
+        "caption": "Leaden Δfur logFC vs our 4584-vs-4580 logFC; concordant_strong in dark blue, SspB-buffered set in orange, discordant in red; n=93 Δfur DEGs, Spearman ρ=0.315, p=2.08e-03.",
+        "data_source": "Leaden 2018 (PMID 30210482); NB01_leaden2018_fur_signature.ipynb cell 5"
+      },
+      "speaker_notes": "This scatter plot is the central evidence for S1. The x-axis is Leaden et al. 2018's published Δfur logFC across the 93 genes they reported as significant Δfur DEGs. The y-axis is our 4584-vs-4580 logFC for the same 93 genes. If our Δfur ΔsspB strain carries the same constitutive Fur-derepression program that Leaden's Δfur-alone strain did, the points should cluster near the positive diagonal — and they largely do, with Spearman ρ = 0.315, p = 2.08e-03. Sign concordance across these 93 genes is 71%: 71% of genes that are derepressed in Leaden are also derepressed in our data, and vice versa.\n\nLook at the geometry. The dark-blue concordant_strong cluster in the top-right quadrant extends further up our y-axis than along Leaden's x-axis — our strain shows amplified Fur derepression relative to Leaden's Δfur-alone. The top-right outlier is HutA, the heme/hemoglobin TonB-dependent transporter: our logFC +10.5 versus Leaden's +2.2. The Δfur + ΔsspB dual-release amplifies iron-uptake derepression beyond what Δfur alone produces.\n\nNow look at the orange buffered cluster: these genes sit at Leaden logFC −5 to −9 on the x-axis, but at near-zero on our y-axis. SspB deletion is shielding them — this is the transcript-level imprint of the cbb3/cyd/fix-NOPQ respiratory operon being protected from Fur-driven shutdown in our strain. The next slide makes this protection concrete.\n\nA calibration note: ρ = 0.315 accounts for roughly 10% of variance in a linear frame. The concordance is real and statistically significant, but partial. It tells us Fur derepression is a major component of our signal, not that it explains the entire transcriptome shift. Some unexplained variance comes from the ΔsspB contribution; some from cross-strain differences between the Ryan lab strains and the Leaden NA1000 background; some possibly from the single-growth-condition limitation. REPORT §Finding 1 characterizes this as 'confirming Fur derepression as a major driver' — not the sole driver — and that precision matters for Q&A. If someone asks 'but ρ=0.315 is modest,' the honest answer is: yes, it is a partial concordance, and we interpret it as one of several converging lines of evidence, not a standalone proof.",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 1"},
+        {"kind": "notebook", "ref": "01_leaden2018_fur_signature.ipynb cell 5"},
+        {"kind": "citation_pool_key", "ref": "Leaden2018"}
+      ]
+    },
+    {
+      "position": 3,
+      "layout": "claim_evidence",
+      "content": {
+        "title": "Constitutive Δfur derepression, not iron limitation, sets the permissive envelope state",
+        "bullets": [
+          "Leaden Δfur-vs-iron-limitation: two responses are correlated but distinct — signal is consistent with constitutive Fur allele derepression rather than an iron-status readout (single PYE-rich growth condition; multi-condition replication pending)",
+          "53/93 Leaden Δfur DEGs buffered in our Δfur ΔsspB data — dominated by the cbb3/cyd/fix-NOPQ respiratory operon (CCNA_01466–01476: ccoNOPQ, cydCDA, fixGHI) — SspB masks this arm at the transcript level",
+          "Zik 2022 (PMID 35649364): Δlpxc viability requires Δfur; 'Fur-regulated processes, not iron status per se, underlie the ability to survive when lipid A synthesis is blocked'"
+        ],
+        "figure": "figures/NB01_leaden_iron_vs_fur.png",
+        "figure_caption": "Leaden 2018 internal: Δfur vs iron-limitation logFC across the DEG set; responses are correlated but non-identical, consistent with constitutive Fur derepression rather than an iron-status readout.",
+        "citations": ["Leaden2018", "Zik2022"]
+      },
+      "speaker_notes": "Three pieces of evidence converge on the same conclusion: the signal in 4584-vs-4580 is consistent with constitutive Δfur derepression, not a secondary response to iron limitation, and Δfur is a necessary precondition — not merely correlated — for the lipid A-loss rescue.\n\nThe iron-discrimination evidence comes from inside Leaden's own 2018 paper. Leaden measured both Δfur and iron-limitation — 2,2'-dipyridyl chelation — transcriptomes in the same C. crescentus NA1000 background. The figure on this slide shows those two logFC axes compared directly. The responses overlap, which makes sense: Fur is an iron-responsive repressor, so both removing Fur and removing iron derepress iron-uptake genes. But they are not identical — the Δfur genetic response is broader and includes gene movements that iron chelation alone does not produce. That non-identity is Leaden's own internal evidence that constitutive Fur-allele derepression is a biologically distinct state from iron-starvation response. However, the caveat must be stated plainly: this discrimination was performed in a single PYE-rich growth condition. REPORT's Limitations explicitly names single-condition transcriptomics as a scope boundary. Whether the Δfur-vs-iron-limitation distinction holds in magnitude or gene-membership under minimal medium or bipyridyl chelation is untested. This evidence is strong directional support — consistent with constitutive derepression — not a multiconditional proof.\n\nThe second bullet makes the SspB arm concrete gene-by-gene. Of the 93 Leaden Δfur DEGs, 53 are buffered in our Δfur ΔsspB data — near-zero logFC in our strain despite logFC −5 to −9 in Leaden. These 53 are dominated by the cbb3/cyd/fix-NOPQ micro-aerobic respiratory operon: CCNA_01466–01476, encoding ccoNOPQ, cydCDA, fixGHI. ΔsspB is doing measurable work at the transcript level, protecting this specific operon from Fur-driven shutdown. Whether this protection is mechanistically critical for the Δlpxc rescue is exactly the question S2 takes up next with the fitness enrichment data.\n\nThe third bullet anchors everything genetically with Zik's result. Zik et al. 2022 used suppressor genetics to show that Δlpxc rescue requires the Δfur allele — iron starvation alone does not enable lipid A-loss survival. Their language is precise and worth quoting: 'Fur-regulated processes, not iron status per se, underlie the ability to survive when lipid A synthesis is blocked.' That genetic necessity is the chain the rest of this talk pulls on. S2 asks: of the Fur-released genes, which subset actually bears fitness consequence under envelope stress?",
+      "evidence_anchors": [
+        {"kind": "report_section", "ref": "REPORT.md §Finding 1"},
+        {"kind": "notebook", "ref": "01_leaden2018_fur_signature.ipynb cell 7"},
+        {"kind": "notebook", "ref": "01_leaden2018_fur_signature.ipynb cell 9"},
+        {"kind": "citation_pool_key", "ref": "Zik2022"}
+      ]
+    }
+  ]
+}
