@@ -9,8 +9,9 @@ import pytest
 import yaml
 
 from compendium.cli import main
+from compendium.models import StatementCard
 from compendium.pages import plan_pages, write_page_artifact
-from compendium.tracer import load_statement_cards
+from compendium.validate import validate_project_kg_file
 
 from .test_validate import _statement_card_dict
 
@@ -265,34 +266,6 @@ def test_quality_synthesis_command_writes_metrics_json(tmp_path: Path) -> None:
     assert metrics["opportunity_targets"]["missing_target_output_statement_ids"] == []
 
 
-def test_quality_command_writes_statement_quality_bundle(tmp_path: Path) -> None:
-    out_dir = tmp_path / "quality"
-
-    assert main(
-        [
-            "quality",
-            "--statement-kg",
-            str(STATEMENT_FIXTURE),
-            "--source-root",
-            str(ROOT / "projects"),
-            "--out",
-            str(out_dir),
-        ]
-    ) == 0
-
-    metrics = json.loads((out_dir / "quality.json").read_text(encoding="utf-8"))
-    dashboard = json.loads(
-        (out_dir / "quality-dashboard.json").read_text(encoding="utf-8")
-    )
-    queue = json.loads((out_dir / "review-queue.json").read_text(encoding="utf-8"))
-    assert metrics["evidence_resolution"]["resolved"] == 6
-    assert dashboard["summary"]["statement_total"] == 6
-    assert isinstance(queue, list)
-    assert "Synthesis Quality Dashboard" in (
-        out_dir / "quality-dashboard.html"
-    ).read_text(encoding="utf-8")
-
-
 def test_quality_synthesis_command_fails_quality_gate_but_writes_metrics(tmp_path: Path) -> None:
     project_path = tmp_path / "project.yaml"
     out = tmp_path / "quality.json"
@@ -316,22 +289,9 @@ def test_quality_synthesis_command_fails_quality_gate_but_writes_metrics(tmp_pat
     assert metrics["evidence_resolution"]["unresolved"] == 1
 
 
-def test_tracer_command_writes_full_adp1_artifact_bundle(tmp_path: Path) -> None:
-    out_dir = tmp_path / "tracer"
-
-    assert main(["tracer", "--out", str(out_dir)]) == 0
-
-    assert (out_dir / "graph" / "graph.json").is_file()
-    assert (out_dir / "page-plans.json").is_file()
-    assert (out_dir / "page-contexts" / "home.context.json").is_file()
-    assert (out_dir / "page-contexts" / "home.prompt.md").is_file()
-    assert (out_dir / "quality.json").is_file()
-    assert (out_dir / "quality-dashboard.html").is_file()
-    assert (out_dir / "review-queue.json").is_file()
-
-
 def _write_authored_pages(statement_fixture: Path, pages_dir: Path) -> None:
-    cards = load_statement_cards(statement_fixture)
+    result = validate_project_kg_file(statement_fixture)
+    cards = [record for record in result.records if isinstance(record, StatementCard)]
     card_by_id = {card.id: card for card in cards}
     for plan in plan_pages(cards):
         cited_card = card_by_id[plan.member_statement_ids[0]]

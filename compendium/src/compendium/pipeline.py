@@ -18,11 +18,6 @@ from compendium.build.statement_graph import build_statement_graph, export_state
 from compendium.context_pack import build_context_pack, context_pack_bytes
 from compendium.models import StatementCard
 from compendium.pages import plan_pages, write_page_artifact, write_page_context
-from compendium.quality.review_queue import build_review_queue
-from compendium.quality.synthesis_dashboard import (
-    build_synthesis_quality_dashboard,
-    render_synthesis_quality_dashboard_html,
-)
 from compendium.quality.synthesis_quality import assess_synthesis_quality
 from compendium.render.markdown import render_markdown_wiki
 from compendium.validate import (
@@ -60,11 +55,6 @@ def _write_json_or_stdout(payload: dict | list, out: str | None) -> None:
         print(f"[compendium] wrote {out_path}")
         return
     print(text)
-
-
-def _write_json_file(payload: dict | list, path: Path) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def _clean_page_context_artifacts(out_dir: Path) -> None:
@@ -105,42 +95,6 @@ def _synthesis_quality_failed(metrics: dict) -> bool:
     )
 
 
-def _run_statement_quality(path: str, out: str, source_root: str | None = None) -> int:
-    cards = _load_statement_cards(path)
-    graph = build_statement_graph(cards)
-    plans = plan_pages(cards)
-    metrics = assess_synthesis_quality(
-        cards,
-        graph,
-        plans,
-        source_root=source_root,
-    )
-    queue = build_review_queue(
-        cards,
-        graph,
-        plans,
-        unresolved_statement_links=metrics,
-    )
-
-    out_dir = Path(out).resolve()
-    out_dir.mkdir(parents=True, exist_ok=True)
-    _write_json_file(metrics, out_dir / "quality.json")
-    _write_json_file(queue, out_dir / "review-queue.json")
-    _write_json_file(
-        build_synthesis_quality_dashboard(metrics, queue),
-        out_dir / "quality-dashboard.json",
-    )
-    (out_dir / "quality-dashboard.html").write_text(
-        render_synthesis_quality_dashboard_html(metrics, queue),
-        encoding="utf-8",
-    )
-    print(f"[compendium] statement quality artifacts -> {out_dir}")
-    if _synthesis_quality_failed(metrics):
-        print("[compendium] synthesis quality checks failed", file=sys.stderr)
-        return 1
-    return 0
-
-
 def dispatch(args) -> int:
     if args.cmd == "validate-card":
         result = validate_statement_card_file(args.path)
@@ -158,25 +112,6 @@ def dispatch(args) -> int:
         out_path.write_bytes(context_pack_bytes(pack))
         print(f"[compendium] context pack: {project_dir.name} -> {out_path}")
         print(f"[compendium] hash: {pack['context_pack_hash']}")
-        return 0
-    if args.cmd == "quality":
-        return _run_statement_quality(args.statement_kg, args.out, args.source_root)
-    if args.cmd == "tracer":
-        from compendium.tracer import generate_adp1_tracer_artifacts
-
-        tracer_kwargs = {}
-        if args.project_kg:
-            tracer_kwargs["fixture_path"] = args.project_kg
-        if args.source_root:
-            tracer_kwargs["source_root"] = args.source_root
-        if args.wiki:
-            tracer_kwargs["authored_pages_dir"] = args.wiki
-        artifacts = generate_adp1_tracer_artifacts(args.out, **tracer_kwargs)
-        print(f"[compendium] tracer artifacts -> {artifacts.output_dir.resolve()}")
-        print(f"[compendium] page contexts -> {artifacts.page_context_dir.resolve()}")
-        if artifacts.markdown_wiki_dir is not None:
-            print(f"[compendium] wiki -> {artifacts.markdown_wiki_dir.resolve()}")
-        print(f"[compendium] quality -> {artifacts.quality_json.resolve()}")
         return 0
     if args.cmd == "statement-graph":
         cards = _load_statement_cards(args.path)
