@@ -15,9 +15,20 @@ the registry maps raw per-project slugs onto canonical keys through `aliases`.
 
 - All `compendium/kg/*.kg.yaml` — read every card's `about.entities` and `about.topics`, dedupe to
   one flat list of raw slugs (a few hundred strings).
-- The §5 seed topic themes from `docs/kg-wiki/2026-06-15-kg-wiki-redesign.md` — an **optional
-  prior** the LLM may revise, merge, split, or rename. Not a fixed vocabulary.
+- The seed topic themes below — an **optional prior** the LLM may revise, merge, split, or rename.
+  Not a fixed vocabulary. (Canonical source: `../docs/kg-wiki/2026-06-15-kg-wiki-redesign.md` §5,
+  relative to the repo root.)
 - The existing `compendium/registry.yaml` if present — extend it append-only.
+
+### Seed topics (prior, ~12 for ~70 projects)
+
+AMR & the Resistome · Metal Resistance & Critical Minerals · Pangenome Architecture (Core/Accessory
+& Openness) · Gene Fitness & Genotype→Phenotype · Functional Dark Matter & Annotation Gaps ·
+Microbial Ecotypes & Niche Differentiation · Subsurface & Clay-Confined Genomics (ENIGMA) · Mobile
+Genetic Elements & HGT · Metabolic Capability, Pathways & Dependency · *A. baylyi* ADP1 Model System
+· Environment, Biogeography & Geospatial Embeddings · Microbiome Engineering & Health Applications.
+
+A project belongs to 1–3 topics; the overlap is the cross-project connection structure.
 
 ## Outputs
 
