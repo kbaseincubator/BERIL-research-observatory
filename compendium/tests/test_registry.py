@@ -2,7 +2,9 @@ from compendium.registry import Registry
 
 RAW = {
     "topics": {"metal-resistance": {"label": "Metal Resistance & Critical Minerals",
-                                     "definition": "x", "projects": []}},
+                                     "definition": "x",
+                                     "aliases": ["metal_fitness", "critical-minerals"],
+                                     "projects": []}},
     "entities": {"adp1": {"label": "Acinetobacter baylyi ADP1", "kind": "organism",
                           "aliases": ["a_baylyi_adp1", "acinetobacter_baylyi", "adp1"]}},
 }
@@ -20,3 +22,10 @@ def test_resolves_topic_key():
     assert reg.topic_key("metal-resistance") == "metal-resistance"
     assert reg.topic_key("Metal-Resistance") == "metal-resistance"  # case-insensitive
     assert reg.topic_key("unknown-topic") == "unknown-topic"        # passthrough
+
+
+def test_resolves_topic_alias_to_canonical_key():
+    # The reconcile pass maps many raw per-project topic slugs onto one canonical theme.
+    reg = Registry(RAW)
+    assert reg.topic_key("metal_fitness") == "metal-resistance"
+    assert reg.topic_key("Critical-Minerals") == "metal-resistance"  # alias, case-insensitive

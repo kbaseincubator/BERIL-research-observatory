@@ -16,15 +16,8 @@ class Registry:
     """Resolve raw entity/topic slugs to canonical registry keys (case-insensitive)."""
 
     def __init__(self, raw: dict):
-        self._entities: dict[str, str] = {}
-        for key, spec in (raw.get("entities") or {}).items():
-            # Canonical key wins its own name; other aliases are first-wins.
-            self._entities[key.casefold()] = key
-            for alias in spec.get("aliases", []):
-                self._entities.setdefault(alias.casefold(), key)
-        self._topics: dict[str, str] = {
-            key.casefold(): key for key in (raw.get("topics") or {})
-        }
+        self._entities = _alias_map(raw.get("entities"))
+        self._topics = _alias_map(raw.get("topics"))
 
     def entity_key(self, slug: str) -> str:
         """Return the canonical entity key for ``slug``, or ``slug`` unchanged if unknown."""
@@ -39,3 +32,13 @@ class Registry:
         """Load a ``Registry`` from a ``registry.yaml`` file."""
         raw = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
         return cls(raw)
+
+
+def _alias_map(section: dict | None) -> dict[str, str]:
+    """Build a case-folded alias->canonical map. Canonical name wins; aliases are first-wins."""
+    resolved: dict[str, str] = {}
+    for key, spec in (section or {}).items():
+        resolved[key.casefold()] = key
+        for alias in (spec or {}).get("aliases", []):
+            resolved.setdefault(alias.casefold(), key)
+    return resolved
