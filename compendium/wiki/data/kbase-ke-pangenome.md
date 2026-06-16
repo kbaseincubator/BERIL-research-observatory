@@ -2,42 +2,78 @@
 
 ## Overview
 
-The KBase KE Pangenome collection is the shared pangenome backbone in this demo.
-It supplies species and clade-level gene-content context: which genes are core,
-which are accessory, which gene clusters recur across species, and how genomes
-can be compared within or across bacterial lineages.
+The **KBase KE pangenome** is the lakehouse-scale bacterial pangenome resource at the center of this wiki: a GTDB-organized collection of roughly 27,700 bacterial species and on the order of 293,000 genomes, in which the genes of each species have been clustered into ortholog groups (gene clusters) and then layered with multiple annotation streams — eggNOG and Bakta functional calls, COG categories, GapMind amino-acid and carbon-pathway completeness, AMRFinderPlus resistance hits, prophage and defense-system signatures, and per-genome AlphaEarth environmental embeddings. A *pangenome* is the union of all genes seen across the genomes of a taxon, conventionally split into a **core** genome (genes present in nearly every genome, here usually at a >=95% prevalence threshold) and an **accessory** or auxiliary genome (genes present in only some strains); the ratio between them, and how readily new genes enter the accessory pool, is what microbiologists call **pangenome openness**. This collection is not the output of any one experiment. It is the shared substrate onto which fifty otherwise-independent BERDL projects project their question, so that a resistance gene flagged in a clinical isolate, a biosynthetic pathway scored across a clade, and a transposon-mutant fitness measurement from a single model organism can all be expressed in the same coordinate system of species, gene clusters, and conserved-versus-variable gene content.
 
-Both demo topics depend on this collection. The metal-resistance projects use it
-to ask whether metal-important genes are core or accessory and to score metal
-gene signatures across species. The ecotype projects use it to compare
-within-species gene-content profiles and COG functional categories.
+This page exists because that single resource is what makes the projects comparable to one another. The pangenome supplies three things repeatedly: a **conservation axis** (is a gene core or accessory in its own species' pangenome?), a **scale** (the same analysis can be run across thousands of species at once rather than one genome at a time), and a set of **bridges** to external data — to the Fitness Browser of RB-TnSeq experiments (random-barcode transposon sequencing, which measures how strongly each gene's disruption changes fitness across many conditions), to BacDive phenotypes, to 16S amplicon atlases, and to satellite-derived environmental embeddings. The recurring claim across many projects is that this lakehouse-scale view enables genuinely new measurements: the first systematic quantification of within-species AMR variation across more than 1,300 species at once, the first link from genus-level metal-gene diversity to global ecological niche breadth, and the first cross-organism characterization of genes that are simultaneously costly and dispensable, each of which was only feasible because the pangenome put thousands of species on one footing.
+
+Two structural limitations cut across nearly everything built on this collection, and the projects surface them honestly. First, the genome sampling is biased: public databases massively over-represent clinical pathogens (in one carbon-ecology analysis *Pseudomonas aeruginosa* alone supplied 53% of genomes), `ncbi_isolation_source` metadata is noisy and frequently missing, and AlphaEarth environmental embeddings cover only 28.4% of the 293,059-genome database with a further human/clinical skew. So apparent environmental-versus-clinical contrasts are partly artifacts of who got sequenced. Second, the linkage layers are lossy: matching the pangenome's GTDB species to BacDive or to the Fitness Browser fails for a large fraction of records because of differing species boundaries and identifier collisions, leaving many cross-database tests underpowered. These caveats do not undercut the collection — they define the gradient between what its shared identifiers can support firmly and where conclusions remain provisional.
 
 ## Projects Using This Collection
 
-In [Metal Resistance & Critical Minerals](../topics/metal-resistance.md), the
-pangenome is the evidence layer that turns raw fitness defects into an
-evolutionary claim. The metal atlas reports that metal-important genes are
-strongly core-enriched, while the cross-resistance and specificity projects
-refine that into a gradient from general stress to metal-shared and
-metal-specific genes.
+The fifty projects fall into a handful of thematic clusters, and reading each cluster together shows what a shared pangenome makes possible.
 
-In [Microbial Ecotypes & Niche Differentiation](../topics/microbial-ecotypes.md),
-the pangenome is the matrix being compared. The ecotype correlation analysis uses
-gene-cluster profiles to ask whether environment or phylogeny better predicts
-gene-content similarity. The functional differentiation project then asks which
-COG categories separate gene-content ecotypes.
+**Antimicrobial resistance.** The largest cluster treats the pangenome as a resistome atlas. The AMR pangenome atlas establishes a robust structural fact: resistance genes are markedly depleted from the bacterial core genome — only 30.3% core against a 46.8% pangenome baseline (odds ratio 0.49), with 2.2x enrichment in the accessory genome — and this depletion holds in 63.7% of the 4,252 species tested against their own baseline. AMR clusters are functionally enriched for COG "Defense mechanisms" (7.05x) and inorganic-ion transport, reflecting genuine defense systems plus large mercury and arsenic resistance families. The environmental resistome project layers ecology onto that picture: clinical and gut species carry roughly 2.5x more resistance gene clusters than soil, aquatic, and host-associated species, and the intrinsic/acquired composition shifts along an ecological gradient from 43% accessory AMR in soil up to 68% in clinical species. AMR strain variation pushes the analysis to within-species resolution, finding that about one in five species form two or more distinct AMR ecotypes by clustering, and — counter-intuitively — that acquired (non-core) resistance genes carry a stronger phylogenetic signal than intrinsic ones, suggesting clonal inheritance rather than rampant random transfer. The cost of resistance is probed by the fitness-cost project, which finds core and accessory AMR genes have virtually identical fitness distributions (Cohen's d = 0.002), so the cost of resistance is real but small, while AMR cofitness networks use the Fitness Browser to map functional neighborhoods around resistance genes.
+
+**Metals and environment.** A second cluster reads the pangenome through metal biology. The metal fitness atlas argues, from genome-size-normalized pangenome scoring, that metal-tolerance genes are broadly distributed across bacteria rather than confined to specialist taxa, and the MicrobeAtlas metal-ecology project links genus-level metal-gene diversity across 6,789 species to ecological niche breadth from a 464,000-sample 16S atlas, with phylogenetic control. BacDive metal-tolerance and validation projects test those genome-based scores against curated culture phenotypes, while soil metal functional genomics and counter-ion-effects projects probe metal-COG associations in contaminated soils and disentangle which fitness signals are truly metal-specific. The environment-embedding explorer, the soil-frontier-genomics, and plant-microbiome-ecotype projects use isolation-source metadata and AlphaEarth embeddings to ask where in the world particular gene contents are enriched, and several of the metal projects feed back into the resistome cluster because metal resistance is the single most environment-discriminating AMR mechanism.
+
+**Metabolism, pathways, and dependency.** A third cluster uses the pangenome's GapMind pathway-completeness layer. The pathway-capability-dependency and metabolic-capability-dependency projects distinguish "active dependencies" (pathways whose genes are fitness-important and sit in the core) from "latent capabilities" carried in the accessory genome, and find that amino-acid biosynthesis pathways depend most strongly on accessory genes — about 14% of species-level completeness comes from accessory genes — direct evidence for a Black Queen distribution in which different strains carry different biosynthetic capacities. The essential-metabolome project, on a 7-organism pilot, finds 17 of 18 amino-acid pathways present in all organisms, suggesting prototrophy is ancestral. Respiratory-chain-wiring, aromatic-catabolism-network, lanthanide-methylotrophy, and Pseudomonas-carbon-ecology projects each take a metabolic subsystem to pangenome scale: the lanthanide atlas, for instance, finds the rare-earth-dependent methanol dehydrogenase *xoxF* outnumbers its calcium-dependent counterpart *mxaF* roughly 19:1 across 293K genomes. The fitness-modules project derives 1,116 stable co-regulation modules by independent component analysis across 32 organisms, and the cofitness-coinheritance project shows that coordinated multi-gene regulation, rather than pairwise functional similarity, is what most constrains co-inheritance — with accessory modules showing the strongest co-inheritance signal.
+
+**Ecotypes and biogeography.** A fourth cluster asks whether within-species gene-content structure tracks environment. The ecotype-analysis, ecotype-environment-reanalysis, and ecotype-functional-differentiation projects find that gene-content ecotypes are widespread and functionally structured rather than random, with adaptive functions differentiating more strongly than housekeeping ones — but repeatedly fail to find that environment is the driver, a null result the reanalysis attributes partly to clinical sampling bias. Subsurface-focused projects (clay-confined-subsurface, Bacillota_B subsurface accessory, soil-frontier-genomics, ENIGMA contamination) test specific habitat signatures and find, for example, that only dissimilatory sulfate reduction survives within-phylum control as a genuine deep-clay marker rather than a phylogenetic passenger.
+
+**Functional dark matter and mobile elements.** A fifth cluster mines what the pangenome cannot yet annotate. The functional-dark-matter and truly-dark-genes projects link tens of thousands of uncharacterized ("dark") gene clusters to fitness modules and synteny to enable guilt-by-association predictions, finding that over half of dark ortholog groups are pan-bacterial — a fundamental limitation in understanding broadly conserved biology rather than a fringe annotation gap. The costly-dispensable-genes project interprets genes that are both burdensome and non-conserved as the genomic debris of horizontal gene transfer — insertion sequences, prophage remnants, transposases, and defense systems. Prophage-ecology, prophage-AMR-comobilization, and the SNIPE defense-system project treat mobile and defense elements directly; the comobilization project shows a prophage-AMR breadth association that survives genome-count control across all five major phyla.
+
+**Model-system and engineering use.** Finally, several projects use the pangenome as a backdrop for organism-specific or applied work. The Acinetobacter ADP1 explorer integrates a multi-omics SQLite database (15 tables, ~462k rows; 5,852 genes annotated across six modalities) for a soil model organism absent from the Fitness Browser, making its condition-specific mutant-growth data a unique BERDL fitness resource that is then cross-referenced to pangenome conservation. The ADP1 deletion-phenotypes, annotation-gap-discovery, plant-growth-promotion (PGP), and IBD-phage-targeting projects similarly anchor a single organism or application to pangenome-scale conservation patterns.
+
+A set of caveats recurs across all these clusters and deserves to be read as part of the collection's character. Pangenome core/accessory calls are only as good as the genome sampling behind them: many Fitness Browser species have a median of just 9 genomes, making the >=95% core threshold imprecise, and a single organism like *Desulfovibrio vulgaris* with few genomes yields a coarse, effect-size-compressing classification. The Fitness Browser organisms themselves are lab-adapted and phylogenetically skewed — roughly 77% Pseudomonadota in the dark-matter survey, with Actinobacteria absent — so generalizations beyond Gammaproteobacteria are weakly supported. Bridges to external databases fail often: species-name matching to BacDive recovers only 38.4% of GTDB species, taxid-based linkage to GapMind clades returned zero matches because of a malformed metadata column, and short strain identifiers caused outright collisions that injected over 1,700 spurious clinical genomes into an environmental profile before being corrected. And the binary core/auxiliary classification itself loses resolution that a continuous prevalence measure would retain. Where these limits bite, the affected projects flag their conclusions as provisional rather than burying them.
 
 ## Connections
 
-This collection is the best single entry point for the demo because it touches
-both topics and all five projects. The [home page](../index.md) gives the full
-map, while the two topic pages explain how the same pangenome layer supports
-different biological questions.
+The KBase KE pangenome touches nearly every cross-cutting topic in this wiki, which is exactly why it is the hub data collection. Most directly it defines [Pangenome Architecture](../topics/pangenome-architecture.md): the core/accessory split, pangenome openness, and the Black Queen distribution of accessory biosynthetic capacity are all read straight off this resource. It is the substrate for [Gene Fitness](../topics/gene-fitness.md), because the value of the AMR-cost, cofitness, fitness-module, and dark-matter projects comes from joining RB-TnSeq fitness data to pangenome conservation so that a gene's importance can be weighed against how conserved it is.
+
+The resistome and metal clusters make this collection the backbone of the [Amr Resistome](../topics/amr-resistome.md) and [Metal Resistance](../topics/metal-resistance.md) topics — resistance genes' depletion from the core genome and the broad distribution of metal-tolerance genes are both pangenome-scale findings — while the metabolic-dependency and pathway work feeds [Metabolic Pathways](../topics/metabolic-pathways.md). The dark-gene and defense-system projects make it the proving ground for [Functional Dark Matter](../topics/functional-dark-matter.md), and the costly-dispensable, prophage, and SNIPE work ties it to [Mobile Genetic Elements](../topics/mobile-genetic-elements.md), since the genes that are non-conserved and costly are precisely the transposases, prophages, and defense systems that move horizontally.
+
+On the ecology side, the ecotype projects anchor [Microbial Ecotypes](../topics/microbial-ecotypes.md), the AlphaEarth-embedding and isolation-source work supports [Environment Biogeography](../topics/environment-biogeography.md), and the subsurface and clay-confined isolates connect to [Subsurface Genomics](../topics/subsurface-genomics.md). The ADP1 explorer anchors the [Adp1 Model System](../topics/adp1-model-system.md) page, and the applied formulation- and phage-design projects extend the collection toward [Microbiome Engineering](../topics/microbiome-engineering.md).
 
 ## Sources
 
-- [stmt:metal-atlas-core-robustness-finding; metal_fitness_atlas]
-- [stmt:metal-atlas-conserved-families-finding; metal_fitness_atlas]
-- [stmt:metal-cross-tier-architecture-finding; metal_cross_resistance]
-- [stmt:ecotype-phylogeny-dominance-finding; ecotype_analysis]
-- [stmt:ecotype-functional-differentiation-finding; ecotype_functional_differentiation]
+- [stmt:amr-depleted-from-core; amr_pangenome_atlas]
+- [stmt:amr-depletion-universal; amr_pangenome_atlas]
+- [stmt:amr-cog-defense-enrichment; amr_pangenome_atlas]
+- [stmt:sampling-bias-caveat; amr_pangenome_atlas]
+- [stmt:clinical-amr-richness; amr_environmental_resistome]
+- [stmt:core-accessory-gradient; amr_environmental_resistome]
+- [stmt:metal-resistance-soil-aquatic; amr_environmental_resistome]
+- [stmt:ncbi-sampling-bias; amr_environmental_resistome]
+- [stmt:first-cross-species-quantification; amr_strain_variation]
+- [stmt:amr-ecotypes; amr_strain_variation]
+- [stmt:acquired-stronger-signal; amr_strain_variation]
+- [stmt:amr-core-accessory-identical; amr_fitness_cost]
+- [stmt:amr-cost-is-small; amr_fitness_cost]
+- [stmt:amr-core-label-imprecision; amr_fitness_cost]
+- [stmt:fb-organism-bias; amr_cofitness_networks]
+- [stmt:metal-atlas-pangenome-distribution-claim; metal_fitness_atlas]
+- [stmt:first-global-metal-niche-link; microbeatlas_metal_ecology]
+- [stmt:caveat-species-name-matching; bacdive_phenotype_metal_tolerance]
+- [stmt:species-matching-lossy; bacdive_metal_validation]
+- [stmt:amino-acid-accessory-dependence; pathway_capability_dependency]
+- [stmt:accessory-as-insurance; pathway_capability_dependency]
+- [stmt:aa-biosynthesis-high-conservation; essential_metabolome]
+- [stmt:xoxf-outnumbers-mxaf-19to1; lanthanide_methylotrophy_atlas]
+- [stmt:1116-stable-modules; fitness_modules]
+- [stmt:coordinated-regulation-constrains-coinheritance; cofitness_coinheritance]
+- [stmt:accessory-modules-strongest; cofitness_coinheritance]
+- [stmt:ecotype-functional-widespread-finding; ecotype_functional_differentiation]
+- [stmt:ecotype-env-null-finding; ecotype_env_reanalysis]
+- [stmt:sr-survives-phylo-control; clay_confined_subsurface]
+- [stmt:pangenome-conservation-knowledge-gaps; functional_dark_matter]
+- [stmt:proteobacteria-bias-caveat; functional_dark_matter]
+- [stmt:hgt-debris-interpretation; costly_dispensable_genes]
+- [stmt:binary-conservation-caveat; costly_dispensable_genes]
+- [stmt:density-effect-robust-to-genome-count; prophage_amr_comobilization]
+- [stmt:adp1-multiomics-database; acinetobacter_adp1_explorer]
+- [stmt:adp1-fitness-unique-resource; acinetobacter_adp1_explorer]
+- [stmt:alphaearth-coverage; env_embedding_explorer]
+- [stmt:env-classification-caveat; pgp_pangenome_ecology]
+- [stmt:caveat-strain-name-collision; genotype_to_phenotype_enigma]
+- [stmt:taxid-matching-failed-caveat; metabolic_capability_dependency]
+- [stmt:caveat-sampling-bias; pseudomonas_carbon_ecology]

@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:canonical-cd-signature",
+    "stmt:clinical-covariates-insufficient",
+    "stmt:cohort-cocktail-mismatch",
+    "stmt:e3-tier-a-provisional",
+    "stmt:ecoli-carries-iron-genotoxin",
+    "stmt:external-phage-db-opportunity",
+    "stmt:five-phage-cocktail-coverage",
+    "stmt:four-ibd-ecotypes",
+    "stmt:gokushovirus-cd-down",
+    "stmt:hybrid-cocktail-needed",
+    "stmt:iron-acquisition-genomic",
+    "stmt:phage-coverage-gap",
+    "stmt:state-dependent-dosing",
+    "stmt:substudy-nesting-unidentifiable",
+    "stmt:synonymy-layer-reusable",
+    "stmt:ucdavis-spans-ecotypes"
+  ],
+  "member_hash": "hash:c6f9c26531f2020c",
+  "model": "claude-opus-4-8",
+  "page_id": "data:kbase_phenotype",
+  "page_plan_hash": "hash:b2352f64a96612b4",
+  "page_type": "data",
+  "prompt_hash": "sha256:cb20ee5c53d6cfa8f37daca2ca9123b9c01d764bc1aa580136030f91c994e53e",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:c6f9c26531f2020c",
+    "projects": "hash:c6f9c26531f2020c"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

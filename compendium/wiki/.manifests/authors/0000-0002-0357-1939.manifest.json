@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:env-classification-caveat",
+    "stmt:inoculant-efficacy-opportunity",
+    "stmt:ipdc-regulation-aromatic-general",
+    "stmt:nifh-depleted-in-soil",
+    "stmt:nifh-separate-guild",
+    "stmt:openness-negatively-correlates-pgp",
+    "stmt:pgp-genes-predominantly-core",
+    "stmt:pgp-syndrome-pqqc-acds-module",
+    "stmt:pqqc-acds-niche-marker-claim",
+    "stmt:pqqc-acds-operon-context-opportunity",
+    "stmt:pqqd-hgt-outlier-caveat",
+    "stmt:soil-enriches-acds-pqqc",
+    "stmt:trp-completeness-predicts-ipdc",
+    "stmt:trp-ipdc-soil-reversal"
+  ],
+  "member_hash": "hash:23d5c12c38c5429f",
+  "model": "claude-opus-4-8",
+  "page_id": "author:0000-0002-0357-1939",
+  "page_plan_hash": "hash:9ce71a1566570a10",
+  "page_type": "author",
+  "prompt_hash": "sha256:59eb1e0e57bce07def01dd8926fe59aeb57786ce2dbd02539f1bdcf4e2beaace",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:23d5c12c38c5429f",
+    "projects": "hash:23d5c12c38c5429f",
+    "topics": "hash:23d5c12c38c5429f"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

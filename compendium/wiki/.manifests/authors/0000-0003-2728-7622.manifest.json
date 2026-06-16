@@ -5,11 +5,11 @@
     "stmt:metal-atlas-pangenome-distribution-claim"
   ],
   "member_hash": "hash:853ddeef0ca85c69",
-  "model": "gpt-5-codex",
+  "model": "claude-opus-4-8",
   "page_id": "author:0000-0003-2728-7622",
   "page_plan_hash": "hash:d2936076d8853e07",
   "page_type": "author",
-  "prompt_hash": "prompt:manual-demo-v1",
+  "prompt_hash": "sha256:69cc397e18470c206a6c6b460989b098f28409f614c3982b9e7e5552fd7d0b7e",
   "repo_commit": "",
   "section_hashes": {
     "overview": "hash:853ddeef0ca85c69",

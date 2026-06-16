@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:baseline-fba-asymmetry",
+    "stmt:bcaa-reactions-dominate",
+    "stmt:blast-high-identity-cluster",
+    "stmt:dark-reactions-high-value-targets",
+    "stmt:dark-reactions-resist-resolution",
+    "stmt:evidence-streams-complementary",
+    "stmt:five-evidence-integration-novel",
+    "stmt:gapmind-partial-concordance",
+    "stmt:high-confidence-experimentally-testable",
+    "stmt:knockout-validation-inconclusive",
+    "stmt:no-single-stream-sufficient",
+    "stmt:phylogenetic-bias-caveat",
+    "stmt:resolution-varies-by-organism",
+    "stmt:triangulation-resolves-48pct"
+  ],
+  "member_hash": "hash:f3070c3371ff5da9",
+  "model": "claude-opus-4-8",
+  "page_id": "author:0000-0003-2493-234x",
+  "page_plan_hash": "hash:a5639bee42bfa370",
+  "page_type": "author",
+  "prompt_hash": "sha256:ba94be0e4bfba37817c6816abd28ffed1f567e9feb60c2acea481d107f9f0ca5",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:f3070c3371ff5da9",
+    "projects": "hash:f3070c3371ff5da9",
+    "topics": "hash:f3070c3371ff5da9"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

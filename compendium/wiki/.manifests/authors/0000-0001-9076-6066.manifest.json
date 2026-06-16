@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:aeruginosa-fluorescens-split-dominates",
+    "stmt:amino-acid-pathways-retained",
+    "stmt:ancestral-streamlining-claim",
+    "stmt:carbon-profiles-environment-signal",
+    "stmt:caveat-gapmind-resolution",
+    "stmt:caveat-phylogenetic-confounding",
+    "stmt:caveat-sampling-bias",
+    "stmt:data-scale-genomes-species",
+    "stmt:free-living-greater-richness",
+    "stmt:novel-genus-scale-quantification",
+    "stmt:opportunity-fitness-browser-validation",
+    "stmt:opportunity-within-species-ecotypes",
+    "stmt:plant-sugar-pathways-lost",
+    "stmt:random-forest-modest-accuracy",
+    "stmt:sugar-pathway-loss-host-associated"
+  ],
+  "member_hash": "hash:9cc16e97856cbdbc",
+  "model": "claude-opus-4-8",
+  "page_id": "author:0000-0001-9076-6066",
+  "page_plan_hash": "hash:1f28f46b5b75a7d9",
+  "page_type": "author",
+  "prompt_hash": "sha256:b3b2a3ebf85397c3c973d4b04f01e52720bf0682e9539feab0010c1ee11c3b57",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:9cc16e97856cbdbc",
+    "projects": "hash:9cc16e97856cbdbc",
+    "topics": "hash:9cc16e97856cbdbc"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

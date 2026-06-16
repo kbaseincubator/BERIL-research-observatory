@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:atlas-core-robust",
+    "stmt:atlas-validated",
+    "stmt:choline-chloride-control",
+    "stmt:counter-ions-not-driver",
+    "stmt:iron-pathway-specific",
+    "stmt:matched-salt-experiment",
+    "stmt:metal-nacl-overlap",
+    "stmt:metal-specific-fraction",
+    "stmt:nacl-not-pure-chloride",
+    "stmt:psrch2-confounded",
+    "stmt:shared-genes-uncharacterized",
+    "stmt:shared-stress-biology",
+    "stmt:single-organism-metals",
+    "stmt:toxicity-hierarchy"
+  ],
+  "member_hash": "hash:d774adab5253c5a9",
+  "model": "claude-opus-4-8",
+  "page_id": "author:0000-0002-6513-7425",
+  "page_plan_hash": "hash:b6ef6e01baf129e0",
+  "page_type": "author",
+  "prompt_hash": "sha256:104bc89f407b71dd1cabd1e8b9fd4be7842c213d3426275342bdced1a5661371",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:d774adab5253c5a9",
+    "projects": "hash:d774adab5253c5a9",
+    "topics": "hash:d774adab5253c5a9"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

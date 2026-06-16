@@ -1,4 +1,13 @@
 topics:
+  amr-resistome:
+    label: AMR & the Resistome
+    definition: Cross-project synthesis of antimicrobial resistance genes — their pangenome distribution, fitness costs, mobility, and ecology across diverse bacteria.
+    aliases:
+      - topic:amr-resistome
+      - amr-resistome
+      - amr
+      - resistome
+      - antimicrobial-resistance
   metal-resistance:
     label: Metal Resistance & Critical Minerals
     definition: Cross-project synthesis of bacterial metal tolerance, metal cross-resistance, and the core-versus-accessory architecture of metal fitness genes.
@@ -9,6 +18,36 @@ topics:
       - metal-fitness
       - metal-specificity
       - metal-cross-resistance
+      - critical-minerals
+  pangenome-architecture:
+    label: Pangenome Architecture
+    definition: How bacterial gene content partitions into core, accessory, and singleton genes, and what governs pangenome openness and core-versus-accessory tradeoffs.
+    aliases:
+      - topic:pangenome-architecture
+      - pangenome-architecture
+      - pangenome
+      - pangenome-openness
+      - core-accessory
+      - gene-content-tradeoffs
+  gene-fitness:
+    label: Gene Fitness & Genotype-to-Phenotype
+    definition: Genotype-to-phenotype mapping from RB-TnSeq fitness assays — gene essentiality, condition-dependent fitness, and the relationship between conservation and fitness.
+    aliases:
+      - topic:gene-fitness
+      - gene-fitness
+      - fitness
+      - genotype-to-phenotype
+      - genotype-phenotype
+      - conservation-vs-fitness
+  functional-dark-matter:
+    label: Functional Dark Matter & Annotation Gaps
+    definition: Genes of unknown function — their prevalence, conservation, and fitness signal, and the annotation gaps that keep them dark.
+    aliases:
+      - topic:functional-dark-matter
+      - functional-dark-matter
+      - dark-matter
+      - annotation-gaps
+      - unknown-function
   microbial-ecotypes:
     label: Microbial Ecotypes & Niche Differentiation
     definition: Cross-project synthesis of within-species bacterial gene-content structure, environmental association, and functional differentiation between ecotypes.
@@ -19,6 +58,63 @@ topics:
       - ecotypes
       - gene-content-ecotypes
       - niche-differentiation
+  subsurface-genomics:
+    label: Subsurface & Clay-Confined Genomics
+    definition: Genomics of subsurface and clay-confined microbial communities, anchored in ENIGMA field sites and contamination gradients.
+    aliases:
+      - topic:subsurface-genomics
+      - subsurface-genomics
+      - subsurface
+      - clay-confined
+      - enigma
+  mobile-genetic-elements:
+    label: Mobile Genetic Elements & HGT
+    definition: Prophages, conjugation systems, transposases, and defense systems that move genes within and between genomes via horizontal gene transfer.
+    aliases:
+      - topic:mobile-genetic-elements
+      - mobile-genetic-elements
+      - mobile-elements
+      - hgt
+      - horizontal-gene-transfer
+      - prophages
+  metabolic-pathways:
+    label: Metabolic Capability, Pathways & Dependency
+    definition: Metabolic capability and dependency inferred from genome-scale models and pathway reconstruction — biosynthesis, catabolism, and metabolic cross-feeding.
+    aliases:
+      - topic:metabolic-pathways
+      - metabolic-pathways
+      - metabolism
+      - pathways
+      - metabolic-capability
+      - metabolic-dependency
+  adp1-model-system:
+    label: A. baylyi ADP1 Model System
+    definition: The naturally competent soil bacterium Acinetobacter baylyi ADP1 as a model for gene essentiality, deletion phenotypes, and metabolism.
+    aliases:
+      - topic:adp1-model-system
+      - adp1-model-system
+      - adp1
+      - acinetobacter-baylyi
+      - a-baylyi
+  environment-biogeography:
+    label: Environment, Biogeography & Geospatial Embeddings
+    definition: How genome content maps onto environment and geography, using isolation-source metadata and AlphaEarth geospatial embeddings.
+    aliases:
+      - topic:environment-biogeography
+      - environment-biogeography
+      - biogeography
+      - environment
+      - geospatial
+      - geography
+  microbiome-engineering:
+    label: Microbiome Engineering & Health Applications
+    definition: Applying microbial genomics to engineered and host-associated systems — plant growth promotion, phage therapeutics, and formulation design.
+    aliases:
+      - topic:microbiome-engineering
+      - microbiome-engineering
+      - microbiome
+      - microbiome-health
+      - health-applications
 
 entities:
   metal-stress:
@@ -29,6 +125,8 @@ entities:
       - entity:metal-stress
       - metal-stress
       - metal tolerance
+      - metal-tolerance
+      - entity:metal-tolerance
       - metal resistance
   core-genome:
     label: Core genome
@@ -38,6 +136,16 @@ entities:
       - entity:core-genome
       - core-genome
       - core genome
+      - core-genes
+  accessory-genome:
+    label: Accessory genome
+    kind: concept
+    definition: Genes present in only some genomes of a species — the variable, often niche-associated portion of the pangenome.
+    aliases:
+      - entity:accessory-genome
+      - accessory-genome
+      - accessory genes
+      - auxiliary-genome
   pangenome:
     label: Pangenome
     kind: dataset
@@ -47,6 +155,15 @@ entities:
       - pangenome
       - kbase_ke_pangenome
     url: https://docs.kbase.us/
+  pangenome-openness:
+    label: Pangenome openness
+    kind: concept
+    definition: Whether a species keeps gaining new genes as more genomes are sampled (open) or saturates (closed), often summarized by a Heaps'-law exponent.
+    aliases:
+      - entity:pangenome-openness
+      - pangenome-openness
+      - openness
+      - heaps-law
   fitness-browser:
     label: Fitness Browser
     kind: dataset
@@ -55,6 +172,33 @@ entities:
       - entity:fitness-browser
       - kescience_fitnessbrowser
       - Fitness Browser
+      - genefitness
+  rb-tnseq:
+    label: RB-TnSeq
+    kind: method
+    definition: Random-barcode transposon sequencing — a pooled mutant fitness assay that quantifies each gene's contribution to growth across conditions.
+    aliases:
+      - entity:rb-tnseq
+      - rb-tnseq
+      - rbtnseq
+      - tnseq
+  cofitness:
+    label: Cofitness
+    kind: method
+    definition: Correlation between genes' fitness profiles across conditions, used to infer shared function or co-dependence.
+    aliases:
+      - entity:cofitness
+      - cofitness
+      - co-fitness
+  fitness-modules:
+    label: Fitness modules
+    kind: concept
+    definition: Groups of genes with coherent, correlated fitness behavior, often recovered by decomposing a gene-by-condition fitness matrix.
+    aliases:
+      - entity:fitness-modules
+      - fitness-modules
+      - ica-fitness-modules
+      - entity:ica-fitness-modules
   cross-resistance:
     label: Metal cross-resistance
     kind: concept
@@ -71,6 +215,18 @@ entities:
       - entity:metal-specific-genes
       - metal-specific genes
       - metal-specific
+  essential-genes:
+    label: Essential genes
+    kind: concept
+    definition: Genes required for growth under a given condition; their essentiality is often condition-dependent rather than absolute.
+    aliases:
+      - entity:essential-genes
+      - essential-genes
+      - essential-genome
+      - entity:essential-genome
+      - gene-essentiality
+      - entity:gene-essentiality
+      - essentiality
   gene-family:
     label: Conserved gene family
     kind: gene_or_pathway
@@ -79,15 +235,115 @@ entities:
       - entity:gene-family
       - gene family
       - ortholog group
-  bacdive:
-    label: BacDive
-    kind: dataset
-    definition: A bacterial phenotype and isolation metadata resource used here for external validation of metal-environment predictions.
+      - gene-cluster
+      - entity:gene-cluster
+  amr-genes:
+    label: AMR genes
+    kind: gene_or_pathway
+    definition: Genes conferring antimicrobial resistance, annotated here via AMRFinderPlus/Bakta across the pangenome.
     aliases:
-      - entity:bacdive
-      - kescience_bacdive
-      - BacDive
-    url: https://bacdive.dsmz.de/
+      - entity:amr-genes
+      - amr-genes
+      - amr
+      - resistome
+      - entity:resistome
+      - amrfinderplus
+  mobile-elements:
+    label: Mobile genetic elements
+    kind: gene_or_pathway
+    definition: Transposases, integrases, prophages, and conjugation machinery that move genes within or between genomes.
+    aliases:
+      - entity:mobile-elements
+      - mobile elements
+      - mobile genetic elements
+      - prophage
+      - prophages
+      - transposase
+  horizontal-gene-transfer:
+    label: Horizontal gene transfer
+    kind: concept
+    definition: Movement of genetic material between organisms outside of vertical inheritance, a major source of accessory-genome variation.
+    aliases:
+      - entity:horizontal-gene-transfer
+      - horizontal-gene-transfer
+      - hgt
+  gapmind:
+    label: GapMind
+    kind: method
+    definition: A tool that reconstructs amino-acid and carbon catabolic pathways from genome annotations to predict metabolic capability.
+    aliases:
+      - entity:gapmind
+      - gapmind
+    url: https://papers.genomics.lbl.gov/cgi-bin/gapView.cgi
+  amino-acid-biosynthesis:
+    label: Amino-acid biosynthesis
+    kind: gene_or_pathway
+    definition: The pathways by which cells synthesize amino acids; their completeness signals metabolic autonomy versus dependency.
+    aliases:
+      - entity:amino-acid-biosynthesis
+      - amino-acid-biosynthesis
+      - amino acid biosynthesis
+  complex-i:
+    label: Respiratory complex I
+    kind: gene_or_pathway
+    definition: NADH:quinone oxidoreductase, a core respiratory-chain complex whose wiring varies across bacteria.
+    aliases:
+      - entity:complex-i
+      - complex-i
+      - complex i
+      - nuo
+  ndh-2:
+    label: NDH-2
+    kind: gene_or_pathway
+    definition: Type II NADH dehydrogenase, an alternative non-proton-pumping entry point to the respiratory chain.
+    aliases:
+      - entity:ndh-2
+      - ndh-2
+      - ndh2
+      - type-ii-nadh-dehydrogenase
+  unknown-function:
+    label: Unknown-function genes
+    kind: concept
+    definition: Genes or functional categories whose biological roles remain poorly annotated.
+    aliases:
+      - entity:unknown-function
+      - unknown function
+      - function unknown
+  dark-genes:
+    label: Dark genes
+    kind: concept
+    definition: Genes with no functional annotation and no detectable homology to characterized proteins — the darkest tail of the unknown-function distribution.
+    aliases:
+      - entity:dark-genes
+      - dark-genes
+      - truly-dark-genes
+      - entity:truly-dark-genes
+      - dark matter genes
+  black-queen-hypothesis:
+    label: Black Queen Hypothesis
+    kind: concept
+    definition: The idea that gene loss can be adaptive when a public good is provided by other community members, driving metabolic dependency.
+    aliases:
+      - entity:black-queen-hypothesis
+      - black-queen-hypothesis
+      - black queen
+  costly-dispensable-genes:
+    label: Costly dispensable genes
+    kind: concept
+    definition: Genes that impose a fitness cost yet are retained in some lineages, posing a puzzle about their conditional benefit.
+    aliases:
+      - entity:costly-dispensable-genes
+      - costly-dispensable-genes
+      - costly dispensable
+  niche-breadth:
+    label: Niche breadth
+    kind: concept
+    definition: The range of environments a taxon occupies; often correlated with genome size and accessory-gene content.
+    aliases:
+      - entity:niche-breadth
+      - niche-breadth
+      - niche breadth
+      - generalist-specialist
   ecotype:
     label: Microbial ecotype
     kind: concept
@@ -97,6 +353,25 @@ entities:
       - ecotype
       - gene-content ecotype
       - microbial ecotype
+  cog-category:
+    label: COG functional category
+    kind: concept
+    definition: A broad functional class from the Clusters of Orthologous Groups system, used here to compare gene content.
+    aliases:
+      - entity:cog-category
+      - COG
+      - COG category
+      - cog-category
+      - cog-categories
+      - entity:cog-categories
+  isolation-source:
+    label: Isolation source
+    kind: concept
+    definition: The environment a genome was isolated from, used as ecological metadata for biogeographic association.
+    aliases:
+      - entity:isolation-source
+      - isolation-source
+      - isolation source
   alphaearth:
     label: AlphaEarth embeddings
     kind: dataset
@@ -106,28 +381,90 @@ entities:
       - alphaearth
       - alphaearth_embeddings
       - alphaearth_embeddings_all_years
-  cog-category:
-    label: COG functional category
-    kind: concept
-    definition: A broad functional class from the Clusters of Orthologous Groups system, used here to compare ecotype gene content.
+  adp1:
+    label: Acinetobacter baylyi ADP1
+    kind: organism
+    definition: A naturally competent soil bacterium used as a model system for metabolism and genetics.
     aliases:
-      - entity:cog-category
-      - COG
-      - COG category
-      - cog-category
-  mobile-elements:
-    label: Mobile genetic elements
-    kind: gene_or_pathway
-    definition: Transposases, integrases, and related machinery that move genes within or between genomes.
+      - entity:adp1
+      - adp1
+      - a_baylyi_adp1
+      - acinetobacter_baylyi
+      - acinetobacter-baylyi
+    url: https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=62977
+  pseudomonas:
+    label: Pseudomonas
+    kind: organism
+    definition: A metabolically versatile genus of Gammaproteobacteria widely used in fitness and carbon-utilization studies.
     aliases:
-      - entity:mobile-elements
-      - mobile elements
-      - mobile genetic elements
-  unknown-function:
-    label: Unknown-function genes
-    kind: concept
-    definition: Genes or functional categories whose biological roles remain poorly annotated.
+      - entity:pseudomonas
+      - pseudomonas
+  bacillota-b:
+    label: Bacillota_B
+    kind: organism
+    definition: A GTDB phylum-level clade (formerly within Firmicutes) prominent in subsurface and accessory-genome analyses.
     aliases:
-      - entity:unknown-function
-      - unknown function
-      - function unknown
+      - entity:bacillota-b
+      - bacillota-b
+      - bacillota_b
+  bacdive:
+    label: BacDive
+    kind: dataset
+    definition: A bacterial phenotype and isolation metadata resource used here for external validation of metal-environment predictions.
+    aliases:
+      - entity:bacdive
+      - kescience_bacdive
+      - BacDive
+    url: https://bacdive.dsmz.de/
+  gtdb:
+    label: GTDB
+    kind: dataset
+    definition: The Genome Taxonomy Database, a standardized genome-based bacterial and archaeal taxonomy.
+    aliases:
+      - entity:gtdb
+      - gtdb
+      - gtdb_taxonomy_r214v1
+    url: https://gtdb.ecogenomic.org/
+  web-of-microbes:
+    label: Web of Microbes
+    kind: dataset
+    definition: A metabolomics resource cataloging metabolite exchange between microbes and their environment.
+    aliases:
+      - entity:web-of-microbes
+      - web-of-microbes
+      - webofmicrobes
+  paperblast:
+    label: PaperBLAST
+    kind: dataset
+    definition: A tool linking proteins to the published literature by homology, used to surface experimental evidence for gene function.
+    aliases:
+      - entity:paperblast
+      - paperblast
+    url: https://papers.genomics.lbl.gov/cgi-bin/litSearch.cgi
+  enigma-coral:
+    label: ENIGMA / CORAL
+    kind: dataset
+    definition: Field and contextual data from the ENIGMA subsurface research program, accessed via the CORAL data system.
+    aliases:
+      - entity:enigma-coral
+      - enigma-coral
+      - enigma_coral
+      - enigma
+  nmdc:
+    label: NMDC
+    kind: dataset
+    definition: The National Microbiome Data Collaborative, a source of community multi-omics and environmental metadata.
+    aliases:
+      - entity:nmdc
+      - nmdc
+      - nmdc_arkin
+    url: https://microbiomedata.org/
+  berdl:
+    label: BERDL
+    kind: dataset
+    definition: The BER Data Lakehouse — the federated data platform hosting the pangenome, fitness, and phenotype collections used across these projects.
+    aliases:
+      - entity:berdl
+      - berdl
+      - berdl-remote
+      - berdl_remote
