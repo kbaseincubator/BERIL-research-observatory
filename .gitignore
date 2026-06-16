@@ -9,6 +9,8 @@
 .claude/projects/
 .claude/scheduled_tasks.lock
 .serena/
+docs/plans/
+docs/superpowers/
 
 # Large data files
 *.npy
@@ -104,3 +106,5 @@ htmlcov/
 .pytest_cache/
 .ruff_cache/
 *.uc
+
+graphify-out/

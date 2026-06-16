@@ -11,6 +11,12 @@ beril = "beril_cli.cli:main"
 
 [dependency-groups]
 test = ["pytest>=8"]
+knowledge = [
+  "openviking",
+  "pyyaml",
+  "pytest",
+  "rich",
+]
 
 [build-system]
 requires = ["hatchling"]

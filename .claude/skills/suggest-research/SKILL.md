@@ -54,6 +54,8 @@ For every finished project identified in Step 2:
    - **Novel Contribution** — what made the project scientifically unique
 3. Note any cross-project patterns: recurring organisms, pathways, themes, or data gaps that appear in multiple reports
 
+To find cross-project patterns and gaps without reading every REPORT, query the knowledge layer — see `knowledge-context` for the toolkit and retrieval loop. Seed: `uv run --env-file .env knowledge/scripts/knowledge_query.py find "<candidate theme or organism>"`, then `read` the strongest hits. Use it to surface prior art before proposing; the manual reads above remain the source of truth for findings you cite.
+
 ### Step 4: Read the Discoveries Log
 
 Discoveries live in two places under v5:
@@ -204,6 +206,7 @@ If no, leave no files modified.
 
 ## Integration
 
+- **Knowledge context**: `.claude/skills/knowledge-context/SKILL.md` and `knowledge/scripts/knowledge_query.py` may be used for a quick OpenViking-backed scan before manual file reads.
 - **Reads from**: `docs/research_ideas.md`, `projects/*/memories/discoveries.md` (canonical, review-vetted), `docs/discoveries.md` (frozen historical archive), `projects/*/memories/pitfalls.md`, `docs/pitfalls.md` per-database H2 sections (frozen historical archive), `projects/*/memories/performance.md`, `projects/*/README.md`, `projects/*/REPORT.md`. Per-project memories take precedence over central archive entries with the same `[<project_id>]` tag (per the precedence rule in Step 4).
 - **Calls**: `/literature-review` (Step 9, for novelty check on top candidate); `/berdl_start` (Step 11, if user confirms the idea)
 - **Optionally writes**: `docs/research_ideas.md` (appends new PROPOSED entry only — never edits existing entries)
