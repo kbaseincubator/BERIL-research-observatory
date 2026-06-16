@@ -33,6 +33,8 @@ reader understand after reading it?"
 5. Generate a bounded page context for each page.
 6. Write synthesized Markdown pages from those contexts.
 7. Render and check the wiki so every local link and citation resolves.
+8. Export the reader graph as a Cosma cosmoscope (`export-cosma` + `cosma modelize`): an interactive
+   graph-beside-wiki viewer published as one self-contained HTML file.
 
 ```mermaid
 flowchart TD
@@ -48,6 +50,8 @@ flowchart TD
     I --> J[wiki/*.md]
     J --> K[render-markdown + check]
     K --> L[human-readable connected wiki]
+    K --> M[export-cosma + cosma modelize]
+    M --> N[cosmoscope.html graph + wiki viewer]
 ```
 
 Read the diagram as two layers. The bottom layer is deterministic assembly and validation; it makes page
@@ -152,8 +156,8 @@ were authored by the same person." No inference, no model.
 
 ## 3. The methodology — the pipeline
 
-Six conceptual steps. Deterministic steps are CLI commands; the three LLM steps are skills that shell out
-to those commands.
+Seven conceptual steps (the seventh, the graph viewer, is optional). Deterministic steps are CLI
+commands; the three LLM steps are skills that shell out to those commands.
 
 ```
 projects/* ─[D] pack ─────▶ context pack          (audit + source excerpts + authors + candidate terms)
@@ -167,6 +171,8 @@ projects/* ─[D] pack ─────▶ context pack          (audit + source 
             ─[LLM] write ────▶ wiki/*.md             (cited prose)                              skill: kg-write
                               │
             ─[D] check ──────▶ pass / fail           (link + citation integrity gate)
+                              │
+            ─[D] export-cosma + cosma modelize ─▶ cosmoscope.html (graph + wiki viewer; optional)
 ```
 
 The `kg-wiki` skill is the orchestrator that chains the whole thing; it is the only skill a user normally
@@ -196,6 +202,10 @@ invokes. Each step:
    `[stmt:id; project]` footnote refs — not inline in the prose.
 6. **check** (deterministic). The final gate: every relative wiki link must resolve, and every citation
    must reference a statement the page is allowed to cite. Non-zero exit on any problem.
+7. **export** (deterministic; optional). After `check`, `export-cosma` emits a Cosma project from the
+   same cards/registry/author/data joins — page records reuse the authored prose, project stubs add the
+   project nodes — and `cosma modelize` builds `cosmoscope.html`, an interactive graph beside the
+   readable wiki. It is a navigation aid over the published wiki, not part of the correctness gate.
 
 ### Why "two passes, additive"
 
@@ -263,6 +273,8 @@ out rather than re-summarizing.
 ## 8. What this deliberately is *not*
 
 - Not a formal/typed knowledge graph, and not Biolink/ontology-grounded. The link layer is lightweight.
+  This holds *despite* the Cosma graph view: the cosmoscope visualizes the same lightweight reader graph
+  (topics/projects/data/authors) as a navigation aid — it adds no typed-ontology layer.
 - Not schema-first: v1 uses a small documented YAML contract (`compendium/SCHEMA.md`) and Python
   validation instead of maintaining parallel LinkML/generated-model machinery.
 - Not human-gated: topic creation and page authoring are autonomous (guarded by deterministic checks).
@@ -276,5 +288,6 @@ out rather than re-summarizing.
 - `compendium/README.md` — operational pipeline, commands, and module layout (single source of truth for
   *how to run it*).
 - `2026-06-15-kg-wiki-redesign.md` — the design decisions, rationale, and the phased build history.
+- `2026-06-16-cosma-kg-wiki-viewer-design.md` — the Cosma graph-and-wiki viewer (the cosmoscope) design.
 - `compendium/skills/` — the four skills (`kg-extract`, `kg-reconcile`, `kg-write`, `kg-wiki`) that
   encode the LLM steps' exact contracts.

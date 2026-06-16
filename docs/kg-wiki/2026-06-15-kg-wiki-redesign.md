@@ -588,3 +588,26 @@ convenient (not required for green).
 **Tests:** a multi-project fixture (cards across ≥2 topics/projects/authors/collections + a small
 registry) exercising: topic canonicalization/merge, data & author page generation, cross-links, and an
 end-to-end `plan → build_page_context → (hand-authored page) → render` smoke that validates clean.
+
+## 9. Addendum C (2026-06-16): Cosma graph-and-wiki viewer
+
+A reader-facing **graph view** was added on top of the published wiki, after a web survey of free/open
+options and two spikes over the real wiki (full design: `2026-06-16-cosma-kg-wiki-viewer-design.md`).
+
+- **Decision:** use **Cosma** (`graphlab-fr/cosma`, GPL-3.0/CeCILL, maintained) over a custom JS viewer
+  or Quartz. Cosma exports one self-contained `cosmoscope.html` — an interactive graph beside the
+  rendered record — that any static server can serve with no bundler.
+- **What shipped (v1, artifact-only):** a 4th deterministic command, `export-cosma` (sibling of
+  `render-markdown`, no LLM), emits a Cosma project (records + `config.yml`) from the same inputs
+  `plan_pages` uses; `cosma modelize` (one Node build) turns it into `cosmoscope.html`. This makes the
+  §2.2 count **4** deterministic commands + a 5th artifact (the cosmoscope).
+- **Reader graph + project nodes:** page records (home/topic/data/author) reuse the authored prose with
+  `[](.md)` links rewritten to `[[wikilinks]]`; **project stub nodes** are synthesized and wired to their
+  topics/authors/data, so the graph shows the topic↔project↔data↔author structure the page-link graph
+  alone can't (projects have no wiki page).
+- **Consistent with the stance:** the cosmoscope is a *navigation aid* over the wiki (it renders the wiki
+  prose in the record pane); the wiki is still the product, the graph still infrastructure.
+- **Deferred:** a FastAPI route to serve it in-app, and a statement-level `supports/contradicts/refines`
+  "tensions" view.
+- Covered by `compendium/tests/test_render_cosma.py`; wired into the `kg-wiki` orchestrator (step 7) and
+  `compendium/README.md`.
