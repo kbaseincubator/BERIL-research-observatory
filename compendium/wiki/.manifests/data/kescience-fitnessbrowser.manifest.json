@@ -1,24 +1,19 @@
 {
   "cited_statement_ids": [
-    "stmt:adp1-explorer-berdl-connectivity-finding",
-    "stmt:adp1-explorer-condition-fitness-finding",
-    "stmt:adp1-explorer-database-bridge-claim",
-    "stmt:adp1-explorer-discordance-opportunity",
-    "stmt:adp1-explorer-gapfilling-caveat",
-    "stmt:adp1-explorer-multiomics-finding",
-    "stmt:adp1-explorer-pangenome-bridge-finding",
-    "stmt:adp1-explorer-urea-deep-dive-opportunity"
+    "stmt:metal-atlas-core-robustness-finding",
+    "stmt:metal-cross-tier-architecture-finding",
+    "stmt:metal-cross-universal-positivity-finding"
   ],
-  "member_hash": "hash:c482dbec10112341",
-  "model": "claude-opus-4-8",
+  "member_hash": "hash:4725635c231e63d2",
+  "model": "gpt-5-codex",
   "page_id": "data:kescience_fitnessbrowser",
-  "page_plan_hash": "hash:0c3820e85e1e5b1d",
+  "page_plan_hash": "hash:1c6022f14b542063",
   "page_type": "data",
-  "prompt_hash": "prompt:kg-write-v1",
+  "prompt_hash": "prompt:manual-demo-v1",
   "repo_commit": "",
   "section_hashes": {
-    "overview": "hash:c482dbec10112341",
-    "projects": "hash:c482dbec10112341"
+    "overview": "hash:4725635c231e63d2",
+    "projects": "hash:4725635c231e63d2"
   },
   "skill": "kg-synthesize-page",
   "timestamp": ""

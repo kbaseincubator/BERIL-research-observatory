@@ -1,29 +1,21 @@
 {
   "cited_statement_ids": [
-    "stmt:adp1-deletion-carbon-tier-finding",
-    "stmt:adp1-deletion-condition-independence-finding",
-    "stmt:adp1-deletion-continuum-claim",
-    "stmt:adp1-deletion-expand-carbon-panel-opportunity",
-    "stmt:adp1-deletion-quinate-module-finding",
-    "stmt:adp1-explorer-berdl-connectivity-finding",
-    "stmt:adp1-explorer-condition-fitness-finding",
-    "stmt:adp1-explorer-database-bridge-claim",
-    "stmt:adp1-explorer-discordance-opportunity",
-    "stmt:adp1-explorer-gapfilling-caveat",
-    "stmt:adp1-explorer-multiomics-finding",
-    "stmt:adp1-explorer-pangenome-bridge-finding",
-    "stmt:adp1-explorer-urea-deep-dive-opportunity"
+    "stmt:ecotype-functional-differentiation-finding",
+    "stmt:ecotype-phylogeny-dominance-finding",
+    "stmt:metal-atlas-conserved-families-finding",
+    "stmt:metal-atlas-core-robustness-finding",
+    "stmt:metal-cross-tier-architecture-finding"
   ],
-  "member_hash": "hash:6b8dda969bab1991",
-  "model": "claude-opus-4-8",
+  "member_hash": "hash:49b7b3e71dbc70da",
+  "model": "gpt-5-codex",
   "page_id": "data:kbase_ke_pangenome",
-  "page_plan_hash": "hash:5897a81830e2c807",
+  "page_plan_hash": "hash:f0fb47bad8eb063c",
   "page_type": "data",
-  "prompt_hash": "prompt:kg-write-v1",
+  "prompt_hash": "prompt:manual-demo-v1",
   "repo_commit": "",
   "section_hashes": {
-    "overview": "hash:6b8dda969bab1991",
-    "projects": "hash:6b8dda969bab1991"
+    "overview": "hash:49b7b3e71dbc70da",
+    "projects": "hash:49b7b3e71dbc70da"
   },
   "skill": "kg-synthesize-page",
   "timestamp": ""

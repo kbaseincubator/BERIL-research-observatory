@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:metal-atlas-conserved-families-finding",
+    "stmt:metal-atlas-core-robustness-finding",
+    "stmt:metal-atlas-pangenome-distribution-claim",
+    "stmt:metal-cross-bacdive-caveat",
+    "stmt:metal-cross-tier-architecture-finding",
+    "stmt:metal-cross-two-layer-claim",
+    "stmt:metal-cross-universal-positivity-finding",
+    "stmt:metal-specificity-core-refinement-claim",
+    "stmt:metal-specificity-fraction-finding",
+    "stmt:metal-specificity-functional-validation-finding"
+  ],
+  "member_hash": "hash:e9848bfaa008650e",
+  "model": "gpt-5-codex",
+  "page_id": "metal-resistance",
+  "page_plan_hash": "hash:6e5b593966a5ee9e",
+  "page_type": "topic",
+  "prompt_hash": "prompt:manual-demo-v1",
+  "repo_commit": "",
+  "section_hashes": {
+    "caveats_and_open_directions": "hash:eed188798f289c83",
+    "connections": "hash:e9848bfaa008650e",
+    "overview": "hash:e9848bfaa008650e",
+    "projects_and_evidence": "hash:e9848bfaa008650e",
+    "sources": "hash:e9848bfaa008650e",
+    "what_the_corpus_shows": "hash:e9848bfaa008650e"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

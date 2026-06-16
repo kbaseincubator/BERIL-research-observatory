@@ -1,0 +1,22 @@
+{
+  "cited_statement_ids": [
+    "stmt:ecotype-adaptive-effect-claim",
+    "stmt:ecotype-functional-differentiation-finding",
+    "stmt:ecotype-functional-widespread-finding",
+    "stmt:ecotype-unknown-mobile-caveat"
+  ],
+  "member_hash": "hash:98d1637ecbb73097",
+  "model": "gpt-5-codex",
+  "page_id": "author:0000-0002-2170-2250",
+  "page_plan_hash": "hash:d179f39a0c65601a",
+  "page_type": "author",
+  "prompt_hash": "prompt:manual-demo-v1",
+  "repo_commit": "",
+  "section_hashes": {
+    "overview": "hash:98d1637ecbb73097",
+    "projects": "hash:98d1637ecbb73097",
+    "topics": "hash:98d1637ecbb73097"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

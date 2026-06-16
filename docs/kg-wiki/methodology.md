@@ -5,6 +5,55 @@ The reference for *how and why* the BERIL synthesis wiki works. It explains the 
 decision history lives in `2026-06-15-kg-wiki-redesign.md`. This document is meant to stay true to the
 system as it is; update it when the ideology or methodology changes, not on every build step.
 
+## Short overview
+
+The compendium is a human-readable synthesis wiki backed by a small context graph. The wiki is the
+product: it should read like connected prose, with introductions, sections, cross-links, caveats, and
+sources. The graph is infrastructure: it gives the writer enough structured context to know which
+projects, statements, entities, topics, authors, data collections, and citations belong on each page.
+
+The ideology is deliberately simple:
+
+- use statement cards for auditable evidence;
+- use a registry to merge raw project terms into a small set of canonical topics and entities;
+- use deterministic Python for repeatable joins, page membership, links, and citation checks;
+- use the LLM only where prose judgment is needed: extraction, reconciliation, and page writing;
+- keep formal ontology machinery out of v1 unless it directly improves the reader-facing wiki.
+
+In practice, the graph answers "what context belongs on this page?" The wiki answers "what should a
+reader understand after reading it?"
+
+## Simple workflow
+
+1. Build a context pack for each project from its `REPORT.md`, metadata, authors, source anchors, and
+   candidate terms.
+2. Extract sourced statement cards from each context pack.
+3. Reconcile all raw topic/entity slugs into the shared `registry.yaml`.
+4. Plan wiki pages from cards + registry + author/data indexes.
+5. Generate a bounded page context for each page.
+6. Write synthesized Markdown pages from those contexts.
+7. Render and check the wiki so every local link and citation resolves.
+
+```mermaid
+flowchart TD
+    A[projects/* REPORT.md + metadata] --> B[context-pack]
+    B --> C[kg-extract]
+    C --> D[per-project statement cards]
+    D --> E[kg-reconcile]
+    E --> F[registry.yaml topics + entities]
+    D --> G[plan-pages + wiki-contexts]
+    F --> G
+    G --> H[page contexts]
+    H --> I[kg-write]
+    I --> J[wiki/*.md]
+    J --> K[render-markdown + check]
+    K --> L[human-readable connected wiki]
+```
+
+Read the diagram as two layers. The bottom layer is deterministic assembly and validation; it makes page
+membership, links, and citations repeatable. The LLM layer turns bounded context into evidence-backed
+statements and then into readable wiki prose.
+
 ## 1. The problem and the stance
 
 The observatory accumulates ~70 research **projects**, each with a `REPORT.md`, notebooks, figures, and

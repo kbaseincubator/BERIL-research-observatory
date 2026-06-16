@@ -1,0 +1,68 @@
+project:
+  id: ecotype_analysis
+  title: Ecotype Correlation Analysis
+statements:
+  - id: stmt:ecotype-phylogeny-dominance-finding
+    kind: finding
+    text: Across species with sufficient data, phylogenetic relatedness generally predicts bacterial gene-content similarity more strongly than environmental similarity.
+    confidence: high
+    topics:
+      - topic:microbial-ecotypes
+    entities:
+      - entity:ecotype
+      - entity:alphaearth
+      - entity:pangenome
+    links:
+      supports:
+        - stmt:ecotype-gene-subset-claim
+      contradicts: []
+      refines: []
+    evidence:
+      - source_project: ecotype_analysis
+        source_doc: REPORT.md
+        source_section: Phylogeny Usually Dominates
+        quote: "Phylogeny dominates in **60.5%** of species"
+        notebook: notebooks/02_ecotype_correlation_analysis.ipynb
+        figure: figures/ecotype_correlation_summary.png
+
+  - id: stmt:ecotype-lifestyle-null-caveat
+    kind: caveat
+    text: Separating environmental and host-associated bacteria did not reveal a stronger environment effect in this analysis.
+    confidence: high
+    topics:
+      - topic:microbial-ecotypes
+    entities:
+      - entity:ecotype
+      - entity:alphaearth
+    links:
+      supports: []
+      contradicts: []
+      refines:
+        - stmt:ecotype-phylogeny-dominance-finding
+    evidence:
+      - source_project: ecotype_analysis
+        source_doc: REPORT.md
+        source_section: No Difference by Lifestyle
+        quote: "Tested whether \"environmental\" bacteria (free-living, where lat/lon is meaningful) show stronger environment effects than host-associated bacteria. **No significant difference found** (p=0.66)."
+        notebook: notebooks/02_ecotype_correlation_analysis.ipynb
+        figure: figures/environmental_vs_host_comparison.png
+
+  - id: stmt:ecotype-gene-subset-claim
+    kind: claim
+    text: Environmental adaptation may be easier to detect in specific functional gene subsets than in whole-genome gene-content similarity.
+    confidence: medium
+    topics:
+      - topic:microbial-ecotypes
+    entities:
+      - entity:ecotype
+      - entity:pangenome
+    links:
+      supports: []
+      contradicts: []
+      refines:
+        - stmt:ecotype-phylogeny-dominance-finding
+    evidence:
+      - source_project: ecotype_analysis
+        source_doc: REPORT.md
+        source_section: Interpretation
+        quote: "Environmental adaptation may act on specific gene subsets rather than the whole genome"

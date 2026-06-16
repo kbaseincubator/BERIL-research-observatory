@@ -1,36 +1,22 @@
 {
   "cited_statement_ids": [
-    "stmt:adp1-deletion-carbon-tier-finding",
-    "stmt:adp1-deletion-condition-independence-finding",
-    "stmt:adp1-deletion-continuum-claim",
-    "stmt:adp1-deletion-expand-carbon-panel-opportunity",
-    "stmt:adp1-deletion-quinate-module-finding",
-    "stmt:adp1-explorer-berdl-connectivity-finding",
-    "stmt:adp1-explorer-condition-fitness-finding",
-    "stmt:adp1-explorer-database-bridge-claim",
-    "stmt:adp1-explorer-discordance-opportunity",
-    "stmt:adp1-explorer-gapfilling-caveat",
-    "stmt:adp1-explorer-multiomics-finding",
-    "stmt:adp1-explorer-pangenome-bridge-finding",
-    "stmt:adp1-explorer-urea-deep-dive-opportunity",
-    "stmt:adp1-triple-aromatic-discordance-finding",
-    "stmt:adp1-triple-aromatic-media-opportunity",
-    "stmt:adp1-triple-continuous-fitness-claim",
-    "stmt:adp1-triple-fba-growth-caveat",
-    "stmt:adp1-triple-fitness-predictor-finding",
-    "stmt:adp1-triple-proteomics-finding"
+    "stmt:ecotype-gene-subset-claim",
+    "stmt:ecotype-phylogeny-dominance-finding",
+    "stmt:metal-atlas-core-robustness-finding",
+    "stmt:metal-cross-universal-positivity-finding",
+    "stmt:metal-specificity-core-refinement-claim"
   ],
-  "member_hash": "hash:054b7e08bfb16c51",
-  "model": "claude-opus-4-8",
+  "member_hash": "hash:52c8d033beeea063",
+  "model": "gpt-5-codex",
   "page_id": "author:0000-0001-5810-2497",
-  "page_plan_hash": "hash:07d54c60f82491c2",
+  "page_plan_hash": "hash:3bac4bd8ffc51f4f",
   "page_type": "author",
-  "prompt_hash": "prompt:kg-write-v1",
+  "prompt_hash": "prompt:manual-demo-v1",
   "repo_commit": "",
   "section_hashes": {
-    "overview": "hash:054b7e08bfb16c51",
-    "projects": "hash:054b7e08bfb16c51",
-    "topics": "hash:054b7e08bfb16c51"
+    "overview": "hash:52c8d033beeea063",
+    "projects": "hash:52c8d033beeea063",
+    "topics": "hash:52c8d033beeea063"
   },
   "skill": "kg-synthesize-page",
   "timestamp": ""

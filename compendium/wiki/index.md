@@ -1,122 +1,61 @@
-# State of the Science
+# Metal Resistance and Microbial Ecotypes Demo
 
 ## Overview
 
-This compendium synthesizes a cluster of analyses centered on the soil bacterium
-*Acinetobacter baylyi* ADP1, a naturally competent organism that has become a workhorse
-for studies of metabolism, gene essentiality, and aromatic-compound degradation. Three
-projects anchor the current state of the science. The first, an exploratory data project,
-inventories a user-provided multi-omics database for ADP1 and establishes how it connects
-to the broader BER Data Lakehouse (BERDL). That database integrates six molecular and
-phenotype data modalities — TnSeq essentiality, FBA metabolic flux, mutant growth fitness
-across eight carbon sources, proteomics across engineered strains, pangenome classification,
-and functional annotation — for ADP1 and thirteen related genomes, providing the substrate
-on which the downstream analyses draw. The second project dissects deletion-collection growth
-phenotypes across carbon sources, and the third reconciles four independent essentiality
-methods (FBA, knockouts, RB-TnSeq, and proteomics) into a single integrated picture.
+This demo wiki synthesizes five BERIL projects into two connected research themes:
+bacterial metal resistance and microbial ecotypes. It is intentionally small enough
+to inspect by hand while still showing the compendium workflow: sourced statement
+cards become topic pages, shared data pages, and author pages with local links and
+auditable citations.
 
-Read together, these projects converge on a coherent message about how ADP1 phenotypes are
-organized and how confidently they can be predicted. Carbon-source dependence is best
-understood as a near-continuous landscape rather than a set of discrete functional modules:
-across eight carbon sources the conditions separate into demanding, moderate, and robust
-growth-defect tiers, and the assays supply several largely independent dimensions of
-phenotypic information rather than one shared sensitivity axis. The quinate degradation
-pathway is the one prominent exception, behaving as a discrete, condition-specific module
-against this otherwise gradient backdrop, while urea emerges as a similarly idiosyncratic
-condition whose fitness profile is nearly uncorrelated with the others. On the predictive
-side, the work is consistent in cautioning against over-reliance on the metabolic model:
-flux-balance class fails to predict which dispensable genes carry measurable growth defects,
-and continuous fitness measurements and proteomic abundance both outperform binary
-essentiality fractions as essentiality signals.
+The metal-resistance projects ask how bacteria tolerate metals across many
+organisms and experiments. Together they move from a broad atlas of metal fitness
+defects, to gene-resolution cross-resistance between metals, to a specificity
+analysis that separates metal-specific genes from general stress genes. The
+ecotype projects ask a parallel question about bacterial diversity: whether
+within-species gene content tracks environment, phylogeny, or functional
+substructure.
 
-A connecting thread across all three projects is data integration. The ADP1 explorer
-demonstrates that the multi-omics database connects strongly to BERDL through genome
-identifiers, biochemistry reactions and compounds, and pangenome clusters, and that a
-gene-junction bridge resolves the otherwise incompatible cluster-ID naming schemes with
-complete gene-level coverage. This connectivity is what allows the carbon-fitness and
-model-quality findings to be placed in comparative-genomic and biochemical context rather
-than read in isolation.
+The throughline is that broad genome-scale patterns can hide smaller, more
+interpretable layers. Metal tolerance is mostly a core-genome robustness problem,
+but metal-specific genes and cross-resistance tiers reveal a more detailed
+architecture. Ecotype structure is weak when tested as whole-genome environmental
+correlation, but becomes clearer when gene-content clusters are compared by
+functional category.
 
 ## Topic Map
 
-The compendium organizes its findings under three topics, each collecting the statements
-that bear on a shared question.
+[Metal Resistance & Critical Minerals](topics/metal-resistance.md) covers the
+three metal projects. The synthesis centers on core-genome robustness, conserved
+metal gene families, universal positive cross-resistance, and the smaller
+specialized layer of metal-specific genes.
 
-[Adp1 Carbon Fitness](topics/adp1-carbon-fitness.md) covers how ADP1 growth requirements
-vary across carbon sources. The deletion-phenotype analysis shows that the eight tested
-sources partition into demanding, moderate, and robust tiers and that, with low pairwise
-correlations and roughly five independent dimensions, they probe largely separate sets of
-gene requirements. Within this continuum, quinate degradation stands out as the single
-discrete phenotypic module, and the explorer's correlation analysis flags urea and quinate
-as the conditions that behave most independently of the rest.
+[Microbial Ecotypes & Niche Differentiation](topics/microbial-ecotypes.md)
+covers the two ecotype projects. The synthesis connects a mostly phylogeny-driven
+whole-genome signal with functional differentiation between gene-content ecotypes.
 
-[Adp1 Model Quality](topics/adp1-model-quality.md) addresses how far the metabolic model can
-be trusted. The explorer finds that the large majority of model-based growth predictions
-depend on gapfilled reactions, tying predictive accuracy to gapfilling quality, and the
-essentiality-reconciliation project shows that FBA class does not predict growth defects
-among dispensable genes. The latter project also identifies a clear failure mode: aromatic
-degradation genes are strongly enriched among FBA-discordant genes, pointing to systematic
-gaps in the model rather than random noise.
-
-[Adp1 Data Integration](topics/adp1-data-integration.md) gathers the connectivity results
-that make cross-project synthesis possible — the multi-modal database inventory, the strong
-match between ADP1 entities and BERDL collections, and the cluster-ID bridge that joins
-BERDL pangenome annotations to ADP1 genes.
-
-## Author Map
-
-The work in this compendium is attributed to two contributors, identified by ORCID:
-[0000-0001-5810-2497](authors/0000-0001-5810-2497.md) and
-[0009-0007-0287-2979](authors/0009-0007-0287-2979.md). Their individual pages collect the
-projects and topics each is associated with.
+These two topics are adjacent because both use pangenome-scale structure to ask
+which parts of bacterial genomes are stable background and which parts vary with
+stress, niche, or function.
 
 ## Data Map
 
-The analyses draw on, and connect to, several shared data collections in the lakehouse.
-The pangenome and comparative-genomic context comes from
-[Kbase Ke Pangenome](data/kbase-ke-pangenome.md), to which ADP1 genomes and gene clusters
-map completely; reaction and compound grounding comes from
-[Kbase Msd Biochemistry](data/kbase-msd-biochemistry.md); and protein-family annotations are
-supplied through [Kbase Uniref](data/kbase-uniref.md). Two further collections,
-[Kescience Fitnessbrowser](data/kescience-fitnessbrowser.md) and
-[Phagefoundry](data/phagefoundry.md), sit adjacent to this work: notably, ADP1 is absent
-from the Fitness Browser, which is part of why the project-supplied mutant-growth fitness data
-is a distinctive contribution rather than a duplication of existing lakehouse resources.
+Two shared collections organize the demo. [KBase KE Pangenome](data/kbase-ke-pangenome.md)
+anchors the core/accessory and gene-content comparisons in both topics.
+[KEScience Fitness Browser](data/kescience-fitnessbrowser.md) anchors the metal
+fitness and cross-resistance work.
 
-## Open Directions
+## Author Map
 
-Several concrete next steps follow directly from the current findings. Because the
-carbon-fitness landscape resolves into roughly five independent dimensions from only eight
-conditions, expanding the deletion-phenotyping panel beyond those eight carbon sources would
-test whether the number of independent phenotypic dimensions continues to grow with broader
-condition coverage. The condition-specific behavior of urea motivates a focused study of its
-nearly independent fitness gene set together with the pangenome conservation of those genes,
-treating urea catabolism as a self-contained metabolism module. On the modeling side, the set
-of genes where FBA and TnSeq disagree is a natural priority list for metabolic-model
-refinement, and the specific enrichment of aromatic degradation genes among discordant calls
-suggests a targeted fix: adding trace aromatic compounds to the FBA media definition and
-retesting whether the discordance resolves. Across all of this, the synthesis recommends
-prioritizing continuous fitness values and orthogonal evidence over binary essentiality
-thresholds when deciding which genes matter.
+[Paramvir S. Dehal](authors/0000-0001-5810-2497.md) contributes to all three
+metal projects and the ecotype correlation analysis. [Justin Reese](authors/0000-0002-2170-2250.md)
+contributes the ecotype functional differentiation project. [Adam Deutschbauer](authors/0000-0003-2728-7622.md)
+contributes to the metal fitness atlas.
 
 ## Sources
 
-- [stmt:adp1-explorer-multiomics-finding; acinetobacter_adp1_explorer]
-- [stmt:adp1-explorer-database-bridge-claim; acinetobacter_adp1_explorer]
-- [stmt:adp1-explorer-berdl-connectivity-finding; acinetobacter_adp1_explorer]
-- [stmt:adp1-explorer-pangenome-bridge-finding; acinetobacter_adp1_explorer]
-- [stmt:adp1-explorer-condition-fitness-finding; acinetobacter_adp1_explorer]
-- [stmt:adp1-explorer-gapfilling-caveat; acinetobacter_adp1_explorer]
-- [stmt:adp1-explorer-discordance-opportunity; acinetobacter_adp1_explorer]
-- [stmt:adp1-explorer-urea-deep-dive-opportunity; acinetobacter_adp1_explorer]
-- [stmt:adp1-deletion-carbon-tier-finding; adp1_deletion_phenotypes]
-- [stmt:adp1-deletion-condition-independence-finding; adp1_deletion_phenotypes]
-- [stmt:adp1-deletion-continuum-claim; adp1_deletion_phenotypes]
-- [stmt:adp1-deletion-quinate-module-finding; adp1_deletion_phenotypes]
-- [stmt:adp1-deletion-expand-carbon-panel-opportunity; adp1_deletion_phenotypes]
-- [stmt:adp1-triple-fba-growth-caveat; adp1_triple_essentiality]
-- [stmt:adp1-triple-continuous-fitness-claim; adp1_triple_essentiality]
-- [stmt:adp1-triple-fitness-predictor-finding; adp1_triple_essentiality]
-- [stmt:adp1-triple-proteomics-finding; adp1_triple_essentiality]
-- [stmt:adp1-triple-aromatic-discordance-finding; adp1_triple_essentiality]
-- [stmt:adp1-triple-aromatic-media-opportunity; adp1_triple_essentiality]
+- [stmt:metal-atlas-core-robustness-finding; metal_fitness_atlas]
+- [stmt:metal-cross-universal-positivity-finding; metal_cross_resistance]
+- [stmt:metal-specificity-core-refinement-claim; metal_specificity]
+- [stmt:ecotype-phylogeny-dominance-finding; ecotype_analysis]
+- [stmt:ecotype-functional-differentiation-finding; ecotype_functional_differentiation]

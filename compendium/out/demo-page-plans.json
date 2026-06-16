@@ -1,0 +1,711 @@
+[
+  {
+    "backlinks": [
+      "data:kbase_ke_pangenome",
+      "data:kescience_fitnessbrowser",
+      "home",
+      "metal-resistance",
+      "microbial-ecotypes"
+    ],
+    "id": "author:0000-0001-5810-2497",
+    "member_hash": "hash:52c8d033beeea063",
+    "member_statement_ids": [
+      "stmt:ecotype-lifestyle-null-caveat",
+      "stmt:metal-cross-bacdive-caveat",
+      "stmt:ecotype-gene-subset-claim",
+      "stmt:metal-cross-two-layer-claim",
+      "stmt:metal-atlas-pangenome-distribution-claim",
+      "stmt:metal-specificity-core-refinement-claim",
+      "stmt:ecotype-phylogeny-dominance-finding",
+      "stmt:metal-cross-universal-positivity-finding",
+      "stmt:metal-cross-tier-architecture-finding",
+      "stmt:metal-atlas-core-robustness-finding",
+      "stmt:metal-atlas-conserved-families-finding",
+      "stmt:metal-specificity-fraction-finding",
+      "stmt:metal-specificity-functional-validation-finding"
+    ],
+    "outgoing_links": [
+      "data:kbase_ke_pangenome",
+      "data:kescience_fitnessbrowser",
+      "metal-resistance",
+      "microbial-ecotypes"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:52c8d033beeea063",
+        "member_statement_ids": [
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      },
+      {
+        "heading": "Projects",
+        "id": "projects",
+        "member_hash": "hash:52c8d033beeea063",
+        "member_statement_ids": [
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      },
+      {
+        "heading": "Topics",
+        "id": "topics",
+        "member_hash": "hash:52c8d033beeea063",
+        "member_statement_ids": [
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      }
+    ],
+    "title": "Paramvir S. Dehal",
+    "type": "author"
+  },
+  {
+    "backlinks": [
+      "data:kbase_ke_pangenome",
+      "home",
+      "microbial-ecotypes"
+    ],
+    "id": "author:0000-0002-2170-2250",
+    "member_hash": "hash:98d1637ecbb73097",
+    "member_statement_ids": [
+      "stmt:ecotype-unknown-mobile-caveat",
+      "stmt:ecotype-adaptive-effect-claim",
+      "stmt:ecotype-functional-differentiation-finding",
+      "stmt:ecotype-functional-widespread-finding"
+    ],
+    "outgoing_links": [
+      "data:kbase_ke_pangenome",
+      "microbial-ecotypes"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:98d1637ecbb73097",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Projects",
+        "id": "projects",
+        "member_hash": "hash:98d1637ecbb73097",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Topics",
+        "id": "topics",
+        "member_hash": "hash:98d1637ecbb73097",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      }
+    ],
+    "title": "Justin Reese",
+    "type": "author"
+  },
+  {
+    "backlinks": [
+      "data:kbase_ke_pangenome",
+      "data:kescience_fitnessbrowser",
+      "home",
+      "metal-resistance"
+    ],
+    "id": "author:0000-0003-2728-7622",
+    "member_hash": "hash:853ddeef0ca85c69",
+    "member_statement_ids": [
+      "stmt:metal-atlas-pangenome-distribution-claim",
+      "stmt:metal-atlas-core-robustness-finding",
+      "stmt:metal-atlas-conserved-families-finding"
+    ],
+    "outgoing_links": [
+      "data:kbase_ke_pangenome",
+      "data:kescience_fitnessbrowser",
+      "metal-resistance"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:853ddeef0ca85c69",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim"
+        ]
+      },
+      {
+        "heading": "Projects",
+        "id": "projects",
+        "member_hash": "hash:853ddeef0ca85c69",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim"
+        ]
+      },
+      {
+        "heading": "Topics",
+        "id": "topics",
+        "member_hash": "hash:853ddeef0ca85c69",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim"
+        ]
+      }
+    ],
+    "title": "Adam Deutschbauer",
+    "type": "author"
+  },
+  {
+    "backlinks": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0002-2170-2250",
+      "author:0000-0003-2728-7622",
+      "home",
+      "metal-resistance",
+      "microbial-ecotypes"
+    ],
+    "id": "data:kbase_ke_pangenome",
+    "member_hash": "hash:49b7b3e71dbc70da",
+    "member_statement_ids": [
+      "stmt:ecotype-lifestyle-null-caveat",
+      "stmt:ecotype-unknown-mobile-caveat",
+      "stmt:metal-cross-bacdive-caveat",
+      "stmt:ecotype-gene-subset-claim",
+      "stmt:ecotype-adaptive-effect-claim",
+      "stmt:metal-cross-two-layer-claim",
+      "stmt:metal-atlas-pangenome-distribution-claim",
+      "stmt:ecotype-phylogeny-dominance-finding",
+      "stmt:ecotype-functional-differentiation-finding",
+      "stmt:ecotype-functional-widespread-finding",
+      "stmt:metal-cross-universal-positivity-finding",
+      "stmt:metal-cross-tier-architecture-finding",
+      "stmt:metal-atlas-core-robustness-finding",
+      "stmt:metal-atlas-conserved-families-finding"
+    ],
+    "outgoing_links": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0002-2170-2250",
+      "author:0000-0003-2728-7622",
+      "metal-resistance",
+      "microbial-ecotypes"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:49b7b3e71dbc70da",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat",
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding"
+        ]
+      },
+      {
+        "heading": "Projects Using This Collection",
+        "id": "projects",
+        "member_hash": "hash:49b7b3e71dbc70da",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat",
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding"
+        ]
+      }
+    ],
+    "title": "Kbase Ke Pangenome",
+    "type": "data"
+  },
+  {
+    "backlinks": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0003-2728-7622",
+      "home",
+      "metal-resistance"
+    ],
+    "id": "data:kescience_fitnessbrowser",
+    "member_hash": "hash:4725635c231e63d2",
+    "member_statement_ids": [
+      "stmt:metal-cross-bacdive-caveat",
+      "stmt:metal-cross-two-layer-claim",
+      "stmt:metal-atlas-pangenome-distribution-claim",
+      "stmt:metal-cross-universal-positivity-finding",
+      "stmt:metal-cross-tier-architecture-finding",
+      "stmt:metal-atlas-core-robustness-finding",
+      "stmt:metal-atlas-conserved-families-finding"
+    ],
+    "outgoing_links": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0003-2728-7622",
+      "metal-resistance"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:4725635c231e63d2",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding"
+        ]
+      },
+      {
+        "heading": "Projects Using This Collection",
+        "id": "projects",
+        "member_hash": "hash:4725635c231e63d2",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding"
+        ]
+      }
+    ],
+    "title": "Kescience Fitnessbrowser",
+    "type": "data"
+  },
+  {
+    "backlinks": [],
+    "id": "home",
+    "member_hash": "hash:773e96af249c130f",
+    "member_statement_ids": [
+      "stmt:ecotype-lifestyle-null-caveat",
+      "stmt:ecotype-unknown-mobile-caveat",
+      "stmt:metal-cross-bacdive-caveat",
+      "stmt:ecotype-gene-subset-claim",
+      "stmt:ecotype-adaptive-effect-claim",
+      "stmt:metal-cross-two-layer-claim",
+      "stmt:metal-atlas-pangenome-distribution-claim",
+      "stmt:metal-specificity-core-refinement-claim",
+      "stmt:ecotype-phylogeny-dominance-finding",
+      "stmt:ecotype-functional-differentiation-finding",
+      "stmt:ecotype-functional-widespread-finding",
+      "stmt:metal-cross-universal-positivity-finding",
+      "stmt:metal-cross-tier-architecture-finding",
+      "stmt:metal-atlas-core-robustness-finding",
+      "stmt:metal-atlas-conserved-families-finding",
+      "stmt:metal-specificity-fraction-finding",
+      "stmt:metal-specificity-functional-validation-finding"
+    ],
+    "outgoing_links": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0002-2170-2250",
+      "author:0000-0003-2728-7622",
+      "data:kbase_ke_pangenome",
+      "data:kescience_fitnessbrowser",
+      "metal-resistance",
+      "microbial-ecotypes"
+    ],
+    "sections": [
+      {
+        "heading": "Cross-Project Overview",
+        "id": "overview",
+        "member_hash": "hash:773e96af249c130f",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat",
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      },
+      {
+        "heading": "Topic Map",
+        "id": "topic_map",
+        "member_hash": "hash:773e96af249c130f",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat",
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      },
+      {
+        "heading": "Author Map",
+        "id": "author_map",
+        "member_hash": "hash:773e96af249c130f",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat",
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      },
+      {
+        "heading": "Data Map",
+        "id": "data_map",
+        "member_hash": "hash:773e96af249c130f",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat",
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      }
+    ],
+    "title": "State Of The Science",
+    "type": "home"
+  },
+  {
+    "backlinks": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0003-2728-7622",
+      "data:kbase_ke_pangenome",
+      "data:kescience_fitnessbrowser",
+      "home"
+    ],
+    "id": "metal-resistance",
+    "member_hash": "hash:e9848bfaa008650e",
+    "member_statement_ids": [
+      "stmt:metal-cross-bacdive-caveat",
+      "stmt:metal-cross-two-layer-claim",
+      "stmt:metal-atlas-pangenome-distribution-claim",
+      "stmt:metal-specificity-core-refinement-claim",
+      "stmt:metal-cross-universal-positivity-finding",
+      "stmt:metal-cross-tier-architecture-finding",
+      "stmt:metal-atlas-core-robustness-finding",
+      "stmt:metal-atlas-conserved-families-finding",
+      "stmt:metal-specificity-fraction-finding",
+      "stmt:metal-specificity-functional-validation-finding"
+    ],
+    "outgoing_links": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0003-2728-7622",
+      "data:kbase_ke_pangenome",
+      "data:kescience_fitnessbrowser"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:e9848bfaa008650e",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      },
+      {
+        "heading": "What the Corpus Shows",
+        "id": "what_the_corpus_shows",
+        "member_hash": "hash:e9848bfaa008650e",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      },
+      {
+        "heading": "Projects and Evidence",
+        "id": "projects_and_evidence",
+        "member_hash": "hash:e9848bfaa008650e",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      },
+      {
+        "heading": "Connections",
+        "id": "connections",
+        "member_hash": "hash:e9848bfaa008650e",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      },
+      {
+        "heading": "Caveats and Open Directions",
+        "id": "caveats_and_open_directions",
+        "member_hash": "hash:eed188798f289c83",
+        "member_statement_ids": [
+          "stmt:metal-cross-bacdive-caveat"
+        ]
+      },
+      {
+        "heading": "Sources",
+        "id": "sources",
+        "member_hash": "hash:e9848bfaa008650e",
+        "member_statement_ids": [
+          "stmt:metal-atlas-conserved-families-finding",
+          "stmt:metal-atlas-core-robustness-finding",
+          "stmt:metal-atlas-pangenome-distribution-claim",
+          "stmt:metal-cross-bacdive-caveat",
+          "stmt:metal-cross-tier-architecture-finding",
+          "stmt:metal-cross-two-layer-claim",
+          "stmt:metal-cross-universal-positivity-finding",
+          "stmt:metal-specificity-core-refinement-claim",
+          "stmt:metal-specificity-fraction-finding",
+          "stmt:metal-specificity-functional-validation-finding"
+        ]
+      }
+    ],
+    "title": "Topic: Metal Resistance",
+    "type": "topic"
+  },
+  {
+    "backlinks": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0002-2170-2250",
+      "data:kbase_ke_pangenome",
+      "home"
+    ],
+    "id": "microbial-ecotypes",
+    "member_hash": "hash:84293aff412c609a",
+    "member_statement_ids": [
+      "stmt:ecotype-lifestyle-null-caveat",
+      "stmt:ecotype-unknown-mobile-caveat",
+      "stmt:ecotype-gene-subset-claim",
+      "stmt:ecotype-adaptive-effect-claim",
+      "stmt:ecotype-phylogeny-dominance-finding",
+      "stmt:ecotype-functional-differentiation-finding",
+      "stmt:ecotype-functional-widespread-finding"
+    ],
+    "outgoing_links": [
+      "author:0000-0001-5810-2497",
+      "author:0000-0002-2170-2250",
+      "data:kbase_ke_pangenome"
+    ],
+    "sections": [
+      {
+        "heading": "Overview",
+        "id": "overview",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "What the Corpus Shows",
+        "id": "what_the_corpus_shows",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Projects and Evidence",
+        "id": "projects_and_evidence",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Connections",
+        "id": "connections",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Caveats and Open Directions",
+        "id": "caveats_and_open_directions",
+        "member_hash": "hash:405ad5fc162a67db",
+        "member_statement_ids": [
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      },
+      {
+        "heading": "Sources",
+        "id": "sources",
+        "member_hash": "hash:84293aff412c609a",
+        "member_statement_ids": [
+          "stmt:ecotype-adaptive-effect-claim",
+          "stmt:ecotype-functional-differentiation-finding",
+          "stmt:ecotype-functional-widespread-finding",
+          "stmt:ecotype-gene-subset-claim",
+          "stmt:ecotype-lifestyle-null-caveat",
+          "stmt:ecotype-phylogeny-dominance-finding",
+          "stmt:ecotype-unknown-mobile-caveat"
+        ]
+      }
+    ],
+    "title": "Topic: Microbial Ecotypes",
+    "type": "topic"
+  }
+]
