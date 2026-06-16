@@ -13,6 +13,7 @@ from compendium.context_pack import build_context_pack, context_pack_bytes
 from compendium.models import StatementCard
 from compendium.pages import plan_pages, write_page_artifact, write_page_context
 from compendium.registry import Registry
+from compendium.render.cosma import write_cosma_project
 from compendium.render.markdown import render_markdown_wiki
 from compendium.validate import (
     validate_page_plan_file,
@@ -193,6 +194,23 @@ def dispatch(args) -> int:
             out_dir,
         )
         print(f"[compendium] rendered {len(rendered)} markdown wiki pages -> {out_dir}")
+        return 0
+    if args.cmd == "export-cosma":
+        cards = _load_statement_cards(args.path)
+        plan_inputs = _build_plan_inputs(getattr(args, "source_root", None))
+        written = write_cosma_project(
+            plan_pages(cards, **plan_inputs),
+            cards=cards,
+            registry=plan_inputs["registry"],
+            authors=plan_inputs["authors"],
+            collections=plan_inputs["collections"],
+            wiki_dir=Path(args.wiki).resolve(),
+            out_dir=Path(args.out).resolve(),
+            title=args.title,
+        )
+        out_dir = Path(args.out).resolve()
+        print(f"[compendium] wrote {len(written)} cosma files -> {out_dir}")
+        print(f"[compendium] next: cd {out_dir} && npx -y @graphlab-fr/cosma modelize")
         return 0
     if args.cmd == "check":
         problems = check_wiki(Path(args.wiki).resolve())

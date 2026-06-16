@@ -1,6 +1,6 @@
 ---
 name: kg-wiki
-description: Orchestrator and single entry point for the BERIL KG-wiki. Chains the whole pipeline over projects/ — context-pack + kg-extract per project, one global kg-reconcile, plan + wiki-contexts, kg-write per changed page (parallel, reusing unchanged pages), render-markdown, and a final check gate. This is the only skill a user normally invokes.
+description: Orchestrator and single entry point for the BERIL KG-wiki. Chains the whole pipeline over projects/ — context-pack + kg-extract per project, one global kg-reconcile, plan + wiki-contexts, kg-write per changed page (parallel, reusing unchanged pages), render-markdown, a final check gate, and export-cosma + cosma modelize for the graph+wiki viewer. This is the only skill a user normally invokes.
 ---
 
 # kg-wiki
@@ -93,8 +93,19 @@ already authored, so `kg-write` must run before it. This skill absorbs the old b
    page (re-dispatch `kg-write`) or re-run `kg-reconcile` (e.g. an unresolved topic) and repeat
    steps 4–6 until `check` exits 0.
 
-7. Summarize: projects extracted/skipped, registry topics/entities, pages written vs reused, and the
-   final `check` status. The entry point for readers is `compendium/wiki/index.md`.
+7. **Export the graph + wiki viewer** (deterministic export + one Node build). After `check`
+   passes, emit the Cosma reader graph (topic/project/data/author records + config) and build the
+   self-contained cosmoscope:
+   ```bash
+   uv run compendium export-cosma <kg> --source-root ../projects --wiki wiki --out cosma
+   (cd cosma && npx -y @graphlab-fr/cosma modelize)   # → cosma/cosmoscope.html
+   ```
+   `export-cosma` is deterministic (no model); `cosma modelize` is the only Node build step.
+   `cosma/` is a generated artifact (gitignored).
+
+8. Summarize: projects extracted/skipped, registry topics/entities, pages written vs reused, the
+   final `check` status, and the cosmoscope path. The entry point for readers is
+   `compendium/wiki/index.md`.
 
 ## Subagent contract
 

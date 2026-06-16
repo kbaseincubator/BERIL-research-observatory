@@ -19,10 +19,12 @@ projects/* ─[D] context-pack ─▶ context-packs/   (audit + source excerpts 
               ─[LLM] kg-write ────▶ wiki/*.md                 (cited prose; provenance in a Sources section)
                                    │
               ─[D] render-markdown + check ─▶ published wiki + integrity gate
+                                   │
+              ─[D] export-cosma + cosma modelize ─▶ cosma/cosmoscope.html (graph + wiki viewer)
 ```
 
 - **Deterministic (no model):** `context-pack`, `validate-kg`, `plan-pages`, `wiki-contexts`,
-  `page-context`, `render-markdown`, `check`, `validate-card`, `validate-page-plan`. The author and
+  `page-context`, `render-markdown`, `check`, `export-cosma`, `validate-card`, `validate-page-plan`. The author and
   shared-data connections are deterministic too (no LLM): authors join on ORCID from README `## Authors`
   blocks; shared data joins on the canonical collection ids in `ui/config/collections.yaml`.
 - **LLM steps are skills** under `skills/`: `kg-extract` (per project), `kg-reconcile` (once, global,
@@ -64,6 +66,11 @@ uv run compendium wiki-contexts <kg> --source-root ../projects --out out/page-co
 uv run compendium render-markdown <kg> --source-root ../projects --out wiki        # validate + publish
 uv run compendium check --wiki wiki                                                # link + citation integrity gate
 open compendium/wiki/index.md
+
+# Graph + wiki viewer (Cosma): deterministic records/config, then a one-shot Node build.
+uv run compendium export-cosma <kg> --source-root ../projects --wiki wiki --out cosma  # reader-graph records + config.yml
+(cd cosma && npx -y @graphlab-fr/cosma modelize)                                       # → cosma/cosmoscope.html (self-contained)
+open compendium/cosma/cosmoscope.html
 ```
 
 `plan-pages` / `wiki-contexts` / `render-markdown` auto-load `compendium/registry.yaml` when present and
@@ -80,6 +87,7 @@ build the author/collection indexes from `--source-root` + `ui/config/collection
 | `src/compendium/registry.py` | additive canonical topic/entity resolution from `registry.yaml` |
 | `src/compendium/pages/` | deterministic page plans (topic/data/author/home) + bounded page contexts + authored-page validation |
 | `src/compendium/render/markdown.py` | Markdown wiki publisher (validates authored pages) |
+| `src/compendium/render/cosma.py` | Cosma export: reader-graph records (topic/project/data/author) + config for the cosmoscope viewer |
 | `src/compendium/check.py` | link + citation integrity check (the final gate) |
 | `skills/` | LLM orchestration: `kg-extract`, `kg-reconcile`, `kg-write`, `kg-wiki` |
 | `wiki/` | the human-facing Markdown wiki (entry point `wiki/index.md`); manifests under `wiki/.manifests/` |
