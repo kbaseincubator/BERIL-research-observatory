@@ -39,6 +39,7 @@ from app.atlas_graph import (
     review_routes_for_page,
 )
 
+from .auth import _RedirectToLogin, redirect_to_login_handler
 from .routes.admin import ROUTER_ADMIN
 from .routes.auth import ROUTER_AUTH
 from .routes.chat import ROUTER_CHAT, ROUTER_CHAT_PAGES
@@ -103,6 +104,9 @@ def create_app() -> FastAPI:
     )
 
     app.add_middleware(SessionMiddleware, secret_key=settings.session_secret_key, session_cookie="beril_session")
+
+    # Anonymous visitors to page routes guarded by require_user_page get bounced to login.
+    app.add_exception_handler(_RedirectToLogin, redirect_to_login_handler)
 
     # Mount static files
     app.mount("/static", StaticFiles(directory=settings.static_dir), name="static")
