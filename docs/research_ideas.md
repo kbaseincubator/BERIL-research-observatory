@@ -723,3 +723,36 @@ Originally PROPOSED above. Completion summary:
 **H2 REJECTED, opposite direction**: deep-clay anchor Bacillota_B are 35% LARGER than soil-baseline (4.3 Mbp vs 3.2 Mbp CheckM-rescaled, d=+1.37, p=0.013). Streamlining is a Patescibacteria/CPR-specific adaptation; cultivable subsurface Firmicutes show gene-content expansion consistent with Beaver & Neufeld 2024 self-sufficiency.
 
 **Phase 1 clay correction**: clay_confined_subsurface H3 IR-side used K07811/K17324/K17323 — those are TMAO reductase / glycerol ABC / glycerol permease, not iron reduction. With corrected multi-heme cytochrome detection (PF02085 + PF22678 + CXXCH motif counting), no significant cohort difference (all Fisher p ≥ 0.46). The clay project's SR-side H3 stands; IR-side narrative needs withdrawal. See `projects/bacillota_b_subsurface_accessory/`.
+
+
+---
+
+### [cazyme_pangenome_ecology] CAZyme Pangenome Ecology — Carbohydrate Metabolism Distribution Across 27K Species
+**Status**: COMPLETED
+**Priority**: HIGH
+**Effort**: Low (1-2 weeks)
+
+**Research Question**: At pan-bacterial scale (27K species, 293K genomes), are carbohydrate-active enzymes (CAZymes) preferentially accessory, and do CAZyme profiles distinguish environmental niches?
+
+**Results**: H1 strongly supported — CAZyme class composition (GH, GT) differs 3–4× across 18 biomes (49K genomes, KW H > 7,000, all p ≈ 0), surviving genome-size and phylogenetic controls. The GT/GH ratio emerged as a novel ecological indicator: marine genomes are biosynthesis-dominant (71% GT > GH) while rumen genomes are degradation-dominant (74% GH > GT). Bacteroidota in soil carry 2.8× their cross-biome GH average. H2 (CAZyme density–pangenome openness correlation) weakly supported (partial ρ = 0.101), concentrated in Bacillota_A, Bacteroidota, and Firmicutes_A; genome_count severely confounds cloud_fraction (ρ = 0.913). Used `kescience_mgnify` (MGnify Genomes catalog) rather than `arkinlab.dbcan` — the MGnify data provided broader biome coverage for the ecological question.
+
+**Approach**:
+- Extract `arkinlab.dbcan` CAZyme annotations (dbcan_integrated_results, fam_substrate_mapping, dbcan_pul) and join to `kbase_ke_pangenome` gene clusters
+- Compute per-CAZyme-family core/accessory fraction vs genome-wide baseline (Fisher's exact, BH-FDR)
+- Stratify by `ncbi_env` environment categories, test CAZyme composition differences (PERMANOVA)
+- Cross-reference with Fitness Browser for condition-specific effects of CAZyme knockouts
+- Identify environment-diagnostic CAZyme families using substrate mapping
+
+**Hypotheses**:
+- H1: CAZymes are significantly enriched in the accessory genome relative to genome-wide baseline (driven by niche-specific carbohydrate exploitation and known high HGT rates)
+- H0: CAZyme core/accessory distribution matches the genome-wide average
+- H2: CAZyme family composition differs significantly between environment types (soil: cellulose/hemicellulose GHs; gut: mucin/starch GHs; marine: chitin/alginate PLs)
+
+**Impact**: High — first pan-bacterial CAZyme conservation analysis (existing studies are single-species). Opens the completely untouched `arkinlab.dbcan` database. Produces environment-diagnostic CAZyme markers. Connects to carbon cycling ecology, HGT, and pangenome structure.
+
+**Dependencies**:
+- `arkinlab.dbcan` coverage must overlap with `kbase_ke_pangenome` genomes (verify in NB01)
+- Existing: pangenome conservation patterns from `cog_analysis`, `conservation_vs_fitness`, `openness_functional_composition`
+- Existing: environment metadata from `ncbi_env`
+
+**Location**: `projects/cazyme_pangenome_ecology/`
