@@ -11,6 +11,7 @@ import app.context as ctx
 from app.context import generate_base_context, get_base_context, get_repo_data, initialize_data
 from app.db.session import init_db, close_db, check_db
 from app.notebook_processors import PlotlyPreprocessor
+from app.routes.openviking import ROUTER_OV
 import nbformat
 from fastapi import APIRouter, Depends, FastAPI, Header, HTTPException, Request
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -133,6 +134,7 @@ def create_app() -> FastAPI:
     app.include_router(ROUTER_PROJECTS)
     app.include_router(ROUTER_SKILLS)
     app.include_router(ROUTER_ATLAS)
+    app.include_router(ROUTER_OV)
 
     # Configure templates
     global templates
@@ -159,7 +161,6 @@ ROUTER_KNOWLEDGE = APIRouter(tags=["Knowledge"])
 ROUTER_PROJECTS = APIRouter(tags=["Project"])
 ROUTER_SKILLS = APIRouter(tags=["Skills"])
 ROUTER_ATLAS = APIRouter(tags=["Atlas"])
-
 
 # Routes
 @ROUTER_GENERAL.get("/", response_class=HTMLResponse)
