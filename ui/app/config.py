@@ -61,7 +61,7 @@ class Settings(BaseSettings):
     ov_url: str = "http://localhost:1933"
     ov_account_id: str = "beril"
     ov_account_admin: str = "beril_admin"
-    ov_admin_pw: str = "change-me-in-production"
+    ov_admin_key: str = "change-me-in-production"
 
     # Derived paths
     @property
