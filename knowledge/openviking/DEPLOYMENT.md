@@ -45,4 +45,12 @@ Deployment is done on NERSC SPIN, which uses Rancher2 / Kubernetes for managing 
   * nginx.ingress.kubernetes.io/use-regex: 'true'
 These aren't available in the UI, so you'll have to edit directly.
 
-Once these are deployed, OpenViking should be available by calling `https://beril.kbase.us/ov` (i.e. setting the `OPENVIKING_URL` environment variable to that endpoint and invoking one of the scripts.)
+Once these are deployed, OpenViking should be available by calling `https://beril.kbase.us/ov` (i.e. setting the `OPENVIKING_URL` environment variable to that endpoint and invoking one of the scripts.) Test this by making a GET request to `https://beril.kbase.us/ov/health` - you should see a similar JSON block:
+```json
+{
+    "status": "ok",
+    "healthy": true,
+    "version": "0.3.24",
+    "auth_mode": "api_key"
+}
+```
