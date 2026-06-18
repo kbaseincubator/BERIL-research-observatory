@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:phylogeny-confound-caveat",
+    "stmt:threshold-circularity-caveat",
+    "stmt:fb-gapmind-coverage-caveat",
+    "stmt:composite-importance-score",
+    "stmt:pathway-variation-openness-correlate",
+    "stmt:accessory-as-insurance",
+    "stmt:variable-pathways-open-pangenomes",
+    "stmt:active-deps-core-genomes",
+    "stmt:latent-conditionally-active",
+    "stmt:amino-acid-accessory-dependence",
+    "stmt:capability-not-dependency",
+    "stmt:metabolic-ecotypes",
+    "stmt:alphaearth-niche-opportunity",
+    "stmt:incomplete-but-important-opportunity"
+  ],
+  "member_hash": "hash:bad8aeb36ed51ccf",
+  "model": "haiku",
+  "page_id": "project:pathway_capability_dependency",
+  "page_plan_hash": "hash:3d8ada6033ac252b",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:bad8aeb36ed51ccf",
+    "lead": "hash:bad8aeb36ed51ccf"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

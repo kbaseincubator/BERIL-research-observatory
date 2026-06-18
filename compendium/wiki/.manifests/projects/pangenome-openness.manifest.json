@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:core-accessory-may-miss-adaptation",
+    "stmt:partial-correlation-confounding",
+    "stmt:openness-single-metric-limitation",
+    "stmt:limited-sample-size",
+    "stmt:hgt-opportunistic-not-niche",
+    "stmt:open-closed-distinction-not-predictive",
+    "stmt:pangenome-structure-independent-eco-phylo",
+    "stmt:hypothesis-open-pangenomes-environment",
+    "stmt:openness-does-not-predict-driver",
+    "stmt:no-correlation-openness-effects",
+    "stmt:openness-defined-from-core-fraction",
+    "stmt:weak-spearman-values",
+    "stmt:precomputed-pangenome-stats",
+    "stmt:hgt-opportunistic-consistent-literature",
+    "stmt:opportunity-alternative-openness-metrics",
+    "stmt:opportunity-stratify-by-function"
+  ],
+  "member_hash": "hash:9f1a28e300b4a19c",
+  "model": "haiku",
+  "page_id": "project:pangenome_openness",
+  "page_plan_hash": "hash:87ad9dd8942c5c3b",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:9f1a28e300b4a19c",
+    "lead": "hash:9f1a28e300b4a19c"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

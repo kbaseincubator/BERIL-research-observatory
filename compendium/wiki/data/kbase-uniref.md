@@ -1,185 +1,91 @@
-# KBase UniRef
+# Kbase Uniref
 
 ## Overview
 
-KBase UniRef is one of the reference data collections in the BERDL (the BER
-Data Lakehouse), the shared lakehouse that holds the genomes, gene clusters,
-biochemistry, and annotation tables the projects in this compendium query
-against. UniRef-style clustering groups protein-coding genes from many genomes
-into families of homologous sequences, and within BERDL those families are
-indexed by stable cluster and centroid gene identifiers. This page exists
-because two otherwise quite different projects, an intensive single-organism
-multi-omics study and a domain-wide horizontal-gene-transfer atlas, both lean on
-this clustered-gene scaffold to relate their own analyses back to the shared
-lakehouse. The collection is what lets a finding about one organism's genes be
-expressed in the same identifier space as a survey across nearly nineteen
-thousand species.
+The KBase UniRef collection is a shared functional-annotation substrate that underlies metabolic modeling and pangenome analysis across BERIL projects. It provides UniRef cluster identifiers for bacterial genes — connecting each gene in a genome to a cluster of homologous sequences curated by the UniProt Consortium — and in doing so serves as the common vocabulary through which projects as different as a single-organism multi-omics deep dive and a bacterial-domain horizontal-gene-transfer atlas can both anchor their gene sets to known biochemical functions. This page exists in the wiki because two distinct projects draw on this resource and their combined results reveal both the power and the limits of KBase's UniRef-backed annotation infrastructure.
 
-The depth of that integration is concrete on the single-organism side. The
-*Acinetobacter baylyi* ADP1 explorer demonstrated that four of five connection
-types between its private database and BERDL collections matched at over 90%,
-including a perfect 100% match for genome IDs and compounds and 91% for
-reactions. The one place where naive matching failed entirely was gene-cluster
-identifiers: the ADP1 database uses mmseqs2-style cluster IDs that share 0%
-direct string overlap with BERDL centroid gene IDs. A dedicated gene junction
-table closed that gap, mapping all 4,891 BERDL clusters onto 4,081 unique ADP1
-clusters and giving a complete bridge between the two identifier systems. That
-junction is the practical reason the collection "connects" the projects: it
-turns an unmatched ID namespace into a shared coordinate system for genes. This
-matters for [pangenome architecture](../topics/pangenome-architecture.md),
-because cluster identity is exactly what defines whether a gene belongs to a
-species' conserved core or its variable accessory genome.
+The two projects are **acinetobacter_adp1_explorer** and **gene_function_ecological_agora**. The former builds a six-modality multi-omics database for *Acinetobacter baylyi* ADP1, a naturally competent soil bacterium that is a workhorse of metabolic engineering; the latter constructs a 13.7 million-entry HGT innovation atlas spanning 18,989 species representatives drawn from the GTDB r214 bacterial tree. Both are integrated into BERDL (the Berkeley Research Data Lakehouse), whose pangenome, biochemistry, and fitness-browser tables are annotated via KBase-style UniRef cluster identifiers.
+
+### Connecting the two annotation layers
+
+A key integration challenge in the ADP1 project was that the database's mmseqs2-style cluster IDs (formatted `NHSXFYEX_mmseqsCluster_NNNN`) bore no string resemblance to BERDL's centroid gene IDs (`NC_005966.1_1024`). The bridge was found through BERDL's `gene_genecluster_junction` table, which maps centroid gene IDs to member gene IDs that match the `feature_id` column in the ADP1 `pan_genome_features` table, which in turn carries the ADP1-style cluster identifier [\[1\]](#references). All 4,891 BERDL clusters mapped successfully to 4,081 unique ADP1 clusters — a 100% gene-level match across 43,754 genes — demonstrating that UniRef-grounded pangenome annotations can be joined reliably to organism-specific databases even when naming conventions diverge completely. The saved mapping table enables any future analysis to join BERDL pangenome annotations such as eggNOG and functional predictions directly to ADP1 genes.
+
+With that bridge in place, four of five connection types between the ADP1 database and BERDL collections matched at above 90%, including 100% of genome IDs and compounds and 91% of metabolic reactions [\[2\]](#references). The 120 unmatched reactions represent reactions not yet in ModelSEED, the biochemistry database that underpins KBase metabolic modeling.
+
+### What the annotation supports in ADP1
+
+The ADP1 multi-omics database integrates six data modalities into a single SQLite resource of 15 tables and 461,522 rows, with the central `genome_features` table holding 5,852 genes and 51 annotation columns spanning TnSeq essentiality (58% coverage), flux balance analysis (FBA) metabolic flux (15%), mutant growth fitness on 8 carbon sources (39%), proteomics across 7 engineered strains (41%), pangenome classification (54%), and functional annotations via COG, KEGG KO, Pfam, and UniRef (34–55%) [\[3\]](#references). FBA — flux balance analysis — is a computational method that models which metabolic reactions carry flux under a given growth condition by solving a linear program over a stoichiometric reaction network. Because ADP1 is absent from the Fitness Browser, the condition-specific mutant growth data compiled here is a unique resource not available elsewhere in BERDL [\[4\]](#references).
+
+The annotation coverage gap between essential and dispensable genes is striking. Essential genes, identified via RB-TnSeq (a transposon library sequencing method that assigns fitness scores by counting insertion mutants under selection), carry COG assignments at 6× the rate of dispensable genes (33% vs 5%) and KEGG KO assignments at 92% vs 53% [\[5\]](#references). Essential genes also congregate in the core pangenome, consistent with the broader pattern that conserved genes tend to be essential [\[6\]](#references). The approximately 8% of essential genes still lacking KO assignments are particularly promising targets for discovering novel essential functions [\[7\]](#references).
+
+Gene essentiality in ADP1 is media-dependent: 499 genes are essential on minimal media versus 346 on LB (a rich medium), reflecting the additional biosynthetic burden of synthesizing metabolites from scratch rather than acquiring them from the environment [\[8\]](#references). Cross-condition fitness profiles across 8 carbon sources show only moderate mean correlation (pairwise r = 0.44), with urea catabolism standing apart as nearly independent of quinate (r = 0.11), suggesting that these two pathways draw on largely distinct gene sets [\[9\]](#references). This connects to the [Gene Fitness](../topics/gene-fitness.md) topic page, which collects evidence about condition-specificity of fitness effects across organisms in the corpus.
+
+FBA predictions and TnSeq essentiality calls agreed for 73.8% of the 866 genes with both measurements; the discordant 26% are candidates for model refinement or may reflect regulatory effects that FBA's steady-state stoichiometric framework cannot capture [\[10\]](#references). Core metabolism is highly conserved: 94% of the 1,330 unique metabolic reactions are shared across all 14 Acinetobacter genomes, with only 20 reactions genome-unique [\[11\]](#references). This high conservation connects to [Metabolic Pathways](../topics/metabolic-pathways.md), where findings about core versus accessory metabolic content across the wiki's projects are synthesized.
+
+Proteomics data measured across 7 engineered ADP1 strains for 2,383 genes shows high cross-strain correlation, indicating that the aromatic amino acid pathway modifications have targeted rather than global effects on the proteome [\[12\]](#references).
+
+### Caveats from the ADP1 project
+
+Two structural limitations qualify the ADP1 findings. First, no single gene carries data across all six modalities simultaneously, and FBA flux coverage is the sparsest at only 15%, restricting the model-experiment concordance analysis to 866 genes — a small fraction of the 5,852-gene database [\[13\]](#references). Second, 87% of the 121,519 growth phenotype predictions require at least one gapfilled reaction, where gapfilling refers to the automated addition of reactions to a metabolic model to close gaps that prevent any feasible flux solution [\[14\]](#references). Because gapfilled reactions are inferred rather than genomically evidenced, prediction accuracy is tightly coupled to the quality of that inference, and the 243 cataloged missing functions represent genuine gaps in genomic evidence.
+
+### What the annotation enables at bacterial-domain scale
+
+The gene_function_ecological_agora project uses KBase's UniRef-grounded KEGG KO assignments across 18,989 GTDB species representatives to build a bacterial-domain atlas of gene-family innovation. The atlas records 13.7 million producer/participation scores at every (rank × clade × KO) combination, plus 17 million Sankoff gain events with recipient-rank acquisition attribution [\[15\]](#references). Sankoff parsimony is a tree-based ancestral-state reconstruction algorithm; here it is applied to infer where on the GTDB species phylogeny each KO was gained or lost, producing a "recent versus ancient" acquisition-depth profile for every gene family.
+
+A central finding is that the ratio of recent-to-ancient gain events is itself a function-class signature: CRISPR-Cas systems show a 24.5× recent-to-ancient ratio (highly HGT-active), while strict housekeeping genes show ratios near 1× (vertically inherited) [\[16\]](#references). This acquisition-depth signal underpins the atlas's organizing framework, the Producer × Participation categorization, which assigns each clade–KO combination to one of four labels — Innovator-Isolated, Innovator-Exchange, Sink-Broker-Exchange, or Stable — at ranks where full DTL reconciliation (duplication-transfer-loss phylogenetics) would be computationally intractable [\[17\]](#references). A clade classified as Innovator-Isolated expands its own copies of a gene family but does not share them broadly across clades; Innovator-Exchange expands and shares.
+
+Architectural promiscuity at the domain level correlates with exchange propensity: mixed-category KOs carry a median of 46 distinct Pfam domain architectures per KO, versus only 1 for photosystem II (PSII) KOs, mirroring the pattern from Denise 2019 that modular systems exchange more readily [\[18\]](#references). This connects to [Mobile Genetic Elements](../topics/mobile-genetic-elements.md), where the mechanisms of cross-clade gene transfer across the wiki's projects are discussed.
+
+Atlas findings are made robust by convergence across three independent evidence substrates: Sankoff parsimony effect size computed from the GTDB species tree, sample-biome ecology metadata from MGnify and ENVO environmental ontologies, and per-strain phenotype tables from BacDive [\[19\]](#references). The pre-registered clades are significantly enriched in their expected environments — Mycobacteriaceae are 7.88× enriched in host-pathogen niches, Cyanobacteriia are 2.77× enriched in photic aquatic environments, and Bacteroidota are 1.40× enriched in gut/rumen — providing ecological grounding for the phylogenetic innovation signals [\[20\]](#references). This environmental grounding is explored further on the [Environment Biogeography](../topics/environment-biogeography.md) page.
+
+At the clade level, Cyanobacteria are confirmed as Innovator-Exchange on photosystem II at the class rank (producer Cohen's d = +1.50, consumer d = +0.70), which is the biologically appropriate rank because PSII evolved before Cyanobacteria diversification [\[21\]](#references). Mycobacteriaceae are Innovator-Isolated on the mycolic-acid pathway at family and order ranks (producer d = +0.31, consumer d = −0.19), indicating strong paralog expansion with little cross-clade exchange [\[22\]](#references). Biome analysis further refines this finding: the mycolic-acid Innovator-Isolated signature concentrates in host-pathogen-niche mycobacteria, not soil mycobacteria, a distinction visible in BERDL's environmental metadata where the species reps skew heavily toward clinical isolates [\[23\]](#references). See [Microbial Ecotypes](../topics/microbial-ecotypes.md) for cross-project discussion of how niche shapes gene-family evolution.
+
+Testing all three pre-registered hypothesis KO sets (PSII, mycolic-acid, polysaccharide utilization loci) confirmed that these gene families are not themselves phage, transposase, integrase, or plasmid genes: all three show near-zero MGE-machinery rates against a 1.37% atlas-wide baseline [\[24\]](#references). By contrast, regulatory KOs atlas-wide show a 4.13% MGE-machinery rate — about 10× higher than metabolic KOs — consistent with regulatory genes being more frequently carried on mobile elements. See the [Pangenome Architecture](../topics/pangenome-architecture.md) page for broader context on how pangenome structure relates to these transfer patterns.
+
+### Caveats from the atlas project
+
+Several important limitations qualify the ecological agora findings. The Alm 2006 correlation between histidine-kinase count and lineage-specific expansion (originally r ≈ 0.74 in 207 genomes) is not reproduced at full GTDB scale, recovering only r = 0.10–0.29 across 18,989 genomes [\[25\]](#references). The authors identify three dilution mechanisms: substrate-scale heterogeneity (the original analysis used well-annotated cultivated isolates), a shift from paralog-count to tree-aware operationalization, and sensitivity to the tree-rank granularity at which the correlation is measured. This is informative rather than falsifying — the methodology generalizes qualitatively, but the point estimate does not.
+
+The PSII Innovator verdict itself is strongly rank-dependent: at genus rank the signal is STABLE (d = 0.08), at class rank it is Innovator-Exchange (d = 1.50), and at phylum rank it reverts to an apparent Innovator-Isolated pattern driven by insufficient reference consumer data at that resolution [\[26\]](#references). The class rank is chosen on biological grounds (Cardona 2018 establishes that PSII predates Cyanobacteria diversification), but this choice must be made explicitly rather than read off an automated analysis.
+
+Within-species pangenome openness and between-species recent gain attribution are uncorrelated (Spearman r = −0.011 across 894 genera), meaning that a clade's tendency to acquire new gene families between species bears no relationship to the strain-level genome diversity within a species [\[27\]](#references). These measure distinct evolutionary phenomena and cannot be used to validate each other. This finding is discussed further on the [Pangenome Architecture](../topics/pangenome-architecture.md) page.
+
+Composition-based donor inference — identifying which clade donated a transferred gene by its codon composition profile — remains a future direction because per-CDS sequences are not in BERDL's queryable schemas [\[28\]](#references). The atlas instead ships tree-based donor inference as an exploratory layer with explicit ambiguity bookkeeping. Testing whether high-exchange KOs are specifically mobile-element-mediated by flagging phage, plasmid, and integron genomic context per gain event is an identified next engineering step [\[29\]](#references).
 
 ## Projects Using This Collection
 
-**Acinetobacter baylyi ADP1 explorer.** This project integrates a
-user-provided SQLite database of 15 tables (461,522 rows, 135 MB) whose central
-`genome_features` table holds 5,852 genes annotated across 51 columns spanning
-six data modalities. Because ADP1 is absent from the Fitness Browser, the
-condition-specific mutant growth data it contributes is a unique fitness
-resource not otherwise available in BERDL, which is what makes it worth
-bridging into the shared clustered-gene space rather than analyzing in
-isolation. The project connects to several topics this wiki tracks. On
-[gene fitness](../topics/gene-fitness.md), it found that essentiality is
-media-dependent (499 genes essential on minimal media versus 346 on rich LB,
-reflecting the extra biosynthetic burden minimal media imposes), and that
-mutant fitness across eight carbon sources was only moderately correlated (mean
-pairwise r = 0.44), with urea catabolism standing nearly independent of quinate
-and the other conditions. Essential genes are far more annotation-rich than
-dispensable ones (33% versus 5% carry COG assignments; 92% versus 53% carry
-KEGG KO assignments) and are more likely to sit in the conserved core
-pangenome, consistent with the general pattern that conserved genes tend to be
-essential, though that core-essentiality link is reported at only medium
-confidence.
+**acinetobacter_adp1_explorer** uses the KBase UniRef–backed annotation system to ground its six-modality ADP1 database in BERDL's pangenome and biochemistry tables, making the ADP1 gene set queryable alongside other BERIL organisms. The cluster-ID bridge and 91% reaction-level match to ModelSEED biochemistry are practical demonstrations that KBase UniRef annotations are consistent enough to support cross-database integration even with heterogeneous naming conventions. The project connects most directly to the [Adp1 Model System](../topics/adp1-model-system.md) topic, which collects findings specific to this bacterium.
 
-The ADP1 work also ties into [metabolic pathways](../topics/metabolic-pathways.md)
-and the [ADP1 model system](../topics/adp1-model-system.md). Core metabolism is
-highly conserved across the 14 *Acinetobacter* genomes, with 1,248 of 1,330
-unique reactions (94%) shared by all genomes and only 20 genome-unique. Flux
-balance analysis (FBA, which predicts which reactions carry flux when a model is
-optimized for growth) and TnSeq essentiality calls agreed for 73.8% of the 866
-genes that had both measurements, and the discordant 26% were flagged as
-candidates for model refinement or regulatory effects. Two caveats temper the
-metabolic modeling, and the context states them plainly. First, 87% of the
-121,519 growth phenotype predictions depend on at least one gapfilled reaction
-(a reaction added to a draft model to make it produce biomass), so prediction
-accuracy is tightly coupled to gapfilling quality. Second, the multi-omics
-database is sparse where it matters most: no gene carries data across all six
-modalities, and the thin 15% FBA flux coverage limits the model-versus-
-experiment concordance analysis to just those 866 genes. Proteomics adds a
-narrower but cleaner signal, with protein abundance measured across 7 engineered
-strains for 2,383 genes showing high cross-strain correlation, suggesting the
-engineered modifications have targeted rather than global proteome effects. The
-clearest open lead toward [functional dark matter](../topics/functional-dark-matter.md)
-is the roughly 8% of essential genes that lack KEGG KO assignments, which are
-promising candidates for discovering novel essential functions.
+**gene_function_ecological_agora** uses KEGG KO assignments — derived from UniRef-annotated gene clusters in BERDL — as the fundamental unit of the HGT innovation atlas. Every producer/participation score and every Sankoff gain event is computed at the KO level across the full GTDB bacterial tree. The project connects to [Functional Dark Matter](../topics/functional-dark-matter.md), which tracks the fraction of genes in the corpus that escape functional annotation, because the annotation density of a genome directly affects how many KOs can be detected and therefore how reliably that genome's innovation profile is scored.
 
-**Gene function ecological agora.** This project operates at the opposite
-scale, building a bacterial-domain HGT/innovation atlas of 13.7M
-producer/participation scores and 17M Sankoff-parsimony gain events with
-recipient-rank acquisition attribution across 18,989 GTDB r214 species
-representatives. Its core contribution to [mobile genetic elements](../topics/mobile-genetic-elements.md)
-is the Producer x Participation framework, a direction-agnostic per-clade
-categorization (Innovator-Isolated / Innovator-Exchange / Sink-Broker-Exchange /
-Stable) that remains usable at deep taxonomic ranks where full
-duplication-transfer-loss (DTL) reconciliation is computationally intractable.
-Atlas-level findings are made robust by convergence across three independent
-measurement substrates: Sankoff effect size, sample-biome ecology metadata, and
-per-strain phenotype tables. That ecological grounding is borne out by biome
-enrichment, where pre-registered clades land in their expected
-[environments and biogeography](../topics/environment-biogeography.md):
-Mycobacteriaceae are enriched 7.88x in host-pathogen biomes (p<10^-45),
-Cyanobacteriia 2.77x in photic aquatic biomes (p<10^-52), and Bacteroidota
-1.40x in gut/rumen (p<10^-35).
+## References
 
-Several of the atlas findings sharpen how innovation is read off
-[microbial ecotypes](../topics/microbial-ecotypes.md). Cyanobacteria are
-confirmed as Innovator-Exchange on photosystem II at the Cyanobacteriia class
-rank (producer d=+1.50, consumer d=+0.70), the appropriate rank because PSII
-predates Cyanobacteria diversification. Mycobacteriaceae are Innovator-Isolated
-on the mycolic-acid pathway at family and order ranks (producer d=+0.31,
-consumer d=-0.19), indicating high paralog expansion but little cross-clade
-exchange, a signature further refined to host-pathogen-niche mycobacteria
-rather than soil mycobacteria. A recurring methodological caution is that these
-verdicts are rank-dependent: the PSII verdict shifts from STABLE at genus to
-Innovator-Exchange at class to Innovator-Isolated at phylum, so the rank must be
-chosen on biological grounds rather than read off any single resolution; this is
-flagged at medium confidence. Architecturally, promiscuity tracks HGT
-propensity, with mixed-category KOs carrying a median of 46 Pfam domain
-architectures per KO versus 1 for PSII, mirroring the "modular systems exchange
-more" pattern. Function class also leaves a temporal fingerprint: the
-recent-to-ancient gain ratio separates HGT-active CRISPR-Cas (24.5x,
-recent-skewed) from strict housekeeping genes (~1x, vertical inheritance).
-Importantly, the pre-registered KO sets are not themselves mobile elements, all
-three (PSII, mycolic-acid, PUL) show near-zero MGE-machinery rates against the
-1.37% atlas baseline, meaning they are not phage, transposase, integrase, or
-plasmid genes.
-
-This project is candid about its limits and open directions. Two negative
-results matter for how the atlas should and should not be validated. The Alm
-2006 r~0.74 correlation between histidine-kinase count and lineage-specific
-expansion is *not* reproduced at full GTDB scale, recovering only modest
-correlations (r=0.10-0.29) across 18,989 genomes. And recent between-species
-gain attribution is uncorrelated with within-species
-[pangenome openness](../topics/pangenome-architecture.md) (Spearman r=-0.011
-across 894 genera), so pangenome openness is not a valid cross-substrate
-validation of the acquisition-depth signal, an honest constraint on what the
-atlas can claim. The remaining work is mechanistic: testing whether
-high-exchange KOs are mobile-element-mediated by flagging phage, plasmid, and
-integron context per gain event is the identified next step toward explaining
-cross-clade gene flow, while composition-based donor inference at deep ranks
-stays blocked because per-CDS sequence is not in BERDL's queryable schemas, so
-only an exploratory tree-based donor-inference layer shipped.
-
-## Connections
-
-The two projects meet on this collection because both express their results in
-BERDL's clustered-gene identifier space, but they illuminate different topics
-from it. The ADP1 explorer is the wiki's richest anchor for
-[gene fitness](../topics/gene-fitness.md) and the
-[ADP1 model system](../topics/adp1-model-system.md), supplying condition-
-resolved essentiality and a worked
-[metabolic pathway](../topics/metabolic-pathways.md) reconciliation between FBA
-and TnSeq. The ecological agora anchors
-[mobile genetic elements](../topics/mobile-genetic-elements.md) and
-[microbial ecotypes](../topics/microbial-ecotypes.md), reading gene gain and
-exchange across the GTDB tree. Both reach into
-[functional dark matter](../topics/functional-dark-matter.md), one through
-unannotated essential genes, the other through the unattributed donors and
-blocked composition-based inference at the frontier of the atlas. They also
-share [pangenome architecture](../topics/pangenome-architecture.md) as common
-ground: ADP1 places essential genes in the conserved core, while the atlas warns
-that core/accessory openness does not stand in for acquisition depth, two views
-of the same pangenome concept seen at organism and domain scale.
-
-## Sources
-
-- [stmt:adp1-multiomics-database; acinetobacter_adp1_explorer]
-- [stmt:berdl-connectivity; acinetobacter_adp1_explorer]
-- [stmt:cluster-id-bridge; acinetobacter_adp1_explorer]
-- [stmt:adp1-fitness-unique-resource; acinetobacter_adp1_explorer]
-- [stmt:essentiality-media-dependence; acinetobacter_adp1_explorer]
-- [stmt:condition-specific-fitness; acinetobacter_adp1_explorer]
-- [stmt:essential-genes-annotation-rich; acinetobacter_adp1_explorer]
-- [stmt:essential-core-pangenome; acinetobacter_adp1_explorer]
-- [stmt:conserved-core-metabolism; acinetobacter_adp1_explorer]
-- [stmt:fba-tnseq-concordance; acinetobacter_adp1_explorer]
-- [stmt:gapfilling-dependence; acinetobacter_adp1_explorer]
-- [stmt:modality-overlap-limitation; acinetobacter_adp1_explorer]
-- [stmt:proteomics-targeted-effects; acinetobacter_adp1_explorer]
-- [stmt:unannotated-essential-genes; acinetobacter_adp1_explorer]
-- [stmt:hgt-innovation-atlas; gene_function_ecological_agora]
-- [stmt:producer-participation-framework; gene_function_ecological_agora]
-- [stmt:three-substrate-convergence; gene_function_ecological_agora]
-- [stmt:biome-enrichment-grounding; gene_function_ecological_agora]
-- [stmt:cyanobacteria-psii-innovator-exchange; gene_function_ecological_agora]
-- [stmt:mycobacteriaceae-mycolic-innovator-isolated; gene_function_ecological_agora]
-- [stmt:mycolic-niche-refinement; gene_function_ecological_agora]
-- [stmt:psii-rank-dependence; gene_function_ecological_agora]
-- [stmt:architectural-promiscuity-hgt; gene_function_ecological_agora]
-- [stmt:recent-ancient-ratio-signature; gene_function_ecological_agora]
-- [stmt:preregistered-kos-not-phage-borne; gene_function_ecological_agora]
-- [stmt:alm-2006-not-reproduced; gene_function_ecological_agora]
-- [stmt:pangenome-openness-distinct-from-m22; gene_function_ecological_agora]
-- [stmt:mge-context-mechanism-opportunity; gene_function_ecological_agora]
-- [stmt:composition-donor-inference-opportunity; gene_function_ecological_agora]
+1. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "3. Pangenome Cluster ID Bridge: 100% Mapping via Gene Junction Table".
+2. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "2. Strong BERDL Connectivity: 4 of 5 Connection Types at >90% Match".
+3. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "1. Rich Multi-Omics Database with 6 Data Modalities".
+4. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "2. Strong BERDL Connectivity: 4 of 5 Connection Types at >90% Match".
+5. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "6. Essential Genes Are 6x More Likely to Have COG Annotations".
+6. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "6. Essential Genes Are 6x More Likely to Have COG Annotations".
+7. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "6. Essential Genes Are 6x More Likely to Have COG Annotations".
+8. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "4. FBA and TnSeq Essentiality Agree 74% of the Time".
+9. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "5. Condition-Specific Fitness: Urea and Quinate Stand Apart".
+10. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "4. FBA and TnSeq Essentiality Agree 74% of the Time".
+11. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "7. Highly Conserved Core Metabolism Across 14 Genomes".
+12. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "Proteomics Cross-Strain Analysis".
+13. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "Limitations".
+14. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "8. 87% of Growth Predictions Depend on Gapfilled Reactions".
+15. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "What the project measured".
+16. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Three novel findings the project surfaced".
+17. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Methodology contributions (M1–M26)".
+18. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Three novel findings the project surfaced".
+19. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Three convergent lines of evidence".
+20. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "NB23: Biome enrichment for pre-registered atlas findings".
+21. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Cyanobacteria × PSII Innovator-Exchange test — H1 SUPPORTED at class rank (NB16)".
+22. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Verdict: **H1 SUPPORTED at both family and order ranks**".
+23. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "NB23: Biome enrichment for pre-registered atlas findings".
+24. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Result 1: per-cluster MGE-machinery (NB26b/c — atlas-wide)".
+25. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "P4-D3: Alm 2006 r ≈ 0.74 reproduction — NOT REPRODUCED at GTDB scale".
+26. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Four honest limits documented in print".
+27. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Interpretation — M22 and pangenome openness measure distinct evolutionary phenomena".
+28. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Limits — what the atlas does NOT settle".
+29. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "Future directions (Phase 4)".

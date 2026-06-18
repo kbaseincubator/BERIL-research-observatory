@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:cog-annotation-coverage-caveat",
+    "stmt:sample-size-caveat",
+    "stmt:core-metabolic-engine",
+    "stmt:hgt-primary-innovation",
+    "stmt:mobile-defense-islands",
+    "stmt:patterns-deep-constraint",
+    "stmt:two-speed-genome",
+    "stmt:core-genes-metabolism-enriched",
+    "stmt:core-genes-translation-depleted",
+    "stmt:composite-cog-meaningful",
+    "stmt:novel-genes-defense-enriched",
+    "stmt:novel-genes-mobile-enriched",
+    "stmt:novel-genes-unknown-function",
+    "stmt:opportunity-environmental-metadata",
+    "stmt:opportunity-defense-recombination-detail"
+  ],
+  "member_hash": "hash:1b048608f88a812b",
+  "model": "haiku",
+  "page_id": "project:cog_analysis",
+  "page_plan_hash": "hash:d942d7d58a451798",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:1b048608f88a812b",
+    "lead": "hash:1b048608f88a812b"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

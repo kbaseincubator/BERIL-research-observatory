@@ -1,215 +1,88 @@
-# NMDC + Arkin Field Multi-Omics Collection
+# Nmdc Arkin
+
+The `nmdc_arkin` collection is the shared field-data substrate that lets the projects in this compendium check whether patterns inferred from reference genomes and laboratory experiments actually hold in the real environments where microbes live. It bundles two complementary resources hosted in the BERDL data lakehouse: the environmental multi-omics holdings of the National Microbiome Data Collaborative (NMDC) — metagenomes, metatranscriptomes, metabolomics, and sample metadata (soil horizon, biome, treatment, and abiotic variables) drawn from soil, freshwater, and other habitats — and the Arkin lab's reference-side resources in the same lakehouse, including a GTDB-based pangenome across ~27,700 species, the GapMind pathway-completeness records (mapping metabolic genes to known biosynthesis routes), and the RB-TnSeq Fitness Browser (genome-wide transposon-mutant fitness assays in 48 cultured bacteria; RB-TnSeq is a high-throughput method that uses barcoded transposon insertions to measure the fitness effect of disrupting every gene). This collection exists as a single wiki page because eight otherwise distinct projects all reach for the same NMDC tables to do the same methodological job: take a hypothesis built from genomes or lab phenotypes, then ask whether the predicted signal reappears in independently collected field samples.
 
 ## Overview
 
-The `nmdc_arkin` collection is the shared field-data substrate that lets the
-projects in this compendium check whether patterns inferred from reference
-genomes and laboratory experiments actually hold in the real environments where
-microbes live. It bundles two complementary resources hosted in the BERDL data
-lakehouse. The first is the environmental multi-omics holdings of the National
-Microbiome Data Collaborative (NMDC): metagenomes, metatranscriptomes,
-metabolomics, and the associated sample metadata (soil horizon, biome,
-treatment, and a smaller set of measured abiotic variables) drawn from soil,
-freshwater, and other habitats across many studies. The second is the Arkin
-lab's reference-side resources in the same lakehouse — the GTDB-based pangenome
-across ~27,700 species, the GapMind pathway-completeness records, and the
-RB-TnSeq Fitness Browser (genome-wide transposon-mutant fitness assays in 48
-cultured bacteria). The collection exists as a single wiki page because eight
-otherwise unrelated projects all reach for the same NMDC tables to do the same
-methodological job: take a hypothesis built from genomes or lab phenotypes and
-ask whether the predicted signal reappears in independently collected field
-samples.
+The unifying move across all eight projects is cross-validation by triangulation. A pangenome or fitness analysis produces a prediction about who should carry a gene, where a pathway should be incomplete, or which environmental gradient a trait should track; the NMDC metagenomic and metabolomic tables are then queried to see whether community-level abundance or measured chemistry agrees. Because shotgun metagenomes rarely resolve individual genomes, most projects bridge from NMDC reads to the pangenome through GTDB taxonomy — mapping community abundance onto pangenome species so that a genome-derived trait can be scored per sample. The NMDC-to-GTDB taxonomy bridge reached a mean coverage of 94.6% across 220 samples, with 92% of samples mapping at least 85% of community abundance to pangenome species [\[1\]](#references), which is what makes the inference tractable at all.
 
-The unifying move across all eight projects is cross-validation by triangulation.
-A pangenome or fitness analysis produces a prediction about who should carry a
-gene, where a pathway should be incomplete, or which environmental gradient a
-trait should track; the NMDC metagenomic and metabolomic tables are then queried
-to see whether community-level abundance or measured chemistry agrees. Because
-shotgun metagenomes rarely resolve individual genomes, most projects bridge from
-NMDC reads to the pangenome through GTDB taxonomy — mapping community abundance
-onto pangenome species so that a genome-derived trait can be scored per sample.
-One project reports that this NMDC-to-GTDB taxonomy bridge reached a mean
-coverage of 94.6% across 220 samples, with 92% of samples mapping at least 85% of
-community abundance to pangenome species, which is what makes the inference
-tractable at all.
+That bridging strategy is also the collection's central caveat, and the projects are unusually candid about it. Validation against NMDC is typically indirect: prophage burden, for example, is inferred from taxonomy under the assumption that prophage content is conserved at the genus level — an assumption that may break down for recently acquired or lost prophages [\[2\]](#references). The same indirectness applies wherever a genome-derived trait is projected onto metagenomic abundance rather than detected in the reads themselves.
 
-That bridging strategy is also the collection's central caveat, and the projects
-are unusually candid about it. Validation against NMDC is typically **indirect**:
-prophage burden, for example, is inferred from taxonomy under the assumption that
-prophage content is conserved at the genus level — an assumption that breaks down
-for recently acquired or lost prophages. The same indirectness applies wherever a
-genome-derived trait is projected onto metagenomic abundance rather than detected
-in the reads themselves. A recurring structural gap compounds this: the abiotic
-metadata that would let analysts control for confounding gradients is often
-missing. The `abiotic_features` table is all zeros for the Harvard Forest warming
-samples, leaving the +5C treatment label as the only environmental contrast with
-no in-lakehouse soil temperature, pH, or nitrogen; pH, temperature, and total
-organic carbon were entirely absent for a 174-sample analysis matrix, preventing
-partial-correlation tests; and where abiotic correlations do exist they tend to be
-modest (|rho| < 0.12), plausibly because the measurements are point-in-time
-snapshots rather than measures of the temporal variability the traits actually
-respond to. Coverage is also uneven across habitats — all 33 freshwater samples
-in one study lacked paired metabolomics, effectively reducing a Black Queen test
-to a soil-only test — and metatranscriptome KO counts reflect transcript-pool
-composition from contig annotations rather than TPM-quantified expression. The
-honest reading is that NMDC here is a powerful concordance check, not a substitute
-for direct measurement: it tells you a lab- or genome-derived signal survives
-contact with field data, but the effect sizes are often small and the inference
-chain has several joints.
+A recurring structural gap compounds this: the abiotic metadata that would let analysts control for confounding gradients is often missing. The `abiotic_features` table is all zeros for the Harvard Forest warming samples, leaving the +5C treatment label as the only environmental contrast with no in-lakehouse soil temperature, pH, or nitrogen [\[3\]](#references). For a 174-sample analysis across habitats, pH, temperature, and total organic carbon were entirely absent, preventing partial-correlation tests [\[4\]](#references). Where abiotic correlations do exist they tend to be modest (|rho| < 0.12), plausibly because the measurements are point-in-time snapshots rather than measures of the temporal variability that traits actually respond to [\[5\]](#references).
+
+Coverage is also uneven across habitats: all 33 freshwater samples in one study lacked paired metabolomics, effectively reducing a cross-ecosystem test to a soil-only test [\[6\]](#references), and metatranscriptome KO (KEGG Ortholog) counts reflect transcript-pool composition from contig annotations rather than TPM-quantified expression, biased by assembly quality [\[7\]](#references). The honest reading is that NMDC here is a powerful concordance check, not a substitute for direct measurement: it tells you a lab- or genome-derived signal survives contact with field data, but the effect sizes are often small and the inference chain has several joints.
 
 ## Projects Using This Collection
 
 The eight projects fall into a few groups by how they lean on the collection.
 
-The clearest "genome-prediction meets field-validation" cases are the
-environmental-niche and pangenome-trait studies. The **AMR environmental
-resistome** project establishes that ecological niche strongly predicts resistome
-size — clinical and human-gut species carry roughly 2.5x more AMR gene clusters
-than soil and aquatic species, and the intrinsic-versus-acquired composition
-shifts along an ecological gradient (43% accessory in soil up to 80% in human
-gut), with metal resistance the most environment-discriminating mechanism
-(~44–45% of AMR in soil/aquatic species versus 6% in human gut). It uses
-continuous AlphaEarth environmental embeddings to confirm the discrete-environment
-findings via a Mantel test, and is forthright that the clinical-AMR signal is
-partly confounded by NCBI sampling bias (clinical isolates are massively
-overrepresented) and that environment explains only 2–13% of AMR-composition
-variance. The **PHB granule ecology** project gives the first precise
-pan-bacterial prevalence estimate (21.9% of 27,690 GTDB species carry the PHA
-synthase phaC) and a >10-fold environmental gradient from variable environments
-(soil/plant) to stable host-associated niches; NMDC metagenomic cross-validation
-then confirms that PHB-high genera are significantly more abundant than PHB-low
-genera (Mann–Whitney p = 8.4e-22), with the apparent niche-breadth association
-collapsing once genome size is controlled (partial rho = -0.047). The **prophage
-ecology** project finds that all ~27,700 pangenome species carry prophage modules,
-that environment explains more module-composition variance than host phylogeny
-(PERMANOVA F = 30.04 vs 6.17), and validates this against 6,365 NMDC metagenomes,
-where 57 module-abiotic correlations recover concordant head, tail, and
-anti-defense signals — while flagging that prophages were called from eggNOG
-annotations rather than dedicated tools, likely inflating prevalence.
+**Ecological niche and pangenome-trait studies.** The AMR environmental resistome project establishes that ecological niche strongly predicts resistome size — clinical and human-gut species carry roughly 2.5x more AMR gene clusters than soil and aquatic species [\[8\]](#references). The intrinsic-versus-acquired composition shifts along an ecological gradient (43% accessory AMR in soil up to 80% in human gut), with metal resistance the most environment-discriminating mechanism (~44–45% of AMR in soil and aquatic species versus 6% in human gut) [\[9\]](#references) [\[10\]](#references). The project uses continuous AlphaEarth environmental embeddings to confirm these discrete-environment findings via a Mantel test [\[11\]](#references), while being forthright that the clinical-AMR signal is partly confounded by NCBI sampling bias (clinical isolates are massively overrepresented in public databases) [\[12\]](#references) and that environment explains only 2–13% of AMR-composition variance, establishing correlation rather than causation [\[13\]](#references).
 
-A second group uses NMDC to ground lab and atlas-scale inferences. The
-**functional dark matter** project catalogs the actionable bacterial dark matter
-in the Fitness Browser (57,011 unannotated genes across 48 organisms, 17,344 with
-measurable phenotypes) and prioritizes candidates for experiments; its lab-to-
-field claim rests on NMDC, where lab fitness phenotypes predicted field
-distribution for 61.7% of testable dark-gene clusters and all four pre-registered
-abiotic predictions (nitrogen, pH, oxygen) were confirmed in NMDC metagenomic
-correlations. It is candid that re-annotation with Bakta reclassifies 83.7% of
-"dark" genes as not truly hypothetical, and that the 48 Fitness Browser organisms
-are 77% Pseudomonadota, biasing discovery. The **gene function ecological agora**
-project builds a bacterial-domain HGT/innovation atlas (13.7M producer-
-participation scores across 18,989 GTDB species) and grounds its pre-registered
-clades in NMDC-style biome metadata, showing Mycobacteriaceae enriched in
-host-pathogen niches (7.88x) and Cyanobacteria in photic-aquatic biomes (2.77x),
-while warning that several verdicts are strongly rank-dependent and that the
-classic Alm 2006 histidine-kinase correlation does not reproduce at GTDB scale.
+The PHB granule ecology project examines the polyhydroxybutyrate (PHB) bioplastic pathway, a carbon storage strategy that bacteria invoke under nutrient stress. It delivers the first precise pan-bacterial prevalence estimate (21.9% of 27,690 GTDB species carry the PHA synthase phaC, with a complete pathway in 21.7% of species) [\[14\]](#references), and documents a >10-fold environmental gradient from variable environments (soil 44%, plant 44%) to stable host-associated niches (clinical 7.4%, animal 3.3%) [\[15\]](#references). NMDC metagenomic cross-validation confirms that PHB-high genera are significantly more abundant than PHB-low genera (Mann–Whitney p = 8.4e-22) [\[16\]](#references), though the apparent niche-breadth association largely collapses once genome size is controlled (partial rho = -0.047), marking it as a confounded artifact rather than an independent signal [\[17\]](#references).
 
-A third group leans most heavily on the NMDC multi-omics layer itself, treating
-the field data as the primary measurement rather than a check. The **NMDC
-community metabolic ecology** project is the most direct consumer: it integrates
-305M GapMind records with NMDC multi-omics for 220 samples to test the Black Queen
-Hypothesis at the community level, finding that 11 of 13 amino-acid biosynthesis
-pathways show the predicted negative correlation between community pathway
-completeness and ambient metabolite intensity (leucine and arginine reaching FDR
-significance), and that carbon utilization, not amino-acid pathways, is the
-primary axis separating ecosystem metabolic types. It carries the
-genomic-potential caveat explicitly — GapMind completeness reports gene presence,
-not expression. The **Harvard Forest warming** project uses NMDC metagenomes and
-metatranscriptomes from a 25-year +5C soil-warming experiment to show a real but
-modest community shift (Actinobacteria up, Acidobacteria down), carbon-cycling and
-methanotrophy responses, and comparable DNA- and RNA-pool treatment effects once a
-horizon-by-incubation confound is removed; its caveats are among the page's
-sharpest, since all samples come from a single timepoint with small cohorts (n=28
-metagenome, n=39 metatranscriptome) and the lakehouse abiotic table is empty for
-these samples. Finally, the **plant microbiome ecotypes** project identifies
-plant-association marker genes and a beneficial-core/pathogenic-accessory split,
-cross-validating type III secretion as a rhizosphere marker against MGnify
-metagenomes (roughly 2x enrichment in rhizosphere over bulk soil); it is the
-project most marked by corrected effect sizes, including a Cohen's d that fell from
--7.54 to about -0.4 after a formula error was fixed and a headline compartment
-effect (PERMANOVA R2 = 0.527) that proved to be largely a taxonomic-sampling
-artifact (residual R2 = 0.072).
+The prophage ecology project finds that all ~27,700 pangenome species carry prophage-associated gene clusters, with packaging, lysis, and lysogenic-regulation modules near-universal while head, tail, and anti-defense modules are variable [\[18\]](#references). Environment explains substantially more prophage module-composition variance than host phylogeny (PERMANOVA F = 30.04 vs F = 6.17) [\[19\]](#references), and taxonomy-based inference across 6,365 NMDC metagenomes reveals 57 significant module-abiotic correlations, with head morphogenesis, tail, and anti-defense signals concordant between the pangenome enrichment and the metagenomic evidence [\[20\]](#references). The project flags, however, that prophages were identified from eggNOG functional annotations rather than dedicated prophage detection tools such as geNomad or VIBRANT, likely inflating prevalence by including domesticated remnants and bacterial homologs [\[21\]](#references).
 
-Across these projects the opportunities also converge on the same data: several
-note that adding NMDC quantitative layers (natural organic matter chemistry,
-metabolomics, proteomics) or pairing metatranscriptomics with metabolomics would
-turn indirect genomic-potential inferences into direct expression tests, and that
-extending coverage to under-sampled habitats such as freshwater would let the
-field validations generalize beyond soil.
+**Lab and atlas-scale inferences grounded in NMDC.** The functional dark matter project catalogs the actionable dark genes — unannotated sequences with measurable phenotypes — in the Fitness Browser: 57,011 unannotated genes across 48 organisms, of which 17,344 have experimentally measurable fitness effects [\[22\]](#references). Its key lab-to-field claim rests on NMDC: lab fitness phenotypes predicted field environmental distribution for 61.7% of testable dark-gene clusters, and all four pre-registered abiotic predictions (nitrogen, pH, oxygen) were confirmed in independent NMDC metagenomic correlations [\[23\]](#references). The project is candid that re-annotation with Bakta v1.12.0 reclassifies 83.7% of "dark" genes as not truly hypothetical, so the 57,011 count overestimates true functional ignorance [\[24\]](#references), and that the 48 Fitness Browser organisms are 77% Pseudomonadota (Proteobacteria), biasing discovery toward Gammaproteobacteria and leaving Actinobacteria absent [\[25\]](#references).
+
+The gene function ecological agora project builds a bacterial-domain HGT (horizontal gene transfer) innovation atlas — 13.7M producer-participation scores and 17M Sankoff parsimony gain events across 18,989 GTDB species — and grounds its pre-registered clades in NMDC-style biome metadata [\[26\]](#references). Mycobacteriaceae are confirmed enriched in host-pathogen niches (7.88x, p < 10^-45) and Cyanobacteria in photic-aquatic biomes (2.77x, p < 10^-52) [\[27\]](#references). A key reproducibility note: the classic Alm 2006 correlation (r ~0.74) between histidine-kinase count and lineage-specific expansion does not reproduce at GTDB scale, recovering only r = 0.10–0.29 across 18,989 genomes [\[28\]](#references).
+
+**NMDC as primary measurement.** The NMDC community metabolic ecology project is the most direct consumer of the collection: it integrates 305M GapMind pathway-completeness records with NMDC multi-omics for 220 samples to test the Black Queen Hypothesis (BQH) at the community level [\[29\]](#references). The BQH predicts that when an essential metabolite is abundant in the environment, community members will tend to lose the costly biosynthetic capacity, creating a negative correlation between genomic pathway completeness and measured metabolite intensity. Eleven of 13 amino-acid biosynthesis pathways showed the predicted negative correlation [\[30\]](#references), with leucine and arginine reaching FDR significance (leucine r = -0.390, q = 0.022; arginine r = -0.349, q = 0.046) [\[31\]](#references). Both are energetically expensive to synthesize, consistent with the BQH prediction that costly pathways are most likely to be lost [\[32\]](#references). At the ecosystem level, carbon utilization pathways, not amino-acid pathways, load almost entirely on PC1 of a 220-sample × 80-pathway matrix, suggesting carbon substrate availability is the primary axis separating ecosystem metabolic types [\[33\]](#references). The project carries the genomic-potential caveat explicitly — GapMind completeness reports gene presence, not active expression [\[34\]](#references).
+
+The Harvard Forest warming project uses NMDC metagenomes and metatranscriptomes from a 25-year +5°C soil-warming experiment to show a real but modest community compositional shift (Actinobacteria up, Acidobacteria down) [\[35\]](#references). Once a horizon-by-incubation confound is removed, the DNA and RNA functional pools show comparable treatment R² (10–13%), so the transcript pool is not more warming-sensitive than the genome pool [\[36\]](#references). Its caveats are among the sharpest on this page: all samples come from a single timepoint (2017-05-24) with small cohorts (n=28 metagenome, n=39 metatranscriptome) [\[37\]](#references), and the lakehouse abiotic table is empty for these samples. The project explicitly identifies adding NMDC quantitative layers (natural organic matter chemistry, metabolomics, proteomics) as the key follow-on action [\[38\]](#references).
+
+The plant microbiome ecotypes project identifies plant-association marker genes and a beneficial-core/pathogenic-accessory genome partition — beneficial plant-growth-promoting gene clusters are predominantly core-encoded (64.6% core fraction) while pathogenic clusters are accessory (45.2% core) [\[39\]](#references). It cross-validates the type III secretion system (T3SS) as a rhizosphere marker against MGnify metagenomes, finding roughly 2x higher T3SS prevalence in rhizosphere biomes than bulk soil [\[40\]](#references). This project is the most marked by corrected effect sizes: a Cohen's d that fell from -7.54 to approximately -0.4 after a formula error was found [\[41\]](#references), and a headline compartment effect (PERMANOVA R² = 0.527) that proved to be largely a taxonomic-sampling artifact (residual R² = 0.072 after removing a handful of genome-rich clades) [\[42\]](#references). These corrections do not invalidate the core results but underscore the importance of validation with real field data. The project culminates in a resource for synthetic-community design — genus dossiers, a host-specificity matrix, and 84 NRP/siderophore-producing genera as biocontrol candidates [\[43\]](#references).
+
+Across these projects the opportunities converge on the same data gaps: several note that pairing metatranscriptomics with metabolomics for a subset of NMDC samples would allow comparison of expressed pathway completeness against genomic potential and measured metabolite abundance, directly testing whether expression drives the Black Queen signal [\[44\]](#references).
 
 ## Connections
 
-The projects sharing this collection are linked through the topics they
-investigate, and the NMDC field data is what gives each topic an environmental
-dimension. Several projects test how ecological niche shapes gene content, which
-connects to [Microbial Ecotypes](../topics/microbial-ecotypes.md) (the AMR,
-plant-microbiome, and PHB projects all frame their findings as niche-driven trait
-distributions) and to [Environment Biogeography](../topics/environment-biogeography.md),
-the topic that captures the recurring "environment over phylogeny" signal validated
-against NMDC metagenomes. The resistome and metal-mechanism findings tie this page
-to [AMR Resistome](../topics/amr-resistome.md) and
-[Metal Resistance](../topics/metal-resistance.md), where the soil-versus-clinical
-contrast in intrinsic versus acquired resistance is developed in full.
+The projects sharing this collection are linked through the topics they investigate, and the NMDC field data is what gives each topic an environmental dimension. Several projects test how ecological niche shapes gene content, which connects to [Microbial Ecotypes](../topics/microbial-ecotypes.md) — the AMR, plant-microbiome, and PHB projects all frame their findings as niche-driven trait distributions — and to [Environment Biogeography](../topics/environment-biogeography.md), the topic that captures the recurring "environment over phylogeny" signal validated against NMDC metagenomes. The resistome and metal-mechanism findings tie this page to [AMR Resistome](../topics/amr-resistome.md) and [Metal Resistance](../topics/metal-resistance.md), where the soil-versus-clinical contrast in intrinsic versus acquired resistance is developed in full.
 
-The pangenome-trait projects connect to [Pangenome Architecture](../topics/pangenome-architecture.md)
-through the shared GTDB pangenome that underlies PHB prevalence, prophage module
-universality, and dark-gene linkage, and the core-versus-accessory gradients
-those analyses report. Horizontal acquisition is a throughline — phaC, AMR
-clusters, prophage modules, and plant-interaction cassettes are all examined for
-mobility — which links to [Mobile Genetic Elements](../topics/mobile-genetic-elements.md).
-The functional dark matter and gene-function projects, both anchored in the
-Fitness Browser, connect to [Gene Fitness](../topics/gene-fitness.md) (lab
-fitness phenotypes are the predictions that NMDC field distributions test) and to
-[Functional Dark Matter](../topics/functional-dark-matter.md). The metabolic-
-completeness and warming work connects to [Metabolic Pathways](../topics/metabolic-pathways.md)
-via GapMind community completeness, and the plant project's synthetic-community and
-biocontrol-design opportunities reach toward
-[Microbiome Engineering](../topics/microbiome-engineering.md). The soil-focused
-projects also touch [Subsurface Genomics](../topics/subsurface-genomics.md), where
-environmental gradients in soil and sediment communities are the shared concern.
+The pangenome-trait projects connect to [Pangenome Architecture](../topics/pangenome-architecture.md) through the shared GTDB pangenome that underlies PHB prevalence, prophage module universality, and dark-gene linkage, and the core-versus-accessory gradients those analyses report. Horizontal acquisition is a throughline — phaC, AMR clusters, prophage modules, and plant-interaction cassettes are all examined for mobility — which links to [Mobile Genetic Elements](../topics/mobile-genetic-elements.md). The functional dark matter and gene-function projects, both anchored in the Fitness Browser, connect to [Gene Fitness](../topics/gene-fitness.md) (lab fitness phenotypes are the predictions that NMDC field distributions test) and to [Functional Dark Matter](../topics/functional-dark-matter.md). The metabolic-completeness and warming work connects to [Metabolic Pathways](../topics/metabolic-pathways.md) via GapMind community completeness, and the plant project's synthetic-community and biocontrol-design outcomes reach toward [Microbiome Engineering](../topics/microbiome-engineering.md). The soil-focused projects also touch [Subsurface Genomics](../topics/subsurface-genomics.md), where environmental gradients in soil and sediment communities are the shared concern.
 
-## Sources
+## References
 
-- [stmt:taxonomy-bridge-coverage; nmdc_community_metabolic_ecology]
-- [stmt:caveat-nmdc-indirect-inference; prophage_ecology]
-- [stmt:caveat-no-in-lakehouse-abiotic; harvard_forest_warming]
-- [stmt:caveat-abiotic-features-missing; nmdc_community_metabolic_ecology]
-- [stmt:nmdc-abiotic-modest-effects; phb_granule_ecology]
-- [stmt:caveat-freshwater-absent; nmdc_community_metabolic_ecology]
-- [stmt:caveat-transcript-pool-composition; harvard_forest_warming]
-- [stmt:clinical-amr-richness; amr_environmental_resistome]
-- [stmt:core-accessory-gradient; amr_environmental_resistome]
-- [stmt:metal-resistance-soil-aquatic; amr_environmental_resistome]
-- [stmt:alphaearth-confirms-discrete; amr_environmental_resistome]
-- [stmt:ncbi-sampling-bias; amr_environmental_resistome]
-- [stmt:correlation-modest-effects; amr_environmental_resistome]
-- [stmt:phac-prevalence-21-percent; phb_granule_ecology]
-- [stmt:phb-enriched-variable-environments; phb_granule_ecology]
-- [stmt:nmdc-cross-validation; phb_granule_ecology]
-- [stmt:niche-breadth-confounded-genome-size; phb_granule_ecology]
-- [stmt:prophage-modules-universal; prophage_ecology]
-- [stmt:environment-over-phylogeny; prophage_ecology]
-- [stmt:nmdc-validates-module-signal; prophage_ecology]
-- [stmt:caveat-annotation-based-detection; prophage_ecology]
-- [stmt:dark-gene-census-actionable; functional_dark_matter]
-- [stmt:lab-field-concordance-nmdc; functional_dark_matter]
-- [stmt:bakta-reannotation-overestimate; functional_dark_matter]
-- [stmt:proteobacteria-bias-caveat; functional_dark_matter]
-- [stmt:hgt-innovation-atlas; gene_function_ecological_agora]
-- [stmt:biome-enrichment-grounding; gene_function_ecological_agora]
-- [stmt:alm-2006-not-reproduced; gene_function_ecological_agora]
-- [stmt:first-gapmind-metabolomics-integration; nmdc_community_metabolic_ecology]
-- [stmt:black-queen-community-signal; nmdc_community_metabolic_ecology]
-- [stmt:leucine-arginine-fdr-significant; nmdc_community_metabolic_ecology]
-- [stmt:carbon-utilization-primary-axis; nmdc_community_metabolic_ecology]
-- [stmt:caveat-genomic-potential-not-expression; nmdc_community_metabolic_ecology]
-- [stmt:community-actino-up-acido-down; harvard_forest_warming]
-- [stmt:h1-dna-rna-comparable; harvard_forest_warming]
-- [stmt:caveat-single-timepoint-sample-size; harvard_forest_warming]
-- [stmt:opportunity-add-arkin-quant-layers; harvard_forest_warming]
-- [stmt:beneficial-core-pathogenic-accessory; plant_microbiome_ecotypes]
-- [stmt:t3ss-rhizosphere-enrichment; plant_microbiome_ecotypes]
-- [stmt:cohen-d-formula-error; plant_microbiome_ecotypes]
-- [stmt:permanova-sampling-artifact; plant_microbiome_ecotypes]
-- [stmt:syncom-biocontrol-design; plant_microbiome_ecotypes]
-- [stmt:opportunity-transcript-validation; nmdc_community_metabolic_ecology]
+1. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "Data Overview".
+2. [Prophage Ecology](../projects/prophage-ecology.md) — REPORT.md › "Limitations".
+3. [Harvard Forest Warming](../projects/harvard-forest-warming.md) — REPORT.md › "Limitations".
+4. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "Limitations".
+5. [Phb Granule Ecology](../projects/phb-granule-ecology.md) — REPORT.md › "Limitations".
+6. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "Limitations".
+7. [Harvard Forest Warming](../projects/harvard-forest-warming.md) — REPORT.md › "Limitations".
+8. [Amr Environmental Resistome](../projects/amr-environmental-resistome.md) — REPORT.md › "1. Clinical species carry 2.5× more AMR gene clusters than environmental species (H1 supported)".
+9. [Amr Environmental Resistome](../projects/amr-environmental-resistome.md) — REPORT.md › "2. Clinical species have predominantly acquired resistance; soil/aquatic species have more intrinsic resistance (H2 supported)".
+10. [Amr Environmental Resistome](../projects/amr-environmental-resistome.md) — REPORT.md › "3. Resistance mechanism composition is strongly environment-dependent (H3 supported)".
+11. [Amr Environmental Resistome](../projects/amr-environmental-resistome.md) — REPORT.md › "6. AlphaEarth continuous environment embeddings confirm discrete findings (supplementary)".
+12. [Amr Environmental Resistome](../projects/amr-environmental-resistome.md) — REPORT.md › "Limitations".
+13. [Amr Environmental Resistome](../projects/amr-environmental-resistome.md) — REPORT.md › "Limitations".
+14. [Phb Granule Ecology](../projects/phb-granule-ecology.md) — REPORT.md › "Finding 1: PHB pathways are widespread but phylogenetically concentrated".
+15. [Phb Granule Ecology](../projects/phb-granule-ecology.md) — REPORT.md › "Finding 2: PHB is enriched in environmentally variable habitats (H1a supported)".
+16. [Phb Granule Ecology](../projects/phb-granule-ecology.md) — REPORT.md › "Finding 6: NMDC metagenomic cross-validation supports pangenome PHB patterns (H1c supported)".
+17. [Phb Granule Ecology](../projects/phb-granule-ecology.md) — REPORT.md › "Finding 3: PHB-niche breadth association is largely explained by genome size (H1b qualified)".
+18. [Prophage Ecology](../projects/prophage-ecology.md) — REPORT.md › "1. Prophage gene modules are universal but structurally variable across 27,702 bacterial species".
+19. [Prophage Ecology](../projects/prophage-ecology.md) — REPORT.md › "2. Environment explains more variance in prophage composition than host phylogeny".
+20. [Prophage Ecology](../projects/prophage-ecology.md) — REPORT.md › "5. NMDC metagenomic data independently validates module-level environmental signal".
+21. [Prophage Ecology](../projects/prophage-ecology.md) — REPORT.md › "Limitations".
+22. [Functional Dark Matter](../projects/functional-dark-matter.md) — REPORT.md › "Finding 1: One in four bacterial genes is functionally dark, and 17,344 have experimentally measurable phenotypes".
+23. [Functional Dark Matter](../projects/functional-dark-matter.md) — REPORT.md › "Finding 7: Lab-field concordance rate of 61.7%, with NMDC validation confirming 4/4 pre-registered abiotic predictions".
+24. [Functional Dark Matter](../projects/functional-dark-matter.md) — REPORT.md › "Finding 15: Bakta reannotation reclassifies 83.7% of linked dark genes — all 100 top candidates gain functional descriptions".
+25. [Functional Dark Matter](../projects/functional-dark-matter.md) — REPORT.md › "Finding 10: Phylogenetic gaps — which new organisms would most expand dark gene coverage?".
+26. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "What the project measured".
+27. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "NB23: Biome enrichment for pre-registered atlas findings".
+28. [Gene Function Ecological Agora](../projects/gene-function-ecological-agora.md) — REPORT.md › "P4-D3: Alm 2006 r ≈ 0.74 reproduction — NOT REPRODUCED at GTDB scale".
+29. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "Novel Contribution".
+30. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "Finding 1 — Black Queen dynamics are detectable at community scale".
+31. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "Finding 1 — Black Queen dynamics are detectable at community scale".
+32. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "H1: Black Queen Signal".
+33. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "H2: Ecosystem Metabolic Niche".
+34. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "Limitations".
+35. [Harvard Forest Warming](../projects/harvard-forest-warming.md) — REPORT.md › "Summary".
+36. [Harvard Forest Warming](../projects/harvard-forest-warming.md) — REPORT.md › "2. H1 is not supported — DNA and RNA functional pools respond comparably to warming".
+37. [Harvard Forest Warming](../projects/harvard-forest-warming.md) — REPORT.md › "Limitations".
+38. [Harvard Forest Warming](../projects/harvard-forest-warming.md) — REPORT.md › "Limitations".
+39. [Plant Microbiome Ecotypes](../projects/plant-microbiome-ecotypes.md) — REPORT.md › "2. Beneficial genes are core-encoded; pathogenic genes are accessory (H2)".
+40. [Plant Microbiome Ecotypes](../projects/plant-microbiome-ecotypes.md) — REPORT.md › "9. MGnify cross-validation reveals mobilome enrichment but low classification concordance (H4, H6)".
+41. [Plant Microbiome Ecotypes](../projects/plant-microbiome-ecotypes.md) — REPORT.md › "4. Co-occurring genera show functional redundancy, not complementarity (H3 — not supported, small effect)".
+42. [Plant Microbiome Ecotypes](../projects/plant-microbiome-ecotypes.md) — REPORT.md › "1. Plant compartments impose a small but real functional shift on microbial communities (H1, weakly supported)".
+43. [Plant Microbiome Ecotypes](../projects/plant-microbiome-ecotypes.md) — REPORT.md › "Future Directions".
+44. [Nmdc Community Metabolic Ecology](../projects/nmdc-community-metabolic-ecology.md) — REPORT.md › "Future Directions".

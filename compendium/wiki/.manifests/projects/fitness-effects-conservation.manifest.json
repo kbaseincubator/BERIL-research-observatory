@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:weak-prediction-caveat",
+    "stmt:proteobacteria-coverage-caveat",
+    "stmt:core-genes-functionally-active-claim",
+    "stmt:selection-drives-core-maintenance-claim",
+    "stmt:continuous-not-binary-claim",
+    "stmt:core-genes-heavier-tails",
+    "stmt:core-genes-more-beneficial",
+    "stmt:ephemeral-niche-genes-core",
+    "stmt:breadth-predicts-conservation",
+    "stmt:specific-phenotype-genes-core",
+    "stmt:novel-genes-near-zero-fitness",
+    "stmt:per-organism-heterogeneity-opportunity",
+    "stmt:natural-condition-fitness-opportunity"
+  ],
+  "member_hash": "hash:14e6331554e8e831",
+  "model": "haiku",
+  "page_id": "project:fitness_effects_conservation",
+  "page_plan_hash": "hash:1f338a8bfaa60e4d",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:14e6331554e8e831",
+    "lead": "hash:14e6331554e8e831"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

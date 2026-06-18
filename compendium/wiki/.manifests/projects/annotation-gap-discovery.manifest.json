@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:knockout-validation-inconclusive",
+    "stmt:phylogenetic-bias-caveat",
+    "stmt:evidence-streams-complementary",
+    "stmt:five-evidence-integration-novel",
+    "stmt:baseline-fba-asymmetry",
+    "stmt:blast-high-identity-cluster",
+    "stmt:dark-reactions-resist-resolution",
+    "stmt:gapmind-partial-concordance",
+    "stmt:triangulation-resolves-48pct",
+    "stmt:no-single-stream-sufficient",
+    "stmt:resolution-varies-by-organism",
+    "stmt:bcaa-reactions-dominate",
+    "stmt:high-confidence-experimentally-testable",
+    "stmt:dark-reactions-high-value-targets"
+  ],
+  "member_hash": "hash:f3070c3371ff5da9",
+  "model": "haiku",
+  "page_id": "project:annotation_gap_discovery",
+  "page_plan_hash": "hash:f2ff0111f2abb91c",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:f3070c3371ff5da9",
+    "lead": "hash:f3070c3371ff5da9"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

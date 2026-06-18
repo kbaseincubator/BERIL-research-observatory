@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:env-classification-caveat",
+    "stmt:pqqd-hgt-outlier-caveat",
+    "stmt:pqqc-acds-niche-marker-claim",
+    "stmt:ipdc-regulation-aromatic-general",
+    "stmt:pgp-syndrome-pqqc-acds-module",
+    "stmt:pgp-genes-predominantly-core",
+    "stmt:nifh-depleted-in-soil",
+    "stmt:nifh-separate-guild",
+    "stmt:openness-negatively-correlates-pgp",
+    "stmt:soil-enriches-acds-pqqc",
+    "stmt:trp-ipdc-soil-reversal",
+    "stmt:trp-completeness-predicts-ipdc",
+    "stmt:inoculant-efficacy-opportunity",
+    "stmt:pqqc-acds-operon-context-opportunity"
+  ],
+  "member_hash": "hash:23d5c12c38c5429f",
+  "model": "haiku",
+  "page_id": "project:pgp_pangenome_ecology",
+  "page_plan_hash": "hash:34994da872edc6e8",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:23d5c12c38c5429f",
+    "lead": "hash:23d5c12c38c5429f"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

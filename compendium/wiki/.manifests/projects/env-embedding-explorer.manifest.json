@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:coverage-bias-caveat",
+    "stmt:coord-qc-crude-caveat",
+    "stmt:embeddings-capture-environment",
+    "stmt:bias-explains-weak-ecotype-signal",
+    "stmt:coordinate-quality-flags",
+    "stmt:env-harmonization-mapping",
+    "stmt:geo-signal-monotonic",
+    "stmt:alphaearth-coverage",
+    "stmt:env-vs-human-geo-signal",
+    "stmt:clinical-sampling-bias",
+    "stmt:taxonomic-structure",
+    "stmt:umap-env-clusters",
+    "stmt:decode-embedding-dimensions",
+    "stmt:rerun-ecotype-environmental-only"
+  ],
+  "member_hash": "hash:c299f75a08ff6ad7",
+  "model": "haiku",
+  "page_id": "project:env_embedding_explorer",
+  "page_plan_hash": "hash:d89b62d04fdea932",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:c299f75a08ff6ad7",
+    "lead": "hash:c299f75a08ff6ad7"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

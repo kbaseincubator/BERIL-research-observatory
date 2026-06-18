@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:cohort-cultured-only-caveat",
+    "stmt:gapmind-ceiling-caveat",
+    "stmt:toolkit-phylum-confound",
+    "stmt:cultivation-bias-diagnostic",
+    "stmt:self-sufficient-lineages-uncultivated",
+    "stmt:bagnoud-lineage-overlap",
+    "stmt:anaerobic-toolkit-enriched",
+    "stmt:porewater-signature-h3",
+    "stmt:self-sufficiency-not-supported",
+    "stmt:deep-shallow-mirror-image",
+    "stmt:sr-survives-phylo-control",
+    "stmt:sr-enrichment-binomial",
+    "stmt:mag-augmented-expansion",
+    "stmt:porewater-diagnostic-generalizes"
+  ],
+  "member_hash": "hash:35b0232bb80310ba",
+  "model": "haiku",
+  "page_id": "project:clay_confined_subsurface",
+  "page_plan_hash": "hash:5986ca76e061b373",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:35b0232bb80310ba",
+    "lead": "hash:35b0232bb80310ba"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

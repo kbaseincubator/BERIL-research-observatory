@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:genus-resolution-limitation",
+    "stmt:confounders-not-controlled",
+    "stmt:crude-aggregate-tolerance-metric",
+    "stmt:caulobacter-sphingomonas-uranium-indicators",
+    "stmt:lab-fitness-does-not-simply-predict-field",
+    "stmt:first-link-fb-fitness-enigma-coral",
+    "stmt:metal-resistance-enriched-accessory-genome",
+    "stmt:model-organisms-no-uranium-correlation",
+    "stmt:desulfovibrio-rare-low-abundance",
+    "stmt:community-composition-shifts-contamination",
+    "stmt:genus-abundance-correlates-uranium-bidirectional",
+    "stmt:fb-genera-detected-oak-ridge",
+    "stmt:lab-tolerance-not-significant-field-ratio",
+    "stmt:opportunity-add-rhodanobacter-fitness-browser",
+    "stmt:opportunity-species-level-metagenomics"
+  ],
+  "member_hash": "hash:8ffc2f2a87509131",
+  "model": "haiku",
+  "page_id": "project:lab_field_ecology",
+  "page_plan_hash": "hash:f71698dbd3c0f07e",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:8ffc2f2a87509131",
+    "lead": "hash:8ffc2f2a87509131"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

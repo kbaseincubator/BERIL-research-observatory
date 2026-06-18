@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:no-direct-geochemistry-caveat",
+    "stmt:genus-coverage-caveat",
+    "stmt:groundwater-key-well-gap-caveat",
+    "stmt:contamination-plume-model",
+    "stmt:16s-maps-subsurface-hydrology",
+    "stmt:redox-ladder-spatial-map",
+    "stmt:groundwater-temporal-stability",
+    "stmt:groundwater-planktonic-plume",
+    "stmt:guild-cooccurrence-network",
+    "stmt:depth-dominates-zonation",
+    "stmt:distance-decay-meter-scale",
+    "stmt:phylum-depth-redox-split",
+    "stmt:m5-denitrification-hotspot",
+    "stmt:column3-corridor",
+    "stmt:load-geochemistry-opportunity",
+    "stmt:metagenomics-opportunity"
+  ],
+  "member_hash": "hash:5314bcfa094ffeb6",
+  "model": "haiku",
+  "page_id": "project:enigma_sso_asv_ecology",
+  "page_plan_hash": "hash:c3c0364df2686b54",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:5314bcfa094ffeb6",
+    "lead": "hash:5314bcfa094ffeb6"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

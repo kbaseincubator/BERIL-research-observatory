@@ -1,0 +1,33 @@
+{
+  "cited_statement_ids": [
+    "stmt:substudy-nesting-unidentifiable",
+    "stmt:e3-tier-a-provisional",
+    "stmt:phage-coverage-gap",
+    "stmt:state-dependent-dosing",
+    "stmt:hybrid-cocktail-needed",
+    "stmt:cohort-cocktail-mismatch",
+    "stmt:canonical-cd-signature",
+    "stmt:five-phage-cocktail-coverage",
+    "stmt:ecoli-carries-iron-genotoxin",
+    "stmt:clinical-covariates-insufficient",
+    "stmt:ucdavis-spans-ecotypes",
+    "stmt:gokushovirus-cd-down",
+    "stmt:iron-acquisition-genomic",
+    "stmt:four-ibd-ecotypes",
+    "stmt:synonymy-layer-reusable",
+    "stmt:external-phage-db-opportunity"
+  ],
+  "member_hash": "hash:c6f9c26531f2020c",
+  "model": "haiku",
+  "page_id": "project:ibd_phage_targeting",
+  "page_plan_hash": "hash:caa9d015e0c36e6e",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:c6f9c26531f2020c",
+    "lead": "hash:c6f9c26531f2020c"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

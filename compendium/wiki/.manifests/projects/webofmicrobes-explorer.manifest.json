@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:wom-ecoli-data-minimal",
+    "stmt:formula-matches-ambiguous",
+    "stmt:wom-no-consumption-data",
+    "stmt:newer-wom-richer-dataset",
+    "stmt:h1-partially-supported",
+    "stmt:pangenome-clades-all-genera",
+    "stmt:metabolites-bridge-to-fb-conditions",
+    "stmt:modelseed-definitive-links",
+    "stmt:wom-action-encoding-four-semantics",
+    "stmt:database-scale-unidentified",
+    "stmt:metabolic-novelty-rate",
+    "stmt:wom-fb-strain-overlap",
+    "stmt:novelty-rate-pangenome-openness",
+    "stmt:gapmind-link-blocked"
+  ],
+  "member_hash": "hash:9e42884d52363188",
+  "model": "haiku",
+  "page_id": "project:webofmicrobes_explorer",
+  "page_plan_hash": "hash:e8150869a1faeb7c",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:9e42884d52363188",
+    "lead": "hash:9e42884d52363188"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

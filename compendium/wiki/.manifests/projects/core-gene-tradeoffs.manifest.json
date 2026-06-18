@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:lab-condition-bias-caveat",
+    "stmt:burden-definition-caveat",
+    "stmt:tradeoff-mechanism-claim",
+    "stmt:core-burden-paradox-claim",
+    "stmt:purifying-selection-claim",
+    "stmt:lab-proxy-interpretation-claim",
+    "stmt:costly-dispensable-gene-loss-finding",
+    "stmt:selection-signature-matrix-finding",
+    "stmt:conserved-genome-functionally-active-finding",
+    "stmt:motility-case-study-finding",
+    "stmt:function-specific-burden-finding",
+    "stmt:tradeoff-genes-core-enriched-finding",
+    "stmt:strain-dependent-essentiality-opportunity",
+    "stmt:natural-condition-validation-opportunity"
+  ],
+  "member_hash": "hash:46f28ce6766ca9c6",
+  "model": "haiku",
+  "page_id": "project:core_gene_tradeoffs",
+  "page_plan_hash": "hash:a5fcc5f4c3c9824e",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:46f28ce6766ca9c6",
+    "lead": "hash:46f28ce6766ca9c6"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

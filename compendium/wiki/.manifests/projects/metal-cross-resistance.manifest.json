@@ -1,0 +1,21 @@
+{
+  "cited_statement_ids": [
+    "stmt:metal-cross-bacdive-caveat",
+    "stmt:metal-cross-two-layer-claim",
+    "stmt:metal-cross-universal-positivity-finding",
+    "stmt:metal-cross-tier-architecture-finding"
+  ],
+  "member_hash": "hash:bd7f9c97177c1965",
+  "model": "haiku",
+  "page_id": "project:metal_cross_resistance",
+  "page_plan_hash": "hash:c8a3b8f461abe484",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:bd7f9c97177c1965",
+    "lead": "hash:bd7f9c97177c1965"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

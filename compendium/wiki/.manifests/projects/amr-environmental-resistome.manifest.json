@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:correlation-modest-effects",
+    "stmt:ncbi-sampling-bias",
+    "stmt:core-intrinsic-accessory-acquired",
+    "stmt:mechanism-conservation-ecology-link",
+    "stmt:within-species-clinical-fraction",
+    "stmt:clinical-amr-richness",
+    "stmt:alphaearth-confirms-discrete",
+    "stmt:niche-selects-mechanism",
+    "stmt:kpneumoniae-accessory-resistome",
+    "stmt:metal-resistance-soil-aquatic",
+    "stmt:environment-not-phylogeny-artifact",
+    "stmt:core-accessory-gradient",
+    "stmt:integrate-fitness-cost",
+    "stmt:mobile-element-context"
+  ],
+  "member_hash": "hash:bf80d0e2387cf151",
+  "model": "haiku",
+  "page_id": "project:amr_environmental_resistome",
+  "page_plan_hash": "hash:3f350762b0749d6e",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:bf80d0e2387cf151",
+    "lead": "hash:bf80d0e2387cf151"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,32 @@
+{
+  "cited_statement_ids": [
+    "stmt:pangenome-openness-distinct-from-m22",
+    "stmt:alm-2006-not-reproduced",
+    "stmt:psii-rank-dependence",
+    "stmt:three-substrate-convergence",
+    "stmt:producer-participation-framework",
+    "stmt:preregistered-kos-not-phage-borne",
+    "stmt:architectural-promiscuity-hgt",
+    "stmt:cyanobacteria-psii-innovator-exchange",
+    "stmt:mycobacteriaceae-mycolic-innovator-isolated",
+    "stmt:biome-enrichment-grounding",
+    "stmt:mycolic-niche-refinement",
+    "stmt:hgt-innovation-atlas",
+    "stmt:recent-ancient-ratio-signature",
+    "stmt:composition-donor-inference-opportunity",
+    "stmt:mge-context-mechanism-opportunity"
+  ],
+  "member_hash": "hash:1f87115e14cfe108",
+  "model": "haiku",
+  "page_id": "project:gene_function_ecological_agora",
+  "page_plan_hash": "hash:f388a1bdb4314c6e",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:1f87115e14cfe108",
+    "lead": "hash:1f87115e14cfe108"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

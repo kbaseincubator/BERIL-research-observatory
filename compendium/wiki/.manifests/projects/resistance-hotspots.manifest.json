@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:count-query-timeout",
+    "stmt:environment-metadata-sparse",
+    "stmt:fitness-mapping-caveat",
+    "stmt:keyword-arg-caveat",
+    "stmt:no-findings-yet",
+    "stmt:core-vs-accessory-arg",
+    "stmt:pangenome-scale",
+    "stmt:fitness-tradeoff-plan",
+    "stmt:arg-hotspot-question",
+    "stmt:project-planning-stage",
+    "stmt:eggnog-orthogroup-inaccessible",
+    "stmt:gene-cluster-join-key",
+    "stmt:open-pangenome-hypothesis",
+    "stmt:sequence-similarity-opportunity"
+  ],
+  "member_hash": "hash:577b340480dea70b",
+  "model": "haiku",
+  "page_id": "project:resistance_hotspots",
+  "page_plan_hash": "hash:be2caea7c8136de8",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:577b340480dea70b",
+    "lead": "hash:577b340480dea70b"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

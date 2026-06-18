@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:ecotype-nan-bias-caveat",
+    "stmt:ecotype-kpneumoniae-excluded-caveat",
+    "stmt:ecotype-27x-discrepancy-caveat",
+    "stmt:ecotype-embedding-ecology-claim",
+    "stmt:ecotype-opposite-direction-claim",
+    "stmt:ecotype-clinical-geographic-structure-claim",
+    "stmt:ecotype-bias-no-confound-claim",
+    "stmt:ecotype-continuous-spearman-finding",
+    "stmt:ecotype-clinical-sampling-bias-finding",
+    "stmt:ecotype-env-null-finding",
+    "stmt:ecotype-genome-level-classification-finding",
+    "stmt:ecotype-gene-subset-opportunity",
+    "stmt:ecotype-envo-ontology-opportunity"
+  ],
+  "member_hash": "hash:128c71fc4003664b",
+  "model": "haiku",
+  "page_id": "project:ecotype_env_reanalysis",
+  "page_plan_hash": "hash:9fc0ac2f30054b4a",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:128c71fc4003664b",
+    "lead": "hash:128c71fc4003664b"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

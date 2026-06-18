@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:single-condition-caveat",
+    "stmt:modest-enrichment-caveat",
+    "stmt:essentiality-upper-bound-caveat",
+    "stmt:enrichment-robust-across-contexts",
+    "stmt:essential-core-depleted-conditional",
+    "stmt:conservation-breakdown",
+    "stmt:putative-essential-fraction",
+    "stmt:essential-auxiliary-poorly-characterized",
+    "stmt:essential-core-enzyme-rich",
+    "stmt:essential-unmapped-dark-matter",
+    "stmt:fb-pangenome-link-table",
+    "stmt:essential-genes-enriched-in-core",
+    "stmt:accessory-essential-opportunity",
+    "stmt:condition-specific-fitness-opportunity"
+  ],
+  "member_hash": "hash:74e2225e94bd364c",
+  "model": "haiku",
+  "page_id": "project:conservation_vs_fitness",
+  "page_plan_hash": "hash:d253e06dfe346119",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:74e2225e94bd364c",
+    "lead": "hash:74e2225e94bd364c"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

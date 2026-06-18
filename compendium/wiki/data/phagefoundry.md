@@ -1,279 +1,104 @@
-# PhageFoundry
+# Phagefoundry
+
+PhageFoundry is a genome-annotation and experimental database for bacteriophage-host interactions, accessible within the BERDL lakehouse as the `phagefoundry_strain_modelling` set of tables (`strainmodelling_interaction`, `strainmodelling_organism`, `strainmodelling_organism_metadata`, and `strainmodelling_experiment_metric`). In plain language it is a curated catalog of phage genomes, their annotated defense-related gene content (nucleases, restriction systems, abortive-infection loci), and experimentally measured phage-host susceptibility data. This page exists in the wiki because PhageFoundry serves as a shared data substrate across four projects that otherwise operate in quite different biological contexts: bacterial gene-essentiality mapping in *Acinetobacter baylyi* ADP1, probiotic formulation design for the cystic-fibrosis airway, phage-cocktail design for IBD, and the characterization of the SNIPE antiphage defense system.
 
 ## Overview
 
-PhageFoundry is a shared BERDL data collection of experimentally measured
-phage–host susceptibility: a matrix recording which bacteriophages can
-productively infect which bacterial strains. Where most genomic resources only
-predict that a phage *might* target a host from sequence similarity,
-PhageFoundry encodes the empirical answer — phage X plates on strain Y or it
-does not. That distinction is what makes the collection valuable as a wiki
-page: it is the empirical backbone that turns "design a phage therapy" from a
-sequence-matching exercise into a coverage-optimization problem over real
-infectivity data.
+The four projects tap into PhageFoundry in complementary ways, together illuminating the breadth of what a phage-biology reference can contribute to computational microbiology.
 
-The collection's most direct use is in the IBD phage-targeting work, where a
-greedy minimum-set-cover design over the experimentally tested phage–strain
-susceptibility in PhageFoundry yields a five-phage cocktail covering 94.7% of
-188 *E. coli* strains. Set-cover is the natural framing here: each phage covers
-some subset of strains, and the goal is the smallest cocktail that covers as
-many strains as possible. PhageFoundry supplies the ground-truth coverage that
-the optimizer consumes.
+The **SNIPE defense system** project uses PhageFoundry as its primary genomic search space for identifying defense-related domain content. SNIPE (named after the protein's function: it cleaves phage DNA at the ManYZ membrane pore) was originally a domain of unknown function, designated DUF4041 (Pfam PF13250). A key practical finding is that InterPro has already renamed IPR025280 from "Domain of unknown function DUF4041" to "SNIPE associated domain" based on the paper's functional characterization [\[1\]](#references), converting a formerly dark functional annotation into a defined antiphage marker. Using the BERDL pangenome eggNOG annotations, the project screened for DUF4041-containing gene clusters across the entire BERDL microbial collection and found the diagnostic domain in 4,572 gene clusters across 1,696 species spanning 33 bacterial and archaeal phyla, far exceeding the more than 500 homologues reported in the original paper [\[2\]](#references). A critical annotation clarification emerged from that search: the SNIPE nuclease domain is PF13455 (Mug113), a distinct Pfam family within the GIY-YIG clan CL0418, not the canonical GIY-YIG family PF01541, so zero co-occurrences of DUF4041 with PF01541 in the BERDL data is a genuine biological result rather than an annotation artifact [\[3\]](#references).
 
-But PhageFoundry does not stand alone. It is one node in a constellation of
-BERDL data collections — RB-TnSeq fitness datasets, GapMind pangenome
-metabolic reconstructions, curated metagenomic cohorts, and multi-omics strain
-databases — that four otherwise independent projects all reach into. This page
-exists to explain why those projects are adjacent: they share not just a data
-lake but overlapping methods (fitness profiling, pangenome conservation
-analysis, set-cover and niche-coverage optimization) and overlapping biology
-(host range, [gene fitness](../topics/gene-fitness.md), and
-[pangenome architecture](../topics/pangenome-architecture.md)). Read together,
-they sketch a workflow: characterize a microbe's genes and metabolism, place
-those traits in a pangenome to judge how general they are, then design an
-intervention — a phage cocktail, a probiotic formulation, or an engineered
-defense — whose feasibility is bounded by the empirical coverage data
-collections like PhageFoundry provide.
+PhageFoundry's genome browser provided a second layer of analysis for the SNIPE project: a species-level search across four organisms (*Klebsiella*, *Acinetobacter*, *P. aeruginosa*, *P. viridiflava*) for DUF4041, GIY-YIG, nucleases, restriction genes, and abortive infection markers. Only *Klebsiella* showed a DUF4041 hit (one genomic protein, 558 aa, co-occurring with 28 ManZ mannose-phosphotransferase proteins), making SNIPE in *Klebsiella* clinically relevant because SNIPE could affect phage therapy efficacy in this pathogen [\[4\]](#references).
 
-A recurring, honestly-surfaced limitation runs through every project that
-touches this data: experimental coverage is sparse and biased. The two
-highest-priority Crohn's pathobiont targets, *H. hathewayi* and *M. gnavus*,
-have the *weakest* phage availability — exactly the most actionable species sit
-in the coverage gap. The proposed remedy is to query external phage databases
-(INPHARED and IMG/VR) for gut-anaerobe phages, which could close that gap and
-convert a hybrid phage-plus-alternative framework into a pure-phage cocktail
-for some patients. This tension — rich empirical data where it exists, blank
-spaces where it does not — is the through-line connecting PhageFoundry to the
-projects below.
+The **IBD phage targeting** project uses PhageFoundry for a quantitatively different purpose: designing a minimum-set-cover cocktail against a specific bacterial target. A greedy minimum-set-cover algorithm applied to an experimentally tested phage-strain susceptibility matrix yields a five-phage cocktail covering 94.7% of 188 *E. coli* strains in PhageFoundry [\[5\]](#references). The top-ranked single phage, DIJ07_P2 (genus *Phapecoctavirus*), alone lyses 63.8% of strains. This cocktail design is grounded in ecotype-stratified patient data: phage cocktails designed at the cohort level will mismatch individual IBD patients unless each patient's microbiome ecotype is determined first [\[6\]](#references), because the UC Davis Crohn's cohort spans three distinct ecotypes (E0, E1, and E3) with non-random distribution [\[7\]](#references).
+
+However, PhageFoundry's coverage is not uniform across pathobiont targets. The two highest-priority Crohn's pathobionts, *H. hathewayi* and *M. gnavus*, have the weakest phage availability in the database, creating a coverage gap for the most actionable species [\[8\]](#references). As a result, no E1 Crohn's patient can be treated with a pure phage cocktail; only a hybrid combining phages for the tractable targets with non-phage alternatives for the gap and temperate-only species is feasible [\[9\]](#references). Querying external phage databases — INPHARED (~25K phages) and IMG/VR (~3M uncultivated viral genomes) — represents the highest-priority near-term extension to close this gut-anaerobe coverage gap [\[10\]](#references).
+
+The **SNIPE defense system** project also surfaces a mechanistic reason why phage coverage gaps matter at the bacterial-genome level. SNIPE resolves the well-known phage resistance versus metabolic cost trade-off: bacteria can evade phage lambda by losing the ManYZ mannose/glucosamine transporter, but RB-TnSeq (random-barcode transposon sequencing) fitness measurements across 168 experiments in *E. coli* K-12 show ManXYZ knockouts incur severe substrate-specific fitness penalties (worst fitness scores from -3.93 to -4.14) on mannose and glucosamine [\[11\]](#references). Fitness Browser data clarified a long-standing annotation error — UniProt had described ManX as "fructose-specific," but the data show ManXYZ mutants grow normally on fructose while being crippled on mannose and glucosamine, confirming ManYZ is a mannose/glucosamine-specific transporter and phage lambda receptor [\[12\]](#references). SNIPE allows bacteria to retain full transporter function while cleaving phage DNA during injection, providing the resistance benefit of *man* knockouts without their metabolic cost [\[13\]](#references).
+
+The **Acinetobacter ADP1 explorer** project draws on PhageFoundry indirectly, since PhageFoundry's GenomeDepot format holds genome annotation data for the same organisms whose physiology is characterized by the multi-omics ADP1 database. That project's central data resource — a 135 MB SQLite database with 15 tables and 461,522 rows spanning six modalities (TnSeq essentiality, FBA flux, mutant growth fitness, proteomics, pangenome classification, and functional annotations) [\[14\]](#references) — connects to BERDL at 100% for genome IDs and metabolic compounds, and 91% for reactions [\[15\]](#references). Because *A. baylyi* ADP1 is absent from the Fitness Browser, the ADP1 database's condition-specific mutant growth data is a unique fitness resource not available elsewhere in BERDL [\[16\]](#references).
+
+The **CF formulation design** project does not query PhageFoundry directly, but its findings about Pseudomonas aeruginosa ecology in the CF airway inform what phage therapy must eventually contend with. PA14, the reference strain used in all inhibition assays, is ExoU+ and Pel-only, representing less than 5% of CF PA isolates, whereas the dominant CF phenotype is ExoS+ (94%) [\[17\]](#references) — a finding that is relevant to any phage program targeting CF PA, since phage-host receptor tropism can differ across strain backgrounds.
 
 ## Projects Using This Collection
 
-### IBD phage targeting
+Four projects contribute to or depend on PhageFoundry within the corpus.
 
-The [microbiome-engineering](../topics/microbiome-engineering.md) project that
-leans most heavily on PhageFoundry treats Crohn's disease as an ecosystem to be
-re-engineered with phages. Two independent clustering methods on 8,489
-metagenomic samples converge on four reproducible IBD microbiome ecotypes
-(E0–E3), and a confound-free within-substudy CD-vs-nonIBD meta-analysis across
-four cohorts recovers the canonical Crohn's signature — pathobionts up,
-protective commensals down. These [microbial ecotypes](../topics/microbial-ecotypes.md)
-matter operationally because clinical covariates can separate healthy from IBD
-samples but cannot distinguish the transitional E1 from severe E3 ecotype, so
-metagenomics remains required for ecotype assignment, and a cohort-level
-cocktail will mismatch individual patients unless each patient's ecotype is
-determined first. A single patient's ecotype can even drift between E1 and E3
-between visits (Jaccard 0.60), motivating state-dependent re-design rather than
-a fixed prescription.
+**acinetobacter_adp1_explorer** uses the BERDL PhageFoundry genome browser to search for defense-related domain content in *Klebsiella*, *Acinetobacter*, *P. aeruginosa*, and *P. viridiflava* as part of the SNIPE defense system characterization. The project also produced the cluster-ID bridge that enables any BERDL pangenome annotation to be joined to ADP1 genes: a gene junction table maps all 4,891 BERDL clusters to 4,081 unique ADP1 clusters despite the two systems using completely different naming conventions [\[18\]](#references). Essential genes in this system are more likely to reside in the core pangenome [\[19\]](#references), and they carry far richer functional annotations — 92% versus 53% KEGG KO coverage compared to dispensable genes [\[20\]](#references). Core metabolism across the 14 *Acinetobacter* genomes is highly conserved, with 94% of reactions shared by all genomes [\[21\]](#references), though 87% of growth phenotype predictions depend on at least one gapfilled reaction (gapfilling is the computational process of adding reactions not directly supported by gene evidence to make a metabolic model feasible), tightly coupling prediction accuracy to gapfilling quality [\[22\]](#references). FBA (flux balance analysis, a constraint-based method for predicting which reactions carry flux at steady state) and TnSeq essentiality calls agreed for 73.8% of the 866 genes with both measurements [\[23\]](#references), with gene essentiality differing between minimal and rich media: 499 genes essential on minimal media versus 346 on LB [\[24\]](#references).
 
-On the genomic side, the project ties Crohn's biology to specific
-[mobile genetic elements](../topics/mobile-genetic-elements.md) and
-biosynthetic capabilities. Tier-A pathobiont genomes are strongly enriched for
-iron-siderophore biosynthetic gene clusters, and among the six actionable
-Tier-A pathobionts only *E. coli* (the AIEC subset) carries the combined
-iron-siderophore and genotoxin signature, localizing iron-driven Crohn's
-biology to *E. coli*. On the viral side, the Microviridae member Gokushovirus
-WZ-2015a is robustly depleted in Crohn's, strongest in the transitional E1
-ecotype — a phage signal rather than a bacterial one.
+**cf_formulation_design** uses PhageFoundry genome annotation data as part of its survey of defense systems in clinically relevant organisms, and its pathogen-ecology findings set the stage for future phage work. The project demonstrates that no single commensal outgrows PA14 on any tested carbon substrate, so competitive exclusion of *P. aeruginosa* requires community-level niche coverage [\[25\]](#references). Multi-criterion optimization identifies a five-organism FDA-safe formulation (*Neisseria mucosa*, *Streptococcus salivarius*, *Micrococcus luteus*, *Rothia dentocariosa*, *Gemella sanguinis*) achieving 100% coverage of PA14's amino acid niche with 78% mean inhibition [\[26\]](#references). This target is robust: amino acid catabolic pathways are 97.4% conserved across 1,796 lung PA genomes [\[27\]](#references), and the metabolic capabilities of the formulation species are themselves species-level traits conserved above 95% across hundreds of pangenome genomes [\[28\]](#references). Two anchor species — *Rothia dentocariosa* and *Neisseria mucosa* — are naturally lung-adapted, with 33–38% of their pangenome genomes drawn from respiratory sources [\[29\]](#references). Among tested substrates, metabolic overlap with PA14 significantly predicts commensal planktonic inhibition (r = 0.384) but explains only about 27% of variance [\[30\]](#references), and PA14 outgrows commensals on every tested amino acid and simple sugar, so no single substrate works as a selective prebiotic [\[31\]](#references). Instead, genomic analysis points to sugar alcohols (xylitol, myoinositol) and pentoses (xylose, arabinose, fucose, rhamnose) as candidate prebiotics that formulation commensals can metabolize but PA14 cannot [\[32\]](#references).
 
-The caveats here are substantial and stated plainly. In pooled
-curatedMetagenomicData, healthy and Crohn's samples come from disjoint source
-studies, making a pooled case-vs-control model structurally unidentifiable and
-forcing the within-substudy design. The E3 Tier-A target list rests on
-single-study evidence and is explicitly provisional. And the coverage gap
-already noted — the most actionable pathobionts having the least phage data —
-means no E1 Crohn's patient can be treated with a pure phage cocktail today;
-only a hybrid combining phages with non-phage alternatives is feasible. A
-reusable taxonomy synonymy layer (NCBI taxid plus a GTDB-version-aware rename
-table) is flagged as a foundation any multi-cohort microbiome project needs.
+**ibd_phage_targeting** is the project that uses PhageFoundry most directly, applying its experimental phage-host susceptibility matrix to design a minimum-set-cover cocktail against *E. coli* targets. The project establishes a four-ecotype framework for IBD microbiomes trained on 8,489 MetaPhlAn3 samples using cross-method agreement between LDA and GMM [\[33\]](#references). A within-substudy CD-vs-nonIBD meta-analysis across four IBD cohorts recovers the canonical Crohn's signature of pathobionts enriched and protective commensals depleted [\[34\]](#references). Among the six actionable Tier-A pathobionts, only *E. coli* (the adherent-invasive AIEC subset) carries iron-siderophore and genotoxin biosynthetic gene-cluster signatures, localizing iron-driven Crohn's pathobiology specifically to *E. coli* [\[35\]](#references). An ecotype-specific dosing model shows that a single patient's ecotype can drift between E1 and E3 between visits, changing the optimal cocktail composition moderately (Jaccard 0.60), motivating state-dependent cocktail re-design rather than a fixed prescription [\[36\]](#references). Clinical covariates alone are insufficient for this ecotype assignment — they distinguish healthy from IBD broadly but cannot separate the transitional (E1) from severe (E3) within-IBD ecotypes, so metagenomics remains required [\[37\]](#references). The endogenous gut virome carries its own ecotype-stratified signal: the Microviridae member *Gokushovirus WZ-2015a* is robustly depleted in Crohn's disease across multiple ecotypes, with the strongest signal in E1 [\[38\]](#references).
 
-### CF formulation design
-
-The cystic-fibrosis formulation project shares PhageFoundry's design philosophy
-— suppress a pathogen by engineering its competitors — but swaps phages for a
-defined commensal community. The target is *Pseudomonas aeruginosa* in the
-CF airway, and the strategy is competitive exclusion through
-[metabolic pathway](../topics/metabolic-pathways.md) overlap. No individual
-commensal outgrows PA14 on any tested carbon substrate, so exclusion requires
-community-level niche coverage rather than a single dominant strain. Full
-amino-acid niche coverage is first reached at a three-organism formulation
-(*M. luteus*, *N. mucosa*, *S. salivarius*), and a five-organism FDA-safe
-formulation achieves 100% coverage of PA14's amino-acid niche with 78% mean
-inhibition. Metabolic carbon-source overlap with PA14 significantly predicts
-planktonic inhibition (r = 0.384) but explains only about 27% of the variance,
-so overlap is a real but partial driver.
-
-Pangenome reasoning makes the design strain-agnostic, the same logic
-PhageFoundry-adjacent projects use to judge generality. The amino-acid
-catabolic pathways the formulation targets are 97.4% conserved across 1,796
-lung PA genomes, and GapMind pangenome analysis across 499 genomes confirms the
-formulation species' capabilities are species-level traits conserved above 95%.
-Lung-adapted PA undergoes metabolic streamlining — losing sugar-catabolism
-pathways under relaxed selection in amino-acid-rich sputum while keeping amino
-acid catabolism as an invariant adaptation — which is precisely why an
-amino-acid-targeted formulation should generalize across the
-[environment-biogeography](../topics/environment-biogeography.md) of lung
-strains. Two anchor species, *Rothia dentocariosa* and *Neisseria mucosa*, are
-themselves naturally lung-adapted (33–38% of their pangenome genomes from
-respiratory sources), and *N. mucosa* has the highest engraftability score
-among inhibition-tested species. Genomic pathway comparison also nominates
-sugar alcohols (xylitol, myoinositol) and pentoses as candidate selective
-prebiotics the commensals can metabolize but PA14 cannot.
-
-The caveats again temper the optimism. All inhibition assays measure planktonic
-competition, whereas PA14 grows primarily in CF-lung biofilms with very
-different spatial and diffusion dynamics; all assays used PA14, an ExoU+
-Pel-only strain representing under 5% of CF isolates, while T3SS effector
-typing of 6,760 genomes shows CF isolates are overwhelmingly ExoS+ (94%). The
-multivariate metabolic-feature model overfits its 142-isolate cohort
-(cross-validated R² near 0.145 versus training 0.274). And *M. luteus*, the
-keystone for full niche coverage, has zero detected patient engraftability and
-no lung genomes — the most metabolically important member is the least likely
-to persist. The highest-priority validations are measuring the complete 10-pair
-interaction matrix of the five core species and testing them plus PA14 on the
-predicted prebiotic sugar alcohols.
-
-### Acinetobacter ADP1 explorer
-
-The ADP1 explorer is the project that most clearly demonstrates *why*
-collections like PhageFoundry need to be integrated into BERDL rather than
-standing alone. It centers on the [Adp1 model system](../topics/adp1-model-system.md)
-— *Acinetobacter baylyi* ADP1 — and integrates a user-provided SQLite database
-of 15 tables (461,522 rows; central genome_features table of 5,852 genes with
-51 annotation columns spanning six modalities). Because ADP1 is absent from the
-Fitness Browser, its condition-specific mutant growth data is a unique
-[gene fitness](../topics/gene-fitness.md) resource not available elsewhere in
-BERDL, paralleling PhageFoundry's role as a one-of-a-kind empirical collection.
-
-Integration was nontrivial and is the project's headline achievement: a gene
-junction table bridged the database's mmseqs2-style cluster IDs to BERDL
-centroid gene IDs — mapping all 4,891 BERDL clusters to 4,081 unique ADP1
-clusters *despite 0% direct string match* — and four of five connection types
-matched at over 90% (100% of genome IDs and compounds, 91% of reactions),
-demonstrating deep lakehouse integration. The biology recovered through that
-bridge is coherent with [pangenome architecture](../topics/pangenome-architecture.md):
-core metabolism is highly conserved (1,248 of 1,330 reactions shared by all 14
-*Acinetobacter* genomes), essential genes are more likely to reside in the core
-pangenome, and essential genes are far more annotation-rich than dispensable
-ones (33% vs 5% with COG; 92% vs 53% with KEGG KO). Essentiality is
-media-dependent (499 essential genes on minimal media vs 346 on LB), and FBA
-flux predictions agreed with TnSeq essentiality calls for 73.8% of the 866
-genes carrying both, with the discordant quarter flagged for model refinement.
-
-The honest limits: 87% of the 121,519 growth-phenotype predictions rely on at
-least one gapfilled reaction, tightly coupling accuracy to gapfilling quality;
-no gene carries data across all six modalities, and sparse FBA flux coverage
-(15%) limits concordance analysis to just 866 genes. The roughly 8% of
-essential genes lacking KEGG KO assignments are flagged as promising candidates
-for discovering novel essential functions — a [functional-dark-matter](../topics/functional-dark-matter.md)
-opportunity that recurs in the SNIPE project below.
-
-### SNIPE defense system
-
-The SNIPE project shows how the same fitness data that supports phage-cocktail
-and formulation design also explains *anti-phage* biology — the bacterial
-counter-move to phage therapy, which is exactly the failure mode PhageFoundry's
-coverage data must contend with. SNIPE is an antiphage defense system marked by
-the domain formerly called DUF4041; InterPro has since renamed IPR025280 from a
-domain of unknown function to the "SNIPE associated domain," converting a piece
-of [functional dark matter](../topics/functional-dark-matter.md) into a defined
-antiphage marker. The diagnostic domain (PF13250) was detected in 4,572 gene
-clusters across 1,696 species spanning 33 phyla, far exceeding the ~500
-homologues in the original paper, and the system's nuclease is PF13455
-(Mug113), a distinct Pfam family in the GIY-YIG clan rather than the canonical
-PF01541 — so the absence of DUF4041+PF01541 co-occurrences is a genuine result,
-not an artifact.
-
-The mechanistic payoff connects directly to fitness data and to phage host
-range. RB-TnSeq fitness from 168 *E. coli* K-12 experiments shows ManXYZ
-knockouts incur severe defects on mannose and glucosamine (worst fitness −3.93
-to −4.14), and Fitness Browser data directly contradict UniProt's
-fructose-transporter annotation — ManXYZ mutants grow normally on fructose —
-confirming ManYZ as a mannose/glucosamine-specific transporter. ManYZ is also
-the phage lambda receptor, so losing it would confer resistance at a real
-metabolic cost. SNIPE resolves this phage-resistance-versus-cost trade-off by
-cleaving phage DNA at the ManYZ pore while retaining full transporter function
-— the resistance benefit of *man* knockouts without their metabolic penalty.
-*Methanococcus maripaludis* JJ carries a full two-domain SNIPE protein with 129
-fitness experiments, the first SNIPE homologue with genome-wide knockout
-phenotypes.
-
-Distribution and ecology mark SNIPE as a mobile defense element. SNIPE genes
-are predominantly accessory (only 13.3% core; 86.7% accessory-plus-singleton),
-its patchy spread across phyla is consistent with horizontal gene transfer of
-defense islands — connecting it to [mobile genetic elements](../topics/mobile-genetic-elements.md)
-— and SNIPE-bearing species occupy statistically distinct
-[environmental niches](../topics/environment-biogeography.md) (22 of 64
-AlphaEarth dimensions significantly different). Clinically, SNIPE (DUF4041) was
-detected in the phage-therapy target *Klebsiella*, co-occurring with its
-mannose PTS transporter, where it could blunt phage therapy efficacy. The
-caveats are annotation-driven: about 20% of DUF4041 clusters have non-defense
-primary annotations and need a stricter description filter, and eggNOG Pfam
-annotations may miss divergent homologues (only 54 of 4,572 clusters show
-Mug113 co-annotation). Generating *Klebsiella*-specific SNIPE or ManYZ fitness
-data is the stated next step.
+**snipe_defense_system** is the project most thoroughly grounded in PhageFoundry data, using both the genome browser annotation tables and the broader BERDL pangenome to characterize SNIPE's distribution, accessory status, and evolutionary ecology. SNIPE genes are predominantly accessory, with only 13.3% core and a combined 86.7% accessory-plus-singleton fraction, indicating SNIPE is typically gained or lost rather than vertically inherited [\[39\]](#references). The patchy distribution across phyla and families is consistent with horizontal gene transfer of defense islands [\[40\]](#references). SNIPE-bearing species occupy statistically distinct environmental niches, with 22 of 64 AlphaEarth dimensions significantly different at small-to-medium effect sizes [\[41\]](#references). The first organism with both a confirmed SNIPE protein and genome-wide fitness data is *Methanococcus maripaludis* JJ, carrying a full two-domain SNIPE protein (PF13250 binding domain plus PF13455 nuclease) with 129 experiments of fitness data — though as an archaeon, its phage biology context differs significantly from the Enterobacterales system [\[42\]](#references).
 
 ## Connections
 
-The four projects are adjacent because they share both data and method.
-[Gene fitness](../topics/gene-fitness.md) data (RB-TnSeq, the Fitness Browser,
-and the ADP1 condition-specific resource) is the common substrate that powers
-ADP1 essentiality calls, the SNIPE ManYZ mechanism, and the empirical host
-ranges underlying phage-cocktail and formulation design.
-[Pangenome architecture](../topics/pangenome-architecture.md) is the shared
-lens for judging generality — core-vs-accessory placement explains why ADP1
-essential genes cluster in the core, why SNIPE is mobile and accessory, and why
-the CF formulation's targets are conserved enough to be strain-agnostic.
-[Metabolic pathways](../topics/metabolic-pathways.md) link the FBA/GapMind
-reconstructions in the ADP1 and CF projects.
-[Microbiome engineering](../topics/microbiome-engineering.md) and
-[microbial ecotypes](../topics/microbial-ecotypes.md) unite the two
-intervention-design projects (phage cocktails and commensal formulations),
-[mobile genetic elements](../topics/mobile-genetic-elements.md) and
-[functional dark matter](../topics/functional-dark-matter.md) connect SNIPE's
-HGT-borne, formerly-uncharacterized defense domain to the IBD project's phage
-and pathobiont gene clusters, and
-[environment-biogeography](../topics/environment-biogeography.md) ties together
-the lung-adaptation, engraftability, and AlphaEarth-niche threads across the CF
-and SNIPE work.
+PhageFoundry connects this wiki to several adjacent topic pages. The [Gene Fitness](../topics/gene-fitness.md) page is adjacent because PhageFoundry's fitness-relevant gene annotations (ManXYZ fitness costs, SNIPE fitness data in *Methanococcus*) are interpreted through the lens of RB-TnSeq fitness measurements. The [Mobile Genetic Elements](../topics/mobile-genetic-elements.md) page is adjacent because SNIPE's 86.7% accessory-plus-singleton status and its patchy cross-phylum distribution are the defining signatures of horizontally transferred defense islands. The [Microbiome Engineering](../topics/microbiome-engineering.md) page is adjacent because the PhageFoundry cocktail design work and CF formulation design both represent rational interventions in community ecology. The [Pangenome Architecture](../topics/pangenome-architecture.md) page is adjacent because SNIPE accessory status, formulation species pangenome conservation, and the ADP1-BERDL cluster-ID bridge are all pangenome-level analyses. The [Functional Dark Matter](../topics/functional-dark-matter.md) page is adjacent because the renaming of DUF4041 to "SNIPE associated domain" is an exemplar of converting an uncharacterized domain into a biologically interpreted marker. The [Microbial Ecotypes](../topics/microbial-ecotypes.md) page is adjacent because the four IBD ecotypes structure which PhageFoundry-derived phage cocktails are appropriate for each patient class.
 
-## Sources
+## Caveats and Open Directions
 
-- [stmt:five-phage-cocktail-coverage; ibd_phage_targeting]
-- [stmt:phage-coverage-gap; ibd_phage_targeting]
-- [stmt:external-phage-db-opportunity; ibd_phage_targeting]
-- [stmt:four-ibd-ecotypes; ibd_phage_targeting]
-- [stmt:canonical-cd-signature; ibd_phage_targeting]
-- [stmt:cohort-cocktail-mismatch; ibd_phage_targeting]
-- [stmt:state-dependent-dosing; ibd_phage_targeting]
-- [stmt:clinical-covariates-insufficient; ibd_phage_targeting]
-- [stmt:iron-acquisition-genomic; ibd_phage_targeting]
-- [stmt:ecoli-carries-iron-genotoxin; ibd_phage_targeting]
-- [stmt:gokushovirus-cd-down; ibd_phage_targeting]
-- [stmt:substudy-nesting-unidentifiable; ibd_phage_targeting]
-- [stmt:hybrid-cocktail-needed; ibd_phage_targeting]
-- [stmt:synonymy-layer-reusable; ibd_phage_targeting]
-- [stmt:no-single-organism-outgrows-pa14; cf_formulation_design]
-- [stmt:five-organism-formulation; cf_formulation_design]
-- [stmt:formulation-target-invariant; cf_formulation_design]
-- [stmt:metabolic-traits-species-level; cf_formulation_design]
-- [stmt:pa-lung-metabolic-streamlining; cf_formulation_design]
-- [stmt:pa14-strain-bias-caveat; cf_formulation_design]
-- [stmt:planktonic-only-caveat; cf_formulation_design]
-- [stmt:m-luteus-engraftment-tension; cf_formulation_design]
-- [stmt:metabolic-model-overfits; cf_formulation_design]
-- [stmt:pairwise-interaction-gap; cf_formulation_design]
-- [stmt:adp1-fitness-unique-resource; acinetobacter_adp1_explorer]
-- [stmt:adp1-multiomics-database; acinetobacter_adp1_explorer]
-- [stmt:cluster-id-bridge; acinetobacter_adp1_explorer]
-- [stmt:berdl-connectivity; acinetobacter_adp1_explorer]
-- [stmt:essential-genes-annotation-rich; acinetobacter_adp1_explorer]
-- [stmt:fba-tnseq-concordance; acinetobacter_adp1_explorer]
-- [stmt:gapfilling-dependence; acinetobacter_adp1_explorer]
-- [stmt:unannotated-essential-genes; acinetobacter_adp1_explorer]
-- [stmt:duf4041-renamed-snipe-domain; snipe_defense_system]
-- [stmt:snipe-widespread-1696-species; snipe_defense_system]
-- [stmt:snipe-resolves-resistance-cost-tradeoff; snipe_defense_system]
-- [stmt:manxyz-fitness-cost-mannose-glucosamine; snipe_defense_system]
-- [stmt:snipe-predominantly-accessory; snipe_defense_system]
-- [stmt:snipe-in-klebsiella-phage-therapy; snipe_defense_system]
-- [stmt:caveat-duf4041-false-positives; snipe_defense_system]
+Several important caveats constrain how the PhageFoundry-derived findings should be used.
+
+The SNIPE domain search in BERDL likely underestimates true SNIPE prevalence because eggNOG Pfam annotations may miss divergent homologues — only 54 of 4,572 DUF4041 clusters show Mug113 (PF13455) co-annotation, suggesting many SNIPE nuclease domains go undetected [\[43\]](#references). Conversely, about 20% of DUF4041 clusters have non-defense primary annotations (e.g. histidine kinase, seryl-tRNA aminoacylation) that likely represent annotation noise where DUF4041 is a secondary domain, so a stricter T5orf172/DUF4041 description filter is needed for a high-confidence SNIPE set [\[44\]](#references).
+
+The phage coverage gap for the two highest-priority Crohn's pathobionts (*H. hathewayi* and *M. gnavus*) is a real clinical limitation: PhageFoundry lacks lytic phages for these species in the current corpus, making purely phage-based treatment infeasible for E1 patients [\[8\]](#references). The E3 ecotype Tier-A target list rests on single-study evidence from PhageFoundry-informed analyses and should be treated as provisional until a cohort with sufficient E3 patients and both diagnosis groups becomes available [\[45\]](#references). The substudy-nesting structure of pooled curatedMetagenomicData means a naive pooled case-vs-control mixed model is structurally unidentifiable, which forced the within-substudy design [\[46\]](#references).
+
+PhageFoundry's GenomeDepot format holds only genome annotation data, not fitness or TnSeq tables, which means generating *Klebsiella*-specific SNIPE or ManYZ fitness data would require new mutant libraries in natural SNIPE-carrying strains such as *K. pneumoniae* NCTC9140 or HS11286 [\[47\]](#references). The CF formulation project flags that all inhibition assays measured planktonic competition, whereas PA14 grows primarily in CF-lung biofilms where metabolic dynamics, diffusion gradients, and spatial structure differ substantially [\[48\]](#references). The metabolic model for *Acinetobacter* ADP1 is limited by the fact that no gene has data across all six modalities simultaneously, and FBA flux coverage is the sparsest at only 15% of genes, restricting model-experiment concordance to 866 genes [\[49\]](#references).
+
+Open directions include: querying INPHARED and IMG/VR to close the gut-anaerobe phage coverage gap for the three Crohn's target species with insufficient PhageFoundry representation; developing a *Klebsiella* fitness curation plan to generate the first SNIPE or ManYZ fitness data in a clinical SNIPE-carrying strain; validating the genomically predicted sugar-alcohol prebiotic strategy experimentally by testing the five formulation species and PA14 on xylitol, myoinositol, and related substrates [\[50\]](#references); completing the pairwise interaction matrix for the five core CF formulation species, since a single untested antagonistic pair could invalidate the additive scoring [\[51\]](#references); and investigating the approximately 8% of ADP1 essential genes lacking KEGG KO assignments, which are the most promising candidates for novel essential functions [\[52\]](#references).
+
+## References
+
+1. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "Corrected Pfam Domain Assignments".
+2. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "2. SNIPE is widespread (1,696 species, 33 phyla)".
+3. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "4. The SNIPE nuclease domain is PF13455 (Mug113), not PF01541 (GIY-YIG)".
+4. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "6. SNIPE detected in phage therapy target (*Klebsiella*)".
+5. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "NB13 — PhageFoundry quantitative E. coli phage-cocktail design".
+6. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "Executive Summary".
+7. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "UC Davis CD patients span three ecotypes, none in E2".
+8. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "NB12 — Pathobiont × phage targetability matrix (Pillar 4 opener)".
+9. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "NB15 — UC Davis per-patient profile + cocktail draft (Pillar 5 opener)".
+10. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "Near-term (6–12 months) — feasible external-data extensions".
+11. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "1. SNIPE resolves the phage resistance vs. metabolic cost trade-off".
+12. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "1. SNIPE resolves the phage resistance vs. metabolic cost trade-off".
+13. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "1. SNIPE resolves the phage resistance vs. metabolic cost trade-off".
+14. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "1. Rich Multi-Omics Database with 6 Data Modalities".
+15. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "2. Strong BERDL Connectivity: 4 of 5 Connection Types at >90% Match".
+16. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "2. Strong BERDL Connectivity: 4 of 5 Connection Types at >90% Match".
+17. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "2.14 PA Virulence System Distribution: PA14 Is Not Representative of CF".
+18. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "3. Pangenome Cluster ID Bridge: 100% Mapping via Gene Junction Table".
+19. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "6. Essential Genes Are 6x More Likely to Have COG Annotations".
+20. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "6. Essential Genes Are 6x More Likely to Have COG Annotations".
+21. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "7. Highly Conserved Core Metabolism Across 14 Genomes".
+22. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "8. 87% of Growth Predictions Depend on Gapfilled Reactions".
+23. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "4. FBA and TnSeq Essentiality Agree 74% of the Time".
+24. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "4. FBA and TnSeq Essentiality Agree 74% of the Time".
+25. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "Summary".
+26. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "Summary".
+27. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "2.13 Formulation Robustness: PA's Amino Acid Core Is Invariant Across Lung Variants".
+28. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "2.8 Metabolic Capabilities Are Species-Level Traits: Pangenome Validation".
+29. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "Summary".
+30. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "Summary".
+31. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "2.7 PA14 Is a Metabolic Generalist — Amino Acid Prebiotics Don't Work".
+32. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "2.11 Genomic Analysis Identifies Sugar Alcohols as Candidate Prebiotics".
+33. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "Four reproducible IBD ecotypes with clear disease stratification".
+34. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "Within-ecotype × within-substudy meta-analysis defines ecotype-specific Tier-A (rigor-controlled)".
+35. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "NB08a — BGC × pathobiont enrichment (H3c) — genomic mechanism layer".
+36. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "NB16 — Patient 6967 longitudinal stability + state-dependent dosing strategy".
+37. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "Clinical covariates alone are insufficient for within-IBD ecotype assignment".
+38. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "NB14 — HMP2 endogenous phageome × ecotype × diagnosis".
+39. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "3. SNIPE genes are predominantly accessory (86.7%)".
+40. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "2. SNIPE is widespread (1,696 species, 33 phyla)".
+41. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "5. SNIPE-bearing species occupy distinct environmental niches".
+42. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "1. SNIPE resolves the phage resistance vs. metabolic cost trade-off".
+43. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "Limitations".
+44. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "7. Functional annotations are consistent with SNIPE".
+45. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "Limitations".
+46. [Ibd Phage Targeting](../projects/ibd-phage-targeting.md) — REPORT.md › "Within-ecotype × within-substudy meta-analysis defines ecotype-specific Tier-A (rigor-controlled)".
+47. [Snipe Defense System](../projects/snipe-defense-system.md) — REPORT.md › "1. SNIPE resolves the phage resistance vs. metabolic cost trade-off".
+48. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "3.7 Limitations".
+49. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "Limitations".
+50. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "4.2 Sugar Alcohol Prebiotic Validation".
+51. [Cf Formulation Design](../projects/cf-formulation-design.md) — REPORT.md › "4.1 Highest Priority: Pairwise Interaction Matrix for Core Formulation".
+52. [Acinetobacter Adp1 Explorer](../projects/acinetobacter-adp1-explorer.md) — REPORT.md › "6. Essential Genes Are 6x More Likely to Have COG Annotations".

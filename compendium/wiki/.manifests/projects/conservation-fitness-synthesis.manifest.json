@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:figure1-text-discrepancy",
+    "stmt:essential-core-rate-inconsistency",
+    "stmt:unmapped-genes-percent-core",
+    "stmt:dual-dataset-synthesis",
+    "stmt:lab-impoverished-proxy",
+    "stmt:fitness-conservation-gradient",
+    "stmt:selection-signature-purifying",
+    "stmt:burden-paradox-core-more-costly",
+    "stmt:accessory-not-streamlining-burden",
+    "stmt:core-genes-condition-specific-tradeoffs",
+    "stmt:fitness-modules-core-enriched",
+    "stmt:burden-paradox-function-specific",
+    "stmt:opportunity-alphaearth-environment",
+    "stmt:opportunity-costly-dispensable-genes"
+  ],
+  "member_hash": "hash:fa8b54e9b0226ad6",
+  "model": "haiku",
+  "page_id": "project:conservation_fitness_synthesis",
+  "page_plan_hash": "hash:bd950362ff1a57a7",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:fa8b54e9b0226ad6",
+    "lead": "hash:fa8b54e9b0226ad6"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

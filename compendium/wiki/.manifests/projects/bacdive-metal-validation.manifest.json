@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:metal-utilization-inconclusive",
+    "stmt:species-matching-lossy",
+    "stmt:phylum-confounding-partial",
+    "stmt:heavy-metal-group-at-detection-limit",
+    "stmt:core-genome-reconciliation",
+    "stmt:atlas-prediction-validated",
+    "stmt:lab-field-ecology-stronger-evidence",
+    "stmt:metal-contaminated-isolates-higher-scores",
+    "stmt:signal-holds-within-phyla",
+    "stmt:host-associated-genome-size-confounding",
+    "stmt:bacdive-pangenome-bridge",
+    "stmt:dose-dependent-contamination-gradient",
+    "stmt:enigma-field-validation-opportunity",
+    "stmt:gca-accession-matching-opportunity"
+  ],
+  "member_hash": "hash:51b836f442f91c5b",
+  "model": "haiku",
+  "page_id": "project:bacdive_metal_validation",
+  "page_plan_hash": "hash:eec26d6107f9c00b",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:51b836f442f91c5b",
+    "lead": "hash:51b836f442f91c5b"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

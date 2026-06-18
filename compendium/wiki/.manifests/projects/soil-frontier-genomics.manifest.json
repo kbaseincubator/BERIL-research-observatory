@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:forest-cropland-not-distinguishable-caveat",
+    "stmt:gdi-formula-validity-caveat",
+    "stmt:negative-r2-diagnosis-caveat",
+    "stmt:alkaline-sampling-gap-claim",
+    "stmt:clay-shield-not-supported-claim",
+    "stmt:clay-shield-null-result",
+    "stmt:negative-out-of-sample-r2",
+    "stmt:clay-feature-importance-no-accuracy",
+    "stmt:forest-cropland-frontiers",
+    "stmt:ph-discovery-bias",
+    "stmt:gdi-definition",
+    "stmt:shield-efficiency-not-significant",
+    "stmt:spatial-validation-opportunity",
+    "stmt:ph-reverse-causality-opportunity"
+  ],
+  "member_hash": "hash:e69e818b77b923b6",
+  "model": "haiku",
+  "page_id": "project:soil_frontier_genomics",
+  "page_plan_hash": "hash:981a72dea13bc2f2",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:e69e818b77b923b6",
+    "lead": "hash:e69e818b77b923b6"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

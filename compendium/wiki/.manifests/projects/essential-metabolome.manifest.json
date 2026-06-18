@@ -1,0 +1,28 @@
+{
+  "cited_statement_ids": [
+    "stmt:rich-media-essentiality-confound",
+    "stmt:ecoli-absent-pilot-scope",
+    "stmt:serine-gapmind-detection-caveat",
+    "stmt:dvh-serine-ecological-economy",
+    "stmt:aa-prototrophy-ancestral",
+    "stmt:dvh-serine-auxotrophy",
+    "stmt:near-universal-not-strictly-universal",
+    "stmt:aa-biosynthesis-high-conservation",
+    "stmt:conserved-central-catabolism",
+    "stmt:dvh-serine-experimental-validation-opportunity",
+    "stmt:eggnog-coverage-expansion-opportunity"
+  ],
+  "member_hash": "hash:7f1d1b85853cb93b",
+  "model": "haiku",
+  "page_id": "project:essential_metabolome",
+  "page_plan_hash": "hash:ff843ee2cf6d78bf",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:7f1d1b85853cb93b",
+    "lead": "hash:7f1d1b85853cb93b"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

@@ -1,0 +1,37 @@
+{
+  "cited_statement_ids": [
+    "stmt:enrichment-saturation-taxonomic",
+    "stmt:markers-under-purifying-selection",
+    "stmt:phylo-tree-coverage-gap",
+    "stmt:cohen-d-formula-error",
+    "stmt:genome-size-confound-dual-nature",
+    "stmt:permanova-sampling-artifact",
+    "stmt:refined-panel-dual-nature-persists",
+    "stmt:dual-nature-label-uninformative",
+    "stmt:novel-og-electron-transport-fe-s",
+    "stmt:beneficial-core-pathogenic-accessory",
+    "stmt:functional-redundancy-cooccurring-genera",
+    "stmt:t3ss-rhizosphere-enrichment",
+    "stmt:fifty-novel-plant-enriched-ogs",
+    "stmt:compartment-functional-shift",
+    "stmt:mobilome-enrichment-genus-level",
+    "stmt:pathogenic-transposase-cooccurrence",
+    "stmt:three-tier-marker-robustness",
+    "stmt:xanthomonas-pathovar-host-segregation",
+    "stmt:transcriptomic-dual-nature-validation",
+    "stmt:syncom-biocontrol-design"
+  ],
+  "member_hash": "hash:7f20642b5a395090",
+  "model": "haiku",
+  "page_id": "project:plant_microbiome_ecotypes",
+  "page_plan_hash": "hash:b8521ecab3a6eaca",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:7f20642b5a395090",
+    "lead": "hash:7f20642b5a395090"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

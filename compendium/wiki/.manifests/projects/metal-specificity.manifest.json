@@ -1,0 +1,20 @@
+{
+  "cited_statement_ids": [
+    "stmt:metal-specificity-core-refinement-claim",
+    "stmt:metal-specificity-fraction-finding",
+    "stmt:metal-specificity-functional-validation-finding"
+  ],
+  "member_hash": "hash:2e26aaa0c25a8a61",
+  "model": "haiku",
+  "page_id": "project:metal_specificity",
+  "page_plan_hash": "hash:b89bf7b19469a336",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:2e26aaa0c25a8a61",
+    "lead": "hash:2e26aaa0c25a8a61"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

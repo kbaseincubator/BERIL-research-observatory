@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:ica-process-not-molecular-caveat",
+    "stmt:low-experiment-weak-modules-caveat",
+    "stmt:ica-fitness-modules-approach",
+    "stmt:pan-bacterial-module",
+    "stmt:cofitness-enrichment-validation",
+    "stmt:pfam-boosts-annotation-rate",
+    "stmt:function-predictions-hypothetical",
+    "stmt:genomic-adjacency-enrichment",
+    "stmt:ortholog-transfer-gold-standard",
+    "stmt:conserved-module-families",
+    "stmt:1116-stable-modules",
+    "stmt:strict-weight-threshold-critical",
+    "stmt:web-interface-opportunity",
+    "stmt:integrate-pangenome-opportunity"
+  ],
+  "member_hash": "hash:4073ebd8ee7ccf74",
+  "model": "haiku",
+  "page_id": "project:fitness_modules",
+  "page_plan_hash": "hash:b3374d9e9dc16ed7",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:4073ebd8ee7ccf74",
+    "lead": "hash:4073ebd8ee7ccf74"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

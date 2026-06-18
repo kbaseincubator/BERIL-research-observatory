@@ -1,245 +1,114 @@
 # Heather MacGregor
 
-Heather MacGregor is a contributor to this compendium whose work sits at the
-intersection of environmental microbial genomics, metal-resistance ecology, and
-horizontal gene transfer (HGT) at planetary scale. Across five projects she has
-repeatedly asked variations of one question: how the genes that let microbes
-tolerate toxic metals are distributed across the globe, which environments
-concentrate them, what they reveal about how broadly a microbe can live, and how
-they spread between unrelated lineages. This page exists to summarise that
-project and topic footprint in one place — to show how the individual studies
-connect, and to be honest about where the conclusions are still provisional. The
-recurring methodological signature is large public-data reanalysis (tens of
-thousands of metagenome-assembled genomes, hundreds of thousands of 16S samples)
-combined with phylogenetically aware statistics and an unusually candid running
-ledger of caveats.
+Heather MacGregor is a contributor across five projects in this corpus, all concerned with how microbial communities respond to metal contamination and how their functional gene repertoires are shaped by environmental pressure. Her work spans global-scale metagenomics, ecological niche modelling, horizontal gene transfer, and soil genomics. This page exists in the wiki because her contributions cut across nearly every major topic — [metal resistance](../topics/metal-resistance.md), [environment and biogeography](../topics/environment-biogeography.md), [mobile genetic elements](../topics/mobile-genetic-elements.md), and [functional dark matter](../topics/functional-dark-matter.md) — making her a useful entry point for readers who want to understand how these threads connect.
 
 ## Overview
 
-MacGregor's five projects form two tightly linked threads. The first is
-**biogeography and ecology of metal resistance**: where metal-resistance genes
-occur on the map (`metal_resistance_global_biogeography`, a question of
-[Environment Biogeography](../topics/environment-biogeography.md)), what
-soil-metal chemistry does to community gene content
-(`soil_metal_functional_genomics`), and whether the breadth of a microbe's metal
-repertoire predicts how many habitats it can occupy
-(`microbeatlas_metal_ecology`). The second thread is **how genomic content moves
-and where it is missing**: a global audit of which soils remain genomic "dark
-matter" (`soil_frontier_genomics`) and a study of HGT machinery carrying
-carbohydrate-active enzyme cassettes between phyla (`t4ss_cazy_environmental_hgt`).
-[Metal Resistance](../topics/metal-resistance.md) is the connective tissue
-across all five; the metal-resistance niche turns out to be linked to mobile
-genetic elements, to ecological generalism, and to the soils we have sampled
-least.
-
-The topic footprint follows directly. Heavy weight falls on
-[Metal Resistance](../topics/metal-resistance.md) and
-[Environment Biogeography](../topics/environment-biogeography.md), with strong
-secondary presence in [Microbial Ecotypes](../topics/microbial-ecotypes.md)
-(niche-breadth ecology), [Functional Dark Matter](../topics/functional-dark-matter.md)
-(under-sampled soils and unmapped genomes),
-[Mobile Genetic Elements](../topics/mobile-genetic-elements.md) and
-[Pangenome Architecture](../topics/pangenome-architecture.md) (HGT and accessory
-genomes), plus [Metabolic Pathways](../topics/metabolic-pathways.md),
-[Amr Resistome](../topics/amr-resistome.md),
-[Subsurface Genomics](../topics/subsurface-genomics.md), and
-[Microbiome Engineering](../topics/microbiome-engineering.md). The work draws on
-two shared data collections in this compendium: the
-[Kbase Ke Pangenome](../data/kbase-ke-pangenome.md) (the genome and pangenome
-reference used to annotate metal-resistance repertoires) and the
-[Kescience Fitnessbrowser](../data/kescience-fitnessbrowser.md). A unifying
-empirical headline is that metal resistance is globally **rare** — only about
-2.8% of coordinate-bearing environmental MAGs carry any metal-resistance type —
-yet sharply **patterned**, being enriched in soil and depleted in marine
-habitats, and concentrated in a handful of geographic hotspots.
+MacGregor's contributions can be grouped into four interlocking research lines. The first concerns the global prevalence and spatial distribution of metal resistance genes in environmental metagenome-assembled genomes (MAGs — genome sequences reconstructed computationally from environmental DNA samples rather than from pure cultures). The second investigates whether the breadth of a microbial genus's metal resistance repertoire predicts how wide an ecological niche it occupies. The third examines how Type IV secretion systems (T4SS — conjugative machinery that bacteria use to inject DNA or protein across the cell membrane into neighbouring cells) co-localise with carbohydrate-active enzyme (CAZy) genes, suggesting horizontal gene transfer (HGT) as a route for spreading metabolic diversity across phylogenetically distant lineages. The fourth asks whether clay content in soil buffers microbial communities from industrial and geochemical stress and, separately, where the largest gaps in public genomic databases currently lie.
 
 ## Projects
 
-**Global biogeography of metal resistance**
-(`metal_resistance_global_biogeography`). This project built a genome-resolved
-world map of microbial metal resistance from 260,652 environmental MAGs in
-MGnify, of which 22,356 carried usable latitude/longitude coordinates (73.3%
-coverage). Annotating those genomes with AMRFinderPlus showed that only 2.8% of
-coordinate-bearing MAGs carry at least one metal-resistance type — metal
-resistance is rare in the global pool. A 5° grid Fisher's-exact scan over 289
-cells found 11 significant hotspots and 3 coldspots, with the Atacama/Andean
-region of Chile the strongest (21.8% prevalence, odds ratio 9.83, q = 7.6e-12).
-Biome stratification showed soil significantly enriched (5.8%, OR 5.05) and
-marine MAGs significantly depleted (1.2%, OR 0.20). MacGregor argues this
-genome-resolved, coordinate-precise approach complements rather than duplicates
-OTU-level 16S surveys, because it gives strain-level resolution and direct gene
-presence/absence. Two caveats are foregrounded: the hotspots are explicitly
-**provisional** because many apparent peaks track sequencing effort in Europe,
-the USA, and East Asia rather than real biology, and expedition-level clustering
-validation is still pending, so a hotspot like Atacama cannot yet be
-distinguished from a single-study artifact. A second data-quality theme runs
-through the project: roughly a third of archived metagenome samples lack usable
-coordinates (the ENA batch retrieval returned valid lat/lon for only 69.2% of
-24,511 records), a per-sample rather than geographic gap that nonetheless leaves
-global maps with blind spots. The low 2.8% prevalence is itself caveated — it
-may partly reflect a narrow GapMind pathway definition that misses efflux pumps,
-metallothioneins, and metal-sequestering operons rather than true rarity.
+### Global biogeography of metal resistance
 
-**Metal repertoire breadth and ecological niche**
-(`microbeatlas_metal_ecology`). This is, by MacGregor's framing, the first
-analysis to link genus-level metal-type diversity (from pangenome AMR
-annotations across 6,789 species) to global ecological niche breadth (from a
-464,000-sample 16S atlas), with phylogenetic control via PGLS — phylogenetic
-generalised least squares, a regression that corrects for the fact that closely
-related taxa are not statistically independent. The central finding is that
-across 606 bacterial genera, the **number of distinct metal types** a genus can
-resist is the only metal-AMR predictor of niche breadth that survives both
-phylogenetic and Bonferroni correction (β = +0.021, p = 1.5e-4). Crucially it is
-breadth, not depth: total AMR gene-cluster count and core-resistance fraction do
-not predict niche breadth, and the effect persists after controlling for species
-richness and genome size. Nitrification served as a positive control with
-near-maximal phylogenetic signal, contrasting with the intermediate signal of
-metal AMR and lending confidence to the pipeline. Independent validation in
-1,624 BERDL groundwater samples confirmed that broad-repertoire genera are more
-prevalent in groundwater. The interpretive caveats here are the project's
-strongest feature. The cross-sectional design means **direction cannot be
-established** — metal diversity might facilitate generalism, or generalism might
-enable metal-gene acquisition. "Niche breadth" is a sequencing-effort proxy from
-OTU detection, not confirmed ecological range, and genus-level aggregation can
-make a genus look broad-niched simply because different species occupy different
-habitats. The archaeal arm is severely underpowered (n = 48 genera, 11% power),
-so its non-significant result must not be read as evidence against the
-association in archaea.
+The [`metal_resistance_global_biogeography`](../projects/metal-resistance-global-biogeography.md) project extracted 260,652 environmental MAGs from MGnify and, after filtering host-associated biomes, retained 30,497 for analysis [\[1\]](#references). Of these, 22,356 (73.3%) carry usable geospatial coordinates — but ENA batch API retrieval reveals that 30.8% of the underlying sample records lack valid latitude/longitude pairs, constituting a per-sample gap in public archives rather than a geographic one [\[2\]](#references) [\[3\]](#references). Any global map of metal resistance therefore suffers systematic blind spots that cannot currently be filled from public data [\[4\]](#references).
 
-**Soil genomic frontiers and the clay-shield test**
-(`soil_frontier_genomics`). This project mapped where soil microbial diversity
-outruns our genome reference databases, defining a Genomic Discovery Index
-(GDI = OTU richness / (mean genome completeness + 1)) at 1° spatial bins. Forest
-(GDI 902.36) and Cropland (890.82) soils emerged as the highest-GDI genomic
-frontiers — rich in observed diversity but sparsely referenced — while Grassland
-and Wetland are comparatively well-mapped. The work also surfaced a systematic
-sampling bias: databases lean about +0.8 pH units toward acidic soils, leaving
-alkaline-specialist microbes disproportionately as functional dark matter. A
-separate hypothesis test asked whether clay content "shields" communities from
-industrial or geochemical stress; across 5,441 samples it found **no detectable
-buffering**, and all three predictive model families returned negative
-out-of-sample R² — they predict functional potential worse than the training
-mean. MacGregor is careful that this is a contingent null: the GDI formula is
-novel and may be dominated by its richness term, the Forest-vs-Cropland
-difference (1.3%) is not meaningfully distinguishable without bootstrap intervals
-and should be framed as jointly highest, and the negative-R² diagnosis is
-incomplete because distributional shift, outlier leverage, and genuine
-unpredictability have not been separated. Spatial-validation and pH-debiasing
-analyses are flagged as the next steps before the null is taken as final.
+Of the coordinate-bearing MAGs, only 2.8% carry at least one metal resistance type by the GapMind pathway definition [\[5\]](#references), suggesting metal resistance is rare in the global environmental MAG pool — though this figure may understate true biological prevalence because GapMind's pathway set may not cover the full range of known mechanisms such as efflux pumps, metallothioneins, and metal-sequestering operons [\[6\]](#references). A 5° grid Fisher's-exact analysis identified 11 significant hotspots and 3 coldspots, with the Atacama/Andean region of Chile the strongest at 21.8% prevalence (OR = 9.83, q = 7.6×10⁻¹²) [\[7\]](#references). These hotspot results should be treated as provisional until sampling-effort normalisation and expedition-level clustering validation are complete, since apparent clusters may reflect sequencing effort concentrated in Europe, the USA, and East Asia rather than true biological enrichment [\[8\]](#references) [\[9\]](#references).
 
-**Soil metal chemistry and community gene content**
-(`soil_metal_functional_genomics`). Pairing soil metal measurements with
-co-located community gene profiles across 51,748 samples, this project found
-2,355 significant COG–metal associations (FDR < 0.05) across nine metals, with
-chromium and lead driving the strongest signals and transporters (ABC, RND)
-plus biosynthesis genes dominating. A distance-based RDA attributed about 80% of
-variance in community COG profiles to metal concentrations (R² = 0.799,
-p = 0.005). The copper-specific picture — enrichment of cell division and
-nucleotide transport alongside suppressed energy production — is consistent with
-the known energetic trade-offs of copper toxicity. The dominant caveat is
-**co-contamination**: in industrial soils Cr, Cu, Pb, and Zn co-vary, so it is
-hard to know whether associations are metal-specific or reflect a generic
-multi-metal stress response. Effect sizes (Spearman ρ) have not been
-systematically reported across all 2,355 hits, so many significant associations
-may be biologically small; the 0.799 R² is conditional on project accession and
-needs an unconditional counterpart; and with a 60% discovery rate across
-non-independent tests, the Benjamini-Hochberg FDR is likely anti-conservative.
-Spatial autocorrelation testing (Moran's I) and proximity-threshold sensitivity
-checks are the proposed remedies.
+Biome-stratified analysis shows soil MAGs are enriched for metal resistance (5.8%, OR = 5.05) while marine MAGs are strongly depleted (1.2%, OR = 0.20) [\[10\]](#references). A notable technical clarification: the 2.8% global metal-resistance prevalence is far below the 21.8% T4SS conjugative-machinery prevalence in the same dataset, confirming that metal resistance genes and HGT machinery are distinct genomic features that are not uniformly co-distributed [\[11\]](#references). Genome-resolved MAGs with explicit AMRFinderPlus annotations and precise coordinates provide strain-level spatial resolution, complementing rather than duplicating the OTU-level 16S approach taken in the companion [`microbeatlas_metal_ecology`](../projects/microbeatlas-metal-ecology.md) project [\[12\]](#references).
 
-**T4SS-mediated horizontal transfer of CAZy cassettes**
-(`t4ss_cazy_environmental_hgt`). This project examined how type IV secretion
-systems (T4SS, conjugative HGT machinery) co-occur with carbohydrate-active
-enzymes (CAZymes). About 21.8% of 30,497 high-quality environmental MAGs carry
-T4SS machinery; 92 CAZy families are enriched within 10 kb of T4SS loci, with
-GT2 glycosyltransferases the top hit across 767 genomes. Phylogenetic analysis
-of the GT2 gene tree detected 77 HGT events including 32 high-confidence
-cross-phylum events, the headline being Node_4915 — a 35-gene, 82.9% syntenic
-cluster spanning eight bacterial phyla. Because CAZy genes sit off plasmids while
-T4SS-positive genomes show 10x higher mobile-element density, MacGregor infers
-chromosomal or integrative transfer rather than plasmid mobilisation, a mechanism
-she argues is distinct from the TonB-dependent PUL paradigm of Bacteroidetes.
-The project also ties back to the metal thread: GT2-neighbourhood MAGs carry
-roughly 11x more metal-resistance genes than non-GT2 MAGs, linking these
-synteny hubs to the metal-resistance niche, and the synteny is most enriched in
-barley rhizosphere (OR 10.4). The author is explicit that every association is
-observational and the central claim is associative — mechanistic confirmation of
-T4SS-mediated CAZy transfer needs experimental validation. The 10 kb synteny
-threshold and the cross-phylum incongruence rate are still unvalidated pending a
-permutation test and a housekeeping-gene null baseline, and the Node_4915 result
-needs BLAST verification against NCBI to rule out chimeric or misclassified
-sequences.
+### Metal type diversity and ecological niche breadth
+
+The [`microbeatlas_metal_ecology`](../projects/microbeatlas-metal-ecology.md) project asks whether genera that resist more types of metal also occupy wider ecological niches across the global microbiome. This is the first analysis linking genus-level metal type diversity — inferred from pangenome AMR annotations across 6,789 species — to global ecological niche breadth from a 464K-sample 16S atlas, with phylogenetic correction via phylogenetic generalised least squares (PGLS — a regression method that accounts for the fact that closely related species share evolutionary history and therefore cannot be treated as independent data points) [\[13\]](#references).
+
+Across 1,264 bacterial genera, niche breadth (Levins' B_std, a standardised measure of how evenly distributed a taxon is across different environment types) shows strong phylogenetic signal (Pagel's λ = 0.787), and habitat range is even more conserved (λ = 0.909) [\[14\]](#references). After controlling for this shared-ancestry structure, the number of distinct metal types resisted per genus is the only AMR predictor that survives phylogenetic correction and Bonferroni correction (PGLS β = +0.021, p = 1.5×10⁻⁴) [\[15\]](#references). Crucially, it is the breadth of resistance — spanning multiple metal types — not its depth (many genes for a single metal) that predicts ecological versatility: total AMR gene burden and core AMR fraction are non-significant in PGLS models [\[16\]](#references). This effect is not an artefact of genome size or species richness; a three-covariate PGLS retains significance for metal type diversity (β = +0.022, p = 3.5×10⁻⁴) while neither genome size nor species richness alone accounts for the association [\[17\]](#references) [\[18\]](#references).
+
+The pattern is consistent with a metabolic versatility hypothesis: environments that impose multi-metal stress (polymetallic mine tailings, estuarine sediments, biosolid-amended agricultural soils) are also chemically complex along other axes, so broad metal tolerance may serve as a proxy for overall environmental tolerance capacity [\[19\]](#references). Two independent datasets validate the global PGLS result. In 1,624 BERDL groundwater samples, genera with broader metal-type repertoires are significantly more prevalent (Spearman ρ = +0.112, p = 0.0019) [\[20\]](#references). In the ENIGMA Oak Ridge Field Research Centre dataset, contamination-plume wells host communities with higher community-weighted mean (CWM) metal-type diversity, which increases further after carbon amendment, pointing to active ecological selection for metal-diverse communities under geochemical stress [\[21\]](#references).
+
+Metal AMR traits themselves show intermediate, significantly non-zero phylogenetic signal (λ = 0.26–0.44) with core resistance fraction more conserved than total gene count, consistent with vertically inherited core resistance being augmented by HGT-driven accessory expansion [\[22\]](#references). Nitrification, by contrast, shows near-maximal λ (0.94 in bacteria, 1.00 in archaea) and serves as a metabolic positive control, confirming the analytical pipeline distinguishes ancient vertically inherited metabolic traits from more labile AMR ones [\[23\]](#references).
+
+Several caveats are important for readers of this project. Niche breadth is inferred from OTU detection patterns across sequencing archives, not from confirmed ecological physiology; environments that receive dense sequencing (soil, marine, plant) will inflate the apparent niche breadth of abundant taxa relative to those from under-represented environments [\[24\]](#references). The cross-sectional observational design cannot establish direction: it is equally consistent with metal diversity enabling broad ecological range and with broad ecological range enabling metal gene acquisition through more frequent HGT encounters [\[25\]](#references). The archaeal PGLS finds a positive but non-significant β = +0.0145 (p = 0.467) from only 48 genera, giving just 11% power at α = 0.05; this non-result should not be interpreted as evidence against the association in archaea [\[26\]](#references).
+
+### T4SS-mediated HGT of carbohydrate-active enzymes
+
+The [`t4ss_cazy_environmental_hgt`](../projects/t4ss-cazy-environmental-hgt.md) project examines whether T4SS conjugative machinery in environmental MAGs co-localises with CAZy (carbohydrate-active enzyme) genes, suggesting horizontal transfer of metabolic diversity across distantly related lineages. About 21.8% of 30,497 high-quality environmental MAGs carry T4SS machinery [\[27\]](#references). Ninety-two CAZy families show elevated co-occurrence with T4SS loci within 10 kb, with GT2 glycosyltransferases the top hit across 767 genomes [\[28\]](#references). A negative binomial GLM (a count regression model that corrects for overdispersion) estimates that each additional CAZy family raises the expected enriched KEGG pathway count by about 35% [\[29\]](#references).
+
+The GT2 gene tree reveals 77 HGT events, of which 32 are high-confidence cross-phylum transfers, spanning up to 8 phyla at a maximum phylogenetic divergence of 4.843 [\[30\]](#references). Across all detected HGT events, more phylogenetically distant transfers show lower syntenic percentage (Spearman ρ = −0.615), the expected signature of sequence divergence accumulating after a transfer event [\[31\]](#references). CAZy genes are not located on plasmids, while T4SS-positive genomes show 10× higher mobile genetic element (MGE) density, consistent with chromosomal or integrative transfer mechanisms such as integrative and conjugative elements (ICEs) [\[32\]](#references). Strikingly, GT2-neighbourhood MAGs carry roughly 11× more metal resistance genes than non-GT2 MAGs (Mann-Whitney p = 8.6×10⁻²⁷), providing an independent link between CAZy-T4SS synteny hubs and metal resistance capacity [\[33\]](#references).
+
+The T4SS-CAZy signal occurs across non-Bacteroidetes lineages via a conjugative mechanism, which is mechanistically and taxonomically distinct from the Polysaccharide Utilization Locus (PUL) paradigm — the canonical route for carbohydrate degradation gene transfer — which instead relies on TonB-dependent transporters in Bacteroidetes [\[34\]](#references). The central claim is explicitly associative, and mechanistic confirmation requires experimental validation [\[35\]](#references). The 10 kb synteny threshold and the cross-phylum incongruence rate also remain unvalidated because the permutation test and a housekeeping-gene null baseline have not yet been run [\[36\]](#references), and the Node_4915 headline result still needs BLAST verification against NCBI nr to rule out chimeric sequences [\[37\]](#references).
+
+### Soil functional genomics and the clay shield
+
+The [`soil_metal_functional_genomics`](../projects/soil-metal-functional-genomics.md) project analyses 51,748 soil samples to ask how soil metal concentrations shape the functional gene repertoire of co-located microbial communities. A community-weighted Spearman correlation finds 2,355 significant COG-metal associations (COG = Clusters of Orthologous Groups, a gene-function classification system) at FDR < 0.05 across nine metals [\[38\]](#references). Chromium and lead drive the strongest signals, with ABC and RND transporter families and biosynthesis genes among the top hits [\[39\]](#references). For copper specifically, enriched COGs include cell division and nucleotide transport categories, while energy production categories are depleted — a pattern consistent with known energetic trade-offs under copper toxicity [\[40\]](#references) [\[41\]](#references). A distance-based redundancy analysis (db-RDA — an ordination method that partitions multivariate variance) reports an R² of 0.799 after conditioning on project accession as a proxy for batch effects, indicating metals explain 80% of residual variance in community COG profiles [\[42\]](#references). Biome-stratified PGLS shows soil, marine, and wastewater communities have distinct metal-COG relationships rather than a universal resistance programme [\[43\]](#references).
+
+Several statistical caveats reduce confidence in the raw numbers. The conditional R² of 0.799 describes residual variance after removing project effects; the unconditional R² of metals alone has not been reported and may be substantially lower [\[44\]](#references). With a 60% discovery rate across 3,915 non-independent tests where metals co-contaminate (Cr, Pb, Zn, Cu co-vary in industrial soils), Benjamini-Hochberg FDR correction will be anti-conservative and the true FDR is likely higher than reported [\[45\]](#references). Effect sizes (Spearman ρ) have not been systematically reported across the 2,355 associations, so many statistically significant hits may be biologically small [\[46\]](#references). Co-contamination by co-varying metals is an unresolved confound: whether individual COG-metal associations are metal-specific or reflect a generic multi-metal stress response remains to be separated by partial correlation models [\[47\]](#references).
+
+The [`soil_frontier_genomics`](../projects/soil-frontier-genomics.md) project tests the clay shield hypothesis — the idea that high clay content protects microbial communities from industrial and geochemical stressors by adsorbing contaminants — across 5,441 soil samples with globally distributed metadata. All three predictive model families (soil/climate, geochemical, industrial) achieve negative out-of-sample R², meaning they predict microbial functional potential worse than the training mean [\[48\]](#references). The shield efficiency test shows low-clay and high-clay cross-validation R² differ by only 0.024 with a 95% confidence interval that includes zero [\[49\]](#references). Although clay registers as a consistent feature in random-forest models (importance ≈ 0.14), it does not translate to improved predictive accuracy [\[50\]](#references). The overall interpretation is that the clay shield hypothesis is not supported at global scale [\[51\]](#references), though this null result requires careful diagnosis: the three possible causes — spatial autocorrelation within cross-validation folds, outlier leverage, and genuine unpredictability — have different scientific implications and have not been disentangled [\[52\]](#references).
+
+The same project introduces the Genomic Discovery Index (GDI = OTU Richness / (Mean Genome Completeness + 1)), a spatial measure of how poorly covered observed microbial diversity is by existing reference genomes [\[53\]](#references). Forest (GDI 902.36) and Cropland (890.82) soils emerge as the leading genomic frontiers, with high observed richness but sparse reference coverage [\[54\]](#references); however, the 1.3% difference between them is not meaningfully distinguishable without bootstrap confidence intervals, so they should be described as jointly highest rather than ranked [\[55\]](#references). Genomic databases show a +0.8 pH unit discovery bias toward acidic soils, leaving alkaline-specialist microbes disproportionately as functional dark matter [\[56\]](#references) [\[57\]](#references). A caution: the GDI formula itself is a novel index without published precedent, and conflates OTU richness and genome completeness in a way that could be dominated by the richness term; separate reporting of the two dimensions would be more interpretable [\[58\]](#references).
 
 ## Topics
 
-The work clusters around [Metal Resistance](../topics/metal-resistance.md), which
-appears in every project: as a mapped trait
-([Environment Biogeography](../topics/environment-biogeography.md)), as an
-ecological predictor, as a chemistry-driven community signal, and as cargo for
-HGT. [Environment Biogeography](../topics/environment-biogeography.md) is the
-second pillar — the global maps, the Atacama hotspot, the soil-versus-marine
-enrichment, and the spatial data gaps all live here, and they connect to
-[Functional Dark Matter](../topics/functional-dark-matter.md) because the same
-coordinate gaps and database biases that limit the maps are exactly what defines
-which soils remain genomically unmapped. The pH discovery bias and the
-Forest/Cropland genomic frontiers are the clearest functional-dark-matter
-findings.
+MacGregor's work connects directly to several major topics in this wiki. The [metal resistance](../topics/metal-resistance.md) topic is the primary thread running through all five projects, from global spatial mapping to gene-level functional associations to evolutionary signal analysis. [Environment and biogeography](../topics/environment-biogeography.md) is the second major thread: each project asks where metal resistance accumulates in the biosphere and what environmental variables predict functional gene content. [Mobile genetic elements](../topics/mobile-genetic-elements.md) enter through the T4SS-CAZy work, which links conjugative transfer machinery to the spread of metabolic diversity; this page is adjacent because the T4SS-proximity GT2 MAGs also carry enriched metal resistance genes, suggesting a genomic neighbourhood effect bridging mobile elements and resistance. [Functional dark matter](../topics/functional-dark-matter.md) is relevant because the GDI analysis identifies alkaline forest and cropland soils as the genomic frontiers where the most novel microbial diversity remains uncharacterised. [Pangenome architecture](../topics/pangenome-architecture.md) connects through the breadth-not-depth finding: the association between metal type diversity and niche breadth depends on how resistance functions are distributed across the core and accessory pangenome. [Microbial ecotypes](../topics/microbial-ecotypes.md) are implicated by both the genome-resolved spatial analysis and the observation that biome-stratified metal-COG relationships differ qualitatively between soil, marine, and wastewater. [Subsurface genomics](../topics/subsurface-genomics.md) features as the setting for the ENIGMA groundwater validation, which confirms that metal-diverse genera are more prevalent in contaminated plume wells. The [AMR resistome](../topics/amr-resistome.md) connects because the phylogenetic signal analysis explicitly compares metal AMR traits against vertically inherited metabolic functions and asks how much of the metal-diversity niche association reflects HGT-driven accessory gene accumulation.
 
-[Microbial Ecotypes](../topics/microbial-ecotypes.md) anchors the niche-breadth
-story: the claim that repertoire breadth, not depth, tracks ecological
-generalism is fundamentally a statement about how metal tolerance maps onto
-ecotype range. That story leans on
-[Pangenome Architecture](../topics/pangenome-architecture.md) — the metal
-repertoires come from pangenome AMR annotations, and the open question of whether
-pangenome openness (accessory-genome proportion) is the hidden driver of both
-metal diversity and niche breadth is explicitly raised as future work — and on
-[Mobile Genetic Elements](../topics/mobile-genetic-elements.md), since the HGT
-project shows metal and CAZy genes riding the same conjugative machinery. The
-contrast that metal resistance (2.8% prevalence) and T4SS HGT machinery (21.8%)
-are distinct, non-co-distributed features keeps the two threads honestly
-separated rather than conflated. [Metabolic Pathways](../topics/metabolic-pathways.md)
-covers the COG/KEGG functional interpretation (copper energetic trade-offs,
-nitrification control), [Amr Resistome](../topics/amr-resistome.md) the AMR
-annotation backbone, [Subsurface Genomics](../topics/subsurface-genomics.md) the
-groundwater and contamination-plume validation, and
-[Microbiome Engineering](../topics/microbiome-engineering.md) the forward-looking
-microcosm experiments proposed to turn correlations into tests.
+Open directions suggested by this body of work include: completing the expedition-level clustering validation and sampling-effort normalisation for the global hotspot map; running the partial-correlation models to separate metal-specific from co-contamination-driven COG associations; collecting multi-primer, multi-region survey data to correct for primer and environment-representation bias in niche breadth estimates; extending the GDI framework to separate richness and completeness as distinct dimensions rather than a scalar index; and establishing the causal direction of the metal diversity-niche breadth relationship through time-series or natural-experiment designs.
 
-## Sources
+## References
 
-- [stmt:eleven-hotspots-atacama; metal_resistance_global_biogeography]
-- [stmt:soil-enriched-marine-depleted; metal_resistance_global_biogeography]
-- [stmt:low-global-prevalence; metal_resistance_global_biogeography]
-- [stmt:coordinate-gap-data-quality; metal_resistance_global_biogeography]
-- [stmt:ena-spatial-data-gap; metal_resistance_global_biogeography]
-- [stmt:hotspots-provisional; metal_resistance_global_biogeography]
-- [stmt:gapmind-narrow-scope; metal_resistance_global_biogeography]
-- [stmt:genome-resolved-vs-otu; metal_resistance_global_biogeography]
-- [stmt:metal-vs-t4ss-distinct; metal_resistance_global_biogeography]
-- [stmt:metal-type-diversity-predicts-niche-breadth; microbeatlas_metal_ecology]
-- [stmt:breadth-not-depth-distinguishes-generalists; microbeatlas_metal_ecology]
-- [stmt:effect-independent-of-richness-and-genome-size; microbeatlas_metal_ecology]
-- [stmt:first-global-metal-niche-link; microbeatlas_metal_ecology]
-- [stmt:caveat-direction-not-established; microbeatlas_metal_ecology]
-- [stmt:caveat-niche-breadth-sequencing-proxy; microbeatlas_metal_ecology]
-- [stmt:caveat-archaeal-underpowered; microbeatlas_metal_ecology]
-- [stmt:enigma-groundwater-validation; microbeatlas_metal_ecology]
-- [stmt:gdi-definition; soil_frontier_genomics]
-- [stmt:forest-cropland-frontiers; soil_frontier_genomics]
-- [stmt:clay-shield-null-result; soil_frontier_genomics]
-- [stmt:negative-out-of-sample-r2; soil_frontier_genomics]
-- [stmt:ph-discovery-bias; soil_frontier_genomics]
-- [stmt:gdi-formula-validity-caveat; soil_frontier_genomics]
-- [stmt:cog-metal-associations; soil_metal_functional_genomics]
-- [stmt:dbrda-variance; soil_metal_functional_genomics]
-- [stmt:copper-trade-offs; soil_metal_functional_genomics]
-- [stmt:cocontamination-confound; soil_metal_functional_genomics]
-- [stmt:chromium-lead-strongest; soil_metal_functional_genomics]
-- [stmt:t4ss-prevalence-environmental-mags; t4ss_cazy_environmental_hgt]
-- [stmt:t4ss-cazy-synteny; t4ss_cazy_environmental_hgt]
-- [stmt:gt2-metal-resistance-link; t4ss_cazy_environmental_hgt]
-- [stmt:cross-phylum-hgt-events; t4ss_cazy_environmental_hgt]
-- [stmt:hgt-conjugative-transfer-claim; t4ss_cazy_environmental_hgt]
-- [stmt:caveat-associative-not-causal; t4ss_cazy_environmental_hgt]
-- [stmt:node4915-eight-phyla; t4ss_cazy_environmental_hgt]
-- [stmt:biome-enrichment-marine-rhizosphere; t4ss_cazy_environmental_hgt]
+1. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REPORT.md › "Key Findings".
+2. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REPORT.md › "NB02 Spatial Analysis Results".
+3. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REPORT.md › "Key Findings".
+4. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REPORT.md › "Interpretation".
+5. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REPORT.md › "NB02 Spatial Analysis Results".
+6. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REVIEW.md › "Findings Assessment".
+7. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REPORT.md › "NB02 Spatial Analysis Results".
+8. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — README.md › "Reproduction".
+9. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REVIEW.md › "Findings Assessment".
+10. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REPORT.md › "NB02 Spatial Analysis Results".
+11. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — REPORT.md › "NB02 Spatial Analysis Results".
+12. [Metal Resistance Global Biogeography](../projects/metal-resistance-global-biogeography.md) — README.md › "Distinction from `microbeatlas_metal_ecology`".
+13. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Novel contribution".
+14. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Finding 1: Bacterial niche breadth is moderately phylogenetically conserved; metal type diversity predicts it beyond phylogeny".
+15. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Finding 1: Bacterial niche breadth is moderately phylogenetically conserved; metal type diversity predicts it beyond phylogeny".
+16. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Finding 3: Metal type diversity, not total gene burden, distinguishes broad-niche genera".
+17. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "R6. Three-covariate PGLS: metal types independent of both species richness and genome size".
+18. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "R5. Genome size PGLS covariate (new BERDL query)".
+19. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Biological meaning of the metal type effect".
+20. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Results: Track A (BERDL groundwater)".
+21. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Track B: PRJNA1084851 (ENIGMA ORFRC 16S — full pipeline)".
+22. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Finding 2: Metal AMR traits show intermediate phylogenetic signal — consistent with mixed vertical inheritance and HGT".
+23. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Phylogenetic signal structure".
+24. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "1. Niche breadth is a sequencing-effort proxy, not confirmed ecological range".
+25. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Causation and directionality".
+26. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "R3. Archaeal PGLS and formal power analysis (exploratory, n = 48)".
+27. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — REPORT.md › "Key Findings".
+28. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — REPORT.md › "Key Findings".
+29. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — README.md › "Key Findings (Preliminary)".
+30. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — REPORT.md › "NB05 Analysis Results".
+31. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — REPORT.md › "NB05 Analysis Results".
+32. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — REPORT.md › "Key Findings".
+33. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — REPORT.md › "NB05 Analysis Results".
+34. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — README.md › "Claim Framing".
+35. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — REPORT.md › "Interpretation".
+36. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — REVIEW.md › "Methodology".
+37. [T4Ss Cazy Environmental Hgt](../projects/t4ss-cazy-environmental-hgt.md) — REVIEW.md › "Methodology".
+38. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Key Findings".
+39. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Key Findings".
+40. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Key Findings".
+41. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Interpretation".
+42. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Key Findings".
+43. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Key Findings".
+44. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Critical Assessment".
+45. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Critical Assessment".
+46. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Interpretation".
+47. [Soil Metal Functional Genomics](../projects/soil-metal-functional-genomics.md) — REPORT.md › "Interpretation".
+48. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — REPORT.md › "Key Findings".
+49. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — REPORT.md › "Key Findings".
+50. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — REPORT.md › "Key Findings".
+51. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — REPORT.md › "Interpretation".
+52. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — REPORT.md › "Critical Assessment".
+53. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — README.md › "Genomic Discovery Index (GDI)".
+54. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — README.md › "Genomic Discovery Index (GDI)".
+55. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — REPORT.md › "Critical Assessment".
+56. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — README.md › "Genomic Discovery Index (GDI)".
+57. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — REPORT.md › "Interpretation".
+58. [Soil Frontier Genomics](../projects/soil-frontier-genomics.md) — REPORT.md › "Critical Assessment".

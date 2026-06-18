@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:caveat-alphaearth-coverage",
+    "stmt:caveat-predictions-not-experimental",
+    "stmt:caveat-execution-pending",
+    "stmt:structural-diversity-test",
+    "stmt:closed-pangenome-conservation",
+    "stmt:open-pangenome-hgt",
+    "stmt:generalist-specialist-hypothesis",
+    "stmt:openness-metric",
+    "stmt:data-sources-berdl",
+    "stmt:phylogenetic-signal-control",
+    "stmt:scale-27690-species",
+    "stmt:opportunity-statistical-rigor",
+    "stmt:opportunity-execute-and-validate"
+  ],
+  "member_hash": "hash:d2e457e10f473dd0",
+  "model": "haiku",
+  "page_id": "project:pangenome_pathway_ecology",
+  "page_plan_hash": "hash:949cb0d0f601d220",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:d2e457e10f473dd0",
+    "lead": "hash:d2e457e10f473dd0"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

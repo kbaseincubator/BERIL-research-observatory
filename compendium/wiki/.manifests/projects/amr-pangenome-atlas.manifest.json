@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:sampling-bias-caveat",
+    "stmt:mechanism-classification-caveat",
+    "stmt:dichotomy-quantified-first-time",
+    "stmt:amr-cog-defense-enrichment",
+    "stmt:amr-hotspots-clinical-pathogens",
+    "stmt:amr-depleted-from-core",
+    "stmt:intrinsic-acquired-dichotomy",
+    "stmt:amr-not-fitness-burden",
+    "stmt:alphaearth-diversity-predicts-amr",
+    "stmt:metal-resistance-major-component",
+    "stmt:clinical-species-more-amr",
+    "stmt:amr-depletion-universal",
+    "stmt:metagenome-integration-opportunity",
+    "stmt:card-ontology-opportunity"
+  ],
+  "member_hash": "hash:f65ee2270a7c12c4",
+  "model": "haiku",
+  "page_id": "project:amr_pangenome_atlas",
+  "page_plan_hash": "hash:34cf8404f748720a",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:f65ee2270a7c12c4",
+    "lead": "hash:f65ee2270a7c12c4"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

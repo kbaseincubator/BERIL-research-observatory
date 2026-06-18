@@ -1,0 +1,31 @@
+{
+  "cited_statement_ids": [
+    "stmt:bakta-reannotation-overestimate",
+    "stmt:proteobacteria-bias-caveat",
+    "stmt:pangenome-conservation-knowledge-gaps",
+    "stmt:darkness-spectrum-tiers",
+    "stmt:dark-gene-census-actionable",
+    "stmt:cross-organism-concordance",
+    "stmt:synteny-cofit-validation",
+    "stmt:lab-field-concordance-nmdc",
+    "stmt:top-100-prioritization",
+    "stmt:dark-genes-pangenome-modules",
+    "stmt:essential-dark-genes-crispri",
+    "stmt:biogeographic-enrichment",
+    "stmt:dual-route-experimental-campaign",
+    "stmt:structure-prediction-opportunity"
+  ],
+  "member_hash": "hash:f3361c827813b210",
+  "model": "haiku",
+  "page_id": "project:functional_dark_matter",
+  "page_plan_hash": "hash:2e174f011cb44697",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:f3361c827813b210",
+    "lead": "hash:f3361c827813b210"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

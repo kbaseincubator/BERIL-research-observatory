@@ -1,0 +1,30 @@
+{
+  "cited_statement_ids": [
+    "stmt:keyword-scanner-undercounts",
+    "stmt:multiheme-pfams-sparse",
+    "stmt:small-cohort-limitation",
+    "stmt:h3-sr-side-robust",
+    "stmt:expansion-not-streamlining",
+    "stmt:h2-genomes-larger",
+    "stmt:h1-547-enriched-ogs",
+    "stmt:h3-mismatched-kos",
+    "stmt:h1-functional-categories",
+    "stmt:molybdopterin-cofactor-signal",
+    "stmt:h3-ir-pattern-disappears",
+    "stmt:reusable-multiheme-detector",
+    "stmt:genus-decomposition-opportunity"
+  ],
+  "member_hash": "hash:cb0692bf601728b5",
+  "model": "haiku",
+  "page_id": "project:bacillota_b_subsurface_accessory",
+  "page_plan_hash": "hash:ada47042016dd960",
+  "page_type": "project",
+  "prompt_hash": "regen-2026-06-18",
+  "repo_commit": "",
+  "section_hashes": {
+    "key_findings": "hash:cb0692bf601728b5",
+    "lead": "hash:cb0692bf601728b5"
+  },
+  "skill": "kg-synthesize-page",
+  "timestamp": ""
+}

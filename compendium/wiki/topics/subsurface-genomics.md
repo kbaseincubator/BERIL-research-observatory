@@ -1,305 +1,149 @@
 # Subsurface Genomics
 
+Subsurface genomics is the study of microbial genomes, communities, and functional potential recovered from environments below the surface — boreholes, aquifers, clay formations, porewater, and contaminated groundwater. This page exists in the wiki because multiple projects in this corpus converge on subsurface habitats, especially the ENIGMA field research center at Oak Ridge, Tennessee, and deep-clay environments at Mont Terri, Switzerland. Reading across them reveals consistent patterns around spatial ecology, genome adaptation, metabolic niche partitioning, and the hard limits that cultivation bias and coarse taxonomy impose on what can currently be inferred from available data.
+
 ## Overview
 
-Subsurface genomics is the study of the microorganisms that live below the
-soil zone — in deep clay rock, fractured aquifers, contaminated groundwater
-plumes, and other settings where light, oxygen, and fresh organic carbon are
-scarce. This page exists because a surprisingly large slice of the corpus,
-spanning fourteen independent projects, converges on the same handful of
-deep-subsurface field sites (the DOE Oak Ridge Reservation in Tennessee and
-the Mont Terri Opalinus clay rock laboratory in Switzerland chief among them)
-and on the same recurring biological questions: do subsurface specialists
-shrink or expand their genomes, which anaerobic respiratory strategies they
-favor, how community composition tracks the physical and chemical structure of
-an aquifer, and whether genomics measured in a database faithfully represents
-the organisms actually in the ground. The work draws on cultured isolate
-genomes, metagenome-assembled genomes (MAGs), 16S amplicon surveys, and
-fitness data, all routed through the BERDL data lakehouse, and it is unusually
-explicit about its own statistical caveats — which is why the uncertainty is
-foregrounded throughout rather than buried.
+The subsurface is chemically structured in ways that microbes track precisely. A contamination plume entering the Oak Ridge SSO site from the northeast creates a redox ladder — oxygen depletion, followed by nitrate reduction, then iron reduction, sulfate reduction, and fermentation — that is legible in community composition alone [\[1\]](#references). A Bray-Curtis dissimilarity analysis across the nine-well 3×3 grid identifies a diagonal community-similarity corridor (wells U3–M6–L7) that aligns exactly with the expected northeast-to-southwest plume flow path, demonstrating that 16S amplicon community structure can map subsurface hydrology at meter scale [\[2\]](#references). This is not just a statistical curiosity: depth (hydrogeological zone) explains 27.5% of sediment community variance (PERMANOVA, p = 0.0001) while well identity is not significant, confirming that vertical zonation dominates over horizontal position [\[3\]](#references).
 
-A reader should treat this page as a cross-project synthesis: no single study
-"owns" subsurface genomics here. Instead, several teams independently probed
-adjacent corners of the same environment and, in aggregate, sketch a coherent
-but heavily caveated picture of how microbial genomes and communities are
-shaped by life underground.
+At the genome level, the dominant evolutionary strategy in deep-clay Bacillota_B (anaerobic Firmicutes lineages) is gene-content *expansion*, not the reductive streamlining often assumed for subsurface specialists [\[4\]](#references). Deep-clay genomes encode roughly 1 Mbp more genetic material than soil congeners at equivalent genome-completeness (CheckM-filtered), and 547 eggNOG orthologous groups (OGs) are significantly enriched in these organisms [\[5\]](#references). That enriched set populates pre-registered functional categories including anaerobic respiration, sporulation revival, mineral attachment, osmoadaptation, and regulatory systems [\[6\]](#references).
 
 ## What the Corpus Shows
 
-**Subsurface specialization can mean genome expansion, not streamlining.** A
-long-standing expectation is that subsurface microbes streamline their genomes
-— shedding genes under energy limitation, as the ultra-small Patescibacteria
-(also called CPR, candidate phyla radiation) do. The clay-confined work tests
-this directly and finds the opposite for cultivable Bacillota_B (a clade of
-Firmicutes-type bacteria). Deep-clay genomes are roughly 1 Mbp larger than
-their soil-baseline relatives at equivalent CheckM completeness (CheckM
-estimates how complete a genome assembly is), rejecting the streamlining
-hypothesis in the opposite direction. Per-orthogroup Fisher's exact testing
-flagged 547 eggNOG orthologous groups (OGs — clusters of evolutionarily
-related genes) significantly enriched in deep-clay versus soil Bacillota_B,
-far exceeding the pre-registered prediction of at least ten. Those enriched
-OGs fall into the five pre-declared functional categories — anaerobic
-respiration, sporulation revival, mineral attachment, regulators, and
-osmoadaptation — with anaerobic respiration the largest annotated bucket. A
-molybdopterin-cofactor orthogroup (COG1977), a cofactor source for
-anaerobic-respiration enzymes, appeared in all ten anchor genomes but only 11
-of 62 baseline genomes, a strong niche signal. The conclusion is that, at
-least for this cultivable lineage, deep-clay life correlates with gene-content
-expansion rather than reductive streamlining, refuting a universal "subsurface
-equals streamlining" model.
+### Community spatial ecology at Oak Ridge
 
-**Sulfate reduction is the robust anaerobic signature of the deep clay.**
-Deep clay-confined isolates jointly carry an anaerobic toolkit — the
-Wood-Ljungdahl carbon-fixation pathway, group-1 [NiFe]-hydrogenase, and
-dissimilatory sulfate reduction — at far higher rates than soil or shallow-clay
-cohorts (mean toolkit score 1.89 of 3 modules versus 0.39 and 0.03). But a
-within-phylum control is sobering: Wood-Ljungdahl and the hydrogenase track the
-Bacillota_B lineage itself rather than the deep-clay habitat, because soil
-Bacillota_B already carry them at high background rates. Only dissimilatory
-sulfate reduction (the dsrAB-aprAB-sat marker set) survives that control,
-enriched in 5 of 5 deep Bacillota_B isolates versus 4 of 19 soil-baseline
-isolates. Deep isolates are dominated by sulfate-reduction-only marker
-profiles while shallow-clay isolates are dominated by iron-reduction-only
-profiles — a clean mirror-image contrast — and the sulfate-reduction enrichment
-is overwhelming against a rock-attached null distribution (binomial
-p = 4.0x10^-12). The companion Bacillota_B accessory-genome project confirms
-the sulfate-reduction side is robust because its markers were correctly
-identified, even as its iron-reduction story collapses (see Caveats).
+The SSO 3×3 well grid at the Oak Ridge Reservation provides an unusually well-resolved view of subsurface ecology. Communities show significant distance-decay of similarity within a six-meter span (Mantel test: Spearman ρ = 0.323, p = 0.029), with turnover oriented along the east-west axis rather than the hillslope, contradicting topography-driven expectations [\[7\]](#references). Ten of twelve dominant phyla show significant depth associations, splitting into shallow-oxic-enriched taxa (Chloroflexi, Patescibacteria, Myxococcota, Spirochaetota) and deep-anoxic-enriched taxa (Firmicutes, WPS-2, Bacteroidota, Proteobacteria) [\[8\]](#references).
 
-**Biosynthetic self-sufficiency does not generalize to cultured cohorts.**
-The literature highlights extremely self-sufficient subsurface lineages such as
-Candidatus Desulforudis audaxviator that synthesize most of their own building
-blocks. That signal does not appear here: deep-clay GapMind amino-acid pathway
-completeness (GapMind reconstructs biosynthetic pathways from genomes) is
-comparable to or slightly below the soil baseline (15.5 of 18 versus 17.1 of
-18, p=0.009). The interpretation is that BERDL's cultured cohort simply
-excludes the characteristically uncultivated, MAG-recovered self-sufficient
-lineages the literature points to — an absence-of-evidence rather than a
-contradiction.
+The redox ladder is spatially resolved at individual wells. The central well M5 hosts the highest denitrification potential (7.7% *Rhodanobacter*), consistent with the plume mixing zone where nitrate-rich groundwater meets native organic carbon [\[9\]](#references). These spatial patterns are persistent features, not transient snapshots: groundwater communities sampled nine days apart show date explaining only 0.8% of variance versus 49.9% for well identity [\[10\]](#references).
 
-**Cultivation bias is measurable, and BERDL captures the porewater fraction.**
-A central methodological result is that the marker profile itself diagnoses
-what BERDL has sampled. The cultured clay genomes carry the Bagnoud Mont Terri
-porewater signature (sulfate-reduction-rich), not the Mitzscherling
-rock-attached signature (iron-reduction-rich); all eight Opalinus genomes trace
-to two boreholes, giving a quantitative diagnostic that the lakehouse holds the
-free-living porewater fraction rather than rock-attached cells. Anchor genera
-include exactly the recurrent Mont Terri lineages Bagnoud found across seven
-boreholes (Desulfosporosinus, Peptococcaceae BRH-c8a), cross-validating
-indigeneity.
+At the global scale, the acid-tolerant genus cluster (Rhodanobacter-Ralstonia-Dyella) that dominates Oak Ridge plume wells is not site-specific. Across 464K worldwide 16S samples, these organisms occupy environments averaging pH 5.4 — about 1.35 units more acidic and 6.9°C warmer than the neutral-preferring Brevundimonas-Caulobacter-Sphingomonas cluster typical of uncontaminated groundwater [\[11\]](#references). This global pH niche partition explains local co-occurrence patterns and directly informs which strains to prioritize for genotype-to-phenotype modeling.
 
-**Community structure maps subsurface hydrology at meter scale.** In the Oak
-Ridge SSO (Shallow Subsurface Observatory) ASV study, 16S community
-composition alone reproduces the physical aquifer. Hydrogeological depth zone
-explains 27.5% of sediment community variance by PERMANOVA while well identity
-is not significant — vertical zonation dominates horizontal position.
-Communities show significant distance-decay at meter scale along the east-west
-axis, ten of twelve dominant phyla split into shallow-oxic-enriched versus
-deep-anoxic-enriched groups mirroring the redox gradient, and genus-level
-functional inference lays biogeochemical processes onto a 3x3 well grid in a
-sequence that recapitulates the thermodynamic redox ladder. Wells U3-M6-L7
-form a diagonal similarity corridor from the northeast Area 3 source toward the
-southwest, and central well M5 carries the highest denitrification potential
-(7.7% Rhodanobacter), consistent with a plume mixing zone where nitrate-rich
-contaminated groundwater meets native carbon. Groundwater communities sampled
-nine days apart are strikingly stable (sampling date explains 0.8% of variance
-versus 49.9% for well identity). Everything converges on a single model: a
-contamination plume entering from the northeast and flowing southwest — visible
-purely in Bray-Curtis similarity.
+### Genome adaptation in deep-clay lineages
 
-**Contamination shifts composition more than inferred function.** Across an
-ENIGMA contamination subset, predeclared confirmatory Spearman tests of a site
-defense score against a composite contamination index stayed non-significant in
-both genus mapping modes, and re-testing under four index variants (including
-uranium-only) left everything non-significant after FDR correction.
-Exploratory coverage-adjusted models showed the strongest positive defense
-associations, but those attenuated under multiple-testing control. The reading
-is functional redundancy or taxonomic turnover too fine to resolve at genus
-level — consistent with prior Oak Ridge work reporting strong compositional
-shifts but only modest functional-diversity decline. By contrast, a
-MicrobeAtlas analysis found that plume wells FW215/FW216 host higher
-community-weighted-mean metal-type diversity that rises with time after carbon
-amendment, independently validated in 1,624 BERDL groundwater samples where
-genera with broader metal-resistance repertoires are more prevalent.
+The clay-confined subsurface project examined 9 BERDL genomes traceable to Mont Terri Opalinus boreholes (BRC-3 and BIC-A1) alongside 30 shallow-clay isolates and 137 soil-baseline organisms. The most striking finding is that cultured porewater-derived genomes carry the sulfate-reduction signature (5/9 = 56% SR-positive) described by Bagnoud for porewater communities, while shallow-clay isolates carry the iron-reduction signature (15/30 = 50% IR-only) associated with rock-attached communities by Mitzscherling — a mirror-image contrast with Fisher's exact OR = infinity, p = 2×10⁻⁴ [\[12\]](#references). Sulfate-reduction marker enrichment in the clay-confined cohort is overwhelming relative to the rock-attached null distribution (binomial p = 4.0×10⁻¹²) [\[13\]](#references).
+
+When the "anaerobic toolkit" (Wood-Ljungdahl pathway + [NiFe]-hydrogenase + dissimilatory sulfate reduction) is examined at the cohort level, deep clay isolates jointly carry it at much higher rates than soil or shallow-clay cohorts (mean toolkit score 1.89 vs 0.39 vs 0.03 of 3 modules) [\[14\]](#references). However, a within-Bacillota_B phylogenetic control reveals that Wood-Ljungdahl and [NiFe]-hydrogenase track the Bacillota_B *lineage* rather than the deep-clay habitat — these markers appear at high background rates even in soil Bacillota_B — while only dissimilatory sulfate reduction (dsrAB-aprAB-sat) survives the control (5/5 deep Bacillota_B vs 4/19 soil-baseline Bacillota_B, OR = infinity, p = 0.003, p_BH = 0.04) [\[15\]](#references). This is an important distinction: naive cohort comparisons inflate the apparent depth signal because sampling clay-confined habitats systematically over-samples lineages already carrying the full anaerobic toolkit.
+
+A companion analysis of accessory genome content (the [`bacillota_b_subsurface_accessory`](../projects/bacillota-b-subsurface-accessory.md) project) identified 547 OGs enriched in 10 anchor genomes versus 62 soil-baseline Bacillota_B by per-OG Fisher's exact with BH-FDR correction (fold ≥ 3, q < 0.05, ≥ 3 anchor genomes positive) [\[5\]](#references). Notably, COG1977 — encoding the molybdopterin cofactor required by anaerobic-respiration enzymes such as nitrate reductase, formate dehydrogenase, and DMSO reductase — appeared in all ten anchor genomes versus only 11 of 62 baseline genomes [\[16\]](#references). At the same time, an earlier iron-reduction analysis in the clay project was based on mismatched KEGG IDs (K07811, K17324, K17323 encode TMAO reductase, glycerol ABC transport, and glycerol permease rather than iron-reduction functions) [\[17\]](#references); correcting to a triple-signal multi-heme cytochrome detector (PFAMs PF02085 and PF22678 plus CXXCH heme-binding motif counting) abolished the original "shallow much greater than deep" iron-reduction pattern — no cohort comparison remains significant [\[18\]](#references). The sulfate-reduction side of that analysis was unaffected because its markers were correctly assigned [\[19\]](#references).
+
+Interestingly, biosynthetic self-sufficiency — the Beaver & Neufeld canonical adaptation of deep-subsurface life, exemplified by *Ca.* Desulforudis audaxviator — does not generalize to BERDL's cultured cohort. Deep-clay GapMind amino-acid pathway completeness (a measure of how many of 18 amino-acid biosynthetic pathways a genome can complete) is at or slightly below the soil baseline (CheckM-filtered mean 15.5/18 vs 17.1/18, p = 0.009, Cohen's d = -0.84) [\[20\]](#references). This is explained by the nature of the cohort: the extreme self-sufficient lineages highlighted in the literature are characteristically uncultivated, recovered only as metagenome-assembled genomes (MAGs) or single-cell genomes [\[21\]](#references).
+
+### Contamination gradients and functional potential
+
+The [`enigma_contamination_functional_potential`](../projects/enigma-contamination-functional-potential.md) project asked whether a contamination index (built from eight metal columns — arsenic, cadmium, chromium, copper, lead, nickel, uranium, zinc — via log1p z-scoring) predicts community-level inferred defense functional potential across 108 ENIGMA samples. The composite index was right-skewed (median -0.271, max 3.836) [\[22\]](#references). Pre-declared confirmatory Spearman tests of site defense score against the contamination index remained non-significant in both genus-level mapping modes (relaxed rho = 0.059, q = 0.862; strict rho = 0.068, q = 0.849) [\[23\]](#references). Re-testing under four contamination-index variants (including uranium-only and a PCA first component) left all results non-significant after FDR [\[24\]](#references). Within-fraction analyses (0.2 µm and 10 µm filter strata separately) were similarly null [\[25\]](#references).
+
+Exploratory coverage-adjusted regression models did show the strongest positive defense associations with contamination, but these attenuated under global multiple-testing control [\[26\]](#references). The interpretation is that contamination-driven taxonomic turnover at this site appears functionally redundant at genus resolution using broad COG categories — a pattern consistent with prior Oak Ridge studies reporting pronounced compositional shifts alongside only modest functional-diversity decline [\[27\]](#references). However, the available ENIGMA taxonomy reaches only to genus level, so species- or strain-level defense adaptations may be masked [\[28\]](#references).
+
+Independent evidence from the [`microbeatlas_metal_ecology`](../projects/microbeatlas-metal-ecology.md) project confirms that metal resistance repertoire breadth does matter for groundwater prevalence: genera with broader metal-type resistance repertoires are significantly more prevalent in 1,624 BERDL groundwater samples (Spearman ρ = +0.112, p = 0.0019; Mann-Whitney p = 0.007) [\[29\]](#references). At the ENIGMA ORFRC field site specifically, contamination-plume wells FW215/FW216 host communities with measurably higher community-weighted mean (CWM) metal-type diversity than background wells, and this increases with time after carbon amendment [\[30\]](#references).
+
+### Genotype-to-phenotype modeling
+
+The [`genotype_to_phenotype_enigma`](../projects/genotype-to-phenotype-enigma.md) project assembled a multi-dataset anchor set of 486 strain-by-condition pairs (7 strains × 72 conditions) where ENIGMA growth curve data, Fitness Browser RB-TnSeq gene fitness scores, and genome annotations all coexist [\[31\]](#references). RB-TnSeq (randomly barcoded transposon sequencing) is a high-throughput method for measuring the fitness effect of gene knockouts across conditions by tracking barcode counts in competitive pools. An important data quality finding from this work is that linking ENIGMA field isolates to reference databases via short strain identifiers is hazardous: names like "MT20" matched the ENIGMA *Rhodanobacter glycinis* but also matched *Streptococcus pneumoniae* in NCBI, injecting 1,751 spurious clinical genomes into environmental profiles before correction with GTDB-Tk taxonomy [\[32\]](#references).
+
+The [`fw300_metabolic_consistency`](../projects/fw300-metabolic-consistency.md) project examined the Oak Ridge isolate FW300-N2E3, which can synthesize tryptophan but cannot catabolize it for growth — a discordance between Web of Microbes exometabolomics and Fitness Browser data. Tryptophan secretion by a prototroph that cannot re-assimilate it is a hallmark of cross-feeding potential, providing essential amino acids to auxotrophic community members [\[33\]](#references). This motivates building a community metabolic model to predict cross-feeding interactions between FW300-N2E3 and known tryptophan auxotrophs in the Oak Ridge groundwater community [\[34\]](#references).
+
+### REE-impacted subsurface environments
+
+The [`lanthanide_methylotrophy_atlas`](../projects/lanthanide-methylotrophy-atlas.md) project examined rare-earth-element (REE) acid-mine-drainage (REE-AMD) as a distinct subsurface environment. The 37 MAGs assembled from REE-AMD samples are dominated by acidophilic and metal-tolerant lineages — *Acidocella*, *Acidiphilium*, *Thiomonas*, *Metallibacterium*, plus a novel unnamed clade (f__REEB76) — rather than methylotrophs: only 4 of 37 carry any xoxF (the lanthanide-dependent methanol dehydrogenase gene), and none carry validated lanmodulin or xoxJ [\[35\]](#references). The broader REE-impacted sample set (n = 37) shows a 3.5-fold descriptive elevation in xoxF prevalence relative to baseline, but remains below the FDR threshold (p_BH = 0.082) due to small sample size [\[36\]](#references).
 
 ## Projects and Evidence
 
-The deep-clay story rests on two linked projects. **clay_confined_subsurface**
-contributes the core findings — genome expansion, the anaerobic toolkit, the
-porewater diagnostic, and the negative self-sufficiency result — while
-**bacillota_b_subsurface_accessory** re-examines the same cohort at orthogroup
-resolution, contributing the 547-OG enrichment and a careful correction of the
-iron-reduction signal.
+Thirteen projects contributed statements to this topic. The [`enigma_sso_asv_ecology`](../projects/enigma-sso-asv-ecology.md) project provides the spatial community ecology framework for the Oak Ridge SSO site, building the contamination plume model from 16S amplicon data across nine wells and multiple depths. The [`clay_confined_subsurface`](../projects/clay-confined-subsurface.md) project characterizes the porewater-bias diagnostic from Mont Terri Opalinus borehole genomes — establishing that cultured isolates in BERDL mirror the Bagnoud porewater community and not the rock-attached signature. The [`bacillota_b_subsurface_accessory`](../projects/bacillota-b-subsurface-accessory.md) project extends this into pangenome space, identifying 547 enriched OGs and showing that deep-clay specialization in Bacillota_B involves gene-content expansion.
 
-The Oak Ridge community work spans several teams. **enigma_sso_asv_ecology**
-supplies the plume model and hydrology mapping; **enigma_contamination_functional_potential**
-supplies the contamination-versus-function null result and a reproducible
-ENIGMA-to-BERDL functional inference workflow with strict-versus-relaxed
-feature construction and a species-proxy sensitivity mode;
-**microbeatlas_metal_ecology** supplies the metal-diversity gradient. Several
-single-statement projects anchor specific mechanisms:
-**genotype_to_phenotype_enigma** documents a global pH-driven niche partition
-across 464K worldwide 16S samples (the acid-tolerant Rhodanobacter-Ralstonia-Dyella
-Cluster B occupies environments about 1.35 pH units more acidic) and aligns
-27,632 ENIGMA growth curves with Fitness Browser RB-TnSeq data (RB-TnSeq is
-random-barcode transposon sequencing, which measures each gene's fitness
-contribution across conditions) through 486 strain-by-condition anchor pairs.
-**fw300_metabolic_consistency** identifies tryptophan secretion by strain
-FW300-N2E3 as a cross-feeding candidate. **lab_field_ecology** and
-**field_vs_lab_fitness** flag that Desulfovibrio — the canonical ENIGMA model
-organism — is detected at only 34% of sites and at low abundance, and that the
-ENIGMA CORAL database holds no Desulfovibrio vulgaris Hildenborough fitness
-data, forcing reliance on the Fitness Browser. **lanthanide_methylotrophy_atlas**
-reports that 37 rare-earth-element acid-mine-drainage MAGs are dominated by
-acidophiles rather than methylotrophs, with only 4 of 37 carrying any xoxF
-(a lanthanide-dependent methanol dehydrogenase gene). Supporting projects
-(**bacdive_metal_validation**, **env_embedding_explorer**, **module_conservation**,
-**plant_microbiome_ecotypes**) contribute validation opportunities and coverage
-caveats rather than primary subsurface findings.
+The [`genotype_to_phenotype_enigma`](../projects/genotype-to-phenotype-enigma.md) and [`fw300_metabolic_consistency`](../projects/fw300-metabolic-consistency.md) projects approach subsurface genomics from the genotype-to-phenotype direction, building predictive models from the ENIGMA strain collection and uncovering metabolic discordances (such as the tryptophan overflow in FW300-N2E3) that point toward cross-feeding interactions. The [`enigma_contamination_functional_potential`](../projects/enigma-contamination-functional-potential.md) project provides a reproducible ENIGMA-to-BERDL functional inference workflow [\[37\]](#references) that bridges genus-level community observations to pangenome-anchored functional features.
+
+The [`lab_field_ecology`](../projects/lab-field-ecology.md) project makes a striking empirical observation relevant to the choice of model organisms: *Desulfovibrio*, the primary ENIGMA model organism for sulfate reduction, is detected at only 34% of Oak Ridge sites and at very low abundance (max 0.09% relative abundance) [\[38\]](#references). Meanwhile the [`field_vs_lab_fitness`](../projects/field-vs-lab-fitness.md) project found that the ENIGMA CORAL database contains no *Desulfovibrio vulgaris* Hildenborough (DvH) fitness data at all, making all DvH gene-level analysis dependent on the public Fitness Browser RB-TnSeq dataset [\[39\]](#references). These two findings together highlight a mismatch between ENIGMA's historically dominant model organism and the ecological reality of the Oak Ridge site.
+
+The [`microbeatlas_metal_ecology`](../projects/microbeatlas-metal-ecology.md) and [`bacdive_metal_validation`](../projects/bacdive-metal-validation.md) projects extend the subsurface genomics picture to metal resistance ecology, confirming that metal-resistance repertoire breadth predicts groundwater prevalence both globally and locally at the ENIGMA site [\[29\]](#references), and flagging the ENIGMA CORAL dataset as a strong candidate for field validation of genome-derived metal tolerance scores [\[40\]](#references).
 
 ## Connections
 
-Subsurface genomics sits at the intersection of several other topic pages in
-this wiki. The genome-expansion-versus-streamlining debate is fundamentally
-about [Pangenome Architecture](pangenome-architecture.md) — the accessory
-genome content that distinguishes deep-clay specialists from soil relatives.
-The community-composition results, distance-decay, depth zonation, and the
-global pH niche partition belong to [Environment Biogeography](environment-biogeography.md),
-while the question of whether locally co-occurring strains are distinct adapted
-ecotypes connects to [Microbial Ecotypes](microbial-ecotypes.md). The anaerobic
-respiratory toolkit (sulfate reduction, iron reduction, denitrification,
-Wood-Ljungdahl) is the subject matter of [Metabolic Pathways](metabolic-pathways.md),
-and the contamination-driven metal-resistance gradients link to
-[Metal Resistance](metal-resistance.md). Gene-level fitness evidence from
-RB-TnSeq and the growth-curve anchor set ties to [Gene Fitness](gene-fitness.md).
-The large unannotated orthogroup buckets — where ~80-100 anaerobic OGs hide
-behind keyword scanners — overlap [Functional Dark Matter](functional-dark-matter.md),
-and the cross-feeding and active-learning experiment proposals point toward
-[Microbiome Engineering](microbiome-engineering.md).
+This page connects tightly to several adjacent topics. [Metabolic pathways](metabolic-pathways.md) is adjacent because the subsurface genomics findings are fundamentally organized by metabolic function — sulfate reduction versus iron reduction, the Wood-Ljungdahl pathway, denitrification, and cross-feeding all appear as organizing themes within community structure and genome content. The redox ladder mapped spatially at the SSO site is a direct expression of metabolic niche partitioning.
 
-The primary data collections underpinning this work are also linked targets:
-the ENIGMA [Enigma Coral](../data/enigma-coral.md) database, the
-[Kescience Fitnessbrowser](../data/kescience-fitnessbrowser.md) RB-TnSeq
-resource, the [Kbase Ke Pangenome](../data/kbase-ke-pangenome.md) and
-[Kbase Msd Biochemistry](../data/kbase-msd-biochemistry.md) collections, and
-the [Nmdc Arkin](../data/nmdc-arkin.md) metagenome holdings.
+[Metal resistance](metal-resistance.md) is a central adjacent topic because the Oak Ridge contamination gradient drives metal stress alongside redox alteration, and the projects examining contamination functional potential, metal-type diversity, and BacDive validation are all asking whether genomically inferred metal resistance explains community composition in these subsurface environments.
+
+[Microbial ecotypes](microbial-ecotypes.md) is closely adjacent because the pH-driven niche partition identified across 464K global samples, the mirror-image sulfate/iron-reduction dichotomy between deep and shallow clay isolates, and the Bagnoud lineage overlap [\[41\]](#references) all reflect ecotype-level specialization — genotypically distinct populations occupying geochemically defined niches.
+
+[Pangenome architecture](pangenome-architecture.md) is adjacent because the central finding of gene-content expansion (547 enriched OGs, 35% larger genomes) situates itself squarely in pangenome biology: the deep-clay accessory genome carries the habitat-specific functional load [\[42\]](#references).
+
+[Functional dark matter](functional-dark-matter.md) is adjacent because keyword-based categorization undercounted the anaerobic-niche signal in the enriched OG set — a large unannotated bucket that manual reclassification suggests holds 80–100 truly anaerobic-respiration OGs rather than the 42 the keyword scanner identified [\[43\]](#references). Multi-heme cytochrome PFAMs are sparse within Bacillota_B, so CXXCH heme-binding motif counting on protein sequences was required to recover the corrected iron-reduction signal [\[44\]](#references).
+
+[Environment biogeography](environment-biogeography.md) is adjacent because the spatial structuring of Oak Ridge SSO communities by plume hydrology, the global pH niche partition, and the cultivation bias diagnostic that places BERDL genomes in porewater versus rock-attached fractions are all fundamentally biogeographic findings.
+
+[Gene fitness](gene-fitness.md) is adjacent because the genotype-to-phenotype modeling project and the DvH field-versus-lab fitness project both use RB-TnSeq fitness data to connect genome content to functional phenotypes in subsurface isolates.
+
+[Microbiome engineering](microbiome-engineering.md) is adjacent because the tryptophan cross-feeding discovery and the active-learning experimental design for the next ENIGMA experimental round both point toward deliberate manipulation or optimization of subsurface microbial communities.
 
 ## Caveats and Open Directions
 
-The honest weak spots are numerous and the projects state them plainly. **Small
-cohorts:** the deep-clay enrichment rests on only 10 anchor versus 62 baseline
-genomes, so marginal effects built on anchor counts of 3-5 should be read
-descriptively, not inferentially, and genus-level phylogenetic confounding is
-only partly mitigated. **Iron-reduction correction:** the companion
-Bacillota_B project found the clay project's original iron-reduction markers
-(K07811, K17324, K17323) were mismatched genes (TMAO reductase, glycerol
-transport) rather than iron-reduction functions; with corrected triple-signal
-multi-heme cytochrome detection the original "shallow much greater than deep"
-iron-reduction pattern disappears and no cohort comparison stays significant.
-Multi-heme cytochrome PFAMs are sparse in Bacillota_B, so CXXCH heme-binding
-motif counting on protein sequences — not PFAM detection — carried the corrected
-signal, and keyword scanning undercounted the anaerobic bucket by roughly
-80-100 OGs. The sulfate-reduction side, however, remains robust. **Cohort
-scope:** all clay conclusions apply only to cultivable porewater isolates;
-CPR/DPANN episymbionts and rock-attached Geobacter/Geothrix lineages are
-essentially absent, which is precisely why self-sufficiency did not appear.
+Several important limitations qualify the conclusions above. The most fundamental is cultivation bias: because BERDL's deep-clay cohort consists entirely of cultured porewater-derived isolates, conclusions apply to "cultivable porewater-cultured deep-clay isolates" rather than the full Mont Terri or bentonite community — CPR/DPANN episymbionts and rock-attached *Geobacter*/*Geothrix* lineages are essentially absent [\[45\]](#references). Because all 8 Opalinus genomes trace to BRC-3 or BIC-A1 boreholes, the cohort provides a direct quantitative diagnostic of porewater bias rather than a representative community survey [\[46\]](#references). The clearest path forward is MAG-augmented expansion: ingesting deep-subsurface MAGs from Mont Terri, Olkiluoto, MX-80 bentonite, and Oak Ridge and re-running the H1/H2/H3 hypothesis framework would test whether the biosynthetic self-sufficiency signal emerges once rock-attached and uncultivated lineages are present [\[47\]](#references).
 
-On the community side, **no geochemistry has been loaded into BERDL for the SSO
-site**, so the plume model rests on composition alone and awaits geochemical
-confirmation; only 5 of 9 wells have groundwater ASV data, leaving the M5
-denitrification hotspot and U3 plume entry interpreted from sediment alone.
-**Taxonomic resolution** is a recurring ceiling: the ENIGMA taxonomy table
-stops at genus, so true species-level bridge testing is impossible and may mask
-strain-level adaptation, and the main interpretive risk is that readers
-over-weight significant exploratory adjusted-model estimates shown beside the
-null confirmatory endpoint. Restricting to a single-clade species-proxy mode
-sharply dropped mapped abundance (0.031 versus 0.343). **Strain-name
-collisions** are dangerous: short identifiers like "MT20" matched unrelated
-NCBI organisms (Streptococcus pneumoniae) and injected 1,751 spurious clinical
-genomes before GTDB-Tk taxonomy corrected them. Other caveats span a crude
-coordinate-QC heuristic that mislabels legitimate field sites (DOE Rifle,
-Saanich Inlet), incomplete pangenome and phylogenetic-tree coverage (only 18 of
-65 plant-associated species, 29 of 32 module organisms), and the REE-impacted
-xoxF signal that is only descriptive at n=37 (p_BH=0.082).
+The anchor cohort for accessory genome analysis is small (10 anchor vs 62 baseline genomes), meaning marginal enrichment effects should be treated descriptively rather than inferentially, and genus-level phylogenetic confounding is only partly mitigated by the cohort spanning four orders [\[48\]](#references). Per-genus decomposition of the enrichment signal would separate lineage-specific markers from the genuine recurrent deep-clay signature [\[49\]](#references). The porewater bias SR/IR diagnostic framework can also be applied rapidly to other subsurface cohorts (granite-hosted Olkiluoto, basalt-hosted Oak Ridge, salt-cavern) to quantify how pervasive porewater bias is across BERDL [\[50\]](#references).
 
-Open directions follow directly from these gaps. Loading the 221 registered SSO
-geochemistry samples and per-well uranium/nitrate/metal concentrations into
-CORAL would let the plume and Cluster-B contamination hypotheses be tested
-against measured chemistry rather than community proxies. Ingesting
-deep-subsurface MAGs (Mont Terri, Olkiluoto, MX-80 bentonite, Oak Ridge) and
-re-running the H1/H2/H3 framework would reveal whether the self-sufficiency
-signal emerges once rock-attached and uncultivated lineages are present, while
-the porewater/rock SR-versus-IR diagnostic could be applied across other
-subsurface cohorts to quantify cultivation bias. A species- or strain-level
-taxonomy bridge, per-genus decomposition via BacDive linkage, a larger
-REE-impacted metagenome collection, a community metabolic model parameterized
-by the tryptophan overflow, and a field-relevance-weighted active-learning round
-of 50 experiments (favoring organic acids, nitrate, and low-pH substrates) are
-each proposed as concrete next steps. Cross-referencing BacDive predictions
-with ENIGMA field data at Oak Ridge offers a complementary validation route.
+On the community ecology side, all environmental inferences from the SSO grid rest on community composition alone because SSO geochemistry has not been loaded into BERDL [\[51\]](#references). The most immediate fix is loading the 221 registered SSO geochemistry samples (metals, IC/TOC, isotopes, NH₃/NO₂) into CORAL to enable direct correlation of community structure with measured environmental parameters [\[52\]](#references). Groundwater coverage is also incomplete: only 5 of 9 wells have groundwater ASV data, missing the critical M5 denitrification hotspot and U3 plume entry [\[53\]](#references).
 
-## Sources
+For functional potential analysis, the ENIGMA taxonomy reaches only to genus level, which may mask strain-level defense adaptations; 862 of 1,392 observed genera are unmapped to the current pangenome bridge [\[28\]](#references). Increasing resolution via a species- or strain-level bridge would directly quantify inference gains [\[54\]](#references). There is also a persistent risk that readers over-weight exploratory adjusted-model significance relative to the null confirmatory endpoint when viewing these analyses together [\[55\]](#references).
 
-- [stmt:expansion-not-streamlining; clay_confined_subsurface]
-- [stmt:h2-genomes-larger; bacillota_b_subsurface_accessory]
-- [stmt:h1-547-enriched-ogs; bacillota_b_subsurface_accessory]
-- [stmt:h1-functional-categories; bacillota_b_subsurface_accessory]
-- [stmt:molybdopterin-cofactor-signal; bacillota_b_subsurface_accessory]
-- [stmt:anaerobic-toolkit-enriched; clay_confined_subsurface]
-- [stmt:toolkit-phylum-confound; clay_confined_subsurface]
-- [stmt:sr-survives-phylo-control; clay_confined_subsurface]
-- [stmt:deep-shallow-mirror-image; clay_confined_subsurface]
-- [stmt:sr-enrichment-binomial; clay_confined_subsurface]
-- [stmt:h3-sr-side-robust; bacillota_b_subsurface_accessory]
-- [stmt:self-sufficiency-not-supported; clay_confined_subsurface]
-- [stmt:self-sufficient-lineages-uncultivated; clay_confined_subsurface]
-- [stmt:porewater-signature-h3; clay_confined_subsurface]
-- [stmt:cultivation-bias-diagnostic; clay_confined_subsurface]
-- [stmt:bagnoud-lineage-overlap; clay_confined_subsurface]
-- [stmt:depth-dominates-zonation; enigma_sso_asv_ecology]
-- [stmt:distance-decay-meter-scale; enigma_sso_asv_ecology]
-- [stmt:phylum-depth-redox-split; enigma_sso_asv_ecology]
-- [stmt:redox-ladder-spatial-map; enigma_sso_asv_ecology]
-- [stmt:column3-corridor; enigma_sso_asv_ecology]
-- [stmt:m5-denitrification-hotspot; enigma_sso_asv_ecology]
-- [stmt:groundwater-temporal-stability; enigma_sso_asv_ecology]
-- [stmt:contamination-plume-model; enigma_sso_asv_ecology]
-- [stmt:16s-maps-subsurface-hydrology; enigma_sso_asv_ecology]
-- [stmt:confirmatory-defense-null; enigma_contamination_functional_potential]
-- [stmt:index-sensitivity-null; enigma_contamination_functional_potential]
-- [stmt:exploratory-defense-coverage-aware; enigma_contamination_functional_potential]
-- [stmt:functional-redundancy-interpretation; enigma_contamination_functional_potential]
-- [stmt:reproducible-bridge-workflow; enigma_contamination_functional_potential]
-- [stmt:enigma-plume-wells-higher-cwm; microbeatlas_metal_ecology]
-- [stmt:enigma-groundwater-validation; microbeatlas_metal_ecology]
-- [stmt:global-ph-niche-partition; genotype_to_phenotype_enigma]
-- [stmt:multidataset-anchor-set; genotype_to_phenotype_enigma]
-- [stmt:tryptophan-cross-feeding-candidate; fw300_metabolic_consistency]
-- [stmt:desulfovibrio-rare-low-abundance; lab_field_ecology]
-- [stmt:enigma-coral-no-dvh-fitness; field_vs_lab_fitness]
-- [stmt:ree-amd-acidophiles-not-methylotrophs; lanthanide_methylotrophy_atlas]
-- [stmt:small-cohort-limitation; bacillota_b_subsurface_accessory]
-- [stmt:h3-mismatched-kos; bacillota_b_subsurface_accessory]
-- [stmt:h3-ir-pattern-disappears; bacillota_b_subsurface_accessory]
-- [stmt:multiheme-pfams-sparse; bacillota_b_subsurface_accessory]
-- [stmt:keyword-scanner-undercounts; bacillota_b_subsurface_accessory]
-- [stmt:cohort-cultured-only-caveat; clay_confined_subsurface]
-- [stmt:no-direct-geochemistry-caveat; enigma_sso_asv_ecology]
-- [stmt:groundwater-key-well-gap-caveat; enigma_sso_asv_ecology]
-- [stmt:genus-only-taxonomy-limit; enigma_contamination_functional_potential]
-- [stmt:exploratory-overweight-risk; enigma_contamination_functional_potential]
-- [stmt:species-proxy-coverage-limited; enigma_contamination_functional_potential]
-- [stmt:caveat-strain-name-collision; genotype_to_phenotype_enigma]
-- [stmt:coord-qc-crude-caveat; env_embedding_explorer]
-- [stmt:phylo-tree-coverage-gap; plant_microbiome_ecotypes]
-- [stmt:organism-subset-caveat; module_conservation]
-- [stmt:ree-impacted-small-n-caveat; lanthanide_methylotrophy_atlas]
-- [stmt:load-geochemistry-opportunity; enigma_sso_asv_ecology]
-- [stmt:mag-augmented-expansion; clay_confined_subsurface]
-- [stmt:porewater-diagnostic-generalizes; clay_confined_subsurface]
-- [stmt:opp-species-strain-bridge; enigma_contamination_functional_potential]
-- [stmt:community-metabolic-modeling-opportunity; fw300_metabolic_consistency]
-- [stmt:opportunity-active-learning-experiments; genotype_to_phenotype_enigma]
-- [stmt:larger-ree-metagenome-opportunity; lanthanide_methylotrophy_atlas]
-- [stmt:enigma-field-validation-opportunity; bacdive_metal_validation]
+Finally, the annotation infrastructure has known gaps: the coordinate QC heuristic used to flag institutional addresses mislabels several legitimate subsurface field research sites including the DOE Rifle groundwater site and Saanich Inlet [\[56\]](#references), and the phylogenetic tree distance data in BERDL covers only 28% of relevant plant-associated species [\[57\]](#references). Active-learning-driven experimental design has identified a concrete set of 50 next-priority growth conditions for ENIGMA strains — focusing on organic acids, nitrate, and low-pH-relevant substrates — that would reduce genotype-to-phenotype model uncertainty in the geochemical space most relevant to the site [\[58\]](#references). Linking isolation-well coordinates to per-well uranium, nitrate, and metal concentrations available in CORAL bricks 10/80 would additionally test whether acid-tolerant Cluster B strains originate from higher-contamination wells locally, not just globally [\[59\]](#references).
+
+## References
+
+1. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "The Contamination Plume Model".
+2. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "Novel Contribution".
+3. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "3. Depth Dominates Over Horizontal Position".
+4. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Finding 2 — Deep-clay Bacillota_B genomes are SIGNIFICANTLY LARGER than soil-baseline Bacillota_B, with a 35% mean size difference and ~25% more eggNOG OGs per genome (H2 rejected, opposite direction)".
+5. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Finding 1 — 547 eggNOG OGs are significantly enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B; the enriched set falls into the pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest hit (H1, strongly supported)".
+6. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Finding 1 — 547 eggNOG OGs are significantly enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B; the enriched set falls into the pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest hit (H1, strongly supported)".
+7. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "1. Community Similarity Tracks Spatial Arrangement at Meter Scale".
+8. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "3. Depth Dominates Over Horizontal Position".
+9. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "4. Genus-Level Biogeochemical Processes Map the Redox Ladder".
+10. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "7. Groundwater Community Stability Over 9 Days".
+11. [Genotype To Phenotype Enigma](../projects/genotype-to-phenotype-enigma.md) — REPORT.md › "Key Findings".
+12. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Finding 1 — Cultured clay-confined genomes carry the Bagnoud Mont Terri porewater signature, not the Mitzscherling rock-attached signature (H3, supported)".
+13. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Finding 1 — Cultured clay-confined genomes carry the Bagnoud Mont Terri porewater signature, not the Mitzscherling rock-attached signature (H3, supported)".
+14. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Finding 2 — The "anaerobic toolkit" signal is real but largely phylum-driven; only sulfate reduction is genuinely clay-deep enriched after phylogenetic control (H2, partially supported)".
+15. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Finding 2 — The "anaerobic toolkit" signal is real but largely phylum-driven; only sulfate reduction is genuinely clay-deep enriched after phylogenetic control (H2, partially supported)".
+16. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Finding 1 — 547 eggNOG OGs are significantly enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B; the enriched set falls into the pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest hit (H1, strongly supported)".
+17. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Finding 3 — The clay_confined_subsurface project's H3 IR-side analysis was driven by mismatched gene IDs; with corrected multi-heme cytochrome detection, the original "shallow >> deep IR" pattern disappears (Phase 1 correction)".
+18. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Finding 3 — The clay_confined_subsurface project's H3 IR-side analysis was driven by mismatched gene IDs; with corrected multi-heme cytochrome detection, the original "shallow >> deep IR" pattern disappears (Phase 1 correction)".
+19. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Finding 3 — The clay_confined_subsurface project's H3 IR-side analysis was driven by mismatched gene IDs; with corrected multi-heme cytochrome detection, the original "shallow >> deep IR" pattern disappears (Phase 1 correction)".
+20. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Finding 3 — Biosynthetic self-sufficiency does not generalize from the Beaver & Neufeld synthesis to BERDL's cultured cohort (H1, not supported)".
+21. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Finding 3 — Biosynthetic self-sufficiency does not generalize from the Beaver & Neufeld synthesis to BERDL's cultured cohort (H1, not supported)".
+22. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REPORT.md › "Contamination index was broad but right-skewed".
+23. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REPORT.md › "Confirmatory Spearman tests remain null with confidence intervals and global FDR".
+24. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REPORT.md › "Contamination-index sensitivity does not change confirmatory outcome".
+25. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REPORT.md › "Community-fraction robustness does not show strong within-fraction monotonic signal".
+26. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REPORT.md › "Exploratory defense signal remains strongest in coverage-aware models".
+27. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REPORT.md › "Literature Context".
+28. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REPORT.md › "Limitations".
+29. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Results: Track A (BERDL groundwater)".
+30. [Microbeatlas Metal Ecology](../projects/microbeatlas-metal-ecology.md) — REPORT.md › "Track B: PRJNA1084851 (ENIGMA ORFRC 16S — full pipeline)".
+31. [Genotype To Phenotype Enigma](../projects/genotype-to-phenotype-enigma.md) — REPORT.md › "Key Findings".
+32. [Genotype To Phenotype Enigma](../projects/genotype-to-phenotype-enigma.md) — REPORT.md › "Key Findings".
+33. [Fw300 Metabolic Consistency](../projects/fw300-metabolic-consistency.md) — REPORT.md › "Tryptophan: a cross-feeding candidate".
+34. [Fw300 Metabolic Consistency](../projects/fw300-metabolic-consistency.md) — REPORT.md › "Future Directions".
+35. [Lanthanide Methylotrophy Atlas](../projects/lanthanide-methylotrophy-atlas.md) — REPORT.md › "5. REE-acid-mine-drainage MAGs are dominated by acidophiles, not methylotrophs".
+36. [Lanthanide Methylotrophy Atlas](../projects/lanthanide-methylotrophy-atlas.md) — REPORT.md › "4. Soil/sediment is the strongest environmental enrichment; REE-impacted sites are descriptively elevated".
+37. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REPORT.md › "Novel Contribution".
+38. [Lab Field Ecology](../projects/lab-field-ecology.md) — REPORT.md › "14 of 26 Fitness Browser Genera Detected at Oak Ridge".
+39. [Field Vs Lab Fitness](../projects/field-vs-lab-fitness.md) — REPORT.md › "ENIGMA CORAL Contains No DvH Fitness Data (NB01)".
+40. [Bacdive Metal Validation](../projects/bacdive-metal-validation.md) — REPORT.md › "Future Directions".
+41. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Cohort".
+42. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Finding 2 — Deep-clay Bacillota_B genomes are SIGNIFICANTLY LARGER than soil-baseline Bacillota_B, with a 35% mean size difference and ~25% more eggNOG OGs per genome (H2 rejected, opposite direction)".
+43. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Finding 1 — 547 eggNOG OGs are significantly enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B; the enriched set falls into the pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest hit (H1, strongly supported)".
+44. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "IR PFAM availability (NB01 gate)".
+45. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Limitations".
+46. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Finding 1 — Cultured clay-confined genomes carry the Bagnoud Mont Terri porewater signature, not the Mitzscherling rock-attached signature (H3, supported)".
+47. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Future Directions".
+48. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Limitations".
+49. [Bacillota B Subsurface Accessory](../projects/bacillota-b-subsurface-accessory.md) — REPORT.md › "Future Directions".
+50. [Clay Confined Subsurface](../projects/clay-confined-subsurface.md) — REPORT.md › "Future Directions".
+51. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "Limitations".
+52. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "Future Directions".
+53. [Enigma Sso Asv Ecology](../projects/enigma-sso-asv-ecology.md) — REPORT.md › "Limitations".
+54. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REPORT.md › "Future Directions".
+55. [Enigma Contamination Functional Potential](../projects/enigma-contamination-functional-potential.md) — REVIEW.md › "Summary".
+56. [Env Embedding Explorer](../projects/env-embedding-explorer.md) — REPORT.md › "Limitations".
+57. [Plant Microbiome Ecotypes](../projects/plant-microbiome-ecotypes.md) — REPORT.md › "10. Within-species subclade analysis shows weak segregation in 5/17 testable species, with two robust pathovar-host specializations (H7 weakly supported, H6 supported)".
+58. [Genotype To Phenotype Enigma](../projects/genotype-to-phenotype-enigma.md) — REPORT.md › "Executive Summary".
+59. [Genotype To Phenotype Enigma](../projects/genotype-to-phenotype-enigma.md) — REPORT.md › "Extensions requiring additional data or compute".
