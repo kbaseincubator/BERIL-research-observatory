@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 WIKI = Path(__file__).resolve().parents[1] / "wiki"
@@ -14,12 +15,15 @@ def _markdown_pages() -> list[Path]:
     return sorted(path for path in WIKI.rglob("*.md") if ".manifests" not in path.parts)
 
 
-def test_committed_wiki_pages_have_sources() -> None:
+def test_committed_wiki_pages_have_provenance() -> None:
     pages = _markdown_pages()
     assert pages
     for page in pages:
+        # Home is an intro map; project pages are stubs (Key findings, no citations).
+        if page.name == "index.md" or page.parent.name == "projects":
+            continue
         text = page.read_text(encoding="utf-8")
-        assert "## Sources" in text or page.name == "index.md"
+        assert "## Sources" in text or "## References" in text, page
 
 
 def test_committed_wiki_pages_do_not_expose_graph_jargon() -> None:
@@ -36,5 +40,5 @@ def test_topic_pages_have_introductions_and_connections() -> None:
         text = page.read_text(encoding="utf-8")
         assert "## Overview" in text
         assert "## Connections" in text or "## Adjacent topics" in text
-        before_sources = text.split("## Sources", 1)[0]
-        assert before_sources.count("[") >= 2
+        body = re.split(r"## (?:Sources|References)", text, maxsplit=1)[0]
+        assert body.count("[") >= 2

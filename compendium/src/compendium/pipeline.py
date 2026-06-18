@@ -182,6 +182,7 @@ def dispatch(args) -> int:
             markdown=Path(args.markdown).read_text(encoding="utf-8"),
             model=args.model,
             prompt_hash=args.prompt_hash,
+            page_plans=list(plans.values()),
         )
         print(f"[compendium] page artifact: {markdown_path}")
         print(f"[compendium] manifest: {manifest_path}")
@@ -200,10 +201,6 @@ def dispatch(args) -> int:
         plan_inputs = _build_plan_inputs(getattr(args, "source_root", None))
         written = write_cosma_project(
             plan_pages(cards, **plan_inputs),
-            cards=cards,
-            registry=plan_inputs["registry"],
-            authors=plan_inputs["authors"],
-            collections=plan_inputs["collections"],
             wiki_dir=Path(args.wiki).resolve(),
             out_dir=Path(args.out).resolve(),
             title=args.title,

@@ -94,9 +94,10 @@ def test_plan_pages_command_writes_page_plan_json(tmp_path: Path) -> None:
     plan_types = {plan["type"] for plan in plans}
     assert "home" in plan_ids
     assert "topic:adp1-carbon-fitness" in plan_ids
-    # New 4-type model: no per-claim/entity/project standalone pages.
+    # Claims/entities are sections, not standalone pages; project pages now exist.
     assert "claim:adp1-continuum-claim" not in plan_ids
-    assert plan_types <= {"home", "topic", "data", "author"}
+    assert plan_types <= {"home", "topic", "data", "author", "project"}
+    assert any(pid.startswith("project:") for pid in plan_ids)
     assert all(plan["member_hash"].startswith("hash:") for plan in plans)
 
 

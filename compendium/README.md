@@ -14,9 +14,9 @@ projects/* ─[D] context-pack ─▶ context-packs/   (audit + source excerpts 
                                    │
    ALL cards ─[LLM] kg-reconcile ─▶ registry.yaml             (★ global: canonical topics/entities + aliases)
                                    │
-   cards + registry ─[D] plan-pages + wiki-contexts ─▶ page contexts   (topic / data / author / home)
+   cards + registry ─[D] plan-pages + wiki-contexts ─▶ page contexts   (topic / data / author / home / project)
                                    │
-              ─[LLM] kg-write ────▶ wiki/*.md                 (cited prose; provenance in a Sources section)
+              ─[LLM] kg-write ────▶ wiki/*.md                 (prose with inline citations → generated References)
                                    │
               ─[D] render-markdown + check ─▶ published wiki + integrity gate
                                    │
@@ -49,7 +49,8 @@ One small YAML contract (`SCHEMA.md`) plus a global `registry.yaml`:
 `wiki/index.md` (home: topic + author + data maps) · `wiki/topics/*` (the backbone — Overview, Key Claims,
 Conflicts & Caveats, Open Directions, with cross-links to adjacent topics, shared data, and authors) ·
 `wiki/data/*` (one per BERDL collection: which projects share it) · `wiki/authors/*` (one per ORCID:
-projects + topics). Claims/conflicts/opportunities are **sections inside topic pages**, not standalone pages.
+projects + topics) · `wiki/projects/*` (one per project: a short lead + Key findings stub that inline
+citations link to). Claims/conflicts/opportunities are **sections inside topic pages**, not standalone pages.
 
 ## Run
 
@@ -60,11 +61,11 @@ uv run --directory compendium --group test pytest        # deterministic core (n
 cd compendium
 uv run compendium context-pack ../projects/<id> --out context-packs/<id>.json     # → kg-extract authors cards
 uv run compendium validate-kg fixtures/statement_cards/adp1_tracer.yaml
-uv run compendium plan-pages <kg> --source-root ../projects --out out/plans.json   # 4 page types
+uv run compendium plan-pages <kg> --source-root ../projects --out out/plans.json   # page plans incl. project pages
 uv run compendium wiki-contexts <kg> --source-root ../projects --out out/page-contexts
 #   → kg-write authors each wiki/<page>.md from its context, published via page-artifact
 uv run compendium render-markdown <kg> --source-root ../projects --out wiki        # validate + publish
-uv run compendium check --wiki wiki                                                # link + citation integrity gate
+uv run compendium check --wiki wiki                                                # link integrity gate
 open compendium/wiki/index.md
 
 # Graph + wiki viewer (Cosma): deterministic records/config, then a one-shot Node build.
@@ -85,15 +86,15 @@ build the author/collection indexes from `--source-root` + `ui/config/collection
 | `src/compendium/people.py` | author index (ORCID) from README `## Authors` |
 | `src/compendium/data_index.py` | shared-collection index from `ui/config/collections.yaml` |
 | `src/compendium/registry.py` | additive canonical topic/entity resolution from `registry.yaml` |
-| `src/compendium/pages/` | deterministic page plans (topic/data/author/home) + bounded page contexts + authored-page validation |
+| `src/compendium/pages/` | deterministic page plans (topic/data/author/home/project) + bounded page contexts + authored-page validation |
 | `src/compendium/render/markdown.py` | Markdown wiki publisher (validates authored pages) |
 | `src/compendium/render/cosma.py` | Cosma export: reader-graph records (topic/project/data/author) + config for the cosmoscope viewer |
-| `src/compendium/check.py` | link + citation integrity check (the final gate) |
+| `src/compendium/check.py` | link integrity check (the final gate; citation integrity is enforced at publish) |
 | `skills/` | LLM orchestration: `kg-extract`, `kg-reconcile`, `kg-write`, `kg-wiki` |
 | `wiki/` | the human-facing Markdown wiki (entry point `wiki/index.md`); manifests under `wiki/.manifests/` |
 
 `tests/test_wiki_readability.py` is a smoke test, not a prose judge. It guards against obvious
-regressions: missing introductions, missing sources, missing wiki links, and leaked graph jargon.
+regressions: missing introductions, missing provenance, missing wiki links, and leaked graph jargon.
 
 This README is the single source of truth for the pipeline. The ideology and methodology (why a topic-MOC
 instead of a formal KG, what a topic is, the two-pass reconciliation) live in

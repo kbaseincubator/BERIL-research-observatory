@@ -80,7 +80,22 @@ already authored, so `kg-write` must run before it. This skill absorbs the old b
    `member_hash` with the existing `wiki/.manifests/**/*.manifest.json`. Reuse pages whose member
    hash still matches; for each changed page dispatch `kg-write` (parallel subagents where
    possible — give each one page id + one `.context.json`). `kg-write` publishes via `page-artifact`
-   into `wiki/`.
+   into `wiki/`. The page set now includes one `project:<id>` page per project (published under
+   `wiki/projects/`); their `kg-write` subagent writes only a short lead, and `page-artifact`
+   assembles the stub. Topic/data/author/home pages carry inline `[stmt:id; project]` citations that
+   `page-artifact` rewrites into a linked `## References` list.
+
+   **Model selection.** The deterministic harness owns all structure (membership, the
+   inline-citation → References rewrite, project links, the project-page stub, and validation), so
+   the subagent model only affects prose quality and cannot corrupt the output. Dispatch each
+   `kg-write` subagent with:
+   - **Haiku** for `project:<id>` pages — they are a 2-3 sentence lead, so the smallest model is
+     plenty and much faster/cheaper.
+   - **Sonnet** for `topic` / `data` / `author` / `home` synthesis pages — capable of the
+     multi-section synthesis and far faster than Opus.
+   - **Opus** only if the user explicitly wants maximum polish on the showcase pages (the 12 topic
+     pages + `home`); otherwise Sonnet is the default.
+   Pass the chosen model id through to `page-artifact --model` so the manifest records it.
 
 6. **Render + final gate** (deterministic). `render-markdown` validates/assembles the published
    pages; `check` is the integrity gate:
@@ -89,9 +104,9 @@ already authored, so `kg-write` must run before it. This skill absorbs the old b
    uv run compendium render-markdown <kg> --source-root ../projects --out wiki
    uv run compendium check --wiki wiki
    ```
-   `check` exits nonzero on any dangling link or orphan citation. If it fails, fix the offending
-   page (re-dispatch `kg-write`) or re-run `kg-reconcile` (e.g. an unresolved topic) and repeat
-   steps 4–6 until `check` exits 0.
+   `check` exits nonzero on any dangling link (citation integrity is enforced earlier, at
+   `page-artifact` publish time). If it fails, fix the offending page (re-dispatch `kg-write`) or
+   re-run `kg-reconcile` (e.g. an unresolved topic) and repeat steps 4–6 until `check` exits 0.
 
 7. **Export the graph + wiki viewer** (deterministic export + one Node build). After `check`
    passes, emit the Cosma reader graph (topic/project/data/author records + config) and build the

@@ -116,5 +116,7 @@ Page contexts are deterministic writer briefs. They are not public graph exports
 ```
 
 The LLM writer uses this context to produce synthesized Markdown pages with
-plain introductions, sections, cross-links, caveats/open directions, and a
-trailing `## Sources` section.
+plain introductions, sections, cross-links, and caveats/open directions, placing
+each `[stmt:id; project]` citation inline at the claim it supports. At publish time
+`page-artifact` rewrites those inline tokens into numbered `[N]` markers and appends a
+generated `## References` list that links to the per-project pages.

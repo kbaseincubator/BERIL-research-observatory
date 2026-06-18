@@ -1,40 +1,28 @@
 """Deterministic integrity check for the rendered Markdown wiki.
 
-Pure-Python, no LLM. Two checks, returning a list of human-readable problem strings
-(empty == clean):
+Pure-Python, no LLM. Checks **dangling links**: every relative Markdown link target in
+``wiki/**/*.md`` (excluding the ``.manifests/`` dir) must resolve to an existing file relative
+to the linking page. Skipped: ``http(s)``/``mailto`` and pure ``#anchor`` targets, and a project
+page's link to its source ``REPORT.md`` (which lives outside the wiki tree and is the only
+deliberately external link the pipeline emits).
 
-- **dangling links:** every relative Markdown link target in ``wiki/**/*.md`` (excluding the
-  ``.manifests/`` dir) must resolve to an existing file relative to the linking page.
-- **orphan citations:** every ``[stmt:<id>; <project>]`` citation in a page must have its ``<id>``
-  listed in that page's manifest ``cited_statement_ids``. Pages without a manifest are skipped.
+Citation integrity is enforced earlier, at publish time, when ``write_page_artifact`` rewrites
+inline ``[stmt:id; project]`` tokens into numbered references — so there is no separate
+citation check here.
 """
 
 from __future__ import annotations
 
-import json
 import re
 from pathlib import Path
 
 _MANIFEST_DIR = ".manifests"
 _LINK_RE = re.compile(r"\]\(([^)]+)\)")
 _EXTERNAL_PREFIXES = ("http://", "https://", "mailto:")
-_CITATION_RE = re.compile(r"\[(stmt:[^;\]\s]+);[^\]]+\]")
 
 
 def check_wiki(wiki_dir: Path) -> list[str]:
-    """Return a list of integrity problems for ``wiki_dir`` (empty == clean).
-
-    Parameters
-    ----------
-    wiki_dir
-        Root of the rendered Markdown wiki (containing ``index.md``, ``topics/``, the
-        ``.manifests/`` dir, ...).
-
-    Returns
-    -------
-    list of str
-        One human-readable string per dangling link or orphan citation, sorted.
-    """
+    """Return a list of integrity problems for ``wiki_dir`` (empty == clean)."""
     wiki_path = Path(wiki_dir)
     pages = sorted(
         path
@@ -46,7 +34,6 @@ def check_wiki(wiki_dir: Path) -> list[str]:
         rel = page.relative_to(wiki_path).as_posix()
         text = page.read_text(encoding="utf-8", errors="replace")
         problems.extend(_dangling_links(text, page, rel))
-        problems.extend(_orphan_citations(text, page, wiki_path, rel))
     return sorted(problems)
 
 
@@ -57,7 +44,7 @@ def _dangling_links(text: str, page: Path, rel: str) -> list[str]:
         if not target or _is_external(target) or target.startswith("#"):
             continue
         path_part = target.split("#", 1)[0].split("?", 1)[0]
-        if not path_part:
+        if not path_part or _is_source_report(path_part):
             continue
         resolved = (page.parent / path_part).resolve()
         if not resolved.is_file():
@@ -65,28 +52,9 @@ def _dangling_links(text: str, page: Path, rel: str) -> list[str]:
     return problems
 
 
-def _orphan_citations(text: str, page: Path, wiki_path: Path, rel: str) -> list[str]:
-    manifest = _manifest_for(page, wiki_path)
-    if manifest is None:
-        return []
-    cited = set(_load_cited_ids(manifest))
-    problems: list[str] = []
-    for statement_id in sorted(set(_CITATION_RE.findall(text))):
-        if statement_id not in cited:
-            problems.append(f"{rel}: orphan citation {statement_id!r} not in manifest")
-    return problems
-
-
-def _manifest_for(page: Path, wiki_path: Path) -> Path | None:
-    rel = page.relative_to(wiki_path)
-    manifest = wiki_path / _MANIFEST_DIR / rel.with_suffix(".manifest.json")
-    return manifest if manifest.is_file() else None
-
-
-def _load_cited_ids(manifest: Path) -> list[str]:
-    data = json.loads(manifest.read_text(encoding="utf-8"))
-    cited = data.get("cited_statement_ids", [])
-    return cited if isinstance(cited, list) else []
+def _is_source_report(path_part: str) -> bool:
+    # Project pages link to ``../../../projects/<id>/REPORT.md`` outside the wiki tree.
+    return path_part == "REPORT.md" or path_part.endswith("/REPORT.md")
 
 
 def _is_external(target: str) -> bool:

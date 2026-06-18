@@ -166,16 +166,19 @@ def test_page_plans_are_deterministic_for_shuffled_cards() -> None:
     assert forward == backward
 
 
-def test_only_home_topic_data_author_page_types_exist() -> None:
+def test_page_types_include_project_not_legacy_standalone() -> None:
     plans = _plans()
     types = {plan.type for plan in plans.values()}
-    assert types == {"home", "topic", "data", "author"}
-    # No legacy standalone page types.
+    assert types == {"home", "topic", "data", "author", "project"}
+    # Claims/conflicts/opportunities/entities remain sections, not standalone pages.
     assert not any(
-        plan.type in {"project", "claim", "conflict", "opportunity", "entity"}
+        plan.type in {"claim", "conflict", "opportunity", "entity"}
         for plan in plans.values()
     )
-    assert not any(pid.startswith(("project:", "claim:", "opportunity:")) for pid in plans)
+    assert not any(pid.startswith(("claim:", "opportunity:")) for pid in plans)
+    # One project page per project present among the cards.
+    assert "project:metal_fitness_atlas" in plans
+    assert "project:pangenome_openness" in plans
 
 
 def test_topic_canonicalization_merges_raw_slugs() -> None:
@@ -191,7 +194,6 @@ def test_topic_canonicalization_merges_raw_slugs() -> None:
         "Projects and Evidence",
         "Connections",
         "Caveats and Open Directions",
-        "Sources",
     ]
     sections = {s.id: s for s in metal.sections}
     assert set(sections["caveats_and_open_directions"].member_statement_ids) == {
@@ -210,7 +212,10 @@ def test_home_page_has_moc_sections_and_links_every_page() -> None:
         "Author Map",
         "Data Map",
     ]
-    assert set(home.outgoing_links) == {pid for pid in plans if pid != "home"}
+    # Home maps the curated topic/data/author pages; project pages are reached via citations.
+    assert set(home.outgoing_links) == {
+        pid for pid in plans if pid != "home" and not pid.startswith("project:")
+    }
 
 
 def test_data_and_author_pages_have_expected_ids_types_and_paths() -> None:
@@ -281,8 +286,8 @@ def test_identity_passthrough_without_registry() -> None:
     plans = {plan.id: plan for plan in plan_pages(_cards())}
     assert "topic:metal-resistance" in plans
     assert "topic:Metal-Resistance" in plans  # distinct without canonicalization
-    # No authors/collections -> no data/author pages.
-    assert {plan.type for plan in plans.values()} == {"home", "topic"}
+    # No authors/collections -> no data/author pages; project pages still come from the cards.
+    assert {plan.type for plan in plans.values()} == {"home", "topic", "project"}
 
 
 def test_plan_then_context_then_authored_page_round_trips(tmp_path) -> None:
@@ -301,12 +306,11 @@ def test_plan_then_context_then_authored_page_round_trips(tmp_path) -> None:
     assert "author:0000-0001-5810-2497" in outgoing_ids
     assert context["narrative"]["lead"]
 
-    # A hand-authored page citing one member statement validates clean.
+    # A hand-authored page with an inline member citation publishes clean.
     markdown = (
         "# Topic: Metal Resistance\n\n"
-        "Metal resistance is largely shared across the tested strains.\n\n"
-        "## Sources\n\n"
-        "- [stmt:m2; metal_fitness_atlas]\n"
+        "Metal resistance is largely shared across the tested strains "
+        "[stmt:m2; metal_fitness_atlas].\n"
     )
     markdown_path, manifest_path = write_page_artifact(
         topic,
@@ -318,3 +322,8 @@ def test_plan_then_context_then_authored_page_round_trips(tmp_path) -> None:
     )
     assert markdown_path == tmp_path / "topics" / "metal-resistance.md"
     assert manifest_path.is_file()
+    # Inline token becomes a numbered marker resolved by an appended References list.
+    published = markdown_path.read_text(encoding="utf-8")
+    assert "## References" in published
+    assert "../projects/metal-fitness-atlas.md" in published
+    assert "[stmt:m2;" not in published

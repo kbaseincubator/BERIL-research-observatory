@@ -13,7 +13,7 @@ from typing import Any
 STATEMENT_KINDS = ("finding", "claim", "caveat", "opportunity")
 CONFIDENCE_LEVELS = ("low", "medium", "high")
 LINK_KINDS = ("supports", "contradicts", "refines")
-PAGE_TYPES = ("home", "topic", "data", "author", "organism")
+PAGE_TYPES = ("home", "topic", "data", "author", "organism", "project")
 
 
 def _require_nonempty(value: str | None, field_name: str) -> None:

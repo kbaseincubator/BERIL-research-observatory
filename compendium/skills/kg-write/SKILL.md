@@ -1,6 +1,6 @@
 ---
 name: kg-write
-description: Author ONE wiki page (topic/data/author/home) from a single deterministic page context. The LLM writes clean human-readable markdown; provenance goes in one consolidated Sources section using [stmt:id; project] footnote refs. Publishes via page-artifact, which validates the citations.
+description: Author ONE wiki page (topic/data/author/home/project) from a single deterministic page context. The LLM writes clean human-readable markdown with [stmt:id; project] citations placed inline at the claim each supports. page-artifact rewrites them into numbered references; for project pages it assembles the stub around a short lead.
 ---
 
 # kg-write
@@ -9,12 +9,19 @@ Author one page per run from a fixed, bounded page context produced deterministi
 `compendium page-context`. Page membership, links, and source excerpts are chosen by Python — this
 skill only writes the prose and publishes it through the validator. It is an internal helper the
 `kg-wiki` orchestrator dispatches per changed page; it is not the user-facing entry point. Write
-clean academic prose like the Atlas, **not** inline machine citations in every paragraph.
+clean academic prose like the Atlas, with each `[stmt:id; project]` citation placed inline at the
+claim it supports (`page-artifact` turns those into a numbered, linked `## References` list).
+
+**Model.** Because the deterministic harness owns all structure and validation, this skill runs well
+on a small model: the orchestrator dispatches it on **Haiku** for `project:<id>` lead pages and
+**Sonnet** for `topic`/`data`/`author`/`home` synthesis pages (Opus only when maximum polish on the
+showcase topic/home pages is explicitly requested). Pass that model id to `page-artifact --model`.
 
 ## Inputs
 
 - Required: a page id (e.g. `home`, `topic:metal-resistance`, `data:kescience_fitnessbrowser`,
-  `author:0000-0001-5810-2497`) and the merged corpus KG file used by the orchestrator.
+  `author:0000-0001-5810-2497`, `project:conservation_fitness_synthesis`) and the merged corpus
+  KG file used by the orchestrator.
 - Required: the deterministic page context `out/page-contexts/**/<id>.context.json` (+ `.prompt.md`)
   from `page-context`. It carries `page`, `statements`, `projects`, `topics`, `entities`,
   `adjacent_pages`, `narrative`, and `allowed_citations`.
@@ -66,12 +73,17 @@ be built.
 
    Data / author / home pages use their natural sections (e.g. home: topic map, author map, data
    map; data: projects using this collection; author: projects, topics).
-3. Provenance style: do NOT scatter `[stmt:id; project]` through the prose. Put every citation in a
-   single consolidated `## Sources` section at the end as footnote-style refs, e.g.
-   `- [stmt:adp1-deletion-continuum-claim; adp1_deletion_phenotypes]`. The validator (`page-artifact`
-   / `check`) matches `[stmt:id; project]` anywhere in the page, so a consolidated Sources section
-   satisfies it. A page with member statements MUST cite at least one of them, and may cite ONLY
-   ids present in `allowed_citations`.
+
+   **Project pages** (`project:<id>`) are a special case: write ONLY a 2-3 sentence plain-language
+   lead — what the project set out to do and its single most important result. Do NOT add headings,
+   a findings list, or links; `page-artifact` assembles the key-findings list, navigation links, and
+   report link deterministically around your lead.
+3. Provenance style: place each `[stmt:id; project]` citation **inline, immediately after the clause
+   it supports** (scientific-paper style). Do NOT write a `## Sources` or `## References` section —
+   `page-artifact` rewrites your inline tokens into numbered `[N]` markers and generates the linked
+   `## References` list (one entry per cited statement, linking to its project page) for you. A page
+   with member statements MUST cite at least one of them inline, and may cite ONLY ids present in
+   `allowed_citations`. (Project page leads carry no citations.)
 4. Insert relative Markdown links to related pages using the `adjacent_pages` paths (so `check`'s
    dangling-link guard passes).
 5. Publish and validate (this is where citations are enforced):

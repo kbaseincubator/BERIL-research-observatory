@@ -1,4 +1,4 @@
-"""Tests for the deterministic Cosma export (reader graph + project stubs)."""
+"""Tests for the deterministic Cosma export (one node per published page)."""
 
 from __future__ import annotations
 
@@ -42,6 +42,11 @@ def _fixture():
         ),
         "data:kbase_x": "# KBase X\n\nA shared collection.\n",
         "author:0000-0001-0000-0001": "# Jane Roe\n\nA contributor.\n",
+        # Project pages are real wiki pages now; their links become graph edges too.
+        "project:metal_fitness_atlas": (
+            "# Metal Fitness Atlas\n\nMapped cross-metal resistance genes.\n\n"
+            "## Topics\n\n- [Metal Resistance](../topics/metal-resistance.md)\n"
+        ),
     }
     plans = plan_pages(cards, registry=None, authors=authors, collections=collections)
     return plans, cards, authors, collections, page_markdown
@@ -52,15 +57,8 @@ def _by_type(records, type_):
 
 
 def test_page_record_converts_frontmatter_and_rewrites_links():
-    plans, cards, authors, collections, page_markdown = _fixture()
-    records = build_cosma_records(
-        plans,
-        cards=cards,
-        registry=None,
-        authors=authors,
-        collections=collections,
-        page_markdown=page_markdown,
-    )
+    plans, _cards, _authors, _collections, page_markdown = _fixture()
+    records = build_cosma_records(plans, page_markdown=page_markdown)
 
     topic = _by_type(records, "topic")[0]
     assert topic.title == "Metal Resistance"
@@ -75,40 +73,46 @@ def test_page_record_converts_frontmatter_and_rewrites_links():
     assert text.startswith("---\ntitle: Metal Resistance\ntype: topic\n---")
 
 
-def test_project_stub_node_links_to_its_topic_author_and_data():
-    plans, cards, authors, collections, page_markdown = _fixture()
-    records = build_cosma_records(
-        plans,
-        cards=cards,
-        registry=None,
-        authors=authors,
-        collections=collections,
-        page_markdown=page_markdown,
-    )
+def test_project_page_is_a_node_with_converted_links():
+    plans, _cards, _authors, _collections, page_markdown = _fixture()
+    records = build_cosma_records(plans, page_markdown=page_markdown)
 
     projects = _by_type(records, "project")
-    assert [p.filename for p in projects] == ["project_metal_fitness_atlas.md"]
+    assert [p.filename for p in projects] == ["projects_metal-fitness-atlas.md"]
     project = projects[0]
     assert project.title == "Metal Fitness Atlas"
-    # the stub wikilinks the project to the pages it belongs to (by their titles)
-    assert "[[Metal Resistance]]" in project.body
-    assert "[[Jane Roe]]" in project.body
-    assert "[[KBase X]]" in project.body
+    # The project page's link to its topic becomes a graph edge.
+    assert "[[Metal Resistance|Metal Resistance]]" in project.body
+
+
+def test_project_title_colliding_with_topic_is_disambiguated():
+    # A project whose title slugs to the same id as a topic must not drop a node.
+    cards = [_card("functional_dark_matter", "topic:functional-dark-matter", id_="stmt:f1")]
+    plans = plan_pages(cards, registry=None, authors={}, collections={})
+    page_markdown = {
+        "topic:functional-dark-matter": "# Functional Dark Matter\n\nThe topic.\n",
+        "project:functional_dark_matter": (
+            "# Functional Dark Matter\n\nLead.\n\n## Topics\n\n"
+            "- [Functional Dark Matter](../topics/functional-dark-matter.md)\n"
+        ),
+    }
+    records = build_cosma_records(plans, page_markdown=page_markdown)
+    by_type = {r.type: r for r in records if r.type in ("topic", "project")}
+    assert by_type["topic"].title == "Functional Dark Matter"
+    assert by_type["project"].title == "Functional Dark Matter (project)"
+    # the topic's inbound link from the project resolves to the disambiguated node title
+    assert "[[Functional Dark Matter|Functional Dark Matter]]" in by_type["project"].body
+    # the two nodes no longer share a slug
+    titles = {r.title for r in records}
+    assert len(titles) == len(records)
 
 
 def test_export_is_deterministic():
-    plans, cards, authors, collections, page_markdown = _fixture()
-    kwargs = dict(
-        cards=cards,
-        registry=None,
-        authors=authors,
-        collections=collections,
-        page_markdown=page_markdown,
-    )
-    first = [r.to_markdown() for r in build_cosma_records(plans, **kwargs)]
-    second = [r.to_markdown() for r in build_cosma_records(plans, **kwargs)]
+    plans, _cards, _authors, _collections, page_markdown = _fixture()
+    first = [r.to_markdown() for r in build_cosma_records(plans, page_markdown=page_markdown)]
+    second = [r.to_markdown() for r in build_cosma_records(plans, page_markdown=page_markdown)]
     assert first == second
-    assert len(first) == 5  # home + topic + data + author + 1 project
+    assert len(first) == 5  # home + topic + data + author + project
 
 
 def test_config_has_project_type_and_light_theme():
@@ -121,7 +125,7 @@ def test_config_has_project_type_and_light_theme():
 
 
 def test_write_cosma_project_reads_wiki_and_writes_src_and_config(tmp_path):
-    plans, cards, authors, collections, page_markdown = _fixture()
+    plans, _cards, _authors, _collections, page_markdown = _fixture()
     wiki = tmp_path / "wiki"
     for plan in plans:
         from compendium.pages.artifact import wiki_page_path
@@ -131,22 +135,13 @@ def test_write_cosma_project_reads_wiki_and_writes_src_and_config(tmp_path):
         page.write_text(page_markdown[plan.id], encoding="utf-8")
 
     out = tmp_path / "cosma"
-    written = write_cosma_project(
-        plans,
-        cards=cards,
-        registry=None,
-        authors=authors,
-        collections=collections,
-        wiki_dir=wiki,
-        out_dir=out,
-        title="Compendium",
-    )
+    written = write_cosma_project(plans, wiki_dir=wiki, out_dir=out, title="Compendium")
 
     assert (out / "config.yml").is_file()
     topic_src = out / "src" / "topics_metal-resistance.md"
     assert topic_src.is_file()
     assert "type: topic" in topic_src.read_text(encoding="utf-8")
-    assert (out / "src" / "project_metal_fitness_atlas.md").is_file()
+    assert (out / "src" / "projects_metal-fitness-atlas.md").is_file()
     assert any(p.name == "config.yml" for p in written)
 
 
@@ -178,8 +173,12 @@ def test_export_cosma_cli_writes_project(tmp_path):
     )
     wiki = tmp_path / "wiki"
     (wiki / "topics").mkdir(parents=True)
+    (wiki / "projects").mkdir(parents=True)
     (wiki / "index.md").write_text("# Home\n\nSee [Demo](topics/demo.md).\n", encoding="utf-8")
     (wiki / "topics" / "demo.md").write_text("# Demo Topic\n\n## Overview\n\nText.\n", encoding="utf-8")
+    (wiki / "projects" / "proj-x.md").write_text(
+        "# Proj X\n\nLead.\n\n## Topics\n\n- [Demo Topic](../topics/demo.md)\n", encoding="utf-8"
+    )
     empty_root = tmp_path / "projects"
     empty_root.mkdir()
     out = tmp_path / "cosma"
@@ -200,5 +199,5 @@ def test_export_cosma_cli_writes_project(tmp_path):
     assert code == 0
     assert (out / "config.yml").is_file()
     assert (out / "src" / "topics_demo.md").is_file()
-    project_src = (out / "src" / "project_proj_x.md").read_text(encoding="utf-8")
-    assert "[[Demo Topic]]" in project_src
+    project_src = (out / "src" / "projects_proj-x.md").read_text(encoding="utf-8")
+    assert "[[Demo Topic|Demo Topic]]" in project_src

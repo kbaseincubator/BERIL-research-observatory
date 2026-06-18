@@ -1,9 +1,9 @@
 """Deterministic PagePlan generation from statement cards.
 
-Emits the four reader page types (home / topic / data / author). Topics are canonicalized
+Emits the reader page types (home / topic / data / author / project). Topics are canonicalized
 through the additive ``Registry`` before grouping; author and data pages join in the zero-LLM
-author and shared-collection indexes. Claims/conflicts/opportunities are *sections* inside topic
-pages, not standalone pages.
+author and shared-collection indexes; one project page is emitted per project with statements.
+Claims/conflicts/opportunities are *sections* inside topic pages, not standalone pages.
 """
 
 from __future__ import annotations
@@ -88,6 +88,9 @@ def plan_pages(
     for draft in author_drafts:
         _add_draft(drafts, draft)
 
+    for draft in _project_plans(project_members, card_by_id):
+        _add_draft(drafts, draft)
+
     _wire_cross_links(
         drafts,
         card_topics=card_topics,
@@ -169,9 +172,30 @@ def _topic_plan(topic_key: str, member_ids: list[str], card_by_id: dict[str, Sta
                     *_ids_of_kinds(sorted_ids, card_by_id, _OPPORTUNITY_KINDS),
                 ],
             ),
-            _section("sources", "Sources", sorted_ids),
         ],
     )
+
+
+def _project_plans(
+    project_members: dict[str, list[str]],
+    card_by_id: dict[str, StatementCard],
+) -> list[_PageDraft]:
+    drafts: list[_PageDraft] = []
+    for project in sorted(project_members):
+        member_ids = _sort_card_ids(project_members[project], card_by_id)
+        drafts.append(
+            _PageDraft(
+                id=f"project:{project}",
+                type="project",
+                title=_title(f"project:{project}"),
+                member_statement_ids=member_ids,
+                sections=[
+                    _section("lead", "Lead", member_ids),
+                    _section("key_findings", "Key Findings", member_ids),
+                ],
+            )
+        )
+    return drafts
 
 
 def _data_plans(
@@ -260,7 +284,17 @@ def _wire_cross_links(
 
     for draft in drafts.values():
         if draft.type == "home":
-            draft.outgoing_links.update(pid for pid in all_page_ids if pid != "home")
+            # Home maps the curated topic/data/author pages; projects are reached via citations.
+            draft.outgoing_links.update(
+                pid
+                for pid in all_page_ids
+                if pid != "home" and not pid.startswith("project:")
+            )
+        elif draft.type == "project":
+            project = draft.id.split(":", 1)[1]
+            draft.outgoing_links.update(project_topics.get(project, set()))
+            draft.outgoing_links.update(project_data_pages.get(project, set()))
+            draft.outgoing_links.update(project_author_pages.get(project, set()))
         elif draft.type == "topic":
             member_projects = _member_projects(draft.member_statement_ids, project_members)
             # Adjacent topics (share >=1 source project) + data + author pages of those projects.

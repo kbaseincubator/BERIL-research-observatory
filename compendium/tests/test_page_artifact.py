@@ -86,9 +86,8 @@ def test_write_page_artifact_requires_authored_markdown_and_writes_manifest(
     markdown = (
         "# Topic: Metal Resistance\n\n"
         "## Overview\n\n"
-        "Metal resistance is largely shared across the tested strains.\n\n"
-        "## Sources\n\n"
-        "- [stmt:m2; metal_fitness_atlas]\n"
+        "Metal resistance is largely shared across the tested strains "
+        "[stmt:m2; metal_fitness_atlas].\n"
     )
 
     markdown_path, manifest_path = write_page_artifact(
@@ -103,6 +102,12 @@ def test_write_page_artifact_requires_authored_markdown_and_writes_manifest(
     assert markdown_path == tmp_path / "topics" / "metal-resistance.md"
     assert manifest_path == tmp_path / ".manifests" / "topics" / "metal-resistance.manifest.json"
     assert markdown_path.is_file()
+
+    # The inline token is rewritten to a numbered marker + appended References list.
+    published = markdown_path.read_text(encoding="utf-8")
+    assert "[stmt:m2;" not in published
+    assert "## References" in published
+    assert "1. [Metal Fitness Atlas](../projects/metal-fitness-atlas.md)" in published
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     assert manifest["page_id"] == "topic:metal-resistance"
