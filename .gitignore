@@ -104,3 +104,7 @@ htmlcov/
 .pytest_cache/
 .ruff_cache/
 *.uc
+
+# OpenViking
+knowledge/workspace
+knowledge/ov.conf
