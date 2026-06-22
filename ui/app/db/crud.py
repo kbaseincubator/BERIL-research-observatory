@@ -8,7 +8,13 @@ from sqlalchemy import delete, select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.db.models import BerilUser, ProjectFile, UserApiToken, UserProject
+from app.db.models import (
+    BerilUser,
+    OvUserCredential,
+    ProjectFile,
+    UserApiToken,
+    UserProject,
+)
 from app.models import Project, ProjectStatus
 
 
@@ -323,3 +329,69 @@ async def get_user_by_api_token(
         select(BerilUser).where(BerilUser.id == record.user_id)
     )
     return user_result.scalar_one_or_none()
+
+
+# ---------------------------------------------------------------------------
+# OvUserCredential
+# ---------------------------------------------------------------------------
+
+
+async def get_ov_credential(
+    db: AsyncSession, user_id: str
+) -> OvUserCredential | None:
+    """Return the stored OpenViking credential for a BERIL user, or None."""
+    result = await db.execute(
+        select(OvUserCredential).where(OvUserCredential.user_id == user_id)
+    )
+    return result.scalar_one_or_none()
+
+
+async def upsert_ov_credential(
+    db: AsyncSession,
+    user_id: str,
+    *,
+    account_id: str,
+    ov_user_id: str,
+    encrypted_key: str,
+) -> OvUserCredential:
+    """Create or update a user's OpenViking credential (encrypted key at rest).
+
+    The unique constraint on ``user_id`` guarantees at most one row per user.
+    Mirrors ``get_or_create_api_token``: the insert path runs in a nested
+    transaction and retries once if a concurrent request wins the insert race.
+    """
+    record = await get_ov_credential(db, user_id)
+    if record is not None:
+        record.account_id = account_id
+        record.ov_user_id = ov_user_id
+        record.encrypted_key = encrypted_key
+        await db.commit()
+        await db.refresh(record)
+        return record
+
+    for attempt in range(2):
+        try:
+            async with db.begin_nested():
+                record = OvUserCredential(
+                    user_id=user_id,
+                    account_id=account_id,
+                    ov_user_id=ov_user_id,
+                    encrypted_key=encrypted_key,
+                )
+                db.add(record)
+            await db.commit()
+            await db.refresh(record)
+            return record
+        except IntegrityError:
+            await db.rollback()
+            if attempt == 1:
+                raise
+            # Concurrent insert won — fall back to updating the existing row.
+            record = await get_ov_credential(db, user_id)
+            if record is not None:
+                record.account_id = account_id
+                record.ov_user_id = ov_user_id
+                record.encrypted_key = encrypted_key
+                await db.commit()
+                await db.refresh(record)
+                return record

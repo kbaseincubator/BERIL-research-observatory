@@ -49,6 +49,9 @@ class BerilUser(Base):
     chat_sessions: Mapped[list["ChatSession"]] = relationship(
         "ChatSession", back_populates="owner", cascade="all, delete-orphan"
     )
+    ov_credential: Mapped["OvUserCredential | None"] = relationship(
+        "OvUserCredential", back_populates="user", uselist=False, cascade="all, delete-orphan"
+    )
 
 
 class UserRole(Base):
@@ -243,6 +246,30 @@ class UserApiToken(Base):
     last_used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
     user: Mapped["BerilUser"] = relationship("BerilUser", back_populates="api_tokens")
+
+
+class OvUserCredential(Base):
+    """A BERIL user's OpenViking account credential, stored encrypted at rest.
+
+    One-to-one with :class:`BerilUser`. ``encrypted_key`` holds a Fernet token of
+    the OpenViking ``user_key`` — the plaintext key is never persisted. The key
+    is minted by OpenViking at user creation/regeneration and decrypted on demand
+    for the owning user via the credentials endpoint.
+    """
+
+    __tablename__ = "ov_user_credential"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=_new_uuid)
+    user_id: Mapped[str] = mapped_column(
+        String(36), ForeignKey("beril_user.id", ondelete="CASCADE"), nullable=False, unique=True
+    )
+    account_id: Mapped[str] = mapped_column(String(128), nullable=False)
+    ov_user_id: Mapped[str] = mapped_column(String(128), nullable=False)
+    encrypted_key: Mapped[str] = mapped_column(Text, nullable=False)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now, onupdate=_now)
+
+    user: Mapped["BerilUser"] = relationship("BerilUser", back_populates="ov_credential")
 
 
 class ProjectCollection(Base):
