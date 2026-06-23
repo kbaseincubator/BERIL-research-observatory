@@ -1,0 +1,315 @@
+project:
+  id: pathway_capability_dependency
+  title: 'Report: Metabolic Capability vs Dependency'
+statements:
+- id: stmt:capability-not-dependency
+  kind: finding
+  text: Of 161 organism-pathway pairs across 7 model bacteria, only 35.4% are Active Dependencies while 41.0% are genomically complete but fitness-neutral Latent Capabilities, showing pathway completeness does not predict metabolic dependency.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:gapmind
+  - entity:fitness-browser
+  - entity:rb-tnseq
+  - entity:metabolic-dependency
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: 1. Pathway Completeness Alone Is Insufficient to Predict Metabolic Dependency
+    quote: 'Of 161 classified organism-pathway pairs (7 Fitness Browser organisms, 23 GapMind pathways), only 35.4% (57/161) are Active Dependencies where a complete pathway contains fitness-important genes. The largest single category is Latent Capability at 41.0% (66/161): pathways that are genomically complete but whose constituent genes show no significant fitness defects under standard conditions.'
+    notebook: 02_tier1_pathway_classification.ipynb
+    figure: figures/fig1_four_category_overview.png
+- id: stmt:composite-importance-score
+  kind: claim
+  text: A composite importance score integrating essentiality (40%), fitness breadth (30%), and fitness magnitude (30%) is used to classify each organism-pathway pair from RB-TnSeq data.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:importance-score
+  - entity:fitness-breadth
+  - entity:essentiality
+  - entity:kegg-annotation
+  links:
+    supports:
+    - stmt:capability-not-dependency
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: 1. Pathway Completeness Alone Is Insufficient to Predict Metabolic Dependency
+    quote: 'The composite importance score integrates three dimensions: 40% essentiality (fraction of pathway genes that are putative essentials), 30% fitness breadth (fraction of conditions with significant phenotype, per the fitness_effects_conservation finding that breadth predicts conservation better than magnitude), and 30% fitness magnitude (severity of the worst fitness defect).'
+    notebook: 02_tier1_pathway_classification.ipynb
+- id: stmt:latent-conditionally-active
+  kind: finding
+  text: All 66 Latent Capability pathway-organism pairs become fitness-important under at least one condition type, most often nitrogen limitation, stress, or carbon limitation, reframing latency as context-dependence rather than genomic baggage.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:latent-capability
+  - entity:condition-type-stratification
+  - entity:black-queen-hypothesis
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:capability-not-dependency
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: 2. All "Latent Capabilities" Become Important Under Specific Conditions
+    quote: Condition-type stratification -- separating fitness effects by nitrogen source, carbon source, stress, and other conditions -- reveals that all 66 Latent Capability pathway-organism pairs become fitness-important under at least one condition type. This is consistent with the core_gene_tradeoffs finding that 28,017 genes across the Fitness Browser are "costly in lab but conserved in nature."
+    notebook: 02_tier1_pathway_classification.ipynb
+    figure: figures/fig5_condition_type_shifts.png
+- id: stmt:active-deps-core-genomes
+  kind: finding
+  text: Active Dependencies have higher mean core gene completeness (0.986) than Latent Capabilities (0.975), a small but consistent enrichment aligned with fitness-important genes being concentrated in the core genome.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:core-genome
+  - entity:pangenome
+  - entity:active-dependency
+  - entity:metal-fitness-atlas
+  links:
+    supports:
+    - stmt:capability-not-dependency
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: '3. Conservation Validation: Active Dependencies Have Near-Complete Core Genomes'
+    quote: Validation against pangenome conservation data shows that Active Dependencies have mean core gene completeness of 0.986, compared to 0.975 for Latent Capabilities. The gap between categories is small because the 7 Fitness Browser organisms are well-studied model organisms
+    notebook: 02_tier1_pathway_classification.ipynb
+    figure: figures/fig2_conservation_by_category.png
+- id: stmt:variable-pathways-open-pangenomes
+  kind: finding
+  text: Across 2,810 species with at least 10 genomes, the number of variable pathways correlates with pangenome openness, strengthening to partial Spearman rho=0.530 (p=2.83e-203) after controlling for genome count.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome-openness
+  - entity:variable-pathways
+  - entity:black-queen-hypothesis
+  - entity:gapmind
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: 4. Variable Pathways Strongly Correlate with Pangenome Openness
+    quote: After controlling for genome count -- a critical confounder since species with more sequenced genomes may appear to have more variable pathways simply from sampling depth -- the partial Spearman correlation strengthens to rho=0.530 (p=2.83e-203).
+    notebook: 03_tier2_pathway_conservation.ipynb
+    figure: figures/fig3_core_accessory_pathways.png
+- id: stmt:pathway-variation-openness-correlate
+  kind: claim
+  text: Pathway variation supplies a mechanistically interpretable correlate of pangenome openness that broader ecological and phylogenetic variables, which showed no openness correlation in a prior project, failed to capture.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome-openness
+  - entity:variable-pathways
+  - entity:black-queen-hypothesis
+  links:
+    supports:
+    - stmt:variable-pathways-open-pangenomes
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: 4. Variable Pathways Strongly Correlate with Pangenome Openness
+    quote: This is notable in the context of the pangenome_openness project, which found no correlation between openness and environment or phylogeny effect sizes. Pathway variation provides a mechanistically interpretable correlate of openness that the broader ecological/phylogenetic variables did not capture.
+    notebook: 03_tier2_pathway_conservation.ipynb
+- id: stmt:amino-acid-accessory-dependence
+  kind: finding
+  text: Amino acid biosynthesis pathways (leucine, valine, arginine, lysine, threonine) show the strongest dependence on accessory genes, with core-vs-all completeness gaps of about 0.14, direct evidence for Black Queen distribution of biosynthetic capacity across strains.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:pangenome-architecture
+  entities:
+  - entity:amino-acid-biosynthesis
+  - entity:accessory-genome
+  - entity:black-queen-hypothesis
+  - entity:gapmind
+  links:
+    supports:
+    - stmt:variable-pathways-open-pangenomes
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: 5. Amino Acid Biosynthesis Pathways Show the Strongest Accessory Dependence
+    quote: 'These gaps mean that for a substantial fraction of bacteria, amino acid biosynthesis pathway completeness depends on genes in the accessory pangenome. This is direct evidence for Black Queen dynamics: the capacity to synthesize these amino acids is being distributed across strains within a species rather than being universally maintained.'
+    notebook: 03_tier2_pathway_conservation.ipynb
+- id: stmt:metabolic-ecotypes
+  kind: finding
+  text: Within-species clustering of binary pathway profiles defines a median of 4 (up to 8) metabolic ecotypes per species, and ecotype count correlates with pangenome openness (partial rho=0.322, p=8.0e-07) after controlling for genome count.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:pangenome-architecture
+  entities:
+  - entity:metabolic-ecotype
+  - entity:pangenome-openness
+  - entity:jaccard-clustering
+  - entity:gut-commensals
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: 6. Metabolic Ecotypes Correlate with Pangenome Openness
+    quote: Among 225 species with sufficient genome diversity (50+ genomes and 3+ variable pathways), hierarchical clustering of binary pathway profiles (Jaccard distance) identifies a median of 4 metabolic ecotypes per species, with a maximum of 8.
+    notebook: 04_metabolic_ecotypes.ipynb
+    figure: figures/fig4_ecotype_openness.png
+- id: stmt:accessory-as-insurance
+  kind: claim
+  text: Roughly 14% of species-level completeness for the top accessory-dependent pathways comes from accessory genes, so different strains carry different biosynthetic capabilities, a precondition for Black Queen public-good metabolism.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:accessory-genome
+  - entity:black-queen-hypothesis
+  - entity:metabolic-insurance
+  links:
+    supports:
+    - stmt:amino-acid-accessory-dependence
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: Accessory Genome as Metabolic Insurance
+    quote: For the top 5 accessory-dependent pathways (leucine, valine, arginine, lysine, threonine), approximately 14% of species-level pathway completeness comes from accessory genes. This means that within a species, different strains have different biosynthetic capabilities -- a precondition for Black Queen dynamics where metabolic functions become community-level public goods.
+- id: stmt:fb-gapmind-coverage-caveat
+  kind: caveat
+  text: Tier 1 classification rests on only 7 of 48 Fitness Browser organisms that have GapMind data, all well-annotated model organisms whose near-complete core genomes compress the conservation validation signal.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:fitness-browser
+  - entity:gapmind
+  - entity:model-organisms
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:active-deps-core-genomes
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: 'Fitness Browser coverage**: Only 7 of 48 FB organisms have GapMind data, limiting Tier 1 to a small set of model organisms. These organisms have near-complete core genomes, which compresses the conservation validation signal.'
+- id: stmt:threshold-circularity-caveat
+  kind: caveat
+  text: The median-based importance threshold splits pathways roughly 50/50 by construction, so the claim that all Latent Capabilities become important under some condition is partly an artifact and would need an independent validation set for a defensible threshold.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:importance-score
+  - entity:latent-capability
+  - entity:essential-metabolome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:latent-conditionally-active
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The median-based importance threshold by construction splits pathways approximately 50/50 into important vs not-important categories. The finding that "all Latent Capabilities become important under some condition" should be interpreted with this in mind
+    notebook: 02_tier1_pathway_classification.ipynb
+- id: stmt:phylogeny-confound-caveat
+  kind: caveat
+  text: Correlations were controlled only for genome count and taxonomic grouping rather than full phylogenetic independent contrasts, so metabolic ecotypes may partly reflect intra-species phylogenetic structure given that phylogeny dominates gene content in most species.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:pangenome-architecture
+  entities:
+  - entity:metabolic-ecotype
+  - entity:phylogeny
+  - entity:ecotype-analysis
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metabolic-ecotypes
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: While correlations were controlled for genome count and checked within taxonomic groups, full phylogenetic independent contrasts were not computed. The ecotype_analysis project found that phylogeny dominates gene content in 60.5% of species, and metabolic ecotypes may partially reflect intra-species phylogenetic structure.
+- id: stmt:alphaearth-niche-opportunity
+  kind: opportunity
+  text: Correlating metabolic ecotypes with AlphaEarth environmental niche breadth was planned but not executed and remains a future direction, constrained by AlphaEarth covering only 28% of genomes.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:alphaearth
+  - entity:metabolic-ecotype
+  - entity:niche-breadth
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The RESEARCH_PLAN (H2) proposed correlating metabolic ecotypes with AlphaEarth environmental niche breadth, but this analysis was not executed. AlphaEarth embeddings cover only 28% of genomes (83K/293K), which would significantly limit the sample size. This remains a future direction.
+- id: stmt:incomplete-but-important-opportunity
+  kind: opportunity
+  text: The 14.9% of pairs scored incomplete by GapMind yet fitness-important point to annotation gaps or salvage routes that GapMind misses, an opportunity to improve pathway annotation.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:gapmind
+  - entity:annotation-gaps
+  - entity:salvage-pathways
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pathway_capability_dependency
+    source_doc: REPORT.md
+    source_section: 1. Pathway Completeness Alone Is Insufficient to Predict Metabolic Dependency
+    quote: An additional 14.9% (24/161) are Incomplete but Important -- pathways that GapMind scores as incomplete yet whose mapped genes are fitness-important, suggesting annotation gaps or salvage routes.
+    notebook: 02_tier1_pathway_classification.ipynb

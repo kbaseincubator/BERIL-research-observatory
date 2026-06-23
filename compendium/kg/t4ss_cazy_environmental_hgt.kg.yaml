@@ -1,0 +1,349 @@
+project:
+  id: t4ss_cazy_environmental_hgt
+  title: 'Report: T4SS-CAZy Environmental HGT'
+statements:
+- id: stmt:t4ss-prevalence-environmental-mags
+  kind: finding
+  text: About 21.8% of 30,497 high-quality environmental MAGs carry T4SS conjugative machinery defined by a multi-marker gene set.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:environment-biogeography
+  entities:
+  - entity:t4ss
+  - entity:environmental-mags
+  - entity:conjugative-machinery
+  links:
+    supports:
+    - stmt:t4ss-cazy-synteny
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**21.8% of 30,497 high-quality environmental MAGs** carry T4SS/conjugative machinery\n  (6,652 MAGs; multi-marker definition: VirB4/6/8/9/10/11, VirD4, TraI/D, TrwB, TraG)."
+- id: stmt:t4ss-cazy-synteny
+  kind: finding
+  text: 92 CAZy families show elevated co-occurrence with T4SS loci within 10 kb, with GT2 glycosyltransferases the top hit across 767 genomes.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:metabolic-pathways
+  entities:
+  - entity:cazy-families
+  - entity:gt2-glycosyltransferase
+  - entity:t4ss
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**92 CAZy families** show elevated co-occurrence with T4SS loci at ≤10 kb (threshold\n  validation pending); GT2 glycosyltransferases are the top hit (767 genomes, avg 5,041 bp)."
+- id: stmt:biome-enrichment-marine-rhizosphere
+  kind: finding
+  text: T4SS-CAZy synteny is enriched in marine sediment and rhizosphere biomes, most strongly in barley rhizosphere (OR=10.4).
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:marine-sediment
+  - entity:rhizosphere
+  - entity:biome-enrichment
+  links:
+    supports:
+    - stmt:t4ss-cazy-synteny
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**Biome enrichment**: marine sediment (OR=5.5, q<10⁻⁹⁸), barley rhizosphere (OR=10.4),\n  maize rhizosphere (OR=4.1)."
+- id: stmt:cross-phylum-hgt-events
+  kind: finding
+  text: Phylogenetic analysis of the GT2 gene tree detected 77 HGT events including 32 high-confidence cross-phylum events, with Node_4915 spanning 8 phyla at maximum divergence 4.843.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:metabolic-pathways
+  entities:
+  - entity:gt2-gene-tree
+  - entity:hgt-events
+  - entity:node-4915
+  links:
+    supports:
+    - stmt:hgt-conjugative-transfer-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**77 HGT events** detected in GT2 gene tree; **32 high-confidence cross-phylum events**\n  (normalised). Strongest: Node_4915 spans 8 phyla at max divergence 4.843."
+    asset: figures/fig_nb05_hgt_scatter.png
+- id: stmt:node4915-eight-phyla
+  kind: finding
+  text: Node_4915 was confirmed as a 35-gene, 82.9% syntenic cluster spanning eight distinct bacterial phyla.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:node-4915
+  - entity:gt2-glycosyltransferase
+  - entity:bacterial-phyla
+  links:
+    supports:
+    - stmt:cross-phylum-hgt-events
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REPORT.md
+    source_section: NB05 Analysis Results
+    quote: "**Node_4915 confirmed**: 35 genes, 82.9% syntenic, 8 phyla (WOR-3, Desulfobacterota,\n  Patescibacteria, Bacteroidota, Firmicutes_A, Methanobacteriota, Bdellovibrionota,\n  Acidobacteriota), Max_Divergence = 4.843."
+- id: stmt:divergence-synteny-anticorrelation
+  kind: finding
+  text: More phylogenetically distant HGT events have lower syntenic percentage (Spearman rho = -0.615), consistent with sequence divergence accumulating after transfer.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:phylogenetic-divergence
+  - entity:synteny
+  - entity:hgt-events
+  links:
+    supports:
+    - stmt:cross-phylum-hgt-events
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REPORT.md
+    source_section: NB05 Analysis Results
+    quote: "**Divergence vs. synteny**: Spearman ρ = −0.615 (p<0.001) — more phylogenetically\n  distant events have lower syntenic percentage, consistent with sequence divergence\n  after transfer. This is the expected biological pattern."
+    asset: figures/fig_nb05_hgt_scatter.png
+- id: stmt:cazy-not-on-plasmids
+  kind: finding
+  text: CAZy genes are not located on plasmids while T4SS-positive genomes show 10x higher MGE density, consistent with chromosomal or integrative transfer rather than plasmid mobilisation.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:cazy-families
+  - entity:plasmids
+  - entity:mge-density
+  links:
+    supports:
+    - stmt:hgt-conjugative-transfer-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**CAZy genes are not on plasmids** (ICEfinder: 12 IMEs in top 100 accumulators);\n  T4SS+ genomes have **10× higher MGE density** (p<0.001), consistent with\n  chromosomal/integrative transfer."
+- id: stmt:gt2-metal-resistance-link
+  kind: finding
+  text: GT2-neighbourhood MAGs carry roughly 11x more metal resistance genes than non-GT2 MAGs, linking CAZy-T4SS synteny hubs to the metal resistance niche.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:gt2-glycosyltransferase
+  - entity:metal-resistance-genes
+  - entity:environmental-mags
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REPORT.md
+    source_section: NB05 Analysis Results
+    quote: 'GT2-neighbourhood MAGs (n=376) have mean 0.045 metal resistance types vs 0.004 for
+
+      non-GT2 MAGs (n=260,276); Mann-Whitney p=8.6e-27. Genomes with GT2 in T4SS-proximal
+
+      neighbourhoods carry **11× more metal resistance genes**.'
+- id: stmt:cazy-pathway-glm
+  kind: finding
+  text: A negative binomial GLM estimates that each additional CAZy family increases the expected enriched KEGG pathway count by about 35%.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:pangenome-architecture
+  entities:
+  - entity:cazy-families
+  - entity:kegg-pathways
+  - entity:negative-binomial-glm
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: README.md
+    source_section: Key Findings (Preliminary)
+    quote: "**Negative binomial GLM**: each additional CAZy family increases expected enriched KEGG\n  pathway count by ~35% (coefficient 0.299, 95% CI 0.253–0.345), offset by genome length,\n  cluster-robust standard errors by taxonomic class."
+- id: stmt:hgt-conjugative-transfer-claim
+  kind: claim
+  text: Cross-phylum clustering of syntenic T4SS-GT2 loci in 32 verified cases is inconsistent with vertical inheritance and consistent with conjugative horizontal transfer of CAZy cassettes in environmental bacteria.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:metabolic-pathways
+  entities:
+  - entity:t4ss
+  - entity:gt2-glycosyltransferase
+  - entity:conjugative-machinery
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: README.md
+    source_section: Claim Framing
+    quote: '> Cross-phylum clustering of syntenic T4SS-GT2 loci in 32 independently verified cases,
+
+      > spanning up to 8 bacterial phyla at phylogenetic divergences up to 4.843, is inconsistent
+
+      > with vertical inheritance and consistent with conjugative horizontal gene transfer of
+
+      > carbohydrate-active enzyme cassettes in environmental bacteria.'
+- id: stmt:distinct-from-pul-paradigm
+  kind: claim
+  text: The T4SS-CAZy HGT signal occurs across non-Bacteroidetes lineages via conjugation and is mechanistically and taxonomically distinct from the TonB-dependent PUL paradigm.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:metabolic-pathways
+  entities:
+  - entity:pul-paradigm
+  - entity:tonb-dependent-transporter
+  - entity:t4ss
+  links:
+    supports:
+    - stmt:hgt-conjugative-transfer-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: README.md
+    source_section: Claim Framing
+    quote: 'This is explicitly distinguished from the Polysaccharide Utilization Locus (PUL) paradigm,
+
+      which involves TonB-dependent transporters (TBDTs) in Bacteroidetes. The T4SS-CAZy signal
+
+      here occurs across non-Bacteroidetes lineages via a conjugation-based mechanism.'
+- id: stmt:caveat-associative-not-causal
+  kind: caveat
+  text: All reported associations are observational and the central claim is explicitly associative, so mechanistic confirmation of T4SS-mediated CAZy transfer requires experimental validation.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:t4ss
+  - entity:cazy-families
+  - entity:environmental-mags
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:hgt-conjugative-transfer-claim
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: 'All associations are observational; mechanistic confirmation requires
+
+      experimental validation.'
+- id: stmt:caveat-threshold-and-null-validation-pending
+  kind: caveat
+  text: The 10 kb synteny threshold and the cross-phylum incongruence rate remain unvalidated because the permutation test and housekeeping-gene null baseline have not yet been run.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:synteny
+  - entity:hgt-events
+  - entity:permutation-test
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cross-phylum-hgt-events
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: '1. Permutation test for the 10 kb synteny threshold — arbitrary threshold is unvalidated.
+
+      2. Housekeeping gene null baseline — without this, the 76/32 HGT detection rate cannot be shown to exceed background phylogenetic incongruence.'
+- id: stmt:caveat-node4915-blast-pending
+  kind: caveat
+  text: The headline Node_4915 result of 8 phyla at divergence 4.843 still needs sequence-level verification by BLAST against NCBI to rule out chimeric or misclassified sequences.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:node-4915
+  - entity:ncbi-blast
+  - entity:bacterial-phyla
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:node4915-eight-phyla
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: 4. Node_4915 BLAST validation against NCBI nr — the 8-phyla, divergence-4.843 claim is the headline result and needs sequence-level verification.
+- id: stmt:opportunity-biome-factorisation
+  kind: opportunity
+  text: A biome enrichment factorisation comparing joint to independent odds ratios would test whether the striking rhizosphere co-enrichment exceeds independent T4SS and CAZy prevalence effects.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:biome-enrichment
+  - entity:rhizosphere
+  - entity:odds-ratio
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:biome-enrichment-marine-rhizosphere
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: The OR=10.4 for barley rhizosphere is striking and warrants confirmation via the pending biome factorisation (NB05.3), which correctly asks whether this exceeds independent T4SS and CAZy prevalence effects.
+- id: stmt:opportunity-housekeeping-null-baseline
+  kind: opportunity
+  text: Building gene trees for five conserved single-copy housekeeping genes from the same genomes would establish a null incongruence baseline showing whether GT2 syntenic incongruence exceeds background.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:housekeeping-genes
+  - entity:gt2-gene-tree
+  - entity:phylogenetic-incongruence
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:caveat-threshold-and-null-validation-pending
+  evidence:
+  - source_project: t4ss_cazy_environmental_hgt
+    source_doc: README.md
+    source_section: NB05 — Characterisation and Validation Analyses
+    quote: "Build gene trees for 5 conserved single-copy genes (rRNA, gyrase B, RNA polymerase β,\n   recA, rpS3) from the same 1,096 genomes. Quantify incongruence rate per gene. Show GT2\n   syntenic incongruence (77 events / 32 cross-phylum) significantly exceeds this null."

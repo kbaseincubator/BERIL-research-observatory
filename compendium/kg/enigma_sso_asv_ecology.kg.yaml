@@ -1,0 +1,373 @@
+project:
+  id: enigma_sso_asv_ecology
+  title: 'Report: SSO Subsurface Community Ecology — Spatial Structure, Functional Gradients, and Hydrogeological Drivers'
+statements:
+- id: stmt:distance-decay-meter-scale
+  kind: finding
+  text: Sediment microbial communities across the 9 SSO wells show significant distance-decay of similarity at meter scale, with community turnover aligned to the east-west axis rather than the hillslope.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:sso-grid
+  - entity:bray-curtis
+  - entity:mantel-test
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 1. Community Similarity Tracks Spatial Arrangement at Meter Scale
+    quote: 'Sediment-associated microbial communities across the 9 SSO wells (3×3 grid, ~6 m span) show significant distance-decay of similarity (Mantel test: Spearman ρ = 0.323, p = 0.029, 9,999 permutations).'
+    notebook: 02_sediment_spatial.ipynb
+    figure: figures/bc_heatmap_sediment.png
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 1. Community Similarity Tracks Spatial Arrangement at Meter Scale
+    quote: Critically, community turnover is **not** aligned with the hillslope (uphill-downhill Mantel ρ = −0.049, p = 0.580) but instead with the **east-west axis** (column Mantel ρ = 0.227, p = 0.092).
+- id: stmt:column3-corridor
+  kind: finding
+  text: Wells U3, M6, and L7 form a diagonal community-similarity corridor from the northeast to the southwest that aligns with the expected contamination-plume flow path from the uphill Area 3 source.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:sso-grid
+  - entity:contamination-plume
+  - entity:bray-curtis
+  links:
+    supports:
+    - stmt:distance-decay-meter-scale
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: '2. The Column 3 Corridor: A Plume Flow Path'
+    quote: These wells trace a **diagonal corridor from the northeast (U3) to the southwest (L7)** that aligns with the expected flow path of the contamination plume from the Area 3 source (high nitrate, low pH, heavy metals) located uphill and northeast of the SSO.
+    notebook: 02_sediment_spatial.ipynb
+    figure: figures/nmds_vs_grid.png
+- id: stmt:depth-dominates-zonation
+  kind: finding
+  text: PERMANOVA shows hydrogeological depth zone explains 27.5% of sediment community variance (p=0.0001) while well identity is not significant, so vertical zonation dominates over horizontal position.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:microbial-ecotypes
+  entities:
+  - entity:permanova
+  - entity:hydrogeological-zone
+  - entity:depth-zonation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 3. Depth Dominates Over Horizontal Position
+    quote: '**Hydrogeological zone** (VZ/VSZ/SZ1/SZ2) explains **27.5%** of community variance (F = 4.05, p = 0.0001)'
+    notebook: 03_depth_zonation.ipynb
+    figure: figures/nmds_samples_zone_well.png
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 3. Depth Dominates Over Horizontal Position
+    quote: '**Well identity** explains **19.2%** but is **not significant** (F = 0.80, p = 0.979)'
+- id: stmt:phylum-depth-redox-split
+  kind: finding
+  text: Ten of twelve dominant phyla show significant depth associations that split into shallow-oxic-enriched and deep-anoxic-enriched groups, mirroring the subsurface redox gradient.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:microbial-ecotypes
+  entities:
+  - entity:depth-zonation
+  - entity:redox-gradient
+  - entity:phylum-composition
+  links:
+    supports:
+    - stmt:depth-dominates-zonation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 3. Depth Dominates Over Horizontal Position
+    quote: 'Ten of 12 dominant phyla show significant depth associations (p < 0.05), splitting into biologically coherent groups:'
+    notebook: 03_depth_zonation.ipynb
+    figure: figures/depth_phylum_correlation.png
+- id: stmt:redox-ladder-spatial-map
+  kind: finding
+  text: Genus-level functional inference maps biogeochemical processes onto the 3x3 grid in a spatial sequence that recapitulates the thermodynamic redox ladder expected along a contamination plume.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:subsurface-genomics
+  entities:
+  - entity:redox-gradient
+  - entity:functional-inference
+  - entity:biogeochemical-cycling
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 4. Genus-Level Biogeochemical Processes Map the Redox Ladder
+    quote: 'The spatial distribution of processes recapitulates the thermodynamic redox ladder expected along a contamination plume:'
+    notebook: 04_functional_inference.ipynb
+    figure: figures/genus_process_grid.png
+- id: stmt:m5-denitrification-hotspot
+  kind: finding
+  text: The central well M5 hosts the highest denitrification potential (7.7% Rhodanobacter), consistent with a plume mixing zone where nitrate-rich contaminated groundwater meets native organic carbon.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:subsurface-genomics
+  entities:
+  - entity:rhodanobacter
+  - entity:denitrification
+  - entity:contamination-plume
+  links:
+    supports:
+    - stmt:redox-ladder-spatial-map
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 4. Genus-Level Biogeochemical Processes Map the Redox Ladder
+    quote: '**M5** — the central well — hosts the highest denitrification potential (7.7% *Rhodanobacter*), consistent with its position at the **plume mixing zone** where nitrate-rich contaminated groundwater meets native organic carbon.'
+    notebook: 04_functional_inference.ipynb
+    figure: figures/genus_process_clustermap.png
+- id: stmt:groundwater-planktonic-plume
+  kind: finding
+  text: Groundwater is enriched in plume-adapted denitrifiers and iron oxidizers while sediment-attached anaerobes are depleted, indicating distinct planktonic versus attached communities rather than simple detachment.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:groundwater
+  - entity:rhodanobacter
+  - entity:contamination-plume
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 5. Groundwater Carries a Plume-Associated Planktonic Community
+    quote: Sediment-attached anaerobes (*Anaeromyxobacter*, *Arcobacter*, *Ca. Methanoperedens*) are depleted in groundwater, indicating distinct attached vs planktonic communities rather than simple detachment.
+    notebook: 05_gw_vs_sediment.ipynb
+    figure: figures/gw_vs_sediment_phylum.png
+- id: stmt:guild-cooccurrence-network
+  kind: finding
+  text: Guild co-occurrence analysis reveals a tight nitrifier-iron-oxidizer coupling and a denitrifier-syntroph mutual exclusion, providing a metabolic network topology that overlays the spatial redox gradient.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbial-ecotypes
+  entities:
+  - entity:metabolic-guilds
+  - entity:co-occurrence
+  - entity:redox-gradient
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 6. Metabolic Guild Structure and Inferred Interactions
+    quote: '**Nitrifier × iron oxidizer**: ρ = +0.95 — these co-occur strongly, both concentrated at U3 (plume entry).'
+    notebook: 07_hotspot_interactions.ipynb
+    figure: figures/guild_cooccurrence.png
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 6. Metabolic Guild Structure and Inferred Interactions
+    quote: '**Denitrifier × syntroph**: ρ = −0.67 — mutual exclusion across the redox gradient.'
+- id: stmt:groundwater-temporal-stability
+  kind: finding
+  text: Groundwater communities sampled 9 days apart show remarkable short-term stability, with sampling date explaining only 0.8% of variance versus 49.9% for well identity.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:subsurface-genomics
+  entities:
+  - entity:groundwater
+  - entity:temporal-stability
+  - entity:permanova
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 7. Groundwater Community Stability Over 9 Days
+    quote: 'Groundwater communities at 5 wells sampled 9 days apart (Sep 9 vs Sep 18, 2024) show remarkable short-term stability:'
+    notebook: 08_temporal_stability.ipynb
+    figure: figures/temporal_vs_spatial_gw.png
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: 7. Groundwater Community Stability Over 9 Days
+    quote: 'This stability strengthens the plume model: the spatial community patterns we observe are not transient fluctuations but reflect persistent environmental structure maintained by the contamination plume.'
+- id: stmt:contamination-plume-model
+  kind: claim
+  text: All findings converge on a single model in which SSO community spatial structure is governed by a contamination plume entering from the northeast and flowing southwest through the saturated zone.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:contamination-plume
+  - entity:oak-ridge-reservation
+  - entity:sso-grid
+  links:
+    supports:
+    - stmt:column3-corridor
+    - stmt:depth-dominates-zonation
+    - stmt:redox-ladder-spatial-map
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: The Contamination Plume Model
+    quote: 'All findings converge on a single explanatory model: **the spatial structure of SSO microbial communities is governed by a contamination plume entering from the northeast and flowing southwest through the saturated zone.**'
+    notebook: 06_synthesis.ipynb
+    figure: figures/synthesis_plume_model.png
+- id: stmt:16s-maps-subsurface-hydrology
+  kind: claim
+  text: The plume flow path is visible purely in Bray-Curtis community similarity, demonstrating that 16S community structure can map subsurface hydrology at meter scale.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:bray-curtis
+  - entity:contamination-plume
+  - entity:sso-grid
+  links:
+    supports:
+    - stmt:column3-corridor
+    contradicts: []
+    refines:
+    - stmt:contamination-plume-model
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: The U3-M6-L7 corridor, identified purely from Bray-Curtis dissimilarity patterns, aligns with the expected NE→SW plume trajectory — demonstrating that 16S community similarity can map subsurface hydrology at meter scale.
+- id: stmt:no-direct-geochemistry-caveat
+  kind: caveat
+  text: All environmental inferences rest on community composition alone because SSO geochemistry has not been loaded into BERDL, so the plume model awaits geochemical confirmation.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:contamination-plume
+  - entity:geochemistry
+  - entity:coral
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:contamination-plume-model
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**No direct geochemistry**: SSO geochemistry (221 sample tubes registered in CORAL) has not been loaded into BERDL. All environmental inferences are from community composition alone.'
+- id: stmt:genus-coverage-caveat
+  kind: caveat
+  text: Genus-level functional annotation covers only 21% of total reads, so process abundance estimates are lower bounds and the unclassified majority of reads could harbor additional functional capacity.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:functional-inference
+  - entity:taxonomy-resolution
+  - entity:biogeochemical-cycling
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:redox-ladder-spatial-map
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Genus coverage uncertainty**: Genus-level functional annotation covers only 21% of total reads (65 of 1,038 genera). Process abundance estimates are lower bounds; the unclassified 56% of reads could harbor additional functional capacity.'
+- id: stmt:groundwater-key-well-gap-caveat
+  kind: caveat
+  text: Only 5 of 9 wells have groundwater ASV data, missing the critical M5 denitrification hotspot and U3 plume entry, so those hotspot interpretations rest on sediment data alone.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:environment-biogeography
+  entities:
+  - entity:groundwater
+  - entity:rhodanobacter
+  - entity:sso-grid
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:m5-denitrification-hotspot
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Groundwater coverage**: Only 5 of 9 wells have groundwater ASV data (L7, L9, M4, M6, U2), missing the critical wells M5 (denitrification hotspot) and U3 (plume entry).'
+- id: stmt:load-geochemistry-opportunity
+  kind: opportunity
+  text: Loading the 221 registered SSO geochemistry samples into CORAL would enable direct correlation of community composition with measured environmental parameters and validate or refute the plume model.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:subsurface-genomics
+  entities:
+  - entity:geochemistry
+  - entity:coral
+  - entity:contamination-plume
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:no-direct-geochemistry-caveat
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Load SSO geochemistry into CORAL**: The 221 registered geochemistry samples (metals, IC/TOC, isotopes, NH₃/NO₂) would allow direct correlation of community composition with measured environmental parameters, validating or refuting the plume model.'
+- id: stmt:metagenomics-opportunity
+  kind: opportunity
+  text: Shotgun metagenomics at the same spatial resolution would confirm the taxonomy-based functional inferences and capture the majority of reads lacking genus-level classification.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:metagenomics
+  - entity:functional-inference
+  - entity:taxonomy-resolution
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:genus-coverage-caveat
+  evidence:
+  - source_project: enigma_sso_asv_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Metagenomics**: Shotgun metagenomics at the same spatial resolution would confirm functional inferences that are currently based on taxonomy-to-trait mapping, and would capture the 56% of reads without genus-level classification.'

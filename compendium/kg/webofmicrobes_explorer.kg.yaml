@@ -1,0 +1,294 @@
+project:
+  id: webofmicrobes_explorer
+  title: 'Report: Web of Microbes Data Explorer'
+statements:
+- id: stmt:wom-action-encoding-four-semantics
+  kind: finding
+  text: The 2018 Web of Microbes snapshot encodes metabolite observations with four distinct action semantics in which 'E' (emerged/de novo production) and 'I' (increased/amplification) are mutually exclusive across all 10,744 observations.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:web-of-microbes
+  - entity:exometabolomics
+  - entity:metabolite-action-encoding
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: 1. WoM Action Encoding Uses Four Distinct Semantics, Not Three
+    quote: '**''E'' and ''I'' are mutually exclusive** (zero overlap across all 10,744 observations). ''E'' encodes genuine de novo metabolite synthesis — the organism produced a metabolite that was absent from the starting medium.'
+    notebook: 01_database_overview.ipynb
+- id: stmt:wom-no-consumption-data
+  kind: caveat
+  text: The 2018 WoM snapshot records no consumption (decrease) action for any organism, so it captures only what organisms produce and cannot test whether consumed metabolites predict gene essentiality.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:web-of-microbes
+  - entity:exometabolomics
+  - entity:metabolite-consumption
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:wom-action-encoding-four-semantics
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**No consumption data**: The most scientifically valuable WoM data (what organisms consume) is absent from this snapshot.'
+- id: stmt:wom-fb-strain-overlap
+  kind: finding
+  text: Two WoM Pseudomonas ENIGMA groundwater isolates map directly to Fitness Browser strains (pseudo3_N2E3 and pseudo13_GW456_L13), each with over 5,000 genes and more than 100 fitness experiments, plus a same-strain E. coli and a genus-level Synechococcus match.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:fitness-browser
+  - entity:web-of-microbes
+  - entity:pseudomonas
+  - entity:enigma-isolates
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: 2. Two Direct Fitness Browser Strain Matches Plus Two Genus-Level Matches
+    quote: The two Pseudomonas direct matches are ENIGMA groundwater isolates with rich FB data.
+    notebook: 01_database_overview.ipynb
+- id: stmt:metabolites-bridge-to-fb-conditions
+  kind: finding
+  text: For Pseudomonas FW300-N2E3, curated matching identified 19 metabolites the organism produces in WoM that the Fitness Browser also tests as carbon or nitrogen sources, of which 5 are de novo products and 14 are amplified metabolites.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-browser
+  - entity:web-of-microbes
+  - entity:carbon-nitrogen-sources
+  - entity:pseudomonas
+  links:
+    supports:
+    - stmt:wom-fb-strain-overlap
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: 3. 19 WoM-Produced Metabolites Are Tested as FB Carbon/Nitrogen Sources
+    quote: Of the 19 matches, 5 are de novo products (E) and 14 are amplified metabolites (I).
+    notebook: 02_cross_collection_links.ipynb
+    figure: figures/enigma_metabolite_heatmap.png
+- id: stmt:modelseed-definitive-links
+  kind: finding
+  text: Only 26.8% of identified WoM metabolites (69 compounds) have definitive 1:1 ModelSEED links by exact name match, while an additional 41.6% match by molecular formula alone at an average of 8.4 ModelSEED molecules per formula.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:modelseed
+  - entity:web-of-microbes
+  - entity:metabolite-annotation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: 4. 26.8% of WoM Metabolites Have Definitive ModelSEED Links (68.5% with Ambiguous Formula Matches)
+    quote: Of 257 identified (non-unknown) WoM compounds, **69 (26.8%) have definitive ModelSEED links** by exact name match. An additional 107 match by molecular formula alone, but formula matches are inherently ambiguous — each WoM formula maps to an average of 8.4 ModelSEED molecules
+    notebook: 02_cross_collection_links.ipynb
+- id: stmt:formula-matches-ambiguous
+  kind: caveat
+  text: Formula-only metabolite matches to ModelSEED are inherently ambiguous and provide candidate sets for manual curation rather than definitive compound identifications.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:modelseed
+  - entity:metabolite-annotation
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:modelseed-definitive-links
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: 4. 26.8% of WoM Metabolites Have Definitive ModelSEED Links (68.5% with Ambiguous Formula Matches)
+    quote: Formula matches provide candidate sets for manual curation, not definitive identifications.
+    notebook: 02_cross_collection_links.ipynb
+- id: stmt:metabolic-novelty-rate
+  kind: finding
+  text: The fraction of metabolite changes representing de novo production versus amplification varies roughly 2-fold across ENIGMA isolates in R2A medium, defining a 15-32% "metabolic novelty rate" as a potential phenotype.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:enigma-isolates
+  - entity:metabolic-novelty-rate
+  - entity:pseudomonas
+  links:
+    supports:
+    - stmt:wom-action-encoding-four-semantics
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: 5. ENIGMA Isolates Show Distinct "Metabolic Novelty Rates"
+    quote: GW456-L13 produces the most novel metabolites (32.4%), while FW507-8R2A produces the fewest (15.2%). This "metabolic novelty rate" is a potential phenotype for cross-referencing with pangenome gene content.
+    notebook: 01_database_overview.ipynb
+- id: stmt:pangenome-clades-all-genera
+  kind: finding
+  text: Every WoM organism genus has corresponding pangenome species clades in BERDL, making gene-cluster, conservation, and functional-annotation context available for future genome-content versus metabolite-output analyses.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:pangenome
+  - entity:web-of-microbes
+  - entity:species-clades
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: 6. All WoM Genera Have Pangenome Species Clades
+    quote: Pangenome context (gene clusters, conservation, functional annotations) is available for all WoM organism genera, enabling future genome-content ↔ metabolite-output analyses.
+    notebook: 02_cross_collection_links.ipynb
+- id: stmt:database-scale-unidentified
+  kind: finding
+  text: The 2018 WoM snapshot tracks 589 metabolites across 37 organisms in five ENIGMA-funded projects, but 332 (56.4%) of the metabolites remain unidentified with an "Unk_" prefix.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:web-of-microbes
+  - entity:unidentified-metabolites
+  - entity:enigma-isolates
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: Database Scale
+    quote: 589 metabolites are tracked, of which 332 (56.4%) are unidentified ("Unk_" prefix).
+- id: stmt:h1-partially-supported
+  kind: claim
+  text: The hypothesis that WoM provides actionable cross-collection links is partially supported, with real connections to Fitness Browser, ModelSEED, and the pangenome offset by the absence of consumption data and a small single-laboratory dataset.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:web-of-microbes
+  - entity:fitness-browser
+  - entity:cross-collection-linking
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: Hypothesis Outcome
+    quote: '**H1 is partially supported.** Cross-collection links are real and actionable:'
+- id: stmt:wom-ecoli-data-minimal
+  kind: caveat
+  text: Despite E. coli Keio being one of the richest Fitness Browser organisms, the WoM snapshot holds only 12 observations for E. coli BW25113 focused narrowly on sulfur and cysteine metabolism.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-browser
+  - entity:ecoli-keio
+  - entity:web-of-microbes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:wom-fb-strain-overlap
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**WoM E. coli data is minimal**: Despite Keio being one of the richest FB organisms, WoM has only 12 observations for E. coli BW25113 (sulfur/cysteine focus).'
+- id: stmt:gapmind-link-blocked
+  kind: opportunity
+  text: The WoM-to-GapMind link is currently blocked by a naming-convention mismatch, and building a GapMind pathway-to-substrate/product metabolite lookup table would unblock pathway-level integration.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:gapmind
+  - entity:web-of-microbes
+  - entity:pathway-mapping
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Build a GapMind pathway ↔ metabolite lookup table**: Map each GapMind pathway to its substrate and product metabolites using the GapMind documentation, enabling the WoM ↔ GapMind link that failed in NB02.'
+- id: stmt:novelty-rate-pangenome-openness
+  kind: opportunity
+  text: Testing whether organisms with higher de novo production ratios have more open pangenomes or more accessory genes is a promising next analysis linking metabolic novelty to genome content.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:metabolic-novelty-rate
+  - entity:pangenome
+  - entity:accessory-genes
+  links:
+    supports:
+    - stmt:metabolic-novelty-rate
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Metabolic novelty rate ↔ pangenome openness**: Test whether organisms with higher E/(E+I) ratios (more de novo production) have more open pangenomes or more accessory genes.'
+- id: stmt:newer-wom-richer-dataset
+  kind: claim
+  text: Obtaining the current GNPS2 or Northen lab WoM dataset (including the de Raad et al. 2022 NLDM 110-organism panel) would resolve the no-consumption limitation and increase the organism count several-fold.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:web-of-microbes
+  - entity:nldm
+  - entity:soil-bacteria
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:wom-no-consumption-data
+  evidence:
+  - source_project: webofmicrobes_explorer
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: The de Raad et al. (2022) NLDM study tested 110 soil bacteria with full consumption and production tracking. This dataset, if ingested, would resolve the no-consumption limitation and increase the organism count 3–5×.

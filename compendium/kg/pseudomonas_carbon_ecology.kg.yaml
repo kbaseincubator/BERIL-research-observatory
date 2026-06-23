@@ -1,0 +1,325 @@
+project:
+  id: pseudomonas_carbon_ecology
+  title: 'Report: Carbon Source Utilization Predicts Ecology and Lifestyle in Pseudomonas'
+statements:
+- id: stmt:sugar-pathway-loss-host-associated
+  kind: finding
+  text: Host-associated Pseudomonas sensu stricto (the P. aeruginosa group) show near-complete loss of plant-derived sugar catabolism relative to Pseudomonas_E, with 43 of 62 GapMind carbon pathways differing significantly between the two subgenera.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pseudomonas
+  - entity:gapmind
+  - entity:carbon-pathways
+  - entity:p-aeruginosa
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 1: Host-Associated Pseudomonas Show Dramatic Loss of Plant-Derived Sugar Pathways'
+    quote: Of the 62 GapMind carbon pathways tested, **43 differ significantly** between the two subgenera (Mann-Whitney U, BH-FDR < 0.05).
+    figure: figures/pathway_heatmap.png
+    notebook: 03_pathway_lifestyle_analysis.ipynb
+- id: stmt:plant-sugar-pathways-lost
+  kind: finding
+  text: The pathways most strongly lost in the P. aeruginosa group are plant-derived sugars and sugar alcohols such as xylose, arabinose, and myo-inositol (0% complete versus 59-74% in the P. fluorescens group).
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:xylose
+  - entity:arabinose
+  - entity:myo-inositol
+  - entity:p-aeruginosa
+  links:
+    supports:
+    - stmt:sugar-pathway-loss-host-associated
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: Hypothesis Assessment
+    quote: The *P. aeruginosa* group shows near-complete loss of xylose, arabinose, and myo-inositol catabolism (0% vs. 59-74% in *P. fluorescens* group), along with dramatic reductions in ribose, galacturonate, mannitol, and sorbitol pathways.
+- id: stmt:amino-acid-pathways-retained
+  kind: finding
+  text: Amino acid and core organic acid catabolism (arginine, histidine, serine, glutamate, citrate, succinate, pyruvate) remain near-universal (>99%) in both subgenera, consistent with P. aeruginosa retaining amino acid catabolism for growth in host environments such as CF sputum.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbiome-engineering
+  entities:
+  - entity:amino-acid-catabolism
+  - entity:p-aeruginosa
+  - entity:cf-sputum
+  links:
+    supports:
+    - stmt:sugar-pathway-loss-host-associated
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 1: Host-Associated Pseudomonas Show Dramatic Loss of Plant-Derived Sugar Pathways'
+    quote: In contrast, amino acid catabolism (arginine, histidine, serine, glutamate, etc.) and core organic acid pathways (citrate, succinate, pyruvate) remain near-universal (>99%) in both groups.
+- id: stmt:carbon-profiles-environment-signal
+  kind: finding
+  text: Among 54 free-living and plant-associated species, carbon pathway profiles are significantly associated with isolation environment, with a permutation test yielding p = 0.006.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:carbon-pathways
+  - entity:permanova
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Carbon Pathway Profiles Distinguish Environment Types Among Free-Living Species'
+    quote: A PERMANOVA-like permutation test (999 permutations) yielded **p = 0.006**, with between-group mean distance (2.054) exceeding within-group mean distance (1.890).
+    figure: figures/pathway_pca_by_environment.png
+    notebook: 04_ecology_prediction.ipynb
+- id: stmt:random-forest-modest-accuracy
+  kind: finding
+  text: A Random Forest classifier predicting four environment classes from carbon pathway profiles achieved balanced accuracy of 0.408 +/- 0.169, above the 0.250 chance level but only modestly predictive.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:random-forest
+  - entity:carbon-pathways
+  - entity:environment-prediction
+  links:
+    supports:
+    - stmt:carbon-profiles-environment-signal
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Carbon Pathway Profiles Distinguish Environment Types Among Free-Living Species'
+    quote: A Random Forest classifier trained on 4 environment classes (soil, freshwater, plant_surface, rhizosphere; 51 species total) achieved **balanced accuracy of 0.408 +/- 0.169**, substantially above the 0.250 chance level.
+    figure: figures/rf_importance.png
+    notebook: 04_ecology_prediction.ipynb
+- id: stmt:free-living-greater-richness
+  kind: finding
+  text: Free-living and plant-associated species maintain higher carbon pathway richness (median 57 pathways) than host-associated species (median 55), a trend that persists within the Pseudomonas_E subgenus alone.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pathway-richness
+  - entity:pseudomonas
+  - entity:lifestyle
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 3: Free-Living Species Have Greater Pathway Richness Than Host-Associated Species'
+    quote: free-living and plant-associated species maintain higher carbon pathway richness (median = 57 pathways complete in >50% of genomes) than host-associated species (median = 55).
+    figure: figures/pathway_richness_by_lifestyle.png
+    notebook: 04_ecology_prediction.ipynb
+- id: stmt:aeruginosa-fluorescens-split-dominates
+  kind: finding
+  text: The primary axis of carbon pathway variation across Pseudomonas separates P. aeruginosa (Pseudomonas s.s.) from Pseudomonas_E, driven by the dramatic sugar pathway loss, while within-subgenus lifestyle categories overlap substantially.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:metabolic-pathways
+  entities:
+  - entity:pca
+  - entity:pseudomonas
+  - entity:subgenus
+  links:
+    supports:
+    - stmt:sugar-pathway-loss-host-associated
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 4: The Aeruginosa-Fluorescens Split Dominates Carbon Pathway Variation'
+    quote: PCA of all species' pathway profiles reveals that the primary axis of variation separates *Pseudomonas* s.s. from *Pseudomonas_E*, driven by the dramatic sugar pathway loss described in Finding 1.
+    figure: figures/pathway_pca_by_lifestyle.png
+    notebook: 04_ecology_prediction.ipynb
+- id: stmt:data-scale-genomes-species
+  kind: finding
+  text: The study extracted GapMind carbon pathway predictions for 12,732 genomes across 433 Pseudomonas species clades (GTDB r214) from the BERDL kbase_ke_pangenome collection.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:kbase-ke-pangenome
+  - entity:gtdb
+  - entity:gapmind
+  - entity:pseudomonas
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: Data Scale and Environment Classification
+    quote: we extracted GapMind carbon pathway predictions for **12,732 genomes** across **433 *Pseudomonas* species clades** (GTDB r214).
+- id: stmt:ancestral-streamlining-claim
+  kind: claim
+  text: Much of the metabolic versatility loss in P. aeruginosa reflects ancestral metabolic streamlining of the lineage itself rather than loss acquired during chronic infection, since these pathways were already absent at the species level across thousands of isolates.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbial-ecotypes
+  entities:
+  - entity:p-aeruginosa
+  - entity:metabolic-streamlining
+  - entity:cf-infection
+  links:
+    supports:
+    - stmt:plant-sugar-pathways-lost
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: Our results suggest that much of this "loss" is not acquired during infection but rather reflects the ancestral metabolic streamlining of the *P. aeruginosa* lineage itself — these pathways were already absent at the species level across thousands of isolates.
+- id: stmt:novel-genus-scale-quantification
+  kind: claim
+  text: This is the first study to systematically quantify carbon pathway profiles across the full breadth of Pseudomonas (433 species, 12,732 genomes) using standardized GapMind pathway predictions.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:pangenome-architecture
+  entities:
+  - entity:pseudomonas
+  - entity:gapmind
+  - entity:carbon-pathways
+  links:
+    supports:
+    - stmt:data-scale-genomes-species
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: This is the first study to systematically quantify carbon pathway profiles across the full breadth of *Pseudomonas* (433 species, 12,732 genomes) using standardized pathway predictions.
+- id: stmt:caveat-sampling-bias
+  kind: caveat
+  text: P. aeruginosa comprises 53% of all genomes due to clinical importance while many environmental species have fewer than 10 sequenced genomes, an imbalance that limits the power of species-level comparisons.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:p-aeruginosa
+  - entity:sampling-bias
+  - entity:pseudomonas
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:sugar-pathway-loss-host-associated
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Sampling bias**: *P. aeruginosa* comprises 53% of all genomes (6,760/12,732) due to clinical importance, while many environmental species have <10 sequenced genomes.'
+- id: stmt:caveat-gapmind-resolution
+  kind: caveat
+  text: The 62 GapMind carbon pathways miss genus-specific catabolic capabilities, particularly aromatic degradation pathways (toluene, naphthalene, benzoate) central to P. putida ecology.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:functional-dark-matter
+  entities:
+  - entity:gapmind
+  - entity:aromatic-catabolism
+  - entity:p-putida
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:carbon-profiles-environment-signal
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The 62 GapMind carbon pathways cover common carbon sources but miss genus-specific catabolic capabilities, particularly aromatic degradation pathways (toluene, naphthalene, benzoate) that are central to *P. putida* ecology.
+- id: stmt:caveat-phylogenetic-confounding
+  kind: caveat
+  text: The dominant signal in the analysis separates subgenera rather than lifestyles, and within Pseudomonas_E lifestyle-associated differences are subtle, with the analyses not explicitly controlling for phylogenetic non-independence among species.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:phylogenetic-confounding
+  - entity:subgenus
+  - entity:lifestyle
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:random-forest-modest-accuracy
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Phylogenetic confounding**: The dominant signal in PCA separates subgenera rather than lifestyles. Within *Pseudomonas_E*, lifestyle-associated differences are subtle, and the analyses do not explicitly control for phylogenetic non-independence among species.'
+- id: stmt:opportunity-fitness-browser-validation
+  kind: opportunity
+  text: Cross-referencing carbon pathway predictions with RB-TnSeq fitness data from the kescience_fitnessbrowser could experimentally validate which pathways are functionally important in specific carbon sources.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:fitness-browser
+  - entity:rb-tnseq
+  - entity:carbon-pathways
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Cross-reference carbon pathway predictions with RB-TnSeq fitness data from the `kescience_fitnessbrowser` to experimentally validate which pathways are functionally important in specific carbon sources.
+- id: stmt:opportunity-within-species-ecotypes
+  kind: opportunity
+  text: Analyzing within-species carbon pathway variation in species isolated from multiple environments (e.g., P. fluorescens, P. putida) could reveal metabolic ecotypes adapted to different niches.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:metabolic-pathways
+  entities:
+  - entity:metabolic-ecotypes
+  - entity:p-fluorescens
+  - entity:p-putida
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pseudomonas_carbon_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Analyzing within-species pathway variation could reveal metabolic ecotypes — subpopulations adapted to different niches.

@@ -1,0 +1,327 @@
+project:
+  id: lab_field_ecology
+  title: 'Report: Lab Fitness Predicts Field Ecology at Oak Ridge'
+statements:
+- id: stmt:fb-genera-detected-oak-ridge
+  kind: finding
+  text: Of 26 unique genera represented in the Fitness Browser, 14 are detected in Oak Ridge groundwater communities via 16S amplicon sequencing, with Sphingomonas, Pseudomonas, and Caulobacter the most prevalent.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-browser
+  - entity:enigma-coral
+  - entity:oak-ridge-frc
+  - entity:16s-amplicon
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: 14 of 26 Fitness Browser Genera Detected at Oak Ridge
+    quote: Of 26 unique genera represented in the Fitness Browser, 14 are detected in Oak Ridge groundwater communities via 16S amplicon sequencing. The most prevalent are *Sphingomonas* (93% of 108 sites), *Pseudomonas* (91%), and *Caulobacter* (82%).
+    notebook: 02_genus_abundance.ipynb
+    figure: figures/fig_fb_genus_prevalence.png
+- id: stmt:desulfovibrio-rare-low-abundance
+  kind: finding
+  text: Desulfovibrio, the primary ENIGMA model organism, is detected at only 34% of Oak Ridge sites and at very low abundance, making it an unreliable subject for correlation analysis.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:subsurface-genomics
+  entities:
+  - entity:desulfovibrio
+  - entity:enigma-coral
+  - entity:oak-ridge-frc
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: 14 of 26 Fitness Browser Genera Detected at Oak Ridge
+    quote: '*Desulfovibrio*, the primary ENIGMA model organism, is detected at only 34% of sites at very low abundance (max 0.09% relative abundance).'
+    notebook: 02_genus_abundance.ipynb
+- id: stmt:genus-abundance-correlates-uranium-bidirectional
+  kind: finding
+  text: Of 11 FB genera with sufficient prevalence, 5 show significant correlations with uranium after BH-FDR correction, with Herbaspirillum and Bacteroides increasing and Caulobacter, Sphingomonas, and Pedobacter decreasing at high-uranium sites.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metal-resistance
+  entities:
+  - entity:uranium
+  - entity:enigma-coral
+  - entity:oak-ridge-frc
+  - entity:genus-abundance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Genus Abundance Correlates with Uranium -- in Both Directions
+    quote: 'Of 14 FB genera detected at Oak Ridge, 11 had sufficient prevalence (>=10 sites) for correlation analysis. After BH-FDR correction, 5 show significant correlations with uranium:'
+    notebook: 03_fitness_vs_field.ipynb
+    figure: figures/fig_abundance_vs_uranium.png
+- id: stmt:model-organisms-no-uranium-correlation
+  kind: finding
+  text: Despite being ENIGMA model organisms, both Desulfovibrio and Pseudomonas show no correlation between genus abundance and site uranium concentration.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metal-resistance
+  entities:
+  - entity:desulfovibrio
+  - entity:pseudomonas
+  - entity:uranium
+  - entity:enigma-coral
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:genus-abundance-correlates-uranium-bidirectional
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Genus Abundance Correlates with Uranium -- in Both Directions
+    quote: '*Desulfovibrio* shows no correlation (rho=0.022, p=0.82) and *Pseudomonas* shows no correlation (rho=-0.059, p=0.55) despite both being ENIGMA model organisms.'
+    notebook: 03_fitness_vs_field.ipynb
+- id: stmt:lab-tolerance-not-significant-field-ratio
+  kind: finding
+  text: The correlation between lab-derived metal tolerance score and the high-uranium/low-uranium field abundance ratio is suggestive but not significant (Spearman rho=0.503, p=0.095, n=12 genera), with the trend in the predicted direction but limited statistical power.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:metal-tolerance
+  - entity:fitness-browser
+  - entity:uranium
+  - entity:genus-abundance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Lab Metal Tolerance Does Not Significantly Predict Field Abundance Ratio
+    quote: The correlation between lab-derived metal tolerance score (negative mean fitness under stress, higher = more tolerant) and the high-uranium/low-uranium field abundance ratio is suggestive but not significant (Spearman rho=0.503, p=0.095, n=12 genera).
+    notebook: 03_fitness_vs_field.ipynb
+    figure: figures/fig_metal_tolerance_score.png
+- id: stmt:community-composition-shifts-contamination
+  kind: finding
+  text: Oak Ridge sites split at the median uranium concentration show distinct community compositions, with rare-biosphere taxa and subsurface specialists becoming more prominent at contaminated sites.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:uranium
+  - entity:enigma-coral
+  - entity:community-composition
+  - entity:oak-ridge-frc
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Community Composition Shifts with Contamination
+    quote: Sites split at the median uranium concentration show distinct community compositions. The top genera at high-uranium sites differ from low-uranium sites, with rare-biosphere taxa and subsurface specialists becoming more prominent at contaminated sites.
+    notebook: 03_fitness_vs_field.ipynb
+    figure: figures/fig_community_by_contamination.png
+- id: stmt:lab-fitness-does-not-simply-predict-field
+  kind: claim
+  text: Lab metal tolerance does not simply predict field abundance because field niches are multidimensional, communities involve interactions, 16S resolves only to genus, and geochemistry snapshots miss temporal dynamics.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:metal-tolerance
+  - entity:community-composition
+  - entity:16s-amplicon
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:lab-tolerance-not-significant-field-ratio
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Why Lab Fitness Doesn't Simply Predict Field Ecology
+    quote: An organism may tolerate metals in the lab but lack the metabolic capabilities for a particular field site.
+- id: stmt:caulobacter-sphingomonas-uranium-indicators
+  kind: claim
+  text: 'Genus-level uranium correlations provide actionable indicators: Caulobacter and Sphingomonas are sensitive indicators of uranium contamination, while Herbaspirillum and Bacteroides may be tolerant colonizers.'
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:caulobacter
+  - entity:sphingomonas
+  - entity:uranium
+  - entity:oak-ridge-frc
+  links:
+    supports:
+    - stmt:genus-abundance-correlates-uranium-bidirectional
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: 'the individual genus-level correlations with uranium (H2) provide actionable information: *Caulobacter* and *Sphingomonas* are sensitive indicators of uranium contamination, while *Herbaspirillum* and *Bacteroides* may be tolerant colonizers.'
+- id: stmt:first-link-fb-fitness-enigma-coral
+  kind: claim
+  text: This is the first study to directly link Fitness Browser lab fitness data with ENIGMA CORAL field community composition across a geochemical gradient, and it demonstrates the previously undocumented CORAL database holds analysis-ready ecological data.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-browser
+  - entity:enigma-coral
+  - entity:oak-ridge-frc
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: This is the first study to directly link Fitness Browser lab fitness data with ENIGMA CORAL field community composition across a geochemical gradient.
+- id: stmt:metal-resistance-enriched-accessory-genome
+  kind: finding
+  text: Consistent with Rhodanobacter strains acquiring heavy metal resistance via horizontal gene transfer at Oak Ridge, metal resistance genes are enriched in the accessory genome rather than the core.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:pangenome-architecture
+  entities:
+  - entity:rhodanobacter
+  - entity:accessory-genome
+  - entity:horizontal-gene-transfer
+  - entity:metal-resistance-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: This parallels our `costly_dispensable_genes` finding that metal resistance genes are enriched in the accessory genome.
+- id: stmt:genus-resolution-limitation
+  kind: caveat
+  text: 16S amplicon data resolves only to genus level, so species- or strain-level matching of field taxa to specific Fitness Browser lab organisms is not possible.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:16s-amplicon
+  - entity:fitness-browser
+  - entity:enigma-coral
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: 16S amplicon data resolves to genus level only; species/strain-level matching to FB organisms is not possible
+- id: stmt:crude-aggregate-tolerance-metric
+  kind: caveat
+  text: The aggregate metal tolerance score is crude, and condition-specific fitness scores such as uranium-only metrics would be more informative for testing whether lab metal tolerance predicts field abundance.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:metal-tolerance
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:lab-tolerance-not-significant-field-ratio
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The "metal tolerance score" is a crude aggregate; condition-specific fitness scores (e.g., uranium-only) would be more informative
+- id: stmt:confounders-not-controlled
+  kind: caveat
+  text: Genus-uranium correlations do not control for confounding geochemistry such as pH, dissolved oxygen, and carbon sources, so uranium's independent role on community structure remains uncertain.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:metal-resistance
+  entities:
+  - entity:uranium
+  - entity:community-composition
+  - entity:geochemistry
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Confounding variables (pH, dissolved oxygen, carbon sources) are not controlled for
+- id: stmt:opportunity-species-level-metagenomics
+  kind: opportunity
+  text: Using metagenomic data instead of 16S amplicons could match Fitness Browser organisms at species or strain level, overcoming the genus-resolution limitation of this analysis.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:metagenomics
+  - entity:16s-amplicon
+  - entity:fitness-browser
+  - entity:enigma-coral
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:genus-resolution-limitation
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Use metagenomic data (if available in ENIGMA CORAL genome/assembly tables) instead of 16S amplicons to match FB organisms at species or strain level
+- id: stmt:opportunity-add-rhodanobacter-fitness-browser
+  kind: opportunity
+  text: Adding Rhodanobacter, which dominates contaminated Oak Ridge wells but is absent from the Fitness Browser, to the Fitness Browser would be a high-impact target for linking lab fitness to field ecology.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metal-resistance
+  entities:
+  - entity:rhodanobacter
+  - entity:fitness-browser
+  - entity:oak-ridge-frc
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: lab_field_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Adding Rhodanobacter to the FB would be a high-impact target

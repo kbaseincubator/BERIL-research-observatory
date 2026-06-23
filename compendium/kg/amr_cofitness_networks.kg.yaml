@@ -1,0 +1,310 @@
+project:
+  id: amr_cofitness_networks
+  title: 'Report: AMR Co-Fitness Support Networks'
+statements:
+- id: stmt:amr-larger-modules
+  kind: finding
+  text: Only 24% of AMR genes fall into ICA fitness modules, but those modules are significantly larger than non-AMR modules (median 46 vs 27 genes), placing AMR genes within large multi-function cellular programs.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:amr-genes
+  - entity:ica-modules
+  - entity:cofitness
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: 1. AMR genes are embedded in larger-than-average co-regulated modules
+    quote: 'Only 24% of AMR genes (192/801) are assigned to ICA fitness modules, but the modules they inhabit are significantly larger than non-AMR modules: median 46 vs 27 genes (MWU p = 1.7×10⁻⁸).'
+    notebook: 02_amr_in_modules.ipynb
+    figure: figures/amr_module_analysis.png
+- id: stmt:amr-modules-conserved
+  kind: claim
+  text: Nearly all AMR gene-module assignments belong to cross-organism conserved module families, indicating these co-regulatory relationships are ancient.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:amr-genes
+  - entity:ica-modules
+  - entity:module-families
+  links:
+    supports:
+    - stmt:amr-larger-modules
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: 1. AMR genes are embedded in larger-than-average co-regulated modules
+    quote: Notably, 99% (208/209) of AMR gene-module assignments are in cross-organism conserved module families, indicating these are ancient regulatory relationships.
+    notebook: 02_amr_in_modules.ipynb
+- id: stmt:flagellar-biosynthesis-enrichment
+  kind: finding
+  text: AMR cofitness support networks are significantly enriched for flagellar motility and amino acid biosynthesis GO terms across multiple organisms (FDR < 0.05).
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:cofitness
+  - entity:support-networks
+  - entity:interproscan
+  - entity:gene-ontology
+  - entity:amr-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: 2. AMR support networks are enriched for flagellar motility and amino acid biosynthesis (H1 supported)
+    quote: Using InterProScan GO annotations (68% gene coverage — 3.6× better than old SEED annotations), we detect significant functional enrichment in AMR cofitness neighborhoods.
+    notebook: 03b_enrichment_interproscan.ipynb
+    figure: figures/go_enrichment_interproscan.png
+- id: stmt:dispensability-confound
+  kind: caveat
+  text: The flagellar and biosynthesis enrichment in AMR support networks may reflect shared dispensability under lab conditions rather than genuine mechanistic co-regulation.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:cofitness
+  - entity:fitness-browser
+  - entity:support-networks
+  - entity:lab-conditions
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:flagellar-biosynthesis-enrichment
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: 2. AMR support networks are enriched for flagellar motility and amino acid biosynthesis (H1 supported)
+    quote: This enrichment may reflect **shared dispensability under lab conditions** rather than genuine co-regulation.
+    notebook: 03b_enrichment_interproscan.ipynb
+- id: stmt:cofitness-not-coregulation
+  kind: caveat
+  text: High cofitness implies shared fitness phenotypes rather than direct transcriptional co-regulation, so functional enrichment in cofitness neighborhoods can reflect shared experimental context rather than biology.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:cofitness
+  - entity:fitness-browser
+  - entity:pearson-correlation
+  links:
+    supports:
+    - stmt:dispensability-confound
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Even without the dispensability confound, high cofitness implies shared fitness phenotypes, not direct transcriptional co-regulation.
+- id: stmt:organism-specific-networks
+  kind: finding
+  text: 'AMR support networks are organism-specific rather than mechanism-specific: different AMR mechanisms within one organism share more cofitness partners (Jaccard 0.375) than the same mechanism across organisms (Jaccard 0.207).'
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:microbial-ecotypes
+  entities:
+  - entity:cofitness
+  - entity:support-networks
+  - entity:amr-mechanisms
+  - entity:gene-ontology
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: 3. Support networks are organism-specific, not mechanism-specific
+    quote: 'Different AMR mechanisms within the same organism share far more support partners than the same mechanism across organisms:'
+    notebook: 04b_cross_organism_interproscan.ipynb
+    figure: figures/jaccard_go_comparison.png
+- id: stmt:regulatory-architecture-robust
+  kind: claim
+  text: The organism-specificity of support networks is robust to the dispensability confound and reveals that each organism has its own characteristic set of co-varying genes, a genuine structural feature of genome organization.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:microbial-ecotypes
+  entities:
+  - entity:support-networks
+  - entity:genome-organization
+  - entity:amr-mechanisms
+  links:
+    supports:
+    - stmt:organism-specific-networks
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: Organism regulatory architecture trumps resistance mechanism (robust finding)
+    quote: This is a genuine structural finding about how genomes are organized, not an artifact of the enrichment categories.
+- id: stmt:network-size-no-fitness-cost
+  kind: finding
+  text: Cofitness support network size shows no correlation with AMR gene fitness cost (Spearman rho = -0.006, p = 0.87, N = 769), so the uniform cost of resistance is not explained by co-regulatory neighborhood size.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:support-networks
+  - entity:amr-fitness-cost
+  - entity:cofitness
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: 4. Support network size does not predict fitness cost (H3 not supported)
+    quote: There is no correlation between cofitness support network size and AMR gene fitness cost (Spearman rho = −0.006, p = 0.87, N = 769).
+    notebook: 03_support_networks.ipynb
+    figure: figures/network_size_vs_fitness.png
+- id: stmt:annotation-quality-critical
+  kind: finding
+  text: Switching from legacy SEED/KEGG annotations to InterProScan GO annotations on the same data turned a null enrichment result into a significant one.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:interproscan
+  - entity:gene-ontology
+  - entity:seed-annotations
+  - entity:functional-annotation
+  links:
+    supports:
+    - stmt:flagellar-biosynthesis-enrichment
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: '5. Annotation quality is critical: InterProScan reveals what SEED/KEGG missed'
+    quote: 'The switch from old Fitness Browser SEED/KEGG annotations to InterProScan GO annotations on the same data transformed a null result into a significant finding:'
+    notebook: 03b_enrichment_interproscan.ipynb
+- id: stmt:annotation-methodological-requirement
+  kind: claim
+  text: Genome-wide cofitness analyses require high-coverage, uniformly computed functional annotations such as InterProScan on pangenome cluster representatives to detect real biological signals.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:interproscan
+  - entity:functional-annotation
+  - entity:pangenome
+  - entity:cofitness
+  links:
+    supports:
+    - stmt:annotation-quality-critical
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: '5. Annotation quality is critical: InterProScan reveals what SEED/KEGG missed'
+    quote: 'This is a methodological contribution: genome-wide cofitness analyses require high-coverage, uniformly computed functional annotations to detect real biological signals.'
+- id: stmt:pan-bacterial-first-mapping
+  kind: claim
+  text: This work is the first pan-bacterial mapping of AMR co-fitness neighborhoods across 28 organisms.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:amr-genes
+  - entity:cofitness
+  - entity:fitness-browser
+  - entity:support-networks
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: This is the **first pan-bacterial mapping of AMR co-fitness neighborhoods** across 28 organisms.
+- id: stmt:fb-organism-bias
+  kind: caveat
+  text: The 28 Fitness Browser organisms are lab-adapted, phylogenetically biased toward Pseudomonas, and limited in ecological diversity, constraining generalizability.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:fitness-browser
+  - entity:lab-conditions
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The 28 organisms are lab-adapted, phylogenetically biased (many Pseudomonas), and limited in ecological diversity.
+- id: stmt:fitness-matched-permutation-opportunity
+  kind: opportunity
+  text: A fitness-matched permutation test drawing random non-AMR genes matched on mean fitness level would distinguish whether the support-network enrichment is true co-regulation or a shared-dispensability artifact.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:amr-resistome
+  entities:
+  - entity:cofitness
+  - entity:support-networks
+  - entity:permutation-test
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dispensability-confound
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: The most important follow-up is a permutation test drawing random non-AMR genes matched on **mean fitness level** (not just conservation class).
+- id: stmt:condition-specific-cofitness-opportunity
+  kind: opportunity
+  text: Computing cofitness separately for antibiotic versus standard growth conditions could distinguish true co-regulation from shared dispensability in AMR support networks.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:cofitness
+  - entity:support-networks
+  - entity:antibiotic-stress
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dispensability-confound
+  evidence:
+  - source_project: amr_cofitness_networks
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Computing cofitness separately for antibiotic conditions vs standard growth could distinguish true co-regulation from shared dispensability.

@@ -1,0 +1,304 @@
+project:
+  id: annotation_gap_discovery
+  title: 'Report: Annotation-Gap Discovery via Phenotype-Fitness-Pangenome-Gapfilling Integration'
+statements:
+- id: stmt:triangulation-resolves-48pct
+  kind: finding
+  text: Integrating five evidence types resolved 47.8% (96 of 201) of gapfilled enzymatic reaction-organism pairs with candidate genes, exceeding the pre-specified 30% threshold.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:annotation-gap
+  - entity:gapfilling
+  - entity:fitness-browser
+  - entity:evidence-triangulation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: 1. Evidence Triangulation Resolves 47.8% of Annotation Gaps
+    quote: Of 201 gapfilled enzymatic reaction-organism pairs across 14 Fitness Browser organisms and 18 carbon sources, 96 (47.8%) were assigned candidate genes with confidence scoring. This exceeds the pre-specified H1 threshold of 30%, supporting the hypothesis that integrating multiple evidence types can resolve a significant fraction of metabolic annotation gaps.
+    notebook: 06_exemplar_blast.ipynb
+    figure: figures/fig1_resolution_overview.png
+- id: stmt:no-single-stream-sufficient
+  kind: finding
+  text: No single evidence stream resolved more than 35% of gaps; BLAST homology alone reached 34.8% while the full integrated pipeline added 13 percentage points to reach 47.8%.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:evidence-triangulation
+  - entity:blast-homology
+  - entity:cross-validation
+  links:
+    supports:
+    - stmt:triangulation-resolves-48pct
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: 2. No Single Evidence Stream Achieves >35% Resolution
+    quote: BLAST homology was the single most impactful stream (34.8% alone), but the full pipeline adds 13 percentage points over BLAST alone. Removing any single stream still keeps resolution above 36%, demonstrating robustness.
+    notebook: 07_validation_analysis.ipynb
+    figure: figures/fig2_cross_validation.png
+- id: stmt:evidence-streams-complementary
+  kind: claim
+  text: Leave-one-out cross-validation shows each evidence stream contributes uniquely, demonstrating that no single data type is sufficient to resolve metabolic annotation gaps.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:cross-validation
+  - entity:evidence-triangulation
+  links:
+    supports:
+    - stmt:no-single-stream-sufficient
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: '**Evidence complementarity**: The leave-one-out analysis quantifies each stream''s unique contribution, demonstrating that no single data type is sufficient'
+- id: stmt:resolution-varies-by-organism
+  kind: finding
+  text: Per-organism resolution rates varied 3.5-fold, from 20% in Bacteroides thetaiotaomicron to 71% in Klebsiella michiganensis, tracking reference-genome annotation quality and Fitness Browser coverage.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-browser
+  - entity:annotation-gap
+  - entity:bacteroides-thetaiotaomicron
+  - entity:klebsiella-michiganensis
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: 3. Resolution Varies 3.5-fold Across Organisms
+    quote: Resolution rates ranged from 20% (*Bacteroides thetaiotaomicron*) to 71% (*Klebsiella michiganensis*). Organisms with better-annotated reference genomes and stronger Fitness Browser coverage showed higher resolution rates.
+    notebook: 08_figures_report.ipynb
+    figure: figures/fig3_organism_resolution.png
+- id: stmt:bcaa-reactions-dominate
+  kind: finding
+  text: Two sequential branched-chain amino acid biosynthesis reactions (rxn02185 and rxn03436) were each resolved with high confidence in 9 of 14 organisms, with their co-resolution validating the triangulation approach.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:functional-dark-matter
+  entities:
+  - entity:evidence-triangulation
+  - entity:branched-chain-amino-acid-biosynthesis
+  - entity:gapfilling
+  links:
+    supports:
+    - stmt:triangulation-resolves-48pct
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: 4. Two Reactions Dominate High-Confidence Assignments
+    quote: The reactions rxn02185 (2-acetolactate pyruvate-lyase, EC 2.2.1.6, branched-chain amino acid biosynthesis) and rxn03436 (acetohydroxy acid isomeroreductase, EC 1.1.1.86, valine/isoleucine biosynthesis) were each resolved with high confidence in 9 of 14 organisms.
+    notebook: 06_exemplar_blast.ipynb
+- id: stmt:dark-reactions-resist-resolution
+  kind: finding
+  text: EC-less "dark reactions" (50 of 201, 24.9%) were resolved only 16% of the time versus 58.3% for reactions with known EC numbers, making them the hardest annotation gaps.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:dark-reactions
+  - entity:annotation-gap
+  - entity:modelseed
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: 5. "Dark Reactions" Resist Resolution
+    quote: Of 201 gapfilled reactions, 50 (24.9%) had no EC number assigned by ModelSEED ("dark reactions"). Only 8 of these 50 (16%) were resolved, compared to 88 of 151 (58.3%) for reactions with known EC numbers.
+    notebook: 07_validation_analysis.ipynb
+    figure: figures/fig6_conservation.png
+- id: stmt:gapmind-partial-concordance
+  kind: finding
+  text: GapMind pathway predictions partially corroborated gapfilling, flagging pathways as incomplete for many of the same carbon sources requiring gapfilling, though concordance was limited by GapMind's pathway-level granularity.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:functional-dark-matter
+  entities:
+  - entity:gapmind
+  - entity:gapfilling
+  - entity:pathway-completeness
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: 6. GapMind and Gapfilling Show Partial Concordance
+    quote: Of 104 GapMind-gapfill pathway pairings, GapMind pathway predictions partially corroborated the gapfilling results. GapMind identified pathways as incomplete (`not_present` or `steps_missing`) for many of the same carbon sources where ModelSEED required gapfilling.
+    notebook: 04_gapmind_bakta_annotations.ipynb
+    figure: figures/fig5_gapmind_concordance.png
+- id: stmt:blast-high-identity-cluster
+  kind: finding
+  text: DIAMOND BLAST against 328 Swiss-Prot exemplars yielded 154 hits, with high-confidence hits (>=30% identity, >=70% coverage, e-value <=1e-10) concentrated in branched-chain amino acid biosynthesis and polyamine metabolism reactions.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:blast-homology
+  - entity:diamond
+  - entity:swiss-prot
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: 7. BLAST Hits Cluster at High Identity for Resolved Cases
+    quote: Hits meeting high-confidence thresholds (>=30% identity, >=70% coverage, e-value <=1e-10) were concentrated in branched-chain amino acid biosynthesis and polyamine metabolism reactions.
+    notebook: 06_exemplar_blast.ipynb
+    figure: figures/fig4_blast_quality.png
+- id: stmt:baseline-fba-asymmetry
+  kind: finding
+  text: Baseline FBA across 574 organism-carbon source combinations gave 42.5% accuracy with high recall (86.5%) but low precision (42.5%), reflecting overly permissive draft models that over-predict growth.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:flux-balance-analysis
+  - entity:metabolic-models
+  - entity:modelseed
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: Study Design
+    quote: 'Baseline FBA across 574 organism-carbon source combinations yielded 42.5% overall accuracy — but this masks asymmetric performance: recall (sensitivity) was 86.5% (244 of 282 growth-positive conditions correctly predicted), while precision was only 42.5% (244 of 574 growth predictions were correct) due to 330 false positives from overly permissive draft models.'
+    notebook: 02_model_building_fba.ipynb
+- id: stmt:five-evidence-integration-novel
+  kind: claim
+  text: This is the first systematic integration of five evidence types (gapfilling, fitness, pangenome, GapMind, and BLAST) to resolve metabolic annotation gaps across multiple organisms simultaneously.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:evidence-triangulation
+  - entity:gapfilling
+  - entity:fitness-browser
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:triangulation-resolves-48pct
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: This is the first systematic integration of five evidence types (gapfilling + fitness + pangenome + GapMind + BLAST) to resolve metabolic annotation gaps across multiple organisms simultaneously.
+- id: stmt:dark-reactions-high-value-targets
+  kind: opportunity
+  text: The 50 EC-less gapfilled reactions and 105 unresolved pairs are high-value targets for computational enzyme prediction tools and experimental enzyme characterization.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:metabolic-pathways
+  entities:
+  - entity:dark-reactions
+  - entity:annotation-gap
+  - entity:enzyme-characterization
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dark-reactions-resist-resolution
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Dark reaction characterization**: The 50 EC-less gapfilled reactions are high-priority targets for computational enzyme prediction tools (e.g., DeepEC, CLEAN) and experimental biochemistry.'
+- id: stmt:high-confidence-experimentally-testable
+  kind: opportunity
+  text: The 44 high-confidence gene-reaction assignments are directly testable via targeted gene knockouts such as CRISPRi, with rxn02185 and rxn03436 across 9 organisms as priority validation targets.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:confidence-scoring
+  - entity:gene-knockout
+  - entity:branched-chain-amino-acid-biosynthesis
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:bcaa-reactions-dominate
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Experimental validation**: The 44 high-confidence gene-reaction assignments are directly testable via targeted gene knockouts (e.g., CRISPRi) on specific carbon sources. Priority targets are rxn02185 and rxn03436 across 9 organisms.'
+- id: stmt:phylogenetic-bias-caveat
+  kind: caveat
+  text: Twelve of 14 organisms are Proteobacteria, limiting generalizability, and the sole Bacteroidetes (B. thetaiotaomicron) had the lowest resolution rate, suggesting the approach may be less effective for phylogenetically distant clades.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:proteobacteria
+  - entity:bacteroides-thetaiotaomicron
+  - entity:phylogenetic-bias
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:resolution-varies-by-organism
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Phylogenetic bias**: 12 of 14 organisms are Proteobacteria, limiting generalizability. The sole Bacteroidetes (*B. thetaiotaomicron*) had the lowest resolution rate, suggesting the approach may be less effective for phylogenetically distant clades with divergent metabolism'
+- id: stmt:knockout-validation-inconclusive
+  kind: caveat
+  text: FBA gene-knockout validation was inconclusive because models cannot grow on carbon-source minimal media without the gapfilled reactions, making single-gene knockout analysis circular.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:flux-balance-analysis
+  - entity:gene-knockout
+  - entity:gapfilling
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: annotation_gap_discovery
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Gene knockout simulation**: The FBA knockout validation was inconclusive because the models cannot grow on carbon source minimal media without the gapfilled reactions — the gapfilled reactions are themselves required to enable growth, making single-gene knockout analysis circular in this context'

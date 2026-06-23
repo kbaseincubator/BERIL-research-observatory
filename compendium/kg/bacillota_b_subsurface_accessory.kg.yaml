@@ -1,0 +1,294 @@
+project:
+  id: bacillota_b_subsurface_accessory
+  title: 'Report: Subsurface Bacillota_B Specialization — What Distinguishes Deep-Clay Lineages from Soil Congeners?'
+statements:
+- id: stmt:h1-547-enriched-ogs
+  kind: finding
+  text: Per-OG Fisher's exact testing identified 547 eggNOG orthologous groups significantly enriched in deep-clay Bacillota_B versus soil-baseline Bacillota_B, far exceeding the pre-registered H1 prediction of at least 10.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:subsurface-genomics
+  entities:
+  - entity:bacillota-b
+  - entity:eggnog-og
+  - entity:accessory-genome
+  - entity:fishers-exact-test
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Finding 1 — 547 eggNOG OGs are significantly enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B; the enriched set falls into the pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest hit (H1, strongly supported)
+    quote: '**547 OGs enriched** in deep-clay anchor — far above the H1 prediction of "≥10".'
+    notebook: 03_og_enrichment.ipynb
+    figure: figures/summary_figure.png
+- id: stmt:h1-functional-categories
+  kind: finding
+  text: The deep-clay-enriched OGs populate the five pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest annotated hit.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:metabolic-pathways
+  entities:
+  - entity:bacillota-b
+  - entity:anaerobic-respiration
+  - entity:sporulation
+  - entity:eggnog-og
+  links:
+    supports:
+    - stmt:h1-547-enriched-ogs
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Finding 1 — 547 eggNOG OGs are significantly enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B; the enriched set falls into the pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest hit (H1, strongly supported)
+    quote: falls into the pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest hit
+    notebook: 04_og_annotation.ipynb
+- id: stmt:molybdopterin-cofactor-signal
+  kind: finding
+  text: The molybdopterin-cofactor orthogroup COG1977, a cofactor source for anaerobic-respiration enzymes, was recovered in all ten anchor genomes versus only 11 of 62 baseline genomes, marking a strong subsurface-niche signal.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:subsurface-genomics
+  entities:
+  - entity:cog1977
+  - entity:molybdopterin
+  - entity:anaerobic-respiration
+  - entity:bacillota-b
+  links:
+    supports:
+    - stmt:h1-functional-categories
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Finding 1 — 547 eggNOG OGs are significantly enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B; the enriched set falls into the pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest hit (H1, strongly supported)
+    quote: '**COG1977 (Mo-molybdopterin cofactor metabolic process, EC 2.8.1.12)** — 10/10 anchor vs 11/62 baseline.'
+    notebook: 04_og_annotation.ipynb
+- id: stmt:keyword-scanner-undercounts
+  kind: caveat
+  text: Keyword-based functional categorization undercounted the anaerobic-niche signal, leaving a large unannotated bucket that manual reclassification suggests holds roughly 80-100 truly anaerobic-respiration OGs.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:subsurface-genomics
+  entities:
+  - entity:eggnog-og
+  - entity:functional-annotation
+  - entity:anaerobic-respiration
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:h1-functional-categories
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Finding 1 — 547 eggNOG OGs are significantly enriched in deep-clay Bacillota_B vs soil-baseline Bacillota_B; the enriched set falls into the pre-registered functional categories (anaerobic respiration, sporulation revival, mineral attachment, regulators, osmoadaptation), with anaerobic respiration the largest hit (H1, strongly supported)
+    quote: The true anaerobic-respiration enriched-OG count is well above the keyword-scanner's 42; with manual reclassification of the "other" bucket the H1-relevant total is closer to 80–100 of 547.
+- id: stmt:h2-genomes-larger
+  kind: finding
+  text: Deep-clay Bacillota_B genomes are significantly larger than soil-baseline congeners, encoding roughly 1 Mbp more genetic material at the same CheckM completeness, which rejects the H2 streamlining hypothesis in the opposite direction.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:subsurface-genomics
+  entities:
+  - entity:bacillota-b
+  - entity:genome-size
+  - entity:checkm
+  - entity:gene-content-expansion
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Finding 2 — Deep-clay Bacillota_B genomes are SIGNIFICANTLY LARGER than soil-baseline Bacillota_B, with a 35% mean size difference and ~25% more eggNOG OGs per genome (H2 rejected, opposite direction)
+    quote: Deep-clay Bacillota_B genuinely encode ~1 Mbp more genetic material than soil Bacillota_B at the same QC level.
+    notebook: 05_h2_compactness.ipynb
+- id: stmt:expansion-not-streamlining
+  kind: claim
+  text: Within cultivable Bacillota_B, deep-clay specialization correlates with gene-content expansion rather than the reductive streamlining seen in Patescibacteria, refuting a universal 'subsurface equals streamlining' model for this niche.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:microbial-ecotypes
+  entities:
+  - entity:bacillota-b
+  - entity:gene-content-expansion
+  - entity:genome-streamlining
+  - entity:patescibacteria
+  links:
+    supports:
+    - stmt:h2-genomes-larger
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Finding 2 — Deep-clay Bacillota_B genomes are SIGNIFICANTLY LARGER than soil-baseline Bacillota_B, with a 35% mean size difference and ~25% more eggNOG OGs per genome (H2 rejected, opposite direction)
+    quote: This is the **opposite direction** from Tian et al. (2020)'s "small is mighty" Patescibacteria streamlining finding.
+    notebook: 05_h2_compactness.ipynb
+- id: stmt:h3-mismatched-kos
+  kind: finding
+  text: The companion clay project's iron-reduction markers (K07811, K17324, K17323) were mismatched genes encoding TMAO reductase, glycerol ABC transport, and glycerol permease rather than iron-reduction functions.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:functional-dark-matter
+  entities:
+  - entity:iron-reduction
+  - entity:kegg-ko
+  - entity:clay-confined-subsurface
+  - entity:multiheme-cytochrome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Finding 3 — The clay_confined_subsurface project's H3 IR-side analysis was driven by mismatched gene IDs; with corrected multi-heme cytochrome detection, the original "shallow >> deep IR" pattern disappears (Phase 1 correction)
+    quote: those KOs are **TMAO reductase, glycerol ABC transport, and glycerol permease** respectively.
+    notebook: 06_clay_h3_correction.ipynb
+- id: stmt:h3-ir-pattern-disappears
+  kind: finding
+  text: With corrected triple-signal multi-heme cytochrome detection, the clay project's original 'shallow much greater than deep' iron-reduction pattern disappears and no cohort comparison remains statistically significant.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:metabolic-pathways
+  entities:
+  - entity:iron-reduction
+  - entity:multiheme-cytochrome
+  - entity:cxxch-motif
+  - entity:clay-confined-subsurface
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:h3-mismatched-kos
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Finding 3 — The clay_confined_subsurface project's H3 IR-side analysis was driven by mismatched gene IDs; with corrected multi-heme cytochrome detection, the original "shallow >> deep IR" pattern disappears (Phase 1 correction)
+    quote: '**No comparison is significant after correction.**'
+    notebook: 06_clay_h3_correction.ipynb
+- id: stmt:h3-sr-side-robust
+  kind: claim
+  text: The clay project's sulfate-reduction side of H3 remains robust because its SR markers (K11180, K11181, K00394, K00395, K00958) were correctly identified, even though the iron-reduction narrative loses force after correction.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:metabolic-pathways
+  entities:
+  - entity:sulfate-reduction
+  - entity:iron-reduction
+  - entity:clay-confined-subsurface
+  - entity:kegg-ko
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:h3-ir-pattern-disappears
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Finding 3 — The clay_confined_subsurface project's H3 IR-side analysis was driven by mismatched gene IDs; with corrected multi-heme cytochrome detection, the original "shallow >> deep IR" pattern disappears (Phase 1 correction)
+    quote: '**remains robust** — the SR markers (K11180, K11181, K00394, K00395, K00958) were correctly identified.'
+    notebook: 06_clay_h3_correction.ipynb
+- id: stmt:multiheme-pfams-sparse
+  kind: caveat
+  text: Multi-heme cytochrome PFAMs are sparse within Bacillota_B, so CXXCH heme-binding motif counting on protein sequences carried most of the corrected iron-reduction signal that PFAM-only detection would have missed.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:subsurface-genomics
+  entities:
+  - entity:multiheme-cytochrome
+  - entity:cxxch-motif
+  - entity:pfam
+  - entity:bacillota-b
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:h3-ir-pattern-disappears
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: IR PFAM availability (NB01 gate)
+    quote: Multi-heme cytochrome PFAMs are sparse within Bacillota_B (only ~6 clusters total across all four PFAMs); CXXCH motif counting on `gene_cluster.faa_sequence` carried most of the IR signal in NB06 — which is why the corrected IR rates (40–56%) are far higher than what PFAM-only detection would yield.
+    notebook: 06_clay_h3_correction.ipynb
+- id: stmt:small-cohort-limitation
+  kind: caveat
+  text: With only 10 anchor versus 62 baseline genomes, marginal enrichment effects resting on anchor counts of 3-5 should be treated descriptively rather than inferentially, and genus-level phylogenetic confounding is only partly mitigated.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:subsurface-genomics
+  entities:
+  - entity:bacillota-b
+  - entity:cohort
+  - entity:phylogenetic-confounding
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:h1-547-enriched-ogs
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: marginal effects with anchor counts of 3–5 should be treated descriptively rather than inferentially.
+- id: stmt:reusable-multiheme-detector
+  kind: opportunity
+  text: Combining curated PFAMs with sequence-based CXXCH heme-motif counting provides a reusable BERDL pattern for detecting multi-heme cytochromes when KEGG KO assignment is unreliable, applicable to future iron-reduction and electron-transfer questions across the pangenome.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:functional-dark-matter
+  entities:
+  - entity:multiheme-cytochrome
+  - entity:cxxch-motif
+  - entity:pfam
+  - entity:berdl-pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: Combining curated PFAMs (PF02085, PF22678) with sequence-based CXXCH heme-motif counting on `gene_cluster.faa_sequence` is a reusable BERDL pattern for detecting multi-heme cytochromes when KEGG KO assignment is unreliable.
+- id: stmt:genus-decomposition-opportunity
+  kind: opportunity
+  text: Per-genus decomposition of the H1 enrichment signal, expanded via BacDive linkage to additional clay-isolated genomes, would separate genus-specific lineage markers from recurrent deep-clay signatures and improve statistical power.
+  confidence: low
+  topics:
+  - topic:microbial-ecotypes
+  - topic:subsurface-genomics
+  entities:
+  - entity:bacillota-b
+  - entity:bacdive
+  - entity:eggnog-og
+  - entity:cohort
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:small-cohort-limitation
+  evidence:
+  - source_project: bacillota_b_subsurface_accessory
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Per-genus analysis would distinguish which enriched OGs are genus-specific (lineage-marker noise) from which are recurrent across multiple subsurface-specialist genera (the genuine deep-clay signature).

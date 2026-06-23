@@ -1,0 +1,346 @@
+project:
+  id: nmdc_community_metabolic_ecology
+  title: 'Report: Community Metabolic Ecology via NMDC × Pangenome Integration'
+statements:
+- id: stmt:black-queen-community-signal
+  kind: finding
+  text: Across 13 testable amino acid biosynthesis pathways, 11 (85%) showed negative correlations between community pathway completeness and ambient amino acid metabolite intensity, the direction predicted by the Black Queen Hypothesis (binomial sign test p = 0.011).
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:black-queen-hypothesis
+  - entity:gapmind
+  - entity:amino-acid-biosynthesis
+  - entity:metabolomics
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Finding 1 — Black Queen dynamics are detectable at community scale
+    quote: 'Across 13 testable amino acid biosynthesis pathways, **11 of 13 (85%) showed negative
+
+      Spearman correlations** between community pathway completeness and ambient amino acid
+
+      metabolite intensity — the direction predicted by the Black Queen Hypothesis (BQH).'
+    notebook: 05_statistical_analysis.ipynb
+    figure: figures/h1_bqh_barplot.png
+- id: stmt:leucine-arginine-fdr-significant
+  kind: finding
+  text: Leucine and arginine biosynthesis were the two amino acid pathways reaching FDR significance, both showing negative completeness-vs-metabolite correlations (leucine r = -0.390, q = 0.022; arginine r = -0.297, q = 0.049).
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:black-queen-hypothesis
+  - entity:gapmind
+  - entity:amino-acid-biosynthesis
+  links:
+    supports:
+    - stmt:black-queen-community-signal
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Finding 1 — Black Queen dynamics are detectable at community scale
+    quote: 'Two pathways reached significance after Benjamini-Hochberg FDR correction (q < 0.05):
+
+      **leucine biosynthesis** (r = −0.390, q = 0.022, n = 62) and **arginine biosynthesis**
+
+      (r = −0.297, q = 0.049, n = 80).'
+    notebook: 05_statistical_analysis.ipynb
+- id: stmt:costly-pathways-lost
+  kind: claim
+  text: The two FDR-significant Black Queen pathways, leucine and arginine, are both energetically expensive to synthesise, consistent with the prediction that costly biosynthetic functions are most likely to be lost when environmental supply is reliable.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:black-queen-hypothesis
+  - entity:amino-acid-biosynthesis
+  - entity:gene-loss
+  links:
+    supports:
+    - stmt:leucine-arginine-fdr-significant
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: 'H1: Black Queen Signal'
+    quote: 'The two FDR-significant pathways — leucine and arginine — are both energetically
+
+      expensive to synthesise (leucine: 37 ATP equivalents; arginine: 26 ATP equivalents),
+
+      consistent with the BQH prediction that costly functions are most likely to be lost
+
+      when environmental supply is reliable.'
+- id: stmt:ecosystem-metabolic-separation
+  kind: finding
+  text: PCA of the 220-sample x 80-pathway community completeness matrix captured 49.4% of variance in PC1, with Soil and Freshwater communities occupying nearly non-overlapping regions of PC space (Kruskal-Wallis p < 0.0001).
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:gapmind
+  - entity:nmdc
+  - entity:ecosystem-type
+  - entity:pca
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Finding 2 — Community metabolic potential separates strongly by ecosystem type
+    quote: 'PCA of the 220-sample × 80-pathway completeness matrix captured **49.4% of variance
+
+      in PC1** and 16.6% in PC2 (83% total in PC1–5). Soil and Freshwater communities
+
+      occupied nearly non-overlapping regions of PC space'
+    notebook: 05_statistical_analysis.ipynb
+    figure: figures/h2_pca.png
+- id: stmt:carbon-utilization-primary-axis
+  kind: claim
+  text: Carbon utilization pathways, not amino acid pathways, load almost entirely on PC1, suggesting carbon substrate availability is the primary axis differentiating ecosystem metabolic type at the community level.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:carbon-utilization
+  - entity:gapmind
+  - entity:ecosystem-type
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecosystem-metabolic-separation
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: 'H2: Ecosystem Metabolic Niche'
+    quote: 'The dominance of **carbon utilization pathways** on PC1 (not amino acid pathways)
+
+      suggests that carbon substrate availability is the primary axis differentiating
+
+      ecosystem metabolic type at the community level, with amino acid biosynthesis
+
+      playing a secondary (PC2-level) role.'
+- id: stmt:aa-pathways-differ-by-ecosystem
+  kind: finding
+  text: Per-pathway Kruskal-Wallis tests showed that 17 of 18 amino acid pathways have significantly different community completeness levels across ecosystem types, with only tyrosine not significantly differentiated.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:amino-acid-biosynthesis
+  - entity:gapmind
+  - entity:ecosystem-type
+  links:
+    supports:
+    - stmt:ecosystem-metabolic-separation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Finding 3 — Amino acid pathway completeness differs across ecosystem types for 17 of 18 pathways
+    quote: 'Per-pathway Kruskal-Wallis tests (BH-FDR corrected) showed that 17 of 18 amino acid
+
+      pathways have significantly different community completeness levels across ecosystem
+
+      types (q < 0.05).'
+    notebook: 05_statistical_analysis.ipynb
+    figure: figures/pathway_completeness_boxplot.png
+- id: stmt:first-gapmind-metabolomics-integration
+  kind: claim
+  text: This is the first application of GapMind community-weighted pathway completeness scores to predict environmental metabolomics across a large cross-habitat NMDC dataset, integrating 305M GapMind records with NMDC multi-omics for 220 samples.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:gapmind
+  - entity:nmdc
+  - entity:pangenome
+  - entity:metabolomics
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: 'This study is, to our knowledge, the **first application of GapMind community-weighted
+
+      pathway completeness scores to predict environmental metabolomics** across a large
+
+      cross-habitat NMDC dataset.'
+- id: stmt:taxonomy-bridge-coverage
+  kind: finding
+  text: The NMDC-to-GTDB taxonomy bridge achieved a mean coverage of 94.6% across all 220 samples, with 92% of samples mapping at least 85% of community abundance to GTDB pangenome species.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:pangenome-architecture
+  entities:
+  - entity:taxonomy-bridge
+  - entity:gtdb
+  - entity:pangenome
+  - entity:nmdc
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Data Overview
+    quote: 'Taxonomy bridge quality was high: mean bridge coverage 94.6% (all 220 samples passed
+
+      the 30% QC threshold), with 92% of samples mapping ≥85% of community abundance to
+
+      GTDB pangenome species.'
+    notebook: 02_taxonomy_bridge.ipynb
+- id: stmt:single-study-robustness
+  kind: finding
+  text: 'The Black Queen signal is robust to sensitivity checks: it is unchanged when restricted to Soil-ecosystem samples, and the H1 dataset is effectively single-study (95% of samples from one NMDC study), so cross-study protocol heterogeneity is not a confounder for leucine.'
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:black-queen-hypothesis
+  - entity:nmdc
+  - entity:amino-acid-biosynthesis
+  links:
+    supports:
+    - stmt:black-queen-community-signal
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: 'H1: Black Queen Signal'
+    quote: 'the
+
+      signal is robust in two sensitivity checks: it is unchanged when the analysis is
+
+      restricted to Soil-ecosystem samples (soil-only: 11/13 negative, binomial p = 0.011;
+
+      leu q = 0.022), and the dataset is effectively single-study — 95% of H1 samples come
+
+      from one NMDC study (nmdc:sty-11-r2h77870), so cross-study LC-MS protocol heterogeneity
+
+      is not a confounder for leu.'
+- id: stmt:caveat-genomic-potential-not-expression
+  kind: caveat
+  text: GapMind pathway completeness indicates whether biosynthesis genes are present, not whether they are actively expressed, so transcriptomic data would be needed to determine whether expressed biosynthesis correlates more strongly with metabolite pools.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:functional-dark-matter
+  entities:
+  - entity:gapmind
+  - entity:gene-expression
+  - entity:amino-acid-biosynthesis
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:black-queen-community-signal
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: "**GapMind represents genomic potential, not expression**: Pathway completeness\n  indicates whether the genes are present, not whether they are actively expressed.\n  Transcriptomic data would be needed to determine whether expressed biosynthesis\n  correlates more strongly with metabolite pools."
+- id: stmt:caveat-freshwater-absent
+  kind: caveat
+  text: All 33 Freshwater samples lacked paired metabolomics in NMDC, so the Black Queen test is effectively a soil-only test and whether the dynamics operate in freshwater communities at the same scale is untested.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:nmdc
+  - entity:metabolomics
+  - entity:ecosystem-type
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:black-queen-community-signal
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: "**Freshwater samples absent from H1**: All 33 Freshwater samples lacked paired\n  metabolomics in NMDC, so H1 is effectively a soil-only test. Whether BQH dynamics\n  operate in freshwater communities at the same scale is untested."
+- id: stmt:caveat-abiotic-features-missing
+  kind: caveat
+  text: Abiotic features such as pH, temperature, and total organic carbon were entirely absent for the 174-sample analysis matrix, preventing partial correlation tests controlling for environmental gradients that could confound the results.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:abiotic-features
+  - entity:nmdc
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: "**Abiotic feature coverage**: Abiotic features (pH, temperature, total organic carbon,\n  etc.) were absent (all NaN) for the 174-sample analysis matrix, preventing partial\n  correlation tests controlling for environmental gradients. These variables could\n  confound both H1 and H2 results."
+- id: stmt:opportunity-transcript-validation
+  kind: opportunity
+  text: Pairing metatranscriptomics with metabolomics for a subset of NMDC samples would allow comparison of expressed pathway completeness versus genomic potential versus metabolite abundance, directly testing whether expression drives the Black Queen signal.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:nmdc
+  - entity:metabolomics
+  - entity:gene-expression
+  links:
+    supports:
+    - stmt:caveat-genomic-potential-not-expression
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: "**Transcript-based validation**: Pairing metatranscriptomics with metabolomics for\n   a subset of NMDC samples would allow comparison of expressed pathway completeness\n   vs. genomic potential vs. metabolite abundance, directly testing whether expression\n   (not just gene presence) drives the BQH signal."
+- id: stmt:opportunity-extend-freshwater
+  kind: opportunity
+  text: Obtaining or generating metabolomics data for the 33 Freshwater NMDC samples would allow a direct test of whether Black Queen dynamics differ between aquatic and terrestrial communities.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:nmdc
+  - entity:metabolomics
+  - entity:ecosystem-type
+  links:
+    supports:
+    - stmt:caveat-freshwater-absent
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: nmdc_community_metabolic_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: "**Extend to Freshwater samples**: Obtaining or generating metabolomics data for the\n   33 Freshwater NMDC samples would allow a direct test of whether BQH dynamics differ\n   between aquatic and terrestrial communities — a key open question given their\n   strikingly different pathway completeness profiles."

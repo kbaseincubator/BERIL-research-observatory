@@ -1,0 +1,338 @@
+project:
+  id: gene_function_ecological_agora
+  title: 'Report: Gene Function Ecological Agora'
+statements:
+- id: stmt:hgt-innovation-atlas
+  kind: finding
+  text: The project built a bacterial-domain HGT/innovation atlas of 13.7M producer/participation scores and 17M Sankoff gain events with recipient-rank acquisition attribution across 18,989 GTDB r214 species representatives.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:gtdb
+  - entity:hgt-atlas
+  - entity:sankoff-parsimony
+  - entity:producer-participation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: What the project measured
+    quote: 'Atlas size: **13.7M (rank × clade × KO) producer/participation scores** + **17M Sankoff gain events with M22 recipient-rank attribution** + **3.9M (KO × genus) MGE-machinery fractions** across **18,989 P1B-qualified species reps spanning the bacterial domain of GTDB r214**.'
+- id: stmt:producer-participation-framework
+  kind: claim
+  text: The Producer × Participation framework provides a direction-agnostic per-clade categorization (Innovator-Isolated / Innovator-Exchange / Sink-Broker-Exchange / Stable) usable at deep ranks where full DTL reconciliation is intractable.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:producer-participation
+  - entity:dtl-reconciliation
+  - entity:gene-flow
+  links:
+    supports:
+    - stmt:hgt-innovation-atlas
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: Methodology contributions (M1–M26)
+    quote: Producer × Participation (M5/M6)** — direction-agnostic per-clade categorization {Innovator-Isolated / Innovator-Exchange / Sink-Broker-Exchange / Stable} at deep ranks where DTL reconciliation is intractable. The atlas's organizing framework.
+- id: stmt:recent-ancient-ratio-signature
+  kind: finding
+  text: The ratio of recent-to-ancient gain events is itself a function-class signature, with CRISPR-Cas highly recent-skewed (24.5x ratio, HGT-active) and strict housekeeping genes ancient-skewed (~1x, vertical inheritance).
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:gene-fitness
+  entities:
+  - entity:crispr-cas
+  - entity:housekeeping-genes
+  - entity:hgt-atlas
+  - entity:gtdb
+  links:
+    supports:
+    - stmt:hgt-innovation-atlas
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: Three novel findings the project surfaced
+    quote: 'Recent-to-ancient ratio is itself a function-class signature (NB10b/M22)**: CRISPR-Cas at 24.5× ratio (HGT-active); housekeeping-strict at ~1× (vertical inheritance). The atlas centerpiece per v2.9 reframe.'
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: M22 acquisition-depth attribution (NB10b)
+    quote: The recent/ancient ratio for HGT-active classes is 4–10× higher than for clean housekeeping.
+    figure: figures/p2_m22_acquisition_depth_per_class.png
+- id: stmt:architectural-promiscuity-hgt
+  kind: finding
+  text: 'Architectural promiscuity correlates with HGT propensity: mixed-category KOs carry a median of 46 Pfam architectures per KO versus 1 for PSII, mirroring the ''modular systems exchange more'' pattern.'
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:pfam-architecture
+  - entity:hgt-atlas
+  - entity:psii
+  links:
+    supports:
+    - stmt:hgt-innovation-atlas
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: Three novel findings the project surfaced
+    quote: 'Architectural promiscuity correlates with HGT propensity (NB15)**: mixed-category KOs show 46 architectures/KO median vs PSII''s 1; NB17 architectural-vs-KO concordance r=0.67 consumer-side; framed as the analog of Denise 2019 ("modular systems exchange more").'
+- id: stmt:cyanobacteria-psii-innovator-exchange
+  kind: finding
+  text: Cyanobacteria are confirmed as Innovator-Exchange on photosystem II at the Cyanobacteriia class rank (producer d=+1.50, consumer d=+0.70), the appropriate rank since PSII predates Cyanobacteria diversification.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:metabolic-pathways
+  - topic:microbial-ecotypes
+  entities:
+  - entity:cyanobacteria
+  - entity:psii
+  - entity:producer-participation
+  links:
+    supports:
+    - stmt:hgt-innovation-atlas
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: Cyanobacteria × PSII Innovator-Exchange test — H1 SUPPORTED at class rank (NB16)
+    quote: '**At the Cyanobacteriia class rank**, both pre-registered criteria pass at α/4 = 0.0125: producer above atlas non-housekeeping median (very large effect, d=1.50) AND consumer above median (moderate-large, d=0.70'
+    figure: figures/p3_nb16_cyanobacteria_psii.png
+- id: stmt:mycobacteriaceae-mycolic-innovator-isolated
+  kind: finding
+  text: Mycobacteriaceae are confirmed as Innovator-Isolated on the mycolic-acid pathway at family and order ranks (producer d=+0.31, consumer d=-0.19), indicating high paralog expansion with low cross-clade exchange.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:mobile-genetic-elements
+  - topic:microbial-ecotypes
+  entities:
+  - entity:mycobacteriaceae
+  - entity:mycolic-acid-pathway
+  - entity:producer-participation
+  links:
+    supports:
+    - stmt:hgt-innovation-atlas
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: 'Verdict: **H1 SUPPORTED at both family and order ranks**'
+    quote: 'Both pre-registered criteria pass at both ranks after Bonferroni correction:
+
+      - **Producer above atlas median** (more paralog expansion than typical non-housekeeping KO)
+
+      - **Consumer below atlas median** (more phylogenetically clumped → less cross-clade exchange)'
+    figure: figures/p2_nb12_mycobacteriota_mycolic.png
+- id: stmt:three-substrate-convergence
+  kind: claim
+  text: 'Atlas-level innovation findings are made robust by convergence across three independent measurement substrates: Sankoff-parsimony effect size, sample-biome ecology metadata, and per-strain phenotype tables.'
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:sankoff-parsimony
+  - entity:bacdive
+  - entity:mgnify
+  - entity:hgt-atlas
+  links:
+    supports:
+    - stmt:cyanobacteria-psii-innovator-exchange
+    - stmt:mycobacteriaceae-mycolic-innovator-isolated
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: Three convergent lines of evidence
+    quote: A finding at any single layer would be circumstantial; the convergence across three independent substrates measured on different signals (Sankoff parsimony on species tree; sample-biome metadata at biosample level; per-strain phenotype tables) makes the atlas claims robust.
+- id: stmt:biome-enrichment-grounding
+  kind: finding
+  text: Pre-registered atlas clades are significantly enriched in their expected biomes, including Mycobacteriaceae host-pathogen (7.88x, p<10^-45), Cyanobacteriia photic aquatic (2.77x, p<10^-52), and Bacteroidota gut/rumen (1.40x, p<10^-35).
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:mgnify
+  - entity:mycobacteriaceae
+  - entity:cyanobacteria
+  - entity:bacteroidota
+  links:
+    supports:
+    - stmt:three-substrate-convergence
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: 'NB23: Biome enrichment for pre-registered atlas findings'
+    quote: '**H2 NB12 mycolic-acid Innovator-Isolated** | Mycobacteriaceae (n=459) | host-pathogen | 16.6% | 2.1% | **7.88×** | < 10⁻⁴⁵ |'
+- id: stmt:preregistered-kos-not-phage-borne
+  kind: finding
+  text: All three pre-registered hypothesis KO sets (PSII, mycolic-acid, PUL) show near-zero MGE-machinery rates against a 1.37% atlas baseline, meaning these gene families are not themselves phage, transposase, integrase, or plasmid genes.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:metabolic-pathways
+  entities:
+  - entity:mge-machinery
+  - entity:psii
+  - entity:mycolic-acid-pathway
+  - entity:bakta-annotations
+  links:
+    supports:
+    - stmt:cyanobacteria-psii-innovator-exchange
+    - stmt:mycobacteriaceae-mycolic-innovator-isolated
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: 'Result 1: per-cluster MGE-machinery (NB26b/c — atlas-wide)'
+    quote: All three pre-registered hypotheses show near-zero MGE-machinery rates** — meaning these KOs are not themselves phage / transposase / integrase / plasmid genes.
+    figure: figures/p4d2_mge_context_panel.png
+- id: stmt:alm-2006-not-reproduced
+  kind: caveat
+  text: The Alm 2006 r~0.74 correlation between histidine-kinase count and lineage-specific expansion is NOT reproduced at full GTDB scale, recovering only modest correlations (r=0.10-0.29) across 18,989 genomes.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:alm-2006
+  - entity:two-component-systems
+  - entity:gtdb
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:recent-ancient-ratio-signature
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: 'P4-D3: Alm 2006 r ≈ 0.74 reproduction — NOT REPRODUCED at GTDB scale'
+    quote: All correlations are statistically significant (n = 18,989) but biologically modest (r = 0.10–0.29 vs Alm 2006's r ≈ 0.74 in 207 genomes).
+- id: stmt:psii-rank-dependence
+  kind: caveat
+  text: The PSII Innovator verdict is strongly rank-dependent (STABLE at genus, Innovator-Exchange at class, Innovator-Isolated at phylum), so the class rank must be chosen on biological grounds rather than read off any single resolution.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:microbial-ecotypes
+  entities:
+  - entity:psii
+  - entity:cyanobacteria
+  - entity:producer-participation
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cyanobacteria-psii-innovator-exchange
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: Four honest limits documented in print
+    quote: 'PSII rank-dependence**: genus n=2,350 d=0.08 STABLE → class n=21 d=1.50 INNOVATOR-EXCHANGE → phylum d=1.60 INNOVATOR-ISOLATED.'
+- id: stmt:pangenome-openness-distinct-from-m22
+  kind: caveat
+  text: Recent between-species gain attribution and within-species pangenome openness are uncorrelated (Spearman r=-0.011 across 894 genera), so pangenome openness is not a valid cross-substrate validation of the acquisition-depth signal.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:pangenome-openness
+  - entity:hgt-atlas
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:hgt-innovation-atlas
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: Interpretation — M22 and pangenome openness measure distinct evolutionary phenomena
+    quote: The atlas-wide null result (Spearman r = −0.011 across 894 genera) is informative, not falsifying.
+- id: stmt:mycolic-niche-refinement
+  kind: finding
+  text: The mycolic-acid Innovator-Isolated signature is concentrated in host-pathogen-niche mycobacteria rather than soil mycobacteria, refining the original family-level finding.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:mycobacteriaceae
+  - entity:mycolic-acid-pathway
+  - entity:host-pathogen-niche
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:mycobacteriaceae-mycolic-innovator-isolated
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: 'NB23: Biome enrichment for pre-registered atlas findings'
+    quote: the mycolic-acid Innovator-Isolated signature is concentrated in *host-pathogen-niche* mycobacteria, not soil mycobacteria.
+- id: stmt:composition-donor-inference-opportunity
+  kind: opportunity
+  text: Composition-based donor inference at deep ranks remains a future direction, blocked because per-CDS sequence is not in BERDL queryable schemas; tree-based donor inference shipped only as an exploratory layer.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:functional-dark-matter
+  entities:
+  - entity:donor-inference
+  - entity:dtl-reconciliation
+  - entity:berdl
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: Limits — what the atlas does NOT settle
+    quote: '**Donor identification at deep ranks** (M25 deferral): per-CDS sequence is not in BERDL queryable schemas; composition-based donor inference requires external FASTA + codon profiling that breaks the Phase 3 budget.'
+- id: stmt:mge-context-mechanism-opportunity
+  kind: opportunity
+  text: Testing whether high-exchange KOs are mobile-element-mediated by flagging phage, plasmid, and integron context per gain event is an identified next step toward a mechanistic explanation of cross-clade gene flow.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:metabolic-pathways
+  entities:
+  - entity:mge-machinery
+  - entity:gene-flow
+  - entity:hgt-atlas
+  links:
+    supports:
+    - stmt:architectural-promiscuity-hgt
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: gene_function_ecological_agora
+    source_doc: REPORT.md
+    source_section: Future directions (Phase 4)
+    quote: '**P4-D2 MGE context per gain event** — test whether high-Innovator-Exchange KOs from Phase 2 (mixed-category) and Phase 3 (architectural-promiscuity) are MGE-mediated.'

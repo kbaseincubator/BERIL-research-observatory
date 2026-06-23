@@ -1,0 +1,327 @@
+project:
+  id: genotype_to_phenotype_enigma
+  title: 'Report: Genotype x Condition to Phenotype Prediction from ENIGMA Growth Curves'
+statements:
+- id: stmt:binary-growth-predictable-aa-nucleosides
+  kind: finding
+  text: Binary bacterial growth is predictable from KO gene presence/absence on amino acids (AUC 0.775) and nucleosides (0.780) and moderately on carbon sources (0.695), but is not predictable on metals, antibiotics, or nitrogen from KO content alone.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:kegg-orthologs
+  - entity:binary-growth-prediction
+  - entity:enigma-growth-curves
+  - entity:amino-acids
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Executive Summary
+    quote: '**Binary growth IS predictable** on amino acids (AUC 0.775, tryptophan 0.933) and nucleosides (0.780) from KO presence/absence; moderately predictable on carbon sources (0.695); **not predictable** on metals, antibiotics, or nitrogen from KO content alone.'
+    notebook: NB07_full_corpus_prediction.ipynb
+    figure: figures/NB07_full_corpus_results.png
+- id: stmt:continuous-params-not-predictable
+  kind: finding
+  text: Continuous growth parameters (maximum growth rate, lag time, and yield) are not predictable from KO content or bulk genomic features under cross-genus holdout, a fundamental biological limitation because gene presence encodes metabolic capability rather than kinetic rate.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:growth-rate
+  - entity:codon-usage-bias
+  - entity:kegg-orthologs
+  - entity:cross-genus-holdout
+  links:
+    supports: []
+    contradicts:
+    - stmt:binary-growth-predictable-aa-nucleosides
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Executive Summary
+    quote: '**Continuous growth parameters (µmax, lag, yield) are NOT predictable** from KO content or bulk genomic features under cross-genus holdout. This is a fundamental biological limitation — gene presence encodes capability, not kinetic rate.'
+    notebook: NB07_full_corpus_prediction.ipynb
+    figure: figures/NB07_bulk_vs_continuous.png
+- id: stmt:multidataset-anchor-set
+  kind: finding
+  text: The ENIGMA growth-curve corpus of 27,632 curves across 123 strains aligns with Fitness Browser RB-TnSeq data through 486 strain-by-condition anchor pairs spanning 7 strains and 72 conditions where growth, gene fitness, and genome annotations coexist.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:subsurface-genomics
+  entities:
+  - entity:enigma-growth-curves
+  - entity:fitness-browser
+  - entity:rb-tnseq
+  - entity:anchor-pairs
+  links:
+    supports:
+    - stmt:binary-growth-predictable-aa-nucleosides
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: The ENIGMA growth curve corpus (27,632 curves across 123 strains and 195 molecules) aligns with Fitness Browser RB-TnSeq data through **486 (strain x condition) anchor pairs** — 7 strains x 72 conditions where growth curves, gene fitness, and genome annotations all coexist.
+    notebook: NB02_condition_canonicalization.ipynb
+    figure: figures/NB02_condition_overlap_4way.png
+- id: stmt:enigma-strains-environmental-outliers
+  kind: finding
+  text: All ENIGMA Pseudomonas isolates belong to the environmental Pseudomonas_E (fluorescens/protegens) clade rather than the clinically dominant lineage, meaning these subsurface field isolates occupy environmental niches underrepresented in NCBI genome collections.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:pseudomonas-e
+  - entity:enigma-strains
+  - entity:gtdb
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: However, all ENIGMA Pseudomonas belong to Pseudomonas_E (the fluorescens/protegens clade) — environmental, not clinical.
+    notebook: NB04_environmental_context.ipynb
+    figure: figures/NB04_genus_env_heatmap.png
+- id: stmt:global-ph-niche-partition
+  kind: finding
+  text: A global pH-driven niche partition across 464K worldwide 16S samples explains local Oak Ridge co-occurrence, with the acid-tolerant Cluster B (Rhodanobacter-Ralstonia-Dyella) occupying environments averaging pH 5.4, about 1.35 units more acidic and 6.9 degrees C warmer than neutral-preferring Cluster A.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:subsurface-genomics
+  entities:
+  - entity:oak-ridge
+  - entity:ph-gradient
+  - entity:rhodanobacter
+  - entity:microbial-atlas
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: 'Environmental characterization of these clusters across 464K global 16S samples reveals a striking pH gradient: Cluster B environments average pH 5.4 (1.35 units more acidic than Cluster A''s 6.8) and are 6.9 degrees C warmer.'
+    notebook: NB04_environmental_context.ipynb
+    figure: figures/NB04_cluster_env_comparison.png
+- id: stmt:condition-specific-catabolic-genes
+  kind: finding
+  text: With 46K training pairs the full-corpus SHAP analysis surfaces condition-specific catabolic genes such as rbsC (K10440, ribose transporter), proP (K03762, proline/betaine transporter), and pcaB (K01857, protocatechuate cycloisomerase), the mechanistically correct transporters and enzymes for each substrate.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:shap
+  - entity:rbsc
+  - entity:pcab
+  - entity:catabolic-genes
+  links:
+    supports:
+    - stmt:binary-growth-predictable-aa-nucleosides
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Act II — Predict and Explain
+    quote: 'the full-corpus SHAP identifies **condition-specific catabolic genes**: K03762 (proP, proline/betaine transporter), K10440 (rbsC, ribose transporter), K01857 (pcaB, protocatechuate cycloisomerase for aromatic catabolism)'
+    notebook: NB07_full_corpus_prediction.ipynb
+    figure: figures/NB07_full_corpus_shap.png
+- id: stmt:46k-pairs-for-mechanistic-prediction
+  kind: claim
+  text: 'Mechanistic, condition-specific genotype-to-phenotype prediction requires on the order of 10^4 training pairs: with n=7 strains the model learns genome-scale artifacts while at 46K pairs the same architecture surfaces condition-specific catabolic genes.'
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:shap
+  - entity:training-corpus
+  - entity:catabolic-genes
+  - entity:lightgbm
+  links:
+    supports:
+    - stmt:condition-specific-catabolic-genes
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: README.md
+    source_section: Key Lessons Learned
+    quote: '**Mechanistic prediction requires ≈ 10⁴ training pairs per phenotype class.**'
+    notebook: NB07_full_corpus_prediction.ipynb
+    figure: figures/NB07_shap_comparison_n7_vs_full.png
+- id: stmt:exometabolomic-univariate-recovery
+  kind: finding
+  text: Multivariate GBDT fails to predict exometabolomic output at n=6 strains, but univariate per-metabolite point-biserial correlation recovers 940 strong gene-metabolite associations (454 production, 486 consumption) across all 62 variable metabolites.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:web-of-microbes
+  - entity:exometabolomics
+  - entity:gene-metabolite-associations
+  - entity:fb-cognate-kos
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Act II — Predict and Explain
+    quote: univariate per-metabolite point-biserial correlation** between KO presence and metabolite production identifies **940 strong associations (|r| > 0.7)** across **all 62 variable metabolites**.
+    figure: figures/NB08_production_ko_heatmap.png
+- id: stmt:growth-vs-metabolite-different-features
+  kind: claim
+  text: Growth-predictive KOs across genera and metabolite-production-associated KOs within genus are essentially uncorrelated feature sets (Spearman rho=0.043) that answer different biological questions, yet gene content explains both when analyzed with the method appropriate to the sample size.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:web-of-microbes
+  - entity:kegg-orthologs
+  - entity:gene-metabolite-associations
+  - entity:exometabolomics
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:exometabolomic-univariate-recovery
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Act II — Predict and Explain
+    quote: '**H5 revised**: Growth-predictive KOs (cross-genus) and metabolite-production-associated KOs (within-genus) are DIFFERENT feature sets (Spearman rho=0.043), answering different biological questions'
+    figure: figures/NB08_method_comparison.png
+- id: stmt:weak-fb-concordance-presence-vs-essentiality
+  kind: claim
+  text: Top SHAP KOs show only 1.19x enrichment for significant Fitness Browser fitness effects over a random baseline, reflecting that gene presence across genera and gene essentiality within one strain are fundamentally different biological questions rather than indicating non-mechanistic features.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:fitness-browser
+  - entity:shap
+  - entity:rb-tnseq
+  - entity:gene-essentiality
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:condition-specific-catabolic-genes
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Act II — Predict and Explain
+    quote: is **18.7%** vs **16.3%** random baseline = **1.19x enrichment**.
+    notebook: NB07_full_corpus_prediction.ipynb
+    figure: figures/NB07_fb_concordance.png
+- id: stmt:caveat-strain-name-collision
+  kind: caveat
+  text: 'Linking ENIGMA field isolates to reference databases by short strain identifiers is hazardous: names like MT20 matched unrelated NCBI organisms such as Streptococcus pneumoniae and injected 1,751 spurious clinical genomes into environmental profiles before being corrected with GTDB-Tk taxonomy.'
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:microbial-ecotypes
+  entities:
+  - entity:strain-name-collision
+  - entity:enigma-strains
+  - entity:gtdb
+  - entity:rhodanobacter
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:enigma-strains-environmental-outliers
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: 'Short names like MT20 (ENIGMA: *Rhodanobacter glycinis*) matched unrelated NCBI organisms (*Streptococcus pneumoniae*), injecting 1,751 spurious clinical genomes into environmental profiles.'
+    notebook: NB04_environmental_context.ipynb
+- id: stmt:caveat-string-based-condition-alignment
+  kind: caveat
+  text: Cross-dataset condition alignment is string-based, yielding only 42 molecular matches via normalized names; ChEBI-ID-based canonicalization would likely expand this to 60-80 matches and enlarge the anchor frame.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:condition-alignment
+  - entity:chebi
+  - entity:anchor-pairs
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:multidataset-anchor-set
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Condition alignment is string-based**: 42 molecular matches via normalized names; ChEBI-ID-based canonicalization would likely expand this to 60-80 matches.'
+- id: stmt:opportunity-active-learning-experiments
+  kind: opportunity
+  text: Field-relevance-weighted active learning proposes a concrete 50-experiment next round for ENIGMA prioritizing organic acids such as fumaric and melibionic acid, nitrate, and low-pH-relevant substrates where the model is least confident and Oak Ridge geochemistry matters most.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:metabolic-pathways
+  entities:
+  - entity:active-learning
+  - entity:oak-ridge
+  - entity:organic-acids
+  - entity:nitrate
+  links:
+    supports:
+    - stmt:binary-growth-predictable-aa-nucleosides
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Executive Summary
+    quote: Active learning identifies 50 conditions for next Oak Ridge experiments** — prioritizing organic acids (fumaric, melibionic, itaconic), nitrate, and low-pH-relevant substrates where the model is least confident and field relevance is highest.
+    figure: figures/NB10_active_learning_proposal.png
+- id: stmt:opportunity-geochemistry-linkage
+  kind: opportunity
+  text: Linking strain-isolation well coordinates to per-well uranium, nitrate, and metal concentrations available in CORAL bricks 10/80 would let the project test whether acid-tolerant Cluster B strains originate from higher-contamination wells locally, not just globally.
+  confidence: low
+  topics:
+  - topic:subsurface-genomics
+  - topic:metal-resistance
+  entities:
+  - entity:oak-ridge
+  - entity:coral-bricks
+  - entity:nitrate
+  - entity:uranium
+  links:
+    supports:
+    - stmt:global-ph-niche-partition
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: genotype_to_phenotype_enigma
+    source_doc: REPORT.md
+    source_section: Extensions requiring additional data or compute
+    quote: '**Geochemistry linkage**: Uranium, nitrate, and metal concentrations per well are available in CORAL bricks 10/80, but sample-to-location name resolution is incomplete.'

@@ -1,0 +1,325 @@
+project:
+  id: core_gene_tradeoffs
+  title: 'Report: Core Gene Paradox -- Why Are Core Genes More Burdensome?'
+statements:
+- id: stmt:core-burden-paradox-claim
+  kind: claim
+  text: Core genome genes are more likely than accessory genes to show positive fitness effects when deleted (lab burden), contradicting the streamlining model that frames accessory genes as the metabolic burden.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:fitness-browser
+  - entity:pangenome
+  - entity:gene-fitness
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: README.md
+    source_section: Overview
+    quote: This project dissects why core genes are more burdensome than accessory genes -- a finding from `fitness_effects_conservation` that contradicts the "streamlining" model.
+  - source_project: core_gene_tradeoffs
+    source_doc: RESEARCH_PLAN.md
+    source_section: Hypothesis
+    quote: The `fitness_effects_conservation` project found that core genes are 1.3x more likely to be burdens than auxiliary genes (OR=0.77 for auxiliary vs core, p=5.5e-48) and that condition-specific fitness genes are more core (OR=1.78).
+- id: stmt:function-specific-burden-finding
+  kind: finding
+  text: The core-gene burden paradox is function-specific, driven by Protein Metabolism (+6.2pp), Motility (+7.8pp), and RNA Metabolism (+12.9pp), while Cell Wall reverses with non-core genes being more burdensome (-14.1pp).
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:seed-annotations
+  - entity:motility
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:core-burden-paradox-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: The Burden Paradox Is Function-Specific
+    quote: 'Not all functional categories show the paradox. Core genes are disproportionately burdensome in Protein Metabolism (+6.2pp), Motility (+7.8pp), and RNA Metabolism (+12.9pp). But Cell Wall reverses: non-core cell wall genes are MORE burdensome (-14.1pp).'
+    notebook: 01_burden_anatomy.ipynb
+    figure: figures/burden_by_function.png
+- id: stmt:tradeoff-genes-core-enriched-finding
+  kind: finding
+  text: True trade-off genes, important in some conditions and burdensome in others, number 25,271 (17.8%) and are 1.29x more likely to be core (OR=1.29, p=1.2e-44).
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:tradeoff-genes
+  - entity:core-genome
+  - entity:fitness-browser
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:core-burden-paradox-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Trade-Off Genes Are Enriched in Core
+    quote: 25,271 genes (17.8%) are true trade-off genes -- important (fit < -1) in some conditions, burdensome (fit > 1) in others. These are 1.29x more likely to be core (OR=1.29, p=1.2e-44).
+    notebook: 01_burden_anatomy.ipynb
+    figure: figures/tradeoff_genes_conservation.png
+- id: stmt:tradeoff-mechanism-claim
+  kind: claim
+  text: Core genes accumulate more condition-dependent trade-offs because they participate in more pathways carrying both costs and benefits across environments.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:core-genome
+  - entity:tradeoff-genes
+  - entity:metabolic-pathways
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:tradeoff-genes-core-enriched-finding
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Trade-Off Genes Are Enriched in Core
+    quote: Core genes have more trade-offs because they participate in more pathways with condition-dependent costs and benefits.
+    notebook: 01_burden_anatomy.ipynb
+- id: stmt:selection-signature-matrix-finding
+  kind: finding
+  text: A selection-signature matrix crossing lab fitness cost with pangenome conservation identifies 28,017 costly-but-conserved genes that natural selection maintains despite their lab-measured cost.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:selection-signature-matrix
+  - entity:core-genome
+  - entity:purifying-selection
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:core-burden-paradox-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: The Selection Signature Matrix
+    quote: '**Costly + Conserved** (28,017 genes): Natural selection maintains them despite lab-measured cost -- they''re essential in natural environments not captured by lab experiments'
+    notebook: 01_burden_anatomy.ipynb
+    figure: figures/selection_signature_matrix.png
+- id: stmt:purifying-selection-claim
+  kind: claim
+  text: The 28,017 costly-but-conserved genes constitute the strongest evidence that purifying selection maintains genes despite their metabolic cost because they are essential in natural environments not captured by lab experiments.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:purifying-selection
+  - entity:core-genome
+  - entity:selection-signature-matrix
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:selection-signature-matrix-finding
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: The 28,017 costly-but-conserved genes are the strongest evidence for purifying selection maintaining genes despite their metabolic cost.
+- id: stmt:costly-dispensable-gene-loss-finding
+  kind: finding
+  text: A class of 5,526 costly-and-dispensable genes that are burdensome and not universally conserved are candidates for ongoing gene loss.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:gene-loss
+  - entity:accessory-genome
+  - entity:selection-signature-matrix
+  links:
+    supports:
+    - stmt:selection-signature-matrix-finding
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: The Selection Signature Matrix
+    quote: '**Costly + Dispensable** (5,526 genes): Candidates for ongoing gene loss -- burdensome AND not universally conserved'
+    notebook: 01_burden_anatomy.ipynb
+- id: stmt:motility-case-study-finding
+  kind: finding
+  text: 'Motility exemplifies the burden paradox: energetically expensive flagellar machinery is conserved because it is essential for chemotaxis in natural environments despite being costly under lab conditions.'
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:motility
+  - entity:flagella
+  - entity:chemotaxis
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:function-specific-burden-finding
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Case Studies
+    quote: 'Motility genes exemplify the burden paradox: energetically expensive flagellar machinery is conserved because it is essential for chemotaxis in natural environments, despite being costly under lab conditions.'
+    notebook: 01_burden_anatomy.ipynb
+    figure: figures/motility_case_study.png
+- id: stmt:conserved-genome-functionally-active-finding
+  kind: finding
+  text: Genes with strong condition-specific fitness effects are more likely to be core, reinforcing that the conserved genome is functionally active rather than inert.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:fitness-browser
+  - entity:condition-specific-fitness
+  links:
+    supports:
+    - stmt:core-burden-paradox-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Case Studies
+    quote: Genes with strong condition-specific effects are more likely core, reinforcing that the conserved genome is functionally active.
+    notebook: 01_burden_anatomy.ipynb
+    figure: figures/specific_phenotype_conditions.png
+- id: stmt:lab-proxy-interpretation-claim
+  kind: claim
+  text: The burden paradox resolves once lab conditions are recognized as an impoverished proxy for nature, since core genes encode energetically expensive functions like motility, ribosomal components, and RNA metabolism that are essential in natural environments.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:core-genome
+  - entity:lab-conditions
+  - entity:motility
+  - entity:ribosome
+  links:
+    supports:
+    - stmt:core-burden-paradox-claim
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: Core genes are more burdensome in the lab because they encode functions (motility, ribosomal components, RNA metabolism) that are energetically expensive but essential in natural environments.
+- id: stmt:lab-condition-bias-caveat
+  kind: caveat
+  text: Lab conditions capture only a fraction of the environmental conditions bacteria face in nature, and Fitness Browser condition types are biased toward what is experimentally convenient rather than ecologically relevant.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:lab-conditions
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:purifying-selection-claim
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Lab conditions capture only a fraction of the environmental conditions bacteria face in nature
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Condition types in the FB are biased toward what's experimentally convenient, not what's ecologically relevant
+- id: stmt:burden-definition-caveat
+  kind: caveat
+  text: The operational definition of burden (fit > 1) may reflect trade-offs rather than true dispensability, and the 90% identity threshold for DIAMOND matching may miss rapidly evolving genes.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:burden
+  - entity:diamond
+  - entity:tradeoff-genes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:tradeoff-genes-core-enriched-finding
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '"Burden" (fit > 1) may reflect trade-offs rather than true dispensability'
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The 90% identity threshold for DIAMOND matching may miss rapidly evolving genes
+- id: stmt:strain-dependent-essentiality-opportunity
+  kind: opportunity
+  text: Strain-dependent gene essentiality across pangenomes suggests conservation reflects selection across diverse environments rather than universal essentiality, opening a path to interpret core-gene burden through pan-genome-aware essentiality.
+  confidence: low
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:pangenome
+  - entity:essentiality
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:selection-signature-matrix-finding
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: '**Rosconi et al. (2022)** demonstrated that gene essentiality is strain-dependent across *S. pneumoniae* pangenomes, supporting our finding that conservation reflects selection across diverse environments rather than universal essentiality.'
+- id: stmt:natural-condition-validation-opportunity
+  kind: opportunity
+  text: Validating the costly-but-conserved gene set against fitness measurements in natural conditions such as soil or biofilm would test whether lab burden is offset by environmental essentiality.
+  confidence: low
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:selection-signature-matrix
+  - entity:fitness-browser
+  - entity:natural-environment
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:purifying-selection-claim
+  evidence:
+  - source_project: core_gene_tradeoffs
+    source_doc: RESEARCH_PLAN.md
+    source_section: Hypothesis
+    quote: A gene burdensome in LB may be essential in soil or biofilm. Genes that are simultaneously costly (lab) AND conserved (pangenome) are the strongest evidence for purifying selection -- nature maintains them despite their cost.

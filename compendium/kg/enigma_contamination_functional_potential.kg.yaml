@@ -1,0 +1,327 @@
+project:
+  id: enigma_contamination_functional_potential
+  title: 'Report: Contamination Gradient vs Functional Potential in ENIGMA Communities'
+statements:
+- id: stmt:confirmatory-defense-null
+  kind: finding
+  text: Predeclared confirmatory Spearman tests of site defense score against the contamination index remained non-significant in both genus-level mapping modes (relaxed rho = 0.0587, q = 0.862; strict rho = 0.0682, q = 0.849).
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:metal-resistance
+  entities:
+  - entity:enigma-coral
+  - entity:contamination-index
+  - entity:site-defense-score
+  - entity:spearman-correlation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Confirmatory Spearman tests remain null with confidence intervals and global FDR
+    quote: 'Predeclared confirmatory tests (`site_defense_score` Spearman vs contamination in genus-level modes) remained non-significant:'
+    notebook: 03_contamination_functional_models.ipynb
+    figure: figures/confirmatory_defense_vs_contamination.png
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Confirmatory Spearman tests remain null with confidence intervals and global FDR
+    quote: '- `relaxed_all_clades`: rho = 0.0587, 95% bootstrap CI [-0.128, 0.250], Spearman p = 0.546, FDR q = 0.862'
+- id: stmt:exploratory-defense-coverage-aware
+  kind: finding
+  text: Exploratory coverage-adjusted models showed the strongest positive defense associations with contamination, but these attenuated under global multiple-testing control.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:subsurface-genomics
+  entities:
+  - entity:contamination-index
+  - entity:site-defense-score
+  - entity:coverage-adjusted-model
+  - entity:mapped-abundance-fraction
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:confirmatory-defense-null
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Exploratory defense signal remains strongest in coverage-aware models
+    quote: 'Exploratory sensitivity models still show strongest positive defense associations in coverage-aware adjustments:'
+    notebook: 03_contamination_functional_models.ipynb
+    figure: figures/contamination_vs_functional_score.png
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Exploratory defense signal remains strongest in coverage-aware models
+    quote: '  - `relaxed_all_clades`: beta = 0.000751, 95% bootstrap CI [0.000224, 0.001779], p = 0.000398, FDR q = 0.0462'
+- id: stmt:within-fraction-no-signal
+  kind: finding
+  text: Within-fraction Spearman tests for defense were non-significant across both micron filters, indicating no robustly reproducible monotonic defense signal inside individual community-fraction strata.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:metal-resistance
+  entities:
+  - entity:community-fraction-type
+  - entity:site-defense-score
+  - entity:spearman-correlation
+  links:
+    supports:
+    - stmt:confirmatory-defense-null
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Community-fraction robustness does not show strong within-fraction monotonic signal
+    quote: This supports the conclusion that strong monotonic defense signal is not robustly reproducible inside individual fraction strata.
+    notebook: 03_contamination_functional_models.ipynb
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Community-fraction robustness does not show strong within-fraction monotonic signal
+    quote: '  - `relaxed_all_clades`: p = 0.767 (`0.2` micron), p = 0.898 (`10` micron)'
+- id: stmt:index-sensitivity-null
+  kind: finding
+  text: Re-testing the confirmatory endpoint under four contamination-index variants, including uranium-only, left all results non-significant after FDR correction.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:subsurface-genomics
+  entities:
+  - entity:contamination-index
+  - entity:uranium
+  - entity:fdr-correction
+  links:
+    supports:
+    - stmt:confirmatory-defense-null
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Contamination-index sensitivity does not change confirmatory outcome
+    quote: Across both confirmatory mapping modes, all index variants remained non-significant after FDR (`q = 0.546` across the 8 confirmatory-variant tests), including uranium-only.
+    notebook: 03_contamination_functional_models.ipynb
+- id: stmt:species-proxy-coverage-limited
+  kind: finding
+  text: Restricting to a species-proxy mode of genera mapping to a single GTDB clade sharply reduced mean mapped abundance fraction (0.031 vs 0.343) and left the defense trend positive but non-significant.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:microbial-ecotypes
+  entities:
+  - entity:species-proxy-mode
+  - entity:gtdb
+  - entity:mapped-abundance-fraction
+  - entity:taxonomy-bridge
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Species-proxy resolution sensitivity is limited by mapped coverage
+    quote: This suggests that with current ENIGMA taxonomy granularity, stricter taxonomic resolution sharply reduces analyzable signal and does not strengthen inference yet.
+    notebook: 02_taxonomy_bridge_functional_features.ipynb
+    figure: figures/mapping_coverage_by_mode.png
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Species-proxy resolution sensitivity is limited by mapped coverage
+    quote: '- `site_defense_score` trend is positive but not significant: rho = 0.169, Spearman p = 0.081'
+- id: stmt:contamination-index-right-skewed
+  kind: finding
+  text: The composite contamination index built from eight metal columns via per-metal log1p z-scoring was broad but right-skewed across the 108 samples (median -0.271, max 3.836).
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:subsurface-genomics
+  entities:
+  - entity:contamination-index
+  - entity:metals
+  - entity:enigma-coral
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Contamination index was broad but right-skewed
+    quote: NB03 built contamination index from 8 metal columns (`arsenic`, `cadmium`, `chromium`, `copper`, `lead`, `nickel`, `uranium`, `zinc`) using per-metal `log1p` z-scoring and row-wise mean.
+    notebook: 03_contamination_functional_models.ipynb
+    figure: figures/contamination_index_distribution.png
+- id: stmt:functional-redundancy-interpretation
+  kind: claim
+  text: Contamination gradients in this ENIGMA subset did not translate into a robust community-level shift in inferred stress functional potential at genus resolution, compatible with functionally redundant or too fine-scale taxonomic turnover.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:microbial-ecotypes
+  entities:
+  - entity:enigma-coral
+  - entity:functional-potential
+  - entity:cog-categories
+  links:
+    supports:
+    - stmt:confirmatory-defense-null
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: This is compatible with contamination-driven taxonomic turnover that is functionally redundant or too fine-scale (species/strain/pathway level) for the present mapping.
+- id: stmt:literature-modest-functional-decline
+  kind: claim
+  text: The null confirmatory result is consistent with prior Oak Ridge studies reporting pronounced contamination-linked compositional shifts alongside only modest functional-diversity decline.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:metal-resistance
+  entities:
+  - entity:oak-ridge
+  - entity:functional-diversity
+  - entity:contamination-gradient
+  links:
+    supports:
+    - stmt:functional-redundancy-interpretation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: Also consistent with Fan et al. (2025), who reported pronounced compositional shifts but only modest functional-diversity decline in a mixed waste-contaminated Oak Ridge aquifer.
+- id: stmt:reproducible-bridge-workflow
+  kind: claim
+  text: The project contributes a reproducible ENIGMA-to-BERDL functional inference workflow with independent strict-versus-relaxed feature construction, mapped-coverage diagnostics, and a species-proxy unique-clade sensitivity mode.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:metabolic-pathways
+  entities:
+  - entity:taxonomy-bridge
+  - entity:berdl
+  - entity:pangenome
+  - entity:functional-features
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: This project contributes a reproducible ENIGMA-to-BERDL functional inference workflow with independent strict-vs-relaxed feature construction, mapped-coverage diagnostics, a species-proxy unique-clade sensitivity mode, and multi-tier modeling beyond basic univariate association tests.
+- id: stmt:genus-only-taxonomy-limit
+  kind: caveat
+  text: ENIGMA taxonomy table ddt_brick0000454 provides labels only through Genus, so true species-level bridge testing is not possible and genus-level mapping may mask strain-level adaptation.
+  confidence: high
+  topics:
+  - topic:subsurface-genomics
+  - topic:microbial-ecotypes
+  entities:
+  - entity:enigma-coral
+  - entity:taxonomy-bridge
+  - entity:genus-resolution
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:species-proxy-coverage-limited
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '- ENIGMA taxonomy table `ddt_brick0000454` currently provides labels through `Genus` (no species/strain labels), so true species-level bridge testing is not directly possible in this dataset slice.'
+- id: stmt:unmapped-genera-coarse-cog
+  kind: caveat
+  text: A majority of observed genera (862 of 1,392) were unmapped to the current pangenome bridge, and the COG-fraction proxies are coarse summaries rather than curated resistance pathways.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:metal-resistance
+  entities:
+  - entity:taxonomy-bridge
+  - entity:cog-categories
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:functional-redundancy-interpretation
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '- 862/1,392 observed genera were unmapped to current pangenome bridge.'
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '- COG-fraction proxies are coarse summaries, not curated resistance pathways.'
+- id: stmt:exploratory-overweight-risk
+  kind: caveat
+  text: The main interpretive risk is that readers may over-weight statistically significant exploratory adjusted-model estimates shown alongside the null confirmatory endpoint.
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  entities:
+  - entity:confirmatory-vs-exploratory
+  - entity:contamination-index
+  - entity:site-defense-score
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:exploratory-defense-coverage-aware
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REVIEW.md
+    source_section: Summary
+    quote: The main remaining risk is interpretability drift where readers may still over-weight exploratory adjusted-model significance relative to the null confirmatory endpoint, plus minor notebook hygiene noise from retained comment-only code cells.
+- id: stmt:opp-curated-metal-gene-sets
+  kind: opportunity
+  text: Replacing coarse COG-fraction proxies with curated metal-stress gene sets and pathway-level summaries could expose pathway-specific metal-response signals diluted by genus-level COG aggregation.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:metabolic-pathways
+  entities:
+  - entity:cog-categories
+  - entity:metal-stress-genes
+  - entity:functional-features
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:unmapped-genera-coarse-cog
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: 1. Replace COG-fraction proxies with curated metal-stress gene sets and pathway-level summaries.
+- id: stmt:opp-species-strain-bridge
+  kind: opportunity
+  text: Increasing taxonomic resolution via a species- or strain-level bridge from metagenomic or higher-resolution ENIGMA taxonomy could quantify inference gains over the genus and species-proxy modes.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:subsurface-genomics
+  entities:
+  - entity:taxonomy-bridge
+  - entity:species-proxy-mode
+  - entity:enigma-coral
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:genus-only-taxonomy-limit
+  evidence:
+  - source_project: enigma_contamination_functional_potential
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: 2. Increase taxonomic resolution where possible (species/strain-level bridge from metagenomic or higher-resolution ENIGMA taxonomy) and quantify gains over genus and species-proxy modes.

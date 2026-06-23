@@ -1,0 +1,248 @@
+project:
+  id: essential_metabolome
+  title: 'Report: GapMind Pathway Analysis Across Essential Gene Organisms'
+statements:
+- id: stmt:aa-biosynthesis-high-conservation
+  kind: finding
+  text: Of 18 amino acid biosynthesis pathways, 17 are present in all 7 bacterial organisms analyzed, indicating high conservation of amino acid biosynthesis within the sample.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:gapmind
+  - entity:amino-acid-biosynthesis
+  - entity:metabolic-pathway
+  - entity:essential-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: High Conservation of Amino Acid Biosynthesis Pathways
+    quote: '**17 of 18** amino acid biosynthesis pathways are present in **all 7 organisms** analyzed (100% within this sample)'
+    notebook: 02_gapmind_pathway_analysis.ipynb
+    figure: figures/pathway_completeness.png
+- id: stmt:dvh-serine-auxotrophy
+  kind: finding
+  text: Desulfovibrio vulgaris is the only one of the 7 organisms lacking a complete serine biosynthesis pathway according to GapMind, suggesting a potential metabolic serine auxotrophy.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:desulfovibrio-vulgaris
+  - entity:serine-biosynthesis
+  - entity:gapmind
+  - entity:metabolic-pathway
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:aa-biosynthesis-high-conservation
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: '*Desulfovibrio vulgaris* Serine Auxotrophy'
+    quote: '***Desulfovibrio vulgaris*** (DvH) is the **only organism** among the 7 that lacks a complete serine biosynthesis pathway according to GapMind (score_category: complete or likely_complete).'
+    notebook: 02_gapmind_pathway_analysis.ipynb
+- id: stmt:dvh-serine-ecological-economy
+  kind: claim
+  text: The apparent serine auxotrophy of D. vulgaris is ecologically plausible because its amino-acid-rich anaerobic habitats could make loss of biosynthetic capacity advantageous through genomic economy.
+  confidence: low
+  topics:
+  - topic:environment-biogeography
+  - topic:metabolic-pathways
+  entities:
+  - entity:desulfovibrio-vulgaris
+  - entity:serine-biosynthesis
+  - entity:genomic-economy
+  - entity:anaerobic-habitat
+  links:
+    supports:
+    - stmt:dvh-serine-auxotrophy
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: Ecological Interpretation of DvH Serine Auxotrophy
+    quote: This may represent **genomic economy** - losing genes that are energetically costly when the product is freely available
+    notebook: 02_gapmind_pathway_analysis.ipynb
+- id: stmt:serine-gapmind-detection-caveat
+  kind: caveat
+  text: The inferred D. vulgaris serine auxotrophy may be a GapMind detection artifact, as the organism could use a non-canonical pathway or divergent enzymes that fall below GapMind's homology threshold.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:functional-dark-matter
+  entities:
+  - entity:gapmind
+  - entity:desulfovibrio-vulgaris
+  - entity:serine-biosynthesis
+  - entity:homology-threshold
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dvh-serine-auxotrophy
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: Alternative Explanations
+    quote: The pathway may be present but use **divergent enzymes** that fall below GapMind's homology threshold
+    notebook: 02_gapmind_pathway_analysis.ipynb
+- id: stmt:conserved-central-catabolism
+  kind: finding
+  text: TCA cycle intermediates, fermentation products, and amino acid catabolism are conserved across all 7 organisms, indicating a shared central catabolic capacity for breaking down common organic compounds.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:tca-cycle
+  - entity:carbon-utilization
+  - entity:central-catabolism
+  - entity:gapmind
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: Conserved Carbon Source Utilization
+    quote: This pattern suggests a **shared central catabolic capacity** for breaking down common organic compounds, consistent with the diverse ecological niches these bacteria occupy.
+    notebook: 02_gapmind_pathway_analysis.ipynb
+- id: stmt:aa-prototrophy-ancestral
+  kind: claim
+  text: The presence of complete pathways for all 18 amino acids in 6 of 7 organisms suggests amino acid prototrophy is the ancestral state for free-living bacteria, forming a minimal metabolic repertoire for independent growth.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:amino-acid-biosynthesis
+  - entity:prototrophy
+  - entity:minimal-metabolome
+  - entity:free-living-bacteria
+  links:
+    supports:
+    - stmt:aa-biosynthesis-high-conservation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: Near-Universal Amino Acid Biosynthesis
+    quote: The finding that **6 of 7 organisms** (85.7%) possess complete biosynthesis pathways for all 18 amino acids suggests that **amino acid prototrophy is the ancestral state** for free-living bacteria.
+- id: stmt:near-universal-not-strictly-universal
+  kind: finding
+  text: No metabolic pathway is truly universal at 100% completeness even in this small sample, so the data reveal near-universal rather than strictly universal pathway completeness with organism-specific gaps.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbial-ecotypes
+  entities:
+  - entity:metabolic-pathway
+  - entity:minimal-metabolome
+  - entity:desulfovibrio-vulgaris
+  - entity:gapmind
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:aa-biosynthesis-high-conservation
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: Hypothesis Outcome
+    quote: The data reveal **near-universal** rather than **strictly universal** metabolic pathway completeness.
+- id: stmt:ecoli-absent-pilot-scope
+  kind: caveat
+  text: Escherichia coli genomes are completely absent from the KBase pangenome GapMind dataset because too many E. coli genomes existed for species-level GTDB analysis, restricting the study to a 7-organism pilot rather than the intended 45-organism survey.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:pangenome-architecture
+  entities:
+  - entity:escherichia-coli
+  - entity:gapmind
+  - entity:gtdb-pangenome
+  - entity:pilot-study
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:near-universal-not-strictly-universal
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: GapMind Coverage Limitation Discovered
+    quote: '**E. coli genomes are completely absent** from GapMind in the KBase pangenome collection.'
+- id: stmt:rich-media-essentiality-confound
+  kind: caveat
+  text: Because the underlying RB-TnSeq essential gene experiments were conducted in rich media, biosynthetic genes may appear non-essential due to nutrient supplementation, confounding essentiality interpretation.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:rb-tnseq
+  - entity:rich-media
+  - entity:gene-essentiality
+  - entity:essential-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: Essential Gene Data Dependency
+    quote: Biosynthetic genes may appear non-essential due to nutrient supplementation
+- id: stmt:eggnog-coverage-expansion-opportunity
+  kind: opportunity
+  text: Using eggNOG EC-to-KEGG pathway annotations could extend the analysis to all 45 Fitness Browser organisms including E. coli, overcoming GapMind's coverage gap.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:functional-dark-matter
+  entities:
+  - entity:eggnog
+  - entity:kegg-pathway
+  - entity:escherichia-coli
+  - entity:gapmind
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ecoli-absent-pilot-scope
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: Alternative Approaches
+    quote: '**eggNOG pathway analysis**: Use EC annotations → KEGG pathways for all 45 FB organisms (including E. coli)'
+- id: stmt:dvh-serine-experimental-validation-opportunity
+  kind: opportunity
+  text: Experimentally testing D. vulgaris growth on serine-free minimal media would confirm whether the GapMind-predicted serine auxotrophy is genuine.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:environment-biogeography
+  entities:
+  - entity:desulfovibrio-vulgaris
+  - entity:serine-biosynthesis
+  - entity:minimal-media
+  - entity:gapmind
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dvh-serine-auxotrophy
+  evidence:
+  - source_project: essential_metabolome
+    source_doc: REPORT.md
+    source_section: Alternative Explanations
+    quote: Experimental testing of DvH growth on serine-free minimal media would confirm auxotrophy.

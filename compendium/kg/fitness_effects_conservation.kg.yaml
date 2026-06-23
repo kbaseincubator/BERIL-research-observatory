@@ -1,0 +1,343 @@
+project:
+  id: fitness_effects_conservation
+  title: 'Report: Fitness Effects vs Conservation -- Quantitative Analysis'
+statements:
+- id: stmt:fitness-conservation-gradient
+  kind: finding
+  text: Pangenome conservation increases monotonically with gene fitness importance, forming a 16-percentage-point gradient from 82% core for essential genes to 66% core for always-neutral genes across ~194,000 genes in 43 bacteria.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-browser
+  - entity:core-genome
+  - entity:pangenome
+  - entity:essential-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: This 16-percentage-point gradient spans ~194,000 genes across 43 diverse bacteria.
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Conservation Increases with Fitness Importance
+    quote: 'The same gradient holds when binning by strongest fitness effect: essential -> 82.2% core, min_fit < -3 -> 77.7%, min_fit -1 to 0 -> 66.4%.'
+    notebook: 02_fitness_vs_conservation.ipynb
+    figure: figures/conservation_by_fitness_profile.png
+- id: stmt:continuous-not-binary-claim
+  kind: claim
+  text: The relationship between fitness importance and conservation is a continuous gradient across the full essential-to-neutral spectrum, not a binary essential/non-essential distinction.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-browser
+  - entity:core-genome
+  - entity:essentiality
+  links:
+    supports:
+    - stmt:fitness-conservation-gradient
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: 'The results paint a consistent picture: **gene fitness importance and pangenome conservation are positively correlated across the full spectrum**. Essential genes are 82% core; always-neutral genes are 66% core.'
+- id: stmt:breadth-predicts-conservation
+  kind: finding
+  text: Genes important in more experimental conditions are more likely to be core, with conservation rising from 66% (0 experiments) to 79% (20+ experiments) and a significant breadth-conservation correlation (Spearman rho=0.086, p=8.1e-230).
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-browser
+  - entity:core-genome
+  - entity:fitness-breadth
+  links:
+    supports:
+    - stmt:fitness-conservation-gradient
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Breadth of Fitness Effects Predicts Conservation
+    quote: 'Genes important in more conditions are more likely core (Spearman rho=0.086, p=8.1e-230):'
+    notebook: 03_breadth_vs_conservation.ipynb
+    figure: figures/fitness_breadth_vs_conservation.png
+- id: stmt:core-genes-more-beneficial
+  kind: finding
+  text: Core genes are MORE likely than auxiliary genes to show positive (beneficial-when-deleted) fitness effects (24.4% vs 19.9% ever beneficial; OR=0.77 for auxiliary vs core), contradicting the expectation that accessory genes are the costly burden.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:fitness-browser
+  - entity:burden-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Core Genes Are Not Burdens -- They're More Likely Beneficial
+    quote: '**core genes are MORE likely to show positive fitness effects** when deleted (24.4% ever beneficial vs 19.9% for auxiliary, OR=0.77 for auxiliary vs core).'
+    notebook: 02_fitness_vs_conservation.ipynb
+    figure: figures/burden_genes_by_conservation.png
+- id: stmt:specific-phenotype-genes-core
+  kind: finding
+  text: Genes with strong condition-specific phenotypes are more likely core (77.3% vs 70.3%; OR=1.78, p=1.8e-97), contradicting the naive expectation that condition-specific genes would be accessory.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:specific-phenotype
+  - entity:fitness-browser
+  - entity:condition-specific-fitness
+  links:
+    supports:
+    - stmt:core-genes-more-beneficial
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Specific-Phenotype Genes Are More Likely Core
+    quote: Genes with strong condition-specific effects (tagged in `specificphenotype`) are 77.3% core vs 70.3% for genes without specific phenotypes (OR=1.78, p=1.8e-97). This contradicts the naive expectation that condition-specific genes would be accessory.
+    notebook: 03_breadth_vs_conservation.ipynb
+    figure: figures/conservation_by_condition_type.png
+- id: stmt:ephemeral-niche-genes-core
+  kind: finding
+  text: Ephemeral niche genes (neutral overall but critical in one condition) account for 4,450 genes (2.7%) and are more common in core genes (3.0%) than in auxiliary (1.7%) or singleton (1.6%) genes.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:ephemeral-niche-genes
+  - entity:core-genome
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:specific-phenotype-genes-core
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Ephemeral Niche Genes
+    quote: '4,450 genes (2.7%) fit the "ephemeral niche gene" pattern: neutral overall but critical in one condition. Surprisingly, these are MORE common in core genes (3.0%) than auxiliary (1.7%) or singleton (1.6%).'
+- id: stmt:core-genes-heavier-tails
+  kind: finding
+  text: Core and auxiliary genes have distinct fitness distributions, with core genes showing heavier tails in both the negative (important) and positive (burdensome) directions.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:core-genes-more-beneficial
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Fitness Distributions by Conservation
+    quote: Core and auxiliary genes show distinct fitness effect distributions, with core genes having heavier tails in both the negative (important) and positive (burdensome) directions.
+    notebook: 02_fitness_vs_conservation.ipynb
+    figure: figures/fitness_distributions_by_conservation.png
+- id: stmt:novel-genes-near-zero-fitness
+  kind: finding
+  text: Novel (singleton) genes show near-zero mean fitness, suggesting they are largely invisible to lab-based fitness assays rather than systematically detrimental.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:singleton-genes
+  - entity:novel-genes
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Novel Gene Landscape
+    quote: Novel (singleton) genes show near-zero mean fitness, suggesting they are largely invisible to lab-based fitness assays -- neither beneficial nor detrimental under tested conditions.
+    notebook: 02_fitness_vs_conservation.ipynb
+    figure: figures/novel_gene_mean_fitness.png
+- id: stmt:core-genes-functionally-active-claim
+  kind: claim
+  text: Core genes are the most functionally active part of the genome, having the largest fitness effects in both directions because they are embedded in critical pathways, while accessory genes are functionally quieter under lab conditions.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:metabolic-pathways
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:core-genes-heavier-tails
+    - stmt:core-genes-more-beneficial
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: These patterns suggest that core genes are the most functionally active genes -- they have the largest fitness effects in both directions because they're embedded in critical pathways. Accessory genes, by contrast, tend to be functionally quieter under lab conditions.
+- id: stmt:selection-drives-core-maintenance-claim
+  kind: claim
+  text: The empirical fitness-conservation gradient provides support for selection as a major driver of core gene maintenance, consistent with stronger purifying selection on core than accessory genes.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:purifying-selection
+  - entity:core-genome
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:fitness-conservation-gradient
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: Our fitness-conservation gradient provides empirical support for selection as a major driver of core gene maintenance.
+- id: stmt:lab-condition-bias-caveat
+  kind: caveat
+  text: Lab conditions are biased toward rich media and standard stresses so that many ecological niches are unrepresented, limiting the fitness measurements' reflection of natural selection pressures.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:lab-conditions
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:selection-drives-core-maintenance-claim
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Lab conditions are biased toward rich media and standard stresses; many ecological niches are unrepresented
+- id: stmt:weak-prediction-caveat
+  kind: caveat
+  text: Although the 16pp gradient is statistically robust, conservation is only weakly predicted by fitness importance, and single-gene-knockout measurements do not capture epistatic interactions.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-browser
+  - entity:core-genome
+  - entity:epistasis
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:fitness-conservation-gradient
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The 16pp gradient, while statistically robust, means conservation is only weakly predicted by fitness importance
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Fitness measurements are for single-gene knockouts; epistatic interactions are not captured
+- id: stmt:proteobacteria-coverage-caveat
+  kind: caveat
+  text: The Fitness Browser covers only 43 bacteria, primarily Proteobacteria, limiting generalizability, and singleton/novel genes may appear neutral due to poor transposon coverage rather than true neutrality.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:fitness-browser
+  - entity:proteobacteria
+  - entity:singleton-genes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:novel-genes-near-zero-fitness
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The Fitness Browser covers 43 bacteria -- primarily Proteobacteria -- limiting generalizability
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Singleton/novel genes may lack fitness data due to poor transposon coverage rather than true neutrality
+- id: stmt:natural-condition-fitness-opportunity
+  kind: opportunity
+  text: Because lab conditions miss many ecological niches, measuring gene fitness under more diverse, ecologically relevant conditions would test whether the weak lab-measured gradient strengthens under natural selection pressures.
+  confidence: low
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:fitness-browser
+  - entity:lab-conditions
+  - entity:natural-environment
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:lab-condition-bias-caveat
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Lab conditions are biased toward rich media and standard stresses; many ecological niches are unrepresented
+- id: stmt:per-organism-heterogeneity-opportunity
+  kind: opportunity
+  text: A per-organism breakdown of the fitness magnitude gradient would reveal whether the conservation pattern is universal or driven by a subset of organisms, complementing the cross-organism Spearman correlations.
+  confidence: low
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-browser
+  - entity:core-genome
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:fitness-conservation-gradient
+  evidence:
+  - source_project: fitness_effects_conservation
+    source_doc: REVIEW.md
+    source_section: Suggestions
+    quote: A similar per-organism breakdown for the fitness magnitude gradient would show whether the pattern is universal or driven by a subset of organisms. This would complement the cross-organism Spearman correlations.

@@ -1,0 +1,316 @@
+project:
+  id: conservation_fitness_synthesis
+  title: 'Report: Gene Conservation, Fitness, and the Architecture of Bacterial Genomes'
+statements:
+- id: stmt:fitness-conservation-gradient
+  kind: finding
+  text: A quantitative fitness-conservation gradient runs from essential genes (82% core) to always-neutral genes (66% core) across 194,216 protein-coding genes in 43 bacteria, so more important genes are more conserved but the effect is modest.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-browser
+  - entity:core-genome
+  - entity:essential-genes
+  - entity:rb-tnseq
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: The Gradient
+    quote: There is a clear, quantitative gradient from essential genes (82% core) to always-neutral genes (66% core). More important genes are more conserved -- but the effect is modest. Even genes with no detectable fitness effect in any experiment are 66% core.
+    notebook: 01_summary_figures.ipynb
+    figure: figures/fitness_conservation_gradient.png
+- id: stmt:burden-paradox-core-more-costly
+  kind: finding
+  text: Contrary to a housekeeping model, core genes are MORE likely to be burdens, with 24.4% showing positive fitness when deleted versus 19.9% for accessory genes, making the conserved genome the most functionally active part of the genome rather than the most inert.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:burden-paradox
+  - entity:gene-fitness
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: The Paradox
+    quote: Core genes are MORE likely to be burdens** -- 24.4% show positive fitness when deleted (mutant grows better) vs 19.9% for accessory genes
+    notebook: 01_summary_figures.ipynb
+- id: stmt:core-genes-condition-specific-tradeoffs
+  kind: finding
+  text: Core genes are 1.78x more likely to have strong condition-specific phenotypes and 1.29x more likely to be trade-offs that are both important and burdensome depending on conditions.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:burden-paradox
+  - entity:gene-fitness
+  links:
+    supports:
+    - stmt:burden-paradox-core-more-costly
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: The Paradox
+    quote: 'Core genes have MORE condition-specific effects** -- genes with strong specific phenotypes are 1.78x more likely to be core
+
+      - **Core genes are MORE likely to be trade-offs** -- genes that are both important AND burdensome (depending on conditions) are 1.29x more likely core'
+    notebook: 01_summary_figures.ipynb
+- id: stmt:lab-impoverished-proxy
+  kind: claim
+  text: Laboratory conditions are an impoverished proxy for natural selection because a gene that appears costly in rich media may be essential in soil, biofilm, host tissue, or other natural conditions, so the lab captures the cost of maintaining genes while the pangenome captures the evolutionary pressure to keep them.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:environment-biogeography
+  entities:
+  - entity:gene-fitness
+  - entity:purifying-selection
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:selection-signature-purifying
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: The Resolution
+    quote: 'Lab conditions are an impoverished proxy for nature.**
+
+
+      A gene that shows positive fitness when deleted in rich media may be essential for survival in soil, biofilm, host tissue, or any of the thousands of conditions bacteria face in their natural habitats. The lab captures the *cost* of maintaining these genes; the pangenome captures the *evolutionary pressure* to keep them.'
+    notebook: 01_summary_figures.ipynb
+- id: stmt:selection-signature-purifying
+  kind: finding
+  text: A selection-signature matrix identifies 28,017 genes that are simultaneously costly in the lab and conserved in the pangenome as the strongest evidence for purifying selection in natural environments, while 5,526 costly-and-dispensable genes are candidates for ongoing gene loss.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:selection-signature-matrix
+  - entity:purifying-selection
+  - entity:pangenome
+  - entity:gene-loss
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: The Resolution
+    quote: The 28,017 genes that are simultaneously **costly in the lab AND conserved in the pangenome** are the strongest evidence for purifying selection in natural environments -- nature maintains them despite their metabolic cost. The 5,526 genes that are costly AND dispensable are candidates for ongoing gene loss.
+    notebook: 01_summary_figures.ipynb
+    figure: figures/selection_signature.png
+- id: stmt:fitness-modules-core-enriched
+  kind: finding
+  text: ICA decomposition identified 1,116 co-regulated fitness modules across 32 organisms that are significantly enriched in core genes (86% core vs 81.5% baseline, OR=1.46, p=1.6e-87), with 59% of modules being more than 90% core genes.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-modules
+  - entity:ica-decomposition
+  - entity:core-genome
+  - entity:module-conservation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: The Architecture
+    quote: ICA decomposition identified 1,116 co-regulated fitness modules across 32 organisms. These modules are enriched in core genes (86% core vs 81.5% baseline, OR=1.46, p=1.6e-87). 59% of modules are >90% core genes.
+    notebook: 01_summary_figures.ipynb
+    figure: figures/core_genome_active.png
+- id: stmt:burden-paradox-function-specific
+  kind: finding
+  text: 'The burden paradox is function-specific: motility and chemotaxis (+7.8pp), RNA metabolism (+12.9pp), and protein metabolism (+6.2pp) genes drive the core-burden excess, while cell wall genes reverse it because non-core cell wall genes are more burdensome.'
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:burden-paradox
+  - entity:core-genome
+  - entity:chemotaxis
+  - entity:rna-metabolism
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:burden-paradox-core-more-costly
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: The Architecture
+    quote: 'The burden paradox is function-specific: motility and chemotaxis genes (+7.8pp core-burden excess), RNA metabolism (+12.9pp), and protein metabolism (+6.2pp) drive the effect. Cell wall genes reverse it -- non-core cell wall genes are MORE burdensome.'
+    notebook: 01_summary_figures.ipynb
+    figure: figures/core_genome_active.png
+- id: stmt:accessory-not-streamlining-burden
+  kind: finding
+  text: Contrary to the streamlining hypothesis, accessory genes are LESS costly than core genes rather than systematically burdensome, and module families spanning more organisms do not have higher core fractions (rho=-0.01, p=0.91).
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:accessory-genome
+  - entity:streamlining-hypothesis
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: What We Did Not Find
+    quote: 'Family breadth doesn''t predict conservation**: Module families spanning more organisms don''t have higher core fractions (rho=-0.01, p=0.91). The baseline is already so high there''s no room for a gradient.
+
+      - **Accessory genes are NOT systematically burdensome**: Contrary to the "streamlining" hypothesis, accessory genes are LESS costly than core genes, not more.'
+- id: stmt:dual-dataset-synthesis
+  kind: claim
+  text: Connecting the Fitness Browser (RB-TnSeq fitness for ~194,000 genes across 43 bacteria) to the KBase pangenome (gene cluster conservation across 27,690 microbial species) shows that the conserved genome is the most functionally active part of the genome rather than the most inert.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-browser
+  - entity:kbase-pangenome
+  - entity:core-genome
+  - entity:rb-tnseq
+  links:
+    supports:
+    - stmt:burden-paradox-core-more-costly
+    - stmt:fitness-conservation-gradient
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: README.md
+    source_section: Overview
+    quote: This synthesis connects two large-scale datasets -- the Fitness Browser (RB-TnSeq mutant fitness data for ~194,000 genes across 43 bacteria) and the KBase pangenome (gene cluster conservation across 27,690 microbial species) -- to ask whether "important" means "conserved."
+- id: stmt:figure1-text-discrepancy
+  kind: caveat
+  text: 'The reported 16pp fitness-conservation gradient is undermined by a discrepancy: Figure 1 shows essential genes at 86% and always-neutral at 78% (an ~8pp gradient) rather than the 82% and 66% stated in the prose, because the notebook computed percentages only over successfully mapped genes.'
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-conservation-gradient
+  - entity:gene-mapping
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts:
+    - stmt:fitness-conservation-gradient
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: the actual Figure 1 shows Essential at **86%** and Always neutral at **78%** — a much narrower gradient of ~8 percentage points rather than the claimed 16pp. The gene counts in the figure also differ from the upstream table (e.g., 80,462 always-neutral in figure vs 94,889 upstream). This appears to result from the notebook computing percentages only over the 168,624 successfully mapped genes, while the upstream project included all 194,216 genes
+- id: stmt:essential-core-rate-inconsistency
+  kind: caveat
+  text: 'The synthesis reports two essential-gene core rates without reconciling them: 82% (from fitness_effects_conservation across 43 organisms, counting unmapped essential genes as non-core) versus 86% (from conservation_vs_fitness across 33 organisms with high mapping coverage).'
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:essential-genes
+  - entity:core-genome
+  - entity:gene-mapping
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REVIEW.md
+    source_section: Methodology
+    quote: The prose uses 82% (from `fitness_effects_conservation`, 43 organisms) while the methods table reports 86% (from `conservation_vs_fitness`, 33 organisms). Both are correct for their datasets, but the synthesis does not explain why these differ.
+- id: stmt:unmapped-genes-percent-core
+  kind: caveat
+  text: Throughout the synthesis, percent core is computed as the fraction of all protein-coding genes (including unmapped genes of unknown conservation) that are core, which treats unmapped genes as not confirmed core and can shift reported gradients.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:gene-mapping
+  - entity:core-genome
+  - entity:diamond-blastp
+  links:
+    supports:
+    - stmt:figure1-text-discrepancy
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: RESEARCH_PLAN.md
+    source_section: Data Sources
+    quote: Throughout this synthesis, % core is computed as the fraction of ALL protein-coding genes (including unmapped genes with unknown conservation) that are core. This treats unmapped genes as "not confirmed core."
+- id: stmt:opportunity-costly-dispensable-genes
+  kind: opportunity
+  text: The 5,526 costly-and-dispensable genes are candidates for ongoing gene loss and an open opportunity to characterize whether they are mobile elements or recently acquired genes on the way out.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:gene-loss
+  - entity:mobile-genetic-elements
+  - entity:selection-signature-matrix
+  links:
+    supports:
+    - stmt:selection-signature-purifying
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: Open Questions
+    quote: The 5,526 costly + dispensable genes** -- What are they? Mobile elements? Recently acquired genes on the way out? These are candidates for ongoing gene loss.
+- id: stmt:opportunity-alphaearth-environment
+  kind: opportunity
+  text: Connecting lab fitness to AlphaEarth environmental data could test whether organisms from more variable environments carry more trade-off genes in their core, bridging lab phenotypes to natural niche context.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:gene-fitness
+  entities:
+  - entity:alphaearth
+  - entity:gene-fitness
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: conservation_fitness_synthesis
+    source_doc: REPORT.md
+    source_section: Open Questions
+    quote: Environmental context** -- Do organisms from more variable environments have more trade-off genes in their core? Connecting lab fitness to AlphaEarth environmental data could bridge this gap.

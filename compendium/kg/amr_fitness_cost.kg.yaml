@@ -1,0 +1,344 @@
+project:
+  id: amr_fitness_cost
+  title: 'Report: Fitness Cost of Antimicrobial Resistance Genes'
+statements:
+- id: stmt:amr-universal-cost
+  kind: finding
+  text: AMR gene knockouts have systematically higher fitness than non-AMR gene knockouts under non-antibiotic conditions, with a pooled meta-analytic effect of +0.086 and all 25 of 25 organisms showing a positive shift.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-browser
+  - entity:amr-genes
+  - entity:rb-tnseq
+  - entity:meta-analysis
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: 1. Universal cost of resistance across 25 bacterial species (H1 supported)
+    quote: 'AMR gene knockouts show systematically higher fitness than non-AMR gene knockouts under non-antibiotic conditions, confirming that resistance genes impose a metabolic burden. A DerSimonian-Laird random-effects meta-analysis across 25 organisms yields a pooled effect of **+0.086 [95% CI: +0.074, +0.098], z = 14.3, p ~ 0**. Remarkably, **all 25 of 25 organisms** show a positive shift (AMR > background), making this one of the most consistent signals observed across the Fitness Browser compendium.'
+    notebook: 02_fitness_cost_analysis.ipynb
+    figure: figures/forest_plot_amr_fitness.png
+- id: stmt:amr-cost-is-small
+  kind: claim
+  text: The fitness cost of resistance is real but small, reconciling the persistence of resistance long after antibiotic withdrawal with its measurable cost under stewardship.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:amr-genes
+  - entity:cost-of-resistance
+  links:
+    supports:
+    - stmt:amr-universal-cost
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: The cost of resistance is universal but uniform
+    quote: 'This reconciles two apparently contradictory observations in the AMR literature: fitness costs are real (supporting resistance decline under stewardship), but they are small (explaining why resistance persists long after antibiotic withdrawal).'
+- id: stmt:amr-low-essential-rate
+  kind: finding
+  text: Only 4.6% of AMR genes were absent from the fitness matrices (putatively essential), substantially below the ~14% background essential rate, consistent with AMR genes being more dispensable than typical genes.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:amr-resistome
+  entities:
+  - entity:amr-genes
+  - entity:essential-genes
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:amr-universal-cost
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: 1. Universal cost of resistance across 25 bacterial species (H1 supported)
+    quote: Only 4.6% of AMR genes were absent from the fitness matrices (putatively essential), substantially lower than the ~14% background essential rate estimated in a prior analysis (`fitness_effects_conservation`, different organism set). AMR genes being less likely to be essential is consistent with the cost-of-resistance framework — these genes are more dispensable, not less.
+- id: stmt:amr-antibiotic-flip
+  kind: finding
+  text: Under any antibiotic, 57% of AMR genes show a fitness flip, becoming relatively more important when knocked out compared to non-antibiotic conditions (Wilcoxon p = 0.0001, N = 797).
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:amr-genes
+  - entity:antibiotic-validation
+  - entity:fitness-flip
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: 2. AMR genes become more important under antibiotic pressure (H4 partially supported)
+    quote: When tested under any antibiotic, 57% of AMR genes show a fitness flip — they become relatively more important (lower fitness when knocked out) compared to non-antibiotic conditions (Wilcoxon signed-rank p = 0.0001, N = 797).
+    notebook: 03_antibiotic_validation.ipynb
+    figure: figures/antibiotic_validation.png
+- id: stmt:amr-efflux-mechanism-dependent-flip
+  kind: finding
+  text: 'The antibiotic-induced fitness flip is mechanism-dependent: broad-spectrum efflux genes flip significantly more strongly than narrow-spectrum enzymatic inactivation genes (+0.094 vs -0.001, MWU p = 0.007).'
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:efflux-pumps
+  - entity:enzymatic-inactivation
+  - entity:amr-genes
+  links:
+    supports:
+    - stmt:amr-antibiotic-flip
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: 2. AMR genes become more important under antibiotic pressure (H4 partially supported)
+    quote: 'Critically, this flip is **mechanism-dependent**: efflux genes (broad-spectrum) show a significantly stronger flip than enzymatic inactivation genes (narrow-spectrum): +0.094 vs −0.001, MWU p = 0.007.'
+    notebook: 04b_followup_analyses.ipynb
+- id: stmt:amr-mechanism-no-cost-difference
+  kind: finding
+  text: The baseline fitness cost of AMR genes does not vary by resistance mechanism (Kruskal-Wallis H = 0.65, p = 0.89), refuting the hypothesis that mechanism predicts cost.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:amr-genes
+  - entity:resistance-mechanism
+  - entity:efflux-pumps
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: 3. Resistance mechanism does not predict fitness cost (H2 not supported)
+    quote: Contrary to H2, the fitness cost of AMR genes does not vary by resistance mechanism. The Kruskal-Wallis test across four testable mechanisms (efflux N=254, enzymatic inactivation N=304, metal resistance N=144, unknown N=74) is not significant (H = 0.65, p = 0.89).
+    notebook: 04_stratification.ipynb
+- id: stmt:amr-uniform-cost-floor
+  kind: claim
+  text: The uniform modest cost across mechanisms may represent an irreducible floor of metabolic overhead, with only AMR genes whose cost has been minimized through compensatory evolution persisting in these genomes.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:amr-genes
+  - entity:compensatory-evolution
+  - entity:resistance-mechanism
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:amr-mechanism-no-cost-difference
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: 3. Resistance mechanism does not predict fitness cost (H2 not supported)
+    quote: If all resistance mechanisms impose the same modest cost (~0.086 fitness units relative to background), it suggests that **only AMR genes whose cost has been minimized through compensatory evolution persist in these genomes**.
+- id: stmt:amr-core-accessory-identical
+  kind: finding
+  text: Core (intrinsic) and accessory (acquired) AMR genes have virtually identical fitness distributions (mean -0.024 vs -0.024, Cohen's d = 0.002, MWU p = 0.33), refuting the prediction that recently acquired genes are costlier.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:amr-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: 4. Core and accessory AMR genes have identical fitness costs (H3 not supported)
+    quote: 'Core (intrinsic, N=638) and accessory (acquired, N=163) AMR genes show virtually identical fitness distributions: mean −0.024 vs −0.024, Cohen''s d = 0.002, MWU p = 0.33.'
+    notebook: 04_stratification.ipynb
+    figure: figures/h3_core_vs_accessory.png
+- id: stmt:amr-acquisition-not-random
+  kind: claim
+  text: The absence of a core-versus-accessory cost difference suggests horizontal transfer preferentially captures genes already cost-optimized in the donor lineage, or that the receiving genome rapidly compensates.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:amr-resistome
+  entities:
+  - entity:horizontal-gene-transfer
+  - entity:accessory-genome
+  - entity:compensatory-evolution
+  links:
+    supports:
+    - stmt:amr-core-accessory-identical
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: 4. Core and accessory AMR genes have identical fitness costs (H3 not supported)
+    quote: One interpretation is that acquisition of AMR genes is not random — horizontal transfer preferentially captures genes that have already been cost-optimized in their donor lineage, or that the receiving genome rapidly compensates.
+- id: stmt:amr-mechanism-predicts-conservation
+  kind: finding
+  text: Resistance mechanism strongly predicts conservation status (chi-square = 69.3, p = 1.4e-13)-metal resistance genes are 44% accessory while efflux and enzymatic genes are overwhelmingly core-decoupling pangenome location from fitness cost.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:amr-resistome
+  entities:
+  - entity:metal-resistance
+  - entity:efflux-pumps
+  - entity:core-genome
+  - entity:accessory-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: 5. Mechanism is strongly associated with conservation, even though cost is not
+    quote: While mechanism doesn't predict fitness cost, it strongly predicts conservation status (χ² = 69.3, p = 1.4×10⁻¹³). Metal resistance genes are 44% accessory, while efflux (13%) and enzymatic inactivation (16%) genes are overwhelmingly core.
+    notebook: 04b_followup_analyses.ipynb
+    figure: figures/mechanism_x_conservation.png
+- id: stmt:amr-first-pan-bacterial
+  kind: claim
+  text: This is the first pan-bacterial meta-analysis of AMR fitness costs using genome-wide transposon fitness data, leveraging 27M fitness measurements across 25 diverse bacteria.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-browser
+  - entity:rb-tnseq
+  - entity:meta-analysis
+  links:
+    supports:
+    - stmt:amr-universal-cost
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: This is the **first pan-bacterial meta-analysis of AMR fitness costs using genome-wide transposon fitness data**. Prior studies typically compare single resistant vs sensitive strain pairs in one organism.
+- id: stmt:amr-lab-adaptation-bias
+  kind: caveat
+  text: All 25 organisms are lab-adapted strains, so compensatory evolution during laboratory maintenance may have reduced measurable costs below what wild strains experience.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:amr-genes
+  - entity:compensatory-evolution
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:amr-universal-cost
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Lab adaptation bias**: All 25 organisms are lab-adapted strains. Compensatory evolution during laboratory maintenance may have reduced measurable costs below what wild strains experience. This makes our positive result more convincing but may underestimate the true cost in natural populations.'
+- id: stmt:amr-essential-censoring-caveat
+  kind: caveat
+  text: Because ~4.6% of AMR genes are putatively essential and absent from the fitness matrices, the +0.086 cost estimate is a lower bound if those censored genes are the most costly.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:gene-fitness
+  entities:
+  - entity:essential-genes
+  - entity:amr-genes
+  - entity:rb-tnseq
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:amr-low-essential-rate
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Essential gene censoring**: ~4.6% of AMR genes are putatively essential (absent from fitness matrices). If these are the most costly AMR genes, our estimate of +0.086 is a lower bound.'
+- id: stmt:amr-core-label-imprecision
+  kind: caveat
+  text: Most Fitness Browser species have few genomes (median 9), making the >=95% prevalence threshold for core designation imprecise, so the core-versus-accessory null result should be interpreted cautiously for species with under 20 genomes.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:amr-resistome
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:amr-core-accessory-identical
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Core/accessory label precision**: Most FB species have few genomes (median 9), making the ≥95% prevalence threshold for "core" imprecise. The core vs accessory null result should be interpreted cautiously for species with <20 genomes.'
+- id: stmt:amr-cross-ref-metal-atlas
+  kind: opportunity
+  text: The 144 metal resistance genes with fitness data could be cross-referenced against the metal_fitness_atlas project to test whether genes costly under standard conditions are protective under metal stress.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:amr-resistome
+  entities:
+  - entity:metal-resistance
+  - entity:metal-fitness-atlas
+  - entity:amr-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Cross-reference with metal fitness atlas**: The 144 metal resistance genes with fitness data could be cross-referenced against the `metal_fitness_atlas` project to test whether genes costly under standard conditions are protective under metal stress.'
+- id: stmt:amr-extend-full-pangenome
+  kind: opportunity
+  text: The analysis could be scaled from 25 Fitness Browser organisms to all 293K BERDL genomes by predicting AMR cost from gene cluster conservation patterns.
+  confidence: low
+  topics:
+  - topic:pangenome-architecture
+  - topic:amr-resistome
+  entities:
+  - entity:pangenome
+  - entity:berdl
+  - entity:amr-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_fitness_cost
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Extend to full pangenome**: Scale the analysis from 25 FB organisms to all 293K BERDL genomes by predicting AMR cost from gene cluster conservation patterns.'

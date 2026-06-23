@@ -1,0 +1,310 @@
+project:
+  id: soil_frontier_genomics
+  title: 'Report: Soil Microbial Dark Matter and the Clay Shield Null Result'
+statements:
+- id: stmt:clay-shield-null-result
+  kind: finding
+  text: Across 5,441 soil samples, clay content does not detectably buffer industrial or geochemical stress effects on microbial functional potential at global scale.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:functional-dark-matter
+  entities:
+  - entity:clay-shield-hypothesis
+  - entity:soil-metagenomes
+  - entity:functional-potential
+  - entity:microbial-dark-matter
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: README.md
+    source_section: Clay Shield Hypothesis — Null Result
+    quote: "Clay content does not detectably buffer industrial or geochemical\n  stress effects on microbial functional potential at global scale."
+- id: stmt:negative-out-of-sample-r2
+  kind: finding
+  text: All three predictive model families (soil/climate, geochemical, industrial) achieve negative out-of-sample R², meaning they predict microbial functional potential worse than the training mean.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:predictive-models
+  - entity:cross-validation
+  - entity:functional-potential
+  links:
+    supports:
+    - stmt:clay-shield-null-result
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**All predictive models have negative out-of-sample R²**:\n  - Soil & Climate: R² = −0.205 ± 0.197\n  - Geochemical: R² = −0.331 ± 0.071\n  - Industrial: R² = −0.221 ± 0.042"
+- id: stmt:shield-efficiency-not-significant
+  kind: finding
+  text: The shield efficiency test shows low-clay and high-clay cross-validation R² differ by only 0.024 with a 95% confidence interval that includes zero, so the difference is not significant.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:clay-shield-hypothesis
+  - entity:cross-validation
+  - entity:shield-efficiency-test
+  links:
+    supports:
+    - stmt:clay-shield-null-result
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**Shield efficiency test**: low-clay CV R² = −0.268, high-clay CV R² = −0.292;\n  difference = 0.024 [95% CI: −0.423, 0.161] — **not significant, CI includes zero**."
+- id: stmt:clay-feature-importance-no-accuracy
+  kind: finding
+  text: Clay appears as a consistent model feature (importance ≈ 0.14) but does not improve predictive accuracy in high-clay soils relative to low-clay soils.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:clay-shield-hypothesis
+  - entity:feature-importance
+  - entity:predictive-models
+  links:
+    supports:
+    - stmt:clay-shield-null-result
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "Clay appears as a consistent feature (importance ≈ 0.14) but does not improve\n  predictive accuracy in high-clay soils."
+- id: stmt:clay-shield-not-supported-claim
+  kind: claim
+  text: The clay shield hypothesis is not supported at global scale, with the functional potential variable being unpredictable from measured stressors likely due to spatial autocorrelation, batch effects, and unmeasured confounders.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:functional-dark-matter
+  entities:
+  - entity:clay-shield-hypothesis
+  - entity:spatial-autocorrelation
+  - entity:batch-effects
+  - entity:functional-potential
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:clay-shield-null-result
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: The clay shield hypothesis is **not supported** at global scale.
+- id: stmt:gdi-definition
+  kind: finding
+  text: The Genomic Discovery Index (GDI = OTU Richness / (Mean Genome Completeness + 1)) quantifies the gap between observed microbial diversity and genomic reference coverage at 1° spatial bins.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:environment-biogeography
+  entities:
+  - entity:genomic-discovery-index
+  - entity:otu-richness
+  - entity:genome-completeness
+  - entity:microbial-dark-matter
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: README.md
+    source_section: Genomic Discovery Index (GDI)
+    quote: "**GDI = OTU Richness / (Mean Genome Completeness + 1)** — quantifies the gap between\n  observed diversity and genomic reference coverage at 1° spatial bins (~11 km radius)."
+- id: stmt:forest-cropland-frontiers
+  kind: finding
+  text: Forest (GDI 902.36) and Cropland (890.82) soils are the highest-GDI genomic frontiers, with high observed species richness but sparse genome reference databases, while Grassland (503.42) and Wetland (525.13) are relatively well-mapped.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:environment-biogeography
+  entities:
+  - entity:genomic-discovery-index
+  - entity:forest-soils
+  - entity:cropland-soils
+  - entity:microbial-dark-matter
+  links:
+    supports:
+    - stmt:gdi-definition
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: README.md
+    source_section: Genomic Discovery Index (GDI)
+    quote: "**Highest GDI (genomic frontiers)**: Forest (902.36) and Cropland (890.82) soils —\n  high observed species richness but sparse genome reference databases.\n- **Lower GDI (relatively well-mapped)**: Grassland (503.42) and Wetland (525.13)."
+- id: stmt:ph-discovery-bias
+  kind: finding
+  text: Genomic databases show a +0.8 pH unit discovery bias toward acidic soils (frontier areas mean pH 6.74 vs mapped areas 5.94), leaving alkaline-specialist microbes disproportionately as dark matter.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:environment-biogeography
+  entities:
+  - entity:genomic-discovery-index
+  - entity:ph-bias
+  - entity:alkaline-soils
+  - entity:microbial-dark-matter
+  links:
+    supports:
+    - stmt:gdi-definition
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: README.md
+    source_section: Genomic Discovery Index (GDI)
+    quote: "**pH discovery bias**: frontier areas (GDI > 1000) have mean pH = 6.74 vs. mapped\n  areas (GDI < 1000) mean pH = 5.94 — a **+0.8 pH unit gap**, indicating genomic\n  databases are biased toward acidic soils and alkaline-specialist microbes are\n  disproportionately dark matter."
+- id: stmt:alkaline-sampling-gap-claim
+  kind: claim
+  text: The GDI results reveal a systematic alkaline-soil sampling gap in public genomic datasets, with implications for any study drawing functional inferences from genome reference databases in forest and cropland biomes.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:environment-biogeography
+  entities:
+  - entity:genomic-discovery-index
+  - entity:alkaline-soils
+  - entity:reference-databases
+  - entity:functional-potential
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ph-discovery-bias
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: 'The GDI results reveal a systematic alkaline-soil sampling gap in public genomic
+
+      datasets.'
+- id: stmt:negative-r2-diagnosis-caveat
+  kind: caveat
+  text: The negative out-of-sample R² diagnosis is incomplete because distributional shift, outlier leverage, and genuine unpredictability have not been distinguished, and only true unpredictability supports a strong null result interpretation.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:predictive-models
+  - entity:cross-validation
+  - entity:spatial-autocorrelation
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:negative-out-of-sample-r2
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: REPORT.md
+    source_section: Critical Assessment
+    quote: 'These three causes
+
+      have different scientific implications — only (c) supports a strong null result
+
+      interpretation. Causes (a) and (b) would indicate a modelling failure, not a biological
+
+      null result.'
+- id: stmt:gdi-formula-validity-caveat
+  kind: caveat
+  text: The GDI formula is a novel index without published precedent that conflates sampling gap and OTU richness into one number potentially dominated by the richness term, so separate reporting of richness and completeness would be more interpretable.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:genomic-discovery-index
+  - entity:otu-richness
+  - entity:genome-completeness
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:gdi-definition
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: REPORT.md
+    source_section: Critical Assessment
+    quote: 'GDI = Richness / (Mean_Completeness + 1) is a novel index
+
+      without published precedent.'
+- id: stmt:forest-cropland-not-distinguishable-caveat
+  kind: caveat
+  text: The Forest (902.36) vs Cropland (890.82) GDI difference is only 1.3% and without bootstrap confidence intervals these biomes are not meaningfully distinguishable, so the claim should be framed as jointly highest rather than a ranked ordering.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:genomic-discovery-index
+  - entity:forest-soils
+  - entity:cropland-soils
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:forest-cropland-frontiers
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: REPORT.md
+    source_section: Critical Assessment
+    quote: 'Forest (902.36) vs. Cropland (890.82)
+
+      is a 1.3% difference; without bootstrap CIs these are not meaningfully distinguishable.'
+- id: stmt:ph-reverse-causality-opportunity
+  kind: opportunity
+  text: Controlling for the number of 16S samples in each pH bin before computing GDI would distinguish true assembly/annotation gaps from mere sampling-effort bias in the apparent pH discovery bias.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:environment-biogeography
+  entities:
+  - entity:genomic-discovery-index
+  - entity:ph-bias
+  - entity:sampling-bias
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:ph-discovery-bias
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: REPORT.md
+    source_section: Critical Assessment
+    quote: 'Controlling for the number of 16S samples in each pH bin
+
+      before computing GDI would distinguish true assembly/annotation gaps from sampling gaps.'
+- id: stmt:spatial-validation-opportunity
+  kind: opportunity
+  text: Computing Moran's I on the clay-model residuals and applying spatial correction before re-testing the shield efficiency contrast would establish whether the null result survives spatial autocorrelation.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  entities:
+  - entity:spatial-autocorrelation
+  - entity:clay-shield-hypothesis
+  - entity:morans-i
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:clay-shield-null-result
+  evidence:
+  - source_project: soil_frontier_genomics
+    source_doc: README.md
+    source_section: NB05 — Validation Analyses
+    quote: "Compute Moran's I on model residuals. If significant, apply SEVM or spatial\n   lag correction and re-test the shield efficiency contrast."
+    notebook: notebooks/05_validation.ipynb

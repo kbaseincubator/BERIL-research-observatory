@@ -1,0 +1,317 @@
+project:
+  id: cog_analysis
+  title: 'Report: COG Functional Category Analysis'
+statements:
+- id: stmt:two-speed-genome
+  kind: finding
+  text: Bacterial pangenomes show a universal 'two-speed genome' partitioning of COG functional categories across 32 species and 9 phyla, with distinct functional profiles for core versus novel genes.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome
+  - entity:cog-categories
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Universal Functional Partitioning in Bacterial Pangenomes
+    quote: 'Analysis of 32 species across 9 phyla (357,623 genes) reveals a remarkably consistent "two-speed genome":'
+    notebook: cog_analysis.ipynb
+- id: stmt:novel-genes-mobile-enriched
+  kind: finding
+  text: Novel/singleton genes are most strongly enriched in mobile element functions (COG L), with +10.88% enrichment at 100% consistency across species, the strongest signal in the analysis.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:cog-categories
+  - entity:mobile-elements
+  - entity:singleton-genes
+  links:
+    supports:
+    - stmt:two-speed-genome
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Universal Functional Partitioning in Bacterial Pangenomes
+    quote: 'L (Mobile elements): +10.88% enrichment, 100% consistency across species -- STRONGEST SIGNAL'
+    notebook: cog_analysis.ipynb
+- id: stmt:novel-genes-defense-enriched
+  kind: finding
+  text: Novel/singleton genes are consistently enriched in defense mechanisms (COG V), with +2.83% enrichment at 100% consistency across species.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:cog-categories
+  - entity:defense-mechanisms
+  - entity:singleton-genes
+  links:
+    supports:
+    - stmt:two-speed-genome
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Universal Functional Partitioning in Bacterial Pangenomes
+    quote: 'V (Defense mechanisms): +2.83% enrichment, 100% consistency'
+    notebook: cog_analysis.ipynb
+- id: stmt:novel-genes-unknown-function
+  kind: finding
+  text: Novel/singleton genes show modest enrichment in unknown-function genes (COG S), with +1.64% enrichment but lower (69%) cross-species consistency.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:cog-categories
+  - entity:unknown-function-genes
+  - entity:singleton-genes
+  links:
+    supports:
+    - stmt:two-speed-genome
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Universal Functional Partitioning in Bacterial Pangenomes
+    quote: 'S (Unknown function): +1.64% enrichment, 69% consistency'
+    notebook: cog_analysis.ipynb
+- id: stmt:core-genes-translation-depleted
+  kind: finding
+  text: Core genes are most strongly depleted of novel-gene signal in translation (COG J), with -4.65% enrichment at 97% consistency, the strongest depletion in the analysis.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:cog-categories
+  - entity:core-genome
+  - entity:translation
+  links:
+    supports:
+    - stmt:two-speed-genome
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Universal Functional Partitioning in Bacterial Pangenomes
+    quote: 'J (Translation): -4.65% enrichment, 97% consistency -- STRONGEST DEPLETION'
+    notebook: cog_analysis.ipynb
+- id: stmt:core-genes-metabolism-enriched
+  kind: finding
+  text: Core genes are consistently enriched in metabolic and biosynthetic functions, including nucleotide metabolism (COG F, -2.09%, 100% consistency) and coenzyme metabolism (COG H, -2.06%, 97% consistency) relative to novel genes.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:pangenome-architecture
+  entities:
+  - entity:cog-categories
+  - entity:core-genome
+  - entity:metabolism
+  links:
+    supports:
+    - stmt:two-speed-genome
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Universal Functional Partitioning in Bacterial Pangenomes
+    quote: 'F (Nucleotide metabolism): -2.09% enrichment, 100% consistency'
+    notebook: cog_analysis.ipynb
+- id: stmt:composite-cog-meaningful
+  kind: finding
+  text: Multi-function genes with composite COG assignments (e.g., 'LV' = mobile+defense) are biologically meaningful functional modules rather than annotation artifacts and should not be filtered as noise.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:functional-dark-matter
+  entities:
+  - entity:cog-categories
+  - entity:composite-cog
+  - entity:mobile-defense-islands
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Composite COG Categories Are Biologically Meaningful
+    quote: 'Multi-function genes with composite COG assignments (e.g., "LV" = mobile+defense, "EGP" = amino acid+carb+inorganic ion) are not annotation artifacts:'
+    notebook: cog_analysis.ipynb
+- id: stmt:mobile-defense-islands
+  kind: claim
+  text: The co-occurring mobile+defense composite category (COG LV, +0.34% enrichment, 76% consistency) suggests functional modules akin to 'mobile defense islands' that combine mobility and defense functions.
+  confidence: low
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:composite-cog
+  - entity:mobile-defense-islands
+  - entity:defense-mechanisms
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:composite-cog-meaningful
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Composite COG Categories Are Biologically Meaningful
+    quote: Suggests functional modules like "mobile defense islands"
+    notebook: cog_analysis.ipynb
+- id: stmt:hgt-primary-innovation
+  kind: claim
+  text: Horizontal gene transfer, not vertical inheritance, is the primary mechanism of genomic innovation in bacteria, with most genomic novelty originating from mobile elements.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:horizontal-gene-transfer
+  - entity:mobile-elements
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: Horizontal gene transfer (HGT) is the primary innovation mechanism, not vertical inheritance
+- id: stmt:core-metabolic-engine
+  kind: claim
+  text: Core genes represent an ancient, conserved 'metabolic engine' (translation, energy, biosynthesis), whereas novel genes are recent acquisitions for ecological adaptation.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:core-genome
+  - entity:metabolism
+  - entity:singleton-genes
+  links:
+    supports:
+    - stmt:two-speed-genome
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: Core genes = ancient, conserved "metabolic engine" (translation, energy, biosynthesis)
+- id: stmt:patterns-deep-constraint
+  kind: claim
+  text: The two-speed functional partitioning holds universally across bacterial phyla, suggesting a deep evolutionary constraint and a fundamental organizing principle of pangenome structure.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome
+  - entity:cog-categories
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:two-speed-genome
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: Patterns hold universally across bacterial phyla, suggesting deep evolutionary constraint
+- id: stmt:cog-annotation-coverage-caveat
+  kind: caveat
+  text: COG annotations cover only ~70% of genes, and unassigned genes may skew the observed functional category distributions.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:cog-categories
+  - entity:eggnog-mapper
+  - entity:unknown-function-genes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:two-speed-genome
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: COG annotations cover ~70% of genes; unassigned genes may skew distributions
+- id: stmt:sample-size-caveat
+  kind: caveat
+  text: The analysis is based on 32 species, and a larger sample might reveal phylum-specific patterns not captured here.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome
+  - entity:cog-categories
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:patterns-deep-constraint
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Analysis uses 32 species — a larger sample might reveal phylum-specific patterns
+- id: stmt:opportunity-environmental-metadata
+  kind: opportunity
+  text: Correlating novel gene functions with environmental metadata could reveal whether acquired gene functions vary systematically by habitat.
+  confidence: low
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:cog-categories
+  - entity:singleton-genes
+  - entity:environmental-metadata
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Correlate with environmental metadata to see if novel gene functions vary by habitat
+- id: stmt:opportunity-defense-recombination-detail
+  kind: opportunity
+  text: Specific COG categories such as V-Defense and L-Recombination warrant detailed follow-up investigation given their strong enrichment in novel genes.
+  confidence: low
+  topics:
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:cog-categories
+  - entity:defense-mechanisms
+  - entity:mobile-elements
+  links:
+    supports:
+    - stmt:novel-genes-defense-enriched
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: cog_analysis
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Investigate specific COG categories (e.g., V-Defense, L-Recombination) in detail

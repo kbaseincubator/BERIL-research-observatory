@@ -1,0 +1,336 @@
+project:
+  id: respiratory_chain_wiring
+  title: 'Report: Condition-Specific Respiratory Chain Wiring in ADP1'
+statements:
+- id: stmt:condition-specific-respiratory-wiring
+  kind: finding
+  text: Acinetobacter baylyi ADP1's branched respiratory chain is wired in a condition-dependent manner, using qualitatively different respiratory configurations for each carbon source rather than a quantitative flux gradient.
+  confidence: high
+  topics:
+  - topic:adp1-model-system
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:adp1
+  - entity:respiratory-chain
+  - entity:complex-i
+  - entity:carbon-source
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: 1. Each carbon source uses a distinct respiratory chain configuration
+    quote: ADP1's branched respiratory chain (62 genes across 8 subsystems) is wired in a condition-dependent manner. Quinate requires only Complex I; acetate requires Complex I, cytochrome bo3, ACIAD3522, and more; glucose requires no specific respiratory component. This is not a quantitative gradient — it's qualitatively different respiratory configurations per substrate.
+  - source_project: respiratory_chain_wiring
+    source_doc: 01_respiratory_chain_map.ipynb
+    source_section: 1. Each carbon source uses a distinct respiratory chain configuration
+    quote: '*(Notebook: 01_respiratory_chain_map.ipynb)*'
+- id: stmt:three-parallel-nadh-dehydrogenases
+  kind: finding
+  text: ADP1 carries three parallel NADH dehydrogenases (Complex I, NDH-2, and ACIAD3522) with distinct, non-overlapping condition profiles, with ACIAD3522 being specifically lethal on acetate.
+  confidence: high
+  topics:
+  - topic:adp1-model-system
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:complex-i
+  - entity:ndh-2
+  - entity:aciad3522
+  - entity:nadh-dehydrogenase
+  links:
+    supports:
+    - stmt:condition-specific-respiratory-wiring
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: 2. ADP1 has three parallel NADH dehydrogenases with distinct condition profiles
+    quote: NDH-2 (ACIAD_RS16420, KO K03885) is TnSeq-dispensable but missing from the deletion collection — it has no growth data. FBA predicts zero flux through NDH-2 on all standard carbon sources, routing all NADH through Complex I. NDH-2 is a standalone gene (not in a respiratory operon) and is core genome.
+  - source_project: respiratory_chain_wiring
+    source_doc: 02_ndh2_indirect.ipynb
+    source_section: 2. ADP1 has three parallel NADH dehydrogenases with distinct condition profiles
+    quote: '*(Notebook: 02_ndh2_indirect.ipynb)*'
+- id: stmt:ndh2-core-genome
+  kind: finding
+  text: NDH-2 (KO K03885) is a standalone core-genome gene that is TnSeq-dispensable, sits outside any respiratory operon, and is absent from the ADP1 deletion collection so it lacks direct growth data.
+  confidence: high
+  topics:
+  - topic:adp1-model-system
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:ndh-2
+  - entity:adp1
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:three-parallel-nadh-dehydrogenases
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: 2. ADP1 has three parallel NADH dehydrogenases with distinct condition profiles
+    quote: NDH-2 (ACIAD_RS16420, KO K03885) is TnSeq-dispensable but missing from the deletion collection — it has no growth data. FBA predicts zero flux through NDH-2 on all standard carbon sources, routing all NADH through Complex I. NDH-2 is a standalone gene (not in a respiratory operon) and is core genome.
+- id: stmt:quinate-complex-i-paradox-flux-rate
+  kind: finding
+  text: 'The paradox that quinate yields fewer NADH per carbon yet makes Complex I more essential is resolved by NADH flux rate: aromatic ring cleavage via the β-ketoadipate pathway creates a concentrated TCA-cycle NADH burst exceeding NDH-2''s reoxidation capacity.'
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:adp1-model-system
+  - topic:gene-fitness
+  entities:
+  - entity:quinate
+  - entity:complex-i
+  - entity:beta-ketoadipate-pathway
+  - entity:tca-cycle
+  links:
+    supports:
+    - stmt:condition-specific-respiratory-wiring
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: 3. The quinate-Complex I paradox is resolved by NADH flux rate, not total yield
+    quote: 'Quinate produces FEWER NADH per carbon atom (0.57) than glucose (1.50) or acetate (1.50), yet Complex I is MORE essential on quinate. The resolution: aromatic ring cleavage via the β-ketoadipate pathway produces succinyl-CoA + acetyl-CoA simultaneously, creating a concentrated NADH burst in the TCA cycle that exceeds NDH-2''s reoxidation capacity. Glucose distributes NADH production across Entner-Doudoroff pathway steps plus TCA, staying within NDH-2''s capacity.'
+  - source_project: respiratory_chain_wiring
+    source_doc: 03_stoichiometry.ipynb
+    source_section: 3. The quinate-Complex I paradox is resolved by NADH flux rate, not total yield
+    quote: '*(Notebook: 03_stoichiometry.ipynb)*'
+- id: stmt:rate-vs-yield-principle
+  kind: claim
+  text: The rate-versus-yield principle—that substrates producing concentrated reducing equivalents demand high-capacity NADH reoxidation regardless of total NADH yield—should generalize to any carbon source whose catabolism concentrates reducing equivalents.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:adp1-model-system
+  entities:
+  - entity:complex-i
+  - entity:nadh
+  - entity:carbon-source
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:quinate-complex-i-paradox-flux-rate
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: The paradox that quinate (lower NADH yield) requires Complex I more than glucose (higher NADH yield) is resolved by NADH flux rate — concentrated TCA burst vs distributed production. This principle should apply to any substrate whose catabolism produces concentrated reducing equivalents.
+- id: stmt:respiratory-wiring-is-metabolic-not-transcriptional
+  kind: finding
+  text: All three NADH dehydrogenases are constitutively co-expressed at similar protein levels, so condition-specific respiratory wiring operates as a passive flux-based system at the metabolic level rather than an active transcriptional switch.
+  confidence: high
+  topics:
+  - topic:adp1-model-system
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:complex-i
+  - entity:ndh-2
+  - entity:aciad3522
+  - entity:proteomics
+  links:
+    supports:
+    - stmt:condition-specific-respiratory-wiring
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: '5. Proteomics: respiratory wiring is metabolic, not transcriptional'
+    quote: 'NDH-2 is NOT repressed — it is constitutively co-expressed with Complex I. This means the condition-specific respiratory wiring operates at the metabolic level: all three dehydrogenases are present simultaneously, and which one becomes limiting depends on the NADH flux rate from the carbon source being catabolized. The cell uses a passive, flux-based wiring system rather than an active transcriptional switch.'
+  - source_project: respiratory_chain_wiring
+    source_doc: 05_proteomics_expression.ipynb
+    source_section: '5. Proteomics: respiratory wiring is metabolic, not transcriptional'
+    quote: '*(Notebook: 05_proteomics_expression.ipynb)*'
+- id: stmt:fba-misses-capacity-constraints
+  kind: finding
+  text: Flux balance analysis predicts zero flux through NDH-2 and ACIAD3522 on all standard media because it optimizes for growth and routes NADH through the more ATP-efficient Complex I, illustrating why FBA fails to capture the capacity constraints that drive condition-specific respiratory requirements.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:adp1-model-system
+  entities:
+  - entity:fba
+  - entity:complex-i
+  - entity:ndh-2
+  - entity:metabolic-model
+  links:
+    supports:
+    - stmt:respiratory-wiring-is-metabolic-not-transcriptional
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: FBA Model Limitations
+    quote: The FBA model predicts zero flux through NDH-2 and ACIAD3522 on all standard media, because FBA optimizes for growth rate and preferentially routes NADH through Complex I (which generates more ATP per NADH). This is the fundamental reason FBA models fail to predict condition-specific respiratory requirements — they assume the optimal pathway is always used, missing the capacity constraints that force cells to use alternative, suboptimal pathways under high flux.
+- id: stmt:cross-species-ndh2-compensation-not-supported
+  kind: finding
+  text: Across 14 fitness-browser organisms, those with validated NDH-2 show larger Complex I aromatic fitness deficits than those without (the opposite of the compensation prediction, not statistically significant), so the NDH-2 compensation pattern is not supported across species.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  entities:
+  - entity:ndh-2
+  - entity:complex-i
+  - entity:fitness-browser
+  - entity:pseudomonas-putida
+  links:
+    supports: []
+    contradicts:
+    - stmt:three-parallel-nadh-dehydrogenases
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: '4. Cross-species: NDH-2 presence does NOT predict reduced Complex I aromatic dependency'
+    quote: Organisms WITH NDH-2 show LARGER Complex I aromatic deficits (mean = -0.297) than those WITHOUT (mean = -0.156), the opposite of the compensation prediction (p = 0.52, not significant). The NDH-2 compensation hypothesis is not supported by cross-species fitness data — NDH-2 presence does not predict whether Complex I is dispensable on aromatics. The ADP1 respiratory wiring pattern may be species-specific rather than a general rule.
+  - source_project: respiratory_chain_wiring
+    source_doc: 04_cross_species_respiratory.ipynb
+    source_section: '4. Cross-species: NDH-2 presence does NOT predict reduced Complex I aromatic dependency'
+    quote: '*(Notebook: 04_cross_species_respiratory.ipynb)*'
+- id: stmt:wiring-pattern-may-be-species-specific
+  kind: claim
+  text: The ADP1 NDH-2/Complex I respiratory wiring pattern may be species-specific rather than a general cross-species rule, since the compensation signal is likely ADP1-specific.
+  confidence: low
+  topics:
+  - topic:microbial-ecotypes
+  - topic:gene-fitness
+  - topic:adp1-model-system
+  entities:
+  - entity:adp1
+  - entity:ndh-2
+  - entity:complex-i
+  links:
+    supports:
+    - stmt:cross-species-ndh2-compensation-not-supported
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: After correcting NDH-2 false positives, organisms with validated NDH-2 show LARGER Complex I aromatic deficits than those without. The compensation is likely ADP1-specific, not a general cross-species pattern.
+- id: stmt:caveat-ndh2-no-growth-data
+  kind: caveat
+  text: The central NDH-2 compensation prediction cannot be directly tested because NDH-2 is absent from the deletion collection and has no growth data, making it the weakest finding in the study.
+  confidence: high
+  topics:
+  - topic:adp1-model-system
+  - topic:gene-fitness
+  entities:
+  - entity:ndh-2
+  - entity:adp1
+  - entity:deletion-collection
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:three-parallel-nadh-dehydrogenases
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: NDH-2 has no growth data — the central prediction (NDH-2 compensates on glucose) cannot be directly tested with this dataset
+- id: stmt:caveat-ndh2-false-positives
+  kind: caveat
+  text: The cross-species NDH-2 identification relies on text matching of gene descriptions, which likely yields false positives for organisms with incompletely annotated Complex I subunits, so KO-based identification (K03885) would be more reliable.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:ndh-2
+  - entity:complex-i
+  - entity:annotation
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cross-species-ndh2-compensation-not-supported
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The NDH-2 identification in NB04 uses text matching on gene descriptions, which likely produces false positives for organisms with incompletely annotated Complex I subunits (e.g., pseudo3_N2E3 with 8 "NDH-2" hits that are probably a Complex I operon). KO-based identification (K03885) would be more reliable.
+- id: stmt:caveat-stoichiometry-theoretical
+  kind: caveat
+  text: The NADH stoichiometry analysis is built on theoretical pathway biochemistry rather than measured flux distributions, and the cross-species comparison includes only four organisms without NDH-2, too few for statistical significance.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:nadh
+  - entity:stoichiometry
+  - entity:fitness-browser
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:quinate-complex-i-paradox-flux-rate
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The stoichiometry analysis uses theoretical pathway biochemistry, not measured flux distributions
+- id: stmt:opportunity-ndh2-deletion-mutant
+  kind: opportunity
+  text: Constructing an NDH-2 deletion mutant in ADP1 would provide the definitive experimental test of whether NDH-2 loss makes Complex I essential on glucose.
+  confidence: medium
+  topics:
+  - topic:adp1-model-system
+  - topic:microbiome-engineering
+  - topic:gene-fitness
+  entities:
+  - entity:ndh-2
+  - entity:adp1
+  - entity:complex-i
+  - entity:knockout
+  links:
+    supports:
+    - stmt:caveat-ndh2-no-growth-data
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: 'Construct an NDH-2 deletion mutant**: The central prediction — that NDH-2 deletion makes Complex I essential on glucose — can only be tested experimentally. An NDH-2 knockout in ADP1 would be the definitive test.'
+- id: stmt:opportunity-pangenome-ko-cooccurrence
+  kind: opportunity
+  text: Querying the full BERDL pangenome for NDH-2 (K03885) and Complex I (K00330-K00343) KO co-occurrence across 27K species would provide a far larger, better-powered sample to test the compensation hypothesis.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:ndh-2
+  - entity:complex-i
+  - entity:pangenome
+  - entity:berdl
+  links:
+    supports:
+    - stmt:cross-species-ndh2-compensation-not-supported
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: respiratory_chain_wiring
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Querying the full BERDL pangenome for NDH-2 (K03885) and Complex I (K00330-K00343) co-occurrence across 27K species would provide a much larger sample.

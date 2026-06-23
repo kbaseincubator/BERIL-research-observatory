@@ -1,0 +1,446 @@
+project:
+  id: microbeatlas_metal_ecology
+  title: 'Report: Metal Resistance Ecology — Phylogenetic Conservation vs. Environmental Selection'
+statements:
+- id: stmt:metal-type-diversity-predicts-niche-breadth
+  kind: finding
+  text: Across 606 bacterial genera, the number of distinct metal types resisted per genus is the only metal AMR predictor of ecological niche breadth that survives phylogenetic correction and Bonferroni correction (PGLS β = +0.021, p = 1.5×10⁻⁴).
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:metal-type-diversity
+  - entity:niche-breadth
+  - entity:pgls
+  - entity:pangenome
+  - entity:microbeatlas
+  links:
+    supports:
+    - stmt:breadth-not-depth-distinguishes-generalists
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 1: Bacterial niche breadth is moderately phylogenetically conserved; metal type diversity predicts it beyond phylogeny'
+    quote: 'After
+
+      controlling for this phylogenetic structure via PGLS (n = 606 genera with AMR data), the number
+
+      of distinct metal types resisted per genus is the only metal AMR predictor that survives
+
+      Bonferroni correction (β = +0.021, SE = 0.0056, p = 1.5×10⁻⁴; threshold p < 0.0083 for 6
+
+      models).'
+    notebook: notebooks/05_pgls_regression.ipynb
+    figure: figures/fig3_synthesis.png
+- id: stmt:niche-breadth-phylogenetically-conserved
+  kind: finding
+  text: Bacterial ecological niche breadth (Levins' B_std) is strongly phylogenetically conserved (Pagel's λ = 0.787), and habitat range is even more conserved (λ = 0.909).
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:gene-fitness
+  entities:
+  - entity:niche-breadth
+  - entity:pagel-lambda
+  - entity:phylogenetic-signal
+  - entity:microbeatlas
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 1: Bacterial niche breadth is moderately phylogenetically conserved; metal type diversity predicts it beyond phylogeny'
+    quote: 'Across 1,264 bacterial genera with ≥ 3 OTUs in MicrobeAtlas, Levins'' B_std shows strong
+
+      phylogenetic signal (Pagel''s λ = 0.787, p = 7.9×10⁻¹⁰², LRT). Habitat range (number of
+
+      environment categories detected) is even more conserved (λ = 0.909, p = 1.4×10⁻¹⁵⁷).'
+    notebook: notebooks/04_pagel_lambda.ipynb
+- id: stmt:metal-amr-intermediate-phylogenetic-signal
+  kind: finding
+  text: Metal AMR traits show intermediate, significantly non-zero phylogenetic signal (Pagel's λ = 0.26–0.44), with core resistance fraction more conserved than metal type diversity than cluster count, consistent with vertically inherited core resistance plus HGT-driven accessory expansion.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:mobile-genetic-elements
+  - topic:amr-resistome
+  entities:
+  - entity:metal-amr
+  - entity:pagel-lambda
+  - entity:horizontal-gene-transfer
+  - entity:core-genome
+  - entity:phylogenetic-signal
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Metal AMR traits show intermediate phylogenetic signal — consistent with mixed vertical inheritance and HGT'
+    quote: 'The ordering — core fraction λ > type diversity λ > cluster
+
+      count λ — is consistent with a model in which constitutive (core) metal resistance is mainly
+
+      vertically inherited, while accessory gene accumulation and metal type expansion are shaped by
+
+      horizontal transfer and local metal exposure.'
+    notebook: notebooks/04_pagel_lambda.ipynb
+    figure: figures/fig1_lambda_heatmap.png
+- id: stmt:breadth-not-depth-distinguishes-generalists
+  kind: finding
+  text: 'It is the breadth of the metal resistance repertoire, not its depth, that is associated with ecological versatility: total AMR gene cluster count and core AMR fraction do not predict niche breadth in PGLS models.'
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:pangenome-architecture
+  entities:
+  - entity:metal-type-diversity
+  - entity:niche-breadth
+  - entity:amr-gene-burden
+  - entity:pgls
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metal-type-diversity-predicts-niche-breadth
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: 'Finding 3: Metal type diversity, not total gene burden, distinguishes broad-niche genera'
+    quote: 'Total AMR
+
+      gene cluster count and core AMR fraction do not predict niche breadth in either the simple or
+
+      multi-predictor PGLS models, indicating that the *breadth* of the metal resistance repertoire
+
+      rather than its *depth* (many genes for few metals) is associated with ecological versatility.'
+    notebook: notebooks/05_pgls_regression.ipynb
+    figure: figures/fig4_metal_types_scatter.png
+- id: stmt:effect-independent-of-genome-size
+  kind: finding
+  text: The metal type diversity effect on niche breadth remains significant after controlling for genome size (β = +0.022, p = 3.6×10⁻⁴), and is not an artefact of total genomic complexity.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:pangenome-architecture
+  entities:
+  - entity:metal-type-diversity
+  - entity:genome-size
+  - entity:pgls
+  - entity:gtdb
+  links:
+    supports:
+    - stmt:metal-type-diversity-predicts-niche-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: R5. Genome size PGLS covariate (new BERDL query)
+    quote: 'Metal type
+
+      diversity remains significant (p = 3.6×10⁻⁴) after controlling for genome size, with only a
+
+      marginal change in β (+0.022 vs +0.021 without genome size covariate). The metal type diversity
+
+      effect is **not an artefact of genome size**.'
+    notebook: notebooks/05_pgls_regression.ipynb
+- id: stmt:effect-independent-of-richness-and-genome-size
+  kind: finding
+  text: In a three-covariate PGLS, metal type diversity remains independently significant (β = +0.022, p = 3.5×10⁻⁴) after simultaneously controlling for species richness and genome size, neither of which fully explains the association.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:metal-type-diversity
+  - entity:genome-size
+  - entity:species-richness
+  - entity:pgls
+  links:
+    supports:
+    - stmt:metal-type-diversity-predicts-niche-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: 'R6. Three-covariate PGLS: metal types independent of both species richness and genome size'
+    quote: 'Metal type diversity remains independently significant (β = +0.022,
+
+      p = 3.5×10⁻⁴, q = 0.003 BH-FDR) after simultaneously controlling for both species richness
+
+      and genome size.'
+    notebook: notebooks/05_pgls_regression.ipynb
+- id: stmt:nitrification-positive-control
+  kind: claim
+  text: Nitrification serves as a metabolic positive control with near-maximal phylogenetic signal (λ = 0.94 bacteria, 1.00 archaea), contrasting sharply with the intermediate signal of metal AMR and strengthening confidence in the analytical pipeline.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:nitrification
+  - entity:pagel-lambda
+  - entity:phylogenetic-signal
+  - entity:metal-amr
+  links:
+    supports:
+    - stmt:metal-amr-intermediate-phylogenetic-signal
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: Phylogenetic signal structure
+    quote: 'Nitrification (λ = 0.94–1.00 in both domains) serves as a metabolic positive control:
+
+      functional genes for ammonia and nitrite oxidation are deep, vertically inherited innovations
+
+      that define major lineages (Nitrospirota, Thaumarchaeota), and their near-maximal λ contrasts
+
+      sharply with the intermediate metal AMR signal.'
+- id: stmt:first-global-metal-niche-link
+  kind: claim
+  text: This is the first analysis linking genus-level metal type diversity from pangenome AMR annotations across 6,789 species to global ecological niche breadth from a 464K-sample 16S atlas with phylogenetic control via PGLS.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:metal-type-diversity
+  - entity:pangenome
+  - entity:microbeatlas
+  - entity:pgls
+  - entity:gtdb
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: Novel contribution
+    quote: 'This is the first analysis linking **genus-level metal type diversity** — inferred from
+
+      pangenome AMR annotations across 6,789 species — to **global ecological niche breadth** from a
+
+      464K-sample 16S atlas, with phylogenetic control via PGLS.'
+- id: stmt:metabolic-versatility-hypothesis
+  kind: claim
+  text: The positive association is consistent with a metabolic versatility hypothesis, in which broad metal tolerance is a proxy for overall environmental tolerance because multi-metal-stress environments are also chemically complex in other dimensions.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:metabolic-versatility
+  - entity:metal-type-diversity
+  - entity:niche-breadth
+  links:
+    supports:
+    - stmt:metal-type-diversity-predicts-niche-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: Biological meaning of the metal type effect
+    quote: 'This co-occurrence is plausible because the environments that impose
+
+      multi-metal stress — polymetallic mine tailings, estuarine sediments, biosolid-amended
+
+      agricultural soils — are also chemically complex in other dimensions (redox gradients, salinity,
+
+      organic carbon variation), so broad metal tolerance may be a proxy for overall environmental
+
+      tolerance.'
+- id: stmt:enigma-groundwater-validation
+  kind: finding
+  text: Independent validation in 1,624 BERDL groundwater samples confirms that genera with broader metal-type resistance repertoires are significantly more prevalent in groundwater (Spearman ρ = +0.112, p = 0.0019; Mann-Whitney p = 0.007).
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:enigma
+  - entity:groundwater
+  - entity:metal-type-diversity
+  - entity:microbeatlas
+  links:
+    supports:
+    - stmt:metal-type-diversity-predicts-niche-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: 'Results: Track A (BERDL groundwater)'
+    quote: 'The Spearman correlation (ρ = +0.112, p = 0.0019) and Mann-Whitney
+
+      (p = 0.007) confirm that genera with broader metal-type resistance repertoires are significantly
+
+      more prevalent in groundwater than genera with narrow resistance repertoires, at both the
+
+      correlation and quartile-comparison level.'
+- id: stmt:enigma-plume-wells-higher-cwm
+  kind: finding
+  text: In the ENIGMA ORFRC field dataset (PRJNA1084851), contamination-plume wells FW215/FW216 host communities with higher community-weighted mean metal-type diversity, which increases with time after carbon amendment (Spearman ρ = +0.383, p < 0.0001).
+  confidence: medium
+  topics:
+  - topic:subsurface-genomics
+  - topic:metal-resistance
+  entities:
+  - entity:enigma
+  - entity:groundwater
+  - entity:community-weighted-mean
+  - entity:carbon-amendment
+  links:
+    supports:
+    - stmt:metal-type-diversity-predicts-niche-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: 'Track B: PRJNA1084851 (ENIGMA ORFRC 16S — full pipeline)'
+    quote: 'Contaminated plume wells (FW215, FW216) host communities with measurably higher
+
+      metal-type diversity than background wells, and the temporal increase in CWM after carbon
+
+      amendment points to active ecological selection for metal-diverse communities under
+
+      geochemical stress.'
+    figure: figures/fig_enigma_trackB.png
+- id: stmt:caveat-niche-breadth-sequencing-proxy
+  kind: caveat
+  text: Niche breadth here is a sequencing-effort proxy inferred from OTU detection, not confirmed ecological range, and genus-level aggregation can make a genus appear broad-niched because different species occupy different habitats rather than any single organism being a true generalist.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:niche-breadth
+  - entity:microbeatlas
+  - entity:sequencing-bias
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metal-type-diversity-predicts-niche-breadth
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: 1. Niche breadth is a sequencing-effort proxy, not confirmed ecological range
+    quote: 'genus-level aggregation of OTU niche scores is a proxy: a genus may
+
+      appear broad-niched because different species within it occupy different habitats, rather than
+
+      any single organism being a true ecological generalist.'
+- id: stmt:caveat-direction-not-established
+  kind: caveat
+  text: The cross-sectional observational design means the direction of the association cannot be established; it is equally consistent with metal diversity facilitating ecological generalism and with ecological generalism enabling metal gene acquisition.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:metal-type-diversity
+  - entity:niche-breadth
+  - entity:pgls
+  - entity:causation
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metabolic-versatility-hypothesis
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: Causation and directionality
+    quote: 'It is equally consistent with metal diversity *facilitating* ecological generalism
+
+      (genera tolerant of more metals can exploit more environments) and with ecological generalism
+
+      *enabling* metal gene acquisition (broad-niche genera encounter more HGT donors and more
+
+      metal-contaminated environments).'
+- id: stmt:caveat-archaeal-underpowered
+  kind: caveat
+  text: The archaeal PGLS is severely underpowered (n = 48 genera, 11% power at α = 0.05) and its non-significant positive result (β = +0.0145, p = 0.467) should not be interpreted as evidence against the association in archaea.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:archaea
+  - entity:pgls
+  - entity:metal-type-diversity
+  - entity:statistical-power
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: R3. Archaeal PGLS and formal power analysis (exploratory, n = 48)
+    quote: 'This is a severely underpowered analysis (11% power
+
+      at α = 0.05); the non-significant result should not be interpreted as evidence against the
+
+      association in archaea.'
+- id: stmt:opportunity-hgt-burden-predictor
+  kind: opportunity
+  text: Estimating genus-level pangenome openness (accessory genome proportion) and testing it as a predictor of niche breadth could reveal whether a broad accessory genome is the underlying driver of both metal type diversity and ecological range.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:pangenome-openness
+  - entity:accessory-genome
+  - entity:niche-breadth
+  - entity:horizontal-gene-transfer
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: "**HGT burden as predictor**: Estimate genus-level pangenome openness (proportion of genes\n   in the accessory genome) and use it as a predictor of niche breadth alongside metal type\n   diversity. A broader accessory genome may be the underlying driver of both traits."
+- id: stmt:opportunity-microcosm-validation
+  kind: opportunity
+  text: A shortlist of eight high-priority broad-niche, multi-metal-resistant OTUs (e.g., Klebsiella, Enterococcus, Citrobacter, Pseudomonas) provides falsifiable predictions for controlled microcosm metal-stress experiments to test whether resistant taxa increase under metal stress.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:microbiome-engineering
+  entities:
+  - entity:microcosm-experiment
+  - entity:metal-type-diversity
+  - entity:candidate-otus
+  - entity:niche-breadth
+  links:
+    supports:
+    - stmt:metabolic-versatility-hypothesis
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: microbeatlas_metal_ecology
+    source_doc: REPORT.md
+    source_section: Testable hypotheses
+    quote: 'Under [specific metal] stress, OTU `[id]` (*[genus]*) should increase in relative abundance
+
+      > by ≥2-fold vs. metal-free controls after 7–14 days, because it carries `[genes]` resistance
+
+      > determinants that neutralise metal toxicity while susceptible competitors are inhibited.'

@@ -1,0 +1,318 @@
+project:
+  id: amr_pangenome_atlas
+  title: 'Report: Pan-Bacterial AMR Gene Landscape'
+statements:
+- id: stmt:amr-depleted-from-core
+  kind: finding
+  text: AMR genes are markedly depleted from the bacterial core genome, with only 30.3% core versus a 46.8% pangenome baseline (OR=0.49) and a 2.2x enrichment in the auxiliary genome.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:amr-genes
+  - entity:core-genome
+  - entity:pangenome
+  - entity:accessory-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: 1. AMR Genes Are Massively Depleted from the Core Genome
+    quote: 'AMR genes are significantly less conserved than the pangenome average: only **30.3% are core** vs 46.8% baseline (OR=0.49, chi-squared=23,117, p≈0). The **auxiliary genome is 2.2x enriched** for AMR (33.6% vs 15.3%).'
+    figure: figures/amr_conservation_vs_baseline.png
+    notebook: 01_amr_census.ipynb
+- id: stmt:amr-depletion-universal
+  kind: finding
+  text: The depletion of AMR genes from the core genome is consistent across species, with 63.7% of 4,252 tested species showing AMR less core than their own pangenome baseline.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:amr-genes
+  - entity:core-genome
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:amr-depleted-from-core
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: 1. AMR Genes Are Massively Depleted from the Core Genome
+    quote: 'This depletion is consistent across species: in a paired test of 4,252 species (each with ≥5 AMR clusters), 63.7% show AMR less core than their species baseline (Wilcoxon p=1.1e-130, mean difference -0.102).'
+    notebook: 02_conservation_patterns.ipynb
+- id: stmt:intrinsic-acquired-dichotomy
+  kind: finding
+  text: AMR mechanisms split into a conservation dichotomy, with intrinsic beta-lactamases 54.9% core while regulatory genes (6.5% core) and known mobile elements such as blaTEM, tet(C), and ant(2'')-Ia are 0% core.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:beta-lactamase
+  - entity:efflux-pump
+  - entity:mobile-genetic-element
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:amr-depleted-from-core
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: 2. Intrinsic vs Acquired Resistance Creates a Conservation Dichotomy
+    quote: '**Beta-lactamases are 54.9% core** (p=7.7e-74 for enrichment vs baseline) — these are intrinsic resistance genes present in the species'' chromosomal backbone. In contrast, **regulatory genes are only 6.5% core**, and known mobile elements like blaTEM, tet(C), and ant(2'''')-Ia are **0% core** (fully accessory/singleton).'
+    figure: figures/amr_mechanism_conservation.png
+    notebook: 02_conservation_patterns.ipynb
+- id: stmt:amr-hotspots-clinical-pathogens
+  kind: finding
+  text: AMR gene density is strongly phylogenetically structured, with Klebsiella leading at 206 AMR clusters per species and Gammaproteobacteria carrying 45% of all AMR clusters.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:klebsiella
+  - entity:gammaproteobacteria
+  - entity:enterobacteriaceae
+  - entity:amr-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: 3. AMR Hotspots Are Concentrated in Clinical Pathogens
+    quote: At the genus level, **Klebsiella** leads with 206 AMR clusters per species, followed by Salmonella (198), Citrobacter (134), and Enterobacter (93). Gammaproteobacteria contain **45% of all AMR clusters** (37,752/83,008).
+    figure: figures/amr_hotspot_families.png
+    notebook: 03_phylogenetic_distribution.ipynb
+- id: stmt:amr-cog-defense-enrichment
+  kind: finding
+  text: AMR clusters are functionally enriched for COG V Defense mechanisms (7.05x) and COG P Inorganic ion transport (1.93x), reflecting genuine defense systems plus large mercury and arsenic resistance gene families.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:metal-resistance
+  entities:
+  - entity:cog-category
+  - entity:defense-systems
+  - entity:eggnog
+  - entity:metal-resistance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: 4. AMR Genes Are Enriched in Defense and Ion Transport Functions
+    quote: COG category analysis (77K AMR clusters with eggNOG annotations vs 86M baseline) reveals **COG V (Defense mechanisms) is 7.05x enriched** in AMR genes (14.9% vs 2.1%), confirming that AMR annotations target bona fide defense systems. **COG P (Inorganic ion transport) is 1.93x enriched** (10.7% vs 5.6%), reflecting the large mercury (merA, merP, merC) and arsenic (arsD, arsC) resistance gene families.
+    figure: figures/amr_cog_enrichment.png
+    notebook: 04_functional_context.ipynb
+- id: stmt:clinical-species-more-amr
+  kind: finding
+  text: Human/clinical species carry 2.7x more AMR (10.6 clusters per species) than environmental species, and their AMR is less core (30.8%) than soil (58.1%) or plant (63.1%) AMR.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:environment-biogeography
+  entities:
+  - entity:clinical-isolates
+  - entity:isolation-source
+  - entity:amr-genes
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: 5. Clinical Species Carry 2.7x More AMR — and It's More Acquired
+    quote: Species classified as **Human/Clinical carry 10.6 AMR clusters per species** (n=2,248), compared to 4.6 for Soil/Terrestrial (n=2,469), 3.9 for Aquatic (n=1,827), and 3.0 for Animal (n=959). This difference is highly significant (Kruskal-Wallis H=440, p=7.0e-93). Critically, clinical AMR is **less core** (30.8%) than soil AMR (58.1%) or plant AMR (63.1%)
+    figure: figures/amr_by_environment.png
+    notebook: 05_environmental_distribution.ipynb
+- id: stmt:alphaearth-diversity-predicts-amr
+  kind: finding
+  text: AlphaEarth environmental-diversity embeddings strongly predict AMR count (Spearman rho=0.466), indicating that broader niche breadth enables accumulation of less-core resistance genes.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:amr-resistome
+  entities:
+  - entity:alphaearth
+  - entity:environmental-diversity
+  - entity:amr-genes
+  links:
+    supports:
+    - stmt:clinical-species-more-amr
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: 5. Clinical Species Carry 2.7x More AMR — and It's More Acquired
+    quote: '**AlphaEarth embedding analysis** (2,684 species with ≥3 genomes and embeddings) reveals that **environmental diversity strongly predicts AMR count** (Spearman rho=0.466, p=1.6e-144). Species sampled from more diverse environments carry more AMR genes, and those AMR genes are less core (rho=-0.173, p=1.8e-19).'
+    figure: figures/amr_alphaearth_diversity.png
+    notebook: 05_environmental_distribution.ipynb
+- id: stmt:amr-not-fitness-burden
+  kind: finding
+  text: Across 178 AMR genes in 37 Fitness Browser organisms, AMR genes impose slightly less fitness cost than the non-AMR baseline (median fitness -0.007 vs -0.012) in standard lab conditions.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:amr-resistome
+  entities:
+  - entity:fitness-browser
+  - entity:amr-genes
+  - entity:fitness-cost
+  - entity:rb-tnseq
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: 6. AMR Genes Are Not a Fitness Burden in Lab Conditions
+    quote: we identified **178 AMR genes across 37 Fitness Browser organisms**, yielding 29,386 fitness measurements. Surprisingly, AMR genes show **slightly less fitness cost** than the non-AMR baseline (median fitness -0.007 vs -0.012, Mann-Whitney p=3.7e-6).
+    figure: figures/amr_fitness_distribution.png
+    notebook: 06_fitness_crossref.ipynb
+- id: stmt:metal-resistance-major-component
+  kind: finding
+  text: Heavy-metal resistance is a major component of the AMR census, with mercury resistance genes alone accounting for ~15,000 hits (18% of all AMR annotations) and arsenic resistance adding ~6,000 more.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:amr-resistome
+  entities:
+  - entity:mercury-resistance
+  - entity:arsenic-resistance
+  - entity:metal-resistance
+  - entity:amrfinderplus
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: Heavy Metal Resistance Is a Major AMR Component
+    quote: Mercury resistance genes (merA, merP, merC, merE, merF, merR, merD, merB, merT) collectively account for ~15,000 hits — 18% of all AMR annotations. Arsenic resistance (arsD, arsN1, arsN2, arsC) adds another ~6,000.
+- id: stmt:dichotomy-quantified-first-time
+  kind: claim
+  text: This analysis quantifies the intrinsic-acquired AMR conservation dichotomy for the first time across 14,723 species simultaneously, establishing core-genome depletion (OR=0.49) as a universal bacterial pattern.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:intrinsic-resistance
+  - entity:acquired-resistance
+  - entity:core-genome
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:intrinsic-acquired-dichotomy
+    - stmt:amr-depletion-universal
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: The Intrinsic-Acquired Dichotomy
+    quote: our analysis quantifies it for the first time across 14,723 species simultaneously, showing that the OR=0.49 depletion of AMR from the core genome is a universal bacterial pattern, not specific to individual pathogens.
+- id: stmt:sampling-bias-caveat
+  kind: caveat
+  text: AMR counts are inflated for human-associated species because genome databases over-represent clinical pathogens, a sampling bias that confounds clinical-versus-environmental comparisons.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:environment-biogeography
+  entities:
+  - entity:sampling-bias
+  - entity:clinical-isolates
+  - entity:amr-genes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:clinical-species-more-amr
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Sampling bias**: Genome databases over-represent clinical pathogens, inflating AMR counts for human-associated species'
+- id: stmt:mechanism-classification-caveat
+  kind: caveat
+  text: The keyword-based mechanism classification leaves 22% of AMR hits as Other/Unclassified, and AMRFinderPlus scope includes stress-response genes so the 83K hits are not all classical antibiotic resistance.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:functional-dark-matter
+  entities:
+  - entity:amrfinderplus
+  - entity:mechanism-classification
+  - entity:card-ontology
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**AMRFinderPlus scope**: Includes stress response genes (mercury, arsenic) alongside classical antibiotic resistance — the 83K hits are not all "antibiotic" resistance per se'
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: '**Mechanism classification**: The keyword-based mechanism classification leaves 22% as "Other/Unclassified" — a more systematic approach using CARD ontology would improve this'
+- id: stmt:card-ontology-opportunity
+  kind: opportunity
+  text: Replacing keyword-based mechanism classification with systematic CARD Antibiotic Resistance Ontology mapping could reduce the 22% Other/Unclassified category and provide ontology-based AMR classification.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:functional-dark-matter
+  entities:
+  - entity:card-ontology
+  - entity:mechanism-classification
+  - entity:bakta-db-xrefs
+  links:
+    supports:
+    - stmt:mechanism-classification-caveat
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**CARD ontology mapping**: Replace keyword-based mechanism classification with systematic CARD Antibiotic Resistance Ontology (ARO) mapping to reduce the 22% "Other/Unclassified" category'
+- id: stmt:metagenome-integration-opportunity
+  kind: opportunity
+  text: Integrating NMDC/MGnify metagenomes could test whether the accessory AMR genes seen in isolate genomes are also prevalent in environmental community DNA.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:amr-resistome
+  entities:
+  - entity:metagenome
+  - entity:accessory-genome
+  - entity:amr-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_pangenome_atlas
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**NMDC/MGnify integration**: Map AMR gene prevalence in environmental metagenome communities — are the accessory AMR genes we see in isolate genomes also prevalent in community DNA?'

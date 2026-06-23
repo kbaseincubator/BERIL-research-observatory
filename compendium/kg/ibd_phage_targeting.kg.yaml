@@ -1,0 +1,360 @@
+project:
+  id: ibd_phage_targeting
+  title: 'Report: Metagenome-Prioritized Phage Cocktails for Crohn''s Disease and IBD'
+statements:
+- id: stmt:cohort-cocktail-mismatch
+  kind: claim
+  text: Phage cocktails designed at the cohort level will mismatch individual IBD patients unless each patient's microbiome ecotype is determined first.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:microbial-ecotypes
+  entities:
+  - entity:phage-cocktail
+  - entity:crohns-disease
+  - entity:microbiome-ecotype
+  - entity:ibd
+  links:
+    supports:
+    - stmt:four-ibd-ecotypes
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: Executive Summary
+    quote: '**Phage cocktails designed at the cohort level will mismatch individual patients unless ecotype is known first.**'
+- id: stmt:four-ibd-ecotypes
+  kind: finding
+  text: Two independent clustering methods on 8,489 metagenomic samples converge on four reproducible IBD microbiome ecotypes (E0-E3) with K=4 selected by a cross-method ARI parsimony rule.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:microbiome-ecotype
+  - entity:metaphlan3
+  - entity:curated-metagenomic-data
+  - entity:lda-gmm-clustering
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: Four reproducible IBD ecotypes with clear disease stratification
+    quote: which has a local maximum at K = 4 (ARI = 0.131) and a second peak at K = 7 (0.140). A parsimony rule — smallest K within 0.02 ARI of the maximum — selects K = 4.
+    notebook: NB01b_ecotype_refit.ipynb
+    figure: figures/NB01b_K_selection.png
+- id: stmt:ucdavis-spans-ecotypes
+  kind: finding
+  text: The 23 UC Davis Crohn's patients distribute non-randomly across three ecotypes (none in the Prevotella E2), with active disease concentrated in the E1 and E3 ecotypes.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:microbiome-engineering
+  entities:
+  - entity:microbiome-ecotype
+  - entity:crohns-disease
+  - entity:uc-davis-cohort
+  links:
+    supports:
+    - stmt:cohort-cocktail-mismatch
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: UC Davis CD patients span three ecotypes, none in E2
+    quote: χ²(3) vs uniform = 10.0, **p = 0.019**. The distribution is non-random. UC Davis looks Western (no E2 Prevotella-dominant patients), with active disease dominating (73 % E1 or E3).
+    notebook: NB02_ecotype_projection.ipynb
+    figure: figures/NB02_ucdavis_ecotype_assignment.png
+- id: stmt:clinical-covariates-insufficient
+  kind: finding
+  text: Clinical covariates separate healthy from IBD samples but cannot distinguish the transitional (E1) from severe (E3) IBD ecotypes, so metagenomics remains required for ecotype assignment.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:microbiome-engineering
+  entities:
+  - entity:microbiome-ecotype
+  - entity:clinical-classifier
+  - entity:metagenomics
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: Clinical covariates alone are insufficient for within-IBD ecotype assignment
+    quote: clinical covariates distinguish HC vs IBD trivially (dominated by `is_ibd`) but do *not* separate IBD ecotypes (E1 transitional vs E3 severe). For UC Davis-type cohorts, **metagenomics remains required** for ecotype assignment.
+    notebook: NB03_clinical_ecotype_classifier.ipynb
+    figure: figures/NB03_h1c_auc.png
+- id: stmt:substudy-nesting-unidentifiable
+  kind: caveat
+  text: In pooled curatedMetagenomicData, healthy and Crohn's samples come from disjoint source studies, making a pooled case-vs-control mixed model structurally unidentifiable and forcing a within-substudy CD-vs-nonIBD design.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:curated-metagenomic-data
+  - entity:differential-abundance
+  - entity:confounding
+  links:
+    supports:
+    - stmt:canonical-cd-signature
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: Within-ecotype × within-substudy meta-analysis defines ecotype-specific Tier-A (rigor-controlled)
+    quote: A pooled CD-vs-HC LME with substudy random effect is therefore structurally unidentifiable (the random effect perfectly predicts diagnosis)
+    notebook: NB04c_rigor_repair_completion.ipynb
+- id: stmt:canonical-cd-signature
+  kind: finding
+  text: A confound-free within-substudy CD-vs-nonIBD meta-analysis across four IBD cohorts recovers the canonical Crohn's signature of pathobionts up and protective commensals down with strong sign concordance.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:microbiome-engineering
+  entities:
+  - entity:differential-abundance
+  - entity:pathobiont
+  - entity:crohns-disease
+  - entity:curated-metagenomic-data
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: Within-ecotype × within-substudy meta-analysis defines ecotype-specific Tier-A (rigor-controlled)
+    quote: Across the four IBD sub-studies (242 CD / 369 nonIBD pooled), the 14-species curated battery produces the expected canonical CD signature — pathobionts up, protective commensals down — with strong sign concordance
+    notebook: NB04e_option_A_viability.ipynb
+- id: stmt:synonymy-layer-reusable
+  kind: opportunity
+  text: A taxonomy synonymy layer (NCBI taxid plus GTDB-version-aware rename table) is a reusable foundation that any multi-cohort microbiome project needs and that generalizes across studies.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  entities:
+  - entity:taxonomy-synonymy
+  - entity:gtdb
+  - entity:metagenomics
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: Taxonomy synonymy layer is the project reusable foundation
+    quote: any project integrating multi-cohort microbiome data needs this layer, and the pattern (NCBI taxid + GTDB-version-aware rename table) generalizes.
+- id: stmt:iron-acquisition-genomic
+  kind: finding
+  text: Tier-A pathobiont genomes are strongly enriched for iron-siderophore biosynthetic gene clusters, marking iron acquisition as a Crohn's pathobiont-defining genomic capability rather than only a cohort-level pathway signal.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:microbiome-engineering
+  entities:
+  - entity:biosynthetic-gene-cluster
+  - entity:siderophore
+  - entity:pathobiont
+  - entity:mibig
+  links:
+    supports:
+    - stmt:ecoli-carries-iron-genotoxin
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: NB08a — BGC × pathobiont enrichment (H3c) — genomic mechanism layer
+    quote: '**iron acquisition is a CD pathobiont-defining genomic capability, not just a pathway-level cohort signal**'
+    notebook: NB08a_bgc_pathobiont_enrichment.ipynb
+    figure: figures/NB08a_bgc_pathobiont_enrichment.png
+- id: stmt:ecoli-carries-iron-genotoxin
+  kind: finding
+  text: Among the six actionable Tier-A pathobionts, only E. coli (the AIEC subset) carries the iron-siderophore and genotoxin biosynthetic gene-cluster signature, localizing iron-driven Crohn's biology to E. coli.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:microbiome-engineering
+  entities:
+  - entity:e-coli
+  - entity:aiec
+  - entity:biosynthetic-gene-cluster
+  - entity:colibactin
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:iron-acquisition-genomic
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: NB08a — BGC × pathobiont enrichment (H3c) — genomic mechanism layer
+    quote: '***E. coli* alone carries the iron+genotoxin BGC signature within actionable Tier-A core**'
+    notebook: NB08a_bgc_pathobiont_enrichment.ipynb
+- id: stmt:five-phage-cocktail-coverage
+  kind: finding
+  text: A greedy minimum-set-cover design over experimentally tested phage-strain susceptibility yields a 5-phage cocktail covering 94.7% of 188 E. coli strains in PhageFoundry.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:phage-cocktail
+  - entity:e-coli
+  - entity:phagefoundry
+  - entity:set-cover
+  links:
+    supports:
+    - stmt:cohort-cocktail-mismatch
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: NB13 — PhageFoundry quantitative E. coli phage-cocktail design
+    quote: '**A 5-phage cocktail covers 94.7 % of 188 E. coli strains** in PhageFoundry.'
+    notebook: NB13_phagefoundry_cocktail.ipynb
+    figure: figures/NB13_phagefoundry_cocktail.png
+- id: stmt:phage-coverage-gap
+  kind: caveat
+  text: The two highest-priority Crohn's pathobiont targets, H. hathewayi and M. gnavus, have the weakest phage availability, creating a coverage gap for the most actionable species.
+  confidence: high
+  topics:
+  - topic:microbiome-engineering
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:phage-cocktail
+  - entity:pathobiont
+  - entity:h-hathewayi
+  - entity:m-gnavus
+  links:
+    supports:
+    - stmt:hybrid-cocktail-needed
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: NB12 — Pathobiont × phage targetability matrix (Pillar 4 opener)
+    quote: the 2 highest-NB05-scored species (*H. hathewayi* 4.0, *M. gnavus* 3.8) have the WEAKEST phage availability.
+    notebook: NB12_phage_targetability.ipynb
+    figure: figures/NB12_phage_targetability.png
+- id: stmt:gokushovirus-cd-down
+  kind: finding
+  text: The Microviridae member Gokushovirus WZ-2015a is robustly depleted in Crohn's disease across multiple ecotypes, with the strongest signal in the transitional E1 ecotype.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:microbial-ecotypes
+  entities:
+  - entity:gokushovirus
+  - entity:phageome
+  - entity:crohns-disease
+  - entity:hmp2
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: NB14 — HMP2 endogenous phageome × ecotype × diagnosis
+    quote: '***Gokushovirus WZ-2015a* is robustly CD-DOWN across multiple ecotypes**, with the strongest signal in E1 (cliff=-0.36, FDR=5e-7).'
+    notebook: NB14_endogenous_phageome.ipynb
+    figure: figures/NB14_endogenous_phageome.png
+- id: stmt:hybrid-cocktail-needed
+  kind: claim
+  text: No E1 Crohn's patient can be treated with a pure phage cocktail; only a hybrid combining phages with non-phage alternatives for the gap and temperate-only targets is feasible.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  entities:
+  - entity:phage-cocktail
+  - entity:microbiome-ecotype
+  - entity:pathobiont
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:phage-coverage-gap
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: NB15 — UC Davis per-patient profile + cocktail draft (Pillar 5 opener)
+    quote: Pure phage cocktail is **not feasible** for any E1 patient — only a hybrid with non-phage alternatives.
+    notebook: NB15_patient_cocktail_draft.ipynb
+    figure: figures/NB15_patient_cocktail_draft.png
+- id: stmt:state-dependent-dosing
+  kind: claim
+  text: A single patient's ecotype can drift between E1 and E3 between visits, changing the optimal cocktail composition moderately (Jaccard 0.60) and motivating state-dependent cocktail re-design rather than a fixed prescription.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:microbial-ecotypes
+  entities:
+  - entity:phage-cocktail
+  - entity:microbiome-ecotype
+  - entity:longitudinal-stability
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cohort-cocktail-mismatch
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: NB16 — Patient 6967 longitudinal stability + state-dependent dosing strategy
+    quote: '**Cocktail Jaccard (visit 1 × visit 2) = 0.60** — moderate overlap; ecotype drift implies non-trivial cocktail re-design, not a complete rewrite.'
+    notebook: NB16_longitudinal_dosing.ipynb
+    figure: figures/NB16_longitudinal_dosing.png
+- id: stmt:e3-tier-a-provisional
+  kind: caveat
+  text: The E3-ecotype Tier-A target list rests on single-study evidence and should be treated as provisional until a cohort with sufficient E3 patients and both diagnosis groups becomes available.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  entities:
+  - entity:microbiome-ecotype
+  - entity:pathobiont
+  - entity:differential-abundance
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:four-ibd-ecotypes
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: E3 Tier-A should be treated as provisional until a sub-study with sufficient E3 + both diagnosis groups becomes available.
+- id: stmt:external-phage-db-opportunity
+  kind: opportunity
+  text: Querying external phage databases (INPHARED and IMG/VR) for gut-anaerobe phages could close the coverage gap for H. hathewayi, F. plautii, and M. gnavus and convert the hybrid framework into a pure-phage cocktail for some patients.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:phage-cocktail
+  - entity:inphared
+  - entity:img-vr
+  - entity:pathobiont
+  links:
+    supports:
+    - stmt:hybrid-cocktail-needed
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: ibd_phage_targeting
+    source_doc: REPORT.md
+    source_section: Near-term (6–12 months) — feasible external-data extensions
+    quote: INPHARED ~25K phages + IMG/VR ~3M UViGs cover the gut-anaerobe phage-discovery space that the BERDL-internal `ref_phage_biology` literature curation does not.

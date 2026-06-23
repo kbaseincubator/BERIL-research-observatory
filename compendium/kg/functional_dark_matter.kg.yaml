@@ -1,0 +1,329 @@
+project:
+  id: functional_dark_matter
+  title: 'Report: Functional Dark Matter — Experimentally Prioritized Novel Genetic Systems'
+statements:
+- id: stmt:dark-gene-census-actionable
+  kind: finding
+  text: Across 48 Fitness Browser organisms, 57,011 genes (24.9%) lack functional annotation and 17,344 of these have experimentally measurable phenotypes (strong fitness effects or essentiality), defining the actionable bacterial dark matter.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-browser
+  - entity:dark-genes
+  - entity:rb-tnseq
+  - entity:gene-essentiality
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 1: One in four bacterial genes is functionally dark, and 17,344 have experimentally measurable phenotypes'
+    quote: Across 48 Fitness Browser organisms (228,709 genes), 57,011 (24.9%) lack functional annotation ("hypothetical protein," DUF, or "uncharacterized"). Of these, 7,787 show strong fitness effects (|fitness| ≥ 2 in at least one condition), and 9,557 are essential (no viable transposon mutants). Together, these 17,344 genes represent the experimentally actionable "dark matter" — genes with clear biological importance but unknown function.
+    notebook: 01_integration_census.ipynb
+    figure: figures/fig01_annotation_breakdown.png
+- id: stmt:dark-genes-pangenome-modules
+  kind: finding
+  text: Of 57,011 dark genes, 39,532 (69.3%) link to the pangenome and 6,142 belong to ICA fitness modules, enabling guilt-by-association function predictions, with 511 being both accessory and strong-fitness prime biogeographic candidates.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  - topic:gene-fitness
+  entities:
+  - entity:dark-genes
+  - entity:pangenome
+  - entity:fitness-modules
+  - entity:accessory-genome
+  links:
+    supports:
+    - stmt:dark-gene-census-actionable
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 2: 39,532 dark genes link to the pangenome; 6,142 belong to co-regulated fitness modules'
+    quote: Of 57,011 dark genes, 39,532 (69.3%) have pangenome links via the `conservation_vs_fitness` project. Among these, 12,686 are accessory (environment-specific) and 511 are both accessory and have strong fitness effects — the prime candidates for biogeographic analysis. Additionally, 6,142 dark genes belong to ICA fitness modules from the `fitness_modules` project, providing guilt-by-association function predictions.
+    notebook: 01_integration_census.ipynb
+    figure: figures/fig03_dark_gene_coverage.png
+- id: stmt:cross-organism-concordance
+  kind: finding
+  text: Among dark gene ortholog groups present in three or more Fitness Browser organisms, 65 show fitness concordance, meaning orthologs of the same unknown gene produce fitness effects under the same condition classes across different bacterial species.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:dark-genes
+  - entity:ortholog-groups
+  - entity:fitness-browser
+  - entity:cofitness
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 4: Cross-organism fitness concordance identifies 65 ortholog groups with conserved dark gene phenotypes'
+    quote: Of dark gene ortholog groups present in 3+ FB organisms, 65 show measurable fitness concordance — meaning orthologs of the same unknown gene produce fitness effects under the same condition classes across different bacterial species.
+    notebook: 02_gapmind_concordance_phylo.ipynb
+    figure: figures/fig06_concordance.png
+- id: stmt:biogeographic-enrichment
+  kind: finding
+  text: Within-species carrier vs non-carrier comparisons across 31 species identify 10 accessory dark gene clusters with significant environmental enrichment (FDR < 0.05), including Pseudomonas putida stress/nitrogen genes enriched in clinical isolates and P. syringae genes enriched in plant-associated genomes.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  - topic:functional-dark-matter
+  entities:
+  - entity:dark-genes
+  - entity:pseudomonas-putida
+  - entity:accessory-genome
+  - entity:alphaearth
+  links:
+    supports:
+    - stmt:dark-genes-pangenome-modules
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 6: Within-species biogeographic analysis reveals 10 dark gene clusters with significant environmental enrichment'
+    quote: Among 151 accessory dark gene clusters testable via carrier vs. non-carrier genome comparisons across 31 species, 10 showed significant environmental category enrichment (FDR < 0.05) and 1 showed significant AlphaEarth embedding divergence.
+    notebook: 03_biogeographic_analysis.ipynb
+    figure: figures/fig08_env_distribution.png
+- id: stmt:lab-field-concordance-nmdc
+  kind: finding
+  text: Lab fitness phenotypes predict field environmental distribution for 61.7% of testable dark gene clusters, and independent NMDC metagenomic correlations confirmed all 4 pre-registered abiotic predictions (nitrogen, pH and oxygen), supporting a real lab-to-field link.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:gene-fitness
+  entities:
+  - entity:dark-genes
+  - entity:nmdc
+  - entity:fitness-browser
+  - entity:metagenomics
+  links:
+    supports:
+    - stmt:biogeographic-enrichment
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 7: Lab-field concordance rate of 61.7%, with NMDC validation confirming 4/4 pre-registered abiotic predictions'
+    quote: 'Pre-registered mapping of FB experiment condition classes to expected environmental categories showed 29/47 (61.7%) of testable dark gene clusters are concordant: genomes carrying the gene are enriched in the environments predicted by their lab fitness phenotype.'
+    notebook: 04_lab_field_concordance.ipynb
+    figure: figures/fig11_concordance_matrix.png
+- id: stmt:top-100-prioritization
+  kind: finding
+  text: Multi-dimensional scoring across 6 evidence axes ranked 17,344 dark genes and produced 100 top candidates spanning 22 organisms, dominated by Shewanella MR-1, P. putida N2C3 and Marinobacter, with 82% having high-confidence functional hypotheses supported by 3 or more evidence types.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:dark-genes
+  - entity:shewanella-mr1
+  - entity:pseudomonas-putida
+  - entity:candidate-prioritization
+  links:
+    supports:
+    - stmt:dark-gene-census-actionable
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 8: Top 100 prioritized candidates span 22 organisms with 82% high-confidence functional hypotheses'
+    quote: 'The top 100 candidates (score range: 0.624–0.715) come from 22 organisms, with Shewanella MR-1 (25 candidates), *P. putida* N2C3 (18), and Marinobacter (9) most represented. 82% of top candidates have high-confidence functional hypotheses supported by 3+ evidence types, and 85/100 have module-based function predictions.'
+    notebook: 05_prioritization_dossiers.ipynb
+    figure: figures/fig14_top20_dossiers.png
+- id: stmt:essential-dark-genes-crispri
+  kind: finding
+  text: The 9,557 essential dark genes, which make up 55% of the actionable dark matter, were ranked separately using gene-neighbor context and cross-organism conservation, yielding the top 50 CRISPRi-ready candidates since essential genes score poorly in the fitness-centric framework.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:dark-genes
+  - entity:gene-essentiality
+  - entity:crispri
+  - entity:operon-context
+  links:
+    supports:
+    - stmt:dark-gene-census-actionable
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 11: 9,557 essential dark genes ranked by gene neighbor context and cross-organism conservation — top 50 candidates with CRISPRi experiment designs'
+    quote: Essential dark genes (no viable transposon mutants) represent 55% of the experimentally actionable dark matter but score poorly in the fitness-centric NB05 framework. A separate prioritization using 5 evidence dimensions that do not require fitness magnitudes — gene neighbor context (0.25), cross-organism conservation (0.20), phylogenetic breadth (0.20), domain annotations (0.15), and CRISPRi tractability (0.20) — ranked all 9,557 essential dark genes.
+    notebook: 07_essential_dark_prioritization.ipynb
+    figure: figures/fig20_essential_top20.png
+- id: stmt:synteny-cofit-validation
+  kind: finding
+  text: Cross-species synteny and co-fitness analysis identifies 10,150 dark gene-operon partner pairs conserved in three or more organisms and 998 double-validated pairs with both conserved synteny and strong co-fitness, the highest-confidence functional predictions in the study.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:dark-genes
+  - entity:synteny
+  - entity:cofitness
+  - entity:operon-context
+  links:
+    supports:
+    - stmt:essential-dark-genes-crispri
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 12: Conserved gene neighborhoods and cofit-validated operons strengthen 10,150 dark gene predictions'
+    quote: Of these, 17,058 pairs show conserved neighborhoods in at least one other organism, and **10,150 pairs are conserved in ≥3 organisms** — providing STRING-like evidence that these gene pairs are functionally linked.
+    notebook: 08_improved_neighborhoods.ipynb
+    figure: figures/fig22_conserved_neighborhoods.png
+- id: stmt:darkness-spectrum-tiers
+  kind: finding
+  text: A darkness spectrum classifies all 57,011 dark genes into 5 tiers from T1 Void (4,273 genes with zero evidence) to T5 Dawn (1,853 nearly-characterized genes), and a weighted set-cover of 42 organisms from 28 genera covers 95% of actionable dark gene priority.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:dark-genes
+  - entity:darkness-spectrum
+  - entity:covering-set
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 13: Darkness spectrum classifies 57,011 genes into 5 tiers; 42 organisms (28 genera) cover 95% of actionable dark genes'
+    quote: The spectrum ranges from T1 Void (4,273 genes, 0 evidence lines — truly unknown) through T5 Dawn (1,853 genes, 5–6 evidence lines — nearly characterized).
+    notebook: 09_final_synthesis.ipynb
+    figure: figures/fig25_darkness_spectrum.png
+- id: stmt:pangenome-conservation-knowledge-gaps
+  kind: claim
+  text: Querying the full 27,690-species GTDB pangenome shows over half of dark gene ortholog groups are pan-bacterial (kingdom-level), demonstrating that functional dark matter is not a minor annotation gap but a fundamental limitation in understanding broadly conserved biology.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:functional-dark-matter
+  entities:
+  - entity:dark-genes
+  - entity:pangenome
+  - entity:gtdb
+  - entity:ortholog-groups
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:darkness-spectrum-tiers
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 14: Pangenome-scale conservation × hypothesis classification reveals broadly conserved true knowledge gaps; conservation-weighted covering set orders experiments for maximum novel discovery'
+    quote: Over half of dark gene OGs are pan-bacterial — present across multiple phyla and thousands of species — demonstrating that functional dark matter is not a minor annotation gap but a fundamental limitation in our understanding of broadly conserved biology.
+    notebook: 11_conservation_classes.ipynb
+    figure: figures/fig35_top_knowledge_gaps.png
+- id: stmt:bakta-reannotation-overestimate
+  kind: caveat
+  text: Bakta v1.12.0 reclassifies 83.7% of pangenome-linked dark genes as not hypothetical and assigns all 100 top candidates product descriptions, indicating the 57,011 dark gene count overestimates the truly uncharacterized genes because many are annotated in databases the Fitness Browser vintage did not check.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:pangenome-architecture
+  entities:
+  - entity:dark-genes
+  - entity:bakta
+  - entity:gene-annotation
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dark-gene-census-actionable
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 15: Bakta reannotation reclassifies 83.7% of linked dark genes — all 100 top candidates gain functional descriptions'
+    quote: Of 39,532 dark genes with pangenome links, **33,105 (83.7%) are reclassified by bakta as NOT hypothetical** — bakta's PSC/PSCC pipeline assigns them a product description where the Fitness Browser had only "hypothetical protein." This represents 58.1% of all dark genes.
+    notebook: 12_bakta_enrichment.ipynb
+    figure: figures/fig33_bakta_reclassification.png
+- id: stmt:proteobacteria-bias-caveat
+  kind: caveat
+  text: The 48 Fitness Browser organisms are 77% Pseudomonadota, with Actinobacteria absent and Firmicutes critically underrepresented, biasing prioritization toward Gammaproteobacteria and leaving major bacterial phyla uncharacterized for dark gene discovery.
+  confidence: high
+  topics:
+  - topic:environment-biogeography
+  - topic:functional-dark-matter
+  entities:
+  - entity:fitness-browser
+  - entity:proteobacteria
+  - entity:phylogenetic-coverage
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: 'Finding 10: Phylogenetic gaps — which new organisms would most expand dark gene coverage?'
+    quote: 'The current Fitness Browser collection is heavily skewed toward Gammaproteobacteria (21/48 organisms, 78% of top-500 dark genes). Several major bacterial phyla are absent or severely underrepresented:'
+- id: stmt:dual-route-experimental-campaign
+  kind: opportunity
+  text: 'A dual-route experimental campaign can characterize dark genes efficiently: Route A (evidence-weighted) starts with MR-1 stress/nitrogen RB-TnSeq screens and E. coli CRISPRi for hypothesis testing, while Route B (conservation-weighted) starts with S. meliloti, P. putida and MR-1 broad screens to discover functions of conserved knowledge gaps.'
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:dark-genes
+  - entity:rb-tnseq
+  - entity:crispri
+  - entity:shewanella-mr1
+  links:
+    supports:
+    - stmt:darkness-spectrum-tiers
+    - stmt:pangenome-conservation-knowledge-gaps
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Execute the dual-route experimental campaign** — Route A (NB09, evidence-weighted) identifies 42 organisms covering 95% of composite priority; start with MR-1 stress/nitrogen screens and *E. coli* CRISPRi for targeted hypothesis testing. Route B (NB11, conservation-weighted) identifies 42 organisms covering 95.6% of importance-weighted priority; start with *S. meliloti*, *P. putida*, and MR-1 broad phenotypic screens for novel function discovery.'
+- id: stmt:structure-prediction-opportunity
+  kind: opportunity
+  text: AlphaFold2 structure prediction offers a route to confirm functional hypotheses for the top 100 candidates and the 1,853 nearly-characterized T5 Dawn genes, and is the only remaining computational inference strategy for the 4,273 T1 Void genes that lack all other evidence.
+  confidence: medium
+  topics:
+  - topic:functional-dark-matter
+  entities:
+  - entity:dark-genes
+  - entity:alphafold
+  - entity:darkness-spectrum
+  links:
+    supports:
+    - stmt:darkness-spectrum-tiers
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: functional_dark_matter
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Protein structure prediction** — for the top 100 candidates and especially the 1,853 T5 Dawn genes (nearly characterized), AlphaFold2 structure predictions could confirm functional hypotheses and distinguish between DUF families. The 4,273 T1 Void genes, which lack all evidence, would particularly benefit from structure-based function prediction as the only remaining computational inference strategy.'

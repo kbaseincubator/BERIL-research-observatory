@@ -1,0 +1,336 @@
+project:
+  id: pangenome_openness
+  title: 'Report: Pangenome Openness Analysis'
+statements:
+- id: stmt:no-correlation-openness-effects
+  kind: finding
+  text: Pangenome openness shows no significant correlation with either environmental or phylogenetic effect sizes on gene content across species.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome
+  - entity:pangenome-openness
+  - entity:ecotype-analysis
+  - entity:spearman-correlation
+  links:
+    supports: []
+    contradicts:
+    - stmt:hypothesis-open-pangenomes-environment
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: No Correlation Found
+    quote: Analysis of pangenome openness vs environment/phylogeny effects revealed **no significant relationship**
+    figure: figures/pangenome_vs_effects.png
+    notebook: 01_explore_gene_data.ipynb
+- id: stmt:weak-spearman-values
+  kind: finding
+  text: Spearman correlations between openness and effects were near zero and non-significant (environment rho = -0.05, p = 0.54; phylogeny rho = 0.03, p = 0.73).
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome-openness
+  - entity:spearman-correlation
+  - entity:ecotype-analysis
+  links:
+    supports:
+    - stmt:no-correlation-openness-effects
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: No Correlation Found
+    quote: '| Openness vs Environment effect | -0.05 | 0.54 |'
+    figure: figures/pangenome_vs_effects.png
+- id: stmt:openness-does-not-predict-driver
+  kind: claim
+  text: Whether a species has an open or closed pangenome does not predict whether environment or phylogeny dominates its gene-content variation.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome-openness
+  - entity:gene-content
+  - entity:core-genome
+  links:
+    supports:
+    - stmt:no-correlation-openness-effects
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: Whether a species has an open or closed pangenome does **not predict** whether environment or phylogeny dominates its gene content.
+- id: stmt:pangenome-structure-independent-eco-phylo
+  kind: claim
+  text: The null result implies pangenome structure is largely independent of the eco-phylo dynamics governing gene-content variation.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome
+  - entity:ecotype-analysis
+  - entity:gene-content
+  links:
+    supports:
+    - stmt:openness-does-not-predict-driver
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: README.md
+    source_section: Overview
+    quote: The null result suggests pangenome structure is independent of eco-phylo dynamics.
+- id: stmt:hgt-opportunistic-not-niche
+  kind: claim
+  text: Because openness is uncorrelated with environment effects, horizontal gene transfer may be opportunistic rather than tracking environmental similarity.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:horizontal-gene-transfer
+  - entity:pangenome-openness
+  - entity:gene-acquisition
+  links:
+    supports:
+    - stmt:openness-does-not-predict-driver
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: '**HGT may not track environmental similarity**: Gene acquisition might be opportunistic rather than niche-specific'
+- id: stmt:hgt-opportunistic-consistent-literature
+  kind: finding
+  text: The uncorrelated openness finding is consistent with McInerney et al. (2017) view of HGT as opportunistic rather than ecologically directed.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:horizontal-gene-transfer
+  - entity:pangenome-openness
+  - entity:mcinerney-2017
+  links:
+    supports:
+    - stmt:hgt-opportunistic-not-niche
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: Our finding that openness is uncorrelated with environment effects is consistent with HGT being opportunistic rather than ecologically directed.
+- id: stmt:open-closed-distinction-not-predictive
+  kind: claim
+  text: The Tettelin open/closed pangenome distinction describes gene-content variability but does not predict its ecological versus phylogenetic drivers.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:open-closed-pangenome
+  - entity:tettelin-2005
+  - entity:gene-content
+  links:
+    supports:
+    - stmt:openness-does-not-predict-driver
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: the open/closed distinction, while useful for describing gene content variability, does not predict the ecological vs phylogenetic drivers of that variability.
+- id: stmt:core-accessory-may-miss-adaptation
+  kind: caveat
+  text: Core/accessory classification may not capture functional adaptation, since the genes that vary may not be the ones responding to environment.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:functional-dark-matter
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:gene-content
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:no-correlation-openness-effects
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: '**Core/accessory classification may not capture functional adaptation**: The genes that vary may not be the ones responding to environment'
+- id: stmt:limited-sample-size
+  kind: caveat
+  text: The analysis is limited to species having both pangenome statistics and ecotype analysis results, constraining sample size and statistical power.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome
+  - entity:ecotype-analysis
+  - entity:sample-size
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:no-correlation-openness-effects
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Sample size is limited to species with both pangenome statistics and ecotype analysis results
+- id: stmt:openness-single-metric-limitation
+  kind: caveat
+  text: Openness is a single summary metric that may not capture the full complexity of pangenome structure, potentially masking real relationships.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome-openness
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:no-correlation-openness-effects
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Openness is a single summary metric that may not capture the full complexity of pangenome structure
+- id: stmt:partial-correlation-confounding
+  kind: caveat
+  text: Environment and phylogeny effects come from partial correlations that may not fully disentangle confounded variables.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:partial-correlation
+  - entity:ecotype-analysis
+  - entity:phylogeny
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:weak-spearman-values
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Environment and phylogeny effects are derived from partial correlations that may not fully disentangle confounded variables
+- id: stmt:openness-defined-from-core-fraction
+  kind: finding
+  text: Pangenome openness was operationalized as one minus the core gene fraction, with higher values denoting more open pangenomes.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome-openness
+  - entity:core-genome
+  - entity:core-fraction
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: RESEARCH_PLAN.md
+    source_section: Approach
+    quote: Openness = 1 - core_fraction (higher = more open)
+- id: stmt:hypothesis-open-pangenomes-environment
+  kind: claim
+  text: The project hypothesized that open pangenomes should show stronger environment effects due to high gene turnover and HGT.
+  confidence: low
+  topics:
+  - topic:pangenome-architecture
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pangenome-openness
+  - entity:horizontal-gene-transfer
+  - entity:gene-turnover
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: RESEARCH_PLAN.md
+    source_section: Hypothesis
+    quote: '**Open pangenomes should show stronger environment effects** because:'
+- id: stmt:precomputed-pangenome-stats
+  kind: finding
+  text: The BERDL pangenome table already contains pre-computed pangenome statistics, removing the need to compute them from the gene_cluster table.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome
+  - entity:berdl
+  - entity:gene-cluster
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: RESEARCH_PLAN.md
+    source_section: Data Sources
+    quote: The `pangenome` table already has pre-computed statistics - no need to compute from the `gene_cluster` table!
+- id: stmt:opportunity-stratify-by-function
+  kind: opportunity
+  text: Stratifying by gene function could reveal whether open pangenomes show environment effects specifically in mobile (L) or defense (V) COG categories.
+  confidence: low
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:pangenome-openness
+  - entity:cog-categories
+  - entity:gene-function
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:core-accessory-may-miss-adaptation
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Stratify by gene function**: Do open pangenomes show environment effects specifically in L (mobile) or V (defense) categories?'
+- id: stmt:opportunity-alternative-openness-metrics
+  kind: opportunity
+  text: Alternative openness metrics such as auxiliary fraction, Heap's law alpha, or pangenome fluidity could be tested to probe the null result.
+  confidence: low
+  topics:
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome-openness
+  - entity:heaps-law
+  - entity:pangenome-fluidity
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:openness-single-metric-limitation
+  evidence:
+  - source_project: pangenome_openness
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Test alternative openness metrics**: Try auxiliary fraction, Heap''s law alpha, or pangenome fluidity'

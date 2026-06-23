@@ -1,0 +1,314 @@
+project:
+  id: fitness_modules
+  title: 'Report: Pan-bacterial Fitness Modules via Independent Component Analysis'
+statements:
+- id: stmt:ica-fitness-modules-approach
+  kind: claim
+  text: Robust Independent Component Analysis applied to RB-TnSeq gene-fitness matrices from the Fitness Browser decomposes them into latent functional modules of co-regulated genes, complementing sequence-based annotation by capturing process-level co-regulation.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:independent-component-analysis
+  - entity:rb-tnseq
+  - entity:fitness-browser
+  - entity:fitness-modules
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: README.md
+    source_section: Overview
+    quote: This project applies robust Independent Component Analysis (ICA) to gene-fitness matrices from the Fitness Browser, decomposing them into latent functional modules of co-regulated genes.
+- id: stmt:1116-stable-modules
+  kind: finding
+  text: Robust ICA across 32 bacterial organisms, each with at least 100 experiments, yielded 1,116 stable fitness modules.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:independent-component-analysis
+  - entity:fitness-modules
+  - entity:rb-tnseq
+  links:
+    supports:
+    - stmt:ica-fitness-modules-approach
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: ICA Decomposition (32 organisms)
+    quote: '**1,116 stable modules** across 32 organisms (all with >=100 experiments)'
+    notebook: notebooks/03_ica_modules.ipynb
+    figure: figures/module_size_distribution.png
+- id: stmt:cofitness-enrichment-validation
+  kind: finding
+  text: 94.2% of fitness modules show significantly elevated within-module cofitness (Mann-Whitney U, p < 0.05), with within-module mean |r| of 0.34 versus a background of 0.12 (a 2.8x enrichment).
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-modules
+  - entity:cofitness
+  - entity:mann-whitney-u
+  links:
+    supports:
+    - stmt:1116-stable-modules
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: ICA Decomposition (32 organisms)
+    quote: '**94.2%** of modules show significantly elevated within-module cofitness (Mann-Whitney U, p < 0.05)'
+    notebook: notebooks/03_ica_modules.ipynb
+    figure: figures/validation_summary.png
+- id: stmt:genomic-adjacency-enrichment
+  kind: finding
+  text: Module genes show 22.7x genomic adjacency enrichment, indicating they are co-located in operons.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:fitness-modules
+  - entity:operons
+  - entity:genomic-adjacency
+  links:
+    supports:
+    - stmt:cofitness-enrichment-validation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: ICA Decomposition (32 organisms)
+    quote: '**22.7x genomic adjacency enrichment** -- module genes are co-located in operons'
+    notebook: notebooks/03_ica_modules.ipynb
+- id: stmt:strict-weight-threshold-critical
+  kind: finding
+  text: Switching from a D'Agostino K-squared module definition to strict absolute weight thresholds (|weight| >= 0.3, max 50 genes) made modules biologically coherent, raising enrichment to 94% and cofitness correlation enrichment to 2.8x.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-modules
+  - entity:independent-component-analysis
+  - entity:weight-threshold
+  - entity:cofitness
+  links:
+    supports:
+    - stmt:cofitness-enrichment-validation
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: After switching to absolute weight thresholds, modules became biologically coherent (94% enriched, 2.8x correlation enrichment).
+    notebook: notebooks/03_ica_modules.ipynb
+- id: stmt:pfam-boosts-annotation-rate
+  kind: finding
+  text: Adding PFam domains and lowering the enrichment overlap threshold from 3 to 2 raised the module annotation rate from 8% to 80% (92 to 890 modules) and unlocked 7.6x more function predictions.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:pfam
+  - entity:fitness-modules
+  - entity:functional-enrichment
+  - entity:function-prediction
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: Adding PFam domains and lowering the enrichment overlap threshold from 3 to 2 increased module annotation rate from 8% to 80% (92 to 890 modules), unlocking 7.6x more function predictions.
+    notebook: notebooks/04_module_annotation.ipynb
+    figure: figures/enrichment_summary.png
+- id: stmt:conserved-module-families
+  kind: finding
+  text: Ortholog-fingerprint alignment across 32 organisms produced 156 module families spanning two or more organisms (28 spanning 5+, 7 spanning 10+, 1 spanning 21), revealing conserved fitness regulons across diverse bacterial phyla.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:module-families
+  - entity:ortholog-fingerprints
+  - entity:conserved-regulons
+  - entity:fitness-modules
+  links:
+    supports:
+    - stmt:1116-stable-modules
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Cross-Organism Alignment
+    quote: '**156 module families** spanning 2+ organisms (28 spanning 5+, 7 spanning 10+, 1 spanning 21)'
+    notebook: notebooks/05_cross_organism_alignment.ipynb
+    figure: figures/module_families.png
+- id: stmt:pan-bacterial-module
+  kind: claim
+  text: The largest module family spans 21 organisms, providing evidence for a deeply conserved, pan-bacterial co-regulation program.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:module-families
+  - entity:conserved-regulons
+  - entity:fitness-modules
+  links:
+    supports:
+    - stmt:conserved-module-families
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Cross-Organism Alignment
+    quote: Largest family spans 21 organisms -- a pan-bacterial fitness module
+    notebook: notebooks/05_cross_organism_alignment.ipynb
+- id: stmt:function-predictions-hypothetical
+  kind: finding
+  text: Module enrichment generated 6,691 function predictions for hypothetical proteins across all 32 organisms, of which 2,455 (37%) are family-backed by cross-organism conservation.
+  confidence: high
+  topics:
+  - topic:functional-dark-matter
+  - topic:gene-fitness
+  entities:
+  - entity:function-prediction
+  - entity:hypothetical-proteins
+  - entity:fitness-modules
+  - entity:module-families
+  links:
+    supports:
+    - stmt:pfam-boosts-annotation-rate
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Function Prediction
+    quote: '**6,691 function predictions** for hypothetical proteins across all 32 organisms'
+    notebook: notebooks/06_function_prediction.ipynb
+    figure: figures/prediction_summary.png
+- id: stmt:ortholog-transfer-gold-standard
+  kind: finding
+  text: Ortholog transfer remains the gold standard for gene-level function prediction at 95.8% precision, while Module-ICA fills a different niche by identifying which biological processes an uncharacterized gene participates in.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:ortholog-transfer
+  - entity:function-prediction
+  - entity:fitness-modules
+  - entity:hypothetical-proteins
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: 'Ortholog transfer remains the gold standard for gene-level function prediction (95.8% precision), but Module-ICA fills a different niche: identifying which biological processes an uncharacterized gene participates in.'
+    notebook: notebooks/07_benchmarking.ipynb
+    figure: figures/benchmark_strict.png
+- id: stmt:ica-process-not-molecular-caveat
+  kind: caveat
+  text: Module-ICA has near-zero precision for predicting specific KEGG KO assignments because KO groups are gene-level (about 1.2 genes per unique KO); modules capture process-level co-regulation, not specific molecular function.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:fitness-modules
+  - entity:kegg-ko
+  - entity:function-prediction
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:function-predictions-hypothetical
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Benchmarking (NB07)
+    quote: Module-ICA and cofitness show near-zero strict KO precision because KEGG KO groups are gene-level assignments (~1.2 genes per unique KO).
+    notebook: notebooks/07_benchmarking.ipynb
+    figure: figures/benchmark_strict.png
+- id: stmt:low-experiment-weak-modules-caveat
+  kind: caveat
+  text: Organisms with fewer than about 100 experiments produce weaker modules, exemplified by Caulobacter with 198 experiments showing only 2.9x correlation enrichment.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  entities:
+  - entity:fitness-modules
+  - entity:cofitness
+  - entity:caulobacter
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:1116-stable-modules
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Organisms with fewer than ~100 experiments produce weaker modules (e.g., Caulo with 198 experiments showed only 2.9x correlation enrichment)
+    notebook: notebooks/03_ica_modules.ipynb
+- id: stmt:integrate-pangenome-opportunity
+  kind: opportunity
+  text: Integrating module predictions with pangenome gene classifications (core/auxiliary/singleton) could reveal which fitness modules are enriched in accessory genes.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:pangenome-architecture
+  entities:
+  - entity:fitness-modules
+  - entity:pangenome
+  - entity:accessory-genome
+  - entity:function-prediction
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Integrate module predictions with pangenome gene classifications (core/auxiliary/singleton)
+- id: stmt:web-interface-opportunity
+  kind: opportunity
+  text: A web interface for browsing module families and function predictions would make the conserved fitness regulons and predictions broadly accessible.
+  confidence: low
+  topics:
+  - topic:gene-fitness
+  - topic:functional-dark-matter
+  entities:
+  - entity:module-families
+  - entity:function-prediction
+  - entity:fitness-modules
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fitness_modules
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Develop a web interface for browsing module families and function predictions

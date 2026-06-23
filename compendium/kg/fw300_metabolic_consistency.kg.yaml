@@ -1,0 +1,331 @@
+project:
+  id: fw300_metabolic_consistency
+  title: 'Report: Metabolic Consistency of Pseudomonas FW300-N2E3 Across Four BERDL Databases'
+statements:
+- id: stmt:high-cross-database-concordance
+  kind: finding
+  text: Across the testable metabolites produced by Pseudomonas FW300-N2E3, exometabolomic, fitness, utilization, and pathway databases agree at a 0.94 mean concordance score, with no fully discordant metabolites.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:fw300-n2e3
+  - entity:web-of-microbes
+  - entity:fitness-browser
+  - entity:metabolic-consistency
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: 1. High overall concordance across databases (94% mean concordance)
+    quote: Among these testable metabolites, 17/21 (81%) were fully concordant across all matched databases, 4/21 (19%) were partially concordant, and none were fully discordant. The mean concordance score was 0.94.
+    notebook: 03_consistency_matrix.ipynb
+    figure: figures/concordance_summary.png
+- id: stmt:tryptophan-overflow-discordance
+  kind: finding
+  text: FW300-N2E3 produces tryptophan and grows on it as a sole carbon source while no BacDive P. fluorescens strain can catabolize it, marking the strongest biologically meaningful production-vs-utilization discordance, consistent with overflow metabolism for cross-feeding or signaling.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbiome-engineering
+  entities:
+  - entity:tryptophan
+  - entity:fw300-n2e3
+  - entity:overflow-metabolism
+  - entity:cross-feeding
+  - entity:bacdive
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: '2. Tryptophan overflow: the strongest biologically meaningful discordance'
+    quote: 'This is the most robust discordance in the dataset: the organism produces tryptophan and grows on it as a sole carbon source, but the species as a whole cannot catabolize it. This pattern is consistent with tryptophan overflow metabolism serving a cross-feeding or signaling function rather than a catabolic one.'
+    notebook: 03_consistency_matrix.ipynb
+- id: stmt:gapmind-pathways-validated
+  kind: finding
+  text: All 13 GapMind-matched metabolites had complete predicted pathways for FW300-N2E3 and all showed growth in Fitness Browser experiments, validating GapMind pathway prediction accuracy for this organism.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:gapmind
+  - entity:fitness-browser
+  - entity:pathway-completeness
+  - entity:fw300-n2e3
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: 3. All 13 GapMind-matched metabolites have complete pathways
+    quote: All 13 also showed growth in Fitness Browser experiments. This perfect agreement between computational prediction and experimental measurement validates GapMind's accuracy for this organism.
+    notebook: 03_consistency_matrix.ipynb
+    figure: figures/consistency_heatmap.png
+- id: stmt:rich-fitness-landscapes
+  kind: finding
+  text: Across 21 produced metabolites with matching Fitness Browser experiments, FW300-N2E3 showed significant fitness effects for 601 unique genes and 4,764 total significant gene-condition hits.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:fitness-browser
+  - entity:rb-tnseq
+  - entity:gene-fitness
+  - entity:fw300-n2e3
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: 4. Rich fitness landscapes for produced metabolites
+    quote: Across 21 WoM metabolites with matching FB experiments, FW300-N2E3 showed significant gene fitness effects (|fit| > 1, |t| > 4) for 601 unique genes, with 4,764 total significant gene-condition hits.
+    notebook: 02_wom_fb_integration.ipynb
+    figure: figures/fitness_hits_per_metabolite.png
+- id: stmt:pleiotropic-housekeeping-genes
+  kind: claim
+  text: The fitness genes shared across all metabolite conditions are essential amino acid biosynthesis enzymes representing housekeeping fitness rather than substrate-specific catabolism.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:metabolic-pathways
+  entities:
+  - entity:amino-acid-biosynthesis
+  - entity:gene-fitness
+  - entity:pleiotropy
+  - entity:fitness-browser
+  links:
+    supports:
+    - stmt:rich-fitness-landscapes
+    contradicts: []
+    refines:
+    - stmt:rich-fitness-landscapes
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: 4. Rich fitness landscapes for produced metabolites
+    quote: These genes are essential for growth on *any* minimal medium — they represent "housekeeping fitness" rather than substrate-specific metabolism.
+    notebook: 02_wom_fb_integration.ipynb
+- id: stmt:production-not-utilization
+  kind: claim
+  text: Metabolite production and utilization measure fundamentally different capabilities, so a bacterium can secrete a metabolite for ecological purposes without being able to catabolize it for energy.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbiome-engineering
+  entities:
+  - entity:overflow-metabolism
+  - entity:metabolite-secretion
+  - entity:cross-feeding
+  links:
+    supports:
+    - stmt:tryptophan-overflow-discordance
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: 'Production vs. utilization: not a contradiction'
+    quote: A bacterium can produce a metabolite via overflow metabolism, biosynthetic byproduct release, or active secretion for ecological purposes (signaling, cross-feeding, antimicrobial) without being able to catabolize it for energy.
+- id: stmt:tryptophan-cross-feeding-candidate
+  kind: claim
+  text: Tryptophan secretion by FW300-N2E3, a prototroph that cannot re-assimilate it, is a hallmark of cross-feeding potential that could supply essential amino acids to auxotrophic community members.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:subsurface-genomics
+  entities:
+  - entity:tryptophan
+  - entity:cross-feeding
+  - entity:enigma
+  - entity:oak-ridge
+  - entity:fw300-n2e3
+  links:
+    supports:
+    - stmt:tryptophan-overflow-discordance
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: 'Tryptophan: a cross-feeding candidate'
+    quote: Tryptophan secretion by a prototroph that cannot re-assimilate it is a hallmark of cross-feeding potential — providing essential amino acids to auxotrophic community members (Fritts et al. 2021; Giri et al. 2021).
+- id: stmt:four-way-concordant-metabolites
+  kind: finding
+  text: Malate, arginine, and valine reached the gold standard of four-way consistency, being produced, grown on, species-utilized, and computationally complete across all four databases.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:malate
+  - entity:arginine
+  - entity:valine
+  - entity:metabolic-consistency
+  links:
+    supports:
+    - stmt:high-cross-database-concordance
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: 'Three-way concordance: WoM + FB + BacDive + GapMind'
+    quote: 'These represent the gold standard of cross-database consistency: the organism produces the metabolite, grows on it, the species utilizes it, and the pathway is computationally complete.'
+- id: stmt:produced-metabolites-species-norm-utilization
+  kind: finding
+  text: Metabolites produced by FW300-N2E3 are utilized at the species baseline rate, with a binomial test showing no significant difference between produced-metabolite utilization (3/7) and the P. fluorescens baseline (22/80).
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:microbial-ecotypes
+  entities:
+  - entity:bacdive
+  - entity:metabolite-utilization
+  - entity:pseudomonas-fluorescens
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: 1. High overall concordance across databases (94% mean concordance)
+    quote: A binomial test comparing the BacDive utilization rate for WoM-produced metabolites (3/7 = 43%) against the overall *P. fluorescens* baseline (22/80 = 27.5%) shows no significant difference (p = 0.40), indicating that the metabolites FW300-N2E3 produces are utilized at a rate consistent with the species norm.
+- id: stmt:novel-exometabolomics-fitness-integration
+  kind: claim
+  text: This project is the first to systematically compare Web of Microbes exometabolomic profiles with Fitness Browser gene fitness data, despite both datasets coming from the same ENIGMA/Arkin Lab research program.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  - topic:gene-fitness
+  entities:
+  - entity:web-of-microbes
+  - entity:fitness-browser
+  - entity:enigma
+  - entity:data-integration
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: No published study has systematically compared Web of Microbes exometabolomic profiles with Fitness Browser gene fitness data, despite both datasets being generated by the same research program (ENIGMA/Arkin Lab).
+- id: stmt:tryptophan-high-confidence-discordance
+  kind: caveat
+  text: Only tryptophan reaches high confidence for a genuine production-vs-utilization discordance, since other BacDive discordances rest on small per-strain samples.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:bacdive
+  - entity:tryptophan
+  - entity:data-quality
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:tryptophan-overflow-discordance
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: 5. BacDive discordances are graded by data quality
+    quote: Only tryptophan reaches high confidence for a genuine production-vs-utilization discordance.
+    notebook: 03_consistency_matrix.ipynb
+- id: stmt:low-cross-database-overlap
+  kind: caveat
+  text: Only 21 of 58 WoM metabolites could be tested against any other database and just 3 achieved four-way coverage, so the untested 64% may harbor additional discordances.
+  confidence: high
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:metabolic-consistency
+  - entity:web-of-microbes
+  - entity:metabolite-crosswalk
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:high-cross-database-concordance
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Only 21/58 WoM metabolites (36%) could be tested against any other database, and only 3 metabolites achieved four-way coverage. Results are robust where data exists but the untested 64% may harbor additional discordances.
+- id: stmt:condition-dependent-media-mismatch
+  kind: caveat
+  text: WoM exometabolomics was measured on rich R2A medium while Fitness Browser fitness used minimal single C/N-source media, so condition-dependent profiles mean some WoM metabolites may only be produced on rich media.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:web-of-microbes
+  - entity:fitness-browser
+  - entity:growth-media
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:high-cross-database-concordance
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: WoM exometabolomics was measured on R2A (rich medium), while FB fitness was measured on minimal medium with single C/N sources. Metabolic profiles are condition-dependent, and some metabolites detected in WoM may only be produced on rich media.
+- id: stmt:expand-bacdive-matching-opportunity
+  kind: opportunity
+  text: Using chemical identifiers such as InChIKey and CHEBI instead of name matching could expand the WoM-BacDive metabolite overlap beyond the current 8 metabolites.
+  confidence: medium
+  topics:
+  - topic:metabolic-pathways
+  entities:
+  - entity:metabolite-crosswalk
+  - entity:bacdive
+  - entity:web-of-microbes
+  - entity:inchikey
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:low-cross-database-overlap
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Use chemical identifiers (InChIKey, CHEBI) rather than name matching to increase the WoM-BacDive overlap beyond 8 metabolites.
+- id: stmt:community-metabolic-modeling-opportunity
+  kind: opportunity
+  text: The tryptophan overflow finding could parameterize a community metabolic model predicting cross-feeding between FW300-N2E3 and known tryptophan auxotrophs in the Oak Ridge groundwater community.
+  confidence: medium
+  topics:
+  - topic:microbiome-engineering
+  - topic:subsurface-genomics
+  entities:
+  - entity:community-metabolic-model
+  - entity:cross-feeding
+  - entity:tryptophan
+  - entity:oak-ridge
+  - entity:fw300-n2e3
+  links:
+    supports:
+    - stmt:tryptophan-overflow-discordance
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: fw300_metabolic_consistency
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Use the tryptophan overflow finding to parameterize a community metabolic model predicting cross-feeding interactions between FW300-N2E3 and known tryptophan auxotrophs in the Oak Ridge groundwater community.

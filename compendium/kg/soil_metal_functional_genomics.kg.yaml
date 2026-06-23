@@ -1,0 +1,341 @@
+project:
+  id: soil_metal_functional_genomics
+  title: 'Report: Soil Metal Concentrations Drive Functional Gene Shifts'
+statements:
+- id: stmt:cog-metal-associations
+  kind: finding
+  text: A community-weighted Spearman analysis of 51,748 soil samples found 2,355 significant COG-metal associations (FDR < 0.05) across nine metals.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:cog-categories
+  - entity:soil-metals
+  - entity:arkinlab-microbeatlas
+  - entity:spearman-correlation
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**2,355 significant COG-metal associations** (FDR < 0.05) across 9 metals (Cu, Co,\n  Cr, Ni, Zn, Pb, As, Cd, Hg) in 51,748 soil samples."
+  - source_project: soil_metal_functional_genomics
+    source_doc: README.md
+    source_section: Notebooks Consolidated
+    quote: 51,748 samples; 9 metals; 435 COG categories; community-weighted Spearman; 2,355 significant associations
+    notebook: Soil_Metals_vs_Microbial_COG_Functions.ipynb
+- id: stmt:chromium-lead-strongest
+  kind: finding
+  text: Chromium and lead drive the strongest COG signals, with transporters (ABC, RND) and biosynthesis genes dominating the top associations.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:metabolic-pathways
+  entities:
+  - entity:chromium
+  - entity:lead
+  - entity:abc-transporters
+  - entity:rnd-transporters
+  links:
+    supports:
+    - stmt:cog-metal-associations
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "Chromium and Lead drive the\n  strongest signals; transporters (ABC, RND) and biosynthesis genes dominate top hits."
+- id: stmt:copper-trade-offs
+  kind: finding
+  text: Copper-specific analysis of 116 significant COGs shows positive enrichment of cell division and nucleotide transport alongside negative associations with energy production, suggesting energetic trade-offs under copper stress.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:metabolic-pathways
+  entities:
+  - entity:copper
+  - entity:cog-categories
+  - entity:energy-production
+  links:
+    supports:
+    - stmt:cog-metal-associations
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "top positives include cell division and nucleotide transport (BQ,\n  FQ, FK, CF); top negatives include energy production (DI, CE), suggesting energetic\n  trade-offs under copper stress."
+    notebook: Untitled1.ipynb
+- id: stmt:dbrda-variance
+  kind: finding
+  text: A distance-based RDA reports R squared of 0.799 (p = 0.005), indicating metal concentrations explain 80% of variance in community COG profiles after conditioning on batch/project effects.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:db-rda
+  - entity:soil-metals
+  - entity:cog-categories
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**db-RDA**: R² = 0.799, p = 0.005 (permutation test, 999 permutations) — metal\n  concentrations explain 80% of variance in community COG profiles after conditioning\n  on batch/project effects."
+    notebook: Untitled3.ipynb
+- id: stmt:biome-specific-response
+  kind: finding
+  text: Biome-stratified PGLS shows soil, marine, and wastewater communities have distinct metal-COG relationships, indicating environment-specific functional responses rather than a universal resistance programme.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:microbial-ecotypes
+  entities:
+  - entity:pgls
+  - entity:biome-stratification
+  - entity:soil-metals
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Key Findings
+    quote: "**Biome-stratified PGLS**: soil, marine, and wastewater show distinct metal-COG\n  relationships, indicating environment-specific functional responses rather than a\n  universal resistance programme."
+    notebook: Untitled3.ipynb
+- id: stmt:metal-drives-functional-content
+  kind: claim
+  text: Soil metal concentrations are strongly associated with the functional gene content of co-located microbial communities and this relationship is not a statistical artefact of batch effects.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:soil-metals
+  - entity:cog-categories
+  - entity:db-rda
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dbrda-variance
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: 'Soil metal concentrations are strongly associated with the functional gene content of
+
+      co-located microbial communities (db-RDA R²=0.799), and this relationship is not a
+
+      statistical artefact of batch effects (project accession conditioned out).'
+- id: stmt:copper-mechanism-consistent
+  kind: claim
+  text: The direction of COG associations with copper (energetic trade-offs and membrane transport enrichment) is consistent with known copper toxicity mechanisms in bacteria.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:metabolic-pathways
+  entities:
+  - entity:copper
+  - entity:membrane-transport
+  - entity:energy-production
+  links:
+    supports:
+    - stmt:copper-trade-offs
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: 'The direction
+
+      of COG associations with copper (energetic trade-offs, membrane transport enrichment)
+
+      is consistent with known copper toxicity mechanisms in bacteria.'
+- id: stmt:cocontamination-confound
+  kind: caveat
+  text: All associations are observational and co-contamination by co-varying metals (Cr, Cu, Pb, Zn) in industrial soils confounds whether COG-metal associations are metal-specific or reflect a generic multi-metal stress response.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:co-contamination
+  - entity:soil-metals
+  - entity:cog-categories
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metal-drives-functional-content
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: 'Co-contamination by multiple metals is a
+
+      significant confound: Cr, Cu, Pb, Zn co-vary in many industrial soils. Whether
+
+      individual COG-metal associations are metal-specific or reflect a generic stress
+
+      response to multi-metal contamination is unresolved'
+- id: stmt:effect-sizes-unreported
+  kind: caveat
+  text: Effect sizes (Spearman rho) have not been systematically reported across the 2,355 associations, so many statistically significant hits may be biologically small.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:metabolic-pathways
+  entities:
+  - entity:spearman-correlation
+  - entity:cog-categories
+  - entity:effect-size
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cog-metal-associations
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: 'Effect sizes (Spearman ρ) have not yet been systematically reported across all 2,355
+
+      associations; many may be statistically significant but biologically small.'
+- id: stmt:conditional-r2-caveat
+  kind: caveat
+  text: The reported db-RDA R squared of 0.799 is conditional on project accession and may describe residual rather than total variance, so the unconditional R squared of metals alone must be reported alongside it.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:db-rda
+  - entity:batch-effects
+  - entity:soil-metals
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:dbrda-variance
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Critical Assessment
+    quote: 'If batch effects (project) account
+
+      for the majority of community COG variance, the reported R² describes how well metals
+
+      explain the *residual* variance, not the *total* variance. The unconditional R² of metals
+
+      alone — without first removing project effects — is not reported and may be substantially
+
+      lower.'
+- id: stmt:fdr-anticonservative
+  kind: caveat
+  text: With a 60% discovery rate across 3,915 non-independent tests, Benjamini-Hochberg FDR correction is anti-conservative under positive correlation among co-contaminating metals, so the true FDR is likely higher than reported.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  entities:
+  - entity:fdr-correction
+  - entity:co-contamination
+  - entity:cog-categories
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cog-metal-associations
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Critical Assessment
+    quote: 'Metals co-contaminate (Cr, Pb,
+
+      Zn, Cu co-vary in industrial soils), so tests are not independent — Benjamini-Hochberg
+
+      FDR correction assumes independent tests and will be anti-conservative under positive
+
+      correlation. True FDR is likely higher than reported.'
+- id: stmt:copper-proximity-sensitivity
+  kind: opportunity
+  text: The copper analysis uses a 10 km proximity criterion to match samples to KBase genomes, and a sensitivity analysis at 5 km and 20 km thresholds is needed before COG-copper associations can be attributed to the measured sites.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:environment-biogeography
+  entities:
+  - entity:copper
+  - entity:kbase-genomes
+  - entity:proximity-threshold
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:copper-trade-offs
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: REPORT.md
+    source_section: Critical Assessment
+    quote: '**Copper-specific analysis uses a 10 km proximity criterion** to match soil samples to
+
+      KBase genomes. At 10 km, many "nearby" genomes may not be co-located with the copper
+
+      measurements. Sensitivity analysis at 5 km and 20 km thresholds is needed before
+
+      COG-copper associations can be attributed to the measured sites.'
+- id: stmt:mechanistic-classification
+  kind: opportunity
+  text: Classifying each significant COG into metal resistance, oxidative stress, membrane remodelling, energy metabolism, or unknown categories would provide biological interpretation beyond the correlations.
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:functional-dark-matter
+  entities:
+  - entity:cog-categories
+  - entity:metal-resistance-genes
+  - entity:mechanistic-classification
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: README.md
+    source_section: NB05 — Validation Analyses
+    quote: "Classify each significant COG into: (a) known metal resistance (e.g., CzcA,\n   MerR family), (b) oxidative stress response, (c) membrane remodelling, (d) energy\n   metabolism, (e) unknown. Provides biological interpretation beyond the correlation."
+    notebook: notebooks/05_validation.ipynb
+- id: stmt:spatial-autocorrelation
+  kind: caveat
+  text: Soil samples within a region share geology and land use, so spatial autocorrelation in COG-metal residuals should be tested with Moran's I and corrected via spatial eigenvector filtering if significant.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:metal-resistance
+  entities:
+  - entity:spatial-autocorrelation
+  - entity:soil-metals
+  - entity:cog-categories
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:cog-metal-associations
+  evidence:
+  - source_project: soil_metal_functional_genomics
+    source_doc: README.md
+    source_section: NB05 — Validation Analyses
+    quote: "Soil samples within the same region share geology and land use. Test for spatial\n   autocorrelation in COG-metal associations using Moran's I on residuals. If significant,\n   apply spatial eigenvector filtering (SEVM) to the Spearman analysis."
+    notebook: notebooks/05_validation.ipynb

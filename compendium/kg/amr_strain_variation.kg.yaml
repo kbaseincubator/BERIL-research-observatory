@@ -1,0 +1,326 @@
+project:
+  id: amr_strain_variation
+  title: 'Report: Within-Species AMR Strain Variation'
+statements:
+- id: stmt:amr-variable-rare-within-species
+  kind: finding
+  text: Across 1,305 species and 180,025 genomes, over 90% of AMR gene-species occurrences are variable or rare within a species, with only 7.5% fixed and strains sharing less than 60% of their AMR repertoire.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:amr-genes
+  - entity:pangenome
+  - entity:jaccard-distance
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 1: The majority of AMR genes are variable or rare within species'
+    quote: Across 1,305 species and 180,025 genomes, 51.3% of AMR gene-species occurrences are **rare** (present in <=5% of strains), 41.3% are **variable** (5-95%), and only 7.5% are **fixed** (>=95%).
+    notebook: 02_variation_metrics.ipynb
+    figure: figures/nb02_variation_landscape.png
+- id: stmt:atlas-class-predicts-prevalence
+  kind: finding
+  text: Cross-species atlas conservation class strongly predicts within-species prevalence, with 77.3% of Core AMR genes fixed within species and 78.7% of Singletons rare, validating the core/accessory distinction at strain resolution.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:amr-resistome
+  entities:
+  - entity:core-genome
+  - entity:amr-genes
+  - entity:pangenome
+  links:
+    supports:
+    - stmt:amr-variable-rare-within-species
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 1: The majority of AMR genes are variable or rare within species'
+    quote: 'Cross-species conservation class strongly predicts within-species prevalence: 77.3% of atlas-defined Core AMR genes are fixed within species, while 78.7% of Singletons are rare.'
+    notebook: 02_variation_metrics.ipynb
+- id: stmt:resistance-islands-coinherited
+  kind: finding
+  text: AMR genes are organized into 1,517 tightly co-inherited resistance islands across 54% of analyzed species, with a mean phi coefficient of 0.827 indicating very tight co-occurrence.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:resistance-islands
+  - entity:amr-genes
+  - entity:phi-coefficient
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Resistance islands are widespread and tightly co-inherited'
+    quote: We detected 1,517 resistance islands across 705 species (54% of those analyzed), with a mean island size of 6.2 genes (median 4, max 43) and a mean phi coefficient of 0.827 — indicating very tight co-occurrence within each island.
+    notebook: 03_cooccurrence_islands.ipynb
+    figure: figures/nb03_cooccurrence.png
+- id: stmt:islands-multi-mechanism
+  kind: finding
+  text: Most resistance islands (88%) combine genes from multiple resistance mechanisms, dominated by efflux pumps and enzymatic inactivation, suggesting coordinated defense against multiple drug classes.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:resistance-islands
+  - entity:efflux-pumps
+  - entity:amr-mechanisms
+  links:
+    supports:
+    - stmt:resistance-islands-coinherited
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Resistance islands are widespread and tightly co-inherited'
+    quote: Of these, 88% (1,343/1,517) contain genes from multiple resistance mechanisms, with efflux pumps (954 islands) and enzymatic inactivation (698) being the most common components.
+    notebook: 03_cooccurrence_islands.ipynb
+- id: stmt:amr-tracks-phylogeny
+  kind: finding
+  text: AMR profiles are not randomly distributed across phylogeny, with 55.6% of species showing significant phylogenetic signal in their AMR repertoire by Mantel test (FDR < 0.05).
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:microbial-ecotypes
+  entities:
+  - entity:mantel-test
+  - entity:ani
+  - entity:amr-genes
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 3: AMR variation tracks phylogeny in the majority of species — but acquired genes show stronger signal than intrinsic'
+    quote: Mantel tests comparing ANI distance matrices with AMR Jaccard distance matrices across 1,261 species reveal that 55.6% (701 species) show significant phylogenetic signal (FDR < 0.05), with a median Mantel r of 0.247 and 87.8% of species showing positive correlation.
+    notebook: 04_phylogenetic_signal.ipynb
+    figure: figures/nb04_phylogenetic_signal.png
+- id: stmt:acquired-stronger-signal
+  kind: finding
+  text: Counter-intuitively, non-core (acquired) AMR genes show stronger phylogenetic signal (median Mantel r = 0.222) than core (intrinsic) genes (r = 0.117), suggesting acquired resistance is often clonally inherited rather than randomly transferred.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:mantel-test
+  - entity:core-genome
+  - entity:horizontal-gene-transfer
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:amr-tracks-phylogeny
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 3: AMR variation tracks phylogeny in the majority of species — but acquired genes show stronger signal than intrinsic'
+    quote: 'Counter-intuitively, non-core (putatively acquired) AMR genes show **stronger** phylogenetic signal (median r = 0.222) than core (intrinsic) genes (median r = 0.117), with a highly significant difference (paired t-test: t = -8.35, p = 7.0e-16, n = 489).'
+    notebook: 04_phylogenetic_signal.ipynb
+- id: stmt:clonal-lineage-surveillance
+  kind: claim
+  text: Because acquired resistance elements appear to be stably maintained and vertically transmitted within lineages, tracking clonal lineages may be more informative for AMR surveillance than tracking individual resistance genes.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:horizontal-gene-transfer
+  - entity:amr-surveillance
+  - entity:clonal-lineages
+  links:
+    supports:
+    - stmt:acquired-stronger-signal
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: 'The counter-intuitive finding that acquired AMR shows stronger phylogenetic signal than intrinsic AMR has not been previously demonstrated at this scale and has important implications for AMR surveillance: tracking clonal lineages may be more informative than tracking individual resistance genes.'
+- id: stmt:core-signal-artifact
+  kind: caveat
+  text: The lower phylogenetic signal for core AMR genes is partly a statistical artifact, because their near-universal prevalence produces near-zero Jaccard distances with little variance that suppress distance-based Mantel correlations independent of biology.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:mantel-test
+  - entity:core-genome
+  - entity:jaccard-distance
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:acquired-stronger-signal
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: Biological Significance
+    quote: Core AMR genes, being nearly universal (>=95% prevalence by definition), have near-zero Jaccard distances with little variance, which inherently suppresses distance-based correlation metrics like the Mantel r — a statistical artifact that partially explains the lower signal, independent of biology.
+- id: stmt:amr-ecotypes
+  kind: finding
+  text: Roughly one in five species (19.5% of 974 species with sufficient genomes) form two or more distinct AMR ecotypes by UMAP plus DBSCAN clustering, with good cluster quality (median silhouette 0.620).
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:amr-resistome
+  entities:
+  - entity:amr-ecotypes
+  - entity:umap
+  - entity:dbscan
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 4: One in five species has distinct AMR ecotypes'
+    quote: Of 974 species with sufficient genomes (>=15) for clustering, 190 (19.5%) form >=2 distinct AMR ecotypes based on UMAP + DBSCAN clustering of AMR Jaccard distances, with a median silhouette score of 0.620 (good cluster quality).
+    notebook: 05_amr_ecotypes.ipynb
+- id: stmt:ecotype-env-underpowered
+  kind: caveat
+  text: Statistical testing of ecotype-environment association is underpowered because 52.7% of genomes lack a classifiable isolation source, leaving only 2 species with sufficient within-species environmental diversity for chi-squared testing.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:environment-biogeography
+  entities:
+  - entity:amr-ecotypes
+  - entity:isolation-source
+  - entity:metadata
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:amr-ecotypes
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 4: One in five species has distinct AMR ecotypes'
+    quote: Environment-ecotype association testing was limited by per-genome metadata sparsity (52.7% of genomes have no classifiable isolation_source), leaving only 2 species with sufficient within-species environmental diversity for chi-squared testing after applying strict expected-frequency criteria.
+    notebook: 05_amr_ecotypes.ipynb
+- id: stmt:no-temporal-trend
+  kind: caveat
+  text: No species showed significant temporal trends in AMR gene accumulation after FDR correction, but this null result likely reflects sparse and noisy NCBI collection-date metadata rather than a true absence of temporal trends.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:environment-biogeography
+  entities:
+  - entity:amr-genes
+  - entity:collection-date
+  - entity:metadata
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 5: No significant temporal trends in AMR accumulation after multiple-testing correction'
+    quote: This null result likely reflects sparse and noisy collection date metadata in NCBI BioSample records rather than a true absence of temporal trends, as demonstrated by well-documented AMR expansions in species like *S. aureus* and *K. pneumoniae*.
+    notebook: 06_temporal_bacdive.ipynb
+- id: stmt:host-associated-more-amr
+  kind: finding
+  text: Host-associated species consistently carry more AMR genes per genome than terrestrial or aquatic species, with human-clinical isolates showing the highest AMR burden across two independent environment classifiers.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:environment-biogeography
+  entities:
+  - entity:amr-genes
+  - entity:host-association
+  - entity:bacdive
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: 'Finding 6: Host-associated species carry more AMR genes than environmental species'
+    quote: Using both rule-based keyword classification (approximating BacDive categories) and NCBI keyword-based environment annotation, host-associated species consistently carry more AMR genes per genome than terrestrial or aquatic species (Kruskal-Wallis, p < 0.05).
+    notebook: 06_temporal_bacdive.ipynb
+- id: stmt:first-cross-species-quantification
+  kind: claim
+  text: This is the first study to systematically quantify within-species AMR variation across more than 1,300 species simultaneously, enabled by the KBase/BERDL pangenome resource.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:pangenome
+  - entity:berdl
+  - entity:amr-genes
+  links:
+    supports:
+    - stmt:amr-variable-rare-within-species
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: This study is the first to systematically quantify within-species AMR variation across >1,300 species simultaneously, enabled by the KBase/BERDL pangenome resource.
+- id: stmt:predict-co-acquisition
+  kind: opportunity
+  text: The resistance island co-occurrence structure could be used to build predictive models of which AMR genes are likely to be co-acquired in the future.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:resistance-islands
+  - entity:predictive-modeling
+  - entity:amr-genes
+  links:
+    supports:
+    - stmt:resistance-islands-coinherited
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Predictive modeling**: Use the resistance island co-occurrence structure to predict which AMR genes are likely to be co-acquired in the future (PanKA-style approach)'
+- id: stmt:cross-project-integration
+  kind: opportunity
+  text: AMR ecotypes could be integrated with virulence factor profiles and metabolic pathway variation from other BERDL analyses to connect resistance structure to broader strain phenotypes.
+  confidence: low
+  topics:
+  - topic:microbial-ecotypes
+  - topic:metabolic-pathways
+  entities:
+  - entity:amr-ecotypes
+  - entity:virulence-factors
+  - entity:berdl
+  links:
+    supports:
+    - stmt:amr-ecotypes
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_strain_variation
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: '**Cross-project integration**: Link AMR ecotypes to virulence factor profiles and metabolic pathway variation from other BERDL analyses'

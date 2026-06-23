@@ -1,0 +1,315 @@
+project:
+  id: amr_environmental_resistome
+  title: 'Report: Environmental Resistome at Pangenome Scale'
+statements:
+- id: stmt:clinical-amr-richness
+  kind: finding
+  text: Clinical and human gut bacterial species carry roughly 2.5x more AMR gene clusters (median 5) than soil, aquatic, and host-associated species (median 2), establishing ecological niche as a strong predictor of resistome size.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:microbial-ecotypes
+  entities:
+  - entity:resistome
+  - entity:amr-gene-clusters
+  - entity:pangenome
+  - entity:isolation-source
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 1. Clinical species carry 2.5× more AMR gene clusters than environmental species (H1 supported)
+    quote: Species from clinical sources have a median of **5 AMR gene clusters**, compared to 2 for soil, aquatic, and host-associated species (Kruskal-Wallis H = 781.9, p = 9.4×10⁻¹⁶⁷, η² = 0.056).
+    notebook: 02_resistome_vs_environment.ipynb
+    figure: figures/h1_amr_by_environment.png
+- id: stmt:core-accessory-gradient
+  kind: finding
+  text: The intrinsic/acquired composition of the resistome varies quantitatively along an ecological gradient, from 43% accessory AMR in soil species up to 68% in clinical and 80% in human gut species.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:amr-resistome
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:resistome
+  - entity:horizontal-gene-transfer
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 2. Clinical species have predominantly acquired resistance; soil/aquatic species have more intrinsic resistance (H2 supported)
+    quote: '**Clinical species: 68% accessory (acquired) AMR** vs **soil species: 43% accessory** (Kruskal-Wallis H = 506.0, p = 4×10⁻¹⁰⁷, η² = 0.036).'
+    notebook: 02_resistome_vs_environment.ipynb
+    figure: figures/h2_core_accessory_by_env.png
+- id: stmt:core-intrinsic-accessory-acquired
+  kind: claim
+  text: Soil and aquatic species retain ancient, chromosomally encoded (intrinsic) resistance, whereas clinical and human gut species have overwhelmingly acquired their AMR through horizontal gene transfer.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:core-genome
+  - entity:accessory-genome
+  - entity:horizontal-gene-transfer
+  - entity:resistome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:core-accessory-gradient
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 2. Clinical species have predominantly acquired resistance; soil/aquatic species have more intrinsic resistance (H2 supported)
+    quote: Clinical and human gut species have overwhelmingly acquired their AMR through horizontal gene transfer, while soil and aquatic species retain more ancient, chromosomally encoded resistance.
+    notebook: 02_resistome_vs_environment.ipynb
+- id: stmt:metal-resistance-soil-aquatic
+  kind: finding
+  text: Metal resistance is the most environment-discriminating AMR mechanism, comprising ~44-45% of AMR in soil and aquatic species but only 6% in human gut species (the largest mechanism effect, eta-squared = 0.107).
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:amr-resistome
+  entities:
+  - entity:metal-resistance
+  - entity:amr-mechanism
+  - entity:resistome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 3. Resistance mechanism composition is strongly environment-dependent (H3 supported)
+    quote: '**Metal resistance**: 45% of AMR in aquatic, 44% in soil, but only 6% in human gut (η² = 0.107 — the largest effect)'
+    notebook: 02_resistome_vs_environment.ipynb
+    figure: figures/h3_mechanism_by_environment.png
+- id: stmt:niche-selects-mechanism
+  kind: finding
+  text: Different ecological niches select for fundamentally different resistance strategies, with target modification dominating in human gut (44%) and clinical (28%) species while only reaching 6% in aquatic species.
+  confidence: high
+  topics:
+  - topic:metal-resistance
+  - topic:microbial-ecotypes
+  entities:
+  - entity:amr-mechanism
+  - entity:target-modification
+  - entity:efflux-pump
+  - entity:resistome
+  links:
+    supports:
+    - stmt:metal-resistance-soil-aquatic
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 3. Resistance mechanism composition is strongly environment-dependent (H3 supported)
+    quote: '**Target modification**: 44% in human gut, 28% in clinical, but only 6% in aquatic (η² = 0.100)'
+    notebook: 02_resistome_vs_environment.ipynb
+    figure: figures/h3_mechanism_by_environment.png
+- id: stmt:mechanism-conservation-ecology-link
+  kind: claim
+  text: 'The mechanism-conservation pattern (metal resistance accessory, efflux core) is driven by ecology: efflux genes are core because they serve host-associated organisms across conditions, while metal resistance is accessory because it is only needed in metal-rich environments.'
+  confidence: medium
+  topics:
+  - topic:metal-resistance
+  - topic:gene-fitness
+  entities:
+  - entity:amr-fitness-cost
+  - entity:efflux-pump
+  - entity:metal-resistance
+  - entity:core-genome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:metal-resistance-soil-aquatic
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 3. Resistance mechanism composition is strongly environment-dependent (H3 supported)
+    quote: efflux genes are core because they serve host-associated organisms across conditions, while metal resistance is accessory because it's only needed in metal-rich environments.
+    notebook: 02_resistome_vs_environment.ipynb
+- id: stmt:within-species-clinical-fraction
+  kind: finding
+  text: Across 823 species sampled in multiple environments, the fraction of genomes from clinical sources strongly predicts total AMR cluster count (Spearman rho = 0.465), with clinical-dominated species carrying 4.4x more AMR clusters than environmentally dominated ones.
+  confidence: high
+  topics:
+  - topic:microbial-ecotypes
+  - topic:amr-resistome
+  entities:
+  - entity:resistome
+  - entity:isolation-source
+  - entity:klebsiella-pneumoniae
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 4. Species with more clinical genomes carry more AMR (H4 proxy — species-level analysis)
+    quote: Clinical-dominated species have **4.4× more AMR clusters** (mean 72.9 vs 16.4, MWU p = 2×10⁻¹⁸) and a higher fraction of accessory AMR in a grouped comparison (93.6% vs 81.7%, MWU p = 0.004).
+    notebook: 03_within_species.ipynb
+    figure: figures/h4_within_species.png
+- id: stmt:kpneumoniae-accessory-resistome
+  kind: finding
+  text: Klebsiella pneumoniae exemplifies HGT-driven within-species AMR variation, carrying 1,115 AMR gene clusters of which only 7 are core, so nearly its entire resistome is accessory.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:klebsiella-pneumoniae
+  - entity:accessory-genome
+  - entity:horizontal-gene-transfer
+  - entity:resistome
+  links:
+    supports:
+    - stmt:within-species-clinical-fraction
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 4. Species with more clinical genomes carry more AMR (H4 proxy — species-level analysis)
+    quote: '*K. pneumoniae* is striking: 1,115 AMR gene clusters but only 7 are core — nearly the entire resistome is accessory, reflecting massive within-species AMR variation driven by HGT in clinical settings.'
+    notebook: 03_within_species.ipynb
+- id: stmt:environment-not-phylogeny-artifact
+  kind: finding
+  text: The environment-AMR relationship survives phylogenetic control, with 20 of 141 testable bacterial families showing significant within-family environment effects, demonstrating it is not simply a proxy for phylogeny.
+  confidence: medium
+  topics:
+  - topic:microbial-ecotypes
+  - topic:amr-resistome
+  entities:
+  - entity:gtdb-taxonomy
+  - entity:resistome
+  - entity:phylogenetic-control
+  links:
+    supports:
+    - stmt:clinical-amr-richness
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 5. Phylogenetic control confirms environment effects are real
+    quote: even within the same bacterial family, species in different environments carry different AMR profiles.
+    notebook: 02_resistome_vs_environment.ipynb
+- id: stmt:alphaearth-confirms-discrete
+  kind: finding
+  text: Continuous AlphaEarth environmental embeddings independently confirm the discrete environment findings, with a Mantel test showing that environmental distance predicts AMR profile distance (r = 0.098, p = 0.001) most strongly for clinical species.
+  confidence: medium
+  topics:
+  - topic:environment-biogeography
+  - topic:amr-resistome
+  entities:
+  - entity:alphaearth-embeddings
+  - entity:mantel-test
+  - entity:env-embedding-explorer
+  links:
+    supports:
+    - stmt:clinical-amr-richness
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: 6. AlphaEarth continuous environment embeddings confirm discrete findings (supplementary)
+    quote: 'A Mantel test confirms that environmental distance (cosine distance of embeddings) predicts AMR profile distance (Bray-Curtis of mechanism fractions): r = 0.098, p = 0.001.'
+    notebook: 04_alphaearth_analysis.ipynb
+    figure: figures/nb04_alphaearth.png
+- id: stmt:ncbi-sampling-bias
+  kind: caveat
+  text: The clinical-carries-more-AMR finding is partly confounded by NCBI sampling bias, because clinical isolates are massively overrepresented and clinical species are the ones sequenced precisely because they have AMR.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:environment-biogeography
+  entities:
+  - entity:ncbi-env
+  - entity:sampling-bias
+  - entity:resistome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:clinical-amr-richness
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The "clinical species carry more AMR" finding partly reflects that clinical species are the ones that get sequenced because they have AMR.
+- id: stmt:correlation-modest-effects
+  kind: caveat
+  text: The analysis establishes correlation rather than causation between environment and AMR, and effect sizes are modest, with environment explaining only 2-13% of variance in AMR composition.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:microbial-ecotypes
+  entities:
+  - entity:resistome
+  - entity:effect-size
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:niche-selects-mechanism
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: While all tests are highly significant (p ~ 0), the effect sizes are modest (η² = 0.02–0.13). Environment explains 2-13% of variance in AMR composition — phylogeny likely explains much more.
+- id: stmt:mobile-element-context
+  kind: opportunity
+  text: When mobile genetic element annotations become available in BERDL, accessory AMR clusters in clinical species could be tested for preferential association with plasmids, transposons, or integrative elements.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:amr-resistome
+  entities:
+  - entity:genomad-mobile-elements
+  - entity:accessory-genome
+  - entity:plasmid
+  links:
+    supports:
+    - stmt:kpneumoniae-accessory-resistome
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: When `genomad_mobile_elements` becomes available in BERDL, test whether accessory AMR clusters in clinical species are preferentially associated with plasmids, transposons, or integrative elements.
+- id: stmt:integrate-fitness-cost
+  kind: opportunity
+  text: Combining the environment-AMR profiles with the amr_fitness_cost project could test whether AMR genes enriched in clinical settings are costlier because recently acquired or cheaper because under strong selection.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:amr-resistome
+  entities:
+  - entity:amr-fitness-cost
+  - entity:resistome
+  - entity:fitness-cost
+  links:
+    supports:
+    - stmt:mechanism-conservation-ecology-link
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: amr_environmental_resistome
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Combine this project's environment-AMR profiles with `amr_fitness_cost` to test whether AMR genes enriched in clinical settings are costlier (because they're recently acquired) or cheaper (because they've been under strong selection).

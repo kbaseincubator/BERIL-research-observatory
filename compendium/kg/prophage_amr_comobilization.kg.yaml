@@ -1,0 +1,343 @@
+project:
+  id: prophage_amr_comobilization
+  title: 'Report: Prophage-AMR Co-mobilization Atlas'
+statements:
+- id: stmt:amr-prophage-contig-sharing
+  kind: finding
+  text: Over half of AMR gene instances in the most AMR-burdened species reside on contigs that also carry strict prophage markers such as terminase and phage structural proteins.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:amr-resistome
+  entities:
+  - entity:amr-genes
+  - entity:prophage-markers
+  - entity:terminase
+  links:
+    supports:
+    - stmt:prophage-density-predicts-amr-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 1: AMR genes frequently share contigs with prophage markers'
+    quote: Over half (55.7%) of AMR gene instances in the top-100 AMR-burdened species reside on contigs that also carry strict prophage markers (terminase, phage structural proteins, holin/lysin).
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 1: AMR genes frequently share contigs with prophage markers'
+    quote: Over half (55.7%) of AMR gene instances in the top-100 AMR-burdened species reside on contigs that also carry strict prophage markers (terminase, phage structural proteins, holin/lysin).
+    asset: figures/nb01_census_overview.png
+- id: stmt:pangenome-amr-prophage-census
+  kind: finding
+  text: A pangenome-scale census identified 83,008 AMR gene clusters and millions of prophage marker clusters, with 14,669 of 27,702 species carrying both.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:amr-resistome
+  entities:
+  - entity:amr-gene-clusters
+  - entity:prophage-markers
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 1: AMR genes frequently share contigs with prophage markers'
+    quote: Across the full pangenome inventory, 83,008 AMR gene clusters and 3.47 million prophage marker clusters were identified.
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 1: AMR genes frequently share contigs with prophage markers'
+    quote: Of 27,702 species in the pangenome, 14,669 (52.9%) carry both AMR and prophage markers.
+- id: stmt:prophage-amr-accessory-bias
+  kind: finding
+  text: Both prophage markers and AMR genes are predominantly accessory rather than core, with prophage markers more strongly accessory and frequently singleton.
+  confidence: high
+  topics:
+  - topic:pangenome-architecture
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:accessory-genome
+  - entity:prophage-markers
+  - entity:amr-genes
+  links:
+    supports:
+    - stmt:pangenome-amr-prophage-census
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 1: AMR genes frequently share contigs with prophage markers'
+    quote: Prophage markers are overwhelmingly accessory (83.8%) and frequently singleton (53.8%), while AMR genes are also predominantly accessory (69.7%) but less singleton (36.1%).
+- id: stmt:proximity-weak-mobility-effect
+  kind: finding
+  text: Prophage-proximal AMR genes are only slightly more likely to be accessory than distal ones, a statistically significant but modest effect.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:amr-genes
+  - entity:prophage-markers
+  - entity:accessory-genome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:amr-prophage-contig-sharing
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Prophage proximity weakly predicts AMR gene mobility (H1)'
+    quote: Prophage-proximal AMR genes (within 10 genes) are slightly more likely to be accessory (67.6%) than distal AMR genes (65.5%), yielding a statistically significant but modest effect (Fisher's exact OR=1.10, p=0.005, bootstrap 95% CI [1.024, 1.185]).
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Prophage proximity weakly predicts AMR gene mobility (H1)'
+    quote: Prophage-proximal AMR genes (within 10 genes) are slightly more likely to be accessory (67.6%) than distal AMR genes (65.5%), yielding a statistically significant but modest effect (Fisher's exact OR=1.10, p=0.005, bootstrap 95% CI [1.024, 1.185]).
+    asset: figures/nb03_h1_contingency.png
+- id: stmt:proximity-threshold-dependence
+  kind: finding
+  text: The proximity-accessory association is threshold-dependent and heterogeneous, absent or reversed at very close range and strengthening at broader gene-distance thresholds.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:pangenome-architecture
+  entities:
+  - entity:prophage-markers
+  - entity:amr-genes
+  - entity:genomic-islands
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:proximity-weak-mobility-effect
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Prophage proximity weakly predicts AMR gene mobility (H1)'
+    quote: 'The effect is threshold-dependent: it is absent or reversed at very close range (OR=0.78 at 3 genes, OR=0.92 at 5 genes) and strengthens at broader thresholds (OR=1.19 at 15 genes, OR=1.28 at 50 genes).'
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 2: Prophage proximity weakly predicts AMR gene mobility (H1)'
+    quote: 'Per-species analysis reveals heterogeneity: only 33 of 74 testable species show OR>1, with a median species-level OR of 0.85.'
+- id: stmt:prophage-density-predicts-amr-breadth
+  kind: finding
+  text: Species with higher prophage marker density carry significantly broader AMR gene repertoires, with prophage density explaining about 30% of variance in AMR breadth.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:prophage-density
+  - entity:amr-breadth
+  - entity:pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 3: Prophage density strongly predicts AMR repertoire breadth (H2)'
+    quote: Species with higher prophage marker density carry significantly broader AMR gene repertoires (Spearman rho=0.572, p<10^-300, n=4,770 species).
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 3: Prophage density strongly predicts AMR repertoire breadth (H2)'
+    quote: Species with higher prophage marker density carry significantly broader AMR gene repertoires (Spearman rho=0.572, p<10^-300, n=4,770 species).
+    asset: figures/nb04_h2_breadth_regression.png
+- id: stmt:density-effect-robust-to-genome-count
+  kind: claim
+  text: The prophage-AMR breadth association persists after controlling for genome count and is consistent across all five major phyla, arguing against a purely phylogenetic explanation.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:prophage-density
+  - entity:amr-breadth
+  - entity:phyla
+  links:
+    supports:
+    - stmt:prophage-density-predicts-amr-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 3: Prophage density strongly predicts AMR repertoire breadth (H2)'
+    quote: The association is robust after controlling for genome count (partial Spearman rho=0.464, p=1.0×10^-253).
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 3: Prophage density strongly predicts AMR repertoire breadth (H2)'
+    quote: This pan-phylogenetic consistency argues against phylogenetic confounding.
+- id: stmt:density-mechanism-interpretation
+  kind: claim
+  text: The prophage density signal is consistent with prophages directly mobilizing resistance genes via transduction or with high-recombination species independently acquiring both prophages and AMR genes.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:amr-resistome
+  entities:
+  - entity:prophages
+  - entity:transduction
+  - entity:amr-genes
+  links:
+    supports:
+    - stmt:prophage-density-predicts-amr-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: Interpretation
+    quote: 'This is consistent with two non-exclusive mechanisms: (1) prophages directly mobilize resistance genes via specialized or generalized transduction, and (2) species with high recombination potential (indicated by many prophages) are also better at acquiring genes from other mobile elements.'
+- id: stmt:novel-pangenome-scale
+  kind: claim
+  text: This is the first pangenome-scale analysis of prophage-AMR gene-neighborhood co-localization, spanning 100 species, 1,953 genomes, and 36,041 AMR gene instances.
+  confidence: medium
+  topics:
+  - topic:pangenome-architecture
+  - topic:amr-resistome
+  entities:
+  - entity:pangenome
+  - entity:amr-genes
+  - entity:prophage-markers
+  links:
+    supports:
+    - stmt:amr-prophage-contig-sharing
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: Novel Contribution
+    quote: This is the first pangenome-scale analysis of prophage-AMR gene-neighborhood co-localization across 100 species (1,953 genomes, 36,041 AMR gene instances).
+- id: stmt:extends-rendueles-correlation
+  kind: claim
+  text: The breadth finding extends prior capsule-pangenome work by demonstrating the prophage-AMR correlation at much larger scale and showing it persists after controlling for genome count rather than capsule presence.
+  confidence: medium
+  topics:
+  - topic:amr-resistome
+  - topic:mobile-genetic-elements
+  entities:
+  - entity:prophages
+  - entity:amr-genes
+  - entity:capsules
+  links:
+    supports:
+    - stmt:prophage-density-predicts-amr-breadth
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: Literature Context
+    quote: Our work extends this by demonstrating the prophage-AMR correlation at much larger scale (4,770 species vs ~100) and showing it persists after controlling for genome count rather than capsule presence.
+- id: stmt:caveat-keyword-prophage-detection
+  kind: caveat
+  text: Prophages were identified by keyword/Pfam matching rather than dedicated prediction tools, which may include false positives like phage-defense systems and miss divergent prophages.
+  confidence: high
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:functional-dark-matter
+  entities:
+  - entity:prophage-markers
+  - entity:bakta-annotations
+  - entity:phage-defense-systems
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:amr-prophage-contig-sharing
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: Uses keyword/Pfam matching on bakta_annotations rather than dedicated prophage prediction tools (e.g., PHASTER, geNomad). May include false positives (e.g., phage-defense systems) and miss divergent prophages.
+- id: stmt:caveat-correlation-not-causation
+  kind: caveat
+  text: The species-level association does not prove phage-mediated AMR transfer, since species with open pangenomes may independently accumulate both prophages and AMR genes.
+  confidence: high
+  topics:
+  - topic:amr-resistome
+  - topic:pangenome-architecture
+  entities:
+  - entity:prophages
+  - entity:amr-genes
+  - entity:open-pangenome
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:prophage-density-predicts-amr-breadth
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: Limitations
+    quote: The H2 association does not prove phage-mediated AMR transfer; species with open pangenomes may independently accumulate both prophages and AMR genes.
+- id: stmt:caveat-fitness-data-gap
+  kind: caveat
+  text: The fitness cost hypothesis could not be tested because the RB-TnSeq fitness browser covers only a few dozen model organisms that do not overlap well with the GTDB pangenome species analyzed.
+  confidence: high
+  topics:
+  - topic:gene-fitness
+  - topic:amr-resistome
+  entities:
+  - entity:fitness-browser
+  - entity:rb-tnseq
+  - entity:gtdb-species
+  links:
+    supports: []
+    contradicts: []
+    refines: []
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: 'Finding 4: Fitness cost comparison not testable (H3)'
+    quote: The BERDL fitness browser covers only 48 model organisms with RB-TnSeq data, which do not overlap well with the GTDB pangenome species analyzed here.
+- id: stmt:opportunity-dedicated-prophage-prediction
+  kind: opportunity
+  text: Applying dedicated prophage prediction tools such as geNomad or PHASTER and ingesting the results would replace keyword-based detection and reduce false positives.
+  confidence: medium
+  topics:
+  - topic:mobile-genetic-elements
+  - topic:functional-dark-matter
+  entities:
+  - entity:genomad
+  - entity:prophage-markers
+  - entity:berdl-genomes
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:caveat-keyword-prophage-detection
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: Apply geNomad or PHASTER to BERDL genomes and ingest results as a new table. This would replace keyword-based prophage detection with a validated tool and reduce false positives.
+- id: stmt:opportunity-expanded-fitness-revisit-h3
+  kind: opportunity
+  text: As fitness browser coverage expands, the fitness cost question can be revisited to test whether prophage-proximal AMR genes have distinct fitness costs.
+  confidence: medium
+  topics:
+  - topic:gene-fitness
+  - topic:amr-resistome
+  entities:
+  - entity:fitness-browser
+  - entity:amr-genes
+  - entity:prophage-markers
+  links:
+    supports: []
+    contradicts: []
+    refines:
+    - stmt:caveat-fitness-data-gap
+  evidence:
+  - source_project: prophage_amr_comobilization
+    source_doc: REPORT.md
+    source_section: Future Directions
+    quote: As fitness browser coverage expands, revisit H3 to test whether prophage-proximal AMR genes have distinct fitness costs.
