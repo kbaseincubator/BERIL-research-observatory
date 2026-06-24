@@ -6,10 +6,15 @@ services:
       - "8000:8000"
     env_file:
       - .env
+    environment:
+      # Reach OpenViking over the compose network, not the .env localhost default.
+      BERIL_OV_URL: http://openviking:1933
     restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
+      openviking:
+        condition: service_started
     develop:
       watch:
         - action: sync+restart
@@ -28,6 +33,28 @@ services:
         - action: rebuild
           path: ./.env
 
+
+  openviking:
+    build:
+      context: ./knowledge/openviking
+    # Override the SPIN-oriented default if you want a different in-container
+    # config location: pass OV_CONFIG_PATH as a build arg here.
+    ports:
+      - "1933:1933"   # OpenViking API (consumed by the ui service)
+      - "8020:8020"   # OpenViking secondary port
+    env_file:
+      - .env
+    environment:
+      VERTEXAI_LOCATION: us-central1
+      VERTEXAI_PROJECT: ${VERTEXAI_PROJECT}
+      GOOGLE_APPLICATION_CREDENTIALS: /var/secrets/gcp-key.json
+    volumes:
+      # Provide the OpenViking config locally. Copy/author it before `up`.
+      - ./knowledge/openviking/ov.conf:/var/openviking/ov.conf:ro
+      - ./knowledge/openviking/gcp-key.json:/var/secrets/gcp-key.json:ro
+      # Persist ingested content / embeddings across restarts.
+      - ovworkspace:/ov/workspace
+    restart: unless-stopped
 
   postgres:
     image: postgres:18.3
@@ -50,3 +77,4 @@ services:
 
 volumes:
   pgdata:
+  ovworkspace:
