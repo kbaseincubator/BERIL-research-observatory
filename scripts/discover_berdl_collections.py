@@ -293,14 +293,14 @@ def filter_user_facing_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
 
 
 def infer_tenant_id(database_id: str) -> str:
-    """Infer tenant from BERDL database naming conventions."""
-    if database_id.startswith("u_") and "__" in database_id:
-        return database_id.split("__", 1)[0]
-    if database_id.startswith("kbase_"):
-        return "kbase"
-    if database_id.startswith("kescience_"):
-        return "kescience"
-    return database_id.split("_", 1)[0]
+    """Infer the tenant (catalog) from an Iceberg ``catalog.namespace`` id.
+
+    Under Iceberg/Polaris every database is qualified as ``catalog.namespace``
+    (``kbase.genomes``, ``kbase.ke_pangenome``), so the tenant is the catalog —
+    everything before the first dot. Legacy flat Delta names are filtered out
+    upstream, so there is no underscore-split fallback.
+    """
+    return database_id.split(".", 1)[0] if "." in database_id else database_id
 
 
 def title_from_id(database_id: str) -> str:
