@@ -289,8 +289,8 @@ def filter_user_facing_snapshot(snapshot: dict[str, Any]) -> dict[str, Any]:
     filtered["tenants"] = filtered_tenants
     filtered["visibility_filter"] = "user_facing_v1"
     filtered["visibility_filter_note"] = (
-        "Excludes test, demo, startup, default, globalusers, personal u_*__*, "
-        "and uncategorized namespaces until curated."
+        "Excludes test, demo, startup, default, globalusers, personal "
+        "(my.* / <username>.*) catalogs, and uncategorized namespaces until curated."
     )
     return filtered
 

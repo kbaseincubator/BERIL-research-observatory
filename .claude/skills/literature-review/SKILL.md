@@ -247,11 +247,11 @@ Use the active BERDL Spark session and run bounded native Spark SQL:
 spark.sql("<SQL>")
 
 QUERIES (for each identifier):
-1. Gene lookup: SELECT geneId, organism, desc FROM kescience_paperblast.gene WHERE desc LIKE '%[name]%' OR geneId='[accession]' LIMIT 20
-2. Gene-paper: SELECT geneId, title, journal, CAST(year AS INT) as year, pmId, doi FROM kescience_paperblast.genepaper WHERE geneId='[geneId]' ORDER BY CAST(year AS INT) DESC LIMIT 20
-3. Snippets (top 5 genes): SELECT snippet, pmId, pmcId FROM kescience_paperblast.snippet WHERE geneId='[geneId]' LIMIT 10
-4. Curated: SELECT cg.protId, cg.name, cg.desc, cg.organism, cg.comment, cp.pmId FROM kescience_paperblast.curatedgene cg JOIN kescience_paperblast.curatedpaper cp ON cg.db=cp.db AND cg.protId=cp.protId WHERE cg.name LIKE '%[name]%' LIMIT 20
-5. GeneRIF: SELECT comment, pmId FROM kescience_paperblast.generif WHERE geneId='[geneId]' LIMIT 10
+1. Gene lookup: SELECT geneId, organism, desc FROM kescience.paperblast.gene WHERE desc LIKE '%[name]%' OR geneId='[accession]' LIMIT 20
+2. Gene-paper: SELECT geneId, title, journal, CAST(year AS INT) as year, pmId, doi FROM kescience.paperblast.genepaper WHERE geneId='[geneId]' ORDER BY CAST(year AS INT) DESC LIMIT 20
+3. Snippets (top 5 genes): SELECT snippet, pmId, pmcId FROM kescience.paperblast.snippet WHERE geneId='[geneId]' LIMIT 10
+4. Curated: SELECT cg.protId, cg.name, cg.desc, cg.organism, cg.comment, cp.pmId FROM kescience.paperblast.curatedgene cg JOIN kescience.paperblast.curatedpaper cp ON cg.db=cp.db AND cg.protId=cp.protId WHERE cg.name LIKE '%[name]%' LIMIT 20
+5. GeneRIF: SELECT comment, pmId FROM kescience.paperblast.generif WHERE geneId='[geneId]' LIMIT 10
 
 IMPORTANT: year is STRING — always CAST(year AS INT).
 

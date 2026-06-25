@@ -283,7 +283,7 @@ Discovery content...
 
 **Content:**
 - KBase BER Data Lakehouse
-- Delta Lakehouse architecture
+- Iceberg Lakehouse architecture
 - Available collections
 - Access methods (Spark SQL, REST API, JupyterHub)
 
