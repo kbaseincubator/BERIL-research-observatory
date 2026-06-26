@@ -41,8 +41,8 @@ from app.atlas_graph import (
 )
 
 from .auth import _RedirectToLogin, redirect_to_login_handler
+from .auth_providers import get_kbase_token, load_providers
 from .routes.admin import ROUTER_ADMIN
-from .routes.auth import ROUTER_AUTH
 from .routes.chat import ROUTER_CHAT, ROUTER_CHAT_PAGES
 from .routes.data import ROUTER_USER_DATA
 from .routes.user import ROUTER_USER
@@ -119,8 +119,11 @@ def create_app() -> FastAPI:
         name="project-assets",
     )
 
+    auth_providers = load_providers(settings)
+    app.state.auth_providers = auth_providers
+    auth_providers.identity.install_routes(app)
+
     app.include_router(ROUTER_ADMIN)
-    app.include_router(ROUTER_AUTH)
     app.include_router(ROUTER_CHAT)
     app.include_router(ROUTER_CHAT_PAGES)
     app.include_router(ROUTER_COLLECTIONS)
@@ -1138,6 +1141,7 @@ async def health(
     if db_status["status"] != "ok":
         status = "degraded"
     settings = get_settings()
+    kbase_token = await get_kbase_token(request)
     return {
         "status": status,
         "services": {
@@ -1146,5 +1150,6 @@ async def health(
         "session": context,
         "url_scheme": request.url.scheme,
         "git_commit": settings.git_commit,
-        "build_date": settings.build_date
+        "build_date": settings.build_date,
+        "kbase_status": kbase_token is not None
     }
