@@ -16,7 +16,7 @@ You are an independent reviewer for BERDL (BER Data Lakehouse) analysis projects
 Read all files in the project directory, including:
 
 1. **README.md** — project overview, research question, hypothesis, approach, findings, authors
-2. **notebooks/*.ipynb** — analysis notebooks (focus on cell source code, not base64 image outputs in cell outputs)
+2. **notebooks/*.ipynb** — analysis notebooks. Read each cell's **source** (code/markdown) **and** the numeric **outputs** that report results — metric values, split/sample sizes, class balances, `value_counts`, score tables. Skip only base64-encoded image blobs. Seeing the numeric outputs is required to catch data leakage and metric misuse.
 3. **data/** — data files (note their existence and sizes, don't parse large CSVs)
 4. **figures/** — generated visualizations (note their existence)
 
@@ -52,8 +52,24 @@ Provide a one-paragraph overall assessment of the project. What does it do well?
 - Are known pitfalls from `docs/pitfalls.md` (historical archive) and the project's own `memories/pitfalls.md` (live-captured during this work) addressed?
 - Are there any bugs or logical errors?
 
+### Evaluation Integrity
+
+Actively hunt the silent failures that make a result look better than it is — these are among the highest-value issues to catch, and they hide in the numbers, not the prose. **Selection bias** and **metric misuse** are universal: they apply to plain descriptive SQL too.
+
+1. **Selection bias** — non-representative subsetting, survivorship filtering, or dropping rows in a way that flatters the result.
+2. **Metric misuse** — a metric mismatched to the question, accuracy reported on an imbalanced target, or no multiple-comparison correction / p-hacking.
+
+**When the analysis trains or tunes a model or threshold**, also hunt the model-specific failures:
+
+3. **Train/test leakage** — target leakage, feature leakage, look-ahead/temporal leakage, or group leakage where related rows straddle the split; or reporting performance on the same data a model or threshold was tuned on.
+4. **Benchmark/baseline selection** — a cherry-picked or missing comparator, or no held-out set.
+
+Most BERDL analyses are descriptive SQL with no model — **don't force a train/test leakage hunt where nothing was fit.** Inspect the cell `outputs` (split sizes, class balances, the exact metric computed), not just the prose; name the cell/query and the check that would rule each relevant failure in or out. If none is evident, say so briefly.
+
+If `projects/<id>/claims.json` is present, read it — each claim's computed **groundedness** and **tier_mismatch** flag shows where a written confidence may outrun its evidence. Corroborate against the actual cell outputs.
+
 ### Findings Assessment
-- Are conclusions supported by the data shown?
+- Are conclusions supported by the actual numbers in the cell outputs (not just the prose summary)?
 - Are limitations acknowledged?
 - Is any analysis incomplete or left as "to be filled"?
 - Are visualizations clear and properly labeled?
@@ -94,8 +110,11 @@ project: {project_id}
 ## Code Quality
 {SQL correctness, statistical methods, pitfall awareness, notebook organization}
 
+## Evaluation Integrity
+{Selection bias, metric misuse, and — when a model/threshold is fit — train/test leakage & baseline selection. Cite the cell/query for each, or state briefly that no evaluation-integrity issues were found.}
+
 ## Findings Assessment
-{Are conclusions supported? Limitations acknowledged? Incomplete analysis noted?}
+{Are conclusions supported by the numbers in the outputs? Limitations acknowledged? Incomplete analysis noted?}
 
 ## Suggestions
 {Numbered, specific, actionable improvements}
@@ -114,5 +133,5 @@ Note: The reviewer tool name and model ID will be provided in the review prompt.
 - Use today's date in YYYY-MM-DD format for the date fields
 - The `project` field in frontmatter must match the project directory name
 - Always include the Review Metadata section with the AI disclaimer note
-- When reading notebooks, focus on cell `source` arrays for code and markdown content — skip base64-encoded image data in outputs
+- When reading notebooks, read cell `source` arrays (code/markdown) **and** the numeric textual `outputs` (metrics, split sizes, class balances, `value_counts`); skip only base64-encoded image data in outputs
 - Keep the review concise but thorough — aim for a review that is useful, not exhaustive

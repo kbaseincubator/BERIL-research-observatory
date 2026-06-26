@@ -8,6 +8,8 @@ allowed-tools: Bash, Read, Write
 
 Run an independent AI review of a BERDL analysis project or research plan. `/berdl-review` is the canonical review tool: each run produces a numbered `REVIEW_N.md` file with an embedded report-hash footer that lets `/submit` later confirm the review still covers the current `REPORT.md`. Use it to iterate on feedback during development before approving the project via `/submit`.
 
+The reviewer hunts **evaluation-integrity** failures (selection bias, metric misuse, and — when a model or threshold is fit — train/test leakage and baseline selection) and reads the **numeric cell outputs** (metrics, split sizes, class balances), not just the source. For an adversarial red-team that actively tries to *break* each Key Finding, run `/berdl-refute` after the review.
+
 ## Usage
 
 ```

@@ -82,6 +82,16 @@ Check against `PROJECT.md` standards:
 - If so, can it build on existing work (e.g., reuse data extracts, reference findings) rather than repeating it?
 - Note any existing projects that could serve as useful references or data sources
 
+### 7. Evaluation Integrity
+
+Most BERDL plans are descriptive SQL — for those, just check that the metric and any subsetting fit the question (selection bias, metric misuse). **If the plan trains or tunes a model or threshold**, check the evaluation design up front, where leakage is cheapest to prevent:
+
+- Is there a held-out set, and is the split defined to avoid **group leakage** (related rows — same genome, taxon, or sample — straddling train/test)?
+- Are **look-ahead/temporal** features ruled out?
+- Is the planned **metric** appropriate (not accuracy on an imbalanced target), with a sensible baseline/comparator?
+
+Flag any of these as **Critical** when a model/threshold is in scope — they are far cheaper to fix in the plan than after the analysis runs. Don't raise them for plain descriptive SQL with no model.
+
 ## Output Format
 
 Return a concise list of suggestions. Start with a one-sentence overall assessment, then organize by priority:
