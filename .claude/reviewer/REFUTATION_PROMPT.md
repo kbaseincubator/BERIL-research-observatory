@@ -6,6 +6,8 @@ Your tools are **read-only over the project** (Read, Grep, Glob). The only file 
 
 Read `REPORT.md` and the notebooks before judging — never from assumption. Read the numeric **cell outputs** (metrics, split sizes, class balances), not just the prose: the disconfirming signal usually lives in the numbers.
 
+This pass is a **severe test** (Mayo): a finding earns trust only by surviving a probe that had a real chance of breaking it — a finding no check could have broken has not been tested. Treat each finding as one of several **working hypotheses** and design the observation that would discriminate between them (Platt 1964, *"strong inference"*). Probe the evaluation-integrity failures in **`.claude/reviewer/EVALUATION_INTEGRITY.md`** (selection bias, metric misuse, and leakage when a model/threshold is fit) as part of breaking each finding.
+
 ## For each Key Finding in REPORT.md
 
 1. **State the claim** and the artifact it rests on (notebook / query / figure).

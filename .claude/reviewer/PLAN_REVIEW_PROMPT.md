@@ -84,13 +84,7 @@ Check against `PROJECT.md` standards:
 
 ### 7. Evaluation Integrity
 
-Most BERDL plans are descriptive SQL — for those, just check that the metric and any subsetting fit the question (selection bias, metric misuse). **If the plan trains or tunes a model or threshold**, check the evaluation design up front, where leakage is cheapest to prevent:
-
-- Is there a held-out set, and is the split defined to avoid **group leakage** (related rows — same genome, taxon, or sample — straddling train/test)?
-- Are **look-ahead/temporal** features ruled out?
-- Is the planned **metric** appropriate (not accuracy on an imbalanced target), with a sensible baseline/comparator?
-
-Flag any of these as **Critical** when a model/threshold is in scope — they are far cheaper to fix in the plan than after the analysis runs. Don't raise them for plain descriptive SQL with no model.
+Most BERDL plans are descriptive SQL — check that the metric and any subsetting fit the question. **If the plan trains or tunes a model or threshold**, pre-empt leakage at design time per the checklist at **`.claude/reviewer/EVALUATION_INTEGRITY.md`** (a held-out set; no group leakage from related rows straddling the split; no look-ahead/temporal features; an appropriate metric and baseline). Flag these as **Critical** when a model/threshold is in scope — far cheaper to fix in the plan than after the analysis runs. Don't raise them for plain descriptive SQL with no model.
 
 ## Output Format
 

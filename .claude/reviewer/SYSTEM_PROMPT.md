@@ -54,19 +54,7 @@ Provide a one-paragraph overall assessment of the project. What does it do well?
 
 ### Evaluation Integrity
 
-Actively hunt the silent failures that make a result look better than it is — these are among the highest-value issues to catch, and they hide in the numbers, not the prose. **Selection bias** and **metric misuse** are universal: they apply to plain descriptive SQL too.
-
-1. **Selection bias** — non-representative subsetting, survivorship filtering, or dropping rows in a way that flatters the result.
-2. **Metric misuse** — a metric mismatched to the question, accuracy reported on an imbalanced target, or no multiple-comparison correction / p-hacking.
-
-**When the analysis trains or tunes a model or threshold**, also hunt the model-specific failures:
-
-3. **Train/test leakage** — target leakage, feature leakage, look-ahead/temporal leakage, or group leakage where related rows straddle the split; or reporting performance on the same data a model or threshold was tuned on.
-4. **Benchmark/baseline selection** — a cherry-picked or missing comparator, or no held-out set.
-
-Most BERDL analyses are descriptive SQL with no model — **don't force a train/test leakage hunt where nothing was fit.** Inspect the cell `outputs` (split sizes, class balances, the exact metric computed), not just the prose; name the cell/query and the check that would rule each relevant failure in or out. If none is evident, say so briefly.
-
-If `projects/<id>/claims.json` is present, read it — each claim's computed **groundedness** and **tier_mismatch** flag shows where a written confidence may outrun its evidence. Corroborate against the actual cell outputs.
+Actively hunt the silent failures that make a result look better than it is — they hide in the **numbers**, not the prose. Follow the checklist at **`.claude/reviewer/EVALUATION_INTEGRITY.md`** — read it. Inspect the cell `outputs` (split sizes, class balances, the exact metric computed), not just the prose, and name the cell/query and the check that would rule each failure in or out. Most BERDL work is descriptive SQL — don't force a leakage hunt where nothing was fit; if none is evident, say so briefly. If `projects/<id>/claims.json` is present, use it to see where a written confidence may outrun its computed groundedness.
 
 ### Findings Assessment
 - Are conclusions supported by the actual numbers in the cell outputs (not just the prose summary)?
