@@ -9,6 +9,21 @@ See [schemas/](schemas/) for per-collection documentation.
 
 ## General BERDL Pitfalls
 
+### [all] Namespace Convention Changed from Underscores to Dots (Delta → Iceberg)
+
+**Problem**: BERDL collections are migrating from Delta to Iceberg, and the table-naming convention changed with it. Iceberg tables are addressed as **`catalog.namespace.table`** (dotted), whereas the old Delta convention flattened that into a single underscore-joined identifier — e.g. what is now `kbase.ke_pangenome.genome` was previously `kbase_ke_pangenome.genome`. A query copied verbatim from an older project's README, REPORT, notebook, or `.py` file will use the underscore form and fail with `TABLE_OR_VIEW_NOT_FOUND` (or an unresolved-relation error) against the migrated catalog.
+
+**Scale**: Underscore-form references are widespread in completed projects (hundreds of files reference `kbase_ke_pangenome`, `kescience_fitnessbrowser`, `nmdc_arkin`, `kescience_mgnify`, `enigma_genome_depot_enigma`, etc.). Those archived files are intentionally **not** rewritten — they are historical. Only the leading underscore needs to change; the table name itself is unchanged (`kbase_ke_pangenome.genome` → `kbase.ke_pangenome.genome`).
+
+**Important — migration is still ongoing**: Not every collection has migrated yet. If a **dotted** namespace cannot be found, the collection may still be Delta-only, in which case the **underscore** form is the correct address. Do not assume a blanket underscore→dot rewrite is always right.
+
+**Fix**: Don't hardcode either form blindly. Use live, access-aware catalog discovery (`SET` + parse `spark.sql.catalog.*`, or the BERDL notebook helpers) to resolve the current address of a collection, then:
+
+- Prefer the dotted (`catalog.namespace.table`) form for migrated collections.
+- If the dotted name is not found, fall back to the underscore (`catalog_namespace.table`) form — that collection has not been migrated yet.
+
+**Applies to**: Any query reused from a project authored before the Iceberg migration, and any code that addresses tables by hardcoded namespace strings.
+
 ### [genotype_to_phenotype_enigma] Short Strain Names Collide Across Databases
 
 **Problem**: ENIGMA field isolates often have short strain names (MT20, MT42, GW460-LB6, FW507-14TSA) that are **not globally unique**. When matching to `kbase.ke_pangenome.gtdb_metadata.ncbi_strain_identifiers`, these short names can match **completely unrelated organisms** in NCBI. Example: ENIGMA MT20 is *Rhodanobacter glycinis* (Xanthomonadales, groundwater), but GTDB's MT20 is *Streptococcus pneumoniae* (Lactobacillales, clinical) — 8,434 genomes, 1,751 clinical. This contaminated genus-environment profiles with spurious clinical data.
