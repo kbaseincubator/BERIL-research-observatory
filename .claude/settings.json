@@ -5,5 +5,28 @@
   "statusLine": {
     "type": "command",
     "command": "bash .claude/statusline.sh"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Write|Edit|NotebookEdit|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/beril-trace.sh"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/beril-provenance.sh"
+          }
+        ]
+      }
+    ]
   }
 }
