@@ -1,9 +1,25 @@
-version: '3.8'
 services:
-  ui:
-    build: .
+  proxy:
+    image: nginx:alpine
+    # Owns host port 8000 and path-routes: /ov -> openviking, everything else
+    # -> ui. Mirrors the SPIN NGINX ingress so http://localhost:8000/ov works
+    # locally the same way it does on SPIN.
     ports:
       - "8000:8000"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+    depends_on:
+      - ui
+      - openviking
+
+  ui:
+    build: .
+    # Host port 8000 is owned by the proxy service, which fronts both the UI
+    # and OpenViking (/ov). The UI is reachable to the proxy over the compose
+    # network as http://ui:8000.
+    expose:
+      - "8000"
     env_file:
       - .env
     environment:
@@ -48,6 +64,7 @@ services:
       VERTEXAI_LOCATION: us-central1
       VERTEXAI_PROJECT: ${VERTEXAI_PROJECT}
       GOOGLE_APPLICATION_CREDENTIALS: /var/secrets/gcp-key.json
+      OV_SERVER_KEY: ${OV_SERVER_KEY}
     volumes:
       # Provide the OpenViking config locally. Copy/author it before `up`.
       - ./knowledge/openviking/ov.conf:/var/openviking/ov.conf:ro

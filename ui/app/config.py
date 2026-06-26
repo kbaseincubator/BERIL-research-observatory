@@ -62,6 +62,9 @@ class Settings(BaseSettings):
     ov_account_id: str = "beril"
     ov_account_admin: str = "beril_admin"
     ov_admin_key: str = "change-me-in-production"
+    # Fernet key for encrypting OpenViking user credentials at rest.
+    # urlsafe-base64-encoded 32-byte key; generate with Fernet.generate_key().
+    ov_credential_key: str | None = None
 
     # Derived paths
     @property

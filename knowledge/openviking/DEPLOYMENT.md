@@ -10,6 +10,7 @@
 ```
 2. Make sure secrets are set / updated.
 3. Redeploy the knowledge-engine/beril-open-viking container.
+4. **On first deploy only** create admin account and user account using the OV server secret (see below)
 
 ## Longer version for dev deployment choices and such
 ### Dockerfile
@@ -54,3 +55,61 @@ Once these are deployed, OpenViking should be available by calling `https://beri
     "auth_mode": "api_key"
 }
 ```
+
+### Set up accounts on first deployment
+There needs to be two account credentials set on the initial OpenViking deployment.
+
+1. Set up an admin account.
+
+An admin account needs to be created that will manage other user accounts. The configured `OV_ROOT_API_KEY` is used to create that with the following command:
+
+```bash
+curl -X POST https://beril.kbase.us/ov/api/v1/admin/accounts \
+    -H "X-API-Key: ${OV_ROOT_API_KEY}" \
+    -H "Content-Type: application/json" \
+    -d '{"account_id": "beril", "admin_user_id": "beril_admin"}'
+```
+
+This creates a `beril` account (this is effectively the workspace or tenant which all current users will use) with the admin user named `beril_admin`. It will return results with this format:
+
+```json
+{
+    "status": "ok",
+    "result": {
+        "account_id": "beril",
+        "admin_user_id": "beril_admin",
+        "isolate_user_scope_by_agent": false,
+        "isolate_agent_scope_by_user": false,
+        "user_key": "secret_admin_api_key",
+    },
+    "error": null,
+    "telemetry": null
+}
+```
+
+Keep that `user_key` safe! This is the admin key that will be used to create all users on behalf of the BERIL web app. Store it as `BERIL_OV_ADMIN_KEY` in the deployment secrets and redeploy.
+
+2. Admins have global rights, including creating new users. To support having some global data inputs (i.e. controlled by the project, not users), create a new user with the following command:
+
+```bash
+curl -X POST https://beril.kbase.us/ov/api/v1/admin/accounts/beril/users \
+    -H "X-API-Key: ${BERIL_OV_ADMIN_KEY}" \
+    -H "Content-Type: application/json" \
+    -d '{"user_id": "beril_user", "role": "user"}'
+```
+
+Which returns the following:
+```json
+{
+    "status":"ok",
+    "result":{
+        "account_id":"beril",
+        "user_id":"beril_user",
+        "user_key":"secret_beril_user_api_key"
+    },
+    "error":null,
+    "telemetry":null
+}
+```
+
+Store that api key, too.
