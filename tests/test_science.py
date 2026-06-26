@@ -11,7 +11,6 @@ from beril_cli.science import (
     claim_id,
     groundedness_for_evidence,
     is_result,
-    tier_for_evidence,
     tier_mismatch,
 )
 
@@ -33,30 +32,6 @@ def test_is_result_false_for_literature_and_figures():
     assert not is_result(_p("figure"))
     assert not is_result(_p("web"))
     assert not is_result(_p("docs"))
-
-
-# --- tier_for_evidence: counts re-runnable result POINTERS ---
-
-
-def test_tier_high_with_two_results():
-    assert tier_for_evidence([_p("query", "a"), _p("notebook", "b")]) == "high"
-
-
-def test_tier_medium_with_one_result_and_a_paper():
-    assert tier_for_evidence([_p("query", "a"), _p("paper", "PMID:1")]) == "medium"
-
-
-def test_tier_low_with_literature_only():
-    assert tier_for_evidence([_p("paper", "x"), _p("web", "y")]) == "low"
-
-
-def test_tier_low_with_no_evidence():
-    assert tier_for_evidence([]) == "low"
-
-
-def test_tier_counts_pointers_not_distinct_sources():
-    # Two pointers into the SAME notebook still count as two results for confidence.
-    assert tier_for_evidence([_p("notebook", "nb#cell-1"), _p("notebook", "nb#cell-1")]) == "high"
 
 
 # --- groundedness_for_evidence: counts DISTINCT re-runnable sources ---
@@ -113,11 +88,10 @@ def test_groundedness_distinct_notebooks_well_grounded():
 # --- the calibration signal: high confidence can still be single-source ---
 
 
-def test_confidence_and_groundedness_diverge_on_same_notebook():
-    # Two cells of one notebook: high confidence (2 pointers) but single-source
-    # (1 independent notebook) -> tier_mismatch should fire.
+def test_written_high_confidence_on_one_notebook_is_a_mismatch():
+    # Two cells of one notebook are a single independent source, so a WRITTEN
+    # "high" confidence outruns the evidence -> tier_mismatch fires.
     supports = [_p("notebook", "nb.ipynb#cell-1"), _p("notebook", "nb.ipynb#cell-9")]
-    assert tier_for_evidence(supports) == "high"
     assert groundedness_for_evidence(supports) == "single-source"
     assert tier_mismatch("high", groundedness_for_evidence(supports)) is True
 
@@ -178,10 +152,6 @@ def test_status_from_returns_leftmost():
 
 def test_is_result_tolerates_non_dict():
     assert is_result("notadict") is False
-
-
-def test_tier_tolerates_non_dict_elements():
-    assert tier_for_evidence(["notadict", _p("query", "a")]) == "medium"
 
 
 def test_groundedness_tolerates_non_dict_elements():

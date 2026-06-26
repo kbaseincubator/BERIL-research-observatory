@@ -3,23 +3,19 @@
 Ported from the beril-pi-agent reference (lib/science.ts, lib/claim-state.ts).
 
 Trust is expressed as WORDS, never a verbalized number, so a claim cannot sound
-more certain than its evidence supports. This module provides pure helpers:
+more certain than its evidence supports. The author WRITES a confidence word; this
+module computes the evidence side and flags the gap:
 
-- ``tier_for_evidence`` — the artifact-strength confidence tier
-  (``high``/``medium``/``low``), counting re-runnable result pointers (a paper
-  accompanying a result never raises the tier).
-- ``groundedness_for_evidence`` — a distinct second axis
-  (``well-grounded``/``single-source``/``ungrounded``) counting the DISTINCT
-  independent re-runnable sources (deduped by normalized locator), so two cells
-  of the same notebook are one source.
+- ``groundedness_for_evidence`` — counts the DISTINCT independent re-runnable
+  sources behind a claim (``well-grounded``/``single-source``/``ungrounded``),
+  deduped at the notebook level so two cells of the same notebook are one source.
 - ``tier_mismatch`` — flags where a *written* ``high``/``medium`` confidence
   outruns its groundedness.
 
-The claims ledger (``claims_cmd``) READS the author's written confidence word and
-computes groundedness + tier_mismatch from the evidence; ``tier_for_evidence`` is
-the reference computation, available for any surface that wants the artifact-only
-tier. Every function is pure and deterministic (no I/O, no model; tolerant of
-empty or malformed input — never throws).
+The claims ledger (``claims_cmd``) reads the written confidence word and computes
+groundedness + tier_mismatch from the evidence. Every function is pure and
+deterministic (no I/O, no model; tolerant of empty or malformed input — never
+throws).
 """
 
 from __future__ import annotations
@@ -49,21 +45,6 @@ def is_result(pointer: dict) -> bool:
     Tolerant of malformed (non-dict) elements — returns False rather than raising.
     """
     return isinstance(pointer, dict) and pointer.get("kind") in ("query", "notebook")
-
-
-def tier_for_evidence(supports: list[dict]) -> str:
-    """Map supporting evidence to a confidence tier (pure, deterministic).
-
-    - ``high``   — >=2 re-runnable results.
-    - ``medium`` — exactly one re-runnable result (a paper may accompany it).
-    - ``low``    — literature-only, or nothing.
-    """
-    results = sum(1 for p in (supports or []) if is_result(p))
-    if results >= 2:
-        return "high"
-    if results == 1:
-        return "medium"
-    return "low"
 
 
 def groundedness_for_evidence(supports: list[dict]) -> str:
